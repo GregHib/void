@@ -791,7 +791,7 @@ id = 1779
 price = 67
 limit = 25000
 weight = 0.453
-spinning = { to = "bow_string", level = 10, xp = 15.0 }
+spinning = { to = "bowstring", level = 10, xp = 15.0 }
 weaving = { amount = 5, to = "unfinished_net", level = 52 }
 examine = "I should use this with a spinning wheel."
 
