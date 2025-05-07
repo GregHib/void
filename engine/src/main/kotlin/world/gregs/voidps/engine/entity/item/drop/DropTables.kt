@@ -130,57 +130,68 @@ class DropTables {
         withinMax: Int? = null,
         members: Boolean? = null
     ): ((Player) -> Boolean)? {
-        var predicate: ((Player) -> Boolean)? = null
+        val predicates = mutableListOf<((Player) -> Boolean)>()
         if (owns != null || lacks != null) {
-            predicate = { (owns == null || ownsItem(it, owns)) && (lacks == null || !ownsItem(it, lacks)) }
-        } else if (variable != null) {
+            predicates.add { (owns == null || ownsItem(it, owns)) && (lacks == null || !ownsItem(it, lacks)) }
+        }
+        if (members != null) {
+            predicates.add { World.members == members }
+        }
+        if (variable != null) {
             if (negated) {
                 if (eq != null) {
                     when (default) {
-                        is Int -> predicate = { it[variable, default] != eq }
-                        is String -> predicate = { it[variable, default] != eq }
-                        is Double -> predicate = { it[variable, default] != eq }
-                        is Long -> predicate = { it[variable, default] != eq }
-                        is Boolean -> predicate = { it[variable, default] != eq }
+                        is Int -> predicates.add { it[variable, default] != eq }
+                        is String -> predicates.add { it[variable, default] != eq }
+                        is Double -> predicates.add { it[variable, default] != eq }
+                        is Long -> predicates.add { it[variable, default] != eq }
+                        is Boolean -> predicates.add { it[variable, default] != eq }
                         else -> when (eq) {
-                            is Int -> predicate = { it.get<Int>(variable) != eq }
-                            is String -> predicate = { it.get<String>(variable) != eq }
-                            is Double -> predicate = { it.get<Double>(variable) != eq }
-                            is Long -> predicate = { it.get<Long>(variable) != eq }
-                            is Boolean -> predicate = { it.get<Boolean>(variable) != eq }
+                            is Int -> predicates.add { it.get<Int>(variable) != eq }
+                            is String -> predicates.add { it.get<String>(variable) != eq }
+                            is Double -> predicates.add { it.get<Double>(variable) != eq }
+                            is Long -> predicates.add { it.get<Long>(variable) != eq }
+                            is Boolean -> predicates.add { it.get<Boolean>(variable) != eq }
                             else -> {}
                         }
                     }
                 } else if (withinMin != null && withinMax != null) {
                     val within = withinMin..withinMax
-                    predicate = { it[variable, default ?: -1] !in within }
+                    predicates.add { it[variable, default ?: -1] !in within }
                 }
             } else {
                 if (eq != null) {
                     when (default) {
-                        is Int -> predicate = { it[variable, default] == eq }
-                        is String -> predicate = { it[variable, default] == eq }
-                        is Double -> predicate = { it[variable, default] == eq }
-                        is Long -> predicate = { it[variable, default] == eq }
-                        is Boolean -> predicate = { it[variable, default] == eq }
+                        is Int -> predicates.add { it[variable, default] == eq }
+                        is String -> predicates.add { it[variable, default] == eq }
+                        is Double -> predicates.add { it[variable, default] == eq }
+                        is Long -> predicates.add { it[variable, default] == eq }
+                        is Boolean -> predicates.add { it[variable, default] == eq }
                         else -> when (eq) {
-                            is Int -> predicate = { it.get<Int>(variable) == eq }
-                            is String -> predicate = { it.get<String>(variable) == eq }
-                            is Double -> predicate = { it.get<Double>(variable) == eq }
-                            is Long -> predicate = { it.get<Long>(variable) == eq }
-                            is Boolean -> predicate = { it.get<Boolean>(variable) == eq }
+                            is Int -> predicates.add { it.get<Int>(variable) == eq }
+                            is String -> predicates.add { it.get<String>(variable) == eq }
+                            is Double -> predicates.add { it.get<Double>(variable) == eq }
+                            is Long -> predicates.add { it.get<Long>(variable) == eq }
+                            is Boolean -> predicates.add { it.get<Boolean>(variable) == eq }
                             else -> {}
                         }
                     }
                 } else if (withinMin != null && withinMax != null) {
                     val within = withinMin..withinMax
-                    predicate = { it[variable, default ?: -1] in within }
+                    predicates.add { it[variable, default ?: -1] in within }
                 }
             }
-        } else if (members != null) {
-            predicate = { World.members == members }
         }
-        return predicate
+        return when (predicates.size) {
+            1 -> predicates[0]
+            2 -> {
+                { predicates[0](it) && predicates[1](it) }
+            }
+            3 -> {
+                { predicates[0](it) && predicates[1](it) && predicates[2](it) }
+            }
+            else -> null
+        }
     }
 
     private val inventories = listOf("inventory", "worn_equipment", "bank")
