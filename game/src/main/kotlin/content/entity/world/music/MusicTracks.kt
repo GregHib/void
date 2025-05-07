@@ -70,7 +70,7 @@ class MusicTracks {
                                         Region(region).toCuboid()
                                     }
                                 }
-                                val track = Track(key, index, area)
+                                val track = Track(stringId, index, area)
                                 for (r in area.toRegions()) {
                                     tracks.getOrPut(r.id) { ObjectArrayList(1) }.add(track)
                                 }
