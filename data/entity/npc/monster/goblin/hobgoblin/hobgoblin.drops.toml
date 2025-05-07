@@ -23,7 +23,7 @@ drops = [
     { id = "nature_rune", amount = 4, chance = 2 },
     { id = "cosmic_rune", amount = 2 },
     { table = "herb_drop_table", chance = 7 },
-    { table = "general_seed_drop_table", chance = 18 },
+    { table = "allotment_seed_drop_table", chance = 18 },
     { id = "coins", amount = 5, chance = 18, members = false },
     { id = "coins", amount = 15, chance = 16 },
     { id = "coins", amount = 28, chance = 16 },
@@ -58,7 +58,7 @@ drops = [
     { table = "hobgoblin_tertiary" },
 ]
 
-[hobgoblin_armed_drops_secondary]
+[hobgoblin_armed_secondary]
 roll = 128
 drops = [
     { id = "iron_sword", chance = 3 },
