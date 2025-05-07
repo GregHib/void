@@ -91,7 +91,7 @@ object Level {
         val requirements: Map<Skill, Int>? = item.def.getOrNull("equip_req")
         if (requirements != null) {
             for ((skill, level) in requirements) {
-                if (if (skill == Skill.Prayer) !hasMax(skill, level, message) else !has(skill, level, message)) {
+                if (!hasMax(skill, level, message)) {
                     return false
                 }
             }

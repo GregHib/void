@@ -17,6 +17,7 @@ import WorldTest
 import equipItem
 import interfaceOption
 import playerOption
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.network.client.instruction.EnterInt
 import kotlin.test.assertFalse
 
@@ -164,7 +165,7 @@ internal class LendTest : WorldTest() {
         val item = Item("abyssal_whip")
         lender.interfaceOption("trade_side", "offer", "Lend", item = item, slot = 0)
         acceptTrade(lender, borrower)
-        borrower.levels.set(Skill.Attack, 75)
+        borrower.experience.set(Skill.Attack, Level.experience(75))
         borrower.equipItem("abyssal_whip_lent")
         assertTrue(borrower.equipment.contains("abyssal_whip_lent"))
 

@@ -49,6 +49,9 @@ fun setup(player: Player) {
     if (!Settings["world.setup.gear", true]) {
         return
     }
+    if (!player.inventory.isEmpty()) { // added check to skip starter kit for migrated accounts.
+        return
+    }
     player.bank.add("coins", 25)
     player.inventory.apply {
         add("bronze_hatchet")
