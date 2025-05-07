@@ -47,7 +47,7 @@ drops = [
 [hobgoblin_tertiary]
 roll = 5000
 drops = [
-    { id = "hobgoblin_champions_scroll", members = true },
+    { id = "hobgoblin_champions_scroll", members = true, lacks = "hobgoblin_champions_scroll" },
 ]
 
 [hobgoblin_armed_drop_table]
