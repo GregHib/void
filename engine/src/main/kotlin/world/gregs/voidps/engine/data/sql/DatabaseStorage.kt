@@ -48,10 +48,10 @@ class DatabaseStorage : AccountStorage {
             .groupBy(AccountsTable.id)
             .associate { row ->
                 val variables: Map<String, Any> = row[names].mapIndexed { index, s -> s to if (s == "coin_share_setting") row[booleans][index] else row[strings][index] }.toMap()
-                val playerName = row[AccountsTable.name]
-                val displayName = variables["display_name"] as? String ?: playerName
-                displayName to Clan(
-                    owner = playerName,
+                val accountName = row[AccountsTable.name]
+                val displayName = variables["display_name"] as? String ?: accountName
+                accountName.lowercase() to Clan(
+                    owner = accountName,
                     ownerDisplayName = displayName,
                     name = variables["clan_name"] as? String ?: "",
                     friends = row[AccountsTable.friends].zip(row[AccountsTable.ranks]) { friend, rank -> friend to ClanRank.valueOf(rank) }.toMap(),
@@ -71,8 +71,8 @@ class DatabaseStorage : AccountStorage {
             val names = accounts.map { it.name }
             val playerIds = AccountsTable
                 .select(AccountsTable.id, AccountsTable.name)
-                .where { AccountsTable.name inList names }
-                .associate { it[AccountsTable.name] to it[AccountsTable.id] }
+                .where { LowerCase(AccountsTable.name) inList names.map { it.lowercase() } }
+                .associate { it[AccountsTable.name].lowercase() to it[AccountsTable.id] }
             saveExperience(accounts, playerIds)
             saveLevels(accounts, playerIds)
             saveVariables(accounts, playerIds)
@@ -81,11 +81,19 @@ class DatabaseStorage : AccountStorage {
     }
 
     override fun exists(accountName: String): Boolean = transaction {
-        AccountsTable.select(AccountsTable.id).where { AccountsTable.name eq accountName }.count() > 0
+        val lower = accountName.lowercase()
+        AccountsTable
+            .select(AccountsTable.id)
+            .where { LowerCase(AccountsTable.name) eq lower }
+            .count() > 0
     }
 
     override fun load(accountName: String): PlayerSave? = transaction {
-        val playerRow = AccountsTable.selectAll().where { AccountsTable.name eq accountName }.singleOrNull() ?: return@transaction null
+        val lower = accountName.lowercase()
+        val playerRow = AccountsTable
+            .selectAll()
+            .where { LowerCase(AccountsTable.name) eq lower }
+            .singleOrNull() ?: return@transaction null
         val playerId = playerRow[AccountsTable.id]
         val experience = loadExperience(playerId)
         val blocked = playerRow[AccountsTable.blockedSkills]
@@ -117,7 +125,7 @@ class DatabaseStorage : AccountStorage {
         InventoriesTable.deleteWhere { playerId inList playerIds.values }
         val invData = accounts.flatMap { save -> save.inventories.toList().map { Triple(save.name, it.first, it.second) } }
         InventoriesTable.batchUpsert(invData, InventoriesTable.playerId, InventoriesTable.inventoryName) { (id, inventory, items) ->
-            this[InventoriesTable.playerId] = playerIds.getValue(id)
+            this[InventoriesTable.playerId] = playerIds.getValue(id.lowercase())
             this[InventoriesTable.inventoryName] = inventory
             this[InventoriesTable.items] = items.map { it.id }
             this[InventoriesTable.amounts] = items.map { it.value }
@@ -129,7 +137,7 @@ class DatabaseStorage : AccountStorage {
         VariablesTable.deleteWhere { playerId inList playerIds.values }
         val varData = accounts.flatMap { save -> save.variables.toList().map { Triple(save.name, it.first, it.second) } }
         VariablesTable.batchUpsert(varData, VariablesTable.playerId, VariablesTable.name) { (id, name, value) ->
-            this[VariablesTable.playerId] = playerIds.getValue(id)
+            this[VariablesTable.playerId] = playerIds.getValue(id.lowercase())
             this[VariablesTable.name] = name
             when (value) {
                 is String -> {
@@ -168,7 +176,7 @@ class DatabaseStorage : AccountStorage {
 
     private fun saveLevels(accounts: List<PlayerSave>, playerIds: Map<String, Int>) {
         LevelsTable.batchUpsert(accounts, LevelsTable.playerId) { playerSave ->
-            this[LevelsTable.playerId] = playerIds.getValue(playerSave.name)
+            this[LevelsTable.playerId] = playerIds.getValue(playerSave.name.lowercase())
             val levels = playerSave.levels
             this[LevelsTable.attack] = levels[0]
             this[LevelsTable.defence] = levels[1]
@@ -200,7 +208,7 @@ class DatabaseStorage : AccountStorage {
 
     private fun saveExperience(accounts: List<PlayerSave>, playerIds: Map<String, Int>) {
         ExperienceTable.batchUpsert(accounts, ExperienceTable.playerId) { playerSave ->
-            this[ExperienceTable.playerId] = playerIds.getValue(playerSave.name)
+            this[ExperienceTable.playerId] = playerIds.getValue(playerSave.name.lowercase())
             val experience = playerSave.experience
             this[ExperienceTable.attack] = experience[0]
             this[ExperienceTable.defence] = experience[1]
