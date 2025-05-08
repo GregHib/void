@@ -14,7 +14,7 @@ empty = "empty_pot"
 examine = "Well, this pot is certainly full of vinegar, and no mistake."
 kept = "Wilderness"
 
-[cave_goblin_skull]
+[goblin_skull]
 id = 7812
 tradeable = false
 weight = 0.003
