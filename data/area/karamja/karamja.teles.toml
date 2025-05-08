@@ -1,6 +1,9 @@
-# 11311 karamja
-[lever_ardougne_edgeville]
-option = "Pull"
-tile = { x = 2561, y = 3311 }
-to = { x = 3154, y = 3924 }
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2789, y = 2979 }
+delta = { level = 1 }
 
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2789, y = 2979, level = 1 }
+delta = { level = -1 }

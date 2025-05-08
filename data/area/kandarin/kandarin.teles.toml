@@ -1,4 +1,4 @@
-#10549
+#10548
 [1750]
 option = "Climb-up"
 tile = { x = 2630, y = 3386 }
@@ -18,6 +18,11 @@ delta = { level = -1 }
 option = "Climb-down"
 tile = { x = 2630, y = 3386, level = 2 }
 delta = { level = -1 }
+
+[2]
+option = "Enter"
+tile = { x = 2626, y = 3392 }
+to = { x = 2620, y = 9797 }
 
 #10549
 [1754]
@@ -122,3 +127,68 @@ delta = { y = 4, level = 1 }
 option = "Climb-down"
 tile = { x = 2769, y = 3399, level = 2 }
 delta = { y = -4, level = -1 }
+
+[1754]
+option = "Climb-down"
+tile = { x = 2621, y = 3261 }
+delta = { y = 6400 }
+
+[1738]
+option = "Climb-up"
+tile = { x = 2595, y = 3208 }
+to = { x = 2597, y = 3208, level = 1 }
+
+[1740]
+option = "Climb-down"
+tile = { x = 2596, y = 3208, level = 1 }
+to = { x = 2596, y = 3207 }
+
+[1738]
+option = "Climb-up"
+tile = { x = 2616, y = 3208 }
+to = { x = 2618, y = 3208, level = 1 }
+
+[1740]
+option = "Climb-down"
+tile = { x = 2617, y = 3208, level = 1 }
+to = { x = 2617, y = 3207 }
+
+[1722]
+option = "Climb-up"
+tile = { x = 2669, y = 3243 }
+delta = { y = 4, level = 1 }
+
+[1723]
+option = "Climb-down"
+tile = { x = 2669, y = 3244, level = 1 }
+delta = { y = -4, level = -1 }
+
+[41121]
+option = "Climb-up"
+tile = { x = 2613, y = 3139 }
+delta = { x = -3, level = 1 }
+
+[41122]
+option = "Climb-down"
+tile = { x = 2613, y = 3139, level = 1 }
+delta = { x = 3, level = -1 }
+
+[41078]
+option = "Climb-up"
+tile = { x = 2619, y = 3140, level = 1 }
+delta = { level = 1 }
+
+[41079]
+option = "Climb-down"
+tile = { x = 2619, y = 3140, level = 2 }
+to = { x = 2619, y = 3139, level = 1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2677, y = 3087 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2677, y = 3087, level = 1 }
+delta = { level = -1 }

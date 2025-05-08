@@ -59,9 +59,7 @@ option = "Climb-up"
 tile = { x = 3325, y = 3142 }
 to = { x = 3324, y = 3139, level = 1 }
 
-# 13106 al_kharid
-[fire_altar_portal]
-option = "Enter"
-tile = { x = 2576, y = 4846 }
-to = { x = 3311, y = 3253 }
-
+[35645]
+option = "Climb-down"
+tile = { x = 3325, y = 3139, level = 1 }
+to = { x = 3325, y = 3143 }

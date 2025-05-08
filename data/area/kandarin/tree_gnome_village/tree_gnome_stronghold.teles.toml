@@ -1,6 +1,0 @@
-# 9525 tree_gnome_stronghold
-[blood_altar_portal]
-option = "Enter"
-tile = { x = 2468, y = 4888, level = 1 }
-to = { x = 3560, y = 9779 }
-
