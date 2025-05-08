@@ -55,10 +55,7 @@ fun sendUnlocks(player: Player) {
 
 fun sendPlaylist(player: Player) {
     for (slotNum in 1..12) {
-        if (player.variables.data.keys.contains("playlist_slot_$slotNum"))
-            player.sendVariable("playlist_slot_$slotNum")
-        else
-            player["playlist_slot_$slotNum"] = "none"
+        player.sendVariable("playlist_slot_$slotNum")
     }
 }
 
