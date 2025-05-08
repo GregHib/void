@@ -55,6 +55,22 @@ instruction<ChatTypeChange> { player ->
 }
 
 instruction<ChatPublic> { player ->
+    val isAllCaps = text.none { it.isLowerCase() } && text.any { it.isLetter() }
+
+    val text = if (isAllCaps) {
+        // Capitalize each word from an ALL CAPS message
+        buildString {
+            var capitalizeNext = true
+            for (char in text.lowercase()) {
+                append(if (capitalizeNext && char.isLetter()) char.uppercaseChar() else char)
+                capitalizeNext = char == ' '
+            }
+        }
+    } else {
+        // Capitalize only the first letter of the message
+        text.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
+    }
+
     when (player.chatType) {
         "public" -> {
             val message = PublicChatMessage(player, effects, text, huffman)
