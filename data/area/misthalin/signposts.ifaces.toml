@@ -1,0 +1,9 @@
+[signpost_directions]
+id = 135
+type = "wide_screen"
+components = {
+    north = 3,
+    east = 8,
+    south = 9,
+    west = 12
+}
