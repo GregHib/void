@@ -1,0 +1,9 @@
+[godwars_saradomin_rope_top]
+id = 3933
+persist = true
+format = "boolean"
+
+[godwars_saradomin_rope_bottom]
+id = 3934
+persist = true
+format = "boolean"

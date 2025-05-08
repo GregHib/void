@@ -27,8 +27,8 @@ class ObjectTeleports {
     }
 
     suspend fun teleport(context: SuspendableContext<Player>, player: Player, target: GameObject, def: ObjectDefinition, option: String): Boolean {
-        val id = def.stringId.ifEmpty { def.id.toString() }
         val definition = teleports[option]?.get(target.tile.id) ?: return false
+        val id = def.stringId.ifEmpty { def.id.toString() }
         if (definition.id != id) {
             return false
         }
