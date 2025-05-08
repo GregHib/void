@@ -44,9 +44,17 @@ fun playAreaTrack(player: Player) {
 }
 
 fun sendUnlocks(player: Player) {
-    for (key in player.variables.data.keys.filter { it.startsWith("unlocked_music_") }) {
+    for (key in player.variables.data.keys.filter { it.startsWith("unlocked_music_")}) {
         player.sendVariable(key)
     }
+
+    for (slotNum in 1..12) {
+        if (player.variables.data.keys.contains("playlist_slot_$slotNum"))
+            player.sendVariable("playlist_slot_$slotNum")
+        else
+            player["playlist_slot_$slotNum"] = 32767
+    }
+
     player.interfaceOptions.unlockAll("music_player", "tracks", 0..2048) // 837.cs2
     player.interfaceOptions.unlockAll("music_player", "playlist", 0..23)
 }
