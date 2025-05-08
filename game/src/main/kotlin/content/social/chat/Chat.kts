@@ -20,6 +20,7 @@ import world.gregs.voidps.network.login.protocol.encode.publicChat
 import content.social.clan.chatType
 import content.social.clan.clan
 import content.social.ignore.ignores
+import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.network.client.instruction.ChatPrivate
 import world.gregs.voidps.network.client.instruction.ChatPublic
@@ -58,16 +59,8 @@ instruction<ChatPublic> { player ->
     val isAllCaps = text.none { it.isLowerCase() } && text.any { it.isLetter() }
 
     val text = if (isAllCaps) {
-        // Capitalize each word from an ALL CAPS message
-        buildString {
-            var capitalizeNext = true
-            for (char in text.lowercase()) {
-                append(if (capitalizeNext && char.isLetter()) char.uppercaseChar() else char)
-                capitalizeNext = char == ' '
-            }
-        }
+        text.toTitleCase()
     } else {
-        // Capitalize only the first letter of the message
         text.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
     }
 
