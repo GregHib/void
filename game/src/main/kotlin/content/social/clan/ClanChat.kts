@@ -35,7 +35,7 @@ playerSpawn { player ->
         val account = accountDefinitions.getByAccount(current)
         joinClan(player, account?.displayName ?: "")
     }
-    val ownClan = accounts.clan(player.name) ?: return@playerSpawn
+    val ownClan = accounts.clan(player.name.lowercase()) ?: return@playerSpawn
     player.ownClan = ownClan
     ownClan.friends = player.friends
     ownClan.ignores = player.ignores
