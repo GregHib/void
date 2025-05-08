@@ -84,8 +84,16 @@ class AreaDefinitions(
                         for (tag in tags) {
                             tagged.getOrPut(tag) { ObjectOpenHashSet(2) }.add(definition)
                         }
-                        for (zone in area.toZones()) {
-                            areas.getOrPut(zone.id) { ObjectOpenHashSet(2) }.add(definition)
+                        if (level != null) {
+                            for (zone in area.toZones(level)) {
+                                areas.getOrPut(zone.id) { ObjectOpenHashSet(2) }.add(definition)
+                            }
+                        } else {
+                            for (lvl in 0..3) {
+                                for (zone in area.toZones(lvl)) {
+                                    areas.getOrPut(zone.id) { ObjectOpenHashSet(2) }.add(definition)
+                                }
+                            }
                         }
                     }
                 }
