@@ -2,6 +2,30 @@
 id = 26340
 examine = "Looks deep."
 
-[godwars_hole_roped]
+[godwars_hole_rope]
 id = 26341
 examine = "Looks deep."
+
+[godwars_saradomin_rock_top]
+id = 26296
+examine = "A place to attach a rope."
+
+[godwars_saradomin_rope_top]
+id = 26295
+examine = "There's a rope attached."
+
+[godwars_saradomin_rope_top_end]
+id = 26297
+examine = "I can climb it."
+
+[godwars_saradomin_rock_bottom]
+id = 26300
+examine = "A place to attach a rope."
+
+[godwars_saradomin_rope_bottom]
+id = 26299
+examine = "There's a rope attached."
+
+[godwars_saradomin_rope_bottom_end]
+id = 26297
+examine = "I can climb it."
