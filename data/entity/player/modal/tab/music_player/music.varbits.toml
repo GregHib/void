@@ -1,86 +1,74 @@
 [playlist_slot_1]
 id = 7081
 persist = true
-values = { none = 32767 }
-format = "map"
-default = "none"
+format = "int"
+default = 32767
 
 [playlist_slot_2]
 id = 7082
 persist = true
-values = { none = 32767 }
-format = "map"
-default = "none"
+format = "int"
+default = 32767
 
 [playlist_slot_3]
 id = 7083
 persist = true
-values = { none = 32767 }
-format = "map"
-default = "none"
+format = "int"
+default = 32767
 
 [playlist_slot_4]
 id = 7084
 persist = true
-values = { none = 32767 }
-format = "map"
-default = "none"
+format = "int"
+default = 32767
 
 [playlist_slot_5]
 id = 7085
 persist = true
-values = { none = 32767 }
-format = "map"
-default = "none"
+format = "int"
+default = 32767
 
 [playlist_slot_6]
 id = 7086
 persist = true
-values = { none = 32767 }
-format = "map"
-default = "none"
+format = "int"
+default = 32767
 
 [playlist_slot_7]
 id = 7087
 persist = true
-values = { none = 32767 }
-format = "map"
-default = "none"
+format = "int"
+default = 32767
 
 [playlist_slot_8]
 id = 7088
 persist = true
-values = { none = 32767 }
-format = "map"
-default = "none"
+format = "int"
+default = 32767
 
 [playlist_slot_9]
 id = 7089
 persist = true
-values = { none = 32767 }
-format = "map"
-default = "none"
+format = "int"
+default = 32767
 
 [playlist_slot_10]
 id = 7090
 persist = true
-values = { none = 32767 }
-format = "map"
-default = "none"
+format = "int"
+default = 32767
 
 [playlist_slot_11]
 id = 7091
 persist = true
-values = { none = 32767 }
-format = "map"
-default = "none"
+format = "int"
+default = 32767
 
 [playlist_slot_12]
 id = 7092
 persist = true
-values = { none = 32767 }
-format = "map"
-default = "none"
+format = "int"
+default = 32767
 
 [playlist_enabled]
 id = 7078
