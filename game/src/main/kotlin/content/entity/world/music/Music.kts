@@ -19,6 +19,7 @@ playerSpawn { player ->
         unlockDefaultTracks(player)
         playAreaTrack(player)
         sendUnlocks(player)
+        sendPlaylist(player)
     }
 }
 
@@ -48,15 +49,17 @@ fun sendUnlocks(player: Player) {
         player.sendVariable(key)
     }
 
+    player.interfaceOptions.unlockAll("music_player", "tracks", 0..2048) // 837.cs2
+    player.interfaceOptions.unlockAll("music_player", "playlist", 0..23)
+}
+
+fun sendPlaylist(player: Player) {
     for (slotNum in 1..12) {
         if (player.variables.data.keys.contains("playlist_slot_$slotNum"))
             player.sendVariable("playlist_slot_$slotNum")
         else
-            player["playlist_slot_$slotNum"] = 32767
+            player["playlist_slot_$slotNum"] = "none"
     }
-
-    player.interfaceOptions.unlockAll("music_player", "tracks", 0..2048) // 837.cs2
-    player.interfaceOptions.unlockAll("music_player", "playlist", 0..23)
 }
 
 move({ !it.isBot }) { player ->
