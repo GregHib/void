@@ -165,3 +165,11 @@ examine = "Where does it go?"
 [trapdoor_107_closed]
 id = 4039
 examine = "Where does it go?"
+
+[trapdoor_108_opened]
+id = 21922
+examine = "I wonder what's down there."
+
+[trapdoor_108_closed]
+id = 21944
+examine = "I wonder what's under it?"
