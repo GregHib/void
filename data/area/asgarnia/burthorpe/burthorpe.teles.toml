@@ -116,7 +116,7 @@ delta = { level = -1 }
 [1738]
 option = "Climb-up"
 tile = { x = 2839, y = 3537 }
-delta = { level = 1 }
+near = { x = 2840, y = 3538, level = 1, width = 2, height = 2 }
 
 [38012]
 option = "Climb-up"

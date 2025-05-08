@@ -46,7 +46,7 @@ delta = { y = 3, level = -1 }
 [34874]
 option = "Climb-up"
 tile = { x = 2571, y = 3307 }
-delta = { level = 1 }
+to = { x = 2572, y = 3306, level = 1 }
 
 [34875]
 option = "Climb-up"
@@ -66,7 +66,7 @@ delta = { level = -1 }
 [34871]
 option = "Climb-up"
 tile = { x = 2571, y = 3285 }
-delta = { level = 1 }
+to = { x = 2572, y = 3287, level = 1 }
 
 [34872]
 option = "Climb-up"
@@ -96,7 +96,7 @@ to = { x = 2568, y = 3271 }
 [36703]
 option = "Climb-down"
 tile = { x = 2569, y = 3267 }
-delta = { y = 6400 }
+to = { x = 2569, y = 9668 }
 
 [34498]
 option = "Climb-up"

@@ -17,3 +17,13 @@ delta = { x = -2, y = -3, level = 1 }
 option = "Climb-down"
 tile = { x = 2443, y = 3159, level = 1  }
 delta = { x = 2, y = 3, level = -1 }
+
+[25429]
+option = "Climb up"
+tile = { x = 2355, y = 9395 }
+to = { x = 2457, y = 3186 }
+
+[25429]
+option = "Climb up"
+tile = { x = 2335, y = 9351 }
+to = { x = 2439, y = 3164 }
