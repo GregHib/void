@@ -33,22 +33,21 @@ class Experience(
     }
 
     fun add(skill: Skill, baseExperience: Double) {
-        if (baseExperience <= 0.0) {
-            return
+        if (baseExperience <= 0.0) return
+
+        val rateMin = Settings["world.experienceRateMin", 1.0]
+        val rateMax = Settings["world.experienceRateMax", 1.0]
+
+        val playerLevel = level(skill, get(skill)).toDouble()
+        val maxLevel = Level.MAX_LEVEL.toDouble()
+
+        val modifier = if (rateMin != rateMax) {
+            interpolate(rateMin, rateMax, playerLevel / maxLevel)
+        } else {
+            rateMin
         }
 
-        val xpModSetting = Settings["world.dynamicXPMod", "off"].lowercase()
-        val playerMaxLevel = level(skill, get(skill))
-        val maxLevel = Level.MAX_LEVEL
-
-        val modifier = when (xpModSetting) {
-            "linear" -> interpolate(1.0, 5.0, playerMaxLevel.toDouble() / maxLevel)
-            "inverse" -> interpolate(5.0, 1.0, playerMaxLevel.toDouble() / maxLevel)
-            else -> 1.0
-        }
-
-        val experienceRate = Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE]
-        val adjustedExperience = baseExperience * modifier * experienceRate
+        val adjustedExperience = baseExperience * modifier
 
         if (blocked.contains(skill)) {
             events.emit(BlockedExperience(skill, adjustedExperience))

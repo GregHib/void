@@ -12,7 +12,8 @@ object Interpolation {
     }
 
     fun interpolate(start: Double, end: Double, fraction: Double): Double {
-        return start + fraction * (end - start)
+        val result = start + fraction * (end - start)
+        return kotlin.math.round(result * 10) / 10.0
     }
 
     fun lerp(value: Int, inRange: IntRange, result: IntRange): Int {
