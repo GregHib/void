@@ -21,8 +21,14 @@ class DatabaseStorage : AccountStorage {
         val display = VariablesTable.alias("display_name")
         val history = VariablesTable.alias("name_history")
         AccountsTable
-            .leftJoin(display) { (AccountsTable.id eq display[VariablesTable.playerId]) and (display[VariablesTable.name] eq display.alias) }
-            .leftJoin(history) { (AccountsTable.id eq history[VariablesTable.playerId]) and (history[VariablesTable.name] eq history.alias) }
+            .leftJoin(display) {
+                AccountsTable.id eq display[VariablesTable.playerId] and
+                        (display[VariablesTable.name] eq stringLiteral("display_name"))
+            }
+            .leftJoin(history) {
+                AccountsTable.id eq history[VariablesTable.playerId] and
+                        (history[VariablesTable.name] eq stringLiteral("name_history"))
+            }
             .select(AccountsTable.name,
                 AccountsTable.passwordHash,
                 AccountsTable.friends,
