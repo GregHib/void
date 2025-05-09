@@ -1,3 +1,6 @@
+[current_track]
+id = 4388
+
 [playlist_slot_1]
 id = 7081
 persist = true
@@ -72,3 +75,8 @@ default = 32767
 
 [playlist_enabled]
 id = 7078
+format = "boolean"
+
+[playlist_shuffle_enabled]
+id = 7079
+format = "boolean"

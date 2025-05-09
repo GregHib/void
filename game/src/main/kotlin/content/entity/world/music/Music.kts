@@ -86,6 +86,18 @@ interfaceOption("Remove from playlist", id = "music_player") {
     player.removeSongFromPlaylist(itemSlot, component == "tracks")
 }
 
+interfaceOption("Playlist on/off", "playlist_toggle", "music_player") {
+    player.togglePlaylist()
+}
+
+interfaceOption("Clear Playlist", "clear_playlist", "music_player") {
+    player.clearPlaylist()
+}
+
+interfaceOption("Shuffle on/off", "shuffle_playlist", "music_player") {
+    player.togglePlaylistShuffle()
+}
+
 interfaceSwap(fromId = "music_player", fromComponent = "playlist") { player ->
     val fromSong = player["playlist_slot_${fromSlot+1}", 32767]
     val toSong = player["playlist_slot_${toSlot+1}", 32767]
@@ -141,6 +153,29 @@ fun Player.removeSongFromPlaylist(
         }
         this["playlist_slot_$it"] = this["playlist_slot_${it+1}", 32767]
     }
+}
+
+/**
+ * Sets all the [Player]s playlist varbits to 32767 (empty)
+ */
+fun Player.clearPlaylist() {
+    (1..12).forEach {
+        this["playlist_slot_$it"] = 32767
+    }
+}
+
+/**
+ * Flips the [Player]s playlist varbit to 0 or 1
+ */
+fun Player.togglePlaylist() {
+    toggle("playlist_enabled")
+}
+
+/**
+ * Flips the [Player]s playlist shuffle varbit to 0 or 1
+ */
+fun Player.togglePlaylistShuffle() {
+    toggle("playlist_shuffle_enabled")
 }
 
 fun Player.hasUnlocked(musicIndex: Int): Boolean {
