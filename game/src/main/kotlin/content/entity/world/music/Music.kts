@@ -3,6 +3,7 @@ package content.entity.world.music
 import content.bot.isBot
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.client.ui.interfaceSwap
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -74,6 +75,14 @@ interfaceOption("Play", "tracks", "music_player") {
         player["playing_song"] = true
         player.playTrack(index)
     }
+}
+
+interfaceSwap(fromId = "music_player", fromComponent = "playlist") { player ->
+    val fromSong = player["playlist_slot_${fromSlot+1}", 32767]
+    val toSong = player["playlist_slot_${toSlot+1}", 32767]
+
+    player["playlist_slot_${fromSlot+1}"] = toSong
+    player["playlist_slot_${toSlot+1}"] = fromSong
 }
 
 fun Player.hasUnlocked(musicIndex: Int): Boolean {
