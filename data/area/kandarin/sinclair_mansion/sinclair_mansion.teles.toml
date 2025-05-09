@@ -1,0 +1,9 @@
+[25682]
+option = "Climb-up"
+tile = { x = 2736, y = 3581 }
+to = { x = 2736, y = 3580, level = 1  }
+
+[25683]
+option = "Climb-down"
+tile = { x = 2736, y = 3581, level = 1 }
+to = { x = 2736, y = 3580 }

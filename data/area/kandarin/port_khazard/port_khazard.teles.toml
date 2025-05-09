@@ -1,0 +1,19 @@
+[1750]
+option = "Climb-up"
+tile = { x = 2650, y = 3164 }
+delta = { level = 1 }
+
+[1749]
+option = "Climb-down"
+tile = { x = 2650, y = 3164, level = 1  }
+delta = { level = -1 }
+
+[1750]
+option = "Climb-up"
+tile = { x = 2657, y = 3151 }
+delta = { level = 1 }
+
+[1749]
+option = "Climb-down"
+tile = { x = 2657, y = 3151, level = 1  }
+delta = { level = -1 }

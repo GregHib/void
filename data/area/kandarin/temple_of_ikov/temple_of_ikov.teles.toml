@@ -1,0 +1,19 @@
+[basic_ladder_up]
+option = "Climb-up"
+tile = { x = 2659, y = 9892 }
+delta = { y = -6400 }
+
+[basic_ladder_up]
+option = "Climb-up"
+tile = { x = 2677, y = 9805 }
+delta = { y = -6400 }
+
+[basic_ladder_up]
+option = "Climb-up"
+tile = { x = 2637, y = 9808 }
+delta = { y = -6400 }
+
+[basic_ladder_up]
+option = "Climb-up"
+tile = { x = 2682, y = 9849 }
+delta = { x = -17 }

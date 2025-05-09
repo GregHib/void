@@ -4,3 +4,7 @@ option = "Climb-down"
 tile = { x = 2998, y = 3453 }
 delta = { x = -2, y = 6393 }
 
+[ape_atoll_hole]
+option = "Enter"
+tile = { x = 2758, y = 2729 }
+to = { x = 3024, y = 5457 }
