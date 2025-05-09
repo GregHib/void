@@ -77,12 +77,70 @@ interfaceOption("Play", "tracks", "music_player") {
     }
 }
 
+interfaceOption("Add to playlist", "tracks", "music_player") {
+    val musicIndex = if (itemSlot % 2 != 0) itemSlot - 1 else itemSlot
+    player.addToPlaylist(musicIndex)
+}
+
+interfaceOption("Remove from playlist", id = "music_player") {
+    player.removeSongFromPlaylist(itemSlot, component == "tracks")
+}
+
 interfaceSwap(fromId = "music_player", fromComponent = "playlist") { player ->
     val fromSong = player["playlist_slot_${fromSlot+1}", 32767]
     val toSong = player["playlist_slot_${toSlot+1}", 32767]
 
     player["playlist_slot_${fromSlot+1}"] = toSong
     player["playlist_slot_${toSlot+1}"] = fromSong
+}
+
+/**
+ * Add a song to the [Player]s playlist based off of the interface slot that was interacted with.
+ * If the interface slot is odd that means that the "+" button was clicked, not right-click add song.
+ *
+ * @param interfaceSlot: The slot number of the interface that was clicked
+ */
+fun Player.addToPlaylist(interfaceSlot: Int) {
+    val firstEmptyPlaylistSlot = (1..12).first { this["playlist_slot_$it", 32767] == 32767 }
+    var slot = interfaceSlot
+    if (slot % 2 != 0) slot -= 1
+
+    val trackIndex = slot / 2
+    this["playlist_slot_$firstEmptyPlaylistSlot"] = trackIndex
+}
+
+/**
+ * Remove a song from the [Player]s playlist based on the interface slot in either the main track list or the playlist.
+ * If [fromTrackList] is true, we need to figure out which varbit that song is in, otherwise we can just
+ * use [interfaceSlot] to determine the varbit we need to remove. All songs in the following varbits are
+ * moved back into the previous varbit.
+ *
+ * @param interfaceSlot: The slot number of the interface that was clicked
+ * @param fromTrackList: Whether the clicked slot was on the main track list or on the playlist interface
+ */
+fun Player.removeSongFromPlaylist(
+    interfaceSlot: Int,
+    fromTrackList: Boolean = false,
+) {
+    var playlistSlot = interfaceSlot
+
+    if (fromTrackList) {
+        if (playlistSlot % 2 != 0) playlistSlot -= 1
+        playlistSlot /= 2
+        playlistSlot =
+            (1..12).indexOfFirst {
+                this["playlist_slot_$it", 32767] == playlistSlot
+            }
+    } else {
+        if (playlistSlot > 11) playlistSlot -= 12
+    }
+    (playlistSlot+1..12).forEach {
+        if (it == 12) {
+            this["playlist_slot_12"] = 32767
+            return@forEach
+        }
+        this["playlist_slot_$it"] = this["playlist_slot_${it+1}", 32767]
+    }
 }
 
 fun Player.hasUnlocked(musicIndex: Int): Boolean {
