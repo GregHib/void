@@ -1,0 +1,3 @@
+spawns = [
+  { id = "ikov_trapdoor", x = 2577, y = 3256, type = 22, rotation = 1 },
+]

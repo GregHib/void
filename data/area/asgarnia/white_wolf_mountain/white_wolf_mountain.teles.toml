@@ -1,0 +1,49 @@
+[57]
+option = "Climb-down"
+tile = { x = 2876, y = 3480 }
+delta = { y = 6397 }
+
+[55]
+option = "Climb-down"
+tile = { x = 2820, y = 3484 }
+delta = { y = 6396 }
+
+[20987]
+option = "Climb-down"
+tile = { x = 2824, y = 3507 }
+delta = { y = 6400 }
+
+[20987]
+option = "Climb-down"
+tile = { x = 2827, y = 3510 }
+delta = { y = 6400 }
+
+[20987]
+option = "Climb-down"
+tile = { x = 2823, y = 3513 }
+delta = { y = 6400 }
+
+[20987]
+option = "Climb-down"
+tile = { x = 2845, y = 3516 }
+delta = { y = 6400 }
+
+[20987]
+option = "Climb-down"
+tile = { x = 2848, y = 3519 }
+delta = { y = 6400 }
+
+[20987]
+option = "Climb-down"
+tile = { x = 2848, y = 3513 }
+delta = { y = 6400 }
+
+[20987]
+option = "Climb-down"
+tile = { x = 2857, y = 3517 }
+delta = { y = 6400 }
+
+[20987]
+option = "Climb-down"
+tile = { x = 2859, y = 3519 }
+delta = { y = 6400 }

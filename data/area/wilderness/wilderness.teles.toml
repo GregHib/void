@@ -85,3 +85,7 @@ option = "Climb-up"
 tile = { x = 3280, y = 3936, level = 2 }
 to = { x = 3282, y = 3936, level = 3 }
 
+[lever_kbd_lair]
+option = "Pull"
+tile = { x = 2273, y = 4680 }
+to = { x = 3067, y = 10254 }

@@ -1,0 +1,4 @@
+[1759]
+option = "Climb-down"
+tile = { x = 2659, y = 3492 }
+delta = { y = 6400 }
