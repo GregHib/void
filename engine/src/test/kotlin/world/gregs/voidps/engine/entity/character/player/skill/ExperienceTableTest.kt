@@ -49,7 +49,12 @@ internal class ExperienceTableTest {
 
     @Test
     fun `Add experience with 10x rate`() {
-        Settings.load(mapOf("world.experienceRate" to "10.0"))
+        Settings.load(
+            mapOf(
+                "world.experienceRateMin" to "10.0",
+                "world.experienceRateMax" to "10.0"
+            )
+        )
         experience = Experience(maximum = 500.0)
         experience.events = events
         experience.add(Skill.Attack, 10.0)
