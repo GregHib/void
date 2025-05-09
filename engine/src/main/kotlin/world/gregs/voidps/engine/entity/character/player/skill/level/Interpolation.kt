@@ -11,12 +11,7 @@ object Interpolation {
         return (y1 * (x2 - x) + y2 * (x - x1)) / (x2 - x1)
     }
 
-    fun interpolate(start: Double, end: Double, fraction: Double): Double {
-        return start + fraction * (end - start)
-    }
-
     fun lerp(value: Int, inRange: IntRange, result: IntRange): Int {
         return interpolate(value, result.first, result.last, inRange.first, inRange.last)
     }
-
 }
