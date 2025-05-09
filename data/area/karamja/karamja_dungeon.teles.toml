@@ -1,6 +1,0 @@
-# 11413 karamja_dungeon
-[law_altar_ruins_enter]
-option = "Enter"
-tile = { x = 2857, y = 3380 }
-to = { x = 2464, y = 4818 }
-

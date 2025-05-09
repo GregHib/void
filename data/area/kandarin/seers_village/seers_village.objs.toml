@@ -1,3 +1,7 @@
 [bank_booth_seers_village]
 id = 25808
 examine = "The bank teller will serve you from here."
+
+[spinning_wheel_seers_village]
+id = 25824
+examine = "Used for spinning thread."

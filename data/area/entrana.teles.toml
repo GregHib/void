@@ -1,0 +1,24 @@
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2816, y = 3352 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2816, y = 3352, level = 1 }
+delta = { level = -1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2857, y = 3346 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2857, y = 3346, level = 1 }
+delta = { level = -1 }
+
+[2408]
+option = "Climb-down"
+tile = { x = 2820, y = 3374}
+to = { x= 2822, y = 9774 }

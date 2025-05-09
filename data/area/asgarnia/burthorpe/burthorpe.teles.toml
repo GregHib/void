@@ -4,51 +4,6 @@ option = "Climb-down"
 tile = { x = 2927, y = 3444 }
 to = { x = 2209, y = 5348 }
 
-[1738]
-option = "Climb-up"
-tile = { x = 2895, y = 3513 }
-to = { x = 2897, y = 3513, level = 1 }
-
-[1740]
-option = "Climb-down"
-tile = { x = 2896, y = 3513, level = 1 }
-to = { x = 2896, y = 3512 }
-
-[basic_ladder_bottom]
-option = "Climb-up"
-tile = { x = 2895, y = 3516, level = 1 }
-delta = { level = 1 }
-
-[basic_ladder_top]
-option = "Climb-down"
-tile = { x = 2895, y = 3516, level = 2 }
-delta = { level = -1 }
-
-[basic_ladder_bottom]
-option = "Climb-up"
-tile = { x = 2890, y = 3508, level = 1 }
-delta = { level = 1 }
-
-[basic_ladder_top]
-option = "Climb-down"
-tile = { x = 2890, y = 3508, level = 2 }
-delta = { level = -1 }
-
-[basic_ladder_bottom]
-option = "Climb-up"
-tile = { x = 2895, y = 3505, level = 1 }
-delta = { level = 1 }
-
-[basic_ladder_top]
-option = "Climb-down"
-tile = { x = 2895, y = 3505, level = 2 }
-delta = { level = -1 }
-
-[1754]
-option = "Climb-down"
-tile = { x = 2892, y = 3507 }
-delta = { y = 6400 }
-
 [24672]
 option = "Walk-up"
 tile = { x = 2906, y = 3469 }
@@ -65,10 +20,6 @@ tile = { x = 2907, y = 3476 }
 delta = { y = 6400 }
 
 # 11575 burthorpe
-[brimstails_cave_entrance]
-option = "Enter"
-tile = { x = 2403, y = 3418 }
-to = { x = 2409, y = 9812 }
 
 [games_room_stairs_up_2]
 option = "Climb-up"
@@ -80,3 +31,104 @@ option = "Climb-down"
 tile = { x = 2897, y = 3567, level = 1 }
 delta = { y = -4, level = -1 }
 
+[1722]
+option = "Climb-up"
+tile = { x = 2914, y = 3539 }
+delta = { y = 4, level = 1 }
+
+[1723]
+option = "Climb-down"
+tile = { x = 2914, y = 3540, level = 1 }
+delta = { y = -4, level = -1 }
+
+[51128]
+option = "Climb-up"
+tile = { x = 3097, y = 4959 }
+to = { x = 2931, y = 3540 }
+
+[51127]
+option = "Climb-down"
+tile = { x = 2931, y = 3539 }
+to = { x = 3098, y = 4959 }
+
+[1750]
+option = "Climb-up"
+tile = { x = 2929, y = 3544 }
+delta = { level = 1 }
+
+[1749]
+option = "Climb-down"
+tile = { x = 2929, y = 3544, level = 1 }
+delta = { level = -1 }
+
+[7257]
+option = "Enter"
+tile = { x = 2905, y = 3537 }
+to = { x = 3061, y = 4985, level = 1 }
+
+[7258]
+option = "Enter"
+tile = { x = 3061, y = 4986, level = 1 }
+to = { x = 2906, y = 3537 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2906, y = 3556 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2906, y = 3556, level = 1 }
+delta = { level = -1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2906, y = 3571 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2906, y = 3571, level = 1 }
+delta = { level = -1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2891, y = 3571 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2891, y = 3571, level = 1 }
+delta = { level = -1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 2891, y = 3556 }
+delta = { level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 2891, y = 3556, level = 1 }
+delta = { level = -1 }
+
+#11319
+
+[1738]
+option = "Climb-up"
+tile = { x = 2839, y = 3537 }
+near = { x = 2840, y = 3538, level = 1, width = 2, height = 2 }
+
+[38012]
+option = "Climb-up"
+tile = { x = 2839, y = 3537, level = 1 }
+to = { x = 2840, y = 3539, level = 2 }
+
+[38012]
+option = "Climb-down"
+tile = { x = 2839, y = 3537, level = 1 }
+delta = { level = -1 }
+
+[15638]
+option = "Climb-down"
+tile = { x = 2840, y = 3538, level = 2 }
+delta = { level = -1 }
