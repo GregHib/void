@@ -40,7 +40,7 @@ class DatabaseStorage : AccountStorage {
                 val accountName = row[AccountsTable.name]
                 val displayName = row.getOrNull(display[VariablesTable.string]) ?: accountName
                 val previousName = row.getOrNull(history[VariablesTable.stringList])?.lastOrNull() ?: ""
-                displayName to AccountDefinition(accountName, displayName, previousName, row[AccountsTable.passwordHash])
+                accountName.lowercase() to AccountDefinition(accountName, displayName, previousName, row[AccountsTable.passwordHash])
             }
     }
 
