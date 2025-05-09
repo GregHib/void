@@ -159,7 +159,7 @@ abstract class AccountStorageTest {
         val names = storage.names()
 
         assertEquals(1, names.size)
-        val name = names[save.variables["display_name"]]
+        val name = names[save.name.lowercase()]
         assertNotNull(name)
         assertEquals(save.name, name.accountName)
         assertEquals(save.variables["display_name"], name.displayName)
