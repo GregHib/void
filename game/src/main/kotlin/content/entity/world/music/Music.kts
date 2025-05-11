@@ -113,6 +113,8 @@ interfaceSwap(fromId = "music_player", fromComponent = "playlist") { player ->
  * @param interfaceSlot: The slot number of the interface that was clicked
  */
 fun Player.addToPlaylist(interfaceSlot: Int) {
+    if (this["playlist_slot_12", 32767] != 32767) return
+
     val firstEmptyPlaylistSlot = (1..12).first { this["playlist_slot_$it", 32767] == 32767 }
     var slot = interfaceSlot
     if (slot % 2 != 0) slot -= 1
