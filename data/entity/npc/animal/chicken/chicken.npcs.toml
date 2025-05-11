@@ -10,5 +10,5 @@ max_hit_melee = 1
 immune_poison = true
 style = "stab"
 respawn_delay = 25
-categories = ["chicken"]
+categories = ["chicken", "birds"]
 examine = "Yep. Definitely a chicken."
