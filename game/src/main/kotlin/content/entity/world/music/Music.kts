@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceSwap
 import world.gregs.voidps.engine.client.ui.playTrack
+import world.gregs.voidps.engine.client.ui.songEnd
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.move
@@ -45,6 +46,25 @@ fun playAreaTrack(player: Player) {
     }
 }
 
+fun playNextPlaylistTrack(player: Player, finishedTrackId: Int) {
+    val finishedTrackIndex = enums.get("music_tracks").getKey(finishedTrackId)
+    val playlistTracks = (1..12).map { player["playlist_slot_$it", 32767] }.filter { it != 32767 }
+
+    if (playlistTracks.isEmpty()) return
+
+    val trackIndex = if (player["playlist_shuffle_enabled", false]) {
+        // If shuffle is enabled, play a random song from the playlist
+        // TODO: Implement a proper shuffle algorithm if one existed in 2011
+        playlistTracks.random()
+    } else {
+        // If the playlist is enabled, but shuffle is not, play the next song in the list
+        playlistTracks[(playlistTracks.indexOf(finishedTrackIndex) + 1) % playlistTracks.size]
+    }
+
+
+    player.playTrack(trackIndex)
+}
+
 fun sendUnlocks(player: Player) {
     for (key in player.variables.data.keys.filter { it.startsWith("unlocked_music_")}) {
         player.sendVariable(key)
@@ -72,14 +92,19 @@ move({ !it.isBot }) { player ->
 interfaceOption("Play", "tracks", "music_player") {
     val index = itemSlot / 2
     if (player.hasUnlocked(index)) {
-        player["playing_song"] = true
+        player.playTrack(index)
+    }
+}
+
+interfaceOption("Play", "playlist", "music_player") {
+    val index = player["playlist_slot_${itemSlot+1}", 32767]
+    if (player.hasUnlocked(index)) {
         player.playTrack(index)
     }
 }
 
 interfaceOption("Add to playlist", "tracks", "music_player") {
-    val musicIndex = if (itemSlot % 2 != 0) itemSlot - 1 else itemSlot
-    player.addToPlaylist(musicIndex)
+    player.addToPlaylist(itemSlot)
 }
 
 interfaceOption("Remove from playlist", id = "music_player") {
@@ -104,6 +129,15 @@ interfaceSwap(fromId = "music_player", fromComponent = "playlist") { player ->
 
     player["playlist_slot_${fromSlot+1}"] = toSong
     player["playlist_slot_${toSlot+1}"] = fromSong
+}
+
+songEnd {player ->
+    player["playing_song"] = false
+    if (player["playlist_enabled", false]) {
+        playNextPlaylistTrack(player, songIndex)
+        return@songEnd
+    }
+    playAreaTrack(player)
 }
 
 /**
