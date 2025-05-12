@@ -259,6 +259,7 @@ price = 24500
 limit = 10
 weight = 0.25
 slot = "Hat"
+type = "HairLow"
 examine = "A hat worn by members of the Dagon'hai."
 
 [dagonhai_hat_noted]

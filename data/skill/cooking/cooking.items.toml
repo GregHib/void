@@ -565,6 +565,7 @@ price = 174
 limit = 100
 weight = 0.907
 slot = "Hat"
+type = "HairLow"
 examine = "What a silly hat."
 kept = "Wilderness"
 

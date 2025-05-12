@@ -287,6 +287,7 @@ kept = "Reclaim"
 [cavalier_mask]
 id = 11277
 slot = "Hat"
+type = "HairLow"
 examine = "I hope I don't meet any roundheads..."
 
 [beret_mask]
@@ -310,6 +311,7 @@ id = 11282
 tradeable = false
 weight = 1.0
 slot = "Hat"
+type = "FullFace"
 examine = "Essential mime wear."
 kept = "Reclaim"
 

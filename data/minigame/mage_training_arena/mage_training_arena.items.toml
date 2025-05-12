@@ -9,19 +9,19 @@ kept = "Reclaim"
 [progress_hat]
 id = 6885
 slot = "Hat"
-destroy = "Yes"
+type = "HairLow"
 examine = "A magic training arena progress hat"
 
 [progress_hat_2]
 id = 6886
 slot = "Hat"
-destroy = "Yes"
+type = "HairLow"
 examine = "A magic training arena progress hat"
 
 [progress_hat_3]
 id = 6887
 slot = "Hat"
-destroy = "Yes"
+type = "HairLow"
 examine = "A magic training arena progress hat"
 
 [guardian_statue]
@@ -209,6 +209,7 @@ price = 1800000
 limit = 10
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
 examine = "A mystic hat."
 
 [infinity_hat_noted]
@@ -276,6 +277,8 @@ id = 15602
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
+aka = ["infinity_hat_white"]
 examine = "A mystical air hat."
 kept = "Reclaim"
 
@@ -300,6 +303,8 @@ id = 15608
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
+aka = ["infinity_hat_blue"]
 examine = "A mystical water hat."
 kept = "Reclaim"
 
@@ -324,6 +329,8 @@ id = 15614
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
+aka = ["infinity_hat_pink", "infinity_hat_red"]
 examine = "A mystical fire hat."
 kept = "Reclaim"
 
@@ -348,6 +355,8 @@ id = 15620
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
+aka = ["infinity_hat_brown", "infinity_hat_green"]
 examine = "A mystical earth hat."
 kept = "Reclaim"
 

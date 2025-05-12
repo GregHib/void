@@ -150,6 +150,7 @@ limit = 2
 tradeable = false
 weight = 0.003
 slot = "Hat"
+type = "HairLow"
 destroy = "You cannot remove your team's hat."
 examine = "A red pirate hat."
 kept = "Vanish"
@@ -221,6 +222,7 @@ id = 8959
 tradeable = false
 weight = 0.003
 slot = "Hat"
+type = "HairLow"
 examine = "I could never look square in this."
 kept = "Reclaim"
 
@@ -229,6 +231,7 @@ id = 8960
 tradeable = false
 weight = 0.003
 slot = "Hat"
+type = "HairLow"
 examine = "I could never look square in this."
 kept = "Reclaim"
 
@@ -237,6 +240,7 @@ id = 8961
 tradeable = false
 weight = 0.003
 slot = "Hat"
+type = "HairLow"
 examine = "I could never look square in this."
 kept = "Reclaim"
 
@@ -245,6 +249,7 @@ id = 8962
 tradeable = false
 weight = 0.003
 slot = "Hat"
+type = "HairLow"
 examine = "I could never look square in this."
 kept = "Reclaim"
 
@@ -253,6 +258,7 @@ id = 8963
 tradeable = false
 weight = 0.003
 slot = "Hat"
+type = "HairLow"
 examine = "I could never look square in this."
 kept = "Reclaim"
 
@@ -261,6 +267,7 @@ id = 8964
 tradeable = false
 weight = 0.003
 slot = "Hat"
+type = "HairLow"
 examine = "I could never look square in this."
 kept = "Reclaim"
 
@@ -269,6 +276,7 @@ id = 8965
 tradeable = false
 weight = 0.003
 slot = "Hat"
+type = "HairLow"
 examine = "I could never look square in this."
 kept = "Reclaim"
 

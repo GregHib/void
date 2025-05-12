@@ -19,6 +19,7 @@ id = 12595
 tradeable = false
 weight = 0.2
 slot = "Hat"
+type = "HairLow"
 destroy = "You can always get another from the drunken sailor in Port Sarim."
 examine = "Taken from a drunken sailor in Port Sarim."
 kept = "Vanish"
