@@ -175,7 +175,7 @@ fun ByteReadPacket.readByteSubtract(): Int = (readByteInverse() + 128).toByte().
 
 fun ByteReadPacket.readShortAdd(): Int = (readByte().toInt() shl 8) or readByteAdd()
 
-fun ByteReadPacket.readShortAddLittle(): Int = ((readByte().toInt() - 128) and 0xff) or ((readByte().toInt() shl 8) and 0xff00)
+fun ByteReadPacket.readShortAddLittle(): Int = ((readByte().toInt() - 128) and 0xff) or (readByte().toInt() shl 8)
 
 fun ByteReadPacket.readUnsignedShortAdd(): Int = (readByte().toInt() shl 8) or ((readByte() - 128) and 0xff)
 
