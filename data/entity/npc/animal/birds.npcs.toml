@@ -1,18 +1,3 @@
-[chicken]
-id = 41
-hitpoints = 30
-attack_bonus = -47
-height = 15
-wander_radius = 8
-attack_radius = 6
-slayer_xp = 3.0
-max_hit_melee = 1
-immune_poison = true
-style = "stab"
-respawn_delay = 25
-categories = ["birds"]
-examine = "Yep. Definitely a chicken."
-
 [duck_swim]
 id = 46
 attack_bonus = -47
