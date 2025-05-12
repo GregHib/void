@@ -74,6 +74,9 @@ objectOperate("Chop*") {
         } else if (remaining > 0) {
             pause(remaining)
         }
+        if (!objects.contains(target)) {
+            break
+        }
         if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
             player.experience.add(Skill.Woodcutting, tree.xp)
             if (!addLog(player, tree) || deplete(tree, target)) {
