@@ -69,7 +69,6 @@ data class BodyParts(
     fun update(part: BodyPart, skip: Boolean): Boolean {
         val item = if (skip) Item.EMPTY else equipment[part.slot.index]
         val before = parts[part.ordinal]
-        println("Check $part ${part.index} ${item.type}")
         parts[part.ordinal] = when {
             showItem(part, item) -> if (item.def.equipIndex != -1) item.def.equipIndex or 0x8000 else 0
             part == BodyPart.Hair && item.type == EquipType.HairMid -> overrides.hairMid(looks[part.index], male)
