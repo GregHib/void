@@ -18,9 +18,11 @@ data class BodyParts(
     private val parts = IntArray(12)
 
     private lateinit var equipment: Inventory
+    private lateinit var overrides: AppearanceOverrides
 
-    fun link(equipment: Inventory) {
+    fun link(equipment: Inventory, overrides: AppearanceOverrides) {
         this.equipment = equipment
+        this.overrides = overrides
     }
 
     fun updateAll() {
@@ -36,7 +38,7 @@ data class BodyParts(
     override fun get(index: Int) = parts.getOrNull(index) ?: 0
 
     override fun setLook(part: BodyPart, value: Int) {
-        if (part.index == -1) {
+        if (part.index !in looks.indices) {
             return
         }
         looks[part.index] = value
@@ -44,7 +46,7 @@ data class BodyParts(
     }
 
     override fun setColour(part: BodyColour, value: Int) {
-        if (part.index == -1) {
+        if (part.index !in colours.indices) {
             return
         }
         colours[part.index] = value
@@ -67,8 +69,11 @@ data class BodyParts(
     fun update(part: BodyPart, skip: Boolean): Boolean {
         val item = if (skip) Item.EMPTY else equipment[part.slot.index]
         val before = parts[part.ordinal]
+        println("Check $part ${part.index} ${item.type}")
         parts[part.ordinal] = when {
             showItem(part, item) -> if (item.def.equipIndex != -1) item.def.equipIndex or 0x8000 else 0
+            part == BodyPart.Hair && item.type == EquipType.HairMid -> overrides.hairMid(looks[part.index], male)
+            part == BodyPart.Hair && item.type == EquipType.HairLow -> overrides.hairLow(looks[part.index], male)
             showBodyPart(part, item) -> looks[part.index] + 0x100
             !skip && showDefault(part) ->
                 (if (male) DEFAULT_LOOK_MALE else DEFAULT_LOOK_FEMALE)[part.index] + 0x100
@@ -129,8 +134,8 @@ data class BodyParts(
     }
 
     companion object {
-        val DEFAULT_LOOK_MALE = intArrayOf(3, 14, 18, 26, 34, 38, 42)
-        val DEFAULT_LOOK_FEMALE = intArrayOf(46, -1, 58, 61, 68, 72, 80)
+        val DEFAULT_LOOK_MALE = intArrayOf(0, 14, 18, 26, 34, 38, 42)
+        val DEFAULT_LOOK_FEMALE = intArrayOf(45, -1, 58, 61, 68, 72, 80)
         val DEFAULT_COLOURS = IntArray(5)
     }
 }

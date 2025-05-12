@@ -8,7 +8,7 @@ import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.engine.timedLoad
 
 /**
- * Also known as DataMap in cs2
+ * Also known as DataMap in cs2 or tables
  */
 class EnumDefinitions(
     override var definitions: Array<EnumDefinition>,
