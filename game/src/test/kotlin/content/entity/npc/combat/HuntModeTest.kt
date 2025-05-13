@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import WorldTest
+import world.gregs.voidps.engine.data.Settings
 import kotlin.test.assertEquals
 
 internal class HuntModeTest : WorldTest() {
@@ -23,6 +24,7 @@ internal class HuntModeTest : WorldTest() {
         val player = createPlayer(emptyTile)
         val npc = createNPC("giant_spider", emptyTile.addY(2))
         assertFalse(player.inCombat)
+        assertTrue(Settings["world.npcs.aggression", false])
 
         player.walkTo(emptyTile.addY(1))
         tick(6)

@@ -24,11 +24,11 @@ areas = [ { region = 11310}, { region = 11410 } ]
 index = 4
 areas = [ { region = 13106 }, { region = 13617 } ]
 
-[arabian_2]
+[arabian2]
 index = 5
 areas = [ { region = 13107 } ]
 
-[arabian_3]
+[arabian3]
 index = 6
 areas = [ { region = 12848 } ]
 
@@ -44,7 +44,7 @@ areas = [ { region = 12088 } ]
 index = 9
 areas = [ { region = 11572 } ]
 
-[attack_1]
+[attack1]
 index = 10
 areas = [
   { 
@@ -57,15 +57,15 @@ areas = [
   }
 ]
 
-[attack_2]
+[attack2]
 index = 11
 areas = [ { region = 11414 } ]
 
-[attack_3]
+[attack3]
 index = 12
 areas = [ { region = 12192 } ]
 
-[attack_4]
+[attack4]
 index = 13
 areas = [
   { region = 10289 },
@@ -73,11 +73,11 @@ areas = [
   { region = 8855 }
 ]
 
-[attack_5]
+[attack5]
 index = 14
 areas = [ { region = 9033 } ]
 
-[attack_6]
+[attack6]
 index = 15
 areas = [ { region = 10387 } ]
 
@@ -234,7 +234,7 @@ areas = [ { region = 9540 } ]
 index = 44
 areas = [ { region = 11828 } ]
 
-[fanfare_3]
+[fanfare3]
 index = 45
 areas = [ { region = 10545 } ]
 
@@ -283,7 +283,7 @@ areas = [ { region = 12085 } ]
 index = 53
 areas = [ { region = 9781 } ]
 
-[gnome_village_2]
+[gnome_village2]
 index = 54
 areas = [ { region = 9269 } ]
 
@@ -350,18 +350,18 @@ areas = [
   { region = 11309 }
 ]
 
-[jungly_1]
+[jungly1]
 index = 67
 areas = [
   { region = 11054 },
   { region = 11154 },
 ]
 
-[jungly_2]
+[jungly2]
 index = 68
 areas = [ { region = 10802 } ]
 
-[jungly_3]
+[jungly3]
 index = 69
 areas = [ { region = 11055 } ]
 
@@ -525,7 +525,7 @@ areas = [ { region = 13117 } ]
 index = 96
 areas = [ { region = 11565 } ]
 
-[reggae_2]
+[reggae2]
 index = 97
 areas = [ { region = 11567 } ]
 
@@ -577,7 +577,7 @@ areas = [
 index = 106
 areas = [ { region = 11569 } ]
 
-[sea_shanty_2]
+[sea_shanty2]
 index = 107
 areas = [
   { region = 12082 },
@@ -706,7 +706,7 @@ areas = [
 index = 128
 areas = [ { region = 11311 } ]
 
-[tribal_2]
+[tribal2]
 index = 129
 areas = [ { region = 11566 } ]
 
@@ -792,11 +792,11 @@ areas = [
   { region = 12346 },
 ]
 
-[wilderness_2]
+[wilderness2]
 index = 143
 areas = [ { region = 12091 } ]
 
-[wilderness_3]
+[wilderness3]
 index = 144
 areas = [ { region = 11834 } ]
 
@@ -844,7 +844,7 @@ areas = [ { region = 12858 } ]
 index = 161
 areas = [ { region = 12849 } ]
 
-[fanfare_2]
+[fanfare2]
 index = 162
 areas = [ { region = 11823 } ]
 
@@ -869,7 +869,7 @@ areas = [ { region = 11318 } ]
 index = 166
 areas = [ { region = 12603 } ]
 
-[harmony_2]
+[harmony2]
 index = 167
 areas = [
   {
@@ -878,7 +878,7 @@ areas = [
   }
 ]
 
-[venture_2]
+[venture2]
 index = 168
 areas = [ { region = 13464 } ]
 
@@ -1174,7 +1174,7 @@ areas = [ { region = 12946 } ]
 index = 217
 areas = [ { region = 8781 } ]
 
-[spooky_2]
+[spooky2]
 index = 218
 areas = [ { region = 13718 }, { region = 8593 }, { region = 7827 } ]
 

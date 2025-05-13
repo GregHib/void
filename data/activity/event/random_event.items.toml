@@ -21,6 +21,7 @@ id = 3057
 tradeable = false
 weight = 0.001
 slot = "Hat"
+type = "FullFace"
 examine = "A mime would wear this."
 kept = "Wilderness"
 
@@ -228,6 +229,7 @@ id = 6656
 tradeable = false
 weight = 2.267
 slot = "Hat"
+type = "HairLow"
 examine = "Examine what?"
 kept = "Wilderness"
 

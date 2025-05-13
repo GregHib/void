@@ -71,6 +71,9 @@ import content.entity.sound.sound
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.item.drop.TableType
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
+import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import java.util.concurrent.TimeUnit
 import kotlin.collections.set
@@ -433,6 +436,8 @@ modCommand("pos", "print out players current coordinates", listOf("mypos")) {
     println(player.tile)
 }
 
+val itemDefinitions: ItemDefinitions by inject()
+
 adminCommand("reload (config-name)", "reload any type of content or file e.g. npcs, object defs, or settings") {
     val files = configFiles()
     when (content) {
@@ -444,6 +449,13 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
             val custom: GameObjects = get()
             defs.load(files.list(Settings["definitions.objects"]))
             loadObjectSpawns(custom, files.list(Settings["spawns.objects"]), defs)
+        }
+        "item defs", "items", "floor items" -> {
+            val items: FloorItems = get()
+            val itemSpawns: ItemSpawns = get()
+            items.clear()
+            itemDefinitions.load(files.list(Settings["definitions.items"]))
+            loadItemSpawns(items, itemSpawns, files.list(Settings["spawns.items"]), definitions)
         }
         "nav graph", "ai graph" -> get<NavigationGraph>().load(files.find(Settings["map.navGraph"]))
         "npcs" -> {

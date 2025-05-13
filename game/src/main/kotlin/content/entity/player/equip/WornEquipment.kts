@@ -15,7 +15,7 @@ interfaceRefresh("worn_equipment") { player ->
 }
 
 interfaceOption("Show Equipment Stats", "bonuses", "worn_equipment") {
-//    player.setVar("equipment_banking", false)
+    player["equipment_bank_button"] = false
     player.open("equipment_bonuses")
 }
 

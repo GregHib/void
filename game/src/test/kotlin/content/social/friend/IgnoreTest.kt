@@ -125,7 +125,7 @@ internal class IgnoreTest : WorldTest() {
         tick()
 
         verify {
-            nuisanceClient.publicChat(any(), 0, 0, byteArrayOf(4, -81, -108, -64))
+            nuisanceClient.publicChat(any(), 0, 0, byteArrayOf(4, 17, -68, -90))
         }
         verify(exactly = 0) {
             playerClient.publicChat(any(), any(), any(), any())
@@ -161,7 +161,7 @@ internal class IgnoreTest : WorldTest() {
         tick()
 
         verify {
-            nuisanceClient.clanChat("nuisance", "clan", 0, byteArrayOf(4, -81, -108, -64))
+            nuisanceClient.clanChat("nuisance", "clan", 0, byteArrayOf(4, 17, -68, -90))
         }
         verify(exactly = 0) {
             playerClient.clanChat(any(), any(), any(), any())

@@ -24,15 +24,15 @@ internal class BodyPartsTest {
     @MockK
     lateinit var equipment: Inventory
 
-    lateinit var looks: IntArray
+    private lateinit var looks: IntArray
 
-    lateinit var body: BodyParts
+    private lateinit var body: BodyParts
 
     @BeforeEach
     fun setup() {
         looks = IntArray(12)
         body = BodyParts(true, looks)
-        body.link(equipment)
+        body.link(equipment, AppearanceOverrides())
     }
 
     @Test
@@ -122,7 +122,7 @@ internal class BodyPartsTest {
         every { equipment[0] } returns item
         every { item.def.type } returns EquipType.Mask
         body.update(BodyPart.Beard, false)
-        assertEquals(0, body.get(0))
+        assertEquals(0, body.getLook(0))
     }
 
     @Test

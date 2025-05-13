@@ -3,43 +3,43 @@
 id = 20
 persist = true
 format = "bitwise"
-values = [ "adventure", "al_kharid", "alone", "ambient_jungle", "arabian", "arabian_2", "arabian_3", "arabique", "army_of_darkness", "arrival", "attack_1", "attack_2", "attack_3", "attack_4", "attack_5", "attack_6", "attention", "autumn_voyage", "background", "ballad_of_enchantment", "baroque", "beyond", "big_chords", "book_of_spells", "camelot", "cave_background", "cavern", "chain_of_command", "crystal_cave", "crystal_sword", "dangerous", "dark" ]
+values = [ "adventure", "al_kharid", "alone", "ambient_jungle", "arabian", "arabian2", "arabian3", "arabique", "army_of_darkness", "arrival", "attack1", "attack2", "attack3", "attack4", "attack5", "attack6", "attention", "autumn_voyage", "background", "ballad_of_enchantment", "baroque", "beyond", "big_chords", "book_of_spells", "camelot", "cave_background", "cavern", "chain_of_command", "crystal_cave", "crystal_sword", "dangerous", "dark" ]
 
 [unlocked_music_1]
 id = 21
 persist = true
 format = "bitwise"
-values = [ "deep_wildy", "desert_voyage", "doorways", "dream", "dunjun", "egypt", "emotion", "emperor", "expanse", "expecting", "expedition", "faerie", "fanfare", "fanfare_3", "fishing", "flute_salad", "forever", "gaol", "garden", "gnome_king", "dwarf_theme", "gnome_village", "gnome_village_2", "goblin_village", "gnomeball", "greatness", "harmony", "high_seas", "horizon", "iban", "in_the_manor", "inspiration" ]
+values = [ "deep_wildy", "desert_voyage", "doorways", "dream", "dunjun", "egypt", "emotion", "emperor", "expanse", "expecting", "expedition", "faerie", "fanfare", "fanfare_3", "fishing", "flute_salad", "forever", "gaol", "garden", "gnome_king", "dwarf_theme", "gnome_village", "gnome_village2", "goblin_village", "gnomeball", "greatness", "harmony", "high_seas", "horizon", "iban", "in_the_manor", "inspiration" ]
 
 [unlocked_music_2]
 id = 22
 persist = true
 format = "bitwise"
-values = [ "intrepid", "jolly_r", "jungle_island", "jungly_1", "jungly_2", "jungly_3", "knightly", "lasting", "legion", "lightness", "lightwalk", "long_ago", "long_way_home", "lullaby", "mage_arena", "magic_dance", "magical_journey", "march", "medieval", "mellow", "miles_away", "miracle_dance", "monarch_waltz", "moody", "neverland", "newbie_melody", "nightfall", "oriental", "overture", "parade", "quest", "regal" ]
+values = [ "intrepid", "jolly_r", "jungle_island", "jungly1", "jungly2", "jungly3", "knightly", "lasting", "legion", "lightness", "lightwalk", "long_ago", "long_way_home", "lullaby", "mage_arena", "magic_dance", "magical_journey", "march", "medieval", "mellow", "miles_away", "miracle_dance", "monarch_waltz", "moody", "neverland", "newbie_melody", "nightfall", "oriental", "overture", "parade", "quest", "regal" ]
 
 [unlocked_music_3]
 id = 23
 persist = true
 format = "bitwise"
-values = [ "reggae", "reggae_2", "riverside", "royale", "rune_essence", "sad_meadow", "scape_cave", "scape_original", "scape_sad", "scape_wild", "sea_shanty", "sea_shanty_2", "serenade", "serene", "shine", "soundscape", "spirit", "splendour", "spooky", "spooky_jungle", "starlight", "start", "still_night", "talking_forest", "the_desert", "the_shadow", "the_tower", "theme", "trawler", "trawler_minor", "tree_spirits", "tribal_background" ]
+values = [ "reggae", "reggae2", "riverside", "royale", "rune_essence", "sad_meadow", "scape_cave", "scape_original", "scape_sad", "scape_wild", "sea_shanty", "sea_shanty2", "serenade", "serene", "shine", "soundscape", "spirit", "splendour", "spooky", "spooky_jungle", "starlight", "start", "still_night", "talking_forest", "the_desert", "the_shadow", "the_tower", "theme", "trawler", "trawler_minor", "tree_spirits", "tribal_background" ]
 
 [unlocked_music_4]
 id = 24
 persist = true
 format = "bitwise"
-values = [ "tribal", "tribal_2", "trinity", "troubled", "underground", "unknown_land", "underground_pass", "upcoming", "venture", "vision", "voodoo_cult", "voyage", "wander", "waterfall", "wilderness", "wilderness_2", "wilderness_3", "witching", "wonder", "wonderous", "workshop", "lonesome", "scape_main", "ground_scape", "scape_scared", "scape_santa", "land_of_snow", "shaping_up", "exam_conditions", "roots_and_flutes", "incarceration", "scape_soft" ]
+values = [ "tribal", "tribal2", "trinity", "troubled", "underground", "unknown_land", "underground_pass", "upcoming", "venture", "vision", "voodoo_cult", "voyage", "wander", "waterfall", "wilderness", "wilderness2", "wilderness3", "witching", "wonder", "wonderous", "workshop", "lonesome", "scape_main", "ground_scape", "scape_scared", "scape_santa", "land_of_snow", "shaping_up", "exam_conditions", "roots_and_flutes", "incarceration", "scape_soft" ]
 
 [unlocked_music_5]
 id = 25
 persist = true
 format = "bitwise"
-values = [ "shining", "yesteryear", "fanfare_2", "tomorrow", "duel_arena", "ice_melody", "wild_isle", "harmony_2", "venture_2", "landlubber", "undercurrent", "nomad", "zealot", "cellar_song", "heart_and_mind", "close_quarters", "escape", "grumpy", "chompy_hunt", "twilight", "morytania", "dead_quiet", "village", "bone_dance", "mausoleum", "forbidden", "cursed", "understanding", "principality", "tremble", "kingdom", "hermit" ]
+values = [ "shining", "yesteryear", "fanfare2", "tomorrow", "duel_arena", "ice_melody", "wild_isle", "harmony2", "venture2", "landlubber", "undercurrent", "nomad", "zealot", "cellar_song", "heart_and_mind", "close_quarters", "escape", "grumpy", "chompy_hunt", "twilight", "morytania", "dead_quiet", "village", "bone_dance", "mausoleum", "forbidden", "cursed", "understanding", "principality", "tremble", "kingdom", "hermit" ]
 
 [unlocked_music_6]
 id = 298
 persist = true
 format = "bitwise"
-values = [ "la_mort", "stagnant", "breeze", "stratosphere", "time_out", "natural", "grotto", "waterlogged", "artistry", "aztec", "elven_mist", "forest", "lost_soul", "meridian", "woodland", "overpass", "contest", "sojourn", "crystal_castle", "marzipan", "insect_queen", "mad_eadgar", "bandit_camp", "sunburn", "bone_dry", "competition", "spooky_2", "everywhere", "exposed", "well_of_voyage", "haunted_mine", "righteousness" ]
+values = [ "la_mort", "stagnant", "breeze", "stratosphere", "time_out", "natural", "grotto", "waterlogged", "artistry", "aztec", "elven_mist", "forest", "lost_soul", "meridian", "woodland", "overpass", "contest", "sojourn", "crystal_castle", "marzipan", "insect_queen", "mad_eadgar", "bandit_camp", "sunburn", "bone_dry", "competition", "spooky2", "everywhere", "exposed", "well_of_voyage", "haunted_mine", "righteousness" ]
 
 [unlocked_music_7]
 id = 311
@@ -111,7 +111,7 @@ values = [ "544", "545", "546", "547", "548", "549", "550", "551", "552", "553",
 id = 1180
 persist = true
 format = "bitwise"
-values = [ "576", "distant_land_2", "castle_wars_2", "pest_control_2", "competition_2", "poles_apart_2", "far_away_2", "hell's_bells_2", "bloodbath", "the_route_of_all_evil", "the_route_of_the_problem", "the_wrong_path", "the_columbarium", "the_terrible_tunnels", "the_terrible_caverns", "dillo_gence_is_key", "arma_gonna_get_you", "tok_tz_ket_ek_mack", "jailbird", "bittersweet_bunny", "something_fishy", "under_the_sand", "desert_smoke", "a_pirate's_life_for_me", "conspiracy:_part_1", "conspiracy:_part_2", "scape_summon", "guthix's_hunter", "waiting_for_the_hunt", "cool_for_ali_cats", "second_vision", "undead_army" ]
+values = [ "576", "distant_land2", "castle_wars2", "pest_control2", "competition2", "poles_apart2", "far_away2", "hell's_bells2", "bloodbath", "the_route_of_all_evil", "the_route_of_the_problem", "the_wrong_path", "the_columbarium", "the_terrible_tunnels", "the_terrible_caverns", "dillo_gence_is_key", "arma_gonna_get_you", "tok_tz_ket_ek_mack", "jailbird", "bittersweet_bunny", "something_fishy", "under_the_sand", "desert_smoke", "a_pirate's_life_for_me", "conspiracy:_part_1", "conspiracy:_part_2", "scape_summon", "guthix's_hunter", "waiting_for_the_hunt", "cool_for_ali_cats", "second_vision", "undead_army" ]
 
 [unlocked_music_19]
 id = 1202
@@ -123,7 +123,7 @@ values = [ "zombie_invasion", "the_ruins_of_camdozaal", "dream_theatre", "the_me
 id = 1381
 persist = true
 format = "bitwise"
-values = [ "glorious_recallation", "glorious_recallation_2", "glorious_recallation_2", "the_adventurers_re_united!", "the_plundered_tomb", "ancestral_wisdom", "nial's_widow", "the_muspah's_tomb", "lamistard's_labyrinth", "the_heist", "snack_attack", "651", "soul_wars", "the_waiting_game", "rest_for_the_weary", "trees_aren't_your_friends", "the_throne_of_bandos", "penguin_possible", "don't_panic_zanik", "demise_of_the_dorgeshuun", "the_chosen_commander", "the_pengmersible", "desert_island_bear", "663", "664", "ice_day_for_penguins", "face_off", "667", "668", "669", "670", "671" ]
+values = [ "glorious_recallation", "glorious_recallation2", "glorious_recallation3", "the_adventurers_re_united!", "the_plundered_tomb", "ancestral_wisdom", "nial's_widow", "the_muspah's_tomb", "lamistard's_labyrinth", "the_heist", "snack_attack", "651", "soul_wars", "the_waiting_game", "rest_for_the_weary", "trees_aren't_your_friends", "the_throne_of_bandos", "penguin_possible", "don't_panic_zanik", "demise_of_the_dorgeshuun", "the_chosen_commander", "the_pengmersible", "desert_island_bear", "663", "664", "ice_day_for_penguins", "face_off", "667", "668", "669", "670", "671" ]
 
 [unlocked_music_21]
 id = 1394
@@ -171,10 +171,10 @@ values = [ "occulo_i", "occulo_ii", "occulo_iii", "occulo_iv", "occulo_v", "occu
 id = 1865
 persist = true
 format = "bitwise"
-values = [ "out_of_control", "chain_reaction", "all_for_the_pest", "destiny", "unavoidable_conflict", "right_of_conquest", "934", "yk'lagor_the_thunderous_2", "gunnarsgrunn", "937", "938", "halloween_party", "black_zabeth:_live!", "black_zabeth", "in_security", "give_it_your_pest_shot", "944", "the_void_stares_back", "precarious_void", "mystery_revealed", "who_are_we_to_judge", "949", "950", "951", "952", "christmas_caverns", "seasonal_sports", "the_task_at_hand", "monkey_see_monkey_do", "monkey_see_monkey_do_2", "simian_scuffle", "959" ]
+values = [ "out_of_control", "chain_reaction", "all_for_the_pest", "destiny", "unavoidable_conflict", "right_of_conquest", "934", "yk'lagor_the_thunderous2", "gunnarsgrunn", "937", "938", "halloween_party", "black_zabeth:_live!", "black_zabeth", "in_security", "give_it_your_pest_shot", "944", "the_void_stares_back", "precarious_void", "mystery_revealed", "who_are_we_to_judge", "949", "950", "951", "952", "christmas_caverns", "seasonal_sports", "the_task_at_hand", "monkey_see_monkey_do", "monkey_see_monkey_do2", "simian_scuffle", "959" ]
 
 [unlocked_music_30]
 id = 2019
 persist = true
 format = "bitwise"
-values = [ "960", "961", "monkey_see_monkey_do_2", "rocky_rescue", "go_with_the_flow", "the_records_chamber", "corporate_callousness", "967", "968", "colonel_grimsson", "only_a_king", "971", "zaros_zeitgeist", "973", "974", "975", "976", "977", "978", "979", "980", "981", "982", "983", "984", "985", "986", "987", "988", "989", "990", "991" ]
+values = [ "960", "961", "monkey_see_monkey_do2", "rocky_rescue", "go_with_the_flow", "the_records_chamber", "corporate_callousness", "967", "968", "colonel_grimsson", "only_a_king", "971", "zaros_zeitgeist", "973", "974", "975", "976", "977", "978", "979", "980", "981", "982", "983", "984", "985", "986", "987", "988", "989", "990", "991" ]

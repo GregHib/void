@@ -4,7 +4,7 @@ limit = 100
 tradeable = false
 weight = 0.907
 slot = "Hat"
-type = "Hair"
+type = "HairLow"
 light_source = { once_extinguish = "mining_helmet" }
 examine = "A helmet with a lamp on it."
 kept = "Reclaim"
@@ -15,6 +15,7 @@ price = 414
 limit = 100
 weight = 0.907
 slot = "Hat"
+type = "HairLow"
 light_source = { once_lit = "mining_helmet_lit", level = 65 }
 examine = "A helmet with an unlit lamp on it."
 

@@ -4,6 +4,7 @@ tradeable = false
 bank_stacks = false
 weight = 1.0
 slot = "Hat"
+type = "HairLow"
 destroy = "If I destroy this it will disintegrate into its component parts and drop to the floor."
 examine = "A water tiara infused with water runes. Protects from the hot desert sun."
 kept = "Reclaim"

@@ -34,6 +34,7 @@ id = 9068
 tradeable = false
 weight = 0.907
 slot = "Hat"
+type = "HairLow"
 examine = "Mystical headgear."
 kept = "Reclaim"
 
@@ -42,6 +43,7 @@ id = 9069
 tradeable = false
 weight = 0.907
 slot = "Hat"
+type = "HairLow"
 examine = "A mystical hat."
 kept = "Reclaim"
 
@@ -337,6 +339,7 @@ kept = "Reclaim"
 [astral_tiara] # Unreleased
 id = 9106
 slot = "Hat"
+type = "HairMid"
 
 [hunter_kit]
 id = 11159
