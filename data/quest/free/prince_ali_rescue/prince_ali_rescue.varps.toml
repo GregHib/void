@@ -1,13 +1,13 @@
-[prince_ali_resuce]
+[prince_ali_rescue]
 id = 273
 persist = true
 format = "map"
 default = "unstarted"
 values = {
   unstarted = 0,
-  started = 10,
-  osman = 20,
-  leela = 30,
+  osman = 10,
+  leela = 20,
+  equipment = 30,
   joe_one_beer = 31,
   joe_two_beers = 35, # TODO get correct id
   joe_three_beers = 40,

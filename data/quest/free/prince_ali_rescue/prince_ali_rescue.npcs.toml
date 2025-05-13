@@ -1,0 +1,19 @@
+[osman]
+id = 5282
+wander_radius = 2
+categories = ["human"]
+examine = "He looks a little shifty."
+
+[hassan]
+id = 923
+categories = ["human"]
+wander_radius = 3
+examine = "Chancellor to the Emir."
+
+[osman_normal]
+clone = "osman"
+id = 924
+
+[osman_dishevelled]
+clone = "osman"
+id = 5284

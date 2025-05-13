@@ -103,6 +103,7 @@ adminCommand("tele (x) (y) [level]", "teleport to given coordinates or area name
                 "burthorpe" -> player.tele(2899, 3546, 0)
                 "falador" -> player.tele(2966, 3379, 0)
                 "barbarian_village", "barb_village" -> player.tele(3084, 3421, 0)
+                "al_kharid", "alkharid" -> player.tele(3293, 3183, 0)
                 else -> player.tele(areas[content])
             }
             parts.size == 1 -> player.tele(Region(int).tile.add(32, 32))

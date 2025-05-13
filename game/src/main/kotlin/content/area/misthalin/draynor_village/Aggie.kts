@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.type.Tile
 
-
 val floorItems: FloorItems by inject()
 
 npcOperate("Talk-to", "aggie") {
@@ -29,16 +28,16 @@ npcOperate("Talk-to", "aggie") {
             npc<Neutral>("I mostly just make what I find pretty. I sometimes make dye for the women's clothes to brighten the place up. I can make red, yellow and blue dyes. If you'd like some, just bring me the appropriate ingredients.")
             menu()
         }
-        when (player.quest("prince_ali_resuce")) {
-            "osman", "leela", "joe_one_beer", "joe_two_beers", "joe_three_beers", "tie_up_lady_keli" -> {
+        when (player.quest("prince_ali_rescue")) {
+            "leela", "equipment", "joe_one_beer", "joe_two_beers", "joe_three_beers", "tie_up_lady_keli" -> {
                 option<Quiz>("Can you make skin paste?") {
                     if (player.holdsItem("ashes") && player.holdsItem("pot_of_flour") && player.holdsItem("bucket_of_water") && player.holdsItem("redberries")) {
-                        npc<Happy>(" Yes I can. I see you already have the ingredients. Would you like me to mix some for you now?")
+                        npc<Happy>("Yes I can. I see you already have the ingredients. Would you like me to mix some for you now?")
                         choice {
                             option<Happy>("Yes please. Mix me some skin paste.") {
                                 npc<Happy>("That should be simple. Hand the things to Aggie then.")
                                 items("redberries", "pot_of_flour", "You hand the ash, flour, water and redberries to Aggie. She tips the ingredients into a cauldron and mutters some words.")
-                                npc<Uncertain>(" Tourniquet, Fenderbaum, Tottenham, Marshmallow, Marblearch.")
+                                npc<Uncertain>("Tourniquet, Fenderbaum, Tottenham, Marshmallow, Marblearch.")
                                 player.inventory.transaction {
                                     remove("ashes")
                                     remove("pot_of_flour")

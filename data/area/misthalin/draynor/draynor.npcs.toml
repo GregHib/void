@@ -8,3 +8,52 @@ examine = "A toy-seller who looks after people's toys for them."
 [armour_draynor_manor]
 id = 9354
 examine = "A suit of armour."
+
+[ned]
+id = 918
+examine = "An old sailor."
+
+[lady_keli]
+id = 919
+wander_radius = 4
+examine = "An infamous bandit."
+
+[aggie]
+id = 922
+wander_radius = 4
+examine = "A witch."
+
+[draynor_jail_guard_blonde]
+id = 917
+hitpoints = 320
+att = 19
+str = 23
+def = 21
+attack_bonus = 9
+max_hit_melee = 30
+style = "crush"
+weapon_style = "mace"
+attack_speed = 5
+respawn_delay = 30
+wander_radius = 4
+categories = ["human"]
+examine = "This jail's open for business again."
+
+[draynor_jail_guard_short]
+id = 447
+hunt_mode = "cowardly"
+clone = "draynor_jail_guard_blonde"
+
+[draynor_jail_guard_long]
+id = 448
+hunt_mode = "cowardly"
+clone = "draynor_jail_guard_blonde"
+
+[draynor_jail_guard_bald]
+id = 449
+hunt_mode = "cowardly"
+clone = "draynor_jail_guard_blonde"
+
+[jail_guard_joe]
+id = 916
+examine = "Lady Keli's head guard."
