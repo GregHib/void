@@ -110,7 +110,7 @@ class DecoderTest {
         Walk(1234, 4321, minimap = true), // 82
         null, // 49
         null, // 8
-        null, // 52
+        SongEnd(12345), // 52
         WorldMapClick(tile = 12345), // 58
     ).mapIndexed { index, expected ->
         val (id, data) = packets[index]
