@@ -4,7 +4,7 @@ on:
     branches:
       - 'main'
       - 'release/**'
-  pull_request_target:
+  pull_request:
     branches: [ 'main' ]
 env:
   CACHE_VERSION: 1.3.1
@@ -14,17 +14,22 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
       - name: Create cache folder
         run: mkdir -p data/cache/
+
       - uses: actions/setup-java@v3
         with:
           java-version: "19"
           distribution: "temurin"
           architecture: x64
           cache: "gradle"
+
       - name: Validate Gradle wrapper
         uses: gradle/actions/wrapper-validation@v4
+
       - name: Check if secrets exists
         id: check_secret
         run: |
@@ -33,12 +38,14 @@ jobs:
           else
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
+
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
+
       - name: Get cache version
         run: echo "cache_version=$(./gradlew -q printCacheVersion)" >> $GITHUB_ENV
-      - name: Cache game files
-        if: steps.check_secret.outputs.exists == 'true'
+
+      - name: Restore game cache files from cache
         id: cache-files
         uses: actions/cache@v3
         with:
@@ -48,18 +55,32 @@ jobs:
           restore-keys:
             cache-${{ env.cache_version }}
             cache-
-      - if: steps.check_secret.outputs.exists == 'true' && steps.cache-files.outputs.cache-hit != 'true'
+
+      - name: Download game cache files  (on main branch only)
+        if: steps.check_secret.outputs.exists == 'true' && steps.cache-files.outputs.cache-hit != 'true'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: eu-west-2
         run: aws s3 cp --recursive s3://void-rsps/caches/${{ env.CACHE_VERSION }}/ data/cache/
+
+      - name: Check if cache files exist
+        id: check-cache-files
+        run: |
+          if [ -f "data/cache/main_file_cache.idx255" ] && [ -f "data/cache/main_file_cache.dat2" ]; then
+            echo "cache_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "cache_exists=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Run all tests
-        if: steps.check_secret.outputs.exists == 'true'
+        if: steps.check-cache-files.outputs.cache_exists == 'true'
         run: ./gradlew test
+
       - name: Run unit tests
-        if: steps.check_secret.outputs.exists != 'true'
+        if: steps.check-cache-files.outputs.cache_exists != 'true'
         run: ./gradlew test -x :game:test
+
       - name: Upload coverage report to Codecov
         if: steps.check_secret.outputs.exists == 'true'
         uses: codecov/codecov-action@v4.1.0
