@@ -1498,6 +1498,10 @@ examine = "He looks very relaxed."
 id = 39841
 examine = "Lit to remember the souls of the departed."
 
+[table_port_sarim]
+id = 40044
+examine = "A nice sturdy looking table."
+
 [candle_7]
 id = 40074
 examine = "A candle."

@@ -1,0 +1,7 @@
+spawns = [
+    # 12441
+    { id = "bones", x = 3101, y = 9825, delay = 100 },
+    { id = "bones", x = 3110, y = 9825, delay = 100 },
+    { id = "bones", x = 3107, y = 9823, delay = 100 },
+    { id = "bones", x = 3109, y = 9823, delay = 100 },
+]

@@ -1,8 +1,0 @@
-spawns = [
-#11672
-  { id = "hill_giant", x = 2913, y = 9732, members = true },
-  { id = "hill_giant_2", x = 2905, y = 9732, members = true },
-  { id = "hill_giant_3", x = 2907, y = 9735, members = true },
-  { id = "hill_giant_4", x = 2902, y = 9736, members = true },
-  { id = "hill_giant_6", x = 2913, y = 9741, members = true },
-]

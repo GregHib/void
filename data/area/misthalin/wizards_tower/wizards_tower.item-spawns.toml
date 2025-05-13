@@ -5,4 +5,5 @@ spawns = [
   { id = "logs", x = 3105, y = 3159, delay = 100 },
   { id = "logs", x = 3106, y = 3159, delay = 100 },
   { id = "logs", x = 3106, y = 3160, delay = 100 },
+  { id = "lesser_demon", x = 3110, y = 3157, level = 2 },
 ]

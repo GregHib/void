@@ -3,6 +3,11 @@ spawns = [
   { id = "wolf", x = 2616, y = 3283, members = true },
   { id = "wolf", x = 2620, y = 3283, members = true },
   { id = "bartender_flying_horse_inn", x = 2574, y = 3319, members = true },
+  { id = "snake", x = 2611, y = 3276, members = true },
+  { id = "snake", x = 2616, y = 3276, members = true },
+  { id = "snake", x = 2610, y = 3275, members = true },
+  { id = "snake", x = 2611, y = 3275, members = true },
+  { id = "snake", x = 2616, y = 3275, members = true },
 # 10292
   { id = "banker_3", x = 2614, y = 3330, direction = "NORTH", members = true },
   { id = "banker_4", x = 2618, y = 3330, direction = "NORTH", members = true },

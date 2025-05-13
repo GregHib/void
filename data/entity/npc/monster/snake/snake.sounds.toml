@@ -1,0 +1,11 @@
+[snake_attack]
+id = 797
+
+[snake_death]
+id = 798
+
+[snake_hiss]
+id = 799
+
+[snake_defend]
+id = 800

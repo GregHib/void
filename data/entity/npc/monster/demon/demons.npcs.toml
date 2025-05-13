@@ -30,3 +30,40 @@ respawn_delay = 15
 hunt_mode = "aggressive"
 height = 60
 examine = "Big, red, and incredibly evil."
+
+[lesser_demon]
+id = 82
+hitpoints = 790
+att = 68
+str = 70
+def = 71
+mage = 1
+range = 1
+style = "slash"
+max_hit_melee = 80
+wander_radius = 4
+drop_table = "lesser_demon"
+hunt_mode = "aggressive"
+categories = ["demon", "demons"]
+respawn_delay = 30
+examine = "Lesser, but still pretty big."
+
+[lesser_demon_2]
+clone = "lesser_demon"
+id = 4694
+
+[lesser_demon_3]
+clone = "lesser_demon"
+id = 4695
+
+[lesser_demon_4]
+clone = "lesser_demon"
+id = 4696
+
+[lesser_demon_5]
+clone = "lesser_demon"
+id = 4697
+
+[lesser_demon_melzars_maze]
+clone = "lesser_demon"
+id = 6101

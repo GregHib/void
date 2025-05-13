@@ -4,6 +4,9 @@ id = 399
 [demon_attack]
 id = 397
 
+[demon_death]
+id = 403
+
 [summon_npc]
 id = 188
 
