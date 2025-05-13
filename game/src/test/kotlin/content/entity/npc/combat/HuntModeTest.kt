@@ -24,7 +24,7 @@ internal class HuntModeTest : WorldTest() {
         val player = createPlayer(emptyTile)
         val npc = createNPC("giant_spider", emptyTile.addY(2))
         assertFalse(player.inCombat)
-        assertTrue(Settings["world.npcs.randomWalk", false])
+        assertTrue(Settings["world.npcs.aggression", false])
 
         player.walkTo(emptyTile.addY(1))
         tick(6)
