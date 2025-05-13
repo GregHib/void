@@ -20,6 +20,7 @@ import world.gregs.voidps.network.login.protocol.encode.publicChat
 import content.social.clan.chatType
 import content.social.clan.clan
 import content.social.ignore.ignores
+import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.network.client.instruction.ChatPrivate
 import world.gregs.voidps.network.client.instruction.ChatPublic
@@ -55,6 +56,14 @@ instruction<ChatTypeChange> { player ->
 }
 
 instruction<ChatPublic> { player ->
+    val isAllCaps = text.none { it.isLowerCase() } && text.any { it.isLetter() }
+
+    val text = if (isAllCaps) {
+        text.toTitleCase()
+    } else {
+        text.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
+    }
+
     when (player.chatType) {
         "public" -> {
             val message = PublicChatMessage(player, effects, text, huffman)

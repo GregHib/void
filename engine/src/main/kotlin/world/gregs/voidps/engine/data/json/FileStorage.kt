@@ -65,7 +65,7 @@ class FileStorage(
             val variables = data.variables
             val accountName = data.name
             val displayName = variables.getOrDefault("display_name", accountName) as String
-            definitions[displayName] = AccountDefinition(
+            definitions[accountName.lowercase()] = AccountDefinition(
                 accountName = accountName,
                 displayName = displayName,
                 previousName = (variables.getOrDefault("name_history", emptyList<String>()) as List<String>).lastOrNull() ?: "",
@@ -83,7 +83,7 @@ class FileStorage(
             val variables = data.variables
             val accountName = data.name
             val displayName = variables.getOrDefault("display_name", accountName) as String
-            clans[displayName] = Clan(
+            clans[accountName.lowercase()] = Clan(
                 owner = accountName,
                 ownerDisplayName = displayName,
                 name = variables.getOrDefault("clan_name", "") as String,
