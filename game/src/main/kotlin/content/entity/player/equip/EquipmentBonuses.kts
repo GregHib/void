@@ -20,7 +20,6 @@ import content.entity.player.inv.InventoryOption
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.inv.inventoryChanged
 import java.math.RoundingMode
 import java.text.DecimalFormat

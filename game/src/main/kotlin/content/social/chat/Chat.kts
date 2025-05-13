@@ -64,8 +64,10 @@ instruction<ChatPublic> { player ->
 
     when (player.chatType) {
         "public" -> {
+            println("Message $text")
             val message = PublicChatMessage(player, effects, text, huffman)
             players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
+                println("Send to $it")
                 it.emit(message)
             }
         }
