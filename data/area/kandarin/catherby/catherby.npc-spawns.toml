@@ -1,18 +1,51 @@
 spawns = [
-# 11061
+  # 11061
   { id = "man", x = 2803, y = 3431, members = true },
   { id = "man", x = 2805, y = 3428, members = true },
   { id = "banker_3", x = 2807, y = 3443, direction = "SOUTH", members = true },
   { id = "banker_3", x = 2810, y = 3443, direction = "SOUTH", members = true },
   { id = "banker_4", x = 2809, y = 3443, direction = "SOUTH", members = true },
   { id = "banker_4", x = 2811, y = 3443, direction = "SOUTH", members = true },
-# 11317
-  { id = "musician_catherby", x = 2849, y = 3439, direction = "SOUTH", members = true },
+  { id = "candle_maker", x = 2799, y = 3438, members = true },
+  { id = "arheins", x = 2803, y = 3430, members = true },
+  { id = "trader_crewmember_1", x = 2794, y = 3414, members = true },
+  { id = "trader_crewmember_2", x = 2795, y = 3414, members = true },
+  { id = "sir_mordred", x = 1695, y = 4258, level = 2, members = true },
+  { id = "renegade_knight", x = 2766, y = 3397, members = true },
+  { id = "renegade_knight", x = 2767, y = 3399, members = true },
+  { id = "renegade_knight", x = 2773, y = 3399, members = true },
+  { id = "renegade_knight", x = 2766, y = 3406, level = 1, members = true },
+  { id = "renegade_knight", x = 2767, y = 3400, level = 1, members = true },
+  { id = "renegade_knight", x = 2770, y = 3396, level = 1, members = true },
+  { id = "renegade_knight", x = 2771, y = 3402, level = 1, members = true },
+  { id = "renegade_knight", x = 2774, y = 3405, level = 1, members = true },
+
+  # 11317
+  { id = "man_3", x = 2818, y = 3443, members = true },
+  { id = "woman_2", x = 2817, y = 3447, members = true },
+  { id = "musician_catherby", x = 2849, y = 3439, members = true },
+  { id = "harrys", x = 2836, y = 3447, members = true },
+  { id = "hickton", x = 2821, y = 3442, members = true },
+  { id = "caleb", x = 2819, y = 3451, members = true },
+  { id = "ellena", x = 2860, y = 3430, members = true },
+  { id = "tools_leprechaun", x = 2859, y = 3431, members = true },
   { id = "fishing_spot_big_net_harpoon_catherby", x = 2846, y = 3429, direction = "SOUTH", members = true },
   { id = "fishing_spot_big_net_harpoon_catherby", x = 2855, y = 3423, direction = "SOUTH", members = true },
   { id = "fishing_spot_big_net_harpoon_catherby", x = 2859, y = 3426, direction = "SOUTH", members = true },
+  { id = "fishing_spot_cage_harpoon_catherby", x = 2844, y = 3429, direction = "SOUTH", members = true },
+  { id = "fishing_spot_cage_harpoon_catherby", x = 2853, y = 3423, direction = "SOUTH", members = true },
+  { id = "fishing_spot_small_net_bait_catherby", x = 2836, y = 3431, direction = "SOUTH", members = true },
+  { id = "fishing_spot_small_net_bait_catherby", x = 2838, y = 3431, direction = "SOUTH", members = true },
   { id = "white_wolf", x = 2842, y = 3450, members = true },
   { id = "white_wolf", x = 2864, y = 3453, members = true },
   { id = "white_wolf", x = 2872, y = 3445, members = true },
   { id = "white_wolf", x = 2870, y = 3438, members = true },
+
+  # 11318
+  { id = "vanessa", x = 2820, y = 3462, members = true },
+
+
+  #7490
+  { id = "renegade_knight", x = 1901, y = 4271, level = 0, members = true },
+  { id = "renegade_knight", x = 1909, y = 4271, level = 0, members = true },
 ]
