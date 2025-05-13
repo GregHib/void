@@ -1,0 +1,8 @@
+[curse_all]
+id = 125
+
+[curse_hit]
+id = 126
+
+[curse_cast_and_fire]
+id = 127

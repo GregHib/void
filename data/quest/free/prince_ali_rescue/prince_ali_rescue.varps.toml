@@ -1,0 +1,17 @@
+[prince_ali_resuce]
+id = 273
+persist = true
+format = "map"
+default = "unstarted"
+values = {
+  unstarted = 0,
+  started = 10,
+  osman = 20,
+  leela = 30,
+  joe_one_beer = 31,
+  joe_two_beers = 35, # TODO get correct id
+  joe_three_beers = 40,
+  tie_up_lady_keli = 50,
+  prince_ali_disguise = 100,
+  completed = 110,
+}

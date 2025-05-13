@@ -28,7 +28,7 @@ examine = "For the finest in armoured legware."
 
 [ranael]
 id = 544
-wander_radius = 4
+wander_radius = 2
 shop = "ranaels_super_skirt_store"
 categories = ["human"]
 examine = "She's an expert on armoured skirts!"

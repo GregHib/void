@@ -22,6 +22,10 @@ examine = "A broken rail."
 id = 20
 examine = "A broken rail."
 
+[wall_pipe]
+id = 41
+examine = "Looks like an outlet pipe to the lake."
+
 [fountain]
 id = 153
 examine = "An ornate fountain."
@@ -1624,6 +1628,10 @@ examine = "Stops bits of building falling on me."
 [tomb_9]
 id = 48686
 examine = "The Tomb of Dragith Nurn."
+
+[wall_pipe_2]
+id = 48844
+examine = "Looks like an outlet pipe to the lake."
 
 [fountain_25]
 id = 49354
