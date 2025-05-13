@@ -46,11 +46,11 @@ fun playAreaTrack(player: Player) {
     }
 }
 
-fun playNextPlaylistTrack(player: Player, finishedTrackId: Int) {
+fun playNextPlaylistTrack(player: Player, finishedTrackId: Int): Boolean {
     val finishedTrackIndex = enums.get("music_tracks").getKey(finishedTrackId)
     val playlistTracks = (1..12).map { player["playlist_slot_$it", 32767] }.filter { it != 32767 }
 
-    if (playlistTracks.isEmpty()) return
+    if (playlistTracks.isEmpty()) return false
 
     val trackIndex = if (player["playlist_shuffle_enabled", false]) {
         // If shuffle is enabled, play a random song from the playlist
@@ -61,8 +61,8 @@ fun playNextPlaylistTrack(player: Player, finishedTrackId: Int) {
         playlistTracks[(playlistTracks.indexOf(finishedTrackIndex) + 1) % playlistTracks.size]
     }
 
-
     player.playTrack(trackIndex)
+    return true
 }
 
 fun sendUnlocks(player: Player) {
@@ -133,8 +133,7 @@ interfaceSwap(fromId = "music_player", fromComponent = "playlist") { player ->
 
 songEnd {player ->
     player["playing_song"] = false
-    if (player["playlist_enabled", false]) {
-        playNextPlaylistTrack(player, songIndex)
+    if (player["playlist_enabled", false] && playNextPlaylistTrack(player, songIndex)) {
         return@songEnd
     }
     playAreaTrack(player)
