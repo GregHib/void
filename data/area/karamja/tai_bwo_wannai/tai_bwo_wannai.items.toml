@@ -26,6 +26,7 @@ price = 2307
 limit = 100
 weight = 0.907
 slot = "Hat"
+type = "HairLow"
 examine = "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
 
 [villager_hat_brown_noted]
@@ -81,6 +82,7 @@ price = 2579
 limit = 100
 weight = 0.907
 slot = "Hat"
+type = "HairLow"
 examine = "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
 
 [villager_hat_blue_noted]
@@ -136,6 +138,7 @@ price = 2277
 limit = 100
 weight = 0.907
 slot = "Hat"
+type = "HairLow"
 examine = "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
 
 [villager_hat_yellow_noted]
@@ -191,6 +194,7 @@ price = 2958
 limit = 100
 weight = 0.907
 slot = "Hat"
+type = "HairLow"
 examine = "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
 
 [villager_hat_pink_noted]

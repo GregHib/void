@@ -110,6 +110,7 @@ id = 15068
 id = 15069
 weight = 0.15
 slot = "Hat"
+type = "HairLow"
 examine = "Show your support of the red team or turn it inside out for blue."
 
 [voting_hat_red_noted]
@@ -119,6 +120,7 @@ id = 15070
 id = 15071
 weight = 0.15
 slot = "Hat"
+type = "HairLow"
 examine = "Show your support of the blue team or turn it inside out for red."
 
 [voting_hat_blue_noted]

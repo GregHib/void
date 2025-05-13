@@ -181,6 +181,7 @@ id = 740
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
 examine = "A strange blue wizards hat."
 kept = "Vanish"
 

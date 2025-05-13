@@ -1046,6 +1046,7 @@ price = 208
 limit = 100
 weight = 2.0
 slot = "Hat"
+type = "HairLow"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 
 [feather_headdress_blue_noted]
@@ -1057,6 +1058,7 @@ tradeable = false
 bank_stacks = false
 weight = 2.0
 slot = "Hat"
+type = "HairLow"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 kept = "Reclaim"
 
@@ -1066,6 +1068,7 @@ price = 433
 limit = 100
 weight = 2.0
 slot = "Hat"
+type = "HairLow"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 
 [feather_headdress_yellow_noted]
@@ -1077,6 +1080,7 @@ tradeable = false
 bank_stacks = false
 weight = 2.0
 slot = "Hat"
+type = "HairLow"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 kept = "Reclaim"
 
@@ -1086,6 +1090,7 @@ price = 164
 limit = 100
 weight = 2.0
 slot = "Hat"
+type = "HairLow"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 
 [feather_headdress_red_noted]
@@ -1097,6 +1102,7 @@ tradeable = false
 bank_stacks = false
 weight = 2.0
 slot = "Hat"
+type = "HairLow"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 kept = "Reclaim"
 
@@ -1106,6 +1112,7 @@ price = 120
 limit = 100
 weight = 2.0
 slot = "Hat"
+type = "HairLow"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 
 [feather_headdress_stripy_noted]
@@ -1117,6 +1124,7 @@ tradeable = false
 bank_stacks = false
 weight = 2.0
 slot = "Hat"
+type = "HairLow"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 kept = "Reclaim"
 
@@ -1126,6 +1134,7 @@ price = 203
 limit = 100
 weight = 2.0
 slot = "Hat"
+type = "HairLow"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 
 [feather_headdress_orange_noted]
@@ -1137,6 +1146,7 @@ tradeable = false
 bank_stacks = false
 weight = 2.0
 slot = "Hat"
+type = "HairLow"
 examine = "It's fun to go to the O-B-E-L-I-S-K!"
 kept = "Reclaim"
 

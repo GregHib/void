@@ -185,6 +185,7 @@ id = 14116
 bank_stacks = false
 charges = 24450
 slot = "Hat"
+type = "HairLow"
 examine = "The sacred clay hat has transformed into a wizard hat."
 weight = 2.0
 
@@ -1187,6 +1188,7 @@ id = 14336
 id = 14337
 weight = 0.1
 slot = "Hat"
+type = "HairLow"
 examine = "The sacred clay has transformed into a light, cloth-like material."
 
 [hat_class_1_noted]
@@ -1196,6 +1198,7 @@ id = 14338
 id = 14339
 weight = 0.2
 slot = "Hat"
+type = "HairLow"
 examine = "The sacred clay has transformed into a light, cloth-like material."
 
 [hat_class_2_noted]
@@ -1205,6 +1208,7 @@ id = 14340
 id = 14341
 weight = 0.3
 slot = "Hat"
+type = "HairLow"
 examine = "The sacred clay has transformed into a light, cloth-like material."
 
 [hat_class_3_noted]
@@ -1214,6 +1218,7 @@ id = 14342
 id = 14343
 weight = 0.4
 slot = "Hat"
+type = "HairLow"
 examine = "The sacred clay has transformed into a light, cloth-like material."
 
 [hat_class_4_noted]
@@ -1223,6 +1228,7 @@ id = 14344
 id = 14345
 weight = 0.5
 slot = "Hat"
+type = "HairLow"
 examine = "The sacred clay has transformed into a light, cloth-like material."
 
 [hat_class_5_noted]

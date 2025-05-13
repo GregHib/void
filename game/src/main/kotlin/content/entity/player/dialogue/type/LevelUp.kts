@@ -44,9 +44,10 @@ maxLevelChange { player ->
         player.jingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
         player.gfx("level_up")
         player.addVarbit("skill_stat_flash", skill.name.lowercase())
+        val level = if (skill == Constitution) to / 10 else to
         levelUp(skill, """
             Congratulations! You've just advanced${skill.name.an()} ${skill.name} level!
-            You have now reached level ${to}!
+            You have now reached level ${level}!
         """)
     }
 }

@@ -2,7 +2,6 @@
 id = 15373
 tradeable = false
 weight = 0.05
-slot = "Hat"
 destroy = "You can get another from Diango in Draynor Village."
 examine = "A pipe of distinction."
 kept = "Wilderness"
@@ -47,6 +46,7 @@ id = 19708
 tradeable = false
 weight = 1.0
 slot = "Hat"
+type = "HairLow"
 destroy = "You can get another from Diango in Draynor Village."
 examine = "A hat that conveys your investigative abilities."
 kept = "Wilderness"

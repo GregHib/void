@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.data.sql.DatabaseStorage
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrides
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -36,7 +37,7 @@ fun engineModule(files: ConfigFiles) = module {
     single {
         SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
     }
-    single { AccountManager(get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
+    single { AccountManager(get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), AppearanceOverrides(get(), get())) }
     // IO
     single {
         if (Settings["storage.type", "files"] == "database") {

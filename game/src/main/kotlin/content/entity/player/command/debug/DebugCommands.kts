@@ -38,6 +38,9 @@ import content.entity.player.dialogue.sendLines
 import content.entity.player.dialogue.type.npc
 import content.entity.gfx.areaGfx
 import content.quest.questJournal
+import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.flagAppearance
+import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
@@ -46,8 +49,10 @@ val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 
 modCommand("test") {
-    player["slayer_count"] = 15
-    player["slayer_target"] = content.toInt()
+    player.appearance.body.setLook(BodyPart.Hair, content.toInt())
+    player.flagAppearance()
+//    player["slayer_count"] = 15
+//    player["slayer_target"] = content.toInt()
 //    println()
 //    println("Facing ${player.tile.delta(player.visuals.face.targetX, player.visuals.face.targetY)}")
 }

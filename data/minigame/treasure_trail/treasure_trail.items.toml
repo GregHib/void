@@ -47,6 +47,7 @@ price = 5200000
 limit = 2
 weight = 0.283
 slot = "Hat"
+type = "HairLow"
 examine = "Endorsed by Robin Hood."
 
 [robin_hood_hat_noted]
@@ -384,6 +385,7 @@ price = 76500
 limit = 2
 weight = 0.04
 slot = "Hat"
+type = "HairLow"
 examine = "Parlez-vous Francais?"
 
 [blue_beret_noted]
@@ -395,6 +397,7 @@ price = 201800
 limit = 2
 weight = 0.04
 slot = "Hat"
+type = "HairLow"
 examine = "Parlez-vous Francais?"
 
 [black_beret_noted]
@@ -406,6 +409,7 @@ price = 508000
 limit = 2
 weight = 0.04
 slot = "Hat"
+type = "HairLow"
 examine = "Parlez-vous Francais?"
 
 [white_beret_noted]
@@ -417,6 +421,7 @@ price = 30500
 limit = 2
 weight = 0.08
 slot = "Hat"
+type = "HairLow"
 examine = "All for one, and one for all!"
 
 [tan_cavalier_noted]
@@ -428,6 +433,7 @@ price = 32900
 limit = 2
 weight = 0.001
 slot = "Hat"
+type = "HairLow"
 examine = "All for one, and one for all!"
 
 [dark_cavalier_noted]
@@ -439,6 +445,7 @@ price = 695300
 limit = 2
 weight = 0.08
 slot = "Hat"
+type = "HairLow"
 examine = "All for one, and one for all!"
 
 [black_cavalier_noted]
@@ -450,6 +457,7 @@ price = 50600
 limit = 2
 weight = 0.04
 slot = "Hat"
+type = "HairMid"
 examine = "A minimalist's hat."
 
 [red_headband_noted]
@@ -461,6 +469,7 @@ price = 22900
 limit = 2
 weight = 0.04
 slot = "Hat"
+type = "HairMid"
 examine = "A minimalist's hat."
 
 [black_headband_noted]
@@ -472,6 +481,7 @@ price = 16000
 limit = 2
 weight = 0.04
 slot = "Hat"
+type = "HairMid"
 examine = "A minimalist's hat."
 
 [brown_headband_noted]
@@ -483,6 +493,7 @@ price = 84800
 limit = 2
 weight = 0.001
 slot = "Hat"
+type = "HairLow"
 examine = "Shiver me timbers!"
 
 [pirates_hat_noted]
@@ -825,6 +836,7 @@ price = 33400
 limit = 2
 weight = 0.01
 slot = "Hat"
+type = "HairLow"
 examine = "Stylish!"
 
 [red_boater_noted]
@@ -836,6 +848,7 @@ price = 17100
 limit = 2
 weight = 0.01
 slot = "Hat"
+type = "HairLow"
 examine = "Stylish!"
 
 [orange_boater_noted]
@@ -847,6 +860,7 @@ price = 45000
 limit = 2
 weight = 0.01
 slot = "Hat"
+type = "HairLow"
 examine = "Stylish!"
 
 [green_boater_noted]
@@ -858,6 +872,7 @@ price = 39000
 limit = 2
 weight = 0.01
 slot = "Hat"
+type = "HairLow"
 examine = "Stylish!"
 
 [blue_boater_noted]
@@ -869,6 +884,7 @@ price = 47100
 limit = 2
 weight = 0.01
 slot = "Hat"
+type = "HairLow"
 examine = "Stylish!"
 
 [black_boater_noted]
@@ -1275,6 +1291,7 @@ price = 1900000
 limit = 2
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
 examine = "A silly pointed hat, with colourful trim."
 
 [wizard_hat_g_noted]
@@ -1286,6 +1303,7 @@ price = 695400
 limit = 2
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
 examine = "A silly pointed hat, with colourful trim."
 
 [wizard_hat_t_noted]
@@ -2603,6 +2621,7 @@ price = 102200
 limit = 2
 weight = 1.0
 slot = "Hat"
+type = "HairLow"
 examine = "Comes with a free rabbit!"
 
 [top_hat_noted]
@@ -2614,6 +2633,7 @@ price = 51700
 limit = 2
 weight = 0.5
 slot = "Hat"
+type = "HairLow"
 examine = "Official explorer headgear."
 
 [pith_helmet_noted]
@@ -3568,6 +3588,7 @@ price = 267500000
 limit = 2
 weight = 0.3
 slot = "Hat"
+type = "HairMid"
 examine = "A fabulously ancient wreath of oak as worn by the druids of old."
 
 [third_age_druidic_wreath_noted]

@@ -123,6 +123,7 @@ id = 2978
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -131,6 +132,7 @@ id = 2979
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -139,6 +141,7 @@ id = 2980
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -147,6 +150,7 @@ id = 2981
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -155,6 +159,7 @@ id = 2982
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -163,6 +168,7 @@ id = 2983
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -171,6 +177,7 @@ id = 2984
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -179,6 +186,7 @@ id = 2985
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -187,6 +195,7 @@ id = 2986
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -195,6 +204,7 @@ id = 2987
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -203,6 +213,7 @@ id = 2988
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -211,6 +222,7 @@ id = 2989
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -219,6 +231,7 @@ id = 2990
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -227,6 +240,7 @@ id = 2991
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -235,6 +249,7 @@ id = 2992
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -243,6 +258,7 @@ id = 2993
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -251,6 +267,7 @@ id = 2994
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
@@ -259,6 +276,7 @@ id = 2995
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "A symbol of your chompy bird hunting prowess."
 kept = "Reclaim"
 
