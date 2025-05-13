@@ -56,9 +56,7 @@ instruction<ChatTypeChange> { player ->
 }
 
 instruction<ChatPublic> { player ->
-    val isAllCaps = text.none { it.isLowerCase() } && text.any { it.isLetter() }
-
-    val text = if (isAllCaps) {
+    val text = if (text.all { it.isUpperCase() }) {
         text.toTitleCase()
     } else {
         text.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
