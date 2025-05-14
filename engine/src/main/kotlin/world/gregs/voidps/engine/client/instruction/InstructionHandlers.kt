@@ -39,6 +39,7 @@ class InstructionHandlers(
     private val interactInterfaceItem = InterfaceOnInterfaceOptionHandler(handler)
     private val interactInterfaceFloorItem = InterfaceOnFloorItemOptionHandler(items, handler)
     private val executeCommand = ExecuteCommandHandler()
+    private val songEndHandler = SongEndHandler()
     var finishRegionLoad: FinishRegionLoad.(Player) -> Unit = empty()
     var changeDisplayMode: ChangeDisplayMode.(Player) -> Unit = empty()
     var walk: Walk.(Player) -> Unit = empty()
@@ -106,6 +107,7 @@ class InstructionHandlers(
             is ChatTypeChange -> chatTypeChangeHandler.invoke(instruction, player)
             is ClanChatKick -> clanChatKickHandler.invoke(instruction, player)
             is ClanChatRank -> clanChatRankHandler.invoke(instruction, player)
+            is SongEnd -> songEndHandler.validate(player, instruction)
         }
     }
 }

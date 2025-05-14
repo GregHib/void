@@ -8,9 +8,20 @@ components = {
       Play = 0,
       Unlock = 1,
       "Add to playlist" = 2,
-      Cancel = 3,
+      "Remove from playlist" = 3,
     }
   },
   currently_playing = 4,
-  playlist = 9,
+  playlist = {
+    id = 9,
+    options = {
+      Play = 0,
+      "Remove from playlist" = 1,
+      Option3 = 17,
+      Drag = 20
+    }
+  },
+  playlist_toggle = 10,
+  clear_playlist = 11,
+  shuffle_playlist = 13
 }
