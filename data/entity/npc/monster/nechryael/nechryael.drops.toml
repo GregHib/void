@@ -1,0 +1,31 @@
+[nechryael_drop_table]
+type = "all"
+drops = [
+  { table = "nechryael_secondary" },
+  { table = "hard_clue_scroll", roll = 128 },
+]
+
+[nechryael_secondary]
+roll = 116
+drops = [
+  { id = "adamant_platelegs", chance = 4 },
+  { id = "rune_2h_sword", chance = 4 },
+  { id = "rune_full_helm", chance = 3 },
+  { id = "adamant_kiteshield", chance = 2 },
+  { id = "rune_boots" },
+  { id = "chaos_rune", amount = 37, chance = 8 },
+  { id = "death_rune", amount = 5, chance = 6 },
+  { id = "death_rune", amount = 10, chance = 6 },
+  { id = "law_rune", min = 25, max = 35, chance = 5 },
+  { id = "blood_rune", min = 15, max = 20, chance = 4 },
+  { table = "rare_seed_drop_table", chance = 18 },
+  { id = "coins", min = 1000, max = 1499, chance = 13 },
+  { id = "coins", min = 1500, max = 2000, chance = 10 },
+  { id = "coins", min = 2500, max = 2999, chance = 6 },
+  { id = "coins", min = 3000, max = 3500, chance = 3 },
+  { id = "coins", min = 500, max = 999, chance = 2 },
+  { id = "coins", amount = 5000 },
+  { id = "soft_clay_noted", amount = 25, chance = 4 },
+  { id = "tuna", chance = 3 },
+  { table = "rare_drop_table" },
+]

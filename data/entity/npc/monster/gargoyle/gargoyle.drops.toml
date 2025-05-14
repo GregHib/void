@@ -1,0 +1,34 @@
+[gargoyle_drop_table]
+type = "all"
+drops = [
+  { table = "gargoyle_secondary" },
+  { table = "hard_clue_scroll", roll = 128 },
+
+]
+
+[gargoyle_secondary]
+roll = 512
+drops = [
+  { id = "granite_maul", chance = 2 },
+  { id = "mystic_robe_top_dark" },
+  { id = "adamant_platelegs", chance = 16 },
+  { id = "rune_full_helm", chance = 12 },
+  { id = "rune_2h_sword", chance = 8 },
+  { id = "adamant_boots", chance = 4 },
+  { id = "rune_battleaxe", chance = 4 },
+  { id = "rune_platelegs", chance = 4 },
+  { id = "fire_rune", amount = 75, chance = 40 },
+  { id = "chaos_rune", amount = 30, chance = 32 },
+  { id = "fire_rune", amount = 150, chance = 24 },
+  { id = "death_rune", amount = 15, chance = 20 },
+  { id = "gold_ore_noted", min = 10, max = 20, chance = 40 },
+  { id = "pure_essence_noted", amount = 150, chance = 24 },
+  { id = "steel_bar_noted", amount = 15, chance = 24 },
+  { id = "gold_bar_noted", min = 10, max = 15, chance = 12 },
+  { id = "mithril_bar_noted", amount = 15, chance = 8 },
+  { id = "runite_ore", chance = 8 },
+  { id = "coins", min = 400, max = 800, chance = 112 },
+  { id = "coins", min = 500, max = 1000, chance = 80 },
+  { id = "coins", amount = 10000, chance = 20 },
+  { table = "gem_drop_table", chance = 20 },
+]
