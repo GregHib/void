@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
 npcOperate("Talk-to", "osman") {
-    when (player["prince_ali_rescue", "unstarted"]) {
+    when (player.quest("prince_ali_rescue")) {
         "unstarted" -> {
             npc<Shifty>("Hello. I am Osman. What can I assist you with?")
             choice {

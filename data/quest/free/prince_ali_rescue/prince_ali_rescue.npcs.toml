@@ -17,3 +17,11 @@ id = 924
 [osman_dishevelled]
 clone = "osman"
 id = 5284
+
+[prince_ali]
+id = 920
+examine = "A young prince."
+
+[prince_ali_disguise]
+id = 921
+examine = "A young prince."

@@ -2,16 +2,39 @@ package content.area.misthalin.draynor_village
 
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import content.quest.quest
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
+import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.timer.toTicks
+import java.util.concurrent.TimeUnit
 
 npcOperate("Talk-to", "lady_keli") {
-    when (player["prince_ali_rescue", "unstarted"]) {
-        "equipment" -> { // TODO
+    when (player.quest("prince_ali_rescue")) {
+        "joe_beers" -> {
+            player<Happy>("Hello! I'm here to tie you up!")
+            npc<Uncertain>("What?")
+            statement("You overpower Keli, tie her up, and put her in a cupboard.", clickToContinue = false)
+            target.hide = true
+            target.softQueue("keli_respawn", TimeUnit.SECONDS.toTicks(30)) {
+                target.hide = false
+            }
+            statement("You overpower Keli, tie her up, and put her in a cupboard.")
+        }
+        "unstarted", "osman" -> {
+            npc<Angry>("What do you want?")
+            player<Quiz>("Nothing?")
+            npc<Angry>("Clear off then.")
+        }
+        "keli_tied_up", "prince_ali_disguise", "completed" -> {
+            target.say("You tricked me, and tied me up, Guards kill this stranger!!")
+            // TODO
+        }
+        else -> {
             player<Happy>("Are you the famous Lady Keli? Leader of the toughest gang of mercenary killers around?")
             npc<Shifty>("I am Keli, you have heard of me then?")
             choice {
@@ -50,11 +73,6 @@ npcOperate("Talk-to", "lady_keli") {
                     }
                 }
             }
-        }
-        else -> {
-            npc<Angry>("What do you want?")
-            player<Quiz>("Nothing?")
-            npc<Angry>("Clear off then.")
         }
     }
 }
@@ -105,7 +123,7 @@ fun ChoiceBuilder<NPCOption<Player>>.areYouSure(text: String = "That's great, ar
         npc<Talk>("That's a good idea, I could use talented people like you. I may call on you if I need work doing.")
         choice {
             skillful()
-            areYouSure()
+            escape()
             disturb()
         }
     }

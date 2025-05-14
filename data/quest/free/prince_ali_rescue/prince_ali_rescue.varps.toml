@@ -7,11 +7,12 @@ values = {
   unstarted = 0,
   osman = 10,
   leela = 20,
-  equipment = 30,
-  joe_one_beer = 31,
-  joe_two_beers = 35, # TODO get correct id
-  joe_three_beers = 40,
-  tie_up_lady_keli = 50,
+  leela_key = 21,
+  leela_info = 22,
+  guard = 30,
+  joe_beer = 31,
+  joe_beers = 40,
+  keli_tied_up = 50,
   prince_ali_disguise = 100,
   completed = 110,
 }
