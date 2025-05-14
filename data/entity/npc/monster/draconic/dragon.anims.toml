@@ -9,3 +9,18 @@ id = 89
 
 [dragon_death]
 id = 92
+
+[steel_dragon_breath]
+id = 13160
+
+[steel_dragon_attack]
+id = 13158
+
+[steel_dragon_defend]
+id = 13163
+
+[steel_dragon_hit]
+id = 13164
+
+[steel_dragon_death]
+id = 13159
