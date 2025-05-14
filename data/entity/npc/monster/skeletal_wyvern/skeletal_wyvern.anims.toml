@@ -1,0 +1,18 @@
+[skeletal_wyvern_defend]
+id = 1587
+
+[skeletal_wyvern_attack]
+id = 1589
+
+[skeletal_wyvern_death]
+id = 1591
+
+[wyvern_tail_whip]
+id = 1590
+
+[wyvern_ice_breath]
+id = 1592
+
+[wyvern_ranged]
+id = 1593
+

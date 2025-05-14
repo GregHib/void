@@ -1,0 +1,18 @@
+[mugger]
+id = 175
+hitpoints = 80
+att = 5
+str = 5
+def = 5
+mage = 1
+range = 1
+strbns = -21
+max_hit_melee = 1
+attack_speed = 4
+style = "slash"
+respawn_delay = 25
+attack_radius = 4
+wander_radius = 2
+hunt_mode = "cowardly"
+categories = ["mugger"]
+examine = "He jumps out and attacks people."

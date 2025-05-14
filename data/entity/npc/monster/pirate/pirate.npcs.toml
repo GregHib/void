@@ -1,0 +1,19 @@
+[pirate]
+id = 182
+hitpoints = 200
+att = 21
+str = 21
+def = 21
+mage = 1
+range = 1
+attbns = 8
+strbns = 10
+attack_speed = 5
+max_hit_melee = 1
+style = "crush"
+respawn_delay = 25
+attack_radius = 6
+wander_radius = 4
+hunt_mode = "cowardly"
+categories = ["pirate"]
+examine = "Yar! Shiver me timbers!"

@@ -10,3 +10,14 @@ option = "Climb-up"
 tile = { x = 3025, y = 5457 }
 to = { x = 2758, y = 2730 }
 
+[ice_dungeon_wyvern_cave_exit]
+option = "Exit"
+tile = { x = 3056, y = 9562 }
+to = { x = 3056, y = 9555 }
+
+[ice_dungeon_wyvern_cave_enter]
+option = "Enter"
+tile = { x = 3056, y = 9555}
+to = { x = 3056, y = 9562 }
+
+

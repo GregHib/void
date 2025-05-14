@@ -1,0 +1,34 @@
+[mugger_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "mugger_secondary" },
+    { table = "mugger_tertiary" },
+]
+
+[mugger_secondary]
+roll = 128
+drops = [
+    { id = "bronze_bolts", min = 2, max = 12, chance = 27, members = true },
+    { id = "mind_rune", amount = 9, chance = 3 },
+    { id = "water_rune", amount = 6, chance = 2 },
+    { id = "earth_rune", amount = 5, chance = 2 },
+    { table = "herb_drop_table", chance = 13 },
+    { id = "coins", amount = 10, chance = 13, members = false },
+    { id = "coins", amount = 5, chance = 12 },
+    { id = "coins", amount = 15, chance = 3 },
+    { id = "coins", amount = 25 },
+    { id = "rope", chance = 40 },
+    { id = "nothing", amount = 0, chance = 13 },
+    { id = "knife" },
+    { id = "fishing_bait", chance = 6 },
+    { id = "copper_ore", chance = 2 },
+    { id = "bronze_med_helm", chance = 2 },
+    { id = "cabbage" },
+]
+
+[mugger_tertiary]
+roll = 128
+drops = [
+    { id = "clue_scroll_easy", members = true },
+]
