@@ -28,4 +28,5 @@ spawns = [
     { id = "musician_al_kharid", x = 3292, y = 3212, direction = "NORTH" },
     { id = "man_3", x = 3298, y = 3206 },
     { id = "rat", x = 3319, y = 3250 },
+    { id = "ali_morrisane", x = 3304, y = 3211 },
 ]

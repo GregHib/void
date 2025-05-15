@@ -39,3 +39,9 @@ wander_radius = 4
 shop = "dommiks_crafting_store"
 categories = ["human"]
 examine = "If Crafting's your thing, he's your man."
+
+[ali_morrisane]
+id = 1862
+wander_radius = 3
+categories = ["human"]
+examine = "A bazaar merchant."
