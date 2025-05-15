@@ -1,0 +1,49 @@
+[ice_giant_drop_table]
+type = "all"
+drops = [
+    { table = "big_bones" },
+    { table = "ice_giant_secondary" },
+    { table = "ice_giant_tertiary" },
+]
+
+[ice_giant_secondary]
+roll = 128
+drops = [
+    { id = "iron_2h_sword", chance = 5 },
+    { id = "black_kiteshield", chance = 5 },
+    { id = "steel_hatchet", chance = 4 },
+    { id = "steel_sword", chance = 4 },
+    { id = "iron_platelegs" },
+    { id = "mithril_mace" },
+    { id = "mithril_sq_shield" },
+    { id = "adamant_arrow", amount = 5, chance = 6 },
+    { id = "nature_rune", amount = 6, chance = 4 },
+    { id = "mind_rune", amount = 24, chance = 3 },
+    { id = "body_rune", amount = 37, chance = 3 },
+    { id = "law_rune", amount = 3, chance = 2 },
+    { id = "water_rune", amount = 12 },
+    { id = "cosmic_rune", amount = 4 },
+    { id = "death_rune", amount = 3 },
+    { id = "blood_rune", amount = 2, members = true },
+    { table = "uncommon_seed_drop_table", chance = 8 },
+    { id = "coins", amount = 117, chance = 32 },
+    { id = "coins", amount = 53, chance = 12 },
+    { id = "coins", amount = 196, chance = 10 },
+    { id = "coins", amount = 5, chance = 8, members = false },
+    { id = "coins", amount = 8, chance = 7 },
+    { id = "coins", amount = 22, chance = 6 },
+    { id = "coins", amount = 400, chance = 2 },
+    { id = "jug_of_wine", chance = 3 },
+    { id = "mithril_ore" },
+    { id = "banana" },
+    { table = "gem_drop_table", chance = 4 },
+]
+
+[ice_giant_tertiary]
+roll = 5000
+drops = [
+    { id = "ice_giant_ribs", chance = 1250, members = true },
+    { id = "long_bone", chance = 12, members = true },
+    { id = "giant_champions_scroll", members = true },
+    { id = "curved_bone", members = true },
+]

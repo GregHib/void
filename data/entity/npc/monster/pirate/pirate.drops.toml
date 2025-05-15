@@ -1,0 +1,34 @@
+[pirate_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "pirate_secondary" },
+]
+
+[pirate_secondary]
+roll = 128
+drops = [
+    { id = "iron_dagger", chance = 6 },
+    { id = "bronze_scimitar", chance = 4 },
+    { id = "iron_platebody" },
+    { id = "iron_bolts", min = 2, max = 12, chance = 10, members = true },
+    { id = "chaos_rune", amount = 2, chance = 6 },
+    { id = "nature_rune", amount = 2, chance = 5 },
+    { id = "bronze_arrow", amount = 9, chance = 3 },
+    { id = "bronze_arrow", amount = 12, chance = 2 },
+    { id = "air_rune", amount = 10, chance = 2 },
+    { id = "earth_rune", amount = 9, chance = 2 },
+    { id = "fire_rune", amount = 5, chance = 2 },
+    { id = "law_rune", amount = 2 },
+    { id = "coins", amount = 4, chance = 29 },
+    { id = "coins", amount = 25, chance = 13 },
+    { id = "coins", amount = 7, chance = 8 },
+    { id = "coins", amount = 12, chance = 6 },
+    { id = "coins", amount = 35, chance = 4 },
+    { id = "coins", amount = 55 },
+    { id = "eye_patch", chance = 12, members = true },
+    { id = "nothing", amount = 0, chance = 8 },
+    { id = "chefs_hat" },
+    { id = "iron_bar" },
+    { table = "gem_drop_table" },
+]

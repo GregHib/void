@@ -1,0 +1,19 @@
+[wyvern_ice_breath]
+id = 501
+height = 36
+end_height = 10
+curve = 18
+delay = 41
+flight_time = [12, 14, 16, 18, 20, 22, 24, 26]
+
+[wyvern_ice_breath_hit]
+id = 502
+height = 0
+delay = 1
+
+[wyvern_ranged]
+id = 499
+height = 67
+end_height = 31
+delay = 30
+flight_time = [16, 18, 20, 22, 24, 26, 28, 30]
