@@ -9,19 +9,8 @@ import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.client.ui.interfaceOption
-
-val quests = arrayOf(
-    // free
-    "cooks_assistant",
-    "demon_slayer",
-    "dorics_quest",
-    "gunnars_ground",
-    "the_knights_sword",
-    "the_restless_ghost",
-    "rune_mysteries",
-    // members
-    "druidic_ritual"
-)
+import world.gregs.voidps.engine.data.definition.QuestDefinitions
+import world.gregs.voidps.engine.inject
 
 val logger = InlineLogger()
 
@@ -30,27 +19,23 @@ interfaceOpen("quest_journals") { player ->
     player.sendVariable("quest_points")
     player.sendVariable("quest_points_total") //set total quest points available in variables-player.yml
     player.sendVariable("unstable_foundations")
-    for (quest in quests) {
+    for (quest in questDefinitions.ids.keys) {
         player.sendVariable(quest)
     }
 }
 
+val questDefinitions: QuestDefinitions by inject()
+
 interfaceOption(component = "journals", id = "quest_journals") {
-    val quest = when (itemSlot) {
-        1 -> "cooks_assistant"
-        2 -> "demon_slayer"
-        3 -> "dorics_quest"
-        17 -> "gunnars_ground"
-        13 -> "rune_mysteries"
-        8 -> "the_knights_sword"
-        11 -> "the_restless_ghost"
-        33 -> "druidic_ritual"
-        else -> return@interfaceOption logger.warn { "Unknown quest $itemSlot" }
+    val quest = questDefinitions.getOrNull(itemSlot)
+    if (quest == null) {
+        logger.warn { "Unknown quest $itemSlot" }
+        return@interfaceOption
     }
-    player.emit(OpenQuestJournal(player, quest))
+    player.emit(OpenQuestJournal(player, quest.stringId))
 }
 
-variableSet(ids = quests) { player ->
+variableSet(ids = questDefinitions.ids.keys.toTypedArray()) { player ->
     player.softTimers.start("refresh_quest_journal")
 }
 
