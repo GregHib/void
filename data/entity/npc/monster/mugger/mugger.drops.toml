@@ -1,9 +1,9 @@
 [mugger_drop_table]
 type = "all"
 drops = [
-    { table = "bones" },
+    { id = "bones" },
     { table = "mugger_secondary" },
-    { table = "mugger_tertiary" },
+    { table = "easy_clue_scroll", roll = 128, members = true },
 ]
 
 [mugger_secondary]
@@ -25,10 +25,4 @@ drops = [
     { id = "copper_ore", chance = 2 },
     { id = "bronze_med_helm", chance = 2 },
     { id = "cabbage" },
-]
-
-[mugger_tertiary]
-roll = 128
-drops = [
-    { id = "clue_scroll_easy", members = true },
 ]

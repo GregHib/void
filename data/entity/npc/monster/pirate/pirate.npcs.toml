@@ -15,5 +15,5 @@ respawn_delay = 25
 attack_radius = 6
 wander_radius = 4
 hunt_mode = "cowardly"
-categories = ["pirate"]
+categories = ["human", "pirate"]
 examine = "Yar! Shiver me timbers!"
