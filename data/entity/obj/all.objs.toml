@@ -254,6 +254,10 @@ examine = "A plant cultivated for fibres."
 id = 2718
 examine = "These control the flow of wheat from the hopper to the millstones."
 
+[hopper_controls_pulled]
+id = 2722
+examine = "These control the flow of wheat from the hopper to the millstones."
+
 [fire_orange]
 id = 2732
 examine = "Hot!"
