@@ -24,7 +24,7 @@ val escapeKit = listOf(
 npcOperate("Talk-to", "leela") {
     when (player.quest("prince_ali_rescue")) {
         "leela" -> {
-            if (player["prince_ali_rescue_key_made", false]) {
+            if (player["prince_ali_rescue_key_made", false] && !player["prince_ali_rescue_key_given", false]) {
                 npc<Talk>("My father sent this key for you. Be careful not to lose it.")
                 if (player.inventory.add("bronze_key_prince_ali_rescue")) {
                     statement("Leela gives you a copy of the key to the prince's door.")
@@ -62,9 +62,7 @@ npcOperate("Talk-to", "leela") {
             player<Talk>("He's been dealt with.")
             npc<Happy>("Great! I think that means we're ready. Go in and use some rope to tie Keli up. Once she's dealt with, use the key to free the Prince. Don't forget to give him his disguise so the guards outside don't spot him.")
         }
-        "prince_ali_disguise", "completed" -> {
-            npc<Happy>("Thank you, Al-Kharid will forever owe you for your help. I think that if there is ever anything that needs to be done, you will be someone they can rely on.")
-        }
+        "prince_ali_disguise", "completed" -> npc<Happy>("Thank you, Al-Kharid will forever owe you for your help. I think that if there is ever anything that needs to be done, you will be someone they can rely on.")
         else -> {
             player<Happy>("What are you waiting here for?")
             npc<Talk>("That is no concern of yours, adventurer.")
@@ -75,6 +73,7 @@ npcOperate("Talk-to", "leela") {
 suspend fun NPCOption<Player>.intro() {
     player<Happy>("I am here to help you free the prince.")
     npc<Talk>("Your employment is known to me. Now, do you know all that we need to make the break?")
+    player["prince_ali_rescue_leela"] = true
     choice {
         disguise()
         key()

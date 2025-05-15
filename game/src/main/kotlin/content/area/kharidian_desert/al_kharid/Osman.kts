@@ -40,11 +40,16 @@ npcOperate("Talk-to", "osman") {
         }
         "leela" -> {
             if (player.inventory.contains("key_print")) {
-                npc<Shifty>("Well done; we can make the key now.")
-                player.inventory.remove("key_print")
-                player["prince_ali_rescue_key_made"] = true
-                statement("Osman takes the key imprint and the bronze bar.")
-                npc<Shifty>("Pick the key up from Leela.")
+                if (!player.inventory.contains("bronze_bar")) {
+                    player<Talk>("I have an imprint of the key.")
+                    npc<Shifty>("Good. Bring me a bronze bar, and I'll get a copy made.")
+                } else {
+                    npc<Shifty>("Well done; we can make the key now.")
+                    player.inventory.remove("key_print", "bronze_bar")
+                    player["prince_ali_rescue_key_made"] = true
+                    statement("Osman takes the key imprint and the bronze bar.")
+                    npc<Shifty>("Pick the key up from Leela.")
+                }
             } else if (player["prince_ali_rescue_key_given", false] && !player.ownsItem("bronze_key_prince_ali_rescue")) {
                 player<Talk>("I'm afraid I lost that key you gave me.")
                 npc<Uncertain>("Well that was foolish. I can sort you out with another, but it will cost you 15 coins.")

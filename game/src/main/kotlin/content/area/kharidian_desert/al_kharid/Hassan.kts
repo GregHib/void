@@ -3,11 +3,9 @@ package content.area.kharidian_desert.al_kharid
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
@@ -54,7 +52,6 @@ fun ChoiceBuilder<NPCOption<Player>>.anyHelp() {
 fun ChoiceBuilder<NPCOption<Player>>.tooHot() {
     option<Upset>("It's just too hot here. How can you stand it?") {
         npc<Talk>("We manage, in our humble way. We are a wealthy town and we have water. It cures many thirsts.")
-        player.message("The chancellor hands you some water.", type = ChatType.Broadcast)
         player.inventory.add("jug_of_water")
         statement("The chancellor hands you some water.")
         choice {
