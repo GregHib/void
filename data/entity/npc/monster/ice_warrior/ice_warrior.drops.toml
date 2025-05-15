@@ -1,0 +1,27 @@
+[ice_warrior_drop_table]
+type = "all"
+drops = [
+    { table = "ice_warrior_secondary" },
+    { table = "medium_clue_scroll", roll = 128 }
+]
+
+[ice_warrior_secondary]
+roll = 128
+drops = [
+    { id = "iron_battleaxe", chance = 3 },
+    { id = "mithril_mace" },
+    { id = "nature_rune", amount = 4, chance = 10 },
+    { id = "chaos_rune", amount = 3, chance = 8 },
+    { id = "law_rune", amount = 2, chance = 7 },
+    { id = "cosmic_rune", amount = 2, chance = 5 },
+    { id = "mithril_arrow", amount = 3, chance = 5 },
+    { id = "adamant_arrow", amount = 2, chance = 3 },
+    { id = "death_rune", amount = 2, chance = 3 },
+    { id = "blood_rune", amount = 2, members = true },
+    { table = "herb_drop_table", chance = 10 },
+    { table = "uncommon_seed_drop_table", chance = 18 },
+    { id = "coins", amount = 15, chance = 39 },
+    { id = "coins", amount = 5, chance = 18, members = false },
+    { id = "coins", amount = 10, chance = 10, members = false },
+    { table = "gem_drop_table", chance = 3 },
+]

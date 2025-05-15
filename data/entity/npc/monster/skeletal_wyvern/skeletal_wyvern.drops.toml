@@ -1,0 +1,57 @@
+[skeletal_wyvern_drop_table]
+type = "all"
+drops = [
+    { table = "skeletal_wyvern_primary" },
+    { table = "skeletal_wyvern_secondary" },
+    { table = "skeletal_wyvern_tertiary" },
+]
+
+[skeletal_wyvern_primary]
+drops = [
+    { id = "wyvern_bones" },
+]
+
+[skeletal_wyvern_secondary]
+roll = 512
+drops = [
+    { id = "granite_legs" },
+    { id = "dragon_platelegs" },
+    { id = "dragon_plateskirt" },
+    { id = "earth_battlestaff", chance = 16 },
+    { id = "battlestaff_noted", amount = 10, chance = 12 },
+    { id = "rune_hatchet", chance = 12 },
+    { id = "rune_battleaxe", chance = 8 },
+    { id = "rune_warhammer", chance = 8 },
+    { id = "rune_full_helm", chance = 8 },
+    { id = "rune_kiteshield", chance = 8 },
+    { id = "air_rune", amount = 225, chance = 24 },
+    { id = "rune_arrow", amount = 36, chance = 20 },
+    { id = "water_rune", amount = 150, chance = 16 },
+    { id = "chaos_rune", amount = 80, chance = 16 },
+    { id = "law_rune", amount = 45, chance = 16 },
+    { id = "death_rune", amount = 40, chance = 16 },
+    { id = "blood_rune", amount = 25, chance = 16 },
+    { id = "adamant_bolts", min = 75, max = 99, chance = 12 },
+    { id = "runite_bolts", min = 35, max = 44, chance = 12 },
+    { id = "soul_rune", amount = 20, chance = 4 },
+    { table = "herb_drop_table", chance = 28 },
+    { id = "pure_essence_noted", amount = 250, chance = 32 },
+    { id = "magic_logs_noted", amount = 35, chance = 24 },
+    { id = "adamant_bar_noted", amount = 10, chance = 24 },
+    { id = "iron_ore_noted", amount = 200, chance = 12 },
+    { id = "uncut_ruby_noted", amount = 10, chance = 8 },
+    { id = "uncut_diamond_noted", amount = 5, chance = 8 },
+    { id = "coins", amount = 300, chance = 48 },
+    { id = "lobster", amount = 6, chance = 32 },
+    { id = "prayer_potion_4", amount = 2, chance = 28 },
+    { id = "unpowered_orb_noted", amount = 75, chance = 8 },
+    { id = "rune_crossbow_u", chance = 8 },
+    { id = "ranarr_seed", amount = 3, chance = 8 },
+    { id = "snapdragon_seed", chance = 8 },
+]
+
+[skeletal_wyvern_tertiary]
+roll = 10000
+drops = [
+    { id = "draconic_visage" },
+]
