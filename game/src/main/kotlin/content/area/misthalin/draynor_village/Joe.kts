@@ -15,27 +15,25 @@ import world.gregs.voidps.engine.inv.remove
 
 npcOperate("Talk-to", "jail_guard_joe") {
     when (player.quest("prince_ali_rescue")) {
+        "guard" -> {
+            choice {
+                fancyABeer()
+                guardLife()
+                guardDreams()
+                option<Talk>("I had better leave, I don't want trouble.")
+            }
+        }
+        "joe_beer" -> anotherBeer()
+        "joe_beers", "keli_tied_up", "prince_ali_disguise" -> {
+            npc<Drunk>("Halt! Who goes there?")
+            player<Happy>("Hello friend. I'm just here to rescue the Prince, if thats okay?")
+            npc<Drunk>("Thatsh a funny joke. You are lucky I'm shober. Go in peace, friend.")
+        }
         "completed" -> {
             npc<Talk>("Halt! Who goes there?")
             player<Happy>("Hi friend, I am just checking out things here.")
             npc<Sad>("The Prince got away, I am in trouble. I better not talk to you, they are not sure I was drunk.")
             player<Talk>("I won't say anything, your secret is safe with me.")
-        }
-        "joe_beer" -> another()
-        "joe_beers" -> {
-            npc<Drunk>("Halt! Who goes there?")
-            player<Happy>("Hello friend. I'm just here to rescue the Prince, if thats okay?")
-            npc<Drunk>("Thatsh a funny joke. You are lucky I'm shober. Go in peace, friend.")
-        }
-        "guard" -> {
-            choice {
-                option<Happy>("I have some beer here, fancy one?") {
-                    beer()
-                }
-                guardLife()
-                guardDreams()
-                option<Talk>("I had better leave, I don't want trouble.")
-            }
         }
         else -> {
             player<Quiz>("Hi. Who are you guarding here?")
@@ -51,7 +49,7 @@ itemOnNPCOperate("beer", "jail_guard_joe") {
             player<Happy>("I have some beer here. Fancy one?")
             beer()
         }
-        "joe_beer" -> another()
+        "joe_beer" -> anotherBeer()
         else -> player<Talk>("I don't see any need to give the guard my beer. I'll keep it for myself.")
     }
 }
@@ -66,8 +64,18 @@ suspend fun TargetInteraction<Player, NPC>.beer() {
     statement("You hand a beer to the guard. He drinks it in seconds.")
     npc<Happy>("That was perfect! I can't thank you enough.")
     player<Quiz>("How are you? Still ok? Not too drunk?")
-    another()
+    anotherBeer()
+}
 
+suspend fun TargetInteraction<Player, NPC>.anotherBeer() {
+    player<Happy>("Would you care for another beer, my friend?")
+    npc<RollEyes>("I'd better not. I don't want to be drunk on duty.")
+    player<Happy>("Here, just keep these for later. I hate to see a thirsty guard.")
+    player["prince_ali_rescue"] = "joe_beers"
+    player.inventory.remove("beer", 2)
+    player.sound("drink")
+    items("beer", "beer", "You hand two more beers to the guard. He takes a sip of one, and then he quickly drinks them both.")
+    npc<Drunk>("Franksh! That wash jusht what I need to shtay on guard. No more beersh, I don't want to get drunk.")
 }
 
 fun ChoiceBuilder<NPCOption<Player>>.guardLife() {
@@ -98,34 +106,33 @@ fun ChoiceBuilder<NPCOption<Player>>.guardDreams() {
                         npc<RollEyes>("Really, after working here, there's only time for a drink or three. All us guards go to the same pub and drink ourselves stupid.")
                         npc<Happy>("It's what I enjoy these days. I can't resist the sight of a really cold beer.")
                         choice {
-                            option<Happy>("I have some beer here. Fancy one?")
-                            option<Talk>("Tell me about the life of a guard.")
-                            option<Talk>("What did you want to be when you were a boy?")
-                            option<Talk>("I'd better go.") {
-                                npc<Talk>("Thanks, I appreciate that. Talking on duty can be punished by having your mouth stitched up. These are tough people, make no mistake.")
-                            }
+                            fancyABeer()
+                            guardLife()
+                            guardDreams()
+                            betterGo()
                         }
                     }
-                    option<Talk>("Tell me about the life of a guard.")
+                    guardLife()
                     option("Would you be interested in making a little more money?") {
                         // TODO?
                     }
-                    option<Talk>("I'd better go.")
+                    betterGo()
                 }
             }
             guardLife()
-            option<Talk>("I'd better go.")
+            betterGo()
         }
     }
 }
 
-suspend fun TargetInteraction<Player, NPC>.another() {
-    player<Happy>("Would you care for another beer, my friend?")
-    npc<RollEyes>("I'd better not. I don't want to be drunk on duty.")
-    player<Happy>("Here, just keep these for later. I hate to see a thirsty guard.")
-    player["prince_ali_rescue"] = "joe_beers"
-    player.inventory.remove("beer", 2)
-    player.sound("drink")
-    items("beer", "beer", "You hand two more beers to the guard. He takes a sip of one, and then he quickly drinks them both.")
-    npc<Drunk>("Franksh! That wash jusht what I need to shtay on guard. No more beersh, I don't want to get drunk.")
+fun ChoiceBuilder<NPCOption<Player>>.betterGo() {
+    option<Talk>("I'd better go.") {
+        npc<Talk>("Thanks, I appreciate that. Talking on duty can be punished by having your mouth stitched up. These are tough people, make no mistake.")
+    }
+}
+
+fun ChoiceBuilder<NPCOption<Player>>.fancyABeer() {
+    option<Happy>("I have some beer here, fancy one?") {
+        beer()
+    }
 }

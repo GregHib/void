@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
@@ -23,45 +24,41 @@ val escapeKit = listOf(
 npcOperate("Talk-to", "leela") {
     when (player.quest("prince_ali_rescue")) {
         "leela" -> {
-            intro()
-        }
-        "leela_key" -> {
-            npc<Talk>("My father sent this key for you. Be careful not to lose it.")
-            if (player.inventory.add("bronze_key_prince_ali_rescue")) {
-                statement("Leela gives you a copy of the key to the prince's door.")
-                player["prince_ali_rescue"] = "leela_info"
-            } else {
-                statement("Leela tries to give you a key, but you don't have enough room for it.")
-                return@npcOperate
+            if (player["prince_ali_rescue_key_made", false]) {
+                npc<Talk>("My father sent this key for you. Be careful not to lose it.")
+                if (player.inventory.add("bronze_key_prince_ali_rescue")) {
+                    statement("Leela gives you a copy of the key to the prince's door.")
+                    player["prince_ali_rescue_key_given"] = true
+                } else {
+                    statement("Leela tries to give you a key, but you don't have enough room for it.")
+                    return@npcOperate
+                }
+            } else if (player["prince_ali_rescue_key_given", false] && !player.ownsItem("bronze_key_prince_ali_rescue")) {
+                npc<Quiz>("You're back. How are things going?")
+                if (lostKey()) {
+                    return@npcOperate
+                }
             }
-            intro()
-        }
-        "leela_info" -> {
             if (player.inventory.contains(escapeKit)) {
                 npc<Shifty>("Okay now, you have all the basic equipment. What are your plans to stop the guard interfering?")
                 player["prince_ali_rescue"] = "guard"
                 guard(unsure = true)
                 return@npcOperate
             }
-            if (!player.ownsItem("bronze_key_prince_ali_rescue")) {
-                npc<Quiz>("You're back. How are things going?")
-                player<Upset>("I'm afraid I lost that key you gave me.")
-                npc<Uncertain>("Well that was foolish. I can sort you out with another, but it will cost you 15 coins.")
-                player<Talk>("Here, I have 15 coins.")
-                player.inventory.transaction {
-                    remove("coins", 15)
-                    add("bronze_key_prince_ali_rescue")
-                }
-                item("bronze_key_prince_ali_rescue", 400, "Leela gives you a key.")
-            }
             intro()
         }
         "guard", "joe_beer" -> {
             npc<Quiz>("You're back. How are things going with that guard?")
+            if (lostKey()) {
+                return@npcOperate
+            }
             guard(unsure = false)
         }
         "joe_beers" -> {
             npc<Quiz>("You're back. How are things going with that guard?")
+            if (lostKey()) {
+                return@npcOperate
+            }
             player<Talk>("He's been dealt with.")
             npc<Happy>("Great! I think that means we're ready. Go in and use some rope to tie Keli up. Once she's dealt with, use the key to free the Prince. Don't forget to give him his disguise so the guards outside don't spot him.")
         }
@@ -172,4 +169,28 @@ suspend fun NPCOption<Player>.guard(unsure: Boolean) {
             }
         }
     }
+}
+
+suspend fun NPCOption<Player>.lostKey(): Boolean {
+    player<Upset>("I'm afraid I lost that key you gave me.")
+    npc<Uncertain>("Well that was foolish. I can sort you out with another, but it will cost you 15 coins.")
+    if (player.inventory.contains("coins", 15)) {
+        player<Talk>("Here, I have 15 coins.")
+    } else {
+        player<Sad>("I haven't got 15 coins with me.")
+        npc<Talk>("Then come back to me when you do.")
+        return true
+    }
+    player.inventory.transaction {
+        remove("coins", 15)
+        add("bronze_key_prince_ali_rescue")
+    }
+    when (player.inventory.transaction.error) {
+        TransactionError.None -> item("bronze_key_prince_ali_rescue", 400, "Leela gives you a key.")
+        else -> {
+            statement("Leela tries to give you a key, but you don't have enough room for it.")
+            return true
+        }
+    }
+    return false
 }

@@ -2,6 +2,7 @@ package content.area.kharidian_desert.al_kharid
 
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
+import content.quest.quest
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -11,12 +12,23 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
 npcOperate("Talk-to", "hassan") {
-    npc<Talk>("Greetings! I am Hassan, Chancellor to the Emir of Al Kharid.")
-    choice {
-        anyHelp()
-        tooHot()
-        killWarriors()
-        option<Talk>("I'd better be off.")
+    when (player.quest("prince_ali_rescue")) {
+        "unstarted" -> {
+            npc<Talk>("Greetings! I am Hassan, Chancellor to the Emir of Al Kharid.")
+            choice {
+                anyHelp()
+                tooHot()
+                killWarriors()
+                option<Talk>("I'd better be off.")
+            }
+        }
+        "prince_ali_disguise" -> {
+            // TODO quest complete
+            player.clear("prince_ali_rescue_key_made")
+            player.clear("prince_ali_rescue_key_given")
+        }
+        else ->
+            npc<Talk>("Hello again. I hear you have agreed to help rescue Prince Ali. On behalf of the Emir, I will have a reward ready for you upon your success.")
     }
 }
 

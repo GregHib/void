@@ -21,19 +21,8 @@ questJournalOpen("prince_ali_rescue") {
             "<navy>urgent matter, and directed me to speak to <maroon>Osman<navy>, <maroon>Al",
             "<maroon>Kharid's Spymaster<navy>, just outside the <maroon>Palace<navy>.",
         )
-        "leela" -> listOf(
-            "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
-            "<str>the Al Kharid Palace. He asked for my help with an urgent",
-            "<str>matter, and directed me to speak to Osman, Al Kharid's",
-            "<str>Spymaster.",
-            "<navy>I spoke to <maroon>Osman<navy> outside the <maroon>Al Kharid Palace<navy>. He informed me",
-            "<navy>that <maroon>Prince Ali<navy>, the <maroon>Emir's<navy> heir, was captured by a group of",
-            "<navy><maroon>Bandits<navy> and taken to an <maroon>Abandoned Jail<navy> east of <maroon>Draynor",
-            "<maroon>Village<navy>. <maroon>Osman<navy> asked for my help in rescuing <maroon>Prince Ali<navy>, and",
-            "<navy>suggested I speak with <maroon>Leela<navy>, who I can find spying on the",
-            "<navy><maroon>Jail<navy>.",
-        )
-        "leela_key" -> {
+        "leela" -> {
+
             if (player.inventory.contains("key_print")) {
                 listOf(
                     "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
@@ -60,23 +49,7 @@ questJournalOpen("prince_ali_rescue") {
                     "<navy>take it to <maroon>Osman<navy> along with a <maroon>Bronze Bar<navy> so that he can make",
                     "<navy>us a copy.",
                 )
-            } else if (player.inventory.contains(escapeKit)) {
-                listOf(
-                    "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
-                    "<str>the Al Kharid Palace. He asked for my help with an urgent",
-                    "<str>matter, and directed me to speak to Osman, Al Kharid's",
-                    "<str>Spymaster.",
-                    "<str>I spoke to Osman outside the Al Kharid Palace. He informed me",
-                    "<str>that Prince Ali, the Emir's heir, was captured by a group of",
-                    "<str>Bandits and taken to an Abandoned Jail east of Draynor",
-                    "<str>Village. Osman asked for my help in rescuing Prince Ali, and",
-                    "<str>suggested I speak with Leela in Draynor Village.",
-                    "<navy>To free <maroon>Prince Ali<navy>, I have created him a disguise to make him",
-                    "<navy>look like <maroon>Lady Keli<navy>, the leader of the <maroon>Bandits<navy>. I have also made",
-                    "<navy>a copy of the key to his cell. I should speak with <maroon>Leela<navy> outside",
-                    "<navy>the <maroon>Abandoned Jail<navy> and let her know that I've done all of this.",
-                )
-            } else {
+            } else if (player["prince_ali_rescue_key_made", false]) {
                 listOf(
                     "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
                     "<str>the Al Kharid Palace. He asked for my help with an urgent",
@@ -101,10 +74,10 @@ questJournalOpen("prince_ali_rescue") {
                     "<navy>I took an <maroon>Imprint<navy> of the <maroon>Cell Key<navy> and gave it to <maroon>Osman<navy>. He will",
                     "<navy>use it to make a copy, which he will send over once it is ready.",
                 )
-            }
-        }
-        "leela_info" -> {
-            if (player.inventory.contains(escapeKit)) {
+            } else if (player["prince_ali_rescue_key_given", false]) {
+                // TODO lost key / incomplete kit
+                emptyList()
+            } else if (player.inventory.contains(escapeKit)) {
                 listOf(
                     "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
                     "<str>the Al Kharid Palace. He asked for my help with an urgent",
@@ -126,6 +99,18 @@ questJournalOpen("prince_ali_rescue") {
                     "<str>the Al Kharid Palace. He asked for my help with an urgent",
                     "<str>matter, and directed me to speak to Osman, Al Kharid's",
                     "<str>Spymaster.",
+                    "<navy>I spoke to <maroon>Osman<navy> outside the <maroon>Al Kharid Palace<navy>. He informed me",
+                    "<navy>that <maroon>Prince Ali<navy>, the <maroon>Emir's<navy> heir, was captured by a group of",
+                    "<navy><maroon>Bandits<navy> and taken to an <maroon>Abandoned Jail<navy> east of <maroon>Draynor",
+                    "<maroon>Village<navy>. <maroon>Osman<navy> asked for my help in rescuing <maroon>Prince Ali<navy>, and",
+                    "<navy>suggested I speak with <maroon>Leela<navy>, who I can find spying on the",
+                    "<navy><maroon>Jail<navy>.",
+                )
+                listOf(
+                    "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
+                    "<str>the Al Kharid Palace. He asked for my help with an urgent",
+                    "<str>matter, and directed me to speak to Osman, Al Kharid's",
+                    "<str>Spymaster.",
                     "<str>I spoke to Osman outside the Al Kharid Palace. He informed me",
                     "<str>that Prince Ali, the Emir's heir, was captured by a group of",
                     "<str>Bandits and taken to an Abandoned Jail east of Draynor",
@@ -142,7 +127,6 @@ questJournalOpen("prince_ali_rescue") {
                     "<maroon>Shop<navy>. As for the <maroon>Skin Paste<navy>, <maroon>Leela<navy> thinks a local <maroon>Witch<navy> could",
                     "<navy>make me some.",
                     "",
-                    // TODO lost key / incomplete kit
                 )
             }
         }
@@ -180,7 +164,7 @@ questJournalOpen("prince_ali_rescue") {
             "<navy>gave him some <maroon>Beer<navy> to get him drunk. The last thing I need to",
             "<navy>do is deal with <maroon>Lady Keli<navy>. <maroon>Leela<navy> might know how I can do this.",
         )
-        // TODO kali tied up
+        "keli_tied_up" -> listOf() // TODO kali tied up
         "prince_ali_disguise" -> listOf(
             "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
             "<str>the Al Kharid Palace. He asked for my help with an urgent",
