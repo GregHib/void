@@ -5,7 +5,7 @@ import content.entity.combat.hit.hit
 import content.entity.combat.hit.npcCombatAttack
 import content.entity.combat.npcCombatSwing
 import content.entity.effect.freeze
-import content.entity.effect.movementDelay
+import content.entity.effect.frozen
 import content.entity.proj.shoot
 import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
@@ -71,16 +71,12 @@ npcCombatAttack("skeletal_wyvern") { npc ->
             Hit.success(npc, target, "magic", Item.EMPTY, false)
         }
 
-        if (shouldFreeze && !target.isFrozen()) {
+        if (shouldFreeze && !target.frozen) {
             val baseFreeze = 10
             target.freeze(baseFreeze)
             target.message("The wyvern's icy breath chills you to the bone!")
         }
     }
-}
-
-fun Character.isFrozen(): Boolean {
-    return this.movementDelay > 0
 }
 
 fun nearestTile(source: Character, target: Character): Tile {

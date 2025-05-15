@@ -4,6 +4,6 @@ id = 448
 [ice_giant_death]
 id = 450
 
-[ice_giant_hit]
+[[ice_giant_defend]]
 id = 451
 
