@@ -58,8 +58,11 @@ id = 101
 [int_entry]
 id = 108
 
-[string_entry]
+[name_entry]
 id = 109
+
+[string_entry]
+id = 110
 
 [dialogue_item_zoom]
 id = 3449
