@@ -1,14 +1,23 @@
 spawns = [
-# 10802
-  { id = "saniboch", x = 2744, y = 3152, members = true },
-# 10802
-  { id = "moss_giant", x = 2698, y = 3206, members = true },
-  { id = "moss_giant_2", x = 2695, y = 3216, members = true },
-  { id = "moss_giant_2", x = 2692, y = 3204, members = true },
-  { id = "moss_giant_3", x = 2691, y = 3215, members = true },
-  { id = "moss_giant_4", x = 2699, y = 3212, members = true },
-# 11057
-  { id = "rat", x = 2810, y = 3170, members = true },
-  { id = "rat", x = 2807, y = 3167, members = true },
-  { id = "bartender_dead_mans_chest", x = 2797, y = 3155, members = true },
+    # 10802
+    { id = "moss_giant", x = 2698, y = 3206, members = true },
+    { id = "moss_giant_2", x = 2695, y = 3216, members = true },
+    { id = "moss_giant_2", x = 2692, y = 3204, members = true },
+    { id = "moss_giant_3", x = 2691, y = 3215, members = true },
+    { id = "moss_giant_4", x = 2699, y = 3212, members = true },
+    # 11057
+    { id = "rat", x = 2810, y = 3170, members = true },
+    { id = "rat", x = 2807, y = 3167, members = true },
+    { id = "bartender_dead_mans_chest", x = 2797, y = 3155, members = true },
+    { id = "snake", x = 2763, y = 3180, members = true },
+    { id = "snake", x = 2754, y = 3171, members = true },
+    { id = "snake", x = 2786, y = 3174, members = true },
+    # 10801
+    { id = "snake", x = 2739, y = 3169, members = true },
+    { id = "snake", x = 2733, y = 3165, members = true },
+    { id = "snake", x = 2751, y = 3166, members = true },
+    { id = "snake", x = 2734, y = 3147, members = true },
+    { id = "snake", x = 2749, y = 3151, members = true },
+    # 11058
+    { id = "snake", x = 2772, y = 3209, members = true },
 ]

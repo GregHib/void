@@ -53,6 +53,7 @@ interface TargetStrategy {
                 "barbarian_outpost_run_wall" -> TileTargetStrategy(entity.tile.addY(1))
                 "gnome_obstacle_pipe_east", "gnome_obstacle_pipe_west" -> TileTargetStrategy(entity.tile.addY(-1))
                 "lumbridge_church_bell" -> TileTargetStrategy(entity.tile.addY(-1))
+                "wall_pipe" -> TileTargetStrategy(entity.tile.addY(-1))
                 else -> ObjectTargetStrategy(entity)
             }
             is FloorItem -> FloorItemTargetStrategy(entity)

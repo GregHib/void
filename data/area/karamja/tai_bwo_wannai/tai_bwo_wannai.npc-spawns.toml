@@ -7,4 +7,10 @@ spawns = [
   { id = "hobgoblin_unarmed", x = 2794, y = 3012, members = true },
 # 11056
   { id = "musician_tai_bwo_wannai", x = 2771, y = 3131, direction = "SOUTH", members = true },
+  { id = "snake", x = 2804, y = 3116, members = true },
+  { id = "snake", x = 2811, y = 3112, members = true },
+  { id = "snake", x = 2784, y = 3104, members = true },
+  { id = "snake", x = 2785, y = 3101, members = true },
+  { id = "snake", x = 2772, y = 3093, members = true },
+  { id = "snake", x = 2775, y = 3089, members = true },
 ]

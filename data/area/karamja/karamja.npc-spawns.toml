@@ -1,4 +1,13 @@
 spawns = [
-# 11054
-  { id = "musician_shilo_village", x = 2811, y = 2946, direction = "SOUTH", members = true },
+    # 11054
+    { id = "musician_shilo_village", x = 2811, y = 2946, direction = "SOUTH", members = true },
+    # 11566
+    { id = "snake", x = 2929, y = 2989, members = true },
+    { id = "snake", x = 2936, y = 2986, members = true },
+    { id = "snake", x = 2939, y = 2985, members = true },
+    { id = "snake", x = 2933, y = 2981, members = true },
+    { id = "snake", x = 2937, y = 2978, members = true },
+    { id = "snake", x = 2935, y = 2973, members = true },
+    { id = "snake", x = 2928, y = 2973, members = true },
+    { id = "snake", x = 2923, y = 2970, members = true },
 ]

@@ -1,0 +1,9 @@
+spawns = [
+    # 11565
+    { id = "snake", x = 2880, y = 2922, members = true },
+    { id = "snake", x = 2884, y = 2921, members = true },
+    { id = "snake", x = 2881, y = 2919, members = true },
+    { id = "snake", x = 2910, y = 2919, members = true },
+    { id = "snake", x = 2912, y = 2916, members = true },
+    { id = "snake", x = 2913, y = 2913, members = true },
+]

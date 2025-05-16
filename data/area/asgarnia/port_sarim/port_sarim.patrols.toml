@@ -1,0 +1,20 @@
+[port_sarim_guard]
+points = [
+  { x = 3020, y = 3179, level = 2 },
+  { x = 3020, y = 3180, level = 2 },
+  { x = 3018, y = 3180, level = 2 },
+  { x = 3018, y = 3190, level = 2 },
+  { x = 3017, y = 3190, level = 2 },
+  { x = 3017, y = 3180, level = 2 },
+  { x = 3010, y = 3180, level = 2 },
+  { x = 3010, y = 3179, level = 2 },
+  { x = 3011, y = 3180, level = 2 },
+  { x = 3014, y = 3180, level = 2 },
+  { x = 3014, y = 3179, level = 2 },
+]
+
+[nora_t_hagg]
+points = [
+  { x = 2930, y = 3463 },
+  { x = 2904, y = 3463 },
+]

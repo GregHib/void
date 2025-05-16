@@ -2,6 +2,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
+import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
@@ -11,6 +12,7 @@ import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -203,7 +205,10 @@ fun Player.itemOnItem(
     )
 }
 
-fun Player.npcOption(npc: NPC, option: String) = npcOption(npc, npc.def.options.indexOf(option))
+fun Player.npcOption(npc: NPC, option: String) {
+    val def = ObjectOptionHandler.getDefinition(this, get< NPCDefinitions>(), npc.def, npc.def)
+    npcOption(npc, def.options.indexOf(option))
+}
 
 fun Player.npcOption(npc: NPC, option: Int) = runTest {
     instructions.send(InteractNPC(npc.index, option + 1))

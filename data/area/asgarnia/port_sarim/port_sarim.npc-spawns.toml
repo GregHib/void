@@ -1,11 +1,19 @@
 spawns = [
-# 12081
-  { id = "rat", x = 3013, y = 3194 },
-  { id = "rat", x = 3013, y = 3190 },
-  { id = "rat", x = 3011, y = 3189 },
-  { id = "rat", x = 3013, y = 3183 },
-  { id = "rat", x = 3015, y = 3182 },
-# 12082
-  { id = "man", x = 3017, y = 3238 },
-  { id = "bartender_rusty_anchor", x = 3045, y = 3257 },
+    # 12081
+    { id = "port_sarim_guard_sleeping", x = 3019, y = 3185, direction = "SOUTH_WEST" },
+    { id = "port_sarim_guard_6", x = 3018, y = 3179, level = 2 },
+    { id = "crab", x = 3028, y = 3158 },
+    { id = "crab", x = 3025, y = 3156 },
+    { id = "crab", x = 3022, y = 3157 },
+    { id = "crab", x = 3019, y = 3154 },
+    { id = "crab", x = 3020, y = 3146 },
+    { id = "crab", x = 3013, y = 3141 },
+    { id = "rat", x = 3013, y = 3194 },
+    { id = "rat", x = 3013, y = 3190 },
+    { id = "rat", x = 3011, y = 3189 },
+    { id = "rat", x = 3013, y = 3183 },
+    { id = "rat", x = 3015, y = 3182 },
+    # 12082
+    { id = "man", x = 3017, y = 3238 },
+    { id = "bartender_rusty_anchor", x = 3045, y = 3257 },
 ]

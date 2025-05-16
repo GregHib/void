@@ -1,0 +1,16 @@
+[prince_ali_rescue]
+id = 273
+persist = true
+format = "map"
+default = "unstarted"
+values = {
+  unstarted = 0,
+  osman = 10,
+  leela = 20,
+  guard = 30,
+  joe_beer = 31,
+  joe_beers = 40,
+  keli_tied_up = 50,
+  prince_ali_disguise = 100,
+  completed = 110,
+}

@@ -4,8 +4,14 @@ id = 80
 [door_open]
 id = 81
 
-[gate_close]
+[iron_door_close]
 id = 70
 
-[gate_open]
+[iron_door_open]
 id = 71
+
+[gate_close]
+id = 66
+
+[gate_open]
+id = 67
