@@ -1,0 +1,6 @@
+spawns = [
+    # 10650
+    { id = "lesser_demon_3", x = 2631, y = 9880, members = true },
+    { id = "lesser_demon_4", x = 2632, y = 9874, members = true },
+    { id = "lesser_demon_5", x = 2630, y = 9867, members = true },
+]

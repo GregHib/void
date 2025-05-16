@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import content.entity.player.dialogue.type.makeAmount
 import content.entity.player.dialogue.type.makeAmountIndex
+import content.entity.sound.sound
 
 val fibres = listOf(
     Item("wool"),
@@ -101,7 +102,9 @@ fun Player.spin(obj: GameObject, fibre: Item, amount: Int) {
     if (!has(Skill.Crafting, data.level)) {
         return
     }
+    obj.anim("spinning_wheel")
     anim("spinning")
+    sound("spinning")
     weakQueue("spin", 3) {
         if (!inventory.replace(fibre.id, data.to)) {
             message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${data.to.toLowerSpaceCase()}.")

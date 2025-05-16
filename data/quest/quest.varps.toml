@@ -161,10 +161,3 @@ format = "map"
 persist = true
 default = "unstarted"
 values = { unstarted = 0, completed = 85 }
-
-[prince_ali_rescue]
-id = 273
-format = "map"
-persist = true
-default = "unstarted"
-values = { unstarted = 0, completed = 110 }

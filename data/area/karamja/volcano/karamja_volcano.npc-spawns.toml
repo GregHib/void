@@ -1,0 +1,22 @@
+spawns = [
+    # 4679 Resource dungeon
+    { id = "lesser_demon", x = 1189, y = 4584 },
+    { id = "lesser_demon", x = 1181, y = 4556 },
+    { id = "lesser_demon_2", x = 1182, y = 4592 },
+    { id = "lesser_demon_2", x = 1181, y = 4584 },
+    { id = "lesser_demon_2", x = 1177, y = 4561 },
+    { id = "lesser_demon_3", x = 1194, y = 4589 },
+    { id = "lesser_demon_3", x = 1189, y = 4577 },
+    { id = "lesser_demon_3", x = 1170, y = 4564 },
+    { id = "lesser_demon_4", x = 1201, y = 4592 },
+    { id = "lesser_demon_4", x = 1183, y = 4578 },
+    { id = "lesser_demon_4", x = 1164, y = 4569 },
+    { id = "lesser_demon_5", x = 1196, y = 4584 },
+    { id = "lesser_demon_5", x = 1175, y = 4579 },
+    { id = "lesser_demon_5", x = 1171, y = 4572 },
+    # 11313
+    { id = "stiles", x = 2851, y = 3143, direction = "SOUTH" },
+    { id = "snake", x = 2875, y = 3164 },
+    { id = "snake", x = 2879, y = 3151 },
+    { id = "snake", x = 2819, y = 3194 },
+]

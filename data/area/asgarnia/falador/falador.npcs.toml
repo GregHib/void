@@ -11,3 +11,9 @@ categories = ["human"]
 shop = "falador_general_store"
 wander_radius = 2
 examine = "Likes you more, the more you spend."
+
+[wyson_the_gardener]
+id = 36
+categories = ["human"]
+wander_radius = 4
+examine = "The head gardener."

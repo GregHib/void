@@ -1,5 +1,19 @@
 spawns = [
-# 11310
+  # 11310
   { id = "banker_shilo_village", x = 2851, y = 2954, members = true },
   { id = "banker_shilo_village", x = 2853, y = 2955, members = true },
+  # 11311
+  { id = "snake", x = 2838, y = 3047, members = true },
+  { id = "snake", x = 2836, y = 3043, members = true },
+  { id = "snake", x = 2847, y = 3042, members = true },
+  { id = "snake", x = 2838, y = 3039, members = true },
+  { id = "snake", x = 2825, y = 3030, members = true },
+  { id = "snake", x = 2832, y = 3019, members = true },
+  { id = "snake", x = 2832, y = 3017, members = true },
+  { id = "snake", x = 2827, y = 3013, members = true },
+  # 11312
+  { id = "snake", x = 2820, y = 3082, members = true },
+  { id = "snake", x = 2826, y = 3081, members = true },
+  { id = "snake", x = 2824, y = 3077, members = true },
+  { id = "snake", x = 2835, y = 3074, members = true },
 ]

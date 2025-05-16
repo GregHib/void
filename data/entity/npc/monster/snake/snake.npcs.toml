@@ -1,0 +1,15 @@
+[snake]
+id = 128
+hitpoints = 60
+att = 4
+str = 5
+def = 3
+mage = 1
+range = 1
+style = "stab"
+max_hit_melee = 10
+respawn_delay = 30
+wander_radius = 4
+hunt_mode = "cowardly"
+categories = ["snakes"]
+examine = "A slithering serpent."

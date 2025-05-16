@@ -28,6 +28,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.obj.door.enterDoor
+import content.quest.questCompleted
 
 val objects: GameObjects by inject()
 
@@ -42,6 +43,10 @@ objectOperate("Pay-toll(10gp)", "toll_gate_al_kharid*") {
 }
 
 objectOperate("Open", "toll_gate_al_kharid*") {
+    if (player.questCompleted("prince_ali_rescue")) {
+        enterDoor(target, delay = 2)
+        return@objectOperate
+    }
     dialogue(player)
 }
 
@@ -57,15 +62,18 @@ suspend fun SuspendableContext<Player>.dialogue(player: Player, npc: NPC? = getG
     }
     player.talkWith(npc)
     player<Quiz>("Can I come through this gate?")
+    if (player.questCompleted("prince_ali_rescue")) {
+        npc<Talk>("You may pass for free! You are a friend of Al Kharid.")
+        pass(player)
+        return
+    }
     npc<Talk>("You must pay a toll of 10 gold coins to pass.")
     choice {
         option<Quiz>("Okay, I'll pay.") {
             if (!player.inventory.contains("coins", 10)) {
                 player<Upset>("Oh dear I don't actually seem to have enough money.")
             } else {
-                val gate = getGate(player)
-                player.mode = Interact(player, gate, ObjectOption(player, gate, gate.def, "Pay-toll(10gp)"))
-                player["passing_out_task"] = true
+                pass(player)
             }
         }
         option<Uncertain>("Who does my money go to?") {
@@ -82,4 +90,10 @@ val gates = Rectangle(Tile(3268, 3227), 1, 2)
 fun getGate(player: Player): GameObject {
     val tile = gates.nearestTo(player.tile)
     return objects[tile].first { it.id.startsWith("toll_gate_al_kharid") }
+}
+
+fun pass(player: Player) {
+    val gate = getGate(player)
+    player.mode = Interact(player, gate, ObjectOption(player, gate, gate.def, "Pay-toll(10gp)"))
+    player["passing_out_task"] = true
 }

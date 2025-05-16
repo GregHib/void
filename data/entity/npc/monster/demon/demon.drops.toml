@@ -1,0 +1,38 @@
+[lesser_demon_drop_table]
+type = "all"
+drops = [
+    { id = "ashes" },
+    { table = "lesser_demon_secondary" },
+    { table = "lesser_demon_tertiary" },
+]
+
+[lesser_demon_secondary]
+roll = 128
+drops = [
+    { id = "steel_full_helm", chance = 4 },
+    { id = "steel_hatchet", chance = 4 },
+    { id = "steel_scimitar", chance = 3 },
+    { id = "mithril_sq_shield" },
+    { id = "mithril_chainbody" },
+    { id = "rune_med_helm" },
+    { id = "fire_rune", amount = 60, chance = 8 },
+    { id = "chaos_rune", amount = 12, chance = 5 },
+    { id = "death_rune", amount = 3, chance = 3 },
+    { id = "fire_rune", amount = 30 },
+    { table = "herb_drop_table" },
+    { id = "coins", amount = 120, chance = 40 },
+    { id = "coins", amount = 40, chance = 29 },
+    { id = "coins", amount = 200, chance = 10 },
+    { id = "coins", amount = 10, chance = 7 },
+    { id = "coins", amount = 450 },
+    { id = "coins", amount = 10, members = false },
+    { id = "jug_of_wine", chance = 3 },
+    { id = "gold_ore", chance = 2 },
+    { table = "gem_drop_table", chance = 4 },
+]
+
+[lesser_demon_tertiary]
+roll = 5000
+drops = [
+    { id = "lesser_demon_champions_scroll", members = true },
+]

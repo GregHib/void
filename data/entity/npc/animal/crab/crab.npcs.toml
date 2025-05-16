@@ -1,0 +1,5 @@
+[crab]
+id = 2706
+categories = ["crab"]
+wander_radius = 3
+examine = "Nobody likes crabs..."
