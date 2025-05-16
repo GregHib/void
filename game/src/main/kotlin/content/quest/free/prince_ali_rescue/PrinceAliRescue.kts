@@ -7,18 +7,21 @@ import content.entity.sound.sound
 import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 
-val escapeKit = listOf(
+val fontDefinitions: FontDefinitions by inject()
+val disguise = listOf(
     Item("pink_skirt"),
-    Item("bronze_key_prince_ali_rescue"),
     Item("wig_blonde"),
+    Item("paste"),
 )
 
-objectOperate("Open", "draynor_prison_door") {
+objectOperate("Open", "draynor_prison_door_closed") {
     if (player.inventory.contains("bronze_key_prince_ali_rescue")) {
         when (player.quest("prince_ali_rescue")) {
             "keli_tied_up", "prince_ali_disguise" -> {
@@ -43,115 +46,7 @@ questJournalOpen("prince_ali_rescue") {
             "<maroon>Kharid's Spymaster<navy>, just outside the <maroon>Palace<navy>.",
         )
         "leela" -> {
-            if (player.inventory.contains(escapeKit)) {
-                listOf(
-                    "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
-                    "<str>the Al Kharid Palace. He asked for my help with an urgent",
-                    "<str>matter, and directed me to speak to Osman, Al Kharid's",
-                    "<str>Spymaster.",
-                    "<str>I spoke to Osman outside the Al Kharid Palace. He informed me",
-                    "<str>that Prince Ali, the Emir's heir, was captured by a group of",
-                    "<str>Bandits and taken to an Abandoned Jail east of Draynor",
-                    "<str>Village. Osman asked for my help in rescuing Prince Ali, and",
-                    "<str>suggested I speak with Leela in Draynor Village.",
-                    "<navy>To free <maroon>Prince Ali<navy>, I have created him a disguise to make him",
-                    "<navy>look like <maroon>Lady Keli<navy>, the leader of the <maroon>Bandits<navy>. I have also made",
-                    "<navy>a copy of the key to his cell. I should speak with <maroon>Leela<navy> outside",
-                    "<navy>the <maroon>Abandoned Jail<navy> and let her know that I've done all of this.",
-                )
-            } else if (player.inventory.contains("key_print")) {
-                listOf(
-                    "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
-                    "<str>the Al Kharid Palace. He asked for my help with an urgent",
-                    "<str>matter, and directed me to speak to Osman, Al Kharid's",
-                    "<str>Spymaster.",
-                    "<str>I spoke to Osman outside the Al Kharid Palace. He informed me",
-                    "<str>that Prince Ali, the Emir's heir, was captured by a group of",
-                    "<str>Bandits and taken to an Abandoned Jail east of Draynor",
-                    "<str>Village. Osman asked for my help in rescuing Prince Ali, and",
-                    "<str>suggested I speak with Leela in Draynor Village.",
-                    "<navy>To free <maroon>Prince Ali<navy>, I need to create him a disguise to make him",
-                    "<navy>look like <maroon>Lady Keli<navy>, the leader of the <maroon>Bandits<navy>. I also need to",
-                    "<navy>make a copy of the key to his cell.",
-                    "",
-                    "<navy>According to <maroon>Leela<navy>, I need a <maroon>Blonde Wig<navy>, a <maroon>Pink Skirt<navy> and some",
-                    "<navy><maroon>Skin Paste<navy> for the disguise. Apparently there's an <maroon>Old Sailor<navy>",
-                    "<navy>living in <maroon>Draynor Village<navy> who might be able to make a <maroon>Wig<navy> for",
-                    "<navy>me to then dye. A <maroon>Pink Skirt<navy> can be purchased from a <maroon>Clothes",
-                    "<maroon>Shop<navy>. As for the <maroon>Skin Paste<navy>, <maroon>Leela<navy> thinks a local <maroon>Witch<navy> could",
-                    "<navy>make me some.",
-                    "",
-                    "<navy>I took an <maroon>Imprint<navy> of the <maroon>Cell Key<navy> using some <maroon>Soft Clay<navy>. I should",
-                    "<navy>take it to <maroon>Osman<navy> along with a <maroon>Bronze Bar<navy> so that he can make",
-                    "<navy>us a copy.",
-                )
-            } else if (player["prince_ali_rescue_key_given", false]) {
-                listOf(
-                    "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
-                    "<str>the Al Kharid Palace. He asked for my help with an urgent",
-                    "<str>matter, and directed me to speak to Osman, Al Kharid's",
-                    "<str>Spymaster.",
-                    "<str>I spoke to Osman outside the Al Kharid Palace. He informed me",
-                    "<str>that Prince Ali, the Emir's heir, was captured by a group of",
-                    "<str>Bandits and taken to an Abandoned Jail east of Draynor",
-                    "<str>Village. Osman asked for my help in rescuing Prince Ali, and",
-                    "<str>suggested I speak with Leela in Draynor Village.",
-                    "<str>With help from Osman and Leela, I created a disguise to make",
-                    "<str>Prince Ali look like Lady Keli, the leader of the Bandits. I also",
-                    "<str>made a copy of the key to his cell.",
-                    "<navy>Before I can free <maroon>Prince Ali<navy>, I need to deal with his <maroon>Personal",
-                    "<maroon>Guard<navy>. <maroon>Leela<navy> suggested I speak with the <maroon>Guard<navy> to try and",
-                    "<navy>determine any weaknesses he might have.",
-                )
-            } else if (player["prince_ali_rescue_key_made", false]) {
-                listOf(
-                    "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
-                    "<str>the Al Kharid Palace. He asked for my help with an urgent",
-                    "<str>matter, and directed me to speak to Osman, Al Kharid's",
-                    "<str>Spymaster.",
-                    "<str>I spoke to Osman outside the Al Kharid Palace. He informed me",
-                    "<str>that Prince Ali, the Emir's heir, was captured by a group of",
-                    "<str>Bandits and taken to an Abandoned Jail east of Draynor",
-                    "<str>Village. Osman asked for my help in rescuing Prince Ali, and",
-                    "<str>suggested I speak with Leela in Draynor Village.",
-                    "<navy>To free <maroon>Prince Ali<navy>, I need to create him a disguise to make him",
-                    "<navy>look like <maroon>Lady Keli<navy>, the leader of the <maroon>Bandits<navy>. I also need to",
-                    "<navy>make a copy of the key to his cell.",
-                    "",
-                    "<navy>According to <maroon>Leela<navy>, I need a <maroon>Blonde Wig<navy>, a <maroon>Pink Skirt<navy> and some",
-                    "<navy><maroon>Skin Paste<navy> for the disguise. Apparently there's an <maroon>Old Sailor<navy>",
-                    "<navy>living in <maroon>Draynor Village<navy> who might be able to make a <maroon>Wig<navy> for",
-                    "<navy>me to then dye. A <maroon>Pink Skirt<navy> can be purchased from a <maroon>Clothes",
-                    "<maroon>Shop<navy>. As for the <maroon>Skin Paste<navy>, <maroon>Leela<navy> thinks a local <maroon>Witch<navy> could",
-                    "<navy>make me some.",
-                    "",
-                    "<navy>I took an <maroon>Imprint<navy> of the <maroon>Cell Key<navy> and gave it to <maroon>Osman<navy>. He will",
-                    "<navy>use it to make a copy, which he will send over once it is ready.",
-                )
-            } else if (player["prince_ali_rescue_leela", false]) {
-                listOf(
-                    "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
-                    "<str>the Al Kharid Palace. He asked for my help with an urgent",
-                    "<str>matter, and directed me to speak to Osman, Al Kharid's",
-                    "<str>Spymaster.",
-                    "<str>I spoke to Osman outside the Al Kharid Palace. He informed me",
-                    "<str>that Prince Ali, the Emir's heir, was captured by a group of",
-                    "<str>Bandits and taken to an Abandoned Jail east of Draynor",
-                    "<str>Village. Osman asked for my help in rescuing Prince Ali, and",
-                    "<str>suggested I speak with Leela in Draynor Village.",
-                    "<navy>To free <maroon>Prince Ali<navy>, I need to create him a disguise to make him",
-                    "<navy>look like <maroon>Lady Keli<navy>, the leader of the <maroon>Bandits<navy>. I also need to",
-                    "<navy>make a copy of the key to his cell.",
-                    "",
-                    "<navy>According to <maroon>Leela<navy>, I need a <maroon>Blonde Wig<navy>, a <maroon>Pink Skirt<navy> and some",
-                    "<navy><maroon>Skin Paste<navy> for the disguise. Apparently there's an <maroon>Old Sailor<navy>",
-                    "<navy>living in <maroon>Draynor Village<navy> who might be able to make a <maroon>Wig<navy> for",
-                    "<navy>me to then dye. A <maroon>Pink Skirt<navy> can be purchased from a <maroon>Clothes",
-                    "<maroon>Shop<navy>. As for the <maroon>Skin Paste<navy>, <maroon>Leela<navy> thinks a local <maroon>Witch<navy> could",
-                    "<navy>make me some.",
-                    "",
-                )
-            } else {
+            if (!player["prince_ali_rescue_leela", false]) {
                 listOf(
                     "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
                     "<str>the Al Kharid Palace. He asked for my help with an urgent",
@@ -165,6 +60,54 @@ questJournalOpen("prince_ali_rescue") {
                     "<navy><maroon>Jail<navy>.",
                     ""
                 )
+            } else {
+                val list = mutableListOf(
+                    "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
+                    "<str>the Al Kharid Palace. He asked for my help with an urgent",
+                    "<str>matter, and directed me to speak to Osman, Al Kharid's",
+                    "<str>Spymaster.",
+                    "<str>I spoke to Osman outside the Al Kharid Palace. He informed me",
+                    "<str>that Prince Ali, the Emir's heir, was captured by a group of",
+                    "<str>Bandits and taken to an Abandoned Jail east of Draynor",
+                    "<str>Village. Osman asked for my help in rescuing Prince Ali, and",
+                    "<str>suggested I speak with Leela in Draynor Village.",
+                )
+                val disguise = player.inventory.contains(disguise)
+                val key = player["prince_ali_rescue_key_given", false]
+                val string = buildString {
+                    append("To free <maroon>Prince Ali<navy>, ")
+                    append(if (disguise) "I have created" else "I need to create")
+                    append(" him a disguise to make him look like <maroon>Lady Keli<navy>, the leader of the <maroon>Bandits<navy>. ")
+                    append(if (key) "I have also made" else "I also need to make")
+                    append(" a copy of the key to his cell.")
+
+                    if (disguise && key) {
+                        append(" I should speak with <maroon>Leela<navy> outside the <maroon>Abandoned Jail<navy> and let her know that I've done all of this.")
+                    }
+                }
+                val font = fontDefinitions.get("p12_full")
+                for (line in font.splitLines(string, width = 350)) {
+                    list.add("<navy>${line}")
+                }
+                if (!disguise || !key) {
+                    list.add("")
+                    list.add("<navy>According to <maroon>Leela<navy>, I need a <maroon>Blonde Wig<navy>, a <maroon>Pink Skirt<navy> and some")
+                    list.add("<navy><maroon>Skin Paste<navy> for the disguise. Apparently there's an <maroon>Old Sailor<navy>")
+                    list.add("<navy>living in <maroon>Draynor Village<navy> who might be able to make a <maroon>Wig<navy> for")
+                    list.add("<navy>me to then dye. A <maroon>Pink Skirt<navy> can be purchased from a <maroon>Clothes")
+                    list.add("<maroon>Shop<navy>. As for the <maroon>Skin Paste<navy>, <maroon>Leela<navy> thinks a local <maroon>Witch<navy> could")
+                    list.add("<navy>make me some.")
+                }
+                list.add("")
+                if (player.inventory.contains("key_print")) {
+                    list.add("<navy>I took an <maroon>Imprint<navy> of the <maroon>Cell Key<navy> using some <maroon>Soft Clay<navy>. I should")
+                    list.add("<navy>take it to <maroon>Osman<navy> along with a <maroon>Bronze Bar<navy> so that he can make")
+                    list.add("<navy>us a copy.")
+                } else if (player["prince_ali_rescue_key_made", false] && !player["prince_ali_rescue_key_given", false]) {
+                    list.add("<navy>I took an <maroon>Imprint<navy> of the <maroon>Cell Key<navy> and gave it to <maroon>Osman<navy>. He will")
+                    list.add("<navy>use it to make a copy, which he will send over once it is ready.")
+                }
+                list
             }
         }
         "guard" -> listOf(

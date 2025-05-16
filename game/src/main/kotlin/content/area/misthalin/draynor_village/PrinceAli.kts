@@ -10,7 +10,6 @@ import content.quest.quest
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.softQueue
@@ -19,13 +18,8 @@ import java.util.concurrent.TimeUnit
 
 npcOperate("Talk-to", "prince_ali") {
     when (player.quest("prince_ali_rescue")) {
-        "completed" -> {
-            npc<Talk>("I owe you my life for that escape. You cannot help me this time, they know who you are. Go in peace, friend of Al-Kharid.")
-        }
-        // TODO attempt to enter door before tieing up kali or making joe drunk?
-        "keli_tied_up" -> {
-            escape()
-        }
+        "completed" -> npc<Talk>("I owe you my life for that escape. You cannot help me this time, they know who you are. Go in peace, friend of Al-Kharid.")
+        "keli_tied_up" -> escape()
         "prince_ali_disguise" -> leave()
     }
 }
@@ -42,7 +36,7 @@ suspend fun TargetInteraction<Player, NPC>.leave() {
     npc<Happy>("Thank you, my friend. I must leave you now, but my father will pay you well for this.")
     player<Happy>("Go to Leela, she is close to here.")
     target.hide = true
-    target.softQueue("ali_respawn", TimeUnit.SECONDS.toTicks(30)) {
+    target.softQueue("ali_respawn", TimeUnit.SECONDS.toTicks(60)) {
         target.hide = false
     }
     statement("The prince has escaped, well done! You are now a friend of Al-Kharid and may pass through the Al-Kharid toll gate for free.")

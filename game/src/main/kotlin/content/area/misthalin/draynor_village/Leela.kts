@@ -16,9 +16,10 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 val escapeKit = listOf(
-    Item("pink_skirt"),
     Item("bronze_key_prince_ali_rescue"),
+    Item("pink_skirt"),
     Item("wig_blonde"),
+    Item("paste"),
 )
 
 npcOperate("Talk-to", "leela") {
@@ -97,7 +98,7 @@ fun ChoiceBuilder<NPCOption<Player>>.key() {
 fun ChoiceBuilder<NPCOption<Player>>.guards() {
     option<Talk>("What can I do with the guards?") {
         npc<Talk>("Most of the guards will be easy. The disguise will get past them. The only guard who will be a problem will be the one at the door.")
-        npc<Laugh>("We can discuss this more when you have the rest of the escape kit.")
+        npc<Talk>("We can discuss this more when you have the rest of the escape kit.")
         choice {
             disguise()
             key()
@@ -171,6 +172,9 @@ suspend fun NPCOption<Player>.guard(unsure: Boolean) {
 }
 
 suspend fun NPCOption<Player>.lostKey(): Boolean {
+    if (player.ownsItem("bronze_key_prince_ali_rescue")) {
+        return false
+    }
     player<Upset>("I'm afraid I lost that key you gave me.")
     npc<Uncertain>("Well that was foolish. I can sort you out with another, but it will cost you 15 coins.")
     if (player.inventory.contains("coins", 15)) {

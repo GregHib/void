@@ -3,36 +3,41 @@ package content.area.misthalin.draynor_village
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerOption
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
+val npcs: NPCs by inject()
+
 npcOperate("Talk-to", "lady_keli") {
     when (player.quest("prince_ali_rescue")) {
-        "joe_beers" -> {
-            player<Happy>("Hello! I'm here to tie you up!")
-            npc<Uncertain>("What?")
-            statement("You overpower Keli, tie her up, and put her in a cupboard.", clickToContinue = false)
-            target.hide = true
-            target.softQueue("keli_respawn", TimeUnit.SECONDS.toTicks(30)) {
-                target.hide = false
-            }
-            statement("You overpower Keli, tie her up, and put her in a cupboard.")
-        }
         "unstarted", "osman" -> {
             npc<Angry>("What do you want?")
             player<Quiz>("Nothing?")
             npc<Angry>("Clear off then.")
         }
+        "joe_beers" -> tieUp()
         "keli_tied_up", "prince_ali_disguise", "completed" -> {
             target.say("You tricked me, and tied me up, Guards kill this stranger!!")
-            // TODO
+            player.message("Guards alerted to kill you!")
+            val guard = npcs[player.tile.regionLevel].sortedBy { it.tile.distanceTo(player.tile) }.firstOrNull { it.id.startsWith("draynor_jail_guard") } ?: return@npcOperate
+            guard.mode = Interact(guard, player, PlayerOption(guard, player, "Attack"))
+            guard.say("Yes M'lady")
         }
         else -> {
             player<Happy>("Are you the famous Lady Keli? Leader of the toughest gang of mercenary killers around?")
@@ -74,6 +79,13 @@ npcOperate("Talk-to", "lady_keli") {
                 }
             }
         }
+    }
+}
+
+itemOnNPCOperate("rope", "lady_keli") {
+    when (player.quest("prince_ali_rescue")) {
+        "joe_beers" -> tieUp()
+        else -> player.noInterest()
     }
 }
 
@@ -175,4 +187,16 @@ fun ChoiceBuilder<NPCOption<Player>>.katrine(text: String = "I think Katrine is 
     option<Talk>(text) {
         npc<Angry>("Well you can think that all you like. I know those blackarm cowards dare not leave the city. Out here, I am toughest. You can tell them that! Now get out of my sight, before I call my guards.")
     }
+}
+
+suspend fun TargetInteraction<Player, NPC>.tieUp() {
+    player<Happy>("Hello! I'm here to tie you up!")
+    npc<Uncertain>("What?")
+    statement("You overpower Keli, tie her up, and put her in a cupboard.", clickToContinue = false)
+    player["prince_ali_rescue"] = "keli_tied_up"
+    target.hide = true
+    target.softQueue("keli_respawn", TimeUnit.SECONDS.toTicks(60)) {
+        target.hide = false
+    }
+    statement("You overpower Keli, tie her up, and put her in a cupboard.")
 }
