@@ -1,0 +1,4 @@
+[draynor_prison_door]
+id = 2881
+material = "iron"
+examine = "It's closed"

@@ -116,17 +116,17 @@ fun ChoiceBuilder<NPCOption<Player>>.disguise() {
     option<Quiz>("I must make a disguise. What do you suggest?") {
         npc<Talk>("Only the lady Keli can wander about outside the jail. The guards will shoot to kill if they see the prince out, so we need a disguise good enough to fool them at a distance.")
         if (player.inventory.contains("wig_blonde")) {
-            // TODO
+            npc<Talk>("The wig you have got, well done.")
         } else {
             npc<Talk>("You need a wig, maybe made from wool. If you find someone who can work with wool ask them about it. There's a witch nearby who may be able to help you dye it.")
         }
         if (player.inventory.contains("pink_skirt")) {
             npc<Talk>("You have got the skirt, good.")
         } else {
-            // TODO
+            npc<Talk>("You will need to get a pink skirt, same as Keli's.")
         }
         if (player.inventory.contains("skin_paste")) {
-            // TODO
+            npc<Talk>("You have the skin paint, well done. I thought you would struggle to make that.")
         } else {
             npc<Talk>("We still need something to colour the Prince's skin lighter. There's a witch close to here. She knows about many things. She may know some way to make the skin lighter.")
         }

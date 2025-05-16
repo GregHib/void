@@ -24,10 +24,15 @@ npcOperate("Talk-to", "jail_guard_joe") {
             }
         }
         "joe_beer" -> anotherBeer()
-        "joe_beers", "keli_tied_up", "prince_ali_disguise" -> {
+        "joe_beers", "keli_tied_up" -> {
             npc<Drunk>("Halt! Who goes there?")
             player<Happy>("Hello friend. I'm just here to rescue the Prince, if thats okay?")
             npc<Drunk>("Thatsh a funny joke. You are lucky I'm shober. Go in peace, friend.")
+        }
+        "prince_ali_disguise" -> {
+            npc<Drunk>("Did yoush say something about shome Prince?")
+            player<Uncertain>("No.")
+            npc<Drunk>("Oh... okay.")
         }
         "completed" -> {
             npc<Talk>("Halt! Who goes there?")
@@ -41,7 +46,6 @@ npcOperate("Talk-to", "jail_guard_joe") {
         }
     }
 }
-
 
 itemOnNPCOperate("beer", "jail_guard_joe") {
     when (player.quest("prince_ali_rescue")) {
@@ -60,14 +64,17 @@ suspend fun TargetInteraction<Player, NPC>.beer() {
     player["prince_ali_rescue"] = "joe_beer"
     player.inventory.remove("beer")
     player.sound("drink")
-    // TODO what if don't have 3 beers?
     statement("You hand a beer to the guard. He drinks it in seconds.")
     npc<Happy>("That was perfect! I can't thank you enough.")
-    player<Quiz>("How are you? Still ok? Not too drunk?")
     anotherBeer()
 }
 
 suspend fun TargetInteraction<Player, NPC>.anotherBeer() {
+    player<Quiz>("How are you? Still ok? Not too drunk?")
+    if (!player.inventory.contains("beer", 2)) {
+        npc<Talk>("No, I don't get drunk from only one drink. I reckon I'd need at least two more for that. Still, thanks for the beer.")
+        return
+    }
     player<Happy>("Would you care for another beer, my friend?")
     npc<RollEyes>("I'd better not. I don't want to be drunk on duty.")
     player<Happy>("Here, just keep these for later. I hate to see a thirsty guard.")
@@ -84,7 +91,7 @@ fun ChoiceBuilder<NPCOption<Player>>.guardLife() {
         npc<Upset>("Sometimes I wonder if I should have spent more time learning when I was a young boy. Maybe I wouldn't be here now, scared of Keli.")
         choice {
             guardDreams()
-            option<Talk>("I'd better go.")
+            betterGo()
         }
     }
 }
@@ -113,8 +120,15 @@ fun ChoiceBuilder<NPCOption<Player>>.guardDreams() {
                         }
                     }
                     guardLife()
-                    option("Would you be interested in making a little more money?") {
-                        // TODO?
+                    option<Happy>("Would you be interested in making a little more money?") {
+                        npc<Angry>("What? Are you trying to bribe me? I may not be a great guard, but I am loyal. How dare you try to bribe me!")
+                        player<Surprised>("No, no, you've got the wrong idea, totally. I just wondered if you wanted some part-time bodyguard work.")
+                        npc<Talk>("Oh... sorry. No, I don't need money. As long as you were not offering me a bribe.")
+                        choice {
+                            guardLife()
+                            guardDreams()
+                            betterGo()
+                        }
                     }
                     betterGo()
                 }

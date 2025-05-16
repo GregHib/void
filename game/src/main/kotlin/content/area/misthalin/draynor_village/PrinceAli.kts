@@ -8,6 +8,8 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.quest.quest
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -22,25 +24,21 @@ npcOperate("Talk-to", "prince_ali") {
         }
         // TODO attempt to enter door before tieing up kali or making joe drunk?
         "keli_tied_up" -> {
-            player<Happy>("Prince, I've come to rescue you.")
-            npc<Talk>("That is very very kind of you, how do I get out?")
-            player<Happy>("With a disguise. I have removed the Lady Keli. She is tied up, but will not stay tied up for long.")
-            player<Talk>("Take this disguise, and this key.")
-            statement("You hand the disguise and the key to the prince.")
-            target.transform("prince_ali_disguise")
-            player["prince_ali_rescue"] = "prince_ali_disguise"
-            leave()
+            escape()
         }
         "prince_ali_disguise" -> leave()
     }
 }
 
-
 itemOnNPCOperate("wig_blonde", "prince_ali") {
-    // TODO
+    escape()
 }
 
-suspend fun NPCOption<Player>.leave() {
+itemOnNPCOperate("pink_skirt", "prince_ali") {
+    escape()
+}
+
+suspend fun TargetInteraction<Player, NPC>.leave() {
     npc<Happy>("Thank you, my friend. I must leave you now, but my father will pay you well for this.")
     player<Happy>("Go to Leela, she is close to here.")
     target.hide = true
@@ -48,4 +46,15 @@ suspend fun NPCOption<Player>.leave() {
         target.hide = false
     }
     statement("The prince has escaped, well done! You are now a friend of Al-Kharid and may pass through the Al-Kharid toll gate for free.")
+}
+
+suspend fun TargetInteraction<Player, NPC>.escape() {
+    player<Happy>("Prince, I've come to rescue you.")
+    npc<Talk>("That is very very kind of you, how do I get out?")
+    player<Happy>("With a disguise. I have removed the Lady Keli. She is tied up, but will not stay tied up for long.")
+    player<Talk>("Take this disguise, and this key.")
+    statement("You hand the disguise and the key to the prince.")
+    target.transform("prince_ali_disguise")
+    player["prince_ali_rescue"] = "prince_ali_disguise"
+    leave()
 }
