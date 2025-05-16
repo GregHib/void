@@ -137,7 +137,12 @@ object Door {
 
     private fun rotate(rotation: Int, clockwise: Int) = (rotation + clockwise) and 0x3
 
-    fun ObjectDefinition.isDoor() = (name.contains("door", true) && !name.contains("trap", true)) || name.contains("gate", true) || this["door", false]
+    fun ObjectDefinition.isDoor(): Boolean {
+        if (contains("door") && !this["door", false]) {
+            return false
+        }
+        return (name.contains("door", true) && !name.contains("trap", true)) || name.contains("gate", true) || this["door", false]
+    }
 }
 
 

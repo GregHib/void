@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
@@ -31,7 +32,15 @@ npcOperate("Talk-to", "lady_keli") {
             player<Quiz>("Nothing?")
             npc<Angry>("Clear off then.")
         }
-        "joe_beers" -> tieUp()
+        "joe_beers" -> {
+            if (player.inventory.contains("rope")) {
+                player<Happy>("Hello! I'm here to tie you up!")
+                npc<Uncertain>("What?")
+                tieUp()
+            } else {
+                statement("You cannot tie Keli up until you have all equipment and disabled the guard!")
+            }
+        }
         "keli_tied_up", "prince_ali_disguise", "completed" -> {
             target.say("You tricked me, and tied me up, Guards kill this stranger!!")
             player.message("Guards alerted to kill you!")
@@ -190,13 +199,11 @@ fun ChoiceBuilder<NPCOption<Player>>.katrine(text: String = "I think Katrine is 
 }
 
 suspend fun TargetInteraction<Player, NPC>.tieUp() {
-    player<Happy>("Hello! I'm here to tie you up!")
-    npc<Uncertain>("What?")
-    statement("You overpower Keli, tie her up, and put her in a cupboard.", clickToContinue = false)
+    statement("You overpower Keli, tie her up, and put her in a cupboard.")
+    player.inventory.remove("rope")
     player["prince_ali_rescue"] = "keli_tied_up"
     target.hide = true
     target.softQueue("keli_respawn", TimeUnit.SECONDS.toTicks(60)) {
         target.hide = false
     }
-    statement("You overpower Keli, tie her up, and put her in a cupboard.")
 }

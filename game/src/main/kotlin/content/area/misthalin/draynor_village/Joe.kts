@@ -17,7 +17,9 @@ npcOperate("Talk-to", "jail_guard_joe") {
     when (player.quest("prince_ali_rescue")) {
         "guard" -> {
             choice {
-                fancyABeer()
+                if (player.inventory.contains("beer")) {
+                    fancyABeer()
+                }
                 guardLife()
                 guardDreams()
                 option<Talk>("I had better leave, I don't want trouble.")
@@ -55,6 +57,12 @@ itemOnNPCOperate("beer", "jail_guard_joe") {
         }
         "joe_beer" -> anotherBeer()
         else -> player<Talk>("I don't see any need to give the guard my beer. I'll keep it for myself.")
+    }
+}
+
+fun ChoiceBuilder<NPCOption<Player>>.fancyABeer() {
+    option<Happy>("I have some beer here, fancy one?") {
+        beer()
     }
 }
 
@@ -113,7 +121,9 @@ fun ChoiceBuilder<NPCOption<Player>>.guardDreams() {
                         npc<RollEyes>("Really, after working here, there's only time for a drink or three. All us guards go to the same pub and drink ourselves stupid.")
                         npc<Happy>("It's what I enjoy these days. I can't resist the sight of a really cold beer.")
                         choice {
-                            fancyABeer()
+                            if (player.inventory.contains("beer")) {
+                                fancyABeer()
+                            }
                             guardLife()
                             guardDreams()
                             betterGo()
@@ -142,11 +152,5 @@ fun ChoiceBuilder<NPCOption<Player>>.guardDreams() {
 fun ChoiceBuilder<NPCOption<Player>>.betterGo() {
     option<Talk>("I'd better go.") {
         npc<Talk>("Thanks, I appreciate that. Talking on duty can be punished by having your mouth stitched up. These are tough people, make no mistake.")
-    }
-}
-
-fun ChoiceBuilder<NPCOption<Player>>.fancyABeer() {
-    option<Happy>("I have some beer here, fancy one?") {
-        beer()
     }
 }

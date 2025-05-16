@@ -123,10 +123,10 @@ fun ChoiceBuilder<NPCOption<Player>>.secondThing(text: String = "What is the sec
 suspend fun NPCOption<Player>.remainingItems() {
     if (player.inventory.contains("bronze_key_prince_ali_rescue")) {
         npc<Shifty>("The key you already have. Good.")
-    } else if (player.quest("prince_ali_rescue") == "leela") {
-        npc<Shifty>("A print of the key in soft clay and a bronze bar. Then, collect the key from Leela.")
-    } else {
+    } else if (player["prince_ali_rescue_key_made", false] && !player["prince_ali_rescue_key_given", false]) {
         npc<Shifty>("You can collect the key from Leela.")
+    } else {
+        npc<Shifty>("A print of the key in soft clay and a bronze bar. Then, collect the key from Leela.")
     }
     if (player.inventory.contains("wig_blonde")) {
         npc<Shifty>("The wig you have got; well done.")

@@ -2,12 +2,17 @@ package content.area.kharidian_desert.al_kharid
 
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
+import content.entity.sound.jingle
 import content.quest.quest
+import content.quest.questComplete
+import content.quest.refreshQuestJournal
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.queue.softQueue
 
 npcOperate("Talk-to", "hassan") {
     when (player.quest("prince_ali_rescue")) {
@@ -21,12 +26,30 @@ npcOperate("Talk-to", "hassan") {
             }
         }
         "prince_ali_disguise" -> {
-            // TODO quest complete
+            npc<Talk>("You have the eternal gratitude for the Emir for rescuing his son. I am authorised to pay you 700 coins.")
+            if (!player.inventory.add("coins")) {
+                statement("Leela tries to give you a reward, but you don't have enough room for it.") // TODO proper message
+                return@npcOperate
+            }
+            player.jingle("quest_complete_1")
+            player.refreshQuestJournal()
+            player["prince_ali_rescue"] = "completed"
+            player.inc("quest_points", 3)
+            player.message("Congratulations! Quest complete!")
+            player.softQueue("quest_complete", 1) {
+                player.questComplete(
+                    "Prince Ali Rescue",
+                    "3 Quest Points",
+                    "700 coins",
+                    item = "coins_8"
+                )
+            }
             player.clear("prince_ali_rescue_key_made")
             player.clear("prince_ali_rescue_key_given")
+            player.clear("prince_ali_rescue_leela")
         }
-        else ->
-            npc<Talk>("Hello again. I hear you have agreed to help rescue Prince Ali. On behalf of the Emir, I will have a reward ready for you upon your success.")
+        "completed" -> npc<Happy>("Thank you for being a friend to Al Kharid. You are always welcome here.")
+        else -> npc<Talk>("Hello again. I hear you have agreed to help rescue Prince Ali. On behalf of the Emir, I will have a reward ready for you upon your success.")
     }
 }
 

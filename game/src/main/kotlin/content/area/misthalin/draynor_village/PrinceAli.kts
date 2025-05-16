@@ -12,6 +12,10 @@ import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteractio
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.contains
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
@@ -42,12 +46,24 @@ suspend fun TargetInteraction<Player, NPC>.leave() {
     statement("The prince has escaped, well done! You are now a friend of Al-Kharid and may pass through the Al-Kharid toll gate for free.")
 }
 
+val disguise = listOf(
+    Item("pink_skirt"),
+    Item("wig_blonde"),
+    Item("paste"),
+)
+
 suspend fun TargetInteraction<Player, NPC>.escape() {
     player<Happy>("Prince, I've come to rescue you.")
     npc<Talk>("That is very very kind of you, how do I get out?")
+    if (!player.inventory.contains(disguise)) {
+        player<Happy>("I've already dealt with Lady Keli and the guard. I'm going to get you a disguise so the guards outside don't spot you leaving. I'll be back once I have it.")
+        return
+    }
     player<Happy>("With a disguise. I have removed the Lady Keli. She is tied up, but will not stay tied up for long.")
     player<Talk>("Take this disguise, and this key.")
     statement("You hand the disguise and the key to the prince.")
+    player.inventory.remove(disguise)
+    player.inventory.remove("bronze_key_prince_ali_rescue")
     target.transform("prince_ali_disguise")
     player["prince_ali_rescue"] = "prince_ali_disguise"
     leave()

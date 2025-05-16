@@ -22,7 +22,7 @@ val disguise = listOf(
 )
 
 objectOperate("Open", "draynor_prison_door_closed") {
-    if (player.inventory.contains("bronze_key_prince_ali_rescue")) {
+    if (player.inventory.contains("bronze_key_prince_ali_rescue") || player.quest("prince_ali_rescue") == "prince_ali_disguise") {
         when (player.quest("prince_ali_rescue")) {
             "keli_tied_up", "prince_ali_disguise" -> {
                 player.sound("unlock")
