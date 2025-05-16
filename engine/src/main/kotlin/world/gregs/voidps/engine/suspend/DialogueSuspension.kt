@@ -28,6 +28,12 @@ class ContinueSuspension : DialogueSuspension<Unit>() {
     }
 }
 
+class NameSuspension : DialogueSuspension<String>() {
+    companion object {
+        suspend fun get(player: Player) = NameSuspension().get(player)
+    }
+}
+
 class StringSuspension : DialogueSuspension<String>() {
     companion object {
         suspend fun get(player: Player) = StringSuspension().get(player)

@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.stringEntry
+import content.entity.player.dialogue.type.nameEntry
 import java.util.concurrent.TimeUnit
 
 val players: Players by inject()
@@ -28,7 +28,7 @@ modCommand("rename", "rename your accounts display name (login stays the same)")
         player.message("You can change your name again in $days ${"day".plural(days)} and $hours ${"hour".plural(hours)}.")
         return@modCommand
     }
-    val toName = stringEntry("Enter a new name")
+    val toName = nameEntry("Enter a new name")
     if (toName.length !in 1..12) {
         player.message("Name too long, a username must be less than 12 characters.")
         return@modCommand
