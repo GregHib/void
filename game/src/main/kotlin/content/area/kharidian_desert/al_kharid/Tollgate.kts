@@ -44,7 +44,6 @@ objectOperate("Pay-toll(10gp)", "toll_gate_al_kharid*") {
 
 objectOperate("Open", "toll_gate_al_kharid*") {
     if (player.questCompleted("prince_ali_rescue")) {
-//        pass(player)
         enterDoor(target, delay = 2)
         return@objectOperate
     }
