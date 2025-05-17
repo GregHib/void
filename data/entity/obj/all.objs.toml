@@ -22,6 +22,10 @@ examine = "A broken rail."
 id = 20
 examine = "A broken rail."
 
+[wall_pipe]
+id = 41
+examine = "Looks like an outlet pipe to the lake."
+
 [fountain]
 id = 153
 examine = "An ornate fountain."
@@ -248,6 +252,10 @@ examine = "A plant cultivated for fibres."
 
 [hopper_controls]
 id = 2718
+examine = "These control the flow of wheat from the hopper to the millstones."
+
+[hopper_controls_pulled]
+id = 2722
 examine = "These control the flow of wheat from the hopper to the millstones."
 
 [fire_orange]
@@ -1498,6 +1506,10 @@ examine = "He looks very relaxed."
 id = 39841
 examine = "Lit to remember the souls of the departed."
 
+[table_port_sarim]
+id = 40044
+examine = "A nice sturdy looking table."
+
 [candle_7]
 id = 40074
 examine = "A candle."
@@ -1620,6 +1632,10 @@ examine = "Stops bits of building falling on me."
 [tomb_9]
 id = 48686
 examine = "The Tomb of Dragith Nurn."
+
+[wall_pipe_2]
+id = 48844
+examine = "Looks like an outlet pipe to the lake."
 
 [fountain_25]
 id = 49354

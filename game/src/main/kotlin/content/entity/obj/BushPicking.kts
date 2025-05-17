@@ -1,5 +1,6 @@
 package content.entity.obj
 
+import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.obj.objectOperate
@@ -12,6 +13,7 @@ objectOperate("Pick-from", "cadava_bush_full", "cadava_bush_half") {
         player.message("Your inventory is too full to pick the berries from the bush.")
         return@objectOperate
     }
+    player.sound("pick")
     player.anim("pick_plant")
     target.replace(if (target.id == "cadava_bush_full") "cadava_bush_half" else "cadava_bush_empty", ticks = Settings["world.objs.cadava.regrowTicks", 200])
 }
@@ -21,6 +23,7 @@ objectOperate("Pick-from", "redberry_bush_full", "redberry_bush_half") {
         player.message("Your inventory is too full to pick the berries from the bush.")
         return@objectOperate
     }
+    player.sound("pick")
     player.anim("pick_plant")
     target.replace(if (target.id == "redberry_bush_full") "redberry_bush_half" else "redberry_bush_empty", ticks = Settings["world.objs.redberry.regrowTicks", 200])
 }

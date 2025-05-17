@@ -1,0 +1,9 @@
+[port_sarim_guard_sleeping]
+id = 2704
+categories = ["human"]
+examine = "He's asleep."
+
+[port_sarim_guard_6]
+id = 2705
+categories = ["human"]
+examine = "Keeping an eye out for suspicious activity."

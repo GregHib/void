@@ -609,3 +609,15 @@ id = 14711
 
 [expression_door_head]
 id = 4281
+
+[expression_cat_talk]
+id = 8373
+
+[expression_cat_quiz]
+id = 8375
+
+[expression_cat_angry]
+id = 9178
+
+[expression_cat_unamused]
+id = 9187

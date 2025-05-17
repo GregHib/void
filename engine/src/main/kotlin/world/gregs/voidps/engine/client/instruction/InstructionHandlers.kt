@@ -48,6 +48,7 @@ class InstructionHandlers(
     var examineNPC: ExamineNpc.(Player) -> Unit = empty()
     var examineObject: ExamineObject.(Player) -> Unit = empty()
     var enterString: EnterString.(Player) -> Unit = empty()
+    var enterName: EnterName.(Player) -> Unit = empty()
     var enterInt: EnterInt.(Player) -> Unit = empty()
     var friendAddHandler: FriendAdd.(Player) -> Unit = empty()
     var friendDeleteHandler: FriendDelete.(Player) -> Unit = empty()
@@ -94,6 +95,7 @@ class InstructionHandlers(
             is FinishRegionLoad -> finishRegionLoad.invoke(instruction, player)
             is ExecuteCommand -> executeCommand.validate(player, instruction)
             is EnterString -> enterString.invoke(instruction, player)
+            is EnterName -> enterName.invoke(instruction, player)
             is EnterInt -> enterInt.invoke(instruction, player)
             is FriendAdd -> friendAddHandler.invoke(instruction, player)
             is FriendDelete -> friendDeleteHandler.invoke(instruction, player)
@@ -124,6 +126,7 @@ inline fun <reified I : Instruction> instruction(noinline handler: I.(Player) ->
         ExamineNpc::class -> get<InstructionHandlers>().examineNPC = handler as ExamineNpc.(Player) -> Unit
         ExamineObject::class -> get<InstructionHandlers>().examineObject = handler as ExamineObject.(Player) -> Unit
         EnterString::class -> get<InstructionHandlers>().enterString = handler as EnterString.(Player) -> Unit
+        EnterName::class -> get<InstructionHandlers>().enterName = handler as EnterName.(Player) -> Unit
         EnterInt::class -> get<InstructionHandlers>().enterInt = handler as EnterInt.(Player) -> Unit
         FriendAdd::class -> get<InstructionHandlers>().friendAddHandler = handler as FriendAdd.(Player) -> Unit
         FriendDelete::class -> get<InstructionHandlers>().friendDeleteHandler = handler as FriendDelete.(Player) -> Unit

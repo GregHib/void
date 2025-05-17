@@ -1,0 +1,11 @@
+[prince_ali_rescue_leela]
+persist = true
+format = "boolean"
+
+[prince_ali_rescue_key_made]
+persist = true
+format = "boolean"
+
+[prince_ali_rescue_key_given]
+persist = true
+format = "boolean"

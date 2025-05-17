@@ -33,7 +33,7 @@ object DropTableConverter {
         var builder = Builder()
         for (line in string.lines()) {
             if (line.startsWith("=")) {
-                val name = toIdentifier(line.replace("=", ""))
+                val name = toIdentifier(line.replace("=", "").trim())
                 builder.name = name
             } else if (line.startsWith("{{DropsLineClue|")) {
                 process(builder, line.replace("Clue|type=", "|name=").replace("|rarity=", " clue scroll|quantity=1|rarity="))
@@ -58,6 +58,15 @@ object DropTableConverter {
                 builder.withRoll(roll)
                 all.add(builder)
                 builder = Builder()
+            } else if (line.startsWith("{{RareDropTable")) {
+                val parts = line.trim('{', ' ', '}').split('|')
+                val split = parts[1].split("/")
+                val chance = split[0].toInt()
+                val roll = split[1].toInt()
+                builder.addDrop(Builder.Drop.table("rare_drop_table", chance = chance, roll = roll))
+                builder.withRoll(roll)
+                all.add(builder)
+                builder = Builder()
             } else if (line.startsWith("{{DropsTableBottom")) {
                 all.add(builder)
                 builder = Builder()
@@ -76,9 +85,9 @@ object DropTableConverter {
             always.name = "${npc}_primary"
             all.remove(always)
             if (always.drops.all { it.id == "bones" }) {
-                parent.addDrop(Builder.Drop.table("bones"))
+                parent.addDrop(Builder.Drop("bones"))
             } else if (always.drops.all { it.id == "big_bones" }) {
-                parent.addDrop(Builder.Drop.table("big_bones"))
+                parent.addDrop(Builder.Drop("big_bones"))
             } else {
                 queue.add(always)
                 parent.addDrop(Builder.Drop.table(always.name))
@@ -88,10 +97,12 @@ object DropTableConverter {
         if (tertiary != null) {
             all.remove(tertiary)
         }
-        val combined = Builder(all)
-        combined.name = "${npc}_secondary"
-        parent.addDrop(Builder.Drop.table(combined.name))
-        queue.add(combined)
+        if (all.isNotEmpty()) {
+            val combined = Builder(all)
+            combined.name = "${npc}_secondary"
+            parent.addDrop(Builder.Drop.table(combined.name))
+            queue.add(combined)
+        }
         if (tertiary != null) {
             tertiary.name = "${npc}_tertiary"
             queue.add(tertiary)
@@ -128,7 +139,7 @@ object DropTableConverter {
         val quantity = map["quantity"] ?: "0"
         val rarity = map.getValue("rarity")
         val (chance, roll) = if (rarity.contains("/")) {
-            rarity.split("/").map { it.toInt() }
+            rarity.split("/").map { if (it.contains(".")) it.toDouble().toInt() else it.toInt() }
         } else {
             when (rarity) {
                 "Always" -> listOf(1, 1)
@@ -139,6 +150,7 @@ object DropTableConverter {
                 "Semi-rare" -> listOf(1, 128)
                 "Rare" -> listOf(1, 256)
                 "Very rare" -> listOf(1, 512)
+                "Brimstone rarity" -> return
                 else -> throw IllegalArgumentException("Unknown rarity '${rarity}'")
             }
         }

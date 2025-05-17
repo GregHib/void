@@ -1,0 +1,14 @@
+spawns = [
+    #11672
+    { id = "hill_giant", x = 2913, y = 9732, members = true },
+    { id = "hill_giant_2", x = 2905, y = 9732, members = true },
+    { id = "hill_giant_3", x = 2907, y = 9735, members = true },
+    { id = "hill_giant_4", x = 2902, y = 9736, members = true },
+    { id = "hill_giant_6", x = 2913, y = 9741, members = true },
+    # 11673
+    { id = "lesser_demon", x = 2931, y = 9807, members = true },
+    { id = "lesser_demon_2", x = 2932, y = 9810, members = true },
+    { id = "lesser_demon_3", x = 2926, y = 9802, members = true },
+    { id = "lesser_demon_4", x = 2931, y = 9798, members = true },
+    { id = "lesser_demon_5", x = 2936, y = 9793, members = true }
+]

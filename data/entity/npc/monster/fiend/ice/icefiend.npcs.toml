@@ -32,5 +32,5 @@ id = 7715
 id = 9066
 respawn_delay = 30
 wander_radius = 4
-race = "icefiend"
+categories = ["icefiend"]
 examine = "A robust ice demon."

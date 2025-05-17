@@ -752,18 +752,20 @@ id = 10566
 gate = false
 examine = "Marks the border between Al Kharid and the Kingdom of Misthalin."
 
-[gate_107_opened]
+[toll_gate_al_kharid_prince_ali_opened]
 id = 35550
 
-[gate_107_closed]
+[toll_gate_al_kharid_prince_ali_closed]
 id = 10567
+gate = false
 examine = "Marks the border between Al Kharid and the Kingdom of Misthalin."
 
-[gate_108_opened]
+[toll_gate_al_kharid_prince_ali_north_opened]
 id = 35552
 
-[gate_108_closed]
+[toll_gate_al_kharid_prince_ali_north_closed]
 id = 10568
+gate = false
 examine = "Marks the border between Al Kharid and the Kingdom of Misthalin."
 
 [gate_113_opened]
