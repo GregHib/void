@@ -58,6 +58,7 @@ slayer_xp = 16.0
 wander_radius = 10
 attack_radius = 16
 drop_table = "dwarf"
+combat_anims = "dwarf"
 categories = ["dwarf", "dwarves"]
 examine = "Loves mining."
 
@@ -76,6 +77,7 @@ slayer_xp = 26.0
 wander_radius = 10
 attack_radius = 16
 drop_table = "dwarf"
+combat_anims = "dwarf"
 categories = ["dwarf", "dwarves"]
 examine = "Loves mining, mountains and mining mountains."
 
@@ -94,6 +96,7 @@ slayer_xp = 16.0
 wander_radius = 10
 attack_radius = 16
 drop_table = "dwarf"
+combat_anims = "dwarf"
 categories = ["dwarf", "dwarves"]
 examine = "Loves mining."
 
@@ -150,4 +153,5 @@ slayer_xp = 10.0
 wander_radius = 10
 attack_radius = 16
 drop_table = "dwarf"
+combat_anims = "dwarf"
 categories = ["dwarf", "dwarves"]

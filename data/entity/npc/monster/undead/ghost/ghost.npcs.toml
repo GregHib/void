@@ -11,15 +11,14 @@ respawn_delay = 40
 attack_radius = 11
 wander_radius = 10
 hunt_mode = "cowardly"
+combat_anims = "ghost"
 categories = ["ghost", "ghosts", "undead"]
 examine = "Eeek! A ghost!"
 
 [ghost]
 id = 103
 clone = "ghost_draynor_manor"
-attack_anim = "ghost_tendril_attack"
-defend_anim = "ghost_tendril_defend"
-death_anim = "ghost_tendril_death"
+combat_anims = "ghost_tendril"
 
 [ghost_3]
 id = 5342
@@ -77,9 +76,7 @@ slayer_xp = 30.0
 attack_radius = 11
 wander_radius = 10
 hunt_mode = "cowardly"
-attack_anim = "ghost_tendril_attack"
-defend_anim = "ghost_tendril_defend"
-death_anim = "ghost_tendril_death"
+combat_anims = "ghost_tendril"
 categories = ["ghost", "ghosts", "undead"]
 examine = "Eeek! A ghost!"
 
@@ -103,15 +100,14 @@ respawn_delay = 40
 slayer_xp = 80.0
 attack_radius = 11
 wander_radius = 9
+combat_anims = "ghost"
 categories = ["ghost", "ghosts", "undead"]
 examine = "Eeek! A ghost!"
 
 [stronghold_ghost]
 id = 4387
 clone = "stronghold_ghost_hair"
-attack_anim = "ghost_tendril_attack"
-defend_anim = "ghost_tendril_defend"
-death_anim = "ghost_tendril_death"
+combat_anims = "ghost_tendril"
 
 [stronghold_ghost_cape]
 id = 4388

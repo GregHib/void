@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import content.entity.combat.hit.characterCombatAttack
+import content.entity.npc.combat.NPCAttack
 import content.skill.melee.weapon.weapon
 import content.entity.sound.sound
 import content.skill.slayer.categories
@@ -45,29 +46,9 @@ characterCombatAttack { character ->
             target.anim(animation, delay)
         }
     } else if (target is NPC) {
-        val animation = hitAnimation(target)
+        val animation = NPCAttack.anim(animationDefinitions, target, "defend")
         target.anim(animation, delay)
     }
-}
-
-fun hitAnimation(npc: NPC): String {
-    var animation = "${npc.id}_defend"
-    if (animationDefinitions.contains(animation)) {
-        return animation
-    }
-    if (npc.def.contains("defend_anim")) {
-        animation = npc.def["defend_anim", ""]
-        if (animationDefinitions.contains(animation)) {
-            return animation
-        }
-    }
-    for (category in npc.categories) {
-        animation = "${category}_defend"
-        if (animationDefinitions.contains(animation)) {
-            return animation
-        }
-    }
-    return ""
 }
 
 fun calculateHitSound(target: Character): String {

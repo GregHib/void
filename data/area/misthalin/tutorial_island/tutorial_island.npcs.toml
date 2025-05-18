@@ -51,6 +51,7 @@ hitpoints = 30
 wander_radius = 2
 respawn_delay = 30
 drop_table = "giant_rat"
+combat_anims = "giant_rat"
 examine = "Overgrown vermin."
 
 [chicken_tutorial_island]
@@ -58,6 +59,7 @@ id = 951
 categories = ["bird"]
 wander_radius = 2
 drop_table = "chicken"
+combat_anims = "chicken"
 examine = "Yep. Definitely a chicken."
 
 [fishing_spot_tutorial_island]

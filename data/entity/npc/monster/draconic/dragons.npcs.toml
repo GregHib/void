@@ -13,6 +13,7 @@ max_hit_dragonfire = 650
 hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 258.0
+combat_anims = "king_black_dragon"
 categories = ["dragon", "boss"]
 aka = ["kbd"]
 respawn_delay = 16

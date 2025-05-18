@@ -11,6 +11,7 @@ respawn_delay = 25
 attack_radius = 8
 wander_radius = 6
 hunt_mode = "cowardly"
+combat_anims = "kalphite"
 categories = ["kalphite", "kalphites"]
 examine = "I don't think insect repellent will work..."
 
@@ -27,6 +28,7 @@ respawn_delay = 25
 attack_radius = 8
 wander_radius = 6
 hunt_mode = "cowardly"
+combat_anims = "kalphite"
 categories = ["kalphite", "kalphites"]
 examine = "I don't think insect repellent will work..."
 
@@ -44,5 +46,6 @@ respawn_delay = 40
 attack_radius = 8
 wander_radius = 6
 hunt_mode = "cowardly"
+combat_anims = "kalphite"
 categories = ["kalphite", "kalphites"]
 examine = "I don't think insect repellent will work..."

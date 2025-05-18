@@ -9,6 +9,7 @@ attack_radius = 11
 style = "magic"
 max_hit_magic = 30
 slayer_xp = 13.8
+combat_anims = "skeleton"
 categories = ["skeleton", "undead", "skeletons"]
 examine = "It rattles when it moves."
 
@@ -25,6 +26,7 @@ hunt_mode = "aggressive_intolerant"
 style = "slash"
 height = 30
 respawn_delay = 60
+combat_anims = "skeleton"
 categories = ["skeleton", "undead", "skeletons"]
 slayer_xp = 17.0
 examine = "Could do with gaining a few pounds."
@@ -55,6 +57,7 @@ style = "crush"
 height = 30
 respawn_delay = 70
 slayer_xp = 29.0
+combat_anims = "skeleton"
 categories = ["skeleton", "undead", "skeletons"]
 examine = "Could do with gaining a few pounds."
 
@@ -91,6 +94,7 @@ hunt_mode = "aggressive"
 style = "slash"
 height = 30
 respawn_delay = 60
+combat_anims = "skeleton"
 categories = ["skeleton", "undead", "skeletons"]
 examine = "Could do with gaining a few pounds."
 
@@ -111,6 +115,7 @@ slayer_xp = 70.0
 attack_radius = 11
 wander_radius = 9
 hunt_mode = "cowardly"
+combat_anims = "skeleton"
 categories = ["skeleton", "skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
 

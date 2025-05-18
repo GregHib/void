@@ -24,6 +24,7 @@ max_hit_melee = 1
 respawn_delay = 30
 style = "crush"
 height = 5
+combat_anims = "rat"
 categories = ["rat", "rats"]
 drop_table = "rat"
 examine = "A popular dwarven delicacy."
@@ -46,6 +47,7 @@ slayer_xp = 5.0
 max_hit_melee = 10
 respawn_delay = 30
 style = "stab"
+combat_anims = "giant_rat"
 categories = ["stronghold_rat", "rat", "rats"]
 drop_table = "stronghold_rat"
 examine = "Overgrown vermin."
@@ -73,6 +75,7 @@ style = "stab"
 respawn_delay = 30
 examine = "Overgrown vermin."
 drop_table = "giant_rat"
+combat_anims = "giant_rat"
 categories = ["giant_rat", "rats"]
 
 [giant_rat_dark]

@@ -8,6 +8,7 @@ def = 5
 magic = 1
 attack_speed = 6
 categories = ["demon"]
+combat_anims = "demon"
 examine = "A freshly summoned demon."
 
 [delrith_weakened]
@@ -25,6 +26,7 @@ hitpoints = 870
 slayer_xp = 87.0
 max_hit_melee = 90
 style = "slash"
+combat_anims = "demon"
 categories = ["demon", "demons"]
 respawn_delay = 15
 hunt_mode = "aggressive"
@@ -42,6 +44,7 @@ range = 1
 style = "slash"
 max_hit_melee = 80
 wander_radius = 4
+combat_anims = "demon"
 drop_table = "lesser_demon"
 hunt_mode = "aggressive"
 categories = ["demon", "demons"]

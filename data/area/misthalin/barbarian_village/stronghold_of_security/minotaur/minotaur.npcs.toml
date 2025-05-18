@@ -11,6 +11,7 @@ slayer_xp = 10.0
 wander_radius = 6
 attack_radius = 8
 drop_table = "minotaur"
+combat_anims = "minotaur"
 categories = ["minotaur", "minotaurs"]
 examine = "He doesn't look very pleased to see you."
 
@@ -27,5 +28,6 @@ slayer_xp = 22.0
 wander_radius = 6
 attack_radius = 8
 drop_table = "minotaur"
+combat_anims = "minotaur"
 categories = ["minotaur", "minotaurs"]
 examine = "He doesn't look very pleased to see you."

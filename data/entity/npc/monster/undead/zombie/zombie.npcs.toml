@@ -14,6 +14,7 @@ hunt_mode = "cowardly"
 style = "slash"
 respawn_delay = 35
 drop_table = "zombie"
+combat_anims = "zombie"
 categories = ["zombie", "zombies", "undead"]
 examine = "Dead man walking."
 
@@ -83,21 +84,18 @@ hunt_mode = "cowardly"
 style = "slash"
 respawn_delay = 35
 drop_table = "zombie_empty"
+combat_anims = "zombie"
 categories = ["zombie", "zombies", "undead"]
 
 [zombie_blue_skirt_sword]
 id = 74
 clone = "zombie_brown_shorts"
-attack_anim = "zombie_dragging_attack"
-defend_anim = "zombie_dragging_defend"
-death_anim = "zombie_dragging_death"
+combat_anims = "zombie_dragging"
 
 [zombie_tan_trousers_axe]
 id = 5309
 clone = "zombie_brown_shorts"
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 
 # Level 24s
 [zombie_yellow_shirt]
@@ -115,29 +113,24 @@ max_hit_melee = 30
 hunt_mode = "cowardly"
 style = "slash"
 respawn_delay = 35
+combat_anims = "zombie"
 drop_table = "zombie_armed"
 categories = ["zombie", "zombies", "undead"]
 
 [zombie_green_shorts_sword]
 id = 75
 clone = "zombie_yellow_shirt"
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 
 [zombie_armour_green_shorts_sword]
 id = 5314
 clone = "zombie_yellow_shirt"
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 
 [zombie_armour_grey_shorts_sword]
 id = 5315
 clone = "zombie_yellow_shirt"
-attack_anim = "zombie_dragging_attack"
-defend_anim = "zombie_dragging_defend"
-death_anim = "zombie_dragging_death"
+combat_anims = "zombie_dragging"
 
 [zombie_red_outfit]
 id = 5311
@@ -154,23 +147,17 @@ clone = "zombie_yellow_shirt"
 [zombie_red_suit_sword]
 id = 5316
 clone = "zombie_yellow_shirt"
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 
 [zombie_grey_suit_sword]
 id = 5318
 clone = "zombie_yellow_shirt"
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 
 [zombie_tan_trousers_axe_2]
 id = 5319
 clone = "zombie_yellow_shirt"
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 
 [zombie_tan_shorts_axe]
 id = 5320
@@ -179,51 +166,37 @@ clone = "zombie_yellow_shirt"
 [zombie_red_skirt_sword]
 id = 5321
 clone = "zombie_yellow_shirt"
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 
 [zombie_blue_skirt_sword_2]
 id = 5322
 clone = "zombie_yellow_shirt"
-attack_anim = "zombie_dragging_attack"
-defend_anim = "zombie_dragging_defend"
-death_anim = "zombie_dragging_death"
+combat_anims = "zombie_dragging"
 
 [zombie_yellow_shirt_sword]
 id = 5323
 clone = "zombie_yellow_shirt"
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 
 [zombie_red_sword]
 id = 5324
 clone = "zombie_yellow_shirt_sword"
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 
 [zombie_grey_axe]
 id = 5325
 clone = "zombie_yellow_shirt_sword"
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 
 [zombie_red_maid_axe]
 id = 5326
 clone = "zombie_yellow_shirt_sword"
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 
 [zombie_blue_maid_axe]
 id = 5327
 clone = "zombie_yellow_shirt_sword"
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 
 # Level 25s
 
@@ -237,9 +210,7 @@ attack_bonus = 5
 max_hit_melee = 30
 style = "slash"
 drop_table = "zombie_entrana"
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 respawn_delay = 35
 slayer_xp = 30.0
 wander_radius = 8
@@ -275,9 +246,7 @@ wander_radius = 10
 attack_radius = 12
 slayer_xp = 30.0
 max_hit_melee = 30
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 hunt_mode = "cowardly"
 style = "slash"
 respawn_delay = 35
@@ -308,6 +277,7 @@ hunt_mode = "cowardly"
 style = "slash"
 respawn_delay = 35
 drop_table = "zombie"
+combat_anims = "zombie"
 categories = ["zombie", "zombies", "undead"]
 examine = "Dead man walking."
 
@@ -333,9 +303,7 @@ wander_radius = 10
 attack_radius = 12
 slayer_xp = 40.0
 max_hit_melee = 50
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 hunt_mode = "cowardly"
 style = "slash"
 respawn_delay = 35
@@ -364,9 +332,7 @@ wander_radius = 10
 attack_radius = 12
 slayer_xp = 50.0
 max_hit_melee = 30
-attack_anim = "zombie_dragging_attack"
-defend_anim = "zombie_dragging_defend"
-death_anim = "zombie_dragging_death"
+combat_anims = "zombie_dragging"
 hunt_mode = "cowardly"
 style = "slash"
 respawn_delay = 35
@@ -377,9 +343,7 @@ examine = "The walking dead."
 [zombie_stronghold_of_security_male]
 id = 5380
 clone = "zombie_stronghold_of_security_female"
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 
 [zombie_stronghold_of_security_red]
 id = 4394
@@ -395,9 +359,7 @@ wander_radius = 10
 attack_radius = 12
 slayer_xp = 38.0
 max_hit_melee = 50
-attack_anim = "zombie_dragging_attack"
-defend_anim = "zombie_dragging_defend"
-death_anim = "zombie_dragging_death"
+combat_anims = "zombie_dragging"
 drop_table = "zombie_tarns_lair_low"
 hunt_mode = "cowardly"
 style = "crush"
@@ -416,9 +378,7 @@ slayer_xp = 40.0
 max_hit_melee = 50
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_dragging_attack"
-defend_anim = "zombie_dragging_defend"
-death_anim = "zombie_dragging_death"
+combat_anims = "zombie_dragging"
 drop_table = "zombie_tarns_lair_low"
 hunt_mode = "cowardly"
 style = "crush"
@@ -437,9 +397,7 @@ slayer_xp = 42.0
 max_hit_melee = 60
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_dragging_attack"
-defend_anim = "zombie_dragging_defend"
-death_anim = "zombie_dragging_death"
+combat_anims = "zombie_dragging"
 drop_table = "zombie_tarns_lair_low"
 hunt_mode = "cowardly"
 style = "crush"
@@ -458,9 +416,7 @@ slayer_xp = 48.0
 max_hit_melee = 60
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_dragging_attack"
-defend_anim = "zombie_dragging_defend"
-death_anim = "zombie_dragging_death"
+combat_anims = "zombie_dragging"
 drop_table = "zombie_tarns_lair_low"
 hunt_mode = "cowardly"
 style = "crush"
@@ -479,9 +435,7 @@ slayer_xp = 50.0
 max_hit_melee = 70
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_dragging_attack"
-defend_anim = "zombie_dragging_defend"
-death_anim = "zombie_dragging_death"
+combat_anims = "zombie_dragging"
 drop_table = "zombie_tarns_lair_low"
 hunt_mode = "cowardly"
 style = "crush"
@@ -500,9 +454,7 @@ slayer_xp = 57.0
 max_hit_melee = 70
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_dragging_attack"
-defend_anim = "zombie_dragging_defend"
-death_anim = "zombie_dragging_death"
+combat_anims = "zombie_dragging"
 drop_table = "zombie_tarns_lair_mid"
 hunt_mode = "cowardly"
 style = "crush"
@@ -521,9 +473,7 @@ slayer_xp = 63.0
 max_hit_melee = 80
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_dragging_attack"
-defend_anim = "zombie_dragging_defend"
-death_anim = "zombie_dragging_death"
+combat_anims = "zombie_dragging"
 drop_table = "zombie_tarns_lair_mid"
 hunt_mode = "cowardly"
 style = "crush"
@@ -542,9 +492,7 @@ slayer_xp = 65.0
 max_hit_melee = 80
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 drop_table = "zombie_tarns_lair_mid"
 hunt_mode = "cowardly"
 style = "crush"
@@ -563,9 +511,7 @@ slayer_xp = 68.0
 max_hit_melee = 80
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 drop_table = "zombie_tarns_lair_mid"
 hunt_mode = "cowardly"
 style = "crush"
@@ -584,9 +530,7 @@ slayer_xp = 68.0
 max_hit_melee = 90
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 drop_table = "zombie_tarns_lair_mid"
 hunt_mode = "cowardly"
 style = "crush"
@@ -605,9 +549,7 @@ slayer_xp = 73.0
 max_hit_melee = 90
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 drop_table = "zombie_tarns_lair_mid"
 hunt_mode = "cowardly"
 style = "crush"
@@ -626,9 +568,7 @@ slayer_xp = 75.0
 max_hit_melee = 100
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 drop_table = "zombie_tarns_lair_high"
 hunt_mode = "cowardly"
 style = "crush"
@@ -647,9 +587,7 @@ slayer_xp = 76.0
 max_hit_melee = 100
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 drop_table = "zombie_tarns_lair_high"
 hunt_mode = "cowardly"
 style = "crush"
@@ -668,9 +606,7 @@ slayer_xp = 81.0
 max_hit_melee = 100
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 drop_table = "zombie_tarns_lair_high"
 hunt_mode = "cowardly"
 style = "crush"
@@ -689,9 +625,7 @@ slayer_xp = 92.0
 max_hit_melee = 100
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 drop_table = "zombie_tarns_lair_high"
 hunt_mode = "cowardly"
 style = "crush"
@@ -710,9 +644,7 @@ slayer_xp = 96.0
 max_hit_melee = 110
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 drop_table = "zombie_tarns_lair_high"
 hunt_mode = "cowardly"
 style = "crush"
@@ -731,9 +663,7 @@ slayer_xp = 102.0
 max_hit_melee = 110
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 drop_table = "zombie_tarns_lair_high"
 hunt_mode = "cowardly"
 style = "crush"
@@ -752,9 +682,7 @@ slayer_xp = 76.0
 max_hit_melee = 90
 wander_radius = 10
 attack_radius = 12
-attack_anim = "zombie_weapon_attack"
-defend_anim = "zombie_weapon_defend"
-death_anim = "zombie_weapon_death"
+combat_anims = "zombie_weapon"
 drop_table = "zombie_tarns_lair_high"
 hunt_mode = "cowardly"
 style = "crush"

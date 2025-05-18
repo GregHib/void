@@ -11,6 +11,7 @@ wander_radius = 10
 hitpoints = 120
 slayer_xp = 12.0
 drop_table = "goblin"
+combat_anims = "goblin"
 categories = ["goblin", "goblins"]
 height = 30
 large_head = true
@@ -53,6 +54,7 @@ master2 = "turael"
 master3 = "spria"
 respawn_delay = 35
 drop_table = "goblin"
+combat_anims = "goblin"
 examine = "An ugly, blue creature."
 categories = ["goblin"]
 height = 30
@@ -199,6 +201,7 @@ attack_radius = 15
 slayer_xp = 5.0
 height = 30
 drop_table = "stronghold_goblin"
+combat_anims = "goblin"
 categories = ["stronghold_goblin", "goblin", "goblins"]
 examine = "An ugly green creature."
 
@@ -216,6 +219,7 @@ attack_radius = 15
 slayer_xp = 16.0
 height = 30
 drop_table = "stronghold_goblin"
+combat_anims = "goblin"
 categories = ["stronghold_goblin", "goblin", "goblins"]
 examine = "An ugly green creature."
 
@@ -235,6 +239,7 @@ attack_radius = 15
 slayer_xp = 7.0
 height = 30
 drop_table = "stronghold_goblin"
+combat_anims = "goblin"
 categories = ["stronghold_goblin", "goblin", "goblins"]
 examine = "An ugly green creature."
 
@@ -254,6 +259,7 @@ attack_radius = 15
 slayer_xp = 22.0
 height = 30
 drop_table = "stronghold_goblin"
+combat_anims = "goblin"
 categories = ["stronghold_goblin", "goblin", "goblins"]
 examine = "An ugly green creature."
 
@@ -271,6 +277,7 @@ attack_radius = 15
 slayer_xp = 26.0
 height = 30
 drop_table = "stronghold_goblin"
+combat_anims = "goblin"
 categories = ["stronghold_goblin", "goblin", "goblins"]
 examine = "These goblins have grown strong."
 

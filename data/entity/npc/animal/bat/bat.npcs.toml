@@ -11,6 +11,7 @@ wander_radius = 8
 attack_radius = 14
 respawn_delay = 35
 drop_table = "bat"
+combat_anims = "bat"
 categories = ["bat", "bats"]
 examine = "An annoying flappy thing."
 
@@ -28,6 +29,7 @@ wander_radius = 8
 attack_radius = 14
 respawn_delay = 35
 drop_table = "bat"
+combat_anims = "bat"
 categories = ["bat", "bats"]
 examine = "An annoying flappy thing."
 

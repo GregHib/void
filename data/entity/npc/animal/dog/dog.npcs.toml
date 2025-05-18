@@ -29,6 +29,7 @@ attack_radius = 8
 wander_radius = 6
 hunt_mode = "cowardly"
 drop_table = "dog"
+combat_anims = "medium_dog"
 categories = ["medium_dog", "dogs"]
 examine = "He doesn't seem pleased to see me."
 
@@ -46,5 +47,6 @@ attack_radius = 8
 wander_radius = 6
 hunt_mode = "cowardly"
 drop_table = "dog"
+combat_anims = "medium_dog"
 categories = ["medium_dog", "dogs"]
 examine = "Looks like it's got Rabies!"

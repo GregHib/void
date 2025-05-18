@@ -43,7 +43,7 @@ fun attackAnimation(npc: NPC): String {
             return animation
         }
     }
-    return NPCAttack.animation(npc, animationDefinitions)
+    return NPCAttack.anim(animationDefinitions, npc, "attack")
 }
 
 fun attackSound(npc: NPC): String {

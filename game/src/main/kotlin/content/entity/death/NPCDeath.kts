@@ -2,11 +2,8 @@ package content.entity.death
 
 import com.github.michaelbull.logging.InlineLogger
 import content.area.wilderness.inMultiCombat
-import content.entity.combat.attackers
-import content.entity.combat.damageDealers
-import content.entity.combat.dead
-import content.entity.combat.killer
-import net.pearx.kasechange.toSnakeCase
+import content.entity.combat.*
+import content.entity.npc.combat.NPCAttack
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
@@ -53,7 +50,7 @@ npcDeath { npc ->
         val killer = npc.killer
         val tile = npc.tile
         npc["death_tile"] = tile
-        npc.anim(deathAnimation(npc))
+        npc.anim(NPCAttack.anim(animationDefinitions, npc, "death"))
         (killer as? Player)?.sound(deathSound(npc))
         delay(4)
         if (killer is Player) {
@@ -82,27 +79,6 @@ npcDeath { npc ->
         }
     }
 }
-
-fun deathAnimation(npc: NPC): String {
-    var animation = "${npc.id}_death"
-    if (animationDefinitions.contains(animation)) {
-        return animation
-    }
-    if (npc.def.contains("death_anim")) {
-        animation = npc.def["death_anim", ""]
-        if (animationDefinitions.contains(animation)) {
-            return animation
-        }
-    }
-    for (category in npc.categories) {
-        animation = "${category}_death"
-        if (animationDefinitions.contains(animation)) {
-            return animation
-        }
-    }
-    return ""
-}
-
 
 fun deathSound(npc: NPC): String {
     var sound: String

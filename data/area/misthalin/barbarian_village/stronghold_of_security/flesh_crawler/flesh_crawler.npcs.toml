@@ -14,6 +14,7 @@ slayer_xp = 25.0
 hunt_mode = "aggressive"
 hunt_range = 3
 drop_table = "flesh_crawler"
+combat_anims = "flesh_crawler"
 categories = ["flesh_crawler", "flesh_crawlers"]
 examine = "I don't think insect repellent will work..."
 

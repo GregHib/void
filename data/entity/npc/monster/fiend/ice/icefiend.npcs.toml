@@ -9,6 +9,7 @@ style = "crush"
 slayer_xp = 15.0
 respawn_delay = 15
 drop_table = "icefiend"
+combat_anims = "icefiend"
 categories = ["icefiend", "icefiends"]
 examine = "A small ice demon."
 
@@ -24,6 +25,7 @@ slayer_xp = 20.0
 respawn_delay = 25
 hunt_mode = "cowardly"
 drop_table = "icefiend"
+combat_anims = "icefiend"
 categories = ["icefiend", "icefiends"]
 examine = "A small ice demon."
 
@@ -35,5 +37,6 @@ id = 9066
 respawn_delay = 30
 wander_radius = 4
 drop_table = "icefiend"
-categories = ["icefiend"]
+combat_anims = "icefiend"
+categories = ["icefiends"]
 examine = "A robust ice demon."
