@@ -6,14 +6,10 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.Pocket
 import world.gregs.voidps.engine.data.definition.data.Spot
+import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.timedLoad
-import java.nio.file.Files
-import java.nio.file.Path
-import kotlin.io.path.extension
-import kotlin.io.path.pathString
 
 class NPCDefinitions(
     override var definitions: Array<NPCDefinition>
@@ -23,7 +19,7 @@ class NPCDefinitions(
 
     override fun empty() = NPCDefinition.EMPTY
 
-    fun load(paths: List<String>): NPCDefinitions {
+    fun load(paths: List<String>, dropTables: DropTables? = null): NPCDefinitions {
         timedLoad("npc extra") {
             val ids = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
@@ -62,8 +58,8 @@ class NPCDefinitions(
                                 }
                                 "drop_table" -> {
                                     val table = string()
-                                    assert(!table.endsWith("_drop_table")) { "Drop table for npc $stringId does not need to end with '_drop_table'" }
-                                    extras["drop_table"] = table
+                                    require(dropTables == null || table.isBlank() || dropTables.get("${table}_drop_table") != null) { "Drop table '$table' not found for npc $stringId" }
+                                    extras[key] = table
                                 }
                                 else -> extras[key] = value()
                             }

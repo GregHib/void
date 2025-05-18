@@ -99,7 +99,7 @@ drops = [
     { id = "key_blue" },
 ]
 
-[zombie_tarns_lair_low]
+[zombie_tarns_lair_low_drop_table]
 type = "all"
 drops = [
     { table = "bones" },
@@ -151,7 +151,7 @@ drops = [
     { table = "gem_drop_table" },
 ]
 
-[zombie_tarns_lair_mid]
+[zombie_tarns_lair_mid_drop_table]
 type = "all"
 drops = [
     { table = "bones" },
@@ -202,7 +202,7 @@ drops = [
     { table = "gem_drop_table" },
 ]
 
-[zombie_tarns_lair_high]
+[zombie_tarns_lair_high_drop_table]
 type = "all"
 drops = [
     { table = "bones" },
