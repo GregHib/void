@@ -8,6 +8,7 @@ max_hit_melee = 20
 style = "crush"
 slayer_xp = 15.0
 respawn_delay = 15
+drop_table = "icefiend"
 categories = ["icefiend", "icefiends"]
 examine = "A small ice demon."
 
@@ -22,6 +23,7 @@ style = "crush"
 slayer_xp = 20.0
 respawn_delay = 25
 hunt_mode = "cowardly"
+drop_table = "icefiend"
 categories = ["icefiend", "icefiends"]
 examine = "A small ice demon."
 
@@ -32,5 +34,6 @@ id = 7715
 id = 9066
 respawn_delay = 30
 wander_radius = 4
+drop_table = "icefiend"
 categories = ["icefiend"]
 examine = "A robust ice demon."

@@ -11,6 +11,7 @@ max_hit_melee = 60
 respawn_delay = 30
 wander_radius = 2
 slayer_xp = 60
+drop_table = "moss_giant"
 categories = ["moss_giants"]
 examine = "His beard seems to have a life of its own."
 

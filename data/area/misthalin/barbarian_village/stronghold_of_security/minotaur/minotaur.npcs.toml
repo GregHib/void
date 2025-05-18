@@ -10,6 +10,7 @@ respawn_delay = 15
 slayer_xp = 10.0
 wander_radius = 6
 attack_radius = 8
+drop_table = "minotaur"
 categories = ["minotaur", "minotaurs"]
 examine = "He doesn't look very pleased to see you."
 
@@ -25,5 +26,6 @@ respawn_delay = 15
 slayer_xp = 22.0
 wander_radius = 6
 attack_radius = 8
+drop_table = "minotaur"
 categories = ["minotaur", "minotaurs"]
 examine = "He doesn't look very pleased to see you."

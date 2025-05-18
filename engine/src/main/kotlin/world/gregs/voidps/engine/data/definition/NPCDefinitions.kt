@@ -60,6 +60,11 @@ class NPCDefinitions(
                                     }
                                     extras["categories"] = categories
                                 }
+                                "drop_table" -> {
+                                    val table = string()
+                                    assert(!table.endsWith("_drop_table")) { "Drop table for npc $stringId does not need to end with '_drop_table'" }
+                                    extras["drop_table"] = table
+                                }
                                 else -> extras[key] = value()
                             }
                         }

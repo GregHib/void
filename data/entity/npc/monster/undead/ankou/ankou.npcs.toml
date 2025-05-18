@@ -15,6 +15,7 @@ wander_radius = 13
 attack_anim = "human_attack"
 defend_anim = "human_defend"
 death_anim = "human_death"
+drop_table = "ankou"
 categories = ["ankou"]
 examine = "A boney ghost."
 

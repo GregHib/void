@@ -57,6 +57,7 @@ respawn_delay = 25
 slayer_xp = 16.0
 wander_radius = 10
 attack_radius = 16
+drop_table = "dwarf"
 categories = ["dwarf", "dwarves"]
 examine = "Loves mining."
 
@@ -74,6 +75,7 @@ respawn_delay = 25
 slayer_xp = 26.0
 wander_radius = 10
 attack_radius = 16
+drop_table = "dwarf"
 categories = ["dwarf", "dwarves"]
 examine = "Loves mining, mountains and mining mountains."
 
@@ -91,6 +93,7 @@ respawn_delay = 25
 slayer_xp = 16.0
 wander_radius = 10
 attack_radius = 16
+drop_table = "dwarf"
 categories = ["dwarf", "dwarves"]
 examine = "Loves mining."
 
@@ -146,4 +149,5 @@ respawn_delay = 50
 slayer_xp = 10.0
 wander_radius = 10
 attack_radius = 16
+drop_table = "dwarf"
 categories = ["dwarf", "dwarves"]

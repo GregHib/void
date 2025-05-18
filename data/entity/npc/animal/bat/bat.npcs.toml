@@ -10,6 +10,7 @@ slayer_xp = 8.0
 wander_radius = 8
 attack_radius = 14
 respawn_delay = 35
+drop_table = "bat"
 categories = ["bat", "bats"]
 examine = "An annoying flappy thing."
 
@@ -26,6 +27,7 @@ slayer_xp = 32.0
 wander_radius = 8
 attack_radius = 14
 respawn_delay = 35
+drop_table = "bat"
 categories = ["bat", "bats"]
 examine = "An annoying flappy thing."
 

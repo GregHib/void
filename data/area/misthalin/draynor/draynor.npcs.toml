@@ -36,6 +36,7 @@ weapon_style = "mace"
 attack_speed = 5
 respawn_delay = 30
 wander_radius = 4
+drop_table = "human"
 categories = ["human"]
 examine = "This jail's open for business again."
 

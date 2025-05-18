@@ -12,6 +12,7 @@ attack_radius = 11
 wander_radius = 9
 immune_death = true
 hunt_mode = "cowardly"
+drop_table = "lizard"
 categories = ["lizard", "lizards"]
 examine = "Run away, it's massive!"
 
@@ -28,6 +29,7 @@ respawn_delay = 50
 attack_radius = 11
 wander_radius = 9
 immune_death = true
+drop_table = "small_lizard"
 categories = ["small_lizard", "lizard", "lizards"]
 examine = "A small cold-blooded creature, partial to warmth."
 
@@ -49,6 +51,7 @@ attack_radius = 11
 wander_radius = 9
 immune_death = true
 hunt_mode = "cowardly"
+drop_table = "small_lizard"
 categories = ["small_lizard", "lizard", "lizards"]
 examine = "A cold-blooded creature, partial to warmth."
 

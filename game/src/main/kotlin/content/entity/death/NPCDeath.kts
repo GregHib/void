@@ -54,13 +54,12 @@ npcDeath { npc ->
         val tile = npc.tile
         npc["death_tile"] = tile
         npc.anim(deathAnimation(npc))
-        val name = npc.def.name.toSnakeCase()
         (killer as? Player)?.sound(deathSound(npc))
         delay(4)
         if (killer is Player) {
             slay(killer, npc)
         }
-        dropLoot(npc, killer, name, tile)
+        dropLoot(npc, killer, tile)
         npc.attackers.clear()
         npc.softTimers.stopAll()
         npc.hide = true
@@ -120,20 +119,8 @@ fun deathSound(npc: NPC): String {
     return ""
 }
 
-fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
-    var table = tables.get("${npc.def["drop_table", npc.id]}_drop_table")
-    if (table == null) {
-        table = tables.get("${name}_drop_table")
-    }
-    for (category in npc.categories) {
-        table = tables.get("${category}_drop_table")
-        if (table != null) {
-            break
-        }
-    }
-    if (table == null) {
-        return
-    }
+fun dropLoot(npc: NPC, killer: Character?, tile: Tile) {
+    val table = tables.get("${npc.def["drop_table", npc.id]}_drop_table") ?: return
     val combatLevel = if (killer is Player) killer.combatLevel else if (killer is NPC) killer.def.combat else -1
     val drops = table.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1, player = killer as? Player)
         .filterNot { it.id == "nothing" }

@@ -10,6 +10,7 @@ respawn_delay = 25
 slayer_xp = 17.0
 wander_radius = 5
 attack_radius = 7
+drop_table = "scorpion"
 categories = ["scorpions"]
 examine = "An extremely vicious scorpion."
 
@@ -112,6 +113,7 @@ respawn_delay = 50
 slayer_xp = 15.0
 wander_radius = 5
 attack_radius = 7
+drop_table = "empty"
 categories = ["small_scorpion", "scorpion", "scorpions"]
 examine = "It's an extremely dangerous looking scorpion."
 

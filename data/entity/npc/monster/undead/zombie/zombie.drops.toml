@@ -92,7 +92,7 @@ drops = [
     { table = "gem_drop_table" },
 ]
 
-[zombie_melzars_maze]
+[zombie_melzars_maze_drop_table]
 type = "all"
 drops = [
     { table = "bones" },

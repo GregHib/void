@@ -12,6 +12,7 @@ respawn_delay = 15
 attack_radius = 11
 wander_radius = 9
 hunt_mode = "cowardly"
+drop_table = "cave_crawler"
 categories = ["cave_crawler", "cave_crawlers"]
 examine = "A spiky crawling critter."
 

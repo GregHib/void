@@ -10,13 +10,8 @@ max_hit_melee = 10
 hitpoints = 70
 wander_radius = 4
 respawn_delay = 25
-pickpocket = {
-  stun_hit = 10,
-  stun_ticks = 8,
-  xp = 8.0,
-  chance_min = 180,
-  chance_max = 240,
-}
+pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
+drop_table = "human"
 style = "crush"
 categories = ["human"]
 examine = "One of Gielinor's many citizens."
@@ -73,7 +68,7 @@ attack_radius = 11
 wander_radius = 5
 max_hit_melee = 75
 hunt_mode = "aggressive"
-drop_table = "renegade_knight_drop_table"
+drop_table = "human"
 respawn_delay = 50
 examine = "He isn't very friendly."
 
@@ -93,10 +88,9 @@ attack_radius = 11
 wander_radius = 5
 max_hit_melee = 75
 hunt_mode = "aggressive"
-drop_table = "sir_mordred_drop_table"
+drop_table = "human"
 respawn_delay = 50
 examine = "He isn't very friendly."
-
 
 [cook_lumbridge]
 id = 278
@@ -112,6 +106,7 @@ examine = "Head wizard of the Wizard's Tower."
 
 [barbarian_guard]
 id = 384
+drop_table = "human"
 categories = ["human"]
 wander_radius = 4
 examine = "Not very civilised looking."
@@ -128,6 +123,7 @@ wander_radius = 5
 attack_radius = 8
 hunt_mode = "aggressive"
 weapon_style = "sword"
+drop_table = "human"
 categories = ["human"]
 examine = "A dusty old suit of armour."
 

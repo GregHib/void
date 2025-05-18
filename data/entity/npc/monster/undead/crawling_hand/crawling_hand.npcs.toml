@@ -10,6 +10,7 @@ slayer_xp = 16.0
 respawn_delay = 15
 attack_radius = 15
 wander_radius = 13
+drop_table = "crawling_hand"
 categories = ["crawling_hand", "crawling_hands", "undead"]
 examine = "Gimme five. Actually, don't."
 
@@ -29,6 +30,7 @@ slayer_xp = 12.0
 respawn_delay = 15
 attack_radius = 15
 wander_radius = 13
+drop_table = "crawling_hand"
 categories = ["crawling_hand", "crawling_hands", "undead"]
 examine = "Gimme five. Actually, don't."
 
@@ -55,6 +57,7 @@ wander_radius = 13
 attack_anim = "crawling_hand_large_attack"
 defend_anim = "crawling_hand_large_defend"
 death_anim = "crawling_hand_large_death"
+drop_table = "crawling_hand"
 categories = ["crawling_hand", "crawling_hands", "undead"]
 examine = "Now, that's handy."
 
@@ -78,6 +81,7 @@ wander_radius = 13
 attack_anim = "crawling_hand_large_attack"
 defend_anim = "crawling_hand_large_defend"
 death_anim = "crawling_hand_large_death"
+drop_table = "crawling_hand"
 categories = ["crawling_hand", "crawling_hands", "undead"]
 examine = "A big severed hand."
 
