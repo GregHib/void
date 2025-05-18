@@ -1,8 +1,8 @@
-[moss_giants_attack]
+[moss_giant_attack]
 id = 4658
 
-[moss_giants_defend]
+[moss_giant_defend]
 id = 4657
 
-[moss_giants_death]
+[moss_giant_death]
 id = 4659

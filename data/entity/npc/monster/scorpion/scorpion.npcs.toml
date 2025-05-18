@@ -12,6 +12,7 @@ wander_radius = 5
 attack_radius = 7
 drop_table = "scorpion"
 combat_anims = "scorpion"
+combat_sounds = "scorpion"
 categories = ["scorpions"]
 examine = "An extremely vicious scorpion."
 
@@ -29,6 +30,7 @@ slayer_xp = 23.0
 wander_radius = 5
 attack_radius = 7
 combat_anims = "scorpion"
+combat_sounds = "scorpion"
 categories = ["scorpion", "scorpions"]
 examine = "It has a very vicious looking tail."
 
@@ -46,6 +48,7 @@ slayer_xp = 32.0
 wander_radius = 5
 attack_radius = 7
 combat_anims = "small_scorpion"
+combat_sounds = "scorpion"
 categories = ["small_scorpion", "scorpion", "scorpions"]
 examine = "Tiny, annoying, stinging thing."
 
@@ -63,6 +66,7 @@ slayer_xp = 30.0
 wander_radius = 5
 attack_radius = 7
 combat_anims = "scorpion"
+combat_sounds = "scorpion"
 categories = ["scorpion", "scorpions"]
 examine = "Wow! Scorpions shouldn't grow that big."
 
@@ -79,6 +83,7 @@ slayer_xp = 30.0
 wander_radius = 5
 attack_radius = 7
 combat_anims = "scorpion"
+combat_sounds = "scorpion"
 categories = ["scorpion", "scorpions"]
 examine = "A large angry scorpion."
 
@@ -96,6 +101,7 @@ slayer_xp = 7.0
 wander_radius = 5
 attack_radius = 7
 combat_anims = "small_scorpion"
+combat_sounds = "scorpion"
 categories = ["small_scorpion", "scorpion", "scorpions"]
 examine = "A vicious, little, stinging thing."
 
@@ -115,6 +121,7 @@ slayer_xp = 15.0
 wander_radius = 5
 attack_radius = 7
 combat_anims = "small_scorpion"
+combat_sounds = "scorpion"
 categories = ["small_scorpion", "scorpion", "scorpions"]
 examine = "It's an extremely dangerous looking scorpion."
 
@@ -132,6 +139,7 @@ slayer_xp = 55.0
 wander_radius = 5
 attack_radius = 7
 combat_anims = "scorpion"
+combat_sounds = "scorpion"
 categories = ["scorpion", "scorpions"]
 examine = "An extremely vicious scorpion."
 
@@ -149,5 +157,6 @@ slayer_xp = 37.0
 wander_radius = 5
 attack_radius = 7
 combat_anims = "scorpion"
+combat_sounds = "scorpion"
 categories = ["scorpion", "scorpions"]
 examine = "An extremely vicious scorpion."

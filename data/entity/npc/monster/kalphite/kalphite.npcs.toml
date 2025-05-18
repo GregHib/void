@@ -12,6 +12,7 @@ attack_radius = 8
 wander_radius = 6
 hunt_mode = "cowardly"
 combat_anims = "kalphite"
+combat_sounds = "kalphite"
 categories = ["kalphite", "kalphites"]
 examine = "I don't think insect repellent will work..."
 
@@ -29,6 +30,7 @@ attack_radius = 8
 wander_radius = 6
 hunt_mode = "cowardly"
 combat_anims = "kalphite"
+combat_sounds = "kalphite"
 categories = ["kalphite", "kalphites"]
 examine = "I don't think insect repellent will work..."
 
@@ -47,5 +49,6 @@ attack_radius = 8
 wander_radius = 6
 hunt_mode = "cowardly"
 combat_anims = "kalphite"
+combat_sounds = "kalphite"
 categories = ["kalphite", "kalphites"]
 examine = "I don't think insect repellent will work..."

@@ -13,5 +13,6 @@ attack_radius = 11
 wander_radius = 9
 xp_bonus = -0.75
 combat_anims = "shade"
+combat_sounds = "shade"
 categories = ["shade", "shades", "undead"]
 examine = "Dead, but not gone."

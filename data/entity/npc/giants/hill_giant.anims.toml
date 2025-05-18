@@ -1,8 +1,8 @@
-[hill_giants_attack]
+[hill_giant_attack]
 id = 4652
 
-[hill_giants_defend]
+[hill_giant_defend]
 id = 4651
 
-[hill_giants_death]
+[hill_giant_death]
 id = 4653

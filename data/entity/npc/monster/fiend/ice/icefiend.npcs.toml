@@ -10,6 +10,7 @@ slayer_xp = 15.0
 respawn_delay = 15
 drop_table = "icefiend"
 combat_anims = "icefiend"
+combat_sounds = "icefiend"
 categories = ["icefiend", "icefiends"]
 examine = "A small ice demon."
 
@@ -26,6 +27,7 @@ respawn_delay = 25
 hunt_mode = "cowardly"
 drop_table = "icefiend"
 combat_anims = "icefiend"
+combat_sounds = "icefiend"
 categories = ["icefiend", "icefiends"]
 examine = "A small ice demon."
 
@@ -38,5 +40,6 @@ respawn_delay = 30
 wander_radius = 4
 drop_table = "icefiend"
 combat_anims = "icefiend"
+combat_sounds = "icefiend"
 categories = ["icefiends"]
 examine = "A robust ice demon."

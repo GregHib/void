@@ -13,5 +13,6 @@ max_hit_melee = 10
 slayer_xp = 6.0
 drop_table = "monkey"
 combat_anims = "monkey"
+combat_sounds = "monkey"
 categories = ["monkey", "monkeys"]
 examine = "Perhaps our oldest relatives?"

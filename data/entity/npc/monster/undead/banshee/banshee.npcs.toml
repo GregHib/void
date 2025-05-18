@@ -14,6 +14,7 @@ hit_splat = "melee"
 attack_sound = "nothing"
 hunt_mode = "cowardly"
 combat_anims = "banshee"
+combat_sounds = "banshee"
 categories = ["banshee", "banshees", "undead"]
 examine = "A tortured screaming soul."
 
@@ -34,5 +35,6 @@ attack_sound = "nothing"
 hunt_mode = "cowardly"
 drop_table = "banshee"
 combat_anims = "banshee"
+combat_sounds = "banshee"
 categories = ["banshee", "banshees", "undead"]
 examine = "Not the best of vocalists."

@@ -12,6 +12,7 @@ attack_radius = 26
 wander_radius = 20
 hunt_mode = "cowardly"
 combat_anims = "cave_bug"
+combat_sounds = "cave_bug"
 categories = ["cave_bug", "cave_bugs"]
 examine = "A nasty crawling critter."
 
@@ -28,5 +29,6 @@ respawn_delay = 15
 attack_radius = 26
 wander_radius = 20
 combat_anims = "cave_bug"
+combat_sounds = "cave_bug"
 categories = ["cave_bug", "cave_bugs"]
 examine = "A big, smelly cave dweller."

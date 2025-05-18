@@ -12,6 +12,7 @@ wander_radius = 6
 attack_radius = 8
 drop_table = "minotaur"
 combat_anims = "minotaur"
+combat_sounds = "minotaur"
 categories = ["minotaur", "minotaurs"]
 examine = "He doesn't look very pleased to see you."
 
@@ -29,5 +30,6 @@ wander_radius = 6
 attack_radius = 8
 drop_table = "minotaur"
 combat_anims = "minotaur"
+combat_sounds = "minotaur"
 categories = ["minotaur", "minotaurs"]
 examine = "He doesn't look very pleased to see you."

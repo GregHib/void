@@ -16,7 +16,6 @@ import content.entity.combat.hit.characterCombatAttack
 import content.entity.npc.combat.NPCAttack
 import content.skill.melee.weapon.weapon
 import content.entity.sound.sound
-import content.skill.slayer.categories
 
 val styleDefinitions: WeaponStyleDefinitions by inject()
 val weaponDefinitions: WeaponAnimationDefinitions by inject()
@@ -53,26 +52,8 @@ characterCombatAttack { character ->
 
 fun calculateHitSound(target: Character): String {
     if (target is NPC) {
-        var sound: String
-        if (target.def.contains("defend_sound")) {
-            sound = target.def["defend_sound"]
-            if (soundDefinitions.contains(sound)) {
-                return sound
-            }
-        }
-        sound = "${target.id}_defend"
-        if (soundDefinitions.contains(sound)) {
-            return sound
-        }
-        for (category in target.categories) {
-            sound = "${category}_defend"
-            if (soundDefinitions.contains(sound)) {
-                return sound
-            }
-        }
-        return ""
+        return NPCAttack.sound(soundDefinitions, target, "defend")
     }
-
     if (target is Player) {
         return if (target.male) {
             "male_defend_${random.nextInt(0, 3)}"

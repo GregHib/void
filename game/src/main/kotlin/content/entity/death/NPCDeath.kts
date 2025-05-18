@@ -51,7 +51,7 @@ npcDeath { npc ->
         val tile = npc.tile
         npc["death_tile"] = tile
         npc.anim(NPCAttack.anim(animationDefinitions, npc, "death"))
-        (killer as? Player)?.sound(deathSound(npc))
+        (killer as? Player)?.sound(NPCAttack.sound(soundDefinitions, npc, "death"))
         delay(4)
         if (killer is Player) {
             slay(killer, npc)
@@ -78,21 +78,6 @@ npcDeath { npc ->
             npc.emit(Despawn)
         }
     }
-}
-
-fun deathSound(npc: NPC): String {
-    var sound: String
-    sound = "${npc.id}_death"
-    if (soundDefinitions.contains(sound)) {
-        return sound
-    }
-    for (category in npc.categories) {
-        sound = "${category}_death"
-        if (soundDefinitions.contains(sound)) {
-            return sound
-        }
-    }
-    return ""
 }
 
 fun dropLoot(npc: NPC, killer: Character?, tile: Tile) {

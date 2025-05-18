@@ -13,6 +13,7 @@ slayer_xp = 60.0
 attack_radius = 15
 wander_radius = 13
 combat_anims = "human"
+combat_sounds = "ankou"
 drop_table = "ankou"
 categories = ["ankou"]
 examine = "A boney ghost."

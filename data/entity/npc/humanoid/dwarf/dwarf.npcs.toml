@@ -59,6 +59,7 @@ wander_radius = 10
 attack_radius = 16
 drop_table = "dwarf"
 combat_anims = "dwarf"
+combat_sounds = "dwarf"
 categories = ["dwarf", "dwarves"]
 examine = "Loves mining."
 
@@ -78,6 +79,7 @@ wander_radius = 10
 attack_radius = 16
 drop_table = "dwarf"
 combat_anims = "dwarf"
+combat_sounds = "dwarf"
 categories = ["dwarf", "dwarves"]
 examine = "Loves mining, mountains and mining mountains."
 
@@ -97,6 +99,7 @@ wander_radius = 10
 attack_radius = 16
 drop_table = "dwarf"
 combat_anims = "dwarf"
+combat_sounds = "dwarf"
 categories = ["dwarf", "dwarves"]
 examine = "Loves mining."
 
@@ -154,4 +157,5 @@ wander_radius = 10
 attack_radius = 16
 drop_table = "dwarf"
 combat_anims = "dwarf"
+combat_sounds = "dwarf"
 categories = ["dwarf", "dwarves"]
