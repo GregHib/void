@@ -6,14 +6,10 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.Pocket
 import world.gregs.voidps.engine.data.definition.data.Spot
+import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.timedLoad
-import java.nio.file.Files
-import java.nio.file.Path
-import kotlin.io.path.extension
-import kotlin.io.path.pathString
 
 class NPCDefinitions(
     override var definitions: Array<NPCDefinition>
@@ -23,7 +19,12 @@ class NPCDefinitions(
 
     override fun empty() = NPCDefinition.EMPTY
 
-    fun load(paths: List<String>): NPCDefinitions {
+    fun load(
+        paths: List<String>,
+        dropTables: DropTables? = null,
+        animationDefinitions: AnimationDefinitions? = null,
+        soundDefinitions: SoundDefinitions? = null
+    ): NPCDefinitions {
         timedLoad("npc extra") {
             val ids = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
@@ -59,6 +60,27 @@ class NPCDefinitions(
                                         categories.add(string())
                                     }
                                     extras["categories"] = categories
+                                }
+                                "drop_table" -> {
+                                    val table = string()
+                                    require(dropTables == null || table.isBlank() || dropTables.get("${table}_drop_table") != null) { "Drop table '$table' not found for npc $stringId" }
+                                    extras[key] = table
+                                }
+                                "combat_anims" -> {
+                                    val name = string()
+                                    if (animationDefinitions != null && name.isNotBlank()) {
+                                        // Attack isn't always required because of weapon style
+                                        require(animationDefinitions.contains("${name}_defend")) { "No combat animation ${name}_defend found for npc $stringId" }
+                                        require(animationDefinitions.contains("${name}_death")) { "No combat animation ${name}_death found for npc $stringId" }
+                                    }
+                                    extras[key] = name
+                                }
+                                "combat_sounds" -> {
+                                    val name = string()
+                                    if (soundDefinitions != null && name.isNotBlank()) {
+                                        require(soundDefinitions.contains("${name}_attack") || soundDefinitions.contains("${name}_defend") || soundDefinitions.contains("${name}_death")) { "No combat sounds '${name}' found for npc $stringId" }
+                                    }
+                                    extras[key] = name
                                 }
                                 else -> extras[key] = value()
                             }

@@ -8,7 +8,10 @@ max_hit_melee = 20
 style = "crush"
 slayer_xp = 15.0
 respawn_delay = 15
-categories = ["icefiend", "icefiends"]
+drop_table = "icefiend"
+combat_anims = "icefiend"
+combat_sounds = "icefiend"
+categories = ["icefiends"]
 examine = "A small ice demon."
 
 [icefiend_godwars]
@@ -22,7 +25,10 @@ style = "crush"
 slayer_xp = 20.0
 respawn_delay = 25
 hunt_mode = "cowardly"
-categories = ["icefiend", "icefiends"]
+drop_table = "icefiend"
+combat_anims = "icefiend"
+combat_sounds = "icefiend"
+categories = ["icefiends"]
 examine = "A small ice demon."
 
 [icefiend_melting]
@@ -32,5 +38,8 @@ id = 7715
 id = 9066
 respawn_delay = 30
 wander_radius = 4
-categories = ["icefiend"]
+drop_table = "icefiend"
+combat_anims = "icefiend"
+combat_sounds = "icefiend"
+categories = ["icefiends"]
 examine = "A robust ice demon."

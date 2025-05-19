@@ -13,7 +13,9 @@ wander_radius = 6
 attack_radius = 8
 slayer_xp = 40.0
 hunt_mode = "cowardly"
-categories = ["catablepon", "catablepons"]
+drop_table = "catablepon"
+combat_anims = "catablepon"
+categories = ["catablepons"]
 examine = "Big... Cow-like... But cows don't have serpent tails!"
 
 [catablepon_mid]

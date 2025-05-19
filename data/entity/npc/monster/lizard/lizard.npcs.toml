@@ -12,7 +12,10 @@ attack_radius = 11
 wander_radius = 9
 immune_death = true
 hunt_mode = "cowardly"
-categories = ["lizard", "lizards"]
+drop_table = "lizard"
+combat_anims = "lizard"
+combat_sounds = "lizard"
+categories = ["lizards"]
 examine = "Run away, it's massive!"
 
 [small_lizard_green]
@@ -28,7 +31,10 @@ respawn_delay = 50
 attack_radius = 11
 wander_radius = 9
 immune_death = true
-categories = ["small_lizard", "lizard", "lizards"]
+drop_table = "small_lizard"
+combat_anims = "lizard"
+combat_sounds = "lizard"
+categories = ["lizards"]
 examine = "A small cold-blooded creature, partial to warmth."
 
 [small_lizard_orange]
@@ -49,7 +55,10 @@ attack_radius = 11
 wander_radius = 9
 immune_death = true
 hunt_mode = "cowardly"
-categories = ["small_lizard", "lizard", "lizards"]
+drop_table = "small_lizard"
+combat_anims = "lizard"
+combat_sounds = "lizard"
+categories = ["lizards"]
 examine = "A cold-blooded creature, partial to warmth."
 
 [desert_lizard_yellow]

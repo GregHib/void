@@ -6,3 +6,12 @@ id = 5328
 
 [giant_spider_death]
 id = 5329
+
+[spider_attack]
+id = 6249
+
+[spider_defend]
+id = 6250
+
+[spider_death]
+id = 6251
