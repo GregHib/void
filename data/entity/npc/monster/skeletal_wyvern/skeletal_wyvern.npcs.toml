@@ -15,6 +15,6 @@ style = "slash"
 wander_radius = 5
 attack_radius = 5
 respawn_delay = 15
-categories = ["skeletal_wyvern"]
+categories = ["skeletal_wyverns"]
 slayer_xp = 210.0
 examine = "A very dangerous pile of animated wyvern bones."

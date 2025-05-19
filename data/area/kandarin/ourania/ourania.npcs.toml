@@ -13,6 +13,6 @@ attack_radius = 11
 wander_radius = 5
 max_hit_melee = 50
 hunt_mode = "aggressive"
-drop_table = "empty"
 respawn_delay = 50
+combat_anims = "gecko"
 examine = "A cave dweller."

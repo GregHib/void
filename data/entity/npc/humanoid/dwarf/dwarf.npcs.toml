@@ -57,7 +57,10 @@ respawn_delay = 25
 slayer_xp = 16.0
 wander_radius = 10
 attack_radius = 16
-categories = ["dwarf", "dwarves"]
+drop_table = "dwarf"
+combat_anims = "dwarf"
+combat_sounds = "dwarf"
+categories = ["dwarves"]
 examine = "Loves mining."
 
 [dwarf_hammer]
@@ -74,7 +77,10 @@ respawn_delay = 25
 slayer_xp = 26.0
 wander_radius = 10
 attack_radius = 16
-categories = ["dwarf", "dwarves"]
+drop_table = "dwarf"
+combat_anims = "dwarf"
+combat_sounds = "dwarf"
+categories = ["dwarves"]
 examine = "Loves mining, mountains and mining mountains."
 
 [dwarf_mining_guild]
@@ -91,7 +97,10 @@ respawn_delay = 25
 slayer_xp = 16.0
 wander_radius = 10
 attack_radius = 16
-categories = ["dwarf", "dwarves"]
+drop_table = "dwarf"
+combat_anims = "dwarf"
+combat_sounds = "dwarf"
+categories = ["dwarves"]
 examine = "Loves mining."
 
 [dwarf_mining_guild_hammer]
@@ -146,4 +155,7 @@ respawn_delay = 50
 slayer_xp = 10.0
 wander_radius = 10
 attack_radius = 16
-categories = ["dwarf", "dwarves"]
+drop_table = "dwarf"
+combat_anims = "dwarf"
+combat_sounds = "dwarf"
+categories = ["dwarves"]

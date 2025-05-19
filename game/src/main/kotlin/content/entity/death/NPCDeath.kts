@@ -2,11 +2,8 @@ package content.entity.death
 
 import com.github.michaelbull.logging.InlineLogger
 import content.area.wilderness.inMultiCombat
-import content.entity.combat.attackers
-import content.entity.combat.damageDealers
-import content.entity.combat.dead
-import content.entity.combat.killer
-import net.pearx.kasechange.toSnakeCase
+import content.entity.combat.*
+import content.entity.npc.combat.NPCAttack
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
@@ -53,14 +50,13 @@ npcDeath { npc ->
         val killer = npc.killer
         val tile = npc.tile
         npc["death_tile"] = tile
-        npc.anim(deathAnimation(npc))
-        val name = npc.def.name.toSnakeCase()
-        (killer as? Player)?.sound(deathSound(npc))
+        npc.anim(NPCAttack.anim(animationDefinitions, npc, "death"))
+        (killer as? Player)?.sound(NPCAttack.sound(soundDefinitions, npc, "death"))
         delay(4)
         if (killer is Player) {
             slay(killer, npc)
         }
-        dropLoot(npc, killer, name, tile)
+        dropLoot(npc, killer, tile)
         npc.attackers.clear()
         npc.softTimers.stopAll()
         npc.hide = true
@@ -84,56 +80,8 @@ npcDeath { npc ->
     }
 }
 
-fun deathAnimation(npc: NPC): String {
-    var animation = "${npc.id}_death"
-    if (animationDefinitions.contains(animation)) {
-        return animation
-    }
-    if (npc.def.contains("death_anim")) {
-        animation = npc.def["death_anim", ""]
-        if (animationDefinitions.contains(animation)) {
-            return animation
-        }
-    }
-    for (category in npc.categories) {
-        animation = "${category}_death"
-        if (animationDefinitions.contains(animation)) {
-            return animation
-        }
-    }
-    return ""
-}
-
-
-fun deathSound(npc: NPC): String {
-    var sound: String
-    sound = "${npc.id}_death"
-    if (soundDefinitions.contains(sound)) {
-        return sound
-    }
-    for (category in npc.categories) {
-        sound = "${category}_death"
-        if (soundDefinitions.contains(sound)) {
-            return sound
-        }
-    }
-    return ""
-}
-
-fun dropLoot(npc: NPC, killer: Character?, name: String, tile: Tile) {
-    var table = tables.get("${npc.def["drop_table", npc.id]}_drop_table")
-    if (table == null) {
-        table = tables.get("${name}_drop_table")
-    }
-    for (category in npc.categories) {
-        table = tables.get("${category}_drop_table")
-        if (table != null) {
-            break
-        }
-    }
-    if (table == null) {
-        return
-    }
+fun dropLoot(npc: NPC, killer: Character?, tile: Tile) {
+    val table = tables.get("${npc.def["drop_table", npc.id]}_drop_table") ?: return
     val combatLevel = if (killer is Player) killer.combatLevel else if (killer is NPC) killer.def.combat else -1
     val drops = table.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1, player = killer as? Player)
         .filterNot { it.id == "nothing" }

@@ -11,6 +11,8 @@ max_hit_melee = 40
 respawn_delay = 30
 wander_radius = 4
 slayer_xp = 35
+combat_anims = "hill_giant"
+combat_sounds = "hill_giant"
 categories = ["hill_giants"]
 examine = "A very large foe."
 

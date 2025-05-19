@@ -10,7 +10,9 @@ slayer_xp = 8.0
 wander_radius = 8
 attack_radius = 14
 respawn_delay = 35
-categories = ["bat", "bats"]
+drop_table = "bat"
+combat_anims = "bat"
+categories = ["bats"]
 examine = "An annoying flappy thing."
 
 [giant_bat]
@@ -26,7 +28,10 @@ slayer_xp = 32.0
 wander_radius = 8
 attack_radius = 14
 respawn_delay = 35
-categories = ["bat", "bats"]
+drop_table = "bat"
+combat_anims = "bat"
+combat_sounds = "bat"
+categories = ["bats"]
 examine = "An annoying flappy thing."
 
 [giant_bat_brine_cavern]

@@ -13,7 +13,9 @@ combat_type = "magic"
 hit_splat = "melee"
 attack_sound = "nothing"
 hunt_mode = "cowardly"
-categories = ["banshee", "banshees", "undead"]
+combat_anims = "banshee"
+combat_sounds = "banshee"
+categories = ["banshees", "undead"]
 examine = "A tortured screaming soul."
 
 [mighty_banshee]
@@ -31,5 +33,8 @@ combat_type = "magic"
 hit_splat = "melee"
 attack_sound = "nothing"
 hunt_mode = "cowardly"
-categories = ["banshee", "banshees", "undead"]
+drop_table = "banshee"
+combat_anims = "banshee"
+combat_sounds = "banshee"
+categories = ["banshees", "undead"]
 examine = "Not the best of vocalists."

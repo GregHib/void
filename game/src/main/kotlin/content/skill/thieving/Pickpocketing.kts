@@ -60,7 +60,7 @@ npcApproach("Pickpocket") {
     } else {
         target.face(player)
         target.say(pocket.caughtMessage)
-        target.anim(NPCAttack.animation(target, animationDefinitions))
+        target.anim(NPCAttack.anim(animationDefinitions, target, "defend"))
         player.message("You fail to pick the ${name}'s pocket.", ChatType.Filter)
         target.stun(player, pocket.stunTicks, pocket.stunHit)
         delay(2)

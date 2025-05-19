@@ -9,7 +9,8 @@ attack_radius = 11
 style = "magic"
 max_hit_magic = 30
 slayer_xp = 13.8
-categories = ["skeleton", "undead", "skeletons"]
+combat_anims = "skeleton"
+categories = ["skeletons", "undead"]
 examine = "It rattles when it moves."
 
 [skeleton_mace_shield]
@@ -25,7 +26,8 @@ hunt_mode = "aggressive_intolerant"
 style = "slash"
 height = 30
 respawn_delay = 60
-categories = ["skeleton", "undead", "skeletons"]
+combat_anims = "skeleton"
+categories = ["skeletons", "undead"]
 slayer_xp = 17.0
 examine = "Could do with gaining a few pounds."
 
@@ -55,7 +57,8 @@ style = "crush"
 height = 30
 respawn_delay = 70
 slayer_xp = 29.0
-categories = ["skeleton", "undead", "skeletons"]
+combat_anims = "skeleton"
+categories = ["skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
 
 [skeleton_shield_helmet]
@@ -91,7 +94,8 @@ hunt_mode = "aggressive"
 style = "slash"
 height = 30
 respawn_delay = 60
-categories = ["skeleton", "undead", "skeletons"]
+combat_anims = "skeleton"
+categories = ["skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
 
 [skeleton_sword_shield_85]
@@ -111,7 +115,8 @@ slayer_xp = 70.0
 attack_radius = 11
 wander_radius = 9
 hunt_mode = "cowardly"
-categories = ["skeleton", "skeletons", "undead"]
+combat_anims = "skeleton"
+categories = ["skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
 
 [stronghold_skeleton_helmet]
@@ -128,7 +133,7 @@ slayer_xp = 70.0
 attack_radius = 11
 wander_radius = 9
 hunt_mode = "cowardly"
-categories = ["skeleton", "skeletons", "undead"]
+categories = ["skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
 
 [skeleton_hammer_shield]

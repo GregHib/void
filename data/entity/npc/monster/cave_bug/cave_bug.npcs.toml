@@ -11,7 +11,9 @@ respawn_delay = 35
 attack_radius = 26
 wander_radius = 20
 hunt_mode = "cowardly"
-categories = ["cave_bug", "cave_bugs"]
+combat_anims = "cave_bug"
+combat_sounds = "cave_bug"
+categories = ["cave_bugs"]
 examine = "A nasty crawling critter."
 
 [cave_bug_green]
@@ -26,5 +28,7 @@ slayer_xp = 93.0
 respawn_delay = 15
 attack_radius = 26
 wander_radius = 20
-categories = ["cave_bug", "cave_bugs"]
+combat_anims = "cave_bug"
+combat_sounds = "cave_bug"
+categories = ["cave_bugs"]
 examine = "A big, smelly cave dweller."

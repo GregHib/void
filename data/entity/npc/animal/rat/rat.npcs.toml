@@ -8,7 +8,10 @@ slayer_xp = 2.0
 max_hit_melee = 1
 style = "crush"
 respawn_delay = 1
-categories = ["rat", "rats"]
+categories = ["rats"]
+drop_table = "rat"
+combat_anims = "rat"
+combat_sounds = "rat"
 height = 5
 examine = "A popular dwarven delicacy."
 
@@ -23,13 +26,17 @@ max_hit_melee = 1
 respawn_delay = 30
 style = "crush"
 height = 5
-categories = ["rat", "rats"]
+combat_anims = "rat"
+combat_sounds = "rat"
+categories = ["rats"]
+drop_table = "rat"
 examine = "A popular dwarven delicacy."
 
 [stronghold_rat_2]
 id = 4396
-categories = ["stronghold_rat"]
+categories = ["rats"]
 clone = "stronghold_rat"
+drop_table = "stronghold_rat"
 
 [stronghold_giant_rat]
 id = 4944
@@ -43,17 +50,20 @@ slayer_xp = 5.0
 max_hit_melee = 10
 respawn_delay = 30
 style = "stab"
-categories = ["stronghold_rat", "rat", "rats"]
+combat_anims = "giant_rat"
+combat_sounds = "rat"
+categories = ["rats"]
+drop_table = "stronghold_rat"
 examine = "Overgrown vermin."
 
 [stronghold_giant_rat_2]
 id = 4945
-categories = ["stronghold_rat"]
+categories = ["rats"]
 clone = "stronghold_giant_rat"
 
 [stronghold_giant_rat_3]
 id = 4395
-categories = ["stronghold_rat"]
+categories = ["rats"]
 clone = "stronghold_giant_rat"
 
 [giant_rat]
@@ -68,7 +78,10 @@ max_hit_melee = 10
 style = "stab"
 respawn_delay = 30
 examine = "Overgrown vermin."
-categories = ["giant_rat", "rats"]
+drop_table = "giant_rat"
+combat_anims = "giant_rat"
+combat_sounds = "rat"
+categories = ["giant_rats", "rats"]
 
 [giant_rat_dark]
 clone = "giant_rat"

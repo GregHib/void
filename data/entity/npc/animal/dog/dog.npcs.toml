@@ -11,7 +11,10 @@ respawn_delay = 50
 attack_radius = 8
 wander_radius = 6
 hunt_mode = "cowardly"
-categories = ["dog", "dogs"]
+drop_table = "dog"
+combat_anims = "jackal"
+combat_sounds = "dog"
+categories = ["dogs"]
 examine = "He has had his day."
 
 [guard_dog]
@@ -27,7 +30,10 @@ respawn_delay = 25
 attack_radius = 8
 wander_radius = 6
 hunt_mode = "cowardly"
-categories = ["medium_dog", "dogs"]
+drop_table = "dog"
+combat_anims = "medium_dog"
+combat_sounds = "dog"
+categories = ["dogs"]
 examine = "He doesn't seem pleased to see me."
 
 [wild_dog]
@@ -43,5 +49,8 @@ respawn_delay = 50
 attack_radius = 8
 wander_radius = 6
 hunt_mode = "cowardly"
-categories = ["medium_dog", "dogs"]
+drop_table = "dog"
+combat_anims = "medium_dog"
+combat_sounds = "dog"
+categories = ["dogs"]
 examine = "Looks like it's got Rabies!"

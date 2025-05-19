@@ -12,7 +12,10 @@ respawn_delay = 15
 attack_radius = 11
 wander_radius = 9
 hunt_mode = "cowardly"
-categories = ["cave_crawler", "cave_crawlers"]
+drop_table = "cave_crawler"
+combat_anims = "cave_crawler"
+combat_sounds = "cave_crawler"
+categories = ["cave_crawlers"]
 examine = "A spiky crawling critter."
 
 [cave_crawler_red]
@@ -41,5 +44,7 @@ respawn_delay = 15
 attack_radius = 11
 wander_radius = 9
 hunt_mode = "cowardly"
-categories = ["cave_crawler", "cave_crawlers"]
+combat_anims = "cave_crawler"
+combat_sounds = "cave_crawler"
+categories = ["cave_crawlers"]
 examine = "Not very tasty-looking."

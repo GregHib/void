@@ -11,6 +11,6 @@ attack_radius = 5
 hunt_mode = "cowardly"
 style = "slash"
 respawn_delay = 30
-categories = ["ice_warrior"]
+categories = ["ice_warriors"]
 slayer_xp = 59.0
 examine = "A cold-hearted elemental warrior."

@@ -13,6 +13,6 @@ attack_radius = 5
 hunt_mode = "cowardly"
 style = "slash"
 respawn_delay = 30
-categories = ["ice_giant"]
+categories = ["ice_giants"]
 slayer_xp = 70.0
 examine = "He's got icicles in his beard."
