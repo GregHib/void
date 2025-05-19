@@ -1,0 +1,49 @@
+package content.area.karamja.brimhaven
+
+import content.entity.combat.CombatSwing
+import content.entity.combat.hit.hit
+import content.entity.combat.npcCombatSwing
+import content.entity.proj.shoot
+import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.random
+
+val handler: suspend CombatSwing.(NPC) -> Unit = { npc ->
+    val withinMelee = CharacterTargetStrategy(npc).reached(target)
+    if (withinMelee && random.nextBoolean()) {
+        // 🗡️ Melee attack
+        npc.anim("dragon_attack")
+        npc.hit(target, type = "melee")
+        target.sound("dragon_attack")
+    } else if (withinMelee) {
+        // 🔥 Close-range dragonfire (mouth blast)
+        npc.anim("dragon_breath")
+        npc.gfx("dragon_breath_shoot")
+        target.sound("dragon_breath")
+        npc.hit(target, type = "dragonfire", special = true)
+    } else {
+        // 🔥 Ranged dragonfire (fireball)
+        npc.anim("dragon_shoot")
+        nearestTile(npc, target).shoot("dragon_breath", target)
+        npc.hit(target, type = "dragonfire")
+    }
+}
+npcCombatSwing("bronze_dragon", handler = handler)
+npcCombatSwing("iron_dragon", handler = handler)
+npcCombatSwing("steel_dragon", handler = handler)
+
+
+
+/**
+ * Tile the dragon breath originates from.
+ * Mimics OSRS fire pathing logic.
+ */
+fun nearestTile(source: Character, target: Character): Tile {
+    val half = source.size / 2
+    val centre = source.tile.add(half, half)
+    val direction = target.tile.delta(centre).toDirection()
+    return centre.add(direction).add(direction)
+}
