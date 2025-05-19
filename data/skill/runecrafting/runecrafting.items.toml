@@ -168,6 +168,7 @@ price = 16
 limit = 1000
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 examine = "Makes me feel like a Princess."
 kept = "Wilderness"
 
@@ -180,6 +181,7 @@ price = 3
 limit = 100
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 examine = "A tiara infused with the properties of air."
 kept = "Wilderness"
 
@@ -192,6 +194,7 @@ price = 14
 limit = 100
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 examine = "A tiara infused with the properties of the mind."
 kept = "Wilderness"
 
@@ -204,6 +207,7 @@ price = 2481
 limit = 100
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 examine = "A tiara infused with the properties of water."
 kept = "Wilderness"
 
@@ -216,6 +220,7 @@ price = 3
 limit = 100
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 examine = "A tiara infused with the properties of the body."
 kept = "Wilderness"
 
@@ -228,6 +233,7 @@ price = 4
 limit = 100
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 examine = "A tiara infused with the properties of the earth."
 kept = "Wilderness"
 
@@ -240,6 +246,7 @@ price = 10
 limit = 100
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 examine = "A tiara infused with the properties of fire."
 kept = "Wilderness"
 
@@ -252,6 +259,7 @@ price = 4
 limit = 100
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 examine = "A tiara infused with the properties of the cosmos."
 
 [cosmic_tiara_noted]
@@ -263,6 +271,7 @@ price = 8
 limit = 100
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 examine = "A tiara infused with the properties of nature."
 
 [nature_tiara_noted]
@@ -274,6 +283,7 @@ price = 5
 limit = 100
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 examine = "A tiara infused with the properties of chaos."
 
 [chaos_tiara_noted]
@@ -285,6 +295,7 @@ price = 3
 limit = 100
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 examine = "A tiara infused with the properties of law."
 
 [law_tiara_noted]
@@ -296,6 +307,7 @@ price = 213
 limit = 100
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 examine = "A tiara infused with the properties of death."
 
 [death_tiara_noted]
@@ -307,6 +319,7 @@ price = 11900
 limit = 100
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 examine = "A tiara infused with the properties of blood."
 
 [blood_tiara_noted]
@@ -316,6 +329,7 @@ id = 5550
 id = 5551
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 examine = "A tiara infused with the properties of the soul."
 
 [soul_tiara_noted]

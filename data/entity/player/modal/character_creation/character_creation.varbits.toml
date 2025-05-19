@@ -2,14 +2,7 @@
 id = 6501
 format = "map"
 default = "skin"
-values = {
-  skin = 0,
-  hair = 1,
-  beard = 2,
-  top = 3,
-  legs = 6,
-  shoes = 7,
-}
+values = { skin = 0, hair = 1, beard = 2, top = 3, legs = 6, shoes = 7 }
 
 [character_creation_style]
 id = 8089

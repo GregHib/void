@@ -1,6 +1,8 @@
 spawns = [
-# 11569
-  { id = "shopkeeper_musa_point", x = 2902, y = 3146 },
-  { id = "shop_assistant_musa_point", x = 2902, y = 3150 },
-  { id = "bartender_zambo", x = 2926, y = 3145 },
+    # 11569
+    { id = "shopkeeper_musa_point", x = 2902, y = 3146 },
+    { id = "shop_assistant_musa_point", x = 2902, y = 3150 },
+    { id = "bartender_zambo", x = 2926, y = 3145 },
+    { id = "snake", x = 2881, y = 3157 },
+    { id = "snake", x = 2889, y = 3146 },
 ]

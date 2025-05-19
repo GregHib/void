@@ -50,6 +50,7 @@ price = 845
 limit = 100
 weight = 0.005
 slot = "Hat"
+type = "HairLow"
 examine = "A Fez hat. Juss like that."
 
 [fez_noted]

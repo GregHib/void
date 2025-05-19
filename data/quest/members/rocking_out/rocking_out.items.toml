@@ -61,6 +61,7 @@ id = 13299
 tradeable = false
 weight = 0.2
 slot = "Hat"
+type = "HairLow"
 destroy = "If you drop this hat you will need to kill another Customs officer for a replacement."
 examine = "The hat of a Customs Officer's uniform."
 kept = "Vanish"

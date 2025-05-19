@@ -269,6 +269,7 @@ price = 216100
 limit = 2
 weight = 0.056
 slot = "Hat"
+type = "HairLow"
 examine = "The crown of royalty!"
 
 [royal_crown_noted]

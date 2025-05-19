@@ -2514,7 +2514,7 @@ req_combat = "You will need to defeat a level 33 enemy and level 23 enemy."
 points = 1
 reward = "The blessed wolfbane dagger<br>5 kudos from Historian Minas at the Varrock Museum"
 
-[prince_ali_resuce]
+[prince_ali_rescue]
 id = 10
 name = "Prince Ali Rescue"
 difficulty = 0

@@ -39,6 +39,7 @@ class InstructionHandlers(
     private val interactInterfaceItem = InterfaceOnInterfaceOptionHandler(handler)
     private val interactInterfaceFloorItem = InterfaceOnFloorItemOptionHandler(items, handler)
     private val executeCommand = ExecuteCommandHandler()
+    private val songEndHandler = SongEndHandler()
     var finishRegionLoad: FinishRegionLoad.(Player) -> Unit = empty()
     var changeDisplayMode: ChangeDisplayMode.(Player) -> Unit = empty()
     var walk: Walk.(Player) -> Unit = empty()
@@ -47,6 +48,7 @@ class InstructionHandlers(
     var examineNPC: ExamineNpc.(Player) -> Unit = empty()
     var examineObject: ExamineObject.(Player) -> Unit = empty()
     var enterString: EnterString.(Player) -> Unit = empty()
+    var enterName: EnterName.(Player) -> Unit = empty()
     var enterInt: EnterInt.(Player) -> Unit = empty()
     var friendAddHandler: FriendAdd.(Player) -> Unit = empty()
     var friendDeleteHandler: FriendDelete.(Player) -> Unit = empty()
@@ -93,6 +95,7 @@ class InstructionHandlers(
             is FinishRegionLoad -> finishRegionLoad.invoke(instruction, player)
             is ExecuteCommand -> executeCommand.validate(player, instruction)
             is EnterString -> enterString.invoke(instruction, player)
+            is EnterName -> enterName.invoke(instruction, player)
             is EnterInt -> enterInt.invoke(instruction, player)
             is FriendAdd -> friendAddHandler.invoke(instruction, player)
             is FriendDelete -> friendDeleteHandler.invoke(instruction, player)
@@ -106,6 +109,7 @@ class InstructionHandlers(
             is ChatTypeChange -> chatTypeChangeHandler.invoke(instruction, player)
             is ClanChatKick -> clanChatKickHandler.invoke(instruction, player)
             is ClanChatRank -> clanChatRankHandler.invoke(instruction, player)
+            is SongEnd -> songEndHandler.validate(player, instruction)
         }
     }
 }
@@ -122,6 +126,7 @@ inline fun <reified I : Instruction> instruction(noinline handler: I.(Player) ->
         ExamineNpc::class -> get<InstructionHandlers>().examineNPC = handler as ExamineNpc.(Player) -> Unit
         ExamineObject::class -> get<InstructionHandlers>().examineObject = handler as ExamineObject.(Player) -> Unit
         EnterString::class -> get<InstructionHandlers>().enterString = handler as EnterString.(Player) -> Unit
+        EnterName::class -> get<InstructionHandlers>().enterName = handler as EnterName.(Player) -> Unit
         EnterInt::class -> get<InstructionHandlers>().enterInt = handler as EnterInt.(Player) -> Unit
         FriendAdd::class -> get<InstructionHandlers>().friendAddHandler = handler as FriendAdd.(Player) -> Unit
         FriendDelete::class -> get<InstructionHandlers>().friendDeleteHandler = handler as FriendDelete.(Player) -> Unit

@@ -74,6 +74,9 @@ objectOperate("Mine") {
         } else if (remaining > 0) {
             pause(delay)
         }
+        if (!objects.contains(target)) {
+            break
+        }
         if (rock.gems) {
             val glory = player.equipped(EquipSlot.Amulet).id.startsWith("amulet_of_glory_")
             if (success(player.levels.get(Skill.Mining), if (glory) 3..3 else 1..1)) {

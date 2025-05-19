@@ -17,6 +17,9 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.VisualMask.APPEARANCE_MASK
 import content.entity.player.equip.EquipBonuses.names
 import content.entity.player.inv.InventoryOption
+import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.inv.inventoryChanged
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -35,11 +38,14 @@ inventoryChanged("worn_equipment") { player ->
 }
 
 interfaceOpen("equipment_bonuses") { player ->
-    player.interfaces.sendVisibility("equipment_bonuses", "close", !player["equipment_banking", false])
+    player.interfaces.sendVisibility("equipment_bonuses", "close", !player["equipment_bank_button", false])
     updateEmote(player)
     player.open("equipment_side")
     player.interfaceOptions.unlockAll("equipment_bonuses", "inventory", 0 until 16)
     updateStats(player)
+    player["bank_hidden"] = true
+    player.sendScript("bank_show_equip_screen")
+    player.tab(Tab.Inventory)
 }
 
 interfaceClose("equipment_bonuses") { player ->

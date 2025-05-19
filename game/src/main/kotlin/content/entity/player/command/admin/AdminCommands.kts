@@ -71,6 +71,9 @@ import content.entity.sound.sound
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.item.drop.TableType
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
+import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import java.util.concurrent.TimeUnit
 import kotlin.collections.set
@@ -100,6 +103,7 @@ adminCommand("tele (x) (y) [level]", "teleport to given coordinates or area name
                 "burthorpe" -> player.tele(2899, 3546, 0)
                 "falador" -> player.tele(2966, 3379, 0)
                 "barbarian_village", "barb_village" -> player.tele(3084, 3421, 0)
+                "al_kharid", "alkharid" -> player.tele(3293, 3183, 0)
                 else -> player.tele(areas[content])
             }
             parts.size == 1 -> player.tele(Region(int).tile.add(32, 32))
@@ -433,6 +437,8 @@ modCommand("pos", "print out players current coordinates", listOf("mypos")) {
     println(player.tile)
 }
 
+val itemDefinitions: ItemDefinitions by inject()
+
 adminCommand("reload (config-name)", "reload any type of content or file e.g. npcs, object defs, or settings") {
     val files = configFiles()
     when (content) {
@@ -444,6 +450,13 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
             val custom: GameObjects = get()
             defs.load(files.list(Settings["definitions.objects"]))
             loadObjectSpawns(custom, files.list(Settings["spawns.objects"]), defs)
+        }
+        "item defs", "items", "floor items" -> {
+            val items: FloorItems = get()
+            val itemSpawns: ItemSpawns = get()
+            items.clear()
+            itemDefinitions.load(files.list(Settings["definitions.items"]))
+            loadItemSpawns(items, itemSpawns, files.list(Settings["spawns.items"]), definitions)
         }
         "nav graph", "ai graph" -> get<NavigationGraph>().load(files.find(Settings["map.navGraph"]))
         "npcs" -> {

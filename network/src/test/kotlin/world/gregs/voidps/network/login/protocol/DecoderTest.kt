@@ -36,7 +36,7 @@ class DecoderTest {
         ChatTypeChange(123), // 31
         ClanChatJoin("clan chat"), // 50
         ClanChatKick("clan chat"), // 64
-        null, // 1
+        EnterString("a string"), // 1
         ClanChatRank("friend name", 123), // 74
         ExecuteCommand("item", "abyssal_whip 1"), // 53
         FriendDelete("friends_name"), // 6
@@ -103,14 +103,14 @@ class DecoderTest {
         null, // 28
         ChangeDisplayMode(12, 345, 678, 9), // 7
         null, // 76
-        EnterString("a string"), // 43
+        EnterName("a string"), // 43
         null, // 84
         null, // 71
         Walk(1234, 4321), // 35
         Walk(1234, 4321, minimap = true), // 82
         null, // 49
         null, // 8
-        null, // 52
+        SongEnd(12345), // 52
         WorldMapClick(tile = 12345), // 58
     ).mapIndexed { index, expected ->
         val (id, data) = packets[index]

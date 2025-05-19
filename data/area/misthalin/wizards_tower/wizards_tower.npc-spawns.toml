@@ -1,7 +1,8 @@
 spawns = [
-# 12337
-  { id = "traiborn", x = 3112, y = 3162, level = 1 },
-# 12437
-  { id = "sedridor", x = 3103, y = 9571 },
-  { id = "chicken", x = 3109, y = 9569 },
+    # 12337
+    { id = "traiborn", x = 3112, y = 3162, level = 1 },
+    { id = "lesser_demon", x = 3110, y = 3157, level = 2 },
+    # 12437
+    { id = "sedridor", x = 3103, y = 9571 },
+    { id = "chicken", x = 3109, y = 9569 },
 ]

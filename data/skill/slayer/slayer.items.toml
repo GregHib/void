@@ -447,6 +447,7 @@ price = 45300
 limit = 10
 weight = 0.907
 slot = "Hat"
+type = "HairMid"
 examine = "It has quite a streamlined look to it."
 
 [hexcrest_noted]
@@ -458,6 +459,7 @@ price = 333700
 limit = 10
 weight = 0.907
 slot = "Hat"
+type = "HairMid"
 examine = "It looks like it'll help my aim."
 
 [focus_sight_noted]

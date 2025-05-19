@@ -7,4 +7,6 @@ spawns = [
   { id = "hobgoblin_unarmed", x = 2818, y = 3291 },
   { id = "hobgoblin_unarmed", x = 2822, y = 3288 },
   { id = "hobgoblin_unarmed", x = 2822, y = 3282 },
+  # 11315
+  { id = "lesser_demon_3", x = 2837, y = 3280 },
 ]

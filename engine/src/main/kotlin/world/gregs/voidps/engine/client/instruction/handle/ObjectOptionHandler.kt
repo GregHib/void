@@ -36,7 +36,7 @@ class ObjectOptionHandler(
         val definition = getDefinition(player, definitions, target.def, target.def)
         val options = definition.options
         if (options == null) {
-            logger.warn { "Invalid object interaction $target $option" }
+            logger.warn { "Invalid object interaction $target $option ${definition.options.contentToString()}" }
             return
         }
         val index = option - 1
@@ -85,13 +85,13 @@ class ObjectOptionHandler(
             val varbit = def.varbit
             if (varbit != -1) {
                 val index = getVarbitIndex(player, varbit)
-                return definitions.get(transforms.getOrNull(index) ?: return definition)
+                return definitions.get(transforms.getOrNull(index.coerceAtMost(transforms.lastIndex)) ?: return definition)
             }
 
             val varp = def.varp
             if (varp != -1) {
-                val index = this.getVarpIndex(player, varp)
-                return definitions.get(transforms.getOrNull(index) ?: return definition)
+                val index = getVarpIndex(player, varp)
+                return definitions.get(transforms.getOrNull(index.coerceAtMost(transforms.lastIndex)) ?: return definition)
             }
             return definition
         }

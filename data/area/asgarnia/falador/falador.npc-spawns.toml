@@ -80,6 +80,7 @@ spawns = [
   { id = "duck_grey_swim", x = 3016, y = 3284 },
   { id = "musician_port_sarim", x = 3017, y = 3277, direction = "SOUTH" },
 # 12084
+  { id = "wyson_the_gardener", x = 3027, y = 3379 },
   { id = "banker_falador", x = 3010, y = 3353, direction = "NORTH" },
   { id = "banker_falador", x = 3011, y = 3353, direction = "NORTH" },
   { id = "banker_falador", x = 3012, y = 3353, direction = "NORTH" },

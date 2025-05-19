@@ -63,6 +63,7 @@ price = 4359
 limit = 100
 weight = 0.113
 slot = "Hat"
+type = "HairLow"
 examine = "A helmet made in the Elemental Workshop."
 
 [body_helmet_noted]

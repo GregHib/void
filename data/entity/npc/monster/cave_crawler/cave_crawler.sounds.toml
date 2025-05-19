@@ -4,5 +4,5 @@ id = 341
 [cave_crawler_death]
 id = 342
 
-[cave_crawler_hit]
+[cave_crawler_defend]
 id = 343

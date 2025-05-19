@@ -86,6 +86,7 @@ price = 154
 limit = 100
 weight = 0.113
 slot = "Hat"
+type = "HairLow"
 examine = "A helmet made in the Elemental Workshop."
 
 [elemental_helmet_noted]
@@ -108,6 +109,7 @@ price = 2106
 limit = 100
 weight = 0.113
 slot = "Hat"
+type = "HairLow"
 examine = "A helmet made in the Elemental Workshop."
 
 [mind_helmet_noted]

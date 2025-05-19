@@ -81,6 +81,7 @@ id = 13613
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
 examine = "Comes with goggles, for extra safety while Runecrafting."
 kept = "Vanish"
 
@@ -97,7 +98,7 @@ id = 13615
 tradeable = false
 weight = 0.453
 slot = "Hat"
-type = "Hair"
+type = "HairLow"
 examine = "Comes with goggles, for extra safety while Runecrafting."
 kept = "Reclaim"
 
@@ -106,7 +107,7 @@ id = 13616
 tradeable = false
 weight = 0.453
 slot = "Hat"
-type = "Hair"
+type = "HairLow"
 examine = "Comes with goggles, for extra safety while Runecrafting."
 kept = "Reclaim"
 
@@ -139,6 +140,7 @@ id = 13620
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
 examine = "Comes with goggles, for extra safety while Runecrafting."
 kept = "Reclaim"
 
@@ -147,6 +149,7 @@ id = 13621
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
 examine = "Comes with goggles, for extra safety while Runecrafting."
 kept = "Reclaim"
 
@@ -179,6 +182,7 @@ id = 13625
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
 examine = "Comes with goggles, for extra safety while Runecrafting."
 kept = "Reclaim"
 
@@ -187,6 +191,7 @@ id = 13626
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
 examine = "Comes with goggles, for extra safety while Runecrafting."
 kept = "Reclaim"
 
@@ -422,6 +427,7 @@ id = 13655
 tradeable = false
 weight = 1.0
 slot = "Hat"
+type = "HairMid"
 destroy = "You will have to speak to Wizard Elriss to get another omni-talisman."
 examine = "A tiara infused with the properties of all talismans."
 kept = "Vanish"
@@ -438,7 +444,7 @@ id = 13657
 tradeable = false
 weight = 0.453
 slot = "Hat"
-type = "Hair"
+type = "HairLow"
 examine = "Comes with goggles, for extra safety while Runecrafting."
 kept = "Reclaim"
 
@@ -447,5 +453,6 @@ id = 13658
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
 examine = "Comes with goggles, for extra safety while Runecrafting."
 kept = "Reclaim"

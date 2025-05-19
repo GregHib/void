@@ -293,6 +293,7 @@ price = 2960
 limit = 100
 weight = 0.453
 slot = "Hat"
+type = "HairLow"
 examine = "A silly pointed hat."
 
 [fremennik_hat_noted]

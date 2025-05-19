@@ -10,22 +10,21 @@ import content.quest.quest
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.player
 import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.obj.replace
 
 objectOperate("Operate", "hopper_controls") {
     if (player["flour_bin", 0] == 30) {
         player.message("The flour bin downstairs is full, I should empty it first.")
         return@objectOperate
     }
+    player.anim("pull_hopper_controls")
+    player.sound("lever")
+    delay()
+    target.replace("hopper_controls_pulled", ticks = 2)
     if (player["hopper_bin", 0] != 1) {
-        player.anim("pull_hopper_controls")
-        player.sound("lever")
-        target.anim("3572")// todo find right anim
         player.message("You operate the empty hopper. Nothing interesting happens.")
         return@objectOperate
     }
-    player.anim("pull_hopper_controls")
-    player.sound("lever")
-    target.anim("3568")// todo find right anim
     player["hopper_bin"] = 0
     player.inc("flour_bin")
     if (player["flour_bin", 0] == 30) {

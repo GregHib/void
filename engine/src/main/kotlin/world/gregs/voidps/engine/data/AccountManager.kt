@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.AreaExited
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrides
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.inv.equipment
@@ -39,7 +40,8 @@ class AccountManager(
     private val saveQueue: SaveQueue,
     private val connectionQueue: ConnectionQueue,
     private val players: Players,
-    private val areaDefinitions: AreaDefinitions
+    private val areaDefinitions: AreaDefinitions,
+    private val overrides: AppearanceOverrides,
 ) {
     private val validItems = ValidItemRestriction(itemDefinitions)
     private val homeTile: Tile
@@ -68,7 +70,7 @@ class AccountManager(
         player.steps.previous = player.tile.add(Direction.WEST.delta)
         player.experience.events = player
         player.levels.link(player, PlayerLevels(player.experience))
-        player.body.link(player.equipment)
+        player.body.link(player.equipment, overrides)
         player.body.updateAll()
         player.appearance.displayName = player.name
         if (player.contains("new_player")) {

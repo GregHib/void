@@ -26,7 +26,7 @@ inventoryItem("Withdraw", "gem_bag") {
     val diamonds = player["gem_bag_diamond", 0]
     val total = sapphires + emeralds + rubies + diamonds
     if (total == 0) {
-        player.message("There are no gems in your bag to withdraw.") // TODO proper message
+        player.message("Your gem bag is empty.")
         return@inventoryItem
     }
     val added = mutableMapOf<String, Int>()

@@ -175,6 +175,7 @@ id = 10836
 tradeable = false
 weight = 2.721
 slot = "Hat"
+type = "HairLow"
 destroy = "Are you sure? You can find another in King Sorvott's chest."
 examine = "A silly hat with bells."
 kept = "Vanish"

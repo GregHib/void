@@ -42,3 +42,16 @@ persist = true
 id = 4892
 format = "int"
 persist = true
+
+[bank_hidden]
+id = 8348
+format = "boolean"
+
+[bank_equipment_reset]
+id = 4893
+format = "boolean"
+default = true
+
+[bank_search_reset]
+id = 190
+format = "boolean"

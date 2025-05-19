@@ -218,6 +218,7 @@ id = 10549
 tradeable = false
 weight = 1.0
 slot = "Hat"
+type = "HairLow"
 examine = "A Penance runner hat."
 kept = "Reclaim"
 
@@ -226,6 +227,7 @@ id = 10550
 tradeable = false
 weight = 2.0
 slot = "Hat"
+type = "HairLow"
 examine = "A Penance ranger hat."
 kept = "Reclaim"
 
