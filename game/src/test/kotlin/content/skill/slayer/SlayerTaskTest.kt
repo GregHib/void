@@ -42,7 +42,7 @@ class SlayerTaskTest : WorldTest() {
         "crawling_hands" to "crawling_hand",
         "cave_bugs" to "cave_bug",
         "cave_crawlers" to "cave_crawler",
-        "cave_slime" to "cave_slime",
+        "cave_slimes" to "cave_slime",
     ).map { (task, id) ->
         dynamicTest("Complete a $task slayer task") {
             setRandom(object : FakeRandom() {
