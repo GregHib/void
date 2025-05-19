@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.inject
 import content.entity.combat.hit.hit
 import content.entity.combat.npcCombatSwing
 import content.entity.sound.sound
-import content.skill.slayer.categories
 
 val definitions: WeaponStyleDefinitions by inject()
 val animationDefinitions: AnimationDefinitions by inject()
@@ -24,7 +23,7 @@ npcCombatSwing { npc ->
         return@npcCombatSwing
     }
     npc.anim(attackAnimation(npc))
-    (target as? Player)?.sound(attackSound(npc))
+    (target as? Player)?.sound(NPCAttack.sound(soundDefinitions, npc, "attack"))
     npc.hit(target)
 }
 
@@ -43,29 +42,5 @@ fun attackAnimation(npc: NPC): String {
             return animation
         }
     }
-    return NPCAttack.animation(npc, animationDefinitions)
-}
-
-fun attackSound(npc: NPC): String {
-    var sound: String
-    if (npc.def.contains("attack_sound")) {
-        sound = npc.def["attack_sound"]
-        if (sound == "nothing") {
-            return ""
-        }
-        if (soundDefinitions.contains(sound)) {
-            return sound
-        }
-    }
-    sound = "${npc.id}_attack"
-    if (soundDefinitions.contains(sound)) {
-        return sound
-    }
-    for (category in npc.categories) {
-        sound = "${category}_attack"
-        if (soundDefinitions.contains(sound)) {
-            return sound
-        }
-    }
-    return ""
+    return NPCAttack.anim(animationDefinitions, npc, "attack")
 }

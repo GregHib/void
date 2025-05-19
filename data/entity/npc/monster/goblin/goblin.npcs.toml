@@ -10,7 +10,10 @@ respawn_delay = 35
 wander_radius = 10
 hitpoints = 120
 slayer_xp = 12.0
-categories = ["goblin", "goblins"]
+drop_table = "goblin"
+combat_anims = "goblin"
+combat_sounds = "goblin"
+categories = ["goblins"]
 height = 30
 large_head = true
 examine = "An ugly, orange creature."
@@ -51,8 +54,11 @@ style = "crush"
 master2 = "turael"
 master3 = "spria"
 respawn_delay = 35
+drop_table = "goblin"
+combat_anims = "goblin"
+combat_sounds = "goblin"
 examine = "An ugly, blue creature."
-categories = ["goblin"]
+categories = ["goblins"]
 height = 30
 
 [goblin_mohawk_grey]
@@ -196,7 +202,10 @@ wander_radius = 10
 attack_radius = 15
 slayer_xp = 5.0
 height = 30
-categories = ["stronghold_goblin", "goblin", "goblins"]
+drop_table = "stronghold_goblin"
+combat_anims = "goblin"
+combat_sounds = "goblin"
+categories = ["goblins"]
 examine = "An ugly green creature."
 
 [stronghold_of_security_goblin_helmet]
@@ -212,7 +221,10 @@ wander_radius = 10
 attack_radius = 15
 slayer_xp = 16.0
 height = 30
-categories = ["stronghold_goblin", "goblin", "goblins"]
+drop_table = "stronghold_goblin"
+combat_anims = "goblin"
+combat_sounds = "goblin"
+categories = ["goblins"]
 examine = "An ugly green creature."
 
 [stronghold_of_security_goblin_green_hat]
@@ -230,7 +242,10 @@ wander_radius = 10
 attack_radius = 15
 slayer_xp = 7.0
 height = 30
-categories = ["stronghold_goblin", "goblin", "goblins"]
+drop_table = "stronghold_goblin"
+combat_anims = "goblin"
+combat_sounds = "goblin"
+categories = ["goblins"]
 examine = "An ugly green creature."
 
 [stronghold_of_security_goblin_green_armed]
@@ -248,7 +263,10 @@ wander_radius = 10
 attack_radius = 15
 slayer_xp = 22.0
 height = 30
-categories = ["stronghold_goblin", "goblin", "goblins"]
+drop_table = "stronghold_goblin"
+combat_anims = "goblin"
+combat_sounds = "goblin"
+categories = ["goblins"]
 examine = "An ugly green creature."
 
 [stronghold_of_security_goblin_hat]
@@ -264,7 +282,10 @@ wander_radius = 10
 attack_radius = 15
 slayer_xp = 26.0
 height = 30
-categories = ["stronghold_goblin", "goblin", "goblins"]
+drop_table = "stronghold_goblin"
+combat_anims = "goblin"
+combat_sounds = "goblin"
+categories = ["goblins"]
 examine = "These goblins have grown strong."
 
 [stronghold_of_security_goblin_green_helmet]

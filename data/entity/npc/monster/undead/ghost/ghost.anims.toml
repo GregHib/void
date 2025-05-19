@@ -7,11 +7,11 @@ id = 5533
 [ghost_death]
 id = 5534
 
-[ghost_tendrill_attack]
+[ghost_tendril_attack]
 id = 5540
 
-[ghost_tendrill_defend]
+[ghost_tendril_defend]
 id = 5541
 
-[ghost_tendrill_death]
+[ghost_tendril_death]
 id = 5542

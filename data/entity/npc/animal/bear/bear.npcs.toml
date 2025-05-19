@@ -11,7 +11,10 @@ attack_radius = 10
 hunt_mode = "cowardly"
 style = "slash"
 respawn_delay = 50
-categories = ["bear", "bears"]
+drop_table = "bear"
+combat_anims = "bear"
+combat_sounds = "bear"
+categories = ["bears"]
 examine = "Eek! A bear!"
 
 [grizzly_bear_club]
@@ -24,12 +27,12 @@ slayer_xp = 35.0
 max_hit_melee = 40
 wander_radius = 8
 attack_radius = 10
-attack_anim = "bear_cub_attack"
-defend_anim = "bear_cub_defend"
-death_anim = "bear_cub_death"
+combat_anims = "bear_cub"
+combat_sounds = "bear"
 style = "slash"
 respawn_delay = 50
-categories = ["bear", "bears"]
+drop_table = "bear"
+categories = ["bears"]
 examine = "Eek! A bear cub!"
 
 [grizzly_bear_tirannwn]
@@ -45,7 +48,10 @@ attack_radius = 10
 hunt_mode = "cowardly"
 style = "slash"
 respawn_delay = 50
-categories = ["bear", "bears"]
+drop_table = "bear"
+combat_anims = "bear"
+combat_sounds = "bear"
+categories = ["bears"]
 examine = "Eek! A bear!"
 
 [grizzly_bear_club_tirannwn]
@@ -58,12 +64,12 @@ slayer_xp = 35.0
 max_hit_melee = 40
 wander_radius = 8
 attack_radius = 10
-attack_anim = "bear_cub_attack"
-defend_anim = "bear_cub_defend"
-death_anim = "bear_cub_death"
+combat_anims = "bear_cub"
+combat_sounds = "bear"
 style = "slash"
 respawn_delay = 50
-categories = ["bear", "bears"]
+drop_table = "bear"
+categories = ["bears"]
 examine = "Eek! A bear cub!"
 
 [black_bear]
@@ -78,7 +84,10 @@ wander_radius = 8
 attack_radius = 10
 style = "slash"
 respawn_delay = 50
-categories = ["bear", "bears"]
+drop_table = "bear"
+combat_anims = "bear"
+combat_sounds = "bear"
+categories = ["bears"]
 examine = "Eek! A bear!"
 
 [bear_cub]
@@ -91,12 +100,12 @@ slayer_xp = 20.0
 max_hit_melee = 20
 wander_radius = 8
 attack_radius = 10
-attack_anim = "bear_cub_attack"
-defend_anim = "bear_cub_defend"
-death_anim = "bear_cub_death"
+combat_anims = "bear_cub"
+combat_sounds = "bear"
 style = "slash"
 respawn_delay = 50
-categories = ["bear", "bears"]
+drop_table = "bear"
+categories = ["bears"]
 examine = "	Cute. But deadly."
 
 [bear_cub_black]

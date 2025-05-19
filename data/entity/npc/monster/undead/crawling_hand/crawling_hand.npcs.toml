@@ -10,7 +10,10 @@ slayer_xp = 16.0
 respawn_delay = 15
 attack_radius = 15
 wander_radius = 13
-categories = ["crawling_hand", "crawling_hands", "undead"]
+drop_table = "crawling_hand"
+combat_anims = "crawling_hand"
+combat_sounds = "crawling_hand"
+categories = ["crawling_hands", "undead"]
 examine = "Gimme five. Actually, don't."
 
 [crawling_hand_black]
@@ -29,7 +32,10 @@ slayer_xp = 12.0
 respawn_delay = 15
 attack_radius = 15
 wander_radius = 13
-categories = ["crawling_hand", "crawling_hands", "undead"]
+drop_table = "crawling_hand"
+combat_anims = "crawling_hand"
+combat_sounds = "crawling_hand"
+categories = ["crawling_hands", "undead"]
 examine = "Gimme five. Actually, don't."
 
 [crawling_hand_ring]
@@ -52,10 +58,10 @@ slayer_xp = 19.0
 respawn_delay = 15
 attack_radius = 15
 wander_radius = 13
-attack_anim = "crawling_hand_large_attack"
-defend_anim = "crawling_hand_large_defend"
-death_anim = "crawling_hand_large_death"
-categories = ["crawling_hand", "crawling_hands", "undead"]
+combat_anims = "crawling_hand_large"
+combat_sounds = "crawling_hand"
+drop_table = "crawling_hand"
+categories = ["crawling_hands", "undead"]
 examine = "Now, that's handy."
 
 [crawling_hand_large_black]
@@ -75,10 +81,10 @@ slayer_xp = 15.0
 respawn_delay = 15
 attack_radius = 15
 wander_radius = 13
-attack_anim = "crawling_hand_large_attack"
-defend_anim = "crawling_hand_large_defend"
-death_anim = "crawling_hand_large_death"
-categories = ["crawling_hand", "crawling_hands", "undead"]
+combat_anims = "crawling_hand_large"
+combat_sounds = "crawling_hand"
+drop_table = "crawling_hand"
+categories = ["crawling_hands", "undead"]
 examine = "A big severed hand."
 
 [crawling_hand_large_ring]

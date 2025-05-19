@@ -13,7 +13,10 @@ attack_radius = 11
 slayer_xp = 25.0
 hunt_mode = "aggressive"
 hunt_range = 3
-categories = ["flesh_crawler", "flesh_crawlers"]
+drop_table = "flesh_crawler"
+combat_anims = "flesh_crawler"
+combat_sounds = "flesh_crawler"
+categories = ["flesh_crawlers"]
 examine = "I don't think insect repellent will work..."
 
 [flesh_crawler_2]

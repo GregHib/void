@@ -151,7 +151,7 @@ quest = "priest_in_peril"
 weight = 8
 tip = "Banshees use a piercing scream to shock their enemies, you'll need some Earmuffs to protect yourself from them."
 
-[cave_slime]
+[cave_slimes]
 min = 10
 max = 20
 slayer_level = 17

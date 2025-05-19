@@ -10,14 +10,10 @@ max_hit_melee = 10
 hitpoints = 70
 wander_radius = 4
 respawn_delay = 25
-pickpocket = {
-  stun_hit = 10,
-  stun_ticks = 8,
-  xp = 8.0,
-  chance_min = 180,
-  chance_max = 240,
-}
+pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
+drop_table = "human"
 style = "crush"
+combat_anims = "human"
 categories = ["human"]
 examine = "One of Gielinor's many citizens."
 
@@ -54,6 +50,7 @@ wander_radius = 5
 max_hit_melee = 50
 hunt_mode = "aggressive"
 drop_table = "monk_of_zamorak"
+combat_anims = "human"
 respawn_delay = 50
 examine = "An evil human cleric."
 
@@ -73,7 +70,8 @@ attack_radius = 11
 wander_radius = 5
 max_hit_melee = 75
 hunt_mode = "aggressive"
-drop_table = "renegade_knight_drop_table"
+drop_table = "human"
+combat_anims = "human"
 respawn_delay = 50
 examine = "He isn't very friendly."
 
@@ -93,10 +91,10 @@ attack_radius = 11
 wander_radius = 5
 max_hit_melee = 75
 hunt_mode = "aggressive"
-drop_table = "sir_mordred_drop_table"
+drop_table = "human"
+combat_anims = "human"
 respawn_delay = 50
 examine = "He isn't very friendly."
-
 
 [cook_lumbridge]
 id = 278
@@ -112,6 +110,7 @@ examine = "Head wizard of the Wizard's Tower."
 
 [barbarian_guard]
 id = 384
+drop_table = "human"
 categories = ["human"]
 wander_radius = 4
 examine = "Not very civilised looking."
@@ -128,6 +127,8 @@ wander_radius = 5
 attack_radius = 8
 hunt_mode = "aggressive"
 weapon_style = "sword"
+drop_table = "human"
+combat_anims = "human"
 categories = ["human"]
 examine = "A dusty old suit of armour."
 
@@ -644,6 +645,7 @@ respawn_delay = 75
 weapon_style = "2h"
 style = "crush"
 categories = ["human"]
+combat_anims = "human"
 examine = "A mighty warrior, Haakon is powerfully concerned for his tribe."
 
 [haakon_the_champion_cutscene]
@@ -775,6 +777,7 @@ hunt_mode = "aggressive"
 weapon_style = "sword"
 drop_table = "zamorak_warrior"
 categories = ["human"]
+combat_anims = "human"
 examine = "A warrior of Zamorak."
 
 [zamorak_warrior_square]
@@ -797,6 +800,7 @@ attack_range = 3
 attack_radius = 10
 wander_radius = 5
 categories = ["human"]
+combat_anims = "human"
 drop_table = "zamorak_mage"
 examine = "A mage of Zamorak."
 
@@ -821,6 +825,7 @@ categories = ["human"]
 style = "accurate"
 weapon_style = "bow"
 ammo = "mithril_arrow"
+combat_anims = "human"
 drop_table = "zamorak_ranger"
 height = 40
 examine = "A ranger of Zamorak."
@@ -850,6 +855,7 @@ attack_range = 1
 attack_radius = 11
 wander_radius = 5
 max_hit_melee = 20
+combat_anims = "human"
 drop_table = "zamorak_crafter"
 respawn_delay = 50
 examine = "A Z.M.I. runecrafter."
@@ -894,6 +900,7 @@ max_hit_magic = 60
 respawn_delay = 50
 hunt_mode = "cowardly"
 wander_radius = 4
+combat_anims = "human"
 categories = ["human"]
 examine = "He works evil magic."
 
@@ -910,6 +917,8 @@ str = 17
 def = 14
 mage = 22
 hitpoints = 240
+combat_anims = "human"
+categories = ["human"]
 drop_table = "dark_wizard_earth"
 examine = "A practicer of dark arts."
 
