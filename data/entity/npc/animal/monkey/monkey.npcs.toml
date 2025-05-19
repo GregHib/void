@@ -14,5 +14,5 @@ slayer_xp = 6.0
 drop_table = "monkey"
 combat_anims = "monkey"
 combat_sounds = "monkey"
-categories = ["monkey", "monkeys"]
+categories = ["monkeys"]
 examine = "Perhaps our oldest relatives?"

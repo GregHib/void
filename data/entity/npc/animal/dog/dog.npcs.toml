@@ -14,7 +14,7 @@ hunt_mode = "cowardly"
 drop_table = "dog"
 combat_anims = "jackal"
 combat_sounds = "dog"
-categories = ["dog", "dogs"]
+categories = ["dogs"]
 examine = "He has had his day."
 
 [guard_dog]
@@ -33,7 +33,7 @@ hunt_mode = "cowardly"
 drop_table = "dog"
 combat_anims = "medium_dog"
 combat_sounds = "dog"
-categories = ["medium_dog", "dogs"]
+categories = ["dogs"]
 examine = "He doesn't seem pleased to see me."
 
 [wild_dog]
@@ -52,5 +52,5 @@ hunt_mode = "cowardly"
 drop_table = "dog"
 combat_anims = "medium_dog"
 combat_sounds = "dog"
-categories = ["medium_dog", "dogs"]
+categories = ["dogs"]
 examine = "Looks like it's got Rabies!"

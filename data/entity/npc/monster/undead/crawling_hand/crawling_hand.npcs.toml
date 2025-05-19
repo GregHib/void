@@ -13,7 +13,7 @@ wander_radius = 13
 drop_table = "crawling_hand"
 combat_anims = "crawling_hand"
 combat_sounds = "crawling_hand"
-categories = ["crawling_hand", "crawling_hands", "undead"]
+categories = ["crawling_hands", "undead"]
 examine = "Gimme five. Actually, don't."
 
 [crawling_hand_black]
@@ -35,7 +35,7 @@ wander_radius = 13
 drop_table = "crawling_hand"
 combat_anims = "crawling_hand"
 combat_sounds = "crawling_hand"
-categories = ["crawling_hand", "crawling_hands", "undead"]
+categories = ["crawling_hands", "undead"]
 examine = "Gimme five. Actually, don't."
 
 [crawling_hand_ring]
@@ -61,7 +61,7 @@ wander_radius = 13
 combat_anims = "crawling_hand_large"
 combat_sounds = "crawling_hand"
 drop_table = "crawling_hand"
-categories = ["crawling_hand", "crawling_hands", "undead"]
+categories = ["crawling_hands", "undead"]
 examine = "Now, that's handy."
 
 [crawling_hand_large_black]
@@ -84,7 +84,7 @@ wander_radius = 13
 combat_anims = "crawling_hand_large"
 combat_sounds = "crawling_hand"
 drop_table = "crawling_hand"
-categories = ["crawling_hand", "crawling_hands", "undead"]
+categories = ["crawling_hands", "undead"]
 examine = "A big severed hand."
 
 [crawling_hand_large_ring]

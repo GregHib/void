@@ -13,7 +13,7 @@ attack_radius = 8
 drop_table = "minotaur"
 combat_anims = "minotaur"
 combat_sounds = "minotaur"
-categories = ["minotaur", "minotaurs"]
+categories = ["minotaurs"]
 examine = "He doesn't look very pleased to see you."
 
 [minotaur_strong]
@@ -31,5 +31,5 @@ attack_radius = 8
 drop_table = "minotaur"
 combat_anims = "minotaur"
 combat_sounds = "minotaur"
-categories = ["minotaur", "minotaurs"]
+categories = ["minotaurs"]
 examine = "He doesn't look very pleased to see you."

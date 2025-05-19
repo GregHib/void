@@ -11,7 +11,7 @@ respawn_delay = 45
 drop_table = "cow"
 combat_anims = "cow"
 combat_sounds = "cow"
-categories = ["cow", "cows"]
+categories = ["cows"]
 height = 30
 examine = "Converts grass to beef."
 
@@ -35,7 +35,7 @@ respawn_delay = 45
 drop_table = "cow"
 combat_anims = "cow"
 combat_sounds = "cow"
-categories = ["cow", "cows"]
+categories = ["cows"]
 height = 15
 examine = "Young, but still beefy."
 

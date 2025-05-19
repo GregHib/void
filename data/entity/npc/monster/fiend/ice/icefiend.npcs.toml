@@ -11,7 +11,7 @@ respawn_delay = 15
 drop_table = "icefiend"
 combat_anims = "icefiend"
 combat_sounds = "icefiend"
-categories = ["icefiend", "icefiends"]
+categories = ["icefiends"]
 examine = "A small ice demon."
 
 [icefiend_godwars]
@@ -28,7 +28,7 @@ hunt_mode = "cowardly"
 drop_table = "icefiend"
 combat_anims = "icefiend"
 combat_sounds = "icefiend"
-categories = ["icefiend", "icefiends"]
+categories = ["icefiends"]
 examine = "A small ice demon."
 
 [icefiend_melting]

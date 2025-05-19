@@ -60,7 +60,7 @@ attack_radius = 16
 drop_table = "dwarf"
 combat_anims = "dwarf"
 combat_sounds = "dwarf"
-categories = ["dwarf", "dwarves"]
+categories = ["dwarves"]
 examine = "Loves mining."
 
 [dwarf_hammer]
@@ -80,7 +80,7 @@ attack_radius = 16
 drop_table = "dwarf"
 combat_anims = "dwarf"
 combat_sounds = "dwarf"
-categories = ["dwarf", "dwarves"]
+categories = ["dwarves"]
 examine = "Loves mining, mountains and mining mountains."
 
 [dwarf_mining_guild]
@@ -100,7 +100,7 @@ attack_radius = 16
 drop_table = "dwarf"
 combat_anims = "dwarf"
 combat_sounds = "dwarf"
-categories = ["dwarf", "dwarves"]
+categories = ["dwarves"]
 examine = "Loves mining."
 
 [dwarf_mining_guild_hammer]
@@ -158,4 +158,4 @@ attack_radius = 16
 drop_table = "dwarf"
 combat_anims = "dwarf"
 combat_sounds = "dwarf"
-categories = ["dwarf", "dwarves"]
+categories = ["dwarves"]

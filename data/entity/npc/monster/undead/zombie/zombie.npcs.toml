@@ -16,7 +16,7 @@ respawn_delay = 35
 drop_table = "zombie"
 combat_anims = "zombie"
 combat_sounds = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "Dead man walking."
 
 [zombie_green_shorts]
@@ -87,7 +87,7 @@ respawn_delay = 35
 drop_table = "zombie_empty"
 combat_anims = "zombie"
 combat_sounds = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 
 [zombie_blue_skirt_sword]
 id = 74
@@ -118,7 +118,7 @@ respawn_delay = 35
 combat_anims = "zombie"
 combat_sounds = "zombie"
 drop_table = "zombie_armed"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 
 [zombie_green_shorts_sword]
 id = 75
@@ -219,7 +219,7 @@ respawn_delay = 35
 slayer_xp = 30.0
 wander_radius = 8
 attack_radius = 12
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "The walking dead."
 
 [zombie_entrana_armour]
@@ -256,7 +256,7 @@ hunt_mode = "cowardly"
 style = "slash"
 respawn_delay = 35
 drop_table = "zombie_melzars_maze"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "Dead man walking."
 
 [zombie_melzars_maze_strong]
@@ -284,7 +284,7 @@ respawn_delay = 35
 drop_table = "zombie"
 combat_anims = "zombie"
 combat_sounds = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "Dead man walking."
 
 [zombie_stronghold_of_security_blue_skirt]
@@ -315,7 +315,7 @@ style = "slash"
 respawn_delay = 35
 drop_table = "zombie"
 combat_sounds = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "Dead man walking."
 
 [zombie_stronghold_of_security_trousers]
@@ -345,7 +345,7 @@ hunt_mode = "cowardly"
 style = "slash"
 respawn_delay = 35
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "The walking dead."
 
 [zombie_stronghold_of_security_male]
@@ -374,7 +374,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 35
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "Could his name be 'Lurch'?"
 
 [zombie_tarns_lair_tan_boots]
@@ -394,7 +394,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 35
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "Mostly 'armless."
 
 [zombie_tarns_lair_grey_boots]
@@ -414,7 +414,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "Has anybody told him he's dead?"
 
 [zombie_tarns_lair_red_boots_hat]
@@ -434,7 +434,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "Dave? Is that you?"
 
 [zombie_tarns_lair_tan_boots_hair]
@@ -454,7 +454,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "Why don't zombies ever wash?"
 
 [zombie_tarns_lair_green_boots_hair]
@@ -474,7 +474,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "A shambling pile of rotten flesh."
 
 [zombie_tarns_lair_red_top]
@@ -494,7 +494,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "He needs lessons on walking."
 
 [zombie_tarns_lair_brown_top]
@@ -514,7 +514,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "Fred, the undead."
 
 [zombie_tarns_lair_armour]
@@ -534,7 +534,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "One of the undead."
 
 [zombie_tarns_lair_yellow_shirt]
@@ -554,7 +554,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "A disgusting zombie."
 
 [zombie_tarns_lair_grey_shirt]
@@ -574,7 +574,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "Somebody tell him he's already dead!"
 
 [zombie_tarns_lair_blue_shirt]
@@ -594,7 +594,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "He sure looks grave."
 
 [zombie_tarns_lair_tan_trousers]
@@ -614,7 +614,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "Can't a body get any rest around here?"
 
 [zombie_tarns_lair_grey_trousers]
@@ -634,7 +634,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "At least he's not legless."
 
 [zombie_tarns_lair_green_trousers]
@@ -654,7 +654,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "All skin and bones."
 
 [zombie_tarns_lair_brown_trousers]
@@ -674,7 +674,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "All skin and bones."
 
 [zombie_tarns_lair_blue_trousers]
@@ -694,7 +694,7 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "All skin and bones."
 
 [zombie_tarns_lair_light_grey_trousers]
@@ -714,5 +714,5 @@ hunt_mode = "cowardly"
 style = "crush"
 respawn_delay = 50
 drop_table = "zombie"
-categories = ["zombie", "zombies", "undead"]
+categories = ["zombies", "undead"]
 examine = "Brains..."

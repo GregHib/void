@@ -13,7 +13,7 @@ slayer_xp = 12.0
 drop_table = "goblin"
 combat_anims = "goblin"
 combat_sounds = "goblin"
-categories = ["goblin", "goblins"]
+categories = ["goblins"]
 height = 30
 large_head = true
 examine = "An ugly, orange creature."
@@ -58,7 +58,7 @@ drop_table = "goblin"
 combat_anims = "goblin"
 combat_sounds = "goblin"
 examine = "An ugly, blue creature."
-categories = ["goblin"]
+categories = ["goblins"]
 height = 30
 
 [goblin_mohawk_grey]
@@ -205,7 +205,7 @@ height = 30
 drop_table = "stronghold_goblin"
 combat_anims = "goblin"
 combat_sounds = "goblin"
-categories = ["stronghold_goblin", "goblin", "goblins"]
+categories = ["goblins"]
 examine = "An ugly green creature."
 
 [stronghold_of_security_goblin_helmet]
@@ -224,7 +224,7 @@ height = 30
 drop_table = "stronghold_goblin"
 combat_anims = "goblin"
 combat_sounds = "goblin"
-categories = ["stronghold_goblin", "goblin", "goblins"]
+categories = ["goblins"]
 examine = "An ugly green creature."
 
 [stronghold_of_security_goblin_green_hat]
@@ -245,7 +245,7 @@ height = 30
 drop_table = "stronghold_goblin"
 combat_anims = "goblin"
 combat_sounds = "goblin"
-categories = ["stronghold_goblin", "goblin", "goblins"]
+categories = ["goblins"]
 examine = "An ugly green creature."
 
 [stronghold_of_security_goblin_green_armed]
@@ -266,7 +266,7 @@ height = 30
 drop_table = "stronghold_goblin"
 combat_anims = "goblin"
 combat_sounds = "goblin"
-categories = ["stronghold_goblin", "goblin", "goblins"]
+categories = ["goblins"]
 examine = "An ugly green creature."
 
 [stronghold_of_security_goblin_hat]
@@ -285,7 +285,7 @@ height = 30
 drop_table = "stronghold_goblin"
 combat_anims = "goblin"
 combat_sounds = "goblin"
-categories = ["stronghold_goblin", "goblin", "goblins"]
+categories = ["goblins"]
 examine = "These goblins have grown strong."
 
 [stronghold_of_security_goblin_green_helmet]

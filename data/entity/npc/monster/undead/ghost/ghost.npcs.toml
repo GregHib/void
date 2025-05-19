@@ -13,7 +13,7 @@ wander_radius = 10
 hunt_mode = "cowardly"
 combat_anims = "ghost"
 combat_sounds = "ghost"
-categories = ["ghost", "ghosts", "undead"]
+categories = ["ghosts", "undead"]
 examine = "Eeek! A ghost!"
 
 [ghost]
@@ -79,7 +79,7 @@ wander_radius = 10
 hunt_mode = "cowardly"
 combat_anims = "ghost_tendril"
 combat_sounds = "ghost"
-categories = ["ghost", "ghosts", "undead"]
+categories = ["ghosts", "undead"]
 examine = "Eeek! A ghost!"
 
 [haze_abandoned_mine]
@@ -104,7 +104,7 @@ attack_radius = 11
 wander_radius = 9
 combat_anims = "ghost"
 combat_sounds = "ghost"
-categories = ["ghost", "ghosts", "undead"]
+categories = ["ghosts", "undead"]
 examine = "Eeek! A ghost!"
 
 [stronghold_ghost]

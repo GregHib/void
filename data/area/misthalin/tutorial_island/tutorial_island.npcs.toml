@@ -45,7 +45,7 @@ examine = "Your introduction to the world of Gielinor."
 
 [giant_rat_tutorial_island]
 id = 950
-categories = ["giant_rat"]
+categories = ["giant_rats", "rats"]
 style = "stab"
 hitpoints = 30
 wander_radius = 2
@@ -56,7 +56,7 @@ examine = "Overgrown vermin."
 
 [chicken_tutorial_island]
 id = 951
-categories = ["bird"]
+categories = ["chickens", "birds"]
 wander_radius = 2
 drop_table = "chicken"
 combat_anims = "chicken"

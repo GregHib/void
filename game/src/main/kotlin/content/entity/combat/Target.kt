@@ -72,15 +72,15 @@ object Target {
         return true
     }
 
-    fun isDemon(target: Character) = target is NPC && target.categories.contains("demon")
+    fun isDemon(target: Character) = target is NPC && target.categories.contains("demons")
 
-    fun isVampyre(target: Character) = target is NPC && target.categories.contains("vampyre")
+    fun isVampyre(target: Character) = target is NPC && target.categories.contains("vampyres")
 
-    fun isShade(target: Character): Boolean = target is NPC && target.categories.contains("shade")
+    fun isShade(target: Character): Boolean = target is NPC && target.categories.contains("shades")
 
-    fun isKalphite(target: Character): Boolean = target is NPC && target.categories.contains("kalphite")
+    fun isKalphite(target: Character): Boolean = target is NPC && target.categories.contains("kalphites")
 
-    fun isDragon(target: Character): Boolean = target is NPC && target.categories.contains("dragon")
+    fun isDragon(target: Character): Boolean = target is NPC && target.categories.contains("dragons")
 
     fun isMetalDragon(target: Character): Boolean = target is NPC && (target.id == "bronze_dragon" || target.id == "iron_dragon" || target.id == "steel_dragon")
 
@@ -89,7 +89,7 @@ object Target {
         if (target is Player) {
             return target.equipped(EquipSlot.Weapon).id == "staff_of_fire"
         } else if (target is NPC) {
-            return target.categories.contains("dragon") || target.id.startsWith("fire_elemental") || target.id.startsWith("fire_giant") || target.id.startsWith("pyrefiend")
+            return target.categories.contains("dragons") || target.id.startsWith("fire_elemental") || target.id.startsWith("fire_giant") || target.id.startsWith("pyrefiend")
         }
         return false
     }

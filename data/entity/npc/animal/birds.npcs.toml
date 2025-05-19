@@ -6,7 +6,7 @@ hitpoints = 30
 slayer_xp = 3.0
 max_hit_melee = 1
 style = "stab"
-categories = ["duck", "birds"]
+categories = ["ducks", "birds"]
 respawn_delay = 25
 swim = true
 height = 10
@@ -60,7 +60,7 @@ examine = "It quacks like a duck."
 [ducklings]
 id = 6112
 swim = true
-categories = ["duck", "birds"]
+categories = ["ducks", "birds"]
 wander_radius = 6
 examine = "Aww, cute."
 

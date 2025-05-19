@@ -31,7 +31,7 @@ wander_radius = 5
 attack_radius = 7
 combat_anims = "scorpion"
 combat_sounds = "scorpion"
-categories = ["scorpion", "scorpions"]
+categories = ["scorpions"]
 examine = "It has a very vicious looking tail."
 
 [pit_scorpion]
@@ -49,7 +49,7 @@ wander_radius = 5
 attack_radius = 7
 combat_anims = "small_scorpion"
 combat_sounds = "scorpion"
-categories = ["small_scorpion", "scorpion", "scorpions"]
+categories = ["scorpions"]
 examine = "Tiny, annoying, stinging thing."
 
 [king_scorpion]
@@ -67,7 +67,7 @@ wander_radius = 5
 attack_radius = 7
 combat_anims = "scorpion"
 combat_sounds = "scorpion"
-categories = ["scorpion", "scorpions"]
+categories = ["scorpions"]
 examine = "Wow! Scorpions shouldn't grow that big."
 
 [khazard_scorpion]
@@ -84,7 +84,7 @@ wander_radius = 5
 attack_radius = 7
 combat_anims = "scorpion"
 combat_sounds = "scorpion"
-categories = ["scorpion", "scorpions"]
+categories = ["scorpions"]
 examine = "A large angry scorpion."
 
 [grave_scorpion]
@@ -102,7 +102,7 @@ wander_radius = 5
 attack_radius = 7
 combat_anims = "small_scorpion"
 combat_sounds = "scorpion"
-categories = ["small_scorpion", "scorpion", "scorpions"]
+categories = ["scorpions"]
 examine = "A vicious, little, stinging thing."
 
 [scorpion_ape_atoll]
@@ -122,7 +122,7 @@ wander_radius = 5
 attack_radius = 7
 combat_anims = "small_scorpion"
 combat_sounds = "scorpion"
-categories = ["small_scorpion", "scorpion", "scorpions"]
+categories = ["scorpions"]
 examine = "It's an extremely dangerous looking scorpion."
 
 [scorpion_stronghold_of_security]
@@ -140,7 +140,7 @@ wander_radius = 5
 attack_radius = 7
 combat_anims = "scorpion"
 combat_sounds = "scorpion"
-categories = ["scorpion", "scorpions"]
+categories = ["scorpions"]
 examine = "An extremely vicious scorpion."
 
 [scorpion_stronghold_of_security_red]
@@ -158,5 +158,5 @@ wander_radius = 5
 attack_radius = 7
 combat_anims = "scorpion"
 combat_sounds = "scorpion"
-categories = ["scorpion", "scorpions"]
+categories = ["scorpions"]
 examine = "An extremely vicious scorpion."

@@ -12,7 +12,7 @@ attack_radius = 14
 respawn_delay = 35
 drop_table = "bat"
 combat_anims = "bat"
-categories = ["bat", "bats"]
+categories = ["bats"]
 examine = "An annoying flappy thing."
 
 [giant_bat]
@@ -31,7 +31,7 @@ respawn_delay = 35
 drop_table = "bat"
 combat_anims = "bat"
 combat_sounds = "bat"
-categories = ["bat", "bats"]
+categories = ["bats"]
 examine = "An annoying flappy thing."
 
 [giant_bat_brine_cavern]

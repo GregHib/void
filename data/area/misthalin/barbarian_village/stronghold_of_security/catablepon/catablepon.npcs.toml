@@ -15,7 +15,7 @@ slayer_xp = 40.0
 hunt_mode = "cowardly"
 drop_table = "catablepon"
 combat_anims = "catablepon"
-categories = ["catablepon", "catablepons"]
+categories = ["catablepons"]
 examine = "Big... Cow-like... But cows don't have serpent tails!"
 
 [catablepon_mid]

@@ -12,7 +12,7 @@ style = "stab"
 respawn_delay = 45
 combat_anims = "giant_spider"
 combat_sounds = "giant_spider"
-categories = ["giant_spider", "spiders"]
+categories = ["giant_spiders", "spiders"]
 height = 10
 examine = "I think this spider has been genetically modified."
 
@@ -31,7 +31,7 @@ max_hit_melee = 30
 style = "stab"
 combat_anims = "giant_spider"
 combat_sounds = "giant_spider"
-categories = ["giant_spider", "spiders"]
+categories = ["giant_spiders", "spiders"]
 height = 10
 examine = "I think this spider has been genetically modified."
 
@@ -51,7 +51,7 @@ max_hit_melee = 70
 style = "stab"
 combat_anims = "giant_spider"
 combat_sounds = "giant_spider"
-categories = ["giant_spider", "spiders"]
+categories = ["giant_spiders", "spiders"]
 height = 10
 examine = "I think this spider has been genetically modified."
 
@@ -67,7 +67,7 @@ style = "stab"
 slayer_xp = 2.0
 combat_anims = "spider"
 combat_sounds = "spider"
-categories = ["spider", "spiders"]
+categories = ["spiders"]
 height = 10
 examine = "Incey wincey."
 
@@ -92,7 +92,7 @@ style = "stab"
 slayer_xp = 22.0
 combat_anims = "spider"
 combat_sounds = "spider"
-categories = ["spider", "spiders"]
+categories = ["spiders"]
 height = 10
 examine = "I think this spider has been genetically modified."
 
@@ -112,5 +112,5 @@ examine = "It's an extremely small brown spider, probably very poisonous."
 
 [spider_haunted_woods]
 id = 1221
-categories = ["spider", "spiders"]
+categories = ["spiders"]
 examine = "Nasty little creature."
