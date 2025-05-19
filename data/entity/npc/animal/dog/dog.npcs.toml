@@ -45,3 +45,7 @@ wander_radius = 6
 hunt_mode = "cowardly"
 categories = ["medium_dog", "dogs"]
 examine = "Looks like it's got Rabies!"
+
+[wild_dog_1]
+id = 1594
+clone = "wild_dog"

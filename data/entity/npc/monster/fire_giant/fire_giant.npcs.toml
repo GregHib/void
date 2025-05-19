@@ -1,0 +1,36 @@
+[fire_giant]
+id = 1582
+hitpoints = 1110
+att = 65
+str = 65
+def = 65
+attack_speed = 5
+hunt_mode = "aggressive"
+style = "slash"
+max_hit_melee = 111
+respawn_delay = 30
+wander_radius = 2
+slayer_xp = 111
+categories = ["fire_giant"]
+examine = "His beard seems to have a life of its own."
+
+[fire_giant_1]
+id = 1583
+clone = "fire_giant"
+
+[fire_giant_2]
+id = 1584
+clone = "fire_giant"
+
+[fire_giant_3]
+id = 1585
+clone = "fire_giant"
+
+[fire_giant_4]
+id = 1586
+clone = "fire_giant"
+
+[fire_giant_5]
+id = 110
+clone = "fire_giant"
+

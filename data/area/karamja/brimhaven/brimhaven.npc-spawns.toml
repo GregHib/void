@@ -1,5 +1,7 @@
 spawns = [
 # 10802
+  { id = "saniboch", x = 2744, y = 3152, members = true },
+# 10802
   { id = "moss_giant", x = 2698, y = 3206, members = true },
   { id = "moss_giant_2", x = 2695, y = 3216, members = true },
   { id = "moss_giant_2", x = 2692, y = 3204, members = true },

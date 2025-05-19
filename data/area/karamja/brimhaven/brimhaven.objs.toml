@@ -21,3 +21,43 @@ examine = "I hope I don't fall off this."
 [brimhaven_log_balance_end]
 id = 5090
 examine = "I hope I don't fall off this."
+
+[brimhaven_dungeon_entrance]
+id = 5083
+examine = "An overgrown dungeon entrance."
+
+[brimhaven_dungeon_exit]
+id = 5084
+examine = "A closed overgrown dungeon entrance"
+
+[brimhaven_walk-up_1]
+id = 5094
+examine = "A closed overgrown dungeon entrance"
+
+[brimhaven_walk-down_2]
+id = 5096
+examine = "A closed overgrown dungeon entrance"
+
+[brimhaven_walk-up_3]
+id = 5097
+examine = "A closed overgrown dungeon entrance"
+
+[brimhaven_walk-down_4]
+id = 5098
+examine = "A closed overgrown dungeon entrance"
+
+[brimhaven_vine_1]
+id = 5103
+examine = "A closed overgrown dungeon entrance"
+
+[brimhaven_vine_2]
+id = 5104
+examine = "A closed overgrown dungeon entrance"
+
+[brimhaven_vine_3]
+id = 5105
+examine = "A closed overgrown dungeon entrance"
+
+[brimhaven_vine_4]
+id = 5106
+examine = "A closed overgrown dungeon entrance"

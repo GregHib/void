@@ -493,6 +493,12 @@ categories = ["human"]
 wander_radius = 3
 examine = "A holy man."
 
+[saniboch]
+id = 1595
+categories = ["human"]
+wander_radius = 2
+examine = "Looks like he wants money."
+
 [dark_mage]
 id = 2262
 faces = false

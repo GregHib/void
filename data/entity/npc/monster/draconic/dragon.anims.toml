@@ -1,26 +1,47 @@
-[dragon_breath]
+[king_black_dragon_breath]
 id = 81
 
-[dragon_attack]
+[king_black_dragon_attack]
 id = 91
 
-[dragon_defend]
+[king_black_dragon_defend]
 id = 89
 
-[dragon_death]
+[king_black_dragon_death]
 id = 92
 
-[steel_dragon_breath]
+[dragon_shoot]
 id = 13160
 
-[steel_dragon_attack]
+[dragon_attack]
 id = 13158
 
-[steel_dragon_defend]
+[dragon_defend]
 id = 13163
 
-[steel_dragon_hit]
+[dragon_breath]
 id = 13164
 
-[steel_dragon_death]
+[dragon_death]
 id = 13159
+
+[colour_dragon_attack]
+id = 12252
+
+[colour_dragon_breath]
+id = 14245
+
+[colour_dragon_defend]
+id = 12251
+
+[colour_dragon_death]
+id = 12250
+
+[baby_dragon_attack]
+id = 14270
+
+[baby_dragon_defend]
+id = 14269
+
+[baby_dragon_death]
+id = 14271
