@@ -51,7 +51,7 @@ allprojects {
 
     if (name != "tools") {
         tasks.test {
-            maxHeapSize = "4096m"
+            maxHeapSize = "5120m"
             useJUnitPlatform()
             failFast = true
             testLogging {
