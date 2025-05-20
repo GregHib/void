@@ -94,6 +94,13 @@ internal class ConfigReaderTest {
 
     @Test
     fun `Read key`() {
+        Config.stringReader("bare_key ") {
+            assertTrue(nextPair())
+            val exception = assertThrows<IllegalArgumentException> {
+                key()
+            }
+            assertEquals("Expected equals after key. line=1 char='<end-of-file>'", exception.message)
+        }
         Config.stringReader("bare_key = 0") {
             assertTrue(nextPair())
             assertEquals("bare_key", key())

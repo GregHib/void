@@ -96,7 +96,7 @@ class ConfigReader(
             found = found || byte == EQUALS
             byte = input.read()
         }
-        require(found) { "Expected equals after key. ${exception()} " }
+        require(found) { "Expected equals after key. ${exception()}" }
     }
 
     /**
