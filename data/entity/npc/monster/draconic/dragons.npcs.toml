@@ -19,24 +19,26 @@ aka = ["kbd"]
 respawn_delay = 16
 examine = "One of the biggest, meanest dragons around."
 
-[steel_dragon]
-id = 1592
-hitpoints = 2100
-att = 215
-str = 215
-def = 215
+[bronze_dragon]
+id = 1590
+hitpoints = 1520
+att = 112
+str = 112
+def = 112
 mage = 100
 style = "slash"
 attack_range = 8
 attack_radius = 8
-max_hit_melee = 250
-max_hit_dragonfire = 650
+wander_radius = 4
+max_hit_melee = 120
+max_hit_dragonfire = 500
 hunt_mode = "aggressive"
 allowed_under = true
-slayer_xp = 220.5
+slayer_xp = 125.0
 categories = ["dragon"]
+combat_anims = "dragon"
 respawn_delay = 30
-examine = "Its scales seem to be made of steel."
+examine = "Its scales seem to be made of bronze."
 
 [iron_dragon]
 id = 1591
@@ -48,11 +50,89 @@ mage = 100
 style = "slash"
 attack_range = 8
 attack_radius = 8
+wander_radius = 2
 max_hit_melee = 170
 max_hit_dragonfire = 500
 hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 173.2
 categories = ["dragon"]
+combat_anims = "dragon"
 respawn_delay = 30
 examine = "Its scales seem to be made of iron."
+
+[steel_dragon]
+id = 1592
+hitpoints = 2100
+att = 215
+str = 215
+def = 215
+mage = 100
+style = "slash"
+attack_range = 8
+attack_radius = 8
+wander_radius = 2
+max_hit_melee = 250
+max_hit_dragonfire = 650
+hunt_mode = "aggressive"
+allowed_under = true
+slayer_xp = 220.5
+categories = ["dragon"]
+combat_anims = "dragon"
+respawn_delay = 30
+examine = "Its scales seem to be made of steel."
+
+[red_dragon]
+id = 53
+hitpoints = 1520
+att = 130
+str = 130
+def = 130
+style = "slash"
+attack_range = 8
+attack_radius = 8
+wander_radius = 3
+max_hit_melee = 140
+max_hit_dragonfire = 500
+hunt_mode = "aggressive"
+allowed_under = true
+slayer_xp = 143.4
+categories = ["dragon"]
+combat_anims = "colour_dragon"
+respawn_delay = 30
+examine = "Its scales seem to be made of iron."
+
+[red_dragon_1]
+id = 4670
+clone = "red_dragon"
+
+[red_dragon_2]
+id = 4672
+clone = "red_dragon"
+
+[baby_red_dragon]
+id = 1589
+hitpoints = 480
+att = 40
+str = 40
+def = 40
+style = "slash"
+attack_range = 8
+attack_radius = 8
+wander_radius = 3
+max_hit_melee = 50
+hunt_mode = "aggressive"
+allowed_under = true
+slayer_xp = 50.0
+categories = ["dragon"]
+combat_anims = "baby_dragon"
+respawn_delay = 30
+examine = "Young but still dangerous."
+
+[baby_red_dragon_1]
+id = 4667
+clone = "baby_red_dragon"
+
+[baby_red_dragon_2]
+id = 4668
+clone = "baby_red_drag

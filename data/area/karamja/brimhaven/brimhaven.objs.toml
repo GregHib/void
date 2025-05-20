@@ -30,19 +30,19 @@ examine = "An overgrown dungeon entrance."
 id = 5084
 examine = "A closed overgrown dungeon entrance"
 
-[brimhaven_walk-up_1]
+[brimhaven_walk_up_1]
 id = 5094
 examine = "A closed overgrown dungeon entrance"
 
-[brimhaven_walk-down_2]
+[brimhaven_walk_down_2]
 id = 5096
 examine = "A closed overgrown dungeon entrance"
 
-[brimhaven_walk-up_3]
+[brimhaven_walk_up_3]
 id = 5097
 examine = "A closed overgrown dungeon entrance"
 
-[brimhaven_walk-down_4]
+[brimhaven_walk_down_4]
 id = 5098
 examine = "A closed overgrown dungeon entrance"
 

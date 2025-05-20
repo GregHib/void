@@ -35,6 +35,26 @@ hunt_mode = "aggressive"
 height = 60
 examine = "Big, red, and incredibly evil."
 
+[greater_demon_1]
+id = 1585
+clone = "greater_demon"
+
+[greater_demon_2]
+id = 4698
+clone = "greater_demon"
+
+[greater_demon_3]
+id = 4699
+clone = "greater_demon"
+
+[greater_demon_4]
+id = 4700
+clone = "greater_demon"
+
+[greater_demon_5]
+id = 4701
+clone = "greater_demon"
+
 [lesser_demon]
 id = 82
 hitpoints = 790
@@ -73,3 +93,32 @@ id = 4697
 [lesser_demon_melzars_maze]
 clone = "lesser_demon"
 id = 6101
+
+[black_demon]
+id = 84
+att = 145
+str = 148
+def = 152
+attack_range = 5
+attack_radius = 11
+hitpoints = 1570
+slayer_xp = 157.0
+wander_radius = 4
+max_hit_melee = 160
+attack_speed = 4
+style = "slash"
+combat_anims = "demon"
+combat_sounds = "demon"
+categories = ["demons"]
+respawn_delay = 30
+hunt_mode = "aggressive"
+height = 60
+examine = "A big, scary, jet-black demon."
+
+[black_demon_1]
+id = 4702
+clone = "black_demon"
+
+[black_demon_2]
+id = 4703
+clone = "black_demon"

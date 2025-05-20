@@ -26,7 +26,7 @@ objectOperate("Chop-down", "brimhaven_vine_*") {
     player.queue("cutting_vine") {
         player.message("You swing your hatchet at the vines...")
         player.anim("${hatchet.id}_chop")
-        pause(3)
+        delay(3)
 
         if (Random.nextInt(6) == 0) {
             player.message("You fail to cut the vines.")
@@ -38,6 +38,5 @@ objectOperate("Chop-down", "brimhaven_vine_*") {
 
         val direction = target.tile.delta(player.tile)
         player.walkOverDelay(target.tile.add(direction))
-        pause(4)
     }
 }
