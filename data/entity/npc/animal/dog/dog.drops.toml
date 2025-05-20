@@ -3,3 +3,16 @@ type = "all"
 drops = [
     { table = "bones" }
 ]
+
+[jackal_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "jackal_tertiary" }
+]
+
+[jackal_tertiary]
+roll = 4
+drops = [
+    { id = "jackal_bone", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" }
+]
