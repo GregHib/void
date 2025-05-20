@@ -106,20 +106,8 @@ id = 404
 [god_wars_spiritual_warrior_zamorak_death]
 id = 4200
 
-[god_wars_spiritual_ranger_zamorak_attack]
+[spiritual_ranger_attack]
 id = 13037
 
-[god_wars_spiritual_ranger_zamorak_defend]
-id = 424
-
-[god_wars_spiritual_ranger_zamorak_death]
-id = 836
-
-[god_wars_spiritual_mage_zamorak_attack]
+[spiritual_mage_attack]
 id = 811
-
-[god_wars_spiritual_mage_zamorak_defend]
-id = 424
-
-[god_wars_spiritual_mage_zamorak_death]
-id = 836
