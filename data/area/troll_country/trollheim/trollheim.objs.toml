@@ -1,0 +1,31 @@
+[trollheim_rocks]
+id = 9306
+examine = ""
+
+[trollheim_rocks_hard]
+id = 9305
+examine = ""
+
+[trollheim_rocks_medium]
+id = 9304
+examine = ""
+
+[trollheim_rocks_easy]
+id = 9303
+examine = ""
+
+[trollheim_rocks_4]
+id = 3804
+examine = ""
+
+[trollheim_rocks_5]
+id = 3803
+examine = ""
+
+[trollheim_rocks_advanced]
+id = 3748
+examine = ""
+
+[trollheim_rocks_wilderness]
+id = 9327
+examine = ""
