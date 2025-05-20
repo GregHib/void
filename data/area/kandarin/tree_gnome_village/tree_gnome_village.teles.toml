@@ -5,7 +5,7 @@ delta = { level = 1 }
 
 [3205]
 option = "Climb-down"
-tile = { x = 2515, y = 3173, level 1  }
+tile = { x = 2515, y = 3173, level = 1  }
 delta = { level = -1 }
 
 [1750]
@@ -15,7 +15,7 @@ delta = { level = 1 }
 
 [basic_ladder_top]
 option = "Climb-down"
-tile = { x = 2525, y = 3172, level 1  }
+tile = { x = 2525, y = 3172, level = 1  }
 delta = { level = -1 }
 
 [1750]
@@ -25,7 +25,7 @@ delta = { level = 1 }
 
 [basic_ladder_top]
 option = "Climb-down"
-tile = { x = 2516, y = 3165, level 1  }
+tile = { x = 2516, y = 3165, level = 1  }
 delta = { level = -1 }
 
 [1750]
@@ -35,7 +35,7 @@ delta = { level = 1 }
 
 [1749]
 option = "Climb-down"
-tile = { x = 2521, y = 3162, level 1  }
+tile = { x = 2521, y = 3162, level = 1  }
 delta = { level = -1 }
 
 [1750]
@@ -45,7 +45,7 @@ delta = { level = 1 }
 
 [basic_ladder_top]
 option = "Climb-down"
-tile = { x = 2525, y = 3162, level 1  }
+tile = { x = 2525, y = 3162, level = 1  }
 delta = { level = -1 }
 
 [5250]

@@ -76,6 +76,8 @@ jobs:
       - name: Run all tests
         if: steps.check-cache-files.outputs.cache_exists == 'true'
         run: ./gradlew test
+        env:
+          GRADLE_OPTS: -Xmx5g -Xms1g -XX:MaxMetaspaceSize=1g
 
       - name: Run unit tests
         if: steps.check-cache-files.outputs.cache_exists != 'true'

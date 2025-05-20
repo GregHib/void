@@ -62,3 +62,19 @@ drops = [
     { table = "bones" },
     { table = "lizard_secondary" },
 ]
+
+[desert_lizard_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "lizard_secondary" },
+    { table = "desert_lizard_tertiary" },
+]
+
+[desert_lizard_tertiary]
+roll = 10000
+drops = [
+    { id = "desert_lizard_bone", chance = 2500, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { id = "long_bone", chance = 25 },
+    { id = "curved_bone", chance = 2 },
+]

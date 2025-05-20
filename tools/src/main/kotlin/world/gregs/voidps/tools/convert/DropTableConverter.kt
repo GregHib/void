@@ -11,24 +11,18 @@ object DropTableConverter {
     @JvmStatic
     fun main(args: Array<String>) {
         val string = """
-            ==Drops==
-            {{DropLogProject|jagex=yes}}
-
-            ===Shade robes===
-            {{DropsTableHead}}
-            {{DropsLine|name=Shade robe top|namenotes={{(m)}}|quantity=1|rarity=32/128|raritynotes={{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/743213123834908673|date=15 June 2016|archiveurl=https://archive.is/c4p99|archivedate=28 May 2020|quote=Do the lvl 159 Shades in the Stronghold of Security drop the Shade Robes in F2P? No.|name=Shade robes members tweet}}}}
-            {{DropsLine|name=Shade robe|namenotes={{(m)}}|quantity=1|rarity=32/128|raritynotes={{NamedRef|Shade robes members tweet}}}}
-            {{DropsTableBottom}}
-
-            ===Other===
-            {{DropsTableHead}}
-            {{DropsLine|name=Nothing|rarity=64/128}}
-            {{DropsTableBottom}}
-
-            ===Catacombs tertiary===
-            {{CatacombsDropTable|hitpoints=115|f2p=yes|catacombsonly=yes|dropversion=Catacombs of Kourend}}
+===Tertiary===
+{{DropsTableHead|dropversion=Regular}}
+{{DropsLine|name=Looting bag|namenotes={{(m)}}|quantity=1|rarity=1/3|raritynotes=<ref group="d">Looting bags are only dropped by those found in the [[Wilderness]].</ref>|gemw=No|leagueRegion=Wilderness}}
+{{DropsLine|name=Moss giant bone|namenotes={{(m)}}|quantity=1|rarity=1/4|raritynotes=<ref group=d>Moss giant bones are only dropped during [[Rag and Bone Man II]].</ref>|gemw=No}}
+{{DropsLine|name=Ensouled giant head|namenotes={{(m)}}|quantity=1|rarity=1/24}}
+{{DropsLine|name=Clue scroll (beginner)|quantity=1|rarity=1/45|gemw=No}}
+{{DropsLine|name=Long bone|namenotes={{(m)}}|quantity=1|rarity=1/400}}
+{{DropsLine|name=Giant champion scroll|namenotes={{(m)}}|quantity=1|rarity=1/5000|gemw=No}}
+{{DropsLine|name=Curved bone|namenotes={{(m)}}|quantity=1|rarity=1/5012.5}}
+{{DropsTableBottom}}
         """.trimIndent()
-        val npc = "stronghold_shade"
+        val npc = "moss_giant"
         val all = mutableListOf<Builder>()
         var builder = Builder()
         for (line in string.lines()) {

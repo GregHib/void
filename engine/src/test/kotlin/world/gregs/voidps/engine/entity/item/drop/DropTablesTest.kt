@@ -10,6 +10,7 @@ import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -212,6 +213,28 @@ class DropTablesTest {
     }
 
     @Test
+    fun `Item drop variable within range and members`() {
+        val drop = ItemDrop(
+            id = "item",
+            amount = 10..20,
+            predicate = tables.dropPredicate(
+                members = true,
+                variable = "test",
+                withinMin = 1,
+                withinMax = 10,
+                default = 5,
+            )
+        )
+        val variables = Player()
+        Settings.load(mapOf("world.members" to "true"))
+        Assertions.assertTrue(drop.predicate!!.invoke(variables))
+        variables["test"] = 11
+        Assertions.assertFalse(drop.predicate!!.invoke(variables))
+        variables["test"] = 10
+        Assertions.assertTrue(drop.predicate!!.invoke(variables))
+    }
+
+    @Test
     fun `Item drop from map`() {
         val drop = ItemDrop(
             id = "item",
@@ -224,6 +247,5 @@ class DropTablesTest {
         Assertions.assertEquals("item", drop.id)
         Assertions.assertEquals(1..5, drop.amount)
         Assertions.assertEquals(5, drop.chance)
-//        assertTrue(drop.members)
     }
 }
