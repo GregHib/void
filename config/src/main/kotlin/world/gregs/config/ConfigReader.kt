@@ -91,9 +91,12 @@ class ConfigReader(
     }
 
     private fun skipEquals() {
+        var found = false
         while (byte == SPACE || byte == TAB || byte == EQUALS) {
+            found = found || byte == EQUALS
             byte = input.read()
         }
+        require(found) { "Expected equals after key. ${exception()} " }
     }
 
     /**

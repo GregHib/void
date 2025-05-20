@@ -94,15 +94,15 @@ internal class ConfigReaderTest {
 
     @Test
     fun `Read key`() {
-        Config.stringReader("bare-key") {
+        Config.stringReader("bare_key = 0") {
             assertTrue(nextPair())
-            assertEquals("bare-key", key())
+            assertEquals("bare_key", key())
         }
-        Config.stringReader("\"quoted \\n key\"") {
+        Config.stringReader("\"quoted \\n key\" = 0") {
             assertTrue(nextPair())
             assertEquals("quoted \\n key", key())
         }
-        Config.stringReader("'literal \n key'") {
+        Config.stringReader("'literal \n key' = 0") {
             assertTrue(nextPair())
             assertEquals("literal \n key", key())
         }
