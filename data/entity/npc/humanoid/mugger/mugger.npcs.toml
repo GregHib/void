@@ -13,5 +13,6 @@ respawn_delay = 25
 attack_radius = 4
 wander_radius = 2
 hunt_mode = "cowardly"
+combat_anims = "human"
 categories = ["human", "mugger"]
 examine = "He jumps out and attacks people."
