@@ -11,6 +11,9 @@ import world.gregs.yaml.read.YamlReaderConfiguration
 import java.io.File
 import java.util.*
 
+/**
+ * Converts raw data from runelites data collection project into dialogue scripts
+ */
 @Suppress("UNCHECKED_CAST")
 object DialogueConverter {
 
@@ -183,12 +186,12 @@ object DialogueConverter {
         file.appendText("""
             package world.gregs.voidps.world.map
 
-            import world.gregs.voidps.engine.event.CharacterContext
-            import world.gregs.voidps.engine.entity.character.npc.NPCOption
             import world.gregs.voidps.engine.entity.character.player.Player
-            import world.gregs.voidps.engine.event.on
             import content.entity.player.dialogue.*
             import content.entity.player.dialogue.type.*
+            import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
+            import world.gregs.voidps.engine.entity.character.npc.NPC
+            import world.gregs.voidps.engine.entity.character.npc.npcOperate
             
             npcOperate("Talk-to", "$name") {
                 startDialogue()
@@ -214,7 +217,7 @@ object DialogueConverter {
         if (parent != previousParent) {
             val function = branchToFunction[parent]
             if (function != null) {
-                builder.append("suspend fun CharacterContext<Player>.").append(function).append("() {\n")
+                builder.append("suspend fun TargetInteraction<Player, NPC>.").append(function).append("() {\n")
             }
         }
         if (front.isNPCDialogue) {
@@ -249,7 +252,7 @@ object DialogueConverter {
         } else {
             val function = branchToFunction[parent]
             if (function != null) {
-                builder.append("suspend fun CharacterContext<Player>.").append(function).append("() {\n")
+                builder.append("suspend fun TargetInteraction<Player, NPC>.").append(function).append("() {\n")
             }
             return
         }
@@ -269,7 +272,7 @@ object DialogueConverter {
             571, 572, 573, 574 -> "Surprised"
             575, 576, 577, 578 -> "Uncertain"
             588, 589, 590, 591 -> "Talk"
-            592, 593, 594, 595 -> "shifty"
+            592, 593, 594, 595 -> "Shifty"
             596, 597, 598, 599 -> "Afraid"
             600, 601, 602, 603 -> "Drunk"
             605, 606, 607, 608 -> "Chuckle"
