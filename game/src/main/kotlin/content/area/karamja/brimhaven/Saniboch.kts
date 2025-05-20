@@ -1,8 +1,7 @@
 package content.area.karamja.brimhaven
 
 import content.entity.obj.objTeleportTakeOff
-import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -14,71 +13,96 @@ import world.gregs.voidps.engine.queue.queue
 
 val DUNGEON_ENTRY_FEE = 875
 
-// Saniboch "Talk-to" option
+// Saniboch "Talk-to" dialogue
 npcOperate("Talk-to", "saniboch") {
     npc<Talk>("Good day to you, Bwana.")
 
     choice {
         option("Can I go through that door please?") {
             player<Talk>("Can I go through that door please?")
-            if (player["temporary_saniboch_access", false]) {
-                npc<Talk>("You have already given me lovely coins, so you may go in, and may your death be a glorious one!")
-            } else {
-                npc<Talk>("Most certainly, but I must charge you the sum of 875 coins first.")
-                val coins = player.inventory.count("coins")
-                if (coins >= DUNGEON_ENTRY_FEE) {
-                    choice {
-                        option("Okay, here's 875 coins.") {
-                            player.inventory.remove("coins", DUNGEON_ENTRY_FEE)
-                            player["temporary_saniboch_access"] = true
-                            npc<Talk>("Many thanks. You may now pass the door. May your death be a glorious one!")
-                        }
-                        option("Never mind.") {
-                            player<Talk>("Never mind.")
-                        }
+            if (player["can_enter_brimhaven_dungeon", false]) {
+                npc<Talk>("Most certainly, you have already given me lots of nice coins.")
+                return@option
+            }
+
+            npc<Talk>("Most certainly, but I must charge you the sum of 875 coins first.")
+            val coins = player.inventory.count("coins")
+            if (coins >= DUNGEON_ENTRY_FEE) {
+                choice {
+                    option("Okay, here's 875 coins.") {
+                        player.inventory.remove("coins", DUNGEON_ENTRY_FEE)
+                        player["can_enter_brimhaven_dungeon"] = true
+                        statement("You pay Saniboch 875 coins.")
+                        npc<Talk>("Many thanks. You may now pass the door. May your death be a glorious one!")
                     }
-                } else {
-                    player<Talk>("I haven't got that much money with me.")
-                    npc<Talk>("Begone with you, riff raff.")
+                    option("Never mind.") {
+                        player<Talk>("Never mind.")
+                    }
+                    option("Why is it worth the entry cost?") {
+                        player<Talk>("Why is it worth the entry cost?")
+                        npc<Talk>("It leads to a huge fearsome dungeon, populated by giants and strange dogs. Adventurers come from all around to explore its depths.")
+                        npc<Talk>("I know not what lies deeper in myself, for my skills in agility and woodcutting are inadequate, but I hear tell of even greater dangers deeper in.")
+                    }
                 }
+            } else {
+                player<Talk>("I don't have the money on me at the moment.")
+                npc<Talk>("Well this is a dungeon for the more wealthy discerning adventurer. Begone with you, riff raff.")
+                player<Talk>("But you don't even have clothes, how can you seriously call anyone riff raff.")
+                npc<Talk>("Hummph.")
             }
         }
 
         option("Where does this strange entrance lead?") {
             player<Talk>("Where does this strange entrance lead?")
-            npc<Happy>("To a huge fearsome dungeon, populated by giants and strange dogs. Adventurers come from all around to explore its depths.")
+            npc<Talk>("To a huge fearsome dungeon, populated by giants and strange dogs. Adventurers come from all around to explore its depths.")
+            npc<Talk>("I know not what lies deeper in myself, for my skills in agility and woodcutting are inadequate.")
         }
 
-        option<Talk>("Good day to you too.")
+        option("Good day to you too.") {
+            player<Talk>("Good day to you too.")
+        }
+
+        option("I'm impressed, that tree is growing on that shed.") {
+            player<Talk>("I'm impressed, that tree is growing on that shed.")
+            npc<Talk>("My employer tells me it is an uncommon sort of tree called the Fyburglars tree.")
+        }
     }
+}
 
 // Saniboch "Pay" right-click option
-    npcOperate("Pay", "saniboch") {
-        val coins = player.inventory.count("coins")
-        if (player["temporary_saniboch_access", false]) {
-            npc<Talk>("You may go in, you already paid.")
-        } else if (coins >= DUNGEON_ENTRY_FEE) {
-            player.inventory.remove("coins", DUNGEON_ENTRY_FEE)
-            player["temporary_saniboch_access"] = true
-            npc<Talk>("Many thanks. You may now pass the door. May your death be a glorious one!")
-        } else {
-            npc<Talk>("I'll want 875 coins to let you enter. Begone with you, riff raff.")
-        }
+npcOperate("Pay", "saniboch") {
+    if (player["can_enter_brimhaven_dungeon", false]) {
+        npc<Talk>("You have already given me lots of nice coins, you may go in.")
+        return@npcOperate
     }
 
-// Door object teleport logic to enter dungeon
-    objTeleportTakeOff("Enter", "brimhaven_dungeon_entrance") {
-        if (!player["temporary_saniboch_access", false]) {
-            cancel() // Cancel teleport before queueing dialogue
-            player.queue("saniboch_door_access_check") {
-                statement("I should speak to Saniboch first.")
-            }
-            return@objTeleportTakeOff
+    val coins = player.inventory.count("coins")
+    if (coins >= DUNGEON_ENTRY_FEE) {
+        player.inventory.remove("coins", DUNGEON_ENTRY_FEE)
+        player["can_enter_brimhaven_dungeon"] = true
+        statement("You pay Saniboch 875 coins.")
+        npc<Talk>("Many thanks. You may now pass the door. May your death be a glorious one!")
+    } else {
+        npc<Talk>("I'll want 875 coins to let you enter.")
+        npc<Talk>("Well this is a dungeon for the more wealthy discerning adventurer. Begone with you, riff raff.")
+    }
+}
+
+// Door object to enter dungeon
+objTeleportTakeOff("Enter", "brimhaven_dungeon_entrance") {
+    if (!player["can_enter_brimhaven_dungeon", false]) {
+        cancel()
+        player.queue("saniboch_door_access_check") {
+            statement("You can't go in there without paying!")
         }
+        return@objTeleportTakeOff
     }
 
-// Door object teleport logic to exit dungeon - resets access
-    objTeleportTakeOff("Leave", "brimhaven_dungeon_exit") {
-        player["temporary_saniboch_access"] = false
-    }
+    // Reset access after one-time use
+    player["can_enter_brimhaven_dungeon"] = false
+}
+
+// Door object to exit dungeon (no reset needed)
+objTeleportTakeOff("Leave", "brimhaven_dungeon_exit") {
+    // No action needed on exit
 }
