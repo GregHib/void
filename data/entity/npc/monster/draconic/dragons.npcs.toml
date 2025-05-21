@@ -35,8 +35,9 @@ max_hit_dragonfire = 500
 hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 125.0
-categories = ["dragon"]
 combat_anims = "dragon"
+combat_sounds = "dragon"
+categories = ["dragons"]
 respawn_delay = 30
 examine = "Its scales seem to be made of bronze."
 
@@ -56,8 +57,9 @@ max_hit_dragonfire = 500
 hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 173.2
-categories = ["dragon"]
 combat_anims = "dragon"
+combat_sounds = "dragon"
+categories = ["dragons"]
 respawn_delay = 30
 examine = "Its scales seem to be made of iron."
 
@@ -77,8 +79,9 @@ max_hit_dragonfire = 650
 hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 220.5
-categories = ["dragon"]
 combat_anims = "dragon"
+combat_sounds = "dragon"
+categories = ["dragons"]
 respawn_delay = 30
 examine = "Its scales seem to be made of steel."
 
@@ -97,8 +100,10 @@ max_hit_dragonfire = 500
 hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 143.4
-categories = ["dragon"]
+drop_table = "red_dragon"
 combat_anims = "colour_dragon"
+combat_sounds = "dragon"
+categories = ["dragons"]
 respawn_delay = 30
 examine = "Its scales seem to be made of iron."
 
@@ -124,8 +129,10 @@ max_hit_melee = 50
 hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 50.0
-categories = ["dragon"]
+drop_table = "baby_dragon"
 combat_anims = "baby_dragon"
+combat_sounds = "dragon"
+categories = ["dragons"]
 respawn_delay = 30
 examine = "Young but still dangerous."
 

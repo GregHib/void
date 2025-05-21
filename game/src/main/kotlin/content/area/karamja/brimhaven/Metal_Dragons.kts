@@ -19,13 +19,13 @@ val handler: suspend CombatSwing.(NPC) -> Unit = { npc ->
         npc.hit(target, type = "melee")
         target.sound("dragon_attack")
     } else if (withinMelee) {
-        // 🔥 Close-range dragonfire (mouth blast)
+        // Close-range dragonfire
         npc.anim("dragon_breath")
         npc.gfx("dragon_breath_shoot")
         target.sound("dragon_breath")
         npc.hit(target, type = "dragonfire", special = true)
     } else {
-        // 🔥 Ranged dragonfire (fireball)
+        // Ranged dragonfire
         npc.anim("dragon_shoot")
         nearestTile(npc, target).shoot("dragon_breath", target)
         npc.hit(target, type = "dragonfire")

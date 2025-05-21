@@ -3,15 +3,7 @@ type = "all"
 drops = [
     { table = "bronze_dragon_primary" },
     { table = "bronze_dragon_secondary" },
-    { table = "bronze_dragon_tertiary" },
-]
-
-[bronze_dragon_drop_table]
-type = "all"
-drops = [
-  { table = "bronze_dragon_primary" },
-  { table = "bronze_dragon_secondary" },
-  { table = "bronze_dragon_tertiary" },
+    { table = "clue_scroll_hard", roll = 128 },
 ]
 
 [bronze_dragon_primary]
@@ -46,12 +38,6 @@ drops = [
   { id = "swordfish", amount = 2, chance = 32 },
   { id = "swordfish", chance = 16 },
   { table = "rare_drop_table", chance = 16 },
-]
-
-[bronze_dragon_tertiary]
-roll = 128
-drops = [
-  { id = "clue_scroll_hard" },
 ]
 
 [iron_dragon_drop_table]
@@ -98,7 +84,7 @@ drops = [
 [iron_dragon_tertiary]
 roll = 10000
 drops = [
-  { id = "clue_scroll_hard", chance = 78 },
+  { table = "clue_scroll_hard", chance = 78 },
   { id = "draconic_visage" },
 ]
 
@@ -145,7 +131,7 @@ drops = [
 [steel_dragon_tertiary]
 roll = 10000
 drops = [
-  { id = "clue_scroll_hard", chance = 156 },
+  { table = "clue_scroll_hard", chance = 156 },
   { id = "draconic_visage" },
 ]
 
@@ -154,7 +140,7 @@ type = "all"
 drops = [
   { table = "red_dragon_primary" },
   { table = "red_dragon_secondary" },
-  { table = "red_dragon_tertiary" },
+  { table = "hard_clue_scroll", roll = 128 },
 ]
 
 [red_dragon_primary]
@@ -188,19 +174,8 @@ drops = [
   { table = "gem_drop_table", chance = 5 },
 ]
 
-[red_dragon_tertiary]
-roll = 128
-drops = [
-  { id = "clue_scroll_hard" },
-]
-
 [baby_dragon_drop_table]
 type = "all"
 drops = [
-  { table = "baby_dragon_primary" },
-]
-
-[baby_dragon_primary]
-drops = [
-  { id = "babydragon_bones" },
+    { table = "babydragon_bones" }
 ]

@@ -11,9 +11,10 @@ max_hit_melee = 111
 respawn_delay = 30
 wander_radius = 2
 slayer_xp = 111
-categories = ["fire_giant"]
+drop_table = "fire_giant"
 combat_anims = "fire_giant"
 combat_sounds = "fire_giant"
+categories = ["fire_giants"]
 examine = "His beard seems to have a life of its own."
 
 [fire_giant_1]

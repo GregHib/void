@@ -18,16 +18,14 @@ npcOperate("Talk-to", "saniboch") {
     npc<Talk>("Good day to you, Bwana.")
 
     choice {
-        option("Can I go through that door please?") {
-            player<Talk>("Can I go through that door please?")
+        option<Quiz>("Can I go through that door please?") {
             if (player["can_enter_brimhaven_dungeon", false]) {
                 npc<Talk>("Most certainly, you have already given me lots of nice coins.")
                 return@option
             }
 
             npc<Talk>("Most certainly, but I must charge you the sum of 875 coins first.")
-            val coins = player.inventory.count("coins")
-            if (coins >= DUNGEON_ENTRY_FEE) {
+            if (player.inventory.contains("coins", DUNGEON_ENTRY_FEE)) {
                 choice {
                     option("Okay, here's 875 coins.") {
                         player.inventory.remove("coins", DUNGEON_ENTRY_FEE)
@@ -52,8 +50,7 @@ npcOperate("Talk-to", "saniboch") {
             }
         }
 
-        option("Where does this strange entrance lead?") {
-            player<Talk>("Where does this strange entrance lead?")
+        option<Quiz>("Where does this strange entrance lead?") {
             npc<Talk>("To a huge fearsome dungeon, populated by giants and strange dogs. Adventurers come from all around to explore its depths.")
             npc<Talk>("I know not what lies deeper in myself, for my skills in agility and woodcutting are inadequate.")
         }
