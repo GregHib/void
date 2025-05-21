@@ -94,15 +94,22 @@ internal class ConfigReaderTest {
 
     @Test
     fun `Read key`() {
-        Config.stringReader("bare-key") {
+        Config.stringReader("bare_key ") {
             assertTrue(nextPair())
-            assertEquals("bare-key", key())
+            val exception = assertThrows<IllegalArgumentException> {
+                key()
+            }
+            assertEquals("Expected equals after key. line=1 char='<end-of-file>'", exception.message)
         }
-        Config.stringReader("\"quoted \\n key\"") {
+        Config.stringReader("bare_key = 0") {
+            assertTrue(nextPair())
+            assertEquals("bare_key", key())
+        }
+        Config.stringReader("\"quoted \\n key\" = 0") {
             assertTrue(nextPair())
             assertEquals("quoted \\n key", key())
         }
-        Config.stringReader("'literal \n key'") {
+        Config.stringReader("'literal \n key' = 0") {
             assertTrue(nextPair())
             assertEquals("literal \n key", key())
         }

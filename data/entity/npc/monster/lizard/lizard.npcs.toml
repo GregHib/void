@@ -54,6 +54,7 @@ respawn_delay = 25
 attack_radius = 11
 wander_radius = 9
 immune_death = true
+drop_table = "desert_lizard"
 hunt_mode = "cowardly"
 drop_table = "small_lizard"
 combat_anims = "lizard"
