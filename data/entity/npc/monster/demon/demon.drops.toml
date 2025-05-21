@@ -41,7 +41,7 @@ drops = [
 type = "all"
 drops = [
   { table = "greater_demon_secondary" },
-  { table = "hard_clue_scroll", roll = 128
+  { table = "hard_clue_scroll", roll = 128 },
 ]
 
 [greater_demon_secondary]
@@ -73,7 +73,7 @@ drops = [
 type = "all"
 drops = [
   { table = "black_demon_secondary" },
-  { table = "hard_clue_scroll", roll = 128
+  { table = "hard_clue_scroll", roll = 128 },
 ]
 
 [black_demon_secondary]
