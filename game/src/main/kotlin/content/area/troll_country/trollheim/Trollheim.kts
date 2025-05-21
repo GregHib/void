@@ -32,7 +32,7 @@ objectOperate("Climb", "trollheim_rocks_4") {
     player.face(target)
     if (target.tile.equals(2885, 3684)) {
         if (player.tile.x >= target.tile.x) {
-            player.anim("740")
+            player.anim("rocks_climb_down")
             player.exactMoveDelay(target.tile.copy(x = 2884), 50, direction = Direction.EAST)
             player.exp(Skill.Agility, 1.0)
             player.clearAnim()
@@ -73,7 +73,7 @@ objectOperate("Climb", "trollheim_rocks_5") {
         }
     } else if (target.tile.equals(2888, 3661)) {
         if (player.tile.y >= target.tile.y) {
-            player.anim("740", delay = 15)
+            player.anim("rocks_climb_down", delay = 15)
             player.exactMoveDelay(target.tile.addY(-1), 50, direction = Direction.NORTH)
             player.exp(Skill.Agility, 1.0)
             player.clearAnim()
