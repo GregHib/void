@@ -14,7 +14,7 @@ import world.gregs.voidps.type.random
 val handler: suspend CombatSwing.(NPC) -> Unit = { npc ->
     val withinMelee = CharacterTargetStrategy(npc).reached(target)
     if (withinMelee && random.nextBoolean()) {
-        // 🗡️ Melee attack
+        // Melee attack
         npc.anim("dragon_attack")
         npc.hit(target, type = "melee")
         target.sound("dragon_attack")
