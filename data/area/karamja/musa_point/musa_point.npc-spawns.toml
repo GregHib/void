@@ -5,4 +5,5 @@ spawns = [
     { id = "bartender_zambo", x = 2926, y = 3145 },
     { id = "snake", x = 2881, y = 3157 },
     { id = "snake", x = 2889, y = 3146 },
+    { id = "trader_crewmember_hat", x = 2954, y = 3157, members = true },
 ]

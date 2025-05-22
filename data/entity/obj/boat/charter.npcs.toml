@@ -1,0 +1,48 @@
+[trader_stan]
+id = 4650
+categories = ["human"]
+wander_radius = 2
+shop = "trader_stans_trading_post"
+examine = "With the prices he charges, no wonder he can afford to look so sharp."
+
+[trader_crewmember_black]
+id = 4651
+categories = ["human"]
+wander_radius = 2
+shop = "trader_stans_trading_post"
+examine = "Looks very stylish, but how can he sail in that gear?"
+
+[trader_crewmember_grey]
+id = 4652
+categories = ["human"]
+wander_radius = 2
+shop = "trader_stans_trading_post"
+examine = "That suit looks a little briny around the edges."
+
+[trader_crewmember_hat]
+id = 4653
+categories = ["human"]
+wander_radius = 2
+shop = "trader_stans_trading_post"
+examine = "First storm he is in that hat will blow away."
+
+[trader_crewmember_pink]
+id = 4654
+categories = ["human"]
+wander_radius = 2
+shop = "trader_stans_trading_post"
+examine = "She'll never be able to climb rigging in that."
+
+[trader_crewmember_purple]
+id = 4655
+categories = ["human"]
+wander_radius = 2
+shop = "trader_stans_trading_post"
+examine = "High heels on a ship? What is she thinking?"
+
+[trader_crewmember_blue]
+id = 4656
+categories = ["human"]
+wander_radius = 2
+shop = "trader_stans_trading_post"
+examine = "The effect is sort of spoiled by all those tattoos."
