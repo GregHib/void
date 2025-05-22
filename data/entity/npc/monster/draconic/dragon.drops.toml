@@ -3,7 +3,7 @@ type = "all"
 drops = [
     { table = "bronze_dragon_primary" },
     { table = "bronze_dragon_secondary" },
-    { table = "clue_scroll_hard", roll = 128 },
+    { table = "hard_clue_scroll", roll = 128 },
 ]
 
 [bronze_dragon_primary]
@@ -84,7 +84,7 @@ drops = [
 [iron_dragon_tertiary]
 roll = 10000
 drops = [
-  { table = "clue_scroll_hard", chance = 78 },
+  { table = "hard_clue_scroll", chance = 78 },
   { id = "draconic_visage" },
 ]
 
@@ -131,7 +131,7 @@ drops = [
 [steel_dragon_tertiary]
 roll = 10000
 drops = [
-  { table = "clue_scroll_hard", chance = 156 },
+  { table = "hard_clue_scroll", chance = 156 },
   { id = "draconic_visage" },
 ]
 
