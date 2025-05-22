@@ -51,7 +51,7 @@ npcOperate("Talk-to", "saniboch") {
         }
 
         option<Quiz>("Where does this strange entrance lead?") {
-            npc<Talk>("To a huge fearsome dungeon, populated by giants and strange dogs. Adventurers come from all around to explore its depths.")
+            npc<Happy>("To a huge fearsome dungeon, populated by giants and strange dogs. Adventurers come from all around to explore its depths.")
             npc<Talk>("I know not what lies deeper in myself, for my skills in agility and woodcutting are inadequate.")
         }
 
@@ -97,9 +97,4 @@ objTeleportTakeOff("Enter", "brimhaven_dungeon_entrance") {
 
     // Reset access after one-time use
     player["can_enter_brimhaven_dungeon"] = false
-}
-
-// Door object to exit dungeon (no reset needed)
-objTeleportTakeOff("Leave", "brimhaven_dungeon_exit") {
-    // No action needed on exit
 }

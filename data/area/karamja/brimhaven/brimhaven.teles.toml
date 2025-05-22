@@ -38,23 +38,22 @@ option = "Leave"
 tile = { x = 2714, y = 9564 }
 to = { x = 2744, y = 3152 }
 
-
-[brimhaven_walk-up_1]
+[brimhaven_walk_up_1]
 option = "Walk-up"
 tile = { x = 2648, y = 9592}
-to = { x = 2643, y = 9594, level 2}
+to = { x = 2643, y = 9594, level = 2}
 
-[brimhaven_walk-down_2]
+[brimhaven_walk_down_2]
 option = "Walk-down"
-tile = { x = 2644, y = 9593, level 2}
+tile = { x = 2644, y = 9593, level = 2}
 to = { x = 2649, y = 9591}
 
-[brimhaven_walk-up_3]
+[brimhaven_walk_up_3]
 option = "Walk-up"
 tile = { x = 2635, y = 9514 }
-to = { x = 2636, y = 9510, level 2}
+to = { x = 2636, y = 9510, level = 2}
 
-[brimhaven_walk-down_4]
+[brimhaven_walk_down_4]
 option = "Walk-down"
-tile = { x = 2635, y = 9511, level 2}
+tile = { x = 2635, y = 9511, level = 2}
 to = { x = 2636, y = 9517}
