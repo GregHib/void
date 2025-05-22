@@ -1,59 +1,79 @@
 [port_sarim_gangplank_enter]
 id = 17404
+examine = "Handy for boarding boats."
 
 [port_sarim_gangplank_exit]
 id = 17405
+examine = "Handy for boarding boats."
 
 [catherby_gangplank_enter]
 id = 17394
+examine = "Handy for boarding boats."
 
 [catherby_gangplank_exit]
 id = 17395
+examine = "Handy for boarding boats."
 
 [brimhaven_gangplank_enter]
 id = 17400
+examine = "Handy for boarding boats."
 
 [brimhaven_gangplank_exit]
 id = 17401
+examine = "Handy for boarding boats."
 
 [port_khazard_gangplank_enter]
 id = 17402
+examine = "Handy for boarding boats."
 
 [port_khazard_gangplank_exit]
 id = 17403
+examine = "Handy for boarding boats."
 
 [mos_le_harmless_gangplank_enter]
 id = 17406
+examine = "Handy for boarding boats."
 
 [mos_le_harmless_gangplank_exit]
 id = 17407
+examine = "Handy for boarding boats."
 
 [port_tyras_gangplank_enter]
 id = 17408
+examine = "Handy for boarding boats."
 
 [port_tyras_gangplank_exit]
 id = 17409
+examine = "Handy for boarding boats."
 
 [shipyard_gangplank_enter]
 id = 17396
+examine = "Handy for boarding boats."
 
 [shipyard_gangplank_exit]
 id = 17397
+examine = "Handy for boarding boats."
 
 [port_phasmatys_gangplank_enter]
 id = 17392
+examine = "Handy for boarding boats."
 
 [port_phasmatys_gangplank_exit]
 id = 17393
+examine = "Handy for boarding boats."
 
 [oo_glog_gangplank_enter]
 id = 29168
+examine = "Handy for boarding boats."
 
 [oo_glog_gangplank_exit]
 id = 29169
+examine = "Handy for boarding boats."
 
 [musa_point_gangplank_enter]
 id = 17398
+examine = "Handy for boarding boats."
 
 [musa_point_gangplank_exit]
 id = 17399
+examine = "Handy for boarding boats."
