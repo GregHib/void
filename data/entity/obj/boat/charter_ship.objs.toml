@@ -1,0 +1,59 @@
+[port_sarim_gangplank_enter]
+id = 17404
+
+[port_sarim_gangplank_exit]
+id = 17405
+
+[catherby_gangplank_enter]
+id = 17394
+
+[catherby_gangplank_exit]
+id = 17395
+
+[brimhaven_gangplank_enter]
+id = 17400
+
+[brimhaven_gangplank_exit]
+id = 17401
+
+[port_khazard_gangplank_enter]
+id = 17402
+
+[port_khazard_gangplank_exit]
+id = 17403
+
+[mos_le_harmless_gangplank_enter]
+id = 17406
+
+[mos_le_harmless_gangplank_exit]
+id = 17407
+
+[port_tyras_gangplank_enter]
+id = 17408
+
+[port_tyras_gangplank_exit]
+id = 17409
+
+[shipyard_gangplank_enter]
+id = 17396
+
+[shipyard_gangplank_exit]
+id = 17397
+
+[port_phasmatys_gangplank_enter]
+id = 17392
+
+[port_phasmatys_gangplank_exit]
+id = 17393
+
+[oo_glog_gangplank_enter]
+id = 29168
+
+[oo_glog_gangplank_exit]
+id = 29169
+
+[musa_point_gangplank_enter]
+id = 17398
+
+[musa_point_gangplank_exit]
+id = 17399

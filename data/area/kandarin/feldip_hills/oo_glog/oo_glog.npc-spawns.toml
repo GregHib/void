@@ -40,4 +40,6 @@ spawns = [
   { id = "penelope_platypus_3", x = 2610, y = 2865, members = true },
   { id = "peter_platypus_3", x = 2611, y = 2862, members = true },
   { id = "peanut_platypus_3", x = 2611, y = 2864, members = true },
+  { id = "trader_crewmember_black", x = 2619, y = 2856, members = true },
+  { id = "trader_crewmember_pink", x = 2621, y = 2857, members = true },
 ]
