@@ -37,11 +37,11 @@ val teles: ObjectTeleports by inject()
 interfaceRefresh("charter_ship_map") { player ->
     val currentLocation = player["charter_ship", ""]
     val prices = ships.get(currentLocation)
-    player.interfaces.sendVisibility(id, "mos_le_harmless", player.questCompleted("mos_le_harmless") && prices.containsKey("mos_le_harmless"))
-    player.interfaces.sendVisibility(id, "shipyard", player.questCompleted("the_grand_tree") && prices.containsKey("shipyard"))
-    player.interfaces.sendVisibility(id, "port_tyras", player.questCompleted("regicide") && prices.containsKey("port_tyras"))
-    player.interfaces.sendVisibility(id, "port_phasmatys", player.questCompleted("priest_in_peril") && prices.containsKey("port_phasmatys"))
-    player.interfaces.sendVisibility(id, "oo_glog", player.questCompleted("as_a_first_resort") && prices.containsKey("oo_glog"))
+    player.interfaces.sendVisibility(id, "mos_le_harmless", hasQuestRequirements(player, "mos_le_harmless") && prices.containsKey("mos_le_harmless"))
+    player.interfaces.sendVisibility(id, "shipyard", hasQuestRequirements(player, "shipyard") && prices.containsKey("shipyard"))
+    player.interfaces.sendVisibility(id, "port_tyras", hasQuestRequirements(player, "port_tyras") && prices.containsKey("port_tyras"))
+    player.interfaces.sendVisibility(id, "port_phasmatys", hasQuestRequirements(player, "port_phasmatys") && prices.containsKey("port_phasmatys"))
+    player.interfaces.sendVisibility(id, "oo_glog", hasQuestRequirements(player, "oo_glog") && prices.containsKey("oo_glog"))
     player.interfaces.sendVisibility(id, "crandor", false)
     player.interfaces.sendVisibility(id, "musa_point", false)
 
@@ -104,6 +104,9 @@ interfaceOption("Ok", "*", "charter_ship_map") {
         return@interfaceOption
     }
     val price = ships.get(currentLocation, component) ?: return@interfaceOption
+    if (!hasQuestRequirements(player, component)) {
+        return@interfaceOption
+    }
     val readablePrice = price.toDigitGroupString()
     player.strongQueue("charter_ship") {
         if (!player.inventory.contains("coins", price)) {
@@ -149,6 +152,19 @@ fun ChoiceBuilder<NPCOption<Player>>.charter() {
         player["charter_ship"] = location(target)
         player.open("charter_ship_map")
     }
+}
+
+fun hasQuestRequirements(player: Player, location: String): Boolean {
+    return player.questCompleted(
+        when (location) {
+            "mos_le_harmless" -> "mos_le_harmless"
+            "shipyard" -> "the_grand_tree"
+            "port_tyras" -> "regicide"
+            "port_phasmatys" -> "priest_in_peril"
+            "oo_glog" -> "as_a_first_resort"
+            else -> return true
+        }
+    )
 }
 
 fun location(npc: NPC) = when (npc["spawn_tile", Tile.EMPTY]) {

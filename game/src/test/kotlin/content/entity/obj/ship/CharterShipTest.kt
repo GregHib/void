@@ -7,6 +7,7 @@ import interfaceOption
 import npcOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -14,6 +15,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 class CharterShipTest : WorldTest() {
+
     @Test
     fun `Sail with charter ship`() {
         val player = createPlayer(Tile(3034, 3192))
@@ -34,10 +36,27 @@ class CharterShipTest : WorldTest() {
     @Test
     fun `Can't travel to same location`() {
         val player = createPlayer(Tile(2796, 3414))
-        player.inventory.add("coins", 1000)
-        val crew = createNPC("trader_crewmember_blue", Tile(3033, 3192))
+        player.inventory.add("coins", 3000)
+        val crew = createNPC("trader_crewmember_blue", Tile(2795, 3414))
 
         player.npcOption(crew, "Charter")
+        tick()
+        assertEquals("charter_ship_map", player.menu)
+        player.interfaceOption("charter_ship_map", "catherby", "Ok")
+        tick()
+        assertNull(player.dialogue)
+    }
+
+    @Test
+    fun `Can't travel to location without quest requirement`() {
+        val player = createPlayer(Tile(2796, 3414))
+        player.inventory.add("coins", 3000)
+        val crew = createNPC("trader_crewmember_blue", Tile(2795, 3414))
+
+        player.npcOption(crew, "Charter")
+        tick()
+        assertEquals("charter_ship_map", player.menu)
+        player.interfaceOption("charter_ship_map", "oo_glog", "Ok")
         tick()
         assertNull(player.dialogue)
     }
