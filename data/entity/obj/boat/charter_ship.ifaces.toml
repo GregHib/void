@@ -1,6 +1,19 @@
 [charter_ship_map]
 id = 95
-# Port Tyras, Oo'glog, Brimhaven, Port Khazard, Crandor, Catherby, Karamja, Shipyard, POrt Sarim, Port Phasmatys, Mos Le'Harmless
+components = {
+    port_tyras = 23,
+    port_phasmatys = 24,
+    catherby = 25,
+    shipyard = 26,
+    karamja = 27,
+    brimhaven = 28,
+    port_khazard = 29,
+    port_sarim = 30,
+    mos_le_harmless = 31,
+    crandor = 32,
+    oo_glog = 33,
+    close = 34,
+}
 
 [waterbirth_island_map]
 id = 224
