@@ -10,15 +10,20 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
 import content.entity.combat.hit.hit
+import content.entity.npc.combat.NPCAttack
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.entity.sound.sound
 import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.SoundDefinitions
 
 val weaponStyles: WeaponStyleDefinitions by inject()
-val animationDefinitions: WeaponAnimationDefinitions by inject()
+val weaponAnimations: WeaponAnimationDefinitions by inject()
+val animationDefinitions: AnimationDefinitions by inject()
+val soundDefinitions: SoundDefinitions by inject()
 
 combatPrepare("range") { player ->
     if (player.specialAttack && !SpecialAttack.hasEnergy(player)) {
@@ -92,9 +97,12 @@ fun swing(character: Character, target: Character) {
         "crossbow" -> character.sound("crossbow_shoot")
     }
     val type = character.weapon.def.getOrNull("weapon_type") ?: style.stringId
-    val definition = animationDefinitions.get(type)
+    val definition = weaponAnimations.get(type)
     var animation = definition.attackTypes.getOrDefault(character.attackType, definition.attackTypes["default"])
-    if (animation == null) {
+    if (character is NPC) {
+        target.sound(NPCAttack.sound(soundDefinitions, character, "attack"))
+        animation = NPCAttack.anim(animationDefinitions, character, "attack")
+    } else if (animation == null) {
         animation = "${style.stringId}_${character.attackType}"
     }
     character.anim(animation)
