@@ -1,0 +1,23 @@
+[dragon_attack]
+id = 408
+
+[dragon_death]
+id = 409
+
+[dragon_defend]
+id = 410
+
+[dragon_breath]
+id = 3750
+
+[metal_dragon_fireball]
+id = 3749
+
+[baby_dragon_attack]
+id = 405
+
+[baby_dragon_death]
+id = 406
+
+[baby_dragon_defend]
+id = 407

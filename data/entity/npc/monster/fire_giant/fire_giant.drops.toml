@@ -1,0 +1,41 @@
+[fire_giant_drop_table]
+type = "all"
+drops = [
+  { id = "big_bones" },
+  { table = "fire_giant_secondary" },
+  { table = "fire_giant_tertiary" },
+]
+
+[fire_giant_secondary]
+roll = 128
+drops = [
+  { id = "steel_hatchet", chance = 3 },
+  { id = "mithril_sq_shield", chance = 2 },
+  { id = "fire_battlestaff" },
+  { id = "rune_scimitar" },
+  { id = "fire_rune", amount = 150, chance = 10 },
+  { id = "chaos_rune", amount = 5, chance = 7 },
+  { id = "rune_arrow", amount = 12, chance = 5 },
+  { id = "blood_rune", amount = 5, chance = 4 },
+  { id = "fire_rune", amount = 37 },
+  { id = "law_rune", amount = 2 },
+  { table = "herb_drop_table", chance = 19 },
+  { id = "coins", amount = 60, chance = 40 },
+  { id = "coins", amount = 15, chance = 7 },
+  { id = "coins", amount = 25, chance = 6 },
+  { id = "coins", amount = 300, chance = 2 },
+  { id = "coins", amount = 50 },
+  { id = "lobster", chance = 3 },
+  { id = "steel_bar", chance = 2 },
+  { id = "strength_potion_2" },
+  { table = "rare_drop_table" },
+]
+
+[fire_giant_tertiary]
+roll = 5012
+drops = [
+  { id = "fire_giant_bone", chance = 1253 },
+  { id = "long_bone", chance = 12 },
+  { id = "giant_champions_scroll" },
+  { id = "curved_bone" },
+]

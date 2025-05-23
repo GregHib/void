@@ -13,6 +13,7 @@ spawns = [
     { id = "snake", x = 2754, y = 3171, members = true },
     { id = "snake", x = 2786, y = 3174, members = true },
     # 10801
+    { id = "saniboch", x = 2744, y = 3152, members = true },
     { id = "snake", x = 2739, y = 3169, members = true },
     { id = "snake", x = 2733, y = 3165, members = true },
     { id = "snake", x = 2751, y = 3166, members = true },

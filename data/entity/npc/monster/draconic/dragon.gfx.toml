@@ -25,3 +25,6 @@ height = 43
 curve = 15
 delay = 51
 flight_time = [ 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 ]
+
+[dragon_breath_shoot]
+id = 2465

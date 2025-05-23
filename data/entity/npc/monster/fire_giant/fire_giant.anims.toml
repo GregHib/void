@@ -1,0 +1,8 @@
+[fire_giant_attack]
+id = 4666
+
+[fire_giant_defend]
+id = 4664
+
+[fire_giant_death]
+id = 4668

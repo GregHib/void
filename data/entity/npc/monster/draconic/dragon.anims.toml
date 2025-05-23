@@ -9,3 +9,39 @@ id = 89
 
 [king_black_dragon_death]
 id = 92
+
+[dragon_shoot]
+id = 13160
+
+[dragon_attack]
+id = 13158
+
+[dragon_defend]
+id = 13163
+
+[dragon_breath]
+id = 13164
+
+[dragon_death]
+id = 13159
+
+[colour_dragon_attack]
+id = 12252
+
+[colour_dragon_breath]
+id = 14245
+
+[colour_dragon_defend]
+id = 12251
+
+[colour_dragon_death]
+id = 12250
+
+[baby_dragon_attack]
+id = 14270
+
+[baby_dragon_defend]
+id = 14269
+
+[baby_dragon_death]
+id = 14271

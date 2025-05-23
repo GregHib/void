@@ -27,3 +27,33 @@ delta = { level = 1 }
 option = "Climb-down"
 tile = { x = 2808, y = 3161, level = 1 }
 delta = { level = -1 }
+
+[brimhaven_dungeon_entrance]
+option = "Enter"
+tile = { x = 2743, y = 3153 }
+to = { x = 2712, y = 9564 }
+
+[brimhaven_dungeon_exit]
+option = "Leave"
+tile = { x = 2714, y = 9564 }
+to = { x = 2744, y = 3152 }
+
+[brimhaven_walk_up_1]
+option = "Walk-up"
+tile = { x = 2648, y = 9592}
+to = { x = 2643, y = 9594, level = 2}
+
+[brimhaven_walk_down_2]
+option = "Walk-down"
+tile = { x = 2644, y = 9593, level = 2}
+to = { x = 2649, y = 9591}
+
+[brimhaven_walk_up_3]
+option = "Walk-up"
+tile = { x = 2635, y = 9514 }
+to = { x = 2636, y = 9510, level = 2}
+
+[brimhaven_walk_down_4]
+option = "Walk-down"
+tile = { x = 2635, y = 9511, level = 2}
+to = { x = 2636, y = 9517}
