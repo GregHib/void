@@ -16,8 +16,8 @@ val handler: suspend CombatSwing.(NPC) -> Unit = { npc ->
     if (withinMelee && random.nextBoolean()) {
         // Melee attack
         npc.anim("dragon_attack")
-        npc.hit(target, type = "melee")
         target.sound("dragon_attack")
+        npc.hit(target, type = "melee")
     } else if (withinMelee) {
         // Close-range dragonfire
         npc.anim("dragon_breath")
@@ -27,6 +27,7 @@ val handler: suspend CombatSwing.(NPC) -> Unit = { npc ->
     } else {
         // Ranged dragonfire
         npc.anim("dragon_shoot")
+        target.sound("metal_dragon_fireball")
         nearestTile(npc, target).shoot("dragon_breath", target)
         npc.hit(target, type = "dragonfire")
     }
