@@ -177,5 +177,5 @@ drops = [
 [baby_dragon_drop_table]
 type = "all"
 drops = [
-    { table = "babydragon_bones" }
+    { id = "babydragon_bones" }
 ]
