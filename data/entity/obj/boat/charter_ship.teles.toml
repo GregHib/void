@@ -1,0 +1,99 @@
+[port_sarim_gangplank_enter]
+option = "Cross"
+tile = { x = 3038, y = 3191 }
+to = { x = 3038, y = 3189, level = 1 }
+
+[port_sarim_gangplank_exit]
+option = "Cross"
+tile = { x = 3038, y = 3190, level = 1 }
+to = { x = 3038, y = 3192 }
+
+[catherby_gangplank_enter]
+option = "Cross"
+tile = { x = 2792, y = 3415 }
+to = { x = 2792, y = 3417, level = 1 }
+
+[catherby_gangplank_exit]
+option = "Cross"
+tile = { x = 2792, y = 3416, level = 1 }
+to = { x = 2792, y = 3414 }
+
+[brimhaven_gangplank_enter]
+option = "Cross"
+tile = { x = 2761, y = 3238 }
+to = { x = 2763, y = 3238, level = 1 }
+
+[brimhaven_gangplank_exit]
+option = "Cross"
+tile = { x = 2762, y = 3238, level = 1 }
+to = { x = 2760, y = 3238 }
+
+[port_khazard_gangplank_enter]
+option = "Cross"
+tile = { x = 2674, y = 3143 }
+to = { x = 2674, y = 3141, level = 1 }
+
+[port_khazard_gangplank_exit]
+option = "Cross"
+tile = { x = 2674, y = 3142, level = 1 }
+to = { x = 2674, y = 3144 }
+
+[mos_le_harmless_gangplank_enter]
+option = "Cross"
+tile = { x = 3670, y = 2931 }
+to = { x = 3668, y = 2931, level = 1 }
+
+[mos_le_harmless_gangplank_exit]
+option = "Cross"
+tile = { x = 3669, y = 2931, level = 1 }
+to = { x = 3671, y = 2931 }
+
+[shipyard_gangplank_enter]
+option = "Cross"
+tile = { x = 3000, y = 3032 }
+to = { x = 2998, y = 3032, level = 1 }
+
+[shipyard_gangplank_exit]
+option = "Cross"
+tile = { x = 2999, y = 3032, level = 1 }
+to = { x = 3001, y = 3032 }
+
+[port_tyras_gangplank_enter]
+option = "Cross"
+tile = { x = 2142, y = 3123 }
+to = { x = 2142, y = 3125, level = 1 }
+
+[port_tyras_gangplank_exit]
+option = "Cross"
+tile = { x = 2142, y = 3124, level = 1 }
+to = { x = 2142, y = 3122 }
+
+[port_phasmatys_gangplank_enter]
+option = "Cross"
+tile = { x = 3703, y = 3503 }
+to = { x = 3705, y = 3503, level = 1 }
+
+[port_phasmatys_gangplank_exit]
+option = "Cross"
+tile = { x = 3704, y = 3503, level = 1 }
+to = { x = 3702, y = 3503 }
+
+[oo_glog_gangplank_enter]
+option = "Cross"
+tile = { x = 2624, y = 2857 }
+to = { x = 2626, y = 2857, level = 1 }
+
+[oo_glog_gangplank_exit]
+option = "Cross"
+tile = { x = 2625, y = 2857, level = 1 }
+to = { x = 2623, y = 2857 }
+
+[musa_point_gangplank_enter]
+option = "Cross"
+tile = { x = 2955, y = 3158 }
+to = { x = 2957, y = 3158, level = 1 }
+
+[musa_point_gangplank_exit]
+option = "Cross"
+tile = { x = 2956, y = 3158, level = 1 }
+to = { x = 2954, y = 3158 }

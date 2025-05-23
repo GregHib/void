@@ -1,4 +1,6 @@
 spawns = [
 # 10545
   { id = "musician_port_khazard", x = 2630, y = 3196, direction = "WEST", members = true },
+  { id = "trader_crewmember_grey", x = 2673, y = 3144, members = true },
+  { id = "trader_crewmember_pink", x = 2675, y = 3144, members = true },
 ]

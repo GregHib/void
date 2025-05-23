@@ -55,6 +55,7 @@ import content.quest.quests
 import content.quest.refreshQuestJournal
 import content.entity.npc.shop.OpenShop
 import content.entity.obj.ObjectTeleports
+import content.entity.obj.ship.CharterShips
 import content.skill.prayer.PrayerConfigs
 import content.skill.prayer.PrayerConfigs.PRAYERS
 import content.skill.prayer.isCurses
@@ -445,6 +446,7 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
         "book", "books" -> get<Books>().load(files.list(Settings["definitions.books"]))
         "stairs", "tele", "teles", "teleports" -> get<ObjectTeleports>().load(files.list(Settings["map.teleports"]))
         "tracks", "songs" -> get<MusicTracks>().load(files.find(Settings["map.music"]))
+        "ships" -> get<CharterShips>().load(files.find(Settings["map.ships.prices"]))
         "objects", "objs" -> {
             val defs: ObjectDefinitions = get()
             val custom: GameObjects = get()

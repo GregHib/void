@@ -13,6 +13,9 @@ spawns = [
     { id = "rat", x = 3011, y = 3189 },
     { id = "rat", x = 3013, y = 3183 },
     { id = "rat", x = 3015, y = 3182 },
+    { id = "trader_crewmember_blue", x = 3039, y = 3193, members = true },
+    { id = "trader_crewmember_hat", x = 3042, y = 3192, members = true },
+    { id = "trader_stan", x = 3033, y = 3192, members = true },
     # 12082
     { id = "man", x = 3017, y = 3238 },
     { id = "bartender_rusty_anchor", x = 3045, y = 3257 },
