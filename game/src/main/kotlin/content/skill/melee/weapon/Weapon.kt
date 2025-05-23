@@ -46,6 +46,8 @@ object Weapon {
             return true
         } else if (type == "range" && special && (weapon.id.startsWith("magic_longbow") || weapon.id.startsWith("magic_composite_bow") || weapon.id == "seercull")) {
             return true
+        } else if (type == "range" && source is NPC && target is Player && source.id.startsWith("thrower_troll") && target.equipped(EquipSlot.Shield).id != "fremennik_round_shield") {
+            return true
         }
         return false
     }
