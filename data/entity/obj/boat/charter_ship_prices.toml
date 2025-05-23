@@ -1,0 +1,103 @@
+[brimhaven]
+catherby = 480
+musa_point = 200
+mos_le_harmless = 1450
+port_khazard = 1600
+port_phasmatys = 2900
+port_sarim = 1600
+shipyard = 400
+port_tyras = 3200
+oo_glog = 3800
+
+[catherby]
+brimhaven = 480
+musa_point = 480
+mos_le_harmless = 1250
+port_khazard = 1600
+port_phasmatys = 3500
+port_sarim = 1000
+shipyard = 1600
+port_tyras = 3200
+oo_glog = 3400
+
+[musa_point]
+brimhaven = 200
+catherby = 480
+mos_le_harmless = 2050
+port_khazard = 1600
+port_phasmatys = 2900
+shipyard = 200
+port_tyras = 3200
+oo_glog = 2000
+
+[mos_le_harmless]
+brimhaven = 1950
+catherby = 3500
+musa_point = 450
+port_khazard = 2050
+port_sarim = 650
+shipyard = 450
+port_tyras = 3200
+oo_glog = 1100
+
+[port_khazard]
+brimhaven = 400
+catherby = 1600
+musa_point = 400
+mos_le_harmless = 2050
+port_phasmatys = 4100
+port_sarim = 1280
+shipyard = 720
+port_tyras = 3200
+oo_glog = 5000
+
+[port_phasmatys]
+brimhaven = 2900
+catherby = 3500
+musa_point = 2900
+port_khazard = 4100
+port_sarim = 1300
+port_tyras = 3200
+oo_glog = 2800
+
+[port_sarim]
+brimhaven = 1600
+catherby = 1000
+mos_le_harmless = 650
+port_khazard = 1280
+port_phasmatys = 1300
+shipyard = 400
+port_tyras = 3200
+oo_glog = 1400
+
+[shipyard]
+brimhaven = 400
+catherby = 1600
+musa_point = 200
+mos_le_harmless = 550
+port_khazard = 1600
+port_sarim = 400
+port_tyras = 3200
+oo_glog = 900
+
+[port_tyras]
+brimhaven = 3200
+catherby = 3200
+musa_point = 3200
+mos_le_harmless = 3200
+port_khazard = 3200
+port_phasmatys = 3200
+port_sarim = 3200
+shipyard = 3200
+oo_glog = 3200
+
+[oo_glog]
+brimhaven = 3800
+catherby = 3400
+musa_point = 2000
+mos_le_harmless = 1000
+port_khazard = 5000
+port_phasmatys = 2800
+port_sarim = 1400
+shipyard = 900
+port_tyras = 3200

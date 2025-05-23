@@ -8,8 +8,8 @@ spawns = [
   { id = "banker_4", x = 2811, y = 3443, direction = "SOUTH", members = true },
   { id = "candle_maker", x = 2799, y = 3438, members = true },
   { id = "arheins", x = 2803, y = 3430, members = true },
-  { id = "trader_crewmember_1", x = 2794, y = 3414, members = true },
-  { id = "trader_crewmember_2", x = 2795, y = 3414, members = true },
+  { id = "trader_crewmember_hat", x = 2794, y = 3414, members = true },
+  { id = "trader_crewmember_blue", x = 2795, y = 3414, members = true },
   { id = "sir_mordred", x = 1695, y = 4258, level = 2, members = true },
   { id = "renegade_knight", x = 2766, y = 3397, members = true },
   { id = "renegade_knight", x = 2767, y = 3399, members = true },
@@ -19,7 +19,6 @@ spawns = [
   { id = "renegade_knight", x = 2770, y = 3396, level = 1, members = true },
   { id = "renegade_knight", x = 2771, y = 3402, level = 1, members = true },
   { id = "renegade_knight", x = 2774, y = 3405, level = 1, members = true },
-
   # 11317
   { id = "man_3", x = 2818, y = 3443, members = true },
   { id = "woman_2", x = 2817, y = 3447, members = true },

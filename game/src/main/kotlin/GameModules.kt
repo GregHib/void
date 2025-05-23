@@ -4,6 +4,7 @@ import content.bot.TaskManager
 import content.bot.interact.navigation.graph.NavigationGraph
 import content.bot.interact.path.Dijkstra
 import content.bot.interact.path.DijkstraFrontier
+import content.entity.obj.ship.CharterShips
 import content.entity.player.modal.book.Books
 import content.entity.world.music.MusicTracks
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
@@ -29,6 +30,7 @@ fun gameModule(files: ConfigFiles) = module {
     single(createdAtStart = true) { NavigationGraph(get(), get()).load(files.find(Settings["map.navGraph"])) }
     single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }
     single(createdAtStart = true) { MusicTracks().load(files.find(Settings["map.music"])) }
+    single(createdAtStart = true) { CharterShips().load(files.find(Settings["map.ships.prices"])) }
     single {
         InstructionHandlers(
             get(),

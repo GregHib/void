@@ -29,3 +29,6 @@ type = "dialogue_box"
 
 [familiar_options]
 id = 880
+
+[summoning_side]
+id = 722

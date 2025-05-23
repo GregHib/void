@@ -6,4 +6,6 @@ spawns = [
   { id = "rat", x = 3679, y = 2949, level = 1, members = true },
   { id = "rat", x = 3682, y = 2948, members = true },
   { id = "rat", x = 3688, y = 2947, members = true },
+  { id = "trader_crewmember_grey", x = 3671, y = 2930, members = true },
+  { id = "trader_crewmember_purple", x = 3672, y = 2930, members = true },
 ]

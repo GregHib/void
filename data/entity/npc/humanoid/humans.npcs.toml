@@ -688,18 +688,6 @@ wander_radius = 4
 categories = ["human"]
 examine = "Gillie milks cows and she's udderly fantastic at it."
 
-[trader_crewmember_1]
-id = 4653
-categories = ["human"]
-wander_radius = 2
-examine = "He can look after my money."
-
-[trader_crewmember_2]
-id = 4656
-categories = ["human"]
-wander_radius = 2
-examine = "He can look after my money."
-
 [sir_prysin_sword]
 clone = "sir_prysin_normal"
 id = 4657
