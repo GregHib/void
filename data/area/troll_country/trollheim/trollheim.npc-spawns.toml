@@ -1,0 +1,7 @@
+spawns = [
+    { id = "thrower_troll_trollheim_large_3", x = 2886, y = 3698 },
+    { id = "thrower_troll_trollheim_large_2", x = 2889, y = 3699 },
+    { id = "thrower_troll_trollheim_grey", x = 2893, y = 3700 },
+    { id = "thrower_troll_trollheim_large", x = 2898, y = 3698 },
+    { id = "thrower_troll_trollheim", x = 2902, y = 3696 },
+]
