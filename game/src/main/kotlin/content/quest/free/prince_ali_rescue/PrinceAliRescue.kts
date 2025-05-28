@@ -224,7 +224,7 @@ questJournalOpen("prince_ali_rescue") {
             "",
             "<col=ff0000>QUEST COMPLETE!",
         )
-        else -> emptyList()
+        else -> listOf("<navy>I can start his quest by talking to <maroon>Chancellor Hassan<navy> in <maroon>Al Kharid Palace<navy>.")
     }
     player.questJournal("Prince Ali Rescue", lines)
 }
