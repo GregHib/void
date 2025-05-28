@@ -30,6 +30,7 @@ fun Player.equipping() = menu == "equipment_bonuses"
 
 playerSpawn { player ->
     updateStats(player)
+    player["bank_hidden"] = true
 }
 
 inventoryChanged("worn_equipment") { player ->
