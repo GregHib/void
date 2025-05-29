@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.instruction.handle
 
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnObject
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -43,6 +44,7 @@ class InterfaceOnObjectOptionHandler(
                 inventory
             )
         }
+        player.closeInterfaces()
         player.mode = Interact(player, obj, interaction)
     }
 }

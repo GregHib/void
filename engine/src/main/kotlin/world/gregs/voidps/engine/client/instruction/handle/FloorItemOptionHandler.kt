@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.client.instruction.handle
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -37,6 +38,7 @@ class FloorItemOptionHandler(
             player.message(floorItem.def.getOrNull("examine") ?: return, ChatType.ItemExamine)
             return
         }
+        player.closeInterfaces()
         player.mode = Interact(player, floorItem, FloorItemOption(player, floorItem, selectedOption), shape = -1)
     }
 }

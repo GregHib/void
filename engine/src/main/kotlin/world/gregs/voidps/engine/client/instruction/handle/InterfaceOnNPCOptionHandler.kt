@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.instruction.handle
 
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
 import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
@@ -21,6 +22,7 @@ class InterfaceOnNPCOptionHandler(
 
         val (id, component, item, inventory) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 
+        player.closeInterfaces()
         player.talkWith(npc)
         val interaction = if (item.isEmpty()) {
             InterfaceOnNPC(
