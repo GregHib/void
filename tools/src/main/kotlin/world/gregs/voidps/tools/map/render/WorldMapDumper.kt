@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit
  */
 object WorldMapDumper {
 
-    var minimapIcons = false
+    var minimapIcons = true
 
     @JvmStatic
     fun main(args: Array<String>) {
