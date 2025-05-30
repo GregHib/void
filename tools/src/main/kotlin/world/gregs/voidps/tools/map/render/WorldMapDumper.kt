@@ -18,6 +18,7 @@ import world.gregs.voidps.tools.map.render.draw.RegionRenderer
 import world.gregs.voidps.tools.map.render.load.MapTileSettings
 import world.gregs.voidps.tools.map.render.load.RegionManager
 import world.gregs.voidps.type.Region
+import java.awt.image.BufferedImage
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -30,6 +31,10 @@ object WorldMapDumper {
 
     @JvmStatic
     fun main(args: Array<String>) {
+        dump("./images/test/")
+    }
+
+    fun dump(path: String, block: ((BufferedImage, Int, Region) -> Unit)? = null) {
         Settings.load("game.properties")
         val koin = startKoin {
             modules(
@@ -53,9 +58,9 @@ object WorldMapDumper {
         val spriteDecoder = SpriteDecoder().load(cache)
         val mapSceneDecoder = MapSceneDecoder().load(cache)
 
-        File("./images/").mkdir()
+        File(path).mkdir()
         for (i in 0 until 4) {
-            File("./images/$i/").mkdir()
+            File("$path$i/").mkdir()
         }
 
         val loader = MinimapIconPainter(objectDecoder, worldMapDecoder, worldMapInfoDecoder, spriteDecoder)
@@ -64,7 +69,7 @@ object WorldMapDumper {
         val settings = MapTileSettings(4, underlayDefinitions, overlayDefinitions, textureDefinitions, manager = manager)
 
         val pipeline = Pipeline<Region>()
-        pipeline.add(RegionRenderer(manager, objectDecoder, spriteDecoder, mapSceneDecoder, loader, settings))
+        pipeline.add(RegionRenderer(manager, objectDecoder, spriteDecoder, mapSceneDecoder, loader, settings, block))
 
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {

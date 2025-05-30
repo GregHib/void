@@ -26,7 +26,7 @@ class WorldMapInfoDecoder(
                     aBoolean1047 = false
                 }
                 if (setting and 0x2 == 2) {
-                    aBoolean1079 = true
+                    hiddenOnWorldMap = true
                 }
             }
             8 -> aBoolean1063 = buffer.readUnsignedByte() == 1
