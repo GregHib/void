@@ -13,13 +13,12 @@ object Stitch {
     @JvmStatic
     fun main(args: Array<String>) {
         val start = System.currentTimeMillis()
-        val levels = File("./images/").listFiles()!!
-        for (level in levels) {
-            val images = level.listFiles()
-            val regions = images?.map {
+        for (level in 0 until 4) {
+            val images = File("./images/$level/").listFiles() ?: continue
+            val regions = images.map {
                 val id = it.nameWithoutExtension.toInt()
                 Region(id) to it
-            } ?: return
+            }
             val minX = regions.minByOrNull { it.first.x }!!.first.x
             val maxX = regions.maxByOrNull { it.first.x }!!.first.x
             val minY = regions.minByOrNull { it.first.y }!!.first.y
@@ -38,7 +37,7 @@ object Stitch {
             }
             println("Stitched ${regions.size} regions in ${System.currentTimeMillis() - start}ms")
             try {
-                ImageIO.write(bi, "png", File("./map-${level.nameWithoutExtension}.png"))
+                ImageIO.write(bi, "png", File("./map-${level}.png"))
             } catch (e: IOException) {
                 e.printStackTrace()
             }
