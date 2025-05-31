@@ -14,6 +14,7 @@ pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance
 drop_table = "human"
 style = "crush"
 combat_anims = "human"
+combat_sounds = "man"
 categories = ["human"]
 examine = "One of Gielinor's many citizens."
 
@@ -26,12 +27,26 @@ clone = "man"
 id = 3
 
 [woman]
-clone = "man"
 id = 4
+max_hit_melee = 10
+hitpoints = 70
+wander_radius = 4
+respawn_delay = 25
+pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
+drop_table = "human"
+style = "crush"
+combat_anims = "human"
+combat_sounds = "woman"
+categories = ["human"]
+examine = "One of Gielinor's many citizens."
 
 [woman_2]
-clone = "man"
+clone = "woman"
 id = 5
+
+[woman_3]
+clone = "woman"
+id = 6
 
 [monk_of_zamorak_ourania]
 id = 189

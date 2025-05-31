@@ -45,9 +45,11 @@ spawns = [
   { id = "goblin_light_topless_spiked", x = 3185, y = 3244 },
   { id = "goblin_light_grey_bald_spear", x = 3167, y = 3205 },
 # 12850
+  { id = "man_2", x = 3246, y = 3201 },
+  { id = "man", x = 3246, y = 3202 },
   { id = "father_aereck", x = 3246, y = 3205 },
-  { id = "woman", x = 3217, y = 3205 },
-  { id = "woman", x = 3211, y = 3213, level = 1 },
+  { id = "woman_2", x = 3217, y = 3205 },
+  { id = "woman_2", x = 3211, y = 3213, level = 1 },
   { id = "woman", x = 3235, y = 3206 },
   { id = "harlan", x = 3208, y = 3252 },
   { id = "nemarti", x = 3210, y = 3255 },
