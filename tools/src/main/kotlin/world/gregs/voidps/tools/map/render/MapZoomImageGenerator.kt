@@ -21,16 +21,17 @@ import java.nio.file.Path
 import javax.imageio.ImageIO
 import kotlin.io.path.exists
 
-const val TILE_SIZE = 256
-const val INPUT_ZOOM = 8
-const val OUTPUT_BASE = "./images/final/"
-const val MAX_ZOOM_IN = 11
-const val MIN_ZOOM_IN = 4
-
 /**
  * Generates world map pngs with varying zoom levels as a ZXY tile set; used for leaflet js display in explv's map viewer
  */
 object MapZoomImageGenerator {
+
+    private const val TILE_SIZE = 256
+    private const val INPUT_ZOOM = 8
+    private const val OUTPUT_BASE = "./images/final/"
+    private const val MAX_ZOOM_IN = 11
+    private const val MIN_ZOOM_IN = 4
+
     @JvmStatic
     fun main(args: Array<String>) {
         if (!Path.of("$OUTPUT_BASE/0/8/").exists()) {
@@ -52,7 +53,7 @@ object MapZoomImageGenerator {
                 println("Generated zoom-in level $zoom with ${tiles.size} tiles.")
             }
         }
-//        dumpLocations()
+        dumpLocations()
     }
 
     private fun generateZoomInLevel(level: Int, zoom: Int): List<Pair<Int, Int>> {
