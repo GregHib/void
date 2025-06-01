@@ -26,6 +26,44 @@ id = 2
 clone = "man"
 id = 3
 
+[lumbridge_man]
+id = 7873
+max_hit_melee = 10
+hitpoints = 70
+wander_radius = 4
+respawn_delay = 25
+pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
+drop_table = "human"
+style = "crush"
+combat_anims = "human"
+combat_sounds = "man"
+categories = ["human"]
+examine = "A citizen of Lumbridge."
+
+[lumbridge_man_2]
+clone = "lumbridge_man"
+id = 7874
+
+[lumbridge_man_3]
+clone = "lumbridge_man"
+id = 7875
+
+[lumbridge_man_4]
+clone = "lumbridge_man"
+id = 7876
+
+[lumbridge_man_5]
+clone = "lumbridge_man"
+id = 7877
+
+[lumbridge_man_6]
+clone = "lumbridge_man"
+id = 7878
+
+[lumbridge_man_7]
+clone = "lumbridge_man"
+id = 7879
+
 [woman]
 id = 4
 max_hit_melee = 10
@@ -47,6 +85,36 @@ id = 5
 [woman_3]
 clone = "woman"
 id = 6
+
+[lumbridge_woman]
+id = 7880
+max_hit_melee = 10
+hitpoints = 70
+wander_radius = 4
+respawn_delay = 25
+pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
+drop_table = "human"
+style = "crush"
+combat_anims = "human"
+combat_sounds = "woman"
+categories = ["human"]
+examine = "A citizen of Lumbridge."
+
+[lumbridge_woman_2]
+clone = "lumbridge_woman"
+id = 7881
+
+[lumbridge_woman_3]
+clone = "lumbridge_woman"
+id = 7882
+
+[lumbridge_woman_4]
+clone = "lumbridge_woman"
+id = 7883
+
+[lumbridge_woman_5]
+clone = "lumbridge_woman"
+id = 7884
 
 [monk_of_zamorak_ourania]
 id = 189
