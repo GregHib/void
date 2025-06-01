@@ -1,18 +1,14 @@
 package content.entity.player.dialogue.type
 
 import world.gregs.voidps.engine.client.ui.chat.an
-import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
-import world.gregs.voidps.engine.queue.weakQueue
 import content.entity.combat.hit.combatDamage
 import content.entity.sound.jingle
-import world.gregs.voidps.engine.client.ui.closeDialogue
+import world.gregs.voidps.engine.client.ui.*
 
 experience { player ->
     val previousLevel = Experience.level(skill, from)
@@ -30,26 +26,20 @@ maxLevelChange { player ->
     if (player["skip_level_up", false]) {
         return@maxLevelChange
     }
-    player.weakQueue(name = "level_up") {
-        onCancel = {
-            player.closeDialogue()
-        }
-        val unlock = when (skill) {
-            Agility -> false
-            Construction -> to.rem(10) == 0
-            Constitution, Strength -> to >= 50
-            Hunter -> to.rem(2) == 0
-            else -> true// TODO has unlocked something
-        }
-        player.jingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
-        player.gfx("level_up")
-        player.addVarbit("skill_stat_flash", skill.name.lowercase())
-        val level = if (skill == Constitution) to / 10 else to
-        levelUp(skill, """
-            Congratulations! You've just advanced${skill.name.an()} ${skill.name} level!
-            You have now reached level ${level}!
-        """)
+    val unlock = when (skill) {
+        Agility -> false
+        Construction -> to.rem(10) == 0
+        Constitution, Strength -> to >= 50
+        Hunter -> to.rem(2) == 0
+        else -> true// TODO has unlocked something
     }
+    player.jingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
+    player.addVarbit("skill_stat_flash", skill.name.lowercase())
+    val level = if (skill == Constitution) to / 10 else to
+    levelUp(player, skill, """
+        Congratulations! You've just advanced${skill.name.an()} ${skill.name} level!
+        You have now reached level ${level}!
+    """)
 }
 
 combatDamage { player ->

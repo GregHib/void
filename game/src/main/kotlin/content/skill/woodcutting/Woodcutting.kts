@@ -46,11 +46,7 @@ objectOperate("Chop*") {
     val ivy = tree.log.isEmpty()
     var first = true
     while (awaitDialogues()) {
-        if (!objects.contains(target)) {
-            break
-        }
-
-        if (!player.has(Skill.Woodcutting, tree.level, true)) {
+        if (!objects.contains(target) || !player.has(Skill.Woodcutting, tree.level, true)) {
             break
         }
 
