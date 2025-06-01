@@ -147,3 +147,17 @@ id = 5365
 [stronghold_skeleton_shield]
 clone = "stronghold_skeleton_helmet"
 id = 5366
+
+[skeleton_catacombs]
+id = 7921
+hitpoints = 180
+att = 17
+str = 17
+def = 17
+attack_range = 5
+attack_radius = 11
+hunt_mode = "aggressive"
+drop_table = "skeleton_catacombs"
+combat_anims = "skeleton_catacombs"
+categories = ["skeletons", "undead"]
+examine = "It rattles when it moves."

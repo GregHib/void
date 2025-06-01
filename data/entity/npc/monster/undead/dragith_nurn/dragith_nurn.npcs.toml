@@ -1,0 +1,12 @@
+[dragith_nurn]
+id = 9622
+hitpoints = 250
+wander_radius = 8
+attack_radius = 4
+max_hit_melee = 30
+style = "slash"
+respawn_delay = 60
+drop_table = "dragith_nurn"
+combat_anims = "dragith_nurn"
+categories = ["dragith_nurn"]
+examine = "He proved less than useful."

@@ -1,0 +1,5 @@
+[diamond_demon_statuette]
+id = 7250
+persist = true
+format = "list"
+values = ["take_shield", "take", "touch"]

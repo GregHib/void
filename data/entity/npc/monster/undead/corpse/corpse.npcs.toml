@@ -1,0 +1,133 @@
+[corpse_spider]
+id = 7914
+hitpoints = 150
+wander_radius = 8
+attack_radius = 4
+max_hit_melee = 15
+style = "slash"
+respawn_delay = 60
+drop_table = "corpse_spider"
+combat_anims = "corpse_spider"
+categories = ["corpse_spider"]
+examine = "Could do with gaining a few pounds."
+
+[crawling_corpse_torso]
+id = 7916
+hitpoints = 350
+wander_radius = 8
+attack_radius = 4
+max_hit_melee = 20
+style = "slash"
+respawn_delay = 60
+drop_table = "crawling_corpse_torso"
+combat_anims = "crawling_corpse_torso"
+categories = ["crawling_corpse_torso"]
+examine = "Could do with gaining a few pounds."
+
+[crawling_corpse_torso_1]
+id = 7917
+clone = "crawling_corpse_torso"
+
+[crawling_corpse_torso_2]
+id = 7918
+clone = "crawling_corpse_torso"
+
+[crawling_corpse_torso_3]
+id = 7919
+clone = "crawling_corpse_torso"
+
+[corpse_archer]
+id = 7923
+hitpoints = 650
+wander_radius = 8
+attack_radius = 4
+max_hit_melee = 19
+style = "slash"
+respawn_delay = 60
+drop_table = "corpse_archer"
+combat_anims = "corpse_archer"
+categories = ["corpse_archer"]
+examine = "Could do with gaining a few pounds."
+
+[corpse_archer_1]
+id = 7924
+clone = "corpse_archer"
+
+[corpse_archer_2]
+id = 7925
+clone = "corpse_archer"
+
+[corpse_archer_3]
+id = 7926
+clone = "corpse_archer"
+
+[corpse_archer_4]
+id = 7927
+clone = "corpse_archer"
+
+[corpse_archer_5]
+id = 7928
+clone = "corpse_archer"
+
+[corpse_archer_6]
+id = 9607
+clone = "corpse_archer"
+
+[corpse_archer_7]
+id = 9608
+clone = "corpse_archer"
+
+[corpse_archer_8]
+id = 9609
+clone = "corpse_archer"
+
+[corpse_mage]
+id = 9612
+hitpoints = 750
+wander_radius = 8
+attack_radius = 4
+max_hit_magic = 20
+spell = "wind_rush"
+style = "magic"
+respawn_delay = 60
+drop_table = "corpse_mage"
+combat_anims = "corpse_mage"
+categories = ["corpse_mage"]
+examine = "Could do with gaining a few pounds."
+
+[corpse_mage_1]
+id = 9613
+clone = "corpse_mage"
+
+[corpse_mage_2]
+id = 9614
+clone = "corpse_mage"
+
+[corpse_mage_3]
+id = 9615
+clone = "corpse_mage"
+
+[corpse_mage_4]
+id = 9616
+clone = "corpse_mage"
+
+[corpse_mage_5]
+id = 9617
+clone = "corpse_mage"
+
+[corpse_mage_6]
+id = 9618
+clone = "corpse_mage"
+
+[corpse_mage_7]
+id = 9619
+clone = "corpse_mage"
+
+[corpse_mage_8]
+id = 9620
+clone = "corpse_mage"
+
+[corpse_mage_9]
+id = 9621
+clone = "corpse_mage"
+
