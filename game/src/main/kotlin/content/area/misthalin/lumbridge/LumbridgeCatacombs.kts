@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
 objectOperate("Take", "*_demon_statuette") {
-    if (player[target.id, "shield"] == "touch") {
+    if (player[def.stringId, "take"] != "take") {
         player.message("You've already taken this statuette.")
         return@objectOperate
     }
@@ -20,27 +20,28 @@ objectOperate("Take", "*_demon_statuette") {
 
     choice {
         option("Take the statuette.") {
-            if (player.inventory.isFull()) {
-                player.inventoryFull()
+            if (player.inventory.add(def.stringId)) {
+                player[def.stringId] = "plinth"
+                player.message("You carefully take the ${def.stringId}")
             } else {
-                player.inventory.add(target.id)
-                player[target.id] = "take"
-                player.message("You carefully take the ${target.id}")
+                player.inventoryFull()
             }
         }
-        option("Leave it alone.") {
-            // Do nothing
-        }
+        option("Leave it alone.")
     }
-// These should be outside the above block
-    objectOperate("Take", "diamond_demon_statuette") {
-        player.inventory.add("diamond_demon_statuette")
-        player["diamond_demon_statuette"] = "take"
+}
+objectOperate("Take", "diamond_demon_statuette") {
+    if (player["diamond_demon_statuette", "take_shield"] != "take") {
+        return@objectOperate
     }
-    npcDeath("dragith_nurn") { npc ->
-        val killer = npc.killer
-        if (killer is Player) {
-            killer.message("With Dragith Nurn defeated, the diamond statuette is now within your grasp.")
-        }
+    if (player.inventory.add("diamond_demon_statuette")) {
+        player["diamond_demon_statuette"] = "touch"
+    }
+}
+npcDeath("dragith_nurn") { npc ->
+    val killer = npc.killer
+    if (killer is Player) {
+        killer.message("With Dragith Nurn defeated, the diamond statuette is now within your grasp.")
+        killer["diamond_demon_statuette"] = "take"
     }
 }
