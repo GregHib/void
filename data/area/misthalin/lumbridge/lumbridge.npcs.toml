@@ -28,3 +28,13 @@ examine = "A product of a consumerist society."
 id = 3777
 categories = ["human"]
 examine = "Cheerful, helpful and optimistic, I'll bet."
+
+[lachtopher]
+id = 7870
+categories = ["human"]
+examine = "	He has the aura of a lazy-bones about him."
+
+[victoria]
+id = 7872
+categories = ["human"]
+examine = "She seems to be stressed."
