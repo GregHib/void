@@ -45,5 +45,5 @@ drops = [
   { id = "mind_talisman", chance = 32 },
   { id = "fire_talisman", chance = 2 },
   { id = "mask_part_4", chance = 2 },
-  { id = "skeleton_champions_scroll" },
+  { id = "skeleton_champions_scroll", members = true, lacks = "giant_champions_scroll" },
 ]

@@ -62,7 +62,7 @@ examine = "I can ring this."
 id = 45238
 examine = "Items are for sale here."
 
-[jade_demon_statuette ]
+[jade_demon_statuette]
 id = 48665
 examine = "An ornate statuette of a demon holding a large jade gem."
 
@@ -84,8 +84,10 @@ examine = "An ornate statuette of a demon holding a large ruby."
 
 [diamond_demon_statuette_barrier]
 id = 48676
-examine = "An ornate statuette of a demon holding a large diamond."
 
 [diamond_demon_statuette]
 id = 48675
 examine = "An ornate statuette of a demon holding a large diamond."
+
+[taken_demon_statuette]
+id = 48663
