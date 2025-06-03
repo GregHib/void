@@ -1389,7 +1389,7 @@ points = 1
 reward = "Ability to collect phoenix feathers<br>Magic carpet route to the ruins of Uzer<br>Ability to search Thammaron's throne to get 6 gems"
 xp = "1,000 Thieving XP<br>1,000 Crafting XP"
 
-[grand_tree]
+[the_grand_tree]
 id = 56
 name = "The Grand Tree"
 difficulty = 2

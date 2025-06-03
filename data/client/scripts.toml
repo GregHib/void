@@ -164,3 +164,15 @@ id = 4074
 
 [bank_show_equip_screen]
 id = 2319
+
+[spirit_tree_start]
+id = 2141
+
+[spirit_tree_entry]
+id = 2142
+params = [
+  "destinations string",
+  "destination line count",
+  "padding top",
+  "index"
+]

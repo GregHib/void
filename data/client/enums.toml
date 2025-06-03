@@ -313,3 +313,9 @@ id = 1604
 
 [items_lost_on_death]
 id = 616
+
+[spirit_tree_destination_names]
+id = 2535
+
+[spirit_tree_destination_tiles]
+id = 2535
