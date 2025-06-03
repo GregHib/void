@@ -1,14 +1,15 @@
 [spirit_tree_port_sarim]
-id = 722
+id = 720
+format = "int"
 
 [spirit_tree_etceteria]
-id = 723
+id = 722
+format = "int"
 
 [spirit_tree_brimhaven]
 id = 724
-
-[spirit_tree_brimhaven]
-id = 724
+format = "int"
 
 [spirit_tree_poison_waste]
 id = 3959
+format = "int"
