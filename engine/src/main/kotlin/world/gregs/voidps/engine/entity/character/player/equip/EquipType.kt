@@ -33,13 +33,13 @@ enum class EquipType {
 
     /**
      * Hair is replaced with a middle-sized version in [AppearanceOverrides]
-     * E.g. headbands
+     * E.g. headbands or party-hats
      */
     HairMid,
 
     /**
      * Hair is replaced with a smaller version in [AppearanceOverrides]
-     * E.g. party or wizard hats
+     * E.g. wizard hats
      */
     HairLow;
 

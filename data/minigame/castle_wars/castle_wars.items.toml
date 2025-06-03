@@ -520,6 +520,7 @@ id = 18744
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "Halo with the protection of Guthix."
 kept = "Reclaim"
 
@@ -528,6 +529,7 @@ id = 18745
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "Halo with the protection of Saradomin."
 kept = "Reclaim"
 
@@ -536,6 +538,7 @@ id = 18746
 tradeable = false
 weight = 0.453
 slot = "Hat"
+type = "HairMid"
 examine = "Halo with the protection of Zamorak."
 kept = "Reclaim"
 
