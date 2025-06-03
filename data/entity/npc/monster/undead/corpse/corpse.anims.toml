@@ -1,0 +1,36 @@
+[corpse_spider_defend]
+id = 12895
+
+[corpse_spider_death]
+id = 12896
+
+[corpse_spider_attack]
+id = 12894
+
+[crawling_corpse_torso_defend]
+id = 12890
+
+[crawling_corpse_torso_death]
+id = 12893
+
+[crawling_corpse_torso_attack]
+id = 12891
+
+[corpse_archer_defend]
+id = 12867
+
+[corpse_archer_death]
+id = 12869
+
+[corpse_archer_attack]
+id = 12839
+
+[corpse_mage_defend]
+id = 12868
+
+[corpse_mage_death]
+id = 12869
+
+[corpse_mage_attack]
+id = 12841
+

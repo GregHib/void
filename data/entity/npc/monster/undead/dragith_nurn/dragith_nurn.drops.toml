@@ -1,0 +1,53 @@
+[dragith_nurn_drop_table]
+type = "all"
+drops = [
+  { id = "bones"},
+  { table = "dragith_nurn_secondary"},
+  { table = "medium_clue_scroll", roll = 256 },
+]
+
+[dragith_nurn_secondary]
+roll = 512
+drops = [
+  { id = "mask_part_5", chance = 32 },
+  { id = "bronze_mace", chance = 32 },
+  { id = "shortbow", chance = 32 },
+  { id = "bronze_arrow", amount = 40, chance = 8 },
+  { id = "staff", chance = 8 },
+  { id = "magic_staff", chance = 8 },
+  { id = "sling", chance = 8 },
+  { id = "staff_of_air", chance = 8 },
+  { id = "staff_of_fire" },
+  { id = "bronze_chainbody", chance = 32 },
+  { id = "bronze_med_helm", chance = 32 },
+  { id = "leather_boots", chance = 32 },
+  { id = "bronze_sq_shield", chance = 8 },
+  { id = "leather_cowl", chance = 8 },
+  { id = "leather_body", chance = 8 },
+  { id = "gold_necklace", chance = 32 },
+  { id = "gold_amulet", chance = 32 },
+  { id = "holy_symbol", chance = 32 },
+  { id = "gold_ring", chance = 8 },
+  { id = "amulet_of_magic", chance = 2 },
+  { id = "amulet_of_defence", chance = 2 },
+  { id = "unholy_symbol" },
+  { id = "fire_rune", amount = 8, chance = 32 },
+  { id = "mind_rune", amount = 40, chance = 32 },
+  { id = "water_rune", amount = 8, chance = 32 },
+  { id = "air_rune", amount = 18, chance = 32 },
+  { id = "earth_rune", amount = 8, chance = 32 },
+  { id = "mind_talisman", chance = 8 },
+  { id = "fire_talisman", chance = 2 },
+  { id = "water_talisman", chance = 2 },
+  { id = "air_talisman", chance = 2 },
+  { id = "earth_talisman", chance = 2 },
+  { id = "copper_ore", chance = 32 },
+  { id = "tin_ore", amount = 2, chance = 32 },
+  { id = "bronze_bar", chance = 32 },
+  { id = "iron_bar", chance = 8 },
+  { id = "coins", amount = 250, chance = 32 },
+  { id = "feather", amount = 15, chance = 32 },
+  { id = "fishing_bait", amount = 80, chance = 32 },
+  { id = "thread", amount = 65, chance = 32 },
+  { id = "leather", chance = 8 },
+]

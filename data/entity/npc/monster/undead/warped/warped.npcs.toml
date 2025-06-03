@@ -1,0 +1,51 @@
+[warped_cockroach]
+id = 7913
+hitpoints = 200
+wander_radius = 8
+attack_radius = 4
+max_hit_melee = 15
+style = "slash"
+respawn_delay = 60
+drop_table = "warped_cockroach"
+combat_anims = "warped_cockroach"
+categories = ["warped_cockroach"]
+examine = "Could do with gaining a few pounds."
+
+[warped_bat]
+id = 7922
+hitpoints = 200
+wander_radius = 8
+attack_radius = 4
+max_hit_melee = 20
+style = "slash"
+respawn_delay = 60
+drop_table = "warped_bat"
+combat_anims = "warped_bat"
+categories = ["warped_bat"]
+examine = "Could do with gaining a few pounds."
+
+[warped_fly]
+id = 7915
+hitpoints = 250
+wander_radius = 8
+attack_radius = 4
+max_hit_melee = 19
+style = "slash"
+respawn_delay = 60
+drop_table = "warped_fly"
+combat_anims = "warped_fly"
+categories = ["warped_fly"]
+examine = "Could do with gaining a few pounds."
+
+[warped_rat]
+id = 7920
+hitpoints = 100
+wander_radius = 8
+attack_radius = 4
+max_hit_melee = 20
+style = "slash"
+respawn_delay = 60
+drop_table = "warped_rat"
+combat_anims = "warped_rat"
+categories = ["warped_rat"]
+examine = "Could do with gaining a few pounds."

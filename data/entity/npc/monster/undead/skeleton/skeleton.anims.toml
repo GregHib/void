@@ -9,3 +9,12 @@ id = 5485
 
 [skeleton_slash]
 id = 5487
+
+[skeleton_catacombs_defend]
+id = 12864
+
+[skeleton_catacombs_death]
+id = 12869
+
+[skeleton_catacombs_attack]
+id = 12863

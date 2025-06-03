@@ -1,0 +1,32 @@
+spawns = [
+      # Lumbridge Catacombs
+      { id = "warped_cockroach", x = 3970, y = 5552 },
+      { id = "warped_cockroach", x = 3971, y = 5555 },
+      { id = "warped_cockroach", x = 3972, y = 5551 },
+      { id = "warped_cockroach", x = 3972, y = 5553 },
+      { id = "warped_cockroach", x = 3973, y = 5554 },
+      { id = "warped_fly", x = 3988, y = 5545 },
+      { id = "warped_fly", x = 3990, y = 5543 },
+      { id = "warped_fly", x = 3991, y = 5546 },
+      { id = "warped_fly", x = 3992, y = 5542 },
+      { id = "warped_fly", x = 3995, y = 5542 },
+      { id = "warped_fly", x = 3997, y = 5543 },
+      { id = "warped_fly", x = 3999, y = 5542 },
+      { id = "warped_fly", x = 3999, y = 5545 },
+      { id = "warped_rat", x = 4019, y = 5546 },
+      { id = "warped_rat", x = 4022, y = 5541 },
+      { id = "warped_rat", x = 4023, y = 5545 },
+      { id = "warped_rat", x = 4026, y = 5541 },
+      { id = "warped_rat", x = 4028, y = 5544 },
+      { id = "warped_bat", x = 4013, y = 5511 },
+      { id = "warped_bat", x = 4014, y = 5516 },
+      { id = "warped_bat", x = 4016, y = 5507 },
+      { id = "warped_bat", x = 4016, y = 5511 },
+      { id = "warped_bat", x = 4018, y = 5515 },
+      { id = "warped_bat", x = 4019, y = 5508 },
+      { id = "warped_bat", x = 4023, y = 5509 },
+      { id = "warped_bat", x = 4023, y = 5517 },
+      { id = "warped_bat", x = 4024, y = 5513 },
+
+
+]
