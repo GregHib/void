@@ -61,3 +61,11 @@ examine = "I can ring this."
 [counter_bobs_shop]
 id = 45238
 examine = "Items are for sale here."
+
+[sage_backpack]
+id = 33510
+examine = "A backpack belonging to the Lumbridge Sage"
+
+[scroll_desk]
+id = 8718
+examine = "A desk full of information scrolls."
