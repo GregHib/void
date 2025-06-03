@@ -14,11 +14,11 @@ import content.entity.player.dialogue.type.player
         player<Happy>("Good day.")
         npc<Happy>("To you too, traveller. I am Victoria. Tell me, have you seen my brother, Lachtopher, around the town?")
         choice {
-            option("Yes, I've seen Lachtopher") {
+            option("Yes, I've seen Lachtopher.") {
                 npc<Sad>("Ah, he'll have asked you for money, no doubt. I hope you didn't give him any.")
                 choice {
                     option("No, I didn't give him a single coin.") {
-                       npc<Happy>("Oh, good! If you had, then you would never have got it back. My brother is such a waste of space. I've been lending him things for years and he never gives them back")
+                       npc<Happy>("Oh, good! If you had, then you would never have got it back. My brother is such a waste of space. I've been lending him things for years and he never gives them back.")
                         npc<Sad>("Yes, but it never used to be this bad. You see...")
                         npc<Happy>("Lachtopher used to live on the east side of the river, before it was overrun with goblins. Although he didn't have a steady job, he used to help out around farms when he needed cash.")
                         npc<Sad>("Then, one day, the Duke told us it was no longer safe to live on the east riverbank, so some villagers had to move across here.")
