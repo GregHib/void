@@ -21,7 +21,11 @@ class AppearanceOverrides() {
     }
 
     fun hairLow(current: Int, male: Boolean): Int {
-        return (if (male) this.maleLow else femaleLow).getOrDefault(current, current) + 0x100
+        return if (male) {
+            maleLow.getOrDefault(current, 0)
+        } else {
+            femaleLow.getOrDefault(current, 243)
+        } + 0x100
     }
 
     private fun load(enums: EnumDefinitions, structs: StructDefinitions) {
