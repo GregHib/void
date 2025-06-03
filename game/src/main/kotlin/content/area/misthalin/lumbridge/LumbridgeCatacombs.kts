@@ -45,7 +45,7 @@ npcDeath("dragith_nurn") { npc ->
         killer.message("With Dragith Nurn defeated, the diamond statuette is now within your grasp.")
         killer["diamond_demon_statuette"] = "take"
     }
-    destroyed("*_demon_statuette") { player ->
-        player[item.id] = "take"
-    }
+}
+destroyed("*_demon_statuette") { player ->
+    player[item.id] = "take"
 }
