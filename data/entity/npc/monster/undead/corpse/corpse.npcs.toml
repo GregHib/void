@@ -43,7 +43,6 @@ wander_radius = 8
 attack_radius = 4
 max_hit_melee = 19
 weapon_style = "bow"
-ammo = "bronze_arrow"
 style = "range"
 respawn_delay = 60
 drop_table = "corpse_archer"

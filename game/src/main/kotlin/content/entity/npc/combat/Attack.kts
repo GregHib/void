@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.inject
 import content.entity.combat.hit.hit
 import content.entity.combat.npcCombatSwing
 import content.entity.sound.sound
+import content.skill.slayer.categories
 
 val definitions: WeaponStyleDefinitions by inject()
 val animationDefinitions: AnimationDefinitions by inject()
@@ -28,7 +29,7 @@ npcCombatSwing { npc ->
 }
 
 fun attackAnimation(npc: NPC): String {
-    if (npc.def.contains("weapon_style")) {
+    if (npc.categories.contains("human") && npc.def.contains("weapon_style")) {
         val id = npc.def["weapon_style", "unarmed"]
         val styleDefinition = definitions.get(id)
         val styleName: String? = npc.def.getOrNull("style")

@@ -3,22 +3,27 @@ package content.skill.ranged
 import content.entity.combat.characterCombatSwing
 import content.entity.combat.combatPrepare
 import content.entity.combat.combatSwing
-import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
-import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 import content.entity.combat.hit.hit
+import content.entity.npc.combat.NPCAttack
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.entity.sound.sound
 import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
+import content.skill.slayer.categories
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
+import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inject
 
 val weaponStyles: WeaponStyleDefinitions by inject()
-val animationDefinitions: WeaponAnimationDefinitions by inject()
+val weaponDefinitions: WeaponAnimationDefinitions by inject()
+val animationDefinitions: AnimationDefinitions by inject()
+
 
 combatPrepare("range") { player ->
     if (player.specialAttack && !SpecialAttack.hasEnergy(player)) {
@@ -92,10 +97,15 @@ fun swing(character: Character, target: Character) {
         "crossbow" -> character.sound("crossbow_shoot")
     }
     val type = character.weapon.def.getOrNull("weapon_type") ?: style.stringId
-    val definition = animationDefinitions.get(type)
-    var animation = definition.attackTypes.getOrDefault(character.attackType, definition.attackTypes["default"])
-    if (animation == null) {
-        animation = "${style.stringId}_${character.attackType}"
+    var animation: String?
+    if (character is NPC && !character.categories.contains("human")) {
+        animation = NPCAttack.anim(animationDefinitions, character, "attack")
+    } else {
+        val definition = weaponDefinitions.get(type)
+        animation = definition.attackTypes.getOrDefault(character.attackType, definition.attackTypes["default"])
+        if (animation == null) {
+            animation = "${style.stringId}_${character.attackType}"
+        }
     }
     character.anim(animation)
     character.hit(target, delay = if (time == -1) 64 else time)
