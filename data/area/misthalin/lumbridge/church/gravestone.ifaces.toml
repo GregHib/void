@@ -1,0 +1,3 @@
+[gravestone_shop]
+id = 652
+components = { button = { id = 34, options = { Confirm = 0, Sell = 1 } } }

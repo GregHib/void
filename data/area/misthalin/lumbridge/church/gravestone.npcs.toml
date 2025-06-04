@@ -1,0 +1,167 @@
+[gravestone_memorial_plaque]
+id = 6565
+examine = "Marks the place where someone died."
+
+[gravestone_memorial_plaque_broken]
+id = 6566
+examine = "Marks the place where someone died."
+
+[gravestone_memorial_plaque_collapse]
+id = 6567
+examine = "Marks the place where someone died."
+
+[gravestone_flag]
+id = 6568
+examine = "Marks the place where someone died."
+
+[gravestone_flag_broken]
+id = 6569
+examine = "Marks the place where someone died."
+
+[gravestone_flag_collapse]
+id = 6570
+examine = "Marks the place where someone died."
+
+[gravestone_small_gravestone]
+id = 6571
+examine = "Marks the place where someone died."
+
+[gravestone_small_gravestone_broken]
+id = 6572
+examine = "Marks the place where someone died."
+
+[gravestone_small_gravestone_collapse]
+id = 6573
+examine = "Marks the place where someone died."
+
+[gravestone_ornate_gravestone]
+id = 6574
+examine = "Marks the place where someone died."
+
+[gravestone_ornate_gravestone_broken]
+id = 6575
+examine = "Marks the place where someone died."
+
+[gravestone_ornate_gravestone_collapse]
+id = 6576
+examine = "Marks the place where someone died."
+
+[gravestone_font_of_life]
+id = 6577
+examine = ""
+
+[gravestone_font_of_life_broken]
+id = 6578
+examine = ""
+
+[gravestone_font_of_life_collapse]
+id = 6579
+examine = ""
+
+[gravestone_stele]
+id = 6580
+examine = "A monolithic memorial to the person who died here."
+
+[gravestone_stele_broken]
+id = 6581
+examine = "A monolithic memorial to the person who died here."
+
+[gravestone_stele_collapse]
+id = 6582
+examine = "A monolithic memorial to the person who died here."
+
+[gravestone_symbol_of_saradomin]
+id = 6583
+examine = ""
+
+[gravestone_symbol_of_saradomin_broken]
+id = 6584
+examine = ""
+
+[gravestone_symbol_of_saradomin_collapse]
+id = 6585
+examine = ""
+
+[gravestone_symbol_of_zamorak]
+id = 6586
+examine = ""
+
+[gravestone_symbol_of_zamorak_broken]
+id = 6587
+examine = ""
+
+[gravestone_symbol_of_zamorak_collapse]
+id = 6588
+examine = ""
+
+[gravestone_symbol_of_guthix]
+id = 6589
+examine = ""
+
+[gravestone_symbol_of_guthix_broken]
+id = 6590
+examine = ""
+
+[gravestone_symbol_of_guthix_collapse]
+id = 6591
+examine = ""
+
+[gravestone_symbol_of_bandos]
+id = 6592
+examine = "An elegant monument to the person who died here."
+
+[gravestone_symbol_of_bandos_broken]
+id = 6593
+examine = "An elegant monument to the person who died here."
+
+[gravestone_symbol_of_bandos_collapse]
+id = 6594
+examine = "An elegant monument to the person who died here."
+
+[gravestone_symbol_of_armadyl]
+id = 6595
+examine = ""
+
+[gravestone_symbol_of_armadyl_broken]
+id = 6596
+examine = ""
+
+[gravestone_symbol_of_armadyl_collapse]
+id = 6597
+examine = ""
+
+[gravestone_ancient_symbol]
+id = 6598
+examine = ""
+
+[gravestone_ancient_symbol_broken]
+id = 6599
+examine = ""
+
+[gravestone_ancient_symbol_collapse]
+id = 6600
+examine = ""
+
+[gravestone_angel_of_death]
+id = 6601
+examine = ""
+
+[gravestone_angel_of_death_broken]
+id = 6602
+examine = ""
+
+[gravestone_angel_of_death_collapse]
+id = 6603
+examine = ""
+
+[gravestone_royal_dwarven_gravestone]
+id = 13296
+examine = "An awesome statue placed in memory of the person who died here."
+
+[gravestone_royal_dwarven_gravestone_broken]
+id = 13297
+examine = "An awesome statue placed in memory of the person who died here."
+
+[gravestone_royal_dwarven_gravestone_collapse]
+id = 13298
+examine = "An awesome statue placed in memory of the person who died here."
