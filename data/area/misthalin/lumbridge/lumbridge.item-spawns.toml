@@ -4,8 +4,8 @@ spawns = [
 # 12850
   { id = "knife", x = 3224, y = 3202, delay = 100 },
   { id = "knife", x = 3205, y = 3212, delay = 100 },
-  { id = "bronze_pickaxe", x = 3229, y = 3215, level = 2, delay = 200 },
-  { id = "bronze_pickaxe", x = 3229, y = 3223, level = 2, delay = 200 },
+  { id = "bronze_pickaxe", x = 3229, y = 3215, level = 2, delay = 230 },
+  { id = "bronze_pickaxe", x = 3229, y = 3223, level = 2, delay = 230 },
   { id = "mind_rune", x = 3206, y = 3208, delay = 100 },
   { id = "bowl", x = 3208, y = 3214, delay = 100 },
   { id = "empty_pot", x = 3209, y = 3214, delay = 100 },
