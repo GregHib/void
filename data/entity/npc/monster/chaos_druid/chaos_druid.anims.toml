@@ -1,0 +1,8 @@
+[chaos_druid_attack]
+id = 422
+
+[chaos_druid_defend]
+id = 424
+
+[chaos_druid_death]
+id = 836
