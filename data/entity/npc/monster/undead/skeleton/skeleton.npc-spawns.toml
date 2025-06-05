@@ -40,7 +40,7 @@ spawns = [
     { id = "skeleton_catacombs", x = 4026, y = 5531 },
     { id = "skeleton_catacombs", x = 4027, y = 5527 },
     { id = "skeleton_catacombs", x = 4028, y = 5534 },
-# Edgeville Dungeon
+    # Edgeville Dungeon
     { id = "skeleton_sword_shield_45", x = 3112, y = 9958 },
     { id = "skeleton_sword_shield_45", x = 3111, y = 9954 },
     { id = "skeleton_sword_shield_45", x = 3108, y = 9954 },
@@ -67,7 +67,7 @@ spawns = [
     { id = "skeleton_helmet", x = 3132, y = 9908 },
     { id = "skeleton_mace_shield", x = 3134, y = 9911 },
     { id = "skeleton_shield", x = 3132, y = 9914 },
- # Varrock Sewers
+    # Varrock Sewers
     { id = "skeleton_mace_shield", x = 3210, y = 9908 },
     { id = "skeleton_longsword", x = 3211, y = 9906 },
     { id = "skeleton_shield_helmet_1", x = 3248, y = 9914 },
