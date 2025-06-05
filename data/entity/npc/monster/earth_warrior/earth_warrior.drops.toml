@@ -27,5 +27,5 @@ drops = [
 [earth_warrior_tertiary]
 roll = 5000
 drops = [
-  { id = "earth_warrior_champions_scroll" },
+    { id = "earth_warrior_champions_scroll", lacks = "earth_warrior_champions_scroll" },
 ]

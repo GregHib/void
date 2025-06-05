@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 
-objectOperate("Open", "door_27_closed") {
+objectOperate("Open", "edgeville_dungeon_door_closed") {
             if (player.inventory.contains("brass_key")) {
                 player.sound("unlock")
                 enterDoor(target)
