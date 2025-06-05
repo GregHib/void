@@ -188,7 +188,7 @@ interfaceOption("Confirm", "confirm", "skin_colour") {
 fun swapSex(player: Player, male: Boolean) {
     player.body.male = male
     val key = "look_hair_${if (male) "male" else "female"}"
-    player.body.setLook(BodyPart.Hair, enums.getStruct(key, enums.get(key).randomInt(), "body_look_id"))
+    player.body.setLook(BodyPart.Hair, enums.getStruct(key, random.nextInt(enums.get(key).length), "body_look_id"))
     player.body.setLook(BodyPart.Beard, if (male) enums.get("look_beard_male").randomInt() else -1)
     swapLook(player, male, BodyPart.Arms, "arms")
     swapLook(player, male, BodyPart.Hands, "wrists")
