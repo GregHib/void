@@ -37,7 +37,7 @@ data class Teleport(
             teleport(player, get<AreaDefinitions>()[area].random(player)!!, type)
         }
 
-        fun teleport(player: Player, tile: Tile, type: String) {
+        fun teleport(player: Player, tile: Tile, type: String, sound: Boolean = true) {
             if (player.queue.contains("teleport")) {
                 return
             }
@@ -49,12 +49,16 @@ data class Teleport(
                     return@strongQueue
                 }
                 player.steps.clear()
-                player.sound("teleport")
+                if (sound) {
+                    player.sound("teleport")
+                }
                 player.gfx("teleport_$type")
                 player.animDelay("teleport_$type")
                 player.tele(tile)
                 delay(1)
-                player.sound("teleport_land")
+                if (sound) {
+                    player.sound("teleport_land")
+                }
                 player.gfx("teleport_land_$type")
                 player.animDelay("teleport_land_$type")
                 if (type == "ancient" || type == "ectophial") {

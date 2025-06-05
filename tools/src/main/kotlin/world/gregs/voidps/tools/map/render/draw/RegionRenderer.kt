@@ -21,8 +21,15 @@ class RegionRenderer(
     private val spriteDecoder: Array<SpriteDefinition>,
     private val mapSceneDecoder: Array<MapSceneDefinition>,
     private val loader: MinimapIconPainter,
-    private val settings: MapTileSettings
+    private val settings: MapTileSettings,
+    block: ((BufferedImage, Int, Region) -> Unit)? = null
 ) : Pipeline.Modifier<Region> {
+
+    private val block: (BufferedImage, Int, Region) -> Unit = block ?: { image, level, content ->
+        val file = File("./images/$level/${content.id}.png")
+        file.parentFile.mkdirs()
+        ImageIO.write(image, "png", file)
+    }
 
     override fun process(content: Region) {
         val start = System.currentTimeMillis()
@@ -58,7 +65,7 @@ class RegionRenderer(
             try {
                 val image = img.getSubimage(256, 257, 256, 256)
                 if (isNotBlank(image)) {
-                    ImageIO.write(image, "png", File("./images/$level/${content.id}.png"))
+                    block.invoke(image, level, content)
                     println("Written ${content.id} in ${System.currentTimeMillis() - start}ms")
                 }
             } catch (e: IOException) {

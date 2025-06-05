@@ -19,7 +19,8 @@
 <a href="#development">Development</a> &nbsp;&bull;&nbsp;
 <a href="https://rune-server.org/runescape-development/rs-503-client-and-server/projects/697260-void-634-a.html" target="_blank">Blog</a> &nbsp;&bull;&nbsp;
 <a href="https://github.com/GregHib/void/wiki">Documentation</a> &nbsp;&bull;&nbsp;
-<a href="https://github.com/GregHib/void/issues">Bugs</a>
+<a href="https://github.com/GregHib/void/issues">Bugs</a> &nbsp;&bull;&nbsp;
+<a href="https://greghib.github.io/void-map/">World Map</a>
 
 ![void in game picture](https://i.imgur.com/OZ317on.png)
 

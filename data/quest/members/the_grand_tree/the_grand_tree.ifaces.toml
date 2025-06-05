@@ -1,0 +1,5 @@
+[spirit_tree]
+id = 864
+type = "wide_screen"
+components = { close = 6, text = { id = 7, options = { Teleport = 0 } } }
+

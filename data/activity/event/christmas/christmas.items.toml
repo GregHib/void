@@ -15,7 +15,8 @@ price = 1900000000
 limit = 2
 weight = 0.056
 slot = "Hat"
-type = "HairLow"
+type = "HairMid"
+aka = ["red_phat", "red_party_hat", "red_p_hat"]
 examine = "A nice hat from a cracker."
 
 [red_partyhat_noted]
@@ -27,7 +28,8 @@ price = 1400000000
 limit = 2
 weight = 0.056
 slot = "Hat"
-type = "HairLow"
+type = "HairMid"
+aka = ["yellow_phat", "yellow_party_hat", "yellow_p_hat"]
 examine = "A nice hat from a cracker."
 
 [yellow_partyhat_noted]
@@ -39,7 +41,8 @@ price = 2100000000
 limit = 2
 weight = 0.056
 slot = "Hat"
-type = "HairLow"
+type = "HairMid"
+aka = ["blue_phat", "blue_party_hat", "blue_p_hat"]
 examine = "A nice hat from a cracker."
 
 [blue_partyhat_noted]
@@ -51,7 +54,8 @@ price = 1700000000
 limit = 2
 weight = 0.056
 slot = "Hat"
-type = "HairLow"
+type = "HairMid"
+aka = ["green_phat", "green_party_hat", "green_p_hat"]
 examine = "A nice hat from a cracker."
 
 [green_partyhat_noted]
@@ -63,7 +67,8 @@ price = 1300000000
 limit = 2
 weight = 0.056
 slot = "Hat"
-type = "HairLow"
+type = "HairMid"
+aka = ["purple_phat", "purple_party_hat", "purple_p_hat"]
 examine = "A nice hat from a cracker."
 
 [purple_partyhat_noted]
@@ -75,7 +80,8 @@ price = 2100000000
 limit = 2
 weight = 0.056
 slot = "Hat"
-type = "HairLow"
+type = "HairMid"
+aka = ["white_phat", "white_party_hat", "white_p_hat"]
 examine = "A nice hat from a cracker."
 
 [white_partyhat_noted]

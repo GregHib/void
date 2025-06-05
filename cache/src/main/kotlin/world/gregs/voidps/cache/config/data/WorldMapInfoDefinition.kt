@@ -12,7 +12,7 @@ data class WorldMapInfoDefinition(
     var anInt1054: Int = -1,
     var fontSize: Int = 0,
     var aBoolean1047: Boolean = true,
-    var aBoolean1079: Boolean = false,
+    var hiddenOnWorldMap: Boolean = false,
     var aBoolean1063: Boolean = true,
     var varbit: Int = -1,
     var varp: Int = -1,
@@ -59,7 +59,7 @@ data class WorldMapInfoDefinition(
         if (anInt1054 != other.anInt1054) return false
         if (fontSize != other.fontSize) return false
         if (aBoolean1047 != other.aBoolean1047) return false
-        if (aBoolean1079 != other.aBoolean1079) return false
+        if (hiddenOnWorldMap != other.hiddenOnWorldMap) return false
         if (aBoolean1063 != other.aBoolean1063) return false
         if (varbit != other.varbit) return false
         if (varp != other.varp) return false
@@ -113,7 +113,7 @@ data class WorldMapInfoDefinition(
         result = 31 * result + anInt1054
         result = 31 * result + fontSize
         result = 31 * result + aBoolean1047.hashCode()
-        result = 31 * result + aBoolean1079.hashCode()
+        result = 31 * result + hiddenOnWorldMap.hashCode()
         result = 31 * result + aBoolean1063.hashCode()
         result = 31 * result + varbit
         result = 31 * result + varp
