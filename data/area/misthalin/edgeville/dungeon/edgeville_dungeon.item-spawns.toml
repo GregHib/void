@@ -1,7 +1,27 @@
 spawns = [
-    # 12441
+# 12441
     { id = "bones", x = 3101, y = 9825, delay = 100 },
     { id = "bones", x = 3110, y = 9825, delay = 100 },
     { id = "bones", x = 3107, y = 9823, delay = 100 },
     { id = "bones", x = 3109, y = 9823, delay = 100 },
+# 12698
+    { id = "bones", x = 3143, y = 9878, delay = 100 },
+    { id = "bones", x = 3142, y = 9880, delay = 100 },
+    { id = "bones", x = 3141, y = 9879, delay = 100 },
+# 12443
+    { id = "bones", x = 3103, y = 9953, delay = 100 },
+    { id = "bones", x = 3104, y = 9950, delay = 100 },
+    { id = "bones", x = 3110, y = 9958, delay = 100 },
+    { id = "bones", x = 3110, y = 9952, delay = 100 },
+    { id = "bones", x = 3111, y = 9959, delay = 100 },
+    { id = "bones", x = 3116, y = 9950, delay = 100 },
+    { id = "red_spiders_eggs", x = 3128, y = 9956, delay = 100 },
+    { id = "red_spiders_eggs", x = 3126, y = 9958, delay = 100 },
+    { id = "red_spiders_eggs", x = 3118, y = 9948, delay = 100 },
+    { id = "red_spiders_eggs", x = 3129, y = 9954, delay = 100 },
+    { id = "red_spiders_eggs", x = 3117, y = 9951, delay = 100 },
+    { id = "red_spiders_eggs", x = 3119, y = 9949, delay = 100 },
+    { id = "red_spiders_eggs", x = 3127, y = 9957, delay = 100 },
+# 12444
+    { id = "steel_arrowtips", x = 3125, y = 9997, delay = 100 },
 ]

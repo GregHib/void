@@ -232,4 +232,27 @@ spawns = [
     # East of Yanille
     { id = "spider", x = 2671, y = 3107, members = true },
     { id = "spider", x = 2672, y = 3109, members = true },
+    # Edgeville Dungeon
+    { id = "poison_spider", x = 3088, y = 9945 },
+    { id = "poison_spider", x = 3090, y = 9944 },
+    { id = "poison_spider", x = 3089, y = 9943 },
+    { id = "deadly_red_spider", x = 3118, y = 9950 },
+    { id = "deadly_red_spider", x = 3118, y = 9956 },
+    { id = "deadly_red_spider", x = 3120, y = 9952 },
+    { id = "deadly_red_spider", x = 3122, y = 9955 },
+    { id = "deadly_red_spider", x = 3124, y = 9951 },
+    { id = "deadly_red_spider", x = 3125, y = 9958 },
+    { id = "deadly_red_spider", x = 3126, y = 9948 },
+    { id = "deadly_red_spider", x = 3127, y = 9956 },
+    { id = "deadly_red_spider", x = 3128, y = 9954 },
+    # Varrock Sewers
+    { id = "deadly_red_spider", x = 3171, y = 9884 },
+    { id = "deadly_red_spider", x = 3174, y = 9891 },
+    { id = "deadly_red_spider", x = 3175, y = 9881 },
+    { id = "deadly_red_spider", x = 3176, y = 9883 },
+    { id = "deadly_red_spider", x = 3178, y = 9880 },
+    { id = "deadly_red_spider", x = 3178, y = 9888 },
+    { id = "deadly_red_spider", x = 3180, y = 9883 },
+    { id = "deadly_red_spider", x = 3183, y = 9885 },
+    { id = "deadly_red_spider", x = 3186, y = 9892 },
 ]

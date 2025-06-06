@@ -61,9 +61,17 @@ combat_anims = "skeleton"
 categories = ["skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
 
+[skeleton_unarmed_1]
+clone = "skeleton_unarmed"
+id = 5336
+
 [skeleton_shield_helmet]
 clone = "skeleton_unarmed"
 id = 90
+
+[skeleton_shield_helmet_1]
+clone = "skeleton_unarmed"
+id = 91
 
 [skeleton_shield]
 clone = "skeleton_unarmed"
@@ -102,6 +110,10 @@ examine = "Could do with gaining a few pounds."
 clone = "skeleton_axe_shield_85"
 id = 5368
 
+[skeleton_sword_shield_45]
+clone = "skeleton_axe_shield_85"
+id = 93
+
 [stronghold_skeleton_round_shield]
 id = 4384
 hitpoints = 700
@@ -135,6 +147,10 @@ wander_radius = 9
 hunt_mode = "cowardly"
 categories = ["skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
+
+[stronghold_skeleton_helmet_1]
+clone = "stronghold_skeleton_helmet"
+id = 5335
 
 [skeleton_hammer_shield]
 clone = "stronghold_skeleton_helmet"

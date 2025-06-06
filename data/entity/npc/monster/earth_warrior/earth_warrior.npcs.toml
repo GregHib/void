@@ -1,0 +1,19 @@
+[earth_warrior]
+id = 124
+hitpoints = 510
+att = 42
+str = 42
+def = 42
+max_hit_melee = 50
+attack_speed = 4
+wander_radius = 4
+attack_radius = 5
+hunt_mode = "cowardly"
+style = "crush"
+respawn_delay = 30
+drop_table = "earth_warrior"
+combat_anims = "earth_warrior"
+combat_sounds = "earth_warrior"
+categories = ["earth_warrior"]
+slayer_xp = 54.0
+examine = "A strange, inhuman, elemental warrior."

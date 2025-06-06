@@ -71,6 +71,44 @@ categories = ["spiders"]
 height = 10
 examine = "Incey wincey."
 
+[deadly_red_spider]
+id = 63
+hitpoints = 340
+max_hit_melee = 30
+attack = 30
+str = 25
+def = 30
+attack_radius = 11
+wander_radius = 9
+attack_speed = 4
+respawn_delay = 30
+style = "stab"
+slayer_xp = 35.0
+combat_anims = "giant_spider"
+combat_sounds = "giant_spider"
+categories = ["giant_spiders", "spiders"]
+height = 10
+examine = "I think this spider has been genetically modified.."
+
+[poison_spider]
+id = 134
+hitpoints = 640
+max_hit_melee = 70
+attack = 50
+str = 58
+def = 52
+attack_radius = 11
+wander_radius = 9
+attack_speed = 4
+respawn_delay = 30
+style = "stab"
+slayer_xp = 35.0
+combat_anims = "spider"
+combat_sounds = "spider"
+categories = ["spiders"]
+height = 10
+examine = "I think this spider has been genetically modified.."
+
 [spider_underground_pass]
 id = 1004
 clone = "spider"

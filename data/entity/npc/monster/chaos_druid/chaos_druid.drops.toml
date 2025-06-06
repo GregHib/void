@@ -1,0 +1,28 @@
+[chaos_druid_drop_table]
+type = "all"
+drops = [
+  { id = "bones" },
+  { table = "chaos_druid_secondary" },
+]
+
+[chaos_druid_secondary]
+roll = 128
+drops = [
+  { id = "law_rune", amount = 2, chance = 7 },
+  { id = "mithril_bolts", min = 2, max = 12, chance = 4 },
+  { id = "air_rune", amount = 36, chance = 3 },
+  { id = "body_rune", amount = 9, chance = 2 },
+  { id = "earth_rune", amount = 9, chance = 2 },
+  { id = "mind_rune", amount = 12, chance = 2 },
+  { id = "nature_rune", amount = 3 },
+  { id = "coins", amount = 3, chance = 5 },
+  { id = "coins", amount = 8, chance = 5 },
+  { id = "coins", amount = 29, chance = 3 },
+  { id = "coins", amount = 35 },
+  { id = "nothing", amount = 0, chance = 33 },
+  { id = "vial_of_water", chance = 10 },
+  { id = "bronze_longsword" },
+  { id = "snape_grass" },
+  { id = "unholy_mould" },
+  { table = "gem_drop_table" },
+]

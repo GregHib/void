@@ -18,6 +18,13 @@ npcCombatPrepare("cave_crawler*") { npc ->
     }
 }
 
+npcCombatPrepare("poison_spider") { npc ->
+    if (random.nextInt(2) == 0) { // Unknown rate
+        val poison = npc.def["poison", 0]
+        npc.poison(target, poison)
+    }
+}
+
 npcCombatPrepare("kalphite_guardian") { npc ->
     if (random.nextInt(2) == 0) { // Unknown rate
         val poison = npc.def["poison", 0]

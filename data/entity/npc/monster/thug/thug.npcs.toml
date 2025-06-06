@@ -1,0 +1,52 @@
+[thug]
+id = 7106
+hitpoints = 180
+att = 7
+str = 5
+def = 9
+attack_radius = 13
+wander_radius = 10
+max_hit_melee = 20
+style = "stab"
+respawn_delay = 50
+drop_table = "thug"
+combat_anims = "thug"
+combat_sounds = "thug"
+categories = ["thug"]
+examine = "Low on brains, high on aggression."
+
+[thug_1]
+id = 7107
+clone = "thug"
+
+[thug_2]
+id = 7108
+clone = "thug"
+
+[thug_3]
+id = 7109
+clone = "thug"
+
+[thug_4]
+id = 7110
+clone = "thug"
+
+[thug_5]
+id = 7111
+clone = "thug"
+
+[thug_6]
+id = 7112
+clone = "thug"
+
+[thug_7]
+id = 7113
+clone = "thug"
+
+[thug_8]
+id = 7114
+clone = "thug"
+
+[thug_9]
+id = 186
+clone = "thug"
