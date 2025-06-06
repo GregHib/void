@@ -1,5 +1,0 @@
-[imp_drop_table]
-type = "all"
-drops = [
-    {table = "ashes"}
-]

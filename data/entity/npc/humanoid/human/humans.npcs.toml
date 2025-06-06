@@ -1,6 +1,6 @@
 [hans]
 id = 0
-wander_radius = 6
+wander_radius = 4
 categories = ["human"]
 examine = "Servant of the Duke of Lumbridge."
 

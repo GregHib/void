@@ -45,7 +45,6 @@ spawns = [
   { id = "goblin_light_topless_spiked", x = 3185, y = 3244 },
   { id = "goblin_light_grey_bald_spear", x = 3167, y = 3205 },
 # 12850
-  { id = "imp", x = 3214, y = 3206 },
   { id = "lumbridge_sage", x = 3238, y = 3219, direction = "WEST"},
   { id = "lachtopher", x = 3225, y = 3238},
   { id = "victoria", x = 3231, y = 3207},
