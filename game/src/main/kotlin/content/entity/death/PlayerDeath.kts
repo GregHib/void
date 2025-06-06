@@ -11,9 +11,6 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.characterSpawn
 import world.gregs.voidps.engine.entity.item.Item
@@ -38,7 +35,7 @@ import content.entity.player.kept.ItemsKeptOnDeath
 import content.entity.proj.shoot
 import content.entity.sound.jingle
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.*
 import java.util.concurrent.TimeUnit
 
 val floorItems: FloorItems by inject()
@@ -112,6 +109,7 @@ fun dropItems(player: Player, killer: Character?, tile: Tile, inWilderness: Bool
     if (!inWilderness || killer !is Player) {
         val gravestone = npcs.add("gravestone_$grave", tile, player.direction)
         gravestone["player_name"] = player.name
+        gravestone["player_male"] = player.male
         val minutes = TimeUnit.SECONDS.toMinutes(time.toLong())
         // https://www.youtube.com/watch?v=JGf7EHMVpPQ
         player.message("Your gravestone has appeared and will last $minutes ${"minute".plural(minutes)} before crumbling to dust. You")

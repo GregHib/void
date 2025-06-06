@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -111,6 +112,7 @@ npcTimerStop("grave_degrade") { npc ->
 
 npcOperate("Read", "gravestone_*") {
     val remainder = target.remaining("grave_timer", epochSeconds())
+    val name = target["player_name", ""]
 
     // https://www.youtube.com/watch?v=FnYqafcg7Ow
     if (remainder < 10) {
@@ -119,14 +121,21 @@ npcOperate("Read", "gravestone_*") {
     } else {
         remainMessage(player, target)
     }
-
     when {
-        player.name == target["player_name", ""] -> player.message("Isn't there something a bit odd about reading your own gravestone?")
+//        player.name == target["player_name", ""] -> player.message("Isn't there something a bit odd about reading your own gravestone?")
         remainder < 60 -> player.message("The inscription is too unclear to read.")
-        else -> TODO()
+        else -> {
+            player.open("gravestone_plaque")
+            val gravestone = target.id.removePrefix("gravestone_").removeSuffix("_broken")
+            val message = Gravestone.messages[gravestone] ?: return@npcOperate
+            player.interfaces.sendText(
+                "gravestone_plaque", "text", message
+                    .replace("<name>", name)
+                    .replace("<time>", TimeUnit.SECONDS.toMinutes(remainder.toLong()).toString())
+                    .replace("<gender>", if (target["player_male", true]) "His" else "Her")
+            )
+        }
     }
-
-    Gravestone.messages[target.id]
 }
 
 npcOperate("Repair", "gravestone_*") {
@@ -137,7 +146,6 @@ npcOperate("Repair", "gravestone_*") {
 }
 
 npcOperate("Bless", "gravestone_*") {
-
     if (!player.has(Skill.Prayer, 77)) {
         return@npcOperate
     }
