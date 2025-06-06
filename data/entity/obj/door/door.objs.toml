@@ -147,7 +147,7 @@ id = 780
 [waiting_room_door_closed]
 id = 15984
 
-[edgeville_dungeon_door_open]
+[edgeville_dungeon_door_opened]
 id = 2529
 examine = "The door is open."
 
