@@ -56,6 +56,8 @@ data object CatTalk : Expression()
 data object CatQuiz : Expression()
 data object CatAngry : Expression()
 data object CatUnamused : Expression()
+data object TreeTalk : Expression()
+data object TreeHappy : Expression()
 
 data object SurprisedOld : Expression()
 data object SadOld : Expression()

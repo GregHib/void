@@ -1,0 +1,16 @@
+spawns = [
+     # Lumbridge Catacombs
+     { id = "skoblin", x = 3993, y = 5493 },
+     { id = "skoblin", x = 3993, y = 5497 },
+     { id = "skoblin", x = 3994, y = 5495 },
+     { id = "skoblin", x = 3996, y = 5497 },
+     { id = "skoblin", x = 3998, y = 5493 },
+     { id = "skoblin", x = 3999, y = 5495 },
+     { id = "skoblin", x = 4000, y = 5497 },
+     { id = "skoblin", x = 4001, y = 5493 },
+     { id = "skoblin", x = 4003, y = 5495 },
+     { id = "skoblin", x = 4003, y = 5498 },
+     { id = "skoblin", x = 4005, y = 5493 },
+     { id = "skoblin", x = 4005, y = 5498 },
+     { id = "skoblin", x = 4006, y = 5496 },
+]

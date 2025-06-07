@@ -1,0 +1,53 @@
+[skeleton_drop_table]
+type = "all"
+drops = [
+    { table = "bones" }
+]
+
+[skeleton_catacombs_drop_table]
+type = "all"
+drops = [
+  { id = "bones"},
+  { table = "skeleton_catacombs_secondary" },
+]
+
+[skeleton_catacombs_secondary]
+roll = 512
+drops = [
+  { id = "bronze_arrow", amount = 22, chance = 32 },
+  { id = "staff", chance = 32 },
+  { id = "sling", chance = 8 },
+  { id = "shortbow", chance = 8 },
+  { id = "bronze_mace", chance = 8 },
+  { id = "magic_staff", chance = 8 },
+  { id = "staff_of_air", chance = 2 },
+  { id = "air_rune", amount = 12, chance = 32 },
+  { id = "water_rune", amount = 5, chance = 32 },
+  { id = "earth_rune", amount = 5, chance = 32 },
+  { id = "fire_rune", amount = 5, chance = 32 },
+  { id = "mind_rune", amount = 32, chance = 32 },
+  { id = "air_talisman", chance = 2 },
+  { id = "mind_talisman", chance = 2 },
+  { id = "water_talisman" },
+  { id = "leather_gloves", chance = 32 },
+  { id = "leather_cowl", chance = 32 },
+  { id = "bronze_med_helm", chance = 8 },
+  { id = "bronze_sq_shield", chance = 8 },
+  { id = "leather_body", chance = 2 },
+  { id = "bronze_chainbody", chance = 2 },
+  { id = "copper_ore", chance = 32 },
+  { id = "tin_ore", amount = 2, chance = 32 },
+  { id = "bronze_bar", chance = 32 },
+  { id = "iron_bar", chance = 32 },
+  { id = "coins", amount = 160, chance = 32 },
+  { id = "fishing_bait", amount = 50, chance = 32 },
+  { id = "mask_part_2", chance = 8 },
+  { id = "thread", amount = 40, chance = 8 },
+  { id = "leather", chance = 8 },
+  { id = "feather", amount = 10, chance = 8 },
+  { id = "gold_ring", chance = 8 },
+  { id = "gold_necklace", chance = 2 },
+  { id = "gold_amulet", chance = 2 },
+  { id = "holy_symbol", chance = 2 },
+  { id = "skeleton_champions_scroll" },
+]

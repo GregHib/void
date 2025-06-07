@@ -1,0 +1,40 @@
+[jade_demon_statuette]
+id = 7245
+persist = true
+format = "map"
+default = "take"
+values = { take = 0, plinth = 2 }
+
+[topaz_demon_statuette]
+id = 7246
+persist = true
+format = "map"
+default = "take"
+values = { take = 0, plinth = 2 }
+
+[sapphire_demon_statuette]
+id = 7247
+persist = true
+format = "map"
+default = "take"
+values = { take = 0, plinth = 2 }
+
+[emerald_demon_statuette]
+id = 7248
+persist = true
+format = "map"
+default = "take"
+values = { take = 0, plinth = 2 }
+
+[ruby_demon_statuette]
+id = 7249
+persist = true
+format = "map"
+default = "take"
+values = { take = 0, plinth = 2 }
+
+[diamond_demon_statuette]
+id = 7250
+persist = true
+format = "list"
+values = ["take_shield", "take", "touch"]
