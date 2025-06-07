@@ -211,12 +211,6 @@ drops = [
   { id = "nature_talisman", chance = 3 }
 ]
 
-[human_drop_table]
-type = "all"
-drops = [
-  { table = "bones" }
-]
-
 [ashes]
 type = "all"
 drops = [
