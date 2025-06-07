@@ -1,0 +1,14 @@
+[spirit_tree]
+id = 1317
+examine = "An ancient sentient tree."
+
+[spirit_tree_gnome]
+id = 1294
+examine = "An ancient sentient tree."
+
+[spirit_tree_stronghold]
+id = 1293
+examine = "An ancient sentient tree."
+
+[spirit_tree_farming]
+id = 8383

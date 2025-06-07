@@ -101,7 +101,7 @@ persist = true
 default = "unstarted"
 values = { unstarted = 0, completed = 6 }
 
-[grand_tree]
+[the_grand_tree]
 id = 150
 format = "map"
 persist = true

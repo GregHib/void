@@ -26,4 +26,19 @@ spawns = [
     { id = "5365", x = 2355, y = 5195 },
     { id = "4384", x = 2355, y = 5198 },
     { id = "5365", x = 2356, y = 5190 },
+    # Lumbridge Catacombs
+    { id = "skeleton_catacombs", x = 4020, y = 5531 },
+    { id = "skeleton_catacombs", x = 4021, y = 5534 },
+    { id = "skeleton_catacombs", x = 4022, y = 5523 },
+    { id = "skeleton_catacombs", x = 4022, y = 5529 },
+    { id = "skeleton_catacombs", x = 4022, y = 5532 },
+    { id = "skeleton_catacombs", x = 4023, y = 5526 },
+    { id = "skeleton_catacombs", x = 4024, y = 5531 },
+    { id = "skeleton_catacombs", x = 4025, y = 5524 },
+    { id = "skeleton_catacombs", x = 4025, y = 5528 },
+    { id = "skeleton_catacombs", x = 4025, y = 5534 },
+    { id = "skeleton_catacombs", x = 4026, y = 5531 },
+    { id = "skeleton_catacombs", x = 4027, y = 5527 },
+    { id = "skeleton_catacombs", x = 4028, y = 5534 },
+
 ]
