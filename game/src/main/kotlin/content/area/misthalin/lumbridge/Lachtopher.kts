@@ -1,4 +1,4 @@
-package content.entity.npc
+package content.area.misthalin.lumbridge
 
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import content.entity.player.dialogue.Happy

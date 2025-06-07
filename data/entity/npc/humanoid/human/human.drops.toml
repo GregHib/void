@@ -4,7 +4,6 @@ drops = [
     { table = "bones" },
     { table = "human_secondary" },
     { table = "easy_clue_scroll", roll = 128 }
-
 ]
 
 [human_secondary]
@@ -26,5 +25,4 @@ drops = [
     { id = "earth_talisman", chance = 2 },
     { id = "cabbage", chance = 1  },
     { table = "herb_drop_table", chance = 23 }
-
 ]

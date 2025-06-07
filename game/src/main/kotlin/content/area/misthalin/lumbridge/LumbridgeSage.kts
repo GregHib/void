@@ -30,7 +30,6 @@ suspend fun PlayerChoice.castleLum(): Unit = option<Quiz>("Tell me about the tow
     npc<Neutral>("Lumbridge is one of the older towns in the human-controlled kingdoms. It was founded over two hundred years ago towards the end of the Fourth Age. It's called Lumbridge because of this bridge built over the")
     npc<Neutral>("River Lum. The town is governed by Duke Horacio, who is a good friend of our monarch, King Roald of Misthalin.")
         player["sage_advice_task"] = true
-
         choice {
                 whoSage()
                 goodBye()

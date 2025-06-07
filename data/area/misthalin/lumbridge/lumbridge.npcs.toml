@@ -33,7 +33,7 @@ examine = "Cheerful, helpful and optimistic, I'll bet."
 id = 7870
 categories = ["human"]
 wander_radius = 5
-examine = "	He has the aura of a lazy-bones about him."
+examine = "He has the aura of a lazy-bones about him."
 
 [victoria]
 id = 7872
@@ -44,4 +44,4 @@ examine = "She seems to be stressed."
 [lumbridge_sage]
 id = 2244
 categories = ["human"]
-examine = "	He provides new players with useful information."
+examine = "He provides new players with useful information."
