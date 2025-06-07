@@ -69,3 +69,33 @@ examine = "A backpack belonging to the Lumbridge Sage"
 [scroll_desk]
 id = 8718
 examine = "A desk full of information scrolls."
+
+[jade_demon_statuette]
+id = 48665
+examine = "An ornate statuette of a demon holding a large jade gem."
+
+[topaz_demon_statuette]
+id = 48667
+examine = "An ornate statuette of a demon holding a large yellow topaz."
+
+[sapphire_demon_statuette]
+id = 48669
+examine = "An ornate statuette of a demon holding a large sapphire."
+
+[emerald_demon_statuette]
+id = 48671
+examine = "An ornate statuette of a demon holding a large emerald."
+
+[ruby_demon_statuette]
+id = 48673
+examine = "An ornate statuette of a demon holding a large ruby."
+
+[diamond_demon_statuette_barrier]
+id = 48676
+
+[diamond_demon_statuette]
+id = 48675
+examine = "An ornate statuette of a demon holding a large diamond."
+
+[taken_demon_statuette]
+id = 48663
