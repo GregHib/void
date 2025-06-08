@@ -25,6 +25,7 @@ npcOperate("Talk-to", "doomsayer") {
     npc<Talk>("If you see the signs often enough, then you can turn them off; by that time you likely know what the area has in store for you.")
     player<Quiz>("But what if I want to see the warnings again?")
     npc<Happy>("That's why I'm waiting here!")
+    player["doom_task"] = true
     if (player.variables.data.keys.none { it.startsWith("warning_") }) {
         npc<Talk>("If you want to see the warning messages again, I can turn them back on for you.")
         player<Happy>("Thanks, I'll remember that if I see any warning messages.")
