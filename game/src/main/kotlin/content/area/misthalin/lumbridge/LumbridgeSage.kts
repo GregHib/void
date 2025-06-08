@@ -8,7 +8,7 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.PlayerChoice
 import content.entity.player.dialogue.type.choice
 
-npcOperate("Talk-to", "lumbridge_sage*") {
+npcOperate("Talk-to", "lumbridge_sage") {
     npc<Happy>("Greetings, adventurer. How may I help you?")
         choice {
                 whoSage()

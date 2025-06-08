@@ -111,6 +111,7 @@ limit = 100
 weight = 2.267
 mining_delay = 8
 smithing = { level = 5, xp = 25.0 }
+aka = ["bronze_pick"]
 slot = "Weapon"
 examine = "Used for mining."
 kept = "Wilderness"

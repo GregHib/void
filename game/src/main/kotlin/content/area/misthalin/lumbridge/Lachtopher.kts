@@ -8,7 +8,7 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 
-npcOperate("Talk-to", "lachtopher*") {
+npcOperate("Talk-to", "lachtopher") {
     player<Happy>("Hello there.")
     npc<RollEyes>("Hello, I suppose. I'm Lachtopher. Could you lend me some money?")
     player<Quiz>("Lend you money? I really don't think so. Don't you have any of your own?")

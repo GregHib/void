@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.type.random
 
 npcOperate("Talk-to", "lumbridge_man*", "lumbridge_woman*") {
-    when (random.nextInt(0, 5)) {
+    when (random.nextInt(0, 6)) {
         0 -> player<Happy>("Howdy.")
         1 -> player<Happy>("Salutations!")
         2 -> player<Happy>("Hello there.")
@@ -17,7 +17,7 @@ npcOperate("Talk-to", "lumbridge_man*", "lumbridge_woman*") {
         4 -> player<Happy>("Nice to meet you.")
         5 -> player<Happy>("Greetings.")
     }
-    when (random.nextInt(0, 14)) {
+    when (random.nextInt(0, 15)) {
         0 -> npc<Sad>("I have to go all the way through the swamp to go mining. My poor feet!")
         1 -> npc<Sad>("Hello. I'm Sorry to say that Lumbridge is not what it once was.")
         2 -> npc<Happy>("You're not from around here, are you? I can see it in your eyes.")

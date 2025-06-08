@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
-npcOperate("Talk-to", "victoria*") {
+npcOperate("Talk-to", "victoria") {
     player<Happy>("Good day.")
     npc<Happy>("To you too, traveller. I am Victoria. Tell me, have you seen my brother, Lachtopher, around the town?")
     choice {
