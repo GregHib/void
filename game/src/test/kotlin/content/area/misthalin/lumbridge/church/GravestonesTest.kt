@@ -5,6 +5,7 @@ import content.entity.combat.hit.damage
 import content.entity.effect.transform
 import interfaceOption
 import npcOption
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.entity.character.player.name
@@ -13,13 +14,16 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.timer.TimerStop
-import world.gregs.voidps.engine.timer.TimerTick
-import world.gregs.voidps.engine.timer.epochSeconds
+import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.type.Tile
 import kotlin.test.*
 
 class GravestonesTest : WorldTest() {
+
+    @BeforeEach
+    fun setup() {
+        setCurrentTime { 0 }
+    }
 
     @Test
     fun `Spawn a gravestone on death`() {
