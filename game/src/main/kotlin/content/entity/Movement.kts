@@ -13,6 +13,8 @@ import content.entity.death.npcDeath
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.move.Movement.Companion.entityBlock
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Distance.nearestTo
@@ -53,6 +55,9 @@ instruction<Walk> { player ->
         val endSide = Border.getOppositeSide(border, tile)
         player.walkTo(endSide, noCollision = true, forceWalk = true)
     } else {
+        if (player.tile == target && player.mode != EmptyMode && player.mode != PauseMode) {
+            player.mode = EmptyMode
+        }
         player.walkTo(target)
     }
 }
