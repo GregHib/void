@@ -1,13 +1,26 @@
 package content.entity.death
 
+import content.area.misthalin.lumbridge.church.Gravestone
 import content.area.wilderness.inMultiCombat
 import content.area.wilderness.inWilderness
+import content.entity.combat.Target
+import content.entity.combat.attackers
+import content.entity.combat.dead
+import content.entity.combat.hit.directHit
+import content.entity.combat.target
+import content.entity.gfx.areaGfx
+import content.entity.player.inv.item.tradeable
+import content.entity.player.kept.ItemsKeptOnDeath
+import content.entity.proj.shoot
+import content.entity.sound.jingle
+import content.skill.prayer.getActivePrayerVarKey
+import content.skill.prayer.praying
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.character.*
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -24,18 +37,6 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import content.entity.combat.Target
-import content.entity.combat.attackers
-import content.entity.combat.dead
-import content.entity.combat.target
-import content.entity.combat.hit.directHit
-import content.entity.gfx.areaGfx
-import content.entity.player.inv.item.tradeable
-import content.skill.prayer.getActivePrayerVarKey
-import content.skill.prayer.praying
-import content.entity.player.kept.ItemsKeptOnDeath
-import content.entity.proj.shoot
-import content.entity.sound.jingle
 
 val floorItems: FloorItems by inject()
 val enums: EnumDefinitions by inject()
@@ -67,6 +68,8 @@ playerDeath { player ->
         player.message("Oh dear, you are dead!")
         player.anim("human_death")
         delay(5)
+        val after = AfterDeath()
+        player.emit(after)
         player.clearAnim()
         player.attackers.clear()
         player.damageDealers.clear()
@@ -74,9 +77,13 @@ playerDeath { player ->
         player.timers.stopAll()
         player.softTimers.stopAll()
         player.clear(player.getActivePrayerVarKey())
-        dropItems(player, killer, tile, wilderness)
+        if (after.dropItems) {
+            dropItems(player, killer, tile, wilderness)
+        }
         player.levels.clear()
-        player.tele(respawnTile)
+        if (after.teleport) {
+            player.tele(respawnTile)
+        }
         player.face(Direction.SOUTH, update = false)
         player.dead = false
     }
@@ -95,10 +102,13 @@ fun dropItems(player: Player, killer: Character?, tile: Tile, inWilderness: Bool
             continue
         }
     }
+
+    // Spawn grave
+    val time = if (!inWilderness || killer !is Player) Gravestone.spawn(npcs, player, tile) else 0
     // Drop everything
-    drop(player, Item("bones"), tile, inWilderness, killer)
-    drop(player, player.inventory, tile, inWilderness, killer)
-    drop(player, player.equipment, tile, inWilderness, killer)
+    drop(player, Item("bones"), tile, inWilderness, killer, time)
+    drop(player, player.inventory, tile, inWilderness, killer, time)
+    drop(player, player.equipment, tile, inWilderness, killer, time)
     // Clear everything
     player.inventory.clear()
     player.equipment.clear()
@@ -109,12 +119,12 @@ fun dropItems(player: Player, killer: Character?, tile: Tile, inWilderness: Bool
     }
 }
 
-fun drop(player: Player, inventory: Inventory, tile: Tile, inWilderness: Boolean, killer: Character?) {
+fun drop(player: Player, inventory: Inventory, tile: Tile, inWilderness: Boolean, killer: Character?, time: Int) {
     for (item in inventory.items) {
         if (item.isEmpty()) {
             continue
         }
-        drop(player, item, tile, inWilderness, killer)
+        drop(player, item, tile, inWilderness, killer, time)
     }
 }
 
@@ -123,12 +133,17 @@ fun drop(
     item: Item,
     tile: Tile,
     inWilderness: Boolean,
-    killer: Character?
+    killer: Character?,
+    time: Int
 ) {
-    if (item.tradeable) {
-        floorItems.add(tile, item.id, item.amount, revealTicks = 180, disappearTicks = 240, owner = if (inWilderness && killer is Player) killer else player)
+    if (inWilderness && killer is Player) {
+        if (item.tradeable) {
+            floorItems.add(tile, item.id, item.amount, revealTicks = 180, disappearTicks = 240, owner = killer)
+        } else {
+            floorItems.add(tile, "coins", item.amount * item.def.cost, revealTicks = 180, disappearTicks = 240, owner = killer)
+        }
     } else {
-        floorItems.add(tile, "coins", item.amount * item.def.cost, revealTicks = 180, disappearTicks = 240, owner = if (inWilderness && killer is Player) killer else player)
+        floorItems.add(tile, item.id, item.amount, revealTicks = time, disappearTicks = time + 60, owner = player)
     }
 }
 

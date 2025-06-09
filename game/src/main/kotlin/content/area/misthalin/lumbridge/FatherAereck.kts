@@ -7,46 +7,20 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import content.quest.quest
 import content.quest.refreshQuestJournal
 import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
-import content.entity.player.dialogue.type.startQuest
+import content.entity.player.dialogue.type.*
+import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.replace
 
 npcOperate("Talk-to", "father_aereck") {
     when (player.quest("the_restless_ghost")) {
         "unstarted" -> {
             npc<Happy>("Welcome to the church of holy Saradomin.")
             choice {
-                option<Quiz>("Who's Saradomin?") {
-                    npc<Surprised>("Surely you have heard of the god, Saradomin?")
-                    npc<Neutral>("He who creates the forces of goodness and purity in this world? I cannot believe your ignorance!")
-                    npc<Neutral>("This is the god with more followers than any other! ...At least in this part of the world.")
-                    npc<Neutral>("He who created this world along with his brothers Guthix and Zamorak?")
-                    choice {
-                        option<Neutral>("Oh, THAT Saradomin...") {
-                            npc<Uncertain>("There... is only one Saradomin...")
-                            player<Neutral>("Yeah... I, uh, thought you said something else.")
-                        }
-                        option<Neutral>("Oh, sorry. I'm not from this world.") {
-                            npc<Surprised>("...")
-                            npc<Neutral>("That's... strange.")
-                            npc<Neutral>("I thought things not from this world were all... You know. Slime and tentacles.")
-                            choice {
-                                option<Neutral>("You don't understand. This is an online game!") {
-                                    npc<Uncertain>("I... beg your pardon?")
-                                    player<Neutral>("Never mind.")
-                                }
-                                option<Happy>("I am - do you like my disguise?") {
-                                    npc<Surprised>("Aargh! Avaunt foul creature from another dimension! Avaunt! Begone in the name of Saradomin!")
-                                    player<Happy>("Ok, ok, I was only joking...")
-                                }
-                            }
-                        }
-                    }
-                }
-                option<Happy>("Nice place you've got here.") {
-                    npc<Happy>("It is, isn't it? It was built over 230 years ago.")
-                }
+                whosSaradomin()
+                nicePlace()
                 option<Happy>("I'm looking for a quest.") {
                     npc<Happy>("That's lucky, I need someone to do a quest for me.")
                     if (startQuest("the_restless_ghost")) {
@@ -111,8 +85,63 @@ suspend fun SuspendableContext<Player>.foundSkull() {
     }
 }
 
-suspend fun SuspendableContext<Player>.completed() {
+suspend fun NPCOption<Player>.completed() {
     npc<Happy>("Thank you for getting rid of that awful ghost for me! May Saradomin always smile upon you!")
-    player<Happy>("I'm looking for a new quest.")
-    npc<Happy>("Sorry, I only had the one quest.")
+    choice {
+        if (Settings["combat.gravestones", true]) {
+            option<Quiz>("Can you change my gravestone now?") {
+                npc<Happy>("Certainly! All proceeds will be donated to the Varrockian Guards' Widows & Orphans Fund.")
+                player.open("gravestone_shop")
+            }
+        }
+        option<Happy>("I'm looking for a new quest.") {
+            npc<Happy>("Sorry, I only had the one quest.")
+        }
+        whosSaradomin()
+        nicePlace()
+        if (player.inventory.contains("clay_ring")) {
+            option<Quiz>("Can you bless my ring?") {
+                npc<Happy>("Ah, you wish to show your devotion to Saradomin by dedicating a ring to him? Very well, it would be my pleasure to assist.")
+                player.inventory.replace("clay_ring", "ring_of_devotion")
+                player["bless_is_more_task"] = true
+                statement("Father Aereck inscribes the symbol of Saradomin on your ring's signet face, and offers a brief benediction over it.")
+            }
+        }
+    }
+}
+
+fun ChoiceBuilder<NPCOption<Player>>.whosSaradomin() {
+    option<Quiz>("Who's Saradomin?") {
+        npc<Surprised>("Surely you have heard of the god, Saradomin?")
+        npc<Neutral>("He who creates the forces of goodness and purity in this world? I cannot believe your ignorance!")
+        npc<Neutral>("This is the god with more followers than any other! ...At least in this part of the world.")
+        npc<Neutral>("He who created this world along with his brothers Guthix and Zamorak?")
+        choice {
+            option<Neutral>("Oh, THAT Saradomin...") {
+                npc<Uncertain>("There... is only one Saradomin...")
+                player<Neutral>("Yeah... I, uh, thought you said something else.")
+            }
+            option<Neutral>("Oh, sorry. I'm not from this world.") {
+                npc<Surprised>("...")
+                npc<Neutral>("That's... strange.")
+                npc<Neutral>("I thought things not from this world were all... You know. Slime and tentacles.")
+                choice {
+                    option<Neutral>("You don't understand. This is an online game!") {
+                        npc<Uncertain>("I... beg your pardon?")
+                        player<Neutral>("Never mind.")
+                    }
+                    option<Happy>("I am - do you like my disguise?") {
+                        npc<Surprised>("Aargh! Avaunt foul creature from another dimension! Avaunt! Begone in the name of Saradomin!")
+                        player<Happy>("Ok, ok, I was only joking...")
+                    }
+                }
+            }
+        }
+    }
+}
+
+fun ChoiceBuilder<NPCOption<Player>>.nicePlace() {
+    option<Happy>("Nice place you've got here.") {
+        npc<Happy>("It is, isn't it? It was built over 230 years ago.")
+    }
 }

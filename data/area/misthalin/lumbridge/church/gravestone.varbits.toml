@@ -1,0 +1,40 @@
+[unlocked_gravestones]
+id = 4191
+format = "bitwise"
+values = [
+    "memorial_plaque",
+    "flag",
+    "small_gravestone",
+    "ornate_gravestone",
+    "font_of_life",
+    "stele",
+    "symbol_of_saradomin",
+    "symbol_of_zamorak",
+    "symbol_of_guthix",
+    "symbol_of_bandos",
+    "symbol_of_armadyl",
+    "ancient_symbol",
+    "angel_of_death",
+    "royal_dwarven_gravestone"
+]
+
+[gravestone_current]
+id = 4190
+persist = true
+format = "list"
+values = [
+    "memorial_plaque",
+    "flag",
+    "small_gravestone",
+    "ornate_gravestone",
+    "font_of_life",
+    "stele",
+    "symbol_of_saradomin",
+    "symbol_of_zamorak",
+    "symbol_of_guthix",
+    "symbol_of_bandos",
+    "symbol_of_armadyl",
+    "ancient_symbol",
+    "angel_of_death",
+    "royal_dwarven_gravestone"
+]

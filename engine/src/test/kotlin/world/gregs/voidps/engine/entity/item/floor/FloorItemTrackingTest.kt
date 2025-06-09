@@ -62,6 +62,27 @@ class FloorItemTrackingTest {
     }
 
     @Test
+    fun `Removal timer isn't counting down while reveal timer is active`() {
+        val item = items.add(Tile.EMPTY, "item", revealTicks = 10, disappearTicks = 10, owner = "player")
+        items.run()
+
+        repeat(10) {
+            assertEquals("player", item.owner)
+            tracking.run()
+        }
+
+        repeat(5) {
+            assertNull(item.owner)
+            tracking.run()
+        }
+
+        assertEquals(0, item.revealTicks)
+        assertEquals(5, item.disappearTicks)
+        assertFalse(item.reveal())
+        assertFalse(item.remove())
+    }
+
+    @Test
     fun `Public items revealed and removed after timers`() {
         val item = items.add(Tile.EMPTY, "item", revealTicks = 10, disappearTicks = 10, owner = "player")
         items.run()

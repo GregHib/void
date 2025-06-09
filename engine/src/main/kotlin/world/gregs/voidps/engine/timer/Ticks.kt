@@ -30,4 +30,10 @@ val CLIENT_TICKS = ClientTickTime()
 
 fun TimeUnit.toTicks(duration: Int): Int = (toMillis(duration.toLong()) / 600).toInt()
 
-fun epochSeconds() = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()).toInt()
+fun epochSeconds() = TimeUnit.MILLISECONDS.toSeconds(currentTime.invoke()).toInt()
+
+private var currentTime: () -> Long = { System.currentTimeMillis() }
+
+fun setCurrentTime(time: () -> Long) {
+    currentTime = time
+}

@@ -319,3 +319,15 @@ id = 2535
 
 [spirit_tree_destination_tiles]
 id = 2536
+
+[gravestone_npcs]
+id = 1098
+
+[gravestone_names]
+id = 1099
+
+[gravestone_descriptions]
+id = 1100
+
+[gravestone_price]
+id = 1101

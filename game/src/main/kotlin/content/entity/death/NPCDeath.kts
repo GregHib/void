@@ -119,7 +119,15 @@ fun shareLoot(killer: Player, npc: NPC, tile: Tile, drops: List<Item>) {
         } else {
             val awardee = getAwardee(item, killer, members)
             notify(members, awardee, item)
-            floorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = awardee)
+            floorItems.add(
+                tile,
+                item.id,
+                item.amount,
+                charges = item.charges(),
+                revealTicks = if (item.tradeable) 60 else FloorItems.NEVER,
+                disappearTicks = if (item.tradeable) 120 else 300,
+                owner = awardee
+            )
             awardee.message("<dark_green>You received: ${item.amount} ${item.def.name.plural(item.amount)}.", ChatType.ClanChat)
         }
     }
