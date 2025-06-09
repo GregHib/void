@@ -15,7 +15,7 @@ val logger = InlineLogger()
 
 inventoryOption("Drop", "inventory") {
     player.queue.clearWeak()
-    val event = Droppable(item)
+    val event = Droppable(item, player.tile)
     player.emit(event)
     if (event.cancelled) {
         return@inventoryOption
