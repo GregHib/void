@@ -1,0 +1,31 @@
+[earth_warrior_drop_table]
+type = "all"
+drops = [
+  { table = "earth_warrior_secondary" },
+  { table = "earth_warrior_tertiary" },
+]
+
+[earth_warrior_secondary]
+roll = 128
+drops = [
+  { id = "steel_spear", chance = 3 },
+  { id = "staff_of_earth", chance = 2 },
+  { id = "earth_rune", amount = 12, chance = 13 },
+  { id = "nature_rune", amount = 3, chance = 9 },
+  { id = "chaos_rune", amount = 3, chance = 7 },
+  { id = "law_rune", amount = 2, chance = 6 },
+  { id = "death_rune", amount = 2, chance = 4 },
+  { id = "earth_rune", amount = 60, chance = 3 },
+  { id = "blood_rune", amount = 2 },
+  { table = "herb_drop_table", chance = 14 },
+  { table = "uncommon_seed_drop_table", chance = 18 },
+  { id = "coins", amount = 12, chance = 18 },
+  { id = "nothing", amount = 0, chance = 28 },
+  { table = "gem_drop_table", chance = 2 },
+]
+
+[earth_warrior_tertiary]
+roll = 5000
+drops = [
+    { id = "earth_warrior_champions_scroll", lacks = "earth_warrior_champions_scroll" },
+]
