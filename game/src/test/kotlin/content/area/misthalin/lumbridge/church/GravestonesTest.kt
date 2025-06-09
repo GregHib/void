@@ -34,13 +34,15 @@ class GravestonesTest : WorldTest() {
 
         player.damage(101)
 
-        tick(8)
+        tick(9)
 
         val grave = npcs[tile].firstOrNull { it.id.startsWith("gravestone") }
         assertNotNull(grave)
         assertEquals(player.name, grave["player_name", ""])
         assertTrue(grave.softTimers.contains("grave_degrade"))
-        assertTrue((grave.remaining("grave_timer") - epochSeconds()) in 1 until 300)
+        val remaining = grave.remaining("grave_timer", epochSeconds())
+        assertNotEquals(-1, remaining)
+        assertEquals(300, remaining - epochSeconds())
         assertFalse(player.inventory.contains("coins", 10))
         assertEquals(Tile(3221, 3219), player.tile)
     }
@@ -52,10 +54,10 @@ class GravestonesTest : WorldTest() {
         Gravestone.spawn(npcs, player, tile)
         tick()
         val grave = npcs[tile].first { it.id.startsWith("gravestone") }
-        grave["grave_timer"] = epochSeconds() + 119
+        grave["grave_timer"] = 119
         grave.emit(TimerTick("grave_degrade"))
         assertEquals("gravestone_memorial_plaque_broken", grave.transform)
-        grave["grave_timer"] = epochSeconds() + 20
+        grave["grave_timer"] = 20
         grave.emit(TimerTick("grave_degrade"))
         assertEquals("gravestone_memorial_plaque_collapse", grave.transform)
         grave["grave_timer"] = 0
@@ -84,7 +86,7 @@ class GravestonesTest : WorldTest() {
         val floorItem = floorItems.add(tile, "coins", 10, revealTicks = 100, disappearTicks = 160, owner = player.name)
         tick()
         val grave = npcs[tile].first { it.id.startsWith("gravestone") }
-        grave["grave_timer"] = epochSeconds() + 119
+        grave["grave_timer"] = 119
         grave.emit(TimerTick("grave_degrade"))
 
         val friend = createPlayer(tile.addY(1), name = "friend")
@@ -95,7 +97,7 @@ class GravestonesTest : WorldTest() {
         assertEquals(560, floorItem.disappearTicks)
         tick(3)
         assertEquals(2, friend.levels.get(Skill.Prayer))
-        assertTrue(grave.remaining("grave_timer", epochSeconds()) in 298..300)
+        assertEquals(300, grave.remaining("grave_timer", epochSeconds()))
     }
 
     @Test
@@ -106,7 +108,7 @@ class GravestonesTest : WorldTest() {
         val floorItem = floorItems.add(tile, "coins", 10, revealTicks = 100, disappearTicks = 160, owner = player.name)
         tick()
         val grave = npcs[tile].first { it.id.startsWith("gravestone") }
-        grave["grave_timer"] = epochSeconds() + 119
+        grave["grave_timer"] = 119
         grave.emit(TimerTick("grave_degrade"))
 
         val friend = createPlayer(tile.addY(1), name = "friend")
@@ -116,7 +118,7 @@ class GravestonesTest : WorldTest() {
         assertEquals(5999, floorItem.revealTicks)
         assertEquals(6060, floorItem.disappearTicks)
         tick(3)
-        assertTrue(grave.remaining("grave_timer", epochSeconds()) in 3598..3600)
+        assertEquals(3600, grave.remaining("grave_timer", epochSeconds()))
     }
 
     @Test
