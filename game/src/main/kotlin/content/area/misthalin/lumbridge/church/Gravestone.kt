@@ -3,6 +3,7 @@ package content.area.misthalin.lumbridge.church
 import content.entity.player.modal.map.MapMarkers
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
@@ -14,6 +15,9 @@ import java.util.concurrent.TimeUnit
 object Gravestone {
 
     fun spawn(npcs: NPCs, player: Player, tile: Tile): Int {
+        if (!Settings["combat.gravestones", true]) {
+            return 0
+        }
         val grave = player["gravestone_current", "memorial_plaque"]
         val minutes = times[grave] ?: return 0
         val seconds = TimeUnit.MINUTES.toSeconds(minutes.toLong()).toInt()

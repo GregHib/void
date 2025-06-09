@@ -9,8 +9,8 @@ import content.quest.refreshQuestJournal
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
@@ -88,9 +88,11 @@ suspend fun SuspendableContext<Player>.foundSkull() {
 suspend fun NPCOption<Player>.completed() {
     npc<Happy>("Thank you for getting rid of that awful ghost for me! May Saradomin always smile upon you!")
     choice {
-        option<Quiz>("Can you change my gravestone now?") {
-            npc<Happy>("Certainly! All proceeds will be donated to the Varrockian Guards' Widows & Orphans Fund.")
-            player.open("gravestone_shop")
+        if (Settings["combat.gravestones", true]) {
+            option<Quiz>("Can you change my gravestone now?") {
+                npc<Happy>("Certainly! All proceeds will be donated to the Varrockian Guards' Widows & Orphans Fund.")
+                player.open("gravestone_shop")
+            }
         }
         option<Happy>("I'm looking for a new quest.") {
             npc<Happy>("Sorry, I only had the one quest.")
