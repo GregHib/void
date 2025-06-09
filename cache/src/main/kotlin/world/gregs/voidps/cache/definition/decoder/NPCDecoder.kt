@@ -28,10 +28,11 @@ class NPCDecoder(
             93, 99, 107, 109, 111, 141, 143, 158, 159, 162 -> return
             95 -> combat = buffer.readShort()
             97, 98, 102, 103, 114, 122, 123, 137, 138, 139, 142 -> buffer.skip(2)
-            100, 101, 125, 128, 140, 163, 165, 168 -> buffer.skip(1)
+            100, 101, 128, 140, 163, 165, 168 -> buffer.skip(1)
             106, 118 -> readTransforms(buffer, opcode == 118)
             113, 155, 164 -> buffer.skip(4)
             119 -> walkMask = buffer.readByte().toByte()
+            125 -> respawnDirection = buffer.readByte().toByte()
             127 -> renderEmote = buffer.readShort()
             134 -> {
                 idleSound = buffer.readShort()

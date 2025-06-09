@@ -14,6 +14,7 @@ data class NPCDefinition(
     override var varp: Int = -1,
     override var transforms: IntArray? = null,
     var walkMask: Byte = 0,
+    var respawnDirection: Byte = 4,
     var renderEmote: Int = -1,
     var idleSound: Int = -1,
     var crawlSound: Int = -1,
@@ -41,6 +42,7 @@ data class NPCDefinition(
             if (!transforms.contentEquals(other.transforms)) return false
         } else if (other.transforms != null) return false
         if (walkMask != other.walkMask) return false
+        if (respawnDirection != other.respawnDirection) return false
         if (renderEmote != other.renderEmote) return false
         if (idleSound != other.idleSound) return false
         if (crawlSound != other.crawlSound) return false
@@ -61,6 +63,7 @@ data class NPCDefinition(
         result = 31 * result + varp
         result = 31 * result + (transforms?.contentHashCode() ?: 0)
         result = 31 * result + walkMask
+        result = 31 * result + respawnDirection
         result = 31 * result + renderEmote
         result = 31 * result + idleSound
         result = 31 * result + crawlSound
