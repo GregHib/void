@@ -14,18 +14,68 @@ format = "int"
 id = 623
 format = "int"
 
+[world_map_marker_type_1]
+id = 624
+format = "map"
+default = "yellow"
+values = {
+  grave = 0,
+  yellow = 1,
+  blue = 972,
+}
+
 [world_map_marker_2]
 id = 625
 format = "int"
+
+[world_map_marker_type_2]
+id = 626
+format = "map"
+default = "yellow"
+values = {
+  grave = 0,
+  yellow = 1,
+  blue = 972,
+}
 
 [world_map_marker_3]
 id = 627
 format = "int"
 
+[world_map_marker_type_3]
+id = 628
+format = "map"
+default = "yellow"
+values = {
+  grave = 0,
+  yellow = 1,
+  blue = 972,
+}
+
 [world_map_marker_4]
 id = 629
 format = "int"
 
+[world_map_marker_type_4]
+id = 630
+format = "map"
+default = "yellow"
+values = {
+  grave = 0,
+  yellow = 1,
+  blue = 972,
+}
+
 [world_map_marker_5]
 id = 940
 format = "int"
+
+[world_map_marker_type_5]
+id = 641
+format = "map"
+default = "yellow"
+values = {
+  grave = 0,
+  yellow = 1,
+  blue = 972,
+}

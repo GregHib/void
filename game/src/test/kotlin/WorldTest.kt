@@ -50,6 +50,7 @@ import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.timer.setCurrentTime
 import java.io.File
 import java.util.*
 import kotlin.system.measureTimeMillis
@@ -220,6 +221,7 @@ abstract class WorldTest : KoinTest {
 
     @BeforeEach
     fun beforeEach() {
+        setCurrentTime { System.currentTimeMillis() }
         settings = Settings.load(properties)
         loadItemSpawns(floorItems, get(), files.list(Settings["spawns.items"]), itemDefinitions)
         if (loadNpcs) {

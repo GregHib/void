@@ -30,6 +30,9 @@ components = {
   notes = 105,
   logout_tab = 220,
   wilderness_level = 9,
+  gravestone = 11,
+  gravestone_background = 12,
+  gravestone_timer = 13,
 }
 
 [area_status_icon]
@@ -70,6 +73,9 @@ components = {
   music_player = 49,
   notes = 50,
   wilderness_level = 13,
+  gravestone = 10,
+  gravestone_background = 164,
+  gravestone_timer = 165,
 }
 
 [summoning_orb]
