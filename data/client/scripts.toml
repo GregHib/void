@@ -176,3 +176,13 @@ params = [
   "padding top",
   "index"
 ]
+
+[gravestone_set_timer]
+id = 2434
+params = ["time"]
+
+[gravestone_update_timer]
+id = 2435
+
+[gravestone_stop_timer]
+id = 2436

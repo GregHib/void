@@ -3,14 +3,29 @@ package content.entity.death
 import content.area.misthalin.lumbridge.church.Gravestone
 import content.area.wilderness.inMultiCombat
 import content.area.wilderness.inWilderness
+import content.entity.combat.Target
+import content.entity.combat.attackers
+import content.entity.combat.dead
+import content.entity.combat.hit.directHit
+import content.entity.combat.target
+import content.entity.gfx.areaGfx
+import content.entity.player.inv.item.tradeable
+import content.entity.player.kept.ItemsKeptOnDeath
+import content.entity.proj.shoot
+import content.entity.sound.jingle
+import content.skill.prayer.getActivePrayerVarKey
+import content.skill.prayer.praying
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.character.*
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.characterSpawn
 import world.gregs.voidps.engine.entity.item.Item
@@ -22,21 +37,6 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import content.entity.combat.Target
-import content.entity.combat.attackers
-import content.entity.combat.dead
-import content.entity.combat.target
-import content.entity.combat.hit.directHit
-import content.entity.gfx.areaGfx
-import content.entity.player.inv.item.tradeable
-import content.skill.prayer.getActivePrayerVarKey
-import content.skill.prayer.praying
-import content.entity.player.kept.ItemsKeptOnDeath
-import content.entity.proj.shoot
-import content.entity.sound.jingle
-import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.entity.character.player.*
-import java.util.concurrent.TimeUnit
 
 val floorItems: FloorItems by inject()
 val enums: EnumDefinitions by inject()
@@ -104,17 +104,7 @@ fun dropItems(player: Player, killer: Character?, tile: Tile, inWilderness: Bool
     }
 
     // Spawn grave
-    val grave = player["gravestone_current", "memorial_plaque"]
-    val time = Gravestone.times[grave] ?: return
-    if (!inWilderness || killer !is Player) {
-        val gravestone = npcs.add("gravestone_$grave", tile, player.direction)
-        gravestone["player_name"] = player.name
-        gravestone["player_male"] = player.male
-        val minutes = TimeUnit.SECONDS.toMinutes(time.toLong())
-        // https://www.youtube.com/watch?v=JGf7EHMVpPQ
-        player.message("Your gravestone has appeared and will last $minutes ${"minute".plural(minutes)} before crumbling to dust. You")
-        player.message("can find the location of your gravestone by looking at the world map.")
-    }
+    val time = if (!inWilderness || killer !is Player) Gravestone.spawn(npcs, player, tile) else 0
     // Drop everything
     drop(player, Item("bones"), tile, inWilderness, killer, time)
     drop(player, player.inventory, tile, inWilderness, killer, time)
