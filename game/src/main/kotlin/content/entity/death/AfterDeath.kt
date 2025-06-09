@@ -16,7 +16,7 @@ data class AfterDeath(
     override val notification = true
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "${dispatcher.key}_death"
+        0 -> "${dispatcher.key}_after_death"
         1 -> dispatcher.identifier
         else -> null
     }

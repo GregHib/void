@@ -1,3 +1,4 @@
+import content.entity.effect.transform
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
@@ -206,7 +207,12 @@ fun Player.itemOnItem(
 }
 
 fun Player.npcOption(npc: NPC, option: String) {
-    val def = ObjectOptionHandler.getDefinition(this, get< NPCDefinitions>(), npc.def, npc.def)
+    val definitions = get<NPCDefinitions>()
+    val def = if (npc.transform.isNotBlank()) {
+        definitions.get(npc.transform)
+    } else {
+        ObjectOptionHandler.getDefinition(this, definitions, npc.def, npc.def)
+    }
     npcOption(npc, def.options.indexOf(option))
 }
 
