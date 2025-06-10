@@ -42,8 +42,12 @@ objectOperate("Play", "lumbridge_organ") {
 }
 
 objectOperate("Ring", "lumbridge_church_bell") {
-    // TODO obj anim and sound
+    delay(1)
+    player.anim("ring_bell")
+    delay(1)
     player["ring_my_bell_task"] = true
+    target.replace("lumbridge_church_bell_ringing", ticks = 4)
+    player.message("You ring the church bell, confusing the citizens of Lumbridge.")
 }
 
 objectOperate("Close", "restless_ghost_coffin_headless", "restless_ghost_coffin") {

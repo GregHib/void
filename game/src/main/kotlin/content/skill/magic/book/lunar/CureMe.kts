@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.inject
 import content.skill.magic.spell.removeSpellItems
 import content.entity.effect.toxin.curePoison
 import content.entity.effect.toxin.poisoned
+import content.entity.sound.sound
 
 val definitions: SpellDefinitions by inject()
 
@@ -23,6 +24,7 @@ interfaceOption("Cast", "cure_me", "lunar_spellbook") {
     val definition = definitions.get(spell)
     player.anim("lunar_cast")
     player.gfx(spell)
+    player.sound(spell)
     player.experience.add(Skill.Magic, definition.experience)
     player.curePoison()
 }

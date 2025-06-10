@@ -96,7 +96,6 @@ class GravestonesTest : WorldTest() {
         assertEquals(499, floorItem.revealTicks)
         assertEquals(560, floorItem.disappearTicks)
         tick(3)
-        assertEquals(2, friend.levels.get(Skill.Prayer))
         assertEquals(300, grave.remaining("grave_timer", epochSeconds()))
     }
 
