@@ -13,6 +13,7 @@ import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import content.entity.player.combat.special.specialAttackEnergy
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
+import content.entity.sound.sound
 import world.gregs.voidps.engine.client.ui.interact.interfaceOnPlayerApproach
 
 val definitions: SpellDefinitions by inject()
@@ -43,6 +44,7 @@ interfaceOnPlayerApproach(id = "lunar_spellbook", component = "energy_transfer")
     player.start("movement_delay", 2)
     player.anim("lunar_cast")
     target.gfx(spell)
+    player.sound(spell)
     player.experience.add(Skill.Magic, definition.experience)
     player.damage(random.nextInt(95, 100))
     player.specialAttackEnergy = 0

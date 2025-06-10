@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
 import content.entity.combat.hit.damage
+import content.entity.sound.sound
 import content.skill.magic.spell.removeSpellItems
 
 val definitions: SpellDefinitions by inject()
@@ -26,11 +27,13 @@ interfaceOption("Cast", "heal_group", "lunar_spellbook") {
     var healed = 0
     val amount = (player.levels.get(Skill.Constitution) * 0.75).toInt() + 5
     player.anim("lunar_cast")
+    player.sound(spell)
     val group = players
         .filter { other -> other != player && other.tile.within(player.tile, 1) && other.levels.getOffset(Skill.Constitution) < 0 }
         .take(5)
     group.forEach { target ->
         target.gfx(spell)
+        target.sound("heal_other_impact")
         player.experience.add(Skill.Magic, definition.experience)
         healed += target.levels.restore(Skill.Constitution, amount / group.size)
         target.message("You have been healed by ${player.name}.")

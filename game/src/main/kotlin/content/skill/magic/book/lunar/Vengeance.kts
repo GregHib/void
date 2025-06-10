@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import content.entity.combat.hit.combatDamage
 import content.entity.combat.hit.hit
+import content.entity.sound.sound
 import content.skill.magic.spell.removeSpellItems
 
 val definitions: SpellDefinitions by inject()
@@ -31,6 +32,7 @@ interfaceOption("Cast", "vengeance", "lunar_spellbook") {
     val definition = definitions.get(spell)
     player.anim(spell)
     player.gfx(spell)
+    player.sound(spell)
     player.experience.add(Skill.Magic, definition.experience)
     player["vengeance"] = true
     player.start("vengeance_delay", definition["delay_seconds"], epochSeconds())
