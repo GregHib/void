@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import content.entity.player.inv.inventoryOption
+import content.entity.sound.sound
 
 val logger = InlineLogger()
 
@@ -33,6 +34,7 @@ inventoryOption("Bury", "inventory") {
     player.start("bone_delay", 1)
     player.anim("bend_down")
     player.exp(Skill.Prayer, xp)
+    player.sound("bury_bones")
     player["i_wonder_if_itll_sprout_task"] = true
     player.weakQueue("bury", 1, onCancel = null) {
         player.message("You bury the ${item.def.name.lowercase()}.", ChatType.Filter)

@@ -96,3 +96,6 @@ id = 2672
 
 [self_heal]
 id = 167
+
+[bury_bones]
+id = 2738
