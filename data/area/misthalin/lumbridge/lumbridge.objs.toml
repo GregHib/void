@@ -58,6 +58,10 @@ examine = "A church organ."
 id = 36976
 examine = "I can ring this."
 
+[lumbridge_church_bell_ringing]
+id = 36977
+examine = "I can ring this."
+
 [counter_bobs_shop]
 id = 45238
 examine = "Items are for sale here."
