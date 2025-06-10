@@ -1,6 +1,7 @@
 [cave_bug]
 id = 1832
 hitpoints = 50
+regen_rate_ticks = 5
 att = 6
 str = 5
 def = 6
@@ -19,6 +20,7 @@ examine = "A nasty crawling critter."
 [cave_bug_green]
 id = 5750
 hitpoints = 930
+regen_rate_ticks = 5
 att = 82
 str = 80
 def = 84

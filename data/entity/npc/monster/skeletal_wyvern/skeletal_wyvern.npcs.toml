@@ -1,6 +1,7 @@
 [skeletal_wyvern]
 id = 3068
 hitpoints = 2000
+regen_rate_ticks = 10
 att = 125
 str = 116
 def = 120
