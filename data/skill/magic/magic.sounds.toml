@@ -132,8 +132,8 @@ id = 162
 
 [iban_blast_impact]
 id = 163
-delay = 96
-range = 10
+#delay = 96
+#range = 10
 
 [magic_dart_cast]
 id = 1718
