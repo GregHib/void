@@ -31,7 +31,7 @@ adminCommand("inter (interface-id)", "open an interface with int or string id") 
     } else if (id != -1 || !closeInterface(player)) {
         val inter = definitions.get(content)
         var parent = if (player.interfaces.resizable) 746 else 548
-        var index = if (player.interfaces.resizable) 12 else 8
+        var index = if (player.interfaces.resizable) 5 else 8
         val p = inter["parent_${if (player.interfaces.resizable) "resize" else "fixed"}", ""]
         if (p.isNotBlank()) {
             parent = definitions.get(p).id

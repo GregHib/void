@@ -1,0 +1,8 @@
+[earth_warrior_attack]
+id = 2567
+
+[earth_warrior_death]
+id = 512
+
+[earth_warrior_defend]
+id = 1972

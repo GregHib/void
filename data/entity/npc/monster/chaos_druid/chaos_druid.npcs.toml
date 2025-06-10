@@ -1,0 +1,26 @@
+[chaos_druid]
+id = 181
+max_hit_melee = 20
+hitpoints = 130
+att = 8
+str = 8
+def = 12
+magic = 10
+attack_speed = 4
+style = "crush"
+respawn_delay = 25
+wander_radius = 5
+height = 50
+drop_table = "chaos_druid"
+categories = ["chaos_druid", "human"]
+combat_anims = "chaos_druid"
+combat_sounds = "chaos_druid"
+examine = "A crazy, evil druid."
+
+[chaos_druid_1]
+id = 2547
+clone = "chaos_druid"
+
+[chaos_druid_2]
+id = 7105
+clone = "chaos_druid"

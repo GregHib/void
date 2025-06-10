@@ -134,7 +134,7 @@ suspend fun PlayerChoice.kingsKnight(): Unit = option<Talk>("He's one of the Kin
 suspend fun SuspendableContext<Player>.spinachRoll() {
     player.inventory.add("spinach_roll")
     if (player.inventory.transaction.error != TransactionError.None) {
-        floorItems.add(player.tile, "spinach_roll")
+        floorItems.add(player.tile, "spinach_roll", disappearTicks = 300)
     }
     item("spinach_roll", 400, "Traiborn digs around in the pockets of his robes. After a few moments he triumphantly presents you with a spinach roll.")
     player<Neutral>("Thank you very much.")

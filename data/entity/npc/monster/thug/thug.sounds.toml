@@ -1,0 +1,8 @@
+[thug_attack]
+id = 2501
+
+[thug_defend]
+id = 513
+
+[thug_death]
+id = 512

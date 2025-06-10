@@ -1,0 +1,29 @@
+[thug_drop_table]
+type = "all"
+drops = [
+  { id = "bones" },
+  { table = "thug_secondary" },
+  { table = "easy_clue_scroll", roll = 128 },
+]
+
+[thug_secondary]
+roll = 128
+drops = [
+  { id = "iron_med_helm", chance = 4 },
+  { id = "iron_battleaxe", chance = 2 },
+  { id = "steel_hatchet" },
+  { id = "nature_rune", amount = 2, chance = 13 },
+  { id = "chaos_rune", amount = 2, chance = 4 },
+  { id = "cosmic_rune", amount = 2 },
+  { id = "law_rune", amount = 2 },
+  { id = "death_rune", amount = 2 },
+  { table = "herb_drop_table", chance = 24 },
+  { id = "iron_ore", chance = 4 },
+  { id = "iron_bar", chance = 3 },
+  { id = "coal", chance = 2 },
+  { id = "coins", amount = 8, chance = 23 },
+  { id = "coins", amount = 15, chance = 12 },
+  { id = "coins", amount = 30, chance = 2 },
+  { id = "coins", amount = 20 },
+  { id = "nothing", amount = 0, chance = 30 },
+]
