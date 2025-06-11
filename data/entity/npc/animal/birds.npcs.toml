@@ -8,7 +8,6 @@ max_hit_melee = 1
 style = "stab"
 categories = ["ducks", "birds"]
 respawn_delay = 25
-swim = true
 height = 10
 examine = "Quackers."
 
@@ -33,13 +32,11 @@ id = 2252
 clone = "duck_swim"
 id = 2693
 wander_radius = 8
-swim = true
 examine = "She quackers."
 
 [duckling]
 clone = "duck_swim"
 id = 2694
-swim = true
 wander_radius = 6
 examine = "Mini quackers."
 
@@ -59,7 +56,6 @@ examine = "It quacks like a duck."
 
 [ducklings]
 id = 6112
-swim = true
 categories = ["ducks", "birds"]
 wander_radius = 6
 examine = "Aww, cute."

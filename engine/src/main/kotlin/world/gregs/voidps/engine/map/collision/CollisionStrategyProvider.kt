@@ -14,10 +14,25 @@ class CollisionStrategyProvider {
         }
     }
 
-    fun get(def: NPCDefinition) = when {
-        def.name == "Fishing spot" -> CollisionStrategies.Blocked// FIXME swim != shore
-        def["swim", false] -> CollisionStrategies.Blocked
-        def["fly", false] -> CollisionStrategies.LineOfSight
-        else -> CollisionStrategies.Normal
+    fun get(def: NPCDefinition) = when (def.walkMask.toInt()) {
+        BLOCKED -> CollisionStrategies.Indoors
+        STRAIGHT_LINES -> CollisionStrategies.LineOfSight
+        INDOORS -> CollisionStrategies.Normal
+        NORMAL -> CollisionStrategies.Normal
+        PASS_THROUGH -> CollisionStrategies.Normal
+        OUTDOORS -> CollisionStrategies.Blocked
+        NO_MOVE -> CollisionStrategies.Blocked
+        else -> CollisionStrategies.Blocked
+    }
+
+    companion object {
+        const val NORMAL = 0
+        const val BLOCKED = 1 // Indoors
+        const val STRAIGHT_LINES = 2 // Route
+        const val INDOORS = 3 // Anywhere
+        const val OUTDOORS = 4 // Fishing spot
+        const val NO_MOVE = 5 // No move
+        const val PASS_THROUGH = 6
+        const val WATER = 7 // Water
     }
 }
