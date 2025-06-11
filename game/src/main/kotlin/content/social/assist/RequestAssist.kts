@@ -52,6 +52,10 @@ playerOperate("Req Assist") {
     if (filter == "off" || (filter == "friends" && !target.friend(player))) {
         return@playerOperate
     }
+    if (!player["accept_aid", true]) {
+        player.message("This player is not currently accepting aid.") // TODO proper message
+        return@playerOperate
+    }
     if (target.hasRequest(player, "assist")) {
         player.message("Sending assistance response.", ChatType.Assist)
     } else {
