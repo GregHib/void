@@ -114,6 +114,9 @@ class ItemDefinitions(
                 val extras = definitions[id].extras as? MutableMap<String, Any>
                 if (extras != null) {
                     for (extra in definition.extras ?: continue) {
+                        if (extra.key == "aka") {
+                            continue
+                        }
                         if (!extras.containsKey(extra.key)) {
                             extras[extra.key] = extra.value
                         }

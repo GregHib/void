@@ -21,6 +21,7 @@ val itemDefinitions: ItemDefinitions by inject()
 interfaceOnItem("modern_spellbook", "superheat_item") { player ->
     if (!item.id.endsWith("_ore")) {
         player.message("You need to cast superheat item on ore.")
+        player.sound("superheat_fail")
         return@interfaceOnItem
     }
     var bar = item.id.replace("_ore", "_bar")
@@ -29,6 +30,7 @@ interfaceOnItem("modern_spellbook", "superheat_item") { player ->
     }
     val smelting: Smelting = itemDefinitions.get(bar)["smelting"]
     if (!player.has(Skill.Smithing, smelting.level, message = true)) {
+        player.sound("superheat_fail")
         return@interfaceOnItem
     }
     val spell = component
@@ -44,5 +46,7 @@ interfaceOnItem("modern_spellbook", "superheat_item") { player ->
         val definition = spellDefinitions.get(spell)
         player.experience.add(Skill.Magic, definition.experience)
         player.experience.add(Skill.Smithing, smelting.exp(player, bar))
+    } else {
+        player.sound("superheat_fail")
     }
 }

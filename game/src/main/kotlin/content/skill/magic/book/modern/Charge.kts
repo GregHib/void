@@ -1,5 +1,6 @@
 package content.skill.magic.book.modern
 
+import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -27,6 +28,7 @@ interfaceOption("Cast", "charge", "modern_spellbook") {
 
     val definition = definitions.get(spell)
     player.anim(spell)
+    player.sound(spell)
     player.experience.add(Skill.Magic, definition.experience)
     player.start("charge", definition["effect_ticks"])
     player.start("charge_delay", definition["delay_ticks"])
