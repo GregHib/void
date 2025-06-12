@@ -35,16 +35,18 @@ object InventoryConverter {
         val encoder = InventoryEncoder()
         val data: MutableMap<String, Any> = mutableMapOf()
 
-        Config.fileReader(Settings["definitions.inventories"]) {
-            while (nextSection()) {
-                val section = section()
-                val map = mutableMapOf<String, Any>()
-                while (nextPair()) {
-                    val key = key()
-                    val value = value()
-                    map[key] = value
+        for (file in files.list(Settings["definitions.inventories"])) {
+            Config.fileReader(file) {
+                while (nextSection()) {
+                    val section = section()
+                    val map = mutableMapOf<String, Any>()
+                    while (nextPair()) {
+                        val key = key()
+                        val value = value()
+                        map[key] = value
+                    }
+                    data[section] = map
                 }
-                data[section] = map
             }
         }
 
