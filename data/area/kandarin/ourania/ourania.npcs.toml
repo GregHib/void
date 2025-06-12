@@ -16,3 +16,126 @@ hunt_mode = "aggressive"
 respawn_delay = 50
 combat_anims = "gecko"
 examine = "A cave dweller."
+
+[zamorak_warrior_kite]
+id = 6363
+hitpoints = 450
+att = 85
+str = 70
+def = 90
+style = "slash"
+max_hit_melee = 80
+wander_radius = 5
+attack_radius = 11
+respawn_delay = 50
+hunt_mode = "aggressive"
+weapon_style = "sword"
+drop_table = "zamorak_warrior"
+categories = ["human"]
+combat_anims = "human"
+examine = "A warrior of Zamorak."
+
+[zamorak_warrior_square]
+clone = "zamorak_warrior_kite"
+id = 6364
+style = "crush"
+
+[zamorak_mage_fancy]
+id = 6367
+hitpoints = 500
+att = 75
+str = 80
+def = 80
+mage = 85
+spell = "fire_bolt"
+max_hit_magic = 90
+respawn_delay = 50
+hunt_mode = "aggressive"
+attack_range = 3
+attack_radius = 10
+wander_radius = 5
+categories = ["human"]
+combat_anims = "human"
+drop_table = "zamorak_mage"
+examine = "A mage of Zamorak."
+
+[zamorak_mage]
+clone = "zamorak_mage_fancy"
+id = 6368
+
+[zamorak_ranger]
+id = 6365
+hitpoints = 500
+att = 75
+str = 80
+def = 80
+range = 80
+max_hit_range = 90
+respawn_delay = 50
+hunt_mode = "aggressive"
+attack_range = 5
+attack_radius = 10
+wander_radius = 5
+categories = ["human"]
+style = "accurate"
+weapon_style = "bow"
+ammo = "mithril_arrow"
+combat_anims = "human"
+drop_table = "zamorak_ranger"
+height = 40
+examine = "A ranger of Zamorak."
+
+[zamorak_ranger_coat]
+clone = "zamorak_ranger"
+id = 6366
+
+[mage_of_zamorak_ourania]
+id = 6370
+wander_radius = 4
+examine = "A representative of the Z.M.I."
+
+[zamorak_crafter_start]
+id = 6371
+solid = false
+hitpoints = 250
+att = 15
+str = 15
+def = 12
+mage = 20
+categories = ["human"]
+style = "crush"
+height = 40
+hunt_range = 2
+attack_range = 1
+attack_radius = 11
+wander_radius = 5
+max_hit_melee = 20
+combat_anims = "human"
+drop_table = "zamorak_crafter"
+respawn_delay = 50
+examine = "A Z.M.I. runecrafter."
+
+[zamorak_crafter_end]
+clone = "zamorak_crafter_start"
+id = 6372
+
+[monk_of_zamorak_ourania]
+id = 189
+hitpoints = 100
+att = 8
+str = 8
+def = 12
+mage = 25
+categories = ["human"]
+style = "crush"
+height = 40
+hunt_range = 2
+attack_range = 1
+attack_radius = 11
+wander_radius = 5
+max_hit_melee = 50
+hunt_mode = "aggressive"
+drop_table = "monk_of_zamorak"
+combat_anims = "human"
+respawn_delay = 50
+examine = "An evil human cleric."

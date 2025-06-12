@@ -1,0 +1,84 @@
+[mubariz]
+id = 957
+categories = ["human"]
+wander_radius = 3
+collision = "indoors"
+examine = "Tough looking combat type."
+
+[ima]
+id = 964
+categories = ["human"]
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[sabeil]
+id = 965
+categories = ["human"]
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[jadid]
+id = 966
+categories = ["human"]
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[dalal]
+id = 967
+categories = ["human"]
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[afrah]
+id = 968
+categories = ["human"]
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[jeed]
+id = 969
+categories = ["human"]
+wander_radius = 3
+examine = "A citizen of Al Kharid."
+
+[hamid]
+id = 1008
+categories = ["human"]
+wander_radius = 3
+examine = "A holy man."
+
+[a_abla]
+id = 959
+categories = ["human"]
+wander_radius = 3
+examine = "Trained to deal with all sorts of injuries."
+
+[sabreen]
+id = 960
+categories = ["human"]
+wander_radius = 3
+examine = "Heals people."
+
+[surgeon_general_tafani]
+id = 961
+categories = ["human"]
+wander_radius = 3
+examine = "This nurse really knows her stuff."
+
+[jaraah]
+id = 962
+categories = ["human"]
+wander_radius = 3
+examine = "Has the messy job of putting players back together again."
+
+[zahwa]
+id = 963
+categories = ["human"]
+wander_radius = 4
+examine = "Battle-scarred."
+
+[fadli]
+id = 958
+categories = ["human"]
+wander_radius = 3
+examine = "Looks kida bored."

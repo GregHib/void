@@ -3,6 +3,7 @@ id = 528
 categories = ["human"]
 shop = "edgeville_general_store"
 wander_radius = 2
+collision = "indoors"
 examine = "If he doesn't have it, he can't sell it."
 
 [shop_assistant_edgeville]
@@ -10,4 +11,9 @@ id = 529
 categories = ["human"]
 shop = "edgeville_general_store"
 wander_radius = 2
+collision = "indoors"
 examine = "She's here on work experience."
+
+[hari]
+id = 3330
+examine = "Strange looking fella."

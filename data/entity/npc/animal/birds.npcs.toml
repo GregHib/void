@@ -9,11 +9,13 @@ style = "stab"
 categories = ["ducks", "birds"]
 respawn_delay = 25
 height = 10
+collision = "sea"
 examine = "Quackers."
 
 [crow]
 id = 1754
 categories = ["birds"]
+collision = "sky"
 examine = "A farmer's enemy."
 
 [crow_2]
@@ -58,6 +60,7 @@ examine = "It quacks like a duck."
 id = 6112
 categories = ["ducks", "birds"]
 wander_radius = 6
+collision = "sea"
 examine = "Aww, cute."
 
 [duck_grey_walk]
@@ -70,6 +73,7 @@ examine = "Waddle waddle waddle quack."
 id = 7031
 categories = ["birds"]
 wander_radius = 3
+collision = "sky"
 examine = "An ogre snack with wings."
 
 [wimpy_bird_2]

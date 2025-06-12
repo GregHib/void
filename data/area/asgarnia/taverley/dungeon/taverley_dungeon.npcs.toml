@@ -1,0 +1,16 @@
+[suit_of_armour]
+id = 453
+hitpoints = 290
+att = 16
+str = 14
+def = 9
+style = "slash"
+max_hit_melee = 30
+wander_radius = 5
+attack_radius = 8
+hunt_mode = "aggressive"
+weapon_style = "sword"
+drop_table = "human"
+combat_anims = "human"
+categories = ["human"]
+examine = "A dusty old suit of armour."
