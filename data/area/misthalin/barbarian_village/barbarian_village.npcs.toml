@@ -1,0 +1,91 @@
+[gudrun]
+id = 2864
+wander_radius = 4
+categories = ["human"]
+examine = "The chieftain's daughter."
+
+[gudrun2]
+clone = "gudrun"
+id = 2865
+
+[gudrun_after_cutscene]
+clone = "gudrun"
+id = 2866
+
+[gudrun_after_cutscene2]
+clone = "gudrun"
+id = 2867
+
+[gudrun_after_quest]
+clone = "gudrun"
+id = 2869
+
+[gudrun_after_quest2]
+clone = "gudrun"
+id = 2870
+
+[gudrun_cutscene]
+clone = "gudrun"
+id = 2871
+
+[kjell]
+id = 2872
+categories = ["human"]
+examine = "A barbarian guard."
+
+[kjell_sword]
+clone = "kjell"
+id = 2873
+
+[kjell_guitar]
+clone = "kjell"
+id = 2874
+
+[kjell_cutscene]
+id = 2875
+examine = "A barbarian guard."
+
+[chieftain_gunthor]
+id = 2876
+categories = ["human"]
+collision = "indoors"
+examine = "A heavily built barbarian with an air of power and authority."
+
+[chieftain_gunthor_icon]
+clone = "chieftain_gunthor"
+id = 2877
+
+[chieftain_gunthort_no_icon]
+clone = "chieftain_gunthor"
+id = 2878
+
+[chieftain_gunthor_cutscene]
+id = 3089
+examine = "A heavily built barbarian with an air of power and authority."
+
+[haakon_the_champion]
+id = 3090
+hitpoints = 360
+att = 22
+str = 22
+def = 25
+mage = 240
+attack_bonus = 8
+max_hit_melee = 42
+immune_poison = true
+wander_radius = 4
+respawn_delay = 75
+weapon_style = "2h"
+style = "crush"
+categories = ["human"]
+combat_anims = "human"
+collision = "indoors"
+examine = "A mighty warrior, Haakon is powerfully concerned for his tribe."
+
+[haakon_the_champion_cutscene]
+id = 3091
+examine = "A mighty warrior, Haakon is powerfully concerned for his tribe."
+
+[sigurd]
+id = 3329
+examine = "His furs look very damp."

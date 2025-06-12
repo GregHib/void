@@ -74,10 +74,10 @@ internal class NPCEncoderTest {
             opacity = 159.toByte(),
             mainOptionIndex = 1,
             campaigns = intArrayOf(1, 50, 160, 3200, 27000),
-            anInt2803 = 145,
-            anInt2844 = 600,
-            anInt2852 = 800,
-            anInt2831 = 180,
+            slayerType = 145,
+            soundRateMin = 600,
+            soundRateMax = 800,
+            pickSizeShift = 180,
             params = hashMapOf(1 to "string", 2 to 100000)
         )
         val members = definition.copy(options = arrayOf("Take", "Eat", "Members", "Kick", "Speak", "Examine"))

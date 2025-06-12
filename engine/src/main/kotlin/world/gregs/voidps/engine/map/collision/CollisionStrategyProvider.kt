@@ -14,10 +14,11 @@ class CollisionStrategyProvider {
         }
     }
 
-    fun get(def: NPCDefinition) = when {
-        def.name == "Fishing spot" -> CollisionStrategies.Blocked// FIXME swim != shore
-        def["swim", false] -> CollisionStrategies.Blocked
-        def["fly", false] -> CollisionStrategies.LineOfSight
+    fun get(def: NPCDefinition) = when (def["collision", ""]) {
+        "sea" -> CollisionStrategies.Blocked
+        "indoors" -> CollisionStrategies.Indoors
+        "outdoors" -> CollisionStrategies.Outdoors
+        "sky" -> CollisionStrategies.LineOfSight
         else -> CollisionStrategies.Normal
     }
 }

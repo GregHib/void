@@ -3,6 +3,7 @@ id = 970
 wander_radius = 4
 shop = "diangos_toy_store"
 categories = ["human"]
+collision = "outdoors"
 examine = "A toy-seller who looks after people's toys for them."
 
 [armour_draynor_manor]
@@ -11,16 +12,19 @@ examine = "A suit of armour."
 
 [ned]
 id = 918
+collision = "indoors"
 examine = "An old sailor."
 
 [lady_keli]
 id = 919
 wander_radius = 4
+collision = "indoors"
 examine = "An infamous bandit."
 
 [aggie]
 id = 922
 wander_radius = 4
+collision = "indoors"
 examine = "A witch."
 
 [draynor_jail_guard_blonde]
@@ -39,6 +43,7 @@ wander_radius = 4
 drop_table = "human"
 combat_anims = "human"
 categories = ["human"]
+collision = "outdoors"
 examine = "This jail's open for business again."
 
 [draynor_jail_guard_short]
@@ -58,4 +63,11 @@ clone = "draynor_jail_guard_blonde"
 
 [jail_guard_joe]
 id = 916
+collision = "indoors"
 examine = "Lady Keli's head guard."
+
+[leela]
+id = 13172
+categories = ["human"]
+wander_radius = 4
+examine = "She comes from Al Kharid."

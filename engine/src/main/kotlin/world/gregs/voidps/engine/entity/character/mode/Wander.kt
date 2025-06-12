@@ -46,6 +46,14 @@ class Wander(
     }
 
     companion object {
-        fun wanders(npc: NPC) = Settings["world.npcs.randomWalk", false] && npc.def.walkMask.toInt() and 0x1 != 0 && npc.def.walkMask.toInt() and 0x2 != 0 && npc.def.contains("wander_radius")
+        fun wanders(npc: NPC): Boolean {
+            if (!Settings["world.npcs.randomWalk", false]) {
+                return false
+            }
+            return when (npc.def.walkMode.toInt()) {
+                ModeType.WANDER_THROUGH, ModeType.WANDER_SPECIAL, ModeType.WANDER_WATER -> true
+                else -> false
+            }
+        }
     }
 }

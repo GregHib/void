@@ -248,29 +248,29 @@ class NPCEncoder : DefinitionEncoder<NPCDefinitionFull> {
             }
         }
 
-        if (definition.aBoolean2883) {
+        if (definition.vorbis) {
             writeByte(162)
         }
 
-        if (definition.anInt2803 != -1) {
+        if (definition.slayerType != -1) {
             writeByte(163)
-            writeByte(definition.anInt2803)
+            writeByte(definition.slayerType)
         }
 
-        if (definition.anInt2844 != 256 || definition.anInt2852 != 256) {
+        if (definition.soundRateMin != 256 || definition.soundRateMax != 256) {
             writeByte(164)
-            writeShort(definition.anInt2844)
-            writeShort(definition.anInt2852)
+            writeShort(definition.soundRateMin)
+            writeShort(definition.soundRateMax)
         }
 
-        if (definition.anInt2831 != 0) {
+        if (definition.pickSizeShift != 0) {
             writeByte(165)
-            writeByte(definition.anInt2831)
+            writeByte(definition.pickSizeShift)
         }
 
-        if (definition.anInt2862 != 0) {
+        if (definition.soundRangeMin != 0) {
             writeByte(165)
-            writeByte(definition.anInt2862)
+            writeByte(definition.soundRangeMin)
         }
 
         definition.writeParameters(this)

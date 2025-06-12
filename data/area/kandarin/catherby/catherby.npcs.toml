@@ -1,0 +1,90 @@
+[harry]
+id = 576
+categories = ["human"]
+wander_radius = 2
+shop = "harrys_fishing_shop"
+examine = "Something fishy about him."
+
+[candle_maker]
+id = 562
+categories = ["human"]
+wander_radius = 2
+collision = "indoors"
+examine = "HHas an odd smell about him."
+
+[arhein]
+id = 563
+categories = ["human"]
+wander_radius = 2
+shop = "arheins_store"
+examine = "He looks fairly well-to-do."
+
+[hickton]
+id = 575
+categories = ["human"]
+wander_radius = 2
+collision = "indoors"
+examine = "A master fletcher."
+
+[caleb]
+id = 666
+categories = ["human"]
+wander_radius = 2
+collision = "indoors"
+examine = "A well dressed nobleman."
+
+[vanessa]
+id = 2305
+categories = ["human"]
+wander_radius = 2
+collision = "indoors"
+examine = "She sells farming equipment."
+
+[ellena]
+id = 2331
+categories = ["human"]
+wander_radius = 2
+examine = "Perhaps this gardener might look after your crops for you."
+
+[renegade_knight]
+id = 237
+hitpoints = 470
+att = 25
+str = 25
+def = 25
+mage = 25
+categories = ["human"]
+style = "slash"
+height = 1
+hunt_range = 2
+attack_range = 1
+attack_radius = 11
+wander_radius = 5
+max_hit_melee = 75
+hunt_mode = "aggressive"
+drop_table = "human"
+combat_anims = "human"
+respawn_delay = 50
+collision = "indoors"
+examine = "He isn't very friendly."
+
+[sir_mordred]
+id = 247
+hitpoints = 470
+att = 25
+str = 25
+def = 25
+mage = 25
+categories = ["human"]
+style = "slash"
+height = 1
+hunt_range = 2
+attack_range = 1
+attack_radius = 11
+wander_radius = 5
+max_hit_melee = 75
+hunt_mode = "aggressive"
+drop_table = "human"
+combat_anims = "human"
+respawn_delay = 50
+examine = "He isn't very friendly."
