@@ -1,18 +1,9 @@
 package world.gregs.voidps.engine.entity.character.mode
 
-import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider.Companion.BLOCKED
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider.Companion.INDOORS
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider.Companion.NORMAL
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider.Companion.NO_MOVE
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider.Companion.OUTDOORS
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider.Companion.PASS_THROUGH
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider.Companion.STRAIGHT_LINES
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider.Companion.WATER
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -59,10 +50,10 @@ class Wander(
             if (!Settings["world.npcs.randomWalk", false]) {
                 return false
             }
-            when (npc.def.walkMask.toInt()) {
-                BLOCKED, INDOORS, NORMAL, PASS_THROUGH, WATER -> return npc.def.contains("wander_radius")
+            return when (npc.def.walkMode.toInt()) {
+                ModeType.WANDER_THROUGH, ModeType.WANDER_SPECIAL, ModeType.WANDER_WATER -> true
+                else -> false
             }
-            return false
         }
     }
 }
