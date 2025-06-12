@@ -1,0 +1,33 @@
+[pikkupstix]
+id = 6970
+categories = ["human"]
+wander_radius = 2
+collision = "indoors"
+examine = "He's a very important druid."
+
+[pikkupstix_2]
+id = 6971
+categories = ["human"]
+wander_radius = 2
+collision = "indoors"
+examine = "He's a very important druid."
+
+[pikkupstix_spawn]
+id = 6988
+
+[pikkupstix_spawn_2]
+id = 6989
+
+[sanfew]
+id = 454
+wander_radius = 2
+categories = ["human"]
+collision = "indoors"
+examine = "An old druid."
+
+[kaqemeex]
+id = 455
+wander_radius = 4
+categories = ["human"]
+collision = "indoors"
+examine = "A wise druid."

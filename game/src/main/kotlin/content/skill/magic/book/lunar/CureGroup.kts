@@ -25,7 +25,7 @@ interfaceOption("Cast", "cure_group", "lunar_spellbook") {
     player.sound(spell)
     player.experience.add(Skill.Magic, definition.experience)
     players
-        .filter { other -> other.tile.within(player.tile, 1) && other.poisoned }
+        .filter { other -> other.tile.within(player.tile, 1) && other.poisoned && player["accept_aid", true] }
         .forEach { target ->
             target.gfx(spell)
             target.sound("cure_other_impact")

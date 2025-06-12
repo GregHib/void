@@ -12,6 +12,7 @@ import WorldTest
 import interfaceOption
 import playerOption
 import walk
+import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import kotlin.test.assertFalse
 
 internal class RequestAssistTest : WorldTest() {
@@ -54,6 +55,26 @@ internal class RequestAssistTest : WorldTest() {
         receiver.interfaceOption("filter_buttons", "assist", "Off Assist")
 
         assertFalse(assistant.hasOpen("assist_xp"))
+    }
+
+    @Test
+    fun `Can't assist with filter on`() {
+        val assistant = createPlayer(emptyTile, "assistant")
+        val receiver = createPlayer(emptyTile.addY(1), "receiver")
+        assistant["assist_filter"] = "off"
+
+        receiver.playerOption(assistant, "Req Assist")
+        assertFalse(receiver.hasRequest(assistant, "assist"))
+    }
+
+    @Test
+    fun `Can't assist with accept aid off`() {
+        val assistant = createPlayer(emptyTile, "assistant")
+        val receiver = createPlayer(emptyTile.addY(1), "receiver")
+        assistant["accept_aid"] = false
+
+        receiver.playerOption(assistant, "Req Assist")
+        assertFalse(receiver.hasRequest(assistant, "assist"))
     }
 
     private fun setupAssist(): Pair<Player, Player> {

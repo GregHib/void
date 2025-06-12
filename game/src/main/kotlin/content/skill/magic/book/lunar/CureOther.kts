@@ -21,6 +21,10 @@ interfaceOnPlayerApproach(id = "lunar_spellbook", component = "cure_other") {
         player.message("This player is not poisoned.")
         return@interfaceOnPlayerApproach
     }
+    if (!player["accept_aid", true]) {
+        player.message("This player is not currently accepting aid.") // TODO proper message
+        return@interfaceOnPlayerApproach
+    }
     if (!player.removeSpellItems(spell)) {
         return@interfaceOnPlayerApproach
     }

@@ -6,11 +6,13 @@ examine = "He can look after my money."
 [master_chef]
 id = 942
 categories = ["human"]
+collision = "indoors"
 examine = "An expert on all things culinary."
 
 [survival_expert]
 id = 943
 categories = ["human"]
+collision = "outdoors"
 examine = "Very much an outdoors type."
 
 [combat_instructor]
@@ -21,16 +23,19 @@ examine = "An expert on all forms of combat."
 [runescape_guide]
 id = 945
 categories = ["human"]
+collision = "indoors"
 examine = "Your introduction to the world of RuneScape."
 
 [magic_instructor]
 id = 946
 categories = ["human"]
+collision = "indoors"
 examine = "A Master of Magic."
 
 [financial_advisor]
 id = 947
 categories = ["human"]
+collision = "indoors"
 examine = "A professional when it comes to accounts."
 
 [mining_instructor]
@@ -41,6 +46,7 @@ examine = "An expert on Mining-related skills."
 [quest_guide]
 id = 949
 categories = ["human"]
+collision = "indoors"
 examine = "Your introduction to the world of Gielinor."
 
 [giant_rat_tutorial_island]
@@ -69,4 +75,5 @@ examine = "I can see fish swimming in the water."
 [brother_brace]
 id = 954
 categories = ["human"]
+collision = "indoors"
 examine = "A holy man."

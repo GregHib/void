@@ -1,0 +1,5 @@
+[accept_aid]
+id = 427
+format = "boolean"
+default = true
+persist = true

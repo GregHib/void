@@ -24,6 +24,10 @@ interfaceOnPlayerApproach(id = "lunar_spellbook", component = "heal_other") {
         player.message("You don't have enough life points.")
         return@interfaceOnPlayerApproach
     }
+    if (!player["accept_aid", true]) {
+        player.message("This player is not currently accepting aid.") // TODO proper message
+        return@interfaceOnPlayerApproach
+    }
     if (!player.removeSpellItems(spell)) {
         return@interfaceOnPlayerApproach
     }

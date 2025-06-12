@@ -62,12 +62,12 @@ data class NPCDefinitionFull(
     var opacity: Byte = 0,
     var mainOptionIndex: Byte = -1,
     var campaigns: IntArray? = null,
-    var aBoolean2883: Boolean = false,
-    var anInt2803: Int = -1,
-    var anInt2844: Int = 256,
-    var anInt2852: Int = 256,
-    var anInt2831: Int = 0,
-    var anInt2862: Int = 0,
+    var vorbis: Boolean = false,
+    var slayerType: Int = -1,
+    var soundRateMin: Int = 256,
+    var soundRateMax: Int = 256,
+    var pickSizeShift: Int = 0,
+    var soundRangeMin: Int = 0,
     override var params: Map<Int, Any>? = null,
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null
@@ -166,12 +166,12 @@ data class NPCDefinitionFull(
             if (other.campaigns == null) return false
             if (!campaigns.contentEquals(other.campaigns)) return false
         } else if (other.campaigns != null) return false
-        if (aBoolean2883 != other.aBoolean2883) return false
-        if (anInt2803 != other.anInt2803) return false
-        if (anInt2844 != other.anInt2844) return false
-        if (anInt2852 != other.anInt2852) return false
-        if (anInt2831 != other.anInt2831) return false
-        if (anInt2862 != other.anInt2862) return false
+        if (vorbis != other.vorbis) return false
+        if (slayerType != other.slayerType) return false
+        if (soundRateMin != other.soundRateMin) return false
+        if (soundRateMax != other.soundRateMax) return false
+        if (pickSizeShift != other.pickSizeShift) return false
+        if (soundRangeMin != other.soundRangeMin) return false
         if (params != other.params) return false
         if (stringId != other.stringId) return false
         return extras == other.extras
@@ -236,12 +236,12 @@ data class NPCDefinitionFull(
         result = 31 * result + opacity
         result = 31 * result + mainOptionIndex
         result = 31 * result + (campaigns?.contentHashCode() ?: 0)
-        result = 31 * result + aBoolean2883.hashCode()
-        result = 31 * result + anInt2803
-        result = 31 * result + anInt2844
-        result = 31 * result + anInt2852
-        result = 31 * result + anInt2831
-        result = 31 * result + anInt2862
+        result = 31 * result + vorbis.hashCode()
+        result = 31 * result + slayerType
+        result = 31 * result + soundRateMin
+        result = 31 * result + soundRateMax
+        result = 31 * result + pickSizeShift
+        result = 31 * result + soundRangeMin
         result = 31 * result + (params?.hashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
         result = 31 * result + (extras?.hashCode() ?: 0)

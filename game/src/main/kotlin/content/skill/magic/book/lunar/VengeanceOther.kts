@@ -24,6 +24,10 @@ interfaceOnPlayerApproach(id = "lunar_spellbook", component = "vengeance_other")
         player.message("You can only cast vengeance spells once every 30 seconds.")
         return@interfaceOnPlayerApproach
     }
+    if (!player["accept_aid", true]) {
+        player.message("This player is not currently accepting aid.") // TODO proper message
+        return@interfaceOnPlayerApproach
+    }
     if (!player.removeSpellItems(spell)) {
         return@interfaceOnPlayerApproach
     }

@@ -29,7 +29,7 @@ interfaceOption("Cast", "heal_group", "lunar_spellbook") {
     player.anim("lunar_cast")
     player.sound(spell)
     val group = players
-        .filter { other -> other != player && other.tile.within(player.tile, 1) && other.levels.getOffset(Skill.Constitution) < 0 }
+        .filter { other -> other != player && other.tile.within(player.tile, 1) && other.levels.getOffset(Skill.Constitution) < 0 && player["accept_aid", true] }
         .take(5)
     group.forEach { target ->
         target.gfx(spell)

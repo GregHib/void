@@ -3,6 +3,7 @@ id = 11674
 categories = ["human"]
 shop = "karamja_general_store"
 wander_radius = 2
+collision = "indoors"
 examine = "Clearly takes pride in his appearance."
 
 [shop_assistant_musa_point]
@@ -10,6 +11,7 @@ id = 11678
 categories = ["human"]
 shop = "karamja_general_store"
 wander_radius = 2
+collision = "indoors"
 examine = "Needs a haircut."
 
 [bartender_zambo]
@@ -26,4 +28,5 @@ bar_crawl = {
 }
 categories = ["human"]
 wander_radius = 3
+collision = "indoors"
 examine = "Appears slightly drunk."
