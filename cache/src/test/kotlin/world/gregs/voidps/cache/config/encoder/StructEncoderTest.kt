@@ -16,7 +16,7 @@ class StructEncoderTest {
             get() = mapOf(0 to "test")
     }
 
-    private val encoder = StructEncoder(parameters)
+    private val encoder = StructEncoder(mapOf("test" to 0))
     private val decoder = StructDecoder(parameters)
 
     @Test
