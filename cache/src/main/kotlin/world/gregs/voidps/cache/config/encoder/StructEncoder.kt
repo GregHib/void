@@ -3,13 +3,10 @@ package world.gregs.voidps.cache.config.encoder
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.config.ConfigEncoder
-import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.config.data.StructDefinition
-import world.gregs.voidps.cache.definition.Parameters
 
-class StructEncoder(parameters: Parameters) : ConfigEncoder<StructDefinition>() {
+class StructEncoder(val parameters: Map<String, Int>) : ConfigEncoder<StructDefinition>() {
 
-    private val parameters = parameters.parameters.map { it.value to it.key }.toMap()
     private val logger = InlineLogger()
 
     override fun Writer.encode(definition: StructDefinition) {
