@@ -1,5 +1,9 @@
 package content.entity.npc.combat.melee
 
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
@@ -8,10 +12,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.random
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 
 val floorItems: FloorItems by inject()
 
@@ -85,20 +85,3 @@ npcOperate("Talk-to", "man", "woman") {
         22 -> npc<Happy>("Yo, wassup!")
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,12 +1,12 @@
 package content.entity.player.inv
 
+import WorldTest
+import intEntry
+import itemOnItem
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import WorldTest
-import intEntry
-import itemOnItem
 import kotlin.test.assertEquals
 
 class ItemOnItemsTest : WorldTest() {
@@ -85,5 +85,4 @@ class ItemOnItemsTest : WorldTest() {
         assertEquals(0, player.inventory.count("bronze_bolts"))
         assertEquals(20, player.inventory.count("opal_bolts"))
     }
-
 }

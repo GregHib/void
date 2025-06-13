@@ -4,11 +4,9 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 
 class ValidItemRestriction(
-    private val definitions: ItemDefinitions
+    private val definitions: ItemDefinitions,
 ) : ItemRestrictionRule {
-    override fun restricted(id: String): Boolean {
-        return id.isBlank() || !definitions.contains(id)
-    }
+    override fun restricted(id: String): Boolean = id.isBlank() || !definitions.contains(id)
 
     override fun replacement(id: String): Item? {
         val definition = definitions.getOrNull(id) ?: return null

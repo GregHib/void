@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.inv.Inventory
  * Allows for saving and reverting the state of an inventory
  */
 class StateManager(
-    private val inventory: Inventory
+    private val inventory: Inventory,
 ) {
 
     private var history: Array<Item>? = null
@@ -56,5 +56,4 @@ class StateManager(
         clear()
         return true
     }
-
 }

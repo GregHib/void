@@ -1,17 +1,17 @@
 package content.skill.ranged.ammo
 
+import content.entity.combat.hit.hit
+import content.entity.effect.frozen
+import content.entity.effect.toxin.poisoned
+import content.entity.player.effect.antifire
+import content.skill.melee.CombatFormulaTest
+import content.skill.ranged.ammo
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.combat.hit.hit
-import content.entity.effect.frozen
-import content.skill.ranged.ammo
-import content.entity.player.effect.antifire
-import content.entity.effect.toxin.poisoned
-import content.skill.melee.CombatFormulaTest
 import kotlin.test.assertTrue
 
 internal class EnchantedBoltsEffectTest : CombatFormulaTest() {
@@ -179,5 +179,4 @@ internal class EnchantedBoltsEffectTest : CombatFormulaTest() {
         assertEquals(978, target.levels.get(Skill.Constitution))
         assertEquals(503, player.levels.get(Skill.Constitution))
     }
-
 }

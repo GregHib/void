@@ -1,5 +1,6 @@
 package content.entity.effect.toxin
 
+import content.entity.combat.hit.directHit
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.entity.character.Character
@@ -11,7 +12,6 @@ import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerStop
 import world.gregs.voidps.engine.timer.characterTimerTick
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.combat.hit.directHit
 import kotlin.math.sign
 
 characterSpawn { character ->
@@ -21,8 +21,10 @@ characterSpawn { character ->
     }
 }
 
-fun immune(character: Character) = character is NPC && character.def["immune_disease", false] ||
-        character is Player && character.equipped(EquipSlot.Hands).id == "inoculation_brace"
+fun immune(character: Character) = character is NPC &&
+    character.def["immune_disease", false] ||
+    character is Player &&
+    character.equipped(EquipSlot.Hands).id == "inoculation_brace"
 
 characterTimerStart("disease") { character ->
     if (character.antiDisease || immune(character)) {

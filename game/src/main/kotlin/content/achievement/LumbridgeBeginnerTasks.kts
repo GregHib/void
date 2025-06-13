@@ -1,5 +1,14 @@
 package content.achievement
 
+import content.entity.combat.hit.combatAttack
+import content.entity.combat.killer
+import content.entity.death.npcDeath
+import content.entity.npc.shop.sell.itemSold
+import content.entity.npc.shop.shopOpen
+import content.entity.obj.objTeleportLand
+import content.skill.melee.weapon.attackStyle
+import content.skill.prayer.prayerStart
+import content.skill.ranged.ammo
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
@@ -12,19 +21,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelCha
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
-import content.skill.melee.weapon.attackStyle
-import content.entity.combat.hit.combatAttack
-import content.entity.combat.killer
-import content.entity.death.npcDeath
-import content.entity.npc.shop.sell.itemSold
-import content.entity.npc.shop.shopOpen
-import content.entity.obj.objTeleportLand
-import content.skill.prayer.prayerStart
-import content.skill.ranged.ammo
-import world.gregs.voidps.engine.inv.*
 
 move({ player.running && !player["on_the_run_task", false] }) {
     player["on_the_run_task"] = true
@@ -322,13 +322,13 @@ itemAdded("raw_sardine", inventory = "inventory") { player ->
 }
 
 itemRemoved("raw_herring", inventory = "inventory") { player ->
-    if(player.inventory[index].id == "herring" && player.softTimers.contains("cooking")) {
+    if (player.inventory[index].id == "herring" && player.softTimers.contains("cooking")) {
         player["its_not_a_red_one_task"] = true
     }
 }
 
 itemRemoved("uncooked_berry_pie", inventory = "inventory") { player ->
-    if(player.inventory[index].id == "redberry_pie" && player.softTimers.contains("cooking")) {
+    if (player.inventory[index].id == "redberry_pie" && player.softTimers.contains("cooking")) {
         player["berry_tasty_task"] = true
     }
 }

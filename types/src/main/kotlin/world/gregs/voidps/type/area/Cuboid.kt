@@ -8,7 +8,7 @@ data class Cuboid(
     val maxX: Int = minX,
     val maxY: Int = minY,
     val minLevel: Int = 0,
-    val maxLevel: Int = minLevel
+    val maxLevel: Int = minLevel,
 ) : Area {
 
     constructor(tile: Tile, width: Int, height: Int, levels: Int) : this(tile.x, tile.y, tile.x + width - 1, tile.y + height - 1, tile.level, tile.level + levels - 1)
@@ -67,9 +67,7 @@ data class Cuboid(
 
     fun toRectangles(): List<Rectangle> = (minLevel..maxLevel).map { Rectangle(minX, minY, maxX, maxY) }
 
-    override fun contains(x: Int, y: Int, level: Int): Boolean {
-        return level in minLevel..maxLevel && x in minX..maxX && y in minY..maxY
-    }
+    override fun contains(x: Int, y: Int, level: Int): Boolean = level in minLevel..maxLevel && x in minX..maxX && y in minY..maxY
 
     override fun random() = Tile(random(minX, maxX), random(minY, maxY), random(minLevel, maxLevel))
 
@@ -77,9 +75,7 @@ data class Cuboid(
         fun random(first: Int, second: Int) = if (first == second) first else random.nextInt(first, second + 1)
     }
 
-    override fun toString(): String {
-        return "Cuboid($minX..$maxX, $minY..$maxY, $minLevel..$maxLevel)"
-    }
+    override fun toString(): String = "Cuboid($minX..$maxX, $minY..$maxY, $minLevel..$maxLevel)"
 
     override fun iterator(): Iterator<Tile> {
         val tile = Tile(minX, minY, minLevel)
@@ -93,7 +89,7 @@ data class Cuboid(
                 val coords = tile.add(
                     x = index.rem(width * height) / height,
                     y = index.rem(width * height).rem(height),
-                    level = index / (width * height)
+                    level = index / (width * height),
                 )
                 index++
                 return coords

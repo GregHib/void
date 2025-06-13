@@ -1,5 +1,9 @@
 package content.area.wilderness.abyss
 
+import content.entity.gfx.areaGfx
+import content.entity.sound.sound
+import content.skill.mining.Pickaxe
+import content.skill.woodcutting.Hatchet
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
@@ -13,10 +17,6 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import content.skill.mining.Pickaxe
-import content.skill.woodcutting.Hatchet
-import content.entity.gfx.areaGfx
-import content.entity.sound.sound
 
 // Object tile, opposite passage tile, teleport tile
 // Target tiles should be slightly randomised
@@ -178,7 +178,7 @@ objectOperate("Distract", "abyss_eyes") {
 val distractions = arrayOf(
     "emote_clap",
     "stomp_eyes",
-    "distract_eyes"
+    "distract_eyes",
 )
 
 objectOperate("Squeeze-through", "abyss_gap") {

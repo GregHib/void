@@ -20,7 +20,7 @@ fun Client.sendInventoryItems(
     inventory: Int,
     size: Int,
     items: IntArray,
-    primary: Boolean
+    primary: Boolean,
 ) {
     send(INTERFACE_ITEMS, getLength(items, size), SHORT) {
         writeShort(inventory)
@@ -47,6 +47,4 @@ private fun getLength(items: IntArray, size: Int): Int {
     return count
 }
 
-private fun large(it: Int): Int {
-    return if (it >= 255) 5 else 1
-}
+private fun large(it: Int): Int = if (it >= 255) 5 else 1

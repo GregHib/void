@@ -13,7 +13,7 @@ import world.gregs.voidps.network.login.protocol.writeString
  */
 fun Client.sendScript(
     id: Int,
-    params: List<Any?>
+    params: List<Any?>,
 ) = send(SCRIPT, getLength(params), SHORT) {
     val types = StringBuilder()
     for (param in params) {
@@ -33,6 +33,16 @@ fun Client.sendScript(
 private fun getLength(params: List<Any?>): Int {
     var count = 4
     count += params.size + 1
-    count += params.sumOf { if (it == null) 1 else if (it is String) string(it) else if (it is Int) 4 else 0 }
+    count += params.sumOf {
+        if (it == null) {
+            1
+        } else if (it is String) {
+            string(it)
+        } else if (it is Int) {
+            4
+        } else {
+            0
+        }
+    }
     return count
 }

@@ -18,5 +18,5 @@ enum class StarLocationData(val description: String, val tile: Tile) {
     RELLEKKA_MINING_SITE("the mining site in the fenced off area inside the town of Rellekka. ", Tile(2676, 3698)),
     ARDOUGNE_MINING_SITE("the iron rocks north of the monastery, south of East Ardougne.", Tile(2701, 3333)),
     COAL_TRUCK_MINING("the middle of the coal rocks that supply the Coal trucks.", Tile(2586, 3477)),
-    FIGHT_ARENA_MINING("the mining spot north-east of Yanille, south-west of Port Khazard.", Tile(2634, 3133))
+    FIGHT_ARENA_MINING("the mining spot north-east of Yanille, south-west of Port Khazard.", Tile(2634, 3133)),
 }

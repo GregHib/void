@@ -18,7 +18,7 @@ import world.gregs.voidps.type.Tile
 
 class NavigationGraph(
     private val definitions: ObjectDefinitions,
-    private val areas: AreaDefinitions
+    private val areas: AreaDefinitions,
 ) {
 
     private var adjacencyList: Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>> = Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>()

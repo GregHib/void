@@ -66,7 +66,7 @@ fun playNextPlaylistTrack(player: Player, finishedTrackId: Int): Boolean {
 }
 
 fun sendUnlocks(player: Player) {
-    for (key in player.variables.data.keys.filter { it.startsWith("unlocked_music_")}) {
+    for (key in player.variables.data.keys.filter { it.startsWith("unlocked_music_") }) {
         player.sendVariable(key)
     }
 
@@ -97,7 +97,7 @@ interfaceOption("Play", "tracks", "music_player") {
 }
 
 interfaceOption("Play", "playlist", "music_player") {
-    val index = player["playlist_slot_${itemSlot+1}", 32767]
+    val index = player["playlist_slot_${itemSlot + 1}", 32767]
     if (player.hasUnlocked(index)) {
         player.playTrack(index)
     }
@@ -124,14 +124,14 @@ interfaceOption("Shuffle on/off", "shuffle_playlist", "music_player") {
 }
 
 interfaceSwap(fromId = "music_player", fromComponent = "playlist") { player ->
-    val fromSong = player["playlist_slot_${fromSlot+1}", 32767]
-    val toSong = player["playlist_slot_${toSlot+1}", 32767]
+    val fromSong = player["playlist_slot_${fromSlot + 1}", 32767]
+    val toSong = player["playlist_slot_${toSlot + 1}", 32767]
 
-    player["playlist_slot_${fromSlot+1}"] = toSong
-    player["playlist_slot_${toSlot+1}"] = fromSong
+    player["playlist_slot_${fromSlot + 1}"] = toSong
+    player["playlist_slot_${toSlot + 1}"] = fromSong
 }
 
-songEnd {player ->
+songEnd { player ->
     player["playing_song"] = false
     if (player["playlist_enabled", false] && playNextPlaylistTrack(player, songIndex)) {
         return@songEnd
@@ -181,12 +181,12 @@ fun Player.removeSongFromPlaylist(
     } else {
         if (playlistSlot > 11) playlistSlot -= 12
     }
-    (playlistSlot+1..12).forEach {
+    (playlistSlot + 1..12).forEach {
         if (it == 12) {
             this["playlist_slot_12"] = 32767
             return@forEach
         }
-        this["playlist_slot_$it"] = this["playlist_slot_${it+1}", 32767]
+        this["playlist_slot_$it"] = this["playlist_slot_${it + 1}", 32767]
     }
 }
 

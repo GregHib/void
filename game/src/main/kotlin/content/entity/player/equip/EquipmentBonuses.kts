@@ -1,6 +1,11 @@
 package content.entity.player.equip
 
+import content.entity.player.equip.EquipBonuses.names
+import content.entity.player.inv.InventoryOption
+import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
@@ -14,13 +19,8 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.network.login.protocol.visual.VisualMask.APPEARANCE_MASK
-import content.entity.player.equip.EquipBonuses.names
-import content.entity.player.inv.InventoryOption
-import content.entity.player.modal.Tab
-import content.entity.player.modal.tab
-import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.inv.inventoryChanged
+import world.gregs.voidps.network.login.protocol.visual.VisualMask.APPEARANCE_MASK
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -154,7 +154,7 @@ fun showStats(player: Player, item: ItemDefinition) {
             types.append("<br>")
             stats.append("<br>")
         }
-        titles.append("${name}<br>")
+        titles.append("$name<br>")
         types.append("<br>")
         stats.append("<br>")
     }
@@ -190,14 +190,17 @@ fun showStats(player: Player, item: ItemDefinition) {
     if (item.contains("attack_speed")) {
         val attackSpeed = item["attack_speed", 4]
         if (attackSpeed != 0) {
-            appendLine("Attack Rate", when (attackSpeed) {
-                2 -> "Very fast"
-                3 -> "Fast"
-                4 -> "Standard"
-                5 -> "Slow"
-                6 -> "Very slow"
-                else -> attackSpeed.toString()
-            })
+            appendLine(
+                "Attack Rate",
+                when (attackSpeed) {
+                    2 -> "Very fast"
+                    3 -> "Fast"
+                    4 -> "Standard"
+                    5 -> "Slow"
+                    6 -> "Very slow"
+                    else -> attackSpeed.toString()
+                },
+            )
         }
     }
     appendLine("Weight", "${df.format(item["weight", 0.0])} kg")

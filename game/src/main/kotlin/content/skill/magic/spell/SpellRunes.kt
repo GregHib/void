@@ -211,7 +211,6 @@ object SpellRunes {
     }
 }
 
-
 fun Player.hasSpellItems(spell: String, message: Boolean = true): Boolean {
     val transaction = inventory.transaction
     transaction.start()

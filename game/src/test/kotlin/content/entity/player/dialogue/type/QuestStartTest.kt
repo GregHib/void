@@ -19,9 +19,13 @@ internal class QuestStartTest : DialogueTest() {
         super.setup()
         declareMock<QuestDefinitions> {
             every { this@declareMock.getOrNull(any<String>()) } returns null
-            every { this@declareMock.getOrNull("test_quest") } returns QuestDefinition(id = 1234, name = "magic", extras = mapOf(
-                "name" to "quest_name"
-            ))
+            every { this@declareMock.getOrNull("test_quest") } returns QuestDefinition(
+                id = 1234,
+                name = "magic",
+                extras = mapOf(
+                    "name" to "quest_name",
+                ),
+            )
         }
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         every { player.sendScript(any(), any<String>()) } just Runs
@@ -84,7 +88,7 @@ internal class QuestStartTest : DialogueTest() {
         every { player.open("quest_intro") } returns true
         var start = false
         dialogue {
-            start = startQuest( "test_quest")
+            start = startQuest("test_quest")
         }
         player.stringEntry("yes")
         assertTrue(start)

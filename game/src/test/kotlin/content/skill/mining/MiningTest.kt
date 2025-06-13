@@ -1,5 +1,7 @@
 package content.skill.mining
 
+import WorldTest
+import objectOption
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -8,8 +10,6 @@ import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.setRandom
-import WorldTest
-import objectOption
 import kotlin.random.Random
 
 internal class MiningTest : WorldTest() {
@@ -30,5 +30,4 @@ internal class MiningTest : WorldTest() {
         assertTrue(player.experience.get(Skill.Mining) > 0)
         assertNotEquals(rocks.id, objects.getLayer(tile, ObjectLayer.GROUND)?.id)
     }
-
 }

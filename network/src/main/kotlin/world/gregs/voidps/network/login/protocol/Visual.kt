@@ -1,9 +1,7 @@
 package world.gregs.voidps.network.login.protocol
 
 interface Visual {
-    fun needsReset(): Boolean {
-        return false
-    }
+    fun needsReset(): Boolean = false
 
     /**
      * Optional reset to be performed at the end of an update

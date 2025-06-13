@@ -1,10 +1,14 @@
 package content.skill.smithing
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.player.dialogue.type.intEntry
+import content.entity.player.dialogue.type.statement
+import content.quest.quest
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
@@ -25,10 +29,6 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.quest.quest
-import content.entity.player.dialogue.type.intEntry
-import content.entity.player.dialogue.type.statement
-import world.gregs.voidps.engine.client.ui.chat.Colours
 
 val types = listOf(
     "dagger",
@@ -61,7 +61,7 @@ val types = listOf(
     "platebody",
     "pickaxe",
     "crossbow_bolt",
-    "crossbow_limbs"
+    "crossbow_limbs",
 )
 
 val itemDefinitions: ItemDefinitions by inject()
@@ -116,7 +116,6 @@ itemOnObjectOperate("*_bar", "anvil*") {
     player.interfaces.sendVisibility("smithing", "pickaxes", player.quest("perils_of_ice_mountain") == "completed")
 }
 
-
 itemOnObjectOperate("hammer", "anvil*", arrive = false) {
     player.message("To smith metal equipment, you must use the metal bar on the anvil.")
 }
@@ -158,7 +157,7 @@ suspend fun SuspendableContext<Player>.smith(
     type: String,
     item: String,
     count: Int,
-    first: Boolean
+    first: Boolean,
 ) {
     if (count <= 0) {
         player.softTimers.stop("smithing")
@@ -190,7 +189,7 @@ suspend fun SuspendableContext<Player>.smith(
                 player.exp(Skill.Smithing, smithing.xp)
                 smith(smithing, metal, bars, quantity, type, item, count - 1, false)
                 val name = type.removeSuffix("_unf").replace("_", " ")
-                player.message("You hammer the $metal and make${name.an()} ${name}.")
+                player.message("You hammer the $metal and make${name.an()} $name.")
             }
             else -> logger.warn { "Error smithing ${this@smith} $item ${player.inventory.transaction.error} ${player.inventory.items.contentToString()}" }
         }

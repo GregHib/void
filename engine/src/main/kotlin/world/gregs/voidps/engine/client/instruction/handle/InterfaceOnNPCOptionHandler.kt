@@ -13,7 +13,7 @@ import world.gregs.voidps.network.client.instruction.InteractInterfaceNPC
 
 class InterfaceOnNPCOptionHandler(
     private val npcs: NPCs,
-    private val handler: InterfaceHandler
+    private val handler: InterfaceHandler,
 ) : InstructionHandler<InteractInterfaceNPC>() {
 
     override fun validate(player: Player, instruction: InteractInterfaceNPC) {
@@ -30,7 +30,7 @@ class InterfaceOnNPCOptionHandler(
                 npc,
                 id,
                 component,
-                itemSlot
+                itemSlot,
             )
         } else {
             ItemOnNPC(
@@ -38,7 +38,7 @@ class InterfaceOnNPCOptionHandler(
                 npc,
                 item,
                 itemSlot,
-                inventory
+                inventory,
             )
         }
         player.mode = Interact(player, npc, interaction)

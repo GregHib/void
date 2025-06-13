@@ -78,5 +78,4 @@ internal class XteasTest {
         assertNotNull(values)
         assertArrayEquals(intArrayOf(-100, 99, 2, 1), values!!)
     }
-
 }

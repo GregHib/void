@@ -22,8 +22,7 @@ class InterfaceOnNpcDecoder : Decoder(11) {
             InterfaceDefinition.id(packed),
             InterfaceDefinition.componentId(packed),
             itemId,
-            slot
+            slot,
         )
     }
-
 }

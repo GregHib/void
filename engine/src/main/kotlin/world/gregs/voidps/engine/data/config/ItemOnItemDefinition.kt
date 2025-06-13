@@ -44,7 +44,7 @@ data class ItemOnItemDefinition(
     val message: String = "",
     val failure: String = "",
     val question: String = "How many would you like to $type?",
-    val maximum: Int = -1
+    val maximum: Int = -1,
 ) {
 
     companion object {

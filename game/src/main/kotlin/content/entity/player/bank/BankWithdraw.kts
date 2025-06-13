@@ -1,6 +1,7 @@
 package content.entity.player.bank
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.player.dialogue.type.intEntry
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
@@ -10,7 +11,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
 import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shiftToFreeIndex
-import content.entity.player.dialogue.type.intEntry
 
 val logger = InlineLogger()
 

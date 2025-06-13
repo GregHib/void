@@ -36,8 +36,6 @@ npcCombatSwing("bronze_dragon", handler = handler)
 npcCombatSwing("iron_dragon", handler = handler)
 npcCombatSwing("steel_dragon", handler = handler)
 
-
-
 /**
  * Tile the dragon breath originates from.
  * Mimics OSRS fire pathing logic.

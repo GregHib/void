@@ -117,5 +117,4 @@ object RemoveItem {
         // The required amount of the item was not found
         error = TransactionError.Deficient(amount = removed)
     }
-
 }

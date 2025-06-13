@@ -70,7 +70,7 @@ object AnimationNames {
 
     private fun MutableMap<Int, String>.add(id: Int, name: String, suffix: String) {
         if (id != -1 && name != "" && name != "null") {
-            set(id, "${name}${suffix}")
+            set(id, "${name}$suffix")
         }
     }
 
@@ -83,5 +83,4 @@ object AnimationNames {
         }
         return map
     }
-
 }

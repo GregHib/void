@@ -14,13 +14,15 @@ class ParallelIterator<C : Character> : TaskIterator<C> {
     override fun run(task: CharacterTask<C>) {
         for (character in task.characters) {
             if (task.predicate(character)) {
-                queue.enqueue(executor.submit {
-                    try {
-                        task.run(character)
-                    } catch (t: Throwable) {
-                        logger.warn(t) { "Exception in parallel task." }
-                    }
-                })
+                queue.enqueue(
+                    executor.submit {
+                        try {
+                            task.run(character)
+                        } catch (t: Throwable) {
+                            logger.warn(t) { "Exception in parallel task." }
+                        }
+                    },
+                )
             }
         }
         while (!queue.isEmpty) {

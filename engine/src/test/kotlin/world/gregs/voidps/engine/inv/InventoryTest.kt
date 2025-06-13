@@ -36,16 +36,16 @@ internal class InventoryTest {
         id: String = "123",
         items: Array<Item> = this.items,
         stackRule: ItemStackingRule = AlwaysStack,
-        amountBounds: ItemAmountBounds = DefaultItemAmountBounds
+        amountBounds: ItemAmountBounds = DefaultItemAmountBounds,
     ): Inventory = spyk(
         Inventory(
             data = items,
             id = id,
             stackRule = stackRule,
-            amountBounds = amountBounds
+            amountBounds = amountBounds,
         ).apply {
             transaction.changes.bind(events)
-        }
+        },
     )
 
     @Test
@@ -54,7 +54,7 @@ internal class InventoryTest {
         val id = "1"
         inventory = inventory(
             items = emptyArray(),
-            stackRule = AlwaysStack
+            stackRule = AlwaysStack,
         )
         // When
         val stackable = inventory.stackable(id)
@@ -68,7 +68,7 @@ internal class InventoryTest {
         val id = "1"
         inventory = inventory(
             items = emptyArray(),
-            stackRule = NeverStack
+            stackRule = NeverStack,
         )
         // When
         val stackable = inventory.stackable(id)
@@ -83,7 +83,7 @@ internal class InventoryTest {
         val definitions: ItemDefinitions = mockk(relaxed = true)
         inventory = inventory(
             items = emptyArray(),
-            stackRule = ItemDependentStack(definitions)
+            stackRule = ItemDependentStack(definitions),
         )
         every { definitions.get(id) } returns ItemDefinition(stackable = 1)
         // When
@@ -99,7 +99,7 @@ internal class InventoryTest {
         val definitions: ItemDefinitions = mockk(relaxed = true)
         inventory = inventory(
             items = emptyArray(),
-            stackRule = ItemDependentStack(definitions)
+            stackRule = ItemDependentStack(definitions),
         )
         every { definitions.get(id) } returns ItemDefinition(stackable = 0)
         // When
@@ -112,7 +112,7 @@ internal class InventoryTest {
     fun `Spaces counts number of empty items`() {
         // Given
         inventory = inventory(
-            amountBounds = ShopItemAmountBounds
+            amountBounds = ShopItemAmountBounds,
         )
         inventory.transaction {
             repeat(8) {

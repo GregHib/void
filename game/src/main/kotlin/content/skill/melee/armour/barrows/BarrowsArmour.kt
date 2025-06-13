@@ -14,7 +14,7 @@ object BarrowsArmour {
         source: Character,
         target: Character,
         weapon: Item,
-        damage: Int
+        damage: Int,
     ) = when {
         weapon.id.startsWith("dharoks_greataxe") && source.contains("dharoks_set_effect") -> {
             val lost = (source.levels.getMax(Skill.Constitution) - source.levels.get(Skill.Constitution)) / 1000.0
@@ -29,16 +29,13 @@ object BarrowsArmour {
         EquipSlot.Hat.index,
         EquipSlot.Chest.index,
         EquipSlot.Legs.index,
-        EquipSlot.Weapon.index
+        EquipSlot.Weapon.index,
     )
 
-    fun hasSet(player: Player, weapon: String, helm: String, top: String, legs: String) =
-        notBroken(player.equipped(EquipSlot.Weapon).id, weapon) &&
-                notBroken(player.equipped(EquipSlot.Hat).id, helm) &&
-                notBroken(player.equipped(EquipSlot.Chest).id, top) &&
-                notBroken(player.equipped(EquipSlot.Legs).id, legs)
+    fun hasSet(player: Player, weapon: String, helm: String, top: String, legs: String) = notBroken(player.equipped(EquipSlot.Weapon).id, weapon) &&
+        notBroken(player.equipped(EquipSlot.Hat).id, helm) &&
+        notBroken(player.equipped(EquipSlot.Chest).id, top) &&
+        notBroken(player.equipped(EquipSlot.Legs).id, legs)
 
-    private fun notBroken(id: String, prefix: String): Boolean {
-        return !id.endsWith("broken") && id.startsWith(prefix)
-    }
+    private fun notBroken(id: String, prefix: String): Boolean = !id.endsWith("broken") && id.startsWith(prefix)
 }

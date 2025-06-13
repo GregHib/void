@@ -1,7 +1,10 @@
 package content.entity.player.command.debug
 
-import net.pearx.kasechange.toScreamingSnakeCase
 import content.bot.isBot
+import content.entity.combat.hit.damage
+import content.entity.effect.transform
+import content.entity.proj.shoot
+import net.pearx.kasechange.toScreamingSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.event.modCommand
@@ -12,9 +15,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
-import content.entity.combat.hit.damage
-import content.entity.effect.transform
-import content.entity.proj.shoot
 
 val players: Players by inject()
 
@@ -39,7 +39,7 @@ modCommand("players", "get the total and local player counts") {
 adminCommand("anim (anim-id)", "perform animation by int or string id (-1 to clear)") {
     when (content) {
         "-1", "" -> player.clearAnim()
-        else -> player.anim(content, override = true)// 863
+        else -> player.anim(content, override = true) // 863
     }
 }
 
@@ -53,7 +53,7 @@ adminCommand("emote (emote-id)", "perform render emote by int or string id (-1 t
 adminCommand("gfx (gfx-id)", "perform graphic effect by int or string id (-1 to clear)") {
     when (content) {
         "-1", "" -> player.clearGfx()
-        else -> player.gfx(content)// 93
+        else -> player.gfx(content) // 93
     }
 }
 

@@ -6,7 +6,7 @@ interface Coordinate3D<T> {
     val y: Int
     val level: Int
 
-    fun copy(x: Int = this.x, y: Int = this.y, level: Int = this.level) : T
+    fun copy(x: Int = this.x, y: Int = this.y, level: Int = this.level): T
 
     fun add(x: Int = 0, y: Int = 0, level: Int = 0) = copy(this.x + x, this.y + y, this.level + level)
     fun minus(x: Int = 0, y: Int = 0, level: Int = 0) = add(-x, -y, -level)

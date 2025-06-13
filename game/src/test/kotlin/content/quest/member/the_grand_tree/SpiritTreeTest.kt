@@ -35,5 +35,4 @@ class SpiritTreeTest : WorldTest() {
         tick(4)
         assertEquals(Tile(3185, 3508), player.tile)
     }
-
 }

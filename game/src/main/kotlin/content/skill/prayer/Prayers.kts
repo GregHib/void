@@ -1,12 +1,12 @@
 package content.skill.prayer
 
+import content.entity.sound.sound
+import content.skill.prayer.PrayerConfigs.ACTIVE_CURSES
+import content.skill.prayer.PrayerConfigs.ACTIVE_PRAYERS
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.headIcon
 import world.gregs.voidps.engine.entity.playerSpawn
-import content.skill.prayer.PrayerConfigs.ACTIVE_CURSES
-import content.skill.prayer.PrayerConfigs.ACTIVE_PRAYERS
-import content.entity.sound.sound
 
 playerSpawn { player ->
     player.sendVariable("attack_bonus")

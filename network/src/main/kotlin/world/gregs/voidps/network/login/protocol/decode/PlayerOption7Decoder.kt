@@ -14,5 +14,4 @@ class PlayerOption7Decoder : Decoder(3) {
         packet.readByteAdd()
         return InteractPlayer(index, 7)
     }
-
 }

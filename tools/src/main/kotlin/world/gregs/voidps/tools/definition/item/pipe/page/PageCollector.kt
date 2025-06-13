@@ -14,5 +14,5 @@ data class PageCollector(
     var rs3Idd: Boolean = false,
     var osrs: WikiPage? = null,
     var osrsIdd: Boolean = false,
-    var uid: String = ""
+    var uid: String = "",
 )

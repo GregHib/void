@@ -1,12 +1,6 @@
 package content.entity.obj
 
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.inv.holdsItem
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.replace
 import content.entity.player.bank.bank
-import content.quest.quest
 import content.entity.player.dialogue.Chuckle
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
@@ -14,6 +8,12 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
+import content.quest.quest
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.replace
 
 objectOperate("Milk", "prized_dairy_cow") {
     if (!player.holdsItem("bucket")) {

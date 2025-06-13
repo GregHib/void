@@ -1,5 +1,13 @@
 package content.area.kharidian_desert.sophanem
 
+import content.entity.player.dialogue.Pleased
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.Uncertain
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -12,14 +20,6 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.entity.player.dialogue.Pleased
-import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.Uncertain
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
-import content.entity.player.dialogue.type.statement
 
 val ivory = listOf("ivory_comb", "pottery_scarab", "pottery_statuette")
 val stone = listOf("stone_seal", "stone_scarab", "stone_statuette")
@@ -147,20 +147,18 @@ suspend fun SuspendableContext<Player>.sceptreDischarging() {
     }
 }
 
-fun Inventory.chargeSceptre(amount: Int, items: List<String>): Boolean {
-    return transaction {
-        var remaining = amount
-        for (item in items) {
-            if (remaining <= 0) {
-                break
-            }
-            remaining -= removeToLimit(item, remaining)
+fun Inventory.chargeSceptre(amount: Int, items: List<String>): Boolean = transaction {
+    var remaining = amount
+    for (item in items) {
+        if (remaining <= 0) {
+            break
         }
-        if (remaining > 0) {
-            error = TransactionError.Deficient(remaining)
-        }
-        replace("pharaohs_sceptre", "pharaohs_sceptre_3")
+        remaining -= removeToLimit(item, remaining)
     }
+    if (remaining > 0) {
+        error = TransactionError.Deficient(remaining)
+    }
+    replace("pharaohs_sceptre", "pharaohs_sceptre_3")
 }
 
 itemOnNPCOperate("*", "guardian_mummy") {

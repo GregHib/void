@@ -1,22 +1,22 @@
 package content.area.misthalin.lumbridge
 
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.entity.sound.jingle
+import content.quest.quest
+import content.quest.questComplete
+import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.quest.quest
-import content.quest.refreshQuestJournal
-import content.quest.questComplete
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
-import content.entity.sound.jingle
 
 npcOperate("Talk-to", "cook_lumbridge") {
     when (player.quest("cooks_assistant")) {
@@ -128,7 +128,7 @@ fun Context<Player>.questComplete() {
         "500 coins",
         "20 sardines",
         "Access to the cook's range",
-        item = "cake"
+        item = "cake",
     )
 }
 

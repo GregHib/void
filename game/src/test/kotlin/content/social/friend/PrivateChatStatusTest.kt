@@ -1,5 +1,7 @@
 package content.social.friend
 
+import WorldTest
+import interfaceOption
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.verify
@@ -13,8 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import world.gregs.voidps.network.login.protocol.encode.sendFriendsList
-import WorldTest
-import interfaceOption
 
 internal class PrivateChatStatusTest : WorldTest() {
 
@@ -205,5 +205,4 @@ internal class PrivateChatStatusTest : WorldTest() {
             stranger.client?.sendFriendsList(any())
         }
     }
-
 }

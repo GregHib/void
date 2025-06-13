@@ -1,20 +1,20 @@
 package content.skill.constitution.drink
 
+import FakeRandom
+import WorldTest
+import content.entity.effect.toxin.poison
+import content.entity.player.effect.energy.runEnergy
+import itemOnItem
+import itemOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import FakeRandom
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.setRandom
-import content.entity.player.effect.energy.runEnergy
-import content.entity.effect.toxin.poison
-import WorldTest
-import itemOnItem
-import itemOption
 
 internal class TeaTest : WorldTest() {
 
@@ -35,9 +35,7 @@ internal class TeaTest : WorldTest() {
     @Test
     fun `Guthix rest cures poison and boosts energy and health points`() {
         setRandom(object : FakeRandom() {
-            override fun nextInt(from: Int, until: Int): Int {
-                return 25
-            }
+            override fun nextInt(from: Int, until: Int): Int = 25
         })
         val player = createPlayer(emptyTile)
         player.inventory.add("guthix_rest_3")
@@ -134,5 +132,4 @@ internal class TeaTest : WorldTest() {
         assertTrue(player.inventory.contains("cup_of_tea"))
         assertEquals(5, player.inventory.charges(player, 0))
     }
-
 }

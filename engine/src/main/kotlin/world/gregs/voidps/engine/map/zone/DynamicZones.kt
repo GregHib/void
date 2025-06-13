@@ -15,7 +15,7 @@ import kotlin.collections.set
 class DynamicZones(
     private val objects: GameObjects,
     private val collisions: Collisions,
-    private val extract: MapDefinitions
+    private val extract: MapDefinitions,
 ) {
     private val zones: MutableMap<Int, Int> = Int2IntArrayMap()
     private val regions = IntOpenHashSet()
@@ -82,16 +82,14 @@ class DynamicZones(
 
     companion object {
 
-        fun Zone.dynamicId() =
-            toZonePosition(x, y, level)
+        fun Zone.dynamicId() = toZonePosition(x, y, level)
 
-        fun Zone.rotatedId(rotation: Int) =
-            toRotatedZonePosition(
-                x,
-                y,
-                level,
-                rotation
-            )
+        fun Zone.rotatedId(rotation: Int) = toRotatedZonePosition(
+            x,
+            y,
+            level,
+            rotation,
+        )
 
         fun getZone(id: Int) = Zone(x(id), y(id), level(id))
 
@@ -99,12 +97,8 @@ class DynamicZones(
         private fun y(id: Int) = id shr 3 and 0x7ff
         private fun level(id: Int) = id shr 28 and 0x7ff
 
-        private fun toZonePosition(zoneX: Int, zoneY: Int, level: Int): Int {
-            return zoneY + (zoneX shl 14) + (level shl 28)
-        }
+        private fun toZonePosition(zoneX: Int, zoneY: Int, level: Int): Int = zoneY + (zoneX shl 14) + (level shl 28)
 
-        private fun toRotatedZonePosition(zoneX: Int, zoneY: Int, level: Int, rotation: Int): Int {
-            return rotation shl 1 or (level shl 24) or (zoneX shl 14) or (zoneY shl 3)
-        }
+        private fun toRotatedZonePosition(zoneX: Int, zoneY: Int, level: Int, rotation: Int): Int = rotation shl 1 or (level shl 24) or (zoneX shl 14) or (zoneY shl 3)
     }
 }

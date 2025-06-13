@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.queue
 
 enum class ActionPriority(
-    val closeInterfaces: Boolean = false
+    val closeInterfaces: Boolean = false,
 ) {
     /**
      * Removed by interruptions and [Strong] actions
@@ -21,5 +21,5 @@ enum class ActionPriority(
     /**
      * Closes interfaces and can't be paused or canceled by anything other than suspensions
      */
-    Soft(closeInterfaces = true)
+    Soft(closeInterfaces = true),
 }

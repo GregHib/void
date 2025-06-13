@@ -10,5 +10,4 @@ class UnknownDecoder : Decoder(2) {
         val unknown = packet.readShort()
         return null
     }
-
 }

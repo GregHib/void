@@ -1,11 +1,12 @@
 package content.skill.smithing
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.player.dialogue.type.makeAmount
+import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smelting
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -14,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
@@ -23,8 +25,6 @@ import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import content.entity.player.dialogue.type.makeAmount
-import content.entity.sound.sound
 
 val bars = listOf(
     "bronze_bar",
@@ -35,7 +35,7 @@ val bars = listOf(
     "gold_bar",
     "mithril_bar",
     "adamant_bar",
-    "rune_bar"
+    "rune_bar",
 )
 
 val logger = InlineLogger()
@@ -57,7 +57,7 @@ itemOnObjectOperate("*_ore", "furnace*", arrive = false) {
 suspend fun Context<Player>.smeltingOptions(
     player: Player,
     gameObject: GameObject,
-    bars: List<String>
+    bars: List<String>,
 ) {
     player["face_entity"] = furnaceSide(player, gameObject)
     val available = mutableListOf<String>()
@@ -131,7 +131,7 @@ fun varrockArmour(
     player: Player,
     target: GameObject,
     id: String,
-    smelting: Smelting
+    smelting: Smelting,
 ): Boolean {
     if (target.id != "furnace_edgeville" || !player.inventory.contains(smelting.items)) {
         return false

@@ -1,6 +1,16 @@
 package content.entity.combat.hit
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.combat.Bonus
+import content.entity.combat.Target
+import content.entity.player.combat.special.specialAttack
+import content.entity.player.effect.Dragonfire
+import content.entity.player.equip.Equipment
+import content.skill.magic.spell.Spell
+import content.skill.magic.spell.spell
+import content.skill.melee.armour.barrows.BarrowsArmour
+import content.skill.melee.weapon.Weapon
+import content.skill.prayer.Prayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -13,16 +23,6 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import content.entity.combat.Bonus
-import content.entity.player.equip.Equipment
-import content.entity.combat.Target
-import content.skill.melee.weapon.Weapon
-import content.skill.melee.armour.barrows.BarrowsArmour
-import content.skill.magic.spell.Spell
-import content.skill.magic.spell.spell
-import content.skill.prayer.Prayer
-import content.entity.player.combat.special.specialAttack
-import content.entity.player.effect.Dragonfire
 
 object Damage {
     private val logger = InlineLogger()
@@ -38,7 +38,13 @@ object Damage {
         }
         val baseMaxHit = maximum(source, target, type, weapon, spell, success)
         source["max_hit"] = baseMaxHit
-        val player = if (source is Player && source["debug", false]) source else if (target is Player && target["debug", false]) target else null
+        val player = if (source is Player && source["debug", false]) {
+            source
+        } else if (target is Player && target["debug", false]) {
+            target
+        } else {
+            null
+        }
         if (player != null) {
             val message = "Base maximum hit: $baseMaxHit ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
             player.message(message)
@@ -78,9 +84,7 @@ object Damage {
         }
     }
 
-    private fun npcMaximum(source: NPC, target: Character, type: String): Int {
-        return source.def["max_hit_$type", 0]
-    }
+    private fun npcMaximum(source: NPC, target: Character, type: String): Int = source.def["max_hit_$type", 0]
 
     private fun effectiveLevel(character: Character, skill: Skill): Int {
         var level = character.levels.get(skill)
@@ -127,7 +131,13 @@ object Damage {
 
         if (source["debug", false]) {
             val strengthBonus = Weapon.strengthBonus(source, type, weapon)
-            val style = if (type == "magic") source.spell else if (weapon.isEmpty()) "unarmed" else weapon.id
+            val style = if (type == "magic") {
+                source.spell
+            } else if (weapon.isEmpty()) {
+                "unarmed"
+            } else {
+                weapon.id
+            }
             val spec = if ((source as? Player)?.specialAttack == true) "special" else ""
             val message = "Max damage: $damage (${listOf(type, "$strengthBonus str", style, spec).joinToString(", ")})"
             source.message(message)
@@ -135,7 +145,6 @@ object Damage {
         }
         return damage
     }
-
 }
 
 /**

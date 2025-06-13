@@ -18,11 +18,13 @@ object DropTableDefinitions {
     fun main(args: Array<String>) {
         Settings.load("game.properties")
         startKoin {
-            modules(module {
-                @Suppress("USELESS_CAST")
-                single { CacheDelegate(Settings["storage.cache.path"]) as Cache }
-                single { ItemDefinitions(ItemDecoder().load(get())).load(listOf()) }
-            })
+            modules(
+                module {
+                    @Suppress("USELESS_CAST")
+                    single { CacheDelegate(Settings["storage.cache.path"]) as Cache }
+                    single { ItemDefinitions(ItemDecoder().load(get())).load(listOf()) }
+                },
+            )
         }
         val decoder = DropTables().load(configFiles().getValue(Settings["spawns.drops"]))
         val table = decoder.getValue("goblin_drop_table")

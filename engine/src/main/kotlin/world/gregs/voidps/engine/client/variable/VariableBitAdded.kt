@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.event.Events
  */
 data class VariableBitAdded(
     val key: String,
-    val value: Any
+    val value: Any,
 ) : Event {
 
     override val size = 4
@@ -23,7 +23,6 @@ data class VariableBitAdded(
         3 -> value
         else -> null
     }
-
 }
 
 fun variableBitAdd(vararg ids: String = arrayOf("*"), value: Any? = "*", handler: suspend VariableBitAdded.(Player) -> Unit) {

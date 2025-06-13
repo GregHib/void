@@ -1,11 +1,14 @@
 package content.social.clan
 
+import WorldTest
 import content.area.wilderness.inMultiCombat
 import content.entity.combat.damageDealers
+import interfaceOption
 import io.mockk.every
 import io.mockk.mockkStatic
 import io.mockk.verify
 import kotlinx.coroutines.test.runTest
+import npcOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -17,9 +20,6 @@ import world.gregs.voidps.network.client.instruction.ClanChatJoin
 import world.gregs.voidps.network.login.protocol.encode.message
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
-import WorldTest
-import interfaceOption
-import npcOption
 import kotlin.collections.set
 import kotlin.random.Random
 import kotlin.test.assertFalse
@@ -170,5 +170,4 @@ internal class LootShareTest : WorldTest() {
             client.message(match { it.contains("received: ") }, ChatType.ClanChat.id)
         }
     }
-
 }

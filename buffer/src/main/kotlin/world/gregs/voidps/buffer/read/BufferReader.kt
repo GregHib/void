@@ -3,7 +3,7 @@ package world.gregs.voidps.buffer.read
 import java.nio.ByteBuffer
 
 class BufferReader(
-    val buffer: ByteBuffer
+    val buffer: ByteBuffer,
 ) : Reader {
 
     constructor(array: ByteArray) : this(buffer = ByteBuffer.wrap(array))
@@ -13,81 +13,43 @@ class BufferReader(
         get() = buffer.remaining()
     private var bitIndex = 0
 
-    override fun readByte(): Int {
-        return buffer.get().toInt()
-    }
+    override fun readByte(): Int = buffer.get().toInt()
 
-    override fun readByteAdd(): Int {
-        return (readByte() - 128).toByte().toInt()
-    }
+    override fun readByteAdd(): Int = (readByte() - 128).toByte().toInt()
 
-    override fun readByteInverse(): Int {
-        return -readByte()
-    }
+    override fun readByteInverse(): Int = -readByte()
 
-    override fun readByteSubtract(): Int {
-        return (readByteInverse() + 128).toByte().toInt()
-    }
+    override fun readByteSubtract(): Int = (readByteInverse() + 128).toByte().toInt()
 
-    override fun readUnsignedByte(): Int {
-        return readByte() and 0xff
-    }
+    override fun readUnsignedByte(): Int = readByte() and 0xff
 
-    override fun readShort(): Int {
-        return (readByte() shl 8) or readUnsignedByte()
-    }
+    override fun readShort(): Int = (readByte() shl 8) or readUnsignedByte()
 
-    override fun readShortAdd(): Int {
-        return (readByte() shl 8) or readUnsignedByteAdd()
-    }
+    override fun readShortAdd(): Int = (readByte() shl 8) or readUnsignedByteAdd()
 
-    override fun readUnsignedShortAdd(): Int {
-        return (readByte() shl 8) or ((readByte() - 128) and 0xff)
-    }
+    override fun readUnsignedShortAdd(): Int = (readByte() shl 8) or ((readByte() - 128) and 0xff)
 
-    override fun readShortLittle(): Int {
-        return readUnsignedByte() or (readByte() shl 8)
-    }
+    override fun readShortLittle(): Int = readUnsignedByte() or (readByte() shl 8)
 
-    override fun readShortAddLittle(): Int {
-        return readUnsignedByteAdd() or (readByte() shl 8)
-    }
+    override fun readShortAddLittle(): Int = readUnsignedByteAdd() or (readByte() shl 8)
 
-    override fun readUnsignedByteAdd(): Int {
-        return (readByte() - 128).toByte().toInt()
-    }
+    override fun readUnsignedByteAdd(): Int = (readByte() - 128).toByte().toInt()
 
-    override fun readUnsignedShort(): Int {
-        return (readUnsignedByte() shl 8) or readUnsignedByte()
-    }
+    override fun readUnsignedShort(): Int = (readUnsignedByte() shl 8) or readUnsignedByte()
 
-    override fun readUnsignedShortLittle(): Int {
-        return readUnsignedByte() or (readUnsignedByte() shl 8)
-    }
+    override fun readUnsignedShortLittle(): Int = readUnsignedByte() or (readUnsignedByte() shl 8)
 
-    override fun readMedium(): Int {
-        return (readByte() shl 16) or (readByte() shl 8) or readUnsignedByte()
-    }
+    override fun readMedium(): Int = (readByte() shl 16) or (readByte() shl 8) or readUnsignedByte()
 
-    override fun readUnsignedMedium(): Int {
-        return (readUnsignedByte() shl 16) or (readUnsignedByte() shl 8) or readUnsignedByte()
-    }
+    override fun readUnsignedMedium(): Int = (readUnsignedByte() shl 16) or (readUnsignedByte() shl 8) or readUnsignedByte()
 
-    override fun readInt(): Int {
-        return (readUnsignedByte() shl 24) or (readUnsignedByte() shl 16) or (readUnsignedByte() shl 8) or readUnsignedByte()
-    }
+    override fun readInt(): Int = (readUnsignedByte() shl 24) or (readUnsignedByte() shl 16) or (readUnsignedByte() shl 8) or readUnsignedByte()
 
-    override fun readIntInverseMiddle(): Int {
-        return (readByte() shl 16) or (readByte() shl 24) or readUnsignedByte() or (readByte() shl 8)
-    }
+    override fun readIntInverseMiddle(): Int = (readByte() shl 16) or (readByte() shl 24) or readUnsignedByte() or (readByte() shl 8)
 
-    override fun readIntLittle(): Int {
-        return readUnsignedByte() or (readByte() shl 8) or (readByte() shl 16) or (readByte() shl 24)
-    }
+    override fun readIntLittle(): Int = readUnsignedByte() or (readByte() shl 8) or (readByte() shl 16) or (readByte() shl 24)
 
-    override fun readUnsignedIntMiddle(): Int {
-        return (readUnsignedByte() shl 8) or readUnsignedByte() or (readUnsignedByte() shl 24) or (readUnsignedByte() shl 16)
-    }
+    override fun readUnsignedIntMiddle(): Int = (readUnsignedByte() shl 8) or readUnsignedByte() or (readUnsignedByte() shl 24) or (readUnsignedByte() shl 16)
 
     override fun readSmart(): Int {
         val peek = readUnsignedByte()
@@ -149,21 +111,15 @@ class BufferReader(
         buffer.position(buffer.position() + amount)
     }
 
-    override fun position(): Int {
-        return buffer.position()
-    }
+    override fun position(): Int = buffer.position()
 
     override fun position(index: Int) {
         buffer.position(index)
     }
 
-    override fun array(): ByteArray {
-        return buffer.array()
-    }
+    override fun array(): ByteArray = buffer.array()
 
-    override fun readableBytes(): Int {
-        return buffer.remaining()
-    }
+    override fun readableBytes(): Int = buffer.remaining()
 
     override fun startBitAccess(): Reader {
         bitIndex = buffer.position() * 8
@@ -207,8 +163,9 @@ class BufferReader(
         private val BIT_MASKS = IntArray(32)
 
         init {
-            for (i in BIT_MASKS.indices)
+            for (i in BIT_MASKS.indices) {
                 BIT_MASKS[i] = (1 shl i) - 1
+            }
         }
     }
 }

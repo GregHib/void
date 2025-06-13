@@ -15,7 +15,7 @@ import world.gregs.voidps.type.RegionLevel
 
 class NPCUpdateTask(
     private val npcs: NPCs,
-    private val encoders: List<VisualEncoder<NPCVisuals>>
+    private val encoders: List<VisualEncoder<NPCVisuals>>,
 ) {
 
     fun run(player: Player) {
@@ -41,7 +41,7 @@ class NPCUpdateTask(
         viewport: Viewport,
         sync: Writer,
         updates: Writer,
-        set: IntSet
+        set: IntSet,
     ) {
         var index: Int
         var npc: NPC?
@@ -114,7 +114,7 @@ class NPCUpdateTask(
         viewport: Viewport,
         sync: Writer,
         updates: Writer,
-        set: IntSet
+        set: IntSet,
     ) {
         var region: RegionLevel
         var npc: NPC

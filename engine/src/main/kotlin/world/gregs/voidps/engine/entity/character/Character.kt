@@ -33,7 +33,11 @@ import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 import kotlin.coroutines.Continuation
 
-interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
+interface Character :
+    Entity,
+    Variable,
+    EventDispatcher,
+    Comparable<Character> {
     val index: Int
     val visuals: Visuals
     val levels: Levels
@@ -47,9 +51,7 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
     val steps: Steps
     val size: Int
 
-    override fun compareTo(other: Character): Int {
-        return index.compareTo(other.index)
-    }
+    override fun compareTo(other: Character): Int = index.compareTo(other.index)
 
     /**
      * Gradually move the characters appeared location to [delta] over [delay] time
@@ -192,7 +194,6 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
      */
     fun face(tile: Tile, update: Boolean = true) = face(tile.delta(this.tile), update)
 
-
     /**
      * Turn to face [delta]
      */
@@ -236,13 +237,11 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
         return true
     }
 
-    private fun nearestTile(entity: Entity): Tile {
-        return when (entity) {
-            is GameObject -> Distance.getNearest(entity.tile, entity.width, entity.height, this.tile)
-            is NPC -> Distance.getNearest(entity.tile, entity.def.size, entity.def.size, this.tile)
-            is Player -> Distance.getNearest(entity.tile, entity.appearance.size, entity.appearance.size, this.tile)
-            else -> entity.tile
-        }
+    private fun nearestTile(entity: Entity): Tile = when (entity) {
+        is GameObject -> Distance.getNearest(entity.tile, entity.width, entity.height, this.tile)
+        is NPC -> Distance.getNearest(entity.tile, entity.def.size, entity.def.size, this.tile)
+        is Player -> Distance.getNearest(entity.tile, entity.appearance.size, entity.appearance.size, this.tile)
+        else -> entity.tile
     }
 
     /**
@@ -261,12 +260,10 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
     /**
      * Check if character is currently watching [character]
      */
-    fun watching(character: Character): Boolean {
-        return if (character is Player) {
-            visuals.watch.index == character.index or 0x8000
-        } else {
-            visuals.watch.index == character.index
-        }
+    fun watching(character: Character): Boolean = if (character is Player) {
+        visuals.watch.index == character.index or 0x8000
+    } else {
+        visuals.watch.index == character.index
     }
 
     /**
@@ -276,5 +273,4 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
         visuals.watch.index = -1
         flagWatch()
     }
-
 }

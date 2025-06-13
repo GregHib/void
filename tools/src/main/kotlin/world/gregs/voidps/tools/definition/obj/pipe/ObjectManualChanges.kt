@@ -5,8 +5,7 @@ import world.gregs.voidps.tools.definition.item.Extras
 
 class ObjectManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
 
-    val uids: Map<Int, String> = mapOf(
-    )
+    val uids: Map<Int, String> = mapOf()
 
     override fun modify(content: MutableMap<Int, Extras>): MutableMap<Int, Extras> {
         content.forEach { (id, content) ->

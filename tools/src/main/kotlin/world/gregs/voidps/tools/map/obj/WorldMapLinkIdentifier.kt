@@ -42,14 +42,16 @@ object WorldMapLinkIdentifier {
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
-                cache.data(5, "m${regionX}_${regionY}") ?: continue
+                cache.data(5, "m${regionX}_$regionY") ?: continue
                 regions.add(Region(regionX, regionY))
             }
         }
         startKoin {
-            modules(module {
-                single { definitions }
-            })
+            modules(
+                module {
+                    single { definitions }
+                },
+            )
         }
         val start = System.currentTimeMillis()
         val objCollision = GameObjectCollisionAdd(collisions)
@@ -78,5 +80,4 @@ object WorldMapLinkIdentifier {
         MutableNavigationGraph.save(graph, "./navgraph.json")
         println("${regions.size} regions loaded in ${System.currentTimeMillis() - start}ms")
     }
-
 }

@@ -93,7 +93,7 @@ fun buy(player: Player, shop: Inventory, index: Int, amount: Int) {
         player.message("The shop has run out of stock.")
         return
     } else if (budget < available && budget < amount) {
-        player.message("You don't have enough ${currency}.")
+        player.message("You don't have enough $currency.")
     } else if (available < budget && available < amount) {
         player.message("The shop has run out of stock.")
     }

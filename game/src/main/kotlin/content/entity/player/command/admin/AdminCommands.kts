@@ -2,6 +2,26 @@
 
 package content.entity.player.command.admin
 
+import content.bot.interact.navigation.graph.NavigationGraph
+import content.entity.npc.shop.OpenShop
+import content.entity.obj.ObjectTeleports
+import content.entity.obj.ship.CharterShips
+import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import content.entity.player.combat.special.specialAttackEnergy
+import content.entity.player.effect.energy.MAX_RUN_ENERGY
+import content.entity.player.effect.skull
+import content.entity.player.effect.unskull
+import content.entity.player.modal.book.Books
+import content.entity.sound.jingle
+import content.entity.sound.midi
+import content.entity.sound.sound
+import content.entity.world.music.MusicTracks
+import content.entity.world.music.MusicUnlock
+import content.quest.quests
+import content.quest.refreshQuestJournal
+import content.skill.prayer.PrayerConfigs
+import content.skill.prayer.PrayerConfigs.PRAYERS
+import content.skill.prayer.isCurses
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -9,7 +29,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toSnakeCase
-import content.bot.interact.navigation.graph.NavigationGraph
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.client.clearCamera
@@ -22,10 +41,12 @@ import world.gregs.voidps.engine.client.ui.event.modCommand
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -36,7 +57,12 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTable
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
+import world.gregs.voidps.engine.entity.item.drop.TableType
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
+import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -50,32 +76,6 @@ import world.gregs.voidps.network.login.protocol.encode.playMIDI
 import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
-import content.entity.player.modal.book.Books
-import content.quest.quests
-import content.quest.refreshQuestJournal
-import content.entity.npc.shop.OpenShop
-import content.entity.obj.ObjectTeleports
-import content.entity.obj.ship.CharterShips
-import content.skill.prayer.PrayerConfigs
-import content.skill.prayer.PrayerConfigs.PRAYERS
-import content.skill.prayer.isCurses
-import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import content.entity.player.combat.special.specialAttackEnergy
-import content.entity.player.effect.skull
-import content.entity.player.effect.unskull
-import content.entity.player.effect.energy.MAX_RUN_ENERGY
-import content.entity.world.music.MusicTracks
-import content.entity.world.music.MusicUnlock
-import content.entity.sound.jingle
-import content.entity.sound.midi
-import content.entity.sound.sound
-import world.gregs.voidps.engine.data.*
-import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
-import world.gregs.voidps.engine.entity.item.drop.TableType
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
-import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
-import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import java.util.concurrent.TimeUnit
 import kotlin.collections.set
 import kotlin.system.measureTimeMillis
@@ -132,7 +132,7 @@ adminCommand("npc (npc-id)", "spawn an npc") {
     val defs: NPCDefinitions = get()
     val definition = if (id != null) defs.getOrNull(id) else defs.getOrNull(content)
     if (definition == null) {
-        player.message("Unable to find npc with id ${content}.")
+        player.message("Unable to find npc with id $content.")
         return@adminCommand
     }
     val npcs: NPCs = get()
@@ -142,7 +142,7 @@ adminCommand("npc (npc-id)", "spawn an npc") {
           x: ${player.tile.x}
           y: ${player.tile.y}
           level: ${player.tile.level}
-    """.trimIndent()
+        """.trimIndent(),
     )
     val npc = npcs.add(definition.stringId, player.tile, Direction.NORTH)
     npc.start("movement_delay", -1)
@@ -228,7 +228,7 @@ modCommand("find (content-name)", "search for a piece of content by name", alias
         if (command.startsWith(Colours.BLUE.toTag()) && command.contains(content, ignoreCase = true)) {
             val colourless = command.removePrefix(Colours.BLUE.toTag()).removeSuffix("</col>")
             val cmd = colourless.substringBefore("(").substringBefore("[").trim()
-            player.message("[${cmd}] - usage: $colourless", ChatType.Console)
+            player.message("[$cmd] - usage: $colourless", ChatType.Console)
             found++
         }
     }
@@ -286,7 +286,7 @@ adminCommand("unlock [activity-type]", "unlock everything or of a type (music, t
             "zombie_hand", "scared", "bunny_hop", "snowman_dance", "air_guitar", "safety_first", "explore", "trick", "freeze", "give_thanks",
             "around_the_world_in_eggty_days", "dramatic_point", "faint", "puppet_master", "taskmaster", "seal_of_approval",
         )) {
-            player["unlocked_emote_${component}"] = true
+            player["unlocked_emote_$component"] = true
         }
         player["unlocked_emote_lost_tribe"] = true
         player.message("All emotes unlocked.")
@@ -426,7 +426,7 @@ adminCommand("song (song-id)", "play a song by int id", listOf("track")) {
         if (id != null) {
             player.playTrack(id)
         } else {
-            player.message("Song not found with id '${search}'.")
+            player.message("Song not found with id '$search'.")
         }
     } else {
         player.playTrack(content.toInt())
@@ -487,7 +487,7 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
             files.list(Settings["definitions.variables.bits"]),
             files.list(Settings["definitions.variables.clients"]),
             files.list(Settings["definitions.variables.strings"]),
-            files.list(Settings["definitions.variables.customs"])
+            files.list(Settings["definitions.variables.customs"]),
         )
         "music", "music effects", "jingles" -> get<JingleDefinitions>().load(files.list(Settings["definitions.jingles"]))
         "interfaces" -> get<InterfaceDefinitions>().load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
@@ -525,7 +525,7 @@ val tables: DropTables by inject()
 
 class InventoryDelegate(
     private val inventory: Inventory,
-    private val list: MutableList<ItemDrop> = mutableListOf()
+    private val list: MutableList<ItemDrop> = mutableListOf(),
 ) : MutableList<ItemDrop> by list {
     override fun add(element: ItemDrop): Boolean {
         if (!inventory.add(element.id, element.amount.random()) && element.id != "nothing") {

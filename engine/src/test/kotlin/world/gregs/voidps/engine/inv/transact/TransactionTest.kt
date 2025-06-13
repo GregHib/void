@@ -25,7 +25,6 @@ class TransactionTest : TransactionOperationTest() {
         verify { events.emit(any<InventorySlotChanged>()) }
     }
 
-
     @Test
     fun `Link second inventory to transaction`() {
         val inventory = Inventory.debug(1)

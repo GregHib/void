@@ -1,15 +1,15 @@
 package content.skill.fletching
 
+import WorldTest
+import dialogueOption
+import interfaceOption
+import itemOnItem
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import WorldTest
-import dialogueOption
-import interfaceOption
-import itemOnItem
 
 internal class FletchingTest : WorldTest() {
 

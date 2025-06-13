@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.timedLoad
  */
 class EnumDefinitions(
     override var definitions: Array<EnumDefinition>,
-    private val structs: StructDefinitions
+    private val structs: StructDefinitions,
 ) : DefinitionsDecoder<EnumDefinition> {
 
     override lateinit var ids: Map<String, Int>
@@ -64,5 +64,4 @@ class EnumDefinitions(
     }
 
     override fun empty() = EnumDefinition.EMPTY
-
 }

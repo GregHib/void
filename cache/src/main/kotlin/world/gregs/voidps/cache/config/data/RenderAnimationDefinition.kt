@@ -48,7 +48,7 @@ data class RenderAnimationDefinition(
     var anInt3263: Int = 0,
     var anInt3291: Int = 0,
     var anIntArray3255: IntArray? = null,
-    var anIntArrayArray3249: Array<IntArray?>? = null
+    var anIntArrayArray3249: Array<IntArray?>? = null,
 ) : Definition {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -73,11 +73,15 @@ data class RenderAnimationDefinition(
         if (anIntArrayArray3273 != null) {
             if (other.anIntArrayArray3273 == null) return false
             if (!anIntArrayArray3273.contentDeepEquals(other.anIntArrayArray3273)) return false
-        } else if (other.anIntArrayArray3273 != null) return false
+        } else if (other.anIntArrayArray3273 != null) {
+            return false
+        }
         if (anIntArray3276 != null) {
             if (other.anIntArray3276 == null) return false
             if (!anIntArray3276.contentEquals(other.anIntArray3276)) return false
-        } else if (other.anIntArray3276 != null) return false
+        } else if (other.anIntArray3276 != null) {
+            return false
+        }
         if (anInt3258 != other.anInt3258) return false
         if (anInt3283 != other.anInt3283) return false
         if (anInt3278 != other.anInt3278) return false
@@ -104,22 +108,30 @@ data class RenderAnimationDefinition(
         if (anIntArray3294 != null) {
             if (other.anIntArray3294 == null) return false
             if (!anIntArray3294.contentEquals(other.anIntArray3294)) return false
-        } else if (other.anIntArray3294 != null) return false
+        } else if (other.anIntArray3294 != null) {
+            return false
+        }
         if (anIntArray3302 != null) {
             if (other.anIntArray3302 == null) return false
             if (!anIntArray3302.contentEquals(other.anIntArray3302)) return false
-        } else if (other.anIntArray3302 != null) return false
+        } else if (other.anIntArray3302 != null) {
+            return false
+        }
         if (aBoolean3267 != other.aBoolean3267) return false
         if (anInt3263 != other.anInt3263) return false
         if (anInt3291 != other.anInt3291) return false
         if (anIntArray3255 != null) {
             if (other.anIntArray3255 == null) return false
             if (!anIntArray3255.contentEquals(other.anIntArray3255)) return false
-        } else if (other.anIntArray3255 != null) return false
+        } else if (other.anIntArray3255 != null) {
+            return false
+        }
         if (anIntArrayArray3249 != null) {
             if (other.anIntArrayArray3249 == null) return false
             if (!anIntArrayArray3249.contentDeepEquals(other.anIntArrayArray3249)) return false
-        } else if (other.anIntArrayArray3249 != null) return false
+        } else if (other.anIntArrayArray3249 != null) {
+            return false
+        }
 
         return true
     }

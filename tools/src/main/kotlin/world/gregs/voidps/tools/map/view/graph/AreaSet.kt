@@ -101,8 +101,8 @@ class AreaSet {
                                 name,
                                 level ?: 0,
                                 level ?: 0,
-                                x.mapIndexed { index, m -> Point(m, y.getInt(index)) }.toMutableList()
-                            )
+                                x.mapIndexed { index, m -> Point(m, y.getInt(index)) }.toMutableList(),
+                            ),
                         )
                     }
                 }

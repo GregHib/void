@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.inv.InventoryUpdate
 import world.gregs.voidps.engine.inv.InventorySlotChanged
+import world.gregs.voidps.engine.inv.InventoryUpdate
 
 internal class ChangeManagerTest {
 
@@ -43,6 +43,4 @@ internal class ChangeManagerTest {
         change.send()
         verify(exactly = 0) { events.emit(any<Event>()) }
     }
-
-
 }

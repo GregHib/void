@@ -33,7 +33,5 @@ internal class ActionTest {
         assertTrue(action.removed)
     }
 
-    private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend Action<Player>.() -> Unit = {}): Action<Player> {
-        return Action(mockk(relaxed = true), "action", priority, delay, behaviour, null, action as suspend Action<*>.() -> Unit)
-    }
+    private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend Action<Player>.() -> Unit = {}): Action<Player> = Action(mockk(relaxed = true), "action", priority, delay, behaviour, null, action as suspend Action<*>.() -> Unit)
 }

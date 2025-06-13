@@ -13,7 +13,7 @@ data class ItemOnFloorItem<C : Character>(
     val floorItem: FloorItem,
     val item: Item,
     val itemSlot: Int,
-    val inventory: String
+    val inventory: String,
 ) : Interaction<C>() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 

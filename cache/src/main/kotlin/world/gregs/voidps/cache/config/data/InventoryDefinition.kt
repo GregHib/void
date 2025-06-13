@@ -9,8 +9,9 @@ data class InventoryDefinition(
     var ids: IntArray? = null,
     var amounts: IntArray? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -22,11 +23,15 @@ data class InventoryDefinition(
         if (ids != null) {
             if (other.ids == null) return false
             if (!ids.contentEquals(other.ids)) return false
-        } else if (other.ids != null) return false
+        } else if (other.ids != null) {
+            return false
+        }
         if (amounts != null) {
             if (other.amounts == null) return false
             if (!amounts.contentEquals(other.amounts)) return false
-        } else if (other.amounts != null) return false
+        } else if (other.amounts != null) {
+            return false
+        }
         if (stringId != other.stringId) return false
         if (extras != other.extras) return false
 

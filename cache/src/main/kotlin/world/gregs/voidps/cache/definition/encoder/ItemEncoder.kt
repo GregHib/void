@@ -289,5 +289,4 @@ class ItemEncoder : DefinitionEncoder<ItemDefinitionFull> {
         definition.writeParameters(this)
         writeByte(0)
     }
-
 }

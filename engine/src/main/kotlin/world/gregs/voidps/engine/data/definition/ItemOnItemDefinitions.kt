@@ -96,7 +96,7 @@ class ItemOnItemDefinitions {
                             message = message,
                             failure = failure,
                             question = question ?: "How many would you like to $type?",
-                            maximum = maximum
+                            maximum = maximum,
                         )
                         requires.addAll(definition.one)
                         requires.addAll(definition.remove)
@@ -147,5 +147,4 @@ class ItemOnItemDefinitions {
         private val logger = InlineLogger()
         private fun id(one: Item, two: Item): String = "${one.id}&${two.id}"
     }
-
 }

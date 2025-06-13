@@ -1,27 +1,27 @@
 package content.area.misthalin.wizards_tower
 
+import content.entity.player.bank.bank
+import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.entity.sound.jingle
+import content.entity.sound.sound
+import content.quest.quest
+import content.quest.questComplete
+import content.quest.refreshQuestJournal
+import content.skill.runecrafting.EssenceMine
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.entity.player.bank.bank
-import content.entity.player.bank.ownsItem
-import content.quest.quest
-import content.quest.refreshQuestJournal
-import content.quest.questComplete
-import content.skill.runecrafting.EssenceMine
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
-import content.entity.sound.jingle
-import content.entity.sound.sound
 
 npcOperate("Talk-to", "sedridor") {
     when (player.quest("rune_mysteries")) {
@@ -267,7 +267,7 @@ fun Context<Player>.questComplete() {
             "1 Quest Point",
             "An Air Talisman",
             "Rune Essence Mine Access",
-            item = "air_talisman"
+            item = "air_talisman",
         )
     }
 }

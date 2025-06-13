@@ -4,8 +4,10 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import set
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -14,8 +16,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import set
-import world.gregs.voidps.engine.entity.Spawn
 
 class SpellRunesTest : MagicSpellTest() {
 
@@ -145,7 +145,7 @@ class SpellRunesTest : MagicSpellTest() {
     @ValueSource(strings = ["guthix_staff", "void_knight_mace", "slayers_staff", "staff_of_light_red", "zuriels_staff_corrupted", "ibans_staff", "saradomin_staff", "zamorak_staff"])
     fun `Has required staff`(staff: String) {
         val player = player()
-        val required = when(staff) {
+        val required = when (staff) {
             "guthix_staff", "void_knight_mace" -> "guthix_staff_dummy"
             "staff_of_light_red" -> "slayers_staff"
             "zuriels_staff_corrupted" -> "zuriels_staff"

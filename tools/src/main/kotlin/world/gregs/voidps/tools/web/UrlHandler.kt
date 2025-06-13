@@ -2,12 +2,10 @@ package world.gregs.voidps.tools.web
 
 object UrlHandler {
 
-    fun offset(url: String, depth: Int): String {
-        return if (depth > 0) {
-            "${"../".repeat(depth)}$url"
-        } else {
-            url
-        }
+    fun offset(url: String, depth: Int): String = if (depth > 0) {
+        "${"../".repeat(depth)}$url"
+    } else {
+        url
     }
 
     fun trimQuery(url: String): String {
@@ -31,9 +29,14 @@ object UrlHandler {
      */
     fun removeDomain(url: String, host: String): String {
         var url = url
-        val protocol = if (url.startsWith("http://")) "http://" else if (url.startsWith("https://")) "https://" else ""
+        val protocol = if (url.startsWith("http://")) {
+            "http://"
+        } else if (url.startsWith("https://")) {
+            "https://"
+        } else {
+            ""
+        }
         url = url.removePrefix(protocol)
-
 
         val web = "www."
         if (url.startsWith(web)) {
@@ -73,12 +76,10 @@ object UrlHandler {
         return url
     }
 
-    private fun getTopLevelHost(hostName: String, host: String): String {
-        return if (hostName.length > host.length + 1) {
-            hostName.replace(".$host", "")
-        } else {
-            hostName.replace("$host/", "")
-        }
+    private fun getTopLevelHost(hostName: String, host: String): String = if (hostName.length > host.length + 1) {
+        hostName.replace(".$host", "")
+    } else {
+        hostName.replace("$host/", "")
     }
 
     /**
@@ -125,5 +126,4 @@ object UrlHandler {
             return url
         }
     }
-
 }

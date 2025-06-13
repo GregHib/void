@@ -16,9 +16,11 @@ class FloorItemTest {
     @BeforeEach
     fun setup() {
         startKoin {
-            modules(module {
-                single { ItemDefinitions(arrayOf(ItemDefinition(0), ItemDefinition(1, stackable = 1))).apply { ids = mapOf("item" to 0, "stackable" to 1) } }
-            })
+            modules(
+                module {
+                    single { ItemDefinitions(arrayOf(ItemDefinition(0), ItemDefinition(1, stackable = 1))).apply { ids = mapOf("item" to 0, "stackable" to 1) } }
+                },
+            )
         }
     }
 
@@ -70,5 +72,4 @@ class FloorItemTest {
     fun teardown() {
         stopKoin()
     }
-
 }

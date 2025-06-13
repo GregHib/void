@@ -34,7 +34,7 @@ data class Uncooked(
     val start: Int = 1,
     val ticks: Int = 4,
     val type: String = "cook",
-    val rangeOnly: Boolean = false
+    val rangeOnly: Boolean = false,
 ) {
 
     companion object {
@@ -94,7 +94,7 @@ data class Uncooked(
                 start = start,
                 ticks = ticks,
                 type = type,
-                rangeOnly = chances.containsKey("range") && !chances.containsKey("fire")
+                rangeOnly = chances.containsKey("range") && !chances.containsKey("fire"),
             )
         }
 

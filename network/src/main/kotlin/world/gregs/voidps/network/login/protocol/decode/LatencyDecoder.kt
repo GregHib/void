@@ -10,5 +10,4 @@ class LatencyDecoder : Decoder(2) {
         val value = packet.readShort().toInt()
         return null
     }
-
 }

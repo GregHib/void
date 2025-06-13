@@ -1,5 +1,6 @@
 package content.social.friend
 
+import WorldTest
 import io.mockk.mockkStatic
 import io.mockk.verify
 import kotlinx.coroutines.test.runTest
@@ -11,7 +12,6 @@ import world.gregs.voidps.network.client.instruction.FriendAdd
 import world.gregs.voidps.network.client.instruction.FriendDelete
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import world.gregs.voidps.network.login.protocol.encode.sendFriendsList
-import WorldTest
 import kotlin.test.assertContains
 import kotlin.test.assertTrue
 

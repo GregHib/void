@@ -28,5 +28,4 @@ abstract class ScriptMock(private val suffix: String = "Test") : KoinMock() {
     open fun setup() {
         script = loadScript()
     }
-
 }

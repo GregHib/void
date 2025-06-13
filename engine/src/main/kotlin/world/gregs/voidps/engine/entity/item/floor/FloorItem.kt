@@ -21,8 +21,9 @@ class FloorItem(
     var revealTicks: Int = -1,
     var disappearTicks: Int = -1,
     val charges: Int = 0,
-    var owner: String? = null
-) : Entity, EventDispatcher {
+    var owner: String? = null,
+) : Entity,
+    EventDispatcher {
 
     val def: ItemDefinition
         get() = get<ItemDefinitions>().get(id)
@@ -57,7 +58,5 @@ class FloorItem(
      */
     fun remove(): Boolean = revealTicks <= 0 && (disappearTicks == 0 || disappearTicks > 0 && --disappearTicks == 0)
 
-    override fun toString(): String {
-        return "FloorItem(id='${id}', tile=$tile, amount=${amount}, disappear=$disappearTicks, reveal=$revealTicks, charges=$charges, owner=$owner)"
-    }
+    override fun toString(): String = "FloorItem(id='$id', tile=$tile, amount=$amount, disappear=$disappearTicks, reveal=$revealTicks, charges=$charges, owner=$owner)"
 }

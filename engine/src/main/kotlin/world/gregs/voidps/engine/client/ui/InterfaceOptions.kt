@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.client.ui
 
-import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -11,7 +10,7 @@ import kotlin.math.min
 class InterfaceOptions(
     private val player: Player,
     private val definitions: InterfaceDefinitions,
-    private val inventoryDefinitions: InventoryDefinitions
+    private val inventoryDefinitions: InventoryDefinitions,
 ) {
 
     fun send(id: String, component: String) {

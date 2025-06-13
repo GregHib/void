@@ -10,5 +10,5 @@ data class Link(
     var end: Tile,
     var actions: List<String>? = null,
     var requirements: List<String>? = null,
-    var cost: Int = -1
+    var cost: Int = -1,
 )

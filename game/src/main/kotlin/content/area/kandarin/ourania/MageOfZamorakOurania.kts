@@ -1,9 +1,9 @@
 package content.area.kandarin.ourania
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 npcOperate("Talk-to", "mage_of_zamorak_ourania") {
     player<Quiz>("What's that ladder next to the altar for?")

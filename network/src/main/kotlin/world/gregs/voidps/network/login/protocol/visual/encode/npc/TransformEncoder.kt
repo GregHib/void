@@ -10,5 +10,4 @@ class TransformEncoder : VisualEncoder<NPCVisuals>(TRANSFORM_MASK, initial = tru
     override fun encode(writer: Writer, visuals: NPCVisuals) {
         writer.writeShortAdd(visuals.transform.id)
     }
-
 }

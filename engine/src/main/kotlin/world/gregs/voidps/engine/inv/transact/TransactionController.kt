@@ -48,7 +48,7 @@ abstract class TransactionController {
         internalError = error()
         val success = state.revert()
         if (!success) {
-            logger.warn { "Failed to revert transaction ${this}." }
+            logger.warn { "Failed to revert transaction $this." }
         }
         for (transaction in transactions) {
             if (!transaction.state.revert()) {

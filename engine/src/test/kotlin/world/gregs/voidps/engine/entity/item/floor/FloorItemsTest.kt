@@ -28,20 +28,22 @@ class FloorItemsTest {
         batches = mockk(relaxed = true)
         items = FloorItems(batches, mockk(relaxed = true))
         startKoin {
-            modules(module {
-                single {
-                    val definitions = arrayOf(
-                        ItemDefinition.EMPTY,
-                        ItemDefinition(1, cost = 10),
-                        ItemDefinition(2, stackable = 1),
-                        ItemDefinition(3, cost = 10),
-                        ItemDefinition(4, cost = 5)
-                    )
-                    ItemDefinitions(definitions).apply {
-                        ids = mapOf("item" to 1, "stackable" to 2, "equal_item" to 3, "cheap_item" to 4)
+            modules(
+                module {
+                    single {
+                        val definitions = arrayOf(
+                            ItemDefinition.EMPTY,
+                            ItemDefinition(1, cost = 10),
+                            ItemDefinition(2, stackable = 1),
+                            ItemDefinition(3, cost = 10),
+                            ItemDefinition(4, cost = 5),
+                        )
+                        ItemDefinitions(definitions).apply {
+                            ids = mapOf("item" to 1, "stackable" to 2, "equal_item" to 3, "cheap_item" to 4)
+                        }
                     }
-                }
-            })
+                },
+            )
         }
     }
 
@@ -85,13 +87,16 @@ class FloorItemsTest {
         assertEquals(floorItem.revealTicks, 5)
         assertEquals(floorItem.owner, "player")
         verify {
-            batches.add(Zone.EMPTY, FloorItemUpdate(
-                tile = 0,
-                id = 2,
-                stack = 1,
-                combined = 2,
-                owner = "player"
-            ))
+            batches.add(
+                Zone.EMPTY,
+                FloorItemUpdate(
+                    tile = 0,
+                    id = 2,
+                    stack = 1,
+                    combined = 2,
+                    owner = "player",
+                ),
+            )
         }
     }
 

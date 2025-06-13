@@ -1,8 +1,8 @@
 package content.bot.interact.item
 
+import content.bot.Bot
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull
-import content.bot.Bot
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.TICKS

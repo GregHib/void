@@ -64,7 +64,7 @@ itemRemoved("*_greegree", EquipSlot.Weapon, "worn_equipment") { player ->
                 2 -> "lunar_spellbook"
                 3 -> "dungeoneering_spellbook"
                 else -> "modern_spellbook"
-            }
+            },
         )
     }
 }

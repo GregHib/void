@@ -1,5 +1,9 @@
 package content.area.misthalin.wizards_tower
 
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.entity.sound.sound
+import content.quest.quest
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
@@ -18,10 +22,6 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
-import content.quest.quest
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
-import content.entity.sound.sound
 
 val floorItems: FloorItems by inject()
 val objects: GameObjects by inject()

@@ -21,10 +21,15 @@ internal class ItemBoxTest : DialogueTest() {
         }
         every { player.sendScript(any(), *anyVararg()) } just Runs
         dialogue {
-            item("item_name", 650, """
+            item(
+                "item_name",
+                650,
+                """
                 An item
                 description
-            """, 10)
+            """,
+                10,
+            )
             resumed = true
         }
         (player.dialogueSuspension as ContinueSuspension).resume(Unit)

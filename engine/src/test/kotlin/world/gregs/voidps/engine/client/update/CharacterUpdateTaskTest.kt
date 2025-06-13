@@ -29,7 +29,7 @@ internal class CharacterUpdateTaskTest : KoinMock() {
         module {
             single { NPCs(get(), get(), get(), AreaDefinitions()) }
             single { Players() }
-        }
+        },
     )
 
     @BeforeEach

@@ -7,7 +7,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-
 internal class PlayerTrackingSetTest {
     lateinit var set: PlayerTrackingSet
     lateinit var player: Player

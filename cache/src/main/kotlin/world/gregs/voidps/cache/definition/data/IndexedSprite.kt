@@ -9,7 +9,7 @@ data class IndexedSprite(
     var height: Int = 0,
     var deltaHeight: Int = 0,
     var deltaWidth: Int = 0,
-    var alpha: ByteArray? = null
+    var alpha: ByteArray? = null,
 ) {
     lateinit var raster: ByteArray
     lateinit var palette: IntArray
@@ -49,7 +49,9 @@ data class IndexedSprite(
         if (alpha != null) {
             if (other.alpha == null) return false
             if (!alpha.contentEquals(other.alpha)) return false
-        } else if (other.alpha != null) return false
+        } else if (other.alpha != null) {
+            return false
+        }
         if (!raster.contentEquals(other.raster)) return false
         if (!palette.contentEquals(other.palette)) return false
 
@@ -68,5 +70,4 @@ data class IndexedSprite(
         result = 31 * result + palette.contentHashCode()
         return result
     }
-
 }

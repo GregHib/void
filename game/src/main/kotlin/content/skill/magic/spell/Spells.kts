@@ -1,11 +1,11 @@
 package content.skill.magic.spell
 
-import world.gregs.voidps.type.random
+import content.area.wilderness.inMultiCombat
 import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.directHit
-import content.area.wilderness.inMultiCombat
 import content.skill.melee.weapon.multiTargets
+import world.gregs.voidps.type.random
 import kotlin.random.nextInt
 
 characterCombatDamage { character ->

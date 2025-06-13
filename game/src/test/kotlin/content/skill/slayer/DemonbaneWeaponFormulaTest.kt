@@ -1,11 +1,11 @@
 package content.skill.slayer
 
+import content.skill.melee.CombatFormulaTest
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.skill.melee.CombatFormulaTest
 import kotlin.test.assertEquals
 
 internal class DemonbaneWeaponFormulaTest : CombatFormulaTest() {
@@ -47,5 +47,4 @@ internal class DemonbaneWeaponFormulaTest : CombatFormulaTest() {
         assertEquals(133, specMaxHit)
         assertEquals(0.9838, specChance, 0.0001)
     }
-
 }

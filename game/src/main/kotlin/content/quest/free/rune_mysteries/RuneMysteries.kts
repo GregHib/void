@@ -1,9 +1,9 @@
 package content.quest.free.rune_mysteries
 
 import content.entity.player.modal.tab.questJournalOpen
-import world.gregs.voidps.engine.inv.holdsItem
 import content.quest.quest
 import content.quest.questJournal
+import world.gregs.voidps.engine.inv.holdsItem
 
 questJournalOpen("rune_mysteries") {
     val lines = when (player.quest("rune_mysteries")) {
@@ -26,7 +26,7 @@ questJournalOpen("rune_mysteries") {
             "<str>granted me permission to use the Rune Essence Mine",
             "<str>whenever I please.",
             "",
-            "<red>QUEST COMPLETE!"
+            "<red>QUEST COMPLETE!",
         )
         "started" -> {
             val list = mutableListOf(
@@ -35,7 +35,7 @@ questJournalOpen("rune_mysteries") {
                 "<navy>might be of use to the <maroon>Order of Wizards<navy> at the <maroon>Wizards'",
                 "<maroon>Tower. He asked me to take it there and give it to a wizard",
                 "<navy>called <maroon>Sedridor.<navy> I can find the <maroon>Wizards' Tower<navy> south west of",
-                "<maroon>Lumbridge, across the bridge from <maroon>Draynor Village."
+                "<maroon>Lumbridge, across the bridge from <maroon>Draynor Village.",
             )
 
             if (!player.holdsItem("air_talisman")) {
@@ -52,7 +52,7 @@ questJournalOpen("rune_mysteries") {
             "<str>called Sedridor.",
             "<navy>I delivered the <maroon>Strange Talisman<navy> to <maroon>Sedridor<navy> in the",
             "<navy>basement of the <maroon>Wizards' Tower.<navy> I should see what he can",
-            "<navy>tell me about it."
+            "<navy>tell me about it.",
         )
         "research_package" -> {
             val list = mutableListOf(
@@ -67,7 +67,7 @@ questJournalOpen("rune_mysteries") {
                 "<maroon>Rune Essence Mine.<navy> He asked me to help confirm this by",
                 "<navy>delivering a <maroon>Package<navy> to <maroon>Aubury<navy> , an expert on",
                 "<maroon>Runecrafting.<navy> I can find him in his <maroon>Rune Shop<navy> in south east",
-                "<maroon>Varrock."
+                "<maroon>Varrock.",
             )
             if (!player.holdsItem("research_package_rune_mysteries")) {
                 list.add("<navy>If I lose the <maroon>Package<navy> , I'll need to ask <maroon>Sedridor<navy> for")
@@ -105,7 +105,7 @@ questJournalOpen("rune_mysteries") {
                 "<navy>I delivered the <maroon>Package<navy> to <maroon>Aubury<navy> at his <maroon>Rune Shop<navy> in",
                 "<navy>south east <maroon>Varrock<navy> . He confirmed <maroon>Sedridor's<navy> suspicions",
                 "<navy>and asked me to take some <maroon>Research Notes<navy> . back to him. I",
-                "<navy>can find <maroon>Sedridor<navy> in the basement of the <maroon>Wizards' Tower<navy>."
+                "<navy>can find <maroon>Sedridor<navy> in the basement of the <maroon>Wizards' Tower<navy>.",
             )
             if (!player.holdsItem("research_notes_rune_mysteries")) {
                 list.add("<navy>If I lose the <maroon>Research Notes<navy> I'll need to ask <maroon>Aubury<navy> for")
@@ -115,7 +115,7 @@ questJournalOpen("rune_mysteries") {
         }
         else -> listOf(
             "<navy>I can start this quest by speaking to <maroon>Duke Horacio of",
-            "<maroon>Lumbridge<navy>upstairs in <maroon>Lumbridge Castle."
+            "<maroon>Lumbridge<navy>upstairs in <maroon>Lumbridge Castle.",
         )
     }
     player.questJournal("Rune Mysteries", lines)

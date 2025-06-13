@@ -1,11 +1,11 @@
 package content.area.misthalin.varrock
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.male
+import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import content.entity.npc.shop.openShop
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.male
 
 npcOperate("Talk-to", "iffie") {
     npc<Happy>("Hello, dearie! Were you wanting to collect a random event costume, or is there something else I can do for you today?")

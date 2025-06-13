@@ -8,7 +8,9 @@ class CacheDelegate(private val library: CacheLibrary, exponent: BigInteger? = n
 
     constructor(directory: String, exponent: BigInteger? = null, modulus: BigInteger? = null) : this(timed(directory), exponent, modulus)
 
-    override val versionTable: ByteArray = if (exponent == null || modulus == null) ByteArray(0) else {
+    override val versionTable: ByteArray = if (exponent == null || modulus == null) {
+        ByteArray(0)
+    } else {
         library.generateUkeys(exponent = exponent, modulus = modulus)
     }
 
@@ -16,13 +18,11 @@ class CacheDelegate(private val library: CacheLibrary, exponent: BigInteger? = n
 
     override fun indices() = library.indices().map { it.id }.toIntArray()
 
-    override fun sector(index: Int, archive: Int): ByteArray? {
-        return if (index == 255) {
-            library.index255
-        } else {
-            library.index(index)
-        }?.readArchiveSector(archive)?.data
-    }
+    override fun sector(index: Int, archive: Int): ByteArray? = if (index == 255) {
+        library.index255
+    } else {
+        library.index(index)
+    }?.readArchiveSector(archive)?.data
 
     override fun archives(index: Int) = library.index(index).archiveIds()
 

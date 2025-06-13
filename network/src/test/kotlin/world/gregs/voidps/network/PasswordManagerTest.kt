@@ -104,16 +104,10 @@ class PasswordManagerTest {
         val accountMap = mutableMapOf<String, String>()
         var exists = true
 
-        override fun exists(username: String): Boolean {
-            return exists
-        }
+        override fun exists(username: String): Boolean = exists
 
-        override fun password(username: String): String? {
-            return accountMap[username]
-        }
+        override fun password(username: String): String? = accountMap[username]
 
-        override suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): SendChannel<Instruction>? {
-            return null
-        }
+        override suspend fun load(client: Client, username: String, passwordHash: String, displayMode: Int): SendChannel<Instruction>? = null
     }
 }

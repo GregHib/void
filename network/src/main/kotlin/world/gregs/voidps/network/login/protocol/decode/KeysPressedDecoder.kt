@@ -17,5 +17,4 @@ class KeysPressedDecoder : Decoder(BYTE) {
         }
         return null
     }
-
 }

@@ -17,7 +17,7 @@ fun Interfaces.sendChat(
     component: String,
     expression: String,
     title: String,
-    lines: List<String>
+    lines: List<String>,
 ) {
     val animationDefs: AnimationDefinitions = get()
     val definition = animationDefs.getOrNull("expression_$expression${lines.size}") ?: animationDefs.get("expression_$expression")

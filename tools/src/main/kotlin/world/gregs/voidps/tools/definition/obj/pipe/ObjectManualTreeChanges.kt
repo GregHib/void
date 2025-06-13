@@ -180,7 +180,7 @@ class ObjectManualTreeChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
         61190 to "tree_trunk",
         61191 to "tree_trunk",
         61192 to "tree_trunk",
-        61193 to "tree_trunk"
+        61193 to "tree_trunk",
     )
 
     val stumps = File("tree-stumps-667.csv").readLines().mapIndexedNotNull { index, s ->
@@ -191,7 +191,6 @@ class ObjectManualTreeChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
             parts[0].toInt() to parts[1].toInt()
         }
     }.toMap()
-
 
     override fun modify(content: MutableMap<Int, Extras>): MutableMap<Int, Extras> {
         content.forEach { (id, content) ->

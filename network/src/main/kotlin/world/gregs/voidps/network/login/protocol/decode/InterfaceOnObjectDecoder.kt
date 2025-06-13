@@ -23,8 +23,7 @@ class InterfaceOnObjectDecoder : Decoder(15) {
             InterfaceDefinition.id(packed),
             InterfaceDefinition.componentId(packed),
             item,
-            index
+            index,
         )
     }
-
 }

@@ -6,7 +6,7 @@ import world.gregs.voidps.type.Tile
 data class PatrolDefinition(
     override var stringId: String = "",
     val waypoints: List<Pair<Tile, Int>> = emptyList(),
-    override var extras: Map<String, Any>? = null
+    override var extras: Map<String, Any>? = null,
 ) : Extra {
     companion object {
         operator fun invoke(key: String, map: Map<String, Any>): PatrolDefinition {

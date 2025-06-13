@@ -1,14 +1,14 @@
 package content.entity.combat
 
+import FakeRandom
+import WorldTest
+import npcOption
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import FakeRandom
-import world.gregs.voidps.type.setRandom
-import WorldTest
-import npcOption
 import playerOption
+import world.gregs.voidps.type.setRandom
 
 internal class CombatRetaliationTest : WorldTest() {
 

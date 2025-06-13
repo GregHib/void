@@ -1,13 +1,13 @@
 package content.entity.player.effect
 
+import content.entity.combat.Target
+import content.entity.player.equip.Equipment
+import content.skill.prayer.protectMagic
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.toTicks
-import content.entity.player.equip.Equipment
-import content.entity.combat.Target
-import content.skill.prayer.protectMagic
 import java.util.concurrent.TimeUnit
 
 object Dragonfire {
@@ -23,9 +23,21 @@ object Dragonfire {
         var type = type(source)
         if (source is Player && target is Player) {
             if (Equipment.antiDragonShield(target)) {
-                return if (target.antifire) 10 else if (target.superAntifire) 0 else 30
+                return if (target.antifire) {
+                    10
+                } else if (target.superAntifire) {
+                    0
+                } else {
+                    30
+                }
             }
-            return if (target.antifire) 200 else if (target.superAntifire) 0 else 250
+            return if (target.antifire) {
+                200
+            } else if (target.superAntifire) {
+                0
+            } else {
+                250
+            }
         } else if (source is Player) {
             type = "chromatic"
         } else if (target is Player) {
@@ -40,7 +52,7 @@ object Dragonfire {
                 target.superAntifire -> 2
                 target.antifire -> 1
                 else -> 0
-            }
+            },
         )
     }
 
@@ -67,7 +79,13 @@ object Dragonfire {
             }
             type == "elvarg" && protection -> max -= 150
             type == "chromatic" && (shield || protection) || type == "metallic" && shield ->
-                return if (potion == 1) 0 else if (shield) 50 else 100
+                return if (potion == 1) {
+                    0
+                } else if (shield) {
+                    50
+                } else {
+                    100
+                }
         }
         if (potion == 1 && normalFire) {
             max -= 150

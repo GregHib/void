@@ -77,7 +77,7 @@ adminCommand("bots (count)", "spawn (count) number of bots") {
         repeat(count) {
             if (it % Settings["network.maxLoginsPerTick", 25] == 0) {
                 suspendCancellableCoroutine { cont ->
-                    World.queue("bot_${counter}") {
+                    World.queue("bot_$counter") {
                         cont.resume(Unit)
                     }
                 }
@@ -89,7 +89,7 @@ adminCommand("bots (count)", "spawn (count) number of bots") {
 
 adminCommand("clear_bots [count]", "clear all or some amount of bots") {
     val count = content.toIntOrNull() ?: MAX_PLAYERS
-    World.queue("bot_${counter}") {
+    World.queue("bot_$counter") {
         val manager = get<AccountManager>()
         for (bot in bots.take(count)) {
             manager.logout(bot, false)

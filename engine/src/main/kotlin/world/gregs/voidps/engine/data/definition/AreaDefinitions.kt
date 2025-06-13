@@ -16,24 +16,16 @@ import world.gregs.voidps.type.area.Rectangle
 class AreaDefinitions(
     private var named: Map<String, AreaDefinition> = Object2ObjectOpenHashMap(),
     private var tagged: Map<String, Set<AreaDefinition>> = Object2ObjectOpenHashMap(),
-    private var areas: Map<Int, Set<AreaDefinition>> = Int2ObjectOpenHashMap()
+    private var areas: Map<Int, Set<AreaDefinition>> = Int2ObjectOpenHashMap(),
 ) {
 
-    fun getOrNull(name: String): AreaDefinition? {
-        return named[name]
-    }
+    fun getOrNull(name: String): AreaDefinition? = named[name]
 
-    operator fun get(name: String): Area {
-        return named[name]?.area ?: AreaDefinition.EMPTY.area
-    }
+    operator fun get(name: String): Area = named[name]?.area ?: AreaDefinition.EMPTY.area
 
-    fun get(zone: Zone): Set<AreaDefinition> {
-        return areas[zone.id] ?: emptySet()
-    }
+    fun get(zone: Zone): Set<AreaDefinition> = areas[zone.id] ?: emptySet()
 
-    fun getTagged(tag: String): Set<AreaDefinition> {
-        return tagged[tag] ?: emptySet()
-    }
+    fun getTagged(tag: String): Set<AreaDefinition> = tagged[tag] ?: emptySet()
 
     fun load(paths: List<String>): AreaDefinitions {
         timedLoad("map area") {
@@ -107,5 +99,4 @@ class AreaDefinitions(
     }
 
     fun getAll() = named.values
-
 }

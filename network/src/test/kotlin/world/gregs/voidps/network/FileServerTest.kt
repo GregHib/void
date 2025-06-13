@@ -26,9 +26,7 @@ class FileServerTest {
     @BeforeEach
     fun before() {
         provider = object : FileProvider {
-            override fun data(index: Int, archive: Int): ByteArray? {
-                return data
-            }
+            override fun data(index: Int, archive: Int): ByteArray? = data
 
             override suspend fun encode(write: ByteWriteChannel, data: ByteArray) {
                 write.writeFully(data)

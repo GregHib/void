@@ -134,7 +134,7 @@ fun drop(
     tile: Tile,
     inWilderness: Boolean,
     killer: Character?,
-    time: Int
+    time: Int,
 ) {
     if (inWilderness && killer is Player) {
         if (item.tradeable) {

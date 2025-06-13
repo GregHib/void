@@ -12,5 +12,5 @@ data class UnderlayDefinition(
     var hue: Int = 0,
     var saturation: Int = 0,
     var lightness: Int = 0,
-    var chroma: Int = 0
+    var chroma: Int = 0,
 ) : Definition

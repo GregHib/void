@@ -20,7 +20,7 @@ val slots = setOf(
     EquipSlot.Hat.index,
     EquipSlot.Chest.index,
     EquipSlot.Legs.index,
-    EquipSlot.Hands.index
+    EquipSlot.Hands.index,
 )
 
 itemRemoved("void_*", slots, "worn_equipment") { player ->
@@ -46,12 +46,10 @@ itemAdded("elite_void_*", slots, "worn_equipment") { player ->
     }
 }
 
-fun Player.hasFullSet(prefix: String): Boolean {
-    return equipped(EquipSlot.Chest).id.startsWith("${prefix}void_knight_top") &&
-            equipped(EquipSlot.Legs).id.startsWith("${prefix}void_knight_robe") &&
-            equipped(EquipSlot.Hands).id.startsWith("void_knight_gloves") &&
-            isHelm(equipped(EquipSlot.Hat))
-}
+fun Player.hasFullSet(prefix: String): Boolean = equipped(EquipSlot.Chest).id.startsWith("${prefix}void_knight_top") &&
+    equipped(EquipSlot.Legs).id.startsWith("${prefix}void_knight_robe") &&
+    equipped(EquipSlot.Hands).id.startsWith("void_knight_gloves") &&
+    isHelm(equipped(EquipSlot.Hat))
 
 fun isHelm(item: Item): Boolean = when (item.id) {
     "void_ranger_helm", "void_melee_helm", "void_mage_helm" -> true

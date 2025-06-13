@@ -1,10 +1,10 @@
 package content.bot.interact.path
 
-import kotlinx.io.pool.ObjectPool
 import content.bot.interact.navigation.graph.Edge
 import content.bot.interact.navigation.graph.NavigationGraph
 import content.bot.interact.navigation.graph.waypoints
 import content.bot.interact.path.DijkstraFrontier.Companion.MAX_COST
+import kotlinx.io.pool.ObjectPool
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
 import java.util.*
@@ -59,5 +59,4 @@ class Dijkstra(
         }
         return null
     }
-
 }

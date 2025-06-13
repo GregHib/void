@@ -95,10 +95,12 @@ npcOperate("Read", "gravestone_*") {
             val message = Gravestone.messages[gravestone] ?: return@npcOperate
             val name = target["player_name", ""]
             player.interfaces.sendText(
-                "gravestone_plaque", "text", message
+                "gravestone_plaque",
+                "text",
+                message
                     .replace("<name>", name)
                     .replace("<time>", TimeUnit.SECONDS.toMinutes(remainder.toLong()).toString())
-                    .replace("<gender>", if (target["player_male", true]) "His" else "Her")
+                    .replace("<gender>", if (target["player_male", true]) "His" else "Her"),
             )
         }
     }

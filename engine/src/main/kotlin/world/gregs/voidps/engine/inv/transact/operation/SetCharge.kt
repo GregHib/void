@@ -36,5 +36,4 @@ object SetCharge {
         // Update the item in the inventory
         set(index, item.copy(amount = amount))
     }
-
 }

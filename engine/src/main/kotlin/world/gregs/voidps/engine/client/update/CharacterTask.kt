@@ -7,7 +7,7 @@ import world.gregs.voidps.type.Tile
 import kotlin.coroutines.resume
 
 abstract class CharacterTask<C : Character>(
-    private val iterator: TaskIterator<C>
+    private val iterator: TaskIterator<C>,
 ) : Runnable {
 
     abstract val characters: Iterable<C>

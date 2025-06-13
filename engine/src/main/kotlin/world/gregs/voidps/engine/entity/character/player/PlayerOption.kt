@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.Events
 data class PlayerOption<C : Character>(
     override val character: C,
     override val target: Player,
-    val option: String
+    val option: String,
 ) : TargetInteraction<C, Player>() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 

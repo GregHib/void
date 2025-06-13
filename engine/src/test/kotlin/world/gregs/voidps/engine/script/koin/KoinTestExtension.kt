@@ -8,9 +8,11 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.KoinAppDeclaration
 
-class KoinTestExtension private constructor(private val appDeclaration: KoinAppDeclaration) : BeforeEachCallback, AfterEachCallback {
+class KoinTestExtension private constructor(private val appDeclaration: KoinAppDeclaration) :
+    BeforeEachCallback,
+    AfterEachCallback {
 
-    var _koin: Koin? = null
+    private var _koin: Koin? = null
     val koin: Koin
         get() = _koin ?: error("No Koin application found")
 
@@ -24,8 +26,6 @@ class KoinTestExtension private constructor(private val appDeclaration: KoinAppD
     }
 
     companion object {
-        fun create(appDeclaration: KoinAppDeclaration): KoinTestExtension {
-            return KoinTestExtension(appDeclaration)
-        }
+        fun create(appDeclaration: KoinAppDeclaration): KoinTestExtension = KoinTestExtension(appDeclaration)
     }
 }

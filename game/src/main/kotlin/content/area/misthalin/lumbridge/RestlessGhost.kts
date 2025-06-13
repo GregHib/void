@@ -1,16 +1,16 @@
 package content.area.misthalin.lumbridge
 
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.quest.quest
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.quest.quest
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 
 npcOperate("Talk-to", "restless_ghost") {
     when (player.quest("the_restless_ghost")) {
@@ -131,7 +131,6 @@ suspend fun SuspendableContext<Player>.noGhostAmulet() {
         }
     }
 }
-
 
 suspend fun SuspendableContext<Player>.dontSpeakGhost() {
     npc<Neutral>("Woo woo?")

@@ -12,7 +12,7 @@ import world.gregs.voidps.cache.definition.decoder.MapObjectDecoder
  * Adds all objects except bridges to a [MapDefinition]
  */
 class MapObjectDefinitionDecoder(
-    val xteas: Map<Int, IntArray>? = null
+    val xteas: Map<Int, IntArray>? = null,
 ) : MapObjectDecoder() {
 
     fun decode(cache: Cache, definition: MapDefinition, modified: Boolean = true) {
@@ -64,11 +64,8 @@ class MapObjectDefinitionDecoder(
         }
     }
 
-    private fun isBridge(tiles: LongArray, localX: Int, localY: Int): Boolean {
-        return MapTile.settings(tiles[MapDefinition.index(localX, localY, 1)]) and 0x2 == 0x2
-    }
+    private fun isBridge(tiles: LongArray, localX: Int, localY: Int): Boolean = MapTile.settings(tiles[MapDefinition.index(localX, localY, 1)]) and 0x2 == 0x2
 
     override fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionTileX: Int, regionTileY: Int) {
-
     }
 }

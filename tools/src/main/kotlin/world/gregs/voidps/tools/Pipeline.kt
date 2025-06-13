@@ -2,9 +2,7 @@ package world.gregs.voidps.tools
 
 class Pipeline<T> {
     interface Modifier<T> {
-        fun modify(content: T): T {
-            return content
-        }
+        fun modify(content: T): T = content
         fun process(content: T) {
         }
     }
@@ -15,9 +13,7 @@ class Pipeline<T> {
         modifiers.add(modifier)
     }
 
-    fun modify(content: T): T {
-        return modifiers.fold(content) { c, m -> m.modify(c) }
-    }
+    fun modify(content: T): T = modifiers.fold(content) { c, m -> m.modify(c) }
 
     fun process(content: T) {
         modifiers.forEach { m ->

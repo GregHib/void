@@ -24,7 +24,7 @@ data class InventorySlotChanged(
     val item: Item,
     val from: String,
     val fromIndex: Int,
-    val fromItem: Item
+    val fromItem: Item,
 ) : Event {
 
     override val notification = true
@@ -37,7 +37,6 @@ data class InventorySlotChanged(
         2 -> inventory
         else -> null
     }
-
 }
 
 fun inventoryChanged(inventory: String = "*", slot: EquipSlot? = null, handler: suspend InventorySlotChanged.(Player) -> Unit) {

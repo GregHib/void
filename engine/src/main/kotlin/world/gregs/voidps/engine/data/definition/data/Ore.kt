@@ -8,7 +8,7 @@ import world.gregs.config.ConfigReader
  */
 data class Ore(
     val xp: Double = 0.0,
-    val chance: IntRange = 0..0
+    val chance: IntRange = 0..0,
 ) {
     companion object {
         operator fun invoke(reader: ConfigReader): Ore {

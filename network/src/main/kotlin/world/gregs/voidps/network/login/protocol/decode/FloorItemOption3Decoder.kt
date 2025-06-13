@@ -17,5 +17,4 @@ class FloorItemOption3Decoder : Decoder(7) {
         val y = packet.readUnsignedShortAddLittle()
         return InteractFloorItem(id, x, y, 2)
     }
-
 }

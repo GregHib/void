@@ -16,7 +16,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 data class ItemRemoved(
     val inventory: String,
     val index: Int,
-    val item: Item
+    val item: Item,
 ) : Event {
 
     override val notification = true
@@ -30,7 +30,6 @@ data class ItemRemoved(
         3 -> inventory
         else -> null
     }
-
 }
 
 fun itemRemoved(item: String = "*", slot: EquipSlot, inventory: String = "*", handler: suspend ItemRemoved.(Player) -> Unit) {

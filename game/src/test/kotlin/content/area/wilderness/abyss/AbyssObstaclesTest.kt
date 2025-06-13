@@ -1,8 +1,11 @@
 package content.area.wilderness.abyss
 
+import FakeRandom
+import WorldTest
+import containsMessage
+import objectOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import FakeRandom
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -12,9 +15,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
-import WorldTest
-import containsMessage
-import objectOption
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -42,7 +42,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         player.objectOption(obj, optionIndex = 0)
         tick(17)
 
-        println(player.tile)// 3042, 4819 - 3026 4812
+        println(player.tile) // 3042, 4819 - 3026 4812
         assertTrue(player.tile in center)
         assertEquals(25.0, player.experience.get(Skill.Mining))
     }

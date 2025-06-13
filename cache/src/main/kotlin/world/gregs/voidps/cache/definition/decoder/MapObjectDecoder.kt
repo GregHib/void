@@ -19,7 +19,7 @@ abstract class MapObjectDecoder {
             if (skip == 0) {
                 break
             }
-            */
+             */
             // Decomposed for early exit
             var peek = buffer[position++].toInt() and 0xff
             val skip = when {
@@ -49,7 +49,7 @@ abstract class MapObjectDecoder {
                     break
                 }
                 tile += loc - 1
-                */
+                 */
                 // Decomposed for early exit
                 val loc = buffer[position++].toInt() and 0xff
                 tile += when {

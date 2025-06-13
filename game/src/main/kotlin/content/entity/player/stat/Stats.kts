@@ -12,8 +12,10 @@ import world.gregs.voidps.engine.inject
 
 val definitions: InterfaceDefinitions by inject()
 
-val menu = listOf(Attack, Strength, Ranged, Magic, Defence, Constitution, Prayer, Agility, Herblore, Thieving, Crafting, Runecrafting,
-    Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Fletching, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering)
+val menu = listOf(
+    Attack, Strength, Ranged, Magic, Defence, Constitution, Prayer, Agility, Herblore, Thieving, Crafting, Runecrafting,
+    Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Fletching, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering,
+)
 
 interfaceOpen("stats") { player ->
     player.sendVariable("skill_stat_flash")
@@ -27,7 +29,7 @@ interfaceOption("View", id = "stats") {
     val menuIndex = menu.indexOf(skill) + 1
     player.closeInterfaces()
     if (player.containsVarbit("skill_stat_flash", skill.name.lowercase())) {
-        val extra = 0//0 - normal, 2 - combat milestone, 4 - total milestone
+        val extra = 0 // 0 - normal, 2 - combat milestone, 4 - total milestone
         player["level_up_details"] = menuIndex * 8 + extra
         player.open("skill_level_details")
         player.removeVarbit("skill_stat_flash", skill.name.lowercase())

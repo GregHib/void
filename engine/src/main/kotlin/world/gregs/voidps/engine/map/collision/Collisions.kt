@@ -12,9 +12,7 @@ import world.gregs.voidps.type.Zone
 
 typealias Collisions = CollisionFlagMap
 
-fun Collisions.check(x: Int, y: Int, level: Int, flag: Int): Boolean {
-    return get(x, y, level) and flag != 0
-}
+fun Collisions.check(x: Int, y: Int, level: Int, flag: Int): Boolean = get(x, y, level) and flag != 0
 
 fun Collisions.check(tile: Tile, flag: Int) = check(tile.x, tile.y, tile.level, flag)
 
@@ -56,32 +54,35 @@ private fun canFit(steps: StepValidator, tile: Tile, collision: CollisionStrateg
         offsetX = 0,
         offsetZ = 1,
         size = size,
-        collision = collision
-    ) || steps.canTravel(
-        x = tile.x,
-        z = tile.y + 1,
-        level = tile.level,
-        offsetX = 0,
-        offsetZ = -1,
-        size = size,
-        collision = collision
-    ) || steps.canTravel(
-        x = tile.x - 1,
-        z = tile.y,
-        level = tile.level,
-        offsetX = 1,
-        offsetZ = 0,
-        size = size,
-        collision = collision
-    ) || steps.canTravel(
-        x = tile.x + 1,
-        z = tile.y,
-        level = tile.level,
-        offsetX = -1,
-        offsetZ = 0,
-        size = size,
-        collision = collision
-    )
+        collision = collision,
+    ) ||
+        steps.canTravel(
+            x = tile.x,
+            z = tile.y + 1,
+            level = tile.level,
+            offsetX = 0,
+            offsetZ = -1,
+            size = size,
+            collision = collision,
+        ) ||
+        steps.canTravel(
+            x = tile.x - 1,
+            z = tile.y,
+            level = tile.level,
+            offsetX = 1,
+            offsetZ = 0,
+            size = size,
+            collision = collision,
+        ) ||
+        steps.canTravel(
+            x = tile.x + 1,
+            z = tile.y,
+            level = tile.level,
+            offsetX = -1,
+            offsetZ = 0,
+            size = size,
+            collision = collision,
+        )
     if (size == 1) {
         return free
     } else {
@@ -90,43 +91,45 @@ private fun canFit(steps: StepValidator, tile: Tile, collision: CollisionStrateg
         }
         for (x in 0 until size) {
             for (y in 0 until size) {
-                if (x != size - 1 && !steps.canTravel(
+                if (x != size - 1 &&
+                    !steps.canTravel(
                         tile.level,
                         tile.x + x,
                         tile.y + y,
                         offsetX = 1,
                         offsetZ = 0,
-                        collision = collision
+                        collision = collision,
                     )
                 ) {
                     return false
                 }
-                if (y != size - 1 && !steps.canTravel(
+                if (y != size - 1 &&
+                    !steps.canTravel(
                         tile.level,
                         tile.x + x,
                         tile.y + y,
                         offsetX = 0,
                         offsetZ = 1,
-                        collision = collision
+                        collision = collision,
                     )
                 ) {
                     return false
                 }
-                if (y != size - 1 && x != size - 1 && !steps.canTravel(
+                if (y != size - 1 &&
+                    x != size - 1 &&
+                    !steps.canTravel(
                         tile.level,
                         tile.x + x,
                         tile.y + y,
                         offsetX = 1,
                         offsetZ = 1,
-                        collision = collision
+                        collision = collision,
                     )
                 ) {
                     return false
                 }
             }
-
         }
         return true
     }
 }
-

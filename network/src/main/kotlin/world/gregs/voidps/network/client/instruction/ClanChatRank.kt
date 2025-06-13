@@ -4,5 +4,5 @@ import world.gregs.voidps.network.client.Instruction
 
 data class ClanChatRank(
     val name: String,
-    val rank: Int
+    val rank: Int,
 ) : Instruction

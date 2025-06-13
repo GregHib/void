@@ -1,11 +1,11 @@
 package content.skill.prayer
 
+import WorldTest
+import interfaceOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
-import WorldTest
-import interfaceOption
 
 internal class PrayerTest : WorldTest() {
 
@@ -37,5 +37,4 @@ internal class PrayerTest : WorldTest() {
         assertEquals(0, player.levels.get(Skill.Prayer))
         assertFalse(player.praying("turmoil"))
     }
-
 }

@@ -43,5 +43,4 @@ object ClientScriptDefinitions {
         scriptId = cache.archiveId(Index.CLIENT_SCRIPTS, context or 0x3fffc00)
         return scriptId
     }
-
 }

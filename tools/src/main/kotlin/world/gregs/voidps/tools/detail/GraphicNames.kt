@@ -84,5 +84,4 @@ object GraphicNames {
             getOrPut(id) { mutableListOf() }.add(name)
         }
     }
-
 }

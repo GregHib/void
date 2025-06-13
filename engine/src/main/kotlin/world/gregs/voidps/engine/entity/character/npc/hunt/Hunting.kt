@@ -42,7 +42,7 @@ class Hunting(
     private val floorItems: FloorItems,
     private val huntModes: HuntModeDefinitions,
     private val lineValidator: LineValidator,
-    private val seed: Random = random
+    private val seed: Random = random,
 ) : Runnable {
 
     override fun run() {
@@ -85,7 +85,7 @@ class Hunting(
     private fun getItems(
         npc: NPC,
         range: Int,
-        definition: HuntModeDefinition
+        definition: HuntModeDefinition,
     ): MutableList<FloorItem> {
         val targets = ObjectArrayList<FloorItem>()
         for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZonesReversed(npc.tile.level)) {
@@ -114,7 +114,7 @@ class Hunting(
      */
     private fun getObjects(
         npc: NPC,
-        definition: HuntModeDefinition
+        definition: HuntModeDefinition,
     ): ObjectArrayList<GameObject> {
         val targets = ObjectArrayList<GameObject>()
         val queue: Queue<Tile> = LinkedList()
@@ -137,7 +137,7 @@ class Hunting(
         definition: HuntModeDefinition,
         npc: NPC,
         targets: MutableList<GameObject>,
-        directions: List<Direction>
+        directions: List<Direction>,
     ): Boolean {
         for (direction in directions) {
             val tile = parent.add(direction)
@@ -166,7 +166,7 @@ class Hunting(
         npc: NPC,
         characterList: CharacterSearch<T>,
         range: Int,
-        definition: HuntModeDefinition
+        definition: HuntModeDefinition,
     ): MutableList<T> {
         val targets = mutableListOf<T>()
         for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZonesReversed(npc.tile.level)) {
@@ -192,7 +192,7 @@ class Hunting(
         npc: NPC,
         target: Character,
         definition: HuntModeDefinition,
-        range: Int
+        range: Int,
     ): Boolean {
         // Npc checks from south-west tile
         if (target.tile.distanceTo(npc.tile) > range) {
@@ -219,16 +219,14 @@ class Hunting(
         return true
     }
 
-    private fun targetTooStrong(npc: NPC, character: Character): Boolean {
-        return character is Player && character.combatLevel > npc.def.combat * 2
-    }
+    private fun targetTooStrong(npc: NPC, character: Character): Boolean = character is Player && character.combatLevel > npc.def.combat * 2
 
     private fun canSee(
         npc: NPC,
         tile: Tile,
         width: Int,
         height: Int,
-        definition: HuntModeDefinition
+        definition: HuntModeDefinition,
     ) = when (definition.checkVisual) {
         "line_of_sight" -> lineValidator.hasLineOfSight(npc, tile, width, height)
         "line_of_walk" -> lineValidator.hasLineOfWalk(npc, tile, width, height)

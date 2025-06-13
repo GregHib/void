@@ -8,10 +8,10 @@ package world.gregs.voidps.network.client
  * available at [http://www.burtleburtle.net/bob/java/rand/Rand.java](http://www.burtleburtle.net/bob/java/rand/Rand.java).
  * @author Graham
  */
-class IsaacCipher(seed : IntArray) {
+class IsaacCipher(seed: IntArray) {
     private var resultCount = 0
     private val results = IntArray(SIZE)
-    
+
     /**
      * The internal memory state.
      */
@@ -20,7 +20,7 @@ class IsaacCipher(seed : IntArray) {
     private var accumulator = 0
     private var lastResult = 0
     private var counter = 0
-    private val seed : IntArray
+    private val seed: IntArray
 
     init {
         for (i in seed.indices) {
@@ -30,20 +30,20 @@ class IsaacCipher(seed : IntArray) {
         this.seed = seed
     }
 
-    fun nextInt() : Int {
+    fun nextInt(): Int {
         if (resultCount-- == 0) {
             isaac()
             resultCount = SIZE - 1
         }
         return results[resultCount]
     }
-    
+
     /**
      * Generates 256 results.
      */
     private fun isaac() {
-        var x : Int
-        var y : Int
+        var x: Int
+        var y: Int
         lastResult += ++counter
         var i = 0
         var j = SIZE / 2
@@ -109,21 +109,21 @@ class IsaacCipher(seed : IntArray) {
             results[i++] = lastResult
         }
     }
-    
+
     /**
      * Initialises the ISAAC.
      * @param flag Flag indicating if we should perform a second pass.
      */
-    fun init(flag : Boolean) {
-        var i : Int
-        var a : Int
-        var b : Int
-        var c : Int
-        var d : Int
-        var e : Int
-        var f : Int
-        var g : Int
-        var h : Int
+    fun init(flag: Boolean) {
+        var i: Int
+        var a: Int
+        var b: Int
+        var c: Int
+        var d: Int
+        var e: Int
+        var f: Int
+        var g: Int
+        var h: Int
         h = GOLDEN_RATIO
         g = h
         f = g
@@ -255,20 +255,20 @@ class IsaacCipher(seed : IntArray) {
         isaac()
         resultCount = SIZE
     }
-    
+
     companion object {
         const val GOLDEN_RATIO = -0x61c88647
-        
+
         /**
          * The log of the size of the results and memory arrays.
          */
         const val SIZE_LOG = 8
-        
+
         /**
          * The size of the results and memory arrays.
          */
         const val SIZE = 1 shl SIZE_LOG
-        
+
         /**
          * For pseudorandom lookup.
          */

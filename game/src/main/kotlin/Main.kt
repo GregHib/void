@@ -57,7 +57,6 @@ object Main {
         val accountLoader: PlayerAccountLoader = get()
         val loginServer = LoginServer.load(settings, decoders, accountLoader)
 
-
         // Game world
         val stages = getTickStages()
         World.start(configFiles)
@@ -87,7 +86,7 @@ object Main {
             modules(
                 engineModule(configFiles),
                 gameModule(configFiles),
-                cache(cache, configFiles)
+                cache(cache, configFiles),
             )
         }
         ContentLoader.load()

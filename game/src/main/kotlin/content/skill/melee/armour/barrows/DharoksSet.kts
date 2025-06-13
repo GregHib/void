@@ -26,5 +26,5 @@ fun Player.hasFullSet() = BarrowsArmour.hasSet(
     "dharoks_greataxe",
     "dharoks_helm",
     "dharoks_platebody",
-    "dharoks_platelegs"
+    "dharoks_platelegs",
 )

@@ -1,14 +1,14 @@
 package content.entity.player.dialogue.type
 
+import content.entity.combat.hit.combatDamage
+import content.entity.sound.jingle
+import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
-import content.entity.combat.hit.combatDamage
-import content.entity.sound.jingle
-import world.gregs.voidps.engine.client.ui.*
 
 experience { player ->
     val previousLevel = Experience.level(skill, from)
@@ -31,15 +31,19 @@ maxLevelChange { player ->
         Construction -> to.rem(10) == 0
         Constitution, Strength -> to >= 50
         Hunter -> to.rem(2) == 0
-        else -> true// TODO has unlocked something
+        else -> true // TODO has unlocked something
     }
     player.jingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
     player.addVarbit("skill_stat_flash", skill.name.lowercase())
     val level = if (skill == Constitution) to / 10 else to
-    levelUp(player, skill, """
+    levelUp(
+        player,
+        skill,
+        """
         Congratulations! You've just advanced${skill.name.an()} ${skill.name} level!
-        You have now reached level ${level}!
-    """)
+        You have now reached level $level!
+    """,
+    )
 }
 
 combatDamage { player ->

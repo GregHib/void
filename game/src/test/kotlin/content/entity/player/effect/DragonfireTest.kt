@@ -1,8 +1,8 @@
 package content.entity.player.effect
 
+import content.entity.player.effect.Dragonfire.maxHit
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import content.entity.player.effect.Dragonfire.maxHit
 
 internal class DragonfireTest {
 
@@ -165,5 +165,4 @@ internal class DragonfireTest {
         assertEquals(0, maxHit(type, special = false, shield = true, protection = true, potion = 2))
         assertEquals(0, maxHit(type, special = true, shield = true, protection = true, potion = 2))
     }
-
 }

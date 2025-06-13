@@ -50,11 +50,17 @@ abstract class AccountStorageTest {
             tile = Tile(1234, 5432, 1),
             experience = save.experience.clone().apply { this[0] = 10.0 },
             levels = save.levels.clone().apply { this[0] = 10 },
-            blocked = save.blocked.toMutableList().apply { add(Skill.Attack); remove(Skill.Prayer) },
+            blocked = save.blocked.toMutableList().apply {
+                add(Skill.Attack)
+                remove(Skill.Prayer)
+            },
             male = false,
             variables = save.variables.toMutableMap().apply { remove("in_wilderness") },
             inventories = save.inventories.toMutableMap().apply { remove("bank") },
-            friends = save.friends.toMutableMap().apply { put("Bob", ClanRank.Captain); remove("Greg") }
+            friends = save.friends.toMutableMap().apply {
+                put("Bob", ClanRank.Captain)
+                remove("Greg")
+            },
         )
         storage.save(listOf(override))
 
@@ -104,9 +110,15 @@ abstract class AccountStorageTest {
 
     @Test
     fun `Load clan from stored account`() {
-        storage.save(listOf(save.copy(variables = save.variables.toMutableMap().apply {
-            remove("display_name")
-        })))
+        storage.save(
+            listOf(
+                save.copy(
+                    variables = save.variables.toMutableMap().apply {
+                        remove("display_name")
+                    },
+                ),
+            ),
+        )
 
         val clans = storage.clans()
 
@@ -151,9 +163,11 @@ abstract class AccountStorageTest {
 
     @Test
     fun `Get names from stored account`() {
-        val save = save.copy(variables = save.variables.toMutableMap().apply {
-            this["name_history"] = listOf("oldest_name", "previous_name")
-        })
+        val save = save.copy(
+            variables = save.variables.toMutableMap().apply {
+                this["name_history"] = listOf("oldest_name", "previous_name")
+            },
+        )
         storage.save(listOf(save))
 
         val names = storage.names()
@@ -235,7 +249,7 @@ abstract class AccountStorageTest {
                 "clan_join_rank" to "Owner",
                 "meaning" to 42,
                 "life" to 4124700000L,
-                "favourite_numbers" to listOf(11, 42, 64)
+                "favourite_numbers" to listOf(11, 42, 64),
             ),
             inventories = mapOf(
                 "worn_equipment" to Array(14) { Item.EMPTY }.apply {
@@ -256,10 +270,10 @@ abstract class AccountStorageTest {
                 },
                 "bank" to Array(516) { Item.EMPTY }.apply {
                     this[0] = Item("coins", 420000000)
-                }
+                },
             ),
             friends = mapOf("Greg" to ClanRank.Friend),
-            ignores = listOf("Mod Murdoch")
+            ignores = listOf("Mod Murdoch"),
         )
     }
 }

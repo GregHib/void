@@ -1,5 +1,6 @@
 package content.entity.player.dialogue.type
 
+import KoinMock
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
@@ -22,7 +23,6 @@ import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import KoinMock
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.CoroutineContext
 
@@ -76,5 +76,4 @@ abstract class DialogueTest : KoinMock() {
         val glyphWidths = DialogueTest::class.java.getResourceAsStream("glyph-widths-497.dat")!!.readAllBytes()
         every { fontDefinitions.get(any<String>()) } returns FontDefinition(id = 497, verticalSpacing = 15, topPadding = 15, bottomPadding = 15, glyphWidths = glyphWidths)
     }
-
 }

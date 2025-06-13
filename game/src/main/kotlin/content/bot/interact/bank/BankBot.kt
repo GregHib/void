@@ -4,6 +4,7 @@ import content.bot.*
 import content.bot.interact.navigation.await
 import content.bot.interact.navigation.cancel
 import content.bot.interact.navigation.goToNearest
+import content.entity.player.bank.bank
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.get
@@ -11,7 +12,6 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.EnterInt
 import world.gregs.voidps.network.client.instruction.InteractInterface
-import content.entity.player.bank.bank
 
 private fun getItemId(id: String): Int? = get<ItemDefinitions>().getOrNull(id)?.id
 

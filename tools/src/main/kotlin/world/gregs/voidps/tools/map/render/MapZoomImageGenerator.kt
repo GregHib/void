@@ -76,7 +76,7 @@ object MapZoomImageGenerator {
                                     dx * TILE_SIZE / 2,
                                     dy * TILE_SIZE / 2,
                                     TILE_SIZE / 2,
-                                    TILE_SIZE / 2
+                                    TILE_SIZE / 2,
                                 )
 
                                 val zoomedTile = BufferedImage(TILE_SIZE, TILE_SIZE, BufferedImage.TYPE_INT_ARGB)
@@ -191,7 +191,6 @@ object MapZoomImageGenerator {
             }.toList()
     }
 
-
     private fun dumpLocations() {
         Settings.load()
         val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
@@ -263,7 +262,7 @@ object MapZoomImageGenerator {
                         1 -> "medium"
                         else -> "default"
                     }
-                }" },"""
+                }" },""",
             )
         }
         File("${OUTPUT_BASE}/locations.json").writeText("${builder.dropLast(2)}\n    ]\n}")

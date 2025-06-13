@@ -13,5 +13,4 @@ class NPCOption3Decoder : Decoder(3) {
         val run = packet.readBoolean()
         return InteractNPC(npcIndex, 3)
     }
-
 }

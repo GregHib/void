@@ -8,7 +8,7 @@ import world.gregs.voidps.cache.definition.data.NPCDefinition
 
 class NPCDecoder(
     val member: Boolean,
-    private val parameters: Parameters = Parameters.EMPTY
+    private val parameters: Parameters = Parameters.EMPTY,
 ) : DefinitionDecoder<NPCDefinition>(NPCS) {
 
     override fun create(size: Int) = Array(size) { NPCDefinition(it, stringId = it.toString()) }
@@ -62,5 +62,4 @@ class NPCDecoder(
             249 -> readParameters(buffer, parameters)
         }
     }
-
 }

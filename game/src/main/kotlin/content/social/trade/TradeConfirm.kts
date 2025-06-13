@@ -1,6 +1,8 @@
 package content.social.trade
 
 import com.github.michaelbull.logging.InlineLogger
+import content.social.trade.Trade.getPartner
+import content.social.trade.lend.Loan
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
@@ -14,8 +16,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.MoveItem.moveAll
-import content.social.trade.Trade.getPartner
-import content.social.trade.lend.Loan
 
 /**
  * Both players accepting the request moves onto the confirmation screen.
@@ -134,10 +134,8 @@ fun itemsList(items: List<Item>, exact: Boolean) = buildString {
     }
 }
 
-fun Int.toPrefix(): String {
-    return when {
-        this >= 10_000_000 -> "${(this / 1_000_000).toDigitGroupString()}M"
-        this >= 10_000 -> "${(this / 1_000).toDigitGroupString()}K"
-        else -> toString()
-    }
+fun Int.toPrefix(): String = when {
+    this >= 10_000_000 -> "${(this / 1_000_000).toDigitGroupString()}M"
+    this >= 10_000 -> "${(this / 1_000).toDigitGroupString()}K"
+    else -> toString()
 }

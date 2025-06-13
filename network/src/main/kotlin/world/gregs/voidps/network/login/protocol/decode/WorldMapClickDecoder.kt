@@ -7,5 +7,4 @@ import world.gregs.voidps.network.login.protocol.Decoder
 class WorldMapClickDecoder : Decoder(4) {
 
     override suspend fun decode(packet: ByteReadPacket) = WorldMapClick(packet.readInt())
-
 }

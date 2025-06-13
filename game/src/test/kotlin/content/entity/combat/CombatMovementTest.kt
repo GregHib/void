@@ -1,5 +1,7 @@
 package content.entity.combat
 
+import WorldTest
+import npcOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -8,8 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
-import WorldTest
-import npcOption
 import kotlin.random.Random
 
 internal class CombatMovementTest : WorldTest() {

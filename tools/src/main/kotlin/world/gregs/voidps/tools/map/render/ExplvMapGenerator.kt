@@ -50,11 +50,10 @@ object ExplvMapGenerator {
         return finalImage
     }
 
-    var LIVE = false
+    private const val LIVE = false
 
     suspend fun main() = coroutineScope {
         for (level in 0 until 4) {
-
             val inputDir = File("./images/$level/") // Files named 12345.png, based on id(x,y)
             val outputDir = if (LIVE) File("../void-map-tiles/$level/") else File("../void-map/map_tiles/$level/")
             val sourceZoom = 8
@@ -71,7 +70,6 @@ object ExplvMapGenerator {
 
             val sourceCoords = sourceTileMap.keys
             val semaphore = Semaphore(8)
-
 
             // Zoom-in (source to higher levels)
             sourceCoords.map { (sx, sy) ->

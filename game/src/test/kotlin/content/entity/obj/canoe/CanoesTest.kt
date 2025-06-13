@@ -69,30 +69,30 @@ class CanoesTest : WorldTest() {
     }
 
     private fun travelByCanoe(player: Player, currentStation: String, target: String, canoe: String) {
-        val station = objects[stationTile(currentStation), "canoe_station_${currentStation}"]!!
+        val station = objects[stationTile(currentStation), "canoe_station_$currentStation"]!!
 
         // Chop-down
         player.objectOption(station, "Make-canoe")
         tick(7)
-        assertEquals("fallen", player["canoe_state_${currentStation}", "tree"])
+        assertEquals("fallen", player["canoe_state_$currentStation", "tree"])
 
         // Shape
         player.objectOption(station, "Make-canoe")
         tick(4)
-        player.interfaceOption("canoe", "a_${canoe}", "Select")
+        player.interfaceOption("canoe", "a_$canoe", "Select")
         tick(3)
-        assertEquals(canoe, player["canoe_state_${currentStation}", "tree"])
+        assertEquals(canoe, player["canoe_state_$currentStation", "tree"])
         assertNotEquals(0.0, player.experience.get(Skill.Woodcutting))
 
         // Float
         player.objectOption(station, "Make-canoe")
         tick(3)
-        assertEquals("water_${canoe}", player["canoe_state_${currentStation}", "tree"])
+        assertEquals("water_$canoe", player["canoe_state_$currentStation", "tree"])
 
         // Paddle
         player.objectOption(station, "Make-canoe")
         tick()
-        player.interfaceOption("canoe_stations_map", "travel_${target}", "Select")
+        player.interfaceOption("canoe_stations_map", "travel_$target", "Select")
         tick(6)
     }
 

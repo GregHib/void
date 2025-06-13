@@ -13,8 +13,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.inventoryChanged
+import world.gregs.voidps.engine.inv.sendInventory
 
 val itemDefinitions: ItemDefinitions by inject()
 val inventoryDefinitions: InventoryDefinitions by inject()
@@ -64,18 +64,16 @@ interfaceRefresh("shop_side") { player ->
     player.interfaceOptions.unlockAll("shop_side", "inventory", 0 until 28)
 }
 
-fun openShopInventory(player: Player, id: String): Inventory {
-    return if (id.endsWith("general_store")) {
-        GeneralStores.bind(player, id)
-    } else {
-        val new = !player.inventories.contains(id)
-        val inventory = player.inventories.inventory(id)
-        if (new) {
-            fillShop(inventory, id)
-        }
-        player.sendInventory(id)
-        inventory
+fun openShopInventory(player: Player, id: String): Inventory = if (id.endsWith("general_store")) {
+    GeneralStores.bind(player, id)
+} else {
+    val new = !player.inventories.contains(id)
+    val inventory = player.inventories.inventory(id)
+    if (new) {
+        fillShop(inventory, id)
     }
+    player.sendInventory(id)
+    inventory
 }
 
 fun fillShop(inventory: Inventory, shopId: String) {
@@ -93,7 +91,7 @@ fun fillShop(inventory: Inventory, shopId: String) {
 
 inventoryChanged { player ->
     if (player.contains("shop") && player["shop", ""] == inventory) {
-        player["amount_${index}"] = item.amount
+        player["amount_$index"] = item.amount
     }
 }
 

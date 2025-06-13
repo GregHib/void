@@ -23,7 +23,7 @@ class InstructionHandlers(
     objectDefinitions: ObjectDefinitions,
     npcDefinitions: NPCDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
-    handler: InterfaceHandler
+    handler: InterfaceHandler,
 ) {
     private val interactFloorItem = FloorItemOptionHandler(items)
     private val interactDialogue = DialogueContinueHandler(interfaceDefinitions)
@@ -59,7 +59,7 @@ class InstructionHandlers(
     var quickChatPublicHandler: QuickChatPublic.(Player) -> Unit = empty()
     var quickChatPrivateHandler: QuickChatPrivate.(Player) -> Unit = empty()
     var clanChatJoinHandler: ClanChatJoin.(Player) -> Unit = empty()
-    var chatTypeChangeHandler:ChatTypeChange.(Player) -> Unit = empty()
+    var chatTypeChangeHandler: ChatTypeChange.(Player) -> Unit = empty()
     var clanChatKickHandler: ClanChatKick.(Player) -> Unit = empty()
     var clanChatRankHandler: ClanChatRank.(Player) -> Unit = empty()
 

@@ -10,11 +10,13 @@ import world.gregs.voidps.type.Tile
 interface TargetStrategy {
     val bitMask: Int
     val tile: Tile
+
     /*
         Rotated values
      */
     val width: Int
     val height: Int
+
     /*
         Original sizes
      */
@@ -23,26 +25,22 @@ interface TargetStrategy {
     val rotation: Int
     val shape: Int
 
-    fun requiresLineOfSight(): Boolean {
-        return true
-    }
+    fun requiresLineOfSight(): Boolean = true
 
-    fun reached(character: Character): Boolean {
-        return ReachStrategy.reached(
-            flags = get(),
-            srcX = character.tile.x,
-            srcZ = character.tile.y,
-            level = character.tile.level,
-            srcSize = character.size,
-            destX = tile.x,
-            destZ = tile.y,
-            destWidth = sizeX,
-            destHeight = sizeY,
-            objRot = rotation,
-            objShape = shape,
-            blockAccessFlags = bitMask
-        )
-    }
+    fun reached(character: Character): Boolean = ReachStrategy.reached(
+        flags = get(),
+        srcX = character.tile.x,
+        srcZ = character.tile.y,
+        level = character.tile.level,
+        srcSize = character.size,
+        destX = tile.x,
+        destZ = tile.y,
+        destWidth = sizeX,
+        destHeight = sizeY,
+        objRot = rotation,
+        objShape = shape,
+        blockAccessFlags = bitMask,
+    )
 
     companion object {
         operator fun <T : Any> invoke(entity: T): TargetStrategy = when (entity) {

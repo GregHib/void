@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ParameterDefinitions
 import world.gregs.voidps.engine.data.find
-import world.gregs.yaml.Yaml
 
 object NPCDefinitions {
     @JvmStatic

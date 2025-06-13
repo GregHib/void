@@ -1,11 +1,17 @@
 package content.area.asgarnia.falador
 
-import world.gregs.voidps.engine.event.Context
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.entity.sound.jingle
+import content.quest.quest
+import content.quest.questComplete
+import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.contains
@@ -13,19 +19,13 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.quest.quest
-import content.quest.refreshQuestJournal
-import content.quest.questComplete
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
-import content.entity.sound.jingle
 
 val floorItems: FloorItems by inject()
 
 val ores = listOf(
     Item("clay", 6),
     Item("copper_ore", 4),
-    Item("iron_ore", 2)
+    Item("iron_ore", 2),
 )
 
 npcOperate("Talk-to", "doric") {
@@ -155,7 +155,7 @@ fun Context<Player>.questComplete() {
             "1300 Mining XP",
             "180 coins",
             "Use of Doric's Anvils",
-            item = "steel_pickaxe"
+            item = "steel_pickaxe",
         )
     }
 }

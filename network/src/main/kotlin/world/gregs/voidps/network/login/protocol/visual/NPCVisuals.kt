@@ -2,7 +2,7 @@ package world.gregs.voidps.network.login.protocol.visual
 
 import world.gregs.voidps.network.login.protocol.visual.update.npc.Transformation
 
-class NPCVisuals() : Visuals() {
+class NPCVisuals : Visuals() {
 
     val transform = Transformation()
 

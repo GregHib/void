@@ -6,7 +6,7 @@ data class SpellDefinition(
     val maxHit: Int = 0,
     val experience: Double = 0.0,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
+    override var extras: Map<String, Any>? = null,
 ) : Extra {
     companion object {
         operator fun invoke(key: String, map: Map<String, Any>): SpellDefinition {

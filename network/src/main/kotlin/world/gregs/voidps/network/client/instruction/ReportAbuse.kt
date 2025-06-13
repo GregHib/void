@@ -13,5 +13,5 @@ data class ReportAbuse(
     val name: String,
     val type: Int,
     val integer: Int,
-    val string: String
+    val string: String,
 ) : Instruction

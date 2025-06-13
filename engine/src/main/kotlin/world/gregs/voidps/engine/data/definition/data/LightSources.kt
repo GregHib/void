@@ -10,7 +10,7 @@ import world.gregs.config.ConfigReader
 data class LightSources(
     val onceLit: String = "",
     val onceExtinguish: String = "",
-    val level: Int = -1
+    val level: Int = -1,
 ) {
     companion object {
 

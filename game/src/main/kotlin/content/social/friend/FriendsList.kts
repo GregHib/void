@@ -1,5 +1,12 @@
 package content.social.friend
 
+import content.social.chat.privateStatus
+import content.social.clan.ClanLootShare
+import content.social.clan.ClanMember
+import content.social.clan.clan
+import content.social.clan.ownClan
+import content.social.ignore.ignores
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.updateFriend
@@ -7,21 +14,14 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.*
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
+import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
 import world.gregs.voidps.engine.entity.character.player.chat.clan.clanChatLeave
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
-import content.social.chat.privateStatus
-import content.social.clan.ClanLootShare
-import content.social.clan.ClanMember
-import content.social.clan.clan
-import content.social.clan.ownClan
-import content.social.ignore.ignores
-import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
-import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.network.client.instruction.FriendAdd
 import world.gregs.voidps.network.client.instruction.FriendDelete
 import world.gregs.voidps.network.login.protocol.encode.*
@@ -184,9 +184,7 @@ fun toFriend(player: Player, account: AccountDefinition): Friend {
     return Friend(account.displayName, account.previousName, rank, world = if (online) Settings.world else 0, worldName = Settings.worldName)
 }
 
-fun Player.visibleOnline(friend: Player): Boolean {
-    return privateStatus == "on" && !ignores(friend) || privateStatus == "friends" && friend(friend)
-}
+fun Player.visibleOnline(friend: Player): Boolean = privateStatus == "on" && !ignores(friend) || privateStatus == "friends" && friend(friend)
 
 fun notifyBefriends(player: Player, online: Boolean, notify: (Player, String) -> Boolean = friends(player)) {
     players

@@ -27,7 +27,7 @@ fun Character.message(
     text: String,
     type: ChatType = ChatType.Game,
     tile: Int = 0,
-    name: String? = null
+    name: String? = null,
 ) {
     if (this !is Player) {
         return
@@ -59,7 +59,7 @@ fun Player.sendInventoryItems(
     inventory: Int,
     size: Int,
     items: IntArray,
-    primary: Boolean
+    primary: Boolean,
 ) = client?.sendInventoryItems(inventory, size, items, primary) ?: Unit
 
 /**
@@ -71,7 +71,7 @@ fun Player.sendInventoryItems(
 fun Player.sendInterfaceItemUpdate(
     key: Int,
     updates: List<Triple<Int, Int, Int>>,
-    secondary: Boolean
+    secondary: Boolean,
 ) = client?.sendInterfaceItemUpdate(key, updates, secondary) ?: Unit
 
 /**
@@ -85,12 +85,12 @@ fun Player.sendInterfaceSettings(
     interfaceComponent: Int,
     fromSlot: Int,
     toSlot: Int,
-    settings: Int
+    settings: Int,
 ) = client?.sendInterfaceSettings(
     interfaceComponent,
     fromSlot,
     toSlot,
-    settings
+    settings,
 ) ?: Unit
 
 /**
@@ -100,7 +100,7 @@ fun Player.sendInterfaceSettings(
  */
 fun Player.sendInterfaceScroll(
     interfaceComponent: Int,
-    settings: Int
+    settings: Int,
 ) = client?.sendInterfaceScroll(interfaceComponent, settings) ?: Unit
 
 /**
@@ -116,7 +116,7 @@ fun Player.sendRunEnergy(energy: Int) = client?.sendRunEnergy(energy) ?: Unit
  */
 fun Player.sendScript(
     id: String,
-    vararg params: Any?
+    vararg params: Any?,
 ) {
     val definition = get<ClientScriptDefinitions>().get(id)
     sendScript(definition.id, params.toList())
@@ -124,39 +124,44 @@ fun Player.sendScript(
 
 fun Player.sendScript(
     id: Int,
-    params: List<Any?>
+    params: List<Any?>,
 ) = client?.sendScript(id, params) ?: Unit
 
 fun Player.playMusicTrack(
     music: Int,
     delay: Int = 100,
-    volume: Int = 255
+    volume: Int = 255,
 ) = client?.playMusicTrack(music, delay, volume) ?: Unit
 
 fun Player.privateStatus(
-    private: String
+    private: String,
 ) {
-    client?.sendPrivateStatus(when (private) {
-        "friends" -> 1
-        "off" -> 2
-        else -> 0
-    })
+    client?.sendPrivateStatus(
+        when (private) {
+            "friends" -> 1
+            "off" -> 2
+            else -> 0
+        },
+    )
 }
 
 fun Player.publicStatus(
     public: String,
-    trade: String
+    trade: String,
 ) {
-    client?.sendPublicStatus(when (public) {
-        "friends" -> 1
-        "off" -> 2
-        "hide" -> 3
-        else -> 0
-    }, when (trade) {
-        "friends" -> 1
-        "off" -> 2
-        else -> 0
-    })
+    client?.sendPublicStatus(
+        when (public) {
+            "friends" -> 1
+            "off" -> 2
+            "hide" -> 3
+            else -> 0
+        },
+        when (trade) {
+            "friends" -> 1
+            "off" -> 2
+            else -> 0
+        },
+    )
 }
 
 fun Player.updateFriend(friend: Friend) = client?.sendFriendsList(listOf(friend)) ?: Unit

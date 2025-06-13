@@ -71,8 +71,12 @@ data class ItemDefinitionFull(
     var singleNoteTemplateId: Int = -1,
     override var params: Map<Int, Any>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Recolourable, ColourPalette, Parameterized, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Recolourable,
+    ColourPalette,
+    Parameterized,
+    Extra {
 
     val noted: Boolean
         get() = notedTemplateId != -1
@@ -110,23 +114,33 @@ data class ItemDefinitionFull(
         if (originalColours != null) {
             if (other.originalColours == null) return false
             if (!originalColours.contentEquals(other.originalColours)) return false
-        } else if (other.originalColours != null) return false
+        } else if (other.originalColours != null) {
+            return false
+        }
         if (modifiedColours != null) {
             if (other.modifiedColours == null) return false
             if (!modifiedColours.contentEquals(other.modifiedColours)) return false
-        } else if (other.modifiedColours != null) return false
+        } else if (other.modifiedColours != null) {
+            return false
+        }
         if (originalTextureColours != null) {
             if (other.originalTextureColours == null) return false
             if (!originalTextureColours.contentEquals(other.originalTextureColours)) return false
-        } else if (other.originalTextureColours != null) return false
+        } else if (other.originalTextureColours != null) {
+            return false
+        }
         if (modifiedTextureColours != null) {
             if (other.modifiedTextureColours == null) return false
             if (!modifiedTextureColours.contentEquals(other.modifiedTextureColours)) return false
-        } else if (other.modifiedTextureColours != null) return false
+        } else if (other.modifiedTextureColours != null) {
+            return false
+        }
         if (recolourPalette != null) {
             if (other.recolourPalette == null) return false
             if (!recolourPalette.contentEquals(other.recolourPalette)) return false
-        } else if (other.recolourPalette != null) return false
+        } else if (other.recolourPalette != null) {
+            return false
+        }
         if (exchangeable != other.exchangeable) return false
         if (tertiaryMaleModel != other.tertiaryMaleModel) return false
         if (tertiaryFemaleModel != other.tertiaryFemaleModel) return false
@@ -141,11 +155,15 @@ data class ItemDefinitionFull(
         if (stackIds != null) {
             if (other.stackIds == null) return false
             if (!stackIds.contentEquals(other.stackIds)) return false
-        } else if (other.stackIds != null) return false
+        } else if (other.stackIds != null) {
+            return false
+        }
         if (stackAmounts != null) {
             if (other.stackAmounts == null) return false
             if (!stackAmounts.contentEquals(other.stackAmounts)) return false
-        } else if (other.stackAmounts != null) return false
+        } else if (other.stackAmounts != null) {
+            return false
+        }
         if (floorScaleX != other.floorScaleX) return false
         if (floorScaleZ != other.floorScaleZ) return false
         if (floorScaleY != other.floorScaleY) return false
@@ -171,7 +189,9 @@ data class ItemDefinitionFull(
         if (campaigns != null) {
             if (other.campaigns == null) return false
             if (!campaigns.contentEquals(other.campaigns)) return false
-        } else if (other.campaigns != null) return false
+        } else if (other.campaigns != null) {
+            return false
+        }
         if (pickSizeShift != other.pickSizeShift) return false
         if (singleNoteId != other.singleNoteId) return false
         if (singleNoteTemplateId != other.singleNoteTemplateId) return false

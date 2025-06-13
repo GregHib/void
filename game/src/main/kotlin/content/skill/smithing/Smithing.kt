@@ -27,16 +27,14 @@ fun oreToBar(ore: String): String {
     return ore.replace("_ore", "_bar")
 }
 
-internal fun furnaceSide(player: Player, target: GameObject): Tile {
-    return if (player.tile.x > target.tile.x + target.width) {
-        target.tile.add(target.width, target.height / 2)
-    } else if (player.tile.y > target.tile.y + target.height) {
-        target.tile.add(target.width / 2, target.height)
-    } else if (player.tile.x < target.tile.x) {
-        target.tile.addY(target.height / 2)
-    } else if (player.tile.y < target.tile.y) {
-        target.tile.addX(target.width / 2)
-    } else {
-        target.tile.add(target.width / 2, target.height / 2)
-    }
+internal fun furnaceSide(player: Player, target: GameObject): Tile = if (player.tile.x > target.tile.x + target.width) {
+    target.tile.add(target.width, target.height / 2)
+} else if (player.tile.y > target.tile.y + target.height) {
+    target.tile.add(target.width / 2, target.height)
+} else if (player.tile.x < target.tile.x) {
+    target.tile.addY(target.height / 2)
+} else if (player.tile.y < target.tile.y) {
+    target.tile.addX(target.width / 2)
+} else {
+    target.tile.add(target.width / 2, target.height / 2)
 }

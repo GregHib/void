@@ -8,7 +8,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.MovementTy
 import world.gregs.voidps.network.login.protocol.visual.update.player.TemporaryMoveType
 
 class PlayerVisuals(
-    body: Body
+    body: Body,
 ) : Visuals() {
 
     val temporaryMoveType = TemporaryMoveType()

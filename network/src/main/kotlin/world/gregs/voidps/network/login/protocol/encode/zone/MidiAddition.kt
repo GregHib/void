@@ -9,9 +9,9 @@ data class MidiAddition(
     val repeat: Int,
     val delay: Int,
     val volume: Int,
-    val speed: Int
+    val speed: Int,
 ) : ZoneUpdate(
     Protocol.MIDI_AREA,
     Protocol.Batch.MIDI_AREA,
-    8
+    8,
 )

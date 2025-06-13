@@ -1,12 +1,12 @@
 package content.skill.crafting
 
+import content.entity.player.inv.item.ItemUsedOnItem
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import content.entity.player.inv.item.ItemUsedOnItem
 
 onEvent<Player, ItemUsedOnItem>("item_used_on_item", Skill.Crafting) { player ->
     if (def.add.any { it.id == "thread" }) {

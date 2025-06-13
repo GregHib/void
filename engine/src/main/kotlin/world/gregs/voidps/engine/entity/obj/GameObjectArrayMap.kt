@@ -61,9 +61,7 @@ class GameObjectArrayMap : GameObjectMap {
         data[Zone.tileIndex(zoneX, zoneY, level)] = null
     }
 
-    fun isZoneAllocated(absoluteX: Int, absoluteY: Int, level: Int): Boolean {
-        return data[Zone.tileIndex(absoluteX, absoluteY, level)] != null
-    }
+    fun isZoneAllocated(absoluteX: Int, absoluteY: Int, level: Int): Boolean = data[Zone.tileIndex(absoluteX, absoluteY, level)] != null
 
     override fun clear() {
         data.fill(null)

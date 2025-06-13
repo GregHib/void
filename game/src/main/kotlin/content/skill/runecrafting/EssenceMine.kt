@@ -1,5 +1,6 @@
 package content.skill.runecrafting
 
+import content.entity.proj.shoot
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -10,7 +11,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.softQueue
-import content.entity.proj.shoot
 
 object EssenceMine {
     fun teleport(npc: NPC, player: Player) {

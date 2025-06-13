@@ -14,7 +14,7 @@ import world.gregs.voidps.type.random
 class Wander(
     private val npc: NPC,
     private val spawn: Tile = npc["spawn_tile"]!!,
-    private val stuckLimit: Int = npc.def["stuck_limit", 500]
+    private val stuckLimit: Int = npc.def["stuck_limit", 500],
 ) : Movement(npc) {
 
     private var stuckCounter = 0

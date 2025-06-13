@@ -197,5 +197,4 @@ internal class WildernessCourseTest : WorldTest() {
         assertEquals(0, player.agilityStage)
         assertEquals(1, player["wilderness_course_laps", 0])
     }
-
 }

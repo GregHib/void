@@ -5,11 +5,11 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.type.Tile
 
 class ItemSpawns(
-    private val zones: MutableMap<Int, ItemSpawn> = Int2ObjectOpenHashMap()
+    private val zones: MutableMap<Int, ItemSpawn> = Int2ObjectOpenHashMap(),
 ) {
     val size: Int
         get() = zones.size
@@ -31,7 +31,7 @@ fun loadItemSpawns(
     items: FloorItems,
     spawns: ItemSpawns,
     paths: List<String>,
-    itemDefinitions: ItemDefinitions
+    itemDefinitions: ItemDefinitions,
 ) {
     timedLoad("item spawn") {
         spawns.clear()
@@ -65,7 +65,7 @@ fun loadItemSpawns(
                         }
                         val tile = Tile(x, y, level)
                         if (itemDefinitions.getOrNull(id) == null) {
-                            logger.warn { "Invalid item spawn id '$id' in ${path}." }
+                            logger.warn { "Invalid item spawn id '$id' in $path." }
                         }
                         spawns.set(tile, ItemSpawn(id, amount, delay))
                         items.add(tile, id, amount)

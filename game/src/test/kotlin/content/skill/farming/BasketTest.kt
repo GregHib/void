@@ -1,13 +1,13 @@
 package content.skill.farming
 
+import WorldTest
+import itemOnItem
+import itemOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import WorldTest
-import itemOnItem
-import itemOption
 import kotlin.test.assertFalse
 
 internal class BasketTest : WorldTest() {
@@ -87,7 +87,6 @@ internal class BasketTest : WorldTest() {
 
         assertTrue(player.inventory.contains("bananas_5"))
         assertEquals(1, player.inventory.count("banana"))
-
     }
 
     @Test
@@ -172,5 +171,4 @@ internal class BasketTest : WorldTest() {
         assertTrue(player.inventory.contains("strawberries_5"))
         assertEquals(0, player.inventory.count("strawberry"))
     }
-
 }

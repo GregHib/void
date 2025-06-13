@@ -11,7 +11,7 @@ data class InterfaceOnObject(
     override val target: GameObject,
     val id: String,
     val component: String,
-    val index: Int
+    val index: Int,
 ) : TargetInteraction<Player, GameObject>() {
 
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }

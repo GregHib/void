@@ -26,9 +26,7 @@ abstract class Visuals {
         flag = flag or mask
     }
 
-    fun flagged(mask: Int): Boolean {
-        return flag and mask != 0
-    }
+    fun flagged(mask: Int): Boolean = flag and mask != 0
 
     open fun reset() {
         walkStep = -1

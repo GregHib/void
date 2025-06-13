@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.event.Events
 data class ContinueDialogue(
     val id: String,
     val component: String,
-    val option: Int
+    val option: Int,
 ) : Event {
 
     override val size = 4

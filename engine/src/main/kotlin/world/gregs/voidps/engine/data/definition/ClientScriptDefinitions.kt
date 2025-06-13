@@ -41,5 +41,4 @@ class ClientScriptDefinitions : DefinitionsDecoder<ClientScriptDefinition> {
     }
 
     override fun empty() = ClientScriptDefinition.EMPTY
-
 }

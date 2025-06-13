@@ -13,9 +13,7 @@ inventoryUpdate("bank") { player ->
     player["bank_spaces_used_member"] = player.bank.count
 }
 
-fun Inventory.countFreeToPlayItems(): Int {
-    return items.count { it.isNotEmpty() && !it.def.members }
-}
+fun Inventory.countFreeToPlayItems(): Int = items.count { it.isNotEmpty() && !it.def.members }
 
 interfaceSwap("bank", "inventory") { player ->
     when (player["bank_item_mode", "swap"]) {

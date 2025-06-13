@@ -11,7 +11,7 @@ class ObjectTrapdoors(private val decoder: Array<ObjectDefinitionFull>) : Pipeli
         if (!def.name.contains("trap", true)) {
             return false
         }
-        return when(def.options?.first()) {
+        return when (def.options?.first()) {
             "Go-down", "Climb-down", "Enter" -> true
             else -> false
         }

@@ -8,13 +8,10 @@ import world.gregs.voidps.network.login.protocol.Decoder
 class ScreenChangeDecoder : Decoder(6) {
 
     @OptIn(ExperimentalUnsignedTypes::class)
-    override suspend fun decode(packet: ByteReadPacket): Instruction {
-        return ChangeDisplayMode(
-            displayMode = packet.readUByte().toInt(),
-            width = packet.readUShort().toInt(),
-            height = packet.readUShort().toInt(),
-            antialiasLevel = packet.readUByte().toInt()
-        )
-    }
-
+    override suspend fun decode(packet: ByteReadPacket): Instruction = ChangeDisplayMode(
+        displayMode = packet.readUByte().toInt(),
+        width = packet.readUShort().toInt(),
+        height = packet.readUShort().toInt(),
+        antialiasLevel = packet.readUByte().toInt(),
+    )
 }

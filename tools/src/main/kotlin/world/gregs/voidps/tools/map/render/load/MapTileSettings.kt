@@ -25,7 +25,7 @@ class MapTileSettings(
     private val textureDecoder: Array<MaterialDefinition>,
     private val samplingX: Int = 5,
     private val samplingY: Int = 5,
-    private val manager: RegionManager
+    private val manager: RegionManager,
 ) {
     private val width: Int = manager.width
     private val height: Int = manager.height

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 
 object NPCAttack {
     fun anim(definitions: AnimationDefinitions, npc: NPC, type: String): String {
-        var animation = "${npc.id}_${type}"
+        var animation = "${npc.id}_$type"
         if (definitions.contains(animation)) {
             return animation
         }
@@ -17,7 +17,7 @@ object NPCAttack {
             }
         }
         if (npc.def.contains("combat_anims")) {
-            animation = "${npc.def["combat_anims", ""]}_${type}"
+            animation = "${npc.def["combat_anims", ""]}_$type"
             if (definitions.contains(animation)) {
                 return animation
             }
@@ -26,7 +26,7 @@ object NPCAttack {
     }
 
     fun sound(definitions: SoundDefinitions, npc: NPC, type: String): String {
-        var animation = "${npc.id}_${type}"
+        var animation = "${npc.id}_$type"
         if (definitions.contains(animation)) {
             return animation
         }
@@ -37,7 +37,7 @@ object NPCAttack {
             }
         }
         if (npc.def.contains("combat_sounds")) {
-            animation = "${npc.def["combat_sounds", ""]}_${type}"
+            animation = "${npc.def["combat_sounds", ""]}_$type"
             if (definitions.contains(animation)) {
                 return animation
             }

@@ -4,10 +4,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.Region
 import world.gregs.voidps.tools.map.view.draw.MapView
 import world.gregs.voidps.tools.map.view.draw.WorldMap.Companion.flipRegionY
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Tile
 import java.awt.geom.AffineTransform
 import java.awt.image.AffineTransformOp
 import java.awt.image.BufferedImage
@@ -26,9 +26,12 @@ class RegionLoader(private val grid: MapView) {
     private val regions = HashMap<Int, Resolutions?>()
     private var loadJob: Job? = null
     private val loadQueue = ConcurrentSkipListSet<Int>()
-    private val op = AffineTransformOp(AffineTransform().apply {
-        scale(0.5, 0.5)
-    }, AffineTransformOp.TYPE_BILINEAR)
+    private val op = AffineTransformOp(
+        AffineTransform().apply {
+            scale(0.5, 0.5)
+        },
+        AffineTransformOp.TYPE_BILINEAR,
+    )
 
     fun getRegion(regionX: Int, regionY: Int, level: Int): BufferedImage? {
         val regionId = Tile.id(regionX, regionY, level)

@@ -276,5 +276,4 @@ class NPCEncoder : DefinitionEncoder<NPCDefinitionFull> {
         definition.writeParameters(this)
         writeByte(0)
     }
-
 }

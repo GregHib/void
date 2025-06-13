@@ -9,7 +9,8 @@ enum class Direction(deltaX: Int, deltaY: Int) {
     SOUTH(0, -1),
     SOUTH_WEST(-1, -1),
     WEST(-1, 0),
-    NONE(0, 0);
+    NONE(0, 0),
+    ;
 
     val delta = Delta(deltaX, deltaY)
 
@@ -24,38 +25,30 @@ enum class Direction(deltaX: Int, deltaY: Int) {
     /**
      * Rotate direction clockwise in increments of 1/8
      */
-    fun rotate(count: Int): Direction {
-        return all[(ordinal + count + all.size).rem(all.size)]
+    fun rotate(count: Int): Direction = all[(ordinal + count + all.size).rem(all.size)]
+
+    fun vertical(): Direction = when (delta.y) {
+        1 -> NORTH
+        -1 -> SOUTH
+        else -> NONE
     }
 
-    fun vertical(): Direction {
-        return when (delta.y) {
-            1 -> NORTH
-            -1 -> SOUTH
-            else -> NONE
-        }
+    fun horizontal(): Direction = when (delta.x) {
+        1 -> EAST
+        -1 -> WEST
+        else -> NONE
     }
 
-    fun horizontal(): Direction {
-        return when (delta.x) {
-            1 -> EAST
-            -1 -> WEST
-            else -> NONE
-        }
-    }
-
-    fun inverse(): Direction {
-        return when (this) {
-            NORTH_WEST -> SOUTH_EAST
-            NORTH -> SOUTH
-            NORTH_EAST -> SOUTH_WEST
-            EAST -> WEST
-            SOUTH_EAST -> NORTH_WEST
-            SOUTH -> NORTH
-            SOUTH_WEST -> NORTH_EAST
-            WEST -> EAST
-            NONE -> NONE
-        }
+    fun inverse(): Direction = when (this) {
+        NORTH_WEST -> SOUTH_EAST
+        NORTH -> SOUTH
+        NORTH_EAST -> SOUTH_WEST
+        EAST -> WEST
+        SOUTH_EAST -> NORTH_WEST
+        SOUTH -> NORTH
+        SOUTH_WEST -> NORTH_EAST
+        WEST -> EAST
+        NONE -> NONE
     }
 
     companion object {
@@ -68,8 +61,6 @@ enum class Direction(deltaX: Int, deltaY: Int) {
         val clockwise = arrayOf(NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST)
         val westClockwise = arrayOf(WEST, NORTH, EAST, SOUTH)
 
-        fun of(deltaX: Int, deltaY: Int): Direction {
-            return all.firstOrNull { it.delta.equals(deltaX, deltaY) } ?: NONE
-        }
+        fun of(deltaX: Int, deltaY: Int): Direction = all.firstOrNull { it.delta.equals(deltaX, deltaY) } ?: NONE
     }
 }

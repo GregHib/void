@@ -10,9 +10,7 @@ class HuntModeDefinitions {
 
     private lateinit var modes: Map<String, HuntModeDefinition>
 
-    fun get(name: String): HuntModeDefinition {
-        return modes.getValue(name)
-    }
+    fun get(name: String): HuntModeDefinition = modes.getValue(name)
 
     fun load(path: String): HuntModeDefinitions {
         timedLoad("hunt mode") {
@@ -64,7 +62,7 @@ class HuntModeDefinitions {
                         rate = rate ?: if (type == "player") 1 else 3,
                         id = id,
                         layer = layer,
-                        maxMultiAttackers = maxMultiAttackers
+                        maxMultiAttackers = maxMultiAttackers,
                     )
                 }
             }
@@ -73,5 +71,4 @@ class HuntModeDefinitions {
         }
         return this
     }
-
 }

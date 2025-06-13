@@ -1,10 +1,10 @@
 package content.quest.free.demon_slayer
 
 import content.entity.player.modal.tab.questJournalOpen
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.inventory
 import content.quest.quest
 import content.quest.questJournal
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.inventory
 
 questJournalOpen("demon_slayer") {
     val lines = when (player.quest("demon_slayer")) {
@@ -12,7 +12,7 @@ questJournalOpen("demon_slayer") {
             "<navy>I can start this quest by speaking to the <maroon>Gypsy<navy> in the <maroon>tent",
             "<navy>in <maroon>Varrock's main square.",
             "",
-            "<navy>I must be able to defeat a level 27 <maroon>apocalyptic demon<navy>!"
+            "<navy>I must be able to defeat a level 27 <maroon>apocalyptic demon<navy>!",
         )
         "sir_prysin", "key_hunt" -> {
             val list = mutableListOf(
@@ -53,7 +53,7 @@ questJournalOpen("demon_slayer") {
             "<str>I reclaimed the magical sword Silverlight from Sir Prysin.",
             "<str>Using its power I managed to destroy the demon Delrith",
             "<str>like the great hero Wally did many years before.",
-            "<red>QUEST COMPLETE!"
+            "<red>QUEST COMPLETE!",
         )
         else -> listOf()
     }
@@ -65,7 +65,7 @@ fun listKeys(
     list: MutableList<String>,
     prysin: Boolean,
     rovin: Boolean,
-    traiborn: Boolean
+    traiborn: Boolean,
 ) {
     if (prysin) {
         list.add("<str>I have the 1st Key with me.")
@@ -94,7 +94,7 @@ fun listKeys(
         list.add("<navy>south of Draynor Village.")
         val bones = player["demon_slayer_bones", -1]
         if (bones != -1) {
-            list.add("<maroon>Traiborn<navy> needs <maroon>${bones}<navy> more <maroon>bones<navy>.")
+            list.add("<maroon>Traiborn<navy> needs <maroon>$bones<navy> more <maroon>bones<navy>.")
         }
     }
 }

@@ -10,5 +10,4 @@ class AntiCheatDecoder : Decoder(2) {
         val packetsReceived = packet.readShort()
         return null
     }
-
 }

@@ -11,12 +11,11 @@ data class FontDefinition(
     var topPadding: Int = 0,
     var bottomPadding: Int = 0,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Extra {
 
-    private fun glyphWidth(glyph: Int): Int {
-        return glyphWidths[glyph].toInt() and 0xff
-    }
+    private fun glyphWidth(glyph: Int): Int = glyphWidths[glyph].toInt() and 0xff
 
     fun textWidth(input: String, icons: Array<IndexedSprite>? = null): Int {
         var tagStart = -1
@@ -214,7 +213,9 @@ data class FontDefinition(
         if (kerningAdjustments != null) {
             if (other.kerningAdjustments == null) return false
             if (!kerningAdjustments.contentDeepEquals(other.kerningAdjustments)) return false
-        } else if (other.kerningAdjustments != null) return false
+        } else if (other.kerningAdjustments != null) {
+            return false
+        }
         if (verticalSpacing != other.verticalSpacing) return false
         if (topPadding != other.topPadding) return false
         if (bottomPadding != other.bottomPadding) return false
@@ -249,18 +250,16 @@ data class FontDefinition(
             }
         }
 
-        private fun htmlEntityToChar(tag: String): Char? {
-            return when (tag) {
-                "lt" -> '<'
-                "gt" -> '>'
-                "nbsp" -> '\u00a0'
-                "shy" -> '\u00ad'
-                "times" -> '\u00d7'
-                "euro" -> '\u20ac'
-                "copy" -> '\u00a9'
-                "reg" -> '\u00ae'
-                else -> null
-            }
+        private fun htmlEntityToChar(tag: String): Char? = when (tag) {
+            "lt" -> '<'
+            "gt" -> '>'
+            "nbsp" -> '\u00a0'
+            "shy" -> '\u00ad'
+            "times" -> '\u00d7'
+            "euro" -> '\u20ac'
+            "copy" -> '\u00a9'
+            "reg" -> '\u00ae'
+            else -> null
         }
 
         private fun parseInt(string: String, radix: Int = 10, positive: Boolean = true): Int {
@@ -279,7 +278,15 @@ data class FontDefinition(
                         continue
                     }
                 }
-                digit -= if (digit in 48..57) 48 else if (digit in 65..90) 55 else if (digit in 97..122) 87 else throw NumberFormatException()
+                digit -= if (digit in 48..57) {
+                    48
+                } else if (digit in 65..90) {
+                    55
+                } else if (digit in 97..122) {
+                    87
+                } else {
+                    throw NumberFormatException()
+                }
                 if (digit >= radix) {
                     throw NumberFormatException()
                 }
@@ -337,5 +344,4 @@ data class FontDefinition(
 
         val EMPTY = FontDefinition()
     }
-
 }

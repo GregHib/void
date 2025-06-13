@@ -1,5 +1,10 @@
 package content.entity.player.modal.tab
 
+import content.entity.effect.clearTransform
+import content.entity.effect.transform
+import content.entity.gfx.areaGfx
+import content.entity.player.dialogue.type.statement
+import content.entity.sound.jingle
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
@@ -18,11 +23,6 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
-import content.entity.player.dialogue.type.statement
-import content.entity.effect.clearTransform
-import content.entity.effect.transform
-import content.entity.gfx.areaGfx
-import content.entity.sound.jingle
 
 val definitions: InterfaceDefinitions by inject()
 
@@ -113,7 +113,7 @@ suspend fun SuspendableContext<Player>.unlocked(id: String, emote: String): Bool
                     """
                    You can't use this emote yet. Visit the Stronghold of Player Safety to
                    unlock it.
-                """
+                """,
                 )
             }
             "Explore" -> {
@@ -121,7 +121,7 @@ suspend fun SuspendableContext<Player>.unlocked(id: String, emote: String): Bool
                     """
                     You can't use this emote yet. You will need to complete the Beginner
                     Tasks in the Lumbridge and Draynor Achievement Diary to use it.
-                """
+                """,
                 )
             }
             "Give Thanks" -> player.message("This emote can be unlocked by playing a Thanksgiving seasonal event.")
@@ -131,7 +131,7 @@ suspend fun SuspendableContext<Player>.unlocked(id: String, emote: String): Bool
                     """
                     You can't use that emote yet. Visit the Stronghold of Security to
                     unlock it.
-                """
+                """,
                 )
             }
             "Faint" -> statement("This emote can be unlocked by completing the mime court case.")

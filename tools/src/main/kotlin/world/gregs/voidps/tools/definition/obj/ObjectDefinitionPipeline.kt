@@ -23,7 +23,7 @@ private object ObjectDefinitionPipeline {
 
     private fun buildObjectExtras(
         decoder: Array<ObjectDefinitionFull>,
-        pages: Map<Int, PageCollector>
+        pages: Map<Int, PageCollector>,
     ): MutableMap<Int, Extras> {
         val output = mutableMapOf<Int, Extras>()
         for (id in decoder.indices) {
@@ -70,5 +70,4 @@ private object ObjectDefinitionPipeline {
         file.writeText(contents)
         println("${output.size} object definitions written to ${file.path} in ${TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - start)}s")
     }
-
 }

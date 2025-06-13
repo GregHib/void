@@ -6,7 +6,7 @@ import java.math.BigInteger
 class VersionTableBuilder(
     private val exponent: BigInteger,
     private val modulus: BigInteger,
-    private val indexCount: Int
+    private val indexCount: Int,
 ) {
 
     private val crc = CRC()
@@ -50,7 +50,6 @@ class VersionTableBuilder(
         versionTable[pos + 3] = (revision).toByte()
     }
 
-
     fun whirlpool(index: Int, whirlpool: ByteArray) {
         val pos = positionFor(index) + 8
         for (i in whirlpool.indices) {
@@ -70,7 +69,7 @@ class VersionTableBuilder(
         whirlpool.finalize(output, 1)
         val rsa = RSA.crypt(output, modulus, exponent)
         val pos = positionFor(indexCount)
-        for(i in rsa.indices) {
+        for (i in rsa.indices) {
             versionTable[pos + i] = rsa[i]
         }
         val end = pos + rsa.size

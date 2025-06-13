@@ -3,6 +3,12 @@ package content.entity.combat.hit
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.combat.Bonus
 import content.entity.combat.dead
+import content.entity.player.combat.special.specialAttack
+import content.entity.player.equip.Equipment
+import content.skill.magic.spell.spell
+import content.skill.melee.weapon.Weapon
+import content.skill.melee.weapon.weapon
+import content.skill.prayer.Prayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -11,14 +17,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
-import world.gregs.voidps.type.random
-import content.skill.magic.spell.spell
-import content.skill.prayer.Prayer
-import content.entity.player.combat.special.specialAttack
-import content.entity.player.equip.Equipment
-import content.skill.melee.weapon.Weapon
-import content.skill.melee.weapon.weapon
 import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
+import world.gregs.voidps.type.random
 import kotlin.math.floor
 
 object Hit {
@@ -27,9 +27,7 @@ object Hit {
     /**
      * @return true if [chance] of hitting was successful
      */
-    fun success(source: Character, target: Character, type: String, weapon: Item, special: Boolean): Boolean {
-        return random.nextDouble() < chance(source, target, type, weapon, special)
-    }
+    fun success(source: Character, target: Character, type: String, weapon: Item, special: Boolean): Boolean = random.nextDouble() < chance(source, target, type, weapon, special)
 
     /**
      * @return chance between 0.0 and 1.0 of hitting [target]
@@ -50,9 +48,21 @@ object Hit {
         if (Weapon.invalidateChance(source, target, type, weapon, special)) {
             chance = 0.0
         }
-        val player = if (source is Player && source["debug", false]) source else if (target is Player && target["debug", false]) target else null
+        val player = if (source is Player && source["debug", false]) {
+            source
+        } else if (target is Player && target["debug", false]) {
+            target
+        } else {
+            null
+        }
         if (player != null) {
-            val style = if (type == "magic") source.spell else if (weapon.isEmpty()) "unarmed" else weapon.id
+            val style = if (type == "magic") {
+                source.spell
+            } else if (weapon.isEmpty()) {
+                "unarmed"
+            } else {
+                weapon.id
+            }
             val spec = if (source is Player && source.specialAttack) ", special" else ""
             val message = "Hit chance: $chance ($type, $style$spec)"
             player.message(message)
@@ -123,7 +133,7 @@ fun Character.hit(
     delay: Int = if (type == "melee") 0 else 64,
     spell: String = this.spell,
     special: Boolean = (this as? Player)?.specialAttack ?: false,
-    damage: Int = Damage.roll(this, target, type, weapon, spell)
+    damage: Int = Damage.roll(this, target, type, weapon, spell),
 ): Int {
     val actualDamage = Damage.modify(this, target, type, damage, weapon, spell, special)
         .coerceAtMost(target.levels.get(Skill.Constitution))
@@ -137,8 +147,7 @@ fun Character.hit(
 /**
  * Hits player without interrupting them
  */
-fun Character.directHit(damage: Int, type: String = "damage", mark: HitSplat.Mark = HitSplat.Mark.Regular, weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false, source: Character = this) =
-    directHit(source, damage, type, mark, weapon, spell, special)
+fun Character.directHit(damage: Int, type: String = "damage", mark: HitSplat.Mark = HitSplat.Mark.Regular, weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false, source: Character = this) = directHit(source, damage, type, mark, weapon, spell, special)
 
 /**
  * Hits player without interrupting them
