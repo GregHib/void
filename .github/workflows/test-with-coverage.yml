@@ -17,9 +17,6 @@ jobs:
       - name: Checkout repository code
         uses: actions/checkout@v4
 
-      - name: Create cache folder
-        run: mkdir -p data/cache/
-
       - uses: actions/setup-java@v3
         with:
           java-version: "19"
@@ -29,6 +26,22 @@ jobs:
 
       - name: Validate Gradle wrapper
         uses: gradle/actions/wrapper-validation@v4
+
+      - name: Apply formatting
+        run: ./gradlew spotlessApply
+
+      - name: Commit formatting changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          if ! git diff --staged --quiet; then
+            git commit -m "Apply Spotless formatting [skip ci]"
+            git push
+          fi
+
+      - name: Create cache folder
+        run: mkdir -p data/cache/
 
       - name: Check if secrets exists
         id: check_secret

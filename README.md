@@ -95,6 +95,12 @@ Once the server is up and running; download one of the [prebuilt client.jars](ht
 
 Don't forget to check out our [Contributing guidelines](./CONTRIBUTING.md) before submitting your first pull request!
 
+Formatting is done with spotless but should align with IntelliJ's default formatting. To be certain run:
+
+```bash
+./gradlew spotlessApply
+```
+
 > [!TIP]
 > There are instructions on how to [build your own client](https://github.com/GregHib/void/wiki/client-building) and [build your own cache](https://github.com/GregHib/void/wiki/cache-building)!
 

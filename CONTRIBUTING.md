@@ -101,7 +101,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/GregHi
 
 ### Your First Code Contribution
 
-To submit contributions please [fork the repository](https://github.com/GregHib/void/fork) before [checking out](README.md#development) the project in your IDE, apply the changes to a branch and [Submit a Pull Request](https://github.com/GregHib/void/pulls).
+To submit contributions please [fork the repository](https://github.com/GregHib/void/fork) before [checking out](README.md#development) the project in your IDE, apply the changes to a branch run `gradle spotlessApply` to format and [Submit a Pull Request](https://github.com/GregHib/void/pulls).
 
 ## Style guides
 
