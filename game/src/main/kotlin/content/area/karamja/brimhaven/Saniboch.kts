@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
 
-val DUNGEON_ENTRY_FEE = 875
+val dungeonEntryFee = 875
 
 // Saniboch "Talk-to" dialogue
 npcOperate("Talk-to", "saniboch") {
@@ -25,10 +25,10 @@ npcOperate("Talk-to", "saniboch") {
             }
 
             npc<Talk>("Most certainly, but I must charge you the sum of 875 coins first.")
-            if (player.inventory.contains("coins", DUNGEON_ENTRY_FEE)) {
+            if (player.inventory.contains("coins", dungeonEntryFee)) {
                 choice {
                     option("Okay, here's 875 coins.") {
-                        player.inventory.remove("coins", DUNGEON_ENTRY_FEE)
+                        player.inventory.remove("coins", dungeonEntryFee)
                         player["can_enter_brimhaven_dungeon"] = true
                         statement("You pay Saniboch 875 coins.")
                         npc<Talk>("Many thanks. You may now pass the door. May your death be a glorious one!")
@@ -74,8 +74,8 @@ npcOperate("Pay", "saniboch") {
     }
 
     val coins = player.inventory.count("coins")
-    if (coins >= DUNGEON_ENTRY_FEE) {
-        player.inventory.remove("coins", DUNGEON_ENTRY_FEE)
+    if (coins >= dungeonEntryFee) {
+        player.inventory.remove("coins", dungeonEntryFee)
         player["can_enter_brimhaven_dungeon"] = true
         statement("You pay Saniboch 875 coins.")
         npc<Talk>("Many thanks. You may now pass the door. May your death be a glorious one!")

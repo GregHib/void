@@ -42,11 +42,13 @@ allprojects {
         compileKotlin {
             kotlinOptions.jvmTarget = java.sourceCompatibility.toString()
             // https://youtrack.jetbrains.com/issue/KT-4779/Generate-default-methods-for-implementations-in-interfaces
-            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
+            kotlinOptions.freeCompilerArgs =
+                listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
         }
         compileTestKotlin {
             kotlinOptions.jvmTarget = java.sourceCompatibility.toString()
-            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
+            kotlinOptions.freeCompilerArgs =
+                listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
         }
     }
 
@@ -75,7 +77,7 @@ allprojects {
 spotless {
     kotlin {
         target("**/*.kt", "**/*.kts")
-        targetExclude("temp/", "build/", "out/")
+        targetExclude("temp/", "**/build/**", "**/out/**")
         ktlint()
             .editorConfigOverride(
                 mapOf(
