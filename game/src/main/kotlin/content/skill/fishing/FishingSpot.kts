@@ -25,11 +25,11 @@ npcSpawn("fishing_spot_*") { npc ->
 
 npcTimerStart("fishing_spot_respawn") {
     // https://x.com/JagexAsh/status/1604892218380021761
-    interval = random.nextInt(28, 53)
+    interval = random.nextInt(280, 530)
 }
 
 npcTimerTick("fishing_spot_respawn") { npc ->
-    nextInterval = random.nextInt(28, 53)
+    nextInterval = random.nextInt(280, 530)
     move(npc)
 }
 
