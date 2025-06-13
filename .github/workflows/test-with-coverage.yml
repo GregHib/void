@@ -35,11 +35,11 @@ jobs:
 
       - name: Commit formatting changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add -A
           if ! git diff --staged --quiet; then
-            git commit -m "Apply Spotless formatting [skip ci]"
+            git commit -m "Apply Spotless formatting"
             git push
           fi
 
