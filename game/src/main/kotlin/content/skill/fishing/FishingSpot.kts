@@ -46,8 +46,9 @@ fun move(npc: NPC) {
      */
     val tile = area.area.toList().filter { tile ->
         check(tile, water) && (
-                (check(tile.addY(1), water) && check(tile.addY(-1), water) && (check(tile.addX(-1), land) || check(tile.addX(1), land))) ||
-                        (check(tile.addX(-1), water) && check(tile.addX(1), water) && (check(tile.addY(1), land) || check(tile.addY(-1), land))))
+            (check(tile.addY(1), water) && check(tile.addY(-1), water) && (check(tile.addX(-1), land) || check(tile.addX(1), land))) ||
+                (check(tile.addX(-1), water) && check(tile.addX(1), water) && (check(tile.addY(1), land) || check(tile.addY(-1), land)))
+            )
     }.randomOrNull() ?: return
     npc.tele(tile)
     npc.softTimers.start("fishing_spot_respawn")
@@ -63,8 +64,9 @@ fun move(npc: NPC) {
 fun check(tile: Tile, strategy: CollisionStrategy): Boolean {
     val tileFlag = collisions[tile.x, tile.y, tile.level]
     return strategy.canMove(
-        tileFlag, CollisionFlag.BLOCK_NORTH_AND_SOUTH_EAST or
-                CollisionFlag.BLOCK_NORTH_AND_SOUTH_WEST or
-                CollisionFlag.BLOCK_NPCS
+        tileFlag,
+        CollisionFlag.BLOCK_NORTH_AND_SOUTH_EAST or
+            CollisionFlag.BLOCK_NORTH_AND_SOUTH_WEST or
+            CollisionFlag.BLOCK_NPCS,
     )
 }
