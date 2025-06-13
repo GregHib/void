@@ -12,12 +12,12 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Catch
 import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.mode.move.npcMove
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
@@ -32,19 +32,12 @@ import world.gregs.voidps.type.random
 val logger = InlineLogger()
 val itemDefinitions: ItemDefinitions by inject()
 
-npcMove({ it.contains("fishers") && it.def.contains("fishing") }) { npc ->
-    val fishers: Set<Player> = npc.remove("fishers") ?: return@npcMove
-    for (fisher in fishers) {
-        fisher.queue.clearWeak()
-    }
-}
-
 npcOperate("*", "fishing_spot_*") {
     arriveDelay()
     if (!def.contains("fishing")) {
         return@npcOperate
     }
-    target.getOrPut("fishers") { mutableSetOf<Player>() }.add(player)
+    target.getOrPut("fishers") { mutableSetOf<String>() }.add(player.name)
     player.softTimers.start("fishing")
     player.closeDialogue()
     var first = true
@@ -100,7 +93,7 @@ npcOperate("*", "fishing_spot_*") {
         }
         player.stop("action_delay")
     }
-    target["fishers", mutableSetOf<Player>()].remove(player)
+    target.get<MutableSet<String>>("fishers")?.remove(player.name)
     player.softTimers.stop("fishing")
 }
 
