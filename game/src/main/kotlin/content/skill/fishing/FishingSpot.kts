@@ -45,10 +45,11 @@ fun move(npc: NPC) {
            [W]           [W]       [L]
      */
     val tile = area.area.toList().filter { tile ->
-        check(tile, water) && (
-            (check(tile.addY(1), water) && check(tile.addY(-1), water) && (check(tile.addX(-1), land) || check(tile.addX(1), land))) ||
-                (check(tile.addX(-1), water) && check(tile.addX(1), water) && (check(tile.addY(1), land) || check(tile.addY(-1), land)))
-            )
+        check(tile, water) &&
+            (
+                (check(tile.addY(1), water) && check(tile.addY(-1), water) && (check(tile.addX(-1), land) || check(tile.addX(1), land))) ||
+                    (check(tile.addX(-1), water) && check(tile.addX(1), water) && (check(tile.addY(1), land) || check(tile.addY(-1), land)))
+                )
     }.randomOrNull() ?: return
     npc.tele(tile)
     npc.softTimers.start("fishing_spot_respawn")
