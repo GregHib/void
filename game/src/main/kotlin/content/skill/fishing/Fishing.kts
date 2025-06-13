@@ -40,6 +40,7 @@ npcOperate("*", "fishing_spot_*") {
     target.getOrPut("fishers") { mutableSetOf<String>() }.add(player.name)
     player.softTimers.start("fishing")
     player.closeDialogue()
+    val tile = target.tile
     var first = true
     fishing@ while (true) {
         if (player.inventory.isFull()) {
@@ -47,8 +48,11 @@ npcOperate("*", "fishing_spot_*") {
             break
         }
 
-        val data = target.spot[option] ?: return@npcOperate
+        if (target.tile != tile) {
+            break
+        }
 
+        val data = target.spot[option] ?: return@npcOperate
         if (!player.has(Skill.Fishing, data.minimumLevel, true)) {
             break
         }

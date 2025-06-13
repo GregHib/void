@@ -4,6 +4,7 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -24,11 +25,11 @@ npcSpawn("fishing_spot_*") { npc ->
 
 npcTimerStart("fishing_spot_respawn") {
     // https://x.com/JagexAsh/status/1604892218380021761
-    interval = random.nextInt(280, 530)
+    interval = random.nextInt(28, 53)
 }
 
 npcTimerTick("fishing_spot_respawn") { npc ->
-    nextInterval = random.nextInt(280, 530)
+    nextInterval = random.nextInt(28, 53)
     move(npc)
 }
 
@@ -52,7 +53,9 @@ fun move(npc: NPC) {
     npc.softTimers.start("fishing_spot_respawn")
     val fishers: MutableSet<String> = npc.remove("fishers") ?: return
     for (fisher in fishers) {
-        players.get(fisher)?.queue?.clearWeak()
+        val player = players.get(fisher) ?: continue
+        player.mode = EmptyMode
+        player.queue.clearWeak()
     }
     fishers.clear()
 }
