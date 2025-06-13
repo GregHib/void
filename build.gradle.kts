@@ -106,7 +106,6 @@ tasks.register("printCacheVersion") {
     }
 }
 
-
 reporting {
     reports {
         @Suppress("UnstableApiUsage")
