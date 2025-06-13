@@ -82,7 +82,7 @@ object Tasks {
         return true
     }
 
-    private val skills = listOf(
+    val skills = listOf(
         Skill.Attack,
         Skill.Strength,
         Skill.Ranged,

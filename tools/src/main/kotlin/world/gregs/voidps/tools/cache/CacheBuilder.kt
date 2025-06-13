@@ -62,6 +62,7 @@ object CacheBuilder {
         CopyCs2Script.convert(library, cache667, 677) // Scroll interface - scrollbar max
         RemovePriceCheckerTradeLimit.convert(library)
         MoveCameraClientScript.convert(library, cache667)
+        FixStructs.fix(library)
         println("Rebuilding cache.")
         library.rebuild(target)
         addEmptyIndexFiles(target, library.last()?.id ?: 0)

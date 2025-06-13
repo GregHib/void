@@ -8,8 +8,8 @@ object RemoveXteas {
 
     fun remove(library: CacheLibrary, xteas: Xteas) {
         println("Removing all xteas...")
-        val index = library.index(Index.MAPS)
         val indexId = Index.MAPS
+        val index = library.index(indexId)
 
         var regions = 0
         for (regionX in 0 until 256) {
