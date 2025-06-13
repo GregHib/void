@@ -13,7 +13,7 @@ class Action<C : Character>(
     delay: Int = 0,
     val behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
     var onCancel: (() -> Unit)? = { character.clearAnim() },
-    var action: suspend Action<*>.() -> Unit = {}
+    var action: suspend Action<*>.() -> Unit = {},
 ) : SuspendableContext<C> {
     var suspension: CancellableContinuation<Unit>? = null
     var remaining: Int = delay
@@ -29,9 +29,7 @@ class Action<C : Character>(
      * Executes action once delay has reached zero
      * @return if action was executed this call
      */
-    fun process(): Boolean {
-        return !removed && this.remaining != -1 && --this.remaining <= 0
-    }
+    fun process(): Boolean = !removed && this.remaining != -1 && --this.remaining <= 0
 
     override suspend fun pause(ticks: Int) {
         suspendCancellableCoroutine {
@@ -75,7 +73,5 @@ class Action<C : Character>(
     fun Character.strongQueue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = null, block: (suspend Action<C>.() -> Unit)?) {
     }
 
-    override fun toString(): String {
-        return "${name}_${count}_${priority.name.toSnakeCase()}_${behaviour.name.toSnakeCase()}"
-    }
+    override fun toString(): String = "${name}_${count}_${priority.name.toSnakeCase()}_${behaviour.name.toSnakeCase()}"
 }

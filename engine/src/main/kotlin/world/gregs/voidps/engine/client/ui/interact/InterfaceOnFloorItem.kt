@@ -12,7 +12,7 @@ data class InterfaceOnFloorItem<C : Character>(
     val floorItem: FloorItem,
     val id: String,
     val component: String,
-    val index: Int
+    val index: Int,
 ) : Interaction<C>() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 

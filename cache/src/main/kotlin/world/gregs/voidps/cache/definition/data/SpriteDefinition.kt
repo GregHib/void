@@ -4,7 +4,7 @@ import world.gregs.voidps.cache.Definition
 
 data class SpriteDefinition(
     override var id: Int = -1,
-    var sprites: Array<IndexedSprite>? = null
+    var sprites: Array<IndexedSprite>? = null,
 ) : Definition {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -16,7 +16,9 @@ data class SpriteDefinition(
         if (sprites != null) {
             if (other.sprites == null) return false
             if (!sprites.contentEquals(other.sprites)) return false
-        } else if (other.sprites != null) return false
+        } else if (other.sprites != null) {
+            return false
+        }
 
         return true
     }

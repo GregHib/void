@@ -1,13 +1,13 @@
 package content.skill.ranged.weapon
 
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.type.random
+import content.area.wilderness.inMultiCombat
 import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.directHit
-import content.area.wilderness.inMultiCombat
-import content.skill.melee.weapon.multiTargets
 import content.entity.sound.sound
+import content.skill.melee.weapon.multiTargets
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.type.random
 import kotlin.random.nextInt
 
 characterCombatDamage("*chinchompa", "range") { character ->

@@ -28,5 +28,4 @@ object ClearItem {
             set(index, null)
         }
     }
-
 }

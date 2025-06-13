@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
-import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_INDEX
 import world.gregs.voidps.engine.entity.character.player.Player
 
 internal class InterfaceExtensionsTest : InterfaceTest() {

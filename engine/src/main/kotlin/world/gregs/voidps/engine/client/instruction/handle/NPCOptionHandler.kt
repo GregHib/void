@@ -18,7 +18,7 @@ import world.gregs.voidps.network.client.instruction.InteractNPC
 
 class NPCOptionHandler(
     private val npcs: NPCs,
-    private val definitions: NPCDefinitions
+    private val definitions: NPCDefinitions,
 ) : InstructionHandler<InteractNPC>() {
 
     private val logger = InlineLogger()
@@ -54,5 +54,4 @@ class NPCOptionHandler(
         player.talkWith(npc, definition)
         player.mode = Interact(player, npc, NPCOption(player, npc, definition, selectedOption))
     }
-
 }

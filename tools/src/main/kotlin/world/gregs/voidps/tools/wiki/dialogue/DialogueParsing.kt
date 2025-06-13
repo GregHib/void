@@ -114,7 +114,7 @@ object DialogueParsing {
         println("    choice(\"${dialogue.options.first()}\") {${if (printIds) " // ${dialogue.id}" else ""}")
         for (option in dialogue.options.drop(1)) {
             val match =
-                dialogue.next.firstOrNull { content[it]?.text == option && (content[it]?.name == dialogue.name || content[it]?.name == "Player") }// ?: content.values.firstOrNull { it.text == option }?.id
+                dialogue.next.firstOrNull { content[it]?.text == option && (content[it]?.name == dialogue.name || content[it]?.name == "Player") } // ?: content.values.firstOrNull { it.text == option }?.id
             if (match != null) {
                 val next = content[content[match]!!.next.first()]
                 if (next != null && isValidNextDialogue(dialogue, next, Int.MAX_VALUE, name)) {

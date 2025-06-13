@@ -7,5 +7,5 @@ data class InteractInterfaceNPC(
     val interfaceId: Int,
     val componentId: Int,
     val itemId: Int,
-    val itemSlot: Int
+    val itemSlot: Int,
 ) : Instruction

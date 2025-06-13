@@ -1,9 +1,15 @@
 package content.entity.player
 
+import WorldTest
+import content.entity.player.dialogue.Pleased
+import content.entity.player.dialogue.type.npc
+import interfaceOption
+import interfaceSwitch
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
+import walk
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
@@ -12,12 +18,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.player.dialogue.Pleased
-import content.entity.player.dialogue.type.npc
-import WorldTest
-import interfaceOption
-import interfaceSwitch
-import walk
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
@@ -31,7 +31,7 @@ internal class WeakInteractionTest : WorldTest() {
         "Remove equipment",
         "Activate prayer",
         "Skill guide",
-        "Toggle attack style"
+        "Toggle attack style",
     ).map {
         dynamicTest("$it interaction clears dialogue") {
             val player = createPlayer()
@@ -65,7 +65,7 @@ internal class WeakInteractionTest : WorldTest() {
     fun `Interaction doesn't clear dialogue`() = listOf(
         "Clan chat setup",
         "Audio settings",
-        "Music player"
+        "Music player",
     ).map {
         dynamicTest("$it interaction doesn't clear dialogue") {
             val player = createPlayer()

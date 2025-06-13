@@ -11,11 +11,11 @@ data class FloorItemUpdate(
     val id: Int,
     val stack: Int,
     val combined: Int,
-    val owner: String?
+    val owner: String?,
 ) : ZoneUpdate(
     Protocol.FLOOR_ITEM_UPDATE,
     Protocol.Batch.FLOOR_ITEM_UPDATE,
-    7
+    7,
 ) {
     override val private = true
     override fun visible(owner: String) = this.owner == null || this.owner == owner

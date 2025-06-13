@@ -13,5 +13,4 @@ class LobbyWorldListRefreshDecoder : Decoder(4) {
         val latency = packet.readInt()
         return null
     }
-
 }

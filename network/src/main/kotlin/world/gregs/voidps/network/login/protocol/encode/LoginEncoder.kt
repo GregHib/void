@@ -11,11 +11,11 @@ fun Client.login(username: String, index: Int, rights: Int, member: Boolean = tr
     writeByte(Response.SUCCESS)
     writeByte(13 + Client.string(username))
     writeByte(rights)
-    writeByte(0)// Unknown - something to do with skipping chat messages
+    writeByte(0) // Unknown - something to do with skipping chat messages
     writeByte(0)
     writeByte(0)
     writeByte(0)
-    writeByte(0)// Moves chat box position
+    writeByte(0) // Moves chat box position
     writeShort(index)
     writeByte(member)
     writeMedium(0)

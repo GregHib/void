@@ -36,8 +36,8 @@ internal class RectangleTest {
     fun `Rectangle regions`() {
         val area = Rectangle(63, 63, 129, 129)
         val expected = mutableListOf<Region>()
-        for(x in 0 until 3) {
-            for(y in 0 until 3) {
+        for (x in 0 until 3) {
+            for (y in 0 until 3) {
                 expected.add(Region(x, y))
             }
         }
@@ -48,8 +48,8 @@ internal class RectangleTest {
     fun `Rectangle zones`() {
         val area = Rectangle(7, 7, 17, 17)
         val expected = mutableListOf<Zone>()
-        for(x in 0 until 3) {
-            for(y in 0 until 3) {
+        for (x in 0 until 3) {
+            for (y in 0 until 3) {
                 expected.add(Zone(x, y, 0))
             }
         }

@@ -12,8 +12,5 @@ import world.gregs.voidps.network.login.protocol.Decoder
 class ChatTypeDecoder : Decoder(1) {
 
     @OptIn(ExperimentalUnsignedTypes::class)
-    override suspend fun decode(packet: ByteReadPacket): Instruction {
-        return ChatTypeChange(packet.readUByte().toInt())
-    }
-
+    override suspend fun decode(packet: ByteReadPacket): Instruction = ChatTypeChange(packet.readUByte().toInt())
 }

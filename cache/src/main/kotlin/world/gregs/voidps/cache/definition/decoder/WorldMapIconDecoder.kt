@@ -15,9 +15,7 @@ class WorldMapIconDecoder : DefinitionDecoder<WorldMapIconDefinition>(WORLD_MAP)
 
     override fun getArchive(id: Int) = archive
 
-    override fun size(cache: Cache): Int {
-        return cache.lastFileId(index, archive)
-    }
+    override fun size(cache: Cache): Int = cache.lastFileId(index, archive)
 
     override fun create(size: Int) = Array(size) { WorldMapIconDefinition(it) }
 

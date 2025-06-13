@@ -1,13 +1,13 @@
 package content.bot.skill.smithing
 
 import content.bot.*
-import net.pearx.kasechange.toLowerSpaceCase
 import content.bot.interact.navigation.await
 import content.bot.interact.navigation.goToArea
 import content.bot.interact.navigation.resume
 import content.bot.skill.combat.getGear
 import content.bot.skill.combat.hasExactGear
 import content.bot.skill.combat.setupGear
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinition
@@ -49,7 +49,7 @@ worldSpawn {
             },
             area = area.area,
             spaces = spaces,
-            requirements = listOf { bot.hasExactGear(Skill.Smithing) }
+            requirements = listOf { bot.hasExactGear(Skill.Smithing) },
         )
         tasks.register(task)
     }

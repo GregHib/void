@@ -9,5 +9,5 @@ data class WorldMapSection(
     var startX: Int,
     var startY: Int,
     var endX: Int,
-    var endY: Int
+    var endY: Int,
 )

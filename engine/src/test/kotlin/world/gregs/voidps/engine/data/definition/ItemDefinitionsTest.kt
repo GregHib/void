@@ -10,24 +10,20 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
     override val id: String = "lit_candle"
     override val intId: Int = 34
 
-    override fun expected(): ItemDefinition {
-        return ItemDefinition(intId, stringId = id, extras = mutableMapOf(
-            "examine" to "A candle."
-        ))
-    }
+    override fun expected(): ItemDefinition = ItemDefinition(
+        intId,
+        stringId = id,
+        extras = mutableMapOf(
+            "examine" to "A candle.",
+        ),
+    )
 
-    override fun empty(): ItemDefinition {
-        return ItemDefinition(-1)
-    }
+    override fun empty(): ItemDefinition = ItemDefinition(-1)
 
-    override fun definitions(): ItemDefinitions {
-        return ItemDefinitions(definitions)
-    }
+    override fun definitions(): ItemDefinitions = ItemDefinitions(definitions)
 
     override fun load(definitions: ItemDefinitions) {
         val uri = ItemDefinitionsTest::class.java.getResource("test-item.toml")!!
         definitions.load(listOf(uri.path))
     }
-
-
 }

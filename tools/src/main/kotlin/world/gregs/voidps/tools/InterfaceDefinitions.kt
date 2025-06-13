@@ -14,7 +14,7 @@ object InterfaceDefinitions {
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             for (comp in def.components ?: continue) {
-                if(comp.defaultMediaId == 26397) {
+                if (comp.defaultMediaId == 26397) {
                     println("${def.id} - ${comp.stringId}")
                 }
             }

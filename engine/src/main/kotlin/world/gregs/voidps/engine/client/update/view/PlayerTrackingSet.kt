@@ -18,9 +18,7 @@ class PlayerTrackingSet {
     val globals = IntArray(MAX_PLAYERS)
     var globalCount = 0
 
-    fun needsAppearanceUpdate(player: Player): Boolean {
-        return appearanceHash[player.index] != player.visuals.appearance.hash
-    }
+    fun needsAppearanceUpdate(player: Player): Boolean = appearanceHash[player.index] != player.visuals.appearance.hash
 
     fun updateAppearance(player: Player) {
         appearanceHash[player.index] = player.visuals.appearance.hash

@@ -50,9 +50,7 @@ object Bank {
         }
     }
 
-    fun tabIndex(player: Player, tab: Int): Int {
-        return (1 until tab).sumOf { t -> player.get<Int>("bank_tab_$t", 0) }
-    }
+    fun tabIndex(player: Player, tab: Int): Int = (1 until tab).sumOf { t -> player.get<Int>("bank_tab_$t", 0) }
 }
 
 val Player.bank: Inventory

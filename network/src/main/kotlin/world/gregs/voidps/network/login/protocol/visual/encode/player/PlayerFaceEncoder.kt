@@ -10,5 +10,4 @@ class PlayerFaceEncoder : VisualEncoder<PlayerVisuals>(PLAYER_FACE_MASK, initial
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
         writer.writeShort(visuals.face.direction)
     }
-
 }

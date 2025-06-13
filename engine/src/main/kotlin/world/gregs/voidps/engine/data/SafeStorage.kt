@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter
  * A backup storage method to use when the primary one fails
  */
 class SafeStorage(
-    private val directory: File
+    private val directory: File,
 ) : AccountStorage {
 
     override fun names(): Map<String, AccountDefinition> = emptyMap()
@@ -27,42 +27,42 @@ class SafeStorage(
         }
     }
 
-    private fun toJson(save: PlayerSave): String {
-        return buildString {
-            appendLine("accountName = \"${save.name}\"")
-            appendLine("passwordHash = \"${save.password}\"")
-            appendLine("experience = [ ${save.experience.joinToString(", ")} ]")
-            appendLine("blocked_skills = [ ${save.blocked.joinToString(", ") { "\"${it.name}\"" }} ]")
-            appendLine("levels = [ ${save.levels.joinToString(", ")} ]")
-            appendLine("male = ${save.male}")
-            appendLine("looks = [ ${save.looks.joinToString(", ")} ]")
-            appendLine("colours = [ ${save.colours.joinToString(", ")} ]")
-            appendLine()
-            appendLine("[tile]")
-            appendLine("x = ${save.tile.x}")
-            appendLine("y = ${save.tile.y}")
-            appendLine("level = ${save.tile.level}")
-            appendLine()
-            appendLine("[variables]")
-            for ((key, value) in save.variables) {
-                appendLine("$key = ${
+    private fun toJson(save: PlayerSave): String = buildString {
+        appendLine("accountName = \"${save.name}\"")
+        appendLine("passwordHash = \"${save.password}\"")
+        appendLine("experience = [ ${save.experience.joinToString(", ")} ]")
+        appendLine("blocked_skills = [ ${save.blocked.joinToString(", ") { "\"${it.name}\"" }} ]")
+        appendLine("levels = [ ${save.levels.joinToString(", ")} ]")
+        appendLine("male = ${save.male}")
+        appendLine("looks = [ ${save.looks.joinToString(", ")} ]")
+        appendLine("colours = [ ${save.colours.joinToString(", ")} ]")
+        appendLine()
+        appendLine("[tile]")
+        appendLine("x = ${save.tile.x}")
+        appendLine("y = ${save.tile.y}")
+        appendLine("level = ${save.tile.level}")
+        appendLine()
+        appendLine("[variables]")
+        for ((key, value) in save.variables) {
+            appendLine(
+                "$key = ${
                     when (value) {
                         is String -> "\"${value}\""
-                        is Collection<*> -> "[${value.map { if(it is String)"\"${it}\"" else it }.joinToString(", ")}]"
+                        is Collection<*> -> "[${value.map { if (it is String)"\"${it}\"" else it }.joinToString(", ")}]"
                         else -> value
                     }
-                }")
-            }
-            appendLine()
-            appendLine("[inventories]")
-            for((inv, items) in save.inventories) {
-                appendLine("$inv = [${items.joinToString(", ") { if (it.isEmpty()) "{}" else "{id = \"${it.id}\", amount = ${it.amount}}" }}]")
-            }
-            appendLine()
-            appendLine("[social]")
-            appendLine("friends = {${save.friends.toList().joinToString(", ") { "\"${it.first}\" = \"${it.second}\""}}}")
-            appendLine("ignores = [${save.ignores.joinToString(", ") { "\"${it}\"" }}]")
+                }",
+            )
         }
+        appendLine()
+        appendLine("[inventories]")
+        for ((inv, items) in save.inventories) {
+            appendLine("$inv = [${items.joinToString(", ") { if (it.isEmpty()) "{}" else "{id = \"${it.id}\", amount = ${it.amount}}" }}]")
+        }
+        appendLine()
+        appendLine("[social]")
+        appendLine("friends = {${save.friends.toList().joinToString(", ") { "\"${it.first}\" = \"${it.second}\""}}}")
+        appendLine("ignores = [${save.ignores.joinToString(", ") { "\"${it}\"" }}]")
     }
 
     override fun exists(accountName: String): Boolean = false

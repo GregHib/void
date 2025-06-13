@@ -4,7 +4,7 @@ import java.util.*
 
 enum class EquipSlot(val index: Int) {
     None(-1),
-    Hat(0),// Head
+    Hat(0), // Head
     Cape(1),
     Amulet(2),
     Weapon(3),
@@ -14,7 +14,8 @@ enum class EquipSlot(val index: Int) {
     Hands(9),
     Feet(10),
     Ring(12),
-    Ammo(13);
+    Ammo(13),
+    ;
 
     companion object {
         private val map = mapOf(
@@ -38,6 +39,5 @@ enum class EquipSlot(val index: Int) {
             val formatted = name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
             return map[formatted] ?: None
         }
-
     }
 }

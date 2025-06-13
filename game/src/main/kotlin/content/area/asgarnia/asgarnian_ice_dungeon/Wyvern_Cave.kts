@@ -41,4 +41,3 @@ objectOperate("Enter", "ice_dungeon_wyvern_cave_enter") {
         }
     }
 }
-

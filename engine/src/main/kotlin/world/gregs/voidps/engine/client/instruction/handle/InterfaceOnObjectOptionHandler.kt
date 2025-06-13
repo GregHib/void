@@ -14,7 +14,7 @@ import world.gregs.voidps.type.Tile
 
 class InterfaceOnObjectOptionHandler(
     private val objects: GameObjects,
-    private val handler: InterfaceHandler
+    private val handler: InterfaceHandler,
 ) : InstructionHandler<InteractInterfaceObject>() {
 
     override fun validate(player: Player, instruction: InteractInterfaceObject) {
@@ -27,7 +27,7 @@ class InterfaceOnObjectOptionHandler(
         }
 
         val (id, component, item, inventory) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
-        val interaction = if(item.isEmpty()) {
+        val interaction = if (item.isEmpty()) {
             InterfaceOnObject(
                 player,
                 obj,
@@ -41,7 +41,7 @@ class InterfaceOnObjectOptionHandler(
                 obj,
                 item,
                 itemSlot,
-                inventory
+                inventory,
             )
         }
         player.closeInterfaces()

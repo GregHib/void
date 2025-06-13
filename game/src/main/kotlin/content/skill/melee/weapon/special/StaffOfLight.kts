@@ -1,5 +1,8 @@
 package content.skill.melee.weapon.special
 
+import content.entity.combat.hit.combatDamage
+import content.entity.player.combat.special.SpecialAttack
+import content.entity.player.combat.special.specialAttackPrepare
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inv.itemRemoved
@@ -8,9 +11,6 @@ import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.combat.hit.combatDamage
-import content.entity.player.combat.special.SpecialAttack
-import content.entity.player.combat.special.specialAttackPrepare
 import java.util.concurrent.TimeUnit
 
 itemRemoved("staff_of_light*", EquipSlot.Weapon, "worn_equipment") { player ->

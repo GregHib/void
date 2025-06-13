@@ -5,8 +5,9 @@ enum class LogoutBehaviour {
      * Execute immediately
      */
     Accelerate,
+
     /**
      * Don't process
      */
-    Discard
+    Discard,
 }

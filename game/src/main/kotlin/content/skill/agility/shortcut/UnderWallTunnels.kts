@@ -14,7 +14,7 @@ objectOperate("Climb-into", "yanille_underwall_tunnel_hole") {
         level = 15,
         start = Tile(2575, 3112),
         end = Tile(2575, 3108),
-        direction = Direction.SOUTH
+        direction = Direction.SOUTH,
     )
 }
 
@@ -23,7 +23,7 @@ objectOperate("Climb-under", "yanille_underwall_tunnel_castle_wall") {
         level = 15,
         start = Tile(2575, 3107),
         end = Tile(2575, 3111),
-        direction = Direction.NORTH
+        direction = Direction.NORTH,
     )
 }
 
@@ -32,7 +32,7 @@ objectOperate("Climb-into", "edgeville_underwall_tunnel") {
         level = 21,
         start = Tile(3138, 3516),
         end = Tile(3143, 3514),
-        direction = Direction.EAST
+        direction = Direction.EAST,
     )
 }
 
@@ -41,7 +41,7 @@ objectOperate("Climb-into", "grand_exchange_underwall_tunnel") {
         level = 21,
         start = Tile(3144, 3514),
         end = Tile(3139, 3516),
-        direction = Direction.WEST
+        direction = Direction.WEST,
     )
 }
 
@@ -50,7 +50,7 @@ objectOperate("Climb-into", "falador_underwall_tunnel_north") {
         level = 26,
         start = Tile(2948, 3313),
         end = Tile(2948, 3310),
-        direction = Direction.SOUTH
+        direction = Direction.SOUTH,
     )
 }
 
@@ -59,7 +59,7 @@ objectOperate("Climb-into", "falador_underwall_tunnel_south") {
         level = 26,
         start = Tile(2948, 3309),
         end = Tile(2948, 3312),
-        direction = Direction.NORTH
+        direction = Direction.NORTH,
     )
 }
 

@@ -39,7 +39,7 @@ fun getTickStages(
     batches: ZoneBatchUpdates = get(),
     hunting: Hunting = get(),
     sequential: Boolean = CharacterTask.DEBUG,
-    handlers: InstructionHandlers = get()
+    handlers: InstructionHandlers = get(),
 ): List<Runnable> {
     val sequentialNpc: TaskIterator<NPC> = SequentialIterator()
     val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
@@ -66,10 +66,10 @@ fun getTickStages(
             players,
             PlayerUpdateTask(players, playerVisualEncoders()),
             NPCUpdateTask(npcs, npcVisualEncoders()),
-            batches
+            batches,
         ),
         AiTick(),
-        accountSave
+        accountSave,
     )
 }
 

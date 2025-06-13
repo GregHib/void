@@ -66,9 +66,7 @@ object DialogueProcessing {
 
         val yaml = Yaml()
         val config = object : YamlWriterConfiguration(forceQuoteStrings = true, formatExplicitListSizeLimit = Int.MAX_VALUE) {
-            override fun write(value: Any?, indent: Int, parentMap: String?): Any? {
-                return super.write(if (value is Dialogue) value.toMap() else value, indent, parentMap)
-            }
+            override fun write(value: Any?, indent: Int, parentMap: String?): Any? = super.write(if (value is Dialogue) value.toMap() else value, indent, parentMap)
         }
         yamlFile.writeText(yaml.writeToString(contents, config))
     }

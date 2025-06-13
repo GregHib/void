@@ -1,15 +1,15 @@
 package content.skill.thieving
 
+import FakeRandom
+import WorldTest
+import content.entity.effect.stunned
+import npcOption
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import FakeRandom
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.setRandom
-import content.entity.effect.stunned
-import WorldTest
-import npcOption
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
@@ -60,5 +60,4 @@ internal class PickpocketTest : WorldTest() {
         assertEquals(player.experience.get(Skill.Thieving), 0.0)
         assertFalse(player.stunned)
     }
-
 }

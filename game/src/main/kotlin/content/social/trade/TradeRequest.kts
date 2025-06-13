@@ -1,5 +1,9 @@
 package content.social.trade
 
+import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
+import content.social.friend.friend
+import content.social.trade.Trade.getPartner
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeType
@@ -14,10 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.moveAll
-import content.social.friend.friend
-import content.social.trade.Trade.getPartner
-import content.entity.player.modal.Tab
-import content.entity.player.modal.tab
 
 /**
  * Requesting to trade with another player, accepting the request and setting up the trade

@@ -130,6 +130,4 @@ val NPC.spot: Map<String, Spot>
 val Spot.minimumLevel: Int
     get() = bait.keys.minOf { minimumLevel(it) ?: Int.MAX_VALUE }
 
-fun Spot.minimumLevel(bait: String): Int? {
-    return this.bait[bait]?.minOf { itemDefinitions.get(it)["fishing", Catch.EMPTY].level }
-}
+fun Spot.minimumLevel(bait: String): Int? = this.bait[bait]?.minOf { itemDefinitions.get(it)["fishing", Catch.EMPTY].level }

@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.event.Events
 data class VariableSet(
     val key: String,
     val from: Any?,
-    val to: Any?
+    val to: Any?,
 ) : Event {
     override val notification = true
 
@@ -27,7 +27,6 @@ data class VariableSet(
         4 -> to
         else -> null
     }
-
 }
 
 fun variableSet(vararg ids: String = arrayOf("*"), from: Any? = "*", to: Any? = "*", handler: suspend VariableSet.(Player) -> Unit) {

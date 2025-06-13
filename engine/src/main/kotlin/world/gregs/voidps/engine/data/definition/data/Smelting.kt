@@ -15,7 +15,7 @@ data class Smelting(
     val xp: Double = 0.0,
     val chance: Int = 255,
     val items: List<Item> = emptyList(),
-    val message: String = ""
+    val message: String = "",
 ) {
     companion object {
         operator fun invoke(reader: ConfigReader): Smelting {

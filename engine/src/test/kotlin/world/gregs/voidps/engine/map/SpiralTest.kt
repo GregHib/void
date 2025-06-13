@@ -12,20 +12,20 @@ internal class SpiralTest {
         1 to arrayOf(
             intArrayOf(2, 3, 4),
             intArrayOf(1, 0, 5),
-            intArrayOf(8, 7, 6)
+            intArrayOf(8, 7, 6),
         ),
         2 to arrayOf(
             intArrayOf(12, 13, 14, 15, 16),
             intArrayOf(11, 2, 3, 4, 17),
             intArrayOf(10, 1, 0, 5, 18),
             intArrayOf(9, 8, 7, 6, 19),
-            intArrayOf(24, 23, 22, 21, 20)
-        )
+            intArrayOf(24, 23, 22, 21, 20),
+        ),
     ).map {
-        //Given
+        // Given
         val radius = it.first
         val expected = it.second
-        //When
+        // When
         dynamicTest("Spiral radius ${it.first}") {
             val spiral = Spiral.outwards(radius)
             print(spiral)
@@ -57,5 +57,4 @@ internal class SpiralTest {
             println()
         }
     }
-
 }

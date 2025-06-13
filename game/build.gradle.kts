@@ -30,7 +30,6 @@ dependencies {
     testImplementation("io.insert-koin:koin-test:${findProperty("koinVersion")}")
     testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${findProperty("kotlinCoroutinesVersion")}")
-
 }
 
 application {
@@ -61,7 +60,7 @@ tasks {
                             file.absolutePath
                                 .substringAfter("kotlin${File.separatorChar}")
                                 .replace(File.separatorChar, '.')
-                                .removeSuffix(".kts")
+                                .removeSuffix(".kts"),
                         )
                         output.write('\n'.code)
                         count++
@@ -81,7 +80,7 @@ tasks {
             exclude(dependency("org.jetbrains.exposed:exposed-jdbc:.*"))
             exclude(dependency("ch.qos.logback:logback-classic:.*"))
         }
-        archiveBaseName.set("void-server-${version}")
+        archiveBaseName.set("void-server-$version")
         archiveClassifier.set("")
         archiveVersion.set("")
         // Replace logback file as the custom colour classes can't be individually excluded from minimization
@@ -128,10 +127,10 @@ distributions {
             val resourcesDir = layout.projectDirectory.dir("src/main/resources")
             from(resourcesDir.file("game.properties"))
             val bat = resourcesDir.file("run-server.bat").asFile
-            bat.writeText(bat.readText().replace("-dev.jar", "-${version}.jar"))
+            bat.writeText(bat.readText().replace("-dev.jar", "-$version.jar"))
             from(bat)
             val shell = resourcesDir.file("run-server.sh").asFile
-            shell.writeText(shell.readText().replace("-dev.jar", "-${version}.jar"))
+            shell.writeText(shell.readText().replace("-dev.jar", "-$version.jar"))
             from(shell)
         }
     }

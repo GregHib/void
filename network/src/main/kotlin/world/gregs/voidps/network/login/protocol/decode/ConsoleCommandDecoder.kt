@@ -17,5 +17,4 @@ class ConsoleCommandDecoder : Decoder(BYTE) {
         val prefix = parts[0]
         return ExecuteCommand(prefix, command.removePrefix(prefix).trim())
     }
-
 }

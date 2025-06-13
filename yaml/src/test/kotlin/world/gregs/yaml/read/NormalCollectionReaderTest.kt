@@ -10,10 +10,12 @@ class NormalCollectionReaderTest {
 
     @Test
     fun `Parse list items aligned`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             - value
             - value
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = listOf("value", "value")
         assertEquals(expected, output)
     }
@@ -21,11 +23,13 @@ class NormalCollectionReaderTest {
     @Test
     fun `Parse list item indented`() {
         assertThrows<IllegalArgumentException> {
-            yaml.read("""
+            yaml.read(
+                """
                 - one
                 - two
                   - three
-            """.trimIndent())
+                """.trimIndent(),
+            )
         }
     }
 
@@ -39,21 +43,25 @@ class NormalCollectionReaderTest {
     @Test
     fun `Parse list key aligned`() {
         assertThrows<IllegalArgumentException> {
-            yaml.read("""
+            yaml.read(
+                """
                 - one
                 - two
                 key:
-            """.trimIndent())
+                """.trimIndent(),
+            )
         }
     }
 
     @Test
     fun `Parse list key indented`() {
         assertThrows<IllegalArgumentException> {
-            yaml.read("""
+            yaml.read(
+                """
                 - value
                   key:
-            """.trimIndent())
+                """.trimIndent(),
+            )
         }
     }
 
@@ -66,21 +74,25 @@ class NormalCollectionReaderTest {
 
     @Test
     fun `Parse map keys aligned`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             one:
             two:
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf("one" to "", "two" to "")
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse map keys indented`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             one:
               two:
               three:
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf("one" to mapOf("two" to "", "three" to ""))
         assertEquals(expected, output)
     }
@@ -94,24 +106,28 @@ class NormalCollectionReaderTest {
 
     @Test
     fun `Parse map key list items aligned`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             one:
             - value
             - value
             two:
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf("one" to listOf("value", "value"), "two" to "")
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse map key list items indented`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             one:
               - value
               - value
             two:
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf("one" to listOf("value", "value"), "two" to "")
         assertEquals(expected, output)
     }
@@ -126,20 +142,24 @@ class NormalCollectionReaderTest {
     @Test
     fun `Parse map value list item aligned`() {
         assertThrows<IllegalArgumentException> {
-            yaml.read("""
+            yaml.read(
+                """
                 key: value
                 - value
-            """.trimIndent())
+                """.trimIndent(),
+            )
         }
     }
 
     @Test
     fun `Parse map value list item indented`() {
         assertThrows<IllegalArgumentException> {
-            yaml.read("""
+            yaml.read(
+                """
                 key: value
                   - value
-            """.trimIndent())
+                """.trimIndent(),
+            )
         }
     }
 
@@ -152,10 +172,12 @@ class NormalCollectionReaderTest {
 
     @Test
     fun `Parse map values aligned`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             one: value
             two: value
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf("one" to "value", "two" to "value")
         assertEquals(expected, output)
     }
@@ -163,10 +185,12 @@ class NormalCollectionReaderTest {
     @Test
     fun `Parse map values indented`() {
         assertThrows<IllegalArgumentException> {
-            yaml.read("""
+            yaml.read(
+                """
                 one: value
                   two: value
-            """.trimIndent())
+                """.trimIndent(),
+            )
         }
     }
 
@@ -180,21 +204,25 @@ class NormalCollectionReaderTest {
     @Test
     fun `Parse list values aligned`() {
         assertThrows<IllegalArgumentException> {
-            yaml.read("""
+            yaml.read(
+                """
                 - one
                 - two: value
                 three: value
-            """.trimIndent())
+                """.trimIndent(),
+            )
         }
     }
 
     @Test
     fun `Parse list values indented`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             - one: value
             - two: value
               three: value
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = listOf(mapOf("one" to "value"), mapOf("two" to "value", "three" to "value"))
         assertEquals(expected, output)
     }
@@ -208,22 +236,26 @@ class NormalCollectionReaderTest {
 
     @Test
     fun `Parse key list map aligned`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             key:
             - one: value
             - two: value
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf("key" to listOf(mapOf("one" to "value"), mapOf("two" to "value")))
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse key list map indented`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             key:
               - one: value
               - two: value
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf("key" to listOf(mapOf("one" to "value"), mapOf("two" to "value")))
         assertEquals(expected, output)
     }
@@ -234,5 +266,4 @@ class NormalCollectionReaderTest {
         val expected = mapOf("key" to "")
         assertEquals(expected, output)
     }
-
 }

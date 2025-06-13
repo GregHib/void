@@ -14,5 +14,4 @@ class PublicQuickChatDecoder : Decoder(BYTE) {
         val data = packet.readBytes(packet.remaining.toInt())
         return QuickChatPublic(script, file, data)
     }
-
 }

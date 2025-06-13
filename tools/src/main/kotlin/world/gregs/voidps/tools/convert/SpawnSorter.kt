@@ -9,7 +9,7 @@ object SpawnSorter {
     @JvmStatic
     fun main(args: Array<String>) {
         val type = ".teles.toml"
-        val file = File("../void/data/objects/teleports/all${type}")
+        val file = File("../void/data/objects/teleports/all$type")
 
         val lines = file.readLines()
         val directory = file.parentFile
@@ -144,7 +144,8 @@ object SpawnSorter {
         12089, 12088 -> "wilderness_bandit_camp"
         11831, 12087, 12343, 12599, 12855, 13111, 13367, 11832, 12344, 12600, 12856, 13112,
         13368, 11833, 12857, 13113, 13369, 11834, 12090, 12858, 13114, 13370, 11835, 12091,
-        12347, 12603, 12859, 13115, 13371, 11836, 12092, 12348, 12604, 12860, 13116, 13372, 12093, 12349, 12605, 12861, 13117 -> "wilderness"
+        12347, 12603, 12859, 13115, 13371, 11836, 12092, 12348, 12604, 12860, 13116, 13372, 12093, 12349, 12605, 12861, 13117,
+        -> "wilderness"
         12345, 12601, 12346, 12602 -> "bounty_hunter"
         11837 -> "wilderness_agility_course"
         12082, 12081 -> "port_sarim"

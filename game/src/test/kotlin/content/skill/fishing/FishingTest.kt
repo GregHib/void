@@ -1,14 +1,14 @@
 package content.skill.fishing
 
+import FakeRandom
+import WorldTest
+import npcOption
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import FakeRandom
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.setRandom
-import WorldTest
-import npcOption
 
 internal class FishingTest : WorldTest() {
 
@@ -30,6 +30,4 @@ internal class FishingTest : WorldTest() {
         assertTrue(player.inventory.contains("raw_trout"))
         assertTrue(player.experience.get(Skill.Fishing) > 0)
     }
-
-
 }

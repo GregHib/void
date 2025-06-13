@@ -1,15 +1,12 @@
 package content.area.mithalin.barbarian_village
 
 import WorldTest
-import content.entity.player.dialogue.continueDialogue
 import objectOption
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.combatLevel
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class StrongholdOfSecurityPortalTest : WorldTest() {
 
@@ -152,5 +149,4 @@ class StrongholdOfSecurityPortalTest : WorldTest() {
 
         assertEquals(tile, player.tile)
     }
-
 }

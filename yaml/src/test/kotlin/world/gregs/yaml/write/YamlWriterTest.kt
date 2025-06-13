@@ -51,7 +51,7 @@ class YamlWriterTest {
     @Test
     fun `Write string without quotes`() {
         val config = YamlWriterConfiguration(
-            quoteStrings = false
+            quoteStrings = false,
         )
         val input = "input string value"
         val actual = yaml.writeToString(input, config)
@@ -64,7 +64,7 @@ class YamlWriterTest {
     @Test
     fun `Write quoted string`() {
         val config = YamlWriterConfiguration(
-            forceQuoteStrings = true
+            forceQuoteStrings = true,
         )
         val input = "input string value"
         val actual = yaml.writeToString(input, config)
@@ -77,7 +77,7 @@ class YamlWriterTest {
     @Test
     fun `Write merge key map anchor`() {
         val config = YamlWriterConfiguration(
-            forceQuoteStrings = true
+            forceQuoteStrings = true,
         )
         val input = mapOf("one" to mapOf("&" to "anchor-name", "two" to "value"), "three" to 3, "four" to mapOf("<<" to "*anchor-name", "five" to 5))
         val actual = yaml.writeToString(input, config)
@@ -96,7 +96,7 @@ class YamlWriterTest {
     @Test
     fun `Write list anchor`() {
         val config = YamlWriterConfiguration(
-            forceQuoteStrings = true
+            forceQuoteStrings = true,
         )
         val input = listOf(listOf("&anchor-name", "one", "two"), "three", listOf("*anchor-name", "four"))
         val actual = yaml.writeToString(input, config)

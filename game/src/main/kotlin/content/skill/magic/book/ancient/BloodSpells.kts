@@ -1,9 +1,9 @@
 package content.skill.magic.book.ancient
 
+import content.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
-import content.entity.combat.hit.characterCombatAttack
 
 val definitions: SpellDefinitions by inject()
 

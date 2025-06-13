@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.timedLoad
 
 class NPCDefinitions(
-    override var definitions: Array<NPCDefinition>
+    override var definitions: Array<NPCDefinition>,
 ) : DefinitionsDecoder<NPCDefinition> {
 
     override lateinit var ids: Map<String, Int>
@@ -23,7 +23,7 @@ class NPCDefinitions(
         paths: List<String>,
         dropTables: DropTables? = null,
         animationDefinitions: AnimationDefinitions? = null,
-        soundDefinitions: SoundDefinitions? = null
+        soundDefinitions: SoundDefinitions? = null,
     ): NPCDefinitions {
         timedLoad("npc extra") {
             val ids = Object2IntOpenHashMap<String>()
@@ -78,7 +78,7 @@ class NPCDefinitions(
                                 "combat_sounds" -> {
                                     val name = string()
                                     if (soundDefinitions != null && name.isNotBlank()) {
-                                        require(soundDefinitions.contains("${name}_attack") || soundDefinitions.contains("${name}_defend") || soundDefinitions.contains("${name}_death")) { "No combat sounds '${name}' found for npc $stringId" }
+                                        require(soundDefinitions.contains("${name}_attack") || soundDefinitions.contains("${name}_defend") || soundDefinitions.contains("${name}_death")) { "No combat sounds '$name' found for npc $stringId" }
                                     }
                                     extras[key] = name
                                 }
@@ -103,5 +103,4 @@ class NPCDefinitions(
         }
         return this
     }
-
 }

@@ -1,17 +1,17 @@
 package content.quest.miniquest
 
-import org.junit.jupiter.api.Test
 import FakeRandom
+import WorldTest
+import dialogueContinue
+import dialogueOption
+import npcOption
+import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
-import WorldTest
-import dialogueContinue
-import dialogueOption
-import npcOption
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -57,12 +57,10 @@ internal class EnterTheAbyss : WorldTest() {
         var wizard = findNpc(player, "aubury")
         player.npcOption(wizard, 3) // Teleport
         setRandom(object : FakeRandom() {
-            override fun nextInt(from: Int, until: Int): Int {
-                return when (from) {
-                    2884 -> 2911
-                    4807 -> 4832
-                    else -> from
-                }
+            override fun nextInt(from: Int, until: Int): Int = when (from) {
+                2884 -> 2911
+                4807 -> 4832
+                else -> from
             }
         })
         tick(4)
@@ -98,5 +96,4 @@ internal class EnterTheAbyss : WorldTest() {
     }
 
     private fun findNpc(player: Player, id: String) = npcs[player.tile.region.toLevel(player.tile.level)].first { it.id == id }
-
 }

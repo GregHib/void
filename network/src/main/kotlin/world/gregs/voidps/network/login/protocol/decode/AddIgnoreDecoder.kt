@@ -8,8 +8,5 @@ import world.gregs.voidps.network.login.protocol.readString
 
 class AddIgnoreDecoder : Decoder(BYTE) {
 
-    override suspend fun decode(packet: ByteReadPacket): Instruction {
-        return IgnoreAdd(packet.readString())
-    }
-
+    override suspend fun decode(packet: ByteReadPacket): Instruction = IgnoreAdd(packet.readString())
 }

@@ -1,10 +1,10 @@
 package content.entity.player.effect.degrade
 
+import WorldTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import WorldTest
 
 class DegradeTest : WorldTest() {
 

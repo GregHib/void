@@ -15,7 +15,7 @@ import world.gregs.voidps.network.login.protocol.writeIntMiddle
 fun Client.skillLevel(
     skill: Int,
     level: Int,
-    experience: Int
+    experience: Int,
 ) = send(SKILL_LEVEL) {
     writeByteSubtract(level)
     writeByteInverse(skill)

@@ -17,34 +17,26 @@ object Spiral {
 
     internal class TileIterator(
         private val tile: Tile,
-        private val steps: Array<Delta>
+        private val steps: Array<Delta>,
     ) : Iterator<Tile> {
 
         private var index = 0
 
-        override fun hasNext(): Boolean {
-            return index < steps.size
-        }
-        override fun next(): Tile {
-            return tile.add(steps[index++])
-        }
+        override fun hasNext(): Boolean = index < steps.size
+        override fun next(): Tile = tile.add(steps[index++])
     }
 
     fun spiral(zone: Zone, radius: Int): Iterator<Zone> = ZoneIterator(zone, STEPS[radius])
 
     internal class ZoneIterator(
         private val zone: Zone,
-        private val steps: Array<Delta>
+        private val steps: Array<Delta>,
     ) : Iterator<Zone> {
         private var index = 0
 
-        override fun hasNext(): Boolean {
-            return index < steps.size
-        }
+        override fun hasNext(): Boolean = index < steps.size
 
-        override fun next(): Zone {
-            return zone.add(steps[index++])
-        }
+        override fun next(): Zone = zone.add(steps[index++])
     }
 
     /**

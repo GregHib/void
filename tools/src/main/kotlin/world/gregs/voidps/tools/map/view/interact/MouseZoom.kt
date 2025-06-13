@@ -31,12 +31,11 @@ class MouseZoom(private val view: MapView, private val type: ZoomType) : MouseWh
 
     enum class ZoomType {
         Mouse,
-        Centre
+        Centre,
     }
 
     companion object {
         private const val ZOOM_MIN = 1
         private const val ZOOM_MAX = 50
     }
-
 }

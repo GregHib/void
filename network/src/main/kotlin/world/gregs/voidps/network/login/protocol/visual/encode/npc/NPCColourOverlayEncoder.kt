@@ -22,5 +22,4 @@ class NPCColourOverlayEncoder : VisualEncoder<NPCVisuals>(NPC_COLOUR_OVERLAY_MAS
             writeShort(duration)
         }
     }
-
 }

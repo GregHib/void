@@ -1,11 +1,5 @@
 package content.area.wilderness
 
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.random
 import content.entity.combat.hit.hit
 import content.entity.combat.hit.npcCombatAttack
 import content.entity.combat.npcCombatSwing
@@ -13,6 +7,12 @@ import content.entity.effect.freeze
 import content.entity.effect.toxin.poison
 import content.entity.proj.shoot
 import content.entity.sound.sound
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.random
 
 val specials = listOf("toxic", "ice", "shock")
 

@@ -1,5 +1,8 @@
 package content.skill.magic
 
+import content.entity.combat.hit.hit
+import content.skill.melee.CombatFormulaTest
+import interfaceOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -9,9 +12,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.combat.hit.hit
-import content.skill.melee.CombatFormulaTest
-import interfaceOption
 
 internal class AddChargeGodSpellEffectTest : CombatFormulaTest() {
 

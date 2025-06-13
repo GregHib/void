@@ -1,17 +1,17 @@
 package content.quest.miniquest.alfred_grimhands_barcrawl
 
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
-import world.gregs.voidps.engine.event.TargetContext
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
-import content.quest.quest
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.quest.quest
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.TargetContext
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 
 suspend fun <T : TargetInteraction<Player, NPC>> T.barCrawlDrink(
     start: (suspend T.() -> Unit)? = null,

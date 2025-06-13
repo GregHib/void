@@ -17,8 +17,5 @@ class NPCHitsEncoder : VisualEncoder<NPCVisuals>(NPC_HITS_MASK) {
         }
     }
 
-    override fun encode(writer: Writer, visuals: NPCVisuals) {
-        throw RuntimeException("Shouldn't be reachable")
-    }
-
+    override fun encode(writer: Writer, visuals: NPCVisuals): Unit = throw RuntimeException("Shouldn't be reachable")
 }

@@ -13,7 +13,7 @@ object DemonSlayerSpell {
     }
 
     fun randomiseOrder(player: Player) {
-        val order = (1 .. 5).shuffled()
+        val order = (1..5).shuffled()
         player["demon_slayer_aber"] = order[0]
         player["demon_slayer_camerinthum"] = order[1]
         player["demon_slayer_carlem"] = order[2]

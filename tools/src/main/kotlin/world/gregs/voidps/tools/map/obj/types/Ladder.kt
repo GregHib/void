@@ -1,15 +1,15 @@
 package world.gregs.voidps.tools.map.obj.types
 
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.tools.map.obj.GameObjectOption
 import world.gregs.voidps.tools.map.obj.ObjectIdentificationContext
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 
 val ladderOptionNameOpposition: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
-    when(opt) {
+    when (opt) {
         "climb down" -> {
-            when(target.opt) {
+            when (target.opt) {
                 "climb up" -> if (obj.tile.level > target.obj.tile.level) 1.0 else 0.8
                 "climb" -> 0.6
                 else -> 0.0

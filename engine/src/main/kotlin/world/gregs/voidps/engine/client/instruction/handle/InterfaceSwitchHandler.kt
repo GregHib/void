@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.client.instruction.MoveInventoryItem
 
 class InterfaceSwitchHandler(
-    private val handler: InterfaceHandler
+    private val handler: InterfaceHandler,
 ) : InstructionHandler<MoveInventoryItem>() {
 
     override fun validate(player: Player, instruction: MoveInventoryItem) {
@@ -32,8 +32,8 @@ class InterfaceSwitchHandler(
                 toComponent = toComponent,
                 toItem = toItem,
                 toSlot = toSlot,
-                toInventory = toInventory
-            )
+                toInventory = toInventory,
+            ),
         )
     }
 }

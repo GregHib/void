@@ -9,5 +9,4 @@ class SayEncoder(mask: Int) : VisualEncoder<Visuals>(mask) {
     override fun encode(writer: Writer, visuals: Visuals) {
         writer.writeString(visuals.say.text)
     }
-
 }

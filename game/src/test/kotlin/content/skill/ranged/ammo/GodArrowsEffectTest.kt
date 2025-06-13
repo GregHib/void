@@ -1,17 +1,17 @@
 package content.skill.ranged.ammo
 
+import FakeRandom
+import content.entity.combat.hit.hit
+import content.skill.melee.CombatFormulaTest
+import content.skill.ranged.ammo
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import FakeRandom
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
-import content.entity.combat.hit.hit
-import content.skill.ranged.ammo
-import content.skill.melee.CombatFormulaTest
 import kotlin.test.assertNotEquals
 
 internal class GodArrowsEffectTest : CombatFormulaTest() {
@@ -43,5 +43,4 @@ internal class GodArrowsEffectTest : CombatFormulaTest() {
         assertNotEquals(990, target.levels.get(Skill.Constitution))
         assertNotEquals(980, target.levels.get(Skill.Constitution))
     }
-
 }

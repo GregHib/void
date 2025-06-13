@@ -8,7 +8,7 @@ open class Polygon(
     val xPoints: IntArray,
     val yPoints: IntArray,
     val level: Int = 0,
-    maxLevel: Int = level
+    maxLevel: Int = level,
 ) : Area {
 
     init {
@@ -107,6 +107,5 @@ open class Polygon(
             }
             return inside
         }
-
     }
 }

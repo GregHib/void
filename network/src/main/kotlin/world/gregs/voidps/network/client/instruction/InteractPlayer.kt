@@ -4,5 +4,5 @@ import world.gregs.voidps.network.client.Instruction
 
 data class InteractPlayer(
     val playerIndex: Int,
-    val option: Int
+    val option: Int,
 ) : Instruction

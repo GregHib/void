@@ -16,7 +16,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 data class ItemAdded(
     val inventory: String,
     val index: Int,
-    val item: Item
+    val item: Item,
 ) : Event {
 
     override val notification = true
@@ -30,7 +30,6 @@ data class ItemAdded(
         3 -> inventory
         else -> null
     }
-
 }
 
 fun itemAdded(item: String = "*", slot: EquipSlot, inventory: String = "*", handler: suspend ItemAdded.(Player) -> Unit) {

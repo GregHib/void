@@ -9,7 +9,7 @@ data class HitSplat(
     val delay: Int = 0,
     val critical: Boolean = false,
     val source: Int = -1,
-    val soak: Int = -1
+    val soak: Int = -1,
 ) {
 
     sealed class Mark(val id: Int) {
@@ -89,7 +89,5 @@ data class HitSplat(
         return mark
     }
 
-    private fun interactingWith(observer: Int, victim: Int, source: Int): Boolean {
-        return observer == victim || observer == source
-    }
+    private fun interactingWith(observer: Int, victim: Int, source: Int): Boolean = observer == victim || observer == source
 }

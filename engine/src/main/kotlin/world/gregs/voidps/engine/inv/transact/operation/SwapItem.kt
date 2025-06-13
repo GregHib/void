@@ -35,5 +35,4 @@ object SwapItem {
         set(fromIndex, target[toIndex], from = target.id, fromIndex = toIndex)
         transaction.set(toIndex, item, from = inventory.id, fromIndex = fromIndex)
     }
-
 }

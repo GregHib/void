@@ -23,16 +23,16 @@ object Overlap {
 
     fun isDiagonal(x: Int, y: Int, width: Int, height: Int, targetX: Int, targetY: Int, targetWidth: Int, targetHeight: Int): Boolean {
         if (x >= targetX + targetWidth && y >= targetY + targetHeight) {
-            return true// ne
+            return true // ne
         }
         if (x + width <= targetX && y >= targetY + targetHeight) {
-            return true// nw
+            return true // nw
         }
         if (x >= targetX + targetWidth && y + height <= targetY) {
-            return true// se
+            return true // se
         }
         if (x + width <= targetX && y + height <= targetY) {
-            return true// sw
+            return true // sw
         }
         return false
     }

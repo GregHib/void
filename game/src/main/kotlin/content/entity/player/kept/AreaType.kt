@@ -5,5 +5,5 @@ enum class AreaType {
     Safe,
     CastleWars,
     TroubleBrewing,
-    BarbarianAssault
+    BarbarianAssault,
 }

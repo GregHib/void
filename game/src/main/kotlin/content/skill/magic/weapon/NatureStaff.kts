@@ -1,5 +1,6 @@
 package content.skill.magic.weapon
 
+import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
@@ -12,7 +13,6 @@ import world.gregs.voidps.engine.inv.transact.charge
 import world.gregs.voidps.engine.inv.transact.discharge
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import content.entity.player.inv.inventoryItem
 
 playerSpawn { player ->
     player.sendVariable("nature_staff_charges")

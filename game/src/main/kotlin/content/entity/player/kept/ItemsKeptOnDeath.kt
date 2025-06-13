@@ -1,24 +1,22 @@
 package content.entity.player.kept
 
 import content.area.wilderness.inWilderness
+import content.entity.player.effect.skulled
+import content.skill.prayer.praying
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import content.skill.prayer.praying
-import content.entity.player.effect.skulled
-import world.gregs.voidps.engine.entity.item.ItemKept
 import java.util.*
 
 object ItemsKeptOnDeath {
 
-    fun getAllOrdered(player: Player): List<Item> {
-        return player.inventory.items
-            .union(player.equipment.items.toList())
-            .filter { it.isNotEmpty() }
-            .sortedByDescending { it.def.cost }
-    }
+    fun getAllOrdered(player: Player): List<Item> = player.inventory.items
+        .union(player.equipment.items.toList())
+        .filter { it.isNotEmpty() }
+        .sortedByDescending { it.def.cost }
 
     fun kept(player: Player, items: List<Item>, enums: EnumDefinitions): List<Item> {
         var save = if (player.skulled) 0 else 3

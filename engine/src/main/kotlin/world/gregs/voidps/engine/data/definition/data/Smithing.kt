@@ -8,7 +8,7 @@ import world.gregs.config.ConfigReader
  */
 data class Smithing(
     val level: Int = 0,
-    val xp: Double = 0.0
+    val xp: Double = 0.0,
 ) {
     companion object {
         operator fun invoke(reader: ConfigReader): Smithing {

@@ -2,7 +2,6 @@ package world.gregs.voidps.tools.cache
 
 import kotlin.math.pow
 
-
 class Permutations {
 
     private val builder = IntArray(1000)
@@ -67,5 +66,4 @@ class Permutations {
 //        }
         }
     }
-
 }

@@ -39,5 +39,4 @@ class JingleDefinitions : DefinitionsDecoder<JingleDefinition> {
     }
 
     override fun empty() = JingleDefinition.EMPTY
-
 }

@@ -1,5 +1,7 @@
 package content.area.kandarin.ourania
 
+import WorldTest
+import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
@@ -7,8 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
-import WorldTest
-import objectOption
 
 internal class OuraniaAltarTest : WorldTest() {
 
@@ -40,5 +40,4 @@ internal class OuraniaAltarTest : WorldTest() {
         assertEquals(56, player.inventory.count("mind_rune"))
         assertEquals(308.0, player.experience.get(Skill.Runecrafting))
     }
-
 }

@@ -36,5 +36,5 @@ interface AccountStorage {
     /**
      * Loads an account from the stored location
      */
-    fun load(accountName: String) : PlayerSave?
+    fun load(accountName: String): PlayerSave?
 }

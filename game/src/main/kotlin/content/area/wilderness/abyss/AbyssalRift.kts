@@ -1,9 +1,9 @@
 package content.area.wilderness.abyss
 
+import content.entity.obj.objTeleportTakeOff
+import content.quest.questCompleted
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import content.quest.questCompleted
-import content.entity.obj.objTeleportTakeOff
 
 objTeleportTakeOff("Exit-through", "*_rift") {
     when {

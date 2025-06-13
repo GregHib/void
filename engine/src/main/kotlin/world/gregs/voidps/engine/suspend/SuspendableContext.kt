@@ -8,8 +8,6 @@ import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import kotlin.math.ceil
-import kotlin.math.log
 import kotlin.math.round
 
 interface SuspendableContext<C : Character> : Context<C> {

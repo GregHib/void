@@ -12,7 +12,7 @@ object DumpMap {
     fun main(args: Array<String>) {
         Settings.load()
         val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
-        val xteas = Xteas()//.load("./xteas.json")
+        val xteas = Xteas() // .load("./xteas.json")
         val region = Region(12341)
         val tiles = cache.data(Index.MAPS, "m${region.x}_${region.y}")!!
         val objects = cache.data(Index.MAPS, "l${region.x}_${region.y}", xteas[region])!!

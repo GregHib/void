@@ -8,8 +8,5 @@ import world.gregs.voidps.network.login.protocol.readString
 
 class ClanChatJoinDecoder : Decoder(BYTE) {
 
-    override suspend fun decode(packet: ByteReadPacket): Instruction {
-        return ClanChatJoin(packet.readString())
-    }
-
+    override suspend fun decode(packet: ByteReadPacket): Instruction = ClanChatJoin(packet.readString())
 }

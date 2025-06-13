@@ -1,5 +1,7 @@
 package content.entity.player.effect
 
+import content.area.wilderness.inWilderness
+import content.entity.combat.attackers
 import world.gregs.voidps.engine.entity.character.mode.combat.combatStart
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
@@ -8,8 +10,6 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
-import content.entity.combat.attackers
-import content.area.wilderness.inWilderness
 
 playerSpawn { player ->
     if (player.skulled) {

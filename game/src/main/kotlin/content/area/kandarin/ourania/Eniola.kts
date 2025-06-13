@@ -1,5 +1,11 @@
 package content.area.kandarin.ourania
 
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.ChoiceBuilder
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.social.trade.lend.Loan.getSecondsRemaining
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
@@ -11,14 +17,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.StringSuspension
-import content.social.trade.lend.Loan.getSecondsRemaining
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.ChoiceBuilder
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.suspend.SuspendableContext
 
 npcOperate("Talk-to", "eniola") {
     npc<Quiz>("Well met, fellow adventurer! How can I help you?")
@@ -101,14 +101,14 @@ suspend fun NPCOption<Player>.openCollection() {
     }
 }
 
-
 suspend fun NPCOption<Player>.openBank() {
     if (runePayment()) {
         player.open("bank")
     }
 }
 
-val runes = listOf("air_rune",
+val runes = listOf(
+    "air_rune",
     "mind_rune",
     "water_rune",
     "earth_rune",
@@ -121,7 +121,7 @@ val runes = listOf("air_rune",
     "death_rune",
     "blood_rune",
     "nature_rune",
-    "soul_rune"
+    "soul_rune",
 )
 
 suspend fun SuspendableContext<Player>.runePayment(): Boolean {

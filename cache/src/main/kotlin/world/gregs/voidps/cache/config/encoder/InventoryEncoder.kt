@@ -13,5 +13,4 @@ class InventoryEncoder : ConfigEncoder<InventoryDefinition>() {
         }
         writeByte(0)
     }
-
 }

@@ -18,5 +18,5 @@ data class ExactMovement(
     var endX: Int = 0,
     var endY: Int = 0,
     var endDelay: Int = 0,
-    var direction: Int = 0
+    var direction: Int = 0,
 ) : Visual

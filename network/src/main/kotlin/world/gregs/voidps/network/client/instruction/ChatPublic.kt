@@ -7,5 +7,5 @@ import world.gregs.voidps.network.client.Instruction
  */
 data class ChatPublic(
     val text: String,
-    val effects: Int
+    val effects: Int,
 ) : Instruction

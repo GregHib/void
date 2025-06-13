@@ -11,7 +11,7 @@ import kotlin.random.Random
 class Distribution<T : Any>(
     list: List<Pair<T, Double>>,
     invert: Boolean = false,
-    private val random: Random
+    private val random: Random,
 ) {
 
     /**
@@ -22,7 +22,7 @@ class Distribution<T : Any>(
             .groupBy { it }
             .map { it.key to it.value.size.toDouble() },
         invert,
-        random
+        random,
     )
 
     private val sorted = list.filter { it.second > 0 }.sortedBy { it.second }.toTypedArray()
@@ -69,15 +69,11 @@ class Distribution<T : Any>(
 }
 
 @JvmName("weightedIntSample")
-fun <T : Any> weightedSample(list: List<Pair<T, Int>>, invert: Boolean = false): T? =
-    Distribution(list.map { it.first to it.second.toDouble() }, invert, random).sample()
+fun <T : Any> weightedSample(list: List<Pair<T, Int>>, invert: Boolean = false): T? = Distribution(list.map { it.first to it.second.toDouble() }, invert, random).sample()
 
 @JvmName("weightedDoubleSample")
-fun <T : Any> weightedSample(list: List<Pair<T, Double>>, invert: Boolean = false): T? =
-    Distribution(list, invert, random).sample()
+fun <T : Any> weightedSample(list: List<Pair<T, Double>>, invert: Boolean = false): T? = Distribution(list, invert, random).sample()
 
-inline fun <reified T : Any> weightedSample(list: List<T>, invert: Boolean = false): T? =
-    Distribution(list.toTypedArray(), invert, random).sample()
+inline fun <reified T : Any> weightedSample(list: List<T>, invert: Boolean = false): T? = Distribution(list.toTypedArray(), invert, random).sample()
 
-inline fun <reified T : Any> weightedSample(array: Array<T>, invert: Boolean = false): T? =
-    Distribution(array, invert, random).sample()
+inline fun <reified T : Any> weightedSample(array: Array<T>, invert: Boolean = false): T? = Distribution(array, invert, random).sample()

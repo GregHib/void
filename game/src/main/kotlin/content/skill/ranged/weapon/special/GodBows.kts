@@ -1,11 +1,11 @@
 package content.skill.ranged.weapon.special
 
 import content.entity.combat.hit.*
+import content.entity.sound.sound
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timer.*
-import content.entity.sound.sound
 import java.util.concurrent.TimeUnit
 
 var Player.restoration: Int

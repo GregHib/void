@@ -4,14 +4,14 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.data.WorldMapDefinition
 import world.gregs.voidps.cache.definition.data.WorldMapIconDefinition
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.tools.ClientScriptDefinitions
+import world.gregs.voidps.type.Tile
 
 class WorldMapDungeons(
     private val detailsDecoder: Array<WorldMapDefinition>,
     private val iconDecoder: Array<WorldMapIconDefinition>,
     private val scriptDecoder: Array<ClientScriptDefinition>,
-    private val cache: Cache
+    private val cache: Cache,
 ) {
 
     fun getLinks(): List<Pair<Tile, Tile>> {

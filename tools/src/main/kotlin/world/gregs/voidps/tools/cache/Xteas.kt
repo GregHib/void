@@ -9,17 +9,15 @@ import world.gregs.yaml.Yaml
 import java.io.File
 
 data class Xteas(
-    val delegate: MutableMap<Int, IntArray> = Int2ObjectOpenHashMap()
+    val delegate: MutableMap<Int, IntArray> = Int2ObjectOpenHashMap(),
 ) : Map<Int, IntArray> by delegate {
 
-    operator fun get(region: Region): IntArray? {
-        return this[region.id]
-    }
+    operator fun get(region: Region): IntArray? = this[region.id]
 
     fun load(
         path: String = Settings["storage.xteas"],
         key: String = Settings["xteaJsonKey", DEFAULT_KEY],
-        value: String = Settings["xteaJsonValue", DEFAULT_VALUE]
+        value: String = Settings["xteaJsonValue", DEFAULT_VALUE],
     ): Xteas {
         timedLoad("xtea") {
             val file = File(path)
@@ -37,8 +35,10 @@ data class Xteas(
     }
 
     companion object {
-        fun loadDirectory(file: File): Map<Int, IntArray> = (file
-            .listFiles { f -> f.extension == "txt" } ?: emptyArray<File>()).associate {
+        fun loadDirectory(file: File): Map<Int, IntArray> = (
+            file
+                .listFiles { f -> f.extension == "txt" } ?: emptyArray<File>()
+            ).associate {
             val lines = it.readLines()
             val keys = IntArray(4) { i -> lines.getOrNull(i)?.toInt() ?: 0 }
             it.nameWithoutExtension.toInt() to keys

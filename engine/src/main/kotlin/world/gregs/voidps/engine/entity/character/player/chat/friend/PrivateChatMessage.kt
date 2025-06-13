@@ -11,13 +11,13 @@ import world.gregs.voidps.engine.event.EventDispatcher
 data class PrivateChatMessage(
     val source: Player,
     val message: String,
-    val compressed: ByteArray
+    val compressed: ByteArray,
 ) : Event {
     constructor(source: Player, message: String, huffman: Huffman) : this(source, message, huffman.compress(message))
 
     override val size = 1
 
-    override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "private_chat_message"
         else -> null
     }

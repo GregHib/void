@@ -139,7 +139,7 @@ object DropTableConverter {
                 "Rare" -> listOf(1, 256)
                 "Very rare" -> listOf(1, 512)
                 "Brimstone rarity" -> return
-                else -> throw IllegalArgumentException("Unknown rarity '${rarity}'")
+                else -> throw IllegalArgumentException("Unknown rarity '$rarity'")
             }
         }
 
@@ -199,37 +199,35 @@ object DropTableConverter {
             val roll: Int = 1,
             val members: Boolean? = null,
         ) {
-            override fun toString(): String {
-                return Config.stringWriter {
-                    write("  { ")
-                    val table = amount == -1..-1
-                    writeKey(if (table) "table" else "id")
-                    writeValue(id)
-                    if (!table && amount != 1..1) {
+            override fun toString(): String = Config.stringWriter {
+                write("  { ")
+                val table = amount == -1..-1
+                writeKey(if (table) "table" else "id")
+                writeValue(id)
+                if (!table && amount != 1..1) {
+                    write(", ")
+                    if (amount.first == amount.last) {
+                        writeKey("amount")
+                        writeValue(amount.first)
+                    } else {
+                        writeKey("min")
+                        writeValue(amount.first)
                         write(", ")
-                        if (amount.first == amount.last) {
-                            writeKey("amount")
-                            writeValue(amount.first)
-                        } else {
-                            writeKey("min")
-                            writeValue(amount.first)
-                            write(", ")
-                            writeKey("max")
-                            writeValue(amount.last)
-                        }
+                        writeKey("max")
+                        writeValue(amount.last)
                     }
-                    if (chance != 1) {
-                        write(", ")
-                        writeKey("chance")
-                        writeValue(chance)
-                    }
-                    if (members != null) {
-                        write(", ")
-                        writeKey("members")
-                        writeValue(members)
-                    }
-                    write(" },\n")
                 }
+                if (chance != 1) {
+                    write(", ")
+                    writeKey("chance")
+                    writeValue(chance)
+                }
+                if (members != null) {
+                    write(", ")
+                    writeKey("members")
+                    writeValue(members)
+                }
+                write(" },\n")
             }
 
             companion object {

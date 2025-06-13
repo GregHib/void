@@ -4,7 +4,7 @@ package world.gregs.yaml
  * Reads a string of characters one at a time
  */
 class CharReader(
-    val anchors: MutableMap<String, Any>
+    val anchors: MutableMap<String, Any>,
 ) {
     private lateinit var input: CharArray
     var size = 0
@@ -29,9 +29,7 @@ class CharReader(
     private val charInLine: Int
         get() = index - lastLine
 
-    fun next(): Char {
-        return input[++index]
-    }
+    fun next(): Char = input[++index]
 
     fun inBounds(offset: Int) = this.index + offset < size
 
@@ -54,9 +52,7 @@ class CharReader(
         lineCount = 1
     }
 
-    fun substring(start: Int, end: Int): String {
-        return String(input, start, end - start)
-    }
+    fun substring(start: Int, end: Int): String = String(input, start, end - start)
 
     /**
      * Skips over spaces, line breaks and comments to reach the next line

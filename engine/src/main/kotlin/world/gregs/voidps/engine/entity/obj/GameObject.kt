@@ -16,7 +16,9 @@ import world.gregs.voidps.type.Tile
  * Interactive Object
  */
 @JvmInline
-value class GameObject(internal val packed: Long) : Entity, EventDispatcher {
+value class GameObject(internal val packed: Long) :
+    Entity,
+    EventDispatcher {
 
     constructor(id: Int, x: Int, y: Int, level: Int, shape: Int, rotation: Int) : this(pack(id, x, y, level, shape, rotation))
 
@@ -51,29 +53,21 @@ value class GameObject(internal val packed: Long) : Entity, EventDispatcher {
     fun nearestTo(tile: Tile) = Tile(
         x = Distance.getNearest(x, width, tile.x),
         y = Distance.getNearest(y, height, tile.y),
-        level = level
+        level = level,
     )
 
-    override fun toString(): String {
-        return if (KoinPlatformTools.defaultContext().getOrNull() == null) {
-            "GameObject(intId=$intId, tile=$tile, shape=$shape, rotation=$rotation)"
-        } else {
-            "GameObject(id=$id, intId=$intId, tile=$tile, shape=$shape, rotation=$rotation)"
-        }
+    override fun toString(): String = if (KoinPlatformTools.defaultContext().getOrNull() == null) {
+        "GameObject(intId=$intId, tile=$tile, shape=$shape, rotation=$rotation)"
+    } else {
+        "GameObject(id=$id, intId=$intId, tile=$tile, shape=$shape, rotation=$rotation)"
     }
 
     companion object {
-        operator fun invoke(id: Int, tile: Tile, shape: Int, rotation: Int): GameObject {
-            return GameObject(id, tile.x, tile.y, tile.level, shape, rotation)
-        }
+        operator fun invoke(id: Int, tile: Tile, shape: Int, rotation: Int): GameObject = GameObject(id, tile.x, tile.y, tile.level, shape, rotation)
 
-        internal fun pack(id: Int, x: Int, y: Int, level: Int, shape: Int, rotation: Int): Long {
-            return pack(id.toLong(), x.toLong(), y.toLong(), level.toLong(), shape.toLong(), rotation.toLong())
-        }
+        internal fun pack(id: Int, x: Int, y: Int, level: Int, shape: Int, rotation: Int): Long = pack(id.toLong(), x.toLong(), y.toLong(), level.toLong(), shape.toLong(), rotation.toLong())
 
-        private fun pack(id: Long, x: Long, y: Long, level: Long, shape: Long, rotation: Long): Long {
-            return y or (x shl 14) or (level shl 28) or (rotation shl 30) or (shape shl 32) or (id shl 37)
-        }
+        private fun pack(id: Long, x: Long, y: Long, level: Long, shape: Long, rotation: Long): Long = y or (x shl 14) or (level shl 28) or (rotation shl 30) or (shape shl 32) or (id shl 37)
 
         fun id(packed: Long): Int = (packed shr 37 and 0x1ffff).toInt()
         fun x(packed: Long): Int = (packed shr 14 and 0x3fff).toInt()

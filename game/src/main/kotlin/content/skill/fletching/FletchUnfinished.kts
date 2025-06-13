@@ -1,5 +1,6 @@
 package content.skill.fletching
 
+import content.entity.player.dialogue.type.makeAmount
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -13,7 +14,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
-import content.entity.player.dialogue.type.makeAmount
 
 val itemDefinitions: ItemDefinitions by inject()
 
@@ -25,7 +25,7 @@ itemOnItem("knife", "*logs*") {
             displayItems,
             type = "Make",
             maximum = 27,
-            text = "What would you like to fletch?"
+            text = "What would you like to fletch?",
         )
         val itemToFletch: Fletching = itemDefinitions.get(selected).getOrNull("fletching_unf") ?: return@weakQueue
         if (!it.has(Skill.Fletching, itemToFletch.level, true)) {
@@ -64,12 +64,10 @@ fun fletch(player: Player, addItem: String, addItemDef: Fletching, removeItem: S
     }
 }
 
-fun getFletched(itemName: String): String {
-    return when {
-        itemName.contains("shortbow", ignoreCase = true) -> "a Shortbow"
-        itemName.contains("longbow", ignoreCase = true) -> "a Longbow"
-        itemName.contains("stock", ignoreCase = true) -> "a Stock"
-        itemName.contains("shaft", ignoreCase = true) -> "Shafts"
-        else -> "null"
-    }
+fun getFletched(itemName: String): String = when {
+    itemName.contains("shortbow", ignoreCase = true) -> "a Shortbow"
+    itemName.contains("longbow", ignoreCase = true) -> "a Longbow"
+    itemName.contains("stock", ignoreCase = true) -> "a Stock"
+    itemName.contains("shaft", ignoreCase = true) -> "Shafts"
+    else -> "null"
 }

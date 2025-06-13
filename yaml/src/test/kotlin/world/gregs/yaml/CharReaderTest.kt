@@ -9,10 +9,12 @@ class CharReaderTest {
 
     @Test
     fun `Read initial line`() {
-        reader.set("""
+        reader.set(
+            """
             a line
             item
-        """.trimIndent())
+            """.trimIndent(),
+        )
         reader.nextLine()
         assertEquals(0, reader.indentation)
         assertEquals(0, reader.index)
@@ -20,10 +22,12 @@ class CharReaderTest {
 
     @Test
     fun `Read line with trailing space and comment`() {
-        reader.set("""
+        reader.set(
+            """
             a line # with comment
             item
-        """.trimIndent())
+            """.trimIndent(),
+        )
 
         var index = skip("a line")
         index += " # with comment\n".length
@@ -34,10 +38,12 @@ class CharReaderTest {
 
     @Test
     fun `Read line with comment`() {
-        reader.set("""
+        reader.set(
+            """
             a line# with comment
             item
-        """.trimIndent())
+            """.trimIndent(),
+        )
 
         var index = skip("a line")
         index += "# with comment\n".length
@@ -48,10 +54,12 @@ class CharReaderTest {
 
     @Test
     fun `Read line with excess spaces`() {
-        reader.set("""
+        reader.set(
+            """
             a line   
             item
-        """.trimIndent())
+            """.trimIndent(),
+        )
 
         var index = skip("a line")
         index += "   \n".length
@@ -62,10 +70,12 @@ class CharReaderTest {
 
     @Test
     fun `Read line`() {
-        reader.set("""
+        reader.set(
+            """
             a line
             item
-        """.trimIndent())
+            """.trimIndent(),
+        )
 
         var index = skip("a line")
         index += "\n".length
@@ -76,10 +86,12 @@ class CharReaderTest {
 
     @Test
     fun `Read multi-line indent`() {
-        reader.set("""
+        reader.set(
+            """
             a line
               item
-        """.trimIndent())
+            """.trimIndent(),
+        )
 
         var index = skip("a line")
         index += "\n  ".length
@@ -90,10 +102,12 @@ class CharReaderTest {
 
     @Test
     fun `Read large indent`() {
-        reader.set("""
+        reader.set(
+            """
             a line
                   item
-        """.trimIndent())
+            """.trimIndent(),
+        )
 
         var index = skip("a line")
         index += "\n      ".length

@@ -17,7 +17,7 @@ data class WikiPage(
     val namespace: WikiNamespace,
     val id: Int,
     val redirect: String,
-    val revision: WikiPageRevision
+    val revision: WikiPageRevision,
 ) {
 
     private val config: WikiConfig by lazy { DefaultConfigEnWp.generate() }
@@ -43,12 +43,10 @@ data class WikiPage(
         }
     }
 
-    private fun getTemplate(arguments: WtTemplateArguments): Any {
-        return if (arguments.any { it is WtTemplateArgument && it.hasName() }) {
-            arguments.filterIsInstance<WtTemplateArgument>().associate { arg -> unwrap(arg[0] as WtName) to unwrapValue(arg[1] as WtValue) }
-        } else {
-            arguments.filterIsInstance<WtTemplateArgument>().map { arg -> unwrap(arg[1] as WtValue) }
-        }
+    private fun getTemplate(arguments: WtTemplateArguments): Any = if (arguments.any { it is WtTemplateArgument && it.hasName() }) {
+        arguments.filterIsInstance<WtTemplateArgument>().associate { arg -> unwrap(arg[0] as WtName) to unwrapValue(arg[1] as WtValue) }
+    } else {
+        arguments.filterIsInstance<WtTemplateArgument>().map { arg -> unwrap(arg[1] as WtValue) }
     }
 
     val redirected: Boolean = revision.text.contains(redirectPattern)
@@ -63,17 +61,11 @@ data class WikiPage(
         }
     }
 
-    fun getTemplateMap(name: String): Map<String, Any>? {
-        return templates.firstOrNull { it.first.contains(name, true) }?.second as? Map<String, Any>
-    }
+    fun getTemplateMap(name: String): Map<String, Any>? = templates.firstOrNull { it.first.contains(name, true) }?.second as? Map<String, Any>
 
-    fun getTemplateList(name: String): List<Pair<String, Any>>? {
-        return templates.firstOrNull { it.first.contains(name, true) }?.second as? List<Pair<String, Any>>
-    }
+    fun getTemplateList(name: String): List<Pair<String, Any>>? = templates.firstOrNull { it.first.contains(name, true) }?.second as? List<Pair<String, Any>>
 
-    fun getTemplateMaps(name: String): List<Map<String, Any>> {
-        return templates.filter { it.first.contains(name, true) }.mapNotNull { it.second as? Map<String, Any> }
-    }
+    fun getTemplateMaps(name: String): List<Map<String, Any>> = templates.filter { it.first.contains(name, true) }.mapNotNull { it.second as? Map<String, Any> }
 
     private fun unwrap(node: WtNode): String {
         val first = node.firstOrNull() ?: return ""
@@ -114,9 +106,7 @@ data class WikiPage(
     /**
      * Get table by name of first header
      */
-    fun table(name: String): WikiPageTable {
-        return tables.first { it.headers.first().equals(name, true) }
-    }
+    fun table(name: String): WikiPageTable = tables.first { it.headers.first().equals(name, true) }
 
     val content: List<WtNode> by lazy {
         val list = mutableListOf<WtNode>()
@@ -142,7 +132,7 @@ data class WikiPage(
                 namespace = children.first { it.nodeName == "ns" }.textContent.toInt().let { id -> namespaces.firstOrNull { it.key == id } ?: namespaces.first { it.key == 0 } },
                 id = children.first { it.nodeName == "id" }.textContent.toInt(),
                 redirect = children.firstOrNull { it.nodeName == "redirect" }?.attributes?.getNamedItem("title")?.textContent ?: "",
-                revision = WikiPageRevision(children.first { it.nodeName == "revision" })
+                revision = WikiPageRevision(children.first { it.nodeName == "revision" }),
             )
         }
     }

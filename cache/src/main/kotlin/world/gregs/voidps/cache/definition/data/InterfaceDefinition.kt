@@ -11,8 +11,9 @@ data class InterfaceDefinition(
     var resizable: Int = -1,
     var permanent: Boolean = true,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Extra {
 
     fun parent(resizable: Boolean) = if (resizable) this.resizable else fixed
 

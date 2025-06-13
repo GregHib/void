@@ -25,7 +25,7 @@ data class CombatAttack(
     val weapon: Item,
     val spell: String,
     val special: Boolean,
-    val delay: Int
+    val delay: Int,
 ) : Event {
 
     override val notification: Boolean = true

@@ -1,5 +1,6 @@
 package content.achievement
 
+import content.quest.questCompleted
 import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.engine.client.variable.BooleanValues
 import world.gregs.voidps.engine.client.variable.MapValues
@@ -14,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.character.player.summoningCombatLevel
 import world.gregs.voidps.engine.get
-import content.quest.questCompleted
 import java.util.*
 import java.util.Calendar.HOUR_OF_DAY
 import java.util.concurrent.TimeUnit
@@ -113,61 +113,57 @@ object Tasks {
     // Missing quests: 199, 200, 229
     // Missing skills: 302, 305
     // Extra skills: 3005, 3012
-    private fun hasRequirements(player: Player, id: Int): Boolean {
-        return when (id) {
-            12 -> player["penguin_hide_and_seek_explained", false]
-            23 -> player["fairy_rings_unlocked", false]
-            49 -> player["unlocked_emote_air_guitar", false]
-            59 -> player.questCompleted("into_the_abyss")
-            147, 167 -> player["fairy_rings_unlocked", false]
-            107 -> player.getInt("dragon_slayer", "unstarted") >= 2 && player["dragon_slayer_received_shield", false] || player.questCompleted("dragon_slayer")
-            219 -> player.combatLevel >= 100
-            331 -> player.summoningCombatLevel >= 100
-            276, 3011 -> player["quest_points", 0] >= 33
-            281 -> player["unlocked_emote_flap", false] && !player["unlocked_emote_slap_head", false] && !player["unlocked_emote_idea", false] && player["unlocked_emote_stomp", false]
-            289 -> player.combatLevel >= 40
-            300 -> kudosCount(player) >= 153
-            3000 -> minutes() >= player["varp_451", 0] && !(player["quest_points", 0] < player["varbit_456", 0] && player["total_xp_earned", 0.0] < player["varp_450", 0.0])
-            3001 -> player.summoningCombatLevel >= 40
-            3002 -> player["penguins_found_weekly", 0] != 10 && player["penguin_points", 0] != 50 && player["penguin_hide_and_seek_explained", 0] != 0
-            3003 -> player["nurture_evil_tree_stage", 0] < 2
-            3007 -> !player["circus_magic", false] || !player["circus_agility", false] || !player["circus_ranged", false]
-            3008 -> player["bork_defeated_day", 0] != days()
-            3010 -> minutes() < player["skeletal_horror_respawn_minute", 0]
-            3013 -> player.summoningCombatLevel >= 40
-            3015 -> player.hasMax(Skill.Attack, 65) || player.hasMax(Skill.Defence, 65)
-            3031 -> player.summoningCombatLevel >= 48
-            3034 -> player.levels.getMax(Skill.Strength) + player.levels.getMax(Skill.Attack) >= 130 || !player.hasMax(Skill.Attack, 99) || !player.hasMax(Skill.Strength, 99)
-            3500 -> unstableFoundationsStage(player) == 3500
-            3501 -> unstableFoundationsStage(player) == 3501
-            3505 -> unstableFoundationsStage(player) == 3505
-            3511 -> unstableFoundationsStage(player) == 3511
-            3502 -> unstableFoundationsStage(player) == 3502
-            3503 -> unstableFoundationsStage(player) == 3503
-            3504 -> unstableFoundationsStage(player) == 3504
-            3506 -> unstableFoundationsStage(player) == 3506
-            3508 -> unstableFoundationsStage(player) == 3508
-            3509 -> unstableFoundationsStage(player) == 3509
-            3507 -> unstableFoundationsStage(player) == 3507
-            3523 -> unstableFoundationsStage(player) == 3523
-            3510 -> unstableFoundationsStage(player) == 3510
-            3512 -> unstableFoundationsStage(player) == 3512
-            3513 -> unstableFoundationsStage(player) == 3513
-            3514 -> unstableFoundationsStage(player) == 3514
-            3515 -> player.getInt("unstable_foundations", "unstarted") in 135..160 && player["varbit_6495", 0] != 0 && player["varbit_6495", 0] != 1
-            3516 -> player.getInt("unstable_foundations", "unstarted") in 135..160 && player["varbit_6495", 0] != 2 && player["varbit_6495", 0] != 3
-            3517 -> player.getInt("unstable_foundations", "unstarted") >= 140 && player["varbit_6495", 0] != 0 && player["varbit_6495", 0] != 1 && !player.has(Skill.Woodcutting, 2)
-            3518 -> player.getInt("unstable_foundations", "unstarted") >= 140 && player["varbit_6495", 0] != 2 && player["varbit_6495", 0] != 3 && !player.has(Skill.Mining, 2)
-            3519 -> unstableFoundationsStage(player) == 3519
-            3520 -> unstableFoundationsStage(player) == 3521 && player["varbit_6494", 0] <= 2
-            3521 -> unstableFoundationsStage(player) == 3521 && player["varbit_6494", 0] == 5
-            else -> true
-        }
+    private fun hasRequirements(player: Player, id: Int): Boolean = when (id) {
+        12 -> player["penguin_hide_and_seek_explained", false]
+        23 -> player["fairy_rings_unlocked", false]
+        49 -> player["unlocked_emote_air_guitar", false]
+        59 -> player.questCompleted("into_the_abyss")
+        147, 167 -> player["fairy_rings_unlocked", false]
+        107 -> player.getInt("dragon_slayer", "unstarted") >= 2 && player["dragon_slayer_received_shield", false] || player.questCompleted("dragon_slayer")
+        219 -> player.combatLevel >= 100
+        331 -> player.summoningCombatLevel >= 100
+        276, 3011 -> player["quest_points", 0] >= 33
+        281 -> player["unlocked_emote_flap", false] && !player["unlocked_emote_slap_head", false] && !player["unlocked_emote_idea", false] && player["unlocked_emote_stomp", false]
+        289 -> player.combatLevel >= 40
+        300 -> kudosCount(player) >= 153
+        3000 -> minutes() >= player["varp_451", 0] && !(player["quest_points", 0] < player["varbit_456", 0] && player["total_xp_earned", 0.0] < player["varp_450", 0.0])
+        3001 -> player.summoningCombatLevel >= 40
+        3002 -> player["penguins_found_weekly", 0] != 10 && player["penguin_points", 0] != 50 && player["penguin_hide_and_seek_explained", 0] != 0
+        3003 -> player["nurture_evil_tree_stage", 0] < 2
+        3007 -> !player["circus_magic", false] || !player["circus_agility", false] || !player["circus_ranged", false]
+        3008 -> player["bork_defeated_day", 0] != days()
+        3010 -> minutes() < player["skeletal_horror_respawn_minute", 0]
+        3013 -> player.summoningCombatLevel >= 40
+        3015 -> player.hasMax(Skill.Attack, 65) || player.hasMax(Skill.Defence, 65)
+        3031 -> player.summoningCombatLevel >= 48
+        3034 -> player.levels.getMax(Skill.Strength) + player.levels.getMax(Skill.Attack) >= 130 || !player.hasMax(Skill.Attack, 99) || !player.hasMax(Skill.Strength, 99)
+        3500 -> unstableFoundationsStage(player) == 3500
+        3501 -> unstableFoundationsStage(player) == 3501
+        3505 -> unstableFoundationsStage(player) == 3505
+        3511 -> unstableFoundationsStage(player) == 3511
+        3502 -> unstableFoundationsStage(player) == 3502
+        3503 -> unstableFoundationsStage(player) == 3503
+        3504 -> unstableFoundationsStage(player) == 3504
+        3506 -> unstableFoundationsStage(player) == 3506
+        3508 -> unstableFoundationsStage(player) == 3508
+        3509 -> unstableFoundationsStage(player) == 3509
+        3507 -> unstableFoundationsStage(player) == 3507
+        3523 -> unstableFoundationsStage(player) == 3523
+        3510 -> unstableFoundationsStage(player) == 3510
+        3512 -> unstableFoundationsStage(player) == 3512
+        3513 -> unstableFoundationsStage(player) == 3513
+        3514 -> unstableFoundationsStage(player) == 3514
+        3515 -> player.getInt("unstable_foundations", "unstarted") in 135..160 && player["varbit_6495", 0] != 0 && player["varbit_6495", 0] != 1
+        3516 -> player.getInt("unstable_foundations", "unstarted") in 135..160 && player["varbit_6495", 0] != 2 && player["varbit_6495", 0] != 3
+        3517 -> player.getInt("unstable_foundations", "unstarted") >= 140 && player["varbit_6495", 0] != 0 && player["varbit_6495", 0] != 1 && !player.has(Skill.Woodcutting, 2)
+        3518 -> player.getInt("unstable_foundations", "unstarted") >= 140 && player["varbit_6495", 0] != 2 && player["varbit_6495", 0] != 3 && !player.has(Skill.Mining, 2)
+        3519 -> unstableFoundationsStage(player) == 3519
+        3520 -> unstableFoundationsStage(player) == 3521 && player["varbit_6494", 0] <= 2
+        3521 -> unstableFoundationsStage(player) == 3521 && player["varbit_6494", 0] == 5
+        else -> true
     }
 
-    private fun Player.getInt(id: String, default: String): Int {
-        return get<VariableDefinitions>().get(id)!!.values.toInt(this[id, default])
-    }
+    private fun Player.getInt(id: String, default: String): Int = get<VariableDefinitions>().get(id)!!.values.toInt(this[id, default])
 
     private fun minutes() = TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis())
 

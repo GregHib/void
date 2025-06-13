@@ -16,18 +16,14 @@ class FileCache(
     private val index255: RandomAccessFile,
     private val indexes: Array<RandomAccessFile?>,
     indexCount: Int,
-    val xteas: Map<Int, IntArray>?
+    val xteas: Map<Int, IntArray>?,
 ) : ReadOnlyCache(indexCount) {
 
     private val dataCache = object : LinkedHashMap<Int, Array<ByteArray?>>(16, 0.75f, true) {
-        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<Int, Array<ByteArray?>>): Boolean {
-            return size > 12
-        }
+        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<Int, Array<ByteArray?>>): Boolean = size > 12
     }
     private val sectorCache = object : LinkedHashMap<Int, ByteArray?>(16, 0.75f, true) {
-        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<Int, ByteArray?>): Boolean {
-            return size > 12
-        }
+        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<Int, ByteArray?>): Boolean = size > 12
     }
     private val length = main.length()
     private val context = DecompressionContext()
@@ -70,9 +66,7 @@ class FileCache(
     companion object : CacheLoader {
         const val CACHE_FILE_NAME = "main_file_cache"
 
-        operator fun invoke(path: String, exponent: BigInteger? = null, modulus: BigInteger? = null, xteas: Map<Int, IntArray>? = null): Cache {
-            return load(path, exponent, modulus, xteas)
-        }
+        operator fun invoke(path: String, exponent: BigInteger? = null, modulus: BigInteger? = null, xteas: Map<Int, IntArray>? = null): Cache = load(path, exponent, modulus, xteas)
 
         /**
          * Create [RandomAccessFile]'s for each index file, load only the archive data into memory
@@ -86,7 +80,7 @@ class FileCache(
             indexCount: Int,
             versionTable: VersionTableBuilder?,
             xteas: Map<Int, IntArray>?,
-            threadUsage: Double
+            threadUsage: Double,
         ): Cache {
             val length = mainFile.length()
             val context = DecompressionContext()

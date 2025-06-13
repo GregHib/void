@@ -45,7 +45,7 @@ object ObjectLayer {
         GROUND,
         GROUND,
         GROUND,
-        GROUND_DECORATION
+        GROUND_DECORATION,
     )
 
     /**

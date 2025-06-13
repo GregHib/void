@@ -14,8 +14,9 @@ data class ObjectTeleport(
     override val character: Player,
     val target: GameObject,
     val obj: ObjectDefinition,
-    val option: String
-) : CancellableEvent(), Context<Player> {
+    val option: String,
+) : CancellableEvent(),
+    Context<Player> {
     var delay: Int? = null
     var land: Boolean = false
     var move: (suspend SuspendableContext<Player>.(Tile) -> Unit)? = null

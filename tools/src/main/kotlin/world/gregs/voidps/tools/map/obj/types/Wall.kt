@@ -1,11 +1,11 @@
 package world.gregs.voidps.tools.map.obj.types
 
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.tools.map.obj.ObjectIdentificationContext
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 
 val wallOptions: ObjectIdentificationContext.(Tile) -> Double = { _ ->
     if (opt == "climb down" || opt == "climb up") {
@@ -61,7 +61,7 @@ private fun check(obj: GameObject, tiles: Set<Tile>, dir: Direction): Boolean {
 
 private fun GameObject.reachableFrom(tile: Tile): Boolean {
     val collisions: Collisions = get()
-    return false//interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.level, 0x100)// BLOCKED
+    return false // interactTarget.reached(tile, Size.ONE) && !collisions.check(tile.x, tile.y, tile.level, 0x100)// BLOCKED
 }
 
 fun Boolean.toDouble() = if (this) 1.0 else 0.0

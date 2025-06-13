@@ -1,19 +1,21 @@
 package content.area.kharidian_desert.al_kharid.duel_arena
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.PlayerChoice
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.suspend.SuspendableContext
 
 npcOperate("Talk-to", "mubariz") {
-    npc<Happy>("""
+    npc<Happy>(
+        """
         Welcome to the Duel Arena!
         What can I do for you?
-    """)
+    """,
+    )
     menu()
 }
 

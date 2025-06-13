@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.type.Tile
 
 data class CharacterTargetStrategy(
-    private val character: Character
+    private val character: Character,
 ) : TargetStrategy {
     override val bitMask = 0
     override val tile: Tile

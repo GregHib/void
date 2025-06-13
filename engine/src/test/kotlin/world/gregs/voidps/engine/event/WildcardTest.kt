@@ -57,5 +57,4 @@ class WildcardTest {
         assertTrue(wildcardEquals("*two*", "one_two_three"))
         assertTrue(wildcardEquals("*one*two*three*four*", "_one_two_three_four_"))
     }
-
 }

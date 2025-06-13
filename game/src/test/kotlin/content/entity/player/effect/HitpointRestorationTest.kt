@@ -1,5 +1,7 @@
 package content.entity.player.effect
 
+import WorldTest
+import content.skill.prayer.PrayerConfigs
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
@@ -7,8 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.skill.prayer.PrayerConfigs
-import WorldTest
 import kotlin.test.assertTrue
 
 internal class HitpointRestorationTest : WorldTest() {
@@ -60,5 +60,4 @@ internal class HitpointRestorationTest : WorldTest() {
         tick(11)
         assertFalse(player.softTimers.contains("restore_hitpoints"))
     }
-
 }

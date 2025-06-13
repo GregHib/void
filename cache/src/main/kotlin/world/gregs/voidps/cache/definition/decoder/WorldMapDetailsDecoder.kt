@@ -11,9 +11,7 @@ import java.util.*
 
 class WorldMapDetailsDecoder : DefinitionDecoder<WorldMapDefinition>(WORLD_MAP) {
 
-    override fun size(cache: Cache): Int {
-        return cache.lastFileId(index, cache.archiveId(index, "details"))
-    }
+    override fun size(cache: Cache): Int = cache.lastFileId(index, cache.archiveId(index, "details"))
 
     override fun load(definitions: Array<WorldMapDefinition>, cache: Cache, id: Int) {
         val archive = cache.archiveId(index, "details")
@@ -32,9 +30,9 @@ class WorldMapDetailsDecoder : DefinitionDecoder<WorldMapDefinition>(WORLD_MAP) 
         map = buffer.readString()
         name = buffer.readString()
         position = buffer.readInt()
-        anInt9542 = buffer.readInt()// Size?
+        anInt9542 = buffer.readInt() // Size?
         static = buffer.readUnsignedBoolean()
-        anInt9547 = buffer.readUnsignedByte()// Always zero except "Braindeath Island" which is -1
+        anInt9547 = buffer.readUnsignedByte() // Always zero except "Braindeath Island" which is -1
         buffer.readUnsignedByte()
 
         if (anInt9547 == 255) {
@@ -53,8 +51,8 @@ class WorldMapDetailsDecoder : DefinitionDecoder<WorldMapDefinition>(WORLD_MAP) 
                     buffer.readShort(),
                     buffer.readShort(),
                     buffer.readShort(),
-                    buffer.readShort()
-                )
+                    buffer.readShort(),
+                ),
             )
         }
     }

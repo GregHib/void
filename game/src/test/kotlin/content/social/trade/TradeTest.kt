@@ -1,17 +1,17 @@
 package content.social.trade
 
+import WorldTest
+import interfaceOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.Item
-import WorldTest
-import interfaceOption
 import playerOption
 import walk
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
 
 internal class TradeTest : WorldTest() {
 
@@ -75,5 +75,4 @@ internal class TradeTest : WorldTest() {
         sender.interfaceOption("trade_side", "offer", "Offer-10", item = Item("coins"), slot = 0)
         return Pair(sender, receiver)
     }
-
 }

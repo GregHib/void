@@ -1,5 +1,11 @@
 package content.skill.constitution.drink
 
+import content.entity.effect.toxin.poisoned
+import content.entity.player.dialogue.type.item
+import content.entity.player.effect.energy.MAX_RUN_ENERGY
+import content.entity.player.effect.energy.runEnergy
+import content.entity.player.inv.inventoryItem
+import content.skill.constitution.consume
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -10,12 +16,6 @@ import world.gregs.voidps.engine.inv.transact.operation.AddCharge.charge
 import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.discharge
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.type.random
-import content.entity.player.dialogue.type.item
-import content.skill.constitution.consume
-import content.entity.player.effect.energy.MAX_RUN_ENERGY
-import content.entity.player.effect.energy.runEnergy
-import content.entity.player.inv.inventoryItem
-import content.entity.effect.toxin.poisoned
 
 consume("cup_of_tea") { player ->
     player.levels.boost(Skill.Attack, 3)
@@ -40,11 +40,15 @@ consume("nettle_tea") { player ->
 
 inventoryItem("Look-in", "tea_flask") {
     val charges = player.inventory.charges(player, slot)
-    item("tea_flask", 400, when (charges) {
-        0 -> "There's no tea in this flask."
-        1 -> "There is one serving of tea in this flask."
-        else -> "There is $charges servings of tea in this flask."
-    })
+    item(
+        "tea_flask",
+        400,
+        when (charges) {
+            0 -> "There's no tea in this flask."
+            1 -> "There is one serving of tea in this flask."
+            else -> "There is $charges servings of tea in this flask."
+        },
+    )
 }
 
 inventoryItem("Drink", "tea_flask") {

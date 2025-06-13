@@ -6,7 +6,7 @@ import world.gregs.voidps.type.Tile
 data class GameObjectOption(
     val option: String,
     val obj: GameObject,
-    val tiles: Set<Tile>
+    val tiles: Set<Tile>,
 ) {
     val opt = option.replace("-", " ").lowercase()
 }

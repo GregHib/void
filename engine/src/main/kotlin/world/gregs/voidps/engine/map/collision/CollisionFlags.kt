@@ -30,7 +30,8 @@ enum class CollisionFlags {
     ROUTE_SOUTH_EAST,
     ROUTE_SOUTH,
     ROUTE_SOUTH_WEST,
-    ROUTE_WEST;
+    ROUTE_WEST,
+    ;
 
     val bit: Int = 1 shl ordinal
 
@@ -67,7 +68,7 @@ enum class CollisionFlags {
             WALL_SOUTH_EAST.bit or ROUTE_SOUTH_EAST.bit or PROJECTILE_SOUTH_EAST.bit,
             WALL_SOUTH.bit or ROUTE_SOUTH.bit or PROJECTILE_SOUTH.bit,
             WALL_SOUTH_WEST.bit or ROUTE_SOUTH_WEST.bit or PROJECTILE_SOUTH_WEST.bit,
-            WALL_WEST.bit or ROUTE_WEST.bit or PROJECTILE_WEST.bit
+            WALL_WEST.bit or ROUTE_WEST.bit or PROJECTILE_WEST.bit,
         )
         val inverse: IntArray = IntArray(32) { blocked[it].inv() }
     }

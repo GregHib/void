@@ -20,7 +20,6 @@ data class AfterDeath(
         1 -> dispatcher.identifier
         else -> null
     }
-
 }
 
 fun playerAfterDeath(handler: suspend AfterDeath.(Player) -> Unit) {

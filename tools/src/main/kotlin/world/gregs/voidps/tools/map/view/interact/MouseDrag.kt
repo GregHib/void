@@ -44,5 +44,4 @@ class MouseDrag(private val view: MapView) : MouseAdapter() {
             view.drag(e.x, e.y, mapStartX, mapStartY, offsetX, offsetY)
         }
     }
-
 }

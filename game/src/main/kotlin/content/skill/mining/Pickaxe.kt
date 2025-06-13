@@ -17,11 +17,8 @@ object Pickaxe {
         Item("mithril_pickaxe"),
         Item("steel_pickaxe"),
         Item("iron_pickaxe"),
-        Item("bronze_pickaxe")
+        Item("bronze_pickaxe"),
     )
 
-
-    fun best(player: Player): Item? {
-        return pickaxes.firstOrNull { pickaxe -> player.hasRequirementsToUse(pickaxe, skills = setOf(Skill.Mining, Skill.Firemaking)) && player.holdsItem(pickaxe.id) }
-    }
+    fun best(player: Player): Item? = pickaxes.firstOrNull { pickaxe -> player.hasRequirementsToUse(pickaxe, skills = setOf(Skill.Mining, Skill.Firemaking)) && player.holdsItem(pickaxe.id) }
 }

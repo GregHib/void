@@ -15,7 +15,7 @@ class MinimapIconPainter(
     private val objectDefinitions: Array<ObjectDefinitionFull>,
     private val worldMapDefinitions: Array<WorldMapDefinition>,
     private val worldMapInfoDefinitions: Array<WorldMapInfoDefinition>,
-    private val spriteDefinitions: Array<SpriteDefinition>
+    private val spriteDefinitions: Array<SpriteDefinition>,
 ) {
 
     data class MapIcon(val x: Int, val y: Int, val level: Int, val bi: BufferedImage)
@@ -115,5 +115,4 @@ class MinimapIconPainter(
         val i = if (!bool) spriteId else highlightSpriteId
         return if (i > 0) spriteDefinitions[i].sprites?.firstOrNull() else null
     }
-
 }

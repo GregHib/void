@@ -1,5 +1,12 @@
 package content.entity.player.equip
 
+import content.entity.player.effect.antifire
+import content.entity.player.effect.superAntifire
+import content.skill.magic.spell.spell
+import content.skill.melee.weapon.Weapon
+import content.skill.melee.weapon.combatStyle
+import content.skill.prayer.protectMagic
+import content.skill.summoning.isFamiliar
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -11,13 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import content.skill.summoning.isFamiliar
-import content.skill.magic.spell.spell
-import content.skill.prayer.protectMagic
-import content.entity.player.effect.antifire
-import content.entity.player.effect.superAntifire
-import content.skill.melee.weapon.Weapon
-import content.skill.melee.weapon.combatStyle
 import kotlin.math.ceil
 
 object Equipment {
@@ -134,17 +134,13 @@ object Equipment {
 
     fun hasEliteVoidEffect(character: Character) = character.contains("elite_void_set_effect")
 
-    fun bonus(source: Character, target: Character, type: String, offense: Boolean): Int {
-        return if (offense) {
-            style(source, if (source is NPC) "attack_bonus" else "${combatStyle(type, source)}_attack")
-        } else {
-            style(target, "${combatStyle(type, target)}_defence")
-        }
+    fun bonus(source: Character, target: Character, type: String, offense: Boolean): Int = if (offense) {
+        style(source, if (source is NPC) "attack_bonus" else "${combatStyle(type, source)}_attack")
+    } else {
+        style(target, "${combatStyle(type, target)}_defence")
     }
 
-    private fun style(character: Character, style: String): Int {
-        return if (character is NPC) character.def[style, 0] else character[style] ?: 0
-    }
+    private fun style(character: Character, style: String): Int = if (character is NPC) character.def[style, 0] else character[style] ?: 0
 
     private fun combatStyle(type: String, character: Character) = if (type == "range" || type == "magic") type else character.combatStyle
 }

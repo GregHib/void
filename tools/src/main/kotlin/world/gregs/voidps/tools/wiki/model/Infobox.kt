@@ -4,9 +4,7 @@ object Infobox {
 
     fun indexSuffix(key: String, index: Int) = "$key${if (index > 0) (index + 1).toString() else ""}"
 
-    fun splitByVersion(page: WikiPage?, templateName: String, id: Int, defaultToFirst: Boolean, function: (Map<String, Any>, String) -> Unit) {
-        return splitByVersion(page, listOf(templateName), id, defaultToFirst, function)
-    }
+    fun splitByVersion(page: WikiPage?, templateName: String, id: Int, defaultToFirst: Boolean, function: (Map<String, Any>, String) -> Unit) = splitByVersion(page, listOf(templateName), id, defaultToFirst, function)
 
     fun splitByVersion(page: WikiPage?, templateNames: List<String>, id: Int, defaultToFirst: Boolean, function: (Map<String, Any>, String) -> Unit) {
         val template = getFirstMap(page, templateNames) ?: return
@@ -64,5 +62,4 @@ object Infobox {
         }
         return null
     }
-
 }

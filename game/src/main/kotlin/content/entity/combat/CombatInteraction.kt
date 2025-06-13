@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
  */
 data class CombatInteraction<C : Character>(
     override val character: C,
-    val target: Character
+    val target: Character,
 ) : Interaction<C>() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 

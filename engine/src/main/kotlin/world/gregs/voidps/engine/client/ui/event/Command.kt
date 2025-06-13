@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 data class Command(
     override val character: Player,
     val prefix: String,
-    val content: String
+    val content: String,
 ) : Interaction<Player>() {
 
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
@@ -35,7 +35,7 @@ data class Command(
 
 fun adminCommand(command: String, description: String = "", aliases: List<String> = emptyList(), block: suspend Command.() -> Unit) {
     if (description.isNotBlank()) {
-        Command.adminCommands.add("${Colours.BLUE.toTag()}${command}</col>")
+        Command.adminCommands.add("${Colours.BLUE.toTag()}$command</col>")
     }
     val index = command.indexOfFirst { it == '(' || it == '[' }
     val commandName = (if (index != -1) command.substring(0, index) else command).trim()
@@ -58,8 +58,8 @@ fun adminCommand(command: String, description: String = "", aliases: List<String
 
 fun modCommand(command: String, description: String = "", aliases: List<String> = emptyList(), block: suspend Command.() -> Unit) {
     if (description.isNotBlank()) {
-        Command.modCommands.add("${Colours.BLUE.toTag()}${command}</col>")
-        Command.adminCommands.add("${Colours.BLUE.toTag()}${command}</col>")
+        Command.modCommands.add("${Colours.BLUE.toTag()}$command</col>")
+        Command.adminCommands.add("${Colours.BLUE.toTag()}$command</col>")
     }
     val index = command.indexOfFirst { it == '(' || it == '[' }
     val commandName = (if (index != -1) command.substring(0, index) else command).trim()

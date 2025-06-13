@@ -1,9 +1,16 @@
 package content.area.misthalin.barbarian_village
 
+import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.quest.quest
+import content.quest.questCompleted
+import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -11,13 +18,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.entity.player.bank.ownsItem
-import content.quest.quest
-import content.quest.questCompleted
-import content.quest.refreshQuestJournal
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
-import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 
 itemOnItem("chisel", "ring_from_jeffery") { player: Player ->
     if (player.quest("gunnars_ground") == "jeffery_ring") {
@@ -1092,7 +1092,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
                                     player.anim("engrave")
                                     player.experience.add(Skill.Crafting, 2000.0)
                                     player["dororan_ruby_bracelet"] = 1
-                                    items( "chisel","ruby_bracelet","You carefully engrave 'With beauty blessed' onto the ruby bracelet.")
+                                    items("chisel", "ruby_bracelet", "You carefully engrave 'With beauty blessed' onto the ruby bracelet.")
                                     npc<Happy>("Magnificent! Outstanding! I will give this to her immediately. Please, come back when you have time")
                                 }
                                 option("Don't engrave the bracelet.") {
@@ -1122,7 +1122,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
                             player.anim("engrave")
                             player.experience.add(Skill.Crafting, 10000.0)
                             player["dororan_dragonstone_necklace"] = 1
-                            items( "chisel","dragonstone_necklace","You skillfully engrave 'Gudrun' onto the dragonstone necklace.")
+                            items("chisel", "dragonstone_necklace", "You skillfully engrave 'Gudrun' onto the dragonstone necklace.")
                             npc<Happy>("Another astonishing piece of work! Please, come back later to see if I have other crafting tasks.")
                         }
                         option("Don't engrave the necklace.") {
@@ -1144,7 +1144,7 @@ npcOperate("Talk-to", "dororan_after_quest") {
                             player.anim("engrave")
                             player.experience.add(Skill.Crafting, 20000.0)
                             player["dororan_onyx_amulet"] = 1
-                            items( "chisel","onyx_amulet","You expertly engrave 'The most beautiful girl in the room' onto the onyx amulet.")
+                            items("chisel", "onyx_amulet", "You expertly engrave 'The most beautiful girl in the room' onto the onyx amulet.")
                             npc<Happy>("That's fantastic! Excellent work.")
                         }
                         option("Don't engrave the amulet.") {

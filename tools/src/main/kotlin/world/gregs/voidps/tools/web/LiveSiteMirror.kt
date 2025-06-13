@@ -105,57 +105,56 @@ private fun queueOsrs(scrapper: SiteMirrorLive) {
     scrapper.queue("https://support.runescape.com/hc/en-gb", force = true) // Support
     scrapper.queue("https://support.runescape.com/hc/en-gb/p/contact", force = true) // Contact
     scrapper.queue("https://secure.runescape.com/m=account-creation/create_account?theme=oldschool", force = true) // Create account
-
 }
 
 private fun queueRs3(scrapper: SiteMirrorLive) {
     scrapper.queue("https://runescape.com/", force = true)
     scrapper.queue("https://runescape.com/splash", force = true)
-    scrapper.queue("https://secure.runescape.com/m=forum/forums", force = true)// Forums
-    scrapper.queue("https://secure.runescape.com/m=forum/forums?294,295,thd,391,66049913", force = true)// Forum category
-    scrapper.queue("https://secure.runescape.com/m=forum/forums?294,295,396,66126612", force = true)// Forum thread
+    scrapper.queue("https://secure.runescape.com/m=forum/forums", force = true) // Forums
+    scrapper.queue("https://secure.runescape.com/m=forum/forums?294,295,thd,391,66049913", force = true) // Forum category
+    scrapper.queue("https://secure.runescape.com/m=forum/forums?294,295,396,66126612", force = true) // Forum thread
 
     val user = "Trichromes"
-    scrapper.queue("https://apps.runescape.com/runemetrics/app/welcome", force = true)// Runemetrics
-    scrapper.queue("https://apps.runescape.com/runemetrics/app/overview/player/$user", force = true)// Runemetrics user
-    scrapper.queue("https://apps.runescape.com/runemetrics/app/levels/player/$user", force = true)// Runemetrics levels
-    scrapper.queue("https://apps.runescape.com/runemetrics/app/xp-monthly/player/$user/-1", force = true)// Runemetrics xp
-    scrapper.queue("https://apps.runescape.com/runemetrics/app/xp-monthly/player/$user/-1", force = true)// Runemetrics xp
-    scrapper.queue("https://apps.runescape.com/runemetrics/app/activities/player/$user", force = true)// Runemetrics event log
-    scrapper.queue("https://apps.runescape.com/runemetrics/app/quests/player/$user", force = true)// Runemetrics quests
+    scrapper.queue("https://apps.runescape.com/runemetrics/app/welcome", force = true) // Runemetrics
+    scrapper.queue("https://apps.runescape.com/runemetrics/app/overview/player/$user", force = true) // Runemetrics user
+    scrapper.queue("https://apps.runescape.com/runemetrics/app/levels/player/$user", force = true) // Runemetrics levels
+    scrapper.queue("https://apps.runescape.com/runemetrics/app/xp-monthly/player/$user/-1", force = true) // Runemetrics xp
+    scrapper.queue("https://apps.runescape.com/runemetrics/app/xp-monthly/player/$user/-1", force = true) // Runemetrics xp
+    scrapper.queue("https://apps.runescape.com/runemetrics/app/activities/player/$user", force = true) // Runemetrics event log
+    scrapper.queue("https://apps.runescape.com/runemetrics/app/quests/player/$user", force = true) // Runemetrics quests
 
-    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/results", force = true)// GE search
-    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/", force = true)// GE
+    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/results", force = true) // GE search
+    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/", force = true) // GE
     scrapper.queue("https://secure.runescape.com/m=itemdb_rs/catalogue", force = true) // GE catalogue
-    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/catalogue?cat=32", force = true)// GE catalogue
-    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/catalogue?cat=16&page=1", force = true)// GE catalogue
-    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/top100?list=2", force = true)// GE price rises
-    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/top100?list=3", force = true)// GE price falls
-    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/catalogue", force = true)// GE catelogue
-    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/top100?list=1", force = true)// GE most valuable
-    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/top100?list=0", force = true)// GE most traded
-    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/Terrasaur+maul/viewitem?obj=48007", force = true)// Featured
-    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/Santa+hat/viewitem?obj=1050", force = true)// GE item
-    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/results#main-search", force = true)// GE Search
+    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/catalogue?cat=32", force = true) // GE catalogue
+    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/catalogue?cat=16&page=1", force = true) // GE catalogue
+    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/top100?list=2", force = true) // GE price rises
+    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/top100?list=3", force = true) // GE price falls
+    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/catalogue", force = true) // GE catelogue
+    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/top100?list=1", force = true) // GE most valuable
+    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/top100?list=0", force = true) // GE most traded
+    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/Terrasaur+maul/viewitem?obj=48007", force = true) // Featured
+    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/Santa+hat/viewitem?obj=1050", force = true) // GE item
+    scrapper.queue("https://secure.runescape.com/m=itemdb_rs/results#main-search", force = true) // GE Search
 
     scrapper.queue("https://secure.runescape.com/m=hiscore/", force = true) // Hiscores
     scrapper.queue("https://secure.runescape.com/m=hiscore/ranking", force = true) // Hiscores
-    scrapper.queue("https://secure.runescape.com/m=hiscore/ranking?category_type=1&table=26", force = true)// Achievements
-    scrapper.queue("https://secure.runescape.com/m=hiscore/ranking?category_type=1", force = true)// Achievements
+    scrapper.queue("https://secure.runescape.com/m=hiscore/ranking?category_type=1&table=26", force = true) // Achievements
+    scrapper.queue("https://secure.runescape.com/m=hiscore/ranking?category_type=1", force = true) // Achievements
     scrapper.queue("https://services.runescape.com/m=clan-hiscores/ranking", force = true) // Clans
     scrapper.queue("https://services.runescape.com/m=clan-hiscores/landing.ws", force = true) // Clans
     scrapper.queue("https://services.runescape.com/m=clan-home/clan/Maxed", force = true) // Clan info
     scrapper.queue("https://services.runescape.com/m=clan-hiscores/compare.ws?clanName=Maxed", force = true) // Clan stats
     scrapper.queue("https://services.runescape.com/m=clan-hiscores/members.ws?clanName=Maxed", force = true) // Clan mates
-    scrapper.queue("https://services.runescape.com/m=temp-hiscores/", force = true)// Seasonal
-    scrapper.queue("https://services.runescape.com/m=temp-hiscores/ranking?id=1508716800045&filter=-1&page=1", force = true)// Seasonal topic
-    scrapper.queue("https://services.runescape.com/m=temp-hiscores/compare?user1=Sina", force = true)// Seasonal player
-    scrapper.queue("https://secure.runescape.com/m=hiscore_seasonal/ranking", force = true)// Seasonal
-    scrapper.queue("https://services.runescape.com/m=temp-hiscores/ranking?id=1508716800045&filter=-1&page=1", force = true)// Seasonal topic
-    scrapper.queue("https://secure.runescape.com/m=hiscore_seasonal/compare?user1=Mistime", force = true)// Seasonal player
-    scrapper.queue("https://secure.runescape.com/m=hiscore_seasonal/compare?category_type=-1&user1=Mistime&user2=Legit", force = true)// Seasonal player
-    scrapper.queue("https://secure.runescape.com/m=hiscore_seasonal/ranking?category_type=1&table=26", force = true)// Activities
-    scrapper.queue("https://secure.runescape.com/m=hiscore/compare?user1=Blacked+Out&category_type=1", force = true)// Player activities
+    scrapper.queue("https://services.runescape.com/m=temp-hiscores/", force = true) // Seasonal
+    scrapper.queue("https://services.runescape.com/m=temp-hiscores/ranking?id=1508716800045&filter=-1&page=1", force = true) // Seasonal topic
+    scrapper.queue("https://services.runescape.com/m=temp-hiscores/compare?user1=Sina", force = true) // Seasonal player
+    scrapper.queue("https://secure.runescape.com/m=hiscore_seasonal/ranking", force = true) // Seasonal
+    scrapper.queue("https://services.runescape.com/m=temp-hiscores/ranking?id=1508716800045&filter=-1&page=1", force = true) // Seasonal topic
+    scrapper.queue("https://secure.runescape.com/m=hiscore_seasonal/compare?user1=Mistime", force = true) // Seasonal player
+    scrapper.queue("https://secure.runescape.com/m=hiscore_seasonal/compare?category_type=-1&user1=Mistime&user2=Legit", force = true) // Seasonal player
+    scrapper.queue("https://secure.runescape.com/m=hiscore_seasonal/ranking?category_type=1&table=26", force = true) // Activities
+    scrapper.queue("https://secure.runescape.com/m=hiscore/compare?user1=Blacked+Out&category_type=1", force = true) // Player activities
     scrapper.queue("https://secure.runescape.com/m=hiscore/ranking?category_type=0&table=0&time_filter=1&page=1", force = true)
     scrapper.queue("https://secure.runescape.com/m=hiscore/ranking?category_type=0&table=0&time_filter=2&page=1", force = true)
     scrapper.queue("https://secure.runescape.com/m=hiscore/ranking?category_type=0&table=0&time_filter=2&monthlyArchive=true&date=1704125682789", force = true)
@@ -190,24 +189,24 @@ private fun queueRs3(scrapper: SiteMirrorLive) {
     scrapper.queue("https://secure.runescape.com/m=news/poll-80-wilderness-changes--more?oldschool=1", force = true) // osrs news post
     scrapper.queue("https://secure.runescape.com/m=news/necromancy-launch-gameplay-trailer", force = true) // news post
 
-    scrapper.queue("https://secure.runescape.com/m=itemdb_oldschool/", force = true)// GE
-    scrapper.queue("https://secure.runescape.com/m=itemdb_oldschool/top100?list=1&scale=0", force = true)// GE most traded
-    scrapper.queue("https://secure.runescape.com/m=itemdb_oldschool/Santa+hat/viewitem?obj=1050", force = true)// GE item
+    scrapper.queue("https://secure.runescape.com/m=itemdb_oldschool/", force = true) // GE
+    scrapper.queue("https://secure.runescape.com/m=itemdb_oldschool/top100?list=1&scale=0", force = true) // GE most traded
+    scrapper.queue("https://secure.runescape.com/m=itemdb_oldschool/Santa+hat/viewitem?obj=1050", force = true) // GE item
 
-    scrapper.queue("https://secure.runescape.com/m=poll/oldschool/", force = true)// poll
-    scrapper.queue("https://secure.runescape.com/m=poll/oldschool/results?id=1616", force = true)// poll results
+    scrapper.queue("https://secure.runescape.com/m=poll/oldschool/", force = true) // poll
+    scrapper.queue("https://secure.runescape.com/m=poll/oldschool/results?id=1616", force = true) // poll results
 
-    scrapper.queue("https://secure.runescape.com/m=hiscore_oldschool/overall", force = true)// hiscores
-    scrapper.queue("https://secure.runescape.com/m=hiscore_oldschool/hiscorepersonal?user1=Lynx Titan", force = true)// hiscore user
+    scrapper.queue("https://secure.runescape.com/m=hiscore_oldschool/overall", force = true) // hiscores
+    scrapper.queue("https://secure.runescape.com/m=hiscore_oldschool/hiscorepersonal?user1=Lynx Titan", force = true) // hiscore user
 
-    scrapper.queue("https://runescape.wiki/", force = true)// Wiki
-    scrapper.queue("https://www.runescape.com/game-guide/beginners-guide", force = true)// Beginners
-    scrapper.queue("https://www.runescape.com/game-guide/combat", force = true)// Combat
-    scrapper.queue("https://www.runescape.com/game-guide/skills", force = true)// Skills
+    scrapper.queue("https://runescape.wiki/", force = true) // Wiki
+    scrapper.queue("https://www.runescape.com/game-guide/beginners-guide", force = true) // Beginners
+    scrapper.queue("https://www.runescape.com/game-guide/combat", force = true) // Combat
+    scrapper.queue("https://www.runescape.com/game-guide/skills", force = true) // Skills
 
-    scrapper.queue("https://rs.runescape.com/en-GB/membership", force = true)// Members
-    scrapper.queue("https://www.runescape.com/treasure-hunter", force = true)// Treasure hunter
-    scrapper.queue("https://www.runescape.com/bonds", force = true)// Bonds
+    scrapper.queue("https://rs.runescape.com/en-GB/membership", force = true) // Members
+    scrapper.queue("https://www.runescape.com/treasure-hunter", force = true) // Treasure hunter
+    scrapper.queue("https://www.runescape.com/bonds", force = true) // Bonds
     scrapper.queue("https://www.runescape.com/solomons-store", force = true) // Solomons
     scrapper.queue("https://www.runescape.com/runemetrics", force = true) // Metrics pro
     scrapper.queue("https://www.runescape.com/loyalty", force = true) // Loyalty
@@ -227,9 +226,19 @@ class SiteMirrorLive {
         if (singlePage && isTextFormat(trimQuery(trimAnchor(path)))) {
             return true
         }
-        if ((path.contains("l=") && !path.contains("url=")) || path.contains("set_lang=") || path.contains("de-DE") || path.contains("fr-FR") || path.contains("pt-BR") || path.contains("zh-CN") || path.contains(
-                "ja-JP") || path.contains(
-                "ko-KR") || path.contains("pl-PL")
+        if ((path.contains("l=") && !path.contains("url=")) ||
+            path.contains("set_lang=") ||
+            path.contains("de-DE") ||
+            path.contains("fr-FR") ||
+            path.contains("pt-BR") ||
+            path.contains("zh-CN") ||
+            path.contains(
+                "ja-JP",
+            ) ||
+            path.contains(
+                "ko-KR",
+            ) ||
+            path.contains("pl-PL")
         ) {
             return true
         }
@@ -316,11 +325,22 @@ class SiteMirrorLive {
 
     private fun getPath(source: String): String? {
         if (validUrlRegex.containsMatchIn(source)) {
-            var path: String = convertQuery(removeDomain(source
-                .replace("/#/", "/")
-                .replace(".ws", ".html")
-                .replace(" ", "+"),
-                if (source.contains("static.zdassets.com")) "static.zdassets.com" else if (source.contains("ctfassets.net")) "ctfassets.net" else if (source.contains("jagex.com")) "jagex.com" else "runescape.com")
+            var path: String = convertQuery(
+                removeDomain(
+                    source
+                        .replace("/#/", "/")
+                        .replace(".ws", ".html")
+                        .replace(" ", "+"),
+                    if (source.contains("static.zdassets.com")) {
+                        "static.zdassets.com"
+                    } else if (source.contains("ctfassets.net")) {
+                        "ctfassets.net"
+                    } else if (source.contains("jagex.com")) {
+                        "jagex.com"
+                    } else {
+                        "runescape.com"
+                    },
+                ),
             ).replace(":", "-")
 
             if (supportedFileDownloads(trimAnchor(path))) {
@@ -371,7 +391,16 @@ class SiteMirrorLive {
                     if (url.contains("runescape.com") || url.contains("jagex.com") || url.contains("static.zdassets.com") || url.contains("ctfassets.net")) {
                         val other = getPath(trimQuery(trimAnchor(url))) ?: continue
                         queue(trimQuery(trimAnchor(url)))
-                        data = data.replaceRange(match.range, "$type${UrlHandler.offset(other, path.count { it == '/' })}${if (type.last() == '\'') "'" else if (type.last() == '"') "\"" else ""})")
+                        data = data.replaceRange(
+                            match.range,
+                            "$type${UrlHandler.offset(other, path.count { it == '/' })}${if (type.last() == '\'') {
+                                "'"
+                            } else if (type.last() == '"') {
+                                "\""
+                            } else {
+                                ""
+                            }})",
+                        )
                     }
                 }
             } else {

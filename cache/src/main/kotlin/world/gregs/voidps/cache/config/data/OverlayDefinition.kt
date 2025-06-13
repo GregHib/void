@@ -15,5 +15,5 @@ data class OverlayDefinition(
     var underlayOverrides: Boolean = false,
     var waterColour: Int = 1190717,
     var waterScale: Int = 64,
-    var waterIntensity: Int = 127
+    var waterIntensity: Int = 127,
 ) : Definition

@@ -36,8 +36,9 @@ internal class InterfaceOptionsTest {
             extras = mapOf(
                 "inventory" to "inventory",
                 "primary" to false,
-                "options" to staticOptions
-            ))
+                "options" to staticOptions,
+            ),
+        )
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         every { player.sendInterfaceSettings(any(), any(), any(), any()) } just Runs
         every { player.sendScript(any(), *anyVararg()) } just Runs
@@ -68,8 +69,8 @@ internal class InterfaceOptionsTest {
             extras = mapOf(
                 "inventory" to "inventory",
                 "primary" to false,
-                "options" to arrayOf("one", "two", "three")
-            )
+                "options" to arrayOf("one", "two", "three"),
+            ),
         )
         every { inventoryDefinitions.get(name) } returns InventoryDefinition(10, extras = mapOf("width" to 2, "height" to 3))
         options.unlock(name, comp, 0..27, "two", "three")

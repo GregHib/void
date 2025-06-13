@@ -43,5 +43,4 @@ class MapObjectEncoder : DefinitionEncoder<MapDefinition> {
             writeSmart(value)
         }
     }
-
 }

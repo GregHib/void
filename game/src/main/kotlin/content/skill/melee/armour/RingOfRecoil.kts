@@ -1,5 +1,8 @@
 package content.skill.melee.armour
 
+import content.entity.combat.hit.combatDamage
+import content.entity.combat.hit.directHit
+import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -7,9 +10,6 @@ import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.combat.hit.combatDamage
-import content.entity.combat.hit.directHit
-import content.entity.player.inv.inventoryItem
 
 combatDamage { player ->
     if (source == player || type == "deflect" || type == "poison" || type == "disease" || type == "healed" || damage < 1) {

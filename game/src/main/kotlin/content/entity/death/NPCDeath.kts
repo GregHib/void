@@ -4,6 +4,10 @@ import com.github.michaelbull.logging.InlineLogger
 import content.area.wilderness.inMultiCombat
 import content.entity.combat.*
 import content.entity.npc.combat.NPCAttack
+import content.entity.player.inv.item.tradeable
+import content.entity.sound.sound
+import content.skill.slayer.*
+import content.social.clan.clan
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
@@ -21,6 +25,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -29,12 +35,6 @@ import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import content.social.clan.clan
-import content.entity.player.inv.item.tradeable
-import content.entity.sound.sound
-import content.skill.slayer.*
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 
 val npcs: NPCs by inject()
 val floorItems: FloorItems by inject()
@@ -82,7 +82,13 @@ npcDeath { npc ->
 
 fun dropLoot(npc: NPC, killer: Character?, tile: Tile) {
     val table = tables.get("${npc.def["drop_table", npc.id]}_drop_table") ?: return
-    val combatLevel = if (killer is Player) killer.combatLevel else if (killer is NPC) killer.def.combat else -1
+    val combatLevel = if (killer is Player) {
+        killer.combatLevel
+    } else if (killer is NPC) {
+        killer.def.combat
+    } else {
+        -1
+    }
     val drops = table.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1, player = killer as? Player)
         .filterNot { it.id == "nothing" }
         .reversed()
@@ -126,7 +132,7 @@ fun shareLoot(killer: Player, npc: NPC, tile: Tile, drops: List<Item>) {
                 charges = item.charges(),
                 revealTicks = if (item.tradeable) 60 else FloorItems.NEVER,
                 disappearTicks = if (item.tradeable) 120 else 300,
-                owner = awardee
+                owner = awardee,
             )
             awardee.message("<dark_green>You received: ${item.amount} ${item.def.name.plural(item.amount)}.", ChatType.ClanChat)
         }
@@ -142,8 +148,7 @@ fun shareCoin(item: Item, members: List<Player>, tile: Tile) {
     }
 }
 
-fun getAwardee(item: Item, killer: Player, members: List<Player>) =
-    if (item.tradeable) weightedSample(members.map { member -> member to member.lootSharePotential }) ?: killer else killer
+fun getAwardee(item: Item, killer: Player, members: List<Player>) = if (item.tradeable) weightedSample(members.map { member -> member to member.lootSharePotential }) ?: killer else killer
 
 fun notify(members: List<Player>, awardee: Player, item: Item) {
     for (member in members) {

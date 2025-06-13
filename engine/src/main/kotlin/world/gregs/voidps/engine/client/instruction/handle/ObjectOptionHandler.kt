@@ -18,7 +18,7 @@ import world.gregs.voidps.type.Tile
 
 class ObjectOptionHandler(
     private val objects: GameObjects,
-    private val definitions: ObjectDefinitions
+    private val definitions: ObjectDefinitions,
 ) : InstructionHandler<InteractObject>() {
 
     private val logger = InlineLogger()

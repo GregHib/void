@@ -192,5 +192,4 @@ class SlayerTaskTest : WorldTest() {
         assertEquals(150, player.slayerStreak)
         assertEquals(15, player.slayerPoints)
     }
-
 }

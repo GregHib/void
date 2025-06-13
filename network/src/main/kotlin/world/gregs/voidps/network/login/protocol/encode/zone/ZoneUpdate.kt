@@ -3,7 +3,7 @@ package world.gregs.voidps.network.login.protocol.encode.zone
 abstract class ZoneUpdate(
     val packetId: Int,
     val packetIndex: Int,
-    val size: Int
+    val size: Int,
 ) {
     open val private: Boolean = false
 

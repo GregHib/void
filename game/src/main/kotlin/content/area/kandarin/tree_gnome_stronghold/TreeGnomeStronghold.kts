@@ -25,7 +25,6 @@ objectOperate("Open", "tree_gnome_door_east_closed", "tree_gnome_door_west_close
     player.walkOverDelay(player.tile.addY(if (player.tile.y < target.tile.y) 2 else -2))
 }
 
-
 objectOperate("Open", "tree_gnome_gate_closed") {
     if (player.tile.x !in 2461..2461) {
         player.walkToDelay(player.tile.copy(x = player.tile.x.coerceIn(2461..2461)))
@@ -51,7 +50,6 @@ objectOperate("Climb", "gnome_stronghold_shortcut_rock_top") {
     player.anim("human_climbing_down")
     player.exactMoveDelay(Tile(2489, 3521), delay = 120, direction = Direction.SOUTH)
 }
-
 
 objectOperate("Climb", "gnome_stronghold_shortcut_rock_bottom") {
     if (!player.has(Skill.Agility, 37)) {

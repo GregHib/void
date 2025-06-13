@@ -1,8 +1,8 @@
 package world.gregs.voidps.network.client
 
-
 sealed class ClientState {
     data object Connected : ClientState()
+
     /**
      * Waiting for [ConnectionQueue] to allow disconnection
      */

@@ -1,10 +1,10 @@
 package content.area.kharidian_desert.al_kharid
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import content.entity.npc.shop.openShop
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 npcOperate("Talk-to", "louie_legs") {
     npc<Neutral>("Hey, wanna buy some armour?")

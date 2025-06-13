@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import java.util.*
 
 class TimerQueue(
-    private val events: EventDispatcher
+    private val events: EventDispatcher,
 ) : Timers {
 
     val queue = PriorityQueue<Timer>()
@@ -26,9 +26,7 @@ class TimerQueue(
         return true
     }
 
-    override fun contains(name: String): Boolean {
-        return names.contains(name)
-    }
+    override fun contains(name: String): Boolean = names.contains(name)
 
     override fun run() {
         val iterator = queue.iterator()
@@ -64,9 +62,7 @@ class TimerQueue(
         }
     }
 
-    override fun clear(name: String): Boolean {
-        return names.remove(name) && queue.removeIf { it.name == name }
-    }
+    override fun clear(name: String): Boolean = names.remove(name) && queue.removeIf { it.name == name }
 
     override fun clearAll() {
         names.clear()

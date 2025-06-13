@@ -6,7 +6,7 @@ import world.gregs.voidps.type.Tile
 class ObjectIdentificationContext(
     val obj: GameObject,
     val availableTiles: Set<Tile>,
-    option: String
+    option: String,
 ) {
     val opt = option.replace("-", " ").lowercase()
     var last: Triple<Double, *, *>? = null

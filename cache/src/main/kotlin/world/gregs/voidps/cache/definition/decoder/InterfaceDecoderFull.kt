@@ -13,9 +13,7 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
 
     override fun create(size: Int) = Array(size) { InterfaceDefinitionFull(it) }
 
-    override fun size(cache: Cache): Int {
-        return cache.lastArchiveId(index)
-    }
+    override fun size(cache: Cache): Int = cache.lastArchiveId(index)
 
     override fun load(definitions: Array<InterfaceDefinitionFull>, reader: Reader) {
         val packed = readId(reader)
@@ -227,9 +225,7 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
         anIntArray4805 = decodeIntArray(buffer)
     }
 
-    override fun InterfaceDefinitionFull.read(opcode: Int, buffer: Reader) {
-        throw IllegalStateException("Shouldn't be used.")
-    }
+    override fun InterfaceDefinitionFull.read(opcode: Int, buffer: Reader) = throw IllegalStateException("Shouldn't be used.")
 
     companion object {
         private fun InterfaceComponentDefinitionFull.decodeScript(buffer: Reader): Array<Any>? {

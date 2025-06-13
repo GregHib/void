@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
-import java.sql.SQLOutput
 import kotlin.test.assertTrue
 
 class WreckedGhostShipTest : WorldTest() {

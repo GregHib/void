@@ -55,11 +55,13 @@ object WebsiteScraper {
                             driver.close()
                         }
                     }
-                    Runtime.getRuntime().addShutdownHook(Thread {
-                        for (driver in drivers) {
-                            driver.close()
-                        }
-                    })
+                    Runtime.getRuntime().addShutdownHook(
+                        Thread {
+                            for (driver in drivers) {
+                                driver.close()
+                            }
+                        },
+                    )
                 }
             }
         }
@@ -127,12 +129,11 @@ object WebsiteScraper {
         for (href in references) {
             val processed = href.endsWith(".html")
             if (!href.endsWith("/") && !processed) {
-                html = html.replace("href=\"${href}\"", "href=\"${href}.html\"")
+                html = html.replace("href=\"${href}\"", "href=\"$href.html\"")
                 file.writeText(html)
             }
             val resolved = uri.resolve(href.removeSuffix(".html"))
             download(folder, resolved, driver, visited, depth + 1)
         }
     }
-
 }

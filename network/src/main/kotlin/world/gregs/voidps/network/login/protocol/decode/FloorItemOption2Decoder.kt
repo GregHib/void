@@ -17,5 +17,4 @@ class FloorItemOption2Decoder : Decoder(7) {
         val run = packet.readBooleanInverse()
         return InteractFloorItem(id, x, y, 1)
     }
-
 }

@@ -66,7 +66,7 @@ npcCombatAttack("skeletal_wyvern") { npc ->
     if (spell == "ice" && special) {
         val hasShield = hasSpecificWyvernShield(target)
         val shouldFreeze = if (hasShield) {
-            random.nextInt(7) == 0  // 1/7 chance with proper shield
+            random.nextInt(7) == 0 // 1/7 chance with proper shield
         } else {
             Hit.success(npc, target, "magic", Item.EMPTY, false)
         }
@@ -89,8 +89,8 @@ fun nearestTile(source: Character, target: Character): Tile {
 fun hasSpecificWyvernShield(target: Character): Boolean {
     if (target !is Player) return false
     val shieldId = target.equipped(EquipSlot.Shield).id
-    return shieldId == "elemental_shield"
-            || shieldId == "mind_shield"
-            || shieldId == "body_shield"
-            || shieldId.startsWith("dragonfire_shield")
+    return shieldId == "elemental_shield" ||
+        shieldId == "mind_shield" ||
+        shieldId == "body_shield" ||
+        shieldId.startsWith("dragonfire_shield")
 }

@@ -18,7 +18,7 @@ class CombinationRuneTest : MagicSpellTest() {
         Triple("mud_rune", "water_rune", "earth_rune"),
         Triple("smoke_rune", "air_rune", "fire_rune"),
         Triple("steam_rune", "water_rune", "fire_rune"),
-        Triple("lava_rune", "earth_rune", "fire_rune")
+        Triple("lava_rune", "earth_rune", "fire_rune"),
     ).map { (combo, element1, element2) ->
         dynamicTest("Remove ${combo.replace("_", " ")}s") {
             Settings.load(mapOf("world.members" to "true"))
@@ -48,7 +48,7 @@ class CombinationRuneTest : MagicSpellTest() {
         "steam_rune" to "water_rune",
         "steam_rune" to "fire_rune",
         "lava_rune" to "earth_rune",
-        "lava_rune" to "fire_rune"
+        "lava_rune" to "fire_rune",
     ).map { (combo, element) ->
         dynamicTest("Use ${element.replace("_", " ")}s when out of ${combo.replace("_", " ")}s") {
             Settings.load(mapOf("world.members" to "true"))

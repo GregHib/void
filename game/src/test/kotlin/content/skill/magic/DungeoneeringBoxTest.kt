@@ -133,7 +133,7 @@ abstract class DungeoneeringBoxTest : WorldTest() {
             player.inventory.add(rune.id, rune.amount * 10)
         }
 
-        player.interfaceOption("modern_spellbook", "wind_${spell}", option = "Autocast")
+        player.interfaceOption("modern_spellbook", "wind_$spell", option = "Autocast")
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
 
@@ -157,7 +157,7 @@ abstract class DungeoneeringBoxTest : WorldTest() {
         }
         player.inventory.add("fire_rune", 100)
 
-        player.interfaceOption("modern_spellbook", "fire_${spell}", option = "Autocast")
+        player.interfaceOption("modern_spellbook", "fire_$spell", option = "Autocast")
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
 

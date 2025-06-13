@@ -1,5 +1,8 @@
 package content.entity.obj.door
 
+import content.entity.obj.door.Door.closeDoor
+import content.entity.obj.door.Door.isDoor
+import content.entity.obj.door.Door.openDoor
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
@@ -7,9 +10,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.timer.epochSeconds
-import content.entity.obj.door.Door.closeDoor
-import content.entity.obj.door.Door.isDoor
-import content.entity.obj.door.Door.openDoor
 
 // Times a door can be closed consecutively before getting stuck
 val doorStuckCount = 5

@@ -13,5 +13,4 @@ class HyperlinkDecoder : Decoder(BYTE) {
         val third = packet.readByte()
         return null
     }
-
 }

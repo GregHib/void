@@ -14,7 +14,7 @@ import kotlin.math.abs
 
 class PlayerUpdateTask(
     private val players: Players,
-    private val encoders: List<VisualEncoder<PlayerVisuals>>
+    private val encoders: List<VisualEncoder<PlayerVisuals>>,
 ) {
 
     private val initialEncoders = encoders.filter { it.initial }
@@ -44,7 +44,7 @@ class PlayerUpdateTask(
         updates: Writer,
         set: PlayerTrackingSet,
         viewport: Viewport,
-        active: Boolean
+        active: Boolean,
     ) {
         var skip = -1
         var index: Int
@@ -180,7 +180,7 @@ class PlayerUpdateTask(
         updates: Writer,
         set: PlayerTrackingSet,
         viewport: Viewport,
-        active: Boolean
+        active: Boolean,
     ) {
         var skip = -1
         var index: Int
@@ -233,11 +233,10 @@ class PlayerUpdateTask(
      * Check if a local [player] should be added to the local players list
      * @return true when within [Viewport.radius] and packet has enough room
      */
-    private fun add(player: Player, client: Player, viewport: Viewport, updates: Writer, sync: Writer): Boolean {
-        return player.client?.disconnected != true && player.tile.within(client.tile, viewport.radius) &&
-                updates.position() < MAX_UPDATE_SIZE &&
-                sync.position() < MAX_SYNC_SIZE
-    }
+    private fun add(player: Player, client: Player, viewport: Viewport, updates: Writer, sync: Writer): Boolean = player.client?.disconnected != true &&
+        player.tile.within(client.tile, viewport.radius) &&
+        updates.position() < MAX_UPDATE_SIZE &&
+        sync.position() < MAX_SYNC_SIZE
 
     fun writeSkip(sync: Writer, skip: Int) {
         sync.writeBits(1, 0)

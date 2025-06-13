@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.map.view.ui
 
-import world.gregs.voidps.type.Region
 import world.gregs.voidps.tools.map.view.draw.MapView
+import world.gregs.voidps.type.Region
 import javax.swing.*
 
 class OptionsPane(private val view: MapView) : JPanel() {
@@ -38,17 +38,21 @@ class OptionsPane(private val view: MapView) : JPanel() {
 
         val levelControls = JPanel().apply {
             layout = BoxLayout(this, BoxLayout.X_AXIS)
-            add(JButton("+").apply {
-                addActionListener {
-                    view.updateLevel((view.level + 1).coerceIn(0, 4))
-                }
-            })
-            add(JButton("-").apply {
-                addActionListener {
-                    view.updateLevel((view.level - 1).coerceIn(0, 4))
-                    parent.transferFocus()
-                }
-            })
+            add(
+                JButton("+").apply {
+                    addActionListener {
+                        view.updateLevel((view.level + 1).coerceIn(0, 4))
+                    }
+                },
+            )
+            add(
+                JButton("-").apply {
+                    addActionListener {
+                        view.updateLevel((view.level - 1).coerceIn(0, 4))
+                        parent.transferFocus()
+                    }
+                },
+            )
         }
         add(levelControls)
     }

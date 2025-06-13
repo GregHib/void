@@ -1,5 +1,9 @@
 package content.area.misthalin.lumbridge
 
+import content.entity.player.bank.bank
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.quest.quest
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -9,10 +13,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.entity.player.bank.bank
-import content.quest.quest
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
 
 npcOperate("Talk-to", "father_urhney") {
     npc<Frustrated>("Go away! I'm meditating!")

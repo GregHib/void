@@ -1,5 +1,6 @@
 package content.skill.magic.jewellery
 
+import content.entity.sound.sound
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -8,11 +9,8 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Area
-import content.entity.sound.sound
 
-fun jewelleryTeleport(player: Player, inventory: String, slot: Int, area: Area): Boolean {
-    return itemTeleport(player, inventory, slot, area, "jewellery")
-}
+fun jewelleryTeleport(player: Player, inventory: String, slot: Int, area: Area): Boolean = itemTeleport(player, inventory, slot, area, "jewellery")
 
 fun itemTeleport(player: Player, inventory: String, slot: Int, area: Area, type: String): Boolean {
     if (player.queue.contains(ActionPriority.Normal) || !player.inventories.inventory(inventory).discharge(player, slot)) {

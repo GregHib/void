@@ -26,7 +26,7 @@ data class CombatDamage(
     val damage: Int,
     val weapon: Item,
     val spell: String,
-    val special: Boolean
+    val special: Boolean,
 ) : Event {
 
     override val notification: Boolean = true

@@ -13,7 +13,7 @@ data class Area(
     var levelMin: Int,
     var levelMax: Int,
     var points: MutableList<Point> = mutableListOf(),
-    var tags: List<String>? = null
+    var tags: List<String>? = null,
 ) {
 
     @JsonIgnore
@@ -36,24 +36,22 @@ data class Area(
         get() = points.maxByOrNull { it.y }?.y ?: 1
 
     @JsonIgnore
-    fun getShape(): Shape? {
-        return when {
-            points.size == 1 -> {
-                val point = points.first()
-                Rectangle(point.x, point.y, 1, 1)
-            }
-            points.size == 2 -> {
-                val first = points.first()
-                val second = points.last()
-                Rectangle(min(first.x, second.x), min(first.y, second.y), abs(second.x - first.x), abs(second.y - first.y))
-            }
-            points.isNotEmpty() -> {
-                val xPoints = points.map { p -> p.x }.toIntArray()
-                val yPoints = points.map { p -> p.y }.toIntArray()
-                Polygon(xPoints, yPoints, points.size)
-            }
-            else -> null
+    fun getShape(): Shape? = when {
+        points.size == 1 -> {
+            val point = points.first()
+            Rectangle(point.x, point.y, 1, 1)
         }
+        points.size == 2 -> {
+            val first = points.first()
+            val second = points.last()
+            Rectangle(min(first.x, second.x), min(first.y, second.y), abs(second.x - first.x), abs(second.y - first.y))
+        }
+        points.isNotEmpty() -> {
+            val xPoints = points.map { p -> p.x }.toIntArray()
+            val yPoints = points.map { p -> p.y }.toIntArray()
+            Polygon(xPoints, yPoints, points.size)
+        }
+        else -> null
     }
 
     @JsonIgnore
@@ -84,5 +82,4 @@ data class Area(
             else -> null
         }
     }
-
 }

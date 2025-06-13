@@ -15,5 +15,4 @@ class PrivateQuickChatDecoder : Decoder(BYTE) {
         val data = packet.readBytes(packet.remaining.toInt())
         return QuickChatPrivate(name, file, data)
     }
-
 }

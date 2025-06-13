@@ -111,14 +111,12 @@ object Target {
     /**
      * Limits maximum amount of damage on NPCs (while still allowing Guthans to work)
      */
-    fun damageLimitModifiers(target: Character, damage: Int): Int {
-        return if (target is NPC && target.def.contains("damage_cap")) {
-            damage.coerceAtMost(target.def["damage_cap"])
-        } else if (target is NPC && target.def.contains("immune_death")) {
-            damage.coerceAtMost(target.levels.get(Skill.Constitution) - 10)
-        } else {
-            damage
-        }
+    fun damageLimitModifiers(target: Character, damage: Int): Int = if (target is NPC && target.def.contains("damage_cap")) {
+        damage.coerceAtMost(target.def["damage_cap"])
+    } else if (target is NPC && target.def.contains("immune_death")) {
+        damage.coerceAtMost(target.levels.get(Skill.Constitution) - 10)
+    } else {
+        damage
     }
 }
 

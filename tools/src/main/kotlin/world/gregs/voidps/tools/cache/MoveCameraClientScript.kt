@@ -16,7 +16,7 @@ import java.io.File
 object MoveCameraClientScript {
     private val INTERFACES = mapOf(
         548 to 3,
-        746 to 0
+        746 to 0,
     )
     private const val SCRIPT_ID = 4731
 
@@ -26,7 +26,7 @@ object MoveCameraClientScript {
         // Decode script
         val scriptDef = findMouseScript(otherCache)
         val newScriptId = addScript(cache, scriptDef)
-        println("Add mouse move client script ${newScriptId}.")
+        println("Add mouse move client script $newScriptId.")
 
         packInterfacesWithScript(cache, otherCache, newScriptId)
         cache.update()

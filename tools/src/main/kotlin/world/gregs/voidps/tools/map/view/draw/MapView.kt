@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.map.view.draw
 
-import kotlinx.coroutines.*
 import content.bot.interact.navigation.graph.NavigationGraph
+import kotlinx.coroutines.*
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.tools.map.view.draw.WorldMap.Companion.flipRegionY
 import world.gregs.voidps.tools.map.view.graph.AreaSet
@@ -153,7 +153,7 @@ class MapView(nav: NavigationGraph?, collisions: Collisions?, private val areaFi
 
     fun drag(mouseX: Int, mouseY: Int, mapStartX: Int, mapStartY: Int, offsetX: Int, offsetY: Int) {
         val point = areaSet.getPointOrNull(mapStartX, flipMapY(mapStartY), level)
-        val node = null//nav.nodes.firstOrNull { it is Tile && it.id == Tile.getId(mapStartX, flipMapY(mapStartY), level) }
+        val node = null // nav.nodes.firstOrNull { it is Tile && it.id == Tile.getId(mapStartX, flipMapY(mapStartY), level) }
         when {
             node != null -> {
 //                lc.update(mapStartX, mapStartY, mouseX, mouseY)
@@ -239,9 +239,7 @@ class MapView(nav: NavigationGraph?, collisions: Collisions?, private val areaFi
         }
     }
 
-    override fun getPreferredSize(): Dimension {
-        return Dimension(1280, 768)
-    }
+    override fun getPreferredSize(): Dimension = Dimension(1280, 768)
 
     companion object {
         private const val DEBUG_BORDER = 0

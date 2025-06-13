@@ -1,10 +1,10 @@
 package content.area.kharidian_desert.al_kharid.duel_arena
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 npcOperate("Talk-to", "jaraah") {
     player<Happy>("Hi!")

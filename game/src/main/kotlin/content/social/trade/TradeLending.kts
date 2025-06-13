@@ -1,5 +1,7 @@
 package content.social.trade
 
+import content.entity.player.dialogue.type.intEntry
+import content.social.trade.Trade.getPartner
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -9,8 +11,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.inv.transact.operation.SwapItem.swap
-import content.social.trade.Trade.getPartner
-import content.entity.player.dialogue.type.intEntry
 
 /**
  * Offering an item to lend for a duration

@@ -69,9 +69,7 @@ class Wiki(private val doc: Document) {
 
     companion object {
 
-        fun Node.getChildren(): List<Node> {
-            return (0 until childNodes.length).map { index -> childNodes.item(index) }
-        }
+        fun Node.getChildren(): List<Node> = (0 until childNodes.length).map { index -> childNodes.item(index) }
 
         fun load(xmlFileDirectory: String): Wiki {
             val inputFile = File(xmlFileDirectory)

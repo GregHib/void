@@ -26,10 +26,12 @@ class EncoderComparator {
 
         val cache = mockk<Cache>(relaxed = true)
         startKoin {
-            modules(module {
-                @Suppress("USELESS_CAST")
-                single(createdAtStart = true) { cache as Cache }
-            })
+            modules(
+                module {
+                    @Suppress("USELESS_CAST")
+                    single(createdAtStart = true) { cache as Cache }
+                },
+            )
         }
         val decoder = ItemDecoder()
         every { cache.data(ITEMS, archive = any(), file = any()) } answers {

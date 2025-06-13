@@ -13,7 +13,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 data class BodyParts(
     override var male: Boolean = true,
     val looks: IntArray = if (male) DEFAULT_LOOK_MALE.clone() else DEFAULT_LOOK_FEMALE.clone(),
-    val colours: IntArray = DEFAULT_COLOURS.clone()
+    val colours: IntArray = DEFAULT_COLOURS.clone(),
 ) : Body {
     private val parts = IntArray(12)
 
@@ -92,24 +92,25 @@ data class BodyParts(
         return part.index != -1 && looks[part.index] < 0
     }
 
-    private fun showItem(part: BodyPart, item: Item): Boolean {
-        return item.isNotEmpty() && when (part) {
+    private fun showItem(part: BodyPart, item: Item): Boolean = item.isNotEmpty() &&
+        when (part) {
             BodyPart.Hair, BodyPart.Beard -> false
             BodyPart.Arms -> item.type != EquipType.Sleeveless
             else -> true
         }
-    }
 
     /**
      * Don't show hair for EquipType.Hair, jaws for Mask's, and both for FullFace coverings.
      */
     private fun showBodyPart(part: BodyPart, item: Item): Boolean {
         val type = item.type
-        return part.index != -1 && looks[part.index] >= 0 && when (part) {
-            BodyPart.Hair -> type != EquipType.FullFace && type != EquipType.Hair
-            BodyPart.Beard -> type != EquipType.FullFace && type != EquipType.Mask
-            else -> true
-        }
+        return part.index != -1 &&
+            looks[part.index] >= 0 &&
+            when (part) {
+                BodyPart.Hair -> type != EquipType.FullFace && type != EquipType.Hair
+                BodyPart.Beard -> type != EquipType.FullFace && type != EquipType.Mask
+                else -> true
+            }
     }
 
     override fun equals(other: Any?): Boolean {

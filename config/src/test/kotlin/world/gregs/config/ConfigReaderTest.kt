@@ -54,19 +54,19 @@ internal class ConfigReaderTest {
             '[' -> {
                 var index = 0
                 while (reader.nextElement()) {
-                    parseValue(builder, reader, section, key, collection = "${collection}[${index++}]")
+                    parseValue(builder, reader, section, key, collection = "$collection[${index++}]")
                 }
             }
             '{' -> {
                 while (reader.nextEntry()) {
                     val k = reader.key()
-                    parseValue(builder, reader, section, key, collection = "${collection}[\"${k}\"]")
+                    parseValue(builder, reader, section, key, collection = "$collection[\"${k}\"]")
                 }
             }
             't', 'f' -> builder.appendLine("[$section] $key$collection = ${reader.boolean()}")
             '-', '+', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ->
                 builder.appendLine("[$section] $key$collection = ${reader.number()}")
-            else -> throw IllegalArgumentException("Unexpected character section=${section} char=${reader.peek}")
+            else -> throw IllegalArgumentException("Unexpected character section=$section char=${reader.peek}")
         }
     }
 

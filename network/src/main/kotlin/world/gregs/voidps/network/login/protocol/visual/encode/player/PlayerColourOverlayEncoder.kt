@@ -22,5 +22,4 @@ class PlayerColourOverlayEncoder : VisualEncoder<PlayerVisuals>(PLAYER_COLOUR_OV
             writeShortAdd(duration)
         }
     }
-
 }

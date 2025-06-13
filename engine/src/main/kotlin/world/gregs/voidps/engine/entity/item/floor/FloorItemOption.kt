@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.event.Events
 data class FloorItemOption<C : Character>(
     override val character: C,
     override val target: FloorItem,
-    val option: String
+    val option: String,
 ) : TargetInteraction<C, FloorItem>() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 

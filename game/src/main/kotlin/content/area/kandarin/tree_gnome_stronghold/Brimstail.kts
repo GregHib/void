@@ -1,16 +1,16 @@
 package content.area.kandarin.tree_gnome_stronghold
 
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import content.quest.questCompleted
-import content.skill.runecrafting.EssenceMine
+import content.entity.obj.objTeleportTakeOff
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.obj.objTeleportTakeOff
+import content.quest.questCompleted
+import content.skill.runecrafting.EssenceMine
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 npcOperate("Talk-to", "brimstail") {
     if (!player.questCompleted("rune_mysteries")) {

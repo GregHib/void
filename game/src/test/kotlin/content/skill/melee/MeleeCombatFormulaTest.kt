@@ -1,5 +1,7 @@
 package content.skill.melee
 
+import content.entity.player.inv.InventoryOption
+import content.skill.prayer.PrayerConfigs
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -7,8 +9,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.skill.prayer.PrayerConfigs
-import content.entity.player.inv.InventoryOption
 import kotlin.test.assertEquals
 
 internal class MeleeCombatFormulaTest : CombatFormulaTest() {
@@ -156,5 +156,4 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
         assertEquals(550, maxHit)
         assertEquals(0.9911, chance, 0.0001)
     }
-
 }

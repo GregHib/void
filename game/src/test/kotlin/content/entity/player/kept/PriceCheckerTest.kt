@@ -1,15 +1,15 @@
 package content.entity.player.kept
 
+import WorldTest
+import content.social.trade.offer
+import interfaceOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import walk
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import content.social.trade.offer
-import WorldTest
-import interfaceOption
-import walk
 
 internal class PriceCheckerTest : WorldTest() {
 

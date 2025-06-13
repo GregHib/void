@@ -26,5 +26,4 @@ class CoordinatesPane(title: String) : JPanel() {
         add(pane)
         add(Box.createRigidArea(Dimension(0, 5)))
     }
-
 }

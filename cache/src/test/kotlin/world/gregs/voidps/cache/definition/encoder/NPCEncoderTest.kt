@@ -78,7 +78,7 @@ internal class NPCEncoderTest {
             soundRateMin = 600,
             soundRateMax = 800,
             pickSizeShift = 180,
-            params = hashMapOf(1 to "string", 2 to 100000)
+            params = hashMapOf(1 to "string", 2 to 100000),
         )
         val members = definition.copy(options = arrayOf("Take", "Eat", "Members", "Kick", "Speak", "Examine"))
 

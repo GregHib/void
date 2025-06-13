@@ -10,8 +10,7 @@ class SongEndDecoder : Decoder(4) {
     override suspend fun decode(packet: ByteReadPacket): Instruction {
         val songIndex = packet.readInt()
         return SongEnd(
-            songIndex
+            songIndex,
         )
     }
-
 }

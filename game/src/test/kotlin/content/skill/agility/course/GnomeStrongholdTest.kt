@@ -118,5 +118,4 @@ internal class GnomeStrongholdTest : WorldTest() {
         assertEquals(Tile(2483, 3437), player.tile)
         assertEquals(46.5, player.experience.get(Skill.Agility))
     }
-
 }

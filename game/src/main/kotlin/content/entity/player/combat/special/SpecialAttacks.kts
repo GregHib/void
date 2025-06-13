@@ -1,9 +1,9 @@
 package content.entity.player.combat.special
 
-import world.gregs.voidps.engine.client.variable.variableSet
 import content.entity.combat.hit.hit
-import content.skill.melee.weapon.weapon
 import content.entity.sound.sound
+import content.skill.melee.weapon.weapon
+import world.gregs.voidps.engine.client.variable.variableSet
 
 specialAttackPrepare("*") { player ->
     if (!SpecialAttack.hasEnergy(player)) {

@@ -34,5 +34,4 @@ class CategoryDefinitions : DefinitionsDecoder<CategoryDefinition> {
     }
 
     override fun empty() = CategoryDefinition.EMPTY
-
 }

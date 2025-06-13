@@ -17,16 +17,12 @@ open class YamlWriterConfiguration(
     val quoteKeys: Boolean = true,
     val forceQuoteKeys: Boolean = false,
     val formatExplicitMap: Boolean = false,
-    val formatExplicitListSizeLimit: Int = 25
+    val formatExplicitListSizeLimit: Int = 25,
 ) {
 
-    open fun explicit(list: List<*>, indent: Int, parentMap: String?): Boolean {
-        return list.firstOrNull() !is Map<*, *> && indent != 0
-    }
+    open fun explicit(list: List<*>, indent: Int, parentMap: String?): Boolean = list.firstOrNull() !is Map<*, *> && indent != 0
 
-    open fun write(value: Any?, indent: Int, parentMap: String?): Any? {
-        return value
-    }
+    open fun write(value: Any?, indent: Int, parentMap: String?): Any? = value
 
     open fun toString(value: Any?, indent: Int, parentMap: String?): String {
         if (value is Double) {
@@ -45,7 +41,7 @@ open class YamlWriterConfiguration(
             forceExplicit = true,
             forceQuoteKeys = true,
             formatExplicitMap = true,
-            formatExplicitListSizeLimit = 25
+            formatExplicitListSizeLimit = 25,
         )
     }
 }

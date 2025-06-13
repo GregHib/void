@@ -1,5 +1,6 @@
 package content.activity.shooting_star
 
+import content.entity.sound.areaSound
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -9,7 +10,6 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
-import content.entity.sound.areaSound
 import kotlin.random.Random
 
 object ShootingStarHandler {
@@ -23,12 +23,10 @@ object ShootingStarHandler {
         totalCollected++
     }
 
-    fun rewardPlayerBonusOre(player: Player): Boolean {
-        return player.timers.contains("shooting_star_bonus_ore_timer")
-    }
+    fun rewardPlayerBonusOre(player: Player): Boolean = player.timers.contains("shooting_star_bonus_ore_timer")
 
     fun extraOreHandler(player: Player, ore: String, xpReward: Double) {
-        if(getChance() && rewardPlayerBonusOre(player)) {
+        if (getChance() && rewardPlayerBonusOre(player)) {
             player.message("<dark_green>You managed to mine an extra ore from the rock.")
             player.inventory.add(ore)
             player.experience.add(Skill.Mining, xpReward)

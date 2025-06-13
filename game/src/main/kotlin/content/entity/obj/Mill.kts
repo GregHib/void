@@ -1,16 +1,16 @@
 package content.entity.obj
 
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.inv.*
 import content.entity.player.bank.bank
-import content.quest.quest
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.player
 import content.entity.sound.sound
+import content.quest.quest
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.inv.*
 
 objectOperate("Operate", "hopper_controls") {
     if (player["flour_bin", 0] == 30) {

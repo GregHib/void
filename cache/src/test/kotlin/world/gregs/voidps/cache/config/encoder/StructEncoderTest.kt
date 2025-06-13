@@ -63,6 +63,7 @@ class StructEncoderTest {
 
         assertEquals(StructDefinition.EMPTY, actual)
     }
+
     @Test
     fun `Can't encode a custom value type`() {
         val writer: Writer = BufferWriter(20)

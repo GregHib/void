@@ -1,13 +1,13 @@
 package content.skill.mining
 
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
 import WorldTest
 import dialogueOption
 import itemOnItem
 import itemOption
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
 
 internal class GemBagTest : WorldTest() {
 
@@ -124,5 +124,4 @@ internal class GemBagTest : WorldTest() {
 
         assertFalse(player.inventory.contains("gem_bag"))
     }
-
 }

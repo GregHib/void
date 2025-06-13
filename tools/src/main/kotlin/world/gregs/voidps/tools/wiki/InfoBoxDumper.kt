@@ -55,5 +55,4 @@ object InfoBoxDumper {
 
         println("Found ${monsters.size} $monsterCount monsters, ${charms.size} $charmCount charm tables, ${items.size} $itemCount items, ${exchangables.size} $exchangeCount g.e items with details.")
     }
-
 }

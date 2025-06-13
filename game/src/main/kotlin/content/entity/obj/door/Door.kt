@@ -1,5 +1,9 @@
 package content.entity.obj.door
 
+import content.entity.obj.door.Door.openDoor
+import content.entity.obj.door.Door.tile
+import content.entity.obj.door.Gate.isGate
+import content.entity.sound.sound
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
@@ -11,10 +15,6 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import content.entity.obj.door.Door.openDoor
-import content.entity.obj.door.Door.tile
-import content.entity.obj.door.Gate.isGate
-import content.entity.sound.sound
 import java.util.concurrent.TimeUnit
 
 object Door {
@@ -113,7 +113,7 @@ object Door {
             tile = if (hinged) tile(obj, tileRotation) else obj.tile,
             rotation = if (hinged) obj.rotation(objRotation) else obj.rotation,
             ticks = ticks,
-            collision = collision
+            collision = collision,
         )
     }
 
@@ -144,7 +144,6 @@ object Door {
         return (name.contains("door", true) && !name.contains("trap", true)) || name.contains("gate", true) || this["door", false]
     }
 }
-
 
 /**
  * Walks a player through a door which other players can't walk through

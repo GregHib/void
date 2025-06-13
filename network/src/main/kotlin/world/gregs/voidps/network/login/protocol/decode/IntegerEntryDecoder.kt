@@ -11,5 +11,4 @@ class IntegerEntryDecoder : Decoder(4) {
         val integer = packet.readInt()
         return EnterInt(integer)
     }
-
 }

@@ -2,7 +2,6 @@ package world.gregs.voidps.tools.map
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
-import org.jsoup.Jsoup
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.tools.cache.OpenRS2
@@ -85,5 +84,4 @@ object MapPacker {
         }
         return list
     }
-
 }

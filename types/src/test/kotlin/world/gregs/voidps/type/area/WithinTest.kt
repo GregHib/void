@@ -45,5 +45,4 @@ internal class WithinTest {
         assertTrue(tile.within(other, radius = 3))
         assertFalse(tile.within(other, radius = 2))
     }
-
 }

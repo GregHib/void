@@ -1,5 +1,6 @@
 package content.entity.player.effect
 
+import content.skill.prayer.praying
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -9,7 +10,6 @@ import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.skill.prayer.praying
 import java.util.concurrent.TimeUnit
 
 playerSpawn { player ->

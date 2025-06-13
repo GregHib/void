@@ -1,11 +1,11 @@
 package content.skill.magic.jewellery
 
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.inject
-import content.quest.questCompleted
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.inventoryItem
+import content.quest.questCompleted
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.inject
 
 val areas: AreaDefinitions by inject()
 

@@ -92,5 +92,4 @@ object AddItem {
             set(emptySlot, Item(id, 1))
         }
     }
-
 }

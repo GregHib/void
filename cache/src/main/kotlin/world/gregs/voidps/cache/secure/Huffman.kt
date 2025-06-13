@@ -16,7 +16,7 @@ class Huffman {
     /**
      * Load huffman tree from cache for compression
      */
-    fun load(huffman: ByteArray) : Huffman {
+    fun load(huffman: ByteArray): Huffman {
         val start = System.currentTimeMillis()
         frequencies = huffman
         masks = IntArray(huffman.size)
@@ -62,7 +62,7 @@ class Huffman {
 
             var decryptIndex = 0
             val value: Long = Int.MAX_VALUE + 1L
-            for(count in 0 until size) {
+            for (count in 0 until size) {
                 if (currentFreq and value.ushr(count).toInt() == 0) {
                     decryptIndex++
                 } else {

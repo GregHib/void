@@ -10,7 +10,7 @@ import java.util.*
  * Tracks the changes made to the inventory and allows for sending these changes to the appropriate recipients.
  */
 class ChangeManager(
-    private val inventory: Inventory
+    private val inventory: Inventory,
 ) {
     private val changes: Stack<Event> = Stack()
     private val events = mutableSetOf<EventDispatcher>()

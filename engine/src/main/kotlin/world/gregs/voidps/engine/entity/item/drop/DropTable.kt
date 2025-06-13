@@ -17,7 +17,7 @@ data class DropTable(
     val roll: Int = 1,
     val drops: List<Drop>,
     override val chance: Int = -1,
-    override val predicate: ((Player) -> Boolean)? = null
+    override val predicate: ((Player) -> Boolean)? = null,
 ) : Drop {
 
     /**
@@ -31,9 +31,7 @@ data class DropTable(
         return list
     }
 
-    fun random(maximum: Int): Int {
-        return random.nextInt(0, if (roll <= 0 && maximum != -1) maximum else roll)
-    }
+    fun random(maximum: Int): Int = random.nextInt(0, if (roll <= 0 && maximum != -1) maximum else roll)
 
     fun collect(list: MutableList<ItemDrop>, value: Int, player: Player?, roll: Int = random(value)): Boolean {
         var count = 0

@@ -27,14 +27,18 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
+import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
+import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventory
@@ -42,15 +46,11 @@ import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
+import world.gregs.voidps.engine.timer.setCurrentTime
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
-import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
-import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
-import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
-import world.gregs.voidps.engine.entity.item.drop.DropTables
-import world.gregs.voidps.engine.timer.setCurrentTime
 import java.io.File
 import java.util.*
 import kotlin.system.measureTimeMillis
@@ -124,9 +124,7 @@ abstract class WorldTest : KoinTest {
         return npc
     }
 
-    fun createObject(id: String, tile: Tile = Tile.EMPTY, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation: Int = 0): GameObject {
-        return objects.add(id, tile, shape, rotation)
-    }
+    fun createObject(id: String, tile: Tile = Tile.EMPTY, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation: Int = 0): GameObject = objects.add(id, tile, shape, rotation)
 
     fun createFloorItem(
         id: String,
@@ -135,10 +133,8 @@ abstract class WorldTest : KoinTest {
         revealTicks: Int = FloorItems.NEVER,
         disappearTicks: Int = FloorItems.NEVER,
         charges: Int = 0,
-        owner: Player? = null
-    ): FloorItem {
-        return floorItems.add(tile, id, amount, revealTicks, disappearTicks, charges, owner)
-    }
+        owner: Player? = null,
+    ): FloorItem = floorItems.add(tile, id, amount, revealTicks, disappearTicks, charges, owner)
 
     fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
 
@@ -149,40 +145,52 @@ abstract class WorldTest : KoinTest {
         startKoin {
             printLogger(Level.ERROR)
             allowOverride(true)
-            modules(engineModule(files), gameModule(files), module {
-                single(createdAtStart = true) { cache }
-                single(createdAtStart = true) { huffman }
-                single(createdAtStart = true) { objectDefinitions }
-                single(createdAtStart = true) { npcDefinitions }
-                single(createdAtStart = true) { itemDefinitions }
-                single(createdAtStart = true) { animationDefinitions }
-                single(createdAtStart = true) { graphicDefinitions }
-                single(createdAtStart = true) { interfaceDefinitions }
-                single(createdAtStart = true) { inventoryDefinitions }
-                single(createdAtStart = true) { structDefinitions }
-                single(createdAtStart = true) { quickChatPhraseDefinitions }
-                single(createdAtStart = true) { weaponStyleDefinitions }
-                single(createdAtStart = true) { weaponAnimationDefinitions }
-                single(createdAtStart = true) { enumDefinitions }
-                single(createdAtStart = true) { fontDefinitions }
-                single(createdAtStart = true) { objectTeleports }
-                single(createdAtStart = true) { itemOnItemDefinitions }
-                single(createdAtStart = true) { variableDefinitions }
-                single(createdAtStart = true) { dropTables }
-                single { ammoDefinitions }
-                single { parameterDefinitions }
-                single { gameObjects }
-                single { mapDefinitions }
-                single { collisions }
-                single { objectCollisionAdd }
-                single { objectCollisionAdd }
-                single { objectCollisionRemove }
-                single {
-                    Hunting(get(), get(), get(), get(), get(), get(), object : FakeRandom() {
-                        override fun nextBits(bitCount: Int) = 0
-                    })
-                }
-            })
+            modules(
+                engineModule(files),
+                gameModule(files),
+                module {
+                    single(createdAtStart = true) { cache }
+                    single(createdAtStart = true) { huffman }
+                    single(createdAtStart = true) { objectDefinitions }
+                    single(createdAtStart = true) { npcDefinitions }
+                    single(createdAtStart = true) { itemDefinitions }
+                    single(createdAtStart = true) { animationDefinitions }
+                    single(createdAtStart = true) { graphicDefinitions }
+                    single(createdAtStart = true) { interfaceDefinitions }
+                    single(createdAtStart = true) { inventoryDefinitions }
+                    single(createdAtStart = true) { structDefinitions }
+                    single(createdAtStart = true) { quickChatPhraseDefinitions }
+                    single(createdAtStart = true) { weaponStyleDefinitions }
+                    single(createdAtStart = true) { weaponAnimationDefinitions }
+                    single(createdAtStart = true) { enumDefinitions }
+                    single(createdAtStart = true) { fontDefinitions }
+                    single(createdAtStart = true) { objectTeleports }
+                    single(createdAtStart = true) { itemOnItemDefinitions }
+                    single(createdAtStart = true) { variableDefinitions }
+                    single(createdAtStart = true) { dropTables }
+                    single { ammoDefinitions }
+                    single { parameterDefinitions }
+                    single { gameObjects }
+                    single { mapDefinitions }
+                    single { collisions }
+                    single { objectCollisionAdd }
+                    single { objectCollisionAdd }
+                    single { objectCollisionRemove }
+                    single {
+                        Hunting(
+                            get(),
+                            get(),
+                            get(),
+                            get(),
+                            get(),
+                            get(),
+                            object : FakeRandom() {
+                                override fun nextBits(bitCount: Int) = 0
+                            },
+                        )
+                    }
+                },
+            )
         }
         ContentLoader.load()
         MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache()
@@ -199,7 +207,7 @@ abstract class WorldTest : KoinTest {
                 get(),
                 get(),
                 get(),
-                sequential = true
+                sequential = true,
             )
             engine = GameLoop(tickStages)
 

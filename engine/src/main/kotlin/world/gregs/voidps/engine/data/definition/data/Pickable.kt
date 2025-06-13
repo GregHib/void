@@ -11,7 +11,7 @@ data class Pickable(
     val item: String = "",
     val chance: Int = 1,
     val respawnDelay: Int = -1,
-    val message: String = ""
+    val message: String = "",
 ) {
     companion object {
 

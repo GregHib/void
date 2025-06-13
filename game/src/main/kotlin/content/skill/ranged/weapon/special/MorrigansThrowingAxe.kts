@@ -1,10 +1,10 @@
 package content.skill.ranged.weapon.special
 
-import world.gregs.voidps.engine.client.variable.start
 import content.entity.combat.hit.hit
-import content.skill.ranged.ammo
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
+import content.skill.ranged.ammo
+import world.gregs.voidps.engine.client.variable.start
 
 specialAttack("hamstring") { player ->
     val ammo = player.ammo

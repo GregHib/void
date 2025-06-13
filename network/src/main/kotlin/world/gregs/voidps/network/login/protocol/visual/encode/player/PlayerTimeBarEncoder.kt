@@ -15,5 +15,4 @@ class PlayerTimeBarEncoder : VisualEncoder<PlayerVisuals>(PLAYER_TIME_BAR_MASK) 
             writeByteInverse(increment)
         }
     }
-
 }

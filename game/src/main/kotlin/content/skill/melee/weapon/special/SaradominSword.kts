@@ -2,9 +2,9 @@ package content.skill.melee.weapon.special
 
 import content.entity.combat.hit.Damage
 import content.entity.combat.hit.hit
-import content.skill.melee.weapon.weapon
 import content.entity.player.combat.special.specialAttack
 import content.entity.sound.areaSound
+import content.skill.melee.weapon.weapon
 import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 
 specialAttack("saradomins_lightning") { player ->

@@ -58,6 +58,7 @@ class Viewport {
 
     companion object {
         const val LOCAL_NPC_CAP = 250
+
         // View radius could be controlled per tracking set to give a nicer linear
         // expanding square when loading areas with more than max entities
         const val VIEW_RADIUS = 15

@@ -1,14 +1,14 @@
 package content.entity.player
 
+import WorldTest
+import content.entity.player.effect.energy.runEnergy
+import interfaceOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.network.client.instruction.Walk
-import content.entity.player.effect.energy.runEnergy
-import WorldTest
-import interfaceOption
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.network.client.instruction.Walk
 
 internal class PlayerTest : WorldTest() {
 
@@ -62,5 +62,4 @@ internal class PlayerTest : WorldTest() {
 
         assertTrue(player.runEnergy > energy)
     }
-
 }

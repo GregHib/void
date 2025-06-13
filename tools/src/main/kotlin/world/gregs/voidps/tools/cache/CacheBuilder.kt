@@ -72,7 +72,7 @@ object CacheBuilder {
     private fun checkCacheOverride(path: File) {
         val idx = path.resolve("${FileCache.CACHE_FILE_NAME}.dat2")
         if (idx.exists()) {
-            println("Cache exists at '${path}' continuing will override.")
+            println("Cache exists at '$path' continuing will override.")
             System.err.println("Continuing will delete the current cache. Are you sure?")
             if (!readln().startsWith("y", ignoreCase = true)) {
                 println("Cancelled.")

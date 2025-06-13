@@ -29,5 +29,4 @@ class InfoBoxConstruction : Pipeline.Modifier<Extras> {
             }
         }
     }
-
 }

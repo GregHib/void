@@ -19,5 +19,4 @@ class PlayerExactMovementEncoder : VisualEncoder<PlayerVisuals>(PLAYER_EXACT_MOV
             writeByte(direction / 2)
         }
     }
-
 }

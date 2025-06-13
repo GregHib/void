@@ -13,5 +13,4 @@ class PlayerOption3Decoder : Decoder(3) {
         val index = packet.readShortLittleEndian().toInt()
         return InteractPlayer(index, 3)
     }
-
 }

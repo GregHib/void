@@ -11,5 +11,4 @@ class FloorItemExamineDecoder : Decoder(2) {
         val itemId = packet.readShort().toInt()
         return ExamineItem(itemId)
     }
-
 }

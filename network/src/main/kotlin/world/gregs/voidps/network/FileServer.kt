@@ -18,7 +18,7 @@ import java.util.*
 class FileServer(
     private val revision: Int,
     private val prefetchKeys: IntArray,
-    private val provider: FileProvider
+    private val provider: FileProvider,
 ) : Server {
 
     val logger = InlineLogger()
@@ -90,7 +90,7 @@ class FileServer(
                 }
             }
         } finally {
-            logger.trace { "Client disconnected: ${hostname}." }
+            logger.trace { "Client disconnected: $hostname." }
         }
     }
 
