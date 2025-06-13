@@ -124,14 +124,18 @@ distributions {
             from(layout.buildDirectory.dir("tmp/empty/")) {
                 into("data")
             }
+            val tempDir = layout.buildDirectory.dir("tmp/scripts").get().asFile
+            tempDir.mkdirs()
             val resourcesDir = layout.projectDirectory.dir("src/main/resources")
             from(resourcesDir.file("game.properties"))
             val bat = resourcesDir.file("run-server.bat").asFile
-            bat.writeText(bat.readText().replace("-dev.jar", "-$version.jar"))
-            from(bat)
+            val tempBat = File(tempDir, "run-server.bat")
+            tempBat.writeText(bat.readText().replace("-dev.jar", "-$version.jar"))
+            from(tempBat)
             val shell = resourcesDir.file("run-server.sh").asFile
-            shell.writeText(shell.readText().replace("-dev.jar", "-$version.jar"))
-            from(shell)
+            val tempShell = File(tempDir, "run-server.sh")
+            tempShell.writeText(shell.readText().replace("-dev.jar", "-$version.jar"))
+            from(tempShell)
         }
     }
 }
