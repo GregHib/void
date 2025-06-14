@@ -6,6 +6,7 @@ str = 45
 def = 30
 max_hit_melee = 50
 slayer_xp = 120.0
+slayer_level = 50
 respawn_delay = 21
 wander_radius = 7
 attack_speed = 4

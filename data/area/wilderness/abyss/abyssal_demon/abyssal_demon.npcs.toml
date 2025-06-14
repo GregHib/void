@@ -10,6 +10,7 @@ max_hit_melee = 80
 respawn_delay = 30
 wander_radius = 2
 slayer_xp = 150.0
+slayer_level = 85
 drop_table = "abyssal_demon"
 combat_anims = "abyssal_demon"
 combat_sounds = "abyssal_demon"

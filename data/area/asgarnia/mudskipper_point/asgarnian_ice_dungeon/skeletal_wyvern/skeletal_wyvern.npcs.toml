@@ -18,4 +18,5 @@ attack_radius = 5
 respawn_delay = 15
 categories = ["skeletal_wyverns"]
 slayer_xp = 210.0
+slayer_level = 72
 examine = "A very dangerous pile of animated wyvern bones."
