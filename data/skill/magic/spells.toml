@@ -492,3 +492,12 @@ exp = 100.0
 
 [superheat_item]
 exp = 53.0
+
+[aberrant_spectre_goo]
+max_hit = 119
+sound = "abberant_spectre_goo"
+graphic = "aberrant_spectre_goo_cast"
+animation = "aberrant_spectre_attack"
+projectiles = [
+  {id = "aberrant_spectre_goo"}
+]
