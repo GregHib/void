@@ -1,0 +1,13 @@
+[aberrant_spectre_goo_cast]
+id = 334
+height = 190
+
+[aberrant_spectre_goo]
+id = 335
+delay = 28
+curve = 5
+flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+
+[aberrant_spectre_goo_impact]
+id = 336
+height = 70

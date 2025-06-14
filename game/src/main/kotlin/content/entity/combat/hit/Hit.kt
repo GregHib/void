@@ -100,6 +100,10 @@ object Hit {
             val message = "${if (offense) "Offensive" else "Defensive"} rating: $rating ($type)"
             source.message(message)
             logger.debug { message }
+        } else if (target["debug", false]) {
+            val message = "${if (offense) "Offensive" else "Defensive"} rating: $rating ($type)"
+            target.message(message)
+            logger.debug { message }
         }
         return rating
     }
