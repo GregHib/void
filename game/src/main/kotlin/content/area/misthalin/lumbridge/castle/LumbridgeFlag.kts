@@ -1,4 +1,4 @@
-package content.area.misthalin.lumbridge
+package content.area.misthalin.lumbridge.castle
 
 import world.gregs.voidps.engine.entity.obj.objectOperate
 

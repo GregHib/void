@@ -1,4 +1,4 @@
-package content.area.misthalin.lumbridge
+package content.quest.free.the_restless_ghost
 
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice

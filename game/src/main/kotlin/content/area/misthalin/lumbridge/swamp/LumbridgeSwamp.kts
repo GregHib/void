@@ -1,4 +1,4 @@
-package content.area.misthalin.lumbridge
+package content.area.misthalin.lumbridge.swamp
 
 import content.entity.death.playerDeath
 import content.entity.player.bank.ownsItem

@@ -1,4 +1,4 @@
-package content.entity.npc.combat.melee
+package content.area.misthalin.lumbridge
 
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
