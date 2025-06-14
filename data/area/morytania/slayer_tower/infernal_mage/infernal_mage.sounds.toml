@@ -1,0 +1,8 @@
+[infernal_mage_defend]
+id = 513
+
+[infernal_mage_death]
+id = 512
+
+[infernal_mage_attack]
+id = 156

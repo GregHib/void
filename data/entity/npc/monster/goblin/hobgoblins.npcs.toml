@@ -13,7 +13,7 @@ drop_table = "hobgoblin"
 combat_anims = "hobgoblin"
 combat_sounds = "hobgoblin"
 categories = ["hobgoblins"]
-slayer_xp = 29
+slayer_xp = 29.0
 respawn_delay = 30
 examine = "An ugly, smelly creature."
 
