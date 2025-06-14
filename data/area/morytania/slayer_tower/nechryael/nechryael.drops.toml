@@ -29,3 +29,9 @@ drops = [
   { id = "tuna", chance = 3 },
   { table = "rare_drop_table" },
 ]
+
+[death_spawn_drop_table]
+type = "all"
+drops = [
+  { id = "ashes" },
+]
