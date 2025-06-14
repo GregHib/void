@@ -15,18 +15,18 @@ combat_sounds = "infernal_mage"
 categories = ["infernal_mage"]
 examine = "An evil magic user."
 
-[infernal_mage_1]
+[infernal_mage_red]
 id = 1644
 clone = "infernal_mage"
 
-[infernal_mage_2]
+[infernal_mage_white]
 id = 1645
 clone = "infernal_mage"
 
-[infernal_mage_3]
+[infernal_mage_purple]
 id = 1646
 clone = "infernal_mage"
 
-[infernal_mage_4]
+[infernal_mage_mix]
 id = 1647
 clone = "infernal_mage"
