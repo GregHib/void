@@ -30,7 +30,7 @@ npcCombatSwing("skeletal_wyvern") { npc ->
             npc.gfx("wyvern_ranged")
             target.sound("wyvern_ranged")
             nearestTile(npc, target).shoot("wyvern_ranged", target)
-            npc.hit(target, type = "range")
+            npc.hit(target, offensiveType = "range")
         }
 
         1 -> {
@@ -42,14 +42,14 @@ npcCombatSwing("skeletal_wyvern") { npc ->
             nearestTile(npc, target).shoot("wyvern_ice_breath$type", target)
             // Always apply hit splash visual
             target.gfx("wyvern_ice_breath_hit")
-            npc.hit(target, type = "icy_breath", spell = "ice", special = true)
+            npc.hit(target, offensiveType = "icy_breath", spell = "ice", special = true)
         }
 
         2 -> {
             // Melee tail whip
             npc.anim("wyvern_tail_whip")
             target.sound("wyvern_tail_whip")
-            npc.hit(target, type = "melee")
+            npc.hit(target, offensiveType = "melee")
         }
 
         3 -> {
@@ -57,7 +57,7 @@ npcCombatSwing("skeletal_wyvern") { npc ->
             npc.anim("skeletal_wyvern_defend")
             npc.gfx("wyvern_ranged")
             target.sound("wyvern_ranged")
-            npc.hit(target, type = "melee")
+            npc.hit(target, offensiveType = "melee")
         }
     }
 }

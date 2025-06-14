@@ -13,14 +13,12 @@ import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
  * Damage done to a [target]
  * Emitted on swing, where [CombatDamage] is after the attack delay
  * @param type the combat type, typically: melee, range or magic
- * @param mark the hit-splat type
  * @param damage the damage inflicted upon the [target]
  * @param delay until hit in client ticks
  */
 data class CombatAttack(
     val target: Character,
     val type: String,
-    val mark: HitSplat.Mark,
     val damage: Int,
     val weapon: Item,
     val spell: String,

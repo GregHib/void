@@ -82,12 +82,10 @@ npcDeath { npc ->
 
 fun dropLoot(npc: NPC, killer: Character?, tile: Tile) {
     val table = tables.get("${npc.def["drop_table", npc.id]}_drop_table") ?: return
-    val combatLevel = if (killer is Player) {
-        killer.combatLevel
-    } else if (killer is NPC) {
-        killer.def.combat
-    } else {
-        -1
+    val combatLevel = when (killer) {
+        is Player -> killer.combatLevel
+        is NPC -> killer.def.combat
+        else -> -1
     }
     val drops = table.role(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1, player = killer as? Player)
         .filterNot { it.id == "nothing" }

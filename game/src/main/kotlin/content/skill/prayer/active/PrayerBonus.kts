@@ -35,7 +35,7 @@ characterCombatAttack { character ->
         target.anim("deflect", delay)
         target.gfx("deflect_$type", delay)
         if (random.nextDouble() >= 0.4) {
-            target.hit(target = character, type = "deflect", delay = delay, damage = (damage * 0.10).toInt())
+            target.hit(target = character, offensiveType = "deflect", delay = delay, damage = (damage * 0.10).toInt())
         }
     }
 }

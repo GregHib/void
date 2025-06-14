@@ -16,7 +16,7 @@ combatAttack(type = "range") { source ->
     if (random.nextDouble() < chance) {
         // water_strike
         val damage = Damage.roll(source, target, type, weapon)
-        source.hit(target, weapon, "magic", HitSplat.Mark.Magic, CLIENT_TICKS.toTicks(delay), damage = damage)
+        source.hit(target, weapon, "magic", CLIENT_TICKS.toTicks(delay), damage = damage)
     }
 }
 
@@ -28,7 +28,7 @@ combatAttack(type = "range") { source ->
     if (random.nextDouble() < chance) {
         // earth_strike
         val damage = Damage.roll(source, target, type, weapon)
-        source.hit(target, weapon, "magic", HitSplat.Mark.Magic, CLIENT_TICKS.toTicks(delay), damage = damage)
+        source.hit(target, weapon, "magic", CLIENT_TICKS.toTicks(delay), damage = damage)
     }
 }
 
@@ -40,6 +40,6 @@ combatAttack(type = "range") { source ->
     if (random.nextDouble() < chance) {
         // fire_strike
         val damage = Damage.roll(source, target, type, weapon)
-        source.hit(target, weapon, "magic", HitSplat.Mark.Magic, CLIENT_TICKS.toTicks(delay), damage = damage)
+        source.hit(target, weapon, "magic", CLIENT_TICKS.toTicks(delay), damage = damage)
     }
 }

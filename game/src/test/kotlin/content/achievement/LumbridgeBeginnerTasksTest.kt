@@ -252,6 +252,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     fun `Bovine Intervention`() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
+            override fun nextInt(from: Int, until: Int) = until
         })
         val player = createPlayer(Tile(3257, 3260))
         val npc = npcs[Tile(3258, 3260)].first { it.id.startsWith("cow") }

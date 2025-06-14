@@ -31,13 +31,23 @@ object Damage {
      * Rolls a real hit against [target] without modifiers
      * @return damage or -1 if unsuccessful
      */
-    fun roll(source: Character, target: Character, type: String, weapon: Item, spell: String = "", special: Boolean = false): Int {
-        val success = Hit.success(source, target, type, weapon, special)
-        if (type != "dragonfire" && !success) {
+    fun roll(
+        source: Character,
+        target: Character,
+        offensiveType: String,
+        weapon: Item,
+        spell: String = "",
+        special: Boolean = false,
+        defensiveType: String = offensiveType
+    ): Int {
+        val success = Hit.success(source, target, offensiveType, weapon, special, defensiveType)
+        if (offensiveType != "dragonfire" && !success) {
             return -1
         }
-        val baseMaxHit = maximum(source, target, type, weapon, spell, success)
+        val baseMaxHit = maximum(source, target, offensiveType, weapon, spell, success)
         source["max_hit"] = baseMaxHit
+        val minimum = minimum(source, offensiveType)
+        source["min_hit"] = minimum
         val player = if (source is Player && source["debug", false]) {
             source
         } else if (target is Player && target["debug", false]) {
@@ -46,11 +56,11 @@ object Damage {
             null
         }
         if (player != null) {
-            val message = "Base maximum hit: $baseMaxHit ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
+            val message = "Base maximum hit: $baseMaxHit ($offensiveType, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
             player.message(message)
             logger.debug { message }
         }
-        return random.nextInt(baseMaxHit + 1)
+        return random.nextInt(minimum, baseMaxHit + 1)
     }
 
     /**
@@ -60,7 +70,7 @@ object Damage {
      */
     fun maximum(source: Character, target: Character, type: String, weapon: Item, spell: String = "", special: Boolean = false): Int = when {
         type == "dragonfire" -> Dragonfire.maxHit(source, target, special || source is NPC && spell != "")
-        source is NPC -> npcMaximum(source, target, type)
+        source is NPC -> source.def["max_hit_$type", 0]
         type == "magic" && weapon.id.startsWith("saradomin_sword") -> 160
         type == "magic" && spell == "magic_dart" -> effectiveLevel(source, Skill.Magic) + 100
         type == "magic" -> {
@@ -84,7 +94,13 @@ object Damage {
         }
     }
 
-    private fun npcMaximum(source: NPC, target: Character, type: String): Int = source.def["max_hit_$type", 0]
+    /**
+     * Calculates the minimum damage before modifications are applied
+     */
+    private fun minimum(source: Character, type: String): Int = when {
+        source is NPC -> source.def["min_hit_$type", 0]
+        else -> 0
+    }
 
     private fun effectiveLevel(character: Character, skill: Skill): Int {
         var level = character.levels.get(skill)

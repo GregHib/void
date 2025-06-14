@@ -1,16 +1,16 @@
 [banshee]
 id = 1612
 hitpoints = 220
+regen_rate_ticks = 5
 att = 22
 str = 15
 def = 22
-max_hit_magic = 20
+max_hit_melee = 20
 slayer_xp = 22.0
 respawn_delay = 15
 attack_radius = 15
 wander_radius = 13
-combat_type = "magic"
-hit_splat = "melee"
+drop_table = "banshee"
 attack_sound = "nothing"
 hunt_mode = "cowardly"
 combat_anims = "banshee"
@@ -20,21 +20,8 @@ examine = "A tortured screaming soul."
 
 [mighty_banshee]
 id = 7786
+clone = "banshee"
 hitpoints = 820
-att = 22
-str = 15
-def = 22
-max_hit_magic = 90
+max_hit_melee = 90
 slayer_xp = 85.0
-respawn_delay = 15
-attack_radius = 15
-wander_radius = 13
-combat_type = "magic"
-hit_splat = "melee"
-attack_sound = "nothing"
-hunt_mode = "cowardly"
-drop_table = "banshee"
-combat_anims = "banshee"
-combat_sounds = "banshee"
-categories = ["banshees", "undead"]
 examine = "Not the best of vocalists."
