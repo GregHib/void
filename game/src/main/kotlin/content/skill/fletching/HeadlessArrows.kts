@@ -1,5 +1,6 @@
 package content.skill.fletching
 
+import content.entity.player.dialogue.type.makeAmount
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -9,7 +10,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
-import content.entity.player.dialogue.type.makeAmount
 
 itemOnItem("feather", "arrow_shaft") {
     if (fromItem.amount <= 15 || toItem.amount <= 15) {
@@ -22,7 +22,7 @@ itemOnItem("feather", "arrow_shaft") {
             listOf("headless_arrow"),
             type = "Make sets: ",
             maximum = 10,
-            text = "How many sets of 15 do you wish to feather?"
+            text = "How many sets of 15 do you wish to feather?",
         )
         makeHeadlessArrows(player, selected, amount)
     }

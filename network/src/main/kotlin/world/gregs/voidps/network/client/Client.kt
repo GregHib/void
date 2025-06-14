@@ -10,7 +10,7 @@ open class Client(
     private val write: ByteWriteChannel,
     val cipherIn: IsaacCipher,
     private val cipherOut: IsaacCipher?,
-    val address: String
+    val address: String,
 ) {
 
     private val logger = InlineLogger()
@@ -110,8 +110,6 @@ open class Client(
 
         fun bits(bitCount: Int) = (bitCount + 7) / 8
 
-        fun name(displayName: String, responseName: String): Int {
-            return 1 + string(displayName) + if (displayName != responseName) string(responseName) else 0
-        }
+        fun name(displayName: String, responseName: String): Int = 1 + string(displayName) + if (displayName != responseName) string(responseName) else 0
     }
 }

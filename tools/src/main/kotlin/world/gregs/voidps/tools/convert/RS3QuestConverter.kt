@@ -51,7 +51,7 @@ object RS3QuestConverter {
                 $identifier:
                   id: $questId
                   name: "${def.name}"
-            """.trimIndent()
+                """.trimIndent(),
             )
             if (def.difficulty != -1) {
                 println("  difficulty: ${def.difficulty}")

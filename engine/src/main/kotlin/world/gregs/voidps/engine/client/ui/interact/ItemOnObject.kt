@@ -12,7 +12,7 @@ data class ItemOnObject(
     override val target: GameObject,
     val item: Item,
     val itemSlot: Int,
-    val inventory: String
+    val inventory: String,
 ) : TargetInteraction<Player, GameObject>() {
 
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }

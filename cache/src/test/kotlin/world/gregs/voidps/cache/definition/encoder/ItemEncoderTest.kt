@@ -78,7 +78,7 @@ internal class ItemEncoderTest {
             pickSizeShift = 2,
             singleNoteId = 159,
             singleNoteTemplateId = 179,
-            params = hashMapOf(1 to "string", 2 to 100000)
+            params = hashMapOf(1 to "string", 2 to 100000),
         )
         val encoder = ItemEncoder()
 

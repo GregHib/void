@@ -6,7 +6,7 @@ data class Rectangle(
     val minX: Int,
     val minY: Int,
     val maxX: Int,
-    val maxY: Int
+    val maxY: Int,
 ) : Area {
 
     constructor(tile: Tile, width: Int, height: Int) : this(tile.x, tile.y, tile.x + width - 1, tile.y + height - 1)
@@ -59,21 +59,16 @@ data class Rectangle(
             return false
         }
         return (other.maxX <= other.minX || other.maxX - 1 > minX) &&
-                (other.maxY <= other.minY || other.maxY - 1 > minY) &&
-                (maxX <= minX || maxX - 1 > other.minX) &&
-                (maxY <= minY || maxY - 1 > other.minY)
+            (other.maxY <= other.minY || other.maxY - 1 > minY) &&
+            (maxX <= minX || maxX - 1 > other.minX) &&
+            (maxY <= minY || maxY - 1 > other.minY)
     }
 
-    override fun contains(x: Int, y: Int, level: Int): Boolean {
-        return x in minX..maxX && y in minY..maxY
-    }
+    override fun contains(x: Int, y: Int, level: Int): Boolean = x in minX..maxX && y in minY..maxY
 
     override fun random() = Tile(if (minX == maxX) minX else random.nextInt(minX, maxX + 1), if (minY == maxY) minY else random.nextInt(minY, maxY + 1), 0)
 
-
-    override fun toString(): String {
-        return "Rectangle($minX..$maxX, $minY..$maxY)"
-    }
+    override fun toString(): String = "Rectangle($minX..$maxX, $minY..$maxY)"
 
     override fun iterator(): Iterator<Tile> {
         val tile = Tile(minX, minY)

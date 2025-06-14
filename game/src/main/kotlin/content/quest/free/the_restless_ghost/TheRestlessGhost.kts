@@ -24,7 +24,7 @@ questJournalOpen("the_restless_ghost") {
             "<str>I should take the skull back to the ghost so it can rest in peace.",
             "",
             "<red>QUEST COMPLETE!",
-            ""
+            "",
         )
         "started" -> listOf(
             "<str>I've not started this quest yet.",
@@ -34,7 +34,7 @@ questJournalOpen("the_restless_ghost") {
             "",
             "<navy>I should find <maroon>Father Urhney, <navy>who is an expert on <maroon>ghosts.",
             "<navy>He lives in a <maroon>shack <navy>in the south of <maroon>Lumbridge Swamp, <navy>near",
-            "<navy>the coastline."
+            "<navy>the coastline.",
         )
         "ghost" -> {
             val list = mutableListOf(
@@ -49,7 +49,7 @@ questJournalOpen("the_restless_ghost") {
                 "<navy>I should talk to the <maroon>ghost <navy>in the crypt south of Lumbridge",
                 "<navy>church to find out why it is haunting the <maroon>graveyard <navy>I must",
                 "<navy>make sure to wear my ghostspeak amulet when doing so.",
-                ""
+                "",
             )
             if (!player.ownsItem("ghostspeak_amulet")) {
                 list.add("<navy>I seem to have loast my <maroon>Amulet of Ghost speak. <navy>I should talk to")
@@ -71,7 +71,7 @@ questJournalOpen("the_restless_ghost") {
                 "<str>Lumbridge church to find out why it is haunting the",
                 "<str>graveyard I must make sure to wear my ghostspeak",
                 "<str>amulet when doing so.",
-                ""
+                "",
             )
             if (!player.ownsItem("muddy_skull")) {
                 list.add("<navy>I should go and search the <maroon>Mining spot <navy>on the coast <maroon>south")
@@ -86,7 +86,7 @@ questJournalOpen("the_restless_ghost") {
         }
         else -> listOf(
             "<navy>I can start this quest by speaking to <maroon>Father Aereck <navy>in the",
-            "<maroon>church <navy>next to <maroon>Lumbridge Castle."
+            "<maroon>church <navy>next to <maroon>Lumbridge Castle.",
         )
     }
     player.questJournal("The Restless Ghost", lines)

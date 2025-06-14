@@ -37,16 +37,11 @@ abstract class KoinMock : KoinTest {
         mockkClass(clazz)
     }
 
-    fun loadModules(vararg modules: Module) =
-        koinTestExtension.koin.loadModules(modules.toList())
+    fun loadModules(vararg modules: Module) = koinTestExtension.koin.loadModules(modules.toList())
 
-    fun setProperty(key: String, value: String) =
-        koinTestExtension.koin.setProperty(key, value)
+    fun setProperty(key: String, value: String) = koinTestExtension.koin.setProperty(key, value)
 
-    fun setProperty(key: String, value: Int) =
-        koinTestExtension.koin.setProperty(key, value.toString())
+    fun setProperty(key: String, value: Int) = koinTestExtension.koin.setProperty(key, value.toString())
 
-    fun setProperty(key: String, value: Float) =
-        koinTestExtension.koin.setProperty(key, value.toString())
-
+    fun setProperty(key: String, value: Float) = koinTestExtension.koin.setProperty(key, value.toString())
 }

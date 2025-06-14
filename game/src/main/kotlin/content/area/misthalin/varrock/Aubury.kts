@@ -1,5 +1,12 @@
 package content.area.misthalin.varrock
 
+import content.entity.npc.shop.OpenShop
+import content.entity.player.bank.bank
+import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.quest.quest
+import content.skill.runecrafting.EssenceMine
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -7,13 +14,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.entity.player.bank.bank
-import content.entity.player.bank.ownsItem
-import content.quest.quest
-import content.skill.runecrafting.EssenceMine
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
-import content.entity.npc.shop.OpenShop
 
 npcOperate("Talk-to", "aubury") {
     if (player.quest("rune_mysteries") == "research_notes") {
@@ -27,7 +27,7 @@ npcOperate("Talk-to", "aubury") {
         packageForYou()
         option<Quiz>(
             "Anything useful in that package I gave you?",
-            { player.quest("rune_mysteries") == "package_delivered" }
+            { player.quest("rune_mysteries") == "package_delivered" },
         ) {
             npc<Happy>("Well, let's have a look...")
             researchPackage()
@@ -51,7 +51,7 @@ suspend fun PlayerChoice.noThanks(message: String = "Oh, it's a rune shop. No th
 
 fun PlayerChoice.teleport(npc: NPC): Unit = option(
     "Can you teleport me to the Rune Essence?",
-    { player.quest("rune_mysteries") == "completed" }
+    { player.quest("rune_mysteries") == "completed" },
 ) {
     npc<Neutral>("Of course. By the way, if you end up making any runes from the essence you mine, I'll happily buy them from you.")
     EssenceMine.teleport(npc, player)
@@ -59,7 +59,7 @@ fun PlayerChoice.teleport(npc: NPC): Unit = option(
 
 suspend fun PlayerChoice.packageForYou(): Unit = option<Neutral>(
     "I've been sent here with a package for you.",
-    { player.quest("rune_mysteries") == "research_package" }
+    { player.quest("rune_mysteries") == "research_package" },
 ) {
     npc<Uncertain>("A package? From who?")
     player<Neutral>("From Sedridor at the Wizards' Tower.")

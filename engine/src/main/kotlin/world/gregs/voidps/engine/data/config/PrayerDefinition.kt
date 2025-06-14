@@ -10,7 +10,7 @@ data class PrayerDefinition(
     val bonuses: Map<String, Int> = emptyMap(),
     val members: Boolean = false,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
+    override var extras: Map<String, Any>? = null,
 ) : Extra {
     companion object {
         val EMPTY = PrayerDefinition()

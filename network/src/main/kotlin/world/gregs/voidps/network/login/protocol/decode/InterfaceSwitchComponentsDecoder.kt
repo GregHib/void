@@ -25,8 +25,7 @@ class InterfaceSwitchComponentsDecoder : Decoder(16) {
             toId = InterfaceDefinition.id(toPacked),
             toComponentId = InterfaceDefinition.componentId(toPacked),
             toItemId = toItemId,
-            toSlot = toSlot
+            toSlot = toSlot,
         )
     }
-
 }

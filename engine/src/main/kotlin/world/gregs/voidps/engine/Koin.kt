@@ -6,10 +6,10 @@ import org.koin.java.KoinJavaComponent.getKoin
 
 inline fun <reified T : Any> get(
     qualifier: Qualifier? = null,
-    noinline parameters: ParametersDefinition? = null
+    noinline parameters: ParametersDefinition? = null,
 ): T = getKoin().get(qualifier, parameters)
 
 inline fun <reified T : Any> inject(
     qualifier: Qualifier? = null,
-    noinline parameters: ParametersDefinition? = null
+    noinline parameters: ParametersDefinition? = null,
 ): Lazy<T> = getKoin().inject(qualifier, parameters = parameters)

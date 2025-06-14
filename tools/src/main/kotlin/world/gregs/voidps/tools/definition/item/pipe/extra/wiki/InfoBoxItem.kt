@@ -114,9 +114,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
         }
     }
 
-    private fun String.appendSuffix(suffix: String): String {
-        return if (!endsWith(suffix)) "$this$suffix" else this
-    }
+    private fun String.appendSuffix(suffix: String): String = if (!endsWith(suffix)) "$this$suffix" else this
 
     private fun processRs2(extras: MutableMap<String, Any>, page: WikiPage) {
         val template = page.getTemplateMap("infobox item") ?: return
@@ -151,33 +149,27 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
         private val splitByColon = "(?:\\.|<br>|!|\\?)('?.*?:'?(?:\\s+)?)".toRegex()
         private val splitByParentheses = "[.!?]((?:\\s+)?\\(.*?\\)(?:\\s+)?)".toRegex()
 
-        private fun isRs3Examine(string: String): Boolean {
-            return string.contains("Used ")
-        }
+        private fun isRs3Examine(string: String): Boolean = string.contains("Used ")
 
-        private fun isRs3Name(string: String): Boolean {
-            return string.endsWith("dragon claw", true)
-                    || string.endsWith("black claw", true)
-                    || string.endsWith("white claw", true)
-                    || string.endsWith("torag's hammer", true)
-                    || string.startsWith("blessed dragonhide", true)
-                    || string.contains("shieldbow", true)
-                    || string.contains("chargebow", true)
-                    || string.endsWith("arrowheads", true)
-                    || string.contains("hallowe'en", true)
-                    || string.equals("dragon helm", true)
-                    || string.equals("oxidised helm", true)
-                    || string.startsWith("void knight ", true)
-        }
+        private fun isRs3Name(string: String): Boolean = string.endsWith("dragon claw", true) ||
+            string.endsWith("black claw", true) ||
+            string.endsWith("white claw", true) ||
+            string.endsWith("torag's hammer", true) ||
+            string.startsWith("blessed dragonhide", true) ||
+            string.contains("shieldbow", true) ||
+            string.contains("chargebow", true) ||
+            string.endsWith("arrowheads", true) ||
+            string.contains("hallowe'en", true) ||
+            string.equals("dragon helm", true) ||
+            string.equals("oxidised helm", true) ||
+            string.startsWith("void knight ", true)
 
-        fun removeLinks(text: String): String {
-            return text.replace(linkNameRegex) {
-                val result = it.groupValues[1]
-                if (result.contains("|")) {
-                    result.split("|").last()
-                } else {
-                    result
-                }
+        fun removeLinks(text: String): String = text.replace(linkNameRegex) {
+            val result = it.groupValues[1]
+            if (result.contains("|")) {
+                result.split("|").last()
+            } else {
+                result
             }
         }
 

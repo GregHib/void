@@ -1,4 +1,4 @@
-package content.entity.npc.combat.melee
+package content.area.misthalin.lumbridge.farm
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate

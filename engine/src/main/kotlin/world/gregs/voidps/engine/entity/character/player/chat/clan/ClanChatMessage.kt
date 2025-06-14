@@ -12,13 +12,13 @@ data class ClanChatMessage(
     val source: Player,
     val effects: Int,
     val message: String,
-    val compressed: ByteArray
+    val compressed: ByteArray,
 ) : Event {
     constructor(source: Player, effects: Int, message: String, huffman: Huffman) : this(source, effects, message, huffman.compress(message))
 
     override val size = 1
 
-    override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "clan_chat_message"
         else -> null
     }

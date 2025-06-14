@@ -45,5 +45,4 @@ class SpellDefinitions {
         }
         return this
     }
-
 }

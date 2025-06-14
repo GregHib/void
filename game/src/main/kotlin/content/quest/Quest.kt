@@ -84,6 +84,6 @@ fun Player.messageScroll(lines: List<String>, handwriting: Boolean = false) {
         return
     }
     for (i in 0..if (handwriting) 10 else 14) {
-        interfaces.sendText(id, "line${i}", lines.getOrNull(i) ?: "")
+        interfaces.sendText(id, "line$i", lines.getOrNull(i) ?: "")
     }
 }

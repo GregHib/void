@@ -32,11 +32,13 @@ class AccountManagerTest : KoinMock() {
     private lateinit var manager: AccountManager
     private lateinit var connectionQueue: ConnectionQueue
 
-    override val modules = listOf(module {
-        single { ItemDefinitions(emptyArray()) }
-        single { InterfaceDefinitions(emptyArray()).apply { ids = emptyMap() } }
-        single { AreaDefinitions(areas = mapOf(0 to setOf(AreaDefinition("area", Rectangle(Tile(0), 1, 1), emptySet())))) }
-    })
+    override val modules = listOf(
+        module {
+            single { ItemDefinitions(emptyArray()) }
+            single { InterfaceDefinitions(emptyArray()).apply { ids = emptyMap() } }
+            single { AreaDefinitions(areas = mapOf(0 to setOf(AreaDefinition("area", Rectangle(Tile(0), 1, 1), emptySet())))) }
+        },
+    )
 
     @BeforeEach
     fun setup() {
@@ -67,7 +69,7 @@ class AccountManagerTest : KoinMock() {
             connectionQueue = connectionQueue,
             areaDefinitions = get(),
             players = Players(),
-            overrides = AppearanceOverrides()
+            overrides = AppearanceOverrides(),
         )
     }
 

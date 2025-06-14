@@ -9,6 +9,6 @@ fun Character.inventoryFull() = notEnough("inventory space")
 
 fun Character.noInterest() = message("Nothing interesting happens.", ChatType.Engine)
 
-fun Character.notEnough(thing: String) = message("You don't have enough ${thing}.")
+fun Character.notEnough(thing: String) = message("You don't have enough $thing.")
 
 fun Character.obstacle(level: Int) = message("You need an Agility level of $level to use this obstacle.")

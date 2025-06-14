@@ -1,13 +1,13 @@
 package content.skill.mining
 
+import content.entity.player.inv.inventoryItem
+import content.entity.player.inv.item.destroy.canDestroy
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.itemOnItems
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
-import content.entity.player.inv.item.destroy.canDestroy
-import content.entity.player.inv.inventoryItem
 
 val bagCapacity = 100
 
@@ -72,7 +72,7 @@ itemOnItems(gems.toTypedArray(), arrayOf("gem_bag")) { player ->
     if (removed == 0) {
         return@itemOnItems
     }
-    player["gem_bag_${type}"] = player["gem_bag_${type}", 0] + removed
+    player["gem_bag_$type"] = player["gem_bag_$type", 0] + removed
     player.message("You add the gems to your bag.")
     if (total + removed == bagCapacity) {
         player.message("Your gem bag is now full.")

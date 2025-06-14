@@ -1,5 +1,13 @@
 package content.skill.melee.weapon.special
 
+import content.area.wilderness.inMultiCombat
+import content.entity.combat.Target
+import content.entity.combat.hit.Damage
+import content.entity.combat.hit.characterCombatDamage
+import content.entity.combat.hit.hit
+import content.entity.player.combat.special.specialAttack
+import content.entity.sound.areaSound
+import content.skill.melee.weapon.weapon
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -8,14 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
-import content.entity.combat.Target
-import content.entity.combat.hit.Damage
-import content.entity.combat.hit.characterCombatDamage
-import content.entity.combat.hit.hit
-import content.area.wilderness.inMultiCombat
-import content.skill.melee.weapon.weapon
-import content.entity.player.combat.special.specialAttack
-import content.entity.sound.areaSound
 
 val players: Players by inject()
 val npcs: NPCs by inject()
@@ -29,7 +29,7 @@ specialAttack("disrupt") { player ->
     areaSound("godwars_godsword_special_attack", player.tile, 5)
     val maxHit = Damage.maximum(player, target, "melee", player.weapon)
     val hit = random.nextInt(maxHit / 2, (maxHit * 1.5).toInt())
-    player.hit(target, damage = hit, type = "magic", delay = 0)
+    player.hit(target, damage = hit, offensiveType = "magic", delay = 0)
 }
 
 characterCombatDamage("korasis_sword") { target ->
@@ -60,7 +60,7 @@ characterCombatDamage("korasis_sword") { target ->
                 3 -> 4
                 else -> return@characterCombatDamage
             }
-            source.hit(character, damage = hit, weapon = weapon, type = type, special = true)
+            source.hit(character, damage = hit, weapon = weapon, offensiveType = type, special = true)
             return@characterCombatDamage
         }
     }

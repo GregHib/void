@@ -1,5 +1,7 @@
 package content.social.trade
 
+import content.entity.player.dialogue.type.intEntry
+import content.social.trade.Trade.isTrading
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -9,8 +11,6 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
-import content.social.trade.Trade.isTrading
-import content.entity.player.dialogue.type.intEntry
 
 /**
  * Removing an item from an offer or loan

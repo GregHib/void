@@ -8,6 +8,7 @@ import content.bot.interact.navigation.await
 import content.bot.interact.shop.buy
 import content.bot.interact.shop.closeShop
 import content.bot.interact.shop.openNearestShop
+import content.entity.player.bank.bank
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -24,7 +25,6 @@ import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.network.client.instruction.InteractNPC
 import world.gregs.voidps.network.client.instruction.InteractObject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.player.bank.bank
 
 val Player.isBot: Boolean
     get() = contains("bot")
@@ -113,9 +113,11 @@ fun Bot.getObjects(filter: (GameObject) -> Boolean): List<GameObject> {
     val objects = get<GameObjects>()
     val list = mutableListOf<GameObject>()
     for (zone in player.tile.zone.spiral(2)) {
-        list.addAll(zone.toCuboid()
-            .flatMap { tile -> objects[tile] }
-            .filter(filter))
+        list.addAll(
+            zone.toCuboid()
+                .flatMap { tile -> objects[tile] }
+                .filter(filter),
+        )
     }
     return list
 }

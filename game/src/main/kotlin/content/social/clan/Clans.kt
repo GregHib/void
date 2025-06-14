@@ -41,6 +41,9 @@ object ClanLootShare {
 
 object ClanMember {
     fun of(player: Player, rank: ClanRank) = Member(
-        player.name, Settings.world, rank.value, Settings.worldName
+        player.name,
+        Settings.world,
+        rank.value,
+        Settings.worldName,
     )
 }

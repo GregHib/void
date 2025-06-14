@@ -19,7 +19,7 @@ fun playerVisualEncoders() = castOf<PlayerVisuals>(
     PlayerPrimaryGraphicEncoder(),
     PlayerAnimationEncoder(),
     AppearanceEncoder(),
-    MovementTypeEncoder()
+    MovementTypeEncoder(),
 )
 
 fun npcVisualEncoders() = castOf<NPCVisuals>(
@@ -33,7 +33,7 @@ fun npcVisualEncoders() = castOf<NPCVisuals>(
     WatchEncoder(VisualMask.NPC_WATCH_MASK),
     SayEncoder(VisualMask.NPC_SAY_MASK),
     NPCTimeBarEncoder(),
-    NPCSecondaryGraphicEncoder()
+    NPCSecondaryGraphicEncoder(),
 )
 
 @Suppress("UNCHECKED_CAST")

@@ -57,7 +57,7 @@ internal class InteractTest : KoinMock() {
             single { LineValidator(get()) }
             single { StepValidator(get()) }
             single { PathFinder(get()) }
-        }
+        },
     )
 
     @BeforeEach
@@ -79,7 +79,6 @@ internal class InteractTest : KoinMock() {
             every { get(any<Zone>()) } returns emptySet()
         }
     }
-
 
     private fun interact(operate: Boolean, approach: Boolean, suspend: Boolean) {
         interaction = NPCOption(player, target, NPCDefinition.EMPTY, "interact")

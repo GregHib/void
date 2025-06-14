@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage
 
 class RegionManager(
     val tiles: Map<Int, MapDefinition>,
-    private val regionRenderSize: Int = 3
+    private val regionRenderSize: Int = 3,
 ) {
     val width = regionRenderSize * 64
     val height = regionRenderSize * 64
@@ -33,17 +33,12 @@ class RegionManager(
         }
     }
 
-    private fun setOrLoadTiles(region: Region): MapDefinition? {
-        return setOrLoadTiles(region.id)
-    }
+    private fun setOrLoadTiles(region: Region): MapDefinition? = setOrLoadTiles(region.id)
 
-    private fun setOrLoadTiles(regionId: Int): MapDefinition? {
-        return tiles[regionId]
-    }
+    private fun setOrLoadTiles(regionId: Int): MapDefinition? = tiles[regionId]
 
     fun loadObjects(region: Region): MutableList<MapObject>? {
         val def = setOrLoadTiles(region) ?: return null
         return def.objects
     }
-
 }

@@ -1,10 +1,10 @@
 package content.area.kharidian_desert.al_kharid.duel_arena
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.type.random
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.type.random
 
 npcOperate("Talk-to", "zahwa") {
     when (random.nextInt(0, 6)) {
@@ -30,15 +30,15 @@ npcOperate("Talk-to", "zahwa") {
             player<RollEyes>("Uh huh.")
             npc<Frustrated>("Leave me alone!")
         }
-        4-> {
+        4 -> {
             player<Uncertain>("Are you alright?")
             npc<Surprised>("NURSE!")
         }
-        5-> {
+        5 -> {
             player<Uncertain>("Are you alright?")
             npc<Frustrated>("It's just a flesh wound!")
         }
-        6-> {
+        6 -> {
             player<Uncertain>("Are you alright?")
             npc<Sad>("Can't....go....on!")
             npc<Sad>("Leave me behind!")

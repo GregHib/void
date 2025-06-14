@@ -1,16 +1,16 @@
-package content.area.misthalin.lumbridge
+package content.area.misthalin.lumbridge.farm
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.holdsItem
-import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.quest.quest
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.quest.quest
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.suspend.SuspendableContext
 
 npcOperate("Talk-to", "gillie_groats") {
     npc<Happy>("Hello, I'm Gillie the Milkmaid. What can I do for you?")
@@ -45,7 +45,6 @@ suspend fun SuspendableContext<Player>.howToMilkCow() {
     npc<Happy>("Then just milk the cow and your bucket will fill with tasty, nutritious milk.")
 }
 
-
 suspend fun SuspendableContext<Player>.topQualityMilk() {
     npc<Talk>("Really? Is it for something special?")
     player<Happy>("Most certainly! It's for the cook to make a cake foe Duke Horacio!")
@@ -53,4 +52,3 @@ suspend fun SuspendableContext<Player>.topQualityMilk() {
     player<Quiz>("Which one's that?")
     npc<Talk>("She's on the east side of the field, over by the cliff. Be gentle!")
 }
-

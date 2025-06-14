@@ -16,7 +16,7 @@ fun Client.mapRegion(
     xteas: Array<IntArray>,
     clientIndex: Int? = null,
     clientTile: Int? = null,
-    playerRegions: IntArray? = null
+    playerRegions: IntArray? = null,
 ) = send(REGION, getLength(clientTile, playerRegions, clientIndex, xteas), SHORT) {
     mapInit(clientTile, playerRegions, clientIndex)
     writeByteSubtract(mapSize)
@@ -54,10 +54,10 @@ enum class DynamicRegionLoadType(val index: Int) {
     // not sure if zero is even a valid input to the packet glancing at the
     // client logic, it shouldn't really perform different than 1 as they both
     // set the loading type to the same value
-    STANDARD(1),                   //No difference from non-dynamic logic essentially
-    STANDARD_NO_ENTITY_RESET(2),   //Same as above except this one won't reset local entities on load (Matrix and most other bases default to this)
-    LARGE(3),                      //Ignores render-distance restrictions on zone updates (current Void default)
-    LARGE_NO_UPDATEZONE_RESET(4)   //Ignores render-distance restrictions on zone updates and doesn't reset objs, locs, etc on load
+    STANDARD(1), // No difference from non-dynamic logic essentially
+    STANDARD_NO_ENTITY_RESET(2), // Same as above except this one won't reset local entities on load (Matrix and most other bases default to this)
+    LARGE(3), // Ignores render-distance restrictions on zone updates (current Void default)
+    LARGE_NO_UPDATEZONE_RESET(4), // Ignores render-distance restrictions on zone updates and doesn't reset objs, locs, etc on load
 }
 
 fun Client.dynamicMapRegion(
@@ -70,7 +70,7 @@ fun Client.dynamicMapRegion(
     clientIndex: Int? = null,
     clientTile: Int? = null,
     playerRegions: IntArray? = null,
-    loadType: DynamicRegionLoadType = DynamicRegionLoadType.LARGE
+    loadType: DynamicRegionLoadType = DynamicRegionLoadType.LARGE,
 ) = send(Protocol.DYNAMIC_REGION, getLength(clientTile, playerRegions, clientIndex, zones, xteas), SHORT) {
     mapInit(clientTile, playerRegions, clientIndex)
     writeByte(mapSize)
@@ -101,9 +101,7 @@ private fun getLength(clientTile: Int?, playerRegions: IntArray?, clientIndex: I
     return count
 }
 
-private fun notNull(it: Int?): Int {
-    return if (it != null) 27 else 1
-}
+private fun notNull(it: Int?): Int = if (it != null) 27 else 1
 
 private fun getMapInitLength(clientTile: Int?, playerRegions: IntArray?, clientIndex: Int?): Int {
     if (clientTile != null && playerRegions != null && clientIndex != null) {

@@ -15,6 +15,6 @@ inventoryUpdate { player ->
     player.sendInterfaceItemUpdate(
         key = inventoryDefinitions.get(id).id,
         updates = updates.map { Triple(it.index, itemDefs.getOrNull(it.item.id)?.id ?: -1, it.item.amount) },
-        secondary = secondary
+        secondary = secondary,
     )
 }

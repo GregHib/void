@@ -176,13 +176,15 @@ internal class BZIP2Compressor {
                         i49 = aByteArrayArray3098[i48][i51].toInt()
                     }
                 }
-                method145(anIntArrayArray3095[i48],
+                method145(
+                    anIntArrayArray3095[i48],
                     anIntArrayArray3082[i48],
                     anIntArrayArray3099[i48],
                     aByteArrayArray3098[i48],
                     i49,
                     i50.toInt(),
-                    i35)
+                    i35,
+                )
                 anIntArray3090[i48] = i49
             }
             val i52 = anInt3073 + 1
@@ -250,7 +252,7 @@ internal class BZIP2Compressor {
                     i65++
                     i30 = aByteArray3107[aByteArray3101[anIntArray3092[0]].toInt() and 0xff].toInt()
                     anIntArray3075[i30 and 0xff] += i65
-                    while ( /**/i65 > 0) {
+                    while (i65 > 0) {
                         anIntArray5786[i59] = i30 and 0xff
                         i59++
                         i65--
@@ -260,7 +262,7 @@ internal class BZIP2Compressor {
                     if (i68 < 16) {
                         val i69 = anIntArray3092[0]
                         i29 = aByteArray3101[i69 + i68].toInt()
-                        while ( /**/i68 > 3) {
+                        while (i68 > 3) {
                             val i70 = i69 + i68
                             aByteArray3101[i70] = aByteArray3101[i70 - 1]
                             aByteArray3101[i70 - 1] = aByteArray3101[i70 - 2]
@@ -268,7 +270,7 @@ internal class BZIP2Compressor {
                             aByteArray3101[i70 - 3] = aByteArray3101[i70 - 4]
                             i68 -= 4
                         }
-                        while ( /**/i68 > 0) {
+                        while (i68 > 0) {
                             aByteArray3101[i69 + i68] = aByteArray3101[i69 + i68 - 1]
                             i68--
                         }

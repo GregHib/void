@@ -1,5 +1,10 @@
 package content.skill.runecrafting
 
+import content.entity.obj.ObjectTeleports
+import content.entity.obj.objTeleportTakeOff
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.statement
+import content.entity.sound.sound
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
@@ -17,11 +22,6 @@ import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.equals
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.statement
-import content.entity.obj.ObjectTeleports
-import content.entity.obj.objTeleportTakeOff
-import content.entity.sound.sound
 
 val objectDefinitions: ObjectDefinitions by inject()
 

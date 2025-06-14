@@ -1,5 +1,10 @@
 package content.area.fremennik_province.rellekka
 
+import content.area.asgarnia.falador.openDressingRoom
+import content.entity.npc.shop.openShop
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
@@ -16,11 +21,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.npc.shop.openShop
-import content.area.asgarnia.falador.openDressingRoom
 
 val enums: EnumDefinitions by inject()
 

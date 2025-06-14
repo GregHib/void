@@ -1,4 +1,4 @@
-package content.area.misthalin.lumbridge
+package content.area.misthalin.lumbridge.church
 
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.npc
@@ -124,7 +124,7 @@ fun Context<Player>.questComplete() {
             "1 Quest Point",
             "1,125 Prayer XP",
             "A Ghostspeak Amulet",
-            item = "muddy_skull"
+            item = "muddy_skull",
         )
     }
 }

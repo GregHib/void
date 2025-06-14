@@ -1,9 +1,9 @@
 package content.skill.melee.weapon.special
 
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.player.Player
 import content.entity.player.combat.special.specialAttackDamage
 import content.entity.player.effect.energy.runEnergy
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.Player
 
 specialAttackDamage("energy_drain") { player ->
     if (target !is Player) {

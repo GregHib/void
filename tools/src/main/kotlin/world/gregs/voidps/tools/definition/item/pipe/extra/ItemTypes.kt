@@ -19,7 +19,7 @@ class ItemTypes(val decoder: Array<ItemDefinition>) {
         "hardleather body",
         "studded body",
         "d'hide body",
-        "dragonhide body"
+        "dragonhide body",
     )
 
     private val sleevelessExceptions = arrayOf(
@@ -34,7 +34,7 @@ class ItemTypes(val decoder: Array<ItemDefinition>) {
         "argonite chainbody",
         "katagon chainbody",
         "gorgonite chainbody",
-        "promethium chainbody"
+        "promethium chainbody",
     )
 
     private val fullFaceNames = arrayOf(
@@ -98,12 +98,12 @@ class ItemTypes(val decoder: Array<ItemDefinition>) {
         "fox mask",
         "unicorn mask",
         "dragon mask",
-        "virtus mask"
+        "virtus mask",
     )
 
     private val fullFaceExceptions = arrayOf(
         "third-age",
-        "statius"
+        "statius",
     )
 
     private val maskNames = arrayOf(
@@ -111,7 +111,7 @@ class ItemTypes(val decoder: Array<ItemDefinition>) {
         "face mask",
         "fake beard",
         "fake moustache and nose",
-        "fake monocle, moustache and nose"
+        "fake monocle, moustache and nose",
     )
 
     private val hairNames = arrayOf(
@@ -177,7 +177,7 @@ class ItemTypes(val decoder: Array<ItemDefinition>) {
         "monkfish",
         "ray",
         "avalani's hat",
-        "runecrafter hat"
+        "runecrafter hat",
     )
 
     private val hairExceptions = arrayOf(
@@ -188,9 +188,8 @@ class ItemTypes(val decoder: Array<ItemDefinition>) {
         "mind helmet",
         "body helmet",
         "ram skull helm",
-        "camo helmet"
+        "camo helmet",
     )
-
 
     private fun isHair(name: String) = name.containsAny(hairNames) && !name.containsAny(hairExceptions)
 
@@ -207,9 +206,7 @@ class ItemTypes(val decoder: Array<ItemDefinition>) {
 
     fun isSleeveless(name: String) = name.containsAny(sleeveless) && !name.containsAny(sleevelessExceptions)
 
-    private fun String.containsAny(names: Array<String>): Boolean {
-        return names.any { contains(it) }
-    }
+    private fun String.containsAny(names: Array<String>): Boolean = names.any { contains(it) }
 
     fun getEquipType(id: Int): EquipType {
         val def = decoder.getOrNull(id) ?: return EquipType.None

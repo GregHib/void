@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.cache.definition.Parameters
 
 class StructDecoder(
-    private val parameters: Parameters = Parameters.EMPTY
+    private val parameters: Parameters = Parameters.EMPTY,
 ) : ConfigDecoder<StructDefinition>(STRUCTS) {
 
     override fun create(size: Int) = Array(size) { StructDefinition(it) }

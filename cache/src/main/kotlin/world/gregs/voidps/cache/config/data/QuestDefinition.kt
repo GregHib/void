@@ -21,7 +21,8 @@ data class QuestDefinition(
     var itemSprite: Int = -1,
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null,
-) : Definition, Extra {
+) : Definition,
+    Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -34,23 +35,33 @@ data class QuestDefinition(
         if (varps != null) {
             if (other.varps == null) return false
             if (!varps.contentDeepEquals(other.varps)) return false
-        } else if (other.varps != null) return false
+        } else if (other.varps != null) {
+            return false
+        }
         if (varbits != null) {
             if (other.varbits == null) return false
             if (!varbits.contentDeepEquals(other.varbits)) return false
-        } else if (other.varbits != null) return false
+        } else if (other.varbits != null) {
+            return false
+        }
         if (pathStart != null) {
             if (other.pathStart == null) return false
             if (!pathStart.contentEquals(other.pathStart)) return false
-        } else if (other.pathStart != null) return false
+        } else if (other.pathStart != null) {
+            return false
+        }
         if (questRequirements != null) {
             if (other.questRequirements == null) return false
             if (!questRequirements.contentEquals(other.questRequirements)) return false
-        } else if (other.questRequirements != null) return false
+        } else if (other.questRequirements != null) {
+            return false
+        }
         if (skillRequirements != null) {
             if (other.skillRequirements == null) return false
             if (!skillRequirements.contentDeepEquals(other.skillRequirements)) return false
-        } else if (other.skillRequirements != null) return false
+        } else if (other.skillRequirements != null) {
+            return false
+        }
         if (itemSprite != other.itemSprite) return false
         if (stringId != other.stringId) return false
         if (extras != other.extras) return false
@@ -73,10 +84,7 @@ data class QuestDefinition(
         return result
     }
 
-    override fun toString(): String {
-        return "QuestDefinition(id=$id, name=$name, listName=$listName, varps=${varps?.contentDeepToString()}, varbits=${varbits?.contentDeepToString()}, subQuest=$subQuest, difficulty=$difficulty, members=$members, questPoints=$questPoints, pathStart=${pathStart?.contentToString()}, otherPathStart=$otherPathStart, questRequirements=${questRequirements?.contentToString()}, skillRequirements=${skillRequirements?.contentDeepToString()}, questPointRequirement=$questPointRequirement, itemSprite=$itemSprite, stringId='$stringId', extras=$extras)"
-    }
-
+    override fun toString(): String = "QuestDefinition(id=$id, name=$name, listName=$listName, varps=${varps?.contentDeepToString()}, varbits=${varbits?.contentDeepToString()}, subQuest=$subQuest, difficulty=$difficulty, members=$members, questPoints=$questPoints, pathStart=${pathStart?.contentToString()}, otherPathStart=$otherPathStart, questRequirements=${questRequirements?.contentToString()}, skillRequirements=${skillRequirements?.contentDeepToString()}, questPointRequirement=$questPointRequirement, itemSprite=$itemSprite, stringId='$stringId', extras=$extras)"
 
     companion object {
         val EMPTY = QuestDefinition()

@@ -43,30 +43,42 @@ object FixStructs {
         */
         val achievementFixes = mapOf(
             CLIMBING_THE_WALLS to mapOf(
-                TASK_SKILL_1 to Skill.Agility, TASK_LEVEL_1 to 11,
-                TASK_SKILL_2 to Skill.Ranged, TASK_LEVEL_2 to 19,
-                TASK_SKILL_3 to Skill.Strength, TASK_LEVEL_3 to 37,
+                TASK_SKILL_1 to Skill.Agility,
+                TASK_LEVEL_1 to 11,
+                TASK_SKILL_2 to Skill.Ranged,
+                TASK_LEVEL_2 to 19,
+                TASK_SKILL_3 to Skill.Strength,
+                TASK_LEVEL_3 to 37,
             ),
             DO_THEY_COME_IN_OTHER_COLOURS to mapOf(
-                TASK_SKILL_1 to Skill.Mining, TASK_LEVEL_1 to 10,
-                TASK_SKILL_2 to Skill.Smithing, TASK_LEVEL_2 to 13,
+                TASK_SKILL_1 to Skill.Mining,
+                TASK_LEVEL_1 to 10,
+                TASK_SKILL_2 to Skill.Smithing,
+                TASK_LEVEL_2 to 13,
             ),
             MASS_PRODUCTION to mapOf(
-                TASK_SKILL_1 to Skill.Runecrafting, TASK_LEVEL_1 to 56
+                TASK_SKILL_1 to Skill.Runecrafting,
+                TASK_LEVEL_1 to 56,
             ),
             THE_STONEMASONS to mapOf(
-                TASK_SKILL_1 to Skill.Mining, TASK_LEVEL_1 to 60
+                TASK_SKILL_1 to Skill.Mining,
+                TASK_LEVEL_1 to 60,
             ),
             AXELL_GREASE to mapOf(
-                TASK_SKILL_1 to Skill.Attack, TASK_LEVEL_1 to 75,
-                TASK_SKILL_2 to Skill.Strength, TASK_LEVEL_2 to 75,
-                TASK_SKILL_3 to Skill.Slayer, TASK_LEVEL_3 to 65,
+                TASK_SKILL_1 to Skill.Attack,
+                TASK_LEVEL_1 to 75,
+                TASK_SKILL_2 to Skill.Strength,
+                TASK_LEVEL_2 to 75,
+                TASK_SKILL_3 to Skill.Slayer,
+                TASK_LEVEL_3 to 65,
             ),
             IMPETUOUS_IMPULSES to mapOf(
-                TASK_SKILL_1 to Skill.Hunter, TASK_LEVEL_1 to 17,
+                TASK_SKILL_1 to Skill.Hunter,
+                TASK_LEVEL_1 to 17,
             ),
             GREAT_ORB_PROJECT to mapOf(
-                TASK_SKILL_1 to Skill.Runecrafting, TASK_LEVEL_1 to 50,
+                TASK_SKILL_1 to Skill.Runecrafting,
+                TASK_LEVEL_1 to 50,
             ),
         )
         val cache = CacheDelegate(library)

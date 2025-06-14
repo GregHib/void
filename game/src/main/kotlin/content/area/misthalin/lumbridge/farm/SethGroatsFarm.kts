@@ -1,4 +1,4 @@
-package content.area.misthalin.lumbridge.chicken_farm
+package content.area.misthalin.lumbridge.farm
 
 import content.entity.player.bank.ownsItem
 import content.entity.player.inv.item.take.canTake

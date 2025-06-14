@@ -13,5 +13,4 @@ class PlayerOption6Decoder : Decoder(3) {
         val index = packet.readUnsignedShortAdd()
         return InteractPlayer(index, 6)
     }
-
 }

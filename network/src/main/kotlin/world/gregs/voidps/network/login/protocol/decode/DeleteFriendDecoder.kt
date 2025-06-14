@@ -8,8 +8,5 @@ import world.gregs.voidps.network.login.protocol.readString
 
 class DeleteFriendDecoder : Decoder(BYTE) {
 
-    override suspend fun decode(packet: ByteReadPacket): Instruction {
-        return FriendDelete(packet.readString())
-    }
-
+    override suspend fun decode(packet: ByteReadPacket): Instruction = FriendDelete(packet.readString())
 }

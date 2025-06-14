@@ -13,7 +13,7 @@ class Retreat(
     private val target: Entity,
     private val spawn: Tile = npc["spawn_tile"]!!,
     private val maxRetreatRadius: Int = npc.def["max_retreat_distance", 25],
-    private val maxRadius: Int = npc.def["max_retreat_distance", 25]
+    private val maxRadius: Int = npc.def["max_retreat_distance", 25],
 ) : Movement(npc) {
 
     override fun tick() {

@@ -33,7 +33,7 @@ class NPCDefaults : Pipeline.Modifier<MutableMap<Int, Extras>> {
         extras.remove("hitpoints", 0)
         extras.remove("max", 0)
         extras.remove("poison", 0)
-        extras.remove("combat")// TODO what about dung npcs?
+        extras.remove("combat") // TODO what about dung npcs?
 
         extras.remove("att", 0)
         extras.remove("str", 0)
@@ -52,5 +52,4 @@ class NPCDefaults : Pipeline.Modifier<MutableMap<Int, Extras>> {
         extras.remove("dmagic", 0)
         extras.remove("drange", 0)
     }
-
 }

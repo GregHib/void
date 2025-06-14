@@ -1,9 +1,9 @@
 package content.entity.effect
 
+import content.skill.prayer.praying
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import content.skill.prayer.praying
 
 val Character.frozen: Boolean get() = movementDelay > 0
 

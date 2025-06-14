@@ -26,14 +26,16 @@ object GeneralStores {
             data = Array(definition.length) {
                 val id = definition.ids?.getOrNull(it)
                 val amount = definition.amounts?.getOrNull(it)
-                if (id == null) Item.EMPTY else {
+                if (id == null) {
+                    Item.EMPTY
+                } else {
                     Item(itemDefinitions.get(id).stringId, amount ?: 0)
                 }
             },
             id = key,
             itemRule = GeneralStoreRestrictions(get<ItemDefinitions>()),
             stackRule = AlwaysStack,
-            amountBounds = checker
+            amountBounds = checker,
         )
     }
 
@@ -45,5 +47,4 @@ object GeneralStores {
     fun unbind(player: Player, key: String): Inventory = get(key).apply {
         this.transaction.changes.unbind(player)
     }
-
 }

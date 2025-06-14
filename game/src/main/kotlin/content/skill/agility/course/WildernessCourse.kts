@@ -1,5 +1,8 @@
 package content.skill.agility.course
 
+import content.entity.combat.hit.damage
+import content.entity.obj.door.enterDoor
+import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -18,9 +21,6 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
-import content.entity.combat.hit.damage
-import content.entity.obj.door.enterDoor
-import content.entity.sound.sound
 
 val objects: GameObjects by inject()
 
@@ -36,7 +36,7 @@ objectOperate("Open", "wilderness_agility_door_closed") {
     }
     // Not sure if you can fail going up
 //    val disable = Settings["agility.disableCourseFailure", false]
-    val success = true//disable || Level.success(player.levels.get(Skill.Agility), 200..250)
+    val success = true // disable || Level.success(player.levels.get(Skill.Agility), 200..250)
     player.message("You go through the gate and try to edge over the ridge...", ChatType.Filter)
     enterDoor(target, delay = 1)
     player.renderEmote("beam_balance")

@@ -212,7 +212,7 @@ object RunescapeWikiPagesFullFilter {
                 "Charm",
                 "Calculator",
                 "Map",
-                "Transcript"
+                "Transcript",
             )
             val directory = "${System.getProperty("user.home")}\\Downloads\\runescape_pages_full\\"
             val dates = mapOf(
@@ -225,7 +225,7 @@ object RunescapeWikiPagesFullFilter {
                 634 to LocalDate.of(2011, 1, 31),
                 667 to LocalDate.of(2011, 10, 16),
                 718 to LocalDate.of(2012, 6, 13),
-                742 to LocalDate.of(2012, 11, 19)
+                742 to LocalDate.of(2012, 11, 19),
             )
             val parsers = dates.map { (revision, date) -> Parser(date, directory, namespaces, revision == 634) }
             val factory = XMLInputFactory.newInstance()

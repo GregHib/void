@@ -15,8 +15,7 @@ class InterfaceOptionDecoder(private val index: Int) : Decoder(8) {
             componentId = InterfaceDefinition.componentId(packed),
             itemId = packet.readShort().toInt(),
             itemSlot = packet.readShort().toInt(),
-            option = index
+            option = index,
         )
     }
-
 }

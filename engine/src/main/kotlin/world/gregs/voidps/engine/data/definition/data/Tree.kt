@@ -22,7 +22,7 @@ data class Tree(
     val chance: IntRange = 0..0,
     val hatchetLowDifference: IntRange = 0..0,
     val hatchetHighDifference: IntRange = 0..0,
-    val respawnDelay: IntRange = 0..0
+    val respawnDelay: IntRange = 0..0,
 ) {
     companion object {
         operator fun invoke(reader: ConfigReader): Tree {
@@ -57,7 +57,7 @@ data class Tree(
                 chance = chanceMin until chanceMax,
                 hatchetLowDifference = hatchetLowDifference,
                 hatchetHighDifference = hatchetHighDifference,
-                respawnDelay = respawnDelay
+                respawnDelay = respawnDelay,
             )
         }
 

@@ -4,7 +4,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.ConfigReader
 
 data class Tanning(
-    val prices: List<TanPrice> = emptyList()
+    val prices: List<TanPrice> = emptyList(),
 ) {
     data class TanPrice(val id: String, val price: Int)
 

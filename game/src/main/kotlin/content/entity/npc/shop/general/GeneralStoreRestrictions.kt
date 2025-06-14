@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 
 class GeneralStoreRestrictions(
-    private val definitions: ItemDefinitions
+    private val definitions: ItemDefinitions,
 ) : ItemRestrictionRule {
 
     override fun restricted(id: String): Boolean {

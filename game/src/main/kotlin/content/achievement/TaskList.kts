@@ -73,7 +73,7 @@ fun indexOfSlot(player: Player, slot: Int): Int? {
 
 fun find(player: Player, id: Int): Int {
     for (i in 0 until 6) {
-        if (player["task_slot_${i}", -1] == id) {
+        if (player["task_slot_$i", -1] == id) {
             return i
         }
     }

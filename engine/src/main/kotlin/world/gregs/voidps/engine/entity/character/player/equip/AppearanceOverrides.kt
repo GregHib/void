@@ -16,17 +16,13 @@ class AppearanceOverrides() {
     private val maleLow: MutableMap<Int, Int> = Int2IntOpenHashMap(32)
     private val femaleLow: MutableMap<Int, Int> = Int2IntOpenHashMap(48)
 
-    fun hairMid(current: Int, male: Boolean): Int {
-        return (if (male) this.maleMid else femaleMid).getOrDefault(current, current) + 0x100
-    }
+    fun hairMid(current: Int, male: Boolean): Int = (if (male) this.maleMid else femaleMid).getOrDefault(current, current) + 0x100
 
-    fun hairLow(current: Int, male: Boolean): Int {
-        return if (male) {
-            maleLow.getOrDefault(current, 0)
-        } else {
-            femaleLow.getOrDefault(current, 243)
-        } + 0x100
-    }
+    fun hairLow(current: Int, male: Boolean): Int = if (male) {
+        maleLow.getOrDefault(current, 0)
+    } else {
+        femaleLow.getOrDefault(current, 243)
+    } + 0x100
 
     private fun load(enums: EnumDefinitions, structs: StructDefinitions) {
         load(maleMid, enums.get("look_hair_male"), structs, "body_look_flat_mid")
@@ -44,5 +40,4 @@ class AppearanceOverrides() {
             map[index] = replacement
         }
     }
-
 }

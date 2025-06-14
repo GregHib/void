@@ -9,7 +9,7 @@ import kotlin.math.max
 
 object Assistance {
 
-    const val MAX_EXPERIENCE = 300000.0// 30k
+    const val MAX_EXPERIENCE = 300000.0 // 30k
 
     fun redirectSkillExperience(player: Player, skill: Skill) {
         player["blocked_${skill.name}"] = player.experience.blocked(skill)
@@ -25,8 +25,7 @@ object Assistance {
         }
     }
 
-    fun canAssist(player: Player, assisted: Player, skill: Skill) =
-        player.levels.getMax(skill) >= assisted.levels.getMax(skill)
+    fun canAssist(player: Player, assisted: Player, skill: Skill) = player.levels.getMax(skill) >= assisted.levels.getMax(skill)
 
     fun getHoursRemaining(player: Player): Int {
         val remaining = player.remaining("assist_timeout", epochSeconds())
@@ -41,9 +40,7 @@ object Assistance {
         return exceededMaximum(earned)
     }
 
-    fun exceededMaximum(earned: Double): Boolean {
-        return earned >= MAX_EXPERIENCE
-    }
+    fun exceededMaximum(earned: Double): Boolean = earned >= MAX_EXPERIENCE
 
     fun stopRedirectingSkillExp(player: Player, skill: Skill) {
         val key = "blocked_${skill.name}"

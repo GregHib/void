@@ -38,13 +38,14 @@ object WorldMapDumper {
         Settings.load("game.properties")
         val koin = startKoin {
             modules(
-            module {
-                single { MemoryCache(Settings["storage.cache.path"]) as Cache }
-                single { MapDecoder(get<Xteas>()) }
-                single(createdAtStart = true) {
-                    Xteas()//.load(Settings["storage.xteas"], Settings["xteaJsonKey", Xteas.DEFAULT_KEY], Settings["xteaJsonValue", Xteas.DEFAULT_VALUE])
-                }
-            })
+                module {
+                    single { MemoryCache(Settings["storage.cache.path"]) as Cache }
+                    single { MapDecoder(get<Xteas>()) }
+                    single(createdAtStart = true) {
+                        Xteas() // .load(Settings["storage.xteas"], Settings["xteaJsonKey", Xteas.DEFAULT_KEY], Settings["xteaJsonValue", Xteas.DEFAULT_VALUE])
+                    }
+                },
+            )
         }.koin
 
         val cache: Cache = koin.get()
@@ -74,7 +75,7 @@ object WorldMapDumper {
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
-                cache.data(5, "m${regionX}_${regionY}") ?: continue
+                cache.data(5, "m${regionX}_$regionY") ?: continue
                 regions.add(Region(regionX, regionY))
             }
         }

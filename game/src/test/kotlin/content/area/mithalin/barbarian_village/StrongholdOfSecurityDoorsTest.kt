@@ -24,7 +24,7 @@ class StrongholdOfSecurityDoorsTest : WorldTest() {
         Tile(1878, 5223) to "gate_of_war",
         Tile(2044, 5239) to "rickety_door",
         Tile(2148, 5299) to "oozing_barrier",
-        Tile(2356, 5221) to "portal_of_death"
+        Tile(2356, 5221) to "portal_of_death",
     ).map { (tile, id) ->
         dynamicTest("${id.toSentenceCase()} door gives questions") {
             val player = createPlayer(tile)
@@ -43,7 +43,7 @@ class StrongholdOfSecurityDoorsTest : WorldTest() {
         Tile(1878, 5223) to "gate_of_war",
         Tile(2044, 5239) to "rickety_door",
         Tile(2148, 5299) to "oozing_barrier",
-        Tile(2356, 5221) to "portal_of_death"
+        Tile(2356, 5221) to "portal_of_death",
     ).map { (tile, id) ->
         dynamicTest("Enter through ${id.toSentenceCase()} door") {
             val player = createPlayer(tile)

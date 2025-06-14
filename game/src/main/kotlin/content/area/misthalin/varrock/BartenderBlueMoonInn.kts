@@ -1,5 +1,16 @@
 package content.area.misthalin.varrock
 
+import content.entity.combat.hit.damage
+import content.entity.npc.shop.buy
+import content.entity.player.dialogue.Angry
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Sad
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
+import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.data.Settings
@@ -9,17 +20,6 @@ import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
-import content.entity.player.dialogue.Angry
-import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Sad
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
-import content.entity.combat.hit.damage
-import content.entity.npc.shop.buy
 
 npcApproach("Talk-to", "bartender_blue_moon_inn") {
     approachRange(4)
@@ -57,7 +57,7 @@ npcApproach("Talk-to", "bartender_blue_moon_inn") {
 
 itemOnNPCApproach("barcrawl_card", "bartender_blue_moon_inn") {
     if (player.containsVarbit("barcrawl_signatures", "uncle_humphreys_gutrot")) {
-        player.noInterest()// TODO proper message
+        player.noInterest() // TODO proper message
         return@itemOnNPCApproach
     }
     barCrawl()
@@ -75,5 +75,5 @@ suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
         player.levels.drain(Skill.Smithing, 6)
         player.damage(0)
         player.say("Blearrgh!")
-    }
+    },
 )

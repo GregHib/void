@@ -44,7 +44,6 @@ object YamlPairObjectNames {
                     keys.remove(key)
                 }
             }
-
         }
         list.forEach(::println)
         val config = YamlWriterConfiguration(forceQuoteStrings = true)

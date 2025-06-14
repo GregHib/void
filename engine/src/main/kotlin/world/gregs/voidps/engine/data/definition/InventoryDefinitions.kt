@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
 
 class InventoryDefinitions(
-    override var definitions: Array<InventoryDefinition>
+    override var definitions: Array<InventoryDefinition>,
 ) : DefinitionsDecoder<InventoryDefinition> {
 
     override lateinit var ids: Map<String, Int>

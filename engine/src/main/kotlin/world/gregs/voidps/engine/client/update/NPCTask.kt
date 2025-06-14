@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 class NPCTask(
     iterator: TaskIterator<NPC>,
-    override val characters: Iterable<NPC>
+    override val characters: Iterable<NPC>,
 ) : CharacterTask<NPC>(iterator) {
 
     override fun run(character: NPC) {

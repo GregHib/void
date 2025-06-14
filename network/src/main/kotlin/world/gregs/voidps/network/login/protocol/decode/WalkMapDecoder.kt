@@ -15,5 +15,4 @@ class WalkMapDecoder : Decoder(5) {
         val x = packet.readUnsignedShortAdd()
         return Walk(x, y)
     }
-
 }

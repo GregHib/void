@@ -13,7 +13,7 @@ data class Rock(
     val level: Int = 1,
     val ores: List<String> = emptyList(),
     val life: Int = -1,
-    val gems: Boolean = false
+    val gems: Boolean = false,
 ) {
     companion object {
         operator fun invoke(reader: ConfigReader): Rock {

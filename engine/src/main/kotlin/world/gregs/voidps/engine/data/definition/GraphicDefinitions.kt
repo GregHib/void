@@ -8,7 +8,7 @@ import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.engine.timedLoad
 
 class GraphicDefinitions(
-    override var definitions: Array<GraphicDefinition>
+    override var definitions: Array<GraphicDefinition>,
 ) : DefinitionsDecoder<GraphicDefinition> {
 
     override lateinit var ids: Map<String, Int>
@@ -42,5 +42,4 @@ class GraphicDefinitions(
         }
         return this
     }
-
 }

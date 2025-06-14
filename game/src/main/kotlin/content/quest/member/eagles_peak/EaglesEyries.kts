@@ -34,7 +34,6 @@ objectOperate("Climb", "eagles_peak_rocks") {
     player.exp(Skill.Agility, 1.0)
 }
 
-
 objectOperate("Climb", "rocky_handholds_bottom") {
     if (!player.has(Skill.Agility, 35)) {
         player.message("You must have an Agility level of at least 35 to climb these rocks.")

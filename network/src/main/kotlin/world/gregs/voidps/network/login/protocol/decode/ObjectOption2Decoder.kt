@@ -14,5 +14,4 @@ class ObjectOption2Decoder : Decoder(7) {
         val objectId = packet.readUnsignedShortAddLittle()
         return InteractObject(objectId, x, y, 2)
     }
-
 }

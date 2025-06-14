@@ -11,7 +11,7 @@ data class BodyDefinition(
     var anInt4506: Int = -1,
     var anInt4504: Int = -1,
     var anIntArray4501: IntArray? = null,
-    var anIntArray4507: IntArray? = null
+    var anIntArray4507: IntArray? = null,
 ) : Definition {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -26,11 +26,15 @@ data class BodyDefinition(
         if (anIntArray4501 != null) {
             if (other.anIntArray4501 == null) return false
             if (!anIntArray4501.contentEquals(other.anIntArray4501)) return false
-        } else if (other.anIntArray4501 != null) return false
+        } else if (other.anIntArray4501 != null) {
+            return false
+        }
         if (anIntArray4507 != null) {
             if (other.anIntArray4507 == null) return false
             if (!anIntArray4507.contentEquals(other.anIntArray4507)) return false
-        } else if (other.anIntArray4507 != null) return false
+        } else if (other.anIntArray4507 != null) {
+            return false
+        }
 
         return true
     }

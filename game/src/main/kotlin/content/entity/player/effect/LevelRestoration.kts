@@ -1,5 +1,6 @@
 package content.entity.player.effect
 
+import content.skill.prayer.praying
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -8,7 +9,6 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
-import content.skill.prayer.praying
 import java.util.concurrent.TimeUnit
 
 val skills = Skill.all.filterNot { it == Skill.Prayer || it == Skill.Summoning || it == Skill.Constitution }

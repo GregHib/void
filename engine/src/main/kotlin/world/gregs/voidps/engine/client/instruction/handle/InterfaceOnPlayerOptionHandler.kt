@@ -12,7 +12,7 @@ import world.gregs.voidps.network.client.instruction.InteractInterfacePlayer
 
 class InterfaceOnPlayerOptionHandler(
     private val players: Players,
-    private val handler: InterfaceHandler
+    private val handler: InterfaceHandler,
 ) : InstructionHandler<InteractInterfacePlayer>() {
 
     override fun validate(player: Player, instruction: InteractInterfacePlayer) {
@@ -35,7 +35,7 @@ class InterfaceOnPlayerOptionHandler(
                 target,
                 item,
                 itemSlot,
-                inventory
+                inventory,
             )
         }
         player.closeInterfaces()

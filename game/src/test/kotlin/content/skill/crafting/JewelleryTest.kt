@@ -38,10 +38,11 @@ class JewelleryTest : WorldTest() {
 
             assertEquals(0, player.inventory.count("gold_bar"))
             assertEquals(1, player.inventory.count("${type}_mould"))
-            assertEquals(1, player.inventory.count("gold_${type}"))
+            assertEquals(1, player.inventory.count("gold_$type"))
             assertNotEquals(0.0, player.experience.get(Skill.Crafting))
         }
     }
+
     @Test
     fun `Make ring of slaying`() {
         val player = createPlayer(Tile(3227, 3255))
@@ -73,13 +74,13 @@ class JewelleryTest : WorldTest() {
                 player.itemOnObject(furnace, 0)
                 tick()
 
-                player.interfaceOption("make_mould_slayer", "make_${type}_option_${gem}", "Make 1")
+                player.interfaceOption("make_mould_slayer", "make_${type}_option_$gem", "Make 1")
                 tick(3)
 
                 assertEquals(0, player.inventory.count("gold_bar"))
                 assertEquals(0, player.inventory.count(gem))
                 assertEquals(1, player.inventory.count("${type}_mould"))
-                assertEquals(1, player.inventory.count("${gem}_${type}"))
+                assertEquals(1, player.inventory.count("${gem}_$type"))
                 assertNotEquals(0.0, player.experience.get(Skill.Crafting))
             }
         }

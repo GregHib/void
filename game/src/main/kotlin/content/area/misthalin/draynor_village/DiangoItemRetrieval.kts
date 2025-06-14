@@ -1,5 +1,6 @@
 package content.area.misthalin.draynor_village
 
+import content.entity.player.bank.ownsItem
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
@@ -16,7 +17,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
-import content.entity.player.bank.ownsItem
 
 val itemLimit = 48
 val container = InterfaceDefinition.pack(468, 2)

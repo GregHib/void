@@ -1,6 +1,9 @@
 package content.skill.smithing
 
+import content.entity.sound.sound
+import content.skill.magic.spell.SpellRunes.removeItems
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.interact.interfaceOnItem
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smelting
@@ -11,9 +14,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.remove
-import content.skill.magic.spell.SpellRunes.removeItems
-import content.entity.sound.sound
-import world.gregs.voidps.engine.client.ui.interact.interfaceOnItem
 
 val spellDefinitions: SpellDefinitions by inject()
 val itemDefinitions: ItemDefinitions by inject()

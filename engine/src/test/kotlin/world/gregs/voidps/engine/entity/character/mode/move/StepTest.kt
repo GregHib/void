@@ -39,5 +39,4 @@ class StepTest {
         assertTrue(tile.noCollision)
         assertTrue(tile.noRun)
     }
-
 }

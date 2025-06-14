@@ -25,8 +25,9 @@ data class AnimationDefinitionFull(
     var primarySpeeds: IntArray? = null,
     var secondarySpeeds: IntArray? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Extra {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -38,16 +39,22 @@ data class AnimationDefinitionFull(
         if (durations != null) {
             if (other.durations == null) return false
             if (!durations.contentEquals(other.durations)) return false
-        } else if (other.durations != null) return false
+        } else if (other.durations != null) {
+            return false
+        }
         if (frames != null) {
             if (other.frames == null) return false
             if (!frames.contentEquals(other.frames)) return false
-        } else if (other.frames != null) return false
+        } else if (other.frames != null) {
+            return false
+        }
         if (loopOffset != other.loopOffset) return false
         if (interleaveOrder != null) {
             if (other.interleaveOrder == null) return false
             if (!interleaveOrder.contentEquals(other.interleaveOrder)) return false
-        } else if (other.interleaveOrder != null) return false
+        } else if (other.interleaveOrder != null) {
+            return false
+        }
         if (priority != other.priority) return false
         if (leftHandItem != other.leftHandItem) return false
         if (rightHandItem != other.rightHandItem) return false
@@ -58,26 +65,36 @@ data class AnimationDefinitionFull(
         if (expressionFrames != null) {
             if (other.expressionFrames == null) return false
             if (!expressionFrames.contentEquals(other.expressionFrames)) return false
-        } else if (other.expressionFrames != null) return false
+        } else if (other.expressionFrames != null) {
+            return false
+        }
         if (sounds != null) {
             if (other.sounds == null) return false
             if (!sounds.contentDeepEquals(other.sounds)) return false
-        } else if (other.sounds != null) return false
+        } else if (other.sounds != null) {
+            return false
+        }
         if (aBoolean691 != other.aBoolean691) return false
         if (tweened != other.tweened) return false
         if (useSounds != other.useSounds) return false
         if (volumes != null) {
             if (other.volumes == null) return false
             if (!volumes.contentEquals(other.volumes)) return false
-        } else if (other.volumes != null) return false
+        } else if (other.volumes != null) {
+            return false
+        }
         if (primarySpeeds != null) {
             if (other.primarySpeeds == null) return false
             if (!primarySpeeds.contentEquals(other.primarySpeeds)) return false
-        } else if (other.primarySpeeds != null) return false
+        } else if (other.primarySpeeds != null) {
+            return false
+        }
         if (secondarySpeeds != null) {
             if (other.secondarySpeeds == null) return false
             if (!secondarySpeeds.contentEquals(other.secondarySpeeds)) return false
-        } else if (other.secondarySpeeds != null) return false
+        } else if (other.secondarySpeeds != null) {
+            return false
+        }
         if (stringId != other.stringId) return false
         if (extras != other.extras) return false
 
@@ -113,5 +130,4 @@ data class AnimationDefinitionFull(
     companion object {
         val EMPTY = AnimationDefinitionFull()
     }
-
 }

@@ -56,7 +56,7 @@ floorItemOperate("Light") {
 
 suspend fun Interaction<Player>.lightFire(
     player: Player,
-    floorItem: FloorItem
+    floorItem: FloorItem,
 ) {
     if (!floorItem.def.contains("firemaking")) {
         return

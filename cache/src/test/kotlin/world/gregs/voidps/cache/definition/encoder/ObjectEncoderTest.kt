@@ -92,7 +92,7 @@ internal class ObjectEncoderTest {
             anInt3020 = 512,
             aBoolean2992 = true,
             anInt2975 = 10,
-            params = hashMapOf(1 to "string", 2 to 100000)
+            params = hashMapOf(1 to "string", 2 to 100000),
         )
         val members = definition.copy(options = arrayOf("Take", "Eat", "Members", "Kick", "Speak", "Examine"))
 

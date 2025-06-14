@@ -1,6 +1,11 @@
 package content.social.chat
 
+import content.social.clan.chatType
+import content.social.clan.clan
+import content.social.ignore.ignores
+import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.cache.secure.Huffman
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -13,18 +18,13 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.network.client.instruction.ChatPrivate
+import world.gregs.voidps.network.client.instruction.ChatPublic
+import world.gregs.voidps.network.client.instruction.ChatTypeChange
 import world.gregs.voidps.network.login.protocol.encode.clanChat
 import world.gregs.voidps.network.login.protocol.encode.privateChatFrom
 import world.gregs.voidps.network.login.protocol.encode.privateChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicChat
-import content.social.clan.chatType
-import content.social.clan.clan
-import content.social.ignore.ignores
-import net.pearx.kasechange.toTitleCase
-import world.gregs.voidps.engine.client.instruction.instruction
-import world.gregs.voidps.network.client.instruction.ChatPrivate
-import world.gregs.voidps.network.client.instruction.ChatPublic
-import world.gregs.voidps.network.client.instruction.ChatTypeChange
 
 val players: Players by inject()
 val huffman: Huffman by inject()

@@ -1,11 +1,13 @@
 package content.bot.skill.combat
 
-import kotlinx.coroutines.CancellationException
 import content.bot.Bot
 import content.bot.buyItem
 import content.bot.equip
 import content.bot.interact.bank.*
 import content.bot.interact.navigation.await
+import content.entity.player.bank.bank
+import content.entity.player.bank.ownsItem
+import kotlinx.coroutines.CancellationException
 import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.GearDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,8 +17,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRe
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
-import content.entity.player.bank.bank
-import content.entity.player.bank.ownsItem
 
 suspend fun Bot.setupGear(gear: GearDefinition, buy: Boolean = true) {
     openBank()
@@ -49,9 +49,7 @@ fun Bot.getGear(type: String, skill: Skill): GearDefinition? {
         .lastOrNull()
 }
 
-fun Bot.getSuitableItem(items: List<Item>): Item {
-    return items.first { item -> player.hasRequirements(item) && player.ownsItem(item.id, item.amount) }
-}
+fun Bot.getSuitableItem(items: List<Item>): Item = items.first { item -> player.hasRequirements(item) && player.ownsItem(item.id, item.amount) }
 
 private fun Player.gearScore(definition: GearDefinition): Double {
     val total = definition.inventory.size + definition.equipment.size
@@ -88,9 +86,7 @@ fun Bot.hasExactGear(type: String, skill: Skill): Boolean {
     return false
 }
 
-fun Bot.hasExactGear(gear: GearDefinition): Boolean {
-    return player.gearScore(gear) == 1.0
-}
+fun Bot.hasExactGear(gear: GearDefinition): Boolean = player.gearScore(gear) == 1.0
 
 private suspend fun Bot.setupGearAndInv(gear: GearDefinition, buy: Boolean) {
     // Pick one of each item to equip for each required slot

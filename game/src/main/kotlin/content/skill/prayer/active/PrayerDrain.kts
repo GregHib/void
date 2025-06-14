@@ -1,5 +1,8 @@
 package content.skill.prayer.active
 
+import content.entity.sound.sound
+import content.skill.prayer.PrayerConfigs
+import content.skill.prayer.getActivePrayerVarKey
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.BitwiseValues
 import world.gregs.voidps.engine.data.definition.PrayerDefinitions
@@ -10,9 +13,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
-import content.skill.prayer.PrayerConfigs
-import content.skill.prayer.getActivePrayerVarKey
-import content.entity.sound.sound
 
 val definitions: PrayerDefinitions by inject()
 val variableDefinitions: VariableDefinitions by inject()

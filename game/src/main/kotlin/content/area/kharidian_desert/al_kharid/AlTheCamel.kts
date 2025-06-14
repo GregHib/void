@@ -1,5 +1,9 @@
 package content.area.kharidian_desert.al_kharid
 
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.open
@@ -18,10 +22,6 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 import java.util.concurrent.TimeUnit
 
 val objects: GameObjects by inject()
@@ -44,11 +44,13 @@ npcOperate("Talk-to", "*camel") {
         }
     } else {
         insult()
-        player.message(when (random.nextInt(3)) {
-            0 -> "The camel turns its head and glares at you."
-            1 -> "The camel spits at you, and you jump back hurriedly.."
-            else -> "The camel tries to stamp on your foot, but you pull it back quickly."
-        })
+        player.message(
+            when (random.nextInt(3)) {
+                0 -> "The camel turns its head and glares at you."
+                1 -> "The camel spits at you, and you jump back hurriedly.."
+                else -> "The camel tries to stamp on your foot, but you pull it back quickly."
+            },
+        )
     }
 }
 
@@ -189,11 +191,13 @@ itemOnObjectOperate(obj = "dung") {
 }
 
 suspend fun NPCOption<Player>.insult() {
-    player<Talk>(when (random.nextInt(3)) {
-        0 -> "Mmm... looks like that camel would make a nice kebab."
-        1 -> "I wonder if that camel has fleas..."
-        else -> "If I go near that camel, it'll probably bite my hand off."
-    })
+    player<Talk>(
+        when (random.nextInt(3)) {
+            0 -> "Mmm... looks like that camel would make a nice kebab."
+            1 -> "I wonder if that camel has fleas..."
+            else -> "If I go near that camel, it'll probably bite my hand off."
+        },
+    )
 }
 
 suspend fun SuspendableContext<Player>.scoopPoop() {

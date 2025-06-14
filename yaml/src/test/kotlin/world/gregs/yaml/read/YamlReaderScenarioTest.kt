@@ -21,13 +21,16 @@ class YamlReaderScenarioTest {
                 list.add(SpawnData(element as Map<String, Any>))
             }
         }
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             - { id: prison_pete, x: 2084, y: 4460, direction: NORTH }
             - { id: balloon_animal, x: 2078, y: 4462 }
-        """.trimIndent(), config)
+            """.trimIndent(),
+            config,
+        )
         val expected = listOf(
             SpawnData("prison_pete", 2084, 4460, "NORTH"),
-            SpawnData("balloon_animal", 2078, 4462)
+            SpawnData("balloon_animal", 2078, 4462),
         )
         assertEquals(expected, output)
     }
@@ -35,7 +38,7 @@ class YamlReaderScenarioTest {
     @Test
     fun `Parse map with mixed id format`() {
         val config = object : YamlReaderConfiguration() {
-            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
+            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                 if (value is Int && indent == 0) {
                     map[key] = mapOf("id" to value)
                 } else {
@@ -43,7 +46,8 @@ class YamlReaderScenarioTest {
                 }
             }
         }
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             one:
               id: 1
               key: value
@@ -53,13 +57,15 @@ class YamlReaderScenarioTest {
               id: 4
               number: 6
             five: 5
-        """.trimIndent(), config)
+            """.trimIndent(),
+            config,
+        )
         val expected = mapOf<String, Any>(
             "one" to mapOf("id" to 1, "key" to "value"),
             "two" to mapOf("id" to 2),
             "three" to mapOf("id" to 3),
             "four" to mapOf("id" to 4, "number" to 6),
-            "five" to mapOf("id" to 5)
+            "five" to mapOf("id" to 5),
         )
         assertEquals(expected, output)
     }
@@ -67,24 +73,27 @@ class YamlReaderScenarioTest {
     @Test
     fun `Parse indentation`() {
         val config = object : YamlReaderConfiguration() {
-            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) { 
+            override fun set(map: MutableMap<String, Any>, key: String, value: Any, indent: Int, parentMap: String?) {
                 assertEquals(if (key == "id") 1 else 0, indent)
                 super.set(map, key, value, indent, parentMap)
             }
         }
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             one: 1
             two: 2
             three:
               id: 3
             four:
               id: 4
-        """.trimIndent(), config)
+            """.trimIndent(),
+            config,
+        )
         val expected = mapOf(
             "one" to 1,
             "two" to 2,
             "three" to mapOf("id" to 3),
-            "four" to mapOf("id" to 4)
+            "four" to mapOf("id" to 4),
         )
         assertEquals(expected, output)
     }
@@ -98,7 +107,8 @@ class YamlReaderScenarioTest {
 
     @Test
     fun `Parse nested normal explicit lists`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             - type: cooking
               levels: 1-15
               inventory:
@@ -109,32 +119,37 @@ class YamlReaderScenarioTest {
               inventory:
                 - id: raw_herring
                   amount: 28
-        """.trimIndent())
-        val expected = listOf(mapOf(
-            "type" to "cooking",
-            "levels" to "1-15",
-            "inventory" to listOf(
-                mapOf(
-                    "id" to listOf("raw_anchovies", "raw_shrimps", "raw_beef", "raw_rat_meat", "raw_chicken", "raw_crayfish"),
-                    "amount" to 28
-                )
+            """.trimIndent(),
+        )
+        val expected = listOf(
+            mapOf(
+                "type" to "cooking",
+                "levels" to "1-15",
+                "inventory" to listOf(
+                    mapOf(
+                        "id" to listOf("raw_anchovies", "raw_shrimps", "raw_beef", "raw_rat_meat", "raw_chicken", "raw_crayfish"),
+                        "amount" to 28,
+                    ),
+                ),
             ),
-        ), mapOf(
-            "type" to "cooking",
-            "levels" to "5-15",
-            "inventory" to listOf(
-                mapOf(
-                    "id" to "raw_herring",
-                    "amount" to 28
-                )
+            mapOf(
+                "type" to "cooking",
+                "levels" to "5-15",
+                "inventory" to listOf(
+                    mapOf(
+                        "id" to "raw_herring",
+                        "amount" to 28,
+                    ),
+                ),
             ),
-        ))
+        )
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse nested map lists`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             - type: melee
               levels: 1-5
               equipment:
@@ -150,32 +165,39 @@ class YamlReaderScenarioTest {
               inventory:
                 - id: [ cooked_chicken, cooked_meat, shrimps, anchovies, sardine, herring ]
                   amount: 5
-        """.trimIndent())
-        val expected = listOf(mapOf(
-            "type" to "melee", "levels" to "1-5",
-            "equipment" to mapOf(
-                "weapon" to listOf(
-                    mapOf("id" to "iron_scimitar"),
-                    mapOf("id" to "bronze_scimitar"),
-                    mapOf("id" to "iron_battleaxe"),
-                    mapOf("id" to "iron_longsword"),
-                    mapOf("id" to "iron_sword"),
-                    mapOf("id" to "bronze_sword"),
-                    mapOf("id" to "bronze_longsword"),
-                    mapOf("id" to "bronze_dagger"),
-                )
-            ),
-            "inventory" to listOf(mapOf(
-                "id" to listOf("cooked_chicken", "cooked_meat", "shrimps", "anchovies", "sardine", "herring"),
-                "amount" to 5)),
+            """.trimIndent(),
         )
+        val expected = listOf(
+            mapOf(
+                "type" to "melee",
+                "levels" to "1-5",
+                "equipment" to mapOf(
+                    "weapon" to listOf(
+                        mapOf("id" to "iron_scimitar"),
+                        mapOf("id" to "bronze_scimitar"),
+                        mapOf("id" to "iron_battleaxe"),
+                        mapOf("id" to "iron_longsword"),
+                        mapOf("id" to "iron_sword"),
+                        mapOf("id" to "bronze_sword"),
+                        mapOf("id" to "bronze_longsword"),
+                        mapOf("id" to "bronze_dagger"),
+                    ),
+                ),
+                "inventory" to listOf(
+                    mapOf(
+                        "id" to listOf("cooked_chicken", "cooked_meat", "shrimps", "anchovies", "sardine", "herring"),
+                        "amount" to 5,
+                    ),
+                ),
+            ),
         )
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse nested flat list`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             fishing_spot_lure_bait:
               id: 329
               fishing:
@@ -194,26 +216,30 @@ class YamlReaderScenarioTest {
                   bait:
                     fishing_bait:
                     - pike
-        """.trimIndent())
-        val expected = mapOf("fishing_spot_lure_bait" to mapOf(
-            "id" to 329,
-            "fishing" to mapOf(
-                "Lure" to mapOf(
-                    "items" to listOf("fly_fishing_rod"),
-                    "bait" to mapOf("feather" to listOf("raw_trout", "raw_salmon"), "stripy_feather" to listOf("raw_rainbow_fish"))
+            """.trimIndent(),
+        )
+        val expected = mapOf(
+            "fishing_spot_lure_bait" to mapOf(
+                "id" to 329,
+                "fishing" to mapOf(
+                    "Lure" to mapOf(
+                        "items" to listOf("fly_fishing_rod"),
+                        "bait" to mapOf("feather" to listOf("raw_trout", "raw_salmon"), "stripy_feather" to listOf("raw_rainbow_fish")),
+                    ),
+                    "Bait" to mapOf(
+                        "items" to listOf("fishing_rod"),
+                        "bait" to mapOf("fishing_bait" to listOf("pike")),
+                    ),
                 ),
-                "Bait" to mapOf(
-                    "items" to listOf("fishing_rod"),
-                    "bait" to mapOf("fishing_bait" to listOf("pike"))
-                )
-            )
-        ))
+            ),
+        )
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse nested flat maps`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             - type: range
               levels: 1-5
               equipment:
@@ -227,41 +253,50 @@ class YamlReaderScenarioTest {
               inventory:
                 - id: [ cooked_chicken, cooked_meat, shrimps, anchovies, sardine, herring ]
                   amount: 5
-        """.trimIndent())
-        val expected = listOf(mapOf(
-            "type" to "range",
-            "levels" to "1-5",
-            "equipment" to mapOf(
-                "weapon" to listOf(mapOf("id" to "shortbow")),
-                "ammo" to listOf(
-                    mapOf("id" to "bronze_arrow", "amount" to 50),
-                    mapOf("id" to "iron_arrow", "amount" to 50),
-                )
+            """.trimIndent(),
+        )
+        val expected = listOf(
+            mapOf(
+                "type" to "range",
+                "levels" to "1-5",
+                "equipment" to mapOf(
+                    "weapon" to listOf(mapOf("id" to "shortbow")),
+                    "ammo" to listOf(
+                        mapOf("id" to "bronze_arrow", "amount" to 50),
+                        mapOf("id" to "iron_arrow", "amount" to 50),
+                    ),
+                ),
+                "inventory" to listOf(
+                    mapOf(
+                        "id" to listOf("cooked_chicken", "cooked_meat", "shrimps", "anchovies", "sardine", "herring"),
+                        "amount" to 5,
+                    ),
+                ),
             ),
-            "inventory" to listOf(mapOf(
-                "id" to listOf("cooked_chicken", "cooked_meat", "shrimps", "anchovies", "sardine", "herring"),
-                "amount" to 5
-            )),
-        ))
+        )
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse nested indented key`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             - type: range
               equipment:
                 weapon:
                   - id: shortbow
                 ammo:
-        """.trimIndent())
-        val expected = listOf(mapOf(
-            "type" to "range",
-            "equipment" to mapOf(
-                "weapon" to listOf(mapOf("id" to "shortbow")),
-                "ammo" to ""
+            """.trimIndent(),
+        )
+        val expected = listOf(
+            mapOf(
+                "type" to "range",
+                "equipment" to mapOf(
+                    "weapon" to listOf(mapOf("id" to "shortbow")),
+                    "ammo" to "",
+                ),
             ),
-        ))
+        )
         assertEquals(expected, output)
     }
 }

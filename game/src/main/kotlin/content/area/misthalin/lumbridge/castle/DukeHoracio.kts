@@ -1,16 +1,15 @@
-package content.area.misthalin.lumbridge
+package content.area.misthalin.lumbridge.castle
 
-
+import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.quest.quest
+import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.entity.player.bank.ownsItem
-import content.quest.quest
-import content.quest.refreshQuestJournal
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
 
 npcOperate("Talk-to", "duke_horacio") {
     player["hail_to_the_duke_baby_task"] = true
@@ -69,7 +68,7 @@ suspend fun SuspendableContext<Player>.completed() {
     }
 }
 
-suspend fun PlayerChoice.findMoney() : Unit = option<Quiz>("Where can I find money?") {
+suspend fun PlayerChoice.findMoney(): Unit = option<Quiz>("Where can I find money?") {
     npc<Neutral>("I've heard that the blacksmiths are prosperous amongst the peasantry. Maybe you could try your hand at that?")
 }
 

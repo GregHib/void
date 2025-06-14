@@ -32,7 +32,7 @@ import kotlin.math.sign
 open class Movement(
     internal val character: Character,
     private val strategy: TargetStrategy? = null,
-    private val shape: Int? = null
+    private val shape: Int? = null,
 ) : Mode {
 
     private val stepValidator: StepValidator = get()
@@ -126,7 +126,13 @@ open class Movement(
         if (character is Player) {
             character.steps.last = GameLoop.tick + 1 // faster than character.start("last_movement", 1)
             character.movementType = if (run) MoveType.Run else MoveType.Walk
-            character.temporaryMoveType = if (end) MoveType.Run else if (run) MoveType.Run else MoveType.Walk
+            character.temporaryMoveType = if (end) {
+                MoveType.Run
+            } else if (run) {
+                MoveType.Run
+            } else {
+                MoveType.Walk
+            }
         }
     }
 
@@ -179,9 +185,7 @@ open class Movement(
         return null
     }
 
-    fun canStep(x: Int, y: Int): Boolean {
-        return stepValidator.canTravel(character, x, y)
-    }
+    fun canStep(x: Int, y: Int): Boolean = stepValidator.canTravel(character, x, y)
 
     fun arrived(distance: Int = -1): Boolean {
         strategy ?: return false

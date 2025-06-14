@@ -1,14 +1,14 @@
 package content.social.trade
 
+import content.social.trade.Trade.getPartner
+import content.social.trade.Trade.isTradeInterface
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.playerDespawn
-import content.social.trade.Trade.getPartner
-import content.social.trade.Trade.isTradeInterface
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 
 /**
  * Declining or closing cancels the trade

@@ -8,8 +8,5 @@ import world.gregs.voidps.network.login.protocol.readString
 
 class AddFriendDecoder : Decoder(BYTE) {
 
-    override suspend fun decode(packet: ByteReadPacket): Instruction {
-        return FriendAdd(packet.readString())
-    }
-
+    override suspend fun decode(packet: ByteReadPacket): Instruction = FriendAdd(packet.readString())
 }

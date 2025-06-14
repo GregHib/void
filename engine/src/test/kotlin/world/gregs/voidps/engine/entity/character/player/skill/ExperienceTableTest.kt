@@ -134,5 +134,4 @@ internal class ExperienceTableTest {
         player.exp(Skill.Attack, 10.0)
         assertEquals(20.0, experience.get(Skill.Attack))
     }
-
 }

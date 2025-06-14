@@ -17,25 +17,19 @@ fun String.toIntRange(inclusive: Boolean = false, separator: String = "-"): IntR
 
 fun String.plural(count: Int, plural: String = "s") = plural(count.toLong(), plural)
 
-fun String.plural(count: Long = 2L, plural: String = "s"): String {
-    return if (count == 1L) this else suffixIfNot(plural)
-}
+fun String.plural(count: Long = 2L, plural: String = "s"): String = if (count == 1L) this else suffixIfNot(plural)
 
-fun String.suffixIfNot(suffix: String): String {
-    return if (endsWith(suffix)) this else "${this}$suffix"
-}
+fun String.suffixIfNot(suffix: String): String = if (endsWith(suffix)) this else "${this}$suffix"
 
 /*
     International System of Units (SI)
  */
-fun Long.toSIPrefix(): String {
-    return when {
-        this >= 0xe8d4a51000 -> "${this / 0xe8d4a51000}T"
-        this >= 0x3b9aCa00 -> "${this / 0x3b9aCa00}B"
-        this >= 0xf4240 -> "${this / 0xf4240}M"
-        this >= 0x3e8 -> "${this / 0x3e8}K"
-        else -> toString()
-    }
+fun Long.toSIPrefix(): String = when {
+    this >= 0xe8d4a51000 -> "${this / 0xe8d4a51000}T"
+    this >= 0x3b9aCa00 -> "${this / 0x3b9aCa00}B"
+    this >= 0xf4240 -> "${this / 0xf4240}M"
+    this >= 0x3e8 -> "${this / 0x3e8}K"
+    else -> toString()
 }
 
 private val dec = DecimalFormat("#,###")
@@ -66,9 +60,7 @@ fun Boolean?.toInt() = if (this == true) 1 else 0
 
 fun Int?.toBoolean() = this == 1
 
-fun Int.nearby(size: Int): IntRange {
-    return this - size..this + size
-}
+fun Int.nearby(size: Int): IntRange = this - size..this + size
 
 private val yRegex = "^y(b[lor]|cl[ea]|fere|gg|p[ios]|rou|tt).*".toRegex()
 private val capitalRegex = "(?!FJO|[HLMNS]Y.|RY[EO]|SQU|(F[LR]?|[HL]|MN?|N|RH?|S[CHKLMNPTVW]?|X(YL)?)[AEIOU])[FHLMNRSX][A-Z]".toRegex()
@@ -102,7 +94,6 @@ fun String.an(): String {
     if (lowercaseWord.startsWith("hour") && !lowercaseWord.startsWith("houri")) {
         return " an"
     }
-
 
     // Single letter word which should be preceded by 'an'
     if (lowercaseWord.length == 1) {

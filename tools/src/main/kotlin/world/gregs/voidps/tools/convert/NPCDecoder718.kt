@@ -13,7 +13,7 @@ class NPCDecoder718(val member: Boolean = true) : DefinitionDecoder<NPCDefinitio
 
     override fun getArchive(id: Int) = id ushr 7
 
-    override  fun NPCDefinitionFull.read(opcode: Int, buffer: Reader) {
+    override fun NPCDefinitionFull.read(opcode: Int, buffer: Reader) {
         when (opcode) {
             1 -> {
                 val length = buffer.readUnsignedByte()
@@ -62,7 +62,7 @@ class NPCDecoder718(val member: Boolean = true) : DefinitionDecoder<NPCDefinitio
                     translations!![index] = intArrayOf(
                         buffer.readByte(),
                         buffer.readByte(),
-                        buffer.readByte()
+                        buffer.readByte(),
                     )
                 }
             }
@@ -134,5 +134,4 @@ class NPCDecoder718(val member: Boolean = true) : DefinitionDecoder<NPCDefinitio
             249 -> readParameters(buffer)
         }
     }
-
 }

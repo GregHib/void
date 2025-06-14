@@ -89,7 +89,6 @@ class ExplicitCollectionWriter(writer: CharWriter, config: YamlWriterConfigurati
         writer.append('}')
     }
 
-
     override fun writeKey(k: Any?): String {
         val key = super.writeKey(k)
         if (key != "&") {

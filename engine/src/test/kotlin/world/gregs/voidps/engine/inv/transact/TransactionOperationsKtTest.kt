@@ -51,12 +51,12 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
         }
 
         val player = Player()
-        assertEquals(0, inventory.charges(player,0))
+        assertEquals(0, inventory.charges(player, 0))
 
         transaction.charge(player, 0, 2)
 
         assertTrue(transaction.commit())
-        assertEquals(2, inventory.charges(player,0))
+        assertEquals(2, inventory.charges(player, 0))
         assertEquals(2, player["charge_variable", 0])
     }
 
@@ -69,12 +69,12 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
         val player = Player()
         player["charge_variable"] = 4
-        assertEquals(4, inventory.charges(player,0))
+        assertEquals(4, inventory.charges(player, 0))
 
         transaction.discharge(player, 0, 2)
 
         assertTrue(transaction.commit())
-        assertEquals(2, inventory.charges(player,0))
+        assertEquals(2, inventory.charges(player, 0))
     }
 
     @Test
@@ -86,12 +86,12 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
         val player = Player()
         player["charge_variable"] = 4
-        assertEquals(4, inventory.charges(player,0))
+        assertEquals(4, inventory.charges(player, 0))
 
         transaction.clearCharges(player, 0)
 
         assertTrue(transaction.commit())
-        assertEquals(0, inventory.charges(player,0))
+        assertEquals(0, inventory.charges(player, 0))
         assertFalse(player.contains("charge_variable"))
     }
 
@@ -106,7 +106,7 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
         transaction.charge(player, 0, 2)
 
         assertFalse(transaction.commit())
-        assertEquals(0, inventory.charges(player,0))
+        assertEquals(0, inventory.charges(player, 0))
         assertEquals(0, player["charge_variable", 0])
     }
 
@@ -150,12 +150,12 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
         val player = Player()
         player["charge_variable"] = 1
         transaction.charge(player, 0, 2)
-        assertEquals(3, inventory.charges(player,0))
+        assertEquals(3, inventory.charges(player, 0))
 
         transaction.error = TransactionError.Invalid
         assertFalse(transaction.commit())
 
-        assertEquals(1, inventory.charges(player,0))
+        assertEquals(1, inventory.charges(player, 0))
     }
 
     @Test
@@ -168,12 +168,12 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
         val player = Player()
         player["charge_variable"] = 4
         transaction.discharge(player, 0, 2)
-        assertEquals(2, inventory.charges(player,0))
+        assertEquals(2, inventory.charges(player, 0))
 
         transaction.error = TransactionError.Invalid
         assertFalse(transaction.commit())
 
-        assertEquals(4, inventory.charges(player,0))
+        assertEquals(4, inventory.charges(player, 0))
     }
 
     @Test
@@ -186,12 +186,12 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
         val player = Player()
         player["charge_variable"] = 4
         transaction.clearCharges(player, 0)
-        assertEquals(0, inventory.charges(player,0))
+        assertEquals(0, inventory.charges(player, 0))
 
         transaction.error = TransactionError.Invalid
         assertFalse(transaction.commit())
 
-        assertEquals(4, inventory.charges(player,0))
+        assertEquals(4, inventory.charges(player, 0))
     }
 
     @Test
@@ -226,5 +226,4 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
         assertFalse(transaction.commit())
         assertEquals(TransactionError.Invalid, transaction.error)
     }
-
 }

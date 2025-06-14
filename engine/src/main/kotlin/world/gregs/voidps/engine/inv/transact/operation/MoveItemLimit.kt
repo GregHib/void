@@ -63,5 +63,4 @@ object MoveItemLimit {
             moveToLimit(item.id, item.amount, target)
         }
     }
-
 }

@@ -12,7 +12,7 @@ import world.gregs.voidps.type.Tile
  * However, this is simplified and looks up the areas directly and sends an event if one has changed
  */
 class AreaQueue(
-    private val player: Player
+    private val player: Player,
 ) {
     lateinit var areaDefinitions: AreaDefinitions
 

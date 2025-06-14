@@ -23,7 +23,7 @@ class ItemBonuses : Pipeline.Modifier<Extras> {
         "absorbmagic" to "absorb_magic",
         "absorbranged" to "absorb_range",
         "magicdamage" to "magic_damage",
-        "prayer" to "prayer"
+        "prayer" to "prayer",
     )
 
     override fun modify(content: Extras): Extras {
@@ -50,7 +50,7 @@ class ItemBonuses : Pipeline.Modifier<Extras> {
                             val parts = text.split(" to ")
                             val range = parts.first().trim().replace("+", "").toInt()..parts.last().trim().replace("+", "").toInt()
                             val dif = range.last - range.first
-                            val step = dif / (versions - 2.0)// -1 because new/full crystal bow have same values
+                            val step = dif / (versions - 2.0) // -1 because new/full crystal bow have same values
                             val expected = range.first + (versions - version) * step
                             extras[keys[key]!!] = expected
                         }

@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.network.client.instruction.InteractFloorItem
 
 class FloorItemOptionHandler(
-    private val items: FloorItems
+    private val items: FloorItems,
 ) : InstructionHandler<InteractFloorItem>() {
 
     private val logger = InlineLogger()

@@ -1,5 +1,8 @@
 package content.entity.player.bank
 
+import WorldTest
+import interfaceOption
+import objectOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.item.Item
@@ -7,9 +10,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import WorldTest
-import interfaceOption
-import objectOption
 
 internal class BankTest : WorldTest() {
 
@@ -121,5 +121,4 @@ internal class BankTest : WorldTest() {
         assertEquals(Item("bronze_sword_noted", 10), player.inventory[1])
         assertTrue(player.bank.isEmpty())
     }
-
 }

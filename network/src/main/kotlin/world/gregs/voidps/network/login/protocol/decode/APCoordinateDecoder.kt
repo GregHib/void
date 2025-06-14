@@ -15,5 +15,4 @@ class APCoordinateDecoder : Decoder(12) {
         val y = packet.readShortAdd()
         return null
     }
-
 }

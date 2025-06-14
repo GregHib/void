@@ -54,7 +54,8 @@ interfaceOption("Buy XP", "buy_xp_*", "slayer_rewards") {
 }
 
 interfaceOption("Buy Ring", "buy_ring_*", "slayer_rewards") {
-    buy(player, 75, "Here are your ring. Use it wisely.") { // TODO proper message
+    buy(player, 75, "Here are your ring. Use it wisely.") {
+        // TODO proper message
         add("ring_of_slaying_8")
     }
 }
@@ -67,13 +68,15 @@ interfaceOption("Buy Runes", "buy_runes_*", "slayer_rewards") {
 }
 
 interfaceOption("Buy Bolts", "buy_bolts_*", "slayer_rewards") {
-    buy(player, 35, "Here are your bolts. Use them wisely.") { // TODO proper message
+    buy(player, 35, "Here are your bolts. Use them wisely.") {
+        // TODO proper message
         add("broad_tipped_bolts", 250)
     }
 }
 
 interfaceOption("Buy Arrows", "buy_arrows_*", "slayer_rewards") {
-    buy(player, 35, "Here are your arrows. Use them wisely.") { // TODO proper message
+    buy(player, 35, "Here are your arrows. Use them wisely.") {
+        // TODO proper message
         add("broad_arrow", 250)
     }
 }

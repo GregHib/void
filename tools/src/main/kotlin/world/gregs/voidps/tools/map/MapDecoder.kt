@@ -14,23 +14,15 @@ class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapD
 
     private val objects = MapObjectDefinitionDecoder(xteas)
 
-    override fun MapDefinition.read(opcode: Int, buffer: Reader) {
-        throw UnsupportedOperationException("Not in use.")
-    }
+    override fun MapDefinition.read(opcode: Int, buffer: Reader) = throw UnsupportedOperationException("Not in use.")
 
     override fun create(size: Int) = Array(size) { MapDefinition() }
 
-    override fun size(cache: Cache): Int {
-        return cache.lastArchiveId(index)
-    }
+    override fun size(cache: Cache): Int = cache.lastArchiveId(index)
 
-    override fun getArchive(id: Int): Int {
-        return id
-    }
+    override fun getArchive(id: Int): Int = id
 
-    override fun getFile(id: Int): Int {
-        return 0
-    }
+    override fun getFile(id: Int): Int = 0
 
     val regionHashes: MutableMap<Int, Int> = Int2IntOpenHashMap(1600)
     var modified = true
@@ -96,7 +88,7 @@ class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapD
                             overlayPath,
                             overlayRotation,
                             settings,
-                            underlayId
+                            underlayId,
                         )
                     }
                 }

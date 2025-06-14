@@ -4,7 +4,7 @@ class GameObjectTimers : Runnable {
     internal data class Timer(
         val objs: Set<GameObject>,
         var ticks: Int,
-        val block: () -> Unit
+        val block: () -> Unit,
     )
 
     private val timers: MutableList<Timer> = mutableListOf()
@@ -36,18 +36,14 @@ class GameObjectTimers : Runnable {
         timers.add(Timer(gameObjects, ticks, block))
     }
 
-    fun cancel(gameObject: GameObject): Boolean {
-        return timers.removeIf { it.objs.contains(gameObject) }
-    }
+    fun cancel(gameObject: GameObject): Boolean = timers.removeIf { it.objs.contains(gameObject) }
 
-    fun execute(gameObject: GameObject): Boolean {
-        return timers.removeIf {
-            if (it.objs.contains(gameObject)) {
-                it.block.invoke()
-                true
-            } else {
-                false
-            }
+    fun execute(gameObject: GameObject): Boolean = timers.removeIf {
+        if (it.objs.contains(gameObject)) {
+            it.block.invoke()
+            true
+        } else {
+            false
         }
     }
 

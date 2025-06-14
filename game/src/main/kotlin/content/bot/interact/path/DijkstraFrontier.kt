@@ -1,7 +1,7 @@
 package content.bot.interact.path
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import content.bot.interact.navigation.graph.Edge
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import java.util.*
 
 /**
@@ -28,9 +28,7 @@ class DijkstraFrontier(size: Int) {
         return visited[edge]?.second ?: return MAX_COST
     }
 
-    fun parent(edge: Edge): Edge? {
-        return visited[edge]?.first
-    }
+    fun parent(edge: Edge): Edge? = visited[edge]?.first
 
     fun reset(node: Any) {
         queue.clear()
@@ -40,10 +38,7 @@ class DijkstraFrontier(size: Int) {
 
     private class Weighted(val node: Any, val edge: Edge?, val cost: Int) : Comparable<Weighted> {
 
-        override fun compareTo(other: Weighted): Int {
-            return cost.compareTo(other.cost)
-        }
-
+        override fun compareTo(other: Weighted): Int = cost.compareTo(other.cost)
     }
 
     companion object {

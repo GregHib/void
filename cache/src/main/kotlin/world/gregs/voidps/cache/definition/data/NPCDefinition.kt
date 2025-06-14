@@ -21,8 +21,10 @@ data class NPCDefinition(
     var runSound: Int = -1,
     var soundDistance: Int = 0,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Transforms, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Transforms,
+    Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -39,7 +41,9 @@ data class NPCDefinition(
         if (transforms != null) {
             if (other.transforms == null) return false
             if (!transforms.contentEquals(other.transforms)) return false
-        } else if (other.transforms != null) return false
+        } else if (other.transforms != null) {
+            return false
+        }
         if (walkMode != other.walkMode) return false
         if (renderEmote != other.renderEmote) return false
         if (idleSound != other.idleSound) return false

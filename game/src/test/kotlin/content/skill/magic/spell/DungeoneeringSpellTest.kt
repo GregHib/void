@@ -1,11 +1,12 @@
 package content.skill.magic.spell
 
+import FakeRandom
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import FakeRandom
+import set
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
@@ -15,7 +16,6 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
-import set
 
 class DungeoneeringSpellTest : MagicSpellTest() {
 
@@ -69,10 +69,12 @@ class DungeoneeringSpellTest : MagicSpellTest() {
     @Test
     fun `Remove surge box surge charges`() {
         val player = player()
-        setItems(Item("earth_rune", 4),
+        setItems(
+            Item("earth_rune", 4),
             Item("air_rune"),
             Item("death_rune"),
-            Item("blood_rune"))
+            Item("blood_rune"),
+        )
         addItemDef(ItemDefinition(stringId = "celestial_surgebox", extras = mapOf("charges_max" to 1234, "charges" to 10)))
 
         player.inventory.add("air_rune", 10)

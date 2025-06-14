@@ -9,16 +9,12 @@ object RSA {
     /**
      * Encrypt/decrypts bytes with key and modulus
      */
-    fun crypt(data: ByteArray, modulus: BigInteger, exponent: BigInteger): ByteArray {
-        return BigInteger(data).modPow(exponent, modulus).toByteArray()
-    }
+    fun crypt(data: ByteArray, modulus: BigInteger, exponent: BigInteger): ByteArray = BigInteger(data).modPow(exponent, modulus).toByteArray()
 
     /**
      * Encrypt/decrypts [ByteBuffer] with key and modulus
      */
-    fun crypt(data: ByteBuffer, modulus: BigInteger, key: BigInteger): ByteBuffer {
-        return ByteBuffer.wrap(BigInteger(data.array()).modPow(key, modulus).toByteArray())
-    }
+    fun crypt(data: ByteBuffer, modulus: BigInteger, key: BigInteger): ByteBuffer = ByteBuffer.wrap(BigInteger(data.array()).modPow(key, modulus).toByteArray())
 
     @JvmStatic
     fun main(args: Array<String>) {

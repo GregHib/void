@@ -43,8 +43,9 @@ data class WorldMapInfoDefinition(
     var anInt1051: Int = 2147483647,
     var anInt1060: Int = -2147483648,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -69,16 +70,22 @@ data class WorldMapInfoDefinition(
         if (anIntArray1049 != null) {
             if (other.anIntArray1049 == null) return false
             if (!anIntArray1049.contentEquals(other.anIntArray1049)) return false
-        } else if (other.anIntArray1049 != null) return false
+        } else if (other.anIntArray1049 != null) {
+            return false
+        }
         if (anInt1084 != other.anInt1084) return false
         if (anIntArray1066 != null) {
             if (other.anIntArray1066 == null) return false
             if (!anIntArray1066.contentEquals(other.anIntArray1066)) return false
-        } else if (other.anIntArray1066 != null) return false
+        } else if (other.anIntArray1066 != null) {
+            return false
+        }
         if (aByteArray1057 != null) {
             if (other.aByteArray1057 == null) return false
             if (!aByteArray1057.contentEquals(other.aByteArray1057)) return false
-        } else if (other.aByteArray1057 != null) return false
+        } else if (other.aByteArray1057 != null) {
+            return false
+        }
         if (aBoolean1064 != other.aBoolean1064) return false
         if (aString1045 != other.aString1045) return false
         if (anInt1093 != other.anInt1093) return false

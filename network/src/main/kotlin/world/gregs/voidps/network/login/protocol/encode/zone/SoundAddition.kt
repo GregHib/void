@@ -9,9 +9,9 @@ data class SoundAddition(
     val repeat: Int,
     val delay: Int,
     val volume: Int,
-    val speed: Int
+    val speed: Int,
 ) : ZoneUpdate(
     Protocol.SOUND_AREA,
     Protocol.Batch.SOUND_AREA,
-    8
+    8,
 )

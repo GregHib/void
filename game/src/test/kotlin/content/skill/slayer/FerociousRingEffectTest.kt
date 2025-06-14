@@ -1,12 +1,12 @@
 package content.skill.slayer
 
+import content.skill.melee.CombatFormulaTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
-import content.skill.melee.CombatFormulaTest
 
 internal class FerociousRingEffectTest : CombatFormulaTest() {
 
@@ -39,5 +39,4 @@ internal class FerociousRingEffectTest : CombatFormulaTest() {
         assertEquals(116, maxHit)
         assertEquals(0.6241, chance, 0.0001)
     }
-
 }

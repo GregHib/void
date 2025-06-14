@@ -1,21 +1,21 @@
 package content.skill.magic
 
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 import content.entity.combat.characterCombatSwing
 import content.entity.combat.combatSwing
 import content.entity.combat.hit.hit
-import content.skill.melee.weapon.weapon
-import content.skill.magic.spell.Spell
+import content.entity.proj.shoot
 import content.skill.magic.book.modern.teleBlock
+import content.skill.magic.spell.Spell
 import content.skill.magic.spell.removeSpellItems
 import content.skill.magic.spell.spell
-import content.entity.proj.shoot
+import content.skill.melee.weapon.weapon
 import content.skill.slayer.categories
 import world.gregs.voidps.engine.data.config.SpellDefinition
+import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inject
 
 val spellDefinitions: SpellDefinitions by inject()
 

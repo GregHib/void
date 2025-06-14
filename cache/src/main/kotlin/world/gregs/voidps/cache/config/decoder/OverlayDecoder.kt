@@ -38,10 +38,10 @@ class OverlayDecoder : ConfigDecoder<OverlayDefinition>(FLOOR_OVERLAY) {
 
     companion object {
 
-        private fun calculateHsl(i: Int): Int {
-            return if (i == 16711935) {
-                -1
-            } else shiftRGBColours(i)
+        private fun calculateHsl(i: Int): Int = if (i == 16711935) {
+            -1
+        } else {
+            shiftRGBColours(i)
         }
 
         private fun shiftRGBColours(rgb: Int): Int {
@@ -95,7 +95,7 @@ class OverlayDecoder : ConfigDecoder<OverlayDefinition>(FLOOR_OVERLAY) {
             } else {
                 l2 = 0
             }
-            //Shift hsl
+            // Shift hsl
             s2 = if (l2 <= 243) {
                 when {
                     l2 > 217 -> s2 shr 3

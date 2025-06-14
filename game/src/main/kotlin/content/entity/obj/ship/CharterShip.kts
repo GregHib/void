@@ -163,7 +163,7 @@ fun hasQuestRequirements(player: Player, location: String): Boolean {
             "port_phasmatys" -> "priest_in_peril"
             "oo_glog" -> "as_a_first_resort"
             else -> return true
-        }
+        },
     )
 }
 

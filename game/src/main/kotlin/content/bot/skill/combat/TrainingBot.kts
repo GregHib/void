@@ -1,11 +1,16 @@
 package content.bot.skill.combat
 
 import content.bot.*
-import net.pearx.kasechange.toLowerSpaceCase
 import content.bot.interact.bank.withdrawAll
 import content.bot.interact.navigation.await
 import content.bot.interact.navigation.cancel
 import content.bot.interact.navigation.goToArea
+import content.entity.combat.attackers
+import content.entity.combat.inCombat
+import content.entity.player.bank.ownsItem
+import content.skill.magic.spell.spellBook
+import content.skill.melee.weapon.attackRange
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.remaining
@@ -25,11 +30,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.player.bank.ownsItem
-import content.skill.melee.weapon.attackRange
-import content.entity.combat.attackers
-import content.entity.combat.inCombat
-import content.skill.magic.spell.spellBook
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
@@ -51,8 +51,8 @@ worldSpawn {
             spaces = if (melee) 3 else 2,
             requirements = listOf(
                 { if (melee) melees.any { levels.getMax(it) in range } else levels.getMax(skill) in range },
-                { bot.canGetGearAndAmmo(skill) }
-            )
+                { bot.canGetGearAndAmmo(skill) },
+            ),
         )
         tasks.register(task)
     }
@@ -98,7 +98,6 @@ suspend fun Bot.train(map: AreaDefinition, skill: Skill, range: IntRange) {
         }
     }
 }
-
 
 suspend fun Bot.setupGear(area: AreaDefinition, skill: Skill) {
     when (skill) {
@@ -169,13 +168,10 @@ fun Bot.isAvailableTarget(map: AreaDefinition, npc: NPC, skill: Skill): Boolean 
     return npc.id == if (skill == Skill.Magic) "magic_dummy" else "melee_dummy"
 }
 
-
-fun Bot.canGetGearAndAmmo(skill: Skill): Boolean {
-    return when (skill) {
-        Skill.Magic -> (player.ownsItem("air_rune") && player.ownsItem("mind_rune")) || player.remaining("claimed_tutor_consumables", epochSeconds()) <= 0 && player.spellBook == "modern_spellbook"
-        Skill.Ranged -> (player.ownsItem("training_bow") && (player.ownsItem("training_arrows")) || player.remaining("claimed_tutor_consumables", epochSeconds()) <= 0)
-        else -> true
-    }
+fun Bot.canGetGearAndAmmo(skill: Skill): Boolean = when (skill) {
+    Skill.Magic -> (player.ownsItem("air_rune") && player.ownsItem("mind_rune")) || player.remaining("claimed_tutor_consumables", epochSeconds()) <= 0 && player.spellBook == "modern_spellbook"
+    Skill.Ranged -> (player.ownsItem("training_bow") && (player.ownsItem("training_arrows")) || player.remaining("claimed_tutor_consumables", epochSeconds()) <= 0)
+    else -> true
 }
 
 fun Bot.hasAmmo(skill: Skill): Boolean = when (skill) {

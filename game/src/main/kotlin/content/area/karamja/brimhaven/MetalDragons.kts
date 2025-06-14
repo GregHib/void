@@ -17,26 +17,24 @@ val handler: suspend CombatSwing.(NPC) -> Unit = { npc ->
         // Melee attack
         npc.anim("dragon_attack")
         target.sound("dragon_attack")
-        npc.hit(target, type = "melee")
+        npc.hit(target, offensiveType = "melee")
     } else if (withinMelee) {
         // Close-range dragonfire
         npc.anim("dragon_breath")
         npc.gfx("dragon_breath_shoot")
         target.sound("dragon_breath")
-        npc.hit(target, type = "dragonfire", special = true)
+        npc.hit(target, offensiveType = "dragonfire", special = true)
     } else {
         // Ranged dragonfire
         npc.anim("dragon_shoot")
         target.sound("metal_dragon_fireball")
         nearestTile(npc, target).shoot("dragon_breath", target)
-        npc.hit(target, type = "dragonfire")
+        npc.hit(target, offensiveType = "dragonfire")
     }
 }
 npcCombatSwing("bronze_dragon", handler = handler)
 npcCombatSwing("iron_dragon", handler = handler)
 npcCombatSwing("steel_dragon", handler = handler)
-
-
 
 /**
  * Tile the dragon breath originates from.

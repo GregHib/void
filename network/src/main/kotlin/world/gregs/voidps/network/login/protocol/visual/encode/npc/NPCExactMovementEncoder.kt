@@ -19,5 +19,4 @@ class NPCExactMovementEncoder : VisualEncoder<NPCVisuals>(NPC_EXACT_MOVEMENT_MAS
             writeByteSubtract(direction / 2)
         }
     }
-
 }

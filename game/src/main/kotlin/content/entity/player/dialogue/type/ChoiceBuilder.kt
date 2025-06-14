@@ -1,8 +1,8 @@
 package content.entity.player.dialogue.type
 
+import content.entity.player.dialogue.Expression
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.entity.player.dialogue.Expression
 
 typealias PlayerChoice = ChoiceBuilder<out SuspendableContext<Player>>
 
@@ -13,7 +13,7 @@ class ChoiceBuilder<Context : SuspendableContext<Player>> {
     data class Option<Context : SuspendableContext<Player>>(
         val text: String,
         val filter: Context.() -> Boolean,
-        val block: suspend Context.() -> Unit
+        val block: suspend Context.() -> Unit,
     )
 
     /**
@@ -28,10 +28,12 @@ class ChoiceBuilder<Context : SuspendableContext<Player>> {
      */
     @JvmName("optionInline")
     inline fun <reified E : Expression> option(text: String, noinline filter: Context.() -> Boolean = { true }, noinline block: suspend Context.() -> Unit = {}) {
-        values.add(Option(text, filter) {
-            player<E>(text)
-            block.invoke(this)
-        })
+        values.add(
+            Option(text, filter) {
+                player<E>(text)
+                block.invoke(this)
+            },
+        )
     }
 
     suspend fun invoke(index: Int, context: Context) {

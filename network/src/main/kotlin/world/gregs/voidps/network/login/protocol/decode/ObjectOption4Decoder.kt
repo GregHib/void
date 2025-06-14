@@ -16,5 +16,4 @@ class ObjectOption4Decoder : Decoder(7) {
         val y = packet.readShortLittleEndian().toInt()
         return InteractObject(objectId, x, y, 4)
     }
-
 }

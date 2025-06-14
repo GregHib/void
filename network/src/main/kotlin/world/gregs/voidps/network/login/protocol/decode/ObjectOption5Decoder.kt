@@ -17,5 +17,4 @@ class ObjectOption5Decoder : Decoder(7) {
         val objectId = packet.readUnsignedShortAdd() and 0xffff
         return InteractObject(objectId, x, y, 5)
     }
-
 }

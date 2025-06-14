@@ -1,16 +1,16 @@
 package content.area.misthalin.barbarian_village
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.type.random
-import content.quest.quest
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Frustrated
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
+import content.quest.quest
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.suspend.SuspendableContext
+import world.gregs.voidps.type.random
 
 npcOperate("Talk-to", "kjell") {
     when (player.quest("gunnars_ground")) {
@@ -22,17 +22,19 @@ npcOperate("Talk-to", "kjell") {
 }
 
 suspend fun SuspendableContext<Player>.completed() {
-    npc<Talk>(when (random.nextInt(0, 9)) {
-        0 -> "...there's a place for us..."
-        1 -> "...but I'd do anything for you..."
-        2 -> "...you exploded into my heart..."
-        3 -> "...love you like the stars above..."
-        4 -> "...I dreamed your dream for you..."
-        5 -> "...there's a place for us..."
-        6 -> "...fall for chains of gold..."
-        7 -> "...when you gonna realise..."
-        else -> "...fall for pretty strangers..."
-    })
+    npc<Talk>(
+        when (random.nextInt(0, 9)) {
+            0 -> "...there's a place for us..."
+            1 -> "...but I'd do anything for you..."
+            2 -> "...you exploded into my heart..."
+            3 -> "...love you like the stars above..."
+            4 -> "...I dreamed your dream for you..."
+            5 -> "...there's a place for us..."
+            6 -> "...fall for chains of gold..."
+            7 -> "...when you gonna realise..."
+            else -> "...fall for pretty strangers..."
+        },
+    )
     npc<Angry>("Blast!")
     choice {
         option<Neutral>("Having trouble there?") {

@@ -10,7 +10,6 @@ import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -89,8 +88,8 @@ class DropTablesTest {
                 amount = 10..20,
                 predicate = tables.dropPredicate(
                     variable = "test",
-                    eq = equals
-                )
+                    eq = equals,
+                ),
             )
 
             Assertions.assertEquals("item", drop.id)
@@ -111,8 +110,8 @@ class DropTablesTest {
                 predicate = tables.dropPredicate(
                     variable = "test",
                     eq = equals,
-                    default = equals
-                )
+                    default = equals,
+                ),
             )
 
             Assertions.assertEquals("item", drop.id)
@@ -137,8 +136,8 @@ class DropTablesTest {
             amount = 10..10,
 
             predicate = tables.dropPredicate(
-                owns = "test"
-            )
+                owns = "test",
+            ),
         )
         Assertions.assertFalse(drop.predicate!!.invoke(player))
         Assertions.assertTrue(player.inventory.add("test"))
@@ -159,8 +158,8 @@ class DropTablesTest {
             id = "item",
             amount = 10..10,
             predicate = tables.dropPredicate(
-                lacks = "test"
-            )
+                lacks = "test",
+            ),
         )
         Assertions.assertTrue(drop.predicate!!.invoke(player))
         Assertions.assertTrue(player.inventory.add("test"))
@@ -182,8 +181,8 @@ class DropTablesTest {
             amount = 10..10,
             predicate = tables.dropPredicate(
                 owns = "test",
-                lacks = "unknown"
-            )
+                lacks = "unknown",
+            ),
         )
         Assertions.assertFalse(drop.predicate!!.invoke(player))
         Assertions.assertTrue(player.inventory.add("test"))
@@ -202,7 +201,7 @@ class DropTablesTest {
                 withinMin = 1,
                 withinMax = 10,
                 default = 5,
-            )
+            ),
         )
         val variables = Player()
         Assertions.assertTrue(drop.predicate!!.invoke(variables))
@@ -223,7 +222,7 @@ class DropTablesTest {
                 withinMin = 1,
                 withinMax = 10,
                 default = 5,
-            )
+            ),
         )
         val variables = Player()
         Settings.load(mapOf("world.members" to "true"))
@@ -241,8 +240,8 @@ class DropTablesTest {
             amount = 1..5,
             chance = 5,
             predicate = tables.dropPredicate(
-                members = true
-            )
+                members = true,
+            ),
         )
         Assertions.assertEquals("item", drop.id)
         Assertions.assertEquals(1..5, drop.amount)

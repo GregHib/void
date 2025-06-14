@@ -97,15 +97,17 @@ internal object RunescapeWikiScraper {
             val cat = map.getOrPut(category) { mutableMapOf() }
             val rows = ele.select("ul li a")
             runBlocking {
-                cat.putAll(rows.map { item ->
-                    async {
-                        val link = item.attr("href")
-                        val title = item.attr("title")
-                        title to dumpItemInfoBox(link)
-                    }
-                }.associate {
-                    it.await()
-                })
+                cat.putAll(
+                    rows.map { item ->
+                        async {
+                            val link = item.attr("href")
+                            val title = item.attr("title")
+                            title to dumpItemInfoBox(link)
+                        }
+                    }.associate {
+                        it.await()
+                    },
+                )
             }
         }
         val nextPage = element.select("a:contains(next page)").attr("href")
@@ -114,5 +116,4 @@ internal object RunescapeWikiScraper {
         }
         return null
     }
-
 }

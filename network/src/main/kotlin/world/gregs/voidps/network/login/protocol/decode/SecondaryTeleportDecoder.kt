@@ -12,5 +12,4 @@ class SecondaryTeleportDecoder : Decoder(4) {
         val y = packet.readShortLittleEndian().toInt()
         return null
     }
-
 }

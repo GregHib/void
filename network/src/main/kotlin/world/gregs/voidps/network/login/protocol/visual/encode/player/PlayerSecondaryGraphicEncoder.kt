@@ -15,5 +15,4 @@ class PlayerSecondaryGraphicEncoder : VisualEncoder<PlayerVisuals>(PLAYER_GRAPHI
             writeByteSubtract(visual.packedRotationRefresh)
         }
     }
-
 }

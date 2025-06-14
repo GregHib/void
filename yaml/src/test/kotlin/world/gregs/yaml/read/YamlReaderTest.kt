@@ -10,39 +10,47 @@ class YamlReaderTest {
 
     @Test
     fun `Parse explicit list`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             [ one, two, three ]
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = listOf("one", "two", "three")
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse explicit map`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             { one: value, two: value }
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf("one" to "value", "two" to "value")
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse list`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             - one
             - two  
             - three
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = listOf("one", "two", "three")
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse map`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             one: value
             two: value
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf("one" to "value", "two" to "value")
         assertEquals(expected, output)
     }

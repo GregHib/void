@@ -1,5 +1,9 @@
 package content.entity.player.inv
 
+import WorldTest
+import floorItemOption
+import interfaceOption
+import itemOnObject
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -7,10 +11,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
-import WorldTest
-import floorItemOption
-import interfaceOption
-import itemOnObject
 import kotlin.test.assertFalse
 
 internal class DropTest : WorldTest() {
@@ -97,5 +97,4 @@ internal class DropTest : WorldTest() {
         assertTrue(player.inventory.contains("toolkit"))
         assertFalse(floorItems[tile.addX(1)].any { it.id == "toolkit" })
     }
-
 }

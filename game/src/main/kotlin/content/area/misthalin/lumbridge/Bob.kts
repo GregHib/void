@@ -1,5 +1,12 @@
 package content.area.misthalin.lumbridge
 
+import content.entity.npc.shop.openShop
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.Upset
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -9,13 +16,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.Upset
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.npc.shop.openShop
 
 npcOperate("Talk-to", "bob") {
     choice {

@@ -47,7 +47,7 @@ internal class ViewportTest {
         3 to 1,
         2 to 1,
         1 to 0,
-        0 to 0
+        0 to 0,
     ).map { (from, to) ->
         dynamicTest("Shift player index from $from to $to") {
             // Given

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.Events
 data class GrantExp(
     val skill: Skill,
     val from: Double,
-    val to: Double
+    val to: Double,
 ) : Event {
 
     override val size = 2

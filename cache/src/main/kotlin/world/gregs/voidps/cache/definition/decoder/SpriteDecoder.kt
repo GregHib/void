@@ -9,9 +9,7 @@ import world.gregs.voidps.cache.definition.data.SpriteDefinition
 
 class SpriteDecoder : DefinitionDecoder<SpriteDefinition>(SPRITES) {
 
-    override fun size(cache: Cache): Int {
-        return cache.lastArchiveId(index)
-    }
+    override fun size(cache: Cache): Int = cache.lastArchiveId(index)
 
     override fun create(size: Int) = Array(size) { SpriteDefinition(it) }
 

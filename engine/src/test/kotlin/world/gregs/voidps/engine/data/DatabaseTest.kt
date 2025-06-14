@@ -53,22 +53,24 @@ interface DatabaseTest {
                     .withPassword("password")
                     .withExposedPorts(DEFAULT_PORT)
                     .withCreateContainerCmdModifier {
-                        it.withHostConfig(HostConfig().apply {
-                            withPortBindings(PortBinding(Ports.Binding.bindPort(TEST_PORT), ExposedPort(DEFAULT_PORT)))
-                        })
+                        it.withHostConfig(
+                            HostConfig().apply {
+                                withPortBindings(PortBinding(Ports.Binding.bindPort(TEST_PORT), ExposedPort(DEFAULT_PORT)))
+                            },
+                        )
                     }
                 postgres.start()
                 Database.registerJdbcDriver(
                     prefix = "jdbc:tc",
                     driverClassName = "org.testcontainers.jdbc.ContainerDatabaseDriver",
-                    dialect = "testcontainers"
+                    dialect = "testcontainers",
                 )
                 DatabaseStorage.connect(
                     username = "root",
                     password = "password",
                     driver = "org.testcontainers.jdbc.ContainerDatabaseDriver",
                     url = "jdbc:tc:postgresql://localhost:$TEST_PORT/test?reWriteBatchedInserts=true",
-                    poolSize = 2
+                    poolSize = 2,
                 )
                 this.postgres = postgres
             } catch (e: IllegalStateException) {

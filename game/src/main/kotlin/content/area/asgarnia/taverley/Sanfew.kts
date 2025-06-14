@@ -1,5 +1,11 @@
 package content.area.asgarnia.taverley
 
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.statement
+import content.quest.quest
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -7,18 +13,12 @@ import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.quest.quest
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
-import content.entity.player.dialogue.type.statement
 
 val enchantedMeat = listOf(
     Item("enchanted_beef"),
     Item("enchanted_rat_meat"),
     Item("enchanted_bear_meat"),
-    Item("enchanted_chicken")
+    Item("enchanted_chicken"),
 )
 
 npcOperate("Talk-to", "sanfew") {

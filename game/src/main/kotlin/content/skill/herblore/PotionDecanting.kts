@@ -1,12 +1,5 @@
 package content.skill.herblore
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Sad
@@ -14,17 +7,24 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 
 // prefix of potions that can be decanted.
 val potions = setOf(
-        "potion",
-        "antipoison",
-        "brew",
-        "antidote"
+    "potion",
+    "antipoison",
+    "brew",
+    "antidote",
 )
 
 npcOperate("Decant", "bob_barter_herbs") {
-    if(decantPotions(player)) {
+    if (decantPotions(player)) {
         npc<Happy>("There you go, chum.")
     } else {
         npc<Sad>("I wasn't able to decant your potions.")
@@ -55,7 +55,6 @@ npcOperate("Talk-to", "bob_barter_herbs") {
 // no G.E so this cannot be implemented yet.
 npcOperate("Info-herbs", "bob_barter_herbs") {
     return@npcOperate
-
 }
 
 fun decantPotions(player: Player): Boolean {
@@ -79,13 +78,11 @@ fun decantPotions(player: Player): Boolean {
             add("${type}_4", doses / 4)
             val remaining = doses.rem(4)
             if (remaining > 0) {
-                add("${type}_${remaining}")
+                add("${type}_$remaining")
             }
         }
     }
     return player.inventory.transaction.error == TransactionError.None
 }
 
-fun isPotion(item: Item): Boolean {
-    return potions.any { potion -> item.id.contains(potion, ignoreCase = true) }
-}
+fun isPotion(item: Item): Boolean = potions.any { potion -> item.id.contains(potion, ignoreCase = true) }

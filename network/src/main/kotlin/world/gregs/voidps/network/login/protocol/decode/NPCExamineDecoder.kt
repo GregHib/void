@@ -11,5 +11,4 @@ class NPCExamineDecoder : Decoder(2) {
         val npcId = packet.readShort().toInt()
         return ExamineNpc(npcId)
     }
-
 }

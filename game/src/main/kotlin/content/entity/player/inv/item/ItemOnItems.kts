@@ -1,5 +1,8 @@
 package content.entity.player.inv.item
 
+import content.entity.combat.inCombat
+import content.entity.player.dialogue.type.makeAmount
+import content.entity.sound.sound
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -12,24 +15,21 @@ import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemOnItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.queue.weakQueue
-import content.entity.player.dialogue.type.makeAmount
-import content.entity.combat.inCombat
-import content.entity.sound.sound
-import world.gregs.voidps.engine.entity.character.player.chat.noInterest
-import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
+import world.gregs.voidps.engine.queue.weakQueue
 
 val itemOnItemDefs: ItemOnItemDefinitions by inject()
 
@@ -53,7 +53,7 @@ itemOnItem(bidirectional = false) { player ->
                 overlaps.map { it.add.first().id }.distinct().toList(),
                 type = type.toSentenceCase(),
                 maximum = maximum,
-                text = definition.question
+                text = definition.question,
             )
             overlaps.first { it.add.first().id == selection } to amount
         }
@@ -66,7 +66,7 @@ fun useItemOnItem(
     skill: Skill?,
     def: ItemOnItemDefinition,
     amount: Int,
-    count: Int
+    count: Int,
 ) {
     if (count >= amount) {
         player.softTimers.stop("item_on_item")
@@ -110,7 +110,7 @@ fun replaceItems(
     player: Player,
     skill: Skill?,
     amount: Int,
-    count: Int
+    count: Int,
 ) {
     val success = skill == null || Level.success(player.levels.get(skill), def.chance)
     val transaction = player.inventory.transaction

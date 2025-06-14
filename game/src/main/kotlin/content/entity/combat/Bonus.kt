@@ -1,27 +1,25 @@
 package content.entity.combat
 
 import content.skill.melee.weapon.attackStyle
+import content.skill.slayer.isTask
+import content.skill.slayer.slayerTask
+import content.skill.slayer.undead
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.skill.slayer.isTask
-import content.skill.slayer.slayerTask
-import content.skill.slayer.undead
 
 object Bonus {
-    fun stance(character: Character, skill: Skill): Int {
-        return 8 + when {
-            character is NPC -> 1
-            (skill == Skill.Attack || skill == Skill.Ranged) && character.attackStyle == "accurate" -> 3
-            (skill == Skill.Attack || skill == Skill.Strength || skill == Skill.Defence) && character.attackStyle == "controlled" -> 1
-            skill == Skill.Defence && (character.attackStyle == "defensive" || character.attackStyle == "long_range") -> 3
-            skill == Skill.Strength && character.attackStyle == "aggressive" -> 3
-            skill == Skill.Magic -> 1
-            else -> 0
-        }
+    fun stance(character: Character, skill: Skill): Int = 8 + when {
+        character is NPC -> 1
+        (skill == Skill.Attack || skill == Skill.Ranged) && character.attackStyle == "accurate" -> 3
+        (skill == Skill.Attack || skill == Skill.Strength || skill == Skill.Defence) && character.attackStyle == "controlled" -> 1
+        skill == Skill.Defence && (character.attackStyle == "defensive" || character.attackStyle == "long_range") -> 3
+        skill == Skill.Strength && character.attackStyle == "aggressive" -> 3
+        skill == Skill.Magic -> 1
+        else -> 0
     }
 
     fun slayerModifier(source: Character, target: Character, type: String, value: Int, damage: Boolean): Int {

@@ -1,10 +1,10 @@
 package content.minigame.pyramid_plunder
 
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.inject
 import content.entity.player.dialogue.type.choice
 import content.entity.player.inv.inventoryItem
 import content.skill.magic.jewellery.itemTeleport
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.inject
 
 val areas: AreaDefinitions by inject()
 

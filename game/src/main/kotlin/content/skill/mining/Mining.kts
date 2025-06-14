@@ -1,5 +1,7 @@
 package content.skill.mining
 
+import content.activity.shooting_star.ShootingStarHandler
+import content.entity.player.bank.bank
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.remaining
@@ -27,8 +29,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import content.entity.player.bank.bank
-import content.activity.shooting_star.ShootingStarHandler
 
 val objects: GameObjects by inject()
 val itemDefinitions: ItemDefinitions by inject()
@@ -109,7 +109,7 @@ val gems = setOf(
     "uncut_sapphire",
     "uncut_emerald",
     "uncut_ruby",
-    "uncut_diamond"
+    "uncut_diamond",
 )
 
 fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): Boolean {

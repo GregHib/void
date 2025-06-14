@@ -4,5 +4,5 @@ import world.gregs.voidps.cache.Definition
 
 data class PlayerVariableParameterDefinition(
     override var id: Int = -1,
-    var type: Int = 0
+    var type: Int = 0,
 ) : Definition

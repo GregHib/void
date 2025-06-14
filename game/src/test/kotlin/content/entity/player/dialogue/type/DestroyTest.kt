@@ -26,10 +26,13 @@ internal class DestroyTest : DialogueTest() {
     @Test
     fun `Send item destroy`() {
         dialogue {
-            destroy("1234", """
+            destroy(
+                "1234",
+                """
                 question
                 lines
-            """)
+            """,
+            )
         }
         verify {
             player.open("dialogue_confirm_destroy")

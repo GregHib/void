@@ -7,5 +7,5 @@ import world.gregs.voidps.network.client.Instruction
  * @param type The type of message sent (0 = public, 1 = clan chat)
  */
 data class ChatTypeChange(
-    val type: Int
+    val type: Int,
 ) : Instruction

@@ -173,7 +173,6 @@ objectOperate("Swing Across", "ape_atoll_monkeybars") {
     }
 }
 
-
 objectOperate("Climb-up", "ape_atoll_skull_slope") {
     player.face(target)
     delay()
@@ -354,6 +353,7 @@ fun Interaction<Player>.damageSound() {
             "male_defend_${random.nextInt(0, 3)}"
         } else {
             "female_defend_${random.nextInt(0, 1)}"
-        }, 20
+        },
+        20,
     )
 }

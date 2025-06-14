@@ -48,10 +48,9 @@ object ItemDefinitionPipeline {
 
     @JvmStatic
     fun main(args: Array<String>) {
-
         val rs2Wiki = Wiki.load("${System.getProperty("user.home")}\\Downloads\\runescape_pages_full\\runescapewiki-latest-pages-articles-2011-01-31.xml")
         val cache718 = CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\")
-        val revisionDate = LocalDate.of(2011, Month.JANUARY, 31)// 634
+        val revisionDate = LocalDate.of(2011, Month.JANUARY, 31) // 634
 
         Settings.load()
         val start = System.currentTimeMillis()
@@ -75,7 +74,7 @@ object ItemDefinitionPipeline {
         decoder: Array<ItemDefinition>,
         cache718: CacheDelegate,
         rs2Wiki: Wiki,
-        pages: MutableMap<Int, PageCollector>
+        pages: MutableMap<Int, PageCollector>,
     ): MutableMap<Int, Extras> {
         val output = mutableMapOf<Int, Extras>()
         val pipeline = Pipeline<Extras>().apply {
@@ -118,13 +117,17 @@ object ItemDefinitionPipeline {
     private fun getPages(decoder: Array<ItemDefinition>, rs2Wiki: Wiki): MutableMap<Int, PageCollector> {
         val infoboxes = listOf("infobox item" to "id", "infobox pet" to "itemid")
         val pipeline = Pipeline<PageCollector>().apply {
-            add(LivePageCollector("rs3-item", listOf("Items", "Pets"), infoboxes, "runescape.wiki", true) { content, page, idd ->
-                content.rs3 = page
-                content.rs3Idd = idd
-            })
-            add(OfflinePageCollector(rs2Wiki, listOf("infobox item", "infobox construction")) { content, page ->
-                content.rs2 = page
-            })
+            add(
+                LivePageCollector("rs3-item", listOf("Items", "Pets"), infoboxes, "runescape.wiki", true) { content, page, idd ->
+                    content.rs3 = page
+                    content.rs3Idd = idd
+                },
+            )
+            add(
+                OfflinePageCollector(rs2Wiki, listOf("infobox item", "infobox construction")) { content, page ->
+                    content.rs2 = page
+                },
+            )
         }
 
         val pages = mutableMapOf<Int, PageCollector>()
@@ -161,11 +164,11 @@ object ItemDefinitionPipeline {
         wiki: Wiki?,
         pages: MutableMap<Int, PageCollector>,
         infoboxes: List<String>,
-        function: (Int, WikiPage) -> PageCollector
+        function: (Int, WikiPage) -> PageCollector,
     ) {
         val redirects = getRedirects(incomplete.joinToString(separator = "\n") { it.name }, type)
         // Collect those new target pages
-        val redirWiki = exportCachedWiki(redirects.values.joinToString(separator = "\n"), "${type}-redirected.xml")
+        val redirWiki = exportCachedWiki(redirects.values.joinToString(separator = "\n"), "$type-redirected.xml")
         val redirectPages = mutableMapOf<String, WikiPage>()
         redirWiki.pages.forEach { page ->
             val text = page.revision.text
@@ -189,7 +192,7 @@ object ItemDefinitionPipeline {
      * Returns a map of live page names and their redirect names
      */
     private fun getRedirects(pages: String, type: String): MutableMap<String, String> {
-        val wiki = exportCachedWiki(pages, "${type}-redirects.xml")
+        val wiki = exportCachedWiki(pages, "$type-redirects.xml")
         val output = mutableMapOf<String, String>()
         wiki.pages.forEach { page ->
             val text = page.revision.text
@@ -246,7 +249,6 @@ object ItemDefinitionPipeline {
                 map[it.first] = it.second
             }
         return map
-
     }
 
     private fun beautify(extras: MutableMap<String, Any>) = extras

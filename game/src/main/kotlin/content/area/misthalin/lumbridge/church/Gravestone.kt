@@ -65,6 +65,6 @@ object Gravestone {
         "symbol_of_armadyl" to "<name>, a follower of the Law of Armadyl, perished in this place.",
         "ancient_symbol" to "<name>, servant of the Unknown Power, perished in this place.",
         "angel_of_death" to "Ye frail mortals who gaze upon this sight, forget not the fate of <name>, once mighty, now surrendered to the inescapable grasp of destiny. Requiescat in pace.",
-        "royal_dwarven_gravestone" to "Here lies <name>, friend of dwarves. Great in life, glorious in death. <gender> name lives on in song and story.",// His/Her
+        "royal_dwarven_gravestone" to "Here lies <name>, friend of dwarves. Great in life, glorious in death. <gender> name lives on in song and story.", // His/Her
     )
 }

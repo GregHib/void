@@ -10,7 +10,7 @@ import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemReveal
 class FloorItemTracking(
     private val items: FloorItems,
     private val players: Players,
-    private val batches: ZoneBatchUpdates
+    private val batches: ZoneBatchUpdates,
 ) : Runnable {
     private val removal = mutableListOf<FloorItem>()
 

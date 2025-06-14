@@ -1,4 +1,4 @@
-package content.entity.npc
+package content.entity.npc.combat.magic
 
 import content.entity.combat.npcCombatPrepare
 import content.skill.magic.spell.Spell

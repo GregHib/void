@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data.definition.data
 
 import world.gregs.config.ConfigReader
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
 
 /**
  * @param level required to pickpocket
@@ -17,7 +16,7 @@ data class Pocket(
     val stunHit: Int = 0,
     val stunTicks: Int = 1,
     val chance: IntRange = 1..1,
-    val caughtMessage: String = "What do you think you're doing?"
+    val caughtMessage: String = "What do you think you're doing?",
 ) {
     companion object {
 

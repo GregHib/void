@@ -39,5 +39,4 @@ class MidiDefinitions : DefinitionsDecoder<MidiDefinition> {
     }
 
     override fun empty() = MidiDefinition.EMPTY
-
 }

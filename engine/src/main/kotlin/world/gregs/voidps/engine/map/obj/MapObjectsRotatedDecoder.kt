@@ -13,7 +13,7 @@ import world.gregs.voidps.type.area.Rectangle
  */
 class MapObjectsRotatedDecoder(
     private val objects: GameObjects,
-    private val definitions: ObjectDefinitions
+    private val definitions: ObjectDefinitions,
 ) : MapObjectDecoder() {
 
     internal var zoneRotation: Int = 0
@@ -46,7 +46,7 @@ class MapObjectsRotatedDecoder(
             sizeX: Int,
             sizeY: Int,
             objRotation: Int,
-            zoneRotation: Int
+            zoneRotation: Int,
         ): Int {
             var x = sizeX
             var y = sizeY
@@ -71,7 +71,7 @@ class MapObjectsRotatedDecoder(
             sizeX: Int,
             sizeY: Int,
             objRotation: Int,
-            zoneRotation: Int
+            zoneRotation: Int,
         ): Int {
             val rotation = zoneRotation and 0x3
             var x = sizeY

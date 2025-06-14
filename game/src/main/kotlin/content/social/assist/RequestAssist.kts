@@ -1,6 +1,15 @@
 package content.social.assist
 
 import com.github.michaelbull.logging.InlineLogger
+import content.social.assist.Assistance.MAX_EXPERIENCE
+import content.social.assist.Assistance.canAssist
+import content.social.assist.Assistance.exceededMaximum
+import content.social.assist.Assistance.getHoursRemaining
+import content.social.assist.Assistance.hasEarnedMaximumExperience
+import content.social.assist.Assistance.redirectSkillExperience
+import content.social.assist.Assistance.stopRedirectingSkillExp
+import content.social.assist.Assistance.toggleInventory
+import content.social.friend.friend
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
@@ -18,15 +27,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperience
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.timer.TICKS
-import content.social.assist.Assistance.MAX_EXPERIENCE
-import content.social.assist.Assistance.canAssist
-import content.social.assist.Assistance.exceededMaximum
-import content.social.assist.Assistance.getHoursRemaining
-import content.social.assist.Assistance.hasEarnedMaximumExperience
-import content.social.assist.Assistance.redirectSkillExperience
-import content.social.assist.Assistance.stopRedirectingSkillExp
-import content.social.assist.Assistance.toggleInventory
-import content.social.friend.friend
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
@@ -43,7 +43,7 @@ val skills = listOf(
     Skill.Magic,
     Skill.Smithing,
     Skill.Cooking,
-    Skill.Herblore
+    Skill.Herblore,
 )
 val logger = InlineLogger()
 
@@ -172,11 +172,12 @@ onEvent<Player, BlockedExperience> { assisted ->
         player["total_xp_earned"] = gained.toInt()
         if (maxed) {
             player.interfaces.sendText(
-                "assist_xp", "description",
+                "assist_xp",
+                "description",
                 """
                     You've earned the maximum XP from the Assist System with a 24-hour period.
                     You can assist again in 24 hours.
-                """
+                """,
             )
             player.start("assist_timeout", TimeUnit.HOURS.toSeconds(24).toInt())
             stopRedirectingAllExp(assisted)

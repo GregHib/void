@@ -2,8 +2,8 @@ package world.gregs.voidps.type.region
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.RegionLevel
+import world.gregs.voidps.type.Tile
 
 internal class RegionLevelTest {
 

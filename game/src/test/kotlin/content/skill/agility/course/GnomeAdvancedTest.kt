@@ -105,5 +105,4 @@ internal class GnomeAdvancedTest : WorldTest() {
         assertEquals(630.0, player.experience.get(Skill.Agility))
         assertEquals(0, player.agilityStage)
     }
-
 }

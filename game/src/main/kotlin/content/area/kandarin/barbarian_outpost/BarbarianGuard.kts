@@ -1,5 +1,9 @@
 package content.area.kandarin.barbarian_outpost
 
+import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.quest.quest
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -8,10 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import content.entity.player.bank.ownsItem
-import content.quest.quest
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
 
 npcOperate("Talk-to", "barbarian_guard") {
     when (player.quest("alfred_grimhands_barcrawl")) {

@@ -41,7 +41,7 @@ npcOperate("Talk-to", "hassan") {
                     "Prince Ali Rescue",
                     "3 Quest Points",
                     "700 coins",
-                    item = "coins_8"
+                    item = "coins_8",
                 )
             }
             player.clear("prince_ali_rescue_key_made")

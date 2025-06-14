@@ -1,17 +1,17 @@
 package content.area.karamja
 
+import content.entity.npc.shop.openShop
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
+import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.npc.shop.openShop
 
 npcOperate("Talk-to", "bartender_zambo") {
     npc<Talk>("Hey, are you wanting to try some of my fine wines and spirits? All brewed locally on Karamja.")
@@ -37,5 +37,5 @@ itemOnNPCOperate("barcrawl_card", "bartender_zambo") {
 suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
     effects = {
         player.say("Mmmmm, dat was luverly...")
-    }
+    },
 )

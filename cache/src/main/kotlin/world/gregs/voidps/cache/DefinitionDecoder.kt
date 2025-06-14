@@ -35,9 +35,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
         return definitions
     }
 
-    open fun size(cache: Cache): Int {
-        return cache.lastArchiveId(index) * 256 + (cache.fileCount(index, cache.lastArchiveId(index)))
-    }
+    open fun size(cache: Cache): Int = cache.lastArchiveId(index) * 256 + (cache.fileCount(index, cache.lastArchiveId(index)))
 
     open fun load(definitions: Array<T>, cache: Cache, id: Int) {
         val archive = getArchive(id)
@@ -78,7 +76,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
             var i = 0xff and b.toInt()
             require(i != 0) { "Non cp1252 character 0x" + i.toString(16) + " provided" }
             if (i in 128..159) {
-                var char = UNICODE_TABLE[i - 128].code
+                var char = unicodeTable[i - 128].code
                 if (char == 0) {
                     char = 63
                 }
@@ -87,7 +85,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
             return i.toChar()
         }
 
-        private var UNICODE_TABLE = charArrayOf(
+        private var unicodeTable = charArrayOf(
             '\u20ac',
             '\u0000',
             '\u201a',
@@ -119,7 +117,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
             '\u0153',
             '\u0000',
             '\u017e',
-            '\u0178'
+            '\u0178',
         )
     }
 }

@@ -1,6 +1,7 @@
 package content.entity.player.equip
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.player.inv.InventoryOption
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
@@ -8,7 +9,6 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.player.inv.InventoryOption
 
 interfaceRefresh("worn_equipment") { player ->
     player.sendInventory(id)

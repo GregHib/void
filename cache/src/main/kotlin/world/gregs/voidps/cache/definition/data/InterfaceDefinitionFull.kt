@@ -7,8 +7,9 @@ data class InterfaceDefinitionFull(
     override var id: Int = -1,
     var components: Array<InterfaceComponentDefinitionFull>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Extra {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -20,7 +21,9 @@ data class InterfaceDefinitionFull(
         if (components != null) {
             if (other.components == null) return false
             if (!components.contentEquals(other.components)) return false
-        } else if (other.components != null) return false
+        } else if (other.components != null) {
+            return false
+        }
         if (stringId != other.stringId) return false
         if (extras != other.extras) return false
 

@@ -20,7 +20,7 @@ fun Client.contextMenuOption(
     option: String?,
     slot: Int,
     top: Boolean,
-    cursor: Int = -1
+    cursor: Int = -1,
 ) = send(PLAYER_OPTION, 4 + string(option), BYTE) {
     writeShortAddLittle(cursor)
     writeString(option)

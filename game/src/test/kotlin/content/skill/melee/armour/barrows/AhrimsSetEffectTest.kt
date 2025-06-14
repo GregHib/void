@@ -1,5 +1,7 @@
 package content.skill.melee.armour.barrows
 
+import content.entity.combat.hit.hit
+import content.skill.melee.CombatFormulaTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -8,8 +10,6 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.combat.hit.hit
-import content.skill.melee.CombatFormulaTest
 
 internal class AhrimsSetEffectTest : CombatFormulaTest() {
 

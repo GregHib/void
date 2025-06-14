@@ -1,5 +1,7 @@
 package content.social.trade.lend
 
+import content.social.trade.lend.Loan.returnLoan
+import content.social.trade.returnedItems
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.stop
@@ -9,8 +11,6 @@ import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.*
-import content.social.trade.lend.Loan.returnLoan
-import content.social.trade.returnedItems
 import java.util.concurrent.TimeUnit
 
 /**

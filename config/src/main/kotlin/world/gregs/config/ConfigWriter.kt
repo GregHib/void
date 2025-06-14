@@ -24,7 +24,7 @@ fun ConfigWriter.writeValue(value: Any?, escapeKey: Boolean = false) {
             if (string.contains('.')) {
                 write(string)
             } else {
-                write("${string}.0")
+                write("$string.0")
             }
         }
         is Float -> {
@@ -32,7 +32,7 @@ fun ConfigWriter.writeValue(value: Any?, escapeKey: Boolean = false) {
             if (string.contains('.')) {
                 write(string)
             } else {
-                write("${string}.0")
+                write("$string.0")
             }
         }
         is Number, is Boolean -> write(value.toString())

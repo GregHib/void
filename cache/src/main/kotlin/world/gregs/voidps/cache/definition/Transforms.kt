@@ -35,7 +35,6 @@ interface Transforms {
         transforms!![length + 1] = last
     }
 
-
     fun writeTransforms(writer: Writer, smaller: Int, larger: Int) {
         val configIds = transforms
         if (configIds != null && (varbit != -1 || varp != -1)) {

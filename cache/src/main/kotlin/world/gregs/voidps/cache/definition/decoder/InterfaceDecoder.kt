@@ -13,9 +13,7 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
 
     override fun create(size: Int) = Array(size) { InterfaceDefinition(it) }
 
-    override fun size(cache: Cache): Int {
-        return cache.lastArchiveId(index)
-    }
+    override fun size(cache: Cache): Int = cache.lastArchiveId(index)
 
     override fun load(definitions: Array<InterfaceDefinition>, reader: Reader) {
         val packed = readId(reader)
@@ -162,9 +160,7 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
         return empty
     }
 
-    override fun InterfaceDefinition.read(opcode: Int, buffer: Reader) {
-        throw IllegalStateException("Shouldn't be used.")
-    }
+    override fun InterfaceDefinition.read(opcode: Int, buffer: Reader) = throw IllegalStateException("Shouldn't be used.")
 
     companion object {
         private fun decodeScript(buffer: Reader): Array<Any>? {

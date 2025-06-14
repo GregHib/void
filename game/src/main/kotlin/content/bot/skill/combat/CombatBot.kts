@@ -1,13 +1,20 @@
 package content.bot.skill.combat
 
 import content.bot.*
-import net.pearx.kasechange.toLowerSpaceCase
-import net.pearx.kasechange.toSnakeCase
 import content.bot.interact.item.pickup
 import content.bot.interact.navigation.await
 import content.bot.interact.navigation.cancel
 import content.bot.interact.navigation.goToArea
 import content.bot.interact.navigation.resume
+import content.entity.combat.attackers
+import content.entity.combat.inCombat
+import content.entity.death.playerDeath
+import content.entity.death.weightedSample
+import content.skill.magic.spell.removeSpellItems
+import content.skill.magic.spell.spell
+import content.skill.slayer.categories
+import net.pearx.kasechange.toLowerSpaceCase
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.variableSet
@@ -32,13 +39,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import content.entity.combat.attackers
-import content.entity.combat.inCombat
-import content.entity.death.playerDeath
-import content.entity.death.weightedSample
-import content.skill.magic.spell.removeSpellItems
-import content.skill.magic.spell.spell
-import content.skill.slayer.categories
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
@@ -82,8 +82,8 @@ worldSpawn {
                 spaces = 1,
                 requirements = listOf(
                     { levels.getMax(skill) in range },
-                    { bot.hasExactGear(skill) || bot.hasCoins(2000) }
-                )
+                    { bot.hasExactGear(skill) || bot.hasCoins(2000) },
+                ),
             )
             tasks.register(task)
         }

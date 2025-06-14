@@ -1,5 +1,8 @@
 package content.skill.magic.shield
 
+import content.entity.combat.hit.combatAttack
+import content.entity.player.dialogue.type.choice
+import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
@@ -15,9 +18,6 @@ import world.gregs.voidps.engine.inv.transact.discharge
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.player.dialogue.type.choice
-import content.entity.combat.hit.combatAttack
-import content.entity.player.inv.inventoryItem
 import kotlin.math.min
 
 inventoryItem("Check*", "magical_blastbox*", "inventory") {
@@ -25,7 +25,8 @@ inventoryItem("Check*", "magical_blastbox*", "inventory") {
     val dungeoneering = if (item.id == "magical_blastbox") "" else "_dungeoneering"
     val blast = player["magical_blastbox_mode$dungeoneering", false]
     choice("The box is currently charged with $charges ${if (blast) "Blast" else "Bolt"} ${"spell".plural(charges)}.") {
-        option("I want to empty the ${if (blast) "Blast" else "Bolt"} spells.", filter = { charges > 0 }) { // TODO proper message
+        option("I want to empty the ${if (blast) "Blast" else "Bolt"} spells.", filter = { charges > 0 }) {
+            // TODO proper message
             if (emptyRunes(player, blast, dungeoneering, slot, charges)) {
                 player.message("You empty the box of ${if (blast) "Blast" else "Bolt"} spells.") // TODO proper message
             } else {
@@ -44,17 +45,15 @@ inventoryItem("Check*", "magical_blastbox*", "inventory") {
     }
 }
 
-fun emptyRunes(player: Player, blast: Boolean, dungeoneering: String, slot: Int, charges: Int): Boolean {
-    return player.inventory.transaction {
-        if (blast) {
-            add("air_rune$dungeoneering", charges * 3)
-            add("death_rune$dungeoneering", charges)
-        } else {
-            add("air_rune$dungeoneering", charges * 2)
-            add("chaos_rune$dungeoneering", charges)
-        }
-        discharge(player, slot, amount = charges)
+fun emptyRunes(player: Player, blast: Boolean, dungeoneering: String, slot: Int, charges: Int): Boolean = player.inventory.transaction {
+    if (blast) {
+        add("air_rune$dungeoneering", charges * 3)
+        add("death_rune$dungeoneering", charges)
+    } else {
+        add("air_rune$dungeoneering", charges * 2)
+        add("chaos_rune$dungeoneering", charges)
     }
+    discharge(player, slot, amount = charges)
 }
 
 inventoryItem("Check-charges", "magical_blastbox*", "worn_equipment") {
@@ -126,11 +125,13 @@ fun charge(player: Player, item: Item, slot: Int) {
     val maximum: Int = item.def.getOrNull("charges_max") ?: item.def.getOrNull("charges") ?: return
     val charges = player.inventory.charges(player, slot)
     player.inventory.transaction {
-        val actual = (if (blast) {
-            min(inventory.count("air_rune$dungeoneering") / 3, inventory.count("death_rune$dungeoneering"))
-        } else {
-            min(inventory.count("air_rune$dungeoneering") / 2, inventory.count("chaos_rune$dungeoneering"))
-        }).coerceAtMost(maximum - charges)
+        val actual = (
+            if (blast) {
+                min(inventory.count("air_rune$dungeoneering") / 3, inventory.count("death_rune$dungeoneering"))
+            } else {
+                min(inventory.count("air_rune$dungeoneering") / 2, inventory.count("chaos_rune$dungeoneering"))
+            }
+            ).coerceAtMost(maximum - charges)
 
         remove("air_rune$dungeoneering", actual * if (blast) 3 else 2)
         remove("${if (blast) "death_rune" else "chaos_rune"}$dungeoneering", actual)

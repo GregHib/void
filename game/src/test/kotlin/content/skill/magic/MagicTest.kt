@@ -1,13 +1,13 @@
 package content.skill.magic
 
+import WorldTest
+import interfaceOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import WorldTest
-import interfaceOption
 
 internal class MagicTest : WorldTest() {
 
@@ -15,7 +15,7 @@ internal class MagicTest : WorldTest() {
     fun `Teleport to another place`() {
         val tile = emptyTile
         val player = createPlayer(tile)
-        player.experience.set(Skill.Magic, experience)
+        player.experience.set(Skill.Magic, EXPERIENCE)
         player.levels.set(Skill.Magic, 99)
         player.inventory.add("law_rune")
         player.inventory.add("air_rune", 3)
@@ -25,7 +25,7 @@ internal class MagicTest : WorldTest() {
         tickIf { player.tile == tile }
 
         assertTrue(player.inventory.isEmpty())
-        assertTrue(player.experience.get(Skill.Magic) > experience)
+        assertTrue(player.experience.get(Skill.Magic) > EXPERIENCE)
         assertNotEquals(tile, player.tile)
     }
 
@@ -41,11 +41,11 @@ internal class MagicTest : WorldTest() {
         tick(5)
 
         assertTrue(player.inventory.isEmpty())
-        assertFalse(player.experience.get(Skill.Magic) > experience)
+        assertFalse(player.experience.get(Skill.Magic) > EXPERIENCE)
         assertNotEquals(tile, player.tile)
     }
 
     companion object {
-        private const val experience = 14000000.0
+        private const val EXPERIENCE = 14000000.0
     }
 }

@@ -10,5 +10,4 @@ class TemporaryMoveTypeEncoder : VisualEncoder<PlayerVisuals>(TEMPORARY_MOVE_TYP
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
         writer.writeByteSubtract(visuals.temporaryMoveType.type.id)
     }
-
 }

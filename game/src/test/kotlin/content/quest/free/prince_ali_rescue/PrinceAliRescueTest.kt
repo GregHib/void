@@ -122,7 +122,6 @@ class PrinceAliRescueTest : WorldTest() {
         assertFalse(player.inventory.contains("yellow_dye"))
         assertFalse(player.inventory.contains("wig_grey"))
 
-
         // Talk to Lady Keli to get key print
         player.tele(3127, 3244)
         val keli = npcs[Tile(3128, 3244)].first { it.id == "lady_keli" }

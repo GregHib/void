@@ -13,17 +13,15 @@ sealed class VariableValues {
 
     companion object {
         @Suppress("UNCHECKED_CAST")
-        operator fun invoke(values: Any?, format: String?, default: Any?): VariableValues {
-            return when (format ?: default?.apply { this::class.java.simpleName.lowercase() }) {
-                "int", "integer" -> IntValues
-                "string" -> StringValues
-                "double" -> DoubleValues
-                "boolean" -> BooleanValues
-                "list" -> ListValues(values as List<Any>, default)
-                "map" -> MapValues(values as Map<Any, Int>, default)
-                "bitwise" -> BitwiseValues(values as List<Any>)
-                else -> NoValues
-            }
+        operator fun invoke(values: Any?, format: String?, default: Any?): VariableValues = when (format ?: default?.apply { this::class.java.simpleName.lowercase() }) {
+            "int", "integer" -> IntValues
+            "string" -> StringValues
+            "double" -> DoubleValues
+            "boolean" -> BooleanValues
+            "list" -> ListValues(values as List<Any>, default)
+            "map" -> MapValues(values as Map<Any, Int>, default)
+            "bitwise" -> BitwiseValues(values as List<Any>)
+            else -> NoValues
         }
     }
 }
@@ -54,7 +52,7 @@ data object BooleanValues : VariableValues() {
 }
 
 class ListValues(
-    val values: List<Any>
+    val values: List<Any>,
 ) : VariableValues() {
     constructor(values: List<Any>, default: Any?) : this(values) {
         if (default != null) {
@@ -67,7 +65,7 @@ class ListValues(
 }
 
 class MapValues(
-    val values: Map<Any, Int>
+    val values: Map<Any, Int>,
 ) : VariableValues() {
     constructor(values: Map<Any, Int>, default: Any?) : this(values) {
         check(default != null) { "Maps must have a default value" }
@@ -77,13 +75,11 @@ class MapValues(
     }
 
     override fun default() = "null"
-    override fun toInt(value: Any) =
-        values[value] ?: if (value is Boolean) values[value.toString()] ?: -1 else -1
-
+    override fun toInt(value: Any) = values[value] ?: if (value is Boolean) values[value.toString()] ?: -1 else -1
 }
 
 class BitwiseValues(
-    val values: List<Any>
+    val values: List<Any>,
 ) : VariableValues() {
 
     override fun default() = listOf<Any>()

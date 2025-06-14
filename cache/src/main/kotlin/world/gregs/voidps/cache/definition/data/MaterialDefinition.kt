@@ -22,5 +22,5 @@ data class MaterialDefinition(
     var aBoolean1215: Boolean = false,
     var anInt1202: Int = 0,
     var anInt1206: Int = 0,
-    var anInt1226: Int = 0
+    var anInt1226: Int = 0,
 ) : Definition

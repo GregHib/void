@@ -1,14 +1,14 @@
 package content.entity.npc.shop
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.entity.item.Item
 import WorldTest
 import interfaceOption
 import npcOption
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
 
 internal class ShopTest : WorldTest() {
 
@@ -59,5 +59,4 @@ internal class ShopTest : WorldTest() {
         assertTrue(player.inventory.count("coins") > 0)
         assertEquals(11, shop.count("iron_battleaxe"))
     }
-
 }

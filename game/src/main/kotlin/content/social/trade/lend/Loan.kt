@@ -1,6 +1,8 @@
 package content.social.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.player.bank.bank
+import content.social.trade.returnedItems
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
@@ -11,8 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.timer.epochSeconds
-import content.entity.player.bank.bank
-import content.social.trade.returnedItems
 import java.util.concurrent.TimeUnit
 
 object Loan {

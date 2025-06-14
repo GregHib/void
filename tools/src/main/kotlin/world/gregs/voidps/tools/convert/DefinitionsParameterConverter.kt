@@ -57,7 +57,7 @@ object DefinitionsParameterConverter {
         members: Array<T>,
         definitions718: Array<T>,
         cache: Cache,
-        index: Int
+        index: Int,
     ): Int where T : Definition, T : Parameterized {
         var count = 0
         for (id in definitions.indices) {

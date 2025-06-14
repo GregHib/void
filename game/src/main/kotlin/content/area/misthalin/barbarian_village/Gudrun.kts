@@ -488,7 +488,7 @@ fun Context<Player>.questComplete() {
             "300 Crafting XP.",
             "Antique lamp.",
             "Swanky boots.",
-            item = "gunnars_ground"
+            item = "gunnars_ground",
         )
     }
     player.inventory.add("antique_lamp_gunnars_ground")

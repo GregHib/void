@@ -4,7 +4,7 @@ import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.type.Tile
 
 class WorldMapLinks(
-    private val scriptDecoder: Array<ClientScriptDefinition>
+    private val scriptDecoder: Array<ClientScriptDefinition>,
 ) {
 
     fun getLinks(): List<Pair<Tile, Tile>> {

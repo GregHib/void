@@ -1,5 +1,8 @@
 package content.skill.crafting
 
+import content.entity.player.dialogue.type.makeAmount
+import content.entity.player.dialogue.type.makeAmountIndex
+import content.entity.sound.sound
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
@@ -15,9 +18,6 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
-import content.entity.player.dialogue.type.makeAmount
-import content.entity.player.dialogue.type.makeAmountIndex
-import content.entity.sound.sound
 
 val fibres = listOf(
     Item("wool"),
@@ -26,14 +26,14 @@ val fibres = listOf(
     Item("sinew"),
     Item("tree_roots"),
     Item("magic_roots"),
-    Item("yak_hair")
+    Item("yak_hair"),
 )
 
 val treeRoots = listOf(
     Item("oak_roots"),
     Item("willow_roots"),
     Item("maple_roots"),
-    Item("yew_roots")
+    Item("yew_roots"),
 )
 
 val Item.spinning: Spinning
@@ -48,7 +48,7 @@ objectOperate("Spin", "spinning_wheel*", arrive = false) {
         },
         type = "Make",
         maximum = 28,
-        text = "How many would you like to make?"
+        text = "How many would you like to make?",
     )
 
     delay()
@@ -72,7 +72,7 @@ itemOnObjectOperate(obj = "spinning_wheel*", arrive = false) {
         items = listOf(item.spinning.to),
         type = "Make",
         maximum = player.inventory.count(item.id),
-        text = "How many would you like to make?"
+        text = "How many would you like to make?",
     )
     start(player, target, item, amount)
 }

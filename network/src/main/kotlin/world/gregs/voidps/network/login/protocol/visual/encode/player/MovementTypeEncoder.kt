@@ -10,5 +10,4 @@ class MovementTypeEncoder : VisualEncoder<PlayerVisuals>(MOVEMENT_TYPE_MASK, ini
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
         writer.writeByteInverse(visuals.movementType.type.id)
     }
-
 }

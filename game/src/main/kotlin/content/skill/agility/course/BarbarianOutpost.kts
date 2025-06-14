@@ -1,5 +1,6 @@
 package content.skill.agility.course
 
+import content.entity.combat.hit.damage
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -15,7 +16,6 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.type.random
-import content.entity.combat.hit.damage
 
 objectOperate("Squeeze-through", "barbarian_outpost_entrance") {
     if (!player.has(Skill.Agility, 35, message = true)) {
@@ -132,7 +132,7 @@ objectOperate("Walk-across", "barbarian_outpost_balancing_ledge") {
         player.damage(50)
         delay()
         player.walkOverDelay(Tile(2534, 3545))
-        //player.message("", ChatType.Filter) // TODO
+        // player.message("", ChatType.Filter) // TODO
     }
     // Skip stage so lap doesn't count at end
     if (success || Settings["agility.disableFailLapSkip", false]) {

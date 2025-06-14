@@ -20,9 +20,7 @@ class MusicTracks {
 
     fun get(name: String): Int = trackNames.getOrDefault(name, -1)
 
-    operator fun get(region: Region): List<Track> {
-        return tracks[region.id] ?: emptyList()
-    }
+    operator fun get(region: Region): List<Track> = tracks[region.id] ?: emptyList()
 
     fun load(path: String): MusicTracks {
         timedLoad("music track") {

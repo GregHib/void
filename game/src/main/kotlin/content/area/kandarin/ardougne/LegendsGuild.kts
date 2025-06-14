@@ -1,5 +1,7 @@
 package content.area.kandarin.ardougne
 
+import content.entity.player.dialogue.type.item
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -7,8 +9,6 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.entity.player.dialogue.type.item
-import content.entity.player.dialogue.type.statement
 
 objectOperate("Look", "legends_guild_totem_pole") {
     if (player.inventory.contains("combat_bracelet") && player.inventory.replace("combat_bracelet", "combat_bracelet_4")) {

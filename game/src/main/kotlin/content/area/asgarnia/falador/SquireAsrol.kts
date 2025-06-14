@@ -5,8 +5,8 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.sound.jingle
 import content.quest.quest
-import content.quest.refreshQuestJournal
 import content.quest.questComplete
+import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -124,7 +124,6 @@ suspend fun PlayerChoice.abundantWithSwords() = option<Neutral>("Well the kingdo
     heirloom()
 }
 
-
 suspend fun SuspendableContext<Player>.heirloom() {
     npc<Sad>("The thing is, this sword is a family heirloom. It has been passed down through Vyvin's family for five generations! It was originally made by the Imcando dwarves, who were")
     npc<Sad>("a particularly skilled tribe of dwarven smiths. I doubt anyone could make it in the style they do.")
@@ -200,7 +199,7 @@ fun Context<Player>.questComplete() {
             "The Knight's Sword Quest",
             "1 Quest Point",
             "12,725 Smithing XP",
-            item = "blurite_sword"
+            item = "blurite_sword",
         )
     }
 }

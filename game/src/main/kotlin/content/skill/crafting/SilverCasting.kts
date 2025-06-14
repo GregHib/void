@@ -1,5 +1,7 @@
 package content.skill.crafting
 
+import content.entity.player.dialogue.type.intEntry
+import content.quest.quest
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
@@ -17,10 +19,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.queue.weakQueue
-import content.quest.quest
-import content.entity.player.dialogue.type.intEntry
 import world.gregs.voidps.engine.inv.*
+import world.gregs.voidps.engine.queue.weakQueue
 
 val itemDefinitions: ItemDefinitions by inject()
 
@@ -34,7 +34,7 @@ val moulds = listOf(
     Item("conductor_mould"),
     Item("rod_clay_mould"),
     Item("bolt_mould"),
-    Item("key_mould")
+    Item("key_mould"),
 )
 
 val Item.silver: Silver?
@@ -55,7 +55,7 @@ interfaceOpen("silver_mould") { player ->
                 "<$colour>Make ${itemDefinitions.get(item).name.toTitleCase()}"
             } else {
                 "<orange>You need a ${silver.name ?: mould.def.name.lowercase()} to make this item."
-            }
+            },
         )
         player.interfaces.sendItem(id, "${mould.id}_model", if (has) itemDefinitions.get(item).id else mould.def.id)
     }

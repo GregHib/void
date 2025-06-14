@@ -1,10 +1,5 @@
-package content.area.misthalin.lumbridge
+package content.area.misthalin.lumbridge.windmill
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.holdsItem
-import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.quest.quest
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
@@ -12,6 +7,11 @@ import content.entity.player.dialogue.type.PlayerChoice
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.quest.quest
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.suspend.SuspendableContext
 
 npcOperate("Talk-to", "millie_miller") {
     npc<Happy>("Hello Adventurer. Welcome to Mill Lane Mill. Can I help you?")

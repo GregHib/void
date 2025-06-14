@@ -16,14 +16,14 @@ internal class BufferWriterTest {
     fun setup() {
         buffer = BufferWriter()
     }
-    
+
     @Test
     fun skip() {
         // When
         buffer.skip(4)
         buffer.writeByte(1)
         // Then
-        for(i in 0 until 4) {
+        for (i in 0 until 4) {
             assertByte(0)
         }
         assertByte(1)
@@ -202,7 +202,7 @@ internal class BufferWriterTest {
         buffer.writeLong(2)
         buffer.writeLong(-2)
         // Then
-        assertBytes(0, 0, 0, 0, 0, 0, 0, 2, -1, -1, -1, -1, -1, -1, -1 , -2)
+        assertBytes(0, 0, 0, 0, 0, 0, 0, 2, -1, -1, -1, -1, -1, -1, -1, -2)
     }
 
     @Test

@@ -232,5 +232,4 @@ class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinitionFull> {
             writeInt(it)
         }
     }
-
 }

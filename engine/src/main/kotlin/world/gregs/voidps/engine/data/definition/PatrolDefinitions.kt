@@ -54,5 +54,4 @@ class PatrolDefinitions {
         }
         return this
     }
-
 }

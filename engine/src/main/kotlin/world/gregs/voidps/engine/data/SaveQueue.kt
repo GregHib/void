@@ -11,7 +11,7 @@ import kotlin.system.measureTimeMillis
 class SaveQueue(
     private val storage: AccountStorage,
     private val fallback: AccountStorage = storage,
-    private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO)
+    private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO),
 ) : Runnable {
     private val pending = ConcurrentHashMap<String, PlayerSave>()
     private val logger = InlineLogger()
@@ -60,6 +60,4 @@ class SaveQueue(
     }
 
     fun saving(name: String) = pending.containsKey(name)
-
-
 }

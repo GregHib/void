@@ -19,7 +19,7 @@ fun Character.sound(
     delay: Int = 0,
     volume: Int = 255,
     speed: Int = 255,
-    repeat: Int = 1
+    repeat: Int = 1,
 ) {
     if (this !is Player) {
         return
@@ -33,7 +33,7 @@ fun Player.soundGlobal(
     delay: Int = 0,
     volume: Int = 255,
     speed: Int = 255,
-    repeat: Int = 1
+    repeat: Int = 1,
 ) {
     client?.playSoundEffect(get<SoundDefinitions>().getOrNull(id)?.id ?: return, delay, volume, speed, repeat)
     if (radius > 0) {
@@ -60,7 +60,7 @@ fun Player.midi(
     delay: Int = 0,
     volume: Int = 255,
     speed: Int = 255,
-    repeat: Int = 1
+    repeat: Int = 1,
 ) {
     client?.playMIDI(get<MidiDefinitions>().getOrNull(id)?.id ?: return, delay, volume, speed, repeat)
 }
@@ -71,7 +71,7 @@ fun Player.midiGlobal(
     delay: Int = 0,
     volume: Int = 255,
     speed: Int = 255,
-    repeat: Int = 1
+    repeat: Int = 1,
 ) {
     client?.playMIDI(get<MidiDefinitions>().getOrNull(id)?.id ?: return, delay, volume, speed, repeat)
     if (radius > 0) {
@@ -95,7 +95,7 @@ fun areaMidi(
 
 fun Player.jingle(
     id: String,
-    volume: Double = 1.0
+    volume: Double = 1.0,
 ) {
     client?.playJingle(get<JingleDefinitions>().getOrNull(id)?.id ?: return, (volume.coerceIn(0.0, 1.0) * 255).toInt())
 }

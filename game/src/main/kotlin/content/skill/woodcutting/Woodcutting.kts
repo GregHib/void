@@ -1,5 +1,6 @@
 package content.skill.woodcutting
 
+import content.entity.sound.areaSound
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
@@ -24,7 +25,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.random
-import content.entity.sound.areaSound
 
 val players: Players by inject()
 val definitions: ObjectDefinitions by inject()
@@ -95,9 +95,7 @@ fun success(level: Int, hatchet: Item, tree: Tree): Boolean {
     return Level.success(level, chance)
 }
 
-fun calculateChance(hatchet: Item, treeHatchetDifferences: IntRange): Int {
-    return (0 until hatchet.def["rank", 0]).sumOf { calculateHatchetChance(it, treeHatchetDifferences) }
-}
+fun calculateChance(hatchet: Item, treeHatchetDifferences: IntRange): Int = (0 until hatchet.def["rank", 0]).sumOf { calculateHatchetChance(it, treeHatchetDifferences) }
 
 /**
  * Calculates the chance of success out of 256 given a [hatchet] and the hatchet chances for that tree [treeHatchetDifferences]
@@ -105,9 +103,7 @@ fun calculateChance(hatchet: Item, treeHatchetDifferences: IntRange): Int {
  * @param treeHatchetDifferences The min and max increase chance between each hatchet
  * @return chance of success
  */
-fun calculateHatchetChance(hatchet: Int, treeHatchetDifferences: IntRange): Int {
-    return if (hatchet % 4 < 2) treeHatchetDifferences.last else treeHatchetDifferences.first
-}
+fun calculateHatchetChance(hatchet: Int, treeHatchetDifferences: IntRange): Int = if (hatchet % 4 < 2) treeHatchetDifferences.last else treeHatchetDifferences.first
 
 fun addLog(player: Player, tree: Tree): Boolean {
     val log = tree.log
@@ -143,7 +139,7 @@ fun deplete(tree: Tree, obj: GameObject): Boolean {
 fun getRegrowTickDelay(tree: Tree): Int {
     val delay = tree.respawnDelay
     return if (tree.level == 1) {
-        random.nextInt(delay.first, delay.last)// Regular tree's
+        random.nextInt(delay.first, delay.last) // Regular tree's
     } else {
         Interpolation.interpolate(players.size, delay.last, delay.first, minPlayers, maxPlayers)
     }

@@ -228,7 +228,7 @@ suspend fun SuspendableContext<Player>.cutscene() {
     player.sound("rumbling")
     delay(1)
     player.open("fade_in")
-    npc<Talk>("gypsy_aris","Wally managed to arrive at the stone circle just as Delrith was summoned by a cult of chaos druids...")
+    npc<Talk>("gypsy_aris", "Wally managed to arrive at the stone circle just as Delrith was summoned by a cult of chaos druids...")
 
     player.face(Direction.NORTH)
     player.clearCamera()

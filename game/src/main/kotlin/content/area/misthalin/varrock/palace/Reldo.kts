@@ -1,15 +1,15 @@
 package content.area.misthalin.varrock.palace
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import content.quest.quest
 import content.entity.player.dialogue.Chuckle
 import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.PlayerChoice
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.quest.quest
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 npcOperate("Talk-to", "reldo") {
     npc<Neutral>("Hello stranger.")
@@ -39,7 +39,7 @@ suspend fun PlayerChoice.aboutImcandoDwarves() = option<Quiz>(
     {
         val stage = player.quest("the_knights_sword")
         stage == "started" || stage == "find_thurgo"
-    }
+    },
 ) {
     npc<Neutral>("The Imcando dwarves, you say?")
     npc<Neutral>("Ah yes... for many hundreds of years they were the world's most skilled smiths. They used secret smithing knowledge passed down from generation to generation.")

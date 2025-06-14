@@ -32,7 +32,7 @@ npcOperate("Talk-to", "ellena") {
                     "Applying compost to a patch will not only reduce the chance that your crops will get diseased, but you will also grow more crops to harvest.",
                     "If you want to make your own sacks and baskets you'll need to use the loom that's near the Farming shop in Falador. If you're a good enough craftsman, that is.",
                     "You don't have to buy all your plantpots you know, you can make them yourself on a pottery wheel. If you're a good enough craftsman, that is.",
-                    "You can put up to ten potatoes, cabbages or onions in vegetable sacks, although you can't have a mix in the same sack."
+                    "You can put up to ten potatoes, cabbages or onions in vegetable sacks, although you can't have a mix in the same sack.",
                 )
                 npc<Talk>(tips.random())
                 showMainOptions()

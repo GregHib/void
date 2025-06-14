@@ -37,5 +37,5 @@ enum class ChatType(val id: Int) {
     Vote(112),
     Challenge3(113),
     Challenge4(114),
-    Broadcast(115)
+    Broadcast(115),
 }

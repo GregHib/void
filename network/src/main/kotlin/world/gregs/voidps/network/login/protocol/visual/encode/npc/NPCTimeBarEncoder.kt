@@ -15,5 +15,4 @@ class NPCTimeBarEncoder : VisualEncoder<NPCVisuals>(NPC_TIME_BAR_MASK) {
             writeByteSubtract(increment)
         }
     }
-
 }

@@ -1,18 +1,18 @@
-package content.area.misthalin.lumbridge
+package content.area.misthalin.lumbridge.church
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.holdsItem
-import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.quest.quest
-import content.quest.refreshQuestJournal
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
+import content.quest.quest
+import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
+import world.gregs.voidps.engine.suspend.SuspendableContext
 
 npcOperate("Talk-to", "father_aereck") {
     when (player.quest("the_restless_ghost")) {

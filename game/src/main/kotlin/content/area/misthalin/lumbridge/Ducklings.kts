@@ -1,5 +1,6 @@
-package content.entity.npc.combat.melee
+package content.area.misthalin.lumbridge
 
+import content.entity.death.npcDeath
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.Wander
@@ -12,7 +13,6 @@ import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
-import content.entity.death.npcDeath
 
 val npcs: NPCs by inject()
 

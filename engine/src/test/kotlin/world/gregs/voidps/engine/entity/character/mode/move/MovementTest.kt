@@ -40,9 +40,11 @@ internal class MovementTest : KoinMock() {
             every { get(any<Zone>()) } returns emptySet()
         }
         pathFinder = declareMock {
-            every { findPath(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any()) } returns Route(listOf(RouteCoordinates(10, 10)),
+            every { findPath(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any()) } returns Route(
+                listOf(RouteCoordinates(10, 10)),
                 alternative = false,
-                success = true)
+                success = true,
+            )
         }
         stepValidator = declareMock {
             every { canTravel(any(), any(), any(), any(), any(), any(), any(), any()) } returns true
@@ -162,7 +164,7 @@ internal class MovementTest : KoinMock() {
             movement.tick()
         }
         every { pathFinder.findPath(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any()) } returns
-                Route(listOf(RouteCoordinates(1, 1)), alternative = false, success = true)
+            Route(listOf(RouteCoordinates(1, 1)), alternative = false, success = true)
         assertEquals(Tile(10, 10), player.tile)
         repeat(2) {
             movement.tick()

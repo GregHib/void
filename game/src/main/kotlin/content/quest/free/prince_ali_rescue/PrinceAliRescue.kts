@@ -58,7 +58,7 @@ questJournalOpen("prince_ali_rescue") {
                     "<maroon>Village<navy>. <maroon>Osman<navy> asked for my help in rescuing <maroon>Prince Ali<navy>, and",
                     "<navy>suggested I speak with <maroon>Leela<navy>, who I can find spying on the",
                     "<navy><maroon>Jail<navy>.",
-                    ""
+                    "",
                 )
             } else {
                 val list = mutableListOf(
@@ -87,7 +87,7 @@ questJournalOpen("prince_ali_rescue") {
                 }
                 val font = fontDefinitions.get("p12_full")
                 for (line in font.splitLines(string, width = 350)) {
-                    list.add("<navy>${line}")
+                    list.add("<navy>$line")
                 }
                 if (!disguise || !key) {
                     list.add("")

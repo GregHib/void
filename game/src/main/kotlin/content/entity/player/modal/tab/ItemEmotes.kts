@@ -1,5 +1,12 @@
 package content.entity.player.modal.tab
 
+import content.entity.effect.toxin.curePoison
+import content.entity.effect.toxin.poisoned
+import content.entity.player.inv.inventoryItem
+import content.entity.player.inv.inventoryOptions
+import content.entity.sound.jingle
+import content.entity.sound.sound
+import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.closeDialogue
@@ -13,13 +20,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
-import content.skill.melee.weapon.weapon
-import content.entity.player.inv.inventoryItem
-import content.entity.player.inv.inventoryOptions
-import content.entity.effect.toxin.curePoison
-import content.entity.effect.toxin.poisoned
-import content.entity.sound.jingle
-import content.entity.sound.sound
 
 inventoryItem("Fly", "toy_kite") {
     if (player.contains("delay")) {
@@ -69,7 +69,7 @@ playerOperate("Whack") {
         player.sound("rubber_chicken_whack")
         player.animDelay("rubber_chicken_whack")
     } else {
-        //todo player.playSound("")
+        // todo player.playSound("")
         player.animDelay("easter_carrot_whack")
     }
 }
@@ -213,11 +213,13 @@ inventoryItem("Play-with", "toy_horsey_*") {
         player.message("Please wait till you've finished performing your current emote.")
         return@inventoryItem
     }
-    player.say(when (random.nextInt(0, 3)) {
-        0 -> "Come on Dobbin, we can win the race!"
-        1 -> "Hi-ho Silver, and away!"
-        else -> "Neaahhhyyy! Giddy-up horsey!"
-    })
+    player.say(
+        when (random.nextInt(0, 3)) {
+            0 -> "Come on Dobbin, we can win the race!"
+            1 -> "Hi-ho Silver, and away!"
+            else -> "Neaahhhyyy! Giddy-up horsey!"
+        },
+    )
 //    player.say("Just say neigh to gambling!")
     player.animDelay("emote_${item.id}")
 }
@@ -232,5 +234,5 @@ inventoryOptions("Play-with", item = "eek") {
 }
 
 inventoryItem("Summon Minion", "squirrel_ears", "worn_equipment") {
-    //todo summon npc 9682 and 9681 if dismiss have to wait 30mins before able to summon again
+    // todo summon npc 9682 and 9681 if dismiss have to wait 30mins before able to summon again
 }

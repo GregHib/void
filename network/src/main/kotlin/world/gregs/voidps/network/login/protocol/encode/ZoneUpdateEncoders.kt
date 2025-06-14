@@ -131,5 +131,4 @@ private suspend fun ByteWriteChannel.soundAddition(update: SoundAddition) {
     writeShort(update.speed)
 }
 
-
 private fun offset(tile: Int, bit: Int = 4) = ((tile shr 14 and 0x3fff).rem(8) shl bit) or (tile and 0x3fff).rem(8)

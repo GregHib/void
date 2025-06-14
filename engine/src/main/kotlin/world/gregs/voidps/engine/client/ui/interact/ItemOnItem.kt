@@ -12,7 +12,7 @@ data class ItemOnItem(
     val fromSlot: Int,
     val toSlot: Int,
     val fromInventory: String,
-    val toInventory: String
+    val toInventory: String,
 ) : Event {
 
     override val size = 3
@@ -30,7 +30,7 @@ data class ItemOnItem(
         fromSlot = toSlot,
         toSlot = fromSlot,
         fromInventory = toInventory,
-        toInventory = fromInventory
+        toInventory = fromInventory,
     )
 }
 

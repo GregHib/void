@@ -1,9 +1,9 @@
 package world.gregs.voidps.tools.map.view.draw
 
+import content.bot.interact.navigation.graph.NavigationGraph
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
-import content.bot.interact.navigation.graph.NavigationGraph
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.tools.map.view.MapViewer.Companion.DISPLAY_ALL_COLLISIONS
 import world.gregs.voidps.tools.map.view.MapViewer.Companion.DISPLAY_AREA_COLLISIONS
@@ -20,7 +20,7 @@ class GraphDrawer(
     private val view: MapView,
     private val nav: NavigationGraph?,
     private val area: AreaSet,
-    private val collisions: Collisions? = null
+    private val collisions: Collisions? = null,
 ) {
 
     private val steps: StepValidator? = collisions?.let { StepValidator(it) }
@@ -163,8 +163,8 @@ class GraphDrawer(
                         continue
                     }
                     if (collisions.isZoneAllocated(zoneX, zoneY, view.level)) {
-                        for(x in 0 until 8) {
-                            for(y in 0 until 8) {
+                        for (x in 0 until 8) {
+                            for (y in 0 until 8) {
                                 g.color = if (canTravel(steps, zoneX + x, zoneY + y, view.level, CollisionStrategies.Normal)) {
                                     walkableColour
                                 } else {
@@ -179,12 +179,10 @@ class GraphDrawer(
         }
     }
 
-    private fun canTravel(steps: StepValidator, x: Int, y: Int, level: Int, collision: CollisionStrategy) =
-        steps.canTravel(x = x, z = y - 1, level = level, size = 1, offsetX = 0, offsetZ = 1, extraFlag = 0, collision = collision) ||
-                steps.canTravel(x = x, z = y + 1, level = level, size = 1, offsetX = 0, offsetZ = -1, extraFlag = 0, collision = collision) ||
-                steps.canTravel(x = x - 1, z = y, level = level, size = 1, offsetX = 1, offsetZ = 0, extraFlag = 0, collision = collision) ||
-                steps.canTravel(x = x + 1, z = y, level = level, size = 1, offsetX = -1, offsetZ = 0, extraFlag = 0, collision = collision)
-
+    private fun canTravel(steps: StepValidator, x: Int, y: Int, level: Int, collision: CollisionStrategy) = steps.canTravel(x = x, z = y - 1, level = level, size = 1, offsetX = 0, offsetZ = 1, extraFlag = 0, collision = collision) ||
+        steps.canTravel(x = x, z = y + 1, level = level, size = 1, offsetX = 0, offsetZ = -1, extraFlag = 0, collision = collision) ||
+        steps.canTravel(x = x - 1, z = y, level = level, size = 1, offsetX = 1, offsetZ = 0, extraFlag = 0, collision = collision) ||
+        steps.canTravel(x = x + 1, z = y, level = level, size = 1, offsetX = -1, offsetZ = 0, extraFlag = 0, collision = collision)
 
     /**
      * Draws an arrow of [length] at [offset] along the line [x1], [y1] -> [x2], [y2]

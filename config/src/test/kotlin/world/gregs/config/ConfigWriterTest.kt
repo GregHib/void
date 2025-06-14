@@ -49,5 +49,4 @@ class ConfigWriterTest {
             assertEquals(expected, stringWriter.buffer.toString().trim('\n'))
         }
     }
-
 }

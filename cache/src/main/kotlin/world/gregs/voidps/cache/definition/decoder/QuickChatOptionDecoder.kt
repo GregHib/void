@@ -23,11 +23,13 @@ class QuickChatOptionDecoder : DefinitionDecoder<QuickChatOptionDefinition>(QUIC
     override fun load(definitions: Array<QuickChatOptionDefinition>, cache: Cache, id: Int) {
         val archive = getArchive(id)
         val file = getFile(id)
-        val data = (if (file <= 0x7fff) {
-            cache.data(index, archive, file)
-        } else {
-            cache.data(QUICK_CHAT_MENUS, archive, file and 0x7fff)
-        }) ?: return
+        val data = (
+            if (file <= 0x7fff) {
+                cache.data(index, archive, file)
+            } else {
+                cache.data(QUICK_CHAT_MENUS, archive, file and 0x7fff)
+            }
+            ) ?: return
         read(definitions, id, BufferReader(data))
     }
 

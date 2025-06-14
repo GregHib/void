@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.client.instruction.InteractInterfaceItem
 
 class InterfaceOnInterfaceOptionHandler(
-    private val handler: InterfaceHandler
+    private val handler: InterfaceHandler,
 ) : InstructionHandler<InteractInterfaceItem>() {
 
     override fun validate(player: Player, instruction: InteractInterfaceItem) {
@@ -28,7 +28,7 @@ class InterfaceOnInterfaceOptionHandler(
                 fromSlot,
                 toItem,
                 toSlot,
-                toInventory
+                toInventory,
             )
         } else {
             ItemOnItem(
@@ -37,10 +37,9 @@ class InterfaceOnInterfaceOptionHandler(
                 fromSlot,
                 toSlot,
                 fromInventory,
-                toInventory
+                toInventory,
             )
         }
         player.emit(event)
     }
-
 }

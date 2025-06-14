@@ -2,15 +2,15 @@
 
 package content.skill.prayer.list
 
+import content.skill.prayer.PrayerConfigs.ACTIVE_CURSES
+import content.skill.prayer.PrayerConfigs.ACTIVE_PRAYERS
+import content.skill.prayer.PrayerStart
+import content.skill.prayer.PrayerStop
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.variableBitAdd
 import world.gregs.voidps.engine.client.variable.variableBitRemove
 import world.gregs.voidps.engine.client.variable.variableSet
-import content.skill.prayer.PrayerConfigs.ACTIVE_CURSES
-import content.skill.prayer.PrayerConfigs.ACTIVE_PRAYERS
-import content.skill.prayer.PrayerStart
-import content.skill.prayer.PrayerStop
 
 variableSet("activated_*") { player ->
     player.closeInterfaces()

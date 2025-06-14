@@ -4,5 +4,5 @@ import world.gregs.voidps.network.client.Instruction
 
 @JvmInline
 value class ExamineItem(
-    val itemId: Int
+    val itemId: Int,
 ) : Instruction

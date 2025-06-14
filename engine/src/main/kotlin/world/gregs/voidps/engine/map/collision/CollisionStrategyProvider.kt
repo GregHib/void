@@ -7,11 +7,9 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 
 class CollisionStrategyProvider {
-    fun get(character: Character): CollisionStrategy {
-        return when (character) {
-            is NPC -> get(character.def)
-            else -> CollisionStrategies.Normal
-        }
+    fun get(character: Character): CollisionStrategy = when (character) {
+        is NPC -> get(character.def)
+        else -> CollisionStrategies.Normal
     }
 
     fun get(def: NPCDefinition) = when (def["collision", ""]) {

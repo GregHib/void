@@ -41,7 +41,9 @@ enum class EquipType {
      * Hair is replaced with a smaller version in [AppearanceOverrides]
      * E.g. wizard hats
      */
-    HairLow;
+    HairLow,
+
+    ;
 
     companion object {
         fun by(name: String): EquipType = when (name) {

@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.timedLoad
  * Also known as AttributeMaps in cs2 or rows
  */
 class StructDefinitions(
-    override var definitions: Array<StructDefinition> = emptyArray()
+    override var definitions: Array<StructDefinition> = emptyArray(),
 ) : DefinitionsDecoder<StructDefinition> {
 
     override lateinit var ids: Map<String, Int>
@@ -34,5 +34,4 @@ class StructDefinitions(
         }
         return this
     }
-
 }

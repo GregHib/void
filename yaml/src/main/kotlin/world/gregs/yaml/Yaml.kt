@@ -13,7 +13,7 @@ import java.io.File
  */
 class Yaml(
     private val defaultReader: YamlReaderConfiguration = YamlReaderConfiguration(),
-    private val defaultWriter: YamlWriterConfiguration = YamlWriterConfiguration()
+    private val defaultWriter: YamlWriterConfiguration = YamlWriterConfiguration(),
 ) {
 
     private val writer = CharWriter()
@@ -59,9 +59,7 @@ class Yaml(
         return normalReader.value(indentOffset = 0, withinMap = null)
     }
 
-    fun writeToString(value: Any, config: YamlWriterConfiguration = defaultWriter): String {
-        return write(value, config).concatToString()
-    }
+    fun writeToString(value: Any, config: YamlWriterConfiguration = defaultWriter): String = write(value, config).concatToString()
 
     private fun write(value: Any, config: YamlWriterConfiguration = defaultWriter): CharArray {
         explicitWriter.config = config

@@ -68,11 +68,17 @@ class InfoBoxNPC(val revision: LocalDate, private val infoboxes: List<String>) :
                                 } else if (line == "morvran" || line == "mandrith" || line == "laniakea") {
                                     return@lines
                                 }
-                                extras.putIfAbsent(indexSuffix(when (key.removeSuffix(suffix)) {
-                                    "slayercat" -> "category"
-                                    "assigned_by" -> "master"
-                                    else -> key.removeSuffix(suffix)
-                                }, index++), line)
+                                extras.putIfAbsent(
+                                    indexSuffix(
+                                        when (key.removeSuffix(suffix)) {
+                                            "slayercat" -> "category"
+                                            "assigned_by" -> "master"
+                                            else -> key.removeSuffix(suffix)
+                                        },
+                                        index++,
+                                    ),
+                                    line,
+                                )
                             }
                         }
                     }
@@ -286,7 +292,7 @@ class InfoBoxNPC(val revision: LocalDate, private val infoboxes: List<String>) :
         if (text.contains("-")) {
             val first = text.split("-").first().toIntOrNull()
 //            val second = text.split("-").last().toIntOrNull()
-            if (first != null/* && second != null*/) {
+            if (first != null) { // && second != null
                 extras.putIfAbsent(key, first)
                 return true
             }
@@ -295,5 +301,4 @@ class InfoBoxNPC(val revision: LocalDate, private val infoboxes: List<String>) :
         }
         return false
     }
-
 }

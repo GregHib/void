@@ -6,12 +6,11 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.client.instruction.InteractInterface
 
 class InterfaceOptionHandler(
     private val handler: InterfaceHandler,
-    private val interfaceDefinitions: InterfaceDefinitions
+    private val interfaceDefinitions: InterfaceDefinitions,
 ) : InstructionHandler<InteractInterface>() {
 
     private val logger = InlineLogger()
@@ -39,9 +38,8 @@ class InterfaceOptionHandler(
             option = selectedOption,
             item = item,
             itemSlot = itemSlot,
-            inventory = inventory
+            inventory = inventory,
         )
         player.emit(event)
     }
-
 }

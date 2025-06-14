@@ -6,6 +6,7 @@ import content.bot.interact.navigation.goToArea
 import content.bot.interact.navigation.resume
 import content.bot.skill.combat.hasExactGear
 import content.bot.skill.combat.setupGear
+import content.entity.death.weightedSample
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.AreaDefinition
@@ -20,7 +21,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.client.instruction.InteractObject
-import content.entity.death.weightedSample
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
@@ -47,8 +47,8 @@ worldSpawn {
             spaces = spaces,
             requirements = listOf(
                 { levels.getMax(Skill.Woodcutting) in range },
-                { bot.hasExactGear(Skill.Woodcutting) || bot.hasCoins(1000) }
-            )
+                { bot.hasExactGear(Skill.Woodcutting) || bot.hasCoins(1000) },
+            ),
         )
         tasks.register(task)
     }
