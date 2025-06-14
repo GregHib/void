@@ -34,11 +34,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventory
@@ -231,11 +229,9 @@ abstract class WorldTest : KoinTest {
     fun beforeEach() {
         setCurrentTime { System.currentTimeMillis() }
         settings = Settings.load(properties)
-        loadItemSpawns(floorItems, get(), files.list(Settings["spawns.items"]), itemDefinitions)
         if (loadNpcs) {
             loadNpcSpawns(npcs, files.list(Settings["spawns.npcs"]), npcDefinitions)
         }
-        loadObjectSpawns(objects, files.list(Settings["spawns.objects"]), objectDefinitions)
         setRandom(FakeRandom())
     }
 
