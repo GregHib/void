@@ -14,7 +14,7 @@ drops = [
   { id = "lava_battlestaff", chance = 4 },
   { id = "adamant_platelegs", chance = 4 },
   { id = "rune_full_helm", chance = 4 },
-  { id = "mystic_robe_bottom_dark" },
+  { id = "dark_mystic_robe_bottom" },
   { table = "rare_seed_drop_table", chance = 76 },
   { id = "coins", amount = 460, chance = 4 },
   { id = "nothing", amount = 0, chance = 72 },

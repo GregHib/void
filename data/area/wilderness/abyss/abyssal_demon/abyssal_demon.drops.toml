@@ -30,13 +30,13 @@ drops = [
   { id = "lobster", chance = 500 },
   { id = "cosmic_talisman", chance = 250 },
   { id = "chaos_talisman", chance = 250 },
-  { id = "defence_potion3", chance = 250 },
+  { id = "defence_potion_3", chance = 250 },
   { table = "rare_drop_table", chance = 500 },
 ]
 
 [abyssal_demon_tertiary]
 roll = 6000
 drops = [
-  { id = "hard_clue_scroll", chance = 46 },
+  { table = "hard_clue_scroll", chance = 46 },
   { id = "abyssal_head" },
 ]

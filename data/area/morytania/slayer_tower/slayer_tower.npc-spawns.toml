@@ -1,16 +1,5 @@
 spawns = [
-    # Meiyerditch Laboratories
-    { id = "crawling_hand", x = 3609, y = 9776, members = true },
-    { id = "crawling_hand_ring", x = 3616, y = 9751, members = true },
-    { id = "crawling_hand_black", x = 3617, y = 9759, members = true },
-    { id = "crawling_hand", x = 3612, y = 9774, members = true },
-    { id = "crawling_hand_blood", x = 3622, y = 9746, members = true },
-    { id = "crawling_hand_brown", x = 3608, y = 9773, members = true },
-    { id = "crawling_hand_black", x = 3620, y = 9755, members = true },
-    { id = "crawling_hand_brown", x = 3611, y = 9771, members = true },
-    { id = "crawling_hand_blood", x = 3619, y = 9748, members = true },
-    { id = "crawling_hand", x = 3616, y = 9756, members = true },
-    # Slayer Tower
+    # Ground floor
     { id = "crawling_hand_black", x = 3410, y = 3563, members = true },
     { id = "crawling_hand_blood", x = 3410, y = 3568, members = true },
     { id = "crawling_hand_large_brown", x = 3411, y = 3547, members = true },
@@ -28,4 +17,20 @@ spawns = [
     { id = "crawling_hand_large_brown", x = 3419, y = 3572, members = true },
     { id = "crawling_hand_black", x = 3420, y = 3567, members = true },
     { id = "crawling_hand_blood", x = 3421, y = 3564, members = true },
+    { id = "banshee", x = 3429, y = 3564, members = true },
+    { id = "banshee", x = 3433, y = 3552, members = true },
+    { id = "banshee", x = 3436, y = 3559, members = true },
+    { id = "banshee", x = 3439, y = 3539, members = true },
+    { id = "banshee", x = 3439, y = 3544, members = true },
+    { id = "banshee", x = 3440, y = 3560, members = true },
+    { id = "banshee", x = 3443, y = 3546, members = true },
+    { id = "banshee", x = 3444, y = 3537, members = true },
+    # First floor
+    { id = "bloodveld_2", x = 3400, y = 3547, members = true },
+    { id = "bloodveld", x = 3404, y = 3550, members = true },
+    { id = "bloodveld_2", x = 3407, y = 3542, members = true },
+    { id = "bloodveld", x = 3408, y = 3544, members = true },
+    { id = "bloodveld_2", x = 3410, y = 3545, members = true },
+    { id = "bloodveld_2", x = 3410, y = 3550, members = true },
+    { id = "bloodveld", x = 3412, y = 3541, members = true },
 ]

@@ -15,6 +15,6 @@ combat_sounds = "bloodveld"
 categories = ["bloodveld"]
 examine = "A tortured screaming soulThe tongue of evil.."
 
-[bloodveld_1]
+[bloodveld_2]
 id = 1619
 clone = "bloodveld"
