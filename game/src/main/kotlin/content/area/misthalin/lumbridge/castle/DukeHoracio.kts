@@ -1,4 +1,4 @@
-package content.area.misthalin.lumbridge
+package content.area.misthalin.lumbridge.castle
 
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*

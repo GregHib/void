@@ -1,4 +1,4 @@
-package content.area.misthalin.lumbridge
+package content.area.misthalin.lumbridge.church
 
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*

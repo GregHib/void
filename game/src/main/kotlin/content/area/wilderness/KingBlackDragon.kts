@@ -23,19 +23,19 @@ npcCombatSwing("king_black_dragon") { npc ->
             npc.anim("king_black_dragon_breath")
             target.sound("dragon_breath")
             nearestTile(npc, target).shoot("dragon_breath", target)
-            npc.hit(target, type = "dragonfire")
+            npc.hit(target, offensiveType = "dragonfire")
         }
         1 -> {
             val type = specials.random()
             npc.anim("king_black_dragon_breath")
             target.sound("dragon_breath_$type")
             nearestTile(npc, target).shoot("dragon_breath_$type", target)
-            npc.hit(target, type = "dragonfire", spell = type, special = true)
+            npc.hit(target, offensiveType = "dragonfire", spell = type, special = true)
         }
         else -> {
             npc.anim("king_black_dragon_attack")
             target.sound("dragon_attack")
-            npc.hit(target, type = "melee")
+            npc.hit(target, offensiveType = "melee")
         }
     }
 }

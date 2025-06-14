@@ -29,6 +29,12 @@ internal class CombatTest : WorldTest() {
     fun setup() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
+            override fun nextInt(from: Int, until: Int): Int {
+                if (until == 128 || until == 1) { // Drops
+                    return from
+                }
+                return until
+            }
         })
     }
 
@@ -74,6 +80,7 @@ internal class CombatTest : WorldTest() {
         assertTrue(player.experience.get(Skill.Attack) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Strength) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
+        println(floorItems[tile.zone])
         assertTrue(floorItems[tile].any { it.id == "bones" })
     }
 

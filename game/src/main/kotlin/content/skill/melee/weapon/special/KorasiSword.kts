@@ -29,7 +29,7 @@ specialAttack("disrupt") { player ->
     areaSound("godwars_godsword_special_attack", player.tile, 5)
     val maxHit = Damage.maximum(player, target, "melee", player.weapon)
     val hit = random.nextInt(maxHit / 2, (maxHit * 1.5).toInt())
-    player.hit(target, damage = hit, type = "magic", delay = 0)
+    player.hit(target, damage = hit, offensiveType = "magic", delay = 0)
 }
 
 characterCombatDamage("korasis_sword") { target ->
@@ -60,7 +60,7 @@ characterCombatDamage("korasis_sword") { target ->
                 3 -> 4
                 else -> return@characterCombatDamage
             }
-            source.hit(character, damage = hit, weapon = weapon, type = type, special = true)
+            source.hit(character, damage = hit, weapon = weapon, offensiveType = type, special = true)
             return@characterCombatDamage
         }
     }

@@ -5,7 +5,6 @@ import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.hit
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
-import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import world.gregs.voidps.type.random
 
 combatAttack(type = "range") { source ->
@@ -16,7 +15,7 @@ combatAttack(type = "range") { source ->
     if (random.nextDouble() < chance) {
         // water_strike
         val damage = Damage.roll(source, target, type, weapon)
-        source.hit(target, weapon, "magic", HitSplat.Mark.Magic, CLIENT_TICKS.toTicks(delay), damage = damage)
+        source.hit(target, weapon, "magic", CLIENT_TICKS.toTicks(delay), damage = damage)
     }
 }
 
@@ -28,7 +27,7 @@ combatAttack(type = "range") { source ->
     if (random.nextDouble() < chance) {
         // earth_strike
         val damage = Damage.roll(source, target, type, weapon)
-        source.hit(target, weapon, "magic", HitSplat.Mark.Magic, CLIENT_TICKS.toTicks(delay), damage = damage)
+        source.hit(target, weapon, "magic", CLIENT_TICKS.toTicks(delay), damage = damage)
     }
 }
 
@@ -40,6 +39,6 @@ combatAttack(type = "range") { source ->
     if (random.nextDouble() < chance) {
         // fire_strike
         val damage = Damage.roll(source, target, type, weapon)
-        source.hit(target, weapon, "magic", HitSplat.Mark.Magic, CLIENT_TICKS.toTicks(delay), damage = damage)
+        source.hit(target, weapon, "magic", CLIENT_TICKS.toTicks(delay), damage = damage)
     }
 }

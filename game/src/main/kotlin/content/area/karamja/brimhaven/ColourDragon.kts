@@ -16,11 +16,11 @@ npcCombatSwing("red_dragon*") { npc ->
     if (useFire) {
         npc.anim("colour_dragon_breath")
         npc.gfx("dragon_breath_shoot")
-        npc.hit(target, type = "dragonfire", special = true)
+        npc.hit(target, offensiveType = "dragonfire", special = true)
         target.sound("dragon_breath")
     } else {
         npc.anim("colour_dragon_attack")
-        npc.hit(target, type = "melee")
+        npc.hit(target, offensiveType = "melee")
         target.sound("dragon_attack")
     }
 }

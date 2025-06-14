@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
-import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import world.gregs.voidps.type.random
 import kotlin.math.floor
 
@@ -27,25 +26,31 @@ object Hit {
     /**
      * @return true if [chance] of hitting was successful
      */
-    fun success(source: Character, target: Character, type: String, weapon: Item, special: Boolean): Boolean = random.nextDouble() < chance(source, target, type, weapon, special)
+    fun success(source: Character, target: Character, offensiveType: String, weapon: Item, special: Boolean, defensiveType: String = offensiveType): Boolean = random.nextDouble() < chance(source, target, offensiveType, weapon, special, defensiveType)
 
     /**
      * @return chance between 0.0 and 1.0 of hitting [target]
      */
-    fun chance(source: Character, target: Character, type: String, weapon: Item, special: Boolean = false): Double {
-        val offensiveRating = rating(source, target, type, weapon, special, true)
-        val defensiveRating = rating(source, target, type, weapon, special, false)
+    fun chance(
+        source: Character,
+        target: Character,
+        offensiveType: String,
+        weapon: Item,
+        special: Boolean = false,
+        defenceType: String = offensiveType,
+    ): Double {
+        val offensiveRating = rating(source, target, offensiveType, weapon, special, true)
+        val defensiveRating = rating(source, target, defenceType, weapon, special, false)
         var chance = if (offensiveRating > defensiveRating) {
             1.0 - (defensiveRating + 2.0) / (2.0 * (offensiveRating + 1.0))
         } else {
             offensiveRating / (2.0 * (defensiveRating + 1.0))
         }
-
-        if (Weapon.guaranteedChance(source, target, type, weapon, special)) {
+        if (Weapon.guaranteedChance(source, target, offensiveType, weapon, special)) {
             chance = 1.0
         }
-        chance = Weapon.chinchompaChance(source, target, type, weapon, chance)
-        if (Weapon.invalidateChance(source, target, type, weapon, special)) {
+        chance = Weapon.chinchompaChance(source, target, offensiveType, weapon, chance)
+        if (Weapon.invalidateChance(source, target, offensiveType, weapon, special)) {
             chance = 0.0
         }
         val player = if (source is Player && source["debug", false]) {
@@ -56,7 +61,7 @@ object Hit {
             null
         }
         if (player != null) {
-            val style = if (type == "magic") {
+            val style = if (offensiveType == "magic") {
                 source.spell
             } else if (weapon.isEmpty()) {
                 "unarmed"
@@ -64,7 +69,7 @@ object Hit {
                 weapon.id
             }
             val spec = if (source is Player && source.specialAttack) ", special" else ""
-            val message = "Hit chance: $chance ($type, $style$spec)"
+            val message = "Hit chance: $chance ($offensiveType, $style$spec)"
             player.message(message)
             logger.debug { message }
         }
@@ -122,24 +127,32 @@ object Hit {
 }
 
 /**
- * Hits player during combat
+ * Hit a character during combat
+ * @param target The target to hit
+ * @param weapon The weapon used in the attack
+ * @param offensiveType attack type used for calculating offensive rating and damage
+ * @param defensiveType attack type used for rolling the [target]s defensive rating
  * @param delay Hit delay in client ticks
+ * @param spell The type of maigc spell used
+ * @param special Special attack
+ * @param damage The amount of damage dealt
+ * @return The actual amount damage dealt after bonuses and protections applied
  */
 fun Character.hit(
     target: Character,
     weapon: Item = this.weapon,
-    type: String = Weapon.type(this, weapon),
-    mark: HitSplat.Mark = Weapon.mark(this, type),
-    delay: Int = if (type == "melee") 0 else 64,
+    offensiveType: String = Weapon.type(this, weapon),
+    delay: Int = if (offensiveType == "melee") 0 else 64,
     spell: String = this.spell,
     special: Boolean = (this as? Player)?.specialAttack ?: false,
-    damage: Int = Damage.roll(this, target, type, weapon, spell),
+    defensiveType: String = offensiveType,
+    damage: Int = Damage.roll(this, target, offensiveType, weapon, spell, special, defensiveType),
 ): Int {
-    val actualDamage = Damage.modify(this, target, type, damage, weapon, spell, special)
+    val actualDamage = Damage.modify(this, target, offensiveType, damage, weapon, spell, special)
         .coerceAtMost(target.levels.get(Skill.Constitution))
-    emit(CombatAttack(target, type, mark, actualDamage, weapon, spell, special, delay))
+    emit(CombatAttack(target, offensiveType, actualDamage, weapon, spell, special, delay))
     target.strongQueue("hit", if (delay == 0) 0 else CLIENT_TICKS.toTicks(delay) + 1) {
-        target.directHit(this@hit, actualDamage, type, mark, weapon, spell, special)
+        target.directHit(this@hit, actualDamage, offensiveType, weapon, spell, special)
     }
     return actualDamage
 }
@@ -147,19 +160,19 @@ fun Character.hit(
 /**
  * Hits player without interrupting them
  */
-fun Character.directHit(damage: Int, type: String = "damage", mark: HitSplat.Mark = HitSplat.Mark.Regular, weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false, source: Character = this) = directHit(source, damage, type, mark, weapon, spell, special)
+fun Character.directHit(damage: Int, type: String = "damage", weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false, source: Character = this) = directHit(source, damage, type, weapon, spell, special)
 
 /**
  * Hits player without interrupting them
  */
-fun Character.directHit(source: Character, damage: Int, type: String = "damage", mark: HitSplat.Mark = HitSplat.Mark.Regular, weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false) {
+fun Character.directHit(source: Character, damage: Int, type: String = "damage", weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false) {
     if (source.dead) {
         return
     }
-    emit(CombatDamage(source, type, mark, damage, weapon, spell, special))
+    emit(CombatDamage(source, type, damage, weapon, spell, special))
     if (source["debug", false] || this["debug", false]) {
         val player = if (this["debug", false] && this is Player) this else source as Player
-        val message = "Damage: $damage ($type, $mark, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
+        val message = "Damage: $damage ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
         player.message(message)
     }
 }

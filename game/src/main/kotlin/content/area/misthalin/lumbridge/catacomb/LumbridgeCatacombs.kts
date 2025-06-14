@@ -1,4 +1,4 @@
-package content.area.misthalin.lumbridge
+package content.area.misthalin.lumbridge.catacomb
 
 import content.entity.combat.killer
 import content.entity.death.npcDeath

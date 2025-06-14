@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
@@ -116,7 +115,7 @@ object Ammo {
                 damage = (damage * 1.15).toInt()
             }
             source.ammo == "dragon_bolts_e" && !Equipment.dragonFireImmune(target) && chance(source, target, "dragons_breath", 0.06) -> {
-                target.directHit(source, source.levels.get(Skill.Ranged) * 2, "dragonfire", HitSplat.Mark.Regular, weapon)
+                target.directHit(source, source.levels.get(Skill.Ranged) * 2, "dragonfire", weapon)
             }
             source.ammo == "onyx_bolts_e" && !target.undead && chance(source, target, "life_leech", if (target is Player) 0.1 else 0.11) -> {
                 damage = (damage * 1.2).toInt()

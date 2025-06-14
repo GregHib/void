@@ -7,13 +7,11 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 
 /**
  * Damage done by [source] to the emitter
  * Used for defend graphics, for effects use [CombatAttack]
  * @param type the combat type, typically: melee, range or magic
- * @param mark the hit-splat type
  * @param damage the damage inflicted by the [source]
  * @param weapon weapon used
  * @param spell magic spell used
@@ -22,7 +20,6 @@ import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 data class CombatDamage(
     val source: Character,
     val type: String,
-    val mark: HitSplat.Mark,
     val damage: Int,
     val weapon: Item,
     val spell: String,

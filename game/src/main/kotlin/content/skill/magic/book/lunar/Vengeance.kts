@@ -43,6 +43,6 @@ combatDamage { player ->
         return@combatDamage
     }
     player.say("Taste vengeance!")
-    player.hit(target = source, type = "damage", delay = 0, damage = (damage * 0.75).toInt())
+    player.hit(target = source, offensiveType = "damage", delay = 0, damage = (damage * 0.75).toInt())
     player.stop("vengeance")
 }

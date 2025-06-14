@@ -1,4 +1,4 @@
-package content.area.misthalin.lumbridge
+package content.area.misthalin.lumbridge.farm
 
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Quiz

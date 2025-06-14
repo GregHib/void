@@ -1,4 +1,4 @@
-package content.entity.npc.combat.melee
+package content.area.misthalin.lumbridge
 
 import content.entity.death.npcDeath
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode

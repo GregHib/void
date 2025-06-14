@@ -1,6 +1,7 @@
 package content.entity.combat.hit
 
 import content.entity.combat.damageDealers
+import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -31,6 +32,7 @@ characterCombatDamage { character ->
     val dealers = character.damageDealers
     dealers[source] = dealers.getOrDefault(source, 0) + damage
     val maxHit = source["max_hit", 0]
+    val mark = Weapon.mark(type)
     val critical = mark.id < 3 && damage > 10 && maxHit > 0 && damage > (maxHit * 0.9)
     character.hit(
         source = source,
