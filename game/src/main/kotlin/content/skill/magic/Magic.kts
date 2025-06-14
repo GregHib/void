@@ -72,6 +72,8 @@ fun animation(source: Character, definition: SpellDefinition): String {
         } else {
             definition["animation", ""]
         }
+    } else if (source is NPC) {
+        return source["combat_anims", definition["animation", ""]]
     }
     return ""
 }
@@ -109,5 +111,4 @@ fun time(source: Character, target: Character, definition: SpellDefinition): Int
     } else {
         return source.shoot(id = definition.stringId, target = target)
     }
-    return -1
 }
