@@ -4,6 +4,7 @@ import content.entity.combat.characterCombatSwing
 import content.entity.combat.combatSwing
 import content.entity.combat.hit.hit
 import content.entity.proj.shoot
+import content.entity.sound.sound
 import content.skill.magic.book.modern.teleBlock
 import content.skill.magic.spell.Spell
 import content.skill.magic.spell.removeSpellItems
@@ -42,6 +43,8 @@ fun castSpell(source: Character, target: Character): Boolean {
     val time = time(source, target, definition)
     source.anim(animation(source, definition))
     source.gfx(graphic(source, definition))
+    target.sound("${spell}_cast")
+    source.sound("${spell}_cast")
     val damage = source.hit(target, delay = if (time == -1) 64 else time)
     if (damage != -1) {
         if (definition.contains("drain_multiplier")) {
