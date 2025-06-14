@@ -10,6 +10,7 @@ max_hit_magic = 140
 respawn_delay = 30
 wander_radius = 2
 slayer_xp = 90
+slayer_level = 60
 drop_table = "aberrant_spectre"
 combat_anims = "aberrant_spectre"
 combat_sounds = "aberrant_spectre"

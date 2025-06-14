@@ -11,6 +11,7 @@ max_hit_melee = 110
 respawn_delay = 30
 wander_radius = 2
 slayer_xp = 105
+slayer_level = 80
 drop_table = "nechryael"
 combat_anims = "nechryael"
 combat_sounds = "nechryael"

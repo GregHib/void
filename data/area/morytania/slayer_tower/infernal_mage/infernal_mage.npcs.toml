@@ -9,6 +9,7 @@ max_hit_magic = 80
 respawn_delay = 15
 wander_radius = 2
 slayer_xp = 60
+slayer_level = 45
 drop_table = "infernal_mage"
 combat_anims = "infernal_mage"
 combat_sounds = "infernal_mage"
