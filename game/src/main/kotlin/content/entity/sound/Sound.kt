@@ -52,7 +52,8 @@ fun areaSound(
 ) {
     val definitions: SoundDefinitions = get()
     val batches: ZoneBatchUpdates = get()
-    batches.add(tile.zone, SoundAddition(tile.id, definitions.get(id).id, radius, repeat, delay, volume, speed))
+    val definition = definitions.getOrNull(id) ?: return
+    batches.add(tile.zone, SoundAddition(tile.id, definition.id, radius, repeat, delay, volume, speed))
 }
 
 fun Player.midi(

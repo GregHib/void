@@ -26,6 +26,9 @@ object Target {
             if (target.def.options[1] != "Attack") {
                 return false
             }
+            if (target.index == -1) {
+                return false
+            }
             if (get<NPCs>().indexed(target.index) == null) {
                 return false
             }
@@ -53,6 +56,9 @@ object Target {
                     return false
                 }
             }
+        }
+        if (source is NPC && source.id == "death_spawn") {
+            return true
         }
         // If the target I'm trying to attack is already in combat and I am not the attacker
         if (target.inSingleCombat && target.inCombat && target.attacker != source) {
@@ -99,10 +105,13 @@ object Target {
      * E.g. Kurask & Turoth
      */
     fun damageModifiers(source: Character, target: Character, damage: Int): Int {
-        if (source is NPC && source.id == "banshee" && target is Player) {
+        if (source is NPC && target is Player) {
             val hat = target.equipped(EquipSlot.Hat).id
-            if (!Equipment.isEarmuffs(hat)) {
+            if (source.id == "banshee" && !Equipment.isEarmuffs(hat)) {
                 return 80
+            }
+            if (source.id == "aberrant_spectre" && !Equipment.isNosePeg(hat)) {
+                return 160
             }
         }
         return damage

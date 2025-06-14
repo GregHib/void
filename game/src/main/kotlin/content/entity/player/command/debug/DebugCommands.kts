@@ -8,6 +8,8 @@ import content.entity.player.dialogue.sendLines
 import content.entity.player.dialogue.type.npc
 import content.quest.questJournal
 import org.rsmod.game.pathfinder.PathFinder
+import org.rsmod.game.pathfinder.StepValidator
+import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.*
@@ -215,10 +217,25 @@ adminCommand("expr (animation-id)", "display dialogue head with an animation exp
 adminCommand("showcol", "show nearby collision") {
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
-    for (tile in area) {
-        if (collisions[tile.x, tile.y, tile.level] != 0) {
-            areaGfx("2000", tile)
+    val steps: StepValidator = get()
+    val strategy = CollisionStrategies.Normal
+    next@ for (tile in area) {
+        val size = 3
+        for (i in 1 until size) {
+            if (!steps.canTravel(tile.level, tile.x - i, tile.y, 1, 0, size)) {
+                continue@next
+            }
+            if (!steps.canTravel(tile.level, tile.x, tile.y - i, 0, 1, size)) {
+                continue@next
+            }
+            if (!steps.canTravel(tile.level, tile.x + i, tile.y, -1, 0, size)) {
+                continue@next
+            }
+            if (!steps.canTravel(tile.level, tile.x, tile.y + i, 0, -1, size)) {
+                continue@next
+            }
         }
+        areaGfx("2000", tile)
     }
 }
 

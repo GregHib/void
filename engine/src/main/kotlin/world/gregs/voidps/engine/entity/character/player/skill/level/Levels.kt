@@ -104,7 +104,8 @@ class Levels(
     fun drain(skill: Skill, amount: Int = 0, multiplier: Double = 0.0, stack: Boolean = true): Int {
         val offset = multiply(maximumLevel(skill), multiplier)
         val drain = calculateAmount(amount, offset)
-        val minimumDrain = if (stack) 0 else (getMax(skill) - drain).coerceAtLeast(0)
+        val minimum = if (skill == Skill.Constitution || skill == Skill.Prayer || skill == Skill.Summoning) 0 else 1
+        val minimumDrain = if (stack) minimum else (getMax(skill) - drain).coerceAtLeast(minimum)
         return modify(skill, -drain, minimumDrain, get(skill))
     }
 

@@ -4,6 +4,7 @@ import content.area.wilderness.inMultiCombat
 import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.directHit
+import content.entity.sound.sound
 import content.skill.melee.weapon.multiTargets
 import world.gregs.voidps.type.random
 import kotlin.random.nextInt
@@ -11,6 +12,8 @@ import kotlin.random.nextInt
 characterCombatDamage { character ->
     if (spell.isNotBlank()) {
         character.gfx("${spell}_impact")
+        character.sound("${spell}_impact")
+        source.sound("${spell}_impact")
     }
 }
 

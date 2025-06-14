@@ -19,9 +19,16 @@ import world.gregs.voidps.engine.entity.character.npc.npcApproachNPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.characterApproachPlayer
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 npcApproach("Attack") {
+    if (!player.has(Skill.Slayer, target.def["slayer_level", 0])) {
+        player.message("You need a higher slayer level to know how to wound this monster.")
+        cancel()
+        return@npcApproach
+    }
     if (player.equipped(EquipSlot.Weapon).id.endsWith("_greegree")) {
         statement("You cannot attack as a monkey.")
         cancel()
@@ -57,6 +64,11 @@ characterApproachPlayer("Attack") {
 }
 
 interfaceOnNPCApproach(id = "*_spellbook") {
+    if (!player.has(Skill.Slayer, target.def["slayer_level", 0])) {
+        player.message("You need a higher slayer level to know how to wound this monster.")
+        cancel()
+        return@interfaceOnNPCApproach
+    }
     approachRange(8, update = false)
     player.spell = component
     if (target.id.endsWith("_dummy") && !handleCombatDummies()) {
