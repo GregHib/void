@@ -1,15 +1,16 @@
-[infernal_mage_drop_table]
+[gargoyle_drop_table]
 type = "all"
 drops = [
-  { table = "infernal_mage_secondary" },
+  { table = "gargoyle_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
+
 ]
 
-[infernal_mage_secondary]
+[gargoyle_secondary]
 roll = 512
 drops = [
   { id = "granite_maul", chance = 2 },
-  { id = "mystic_robe_top_dark" },
+  { id = "dark_mystic_robe_top" },
   { id = "adamant_platelegs", chance = 16 },
   { id = "rune_full_helm", chance = 12 },
   { id = "rune_2h_sword", chance = 8 },
