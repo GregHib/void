@@ -91,18 +91,16 @@ object Weapon {
 
     private fun isOutlier(special: Boolean, id: String): Boolean = (special && id.startsWith("magic") || id == "seercull" || id == "rune_thrownaxe") || id == "ogre_bow"
 
-    fun mark(type: String): HitSplat.Mark {
-        return when (type) {
-            "range" -> HitSplat.Mark.Range
-            "melee", "scorch" -> HitSplat.Mark.Melee
-            "magic", "blaze" -> HitSplat.Mark.Magic
-            "poison" -> HitSplat.Mark.Poison
-            "disease" -> HitSplat.Mark.Diseased
-            "dragonfire", "damage" -> HitSplat.Mark.Regular
-            "deflect" -> HitSplat.Mark.Reflected
-            "healed" -> HitSplat.Mark.Healed
-            else -> HitSplat.Mark.Regular
-        }
+    fun mark(type: String): HitSplat.Mark = when (type) {
+        "range" -> HitSplat.Mark.Range
+        "melee", "scorch" -> HitSplat.Mark.Melee
+        "magic", "blaze" -> HitSplat.Mark.Magic
+        "poison" -> HitSplat.Mark.Poison
+        "disease" -> HitSplat.Mark.Diseased
+        "dragonfire", "damage" -> HitSplat.Mark.Regular
+        "deflect" -> HitSplat.Mark.Reflected
+        "healed" -> HitSplat.Mark.Healed
+        else -> HitSplat.Mark.Regular
     }
 
     fun type(character: Character, weapon: Item = character.weapon): String {

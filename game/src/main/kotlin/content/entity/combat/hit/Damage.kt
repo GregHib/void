@@ -38,7 +38,7 @@ object Damage {
         weapon: Item,
         spell: String = "",
         special: Boolean = false,
-        defensiveType: String = offensiveType
+        defensiveType: String = offensiveType,
     ): Int {
         val success = Hit.success(source, target, offensiveType, weapon, special, defensiveType)
         if (offensiveType != "dragonfire" && !success) {

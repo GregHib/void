@@ -5,7 +5,6 @@ import content.entity.combat.hit.hit
 import content.entity.player.combat.special.specialAttack
 import content.entity.sound.areaSound
 import content.skill.melee.weapon.weapon
-import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 
 specialAttack("saradomins_lightning") { player ->
     player.anim("${id}_special")

@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 
 /**
  * Damage done by [source] to the emitter
