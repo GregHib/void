@@ -1,0 +1,50 @@
+[imp_drop_table]
+type = "all"
+drops = [
+    {table = "ashes" },
+    {table = "imp_secondary"},
+    {table = "imp_tertiary"}
+]
+
+[imp_secondary]
+roll = 128
+drops = [
+    { id = "white_bead", chance = 5 },
+    { id = "black_bead", chance = 5 },
+    { id = "yellow_bead", chance = 5 },
+    { id = "red_bead", chance = 5 },
+    { id = "bronze_bolts", chance = 7 },
+    { id = "wizard_hat_blue", chance = 9 },
+    { id = "egg", chance = 3 },
+    { id = "raw_chicken", chance = 5 },
+    { id = "burnt_bread", chance = 3 },
+    { id = "burnt_meat", chance = 5 },
+    { id = "cabbage", chance = 3 },
+    { id = "bread_dough", chance = 2 },
+    { id = "bread", chance = 1 },
+    { id = "cooked_meat", chance = 2 },
+    { id = "hammer", chance = 11 },
+    { id = "tinderbox", chance = 5 },
+    { id = "shears", chance = 4 },
+    { id = "bucket", chance = 3 },
+    { id = "bucket_of_water", chance = 2 },
+    { id = "jug", chance = 2 },
+    { id = "jug_of_water", chance = 3 },
+    { id = "empty_pot", chance = 2 },
+    { id = "pot_of_flour", chance = 2 },
+    { id = "ball_of_wool", chance = 8 },
+    { id = "mind_talisman", chance = 7 },
+    { id = "ashes", chance = 8 },
+    { id = "clay", chance = 4 },
+    { id = "cadava_berries", chance = 4 },
+    { id = "grain", chance = 3 },
+    { id = "chefs_hat", chance = 3 },
+    { id = "flier", chance = 3 },
+    { id = "potion", chance = 1 },
+]
+
+[imp_tertiary]
+roll = 5000
+drops = [
+    { id = "imp_champions_scroll", members = true, lacks = "imp_champions_scroll" }
+]
