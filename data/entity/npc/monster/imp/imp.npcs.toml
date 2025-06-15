@@ -1,0 +1,11 @@
+[imp]
+id = 708
+hitpoints = 80
+max_hit_melee = 10
+style = "stab"
+respawn_delay = 60
+attack_speed = 4
+wander_radius = 25
+hunt_mode = "cowardly"
+categories = ["imp"]
+examine = "A cheeky little imp."
