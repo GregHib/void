@@ -14,11 +14,11 @@ class NPCColourOverlayEncoder : VisualEncoder<NPCVisuals>(NPC_COLOUR_OVERLAY_MAS
             val saturation = colour shr 8 and 0xFF
             val luminance = colour shr 16 and 0xFF
             val multiplier = colour shr 24 and 0xFF
-            writeByteInverse(hue)
+            writeByteAdd(hue)
             writeByteSubtract(saturation)
-            writeByteInverse(luminance)
-            writeByte(multiplier)
-            writeShort(delay)
+            writeByte(luminance)
+            writeByteSubtract(multiplier)
+            writeShortLittle(delay)
             writeShort(duration)
         }
     }

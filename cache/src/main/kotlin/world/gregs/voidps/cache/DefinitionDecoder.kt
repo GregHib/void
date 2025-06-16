@@ -3,6 +3,7 @@ package world.gregs.voidps.cache
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import java.nio.BufferUnderflowException
 
 abstract class DefinitionDecoder<T : Definition>(val index: Int) {
@@ -36,6 +37,9 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
     }
 
     open fun size(cache: Cache): Int {
+        if (this is ObjectDecoder) {
+            return 80000
+        }
         return cache.lastArchiveId(index) * 256 + (cache.fileCount(index, cache.lastArchiveId(index)))
     }
 
@@ -51,6 +55,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
     open fun getArchive(id: Int) = id
 
     protected fun read(definitions: Array<T>, id: Int, reader: Reader) {
+        // println( "${this::class.simpleName} "  + "$id");
         val definition = definitions[id]
         readLoop(definition, reader)
         changeValues(definitions, definition)

@@ -11,8 +11,8 @@ class NPCPrimaryGraphicEncoder : VisualEncoder<NPCVisuals>(NPC_GRAPHIC_1_MASK) {
         val visual = visuals.primaryGraphic
         writer.apply {
             writeShortLittle(visual.id)
-            writeIntMiddle(visual.packedDelayHeight)
-            writeByte(visual.packedRotationRefresh)
+            writeIntInverseMiddle(visual.packedDelayHeight)
+            writeByteInverse(visual.packedRotationRefresh)
         }
     }
 

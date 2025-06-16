@@ -33,6 +33,24 @@ class EnumDecoder : DefinitionDecoder<EnumDefinition>(ENUMS) {
                 }
                 map = hashtable
             }
+
+            7 -> {
+                val count = buffer.readShort()
+                val outputCount = buffer.readShort()
+                for (i in 0 until outputCount) {
+                    var index = buffer.readShort()
+                    buffer.readString()
+                }
+            }
+
+            8 -> {
+                val count = buffer.readShort()
+                val outputCount = buffer.readShort()
+                for (i in 0 until outputCount) {
+                    var index = buffer.readShort()
+                    buffer.readInt()
+                }
+            }
         }
     }
 }

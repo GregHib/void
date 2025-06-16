@@ -34,6 +34,7 @@ class FileServerTest {
                 write.writeFully(data)
             }
         }
+
         server = FileServer(123, prefetchKeys, provider)
     }
 

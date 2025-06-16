@@ -12,10 +12,10 @@ class NPCExactMovementEncoder : VisualEncoder<NPCVisuals>(NPC_EXACT_MOVEMENT_MAS
         writer.apply {
             writeByteSubtract(tile1X)
             writeByteSubtract(tile1Y)
-            writeByte(tile2X)
-            writeByteSubtract(tile2Y)
-            writeShortLittle(delay1)
-            writeShortAdd(delay2)
+            writeByteInverse(tile2X)
+            writeByteInverse(tile2Y)
+            writeShort(delay1)
+            writeShortAddLittle(delay2)
             writeByteSubtract(direction / 2)
         }
     }

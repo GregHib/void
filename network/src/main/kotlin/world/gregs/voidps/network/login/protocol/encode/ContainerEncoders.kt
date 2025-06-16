@@ -4,10 +4,7 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.SHORT
 import world.gregs.voidps.network.login.Protocol.INTERFACE_ITEMS
-import world.gregs.voidps.network.login.protocol.writeByte
-import world.gregs.voidps.network.login.protocol.writeByteAdd
-import world.gregs.voidps.network.login.protocol.writeIntMiddle
-import world.gregs.voidps.network.login.protocol.writeShortAdd
+import world.gregs.voidps.network.login.protocol.*
 
 /**
  * Sends a list of items to display on an interface item group component
@@ -29,11 +26,11 @@ fun Client.sendInventoryItems(
         for (index in 0 until size) {
             val item = items[index]
             val amount = items[size + index]
-            writeByteAdd(if (amount >= 255) 255 else amount)
+            writeByte(if (amount >= 255) 255 else amount)
             if (amount >= 255) {
-                writeIntMiddle(amount)
+                writeInt(amount)
             }
-            writeShortAdd(item + 1)
+            writeShortLittle(item + 1)
         }
     }
 }

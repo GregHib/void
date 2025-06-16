@@ -8,7 +8,7 @@ import world.gregs.voidps.network.login.protocol.visual.VisualMask.MOVEMENT_TYPE
 class MovementTypeEncoder : VisualEncoder<PlayerVisuals>(MOVEMENT_TYPE_MASK, initial = true) {
 
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
-        writer.writeByteInverse(visuals.movementType.type.id)
+        writer.writeByteSubtract(visuals.movementType.type.id)
     }
 
 }

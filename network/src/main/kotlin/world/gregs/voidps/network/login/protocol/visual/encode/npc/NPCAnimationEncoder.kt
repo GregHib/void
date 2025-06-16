@@ -14,7 +14,7 @@ class NPCAnimationEncoder : VisualEncoder<NPCVisuals>(NPC_ANIMATION_MASK) {
             writeShort(second)
             writeShort(third)
             writeShort(fourth)
-            writeByteSubtract(delay)
+            writeByte(delay)
         }
     }
 }

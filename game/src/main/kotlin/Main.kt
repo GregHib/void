@@ -40,6 +40,7 @@ object Main {
 
         // File server
         val cache = timed("cache") { Cache.load(settings) }
+        cache.versionTable
         val server = GameServer.load(cache, settings)
         val job = server.start(Settings["network.port"].toInt())
 

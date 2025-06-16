@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache
 
+import java.math.BigInteger
 import java.util.*
 
 interface Cache {
@@ -43,8 +44,11 @@ interface Cache {
     companion object {
         fun load(properties: Properties): Cache {
             val live = properties.getProperty("server.live").toBoolean()
-            val loader = if (live) MemoryCache else FileCache
-            return loader.load(properties)
+            // val loader = if (live) MemoryCache else FileCache
+            val fileModulus = BigInteger(properties.getProperty("security.file.modulus"), 16)
+            val filePrivate = BigInteger(properties.getProperty("security.file.private"), 16)
+            val delegate = CacheDelegate(properties.getProperty("storage.cache.path"), filePrivate, fileModulus)
+            return delegate
         }
     }
 }

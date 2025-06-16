@@ -34,13 +34,13 @@ class LoginServer(
 
     override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
         write.respond(Response.DATA_CHANGE)
-        val opcode = read.readByte().toInt()
+        val opcode = read.readUByte()
         if (opcode != Request.LOGIN && opcode != Request.RECONNECT) {
             logger.trace { "Invalid request id: $opcode" }
             write.finish(Response.LOGIN_SERVER_REJECTED_SESSION)
             return
         }
-        val size = read.readShort().toInt()
+        val size = read.readUShort()
         val packet = read.readPacket(size)
         checkClientVersion(read, packet, write, hostname)
     }
@@ -52,6 +52,7 @@ class LoginServer(
             write.finish(Response.GAME_UPDATE)
             return
         }
+        val unknownEquals14 = packet.readUByte()
         val rsaBlockSize = packet.readUShort().toInt()
         if (rsaBlockSize == 0) {
             logger.debug { "Invalid rsa block size." }

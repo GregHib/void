@@ -3,10 +3,7 @@ package world.gregs.voidps.network.login.protocol.encode
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.Protocol.CLIENT_VARBIT
 import world.gregs.voidps.network.login.Protocol.CLIENT_VARBIT_LARGE
-import world.gregs.voidps.network.login.protocol.writeByteAdd
-import world.gregs.voidps.network.login.protocol.writeIntInverseMiddle
-import world.gregs.voidps.network.login.protocol.writeShortAdd
-import world.gregs.voidps.network.login.protocol.writeShortLittle
+import world.gregs.voidps.network.login.protocol.*
 
 /**
  * A variable bit; also known as "ConfigFile", known in the client as "clientvarpbit"
@@ -16,13 +13,13 @@ import world.gregs.voidps.network.login.protocol.writeShortLittle
 fun Client.sendVarbit(id: Int, value: Int) {
     if (value in Byte.MIN_VALUE..Byte.MAX_VALUE) {
         send(CLIENT_VARBIT) {
-            writeByteAdd(value)
-            writeShortLittle(id)
+            writeByteSubtract(value)
+            writeShortAdd(id)
         }
     } else {
         send(CLIENT_VARBIT_LARGE) {
-            writeShortAdd(id)
-            writeIntInverseMiddle(value)
+            writeInt(value)
+            writeShort(id.toShort())
         }
     }
 }

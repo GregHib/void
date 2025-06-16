@@ -18,7 +18,7 @@ fun Client.animateInterface(
     interfaceComponent: Int,
     animation: Int
 ) = send(INTERFACE_ANIMATION) {
-    writeShort(animation)
+    writeShortAddLittle(animation)
     writeIntMiddle(interfaceComponent)
 }
 
@@ -29,7 +29,7 @@ fun Client.animateInterface(
 fun Client.closeInterface(
     interfaceComponent: Int
 ) = send(Protocol.INTERFACE_CLOSE) {
-    writeInt(interfaceComponent)
+    writeIntLittle(interfaceComponent)
 }
 
 /**
@@ -55,8 +55,8 @@ fun Client.colourInterface(
     interfaceComponent: Int,
     colour: Int
 ) = send(Protocol.INTERFACE_COLOUR) {
-    writeShortAdd(colour)
-    writeIntLittle(interfaceComponent)
+    writeIntMiddle(interfaceComponent)
+    writeInt(colour)
 }
 
 /**
@@ -68,8 +68,8 @@ fun Client.npcDialogueHead(
     interfaceComponent: Int,
     npc: Int
 ) = send(Protocol.INTERFACE_NPC_HEAD) {
-    writeIntLittle(interfaceComponent)
-    writeShortAdd(npc)
+    writeInt(interfaceComponent)
+    writeShortAddLittle(npc)
 }
 
 /**
@@ -79,7 +79,7 @@ fun Client.npcDialogueHead(
 fun Client.playerDialogueHead(
     interfaceComponent: Int
 ) = send(Protocol.INTERFACE_PLAYER_HEAD) {
-    writeIntMiddle(interfaceComponent)
+    writeIntLittle(interfaceComponent)
 }
 
 /**
@@ -93,9 +93,9 @@ fun Client.interfaceItem(
     item: Int,
     amount: Int
 ) = send(Protocol.INTERFACE_ITEM) {
-    writeShortLittle(item)
-    writeIntInverseMiddle(interfaceComponent)
+    writeShortAddLittle(item)
     writeInt(amount)
+    writeIntInverseMiddle(interfaceComponent)
 }
 
 /**
@@ -138,9 +138,9 @@ fun Client.openInterface(
     interfaceComponent: Int,
     id: Int
 ) = send(Protocol.INTERFACE_OPEN) {
-    writeShortLittle(id)
+    writeShortAddLittle(id)
     writeIntLittle(interfaceComponent)
-    writeByteAdd(permanent)
+    writeByte(permanent)
 }
 
 /**
@@ -156,10 +156,10 @@ fun Client.sendInterfaceSettings(
     toSlot: Int,
     settings: Int
 ) = send(Protocol.INTERFACE_COMPONENT_SETTINGS) {
+    writeShortAddLittle(fromSlot)
+    writeIntInverseMiddle(interfaceComponent)
     writeShortAdd(toSlot)
-    writeShortLittle(fromSlot)
-    writeInt(interfaceComponent)
-    writeIntInverseMiddle(settings)
+    writeIntLittle(settings)
 }
 
 /**
@@ -171,8 +171,8 @@ fun Client.sendInterfaceScroll(
     interfaceComponent: Int,
     settings: Int
 ) = send(Protocol.INTERFACE_SCROLL_VERTICAL) {
-    writeIntInverseMiddle(interfaceComponent)
     writeShortAdd(settings)
+    writeIntLittle(interfaceComponent)
 }
 
 /**
@@ -184,8 +184,8 @@ fun Client.interfaceSprite(
     interfaceComponent: Int,
     sprite: Int
 ) = send(Protocol.INTERFACE_SPRITE) {
-    writeShortAdd(sprite)
-    writeIntInverseMiddle(interfaceComponent)
+    writeInt(interfaceComponent)
+    writeShortAddLittle(sprite)
 }
 
 /**
@@ -197,12 +197,12 @@ fun Client.interfaceText(
     interfaceComponent: Int,
     text: String
 ) = send(Protocol.INTERFACE_TEXT, 4 + string(text), SHORT) {
-    writeIntLittle(interfaceComponent)
+    writeInt(interfaceComponent)
     writeString(text)
 }
 
 
-fun Client.updateInterface(
+fun Client.updateInterface( // TODO
     id: Int,
     type: Int
 ) = send(Protocol.INTERFACE_WINDOW) {
@@ -219,6 +219,6 @@ fun Client.interfaceVisibility(
     interfaceComponent: Int,
     hide: Boolean
 ) = send(Protocol.INTERFACE_COMPONENT_VISIBILITY) {
-    writeByteAdd(hide)
-    writeIntLittle(interfaceComponent)
+    writeIntMiddle(interfaceComponent)
+    writeByte(hide)
 }

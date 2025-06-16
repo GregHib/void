@@ -15,10 +15,10 @@ fun Client.tileText(
     color: Int,
     text: String
 ) = send(TILE_TEXT, 8 + string(text), BYTE) {
-    writeByte(0)
     writeByte(tile)
     writeShort(duration)
     writeByte(height)
     writeMedium(color)
-    writeString(text)
+    writeString(text) // TODO gjstr
+    writeByte(0)
 }

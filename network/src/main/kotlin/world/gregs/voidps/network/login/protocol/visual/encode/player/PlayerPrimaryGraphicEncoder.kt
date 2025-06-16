@@ -10,8 +10,8 @@ class PlayerPrimaryGraphicEncoder : VisualEncoder<PlayerVisuals>(PLAYER_GRAPHIC_
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
         val visual = visuals.primaryGraphic
         writer.apply {
-            writeShortAddLittle(visual.id)
-            writeIntInverseMiddle(visual.packedDelayHeight)
+            writeShort(visual.id)
+            writeIntLittle(visual.packedDelayHeight)
             writeByteAdd(visual.packedRotationRefresh)
         }
     }

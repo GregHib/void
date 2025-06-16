@@ -30,7 +30,7 @@ suspend fun ByteWriteChannel.writeByteAdd(value: Int) = writeByte(value + 128)
 
 suspend fun ByteWriteChannel.writeByteInverse(value: Int) = writeByte(-value)
 
-suspend fun ByteWriteChannel.writeByteSubtract(value: Int) = writeByte(-value + 128)
+suspend fun ByteWriteChannel.writeByteSubtract(value: Int) = writeByte(-value + 128) // p1b_alt3
 
 suspend fun ByteWriteChannel.writeBytes(value: ByteArray) = writeFully(value)
 
@@ -73,6 +73,12 @@ suspend fun ByteWriteChannel.writeMedium(value: Int) {
     writeByte(value shr 16)
     writeByte(value shr 8)
     writeByte(value)
+}
+
+suspend fun ByteWriteChannel.writeMediumV2(value: Int) {
+    writeByte(value shr 16)
+    writeByte(value)
+    writeByte(value shr 8)
 }
 
 suspend fun ByteWriteChannel.writeSmart(value: Int) {

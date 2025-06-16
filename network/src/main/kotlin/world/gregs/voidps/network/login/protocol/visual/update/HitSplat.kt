@@ -41,7 +41,12 @@ data class HitSplat(
         }
     }
 
-    fun write(writer: Writer, observer: Int, victim: Int, add: Boolean) {
+    fun write(
+        writer: Writer,
+        observer: Int,
+        victim: Int,
+        add: Boolean
+    ) {
         if (amount == 0 && !interactingWith(observer, victim, source)) {
             writer.writeSmart(32766)
         } else {
@@ -49,22 +54,45 @@ data class HitSplat(
 
             if (soak != -1) {
                 writer.writeSmart(32767)
-            }
-
-            writer.writeSmart(mark)
-            writer.writeSmart(amount)
-
-            if (soak != -1) {
+                writer.writeSmart(mark)
+                writer.writeSmart(amount)
                 writer.writeSmart(Mark.Absorb.id)
                 writer.writeSmart(soak)
+            } else {
+                writer.writeSmart(mark)
+                writer.writeSmart(amount)
             }
         }
+
         writer.writeSmart(delay)
-        if (add) {
-            writer.writeByteAdd(percentage)
+        writer.writeByte(percentage)
+    }
+
+    fun writePlayer(
+        writer: Writer,
+        observer: Int,
+        victim: Int,
+        add: Boolean
+    ) {
+        if (amount == 0 && !interactingWith(observer, victim, source)) {
+            writer.writeSmart(32766)
         } else {
-            writer.writeByte(percentage)
+            val mark = getMarkId(observer, victim)
+
+            if (soak != -1) {
+                writer.writeSmart(32767)
+                writer.writeSmart(mark)
+                writer.writeSmart(amount)
+                writer.writeSmart(Mark.Absorb.id)
+                writer.writeSmart(soak)
+            } else {
+                writer.writeSmart(mark)
+                writer.writeSmart(amount)
+            }
         }
+
+        writer.writeSmart(delay)
+        writer.writeByteInverse(percentage)
     }
 
     private fun getMarkId(observer: Int, victim: Int): Int {

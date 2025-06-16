@@ -10,7 +10,7 @@ class NPCFaceEncoder : VisualEncoder<NPCVisuals>(NPC_FACE_MASK, initial = true) 
     override fun encode(writer: Writer, visuals: NPCVisuals) {
         val (targetX, targetY) = visuals.face
         writer.apply {
-            writeShortAdd(targetX * 2 + 1)
+            writeShortLittle(targetX * 2 + 1)
             writeShortLittle(targetY * 2 + 1)
         }
     }

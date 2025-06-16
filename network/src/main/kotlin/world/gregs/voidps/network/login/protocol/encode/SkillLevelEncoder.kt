@@ -2,9 +2,7 @@ package world.gregs.voidps.network.login.protocol.encode
 
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.Protocol.SKILL_LEVEL
-import world.gregs.voidps.network.login.protocol.writeByteInverse
-import world.gregs.voidps.network.login.protocol.writeByteSubtract
-import world.gregs.voidps.network.login.protocol.writeIntMiddle
+import world.gregs.voidps.network.login.protocol.*
 
 /**
  * Updates the players' skill level & experience
@@ -18,6 +16,6 @@ fun Client.skillLevel(
     experience: Int
 ) = send(SKILL_LEVEL) {
     writeByteSubtract(level)
-    writeByteInverse(skill)
-    writeIntMiddle(experience)
+    writeByteAdd(skill)
+    writeIntLittle(experience)
 }

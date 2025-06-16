@@ -14,12 +14,12 @@ class PlayerColourOverlayEncoder : VisualEncoder<PlayerVisuals>(PLAYER_COLOUR_OV
             val saturation = colour shr 8 and 0xFF
             val luminance = colour shr 16 and 0xFF
             val multiplier = colour shr 24 and 0xFF
-            writeByteInverse(hue)
-            writeByte(saturation)
-            writeByte(luminance)
+            writeByteSubtract(hue)
+            writeByteSubtract(saturation)
+            writeByteInverse(luminance)
             writeByte(multiplier)
             writeShortAddLittle(delay)
-            writeShortAdd(duration)
+            writeShort(duration)
         }
     }
 

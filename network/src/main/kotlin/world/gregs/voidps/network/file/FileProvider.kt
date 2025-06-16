@@ -22,6 +22,7 @@ interface FileProvider {
         val index = request shr 16
         val archive = request and 0xffff
         val data = data(index, archive)
+
         if (data == null || data.size < 4) {
             logger.warn { "Unable to fulfill request $index $archive $prefetch." }
             return false

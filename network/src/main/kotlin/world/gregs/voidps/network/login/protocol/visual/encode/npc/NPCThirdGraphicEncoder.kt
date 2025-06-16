@@ -3,16 +3,16 @@ package world.gregs.voidps.network.login.protocol.visual.encode.npc
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
 import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
-import world.gregs.voidps.network.login.protocol.visual.VisualMask.NPC_GRAPHIC_2_MASK
+import world.gregs.voidps.network.login.protocol.visual.VisualMask.NPC_GRAPHIC_3_MASK
 
-class NPCSecondaryGraphicEncoder : VisualEncoder<NPCVisuals>(NPC_GRAPHIC_2_MASK) {
+class NPCThirdGraphicEncoder : VisualEncoder<NPCVisuals>(NPC_GRAPHIC_3_MASK) {
 
     override fun encode(writer: Writer, visuals: NPCVisuals) {
-        val visual = visuals.secondaryGraphic
+        val visual = visuals.thirdGraphic
         writer.apply {
-            writeShortAdd(visual.id)
+            writeShort(visual.id)
             writeInt(visual.packedDelayHeight)
-            writeByte(visual.packedRotationRefresh)
+            writeByteAdd(visual.packedRotationRefresh)
         }
     }
 

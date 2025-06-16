@@ -3,12 +3,11 @@ package world.gregs.voidps.network.login.protocol.visual.encode.npc
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
 import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
-import world.gregs.voidps.network.login.protocol.visual.VisualMask.TRANSFORM_MASK
+import world.gregs.voidps.network.login.protocol.visual.VisualMask.NPC_CUSTOMISE_HEAD
 
-class TransformEncoder : VisualEncoder<NPCVisuals>(TRANSFORM_MASK, initial = true) {
+class NPCCustomiseChatHeadEncoder : VisualEncoder<NPCVisuals>(NPC_CUSTOMISE_HEAD) {
 
     override fun encode(writer: Writer, visuals: NPCVisuals) {
-        writer.writeShortLittle(visuals.transform.id)
+        // TODO
     }
-
 }

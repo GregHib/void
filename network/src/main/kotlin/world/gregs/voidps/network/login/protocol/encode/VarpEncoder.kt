@@ -4,6 +4,7 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.Protocol.CLIENT_VARP
 import world.gregs.voidps.network.login.Protocol.CLIENT_VARP_LARGE
+import world.gregs.voidps.network.login.protocol.writeByteAdd
 import world.gregs.voidps.network.login.protocol.writeIntInverseMiddle
 import world.gregs.voidps.network.login.protocol.writeShortAdd
 
@@ -16,7 +17,7 @@ fun Client.sendVarp(id: Int, value: Int) {
     if (value in Byte.MIN_VALUE..Byte.MAX_VALUE) {
         send(CLIENT_VARP) {
             writeShort(id)
-            writeByte(value)
+            writeByteAdd(value)
         }
     } else {
         send(CLIENT_VARP_LARGE) {

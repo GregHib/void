@@ -1,15 +1,17 @@
 package world.gregs.voidps.cache
 
 import com.displee.cache.CacheLibrary
+import com.displee.cache.index.archive.ArchiveSector
 import com.github.michaelbull.logging.InlineLogger
 import java.math.BigInteger
+
 
 class CacheDelegate(private val library: CacheLibrary, exponent: BigInteger? = null, modulus: BigInteger? = null) : Cache {
 
     constructor(directory: String, exponent: BigInteger? = null, modulus: BigInteger? = null) : this(timed(directory), exponent, modulus)
 
     override val versionTable: ByteArray = if (exponent == null || modulus == null) ByteArray(0) else {
-        library.generateUkeys(exponent = exponent, modulus = modulus)
+        library.generateNewUkeys(exponent = exponent, modulus = modulus)
     }
 
     override fun indexCount() = library.indices().size

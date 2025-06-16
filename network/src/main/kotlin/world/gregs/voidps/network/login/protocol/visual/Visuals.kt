@@ -14,6 +14,8 @@ abstract class Visuals {
     val animation = Animation()
     val primaryGraphic = Graphic()
     val secondaryGraphic = Graphic()
+    val thirdGraphic = Graphic()
+    val fourthGraphic = Graphic()
     val colourOverlay = ColourOverlay()
     val exactMovement = ExactMovement()
     val timeBar = TimeBar()

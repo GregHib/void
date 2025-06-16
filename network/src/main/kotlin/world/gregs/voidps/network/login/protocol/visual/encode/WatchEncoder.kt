@@ -7,7 +7,7 @@ import world.gregs.voidps.network.login.protocol.visual.Visuals
 class WatchEncoder(mask: Int) : VisualEncoder<Visuals>(mask) {
 
     override fun encode(writer: Writer, visuals: Visuals) {
-        writer.writeShort(visuals.watch.index)
+        writer.writeShortAdd(visuals.watch.index)
     }
 
 }

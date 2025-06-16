@@ -9,11 +9,11 @@ class PlayerAnimationEncoder : VisualEncoder<PlayerVisuals>(PLAYER_ANIMATION_MAS
 
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
         val (first, second, third, fourth, delay) = visuals.animation
+        val animations = arrayOf(first, second, third, fourth)
         writer.apply {
-            writeShortAdd(first)
-            writeShortAdd(second)
-            writeShortAdd(third)
-            writeShortAdd(fourth)
+            for (anim in animations) {
+                writeShortLittle(anim)
+            }
             writeByteAdd(delay)
         }
     }

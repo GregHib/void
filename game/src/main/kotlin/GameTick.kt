@@ -61,6 +61,7 @@ fun getTickStages(
         objects.timers,
         // Update
         batches,
+
         CharacterUpdateTask(
             iterator,
             players,
@@ -68,6 +69,8 @@ fun getTickStages(
             NPCUpdateTask(npcs, npcVisualEncoders()),
             batches
         ),
+
+
         AiTick(),
         accountSave
     )
