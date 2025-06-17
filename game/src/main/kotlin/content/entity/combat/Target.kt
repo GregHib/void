@@ -99,10 +99,13 @@ object Target {
      * E.g. Kurask & Turoth
      */
     fun damageModifiers(source: Character, target: Character, damage: Int): Int {
-        if (source is NPC && source.id == "banshee" && target is Player) {
+        if (source is NPC && target is Player) {
             val hat = target.equipped(EquipSlot.Hat).id
-            if (!Equipment.isEarmuffs(hat)) {
+            if (source.id == "banshee" && !Equipment.isEarmuffs(hat)) {
                 return 80
+            }
+            if (source.id == "aberrant_spectre" && !Equipment.isNosePeg(hat)) {
+                return 160
             }
         }
         return damage

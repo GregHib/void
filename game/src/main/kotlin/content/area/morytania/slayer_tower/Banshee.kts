@@ -1,4 +1,4 @@
-package content.entity.npc.combat.magic
+package content.area.morytania.slayer_tower
 
 import content.entity.combat.hit.hit
 import content.entity.combat.npcCombatSwing
