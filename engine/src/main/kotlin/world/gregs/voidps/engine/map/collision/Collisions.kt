@@ -47,7 +47,24 @@ fun Area.random(collision: CollisionStrategy = CollisionStrategies.Normal, size:
 }
 
 private fun canFit(steps: StepValidator, tile: Tile, collision: CollisionStrategy, size: Int): Boolean {
-    val free = steps.canTravel(
+    if (size != 1) {
+        for (i in 1 until size) {
+            if (!steps.canTravel(tile.level, tile.x - i, tile.y, 1, 0, size)) {
+                return false
+            }
+            if (!steps.canTravel(tile.level, tile.x, tile.y - i, 0, 1, size)) {
+                return false
+            }
+            if (!steps.canTravel(tile.level, tile.x + i, tile.y, -1, 0, size)) {
+                return false
+            }
+            if (!steps.canTravel(tile.level, tile.x, tile.y + i, 0, -1, size)) {
+                return false
+            }
+        }
+        return true
+    }
+    return steps.canTravel(
         x = tile.x,
         z = tile.y - 1,
         level = tile.level,
@@ -55,81 +72,29 @@ private fun canFit(steps: StepValidator, tile: Tile, collision: CollisionStrateg
         offsetZ = 1,
         size = size,
         collision = collision,
-    ) ||
-        steps.canTravel(
-            x = tile.x,
-            z = tile.y + 1,
-            level = tile.level,
-            offsetX = 0,
-            offsetZ = -1,
-            size = size,
-            collision = collision,
-        ) ||
-        steps.canTravel(
-            x = tile.x - 1,
-            z = tile.y,
-            level = tile.level,
-            offsetX = 1,
-            offsetZ = 0,
-            size = size,
-            collision = collision,
-        ) ||
-        steps.canTravel(
-            x = tile.x + 1,
-            z = tile.y,
-            level = tile.level,
-            offsetX = -1,
-            offsetZ = 0,
-            size = size,
-            collision = collision,
-        )
-    if (size == 1) {
-        return free
-    } else {
-        if (!free) {
-            return false
-        }
-        for (x in 0 until size) {
-            for (y in 0 until size) {
-                if (x != size - 1 &&
-                    !steps.canTravel(
-                        tile.level,
-                        tile.x + x,
-                        tile.y + y,
-                        offsetX = 1,
-                        offsetZ = 0,
-                        collision = collision,
-                    )
-                ) {
-                    return false
-                }
-                if (y != size - 1 &&
-                    !steps.canTravel(
-                        tile.level,
-                        tile.x + x,
-                        tile.y + y,
-                        offsetX = 0,
-                        offsetZ = 1,
-                        collision = collision,
-                    )
-                ) {
-                    return false
-                }
-                if (y != size - 1 &&
-                    x != size - 1 &&
-                    !steps.canTravel(
-                        tile.level,
-                        tile.x + x,
-                        tile.y + y,
-                        offsetX = 1,
-                        offsetZ = 1,
-                        collision = collision,
-                    )
-                ) {
-                    return false
-                }
-            }
-        }
-        return true
-    }
+    ) || steps.canTravel(
+        x = tile.x,
+        z = tile.y + 1,
+        level = tile.level,
+        offsetX = 0,
+        offsetZ = -1,
+        size = size,
+        collision = collision,
+    ) || steps.canTravel(
+        x = tile.x - 1,
+        z = tile.y,
+        level = tile.level,
+        offsetX = 1,
+        offsetZ = 0,
+        size = size,
+        collision = collision,
+    ) || steps.canTravel(
+        x = tile.x + 1,
+        z = tile.y,
+        level = tile.level,
+        offsetX = -1,
+        offsetZ = 0,
+        size = size,
+        collision = collision,
+    )
 }
