@@ -92,10 +92,12 @@ fun Client.interfaceItem(
     interfaceComponent: Int,
     item: Int,
     amount: Int
-) = send(Protocol.INTERFACE_ITEM) {
-    writeShortAddLittle(item)
-    writeInt(amount)
-    writeIntInverseMiddle(interfaceComponent)
+) {
+    send(Protocol.INTERFACE_ITEM) {
+        writeShortAddLittle(item)
+        writeInt(amount)
+        writeIntInverseMiddle(interfaceComponent)
+    }
 }
 
 /**
@@ -155,11 +157,14 @@ fun Client.sendInterfaceSettings(
     fromSlot: Int,
     toSlot: Int,
     settings: Int
-) = send(Protocol.INTERFACE_COMPONENT_SETTINGS) {
-    writeShortAddLittle(fromSlot)
-    writeIntInverseMiddle(interfaceComponent)
-    writeShortAdd(toSlot)
-    writeIntLittle(settings)
+) {
+    return
+    send(Protocol.INTERFACE_COMPONENT_SETTINGS) {
+        writeShortAddLittle(fromSlot)
+        writeIntInverseMiddle(interfaceComponent)
+        writeShortAdd(toSlot)
+        writeIntLittle(settings)
+    }
 }
 
 /**
@@ -206,8 +211,8 @@ fun Client.updateInterface( // TODO
     id: Int,
     type: Int
 ) = send(Protocol.INTERFACE_WINDOW) {
-    writeByteInverse(type)
-    writeShortAdd(id)
+    writeShortAddLittle(id)
+    writeByteSubtract(type)
 }
 
 /**
@@ -218,7 +223,10 @@ fun Client.updateInterface( // TODO
 fun Client.interfaceVisibility(
     interfaceComponent: Int,
     hide: Boolean
-) = send(Protocol.INTERFACE_COMPONENT_VISIBILITY) {
-    writeIntMiddle(interfaceComponent)
-    writeByte(hide)
+) {
+    return
+    send(Protocol.INTERFACE_COMPONENT_VISIBILITY) {
+        writeIntMiddle(interfaceComponent)
+        writeByteAdd(hide)
+    }
 }

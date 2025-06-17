@@ -44,11 +44,11 @@ interface Cache {
     companion object {
         fun load(properties: Properties): Cache {
             val live = properties.getProperty("server.live").toBoolean()
-            // val loader = if (live) MemoryCache else FileCache
-            val fileModulus = BigInteger(properties.getProperty("security.file.modulus"), 16)
-            val filePrivate = BigInteger(properties.getProperty("security.file.private"), 16)
-            val delegate = CacheDelegate(properties.getProperty("storage.cache.path"), filePrivate, fileModulus)
-            return delegate
+             val loader = if (live) MemoryCache else FileCache
+//            val fileModulus = BigInteger(properties.getProperty("security.file.modulus"), 16)
+//            val filePrivate = BigInteger(properties.getProperty("security.file.private"), 16)
+//            val delegate = CacheDelegate(properties.getProperty("storage.cache.path"), filePrivate, fileModulus)
+            return loader.load(properties)
         }
     }
 }

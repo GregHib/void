@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.runBlocking
-import world.gregs.voidps.network.login.Protocol.REGION
 import world.gregs.voidps.network.login.protocol.writeSmart
 
 open class Client(
@@ -69,10 +68,6 @@ open class Client(
 
     open fun send(opcode: Int, size: Int, type: Int, block: suspend ByteWriteChannel.() -> Unit) {
         if (disconnected) {
-            return
-        }
-
-        if (opcode != REGION && opcode != -1) {
             return
         }
 

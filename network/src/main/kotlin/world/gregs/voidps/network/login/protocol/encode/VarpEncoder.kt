@@ -14,6 +14,7 @@ import world.gregs.voidps.network.login.protocol.writeShortAdd
  * @param value The value to pass to the config
  */
 fun Client.sendVarp(id: Int, value: Int) {
+    return
     if (value in Byte.MIN_VALUE..Byte.MAX_VALUE) {
         send(CLIENT_VARP) {
             writeShort(id)

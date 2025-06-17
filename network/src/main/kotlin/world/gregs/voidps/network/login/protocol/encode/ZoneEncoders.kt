@@ -16,10 +16,13 @@ fun Client.clearZone(
     xOffset: Int,
     yOffset: Int,
     level: Int
-) = send(CLEAR_ZONE) {
-    writeByte(xOffset.toByte())
-    writeByteSubtract(yOffset)
-    writeByte(level.toByte())
+) {
+    return
+    send(CLEAR_ZONE) {
+        writeByte(xOffset.toByte())
+        writeByteSubtract(yOffset)
+        writeByte(level.toByte())
+    }
 }
 
 /**
@@ -31,8 +34,11 @@ fun Client.updateZone(
     xOffset: Int,
     yOffset: Int,
     level: Int
-) = send(Protocol.UPDATE_ZONE) {
-    writeByteAdd(xOffset)
-    writeByte(yOffset.toByte())
-    writeByteSubtract(level)
+) {
+    return
+    send(Protocol.UPDATE_ZONE) {
+        writeByteAdd(xOffset)
+        writeByte(yOffset.toByte())
+        writeByteSubtract(level)
+    }
 }

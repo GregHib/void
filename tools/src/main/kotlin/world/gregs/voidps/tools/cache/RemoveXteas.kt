@@ -29,8 +29,8 @@ object RemoveXteas {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val xteas = Xteas().load("./tools/src/main/resources/xteas.dat", Xteas.DEFAULT_KEY, Xteas.DEFAULT_VALUE)
-        val path = "./data/cache/test/"
+        val xteas = Xteas().load("./xteas.json", Xteas.DEFAULT_KEY, "key")
+        val path = "./data/cache/"
         val lib = CacheLibrary(path)
 
         remove(lib, xteas)

@@ -55,7 +55,7 @@ instruction<ChangeDisplayMode> { player ->
 }
 
 interfaceOpen("toplevel*") { player ->
-    openGamframe(player)
+//    openGamframe(player)
 }
 
 interfaceRefresh("toplevel*", "dialogue_npc*") { player ->

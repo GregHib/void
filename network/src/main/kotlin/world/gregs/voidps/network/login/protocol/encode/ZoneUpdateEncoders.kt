@@ -19,6 +19,7 @@ fun encodeBatch(messages: Collection<ZoneUpdate>): ByteArray {
 }
 
 fun Client.sendBatch(messages: ByteArray, zoneOffsetX: Int, zoneOffsetY: Int, zoneLevel: Int) {
+    return
     send(Protocol.BATCH_UPDATE_ZONE, messages.size + 3, Client.SHORT) {
         writeByteInverse(zoneOffsetX)
         writeByteSubtract(zoneLevel)
@@ -28,6 +29,7 @@ fun Client.sendBatch(messages: ByteArray, zoneOffsetX: Int, zoneOffsetY: Int, zo
 }
 
 fun Client.send(update: ZoneUpdate) {
+    return
     send(update.packetId) {
         encode(update)
     }

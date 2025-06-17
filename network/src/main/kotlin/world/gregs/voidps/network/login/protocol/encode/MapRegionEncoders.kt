@@ -21,22 +21,9 @@ fun Client.mapRegion(
     mapInit(clientTile, playerRegions, clientIndex)
     writeByteInverse(mapSize)
     writeByte(forceRefresh)
-    writeShortAddLittle(zoneX)
+    writeShortLittle(zoneX)
     writeShort(zoneY)
-
-    val allXtea = arrayOf(
-        intArrayOf(1224902573, 373045525, 245718019, -2036093111),
-        intArrayOf(-1901318074, -274793744, -1396129887, -1094522509),
-        intArrayOf(453065651, -810686472, 1799060963, -1328396492),
-        intArrayOf(1792091116, -1744526276, 56731698, 1034638680),
-        intArrayOf(-1292180307, -1643453819, 700005461, 517833095),
-        intArrayOf(307992456, -1799562678, -1780758542, -1910219722),
-        intArrayOf(85559718, 230193585, -748681235, -1002325471),
-        intArrayOf(1747320030, -1049932456, 903314780, 1020897411),
-        intArrayOf(-1772232253, 838095486, -1167300216, -1478070642)
-    )
-
-    allXtea.forEach {
+    xteas.forEach {
         it.forEach { key ->
             writeInt(key)
         }

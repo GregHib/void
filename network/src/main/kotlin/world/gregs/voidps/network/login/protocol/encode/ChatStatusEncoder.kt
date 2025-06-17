@@ -12,6 +12,7 @@ import world.gregs.voidps.network.login.protocol.writeByteSubtract
  * @param trade (0 = on, 1 = friends, 2 = off)
  */
 fun Client.sendPublicStatus(public: Int, trade: Int) {
+    return
     send(PUBLIC_STATUS, 2, Client.FIXED) {
         writeByteSubtract(public)
         writeByteAdd(trade)
@@ -22,6 +23,7 @@ fun Client.sendPublicStatus(public: Int, trade: Int) {
  * @param status (0 = on, 1 = friends, 2 = off)
  */
 fun Client.sendPrivateStatus(status: Int) {
+    return
     send(PRIVATE_STATUS, 1, Client.FIXED) {
         writeByte(status)
     }

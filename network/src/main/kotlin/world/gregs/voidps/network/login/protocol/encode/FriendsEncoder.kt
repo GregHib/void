@@ -18,6 +18,23 @@ data class Friend(
 )
 
 fun Client.sendFriendsList(friends: List<Friend>) {
+    /*
+
+Read packet: 117
+Read packet: 14
+Read packet: 14
+Read packet: 14
+Read packet: 14
+Read packet: 14
+Read packet: 14
+Read packet: 14
+Read packet: 101
+Read packet: 1
+Read packet: 1
+Read packet: 1
+Read packet: 12
+     */
+    return
     send(UPDATE_FRIENDS, friends.sumOf { count(it) }, Client.SHORT) {
         for (friend in friends) {
             writeFriend(friend)
