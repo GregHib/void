@@ -7,7 +7,7 @@ id = 646
 [nechryael_attack]
 id = 645
 
-[death_spawn_spawn]
+[death_spawn]
 id = 2418
 
 [death_spawn_defend]

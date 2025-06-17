@@ -54,6 +54,9 @@ object Target {
                 }
             }
         }
+        if (source is NPC && source.id == "death_spawn") {
+            return true
+        }
         // If the target I'm trying to attack is already in combat and I am not the attacker
         if (target.inSingleCombat && target.inCombat && target.attacker != source) {
             if (target is NPC) {

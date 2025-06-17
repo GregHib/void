@@ -1,6 +1,7 @@
 [abyssal_demon_drop_table]
 type = "all"
 drops = [
+  { id = "ashes" },
   { table = "abyssal_demon_secondary" },
   { table = "abyssal_demon_tertiary" },
 ]
