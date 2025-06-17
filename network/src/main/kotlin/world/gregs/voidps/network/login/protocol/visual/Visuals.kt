@@ -10,6 +10,7 @@ abstract class Visuals {
     var walkStep: Int = -1
     var runStep: Int = -1
     var moved: Boolean = false
+    var tele: Boolean = false
 
     val animation = Animation()
     val primaryGraphic = Graphic()
@@ -32,6 +33,7 @@ abstract class Visuals {
         walkStep = -1
         runStep = -1
         moved = false
+        tele = false
         flag = 0
         animation.clear()
         primaryGraphic.clear()
