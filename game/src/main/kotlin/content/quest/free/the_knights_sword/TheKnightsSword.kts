@@ -1,10 +1,10 @@
 package content.quest.free.the_knights_sword
 
-import world.gregs.voidps.engine.inv.holdsItem
 import content.entity.player.bank.ownsItem
 import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
+import world.gregs.voidps.engine.inv.holdsItem
 
 questJournalOpen("the_knights_sword") {
     val lines = when (player.quest("the_knights_sword")) {
@@ -75,7 +75,7 @@ questJournalOpen("the_knights_sword") {
                 "<str>Thurgo needed a picture of the sword before he could",
                 "<str>start work on a replacement. I took him a portrait of it.",
 
-                )
+            )
             if (player.holdsItem("blurite_sword") || player.ownsItem("blurite_sword")) {
                 list.add("<str>Thurgo has now smithed me a replica of Sir Vyvin's sword.")
                 list.add("")
@@ -93,7 +93,7 @@ questJournalOpen("the_knights_sword") {
             "<navy>courtyard of the <maroon>White Knight's Castle <navy>in <maroon>southern Falador",
             "<navy>To complete this quest I need:",
             "<maroon>Level 10 Mining",
-            "<navy>and to be unafraid of <maroon>Level 57 Ice Warriors."
+            "<navy>and to be unafraid of <maroon>Level 57 Ice Warriors.",
         )
     }
     player.questJournal("The Knight's Sword", lines)

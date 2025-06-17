@@ -16,12 +16,12 @@ object Index {
     const val CLIENT_SCRIPTS = 12
     const val FONT_METRICS = 13
     const val MIDI_INSTRUMENTS = 14 // vorbis
-    const val OBJECTS = 16// locations
+    const val OBJECTS = 16 // locations
     const val ENUMS = 17
     const val NPCS = 18
     const val ITEMS = 19 // objects
-    const val ANIMATIONS = 20// sequences
-    const val GRAPHICS = 21// spot anims
+    const val ANIMATIONS = 20 // sequences
+    const val GRAPHICS = 21 // spot anims
     const val VAR_BIT = 22 // structs
     const val WORLD_MAP = 23
     const val QUICK_CHAT_MESSAGES = 24

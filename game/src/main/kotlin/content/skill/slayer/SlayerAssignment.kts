@@ -37,7 +37,7 @@ fun refresh(player: Player, id: String) {
         player.interfaces.sendText(id, "reassign_text", "You must have an assignment to use this.")
         player.interfaces.sendText(id, "block_text", "You must have an assignment to use this.")
     } else {
-        player.interfaces.sendText(id, "reassign_text", "Cancel task of ${assignment}.")
+        player.interfaces.sendText(id, "reassign_text", "Cancel task of $assignment.")
         player.interfaces.sendText(id, "block_text", "Never assign $assignment again.")
     }
     player.interfaces.sendColour(id, "reassign_text", if (points < 30) Colours.RED else Colours.ORANGE)

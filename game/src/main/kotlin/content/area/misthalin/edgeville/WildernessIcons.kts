@@ -1,13 +1,13 @@
 package content.area.misthalin.edgeville
 
+import content.area.wilderness.inWilderness
+import content.skill.prayer.prayerStart
+import content.skill.prayer.prayerStop
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.player.Player
-import content.area.wilderness.inWilderness
-import content.skill.prayer.prayerStart
-import content.skill.prayer.prayerStop
 
 variableSet("in_wilderness", to = true) { player ->
     player.options.set(1, "Attack")

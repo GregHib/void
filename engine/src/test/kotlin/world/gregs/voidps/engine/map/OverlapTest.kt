@@ -3,8 +3,8 @@ package world.gregs.voidps.engine.map
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.map.Overlap.isUnder
+import world.gregs.voidps.type.Direction
 
 internal class OverlapTest {
 

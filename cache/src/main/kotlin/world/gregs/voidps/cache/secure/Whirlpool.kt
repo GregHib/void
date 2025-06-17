@@ -42,13 +42,13 @@ class Whirlpool {
         for (i in 1..10) {
             val index = 8 * (i - 1)
             aLongArray6631[i] = aLongArrayArray6630[0][index] and 0xffffffffffffffL.inv() xor
-                    (aLongArrayArray6630[1][index + 1] and 0xff000000000000L) xor
-                    (aLongArrayArray6630[2][index + 2] and 0xff0000000000L) xor
-                    (aLongArrayArray6630[3][index + 3] and 0xff00000000L) xor
-                    (aLongArrayArray6630[4][index + 4] and 0xff000000L) xor
-                    (aLongArrayArray6630[5][index + 5] and 0xff0000L) xor
-                    (aLongArrayArray6630[6][index + 6] and 0xff00L) xor
-                    (aLongArrayArray6630[7][index + 7] and 0xffL)
+                (aLongArrayArray6630[1][index + 1] and 0xff000000000000L) xor
+                (aLongArrayArray6630[2][index + 2] and 0xff0000000000L) xor
+                (aLongArrayArray6630[3][index + 3] and 0xff00000000L) xor
+                (aLongArrayArray6630[4][index + 4] and 0xff000000L) xor
+                (aLongArrayArray6630[5][index + 5] and 0xff0000L) xor
+                (aLongArrayArray6630[6][index + 6] and 0xff00L) xor
+                (aLongArrayArray6630[7][index + 7] and 0xffL)
         }
         reset()
     }
@@ -70,13 +70,13 @@ class Whirlpool {
         var offset = 0
         while (index < 8) {
             block[index] = buffer[offset].toLong() shl 56 xor
-                    (buffer[offset + 1].toLong() and 0xffL shl 48) xor
-                    (buffer[offset + 2].toLong() and 0xffL shl 40) xor
-                    (buffer[offset + 3].toLong() and 0xffL shl 32) xor
-                    (buffer[offset + 4].toLong() and 0xffL shl 24) xor
-                    (buffer[offset + 5].toLong() and 0xffL shl 16) xor
-                    (buffer[offset + 6].toLong() and 0xffL shl 8) xor
-                    (buffer[offset + 7].toLong() and 0xffL)
+                (buffer[offset + 1].toLong() and 0xffL shl 48) xor
+                (buffer[offset + 2].toLong() and 0xffL shl 40) xor
+                (buffer[offset + 3].toLong() and 0xffL shl 32) xor
+                (buffer[offset + 4].toLong() and 0xffL shl 24) xor
+                (buffer[offset + 5].toLong() and 0xffL shl 16) xor
+                (buffer[offset + 6].toLong() and 0xffL shl 8) xor
+                (buffer[offset + 7].toLong() and 0xffL)
             index++
             offset += 8
         }

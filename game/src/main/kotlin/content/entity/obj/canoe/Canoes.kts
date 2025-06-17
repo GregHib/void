@@ -59,9 +59,9 @@ objectOperate("Chop-down", "canoe_station") {
     target.anim("canoe_fall")
     player.clearAnim()
     player.sound("fell_tree")
-    player["canoe_state_${location}"] = "falling"
+    player["canoe_state_$location"] = "falling"
     delay()
-    player["canoe_state_${location}"] = "fallen"
+    player["canoe_state_$location"] = "fallen"
 }
 
 interfaceOpen("canoe") { player ->
@@ -123,16 +123,17 @@ objectOperate("Shape-canoe", "canoe_station_fallen") {
             break
         }
     }
-    player["canoe_state_${location}"] = canoe
+    player["canoe_state_$location"] = canoe
     player.clearAnim()
     player.exp(
-        Skill.Woodcutting, when (canoe) {
+        Skill.Woodcutting,
+        when (canoe) {
             "log" -> 30.0
             "dugout" -> 60.0
             "stable_dugout" -> 90.0
             "waka" -> 150.0
             else -> 0.0
-        }
+        },
     )
 }
 
@@ -152,13 +153,13 @@ suspend fun ObjectOption<Player>.float() {
     }
     val location = target.id.removePrefix("canoe_station_")
     val canoe = def.stringId.removePrefix("canoe_station_")
-    player["canoe_state_${location}"] = "float_$canoe"
+    player["canoe_state_$location"] = "float_$canoe"
     player.anim("canoe_push")
     player.face(Direction.cardinal[target.rotation])
     target.anim("canoe_fall")
     player.sound("canoe_roll")
     delay(2)
-    player["canoe_state_${location}"] = "water_$canoe"
+    player["canoe_state_$location"] = "water_$canoe"
 }
 
 val stations: CanoeDefinitions by inject()
@@ -186,9 +187,9 @@ objectOperate("Paddle Canoe", "canoe_station_water_*") {
     canoeTravel(canoe, station, destination)
     val definition = stations.get(destination)
     player.tele(definition.destination)
-    player["canoe_state_${station}"] = "tree"
-    player["canoe_state_${destination}"] = "tree"
-    objects.add("a_sinking_canoe_${canoe}", tile = definition.sink, rotation = 1, ticks = 3)
+    player["canoe_state_$station"] = "tree"
+    player["canoe_state_$destination"] = "tree"
+    objects.add("a_sinking_canoe_$canoe", tile = definition.sink, rotation = 1, ticks = 3)
     player.sound("canoe_sink")
     player.message(definition.message, type = ChatType.Filter)
 }

@@ -27,7 +27,7 @@ internal class ClientScriptEncoderTest {
             instructions = intArrayOf(3, 54, 54, 54, 0, 21),
             stringOperands = arrayOf("one", null, null, null, null, null),
             longOperands = longArrayOf(0, 1, 2, 3, 0, 0),
-            intOperands = intArrayOf(0, 0, 0, 0, 300, 2)
+            intOperands = intArrayOf(0, 0, 0, 0, 300, 2),
         )
         val revision667 = true
         val encoder = ClientScriptEncoder(revision667)
@@ -59,7 +59,7 @@ internal class ClientScriptEncoderTest {
             name = "client-script",
             instructions = intArrayOf(3, 0, 21),
             stringOperands = arrayOf("one", null, null),
-            intOperands = intArrayOf(0, 300, 2)
+            intOperands = intArrayOf(0, 300, 2),
         )
         val revision667 = false
         val encoder = ClientScriptEncoder(revision667)

@@ -25,16 +25,12 @@ class Levels(
     /**
      * Current [skill] [level] as a percentage of [getMax] between 0-[fraction]
      */
-    fun getPercent(skill: Skill, level: Int = get(skill), fraction: Double = 100.0): Double {
-        return (level / maximumLevel(skill).toDouble()) * fraction
-    }
+    fun getPercent(skill: Skill, level: Int = get(skill), fraction: Double = 100.0): Double = (level / maximumLevel(skill).toDouble()) * fraction
 
     /**
      * Get current [skill] level
      */
-    fun get(skill: Skill): Int {
-        return levels[skill.ordinal]
-    }
+    fun get(skill: Skill): Int = levels[skill.ordinal]
 
     /**
      * Set current [skill] [level]
@@ -55,16 +51,12 @@ class Levels(
     /**
      * Get max [Experience] [skill] level
      */
-    fun getMax(skill: Skill): Int {
-        return level.getMaxLevel(skill)
-    }
+    fun getMax(skill: Skill): Int = level.getMaxLevel(skill)
 
     /**
      * Get the difference between current [skill] level and max [skill] level
      */
-    fun getOffset(skill: Skill): Int {
-        return get(skill) - getMax(skill)
-    }
+    fun getOffset(skill: Skill): Int = get(skill) - getMax(skill)
 
     /**
      * Remove all boosts and drains
@@ -96,7 +88,7 @@ class Levels(
         amount: Int = 0,
         multiplier: Double = 0.0,
         stack: Boolean = false,
-        maximum: Int = if (skill == Skill.Constitution) MAXIMUM_CONSTITUTION_LEVEL else MAXIMUM_BOOST_LEVEL
+        maximum: Int = if (skill == Skill.Constitution) MAXIMUM_CONSTITUTION_LEVEL else MAXIMUM_BOOST_LEVEL,
     ): Int {
         val offset = multiply(minimumLevel(skill), multiplier)
         val boost = calculateAmount(amount, offset)
@@ -112,7 +104,8 @@ class Levels(
     fun drain(skill: Skill, amount: Int = 0, multiplier: Double = 0.0, stack: Boolean = true): Int {
         val offset = multiply(maximumLevel(skill), multiplier)
         val drain = calculateAmount(amount, offset)
-        val minimumDrain = if (stack) 0 else (getMax(skill) - drain).coerceAtLeast(0)
+        val minimum = if (skill == Skill.Constitution || skill == Skill.Prayer || skill == Skill.Summoning) 0 else 1
+        val minimumDrain = if (stack) minimum else (getMax(skill) - drain).coerceAtLeast(minimum)
         return modify(skill, -drain, minimumDrain, get(skill))
     }
 

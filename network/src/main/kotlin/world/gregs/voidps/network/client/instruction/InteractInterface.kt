@@ -7,5 +7,5 @@ data class InteractInterface(
     val componentId: Int,
     val itemId: Int,
     val itemSlot: Int,
-    val option: Int
+    val option: Int,
 ) : Instruction

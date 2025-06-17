@@ -87,7 +87,7 @@ object Main {
             modules(
                 engineModule(configFiles),
                 gameModule(configFiles),
-                cache(cache, configFiles)
+                cache(cache, configFiles),
             )
         }
         ContentLoader.load()

@@ -1,9 +1,9 @@
 package content.bot.interact.navigation
 
+import content.bot.Bot
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull
-import content.bot.Bot
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -36,7 +36,7 @@ suspend fun Bot.awaitInteract(timeout: Int = -1) {
 }
 
 suspend inline fun <reified T : Entity, reified E : Event> Bot.await(
-    noinline condition: E.(T) -> Boolean = { true }
+    noinline condition: E.(T) -> Boolean = { true },
 ) {
     suspendCancellableCoroutine { cont ->
         player.getOrPut("bot_suspensions") { mutableMapOf<KClass<E>, Pair<E.(T) -> Boolean, CancellableContinuation<Unit>>>() }[E::class] = condition to cont

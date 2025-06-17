@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.GameLoop
  */
 data class Timer(
     val name: String,
-    private val interval: Int
+    private val interval: Int,
 ) : Comparable<Timer> {
     var nextTick: Int = GameLoop.tick + interval
         private set
@@ -23,7 +23,5 @@ data class Timer(
         nextTick = GameLoop.tick + interval
     }
 
-    override fun compareTo(other: Timer): Int {
-        return nextTick.compareTo(other.nextTick)
-    }
+    override fun compareTo(other: Timer): Int = nextTick.compareTo(other.nextTick)
 }

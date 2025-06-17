@@ -45,13 +45,9 @@ internal class PlayerAccountLoaderTest : KoinMock() {
             override fun save(accounts: List<PlayerSave>) {
             }
 
-            override fun exists(accountName: String): Boolean {
-                return false
-            }
+            override fun exists(accountName: String): Boolean = false
 
-            override fun load(accountName: String): PlayerSave? {
-                return playerSave
-            }
+            override fun load(accountName: String): PlayerSave? = playerSave
         }
         saveQueue = SaveQueue(storage, scope = TestScope())
         definitions = AccountDefinitions(mutableMapOf("name" to AccountDefinition("name", "oldName", "", "hash")))
@@ -115,5 +111,4 @@ internal class PlayerAccountLoaderTest : KoinMock() {
             client.disconnect(Response.WORLD_FULL)
         }
     }
-
 }

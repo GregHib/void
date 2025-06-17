@@ -41,5 +41,4 @@ class PasswordManager(private val account: AccountLoader) {
         }
         return BCrypt.hashpw(password, BCrypt.gensalt())
     }
-
 }

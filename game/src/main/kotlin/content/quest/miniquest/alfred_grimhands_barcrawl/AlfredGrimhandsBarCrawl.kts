@@ -1,12 +1,12 @@
 package content.quest.miniquest.alfred_grimhands_barcrawl
 
+import content.entity.player.inv.inventoryItem
+import content.quest.messageScroll
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
-import content.quest.messageScroll
-import content.entity.player.inv.inventoryItem
+import world.gregs.voidps.engine.event.Context
 
 inventoryItem("Read", "barcrawl_card") {
     val signatures: List<String> = player["barcrawl_signatures", emptyList()]
@@ -28,7 +28,7 @@ inventoryItem("Read", "barcrawl_card") {
             line("Karamja Spirits Bar", "ape_bite_liqueur"),
             line("Rising Sun Inn", "hand_of_death_cocktail"),
             line("Rusty Anchor Inn", "black_skull_ale"),
-        )
+        ),
     )
 }
 

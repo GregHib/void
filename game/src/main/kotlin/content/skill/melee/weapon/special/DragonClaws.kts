@@ -1,11 +1,11 @@
 package content.skill.melee.weapon.special
 
-import world.gregs.voidps.type.random
 import content.entity.combat.hit.Damage
 import content.entity.combat.hit.Hit
 import content.entity.combat.hit.hit
-import content.skill.melee.weapon.weapon
 import content.entity.player.combat.special.specialAttack
+import content.skill.melee.weapon.weapon
+import world.gregs.voidps.type.random
 
 specialAttack("slice_and_dice") { player ->
     player.anim("${id}_special")

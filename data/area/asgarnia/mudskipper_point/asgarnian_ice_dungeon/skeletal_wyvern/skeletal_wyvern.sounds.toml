@@ -1,0 +1,15 @@
+[wyvern_death]
+id = 770
+
+[wyvern_attack]
+id = 771
+
+[wyvern_tail_whip]
+id = 773
+
+[wyvern_ice_breath]
+id = 586
+
+[wyvern_ranged]
+id = 772
+

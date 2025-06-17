@@ -8,13 +8,14 @@ max_hit_melee = 1
 style = "stab"
 categories = ["ducks", "birds"]
 respawn_delay = 25
-swim = true
 height = 10
+collision = "sea"
 examine = "Quackers."
 
 [crow]
 id = 1754
 categories = ["birds"]
+collision = "sky"
 examine = "A farmer's enemy."
 
 [crow_2]
@@ -33,13 +34,11 @@ id = 2252
 clone = "duck_swim"
 id = 2693
 wander_radius = 8
-swim = true
 examine = "She quackers."
 
 [duckling]
 clone = "duck_swim"
 id = 2694
-swim = true
 wander_radius = 6
 examine = "Mini quackers."
 
@@ -59,9 +58,9 @@ examine = "It quacks like a duck."
 
 [ducklings]
 id = 6112
-swim = true
 categories = ["ducks", "birds"]
 wander_radius = 6
+collision = "sea"
 examine = "Aww, cute."
 
 [duck_grey_walk]
@@ -74,6 +73,7 @@ examine = "Waddle waddle waddle quack."
 id = 7031
 categories = ["birds"]
 wander_radius = 3
+collision = "sky"
 examine = "An ogre snack with wings."
 
 [wimpy_bird_2]

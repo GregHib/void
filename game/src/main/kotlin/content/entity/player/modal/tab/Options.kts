@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.playerSpawn
 
 interfaceOption("Graphics Settings", "graphics", "options") {
     if (player.hasMenuOpen()) {
@@ -19,4 +20,12 @@ interfaceOption("Audio Settings", "audio", "options") {
         return@interfaceOption
     }
     player.open("audio_options")
+}
+
+playerSpawn { player ->
+    player.sendVariable("accept_aid")
+}
+
+interfaceOption("Toggle Accept Aid", "aid", "options") {
+    player.toggle("accept_aid")
 }

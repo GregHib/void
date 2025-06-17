@@ -31,7 +31,7 @@ class ItemExchangeLimits : Pipeline.Modifier<Extras> {
             println("Dumped pages in ${System.currentTimeMillis() - start} ms")
         }
 
-        //Loads
+        // Loads
         val currentWiki = Wiki.load(dir)
 
         // Get pages with explicit ids

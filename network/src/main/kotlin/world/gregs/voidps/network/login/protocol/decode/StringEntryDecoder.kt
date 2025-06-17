@@ -8,8 +8,5 @@ import world.gregs.voidps.network.login.protocol.readString
 
 class StringEntryDecoder : Decoder(BYTE) {
 
-    override suspend fun decode(packet: ByteReadPacket): Instruction {
-        return EnterString(packet.readString())
-    }
-
+    override suspend fun decode(packet: ByteReadPacket): Instruction = EnterString(packet.readString())
 }

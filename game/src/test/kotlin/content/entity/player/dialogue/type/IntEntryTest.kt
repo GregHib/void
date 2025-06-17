@@ -34,5 +34,4 @@ internal class IntEntryTest : DialogueTest() {
         suspend.resume(123)
         assertEquals(123, result)
     }
-
 }

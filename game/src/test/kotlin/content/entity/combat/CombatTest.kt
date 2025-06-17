@@ -29,6 +29,12 @@ internal class CombatTest : WorldTest() {
     fun setup() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
+            override fun nextInt(from: Int, until: Int): Int {
+                if (until == 128 || until == 1) { // Drops
+                    return from
+                }
+                return until
+            }
         })
     }
 
@@ -74,15 +80,14 @@ internal class CombatTest : WorldTest() {
         assertTrue(player.experience.get(Skill.Attack) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Strength) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
+        println(floorItems[tile.zone])
         assertTrue(floorItems[tile].any { it.id == "bones" })
     }
 
     @Test
     fun `Kill rat with range`() {
         setRandom(object : FakeRandom() {
-            override fun nextInt(from: Int, until: Int): Int {
-                return until / 2
-            }
+            override fun nextInt(from: Int, until: Int): Int = until / 2
 
             override fun nextBits(bitCount: Int) = 100
         })
@@ -144,11 +149,12 @@ internal class CombatTest : WorldTest() {
         player.levels.set(Skill.Constitution, 990)
         player.levels.set(Skill.Prayer, 99)
         val npc = createNPC("rat", emptyTile.addY(1))
-        npc.levels.link(npc, object : Levels.Level {
-            override fun getMaxLevel(skill: Skill): Int {
-                return if (skill == Skill.Constitution) 10000 else 1
-            }
-        })
+        npc.levels.link(
+            npc,
+            object : Levels.Level {
+                override fun getMaxLevel(skill: Skill): Int = if (skill == Skill.Constitution) 10000 else 1
+            },
+        )
         npc.levels.clear()
 
         player.interfaceOption("prayer_list", "regular_prayers", "Activate", slot = 19, optionIndex = 0)

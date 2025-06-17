@@ -36,9 +36,9 @@ object StructDefinitions {
         for (param in set.sorted()) {
             val files = map[param.toInt()]
             if (files != null) {
-                println("    const val PARAM_${param} = ${param}L // ${files.joinToString(", ") { "${it}.cs2" }}")
+                println("    const val PARAM_$param = ${param}L // ${files.joinToString(", ") { "$it.cs2" }}")
             } else {
-                println("    const val PARAM_${param} = ${param}L")
+                println("    const val PARAM_$param = ${param}L")
             }
         }
     }

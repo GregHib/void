@@ -1,13 +1,13 @@
 package content.area.kandarin.barbarian_outpost
 
+import content.entity.obj.door.enterDoor
+import content.quest.questCompleted
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
-import content.quest.questCompleted
-import content.entity.obj.door.enterDoor
 
 val npcs: NPCs by inject()
 

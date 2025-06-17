@@ -6,18 +6,14 @@ interface Variable {
 
     fun sendVariable(key: String) = variables.send(key)
 
-    fun addVarbit(key: String, value: Any, refresh: Boolean = true) =
-        variables.bits.set(key, value, refresh)
+    fun addVarbit(key: String, value: Any, refresh: Boolean = true) = variables.bits.set(key, value, refresh)
 
-    fun removeVarbit(key: String, value: Any, refresh: Boolean = true) =
-        variables.bits.remove(key, value, refresh)
+    fun removeVarbit(key: String, value: Any, refresh: Boolean = true) = variables.bits.remove(key, value, refresh)
 
     @Suppress("UNCHECKED_CAST")
-    fun <T : Any> remove(key: String, refresh: Boolean = true) =
-        variables.clear(key, refresh) as? T
+    fun <T : Any> remove(key: String, refresh: Boolean = true) = variables.clear(key, refresh) as? T
 
-    fun clear(key: String, refresh: Boolean = true) =
-        variables.clear(key, refresh)
+    fun clear(key: String, refresh: Boolean = true) = variables.clear(key, refresh)
 
     fun toggle(key: String, refresh: Boolean = true): Boolean {
         val value = variables.get(key, false)
@@ -41,23 +37,13 @@ interface Variable {
 
     operator fun set(key: String, value: Any) = variables.set(key, value)
 
-    fun containsVarbit(key: String, id: Any): Boolean {
-        return variables.bits.contains(key, id)
-    }
+    fun containsVarbit(key: String, id: Any): Boolean = variables.bits.contains(key, id)
 
-    fun contains(key: String): Boolean {
-        return variables.contains(key)
-    }
+    fun contains(key: String): Boolean = variables.contains(key)
 
-    operator fun <T : Any> get(key: String): T? {
-        return variables.get(key)
-    }
+    operator fun <T : Any> get(key: String): T? = variables.get(key)
 
-    operator fun <T : Any> get(key: String, default: T): T {
-        return variables.get(key, default)
-    }
+    operator fun <T : Any> get(key: String, default: T): T = variables.get(key, default)
 
-    fun <T : Any> getOrPut(key: String, block: () -> T): T {
-        return variables.getOrPut(key, block)
-    }
+    fun <T : Any> getOrPut(key: String, block: () -> T): T = variables.getOrPut(key, block)
 }

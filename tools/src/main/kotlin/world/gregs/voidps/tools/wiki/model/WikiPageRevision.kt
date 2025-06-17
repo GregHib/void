@@ -10,7 +10,7 @@ data class WikiPageRevision(
     val id: Long,
     val parentId: Int,
     val timestamp: LocalDate,
-    val text: String
+    val text: String,
 ) {
 
     companion object {
@@ -22,7 +22,7 @@ data class WikiPageRevision(
                 id = children.first { it.nodeName == "id" }.textContent.toLong(),
                 parentId = children.firstOrNull { it.nodeName == "parentid" }?.textContent?.toInt() ?: -1,
                 timestamp = LocalDate.parse(children.first { it.nodeName == "timestamp" }.textContent, inputFormatter),
-                text = children.first { it.nodeName == "text" }.textContent
+                text = children.first { it.nodeName == "text" }.textContent,
             )
         }
     }

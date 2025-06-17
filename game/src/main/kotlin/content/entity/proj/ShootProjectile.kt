@@ -1,5 +1,8 @@
 package content.entity.proj
 
+import content.entity.proj.ShootProjectile.DEFAULT_CURVE
+import content.entity.proj.ShootProjectile.DEFAULT_DELAY
+import content.entity.proj.ShootProjectile.DEFAULT_OFFSET
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
@@ -10,9 +13,6 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.encode.zone.ProjectileAddition
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile
-import content.entity.proj.ShootProjectile.DEFAULT_CURVE
-import content.entity.proj.ShootProjectile.DEFAULT_DELAY
-import content.entity.proj.ShootProjectile.DEFAULT_OFFSET
 
 object ShootProjectile {
     const val DEFAULT_FLIGHT = 40
@@ -31,8 +31,9 @@ fun Tile.shoot(
     endHeight: Int? = null,
     curve: Int? = null,
     offset: Int? = null,
-    width: Int = 1
-) = projectile(id = id,
+    width: Int = 1,
+) = projectile(
+    id = id,
     target = target,
     flightTime = flightTime,
     delay = delay,
@@ -43,7 +44,8 @@ fun Tile.shoot(
     targetHeight = target.height,
     targetTile = target.tile,
     sourceTile = this,
-    width = width)
+    width = width,
+)
 
 fun Tile.shoot(
     id: String,
@@ -53,8 +55,9 @@ fun Tile.shoot(
     height: Int? = null,
     endHeight: Int? = null,
     curve: Int? = null,
-    offset: Int? = null
-) = projectile(id = id,
+    offset: Int? = null,
+) = projectile(
+    id = id,
     flightTime = flightTime,
     delay = delay,
     startHeight = height,
@@ -62,7 +65,8 @@ fun Tile.shoot(
     curve = curve,
     offset = offset,
     targetTile = tile,
-    sourceTile = this)
+    sourceTile = this,
+)
 
 fun Character.shoot(
     id: String,
@@ -73,8 +77,9 @@ fun Character.shoot(
     endHeight: Int? = null,
     curve: Int? = null,
     offset: Int? = null,
-    width: Int = size
-) = projectile(id = id,
+    width: Int = size,
+) = projectile(
+    id = id,
     target = target,
     flightTime = flightTime,
     delay = delay,
@@ -86,7 +91,8 @@ fun Character.shoot(
     sourceHeight = this.height,
     targetHeight = target.height,
     targetTile = target.tile,
-    sourceTile = tile)
+    sourceTile = tile,
+)
 
 fun Character.shoot(
     id: String,
@@ -96,8 +102,9 @@ fun Character.shoot(
     height: Int? = null,
     endHeight: Int? = null,
     curve: Int? = null,
-    offset: Int? = null
-) = projectile(id = id,
+    offset: Int? = null,
+) = projectile(
+    id = id,
     targetTile = tile,
     delay = delay,
     flightTime = flightTime,
@@ -107,7 +114,8 @@ fun Character.shoot(
     offset = offset,
     width = size,
     sourceHeight = this.height,
-    sourceTile = this.tile)
+    sourceTile = this.tile,
+)
 
 private fun projectile(
     id: String,
@@ -122,8 +130,8 @@ private fun projectile(
     target: Character? = null,
     width: Int = 1,
     sourceHeight: Int = 0,
-    targetHeight: Int = 0
-) : Int {
+    targetHeight: Int = 0,
+): Int {
     val definition = get<GraphicDefinitions>().getOrNull(id) ?: return -1
     val time = getFlightTime(definition, sourceTile, targetTile, flightTime)
     if (time == -1) {
@@ -140,11 +148,10 @@ private fun projectile(
         startHeight = startHeight ?: (sourceHeight + definition["height", 0]),
         endHeight = endHeight ?: (targetHeight + definition["end_height", 0]),
         curve = curve ?: definition["curve", DEFAULT_CURVE],
-        offset = (width * 64) + (offset ?: definition["offset", DEFAULT_OFFSET])
+        offset = (width * 64) + (offset ?: definition["offset", DEFAULT_OFFSET]),
     )
     return time + startDelay
 }
-
 
 private fun sendProjectile(
     id: String,
@@ -156,7 +163,7 @@ private fun sendProjectile(
     startHeight: Int = ShootProjectile.DEFAULT_HEIGHT,
     endHeight: Int = startHeight,
     curve: Int = DEFAULT_CURVE,
-    offset: Int = DEFAULT_OFFSET
+    offset: Int = DEFAULT_OFFSET,
 ) {
     val batches: ZoneBatchUpdates = get()
     val definitions: GraphicDefinitions = get()
@@ -164,18 +171,22 @@ private fun sendProjectile(
     if (target is Player) {
         index = -index
     }
-    batches.add(tile.zone, ProjectileAddition(
-        tile = tile.id,
-        id = definitions.get(id).id,
-        index = index,
-        directionX = direction.x,
-        directionY = direction.y,
-        startHeight = startHeight,
-        endHeight = endHeight,
-        delay = delay,
-        flightTime = flightTime,
-        curve = curve,
-        offset = offset))
+    batches.add(
+        tile.zone,
+        ProjectileAddition(
+            tile = tile.id,
+            id = definitions.get(id).id,
+            index = index,
+            directionX = direction.x,
+            directionY = direction.y,
+            startHeight = startHeight,
+            endHeight = endHeight,
+            delay = delay,
+            flightTime = flightTime,
+            curve = curve,
+            offset = offset,
+        ),
+    )
 }
 
 private fun getFlightTime(definition: GraphicDefinition, tile: Tile, target: Tile, flightTime: Int?): Int {

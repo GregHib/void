@@ -6,7 +6,7 @@ import world.gregs.voidps.type.Tile
 
 class ConditionalStrategy(
     val graph: NavigationGraph,
-    val block: (AreaDefinition) -> Boolean
+    val block: (AreaDefinition) -> Boolean,
 ) : NodeTargetStrategy() {
 
     var area: AreaDefinition? = null

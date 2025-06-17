@@ -13,7 +13,7 @@ import kotlin.coroutines.resume
 
 class ActionQueue(
     private val character: Character,
-    private val scope: CoroutineScope = CoroutineScope(Dispatchers.Unconfined)
+    private val scope: CoroutineScope = CoroutineScope(Dispatchers.Unconfined),
 ) {
     private val errorHandler = CoroutineExceptionHandler { _, throwable ->
         if (throwable !is CancellationException) {
@@ -27,9 +27,7 @@ class ActionQueue(
 
     fun isEmpty() = queue.isEmpty() && pending.isEmpty()
 
-    fun add(action: Action<*>): Boolean {
-        return pending.add(action)
-    }
+    fun add(action: Action<*>): Boolean = pending.add(action)
 
     fun tick() {
         queuePending()
@@ -75,9 +73,7 @@ class ActionQueue(
         }
     }
 
-    fun clear(name: String): Boolean {
-        return queue.removeIf { it.name == name } || pending.removeIf { it.name == name }
-    }
+    fun clear(name: String): Boolean = queue.removeIf { it.name == name } || pending.removeIf { it.name == name }
 
     fun clear() {
         queue.removeIf {
@@ -152,7 +148,7 @@ fun <C : Character> C.softQueue(
     initialDelay: Int = 0,
     behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
     onCancel: (() -> Unit)? = { clearAnim() },
-    block: suspend Action<C>.() -> Unit
+    block: suspend Action<C>.() -> Unit,
 ) {
     queue.add(Action(this, name, ActionPriority.Soft, initialDelay, behaviour, onCancel = onCancel, action = block as suspend Action<*>.() -> Unit))
 }
@@ -162,7 +158,7 @@ fun <C : Character> C.weakQueue(
     initialDelay: Int = 0,
     behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
     onCancel: (() -> Unit)? = { clearAnim() },
-    block: suspend Action<C>.() -> Unit
+    block: suspend Action<C>.() -> Unit,
 ) {
     queue.add(Action(this, name, ActionPriority.Weak, initialDelay, behaviour, onCancel = onCancel, action = block as suspend Action<*>.() -> Unit))
 }
@@ -172,7 +168,7 @@ fun <C : Character> C.strongQueue(
     initialDelay: Int = 0,
     behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
     onCancel: (() -> Unit)? = { clearAnim() },
-    block: suspend Action<C>.() -> Unit
+    block: suspend Action<C>.() -> Unit,
 ) {
     queue.add(Action(this, name, ActionPriority.Strong, initialDelay, behaviour, onCancel = onCancel, action = block as suspend Action<*>.() -> Unit))
 }

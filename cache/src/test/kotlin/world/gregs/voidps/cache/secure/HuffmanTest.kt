@@ -22,11 +22,11 @@ internal class HuffmanTest {
 
     @Test
     fun `A short string`() {
-        //Given
+        // Given
         build("Message")
-        //When
+        // When
         result = huffman.compress(message)
-        //Then
+        // Then
         assertUncompressedSize(7)
         assertCompressedSize(5)
         assertDecompressed()
@@ -34,11 +34,11 @@ internal class HuffmanTest {
 
     @Test
     fun `A long string`() {
-        //Given
+        // Given
         build("This is a string of substantial size, perhaps enough character overlap for some decent compression")
-        //When
+        // When
         result = huffman.compress(message)
-        //Then
+        // Then
         assertUncompressedSize(98)
         assertCompressedSize(54)
         assertDecompressed()
@@ -46,11 +46,11 @@ internal class HuffmanTest {
 
     @Test
     fun `Full Alphabet`() {
-        //Given
+        // Given
         build("abcdefghijklmnopqrstuvwxyz")
-        //When
+        // When
         result = huffman.compress(message)
-        //Then
+        // Then
         assertUncompressedSize(26)
         assertCompressedSize(20)
         assertDecompressed()

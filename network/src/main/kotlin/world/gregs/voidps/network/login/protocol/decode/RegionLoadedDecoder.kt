@@ -7,8 +7,5 @@ import world.gregs.voidps.network.login.protocol.Decoder
 
 class RegionLoadedDecoder : Decoder(0) {
 
-    override suspend fun decode(packet: ByteReadPacket): Instruction {
-        return FinishRegionLoad
-    }
-
+    override suspend fun decode(packet: ByteReadPacket): Instruction = FinishRegionLoad
 }

@@ -10,5 +10,4 @@ class ReflectionResponseDecoder : Decoder(BYTE) {
         packet.readByte()
         return null
     }
-
 }

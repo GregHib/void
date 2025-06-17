@@ -42,7 +42,7 @@ fun npcMaxLevelChange(npc: String = "*", vararg skills: Skill, from: Int? = null
         Events.handle("npc_max_level_change", "*", npc, from ?: "*", to ?: "*", handler = handler)
     } else {
         for (skill in skills) {
-            Events.handle("npc_max_level_change", skill, npc, from ?: "*", to ?: "*",  handler = handler)
+            Events.handle("npc_max_level_change", skill, npc, from ?: "*", to ?: "*", handler = handler)
         }
     }
 }

@@ -64,5 +64,5 @@ fun Player.openBook(name: String) {
     this["book"] = name
     this["book_page"] = 0
     val type = get<Books>().type(name)
-    open(if (type == "normal") "book" else "book_${type}")
+    open(if (type == "normal") "book" else "book_$type")
 }

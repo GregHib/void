@@ -3,7 +3,7 @@
 <a href="https://github.com/GregHib/void">
   <img src="https://i.imgur.com/X0OdMTf.png" alt="void">
 </a>
-  
+
 [![Release](https://github.com/GregHib/void/actions/workflows/create_release.yml/badge.svg)](https://github.com/GregHib/void/actions/workflows/create_release.yml)
 [![Docker](https://img.shields.io/badge/Docker-latest-blue.svg?logo=docker)](https://hub.docker.com/r/greghib/void)
 [![Codecov](https://codecov.io/gh/GregHib/void/graph/badge.svg?token=7W6PTSHUTT)](https://codecov.io/gh/GregHib/void)
@@ -26,7 +26,6 @@
 
 </div>
 
-
 ## Features
 
 * **High-performance**: Capable of supporting thousands of concurrent players.
@@ -36,15 +35,13 @@
 * **Lightweight**: Memory usage under 300MB in low-memory mode.
 * **Customisable**: Personalise your gameplay by tweaking settings in the `game.properties` file or modifying the code to suit your preferences.
 
-
-
 ## Quick setup
 
 1. Make sure you have [java 19 or above installed](https://adoptium.net/temurin/releases/?package=jre). (`java --version` on command line)
 2. Extract the [latest void.zip released bundle](https://github.com/GregHib/void/releases) into a directory.
 3. Extract the [latest pre-modified game files cache.zip](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into `/void/data/cache/`.
 4. Run either the `run-server.bat` on Windows, or `run-server.sh` on Linux.
-    
+
    You should see `[Main] - Void loaded in 2349ms` to show the server is up and running correctly.
 
    > Ctrl + C to exit and shutdown the server when running from a command line terminal.
@@ -53,7 +50,6 @@
 
 > [!NOTE]
 > For common problems see the [Troubleshooting Guide](https://github.com/GregHib/void/wiki/Troubleshooting).
-
 
 ## Development
 
@@ -68,7 +64,7 @@ Selecting `git` version control and entering the void project URL Found under th
 - `https://github.com/GregHib/void.git` if you don't have SSH authentication.
 
 > [!NOTE]
-> When git is not installed it will display an error and the option to "Download and install", click this and retry the previous step. 
+> When git is not installed it will display an error and the option to "Download and install", click this and retry the previous step.
 > Click "Trust Project" if also asked.
 
 Press "clone" and after the download is complete the project will be opened for you.
@@ -95,19 +91,22 @@ Once the server is up and running; download one of the [prebuilt client.jars](ht
 
 Don't forget to check out our [Contributing guidelines](./CONTRIBUTING.md) before submitting your first pull request!
 
+Formatting is done with spotless but should align with IntelliJ's default formatting. To be certain run:
+
+```bash
+./gradlew spotlessApply
+```
+
 > [!TIP]
 > There are instructions on how to [build your own client](https://github.com/GregHib/void/wiki/client-building) and [build your own cache](https://github.com/GregHib/void/wiki/cache-building)!
-
 
 ## Documentation
 
 For further guides on how to write content please refer to the [Void Wiki](https://github.com/GregHib/void/wiki/).
 
-
 ## Bugs
 
 If you run into any problems or find any bugs please report them by creating a [New Issue on our Issues Page](https://github.com/GregHib/void/issues) describing the problem, so it can be fixed.
-
 
 ## Thanks to
 

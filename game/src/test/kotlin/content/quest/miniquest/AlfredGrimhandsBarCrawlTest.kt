@@ -1,5 +1,9 @@
 package content.quest.miniquest
 
+import WorldTest
+import dialogueOption
+import npcOption
+import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -8,10 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
-import WorldTest
-import dialogueOption
-import npcOption
-import objectOption
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
@@ -56,7 +56,6 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "uncle_humphreys_gutrot"))
 
-
         // Blurberry's bar
         player.tele(2480, 3490, 1)
         bartender = findNpc(player, "blurberry")
@@ -72,7 +71,6 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "fire_toad_blast"))
 
-
         // Blurberry's bar
         player.tele(2480, 3490, 1)
         bartender = findNpc(player, "blurberry")
@@ -87,7 +85,6 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "fire_toad_blast"))
 
-
         // Blurberry's bar
         player.tele(2480, 3490, 1)
         bartender = findNpc(player, "blurberry")
@@ -101,7 +98,6 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         assertEquals(940, player.inventory.count("coins"))
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "fire_toad_blast"))
-
 
         // Dead man's chest
         player.tele(2794, 3155, 0)
@@ -115,7 +111,6 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         assertEquals(925, player.inventory.count("coins"))
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "supergrog"))
-
 
         // Dragon Inn
         player.tele(2556, 3079)
@@ -132,7 +127,6 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "fire_brandy"))
 
-
         // Flying Horse Inn
         player.tele(2575, 3319)
         bartender = findNpc(player, "bartender_flying_horse_inn")
@@ -148,7 +142,6 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "heart_stopper"))
 
-
         // Forester's Arms
         player.tele(2691, 3493)
         bartender = findNpc(player, "bartender_foresters_arms")
@@ -161,7 +154,6 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         assertEquals(887, player.inventory.count("coins"))
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "liverbane_ale"))
-
 
         // Jolly Boar Inn
         player.tele(3278, 3488)
@@ -177,7 +169,6 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         player.dialogueOption("continue")
         assertTrue(player.containsVarbit("barcrawl_signatures", "olde_suspiciouse"))
 
-
         // Karamja Spirits Bar
         player.tele(2927, 3146)
         bartender = findNpc(player, "bartender_zambo")
@@ -190,7 +181,6 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         assertEquals(870, player.inventory.count("coins"))
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "ape_bite_liqueur"))
-
 
         // Rising Sun Inn
         player.tele(2957, 3370)
@@ -206,7 +196,6 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "hand_of_death_cocktail"))
 
-
         // Rusty Anchor
         player.tele(3045, 3256)
         bartender = findNpc(player, "bartender_rusty_anchor")
@@ -220,7 +209,6 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         assertEquals(792, player.inventory.count("coins"))
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "black_skull_ale"))
-
 
         // Return to guard
         player.tele(2542, 3569)
@@ -254,5 +242,4 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
     }
 
     private fun findNpc(player: Player, id: String) = npcs[player.tile.region.toLevel(player.tile.level)].first { it.id == id }
-
 }

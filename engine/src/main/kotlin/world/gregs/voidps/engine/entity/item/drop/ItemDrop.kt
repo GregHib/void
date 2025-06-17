@@ -13,7 +13,7 @@ data class ItemDrop(
     val id: String,
     val amount: IntRange = 1..1,
     override val chance: Int = 1,
-    override val predicate: ((Player) -> Boolean)? = null
+    override val predicate: ((Player) -> Boolean)? = null,
 ) : Drop {
 
     init {

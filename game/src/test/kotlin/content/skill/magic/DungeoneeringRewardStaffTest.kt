@@ -1,13 +1,13 @@
 package content.skill.magic
 
+import WorldTest
+import itemOnItem
+import itemOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.charge
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
-import WorldTest
-import itemOnItem
-import itemOption
 import kotlin.test.assertEquals
 
 abstract class DungeoneeringRewardStaffTest : WorldTest() {
@@ -83,7 +83,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
         val player = createPlayer()
         player.inventory.add(staff)
         player.inventory.add("shark", 27)
-        player.inventory.charge(player,0, 10)
+        player.inventory.charge(player, 0, 10)
 
         player.itemOption("Empty", staff)
 
@@ -102,7 +102,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
         player.itemOption("Empty", staff)
 
         assertEquals(15, player.inventory.count(rune))
-        assertEquals(0, player.inventory.charges(player,  0))
+        assertEquals(0, player.inventory.charges(player, 0))
     }
 
     @Test

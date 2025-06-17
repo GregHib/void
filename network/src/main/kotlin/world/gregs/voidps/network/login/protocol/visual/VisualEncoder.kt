@@ -15,5 +15,4 @@ abstract class VisualEncoder<V : Visuals>(
     }
 
     abstract fun encode(writer: Writer, visuals: V)
-
 }

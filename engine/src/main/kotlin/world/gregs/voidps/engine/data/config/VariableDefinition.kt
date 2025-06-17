@@ -18,16 +18,11 @@ open class VariableDefinition internal constructor(
     val transmit: Boolean,
 ) : Definition {
 
-    class VarbitDefinition(id: Int, values: VariableValues, default: Any?, persistent: Boolean, transmit: Boolean) :
-        VariableDefinition(id, values, default ?: values.default(), persistent, transmit)
-    class VarpDefinition(id: Int, values: VariableValues, default: Any?, persistent: Boolean, transmit: Boolean) :
-        VariableDefinition(id, values, default ?: values.default(), persistent, transmit)
-    class VarcDefinition(id: Int, values: VariableValues, default: Any?, persistent: Boolean, transmit: Boolean) :
-        VariableDefinition(id, values, default ?: values.default(), persistent, transmit)
-    class VarcStrDefinition(id: Int, default: Any?, persistent: Boolean, transmit: Boolean) :
-        VariableDefinition(id, StringValues, default ?: StringValues.default(), persistent, transmit)
-    class CustomVariableDefinition(values: VariableValues, default: Any?, persistent: Boolean) :
-        VariableDefinition(-1, values, default ?: values.default(), persistent, transmit = false)
+    class VarbitDefinition(id: Int, values: VariableValues, default: Any?, persistent: Boolean, transmit: Boolean) : VariableDefinition(id, values, default ?: values.default(), persistent, transmit)
+    class VarpDefinition(id: Int, values: VariableValues, default: Any?, persistent: Boolean, transmit: Boolean) : VariableDefinition(id, values, default ?: values.default(), persistent, transmit)
+    class VarcDefinition(id: Int, values: VariableValues, default: Any?, persistent: Boolean, transmit: Boolean) : VariableDefinition(id, values, default ?: values.default(), persistent, transmit)
+    class VarcStrDefinition(id: Int, default: Any?, persistent: Boolean, transmit: Boolean) : VariableDefinition(id, StringValues, default ?: StringValues.default(), persistent, transmit)
+    class CustomVariableDefinition(values: VariableValues, default: Any?, persistent: Boolean) : VariableDefinition(-1, values, default ?: values.default(), persistent, transmit = false)
 
     fun send(client: Client, value: Any) {
         try {

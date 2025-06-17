@@ -27,7 +27,7 @@ class LoginServer(
     private val modulus: BigInteger,
     private val private: BigInteger,
     private val accounts: AccountLoader,
-    private val passwordManager: PasswordManager = PasswordManager(accounts)
+    private val passwordManager: PasswordManager = PasswordManager(accounts),
 ) : Server {
 
     internal val online: MutableSet<String> = ConcurrentHashMap.newKeySet()

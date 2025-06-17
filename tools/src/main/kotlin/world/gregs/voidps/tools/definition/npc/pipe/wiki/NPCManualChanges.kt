@@ -28,9 +28,7 @@ class NPCManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
         return content
     }
 
-    private fun getSuffixNumber(text: String, defaultValue: Int): Int {
-        return numberRegex.find(text)?.groupValues?.last()?.toIntOrNull() ?: defaultValue
-    }
+    private fun getSuffixNumber(text: String, defaultValue: Int): Int = numberRegex.find(text)?.groupValues?.last()?.toIntOrNull() ?: defaultValue
 
     private val exceptions = setOf("master")
 

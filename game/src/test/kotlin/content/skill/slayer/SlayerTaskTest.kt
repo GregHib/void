@@ -77,6 +77,7 @@ class SlayerTaskTest : WorldTest() {
     fun `Banshees drain stats without earmuffs`() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = bitCount
+            override fun nextInt(from: Int, until: Int): Int = until
         })
         val player = createPlayer(Tile(3231, 3298))
         player.levels.set(Skill.Attack, 99)
@@ -192,5 +193,4 @@ class SlayerTaskTest : WorldTest() {
         assertEquals(150, player.slayerStreak)
         assertEquals(15, player.slayerPoints)
     }
-
 }

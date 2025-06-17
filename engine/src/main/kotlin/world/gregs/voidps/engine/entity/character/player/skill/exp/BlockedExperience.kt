@@ -6,11 +6,11 @@ import world.gregs.voidps.engine.event.EventDispatcher
 
 data class BlockedExperience(
     val skill: Skill,
-    val experience: Double
+    val experience: Double,
 ) : Event {
     override val size = 1
 
-    override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "blocked_experience"
         else -> null
     }

@@ -1,12 +1,12 @@
 package content.quest.free.gunnars_ground
 
-import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.inv.holdsItem
 import content.entity.player.inv.inventoryItem
 import content.entity.player.modal.tab.questJournalOpen
-import content.quest.quest
 import content.quest.letterScroll
+import content.quest.quest
 import content.quest.questJournal
+import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.inv.holdsItem
 
 playerSpawn { player ->
     player.sendVariable("gudrun_after_quest")
@@ -22,25 +22,28 @@ playerSpawn { player ->
 }
 
 inventoryItem("Read", "gunnars_ground", "inventory") {
-    player.letterScroll("Gunnar's Ground", listOf(
-        "Our people dwelt on mountains steeped in lore,",
-        "A mighty tribe as harsh as any beast",
-        "Who then, in face of madness swept to war,",
-        "The warlord Gunnar leading to the east.",
-        "",
-        "This legacy of honour still lives on",
-        "In Gunnar's bloodline, fierce to this day.",
-        "We sing the tales of battles long since won",
-        "And from his righteous purpose never stray.",
-        "",
-        "But long is gone the author of that threat",
-        "And even rolling boulders come to rest,",
-        "For Gunnar's ground is rich and fruitful yet",
-        "And Gunnar's blood with beauty blessed.",
-        "",
-        "Now let these freemen from this conflict cease",
-        "And let this be the time of Gunthor's peace."
-    ))
+    player.letterScroll(
+        "Gunnar's Ground",
+        listOf(
+            "Our people dwelt on mountains steeped in lore,",
+            "A mighty tribe as harsh as any beast",
+            "Who then, in face of madness swept to war,",
+            "The warlord Gunnar leading to the east.",
+            "",
+            "This legacy of honour still lives on",
+            "In Gunnar's bloodline, fierce to this day.",
+            "We sing the tales of battles long since won",
+            "And from his righteous purpose never stray.",
+            "",
+            "But long is gone the author of that threat",
+            "And even rolling boulders come to rest,",
+            "For Gunnar's ground is rich and fruitful yet",
+            "And Gunnar's blood with beauty blessed.",
+            "",
+            "Now let these freemen from this conflict cease",
+            "And let this be the time of Gunthor's peace.",
+        ),
+    )
 }
 
 questJournalOpen("gunnars_ground") {
@@ -75,7 +78,7 @@ questJournalOpen("gunnars_ground") {
             "<str>barbarian village and across the river. The house is north",
             "<str>of the road and has roses outside",
             "",
-            "<red>QUEST COMPLETE!"
+            "<red>QUEST COMPLETE!",
         )
         "gunnars_ground" -> listOf(
             "<str>I met an unhappy dwarf named Dororan just outside the",
@@ -102,7 +105,7 @@ questJournalOpen("gunnars_ground") {
             "<str>I need to take the poem to Gudrun in the barbarian village",
             "<str>and ask her to read it to her father.",
             "<navy>I should talk to <maroon>Gudrun <navy>or <maroon>Dororan <navy>in the",
-            "<maroon>barbarian village <navy>about how the recital went."
+            "<maroon>barbarian village <navy>about how the recital went.",
         )
         "recital" -> listOf(
             "<str>I met an unhappy dwarf named Dororan just outside the",
@@ -129,7 +132,7 @@ questJournalOpen("gunnars_ground") {
             "<str>I need to take the poem to Gudrun in the barbarian village",
             "<str>and ask her to read it to her father.",
             "<navy>I should talk to <maroon>Gudrun <navy>in the <maroon>barbarian village",
-            "<navy>once I'm ready for her to read the poem to her father."
+            "<navy>once I'm ready for her to read the poem to her father.",
         )
         "poem" -> listOf(
             "<str>I met an unhappy dwarf named Dororan just outside the",
@@ -154,7 +157,7 @@ questJournalOpen("gunnars_ground") {
             "<str>Dororan, outside the barbarian village, is going to try to write",
             "<str>a poem to convince Gunthor. I should check how he's getting on.",
             "<navy>I need to take the poem to <maroon>Gudrun <navy>in the <maroon>barbarian village",
-            "<navy>and ask her to read it to her father."
+            "<navy>and ask her to read it to her father.",
         )
         "write_poem", "more_poem", "one_more_poem", "poem_done" -> listOf(
             "<str>I met an unhappy dwarf named Dororan just outside the",
@@ -178,7 +181,7 @@ questJournalOpen("gunnars_ground") {
             "<str>barbarian village, can think of anything to help convince Gunthor.",
             "<maroon>Dororan, <navy>outside the <maroon>barbarian village, <navy>is going to try to write",
             "<navy>a poem to convince Gunthor. I should check how he's getting on.",
-            ""
+            "",
         )
         "tell_dororan" -> listOf(
             "<str>I met an unhappy dwarf named Dororan just outside the",
@@ -200,7 +203,7 @@ questJournalOpen("gunnars_ground") {
             "<str>in the barbarian village what someone called Gunnar would think.",
             "<navy>Gudrun suggested I see if <maroon>Dororan, <navy>outside the",
             "<maroon>barbarian village, <navy>can think of anything to help convince Gunthor.",
-            ""
+            "",
         )
         "tell_gudrun" -> listOf(
             "<str>I met an unhappy dwarf named Dororan just outside the",
@@ -220,7 +223,7 @@ questJournalOpen("gunnars_ground") {
             "<str>barbarian village.",
             "<navy>Gunthor was not accommodating. He told me to ask <maroon>Gudrun",
             "<navy>in the <maroon>barbarian village <navy>what someone called Gunnar would think.",
-            ""
+            "",
         )
         "meet_chieftain" -> listOf(
             "<str>I met an unhappy dwarf named Dororan just outside the",
@@ -238,7 +241,7 @@ questJournalOpen("gunnars_ground") {
             "<navy>have a relationship with an outsider. She wondered if I could",
             "<navy>convince him otherwise. He can be found at the <maroon>longhouse <navy>in the",
             "<maroon>barbarian village.",
-            ""
+            "",
         )
         "show_gudrun" -> listOf(
             "<str>I met an unhappy dwarf named Dororan just outside the",
@@ -252,7 +255,7 @@ questJournalOpen("gunnars_ground") {
             "<navy>Dororan wants me to take the <maroon>engraved ring <navy>to <maroon>Gudrun",
             "<navy>in the <maroon>barbarian village",
             "<navy>He asked that I not reveal that he is a dwarf just yet.",
-            ""
+            "",
         )
         "engraved_ring" -> listOf(
             "<str>I met an unhappy dwarf named Dororan just outside the",
@@ -262,7 +265,7 @@ questJournalOpen("gunnars_ground") {
             "<str>Dororan wants me to engrave the words ",
             "<str>'Gudrun the Fair, Gudrun the Fiery' onto the gold ring with a chisel.",
             "<navy>I need to show the <maroon>engraved ring <navy>to <maroon>Dororan, <navy>outside",
-            "<navy>the <maroon>barbarian village."
+            "<navy>the <maroon>barbarian village.",
         )
         "engrave" -> listOf(
             "<str>I met an unhappy dwarf named Dororan just outside the",
@@ -270,7 +273,7 @@ questJournalOpen("gunnars_ground") {
             "<str>Dororan, outside the barbarian village, wants me to bring him",
             "<str>a gold ring he Specifically wants a ring from Jeffery in Edgeville.",
             "<navy>Dororan wants me to engrave the words ",
-            "<navy>'Gudrun the Fair, Gudrun the Fiery' onto the <maroon>gold ring <navy>with a <maroon>chisel."
+            "<navy>'Gudrun the Fair, Gudrun the Fiery' onto the <maroon>gold ring <navy>with a <maroon>chisel.",
         )
         "love_poem", "jeffery_ring" -> {
             val list = mutableListOf(
@@ -289,11 +292,11 @@ questJournalOpen("gunnars_ground") {
         }
         "started" -> listOf(
             "<navy>I met an unhappy dwarf named <maroon>Dororan <navy>just outside the",
-            "<maroon>barbarian village."
+            "<maroon>barbarian village.",
         )
         else -> listOf(
             "<navy>I can start this quest by talking to <maroon>Dororan, <navy>the dwarf",
-            "<navy>just outside the <maroon>barbarian village."
+            "<navy>just outside the <maroon>barbarian village.",
         )
     }
     player.questJournal("Gunnar's Ground", lines)

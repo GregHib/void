@@ -16,7 +16,7 @@ import world.gregs.yaml.Yaml
 import java.io.File
 
 class FileStorage(
-    private val directory: File
+    private val directory: File,
 ) : AccountStorage {
 
     private val logger = InlineLogger()
@@ -49,7 +49,7 @@ class FileStorage(
                     value.toTypedArray()
                 }.toMutableMap(),
                 friends = map["friends"] as MutableMap<String, ClanRank>,
-                ignores = map["ignores"] as MutableList<String>
+                ignores = map["ignores"] as MutableList<String>,
             )
             save.save(target)
             file.delete()
@@ -69,7 +69,7 @@ class FileStorage(
                 accountName = accountName,
                 displayName = displayName,
                 previousName = (variables.getOrDefault("name_history", emptyList<String>()) as List<String>).lastOrNull() ?: "",
-                passwordHash = data.password
+                passwordHash = data.password,
             )
         }
         return definitions
@@ -93,15 +93,13 @@ class FileStorage(
                 talkRank = ClanRank.valueOf(variables.getOrDefault("clan_talk_rank", "Anyone") as String),
                 kickRank = ClanRank.valueOf(variables.getOrDefault("clan_kick_rank", "Corporeal") as String),
                 lootRank = ClanRank.valueOf(variables.getOrDefault("clan_loot_rank", "None") as String),
-                coinShare = variables.getOrDefault("coin_share_setting", false) as Boolean
+                coinShare = variables.getOrDefault("coin_share_setting", false) as Boolean,
             )
         }
         return clans
     }
 
-    override fun exists(accountName: String): Boolean {
-        return directory.resolve("${accountName.lowercase()}.toml").exists()
-    }
+    override fun exists(accountName: String): Boolean = directory.resolve("${accountName.lowercase()}.toml").exists()
 
     override fun save(accounts: List<PlayerSave>) {
         for (account in accounts) {

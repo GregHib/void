@@ -8,7 +8,8 @@ data class WeaponAnimationDefinition(
     val attackTypes: Map<String, String> = emptyMap(),
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null,
-) : Definition, Extra {
+) : Definition,
+    Extra {
 
     companion object {
         val EMPTY = WeaponAnimationDefinition()
@@ -16,7 +17,7 @@ data class WeaponAnimationDefinition(
         @Suppress("UNCHECKED_CAST")
         fun fromMap(stringId: String, map: Map<String, Any>) = WeaponAnimationDefinition(
             attackTypes = (map as? Map<String, String>) ?: EMPTY.attackTypes,
-            stringId = stringId
+            stringId = stringId,
         )
     }
 }

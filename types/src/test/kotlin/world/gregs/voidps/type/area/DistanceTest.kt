@@ -54,5 +54,4 @@ internal class DistanceTest {
         // Then
         assertEquals(-1, tile.distanceTo(other))
     }
-
 }

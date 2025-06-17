@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.Events
 data class SpecialAttackDamage(
     val id: String,
     val target: Character,
-    val damage: Int
+    val damage: Int,
 ) : Event {
     override val size = 3
 

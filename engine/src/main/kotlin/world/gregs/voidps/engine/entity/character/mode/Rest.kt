@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 class Rest(
     private val player: Player,
-    private val track: Int
+    private val track: Int,
 ) : Mode {
 
     private val anim = animations.random()
@@ -38,7 +38,7 @@ class Rest(
         private val animations = setOf(
             "rest_arms_back",
             "rest_arms_crossed",
-            "rest_legs_out"
+            "rest_legs_out",
         )
     }
 }

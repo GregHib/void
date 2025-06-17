@@ -10,5 +10,5 @@ data class MoveInventoryItem(
     val toId: Int,
     val toComponentId: Int,
     val toItemId: Int,
-    val toSlot: Int
+    val toSlot: Int,
 ) : Instruction

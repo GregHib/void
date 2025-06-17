@@ -1,5 +1,9 @@
 package content.skill.melee
 
+import content.entity.combat.hit.characterCombatAttack
+import content.entity.npc.combat.NPCAttack
+import content.entity.sound.sound
+import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
@@ -12,10 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import content.entity.combat.hit.characterCombatAttack
-import content.entity.npc.combat.NPCAttack
-import content.skill.melee.weapon.weapon
-import content.entity.sound.sound
 
 val styleDefinitions: WeaponStyleDefinitions by inject()
 val weaponDefinitions: WeaponAnimationDefinitions by inject()

@@ -15,7 +15,7 @@ object RunescapeWikiExporter {
             .ofPattern("yyyy-MM-dd")
             .withZone(ZoneOffset.UTC)
             .format(Instant.now())
-        val file = File("./${wiki.replace(".", "-")}-${timestamp}.xml.bz2")
+        val file = File("./${wiki.replace(".", "-")}-$timestamp.xml.bz2")
         if (file.exists()) {
             println("File already exists")
             return

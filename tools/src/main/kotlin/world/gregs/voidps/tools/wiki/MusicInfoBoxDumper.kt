@@ -26,11 +26,13 @@ object MusicInfoBoxDumper {
         val revision = LocalDate.of(2011, Month.OCTOBER, 16)
 
         val file = File("music_tracks.yml")
-        val mapper = ObjectMapper(YAMLFactory().apply {
-            disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER)
-            enable(YAMLGenerator.Feature.MINIMIZE_QUOTES)
-            disable(YAMLGenerator.Feature.SPLIT_LINES)
-        }).registerKotlinModule()
+        val mapper = ObjectMapper(
+            YAMLFactory().apply {
+                disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER)
+                enable(YAMLGenerator.Feature.MINIMIZE_QUOTES)
+                disable(YAMLGenerator.Feature.SPLIT_LINES)
+            },
+        ).registerKotlinModule()
         // Category:Music_tracks Dump
         val wiki = Wiki.load("${System.getProperty("user.home")}\\Downloads\\Old+School+RuneScape+Wiki-20210427125152.xml")
         val missing = mutableListOf<String>()
@@ -61,15 +63,16 @@ object MusicInfoBoxDumper {
                         return@forEach
                     }
                 }
-                val nme = toIdentifier(name
-                    .replace("&", "and")
-                    .replace(" 1", "1")
-                    .replace(" 2", "2")
-                    .replace(" 3", "3")
-                    .replace(" 4", "4")
-                    .replace(" 5", "5")
-                    .replace(" 6", "6")
-                    .replace(" 6", "6")
+                val nme = toIdentifier(
+                    name
+                        .replace("&", "and")
+                        .replace(" 1", "1")
+                        .replace(" 2", "2")
+                        .replace(" 3", "3")
+                        .replace(" 4", "4")
+                        .replace(" 5", "5")
+                        .replace(" 6", "6")
+                        .replace(" 6", "6"),
                 )
                     .replace("brew_hoo_hoo!", "brew_hoo_hoo")
                     .replace("davy_jones_locker", "davy_joness_locker")
@@ -85,7 +88,7 @@ object MusicInfoBoxDumper {
                     .replace("wolf_mountain", "wild_isle")
                     .replace("the_maze", "melzars_maze")
                     .replace("etceteria", "etcetera")
-                //987=darkmeyer
+                // 987=darkmeyer
                 val idx = enumMap.values.indexOf(nme)
                 if (idx == -1) {
                     println("No match for $nme")
@@ -98,18 +101,20 @@ object MusicInfoBoxDumper {
                         missing.add(name)
                     } else {
                         val level = m.firstOrNull { it.first == "level" }?.second?.toInt() ?: 0
-                        areas.add(mapOf(
-                            "x" to "[ ${coords.map { it.second.split(",")[0].toInt() }.joinToString(", ")} ]",
-                            "y" to "[ ${coords.map { it.second.split(",")[1].toInt() }.joinToString(", ")} ]",
-                            "level" to level
-                        ))
+                        areas.add(
+                            mapOf(
+                                "x" to "[ ${coords.map { it.second.split(",")[0].toInt() }.joinToString(", ")} ]",
+                                "y" to "[ ${coords.map { it.second.split(",")[1].toInt() }.joinToString(", ")} ]",
+                                "level" to level,
+                            ),
+                        )
                     }
                 }
                 if (areas.isNotEmpty()) {
                     output[toIdentifier(name)] = mapOf(
                         "index" to index,
 //                        "name" to name,
-                        "areas" to areas
+                        "areas" to areas,
                     )
                 }
             }
@@ -144,14 +149,13 @@ object MusicInfoBoxDumper {
                         mapOf(
                             "x" to "[ ${coordinates.map { it.x }.joinToString(", ")} ]",
                             "y" to "[ ${coordinates.map { it.y }.joinToString(", ")} ]",
-                            "level" to coordinates.first().level
-                        )
-                    )
+                            "level" to coordinates.first().level,
+                        ),
+                    ),
                 )
             }
         }
 
         mapper.writeValue(file, output.toList().sortedBy { (it.second as Map<String, Any>)["index"] as Int }.toMap())
     }
-
 }

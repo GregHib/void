@@ -31,7 +31,7 @@ class Interact(
     strategy: TargetStrategy = TargetStrategy(target),
     private var approachRange: Int? = null,
     private val faceTarget: Boolean = true,
-    shape: Int? = null
+    shape: Int? = null,
 ) : Movement(character, strategy, shape) {
 
     private var approach: Interaction<*> = interaction.copy(true)
@@ -178,4 +178,3 @@ class Interact(
     override fun onCompletion() {
     }
 }
-

@@ -1,6 +1,9 @@
 package content.skill.thieving
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.effect.stun
+import content.entity.npc.combat.NPCAttack
+import content.skill.slayer.categories
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
@@ -21,9 +24,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import content.entity.effect.stun
-import content.entity.npc.combat.NPCAttack
-import content.skill.slayer.categories
 
 val animationDefinitions: AnimationDefinitions by inject()
 val dropTables: DropTables by inject()
@@ -48,20 +48,20 @@ npcApproach("Pickpocket") {
         return@npcApproach
     }
     val name = target.def.name
-    player.message("You attempt to pick the ${name}'s pocket.", ChatType.Filter)
+    player.message("You attempt to pick the $name's pocket.", ChatType.Filter)
     player.anim("pick_pocket")
     delay(2)
     if (success) {
         player.inventory.transaction {
             addLoot(drops)
         }
-        player.message("You pick the ${name}'s pocket.", ChatType.Filter)
+        player.message("You pick the $name's pocket.", ChatType.Filter)
         player.exp(Skill.Thieving, pocket.xp)
     } else {
         target.face(player)
         target.say(pocket.caughtMessage)
         target.anim(NPCAttack.anim(animationDefinitions, target, "defend"))
-        player.message("You fail to pick the ${name}'s pocket.", ChatType.Filter)
+        player.message("You fail to pick the $name's pocket.", ChatType.Filter)
         target.stun(player, pocket.stunTicks, pocket.stunHit)
         delay(2)
     }

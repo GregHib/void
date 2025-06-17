@@ -1,10 +1,10 @@
 package content.skill.constitution.drink
 
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import content.skill.constitution.consume
+import content.entity.effect.toxin.antiPoison
 import content.entity.player.effect.antifire
 import content.entity.player.effect.superAntifire
-import content.entity.effect.toxin.antiPoison
+import content.skill.constitution.consume
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 consume("weak_melee_potion") { player ->
     player.levels.boost(Skill.Attack, 2, 0.07)
@@ -71,7 +71,6 @@ consume("weak_survivalists_potion") { player ->
     player.levels.boost(Skill.Slayer, 3, 0.02)
 }
 
-
 consume("melee_potion") { player ->
     player.levels.boost(Skill.Attack, 3, 0.11)
     player.levels.boost(Skill.Strength, 3, 0.11)
@@ -132,7 +131,6 @@ consume("survivalists_potion") { player ->
     player.levels.boost(Skill.Thieving, 4, 0.04)
     player.levels.boost(Skill.Slayer, 4, 0.04)
 }
-
 
 consume("strong_melee_potion") { player ->
     player.levels.boost(Skill.Attack, 6, 0.2)

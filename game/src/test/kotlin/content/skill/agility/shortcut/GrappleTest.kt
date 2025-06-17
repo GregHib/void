@@ -2,17 +2,12 @@ package content.skill.agility.shortcut
 
 import WorldTest
 import containsMessage
-import content.entity.player.equip.EquipTest
-import messages
 import objectOption
-import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -436,5 +431,4 @@ internal class GrappleTest : WorldTest() {
 
         assertTrue(player.containsMessage("You need an agility level of at least 4"))
     }
-
 }

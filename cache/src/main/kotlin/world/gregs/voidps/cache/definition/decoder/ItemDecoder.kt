@@ -8,7 +8,7 @@ import world.gregs.voidps.cache.definition.Parameters
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 
 class ItemDecoder(
-    private val parameters: Parameters = Parameters.EMPTY
+    private val parameters: Parameters = Parameters.EMPTY,
 ) : DefinitionDecoder<ItemDefinition>(ITEMS) {
 
     override fun create(size: Int) = Array(size) { ItemDefinition(it) }

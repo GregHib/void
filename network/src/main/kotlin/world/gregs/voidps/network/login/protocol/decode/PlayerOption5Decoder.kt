@@ -13,5 +13,4 @@ class PlayerOption5Decoder : Decoder(3) {
         packet.readByte()
         return InteractPlayer(index, 5)
     }
-
 }

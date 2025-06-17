@@ -62,7 +62,5 @@ class LinkConnector(private val view: MapView, private val nav: MutableNavigatio
         }
     }
 
-    private fun chebyshev(x1: Int, y1: Int, x2: Int, y2: Int): Int {
-        return abs(x1 - x2).coerceAtLeast(abs(y1 - y2))
-    }
+    private fun chebyshev(x1: Int, y1: Int, x2: Int, y2: Int): Int = abs(x1 - x2).coerceAtLeast(abs(y1 - y2))
 }

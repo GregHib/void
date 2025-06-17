@@ -1,10 +1,10 @@
 package world.gregs.voidps.tools.map.obj
 
-open class ObjectIdentification<T: Any>(
+open class ObjectIdentification<T : Any>(
     val name: String,
     val targets: ObjectIdentificationContext.() -> List<T>,
     val considerations: List<ObjectIdentificationContext.(T) -> Double>,
-    val weight: Double = 1.0
+    val weight: Double = 1.0,
 ) {
     /**
      * Combine [weight] with all considerations into one score
@@ -55,5 +55,4 @@ open class ObjectIdentification<T: Any>(
      * For debugging
      */
     fun getScores(context: ObjectIdentificationContext) = targets(context).map { target -> Triple(target, getScores(context, target), score(context, target)) }.toList()
-
 }

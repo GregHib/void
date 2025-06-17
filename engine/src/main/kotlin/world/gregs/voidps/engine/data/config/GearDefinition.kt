@@ -12,7 +12,7 @@ data class GearDefinition(
     val equipment: Map<EquipSlot, List<Item>> = emptyMap(),
     val inventory: List<List<Item>> = emptyList(),
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
+    override var extras: Map<String, Any>? = null,
 ) : Extra {
     companion object {
         @Suppress("UNCHECKED_CAST")

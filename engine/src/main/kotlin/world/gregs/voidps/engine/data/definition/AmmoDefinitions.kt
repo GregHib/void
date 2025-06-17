@@ -45,5 +45,4 @@ class AmmoDefinitions : DefinitionsDecoder<AmmoDefinition> {
     }
 
     override fun empty() = AmmoDefinition.EMPTY
-
 }

@@ -16,7 +16,7 @@ import world.gregs.voidps.network.login.protocol.*
  */
 fun Client.animateInterface(
     interfaceComponent: Int,
-    animation: Int
+    animation: Int,
 ) = send(INTERFACE_ANIMATION) {
     writeShort(animation)
     writeIntMiddle(interfaceComponent)
@@ -27,7 +27,7 @@ fun Client.animateInterface(
  * @param interfaceComponent Packed component index and id of the parent window
  */
 fun Client.closeInterface(
-    interfaceComponent: Int
+    interfaceComponent: Int,
 ) = send(Protocol.INTERFACE_CLOSE) {
     writeInt(interfaceComponent)
 }
@@ -43,7 +43,7 @@ fun Client.colourInterface(
     interfaceComponent: Int,
     red: Int,
     green: Int,
-    blue: Int
+    blue: Int,
 ) = colourInterface(interfaceComponent, (red shl 10) + (green shl 5) + blue)
 
 /**
@@ -53,7 +53,7 @@ fun Client.colourInterface(
  */
 fun Client.colourInterface(
     interfaceComponent: Int,
-    colour: Int
+    colour: Int,
 ) = send(Protocol.INTERFACE_COLOUR) {
     writeShortAdd(colour)
     writeIntLittle(interfaceComponent)
@@ -66,7 +66,7 @@ fun Client.colourInterface(
  */
 fun Client.npcDialogueHead(
     interfaceComponent: Int,
-    npc: Int
+    npc: Int,
 ) = send(Protocol.INTERFACE_NPC_HEAD) {
     writeIntLittle(interfaceComponent)
     writeShortAdd(npc)
@@ -77,7 +77,7 @@ fun Client.npcDialogueHead(
  * @param interfaceComponent Packed component index and id of the parent window
  */
 fun Client.playerDialogueHead(
-    interfaceComponent: Int
+    interfaceComponent: Int,
 ) = send(Protocol.INTERFACE_PLAYER_HEAD) {
     writeIntMiddle(interfaceComponent)
 }
@@ -91,7 +91,7 @@ fun Client.playerDialogueHead(
 fun Client.interfaceItem(
     interfaceComponent: Int,
     item: Int,
-    amount: Int
+    amount: Int,
 ) = send(Protocol.INTERFACE_ITEM) {
     writeShortLittle(item)
     writeIntInverseMiddle(interfaceComponent)
@@ -107,7 +107,7 @@ fun Client.interfaceItem(
 fun Client.sendInterfaceItemUpdate(
     key: Int,
     updates: List<Triple<Int, Int, Int>>,
-    secondary: Boolean
+    secondary: Boolean,
 ) = send(Protocol.INTERFACE_ITEMS_UPDATE, getLength(updates), SHORT) {
     writeShort(key)
     writeByte(secondary)
@@ -123,9 +123,7 @@ fun Client.sendInterfaceItemUpdate(
     }
 }
 
-private fun getLength(updates: List<Triple<Int, Int, Int>>): Int {
-    return 3 + updates.sumOf { (index, item, amount) -> smart(index) + if (item >= 0) if (amount >= 255) 7 else 3 else 2 }
-}
+private fun getLength(updates: List<Triple<Int, Int, Int>>): Int = 3 + updates.sumOf { (index, item, amount) -> smart(index) + if (item >= 0) if (amount >= 255) 7 else 3 else 2 }
 
 /**
  * Displays an interface onto the client screen
@@ -136,7 +134,7 @@ private fun getLength(updates: List<Triple<Int, Int, Int>>): Int {
 fun Client.openInterface(
     permanent: Boolean,
     interfaceComponent: Int,
-    id: Int
+    id: Int,
 ) = send(Protocol.INTERFACE_OPEN) {
     writeShortLittle(id)
     writeIntLittle(interfaceComponent)
@@ -154,7 +152,7 @@ fun Client.sendInterfaceSettings(
     interfaceComponent: Int,
     fromSlot: Int,
     toSlot: Int,
-    settings: Int
+    settings: Int,
 ) = send(Protocol.INTERFACE_COMPONENT_SETTINGS) {
     writeShortAdd(toSlot)
     writeShortLittle(fromSlot)
@@ -169,7 +167,7 @@ fun Client.sendInterfaceSettings(
  */
 fun Client.sendInterfaceScroll(
     interfaceComponent: Int,
-    settings: Int
+    settings: Int,
 ) = send(Protocol.INTERFACE_SCROLL_VERTICAL) {
     writeIntInverseMiddle(interfaceComponent)
     writeShortAdd(settings)
@@ -182,7 +180,7 @@ fun Client.sendInterfaceScroll(
  */
 fun Client.interfaceSprite(
     interfaceComponent: Int,
-    sprite: Int
+    sprite: Int,
 ) = send(Protocol.INTERFACE_SPRITE) {
     writeShortAdd(sprite)
     writeIntInverseMiddle(interfaceComponent)
@@ -195,16 +193,15 @@ fun Client.interfaceSprite(
  */
 fun Client.interfaceText(
     interfaceComponent: Int,
-    text: String
+    text: String,
 ) = send(Protocol.INTERFACE_TEXT, 4 + string(text), SHORT) {
     writeIntLittle(interfaceComponent)
     writeString(text)
 }
 
-
 fun Client.updateInterface(
     id: Int,
-    type: Int
+    type: Int,
 ) = send(Protocol.INTERFACE_WINDOW) {
     writeByteInverse(type)
     writeShortAdd(id)
@@ -217,7 +214,7 @@ fun Client.updateInterface(
  */
 fun Client.interfaceVisibility(
     interfaceComponent: Int,
-    hide: Boolean
+    hide: Boolean,
 ) = send(Protocol.INTERFACE_COMPONENT_VISIBILITY) {
     writeByteAdd(hide)
     writeIntLittle(interfaceComponent)

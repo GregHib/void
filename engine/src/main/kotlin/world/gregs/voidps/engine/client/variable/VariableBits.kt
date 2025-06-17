@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 
 class VariableBits(
     private val variables: Variables,
-    private val events: EventDispatcher
+    private val events: EventDispatcher,
 ) {
 
     fun contains(key: String, id: Any): Boolean {

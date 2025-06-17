@@ -25,9 +25,16 @@ enum class Skill {
     Hunter,
     Construction,
     Summoning,
-    Dungeoneering;
+    Dungeoneering,
+    ;
 
-    fun maximum(): Int = if (this == Dungeoneering) 120 else if (this == Constitution) 990 else 99
+    fun maximum(): Int = if (this == Dungeoneering) {
+        120
+    } else if (this == Constitution) {
+        990
+    } else {
+        99
+    }
 
     companion object {
         val all = entries.toTypedArray()

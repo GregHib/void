@@ -1,10 +1,10 @@
 package content.skill.slayer
 
+import content.skill.melee.CombatFormulaTest
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.skill.melee.CombatFormulaTest
 import kotlin.test.assertEquals
 
 class SlayerCombatFormulaTest : CombatFormulaTest() {
@@ -66,7 +66,6 @@ class SlayerCombatFormulaTest : CombatFormulaTest() {
         assertEquals(130, maxHit)
         assertEquals(0.9052, chance, 0.0001)
     }
-
 
     @Test
     fun `Slayer helmet not on task`() {

@@ -14,5 +14,5 @@ data class InteractInterfaceItem(
     val fromInterfaceId: Int,
     val fromComponentId: Int,
     val toInterfaceId: Int,
-    val toComponentId: Int
+    val toComponentId: Int,
 ) : Instruction

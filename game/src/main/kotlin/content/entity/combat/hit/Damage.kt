@@ -1,6 +1,16 @@
 package content.entity.combat.hit
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.combat.Bonus
+import content.entity.combat.Target
+import content.entity.player.combat.special.specialAttack
+import content.entity.player.effect.Dragonfire
+import content.entity.player.equip.Equipment
+import content.skill.magic.spell.Spell
+import content.skill.magic.spell.spell
+import content.skill.melee.armour.barrows.BarrowsArmour
+import content.skill.melee.weapon.Weapon
+import content.skill.prayer.Prayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -13,16 +23,6 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import content.entity.combat.Bonus
-import content.entity.player.equip.Equipment
-import content.entity.combat.Target
-import content.skill.melee.weapon.Weapon
-import content.skill.melee.armour.barrows.BarrowsArmour
-import content.skill.magic.spell.Spell
-import content.skill.magic.spell.spell
-import content.skill.prayer.Prayer
-import content.entity.player.combat.special.specialAttack
-import content.entity.player.effect.Dragonfire
 
 object Damage {
     private val logger = InlineLogger()
@@ -31,20 +31,36 @@ object Damage {
      * Rolls a real hit against [target] without modifiers
      * @return damage or -1 if unsuccessful
      */
-    fun roll(source: Character, target: Character, type: String, weapon: Item, spell: String = "", special: Boolean = false): Int {
-        val success = Hit.success(source, target, type, weapon, special)
-        if (type != "dragonfire" && !success) {
+    fun roll(
+        source: Character,
+        target: Character,
+        offensiveType: String,
+        weapon: Item,
+        spell: String = "",
+        special: Boolean = false,
+        defensiveType: String = offensiveType,
+    ): Int {
+        val success = Hit.success(source, target, offensiveType, weapon, special, defensiveType)
+        if (offensiveType != "dragonfire" && !success) {
             return -1
         }
-        val baseMaxHit = maximum(source, target, type, weapon, spell, success)
+        val baseMaxHit = maximum(source, target, offensiveType, weapon, spell, success)
         source["max_hit"] = baseMaxHit
-        val player = if (source is Player && source["debug", false]) source else if (target is Player && target["debug", false]) target else null
+        val minimum = minimum(source, offensiveType)
+        source["min_hit"] = minimum
+        val player = if (source is Player && source["debug", false]) {
+            source
+        } else if (target is Player && target["debug", false]) {
+            target
+        } else {
+            null
+        }
         if (player != null) {
-            val message = "Base maximum hit: $baseMaxHit ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
+            val message = "Base maximum hit: $baseMaxHit ($offensiveType, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
             player.message(message)
             logger.debug { message }
         }
-        return random.nextInt(baseMaxHit + 1)
+        return random.nextInt(minimum, baseMaxHit + 1)
     }
 
     /**
@@ -54,7 +70,7 @@ object Damage {
      */
     fun maximum(source: Character, target: Character, type: String, weapon: Item, spell: String = "", special: Boolean = false): Int = when {
         type == "dragonfire" -> Dragonfire.maxHit(source, target, special || source is NPC && spell != "")
-        source is NPC -> npcMaximum(source, target, type)
+        source is NPC -> source.def["max_hit_$type", 0]
         type == "magic" && weapon.id.startsWith("saradomin_sword") -> 160
         type == "magic" && spell == "magic_dart" -> effectiveLevel(source, Skill.Magic) + 100
         type == "magic" -> {
@@ -78,8 +94,12 @@ object Damage {
         }
     }
 
-    private fun npcMaximum(source: NPC, target: Character, type: String): Int {
-        return source.def["max_hit_$type", 0]
+    /**
+     * Calculates the minimum damage before modifications are applied
+     */
+    private fun minimum(source: Character, type: String): Int = when {
+        source is NPC -> source.def["min_hit_$type", 0]
+        else -> 0
     }
 
     private fun effectiveLevel(character: Character, skill: Skill): Int {
@@ -127,7 +147,13 @@ object Damage {
 
         if (source["debug", false]) {
             val strengthBonus = Weapon.strengthBonus(source, type, weapon)
-            val style = if (type == "magic") source.spell else if (weapon.isEmpty()) "unarmed" else weapon.id
+            val style = if (type == "magic") {
+                source.spell
+            } else if (weapon.isEmpty()) {
+                "unarmed"
+            } else {
+                weapon.id
+            }
             val spec = if ((source as? Player)?.specialAttack == true) "special" else ""
             val message = "Max damage: $damage (${listOf(type, "$strengthBonus str", style, spec).joinToString(", ")})"
             source.message(message)
@@ -135,7 +161,6 @@ object Damage {
         }
         return damage
     }
-
 }
 
 /**

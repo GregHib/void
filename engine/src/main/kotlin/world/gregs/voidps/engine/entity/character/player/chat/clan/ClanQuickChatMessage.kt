@@ -12,11 +12,11 @@ data class ClanQuickChatMessage(
     val script: Int,
     val file: Int,
     val message: String,
-    val data: ByteArray
+    val data: ByteArray,
 ) : Event {
     override val size = 1
 
-    override fun parameter(dispatcher: EventDispatcher, index: Int) = when(index) {
+    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "clan_quick_chat_message"
         else -> null
     }

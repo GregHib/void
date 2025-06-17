@@ -29,7 +29,7 @@ fun Client.addProjectileHalfTile(
     delay: Int,
     duration: Int,
     curve: Int,
-    startOffset: Int
+    startOffset: Int,
 ) = send(Protocol.Batch.PROJECTILE_DISPLACE) {
     writeByte(offset)
     val flag = 0

@@ -1,5 +1,12 @@
 package content.area.misthalin.edgeville
 
+import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.items
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.quest.quest
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -7,13 +14,6 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import content.entity.player.bank.ownsItem
-import content.quest.quest
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.items
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 
 npcOperate("Talk-to", "jeffery") {
     npc<Quiz>("Keep it quick. What do you want?")

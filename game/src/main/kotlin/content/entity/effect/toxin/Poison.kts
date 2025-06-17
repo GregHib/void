@@ -1,5 +1,7 @@
 package content.entity.effect.toxin
 
+import content.entity.combat.hit.characterCombatAttack
+import content.entity.combat.hit.directHit
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.entity.character.Character
@@ -13,8 +15,6 @@ import world.gregs.voidps.engine.timer.characterTimerStop
 import world.gregs.voidps.engine.timer.characterTimerTick
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import content.entity.combat.hit.characterCombatAttack
-import content.entity.combat.hit.directHit
 import kotlin.math.sign
 
 characterSpawn { character ->

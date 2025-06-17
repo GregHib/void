@@ -34,7 +34,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     override val modules = listOf(
         module {
             single { Players() }
-        }
+        },
     )
 
     @BeforeEach
@@ -124,7 +124,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         verifyOrder {
             sync.startBitAccess()
             sync.writeBits(1, true)
-            sync.writeBits(1, false)// Even when update isn't null (relaxed)
+            sync.writeBits(1, false) // Even when update isn't null (relaxed)
             sync.writeBits(2, 0)
             task.encodeRegion(sync, viewport, player)
             sync.stopBitAccess()
@@ -325,7 +325,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         Delta(0, 0),
         Delta(0, 0, 1),
         Delta(64, 64),
-        Delta(128, 0)
+        Delta(128, 0),
     ).mapIndexed { index, updateType ->
         dynamicTest("Encode region change $updateType") {
             // Given
@@ -375,7 +375,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         Triple(PlayerUpdateTask.RegionChange.Local, Delta(-1, 0, 3), 27),
         Triple(PlayerUpdateTask.RegionChange.Global, Delta(2, 2, 0), 514),
         Triple(PlayerUpdateTask.RegionChange.Global, Delta(-2, -2, 1), 130814),
-        Triple(PlayerUpdateTask.RegionChange.Global, Delta(12, -16, 2), 134384)
+        Triple(PlayerUpdateTask.RegionChange.Global, Delta(12, -16, 2), 134384),
     ).map { (type, delta, _) ->
         dynamicTest("Region value for movement $delta") {
             // When

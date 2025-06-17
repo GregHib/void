@@ -1,5 +1,6 @@
 package world.gregs.voidps.tools.graph
 
+import content.entity.obj.door.Door.isDoor
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -11,7 +12,6 @@ import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Cuboid
-import content.entity.obj.door.Door.isDoor
 import java.io.DataOutputStream
 import java.io.File
 import java.util.*
@@ -22,7 +22,7 @@ class MapGraph(
     private val objects: GameObjects,
     private val xteas: Xteas,
     private val cache: Cache,
-    private val collision: Collisions
+    private val collision: Collisions,
 ) {
 
     fun load(regionId: Int) {
@@ -41,7 +41,7 @@ class MapGraph(
 
                 for (zone in region.tile.zone.toCuboid(width = 8, height = 8).toZones()) {
                     val time = measureNanoTime {
-                        val loaded = zone.toCuboid().flatMap { tile -> objects[tile]  }
+                        val loaded = zone.toCuboid().flatMap { tile -> objects[tile] }
                         objs.addAll(loaded)
                         all.addAll(getCenterPoints(strategy, zone.toCuboid(width = 2, height = 2)))
                     }
@@ -52,7 +52,7 @@ class MapGraph(
 
         val portals = getPortals(objs)
         println("${portals.size} portals found")
-        for(portal in portals) {
+        for (portal in portals) {
             all.add(portal.first)
             all.add(portal.second)
             links.add(Triple(portal.first, portal.second, 1))
@@ -77,7 +77,7 @@ class MapGraph(
     fun getFloodedTiles(
         traversal: TileTraversalStrategy,
         start: Tile,
-        area: Cuboid
+        area: Cuboid,
     ): Map<Tile, Int> {
         val distances = mutableMapOf<Tile, Int>()
         val queue = LinkedList<Tile>()
@@ -96,9 +96,7 @@ class MapGraph(
         return distances
     }
 
-    fun euclidean(first: Tile, second: Tile): Double {
-        return sqrt(((first.x - second.x) * (first.x - second.x) + (first.y - second.y) * (first.y - second.y)).toDouble())
-    }
+    fun euclidean(first: Tile, second: Tile): Double = sqrt(((first.x - second.x) * (first.x - second.x) + (first.y - second.y) * (first.y - second.y)).toDouble())
 
     fun centroid(tiles: Set<Tile>): Tile {
         var x = 0
@@ -132,7 +130,7 @@ class MapGraph(
     fun getStaticLinks(
         traversal: TileTraversalStrategy,
         points: Set<Tile>,
-        clusterSize: Int
+        clusterSize: Int,
     ): Set<Triple<Tile, Tile, Int>> {
         val map = mutableMapOf<Tile, MutableSet<Tile>>()
         val set = mutableSetOf<Triple<Tile, Tile, Int>>()
@@ -141,11 +139,11 @@ class MapGraph(
             val tiles = getFloodedTiles(
                 traversal,
                 start,
-                start.zone.tile.minus(clusterSize, clusterSize).toCuboid(width = cluster, height = cluster)
+                start.zone.tile.minus(clusterSize, clusterSize).toCuboid(width = cluster, height = cluster),
             )
             val visited = mutableSetOf<Tile>()
             for ((end, distance) in tiles) {
-                if (start == end || visited.contains(end) || !points.contains(end) || distance > clusterSize * 2 /*|| outOfView(start, end)*/) {
+                if (start == end || visited.contains(end) || !points.contains(end) || distance > clusterSize * 2) { // || outOfView(start, end)
                     continue
                 }
                 if (!set.contains(Triple(end, start, distance))) {
@@ -164,7 +162,7 @@ class MapGraph(
 
     fun getUnlinkedPoints(
         points: Set<Tile>,
-        links: Set<Triple<Tile, Tile, Int>>
+        links: Set<Triple<Tile, Tile, Int>>,
     ): Set<Tile> {
         val combined = links.map { it.first }.toMutableSet()
         combined.addAll(links.map { it.second })
@@ -204,7 +202,6 @@ class MapGraph(
         }
         return portals
     }
-
 
     /*
          e

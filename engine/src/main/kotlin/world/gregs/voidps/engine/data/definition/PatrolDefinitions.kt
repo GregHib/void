@@ -7,6 +7,9 @@ import world.gregs.voidps.engine.data.config.PatrolDefinition
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Tile
 
+/**
+ * Also known as routes or paths
+ */
 class PatrolDefinitions {
 
     private lateinit var definitions: Map<String, PatrolDefinition>
@@ -51,5 +54,4 @@ class PatrolDefinitions {
         }
         return this
     }
-
 }

@@ -13,7 +13,7 @@ open class YamlReaderConfiguration(
     private val expectedListSize: Int = 10,
     private val expectedMapSize: Int = DEFAULT_INITIAL_SIZE,
     private val mapLoadFactor: Float = DEFAULT_LOAD_FACTOR,
-    val ignoreAnchors: Boolean = false
+    val ignoreAnchors: Boolean = false,
 ) {
 
     open fun createList(): MutableList<Any> = ObjectArrayList(expectedListSize)
@@ -41,15 +41,13 @@ open class YamlReaderConfiguration(
     }
 
     @Suppress("UNCHECKED_CAST")
-    open fun anchor(anchor: Any): Any {
-        return when (anchor) {
-            is List<*> -> createList().apply {
-                addAll(anchor as List<Any>)
-            }
-            is Map<*, *> -> createMap().apply {
-                putAll(anchor as Map<String, Any>)
-            }
-            else -> anchor
+    open fun anchor(anchor: Any): Any = when (anchor) {
+        is List<*> -> createList().apply {
+            addAll(anchor as List<Any>)
         }
+        is Map<*, *> -> createMap().apply {
+            putAll(anchor as Map<String, Any>)
+        }
+        else -> anchor
     }
 }

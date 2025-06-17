@@ -580,9 +580,6 @@ id = 1853
 [miasmic_barrage_impact]
 id = 1854
 
-[bone_offering]
-id = 624
-
 [vengeance]
 id = 726
 height = 60
@@ -613,6 +610,10 @@ height = 60
 
 [energy_transfer]
 id = 738
+height = 60
+
+[spell_splash]
+id = 85
 height = 60
 
 [telekinetic_grab]

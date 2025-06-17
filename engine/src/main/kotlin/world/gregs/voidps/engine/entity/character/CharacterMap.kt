@@ -18,7 +18,5 @@ class CharacterMap {
         list.remove(character.index)
     }
 
-    operator fun get(region: RegionLevel): List<Int>? {
-        return regions[region.id]
-    }
+    operator fun get(region: RegionLevel): List<Int>? = regions[region.id]
 }

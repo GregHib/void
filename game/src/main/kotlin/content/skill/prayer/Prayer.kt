@@ -1,5 +1,6 @@
 package content.skill.prayer
 
+import content.skill.summoning.isFamiliar
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -8,14 +9,11 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.skill.summoning.isFamiliar
 import kotlin.math.floor
 
 object Prayer {
 
-    fun hasAnyActive(player: Player): Boolean {
-        return (player.variables as PlayerVariables).temp.any { (key, value) -> key.startsWith("prayer_") && value == true }
-    }
+    fun hasAnyActive(player: Player): Boolean = (player.variables as PlayerVariables).temp.any { (key, value) -> key.startsWith("prayer_") && value == true }
 
     fun setTurmoilTarget(source: Character, target: Character) {
         if (source.praying("turmoil") && source.get<Int>("turmoil_target") != if (target is NPC) -target.index else target.index) {
@@ -60,8 +58,11 @@ object Prayer {
         type: String,
         weapon: Item,
         special: Boolean,
-        damage: Int
+        damage: Int,
     ): Int {
+        if (source is NPC && source.id == "death_spawn") {
+            return damage
+        }
         // TODO Deflect
         if (source is NPC && usingProtectionPrayer(source, target, type)) {
             target["protected_damage"] = damage
@@ -75,19 +76,20 @@ object Prayer {
         return damage
     }
 
-    private fun usingProtectionPrayer(source: Character, target: Character, type: String): Boolean {
-        return type == "melee" && target.protectMelee() ||
-                type == "range" && target.protectRange() ||
-                type == "magic" && target.protectMagic() ||
-                source.isFamiliar && target.protectSummoning()
-    }
+    private fun usingProtectionPrayer(source: Character, target: Character, type: String): Boolean = type == "melee" &&
+        target.protectMelee() ||
+        type == "range" &&
+        target.protectRange() ||
+        type == "magic" &&
+        target.protectMagic() ||
+        source.isFamiliar &&
+        target.protectSummoning()
 
-    fun usingDeflectPrayer(source: Character, target: Character, type: String): Boolean {
-        return (type == "melee" && target.praying("deflect_melee")) ||
-                (type == "range" && target.praying("deflect_missiles")) ||
-                (type == "magic" && target.praying("deflect_magic")) ||
-                source.isFamiliar && (target.praying("deflect_summoning"))
-    }
+    fun usingDeflectPrayer(source: Character, target: Character, type: String): Boolean = (type == "melee" && target.praying("deflect_melee")) ||
+        (type == "range" && target.praying("deflect_missiles")) ||
+        (type == "magic" && target.praying("deflect_magic")) ||
+        source.isFamiliar &&
+        (target.praying("deflect_summoning"))
 
     private fun hitThroughProtectionPrayer(source: Character, target: Character?, type: String, weapon: Item, special: Boolean): Boolean {
         if (target == null) {

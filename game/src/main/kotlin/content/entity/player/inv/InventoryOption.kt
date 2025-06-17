@@ -11,7 +11,7 @@ data class InventoryOption(
     val inventory: String,
     val item: Item,
     val slot: Int,
-    val option: String
+    val option: String,
 ) : Interaction<Player>() {
 
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }

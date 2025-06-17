@@ -4,7 +4,7 @@ import world.gregs.config.ConfigReader
 
 data class Jewellery(
     val level: Int = 1,
-    val xp: Double = 0.0
+    val xp: Double = 0.0,
 ) {
 
     companion object {

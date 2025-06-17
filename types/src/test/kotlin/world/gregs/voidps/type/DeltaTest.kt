@@ -144,5 +144,4 @@ internal class DeltaTest {
         assertEquals(Direction.SOUTH_WEST, Delta(-1, -4, 2).toDirection())
         assertEquals(Direction.WEST, Delta(-5, 0, 1).toDirection())
     }
-
 }

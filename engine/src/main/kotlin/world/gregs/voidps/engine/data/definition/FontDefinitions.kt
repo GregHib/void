@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.definition.data.FontDefinition
 import world.gregs.voidps.engine.timedLoad
 
 class FontDefinitions(
-    override var definitions: Array<FontDefinition>
+    override var definitions: Array<FontDefinition>,
 ) : DefinitionsDecoder<FontDefinition> {
 
     override lateinit var ids: Map<String, Int>
@@ -30,5 +30,4 @@ class FontDefinitions(
         }
         return this
     }
-
 }

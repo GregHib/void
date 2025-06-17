@@ -1,20 +1,6 @@
 package content.entity.combat
 
 import content.area.wilderness.inSingleCombat
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.client.variable.stop
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
-import world.gregs.voidps.engine.entity.character.mode.combat.*
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.characterDespawn
-import world.gregs.voidps.engine.event.onEvent
 import content.entity.combat.hit.characterCombatDamage
 import content.entity.death.characterDeath
 import content.entity.player.combat.special.specialAttack
@@ -22,6 +8,21 @@ import content.skill.melee.weapon.attackRange
 import content.skill.melee.weapon.attackSpeed
 import content.skill.melee.weapon.fightStyle
 import content.skill.melee.weapon.weapon
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
+import world.gregs.voidps.engine.entity.character.mode.combat.*
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.characterDespawn
+import world.gregs.voidps.engine.event.onEvent
 
 /**
  * When triggered via [Interact] replace the Interaction with [CombatInteraction]
@@ -121,7 +122,7 @@ characterCombatDamage { character ->
     if (source == character || type == "poison" || type == "disease" || type == "healed") {
         return@characterCombatDamage
     }
-    if (character.mode !is CombatMovement) {
+    if (character.mode !is CombatMovement && character.mode !is PauseMode) {
         retaliate(character, source)
     }
 }

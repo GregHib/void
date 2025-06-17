@@ -1,5 +1,7 @@
 package content.skill.mining
 
+import content.entity.player.inv.inventoryItem
+import content.entity.player.inv.item.destroy.canDestroy
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
@@ -8,8 +10,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.addToLimit
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
-import content.entity.player.inv.item.destroy.canDestroy
-import content.entity.player.inv.inventoryItem
 
 val bagCapacity = 81
 

@@ -1,14 +1,14 @@
 package content.entity.player.modal.book
 
+import content.entity.player.inv.inventoryOption
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
-import content.entity.player.inv.inventoryOption
-import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 
 val books: Books by inject()
 
@@ -50,7 +50,7 @@ continueDialogue("book_indexed", "line_click*") { player ->
     val indices = pages.first()
     val index = component.removePrefix("line_click").toInt() - 1
     val selected = indices[index]
-    val page = pages.indexOfFirst { it.contains("<navy>${selected}") }
+    val page = pages.indexOfFirst { it.contains("<navy>$selected") }
     player["book_page"] = page
     player.close(id)
     player.open(id)

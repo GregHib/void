@@ -23,7 +23,6 @@ abstract class KoinMock : KoinTest {
     open val properties: List<Pair<String, String>>? = null
     open val propertyPaths: List<String>? = null
 
-
     @BeforeAll
     fun beforeAll() {
         startKoin {
@@ -51,16 +50,11 @@ abstract class KoinMock : KoinTest {
         mockkClass(clazz)
     }
 
-    fun loadModules(vararg modules: Module) =
-        getKoin().loadModules(modules.toList())
+    fun loadModules(vararg modules: Module) = getKoin().loadModules(modules.toList())
 
-    fun setProperty(key: String, value: String) =
-        getKoin().setProperty(key, value)
+    fun setProperty(key: String, value: String) = getKoin().setProperty(key, value)
 
-    fun setProperty(key: String, value: Int) =
-        getKoin().setProperty(key, value.toString())
+    fun setProperty(key: String, value: Int) = getKoin().setProperty(key, value.toString())
 
-    fun setProperty(key: String, value: Float) =
-        getKoin().setProperty(key, value.toString())
-
+    fun setProperty(key: String, value: Float) = getKoin().setProperty(key, value.toString())
 }

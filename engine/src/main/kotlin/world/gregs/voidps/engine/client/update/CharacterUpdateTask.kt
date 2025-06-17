@@ -11,12 +11,10 @@ class CharacterUpdateTask(
     override val characters: Iterable<Player>,
     private val playerUpdating: PlayerUpdateTask,
     private val npcUpdating: NPCUpdateTask,
-    private val batches: ZoneBatchUpdates
+    private val batches: ZoneBatchUpdates,
 ) : CharacterTask<Player>(iterator) {
 
-    override fun predicate(character: Player): Boolean {
-        return character.networked
-    }
+    override fun predicate(character: Player): Boolean = character.networked
 
     override fun run(character: Player) {
         batches.run(character)

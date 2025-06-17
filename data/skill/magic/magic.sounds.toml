@@ -1,2 +1,408 @@
+[wind_strike_cast]
+id = 220
+
+[wind_strike_impact]
+id = 221
+
+[wind_bolt_cast]
+id = 218
+
+[wind_bolt_impact]
+id = 219
+
+[wind_blast_cast]
+id = 216
+
+[wind_blast_impact]
+id = 217
+
+[wind_wave_cast]
+id = 222
+
+[wind_wave_impact]
+id = 223
+
+[wind_surge_cast] # Surge sounds are unknown
+id = 222
+
+[wind_surge_impact]
+id = 223
+
+[water_strike_cast]
+id = 211
+
+[water_strike_impact]
+id = 212
+
+[water_bolt_cast]
+id = 209
+
+[water_bolt_impact]
+id = 210
+
+[water_blast_cast]
+id = 207
+
+[water_blast_impact]
+id = 208
+
+[water_wave_cast]
+id = 213
+
+[water_wave_impact]
+id = 214
+
+[water_surge_cast]
+id = 213
+
+[water_surge_impact]
+id = 214
+
+[earth_strike_cast]
+id = 132
+
+[earth_strike_impact]
+id = 133
+
+[earth_bolt_cast]
+id = 130
+
+[earth_bolt_impact]
+id = 131
+
+[earth_blast_cast]
+id = 128
+
+[earth_blast_impact]
+id = 129
+
+[earth_wave_cast]
+id = 134
+
+[earth_wave_impact]
+id = 135
+
+[earth_surge_cast]
+id = 134
+
+[earth_surge_impact]
+id = 135
+
+[fire_strike_cast]
+id = 160
+
+[fire_strike_impact]
+id = 161
+
+[fire_bolt_cast]
+id = 157
+
+[fire_bolt_impact]
+id = 158
+
+[fire_blast_cast]
+id = 155
+
+[fire_blast_impact]
+id = 156
+
+[fire_wave_cast]
+id = 162
+
+[fire_wave_impact]
+id = 163
+
+[fire_surge_cast]
+id = 162
+
+[fire_surge_impact]
+id = 163
+
+[crumble_undead_cast]
+id = 122
+
+[crumble_undead_all]
+id = 123
+
+[crumble_undead_impact]
+id = 124
+
+[iban_blast_cast]
+id = 162
+
+[iban_blast_impact]
+id = 163
+#delay = 96
+#range = 10
+
+[magic_dart_cast]
+id = 1718
+
+[magic_dart_impact]
+id = 174
+
+[saradomin_strike_impact]
+id = 1659
+
+[saradomin_strike_splash]
+id = 1656
+
+[claws_of_guthix_impact]
+id = 1653
+
+[claws_of_guthix_splash]
+id = 1652
+
+[flames_of_zamorak_impact]
+id = 1655
+
+[flames_of_zamorak_splash]
+id = 1654
+
+[confuse_cast]
+id = 119
+
+[confuse_all]
+id = 120
+
+[confuse_impact]
+id = 121
+
+[weaken_cast]
+id = 3011
+
+[weaken_all]
+id = 215
+
+[weaken_impact]
+id = 3010
+
+[curse_cast]
+id = 127
+
+[curse_all]
+id = 125
+
+[curse_impact]
+id = 126
+
+[bind_cast]
+id = 101
+
+[bind_all]
+id = 100
+
+[bind_impact]
+id = 99
+
+[snare_cast]
+id = 3003
+
+[snare_all]
+id = 186
+
+[snare_impact]
+id = 3002
+
+[entangle_cast]
+id = 151
+
+[entangle_all]
+id = 152
+
+[entangle_impact]
+id = 152
+
+[vulnerability_cast]
+id = 3009
+
+[vulnerability_all]
+id = 206
+
+[vulnerability_impact]
+id = 3008
+
+[enfeeble_cast]
+id = 148
+
+[enfeeble_all]
+id = 149
+
+[enfeeble_impact]
+id = 150
+
+[stun_cast]
+id = 3004
+
+[stun_all]
+id = 187
+
+[stun_impact]
+id = 3005
+
+[teleport_block_cast]
+id = 202
+
+[teleport_block_impact]
+id = 203
+
+[smoke_rush_cast]
+id = 183
+
+[smoke_rush_impact]
+id = 185
+
+[smoke_burst_cast]
+id = 183
+
+[smoke_burst_impact]
+id = 182
+
+[smoke_blitz_cast]
+id = 183
+
+[smoke_blitz_impact]
+id = 181
+
+[smoke_barrage_cast]
+id = 183
+
+[smoke_barrage_impact]
+id = 180
+
+[shadow_rush_cast]
+id = 178
+
+[shadow_rush_impact]
+id = 179
+
+[shadow_burst_cast]
+id = 178
+
+[shadow_burst_impact]
+id = 177
+
+[shadow_blitz_cast]
+id = 178
+
+[shadow_blitz_impact]
+id = 176
+
+[shadow_barrage_cast]
+id = 178
+
+[shadow_barrage_impact]
+id = 175
+
+[blood_rush_cast]
+id = 108
+
+[blood_rush_all]
+id = 107
+
+[blood_rush_impact]
+id = 110
+
+[blood_rush_splash]
+id = 109
+
+[blood_burst_cast]
+id = 106
+
+[blood_burst_impact]
+id = 105
+
+[blood_blitz_cast]
+id = 106
+
+[blood_blitz_all]
+id = 103
+
+[blood_blitz_impact]
+id = 104
+
+[blood_barrage_cast]
+id = 106
+
+[blood_barrage_impact]
+id = 102
+
+[ice_rush_cast]
+id = 171
+
+[ice_rush_impact]
+id = 173
+
+[ice_burst_cast]
+id = 171
+
+[ice_burst_impact]
+id = 170
+
+[ice_blitz_cast]
+id = 171
+
+[ice_blitz_impact]
+id = 169
+
+[ice_barrage_cast]
+id = 171
+
+[ice_barrage_impact]
+id = 169
+
+# TODO miasmic
+
+[vengeance]
+id = 2907
+
+[vengeance_other]
+id = 2908
+
+[cure_other]
+id = 2886
+
+[cure_other_impact]
+id = 2889
+
+[cure_me]
+id = 2884
+
+[cure_group]
+id = 2882
+
+[heal_other]
+id = 2895
+
+[heal_other_impact]
+id = 2892
+
+[heal_group]
+id = 2894
+
+[energy_transfer]
+id = 2885
+
+[telekinetic_grab]
+id = 2885
+
+[telekinetic_grab_cast]
+id = 3006
+
+[telekinetic_grab_all]
+id = 192
+
+[telekinetic_grab_impact]
+id = 3007
+
+[charge]
+id = 1651
+
+[charge_gone]
+id = 1650
+
 [enchant_emerald_ring]
 id = 142
+
+[spell_splash]
+id = 227

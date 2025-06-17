@@ -9,7 +9,8 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.Appearance
 class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial = true) {
 
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
-        val (showSkillLevel,
+        val (
+            showSkillLevel,
             skillLevel,
             size,
             trimTitle,
@@ -28,7 +29,8 @@ class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial 
             crawlSound,
             walkSound,
             runSound,
-            soundDistance) = visuals.appearance
+            soundDistance,
+        ) = visuals.appearance
         writer.apply {
             val length = size(visuals.appearance)
             writeByte(length)
@@ -77,7 +79,7 @@ class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial 
             }
 //            flag = flag or 0x2// Display name
             if (showSkillLevel) {
-                flag = flag or 0x4// Display skill level rather than combat
+                flag = flag or 0x4 // Display skill level rather than combat
             }
 //            flag = flag or (size shl 3 and 0x7)
 //            flag = flag and ((1 and 0xf2) shr 6)// Title enum id
@@ -95,8 +97,6 @@ class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial 
     }
 
     companion object {
-        fun size(appearance: Appearance): Int {
-            return 17 + appearance.displayName.length + if (appearance.transform != -1) 14 else (0 until 12).sumBy { if (appearance.body.get(it) == 0) 1 else 2 }
-        }
+        fun size(appearance: Appearance): Int = 17 + appearance.displayName.length + if (appearance.transform != -1) 14 else (0 until 12).sumBy { if (appearance.body.get(it) == 0) 1 else 2 }
     }
 }

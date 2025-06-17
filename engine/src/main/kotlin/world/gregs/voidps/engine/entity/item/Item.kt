@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 
 class Item(
     val id: String = "",
-    amount: Int = 1
+    amount: Int = 1,
 ) {
     internal val value = amount
     val def: ItemDefinition
@@ -24,9 +24,7 @@ class Item(
 
     fun copy(id: String = this.id, amount: Int = this.value) = Item(id, amount)
 
-    override fun toString(): String {
-        return "Item(id='$id', amount=$value)"
-    }
+    override fun toString(): String = "Item(id='$id', amount=$value)"
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

@@ -1,5 +1,13 @@
 package content.skill.melee.weapon
 
+import content.entity.combat.Target
+import content.entity.combat.attackers
+import content.entity.player.combat.special.specialAttack
+import content.entity.player.equip.Equipment
+import content.skill.magic.spell.spell
+import content.skill.prayer.Prayer
+import content.skill.ranged.Ammo
+import content.skill.ranged.ammo
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
@@ -12,17 +20,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import content.skill.magic.spell.spell
-import content.skill.prayer.Prayer
-import content.skill.ranged.Ammo
-import content.skill.ranged.ammo
-import content.entity.player.combat.special.specialAttack
-import content.entity.player.equip.Equipment
-import content.entity.combat.Target
-import content.entity.combat.attackers
-import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import kotlin.random.nextInt
 
 object Weapon {
@@ -91,21 +91,16 @@ object Weapon {
 
     private fun isOutlier(special: Boolean, id: String): Boolean = (special && id.startsWith("magic") || id == "seercull" || id == "rune_thrownaxe") || id == "ogre_bow"
 
-    fun mark(character: Character, type: String): HitSplat.Mark {
-        if (character is NPC && character.def.contains("hit_splat")) {
-            return HitSplat.Mark.of(character.def["hit_splat", ""])
-        }
-        return when (type) {
-            "range" -> HitSplat.Mark.Range
-            "melee", "scorch" -> HitSplat.Mark.Melee
-            "magic", "blaze" -> HitSplat.Mark.Magic
-            "poison" -> HitSplat.Mark.Poison
-            "disease" -> HitSplat.Mark.Diseased
-            "dragonfire", "damage" -> HitSplat.Mark.Regular
-            "deflect" -> HitSplat.Mark.Reflected
-            "healed" -> HitSplat.Mark.Healed
-            else -> HitSplat.Mark.Regular
-        }
+    fun mark(type: String): HitSplat.Mark = when (type) {
+        "range" -> HitSplat.Mark.Range
+        "melee", "scorch" -> HitSplat.Mark.Melee
+        "magic", "blaze" -> HitSplat.Mark.Magic
+        "poison" -> HitSplat.Mark.Poison
+        "disease" -> HitSplat.Mark.Diseased
+        "dragonfire", "damage" -> HitSplat.Mark.Regular
+        "deflect" -> HitSplat.Mark.Reflected
+        "healed" -> HitSplat.Mark.Healed
+        else -> HitSplat.Mark.Regular
     }
 
     fun type(character: Character, weapon: Item = character.weapon): String {
@@ -114,9 +109,6 @@ object Weapon {
         }
         val definitions = get<WeaponStyleDefinitions>()
         val style = if (character is NPC) {
-            if (character.def.contains("combat_type")) {
-                return character.def["combat_type"]
-            }
             definitions.get(character.def["weapon_style", "unarmed"])
         } else {
             definitions.get(weapon.def["weapon_style", 0])
@@ -162,7 +154,7 @@ object Weapon {
         type: String,
         weapon: Item,
         special: Boolean,
-        baseDamage: Int
+        baseDamage: Int,
     ): Int {
         var damage = baseDamage
         if (type == "melee" && source is Player) {
@@ -232,4 +224,3 @@ val Character.attackType: String
 // E.g "crush"
 val Character.combatStyle: String
     get() = get("combat_style", "")
-

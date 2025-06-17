@@ -1,7 +1,7 @@
 package content.skill.melee.weapon.special
 
-import world.gregs.voidps.engine.client.message
 import content.entity.player.combat.special.specialAttackPrepare
+import world.gregs.voidps.engine.client.message
 
 specialAttackPrepare("brine_sabre") { player ->
     if (player.tile.region.id != 11924) {

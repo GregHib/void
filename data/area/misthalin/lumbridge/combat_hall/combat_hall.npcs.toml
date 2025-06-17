@@ -23,14 +23,17 @@ examine = "Ready for all you can swing at it."
 [mikasi]
 id = 4707
 categories = ["human"]
+collision = "indoors"
 examine = "Mikasi looks ready to teach you about magic."
 
 [harlan]
 id = 705
 categories = ["human"]
+collision = "indoors"
 examine = "Harlan, master of defence."
 
 [nemarti]
 id = 1861
 categories = ["human"]
+collision = "indoors"
 examine = "Nemarti looks ready to teach you about ranged combat."

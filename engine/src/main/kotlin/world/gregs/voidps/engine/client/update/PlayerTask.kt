@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 class PlayerTask(
     iterator: TaskIterator<Player>,
-    override val characters: Iterable<Player>
+    override val characters: Iterable<Player>,
 ) : CharacterTask<Player>(iterator) {
 
     override fun run(character: Player) {

@@ -13,5 +13,4 @@ class NPCOption1Decoder : Decoder(3) {
         val npcIndex = packet.readShortLittleEndian().toInt()
         return InteractNPC(npcIndex, 1)
     }
-
 }

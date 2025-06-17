@@ -18,14 +18,10 @@ object Hatchet {
         Item("black_hatchet"),
         Item("steel_hatchet"),
         Item("iron_hatchet"),
-        Item("bronze_hatchet")
+        Item("bronze_hatchet"),
     )
 
-    fun best(player: Player): Item? {
-        return hatchets.firstOrNull { hasRequirements(player, it) && player.holdsItem(it.id) }
-    }
+    fun best(player: Player): Item? = hatchets.firstOrNull { hasRequirements(player, it) && player.holdsItem(it.id) }
 
-    fun hasRequirements(player: Player, hatchet: Item, message: Boolean = false): Boolean {
-        return player.hasRequirementsToUse(hatchet, message, setOf(Skill.Firemaking, Skill.Woodcutting))
-    }
+    fun hasRequirements(player: Player, hatchet: Item, message: Boolean = false): Boolean = player.hasRequirementsToUse(hatchet, message, setOf(Skill.Firemaking, Skill.Woodcutting))
 }

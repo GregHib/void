@@ -18,7 +18,6 @@ object Death : Event {
         1 -> dispatcher.identifier
         else -> null
     }
-
 }
 
 fun playerDeath(handler: suspend Death.(Player) -> Unit) {

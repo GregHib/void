@@ -10,5 +10,4 @@ class ToolkitPreferencesDecoder : Decoder(BYTE) {
         packet.readByte()
         return null
     }
-
 }

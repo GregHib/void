@@ -1,7 +1,7 @@
 package content.skill.melee.weapon.special
 
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import content.entity.player.combat.special.specialAttackDamage
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 specialAttackDamage("favour_of_the_war_god") { player ->
     val drain = damage / 10

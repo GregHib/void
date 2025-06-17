@@ -1,5 +1,8 @@
 package content.social.friend
 
+import WorldTest
+import content.social.chat.privateStatus
+import content.social.clan.ownClan
 import io.mockk.mockkStatic
 import io.mockk.verify
 import kotlinx.coroutines.test.runTest
@@ -10,9 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.network.client.instruction.*
 import world.gregs.voidps.network.login.protocol.encode.*
-import content.social.chat.privateStatus
-import content.social.clan.ownClan
-import WorldTest
 import kotlin.collections.set
 import kotlin.test.assertContains
 import kotlin.test.assertTrue

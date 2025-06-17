@@ -18,7 +18,7 @@ data class Rune(
     val pure: Boolean = false,
     val levels: IntArray = intArrayOf(),
     val combinations: Map<String, List<Any>> = emptyMap(),
-    val doubleChance: Double = 0.0
+    val doubleChance: Double = 0.0,
 ) {
     fun multiplier(player: Player): Int {
         var multiplier = 1

@@ -1,5 +1,13 @@
 package content.skill.prayer.active
 
+import content.entity.combat.hit.characterCombatDamage
+import content.entity.combat.hit.combatDamage
+import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import content.entity.player.combat.special.specialAttackEnergy
+import content.entity.player.effect.energy.MAX_RUN_ENERGY
+import content.entity.player.effect.energy.runEnergy
+import content.entity.proj.shoot
+import content.skill.prayer.*
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.variableSet
@@ -11,14 +19,6 @@ import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.type.random
-import content.entity.combat.hit.characterCombatDamage
-import content.entity.combat.hit.combatDamage
-import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import content.entity.player.combat.special.specialAttackEnergy
-import content.entity.player.effect.energy.MAX_RUN_ENERGY
-import content.entity.player.effect.energy.runEnergy
-import content.entity.proj.shoot
-import content.skill.prayer.*
 
 timerStart("prayer_bonus_drain") {
     interval = 50
@@ -56,9 +56,7 @@ fun restore(player: Player, skill: Skill, leech: Int) {
     player.updateBonus(skill)
 }
 
-fun getLevel(target: Character, skill: Skill): Int {
-    return target.levels.getMax(skill)
-}
+fun getLevel(target: Character, skill: Skill): Int = target.levels.getMax(skill)
 
 combatDamage { target ->
     if (source !is Player || !source.praying("sap_spirit")) {
@@ -133,9 +131,9 @@ fun cast(source: Character, target: Character, sap: Boolean, name: String) {
     source.queue("leech", 1) {
         val type = if (sap) "sap" else "leech"
         source.anim(type)
-        source.gfx("cast_${type}_${name}")
-        val time = source.shoot("proj_${type}_${name}", target)
-        target.gfx("land_${type}_${name}", delay = time)
+        source.gfx("cast_${type}_$name")
+        val time = source.shoot("proj_${type}_$name", target)
+        target.gfx("land_${type}_$name", delay = time)
     }
 }
 
@@ -146,7 +144,7 @@ val map = mapOf(
     "leech_attack" to Skill.Attack,
     "leech_ranged" to Skill.Ranged,
     "leech_defence" to Skill.Defence,
-    "leech_magic" to Skill.Magic
+    "leech_magic" to Skill.Magic,
 )
 
 characterCombatDamage { target ->

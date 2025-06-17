@@ -20,7 +20,7 @@ import kotlin.concurrent.thread
  */
 class GameServer(
     private val fileServer: Server,
-    private val connections: ConnectionTracker
+    private val connections: ConnectionTracker,
 ) {
     private var job: Job? = null
     private var dispatcher: ExecutorCoroutineDispatcher? = null
@@ -44,7 +44,7 @@ class GameServer(
         job = scope.launch {
             try {
                 supervisorScope {
-                    logger.info { "Listening for requests on port ${port}..." }
+                    logger.info { "Listening for requests on port $port..." }
                     while (isActive) {
                         val socket = server.accept()
                         launch(dispatcher + exceptionHandler) {

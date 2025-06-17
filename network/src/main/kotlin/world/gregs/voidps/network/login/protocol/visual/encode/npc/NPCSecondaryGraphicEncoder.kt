@@ -15,5 +15,4 @@ class NPCSecondaryGraphicEncoder : VisualEncoder<NPCVisuals>(NPC_GRAPHIC_2_MASK)
             writeByteSubtract(visual.packedRotationRefresh)
         }
     }
-
 }

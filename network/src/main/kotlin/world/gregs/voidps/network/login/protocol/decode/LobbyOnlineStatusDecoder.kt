@@ -15,5 +15,4 @@ class LobbyOnlineStatusDecoder : Decoder(3) {
         val second = packet.readByte()
         return null
     }
-
 }

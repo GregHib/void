@@ -22,7 +22,7 @@ class RegionRenderer(
     private val mapSceneDecoder: Array<MapSceneDefinition>,
     private val loader: MinimapIconPainter,
     private val settings: MapTileSettings,
-    block: ((BufferedImage, Int, Region) -> Unit)? = null
+    block: ((BufferedImage, Int, Region) -> Unit)? = null,
 ) : Pipeline.Modifier<Region> {
 
     private val block: (BufferedImage, Int, Region) -> Unit = block ?: { image, level, content ->

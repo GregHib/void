@@ -22,15 +22,13 @@ data class Appearance(
     var crawlSound: Int = -1,
     var walkSound: Int = -1,
     var runSound: Int = -1,
-    var soundDistance: Int = 0
+    var soundDistance: Int = 0,
 ) : Visual {
 
     var hash = hashCode()
     var length = length()
 
-    fun length(): Int {
-        return 17 + displayName.length + if (transform != -1) 14 else (0 until 12).sumBy { if (body.get(it) == 0) 1 else 2 }
-    }
+    fun length(): Int = 17 + displayName.length + if (transform != -1) 14 else (0 until 12).sumBy { if (body.get(it) == 0) 1 else 2 }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

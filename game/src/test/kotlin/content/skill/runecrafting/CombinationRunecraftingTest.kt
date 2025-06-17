@@ -1,11 +1,14 @@
 package content.skill.runecrafting
 
+import FakeRandom
+import WorldTest
+import content.entity.obj.ObjectTeleports
+import itemOnObject
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import org.koin.test.get
-import FakeRandom
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Rune
@@ -16,9 +19,6 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
-import content.entity.obj.ObjectTeleports
-import WorldTest
-import itemOnObject
 
 internal class CombinationRunecraftingTest : WorldTest() {
 

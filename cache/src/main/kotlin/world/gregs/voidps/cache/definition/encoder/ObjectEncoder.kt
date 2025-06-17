@@ -367,5 +367,4 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinitionFull> {
         definition.writeParameters(this)
         writeByte(0)
     }
-
 }

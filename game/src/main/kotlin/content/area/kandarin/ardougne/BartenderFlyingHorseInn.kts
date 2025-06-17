@@ -1,5 +1,15 @@
 package content.area.kandarin.ardougne
 
+import content.entity.combat.hit.damage
+import content.entity.npc.shop.buy
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
+import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
@@ -8,16 +18,6 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
-import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
-import content.entity.combat.hit.damage
-import content.entity.npc.shop.buy
 
 npcOperate("Talk-to", "bartender_flying_horse_inn") {
     npc<Quiz>("Would you like to buy a drink?")
@@ -39,7 +39,7 @@ npcOperate("Talk-to", "bartender_flying_horse_inn") {
 
 itemOnNPCOperate("barcrawl_card", "bartender_flying_horse_inn") {
     if (player.containsVarbit("barcrawl_signatures", "heart_stopper")) {
-        player.noInterest()// TODO proper message
+        player.noInterest() // TODO proper message
         return@itemOnNPCOperate
     }
     barCrawl()
@@ -49,5 +49,5 @@ suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
     effects = {
         player.message("signing your barcrawl card")
         player.damage(player.levels.get(Skill.Constitution) / 4)
-    }
+    },
 )

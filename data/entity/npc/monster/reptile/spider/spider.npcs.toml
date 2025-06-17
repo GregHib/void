@@ -1,0 +1,156 @@
+[giant_spider]
+id = 59
+hitpoints = 50
+attack_bonus = -10
+attack_radius = 13
+wander_radius = 10
+hunt_mode = "cowardly"
+hunt_range = 1
+slayer_xp = 5.0
+max_hit_melee = 10
+style = "stab"
+respawn_delay = 45
+combat_anims = "giant_spider"
+combat_sounds = "giant_spider"
+categories = ["giant_spiders", "spiders"]
+height = 10
+examine = "I think this spider has been genetically modified."
+
+[giant_spider_2]
+id = 60
+hitpoints = 320
+att = 20
+str = 24
+def = 21
+wander_radius = 6
+respawn_delay = 30
+hunt_mode = "cowardly"
+hunt_range = 1
+slayer_xp = 33.0
+max_hit_melee = 30
+style = "stab"
+combat_anims = "giant_spider"
+combat_sounds = "giant_spider"
+categories = ["giant_spiders", "spiders"]
+height = 10
+examine = "I think this spider has been genetically modified."
+
+[giant_spider_3]
+id = 4400
+hitpoints = 500
+att = 41
+str = 51
+def = 31
+attack_bonus = 10
+wander_radius = 6
+respawn_delay = 25
+hunt_mode = "cowardly"
+hunt_range = 1
+slayer_xp = 50.0
+max_hit_melee = 70
+style = "stab"
+combat_anims = "giant_spider"
+combat_sounds = "giant_spider"
+categories = ["giant_spiders", "spiders"]
+height = 10
+examine = "I think this spider has been genetically modified."
+
+[spider]
+id = 61
+hitpoints = 20
+attack_bonus = -35
+max_hit_melee = 1
+attack_radius = 11
+wander_radius = 9
+respawn_delay = 35
+style = "stab"
+slayer_xp = 2.0
+combat_anims = "spider"
+combat_sounds = "spider"
+categories = ["spiders"]
+height = 10
+examine = "Incey wincey."
+
+[deadly_red_spider]
+id = 63
+hitpoints = 340
+max_hit_melee = 30
+attack = 30
+str = 25
+def = 30
+attack_radius = 11
+wander_radius = 9
+attack_speed = 4
+respawn_delay = 30
+style = "stab"
+slayer_xp = 35.0
+combat_anims = "giant_spider"
+combat_sounds = "giant_spider"
+categories = ["giant_spiders", "spiders"]
+height = 10
+examine = "I think this spider has been genetically modified.."
+
+[poison_spider]
+id = 134
+hitpoints = 640
+max_hit_melee = 70
+attack = 50
+str = 58
+def = 52
+attack_radius = 11
+wander_radius = 9
+attack_speed = 4
+respawn_delay = 30
+poison = 60
+poison_roll = 2 # unknown
+style = "stab"
+slayer_xp = 35.0
+combat_anims = "spider"
+combat_sounds = "spider"
+categories = ["spiders"]
+height = 10
+examine = "I think this spider has been genetically modified.."
+
+[spider_underground_pass]
+id = 1004
+clone = "spider"
+max_hit_melee = 10
+
+[spider_stronghold_of_security]
+id = 4401
+hitpoints = 220
+att = 21
+str = 21
+def = 21
+attack_bonus = 35
+max_hit_melee = 60
+hunt_mode = "cowardly"
+attack_radius = 11
+wander_radius = 9
+respawn_delay = 27
+style = "stab"
+slayer_xp = 22.0
+combat_anims = "spider"
+combat_sounds = "spider"
+categories = ["spiders"]
+height = 10
+examine = "I think this spider has been genetically modified."
+
+[spider_ape_atoll]
+id = 1473
+attack_bonus = 1
+max_hit_melee = 10
+attack_speed = 6
+respawn_delay = 2
+hunt_mode = "cowardly"
+clone = "spider"
+style = "slash"
+poison = 10
+combat_anims = "spider"
+combat_sounds = "spider"
+examine = "It's an extremely small brown spider, probably very poisonous."
+
+[spider_haunted_woods]
+id = 1221
+categories = ["spiders"]
+examine = "Nasty little creature."

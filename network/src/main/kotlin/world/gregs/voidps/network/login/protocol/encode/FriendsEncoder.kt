@@ -14,7 +14,7 @@ data class Friend(
     val renamed: Boolean = false,
     val world: Int = 0,
     val worldName: String = "",
-    val gameQuickChat: Boolean = true
+    val gameQuickChat: Boolean = true,
 )
 
 fun Client.sendFriendsList(friends: List<Friend>) {

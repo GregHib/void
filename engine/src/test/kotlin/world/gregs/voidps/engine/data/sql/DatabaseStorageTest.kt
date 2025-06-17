@@ -8,7 +8,9 @@ import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.data.AccountStorageTest
 import world.gregs.voidps.engine.data.DatabaseTest
 
-class DatabaseStorageTest : AccountStorageTest(), DatabaseTest {
+class DatabaseStorageTest :
+    AccountStorageTest(),
+    DatabaseTest {
 
     override val storage = DatabaseStorage()
 

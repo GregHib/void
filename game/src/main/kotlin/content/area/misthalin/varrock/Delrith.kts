@@ -64,7 +64,7 @@ val targets = listOf(
     Tile(3227, 3369) to Tile(3224, 3366),
     Tile(3227, 3370) to Tile(3231, 3366),
     Tile(3228, 3369) to Tile(3224, 3373),
-    Tile(3228, 3370) to Tile(3231, 3373)
+    Tile(3228, 3370) to Tile(3231, 3373),
 )
 
 enterArea("demon_slayer_stone_circle") {
@@ -185,11 +185,12 @@ suspend fun SuspendableContext<Player>.cutscene() {
         wizard.face(delrith)
     }
     npc<Chuckle>(
-        "denath", """
+        "denath",
+        """
         Ha ha ha! At last you are free, my demonic brother!
         Rest now, and then have your revenge on this pitiful
         city!
-    """
+    """,
     )
     for (wizard in wizards) {
         wizard.face(player)
@@ -298,7 +299,7 @@ fun Context<Player>.questComplete() {
             "Demon Slayer",
             "3 Quest Points",
             "Silverlight",
-            item = "silverlight"
+            item = "silverlight",
         )
     }
 }

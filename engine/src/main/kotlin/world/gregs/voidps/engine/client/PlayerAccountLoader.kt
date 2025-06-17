@@ -29,17 +29,13 @@ class PlayerAccountLoader(
     private val accounts: AccountManager,
     private val saveQueue: SaveQueue,
     private val accountDefinitions: AccountDefinitions,
-    private val gameContext: CoroutineDispatcher
+    private val gameContext: CoroutineDispatcher,
 ) : AccountLoader {
     private val logger = InlineLogger()
 
-    override fun exists(username: String): Boolean {
-        return storage.exists(username)
-    }
+    override fun exists(username: String): Boolean = storage.exists(username)
 
-    override fun password(username: String): String? {
-        return accountDefinitions.get(username)?.passwordHash
-    }
+    override fun password(username: String): String? = accountDefinitions.get(username)?.passwordHash
 
     /**
      * @return flow of instructions for the player to be controlled with

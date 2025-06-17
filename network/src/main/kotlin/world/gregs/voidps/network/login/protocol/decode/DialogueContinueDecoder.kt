@@ -15,5 +15,4 @@ class DialogueContinueDecoder : Decoder(6) {
         val packed = packet.readUnsignedIntMiddle()
         return InteractDialogue(InterfaceDefinition.id(packed), InterfaceDefinition.componentId(packed), button)
     }
-
 }

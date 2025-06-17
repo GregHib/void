@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.type.Tile
 
 data class FloorItemTargetStrategy(
-    private val floorItem: FloorItem
+    private val floorItem: FloorItem,
 ) : TargetStrategy {
     override val bitMask = 0
     override val tile: Tile = floorItem.tile

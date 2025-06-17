@@ -12,5 +12,4 @@ class PlayerOption2Decoder : Decoder(3) {
         val index = packet.readShort().toInt()
         return InteractPlayer(index, 2)
     }
-
 }

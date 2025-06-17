@@ -32,20 +32,14 @@ value class Tile(val id: Int) : Coordinate3D<Tile> {
         return Distance.chebyshev(x, y, other.x, other.y)
     }
 
-    fun within(other: Tile, radius: Int): Boolean {
-        return Distance.within(x, y, level, other.x, other.y, other.level, radius)
-    }
+    fun within(other: Tile, radius: Int): Boolean = Distance.within(x, y, level, other.x, other.y, other.level, radius)
 
-    fun within(x: Int, y: Int, level: Int, radius: Int): Boolean {
-        return Distance.within(this.x, this.y, this.level, x, y, level, radius)
-    }
+    fun within(x: Int, y: Int, level: Int, radius: Int): Boolean = Distance.within(this.x, this.y, this.level, x, y, level, radius)
 
     fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(this, width, height, 1)
     fun toCuboid(radius: Int) = Cuboid(minus(radius, radius), radius * 2 + 1, radius * 2 + 1, 1)
 
-    override fun toString(): String {
-        return "Tile($x, $y, $level)"
-    }
+    override fun toString(): String = "Tile($x, $y, $level)"
 
     companion object {
         fun id(x: Int, y: Int, level: Int = 0) = (y and 0x3fff) + ((x and 0x3fff) shl 14) + ((level and 0x3) shl 28)

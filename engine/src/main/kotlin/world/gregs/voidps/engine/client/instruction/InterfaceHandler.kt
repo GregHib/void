@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.inv.equipment
 class InterfaceHandler(
     private val itemDefinitions: ItemDefinitions,
     private val interfaceDefinitions: InterfaceDefinitions,
-    private val inventoryDefinitions: InventoryDefinitions
+    private val inventoryDefinitions: InventoryDefinitions,
 ) {
     private val logger = InlineLogger()
 
@@ -99,7 +99,7 @@ data class InterfaceData(
     val component: String,
     val item: Item,
     val inventory: String,
-    val options: Array<String?>?
+    val options: Array<String?>?,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -114,7 +114,9 @@ data class InterfaceData(
         if (options != null) {
             if (other.options == null) return false
             if (!options.contentEquals(other.options)) return false
-        } else if (other.options != null) return false
+        } else if (other.options != null) {
+            return false
+        }
 
         return true
     }

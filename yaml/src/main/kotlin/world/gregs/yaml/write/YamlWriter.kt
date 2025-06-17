@@ -40,12 +40,9 @@ abstract class YamlWriter(val writer: CharWriter, var config: YamlWriterConfigur
         }
     }
 
-    private fun quoteString(value: String, parentMap: String?): Boolean {
-        return !anchor(value, parentMap) && (config.forceQuoteStrings || config.quoteStrings && value.contains(' '))
-    }
+    private fun quoteString(value: String, parentMap: String?): Boolean = !anchor(value, parentMap) && (config.forceQuoteStrings || config.quoteStrings && value.contains(' '))
 
-    private fun anchor(value: String, parentMap: String?) =
-        parentMap == "&" || parentMap == "<<" || value.startsWith('&') || (value.startsWith('*') && !value.contains(' ') && value.count { it == '*' } == 1)
+    private fun anchor(value: String, parentMap: String?) = parentMap == "&" || parentMap == "<<" || value.startsWith('&') || (value.startsWith('*') && !value.contains(' ') && value.count { it == '*' } == 1)
 
     fun write(value: String) {
         for (char in value) {

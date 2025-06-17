@@ -52,5 +52,4 @@ class ClientScriptEncoder(private val revision667: Boolean = false) : Definition
         }
         writeShort(position() - position)
     }
-
 }

@@ -13,7 +13,7 @@ data class Fire(
     val xp: Double = 0.0,
     val chance: IntRange = 65..513,
     val life: Int = 0,
-    val colour: String = "orange"
+    val colour: String = "orange",
 ) {
     companion object {
         operator fun invoke(reader: ConfigReader): Fire {

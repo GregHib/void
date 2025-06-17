@@ -49,5 +49,4 @@ internal class CookingTest : WorldTest() {
         assertFalse(player.inventory.contains("bowl_of_water"))
         assertTrue(player.inventory.contains("bread_dough"))
     }
-
 }

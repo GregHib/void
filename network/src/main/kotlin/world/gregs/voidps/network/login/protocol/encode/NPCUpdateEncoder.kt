@@ -8,7 +8,7 @@ import world.gregs.voidps.network.login.protocol.writeBytes
 
 fun Client.updateNPCs(
     changes: BufferWriter,
-    updates: BufferWriter
+    updates: BufferWriter,
 ) = send(NPC_UPDATING, changes.position() + updates.position(), SHORT) {
     writeBytes(changes.toArray())
     writeBytes(updates.toArray())

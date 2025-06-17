@@ -1,5 +1,9 @@
 package content.skill.runecrafting
 
+import WorldTest
+import content.entity.obj.ObjectTeleports
+import itemOnObject
+import objectOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
@@ -9,10 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
-import content.entity.obj.ObjectTeleports
-import WorldTest
-import itemOnObject
-import objectOption
 
 internal class RunecraftingTest : WorldTest() {
 
@@ -133,8 +133,7 @@ internal class RunecraftingTest : WorldTest() {
             Altar("nature", Tile(2868, 3018), Tile(2399, 4840), pure = true),
             Altar("chaos", Tile(3059, 3590), Tile(2270, 4841), pure = true),
             Altar("death", Tile(1860, 4638), Tile(2204, 4835), pure = true),
-            Altar("blood", Tile(3560, 9780), Tile(2461, 4894, 1), pure = true)
+            Altar("blood", Tile(3560, 9780), Tile(2461, 4894, 1), pure = true),
         )
     }
-
 }

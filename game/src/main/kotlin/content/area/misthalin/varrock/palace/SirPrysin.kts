@@ -1,5 +1,10 @@
 package content.area.misthalin.varrock.palace
 
+import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.entity.sound.sound
+import content.quest.quest
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -14,11 +19,6 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import content.entity.player.bank.ownsItem
-import content.quest.quest
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
-import content.entity.sound.sound
 
 npcOperate("Talk-to", "sir_prysin") {
     when (player.quest("demon_slayer")) {
@@ -59,7 +59,7 @@ npcOperate("Talk-to", "sir_prysin") {
 
 suspend fun PlayerChoice.arisWantsToTalk(): Unit = option(
     "Aris said I should come and talk to you.",
-    { player.quest("demon_slayer") == "sir_prysin" }
+    { player.quest("demon_slayer") == "sir_prysin" },
 ) {
     player<Talk>("Aris said I should come and talk to you.")
     npc<Talk>("Aris? Is she still alive? I remember her from when I was pretty young. Well what do you need to talk to me about?")

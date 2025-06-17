@@ -1,5 +1,10 @@
 package content.area.misthalin.varrock
 
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.item
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
@@ -7,11 +12,6 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.item
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 
 npcOperate("Talk-to", "baraek") {
     if (player.holdsItem("bear_fur")) {
@@ -37,7 +37,6 @@ npcOperate("Talk-to", "baraek") {
         }
     }
 }
-
 
 suspend fun SuspendableContext<Player>.sellFur() {
     npc<Neutral>("Yeah, sure. They're 20 gold coins each.")
@@ -75,7 +74,7 @@ suspend fun SuspendableContext<Player>.sellFur() {
 suspend fun SuspendableContext<Player>.buyFur() {
     npc<Neutral>("Let's have a look at it.")
     item("bear_fur", 645, "You hand Baraek your fur to look at.")
-    //wait 4sec and cant move
+    // wait 4sec and cant move
     npc<Neutral>("It's not in the best condition. I guess I could give you 12 coins for it.")
     choice {
         option<Neutral>("Yeah, that'll do.") {

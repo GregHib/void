@@ -1,0 +1,74 @@
+[lizard]
+id = 2803
+hitpoints = 400
+att = 38
+str = 36
+def = 35
+max_hit_melee = 50
+style = "crush"
+slayer_xp = 40.0
+slayer_level = 22
+respawn_delay = 25
+attack_radius = 11
+wander_radius = 9
+immune_death = true
+hunt_mode = "cowardly"
+drop_table = "lizard"
+combat_anims = "lizard"
+combat_sounds = "lizard"
+categories = ["lizards"]
+examine = "Run away, it's massive!"
+
+[small_lizard_green]
+id = 2807
+hitpoints = 150
+att = 10
+str = 10
+def = 10
+max_hit_melee = 20
+style = "crush"
+slayer_xp = 15.0
+slayer_level = 22
+respawn_delay = 50
+attack_radius = 11
+wander_radius = 9
+immune_death = true
+drop_table = "small_lizard"
+combat_anims = "lizard"
+combat_sounds = "lizard"
+categories = ["lizards"]
+examine = "A small cold-blooded creature, partial to warmth."
+
+[small_lizard_orange]
+id = 2808
+clone = "small_lizard_green"
+
+[desert_lizard_green]
+id = 2804
+hitpoints = 250
+att = 20
+str = 22
+def = 20
+max_hit_melee = 30
+style = "crush"
+slayer_xp = 25.0
+slayer_level = 22
+respawn_delay = 25
+attack_radius = 11
+wander_radius = 9
+immune_death = true
+drop_table = "desert_lizard"
+hunt_mode = "cowardly"
+drop_table = "small_lizard"
+combat_anims = "lizard"
+combat_sounds = "lizard"
+categories = ["lizards"]
+examine = "A cold-blooded creature, partial to warmth."
+
+[desert_lizard_yellow]
+id = 2805
+clone = "desert_lizard_green"
+
+[desert_lizard_orange]
+id = 2806
+clone = "desert_lizard_green"

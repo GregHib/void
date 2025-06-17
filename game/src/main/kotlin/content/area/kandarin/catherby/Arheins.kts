@@ -10,11 +10,7 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 
 // TODO: add One Small Favour Quest & fill out the rest of dialogue out for quest
 
-npcOperate("Trade", "arheins") {
-    player.openShop("arheins_store")
-}
-
-npcOperate("Talk-to", "arheins") {
+npcOperate("Talk-to", "arhein") {
     npc<Talk>("Hello! Would you like to trade?")
 
     choice {

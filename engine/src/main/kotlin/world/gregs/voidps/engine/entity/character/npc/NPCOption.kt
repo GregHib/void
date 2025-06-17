@@ -11,7 +11,7 @@ data class NPCOption<C : Character>(
     override val character: C,
     override val target: NPC,
     val def: NPCDefinition,
-    val option: String
+    val option: String,
 ) : TargetInteraction<C, NPC>() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 
@@ -55,7 +55,7 @@ private fun <D : EventDispatcher, C : Character> npcOption(
     type: String,
     npcs: Array<out String>,
     option: String,
-    block: suspend NPCOption<C>.() -> Unit
+    block: suspend NPCOption<C>.() -> Unit,
 ) {
     val handler: suspend NPCOption<C>.(D) -> Unit = {
         block.invoke(this)

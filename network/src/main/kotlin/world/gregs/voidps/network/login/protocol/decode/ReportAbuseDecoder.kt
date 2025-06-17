@@ -15,5 +15,4 @@ class ReportAbuseDecoder : Decoder(BYTE) {
         val string = packet.readString()
         return ReportAbuse(name, type, integer, string)
     }
-
 }

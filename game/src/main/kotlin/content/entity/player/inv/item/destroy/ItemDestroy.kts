@@ -1,11 +1,11 @@
 package content.entity.player.inv.item.destroy
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
 import content.entity.player.dialogue.type.destroy
 import content.entity.player.inv.inventoryOptions
 import content.entity.sound.sound
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 
 val logger = InlineLogger()
 
@@ -14,10 +14,12 @@ inventoryOptions("Destroy", "Dismiss", "Release", inventory = "inventory") {
         logger.info { "Error destroying item $item for $player" }
         return@inventoryOptions
     }
-    val message = item.def["destroy", """
+    val message = item.def[
+        "destroy", """
         Are you sure you want to ${option.lowercase()} ${item.def.name}?
         You won't be able to reclaim it.
-    """]
+    """,
+    ]
     val destroy = destroy(item.id, message)
     if (!destroy) {
         return@inventoryOptions

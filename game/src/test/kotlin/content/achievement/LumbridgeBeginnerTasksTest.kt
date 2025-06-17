@@ -252,6 +252,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     fun `Bovine Intervention`() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until
+            override fun nextInt(from: Int, until: Int) = until
         })
         val player = createPlayer(Tile(3257, 3260))
         val npc = npcs[Tile(3258, 3260)].first { it.id.startsWith("cow") }
@@ -388,7 +389,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.levels.set(Skill.Runecrafting, 99)
         player.inventory.add("rune_essence")
 
-        val altar = objects[Tile(2843, 4833 ), "air_altar"]!!
+        val altar = objects[Tile(2843, 4833), "air_altar"]!!
         player.objectOption(altar, "Craft-rune")
         tick(2)
 
@@ -398,7 +399,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Greasing the Wheels of Commerce`() {
         val player = createPlayer(Tile(3214, 3242))
-        val npc = npcs[Tile(3214, 3243)].first { it.id == "shop_assistant_lumbridge"}
+        val npc = npcs[Tile(3214, 3243)].first { it.id == "shop_assistant_lumbridge" }
         player.inventory.add("bronze_dagger", 1)
 
         player.npcOption(npc, "Trade")
@@ -532,7 +533,6 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.interfaceOption("smithing", "mace_1", "Make 1 Mace")
         tick(3)
 
-
         assertTrue(player["mace_invaders_task", false])
     }
 
@@ -547,7 +547,6 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         tick()
         player.interfaceOption("smithing", "full_helm_1", "Make 1 Full helm")
         tick(3)
-
 
         assertTrue(player["capital_protection_what_task", false])
     }
@@ -829,5 +828,4 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
         assertTrue(player["what_is_this_place_task", false])
     }
-
 }

@@ -16,5 +16,5 @@ data class HitSplatDefinition(
     var offsetY: Int = 0,
     var fade: Int = -1,
     var comparisonType: Int = -1,
-    var anInt3214: Int = 0
+    var anInt3214: Int = 0,
 ) : Definition

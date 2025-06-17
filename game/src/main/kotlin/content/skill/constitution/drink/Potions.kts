@@ -1,5 +1,15 @@
 package content.skill.constitution.drink
 
+import content.entity.combat.hit.directHit
+import content.entity.effect.toxin.antiDisease
+import content.entity.effect.toxin.antiPoison
+import content.entity.effect.toxin.cureDisease
+import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import content.entity.player.combat.special.specialAttackEnergy
+import content.entity.player.effect.antifire
+import content.entity.player.effect.energy.runEnergy
+import content.entity.player.effect.superAntifire
+import content.skill.constitution.consume
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -10,16 +20,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.combat.hit.directHit
-import content.skill.constitution.consume
-import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
-import content.entity.player.combat.special.specialAttackEnergy
-import content.entity.player.effect.antifire
-import content.entity.player.effect.superAntifire
-import content.entity.player.effect.energy.runEnergy
-import content.entity.effect.toxin.antiDisease
-import content.entity.effect.toxin.antiPoison
-import content.entity.effect.toxin.cureDisease
 import java.util.concurrent.TimeUnit
 
 consume("*_4", "*_3", "*_2", "*_1") { player ->

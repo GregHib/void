@@ -1,12 +1,12 @@
 package content.skill.constitution.drink
 
+import content.entity.player.effect.antifire
+import content.entity.player.effect.superAntifire
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
-import content.entity.player.effect.antifire
-import content.entity.player.effect.superAntifire
 
 playerSpawn { player ->
     if (player.antifire) {

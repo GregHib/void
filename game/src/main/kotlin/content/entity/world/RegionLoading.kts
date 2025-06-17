@@ -1,6 +1,7 @@
 package content.entity.world
 
 import content.bot.isBot
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.character.mode.move.ReloadRegion
@@ -9,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.event.onEvent
-import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.engine.map.zone.ClearRegion
@@ -159,7 +159,7 @@ fun update(player: Player, initial: Boolean, force: Boolean) {
         xteas = xteaList.toTypedArray(),
         clientIndex = if (initial) player.index - 1 else null,
         playerRegions = if (initial) playerRegions else null,
-        clientTile = if (initial) player.tile.id else null
+        clientTile = if (initial) player.tile.id else null,
     )
 }
 
@@ -199,6 +199,6 @@ fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
         xteas = xteaList.toTypedArray(),
         clientIndex = if (initial) player.index - 1 else null,
         playerRegions = if (initial) playerRegions else null,
-        clientTile = if (initial) player.tile.id else null
+        clientTile = if (initial) player.tile.id else null,
     )
 }

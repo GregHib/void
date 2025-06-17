@@ -15,5 +15,4 @@ class PublicDecoder(private val huffman: Huffman) : Decoder(BYTE) {
         val message = huffman.decompress(length = packet.readSmart(), message = packet.readBytes(packet.remaining.toInt())) ?: ""
         return ChatPublic(message, effects)
     }
-
 }

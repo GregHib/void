@@ -30,7 +30,7 @@ class GameObjects(
     private val collisionRemove: GameObjectCollisionRemove,
     private val batches: ZoneBatchUpdates,
     private val definitions: ObjectDefinitions,
-    private val storeUnused: Boolean = false
+    private val storeUnused: Boolean = false,
 ) : ZoneBatchUpdates.Sender {
     private val map = if (storeUnused) GameObjectArrayMap() else GameObjectHashMap()
     private val replacements: MutableMap<Int, Int> = Int2IntOpenHashMap()
@@ -180,7 +180,7 @@ class GameObjects(
         shape: Int = original.shape,
         rotation: Int = original.rotation,
         ticks: Int = NEVER,
-        collision: Boolean = true
+        collision: Boolean = true,
     ): GameObject {
         val replacement = GameObject(definitions.get(id).id, tile, shape, rotation)
         replace(original, replacement, ticks, collision)
@@ -222,7 +222,7 @@ class GameObjects(
         getLayer(tile, ObjectLayer.WALL),
         getLayer(tile, ObjectLayer.WALL_DECORATION),
         getLayer(tile, ObjectLayer.GROUND),
-        getLayer(tile, ObjectLayer.GROUND_DECORATION)
+        getLayer(tile, ObjectLayer.GROUND_DECORATION),
     )
 
     /**
@@ -365,17 +365,13 @@ class GameObjects(
         /**
          * Value represents an objects id, shape and rotation plus and extra bit for whether the object has been [REPLACED] or removed.
          */
-        internal fun value(replaced: Boolean, id: Int, shape: Int, rotation: Int): Int {
-            return replaced.toInt() or (rotation shl 1) + (shape shl 3) + (id shl 8)
-        }
+        internal fun value(replaced: Boolean, id: Int, shape: Int, rotation: Int): Int = replaced.toInt() or (rotation shl 1) + (shape shl 3) + (id shl 8)
 
         private fun id(value: Int): Int = value shr 8 and 0x1ffff
         private fun shape(value: Int): Int = value shr 3 and 0x1f
         private fun rotation(value: Int): Int = value shr 1 and 0x3
         private fun replaced(value: Int) = value and REPLACED == REPLACED
-        private fun GameObject.value(replaced: Boolean): Int {
-            return replaced.toInt() or ((packed shr 30).toInt() shl 1)
-        }
+        private fun GameObject.value(replaced: Boolean): Int = replaced.toInt() or ((packed shr 30).toInt() shl 1)
 
         /**
          * Index represents a [Tile] and [ObjectLayer]
@@ -394,9 +390,7 @@ class GameObjects(
  * Replaces an existing map objects with [id] [tile] [shape] and [rotation], modifying [collision] and
  * optionally removed after [ticks]
  */
-fun GameObject.replace(id: String, tile: Tile = this.tile, shape: Int = this.shape, rotation: Int = this.rotation, ticks: Int = -1, collision: Boolean = true): GameObject {
-    return get<GameObjects>().replace(this, id, tile, shape, rotation, ticks, collision)
-}
+fun GameObject.replace(id: String, tile: Tile = this.tile, shape: Int = this.shape, rotation: Int = this.rotation, ticks: Int = -1, collision: Boolean = true): GameObject = get<GameObjects>().replace(this, id, tile, shape, rotation, ticks, collision)
 
 /**
  * Removes an existing map [GameObject] and its [collision], optionally reverted after [ticks]

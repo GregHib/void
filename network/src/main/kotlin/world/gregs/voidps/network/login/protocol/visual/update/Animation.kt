@@ -13,7 +13,7 @@ data class Animation(
     var force: Int = -1,
     var walk: Int = -1,
     var run: Int = -1,
-    var delay: Int = 0
+    var delay: Int = 0,
 ) : Visual {
     var infinite: Boolean = false
     var priority: Int = -1

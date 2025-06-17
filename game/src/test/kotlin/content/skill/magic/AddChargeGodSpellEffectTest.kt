@@ -1,5 +1,8 @@
 package content.skill.magic
 
+import content.entity.combat.hit.hit
+import content.skill.melee.CombatFormulaTest
+import interfaceOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -9,9 +12,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.combat.hit.hit
-import content.skill.melee.CombatFormulaTest
-import interfaceOption
 
 internal class AddChargeGodSpellEffectTest : CombatFormulaTest() {
 
@@ -22,7 +22,7 @@ internal class AddChargeGodSpellEffectTest : CombatFormulaTest() {
         player.equipment.set(EquipSlot.Weapon.index, "saradomin_staff")
         val target = createPlayer(Skill.Constitution to 990)
 
-        player.hit(target, type = "magic", spell = "saradomin_strike", damage = 100)
+        player.hit(target, offensiveType = "magic", spell = "saradomin_strike", damage = 100)
         tick(3)
 
         assertEquals(890, target.levels.get(Skill.Constitution))
@@ -40,7 +40,7 @@ internal class AddChargeGodSpellEffectTest : CombatFormulaTest() {
 
         player.interfaceOption("modern_spellbook", "charge", "Cast")
         assertTrue(player.hasClock("charge"))
-        player.hit(target, type = "magic", spell = "saradomin_strike", damage = 100)
+        player.hit(target, offensiveType = "magic", spell = "saradomin_strike", damage = 100)
         tick(3)
 
         assertEquals(790, target.levels.get(Skill.Constitution))
@@ -58,7 +58,7 @@ internal class AddChargeGodSpellEffectTest : CombatFormulaTest() {
 
         player.interfaceOption("modern_spellbook", "charge", "Cast")
         assertTrue(player.hasClock("charge"))
-        player.hit(target, type = "magic", spell = "saradomin_strike", damage = 100)
+        player.hit(target, offensiveType = "magic", spell = "saradomin_strike", damage = 100)
         tick(3)
 
         assertEquals(890, target.levels.get(Skill.Constitution))

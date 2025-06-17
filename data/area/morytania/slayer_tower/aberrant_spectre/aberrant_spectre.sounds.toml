@@ -1,0 +1,11 @@
+[aberrant_spectre_defend]
+id = 275
+
+[aberrant_spectre_death]
+id = 274
+
+[aberrant_spectre_goo_cast]
+id = 272
+
+[aberrant_spectre_goo_impact]
+id = 273

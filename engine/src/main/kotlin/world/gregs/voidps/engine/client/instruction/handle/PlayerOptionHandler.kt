@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.network.client.instruction.InteractPlayer
 
 class PlayerOptionHandler(
-    private val players: Players
+    private val players: Players,
 ) : InstructionHandler<InteractPlayer>() {
 
     private val logger = InlineLogger()

@@ -36,5 +36,4 @@ internal class TakeTest : WorldTest() {
         assertTrue(floorItems[tile.add(1, 0)].isEmpty())
         assertEquals(tile, player.tile)
     }
-
 }

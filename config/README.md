@@ -8,11 +8,13 @@ Files use the `.toml` ending for syntax highlighting support.
 # Usage
 
 ## Simplified
+
 ```kotlin
 val sections: Map<String, Any> = Config.decodeFromFile(file)
 ```
 
 ## Performance
+
 ```kotlin
 Config.fileReader(file).use { reader ->
     while (reader.nextSection()) {
@@ -27,6 +29,7 @@ Config.fileReader(file).use { reader ->
 ```
 
 ### Reading arrays
+
 ```kotlin
 while (reader.nextElement()) {
     // TODO: Read your values using reader.string(), boolean(), int(), long(), double() etc... 
@@ -34,6 +37,7 @@ while (reader.nextElement()) {
 ```
 
 ### Reading maps
+
 ```kotlin
 while (reader.nextPair()) {
     val key = reader.key()
@@ -119,6 +123,7 @@ name = "Tom"
 ## Arrays
 
 Arrays use square brackets. Whitespace and lines are ignored.
+
 ```toml
 intergers = [1, 2, 3]
 colours = ["red", "yellow", "green"]
@@ -126,6 +131,7 @@ nested_mixed_array = [ [ 1, 2 ], ["a", "b", "c"] ]
 ```
 
 Arrays can be multi-line
+
 ```toml
 integers2 = [
   1, 2, 3
@@ -157,3 +163,4 @@ animal = {
   type.name = "pug"
 }
 ```
+

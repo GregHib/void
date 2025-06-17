@@ -1,5 +1,7 @@
 package content.area.asgarnia.taverley
 
+import content.entity.obj.door.enterDoor
+import content.quest.quest
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
@@ -17,8 +19,6 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
-import content.quest.quest
-import content.entity.obj.door.enterDoor
 import java.util.concurrent.TimeUnit
 
 val npcs: NPCs by inject()
@@ -46,7 +46,6 @@ fun spawn(player: Player, tile: Tile): Boolean {
     }
     return true
 }
-
 
 itemOnObjectOperate("raw_beef", "cauldron_of_thunder") {
     dip(player, item.id)

@@ -1,10 +1,10 @@
 package content.skill.constitution.food
 
+import content.skill.constitution.consume
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.random
-import content.skill.constitution.consume
 
 consume("kebab") { player ->
     val random = random.nextDouble(100.0)
@@ -41,7 +41,6 @@ consume("super_kebab") { player ->
     }
     cancel()
 }
-
 
 val phrases = listOf("Lovely!", "Scrummy!", "Delicious!", "Yum!")
 

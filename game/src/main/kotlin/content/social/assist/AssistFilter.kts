@@ -1,13 +1,13 @@
 package content.social.assist
 
+import content.social.assist.Assistance.getHoursRemaining
+import content.social.assist.Assistance.hasEarnedMaximumExperience
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import content.social.assist.Assistance.getHoursRemaining
-import content.social.assist.Assistance.hasEarnedMaximumExperience
 
 /**
  * Assistance privacy filter settings
@@ -18,7 +18,7 @@ interfaceOption("XP Earned/Time", "assist", "filter_buttons") {
         val hours = getHoursRemaining(player)
         player.message(
             "You've earned the maximum XP (30,000 Xp) from the Assist System within a 24-hour period.",
-            ChatType.Assist
+            ChatType.Assist,
         )
         player.message("You can assist again in $hours ${"hour".plural(hours)}.", ChatType.Assist)
     } else {

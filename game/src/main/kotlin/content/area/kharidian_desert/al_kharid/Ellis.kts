@@ -1,5 +1,13 @@
 package content.area.kharidian_desert.al_kharid
 
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Sad
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.intEntry
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
@@ -20,14 +28,6 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Sad
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.intEntry
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 
 val itemDefs: ItemDefinitions by inject()
 
@@ -104,7 +104,8 @@ fun tan(player: Player, type: String, amount: Int) {
                     noHides = true
                 }
                 remove("coins", cost)
-            }) {
+            }
+        ) {
             break
         }
         tanned++

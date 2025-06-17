@@ -100,7 +100,7 @@ internal object RunescapeWikiModifier {
     private fun identifyMissingIds(
         raw: MutableMap<String, MutableMap<String, String>>,
         decoder: Array<ItemDefinition>,
-        output: MutableMap<Int, MutableMap<String, Any>>
+        output: MutableMap<Int, MutableMap<String, Any>>,
     ) {
         for ((item, properties) in raw) {
             val ids = properties.getIds()
@@ -272,7 +272,7 @@ internal object RunescapeWikiModifier {
         "forlorn",
         "stake-thrower",
         "clairvoyance",
-        "overheat"
+        "overheat",
     )
     private val regex = "Used (in|with) (.*)\\([0-9,\\s&]+\\)".toRegex()
     private val regex2 = "Requires (.*)\\([0-9,\\s&]+\\)".toRegex()

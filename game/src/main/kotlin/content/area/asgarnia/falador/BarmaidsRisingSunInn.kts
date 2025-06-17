@@ -1,5 +1,12 @@
 package content.area.asgarnia.falador
 
+import content.entity.combat.hit.damage
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
+import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
@@ -22,13 +29,6 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
-import content.entity.combat.hit.damage
 
 // Dialogue
 
@@ -154,5 +154,5 @@ suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
 //            player.clearCamera()
 //        }
         player.damage(10)
-    }
+    },
 )

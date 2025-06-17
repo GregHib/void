@@ -1,10 +1,10 @@
 package content.skill.constitution.drink
 
+import content.skill.constitution.canConsume
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
-import content.skill.constitution.canConsume
 
 canConsume("recover_special*") { player ->
     if (player.softTimers.contains("recover_special_delay")) {

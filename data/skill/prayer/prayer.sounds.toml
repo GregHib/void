@@ -93,3 +93,12 @@ id = 2663
 
 [prayer_drain]
 id = 2672
+
+[self_heal]
+id = 167
+
+[bury_bones]
+id = 2738
+
+[bone_offering]
+id = 624

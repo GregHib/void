@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 
 data class DropItems(
     val killer: Character?,
-    val items: MutableList<Item>
+    val items: MutableList<Item>,
 ) : Event {
     override val size = 1
 

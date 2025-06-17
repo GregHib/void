@@ -6,7 +6,9 @@ import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-class Players : Iterable<Player>, CharacterSearch<Player> {
+class Players :
+    Iterable<Player>,
+    CharacterSearch<Player> {
     private val players = mutableListOf<Player>()
     private val indexArray: Array<Player?> = arrayOfNulls(MAX_PLAYERS)
     private var indexer = 1

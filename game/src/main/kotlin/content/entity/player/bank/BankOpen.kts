@@ -1,5 +1,8 @@
 package content.entity.player.bank
 
+import content.entity.player.bank.Bank.tabs
+import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.adminCommand
@@ -9,9 +12,6 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.sendInventory
-import content.entity.player.bank.Bank.tabs
-import content.entity.player.modal.Tab
-import content.entity.player.modal.tab
 
 adminCommand("bank", "open your bank anywhere") {
     player.open("bank")

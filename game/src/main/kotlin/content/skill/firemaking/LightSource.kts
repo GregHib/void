@@ -1,5 +1,6 @@
 package content.skill.firemaking
 
+import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItems
 import world.gregs.voidps.engine.data.definition.data.LightSources
@@ -8,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import content.entity.player.inv.inventoryItem
 
 val acceptedUnlitSource = arrayOf(
     "oil_lamp_oil",
@@ -21,7 +21,7 @@ val acceptedUnlitSource = arrayOf(
     "emerald_lantern",
     "white_candle",
     "black_candle",
-    "unlit_torch"
+    "unlit_torch",
 )
 
 itemOnItems(arrayOf("tinderbox*"), acceptedUnlitSource) {
@@ -37,7 +37,6 @@ itemOnItems(arrayOf("tinderbox*"), acceptedUnlitSource) {
 
     val litItem = determineLightSource(needsFlame.onceLit)
     it.message("You light the $litItem", ChatType.Game)
-
 }
 
 inventoryItem("Extinguish") {
@@ -50,10 +49,8 @@ inventoryItem("Extinguish") {
     player.message("You extinguish the flame.", ChatType.Game)
 }
 
-fun determineLightSource(itemName: String): String {
-    return when {
-        itemName.contains("lantern", ignoreCase = true) -> "lantern."
-        itemName.contains("candle", ignoreCase = true) -> "candle."
-        else -> "null"
-    }
+fun determineLightSource(itemName: String): String = when {
+    itemName.contains("lantern", ignoreCase = true) -> "lantern."
+    itemName.contains("candle", ignoreCase = true) -> "candle."
+    else -> "null"
 }

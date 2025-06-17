@@ -29,5 +29,4 @@ class InfoBoxMonster : Pipeline.Modifier<Extras> {
             }
         }
     }
-
 }

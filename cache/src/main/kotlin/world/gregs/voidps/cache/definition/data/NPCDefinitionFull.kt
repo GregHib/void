@@ -62,16 +62,21 @@ data class NPCDefinitionFull(
     var opacity: Byte = 0,
     var mainOptionIndex: Byte = -1,
     var campaigns: IntArray? = null,
-    var aBoolean2883: Boolean = false,
-    var anInt2803: Int = -1,
-    var anInt2844: Int = 256,
-    var anInt2852: Int = 256,
-    var anInt2831: Int = 0,
-    var anInt2862: Int = 0,
+    var vorbis: Boolean = false,
+    var slayerType: Int = -1,
+    var soundRateMin: Int = 256,
+    var soundRateMax: Int = 256,
+    var pickSizeShift: Int = 0,
+    var soundRangeMin: Int = 0,
     override var params: Map<Int, Any>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Transforms, Recolourable, ColourPalette, Parameterized, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Transforms,
+    Recolourable,
+    ColourPalette,
+    Parameterized,
+    Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -82,34 +87,48 @@ data class NPCDefinitionFull(
         if (modelIds != null) {
             if (other.modelIds == null) return false
             if (!modelIds.contentEquals(other.modelIds)) return false
-        } else if (other.modelIds != null) return false
+        } else if (other.modelIds != null) {
+            return false
+        }
         if (name != other.name) return false
         if (size != other.size) return false
         if (!options.contentEquals(other.options)) return false
         if (originalColours != null) {
             if (other.originalColours == null) return false
             if (!originalColours.contentEquals(other.originalColours)) return false
-        } else if (other.originalColours != null) return false
+        } else if (other.originalColours != null) {
+            return false
+        }
         if (modifiedColours != null) {
             if (other.modifiedColours == null) return false
             if (!modifiedColours.contentEquals(other.modifiedColours)) return false
-        } else if (other.modifiedColours != null) return false
+        } else if (other.modifiedColours != null) {
+            return false
+        }
         if (originalTextureColours != null) {
             if (other.originalTextureColours == null) return false
             if (!originalTextureColours.contentEquals(other.originalTextureColours)) return false
-        } else if (other.originalTextureColours != null) return false
+        } else if (other.originalTextureColours != null) {
+            return false
+        }
         if (modifiedTextureColours != null) {
             if (other.modifiedTextureColours == null) return false
             if (!modifiedTextureColours.contentEquals(other.modifiedTextureColours)) return false
-        } else if (other.modifiedTextureColours != null) return false
+        } else if (other.modifiedTextureColours != null) {
+            return false
+        }
         if (recolourPalette != null) {
             if (other.recolourPalette == null) return false
             if (!recolourPalette.contentEquals(other.recolourPalette)) return false
-        } else if (other.recolourPalette != null) return false
+        } else if (other.recolourPalette != null) {
+            return false
+        }
         if (dialogueModels != null) {
             if (other.dialogueModels == null) return false
             if (!dialogueModels.contentEquals(other.dialogueModels)) return false
-        } else if (other.dialogueModels != null) return false
+        } else if (other.dialogueModels != null) {
+            return false
+        }
         if (drawMinimapDot != other.drawMinimapDot) return false
         if (combat != other.combat) return false
         if (scaleXY != other.scaleXY) return false
@@ -124,7 +143,9 @@ data class NPCDefinitionFull(
         if (transforms != null) {
             if (other.transforms == null) return false
             if (!transforms.contentEquals(other.transforms)) return false
-        } else if (other.transforms != null) return false
+        } else if (other.transforms != null) {
+            return false
+        }
         if (clickable != other.clickable) return false
         if (slowWalk != other.slowWalk) return false
         if (animateIdle != other.animateIdle) return false
@@ -136,7 +157,9 @@ data class NPCDefinitionFull(
         if (translations != null) {
             if (other.translations == null) return false
             if (!translations.contentDeepEquals(other.translations)) return false
-        } else if (other.translations != null) return false
+        } else if (other.translations != null) {
+            return false
+        }
         if (hitbarSprite != other.hitbarSprite) return false
         if (height != other.height) return false
         if (respawnDirection != other.respawnDirection) return false
@@ -165,13 +188,15 @@ data class NPCDefinitionFull(
         if (campaigns != null) {
             if (other.campaigns == null) return false
             if (!campaigns.contentEquals(other.campaigns)) return false
-        } else if (other.campaigns != null) return false
-        if (aBoolean2883 != other.aBoolean2883) return false
-        if (anInt2803 != other.anInt2803) return false
-        if (anInt2844 != other.anInt2844) return false
-        if (anInt2852 != other.anInt2852) return false
-        if (anInt2831 != other.anInt2831) return false
-        if (anInt2862 != other.anInt2862) return false
+        } else if (other.campaigns != null) {
+            return false
+        }
+        if (vorbis != other.vorbis) return false
+        if (slayerType != other.slayerType) return false
+        if (soundRateMin != other.soundRateMin) return false
+        if (soundRateMax != other.soundRateMax) return false
+        if (pickSizeShift != other.pickSizeShift) return false
+        if (soundRangeMin != other.soundRangeMin) return false
         if (params != other.params) return false
         if (stringId != other.stringId) return false
         return extras == other.extras
@@ -236,12 +261,12 @@ data class NPCDefinitionFull(
         result = 31 * result + opacity
         result = 31 * result + mainOptionIndex
         result = 31 * result + (campaigns?.contentHashCode() ?: 0)
-        result = 31 * result + aBoolean2883.hashCode()
-        result = 31 * result + anInt2803
-        result = 31 * result + anInt2844
-        result = 31 * result + anInt2852
-        result = 31 * result + anInt2831
-        result = 31 * result + anInt2862
+        result = 31 * result + vorbis.hashCode()
+        result = 31 * result + slayerType
+        result = 31 * result + soundRateMin
+        result = 31 * result + soundRateMax
+        result = 31 * result + pickSizeShift
+        result = 31 * result + soundRangeMin
         result = 31 * result + (params?.hashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
         result = 31 * result + (extras?.hashCode() ?: 0)

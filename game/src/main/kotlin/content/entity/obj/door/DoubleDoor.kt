@@ -1,14 +1,14 @@
 package content.entity.obj.door
 
+import content.entity.obj.Replace
+import content.entity.obj.door.Door.isDoor
+import content.entity.obj.door.Gate.isGate
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.equals
-import content.entity.obj.Replace
-import content.entity.obj.door.Door.isDoor
-import content.entity.obj.door.Gate.isGate
 
 object DoubleDoor {
     /**
@@ -55,7 +55,7 @@ object DoubleDoor {
                 obj, obj.id.replace("_closed", "_opened"), Door.tile(obj, 1), obj.rotation(if (flip) 1 else 3),
                 double, double.id.replace("_closed", "_opened"), Door.tile(double, 1), double.rotation(if (flip) 3 else 1),
                 ticks,
-                collision
+                collision,
             )
         }
     }
@@ -81,7 +81,7 @@ object DoubleDoor {
                 Door.tile(double, if (mirror) 0 else 2),
                 double.rotation(if (flip || mirror) 3 else 1),
                 ticks,
-                collision
+                collision,
             )
         }
     }

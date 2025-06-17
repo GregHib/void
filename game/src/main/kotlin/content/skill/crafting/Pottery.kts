@@ -1,5 +1,7 @@
 package content.skill.crafting
 
+import content.entity.player.dialogue.type.makeAmount
+import content.entity.sound.sound
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
@@ -15,8 +17,6 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
-import content.entity.player.dialogue.type.makeAmount
-import content.entity.sound.sound
 
 itemOnObjectOperate("soft_clay", "potters_wheel*", arrive = false) {
     make("spinning", item)
@@ -41,7 +41,7 @@ suspend fun TargetInteraction<Player, GameObject>.make(animation: String, item: 
     val (id, amount) = makeAmount(
         items = pottery.keys.toList(),
         type = "Make",
-        maximum = 28
+        maximum = 28,
     )
     val current = player.inventory.count(item.id)
     if (current <= 0) {
@@ -67,7 +67,7 @@ fun Player.make(animation: String, obj: GameObject, item: Item, id: String, data
     }
     face(obj)
     if (!has(Skill.Crafting, data.level)) {
-	    message("You need a Crafting level of ${data.level} to make a ${id.toLowerSpaceCase()}.")
+        message("You need a Crafting level of ${data.level} to make a ${id.toLowerSpaceCase()}.")
         softTimers.stop("pottery")
         return
     }
@@ -78,9 +78,9 @@ fun Player.make(animation: String, obj: GameObject, item: Item, id: String, data
             softTimers.stop("pottery")
             return@weakQueue
         }
-		player.sound("pottery")
+        player.sound("pottery")
         exp(Skill.Crafting, data.xp)
         make(animation, obj, item, id, data, amount - 1)
-		message("You make the clay into a ${id.toLowerSpaceCase()}.")
+        message("You make the clay into a ${id.toLowerSpaceCase()}.")
     }
 }

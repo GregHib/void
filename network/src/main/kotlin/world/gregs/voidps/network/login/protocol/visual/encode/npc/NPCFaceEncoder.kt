@@ -14,5 +14,4 @@ class NPCFaceEncoder : VisualEncoder<NPCVisuals>(NPC_FACE_MASK, initial = true) 
             writeShortLittle(targetY * 2 + 1)
         }
     }
-
 }

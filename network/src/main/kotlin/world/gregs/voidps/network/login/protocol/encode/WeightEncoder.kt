@@ -8,7 +8,7 @@ import world.gregs.voidps.network.login.Protocol.PLAYER_WEIGHT
  * Updates player weight for equipment screen
  */
 fun Client.weight(
-    weight: Int
+    weight: Int,
 ) = send(PLAYER_WEIGHT) {
     writeShort(weight)
 }

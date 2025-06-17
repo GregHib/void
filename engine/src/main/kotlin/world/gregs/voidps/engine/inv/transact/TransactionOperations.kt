@@ -3,11 +3,11 @@ package world.gregs.voidps.engine.inv.transact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.charges
-import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.discharge
 import world.gregs.voidps.engine.inv.transact.operation.AddChargeLimit.chargeToLimit
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearCharge.discharge
 import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.degrade
+import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.discharge
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 fun Transaction.remove(items: List<Item>) {
@@ -94,6 +94,4 @@ fun Transaction.clearCharges(player: Player, index: Int) {
     discharge(index)
 }
 
-fun Transaction.charges(player: Player, index: Int): Int {
-    return inventory.charges(player, index)
-}
+fun Transaction.charges(player: Player, index: Int): Int = inventory.charges(player, index)

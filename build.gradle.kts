@@ -10,6 +10,7 @@ buildscript {
 plugins {
     kotlin("jvm") version "1.9.22"
     id("jacoco-report-aggregation")
+    id("com.diffplug.spotless") version "7.0.4"
 }
 
 val cacheVersion = "1.3.1"
@@ -41,11 +42,13 @@ allprojects {
         compileKotlin {
             kotlinOptions.jvmTarget = java.sourceCompatibility.toString()
             // https://youtrack.jetbrains.com/issue/KT-4779/Generate-default-methods-for-implementations-in-interfaces
-            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
+            kotlinOptions.freeCompilerArgs =
+                listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
         }
         compileTestKotlin {
             kotlinOptions.jvmTarget = java.sourceCompatibility.toString()
-            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
+            kotlinOptions.freeCompilerArgs =
+                listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
         }
     }
 
@@ -71,6 +74,29 @@ allprojects {
     }
 }
 
+spotless {
+    kotlin {
+        target("**/*.kt", "**/*.kts")
+        targetExclude("temp/", "**/build/**", "**/out/**")
+        ktlint()
+            .editorConfigOverride(
+                mapOf(
+                    "ktlint_code_style" to "intellij_idea",
+                    "ktlint_standard_no-wildcard-imports" to "disabled",
+                    "ktlint_standard_package-name" to "disabled",
+                ),
+            )
+    }
+    kotlinGradle {
+        target("*.gradle.kts")
+        ktlint()
+    }
+    flexmark {
+        target("**/*.md")
+        flexmark()
+    }
+}
+
 tasks.register("printVersion") {
     doLast {
         println(project.version)
@@ -82,7 +108,6 @@ tasks.register("printCacheVersion") {
         println(cacheVersion)
     }
 }
-
 
 reporting {
     reports {

@@ -13,7 +13,7 @@ import world.gregs.voidps.network.client.instruction.InteractInterfaceFloorItem
 
 class InterfaceOnFloorItemOptionHandler(
     private val items: FloorItems,
-    private val handler: InterfaceHandler
+    private val handler: InterfaceHandler,
 ) : InstructionHandler<InteractInterfaceFloorItem>() {
 
     private val logger = InlineLogger()

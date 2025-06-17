@@ -12,5 +12,4 @@ class InterfaceClosedHandler : InstructionHandler<InterfaceClosedInstruction>() 
             player.interfaces.close(id)
         }
     }
-
 }

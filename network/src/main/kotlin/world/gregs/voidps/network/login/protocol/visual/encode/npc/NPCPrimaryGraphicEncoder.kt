@@ -15,5 +15,4 @@ class NPCPrimaryGraphicEncoder : VisualEncoder<NPCVisuals>(NPC_GRAPHIC_1_MASK) {
             writeByte(visual.packedRotationRefresh)
         }
     }
-
 }

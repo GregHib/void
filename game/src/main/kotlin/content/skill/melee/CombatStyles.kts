@@ -64,9 +64,7 @@ fun refreshStyle(player: Player) {
     player["attack_style_index"] = index
 }
 
-fun getWeaponStyleType(player: Player): Int {
-    return player.equipped(EquipSlot.Weapon).def["weapon_style", 0]
-}
+fun getWeaponStyleType(player: Player): Int = player.equipped(EquipSlot.Weapon).def["weapon_style", 0]
 
 interfaceOption("Use", "special_attack_bar", "combat_styles") {
     player.toggle("special_attack")

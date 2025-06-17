@@ -6,16 +6,14 @@ import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
 data class SongEndEvent(
-    val songIndex: Int
+    val songIndex: Int,
 ) : Event {
     override val size = 2
 
-    override fun parameter(dispatcher: EventDispatcher, index: Int): Any? {
-        return when(index) {
-            0 -> "song_end"
-            1 -> songIndex
-            else -> null
-        }
+    override fun parameter(dispatcher: EventDispatcher, index: Int): Any? = when (index) {
+        0 -> "song_end"
+        1 -> songIndex
+        else -> null
     }
 }
 

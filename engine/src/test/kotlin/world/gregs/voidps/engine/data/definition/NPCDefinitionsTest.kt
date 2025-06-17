@@ -10,21 +10,19 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
     override val id: String = "hans"
     override val intId: Int = 0
 
-    override fun expected(): NPCDefinition {
-        return NPCDefinition(intId, stringId = id, extras = mapOf(
+    override fun expected(): NPCDefinition = NPCDefinition(
+        intId,
+        stringId = id,
+        extras = mapOf(
             "categories" to setOf("human"),
             "wander_radius" to 4,
-            "examine" to "Servant of the Duke of Lumbridge."
-        ))
-    }
+            "examine" to "Servant of the Duke of Lumbridge.",
+        ),
+    )
 
-    override fun empty(): NPCDefinition {
-        return NPCDefinition(-1)
-    }
+    override fun empty(): NPCDefinition = NPCDefinition(-1)
 
-    override fun definitions(): NPCDefinitions {
-        return NPCDefinitions(definitions)
-    }
+    override fun definitions(): NPCDefinitions = NPCDefinitions(definitions)
 
     override fun load(definitions: NPCDefinitions) {
         val uri = NPCDefinitionsTest::class.java.getResource("test-npc.toml")!!

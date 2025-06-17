@@ -12,8 +12,9 @@ data class AreaEntered(
     override val character: Player,
     val name: String,
     val tags: Set<String>,
-    val area: Area
-) : SuspendableEvent, SuspendableContext<Player> {
+    val area: Area,
+) : SuspendableEvent,
+    SuspendableContext<Player> {
 
     override val size = 3
 

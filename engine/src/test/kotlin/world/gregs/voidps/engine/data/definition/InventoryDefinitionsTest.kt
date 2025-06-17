@@ -13,26 +13,20 @@ internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefini
     override val id: String = "bobs_brilliant_axes"
     override val intId: Int = 1
 
-    override fun expected(): InventoryDefinition {
-        return InventoryDefinition(
-            intId,
-            stringId = id,
-            length = 7,
-            ids = intArrayOf(1, 2, 3, 4, 5, 6, 7),
-            amounts = intArrayOf(10, 10, 10, 10, 10, 10, 10),
-            extras = mapOf(
-                "shop" to true
-            )
-        )
-    }
+    override fun expected(): InventoryDefinition = InventoryDefinition(
+        intId,
+        stringId = id,
+        length = 7,
+        ids = intArrayOf(1, 2, 3, 4, 5, 6, 7),
+        amounts = intArrayOf(10, 10, 10, 10, 10, 10, 10),
+        extras = mapOf(
+            "shop" to true,
+        ),
+    )
 
-    override fun empty(): InventoryDefinition {
-        return InventoryDefinition(-1)
-    }
+    override fun empty(): InventoryDefinition = InventoryDefinition(-1)
 
-    override fun definitions(): InventoryDefinitions {
-        return InventoryDefinitions(definitions)
-    }
+    override fun definitions(): InventoryDefinitions = InventoryDefinitions(definitions)
 
     override fun load(definitions: InventoryDefinitions) {
         val uri = InventoryDefinitionsTest::class.java.getResource("test-inventory.toml")!!

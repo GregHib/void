@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.Settings
@@ -13,9 +12,7 @@ class SlayerTaskDefinitions {
 
     private lateinit var taskLists: Map<String, Map<String, SlayerTaskDefinition>>
 
-    fun get(name: String): Map<String, SlayerTaskDefinition> {
-        return taskLists.getValue(name)
-    }
+    fun get(name: String): Map<String, SlayerTaskDefinition> = taskLists.getValue(name)
 
     fun load(paths: List<String>): SlayerTaskDefinitions {
         timedLoad("slayer task list") {
@@ -55,5 +52,4 @@ class SlayerTaskDefinitions {
         }
         return this
     }
-
 }

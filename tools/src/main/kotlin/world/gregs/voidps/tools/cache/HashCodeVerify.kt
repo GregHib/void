@@ -20,7 +20,8 @@ object HashCodeVerify {
             }
         }
 
-        println("""
+        println(
+            """
             [table="width: 500, class: full_border"]
             [tr]
             	[td]Index id[/td]
@@ -29,11 +30,13 @@ object HashCodeVerify {
             	[td]Total[/td]
             	[td]Percentage[/td]
             [/tr]
-        """.trimIndent())
+            """.trimIndent(),
+        )
         file.readLines().map { it.split("\t") }.groupBy { it[0] }.forEach { (index, lines) ->
             val found = lines.count { !it.getOrNull(4).isNullOrBlank() }
 
-            println("""
+            println(
+                """
                 [tr]
                 	[td]$index[/td]
                 	[td]${names[index.toInt()]}[/td]
@@ -41,7 +44,8 @@ object HashCodeVerify {
                 	[td]${lines.size}[/td]
                 	[td]${String.format("%.2f", found / lines.size.toDouble() * 100.0)}%[/td]
                 [/tr]
-            """.trimIndent())
+                """.trimIndent(),
+            )
         }
         println("[/table]")
     }
@@ -58,6 +62,6 @@ object HashCodeVerify {
         30 to "Native libraries",
         31 to "Shaders",
         33 to "Game tips",
-        34 to "loading fonts and sprites"
+        34 to "loading fonts and sprites",
     )
 }

@@ -12,14 +12,12 @@ import world.gregs.voidps.engine.data.definition.data.Tree
 import world.gregs.voidps.engine.timedLoad
 
 class ObjectDefinitions(
-    override var definitions: Array<ObjectDefinition>
+    override var definitions: Array<ObjectDefinition>,
 ) : DefinitionsDecoder<ObjectDefinition> {
 
     override lateinit var ids: Map<String, Int>
 
-    fun getValue(id: Int): ObjectDefinition {
-        return definitions[id]
-    }
+    fun getValue(id: Int): ObjectDefinition = definitions[id]
 
     override fun empty() = ObjectDefinition.EMPTY
 

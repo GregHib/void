@@ -19,8 +19,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.inv.Inventories
 import world.gregs.voidps.engine.queue.ActionQueue
-import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.DialogueSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.client.Client
@@ -45,7 +45,7 @@ class Player(
     var viewport: Viewport? = null,
     var accountName: String = "",
     var passwordHash: String = "",
-    val body: BodyParts = BodyParts()
+    val body: BodyParts = BodyParts(),
 ) : Character {
 
     override val visuals: PlayerVisuals = PlayerVisuals(body)
@@ -104,11 +104,7 @@ class Player(
         return index == other.index
     }
 
-    override fun hashCode(): Int {
-        return index
-    }
+    override fun hashCode(): Int = index
 
-    override fun toString(): String {
-        return "Player(${accountName}, index=$index, tile=$tile)"
-    }
+    override fun toString(): String = "Player($accountName, index=$index, tile=$tile)"
 }

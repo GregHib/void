@@ -107,5 +107,4 @@ internal class BarbarianAdvancedTest : WorldTest() {
         assertEquals(Tile(2544, 3552), player.tile)
         assertEquals(630.0, player.experience.get(Skill.Agility))
     }
-
 }

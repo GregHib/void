@@ -1,5 +1,8 @@
 package content.area.asgarnia.port_sarim
 
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.quest.quest
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -12,9 +15,6 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.quest.quest
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
 
 npcOperate("Talk-to", "thurgo") {
     when (player.quest("the_knights_sword")) {
@@ -37,19 +37,19 @@ suspend fun Interaction<Player>.menuReplacementSword() {
 
 suspend fun PlayerChoice.madeSword() = option<Happy>(
     "Thanks for making that sword for me!",
-    { player.holdsItem("blurite_sword") }
+    { player.holdsItem("blurite_sword") },
 ) {
     npc<HappyOld>("You're welcome - thanks for the pie!")
 }
 
 val items = listOf(
     Item("blurite_ore"),
-    Item("iron_bar", 2)
+    Item("iron_bar", 2),
 )
 
 suspend fun PlayerChoice.replacementSword() = option<Happy>(
     "Can you make that replacement sword now?",
-    { !player.holdsItem("blurite_sword") }
+    { !player.holdsItem("blurite_sword") },
 ) {
     npc<QuizOld>("How are you doing finding those sword materials?")
     if (player.inventory.contains(items)) {
@@ -140,7 +140,7 @@ suspend fun PlayerChoice.imcandoDwarf() = option<Happy>("Are you an Imcando dwar
 
 suspend fun PlayerChoice.redberryPie(): Unit = option<Quiz>(
     "Would you like a redberry pie?",
-    { player.holdsItem("redberry_pie") }
+    { player.holdsItem("redberry_pie") },
 ) {
     statement("You see Thurgo's eyes light up.")
     npc<HappyOld>("I'd never say no to a redberry pie! We Imcando dwarves love them - they're GREAT!")

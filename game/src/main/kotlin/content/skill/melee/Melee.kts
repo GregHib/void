@@ -1,15 +1,15 @@
 package content.skill.melee
 
-import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
-import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
-import world.gregs.voidps.engine.inject
-import content.skill.melee.weapon.attackType
 import content.entity.combat.combatPrepare
 import content.entity.combat.combatSwing
 import content.entity.combat.hit.hit
-import content.skill.melee.weapon.weapon
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
+import content.skill.melee.weapon.attackType
+import content.skill.melee.weapon.weapon
+import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
+import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
+import world.gregs.voidps.engine.inject
 
 combatPrepare("melee") { player ->
     if (player.specialAttack && !SpecialAttack.hasEnergy(player)) {

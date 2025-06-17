@@ -1,5 +1,16 @@
 package content.skill.prayer.list
 
+import content.entity.death.playerDeath
+import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
+import content.entity.sound.sound
+import content.skill.prayer.PrayerConfigs.QUICK_CURSES
+import content.skill.prayer.PrayerConfigs.QUICK_PRAYERS
+import content.skill.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
+import content.skill.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
+import content.skill.prayer.PrayerConfigs.USING_QUICK_PRAYERS
+import content.skill.prayer.getActivePrayerVarKey
+import content.skill.prayer.isCurses
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -10,17 +21,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.inject
-import content.entity.death.playerDeath
-import content.skill.prayer.PrayerConfigs.QUICK_CURSES
-import content.skill.prayer.PrayerConfigs.QUICK_PRAYERS
-import content.skill.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
-import content.skill.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
-import content.skill.prayer.PrayerConfigs.USING_QUICK_PRAYERS
-import content.entity.player.modal.Tab
-import content.entity.player.modal.tab
-import content.entity.sound.sound
-import content.skill.prayer.getActivePrayerVarKey
-import content.skill.prayer.isCurses
 
 /**
  * Prayers

@@ -49,7 +49,7 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
         "guthix_raptor" to 3,
         "dragon_hatchling" to 1,
         "hatchling_dragon" to 1,
-        "baby_dragon" to 2
+        "baby_dragon" to 2,
     )
 
     val npcs: Map<String, Int> = mapOf(
@@ -58,7 +58,7 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
         "pet_cat_4" to 4,
         "pet_cat_5" to 5,
         "pet_cat_6" to 6,
-        "pet_cat" to 1
+        "pet_cat" to 1,
     )
 
     val pets: Map<String, List<Int>> = mapOf(
@@ -210,7 +210,7 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
         "platypus_brown_2" to emptyList(),
         "vulture_grey_2" to emptyList(),
         "monkey_grey_and_beige_2" to emptyList(),
-        "gecko_red_2" to emptyList()
+        "gecko_red_2" to emptyList(),
     )
 
     val uids = mapOf(
@@ -353,7 +353,7 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
         "baby_gecko_2" to "baby_gecko_orange",
         "baby_gecko_3" to "baby_gecko_green",
         "baby_gecko_4" to "baby_gecko_red",
-        "baby_gecko_5" to "baby_gecko_blue"
+        "baby_gecko_5" to "baby_gecko_blue",
     )
 
     val numberRegex = "([0-9]+)".toRegex()
@@ -416,15 +416,16 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
                 content.selectExamine(uid, suffix)
             }
             if (uid.startsWith("tooth_creature")) {
-                content.selectExamine(uid,
+                content.selectExamine(
+                    uid,
                     when {
                         uid.endsWith("_health") -> 2
                         uid.endsWith("_decayed") -> 3
                         else -> 1
-                    }
+                    },
                 )
             }
-            if (id == 20823) {//Primal plate legs
+            if (id == 20823) { // Primal plate legs
                 extras["examine"] = "${extras["examine"]}${extras.remove("examine2")}"
             }
             if (uid.startsWith("reward_book")) {
@@ -433,12 +434,15 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
             if (uid.startsWith("elegant_shirt")) {
                 content.selectExamine(uid, 3)
                 val suffix = getSuffixNumber(uid)
-                extras["examine"] = (extras["examine"] as String).replace("[colour]", when (suffix) {
-                    1 -> "red"
-                    2 -> "blue"
-                    3 -> "green"
-                    else -> "black"
-                })
+                extras["examine"] = (extras["examine"] as String).replace(
+                    "[colour]",
+                    when (suffix) {
+                        1 -> "red"
+                        2 -> "blue"
+                        3 -> "green"
+                        else -> "black"
+                    },
+                )
             }
             if (uid.contains("shelves")) {
                 content.selectExamine(uid, if (uid.endsWith("_3")) 2 else 1)
@@ -472,9 +476,7 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
         return content
     }
 
-    private fun getSuffixNumber(text: String): Int {
-        return numberRegex.find(text)?.groupValues?.last()?.toIntOrNull() ?: 0
-    }
+    private fun getSuffixNumber(text: String): Int = numberRegex.find(text)?.groupValues?.last()?.toIntOrNull() ?: 0
 
     private fun Extras.selectExamine(uid: String, vararg index: Int) = select(uid, "examine", *index)
 

@@ -28,29 +28,32 @@ class MutableListPane(title: String, private val model: DefaultListModel<String>
         add(label)
         add(pane)
         add(Box.createRigidArea(Dimension(0, 5)))
-        add(JScrollPane(list).apply {
-            preferredSize = Dimension(250, 80)
-            alignmentX = LEFT_ALIGNMENT
-        })
-        add(JPanel().apply {
-            alignmentX = LEFT_ALIGNMENT
-            layout = BoxLayout(this, BoxLayout.LINE_AXIS)
-            border = BorderFactory.createEmptyBorder(5, 10, 5, 0)
-            add(Box.createHorizontalGlue())
-            val clear = JButton("Clear")
-            add(clear)
-            clear.addActionListener {
-                model.removeAllElements()
-            }
-            add(Box.createRigidArea(Dimension(10, 0)))
-            val remove = JButton("Remove")
-            add(remove)
-            remove.addActionListener {
-                list.selectedValuesList.forEach {
-                    model.removeElement(it)
+        add(
+            JScrollPane(list).apply {
+                preferredSize = Dimension(250, 80)
+                alignmentX = LEFT_ALIGNMENT
+            },
+        )
+        add(
+            JPanel().apply {
+                alignmentX = LEFT_ALIGNMENT
+                layout = BoxLayout(this, BoxLayout.LINE_AXIS)
+                border = BorderFactory.createEmptyBorder(5, 10, 5, 0)
+                add(Box.createHorizontalGlue())
+                val clear = JButton("Clear")
+                add(clear)
+                clear.addActionListener {
+                    model.removeAllElements()
                 }
-            }
-        })
+                add(Box.createRigidArea(Dimension(10, 0)))
+                val remove = JButton("Remove")
+                add(remove)
+                remove.addActionListener {
+                    list.selectedValuesList.forEach {
+                        model.removeElement(it)
+                    }
+                }
+            },
+        )
     }
-
 }

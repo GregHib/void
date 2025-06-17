@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit
 
 class GameLoop(
     private val stages: List<Runnable>,
-    private val delay: Long = ENGINE_DELAY
+    private val delay: Long = ENGINE_DELAY,
 ) {
     private val logger = InlineLogger()
 

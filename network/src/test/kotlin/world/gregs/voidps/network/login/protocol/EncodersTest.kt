@@ -52,87 +52,86 @@ class EncodersTest {
         }
 
     @TestFactory
-    fun `Test encoders`() =
-        listOf<Client.() -> Unit>(
-            { moveCamera(123, 234, 1234, 23, 32) },
-            { turnCamera(123, 234, 1234, 23, 32) },
-            { shakeCamera(123, 234, 1234, 23, 32) },
-            { clearCamera() },
-            { message("message", 123, 123456, "name", "formatted") },
-            { publicChat(1234, 4321, 123, "message".toByteArray()) },
-            { publicQuickChat(1234, 4321, 123, 12345, byteArrayOf(12, 21, 23)) },
-            { privateChatFrom("display", 123, "message".toByteArray(), "name") },
-            { privateQuickChatFrom("display", 123, 1234, byteArrayOf(12, 21, 23)) },
-            { privateChatTo("display", "message".toByteArray()) },
-            { privateQuickChatTo("display", 1234, "message".toByteArray()) },
-            { sendPublicStatus(123, 134) },
-            { sendPrivateStatus(123) },
-            { clanChat("display", "clan", 123, "message".toByteArray(), "response") },
-            { clanQuickChat("display", "clan", 123, 1234, "message".toByteArray(), "response") },
-            { appendClanChat(Member("display", 1234, 123, "world", "response")) },
-            { updateClanChat("display", "clan", 123, listOf(Member("member", 1234, 123, "world", "response"))) },
-            { leaveClanChat() },
-            { sendInventoryItems(1234, 2, intArrayOf(1, 2, 3, 4), true) },
-            { contextMenuOption("option", 123, true, 1234) },
-            { sendFriendsList(listOf(Friend("name", "previous", 123, true, 12, "world", true))) },
-            { sendIgnoreList(listOf("name" to "previous")) },
-            { updateIgnoreList("name", "previous", true) },
-            { animateInterface(InterfaceDefinition.pack(123, 345), 12345) },
-            { closeInterface(InterfaceDefinition.pack(123, 345)) },
-            { colourInterface(InterfaceDefinition.pack(123, 345), 123, 234, 255) },
-            { colourInterface(InterfaceDefinition.pack(123, 345), 12345) },
-            { npcDialogueHead(InterfaceDefinition.pack(123, 345), 12345) },
-            { playerDialogueHead(InterfaceDefinition.pack(123, 345)) },
-            { interfaceItem(InterfaceDefinition.pack(123, 345), 12345, 23456) },
-            { sendInterfaceItemUpdate(123, listOf(Triple(1234, 12345, 23456), Triple(123, 12345, 234)), false) },
-            { openInterface(true, InterfaceDefinition.pack(123, 345), 12345) },
-            { sendInterfaceSettings(InterfaceDefinition.pack(1234, 456), 2345, 6789, 12345) },
-            { sendInterfaceScroll(InterfaceDefinition.pack(123, 456), 23456) },
-            { interfaceSprite(InterfaceDefinition.pack(123, 456), 12345) },
-            { interfaceText(InterfaceDefinition.pack(123, 456), "text") },
-            { updateInterface(123, 456) },
-            { interfaceVisibility(InterfaceDefinition.pack(123, 456), true) },
-            { login("name", 1234, 123, member = false, membersWorld = false) },
-            { logout() },
-            { mapRegion(123, 456, true, 12, arrayOf(IntArray(4)), 1234, 123456, intArrayOf(4321)) },
-            { dynamicMapRegion(123, 456, true, 12, listOf(432, 1), arrayOf(IntArray(4)), 1234, 123456, intArrayOf(4321)) },
-            { sendMinimapState(123) },
-            { updateNPCs(BufferWriter(10), BufferWriter(10)) },
-            { animateObject(123456, 12345, 12, 21) },
-            { preloadObject(12345, 123) },
-            { updatePlayers(BufferWriter(10), BufferWriter(10)) },
-            { addProjectileHalfTile(123, 12345, 12, 21, 1234, 4321, 23, 32, 234, 432, 45, 5432) },
-            { sendRunEnergy(123) },
-            { sendScript(12345, listOf(null, 123, "string")) },
-            { skillLevel(123, 99, 123456) },
-            { playMusicTrack(12345, 123, 255) },
-            { playSoundEffect(12345, 23456, 123, 4567, 123) },
-            { playMIDI(12345, 23456, 123, 4321, 234) },
-            { playJingle(12345, 123) },
-            { tileText(123456, 12345, 123, 654321, "message") },
-            { sendVarbit(12345, 123) },
-            { sendVarbit(12345, 1234) },
-            { sendVarc(12345, 123) },
-            { sendVarc(12345, 1234) },
-            { sendVarcStr(12345, "message") },
-            { sendVarp(12345, 123) },
-            { sendVarp(12345, 1234) },
-            { weight(12345) },
-            { clearZone(123, 234, 12) },
-            { updateZone(123, 234, 12) },
-        ).mapIndexed { index, packet ->
-            random = Random(0)
-            val (name, expected) = packets[index]
-            dynamicTest("Test $name encoder") {
-                val channel = ByteArrayChannel()
-                val client = Client(channel, IsaacCipher(IntArray(4)), IsaacCipher(IntArray(4)), "")
+    fun `Test encoders`() = listOf<Client.() -> Unit>(
+        { moveCamera(123, 234, 1234, 23, 32) },
+        { turnCamera(123, 234, 1234, 23, 32) },
+        { shakeCamera(123, 234, 1234, 23, 32) },
+        { clearCamera() },
+        { message("message", 123, 123456, "name", "formatted") },
+        { publicChat(1234, 4321, 123, "message".toByteArray()) },
+        { publicQuickChat(1234, 4321, 123, 12345, byteArrayOf(12, 21, 23)) },
+        { privateChatFrom("display", 123, "message".toByteArray(), "name") },
+        { privateQuickChatFrom("display", 123, 1234, byteArrayOf(12, 21, 23)) },
+        { privateChatTo("display", "message".toByteArray()) },
+        { privateQuickChatTo("display", 1234, "message".toByteArray()) },
+        { sendPublicStatus(123, 134) },
+        { sendPrivateStatus(123) },
+        { clanChat("display", "clan", 123, "message".toByteArray(), "response") },
+        { clanQuickChat("display", "clan", 123, 1234, "message".toByteArray(), "response") },
+        { appendClanChat(Member("display", 1234, 123, "world", "response")) },
+        { updateClanChat("display", "clan", 123, listOf(Member("member", 1234, 123, "world", "response"))) },
+        { leaveClanChat() },
+        { sendInventoryItems(1234, 2, intArrayOf(1, 2, 3, 4), true) },
+        { contextMenuOption("option", 123, true, 1234) },
+        { sendFriendsList(listOf(Friend("name", "previous", 123, true, 12, "world", true))) },
+        { sendIgnoreList(listOf("name" to "previous")) },
+        { updateIgnoreList("name", "previous", true) },
+        { animateInterface(InterfaceDefinition.pack(123, 345), 12345) },
+        { closeInterface(InterfaceDefinition.pack(123, 345)) },
+        { colourInterface(InterfaceDefinition.pack(123, 345), 123, 234, 255) },
+        { colourInterface(InterfaceDefinition.pack(123, 345), 12345) },
+        { npcDialogueHead(InterfaceDefinition.pack(123, 345), 12345) },
+        { playerDialogueHead(InterfaceDefinition.pack(123, 345)) },
+        { interfaceItem(InterfaceDefinition.pack(123, 345), 12345, 23456) },
+        { sendInterfaceItemUpdate(123, listOf(Triple(1234, 12345, 23456), Triple(123, 12345, 234)), false) },
+        { openInterface(true, InterfaceDefinition.pack(123, 345), 12345) },
+        { sendInterfaceSettings(InterfaceDefinition.pack(1234, 456), 2345, 6789, 12345) },
+        { sendInterfaceScroll(InterfaceDefinition.pack(123, 456), 23456) },
+        { interfaceSprite(InterfaceDefinition.pack(123, 456), 12345) },
+        { interfaceText(InterfaceDefinition.pack(123, 456), "text") },
+        { updateInterface(123, 456) },
+        { interfaceVisibility(InterfaceDefinition.pack(123, 456), true) },
+        { login("name", 1234, 123, member = false, membersWorld = false) },
+        { logout() },
+        { mapRegion(123, 456, true, 12, arrayOf(IntArray(4)), 1234, 123456, intArrayOf(4321)) },
+        { dynamicMapRegion(123, 456, true, 12, listOf(432, 1), arrayOf(IntArray(4)), 1234, 123456, intArrayOf(4321)) },
+        { sendMinimapState(123) },
+        { updateNPCs(BufferWriter(10), BufferWriter(10)) },
+        { animateObject(123456, 12345, 12, 21) },
+        { preloadObject(12345, 123) },
+        { updatePlayers(BufferWriter(10), BufferWriter(10)) },
+        { addProjectileHalfTile(123, 12345, 12, 21, 1234, 4321, 23, 32, 234, 432, 45, 5432) },
+        { sendRunEnergy(123) },
+        { sendScript(12345, listOf(null, 123, "string")) },
+        { skillLevel(123, 99, 123456) },
+        { playMusicTrack(12345, 123, 255) },
+        { playSoundEffect(12345, 23456, 123, 4567, 123) },
+        { playMIDI(12345, 23456, 123, 4321, 234) },
+        { playJingle(12345, 123) },
+        { tileText(123456, 12345, 123, 654321, "message") },
+        { sendVarbit(12345, 123) },
+        { sendVarbit(12345, 1234) },
+        { sendVarc(12345, 123) },
+        { sendVarc(12345, 1234) },
+        { sendVarcStr(12345, "message") },
+        { sendVarp(12345, 123) },
+        { sendVarp(12345, 1234) },
+        { weight(12345) },
+        { clearZone(123, 234, 12) },
+        { updateZone(123, 234, 12) },
+    ).mapIndexed { index, packet ->
+        random = Random(0)
+        val (name, expected) = packets[index]
+        dynamicTest("Test $name encoder") {
+            val channel = ByteArrayChannel()
+            val client = Client(channel, IsaacCipher(IntArray(4)), IsaacCipher(IntArray(4)), "")
 
-                packet.invoke(client)
+            packet.invoke(client)
 
-                val actual = channel.toByteArray()
-                assertContentEquals(expected, actual)
-            }
+            val actual = channel.toByteArray()
+            assertContentEquals(expected, actual)
         }
+    }
 
     private fun assertContentEquals(expected: ByteArray, actual: ByteArray) {
         assertTrue(expected.contentEquals(actual)) { "Expected: ${expected.contentToString()}, Actual: ${actual.contentToString()}" }

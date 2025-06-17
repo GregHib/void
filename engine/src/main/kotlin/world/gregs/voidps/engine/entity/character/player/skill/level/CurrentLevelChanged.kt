@@ -26,7 +26,6 @@ data class CurrentLevelChanged(val skill: Skill, val from: Int, val to: Int) : C
         4 -> to
         else -> null
     }
-
 }
 
 fun levelChange(skill: Skill? = null, from: Int? = null, to: Int? = null, handler: suspend CurrentLevelChanged.(Player) -> Unit) {

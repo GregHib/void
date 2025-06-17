@@ -1,21 +1,22 @@
 package content.skill.magic
 
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 import content.entity.combat.characterCombatSwing
 import content.entity.combat.combatSwing
 import content.entity.combat.hit.hit
-import content.skill.melee.weapon.weapon
-import content.skill.magic.spell.Spell
+import content.entity.proj.shoot
+import content.entity.sound.sound
 import content.skill.magic.book.modern.teleBlock
+import content.skill.magic.spell.Spell
 import content.skill.magic.spell.removeSpellItems
 import content.skill.magic.spell.spell
-import content.entity.proj.shoot
+import content.skill.melee.weapon.weapon
 import content.skill.slayer.categories
 import world.gregs.voidps.engine.data.config.SpellDefinition
+import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inject
 
 val spellDefinitions: SpellDefinitions by inject()
 
@@ -42,6 +43,8 @@ fun castSpell(source: Character, target: Character): Boolean {
     val time = time(source, target, definition)
     source.anim(animation(source, definition))
     source.gfx(graphic(source, definition))
+    target.sound("${spell}_cast")
+    source.sound("${spell}_cast")
     val damage = source.hit(target, delay = if (time == -1) 64 else time)
     if (damage != -1) {
         if (definition.contains("drain_multiplier")) {
@@ -69,6 +72,8 @@ fun animation(source: Character, definition: SpellDefinition): String {
         } else {
             definition["animation", ""]
         }
+    } else if (source is NPC) {
+        return source["combat_anims", definition["animation", ""]]
     }
     return ""
 }
@@ -106,5 +111,4 @@ fun time(source: Character, target: Character, definition: SpellDefinition): Int
     } else {
         return source.shoot(id = definition.stringId, target = target)
     }
-    return -1
 }

@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.type.Tile
 import kotlin.test.*
@@ -96,7 +95,6 @@ class GravestonesTest : WorldTest() {
         assertEquals(499, floorItem.revealTicks)
         assertEquals(560, floorItem.disappearTicks)
         tick(3)
-        assertEquals(2, friend.levels.get(Skill.Prayer))
         assertEquals(300, grave.remaining("grave_timer", epochSeconds()))
     }
 

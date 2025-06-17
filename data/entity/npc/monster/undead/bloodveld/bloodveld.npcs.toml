@@ -6,6 +6,7 @@ str = 45
 def = 30
 max_hit_melee = 50
 slayer_xp = 120.0
+slayer_level = 50
 respawn_delay = 21
 wander_radius = 7
 attack_speed = 4
@@ -15,6 +16,6 @@ combat_sounds = "bloodveld"
 categories = ["bloodveld"]
 examine = "A tortured screaming soulThe tongue of evil.."
 
-[bloodveld_1]
+[bloodveld_small]
 id = 1619
 clone = "bloodveld"

@@ -50,11 +50,13 @@ abstract class MagicSpellTest : KoinTest {
         itemDefinitions.ids = itemIds
         fontDefinitions = FontDefinitions(arrayOf(FontDefinition(0, (0..200).map { 1.toByte() }.toByteArray()))).apply { ids = mapOf("p12_full" to 0) }
         startKoin {
-            modules(module {
-                single { itemDefinitions }
-                single { interfaceDefinitions }
-                single { fontDefinitions }
-            })
+            modules(
+                module {
+                    single { itemDefinitions }
+                    single { interfaceDefinitions }
+                    single { fontDefinitions }
+                },
+            )
         }
     }
 
@@ -93,14 +95,12 @@ abstract class MagicSpellTest : KoinTest {
     }
 
     private val normalStackRule = object : ItemStackingRule {
-        override fun stackable(id: String): Boolean {
-            return itemDefinitions.get(id).stackable == 1
-        }
+        override fun stackable(id: String): Boolean = itemDefinitions.get(id).stackable == 1
     }
 
     fun player(): Player {
         val player = Player(
-            inventories = Inventories(mapOf("inventory" to Array(28) { Item.EMPTY.copy() }, "worn_equipment" to Array(12) { Item.EMPTY.copy() }))
+            inventories = Inventories(mapOf("inventory" to Array(28) { Item.EMPTY.copy() }, "worn_equipment" to Array(12) { Item.EMPTY.copy() })),
         )
         player.interfaces = Interfaces(player, definitions = interfaceDefinitions)
         player.inventories.definitions = inventoryDefinitions

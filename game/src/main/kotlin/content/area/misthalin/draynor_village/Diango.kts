@@ -1,5 +1,13 @@
 package content.area.misthalin.draynor_village
 
+import content.entity.npc.shop.openShop
+import content.entity.player.dialogue.Chuckle
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.stringEntry
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.DiangoCodeDefinitions
@@ -8,14 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import content.entity.player.dialogue.Chuckle
-import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.stringEntry
-import content.entity.npc.shop.openShop
 
 npcOperate("Talk-to", "diango") {
     npc<Happy>("Howdy there partner! Want to see my spinning plates? Or did ya want a holiday item back?")

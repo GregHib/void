@@ -23,19 +23,21 @@ class DatabaseStorage : AccountStorage {
         AccountsTable
             .leftJoin(display) {
                 AccountsTable.id eq display[VariablesTable.playerId] and
-                        (display[VariablesTable.name] eq stringLiteral("display_name"))
+                    (display[VariablesTable.name] eq stringLiteral("display_name"))
             }
             .leftJoin(history) {
                 AccountsTable.id eq history[VariablesTable.playerId] and
-                        (history[VariablesTable.name] eq stringLiteral("name_history"))
+                    (history[VariablesTable.name] eq stringLiteral("name_history"))
             }
-            .select(AccountsTable.name,
+            .select(
+                AccountsTable.name,
                 AccountsTable.passwordHash,
                 AccountsTable.friends,
                 AccountsTable.ranks,
                 AccountsTable.ignores,
                 display[VariablesTable.string],
-                history[VariablesTable.stringList])
+                history[VariablesTable.stringList],
+            )
             .associate { row ->
                 val accountName = row[AccountsTable.name]
                 val displayName = row.getOrNull(display[VariablesTable.string]) ?: accountName
@@ -66,7 +68,7 @@ class DatabaseStorage : AccountStorage {
                     talkRank = (variables["clan_talk_rank"] as? String)?.let { ClanRank.valueOf(it) } ?: ClanRank.Anyone,
                     kickRank = (variables["clan_kick_rank"] as? String)?.let { ClanRank.valueOf(it) } ?: ClanRank.Corporeal,
                     lootRank = (variables["clan_loot_rank"] as? String)?.let { ClanRank.valueOf(it) } ?: ClanRank.None,
-                    coinShare = variables["coin_share_setting"] as? Boolean ?: false
+                    coinShare = variables["coin_share_setting"] as? Boolean ?: false,
                 )
             }
     }
@@ -123,7 +125,7 @@ class DatabaseStorage : AccountStorage {
             variables = variables,
             inventories = inventories,
             friends = friends.zip(ranks) { name, rank -> name to ClanRank.valueOf(rank) }.toMap(),
-            ignores = playerRow[AccountsTable.ignores]
+            ignores = playerRow[AccountsTable.ignores],
         )
     }
 
@@ -287,7 +289,7 @@ class DatabaseStorage : AccountStorage {
             it[ExperienceTable.hunter],
             it[ExperienceTable.construction],
             it[ExperienceTable.summoning],
-            it[ExperienceTable.dungeoneering]
+            it[ExperienceTable.dungeoneering],
         )
     }
 
@@ -318,39 +320,35 @@ class DatabaseStorage : AccountStorage {
             it[LevelsTable.hunter],
             it[LevelsTable.construction],
             it[LevelsTable.summoning],
-            it[LevelsTable.dungeoneering]
+            it[LevelsTable.dungeoneering],
         )
     }
 
-    private fun loadVariables(playerId: Int): Map<String, Any> {
-        return VariablesTable.selectAll().where { VariablesTable.playerId eq playerId }.associate { row ->
-            val variableName = row[VariablesTable.name]
-            val variableType = row[VariablesTable.type]
-            variableName to when (variableType) {
-                TYPE_STRING -> row[VariablesTable.string]!!
-                TYPE_INT -> row[VariablesTable.int]!!
-                TYPE_BOOLEAN -> row[VariablesTable.boolean]!!
-                TYPE_DOUBLE -> row[VariablesTable.double]!!
-                TYPE_LONG -> row[VariablesTable.long]!!
-                TYPE_STRING_LIST -> row[VariablesTable.stringList]!!
-                TYPE_INT_LIST -> row[VariablesTable.intList]!!
-                else -> throw IllegalArgumentException("Unsupported variable type: $variableType")
-            }
+    private fun loadVariables(playerId: Int): Map<String, Any> = VariablesTable.selectAll().where { VariablesTable.playerId eq playerId }.associate { row ->
+        val variableName = row[VariablesTable.name]
+        val variableType = row[VariablesTable.type]
+        variableName to when (variableType) {
+            TYPE_STRING -> row[VariablesTable.string]!!
+            TYPE_INT -> row[VariablesTable.int]!!
+            TYPE_BOOLEAN -> row[VariablesTable.boolean]!!
+            TYPE_DOUBLE -> row[VariablesTable.double]!!
+            TYPE_LONG -> row[VariablesTable.long]!!
+            TYPE_STRING_LIST -> row[VariablesTable.stringList]!!
+            TYPE_INT_LIST -> row[VariablesTable.intList]!!
+            else -> throw IllegalArgumentException("Unsupported variable type: $variableType")
         }
     }
 
-    private fun loadInventories(playerId: Int): Map<String, Array<Item>> {
-        return InventoriesTable.selectAll().where { InventoriesTable.playerId eq playerId }.associate { row ->
-            val inventoryName = row[InventoriesTable.inventoryName]
-            val itemIds = row[InventoriesTable.items]
-            val amounts = row[InventoriesTable.amounts]
+    private fun loadInventories(playerId: Int): Map<String, Array<Item>> = InventoriesTable.selectAll().where { InventoriesTable.playerId eq playerId }.associate { row ->
+        val inventoryName = row[InventoriesTable.inventoryName]
+        val itemIds = row[InventoriesTable.items]
+        val amounts = row[InventoriesTable.amounts]
 
-            val items = itemIds.zip(amounts).map { (itemId, amount) ->
-                Item(itemId, amount)
-            }.toTypedArray()
+        val items = itemIds.zip(amounts).map { (itemId, amount) ->
+            Item(itemId, amount)
+        }.toTypedArray()
 
-            inventoryName to items
-        }
+        inventoryName to items
     }
 
     companion object {

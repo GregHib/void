@@ -9,20 +9,23 @@ class NormalCollectionReaderFormatIT {
 
     @Test
     fun `Parse list with spaces around values`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             - value 
             - value
             -   value
             -   value    
             -   value
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = listOf("value", "value", "value", "value", "value")
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse list with comments`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             ## comment ##
             - value # comment
             - value# comment 
@@ -34,25 +37,29 @@ class NormalCollectionReaderFormatIT {
                # comment
             - value
             ## comment
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = listOf("value", "value", "value", "value")
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse map with spaces around keys and values`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             key   :  value  
             empty :    
             name  :  bob 
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf("key" to "value", "empty" to "", "name" to "bob")
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse map with comments`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             ## comment ##
             one: value# comment
             two: value # comment
@@ -62,20 +69,22 @@ class NormalCollectionReaderFormatIT {
               # comment  
             four: value
             # comment
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf("one" to "value", "two" to "value", "three" to "value", "four" to "value")
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse map with quotes`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             "person: ": " value: #"
             "name" : John "Doe" 
             " age " : "30"
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf("person: " to " value: #", "name" to "John \"Doe\"", " age " to "30")
         assertEquals(expected, output)
     }
-
 }

@@ -1,6 +1,7 @@
 package content.entity.player.inv.item.drop
 
 import content.entity.player.inv.item.tradeable
+import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.World
@@ -8,7 +9,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import content.entity.sound.sound
 
 val floorItems: FloorItems by inject()
 

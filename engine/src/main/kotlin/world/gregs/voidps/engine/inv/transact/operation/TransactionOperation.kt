@@ -36,5 +36,4 @@ interface TransactionOperation {
      * @return the newly created and linked transaction
      */
     fun link(inventory: Inventory): Transaction
-
 }

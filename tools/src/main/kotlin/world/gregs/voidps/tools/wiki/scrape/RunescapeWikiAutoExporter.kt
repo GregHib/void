@@ -7,7 +7,6 @@ internal object RunescapeWikiAutoExporter {
 
     @JvmStatic
     fun main(args: Array<String>) {
-
         /*val wiki = Wiki.load("${System.getProperty("user.home")}\\Downloads\\runescapewiki-latest-pages-articles-2011-08-14.xml")
 
         val names = mutableListOf<String>()
@@ -51,5 +50,4 @@ internal object RunescapeWikiAutoExporter {
         }
         println(ids.size)
     }
-
 }

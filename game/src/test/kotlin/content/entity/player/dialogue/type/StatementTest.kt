@@ -22,7 +22,7 @@ internal class StatementTest : DialogueTest() {
         """ to "dialogue_message2",
         "One\nTwo\nThree" to "dialogue_message3",
         "One\nTwo\nThree\nFour" to "dialogue_message4",
-        "One\nTwo\nThree\nFour\nFive" to "dialogue_message5"
+        "One\nTwo\nThree\nFour\nFive" to "dialogue_message5",
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {
@@ -60,7 +60,7 @@ internal class StatementTest : DialogueTest() {
         """ to "dialogue_message_np2",
         "One\nTwo\nThree" to "dialogue_message_np3",
         "One\nTwo\nThree\nFour" to "dialogue_message_np4",
-        "One\nTwo\nThree\nFour\nFive" to "dialogue_message_np5"
+        "One\nTwo\nThree\nFour\nFive" to "dialogue_message_np5",
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {

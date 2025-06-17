@@ -10,5 +10,4 @@ class RegionLoadingDecoder : Decoder(4) {
         packet.readInt() // 1057001181
         return null
     }
-
 }

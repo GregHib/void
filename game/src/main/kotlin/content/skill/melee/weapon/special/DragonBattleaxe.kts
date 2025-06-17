@@ -1,9 +1,9 @@
 package content.skill.melee.weapon.special
 
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttackPrepare
 import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 specialAttackPrepare("rampage") { player ->
     cancel()

@@ -1,5 +1,8 @@
 package content.achievement
 
+import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
+import content.quest.questCompleted
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
@@ -14,9 +17,6 @@ import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
-import content.entity.player.modal.Tab
-import content.entity.player.modal.tab
-import content.quest.questCompleted
 
 val variables: VariableDefinitions by inject()
 val enumDefinitions: EnumDefinitions by inject()
@@ -155,7 +155,7 @@ fun refreshSlots(player: Player) {
     }
     if (slot < 7) {
         for (i in slot..6) {
-            player["task_slot_${i}"] = 4091
+            player["task_slot_$i"] = 4091
         }
     }
     player["task_progress_total"] = total
@@ -179,7 +179,7 @@ interfaceOption("Details", "details", "task_popup") {
         player.interfaces.sendVisibility("task_system", "ok", true)
         val index = player["task_popup", -1]
         for (slot in 0 until 6) {
-            if (player["task_slot_${slot}", -1] == index) {
+            if (player["task_slot_$slot", -1] == index) {
                 player["task_slot_selected"] = slot
                 break
             }

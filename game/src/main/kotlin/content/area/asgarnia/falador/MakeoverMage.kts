@@ -1,5 +1,8 @@
 package content.area.asgarnia.falador
 
+import content.entity.effect.transform
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
@@ -27,9 +30,6 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.type.random
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
-import content.entity.effect.transform
 import java.util.concurrent.TimeUnit
 
 val enums: EnumDefinitions by inject()

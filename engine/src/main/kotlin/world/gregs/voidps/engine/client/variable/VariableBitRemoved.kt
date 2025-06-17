@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.event.Events
  */
 data class VariableBitRemoved(
     val key: String,
-    val value: Any
+    val value: Any,
 ) : Event {
     override val size = 4
 

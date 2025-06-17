@@ -8,7 +8,7 @@ import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.engine.timedLoad
 
 class AnimationDefinitions(
-    override var definitions: Array<AnimationDefinition>
+    override var definitions: Array<AnimationDefinition>,
 ) : DefinitionsDecoder<AnimationDefinition> {
 
     override lateinit var ids: Map<String, Int>
@@ -45,5 +45,4 @@ class AnimationDefinitions(
         }
         return this
     }
-
 }

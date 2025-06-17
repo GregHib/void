@@ -1,19 +1,19 @@
 package content.area.kandarin.ardougne
 
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.queue.softQueue
-import content.quest.questCompleted
-import content.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.ChoiceBuilder
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.proj.shoot
+import content.quest.questCompleted
+import content.skill.runecrafting.EssenceMine
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.queue.softQueue
 
 npcOperate("Talk-to", "wizard_cromperty") {
     npc<Talk>("Hello there. My name is Cromperty. I am a wizard, and an inventor.")

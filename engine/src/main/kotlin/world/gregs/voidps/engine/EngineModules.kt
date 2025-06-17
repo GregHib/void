@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine
 
-import it.unimi.dsi.fastutil.Hash.VERY_FAST_LOAD_FACTOR
 import org.koin.dsl.module
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder

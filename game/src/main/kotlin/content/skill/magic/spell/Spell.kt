@@ -60,7 +60,6 @@ object Spell {
         }
         return damage
     }
-
 }
 
 var Character.spell: String

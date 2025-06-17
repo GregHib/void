@@ -7,7 +7,7 @@ import world.gregs.yaml.CharReader
  */
 class ExplicitCollectionReader(
     reader: CharReader,
-    config: YamlReaderConfiguration
+    config: YamlReaderConfiguration,
 ) : YamlReader(reader, config) {
 
     override fun isClosingTerminator(char: Char) = super.isClosingTerminator(char) || char == '}' || char == ']' || char == ','
@@ -55,7 +55,7 @@ class ExplicitCollectionReader(
         reader.nextLine()
         while (reader.inBounds) {
             if (reader.char == '}') {
-                reader.skip()// closing char
+                reader.skip() // closing char
                 reader.nextLine()
                 return map
             }
@@ -69,7 +69,7 @@ class ExplicitCollectionReader(
             config.setMapValue(this, map, key, indent, indentOffset = 0, withinMap = key, parentMap = key)
             reader.nextLine()
             val char = reader.char
-            reader.skip()// skip comma/closing char
+            reader.skip() // skip comma/closing char
             reader.nextLine()
             if (char == '}') {
                 return map
@@ -86,7 +86,7 @@ class ExplicitCollectionReader(
         reader.nextLine()
         while (reader.inBounds) {
             if (reader.char == ']') {
-                reader.skip()// skip closing char
+                reader.skip() // skip closing char
                 reader.nextLine()
                 return list
             }
@@ -98,10 +98,9 @@ class ExplicitCollectionReader(
             if (char == ']') {
                 return list
             } else if (char != ',') {
-                throw IllegalArgumentException("Expecting item or end of list '${char}' ${reader.exception}")
+                throw IllegalArgumentException("Expecting item or end of list '$char' ${reader.exception}")
             }
         }
         return list
     }
-
 }

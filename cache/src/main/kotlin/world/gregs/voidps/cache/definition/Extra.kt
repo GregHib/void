@@ -9,7 +9,7 @@ interface Extra {
     var stringId: String
     var extras: Map<String, Any>?
 
-    operator fun <T: Any> get(key: String): T = extras!!.getValue(key) as T
+    operator fun <T : Any> get(key: String): T = extras!!.getValue(key) as T
 
     fun contains(key: String?) = extras?.containsKey(key) ?: false
 

@@ -2,6 +2,8 @@ package content.entity.npc.shop.sell
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.npc.shop.shopInventory
+import content.entity.player.bank.isNote
+import content.entity.player.bank.noted
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -12,8 +14,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
-import content.entity.player.bank.isNote
-import content.entity.player.bank.noted
 
 interfaceOption("Value", "inventory", "shop_side") {
     val inventory = player.shopInventory(false)

@@ -9,8 +9,9 @@ data class WeaponStyleDefinition(
     val attackStyles: Array<String> = emptyArray(),
     val combatStyles: Array<String> = emptyArray(),
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -46,7 +47,7 @@ data class WeaponStyleDefinition(
             attackTypes = (map["attack_types"] as? List<String>)?.toTypedArray() ?: EMPTY.attackTypes,
             attackStyles = (map["attack_styles"] as? List<String>)?.toTypedArray() ?: EMPTY.attackTypes,
             combatStyles = (map["combat_styles"] as? List<String>)?.toTypedArray() ?: EMPTY.attackTypes,
-            stringId = stringId
+            stringId = stringId,
         )
     }
 }

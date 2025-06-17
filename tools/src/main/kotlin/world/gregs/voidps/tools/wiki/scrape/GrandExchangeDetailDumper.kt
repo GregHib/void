@@ -23,9 +23,9 @@ object GrandExchangeDetailDumper {
             it.write("[".toByteArray())
             for (id in 0 until 22323) {
                 try {
-                    val apiResponse = URL("https://secure.runescape.com/m=itemdb_rs/api/catalogue/detail.json?item=${id}").readText()
+                    val apiResponse = URL("https://secure.runescape.com/m=itemdb_rs/api/catalogue/detail.json?item=$id").readText()
                     println("Dumping $id")
-                    file.appendText("${apiResponse},")
+                    file.appendText("$apiResponse,")
                 } catch (e: FileNotFoundException) {
                     e.printStackTrace()
                 }
@@ -35,5 +35,4 @@ object GrandExchangeDetailDumper {
         }
         println("Done")
     }
-
 }

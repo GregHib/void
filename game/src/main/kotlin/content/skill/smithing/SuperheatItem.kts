@@ -1,6 +1,9 @@
 package content.skill.smithing
 
+import content.entity.sound.sound
+import content.skill.magic.spell.SpellRunes.removeItems
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.interact.interfaceOnItem
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smelting
@@ -11,9 +14,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.remove
-import content.skill.magic.spell.SpellRunes.removeItems
-import content.entity.sound.sound
-import world.gregs.voidps.engine.client.ui.interact.interfaceOnItem
 
 val spellDefinitions: SpellDefinitions by inject()
 val itemDefinitions: ItemDefinitions by inject()
@@ -21,6 +21,7 @@ val itemDefinitions: ItemDefinitions by inject()
 interfaceOnItem("modern_spellbook", "superheat_item") { player ->
     if (!item.id.endsWith("_ore")) {
         player.message("You need to cast superheat item on ore.")
+        player.sound("superheat_fail")
         return@interfaceOnItem
     }
     var bar = item.id.replace("_ore", "_bar")
@@ -29,6 +30,7 @@ interfaceOnItem("modern_spellbook", "superheat_item") { player ->
     }
     val smelting: Smelting = itemDefinitions.get(bar)["smelting"]
     if (!player.has(Skill.Smithing, smelting.level, message = true)) {
+        player.sound("superheat_fail")
         return@interfaceOnItem
     }
     val spell = component
@@ -44,5 +46,7 @@ interfaceOnItem("modern_spellbook", "superheat_item") { player ->
         val definition = spellDefinitions.get(spell)
         player.experience.add(Skill.Magic, definition.experience)
         player.experience.add(Skill.Smithing, smelting.exp(player, bar))
+    } else {
+        player.sound("superheat_fail")
     }
 }

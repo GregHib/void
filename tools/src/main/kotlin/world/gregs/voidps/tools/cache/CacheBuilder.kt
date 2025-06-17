@@ -62,6 +62,7 @@ object CacheBuilder {
         CopyCs2Script.convert(library, cache667, 677) // Scroll interface - scrollbar max
         RemovePriceCheckerTradeLimit.convert(library)
         MoveCameraClientScript.convert(library, cache667)
+        FixStructs.fix(library)
         println("Rebuilding cache.")
         library.rebuild(target)
         addEmptyIndexFiles(target, library.last()?.id ?: 0)
@@ -71,7 +72,7 @@ object CacheBuilder {
     private fun checkCacheOverride(path: File) {
         val idx = path.resolve("${FileCache.CACHE_FILE_NAME}.dat2")
         if (idx.exists()) {
-            println("Cache exists at '${path}' continuing will override.")
+            println("Cache exists at '$path' continuing will override.")
             System.err.println("Continuing will delete the current cache. Are you sure?")
             if (!readln().startsWith("y", ignoreCase = true)) {
                 println("Cancelled.")

@@ -6,7 +6,5 @@ import world.gregs.voidps.network.login.protocol.Decoder
 
 class MovedMouseDecoder : Decoder(BYTE) {
 
-    override suspend fun decode(packet: ByteReadPacket): Instruction? {
-        return null
-    }
+    override suspend fun decode(packet: ByteReadPacket): Instruction? = null
 }

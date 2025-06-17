@@ -17,5 +17,4 @@ class ObjectOption3Decoder : Decoder(7) {
         val run = packet.readBooleanAdd()
         return InteractObject(objectId, x, y, 3)
     }
-
 }

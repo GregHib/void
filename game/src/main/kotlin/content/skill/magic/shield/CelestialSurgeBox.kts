@@ -1,5 +1,8 @@
 package content.skill.magic.shield
 
+import content.entity.combat.hit.combatAttack
+import content.entity.player.dialogue.type.choice
+import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
@@ -15,9 +18,6 @@ import world.gregs.voidps.engine.inv.transact.discharge
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.player.dialogue.type.choice
-import content.entity.combat.hit.combatAttack
-import content.entity.player.inv.inventoryItem
 import kotlin.math.min
 
 inventoryItem("Check*", "celestial_surgebox*", "inventory") {
@@ -25,7 +25,8 @@ inventoryItem("Check*", "celestial_surgebox*", "inventory") {
     val dungeoneering = if (item.id == "celestial_surgebox") "" else "_dungeoneering"
     val surge = player["celestial_surgebox_mode$dungeoneering", false]
     choice("The box is currently charged with $charges ${if (surge) "Surge" else "Wave"} ${"spell".plural(charges)}.") {
-        option("I want to empty the ${if (surge) "Surge" else "Wave"} spells.", filter = { charges > 0 }) { // TODO proper message
+        option("I want to empty the ${if (surge) "Surge" else "Wave"} spells.", filter = { charges > 0 }) {
+            // TODO proper message
             if (emptyRunes(player, surge, dungeoneering, slot, charges)) {
                 player.message("You empty the box of ${if (surge) "Surge" else "Wave"} spells.") // TODO proper message
             } else {
@@ -44,15 +45,13 @@ inventoryItem("Check*", "celestial_surgebox*", "inventory") {
     }
 }
 
-fun emptyRunes(player: Player, surge: Boolean, dungeoneering: String, slot: Int, charges: Int): Boolean {
-    return player.inventory.transaction {
-        add("air_rune$dungeoneering", charges * if (surge) 7 else 5)
-        add("blood_rune$dungeoneering", charges)
-        if (surge) {
-            add("death_rune$dungeoneering", charges)
-        }
-        discharge(player, slot, amount = charges)
+fun emptyRunes(player: Player, surge: Boolean, dungeoneering: String, slot: Int, charges: Int): Boolean = player.inventory.transaction {
+    add("air_rune$dungeoneering", charges * if (surge) 7 else 5)
+    add("blood_rune$dungeoneering", charges)
+    if (surge) {
+        add("death_rune$dungeoneering", charges)
     }
+    discharge(player, slot, amount = charges)
 }
 
 inventoryItem("Check-charges", "celestial_surgebox*", "worn_equipment") {
@@ -124,11 +123,13 @@ fun charge(player: Player, item: Item, slot: Int) {
     val maximum: Int = item.def.getOrNull("charges_max") ?: item.def.getOrNull("charges") ?: return
     val charges = player.inventory.charges(player, slot)
     player.inventory.transaction {
-        val actual = (if (surge) {
-            minOf(inventory.count("air_rune$dungeoneering") / 7, inventory.count("blood_rune$dungeoneering"), inventory.count("death_rune$dungeoneering"))
-        } else {
-            min(inventory.count("air_rune$dungeoneering") / 5, inventory.count("blood_rune$dungeoneering"))
-        }).coerceAtMost(maximum - charges)
+        val actual = (
+            if (surge) {
+                minOf(inventory.count("air_rune$dungeoneering") / 7, inventory.count("blood_rune$dungeoneering"), inventory.count("death_rune$dungeoneering"))
+            } else {
+                min(inventory.count("air_rune$dungeoneering") / 5, inventory.count("blood_rune$dungeoneering"))
+            }
+            ).coerceAtMost(maximum - charges)
 
         remove("air_rune$dungeoneering", actual * if (surge) 7 else 5)
         remove("blood_rune$dungeoneering", actual)

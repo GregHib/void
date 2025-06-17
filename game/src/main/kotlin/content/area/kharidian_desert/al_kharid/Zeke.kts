@@ -1,15 +1,15 @@
 package content.area.kharidian_desert.al_kharid
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.male
-import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.quest.quest
+import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.npc.shop.openShop
+import content.quest.quest
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.male
+import world.gregs.voidps.engine.suspend.SuspendableContext
 
 npcOperate("Talk-to", "zeke") {
     npc<Talk>("A thousand greetings, ${if (player.male) "sir" else "madam"}.")

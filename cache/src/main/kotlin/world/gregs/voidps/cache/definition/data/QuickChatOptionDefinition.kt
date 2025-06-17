@@ -8,7 +8,7 @@ data class QuickChatOptionDefinition(
     var quickReplyOptions: IntArray? = null,
     var navigateChars: CharArray? = null,
     var dynamicData: IntArray? = null,
-    var staticData: CharArray? = null
+    var staticData: CharArray? = null,
 ) : Definition {
     fun getDynamicIndex(c: Char): Int {
         if (dynamicData == null) {
@@ -45,19 +45,27 @@ data class QuickChatOptionDefinition(
         if (quickReplyOptions != null) {
             if (other.quickReplyOptions == null) return false
             if (!quickReplyOptions.contentEquals(other.quickReplyOptions)) return false
-        } else if (other.quickReplyOptions != null) return false
+        } else if (other.quickReplyOptions != null) {
+            return false
+        }
         if (navigateChars != null) {
             if (other.navigateChars == null) return false
             if (!navigateChars.contentEquals(other.navigateChars)) return false
-        } else if (other.navigateChars != null) return false
+        } else if (other.navigateChars != null) {
+            return false
+        }
         if (dynamicData != null) {
             if (other.dynamicData == null) return false
             if (!dynamicData.contentEquals(other.dynamicData)) return false
-        } else if (other.dynamicData != null) return false
+        } else if (other.dynamicData != null) {
+            return false
+        }
         if (staticData != null) {
             if (other.staticData == null) return false
             if (!staticData.contentEquals(other.staticData)) return false
-        } else if (other.staticData != null) return false
+        } else if (other.staticData != null) {
+            return false
+        }
 
         return true
     }

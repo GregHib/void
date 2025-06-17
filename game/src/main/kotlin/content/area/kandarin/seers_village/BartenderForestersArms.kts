@@ -1,5 +1,12 @@
 package content.area.kandarin.seers_village
 
+import content.entity.npc.shop.buy
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
+import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
@@ -8,13 +15,6 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
-import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.npc.shop.buy
 
 npcOperate("Talk-to", "bartender_foresters_arms") {
     npc<Quiz>("Good morning, what would you like?")
@@ -58,7 +58,7 @@ npcOperate("Talk-to", "bartender_foresters_arms") {
 
 itemOnNPCOperate("barcrawl_card", "bartender_foresters_arms") {
     if (player.containsVarbit("barcrawl_signatures", "liverbane_ale")) {
-        player.noInterest()// TODO proper message
+        player.noInterest() // TODO proper message
         return@itemOnNPCOperate
     }
     barCrawl()
@@ -71,5 +71,5 @@ suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
         player.levels.drain(Skill.Firemaking, 6)
         player.levels.drain(Skill.Fletching, 5)
         player.levels.drain(Skill.Woodcutting, 5)
-    }
+    },
 )

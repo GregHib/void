@@ -19,14 +19,12 @@ abstract class YamlReader(val reader: CharReader, var config: YamlReaderConfigur
 
     abstract fun explicitMap(): Any
 
-    fun value(indentOffset: Int, withinMap: String?): Any {
-        return when (reader.char) {
-            '[' -> explicitList(withinMap)
-            '{' -> explicitMap()
-            '&' -> anchor()
-            '*' -> inlineAnchor(withinMap)
-            else -> collection(indentOffset, withinMap)
-        }
+    fun value(indentOffset: Int, withinMap: String?): Any = when (reader.char) {
+        '[' -> explicitList(withinMap)
+        '{' -> explicitMap()
+        '&' -> anchor()
+        '*' -> inlineAnchor(withinMap)
+        else -> collection(indentOffset, withinMap)
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -40,7 +38,7 @@ abstract class YamlReader(val reader: CharReader, var config: YamlReaderConfigur
         return when (value) {
             is Map<*, *> -> (value as MutableMap<String, Any>).apply { put("&", alias) }
             is List<*> -> (value as MutableList<Any>).apply { add(0, "&$alias") }
-            else -> "&${alias} $value"
+            else -> "&$alias $value"
         }
     }
 
@@ -123,8 +121,9 @@ abstract class YamlReader(val reader: CharReader, var config: YamlReaderConfigur
         while (reader.inBounds) {
             char = reader.char
             when (char) {
-                ':' -> if ((reader.index + 1 >= reader.size || reader.peekNext == ' ' || isOpeningTerminator(reader.peekNext)))
+                ':' -> if ((reader.index + 1 >= reader.size || reader.peekNext == ' ' || isOpeningTerminator(reader.peekNext))) {
                     return reader.substring(start, if (previous != ' ' || end == -1) reader.index else end) // Return the key
+                }
                 ' ' -> if (previous != ' ') end = reader.index
                 else -> if (isClosingTerminator(char)) break
             }
@@ -134,13 +133,9 @@ abstract class YamlReader(val reader: CharReader, var config: YamlReaderConfigur
         return reader.substring(start, if (previous != ' ' || end == -1) reader.index else end) // Return the value
     }
 
-    private fun isFalse(): Boolean {
-        return reader.inBounds(4) && reader.next() == 'a' && reader.next() == 'l' && reader.next() == 's' && reader.next() == 'e' && end()
-    }
+    private fun isFalse(): Boolean = reader.inBounds(4) && reader.next() == 'a' && reader.next() == 'l' && reader.next() == 's' && reader.next() == 'e' && end()
 
-    private fun isTrue(): Boolean {
-        return reader.inBounds(3) && reader.next() == 'r' && reader.next() == 'u' && reader.next() == 'e' && end()
-    }
+    private fun isTrue(): Boolean = reader.inBounds(3) && reader.next() == 'r' && reader.next() == 'u' && reader.next() == 'e' && end()
 
     private fun end(): Boolean {
         reader.skip()

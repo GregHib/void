@@ -17,7 +17,7 @@ object CacheMapDecryption {
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
                 val region = Region(regionX, regionY)
-                val archive = cache.archiveId(Index.MAPS, "l${regionX}_${regionY}")
+                val archive = cache.archiveId(Index.MAPS, "l${regionX}_$regionY")
                 if (!archives.contains(archive)) {
                     continue
                 }

@@ -20,7 +20,7 @@ fun PathFinder.findPath(character: Character, strategy: TargetStrategy, shape: I
     destHeight = strategy.sizeY,
     objShape = shape ?: strategy.shape,
     objRot = strategy.rotation,
-    blockAccessFlags = strategy.bitMask
+    blockAccessFlags = strategy.bitMask,
 )
 
 fun StepValidator.canTravel(character: Character, x: Int, y: Int): Boolean {
@@ -33,7 +33,7 @@ fun StepValidator.canTravel(character: Character, x: Int, y: Int): Boolean {
         offsetZ = y,
         size = character.size,
         extraFlag = flag,
-        collision = character.collision
+        collision = character.collision,
     )
 }
 
@@ -45,7 +45,7 @@ fun LineValidator.hasLineOfSight(character: Character, target: Character) = hasL
     destX = target.tile.x,
     destZ = target.tile.y,
     destWidth = target.size,
-    destHeight = target.size
+    destHeight = target.size,
 )
 
 fun LineValidator.hasLineOfSight(character: Character, target: Tile, width: Int, height: Int) = hasLineOfSight(
@@ -56,7 +56,7 @@ fun LineValidator.hasLineOfSight(character: Character, target: Tile, width: Int,
     destX = target.x,
     destZ = target.y,
     destWidth = width,
-    destHeight = height
+    destHeight = height,
 )
 
 fun LineValidator.hasLineOfWalk(character: Character, target: Tile, width: Int, height: Int) = hasLineOfWalk(
@@ -67,5 +67,5 @@ fun LineValidator.hasLineOfWalk(character: Character, target: Tile, width: Int, 
     destX = target.x,
     destZ = target.y,
     destWidth = width,
-    destHeight = height
+    destHeight = height,
 )

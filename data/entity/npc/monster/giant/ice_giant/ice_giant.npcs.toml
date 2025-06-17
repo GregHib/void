@@ -1,0 +1,19 @@
+[ice_giant]
+id = 111
+hitpoints = 700
+att = 40
+str = 40
+def = 40
+attack_bonus = 29
+max_hit_melee = 7
+attack_speed = 5
+wander_radius = 5
+attack_radius = 5
+combat_anims = "ice_giant"
+combat_sounds = "ice_giant"
+hunt_mode = "cowardly"
+style = "slash"
+respawn_delay = 30
+categories = ["ice_giants"]
+slayer_xp = 70.0
+examine = "He's got icicles in his beard."

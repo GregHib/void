@@ -32,7 +32,7 @@ class MapDefinitions(
     private val collisions: CollisionDecoder,
     definitions: ObjectDefinitions,
     private val objects: GameObjects,
-    private val cache: Cache
+    private val cache: Cache,
 ) {
     private val logger = InlineLogger()
 

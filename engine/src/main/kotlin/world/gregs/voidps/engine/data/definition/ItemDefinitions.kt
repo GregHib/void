@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class ItemDefinitions(
-    override var definitions: Array<ItemDefinition>
+    override var definitions: Array<ItemDefinition>,
 ) : DefinitionsDecoder<ItemDefinition> {
 
     val size: Int = definitions.size
@@ -72,7 +72,9 @@ class ItemDefinitions(
                                     }
                                     extras[key] = map
                                 }
-                                "heals" -> extras[key] = if (peek == '"') string().toIntRange() else {
+                                "heals" -> extras[key] = if (peek == '"') {
+                                    string().toIntRange()
+                                } else {
                                     val int = int()
                                     int..int
                                 }
@@ -114,6 +116,9 @@ class ItemDefinitions(
                 val extras = definitions[id].extras as? MutableMap<String, Any>
                 if (extras != null) {
                     for (extra in definition.extras ?: continue) {
+                        if (extra.key == "aka") {
+                            continue
+                        }
                         if (!extras.containsKey(extra.key)) {
                             extras[extra.key] = extra.value
                         }

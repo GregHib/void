@@ -60,6 +60,5 @@ fun Character.transform(id: String) {
     collision = get<CollisionStrategyProvider>().get(definition)
 }
 
-
 val Character.transform: String
     get() = this["transform_id", ""]

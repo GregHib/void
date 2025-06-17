@@ -158,5 +158,4 @@ internal class BarbarianOutpostTest : WorldTest() {
         assertEquals(60.0, player.experience.get(Skill.Agility))
         assertEquals(0, player.agilityStage)
     }
-
 }

@@ -1,5 +1,8 @@
 package content.skill.runecrafting
 
+import WorldTest
+import itemOnObject
+import objectOption
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
@@ -13,9 +16,6 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
-import WorldTest
-import itemOnObject
-import objectOption
 import kotlin.test.assertEquals
 
 internal class MysteriousRuinsTest : WorldTest() {
@@ -113,5 +113,4 @@ internal class MysteriousRuinsTest : WorldTest() {
             assertTrue(distance == -1 || distance > 25)
         }
     }
-
 }

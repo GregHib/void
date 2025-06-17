@@ -27,18 +27,14 @@ value class Zone(val id: Int) : Coordinate3D<Zone> {
     override fun copy(x: Int, y: Int, level: Int) = Zone(x, y, level)
 
     fun safeMinus(zone: Zone) = safeMinus(zone.x, zone.y, zone.level)
-    fun safeMinus(x: Int = 0, y: Int = 0, level: Int = 0): Zone {
-        return Zone((this.x - x).coerceAtLeast(0), (this.y - y).coerceAtLeast(0), (this.level - level).coerceAtLeast(0))
-    }
+    fun safeMinus(x: Int = 0, y: Int = 0, level: Int = 0): Zone = Zone((this.x - x).coerceAtLeast(0), (this.y - y).coerceAtLeast(0), (this.level - level).coerceAtLeast(0))
 
     fun toRectangle(radius: Int) = Rectangle(safeMinus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8)
     fun toRectangle(width: Int = 1, height: Int = 1) = Rectangle(tile, width * 8, height * 8)
     fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(tile, width * 8, height * 8, 1)
     fun toCuboid(radius: Int) = Cuboid(safeMinus(radius, radius).tile, (radius * 2 + 1) * 8, (radius * 2 + 1) * 8, 1)
 
-    override fun toString(): String {
-        return "Zone($x, $y, $level)"
-    }
+    override fun toString(): String = "Zone($x, $y, $level)"
 
     companion object {
         fun id(x: Int, y: Int, level: Int) = (x and 0x7ff) + ((y and 0x7ff) shl 11) + ((level and 0x3) shl 22)

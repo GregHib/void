@@ -10,6 +10,7 @@ abstract class Visuals {
     var walkStep: Int = -1
     var runStep: Int = -1
     var moved: Boolean = false
+    var tele: Boolean = false
 
     val animation = Animation()
     val primaryGraphic = Graphic()
@@ -26,14 +27,13 @@ abstract class Visuals {
         flag = flag or mask
     }
 
-    fun flagged(mask: Int): Boolean {
-        return flag and mask != 0
-    }
+    fun flagged(mask: Int): Boolean = flag and mask != 0
 
     open fun reset() {
         walkStep = -1
         runStep = -1
         moved = false
+        tele = false
         flag = 0
         animation.clear()
         primaryGraphic.clear()

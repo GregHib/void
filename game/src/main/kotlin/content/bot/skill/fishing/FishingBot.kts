@@ -1,12 +1,13 @@
 package content.bot.skill.fishing
 
 import content.bot.*
-import net.pearx.kasechange.toLowerSpaceCase
 import content.bot.interact.navigation.await
 import content.bot.interact.navigation.goToArea
 import content.bot.interact.navigation.resume
 import content.bot.skill.combat.hasExactGear
 import content.bot.skill.combat.setupGear
+import content.entity.death.weightedSample
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.config.GearDefinition
@@ -28,7 +29,6 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.client.instruction.InteractNPC
-import content.entity.death.weightedSample
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
@@ -59,8 +59,8 @@ worldSpawn {
                 spaces = spaces,
                 requirements = listOf(
                     { levels.getMax(Skill.Fishing) in set.levels },
-                    { bot.hasExactGear(set) || bot.hasCoins(2000) }
-                )
+                    { bot.hasExactGear(set) || bot.hasCoins(2000) },
+                ),
             )
             tasks.register(task)
         }

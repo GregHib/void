@@ -122,7 +122,7 @@ internal class MapGraphTest {
 
     @Test
     fun `Find two points for two separated knots of three tiles each`() {
-        for(x in 0 until 3) {
+        for (x in 0 until 3) {
             every { strategy.blocked(collisions, Tile(x, 1), 1, Direction.NONE) } returns true
             every { strategy.blocked(collisions, Tile(x, 0), 1, Direction.NORTH) } returns true
             every { strategy.blocked(collisions, Tile(x, 0), 1, Direction.NORTH_EAST) } returns true
@@ -138,7 +138,7 @@ internal class MapGraphTest {
     fun `Find closest free tile to center point`() {
         val center = Tile(1, 1)
         every { strategy.blocked(collisions, center, 1, Direction.NONE) } returns true
-        for(dir in Direction.all) {
+        for (dir in Direction.all) {
             every { strategy.blocked(collisions, center.minus(dir.delta), 1, dir) } returns true
         }
         assertEquals(listOf(Tile(0, 1)), graph.getCenterPoints(strategy, Tile(0).toCuboid(width = 3, height = 3)))
@@ -162,14 +162,17 @@ internal class MapGraphTest {
     fun `Link between multiple points`() {
         val points = setOf(Tile(0, 0), Tile(3, 3), Tile(1, 1))
         val results = graph.getStaticLinks(strategy, points, 4)
-        assertEquals(setOf(
-            Triple(Tile(0, 0), Tile(1, 1), 1),
-            Triple(Tile(0, 0), Tile(3, 3), 3),
-            Triple(Tile(3, 3), Tile(1, 1), 2),
-            Triple(Tile(3, 3), Tile(0, 0), 3),
-            Triple(Tile(1, 1), Tile(0, 0), 1),
-            Triple(Tile(1, 1), Tile(3, 3), 2)
-        ), results)
+        assertEquals(
+            setOf(
+                Triple(Tile(0, 0), Tile(1, 1), 1),
+                Triple(Tile(0, 0), Tile(3, 3), 3),
+                Triple(Tile(3, 3), Tile(1, 1), 2),
+                Triple(Tile(3, 3), Tile(0, 0), 3),
+                Triple(Tile(1, 1), Tile(0, 0), 1),
+                Triple(Tile(1, 1), Tile(3, 3), 2),
+            ),
+            results,
+        )
     }
 
     @Test
@@ -208,7 +211,7 @@ internal class MapGraphTest {
         val links = setOf(
             Triple(Tile(0, 0), Tile(1, 0), 1),
             Triple(Tile(1, 0), Tile(0, 1), 1),
-            Triple(Tile(0, 1), Tile(0, 0), 1)
+            Triple(Tile(0, 1), Tile(0, 0), 1),
         )
         val results = graph.getDuplicatePaths(links)
         assertEquals(setOf(Triple(Tile(0, 0), Tile(1, 0), 1)), results)

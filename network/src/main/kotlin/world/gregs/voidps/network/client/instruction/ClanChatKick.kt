@@ -7,5 +7,5 @@ import world.gregs.voidps.network.client.Instruction
  * @param name The display name of the player to kick
  */
 data class ClanChatKick(
-    val name: String
+    val name: String,
 ) : Instruction

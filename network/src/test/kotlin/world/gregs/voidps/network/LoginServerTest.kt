@@ -218,7 +218,6 @@ internal class LoginServerTest {
         readChannel.close()
         delay(10)
         assertFalse(server.online.contains("username"))
-
     }
 
     @Test
@@ -396,7 +395,7 @@ internal class LoginServerTest {
         version: Int = 123,
         session: Int = Request.SESSION,
         passwordMarker: Int = 0,
-        username: String = "username"
+        username: String = "username",
     ) {
         readChannel.apply {
             writeByte(request)
@@ -404,7 +403,8 @@ internal class LoginServerTest {
                 writeInt(version)
                 val data = buildPacket {
                     writeUByte(session.toUByte())
-                    repeat(4) { // Isaac
+                    repeat(4) {
+                        // Isaac
                         writeInt(0)
                     }
                     writeLong(passwordMarker.toLong())
@@ -430,11 +430,14 @@ internal class LoginServerTest {
 
     companion object {
         private val modulus =
-            BigInteger("ea3680fdebf2621da7a33601ba39925ee203b3fc80775cd3727bf27fd8c0791c803e0bdb42b8b5257567177f8569024569da9147cef59009ed016af6007e57a556f1754f09ca84dd39a03287f7e41e8626fd78ab3b53262bd63f2e37403a549980bf3077bd402b82ef5fac269eb3c04d2a9b7712a67a018321ceba6c3bfb8f7f",
-                16)
+            BigInteger(
+                "ea3680fdebf2621da7a33601ba39925ee203b3fc80775cd3727bf27fd8c0791c803e0bdb42b8b5257567177f8569024569da9147cef59009ed016af6007e57a556f1754f09ca84dd39a03287f7e41e8626fd78ab3b53262bd63f2e37403a549980bf3077bd402b82ef5fac269eb3c04d2a9b7712a67a018321ceba6c3bfb8f7f",
+                16,
+            )
         private val private =
-            BigInteger("8330565e649c16d32f841f0b26a97ad044def821164045b176adf0ae25d5e1c0d2206ef9b8ccc7429d194ab33622149096f3436f2a80a7d6b77794d7087dbc4f21239a4012b18afa3d1bede29d63f33bc553885f7117aa5d842231fae613d6e612c651249e66b7c67d565b21e68202798ccdbd0cc6dea3f6d033e719cb75ea01",
-                16)
+            BigInteger(
+                "8330565e649c16d32f841f0b26a97ad044def821164045b176adf0ae25d5e1c0d2206ef9b8ccc7429d194ab33622149096f3436f2a80a7d6b77794d7087dbc4f21239a4012b18afa3d1bede29d63f33bc553885f7117aa5d842231fae613d6e612c651249e66b7c67d565b21e68202798ccdbd0cc6dea3f6d033e719cb75ea01",
+                16,
+            )
     }
-
 }
