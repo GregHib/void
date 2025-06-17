@@ -12,6 +12,7 @@ respawn_delay = 15
 wander_radius = 2
 slayer_xp = 105.0
 slayer_level = 75
+immune_death = true
 drop_table = "gargoyle"
 combat_anims = "gargoyle"
 combat_sounds = "gargoyle"
