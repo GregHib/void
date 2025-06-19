@@ -1,0 +1,43 @@
+[abyssal_demon_drop_table]
+type = "all"
+drops = [
+  { id = "ashes" },
+  { table = "abyssal_demon_secondary" },
+  { table = "abyssal_demon_tertiary" },
+]
+
+[abyssal_demon_secondary]
+roll = 32000
+drops = [
+  { id = "black_sword", chance = 1000 },
+  { id = "steel_battleaxe", chance = 750 },
+  { id = "black_hatchet", chance = 500 },
+  { id = "mithril_kiteshield", chance = 250 },
+  { id = "rune_chainbody", chance = 250 },
+  { id = "rune_med_helm", chance = 250 },
+  { id = "abyssal_whip", chance = 62 },
+  { id = "air_rune", amount = 50, chance = 2000 },
+  { id = "chaos_rune", amount = 10, chance = 1750 },
+  { id = "blood_rune", amount = 7, chance = 1000 },
+  { id = "law_rune", amount = 3, chance = 250 },
+  { table = "herb_drop_table", chance = 4750 },
+  { id = "pure_essence_noted", amount = 60, chance = 1250 },
+  { id = "adamant_bar", chance = 500 },
+  { id = "coins", amount = 132, chance = 8750 },
+  { id = "coins", amount = 220, chance = 2250 },
+  { id = "coins", amount = 30, chance = 1750 },
+  { id = "coins", amount = 44, chance = 1500 },
+  { id = "coins", amount = 460, chance = 250 },
+  { id = "lobster", chance = 500 },
+  { id = "cosmic_talisman", chance = 250 },
+  { id = "chaos_talisman", chance = 250 },
+  { id = "defence_potion_3", chance = 250 },
+  { table = "rare_drop_table", chance = 500 },
+]
+
+[abyssal_demon_tertiary]
+roll = 6000
+drops = [
+  { table = "hard_clue_scroll", chance = 46 },
+  { id = "abyssal_head" },
+]

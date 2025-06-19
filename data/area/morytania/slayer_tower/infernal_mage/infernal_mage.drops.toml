@@ -1,0 +1,34 @@
+[infernal_mage_drop_table]
+type = "all"
+drops = [
+  { id = "bones" },
+  { table = "infernal_mage_secondary" },
+]
+
+[infernal_mage_secondary]
+roll = 1000
+drops = [
+  { id = "lava_battlestaff" },
+  { id = "dark_mystic_boots" },
+  { id = "dark_mystic_hat" },
+  { id = "staff", chance = 56 },
+  { id = "staff_of_fire", chance = 7 },
+  { id = "earth_rune", amount = 10, chance = 42 },
+  { id = "fire_rune", amount = 10, chance = 42 },
+  { id = "earth_rune", amount = 36, chance = 28 },
+  { id = "air_rune", amount = 10, chance = 21 },
+  { id = "water_rune", amount = 10, chance = 21 },
+  { id = "air_rune", amount = 18, chance = 14 },
+  { id = "water_rune", amount = 18, chance = 14 },
+  { id = "earth_rune", amount = 18, chance = 14 },
+  { id = "fire_rune", amount = 18, chance = 14 },
+  { id = "mind_rune", amount = 18, chance = 14 },
+  { id = "body_rune", amount = 18, chance = 14 },
+  { id = "blood_rune", amount = 4, chance = 14 },
+  { id = "death_rune", amount = 7, chance = 126 },
+  { id = "coins", chance = 147 },
+  { id = "coins", amount = 2, chance = 112 },
+  { id = "coins", amount = 4, chance = 63 },
+  { id = "coins", amount = 29, chance = 21 },
+  { id = "nothing", chance = 112 },
+]

@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.combat.*
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -121,7 +122,7 @@ characterCombatDamage { character ->
     if (source == character || type == "poison" || type == "disease" || type == "healed") {
         return@characterCombatDamage
     }
-    if (character.mode !is CombatMovement) {
+    if (character.mode !is CombatMovement && character.mode !is PauseMode) {
         retaliate(character, source)
     }
 }

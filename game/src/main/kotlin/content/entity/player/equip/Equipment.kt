@@ -110,6 +110,8 @@ object Equipment {
 
     fun isEarmuffs(hat: String) = hat == "masked_earmuffs" || hat == "earmuffs" || hat.startsWith("slayer_helmet") || hat.startsWith("full_slayer_helmet")
 
+    fun isNosePeg(hat: String) = hat == "nose_peg" || hat.startsWith("slayer_helmet") || hat.startsWith("full_slayer_helmet")
+
     fun dragonFireImmune(target: Character) = target.protectMagic() || antiDragonShield(target) || target.antifire || target.superAntifire
 
     fun antiDragonShield(target: Character): Boolean {

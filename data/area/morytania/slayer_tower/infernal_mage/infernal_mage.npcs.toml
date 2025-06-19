@@ -1,0 +1,36 @@
+[infernal_mage]
+id = 1643
+hitpoints = 600
+def = 60
+mage = 75
+attack_speed = 4
+style = "magic"
+spell = "fire_strike"
+max_hit_magic = 80
+attack_range = 8
+attack_radius = 11
+respawn_delay = 15
+wander_radius = 2
+slayer_xp = 60
+slayer_level = 45
+drop_table = "infernal_mage"
+combat_anims = "human"
+combat_sounds = "infernal_mage"
+categories = ["infernal_mage", "human"]
+examine = "An evil magic user."
+
+[infernal_mage_red]
+id = 1644
+clone = "infernal_mage"
+
+[infernal_mage_white]
+id = 1645
+clone = "infernal_mage"
+
+[infernal_mage_purple]
+id = 1646
+clone = "infernal_mage"
+
+[infernal_mage_mix]
+id = 1647
+clone = "infernal_mage"

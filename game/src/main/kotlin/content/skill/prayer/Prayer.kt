@@ -60,6 +60,9 @@ object Prayer {
         special: Boolean,
         damage: Int,
     ): Int {
+        if (source is NPC && source.id == "death_spawn") {
+            return damage
+        }
         // TODO Deflect
         if (source is NPC && usingProtectionPrayer(source, target, type)) {
             target["protected_damage"] = damage

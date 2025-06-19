@@ -1,0 +1,11 @@
+[abyssal_demon_attack]
+id = 1537
+
+[abyssal_demon_death]
+id = 1538
+
+[abyssal_demon_defend]
+id = 1536
+
+[abyssal_demon_teleport]
+id = 2309

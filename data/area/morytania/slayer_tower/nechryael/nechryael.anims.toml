@@ -1,0 +1,20 @@
+[nechryael_attack]
+id = 9487
+
+[nechryael_defend]
+id = 9489
+
+[nechryael_death]
+id = 9488
+
+[death_spawn]
+id = 9464
+
+[death_spawn_attack]
+id = 9459
+
+[death_spawn_defend]
+id = 9461
+
+[death_spawn_death]
+id = 9460
