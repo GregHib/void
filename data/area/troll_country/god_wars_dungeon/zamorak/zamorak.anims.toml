@@ -43,15 +43,6 @@ id = 6578
 [hellhound_death]
 id = 6576
 
-[imp_attack]
-id = 169
-
-[imp_defend]
-id = 170
-
-[imp_death]
-id = 172
-
 [god_wars_werewolf_attack]
 id = 6536
 
@@ -87,15 +78,6 @@ id = 8084
 
 [god_wars_pyrefiend_death]
 id = 8078
-
-[god_wars_gorak_attack]
-id = 4300
-
-[god_wars_gorak_defend]
-id = 4301
-
-[god_wars_gorak_death]
-id = 4302
 
 [god_wars_spiritual_warrior_zamorak_attack]
 id = 393
