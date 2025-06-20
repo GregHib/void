@@ -1,0 +1,9 @@
+[desert_obelisk_ladder_down]
+option = "Climb-down"
+tile = { x = 3304, y = 2897 }
+to = { x = 3299, y = 9317 }
+
+[desert_obelisk_ladder_up]
+option = "Climb-up"
+tile = { x = 3299, y = 9318 }
+to = { x = 3303, y = 2897 }
