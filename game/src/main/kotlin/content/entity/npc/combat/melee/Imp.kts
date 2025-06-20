@@ -9,13 +9,10 @@ import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.collision.random
 import content.entity.sound.areaSound
 import content.entity.combat.hit.npcCombatDamage
-import content.entity.sound.areaSound
 import content.entity.gfx.areaGfx
 
 private val teleportRadiusMax = 20
@@ -34,7 +31,7 @@ fun randomValidTile(npc: NPC): Tile {
     return npc.tile
 }
 
-fun teleportImp(npc: NPC, chance: Double, target: Player?) {
+fun teleportImp(npc: NPC, chance: Double) {
     if (npc.queue.contains("death")) {
         return
     }
@@ -58,8 +55,8 @@ fun teleportImp(npc: NPC, chance: Double, target: Player?) {
         delay(1)
         npc.gfx("imp_puff")
         npc.mode = mode
-        }
     }
+}
 
 npcSpawn("imp") { npc ->
     npc.softTimers.start("teleport_timer")
@@ -70,11 +67,11 @@ npcTimerStart("teleport_timer") {
 }
 
 npcTimerTick("teleport_timer") { npc ->
-    teleportImp(npc, teleportChance, null)
+    teleportImp(npc, teleportChance)
 }
 
 npcCombatDamage("imp") { npc ->
     if (npc.levels.get(Skill.Constitution) - damage > 0) {
-        teleportImp(npc, teleportChanceHit, null)
+        teleportImp(npc, teleportChanceHit)
     }
 }
