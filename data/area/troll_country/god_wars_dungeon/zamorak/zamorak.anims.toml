@@ -34,15 +34,6 @@ id = 4676
 [balfrug_kreeyath_death]
 id = 67
 
-[hellhound_attack]
-id = 6581
-
-[hellhound_defend]
-id = 6578
-
-[hellhound_death]
-id = 6576
-
 [god_wars_werewolf_attack]
 id = 6536
 
