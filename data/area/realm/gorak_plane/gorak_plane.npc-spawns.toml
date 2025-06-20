@@ -1,0 +1,13 @@
+spawns = [
+    { id = "gorak", x = 3023, y = 5339, members = true },
+    { id = "gorak", x = 3023, y = 5350, members = true },
+    { id = "gorak", x = 3033, y = 5343, members = true },
+    { id = "gorak", x = 3035, y = 5350, members = true },
+    { id = "gorak", x = 3037, y = 5330, members = true },
+    { id = "gorak", x = 3038, y = 5344, members = true },
+    { id = "gorak", x = 3038, y = 5361, members = true },
+    { id = "gorak", x = 3040, y = 5351, members = true },
+    { id = "gorak", x = 3042, y = 5347, members = true },
+    { id = "gorak", x = 3052, y = 5344, members = true },
+    { id = "gorak", x = 3052, y = 5353, members = true },
+]
