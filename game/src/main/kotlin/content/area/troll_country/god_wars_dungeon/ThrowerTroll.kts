@@ -22,5 +22,5 @@ npcCombatSwing("thrower_troll_trollheim*") { npc ->
     areaSound("thrower_troll_attack", npc.tile, radius = 10)
     npc.anim("thrower_troll_attack")
     npc.shoot("troll_rock", target)
-    npc.hit(target, type = "range")
+    npc.hit(target, offensiveType = "range")
 }

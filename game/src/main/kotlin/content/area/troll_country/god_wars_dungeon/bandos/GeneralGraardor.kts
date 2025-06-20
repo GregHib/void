@@ -23,7 +23,7 @@ npcCombatSwing("general_graardor") { npc ->
             val targets = players.filter { it.tile in areas["bandos_chamber"] } // TODO possible targets
             for (target in targets) {
                 val delay = npc.shoot("1200", target) // TODO params & does shoot if splash?
-                npc.hit(target, type = "range", delay = delay)
+                npc.hit(target, offensiveType = "range", delay = delay)
             }
         }
         else -> { // Melee
