@@ -1,0 +1,16 @@
+[hellhound]
+id = 49
+hitpoints = 1160
+att = 105
+str = 104
+def = 102
+max_hit_melee = 110
+hunt_mode = "aggressive"
+style = "stab"
+slayer_xp = 116.0
+respawn_delay = 89
+combat_anims = "hellhound"
+combat_sounds = "hellhound"
+drop_table = "hellhound"
+categories = ["hellhounds", "demon"]
+examine = "From the maws of hell."
