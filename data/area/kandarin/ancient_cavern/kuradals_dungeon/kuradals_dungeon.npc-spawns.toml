@@ -1,0 +1,9 @@
+spawns = [
+    { id = "hellhound", x = 1637, y = 5254, members = true },
+    { id = "hellhound", x = 1639, y = 5256, members = true },
+    { id = "hellhound", x = 1640, y = 5252, members = true },
+    { id = "hellhound", x = 1643, y = 5257, members = true },
+    { id = "hellhound", x = 1644, y = 5253, members = true },
+    { id = "hellhound", x = 1648, y = 5253, members = true },
+    { id = "hellhound", x = 1648, y = 5257, members = true },
+]

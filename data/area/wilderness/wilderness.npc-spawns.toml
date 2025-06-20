@@ -139,4 +139,14 @@ spawns = [
     { id = "thug_8", x = 3184, y = 3580 },
     { id = "thug_8", x = 3189, y = 3563 },
     { id = "thug_8", x = 3190, y = 3570 },
+    # Wilderness Crater
+    { id = "hellhound", x = 3103, y = 3704 },
+    { id = "hellhound", x = 3104, y = 3678 },
+    { id = "hellhound", x = 3110, y = 3687 },
+    { id = "hellhound", x = 3116, y = 3688 },
+    { id = "hellhound", x = 3117, y = 3674 },
+    { id = "hellhound", x = 3121, y = 3679 },
+    { id = "hellhound", x = 3127, y = 3667 },
+    { id = "hellhound", x = 3127, y = 3677 },
+    { id = "hellhound", x = 3133, y = 3678 },
 ]

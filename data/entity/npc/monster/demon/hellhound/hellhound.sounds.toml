@@ -1,0 +1,8 @@
+[hellhound_attack]
+id = 3717
+
+[hellhound_defend]
+id = 3719
+
+[hellhound_death]
+id = 3718

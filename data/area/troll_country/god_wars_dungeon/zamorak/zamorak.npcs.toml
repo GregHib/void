@@ -227,7 +227,7 @@ id = 6213
 clone = "god_wars_werewolf"
 examine = "He doesn't look pleased to see me."
 
-[god_wars_hellhound]
+[hellhound_god_wars]
 id = 6210
 hitpoints = 1160
 att = 107
@@ -238,10 +238,13 @@ hunt_mode = "aggressive"
 style = "stab"
 slayer_xp = 116.0
 respawn_delay = 89
-categories = ["hellhound", "hellhounds"]
+combat_anims = "hellhound"
+combat_sounds = "hellhound"
+drop_table = "hellhound"
+categories = ["hellhounds", "demon"]
 examine = "From the maws of hell."
 
-[god_wars_gorak]
+[gorak_god_wars]
 id = 6218
 hitpoints = 1280
 att = 133
