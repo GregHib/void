@@ -21,7 +21,7 @@ npcCombatSwing("commander_zilyana") { npc ->
             areaSound("3834", target.tile)
             val targets = players.filter { it.tile in areas["saradomin_chamber"] }
             for (target in targets) {
-                val hit = npc.hit(target, type = "magic")
+                val hit = npc.hit(target, offensiveType = "magic")
                 if (hit > 0) {
                     target.gfx("1207")
                 }
