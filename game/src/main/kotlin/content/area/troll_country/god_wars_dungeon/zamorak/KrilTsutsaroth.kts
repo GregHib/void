@@ -24,7 +24,7 @@ npcCombatSwing("kril_tsutsaroth") { npc ->
             target.sound("3888", delay = 30)
             npc.anim("6947")
             npc.gfx("1210")
-            npc.hit(target, type = "magic", delay = 1)
+            npc.hit(target, offensiveType = "magic", delay = 1)
         }
         else -> { // Melee
             npc.anim("6945")
@@ -39,7 +39,7 @@ npcCombatSwing("kril_tsutsaroth") { npc ->
                 target.message("K'ril Tsutsaroth slams through your protection prayer, leaving you feeling drained.")
                 npc.say("YARRRRRRR!")
                 areaSound("3274", npc.tile, delay = 15, repeat = 2) // TODO check
-                npc.hit(target, type = "damage", damage = 350 + (random.nextInt(15) * 10)) // TODO prayer mod?
+                npc.hit(target, offensiveType = "damage", damage = 350 + (random.nextInt(15) * 10)) // TODO prayer mod?
             } else {
                 // Normal
             }

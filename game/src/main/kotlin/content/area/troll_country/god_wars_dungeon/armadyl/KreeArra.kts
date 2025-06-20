@@ -22,9 +22,9 @@ npcCombatSwing("kree_arra") { npc ->
         val targets = players.filter { it.tile in areas["armadyl_chamber"] }
         for (target in targets) {
             if (random.nextBoolean()) {
-                npc.hit(target, type = "magic", mark = HitSplat.Mark.Range)
+                npc.hit(target, offensiveType = "magic", defensiveType = "range")
             } else {
-                npc.hit(target, type = "range")
+                npc.hit(target, offensiveType = "range")
             }
             // Teleport
             if (random.nextInt(5) == 0) {
@@ -48,7 +48,7 @@ npcCombatSwing("kree_arra") { npc ->
     else { // Melee
         npc.anim("6997")
         target.sound("3837")
-        npc.hit(target, type = "melee", mark = HitSplat.Mark.Magic)
+        npc.hit(target, offensiveType = "melee", defensiveType = "magic")
     }
 }
 
