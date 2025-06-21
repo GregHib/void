@@ -57,6 +57,13 @@ id = 2244
 categories = ["human"]
 examine = "He provides new players with useful information."
 
+[donie]
+id = 2238
+categories = ["human"]
+collision = "outdoors"
+wander_radius = 25
+examine = "A local farmer. She might be able to provide some useful information."
+
 [border_guard_al_kharid]
 id = 925
 categories = ["human"]

@@ -45,11 +45,12 @@ spawns = [
   { id = "goblin_light_topless_spiked", x = 3185, y = 3244 },
   { id = "goblin_light_grey_bald_spear", x = 3167, y = 3205 },
 # 12850
+  { id = "donie", x = 3219, y = 3247 },
   { id = "imp", x = 3223, y = 3223 },
   { id = "lumbridge_sage", x = 3238, y = 3219, direction = "WEST" },
   { id = "lachtopher", x = 3225, y = 3238},
   { id = "victoria", x = 3231, y = 3207},
-  { id = "lumbridge_woman_5", x = 3227, y = 3240, level = 1 },
+  { id = "lumbridge_woman_5", x = 3205, y = 3242, level = 1 },
   { id = "lumbridge_woman_4", x = 3235, y = 3206 },
   { id = "lumbridge_woman_3", x = 3224, y = 3242 },
   { id = "lumbridge_woman_2", x = 3231, y = 3207, level = 1 },
