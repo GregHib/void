@@ -195,3 +195,34 @@ params = [
   "interface 2",
   "int"
 ]
+
+[populate_summoning_scroll_creation]
+id = 763
+params = [
+  "component hash",
+  "width",
+  "height",
+  "int",
+  "slot length",
+  "option 1",
+  "option 2",
+  "option 3",
+  "option 4",
+  "option 5"
+]
+
+[populate_summoning_pouch_creation]
+id = 757
+params = [
+  "component hash",
+  "width",
+  "height",
+  "int",
+  "slot length",
+  "option 1",
+  "option 2",
+  "option 3",
+  "option 4",
+  "option 5",
+  "option 6"
+]
