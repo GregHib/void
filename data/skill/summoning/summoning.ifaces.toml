@@ -12,12 +12,41 @@ id = 663
 
 [summoning_scroll_creation]
 id = 666
+components = {
+    scrolls = {
+        id = 16,
+        options = {
+            Transform = 0,
+            Transform-5 = 1,
+            Transform-10 = 2,
+            Transform-X = 3,
+            Transform-All = 4,
+            Examine = 5
+        }
+    },
+    pouch_creation_tab = 18
+}
 
 [beast_of_burden]
 id = 671
 
 [summoning_pouch_creation]
 id = 672
+components = {
+    pouches = {
+        id = 16,
+        options = {
+            Infuse = 0,
+            Infuse-5 = 1,
+            Infuse-10 = 2,
+            Infuse-X = 3,
+            Infuse-All = 4,
+            Examine = 5,
+            List = 6
+        }
+    },
+    scroll_creation_tab = 19
+}
 
 [dialogue_pick_a_puppy]
 id = 668
