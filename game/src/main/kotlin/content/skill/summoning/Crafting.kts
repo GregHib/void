@@ -28,6 +28,11 @@ interfaceOption("Infuse Pouches", "pouch_creation_tab", "summoning_scroll_creati
     openPouchCraftingInterface(player)
 }
 
+/**
+ * Opens the interface used for crafting summoning pouches.
+ *
+ * @param player: The [Player] to open the interface for
+ */
 fun openPouchCraftingInterface(player: Player) {
     player.interfaces.open("summoning_pouch_creation")
     player.sendScript(
@@ -47,6 +52,11 @@ fun openPouchCraftingInterface(player: Player) {
     player.interfaceOptions.unlockAll("summoning_pouch_creation", "pouches", 0..400)
 }
 
+/**
+ * Opens the interface used for crafting summoning scrolls.
+ *
+ * @param player: The [Player] to open the interface for
+ */
 fun openScrollCraftingInterface(player: Player) {
     player.interfaces.open("summoning_scroll_creation")
     player.sendScript(
