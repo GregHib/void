@@ -117,5 +117,22 @@ id = 36928
 examine = "A wooden defensive structure."
 
 [lumbridge_barrel]
-id = 36802
-examine = "A wooden barrel for storage"
+id = 45282
+examine = "A wooden barrel for storage."
+
+[lumbridge_sacks]
+id = 45287
+examine = "These may have something in them."
+
+[lumbridge_standard]
+id = 36925
+examine = "A standard of Lumbridge Castle."
+
+[lumbridge_bank_table]
+id = 36789
+examine = "A table used by bank customers."
+
+[lumbridge_bank_leaflets]
+id = 45504
+examine = "	'Pay back all your debts by borrowing more money from us!' Clever."
+
