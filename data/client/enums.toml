@@ -331,3 +331,61 @@ id = 1100
 
 [gravestone_price]
 id = 1101
+
+# From NPC id, used in interface 662, cs2 751
+# All seem to be in the format 4895####
+[summoning_familiar_hashes_1]
+id = 1092
+
+# From index in crafting menu, no difference from summoning_pouch_ids_2
+[summoning_pouch_ids_1]
+id = 1182
+
+# From index in crafting menu
+[summoning_greyed_pouch_ids]
+id = 1183
+
+# From index in crafting menu
+[summoning_greyed_scroll_ids]
+id = 1184
+
+# From item IDs
+[summoning_pouch_levels]
+id = 1185
+
+# From item IDs
+[summoning_pouch_crafting_ingredient_strings]
+id = 1186
+
+# From item IDs
+[summoning_pouch_and_scroll_interface_names]
+id = 1187
+
+# From index in the crafting menu
+[summoning_scroll_ids_1]
+id = 1188
+
+# From index in the crafting menu, no difference from summoning_pouch_ids_1
+[summoning_pouch_ids_2]
+id = 1277
+
+# From some index, not using the crafting menu indicies
+[summoning_familiar_names_1]
+id = 1278
+
+# From NPC id
+[summoning_familiar_names_2]
+id = 1279
+
+# From NPC id, used in interface 662, cs2 751
+# All seem to be in the format 4338####
+[summoning_familiar_hashes]
+id = 1282
+
+# From associated summoning pouch ID
+[summoning_scroll_ids_2]
+id = 1283
+
+# From pouch id
+[summoning_familiar_ids]
+id = 1320
