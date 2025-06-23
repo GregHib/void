@@ -8,9 +8,11 @@ import kotlin.reflect.KProperty1
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.full.primaryConstructor
 
-fun <T : Any> value(value: T): T =
-    if (value::class.isInline) inlineValue(value)
-    else value
+fun <T : Any> value(value: T): T = if (value::class.isInline) {
+    inlineValue(value)
+} else {
+    value
+}
 
 @Suppress("UNCHECKED_CAST")
 fun <T : Any> inlineValue(value: T): T {
@@ -20,10 +22,11 @@ fun <T : Any> inlineValue(value: T): T {
     return valueProperty.get(value) as T
 }
 
-inline fun <reified T : Any> MockKMatcherScope.anyValue(): T =
-    if (T::class.isInline) anyInlineValue()
-    else any()
-
+inline fun <reified T : Any> MockKMatcherScope.anyValue(): T = if (T::class.isInline) {
+    anyInlineValue()
+} else {
+    any()
+}
 
 inline fun <reified T : Any> MockKMatcherScope.anyInlineValue(): T {
     val valueConstructor = T::class.primaryConstructor!!
@@ -35,5 +38,5 @@ inline fun <reified T : Any> MockKMatcherScope.anyInlineValue(): T {
 
 val KClass<*>.isInline: Boolean
     get() = !isData &&
-            primaryConstructor?.parameters?.size == 1 &&
-            java.declaredMethods.any { it.name == "box-impl" }
+        primaryConstructor?.parameters?.size == 1 &&
+        java.declaredMethods.any { it.name == "box-impl" }

@@ -10,8 +10,6 @@ class MockProviderExtension private constructor(private val mockProvider: Provid
     }
 
     companion object {
-        fun create(mockProvider: Provider<*>): MockProviderExtension {
-            return MockProviderExtension(mockProvider)
-        }
+        fun create(mockProvider: Provider<*>): MockProviderExtension = MockProviderExtension(mockProvider)
     }
 }

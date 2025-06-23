@@ -5,12 +5,12 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.ConfigReader
 
 data class Pottery(
-    val map: Map<String, Ceramic> = emptyMap()
+    val map: Map<String, Ceramic> = emptyMap(),
 ) {
 
     data class Ceramic(
         val level: Int = 1,
-        val xp: Double = 0.0
+        val xp: Double = 0.0,
     ) {
         companion object {
             val EMPTY = Ceramic()

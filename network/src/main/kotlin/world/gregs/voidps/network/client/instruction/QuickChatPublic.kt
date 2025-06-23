@@ -9,7 +9,7 @@ import world.gregs.voidps.network.client.Instruction
 data class QuickChatPublic(
     val chatType: Int,
     val file: Int,
-    val data: ByteArray
+    val data: ByteArray,
 ) : Instruction {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

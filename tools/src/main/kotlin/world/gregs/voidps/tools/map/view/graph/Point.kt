@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 
 data class Point(
     var x: Int,
-    var y: Int
+    var y: Int,
 ) {
     @JsonIgnore
     lateinit var area: Area
@@ -26,5 +26,4 @@ data class Point(
         result = 31 * result + y
         return result
     }
-
 }

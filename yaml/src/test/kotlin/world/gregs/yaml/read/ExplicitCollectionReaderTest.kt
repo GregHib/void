@@ -9,43 +9,52 @@ class ExplicitCollectionReaderTest {
 
     @Test
     fun `Parse explicit list`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             [ conspiracy:_part_1, conspiracy:_part_2 ]
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = listOf("conspiracy:_part_1", "conspiracy:_part_2")
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse explicit map`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             { name: John Doe , age : 30 }
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf("name" to "John Doe", "age" to 30)
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse empty explicit list`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             [  ]
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = listOf<Any>()
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse empty explicit map`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             {  }
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf<String, Any>()
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse explicit multi-line lists`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             [one,
                [
                two
@@ -53,14 +62,16 @@ class ExplicitCollectionReaderTest {
                three  , 
                ["four", "five", "six"]],
             seven]
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = listOf("one", listOf("two", "three", listOf("four", "five", "six")), "seven")
         assertEquals(expected, output)
     }
 
     @Test
     fun `Parse explicit multi-line maps`() {
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             { 
                 name  :  John Doe, 
                    age: 30   ,
@@ -70,7 +81,8 @@ class ExplicitCollectionReaderTest {
                 street:{name: Main Str}
             } 
                   }
-        """.trimIndent())
+            """.trimIndent(),
+        )
         val expected = mapOf("name" to "John Doe", "age" to 30, "address" to mapOf("city" to "New York", "country" to "USA", "street" to mapOf("name" to "Main Str")))
         assertEquals(expected, output)
     }
@@ -83,11 +95,13 @@ class ExplicitCollectionReaderTest {
                 super.set(map, key, value, indent, parentMap)
             }
         }
-        val output = yaml.read("""
+        val output = yaml.read(
+            """
             {one: 1,two: {three: 3, four: [five]}}
-        """.trimIndent(), config)
+            """.trimIndent(),
+            config,
+        )
         val expected = mapOf("one" to 1, "two" to mapOf("three" to 3, "four" to listOf("five")))
         assertEquals(expected, output)
     }
-
 }

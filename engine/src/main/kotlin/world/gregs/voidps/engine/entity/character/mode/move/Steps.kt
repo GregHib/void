@@ -7,7 +7,7 @@ import java.util.*
 
 class Steps(
     internal val character: Character,
-    private val steps: LinkedList<Step> = LinkedList<Step>()
+    private val steps: LinkedList<Step> = LinkedList<Step>(),
 ) : List<Step> by steps {
     var destination: Tile = Tile.EMPTY
         private set

@@ -1,7 +1,7 @@
 package content.skill.constitution.drink
 
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import content.skill.constitution.consume
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 consume("karamjan_rum") { player ->
     player.levels.boost(Skill.Strength, 5)

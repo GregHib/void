@@ -1,5 +1,6 @@
 package content.entity.player.kept
 
+import content.entity.player.effect.skulled
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
@@ -10,7 +11,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
-import content.entity.player.effect.skulled
 
 val enums: EnumDefinitions by inject()
 
@@ -35,12 +35,13 @@ interfaceRefresh("items_kept_on_death") { player ->
         savedItems,
         carriedWealth = carriedWealth,
         riskedWealth = carriedWealth - savedWealth,
-        skull = player.skulled
+        skull = player.skulled,
     )
 }
 
 fun Player.updateItemsOnDeath(items: List<Item>, carriedWealth: Int, riskedWealth: Int, familiar: Boolean = false, gravestone: Boolean = false, skull: Boolean = false) {
-    sendScript("items_kept_on_death",
+    sendScript(
+        "items_kept_on_death",
         AreaType.Dangerous.ordinal,
         items.size.coerceAtMost(4),
         items.getOrNull(0)?.def?.id ?: 0,
@@ -52,6 +53,6 @@ fun Player.updateItemsOnDeath(items: List<Item>, carriedWealth: Int, riskedWealt
         carriedWealth,
         riskedWealth,
         gravestone.toInt(),
-        if (skull) "You're marked with a <red_orange>skull." else ""
+        if (skull) "You're marked with a <red_orange>skull." else "",
     )
 }

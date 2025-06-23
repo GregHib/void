@@ -1,13 +1,13 @@
 package content.skill.prayer.active
 
-import world.gregs.voidps.engine.data.definition.PrayerDefinitions
-import world.gregs.voidps.engine.inject
-import world.gregs.voidps.type.random
 import content.entity.combat.hit.characterCombatAttack
 import content.entity.combat.hit.hit
 import content.skill.prayer.Prayer
 import content.skill.prayer.prayerStart
 import content.skill.prayer.prayerStop
+import world.gregs.voidps.engine.data.definition.PrayerDefinitions
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.type.random
 
 
 val definitions: PrayerDefinitions by inject()
@@ -35,7 +35,7 @@ characterCombatAttack { character ->
         target.anim("deflect", delay)
         target.gfx("deflect_$type", delay)
         if (random.nextDouble() >= 0.4) {
-            target.hit(target = character, type = "deflect", delay = delay, damage = (damage * 0.10).toInt())
+            target.hit(target = character, offensiveType = "deflect", delay = delay, damage = (damage * 0.10).toInt())
         }
     }
 }

@@ -1,17 +1,18 @@
 package content.social.assist
 
+import WorldTest
+import interfaceOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.client.ui.hasOpen
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import WorldTest
-import interfaceOption
 import playerOption
 import walk
+import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.req.hasRequest
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
 import kotlin.test.assertFalse
 
 internal class RequestAssistTest : WorldTest() {
@@ -56,6 +57,26 @@ internal class RequestAssistTest : WorldTest() {
         assertFalse(assistant.hasOpen("assist_xp"))
     }
 
+    @Test
+    fun `Can't assist with filter on`() {
+        val assistant = createPlayer(emptyTile, "assistant")
+        val receiver = createPlayer(emptyTile.addY(1), "receiver")
+        assistant["assist_filter"] = "off"
+
+        receiver.playerOption(assistant, "Req Assist")
+        assertFalse(receiver.hasRequest(assistant, "assist"))
+    }
+
+    @Test
+    fun `Can't assist with accept aid off`() {
+        val assistant = createPlayer(emptyTile, "assistant")
+        val receiver = createPlayer(emptyTile.addY(1), "receiver")
+        assistant["accept_aid"] = false
+
+        receiver.playerOption(assistant, "Req Assist")
+        assertFalse(receiver.hasRequest(assistant, "assist"))
+    }
+
     private fun setupAssist(): Pair<Player, Player> {
         val assistant = createPlayer(emptyTile, "assistant")
         val receiver = createPlayer(emptyTile.addY(1), "receiver")
@@ -66,5 +87,4 @@ internal class RequestAssistTest : WorldTest() {
         assertTrue(assistant.hasOpen("assist_xp"))
         return Pair(assistant, receiver)
     }
-
 }

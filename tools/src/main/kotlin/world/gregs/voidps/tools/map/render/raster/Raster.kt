@@ -17,9 +17,7 @@ class Raster(private val bi: BufferedImage) {
     private var minX = 0
     private var minY = 0
 
-    fun get(x: Int, y: Int): Int {
-        return bi.getRGB(x, y)
-    }
+    fun get(x: Int, y: Int): Int = bi.getRGB(x, y)
 
     fun set(x: Int, y: Int, value: Int) {
         bi.setRGB(x, y, value)
@@ -44,7 +42,7 @@ class Raster(private val bi: BufferedImage) {
         bresenhamLine(used, x1, y1, x3, y3, colour1, colour3)
         bresenhamLine(used, x2, y2, x3, y3, colour2, colour3)
 
-        //Find right point
+        // Find right point
         for (y in minY until maxY) {
             for (x in minX until maxX) {
                 if (used[x - this.minX][y - this.minY]) {
@@ -115,16 +113,17 @@ class Raster(private val bi: BufferedImage) {
         val bStep = (blue2 - blue1).toFloat() / longest
 
         for (i in 0..longest) {
-            //Colour computation
+            // Colour computation
             val r = (red1 + rStep * i).toDouble()
             val g = (green1 + gStep * i).toDouble()
             val b = (blue1 + bStep * i).toDouble()
 
-            //Pixel writing
+            // Pixel writing
             if (y0 > -1 && x0 > -1 && y0 < height && x0 < width) {
                 val pixel = (abs(r).toInt() shl 16 or (abs(g).toInt() shl 8) or abs(b).toInt())
-                if (pixel > 0)
+                if (pixel > 0) {
                     set(x0, y0, -16777216 or pixel)
+                }
                 used[x0 - minX][y0 - minY] = true
             }
 

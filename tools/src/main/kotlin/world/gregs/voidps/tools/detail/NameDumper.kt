@@ -7,13 +7,9 @@ abstract class NameDumper {
 
     abstract fun createName(id: Int): String?
 
-    internal open fun createData(name: String, id: Int): Map<String, Any> {
-        return createData(id)
-    }
+    internal open fun createData(name: String, id: Int): Map<String, Any> = createData(id)
 
-    internal open fun createData(id: Int): Map<String, Any> {
-        return emptyMap()
-    }
+    internal open fun createData(id: Int): Map<String, Any> = emptyMap()
 
     fun dump(yaml: Yaml, path: String, name: String, count: Int) {
         val entities = getNamedEntities(count)
@@ -55,5 +51,4 @@ abstract class NameDumper {
         }
         return unique
     }
-
 }

@@ -12,7 +12,7 @@ data class ObjectOption<C : Character>(
     override val character: C,
     override val target: GameObject,
     val def: ObjectDefinition,
-    val option: String
+    val option: String,
 ) : TargetInteraction<C, GameObject>() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 

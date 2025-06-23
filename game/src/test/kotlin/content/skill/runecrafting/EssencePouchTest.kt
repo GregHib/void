@@ -1,14 +1,14 @@
 package content.skill.runecrafting
 
+import WorldTest
+import itemOnItem
+import itemOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
-import WorldTest
-import itemOnItem
-import itemOption
 import kotlin.test.assertFalse
 
 internal class EssencePouchTest : WorldTest() {
@@ -207,5 +207,4 @@ internal class EssencePouchTest : WorldTest() {
         assertEquals(0, player.inventory.count("rune_essence"))
         assertEquals(0, player["medium_pouch_essence", 0])
     }
-
 }

@@ -17,12 +17,13 @@ val patrols: PatrolDefinitions by inject()
 
 npcOperate("Talk-to", "port_sarim_guard_sleeping") {
     npc<Asleep>(
-        "port_sarim_guard_6", when (random.nextInt(4)) {
+        "port_sarim_guard_6",
+        when (random.nextInt(4)) {
             0 -> "Mmmm... big pint of beer... kebab..."
             1 -> "Guh... mwww... zzzzz..."
             2 -> "Hmph... heh heh heh..."
             else -> "Mmmmmm... donuts..."
-        }
+        },
     )
     player<Neutral>("Maybe I should let him sleep.")
 }

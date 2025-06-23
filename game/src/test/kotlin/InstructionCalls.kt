@@ -39,7 +39,7 @@ fun Player.itemOption(
     component: String = "inventory",
     optionIndex: Int = getOptionIndex(id, component, option) ?: getItemOptionIndex(item, option) ?: -1,
     inventory: String = "inventory",
-    slot: Int = inventories.inventory(inventory).indexOf(item)
+    slot: Int = inventories.inventory(inventory).indexOf(item),
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
     val item = inventories.inventory(inventory).getOrNull(slot) ?: Item(item)
@@ -53,7 +53,7 @@ fun Player.interfaceOption(
     option: String = "",
     optionIndex: Int = getOptionIndex(id, component, option) ?: -1,
     item: Item = Item("", -1),
-    slot: Int = -1
+    slot: Int = -1,
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
     val definition = get<InterfaceDefinitions>().getComponent(id, component)!!
@@ -62,7 +62,7 @@ fun Player.interfaceOption(
 
 fun Player.skillCreation(
     item: String,
-    amount: Int = 1
+    amount: Int = 1,
 ) {
     Assertions.assertTrue(hasOpen("dialogue_skill_creation")) { "Player $this doesn't have interface dialogue_skill_creation open" }
     set("skill_creation_amount", amount)
@@ -82,7 +82,7 @@ fun Player.interfaceUse(
     fromItem: Item = Item("", -1),
     toItem: Item = Item("", -1),
     fromSlot: Int = -1,
-    toSlot: Int = -1
+    toSlot: Int = -1,
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
     emit(
@@ -92,8 +92,8 @@ fun Player.interfaceUse(
             fromSlot = fromSlot,
             toSlot = toSlot,
             fromInventory = inventory,
-            toInventory = inventory
-        )
+            toInventory = inventory,
+        ),
     )
 }
 
@@ -104,7 +104,7 @@ fun Player.interfaceSwitch(
     fromItem: Item = Item("", -1),
     toItem: Item = Item("", -1),
     fromSlot: Int = -1,
-    toSlot: Int = -1
+    toSlot: Int = -1,
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
     emit(
@@ -118,14 +118,14 @@ fun Player.interfaceSwitch(
             toComponent = component,
             toItem = toItem,
             toSlot = toSlot,
-            toInventory = inventory
-        )
+            toInventory = inventory,
+        ),
     )
 }
 
 fun Player.equipItem(
     item: String,
-    slot: Int = inventory.indexOf(item)
+    slot: Int = inventory.indexOf(item),
 ) {
     interfaceOption("inventory", "inventory", "Wield", item = Item(item, 1), slot = slot, optionIndex = Item(item).def.options.indexOf("Wield"))
 }
@@ -133,7 +133,7 @@ fun Player.equipItem(
 fun Player.dialogueOption(
     component: String,
     option: Int = -1,
-    id: String = dialogue!!
+    id: String = dialogue!!,
 ) = runTest {
     emit(ContinueDialogue(id, component, option))
 }
@@ -201,8 +201,8 @@ fun Player.itemOnItem(
             firstSlot,
             secondSlot,
             firstInventory,
-            secondInventory
-        )
+            secondInventory,
+        ),
     )
 }
 

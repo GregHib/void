@@ -29,5 +29,4 @@ class UniqueIdentifiers : Pipeline.Modifier<MutableMap<Int, Extras>> {
         builder.uid = uid
         add(uid)
     }
-
 }

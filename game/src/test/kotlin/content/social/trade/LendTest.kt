@@ -1,23 +1,23 @@
 package content.social.trade
 
+import WorldTest
+import equipItem
+import interfaceOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import playerOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
-import WorldTest
-import equipItem
-import interfaceOption
-import playerOption
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.network.client.instruction.EnterInt
 import kotlin.test.assertFalse
 

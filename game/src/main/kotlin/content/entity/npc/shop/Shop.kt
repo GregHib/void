@@ -1,6 +1,8 @@
 package content.entity.npc.shop
 
 import content.entity.npc.shop.general.GeneralStores
+import content.entity.player.dialogue.Sad
+import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -10,8 +12,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import content.entity.player.dialogue.Sad
-import content.entity.player.dialogue.type.player
 
 fun Player.hasShopSample(): Boolean = this["info_sample", false]
 

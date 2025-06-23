@@ -1,8 +1,8 @@
 package content.skill.melee.weapon.special
 
-import world.gregs.voidps.engine.timer.toTicks
 import content.entity.effect.freeze
 import content.entity.player.combat.special.specialAttackDamage
+import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 specialAttackDamage("ice_cleave") { player ->

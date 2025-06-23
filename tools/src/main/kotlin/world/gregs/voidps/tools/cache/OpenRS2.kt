@@ -13,9 +13,9 @@ object OpenRS2 {
         if (!directory.exists()) {
             directory.mkdirs()
         }
-        val file = directory.resolve("${target}-keys.json")
+        val file = directory.resolve("$target-keys.json")
         if (!file.exists()) {
-            val text = Jsoup.connect("https://archive.openrs2.org/caches/runescape/${target}/keys.json")
+            val text = Jsoup.connect("https://archive.openrs2.org/caches/runescape/$target/keys.json")
                 .ignoreContentType(true)
                 .get()
                 .body()
@@ -36,7 +36,7 @@ object OpenRS2 {
         }
         val file = directory.resolve("main_file_cache.dat2")
         if (!file.exists()) {
-            downloadZip("https://archive.openrs2.org/caches/runescape/${number}/disk.zip", directory.path)
+            downloadZip("https://archive.openrs2.org/caches/runescape/$number/disk.zip", directory.path)
         }
         return directory
     }

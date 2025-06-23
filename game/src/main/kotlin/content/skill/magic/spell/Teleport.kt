@@ -17,8 +17,9 @@ import world.gregs.voidps.type.Tile
 data class Teleport(
     override val character: Player,
     val tile: Tile,
-    val type: String
-) : CancellableEvent(), Context<Player> {
+    val type: String,
+) : CancellableEvent(),
+    Context<Player> {
     var land: Boolean = false
 
     override val size = 3

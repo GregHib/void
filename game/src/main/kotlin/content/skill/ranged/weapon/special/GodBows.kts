@@ -1,11 +1,11 @@
 package content.skill.ranged.weapon.special
 
 import content.entity.combat.hit.*
+import content.entity.sound.sound
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timer.*
-import content.entity.sound.sound
 import java.util.concurrent.TimeUnit
 
 var Player.restoration: Int
@@ -19,7 +19,7 @@ val specialHandler: suspend CombatAttack.(Player) -> Unit = combatAttack@{ sourc
         return@combatAttack
     }
     when (weapon.id) {
-        "zamorak_bow" -> target.hit(source, weapon, type, mark, CLIENT_TICKS.toTicks(delay), spell, special, damage)
+        "zamorak_bow" -> target.hit(source, weapon, type, CLIENT_TICKS.toTicks(delay), spell, special, type, damage)
         "saradomin_bow" -> {
             source.restoration += damage * 2
             source["restoration_amount"] = source.restoration / 10

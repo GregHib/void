@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.distanceTo
 class Face(
     val character: Character,
     val target: Character,
-    val distance: Int = 1
+    val distance: Int = 1,
 ) : Mode {
 
     override fun start() {

@@ -25,8 +25,7 @@ class InterfaceOnInterfaceDecoder : Decoder(16) {
             InterfaceDefinition.id(fromPacked),
             InterfaceDefinition.componentId(fromPacked),
             InterfaceDefinition.id(toPacked),
-            InterfaceDefinition.componentId(toPacked)
+            InterfaceDefinition.componentId(toPacked),
         )
     }
-
 }

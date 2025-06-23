@@ -1,0 +1,22 @@
+[saniboch]
+id = 1595
+categories = ["human"]
+wander_radius = 2
+examine = "Looks like he wants money."
+
+[bartender_dead_mans_chest]
+id = 735
+bar_crawl = {
+  id = "supergrog",
+  price = 15,
+  start = "Fancy a bit of Heart Stopper then do you? It'll only be 8 coins.",
+  insufficient = "Sorry I don't have 15 coins.",
+  give = "The bartender serves you a glass of strange thick dark liquid.",
+  drink = "You wince and drink it.",
+  effect = "You stagger backwards.",
+  sign = "You think you see 2 bartenders signing 2 barcrawl cards."
+}
+categories = ["human"]
+wander_radius = 5
+collision = "indoors"
+examine = "I could get a beer from him."

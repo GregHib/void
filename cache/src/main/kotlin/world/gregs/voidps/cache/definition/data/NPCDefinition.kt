@@ -13,7 +13,7 @@ data class NPCDefinition(
     override var varbit: Int = -1,
     override var varp: Int = -1,
     override var transforms: IntArray? = null,
-    var walkMask: Byte = 0,
+    var walkMode: Byte = 0,
     var renderEmote: Int = -1,
     var idleSound: Int = -1,
     var crawlSound: Int = -1,
@@ -21,8 +21,10 @@ data class NPCDefinition(
     var runSound: Int = -1,
     var soundDistance: Int = 0,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Transforms, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Transforms,
+    Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -39,8 +41,10 @@ data class NPCDefinition(
         if (transforms != null) {
             if (other.transforms == null) return false
             if (!transforms.contentEquals(other.transforms)) return false
-        } else if (other.transforms != null) return false
-        if (walkMask != other.walkMask) return false
+        } else if (other.transforms != null) {
+            return false
+        }
+        if (walkMode != other.walkMode) return false
         if (renderEmote != other.renderEmote) return false
         if (idleSound != other.idleSound) return false
         if (crawlSound != other.crawlSound) return false
@@ -60,7 +64,7 @@ data class NPCDefinition(
         result = 31 * result + varbit
         result = 31 * result + varp
         result = 31 * result + (transforms?.contentHashCode() ?: 0)
-        result = 31 * result + walkMask
+        result = 31 * result + walkMode
         result = 31 * result + renderEmote
         result = 31 * result + idleSound
         result = 31 * result + crawlSound

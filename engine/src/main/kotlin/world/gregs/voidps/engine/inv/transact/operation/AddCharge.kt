@@ -36,5 +36,4 @@ object AddCharge {
         // Combine the charges and update the item in the inventory
         set(index, item.copy(amount = item.value + amount))
     }
-
 }

@@ -18,12 +18,10 @@ object PrayerConfigs {
     const val QUICK_CURSES = "quick_curses"
 }
 
-fun Character.praying(name: String): Boolean {
-    return if (this is Player) {
-        containsVarbit(getActivePrayerVarKey(), name)
-    } else {
-        false
-    }
+fun Character.praying(name: String): Boolean = if (this is Player) {
+    containsVarbit(getActivePrayerVarKey(), name)
+} else {
+    false
 }
 
 fun Player.getActivePrayerVarKey(): String = if (isCurses()) PrayerConfigs.ACTIVE_CURSES else PrayerConfigs.ACTIVE_PRAYERS
@@ -43,17 +41,11 @@ fun Character.updateBonus(skill: Skill) {
 /**
  * Leech represents a value between -19..12 which via [updateBonus] is interpolated between -25..15 % on the client side.
  */
-fun Character.getLeech(skill: Skill): Int {
-    return get("leech_${skill.name.lowercase()}", 0)
-}
+fun Character.getLeech(skill: Skill): Int = get("leech_${skill.name.lowercase()}", 0)
 
-fun Character.getDrain(skill: Skill): Int {
-    return get("drain_${skill.name.lowercase()}", 0)
-}
+fun Character.getDrain(skill: Skill): Int = get("drain_${skill.name.lowercase()}", 0)
 
-fun Character.getBaseDrain(skill: Skill): Int {
-    return get("base_${skill.name.lowercase()}_drain", 0)
-}
+fun Character.getBaseDrain(skill: Skill): Int = get("base_${skill.name.lowercase()}_drain", 0)
 
 fun Character.setLeech(skill: Skill, value: Int) {
     set("leech_${skill.name.lowercase()}", value)

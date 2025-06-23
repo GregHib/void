@@ -49,7 +49,6 @@ npcOperate("Talk-to", "wyson_the_gardener") {
                 }
                 option<Neutral>("Actually, I've changed my mind.")
             }
-
         }
         option<Neutral>("Sorry, but I'm not interested.") {
             npc<Sad>("Fair enough.")

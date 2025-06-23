@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
 import kotlin.test.assertEquals
 
-class InventorySlotChangedTest  {
+class InventorySlotChangedTest {
 
     private lateinit var inventory: Inventory
 
@@ -82,5 +82,4 @@ class InventorySlotChangedTest  {
         assertEquals(1, additions)
         assertEquals(1, removals)
     }
-
 }

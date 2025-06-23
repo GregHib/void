@@ -1,5 +1,11 @@
 package content.area.wilderness.abyss
 
+import content.entity.npc.shop.openShop
+import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.entity.sound.sound
+import content.quest.questCompleted
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -20,12 +26,6 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
-import content.entity.player.bank.ownsItem
-import content.quest.questCompleted
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
-import content.entity.npc.shop.openShop
-import content.entity.sound.sound
 
 val areas: AreaDefinitions by inject()
 

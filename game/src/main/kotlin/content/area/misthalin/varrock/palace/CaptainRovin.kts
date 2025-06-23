@@ -1,15 +1,15 @@
 package content.area.misthalin.varrock.palace
 
+import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.quest.quest
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.entity.player.bank.ownsItem
-import content.quest.quest
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
 
 npcOperate("Talk-to", "captain_rovin") {
     npc<Angry>("What are you doing up here? Only the palace guards are allowed up here.")
@@ -35,7 +35,7 @@ suspend fun PlayerChoice.whatAboutKing(): Unit = option<Quiz>("What about the Ki
 
 suspend fun PlayerChoice.itsImportant(): Unit = option<Talk>(
     "Yes, I know, but this is important.",
-    { player.quest("demon_slayer") != "unstarted" }
+    { player.quest("demon_slayer") != "unstarted" },
 ) {
     npc<Talk>("Ok, I'm listening. Tell me what's so important.")
     choice {
@@ -58,7 +58,7 @@ suspend fun PlayerChoice.plasticSurgery(): Unit = option<Talk>("I've had extensi
 
 suspend fun PlayerChoice.theresADemon(): Unit = option<Talk>(
     "There's a demon who wants to invade the city.",
-    { player.quest("demon_slayer") != "completed" }
+    { player.quest("demon_slayer") != "completed" },
 ) {
     if (player.ownsItem("silverlight_key_captain_rovin")) {
         haveYouNotKilledIt()

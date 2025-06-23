@@ -1,5 +1,10 @@
 package content.area.misthalin.lumbridge.combat_hall
 
+import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
+import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -10,11 +15,6 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.entity.player.bank.ownsItem
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
-import content.entity.player.modal.Tab
-import content.entity.player.modal.tab
 
 npcOperate("Talk-to", "harlan") {
     npc<Quiz>("Greetings adventurer, I am the Melee combat tutor. Is there anything I can do for you?")

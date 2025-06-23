@@ -1,13 +1,13 @@
 package content.skill.melee
 
+import WorldTest
+import content.entity.combat.hit.Damage
+import content.entity.combat.hit.Hit
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.item.Item
-import content.entity.combat.hit.Damage
-import content.entity.combat.hit.Hit
-import WorldTest
 
 abstract class CombatFormulaTest : WorldTest() {
 
@@ -15,7 +15,7 @@ abstract class CombatFormulaTest : WorldTest() {
         val offensiveRating: Int,
         val defensiveRating: Int,
         val maxHit: Int,
-        val chance: Double
+        val chance: Double,
     )
 
     internal fun calculate(source: Character, target: Character, type: String, weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false): Results {
@@ -35,5 +35,4 @@ abstract class CombatFormulaTest : WorldTest() {
         }
         return player
     }
-
 }

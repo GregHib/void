@@ -22,9 +22,7 @@ class ObjectTeleports {
 
     private lateinit var teleports: Map<String, Map<Int, TeleportDefinition>>
 
-    suspend fun teleport(objectOption: ObjectOption<Player>, option: String = objectOption.option): Boolean {
-        return teleport(objectOption, objectOption.character, objectOption.target, objectOption.def, option)
-    }
+    suspend fun teleport(objectOption: ObjectOption<Player>, option: String = objectOption.option): Boolean = teleport(objectOption, objectOption.character, objectOption.target, objectOption.def, option)
 
     suspend fun teleport(context: SuspendableContext<Player>, player: Player, target: GameObject, def: ObjectDefinition, option: String): Boolean {
         val id = def.stringId.ifEmpty { def.id.toString() }
@@ -67,17 +65,11 @@ class ObjectTeleports {
         return teleport.id == id
     }
 
-    fun get(id: String, option: String): List<TeleportDefinition> {
-        return teleports[option]?.values?.filter { it.id == id } ?: emptyList()
-    }
+    fun get(id: String, option: String): List<TeleportDefinition> = teleports[option]?.values?.filter { it.id == id } ?: emptyList()
 
-    fun get(option: String): Map<Int, TeleportDefinition> {
-        return teleports[option] ?: emptyMap()
-    }
+    fun get(option: String): Map<Int, TeleportDefinition> = teleports[option] ?: emptyMap()
 
-    fun options(): Set<String> {
-        return teleports.keys
-    }
+    fun options(): Set<String> = teleports.keys
 
     fun load(paths: List<String>): ObjectTeleports {
         val teleports = Object2ObjectOpenHashMap<String, Int2ObjectOpenHashMap<TeleportDefinition>>()
@@ -149,6 +141,6 @@ class ObjectTeleports {
         val option: String,
         val tile: Tile,
         val delta: Delta = Delta.EMPTY,
-        val to: Tile = Tile.EMPTY
+        val to: Tile = Tile.EMPTY,
     )
 }

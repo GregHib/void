@@ -15,7 +15,7 @@ data class Silver(
     val amount: Int = 1,
     val xp: Double = 0.0,
     val level: Int = 1,
-    val quest: String? = null
+    val quest: String? = null,
 ) {
     companion object {
 

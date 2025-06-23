@@ -6,5 +6,5 @@ data class MapSceneDefinition(
     override var id: Int = -1,
     var sprite: Int = 0,
     var colour: Int = 0,
-    var aBoolean1741: Boolean = false
+    var aBoolean1741: Boolean = false,
 ) : Definition

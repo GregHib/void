@@ -5,7 +5,7 @@ import net.pearx.kasechange.toSentenceCase
 enum class PlayerRights {
     None,
     Mod,
-    Admin
+    Admin,
 }
 
 var Player.rights: PlayerRights

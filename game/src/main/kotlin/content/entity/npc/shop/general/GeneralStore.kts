@@ -1,13 +1,13 @@
 package content.entity.npc.shop.general
 
 import content.entity.npc.shop.openShop
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 npcOperate("Trade", "shopkeeper*", "shop_assistant*") {
     player.openShop(target.def.getOrNull<String>("shop") ?: return@npcOperate)

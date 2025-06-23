@@ -1,19 +1,21 @@
 package content.entity
 
 import content.area.misthalin.Border
+import content.entity.death.npcDeath
+import world.gregs.voidps.engine.client.instruction.instruction
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
+import world.gregs.voidps.engine.entity.character.mode.move.Movement.Companion.entityBlock
 import world.gregs.voidps.engine.entity.character.mode.move.npcMove
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
-import content.entity.death.npcDeath
-import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.instruction.instruction
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.mode.move.Movement.Companion.entityBlock
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Zone
@@ -53,6 +55,9 @@ instruction<Walk> { player ->
         val endSide = Border.getOppositeSide(border, tile)
         player.walkTo(endSide, noCollision = true, forceWalk = true)
     } else {
+        if (player.tile == target && player.mode != EmptyMode && player.mode != PauseMode) {
+            player.mode = EmptyMode
+        }
         player.walkTo(target)
     }
 }

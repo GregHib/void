@@ -18,8 +18,10 @@ data class ObjectDefinition(
     override var varp: Int = -1,
     override var transforms: IntArray? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Transforms, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Transforms,
+    Extra {
 
     var block: Int = PROJECTILE or ROUTE
 
@@ -56,7 +58,9 @@ data class ObjectDefinition(
         if (options != null) {
             if (other.options == null) return false
             if (!options.contentEquals(other.options)) return false
-        } else if (other.options != null) return false
+        } else if (other.options != null) {
+            return false
+        }
         if (mirrored != other.mirrored) return false
         if (blockFlag != other.blockFlag) return false
         if (varbit != other.varbit) return false
@@ -64,7 +68,9 @@ data class ObjectDefinition(
         if (transforms != null) {
             if (other.transforms == null) return false
             if (!transforms.contentEquals(other.transforms)) return false
-        } else if (other.transforms != null) return false
+        } else if (other.transforms != null) {
+            return false
+        }
         if (stringId != other.stringId) return false
         if (extras != other.extras) return false
         return block == other.block

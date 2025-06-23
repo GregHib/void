@@ -42,7 +42,7 @@ val acceptedTiles = listOf(
     Tile(3005, 3376, 0),
     Tile(2999, 3375, 0),
     Tile(2996, 3377, 0),
-    Tile(2989, 3378, 0)
+    Tile(2989, 3378, 0),
 )
 
 val giantMoleLair = areas["giant_mole_lair"]
@@ -112,7 +112,6 @@ fun getRandomFacing(currentlyFacing: Direction): Direction {
     } while (randomDirection == currentlyFacing)
     return randomDirection
 }
-
 
 // 13% chance to throw dirt on players screen
 fun shouldThrowDirt(): Boolean {

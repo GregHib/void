@@ -23,6 +23,7 @@ att = 16
 str = 17
 def = 15
 poison = 30
+poison_roll = 2 # unknown
 max_hit_melee = 30
 style = "stab"
 respawn_delay = 25

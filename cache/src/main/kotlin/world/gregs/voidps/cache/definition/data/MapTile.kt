@@ -10,7 +10,7 @@ value class MapTile(val packed: Long) {
         path: Int = 0,
         rotation: Int = 0,
         settings: Int = 0,
-        underlay: Int = 0
+        underlay: Int = 0,
     ) : this(pack(height, opcode, overlay, path, rotation, settings, underlay))
 
     val height: Int
@@ -34,13 +34,9 @@ value class MapTile(val packed: Long) {
 
         val EMPTY = MapTile()
 
-        fun pack(height: Int, opcode: Int, overlay: Int, path: Int, rotation: Int, settings: Int, underlay: Int): Long {
-            return pack(height.toLong(), opcode.toLong(), overlay.toLong(), path.toLong(), rotation.toLong(), settings.toLong(), underlay.toLong())
-        }
+        fun pack(height: Int, opcode: Int, overlay: Int, path: Int, rotation: Int, settings: Int, underlay: Int): Long = pack(height.toLong(), opcode.toLong(), overlay.toLong(), path.toLong(), rotation.toLong(), settings.toLong(), underlay.toLong())
 
-        fun pack(height: Long, opcode: Long, overlay: Long, path: Long, rotation: Long, settings: Long, underlay: Long): Long {
-            return height + (opcode shl 8) + (overlay shl 16) + (path shl 24) + (rotation shl 32) + (settings shl 40) + (underlay shl 48)
-        }
+        fun pack(height: Long, opcode: Long, overlay: Long, path: Long, rotation: Long, settings: Long, underlay: Long): Long = height + (opcode shl 8) + (overlay shl 16) + (path shl 24) + (rotation shl 32) + (settings shl 40) + (underlay shl 48)
 
         fun height(packed: Long): Int = (packed and 0xff).toInt()
         fun opcode(packed: Long): Int = (packed shr 8 and 0xff).toInt()

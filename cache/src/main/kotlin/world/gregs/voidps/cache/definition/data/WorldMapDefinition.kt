@@ -15,5 +15,5 @@ data class WorldMapDefinition(
     var minX: Int = 12800,
     var minY: Int = 12800,
     var maxX: Int = 0,
-    var maxY: Int = 0
+    var maxY: Int = 0,
 ) : Definition

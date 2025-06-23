@@ -34,7 +34,6 @@ class ObjectDoorsGates(private val decoder: Array<ObjectDefinitionFull>) : Pipel
             } else if (id == 11621) {
                 extras["open"] = 11625
             }
-
         }
         println("Matched $fence fences.")
         println("Matched $door doors.")
@@ -44,7 +43,7 @@ class ObjectDoorsGates(private val decoder: Array<ObjectDefinitionFull>) : Pipel
     private val fences = setOf(
         47, 48, 166, 167, 883, 1551, 1553, 1598, 1599, 2050, 2051, 2261, 2262, 2306, 2320, 2394, 2438, 2439, 2489, 2495, 3015, 3016, 3725,
         3726, 4311, 4312, 7049, 7050, 8810, 8811, 12986, 12987, 15510, 15512, 15514, 15516, 23917, 24560, 24561, 27846, 27848, 27852, 27854,
-        34779, 34780, 36913, 36915, 36917, 36919, 37352, 37354, 45206, 45208, 45210, 45212
+        34779, 34780, 36913, 36915, 36917, 36919, 37352, 37354, 45206, 45208, 45210, 45212,
     )
 
     private fun match(def: ObjectDefinitionFull): Int {
@@ -89,20 +88,19 @@ class ObjectDoorsGates(private val decoder: Array<ObjectDefinitionFull>) : Pipel
         }
     }
 
-    private fun List<ObjectDefinitionFull>.filterByMirrored(definition: ObjectDefinitionFull) =
-        filter { it.mirrored == definition.mirrored }
+    private fun List<ObjectDefinitionFull>.filterByMirrored(definition: ObjectDefinitionFull) = filter { it.mirrored == definition.mirrored }
 
     private fun List<ObjectDefinitionFull>.filterByAppearance(definition: ObjectDefinitionFull) = filter {
         it.brightness == definition.brightness &&
-                it.contrast == definition.contrast &&
-                it.contouredGround == definition.contouredGround &&
-                it.castsShadow == definition.castsShadow &&
-                it.modelSizeX == definition.modelSizeX &&
-                it.modelSizeZ == definition.modelSizeZ &&
-                it.modelSizeY == definition.modelSizeY &&
-                it.offsetX == definition.offsetX &&
-                it.offsetZ == definition.offsetZ &&
-                it.offsetY == definition.offsetY
+            it.contrast == definition.contrast &&
+            it.contouredGround == definition.contouredGround &&
+            it.castsShadow == definition.castsShadow &&
+            it.modelSizeX == definition.modelSizeX &&
+            it.modelSizeZ == definition.modelSizeZ &&
+            it.modelSizeY == definition.modelSizeY &&
+            it.offsetX == definition.offsetX &&
+            it.offsetZ == definition.offsetZ &&
+            it.offsetY == definition.offsetY
     }
 
     companion object {

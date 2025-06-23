@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.map.collision
 import world.gregs.voidps.type.Tile
 
 class GameObjectCollisionAdd(
-    private val collisions: Collisions
+    private val collisions: Collisions,
 ) : GameObjectCollision() {
 
     override fun modifyTile(x: Int, y: Int, level: Int, block: Int, direction: Int) {

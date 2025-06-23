@@ -4,17 +4,9 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.engine.client.variable.VariableValues
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.timedLoad
-import java.io.File
-import java.nio.file.Files
-import java.nio.file.Path
 import kotlin.collections.set
-import kotlin.io.path.extension
-import kotlin.io.path.name
-import kotlin.io.path.nameWithoutExtension
-import kotlin.io.path.pathString
 
 class VariableDefinitions {
 

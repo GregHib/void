@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.data.QuestDefinition
 import world.gregs.voidps.cache.definition.Parameters
 
 class QuestDecoderRS3(
-    private val parameters: Parameters = Parameters.EMPTY
+    private val parameters: Parameters = Parameters.EMPTY,
 ) : ConfigDecoder<QuestDefinition>(QUESTS) {
 
     override fun create(size: Int) = Array(size) { QuestDefinition(it) }

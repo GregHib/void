@@ -60,6 +60,7 @@ object SpellRunes {
             }
         }
         if (required.isNotEmpty()) {
+            println(required)
             error = TransactionError.Deficient(required.values.first())
             if (message) {
                 player.message("You do not have the required items to cast this spell.")
@@ -209,7 +210,6 @@ object SpellRunes {
         return map
     }
 }
-
 
 fun Player.hasSpellItems(spell: String, message: Boolean = true): Boolean {
     val transaction = inventory.transaction

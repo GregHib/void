@@ -13,7 +13,7 @@ import kotlin.math.ceil
 class ObjectPainter(
     private val objectDefinitions: Array<ObjectDefinitionFull>,
     private val spriteDefinitions: Array<SpriteDefinition>,
-    private val mapSceneDefinitions: Array<MapSceneDefinition>
+    private val mapSceneDefinitions: Array<MapSceneDefinition>,
 ) {
 
     var offsetX = 0
@@ -25,13 +25,9 @@ class ObjectPainter(
 
     fun getScale() = 4
 
-    fun canvasX(x: Int): Int {
-        return x * getScale()
-    }
+    fun canvasX(x: Int): Int = x * getScale()
 
-    fun canvasY(y: Int): Int {
-        return y * getScale()
-    }
+    fun canvasY(y: Int): Int = y * getScale()
 
     private fun Graphics2D.drawLine(x: Int, y: Int, xOffset: Int, yOffset: Int, width: Int, height: Int, colour: Int) {
         color = Color(colour)
@@ -172,8 +168,9 @@ class ObjectPainter(
             if (bool) {
                 image.method4189()
             }
-            for (i in 0 until setting)
+            for (i in 0 until setting) {
                 image.method4198()
+            }
         }
         return image
     }
@@ -182,7 +179,7 @@ class ObjectPainter(
         if (definition.hideMinimap) {
             return
         }
-        if (obj.level != level) {//FIXME should render more than one level at once
+        if (obj.level != level) { // FIXME should render more than one level at once
             return
         }
         offsetX = Region.x(regionId) - region.x + 1
@@ -196,7 +193,7 @@ class ObjectPainter(
         val baseY = (offsetY * 64) + localY
         if (type == 22) {
             if (definition.interactive != 0 || definition.solid == 1 || definition.blocksLand) {
-                //Map scene
+                // Map scene
                 if (definition.mapscene != -1) {
                     method2343(definition, rotation, g, baseX, baseY)
                 }
@@ -270,8 +267,9 @@ class ObjectPainter(
         var i = 0
         if (alpha == null) {
             for (j in 0 until width) {
-                for (k in height - 1 downTo 0)
+                for (k in height - 1 downTo 0) {
                     bs[i++] = raster[j + k * width]
+                }
             }
             raster = bs
         } else {

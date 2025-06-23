@@ -8,7 +8,7 @@ import world.gregs.voidps.cache.definition.data.NPCDefinition
 
 class NPCDecoder(
     val member: Boolean,
-    private val parameters: Parameters = Parameters.EMPTY
+    private val parameters: Parameters = Parameters.EMPTY,
 ) : DefinitionDecoder<NPCDefinition>(NPCS) {
 
     override fun create(size: Int) = Array(size) { NPCDefinition(it, stringId = it.toString()) }
@@ -31,7 +31,7 @@ class NPCDecoder(
             100, 101, 125, 128, 140, 163, 165, 168 -> buffer.skip(1)
             106, 118 -> readTransforms(buffer, opcode == 118)
             113, 155, 164 -> buffer.skip(4)
-            119 -> walkMask = buffer.readByte().toByte()
+            119 -> walkMode = buffer.readByte().toByte()
             127 -> renderEmote = buffer.readShort()
             134 -> {
                 idleSound = buffer.readShort()
@@ -62,5 +62,4 @@ class NPCDecoder(
             249 -> readParameters(buffer, parameters)
         }
     }
-
 }

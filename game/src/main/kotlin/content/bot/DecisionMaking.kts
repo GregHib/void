@@ -1,9 +1,9 @@
 package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
+import content.bot.interact.navigation.resume
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import content.bot.interact.navigation.resume
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.entity.AiTick
 import world.gregs.voidps.engine.entity.World

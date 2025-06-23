@@ -1,8 +1,11 @@
 package content.entity.obj
 
+import WorldTest
+import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.ObjectShape
@@ -10,15 +13,11 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Tile
-import WorldTest
-import objectOption
-import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 
 internal class ObjectTest : WorldTest() {
 
     private lateinit var collision: Collisions
     private lateinit var handler: InstructionHandlers
-
 
     @BeforeEach
     fun start() {
@@ -75,5 +74,4 @@ internal class ObjectTest : WorldTest() {
 
         assertEquals(0, player.tile.level)
     }
-
 }

@@ -1,5 +1,7 @@
 package content.skill.firemaking
 
+import WorldTest
+import itemOnItem
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -7,8 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
-import WorldTest
-import itemOnItem
 
 internal class FiremakingTest : WorldTest() {
 
@@ -29,5 +29,4 @@ internal class FiremakingTest : WorldTest() {
         assertEquals(start.add(Direction.WEST), player.tile)
         assertTrue(player.experience.get(Skill.Firemaking) > 0)
     }
-
 }

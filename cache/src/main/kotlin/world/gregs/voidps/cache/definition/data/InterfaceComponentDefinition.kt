@@ -8,8 +8,9 @@ data class InterfaceComponentDefinition(
     var options: Array<String?>? = null,
     var information: Array<Any>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Extra {
 
     val parent: Int
         get() = InterfaceDefinition.id(id)
@@ -27,11 +28,15 @@ data class InterfaceComponentDefinition(
         if (options != null) {
             if (other.options == null) return false
             if (!options.contentEquals(other.options)) return false
-        } else if (other.options != null) return false
+        } else if (other.options != null) {
+            return false
+        }
         if (information != null) {
             if (other.information == null) return false
             if (!information.contentEquals(other.information)) return false
-        } else if (other.information != null) return false
+        } else if (other.information != null) {
+            return false
+        }
         if (stringId != other.stringId) return false
         return extras == other.extras
     }

@@ -82,8 +82,13 @@ data class ObjectDefinitionFull(
     var anInt2975: Int = 0,
     override var params: Map<Int, Any>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Transforms, Recolourable, ColourPalette, Parameterized, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Transforms,
+    Recolourable,
+    ColourPalette,
+    Parameterized,
+    Extra {
 
     var block: Int = PROJECTILE or ROUTE
 
@@ -115,11 +120,15 @@ data class ObjectDefinitionFull(
         if (modelIds != null) {
             if (other.modelIds == null) return false
             if (!modelIds.contentDeepEquals(other.modelIds)) return false
-        } else if (other.modelIds != null) return false
+        } else if (other.modelIds != null) {
+            return false
+        }
         if (modelTypes != null) {
             if (other.modelTypes == null) return false
             if (!modelTypes.contentEquals(other.modelTypes)) return false
-        } else if (other.modelTypes != null) return false
+        } else if (other.modelTypes != null) {
+            return false
+        }
         if (name != other.name) return false
         if (sizeX != other.sizeX) return false
         if (sizeY != other.sizeY) return false
@@ -133,28 +142,40 @@ data class ObjectDefinitionFull(
         if (options != null) {
             if (other.options == null) return false
             if (!options.contentEquals(other.options)) return false
-        } else if (other.options != null) return false
+        } else if (other.options != null) {
+            return false
+        }
         if (contrast != other.contrast) return false
         if (originalColours != null) {
             if (other.originalColours == null) return false
             if (!originalColours.contentEquals(other.originalColours)) return false
-        } else if (other.originalColours != null) return false
+        } else if (other.originalColours != null) {
+            return false
+        }
         if (modifiedColours != null) {
             if (other.modifiedColours == null) return false
             if (!modifiedColours.contentEquals(other.modifiedColours)) return false
-        } else if (other.modifiedColours != null) return false
+        } else if (other.modifiedColours != null) {
+            return false
+        }
         if (originalTextureColours != null) {
             if (other.originalTextureColours == null) return false
             if (!originalTextureColours.contentEquals(other.originalTextureColours)) return false
-        } else if (other.originalTextureColours != null) return false
+        } else if (other.originalTextureColours != null) {
+            return false
+        }
         if (modifiedTextureColours != null) {
             if (other.modifiedTextureColours == null) return false
             if (!modifiedTextureColours.contentEquals(other.modifiedTextureColours)) return false
-        } else if (other.modifiedTextureColours != null) return false
+        } else if (other.modifiedTextureColours != null) {
+            return false
+        }
         if (recolourPalette != null) {
             if (other.recolourPalette == null) return false
             if (!recolourPalette.contentEquals(other.recolourPalette)) return false
-        } else if (other.recolourPalette != null) return false
+        } else if (other.recolourPalette != null) {
+            return false
+        }
         if (mirrored != other.mirrored) return false
         if (castsShadow != other.castsShadow) return false
         if (modelSizeX != other.modelSizeX) return false
@@ -172,7 +193,9 @@ data class ObjectDefinitionFull(
         if (transforms != null) {
             if (other.transforms == null) return false
             if (!transforms.contentEquals(other.transforms)) return false
-        } else if (other.transforms != null) return false
+        } else if (other.transforms != null) {
+            return false
+        }
         if (anInt3015 != other.anInt3015) return false
         if (anInt3012 != other.anInt3012) return false
         if (anInt2989 != other.anInt2989) return false
@@ -180,7 +203,9 @@ data class ObjectDefinitionFull(
         if (anIntArray3036 != null) {
             if (other.anIntArray3036 == null) return false
             if (!anIntArray3036.contentEquals(other.anIntArray3036)) return false
-        } else if (other.anIntArray3036 != null) return false
+        } else if (other.anIntArray3036 != null) {
+            return false
+        }
         if (anInt3023 != other.anInt3023) return false
         if (hideMinimap != other.hideMinimap) return false
         if (aBoolean2972 != other.aBoolean2972) return false
@@ -200,16 +225,22 @@ data class ObjectDefinitionFull(
         if (animations != null) {
             if (other.animations == null) return false
             if (!animations.contentEquals(other.animations)) return false
-        } else if (other.animations != null) return false
+        } else if (other.animations != null) {
+            return false
+        }
         if (percents != null) {
             if (other.percents == null) return false
             if (!percents.contentEquals(other.percents)) return false
-        } else if (other.percents != null) return false
+        } else if (other.percents != null) {
+            return false
+        }
         if (mapDefinitionId != other.mapDefinitionId) return false
         if (anIntArray2981 != null) {
             if (other.anIntArray2981 == null) return false
             if (!anIntArray2981.contentEquals(other.anIntArray2981)) return false
-        } else if (other.anIntArray2981 != null) return false
+        } else if (other.anIntArray2981 != null) {
+            return false
+        }
         if (aByte2974 != other.aByte2974) return false
         if (aByte3045 != other.aByte3045) return false
         if (aByte3052 != other.aByte3052) return false

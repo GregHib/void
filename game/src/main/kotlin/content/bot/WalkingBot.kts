@@ -20,7 +20,7 @@ worldSpawn {
         },
         area = null,
         spaces = Int.MAX_VALUE,
-        requirements = emptyList()
+        requirements = emptyList(),
     )
     if (Settings["bots.idle", "nothing"] == "randomWalk") {
         tasks.idle(task)

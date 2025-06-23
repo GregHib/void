@@ -18,7 +18,7 @@ fun Client.animateObject(
     tile: Int,
     animation: Int,
     type: Int,
-    rotation: Int
+    rotation: Int,
 ) = send(Protocol.OBJECT_ANIMATION) {
     writeShortAddLittle(animation)
     writeByteAdd((type shl 2) or rotation)
@@ -30,7 +30,7 @@ fun Client.animateObject(
  */
 fun Client.preloadObject(
     id: Int,
-    modelType: Int
+    modelType: Int,
 ) = send(Protocol.OBJECT_PRE_FETCH) {
     writeShort(id)
     writeByte(modelType)

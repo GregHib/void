@@ -90,6 +90,5 @@ data class WikiPageTable(val headers: List<String>, val rows: List<List<String>>
                 }
             }
         }
-
     }
 }

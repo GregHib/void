@@ -5,7 +5,7 @@ import world.gregs.config.ConfigReader
 data class Catch(
     val level: Int = 1,
     val xp: Double = 0.0,
-    val chance: IntRange = 1..1
+    val chance: IntRange = 1..1,
 ) {
     companion object {
         operator fun invoke(reader: ConfigReader): Catch {

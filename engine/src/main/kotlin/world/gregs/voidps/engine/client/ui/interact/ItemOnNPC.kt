@@ -12,7 +12,7 @@ data class ItemOnNPC(
     override val target: NPC,
     val item: Item,
     val itemSlot: Int,
-    val inventory: String
+    val inventory: String,
 ) : TargetInteraction<Player, NPC>() {
 
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }

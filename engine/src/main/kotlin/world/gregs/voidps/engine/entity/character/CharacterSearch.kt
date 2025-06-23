@@ -8,5 +8,4 @@ interface CharacterSearch<C : Character> {
     operator fun get(tile: Tile): List<C>
 
     operator fun get(zone: Zone): List<C>
-
 }

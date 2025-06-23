@@ -11,5 +11,4 @@ class WindowClickDecoder : Decoder(6) {
         val position = packet.readInt()
         return null
     }
-
 }

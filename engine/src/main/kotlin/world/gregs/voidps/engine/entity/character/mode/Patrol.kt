@@ -12,7 +12,7 @@ import world.gregs.voidps.type.Tile
  */
 class Patrol(
     character: Character,
-    private val waypoints: List<Pair<Tile, Int>>
+    private val waypoints: List<Pair<Tile, Int>>,
 ) : Movement(character) {
 
     override fun tick() {

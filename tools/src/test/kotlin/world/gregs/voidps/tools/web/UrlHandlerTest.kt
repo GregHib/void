@@ -83,5 +83,4 @@ internal class UrlHandlerTest {
         assertEquals("http://www.real.com/", UrlHandler.removePrefixDomain("http://example.com/http://www.real.com/"))
         assertEquals("https://the.real.com/page.html?key=value", UrlHandler.removePrefixDomain("https://example.com/whatever/123456/https://the.real.com/page.html?key=value"))
     }
-
 }

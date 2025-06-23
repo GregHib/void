@@ -61,7 +61,7 @@ internal class NPCChatTest : DialogueTest() {
             Two
         """ to "dialogue_npc_chat2",
         "One\nTwo\nThree" to "dialogue_npc_chat3",
-        "One\nTwo\nThree\nFour" to "dialogue_npc_chat4"
+        "One\nTwo\nThree\nFour" to "dialogue_npc_chat4",
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {
@@ -97,7 +97,7 @@ internal class NPCChatTest : DialogueTest() {
             Two
         """ to "dialogue_npc_chat_np2",
         "One\nTwo\nThree" to "dialogue_npc_chat_np3",
-        "One\nTwo\nThree\nFour" to "dialogue_npc_chat_np4"
+        "One\nTwo\nThree\nFour" to "dialogue_npc_chat_np4",
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {

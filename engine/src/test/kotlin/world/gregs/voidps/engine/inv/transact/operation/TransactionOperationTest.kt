@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.remove.DefaultItemAmountBounds
 import world.gregs.voidps.engine.inv.remove.ItemAmountBounds
@@ -15,8 +17,6 @@ import world.gregs.voidps.engine.inv.stack.AlwaysStack
 import world.gregs.voidps.engine.inv.stack.ItemStackingRule
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.script.KoinMock
 
 abstract class TransactionOperationTest : KoinMock() {
@@ -24,21 +24,15 @@ abstract class TransactionOperationTest : KoinMock() {
     protected lateinit var inventory: Inventory
     protected lateinit var transaction: Transaction
     val normalStackRule = object : ItemStackingRule {
-        override fun stackable(id: String): Boolean {
-            return id == "stackable_item"
-        }
+        override fun stackable(id: String): Boolean = id == "stackable_item"
     }
     val validItems = object : ItemRestrictionRule {
-        override fun restricted(id: String): Boolean {
-            return id.isBlank() || id == "invalid_item"
-        }
+        override fun restricted(id: String): Boolean = id.isBlank() || id == "invalid_item"
 
-        override fun replacement(id: String): Item? {
-            return when (id) {
-                "replaceable" -> Item("replacement", 2)
-                "destructible" -> Item.EMPTY
-                else -> null
-            }
+        override fun replacement(id: String): Item? = when (id) {
+            "replaceable" -> Item("replacement", 2)
+            "destructible" -> Item.EMPTY
+            else -> null
         }
     }
     protected lateinit var itemDefinitions: ItemDefinitions
@@ -57,7 +51,7 @@ abstract class TransactionOperationTest : KoinMock() {
         stackRule: ItemStackingRule = AlwaysStack,
         itemRule: ItemRestrictionRule = NoRestrictions,
         amountBounds: ItemAmountBounds = DefaultItemAmountBounds,
-        block: Transaction.() -> Unit = {}
+        block: Transaction.() -> Unit = {},
     ) {
         inventory = inventory(capacity, stackRule, itemRule, amountBounds, block)
         transaction = inventory.transaction
@@ -69,13 +63,13 @@ abstract class TransactionOperationTest : KoinMock() {
         stackRule: ItemStackingRule = AlwaysStack,
         itemRule: ItemRestrictionRule = NoRestrictions,
         amountBounds: ItemAmountBounds = DefaultItemAmountBounds,
-        block: (Transaction.() -> Unit)? = null
+        block: (Transaction.() -> Unit)? = null,
     ): Inventory {
         val inventory = Inventory.debug(
             capacity = capacity,
             stackRule = stackRule,
             itemRule = itemRule,
-            amountBounds = amountBounds
+            amountBounds = amountBounds,
         )
         val transaction = inventory.transaction
         if (block != null) {

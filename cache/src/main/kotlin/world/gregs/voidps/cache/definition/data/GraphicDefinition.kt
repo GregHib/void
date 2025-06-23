@@ -21,8 +21,10 @@ data class GraphicDefinition(
     override var originalTextureColours: ShortArray? = null,
     override var modifiedTextureColours: ShortArray? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Recolourable, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Recolourable,
+    Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -43,19 +45,27 @@ data class GraphicDefinition(
         if (originalColours != null) {
             if (other.originalColours == null) return false
             if (!originalColours.contentEquals(other.originalColours)) return false
-        } else if (other.originalColours != null) return false
+        } else if (other.originalColours != null) {
+            return false
+        }
         if (modifiedColours != null) {
             if (other.modifiedColours == null) return false
             if (!modifiedColours.contentEquals(other.modifiedColours)) return false
-        } else if (other.modifiedColours != null) return false
+        } else if (other.modifiedColours != null) {
+            return false
+        }
         if (originalTextureColours != null) {
             if (other.originalTextureColours == null) return false
             if (!originalTextureColours.contentEquals(other.originalTextureColours)) return false
-        } else if (other.originalTextureColours != null) return false
+        } else if (other.originalTextureColours != null) {
+            return false
+        }
         if (modifiedTextureColours != null) {
             if (other.modifiedTextureColours == null) return false
             if (!modifiedTextureColours.contentEquals(other.modifiedTextureColours)) return false
-        } else if (other.modifiedTextureColours != null) return false
+        } else if (other.modifiedTextureColours != null) {
+            return false
+        }
         if (stringId != other.stringId) return false
         if (extras != other.extras) return false
 

@@ -13,13 +13,13 @@ import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.timedLoad
 
 class InterfaceDefinitions(
-    override var definitions: Array<InterfaceDefinition>
+    override var definitions: Array<InterfaceDefinition>,
 ) : DefinitionsDecoder<InterfaceDefinition> {
 
     override lateinit var ids: Map<String, Int>
     lateinit var componentIds: Map<String, Int>
 
-    fun getComponentId(id: String, component: String) = componentIds["${id}:$component"]
+    fun getComponentId(id: String, component: String) = componentIds["$id:$component"]
 
     fun getComponent(id: String, component: String): InterfaceComponentDefinition? {
         return get(id).components?.get(getComponentId(id, component) ?: return null)
@@ -60,7 +60,7 @@ class InterfaceDefinitions(
             data class Parent(
                 val fixed: Int,
                 val resize: Int,
-                val permanent: Boolean
+                val permanent: Boolean,
             )
 
             val typeData = Object2ObjectOpenHashMap<String, Parent>(100, Hash.VERY_FAST_LOAD_FACTOR)
@@ -92,8 +92,8 @@ class InterfaceDefinitions(
                             }
                         }
                     }
-                    requireNotNull(indexFixed) { "No fixed index specified for interface type ${stringId}." }
-                    requireNotNull(indexResize) { "No resizable index specified for interface type ${stringId}." }
+                    requireNotNull(indexFixed) { "No fixed index specified for interface type $stringId." }
+                    requireNotNull(indexResize) { "No resizable index specified for interface type $stringId." }
                     val fixed = if (parentFixed == -1) -1 else InterfaceDefinition.pack(parentFixed, indexFixed)
                     val resize = if (parentResize == -1) -1 else InterfaceDefinition.pack(parentResize, indexResize)
                     typeData[stringId] = Parent(fixed, resize, permanent)
@@ -147,7 +147,7 @@ class InterfaceDefinitions(
                     if (componentId == -1) {
                         throw IllegalArgumentException("Invalid component id.")
                     }
-                    componentIds["${interfaceId}:$key"] = componentId
+                    componentIds["$interfaceId:$key"] = componentId
                     val componentDefinition = getOrPut(interfaceIntId, componentId)
                     require(componentDefinition.stringId == "") { "Found duplicate interface component id $key ${componentDefinition.stringId}" }
                     componentDefinition.stringId = key
@@ -164,14 +164,14 @@ class InterfaceDefinitions(
                     val prefix = key.removeSuffix(startDigit.toString())
                     for ((index, id) in range.withIndex()) {
                         val name = "$prefix${startDigit + index}"
-                        componentIds["${interfaceId}:$name"] = id
+                        componentIds["$interfaceId:$name"] = id
                         val componentDefinition = getOrPut(interfaceIntId, id)
                         componentDefinition.stringId = name
                     }
                 }
                 else -> {
                     val value = int()
-                    componentIds["${interfaceId}:$key"] = value
+                    componentIds["$interfaceId:$key"] = value
                     val componentDefinition = getOrPut(interfaceIntId, value)
                     componentDefinition.stringId = key
                 }

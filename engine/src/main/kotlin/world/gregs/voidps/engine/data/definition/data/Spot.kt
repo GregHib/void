@@ -7,7 +7,7 @@ import world.gregs.config.ConfigReader
 
 data class Spot(
     val tackle: List<String> = emptyList(),
-    val bait: Map<String, List<String>> = emptyMap()
+    val bait: Map<String, List<String>> = emptyMap(),
 ) {
 
     companion object {

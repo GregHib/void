@@ -28,7 +28,7 @@ class Interfaces(
     private val events: EventDispatcher,
     internal var client: Client? = null,
     internal val definitions: InterfaceDefinitions,
-    private val interfaces: MutableMap<String, String> = Object2ObjectOpenHashMap()
+    private val interfaces: MutableMap<String, String> = Object2ObjectOpenHashMap(),
 ) {
     var displayMode = 0
 
@@ -77,13 +77,9 @@ class Interfaces(
         return false
     }
 
-    fun get(type: String): String? {
-        return interfaces[type]
-    }
+    fun get(type: String): String? = interfaces[type]
 
-    fun contains(id: String): Boolean {
-        return interfaces[getType(id)] == id
-    }
+    fun contains(id: String): Boolean = interfaces[getType(id)] == id
 
     fun refresh() {
         for (id in interfaces.values) {
@@ -137,9 +133,7 @@ class Interfaces(
         }
     }
 
-    private fun getType(id: String): String {
-        return definitions.getOrNull(id)?.type ?: DEFAULT_TYPE
-    }
+    private fun getType(id: String): String = definitions.getOrNull(id)?.type ?: DEFAULT_TYPE
 
     private fun sendOpen(id: String) {
         val definition = definitions.getOrNull(id) ?: return
@@ -150,7 +144,7 @@ class Interfaces(
             client?.openInterface(
                 permanent = definition.permanent,
                 interfaceComponent = parent,
-                id = definition.id
+                id = definition.id,
             )
         }
     }
@@ -206,9 +200,7 @@ class Interfaces(
         return true
     }
 
-    fun sendItem(id: String, component: String, item: Item): Boolean {
-        return sendItem(id, component, item.def.id, item.amount)
-    }
+    fun sendItem(id: String, component: String, item: Item): Boolean = sendItem(id, component, item.def.id, item.amount)
 
     fun sendItem(id: String, component: String, item: Int, amount: Int = 1): Boolean {
         val comp = definitions.getComponent(id, component) ?: return false

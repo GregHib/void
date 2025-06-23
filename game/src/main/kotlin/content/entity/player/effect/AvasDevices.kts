@@ -1,5 +1,6 @@
 package content.entity.player.effect
 
+import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -7,13 +8,12 @@ import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.inventoryChanged
+import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.player.inv.inventoryItem
 import java.util.concurrent.TimeUnit
 
 val attractor = setOf(
@@ -37,7 +37,7 @@ val attractor = setOf(
     "iron_arrowtips",
     "steel_med_helm",
     "steel_full_helm",
-    "toy_mouse"
+    "toy_mouse",
 )
 
 val accumulator = setOf(
@@ -64,7 +64,7 @@ val accumulator = setOf(
     "steel_hatchet",
     "steel_nails",
     "broken_arrow",
-    "toy_mouse"
+    "toy_mouse",
 )
 
 val floorItems: FloorItems by inject()

@@ -34,8 +34,8 @@ worldSpawn {
             spaces = spaces,
             requirements = listOf(
                 { levels.getMax(Skill.Runecrafting) in range },
-                { bot.hasExactGear(Skill.Runecrafting) }
-            )
+                { bot.hasExactGear(Skill.Runecrafting) },
+            ),
         )
         tasks.register(task)
     }

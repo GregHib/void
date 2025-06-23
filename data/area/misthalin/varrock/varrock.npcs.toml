@@ -3,6 +3,7 @@ id = 522
 categories = ["human"]
 shop = "varrock_general_store"
 wander_radius = 2
+collision = "indoors"
 examine = "Likes people spending money."
 
 [shop_assistant_varrock]
@@ -10,6 +11,7 @@ id = 523
 categories = ["human"]
 shop = "varrock_general_store"
 wander_radius = 2
+collision = "indoors"
 examine = "Likes helping sell stuff."
 
 [thessalia]
@@ -17,6 +19,7 @@ id = 548
 shop = "thessalias_fine_clothes"
 categories = ["human"]
 wander_radius = 3
+collision = "indoors"
 examine = "Interesting assortment of clothes on offer..."
 
 [aubury]
@@ -24,4 +27,171 @@ id = 553
 shop = "auburys_rune_shop"
 categories = ["human"]
 wander_radius = 3
+collision = "indoors"
 examine = "Runes are his passion."
+
+[mage_of_zamorak_wilderness]
+id = 2257
+faces = false
+categories = ["human"]
+wander_radius = 4
+examine = "A disciple of Zamorak."
+
+[mage_of_zamorak_varrock]
+id = 2260
+faces = false
+categories = ["human"]
+wander_radius = 5
+collision = "indoors"
+examine = "A disciple of Zamorak."
+
+[reldo]
+id = 647
+categories = ["human"]
+wander_radius = 4
+collision = "indoors"
+examine = "Reldo the librarian"
+
+[reldo_normal]
+id = 2661
+categories = ["human"]
+wander_radius = 4
+examine = "Reldo the librarian."
+
+[tarquin]
+id = 3328
+examine = "A dandy canoe man."
+
+[sir_prysin_normal]
+id = 883
+categories = ["human"]
+wander_radius = 3
+collision = "indoors"
+examine = "One of the king's knights."
+
+[sir_prysin_sword]
+clone = "sir_prysin_normal"
+id = 4657
+
+[sir_prysin]
+id = 9359
+clone = "sir_prysin_normal"
+
+[gypsy_aris]
+id = 9362
+examine = "A fortune-teller."
+
+[dark_wizard_water]
+id = 8871
+att = 5
+str = 2
+def = 5
+mage = 6
+attack_range = 5
+attack_radius = 11
+hitpoints = 120
+max_hit_magic = 60
+respawn_delay = 50
+hunt_mode = "cowardly"
+wander_radius = 4
+combat_anims = "human"
+categories = ["human"]
+examine = "He works evil magic."
+
+[dark_wizard_water_2]
+clone = "dark_wizard_water"
+id = 8872
+drop_table = "dark_wizard_water"
+
+[dark_wizard_earth]
+clone = "dark_wizard_water"
+id = 8873
+att = 17
+str = 17
+def = 14
+mage = 22
+hitpoints = 240
+combat_anims = "human"
+categories = ["human"]
+drop_table = "dark_wizard_earth"
+examine = "A practicer of dark arts."
+
+[dark_wizard_earth_2]
+clone = "dark_wizard_earth"
+id = 8874
+
+[iffie]
+id = 5914
+categories = ["human"]
+faces = false
+examine = "An old woman busily knitting."
+
+[ash_cleaner]
+id = 5916
+categories = ["human"]
+wander_radius = 12
+hunt_range = 4
+hunt_mode = "ash_finder"
+examine = "Does what too many people aren't interested in doing."
+
+[surok_magis_normal]
+id = 5834
+categories = ["human"]
+collision = "indoors"
+examine = "A powerful wizard."
+
+[surok_magis_dagon_hai]
+id = 5835
+categories = ["human"]
+collision = "indoors"
+examine = "Leader of the Dagon'hai Order."
+
+[surok_magis]
+id = 5853
+collision = "indoors"
+wander_radius = 4
+
+[captain_rovin]
+id = 884
+categories = ["human"]
+wander_radius = 3
+examine = "The head of the palace guard."
+
+[baraek]
+id = 547
+categories = ["human"]
+wander_radius = 3
+examine = "Animal skins are a speciality."
+
+[bartender_jolly_boar_inn]
+id = 731
+bar_crawl = {
+    id = "olde_suspiciouse",
+    price = 10,
+    start = "Ah, there seems to be a fair few doing that one these days. My supply of Olde Suspiciouse is starting to run low, it'll cost you 10 coins.",
+    insufficient = "I don't have 10 coins right now.",
+    give = "You buy a pint of Olde Suspiciouse.",
+    drink = "You gulp it down.",
+    effect = "Your head is spinning.",
+    sign = "The bartender signs your card."
+}
+categories = ["human"]
+wander_radius = 5
+collision = "indoors"
+examine = "I could get a beer from him."
+
+[bartender_blue_moon_inn]
+id = 733
+bar_crawl = {
+    id = "uncle_humphreys_gutrot",
+    price = 50,
+    insufficient = "Oh dear. I don't seem to have enough money.",
+    give = "You buy some Uncle Humphrey's Gutrot.",
+    drink = "You drink the Uncle Humphrey's Gutrot.",
+    effect = "Your insides feel terrible.",
+    sign = "The bartender signs your card."
+}
+categories = ["human"]
+wander_radius = 4
+collision = "indoors"
+examine = "I could get a beer from him."

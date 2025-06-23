@@ -42,7 +42,7 @@ fun updateUnlock(player: Player, id: String, key: String, points: Int) {
         player.interfaces.sendColour(
             id,
             "${key}_points",
-            if (player.slayerPoints < points) Colours.RED else Colours.ORANGE
+            if (player.slayerPoints < points) Colours.RED else Colours.ORANGE,
         )
     }
 }
@@ -85,4 +85,4 @@ fun purchase(player: Player, key: String, points: Int, message: String) {
     }
 }
 
-//player.message("You need a nosepeg, face mask, earmuffs, spiny helmet and an uncharged black\nmask in your inventory in order to construct a fully-enhanced Slayer helmet.")
+// player.message("You need a nosepeg, face mask, earmuffs, spiny helmet and an uncharged black\nmask in your inventory in order to construct a fully-enhanced Slayer helmet.")

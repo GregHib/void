@@ -7,7 +7,7 @@ import java.nio.ByteBuffer
  */
 class BufferWriter(
     capacity: Int = 64,
-    private val buffer: ByteBuffer = ByteBuffer.allocate(capacity)
+    private val buffer: ByteBuffer = ByteBuffer.allocate(capacity),
 ) : Writer {
 
     private var bitIndex = -1
@@ -161,9 +161,7 @@ class BufferWriter(
         buffer.put(byteIndex, tmp.toByte())
     }
 
-    override fun bitIndex(): Int {
-        return bitIndex
-    }
+    override fun bitIndex(): Int = bitIndex
 
     override fun bitIndex(index: Int) {
         bitIndex = index
@@ -187,17 +185,13 @@ class BufferWriter(
         return data
     }
 
-    override fun array(): ByteArray {
-        return buffer.array()
-    }
+    override fun array(): ByteArray = buffer.array()
 
     override fun clear() {
         buffer.clear()
     }
 
-    override fun remaining(): Int {
-        return buffer.remaining()
-    }
+    override fun remaining(): Int = buffer.remaining()
 
     companion object {
         val BIT_MASKS = IntArray(32) { (1 shl it) - 1 }

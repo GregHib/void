@@ -1,5 +1,9 @@
 package content.entity.player.combat
 
+import content.entity.combat.hit.combatAttack
+import content.skill.melee.weapon.attackStyle
+import content.skill.melee.weapon.attackType
+import content.skill.slayer.isTask
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -8,10 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inject
-import content.skill.slayer.isTask
-import content.skill.melee.weapon.attackStyle
-import content.skill.melee.weapon.attackType
-import content.entity.combat.hit.combatAttack
 import kotlin.math.floor
 
 val definitions: SpellDefinitions by inject()
@@ -57,20 +57,18 @@ fun grant(player: Player, target: Character, skill: Skill, experience: Double) {
     player.exp(skill, experience * calcBonus(target))
 }
 
-fun calcBonus(target: Character): Double {
-    return when (target) {
-        is NPC -> {
-            val combinedLevels = target.levels.get(Skill.Attack) +
-                    target.levels.get(Skill.Strength) +
-                    target.levels.get(Skill.Defence) +
-                    target.levels.get(Skill.Constitution) / 10
-            val combinedAverage = floor(combinedLevels / 4.0)
-            val defenceLevels = target["stab_defence", 1] + target["slash_defence", 1] + target["crush_defence", 1]
-            val defenceAverage = floor(defenceLevels / 3.0)
-            val bonus = defenceAverage + target["strength", 0] + target["attack_bonus", 0]
-            1 + 0.025 * floor((combinedAverage * bonus) / 5120)
-        }
-        is Player -> (1 + 0.025 * floor(target.combatLevel / 20.0)).coerceAtMost(1.125)
-        else -> 1.0
+fun calcBonus(target: Character): Double = when (target) {
+    is NPC -> {
+        val combinedLevels = target.levels.get(Skill.Attack) +
+            target.levels.get(Skill.Strength) +
+            target.levels.get(Skill.Defence) +
+            target.levels.get(Skill.Constitution) / 10
+        val combinedAverage = floor(combinedLevels / 4.0)
+        val defenceLevels = target["stab_defence", 1] + target["slash_defence", 1] + target["crush_defence", 1]
+        val defenceAverage = floor(defenceLevels / 3.0)
+        val bonus = defenceAverage + target["strength", 0] + target["attack_bonus", 0]
+        1 + 0.025 * floor((combinedAverage * bonus) / 5120)
     }
+    is Player -> (1 + 0.025 * floor(target.combatLevel / 20.0)).coerceAtMost(1.125)
+    else -> 1.0
 }

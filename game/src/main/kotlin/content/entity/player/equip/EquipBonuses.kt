@@ -21,7 +21,7 @@ object EquipBonuses {
         "Strength" to "strength",
         "Ranged Strength" to "ranged_strength",
         "Prayer" to "prayer_bonus",
-        "Magic Damage" to "magic_damage"
+        "Magic Damage" to "magic_damage",
     )
 
     fun getValue(item: ItemDefinition, key: String): String? {
@@ -32,11 +32,15 @@ object EquipBonuses {
         return format(key, value, false)
     }
 
-    fun format(key: String, value: Int, bonuses: Boolean): String {
-        return when (key) {
-            "magic_damage", "absorb_melee", "absorb_magic", "absorb_range" -> "${if (value >= 0) "+" else "-"}${value}%"
-            "strength", "ranged_strength" -> "${if (value > 0) "+" else if (value < 0) "-" else ""}${value.toDouble()}"
-            else -> if (bonuses) "${if (value >= 0) "+" else "-"}${value}" else value.toString()
-        }
+    fun format(key: String, value: Int, bonuses: Boolean): String = when (key) {
+        "magic_damage", "absorb_melee", "absorb_magic", "absorb_range" -> "${if (value >= 0) "+" else "-"}$value%"
+        "strength", "ranged_strength" -> "${if (value > 0) {
+            "+"
+        } else if (value < 0) {
+            "-"
+        } else {
+            ""
+        }}${value.toDouble()}"
+        else -> if (bonuses) "${if (value >= 0) "+" else "-"}$value" else value.toString()
     }
 }

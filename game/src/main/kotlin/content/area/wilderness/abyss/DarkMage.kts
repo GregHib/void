@@ -1,14 +1,14 @@
 package content.area.wilderness.abyss
 
+import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import content.entity.player.bank.ownsItem
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
 
 npcOperate("Talk-to", "dark_mage") {
     player<Talk>("Hello there.")

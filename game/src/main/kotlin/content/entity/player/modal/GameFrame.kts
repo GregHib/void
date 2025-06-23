@@ -2,12 +2,12 @@ package content.entity.player.modal
 
 import net.pearx.kasechange.toSnakeCase
 import net.pearx.kasechange.toTitleCase
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.client.instruction.ChangeDisplayMode
@@ -37,7 +37,7 @@ val list = listOf(
     "emotes",
     "music_player",
     "notes",
-    "area_status_icon"
+    "area_status_icon",
 )
 
 Tab.entries.forEach { tab ->
@@ -75,7 +75,7 @@ fun GameFrame.openGamframe(player: Player) {
                     2 -> "lunar_spellbook"
                     3 -> "dungeoneering_spellbook"
                     else -> name
-                }
+                },
             )
         } else {
             player.open(name)

@@ -12,7 +12,7 @@ data class InterfaceOnItem(
     val index: Int,
     val item: Item,
     val itemSlot: Int,
-    val inventory: String
+    val inventory: String,
 ) : Event {
 
     override val size = 4

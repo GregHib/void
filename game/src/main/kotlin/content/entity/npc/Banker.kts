@@ -1,20 +1,20 @@
 package content.entity.npc
 
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.event.Context
-import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.social.trade.lend.Loan.getSecondsRemaining
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
+import content.social.trade.lend.Loan.getSecondsRemaining
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.npcApproach
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.suspend.SuspendableContext
 
 val npcs: NPCs by inject()
 

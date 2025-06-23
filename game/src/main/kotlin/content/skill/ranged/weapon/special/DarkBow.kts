@@ -1,15 +1,15 @@
 package content.skill.ranged.weapon.special
 
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.distanceTo
 import content.entity.combat.combatSwing
 import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.hit
-import content.skill.ranged.ammo
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.entity.sound.sound
+import content.skill.ranged.ammo
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.distanceTo
 
 specialAttack("descent_of_darkness") { player ->
     val dragon = player.ammo == "dragon_arrow"

@@ -1,5 +1,8 @@
 package content.skill.agility.course
 
+import content.entity.combat.hit.damage
+import content.entity.player.dialogue.HappyOld
+import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -15,9 +18,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
-import content.entity.player.dialogue.HappyOld
-import content.entity.player.dialogue.type.npc
-import content.entity.combat.hit.damage
 
 val npcs: NPCs by inject()
 

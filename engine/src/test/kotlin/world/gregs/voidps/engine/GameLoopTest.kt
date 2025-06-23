@@ -24,9 +24,11 @@ internal class GameLoopTest {
     @Test
     fun `Start game loop`() = runTest {
         var count = 0
-        stages.add(Runnable {
-            count++
-        })
+        stages.add(
+            Runnable {
+                count++
+            },
+        )
 
         val job = loop.start(this)
         delay(5)
@@ -39,9 +41,11 @@ internal class GameLoopTest {
     @Test
     fun `Cancel job early`() = runTest {
         var count = 0
-        stages.add(Runnable {
-            count++
-        })
+        stages.add(
+            Runnable {
+                count++
+            },
+        )
 
         val job = loop.start(this)
         delay(2)
@@ -56,12 +60,16 @@ internal class GameLoopTest {
     @Test
     fun `Exception in stage`() = runTest {
         var count = 0
-        stages.add(Runnable {
-            count++
-        })
-        stages.add(Runnable {
-            throw IllegalStateException("Test")
-        })
+        stages.add(
+            Runnable {
+                count++
+            },
+        )
+        stages.add(
+            Runnable {
+                throw IllegalStateException("Test")
+            },
+        )
 
         val job = loop.start(this)
         delay(5)

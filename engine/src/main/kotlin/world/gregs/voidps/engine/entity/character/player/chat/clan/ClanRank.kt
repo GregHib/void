@@ -11,12 +11,11 @@ enum class ClanRank(val value: Int, val string: String) {
     Captain(5, "Captain+"),
     General(6, "General+"),
     Owner(7, "Only me"),
-    Admin(127, "");
+    Admin(127, ""),
+    ;
 
     companion object {
-        fun from(option: String) : ClanRank {
-            return entries.firstOrNull { it.string == option } ?: None
-        }
+        fun from(option: String): ClanRank = entries.firstOrNull { it.string == option } ?: None
         private val ranks = mapOf(
             "Anyone" to Anyone,
             "Friend" to Friend,
@@ -29,6 +28,6 @@ enum class ClanRank(val value: Int, val string: String) {
             "Owner" to Owner,
             "Admin" to Admin,
         )
-        fun by(name: String) : ClanRank = ranks.getOrDefault(name, None)
+        fun by(name: String): ClanRank = ranks.getOrDefault(name, None)
     }
 }

@@ -7,20 +7,18 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 > [!TIP]
 > If you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
 > - Star the project
-> - Refer this project in your project's thread or readme 
+> - Refer this project in your project's thread or readme
 
 ## Table of Contents
 
 - [I Have a Question](#i-have-a-question)
 - [I Want To Contribute](#i-want-to-contribute)
-    - [Reporting Bugs](#reporting-bugs)
-    - [Suggesting Enhancements](#suggesting-enhancements)
-    - [Your First Code Contribution](#your-first-code-contribution)
+  - [Reporting Bugs](#reporting-bugs)
+  - [Suggesting Enhancements](#suggesting-enhancements)
+  - [Your First Code Contribution](#your-first-code-contribution)
 - [Style Guides](#style-guides)
-    - [Commit Messages](#commit-messages)
-    - [Code](#code)
-
-
+  - [Commit Messages](#commit-messages)
+  - [Code](#code)
 
 ## I Have a Question
 
@@ -54,11 +52,11 @@ A good bug report shouldn't leave others needing to chase you up for more inform
 - To see if other users have experienced (and potentially already solved) the same issue you are having, check if there is not already a bug report existing for your bug or error in the [bug tracker](https://github.com/GregHib/void/issues?q=label%3Abug).
 - Also make sure to search the internet (including Stack Overflow) to see if users outside the GitHub community have discussed the issue.
 - Collect information about the bug:
-    - Stack trace (Traceback)
-    - OS, Platform and Version (Windows, Linux, macOS, x86, ARM)
-    - Version of the interpreter, compiler, SDK, runtime environment, package manager, depending on what seems relevant.
-    - Possibly your input and the output
-    - Can you reliably reproduce the issue? And can you also reproduce it with older versions?
+  - Stack trace (Traceback)
+  - OS, Platform and Version (Windows, Linux, macOS, x86, ARM)
+  - Version of the interpreter, compiler, SDK, runtime environment, package manager, depending on what seems relevant.
+  - Possibly your input and the output
+  - Can you reliably reproduce the issue? And can you also reproduce it with older versions?
 
 #### How Do I Submit a Good Bug Report?
 
@@ -101,7 +99,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/GregHi
 
 ### Your First Code Contribution
 
-To submit contributions please [fork the repository](https://github.com/GregHib/void/fork) before [checking out](README.md#development) the project in your IDE, apply the changes to a branch and [Submit a Pull Request](https://github.com/GregHib/void/pulls).
+To submit contributions please [fork the repository](https://github.com/GregHib/void/fork) before [checking out](README.md#development) the project in your IDE, apply the changes to a branch run `gradle spotlessApply` to format and [Submit a Pull Request](https://github.com/GregHib/void/pulls).
 
 ## Style guides
 
@@ -118,4 +116,5 @@ For content code guidelines see the [Void Wiki](https://github.com/GregHib/void/
 General code style guidelines should follow the [kotlin coding conventions](https://kotlinlang.org/docs/coding-conventions.html).
 
 ## Attribution
+
 This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!

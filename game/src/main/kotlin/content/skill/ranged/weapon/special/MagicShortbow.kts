@@ -1,10 +1,10 @@
 package content.skill.ranged.weapon.special
 
-import world.gregs.voidps.engine.entity.distanceTo
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.distanceTo
 
 specialAttack("snapshot") { player ->
     player.anim("${id}_special")

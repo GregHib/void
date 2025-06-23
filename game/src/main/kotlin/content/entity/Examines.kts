@@ -1,15 +1,15 @@
 package content.entity
 
+import content.entity.player.inv.inventoryOption
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
-import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.obj.objectApproach
-import content.entity.player.inv.inventoryOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.client.instruction.instruction
+import world.gregs.voidps.engine.entity.character.npc.npcApproach
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.ExamineItem
 import world.gregs.voidps.network.client.instruction.ExamineNpc

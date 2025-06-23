@@ -45,9 +45,7 @@ value class Delta(val id: Long) : Coordinate3D<Delta> {
         }
     }
 
-    override fun toString(): String {
-        return "Delta($x, $y, $level)"
-    }
+    override fun toString(): String = "Delta($x, $y, $level)"
 
     companion object {
         fun id(x: Int, y: Int, level: Int = 0) = ((level + 0x3L) and 0x7) + (((x + 0x7fffL) and 0xffff) shl 3) + (((y + 0x7fffL) and 0xffff) shl 19)

@@ -30,7 +30,7 @@ import kotlin.collections.set
  * - Default match; Always matches every input
  */
 class Events(
-    private val scope: CoroutineScope = CoroutineScope(Dispatchers.Unconfined)
+    private val scope: CoroutineScope = CoroutineScope(Dispatchers.Unconfined),
 ) {
     private val roots: MutableMap<Int, TrieNode> = Int2ObjectOpenHashMap(8)
     var all: ((Player, Event) -> Unit)? = null
@@ -170,7 +170,7 @@ class Events(
         node: TrieNode,
         depth: Int,
         skip: (suspend Event.(EventDispatcher) -> Unit)? = null,
-        output: MutableSet<suspend Event.(EventDispatcher) -> Unit> = mutableSetOf()
+        output: MutableSet<suspend Event.(EventDispatcher) -> Unit> = mutableSetOf(),
     ): Set<suspend Event.(EventDispatcher) -> Unit> {
         if (depth == event.size) {
             if (node.handler!!.contains(skip)) {
@@ -195,14 +195,12 @@ class Events(
         return output
     }
 
-    private fun matches(key: Any?, param: Any?): Boolean {
-        return when {
-            key is String && param is String -> wildcardEquals(key, param)
-            param is Set<*> -> param.contains(key)
-            key is Set<*> -> key.contains(param)
-            key is Area -> param is Tile && key.contains(param)
-            else -> key == param
-        }
+    private fun matches(key: Any?, param: Any?): Boolean = when {
+        key is String && param is String -> wildcardEquals(key, param)
+        param is Set<*> -> param.contains(key)
+        key is Set<*> -> key.contains(param)
+        key is Area -> param is Tile && key.contains(param)
+        else -> key == param
     }
 
     fun clear() {

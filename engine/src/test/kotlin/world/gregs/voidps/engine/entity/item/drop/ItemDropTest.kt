@@ -1,19 +1,9 @@
 package world.gregs.voidps.engine.entity.item.drop
 
 import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import world.gregs.voidps.cache.config.data.InventoryDefinition
-import world.gregs.voidps.engine.data.definition.InventoryDefinitions
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.restrict.NoRestrictions
-import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 
 class ItemDropTest {
 
@@ -44,5 +34,4 @@ class ItemDropTest {
         assertEquals("bones", item.id)
         assertTrue(item.amount in 1..5)
     }
-
 }

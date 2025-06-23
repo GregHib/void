@@ -1,14 +1,14 @@
 package content.area.kandarin.yanille
 
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import content.quest.questCompleted
-import content.skill.runecrafting.EssenceMine
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.quest.questCompleted
+import content.skill.runecrafting.EssenceMine
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 npcOperate("Talk-to", "wizard_distentor") {
     npc<Talk>("Welcome to the Magicians' Guild!")

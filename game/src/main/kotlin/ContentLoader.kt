@@ -14,7 +14,7 @@ object ContentLoader {
 
     fun load() {
         val start = System.currentTimeMillis()
-        var scriptCount =  0
+        var scriptCount = 0
         val scripts = ContentLoader::class.java.getResourceAsStream("scripts.txt")?.bufferedReader()
         if (scripts == null) {
             logger.debug { "No auto-generated script file found, falling back to manual search." }
@@ -52,16 +52,14 @@ object ContentLoader {
         constructor.newInstance(arguments)
     }
 
-    private fun loadScriptPaths(sourcePath: String): List<String> {
-        return File(sourcePath)
-            .walkTopDown()
-            .filter { it.isFile && it.extension == "kts" }
-            .map {
-                it.path
-                    .substringAfter("kotlin${File.separator}")
-                    .replace(File.separator, ".")
-                    .removeSuffix(".kts")
-            }
-            .toList()
-    }
+    private fun loadScriptPaths(sourcePath: String): List<String> = File(sourcePath)
+        .walkTopDown()
+        .filter { it.isFile && it.extension == "kts" }
+        .map {
+            it.path
+                .substringAfter("kotlin${File.separator}")
+                .replace(File.separator, ".")
+                .removeSuffix(".kts")
+        }
+        .toList()
 }

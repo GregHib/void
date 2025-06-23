@@ -93,7 +93,5 @@ class MaterialDecoder : DefinitionDecoder<MaterialDefinition>(TEXTURE_DEFINITION
         }
     }
 
-    override fun MaterialDefinition.read(opcode: Int, buffer: Reader) {
-        throw IllegalStateException("Shouldn't be used.")
-    }
+    override fun MaterialDefinition.read(opcode: Int, buffer: Reader) = throw IllegalStateException("Shouldn't be used.")
 }

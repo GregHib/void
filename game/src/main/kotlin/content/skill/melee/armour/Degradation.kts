@@ -1,13 +1,13 @@
 package content.skill.melee.armour
 
+import content.entity.combat.hit.combatAttack
+import content.entity.combat.hit.combatDamage
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.combat.hit.combatAttack
-import content.entity.combat.hit.combatDamage
 import world.gregs.voidps.engine.inv.*
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 combatDamage { player ->
     degrade(player)
@@ -22,7 +22,7 @@ val slots = arrayOf(
     EquipSlot.Weapon.index,
     EquipSlot.Chest.index,
     EquipSlot.Shield.index,
-    EquipSlot.Legs.index
+    EquipSlot.Legs.index,
 )
 
 fun degrade(player: Player) {

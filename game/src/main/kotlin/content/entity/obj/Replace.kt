@@ -22,7 +22,7 @@ object Replace {
         secondTile: Tile,
         secondRotation: Int,
         ticks: Int,
-        collision: Boolean = true
+        collision: Boolean = true,
     ) {
         val definitions = get<ObjectDefinitions>()
         val firstId = definitions.get(firstReplacement).id

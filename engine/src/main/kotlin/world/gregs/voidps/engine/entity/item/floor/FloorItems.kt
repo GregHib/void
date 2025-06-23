@@ -23,8 +23,9 @@ import world.gregs.voidps.type.Zone
  */
 class FloorItems(
     private val batches: ZoneBatchUpdates,
-    private val definitions: ItemDefinitions
-) : ZoneBatchUpdates.Sender, Runnable {
+    private val definitions: ItemDefinitions,
+) : ZoneBatchUpdates.Sender,
+    Runnable {
 
     internal val data = Int2ObjectOpenHashMap<MutableMap<Int, MutableList<FloorItem>>>()
     private val tilePool = object : DefaultPool<MutableList<FloorItem>>(INITIAL_POOL_CAPACITY) {
@@ -108,13 +109,9 @@ class FloorItems(
         return false
     }
 
-    operator fun get(tile: Tile): List<FloorItem> {
-        return data.get(tile.zone.id)?.get(tile.id) ?: emptyList()
-    }
+    operator fun get(tile: Tile): List<FloorItem> = data.get(tile.zone.id)?.get(tile.id) ?: emptyList()
 
-    operator fun get(zone: Zone): Collection<List<FloorItem>> {
-        return data.get(zone.id)?.values ?: emptyList()
-    }
+    operator fun get(zone: Zone): Collection<List<FloorItem>> = data.get(zone.id)?.values ?: emptyList()
 
     fun remove(floorItem: FloorItem): Boolean {
         val zone = data.get(floorItem.tile.zone.id) ?: return false

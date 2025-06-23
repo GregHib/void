@@ -13,7 +13,7 @@ import world.gregs.voidps.type.random
 class PlayerResetTask(
     iterator: TaskIterator<Player>,
     override val characters: Players,
-    private val batches: ZoneBatchUpdates
+    private val batches: ZoneBatchUpdates,
 ) : CharacterTask<Player>(iterator) {
 
     override fun run() {
@@ -34,5 +34,4 @@ class PlayerResetTask(
     companion object {
         private var pidCounter = 0
     }
-
 }

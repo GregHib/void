@@ -1,6 +1,14 @@
 package content.activity.shooting_star
 
 import com.github.michaelbull.logging.InlineLogger
+import content.activity.shooting_star.ShootingStarHandler.currentActiveObject
+import content.activity.shooting_star.ShootingStarHandler.currentStarTile
+import content.activity.shooting_star.ShootingStarHandler.totalCollected
+import content.entity.combat.hit.damage
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Sad
+import content.entity.player.dialogue.type.npc
+import content.entity.sound.areaSound
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -33,14 +41,6 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import content.activity.shooting_star.ShootingStarHandler.currentActiveObject
-import content.activity.shooting_star.ShootingStarHandler.currentStarTile
-import content.activity.shooting_star.ShootingStarHandler.totalCollected
-import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Sad
-import content.entity.player.dialogue.type.npc
-import content.entity.combat.hit.damage
-import content.entity.sound.areaSound
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 
@@ -101,7 +101,7 @@ fun startCrashedStarEvent() {
             player.message("${Colours.DARK_RED.toTag()}A star has crashed at ${location.description}.")
         }
     }
-    logger.info { "Crashed star event has started at: $location (${currentStarTile.x}, ${currentStarTile.y}) tier ${tier}." }
+    logger.info { "Crashed star event has started at: $location (${currentStarTile.x}, ${currentStarTile.y}) tier $tier." }
     val shootingStarShadow = npcs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
     shootingStarShadow.walkTo(currentStarTile, noCollision = true, forceWalk = true)
     areaSound("star_meteor_falling", currentStarTile, radius = 15, delay = 20)
@@ -120,7 +120,7 @@ fun startCrashedStarEvent() {
             player.anim("step_back_startled")
         }
         World.queue("falling_star_object_removal", 1) {
-            currentActiveObject = shootingStarObjectFalling.replace("crashed_star_tier_${tier}")
+            currentActiveObject = shootingStarObjectFalling.replace("crashed_star_tier_$tier")
             npcs.remove(shootingStarShadow)
         }
     }
@@ -162,7 +162,7 @@ fun calculateRewards(stardust: Int): Map<String, Int> {
         "coins" to coins,
         "astral_rune" to astralRunes,
         "cosmic_rune" to cosmicRunes,
-        "gold_ore_noted" to goldOres
+        "gold_ore_noted" to goldOres,
     )
 }
 
@@ -248,7 +248,7 @@ npcOperate("Talk-to", "star_sprite") {
             }
         }
         if (!ShootingStarHandler.rewardPlayerBonusOre(player)) {
-            npc<Happy>("I have rewarded you by making it so you can mine extra ore for the next 15 minutes, ${messageBuilder}.")
+            npc<Happy>("I have rewarded you by making it so you can mine extra ore for the next 15 minutes, $messageBuilder.")
             givePlayerBonusOreReward(player)
         } else {
             npc<Happy>("You already have the ability to mine an extra ore, ${messageBuilder.replace(0, 4, "However")}.")

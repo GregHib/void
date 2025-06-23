@@ -39,9 +39,7 @@ class MutableNavigationGraph {
 
     fun getLinks(node: Tile): List<Link> = adjacencyList[node] ?: emptyList()
 
-    fun getLinked(node: Tile): List<Link> {
-        return adjacencyList.flatMap { (_, adj) -> adj.filter { link -> link.end == node } }.toList()
-    }
+    fun getLinked(node: Tile): List<Link> = adjacencyList.flatMap { (_, adj) -> adj.filter { link -> link.end == node } }.toList()
 
     private fun createLink(start: Tile, end: Tile): Link {
         val link = Link(start, end)
@@ -82,7 +80,6 @@ class MutableNavigationGraph {
 
         private val yaml = Yaml()
 
-
         fun save(graph: MutableNavigationGraph, path: String = "./navgraph.json") {
             yaml.save(path, graph.adjacencyList.mapKeys { it.key.id })
         }
@@ -93,10 +90,11 @@ class MutableNavigationGraph {
             val map: Map<String, List<Map<String, Any>>> = yaml.load(path)
             map.forEach { (key, list) ->
                 graph.adjacencyList[Tile(key.toInt())] = list.map {
-                    Link(Tile(it["start"] as Int),
+                    Link(
+                        Tile(it["start"] as Int),
                         Tile(it["end"] as Int),
                         it["actions"] as? List<String>,
-                        it["requirements"] as? List<String>
+                        it["requirements"] as? List<String>,
                     )
                 }.toMutableList()
             }

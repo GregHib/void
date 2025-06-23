@@ -1,7 +1,15 @@
+[hans]
+id = 0
+wander_radius = 4
+categories = ["human"]
+collision = "outdoors"
+examine = "Servant of the Duke of Lumbridge."
+
 [bob]
 id = 519
 categories = ["human"]
 shop = "bobs_brilliant_axes"
+collision = "indoors"
 examine = "An expert on axes."
 
 [shopkeeper_lumbridge]
@@ -9,6 +17,7 @@ id = 520
 categories = ["human"]
 shop = "lumbridge_general_store"
 wander_radius = 2
+collision = "indoors"
 examine = "Sells stuff."
 
 [shop_assistant_lumbridge]
@@ -16,12 +25,14 @@ id = 521
 categories = ["human"]
 shop = "lumbridge_general_store"
 wander_radius = 2
+collision = "indoors"
 examine = "Helps sell stuff."
 
 [hank]
 id = 8864
 categories = ["human"]
 shop = "lumbridge_fishing_supplies"
+collision = "indoors"
 examine = "A product of a consumerist society."
 
 [doomsayer]
@@ -45,3 +56,119 @@ examine = "She seems to be stressed."
 id = 2244
 categories = ["human"]
 examine = "He provides new players with useful information."
+
+[border_guard_al_kharid]
+id = 925
+categories = ["human"]
+examine = "Guards the border."
+
+[border_guard_al_kharid_2]
+id = 926
+categories = ["human"]
+examine = "Guards the border."
+
+[barfy_bill]
+id = 3331
+examine = "Looks a little green around the gills."
+
+[millie_miller]
+id = 3806
+categories = ["human"]
+wander_radius = 4
+collision = "indoors"
+examine = "Miss Millicent Miller, the Miller of Mill Lane Mill."
+
+[gillie_groats]
+id = 3807
+wander_radius = 4
+categories = ["human"]
+examine = "Gillie milks cows and she's udderly fantastic at it."
+
+[explorer_jack]
+id = 13295
+wander_radius = 5
+categories = ["human"]
+collision = "indoors"
+examine = "He looks like a professional explorer."
+
+[duke_horacio]
+id = 741
+categories = ["human"]
+wander_radius = 3
+collision = "indoors"
+examine = "Duke Horacio of Lumbridge."
+
+[cook_lumbridge]
+id = 278
+categories = ["human"]
+wander_radius = 4
+collision = "indoors"
+examine = "Lumbridge Castle's head cook."
+
+[lumbridge_man]
+id = 7873
+max_hit_melee = 10
+hitpoints = 70
+wander_radius = 4
+respawn_delay = 25
+pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
+drop_table = "human"
+style = "crush"
+combat_anims = "human"
+combat_sounds = "man"
+categories = ["human"]
+examine = "A citizen of Lumbridge."
+
+[lumbridge_man_2]
+clone = "lumbridge_man"
+id = 7874
+
+[lumbridge_man_3]
+clone = "lumbridge_man"
+id = 7875
+
+[lumbridge_man_4]
+clone = "lumbridge_man"
+id = 7876
+
+[lumbridge_man_5]
+clone = "lumbridge_man"
+id = 7877
+
+[lumbridge_man_6]
+clone = "lumbridge_man"
+id = 7878
+
+[lumbridge_man_7]
+clone = "lumbridge_man"
+id = 7879
+
+[lumbridge_woman]
+id = 7880
+max_hit_melee = 10
+hitpoints = 70
+wander_radius = 4
+respawn_delay = 25
+pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
+drop_table = "human"
+style = "crush"
+combat_anims = "human"
+combat_sounds = "woman"
+categories = ["human"]
+examine = "A citizen of Lumbridge."
+
+[lumbridge_woman_2]
+clone = "lumbridge_woman"
+id = 7881
+
+[lumbridge_woman_3]
+clone = "lumbridge_woman"
+id = 7882
+
+[lumbridge_woman_4]
+clone = "lumbridge_woman"
+id = 7883
+
+[lumbridge_woman_5]
+clone = "lumbridge_woman"
+id = 7884

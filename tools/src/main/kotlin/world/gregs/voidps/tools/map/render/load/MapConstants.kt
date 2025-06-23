@@ -17,7 +17,7 @@ object MapConstants {
         booleanArrayOf(true, true, true, false, false, false, false, false, false, false, true, true, false),
         BooleanArray(13),
         booleanArrayOf(true, true, true, true, true, true, true, true, true, true, true, true, true),
-        BooleanArray(13)
+        BooleanArray(13),
     )
 
     const val SIZE = 4
@@ -28,7 +28,7 @@ object MapConstants {
     const val GROUND_BLENDING = -1
     const val A_BOOLEAN_8715 = true
     const val A_BOOLEAN_10563 = false
-    const val WATER_MOVEMENT = false// method2810
+    const val WATER_MOVEMENT = false // method2810
 
     val tileYOffsets = intArrayOf(0, 0, 0, 256, 512, 512, 512, 256, 256, 384, 128, 128, 256)
     val tileXOffsets = intArrayOf(0, 256, 512, 512, 512, 256, 0, 0, 128, 256, 128, 384, 256)
@@ -48,7 +48,7 @@ object MapConstants {
         intArrayOf(0, 11, 6, 6, 6, 4),
         intArrayOf(0, 2),
         intArrayOf(0, 4, 4, 4),
-        intArrayOf(0, 4, 4, 4)
+        intArrayOf(0, 4, 4, 4),
     )
     val thirdTileTypeVertices = arrayOf(
         intArrayOf(6, 6),
@@ -65,7 +65,7 @@ object MapConstants {
         intArrayOf(11, 0, 10, 11, 4, 2),
         intArrayOf(6, 6),
         intArrayOf(7, 7, 1, 2),
-        intArrayOf(7, 7, 1, 2)
+        intArrayOf(7, 7, 1, 2),
     )
     val secondTileTypeVertices = arrayOf(
         intArrayOf(2, 4),
@@ -82,9 +82,8 @@ object MapConstants {
         intArrayOf(2, 10, 0, 10, 11, 11),
         intArrayOf(2, 4),
         intArrayOf(1, 6, 7, 1),
-        intArrayOf(1, 6, 7, 1)
+        intArrayOf(1, 6, 7, 1),
     )
     val underlaySizes = intArrayOf(0, 1, 2, 2, 1, 1, 2, 3, 1, 3, 3, 4, 2, 0, 4)
     val overlaySizes = intArrayOf(2, 1, 1, 1, 2, 2, 2, 1, 3, 3, 3, 2, 0, 4, 0)
-
 }

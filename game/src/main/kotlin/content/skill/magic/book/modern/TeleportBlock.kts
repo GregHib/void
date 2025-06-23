@@ -1,12 +1,12 @@
 package content.skill.magic.book.modern
 
+import content.entity.combat.combatPrepare
+import content.skill.magic.spell.spell
+import content.skill.prayer.protectMagic
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
-import content.entity.combat.combatPrepare
-import content.skill.magic.spell.spell
-import content.skill.prayer.protectMagic
 import kotlin.math.sign
 
 combatPrepare("magic") { player ->

@@ -1,5 +1,11 @@
 package content.area.misthalin.lumbridge.combat_hall
 
+import content.entity.combat.hit.Damage
+import content.entity.combat.inCombat
+import content.entity.proj.shoot
+import content.skill.melee.weapon.fightStyle
+import content.skill.melee.weapon.weapon
+import content.skill.ranged.ammo
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.remaining
@@ -16,12 +22,6 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import content.skill.melee.weapon.fightStyle
-import content.entity.combat.hit.Damage
-import content.entity.combat.inCombat
-import content.skill.melee.weapon.weapon
-import content.skill.ranged.ammo
-import content.entity.proj.shoot
 
 objectOperate("Shoot-at", "archery_target") {
     player.closeDialogue()

@@ -22,7 +22,7 @@ class NormalCollectionWriterTest {
     @Test
     fun `Write map with quoted keys`() {
         val config = YamlWriterConfiguration(
-            forceQuoteKeys = true
+            forceQuoteKeys = true,
         )
         val input = mapOf("one" to "value", "two" to "value")
         val actual = yaml.writeToString(input, config)
@@ -44,7 +44,6 @@ class NormalCollectionWriterTest {
         """.trimIndent()
         assertEquals(expected, actual)
     }
-
 
     @Test
     fun `Write nested maps`() {

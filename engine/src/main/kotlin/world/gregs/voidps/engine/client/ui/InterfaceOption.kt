@@ -14,7 +14,7 @@ data class InterfaceOption(
     val option: String,
     val item: Item,
     val itemSlot: Int,
-    val inventory: String
+    val inventory: String,
 ) : Interaction<Player>() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 

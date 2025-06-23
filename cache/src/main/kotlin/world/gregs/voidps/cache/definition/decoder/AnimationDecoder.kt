@@ -14,9 +14,7 @@ class AnimationDecoder : DefinitionDecoder<AnimationDefinition>(ANIMATIONS) {
 
     override fun getArchive(id: Int) = id ushr 7
 
-    override fun size(cache: Cache): Int {
-        return cache.lastArchiveId(index) * 128 + (cache.fileCount(index, cache.lastArchiveId(index)))
-    }
+    override fun size(cache: Cache): Int = cache.lastArchiveId(index) * 128 + (cache.fileCount(index, cache.lastArchiveId(index)))
 
     override fun AnimationDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {

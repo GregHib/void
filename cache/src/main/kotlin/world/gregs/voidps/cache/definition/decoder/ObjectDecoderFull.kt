@@ -8,7 +8,7 @@ import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
 
 open class ObjectDecoderFull(
     val members: Boolean = true,
-    val lowDetail: Boolean = false
+    val lowDetail: Boolean = false,
 ) : DefinitionDecoder<ObjectDefinitionFull>(OBJECTS) {
 
     override fun create(size: Int) = Array(size) { ObjectDefinitionFull(it) }

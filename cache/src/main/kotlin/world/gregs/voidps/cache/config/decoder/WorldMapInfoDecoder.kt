@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.data.WorldMapInfoDefinition
 import world.gregs.voidps.cache.definition.Parameters
 
 class WorldMapInfoDecoder(
-    private val parameters: Parameters = Parameters.EMPTY
+    private val parameters: Parameters = Parameters.EMPTY,
 ) : ConfigDecoder<WorldMapInfoDefinition>(WORLD_MAP_INFO) {
 
     override fun create(size: Int) = Array(size) { WorldMapInfoDefinition(it) }

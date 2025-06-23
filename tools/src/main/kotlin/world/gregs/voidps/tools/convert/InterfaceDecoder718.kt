@@ -251,4 +251,3 @@ class InterfaceDecoder718 {
         }
     }
 }
-

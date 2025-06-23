@@ -15,7 +15,7 @@ object InterfaceOptionSettings {
         val list = mutableListOf<Int>()
         var remainder = hash
         var index = -1
-        while(remainder > 0) {
+        while (remainder > 0) {
             val power = 2.0.pow(index + 1).toInt()
             if (hash and power != 0) {
                 remainder -= 2 shl index

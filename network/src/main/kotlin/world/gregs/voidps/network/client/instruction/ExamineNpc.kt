@@ -4,5 +4,5 @@ import world.gregs.voidps.network.client.Instruction
 
 @JvmInline
 value class ExamineNpc(
-    val npcId: Int
+    val npcId: Int,
 ) : Instruction

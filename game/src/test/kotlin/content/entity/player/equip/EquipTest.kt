@@ -1,5 +1,7 @@
 package content.entity.player.equip
 
+import WorldTest
+import interfaceOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -11,8 +13,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import WorldTest
-import interfaceOption
 
 internal class EquipTest : WorldTest() {
 

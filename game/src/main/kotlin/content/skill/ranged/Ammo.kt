@@ -1,5 +1,12 @@
 package content.skill.ranged
 
+import content.entity.combat.Target
+import content.entity.combat.hit.directHit
+import content.entity.effect.freeze
+import content.entity.effect.toxin.poison
+import content.entity.player.equip.Equipment
+import content.entity.sound.sound
+import content.skill.slayer.undead
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
@@ -18,14 +25,6 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import content.skill.slayer.undead
-import content.entity.player.equip.Equipment
-import content.entity.combat.Target
-import content.entity.combat.hit.directHit
-import content.entity.effect.freeze
-import content.entity.effect.toxin.poison
-import content.entity.sound.sound
-import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import java.util.concurrent.TimeUnit
 
 object Ammo {
@@ -36,7 +35,7 @@ object Ammo {
     fun remove(player: Player, target: Character, ammo: String, required: Int) {
         if (ammo == "" || ammo == "zaryte_arrow" || ammo == "sling_rock" || ammo == "special_arrow") {
             return
-        } else if(ammo == "mud_pie" || ammo.endsWith("_tar")) {
+        } else if (ammo == "mud_pie" || ammo.endsWith("_tar")) {
             player.equipment.remove(ammo, required)
             return
         } else if (ammo == "bolt_rack" || ammo == "hand_cannon_shot" || ammo.endsWith("chinchompa")) {
@@ -78,7 +77,7 @@ object Ammo {
         target: Character,
         type: String,
         weapon: Item,
-        baseDamage: Int
+        baseDamage: Int,
     ): Int {
         if (source !is Player || baseDamage < 0 || type != "range") {
             return baseDamage
@@ -116,7 +115,7 @@ object Ammo {
                 damage = (damage * 1.15).toInt()
             }
             source.ammo == "dragon_bolts_e" && !Equipment.dragonFireImmune(target) && chance(source, target, "dragons_breath", 0.06) -> {
-                target.directHit(source, source.levels.get(Skill.Ranged) * 2, "dragonfire", HitSplat.Mark.Regular, weapon)
+                target.directHit(source, source.levels.get(Skill.Ranged) * 2, "dragonfire", weapon)
             }
             source.ammo == "onyx_bolts_e" && !target.undead && chance(source, target, "life_leech", if (target is Player) 0.1 else 0.11) -> {
                 damage = (damage * 1.2).toInt()

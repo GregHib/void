@@ -37,7 +37,7 @@ object Stitch {
             }
             println("Stitched ${regions.size} regions in ${System.currentTimeMillis() - start}ms")
             try {
-                ImageIO.write(bi, "png", File("./map-${level}.png"))
+                ImageIO.write(bi, "png", File("./map-$level.png"))
             } catch (e: IOException) {
                 e.printStackTrace()
             }

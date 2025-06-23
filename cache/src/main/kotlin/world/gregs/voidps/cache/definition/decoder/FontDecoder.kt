@@ -10,9 +10,7 @@ import kotlin.math.min
 
 class FontDecoder : DefinitionDecoder<FontDefinition>(FONT_METRICS) {
 
-    override fun size(cache: Cache): Int {
-        return cache.lastArchiveId(index)
-    }
+    override fun size(cache: Cache): Int = cache.lastArchiveId(index)
 
     override fun create(size: Int) = Array(size) { FontDefinition(it) }
 
@@ -56,7 +54,7 @@ class FontDecoder : DefinitionDecoder<FontDefinition>(FONT_METRICS) {
             rightGlyphData: Array<ByteArray>,
             leftGlyphData: Array<ByteArray>,
             leftOffsets: IntArray,
-            rightOffsets: IntArray
+            rightOffsets: IntArray,
         ): Int {
             if (leftGlyphIndex == 32 || leftGlyphIndex == 160 || rightGlyphIndex == 32 || rightGlyphIndex == 160) {
                 return 0

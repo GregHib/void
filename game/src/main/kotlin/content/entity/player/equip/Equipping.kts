@@ -1,7 +1,12 @@
 package content.entity.player.equip
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.player.inv.inventoryOption
+import content.entity.player.inv.inventoryOptions
+import content.entity.sound.sound
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -13,15 +18,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRe
 import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.sound.sound
-import content.entity.player.inv.inventoryOption
-import content.entity.player.inv.inventoryOptions
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.inject
 
 val areas: AreaDefinitions by inject()
 val logger = InlineLogger()
@@ -83,14 +83,11 @@ playerSpawn { player ->
     updateWeaponEmote(player)
 }
 
-fun replaceWeaponShieldWith2h(player: Player, item: ItemDefinition) =
-    player.has(EquipSlot.Shield) && player.has(EquipSlot.Weapon) && item.type == EquipType.TwoHanded
+fun replaceWeaponShieldWith2h(player: Player, item: ItemDefinition) = player.has(EquipSlot.Shield) && player.has(EquipSlot.Weapon) && item.type == EquipType.TwoHanded
 
-fun replaceShieldWith2h(player: Player, item: ItemDefinition) =
-    player.has(EquipSlot.Shield) && !player.has(EquipSlot.Weapon) && item.type == EquipType.TwoHanded
+fun replaceShieldWith2h(player: Player, item: ItemDefinition) = player.has(EquipSlot.Shield) && !player.has(EquipSlot.Weapon) && item.type == EquipType.TwoHanded
 
-fun replace2hWithShield(player: Player, item: ItemDefinition) =
-    player.equipped(EquipSlot.Weapon).type == EquipType.TwoHanded && item.slot == EquipSlot.Shield
+fun replace2hWithShield(player: Player, item: ItemDefinition) = player.equipped(EquipSlot.Weapon).type == EquipType.TwoHanded && item.slot == EquipSlot.Shield
 
 fun getOtherHandSlot(slot: EquipSlot) = if (slot == EquipSlot.Shield) EquipSlot.Weapon else EquipSlot.Shield
 

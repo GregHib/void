@@ -46,9 +46,7 @@ object Level {
     /**
      * The chance of being successful (out of [MAX_CHANCE])
      */
-    private fun chance(level: Int, chances: IntRange, maxLevel: Int = MAX_LEVEL): Int {
-        return interpolate(level.coerceIn(MIN_LEVEL, MAX_LEVEL), chances.first, chances.last, MIN_LEVEL, maxLevel)
-    }
+    private fun chance(level: Int, chances: IntRange, maxLevel: Int = MAX_LEVEL): Int = interpolate(level.coerceIn(MIN_LEVEL, MAX_LEVEL), chances.first, chances.last, MIN_LEVEL, maxLevel)
 
     fun experience(skill: Skill, level: Int) = experience(if (skill == Skill.Constitution) level / 10 else level)
 
@@ -107,5 +105,4 @@ object Level {
         val level: Int = item.def.getOrNull("secondary_use_level") ?: return true
         return has(skill, level, message)
     }
-
 }

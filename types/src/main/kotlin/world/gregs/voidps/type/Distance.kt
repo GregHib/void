@@ -12,12 +12,12 @@ object Distance {
      */
     fun getNearest(tile: Tile, width: Int, height: Int, target: Tile) = tile.copy(
         x = getNearest(tile.x, width, target.x),
-        y = getNearest(tile.y, height, target.y)
+        y = getNearest(tile.y, height, target.y),
     )
 
     fun Rectangle.nearestTo(tile: Tile) = Tile(
         x = getNearest(minX, width, tile.x),
-        y = getNearest(minY, height, tile.y)
+        y = getNearest(minY, height, tile.y),
     )
 
     /**
@@ -35,37 +35,27 @@ object Distance {
     /**
      * Check whether [x1], [y1], [level1] is less than or equal to [radius] from [x2], [y2], [level2]
      */
-    fun within(x1: Int, y1: Int, level1: Int, x2: Int, y2: Int, level2: Int, radius: Int): Boolean {
-        return level1 == level2 && within(x1, y1, x2, y2, radius)
-    }
+    fun within(x1: Int, y1: Int, level1: Int, x2: Int, y2: Int, level2: Int, radius: Int): Boolean = level1 == level2 && within(x1, y1, x2, y2, radius)
 
     /**
      * Check whether [x1], [y1] is less than or equal to [radius] from [x2], [y2]
      */
-    fun within(x1: Int, y1: Int, x2: Int, y2: Int, radius: Int): Boolean {
-        return abs(x1 - x2) <= radius && abs(y1 - y2) <= radius
-    }
+    fun within(x1: Int, y1: Int, x2: Int, y2: Int, radius: Int): Boolean = abs(x1 - x2) <= radius && abs(y1 - y2) <= radius
 
     /**
      * @return the distance between the two points [x1], [y1] - [x2], [y2] assuming diagonals are twice the cost of cardinal directions
      */
-    fun manhattan(x1: Int, y1: Int, x2: Int, y2: Int): Int {
-        return abs(x1 - x2) + abs(y1 - y2)
-    }
+    fun manhattan(x1: Int, y1: Int, x2: Int, y2: Int): Int = abs(x1 - x2) + abs(y1 - y2)
 
     /**
      * @return the distance between the two points [x1], [y1] - [x2], [y2] assuming all directions have a uniform cost
      */
-    fun chebyshev(x1: Int, y1: Int, x2: Int, y2: Int): Int {
-        return abs(x1 - x2).coerceAtLeast(abs(y1 - y2))
-    }
+    fun chebyshev(x1: Int, y1: Int, x2: Int, y2: Int): Int = abs(x1 - x2).coerceAtLeast(abs(y1 - y2))
 
     /**
      * @return the length of a line between the two points [x1], [y1] - [x2], [y2]
      */
-    fun euclidean(x1: Int, y1: Int, x2: Int, y2: Int): Double {
-        return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2).toDouble())
-    }
+    fun euclidean(x1: Int, y1: Int, x2: Int, y2: Int): Double = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2).toDouble())
 
     /**
      * @return the length of a line between the two points [first] & [second]
@@ -80,9 +70,7 @@ object Distance {
     /**
      * @return the length of a line between the two points [x1], [y1], [z1] - [x2], [y2], [z2]
      */
-    fun euclidean(x1: Int, y1: Int, z1: Int, x2: Int, y2: Int, z2: Int): Double {
-        return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2).toDouble())
-    }
+    fun euclidean(x1: Int, y1: Int, z1: Int, x2: Int, y2: Int, z2: Int): Double = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2).toDouble())
 
     /**
      * @return number of characters difference between two strings of equal length

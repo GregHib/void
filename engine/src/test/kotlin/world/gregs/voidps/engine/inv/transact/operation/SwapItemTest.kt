@@ -77,5 +77,4 @@ internal class SwapItemTest : TransactionOperationTest() {
         assertEquals(0, inventory[0].amount)
         assertEquals(1, inventory[1].amount)
     }
-
 }

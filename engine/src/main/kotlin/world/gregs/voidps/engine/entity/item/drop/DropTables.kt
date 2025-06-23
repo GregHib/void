@@ -110,12 +110,12 @@ class DropTables {
         if (table != "") {
             return ReferenceTable(table, roll, chance ?: -1, predicate)
         }
-        require(itemDefinitions == null || id == "nothing" || itemDefinitions.getOrNull(id) != null) { "Unable to find item with id '${id}'." }
+        require(itemDefinitions == null || id == "nothing" || itemDefinitions.getOrNull(id) != null) { "Unable to find item with id '$id'." }
         return ItemDrop(
             id = id,
             amount = min..max,
             chance = chance ?: 1,
-            predicate = predicate
+            predicate = predicate,
         )
     }
 
@@ -128,7 +128,7 @@ class DropTables {
         default: Any? = null,
         withinMin: Int? = null,
         withinMax: Int? = null,
-        members: Boolean? = null
+        members: Boolean? = null,
     ): ((Player) -> Boolean)? {
         val predicates = mutableListOf<((Player) -> Boolean)>()
         if (owns != null || lacks != null) {

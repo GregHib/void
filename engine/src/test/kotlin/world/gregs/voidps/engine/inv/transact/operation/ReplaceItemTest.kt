@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
 import org.koin.test.get
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.inv.stack.NeverStack
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import kotlin.test.assertEquals

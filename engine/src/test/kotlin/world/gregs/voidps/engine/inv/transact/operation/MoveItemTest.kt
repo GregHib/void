@@ -157,7 +157,6 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertEquals(1, target[1].amount)
     }
 
-
     /*
         Amount
      */
@@ -260,7 +259,6 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertErrorFull(0)
         assertEquals(1, inventory[0].amount)
     }
-
 
     /*
         Move all
@@ -367,5 +365,4 @@ internal class MoveItemTest : TransactionOperationTest() {
         assertErrorFull(2)
         assertEquals(4, inventory[0].amount)
     }
-
 }

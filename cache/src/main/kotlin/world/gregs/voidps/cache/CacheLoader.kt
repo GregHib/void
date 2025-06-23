@@ -42,6 +42,6 @@ interface CacheLoader {
         indexCount: Int,
         versionTable: VersionTableBuilder? = null,
         xteas: Map<Int, IntArray>? = null,
-        threadUsage: Double = 1.0
+        threadUsage: Double = 1.0,
     ): Cache
 }

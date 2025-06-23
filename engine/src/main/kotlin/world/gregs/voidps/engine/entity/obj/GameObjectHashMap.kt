@@ -11,13 +11,9 @@ import world.gregs.voidps.type.Zone
 class GameObjectHashMap : GameObjectMap {
     private val data = Int2IntOpenHashMap(EXPECTED_OBJECT_COUNT)
 
-    override fun get(obj: GameObject): Int {
-        return data.getOrDefault(index(obj), -1)
-    }
+    override fun get(obj: GameObject): Int = data.getOrDefault(index(obj), -1)
 
-    override operator fun get(x: Int, y: Int, level: Int, layer: Int): Int {
-        return data.getOrDefault(index(x, y, level, layer), -1)
-    }
+    override operator fun get(x: Int, y: Int, level: Int, layer: Int): Int = data.getOrDefault(index(x, y, level, layer), -1)
 
     override operator fun set(x: Int, y: Int, level: Int, layer: Int, mask: Int) {
         data[index(x, y, level, layer)] = mask

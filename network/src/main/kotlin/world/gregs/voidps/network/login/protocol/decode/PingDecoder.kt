@@ -6,8 +6,5 @@ import world.gregs.voidps.network.login.protocol.Decoder
 
 class PingDecoder : Decoder(0) {
 
-    override suspend fun decode(packet: ByteReadPacket): Instruction? {
-        return null
-    }
-
+    override suspend fun decode(packet: ByteReadPacket): Instruction? = null
 }

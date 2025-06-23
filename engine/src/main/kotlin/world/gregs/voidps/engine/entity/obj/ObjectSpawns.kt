@@ -4,8 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.type.Tile
 
 private val logger = InlineLogger()
 
@@ -47,7 +47,7 @@ fun loadObjectSpawns(
                     val tile = Tile(x, y, level)
                     val definition = definitions.getOrNull(id)
                     if (definition == null) {
-                        logger.warn { "Invalid object spawn id '$id' in ${path}." }
+                        logger.warn { "Invalid object spawn id '$id' in $path." }
                     } else {
                         objects.add(GameObject(definition.id, tile.x, tile.y, tile.level, type, rotation))
                         count++

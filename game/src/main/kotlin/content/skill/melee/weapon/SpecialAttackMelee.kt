@@ -1,5 +1,6 @@
 package content.skill.melee.weapon
 
+import content.area.wilderness.inMultiCombat
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -7,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.spiral
-import content.area.wilderness.inMultiCombat
 
 fun multiTargets(target: Character, hits: Int): List<Character> {
     val group = if (target is Player) get<Players>() else get<NPCs>()

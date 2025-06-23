@@ -55,7 +55,7 @@ interfaceOption(component = "inventory", id = "inventory") {
             id,
             item,
             itemSlot,
-            equipOption
-        )
+            equipOption,
+        ),
     )
 }

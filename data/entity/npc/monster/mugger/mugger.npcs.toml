@@ -6,7 +6,6 @@ str = 5
 def = 5
 mage = 1
 range = 1
-strbns = -21
 max_hit_melee = 1
 attack_speed = 4
 style = "slash"

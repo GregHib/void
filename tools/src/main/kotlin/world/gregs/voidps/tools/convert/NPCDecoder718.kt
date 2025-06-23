@@ -13,7 +13,7 @@ class NPCDecoder718(val member: Boolean = true) : DefinitionDecoder<NPCDefinitio
 
     override fun getArchive(id: Int) = id ushr 7
 
-    override  fun NPCDefinitionFull.read(opcode: Int, buffer: Reader) {
+    override fun NPCDefinitionFull.read(opcode: Int, buffer: Reader) {
         when (opcode) {
             1 -> {
                 val length = buffer.readUnsignedByte()
@@ -62,7 +62,7 @@ class NPCDecoder718(val member: Boolean = true) : DefinitionDecoder<NPCDefinitio
                     translations!![index] = intArrayOf(
                         buffer.readByte(),
                         buffer.readByte(),
-                        buffer.readByte()
+                        buffer.readByte(),
                     )
                 }
             }
@@ -123,16 +123,15 @@ class NPCDecoder718(val member: Boolean = true) : DefinitionDecoder<NPCDefinitio
                 val length = buffer.readUnsignedByte()
                 campaigns = IntArray(length) { buffer.readShort() }
             }
-            162 -> aBoolean2883 = true
-            163 -> anInt2803 = buffer.readUnsignedByte()
+            162 -> vorbis = true
+            163 -> slayerType = buffer.readUnsignedByte()
             164 -> {
-                anInt2844 = buffer.readShort()
-                anInt2852 = buffer.readShort()
+                soundRateMin = buffer.readShort()
+                soundRateMax = buffer.readShort()
             }
-            165 -> anInt2831 = buffer.readUnsignedByte()
-            168 -> anInt2862 = buffer.readUnsignedByte()
+            165 -> pickSizeShift = buffer.readUnsignedByte()
+            168 -> soundRangeMin = buffer.readUnsignedByte()
             249 -> readParameters(buffer)
         }
     }
-
 }

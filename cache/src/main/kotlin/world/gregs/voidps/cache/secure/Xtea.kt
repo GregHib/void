@@ -51,8 +51,9 @@ object Xtea {
      * long.
      */
     fun encipher(buffer: ByteArray, start: Int, end: Int, key: IntArray) {
-        if (key.size != 4)
+        if (key.size != 4) {
             throw IllegalArgumentException()
+        }
 
         val numQuads = (end - start) / 8
         for (i in 0 until numQuads) {

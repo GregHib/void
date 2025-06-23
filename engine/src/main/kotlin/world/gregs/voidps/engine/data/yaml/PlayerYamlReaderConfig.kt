@@ -17,10 +17,14 @@ internal class PlayerYamlReaderConfig : YamlReaderConfiguration() {
         } else if (value is Map<*, *> && value.isEmpty()) {
             super.add(list, Item.EMPTY, parentMap)
         } else {
-            super.add(list, when (parentMap) {
-                "blocked" -> Skill.valueOf(value as String)
-                else -> value
-            }, parentMap)
+            super.add(
+                list,
+                when (parentMap) {
+                    "blocked" -> Skill.valueOf(value as String)
+                    else -> value
+                },
+                parentMap,
+            )
         }
     }
 

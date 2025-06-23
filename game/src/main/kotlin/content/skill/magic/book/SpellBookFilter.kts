@@ -27,7 +27,7 @@ interfaceOption(component = "filter_*", id = "*_spellbook") {
 
 fun InterfaceOption.filter() {
     val key = "spellbook_sort"
-    val id = "${id}:$component"
+    val id = "$id:$component"
     if (player.containsVarbit(key, id)) {
         player.removeVarbit(key, id)
     } else {
@@ -47,7 +47,7 @@ fun InterfaceOption.sort() {
         player.removeVarbit(key, "${id}_sort_teleport", refresh = false)
     }
     if (component != "sort_level") {
-        player.addVarbit(key, "${id}:$component", refresh = false)
+        player.addVarbit(key, "$id:$component", refresh = false)
     }
 }
 

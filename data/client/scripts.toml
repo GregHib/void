@@ -186,3 +186,12 @@ id = 2435
 
 [gravestone_stop_timer]
 id = 2436
+
+[arrow_set]
+id = 736
+params = [
+  "target interface",
+  "int",
+  "interface 2",
+  "int"
+]

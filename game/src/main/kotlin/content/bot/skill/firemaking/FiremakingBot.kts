@@ -1,7 +1,6 @@
 package content.bot.skill.firemaking
 
 import content.bot.*
-import net.pearx.kasechange.toLowerSpaceCase
 import content.bot.interact.navigation.await
 import content.bot.interact.navigation.goToArea
 import content.bot.interact.navigation.resume
@@ -9,6 +8,7 @@ import content.bot.skill.combat.getGear
 import content.bot.skill.combat.getSuitableItem
 import content.bot.skill.combat.hasExactGear
 import content.bot.skill.combat.setupGear
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -46,7 +46,7 @@ worldSpawn {
             },
             area = area.area,
             spaces = spaces,
-            requirements = listOf { bot.hasExactGear(Skill.Firemaking) }
+            requirements = listOf { bot.hasExactGear(Skill.Firemaking) },
         )
         tasks.register(task)
     }

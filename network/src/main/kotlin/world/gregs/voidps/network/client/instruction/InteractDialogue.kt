@@ -5,5 +5,5 @@ import world.gregs.voidps.network.client.Instruction
 data class InteractDialogue(
     val interfaceId: Int,
     val componentId: Int,
-    val option: Int
+    val option: Int,
 ) : Instruction

@@ -17,8 +17,5 @@ class PlayerHitsEncoder : VisualEncoder<PlayerVisuals>(PLAYER_HITS_MASK) {
         }
     }
 
-    override fun encode(writer: Writer, visuals: PlayerVisuals) {
-        throw RuntimeException("Shouldn't be reachable")
-    }
-
+    override fun encode(writer: Writer, visuals: PlayerVisuals): Unit = throw RuntimeException("Shouldn't be reachable")
 }

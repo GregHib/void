@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.timer
 import world.gregs.voidps.engine.event.EventDispatcher
 
 class TimerSlot(
-    private val events: EventDispatcher
+    private val events: EventDispatcher,
 ) : Timers {
 
     private var timer: Timer? = null
@@ -21,9 +21,7 @@ class TimerSlot(
         return true
     }
 
-    override fun contains(name: String): Boolean {
-        return timer?.name == name
-    }
+    override fun contains(name: String): Boolean = timer?.name == name
 
     override fun run() {
         val timer = timer ?: return

@@ -37,9 +37,7 @@ class Inventories(
         (inventories as MutableMap<*, *>).clear()
     }
 
-    fun inventory(definition: InventoryDefinition, secondary: Boolean = false): Inventory {
-        return inventory(definition.stringId, definition, secondary)
-    }
+    fun inventory(definition: InventoryDefinition, secondary: Boolean = false): Inventory = inventory(definition.stringId, definition, secondary)
 
     fun getOrNull(definition: InventoryDefinition, secondary: Boolean = false): Inventory? {
         val inventoryId = if (secondary) "_${definition.stringId}" else definition.stringId
@@ -69,14 +67,18 @@ class Inventories(
     private fun create(
         inventoryId: String,
         data: Array<Item>,
-        def: InventoryDefinition
+        def: InventoryDefinition,
     ): Inventory {
         val shop = def["shop", false]
         val amountBounds = if (shop) ShopItemAmountBounds else DefaultItemAmountBounds
-        val stackRule = if (shop) AlwaysStack else when (def["stack", "normal"].lowercase()) {
-            "always" -> AlwaysStack
-            "never" -> NeverStack
-            else -> normalStack
+        val stackRule = if (shop) {
+            AlwaysStack
+        } else {
+            when (def["stack", "normal"].lowercase()) {
+                "always" -> AlwaysStack
+                "never" -> NeverStack
+                else -> normalStack
+            }
         }
         return Inventory(
             data = data,
@@ -113,7 +115,7 @@ fun Player.sendInventory(inventory: Inventory, secondary: Boolean = false, id: I
                 if (item.amount < 0) 0 else item.amount
             }
         },
-        primary = secondary
+        primary = secondary,
     )
 }
 

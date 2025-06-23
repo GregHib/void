@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.event.Events
  * A turn in a combat scenario resulting one or many hits
  */
 class CombatSwing(
-    val target: Character
+    val target: Character,
 ) : CancellableEvent() {
 
     override val size = 4

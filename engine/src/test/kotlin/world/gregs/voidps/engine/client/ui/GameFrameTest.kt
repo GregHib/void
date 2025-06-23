@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
-import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
-import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_INDEX
 
 internal class GameFrameTest : InterfaceTest() {
 

@@ -1,14 +1,14 @@
 package content.quest.member.tower_of_life
 
+import WorldTest
+import itemOnItem
+import itemOption
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
-import WorldTest
-import itemOnItem
-import itemOption
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotEquals

@@ -9,7 +9,6 @@ object ItemInfoBoxDumper {
 
     @JvmStatic
     fun main(args: Array<String>) {
-
         val file = File("Items.json")
         val mapper = ObjectMapper(JsonFactory())
 
@@ -74,12 +73,9 @@ object ItemInfoBoxDumper {
             }
         }
 
-
         names.forEach {
             println(it)
         }
 //        mapper.writeValue(file, items)
-
     }
-
 }

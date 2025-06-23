@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.client.minimap
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.clear
@@ -48,17 +48,11 @@ class Cutscene(
         this@Cutscene.block = block
     }
 
-    fun tile(x: Int, y: Int, level: Int = 0): Tile {
-        return Tile(x + offset.x, y + offset.y, level + offset.level)
-    }
+    fun tile(x: Int, y: Int, level: Int = 0): Tile = Tile(x + offset.x, y + offset.y, level + offset.level)
 
-    fun convert(tile: Tile): Tile {
-        return tile.add(offset)
-    }
+    fun convert(tile: Tile): Tile = tile.add(offset)
 
-    fun original(tile: Tile): Tile {
-        return tile.minus(offset)
-    }
+    fun original(tile: Tile): Tile = tile.minus(offset)
 
     private var end = false
 
@@ -110,11 +104,9 @@ class Cutscene(
             "prayer_list",
             "modern_spellbook",
             "emotes",
-            "notes"
+            "notes",
         )
     }
 }
 
-fun Context<Player>.startCutscene(name: String, region: Region): Cutscene {
-    return Cutscene(player, name, region)
-}
+fun Context<Player>.startCutscene(name: String, region: Region): Cutscene = Cutscene(player, name, region)

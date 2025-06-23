@@ -59,5 +59,4 @@ class SettingsTest {
     }
 
     private fun Settings.load(string: String) = load(string.byteInputStream(Charsets.UTF_8))
-
 }

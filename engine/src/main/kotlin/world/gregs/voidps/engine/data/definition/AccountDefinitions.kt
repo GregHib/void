@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.timedLoad
 class AccountDefinitions(
     private val definitions: MutableMap<String, AccountDefinition> = Object2ObjectOpenHashMap(),
     private val displayNames: MutableMap<String, String> = Object2ObjectOpenHashMap(),
-    private val clans: MutableMap<String, Clan> = Object2ObjectOpenHashMap()
+    private val clans: MutableMap<String, Clan> = Object2ObjectOpenHashMap(),
 ) {
 
     fun add(player: Player) {
@@ -33,7 +33,7 @@ class AccountDefinitions(
             talkRank = ClanRank.valueOf(player["clan_talk_rank", "Anyone"]),
             kickRank = ClanRank.valueOf(player["clan_kick_rank", "Corporeal"]),
             lootRank = ClanRank.valueOf(player["clan_loot_rank", "None"]),
-            coinShare = player["coin_share_setting", false]
+            coinShare = player["coin_share_setting", false],
         )
     }
 
@@ -72,5 +72,4 @@ class AccountDefinitions(
         }
         return this
     }
-
 }

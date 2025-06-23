@@ -15,9 +15,7 @@ class QuickChatPhraseDecoder : DefinitionDecoder<QuickChatPhraseDefinition>(QUIC
 
     override fun create(size: Int) = Array(size) { QuickChatPhraseDefinition(it) }
 
-    override fun readId(reader: Reader): Int {
-        return reader.readShort()
-    }
+    override fun readId(reader: Reader): Int = reader.readShort()
 
     override fun size(cache: Cache): Int {
         val lastArchive = cache.lastArchiveId(index)
@@ -28,11 +26,13 @@ class QuickChatPhraseDecoder : DefinitionDecoder<QuickChatPhraseDefinition>(QUIC
     override fun load(definitions: Array<QuickChatPhraseDefinition>, cache: Cache, id: Int) {
         val archive = getArchive(id)
         val file = getFile(id)
-        val data = (if (file <= 0x7fff) {
-            cache.data(index, archive, file)
-        } else {
-            cache.data(QUICK_CHAT_MENUS, archive, file and 0x7fff)
-        }) ?: return
+        val data = (
+            if (file <= 0x7fff) {
+                cache.data(index, archive, file)
+            } else {
+                cache.data(QUICK_CHAT_MENUS, archive, file and 0x7fff)
+            }
+            ) ?: return
         read(definitions, id, BufferReader(data))
     }
 

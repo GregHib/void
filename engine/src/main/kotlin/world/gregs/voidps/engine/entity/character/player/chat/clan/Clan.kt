@@ -14,7 +14,7 @@ data class Clan(
     var kickRank: ClanRank = ClanRank.Owner,
     var lootRank: ClanRank = ClanRank.None,
     var coinShare: Boolean = false,
-    val members: MutableList<Player> = mutableListOf()
+    val members: MutableList<Player> = mutableListOf(),
 ) {
 
     fun getRank(player: Player): ClanRank = when {
@@ -27,5 +27,4 @@ data class Clan(
         val playerRank = getRank(player)
         return inclusive && playerRank.value >= rank.value || playerRank.value > rank.value
     }
-
 }

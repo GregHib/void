@@ -28,9 +28,11 @@ class FloorItemTrackingTest {
         items = FloorItems(batches, mockk(relaxed = true))
         tracking = FloorItemTracking(items, players, batches)
         startKoin {
-            modules(module {
-                single { ItemDefinitions(arrayOf(ItemDefinition(0))).apply { ids = mapOf("item" to 0) } }
-            })
+            modules(
+                module {
+                    single { ItemDefinitions(arrayOf(ItemDefinition(0))).apply { ids = mapOf("item" to 0) } }
+                },
+            )
         }
     }
 

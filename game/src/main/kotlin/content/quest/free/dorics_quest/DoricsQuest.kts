@@ -1,11 +1,11 @@
 package content.quest.free.dorics_quest
 
 import content.entity.player.modal.tab.questJournalOpen
+import content.quest.quest
+import content.quest.questJournal
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
-import content.quest.quest
-import content.quest.questJournal
 
 questJournalOpen("dorics_quest") {
     val lines = when (player.quest("dorics_quest")) {
@@ -16,7 +16,7 @@ questJournalOpen("dorics_quest") {
             "",
             "<str>Doric rewarded me for all my hard work.",
             "<str>I can now use Doric's Anvils whenever I want.",
-            "<red>QUEST COMPLETE!"
+            "<red>QUEST COMPLETE!",
         )
         "started" -> listOf(
             "<str>I have spoken to Doric.",
@@ -30,7 +30,7 @@ questJournalOpen("dorics_quest") {
             "<navy>I can start this quest by speaking to <maroon>Doric<navy> who is <maroon>North of",
             "<maroon>Falador",
             "",
-            "<navy>There aren't any requirements but <maroon>Level 15 Mining<navy> will help."
+            "<navy>There aren't any requirements but <maroon>Level 15 Mining<navy> will help.",
         )
     }
     player.questJournal("Doric's Quest", lines)

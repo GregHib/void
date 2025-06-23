@@ -1,13 +1,14 @@
 package content.bot.skill.smithing
 
 import content.bot.*
-import net.pearx.kasechange.toLowerSpaceCase
 import content.bot.interact.navigation.await
 import content.bot.interact.navigation.goToArea
 import content.bot.interact.navigation.resume
 import content.bot.skill.combat.getGear
 import content.bot.skill.combat.hasExactGear
 import content.bot.skill.combat.setupGear
+import content.skill.smithing.oreToBar
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -20,7 +21,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.client.instruction.InteractDialogue
-import content.skill.smithing.oreToBar
 
 val areas: AreaDefinitions by inject()
 val tasks: TaskManager by inject()
@@ -45,7 +45,7 @@ worldSpawn {
             },
             area = area.area,
             spaces = spaces,
-            requirements = listOf { bot.hasExactGear("smelting", Skill.Smithing) }
+            requirements = listOf { bot.hasExactGear("smelting", Skill.Smithing) },
         )
         tasks.register(task)
     }
@@ -77,7 +77,7 @@ suspend fun Bot.smelt(map: AreaDefinition, set: GearDefinition) {
         // Make All
         var index = 0
         for (i in 0 until 10) {
-            val id: Int = player["skill_creation_item_${i}"] ?: continue
+            val id: Int = player["skill_creation_item_$i"] ?: continue
             if (id == barId) {
                 index = i
                 break

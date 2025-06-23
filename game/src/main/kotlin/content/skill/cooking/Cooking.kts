@@ -1,6 +1,7 @@
 package content.skill.cooking
 
 import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.makeAmount
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
@@ -25,7 +26,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.player.dialogue.type.makeAmount
 
 val definitions: ItemDefinitions by inject()
 val objects: GameObjects by inject()
@@ -39,7 +39,13 @@ itemOnObjectOperate(objects = setOf("fire_*", "cooking_range*")) {
         val choice = choice(listOf("Dry the meat into sinew.", "Cook the meat."))
         sinew = choice == 1
     }
-    val definition = if (sinew) definitions.get("sinew") else if (item.id == "sinew") return@itemOnObjectOperate else item.def
+    val definition = if (sinew) {
+        definitions.get("sinew")
+    } else if (item.id == "sinew") {
+        return@itemOnObjectOperate
+    } else {
+        item.def
+    }
     val cooking: Uncooked = definition.getOrNull("cooking") ?: return@itemOnObjectOperate
     var amount = player.inventory.count(item.id)
     if (amount != 1) {
@@ -47,7 +53,7 @@ itemOnObjectOperate(objects = setOf("fire_*", "cooking_range*")) {
             listOf(item.id),
             type = cooking.type.toSentenceCase(),
             maximum = player.inventory.count(item.id),
-            text = "How many would you like to ${cooking.type}?"
+            text = "How many would you like to ${cooking.type}?",
         ).second
     }
     val offset = (4 - (GameLoop.tick - start)).coerceAtLeast(0)

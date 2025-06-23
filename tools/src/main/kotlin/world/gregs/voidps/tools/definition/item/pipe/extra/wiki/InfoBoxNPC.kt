@@ -29,5 +29,4 @@ class InfoBoxNPC : Pipeline.Modifier<Extras> {
             }
         }
     }
-
 }

@@ -1,10 +1,14 @@
 package content.entity.player.command.debug
 
-import org.rsmod.game.pathfinder.PathFinder
-import org.rsmod.game.pathfinder.flag.CollisionFlag
 import content.bot.interact.path.Dijkstra
 import content.bot.interact.path.EdgeTraversal
 import content.bot.interact.path.NodeTargetStrategy
+import content.entity.gfx.areaGfx
+import content.entity.player.dialogue.sendLines
+import content.entity.player.dialogue.type.npc
+import content.quest.questJournal
+import org.rsmod.game.pathfinder.PathFinder
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.*
 import world.gregs.voidps.engine.client.ui.chat.Colours
@@ -19,7 +23,9 @@ import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -32,15 +38,9 @@ import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.network.login.protocol.encode.clearCamera
 import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
 import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
+import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
-import content.entity.player.dialogue.sendLines
-import content.entity.player.dialogue.type.npc
-import content.entity.gfx.areaGfx
-import content.quest.questJournal
-import world.gregs.voidps.engine.entity.character.player.appearance
-import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
@@ -63,7 +63,7 @@ modCommand("commands") {
         "Commands list with descriptions and usage instructions in the format:",
         "${Colours.BLUE.toTag()}command_name (required-variable) [optional-variable]</col>",
         "command description",
-        ""
+        "",
     )
     player.questJournal("Commands List", list + commands)
 }
@@ -89,7 +89,7 @@ modCommand("help (command-name)", "gives more information about a command") {
             player.message("items, objects, npcs, commands", ChatType.Console)
         }
         else -> {
-            player.message("No help info found for command '${content}'.", ChatType.Console)
+            player.message("No help info found for command '$content'.", ChatType.Console)
             player.message("Enter 'commands' for full list of commands.", ChatType.Console)
         }
     }
@@ -264,15 +264,15 @@ adminCommand("walkToBank") {
     val west = Tile(3250, 3417).toCuboid(7, 8)
     val dijkstra: Dijkstra = get()
     val strategy = object : NodeTargetStrategy() {
-        override fun reached(node: Any): Boolean {
-            return if (node is Tile) east.contains(node) || west.contains(node) else false
-        }
+        override fun reached(node: Any): Boolean = if (node is Tile) east.contains(node) || west.contains(node) else false
     }
-    println("Path took ${
-        measureNanoTime {
-            dijkstra.find(player, strategy, EdgeTraversal())
-        }
-    }ns")
+    println(
+        "Path took ${
+            measureNanoTime {
+                dijkstra.find(player, strategy, EdgeTraversal())
+            }
+        }ns",
+    )
     /*player.action { FIXME
         var first = true
         while (player.waypoints.isNotEmpty()) {
@@ -311,7 +311,6 @@ adminCommand("obj (object-id) [object-shape] [object-rotation] [ticks]", "spawn 
     val ticks = parts.getOrNull(3)?.toIntOrNull() ?: -1
     objects.add(id, player.tile, shape, rotation, ticks)
 }
-
 
 adminCommand("under [type]", "display entity types underneath the player") {
     val type = content

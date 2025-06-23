@@ -24,7 +24,7 @@ data class NPC(
     override var tile: Tile = Tile.EMPTY,
     val def: NPCDefinition = NPCDefinition.EMPTY,
     override var index: Int = -1,
-    override val levels: Levels = Levels()
+    override val levels: Levels = Levels(),
 ) : Character {
     override val visuals: NPCVisuals = NPCVisuals()
 
@@ -53,6 +53,8 @@ data class NPC(
 
     override lateinit var collision: CollisionStrategy
 
+    var regenCounter = 0
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -60,11 +62,7 @@ data class NPC(
         return index == other.index
     }
 
-    override fun hashCode(): Int {
-        return index
-    }
+    override fun hashCode(): Int = index
 
-    override fun toString(): String {
-        return "NPC(id=$id, index=$index, tile=$tile)"
-    }
+    override fun toString(): String = "NPC(id=$id, index=$index, tile=$tile)"
 }

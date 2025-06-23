@@ -63,5 +63,4 @@ class InfoBoxPet : Pipeline.Modifier<Extras> {
             }
         }
     }
-
 }

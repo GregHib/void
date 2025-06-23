@@ -14,5 +14,4 @@ class ClanChatRankDecoder : Decoder(BYTE) {
         val name = packet.readString()
         return ClanChatRank(name, rank)
     }
-
 }

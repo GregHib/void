@@ -54,5 +54,4 @@ class ItemDefaults : Pipeline.Modifier<MutableMap<Int, Extras>> {
         extras.remove("kept", ItemKept.Never)
         extras.remove("use", ItemUse.Surface)
     }
-
 }

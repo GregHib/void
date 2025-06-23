@@ -11,5 +11,4 @@ class WindowFocusDecoder : Decoder(1) {
         val focused = packet.readBoolean()
         return null
     }
-
 }

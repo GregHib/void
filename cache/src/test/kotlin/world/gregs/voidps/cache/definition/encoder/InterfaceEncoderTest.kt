@@ -46,7 +46,7 @@ internal class InterfaceEncoderTest {
             anInt4839 = 1112,
             information = arrayOf(1, "two", 3, "four"),
             clientVarc = intArrayOf(5, 4, 3, 2, 1),
-            hasScript = true
+            hasScript = true,
         )
         val encoder = InterfaceEncoder()
 

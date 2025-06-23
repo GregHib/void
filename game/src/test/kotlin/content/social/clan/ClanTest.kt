@@ -1,5 +1,7 @@
 package content.social.clan
 
+import WorldTest
+import interfaceOption
 import io.mockk.mockkStatic
 import io.mockk.verify
 import kotlinx.coroutines.test.runTest
@@ -15,8 +17,6 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.instruction.*
 import world.gregs.voidps.network.login.protocol.encode.clanChat
 import world.gregs.voidps.network.login.protocol.encode.message
-import WorldTest
-import interfaceOption
 import kotlin.collections.set
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse

@@ -8,8 +8,8 @@ import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import kotlin.test.assertEquals
 
 internal class ChoiceTest : DialogueTest() {
@@ -29,7 +29,7 @@ internal class ChoiceTest : DialogueTest() {
         """ to "dialogue_multi2",
         "One\nTwo\nThree" to "dialogue_multi3",
         "One\nTwo\nThree\nFour" to "dialogue_multi4",
-        "One\nTwo\nThree\nFour\nFive" to "dialogue_multi5"
+        "One\nTwo\nThree\nFour\nFive" to "dialogue_multi5",
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {
@@ -52,7 +52,7 @@ internal class ChoiceTest : DialogueTest() {
         """ to "dialogue_multi2_chat",
         "One\nTwo\nThree<br>Four" to "dialogue_multi3_chat",
         "One\nTwo<br>Five\nThree\nFour" to "dialogue_multi4_chat",
-        "One\nTwo\nThree\nFour<br>Six\nFive" to "dialogue_multi5_chat"
+        "One\nTwo\nThree\nFour<br>Six\nFive" to "dialogue_multi5_chat",
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {
@@ -75,7 +75,7 @@ internal class ChoiceTest : DialogueTest() {
         """ to "dialogue_multi_var2",
         "One\nTwo\nThree" to "dialogue_multi_var3",
         "One\nTwo\nThree\nFour" to "dialogue_multi_var4",
-        "One\nTwo\nThree\nFour\nFive" to "dialogue_multi_var5"
+        "One\nTwo\nThree\nFour\nFive" to "dialogue_multi_var5",
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {
@@ -124,10 +124,13 @@ internal class ChoiceTest : DialogueTest() {
     @Test
     fun `Send multiline title`() {
         dialogue {
-            choice(text = "Yes\nNo", title = """
+            choice(
+                text = "Yes\nNo",
+                title = """
                 A long title that exceeds
                 maximum width but is split
-            """)
+            """,
+            )
         }
         verify {
             player.open("dialogue_multi_var2")
@@ -139,10 +142,13 @@ internal class ChoiceTest : DialogueTest() {
     @Test
     fun `Send wide multiline title`() {
         dialogue {
-            choice(text = "Yes\nNo", title = """
+            choice(
+                text = "Yes\nNo",
+                title = """
                 A long title that exceeds maximum
                 and is on two lines
-            """)
+            """,
+            )
         }
         verify {
             player.open("dialogue_multi_var2")

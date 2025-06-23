@@ -1,8 +1,12 @@
 package content.social.chat
 
+import content.social.clan.clan
+import content.social.ignore.ignores
 import world.gregs.voidps.cache.definition.data.QuickChatType
+import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
+import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.QuickChatPhraseDefinitions
@@ -15,16 +19,12 @@ import world.gregs.voidps.engine.entity.character.player.chat.global.PublicQuick
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.network.client.instruction.QuickChatPrivate
+import world.gregs.voidps.network.client.instruction.QuickChatPublic
 import world.gregs.voidps.network.login.protocol.encode.clanQuickChat
 import world.gregs.voidps.network.login.protocol.encode.privateQuickChatFrom
 import world.gregs.voidps.network.login.protocol.encode.privateQuickChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicQuickChat
-import content.social.clan.clan
-import content.social.ignore.ignores
-import world.gregs.voidps.engine.client.instruction.instruction
-import world.gregs.voidps.engine.client.variable.MapValues
-import world.gregs.voidps.network.client.instruction.QuickChatPrivate
-import world.gregs.voidps.network.client.instruction.QuickChatPublic
 
 val players: Players by inject()
 val phrases: QuickChatPhraseDefinitions by inject()
@@ -118,7 +118,8 @@ fun generateData(player: Player, file: Int, data: ByteArray): ByteArray {
             }
             QuickChatType.ClanRank,
             QuickChatType.AverageCombatLevel,
-            QuickChatType.SoulWars -> return byteArrayOf(0)
+            QuickChatType.SoulWars,
+            -> return byteArrayOf(0)
             else -> return data
         }
     } else {

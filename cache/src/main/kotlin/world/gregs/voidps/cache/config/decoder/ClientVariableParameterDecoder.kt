@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.config.data.ClientVariableParameterDefinition
 
 class ClientVariableParameterDecoder : ConfigDecoder<ClientVariableParameterDefinition>(VARC) {
 
-    override fun create(size: Int)= Array(size) { ClientVariableParameterDefinition(it) }
+    override fun create(size: Int) = Array(size) { ClientVariableParameterDefinition(it) }
 
     override fun ClientVariableParameterDefinition.read(opcode: Int, buffer: Reader) {
         if (opcode == 1) {

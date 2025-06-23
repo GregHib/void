@@ -14,7 +14,7 @@ class Inventory(
     val id: String = "",
     var itemRule: ItemRestrictionRule = NoRestrictions,
     private val stackRule: ItemStackingRule = AlwaysStack,
-    internal val amountBounds: ItemAmountBounds = DefaultItemAmountBounds
+    internal val amountBounds: ItemAmountBounds = DefaultItemAmountBounds,
 ) {
 
     val items: Array<Item>
@@ -87,9 +87,7 @@ class Inventory(
         return transaction.commit()
     }
 
-    override fun toString(): String {
-        return "Inventory($id)"
-    }
+    override fun toString(): String = "Inventory($id)"
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -120,7 +118,7 @@ class Inventory(
             id,
             itemRule,
             stackRule,
-            amountBounds
+            amountBounds,
         )
     }
 }

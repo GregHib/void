@@ -14,7 +14,7 @@ import world.gregs.voidps.network.login.protocol.writeByteInverse
 fun Client.clearZone(
     xOffset: Int,
     yOffset: Int,
-    level: Int
+    level: Int,
 ) = send(CLEAR_ZONE) {
     writeByteAdd(level)
     writeByteInverse(yOffset)
@@ -29,7 +29,7 @@ fun Client.clearZone(
 fun Client.updateZone(
     xOffset: Int,
     yOffset: Int,
-    level: Int
+    level: Int,
 ) = send(Protocol.UPDATE_ZONE) {
     writeByteInverse(xOffset)
     writeByteAdd(level)

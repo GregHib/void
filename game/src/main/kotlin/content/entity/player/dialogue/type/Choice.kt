@@ -1,11 +1,11 @@
 package content.entity.player.dialogue.type
 
+import content.entity.player.dialogue.sendLines
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.IntSuspension
-import content.entity.player.dialogue.sendLines
+import world.gregs.voidps.engine.suspend.SuspendableContext
 
 private val CHOICE_LINE_RANGE = 2..5
 private const val APPROXIMATE_WIDE_TITLE_LENGTH = 30
@@ -63,6 +63,4 @@ suspend fun SuspendableContext<Player>.choice(lines: List<String>, title: String
 
 private fun isMultiline(string: String): Boolean = string.contains("<br>")
 
-private fun getChoiceId(multilineTitle: Boolean, multilineOptions: Boolean, lines: Int): String {
-    return "dialogue_multi${if (multilineTitle) "_var" else ""}$lines${if (multilineOptions) "_chat" else ""}"
-}
+private fun getChoiceId(multilineTitle: Boolean, multilineOptions: Boolean, lines: Int): String = "dialogue_multi${if (multilineTitle) "_var" else ""}$lines${if (multilineOptions) "_chat" else ""}"

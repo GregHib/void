@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Events
 
 data class OpenQuestJournal(
     override val character: Player,
-    val quest: String
+    val quest: String,
 ) : Interaction<Player>() {
     override fun copy(approach: Boolean) = copy().apply { this.approach = approach }
 

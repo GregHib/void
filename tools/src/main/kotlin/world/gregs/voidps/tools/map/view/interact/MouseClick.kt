@@ -1,6 +1,5 @@
 package world.gregs.voidps.tools.map.view.interact
 
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.tools.map.view.draw.GraphDrawer
 import world.gregs.voidps.tools.map.view.draw.HighlightedArea
 import world.gregs.voidps.tools.map.view.draw.MapView
@@ -9,6 +8,7 @@ import world.gregs.voidps.tools.map.view.ui.AreaPointSettings
 import world.gregs.voidps.tools.map.view.ui.AreaSettings
 import world.gregs.voidps.tools.map.view.ui.LinkSettings
 import world.gregs.voidps.tools.map.view.ui.NodeSettings
+import world.gregs.voidps.type.Tile
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import javax.swing.JMenuItem
@@ -115,8 +115,13 @@ class MouseClick(
     private fun showAreaSettings(area: Area) {
         val settings = AreaSettings()
         populate(settings, area)
-        val result = JOptionPane.showConfirmDialog(null, settings, "Edit area",
-            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
+        val result = JOptionPane.showConfirmDialog(
+            null,
+            settings,
+            "Edit area",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.PLAIN_MESSAGE,
+        )
         if (result == JOptionPane.OK_OPTION) {
             populate(area, settings)
             nav.changed = true
@@ -142,8 +147,13 @@ class MouseClick(
     private fun showPointSettings(area: Area, point: Point) {
         val settings = AreaPointSettings()
         populate(settings, point)
-        val result = JOptionPane.showConfirmDialog(null, settings, "Edit area point",
-            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
+        val result = JOptionPane.showConfirmDialog(
+            null,
+            settings,
+            "Edit area point",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.PLAIN_MESSAGE,
+        )
         if (result == JOptionPane.OK_OPTION) {
             populate(point, settings)
             nav.changed = true
@@ -164,8 +174,13 @@ class MouseClick(
     private fun showNodeSettings(node: Tile, links: List<Link>) {
         val settings = NodeSettings()
         populate(settings, node)
-        val result = JOptionPane.showConfirmDialog(null, settings, "Edit node",
-            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
+        val result = JOptionPane.showConfirmDialog(
+            null,
+            settings,
+            "Edit node",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.PLAIN_MESSAGE,
+        )
         if (result == JOptionPane.OK_OPTION) {
             val newNode = populate(node, settings)
             if (node != newNode) {
@@ -196,8 +211,13 @@ class MouseClick(
     private fun showLinkSettings(link: Link) {
         val settings = LinkSettings()
         populate(settings, link)
-        val result = JOptionPane.showConfirmDialog(null, settings, "Edit link",
-            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
+        val result = JOptionPane.showConfirmDialog(
+            null,
+            settings,
+            "Edit link",
+            JOptionPane.OK_CANCEL_OPTION,
+            JOptionPane.PLAIN_MESSAGE,
+        )
         if (result == JOptionPane.OK_OPTION) {
             populate(link, settings)
             graph.repaint(link)
@@ -231,5 +251,4 @@ class MouseClick(
         val requirements = settings.requirementsList.toArray().filterIsInstance<String>().toList()
         link.requirements = requirements.ifEmpty { null }
     }
-
 }

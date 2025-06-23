@@ -54,5 +54,4 @@ object RemoveCharge {
             replace(index, item.id, replacement.id, replacement.value)
         }
     }
-
 }

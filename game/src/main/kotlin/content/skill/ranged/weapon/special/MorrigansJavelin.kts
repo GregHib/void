@@ -1,15 +1,15 @@
 package content.skill.ranged.weapon.special
 
+import content.entity.combat.hit.directHit
+import content.entity.combat.hit.hit
+import content.entity.player.combat.special.specialAttack
+import content.entity.proj.shoot
+import content.skill.ranged.ammo
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerTick
 import world.gregs.voidps.engine.timer.npcTimerStop
-import content.entity.combat.hit.directHit
-import content.entity.combat.hit.hit
-import content.skill.ranged.ammo
-import content.entity.player.combat.special.specialAttack
-import content.entity.proj.shoot
 
 specialAttack("phantom_strike") { player ->
     val ammo = player.ammo

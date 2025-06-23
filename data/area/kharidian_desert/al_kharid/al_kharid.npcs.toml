@@ -3,6 +3,7 @@ id = 524
 categories = ["human"]
 shop = "al_kharid_general_store"
 wander_radius = 2
+collision = "indoors"
 examine = "A product of a consumerist society."
 
 [shop_assistant_al_kharid]
@@ -10,6 +11,7 @@ id = 525
 categories = ["human"]
 shop = "al_kharid_general_store"
 wander_radius = 2
+collision = "indoors"
 examine = "Likes you more, the more you spend."
 
 [zeke]
@@ -17,6 +19,7 @@ id = 541
 categories = ["human"]
 shop = "zekes_superior_scimitars"
 wander_radius = 3
+collision = "indoors"
 examine = "Sells superior scimitars."
 
 [louie_legs]
@@ -24,6 +27,7 @@ id = 542
 wander_radius = 4
 shop = "louies_armoured_legs_bazaar"
 categories = ["human"]
+collision = "indoors"
 examine = "For the finest in armoured legware."
 
 [ranael]
@@ -31,6 +35,7 @@ id = 544
 wander_radius = 2
 shop = "ranaels_super_skirt_store"
 categories = ["human"]
+collision = "indoors"
 examine = "She's an expert on armoured skirts!"
 
 [dommik]
@@ -38,6 +43,7 @@ id = 545
 wander_radius = 4
 shop = "dommiks_crafting_store"
 categories = ["human"]
+collision = "indoors"
 examine = "If Crafting's your thing, he's your man."
 
 [ali_morrisane]
@@ -45,3 +51,16 @@ id = 1862
 wander_radius = 3
 categories = ["human"]
 examine = "A bazaar merchant."
+
+[karim]
+id = 543
+wander_radius = 4
+categories = ["human"]
+collision = "indoors"
+examine = "Kebabs are full of meaty goodness."
+
+[ellis]
+id = 2824
+categories = ["human"]
+collision = "indoors"
+examine = "Manufacturer of fine leathers."

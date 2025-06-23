@@ -27,24 +27,21 @@ data class PlayerSave(
     val variables: Map<String, Any>,
     val inventories: Map<String, Array<Item>>,
     val friends: Map<String, ClanRank>,
-    val ignores: List<String>
+    val ignores: List<String>,
 ) {
 
-    fun toPlayer(): Player {
-        return Player(
-            accountName = name,
-            passwordHash = password,
-            tile = tile,
-            experience = Experience(experience, blocked.toMutableSet()),
-            levels = Levels(levels),
-            body = BodyParts(male, looks, colours),
-            variables = variables.toMutableMap(),
-            inventories = Inventories(inventories),
-            friends = friends.toMutableMap(),
-            ignores = ignores.toMutableList(),
-        )
-    }
-
+    fun toPlayer(): Player = Player(
+        accountName = name,
+        passwordHash = password,
+        tile = tile,
+        experience = Experience(experience, blocked.toMutableSet()),
+        levels = Levels(levels),
+        body = BodyParts(male, looks, colours),
+        variables = variables.toMutableMap(),
+        inventories = Inventories(inventories),
+        friends = friends.toMutableMap(),
+        ignores = ignores.toMutableList(),
+    )
 
     fun save(file: File) {
         Config.fileWriter(file) {
@@ -255,7 +252,6 @@ data class PlayerSave(
                                     else -> throw IllegalArgumentException("Unexpected key: '$socialKey' ${exception()}")
                                 }
                             }
-
                         }
                         else -> throw IllegalArgumentException("Unexpected section: '$section' ${exception()}")
                     }
@@ -279,5 +275,5 @@ internal fun Player.copy() = PlayerSave(
     variables = variables.data.toMap(),
     inventories = inventories.instances.mapValues { it.value.items.map { itm -> itm.copy() }.toTypedArray() },
     friends = friends,
-    ignores = ignores.toList()
+    ignores = ignores.toList(),
 )

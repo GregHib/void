@@ -1,5 +1,14 @@
 package content.area.misthalin.lumbridge
 
+import content.achievement.Tasks
+import content.achievement.Tasks.isCompleted
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.variable.BitwiseValues
@@ -14,15 +23,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import content.achievement.Tasks.isCompleted
-import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
-import content.achievement.Tasks
 
 npcOperate("Talk-to", "explorer_jack") {
     if (player["introducing_explorer_jack_task", "uncompleted"] == "uncompleted") {

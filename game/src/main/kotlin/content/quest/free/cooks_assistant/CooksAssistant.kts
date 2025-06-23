@@ -1,10 +1,10 @@
 package content.quest.free.cooks_assistant
 
-import world.gregs.voidps.engine.inv.holdsItem
 import content.entity.player.bank.bank
 import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
+import world.gregs.voidps.engine.inv.holdsItem
 
 questJournalOpen("cooks_assistant") {
     val lines = when (player.quest("cooks_assistant")) {
@@ -18,7 +18,7 @@ questJournalOpen("cooks_assistant") {
             "<str>As a reward he now lets me use his high quality range",
             "<str>which lets me burn things less whenever I wish to cook there",
             "",
-            "<red>QUEST COMPLETE!"
+            "<red>QUEST COMPLETE!",
         )
         "started" -> {
             val list = mutableListOf(
@@ -37,7 +37,6 @@ questJournalOpen("cooks_assistant") {
                 list.add("<navy>I need to find a <maroon>bucket of top-quality milk.")
             }
 
-
             if (player["cooks_assistant_flour", 0] == 1) {
                 list.add("<str>I have given the cook a pot of extra fine flour.")
             } else if (player.holdsItem("extra_fine_flour")) {
@@ -47,7 +46,6 @@ questJournalOpen("cooks_assistant") {
             } else {
                 list.add("<navy>I need to find a <maroon>pot of extra fine flour.")
             }
-
 
             if (player["cooks_assistant_egg", 0] == 1) {
                 list.add("<str>I have given the cook a super large egg.")
@@ -76,7 +74,7 @@ questJournalOpen("cooks_assistant") {
         }
         else -> listOf(
             "<navy>I can start this quest by speaking to the <maroon>Cook <navy>in the",
-            "<maroon>kitchen <navy>of <maroon>Lumbridge Castle."
+            "<maroon>kitchen <navy>of <maroon>Lumbridge Castle.",
         )
     }
     player.questJournal("Cook's Aassistant", lines)

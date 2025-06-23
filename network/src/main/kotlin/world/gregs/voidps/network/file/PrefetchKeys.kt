@@ -59,7 +59,7 @@ fun file(cache: Cache, index: Int, name: String): Int {
  */
 fun archive(cache: Cache, index: Int): Int {
     var total = 0
-    for(archive in cache.archives(index)) {
+    for (archive in cache.archives(index)) {
         total += cache.sector(index, archive)?.size ?: 0
     }
     total += cache.sector(255, index)?.size ?: 0

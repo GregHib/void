@@ -63,7 +63,13 @@ fun showInfo(player: Player, item: Item, index: Int, sample: Boolean) {
             player["info_right"] = ""
             player["item_info_requirement_title"] = ""
         }
-        player["item_info_price"] = if (sample) -1 else if (item.amount < 1) item.amount else Price.getPrice(player, item.id, index, item.amount)
+        player["item_info_price"] = if (sample) {
+            -1
+        } else if (item.amount < 1) {
+            item.amount
+        } else {
+            Price.getPrice(player, item.id, index, item.amount)
+        }
         player["item_info_examine"] = "'${def["examine", "It's a null."]}'"
     }
 }
@@ -115,7 +121,7 @@ fun attackStatsColumn(def: ItemDefinition): String = """
         Absorb Magic
         Absorb Ranged
         Prayer bonus
-    """.trimIndent().replace("\n", "<br>")
+""".trimIndent().replace("\n", "<br>")
 
 fun defenceStatsColumn(def: ItemDefinition): String = """
         Defence
@@ -132,7 +138,7 @@ fun defenceStatsColumn(def: ItemDefinition): String = """
         ${getStat(def, "absorb_magic")}
         ${getStat(def, "absorb_range")}
         ${getStat(def, "prayer_bonus")}
-    """.trimIndent().replace("\n", "<br>")
+""".trimIndent().replace("\n", "<br>")
 
 val middleColumn = """
         
@@ -143,4 +149,4 @@ val middleColumn = """
         Range
         Summoning
         <br><br><br><br><br><br>
-    """.trimIndent().replace("\n", "<br>")
+""".trimIndent().replace("\n", "<br>")

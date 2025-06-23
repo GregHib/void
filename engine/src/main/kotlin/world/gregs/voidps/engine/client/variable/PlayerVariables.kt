@@ -9,7 +9,7 @@ class PlayerVariables(
     events: EventDispatcher,
     data: MutableMap<String, Any>,
     var definitions: VariableDefinitions = VariableDefinitions(),
-    val temp: MutableMap<String, Any> = mutableMapOf()
+    val temp: MutableMap<String, Any> = mutableMapOf(),
 ) : Variables(events, data) {
 
     var client: Client? = null
@@ -32,7 +32,5 @@ class PlayerVariables(
         variable.send(client ?: return, value)
     }
 
-    override fun data(key: String): MutableMap<String, Any> {
-        return if (definitions.get(key).persist) data else temp
-    }
+    override fun data(key: String): MutableMap<String, Any> = if (definitions.get(key).persist) data else temp
 }

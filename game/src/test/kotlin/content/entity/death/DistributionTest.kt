@@ -55,11 +55,14 @@ internal class DistributionTest {
 
     @Test
     fun `Provide weighted values greater than 1`() {
-        val dist = Distribution(listOf(
-            "one" to 1.0,
-            "two" to 3.0,
-            "three" to 5.0
-        ), random = random)
+        val dist = Distribution(
+            listOf(
+                "one" to 1.0,
+                "two" to 3.0,
+                "three" to 5.0,
+            ),
+            random = random,
+        )
         every { random.nextDouble() } returns 0.1
         assertEquals("one", dist.sample())
         every { random.nextDouble() } returns 0.4
@@ -70,11 +73,15 @@ internal class DistributionTest {
 
     @Test
     fun `Invert weighted values greater than 1`() {
-        val dist = Distribution(listOf(
-            "one" to 1.0,
-            "two" to 3.0,
-            "three" to 5.0
-        ), invert = true, random = random)
+        val dist = Distribution(
+            listOf(
+                "one" to 1.0,
+                "two" to 3.0,
+                "three" to 5.0,
+            ),
+            invert = true,
+            random = random,
+        )
         every { random.nextDouble() } returns 0.5
         assertEquals("one", dist.sample())
         every { random.nextDouble() } returns 0.8
@@ -85,11 +92,14 @@ internal class DistributionTest {
 
     @Test
     fun `Zero and negative weights are ignored`() {
-        val dist = Distribution(listOf(
-            "one" to -1.0,
-            "two" to 0.0,
-            "three" to 1.0
-        ), random = random)
+        val dist = Distribution(
+            listOf(
+                "one" to -1.0,
+                "two" to 0.0,
+                "three" to 1.0,
+            ),
+            random = random,
+        )
         every { random.nextDouble() } returns 0.5
         assertEquals("three", dist.sample())
     }

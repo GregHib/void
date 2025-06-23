@@ -3,6 +3,7 @@ id = 526
 categories = ["human"]
 shop = "falador_general_store"
 wander_radius = 2
+collision = "indoors"
 examine = "A product of a consumerist society."
 
 [shop_assistant_falador]
@@ -10,6 +11,7 @@ id = 527
 categories = ["human"]
 shop = "falador_general_store"
 wander_radius = 2
+collision = "indoors"
 examine = "Likes you more, the more you spend."
 
 [wyson_the_gardener]
@@ -17,3 +19,89 @@ id = 36
 categories = ["human"]
 wander_radius = 4
 examine = "The head gardener."
+
+[makeover_mage_female]
+id = 2676
+categories = ["human"]
+wander_radius = 3
+collision = "indoors"
+examine = "Master of the mystical make-over."
+
+[makeover_mage_male]
+id = 599
+categories = ["human"]
+wander_radius = 3
+examine = "Master of the mystical make-over."
+
+[tanner]
+id = 804
+categories = ["human"]
+collision = "indoors"
+examine = "Manufacturer of fine leathers."
+
+[master_crafter]
+id = 805
+categories = ["human"]
+collision = "indoors"
+examine = "He's in charge of the Crafting Guild."
+
+[master_crafter_2]
+id = 2732
+categories = ["human"]
+collision = "indoors"
+examine = "He works in the Crafting Guild."
+
+[master_crafter_3]
+id = 2733
+wander_radius = 4
+categories = ["human"]
+collision = "indoors"
+examine = "He wanders around the Crafting Guild pretending to be working."
+
+[barmaid_emily]
+id = 736
+bar_crawl = {
+    id = "hand_of_death_cocktail",
+    price = 70,
+    insufficient = "I don't have that much money on me.",
+    give = "You buy a Hand of Death cocktail.",
+    drink = "You drink the cocktail.",
+    effect = "You stumble around the room.",
+    sign = "The barmaid giggles and signs your card."
+}
+categories = ["human"]
+wander_radius = 3
+collision = "indoors"
+examine = "Works in the Rising Sun."
+
+[barmaid_kaylee]
+id = 3217
+clone = "barmaid_emily"
+
+[barmaid_tina]
+id = 3218
+clone = "barmaid_emily"
+
+[iconis]
+id = 8879
+categories = ["human"]
+examine = "A wizard who specialises in magical picture-taking processes."
+
+[sir_vyvin]
+id = 605
+categories = ["human"]
+wander_radius = 4
+examine = "A White Knight officer with an injured eye."
+
+[squire_asrol]
+id = 606
+categories = ["human"]
+wander_radius = 4
+examine = "Indentured servant of a Knight."
+
+[hairdresser]
+id = 598
+categories = ["human"]
+wander_radius = 3
+collision = "indoors"
+examine = "Anyone fancy a trim?"

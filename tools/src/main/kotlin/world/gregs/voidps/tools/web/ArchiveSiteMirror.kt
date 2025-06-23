@@ -31,7 +31,7 @@ fun main() {
         SiteMirror("20090305183759", languages = false, knowledgeBase = true, downloads = true, singlePage = false),
         SiteMirror("20090323174711", languages = false, knowledgeBase = true, downloads = true, singlePage = false),
         SiteMirror("20101206213136", languages = false, knowledgeBase = true, downloads = true, singlePage = false),
-        SiteMirror("20110117213247", languages = false, knowledgeBase = true, downloads = true, singlePage = false)
+        SiteMirror("20110117213247", languages = false, knowledgeBase = true, downloads = true, singlePage = false),
     )
     var running = true
     while (running) {
@@ -100,31 +100,30 @@ class SiteMirror(
         }
     }
 
-
-    private fun getPath(source: String): String? {
-        return if (validUrlRegex.containsMatchIn(source)) {
-            val anchorIndex = source.indexOf("#")
-            val anchor = if (anchorIndex >= 0) {
-                source.substring(anchorIndex, source.length)
-            } else ""
-            var path = convertQuery(removeDomain(removePrefixDomain(source.replace(anchor, "").replace(".ws", ".html")), "runescape.com"))
-            when {
-                path.isBlank() || path == "runescape.com" -> path = "index.html"
-                path.endsWith("/") -> path += "index.html"
-                !path.endsWith(".html") && !supportedFileDownloads(path) -> {
-                    path += ".html"
-                }
-            }
-            path
-        } else if (!source.contains("http") && !supportedFileDownloads(source)) {
-            convertQuery(source)
-        } else if (source.contains("/wb-static")) {
-            source.substring(source.indexOf("/wb-static") + 1, source.length)
-        } else if (source.contains("partner.archive-it.org/static/")) {
-            source.substring(source.indexOf("/static/") + 1, source.length)
+    private fun getPath(source: String): String? = if (validUrlRegex.containsMatchIn(source)) {
+        val anchorIndex = source.indexOf("#")
+        val anchor = if (anchorIndex >= 0) {
+            source.substring(anchorIndex, source.length)
         } else {
-            null
+            ""
         }
+        var path = convertQuery(removeDomain(removePrefixDomain(source.replace(anchor, "").replace(".ws", ".html")), "runescape.com"))
+        when {
+            path.isBlank() || path == "runescape.com" -> path = "index.html"
+            path.endsWith("/") -> path += "index.html"
+            !path.endsWith(".html") && !supportedFileDownloads(path) -> {
+                path += ".html"
+            }
+        }
+        path
+    } else if (!source.contains("http") && !supportedFileDownloads(source)) {
+        convertQuery(source)
+    } else if (source.contains("/wb-static")) {
+        source.substring(source.indexOf("/wb-static") + 1, source.length)
+    } else if (source.contains("partner.archive-it.org/static/")) {
+        source.substring(source.indexOf("/static/") + 1, source.length)
+    } else {
+        null
     }
 
     fun removeDisclaimer(document: Document) {
@@ -251,9 +250,6 @@ class SiteMirror(
             ".webp",
             ".webm",
         )
-        fun supportedFileDownloads(file: String): Boolean {
-            return fileTypes.any { file.contains(it, true) }
-        }
+        fun supportedFileDownloads(file: String): Boolean = fileTypes.any { file.contains(it, true) }
     }
-
 }

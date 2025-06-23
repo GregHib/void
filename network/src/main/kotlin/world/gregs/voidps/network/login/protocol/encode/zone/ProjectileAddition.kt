@@ -13,9 +13,9 @@ data class ProjectileAddition(
     val delay: Int,
     val flightTime: Int,
     val curve: Int,
-    val offset: Int
+    val offset: Int,
 ) : ZoneUpdate(
     Protocol.PROJECTILE_ADD,
     Protocol.Batch.PROJECTILE_ADD,
-    16
+    16,
 )

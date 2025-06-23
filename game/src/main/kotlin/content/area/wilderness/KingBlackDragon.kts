@@ -1,11 +1,5 @@
 package content.area.wilderness
 
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.random
 import content.entity.combat.hit.hit
 import content.entity.combat.hit.npcCombatAttack
 import content.entity.combat.npcCombatSwing
@@ -13,6 +7,12 @@ import content.entity.effect.freeze
 import content.entity.effect.toxin.poison
 import content.entity.proj.shoot
 import content.entity.sound.sound
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.random
 
 val specials = listOf("toxic", "ice", "shock")
 
@@ -23,19 +23,19 @@ npcCombatSwing("king_black_dragon") { npc ->
             npc.anim("king_black_dragon_breath")
             target.sound("dragon_breath")
             nearestTile(npc, target).shoot("dragon_breath", target)
-            npc.hit(target, type = "dragonfire")
+            npc.hit(target, offensiveType = "dragonfire")
         }
         1 -> {
             val type = specials.random()
             npc.anim("king_black_dragon_breath")
             target.sound("dragon_breath_$type")
             nearestTile(npc, target).shoot("dragon_breath_$type", target)
-            npc.hit(target, type = "dragonfire", spell = type, special = true)
+            npc.hit(target, offensiveType = "dragonfire", spell = type, special = true)
         }
         else -> {
             npc.anim("king_black_dragon_attack")
             target.sound("dragon_attack")
-            npc.hit(target, type = "melee")
+            npc.hit(target, offensiveType = "melee")
         }
     }
 }

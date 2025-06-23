@@ -1,5 +1,7 @@
 package content.entity.player.dialogue.type
 
+import content.entity.player.dialogue.Expression
+import content.entity.player.dialogue.sendChat
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
@@ -8,11 +10,9 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
-import content.entity.player.dialogue.Expression
-import content.entity.player.dialogue.sendChat
 
 suspend inline fun <reified E : Expression> SuspendableContext<Player>.player(text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val expression = E::class.simpleName!!.toSnakeCase()
@@ -33,13 +33,9 @@ suspend fun SuspendableContext<Player>.player(expression: String, text: String, 
     }
 }
 
-private fun getChatHeadComponentName(large: Boolean): String {
-    return "head${if (large) "_large" else ""}"
-}
+private fun getChatHeadComponentName(large: Boolean): String = "head${if (large) "_large" else ""}"
 
-private fun getInterfaceId(lines: Int, prompt: Boolean): String {
-    return "dialogue_chat${if (!prompt) "_np" else ""}$lines"
-}
+private fun getInterfaceId(lines: Int, prompt: Boolean): String = "dialogue_chat${if (!prompt) "_np" else ""}$lines"
 
 private fun sendPlayerHead(player: Player, id: String, component: String) {
     val definitions: InterfaceDefinitions = get()

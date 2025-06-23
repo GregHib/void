@@ -17,7 +17,7 @@ enum class Tab {
     ClanChat,
     Emotes,
     MusicPlayer,
-    Notes;
+    Notes,
 }
 
 fun Player.tab(tab: Tab) {

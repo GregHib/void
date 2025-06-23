@@ -1,5 +1,7 @@
 package content.entity.combat.hit
 
+import content.entity.combat.damageDealers
+import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -8,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
-import content.entity.combat.damageDealers
 import kotlin.collections.set
 import kotlin.math.floor
 
@@ -31,13 +32,14 @@ characterCombatDamage { character ->
     val dealers = character.damageDealers
     dealers[source] = dealers.getOrDefault(source, 0) + damage
     val maxHit = source["max_hit", 0]
+    val mark = Weapon.mark(type)
     val critical = mark.id < 3 && damage > 10 && maxHit > 0 && damage > (maxHit * 0.9)
     character.hit(
         source = source,
         amount = damage,
         mark = mark,
         critical = critical,
-        soak = soak
+        soak = soak,
     )
     character.levels.drain(Skill.Constitution, damage)
 }
@@ -47,13 +49,13 @@ characterCombatDamage { character ->
         character.hit(
             source = source,
             amount = 0,
-            mark = HitSplat.Mark.Missed
+            mark = HitSplat.Mark.Missed,
         )
     } else if (type == "healed") {
         character.hit(
             source = source,
             amount = damage,
-            mark = HitSplat.Mark.Healed
+            mark = HitSplat.Mark.Healed,
         )
         character.levels.restore(Skill.Constitution, damage)
     }

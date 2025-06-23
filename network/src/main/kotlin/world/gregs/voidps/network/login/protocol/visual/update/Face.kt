@@ -9,7 +9,7 @@ import kotlin.math.atan2
 data class Face(
     var targetX: Int = 0,
     var targetY: Int = 0,
-    var direction: Int = 0
+    var direction: Int = 0,
 ) : Visual {
 
     override fun reset() {
@@ -19,8 +19,6 @@ data class Face(
     }
 
     companion object {
-        fun getFaceDirection(xOffset: Int, yOffset: Int): Int {
-            return (atan2(xOffset * -1.0, yOffset * -1.0) * 2607.5945876176133).toInt() and 0x3fff
-        }
+        fun getFaceDirection(xOffset: Int, yOffset: Int): Int = (atan2(xOffset * -1.0, yOffset * -1.0) * 2607.5945876176133).toInt() and 0x3fff
     }
 }

@@ -1,5 +1,8 @@
 package content.skill.constitution.drink
 
+import content.area.wilderness.inWilderness
+import content.entity.combat.hit.directHit
+import content.skill.constitution.canConsume
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -11,9 +14,6 @@ import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
-import content.entity.combat.hit.directHit
-import content.area.wilderness.inWilderness
-import content.skill.constitution.canConsume
 import java.util.concurrent.TimeUnit
 
 canConsume("overload*") { player ->
@@ -98,7 +98,7 @@ val skills = listOf(
     Skill.Strength,
     Skill.Defence,
     Skill.Magic,
-    Skill.Ranged
+    Skill.Ranged,
 )
 
 fun removeBoost(player: Player) {

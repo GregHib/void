@@ -9,14 +9,12 @@ import world.gregs.voidps.engine.event.EventDispatcher
 class Experience(
     val experience: DoubleArray = defaultExperience.clone(),
     val blocked: MutableSet<Skill> = mutableSetOf(),
-    private val maximum: Double = MAXIMUM_EXPERIENCE
+    private val maximum: Double = MAXIMUM_EXPERIENCE,
 ) {
 
     lateinit var events: EventDispatcher
 
-    fun get(skill: Skill): Double {
-        return experience[skill.ordinal]
-    }
+    fun get(skill: Skill): Double = experience[skill.ordinal]
 
     fun set(skill: Skill, experience: Double) {
         if (experience in 0.0..maximum && !blocked.contains(skill)) {

@@ -1,5 +1,13 @@
 package content.bot.path
 
+import content.bot.interact.navigation.graph.Condition
+import content.bot.interact.navigation.graph.Edge
+import content.bot.interact.navigation.graph.NavigationGraph
+import content.bot.interact.navigation.graph.waypoints
+import content.bot.interact.path.Dijkstra
+import content.bot.interact.path.DijkstraFrontier
+import content.bot.interact.path.EdgeTraversal
+import content.bot.interact.path.NodeTargetStrategy
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
@@ -9,14 +17,6 @@ import kotlinx.io.pool.ObjectPool
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import content.bot.interact.navigation.graph.Condition
-import content.bot.interact.navigation.graph.Edge
-import content.bot.interact.navigation.graph.NavigationGraph
-import content.bot.interact.navigation.graph.waypoints
-import content.bot.interact.path.Dijkstra
-import content.bot.interact.path.DijkstraFrontier
-import content.bot.interact.path.EdgeTraversal
-import content.bot.interact.path.NodeTargetStrategy
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
@@ -63,10 +63,7 @@ internal class DijkstraTest {
         every { player.waypoints } returns waypoints
 
         val strategy: NodeTargetStrategy = object : NodeTargetStrategy() {
-            override fun reached(node: Any): Boolean {
-                return node == c
-            }
-
+            override fun reached(node: Any): Boolean = node == c
         }
         val traversal = EdgeTraversal()
         // When
@@ -99,9 +96,7 @@ internal class DijkstraTest {
         every { player.waypoints } returns waypoints
 
         val strategy: NodeTargetStrategy = object : NodeTargetStrategy() {
-            override fun reached(node: Any): Boolean {
-                return node != player
-            }
+            override fun reached(node: Any): Boolean = node != player
         }
         val traversal = EdgeTraversal()
         // When
@@ -138,14 +133,12 @@ internal class DijkstraTest {
 
         var first = true
         val strategy: NodeTargetStrategy = object : NodeTargetStrategy() {
-            override fun reached(node: Any): Boolean {
-                return if (node == a) {
-                    val answer = !first
-                    first = false
-                    answer
-                } else {
-                    false
-                }
+            override fun reached(node: Any): Boolean = if (node == a) {
+                val answer = !first
+                first = false
+                answer
+            } else {
+                false
             }
         }
         val traversal = EdgeTraversal()
@@ -168,23 +161,24 @@ internal class DijkstraTest {
         val p: Player = mockk()
         val a = Tile(5, 10)
 
-        val edge = Edge("", p, a, 9, requirements = listOf(
-            object : Condition {
-                override fun has(player: Player): Boolean {
-                    return player != p
-                }
-
-            }
-        ))
+        val edge = Edge(
+            "",
+            p,
+            a,
+            9,
+            requirements = listOf(
+                object : Condition {
+                    override fun has(player: Player): Boolean = player != p
+                },
+            ),
+        )
         graph.add(p, ObjectOpenHashSet.of(edge))
 
         val waypoints = LinkedList<Edge>()
         every { p.waypoints } returns waypoints
 
         val strategy: NodeTargetStrategy = object : NodeTargetStrategy() {
-            override fun reached(node: Any): Boolean {
-                return node == a
-            }
+            override fun reached(node: Any): Boolean = node == a
         }
         val traversal = EdgeTraversal()
         // When
@@ -193,5 +187,4 @@ internal class DijkstraTest {
         assertNull(result)
         assertTrue(waypoints.isEmpty())
     }
-
 }

@@ -1,5 +1,7 @@
 package content.skill.melee.armour
 
+import WorldTest
+import content.entity.combat.hit.directHit
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -8,8 +10,6 @@ import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.entity.combat.hit.directHit
-import WorldTest
 import kotlin.test.assertTrue
 
 internal class RingOfRecoilTest : WorldTest() {
@@ -47,5 +47,4 @@ internal class RingOfRecoilTest : WorldTest() {
         assertEquals(389, player.equipment.charges(player, EquipSlot.Ring.index))
         assertEquals(389, player.inventory.charges(player, 0))
     }
-
 }

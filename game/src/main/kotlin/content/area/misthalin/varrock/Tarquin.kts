@@ -1,14 +1,14 @@
 package content.area.misthalin.varrock
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.suspend.SuspendableContext
+import content.entity.obj.canoe.minimumCanoeLevel
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.obj.canoe.minimumCanoeLevel
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.suspend.SuspendableContext
 
 npcOperate("Talk-To", "tarquin") {
     player<Neutral>("Hello there.")

@@ -11,11 +11,11 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
  */
 class MapObjectsDecoder(
     private val objects: GameObjects,
-    private val definitions: ObjectDefinitions
+    private val definitions: ObjectDefinitions,
 ) : MapObjectDecoder() {
 
     fun decode(cache: Cache, settings: ByteArray, regionX: Int, regionY: Int, keys: IntArray?) {
-        val objectData = cache.data(Index.MAPS, "l${regionX}_${regionY}", xtea = keys) ?: return
+        val objectData = cache.data(Index.MAPS, "l${regionX}_$regionY", xtea = keys) ?: return
         val zoneTileX = regionX shl 6
         val zoneTileY = regionY shl 6
         super.decode(objectData, settings, zoneTileX, zoneTileY)

@@ -13,7 +13,7 @@ import world.gregs.voidps.type.Tile
 class Follow(
     character: Character,
     val target: Character,
-    private val strategy: TargetStrategy = FollowTargetStrategy(target)
+    private val strategy: TargetStrategy = FollowTargetStrategy(target),
 ) : Movement(character, strategy) {
 
     private var smart = character is Player

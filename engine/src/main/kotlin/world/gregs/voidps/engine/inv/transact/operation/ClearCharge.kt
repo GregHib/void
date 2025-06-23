@@ -27,5 +27,4 @@ object ClearCharge {
         // Clear the charges
         set(index, item.copy(amount = 0))
     }
-
 }

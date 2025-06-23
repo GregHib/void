@@ -20,6 +20,9 @@ class CollisionDecoder(private val collisions: Collisions) {
                     if (localX.rem(8) == 0 && localY.rem(8) == 0) {
                         collisions.allocateIfAbsent(x + localX, y + localY, level)
                     }
+                    if (isTile(settings, localX, localY, level, ROOF_TILE)) {
+                        collisions.setUnsafe(x + localX, y + localY, level, CollisionFlag.ROOF)
+                    }
                     if (!isTile(settings, localX, localY, level, BLOCKED_TILE)) {
                         continue
                     }
@@ -64,6 +67,9 @@ class CollisionDecoder(private val collisions: Collisions) {
                     }
                     val rotX = rotateX(localX, localY, zoneRotation)
                     val rotY = rotateY(localX, localY, zoneRotation)
+                    if (isTile(settings, localX, localY, level, ROOF_TILE)) {
+                        collisions.setUnsafe(targetX + rotX, targetY + rotY, height, CollisionFlag.ROOF)
+                    }
                     collisions.setUnsafe(targetX + rotX, targetY + rotY, height, CollisionFlag.FLOOR)
                 }
             }
@@ -73,17 +79,32 @@ class CollisionDecoder(private val collisions: Collisions) {
     companion object {
         internal const val BLOCKED_TILE = 0x1
         internal const val BRIDGE_TILE = 0x2
+        internal const val ROOF_TILE = 0x4
 
-        private fun isTile(tiles: ByteArray, localX: Int, localY: Int, level: Int, flag: Int): Boolean {
-            return tiles[MapDefinition.index(localX, localY, level)].toInt() and flag == flag
-        }
+        private fun isTile(tiles: ByteArray, localX: Int, localY: Int, level: Int, flag: Int): Boolean = tiles[MapDefinition.index(localX, localY, level)].toInt() and flag == flag
 
-        private fun rotateX(x: Int, y: Int, rotation: Int): Int {
-            return (if (rotation == 1) y else if (rotation == 2) 7 - x else if (rotation == 3) 7 - y else x) and 0x7
-        }
+        private fun rotateX(x: Int, y: Int, rotation: Int): Int = (
+            if (rotation == 1) {
+                y
+            } else if (rotation == 2) {
+                7 - x
+            } else if (rotation == 3) {
+                7 - y
+            } else {
+                x
+            }
+            ) and 0x7
 
-        private fun rotateY(x: Int, y: Int, rotation: Int): Int {
-            return (if (rotation == 1) 7 - x else if (rotation == 2) 7 - y else if (rotation == 3) x else y) and 0x7
-        }
+        private fun rotateY(x: Int, y: Int, rotation: Int): Int = (
+            if (rotation == 1) {
+                7 - x
+            } else if (rotation == 2) {
+                7 - y
+            } else if (rotation == 3) {
+                x
+            } else {
+                y
+            }
+            ) and 0x7
     }
 }

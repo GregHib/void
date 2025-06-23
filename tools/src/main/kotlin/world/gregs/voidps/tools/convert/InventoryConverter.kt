@@ -9,8 +9,8 @@ import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.encoder.InventoryEncoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.list
 import java.io.File
 import kotlin.collections.component1
@@ -35,16 +35,18 @@ object InventoryConverter {
         val encoder = InventoryEncoder()
         val data: MutableMap<String, Any> = mutableMapOf()
 
-        Config.fileReader(Settings["definitions.inventories"]) {
-            while (nextSection()) {
-                val section = section()
-                val map = mutableMapOf<String, Any>()
-                while (nextPair()) {
-                    val key = key()
-                    val value = value()
-                    map[key] = value
+        for (file in files.list(Settings["definitions.inventories"])) {
+            Config.fileReader(file) {
+                while (nextSection()) {
+                    val section = section()
+                    val map = mutableMapOf<String, Any>()
+                    while (nextPair()) {
+                        val key = key()
+                        val value = value()
+                        map[key] = value
+                    }
+                    data[section] = map
                 }
-                data[section] = map
             }
         }
 
@@ -88,7 +90,7 @@ object InventoryConverter {
                     map["defaults"] = list
                     data[found!!] = map
                 } else {
-                    data["inventory_${index}"] = mapOf("id" to index, "defaults" to list)
+                    data["inventory_$index"] = mapOf("id" to index, "defaults" to list)
                 }
 //                println("$index ${otherDef.ids!!.mapIndexed { index, it -> "${itemDefinitions.getOrNull(it)?.name} ${otherDef.amounts!![index]}" }.joinToString(separator = ", ")}")
             }

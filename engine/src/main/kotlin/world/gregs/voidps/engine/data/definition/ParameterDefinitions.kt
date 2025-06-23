@@ -17,8 +17,9 @@ import world.gregs.voidps.engine.timedLoad
  */
 class ParameterDefinitions(
     private val categoryDefinitions: CategoryDefinitions,
-    private val ammoDefinitions: AmmoDefinitions
-) : DefinitionsDecoder<ParameterDefinition>, Parameters {
+    private val ammoDefinitions: AmmoDefinitions,
+) : DefinitionsDecoder<ParameterDefinition>,
+    Parameters {
 
     override lateinit var definitions: Array<ParameterDefinition>
     override lateinit var ids: Map<String, Int>
@@ -96,5 +97,4 @@ class ParameterDefinitions(
     }
 
     override fun empty() = ParameterDefinition.EMPTY
-
 }

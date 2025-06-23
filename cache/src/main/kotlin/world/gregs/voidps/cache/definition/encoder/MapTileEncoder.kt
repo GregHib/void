@@ -34,5 +34,4 @@ class MapTileEncoder : DefinitionEncoder<MapDefinition> {
             }
         }
     }
-
 }

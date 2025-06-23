@@ -66,13 +66,13 @@ data class InterfaceComponentDefinitionFull(
     var options: Array<String>? = null,
     var mouseIcon: IntArray? = null,
     var optionOverride: String? = null,
-    var anInt4708: Int = 0,// Drag type
-    var anInt4795: Int = 0,// Drag slider?
-    var anInt4860: Int = 0,// Friends list icons/buttons?
+    var anInt4708: Int = 0, // Drag type
+    var anInt4795: Int = 0, // Drag slider?
+    var anInt4860: Int = 0, // Friends list icons/buttons?
     var useOption: String = "",
     var anInt4698: Int = -1,
-    var anInt4839: Int = -1,// Unused
-    var anInt4761: Int = -1,// Unused
+    var anInt4839: Int = -1, // Unused
+    var anInt4761: Int = -1, // Unused
     var setting: InterfaceComponentSetting = InterfaceComponentSetting(0, -1),
     val params: HashMap<Long, Any>? = null,
     var information: Array<Any>? = null,
@@ -103,8 +103,9 @@ data class InterfaceComponentDefinitionFull(
     var anIntArray4805: IntArray? = null,
     var hasScript: Boolean = false,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null
-) : Definition, Extra {
+    override var extras: Map<String, Any>? = null,
+) : Definition,
+    Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -168,25 +169,35 @@ data class InterfaceComponentDefinitionFull(
         if (keyRepeats != null) {
             if (other.keyRepeats == null) return false
             if (!keyRepeats.contentEquals(other.keyRepeats)) return false
-        } else if (other.keyRepeats != null) return false
+        } else if (other.keyRepeats != null) {
+            return false
+        }
         if (keyCodes != null) {
             if (other.keyCodes == null) return false
             if (!keyCodes.contentEquals(other.keyCodes)) return false
-        } else if (other.keyCodes != null) return false
+        } else if (other.keyCodes != null) {
+            return false
+        }
         if (keyModifiers != null) {
             if (other.keyModifiers == null) return false
             if (!keyModifiers.contentEquals(other.keyModifiers)) return false
-        } else if (other.keyModifiers != null) return false
+        } else if (other.keyModifiers != null) {
+            return false
+        }
         if (clickable != other.clickable) return false
         if (name != other.name) return false
         if (options != null) {
             if (other.options == null) return false
             if (!options.contentEquals(other.options)) return false
-        } else if (other.options != null) return false
+        } else if (other.options != null) {
+            return false
+        }
         if (mouseIcon != null) {
             if (other.mouseIcon == null) return false
             if (!mouseIcon.contentEquals(other.mouseIcon)) return false
-        } else if (other.mouseIcon != null) return false
+        } else if (other.mouseIcon != null) {
+            return false
+        }
         if (optionOverride != other.optionOverride) return false
         if (anInt4708 != other.anInt4708) return false
         if (anInt4795 != other.anInt4795) return false
@@ -200,107 +211,159 @@ data class InterfaceComponentDefinitionFull(
         if (information != null) {
             if (other.information == null) return false
             if (!information.contentEquals(other.information)) return false
-        } else if (other.information != null) return false
+        } else if (other.information != null) {
+            return false
+        }
         if (mouseEnterHandler != null) {
             if (other.mouseEnterHandler == null) return false
             if (!mouseEnterHandler.contentEquals(other.mouseEnterHandler)) return false
-        } else if (other.mouseEnterHandler != null) return false
+        } else if (other.mouseEnterHandler != null) {
+            return false
+        }
         if (mouseExitHandler != null) {
             if (other.mouseExitHandler == null) return false
             if (!mouseExitHandler.contentEquals(other.mouseExitHandler)) return false
-        } else if (other.mouseExitHandler != null) return false
+        } else if (other.mouseExitHandler != null) {
+            return false
+        }
         if (anObjectArray4771 != null) {
             if (other.anObjectArray4771 == null) return false
             if (!anObjectArray4771.contentEquals(other.anObjectArray4771)) return false
-        } else if (other.anObjectArray4771 != null) return false
+        } else if (other.anObjectArray4771 != null) {
+            return false
+        }
         if (anObjectArray4768 != null) {
             if (other.anObjectArray4768 == null) return false
             if (!anObjectArray4768.contentEquals(other.anObjectArray4768)) return false
-        } else if (other.anObjectArray4768 != null) return false
+        } else if (other.anObjectArray4768 != null) {
+            return false
+        }
         if (stateChangeHandler != null) {
             if (other.stateChangeHandler == null) return false
             if (!stateChangeHandler.contentEquals(other.stateChangeHandler)) return false
-        } else if (other.stateChangeHandler != null) return false
+        } else if (other.stateChangeHandler != null) {
+            return false
+        }
         if (invUpdateHandler != null) {
             if (other.invUpdateHandler == null) return false
             if (!invUpdateHandler.contentEquals(other.invUpdateHandler)) return false
-        } else if (other.invUpdateHandler != null) return false
+        } else if (other.invUpdateHandler != null) {
+            return false
+        }
         if (refreshHandler != null) {
             if (other.refreshHandler == null) return false
             if (!refreshHandler.contentEquals(other.refreshHandler)) return false
-        } else if (other.refreshHandler != null) return false
+        } else if (other.refreshHandler != null) {
+            return false
+        }
         if (updateHandler != null) {
             if (other.updateHandler == null) return false
             if (!updateHandler.contentEquals(other.updateHandler)) return false
-        } else if (other.updateHandler != null) return false
+        } else if (other.updateHandler != null) {
+            return false
+        }
         if (anObjectArray4770 != null) {
             if (other.anObjectArray4770 == null) return false
             if (!anObjectArray4770.contentEquals(other.anObjectArray4770)) return false
-        } else if (other.anObjectArray4770 != null) return false
+        } else if (other.anObjectArray4770 != null) {
+            return false
+        }
         if (anObjectArray4751 != null) {
             if (other.anObjectArray4751 == null) return false
             if (!anObjectArray4751.contentEquals(other.anObjectArray4751)) return false
-        } else if (other.anObjectArray4751 != null) return false
+        } else if (other.anObjectArray4751 != null) {
+            return false
+        }
         if (mouseMotionHandler != null) {
             if (other.mouseMotionHandler == null) return false
             if (!mouseMotionHandler.contentEquals(other.mouseMotionHandler)) return false
-        } else if (other.mouseMotionHandler != null) return false
+        } else if (other.mouseMotionHandler != null) {
+            return false
+        }
         if (mousePressedHandler != null) {
             if (other.mousePressedHandler == null) return false
             if (!mousePressedHandler.contentEquals(other.mousePressedHandler)) return false
-        } else if (other.mousePressedHandler != null) return false
+        } else if (other.mousePressedHandler != null) {
+            return false
+        }
         if (mouseDraggedHandler != null) {
             if (other.mouseDraggedHandler == null) return false
             if (!mouseDraggedHandler.contentEquals(other.mouseDraggedHandler)) return false
-        } else if (other.mouseDraggedHandler != null) return false
+        } else if (other.mouseDraggedHandler != null) {
+            return false
+        }
         if (mouseReleasedHandler != null) {
             if (other.mouseReleasedHandler == null) return false
             if (!mouseReleasedHandler.contentEquals(other.mouseReleasedHandler)) return false
-        } else if (other.mouseReleasedHandler != null) return false
+        } else if (other.mouseReleasedHandler != null) {
+            return false
+        }
         if (mouseDragPassHandler != null) {
             if (other.mouseDragPassHandler == null) return false
             if (!mouseDragPassHandler.contentEquals(other.mouseDragPassHandler)) return false
-        } else if (other.mouseDragPassHandler != null) return false
+        } else if (other.mouseDragPassHandler != null) {
+            return false
+        }
         if (anObjectArray4852 != null) {
             if (other.anObjectArray4852 == null) return false
             if (!anObjectArray4852.contentEquals(other.anObjectArray4852)) return false
-        } else if (other.anObjectArray4852 != null) return false
+        } else if (other.anObjectArray4852 != null) {
+            return false
+        }
         if (anObjectArray4711 != null) {
             if (other.anObjectArray4711 == null) return false
             if (!anObjectArray4711.contentEquals(other.anObjectArray4711)) return false
-        } else if (other.anObjectArray4711 != null) return false
+        } else if (other.anObjectArray4711 != null) {
+            return false
+        }
         if (anObjectArray4753 != null) {
             if (other.anObjectArray4753 == null) return false
             if (!anObjectArray4753.contentEquals(other.anObjectArray4753)) return false
-        } else if (other.anObjectArray4753 != null) return false
+        } else if (other.anObjectArray4753 != null) {
+            return false
+        }
         if (anObjectArray4688 != null) {
             if (other.anObjectArray4688 == null) return false
             if (!anObjectArray4688.contentEquals(other.anObjectArray4688)) return false
-        } else if (other.anObjectArray4688 != null) return false
+        } else if (other.anObjectArray4688 != null) {
+            return false
+        }
         if (anObjectArray4775 != null) {
             if (other.anObjectArray4775 == null) return false
             if (!anObjectArray4775.contentEquals(other.anObjectArray4775)) return false
-        } else if (other.anObjectArray4775 != null) return false
+        } else if (other.anObjectArray4775 != null) {
+            return false
+        }
         if (clientVarp != null) {
             if (other.clientVarp == null) return false
             if (!clientVarp.contentEquals(other.clientVarp)) return false
-        } else if (other.clientVarp != null) return false
+        } else if (other.clientVarp != null) {
+            return false
+        }
         if (inventories != null) {
             if (other.inventories == null) return false
             if (!inventories.contentEquals(other.inventories)) return false
-        } else if (other.inventories != null) return false
+        } else if (other.inventories != null) {
+            return false
+        }
         if (anIntArray4789 != null) {
             if (other.anIntArray4789 == null) return false
             if (!anIntArray4789.contentEquals(other.anIntArray4789)) return false
-        } else if (other.anIntArray4789 != null) return false
+        } else if (other.anIntArray4789 != null) {
+            return false
+        }
         if (clientVarc != null) {
             if (other.clientVarc == null) return false
             if (!clientVarc.contentEquals(other.clientVarc)) return false
-        } else if (other.clientVarc != null) return false
+        } else if (other.clientVarc != null) {
+            return false
+        }
         if (anIntArray4805 != null) {
             if (other.anIntArray4805 == null) return false
             if (!anIntArray4805.contentEquals(other.anIntArray4805)) return false
-        } else if (other.anIntArray4805 != null) return false
+        } else if (other.anIntArray4805 != null) {
+            return false
+        }
         if (hasScript != other.hasScript) return false
         if (stringId != other.stringId) return false
         if (extras != other.extras) return false

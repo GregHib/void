@@ -17,7 +17,7 @@ private data class Cache(
     val scope: String,
     val game: String,
     val language: String,
-    val builds: List<Map<String, Int>>
+    val builds: List<Map<String, Int>>,
 )
 
 /**
@@ -80,13 +80,15 @@ object MissingMapFinder {
     }
 
     private fun print(region: Int, list: List<Pair<Cache, IntArray>>) {
-        println("$region - ${list.first().second.contentToString()} https://archive.openrs2.org/caches/runescape/${list.first().first.id} - ${
-            list.map {
-                "${it.first.id}, ${
-                    it.first.builds.getOrNull(0)
-                }, ${it.second.contentToString()}"
-            }
-        }")
+        println(
+            "$region - ${list.first().second.contentToString()} https://archive.openrs2.org/caches/runescape/${list.first().first.id} - ${
+                list.map {
+                    "${it.first.id}, ${
+                        it.first.builds.getOrNull(0)
+                    }, ${it.second.contentToString()}"
+                }
+            }",
+        )
     }
 
     private fun majorVersion(cache: Cache) = cache.builds.getOrNull(0)?.get("major") ?: Int.MIN_VALUE
@@ -129,7 +131,7 @@ object MissingMapFinder {
             for (regionX in 0 until 256) {
                 for (regionY in 0 until 256) {
                     val region = Region(regionX, regionY)
-                    val archive = cache.archiveId(Index.MAPS, "l${regionX}_${regionY}")
+                    val archive = cache.archiveId(Index.MAPS, "l${regionX}_$regionY")
                     if (!archives.contains(archive)) {
                         continue
                     }
@@ -160,5 +162,4 @@ object MissingMapFinder {
         }
         return Xteas(Xteas.loadJson(content, value = "key").toMutableMap())
     }
-
 }

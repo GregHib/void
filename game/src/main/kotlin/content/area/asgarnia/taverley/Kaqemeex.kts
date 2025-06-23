@@ -1,25 +1,25 @@
 package content.area.asgarnia.taverley
 
-import world.gregs.voidps.engine.event.Context
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.entity.sound.jingle
+import content.quest.quest
+import content.quest.questComplete
+import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
+import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import content.quest.quest
-import content.quest.refreshQuestJournal
-import content.quest.questComplete
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.player
-import content.entity.sound.jingle
 
 npcOperate("Talk-to", "kaqemeex") {
     when (player.quest("druidic_ritual")) {
@@ -71,7 +71,6 @@ npcOperate("Talk-to", "kaqemeex") {
         else -> completed()
     }
 }
-
 
 suspend fun SuspendableContext<Player>.startedQuest() {
     npc<Neutral>("That used to be OUR stone circle. Unfortunately, many many years ago, dark wizards cast a wicked spell upon it so that they could corrupt its power for their own evil ends.")
@@ -182,7 +181,7 @@ fun Context<Player>.questComplete() {
             "4 Quest Points",
             "Access to the Herblore Skill",
             "250 Herblore XP",
-            item = "clean_marrentill"
+            item = "clean_marrentill",
         )
     }
 }

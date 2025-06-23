@@ -16,7 +16,7 @@ data class InterfaceSwitch(
     val toComponent: String,
     val toItem: Item,
     val toSlot: Int,
-    val toInventory: String
+    val toInventory: String,
 ) : Event {
 
     override val size = 5

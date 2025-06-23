@@ -6,5 +6,5 @@ data class ChangeDisplayMode(
     val displayMode: Int,
     val width: Int,
     val height: Int,
-    val antialiasLevel: Int
+    val antialiasLevel: Int,
 ) : Instruction

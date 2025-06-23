@@ -7,5 +7,5 @@ import world.gregs.voidps.network.client.Instruction
  * @param name The display name of the friend whose chat to join
  */
 data class ClanChatJoin(
-    val name: String
+    val name: String,
 ) : Instruction

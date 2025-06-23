@@ -12,5 +12,4 @@ class ObjectExamineDecoder : Decoder(2) {
         val objectId = packet.readUShort().toInt()
         return ExamineObject(objectId)
     }
-
 }

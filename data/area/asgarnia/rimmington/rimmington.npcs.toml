@@ -3,6 +3,7 @@ id = 530
 categories = ["human"]
 shop = "rimmington_general_store"
 wander_radius = 2
+collision = "indoors"
 examine = "Has an interesting assortment of items for sale."
 
 [shop_assistant_rimmington]
@@ -10,4 +11,5 @@ id = 531
 categories = ["human"]
 shop = "rimmington_general_store"
 wander_radius = 2
+collision = "indoors"
 examine = "Works on commission."

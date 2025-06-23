@@ -1,9 +1,9 @@
 package content.entity.obj.door
 
-import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.entity.obj.GameObject
 import content.entity.obj.Replace
 import content.entity.obj.door.Door.rotation
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.engine.entity.obj.GameObject
 
 object Gate {
     /**
@@ -34,7 +34,7 @@ object Gate {
             Door.tile(tile, second.rotation, tileRotation),
             second.rotation(objRotation),
             ticks,
-            collision = collision
+            collision = collision,
         )
     }
 

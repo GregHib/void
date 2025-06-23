@@ -1,12 +1,13 @@
 package content.bot.interact.navigation
 
 import com.github.michaelbull.logging.InlineLogger
-import kotlinx.coroutines.withTimeoutOrNull
 import content.bot.Bot
 import content.bot.interact.navigation.graph.Edge
 import content.bot.interact.navigation.graph.NavigationGraph
 import content.bot.interact.navigation.graph.waypoints
 import content.bot.interact.path.*
+import content.entity.player.effect.energy.energyPercent
+import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.entity.character.move.running
@@ -20,7 +21,6 @@ import world.gregs.voidps.network.client.instruction.InteractNPC
 import world.gregs.voidps.network.client.instruction.InteractObject
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Tile
-import content.entity.player.effect.energy.energyPercent
 
 private val logger = InlineLogger()
 

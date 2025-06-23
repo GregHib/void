@@ -15,5 +15,4 @@ class PlayerPrimaryGraphicEncoder : VisualEncoder<PlayerVisuals>(PLAYER_GRAPHIC_
             writeByteAdd(visual.packedRotationRefresh)
         }
     }
-
 }

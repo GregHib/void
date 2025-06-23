@@ -159,7 +159,7 @@ internal class DropTableTest {
             type = TableType.All,
             roll = 12,
             drops = listOf(item1),
-            chance = 6
+            chance = 6,
         )
         assertEquals(DropTable(TableType.All, 12, listOf(item1), 6), table)
     }

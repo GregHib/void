@@ -297,8 +297,7 @@ internal class LevelsTest {
     fun `Listen to level up`() {
         exp.set(Skill.Magic, 1154.0)
         verifyOrder {
-            events.emit(any<MaxLevelChanged>())//(Skill.Magic, 1, 10))
+            events.emit(any<MaxLevelChanged>()) // (Skill.Magic, 1, 10))
         }
     }
-
 }

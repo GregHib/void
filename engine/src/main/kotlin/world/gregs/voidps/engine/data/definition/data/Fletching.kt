@@ -14,7 +14,7 @@ data class Fletching(
     val xp: Double = 0.0,
     val animation: String = "",
     val makeAmount: Int = 1,
-    val tick: Int = -1
+    val tick: Int = -1,
 ) {
     companion object {
 

@@ -13,7 +13,7 @@ internal data class Dialogue(
     var previousCount: List<Int>,
     val options: List<String> = emptyList(),
     val text: String = "",
-    val name: String = ""
+    val name: String = "",
 ) {
 
     val dialogue: String
@@ -33,7 +33,8 @@ internal data class Dialogue(
             "next_count" to nextCount,
             "previous" to previous,
             "previous_count" to previousCount,
-            "options" to options)
+            "options" to options,
+        )
     } else {
         mapOf(
             "type" to type,
@@ -42,7 +43,8 @@ internal data class Dialogue(
             "previous" to previous,
             "previous_count" to previousCount,
             "text" to text,
-            "name" to name)
+            "name" to name,
+        )
     }
 
     fun print() {
@@ -52,11 +54,13 @@ internal data class Dialogue(
         println("// dialogue $id")
         when (type) {
             "DIALOGUE_OPTIONS" -> {
-                println("""
+                println(
+                    """
                         choice("${options.first()}") {
                             ${options.drop(1).map { "option(\"${it}\")\n" }}
                         }
-                    """)
+                    """,
+                )
             }
             "DIALOGUE_NPC" -> println("npc<Talk>(\"${text}\")")
             "DIALOGUE_PLAYER" -> println("player<Talk>(\"${text}\")")
@@ -83,7 +87,7 @@ internal data class Dialogue(
             map["previous_count"] as List<Int>,
             map["options"] as? List<String> ?: emptyList(),
             map["text"] as? String ?: "",
-            map["name"] as? String ?: ""
+            map["name"] as? String ?: "",
         )
     }
 }

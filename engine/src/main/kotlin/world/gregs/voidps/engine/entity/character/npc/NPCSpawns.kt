@@ -4,17 +4,17 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 
 private val logger = InlineLogger()
 
 fun loadNpcSpawns(
     npcs: NPCs,
     paths: List<String>,
-    npcDefinitions: NPCDefinitions
+    npcDefinitions: NPCDefinitions,
 ) {
     timedLoad("npc spawn") {
         npcs.clear()
@@ -50,11 +50,11 @@ fun loadNpcSpawns(
                         val tile = Tile(x, y, level)
                         val definition = npcDefinitions.getOrNull(id)
                         if (definition == null) {
-                            logger.warn { "Invalid npc spawn id '$id' in ${path}." }
+                            logger.warn { "Invalid npc spawn id '$id' in $path." }
                         } else if (debug) {
                             val hash = (tile.id.toLong() shl 32) + definition.id.toLong()
                             if (hashes.contains(hash)) {
-                                logger.warn { "Duplicate spawn id = \"$id\" x = ${tile.x}, y = ${tile.y}${if (tile.level != 0) ", level = ${tile.level}" else ""} in ${path}." }
+                                logger.warn { "Duplicate spawn id = \"$id\" x = ${tile.x}, y = ${tile.y}${if (tile.level != 0) ", level = ${tile.level}" else ""} in $path." }
                             }
                             hashes.add(hash)
                         }

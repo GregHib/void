@@ -30,5 +30,4 @@ internal class StringEntryTest : DialogueTest() {
         suspend.resume("a string")
         assertEquals("a string", result)
     }
-
 }

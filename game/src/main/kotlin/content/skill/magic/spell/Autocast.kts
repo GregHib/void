@@ -1,13 +1,13 @@
 package content.skill.magic.spell
 
+import content.skill.melee.weapon.attackRange
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import content.skill.melee.weapon.attackRange
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 
 val interfaceDefinitions: InterfaceDefinitions by inject()
 

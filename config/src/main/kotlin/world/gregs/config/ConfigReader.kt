@@ -422,15 +422,33 @@ class ConfigReader(
             F -> booleanFalse()
             MINUS -> {
                 val value = readLong(0)
-                if (byte == DOT) -readDecimal(value) else if (value > Int.MIN_VALUE && value < Int.MAX_VALUE) -value.toInt() else -value
+                if (byte == DOT) {
+                    -readDecimal(value)
+                } else if (value > Int.MIN_VALUE && value < Int.MAX_VALUE) {
+                    -value.toInt()
+                } else {
+                    -value
+                }
             }
             PLUS -> {
                 val value = readLong(0)
-                if (byte == DOT) readDecimal(value) else if (value > Int.MIN_VALUE && value < Int.MAX_VALUE) value.toInt() else value
+                if (byte == DOT) {
+                    readDecimal(value)
+                } else if (value > Int.MIN_VALUE && value < Int.MAX_VALUE) {
+                    value.toInt()
+                } else {
+                    value
+                }
             }
             ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE -> {
                 val value = readLong(byte - ZERO.toLong())
-                if (byte == DOT) readDecimal(value) else if (value > Int.MIN_VALUE && value < Int.MAX_VALUE) value.toInt() else value
+                if (byte == DOT) {
+                    readDecimal(value)
+                } else if (value > Int.MIN_VALUE && value < Int.MAX_VALUE) {
+                    value.toInt()
+                } else {
+                    value
+                }
             }
             else -> throw IllegalArgumentException("Unexpected character. ${exception()}")
         }

@@ -1,6 +1,7 @@
 package content.skill.farming
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -10,7 +11,6 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import content.entity.player.inv.inventoryItem
 
 val logger = InlineLogger()
 
@@ -21,7 +21,7 @@ private val fruit = mapOf(
     "orange" to Fruit("orange", "oranges", "an orange"),
     "banana" to Fruit("banana", "bananas"),
     "cooking_apple" to Fruit("apple", "apples", "an apple"),
-    "tomato" to Fruit("tomato", "tomatoes")
+    "tomato" to Fruit("tomato", "tomatoes"),
 )
 
 inventoryItem("Fill", "basket") {
@@ -48,7 +48,7 @@ inventoryItem("Fill", "basket") {
         if (removed == 0) {
             error = TransactionError.Deficient(0)
         }
-        replace(slot, "basket", "${veg.plural}_${removed}")
+        replace(slot, "basket", "${veg.plural}_$removed")
     }
     when (player.inventory.transaction.error) {
         is TransactionError.Deficient -> player.message("You don't have any fruit with which to fill the basket.")

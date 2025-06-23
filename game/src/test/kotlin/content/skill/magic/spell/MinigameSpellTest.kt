@@ -62,5 +62,4 @@ class MinigameSpellTest : MagicSpellTest() {
         assertEquals(2, player.inventory.count("elemental_rune"))
         assertEquals(1, player.inventory.count("catalytic_rune"))
     }
-
 }

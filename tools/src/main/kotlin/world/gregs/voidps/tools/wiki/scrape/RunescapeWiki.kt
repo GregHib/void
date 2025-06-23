@@ -72,7 +72,7 @@ object RunescapeWiki {
         val files = runBlocking {
             pages.chunked(batchSize).mapIndexed { index, list ->
                 GlobalScope.async {
-                    val temp = parent.resolve("${file.nameWithoutExtension}_temp_${index}.xml")
+                    val temp = parent.resolve("${file.nameWithoutExtension}_temp_$index.xml")
                     if (!temp.exists()) {
                         println("Downloading ${file.nameWithoutExtension} part $index")
                         temp.writeBytes(export(list.joinToString(separator = "\n"), wiki, currentOnly, includeTemplates).readAllBytes())
@@ -182,5 +182,4 @@ object RunescapeWiki {
         val options = doc.select("div[class$=mw-widget-namespaceInputWidget] option")
         return options.associate { it.text() to it.attr("value").toInt() }
     }
-
 }

@@ -26,8 +26,7 @@ class InterfaceOnFloorItemDecoder : Decoder(15) {
             InterfaceDefinition.id(packed),
             InterfaceDefinition.componentId(packed),
             item,
-            itemSlot
+            itemSlot,
         )
     }
-
 }

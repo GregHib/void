@@ -17,8 +17,10 @@ import world.gregs.voidps.type.Tile
 data class Moved<C : Character>(
     override val character: C,
     val from: Tile,
-    val to: Tile
-) : CancellableEvent(), SuspendableContext<C>, SuspendableEvent {
+    val to: Tile,
+) : CancellableEvent(),
+    SuspendableContext<C>,
+    SuspendableEvent {
 
     override val size = 4
 
