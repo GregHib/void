@@ -10,6 +10,7 @@ style = "crush"
 max_hit_melee = 110
 respawn_delay = 30
 wander_radius = 4
+attack_radius = 13
 slayer_xp = 105
 slayer_level = 80
 drop_table = "nechryael"
