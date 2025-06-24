@@ -612,6 +612,10 @@ height = 60
 id = 738
 height = 60
 
+[spell_splash]
+id = 85
+height = 60
+
 [telekinetic_grab]
 id = 143
 delay = 48

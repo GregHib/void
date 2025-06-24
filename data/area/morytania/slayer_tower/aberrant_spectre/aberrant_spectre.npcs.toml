@@ -1,0 +1,33 @@
+[aberrant_spectre]
+id = 1604
+hitpoints = 900
+def = 90
+mage = 105
+attack_speed = 4
+hunt_mode = "aggressive"
+style = "magic"
+spell = "aberrant_spectre_goo"
+max_hit_magic = 140
+attack_range = 8
+attack_radius = 19
+wander_radius = 2
+respawn_delay = 30
+slayer_xp = 90
+slayer_level = 60
+drop_table = "aberrant_spectre"
+combat_anims = "aberrant_spectre"
+combat_sounds = "aberrant_spectre"
+categories = ["aberrant_spectre"]
+examine = "A very smelly ghost."
+
+[aberrant_spectre_1]
+id = 1605
+clone = "aberrant_spectre"
+
+[aberrant_spectre_2]
+id = 1606
+clone = "aberrant_spectre"
+
+[aberrant_spectre_3]
+id = 1607
+clone = "aberrant_spectre"

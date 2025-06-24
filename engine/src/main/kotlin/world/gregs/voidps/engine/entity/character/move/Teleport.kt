@@ -33,5 +33,6 @@ fun Character.tele(delta: Delta, clearMode: Boolean = true, clearInterfaces: Boo
     }
     steps.clear()
     steps.previous = tile.add(delta).add(Direction.WEST)
+    visuals.tele = true
     Movement.move(this, delta)
 }

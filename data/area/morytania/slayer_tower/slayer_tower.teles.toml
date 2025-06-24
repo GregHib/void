@@ -1,0 +1,39 @@
+[slayer_tower_chain_up]
+option = "Climb-up"
+tile = { x = 3422, y = 3550 }
+delta = { level = 1 }
+
+[slayer_tower_chain_down]
+option = "Climb-down"
+tile = { x = 3422, y = 3550, level = 1 }
+delta = { level = -1 }
+
+[slayer_tower_chain_up]
+option = "Climb-up"
+tile = { x = 3447, y = 3576, level = 1 }
+delta = { level = 1 }
+
+[slayer_tower_chain_down]
+option = "Climb-down"
+tile = { x = 3447, y = 3576, level = 2 }
+delta = { level = -1 }
+
+[slayer_tower_stairs_up]
+option = "Climb-up"
+tile = { x = 3434, y = 3537 }
+near = { x = 3433, y = 3537, level = 1, height = 2 }
+
+[slayer_tower_stairs_down]
+option = "Climb-down"
+tile = { x = 3434, y = 3537, level = 1 }
+near = { x = 3438, y = 3537, height = 2 }
+
+[slayer_tower_spectre_stairs_up]
+option = "Climb-up"
+tile = { x = 3413, y = 3540, level = 1 }
+near = { x = 3417, y = 3540, level = 2, height = 2 }
+
+[slayer_tower_spectre_stairs_down]
+option = "Climb-down"
+tile = { x = 3415, y = 3540, level = 2 }
+near = { x = 3412, y = 3540, level = 1, height = 2 }
