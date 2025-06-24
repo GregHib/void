@@ -57,7 +57,6 @@ object Main {
         val accountLoader: PlayerAccountLoader = get()
         val loginServer = LoginServer.load(settings, decoders, accountLoader)
 
-
         // Game world
         val stages = getTickStages()
         World.start(configFiles)
