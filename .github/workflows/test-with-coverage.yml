@@ -45,7 +45,8 @@ jobs:
           git add -A
           if ! git diff --staged --quiet; then
             git commit -m "Apply Spotless formatting"
-            git push
+            BRANCH_NAME="${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
+            git push origin HEAD:"$BRANCH_NAME"
           fi
 
       - name: Create cache folder
