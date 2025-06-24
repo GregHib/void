@@ -61,7 +61,7 @@ data class NPCs(
         spawnIndex = 0
     }
 
-    fun indexed(index: Int): NPC? = indexArray[index]
+    fun indexed(index: Int): NPC? = indexArray.getOrNull(index)
 
     fun add(id: String, tile: Tile, direction: Direction = Direction.NONE): NPC {
         val def = definitions.getOrNull(id) ?: return NPC(id, tile, NPCDefinition.EMPTY)

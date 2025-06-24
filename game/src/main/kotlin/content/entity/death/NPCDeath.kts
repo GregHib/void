@@ -3,6 +3,7 @@ package content.entity.death
 import com.github.michaelbull.logging.InlineLogger
 import content.area.wilderness.inMultiCombat
 import content.entity.combat.*
+import content.entity.effect.clearTransform
 import content.entity.npc.combat.NPCAttack
 import content.entity.player.inv.item.tradeable
 import content.entity.sound.sound
@@ -64,6 +65,7 @@ npcDeath { npc ->
         if (respawn != null) {
             npc.tele(respawn)
             delay(npc["respawn_delay", 60])
+            npc.clearTransform()
             npc.damageDealers.clear()
             npc.levels.clear()
             npc.face(npc["respawn_direction", Direction.NORTH], update = false)

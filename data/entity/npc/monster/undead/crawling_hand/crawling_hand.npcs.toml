@@ -7,6 +7,7 @@ def = 4
 max_hit_melee = 10
 style = "crush"
 slayer_xp = 16.0
+slayer_level = 5
 respawn_delay = 15
 attack_radius = 15
 wander_radius = 13

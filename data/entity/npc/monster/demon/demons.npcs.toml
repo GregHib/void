@@ -5,7 +5,6 @@ hitpoints = 70
 att = 11
 str = 10
 def = 5
-magic = 1
 attack_speed = 6
 categories = ["demons"]
 combat_anims = "demon"

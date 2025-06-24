@@ -17,8 +17,8 @@ jobs:
       - name: Checkout repository code
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
           fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - uses: actions/setup-java@v3
         with:
@@ -30,18 +30,8 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/actions/wrapper-validation@v4
 
-      - name: Apply formatting
-        run: ./gradlew spotlessApply
-
-      - name: Commit formatting changes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add -A
-          if ! git diff --staged --quiet; then
-            git commit -m "Apply Spotless formatting"
-            git push
-          fi
+      - name: Check formatting
+        run: ./gradlew spotlessCheck
 
       - name: Create cache folder
         run: mkdir -p data/cache/
