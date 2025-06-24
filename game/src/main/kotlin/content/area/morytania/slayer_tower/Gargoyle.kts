@@ -53,7 +53,7 @@ fun smash(player: Player, target: NPC) {
         player.message("The gargoyle isn't weak enough to be harmed by the hammer.")
         return
     }
-    player.anim("rock_hammer_smash")
+    player.anim("axe_smash")
     target.transform("gargoyle_smashed")
     target.anim("gargoyle_smash")
     target.damage(hitpoints, source = player)

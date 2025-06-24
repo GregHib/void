@@ -1629,22 +1629,6 @@ id = 10432
 id = 10431
 examine = "A wooden door."
 
-[door_235_opened]
-id = 10528
-examine = "a door."
-
-[door_235_closed]
-id = 10527
-examine = "a door."
-
-[door_237_opened]
-id = 10530
-examine = "a door."
-
-[door_237_closed]
-id = 10529
-examine = "a door."
-
 [door_239_opened]
 id = 11052
 examine = "There's a recess in it in the shape of a Z."

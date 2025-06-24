@@ -1,13 +1,13 @@
-[slayer_tower_door_west_opened]
+[slayer_tower_entrance_door_west_opened]
 id = 4491
 
-[slayer_tower_door_west_closed]
+[slayer_tower_entrance_door_west_closed]
 id = 4487
 
-[slayer_tower_door_east_opened]
+[slayer_tower_entrance_door_east_opened]
 id = 4492
 
-[slayer_tower_door_east_closed]
+[slayer_tower_entrance_door_east_closed]
 id = 4490
 
 [slayer_tower_statue]
@@ -15,3 +15,40 @@ id = 5116
 
 [slayer_tower_statue_open]
 id = 5117
+
+[slayer_tower_chain]
+id = 9319
+
+[slayer_tower_chain_up]
+id = 9319
+
+[slayer_tower_chain_down]
+id = 9320
+
+[slayer_tower_stairs_up]
+id = 4493
+
+[slayer_tower_stairs_down]
+id = 4494
+
+[slayer_tower_spectre_stairs_up]
+id = 4495
+
+[slayer_tower_spectre_stairs_down]
+id = 4496
+
+[slayer_tower_door_opened]
+id = 10528
+examine = "a door."
+
+[slayer_tower_door_closed]
+id = 10527
+examine = "a door."
+
+[slayer_tower_door_mirror_opened]
+id = 10530
+examine = "a door."
+
+[slayer_tower_door_mirror_closed]
+id = 10529
+examine = "a door."
