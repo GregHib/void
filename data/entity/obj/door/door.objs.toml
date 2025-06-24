@@ -1112,18 +1112,6 @@ examine = "Big and sturdy to keep others out."
 id = 4428
 examine = "Big and sturdy to keep others out."
 
-[door_125_opened]
-id = 4491
-
-[door_125_closed]
-id = 4487
-
-[door_126_opened]
-id = 4492
-
-[door_126_closed]
-id = 4490
-
 [throne_room_door_opened]
 id = 4673
 

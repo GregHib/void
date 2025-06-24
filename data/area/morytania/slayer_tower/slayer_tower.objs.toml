@@ -1,0 +1,17 @@
+[slayer_tower_door_west_opened]
+id = 4491
+
+[slayer_tower_door_west_closed]
+id = 4487
+
+[slayer_tower_door_east_opened]
+id = 4492
+
+[slayer_tower_door_east_closed]
+id = 4490
+
+[slayer_tower_statue]
+id = 5116
+
+[slayer_tower_statue_open]
+id = 5117
