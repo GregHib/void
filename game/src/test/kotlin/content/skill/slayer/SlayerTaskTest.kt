@@ -119,6 +119,7 @@ class SlayerTaskTest : WorldTest() {
         player.levels.set(Skill.Strength, 99)
         player.levels.set(Skill.Defence, 99)
         player.levels.set(Skill.Constitution, 990)
+        player.levels.set(Skill.Slayer, 22)
         player.inventory.add("ice_cooler")
         player.equipment.set(EquipSlot.Weapon.index, "abyssal_whip")
         player.slayerMaster = "mazchna"
