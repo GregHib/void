@@ -8,7 +8,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.random
+import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
+import java.util.concurrent.TimeUnit
 
 val npcs: NPCs by inject()
 
@@ -16,7 +19,7 @@ npcCombatAttack("nechryael") { npc ->
     if (target !is Player) {
         return@npcCombatAttack
     }
-    val spawns = npc["death_spawns", 0]
+    val spawns = target["death_spawns", 0]
     if (spawns >= 2) {
         return@npcCombatAttack
     }
@@ -24,9 +27,12 @@ npcCombatAttack("nechryael") { npc ->
         val tile = npc.tile.toCuboid(1).random(npc) ?: return@npcCombatAttack
         // TODO gfx
         val spawn = npcs.add("death_spawn", tile)
+        spawn.softQueue("despawn", TimeUnit.SECONDS.toTicks(60)) {
+            npcs.remove(spawn)
+        }
         spawn.anim("death_spawn")
-        target.sound("death_spawn")
         spawn.mode = Interact(spawn, target, PlayerOption(spawn, target, "Attack"))
-        npc.inc("death_spawns")
+        target.sound("death_spawn")
+        target.inc("death_spawns")
     }
 }

@@ -26,6 +26,9 @@ object Target {
             if (target.def.options[1] != "Attack") {
                 return false
             }
+            if (target.index == -1) {
+                return false
+            }
             if (get<NPCs>().indexed(target.index) == null) {
                 return false
             }
