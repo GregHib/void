@@ -6,3 +6,9 @@ id = 9455
 
 [gargoyle_death]
 id = 9456
+
+[gargoyle_smash]
+id = 9513
+
+[rock_hammer_smash]
+id = 1755

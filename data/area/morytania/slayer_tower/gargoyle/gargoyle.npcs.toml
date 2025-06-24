@@ -19,3 +19,7 @@ combat_sounds = "gargoyle"
 categories = ["gargoyle"]
 examine = "Flies like a rock."
 
+[gargoyle_smashed]
+id = 1827
+examine = "Flies like a rock."
+

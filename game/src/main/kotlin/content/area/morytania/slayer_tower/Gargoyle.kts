@@ -1,7 +1,10 @@
 package content.area.morytania.slayer_tower
 
+import content.entity.combat.attacker
 import content.entity.combat.attackers
 import content.entity.combat.hit.damage
+import content.entity.combat.inCombat
+import content.entity.effect.transform
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -18,31 +21,41 @@ npcLevelChange("gargoyle", Skill.Constitution) { npc ->
             attacker.mode = EmptyMode
             if (attacker is Player && attacker["killing_blow", false]) {
                 smash(attacker, npc)
+                break
             }
         }
     }
 }
 
 npcOperate("Smash", "gargoyle") {
+    if (target.inCombat && target.attacker != player) {
+        player.message("Someone else is fighting that.")
+        return@npcOperate
+    }
     smash(player, target)
 }
 
 itemOnNPCOperate("rock_hammer", "gargoyle") {
+    if (target.inCombat && target.attacker != player) {
+        player.message("Someone else is fighting that.")
+        return@itemOnNPCOperate
+    }
     smash(player, target)
 }
 
 fun smash(player: Player, target: NPC) {
     if (!player.inventory.contains("rock_hammer")) {
-        player.message("You need a rock hammer to do that.") // TODO proper message
+        player.message("You need a rock hammer to smash the gargoyle.")
         return
     }
-    player.anim("pie_accurate") // TODO proper anim
-    target.gfx("skip_water_splash")
     val hitpoints = target.levels.get(Skill.Constitution)
     if (hitpoints >= 90) {
         player.message("The gargoyle isn't weak enough to be harmed by the hammer.")
         return
     }
-    player.message("The gargoyle cracks apart.")
+    player.anim("rock_hammer_smash")
+    target.transform("gargoyle_smashed")
+    target.anim("gargoyle_smash")
     target.damage(hitpoints, source = player)
+    player.message("You smash the gargoyle with the rock hammer and it shatters into pieces.")
 }
