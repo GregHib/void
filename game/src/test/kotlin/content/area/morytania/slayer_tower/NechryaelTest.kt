@@ -25,7 +25,7 @@ class NechryaelTest : WorldTest() {
 
         player.npcOption(nechryael, "Attack")
 
-        tick(3)
+        tick(2)
 
         assertEquals(1, player["death_spawns", 0])
     }
@@ -45,7 +45,7 @@ class NechryaelTest : WorldTest() {
 
         player.npcOption(nechryael, "Attack")
 
-        tick(3)
+        tick(2)
 
         assertEquals(1, player["death_spawns", 0])
     }
