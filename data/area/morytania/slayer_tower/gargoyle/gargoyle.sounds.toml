@@ -1,0 +1,8 @@
+[gargoyle_defend]
+id = 430
+
+[gargoyle_death]
+id = 429
+
+[gargoyle_attack]
+id = 428
