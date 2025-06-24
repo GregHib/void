@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - uses: actions/setup-java@v3
         with:
@@ -45,8 +46,7 @@ jobs:
           git add -A
           if ! git diff --staged --quiet; then
             git commit -m "Apply Spotless formatting"
-            BRANCH_NAME="${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
-            git push origin HEAD:"$BRANCH_NAME"
+            git push origin HEAD:${{ github.head_ref || github.ref_name }}
           fi
 
       - name: Create cache folder
