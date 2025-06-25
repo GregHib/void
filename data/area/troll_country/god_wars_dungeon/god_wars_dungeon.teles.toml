@@ -17,3 +17,8 @@ to = { x = 2919, y = 5274 }
 option = "Climb-up"
 tile = { x = 2920, y = 5274 }
 to = { x = 2920, y = 5276, level = 1 }
+
+[godwars_saradomin_rope_bottom_end]
+option = "Climb-up"
+tile = { x = 2914, y = 5300, level = 1 }
+to = { x = 2912, y = 5300, level = 2 }
