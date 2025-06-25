@@ -8,7 +8,7 @@ import world.gregs.voidps.network.login.protocol.visual.VisualMask.TEMPORARY_MOV
 class TemporaryMoveTypeEncoder : VisualEncoder<PlayerVisuals>(TEMPORARY_MOVE_TYPE_MASK, initial = true) {
 
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
-        writer.writeByteInverse(visuals.temporaryMoveType.type.id)
+        writer.p1Alt2(visuals.temporaryMoveType.type.id)
     }
 
 }

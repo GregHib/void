@@ -20,7 +20,7 @@ object Protocol {
     const val OBJECT_ADD = 28
     const val TILE_TEXT = 32
     const val INTERFACE_TEXT = 33
-    const val INTERFACE_ITEMS = 37
+    const val UPDATE_INV_FULL = 37
     const val CLIENT_VARP_LARGE = 39
     const val GRAPHIC_AREA = 108
     const val REGION = 43
@@ -37,13 +37,13 @@ object Protocol {
     const val INTERFACE_MODEL = 58
     const val FLOOR_ITEM_REVEAL = 60
     const val PROJECTILE_ADD = 62
-    const val SOUND_EFFECT = 78
-    const val MIDI_SOUND = 106
+    const val SOUND_EFFECT = 106
+    const val MIDI_SOUND = 78
     const val PLAY_MUSIC = 31
     const val INTERFACE_WINDOW = 67
     const val PLAYER_UPDATING = 69
     const val INTERFACE_CLOSE = 73
-    const val INTERFACE_ITEMS_UPDATE = 80
+    const val UPDATE_INV_PARTIAL = 80
     const val FLOOR_ITEM_UPDATE = 83
     const val CLIENT_VARBIT_LARGE = 84
     const val PROJECTILE_DISPLACE = 90
@@ -68,36 +68,37 @@ object Protocol {
     const val CLAN_CHAT = 138
     const val PRIVATE_CHAT_FROM = 78 //
     const val CLAN_QUICK_CHAT = 111 //
-    const val UPDATE_FRIENDS = 12
-    const val UNLOCK_IGNORES = 120
-    const val UPDATE_IGNORE = 57
-    const val UPDATE_CLAN_CHAT = 13 //
-    const val APPEND_CLAN_CHAT = 31 //
+    const val UPDATE_FRIENDS = 85
+    const val UNLOCK_IGNORES = 57
+    const val UPDATE_IGNORE = 105
+    const val UPDATE_CLAN_CHAT = 12 //
+    const val APPEND_CLAN_CHAT = 24 //
     const val PUBLIC_STATUS = 83 //
     const val PRIVATE_STATUS = 113 //
-    const val PRIVATE_QUICK_CHAT_FROM = 94 //
+    const val PRIVATE_QUICK_CHAT_FROM = 42
     const val PRIVATE_CHAT_TO = 61 //
-    const val PRIVATE_QUICK_CHAT_TO = 99 //
+    const val PRIVATE_QUICK_CHAT_TO = 97
     const val CAMERA_MOVE = 29
     const val CAMERA_TURN = 127
     const val CAMERA_SHAKE = 34
-    const val CAMERA_RESET = 80
+    const val CAMERA_RESET = 10
     const val MINIMAP_STATE = 68
 
     object Batch {
-        const val FLOOR_ITEM_REMOVE = 0
-        const val OBJECT_ADD = 1
-        const val OBJECT_ANIMATION_SPECIFIC = 2
-        const val OBJECT_REMOVE = 3
-        const val FLOOR_ITEM_REVEAL = 4
-        const val PROJECTILE_ADD = 5
-        const val FLOOR_ITEM_ADD = 6
-        const val FLOOR_ITEM_UPDATE = 7
-        const val OBJECT_PRE_FETCH = 8
-        const val PROJECTILE_DISPLACE = 9
-        const val MIDI_AREA = 10
-        const val SOUND_AREA = 11
+        const val OBJECT_ADD = 0
+        const val SOUND_AREA = 1
+        // object customize 2
+        const val OBJECT_ANIMATION_SPECIFIC = 3
+        const val OBJECT_PRE_FETCH = 4
+        const val FLOOR_ITEM_REMOVE = 5
+        const val PROJECTILE_ADD = 6
+        const val OBJECT_REMOVE = 7
+        const val FLOOR_ITEM_UPDATE = 8
+        const val TILE_TEXT = 9
+        const val PROJECTILE_DISPLACE = 10
+        const val MIDI_AREA = 11
         const val GRAPHIC_AREA = 12
-        const val TILE_TEXT = 13
+        const val FLOOR_ITEM_REVEAL = 13
+        const val FLOOR_ITEM_ADD = 14
     }
 }

@@ -5,12 +5,12 @@ import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractPlayer
 import world.gregs.voidps.network.login.protocol.Decoder
 
-class PlayerOption1Decoder : Decoder(3) {
+class PlayerOption10Decoder : Decoder(3) {
 
     override suspend fun decode(packet: ByteReadPacket): Instruction {
         packet.readByte()
         val index = packet.readShort().toInt()
-        return InteractPlayer(index, 1)
+        return InteractPlayer(index, 10)
     }
 
 }

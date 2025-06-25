@@ -13,7 +13,7 @@ suspend fun Bot.closeInterface(id: Int, component: Int) {
 }
 
 suspend fun Bot.clickInterface(id: Int, component: Int, option: Int = 0, itemId: Int = -1, itemSlot: Int = -1) {
-    player.instructions.send(InteractInterface(interfaceId = id, componentId = component, itemId = itemId, itemSlot = itemSlot, option = option))
+    player.instructions.send(InteractInterface(interfaceId = id, componentId = component, itemId = itemId, slotId = itemSlot, option = option))
 }
 
 suspend fun Bot.itemOnObject(item: Item, obj: GameObject, interfaceId: Int = 149, component: Int = 0) {

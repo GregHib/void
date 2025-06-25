@@ -15,7 +15,7 @@ data class BodyParts(
     val looks: IntArray = if (male) DEFAULT_LOOK_MALE.clone() else DEFAULT_LOOK_FEMALE.clone(),
     val colours: IntArray = DEFAULT_COLOURS.clone()
 ) : Body {
-    private val parts = IntArray(12)
+    private val parts = IntArray(15)
 
     private lateinit var equipment: Inventory
     private lateinit var overrides: AppearanceOverrides
@@ -135,6 +135,6 @@ data class BodyParts(
     companion object {
         val DEFAULT_LOOK_MALE = intArrayOf(0, 14, 18, 26, 34, 38, 42)
         val DEFAULT_LOOK_FEMALE = intArrayOf(45, -1, 58, 61, 68, 72, 80)
-        val DEFAULT_COLOURS = IntArray(5)
+        val DEFAULT_COLOURS = IntArray(10)
     }
 }

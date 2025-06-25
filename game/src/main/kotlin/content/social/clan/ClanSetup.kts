@@ -20,10 +20,10 @@ interfaceOption("Clan Setup", "settings", "clan_chat") {
         player.message("Please close the interface you have open before using Clan Chat setup.")
         return@interfaceOption
     }
-    player.open("clan_chat_setup")
+    player.open("friends_chat_setup")
 }
 
-interfaceOpen("clan_chat_setup") { player ->
+interfaceOpen("friends_chat_setup") { player ->
     val clan = player.clan ?: player.ownClan ?: return@interfaceOpen
     player.interfaces.apply {
         sendText(id, "name", clan.name.ifBlank { "Chat disabled" })

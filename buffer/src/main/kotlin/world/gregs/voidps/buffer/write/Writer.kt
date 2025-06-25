@@ -12,9 +12,9 @@ interface Writer {
 
     fun writeByteAdd(value: Int)
 
-    fun writeByteInverse(value: Int)
+    fun p1Alt2(value: Int)
 
-    fun writeByteSubtract(value: Int)
+    fun p1Alt3(value: Int)
 
     fun writeByte(value: Boolean) {
         writeByte(if (value) 1 else 0)
@@ -22,11 +22,11 @@ interface Writer {
 
     fun writeShort(value: Int)
 
-    fun writeShortAdd(value: Int)
+    fun p2Alt2(value: Int)
 
-    fun writeShortLittle(value: Int)
+    fun ip2(value: Int)
 
-    fun writeShortAddLittle(value: Int)
+    fun p2Alt3(value: Int)
 
     fun writeMedium(value: Int)
 

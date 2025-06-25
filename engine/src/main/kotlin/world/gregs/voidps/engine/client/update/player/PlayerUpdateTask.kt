@@ -283,21 +283,30 @@ class PlayerUpdateTask(
     }
 
     fun writeFlag(writer: Writer, dataFlag: Int) {
-        var flag = dataFlag
+        var first = dataFlag and 0xFF
 
-        if (flag >= 0x100) {
-            flag = flag or 0x40
+        // If more than 1 byte is needed, set the high bit (0x80) in the first byte
+        if (dataFlag > 0x7F) {
+            first = first or 0x80
         }
-        if (flag >= 0x10000) {
-            flag = flag or 0x4000
-        }
-        writer.writeByte(flag)
 
-        if (flag >= 0x100) {
-            writer.writeByte(flag shr 8)
+        writer.writeByte(first)
+
+        // If 2nd byte is needed
+        if (dataFlag > 0x7F) {
+            var second = (dataFlag shr 8) and 0xFF
+
+            // If 3rd byte is needed, set bit 3 (0x08) to indicate 3rd byte follows
+            if (dataFlag > 0x7FF) {
+                second = second or 0x08
+            }
+
+            writer.writeByte(second)
         }
-        if (flag >= 0x10000) {
-            writer.writeByte(flag shr 16)
+
+        // If 3rd byte is needed
+        if (dataFlag > 0x7FF) {
+            writer.writeByte((dataFlag shr 16))
         }
     }
 

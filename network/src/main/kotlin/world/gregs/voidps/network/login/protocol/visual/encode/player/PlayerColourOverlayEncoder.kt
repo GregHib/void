@@ -10,15 +10,16 @@ class PlayerColourOverlayEncoder : VisualEncoder<PlayerVisuals>(PLAYER_COLOUR_OV
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
         val (delay, duration, colour) = visuals.colourOverlay
         writer.apply {
-            val hue = colour and 0xFF
-            val saturation = colour shr 8 and 0xFF
-            val luminance = colour shr 16 and 0xFF
-            val multiplier = colour shr 24 and 0xFF
-            writeByteSubtract(hue)
-            writeByteSubtract(saturation)
-            writeByteInverse(luminance)
+            val saturation = colour and 0xFF
+            val hue = colour shr 8 and 0xFF
+            val multiplier = colour shr 16 and 0xFF
+            val luminance = colour shr 24 and 0xFF
+
+            p1Alt3(hue)
+            p1Alt3(saturation)
+            p1Alt2(luminance)
             writeByte(multiplier)
-            writeShortAddLittle(delay)
+            p2Alt3(delay)
             writeShort(duration)
         }
     }

@@ -8,11 +8,11 @@ import world.gregs.voidps.network.login.protocol.visual.VisualMask.PLAYER_GRAPHI
 class PlayerSecondaryGraphicEncoder : VisualEncoder<PlayerVisuals>(PLAYER_GRAPHIC_2_MASK) {
 
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
-        val visual = visuals.secondaryGraphic
+        val visual = visuals.graphics[1]
         writer.apply {
-            writeShortAddLittle(visual.id)
+            p2Alt3(visual.id)
             writeIntInverseMiddle(visual.packedDelayHeight)
-            writeByteInverse(visual.packedRotationRefresh)
+            p1Alt2(visual.packedRotationRefresh)
         }
     }
 

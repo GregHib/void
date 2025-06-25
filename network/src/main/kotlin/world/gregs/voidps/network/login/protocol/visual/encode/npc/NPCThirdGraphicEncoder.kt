@@ -8,7 +8,7 @@ import world.gregs.voidps.network.login.protocol.visual.VisualMask.NPC_GRAPHIC_3
 class NPCThirdGraphicEncoder : VisualEncoder<NPCVisuals>(NPC_GRAPHIC_3_MASK) {
 
     override fun encode(writer: Writer, visuals: NPCVisuals) {
-        val visual = visuals.thirdGraphic
+        val visual = visuals.graphics[2]
         writer.apply {
             writeShort(visual.id)
             writeInt(visual.packedDelayHeight)

@@ -12,7 +12,7 @@ class PlayerAnimationEncoder : VisualEncoder<PlayerVisuals>(PLAYER_ANIMATION_MAS
         val animations = arrayOf(first, second, third, fourth)
         writer.apply {
             for (anim in animations) {
-                writeShortLittle(anim)
+                ip2(anim)
             }
             writeByteAdd(delay)
         }

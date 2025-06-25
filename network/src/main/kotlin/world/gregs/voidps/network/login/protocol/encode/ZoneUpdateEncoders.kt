@@ -19,17 +19,15 @@ fun encodeBatch(messages: Collection<ZoneUpdate>): ByteArray {
 }
 
 fun Client.sendBatch(messages: ByteArray, zoneOffsetX: Int, zoneOffsetY: Int, zoneLevel: Int) {
-    return
     send(Protocol.BATCH_UPDATE_ZONE, messages.size + 3, Client.SHORT) {
-        writeByteInverse(zoneOffsetX)
-        writeByteSubtract(zoneLevel)
+        p1Alt2(zoneOffsetX)
+        p1Alt1(zoneLevel)
         writeByte(zoneOffsetY)
         writeBytes(messages)
     }
 }
 
 fun Client.send(update: ZoneUpdate) {
-    return
     send(update.packetId) {
         encode(update)
     }
@@ -52,8 +50,8 @@ suspend fun ByteWriteChannel.encode(update: ZoneUpdate) {
 }
 
 private suspend fun ByteWriteChannel.floorItemAddition(update: FloorItemAddition) {
-    writeByteInverse(offset(update.tile))
-    writeShortAdd(update.id)
+    p1Alt2(offset(update.tile))
+    p2Alt2(update.id)
     writeShort(update.amount)
 }
 
@@ -63,9 +61,9 @@ private suspend fun ByteWriteChannel.floorItemRemoval(update: FloorItemRemoval) 
 }
 
 private suspend fun ByteWriteChannel.floorItemReveal(update: FloorItemReveal) {
-    writeShortAdd(update.ownerIndex)
-    writeByteAdd(offset(update.tile))
-    writeShortAddLittle(update.id)
+    p2Alt2(update.ownerIndex)
+    p1Alt1(offset(update.tile))
+    ip2(update.id)
     writeShort(update.amount)
 }
 
@@ -77,7 +75,7 @@ private suspend fun ByteWriteChannel.floorItemUpdate(update: FloorItemUpdate) {
 }
 
 private suspend fun ByteWriteChannel.graphicAddition(update: GraphicAddition) {
-    writeIntInverseMiddle(offset(update.tile))
+    writeByte(offset(update.tile))
     writeShort(update.id)
     writeByte(update.height)
     writeShort(update.delay)
@@ -96,17 +94,17 @@ private suspend fun ByteWriteChannel.midiAddition(update: MidiAddition) {
 private suspend fun ByteWriteChannel.objectAddition(update: ObjectAddition) {
     writeByte(offset(update.tile))
     writeByte((update.type shl 2) or update.rotation)
-    writeShortAdd(update.id)
+    p2Alt2(update.id)
 }
 
 private suspend fun ByteWriteChannel.objectAnimation(update: ObjectAnimation) {
-    writeShortAddLittle(update.id)
-    writeByteSubtract(offset(update.tile))
+    p2Alt3(update.id)
+    p1Alt3(offset(update.tile))
     writeByte((update.type shl 2) or update.rotation)
 }
 
 private suspend fun ByteWriteChannel.objectRemoval(update: ObjectRemoval) {
-    writeByteInverse(offset(update.tile))
+    p1Alt2(offset(update.tile))
     writeByte((update.type shl 2) or update.rotation)
 }
 

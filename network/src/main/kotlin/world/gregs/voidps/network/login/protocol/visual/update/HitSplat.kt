@@ -92,7 +92,7 @@ data class HitSplat(
         }
 
         writer.writeSmart(delay)
-        writer.writeByteInverse(percentage)
+        writer.p1Alt2(percentage)
     }
 
     private fun getMarkId(observer: Int, victim: Int): Int {

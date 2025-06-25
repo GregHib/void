@@ -131,13 +131,14 @@ class NPCUpdateTask(
                 val teleporting = visuals.moved && visuals.walkStep == -1 && visuals.runStep == -1
                 set.add(npc.index)
                 sync.writeBits(15, index)
-                sync.writeBits(2, npc.tile.level)
-                sync.writeBits(1, teleporting)
-                sync.writeBits(5, delta.y + if (delta.y < 15) 32 else 0)
-                sync.writeBits(5, delta.x + if (delta.x < 15) 32 else 0)
                 sync.writeBits(3, (visuals.face.direction shr 11) - 4)
                 sync.writeBits(1, flag != 0)
-                sync.writeBits(14, npc.def.id)
+                sync.writeBits(5, delta.y + if (delta.y < 15) 32 else 0)
+                sync.writeBits(2, npc.tile.level)
+                sync.writeBits(15, npc.def.id)
+                sync.writeBits(5, delta.x + if (delta.x < 15) 32 else 0)
+                sync.writeBits(1, teleporting)
+
                 encodeVisuals(updates, flag, visuals, client.index)
             }
         }
@@ -166,21 +167,28 @@ class NPCUpdateTask(
             if (flag and encoder.mask == 0) {
                 continue
             }
-
             encoder.encode(updates, visuals, index)
         }
     }
 
     fun writeFlag(writer: Writer, dataFlag: Int) {
-        var flag = dataFlag
-
-        if (flag >= 0x100) {
-            flag = flag or 0x10
+        var first = dataFlag and 0xFF
+        if (dataFlag > 0x7F) {
+            first = first or 0x80
         }
-        writer.writeByte(flag)
+        writer.writeByte(first)
 
-        if (flag >= 0x100) {
-            writer.writeByte(flag shr 8)
+        if (dataFlag > 0x7F) {
+            var second = (dataFlag shr 8) and 0xFF
+            if (dataFlag > 0x7FFF) {
+                second = second or 0x80
+            }
+            writer.writeByte(second)
+
+            if (dataFlag > 0x7FFF) {
+                val third = (dataFlag shr 16) and 0xFF
+                writer.writeByte(third)
+            }
         }
     }
 

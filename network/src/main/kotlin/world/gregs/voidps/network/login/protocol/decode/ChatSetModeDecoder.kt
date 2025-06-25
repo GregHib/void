@@ -2,15 +2,15 @@ package world.gregs.voidps.network.login.protocol.decode
 
 import io.ktor.utils.io.core.*
 import world.gregs.voidps.network.client.Instruction
-import world.gregs.voidps.network.client.instruction.InteractPlayer
+import world.gregs.voidps.network.client.instruction.ChatTypeChange
 import world.gregs.voidps.network.login.protocol.Decoder
 
-class PlayerOption1Decoder : Decoder(3) {
+class ChatSetModeDecoder : Decoder(1) {
 
+    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(packet: ByteReadPacket): Instruction {
-        packet.readByte()
-        val index = packet.readShort().toInt()
-        return InteractPlayer(index, 1)
+        val x = packet.readUByte().toInt()
+        return ChatTypeChange(x)
     }
 
 }

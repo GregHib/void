@@ -35,7 +35,7 @@ fun Character.message(
     getOrPut("messages") { FixedSizeQueue<String>(100) }.add(text)
     val font = get<FontDefinitions>().get("p12_full")
     for (line in font.splitLines(Colours.replaceCustomTags(text), 484)) {
-        client?.message(line, type.id, tile, name, name?.toSnakeCase())
+        client?.message(line, type.id, tile, name, name?.lowercase()?.replace(" ", "_"))
     }
 }
 

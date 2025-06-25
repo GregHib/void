@@ -12,10 +12,7 @@ abstract class Visuals {
     var moved: Boolean = false
 
     val animation = Animation()
-    val primaryGraphic = Graphic()
-    val secondaryGraphic = Graphic()
-    val thirdGraphic = Graphic()
-    val fourthGraphic = Graphic()
+    val graphics = Array(4) { Graphic() }
     val colourOverlay = ColourOverlay()
     val exactMovement = ExactMovement()
     val timeBar = TimeBar()
@@ -38,7 +35,7 @@ abstract class Visuals {
         moved = false
         flag = 0
         animation.clear()
-        primaryGraphic.clear()
+        graphics.forEach { it.clear() }
         exactMovement.clear()
         colourOverlay.clear()
         hits.clear()
@@ -46,6 +43,5 @@ abstract class Visuals {
         watch.clear()
         say.clear()
         timeBar.clear()
-        secondaryGraphic.clear()
     }
 }

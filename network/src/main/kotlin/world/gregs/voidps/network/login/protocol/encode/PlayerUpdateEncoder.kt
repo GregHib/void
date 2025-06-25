@@ -9,7 +9,9 @@ import world.gregs.voidps.network.login.protocol.writeBytes
 fun Client.updatePlayers(
     changes: BufferWriter,
     updates: BufferWriter
-) = send(PLAYER_UPDATING, changes.position() + updates.position(), SHORT) {
-    writeBytes(changes.toArray())
-    writeBytes(updates.toArray())
+) {
+    send(PLAYER_UPDATING, changes.position() + updates.position(), SHORT) {
+        writeBytes(changes.toArray())
+        writeBytes(updates.toArray())
+    }
 }

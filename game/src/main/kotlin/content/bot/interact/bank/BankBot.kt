@@ -47,7 +47,7 @@ suspend fun Bot.depositAll(item: String, slot: Int = player.inventory.indexOf(it
     if (slot == -1) {
         return
     }
-    player.instructions.send(InteractInterface(interfaceId = 763, componentId = 0, itemId = getItemId(item) ?: return, itemSlot = slot, option = 5))
+    player.instructions.send(InteractInterface(interfaceId = 763, componentId = 0, itemId = getItemId(item) ?: return, slotId = slot, option = 5))
     await("tick")
 }
 
@@ -61,7 +61,7 @@ suspend fun Bot.deposit(item: String, slot: Int = player.inventory.indexOf(item)
         10 -> 2
         else -> 4
     }
-    player.instructions.send(InteractInterface(interfaceId = 763, componentId = 0, itemId = getItemId(item) ?: return, itemSlot = slot, option = option))
+    player.instructions.send(InteractInterface(interfaceId = 763, componentId = 0, itemId = getItemId(item) ?: return, slotId = slot, option = option))
     if (option == 4) {
         await("tick")
         player.instructions.send(EnterInt(value = amount))
@@ -79,7 +79,7 @@ suspend fun Bot.withdraw(item: String, slot: Int = player.bank.indexOf(item), am
         10 -> 2
         else -> 4
     }
-    player.instructions.send(InteractInterface(interfaceId = 762, componentId = 93, itemId = getItemId(item) ?: return, itemSlot = slot, option = option))
+    player.instructions.send(InteractInterface(interfaceId = 762, componentId = 93, itemId = getItemId(item) ?: return, slotId = slot, option = option))
     if (option == 4) {
         await("tick")
         player.instructions.send(EnterInt(value = amount))
@@ -105,7 +105,7 @@ suspend fun Bot.withdrawAll(item: String, slot: Int = player.bank.indexOf(item))
     if (slot == -1) {
         return
     }
-    player.instructions.send(InteractInterface(interfaceId = 762, componentId = 93, itemId = getItemId(item) ?: return, itemSlot = slot, option = 5))
+    player.instructions.send(InteractInterface(interfaceId = 762, componentId = 93, itemId = getItemId(item) ?: return, slotId = slot, option = 5))
     await("tick")
 }
 
@@ -113,7 +113,7 @@ suspend fun Bot.withdrawAllButOne(item: String, slot: Int = player.bank.indexOf(
     if (slot == -1) {
         return
     }
-    player.instructions.send(InteractInterface(interfaceId = 762, componentId = 93, itemId = getItemId(item) ?: return, itemSlot = slot, option = 6))
+    player.instructions.send(InteractInterface(interfaceId = 762, componentId = 93, itemId = getItemId(item) ?: return, slotId = slot, option = 6))
     await("tick")
 }
 

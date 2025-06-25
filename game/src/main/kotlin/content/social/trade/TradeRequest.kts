@@ -33,6 +33,7 @@ playerOperate("Trade with") {
         player.message("Sending trade offer...", ChatType.Trade)
     } else {
         player.message("Sending trade offer...", ChatType.Trade)
+        println(player.name)
         target.message("wishes to trade with you.", ChatType.TradeRequest, name = player.name)
     }
     player.request(target, "trade") { requester, acceptor ->

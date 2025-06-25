@@ -45,6 +45,7 @@ class VariableBits(
         }
         for (value in values) {
             events.emit(VariableBitRemoved(key, value))
+
         }
     }
 }

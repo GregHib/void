@@ -8,7 +8,7 @@ import world.gregs.voidps.network.login.protocol.visual.VisualMask.NPC_COMBAT_LE
 class NPCCombatLevelEncoder : VisualEncoder<NPCVisuals>(NPC_COMBAT_LEVEL) {
 
     override fun encode(writer: Writer, visuals: NPCVisuals) {
-        // TODO
+        writer.ip2(visuals.combatLevel)
     }
 
 }

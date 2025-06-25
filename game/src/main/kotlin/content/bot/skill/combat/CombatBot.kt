@@ -22,5 +22,5 @@ suspend fun Bot.setAutoCast(spell: String) {
 }
 
 suspend fun Bot.setAttackStyle(style: Int) {
-    player.instructions.send(InteractInterface(interfaceId = 884, componentId = style + 11, itemId = -1, itemSlot = -1, option = 0))
+    player.instructions.send(InteractInterface(interfaceId = 884, componentId = style + 11, itemId = -1, slotId = -1, option = 0))
 }

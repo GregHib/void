@@ -14,20 +14,23 @@ import world.gregs.voidps.network.login.protocol.writeString
 fun Client.sendScript(
     id: Int,
     params: List<Any?>
-) = send(SCRIPT, getLength(params), SHORT) {
-    val types = StringBuilder()
-    for (param in params) {
-        types.append(if (param == null || param is String) "s" else "i")
-    }
-    writeString(types.toString())
-    for (param in params.reversed()) {
-        when (param) {
-            null -> writeByte(0)
-            is String -> writeString(param)
-            is Int -> writeInt(param)
+) {
+    return
+    send(SCRIPT, getLength(params), SHORT) {
+        val types = StringBuilder()
+        for (param in params) {
+            types.append(if (param == null || param is String) "s" else "i")
         }
+        writeString(types.toString())
+        for (param in params.reversed()) {
+            when (param) {
+                null -> writeByte(0)
+                is String -> writeString(param)
+                is Int -> writeInt(param)
+            }
+        }
+        writeInt(id)
     }
-    writeInt(id)
 }
 
 private fun getLength(params: List<Any?>): Int {

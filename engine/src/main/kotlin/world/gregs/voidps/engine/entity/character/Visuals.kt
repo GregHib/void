@@ -1,5 +1,8 @@
 package world.gregs.voidps.engine.entity.character
 
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.flagCombatLevel
+import world.gregs.voidps.engine.entity.character.npc.flagName
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.login.protocol.visual.VisualMask
 
@@ -32,11 +35,21 @@ fun Character.colourOverlay(colour: Int, delay: Int, duration: Int) {
     softTimers.start("colour_overlay")
 }
 
-fun Character.setTimeBar(full: Boolean = false, exponentialDelay: Int = 0, delay: Int = 0, increment: Int = 0) {
+fun Character.setTimeBar(full: Boolean = false, duration: Int = 0, delay: Int = 0, increment: Int = 0) {
     val bar = visuals.timeBar
     bar.full = full
-    bar.exponentialDelay = exponentialDelay
+    bar.duration = duration
     bar.delay = delay
     bar.increment = increment
     flagTimeBar()
+}
+
+fun NPC.combatLevel(level: Int) {
+    visuals.combatLevel = level
+    flagCombatLevel()
+}
+
+fun NPC.name(name: String) {
+    visuals.name = name
+    flagName()
 }

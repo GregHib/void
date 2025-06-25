@@ -10,13 +10,13 @@ class NPCExactMovementEncoder : VisualEncoder<NPCVisuals>(NPC_EXACT_MOVEMENT_MAS
     override fun encode(writer: Writer, visuals: NPCVisuals) {
         val (tile1X, tile1Y, delay1, tile2X, tile2Y, delay2, direction) = visuals.exactMovement
         writer.apply {
-            writeByteSubtract(tile1X)
-            writeByteSubtract(tile1Y)
-            writeByteInverse(tile2X)
-            writeByteInverse(tile2Y)
+            p1Alt3(tile1X)
+            p1Alt3(tile1Y)
+            p1Alt2(tile2X)
+            p1Alt2(tile2Y)
             writeShort(delay1)
-            writeShortAddLittle(delay2)
-            writeByteSubtract(direction / 2)
+            p2Alt3(delay2)
+            p1Alt3(direction / 2)
         }
     }
 

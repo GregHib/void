@@ -34,7 +34,6 @@ Read packet: 1
 Read packet: 1
 Read packet: 12
      */
-    return
     send(UPDATE_FRIENDS, friends.sumOf { count(it) }, Client.SHORT) {
         for (friend in friends) {
             writeFriend(friend)
@@ -42,7 +41,7 @@ Read packet: 12
     }
 }
 
-private fun count(friend: Friend) = 4 + string(friend.name) + string(friend.previousName) + if (friend.world > 0) string(friend.worldName) + 1 else 0
+private fun count(friend: Friend) = 5 + string(friend.name) + string(friend.previousName) + if (friend.world > 0) string(friend.worldName) + 1 else 0
 
 private suspend fun ByteWriteChannel.writeFriend(friend: Friend) {
     writeByte(friend.renamed)
@@ -50,6 +49,7 @@ private suspend fun ByteWriteChannel.writeFriend(friend: Friend) {
     writeString(friend.previousName)
     writeShort(friend.world)
     writeByte(friend.rank)
+    writeByte(0)
     if (friend.world > 0) {
         writeString(friend.worldName)
         writeByte(friend.gameQuickChat)

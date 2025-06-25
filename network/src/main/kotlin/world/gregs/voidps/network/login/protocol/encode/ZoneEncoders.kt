@@ -3,9 +3,8 @@ package world.gregs.voidps.network.login.protocol.encode
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.Protocol
 import world.gregs.voidps.network.login.Protocol.CLEAR_ZONE
-import world.gregs.voidps.network.login.protocol.writeByteAdd
-import world.gregs.voidps.network.login.protocol.writeByteInverse
-import world.gregs.voidps.network.login.protocol.writeByteSubtract
+import world.gregs.voidps.network.login.protocol.p1Alt1
+import world.gregs.voidps.network.login.protocol.p1Alt3
 
 /**
  * @param xOffset The zone x coordinate relative to viewport
@@ -17,10 +16,9 @@ fun Client.clearZone(
     yOffset: Int,
     level: Int
 ) {
-    return
     send(CLEAR_ZONE) {
         writeByte(xOffset.toByte())
-        writeByteSubtract(yOffset)
+        p1Alt3(yOffset)
         writeByte(level.toByte())
     }
 }
@@ -35,10 +33,9 @@ fun Client.updateZone(
     yOffset: Int,
     level: Int
 ) {
-    return
     send(Protocol.UPDATE_ZONE) {
-        writeByteAdd(xOffset)
+        p1Alt1(xOffset)
         writeByte(yOffset.toByte())
-        writeByteSubtract(level)
+        p1Alt3(level)
     }
 }

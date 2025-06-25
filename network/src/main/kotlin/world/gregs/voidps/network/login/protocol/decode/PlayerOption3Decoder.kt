@@ -4,13 +4,12 @@ import io.ktor.utils.io.core.*
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractPlayer
 import world.gregs.voidps.network.login.protocol.Decoder
-import world.gregs.voidps.network.login.protocol.readByteSubtract
 
 class PlayerOption3Decoder : Decoder(3) {
 
     override suspend fun decode(packet: ByteReadPacket): Instruction {
-        packet.readByteSubtract()
-        val index = packet.readShortLittleEndian().toInt()
+        packet.readByte()
+        val index = packet.readShort().toInt()
         return InteractPlayer(index, 3)
     }
 

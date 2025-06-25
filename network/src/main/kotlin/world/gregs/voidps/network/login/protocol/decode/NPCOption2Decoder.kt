@@ -3,15 +3,13 @@ package world.gregs.voidps.network.login.protocol.decode
 import io.ktor.utils.io.core.*
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractNPC
-import world.gregs.voidps.network.login.protocol.Decoder
-import world.gregs.voidps.network.login.protocol.readBooleanAdd
-import world.gregs.voidps.network.login.protocol.readShortAddLittle
+import world.gregs.voidps.network.login.protocol.*
 
 class NPCOption2Decoder : Decoder(3) {
 
     override suspend fun decode(packet: ByteReadPacket): Instruction {
-        val npcIndex = packet.readShortAddLittle()
-        val run = packet.readBooleanAdd()
+        val run = packet.g1Alt1() == 1
+        val npcIndex = packet.g2Alt2()
         return InteractNPC(npcIndex, 2)
     }
 

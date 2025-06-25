@@ -18,9 +18,9 @@ fun Client.animateObject(
     type: Int,
     rotation: Int
 ) = send(Protocol.OBJECT_ANIMATION) {
-    writeIntInverseMiddle(tile)
-    writeShortAdd(animation)
-    writeByteSubtract((type shl 2) or rotation)
+    p4Alt3(tile)
+    p2Alt2(animation)
+    p1Alt3((type shl 2) or rotation)
 }
 
 /**

@@ -8,7 +8,7 @@ import world.gregs.voidps.network.login.protocol.visual.VisualMask.PLAYER_GRAPHI
 class PlayerPrimaryGraphicEncoder : VisualEncoder<PlayerVisuals>(PLAYER_GRAPHIC_1_MASK) {
 
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
-        val visual = visuals.primaryGraphic
+        val visual = visuals.graphics[0]
         writer.apply {
             writeShort(visual.id)
             writeIntLittle(visual.packedDelayHeight)

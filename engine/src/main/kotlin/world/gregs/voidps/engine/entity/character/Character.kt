@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.EventDispatcher
@@ -49,6 +50,31 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)
+    }
+
+    fun exactMove(
+        startX: Int,
+        startY: Int,
+        startDelay: Int,
+        endX: Int,
+        endY: Int,
+        endDelay: Int,
+        direction: Direction
+    ) {
+        tele(endX, endY)
+        if (this is Player) {
+            temporaryMoveType = MoveType.Walk
+        }
+        visuals.exactMovement.apply {
+            this.startX = startX - tile.x
+            this.startY = startY - tile.y
+            this.startDelay = startDelay
+            this.endX = endX - tile.x
+            this.endY = endY - tile.y
+            this.endDelay = endDelay
+            this.direction = direction.ordinal
+        }
+        flagExactMovement()
     }
 
     /**
@@ -96,18 +122,26 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
      */
     fun gfx(id: String, delay: Int? = null) {
         val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
-        val mask = if (this is Player) VisualMask.PLAYER_GRAPHIC_1_MASK else VisualMask.NPC_GRAPHIC_1_MASK
-        val graphic = if (visuals.flagged(mask)) visuals.primaryGraphic else visuals.secondaryGraphic
+        val masks = if (this is Player) VisualMask.PLAYER_GRAPHIC_MASKS else VisualMask.NPC_GRAPHIC_MASKS
+
+        var graphic = visuals.graphics[0]
+        for ((index, mask) in masks.withIndex()) {
+            if (visuals.flagged(mask)) {
+                continue
+            }
+            visuals.flag(mask)
+            graphic = visuals.graphics[index]
+            break
+        }
+
         graphic.id = definition.id
         graphic.delay = delay ?: definition["delay", 0]
         val characterHeight = (this as? NPC)?.def?.get("height", 0) ?: 40
         graphic.height = (characterHeight + definition["height", -1000]).coerceAtLeast(0)
         graphic.rotation = definition["rotation", 0]
         graphic.forceRefresh = definition["force_refresh", false]
-        if (visuals.flagged(mask)) {
-            flagPrimaryGraphic()
-        } else {
-            flagSecondaryGraphic()
+        for (g in visuals.graphics) {
+            println(g.id)
         }
     }
 
@@ -115,10 +149,11 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
      * Remove any graphical effects in progress
      */
     fun clearGfx() {
-        visuals.primaryGraphic.reset()
-        flagPrimaryGraphic()
-        visuals.secondaryGraphic.reset()
-        flagSecondaryGraphic()
+        val masks = if (this is Player) VisualMask.PLAYER_GRAPHIC_MASKS else VisualMask.NPC_GRAPHIC_MASKS
+        for ((index, mask) in masks.withIndex()) {
+            visuals.flag(mask)
+            visuals.graphics[index].reset()
+        }
     }
 
     /**

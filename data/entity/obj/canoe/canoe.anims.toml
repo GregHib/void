@@ -144,3 +144,6 @@ id = 9904
 
 [champions_guild_to_lumbridge]
 id = 9904
+
+[agility_climb]
+id = 1148

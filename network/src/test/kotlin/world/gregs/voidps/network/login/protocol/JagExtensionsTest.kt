@@ -54,10 +54,10 @@ class JagExtensionsTest {
     @Test
     fun `Read and write byte add`() = runTest {
         val channel = ByteChannel(autoFlush = true)
-        channel.writeByteAdd(10)
+        channel.p1Alt1(10)
         channel.close()
         val packet = ByteReadPacket(channel.readRemaining().readBytes())
-        assertEquals(10, packet.readByteAdd())
+        assertEquals(10, packet.g1Alt1())
     }
 
     @Test
@@ -74,7 +74,7 @@ class JagExtensionsTest {
     fun `Read byte inverse`() {
         val data = byteArrayOf(0x01)
         val packet = ByteReadPacket(data)
-        assertEquals(-1, packet.readByteInverse())
+        assertEquals(-1, packet.g1Alt2())
     }
 
     @Test
@@ -95,7 +95,7 @@ class JagExtensionsTest {
     fun `Read and write short add little`() = runTest {
         val channel = ByteChannel(autoFlush = true)
         val value = 0x1234
-        channel.writeShortAddLittle(value)
+        channel.p2Alt3(value)
         channel.close()
         val array = channel.readRemaining().readBytes()
         val packet = ByteReadPacket(array)
@@ -106,7 +106,7 @@ class JagExtensionsTest {
     fun `Read signed short add little`() = runTest {
         val channel = ByteChannel(autoFlush = true)
         val value = -1
-        channel.writeShortAddLittle(value)
+        channel.p2Alt3(value)
         channel.close()
         val array = channel.readRemaining().readBytes()
         val packet = ByteReadPacket(array)

@@ -15,7 +15,7 @@ val logger = InlineLogger()
 
 interfaceRefresh("inventory") { player ->
     player.interfaceOptions.unlockAll(id, "inventory", 0 until 28)
-    player.interfaceOptions.unlock(id, "inventory", 28 until 56, "Drag")
+    // player.interfaceOptions.unlock(id, "inventory", 28 until 56, "Drag") TODO why is this being sent? It's wrong
     player.sendInventory(id)
 }
 

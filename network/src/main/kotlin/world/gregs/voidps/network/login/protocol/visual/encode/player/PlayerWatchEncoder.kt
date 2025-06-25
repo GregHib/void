@@ -3,12 +3,10 @@ package world.gregs.voidps.network.login.protocol.visual.encode.player
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
 import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
-import world.gregs.voidps.network.login.protocol.visual.VisualMask.MOVEMENT_TYPE_MASK
+import world.gregs.voidps.network.login.protocol.visual.VisualMask.PLAYER_WATCH_MASK
 
-class MovementTypeEncoder : VisualEncoder<PlayerVisuals>(MOVEMENT_TYPE_MASK, initial = true) {
-
+class PlayerWatchEncoder : VisualEncoder<PlayerVisuals>(PLAYER_WATCH_MASK) {
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
-        writer.p1Alt3(visuals.movementType.type.id)
+        writer.p2Alt2(visuals.watch.index)
     }
-
 }

@@ -3,16 +3,15 @@ package world.gregs.voidps.network.login.protocol.decode
 import io.ktor.utils.io.core.*
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractFloorItem
-import world.gregs.voidps.network.login.protocol.Decoder
-import world.gregs.voidps.network.login.protocol.readBooleanSubtract
+import world.gregs.voidps.network.login.protocol.*
 
 class FloorItemOption1Decoder : Decoder(7) {
 
     override suspend fun decode(packet: ByteReadPacket): Instruction {
-        val id = packet.readShort().toInt()
-        val x = packet.readShort().toInt()
+        val id = packet.g2Alt2()
+        val run = packet.readBoolean()
         val y = packet.readShort().toInt()
-        val run = packet.readBooleanSubtract()
+        val x = packet.g2Alt1()
         return InteractFloorItem(id, x, y, 0)
     }
 

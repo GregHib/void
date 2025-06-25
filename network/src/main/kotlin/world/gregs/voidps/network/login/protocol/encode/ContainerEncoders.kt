@@ -3,7 +3,7 @@ package world.gregs.voidps.network.login.protocol.encode
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.SHORT
-import world.gregs.voidps.network.login.Protocol.INTERFACE_ITEMS
+import world.gregs.voidps.network.login.Protocol.UPDATE_INV_FULL
 import world.gregs.voidps.network.login.protocol.*
 
 /**
@@ -19,7 +19,7 @@ fun Client.sendInventoryItems(
     items: IntArray,
     primary: Boolean
 ) {
-    send(INTERFACE_ITEMS, getLength(items, size), SHORT) {
+    send(UPDATE_INV_FULL, getLength(items, size), SHORT) {
         writeShort(inventory)
         writeByte(primary)
         writeShort(size)
@@ -30,7 +30,7 @@ fun Client.sendInventoryItems(
             if (amount >= 255) {
                 writeInt(amount)
             }
-            writeShortLittle(item + 1)
+            ip2(item + 1)
         }
     }
 }

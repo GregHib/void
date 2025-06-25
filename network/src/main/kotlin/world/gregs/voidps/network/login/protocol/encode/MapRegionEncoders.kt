@@ -19,9 +19,9 @@ fun Client.mapRegion(
     playerRegions: IntArray? = null
 ) = send(REGION, getLength(clientTile, playerRegions, clientIndex, xteas), SHORT) {
     mapInit(clientTile, playerRegions, clientIndex)
-    writeByteInverse(mapSize)
+    p1Alt2(mapSize)
     writeByte(forceRefresh)
-    writeShortLittle(zoneX)
+    ip2(zoneX)
     writeShort(zoneY)
     xteas.forEach {
         it.forEach { key ->
@@ -75,9 +75,9 @@ fun Client.dynamicMapRegion(
     mapInit(clientTile, playerRegions, clientIndex)
     writeShort(zoneY)
     writeByte(mapSize)
-    writeByteSubtract(if (forceRefresh) 1 else 0)
-    writeByteSubtract(loadType.index)
-    writeShortAddLittle(zoneX)
+    p1Alt3(if (forceRefresh) 1 else 0)
+    p1Alt3(loadType.index)
+    p2Alt3(zoneX)
 
     bitAccess {
         zones.forEach { data ->

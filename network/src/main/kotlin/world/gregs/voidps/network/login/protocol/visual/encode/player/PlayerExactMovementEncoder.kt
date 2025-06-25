@@ -10,12 +10,12 @@ class PlayerExactMovementEncoder : VisualEncoder<PlayerVisuals>(PLAYER_EXACT_MOV
     override fun encode(writer: Writer, visuals: PlayerVisuals) {
         val (tile1X, tile1Y, delay1, tile2X, tile2Y, delay2, direction) = visuals.exactMovement
         writer.apply {
-            writeByteSubtract(tile1X)
+            p1Alt3(tile1X)
             writeByte(tile1Y)
             writeByteAdd(tile2X)
             writeByteAdd(tile2Y)
-            writeShortLittle(delay1)
-            writeShortAddLittle(delay2)
+            ip2(delay1)
+            p2Alt3(delay2)
             writeByteAdd(direction / 2)
         }
     }

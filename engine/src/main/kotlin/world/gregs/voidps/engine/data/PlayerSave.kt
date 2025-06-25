@@ -156,7 +156,7 @@ data class PlayerSave(
             val levels = IntArray(25)
             var male = true
             val looks = IntArray(7)
-            val colours = IntArray(5)
+            val colours = IntArray(10)
             val variables = Object2ObjectOpenHashMap<String, Any>(64)
             val inventories = Object2ObjectOpenHashMap<String, Array<Item>>(4)
             val friends = Object2ObjectOpenHashMap<String, ClanRank>()

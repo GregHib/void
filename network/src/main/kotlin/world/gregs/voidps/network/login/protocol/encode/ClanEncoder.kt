@@ -23,6 +23,7 @@ fun Client.clanChat(displayName: String, clan: String, rights: Int, data: ByteAr
 }
 
 fun Client.clanQuickChat(displayName: String, clan: String, rights: Int, file: Int, data: ByteArray, responseName: String = displayName) {
+    return
     send(CLAN_QUICK_CHAT, name(displayName, responseName) + 16 + data.size, BYTE) {
         writeName(displayName, responseName)
         writeLong(clan)

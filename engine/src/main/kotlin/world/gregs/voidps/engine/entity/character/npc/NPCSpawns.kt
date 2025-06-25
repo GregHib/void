@@ -18,6 +18,8 @@ fun loadNpcSpawns(
 ) {
     timedLoad("npc spawn") {
         npcs.clear()
+        // npcs.add("general_graardor", Tile(3221, 3219, 0), Direction.EAST)
+        npcs.add("man", Tile(2332, 3252, 0), Direction.EAST)
         val membersWorld = World.members
         var count = 0
         val hashes = mutableSetOf<Long>()
@@ -58,7 +60,7 @@ fun loadNpcSpawns(
                             }
                             hashes.add(hash)
                         }
-                        npcs.add(id, tile, direction)
+                        // npcs.add(id, tile, direction)
                         count++
                     }
                 }

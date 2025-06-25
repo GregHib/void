@@ -34,8 +34,10 @@ fun Client.message(text: String, type: Int, tile: Int = 0, name: String? = null,
         writeInt(tile)
         writeByte(mask)
         if (name != null) {
+            println(name)
             writeString(name)
             if (mask and 0x2 == 0x2) {
+                println(formatted)
                 writeString(formatted)
             }
         }
@@ -94,7 +96,7 @@ fun Client.privateChatFrom(displayName: String, rights: Int, data: ByteArray, re
 }
 
 fun Client.privateQuickChatFrom(displayName: String, rights: Int, file: Int, data: ByteArray, responseName: String = displayName) {
-    send(PRIVATE_QUICK_CHAT_FROM, name(displayName, responseName) + 8 + data.size, BYTE) {
+    send(PRIVATE_QUICK_CHAT_FROM, name(displayName, responseName) + 9 + data.size, BYTE) {
         writeName(displayName, responseName)
         writeRandom()
         writeByte(rights)

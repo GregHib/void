@@ -71,6 +71,10 @@ open class Client(
             return
         }
 
+        if (opcode == 80) {
+            println("Opcode Int: $opcode")
+        }
+
         runBlocking(handler) {
             write.header(opcode, type, size, cipherOut)
             block.invoke(write)

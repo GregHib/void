@@ -10,9 +10,9 @@ class NPCTimeBarEncoder : VisualEncoder<NPCVisuals>(NPC_TIME_BAR_MASK) {
     override fun encode(writer: Writer, visuals: NPCVisuals) {
         val (full, exponentialDelay, delay, increment) = visuals.timeBar
         writer.apply {
-            writeShortAdd(((if (full) 1 else 0) * 0x8000) or (exponentialDelay and 0x7fff))
-            writeByteInverse(delay)
-            writeByteInverse(increment)
+            p2Alt2(((if (full) 1 else 0) * 0x8000) or (exponentialDelay and 0x7fff))
+            p1Alt2(delay)
+            p1Alt2(increment)
         }
     }
 

@@ -8,6 +8,8 @@ import world.gregs.voidps.network.login.Protocol.RUN_ENERGY
  * Sends run energy
  * @param energy The current energy value
  */
-fun Client.sendRunEnergy(energy: Int) = send(RUN_ENERGY) {
-    writeByte(energy)
+fun Client.sendRunEnergy(energy: Int) {
+    send(RUN_ENERGY) {
+        writeByte(energy)
+    }
 }

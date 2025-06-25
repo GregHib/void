@@ -5,14 +5,15 @@ import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.network.login.protocol.Decoder
 import world.gregs.voidps.network.login.protocol.readBooleanAdd
+import world.gregs.voidps.network.login.protocol.readShortAddLittle
 import world.gregs.voidps.network.login.protocol.readUnsignedShortAdd
 
 class WalkMiniMapDecoder : Decoder(18) {
 
     override suspend fun decode(packet: ByteReadPacket): Instruction {
-        val y = packet.readShortLittleEndian().toInt()
+        val x = packet.readShortAddLittle()
+        val y = packet.readShortAddLittle()
         val running = packet.readBooleanAdd()
-        val x = packet.readUnsignedShortAdd()
         packet.readByte()//-1
         packet.readByte()//-1
         packet.readShort()//Rotation?

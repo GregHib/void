@@ -35,21 +35,25 @@ class EnumDecoder : DefinitionDecoder<EnumDefinition>(ENUMS) {
             }
 
             7 -> {
-                val count = buffer.readShort()
+                val length = buffer.readShort()
+                val hashtable = Int2ObjectOpenHashMap<Any>(length)
                 val outputCount = buffer.readShort()
                 for (i in 0 until outputCount) {
-                    var index = buffer.readShort()
-                    buffer.readString()
+                    val index = buffer.readShort()
+                    hashtable[index] = buffer.readString()
                 }
+                map = hashtable
             }
 
             8 -> {
-                val count = buffer.readShort()
+                val length = buffer.readShort()
+                val hashtable = Int2ObjectOpenHashMap<Any>(length)
                 val outputCount = buffer.readShort()
                 for (i in 0 until outputCount) {
-                    var index = buffer.readShort()
-                    buffer.readInt()
+                    val index = buffer.readShort()
+                    hashtable[index] = buffer.readInt()
                 }
+                map = hashtable
             }
         }
     }

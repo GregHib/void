@@ -8,11 +8,11 @@ import world.gregs.voidps.network.login.protocol.visual.VisualMask.NPC_GRAPHIC_1
 class NPCPrimaryGraphicEncoder : VisualEncoder<NPCVisuals>(NPC_GRAPHIC_1_MASK) {
 
     override fun encode(writer: Writer, visuals: NPCVisuals) {
-        val visual = visuals.primaryGraphic
+        val visual = visuals.graphics[0]
         writer.apply {
-            writeShortLittle(visual.id)
+            ip2(visual.id)
             writeIntInverseMiddle(visual.packedDelayHeight)
-            writeByteInverse(visual.packedRotationRefresh)
+            p1Alt2(visual.packedRotationRefresh)
         }
     }
 

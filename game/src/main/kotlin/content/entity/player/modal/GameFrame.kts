@@ -23,7 +23,7 @@ val list = listOf(
     "summoning_orb",
     "combat_styles",
     "task_system",
-    "task_popup",
+    // "task_popup",
     "stats",
     "quest_journals",
     "inventory",
@@ -31,8 +31,8 @@ val list = listOf(
     "prayer_list",
     "modern_spellbook",
     "friends_list",
-    "ignore_list",
     "clan_chat",
+    "friends_chat",
     "options",
     "emotes",
     "music_player",
@@ -55,7 +55,7 @@ instruction<ChangeDisplayMode> { player ->
 }
 
 interfaceOpen("toplevel*") { player ->
-//    openGamframe(player)
+    openGamframe(player)
 }
 
 interfaceRefresh("toplevel*", "dialogue_npc*") { player ->

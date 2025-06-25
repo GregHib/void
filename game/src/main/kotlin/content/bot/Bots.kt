@@ -68,7 +68,7 @@ fun Bot.equip(item: String) {
     }
     val index = player.inventory.indexOf(item)
     if (index != -1) {
-        player.instructions.trySend(InteractInterface(interfaceId = 149, componentId = 0, itemId = def.id, itemSlot = index, option = 1))
+        player.instructions.trySend(InteractInterface(interfaceId = 149, componentId = 0, itemId = def.id, slotId = index, option = 1))
     }
 }
 
@@ -76,7 +76,7 @@ fun Bot.inventoryOption(item: String, option: String) {
     val index = player.inventory.indexOf(item)
     if (index != -1) {
         val def = get<ItemDefinitions>().getOrNull(item) ?: return
-        player.instructions.trySend(InteractInterface(interfaceId = 149, componentId = 0, itemId = def.id, itemSlot = index, option = def.options.indexOf(option)))
+        player.instructions.trySend(InteractInterface(interfaceId = 149, componentId = 0, itemId = def.id, slotId = index, option = def.options.indexOf(option)))
     }
 }
 

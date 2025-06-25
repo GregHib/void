@@ -4,8 +4,8 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.Protocol.PRIVATE_STATUS
 import world.gregs.voidps.network.login.Protocol.PUBLIC_STATUS
-import world.gregs.voidps.network.login.protocol.writeByteAdd
-import world.gregs.voidps.network.login.protocol.writeByteSubtract
+import world.gregs.voidps.network.login.protocol.p1Alt1
+import world.gregs.voidps.network.login.protocol.p1Alt3
 
 /**
  * @param public (0 = on, 1 = friends, 2 = off, 3 = hide)
@@ -14,8 +14,8 @@ import world.gregs.voidps.network.login.protocol.writeByteSubtract
 fun Client.sendPublicStatus(public: Int, trade: Int) {
     return
     send(PUBLIC_STATUS, 2, Client.FIXED) {
-        writeByteSubtract(public)
-        writeByteAdd(trade)
+        p1Alt3(public)
+        p1Alt1(trade)
     }
 }
 

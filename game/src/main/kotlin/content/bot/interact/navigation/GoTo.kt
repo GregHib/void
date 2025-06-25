@@ -90,7 +90,7 @@ private suspend fun Bot.rest() {
             await("tick")
         }
     } else {
-        player.instructions.send(InteractInterface(interfaceId = 750, componentId = 1, itemId = -1, itemSlot = -1, option = 1))
+        player.instructions.send(InteractInterface(interfaceId = 750, componentId = 1, itemId = -1, slotId = -1, option = 1))
         repeat(50) {
             await("tick")
         }
@@ -98,7 +98,7 @@ private suspend fun Bot.rest() {
 }
 
 private suspend fun Bot.run() {
-    player.instructions.send(InteractInterface(interfaceId = 750, componentId = 1, itemId = -1, itemSlot = -1, option = 0))
+    player.instructions.send(InteractInterface(interfaceId = 750, componentId = 1, itemId = -1, slotId = -1, option = 0))
 }
 
 private suspend fun Bot.navigate() {

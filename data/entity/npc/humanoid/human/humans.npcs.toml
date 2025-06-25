@@ -136,3 +136,9 @@ id = 6298
 wander_radius = 4
 categories = ["human"]
 examine = "The man with the armour."
+
+[general_graardor]
+id = 6260
+wander_radius = 4
+categories = ["human"]
+examine = "The man with the armour."

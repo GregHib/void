@@ -13,8 +13,8 @@ import world.gregs.voidps.network.login.protocol.*
 fun Client.sendVarbit(id: Int, value: Int) {
     if (value in Byte.MIN_VALUE..Byte.MAX_VALUE) {
         send(CLIENT_VARBIT) {
-            writeByteSubtract(value)
-            writeShortAdd(id)
+            p1Alt3(value)
+            p2Alt2(id)
         }
     } else {
         send(CLIENT_VARBIT_LARGE) {

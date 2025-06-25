@@ -9,8 +9,8 @@ import world.gregs.voidps.network.login.protocol.readUnsignedShortAdd
 class PlayerOption5Decoder : Decoder(3) {
 
     override suspend fun decode(packet: ByteReadPacket): Instruction {
-        val index = packet.readUnsignedShortAdd()
         packet.readByte()
+        val index = packet.readShort().toInt()
         return InteractPlayer(index, 5)
     }
 

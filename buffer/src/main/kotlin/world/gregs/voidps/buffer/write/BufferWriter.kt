@@ -20,11 +20,11 @@ class BufferWriter(
         writeByte(value + 128)
     }
 
-    override fun writeByteInverse(value: Int) {
+    override fun p1Alt2(value: Int) {
         writeByte(-value)
     }
 
-    override fun writeByteSubtract(value: Int) {
+    override fun p1Alt3(value: Int) {
         writeByte(-value + 128)
     }
 
@@ -37,17 +37,17 @@ class BufferWriter(
         writeByte(value)
     }
 
-    override fun writeShortAdd(value: Int) {
+    override fun p2Alt2(value: Int) {
         writeByte(value shr 8)
         writeByteAdd(value)
     }
 
-    override fun writeShortLittle(value: Int) {
+    override fun ip2(value: Int) {
         writeByte(value)
         writeByte(value shr 8)
     }
 
-    override fun writeShortAddLittle(value: Int) {
+    override fun p2Alt3(value: Int) {
         writeByteAdd(value)
         writeByte(value shr 8)
     }
@@ -76,7 +76,7 @@ class BufferWriter(
         writeByte(value shr 8)
         writeByte(value shr 24)
         writeByte(value shr 16)
-        writeByteInverse(value)
+        p1Alt2(value)
     }
 
     override fun writeIntInverseMiddle(value: Int) {
@@ -94,7 +94,7 @@ class BufferWriter(
     }
 
     override fun writeIntInverseLittle(value: Int) {
-        writeByteInverse(value)
+        p1Alt2(value)
         writeByte(value shr 8)
         writeByte(value shr 16)
         writeByte(value shr 24)

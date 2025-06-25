@@ -10,7 +10,7 @@ class PlayerOption6Decoder : Decoder(3) {
 
     override suspend fun decode(packet: ByteReadPacket): Instruction {
         packet.readByte()
-        val index = packet.readUnsignedShortAdd()
+        val index = packet.readShort().toInt()
         return InteractPlayer(index, 6)
     }
 

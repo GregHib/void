@@ -55,7 +55,7 @@ suspend fun Bot.buy(item: String, amount: Int = 1) {
             remaining >= 5 -> 2
             else -> 1
         }
-        player.instructions.send(InteractInterface(interfaceId = 620, componentId = 25, itemId = -1, itemSlot = slot, option = option))
+        player.instructions.send(InteractInterface(interfaceId = 620, componentId = 25, itemId = -1, slotId = slot, option = option))
         remaining -= when {
             remaining >= 500 -> 500
             remaining >= 50 -> 50

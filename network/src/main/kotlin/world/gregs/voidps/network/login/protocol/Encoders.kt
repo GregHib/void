@@ -2,7 +2,7 @@ package world.gregs.voidps.network.login.protocol
 
 import world.gregs.voidps.network.login.protocol.visual.*
 import world.gregs.voidps.network.login.protocol.visual.encode.SayEncoder
-import world.gregs.voidps.network.login.protocol.visual.encode.WatchEncoder
+import world.gregs.voidps.network.login.protocol.visual.encode.npc.NPCWatchEncoder
 import world.gregs.voidps.network.login.protocol.visual.encode.npc.*
 import world.gregs.voidps.network.login.protocol.visual.encode.player.*
 
@@ -21,7 +21,7 @@ fun playerVisualEncoders() = castOf<PlayerVisuals>(
     SayEncoder(VisualMask.PLAYER_SAY_MASK),
     // PICON
     MovementTypeEncoder(),
-    WatchEncoder(VisualMask.PLAYER_WATCH_MASK),
+    PlayerWatchEncoder(),
     PlayerExactMovementEncoder(),
     PlayerFaceEncoder(),
     PlayerPrimaryGraphicEncoder(),
@@ -30,7 +30,7 @@ fun playerVisualEncoders() = castOf<PlayerVisuals>(
 
 fun npcVisualEncoders() = castOf<NPCVisuals>(
     NPCThirdGraphicEncoder(),
-    WatchEncoder(VisualMask.NPC_WATCH_MASK),
+    NPCWatchEncoder(),
     NPCFourthGraphicEncoder(),
     NPCHitsEncoder(),
     NPCTimeBarEncoder(),

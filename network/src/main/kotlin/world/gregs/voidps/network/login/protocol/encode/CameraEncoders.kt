@@ -23,11 +23,11 @@ fun Client.moveCamera(
     variableSpeed: Int,
 ) {
     send(CAMERA_MOVE) {
-        writeByteSubtract(constantSpeed)
-        writeByteInverse(localY)
-        writeByteInverse(localX)
-        writeByteInverse(variableSpeed)
-        writeShortAddLittle(z)
+        p1Alt3(constantSpeed)
+        p1Alt2(localY)
+        p1Alt2(localX)
+        p1Alt2(variableSpeed)
+        p2Alt3(z)
     }
 }
 
@@ -46,11 +46,11 @@ fun Client.turnCamera(
     variableSpeed: Int,
 ) {
     send(CAMERA_TURN) {
-        writeByteInverse(localY)
-        writeShortAddLittle(z)
-        writeByteSubtract(localX)
+        p1Alt2(localY)
+        p2Alt3(z)
+        p1Alt3(localX)
         writeByte(constantSpeed)
-        writeByteSubtract(variableSpeed)
+        p1Alt3(variableSpeed)
     }
 }
 
@@ -69,11 +69,11 @@ fun Client.shakeCamera(
     speed: Int,
 ) {
     send(CAMERA_SHAKE) {
-        writeByteSubtract(type)
-        writeByteAdd(cycle)
-        writeShortAddLittle(speed)
-        writeByteSubtract(intensity)
-        writeByteSubtract(movement)
+        p1Alt3(type)
+        p1Alt1(cycle)
+        p2Alt3(speed)
+        p1Alt3(intensity)
+        p1Alt3(movement)
     }
 }
 
