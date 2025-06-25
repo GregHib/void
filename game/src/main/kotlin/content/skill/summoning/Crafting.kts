@@ -32,7 +32,12 @@ val scrollComponentId = 16
 
 val width = 8
 val height = 10
-val slotLength = 78
+
+val startingIndex = 1
+val endingIndex = 78
+
+val startingDungeoneeringIndex = 1100
+val endingDungeoneeringIndex = 1159
 
 objectOperate("Infuse-pouch") {
     openPouchCraftingInterface(player)
@@ -222,8 +227,9 @@ fun openPouchCraftingInterface(player: Player) {
         InterfaceDefinition.pack(pouchInterfaceId, pouchComponentId),
         width,
         height,
-        1,
-        slotLength,
+        // TODO: Use starting/endingDungeoneeringIndex if the player is in a dungeon
+        startingIndex,
+        endingIndex,
         "Infuse<col=FF9040>",
         "Infuse-5<col=FF9040>",
         "Infuse-10<col=FF9040>",
@@ -246,8 +252,9 @@ fun openScrollCraftingInterface(player: Player) {
         InterfaceDefinition.pack(scrollInterfaceId, scrollComponentId),
         width,
         height,
-        1,
-        slotLength,
+        // TODO: Use starting/endingDungeoneeringIndex if the player is in a dungeon
+        startingIndex,
+        endingIndex,
         "Transform<col=FF9040>",
         "Transform-5<col=FF9040>",
         "Transform-10<col=FF9040>",
