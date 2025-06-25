@@ -1,0 +1,17 @@
+[pyrefiend_god_wars]
+id = 6216
+hitpoints = 480
+att = 60
+str = 36
+def = 22
+max_hit_magic = 40
+hunt_mode = "aggressive"
+style = "magic"
+slayer_xp = 45.0
+slayer_level = 30
+respawn_delay = 25
+combat_anims = "pyrefiend"
+combat_sounds = "pyrefiend"
+drop_table = "pyrefiend"
+categories = ["pyrefiends", "fiery", "demon"]
+examine = "A small fire demon."

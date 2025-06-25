@@ -1,9 +1,9 @@
 [imp_drop_table]
 type = "all"
 drops = [
-    {table = "ashes" },
-    {table = "imp_secondary"},
-    {table = "imp_tertiary"}
+    { id = "ashes" },
+    { table = "imp_secondary" },
+    { table = "imp_tertiary" }
 ]
 
 [imp_secondary]

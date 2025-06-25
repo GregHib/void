@@ -1,0 +1,21 @@
+[spiritual_mage_zamorak]
+id = 6221
+hitpoints = 750
+def = 61
+mage = 180
+max_hit_magic = 190
+hunt_mode = "aggressive"
+style = "magic"
+spell = "flames_of_zamorak"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 75.0
+slayer_level = 83
+attack_anim = "spiritual_mage"
+combat_anims = "human"
+combat_sounds = "spiritual_mage"
+drop_table = "spiritual_mage"
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "A deadly servant of Zamorak."

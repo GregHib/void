@@ -1,0 +1,34 @@
+[spiritual_mage_drop_table]
+type = "all"
+drops = [
+    { table = "spiritual_mage_secondary" },
+    { table = "hard_clue_scroll", roll = 128 },
+]
+
+[spiritual_mage_secondary]
+roll = 128
+drops = [
+    { id = "air_rune", amount = 30, chance = 9 },
+    { id = "water_rune", amount = 15, chance = 8 },
+    { id = "water_rune", amount = 50, chance = 7 },
+    { id = "air_rune", amount = 50, chance = 2 },
+    { id = "fire_rune", amount = 65, chance = 2 },
+    { id = "dust_rune", amount = 15, chance = 11 },
+    { id = "mud_rune", amount = 20, chance = 7 },
+    { id = "mist_rune", amount = 20, chance = 6 },
+    { id = "chaos_rune", amount = 10, chance = 18 },
+    { id = "astral_rune", amount = 15, chance = 9 },
+    { id = "death_rune", amount = 15, chance = 8 },
+    { id = "nature_rune", amount = 25, chance = 7 },
+    { id = "mind_rune", amount = 50, chance = 4 },
+    { id = "nature_rune", amount = 18, chance = 4 },
+    { id = "body_rune", amount = 35, chance = 3 },
+    { id = "law_rune", amount = 15, chance = 2 },
+    { id = "body_rune", amount = 25, chance = 2 },
+    { id = "blood_rune", amount = 10, chance = 2 },
+    { id = "chaos_rune", amount = 25 },
+    { id = "pure_essence_noted", amount = 90, chance = 6 },
+    { id = "antipoison_3_noted", amount = 5, chance = 5 },
+    { id = "dragon_boots" },
+    { table = "gem_drop_table", chance = 2 },
+]

@@ -1,0 +1,8 @@
+[werewolf_attack]
+id = 6536
+
+[werewolf_defend]
+id = 6538
+
+[werewolf_death]
+id = 6537

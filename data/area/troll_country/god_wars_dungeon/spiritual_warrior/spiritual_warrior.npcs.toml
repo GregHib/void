@@ -1,0 +1,19 @@
+[spiritual_warrior_zamorak]
+id = 6219
+hitpoints = 1000
+att = 100
+str = 100
+def = 100
+max_hit_melee = 110
+hunt_mode = "aggressive"
+style = "slash"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 110.0
+slayer_level = 68
+categories = ["spiritual_creatures"]
+combat_anims = "spiritual_warrior_zamorak"
+combat_sounds = "spiritual_warrior_zamorak"
+wander_radius = 6
+attack_radius = 8
+examine = "Warrior of Zamorak."

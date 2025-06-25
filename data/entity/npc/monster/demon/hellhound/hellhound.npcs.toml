@@ -14,3 +14,20 @@ combat_sounds = "hellhound"
 drop_table = "hellhound"
 categories = ["hellhounds", "demon"]
 examine = "From the maws of hell."
+
+[hellhound_god_wars]
+id = 6210
+hitpoints = 1160
+att = 107
+str = 116
+def = 106
+max_hit_melee = 130
+hunt_mode = "aggressive"
+style = "stab"
+slayer_xp = 116.0
+respawn_delay = 89
+combat_anims = "hellhound"
+combat_sounds = "hellhound"
+drop_table = "hellhound"
+categories = ["hellhounds", "demon"]
+examine = "From the maws of hell."

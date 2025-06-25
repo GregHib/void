@@ -13,3 +13,19 @@ drop_table = "gorak"
 respawn_delay = 50
 categories = ["gorak"]
 examine = "Gorak by name, Gorak by nature."
+
+[gorak_god_wars]
+id = 6218
+hitpoints = 1280
+att = 133
+str = 126
+def = 135
+max_hit_melee = 140
+hunt_mode = "aggressive"
+style = "typeless_crush"
+combat_anims = "gorak"
+combat_sounds = "gorak"
+drop_table = "gorak"
+respawn_delay = 25
+categories = ["gorak"]
+examine = "Comes with a vicious kick."

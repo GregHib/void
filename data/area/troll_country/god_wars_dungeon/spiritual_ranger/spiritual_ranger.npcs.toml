@@ -1,0 +1,21 @@
+[spiritual_ranger_zamorak]
+id = 6220
+hitpoints = 1200
+def = 80
+range = 140
+max_hit_range = 150
+hunt_mode = "aggressive"
+style = "range"
+weapon_style = "bow"
+ammo = "rune_arrow"
+attack_range = 5
+respawn_delay = 25
+slayer_xp = 106.0
+height = 40
+attack_anim = "spiritual_ranger"
+combat_anims = "human"
+drop_table = "spiritual_ranger"
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "Defender of Zamorak."
