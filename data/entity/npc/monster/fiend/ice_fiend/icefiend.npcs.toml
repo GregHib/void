@@ -26,3 +26,20 @@ combat_anims = "icefiend"
 combat_sounds = "icefiend"
 categories = ["icefiends"]
 examine = "A robust ice demon."
+
+[icefiend_god_wars]
+id = 3406
+hitpoints = 200
+att = 12
+str = 16
+def = 19
+max_hit_melee = 30
+hunt_mode = "aggressive"
+style = "crush"
+slayer_xp = 20.0
+respawn_delay = 25
+drop_table = "icefiend"
+combat_anims = "icefiend"
+combat_sounds = "icefiend"
+categories = ["icefiend", "icefiends"]
+examine = "A small ice demon."

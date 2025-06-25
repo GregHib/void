@@ -1,0 +1,16 @@
+[vampyre_god_wars]
+id = 6214
+hitpoints = 600
+att = 65
+str = 66
+def = 81
+max_hit_melee = 80
+hunt_mode = "aggressive"
+style = "slash"
+slayer_xp = 60.0
+respawn_delay = 25
+combat_anims = "vampyre_god_wars"
+combat_sounds = "vampyre"
+drop_table = "vampyre"
+categories = ["vampyre"]
+examine = "It looks really hungry."
