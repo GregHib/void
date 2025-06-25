@@ -6,21 +6,14 @@ import content.entity.sound.areaSound
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.map.collision.random
-import content.entity.sound.areaSound
-import content.entity.combat.hit.npcCombatDamage
-import content.entity.gfx.areaGfx
 
 private val teleportRadiusMax = 20
 private val teleportRadiusMin = 5
