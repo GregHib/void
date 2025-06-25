@@ -32,3 +32,11 @@ examine = "I can climb it."
 
 [godwars_bandos_big_door]
 id = 26384
+
+[pillar_56]
+id = 26302
+examine = "I could fire a grapple to that."
+
+[armadyl_pillar]
+id = 26303
+examine = "A pillar leans over the chasm."

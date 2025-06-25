@@ -1,2 +1,8 @@
 [godwars_hammer_bang]
 id = 7002
+
+[godwars_crossbow_swing]
+id = 6067
+
+[godwars_grapple_swing]
+id = 6072

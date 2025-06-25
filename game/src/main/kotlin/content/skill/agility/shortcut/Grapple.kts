@@ -3,32 +3,20 @@ package content.skill.agility.shortcut
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
-import content.skill.melee.weapon.weapon
+import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
-import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-
-val crossbows = setOf(
-    "bronze_crossbow",
-    "blurite_crossbow",
-    "iron_crossbow",
-    "steel_crossbow",
-    "mithril_crossbow",
-    "adamant_crossbow",
-    "rune_crossbow",
-)
 
 val objects: GameObjects by inject()
 
@@ -168,15 +156,7 @@ suspend fun ObjectOption<Player>.hasRequirements(ranged: Int, agility: Int, stre
         statement("You need at least $ranged Ranged, $agility Agility and $strength Strength to do that.")
         return false
     }
-    if (player.equipped(EquipSlot.Ammo).id != "mithril_grapple") {
-        player.message("You need a mithril grapple tipped bolt with a rope to do that.")
-        return false
-    }
-    if (!crossbows.contains(player.weapon.id)) {
-        player.message("You need a crossbow equipped to do that.")
-        return false
-    }
-    return true
+    return Weapon.hasGrapple(player)
 }
 
 val areas: AreaDefinitions by inject()
