@@ -1,8 +1,8 @@
 [pyrefiend_attack]
-id = 696
+id = 8080
 
 [pyrefiend_defend]
-id = 698
+id = 8084
 
 [pyrefiend_death]
-id = 697
+id = 8078

@@ -11,11 +11,35 @@ ammo = "rune_arrow"
 attack_range = 5
 respawn_delay = 25
 slayer_xp = 106.0
+slayer_level = 63
 height = 40
-attack_anim = "spiritual_ranger"
+attack_anim = "spiritual_ranger_attack"
 combat_anims = "human"
 drop_table = "spiritual_ranger"
 categories = ["spiritual_creatures"]
 wander_radius = 6
 attack_radius = 8
 examine = "Defender of Zamorak."
+
+[spiritual_ranger_saradomin]
+id = 6256
+hitpoints = 1060
+def = 100
+range = 146
+max_hit_range = 160
+hunt_mode = "aggressive"
+style = "range"
+weapon_style = "bow"
+ammo = "rune_arrow"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 106.0
+slayer_level = 63
+attack_anim = "spiritual_ranger_attack"
+combat_anims = "human"
+drop_table = "spiritual_ranger"
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "A ranger spirit dedicated to Saradomin."
+

@@ -1,0 +1,22 @@
+[saradomin_priest]
+id = 6254
+hitpoints = 890
+att = 120
+str = 46
+def = 120
+mage = 125
+attack_bonus = 9
+max_hit_melee = 200
+hunt_mode = "aggressive"
+style = "magic"
+attack_speed = 5
+respawn_delay = 25
+categories = ["human"]
+wander_radius = 6
+attack_radius = 8
+combat_anims = "human"
+combat_sounds = "human"
+attack_anim = "saradomin_preist_attack"
+defend_anim = "saradomin_preist_defend"
+drops = "saradomin_priest"
+examine = "A holy man wearing ancient clothing."

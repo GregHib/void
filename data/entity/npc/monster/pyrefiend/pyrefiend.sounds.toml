@@ -1,0 +1,8 @@
+[pyrefiend_attack]
+id = 696
+
+[pyrefiend_defend]
+id = 698
+
+[pyrefiend_death]
+id = 697
