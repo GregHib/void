@@ -1049,14 +1049,6 @@ examine = "Now he's just too thin."
 id = 25903
 examine = "He looks very relaxed."
 
-[pillar_56]
-id = 26302
-examine = "I could fire a grapple to that."
-
-[pillar_57]
-id = 26303
-examine = "A pillar leans over the chasm."
-
 [table_j_mod]
 id = 26807
 examine = "handy place for filling in forms and paperwork."
