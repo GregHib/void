@@ -10,11 +10,11 @@ drops = [
 roll = 128
 drops = [
     { id = "iron_halberd", chance = 3 },
-    { id = "bronze_daggerp+", chance = 2 },
+    { id = "bronze_dagger_p+", chance = 2 },
     { id = "iron_2h_sword", chance = 3 },
-    { id = "steel_thrownaxe", chance = 3 },
+    { id = "steel_throwing_axe", chance = 3 },
     { id = "steel_battleaxe" },
-    { id = "mithril_thrownaxe", chance = 3 },
+    { id = "mithril_throwing_axe", chance = 3 },
     { id = "adamant_kiteshield" },
     { id = "steel_plateskirt" },
     { id = "steel_platelegs", chance = 4 },
@@ -27,7 +27,7 @@ drops = [
     { id = "coins", amount = 286, chance = 10 },
     { id = "coins", amount = 475, chance = 8 },
     { id = "gorak_claws", chance = 42 },
-    { id = "mithril_arrowp++", amount = 4, chance = 2 },
+    { id = "mithril_arrow_p++", amount = 4, chance = 2 },
     { id = "ring_of_life" },
     { table = "gem_drop_table", chance = 5 },
 ]
