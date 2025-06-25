@@ -29,3 +29,6 @@ examine = "There's a rope attached."
 [godwars_saradomin_rope_bottom_end]
 id = 26297
 examine = "I can climb it."
+
+[godwars_bandos_big_door]
+id = 26384

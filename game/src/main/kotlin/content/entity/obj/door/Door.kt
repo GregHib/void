@@ -152,14 +152,22 @@ private fun Player.enter(door: GameObject, def: ObjectDefinition = door.def, tic
     if (door.id.endsWith("_opened")) {
         return null
     }
-    val direction = door.tile.delta(tile).toDirection()
+    val target = doorTarget(this, door)
+    openDoor(this, door, def, ticks, collision = false)
+    return target
+}
+
+fun doorTarget(player: Player, door: GameObject): Tile? {
+    if (door.id.endsWith("_opened")) {
+        return null
+    }
+    val direction = door.tile.delta(player.tile).toDirection()
     val vertical = door.rotation == 0 || door.rotation == 2
     val target = if (vertical && direction.isHorizontal() || !vertical && direction.isVertical()) {
         door.tile
     } else {
         tile(door, 1)
     }
-    openDoor(this, door, def, ticks, collision = false)
     return target
 }
 
