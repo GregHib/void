@@ -1,4 +1,0 @@
-spawns = [
-    # 10031
-    { id = "bogrog", x = 2523, y = 3057, members = true}
-]
