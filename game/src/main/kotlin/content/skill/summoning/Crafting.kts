@@ -211,7 +211,13 @@ fun maxCraftable(player: Player, shards: Item, charm: Item, pouch: Item, tertiar
  */
 fun sendIngredientMessage(player: Player, enumIndex: Int) {
     val realPouchId = enums.get("summoning_pouch_ids_1").getInt(enumIndex)
-    val ingredientString = enums.get("summoning_pouch_crafting_ingredient_strings").getString(realPouchId)
+    var ingredientString = enums.get("summoning_pouch_crafting_ingredient_strings").getString(realPouchId)
+
+    // The Rune Minotaur's ingredient string is incorrect in the cache.
+    if (realPouchId == itemDefinitions.get("rune_minotaur_pouch").id) {
+        ingredientString = "This pouch requires 1 runite bar, 1 blue charm and 100 spirit shards."
+    }
+
     player.message(ingredientString)
 }
 
