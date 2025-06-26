@@ -140,9 +140,6 @@ interface Character : Entity, Variable, EventDispatcher, Comparable<Character> {
         graphic.height = (characterHeight + definition["height", -1000]).coerceAtLeast(0)
         graphic.rotation = definition["rotation", 0]
         graphic.forceRefresh = definition["force_refresh", false]
-        for (g in visuals.graphics) {
-            println(g.id)
-        }
     }
 
     /**

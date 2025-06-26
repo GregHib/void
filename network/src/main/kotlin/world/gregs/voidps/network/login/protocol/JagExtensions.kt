@@ -46,7 +46,7 @@ suspend fun ByteWriteChannel.p2Alt3(value: Int) {
     writeByte(value shr 8)
 }
 
-suspend fun ByteWriteChannel.writeIntMiddle(value: Int) {
+suspend fun ByteWriteChannel.p4Alt2(value: Int) {
     writeByte(value shr 8)
     writeByte(value)
     writeByte(value shr 24)

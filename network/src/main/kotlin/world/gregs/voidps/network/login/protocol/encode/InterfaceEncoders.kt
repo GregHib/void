@@ -19,7 +19,7 @@ fun Client.animateInterface(
     animation: Int
 ) = send(INTERFACE_ANIMATION) {
     p2Alt3(animation)
-    writeIntMiddle(interfaceComponent)
+    p4Alt2(interfaceComponent)
 }
 
 /**
@@ -55,7 +55,7 @@ fun Client.colourInterface(
     interfaceComponent: Int,
     colour: Int
 ) = send(Protocol.INTERFACE_COLOUR) {
-    writeIntMiddle(interfaceComponent)
+    p4Alt2(interfaceComponent)
     writeInt(colour)
 }
 
@@ -69,7 +69,7 @@ fun Client.npcDialogueHead(
     npc: Int
 ) = send(Protocol.INTERFACE_NPC_HEAD) {
     writeInt(interfaceComponent)
-    p2Alt3(npc)
+    ip2(npc)
 }
 
 /**
@@ -190,8 +190,8 @@ fun Client.interfaceSprite(
     interfaceComponent: Int,
     sprite: Int
 ) = send(Protocol.INTERFACE_SPRITE) {
+    ip2(sprite)
     writeInt(interfaceComponent)
-    p2Alt3(sprite)
 }
 
 /**
@@ -226,9 +226,8 @@ fun Client.interfaceVisibility(
     interfaceComponent: Int,
     hide: Boolean
 ) {
-    return
     send(Protocol.INTERFACE_COMPONENT_VISIBILITY) {
-        writeIntMiddle(interfaceComponent)
+        p4Alt2(interfaceComponent)
         p1Alt1(hide)
     }
 }

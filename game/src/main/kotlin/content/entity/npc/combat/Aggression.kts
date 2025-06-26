@@ -7,6 +7,8 @@ import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.hunt.HuntNPC
+import world.gregs.voidps.engine.entity.character.npc.hunt.HuntPlayer
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntNPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
@@ -14,7 +16,7 @@ import world.gregs.voidps.engine.inject
 
 val areas: AreaDefinitions by inject()
 
-huntPlayer(mode = "aggressive*") { npc ->
+val playerHandler: suspend HuntPlayer.(npc: NPC) -> Unit = huntPlayer@{ npc ->
     if (!Settings["world.npcs.aggression", true] || attacking(npc, target)) {
         return@huntPlayer
     }
@@ -23,6 +25,8 @@ huntPlayer(mode = "aggressive*") { npc ->
     }
     npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
 }
+huntPlayer(mode = "aggressive", handler = playerHandler)
+huntPlayer(mode = "aggressive_intolerant", handler = playerHandler)
 
 huntPlayer(mode = "cowardly") { npc ->
     if (!Settings["world.npcs.aggression", true] || attacking(npc, target)) {
@@ -34,19 +38,13 @@ huntPlayer(mode = "cowardly") { npc ->
     npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
 }
 
-huntNPC(mode = "aggressive*") { npc ->
-    if (attacking(npc, target)) {
-        return@huntNPC
+val npcHandler: suspend HuntNPC.(npc: NPC) -> Unit = { npc ->
+    if (!attacking(npc, target)) {
+        npc.mode = Interact(npc, target, NPCOption(npc, target, target.def, "Attack"))
     }
-    npc.mode = Interact(npc, target, NPCOption(npc, target, target.def, "Attack"))
 }
-
-huntNPC(mode = "cowardly") { npc ->
-    if (attacking(npc, target)) {
-        return@huntNPC
-    }
-    npc.mode = Interact(npc, target, NPCOption(npc, target, target.def, "Attack"))
-}
+huntNPC(mode = "aggressive", handler = npcHandler)
+huntNPC(mode = "aggressive_intolerant", handler = npcHandler)
 
 fun attacking(npc: NPC, target: Character): Boolean {
     val current = npc.mode
