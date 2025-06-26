@@ -15,11 +15,11 @@ fun playerVisualEncoders() = castOf<PlayerVisuals>(
     PlayerExactMovementEncoder(),
     PlayerSecondaryGraphicEncoder(),
     PlayerColourOverlayEncoder(),
-    TemporaryMoveTypeEncoder(),
+    MovementTypeEncoder(),
     PlayerPrimaryGraphicEncoder(),
     PlayerAnimationEncoder(),
     AppearanceEncoder(),
-    MovementTypeEncoder(),
+    TemporaryMoveTypeEncoder(),
 )
 
 fun npcVisualEncoders() = castOf<NPCVisuals>(

@@ -11,8 +11,8 @@ playerSpawn { player ->
         player.options.send(2)
         player.options.send(4)
         player.options.send(7)
-        player.flagMovementType()
         player.flagTemporaryMoveType()
+        player.flagMovementType()
         player.flagAppearance()
         player.clearFace()
     }

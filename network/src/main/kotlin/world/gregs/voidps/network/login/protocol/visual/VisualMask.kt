@@ -10,11 +10,11 @@ object VisualMask {
     const val PLAYER_EXACT_MOVEMENT_MASK = 0x2000
     const val PLAYER_GRAPHIC_2_MASK = 0x200
     const val PLAYER_COLOUR_OVERLAY_MASK = 0x40000
-    const val TEMPORARY_MOVE_TYPE_MASK = 0x80
+    const val MOVEMENT_TYPE_MASK = 0x80
     const val PLAYER_GRAPHIC_1_MASK = 0x20
     const val PLAYER_ANIMATION_MASK = 0x8
     const val APPEARANCE_MASK = 0x10
-    const val MOVEMENT_TYPE_MASK = 0x800
+    const val TEMPORARY_MOVEMENT_TYPE_MASK = 0x800
 
     // Npcs
     const val TRANSFORM_MASK = 0x2
