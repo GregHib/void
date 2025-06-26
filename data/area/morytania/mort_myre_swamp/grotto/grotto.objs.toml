@@ -1,3 +1,7 @@
 [grotto_bridge]
 id = 3522
 examine = "It's a bridge."
+
+[wishing_well]
+id = 28715
+examine = "Make a wish."
