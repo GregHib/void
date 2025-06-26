@@ -277,7 +277,7 @@ abstract class WorldTest : KoinTest {
         private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
         private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"])) }
         private val parameterDefinitions: ParameterDefinitions by lazy { ParameterDefinitions(CategoryDefinitions().load(files.find(Settings["definitions.categories"])), ammoDefinitions).load(files.find(Settings["definitions.parameters"])) }
-        private val objectDefinitions: ObjectDefinitions by lazy {
+        val objectDefinitions: ObjectDefinitions by lazy {
             ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)).load(files.list(Settings["definitions.objects"]))
         }
         private val npcDefinitions: NPCDefinitions by lazy {

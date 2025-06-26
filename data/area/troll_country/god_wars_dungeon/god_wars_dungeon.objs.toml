@@ -6,6 +6,10 @@ examine = "Looks deep."
 id = 26341
 examine = "Looks deep."
 
+[godwars_saradomin_rock_top_base]
+id = 26444
+examine = "A place to attach a rope."
+
 [godwars_saradomin_rock_top]
 id = 26296
 examine = "A place to attach a rope."
@@ -17,6 +21,12 @@ examine = "There's a rope attached."
 [godwars_saradomin_rope_top_end]
 id = 26297
 examine = "I can climb it."
+
+[godwars_saradomin_rope_top_end_base]
+id = 26294
+
+[godwars_saradomin_rock_bottom_base]
+id = 26445
 
 [godwars_saradomin_rock_bottom]
 id = 26300
@@ -30,13 +40,22 @@ examine = "There's a rope attached."
 id = 26297
 examine = "I can climb it."
 
+[godwars_saradomin_rope_bottom_end_base]
+id = 26298
+
 [godwars_bandos_big_door]
 id = 26384
 
-[pillar_56]
+[armadyl_pillar_grapple]
 id = 26302
 examine = "I could fire a grapple to that."
 
 [armadyl_pillar]
 id = 26303
 examine = "A pillar leans over the chasm."
+
+[godwars_armadyl_crate]
+id = 26440
+
+[godwars_zamorak_bridge]
+id = 26439

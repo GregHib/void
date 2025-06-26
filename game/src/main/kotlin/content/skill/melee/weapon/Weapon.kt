@@ -27,7 +27,7 @@ import world.gregs.voidps.type.random
 import kotlin.random.nextInt
 
 object Weapon {
-    private val crossbows = setOf(
+    val crossbows = setOf(
         "bronze_crossbow",
         "blurite_crossbow",
         "iron_crossbow",

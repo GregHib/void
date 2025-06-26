@@ -222,7 +222,7 @@ fun Player.npcOption(npc: NPC, option: Int) = runTest {
 
 fun Player.objectOption(gameObject: GameObject, option: String = "", optionIndex: Int? = null) = runTest {
     val def = get<ObjectDefinitions>().get(gameObject.intId)
-    instructions.send(InteractObject(gameObject.intId, gameObject.tile.x, gameObject.tile.y, (optionIndex ?: def.optionsIndex(option)) + 1))
+    instructions.send(InteractObject(def.id, gameObject.tile.x, gameObject.tile.y, (optionIndex ?: def.optionsIndex(option)) + 1))
 }
 
 fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
