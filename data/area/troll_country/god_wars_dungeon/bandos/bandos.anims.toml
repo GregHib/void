@@ -70,33 +70,6 @@ id = 164
 [god_wars_hobgoblin_death]
 id = 2958
 
-[god_wars_spiritual_ranger_bandos_attack]
-id = 7051
-
-[god_wars_spiritual_ranger_bandos_defend]
-id = 4322
-
-[god_wars_spiritual_ranger_bandos_death]
-id = 7064
-
-[god_wars_spiritual_warrior_bandos_attack]
-id = 4320
-
-[god_wars_spiritual_warrior_bandos_defend]
-id = 4322
-
-[god_wars_spiritual_warrior_bandos_death]
-id = 7064
-
-[god_wars_spiritual_mage_bandos_attack]
-id = 7052
-
-[god_wars_spiritual_mage_bandos_defend]
-id = 4322
-
-[god_wars_spiritual_mage_bandos_death]
-id = 7064
-
 [god_wars_goblin_attack]
 id = 6185
 
