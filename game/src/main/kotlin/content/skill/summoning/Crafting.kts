@@ -119,14 +119,14 @@ fun infusePouches(player: Player, enumIndex: Int, amount: Int) {
  * @return: A [List] of [Item]s with the tertiary ids and amounts needed to craft the given [pouch]
  */
 fun getTertiaries(pouch: Item): List<Item> {
-    val tertiaryItemId1 = pouch.def.extras?.get("summoning_pouch_req_item_id_1") as Int
-    val tertiaryItemAmount1 = pouch.def.extras?.get("summoning_pouch_req_item_amount_1") as Int
-    val tertiaryItemId2 = pouch.def.extras?.get("summoning_pouch_req_item_id_2") as Int?
-    val tertiaryItemAmount2 = pouch.def.extras?.get("summoning_pouch_req_item_amount_2") as Int?
+    val tertiaryItemId1: Int = pouch.def["summoning_pouch_req_item_id_1"]
+    val tertiaryItemAmount1: Int = pouch.def["summoning_pouch_req_item_amount_1"]
+    val tertiaryItemId2 = pouch.def["summoning_pouch_req_item_id_2", -1]
+    val tertiaryItemAmount2 = pouch.def["summoning_pouch_req_item_amount_2", -1]
 
     val tertiaries = mutableListOf(Item(itemDefinitions.get(tertiaryItemId1).stringId, tertiaryItemAmount1))
 
-    if (tertiaryItemId2 != null && tertiaryItemAmount2 != null)
+    if (tertiaryItemId2 != -1 && tertiaryItemAmount2 != -1)
         tertiaries.add(Item(itemDefinitions.get(tertiaryItemId2).stringId, tertiaryItemAmount2))
 
     return tertiaries.toList()
