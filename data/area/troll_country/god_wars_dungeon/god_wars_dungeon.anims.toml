@@ -5,4 +5,7 @@ id = 7002
 id = 6067
 
 [godwars_grapple_swing]
+id = 6070
+
+[godwars_grapple_swing_reverse]
 id = 6072
