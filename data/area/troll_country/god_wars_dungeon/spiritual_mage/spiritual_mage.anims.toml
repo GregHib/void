@@ -1,2 +1,11 @@
 [spiritual_mage_attack]
 id = 811
+
+[spiritual_mage_bandos_attack]
+id = 7052
+
+[spiritual_mage_bandos_defend]
+id = 4322
+
+[spiritual_mage_bandos_death]
+id = 7064

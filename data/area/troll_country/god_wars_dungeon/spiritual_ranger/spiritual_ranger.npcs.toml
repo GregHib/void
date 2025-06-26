@@ -43,3 +43,20 @@ wander_radius = 6
 attack_radius = 8
 examine = "A ranger spirit dedicated to Saradomin."
 
+[spiritual_ranger_bandos]
+id = 6276
+hitpoints = 1310
+def = 96
+range = 121
+max_hit_range = 130
+hunt_mode = "aggressive"
+style = "range"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 131.0
+slayer_level = 63
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+drop_table = "spiritual_ranger"
+examine = "The spirit of a ranger, serving Bandos beyond death."
