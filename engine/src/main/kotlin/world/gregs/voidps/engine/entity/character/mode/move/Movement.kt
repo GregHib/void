@@ -16,8 +16,8 @@ import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrateg
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
+import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -125,8 +125,8 @@ open class Movement(
     private fun setMovementType(run: Boolean, end: Boolean) {
         if (character is Player) {
             character.steps.last = GameLoop.tick + 1 // faster than character.start("last_movement", 1)
-            character.movementType = if (run) MoveType.Run else MoveType.Walk
-            character.temporaryMoveType = if (end) {
+            character.temporaryMoveType = if (run) MoveType.Run else MoveType.Walk
+            character.movementType = if (end) {
                 MoveType.Run
             } else if (run) {
                 MoveType.Run

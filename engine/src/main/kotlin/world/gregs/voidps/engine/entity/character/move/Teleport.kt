@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.movementType
+import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Delta
@@ -29,7 +29,7 @@ fun Character.tele(delta: Delta, clearMode: Boolean = true, clearInterfaces: Boo
         if (clearInterfaces) {
             closeInterfaces()
         }
-        movementType = MoveType.Teleport
+        temporaryMoveType = MoveType.Teleport
     }
     steps.clear()
     steps.previous = tile.add(delta).add(Direction.WEST)
