@@ -94,7 +94,7 @@ fun infusePouches(player: Player, enumIndex: Int, amount: Int) {
     val pouches = getPouches(pouchItem)
     val tertiaries = getTertiaries(pouchItem)
 
-    val xpPerCraft = pouchItem.def.extras?.get("infuse_experience") as Double? ?: return
+    val xpPerCraft: Double = pouchItem.def["infuse_experience"]
     val maxCraftable = maxCraftable(player, shards, charms, pouches, tertiaries) ?: return
     val amountToCraft = min(amount, maxCraftable)
 
@@ -140,8 +140,8 @@ fun getTertiaries(pouch: Item): List<Item> {
  * @return: An [Item] with the charm id and amount needed to craft the given [pouch]
  */
 fun getShards(pouch: Item): Item {
-    val shardItemId = pouch.def.extras?.get("summoning_shard_id") as Int
-    val shardAmount = pouch.def.extras?.get("summoning_shard_amount") as Int
+    val shardItemId: Int = pouch.def["summoning_shard_id"]
+    val shardAmount: Int = pouch.def["summoning_shard_amount"]
     return Item(itemDefinitions.get(shardItemId).stringId, shardAmount)
 }
 
@@ -153,8 +153,8 @@ fun getShards(pouch: Item): Item {
  * @return: An [Item] with the charm id and amount needed to craft the given [pouch]
  */
 fun getCharms(pouch: Item): Item {
-    val charmItemId = pouch.def.extras?.get("summoning_charm_id") as Int
-    val charmAmount = pouch.def.extras?.get("summoning_charm_amount") as Int
+    val charmItemId: Int = pouch.def["summoning_charm_id"]
+    val charmAmount: Int = pouch.def["summoning_charm_amount"]
     return Item(itemDefinitions.get(charmItemId).stringId, charmAmount)
 }
 
@@ -166,8 +166,8 @@ fun getCharms(pouch: Item): Item {
  * @return: An [Item] with the pouch id and amount needed to craft the given [pouch]
  */
 fun getPouches(pouch: Item): Item {
-    val pouchItemId = pouch.def.extras?.get("summoning_pouch_id") as Int
-    val pouchAmount = pouch.def.extras?.get("summoning_pouch_amount") as Int
+    val pouchItemId: Int = pouch.def["summoning_pouch_id"]
+    val pouchAmount: Int = pouch.def["summoning_pouch_amount"]
     return Item(itemDefinitions.get(pouchItemId).stringId, pouchAmount)
 }
 
