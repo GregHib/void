@@ -60,3 +60,22 @@ wander_radius = 6
 attack_radius = 8
 drop_table = "spiritual_ranger"
 examine = "The spirit of a ranger, serving Bandos beyond death."
+
+[spiritual_ranger_armadyl]
+id = 6230
+hitpoints = 890
+def = 130
+range = 150
+max_hit_range = 160
+hunt_mode = "aggressive"
+style = "range"
+attack_speed = 3
+respawn_delay = 25
+slayer_xp = 120.0
+slayer_level = 63
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+drop_table = "spiritual_ranger"
+examine = "Armadyl's favourite servant."
+

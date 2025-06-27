@@ -1,0 +1,14 @@
+[aviansie_attack_magic]
+id = 6952
+
+[aviansie_attack]
+id = 6953
+
+[aviansie_attack_melee]
+id = 6954
+
+[aviansie_defend]
+id = 6955
+
+[aviansie_death]
+id = 6956

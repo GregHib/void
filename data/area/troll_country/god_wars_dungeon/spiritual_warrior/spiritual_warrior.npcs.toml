@@ -62,3 +62,21 @@ categories = ["spiritual_creatures"]
 wander_radius = 6
 attack_radius = 8
 examine = "A true servant of Bandos."
+
+[spiritual_warrior_armadyl]
+id = 6229
+hitpoints = 980
+def = 120
+range = 141
+max_hit_melee = 150
+hunt_mode = "aggressive"
+style = "range"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 98.0
+slayer_level = 68
+drop_table = "spiritual_warrior"
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "A servant of Armadyl."
