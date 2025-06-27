@@ -1,12 +1,12 @@
-[god_wars_cyclops_drop_table]
+[cyclops_god_wars_drop_table]
 type = "all"
 drops = [
     { id = "big_bones" },
-    { table = "god_wars_cyclops_secondary" },
-    { table = "god_wars_cyclops_tertiary" },
+    { table = "cyclops_god_wars_secondary" },
+    { table = "cyclops_god_wars_tertiary" },
 ]
 
-[god_wars_cyclops_secondary]
+[cyclops_god_wars_secondary]
 roll = 100
 drops = [
     { id = "black_knife", min = 4, max = 13, chance = 16 },
@@ -35,7 +35,7 @@ drops = [
     { table = "gem_drop_table", chance = 2 },
 ]
 
-[god_wars_cyclops_tertiary]
+[cyclops_god_wars_tertiary]
 roll = 5000
 drops = [
     { table = "hard_clue_scroll", chance = 9 },
