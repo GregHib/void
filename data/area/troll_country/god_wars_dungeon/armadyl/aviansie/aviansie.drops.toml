@@ -1,0 +1,36 @@
+[aviansie_drop_table]
+type = "all"
+drops = [
+    { table = "aviansie_primary" },
+    { table = "aviansie_secondary" },
+    { table = "hard_clue_scroll", roll = 128 },
+]
+
+[aviansie_primary]
+drops = [
+    { id = "bones" },
+    { id = "feather", min = 1, max = 6 },
+]
+
+[aviansie_secondary]
+roll = 128
+drops = [
+    { id = "rune_dagger_p+", chance = 11 },
+    { id = "air_rune", amount = 15, chance = 18 },
+    { id = "water_rune", amount = 30, chance = 13 },
+    { id = "law_rune", amount = 2, chance = 4 },
+    { id = "nature_rune", amount = 9, chance = 4 },
+    { id = "chaos_rune", amount = 3, chance = 3 },
+    { id = "body_rune", amount = 12, chance = 2 },
+    { id = "blood_rune", amount = 11, chance = 2 },
+    { id = "mind_rune", amount = 5 },
+    { id = "chaos_rune", amount = 16 },
+    { table = "herb_drop_table", chance = 15 },
+    { id = "adamant_bar", amount = 4, chance = 30 },
+    { id = "silver_ore", chance = 10 },
+    { id = "rune_limbs" },
+    { id = "antipoison_3", amount = 5, chance = 5 },
+    { id = "nothing", amount = 0, chance = 3 },
+    { id = "swordfish", amount = 5, chance = 2 },
+    { table = "gem_drop_table", chance = 3 },
+]

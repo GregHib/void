@@ -58,3 +58,24 @@ categories = ["spiritual_creatures"]
 wander_radius = 6
 attack_radius = 8
 examine = "One of Bandos's chosen."
+
+[spiritual_mage_armadyl]
+id = 6231
+hitpoints = 860
+def = 111
+mage = 150
+max_hit_magic = 170
+hunt_mode = "aggressive"
+style = "magic"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 75.0
+slayer_level = 83
+combat_anims = "human"
+attack_anim = "spiritual_mage_armadyl_attack"
+drop_table = "spiritual_mage"
+drop_table = "spiritual_mage"
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "A mage who serves Armadyl above all else - even death."
