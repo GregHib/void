@@ -25,6 +25,7 @@ class InterfaceHandler(
         if (itemId != -1) {
             when {
                 id.startsWith("summoning_") && id.endsWith("_creation") -> item = Item(itemDefinitions.get(itemId).stringId)
+                id == "summoning_trade_in" -> item = Item(itemDefinitions.get(itemId).stringId)
                 else -> {
                     inventory = getInventory(player, id, component, componentDefinition) ?: return null
                     item = getInventoryItem(player, id, componentDefinition, inventory, itemId, itemSlot) ?: return null
