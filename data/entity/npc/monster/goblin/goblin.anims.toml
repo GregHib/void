@@ -6,3 +6,18 @@ id = 6183
 
 [goblin_death]
 id = 6182
+
+[goblin_god_wars_attack]
+id = 6185
+
+[goblin_god_wars_defend]
+id = 6189
+
+[goblin_god_wars_death]
+id = 6182
+
+[goblin_god_wars_axe_attack]
+id = 6184
+
+[goblin_god_wars_flag_attack]
+id = 6188

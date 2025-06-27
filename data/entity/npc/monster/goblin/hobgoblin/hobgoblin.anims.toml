@@ -15,3 +15,12 @@ id = 12406
 
 [hobgoblin_armed_death]
 id = 4784
+
+[hobgoblin_god_wars_attack]
+id = 163
+
+[hobgoblin_god_wars_defend]
+id = 164
+
+[hobgoblin_god_wars_death]
+id = 2958

@@ -1,8 +1,2 @@
-[hill_giant_defend]
-id = 451
-
-[hill_giant_death]
-id = 450
-
 [hill_giant_attack]
 id = 448

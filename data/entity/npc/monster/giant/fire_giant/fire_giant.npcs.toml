@@ -13,7 +13,7 @@ wander_radius = 2
 slayer_xp = 111.0
 drop_table = "fire_giant"
 combat_anims = "fire_giant"
-combat_sounds = "fire_giant"
+combat_sounds = "giant"
 categories = ["fire_giants"]
 examine = "His beard seems to have a life of its own."
 

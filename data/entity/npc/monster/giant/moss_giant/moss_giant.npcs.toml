@@ -13,7 +13,7 @@ wander_radius = 2
 slayer_xp = 60.0
 drop_table = "moss_giant"
 combat_anims = "moss_giant"
-combat_sounds = "moss_giant"
+combat_sounds = "giant"
 categories = ["moss_giants"]
 examine = "His beard seems to have a life of its own."
 
