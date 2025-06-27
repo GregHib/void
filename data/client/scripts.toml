@@ -202,8 +202,8 @@ params = [
   "component hash",
   "width",
   "height",
-  "int",
-  "slot length",
+  "starting index",
+  "ending index",
   "option 1",
   "option 2",
   "option 3",
@@ -217,8 +217,40 @@ params = [
   "component hash",
   "width",
   "height",
-  "int",
-  "slot length",
+  "starting index",
+  "ending index",
+  "option 1",
+  "option 2",
+  "option 3",
+  "option 4",
+  "option 5",
+  "option 6"
+]
+
+[populate_summoning_pouch_trade_in]
+id = 317
+params = [
+  "component hash",
+  "width",
+  "height",
+  "starting index",
+  "ending index",
+  "option 1",
+  "option 2",
+  "option 3",
+  "option 4",
+  "option 5",
+  "option 6"
+]
+
+[populate_summoning_scroll_trade_in]
+id = 320
+params = [
+  "component hash",
+  "width",
+  "height",
+  "starting index",
+  "ending index",
   "option 1",
   "option 2",
   "option 3",

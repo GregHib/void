@@ -1,5 +1,37 @@
 [summoning_trade_in]
 id = 78
+components = {
+    scroll_trade_in = {
+        id = 14,
+        options = {
+            Value = 0,
+            Trade = 1,
+            Trade-5 = 2,
+            Trade-10 = 3,
+            Trade-X = 4,
+            Trade-All = 6,
+        }
+    },
+    pouch_trade_in = {
+        id = 15,
+        options = {
+            Value = 0,
+            Trade = 1,
+            Trade-5 = 2,
+            Trade-10 = 3,
+            Trade-X = 4,
+            Trade-All = 6,
+        }
+    },
+    scroll_tab_scroll_bar = 16,
+    pouch_tab_scroll_bar = 17,
+    pouch_trade_in_text = 18,
+    scroll_trade_in_text = 19,
+    pouch_tab_background = 24,
+    pouch_tab_sprite = 25,
+    scroll_tab_background = 26,
+    scroll_tab_sprite = 27
+}
 
 [summoning_creation]
 id = 79
