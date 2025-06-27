@@ -16,7 +16,6 @@ object FixItems {
 
     private const val SHARD_REFUND_AMOUNT = 457
     private const val SUMMONING_SHARD_AMOUNT = 541
-    private const val SUMMONING_REFUND_AMOUNT_INVERSE = 599
 
     fun fix(library: CacheLibrary) {
         println("Fixing item parameters...")
@@ -32,8 +31,7 @@ object FixItems {
                 SUMMONING_SHARD_AMOUNT to 100
             ),
             RUNE_BULL_RUSH_SCROLL to mapOf(
-                SHARD_REFUND_AMOUNT to 6,
-                SUMMONING_REFUND_AMOUNT_INVERSE to 1
+                SHARD_REFUND_AMOUNT to 6
             )
         )
 
