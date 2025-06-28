@@ -45,6 +45,12 @@ spawns = [
   { id = "goblin_light_topless_spiked", x = 3185, y = 3244 },
   { id = "goblin_light_grey_bald_spear", x = 3167, y = 3205 },
 # 12850
+  { id = "sigmund", x = 3209, y = 3219, level = 1 },
+  { id = "guardsman_deshawn", x = 3206, y = 3214, level = 1 },
+  { id = "guardsman_dante", x = 3211, y = 3227, level = 1 },
+  { id = "guardsman_brawn", x = 3215, y = 3219, level = 1},
+  { id = "guardsman_pazel", x = 3213, y = 3210, level = 1 },
+  { id = "guardsman_peale", x = 3208, y = 3227},
   { id = "donie", x = 3219, y = 3247 },
   { id = "imp", x = 3223, y = 3223 },
   { id = "lumbridge_sage", x = 3238, y = 3219, direction = "WEST" },
