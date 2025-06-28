@@ -1,0 +1,18 @@
+[magic_axe]
+id = 127
+hitpoints = 250
+att = 38
+str = 38
+def = 28
+max_hit_melee = 50
+style = "slash"
+slayer_xp = 44.0
+attack_speed = 4
+respawn_delay = 30
+wander_radius = 4
+combat_sounds = "magic_axe"
+drop_table = "magic_axe"
+hunt_mode = "cowardly"
+combat_anims = "magic_axe"
+categories = ["magic_axe", "undead"]
+examine = "A magic axe with a mind of its own."

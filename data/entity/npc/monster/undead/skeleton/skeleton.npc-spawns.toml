@@ -77,4 +77,12 @@ spawns = [
     { id = "stronghold_skeleton_helmet_1", x = 3274, y = 9913 },
     { id = "skeleton_unarmed_1", x = 3275, y = 9911 },
     { id = "skeleton_shield_helmet_1", x = 3275, y = 9909 },
+    # Taverley Dungeon
+    { id = "skeleton_shield", x = 2882, y = 9826, members = true },
+    { id = "skeleton_mace_shield", x = 2884, y = 9836, members = true },
+    { id = "skeleton_shield", x = 2885, y = 9819, members = true },
+    { id = "skeleton_helmet", x = 2885, y = 9823, members = true },
+    { id = "skeleton_helmet", x = 2886, y = 9812, members = true },
+    { id = "skeleton_unarmed", x = 2886, y = 9816, members = true },
+    { id = "skeleton_shield_helmet", x = 2887, y = 9821, members = true },
 ]

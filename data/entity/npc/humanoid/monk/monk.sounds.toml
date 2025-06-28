@@ -1,0 +1,8 @@
+[monk_of_zamorak_defend]
+id = 513
+
+[monk_of_zamorak_attack]
+id = 511
+
+[monk_of_zamorak_death]
+id = 512

@@ -99,3 +99,7 @@ examine = "I can climb this."
 [wilderness_agility_ladder_down]
 id = 14758
 examine = "I can climb down this."
+
+[canifis_ladder_up]
+id = 30575
+examine = "I can climb this."

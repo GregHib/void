@@ -1,0 +1,18 @@
+[monk_of_zamorak]
+id = 190
+max_hit_melee = 50
+hitpoints = 100
+att = 8
+str = 8
+def = 12
+magic = 25
+wander_radius = 4
+style = "crush"
+attack_speed = 4
+respawn_delay = 50
+drop_table = "chaos_dwarf"
+combat_sounds = "monk_of_zamorak"
+categories = ["monk_of_zamorak"]
+combat_anims = "monk_of_zamorak"
+categories = ["monk"]
+examine = "An evil human cleric."

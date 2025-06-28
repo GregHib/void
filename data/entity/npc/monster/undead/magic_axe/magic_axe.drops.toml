@@ -1,0 +1,10 @@
+[magic_axe_drop_table]
+type = "all"
+drops = [
+  { table = "magic_axe_primary" },
+]
+
+[magic_axe_primary]
+drops = [
+  { id = "iron_battleaxe" },
+]

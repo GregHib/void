@@ -9,6 +9,7 @@ max_hit_melee = 7
 attack_speed = 5
 wander_radius = 5
 attack_radius = 5
+drop_table = "ice_giant"
 combat_anims = "ice_giant"
 combat_sounds = "ice_giant"
 hunt_mode = "cowardly"
