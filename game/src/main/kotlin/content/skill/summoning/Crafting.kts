@@ -14,9 +14,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.min
 
 private val logger = InlineLogger()
@@ -100,15 +101,18 @@ fun infusePouches(player: Player, enumIndex: Int, amount: Int) {
 
     player.interfaces.close("summoning_pouch_creation")
 
-    player.inventory.remove(shards.id, shards.amount * amountToCraft)
-    player.inventory.remove(charms.id, charms.amount * amountToCraft)
-    player.inventory.remove(pouches.id, pouches.amount * amountToCraft)
-    tertiaries.forEach { tertiary -> player.inventory.remove(tertiary.id, tertiary.amount * amountToCraft) }
+    player.inventory.transaction {
+        remove(shards.id, shards.amount * amountToCraft)
+        remove(charms.id, charms.amount * amountToCraft)
+        remove(pouches.id, pouches.amount * amountToCraft)
+        tertiaries.forEach { tertiary -> remove(tertiary.id, tertiary.amount * amountToCraft) }
+        add(pouchItem.id, amountToCraft)
+    }
 
-    player.anim("summoning_infuse")
-
-    player.inventory.add(pouchItem.id, amountToCraft)
-    player.exp(Skill.Summoning, xpPerCraft * amountToCraft)
+    if (player.inventory.transaction.error == TransactionError.None) {
+        player.anim("summoning_infuse")
+        player.exp(Skill.Summoning, xpPerCraft * amountToCraft)
+    }
 }
 
 /**

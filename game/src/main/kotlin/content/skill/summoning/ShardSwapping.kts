@@ -13,9 +13,10 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.min
 
 val enums: EnumDefinitions by inject()
@@ -86,12 +87,13 @@ fun swapForShards(player: Player, item: Item, amount: Int) {
     val unnotedItemCount = player.inventory.count(item.id)
 
     val unnotedToSwap = min(unnotedItemCount, actualNumberTraded)
-    val notedToSwap = actualNumberTraded - unnotedToSwap
+    val notedToSwap = if (item != item.noted) actualNumberTraded - unnotedToSwap else 0
 
-    player.inventory.remove(item.id, unnotedToSwap)
-    if (item != item.noted) player.inventory.remove(item.noted!!.id, notedToSwap)
-
-    player.inventory.add("spirit_shards", totalSwaps * shardsPerSwap)
+    player.inventory.transaction {
+        if (unnotedToSwap > 0) remove(item.id, unnotedToSwap)
+        if (notedToSwap > 0) remove(item.noted!!.id, notedToSwap)
+        add("spirit_shards", totalSwaps * shardsPerSwap)
+    }
 }
 
 /**
