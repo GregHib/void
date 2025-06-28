@@ -159,9 +159,6 @@ fun transformScrolls(player: Player, enumIndex: Int, amount: Int) {
         player.anim("summoning_infuse")
         player.exp(Skill.Summoning, xpPerCraft * amountToTransform)
     }
-    else {
-        println(player.inventory.transaction.error)
-    }
 }
 
 /**
