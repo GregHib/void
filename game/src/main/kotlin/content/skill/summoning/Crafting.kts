@@ -79,6 +79,22 @@ interfaceOption("List", "pouches", "summoning_pouch_creation") {
     sendIngredientMessage(player, enumIndex)
 }
 
+interfaceOption("Transform*", "scrolls", "summoning_scroll_creation") {
+    // TODO: When dungeoneering support is implemented, this will need to change
+    val enumIndex = (itemSlot + 3) / 5
+
+    when(option) {
+        "Transform" -> transformScrolls(player, enumIndex, 1)
+        "Transform-5" -> transformScrolls(player, enumIndex, 5)
+        "Transform-10" -> transformScrolls(player, enumIndex, 10)
+        "Transform-X" -> {
+            val total = intEntry("Enter amount:")
+            transformScrolls(player, enumIndex, total)
+        }
+        "Transform-All" -> transformScrolls(player, enumIndex, Int.MAX_VALUE)
+    }
+}
+
 /**
  * Crafts summoning familiar pouches.
  *
@@ -112,6 +128,42 @@ fun infusePouches(player: Player, enumIndex: Int, amount: Int) {
     if (player.inventory.transaction.error == TransactionError.None) {
         player.anim("summoning_infuse")
         player.exp(Skill.Summoning, xpPerCraft * amountToCraft)
+    }
+}
+
+/**
+ * Crafts summoning scrolls.
+ *
+ * @param player: The player doing the crafting
+ * @param enumIndex: The index in the "summoning_scroll_ids_*" enum of the scroll being crafted
+ * @param amount: The amount of pouches the player is attempting to turn into scrolls
+ */
+fun transformScrolls(player: Player, enumIndex: Int, amount: Int) {
+    val scrollItemId = enums.get("summoning_scroll_ids_1").getInt(enumIndex)
+    val scrollItem = Item(itemDefinitions.get(scrollItemId).stringId)
+
+    val pouchId = enums.get("summoning_scroll_ids_2").getKey(scrollItemId)
+    val pouchItem = Item(itemDefinitions.get(pouchId).stringId)
+
+    val maxTransformAmount = player.inventory.count(pouchItem.id)
+    val amountToTransform = min(amount, maxTransformAmount)
+
+    val xpPerCraft: Double = scrollItem.def["transform_experience"]
+
+    println(scrollItem)
+    println(pouchItem)
+
+    player.inventory.transaction {
+        remove(pouchItem.id, amountToTransform)
+        add(scrollItem.id, amountToTransform * 10)
+    }
+
+    if (player.inventory.transaction.error == TransactionError.None) {
+        player.anim("summoning_infuse")
+        player.exp(Skill.Summoning, xpPerCraft * amountToTransform)
+    }
+    else {
+        println(player.inventory.transaction.error)
     }
 }
 
