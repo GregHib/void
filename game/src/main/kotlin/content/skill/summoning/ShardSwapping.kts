@@ -78,9 +78,9 @@ interfaceOption("Trade*", "*_trade_in", "summoning_trade_in") {
  * @param amount: The number of items the player has attempted to swap
  */
 fun swapForShards(player: Player, item: Item, amount: Int) {
-    val maxToSwap = min(amount, getItemCount(player, item))
     val shardsPerSwap = item.def["shard_refund_amount", 1]
     val itemsNeededPerSwap = item.def["summoning_refund_amount_inverse", 1]
+    val maxToSwap = min(amount * itemsNeededPerSwap, getItemCount(player, item))
     val actualNumberTraded = maxToSwap - (maxToSwap % itemsNeededPerSwap)
     val totalSwaps = actualNumberTraded / itemsNeededPerSwap
     val unnotedItemCount = player.inventory.count(item.id)
