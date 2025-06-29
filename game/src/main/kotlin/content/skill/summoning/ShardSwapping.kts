@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import kotlin.math.abs
 import kotlin.math.min
 
 val enums: EnumDefinitions by inject()
@@ -80,7 +81,7 @@ interfaceOption("Trade*", "*_trade_in", "summoning_trade_in") {
 fun swapForShards(player: Player, item: Item, amount: Int) {
     val shardsPerSwap = item.def["shard_refund_amount", 1]
     val itemsNeededPerSwap = item.def["summoning_refund_amount_inverse", 1]
-    val maxToSwap = min(amount * itemsNeededPerSwap, getItemCount(player, item))
+    val maxToSwap = if (amount == Int.MAX_VALUE) getItemCount(player, item) else min(amount * itemsNeededPerSwap, getItemCount(player, item))
     val actualNumberTraded = maxToSwap - (maxToSwap % itemsNeededPerSwap)
     val totalSwaps = actualNumberTraded / itemsNeededPerSwap
     val unnotedItemCount = player.inventory.count(item.id)
