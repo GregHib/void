@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.definition.decoder
 
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.DefinitionDecoder
@@ -20,16 +21,21 @@ class EnumDecoder : DefinitionDecoder<EnumDefinition>(ENUMS) {
             2 -> valueType = byteToChar(buffer.readByte().toByte())
             3 -> defaultString = buffer.readString()
             4 -> defaultInt = buffer.readInt()
-            5, 6 -> {
+            5 -> {
                 length = buffer.readShort()
                 val hashtable = Int2ObjectOpenHashMap<Any>(length)
                 for (count in 0 until length) {
                     val id = buffer.readInt()
-                    hashtable[id] = if (opcode == 5) {
-                        buffer.readString()
-                    } else {
-                        buffer.readInt()
-                    }
+                    hashtable[id] = buffer.readString()
+                }
+                map = hashtable
+            }
+            6 -> {
+                length = buffer.readShort()
+                val hashtable = Int2IntOpenHashMap(length)
+                for (count in 0 until length) {
+                    val id = buffer.readInt()
+                    hashtable[id] = buffer.readInt()
                 }
                 map = hashtable
             }
