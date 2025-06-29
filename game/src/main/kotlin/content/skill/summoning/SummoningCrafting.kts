@@ -5,6 +5,7 @@ import content.entity.player.dialogue.type.intEntry
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -115,8 +116,6 @@ fun infusePouches(player: Player, enumIndex: Int, amount: Int) {
     val maxCraftable = maxCraftable(player, shards, charms, pouches, tertiaries) ?: return
     val amountToCraft = min(amount, maxCraftable)
 
-    player.interfaces.close("summoning_pouch_creation")
-
     player.inventory.transaction {
         remove(shards.id, shards.amount * amountToCraft)
         remove(charms.id, charms.amount * amountToCraft)
@@ -128,6 +127,7 @@ fun infusePouches(player: Player, enumIndex: Int, amount: Int) {
     if (player.inventory.transaction.error == TransactionError.None) {
         player.anim("summoning_infuse")
         player.exp(Skill.Summoning, xpPerCraft * amountToCraft)
+        player.closeMenu()
     }
 }
 
@@ -150,8 +150,6 @@ fun transformScrolls(player: Player, enumIndex: Int, amount: Int) {
 
     val xpPerCraft: Double = scrollItem.def["transform_experience"]
 
-    player.interfaces.close("summoning_scroll_creation")
-
     player.inventory.transaction {
         remove(pouchItem.id, amountToTransform)
         add(scrollItem.id, amountToTransform * 10)
@@ -160,6 +158,7 @@ fun transformScrolls(player: Player, enumIndex: Int, amount: Int) {
     if (player.inventory.transaction.error == TransactionError.None) {
         player.anim("summoning_infuse")
         player.exp(Skill.Summoning, xpPerCraft * amountToTransform)
+        player.closeMenu()
     }
 }
 
