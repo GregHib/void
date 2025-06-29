@@ -150,6 +150,8 @@ fun transformScrolls(player: Player, enumIndex: Int, amount: Int) {
 
     val xpPerCraft: Double = scrollItem.def["transform_experience"]
 
+    player.interfaces.close("summoning_scroll_creation")
+
     player.inventory.transaction {
         remove(pouchItem.id, amountToTransform)
         add(scrollItem.id, amountToTransform * 10)
