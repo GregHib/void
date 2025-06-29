@@ -37,6 +37,15 @@ spawns = [
     # Taverley Dungeon
     { id = "black_dragon_dragon_1", x = 2829, y = 9826, members = true },
     { id = "black_dragon", x = 2835, y = 9824, members = true },
+    # Taverley blue dragon resource dungeon
+    { id = "blue_dragon_dragon_2", x = 967, y = 4498, members = true },
+    { id = "blue_dragon_dragon_3", x = 975, y = 4494, members = true },
+    { id = "blue_dragon", x = 979, y = 4506, members = true },
+    { id = "blue_dragon_dragon_4", x = 987, y = 4489, members = true },
+    { id = "blue_dragon_dragon_3", x = 994, y = 4494, members = true },
+    { id = "blue_dragon_dragon_2", x = 995, y = 4503, members = true },
+    { id = "blue_dragon", x = 1009, y = 4531, members = true },
+    { id = "blue_dragon_dragon_1", x = 1013, y = 4518, members = true },
     # Taverley Dungeon
     { id = "blue_dragon_dragon_2", x = 2897, y = 9797, members = true },
     { id = "blue_dragon", x = 2899, y = 9802, members = true },
