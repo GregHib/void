@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 
-class SummoningCraftingTest: WorldTest() {
+class SummoningCraftingTest : WorldTest() {
 
     private lateinit var enums: EnumDefinitions
     private lateinit var itemDefinitions: ItemDefinitions
@@ -36,57 +36,58 @@ class SummoningCraftingTest: WorldTest() {
 
     @TestFactory
     fun `Infuse Non-Dungeoneering Pouch`() = nonDungeoneeringPouchMap.map { (index, pouchId) ->
-            val pouch = Item(itemDefinitions.get(pouchId as Int).stringId)
-            dynamicTest("Infuse ${pouch.id}") {
-                val player = createPlayer(Tile(2523, 3056))
-                player.levels.set(Skill.Summoning, 99)
-                val originalXp = player.experience.get(Skill.Summoning)
-                val obelisk = objects[Tile(2521, 3055), "obelisk"]!!
-                val interactingSlot = index * 5 - 3
+        val pouch = Item(itemDefinitions.get(pouchId as Int).stringId)
+        dynamicTest("Infuse ${pouch.id}") {
+            val player = createPlayer(Tile(2523, 3056))
+            player.levels.set(Skill.Summoning, 99)
+            val originalXp = player.experience.get(Skill.Summoning)
+            val obelisk = objects[Tile(2521, 3055), "obelisk"]!!
+            val interactingSlot = index * 5 - 3
 
-                val charmItemId: Int = pouch.def["summoning_charm_id"]
-                val charmAmount: Int = pouch.def["summoning_charm_amount"]
-                val charm = Item(itemDefinitions.get(charmItemId).stringId, charmAmount)
+            val charmItemId: Int = pouch.def["summoning_charm_id"]
+            val charmAmount: Int = pouch.def["summoning_charm_amount"]
+            val charm = Item(itemDefinitions.get(charmItemId).stringId, charmAmount)
 
-                val shardItemId: Int = pouch.def["summoning_shard_id"]
-                val shardAmount: Int = pouch.def["summoning_shard_amount"]
-                val shard = Item(itemDefinitions.get(shardItemId).stringId, shardAmount)
+            val shardItemId: Int = pouch.def["summoning_shard_id"]
+            val shardAmount: Int = pouch.def["summoning_shard_amount"]
+            val shard = Item(itemDefinitions.get(shardItemId).stringId, shardAmount)
 
-                val blankPouchItemId: Int = pouch.def["summoning_pouch_id"]
-                val blankPouchAmount: Int = pouch.def["summoning_pouch_amount"]
-                val blankPouch = Item(itemDefinitions.get(blankPouchItemId).stringId, blankPouchAmount)
+            val blankPouchItemId: Int = pouch.def["summoning_pouch_id"]
+            val blankPouchAmount: Int = pouch.def["summoning_pouch_amount"]
+            val blankPouch = Item(itemDefinitions.get(blankPouchItemId).stringId, blankPouchAmount)
 
-                val tertiaryItemId1: Int = pouch.def["summoning_pouch_req_item_id_1"]
-                val tertiaryItemAmount1: Int = pouch.def["summoning_pouch_req_item_amount_1"]
-                val tertiaryItemId2 = pouch.def["summoning_pouch_req_item_id_2", -1]
-                val tertiaryItemAmount2 = pouch.def["summoning_pouch_req_item_amount_2", -1]
+            val tertiaryItemId1: Int = pouch.def["summoning_pouch_req_item_id_1"]
+            val tertiaryItemAmount1: Int = pouch.def["summoning_pouch_req_item_amount_1"]
+            val tertiaryItemId2 = pouch.def["summoning_pouch_req_item_id_2", -1]
+            val tertiaryItemAmount2 = pouch.def["summoning_pouch_req_item_amount_2", -1]
 
-                val tertiaries = mutableListOf(Item(itemDefinitions.get(tertiaryItemId1).stringId, tertiaryItemAmount1))
+            val tertiaries = mutableListOf(Item(itemDefinitions.get(tertiaryItemId1).stringId, tertiaryItemAmount1))
 
-                if (tertiaryItemId2 != -1 && tertiaryItemAmount2 != -1)
-                    tertiaries.add(Item(itemDefinitions.get(tertiaryItemId2).stringId, tertiaryItemAmount2))
-
-                player.inventory.transaction {
-                    add(charm.id, charm.amount)
-                    add(shard.id, shard.amount)
-                    add(blankPouch.id, blankPouch.amount)
-                    add(tertiaries.toList())
-                }
-
-                player.objectOption(obelisk, "Infuse-pouch")
-                tick()
-
-                player.interfaceOption("summoning_pouch_creation", "pouches", "Infuse", item = pouch, slot = interactingSlot)
-                tick()
-
-                assertEquals(0, player.inventory.count(charm.id))
-                assertEquals(0, player.inventory.count(shard.id))
-                assertEquals(0, player.inventory.count(blankPouch.id))
-                tertiaries.forEach { tertiary -> assertEquals(0, player.inventory.count(tertiary.id)) }
-                assertEquals(1, player.inventory.count(pouch.id))
-                assertNotEquals(originalXp, player.experience.get(Skill.Summoning))
+            if (tertiaryItemId2 != -1 && tertiaryItemAmount2 != -1) {
+                tertiaries.add(Item(itemDefinitions.get(tertiaryItemId2).stringId, tertiaryItemAmount2))
             }
+
+            player.inventory.transaction {
+                add(charm.id, charm.amount)
+                add(shard.id, shard.amount)
+                add(blankPouch.id, blankPouch.amount)
+                add(tertiaries.toList())
+            }
+
+            player.objectOption(obelisk, "Infuse-pouch")
+            tick()
+
+            player.interfaceOption("summoning_pouch_creation", "pouches", "Infuse", item = pouch, slot = interactingSlot)
+            tick()
+
+            assertEquals(0, player.inventory.count(charm.id))
+            assertEquals(0, player.inventory.count(shard.id))
+            assertEquals(0, player.inventory.count(blankPouch.id))
+            tertiaries.forEach { tertiary -> assertEquals(0, player.inventory.count(tertiary.id)) }
+            assertEquals(1, player.inventory.count(pouch.id))
+            assertNotEquals(originalXp, player.experience.get(Skill.Summoning))
         }
+    }
 
     @TestFactory
     fun `Transform Non-Dungeoneering Scrolls`() = nonDungeoneeringScollMap.map { (index, scrollId) ->

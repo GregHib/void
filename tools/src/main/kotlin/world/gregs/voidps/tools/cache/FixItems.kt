@@ -28,11 +28,11 @@ object FixItems {
         val itemFixes = mapOf(
             RUNE_MINOTAUR_POUCH to mapOf(
                 SHARD_REFUND_AMOUNT to 70,
-                SUMMONING_SHARD_AMOUNT to 100
+                SUMMONING_SHARD_AMOUNT to 100,
             ),
             RUNE_BULL_RUSH_SCROLL to mapOf(
-                SHARD_REFUND_AMOUNT to 6
-            )
+                SHARD_REFUND_AMOUNT to 6,
+            ),
         )
 
         val cache = CacheDelegate(library)

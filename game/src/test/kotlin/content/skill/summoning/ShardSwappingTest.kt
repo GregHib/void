@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import kotlin.test.assertEquals
 
-class ShardSwappingTest: WorldTest() {
+class ShardSwappingTest : WorldTest() {
 
     private lateinit var enums: EnumDefinitions
     private lateinit var itemDefinitions: ItemDefinitions

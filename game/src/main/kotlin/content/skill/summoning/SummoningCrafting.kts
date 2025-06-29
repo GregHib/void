@@ -61,7 +61,7 @@ interfaceOption("Infuse*", "pouches", "summoning_pouch_creation") {
         return@interfaceOption
     }
 
-    when(option) {
+    when (option) {
         "Infuse" -> infusePouches(player, enumIndex, 1)
         "Infuse-5" -> infusePouches(player, enumIndex, 5)
         "Infuse-10" -> infusePouches(player, enumIndex, 10)
@@ -83,7 +83,7 @@ interfaceOption("Transform*", "scrolls", "summoning_scroll_creation") {
     // TODO: When dungeoneering support is implemented, this will need to change
     val enumIndex = (itemSlot + 3) / 5
 
-    when(option) {
+    when (option) {
         "Transform" -> transformScrolls(player, enumIndex, 1)
         "Transform-5" -> transformScrolls(player, enumIndex, 5)
         "Transform-10" -> transformScrolls(player, enumIndex, 10)
@@ -178,8 +178,9 @@ fun getTertiaries(pouch: Item): List<Item> {
 
     val tertiaries = mutableListOf(Item(itemDefinitions.get(tertiaryItemId1).stringId, tertiaryItemAmount1))
 
-    if (tertiaryItemId2 != -1 && tertiaryItemAmount2 != -1)
+    if (tertiaryItemId2 != -1 && tertiaryItemAmount2 != -1) {
         tertiaries.add(Item(itemDefinitions.get(tertiaryItemId2).stringId, tertiaryItemAmount2))
+    }
 
     return tertiaries.toList()
 }
@@ -248,8 +249,9 @@ fun maxCraftable(player: Player, shards: Item, charm: Item, pouch: Item, tertiar
     var minTertiaries = Int.MAX_VALUE
     tertiaries.forEach { tertiary ->
         val count = player.inventory.count(tertiary.id).floorDiv(tertiary.amount)
-        if (count < minTertiaries)
+        if (count < minTertiaries) {
             minTertiaries = count
+        }
     }
 
     return minOf(charmCount, shardCount, pouchCount, minTertiaries)
@@ -293,7 +295,7 @@ fun openPouchCraftingInterface(player: Player) {
         "Infuse-10<col=FF9040>",
         "Infuse-X<col=FF9040>",
         "Infuse-All<col=FF9040>",
-        "List<col=FF9040>"
+        "List<col=FF9040>",
     )
     player.interfaceOptions.unlockAll("summoning_pouch_creation", "pouches", 0..400)
 }
@@ -317,7 +319,7 @@ fun openScrollCraftingInterface(player: Player) {
         "Transform-5<col=FF9040>",
         "Transform-10<col=FF9040>",
         "Transform-X<col=FF9040>",
-        "Transform-All<col=FF9040>"
+        "Transform-All<col=FF9040>",
     )
     player.interfaceOptions.unlockAll("summoning_scroll_creation", "scrolls", 0..400)
 }

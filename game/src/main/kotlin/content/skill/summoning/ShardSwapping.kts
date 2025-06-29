@@ -58,7 +58,7 @@ interfaceOption("Trade*", "*_trade_in", "summoning_trade_in") {
         return@interfaceOption
     }
 
-    when(option) {
+    when (option) {
         "Trade" -> swapForShards(player, actualItem, 1)
         "Trade-5" -> swapForShards(player, actualItem, 5)
         "Trade-10" -> swapForShards(player, actualItem, 10)
@@ -123,8 +123,7 @@ fun sendValueMessage(player: Player, item: Item, itemType: String) {
 
     if (refundAmountInverse == -1) {
         player.message("You will receive $refundAmount shards per $itemType.")
-    }
-    else {
+    } else {
         player.message("You will receive 1 shard for every $refundAmountInverse $itemType.")
     }
 }
@@ -159,15 +158,13 @@ fun openTradeInInterface(player: Player, isPouchTradeIn: Boolean) {
     val componentString: String
     val script: String
 
-
     if (isPouchTradeIn) {
         script = "populate_summoning_pouch_trade_in"
         componentId = 15
         componentString = "pouch_trade_in"
         player.interfaces.sendSprite("summoning_trade_in", "pouch_tab_sprite", pouchTabActiveSprite)
         player.interfaces.sendSprite("summoning_trade_in", "scroll_tab_sprite", scrollTabInactiveSprite)
-    }
-    else {
+    } else {
         script = "populate_summoning_scroll_trade_in"
         componentId = 14
         componentString = "scroll_trade_in"
