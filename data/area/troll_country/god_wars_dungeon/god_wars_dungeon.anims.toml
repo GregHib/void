@@ -15,3 +15,9 @@ id = 6978
 
 [godwars_move_boulder_reverse]
 id = 6979
+
+[godwars_boulder_move]
+id = 6980
+
+[godwars_boulder_rollback]
+id = 6981
