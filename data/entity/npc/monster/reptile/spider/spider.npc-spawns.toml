@@ -255,4 +255,13 @@ spawns = [
     { id = "deadly_red_spider", x = 3180, y = 9883 },
     { id = "deadly_red_spider", x = 3183, y = 9885 },
     { id = "deadly_red_spider", x = 3186, y = 9892 },
+     # Taverley Dungeon
+    { id = "poison_spider", x = 2850, y = 9808 },
+    { id = "poison_spider", x = 2857, y = 9822 },
+    { id = "poison_spider", x = 2859, y = 9802 },
+    { id = "poison_spider", x = 2859, y = 9814 },
+    { id = "poison_spider", x = 2864, y = 9819 },
+    { id = "poison_spider", x = 2870, y = 9799 },
+    { id = "poison_spider", x = 2871, y = 9792 },
+    { id = "poison_spider", x = 2876, y = 9806 },
 ]

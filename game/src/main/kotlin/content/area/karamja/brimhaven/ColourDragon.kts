@@ -1,13 +1,15 @@
 package content.area.karamja.brimhaven
 
+import content.entity.combat.CombatSwing
 import content.entity.combat.hit.hit
 import content.entity.combat.npcCombatSwing
 import content.entity.sound.sound
 import kotlinx.coroutines.delay
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.type.random
 
-npcCombatSwing("red_dragon*") { npc ->
+val handler: suspend CombatSwing.(NPC) -> Unit = { npc ->
     val withinMelee = CharacterTargetStrategy(npc).reached(target)
     if (!withinMelee) {
         delay(1)
@@ -24,3 +26,7 @@ npcCombatSwing("red_dragon*") { npc ->
         target.sound("dragon_attack")
     }
 }
+npcCombatSwing("blue_dragon", handler = handler)
+npcCombatSwing("black_dragon", handler = handler)
+npcCombatSwing("green_dragon", handler = handler)
+npcCombatSwing("red_dragon", handler = handler)

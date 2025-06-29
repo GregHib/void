@@ -1,0 +1,25 @@
+
+[trapdoor_89_opened]
+option = "Climb-down"
+tile = { x = 3405, y = 3507 }
+to = { x = 3405, y = 9906 }
+
+[canifis_ladder_up]
+option = "Climb-up"
+tile = { x = 3405, y = 9907 }
+to = { x = 3405, y = 3504 }
+
+[canifis_ladder_up]
+option = "Climb-up"
+tile = { x = 3405, y = 9907 }
+to = { x = 3405, y = 3504 }
+
+[canifis_barrier]
+option = "Pass-through"
+tile = { x = 3440, y = 9886 }
+to = { x = 3425, y = 3484 }
+
+[trapdoor_89_opened]
+option = "Climb-down"
+tile = { x = 3422, y = 3484 }
+to = { x = 3440, y = 9888 }

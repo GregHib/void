@@ -14,8 +14,8 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
-import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.EventDispatcher
@@ -62,7 +62,7 @@ interface Character :
         }
         tele(delta)
         if (this is Player) {
-            movementType = MoveType.Walk
+            temporaryMoveType = MoveType.Walk
         }
         val startDelta = delta.invert()
         visuals.exactMovement.apply {

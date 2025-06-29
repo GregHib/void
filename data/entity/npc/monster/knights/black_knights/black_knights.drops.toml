@@ -1,0 +1,36 @@
+[black_knight_drop_table]
+type = "all"
+drops = [
+  { id = "bones" },
+  { table = "black_knight_secondary" },
+]
+
+[black_knight_secondary]
+roll = 128
+drops = [
+  { id = "iron_sword", chance = 4 },
+  { id = "iron_full_helm", chance = 2 },
+  { id = "steel_mace" },
+  { id = "mithril_arrow", amount = 3, chance = 4 },
+  { id = "body_rune", amount = 9, chance = 3 },
+  { id = "chaos_rune", amount = 6, chance = 3 },
+  { id = "earth_rune", amount = 10, chance = 3 },
+  { id = "death_rune", amount = 2, chance = 2 },
+  { id = "law_rune", amount = 3, chance = 2 },
+  { id = "cosmic_rune", amount = 7 },
+  { id = "mind_rune", amount = 2 },
+  { table = "herb_drop_table", chance = 3 },
+  { table = "allotment_seed_drop_table", chance = 18 },
+  { id = "steel_bar", chance = 6 },
+  { id = "tin_ore" },
+  { id = "pot_of_flour" },
+  { id = "coins", amount = 35, chance = 21, members = false },
+  { id = "coins", amount = 6, chance = 11 },
+  { id = "coins", amount = 58, chance = 10 },
+  { id = "coins", amount = 12, chance = 9, members = false },
+  { id = "coins", amount = 80, chance = 2 },
+  { id = "coins", chance = 14 },
+  { id = "nothing", amount = 0, chance = 2 },
+  { id = "bread" },
+  { table = "gem_drop_table", chance = 3 },
+]

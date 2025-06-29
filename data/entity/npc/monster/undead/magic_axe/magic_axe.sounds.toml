@@ -1,0 +1,8 @@
+[magic_axe_attack]
+id = 2498
+
+[magic_axe_defend]
+id = 12
+
+[magic_axe_death]
+id = 1976

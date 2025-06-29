@@ -125,8 +125,8 @@ open class Movement(
     private fun setMovementType(run: Boolean, end: Boolean) {
         if (character is Player) {
             character.steps.last = GameLoop.tick + 1 // faster than character.start("last_movement", 1)
-            character.movementType = if (run) MoveType.Run else MoveType.Walk
-            character.temporaryMoveType = if (end) {
+            character.temporaryMoveType = if (run) MoveType.Run else MoveType.Walk
+            character.movementType = if (end) {
                 MoveType.Run
             } else if (run) {
                 MoveType.Run

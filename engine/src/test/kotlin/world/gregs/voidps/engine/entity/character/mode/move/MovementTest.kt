@@ -108,8 +108,8 @@ internal class MovementTest : KoinMock() {
         assertTrue(player.visuals.moved)
         assertEquals(1, player.visuals.walkStep)
         assertEquals(-1, player.visuals.runStep)
-        assertEquals(MoveType.Walk, player.movementType)
         assertEquals(MoveType.Walk, player.temporaryMoveType)
+        assertEquals(MoveType.Walk, player.movementType)
 
         assertEquals(Direction.NORTH_EAST, player.direction)
         assertEquals(Tile(5, 5), player.steps.previous)
@@ -181,13 +181,13 @@ internal class MovementTest : KoinMock() {
         movement.tick()
         assertEquals(2, player.visuals.walkStep)
         assertEquals(2, player.visuals.runStep)
-        assertEquals(MoveType.Run, player.movementType)
         assertEquals(MoveType.Run, player.temporaryMoveType)
+        assertEquals(MoveType.Run, player.movementType)
 
         movement.tick()
         assertEquals(2, player.visuals.walkStep)
         assertEquals(2, player.visuals.runStep)
-        assertEquals(MoveType.Walk, player.movementType)
         assertEquals(MoveType.Walk, player.temporaryMoveType)
+        assertEquals(MoveType.Walk, player.movementType)
     }
 }

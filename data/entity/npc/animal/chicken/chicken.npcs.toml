@@ -12,4 +12,6 @@ style = "stab"
 respawn_delay = 25
 categories = ["chickens", "birds"]
 drop_table = "chicken"
+combat_anims = "chicken"
+combat_sounds = "chicken"
 examine = "Yep. Definitely a chicken."

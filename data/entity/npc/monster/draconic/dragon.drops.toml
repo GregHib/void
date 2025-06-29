@@ -88,6 +88,130 @@ drops = [
   { id = "draconic_visage" },
 ]
 
+[black_dragon_drop_table]
+type = "all"
+drops = [
+  { table = "black_dragon_primary" },
+  { table = "black_dragon_secondary" },
+  { table = "black_dragon_tertiary" },
+]
+
+[black_dragon_primary]
+drops = [
+  { id = "dragon_bones" },
+  { id = "black_dragonhide" },
+]
+
+[black_dragon_secondary]
+roll = 128
+drops = [
+  { id = "mithril_2h_sword", chance = 4 },
+  { id = "mithril_hatchet", chance = 3 },
+  { id = "mithril_battleaxe", chance = 3 },
+  { id = "rune_knife", amount = 2, chance = 3 },
+  { id = "mithril_kiteshield" },
+  { id = "adamant_platebody" },
+  { id = "rune_longsword" },
+  { id = "adamant_javelin", amount = 30, chance = 20 },
+  { id = "adamant_dart_p", amount = 16, chance = 7 },
+  { id = "fire_rune", amount = 50, chance = 8 },
+  { id = "blood_rune", amount = 15, chance = 3 },
+  { id = "air_rune", amount = 75 },
+  { id = "law_rune", amount = 10, chance = 5 },
+  { id = "coins", amount = 196, chance = 40 },
+  { id = "coins", amount = 330, chance = 10 },
+  { id = "coins", amount = 690 },
+  { id = "adamant_bar", chance = 3 },
+  { id = "chocolate_cake", chance = 3 },
+  { table = "rare_drop_table", chance = 2 },
+]
+
+[black_dragon_tertiary]
+roll = 10000
+drops = [
+  { table = "hard_clue_scroll", roll = 78 },
+  { id = "draconic_visage" },
+]
+
+[blue_dragon_drop_table]
+type = "all"
+drops = [
+  { table = "blue_dragon_primary" },
+  { table = "blue_dragon_secondary" },
+  { table = "hard_clue_scroll", roll = 128 },
+]
+
+[blue_dragon_primary]
+drops = [
+  { id = "blue_dragonhide" },
+  { id = "dragon_bones" },
+]
+
+[blue_dragon_secondary]
+roll = 128
+drops = [
+  { id = "steel_platelegs", chance = 4 },
+  { id = "mithril_hatchet", chance = 3 },
+  { id = "steel_battleaxe", chance = 3 },
+  { id = "mithril_spear", chance = 2 },
+  { id = "adamant_full_helm" },
+  { id = "mithril_kiteshield" },
+  { id = "rune_dagger" },
+  { id = "water_rune", amount = 75, chance = 8 },
+  { id = "nature_rune", amount = 15, chance = 5 },
+  { id = "law_rune", amount = 3, chance = 3 },
+  { id = "fire_rune", amount = 37 },
+  { table = "herb_drop_table", chance = 15 },
+  { id = "coins", amount = 44, chance = 29 },
+  { id = "coins", amount = 132, chance = 25 },
+  { id = "coins", amount = 200, chance = 10 },
+  { id = "coins", amount = 11, chance = 5 },
+  { id = "coins", amount = 440 },
+  { id = "adamantite_ore", chance = 3 },
+  { id = "bass", chance = 3 },
+  { table = "gem_drop_table", chance = 5 },
+]
+
+
+
+[green_dragon_drop_table]
+type = "all"
+drops = [
+  { table = "green_dragon_primary" },
+  { table = "green_dragon_secondary" },
+]
+
+[green_dragon_primary]
+drops = [
+  { id = "dragon_bones" },
+  { id = "green_dragonhide" },
+]
+
+[green_dragon_secondary]
+roll = 128
+drops = [
+  { id = "steel_platelegs", chance = 4 },
+  { id = "steel_battleaxe", chance = 3 },
+  { id = "mithril_hatchet", chance = 3 },
+  { id = "mithril_spear", chance = 2 },
+  { id = "mithril_kiteshield" },
+  { id = "adamant_full_helm" },
+  { id = "rune_dagger" },
+  { id = "water_rune", amount = 75, chance = 8 },
+  { id = "fire_rune", amount = 37 },
+  { id = "nature_rune", amount = 15, chance = 5 },
+  { id = "law_rune", amount = 3, chance = 3 },
+  { table = "herb_drop_table", chance = 15 },
+  { id = "coins", amount = 44, chance = 29 },
+  { id = "coins", amount = 132, chance = 25 },
+  { id = "coins", amount = 200, chance = 10 },
+  { id = "coins", amount = 11, chance = 5 },
+  { id = "coins", amount = 440 },
+  { id = "bass", chance = 3 },
+  { id = "adamantite_ore", chance = 3 },
+  { table = "gem_drop_table", chance = 5 },
+]
+
 [steel_dragon_drop_table]
 type = "all"
 drops = [
