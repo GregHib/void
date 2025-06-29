@@ -47,7 +47,7 @@ object FixEnums {
         }
 
         for (definition in fixed) {
-            val writer = BufferWriter(500)
+            val writer = BufferWriter(10000)
             with(encoder) {
                 writer.encode(definition)
             }
