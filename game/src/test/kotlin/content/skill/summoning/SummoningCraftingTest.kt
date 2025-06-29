@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 
-class CraftingTest: WorldTest() {
+class SummoningCraftingTest: WorldTest() {
 
     private lateinit var enums: EnumDefinitions
     private lateinit var itemDefinitions: ItemDefinitions
