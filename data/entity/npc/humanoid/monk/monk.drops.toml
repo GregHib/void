@@ -1,0 +1,28 @@
+[human_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "human_secondary" },
+    { table = "easy_clue_scroll", roll = 128 }
+]
+
+[human_secondary]
+roll = 128
+drops = [
+    { id = "mind_rune", amount = 9, chance = 2 },
+    { id = "earth_rune", amount = 4, chance = 2 },
+    { id = "fire_rune", amount = 6, chance = 2 },
+    { id = "chaos_rune", amount = 2, chance = 1 },
+    { id = "bronze_arrow", amount = 7, chance = 3 },
+    { id = "bronze_bolts", min = 2, max = 12, chance = 22 },
+    { id = "coins", amount = 3, chance = 38 },
+    { id = "coins", amount = 5, chance = 9 },
+    { id = "coins", amount = 15, chance = 4 },
+    { id = "coins", amount = 25, chance = 1 },
+    { id = "nothing", amount = 0, chance = 8 },
+    { id = "fishing_bait", chance = 5 },
+    { id = "copper_ore", chance = 2 },
+    { id = "earth_talisman", chance = 2 },
+    { id = "cabbage", chance = 1  },
+    { table = "herb_drop_table", chance = 23 }
+]

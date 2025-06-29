@@ -159,3 +159,21 @@ drop_table = "dwarf"
 combat_anims = "dwarf"
 combat_sounds = "dwarf"
 categories = ["dwarves"]
+
+[chaos_dwarf]
+id = 119
+max_hit_melee = 60
+hitpoints = 610
+att = 38
+str = 42
+def = 28
+attack_speed = 4
+wander_radius = 9
+hunt_mode = "cowardly"
+respawn_delay = 90
+slayer_xp = 61.0
+combat_sounds = "chaos_dwarf"
+drop_table = "chaos_dwarf"
+categories = ["chaos_dwarf", "dwarves"]
+combat_anims = "dwarf"
+examine = "A dwarf gone bad."

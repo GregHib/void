@@ -9,3 +9,12 @@ id = 419
 
 [dwarf_work]
 id = 420
+
+[chaos_dwarf_defend]
+id = 419
+
+[chaos_dwarf_attack]
+id = 2567
+
+[chaos_dwarf_death]
+id = 418

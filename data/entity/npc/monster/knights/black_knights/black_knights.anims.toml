@@ -1,0 +1,8 @@
+[black_knight_attack]
+id = 390
+
+[black_knight_defend]
+id = 388
+
+[black_knight_death]
+id = 836

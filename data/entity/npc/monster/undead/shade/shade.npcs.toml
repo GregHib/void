@@ -12,6 +12,7 @@ slayer_xp = 3.5
 attack_radius = 11
 wander_radius = 9
 xp_bonus = -0.75
+drop_table = "stronghold_shade"
 combat_anims = "shade"
 combat_sounds = "shade"
 categories = ["shades", "undead"]

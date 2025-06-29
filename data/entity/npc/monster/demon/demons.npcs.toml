@@ -26,6 +26,7 @@ hitpoints = 870
 slayer_xp = 87.0
 max_hit_melee = 90
 style = "slash"
+drop_table = "greater_demon"
 combat_anims = "demon"
 combat_sounds = "demon"
 categories = ["demons"]
@@ -106,6 +107,7 @@ wander_radius = 4
 max_hit_melee = 160
 attack_speed = 4
 style = "slash"
+drop_table = "black_demon"
 combat_anims = "demon"
 combat_sounds = "demon"
 categories = ["demons"]
@@ -120,4 +122,12 @@ clone = "black_demon"
 
 [black_demon_2]
 id = 4703
+clone = "black_demon"
+
+[black_demon_3]
+id = 4704
+clone = "black_demon"
+
+[black_demon_4]
+id = 4705
 clone = "black_demon"
