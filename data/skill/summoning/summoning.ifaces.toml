@@ -27,6 +27,7 @@ components = {
     pouch_tab_scroll_bar = 17,
     pouch_trade_in_text = 18,
     scroll_trade_in_text = 19,
+    scroll_tab = 20,
     pouch_tab_background = 24,
     pouch_tab_sprite = 25,
     scroll_tab_background = 26,
