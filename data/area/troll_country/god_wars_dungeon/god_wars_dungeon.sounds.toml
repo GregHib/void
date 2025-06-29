@@ -1,2 +1,8 @@
 [crossbow_grappling]
 id = 2928
+
+[godwars_move_boulder]
+id = 3840
+
+[godwars_boulder_rollback]
+id = 3843
