@@ -1,6 +1,5 @@
 package content.area.asgarnia.taverley
 
-
 import content.entity.obj.door.enterDoor
 import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
