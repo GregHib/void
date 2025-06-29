@@ -85,6 +85,26 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
             return i.toChar()
         }
 
+        fun charToByte(c: Char): Byte {
+            val code = c.code
+
+            if (code == 63) {
+                throw IllegalArgumentException("Cannot map '?' back to a specific byte")
+            }
+
+            when (code) {
+                in 0..127 -> return code.toByte()
+                in 160..255 -> return code.toByte()
+            }
+
+            val indexInTable = unicodeTable.indexOfFirst { it.code == code }
+            if (indexInTable != -1) {
+                return (128 + indexInTable).toByte()
+            }
+
+            throw IllegalArgumentException("Char '$c' (0x${code.toString(16)}) not in CP1252 mapping")
+        }
+
         private var unicodeTable = charArrayOf(
             '\u20ac',
             '\u0000',
