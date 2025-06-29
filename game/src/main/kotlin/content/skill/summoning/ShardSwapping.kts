@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import kotlin.math.abs
 import kotlin.math.min
 
 val enums: EnumDefinitions by inject()

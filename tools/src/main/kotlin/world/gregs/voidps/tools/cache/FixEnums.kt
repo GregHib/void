@@ -25,8 +25,8 @@ object FixEnums {
          */
         val enumFixes = mapOf(
             SUMMONING_POUCH_CRAFTING_INGREDIENT_STRINGS to mapOf(
-                RUNE_MINOTAUR_POUCH to "This pouch requires 1 runite bar, 1 blue charm and 100 spirit shards."
-            )
+                RUNE_MINOTAUR_POUCH to "This pouch requires 1 runite bar, 1 blue charm and 100 spirit shards.",
+            ),
         )
 
         val cache = CacheDelegate(library)
