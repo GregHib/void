@@ -7,3 +7,8 @@ format = "boolean"
 id = 3934
 persist = true
 format = "boolean"
+
+[godwars_entrance_rope]
+id = 3932
+persist = true
+format = "boolean"
