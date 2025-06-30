@@ -1,0 +1,9 @@
+[trapdoor_85_opened]
+option = "Climb-down"
+tile = { x = 2328, y = 3645 }
+to = { x = 2333, y = 10015 }
+
+[piscatoris_obelisk_ladder_up]
+option = "Climb-up"
+tile = { x = 2333, y = 10016 }
+to = { x = 2329, y = 3645 }

@@ -19,3 +19,8 @@ spawns = [
   { id = "rat", x = 2501, y = 9430, members = true },
   { id = "rat", x = 2527, y = 9412, members = true },
 ]
+
+spawns = [
+  # 10031
+  { id = "bogrog", x = 2523, y = 3057, members = true}
+]
