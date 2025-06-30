@@ -49,11 +49,11 @@ class SirGerryTest : WorldTest() {
 
         val hole = objects[Tile(2917, 3745), "godwars_hole_base"]!!
 
-        player.objectOption(hole, optionIndex = 0)
+        player.objectOption(hole, optionIndex = 0) // Tie-rope
         tick()
         assertFalse(player.inventory.contains("rope"))
         assertTrue(player["godwars_entrance_rope", false])
-        player.objectOption(hole, optionIndex = 0)
+        player.objectOption(hole, optionIndex = 0) // Climb-down
         tick(3)
         assertEquals(Tile(2881, 5310, 2), player.tile)
     }
