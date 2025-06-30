@@ -26,7 +26,7 @@ to = { x = 2912, y = 5300, level = 2 }
 [godwars_hole_rope]
 option = "Climb-down"
 tile = { x = 2917, y = 3745 }
-to = { x = 2882, y = 5311, level = 2 }
+to = { x = 2881, y = 5310, level = 2 }
 
 [godwars_rope]
 option = "Climb"

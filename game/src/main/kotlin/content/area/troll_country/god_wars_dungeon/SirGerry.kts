@@ -61,13 +61,14 @@ inventoryItem("Open", "knights_notes") {
 }
 
 objectOperate("Tie-rope", "godwars_hole") {
-    if (player.inventory.contains("rope")) {
-        if (player["godwars_knights_notes", false] || player.ownsItem("knights_notes") || player.ownsItem("knights_notes_opened")) {
-            player.inventory.remove("rope")
-            player["godwars_entrance_rope"] = true
-        } else {
-            npc<Scared>("knight_sir_gerry", "Cough... Hey, over here.")
-        }
+    if (!player.inventory.contains("rope")) {
+        return@objectOperate
+    }
+    if (player["godwars_knights_notes", false] || player.ownsItem("knights_notes") || player.ownsItem("knights_notes_opened")) {
+        player.inventory.remove("rope")
+        player["godwars_entrance_rope"] = true
+    } else {
+        npc<Scared>("knight_sir_gerry", "Cough... Hey, over here.")
     }
 }
 
