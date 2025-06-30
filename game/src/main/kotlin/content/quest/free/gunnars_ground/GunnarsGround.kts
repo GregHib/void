@@ -25,6 +25,7 @@ inventoryItem("Read", "gunnars_ground", "inventory") {
     player.letterScroll(
         "Gunnar's Ground",
         listOf(
+            "",
             "Our people dwelt on mountains steeped in lore,",
             "A mighty tribe as harsh as any beast",
             "Who then, in face of madness swept to war,",
