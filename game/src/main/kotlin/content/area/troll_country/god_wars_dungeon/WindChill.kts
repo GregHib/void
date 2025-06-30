@@ -9,9 +9,7 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
@@ -24,10 +22,8 @@ enterArea("godwars_chill_area") {
     player.timers.start("windchill")
 }
 
-val notes = listOf(Item("knights_notes"), Item("knights_notes_opened"))
-
 exitArea("godwars_chill_area") {
-    if (player.inventory.contains(notes)) {
+    if (player.inventory.contains("knights_notes") || player.inventory.contains("knights_notes_opened")) {
         player["godwars_knights_notes"] = true
     }
     player.timers.stop("windchill")
