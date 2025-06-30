@@ -55,10 +55,14 @@ object Level {
 
     fun experienceAt(level: Int) = (level + 300.0 * 2.0.pow(level / 7.0)).toInt()
 
-    fun Player.has(skill: Skill, level: Int, message: Boolean = false): Boolean {
+    fun Player.has(skill: Skill, level: Int, message: Boolean): Boolean {
+        return has(skill, level, if (message) "" else null)
+    }
+
+    fun Player.has(skill: Skill, level: Int, message: String? = null): Boolean {
         if (levels.get(skill) < level) {
-            if (message) {
-                message("You need to have${skill.name.an()} ${skill.name} level of ${if (skill == Skill.Constitution) level / 10 else level}.")
+            if (message != null) {
+                message("You need to have${skill.name.an()} ${skill.name} level of ${if (skill == Skill.Constitution) level / 10 else level}${message}.")
             }
             return false
         }
