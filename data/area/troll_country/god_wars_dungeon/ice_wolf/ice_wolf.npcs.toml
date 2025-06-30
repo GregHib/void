@@ -1,0 +1,55 @@
+[ice_wolf_trollweiss]
+id = 1558
+hitpoints = 700
+att = 100
+str = 90
+def = 70
+wander_radius = 4
+slayer_xp = 70.0
+max_hit_melee = 100
+hunt_mode = "cowardly"
+style = "stab"
+combat_anims = "wolves"
+combat_sounds = "wolves"
+drop_table = "ice_wolf"
+respawn_delay = 30
+categories = ["wolves"]
+examine = "Not man's best friend."
+
+[ice_wolf_trollweiss_2]
+id = 6052
+clone = "ice_wolf_trollweiss"
+
+[ice_wolf_ice_path_2]
+id = 1952
+clone = "ice_wolf_trollweiss"
+att = 150
+str = 150
+def = 70
+hunt_mode = "aggressive"
+max_hit_melee = 160
+hunt_mode = "cowardly"
+style = "stab"
+respawn_delay = 10
+
+[ice_wolf_ice_path]
+id = 1951
+clone = "ice_wolf_ice_path_2"
+drop_table = "ice_wolf_charms_green"
+
+[ice_wolf_ice_path_3]
+id = 1953
+clone = "ice_wolf_ice_path_2"
+drop_table = "ice_wolf_charms_gold"
+
+[ice_wolf_ice_path_4]
+id = 1954
+clone = "ice_wolf_ice_path_2"
+
+[ice_wolf_ice_path_5]
+id = 1955
+clone = "ice_wolf_ice_path_2"
+
+[ice_wolf_ice_path_6]
+id = 1956
+clone = "ice_wolf_ice_path_2"
