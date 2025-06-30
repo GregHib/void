@@ -1,2 +1,9 @@
 [godwars_killcount]
 id = 598
+
+[godwars_overlay]
+id = 601
+
+[snow_flakes]
+id = 370
+type = "overlay"

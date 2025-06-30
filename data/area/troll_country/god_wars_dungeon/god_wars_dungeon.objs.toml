@@ -1,3 +1,7 @@
+[godwars_hole_base]
+id = 26342
+examine = "Looks deep."
+
 [godwars_hole]
 id = 26340
 examine = "Looks deep."
@@ -65,3 +69,12 @@ id = 26338
 
 [godwars_little_hole]
 id = 26305
+
+[godwars_knight_base]
+id = 26446
+
+[godwars_knight]
+id = 26306
+
+[godwars_rope]
+id = 26293

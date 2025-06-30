@@ -22,3 +22,13 @@ to = { x = 2920, y = 5276, level = 1 }
 option = "Climb-up"
 tile = { x = 2914, y = 5300, level = 1 }
 to = { x = 2912, y = 5300, level = 2 }
+
+[godwars_hole_rope]
+option = "Climb-down"
+tile = { x = 2917, y = 3745 }
+to = { x = 2882, y = 5311, level = 2 }
+
+[godwars_rope]
+option = "Climb"
+tile = { x = 2881, y = 5311, level = 2 }
+to = { x = 2916, y = 3747 }

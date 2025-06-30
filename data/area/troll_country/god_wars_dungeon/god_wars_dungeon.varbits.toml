@@ -12,3 +12,8 @@ format = "boolean"
 id = 3932
 persist = true
 format = "boolean"
+
+[godwars_knights_notes]
+id = 3936
+persist = true
+format = "boolean"
