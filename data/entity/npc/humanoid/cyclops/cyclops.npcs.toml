@@ -17,6 +17,7 @@ combat_sounds = "giant"
 categories = ["cyclops"]
 wander_radius = 6
 attack_radius = 8
+god = "bandos"
 examine = "A one-eyed man-eater."
 
 [cyclops_god_wars_grey]

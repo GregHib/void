@@ -42,4 +42,5 @@ drop_table = "icefiend"
 combat_anims = "icefiend"
 combat_sounds = "icefiend"
 categories = ["icefiend", "icefiends"]
+god = "zamorak"
 examine = "A small ice demon."

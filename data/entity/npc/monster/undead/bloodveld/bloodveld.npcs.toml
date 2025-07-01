@@ -36,4 +36,5 @@ combat_anims = "bloodveld_god_wars"
 combat_sounds = "bloodveld"
 hunt_mode = "cowardly"
 categories = ["bloodvelds"]
+god = "zamorak"
 examine = "The tongue of evil."

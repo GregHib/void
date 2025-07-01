@@ -17,6 +17,7 @@ drop_table = "spiritual_mage"
 categories = ["spiritual_creatures"]
 wander_radius = 6
 attack_radius = 8
+god = "zamorak"
 examine = "A deadly servant of Zamorak."
 
 [spiritual_mage_saradomin]
@@ -38,6 +39,7 @@ drop_table = "spiritual_mage"
 categories = ["spiritual_creatures"]
 wander_radius = 6
 attack_radius = 8
+god = "saradomin"
 examine = "Saradomin's holy mage."
 
 [spiritual_mage_bandos]
@@ -57,6 +59,7 @@ drop_table = "spiritual_mage"
 categories = ["spiritual_creatures"]
 wander_radius = 6
 attack_radius = 8
+god = "bandos"
 examine = "One of Bandos's chosen."
 
 [spiritual_mage_armadyl]

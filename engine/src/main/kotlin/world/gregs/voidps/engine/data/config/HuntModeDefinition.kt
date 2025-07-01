@@ -17,6 +17,9 @@ import world.gregs.voidps.engine.entity.obj.ObjectLayer
  * @param id the id for object or floor item target
  * @param layer the [ObjectLayer] for object targets
  * @param maxMultiAttackers maximum number of attackers the target can have (custom)
+ * @param checkSameGod checks if the godwards god is the different (custom)
+ * @param checkZamorak checks if the godwards god is zamorak (custom)
+ * @param checkNotZamorak checks if the godwards god is not zamorak (custom)
  */
 data class HuntModeDefinition(
     val type: String,
@@ -32,6 +35,9 @@ data class HuntModeDefinition(
     val id: String? = null,
     val layer: Int = -1,
     val maxMultiAttackers: Int = 2,
+    val checkSameGod: Boolean = false,
+    val checkZamorak: Boolean = false,
+    val checkNotZamorak: Boolean = false,
 ) {
     var filter: ((Entity) -> Boolean)? = null
 

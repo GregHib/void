@@ -310,6 +310,7 @@ attack_radius = 8
 combat_anims = "goblin_god_wars"
 combat_sounds = "goblin"
 drop_table = "stronghold_goblin"
+god = "bandos"
 examine = "An ancient goblin."
 
 [goblin_god_wars_hammer]
@@ -330,6 +331,7 @@ attack_radius = 8
 combat_anims = "goblin_god_wars"
 combat_sounds = "goblin"
 drop_table = "stronghold_goblin"
+god = "bandos"
 examine = "A warrior for Bandos."
 
 [goblin_god_wars_flag]
@@ -349,6 +351,7 @@ attack_radius = 8
 combat_anims = "goblin_god_wars"
 combat_sounds = "goblin"
 drop_table = "stronghold_goblin"
+god = "bandos"
 examine = "A soldier to the death."
 
 [goblin_god_wars_spear]
@@ -370,6 +373,7 @@ combat_anims = "goblin_god_wars"
 combat_sounds = "goblin"
 attack_anim = "goblin_god_wars_flag_attack"
 drop_table = "stronghold_goblin"
+god = "bandos"
 examine = "Cannon fodder, so to speak."
 
 [goblin_god_wars_axe]
@@ -391,4 +395,5 @@ combat_anims = "goblin_god_wars"
 combat_sounds = "goblin"
 attack_anim = "goblin_god_wars_axe_attack"
 drop_table = "stronghold_goblin"
+god = "bandos"
 examine = "Footsoldier for Bandos."

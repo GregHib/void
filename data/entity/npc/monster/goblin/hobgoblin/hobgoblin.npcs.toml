@@ -85,4 +85,5 @@ drop_table = "hobgoblin"
 combat_anims = "hobgoblin_god_wars"
 combat_sounds = "hobgoblin"
 categories = ["hobgoblin"]
+god = "bandos"
 examine = "An ugly, smelly creature."

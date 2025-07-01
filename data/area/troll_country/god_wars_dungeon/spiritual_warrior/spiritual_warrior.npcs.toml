@@ -16,6 +16,7 @@ combat_anims = "spiritual_warrior_zamorak"
 combat_sounds = "spiritual_warrior_zamorak"
 wander_radius = 6
 attack_radius = 8
+god = "zamorak"
 examine = "Warrior of Zamorak."
 
 [spiritual_warrior_saradomin]
@@ -39,6 +40,7 @@ combat_anims = "human"
 attack_anim = "spiritual_warrior_saradomin_attack"
 defend_anim = "spiritual_warrior_saradomin_defend"
 drop_table = "spiritual_warrior"
+god = "saradomin"
 examine = "Saradomin's chosen warrior."
 
 [spiritual_warrior_bandos]
@@ -61,6 +63,7 @@ drop_table = "spiritual_warrior"
 categories = ["spiritual_creatures"]
 wander_radius = 6
 attack_radius = 8
+god = "bandos"
 examine = "A true servant of Bandos."
 
 [spiritual_warrior_armadyl]

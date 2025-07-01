@@ -30,4 +30,5 @@ combat_anims = "hellhound"
 combat_sounds = "hellhound"
 drop_table = "hellhound"
 categories = ["hellhounds", "demon"]
+god = "zamorak"
 examine = "From the maws of hell."

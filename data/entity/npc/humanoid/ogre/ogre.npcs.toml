@@ -17,6 +17,7 @@ attack_radius = 8
 combat_anims = "ogre"
 drop_table = "ogre"
 combat_sounds = "giant"
+god = "bandos"
 examine = "Ugly and bad-tempered."
 
 [ogre_god_wars_shoulder]

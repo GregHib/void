@@ -13,4 +13,5 @@ combat_anims = "vampyre_god_wars"
 combat_sounds = "vampyre"
 drop_table = "vampyre"
 categories = ["vampyre"]
+god = "zamorak"
 examine = "It looks really hungry."
