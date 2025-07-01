@@ -182,6 +182,7 @@ abstract class WorldTest : KoinTest {
                             get(),
                             get(),
                             get(),
+                            get(),
                             object : FakeRandom() {
                                 override fun nextBits(bitCount: Int) = 0
                             },

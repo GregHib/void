@@ -16,6 +16,7 @@ attack_radius = 8
 combat_anims = "ork"
 drop_table = "ork"
 combat_sounds = "giant"
+god = "bandos"
 examine = "Ugly, fierce and with a bad attitude."
 
 [ork_axe_god_wars]

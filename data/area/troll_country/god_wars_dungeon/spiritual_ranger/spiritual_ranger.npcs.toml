@@ -19,6 +19,7 @@ drop_table = "spiritual_ranger"
 categories = ["spiritual_creatures"]
 wander_radius = 6
 attack_radius = 8
+god = "zamorak"
 examine = "Defender of Zamorak."
 
 [spiritual_ranger_saradomin]
@@ -41,6 +42,7 @@ drop_table = "spiritual_ranger"
 categories = ["spiritual_creatures"]
 wander_radius = 6
 attack_radius = 8
+god = "saradomin"
 examine = "A ranger spirit dedicated to Saradomin."
 
 [spiritual_ranger_bandos]
@@ -59,6 +61,7 @@ categories = ["spiritual_creatures"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "spiritual_ranger"
+god = "bandos"
 examine = "The spirit of a ranger, serving Bandos beyond death."
 
 [spiritual_ranger_armadyl]

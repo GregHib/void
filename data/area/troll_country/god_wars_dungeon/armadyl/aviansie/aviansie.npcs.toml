@@ -12,6 +12,7 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_spears]
@@ -28,6 +29,7 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "A proud warrior."
 
 [aviansie_god_wars_spears_2]
@@ -44,6 +46,7 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_spears_3]
@@ -60,6 +63,7 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_spears_4]
@@ -76,6 +80,7 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_spear_axe]
@@ -92,6 +97,7 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_high_spear]
@@ -108,6 +114,7 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_high_axes]
@@ -124,6 +131,7 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_axes]
@@ -140,6 +148,7 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_spears_5]
@@ -156,6 +165,7 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_spears_6]
@@ -172,6 +182,7 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_helmet_spears]
@@ -188,6 +199,7 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_helmet_spears_2]
@@ -204,6 +216,7 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_helmet_spear]
@@ -220,6 +233,7 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_high_helmet_spears]
@@ -236,4 +250,5 @@ categories = ["aviansies"]
 wander_radius = 6
 attack_radius = 8
 drop_table = "aviansie"
+god = "armadyl"
 examine = "Graceful, bird-like creature."

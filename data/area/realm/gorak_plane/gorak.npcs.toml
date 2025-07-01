@@ -28,4 +28,5 @@ combat_sounds = "gorak"
 drop_table = "gorak"
 respawn_delay = 25
 categories = ["gorak"]
+god = "zamorak"
 examine = "Comes with a vicious kick."

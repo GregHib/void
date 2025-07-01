@@ -13,6 +13,7 @@ combat_anims = "werewolf"
 combat_sounds = "werewolf"
 drop_table = "werewolf"
 categories = ["werewolf", "werewolves"]
+god = "zamorak"
 examine = "Down, fang!"
 
 [werewolf_god_wars_male]

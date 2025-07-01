@@ -16,4 +16,5 @@ drop_table = "jogre"
 categories = ["jogres"]
 wander_radius = 6
 attack_radius = 8
+god = "bandos"
 examine = "Green and aggressive."

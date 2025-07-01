@@ -14,6 +14,7 @@ respawn_delay = 50
 categories = ["human"]
 wander_radius = 6
 attack_radius = 8
+god = "saradomin"
 examine = "A valiant knight."
 
 [knight_of_saradomin_female]
@@ -32,4 +33,5 @@ respawn_delay = 50
 categories = ["human"]
 wander_radius = 6
 attack_radius = 8
+god = "saradomin"
 examine = "A valiant knight."
