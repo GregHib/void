@@ -31,6 +31,9 @@ class HuntModeDefinitions {
                     var id = ""
                     var layer: Int = -1
                     var maxMultiAttackers = 2
+                    var checkSameGod = false
+                    var checkZamorak = false
+                    var checkNotZamorak = false
                     while (nextPair()) {
                         when (val key = key()) {
                             "type" -> type = string()
@@ -46,6 +49,9 @@ class HuntModeDefinitions {
                             "id" -> id = string()
                             "layer" -> layer = int()
                             "max_multi_attackers" -> maxMultiAttackers = int()
+                            "check_same_god" -> checkSameGod = boolean()
+                            "check_zamorak" -> checkZamorak = boolean()
+                            "check_not_zamorak" -> checkNotZamorak = boolean()
                             else -> throw IllegalArgumentException("Unknown hunt mode key: $key")
                         }
                     }
@@ -63,6 +69,9 @@ class HuntModeDefinitions {
                         id = id,
                         layer = layer,
                         maxMultiAttackers = maxMultiAttackers,
+                        checkSameGod = checkSameGod,
+                        checkZamorak = checkZamorak,
+                        checkNotZamorak = checkNotZamorak,
                     )
                 }
             }

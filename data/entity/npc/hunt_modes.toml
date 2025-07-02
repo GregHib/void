@@ -79,4 +79,4 @@ check_not_too_strong = false
 check_not_combat = true
 check_not_combat_self = true
 check_not_busy = false
-check_zamorak_npc = true
+check_zamorak = true

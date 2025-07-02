@@ -14,16 +14,7 @@ import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 
 val areas: AreaDefinitions by inject()
-val followers = mutableMapOf<String, MutableSet<String>>()
 val area = areas["godwars_dungeon_multi_area"]
-
-npcSpawn { npc ->
-    if (npc.tile in area) {
-        val god = npc.def.getOrNull<String>("god") ?: return@npcSpawn
-        println("Add ${npc.id} $god")
-        followers.getOrPut(god) { mutableSetOf() }.add(npc.id)
-    }
-}
 
 enterArea("godwars_dungeon_multi_area") {
     player["gods"] = player.equipment.items.mapNotNull { it.def.getOrNull<String>("god") }.toMutableSet()
