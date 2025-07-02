@@ -3,9 +3,9 @@ package content.entity.player.modal.book
 import content.entity.player.inv.inventoryOption
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -81,8 +81,12 @@ fun Interfaces.display(book: String, title: String, pageNumber: Int, pages: List
             sendText(book, "$type${i + 1}", line)
         }
     } else {
-        for (i in 0 until if (book == "book") 21 else 30) {
+        for (i in 0 until if (book == "book") 22 else 30) {
             sendText(book, "line${i + 1}", lines?.getOrNull(i) ?: "")
         }
     }
+}
+
+interfaceClose("book") { player ->
+    player.clearAnim()
 }
