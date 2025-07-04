@@ -1,6 +1,9 @@
 [kril_tsutsaroth_attack]
 id = 6945
 
+[kril_tsutsaroth_magic_attack]
+id = 6947
+
 [kril_tsutsaroth_defend]
 id = 6944
 

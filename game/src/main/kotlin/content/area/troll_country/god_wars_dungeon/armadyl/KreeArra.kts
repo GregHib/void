@@ -35,25 +35,25 @@ npcCombatSwing("kree_arra") { npc ->
                         continue
                     }
                     target.tele(tile)
-                    target.gfx("981", delay = 100)
-                    target.anim("848")
-                    target.sound("3201")
+                    target.gfx("kree_arra_stun", delay = 100)
+                    target.anim("kree_arra_stun")
+                    target.sound("kree_arra_stun")
                     break
                 }
             }
-            npc.anim("6976")
-            areaSound("3871", npc.tile)
+            npc.anim("kree_arra_attack")
+            areaSound("kree_arra_attack", npc.tile)
         }
     }
     else { // Melee
-        npc.anim("6997")
-        target.sound("3837")
+        npc.anim("kree_arra_melee")
+        target.sound("kree_arra_melee")
         npc.hit(target, offensiveType = "melee", defensiveType = "magic")
     }
 }
 
-npcCombatAttack("kree_arra") { npc ->
+npcCombatAttack("kree_arra") {
     if (type != "melee") {
-        areaSound("3874", target.tile)
+        areaSound("kree_arra_impact", target.tile)
     }
 }

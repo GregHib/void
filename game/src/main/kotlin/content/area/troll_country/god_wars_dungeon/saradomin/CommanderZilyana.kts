@@ -17,18 +17,19 @@ val areas: AreaDefinitions by inject()
 npcCombatSwing("commander_zilyana") { npc ->
     when (random.nextInt(2)) {
         0 -> { // Magic
-            npc.anim("6967")
-            areaSound("3834", target.tile)
+            npc.anim("commander_zilyana_magic")
+            areaSound("commander_zilyana_magic", target.tile)
             val targets = players.filter { it.tile in areas["saradomin_chamber"] }
             for (target in targets) {
                 val hit = npc.hit(target, offensiveType = "magic")
                 if (hit > 0) {
-                    target.gfx("1207")
+                    target.gfx("commander_zilyana_magic_strike")
                 }
             }
         }
         else -> { // Melee
-            target.sound("2503")
+            target.sound("commander_zilyana_attack")
+            npc.hit(target, offensiveType = "melee")
         }
     }
 }
@@ -36,13 +37,13 @@ npcCombatSwing("commander_zilyana") { npc ->
 npcCombatAttack("commander_zilyana") {
     if (type == "magic") {
         if (damage > 0) {
-            areaSound("3853", target.tile)
-            target.gfx("1194")
+            areaSound("commander_zilyana_magic_impact", target.tile)
+            target.gfx("commander_zilyana_magic_impact")
         } else {
-            areaGfx("85", target.tile.addY(1), height = 100)
-            areaSound("227", target.tile)
-            areaSound("227", target.tile, 20)
-            areaGfx("85", target.tile.addY(-1), 20, 100)
+            areaSound("spell_splash", target.tile)
+            areaSound("spell_splash", target.tile, 20)
+            areaGfx("spell_splash", target.tile.addY(1), height = 100)
+            areaGfx("spell_splash", target.tile.addY(-1), 20, 100)
         }
     }
 }

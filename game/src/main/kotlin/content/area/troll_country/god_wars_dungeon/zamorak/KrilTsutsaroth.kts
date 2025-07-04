@@ -5,6 +5,7 @@ import content.entity.combat.hit.npcCombatAttack
 import content.entity.combat.npcCombatSwing
 import content.entity.effect.toxin.poison
 import content.entity.gfx.areaGfx
+import content.entity.proj.shoot
 import content.entity.sound.areaSound
 import content.entity.sound.sound
 import content.skill.prayer.protectMelee
@@ -21,14 +22,15 @@ import world.gregs.voidps.type.random
 npcCombatSwing("kril_tsutsaroth") { npc ->
     when (random.nextInt(3)) {
         0 -> { // Magic
-            target.sound("3888", delay = 30)
-            npc.anim("6947")
-            npc.gfx("1210")
+            target.sound("kril_tsutsaroth_magic", delay = 30)
+            npc.anim("kril_tsutsaroth_magic_attack")
+            npc.gfx("kril_tsutsaroth_magic_attack")
+//            npc.shoot("1211", target)
             npc.hit(target, offensiveType = "magic", delay = 1)
         }
         else -> { // Melee
-            npc.anim("6945")
-            target.sound("3833")
+            npc.anim("kril_tsutsaroth_attack")
+            target.sound("kril_tsutsaroth_attack")
             if (random.nextInt(4) == 0) { // TODO check if random is same or dif
                 npc.poison(target, 80)
             }
@@ -38,10 +40,10 @@ npcCombatSwing("kril_tsutsaroth") { npc ->
                 target.levels.drain(Skill.Prayer, multiplier = 0.5)
                 target.message("K'ril Tsutsaroth slams through your protection prayer, leaving you feeling drained.")
                 npc.say("YARRRRRRR!")
-                areaSound("3274", npc.tile, delay = 15, repeat = 2) // TODO check
+//                areaSound("3274", npc.tile, delay = 15, repeat = 2) // TODO check
                 npc.hit(target, offensiveType = "damage", damage = 350 + (random.nextInt(15) * 10)) // TODO prayer mod?
             } else {
-                // Normal
+                npc.hit(target, offensiveType = "melee")
             }
         }
     }
@@ -50,7 +52,7 @@ npcCombatSwing("kril_tsutsaroth") { npc ->
 npcCombatAttack("kril_tsutsaroth") { npc ->
     if (type == "magic") {
         if (damage > 0) {
-            areaSound("3844", target.tile)
+            areaSound("kril_tsutsaroth_magic_impact", target.tile)
         } else {
             // TODO splash
         }
