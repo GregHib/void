@@ -32,7 +32,7 @@ fun engineModule(files: ConfigFiles) = module {
     single { GameObjects(get(), get(), get(), get(), Settings["development.loadAllObjects", false]).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItems(get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItemTracking(get(), get(), get()) }
-    single { Hunting(get(), get(), get(), get(), get(), get(), get()) }
+    single { Hunting(get(), get(), get(), get(), get(), get()) }
     single {
         SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
     }
