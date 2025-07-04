@@ -29,4 +29,5 @@ categories = ["imp"]
 wander_radius = 6
 attack_radius = 8
 god = "zamorak"
+hunt_mode = "zamorak_aggressive"
 examine = "Have you checked your pockets lately?"

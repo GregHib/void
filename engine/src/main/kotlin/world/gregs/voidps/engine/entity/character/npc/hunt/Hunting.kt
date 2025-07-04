@@ -5,7 +5,6 @@ import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.config.HuntModeDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.HuntModeDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterSearch
@@ -20,7 +19,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
@@ -44,7 +42,6 @@ class Hunting(
     private val floorItems: FloorItems,
     private val huntModes: HuntModeDefinitions,
     private val lineValidator: LineValidator,
-    private val areas: AreaDefinitions,
     private val seed: Random = random,
 ) : Runnable {
 

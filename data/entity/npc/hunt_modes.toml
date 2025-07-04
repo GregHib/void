@@ -62,7 +62,7 @@ check_not_busy = false
 check_same_god = true
 
 # All non-zamorak npcs
-[zamorak_aggressive_npcs]
+[zamorak_aggressive]
 type = "npc"
 check_visual = "line_of_sight"
 check_not_too_strong = false
@@ -72,7 +72,7 @@ check_not_busy = false
 check_not_zamorak = true
 
 # All zamorak npcs
-[zamorak_aggressive_npcs]
+[anti_zamorak_aggressive]
 type = "npc"
 check_visual = "line_of_sight"
 check_not_too_strong = false
