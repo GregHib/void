@@ -38,11 +38,4 @@ spawns = [
     { id = "ice_wolf_ice_path", x = 2905, y = 3739, members = true },
     { id = "ice_wolf_ice_path", x = 2909, y = 3736, members = true },
     { id = "ice_wolf_ice_path", x = 2913, y = 3736, members = true },
-    # Charm droppers
-    { id = "ice_wolf_ice_path", x = 2886, y = 3723, members = true },
-    { id = "ice_wolf_ice_path", x = 2887, y = 3720, members = true },
-    { id = "ice_wolf_ice_path", x = 2890, y = 3721, members = true },
-    { id = "ice_wolf_ice_path", x = 2890, y = 3724, members = true },
-    { id = "ice_wolf_ice_path_3", x = 2897, y = 3733, members = true },
-    { id = "ice_wolf_ice_path_3", x = 2897, y = 3737, members = true },
 ]
