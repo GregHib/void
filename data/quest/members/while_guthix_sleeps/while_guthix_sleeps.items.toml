@@ -247,6 +247,7 @@ id = 14497
 price = 95200
 limit = 10
 weight = 0.907
+god = "zamorak"
 slot = "Chest"
 examine = "A robe worn by members of the Dagon'hai."
 
@@ -258,6 +259,7 @@ id = 14499
 price = 24500
 limit = 10
 weight = 0.25
+god = "zamorak"
 slot = "Hat"
 type = "HairLow"
 examine = "A hat worn by members of the Dagon'hai."
@@ -270,6 +272,7 @@ id = 14501
 price = 53600
 limit = 10
 weight = 0.907
+god = "zamorak"
 slot = "Legs"
 examine = "A robe worn by members of the Dagon'hai."
 

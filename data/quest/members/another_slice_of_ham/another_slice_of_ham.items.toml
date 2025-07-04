@@ -78,6 +78,7 @@ limit = 100
 weight = 1.814
 special_energy = 1000
 special = "favour_of_the_war_god"
+god = "bandos"
 slot = "Weapon"
 examine = "It has ancient goblin symbols on it."
 

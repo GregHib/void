@@ -435,6 +435,7 @@ category = "staff"
 special_energy = 1000
 special = "power_of_light"
 aka = ["sol"]
+god = "saradomin"
 slot = "Weapon"
 examine = "Humming with power."
 

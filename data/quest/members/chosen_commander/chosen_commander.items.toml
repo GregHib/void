@@ -74,6 +74,7 @@ id = 14679
 price = 25000
 limit = 10
 weight = 3.628
+god = "bandos"
 slot = "Weapon"
 examine = "The favoured weapon of Bandos."
 

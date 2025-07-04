@@ -40,6 +40,7 @@ kept = "Wilderness"
 id = 87
 tradeable = false
 weight = 0.01
+god = "armadyl"
 slot = "Amulet"
 examine = "Yet another amulet."
 kept = "Wilderness"
