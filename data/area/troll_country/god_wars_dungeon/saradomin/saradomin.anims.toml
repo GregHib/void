@@ -1,6 +1,9 @@
 [commander_zilyana_attack]
 id = 6964
 
+[commander_zilyana_magic]
+id = 6967
+
 [commander_zilyana_defend]
 id = 6966
 

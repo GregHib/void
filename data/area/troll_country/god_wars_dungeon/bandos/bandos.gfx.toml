@@ -1,0 +1,11 @@
+[general_graardor_slam]
+id = 1219
+height = 30
+
+[general_graardor_projectile]
+id = 1219
+height = 30
+
+[general_graardor_smash_impact]
+id = 359
+height = 96

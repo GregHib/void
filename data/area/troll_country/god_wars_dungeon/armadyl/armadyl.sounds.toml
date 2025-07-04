@@ -1,0 +1,11 @@
+[kree_arra_stun]
+id = 3201
+
+[kree_arra_attack]
+id = 3871
+
+[kree_arra_melee]
+id = 3837
+
+[kree_arra_impact]
+id = 3874
