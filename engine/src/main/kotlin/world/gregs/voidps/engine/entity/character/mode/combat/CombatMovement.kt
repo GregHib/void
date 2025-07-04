@@ -32,6 +32,7 @@ class CombatMovement(
     private val spawn: Tile? = character["respawn_tile"]
 
     override fun start() {
+        character.face(target)
         character.watch(target)
         character.clear("face_entity")
     }
