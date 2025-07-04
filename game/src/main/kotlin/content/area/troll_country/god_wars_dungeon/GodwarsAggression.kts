@@ -60,7 +60,7 @@ npcDeath { npc ->
 }
 
 fun randomHuntMode(npc: NPC) {
-    if (npc.tile in dungeon && npc.def.contains("hunt_mode")) {
+    if (npc.tile in dungeon && (npc.def["hunt_mode", ""] == "zamorak_aggressive" || npc.def["hunt_mode", ""] == "anti_zamorak_aggressive")) {
         npc["hunt_mode"] = if (random.nextBoolean()) npc.def["hunt_mode"] else "godwars_aggressive"
     }
 }

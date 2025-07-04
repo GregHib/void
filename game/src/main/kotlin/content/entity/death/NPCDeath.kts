@@ -56,8 +56,8 @@ npcDeath { npc ->
         delay(4)
         if (killer is Player) {
             slay(killer, npc)
+            dropLoot(npc, killer, tile)
         }
-        dropLoot(npc, killer, tile)
         npc.attackers.clear()
         npc.softTimers.stopAll()
         npc.hide = true

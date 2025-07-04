@@ -219,10 +219,10 @@ class Hunting(
         if (definition.checkSameGod && target is Player && wearsGodArmour(npc, target)) {
             return false
         }
-        if (definition.checkZamorak && target is NPC && target["god", ""] != "zamorak") {
+        if (definition.checkZamorak && target is NPC && target.def["god", ""] != "zamorak") {
             return false
         }
-        if (definition.checkNotZamorak && target is NPC && target["god", ""] == "zamorak") {
+        if (definition.checkNotZamorak && target is NPC && target.def["god", ""] == "zamorak") {
             return false
         }
         return true
