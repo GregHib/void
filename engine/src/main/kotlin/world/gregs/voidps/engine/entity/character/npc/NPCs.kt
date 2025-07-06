@@ -39,9 +39,10 @@ data class NPCs(
     private val logger = InlineLogger()
 
     override fun run() {
-        for (i in 0 until removeIndex) {
+        var i = 0
+        while (i < removeIndex) {
             val index = removeQueue[i]
-            removeQueue[i] = -1
+            removeQueue[i++] = -1
             size--
             val npc = indexArray[index] ?: continue
             indexArray[index] = null
@@ -49,14 +50,15 @@ data class NPCs(
             npc.index = -1
         }
         removeIndex = 0
-        for (i in 0 until spawnIndex) {
-            val npc = spawnQueue[i] ?: continue
+        i = 0
+        while (i < spawnIndex) {
+            val npc = spawnQueue[i++] ?: continue
             if (!spawn(npc)) {
                 logger.warn { "Failed to spawn $npc" }
             } else {
                 size++
             }
-            spawnQueue[i] = null
+            spawnQueue[i - 1] = null
         }
         spawnIndex = 0
     }
