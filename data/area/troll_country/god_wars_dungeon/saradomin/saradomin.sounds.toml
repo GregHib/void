@@ -6,3 +6,27 @@ id = 2503
 
 [commander_zilyana_magic_impact]
 id = 3853
+
+[growler_sonic_spell_cast]
+id = 3877
+area = true
+
+[growler_sonic_spell_impact]
+id = 3878
+area = true
+
+[growler_defend]
+id = 3869
+
+[growler_death]
+id = 3867
+
+[bree_arrow_shoot]
+id = 2693
+area = true
+
+[bree_defend]
+id = 3866
+
+[bree_death]
+id = 3827

@@ -360,7 +360,7 @@ spawns = [
   { id = "hellhound_god_wars", x = 2837, y = 5335, level = 2, members = true },
   { id = "hellhound_god_wars", x = 2892, y = 5302, level = 2, members = true },
   { id = "hellhound_god_wars", x = 2915, y = 5345, level = 2, members = true },
-  { id = "gorak_god_wars", x = 2919, y = 5238, level = 2, members = true },
+  { id = "gorak_god_wars", x = 2911, y = 5270, members = true },
   { id = "gorak_god_wars", x = 2859, y = 5325, level = 2, members = true },
   { id = "gorak_god_wars", x = 2862, y = 5260, level = 2, members = true },
   { id = "gorak_god_wars", x = 2886, y = 5351, level = 2, members = true },

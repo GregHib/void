@@ -46,13 +46,13 @@ npcCombatSwing("commander_zilyana") { npc ->
 
 npcSpawn("commander_zilyana") {
     if (starlight == null) {
-        starlight = npcs.add("starlight", Tile(2911, 5229))
+        starlight = npcs.add("starlight", Tile(2903, 5260))
     }
     if (bree == null) {
-        bree = npcs.add("bree", Tile(2910, 5242))
+        bree = npcs.add("bree", Tile(2902, 5270))
     }
     if (growler == null) {
-        growler = npcs.add("growler", Tile(2904, 5232))
+        growler = npcs.add("growler", Tile(2898, 5262))
     }
 }
 

@@ -1,2 +1,17 @@
+[aviansie_magic_impact]
+id = 3850
+area = true
+
+[aviansie_magic_cast]
+id = 3881
+area = true
+
+[aviansie_defend]
+id = 3859
+area = true
+
 [aviansie_death]
-id = 3849
+id = 3854
+
+[aviansie_attack]
+id = 2699
