@@ -13,6 +13,7 @@ data class AreaExited(
     val name: String,
     val tags: Set<String>,
     val area: Area,
+    val logout: Boolean = false,
 ) : SuspendableEvent,
     SuspendableContext<Player> {
 
