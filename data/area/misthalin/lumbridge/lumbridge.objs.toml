@@ -132,6 +132,6 @@ examine = "A standard of Lumbridge Castle."
 id = 36789
 examine = "A table used by bank customers."
 
-[lumbridge_bank_leaflets]
+[lumbridge_bank_leaflet]
 id = 45504
 examine = "'Pay back all your debts by borrowing more money from us!' Clever."
