@@ -1,10 +1,7 @@
-
 [fade_out]
 id = 120
 type = "overlay"
-components = {
-  text = 1
-}
+components = { text = 1 }
 
 [fade_in]
 id = 170

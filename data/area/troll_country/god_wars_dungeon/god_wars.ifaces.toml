@@ -1,5 +1,10 @@
 [godwars_killcount]
 id = 598
+type = "overlay"
+
+[godwars_killcount_fade]
+id = 599
+type = "overlay"
 
 [godwars_overlay]
 id = 601

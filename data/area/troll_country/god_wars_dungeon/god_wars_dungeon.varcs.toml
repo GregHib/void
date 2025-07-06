@@ -1,0 +1,6 @@
+[godwars_darkness]
+id = 1435
+persist = true
+format = "map"
+default = "false"
+values = { "true" = 100, "false" = 255 }

@@ -28,7 +28,7 @@ id = 3941
 persist = true
 format = "int"
 
-[saradomin_killcount]
+[armadyl_killcount]
 id = 3938
 persist = true
 format = "int"

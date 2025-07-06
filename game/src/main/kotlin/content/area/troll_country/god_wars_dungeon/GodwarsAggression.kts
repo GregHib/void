@@ -35,6 +35,7 @@ interfaceOpen("godwars_overlay") { player ->
     player.sendVariable("bandos_killcount")
     player.sendVariable("saradomin_killcount")
     player.sendVariable("zamorak_killcount")
+    player.sendVariable("godwars_darkness")
 }
 
 exitArea("godwars_dungeon_multi_area") {
@@ -42,6 +43,7 @@ exitArea("godwars_dungeon_multi_area") {
     if (logout) {
         return@exitArea
     }
+    player["godwars_darkness"] = false
     player.clear("armadyl_killcount")
     player.clear("bandos_killcount")
     player.clear("saradomin_killcount")
