@@ -4,6 +4,7 @@ import content.entity.combat.attackers
 import content.entity.combat.hit.hit
 import content.entity.combat.hit.npcCombatAttack
 import content.entity.combat.npcCombatSwing
+import content.entity.proj.shoot
 import content.entity.sound.areaSound
 import content.entity.sound.sound
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -50,13 +51,15 @@ npcCombatSwing("kree_arra") { npc ->
                     break
                 }
             }
+            npc.shoot("kree_arra_tornado_blue", target.tile)
             npc.anim("kree_arra_attack")
-            areaSound("kree_arra_attack", npc.tile)
+            areaSound("kree_arra_attack", npc.tile, delay = 1)
         }
     }
     else { // Melee
         npc.anim("kree_arra_melee")
         target.sound("kree_arra_melee")
+        npc.shoot("kree_arra_tornado_white", target.tile)
         npc.hit(target, offensiveType = "melee", defensiveType = "magic")
     }
 }

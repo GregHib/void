@@ -3,3 +3,19 @@ id = 3888
 
 [general_graardor_attack]
 id = 3860
+
+[sergeant_steelwill_attack]
+id = 3870
+area = true
+
+[sergeant_steelwill_defend]
+id = 3874
+area = true
+
+[sergeant_grimspike_attack]
+id = 3851
+area = true
+
+[sergeant_steelwill_impact]
+id = 3874
+area = true
