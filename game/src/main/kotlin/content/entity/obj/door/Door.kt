@@ -171,10 +171,23 @@ fun doorTarget(player: Player, door: GameObject): Tile? {
     return target
 }
 
+private fun doorStart(player: Player, door: GameObject): Tile? {
+    if (door.id.endsWith("_opened")) {
+        return null
+    }
+    val direction = door.tile.delta(player.tile).toDirection()
+    val vertical = door.rotation == 0 || door.rotation == 2
+    if (vertical && direction.isHorizontal() || !vertical && direction.isVertical()) {
+        return player.tile
+    }
+    return door.tile
+}
+
 /**
  * Enter through a doorway
  */
 suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3) {
+    player.walkOverDelay(doorStart(player, door) ?: return)
     val tile = player.enter(door, def, ticks) ?: return
     player.walkOverDelay(tile)
 }
@@ -183,6 +196,7 @@ suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinitio
  * Enter through a door with fixed [delay]
  */
 suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3, delay: Int) {
+    player.walkOverDelay(doorStart(player, door) ?: return)
     val tile = player.enter(door, def, ticks) ?: return
     player.walkTo(tile, noCollision = true, forceWalk = true)
     delay(delay)
