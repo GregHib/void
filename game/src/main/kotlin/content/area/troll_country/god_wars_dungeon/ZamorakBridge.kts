@@ -16,9 +16,9 @@ objectOperate("Climb-off", "godwars_zamorak_bridge") {
         return@objectOperate
     }
     val direction = if (player.tile.y <= target.tile.y) Direction.NORTH else Direction.SOUTH
+    player["godwars_darkness"] = direction == Direction.NORTH
     player.face(direction)
     player.walkToDelay(target.tile)
-    player.open("fade_out")
     delay()
     player.tele(target.tile.addY(direction.delta.y * 2))
     player.renderEmote("swim")
@@ -31,5 +31,4 @@ objectOperate("Climb-off", "godwars_zamorak_bridge") {
     }
     player.tele(target.tile.addY(direction.delta.y * 12))
     player.clearRenderEmote()
-    player.open("fade_in")
 }
