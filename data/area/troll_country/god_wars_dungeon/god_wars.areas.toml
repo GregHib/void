@@ -13,18 +13,37 @@ x = [2824, 2842]
 y = [5296, 5308]
 level = 2
 
+[armadyl_entrance]
+x = [2839]
+y = [5295]
+level = 2
+
 [bandos_chamber]
 x = [2864, 2876]
 y = [5351, 5369]
+level = 2
+
+[bandos_entrance]
+x = [2863]
+y = [5354]
 level = 2
 
 [saradomin_chamber]
 x = [2895, 2907]
 y = [5258, 5272]
 
+[saradomin_entrance]
+x = [2908]
+y = [5265]
+
 [zamorak_chamber]
 x = [2918, 2936]
 y = [5318, 5331]
+level = 2
+
+[zamorak_entrance]
+x = [2925]
+y = [5332]
 level = 2
 
 [godwars_chill_area]

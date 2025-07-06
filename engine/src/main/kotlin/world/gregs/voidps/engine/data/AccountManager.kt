@@ -121,7 +121,7 @@ class AccountManager(
             }
             for (def in areaDefinitions.get(player.tile.zone)) {
                 if (player.tile in def.area) {
-                    player.emit(AreaExited(player, def.name, def.tags, def.area))
+                    player.emit(AreaExited(player, def.name, def.tags, def.area, logout = true))
                 }
             }
             player.emit(Despawn)

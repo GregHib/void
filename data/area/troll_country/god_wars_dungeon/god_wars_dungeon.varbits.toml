@@ -17,3 +17,23 @@ format = "boolean"
 id = 3936
 persist = true
 format = "boolean"
+
+[saradomin_killcount]
+id = 3939
+persist = true
+format = "int"
+
+[bandos_killcount]
+id = 3941
+persist = true
+format = "int"
+
+[saradomin_killcount]
+id = 3938
+persist = true
+format = "int"
+
+[zamorak_killcount]
+id = 3942
+persist = true
+format = "int"

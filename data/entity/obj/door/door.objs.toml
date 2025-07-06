@@ -2857,38 +2857,6 @@ id = 26187
 id = 26189
 examine = "This doesn't look to be the way out."
 
-[big_door_4_opened]
-id = 26851
-examine = "Looks foreboding!"
-
-[big_door_4_closed]
-id = 26425
-examine = "Looks foreboding!"
-
-[big_door_5_opened]
-id = 26851
-examine = "Looks foreboding!"
-
-[big_door_5_closed]
-id = 26426
-examine = "Looks foreboding!"
-
-[big_door_6_opened]
-id = 26851
-examine = "Looks foreboding!"
-
-[big_door_6_closed]
-id = 26427
-examine = "Looks foreboding!"
-
-[big_door_7_opened]
-id = 26851
-examine = "Looks foreboding!"
-
-[big_door_7_closed]
-id = 26428
-examine = "Looks foreboding!"
-
 [metal_door_3_opened]
 id = 26561
 examine = "A strong metal door."

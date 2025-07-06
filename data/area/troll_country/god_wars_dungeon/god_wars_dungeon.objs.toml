@@ -78,3 +78,51 @@ id = 26306
 
 [godwars_rope]
 id = 26293
+
+[big_door_saradomin_opened]
+id = 26851
+examine = "Looks foreboding!"
+
+[big_door_saradomin_closed]
+id = 26427
+examine = "Looks foreboding!"
+
+[big_door_bandos_opened]
+id = 26851
+examine = "Looks foreboding!"
+
+[big_door_bandos_closed]
+id = 26425
+examine = "Looks foreboding!"
+
+[big_door_zamorak_opened]
+id = 26851
+examine = "Looks foreboding!"
+
+[big_door_zamorak_closed]
+id = 26428
+examine = "Looks foreboding!"
+
+[big_door_armadyl_opened]
+id = 26851
+examine = "Looks foreboding!"
+
+[big_door_armadyl_closed]
+id = 26426
+examine = "Looks foreboding!"
+
+[prayer_zamorak_altar_godwars]
+id = 26286
+examine = "An altar to Zamorak."
+
+[prayer_saradomin_altar_godwars]
+id = 26287
+examine = "An altar to Saradomin."
+
+[prayer_armadyl_altar_godwars]
+id = 26288
+examine = "The last remaining holy place of the aviantese."
+
+[prayer_bandos_altar_godwars]
+id = 26289
+examine = "Altar to the goblin god."

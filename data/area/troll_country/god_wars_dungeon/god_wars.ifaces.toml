@@ -3,6 +3,7 @@ id = 598
 
 [godwars_overlay]
 id = 601
+type = "overlay"
 
 [snow_flakes]
 id = 370

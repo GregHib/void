@@ -154,22 +154,6 @@ examine = "An altar."
 id = 24343
 examine = "A cloth-covered altar with a symbol of Saradomin."
 
-[prayer_zamorak_altar_godwars]
-id = 26286
-examine = "An altar to Zamorak."
-
-[prayer_saradomin_altar_godwars]
-id = 26287
-examine = "An altar to Saradomin."
-
-[prayer_armadyl_altar_godwars]
-id = 26288
-examine = "The last remaining holy place of the aviantese."
-
-[prayer_bandos_altar_godwars]
-id = 26289
-examine = "Altar to the goblin god."
-
 [prayer_altar_goblin_temple]
 id = 27306
 examine = "An altar to the Big High War God."
