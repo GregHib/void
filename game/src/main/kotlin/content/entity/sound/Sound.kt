@@ -24,7 +24,12 @@ fun Character.sound(
     if (this !is Player) {
         return
     }
-    client?.playSoundEffect(get<SoundDefinitions>().getOrNull(id)?.id ?: return, delay, volume, speed, repeat)
+    val definition = get<SoundDefinitions>().getOrNull(id) ?: return
+    if (definition.contains("area")) {
+        areaSound(id, tile, radius = 5, delay = delay, volume = volume, speed = speed, repeat = repeat)
+    } else {
+        client?.playSoundEffect(definition.id, delay, volume, speed, repeat)
+    }
 }
 
 fun Player.soundGlobal(
