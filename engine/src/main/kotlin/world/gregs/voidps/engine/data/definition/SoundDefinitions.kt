@@ -24,14 +24,20 @@ class SoundDefinitions : DefinitionsDecoder<SoundDefinition> {
                         val stringId = section()
                         require(!ids.containsKey(stringId)) { "Duplicate sound id found '$stringId' at $path." }
                         var id = 0
+                        var area = false
                         while (nextPair()) {
                             when (val key = key()) {
                                 "id" -> id = int()
+                                "area" -> area = boolean()
                                 else -> throw IllegalArgumentException("Unknown sound key: $key")
                             }
                         }
                         ids[stringId] = id
-                        definitions[id] = SoundDefinition(id = id, stringId = stringId)
+                        if (area) {
+                            definitions[id] = SoundDefinition(id = id, stringId = stringId, extras = mapOf("area" to true))
+                        } else {
+                            definitions[id] = SoundDefinition(id = id, stringId = stringId)
+                        }
                     }
                 }
             }
