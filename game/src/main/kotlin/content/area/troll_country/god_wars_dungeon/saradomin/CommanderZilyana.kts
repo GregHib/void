@@ -7,12 +7,22 @@ import content.entity.gfx.areaGfx
 import content.entity.sound.areaSound
 import content.entity.sound.sound
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.npcDespawn
+import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 val players: Players by inject()
 val areas: AreaDefinitions by inject()
+val npcs: NPCs by inject()
+
+var starlight: NPC? = null
+var bree: NPC? = null
+var growler: NPC? = null
 
 npcCombatSwing("commander_zilyana") { npc ->
     when (random.nextInt(2)) {
@@ -32,6 +42,30 @@ npcCombatSwing("commander_zilyana") { npc ->
             npc.hit(target, offensiveType = "melee")
         }
     }
+}
+
+npcSpawn("commander_zilyana") {
+    if (starlight == null) {
+        starlight = npcs.add("starlight", Tile(2911, 5229))
+    }
+    if (bree == null) {
+        bree = npcs.add("bree", Tile(2910, 5242))
+    }
+    if (growler == null) {
+        growler = npcs.add("growler", Tile(2904, 5232))
+    }
+}
+
+npcDespawn("starlight") {
+    starlight = null
+}
+
+npcDespawn("bree") {
+    bree = null
+}
+
+npcDespawn("growler") {
+    growler = null
 }
 
 npcCombatAttack("commander_zilyana") {

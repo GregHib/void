@@ -4,20 +4,27 @@ import content.entity.combat.hit.hit
 import content.entity.combat.hit.npcCombatAttack
 import content.entity.combat.npcCombatSwing
 import content.entity.effect.toxin.poison
-import content.entity.gfx.areaGfx
-import content.entity.proj.shoot
 import content.entity.sound.areaSound
 import content.entity.sound.sound
 import content.skill.prayer.protectMelee
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.npcDespawn
+import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
+
+val npcs: NPCs by inject()
+
+var kreeyath: NPC? = null
+var karlak: NPC? = null
+var gritch: NPC? = null
 
 npcCombatSwing("kril_tsutsaroth") { npc ->
     when (random.nextInt(3)) {
@@ -47,6 +54,30 @@ npcCombatSwing("kril_tsutsaroth") { npc ->
             }
         }
     }
+}
+
+npcSpawn("kril_tsutsaroth") {
+    if (kreeyath == null) {
+        kreeyath = npcs.add("balfrug_kreeyath", Tile(2921, 5319, 2))
+    }
+    if (karlak == null) {
+        karlak = npcs.add("tstanon_karlak", Tile(2932, 5328, 2))
+    }
+    if (gritch == null) {
+        gritch = npcs.add("zakln_gritch", Tile(2919, 5327, 2))
+    }
+}
+
+npcDespawn("balfrug_kreeyath") {
+    kreeyath = null
+}
+
+npcDespawn("tstanon_karlak") {
+    karlak = null
+}
+
+npcDespawn("zakln_gritch") {
+    gritch = null
 }
 
 npcCombatAttack("kril_tsutsaroth") { npc ->
