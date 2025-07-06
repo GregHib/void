@@ -28,7 +28,7 @@ npcCombatSwing("commander_zilyana") { npc ->
     when (random.nextInt(2)) {
         0 -> { // Magic
             npc.anim("commander_zilyana_magic")
-            areaSound("commander_zilyana_magic", target.tile)
+            areaSound("commander_zilyana_magic", target.tile, delay = 1)
             val targets = players.filter { it.tile in areas["saradomin_chamber"] }
             for (target in targets) {
                 val hit = npc.hit(target, offensiveType = "magic")
@@ -75,9 +75,9 @@ npcCombatAttack("commander_zilyana") {
             target.gfx("commander_zilyana_magic_impact")
         } else {
             areaSound("spell_splash", target.tile)
-            areaSound("spell_splash", target.tile, 20)
+            areaSound("spell_splash", target.tile, delay = 20)
             areaGfx("spell_splash", target.tile.addY(1), height = 100)
-            areaGfx("spell_splash", target.tile.addY(-1), 20, 100)
+            areaGfx("spell_splash", target.tile.addY(-1), delay = 20, height = 100)
         }
     }
 }

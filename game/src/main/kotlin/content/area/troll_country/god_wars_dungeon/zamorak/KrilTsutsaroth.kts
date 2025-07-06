@@ -38,7 +38,7 @@ npcCombatSwing("kril_tsutsaroth") { npc ->
         else -> { // Melee
             npc.anim("kril_tsutsaroth_attack")
             target.sound("kril_tsutsaroth_attack")
-            if (random.nextInt(4) == 0) { // TODO check if random is same or dif
+            if (random.nextInt(4) == 0) {
                 npc.poison(target, 80)
             }
             val slam = target is Player && random.nextInt(3) != 0 && target.protectMelee() && !target.hasClock("gwd_block_counter")
@@ -47,7 +47,7 @@ npcCombatSwing("kril_tsutsaroth") { npc ->
                 target.levels.drain(Skill.Prayer, multiplier = 0.5)
                 target.message("K'ril Tsutsaroth slams through your protection prayer, leaving you feeling drained.")
                 npc.say("YARRRRRRR!")
-//                areaSound("3274", npc.tile, delay = 15, repeat = 2) // TODO check
+//                areaSound("3274", npc.tile, radius = 15)
                 npc.hit(target, offensiveType = "damage", damage = 350 + (random.nextInt(15) * 10)) // TODO prayer mod?
             } else {
                 npc.hit(target, offensiveType = "melee")
@@ -80,12 +80,13 @@ npcDespawn("zakln_gritch") {
     gritch = null
 }
 
-npcCombatAttack("kril_tsutsaroth") { npc ->
+npcCombatAttack("kril_tsutsaroth") {
     if (type == "magic") {
         if (damage > 0) {
-            areaSound("kril_tsutsaroth_magic_impact", target.tile)
+            areaSound("kril_tsutsaroth_magic_impact", target.tile, radius = 15)
         } else {
-            // TODO splash
+            target.gfx("giant_splash")
+            target.sound("spell_splash")
         }
     }
 }

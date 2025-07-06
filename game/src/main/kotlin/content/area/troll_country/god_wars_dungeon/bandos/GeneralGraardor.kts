@@ -3,6 +3,7 @@ package content.area.troll_country.god_wars_dungeon.bandos
 import content.entity.combat.hit.hit
 import content.entity.combat.hit.npcCombatAttack
 import content.entity.combat.npcCombatSwing
+import content.entity.gfx.areaGfx
 import content.entity.proj.shoot
 import content.entity.sound.areaSound
 import content.entity.sound.sound
@@ -30,9 +31,9 @@ npcCombatSwing("general_graardor") { npc ->
             npc.anim("general_graardor_slam")
             npc.gfx("general_graardor_slam")
             areaSound("general_graardor_slam", target.tile, delay = 20, radius = 7)
-            val targets = players.filter { it.tile in areas["bandos_chamber"] } // TODO possible targets
+            val targets = players.filter { it.tile in areas["bandos_chamber"] }
             for (target in targets) {
-                val delay = npc.shoot("general_graardor_projectile", target) // TODO params & does shoot if splash?
+                val delay = npc.shoot("general_graardor_projectile", target, curve = random.nextInt(9, 24))
                 npc.hit(target, offensiveType = "range", delay = delay)
             }
         }
@@ -70,7 +71,15 @@ npcCombatAttack("general_graardor") {
         if (damage > 0) {
             target.gfx("general_graardor_smash_impact")
         } else {
-            // TODO splash
+            target.gfx("giant_splash")
+            target.sound("spell_splash")
         }
+    }
+}
+
+npcCombatAttack("sergeant_steelwill") {
+    if (type == "magic" && damage > 0) {
+        areaGfx("sergeant_steelwill_impact", target.tile)
+        target.sound("sergeant_steelwill_impact")
     }
 }

@@ -1,2 +1,18 @@
 [kree_arra_stun]
 id = 981
+
+[kree_arra_tornado_blue]
+id = 1198
+height = 43
+end_height = 31
+curve = 15
+delay = 51
+flight_time = [17, 25, 33, 41, 49, 57, 65, 73, 81, 89]
+
+[kree_arra_tornado_white]
+id = 1197
+height = 43
+end_height = 31
+curve = 15
+delay = 51
+flight_time = [17, 25, 33, 41, 49, 57, 65, 73, 81, 89]
