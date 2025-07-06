@@ -37,6 +37,8 @@ slayer_xp = 132.5
 categories = ["aviansie"]
 wander_radius = 6
 attack_radius = 8
+combat_anims = "aviansie"
+combat_sounds = "aviansie"
 drop_table = "armadyl_bodyguard"
 examine = "Graceful, bird-like creature."
 
@@ -53,15 +55,21 @@ xp_bonus = 1.025
 max_hit_magic = 160
 hunt_mode = "aggressive"
 style = "magic"
+spell = "wingman_skree_spell"
 attack_speed = 5
 slayer_xp = 124.0
 categories = ["aviansie"]
 wander_radius = 6
 attack_radius = 8
+attack_range = 10
+combat_anims = "aviansie"
+combat_sounds = "aviansie"
+attack_anim = "aviansie_attack_magic"
+attack_sound = "aviansie_attack_magic"
 drop_table = "armadyl_bodyguard"
 examine = "Graceful, bird-like creature."
 
-[blockleader_geerin]
+[flockleader_geerin]
 id = 6225
 hitpoints = 1320
 att = 80
@@ -72,10 +80,15 @@ range = 150
 max_hit_range = 250
 hunt_mode = "aggressive"
 style = "range"
+weapon_style = "thrown"
+ammo = "flockleader_geerin_spear"
 attack_speed = 5
 slayer_xp = 132.5
 categories = ["aviansie"]
 wander_radius = 6
 attack_radius = 8
+attack_range = 10
+combat_anims = "aviansie"
+combat_sounds = "aviansie"
 drop_table = "armadyl_bodyguard"
 examine = "Graceful, bird-like creature."
