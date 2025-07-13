@@ -45,6 +45,7 @@ spawns = [
   { id = "goblin_light_topless_spiked", x = 3185, y = 3244 },
   { id = "goblin_light_grey_bald_spear", x = 3167, y = 3205 },
 # 12850
+  { id = "roddeck", x = 3232, y = 3237, direction = "WEST" },
   { id = "sigmund", x = 3209, y = 3219, level = 1 },
   { id = "guardsman_deshawn", x = 3206, y = 3214, level = 1 },
   { id = "guardsman_dante", x = 3211, y = 3227, level = 1 },

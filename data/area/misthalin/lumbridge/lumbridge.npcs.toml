@@ -209,3 +209,8 @@ id = 7883
 [lumbridge_woman_5]
 clone = "lumbridge_woman"
 id = 7884
+
+[roddeck]
+id = 8867
+categories = ["human"]
+examine = "A helpful soul who loves dispensing advice."
