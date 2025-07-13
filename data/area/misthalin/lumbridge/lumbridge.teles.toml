@@ -35,7 +35,7 @@ option = "Climb-down"
 tile = { x = 3247, y = 3197 }
 to = { x = 3877, y = 5526, level = 1 }
 
-[36687]
+[trapdoor_109_opened]
 option = "Climb-down"
 tile = { x = 3209, y = 3216 }
 delta = { x = -2, y = 6400 }

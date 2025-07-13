@@ -173,3 +173,7 @@ examine = "I wonder what's down there."
 [trapdoor_108_closed]
 id = 21944
 examine = "I wonder what's under it?"
+
+[trapdoor_109_opened]
+id = 36687
+examine = "I wonder what's down there."

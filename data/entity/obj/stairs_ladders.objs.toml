@@ -103,3 +103,27 @@ examine = "I can climb down this."
 [canifis_ladder_up]
 id = 30575
 examine = "I can climb this."
+
+[29355]
+id = 29355
+examine = "I can climb this."
+
+[36768]
+id = 36768
+examine = "I can climb up this."
+
+[36769]
+id = 36769
+examine = "I can climb up or down this."
+
+[36770]
+id = 36770
+examine = "I can climb down this."
+
+[45483]
+id = 45483
+examine = "Some wooden stairs."
+
+[45484]
+id = 45484
+examine = "Some wooden stairs."
