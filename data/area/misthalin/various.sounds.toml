@@ -1,0 +1,8 @@
+[pull_lever]
+id = 2400
+
+[drawer_close]
+id = 63
+
+[drawer_open]
+id = 64
