@@ -150,42 +150,42 @@ option = "Climb-down"
 tile = { x = 3230, y = 3209, level = 1 }
 delta = { x = 3, level = -1 }
 
-[36984]
+[lumbridge_church_1st_floor_ladder_up_west]
 option = "Climb-up"
 tile = { x = 3241, y = 3213 }
 delta = { x = -2, level = 1 }
 
-[36985]
+[lumbridge_church_2nd_floor_ladder_down_west]
 option = "Climb-down"
 tile = { x = 3241, y = 3213, level = 1 }
 delta = { x = 2, level = -1 }
 
-[36986]
+[lumbridge_church_1st_floor_ladder_up_east]
 option = "Climb-up"
 tile = { x = 3246, y = 3213 }
 delta = { x = 2, level = 1 }
 
-[36987]
+[lumbridge_church_2nd_floor_ladder_down_east]
 option = "Climb-down"
 tile = { x = 3246, y = 3213, level = 1 }
 delta = { x = -2, level = -1 }
 
-[36989]
+[lumbridge_church_2nd_floor_ladder_up_west]
 option = "Climb-up"
 tile = { x = 3242, y = 3207, level = 1 }
 delta = { x = 1, y = -1, level = 1 }
 
-[36991]
+[lumbridge_church_3rd_floor_ladder_down_west]
 option = "Climb-down"
 tile = { x = 3242, y = 3207, level = 2 }
 delta = { x = -1, y = 1, level = -1 }
 
-[36988]
+[lumbridge_church_2nd_floor_ladder_up_east]
 option = "Climb-up"
 tile = { x = 3245, y = 3207, level = 1 }
 delta = { x = -1, y = -1, level = 1 }
 
-[36990]
+[lumbridge_church_3rd_floor_ladder_down_east]
 option = "Climb-down"
 tile = { x = 3245, y = 3207, level = 2 }
 delta = { x = 1, y = 1, level = -1 }

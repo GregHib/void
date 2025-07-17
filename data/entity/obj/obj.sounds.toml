@@ -19,3 +19,8 @@ id = 2400
 [coffin_open]
 id = 54
 
+[drawer_close]
+id = 63
+
+[drawer_open]
+id = 64
