@@ -57,7 +57,7 @@ respawn_delay = 35
 drop_table = "goblin"
 combat_anims = "goblin"
 combat_sounds = "goblin"
-examine = "An ugly, blue creature."
+examine = "An ugly green creature."
 categories = ["goblins"]
 height = 30
 
