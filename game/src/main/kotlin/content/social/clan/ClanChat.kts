@@ -131,9 +131,7 @@ fun display(player: Player, clan: Clan) {
 
 fun updateMembers(player: Player, clan: Clan, rank: ClanRank = clan.getRank(player)) {
     for (member in clan.members) {
-        if (member != player) {
-            member.client?.appendClanChat(ClanMember.of(player, rank))
-        }
+        member.client?.appendClanChat(ClanMember.of(player, rank))
     }
 }
 
