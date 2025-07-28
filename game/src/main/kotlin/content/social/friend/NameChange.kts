@@ -5,7 +5,6 @@ import content.entity.player.dialogue.type.nameEntry
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.event.modCommand
-import world.gregs.voidps.engine.client.updateFriend
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings

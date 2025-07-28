@@ -163,8 +163,6 @@ fun Player.publicStatus(
     )
 }
 
-fun Player.updateFriend(friend: Friend) = client?.sendFriendsList(listOf(friend)) ?: Unit
-
 fun Player.moveCamera(
     tile: Tile,
     height: Int,
