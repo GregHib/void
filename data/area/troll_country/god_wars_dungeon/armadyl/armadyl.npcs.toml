@@ -18,7 +18,8 @@ slayer_xp = 357.0
 categories = ["aviansie", "boss"]
 poison_immune = true
 wander_radius = 6
-attack_radius = 8
+attack_radius = 10
+attack_range = 10
 examine = "Graceful avatar of Armadyl."
 
 [flight_kilisa]

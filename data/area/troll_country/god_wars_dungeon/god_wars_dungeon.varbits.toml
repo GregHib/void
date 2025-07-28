@@ -19,7 +19,7 @@ persist = true
 format = "boolean"
 
 [saradomin_killcount]
-id = 3939
+id = 3938
 persist = true
 format = "int"
 
@@ -29,7 +29,7 @@ persist = true
 format = "int"
 
 [armadyl_killcount]
-id = 3938
+id = 3939
 persist = true
 format = "int"
 
