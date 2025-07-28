@@ -8,15 +8,13 @@ import world.gregs.voidps.type.Tile
 
 fun Character.blocked(direction: Direction) = blocked(tile, direction)
 
-fun Character.blocked(tile: Tile, direction: Direction): Boolean {
-    return !get<StepValidator>().canTravel(
-        x = tile.x,
-        z = tile.y,
-        level = tile.level,
-        size = size,
-        offsetX = direction.delta.x,
-        offsetZ = direction.delta.y,
-        extraFlag = blockMove,
-        collision = collision,
-    )
-}
+fun Character.blocked(tile: Tile, direction: Direction): Boolean = !get<StepValidator>().canTravel(
+    x = tile.x,
+    z = tile.y,
+    level = tile.level,
+    size = size,
+    offsetX = direction.delta.x,
+    offsetZ = direction.delta.y,
+    extraFlag = blockMove,
+    collision = collision,
+)

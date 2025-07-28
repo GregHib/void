@@ -55,8 +55,7 @@ npcCombatSwing("kree_arra") { npc ->
             npc.anim("kree_arra_attack")
             areaSound("kree_arra_attack", npc.tile, delay = 1)
         }
-    }
-    else { // Melee
+    } else { // Melee
         npc.anim("kree_arra_melee")
         target.sound("kree_arra_melee")
         npc.shoot("kree_arra_tornado_white", target.tile)

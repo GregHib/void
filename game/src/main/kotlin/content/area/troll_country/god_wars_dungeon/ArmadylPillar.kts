@@ -74,5 +74,4 @@ objectOperate("Search", "godwars_armadyl_crate") {
     } else {
         statement("There is nothing in the crate.")
     }
-
 }

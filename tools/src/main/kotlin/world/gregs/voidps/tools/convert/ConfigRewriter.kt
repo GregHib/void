@@ -14,7 +14,7 @@ object ConfigRewriter {
         "zamorak_flag",
         "zamorak_cloak_castle_wars",
         "zamorak_team_hood",
-        "zamorak_team_cape"
+        "zamorak_team_cape",
     )
 
     private val included = mapOf(

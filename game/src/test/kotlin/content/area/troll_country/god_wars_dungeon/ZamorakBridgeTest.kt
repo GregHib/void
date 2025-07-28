@@ -2,16 +2,11 @@ package content.area.troll_country.god_wars_dungeon
 
 import WorldTest
 import containsMessage
-import messages
 import objectOption
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class ZamorakBridgeTest : WorldTest() {
@@ -40,7 +35,6 @@ class ZamorakBridgeTest : WorldTest() {
         player.objectOption(bridge, "Climb-off")
         tick(8)
 
-
         assertEquals(50, player.levels.get(Skill.Prayer))
         assertEquals(Tile(2885, 5332, 2), player.tile)
     }
@@ -57,5 +51,4 @@ class ZamorakBridgeTest : WorldTest() {
         assertTrue(player.containsMessage("You need to have a Constitution level of 70"))
         assertEquals(Tile(2885, 5332, 2), player.tile)
     }
-
 }

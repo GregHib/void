@@ -78,19 +78,19 @@ object Prayer {
     }
 
     private fun usingProtectionPrayer(source: Character, target: Character, type: String): Boolean = type == "melee" &&
-            target.protectMelee() ||
-            type == "range" &&
-            target.protectRange() ||
-            type == "magic" &&
-            target.protectMagic() ||
-            source.isFamiliar &&
-            target.protectSummoning()
+        target.protectMelee() ||
+        type == "range" &&
+        target.protectRange() ||
+        type == "magic" &&
+        target.protectMagic() ||
+        source.isFamiliar &&
+        target.protectSummoning()
 
     fun usingDeflectPrayer(source: Character, target: Character, type: String): Boolean = (type == "melee" && target.praying("deflect_melee")) ||
-            (type == "range" && target.praying("deflect_missiles")) ||
-            (type == "magic" && target.praying("deflect_magic")) ||
-            source.isFamiliar &&
-            (target.praying("deflect_summoning"))
+        (type == "range" && target.praying("deflect_missiles")) ||
+        (type == "magic" && target.praying("deflect_magic")) ||
+        source.isFamiliar &&
+        (target.praying("deflect_summoning"))
 
     private fun hitThroughProtectionPrayer(source: Character, target: Character?, type: String, weapon: Item, special: Boolean): Boolean {
         if (target == null) {

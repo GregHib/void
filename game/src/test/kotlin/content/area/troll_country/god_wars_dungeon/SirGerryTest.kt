@@ -69,5 +69,4 @@ class SirGerryTest : WorldTest() {
         assertEquals(9, player.levels.get(Skill.Strength))
         assertEquals(90, player.levels.get(Skill.Constitution))
     }
-
 }

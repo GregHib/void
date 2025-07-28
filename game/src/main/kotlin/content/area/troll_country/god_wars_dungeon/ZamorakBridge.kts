@@ -2,7 +2,6 @@ package content.area.troll_country.god_wars_dungeon
 
 import content.entity.gfx.areaGfx
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote

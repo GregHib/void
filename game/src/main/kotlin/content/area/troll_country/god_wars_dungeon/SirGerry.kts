@@ -92,6 +92,6 @@ fun open(player: Player) {
             "know how I am going to get this message to you, why is that",
             "talking skull never around when he's needed? Your comrade,",
             "Sir Gerry.",
-        )
+        ),
     )
 }

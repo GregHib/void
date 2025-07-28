@@ -2,7 +2,6 @@ package content.area.troll_country.god_wars_dungeon
 
 import WorldTest
 import containsMessage
-import messages
 import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -64,5 +63,4 @@ class BandosDoorTest : WorldTest() {
         assertTrue(player.containsMessage("You need a suitable hammer"))
         assertEquals(Tile(2851, 5333, 2), player.tile)
     }
-
 }

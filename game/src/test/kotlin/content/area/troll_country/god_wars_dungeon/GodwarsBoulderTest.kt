@@ -2,19 +2,11 @@ package content.area.troll_country.god_wars_dungeon
 
 import WorldTest
 import containsMessage
-import content.entity.player.dialogue.continueDialogue
-import content.entity.player.effect.energy.runEnergy
-import messages
-import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class GodwarsBoulderTest : WorldTest() {
@@ -90,5 +82,4 @@ class GodwarsBoulderTest : WorldTest() {
         tick()
         assertTrue(player.containsMessage("You need to have an Agility level of 60"))
     }
-
 }

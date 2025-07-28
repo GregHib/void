@@ -2,18 +2,12 @@ package content.area.troll_country.god_wars_dungeon
 
 import WorldTest
 import containsMessage
-import messages
 import objectOption
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler
-import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.contains
-import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -126,5 +120,4 @@ class SaradominRockTest : WorldTest() {
 
         assertEquals(Tile(2920, 5276, 1), player.tile)
     }
-
 }
