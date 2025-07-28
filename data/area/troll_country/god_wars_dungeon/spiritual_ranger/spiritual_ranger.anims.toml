@@ -1,0 +1,11 @@
+[spiritual_ranger_attack]
+id = 13037
+
+[spiritual_ranger_bandos_attack]
+id = 7051
+
+[spiritual_ranger_bandos_defend]
+id = 4322
+
+[spiritual_ranger_bandos_death]
+id = 7064

@@ -144,5 +144,5 @@ object Equipment {
 
     private fun style(character: Character, style: String): Int = if (character is NPC) character.def[style, 0] else character[style] ?: 0
 
-    private fun combatStyle(type: String, character: Character) = if (type == "range" || type == "magic") type else character.combatStyle
+    private fun combatStyle(type: String, character: Character) = if (type == "range" || type == "magic") type else character.combatStyle.removePrefix("typeless_")
 }

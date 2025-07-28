@@ -1,0 +1,32 @@
+[spiritual_warrior_drop_table]
+type = "all"
+drops = [
+    { table = "spiritual_warrior_secondary" },
+    { table = "hard_clue_scroll", roll = 128 },
+]
+
+[spiritual_warrior_secondary]
+roll = 127
+drops = [
+    { id = "iron_sword", chance = 3 },
+    { id = "iron_scimitar", chance = 8 },
+    { id = "steel_longsword", chance = 15 },
+    { id = "steel_sword", chance = 7 },
+    { id = "black_warhammer", chance = 5 },
+    { id = "mithril_mace", chance = 7 },
+    { id = "black_dagger", chance = 2 },
+    { id = "mithril_spear_p", chance = 9 },
+    { id = "adamant_battleaxe", chance = 2 },
+    { id = "mithril_hatchet", chance = 8 },
+    { id = "adamant_2h_sword" },
+    { id = "rune_longsword" },
+    { id = "rune_halberd" },
+    { id = "leather_gloves", chance = 9 },
+    { id = "mithril_platelegs", chance = 11 },
+    { id = "steel_chainbody", chance = 18 },
+    { id = "adamant_full_helm", chance = 8 },
+    { id = "black_kiteshield", chance = 3 },
+    { id = "iron_plateskirt", chance = 4 },
+    { id = "rune_kiteshield" },
+    { table = "gem_drop_table", chance = 4 },
+]

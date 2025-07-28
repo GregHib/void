@@ -291,3 +291,109 @@ examine = "These goblins have grown strong."
 [stronghold_of_security_goblin_green_helmet]
 id = 4412
 clone = "stronghold_of_security_goblin_green_armed"
+
+[goblin_god_wars]
+id = 6279
+hitpoints = 180
+att = 14
+str = 16
+def = 14
+max_hit_melee = 30
+hunt_mode = "anti_zamorak_aggressive"
+style = "crush"
+attack_speed = 5
+respawn_delay = 60
+slayer_xp = 18.0
+categories = ["goblins"]
+wander_radius = 6
+attack_radius = 8
+combat_anims = "goblin_god_wars"
+combat_sounds = "goblin"
+drop_table = "stronghold_goblin"
+god = "bandos"
+examine = "An ancient goblin."
+
+[goblin_god_wars_hammer]
+id = 6280
+hitpoints = 150
+att = 12
+str = 6
+def = 13
+max_hit_melee = 20
+hunt_mode = "anti_zamorak_aggressive"
+style = "crush"
+attack_speed = 5
+respawn_delay = 60
+slayer_xp = 15.0
+categories = ["goblins"]
+wander_radius = 6
+attack_radius = 8
+combat_anims = "goblin_god_wars"
+combat_sounds = "goblin"
+drop_table = "stronghold_goblin"
+god = "bandos"
+examine = "A warrior for Bandos."
+
+[goblin_god_wars_flag]
+id = 6281
+hitpoints = 30
+att = 15
+str = 6
+def = 19
+max_hit_melee = 20
+style = "crush"
+attack_speed = 5
+respawn_delay = 80
+slayer_xp = 3.0
+categories = ["goblins"]
+wander_radius = 6
+attack_radius = 8
+combat_anims = "goblin_god_wars"
+combat_sounds = "goblin"
+drop_table = "stronghold_goblin"
+god = "bandos"
+examine = "A soldier to the death."
+
+[goblin_god_wars_spear]
+id = 6282
+hitpoints = 160
+att = 16
+str = 6
+def = 19
+max_hit_melee = 20
+hunt_mode = "anti_zamorak_aggressive"
+style = "crush"
+attack_speed = 5
+respawn_delay = 60
+slayer_xp = 16.0
+categories = ["goblins"]
+wander_radius = 6
+attack_radius = 8
+combat_anims = "goblin_god_wars"
+combat_sounds = "goblin"
+attack_anim = "goblin_god_wars_flag_attack"
+drop_table = "stronghold_goblin"
+god = "bandos"
+examine = "Cannon fodder, so to speak."
+
+[goblin_god_wars_axe]
+id = 6283
+hitpoints = 130
+att = 11
+str = 6
+def = 20
+max_hit_melee = 20
+hunt_mode = "anti_zamorak_aggressive"
+style = "crush"
+attack_speed = 5
+respawn_delay = 80
+slayer_xp = 13.0
+categories = ["goblins"]
+wander_radius = 6
+attack_radius = 8
+combat_anims = "goblin_god_wars"
+combat_sounds = "goblin"
+attack_anim = "goblin_god_wars_axe_attack"
+drop_table = "stronghold_goblin"
+god = "bandos"
+examine = "Footsoldier for Bandos."

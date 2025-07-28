@@ -3,10 +3,8 @@ package world.gregs.voidps.engine.entity.character.mode.move
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
-import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.type.Tile
 
 fun PathFinder.findPath(character: Character, strategy: TargetStrategy, shape: Int?) = findPath(
@@ -23,19 +21,16 @@ fun PathFinder.findPath(character: Character, strategy: TargetStrategy, shape: I
     blockAccessFlags = strategy.bitMask,
 )
 
-fun StepValidator.canTravel(character: Character, x: Int, y: Int): Boolean {
-    val flag = if (character is NPC && character.def["solid", true]) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
-    return canTravel(
-        level = character.tile.level,
-        x = character.tile.x,
-        z = character.tile.y,
-        offsetX = x,
-        offsetZ = y,
-        size = character.size,
-        extraFlag = flag,
-        collision = character.collision,
-    )
-}
+fun StepValidator.canTravel(character: Character, x: Int, y: Int): Boolean = canTravel(
+    level = character.tile.level,
+    x = character.tile.x,
+    z = character.tile.y,
+    offsetX = x,
+    offsetZ = y,
+    size = character.size,
+    extraFlag = character.blockMove,
+    collision = character.collision,
+)
 
 fun LineValidator.hasLineOfSight(character: Character, target: Character) = hasLineOfSight(
     srcX = character.tile.x,

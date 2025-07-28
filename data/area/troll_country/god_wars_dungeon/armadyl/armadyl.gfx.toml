@@ -1,0 +1,35 @@
+[kree_arra_stun]
+id = 981
+
+[kree_arra_tornado_blue]
+id = 1198
+height = 43
+end_height = 31
+curve = 15
+delay = 51
+flight_time = [17, 25, 33, 41, 49, 57, 65, 73, 81, 89]
+
+[kree_arra_tornado_white]
+id = 1197
+height = 43
+end_height = 31
+curve = 15
+delay = 51
+flight_time = [17, 25, 33, 41, 49, 57, 65, 73, 81, 89]
+
+[wingman_skree_spell]
+id = 1199
+height = 60 # 100
+end_height = -9 # 31
+delay = 31
+curve = 16
+flight_time = [15, 25, 35, 45, 55, 65, 75, 85, 95, 105]
+
+[flockleader_geerin_spear]
+id = 1190
+height = 22 # 62
+end_height = -4 # 36
+delay = 41
+curve = 15
+offset = 11
+flight_time = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55]

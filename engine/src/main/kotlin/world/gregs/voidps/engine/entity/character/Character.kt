@@ -50,6 +50,8 @@ interface Character :
     override var variables: Variables
     val steps: Steps
     val size: Int
+    val blockMove: Int
+    val collisionFlag: Int
 
     override fun compareTo(other: Character): Int = index.compareTo(other.index)
 

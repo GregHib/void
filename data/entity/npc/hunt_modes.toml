@@ -1,3 +1,4 @@
+# All players so long as they haven't been nearby for more than 10 minutes
 [aggressive]
 type = "player"
 check_visual = "line_of_sight"
@@ -6,6 +7,7 @@ check_not_combat = true
 check_not_combat_self = true
 check_not_busy = false
 
+# All npcs
 [aggressive_npcs]
 type = "npc"
 check_visual = "line_of_sight"
@@ -14,6 +16,7 @@ check_not_combat = true
 check_not_combat_self = true
 check_not_busy = false
 
+# All players even if they have been nearby for 10 minutes
 [aggressive_intolerant]
 type = "player"
 check_visual = "line_of_sight"
@@ -23,6 +26,7 @@ check_not_combat_self = true
 check_not_busy = false
 check_afk = false
 
+## All players that aren't busy
 [not_busy]
 type = "player"
 check_visual = "line_of_sight"
@@ -31,6 +35,7 @@ check_not_combat = true
 check_not_combat_self = true
 check_not_busy = true
 
+# Players lower level than them
 [cowardly]
 type = "player"
 check_visual = "line_of_sight"
@@ -39,8 +44,39 @@ check_not_combat_self = true
 check_not_too_strong = true
 check_not_busy = true
 
+# Finds ashes on the floor
 [ash_finder]
 type = "floor_item"
 check_visual = "line_of_sight"
 id = "ashes"
 rate = 4
+
+# Players that don't have matching god equipment
+[godwars_aggressive]
+type = "player"
+check_visual = "line_of_sight"
+check_not_too_strong = false
+check_not_combat = true
+check_not_combat_self = false
+check_not_busy = false
+check_same_god = true
+
+# All non-zamorak npcs
+[zamorak_aggressive]
+type = "npc"
+check_visual = "line_of_sight"
+check_not_too_strong = false
+check_not_combat = true
+check_not_combat_self = true
+check_not_busy = false
+check_not_zamorak = true
+
+# All zamorak npcs
+[anti_zamorak_aggressive]
+type = "npc"
+check_visual = "line_of_sight"
+check_not_too_strong = false
+check_not_combat = true
+check_not_combat_self = true
+check_not_busy = false
+check_zamorak = true

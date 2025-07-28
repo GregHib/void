@@ -1,0 +1,38 @@
+[commander_zilyana_attack]
+id = 6964
+
+[commander_zilyana_magic]
+id = 6967
+
+[commander_zilyana_defend]
+id = 6966
+
+[commander_zilyana_death]
+id = 6965
+
+[starlight_attack]
+id = 6376
+
+[starlight_defend]
+id = 6375
+
+[starlight_death]
+id = 6377
+
+[growler_attack]
+id = 7019
+
+[growler_defend]
+id = 7017
+
+[growler_death]
+id = 7016
+
+[bree_attack]
+id = 7009
+
+[bree_defend]
+id = 7010
+
+[bree_death]
+id = 7011

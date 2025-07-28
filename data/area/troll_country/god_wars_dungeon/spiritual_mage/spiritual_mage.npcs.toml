@@ -1,0 +1,84 @@
+[spiritual_mage_zamorak]
+id = 6221
+hitpoints = 750
+def = 61
+mage = 180
+max_hit_magic = 190
+hunt_mode = "zamorak_aggressive"
+style = "magic"
+spell = "flames_of_zamorak"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 75.0
+slayer_level = 83
+attack_anim = "spiritual_mage"
+combat_anims = "human"
+drop_table = "spiritual_mage"
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+god = "zamorak"
+examine = "A deadly servant of Zamorak."
+
+[spiritual_mage_saradomin]
+id = 6257
+hitpoints = 850
+def = 86
+mage = 160
+max_hit_magic = 200
+hunt_mode = "anti_zamorak_aggressive"
+style = "magic"
+spell = "saradomin_strike"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 85.0
+slayer_level = 83
+attack_anim = "spiritual_mage"
+combat_anims = "human"
+drop_table = "spiritual_mage"
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+god = "saradomin"
+examine = "Saradomin's holy mage."
+
+[spiritual_mage_bandos]
+id = 6278
+hitpoints = 106
+def = 103
+mage = 142
+max_hit_magic = 170
+hunt_mode = "anti_zamorak_aggressive"
+style = "magic"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 106.0
+slayer_level = 83
+combat_anims = "spiritual_mage_bandos"
+drop_table = "spiritual_mage"
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+god = "bandos"
+examine = "One of Bandos's chosen."
+
+[spiritual_mage_armadyl]
+id = 6231
+hitpoints = 860
+def = 111
+mage = 150
+max_hit_magic = 170
+hunt_mode = "anti_zamorak_aggressive"
+style = "magic"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 75.0
+slayer_level = 83
+combat_anims = "human"
+attack_anim = "spiritual_mage_armadyl_attack"
+drop_table = "spiritual_mage"
+drop_table = "spiritual_mage"
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+examine = "A mage who serves Armadyl above all else - even death."

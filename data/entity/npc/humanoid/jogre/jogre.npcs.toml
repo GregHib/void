@@ -1,0 +1,20 @@
+[jogre_god_wars]
+id = 6268
+hitpoints = 700
+att = 46
+str = 48
+def = 43
+attack_bonus = 22
+max_hit_melee = 80
+hunt_mode = "anti_zamorak_aggressive"
+style = "crush"
+attack_speed = 6
+respawn_delay = 25
+combat_anim = "ogre"
+combat_sounds = "giant"
+drop_table = "jogre"
+categories = ["jogres"]
+wander_radius = 6
+attack_radius = 8
+god = "bandos"
+examine = "Green and aggressive."

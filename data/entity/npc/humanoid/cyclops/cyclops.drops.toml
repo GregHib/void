@@ -1,0 +1,44 @@
+[cyclops_god_wars_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "cyclops_god_wars_secondary" },
+    { table = "cyclops_god_wars_tertiary" },
+]
+
+[cyclops_god_wars_secondary]
+roll = 100
+drops = [
+    { id = "black_knife", min = 4, max = 13, chance = 16 },
+    { id = "steel_chainbody", chance = 2 },
+    { id = "iron_2h_sword", chance = 2 },
+    { id = "iron_chainbody", chance = 2 },
+    { id = "steel_dagger", chance = 2 },
+    { id = "steel_mace", chance = 2 },
+    { id = "steel_sword", chance = 2 },
+    { id = "steel_battleaxe", chance = 2 },
+    { id = "steel_2h_sword", chance = 2 },
+    { id = "steel_longsword", chance = 2 },
+    { id = "steel_med_helm", chance = 2 },
+    { id = "black_2h_sword" },
+    { id = "mithril_dagger" },
+    { id = "mithril_longsword" },
+    { id = "adamant_mace" },
+    { id = "black_sword" },
+    { id = "black_longsword" },
+    { id = "black_dagger" },
+    { id = "adamant_2h_sword" },
+    { table = "herb_drop_table", chance = 3 },
+    { table = "uncommon_seed_drop_table" },
+    { id = "coins", min = 3, max = 102, chance = 40 },
+    { id = "coins", min = 5, max = 204, chance = 10 },
+    { table = "gem_drop_table", chance = 2 },
+]
+
+[cyclops_god_wars_tertiary]
+roll = 5000
+drops = [
+    { table = "hard_clue_scroll", chance = 9 },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]

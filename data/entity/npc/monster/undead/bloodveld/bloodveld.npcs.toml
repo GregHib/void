@@ -13,9 +13,28 @@ attack_speed = 4
 drop_table = "bloodveld"
 combat_anims = "bloodveld"
 combat_sounds = "bloodveld"
-categories = ["bloodveld"]
+categories = ["bloodvelds"]
 examine = "A tortured screaming soulThe tongue of evil.."
 
 [bloodveld_small]
 id = 1619
 clone = "bloodveld"
+
+[bloodveld_god_wars]
+id = 6215
+hitpoints = 1340
+att = 80
+str = 46
+def = 30
+max_hit_magic = 60
+style = "magic"
+slayer_xp = 134.0
+slayer_level = 50
+respawn_delay = 25
+drop_table = "bloodveld"
+combat_anims = "bloodveld_god_wars"
+combat_sounds = "bloodveld"
+hunt_mode = "zamorak_aggressive"
+categories = ["bloodvelds"]
+god = "zamorak"
+examine = "The tongue of evil."

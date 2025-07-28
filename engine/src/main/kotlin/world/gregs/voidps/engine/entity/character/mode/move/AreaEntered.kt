@@ -16,6 +16,8 @@ data class AreaEntered(
 ) : SuspendableEvent,
     SuspendableContext<Player> {
 
+    override val notification = true
+
     override val size = 3
 
     override suspend fun pause(ticks: Int) {

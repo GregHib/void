@@ -1,0 +1,39 @@
+[godwars_saradomin_rope_top]
+id = 3933
+persist = true
+format = "boolean"
+
+[godwars_saradomin_rope_bottom]
+id = 3934
+persist = true
+format = "boolean"
+
+[godwars_entrance_rope]
+id = 3932
+persist = true
+format = "boolean"
+
+[godwars_knights_notes]
+id = 3936
+persist = true
+format = "boolean"
+
+[saradomin_killcount]
+id = 3938
+persist = true
+format = "int"
+
+[bandos_killcount]
+id = 3941
+persist = true
+format = "int"
+
+[armadyl_killcount]
+id = 3939
+persist = true
+format = "int"
+
+[zamorak_killcount]
+id = 3942
+persist = true
+format = "int"

@@ -5,6 +5,7 @@ import content.area.wilderness.inPvp
 import content.area.wilderness.inSingleCombat
 import content.area.wilderness.inWilderness
 import content.entity.player.equip.Equipment
+import content.skill.melee.weapon.fightStyle
 import content.skill.slayer.categories
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
@@ -30,6 +31,10 @@ object Target {
                 return false
             }
             if (get<NPCs>().indexed(target.index) == null) {
+                return false
+            }
+            if (source.fightStyle == "melee" && target.categories.contains("aviansie")) {
+                source.message("The Aviansie is flying too high for you to attack using melee.")
                 return false
             }
         }

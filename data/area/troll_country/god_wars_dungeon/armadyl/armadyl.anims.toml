@@ -1,0 +1,14 @@
+[kree_arra_attack]
+id = 6976
+
+[kree_arra_melee]
+id = 6977
+
+[kree_arra_defend]
+id = 6974
+
+[kree_arra_death]
+id = 6975
+
+[kree_arra_stun]
+id = 848

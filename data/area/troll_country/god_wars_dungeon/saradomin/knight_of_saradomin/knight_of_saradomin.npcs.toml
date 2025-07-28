@@ -1,0 +1,39 @@
+[knight_of_saradomin]
+id = 6258
+hitpoints = 1080
+att = 75
+str = 90
+def = 82
+mage = 60
+attack_bonus = 13
+max_hit_melee = 120
+hunt_mode = "anti_zamorak_aggressive"
+style = "crush"
+weapon_style = "sword"
+attack_speed = 6
+respawn_delay = 50
+categories = ["human"]
+wander_radius = 6
+attack_radius = 8
+god = "saradomin"
+examine = "A valiant knight."
+
+[knight_of_saradomin_female]
+id = 6259
+hitpoints = 1350
+att = 75
+str = 85
+def = 70
+mage = 60
+attack_bonus = 6
+max_hit_melee = 110
+hunt_mode = "anti_zamorak_aggressive"
+style = "crush"
+weapon_style = "sword"
+attack_speed = 6
+respawn_delay = 50
+categories = ["human"]
+wander_radius = 6
+attack_radius = 8
+god = "saradomin"
+examine = "A valiant knight."

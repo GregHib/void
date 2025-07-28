@@ -1,0 +1,17 @@
+[spiritual_warrior_zamorak_attack]
+id = 393
+
+[spiritual_warrior_zamorak_defend]
+id = 404
+
+[spiritual_warrior_zamorak_death]
+id = 4200
+
+[spiritual_warrior_bandos_attack]
+id = 4320
+
+[spiritual_warrior_bandos_defend]
+id = 4322
+
+[spiritual_warrior_bandos_death]
+id = 7064

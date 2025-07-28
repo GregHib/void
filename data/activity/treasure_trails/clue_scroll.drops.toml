@@ -12,3 +12,8 @@ drops = [
 drops = [
     { id = "clue_scroll_hard", lacks = "clue_scroll_hard*", members = true }
 ]
+
+[elite_clue_scroll]
+drops = [
+    { id = "clue_scroll_elite", lacks = "clue_scroll_elite*", members = true }
+]

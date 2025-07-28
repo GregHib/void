@@ -1,0 +1,69 @@
+[thrower_troll_death_plateau]
+id = 1101
+hitpoints = 950
+att = 30
+str = 80
+def = 30
+range = 60
+max_hit_range = 100 # TODO always successful hits, neitiznot shield reduce max hit to 2
+max_hit_melee = 90
+hunt_mode = "aggressive"
+style = "crush"
+respawn_delay = 25
+attack_speed = 7
+slayer_xp = 95.0
+categories = ["trolls"]
+drop_table = "thrower_troll_death_plateau"
+attack_radius = 8
+examine = "Small for a troll, but it's mean, ugly and throws rocks."
+
+[thrower_troll_death_plateau_large]
+id = 1102
+
+[thrower_troll_death_plateau_grey]
+id = 1103
+
+[thrower_troll_death_plateau_large_2]
+id = 1104
+
+[thrower_troll_death_plateau_large_3]
+id = 1105
+
+[thrower_troll_trollheim]
+id = 1130
+hitpoints = 950
+att = 30
+str = 95
+def = 15
+range = 60
+max_hit_range = 100 # TODO always successful hits, neitiznot shield reduce max hit to 2
+hunt_mode = "aggressive"
+style = "range"
+weapon_style = "thrown"
+ammo = "troll_rock"
+respawn_delay = 50
+attack_speed = 7
+slayer_xp = 95.0
+categories = ["trolls"]
+attack_range = 8 # TODO attack range vs radius?
+attack_radius = 8
+combat_sounds = "thrower_troll"
+combat_anims = "thrower_troll"
+drop_table = "thrower_troll"
+examine = "Small for a troll, but it's mean, ugly and throws rocks."
+
+[thrower_troll_trollheim_large]
+id = 1131
+clone = "thrower_troll_trollheim"
+
+[thrower_troll_trollheim_grey]
+id = 1132
+clone = "thrower_troll_trollheim"
+
+[thrower_troll_trollheim_large_2]
+id = 1133
+clone = "thrower_troll_trollheim"
+
+[thrower_troll_trollheim_large_3]
+id = 1134
+clone = "thrower_troll_trollheim"

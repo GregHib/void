@@ -1,0 +1,17 @@
+[aviansie_spear]
+id = 1190
+height = 40 # 62
+end_height = 40 # 36
+delay = 41
+curve = 15
+offset = 11
+flight_time = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
+
+[aviansie_axe]
+id = 1191
+height = 40 # 163
+end_height = 0 # 146
+delay = 41
+curve = 15
+offset = 0
+flight_time = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55]

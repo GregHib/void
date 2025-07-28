@@ -1,5 +1,6 @@
 package content.skill.prayer
 
+import content.skill.melee.weapon.combatStyle
 import content.skill.summoning.isFamiliar
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.entity.character.Character
@@ -60,7 +61,7 @@ object Prayer {
         special: Boolean,
         damage: Int,
     ): Int {
-        if (source is NPC && source.id == "death_spawn") {
+        if (source is NPC && (source.id == "death_spawn" || source.combatStyle.startsWith("typeless_"))) {
             return damage
         }
         // TODO Deflect

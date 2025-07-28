@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
-import world.gregs.voidps.engine.entity.character.mode.move.Movement.Companion.entityBlock
 import world.gregs.voidps.engine.entity.character.mode.move.npcMove
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -95,7 +94,7 @@ npcDespawn { npc ->
 }
 
 fun add(char: Character) {
-    val mask = entityBlock(char)
+    val mask = char.collisionFlag
     val size = char.size
     for (x in char.tile.x until char.tile.x + size) {
         for (y in char.tile.y until char.tile.y + size) {
@@ -105,7 +104,7 @@ fun add(char: Character) {
 }
 
 fun remove(char: Character) {
-    val mask = entityBlock(char)
+    val mask = char.collisionFlag
     val size = char.size
     for (x in 0 until size) {
         for (y in 0 until size) {

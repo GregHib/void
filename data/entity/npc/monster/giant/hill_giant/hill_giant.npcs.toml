@@ -13,7 +13,8 @@ wander_radius = 4
 slayer_xp = 35
 drop_table = "hill_giant"
 combat_anims = "hill_giant"
-combat_sounds = "hill_giant"
+combat_sounds = "giant"
+attack_sound = "hill_giant_attack"
 categories = ["hill_giants"]
 examine = "A very large foe."
 
