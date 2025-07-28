@@ -29,7 +29,7 @@ interfaceOption("Info", id = "shop") {
     showInfo(player, item, actualIndex, sample)
 }
 
-interfaceOption("Exit", "exit", "item_info") {
+interfaceOption("Close", "exit", "item_info") {
     player.open("shop_side")
     player.interfaceOptions.send("shop_side", "inventory")
 }
