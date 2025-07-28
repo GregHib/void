@@ -98,7 +98,6 @@ fun swing(character: Character, target: Character) {
             time = 0
             character.gfx("salamander_${character.attackType}")
         }
-        "crossbow" -> character.sound("crossbow_shoot")
     }
     val type = character.weapon.def.getOrNull("weapon_type") ?: style.stringId
     var animation: String?
