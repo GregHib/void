@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity.character.mode.move
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
-import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -239,7 +238,7 @@ open class Movement(
 
         private fun move(character: Character, from: Tile, to: Tile) {
             val collisions: Collisions = get()
-            val mask = entityBlock(character)
+            val mask = character.collisionFlag
             val size = character.size
             for (x in 0 until size) {
                 for (y in 0 until size) {
@@ -252,8 +251,6 @@ open class Movement(
                 }
             }
         }
-
-        fun entityBlock(character: Character): Int = if (character is Player) CollisionFlag.BLOCK_PLAYERS else (CollisionFlag.BLOCK_NPCS or if (character["solid", false]) CollisionFlag.FLOOR else 0)
 
         private fun clockwise(step: Direction) = when (step) {
             Direction.NORTH -> 0
