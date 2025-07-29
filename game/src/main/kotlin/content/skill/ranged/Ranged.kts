@@ -39,6 +39,7 @@ characterCombatSwing(style = "range") { character ->
 }
 
 fun swing(character: Character, target: Character) {
+    // TODO handle target sounds better
     var ammo = character.ammo
     val style = if (character is NPC) weaponStyles.get(character.def["weapon_style", "unarmed"]) else weaponStyles.get(character.weapon.def["weapon_style", 0])
     if (character is Player) {
@@ -74,16 +75,20 @@ fun swing(character: Character, target: Character) {
                 character.sound("knife_throw")
             } else if (weapon.contains("axe")) {
                 character.sound("axe_throw")
-            } else {
+            } else if (character is Player) {
                 character.sound("thrown")
             }
         }
         "bow" -> {
             character.gfx("${if (ammo.endsWith("brutal")) "brutal" else ammo}_shoot")
-            if (weapon.contains("shortbow")) {
-                character.sound("shortbow_shoot")
+            if (character is NPC) {
+                target.sound("${if (ammo.endsWith("brutal")) "brutal" else ammo}_shoot")
             } else {
-                character.sound("longbow_shoot")
+                if (weapon.contains("shortbow")) {
+                    character.sound("shortbow_shoot")
+                } else {
+                    character.sound("longbow_shoot")
+                }
             }
         }
         "fixed_device" -> {
@@ -93,7 +98,6 @@ fun swing(character: Character, target: Character) {
             time = 0
             character.gfx("salamander_${character.attackType}")
         }
-        "crossbow" -> character.sound("crossbow_shoot")
     }
     val type = character.weapon.def.getOrNull("weapon_type") ?: style.stringId
     var animation: String?

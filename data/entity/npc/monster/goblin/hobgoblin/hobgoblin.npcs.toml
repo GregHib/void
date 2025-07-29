@@ -68,7 +68,7 @@ combat_sounds = "hobgoblin"
 categories = ["hobgoblins"]
 examine = "He doesn't look very welcoming."
 
-[godwars_ancient_hobgoblin]
+[hobgoblin_god_wars]
 id = 6275
 max_hit_melee = 50
 hitpoints = 520
@@ -76,13 +76,14 @@ att = 39
 str = 39
 def = 35
 style = "crush"
-hunt_mode = "cowardly"
+hunt_mode = "anti_zamorak_aggressive"
 slayer_xp = 52
 attack_speed = 4
-respawn_delay = 40 #todo
+respawn_delay = 30
 wander_radius = 4
 drop_table = "hobgoblin"
-combat_anims = "hobgoblin"
+combat_anims = "hobgoblin_god_wars"
 combat_sounds = "hobgoblin"
-categories = ["hobgoblins"]
+categories = ["hobgoblin"]
+god = "bandos"
 examine = "An ugly, smelly creature."

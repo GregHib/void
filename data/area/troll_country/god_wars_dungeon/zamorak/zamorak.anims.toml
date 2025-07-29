@@ -1,0 +1,39 @@
+[kril_tsutsaroth_attack]
+id = 6945
+
+[kril_tsutsaroth_magic_attack]
+id = 6947
+
+[kril_tsutsaroth_defend]
+id = 6944
+
+[kril_tsutsaroth_death]
+id = 6946
+
+[tstanon_karlak_attack]
+id = 64
+
+[tstanon_karlak_defend]
+id = 4676
+
+[tstanon_karlak_death]
+id = 67
+
+[zakln_gritch_attack]
+id = 7033
+
+[zakln_gritch_defend]
+id = 4676
+
+[zakln_gritch_death]
+id = 67
+
+[balfrug_kreeyath_attack]
+id = 4630
+
+[balfrug_kreeyath_defend]
+id = 4676
+
+[balfrug_kreeyath_death]
+id = 67
+

@@ -46,7 +46,7 @@ exp = 52.0
 freeze_ticks = 12
 animation = "ancient_spell_multi"
 projectiles = [
-  {id = "ice_barrage", end_height = 0}
+    { id = "ice_barrage", end_height = 0 }
 ]
 
 [miasmic_rush]
@@ -133,7 +133,7 @@ graphic = "bind_cast"
 animation = "bind"
 animation_staff = "bind_staff"
 projectiles = [
-  {id = "bind", end_height = 0}
+    { id = "bind", end_height = 0 }
 ]
 
 [snare]
@@ -280,8 +280,8 @@ clone = "fire_strike"
 max_hit = 160
 exp = 34.5
 projectiles = [
-  {id = "fire_blast_1"},
-  {id = "fire_blast_2"},
+    { id = "fire_blast_1" },
+    { id = "fire_blast_2" },
 ]
 
 [fire_wave]
@@ -289,9 +289,9 @@ clone = "fire_strike"
 max_hit = 200
 exp = 43.5
 projectiles = [
-  {id = "fire_blast_1", delay = 54, curve = 16},
-  {id = "fire_blast_1", curve = -10},
-  {id = "fire_blast_2"},
+    { id = "fire_blast_1", delay = 54, curve = 16 },
+    { id = "fire_blast_1", curve = -10 },
+    { id = "fire_blast_2" },
 ]
 
 [fire_surge]
@@ -300,9 +300,9 @@ max_hit = 280
 exp = 90.0
 graphic = "fire_spell_cast"
 projectiles = [
-  {id = "fire_blast_1", delay = 54, curve = 16},
-  {id = "fire_blast_1", curve = -10},
-  {id = "fire_blast_2"},
+    { id = "fire_blast_1", delay = 54, curve = 16 },
+    { id = "fire_blast_1", curve = -10 },
+    { id = "fire_blast_2" },
 ]
 
 [enfeeble]
@@ -498,5 +498,37 @@ max_hit = 119
 graphic = "aberrant_spectre_goo_cast"
 animation = "aberrant_spectre_attack"
 projectiles = [
-  {id = "aberrant_spectre_goo"}
+    { id = "aberrant_spectre_goo" }
+]
+
+[sergeant_steelwill_spell]
+max_hit = 150
+graphic = "sergeant_steelwill_attack"
+animation = "sergeant_steelwill_attack"
+projectiles = [
+    { id = "sergeant_steelwill_spell" }
+]
+
+[balfrug_kreeyath_fireball]
+max_hit = 160
+graphic = "balfrug_kreeyath_fireball_cast"
+animation = "balfrug_kreeyath_attack"
+projectiles = [
+    { id = "balfrug_kreeyath_fireball" }
+]
+
+[growler_sonic_spell]
+max_hit = 160
+graphic = "growler_sonic_cast"
+animation = "growler_attack"
+projectiles = [
+    { id = "growler_sonic_spell" }
+]
+
+[wingman_skree_spell]
+max_hit = 160
+graphic = "wingman_skree_cast"
+animation = "aviansie_attack_magic"
+projectiles = [
+    { id = "wingman_skree_spell" }
 ]

@@ -216,7 +216,21 @@ class Hunting(
         if (definition.checkNotBusy && (target.contains("delay") || target.hasMenuOpen())) {
             return false
         }
+        if (definition.checkSameGod && target is Player && wearsGodArmour(npc, target)) {
+            return false
+        }
+        if (definition.checkZamorak && target is NPC && target.def["god", ""] != "zamorak") {
+            return false
+        }
+        if (definition.checkNotZamorak && target is NPC && target.def["god", ""] == "zamorak") {
+            return false
+        }
         return true
+    }
+
+    private fun wearsGodArmour(npc: NPC, target: Player): Boolean {
+        val gods = target.get<Set<String>>("gods") ?: return false
+        return gods.contains("zaros") || gods.contains(npc.def["god", ""])
     }
 
     private fun targetTooStrong(npc: NPC, character: Character): Boolean = character is Player && character.combatLevel > npc.def.combat * 2

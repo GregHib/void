@@ -8,6 +8,7 @@ import content.skill.magic.spell.spell
 import content.skill.prayer.Prayer
 import content.skill.ranged.Ammo
 import content.skill.ranged.ammo
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
@@ -26,6 +27,28 @@ import world.gregs.voidps.type.random
 import kotlin.random.nextInt
 
 object Weapon {
+    val crossbows = setOf(
+        "bronze_crossbow",
+        "blurite_crossbow",
+        "iron_crossbow",
+        "steel_crossbow",
+        "mithril_crossbow",
+        "adamant_crossbow",
+        "rune_crossbow",
+    )
+
+    fun hasGrapple(player: Player): Boolean {
+        if (player.equipped(EquipSlot.Ammo).id != "mithril_grapple") {
+            player.message("You need a mithril grapple tipped bolt with a rope to do that.")
+            return false
+        }
+        if (!crossbows.contains(player.weapon.id)) {
+            player.message("You need a crossbow equipped to do that.")
+            return false
+        }
+        return true
+    }
+
     fun specialRatingModifiers(source: Character, type: String, weapon: Item, special: Boolean, rating: Int): Int {
         if (type == "melee" && special && weapon.id == "dragon_halberd" && source["second_hit", false]) {
             return (rating * 0.75).toInt()
@@ -45,6 +68,8 @@ object Weapon {
         } else if (type == "magic" && special && weapon.id == "korasis_sword") {
             return true
         } else if (type == "range" && special && (weapon.id.startsWith("magic_longbow") || weapon.id.startsWith("magic_composite_bow") || weapon.id == "seercull")) {
+            return true
+        } else if (type == "range" && source is NPC && target is Player && source.id.startsWith("thrower_troll") && target.equipped(EquipSlot.Shield).id != "fremennik_round_shield") {
             return true
         }
         return false

@@ -1,0 +1,80 @@
+[general_graardor_drop_table]
+type = "all"
+drops = [
+    { table = "big_bones" },
+    { table = "general_graardor_secondary" },
+    { table = "general_graardor_tertiary" },
+]
+
+[general_graardor_secondary]
+roll = 762
+drops = [
+    { id = "bandos_chestplate", chance = 2 },
+    { id = "bandos_tassets", chance = 2 },
+    { id = "bandos_boots", chance = 2 },
+    { id = "bandos_hilt" },
+    { id = "godsword_shard_1" },
+    { id = "godsword_shard_2" },
+    { id = "godsword_shard_3" },
+    { id = "rune_longsword", chance = 48 },
+    { id = "rune_2h_sword", chance = 48 },
+    { id = "rune_platebody", chance = 48 },
+    { id = "rune_pickaxe", chance = 36 },
+    { id = "coins", min = 19500, max = 20000, chance = 186 },
+    { id = "grimy_snapdragon_noted", amount = 3, chance = 48 },
+    { id = "snapdragon_seed", chance = 48 },
+    { id = "super_restore_4", amount = 3, chance = 48 },
+    { id = "adamantite_ore_noted", min = 15, max = 20, chance = 48 },
+    { id = "coal_noted", min = 115, max = 120, chance = 48 },
+    { id = "magic_logs_noted", min = 15, max = 20, chance = 48 },
+    { id = "nature_rune", min = 65, max = 70, chance = 48 },
+    { id = "coins", min = 20100, max = 20600, chance = 6 },
+]
+
+[general_graardor_tertiary]
+roll = 5000
+drops = [
+    { table = "elite_clue_scroll", chance = 20 },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]
+
+[bandos_bodyguard_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "bandos_bodyguard_secondary" },
+    { table = "bandos_bodyguard_tertiary" },
+]
+
+[bandos_bodyguard_secondary]
+roll = 16256
+drops = [
+    { id = "bandos_chestplate" },
+    { id = "bandos_tassets" },
+    { id = "bandos_boots" },
+    { id = "coins", min = 1400, max = 1500, chance = 125 },
+    { id = "godsword_shard_1", chance = 10 },
+    { id = "godsword_shard_2", chance = 10 },
+    { id = "godsword_shard_3", chance = 10 },
+    { id = "coins", min = 1400, max = 1500, chance = 90 },
+    { id = "steel_arrow", min = 95, max = 100, chance = 896 },
+    { id = "steel_dart", min = 95, max = 100, chance = 1024 },
+    { id = "nature_rune", min = 15, max = 20, chance = 1024 },
+    { id = "cosmic_rune", min = 25, max = 30, chance = 1024 },
+    { id = "shark", amount = 2, chance = 1024 },
+    { id = "chilli_potato", amount = 3, chance = 1024 },
+    { id = "coins", min = 1400, max = 1500, chance = 8448 },
+    { id = "limpwurt_root_noted", amount = 5, chance = 1024 },
+    { id = "combat_potion_3", chance = 256 },
+    { id = "super_strength_3", chance = 256 },
+]
+
+[bandos_bodyguard_tertiary]
+roll = 5000
+drops = [
+    { id = "kebab", chance = 833 },
+#    { id = "frozen_key_piece_bandos", chance = 250 },
+    { table = "hard_clue_scroll", chance = 39 },
+    { id = "goblin_champions_scroll", lacks = "goblin_champions_scroll" },
+]

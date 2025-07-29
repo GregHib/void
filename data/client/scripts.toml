@@ -258,3 +258,18 @@ params = [
   "option 5",
   "option 6"
 ]
+
+[godwars_overlay_init]
+id = 2191
+
+[godwars_overlay_vartransmit]
+id = 2333
+
+[godwars_overlay_updatecontents]
+id = 2335
+
+[godwars_overlay_timer]
+id = 2336
+
+[godwars_overlay_updateposition]
+id = 2337

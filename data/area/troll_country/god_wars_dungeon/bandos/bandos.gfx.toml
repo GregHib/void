@@ -1,0 +1,40 @@
+[general_graardor_slam]
+id = 1219
+height = 30
+
+[general_graardor_projectile]
+id = 1200
+delay = 31
+#curve = 9-23
+flight_time = [34, 39, 44, 49, 54, 59, 64, 69, 74, 79]
+
+[general_graardor_smash_impact]
+id = 359
+height = 96
+
+[giant_splash]
+id = 339
+height = 100
+
+[sergeant_grimspike_axe]
+id = 1206
+height = -10 # 30
+end_height = -4 # 36
+delay = 30
+offset = 11
+flight_time = [ 16, 21, 26, 31, 36, 41, 46, 51, 56, 61 ]
+
+[sergeant_steelwill_attack]
+id = 1202
+height = -10 # 30
+
+[sergeant_steelwill_impact]
+id = 266
+height = 124
+
+[sergeant_steelwill_spell]
+id = 1203
+height = -18 # 22
+end_height = -9 # 31
+delay = 30
+flight_time = [ 16, 26, 36, 46, 56, 66, 76, 86, 96, 106 ]

@@ -1,0 +1,14 @@
+[spiritual_warrior_zamorak_attack]
+id = 2508
+
+[spiritual_warrior_zamorak_defend]
+id = 3841
+
+[spiritual_warrior_zamorak_death]
+id = 3880
+
+[spiritual_warrior_saradomin_attack]
+id = 2548
+
+[spiritual_warrior_saradomin_defend]
+id = 29

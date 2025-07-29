@@ -1,0 +1,22 @@
+[werewolf_god_wars]
+id = 6212
+hitpoints = 920
+att = 77
+str = 76
+def = 85
+max_hit_melee = 90
+hunt_mode = "anti_zamorak_aggressive"
+style = "crush"
+slayer_xp = 100.0
+respawn_delay = 25
+combat_anims = "werewolf"
+combat_sounds = "werewolf"
+drop_table = "werewolf"
+categories = ["werewolf", "werewolves"]
+god = "zamorak"
+examine = "Down, fang!"
+
+[werewolf_god_wars_male]
+id = 6213
+clone = "werewolf_god_wars"
+examine = "He doesn't look pleased to see me."

@@ -1,6 +1,7 @@
 [imp]
 id = 708
 hitpoints = 80
+attack_bonus = -42
 max_hit_melee = 10
 style = "stab"
 respawn_delay = 60
@@ -12,3 +13,21 @@ combat_anims = "imp"
 combat_sounds = "imp"
 categories = ["imp"]
 examine = "A cheeky little imp."
+
+[imp_god_wars]
+id = 6211
+hitpoints = 100
+att = 5
+str = 5
+def = 6
+attack_bonus = -42
+max_hit_melee = 10
+style = "stab"
+attack_speed = 4
+respawn_delay = 60
+categories = ["imp"]
+wander_radius = 6
+attack_radius = 8
+god = "zamorak"
+hunt_mode = "zamorak_aggressive"
+examine = "Have you checked your pockets lately?"

@@ -352,6 +352,7 @@ price = 89
 limit = 10000
 slot = "Ammo"
 material = "metal"
+aka = ["broad_bolt", "broad_bolts"]
 examine = "For use against turoth and kurasks."
 
 [ring_of_slaying_8]
@@ -435,6 +436,7 @@ category = "staff"
 special_energy = 1000
 special = "power_of_light"
 aka = ["sol"]
+god = "saradomin"
 slot = "Weapon"
 examine = "Humming with power."
 

@@ -1,0 +1,35 @@
+[bloodveld_drop_table]
+type = "all"
+drops = [
+    { id = "ashes" },
+    { table = "bloodveld_secondary" },
+    { table = "hard_clue_scroll", roll = 256 },
+]
+
+[bloodveld_secondary]
+roll = 128
+drops = [
+    { id = "steel_hatchet", chance = 4 },
+    { id = "steel_full_helm", chance = 4 },
+    { id = "steel_scimitar", chance = 2 },
+    { id = "black_boots" },
+    { id = "mithril_sq_shield" },
+    { id = "mithril_chainbody" },
+    { id = "rune_med_helm" },
+    { id = "fire_rune", amount = 60, chance = 8 },
+    { id = "blood_rune", amount = 3, chance = 3 },
+    { id = "blood_rune", amount = 10, chance = 5 },
+    { id = "blood_rune", amount = 30 },
+    { table = "herb_drop_table" },
+    { id = "coins", amount = 10, chance = 7 },
+    { id = "coins", amount = 40, chance = 29 },
+    { id = "coins", amount = 120, chance = 30 },
+    { id = "coins", amount = 200, chance = 10 },
+    { id = "coins", amount = 450 },
+    { id = "bones", chance = 10 },
+    { id = "big_bones", chance = 7 },
+    { id = "big_bones", amount = 3, chance = 3 },
+    { id = "gold_ore", chance = 2 },
+    { id = "meat_pizza", chance = 3 },
+    { table = "gem_drop_table", chance = 4 },
+]

@@ -6,3 +6,12 @@ id = 9131
 
 [bloodveld_defend]
 id = 9132
+
+[bloodveld_god_wars_attack]
+id = 9434
+
+[bloodveld_god_wars_defend]
+id = 9436
+
+[bloodveld_god_wars_death]
+id = 9435

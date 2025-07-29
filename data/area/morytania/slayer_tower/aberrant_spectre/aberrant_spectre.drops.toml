@@ -3,7 +3,6 @@ type = "all"
 drops = [
   { table = "aberrant_spectre_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
-
 ]
 
 [aberrant_spectre_secondary]

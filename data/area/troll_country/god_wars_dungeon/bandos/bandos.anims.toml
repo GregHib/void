@@ -1,0 +1,38 @@
+[general_graardor_attack]
+id = 7060
+
+[general_graardor_slam]
+id = 7063
+
+[general_graardor_defend]
+id = 7061
+
+[general_graardor_death]
+id = 7062
+
+[sergeant_strongstack_attack]
+id = 6154
+
+[sergeant_strongstack_defend]
+id = 6155
+
+[sergeant_strongstack_death]
+id = 6156
+
+[sergeant_steelwill_attack]
+id = 7027
+
+[sergeant_steelwill_defend]
+id = 6155
+
+[sergeant_steelwill_death]
+id = 6156
+
+[sergeant_grimspike_attack]
+id = 7029
+
+[sergeant_grimspike_defend]
+id = 6155
+
+[sergeant_grimspike_death]
+id = 6156

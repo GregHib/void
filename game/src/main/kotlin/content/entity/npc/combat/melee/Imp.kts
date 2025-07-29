@@ -6,11 +6,9 @@ import content.entity.sound.areaSound
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
@@ -33,7 +31,7 @@ fun randomValidTile(npc: NPC): Tile {
     return npc.tile
 }
 
-fun teleportImp(npc: NPC, chance: Double, target: Player?) {
+fun teleportImp(npc: NPC, chance: Double) {
     if (npc.queue.contains("death")) {
         return
     }
@@ -69,11 +67,11 @@ npcTimerStart("teleport_timer") {
 }
 
 npcTimerTick("teleport_timer") { npc ->
-    teleportImp(npc, teleportChance, null)
+    teleportImp(npc, teleportChance)
 }
 
 npcCombatDamage("imp") { npc ->
     if (npc.levels.get(Skill.Constitution) - damage > 0) {
-        teleportImp(npc, teleportChanceHit, null)
+        teleportImp(npc, teleportChanceHit)
     }
 }

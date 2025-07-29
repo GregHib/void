@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.npc
 
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.entity.character.Character
@@ -29,6 +30,8 @@ data class NPC(
     override val visuals: NPCVisuals = NPCVisuals()
 
     var hide = false
+    override var blockMove: Int = if (def["solid", true]) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
+    override var collisionFlag: Int = CollisionFlag.BLOCK_NPCS or if (def["solid", false]) CollisionFlag.FLOOR else 0
 
     init {
         if (index != -1) {

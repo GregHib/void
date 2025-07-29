@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.player
 
 import kotlinx.coroutines.channels.Channel
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
@@ -49,6 +50,9 @@ class Player(
 ) : Character {
 
     override val visuals: PlayerVisuals = PlayerVisuals(body)
+    override val blockMove = 0
+    override val collisionFlag = CollisionFlag.BLOCK_PLAYERS
+
     init {
         if (index != -1) {
             visuals.hits.self = -index

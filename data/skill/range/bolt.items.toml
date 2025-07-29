@@ -173,6 +173,7 @@ price = 3736
 limit = 25000
 slot = "Ammo"
 material = "metal"
+aka = ["dragonstone_bolts_e"]
 examine = "Enchanted dragonstone-tipped runite crossbow bolts."
 
 [onyx_bolts_e]

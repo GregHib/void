@@ -1,0 +1,88 @@
+[spiritual_ranger_zamorak]
+id = 6220
+hitpoints = 1200
+def = 80
+range = 140
+max_hit_range = 150
+hunt_mode = "zamorak_aggressive"
+style = "range"
+weapon_style = "bow"
+ammo = "rune_arrow"
+height = 40
+respawn_delay = 25
+slayer_xp = 106.0
+slayer_level = 63
+attack_anim = "spiritual_ranger_attack"
+combat_anims = "human"
+drop_table = "spiritual_ranger"
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+attack_range = 5
+god = "zamorak"
+examine = "Defender of Zamorak."
+
+[spiritual_ranger_saradomin]
+id = 6256
+hitpoints = 1060
+def = 100
+range = 146
+max_hit_range = 160
+hunt_mode = "anti_zamorak_aggressive"
+style = "range"
+weapon_style = "bow"
+ammo = "rune_arrow"
+height = 40
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 106.0
+slayer_level = 63
+attack_anim = "spiritual_ranger_attack"
+combat_anims = "human"
+drop_table = "spiritual_ranger"
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+attack_range = 5
+god = "saradomin"
+examine = "A ranger spirit dedicated to Saradomin."
+
+[spiritual_ranger_bandos]
+id = 6276
+hitpoints = 1310
+def = 96
+range = 121
+max_hit_range = 130
+hunt_mode = "anti_zamorak_aggressive"
+style = "range"
+attack_speed = 4
+respawn_delay = 25
+slayer_xp = 131.0
+slayer_level = 63
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+attack_range = 5
+drop_table = "spiritual_ranger"
+god = "bandos"
+examine = "The spirit of a ranger, serving Bandos beyond death."
+
+[spiritual_ranger_armadyl]
+id = 6230
+hitpoints = 890
+def = 130
+range = 150
+max_hit_range = 160
+hunt_mode = "anti_zamorak_aggressive"
+style = "range"
+attack_speed = 3
+respawn_delay = 25
+slayer_xp = 120.0
+slayer_level = 63
+categories = ["spiritual_creatures"]
+wander_radius = 6
+attack_radius = 8
+attack_range = 5
+drop_table = "spiritual_ranger"
+examine = "Armadyl's favourite servant."
+

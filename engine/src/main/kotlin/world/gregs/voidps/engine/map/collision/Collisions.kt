@@ -4,9 +4,7 @@ import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionFlagMap
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
-import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
@@ -33,7 +31,7 @@ fun Collisions.clear(zone: Zone) {
     deallocateIfPresent(zone.tile.x, zone.tile.y, zone.level)
 }
 
-fun Area.random(character: Character): Tile? = random(character.collision, character.size, if (character is NPC && character.def["solid", true]) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0)
+fun Area.random(character: Character): Tile? = random(character.collision, character.size, character.blockMove)
 
 fun Area.random(collision: CollisionStrategy = CollisionStrategies.Normal, size: Int = 1, extraFlag: Int = 0): Tile? {
     val steps = get<StepValidator>()

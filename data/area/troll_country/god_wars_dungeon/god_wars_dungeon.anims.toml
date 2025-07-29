@@ -1,0 +1,26 @@
+[godwars_hammer_bang]
+id = 7002
+
+[godwars_crossbow_swing]
+id = 6067
+
+[godwars_grapple_swing]
+id = 6070
+
+[godwars_grapple_swing_reverse]
+id = 6072
+
+[godwars_move_boulder]
+id = 6978
+
+[godwars_move_boulder_reverse]
+id = 6979
+
+[godwars_boulder_move]
+id = 6980
+
+[godwars_boulder_rollback]
+id = 6981
+
+[godwars_human_crawling]
+id = 7023

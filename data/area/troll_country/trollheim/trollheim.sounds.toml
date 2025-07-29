@@ -1,0 +1,11 @@
+[troll_rock_defend]
+id = 860
+
+[thrower_troll_attack]
+id = 871
+
+[thrower_troll_defend]
+id = 868
+
+[thrower_troll_death]
+id = 866
