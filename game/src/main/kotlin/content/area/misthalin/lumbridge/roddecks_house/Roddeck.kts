@@ -1,14 +1,14 @@
 package content.area.misthalin.lumbridge.roddecks_house
 
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import content.entity.player.dialogue.Chuckle
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.RollEyes
 import content.entity.player.dialogue.type.PlayerChoice
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Chuckle
-import content.entity.player.dialogue.RollEyes
-import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Neutral
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 npcOperate("Talk-to", "roddeck") {
     npc<Happy>("Greetings! I am Roddeck. What can i do for you today?")

@@ -12,14 +12,14 @@ import content.entity.player.dialogue.type.PlayerChoice
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.quest.quest
+import content.quest.questCompleted
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.type.random
 
 npcOperate("Talk-to", "donie") {
     npc<Happy>("Hello there, can I help you?")
-    when(random.nextInt(0, 4)) {
+    when (random.nextInt(0, 4)) {
         0 -> choice {
             whereAmI()
             howToday()
@@ -72,7 +72,7 @@ suspend fun PlayerChoice.anyQuests(): Unit = option<Quiz>("Are there any quests 
                     npc<Chuckle>("You are a brave soul indeed.")
                     npc<Uncertain>("Now that you mention it, I heard a rumour about a fortune-teller in Varrock who is rambling about some kind of grater evil.. sounds demon-like if you ask me.")
                     npc<Quiz>("Perhaps you could check it out if you are as brave as you say?")
-                    if (player.quest("demon_slayer") == "completed") {
+                    if (player.questCompleted("demon_slayer")) {
                         player<Chuckle>("I've already killed the demon Delrith. He was merely a stain on my sword when I was finished with him!")
                         npc<Happy>("Well done! However I'm sure if you search around the world you will find more challenging foes to slay.")
                     } else {
@@ -82,7 +82,7 @@ suspend fun PlayerChoice.anyQuests(): Unit = option<Quiz>("Are there any quests 
                 option<Amazed>("Vampyres!") {
                     npc<Chuckle>("Ha ha. I personally don't believe in such things. However, there is a man in Draynor Village who has been scaring the village folk with stories of vampyres.")
                     npc<Happy>("He's named Morgan and can be found in one of the village houses. Perhaps you could see what the matter is?")
-                    if (player.quest("vampire_slayer") == "completed") {
+                    if (player.questCompleted("vampire_slayer")) {
                         player<Chuckle>("Oh i have already killed that nasty blood-sucking vampyre. Draynor will be safe now.")
                         npc<Chuckle>("Yeah, yeah of course you did. Everyone knows vampyres are not real...")
                         player<Angry>("What! I did slay the beast..I really did.")
@@ -97,7 +97,7 @@ suspend fun PlayerChoice.anyQuests(): Unit = option<Quiz>("Are there any quests 
                     player<Angry>("Yes it can be! There could be anything from an evil chicken to a poisonous spider. They attack in numbers you know!")
                     npc<Happy>("Point taken. Speaking of small monsters, I hear old Wizard Mizgog in the Wizards' Tower has just had his beads taken by a gang of mischievous imps.")
                     npc<Happy>("Sounds like it could be a quest for you?")
-                    if (player.quest("imp_catcher") == "completed") {
+                    if (player.questCompleted("imp_catcher")) {
                         player<Happy>("Yes, I know of Mizgog and have already helped him with his imp problem.")
                         npc<Chuckle>("Imps will be imps!")
                     } else {
@@ -115,7 +115,7 @@ suspend fun PlayerChoice.anyQuests(): Unit = option<Quiz>("Are there any quests 
                     player<Happy>("Tell me about the Lumbridge cook.")
                     npc<Chuckle>("It's funny really, the cook would forget his head if it wasn't screwed on. This time he forgot to get ingredients for the Duke's birthday cake.")
                     npc<Quiz>("Perhaps you could help him? You will probably find him in the Lumbridge Castle kitchen.")
-                    if (player.quest("cooks_assistant") == "completed") {
+                    if (player.questCompleted("cooks_assistant")) {
                         player<Happy>("I have already helped the cook in Lumbridge")
                         npc<Happy>("Oh yes, so you have. I am sure the Duke will be pleased.")
                     } else {
@@ -125,7 +125,7 @@ suspend fun PlayerChoice.anyQuests(): Unit = option<Quiz>("Are there any quests 
                 option("The Duke's strange stones.") {
                     player<Happy>("Tell me about the Duke's strange stones.")
                     npc<Happy>("Well the Duke of Lumbridge has found a strange stone that no one seems to understand. Perhaps you could help him? You can probably find him upstairs in Lumbridge Castle.")
-                    if (player.quest("rune_mysteries") == "completed") {
+                    if (player.questCompleted("rune_mysteries")) {
                         player<Happy>("Yes, I have already solved the rune mysteries.")
                         npc<Happy>("Ah excellent. Thank you very much adventurer.")
                     } else {
@@ -143,7 +143,7 @@ suspend fun PlayerChoice.anyQuests(): Unit = option<Quiz>("Are there any quests 
                 option("Fred the farmer.") {
                     player<Happy>("Tell me about Fred the farmer please.")
                     npc<Uncertain>("You can find Fred next to the field of sheep in Lumbridge. Perhaps you should go and speak with him.")
-                    if (player.quest("sheep_shearer_miniquest") == "completed") {
+                    if (player.questCompleted("sheep_shearer_miniquest")) {
                         player<Happy>("I have already helped Fred the farmer. I sheared his sheep and made 20 balls of wool for him.")
                         player<Sad>("He wouldn't let me kill his chickens though.")
                         npc<Chuckle>("Lumbridge chickens do make good target practice.")
@@ -155,7 +155,7 @@ suspend fun PlayerChoice.anyQuests(): Unit = option<Quiz>("Are there any quests 
                 option("Doric the dwarf.") {
                     player<Happy>("Tell me about Doric the dwarf.")
                     npc<Happy>("Doric the dwarf is located north of Falador. He might be able to help you with smithing. You should speak to him. He may let you use his anvils.")
-                    if (player.quest("dorics_quest") == "completed") {
+                    if (player.questCompleted("dorics_quest")) {
                         player<Happy>("Yes, I've been to see Doric already. He was happy to let me use his anvils after I ran a small errand for him.")
                         npc<Happy>("Oh, good. Thank you ${player.name}!")
                     } else {
@@ -174,7 +174,7 @@ suspend fun PlayerChoice.anyQuests(): Unit = option<Quiz>("Are there any quests 
                 option("Hetty the witch.") {
                     player<Happy>("Tell me about Hetty the witch.")
                     npc<Happy>("Hetty the witch can be found in Rimmington, south of Falador. She's currently working on some new potions. Perhaps you could give her a hand? She might be able to offer help with your magical abilities.")
-                    if (player.quest("witches_potion_miniquest") == "completed") {
+                    if (player.questCompleted("witches_potion_miniquest")) {
                         player<Happy>("Yes, I have already been to see Hetty. She gave me super cosmic powers after I helped out with her potion! I could probably destroy you with a single thought.")
                         npc<Afraid>("Did she really?")
                         player<Chuckle>("No, not really.")
@@ -186,7 +186,7 @@ suspend fun PlayerChoice.anyQuests(): Unit = option<Quiz>("Are there any quests 
                 option("Pirate's Treasure.") {
                     player<Happy>("Tell me about Pirate's Treasure.")
                     npc<Happy>("RedBeard Frank in Port Sarim's bar, the Rusty Anchor might be able to tell you about the rumored treasure that is buried somewhere in the world.")
-                    if (player.quest("pirates_treasure") == "completed") {
+                    if (player.questCompleted("pirates_treasure")) {
                         player<Angry>("Yarr! I already found the booty!")
                         npc<Chuckle>("Yarr indeed my friend. A most excellent find.")
                         player<Angry>("Yarr!")
@@ -202,7 +202,7 @@ suspend fun PlayerChoice.anyQuests(): Unit = option<Quiz>("Are there any quests 
                     player<Happy>("Tell me about Ernest please.")
                     npc<Happy>("The best place to start would be at the gate to Draynor Manor. There you will find Veronica who will be able to tell you more.")
                     npc<Happy>("I suggest you tread carefully in that place; it's haunted.")
-                    if (player.quest("ernest_the_chicken") == "completed") {
+                    if (player.questCompleted("ernest_the_chicken")) {
                         player<Happy>("Yeah, I found Ernest already. Professor Oddstein had turned him into a chicken!")
                         npc<Chuckle>("A chicken!?")
                         player<Happy>("Yeah a chicken. It could have been worse though.")

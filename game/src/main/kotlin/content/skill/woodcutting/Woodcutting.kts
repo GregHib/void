@@ -17,19 +17,18 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolati
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.entity.item.drop.DropTables
-import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 
 val players: Players by inject()
 val definitions: ObjectDefinitions by inject()
@@ -106,7 +105,7 @@ fun tryDropNest(player: Player, ivy: Boolean) {
     val drop = table.role(totalWeight).firstOrNull() ?: return
 
     val source = if (ivy) "ivy" else "tree"
-    player.message("<col=ff0000>A bird's nest falls out of the $source!</col>")
+    player.message("<red>A bird's nest falls out of the $source!")
     areaSound("bird_chirp", player.tile)
 
     val dropTile = player.tile.toCuboid(1).random(player) ?: player.tile

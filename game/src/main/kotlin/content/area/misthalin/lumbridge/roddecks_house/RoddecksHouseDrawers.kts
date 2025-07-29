@@ -1,11 +1,11 @@
 package content.area.misthalin.lumbridge.roddecks_house
 
-import world.gregs.voidps.engine.entity.obj.objectOperate
+import content.entity.sound.areaSound
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
-import content.entity.sound.areaSound
 
 objectOperate("Open", "lumbridge_drawers_closed") {
     player.anim("open_chest")

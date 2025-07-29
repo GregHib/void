@@ -1,7 +1,7 @@
 package content.area.banks
 
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 

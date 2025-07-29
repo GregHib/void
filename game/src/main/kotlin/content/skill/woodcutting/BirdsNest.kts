@@ -45,13 +45,13 @@ inventoryOptions("Search", "inventory") {
 
     if (itemId.contains("acorn") || itemId.contains("orange") || itemId.contains("apple_tree") || itemId.contains("emerald")) {
         if (itemAmount > 1) {
-            player.message("You take $itemAmount $itemName"+"s out of the bird's nest.")
+            player.message("You take $itemAmount ${itemName}s out of the bird's nest.")
         } else {
             player.message("You take an $itemName out of the bird's nest.")
         }
     } else {
         if (itemAmount > 1) {
-            player.message("You take $itemAmount $itemName"+"s out of the bird's nest.")
+            player.message("You take $itemAmount ${itemName}s out of the bird's nest.")
         } else {
             player.message("You take a $itemName out of the bird's nest.")
         }
