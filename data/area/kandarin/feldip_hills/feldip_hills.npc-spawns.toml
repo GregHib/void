@@ -53,6 +53,7 @@ spawns = [
   { id = "wolf", x = 2509, y = 2964, members = true },
   { id = "wolf", x = 2496, y = 2959, members = true },
   { id = "wolf", x = 2500, y = 2959, members = true },
+  { id = "gnormadium_avlafrim", x = 2544, y = 2971, members = true },
 # 10286
   { id = "wolf", x = 2607, y = 2967, members = true },
   { id = "wolf", x = 2610, y = 2965, members = true },

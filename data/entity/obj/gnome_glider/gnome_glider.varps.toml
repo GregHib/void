@@ -1,0 +1,18 @@
+[gnome_glider_journey]
+id = 153
+format = "map"
+default = "empty"
+values = {
+  empty = 0,
+  ta_quir_priw_to_sindarpos = 1,
+  sindarpos_to_ta_quir_priw = 2,
+  ta_quir_priw_to_lemanto_andra = 3,
+  ta_quir_priw_to_kar_hewo = 4,
+  kar_hewo_to_ta_quir_priw = 5,
+  gandius_to_ta_quir_priw = 6,
+  ta_quir_priw_to_gandius = 7,
+  ta_quir_priw_to_crash_island = 8,
+  crash_island_to_ta_quir_priw = 9,
+  ta_quir_priw_to_lemantolly_undri = 10,
+  lemantolly_undri_to_ta_quir_priw = 11,
+}

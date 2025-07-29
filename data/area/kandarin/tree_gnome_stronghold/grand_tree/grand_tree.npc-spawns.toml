@@ -5,5 +5,5 @@ spawns = [
   { id = "butterfly_3", x = 2434, y = 3516, members = true },
   { id = "butterfly_3", x = 2479, y = 3501, members = true },
   { id = "blurberry", x = 2480, y = 3490, level = 1, members = true },
-  { id = "captain_errdo", x = 3318, y = 3440, members = true },
+  { id = "captain_errdo", x = 2465, y = 3501, level = 3, members = true },
 ]

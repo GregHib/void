@@ -1,2 +1,21 @@
 [glider_map]
 id = 138
+components = {
+  ta_quir_priw = 16,
+  sindarpos = 17,
+  lemanto_andra = 18,
+  lemantolly_undri = 20,
+  gandius = 15,
+  kar_hewo = 19,
+  ta_quir_priw_to_lemantolly_undri = 22,
+  lemantolly_undri_to_ta_quir_priw = 23,
+  ta_quir_priw_to_lemanto_andra = 24,
+  ta_quir_priw_to_crash_island = 25,
+  crash_island_to_ta_quir_priw = 26,
+  ta_quir_priw_to_gandius = 27,
+  gandius_to_ta_quir_priw = 28,
+  sindarpos_to_ta_quir_priw = 29,
+  ta_quir_priw_to_sindarpos = 30,
+  kar_hewo_to_ta_quir_priw = 31,
+  ta_quir_priw_to_kar_hewo = 32,
+}

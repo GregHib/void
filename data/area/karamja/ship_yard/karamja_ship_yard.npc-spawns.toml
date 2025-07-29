@@ -1,4 +1,6 @@
 spawns = [
     { id = "trader_crewmember_grey", x = 3001, y = 3033, members = true },
     { id = "trader_crewmember_pink", x = 3001, y = 3034, members = true },
+    { id = "captain_klemfoodle", x = 2972, y = 2974, members = true },
+    { id = "shipyard_guard", x = 2944, y = 3040, members = true },
 ]

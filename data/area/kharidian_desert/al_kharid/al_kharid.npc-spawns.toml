@@ -29,4 +29,5 @@ spawns = [
     { id = "man_3", x = 3298, y = 3206 },
     { id = "rat", x = 3319, y = 3250 },
     { id = "ali_morrisane", x = 3304, y = 3211 },
+    { id = "captain_dalbur", x = 3279, y = 3212 },
 ]

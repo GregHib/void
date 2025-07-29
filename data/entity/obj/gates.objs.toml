@@ -379,17 +379,17 @@ id = 2264
 id = 2262
 examine = "The gate is closed."
 
-[gate_55_opened]
+[gate_shipyard_north_opened]
 id = 2263
 
-[gate_55_closed]
+[gate_shipyard_north_closed]
 id = 2438
 examine = "A wooden gate."
 
-[gate_56_opened]
+[gate_shipyard_south_opened]
 id = 2264
 
-[gate_56_closed]
+[gate_shipyard_south_closed]
 id = 2439
 examine = "A wooden gate."
 
