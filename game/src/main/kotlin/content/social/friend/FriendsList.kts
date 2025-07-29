@@ -132,9 +132,8 @@ interfaceOption(component = "private", id = "filter_buttons") {
                 else -> false
             }
         }
-    } else {
-        return@interfaceOption
     }
+    player.privateStatus = option.lowercase()
 }
 
 clanChatLeave { player ->
@@ -179,7 +178,7 @@ fun notifyBefriends(player: Player, online: Boolean, notify: (Player, String) ->
                 Friend(
                     name = player.name,
                     previousName = player.previousName,
-                    rank = (friend.friends[player.accountName] ?: ClanRank.Anyone).value,
+                    rank = (friend.friends[player.accountName] ?: ClanRank.Friend).value,
                     world = if (online) Settings.world else 0,
                     worldName = Settings.worldName,
                 ),
@@ -193,7 +192,7 @@ fun String.updateFriend(friend: Player, online: Boolean) {
         Friend(
             name = friend.name,
             previousName = friend.previousName,
-            rank = (player.friends[friend.accountName] ?: ClanRank.Anyone).value,
+            rank = (player.friends[friend.accountName] ?: ClanRank.Friend).value,
             world = if (online) Settings.world else 0,
             worldName = Settings.worldName,
         ),
