@@ -175,23 +175,27 @@ fun notifyBefriends(player: Player, online: Boolean, notify: (Player, String) ->
     players
         .filter { it.friend(player) && notify(it, player.privateStatus) }
         .forEach { friend ->
-            friend.updateFriend(Friend(
-                name = player.name,
-                previousName = player.previousName,
-                rank = (friend.friends[player.accountName] ?: ClanRank.Anyone).value,
-                world = if (online) Settings.world else 0,
-                worldName = Settings.worldName
-            ))
+            friend.updateFriend(
+                Friend(
+                    name = player.name,
+                    previousName = player.previousName,
+                    rank = (friend.friends[player.accountName] ?: ClanRank.Anyone).value,
+                    world = if (online) Settings.world else 0,
+                    worldName = Settings.worldName,
+                ),
+            )
         }
 }
 
 fun String.updateFriend(friend: Player, online: Boolean) {
     val player = players.get(this) ?: return
-    player.updateFriend(Friend(
-        name = friend.name,
-        previousName = friend.previousName,
-        rank = (player.friends[friend.accountName] ?: ClanRank.Anyone).value,
-        world = if (online) Settings.world else 0,
-        worldName = Settings.worldName
-    ))
+    player.updateFriend(
+        Friend(
+            name = friend.name,
+            previousName = friend.previousName,
+            rank = (player.friends[friend.accountName] ?: ClanRank.Anyone).value,
+            world = if (online) Settings.world else 0,
+            worldName = Settings.worldName,
+        ),
+    )
 }

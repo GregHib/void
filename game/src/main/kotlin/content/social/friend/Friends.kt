@@ -20,7 +20,6 @@ val Settings.world: Int
 val Settings.worldName: String
     get() = this["world.name", "World 16"]
 
-
 fun Player.updateFriend(friend: Friend) = client?.sendFriendsList(listOf(friend)) ?: Unit
 
 fun Player.updateFriend(friend: AccountDefinition) {

@@ -6,9 +6,6 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.type.Tile
 
 interfaceOption("Travel", id = "glider_map") {
@@ -21,7 +18,7 @@ interfaceOption("Travel", id = "glider_map") {
         player.message("You need to have completed One Small Favour quest to travel to here.") // TODO proper message
         return@interfaceOption
     }
-    player["gnome_glider_journey"] = "${current}_to_${component}"
+    player["gnome_glider_journey"] = "${current}_to_$component"
     player.open("fade_out")
     World.queue("gnome_glider_${player.index}", 3) {
         val target = when (component) {
