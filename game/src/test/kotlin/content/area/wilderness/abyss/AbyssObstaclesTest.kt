@@ -42,7 +42,6 @@ internal class AbyssObstaclesTest : WorldTest() {
         player.objectOption(obj, optionIndex = 0)
         tick(17)
 
-        println(player.tile) // 3042, 4819 - 3026 4812
         assertTrue(player.tile in center)
         assertEquals(25.0, player.experience.get(Skill.Mining))
     }
@@ -95,7 +94,6 @@ internal class AbyssObstaclesTest : WorldTest() {
         player.objectOption(obj, optionIndex = 0)
         tick(16)
 
-        println(player.tile)
         assertTrue(player.tile in center)
         assertEquals(25.0, player.experience.get(Skill.Woodcutting))
     }

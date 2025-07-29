@@ -48,6 +48,8 @@ object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
         actions[name] = (GameLoop.tick + initialDelay) to block
     }
 
+    fun containsQueue(name: String) = actions.containsKey(name)
+
     override fun run() {
         timers.run()
         val iterator = actions.iterator()

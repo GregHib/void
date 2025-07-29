@@ -85,3 +85,7 @@ id = 343
 [tele_other_receive]
 id = 342
 height = 52
+
+[teleport_wilderness]
+id = 661
+delay = 2
