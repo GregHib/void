@@ -7,4 +7,5 @@ spawns = [
   { id = "goblin_2_surprise_exam", x = 1883, y = 5029, direction = "SOUTH" },
   { id = "mummy_surprise_exam", x = 1887, y = 5026, direction = "SOUTH" },
   { id = "dunce_surprise_exam", x = 1890, y = 5018, direction = "SOUTH" },
+  { id = "captain_errdo_crashed", x = 3321, y = 3431, members = true },
 ]

@@ -1,0 +1,27 @@
+[captain_errdo]
+id = 3811
+large_head = true
+
+[captain_bleemadge]
+id = 3810
+large_head = true
+wander_radius = 4
+
+[captain_dalbur]
+id = 3809
+large_head = true
+wander_radius = 4
+
+[captain_klemfoodle]
+id = 3812
+large_head = true
+wander_radius = 4
+
+[captain_errdo_crashed]
+id = 5249
+large_head = true
+wander_radius = 4
+
+[shipyard_guard]
+id = 675
+wander_radius = 4

@@ -273,3 +273,10 @@ id = 2336
 
 [godwars_overlay_updateposition]
 id = 2337
+
+[clan_set_rank]
+id = 204
+params = [
+  "friend_index",
+  "rank"
+]

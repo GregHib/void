@@ -2,11 +2,11 @@ package content.social.ignore
 
 import content.social.chat.privateStatus
 import content.social.friend.friend
+import content.social.friend.updateFriend
 import content.social.friend.world
 import content.social.friend.worldName
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.updateFriend
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions

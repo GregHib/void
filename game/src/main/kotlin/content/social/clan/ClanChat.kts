@@ -1,17 +1,15 @@
 package content.social.clan
 
+import content.social.friend.*
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.*
-import world.gregs.voidps.engine.entity.character.player.isAdmin
-import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
@@ -131,9 +129,7 @@ fun display(player: Player, clan: Clan) {
 
 fun updateMembers(player: Player, clan: Clan, rank: ClanRank = clan.getRank(player)) {
     for (member in clan.members) {
-        if (member != player) {
-            member.client?.appendClanChat(ClanMember.of(player, rank))
-        }
+        member.client?.appendClanChat(ClanMember.of(player, rank))
     }
 }
 
@@ -148,7 +144,11 @@ instruction<ClanChatRank> { player ->
     }
     val rank = list[rank]
     val account = accountDefinitions.get(name) ?: return@instruction
+    if (player.friends[account.accountName] == rank) {
+        return@instruction
+    }
     player.friends[account.accountName] = rank
+    player.updateFriend(account)
     if (clan.members.any { it.accountName == account.accountName }) {
         val target = players.get(name) ?: return@instruction
         updateMembers(target, clan, rank)

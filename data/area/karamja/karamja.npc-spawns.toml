@@ -10,4 +10,6 @@ spawns = [
     { id = "snake", x = 2935, y = 2973, members = true },
     { id = "snake", x = 2928, y = 2973, members = true },
     { id = "snake", x = 2923, y = 2970, members = true },
+    # 11567
+    { id = "captain_errdo_crashed", x = 2917, y = 3056, members = true },
 ]

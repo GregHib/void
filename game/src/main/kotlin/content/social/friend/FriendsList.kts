@@ -9,9 +9,7 @@ import content.social.ignore.ignores
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.client.updateFriend
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -72,7 +70,7 @@ instruction<FriendAdd> { player ->
     if (player.privateStatus == "friends") {
         friendsName.updateFriend(player, online = true)
     }
-    player.sendFriend(account)
+    player.updateFriend(account)
     val clan = player.clan ?: player.ownClan ?: return@instruction
     if (!clan.hasRank(player, ClanRank.Owner)) {
         return@instruction
@@ -134,9 +132,8 @@ interfaceOption(component = "private", id = "filter_buttons") {
                 else -> false
             }
         }
-    } else {
-        return@interfaceOption
     }
+    player.privateStatus = option.lowercase()
 }
 
 clanChatLeave { player ->
@@ -173,27 +170,31 @@ fun Player.sendFriends() {
     client?.sendFriendsList(friends.mapNotNull { toFriend(this, accounts.getByAccount(it.key) ?: return@mapNotNull null) })
 }
 
-fun Player.sendFriend(friend: AccountDefinition) {
-    client?.sendFriendsList(listOf(toFriend(this, friend)))
-}
-
-fun toFriend(player: Player, account: AccountDefinition): Friend {
-    val friend = players.get(account.displayName)
-    val rank = 0
-    val online = friend != null && (player.isAdmin() || friend.visibleOnline(player))
-    return Friend(account.displayName, account.previousName, rank, world = if (online) Settings.world else 0, worldName = Settings.worldName)
-}
-
-fun Player.visibleOnline(friend: Player): Boolean = privateStatus == "on" && !ignores(friend) || privateStatus == "friends" && friend(friend)
-
 fun notifyBefriends(player: Player, online: Boolean, notify: (Player, String) -> Boolean = friends(player)) {
     players
         .filter { it.friend(player) && notify(it, player.privateStatus) }
         .forEach { friend ->
-            friend.updateFriend(Friend(player.name, player.previousName, world = if (online) Settings.world else 0, worldName = Settings.worldName))
+            friend.updateFriend(
+                Friend(
+                    name = player.name,
+                    previousName = player.previousName,
+                    rank = (friend.friends[player.accountName] ?: ClanRank.Friend).value,
+                    world = if (online) Settings.world else 0,
+                    worldName = Settings.worldName,
+                ),
+            )
         }
 }
 
 fun String.updateFriend(friend: Player, online: Boolean) {
-    players.get(this)?.updateFriend(Friend(friend.name, friend.previousName, world = if (online) Settings.world else 0, worldName = Settings.worldName))
+    val player = players.get(this) ?: return
+    player.updateFriend(
+        Friend(
+            name = friend.name,
+            previousName = friend.previousName,
+            rank = (player.friends[friend.accountName] ?: ClanRank.Friend).value,
+            world = if (online) Settings.world else 0,
+            worldName = Settings.worldName,
+        ),
+    )
 }
