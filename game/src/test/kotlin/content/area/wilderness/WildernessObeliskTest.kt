@@ -31,5 +31,4 @@ class WildernessObeliskTest : WorldTest() {
         tick(11)
         assertEquals(Tile(3155, 3619), player.tile)
     }
-
 }
