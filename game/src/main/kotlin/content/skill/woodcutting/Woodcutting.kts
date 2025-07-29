@@ -28,11 +28,14 @@ import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.map.collision.random
+import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 
 val players: Players by inject()
 val definitions: ObjectDefinitions by inject()
 val objects: GameObjects by inject()
 val floorItems: FloorItems by inject()
+val drops: DropTables by inject()
 
 val minPlayers = 0
 val maxPlayers = 2000
@@ -95,27 +98,19 @@ objectOperate("Chop*") {
 fun tryDropNest(player: Player, ivy: Boolean) {
     val dropChance = 254
     if (random.nextInt(dropChance) != 0) return
+    val table = drops.get("birds_nest_table") ?: return
+
     val hasRabbitFoot = player.equipment.contains("strung_rabbit_foot")
     val totalWeight = if (hasRabbitFoot) 95 else 100
-    val nestRoll = random.nextInt(totalWeight)
-    val nestId = when {
-        nestRoll < 63 -> "birds_nest_seeds_1"
-        nestRoll < 95 -> "birds_nest_ring"
-        else -> {
-            val eggRoll = random.nextInt(100)
-            when {
-                eggRoll < 26 -> "birds_nest_red_egg"
-                eggRoll < 50 -> "birds_nest_blue_egg"
-                eggRoll < 75 -> "birds_nest_green_egg"
-                else -> "birds_nest_raven_egg"
-            }
-        }
-    }
+
+    val drop = table.role(totalWeight).firstOrNull() ?: return
+
     val source = if (ivy) "ivy" else "tree"
     player.message("<col=ff0000>A bird's nest falls out of the $source!</col>")
     areaSound("bird_chirp", player.tile)
-    val dropTile = player.tile.toCuboid(1).random()
-    floorItems.add(tile = dropTile, id = nestId, amount = 1, disappearTicks = 50, owner = player)
+
+    val dropTile = player.tile.toCuboid(1).random(player) ?: player.tile
+    floorItems.add(tile = dropTile, id = drop.id, amount = drop.amount?.start ?: 1, disappearTicks = 50)
 }
 
 fun success(level: Int, hatchet: Item, tree: Tree): Boolean {

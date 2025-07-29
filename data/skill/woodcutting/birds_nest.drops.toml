@@ -1,3 +1,31 @@
+[birds_nest_table]
+type = "all"
+roll = 100
+drops = [
+    { table = "birds_nest_seeds_1_table",chance = 64 },
+    { table = "birds_nest_rings_table",chance = 32 },
+    { table = "birds_nest_egg_table", chance = 4 }
+]
+
+[birds_nest_seeds_1_table]
+drops = [
+    { id = "birds_nest_seeds_1" }
+]
+
+[birds_nest_rings_table]
+drops = [
+    { id = "birds_nest_ring" }
+]
+
+[birds_nest_egg_table]
+roll = 100
+drops = [
+    { id = "birds_nest_red_egg", chance = 25 },
+    { id = "birds_nest_blue_egg", chance = 25 },
+    { id = "birds_nest_green_egg", chance = 25 },
+    { id = "birds_nest_raven_egg", chance = 25 }
+]
+
 [birds_nest_seed_table]
 roll = 1000
 drops = [

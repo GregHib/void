@@ -9,6 +9,6 @@ objectOperate("Take", "*_bank_leaflet") {
     if (player.inventory.contains("leaflet")) {
         player.message("You already have a copy of the leaflet.")
     } else {
-            player.inventory.add("leaflet")
+        player.inventory.add("leaflet")
     }
 }
