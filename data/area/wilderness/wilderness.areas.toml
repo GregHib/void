@@ -54,3 +54,33 @@ tags = ["multi_combat"]
 x = [3168, 3172]
 y = [3675, 3678]
 tags = ["teleport"]
+
+[wilderness_obelisk_stealing_creation]
+x = [3155, 3157]
+y = [3619, 3621]
+tags = ["teleport", "obelisk"]
+
+[wilderness_obelisk_bandit_camp]
+x = [3034, 3036]
+y = [3731, 3733]
+tags = ["teleport", "obelisk"]
+
+[wilderness_obelisk_graveyard_of_shadows]
+x = [3218, 3220]
+y = [3655, 3657]
+tags = ["teleport", "obelisk"]
+
+[wilderness_obelisk_lava_maze]
+x = [3105, 3107]
+y = [3793, 3795]
+tags = ["teleport", "obelisk"]
+
+[wilderness_obelisk_frozen_waste_plateau]
+x = [2979, 2981]
+y = [3865, 3867]
+tags = ["teleport", "obelisk"]
+
+[wilderness_obelisk_rogues_castle]
+x = [3306, 3308]
+y = [3915, 3917]
+tags = ["teleport", "obelisk"]

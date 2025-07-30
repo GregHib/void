@@ -16,3 +16,51 @@ examine = "I wonder what this does."
 [fist_of_guthix_cave]
 id = 30204
 examine = "Step inside for violent fun."
+
+[wilderness_wall_1]
+id = 1440
+examine = "Jump here."
+
+[wilderness_wall_2]
+id = 1441
+examine = "Jump here."
+
+[wilderness_wall_3]
+id = 1442
+examine = "Jump here."
+
+[wilderness_wall_4]
+id = 1443
+examine = "Jump here."
+
+[wilderness_wall_5]
+id = 1444
+examine = "Jump here."
+
+[wilderness_obelisk_glow]
+id = 14825
+examine = "It's glowing!"
+
+[wilderness_obelisk_frozen_waste_plateau]
+id = 14826
+examine = "I wonder what this does..."
+
+[wilderness_obelisk_bandit_camp]
+id = 14827
+examine = "I wonder what this does..."
+
+[wilderness_obelisk_lava_maze]
+id = 14828
+examine = "I wonder what this does..."
+
+[wilderness_obelisk_stealing_creation]
+id = 14829
+examine = "I wonder what this does..."
+
+[wilderness_obelisk_graveyard_of_shadows]
+id = 14830
+examine = "I wonder what this does..."
+
+[wilderness_obelisk_rogues_castle]
+id = 14831
+examine = "I wonder what this does..."

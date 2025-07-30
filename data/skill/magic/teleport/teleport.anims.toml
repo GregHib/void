@@ -126,3 +126,11 @@ id = 1818
 
 [lunar_teleport]
 id = 1816
+
+[teleport_wilderness]
+id = 8939
+ticks = 3
+
+[teleport_land_wilderness]
+id = 8941
+ticks = 2
