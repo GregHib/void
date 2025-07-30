@@ -103,3 +103,67 @@ examine = "I can climb down this."
 [canifis_ladder_up]
 id = 30575
 examine = "I can climb this."
+
+[29355]
+id = 29355
+examine = "I can climb this."
+
+[36768]
+id = 36768
+examine = "I can climb up this."
+
+[36769]
+id = 36769
+examine = "I can climb up or down this."
+
+[36770]
+id = 36770
+examine = "I can climb down this."
+
+[45483]
+id = 45483
+examine = "Some wooden stairs."
+
+[45484]
+id = 45484
+examine = "Some wooden stairs."
+
+[45481]
+id = 45481
+examine = "Some wooden stairs."
+
+[45482]
+id = 45482
+examine = "Some wooden stairs."
+
+[lumbridge_church_1st_floor_ladder_up_west]
+id = 36984
+examine = "I can climp up this."
+
+[lumbridge_church_2nd_floor_ladder_down_west]
+id = 36985
+examine = "I can climp down this."
+
+[lumbridge_church_1st_floor_ladder_up_east]
+id = 36986
+examine = "I can climp up this."
+
+[lumbridge_church_2nd_floor_ladder_down_east]
+id = 36987
+examine = "I can climp down this."
+
+[lumbridge_church_2nd_floor_ladder_up_east]
+id = 36988
+examine = "I can climp up this."
+
+[lumbridge_church_2nd_floor_ladder_up_west]
+id = 36989
+examine = "I can climp up this."
+
+[lumbridge_church_3rd_floor_ladder_down_east]
+id = 36990
+examine = "I can climb down this."
+
+[lumbridge_church_3rd_floor_ladder_down_west]
+id = 36991
+examine = "I can climb down this."

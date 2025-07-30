@@ -74,6 +74,7 @@ kept = "Reclaim"
 id = 15671
 tradeable = false
 weight = 0.2
+book = "manual_unstable_foundations"
 examine = "Roddeck's book about the care of pet dragons."
 kept = "Reclaim"
 
@@ -81,5 +82,6 @@ kept = "Reclaim"
 id = 15672
 tradeable = false
 weight = 0.2
+book = "roddecks_diary"
 examine = "The diary of an elderly gentleman with eccentric habits."
 kept = "Reclaim"

@@ -1,0 +1,95 @@
+[birds_nest_table]
+type = "all"
+roll = 100
+drops = [
+    { table = "birds_nest_seeds_1_table",chance = 64 },
+    { table = "birds_nest_rings_table",chance = 32 },
+    { table = "birds_nest_egg_table", chance = 4 }
+]
+
+[birds_nest_seeds_1_table]
+drops = [
+    { id = "birds_nest_seeds_1" }
+]
+
+[birds_nest_rings_table]
+drops = [
+    { id = "birds_nest_ring" }
+]
+
+[birds_nest_egg_table]
+roll = 100
+drops = [
+    { id = "birds_nest_red_egg", chance = 25 },
+    { id = "birds_nest_blue_egg", chance = 25 },
+    { id = "birds_nest_green_egg", chance = 25 },
+    { id = "birds_nest_raven_egg", chance = 25 }
+]
+
+[birds_nest_seed_table]
+roll = 1000
+drops = [
+    { id = "acorn", chance = 214 },
+    { id = "apple_tree_seed", chance = 170 },
+    { id = "willow_seed", chance = 135 },
+    { id = "banana_tree_seed", chance = 108 },
+    { id = "orange_tree_seed", chance = 85 },
+    { id = "curry_tree_seed", chance = 68} ,
+    { id = "maple_seed", chance = 54 },
+    { id = "pineapple_seed", chance = 42 },
+    { id = "papaya_tree_seed", chance = 34 },
+    { id = "yew_seed", chance = 27 },
+    { id = "palm_tree_seed", chance = 22 },
+    { id = "calquat_tree_seed", chance = 17 },
+    { id = "magic_seed", chance = 13 },
+    { id = "spirit_seed", chance = 11 },
+]
+
+[birds_nest_cheap_seed_table]
+roll = 800
+drops = [
+    { id = "spirit_seed", chance = 1 },
+    { id = "magic_seed", chance = 1 },
+    { id = "yew_seed", chance = 10 },
+    { id = "maple_seed", chance = 10 },
+    { id = "willow_seed", chance = 20 },
+    { id = "acorn", chance = 30 },
+    { id = "ranarr_seed", chance = 20 },
+    { id = "sweetcorn_seed", amount = 3, chance = 120 },
+    { id = "strawberry_seed", amount = 3, chance = 90 },
+    { id = "limpwurt_seed", amount = 2, chance = 100 },
+    { id = "watermelon_seed", amount = 2, chance = 90 },
+    { id = "tomato_seed", amount = 6, chance = 110 },
+    { id = "cabbage_seed", amount = 9, chance = 100 },
+    { id = "evil_turnip_seed", amount = 2, chance = 90 },
+]
+
+[birds_nest_ring_table]
+roll = 100
+drops = [
+    { id = "gold_ring", chance = 35 },
+    { id = "sapphire_ring", chance = 40 },
+    { id = "emerald_ring", chance = 15 },
+    { id = "ruby_ring", chance = 9 },
+    { id = "diamond_ring", chance = 1 },
+]
+
+[birds_nest_egg_red_table]
+drops = [
+    { id = "birds_egg_red"},
+]
+
+[birds_nest_egg_blue_table]
+drops = [
+    { id = "birds_egg_blue"}
+]
+
+[birds_nest_egg_green_table]
+drops = [
+    { id = "birds_egg_green"}
+]
+
+[birds_nest_egg_raven_table]
+drops = [
+    { id = "raven_egg"}
+]

@@ -103,3 +103,480 @@ examine = "A backpack belonging to the Lumbridge Sage"
 [scroll_desk]
 id = 8718
 examine = "A desk full of information scrolls."
+
+[lumbridge_cannon]
+id = 36780
+examine = "It doesn't look like it's been used recently"
+
+[lumbridge_cannonballs]
+id = 36790
+examine = "Big, heavy metal balls."
+
+[lumbridge_wooden_defence]
+id = 36928
+examine = "A wooden defensive structure."
+
+[lumbridge_barrel]
+id = 45282
+examine = "A wooden barrel for storage."
+
+[lumbridge_sacks]
+id = 45287
+examine = "These may have something in them."
+
+[lumbridge_standard]
+id = 36925
+examine = "A standard of Lumbridge Castle."
+
+[lumbridge_bank_table]
+id = 36789
+examine = "A table used by bank customers."
+
+[lumbridge_bank_leaflet]
+id = 45504
+examine = "'Pay back all your debts by borrowing more money from us!' Clever."
+
+[lumbridge_bank_deposit_box]
+id = 36788
+examine = "It lets you put the items into your bank."
+
+[lumbridge_closed_bank_booth]
+id = 36787
+examine = "This booth is closed."
+
+[lumbridge_painting_watermill]
+id = 36803
+examine = "A watermill. How charming."
+
+[lumbridge_painting_sunset]
+id = 36804
+examine = "A sunset."
+
+[lumbridge_painting_mountains]
+id = 36805
+examine = "A view of mountains."
+
+[lumbridge_painting_watermill_2]
+id = 36811
+examine = "A watermill. How charming."
+
+[lumbridge_painting_valley]
+id = 36814
+examine = "A river winding through a valley."
+
+[lumbridge_painting_watermill_3]
+id = 38424
+examine = "A watermill. How charming."
+
+[lumbridge_standard_2]
+id = 36924
+examine = "A blue standard."
+
+[lumbridge_standard_3]
+id = 36926
+examine = "A standard of Lumbridge Castle."
+
+[lumbridge_axe_cabinet]
+id = 36817
+examine = "A locked cabinet of decorative axes."
+
+[lumbridge_sword_cabinet]
+id = 36818
+examine = "A locked cabinet of decorative swords."
+
+[lumbridge_bust]
+id = 36938
+examine = "A stone bust of an ancient ruler."
+
+[lumbridge_bust_2]
+id = 36939
+examine = "A stone bust of an ancient hero."
+
+[lumbridge_bust_3]
+id = 36940
+examine = "A stone bust of an ancient hero."
+
+[lumbridge_wardrobe]
+id = 36908
+examine = "A fancy place to store clothes."
+
+[lumbridge_bed]
+id = 36941
+examine = "Great for sleeping in."
+
+[lumbridge_bed_2]
+id = 36943
+examine = "Great for sleeping in."
+
+[lumbridge_closed_chest]
+id = 37009
+examine = "I wonder what's inside."
+
+[lumbridge_closed_chest_2]
+id = 6910
+examine = "It has a letter 'S' on the lock."
+
+[lumbridge_hanging_tapestry]
+id = 36809
+examine = "I don't know art, but I like it!"
+
+[lumbridge_hanging_tapestry_2]
+id = 36923
+examine = "I don't know art, but I like it."
+
+[lumbridge_suit_of_armour]
+id = 36779
+examine = "A decorative suit of armour with a Lumbridge shield."
+
+[lumbridge_fireplace]
+id = 36815
+examine = "A fire burns steadily in the grate."
+
+[lumbridge_barrel_2]
+id = 36798
+examine = "A wooden barrel."
+
+[lumbridge_barrel_3]
+id = 45283
+examine = "A wooden barrel for storage."
+
+[lumbridge_bush]
+id = 36782
+examine = "Well-maintained."
+
+[lumbridge_hanging_meat]
+id = 45317
+examine = "I can't take someone's food."
+
+[lumbridge_hanging_meat_2]
+id = 45318
+examine = "I can't take someone's food."
+
+[lumbridge_shelves]
+id = 36829
+examine = "Storage for cookery items."
+
+[lumbridge_cooking_pots]
+id = 5609
+examine = "They could do with a wash."
+
+[lumbridge_cooking_pots_2]
+id = 5610
+examine = "They could do with a wash."
+
+[lumbridge_stool]
+id = 36837
+examine = "A wooden stool."
+
+[lumbridge_table]
+id = 36910
+examine = "A banquet could be eaten from this."
+
+[lumbridge_ale_barrel]
+id = 15674
+examine = "An ale barrel."
+
+[lumbridge_ale_barrel_2]
+id = 15676
+examine = "An ale barrel."
+
+[lumbridge_shelves_2]
+id = 32283
+examine = "Storage for cookery items."
+
+[lumbridge_shelves_3]
+id = 32284
+examine = "Storage for all needs."
+
+[lumbridge_shelves_4]
+id = 6904
+examine = "How exciting, some shelves."
+
+[lumbridge_large_table]
+id = 12280
+examine = "A nice sturdy looking table."
+
+[lumbridge_table_2]
+id = 8700
+examine = "For putting things on."
+
+[lumbridge_portrait]
+id = 887
+examine = "A painting of the King looking royal."
+
+[lumbridge_small_table]
+id = 12281
+examine = "A small wooden table."
+
+[lumbridge_sacks_2]
+id = 32049
+examine = "These may have something in them."
+
+[lumbridge_crates]
+id = 31139
+examine = "A pair of stacked storage crates."
+
+[lumbridge_winch]
+id = 37336
+examine = "Used for pulling things up."
+
+[lumbridge_queen_statue]
+id = 36749
+examine = "An expertly-carved statue of a former Queen of Misthalin."
+
+[lumbridge_king_statue]
+id = 36751
+examine = "An expertly-carved statue of a former King of Misthalin."
+
+[lumbridge_clan_cup_plaque]
+id = 55301
+examine = "Dedicated to the winners of the Clan Cup."
+
+[lumbridge_signpost_cow]
+id = 31297
+examine = "An interesting sign."
+
+[lumbridge_signpost_death]
+id = 31299
+examine = "An interesting sign."
+
+[lumbridge_daisies]
+id = 1189
+examine = "Commonly found in grassy areas."
+
+[lumbridge_flower]
+id = 1188
+examine = "Blooming!"
+
+[lumbridge_lantern]
+id = 45269
+examine = "A light for my path."
+
+[lumbridge_painting_watermill_4]
+id = 45258
+examine = "A watermill. How charming."
+
+[lumbridge_painting_sunset_2]
+id = 45259
+examine = "A sunset."
+
+[roddecks_bookcase]
+id = 49101
+examine = "Someone keeps books here."
+
+[lumbridge_grandfather_clock]
+id = 45295
+examine = "Tick-tock, it's a clock."
+
+[lumbridge_stove]
+id = 45316
+examine = "It's too small for me to cook anything in."
+
+[lumbridge_stool_2]
+id = 45241
+examine = "A wooden stool."
+
+[lumbridge_wardrobe_2]
+id = 45245
+examine = "A fancy place to store clothes."
+
+[lumbridge_bed_3]
+id = 45230
+examine = "Great for sleeping in."
+
+[lumbridge_drawers_closed]
+id = 45243
+examine = "A chest of drawers."
+
+[lumbridge_drawers_opened]
+id = 45244
+examine = "A chest of drawers."
+
+[lumbridge_general_store_shelves]
+id = 45249
+examine = "Storage for all needs."
+
+[lumbridge_general_store_shelves_2]
+id = 45250
+examine = "Storage for all needs."
+
+[lumbridge_general_store_shelves_3]
+id = 45251
+examine = "Storage for all needs."
+
+[lumbridge_general_store_stepladder]
+id = 45296
+examine = "Lets you reach things on high shelves."
+
+[lumbridge_general_store_big_vase]
+id = 45297
+examine = "An elegant ceramic pot tarnished with the dirt of a hundred years."
+
+[lumbridge_general_store_barrel]
+id = 45285
+examine = "A barrel of unfinished staves and pieces of wood."
+
+[lumbridge_bed_4]
+id = 45231
+examine = "Great for sleeping in."
+
+[lumbridge_shopkeer_table]
+id = 45236
+examine = "An antique desk. The book belongs to the shopkeeper."
+
+[lumbridge_general_store_sign]
+id = 45179
+examine = "The general store."
+
+[lumbridge_signpost_to_Draynor]
+id = 36911
+examine = "North road to Draynor Village :: East road to Varrock."
+
+[lumbridge_bunk_bed]
+id = 45232
+examine = "Great for sleeping in."
+
+[lumbridge_water_barrel]
+id = 14353
+examine = "A barrel for collecting rainwater."
+
+[lumbridge_blacksmith_worker]
+id = 45311
+examine = "He's working pretty hard."
+
+[lumbridge_workbench]
+id = 45239
+examine = "This workbench belongs to the blacksmith, I should leave it alone."
+
+[lumbridge_workbench_2]
+id = 45240
+examine = "I'd better not disturb the blacksmith's workbench."
+
+[lumbridge_smithing_tools]
+id = 45320
+examine = "I can't take those, they belong to the blacksmith."
+
+[lumbridge_smithing_tools_2]
+id = 45321
+examine = "The blacksmith will be needing these, I'd better not take them."
+
+[lumbridge_smithing_tools_3]
+id = 45322
+examine = "I can't take those, they belong to the blacksmith."
+
+[lumbridge_chart_table]
+id = 37672
+examine = "These look like Jack's old sea charts."
+
+[explorer_jack_trapdoor]
+id = 45800
+examine = "It leads to Explorer Jack's cellar."
+
+[lumbridge_barrel_rocks]
+id = 37586
+examine = "A barrel containing rocks and mining debris."
+
+[lumbridge_barrel_stack]
+id = 37594
+examine = "A stack of wooden barrels."
+
+[lumbridge_water_barrel_2]
+id = 37585
+examine = "A barrel full of rainwater."
+
+[lumbridge_liquid_barrel]
+id = 37583
+examine = "It contains an indeterminate liquid."
+
+[lumbridge_bed_5]
+id = 45229
+examine = "Great for sleeping in."
+
+[lumbridge_church_stand]
+id = 36982
+examine = "A stand with lit candles."
+
+[lumbridge_church_stand_2]
+id = 36983
+examine = "A stand with lit candles and hymns written on paper."
+
+[lumbridge_bookcase]
+id = 45246
+examine = "A good source of books."
+
+[lumbridge_cooking_shelf]
+id = 45253
+examine = "Contains various cooking supplies."
+
+[lumbridge_bobs_axe_hanging_banner]
+id = 45260
+examine = "A tapestry showing a large axe."
+
+[lumbridge_bobs_axe_hanging_banner_2]
+id = 45261
+examine = "A tapestry showing a large axe."
+
+[lumbridge_bobs_axe_display_axe]
+id = 45262
+examine = "It's just for show."
+
+[lumbridge_bobs_axe_display_axes]
+id = 45263
+examine = "These are for display purposes only."
+
+[lumbridge_bobs_axe_barrel_of_swords]
+id = 45286
+examine = "These belong to Bob, I shouldn't take them."
+
+[lumbridge_broken_stool]
+id = 45290
+examine = "A smashed stool."
+
+[lumbridge_broken_table]
+id = 45292
+examine = "A smashed table."
+
+[lumbridge_broken_ladder]
+id = 45293
+examine = "It's impossible to climb."
+
+[lumbridge_boxes]
+id = 46237
+examine = "For storage. I wonder what's in there."
+
+[lumbridge_goblin_cook]
+id = 45315
+examine = "He looks pretty busy."
+
+[lumbridge_spitroast]
+id = 45313
+examine = "A spit over a roaring fire."
+
+[lumbridge_thistle]
+id = 1174
+examine = "Spiky!"
+
+[lumbridge_plant]
+id = 1392
+examine = "A leafy fern."
+
+[lumbridge_plant_2]
+id = 1393
+examine = "A small bushy plant."
+
+[lumbridge_plant_3]
+id = 1394
+examine = "A leafy shrub."
+
+[lumbridge_gravestone]
+id = 404
+examine = "The inscription is worn away and unreadable."
+
+[lumbridge_gravestone_2]
+id = 37005
+examine = "The inscription is worn away and unreadable."
+
+[lumbridge_gravestone_3]
+id = 37006
+examine = "'Here lies...'is all I can read."
+

@@ -5,24 +5,31 @@ import content.achievement.Tasks.isCompleted
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.RollEyes
 import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.Uncertain
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.BitwiseValues
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+
+val npcs: NPCs by inject()
 
 npcOperate("Talk-to", "explorer_jack") {
     if (player["introducing_explorer_jack_task", "uncompleted"] == "uncompleted") {
@@ -143,4 +150,12 @@ fun completedAllBeginner(player: Player): Boolean {
         }
         null
     } ?: false
+}
+
+objectOperate("Open", "explorer_jack_trapdoor") {
+    val explorerJack = npcs[player.tile.regionLevel].first { it.id.startsWith("explorer_jack") }
+    player.talkWith(explorerJack)
+    npc<Uncertain>("I say, there's nothing interesting in my cellar! Better go exploring elsewhere, eh?")
+    player<Quiz>("What's down there?")
+    npc<RollEyes>("Crates, boxes, shelves - nothing you won't see in dozens of houses across Runescape. Go on, explore somewhere else!")
 }
