@@ -28,7 +28,10 @@ class AnimationDefinitions(
                             when (val key = key()) {
                                 "id" -> id = int()
                                 "ticks" -> extras[key] = int()
-                                else -> extras[key] = value()
+                                "infinite" -> extras[key] = boolean()
+                                "walk" -> extras[key] = boolean()
+                                "run" -> extras[key] = boolean()
+                                else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate animation id found '$stringId' at $path." }

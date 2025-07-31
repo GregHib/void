@@ -169,8 +169,12 @@ id = 10250
 id = 10251
 walk = false
 run = false
-sacred_clay_hatchet_chop_canoe_tree = 11617
-volatile_clay_hatchet_chop_canoe_tree = 11618
+
+[sacred_clay_hatchet_chop_canoe_tree]
+id = 11617
+
+[volatile_clay_hatchet_chop_canoe_tree]
+id = 11618
 
 [sacred_clay_hatchet_chop_ivy]
 id = 12324

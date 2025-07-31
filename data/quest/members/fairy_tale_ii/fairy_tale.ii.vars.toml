@@ -1,0 +1,5 @@
+[fairy_tale_ii]
+persist = true
+format = "list"
+values = [ "unstarted", "completed" ]
+
