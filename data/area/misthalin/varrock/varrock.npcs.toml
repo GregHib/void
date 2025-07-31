@@ -30,6 +30,14 @@ wander_radius = 3
 collision = "indoors"
 examine = "Runes are his passion."
 
+[mage_of_zamorak_normal]
+id = 2261
+faces = false
+categories = ["human"]
+wander_radius = 5
+collision = "indoors"
+examine = "A disciple of Zamorak."
+
 [mage_of_zamorak_wilderness]
 id = 2257
 faces = false
@@ -39,11 +47,7 @@ examine = "A disciple of Zamorak."
 
 [mage_of_zamorak_varrock]
 id = 2260
-faces = false
-categories = ["human"]
-wander_radius = 5
-collision = "indoors"
-examine = "A disciple of Zamorak."
+clone = "mage_of_zamorak_normal"
 
 [reldo]
 id = 647
