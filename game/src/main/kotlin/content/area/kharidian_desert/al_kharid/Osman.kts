@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
-npcOperate("Talk-to", "osman") {
+npcOperate("Talk-to", "osman", "osman_normal") {
     when (player.quest("prince_ali_rescue")) {
         "unstarted" -> {
             npc<Shifty>("Hello. I am Osman. What can I assist you with?")

@@ -20,9 +20,10 @@ class SirGerryTest : WorldTest() {
     @Test
     fun `Sir gerry gives notes`() {
         val player = createPlayer(Tile(2912, 3747))
-        val hole = createNPC("knight_sir_gerry", Tile(2912, 3748))
+        val gerry = createNPC("knight_sir_gerry", Tile(2912, 3748))
+        println(gerry.def.stringId)
 
-        player.npcOption(hole, "Talk-to")
+        player.npcOption(gerry, "Talk-to")
         tick()
         repeat(5) {
             player.continueDialogue()

@@ -70,7 +70,7 @@ npcOperate("Talk-to", "mage_of_zamorak_wilderness") {
     }
 }
 
-npcOperate("Talk-to", "mage_of_zamorak_varrock") {
+npcOperate("Talk-to", "mage_of_zamorak_varrock", "mage_of_zamorak_normal") {
     if (player.equipment.items.any { it.id.contains("saradomin", ignoreCase = true) }) {
         npc<Angry>("How dare you wear such disrespectful attire in this holy place? Remove those immediately if you wish to speak to me.")
         return@npcOperate
