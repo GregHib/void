@@ -1,0 +1,4 @@
+[travel_log_locations]
+persist = true
+format = "list"
+values = [ "aiq", "air", "ajq", "ajr", "ajs", "akq", "aks", "alq", "alr", "als", "bip", "biq", "bis", "bjr", "bkp", "bkq", "bkr", "bks", "blp", "blr", "cip", "ciq", "cjr", "ckp", "ckr", "cks", "clp", "clr", "cls", "dir" ]

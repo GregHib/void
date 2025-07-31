@@ -82,6 +82,10 @@ class BitwiseValues(
     val values: List<Any>,
 ) : VariableValues() {
 
+    init {
+        check(values.size <= 32) { "Cannot have more than 32 bitwise values found: ${values.size}." }
+    }
+
     override fun default() = listOf<Any>()
 
     @Suppress("UNCHECKED_CAST")

@@ -1,0 +1,200 @@
+[AIQ]
+name = "Asgarnia: Mudskipper Point"
+tile = { x = 2996, y = 3114 }
+
+[AIR]
+name = "Islands: South of Witchaven"
+tile = { x = 2700, y = 3247 }
+
+#[AIS]
+
+#[AJP]
+
+[AJQ]
+name = "Dungeons: Cave south of Dorgesh-Kaan"
+tile = { x = 2735, y = 5221 }
+
+[AJR]
+name = "Kandarin: Slayer cave south-east of Rellekka"
+tile = { x = 2780, y = 3613 }
+
+[AJS]
+name = "Islands: Penguins near Miscellania."
+tile = { x = 2500, y = 3896 }
+
+#[AKP]
+
+[AKQ]
+name = "Kandarin: Piscatoris Hunter area"
+tile = { x = 2319, y = 3619 }
+
+#[AKR]
+
+[AKS]
+name = "Feldip Hills: Feldip Hunter area"
+tile = { x = 2571, y = 2956 }
+
+#[ALP]
+
+[ALQ]
+name = "Morytania: Haunted Woods east of Canifis"
+tile = { x = 3597, y = 3495 }
+
+[ALR]
+name = "Other Realms: Abyssal Area"
+tile = { x = 3059, y = 4875 }
+
+[ALS]
+name = "Kandarin: McGrubor's Wood"
+tile = { x = 2644, y = 3495 }
+
+[BIP]
+name = "Islands: South-west of Mort Myre"
+tile = { x = 3410, y = 3324 }
+
+[BIQ]
+name = "Kharidian Desert near Kalphite Hive."
+tile = { x = 3251, y = 3095 }
+
+#[BIR]
+
+[BIS]
+name = "Kandarin: Ardougne Zoo - Unicorns"
+tile = { x = 2635, y = 3266 }
+
+#[BJP]
+
+#[BJQ] # Ancient Cavern
+
+[BJR]
+name = "Other Realms: Realm of the Fisher King"
+tile = { x = 2650, y = 4730 }
+
+#[BJS]
+
+[BKP]
+name = "Feldip Hills: South of Castle Wars"
+tile = { x = 2385, y = 3035 }
+
+[BKQ]
+name = "Other Realms: Enchanted Valley"
+
+[BKR]
+name = "Morytania: Mort Myre Swamp, south of Canifis"
+tile = { x = 3469, y = 3431 }
+
+[BKS]
+name = "Other Realms: Zanaris"
+tile = { x = 2412, y = 4434 }
+
+[BLP]
+name = "Dungeons: TzHaar area"
+tile = { x = 2437, y = 5126 }
+
+#[BLQ]
+
+[BLR]
+name = "Kandarin: Legends' Guild"
+tile = { x = 2740, y = 3351 }
+
+#[BLS]
+
+[CIP]
+name = "Islands: Miscellania"
+tile = { x = 2513, y = 3884 }
+
+[CIQ]
+name = "Kandarin: North-west of Yanille"
+tile = { x = 2528, y = 3127 }
+
+#[CIR]
+
+#[CIS]
+
+#[CJP]
+
+#[CJQ]
+
+[CJR]
+name = "Kandarin: Sinclair Mansion (east)"
+tile = { x = 2705, y = 3576 }
+
+#[CJS]
+
+[CKP]
+name = "Other Realms: Cosmic entity's plane"
+tile = { x = 2075, y = 4848 }
+
+#[CKQ]
+
+[CKR]
+name = "Karamja: South of Tai Bwo Wannai Village"
+tile = { x = 2801, y = 3003 }
+
+[CKS]
+name = "Morytania: Canifis"
+tile = { x = 3447, y = 3470 }
+
+[CLP]
+name = "Islands: South of Draynor Village"
+tile = { x = 3082, y = 3206 }
+
+#[CLQ]
+
+[CLR]
+name = "Islands: Ape Atoll"
+tile = { x = 2735, y = 2742 }
+
+[CLS]
+name = "Islands: Hazelmere's home"
+tile = { x = 2682, y = 3081 }
+
+#[DIP]
+
+#[DIQ]
+
+[DIR]
+name = "Other Realms: Gorak's Plane"
+tile = { x = 3038, y = 5348 }
+
+[DIS]
+name = "Misthalin: Wizards' Tower"
+tile = { x = 3108, y = 3149 }
+
+[DJP]
+name = "Kandarin: Tower of Life"
+tile = { x = 2658, y = 3230 }
+
+#[DJQ]
+
+[DJR]
+name = "Kandarin: Sinclair Mansion (west)"
+tile = { x = 2676, y = 3587 }
+
+#[DJS]
+
+[DKP]
+name = "Karamja: South of Musa Point"
+tile = { x = 2900, y = 3111 }
+
+#[DKQ] # Glacors
+
+[DKR]
+name = "Misthalin: Edgeville"
+tile = { x = 3129, y = 3496 }
+
+[DKS]
+name = "Kandarin: Polar Hunter area"
+tile = { x = 2744, y = 3719 }
+
+#[DLP]
+
+[DLQ]
+name = "Kharidian Desert: North of Nardah"
+tile = { x = 3423, y = 3016 }
+
+[DLR]
+name = "Islands: Poison Waste south of Isafdar"
+tile = { x = 2213, y = 3099 }
+
+#[DLS]

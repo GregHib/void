@@ -1,0 +1,19 @@
+[travel_log_re_sort]
+id = 4618
+persist = true
+format = "boolean"
+
+[fairy_ring_code_1]
+id = 2341
+format = "list"
+values = ["a", "d", "c", "b"]
+
+[fairy_ring_code_2]
+id = 2342
+format = "list"
+values = ["i", "l", "k", "j"]
+
+[fairy_ring_code_3]
+id = 2343
+format = "list"
+values = ["p", "s", "r", "q"]

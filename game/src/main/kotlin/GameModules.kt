@@ -5,6 +5,7 @@ import content.bot.interact.path.DijkstraFrontier
 import content.entity.obj.ship.CharterShips
 import content.entity.player.modal.book.Books
 import content.entity.world.music.MusicTracks
+import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
 import kotlinx.io.pool.DefaultPool
 import org.koin.dsl.module
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
@@ -30,6 +31,7 @@ fun gameModule(files: ConfigFiles) = module {
     single(createdAtStart = true) { NavigationGraph(get(), get()).load(files.find(Settings["map.navGraph"])) }
     single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }
     single(createdAtStart = true) { MusicTracks().load(files.find(Settings["map.music"])) }
+    single(createdAtStart = true) { FairyRingCodes().load(files.find(Settings["definitions.fairyCodes"])) }
     single(createdAtStart = true) { CharterShips().load(files.find(Settings["map.ships.prices"])) }
     single {
         InstructionHandlers(

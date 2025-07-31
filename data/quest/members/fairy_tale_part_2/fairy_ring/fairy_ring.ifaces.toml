@@ -1,0 +1,57 @@
+[fairy_ring]
+id = 734
+components = {
+    teleport = 21,
+    clockwise_1 = 23,
+    anticlockwise_1 = 24,
+    clockwise_2 = 25,
+    anticlockwise_2 = 26,
+    clockwise_3 = 27,
+    anticlockwise_3 = 28,
+}
+
+[travel_log]
+id = 735
+type = "inventory_tab"
+components = {
+    re_sort_list = 12,
+    aiq = 15,
+    air = 16,
+    ajq = 19,
+    ajr = 20,
+    ajs = 21,
+    akq = 23,
+    aks = 25,
+    alq = 27,
+    alr = 28,
+    als = 29,
+    bip = 30,
+    biq = 31,
+    bis = 33,
+    bjr = 36,
+    bkp = 38,
+    bkq = 39,
+    bkr = 40,
+    bks = 41,
+    blp = 42,
+    blr = 44,
+    cip = 46,
+    ciq = 47,
+    cjr = 52,
+    ckp = 54,
+    ckr = 56,
+    cks = 57,
+    clp = 58,
+    clr = 60,
+    cls = 61,
+    dir = 64,
+    dis = 65,
+    djp = 66,
+    djr = 68,
+    dkp = 70,
+    dkr = 72,
+    dks = 73,
+    dlq = 75,
+    dlr = 76,
+}
+

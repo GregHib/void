@@ -17,6 +17,7 @@ import content.entity.sound.midi
 import content.entity.sound.sound
 import content.entity.world.music.MusicTracks
 import content.entity.world.music.MusicUnlock
+import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
 import content.quest.quests
 import content.quest.refreshQuestJournal
 import content.skill.prayer.PrayerConfigs
@@ -447,6 +448,7 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
         "book", "books" -> get<Books>().load(files.list(Settings["definitions.books"]))
         "stairs", "tele", "teles", "teleports" -> get<ObjectTeleports>().load(files.list(Settings["map.teleports"]))
         "tracks", "songs" -> get<MusicTracks>().load(files.find(Settings["map.music"]))
+        "fairy ring", "fairy codes" -> get<FairyRingCodes>().load(files.find(Settings["definitions.fairyCodes"]))
         "ships" -> get<CharterShips>().load(files.find(Settings["map.ships.prices"]))
         "objects", "objs" -> {
             val defs: ObjectDefinitions = get()
