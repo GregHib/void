@@ -102,17 +102,6 @@ components = {
 [bank_help]
 id = 767
 
-[collection_box]
-id = 109
-components = {
-  box1 = 19,
-  box2 = 23,
-  box3 = 27,
-  box4 = 32,
-  box5 = 37,
-  box6 = 42,
-}
-
 [returned_items]
 id = 772
 components = {

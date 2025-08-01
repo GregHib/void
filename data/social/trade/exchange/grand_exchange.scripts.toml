@@ -1,0 +1,95 @@
+[grand_exchange_onload]
+id = 585
+
+[grand_exchange_on_stock_transmit]
+id = 586
+
+[grand_exchange_on_var_transmit]
+id = 587
+
+[grand_exchange_on_inv_transmit]
+id = 589
+
+[grand_exchange_offer_button]
+id = 590
+
+[grand_exchange_choose_cancel]
+id = 591
+
+[grand_exchange_choose_buy]
+id = 592
+
+[grand_exchange_update_running_layer]
+id = 593
+params = [
+    "item_slot"
+]
+
+[grand_exchange_update_offer_layer]
+id = 594
+params = [
+    "offer_type",
+    "item_id",
+    "quantity",
+    "price"
+]
+
+[grand_exchange_choose_sell]
+id = 595
+
+[grand_exchange_offer_count_minus]
+id = 596
+
+[grand_exchange_offer_count_plus]
+id = 597
+
+[grand_exchange_sessions_diary]
+id = 598
+
+[grand_exchange_offer_count_10]
+id = 599
+
+[grand_exchange_offer_count_100]
+id = 560
+
+[grand_exchange_offer_count_1000]
+id = 865
+
+[grand_exchange_offer_count_set_timer]
+id = 562
+
+[grand_exchange_offer_price_minus]
+id = 604
+
+[grand_exchange_offer_price_plus]
+id = 605
+
+[grand_exchange_offer_price_min]
+id = 606
+
+[grand_exchange_offer_price_market]
+id = 607
+
+[grand_exchange_offer_price_max]
+id = 608
+
+[grand_exchange_offer_price_set_timer]
+id = 609
+
+[grand_exchange_update_offer_type]
+id = 621
+
+[grand_exchange_hide_all]
+id = 622
+
+[grand_exchange_offer_add_tooltip]
+id = 649
+
+[grand_exchange_offer_add_tooltip_dynamic]
+id = 650
+
+[grand_exchange_draw_progress_bar]
+id = 652
+
+[grand_exchange_stone_button_filled]
+id = 653
