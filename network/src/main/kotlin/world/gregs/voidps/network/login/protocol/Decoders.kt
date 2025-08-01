@@ -85,7 +85,7 @@ fun decoders(huffman: Huffman): Array<Decoder?> {
     array[1] = StringEntryDecoder()
     array[34] = InterfaceOnFloorItemDecoder()
     array[40] = APCoordinateDecoder()
-    array[28] = ResumeObjDialogueDecoder()
+    array[28] = DialogueContinueItemDecoder()
     array[84] = ToolkitPreferencesDecoder()
     array[52] = SongEndDecoder()
     array[37] = FloorItemExamineDecoder()

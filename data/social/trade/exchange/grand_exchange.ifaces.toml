@@ -1,7 +1,34 @@
-[current_offers]
+[grand_exchange]
 id = 105
 type = "main_screen"
 components = {
+  buy_offer_1 = 30,
+  sell_offer_1 = 31,
+  buy_offer_2 = 46,
+  sell_offer_2 = 47,
+  buy_offer_3 = 62,
+  sell_offer_3 = 63,
+  buy_offer_4 = 81,
+  sell_offer_4 = 82,
+  buy_offer_5 = 100,
+  sell_offer_5 = 101,
+  buy_offer_6 = 119,
+  sell_offer_6 = 120,
+  back = 127,
+  decrease_quantity = 157,
+  increase_quantity = 159,
+  add_1 = 162,
+  add_10 = 164,
+  add_100 = 166,
+  add_all = 168,
+  add_x = 170,
+  decrease_price = 171,
+  increase_price = 173,
+  offer_min = 177,
+  offer_market = 180,
+  offer_max = 183,
+  offer_x = 185,
+  confirm = 190,
   offer_layer = 126,
   new_offer_layer = 156,
   buy_layer = 192,
@@ -14,12 +41,21 @@ components = {
   offer_tooltip = 213
 }
 
-[current_offers_tutorial]
+[grand_exchange_tutorial]
 id = 106
 
 [stock_side]
 id = 107
 type = "inventory_tab"
+components = {
+  items = {
+    id = 18,
+    inventory = "inventory",
+    options = {
+      Offer = 0,
+    }
+  }
+}
 
 [exchange_offer_tutorial]
 id = 108
@@ -47,3 +83,7 @@ id = 644
 
 [exchange_item_sets]
 id = 645
+
+[grand_exchange_item_dialog]
+id = 389
+type = "chat_foreground"

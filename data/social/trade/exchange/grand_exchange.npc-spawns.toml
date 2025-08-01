@@ -1,4 +1,8 @@
 spawns = [
 # 12598
   { id = "bob_barter_herbs", x = 3156, y = 3481 },
+  { id = "grand_exchange_clerk_ponytail", x = 3164, y = 3488, direction = "SOUTH" },
+  { id = "grand_exchange_clerk_blonde", x = 3165, y = 3488, direction = "SOUTH" },
+  { id = "grand_exchange_clerk_short", x = 3165, y = 3491, direction = "NORTH" },
+  { id = "grand_exchange_clerk_brown", x = 3164, y = 3491, direction = "NORTH" },
 ]

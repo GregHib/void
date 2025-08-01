@@ -16,6 +16,7 @@ default = -1
 [grand_exchange_page]
 id = 1113
 format = "map"
+default = "offers"
 values = { offers = -1, buy = 0, sell = 1 }
 
 [grand_exchange_range_min]

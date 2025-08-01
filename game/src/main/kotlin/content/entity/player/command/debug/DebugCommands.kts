@@ -37,9 +37,7 @@ import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.network.login.protocol.encode.clearCamera
-import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
-import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
+import world.gregs.voidps.network.login.protocol.encode.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
@@ -51,12 +49,7 @@ val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 
 modCommand("test") {
-    player.appearance.body.setLook(BodyPart.Hair, content.toInt())
-    player.flagAppearance()
-//    player["slayer_count"] = 15
-//    player["slayer_target"] = content.toInt()
-//    println()
-//    println("Facing ${player.tile.delta(player.visuals.face.targetX, player.visuals.face.targetY)}")
+    player.client?.grandExchange(0)
 }
 
 modCommand("commands") {
