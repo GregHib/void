@@ -93,3 +93,9 @@ id = 652
 
 [grand_exchange_stone_button_filled]
 id = 653
+
+[item_dialogue_reset]
+id = 570
+
+[item_dialogue_close]
+id = 571

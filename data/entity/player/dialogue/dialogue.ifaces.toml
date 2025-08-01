@@ -539,10 +539,6 @@ type = "dialogue_box"
 id = 393
 type = "dialogue_box"
 
-[dialogue_obj_dialog]
-id = 389
-type = "dialogue_box"
-
 # 12 lines
 [dialogue_tutorial_text2]
 id = 421
