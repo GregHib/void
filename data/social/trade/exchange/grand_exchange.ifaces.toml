@@ -1,5 +1,43 @@
+[current_offers]
+id = 105
+type = "main_screen"
+components = {
+  offer_layer = 126,
+  new_offer_layer = 156,
+  buy_layer = 192,
+  sell_layer = 197,
+  running_layer = 200,
+  process_text = 201,
+  process_bar = 202,
+  offer_abort = 203,
+  tooltip_layer = 212,
+  offer_tooltip = 213
+}
+
+[current_offers_tutorial]
+id = 106
+
 [stock_side]
 id = 107
+type = "inventory_tab"
+
+[exchange_offer_tutorial]
+id = 108
+
+[collection_box]
+id = 109
+components = {
+  box1 = 19,
+  box2 = 23,
+  box3 = 27,
+  box4 = 32,
+  box5 = 37,
+  box6 = 42,
+}
+
+[exchange_offer]
+id = 110
+type = "main_screen"
 
 [exchange_history]
 id = 643
