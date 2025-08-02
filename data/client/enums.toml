@@ -389,3 +389,6 @@ id = 1283
 # From pouch id
 [summoning_familiar_ids]
 id = 1320
+
+[grand_exchange_slot_inv]
+id = 1079

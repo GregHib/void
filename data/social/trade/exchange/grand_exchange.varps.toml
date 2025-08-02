@@ -1,12 +1,15 @@
 [grand_exchange_item_id]
 id = 1109
-# -1 = choose an item, 0 >
+format = "int"
+default = -1
 
 [grand_exchange_quantity]
 id = 1110
+format = "int"
 
 [grand_exchange_price]
 id = 1111
+format = "int"
 
 [grand_exchange_box]
 id = 1112 # enum 1079 - 0=523, 1=524, 2=525, 3=526, 4=527, 5=528
@@ -19,11 +22,17 @@ format = "map"
 default = "offers"
 values = { offers = -1, buy = 0, sell = 1 }
 
+[grand_exchange_market_price]
+id = 1114
+format = "int"
+
 [grand_exchange_range_min]
 id = 1115
+format = "int"
 
 [grand_exchange_range_max]
 id = 1116
+format = "int"
 
 [grand_exchange_hide_all]
 id = 1118
