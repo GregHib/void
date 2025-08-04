@@ -44,6 +44,9 @@ interfaceOpen("grand_exchange") { player ->
 //            player.client?.grandExchange(i)
 //        }
     }
+    player.interfaceOptions.unlockAll(id, "collect_slot_0", 0..100)
+    player.interfaceOptions.unlockAll(id, "collect_slot_1", 0..100)
+
 //    for (id in player["grand_exchange_offers", LongArray(6)]) {
 //
 //    }
