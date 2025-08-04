@@ -45,6 +45,7 @@ class GrandExchange(
                     seller.remaining -= sold
                     // Return excess coins to buyer
                     offer.excess += (offer.price - seller.price) * sold
+                    // TODO message player if logged in
 
                     if (offer.remaining >= seller.remaining) {
                         seller.state = OfferState.SellCompleted
@@ -53,7 +54,6 @@ class GrandExchange(
                         break
                     }
                 }
-
             }
             OfferType.Sell -> {
                 while (offer.remaining < offer.quantity) {
@@ -63,21 +63,21 @@ class GrandExchange(
                         offers.sell(offer)
                         return
                     }
-//                    val buyer = weightedSample(entry.value)
-//                    // if selling less or same as buyer has
-//                    val sold = if (offer.remaining > buyer.remaining) buyer.remaining else offer.remaining
-//
-//                    offer.remaining -= sold
-//                    buyer.remaining -= sold
-//                    // Return excess coins to buyer
-//                    offer.excess += (offer.price - buyer.price) * sold
-//
-//                    if (offer.remaining >= buyer.remaining) {
-//                        buyer.state = OfferState.SellCompleted
-//                    } else { // buying less than seller has
-//                        offer.state = OfferState.BuyCompleted
-//                        break
-//                    }
+                    val buyer = weightedSample(entry.value)
+                    // if selling less or same as buyer has
+                    val sold = if (offer.remaining > buyer.remaining) buyer.remaining else offer.remaining
+
+                    offer.remaining -= sold
+                    buyer.remaining -= sold
+                    // Set coins given to buyer
+                    offer.excess += buyer.price * sold
+
+                    if (offer.remaining >= buyer.remaining) {
+                        buyer.state = OfferState.BuyCompleted
+                    } else { // selling less than buyer needs
+                        offer.state = OfferState.SellCompleted
+                        break
+                    }
                 }
 
             }
