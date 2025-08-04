@@ -392,3 +392,12 @@ id = 1320
 
 [grand_exchange_slot_inv]
 id = 1079
+
+[collection_box_parent_layers]
+id = 1080
+
+[collection_box_tooltip_interfaces]
+id = 1081
+
+[collection_box_members_interfaces]
+id = 1082

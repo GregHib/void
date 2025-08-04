@@ -46,7 +46,21 @@ components = {
   process_bar = 202,
   offer_abort = 203,
   tooltip_layer = 212,
-  offer_tooltip = 213
+  offer_tooltip = 213,
+  collect_slot_0 = {
+    id = 208,
+    options = {
+        Collect_notes = 0,
+        Collect_items = 1,
+    }
+  },
+  collect_slot_1 = {
+    id = 211,
+    options = {
+      Collect_notes = 0,
+      Collect_items = 1,
+    }
+  },
 }
 
 [grand_exchange_tutorial]
