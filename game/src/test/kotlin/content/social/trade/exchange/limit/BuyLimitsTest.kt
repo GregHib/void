@@ -1,4 +1,4 @@
-package content.social.trade.exchange
+package content.social.trade.exchange.limit
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach

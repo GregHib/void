@@ -1,4 +1,4 @@
-package content.social.trade.exchange
+package content.social.trade.exchange.limit
 
 data class BuyLimit(
     var amount: Int = 0,

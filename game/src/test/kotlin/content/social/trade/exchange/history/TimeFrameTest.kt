@@ -1,4 +1,4 @@
-package content.social.trade.exchange
+package content.social.trade.exchange.history
 
 import org.junit.Assert.assertEquals
 import java.time.Instant

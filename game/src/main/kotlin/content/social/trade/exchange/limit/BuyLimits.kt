@@ -1,4 +1,4 @@
-package content.social.trade.exchange
+package content.social.trade.exchange.limit
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.data.definition.ItemDefinitions

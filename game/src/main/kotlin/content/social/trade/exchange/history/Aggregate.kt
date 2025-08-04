@@ -1,4 +1,4 @@
-package content.social.trade.exchange
+package content.social.trade.exchange.history
 
 /**
  * An aggregation of information of [Offer]'s over a certain [TimeFrame]
