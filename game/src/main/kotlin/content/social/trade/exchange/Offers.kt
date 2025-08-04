@@ -9,8 +9,22 @@ class Offers(
     var counter: Long = 0,
 ) {
 
-    fun offer(id: Long): Offer {
-        return offers[id] ?: Offer.EMPTY
+    fun add(offer: Offer): Long {
+        val id = counter++
+        offers[id] = offer
+        return id
+    }
+
+    fun buy(offer: Offer) {
+        buyByItem[offer.item]?.get(offer.price)?.add(offer)
+    }
+
+    fun sell(offer: Offer) {
+        sellByItem[offer.item]?.get(offer.price)?.add(offer)
+    }
+
+    fun offer(id: Long): Offer? {
+        return offers[id]
     }
 
     fun selling(item: String): TreeMap<Int, MutableList<Offer>> {
@@ -21,33 +35,13 @@ class Offers(
         return buyByItem[item] ?: TreeMap()
     }
 
-    fun add(offer: Offer): Long {
-        val id = counter++
-        offers[id] = offer
-        return id
-    }
-
-//    fun add(item: Item, price: Int): Long {
-//        val offer = Offer(item.id, item.amount, price)
-//        val id = counter++
-//        offers[id] = offer
-//        return id
-//    }
-
-    fun remove(id: Long) {
-        val offer = offers[id] ?: return
-        if (offer.state == OfferState.BuyOpen) {
+    fun remove(id: Long): Offer? {
+        val offer = offers[id] ?: return null
+        if (offer.type == OfferType.Buy) {
             buyByItem[offer.item]?.get(offer.price)?.remove(offer)
-        } else if (offer.state == OfferState.SellOpen) {
+        } else if (offer.type == OfferType.Sell) {
             sellByItem[offer.item]?.get(offer.price)?.remove(offer)
         }
-    }
-
-    fun buy(offer: Offer) {
-        buyByItem[offer.item]?.get(offer.price)?.add(offer)
-    }
-
-    fun sell(offer: Offer) {
-        sellByItem[offer.item]?.get(offer.price)?.add(offer)
+        return offer
     }
 }

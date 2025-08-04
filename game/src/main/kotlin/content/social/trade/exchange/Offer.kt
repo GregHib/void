@@ -5,11 +5,14 @@ data class Offer(
     val item: String = "",
     val quantity: Int = 0,
     val price: Int = 0,
-    var state: OfferState = OfferState.PendingBuy,
+    var state: OfferState = OfferState.Pending,
+    var lastUpdated: Long = System.currentTimeMillis(),
     var lastActive: Long = System.currentTimeMillis(),
     var remaining: Int = quantity,
-    var excess: Int = 0
+    var excess: Int = 0,
+    var account: String = "",
 ) {
+
 
     companion object {
         val EMPTY = Offer()
