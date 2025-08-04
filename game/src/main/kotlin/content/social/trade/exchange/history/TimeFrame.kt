@@ -1,4 +1,4 @@
-package content.social.trade.exchange
+package content.social.trade.exchange.history
 
 import java.time.Instant
 import java.time.ZoneOffset

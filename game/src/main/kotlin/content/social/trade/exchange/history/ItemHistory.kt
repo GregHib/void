@@ -1,4 +1,4 @@
-package content.social.trade.exchange
+package content.social.trade.exchange.history
 
 /**
  * Aggregated price and volume history for an item

@@ -1,5 +1,11 @@
 package content.social.trade.exchange
 
+import content.social.trade.exchange.history.ExchangeHistory
+import content.social.trade.exchange.limit.BuyLimits
+import content.social.trade.exchange.offer.Offer
+import content.social.trade.exchange.offer.OfferState
+import content.social.trade.exchange.offer.OfferType
+import content.social.trade.exchange.offer.Offers
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -19,12 +25,12 @@ class GrandExchange(
     private val history: ExchangeHistory,
     private val accounts: AccountDefinitions,
     private val players: Players,
-) {
+) : Runnable {
 
     private val pending = mutableListOf<Offer>()
     private val cancellations = mutableListOf<Long>()
 
-    fun tick() {
+    override fun run() {
         for (id in cancellations) {
             val offer = offers.remove(id) ?: continue
             offer.state = OfferState.Cancelled

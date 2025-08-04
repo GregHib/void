@@ -1,4 +1,4 @@
-package content.social.trade.exchange
+package content.social.trade.exchange.offer
 
 import java.util.*
 
