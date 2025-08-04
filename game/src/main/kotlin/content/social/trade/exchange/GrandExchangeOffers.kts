@@ -44,7 +44,7 @@ interfaceOpen("grand_exchange") { player ->
                 set(1, Item("coins", 999_999))
                 set(0, Item("abyssal_whip", 1))
             }
-            player.client?.grandExchange(i, 2, 4151, 1_000_000, 2, 1, 1_000_000)
+            player.client?.grandExchange(i, 2, 4151, 1_000_000, 2, 1, 999_000)
         }
 //        } else {
 //            player.client?.grandExchange(i)
