@@ -15,13 +15,16 @@ import world.gregs.voidps.engine.client.ui.dialogue.continueItemDialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.sendInventory
+import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 import world.gregs.voidps.network.login.protocol.encode.grandExchange
 import kotlin.math.ceil
 
@@ -30,13 +33,16 @@ val exchange: GrandExchange by inject()
 interfaceOpen("grand_exchange") { player ->
     player["grand_exchange_page"] = "offers"
     player["grand_exchange_box"] = -1
+    player.interfaceOptions.unlockAll(id, "collect_slot_0")
+    player.interfaceOptions.unlockAll(id, "collect_slot_1")
     for (i in 0 until 6) {
 //        if(i == 0) {
         // TODO send unlocks
         if (i != 5) {
-            val inv = player.inventories.inventory("collection_box_${i + 1}")
+            val inv = player.inventories.inventory("collection_box_${i}")
             inv.transaction {
-                set(0, Item("coins", 999_999))
+                set(1, Item("coins", 999_999))
+                set(0, Item("abyssal_whip", 1))
             }
             player.client?.grandExchange(i, 2, 4151, 1_000_000, 2, 1, 1_000_000)
         }
@@ -44,12 +50,32 @@ interfaceOpen("grand_exchange") { player ->
 //            player.client?.grandExchange(i)
 //        }
     }
-    player.interfaceOptions.unlockAll(id, "collect_slot_0", 0..100)
-    player.interfaceOptions.unlockAll(id, "collect_slot_1", 0..100)
 
 //    for (id in player["grand_exchange_offers", LongArray(6)]) {
 //
 //    }
+}
+
+interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
+    val index = component.removePrefix("collect_slot_").toInt()
+    val box: Int = player["grand_exchange_box"] ?: return@interfaceOption
+    val collectionBox = player.inventories.inventory("collection_box_${box}")
+    var item = collectionBox[index]
+    if (option == "Collect_notes") {
+        item = item.noted ?: item
+    }
+    player.inventory.transaction {
+        val txn = link(collectionBox)
+        txn.clear(index)
+        add(item.id, item.amount)
+    }
+    when (player.inventory.transaction.error) {
+        is TransactionError.Full -> player.inventoryFull()
+        TransactionError.None -> if (collectionBox.isEmpty()) {
+            player.client?.grandExchange(box, 0)
+        }
+        else -> logger.warn { "Issue collecting items from grand exchange ${player.inventory.transaction.error} ${player.name} $item $index" }
+    }
 }
 
 interfaceOption("Abort Offer", "offer_abort", "grand_exchange") {

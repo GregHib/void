@@ -62,7 +62,10 @@ class InterfaceHandler(
         if (id == "shop") {
             return player["shop"]
         }
-        val inventory = componentDefinition["inventory", ""]
+        var inventory = componentDefinition["inventory", ""]
+        if (id == "grand_exchange") {
+            inventory = "collection_box_${player["grand_exchange_box", -1]}"
+        }
         if (!player.inventories.contains(inventory)) {
             logger.info { "Player doesn't have interface inventory [$player, interface=$id, inventory=$inventory]" }
             return null
@@ -78,6 +81,7 @@ class InterfaceHandler(
             itemSlot == -1 && inventoryId == "returned_lent_items" -> 0
             id == "price_checker" -> itemSlot / 2
             id == "shop" -> itemSlot / 6
+            id == "grand_exchange" -> componentDefinition.stringId.removePrefix("collect_slot_").toInt()
             else -> itemSlot
         }
         val definition = inventoryDefinitions.get(inventoryId)
