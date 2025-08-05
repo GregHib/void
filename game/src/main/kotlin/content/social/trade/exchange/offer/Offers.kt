@@ -1,5 +1,11 @@
 package content.social.trade.exchange.offer
 
+import content.social.trade.exchange.offer.Offer.Companion.readOffer
+import content.social.trade.exchange.offer.Offer.Companion.write
+import world.gregs.config.Config
+import world.gregs.config.writePair
+import world.gregs.config.writeSection
+import java.io.File
 import java.util.*
 
 class Offers(
@@ -37,11 +43,47 @@ class Offers(
 
     fun remove(id: Long): Offer? {
         val offer = offers[id] ?: return null
-        if (offer.type == OfferType.Buy) {
-            buyByItem[offer.item]?.get(offer.price)?.remove(offer)
-        } else if (offer.type == OfferType.Sell) {
+        if (offer.sell) {
             sellByItem[offer.item]?.get(offer.price)?.remove(offer)
+        } else {
+            buyByItem[offer.item]?.get(offer.price)?.remove(offer)
         }
         return offer
+    }
+
+    fun clear() {
+        counter = 0
+        offers.clear()
+        buyByItem.clear()
+        sellByItem.clear()
+    }
+
+    fun save(file: File) {
+        Config.fileWriter(file) {
+            writeSection("offers")
+            writePair("count", counter)
+            for ((id, offer) in offers) {
+                writeSection(id.toString())
+                write(offer)
+            }
+        }
+    }
+
+    fun load(file: File) {
+        Config.fileReader(file) {
+            val section = section()
+            assert(section == "offers")
+            counter = long()
+            while (nextSection()) {
+                val id = long()
+                val offer = readOffer()
+                offers[id] = offer
+                if (offer.sell) {
+                    sell(offer)
+                } else {
+                    buy(offer)
+                }
+            }
+        }
     }
 }

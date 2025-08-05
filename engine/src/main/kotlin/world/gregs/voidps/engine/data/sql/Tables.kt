@@ -1,6 +1,10 @@
 package world.gregs.voidps.engine.data.sql
 
 import org.jetbrains.exposed.sql.Table
+import world.gregs.voidps.engine.data.sql.AccountsTable.autoIncrement
+import world.gregs.voidps.engine.data.sql.AccountsTable.uniqueIndex
+import world.gregs.voidps.engine.data.sql.ExperienceTable.references
+import world.gregs.voidps.engine.data.sql.ExperienceTable.uniqueIndex
 
 internal object AccountsTable : Table("accounts") {
     val id = integer("id").autoIncrement().uniqueIndex()
@@ -102,4 +106,18 @@ internal object InventoriesTable : Table("inventories") {
     init {
         index(true, playerId, inventoryName)
     }
+}
+
+internal object OffersTable : Table("grand_exchange_offers") {
+    val id = integer("id").autoIncrement().uniqueIndex()
+    val sell = bool("sell").default(false)
+    val item = text("item")
+    val amount = integer("amount")
+    val price = integer("price")
+    val lastUpdated = long("last_updated")
+    val lastActive = long("last_active")
+    val remaining = integer("remaining")
+    val excess = integer("excess")
+    val account = integer("account").references(AccountsTable.id).uniqueIndex()
+
 }

@@ -1,5 +1,9 @@
 package content.social.trade.exchange.history
 
+import content.social.trade.exchange.history.ItemHistory.Companion.readHistory
+import content.social.trade.exchange.history.ItemHistory.Companion.write
+import world.gregs.config.Config
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**
@@ -13,14 +17,14 @@ class ExchangeHistory(
 
     fun record(item: String, amount: Int, price: Int) {
         val history = history.getOrPut(item) { ItemHistory() }
-        history.record(price, amount)
+        val timestamp = System.currentTimeMillis()
+        history.record(timestamp, price, amount)
     }
 
     fun clean() {
         val timestamp = System.currentTimeMillis()
-        val yearAgo = timestamp - TimeUnit.MILLISECONDS.toDays(366)
         for (item in history.values) {
-            item.clean(yearAgo)
+            item.clean(timestamp)
         }
     }
 
@@ -43,4 +47,25 @@ class ExchangeHistory(
         }
     }
 
+    fun save(path: File) {
+        for ((key, value) in history) {
+            Config.fileWriter(path.resolve("${key}.toml")) {
+                write(value)
+            }
+        }
+    }
+
+    companion object {
+        fun read(path: File): ExchangeHistory {
+            val history: MutableMap<String, ItemHistory> = mutableMapOf()
+            for (file in path.listFiles()!!) {
+                Config.fileReader(file) {
+                    history[file.nameWithoutExtension] = readHistory()
+                }
+            }
+            val exchangeHistory = ExchangeHistory(history)
+            exchangeHistory.calculatePrices()
+            return exchangeHistory
+        }
+    }
 }

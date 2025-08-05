@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.timer.toTicks
+import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
@@ -25,6 +26,7 @@ class GrandExchange(
     private val history: ExchangeHistory,
     private val accounts: AccountDefinitions,
     private val players: Players,
+    private val directory: File
 ) : Runnable {
 
     private val pending = mutableListOf<Offer>()
@@ -44,21 +46,14 @@ class GrandExchange(
         if (GameLoop.tick % 6000 == 0) { // 1 hour
             history.clean()
             history.calculatePrices()
+            history.save(directory.resolve("price_history"))
+            offers.save(directory.resolve("offers.toml"))
         }
     }
 
     private fun process(offer: Offer) {
-        when (offer.type) {
-            OfferType.Buy -> while (offer.remaining < offer.quantity) {
-                // Find the cheapest seller
-                val entry = offers.selling(offer.item).floorEntry(offer.price)
-                if (entry == null) {
-                    offers.buy(offer)
-                    break
-                }
-                exchange(entry.value, offer, buy = true)
-            }
-            OfferType.Sell -> while (offer.remaining < offer.quantity) {
+        if (offer.sell) {
+            while (offer.remaining < offer.amount) {
                 // Find the highest buyer
                 val entry = offers.buying(offer.item).ceilingEntry(offer.price)
                 if (entry == null) {
@@ -66,6 +61,16 @@ class GrandExchange(
                     return
                 }
                 exchange(entry.value, offer, buy = false)
+            }
+        } else {
+            while (offer.remaining < offer.amount) {
+                // Find the cheapest seller
+                val entry = offers.selling(offer.item).floorEntry(offer.price)
+                if (entry == null) {
+                    offers.buy(offer)
+                    break
+                }
+                exchange(entry.value, offer, buy = true)
             }
         }
     }
@@ -148,7 +153,7 @@ class GrandExchange(
      * Add an offer to sell an item starting next tick
      */
     fun sell(player: Player, item: Item, price: Int): Long {
-        val offer = Offer(OfferType.Sell, item.id, item.amount, price, account = player.accountName)
+        val offer = Offer(item.id, item.amount, price, sell = true, account = player.accountName)
         val id = offers.add(offer)
         pending.add(offer)
         return id
@@ -158,7 +163,7 @@ class GrandExchange(
      * Add an offer to buy an item starting next tick
      */
     fun buy(player: Player, item: Item, price: Int): Long {
-        val offer = Offer(OfferType.Sell, item.id, item.amount, price, account = player.accountName)
+        val offer = Offer(item.id, item.amount, price, sell = true, account = player.accountName)
         val id = offers.add(offer)
         pending.add(offer)
         return id
