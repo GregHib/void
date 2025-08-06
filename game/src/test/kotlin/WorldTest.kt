@@ -205,6 +205,7 @@ abstract class WorldTest : KoinTest {
                 get(),
                 get(),
                 get(),
+                get(),
                 sequential = true,
             )
             engine = GameLoop(tickStages)

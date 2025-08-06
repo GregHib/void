@@ -23,6 +23,9 @@ import content.quest.refreshQuestJournal
 import content.skill.prayer.PrayerConfigs
 import content.skill.prayer.PrayerConfigs.PRAYERS
 import content.skill.prayer.isCurses
+import content.social.trade.exchange.GrandExchange
+import content.social.trade.exchange.history.ExchangeHistory
+import content.social.trade.exchange.offer.Offers
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -77,6 +80,7 @@ import world.gregs.voidps.network.login.protocol.encode.playMIDI
 import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
+import java.io.File
 import java.util.concurrent.TimeUnit
 import kotlin.collections.set
 import kotlin.system.measureTimeMillis
@@ -153,6 +157,8 @@ adminCommand("npc (npc-id)", "spawn an npc") {
 modCommand("save", "save all players") {
     val account: SaveQueue = get()
     players.forEach(account::save)
+    val exchange: GrandExchange = get()
+    exchange.save()
 }
 
 val definitions: ItemDefinitions by inject()

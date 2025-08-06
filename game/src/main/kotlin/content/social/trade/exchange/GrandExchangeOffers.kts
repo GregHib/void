@@ -7,6 +7,7 @@ import content.entity.player.bank.noted
 import content.entity.player.inv.item.tradeable
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
+import content.social.trade.exchange.offer.OfferState
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.InterfaceOption
@@ -15,6 +16,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.continueItemDialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.name
@@ -29,32 +31,17 @@ import world.gregs.voidps.network.login.protocol.encode.grandExchange
 import kotlin.math.ceil
 
 val exchange: GrandExchange by inject()
+val itemDefinitions: ItemDefinitions by inject()
 
 interfaceOpen("grand_exchange") { player ->
     player["grand_exchange_page"] = "offers"
     player["grand_exchange_box"] = -1
     player.interfaceOptions.unlockAll(id, "collect_slot_0")
     player.interfaceOptions.unlockAll(id, "collect_slot_1")
-    for (i in 0 until 6) {
-//        if(i == 0) {
-        // TODO send unlocks
-        if (i != 5) {
-            val inv = player.inventories.inventory("collection_box_${i}")
-            inv.transaction {
-                set(1, Item("coins", 999_999))
-                set(0, Item("abyssal_whip", 1))
-            }
-            player.client?.grandExchange(i, 2, 4151, 1_000_000, 2, 1, 999_000)
-        }
-//        } else {
-//            player.client?.grandExchange(i)
-//        }
-    }
-
-//    for (id in player["grand_exchange_offers", LongArray(6)]) {
-//
-//    }
+    exchange.refresh(player)
+    player.sendVariable("grand_exchange_ranges")
 }
+
 
 interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
     val index = component.removePrefix("collect_slot_").toInt()
@@ -80,23 +67,26 @@ interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
 
 interfaceOption("Abort Offer", "offer_abort", "grand_exchange") {
     val slot: Int = player["grand_exchange_box"] ?: return@interfaceOption
-    player.client?.grandExchange(slot, 5, 4151, 1_000_000, 2, 1, 1_000_000)
+    val id: Int = player["grand_exchange_offer_${slot}"] ?: return@interfaceOption
+    val offer = exchange.offers.offer(id) ?: return@interfaceOption
+    offer.state = OfferState.Cancelled
+    exchange.refresh(player, slot)
 }
 
 interfaceOption("Abort Offer", "view_offer_*", "grand_exchange") {
     val slot = component.removePrefix("view_offer_").toInt()
-    player.client?.grandExchange(slot, 5, 4151, 1_000_000, 2, 1, 1_000_000)
+    val id: Int = player["grand_exchange_offer_${slot}"] ?: return@interfaceOption
+    val offer = exchange.offers.offer(id) ?: return@interfaceOption
+    offer.state = OfferState.Cancelled
+    exchange.refresh(player, slot)
 }
 
 interfaceOption("Make Offer", "view_offer_*", "grand_exchange") {
     val slot = component.removePrefix("view_offer_").toInt()
+    val id: Int = player["grand_exchange_offer_${slot}"] ?: return@interfaceOption
+    val offer = exchange.offers.offer(id) ?: return@interfaceOption
     player["grand_exchange_box"] = slot
-    player["grand_exchange_item_id"] = 4151
-    player["grand_exchange_item"] = "abyssal_whip"
-    player.interfaces.sendText("grand_exchange", "examine", "Whip me baby one more time.")
-    player["grand_exchange_market_price"] = 950_000
-    player["grand_exchange_range_min"] = 900_000
-    player["grand_exchange_range_max"] = 1_000_000
+    selectItem(player, offer.item)
 }
 
 interfaceOption("Make Buy Offer", "buy_*", "grand_exchange") {
@@ -152,31 +142,42 @@ interfaceOption("Offer", "items", "stock_side") {
         player.message("This item can't be traded on the grand exchange.") // TODO proper message
         return@interfaceOption
     }
-    player["grand_exchange_item"] = item.id
-    player["grand_exchange_item_id"] = item.def.id
+    selectItem(player, item.id)
     player["grand_exchange_quantity"] = item.amount
-    val price = 500
-    player["grand_exchange_price"] = price
-    player["grand_exchange_market_price"] = price
-    player["grand_exchange_range_min"] = ceil(price * 0.95).toInt()
-    player["grand_exchange_range_max"] = ceil(price * 1.05).toInt()
-    player.interfaces.sendText("grand_exchange", "examine", item.def["examine", ""])
+    player["grand_exchange_price"] = player["grand_exchange_market_price", 0]
 }
 
 interfaceOption("Back", "back", "grand_exchange") {
-    back()
+    clear()
 }
 
 interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
-    back()
+    val slot: Int = player["grand_exchange_box"] ?: return@interfaceOption
+    val item: String = player["grand_exchange_item"] ?: return@interfaceOption
+    val amount: Int = player["grand_exchange_quantity"] ?: return@interfaceOption
+    val price: Int = player["grand_exchange_price"] ?: return@interfaceOption
+    val id = when (player["grand_exchange_page", "offers"]) {
+        "buy" -> exchange.buy(player, Item(item, amount), price)
+        "sell" -> exchange.sell(player, Item(item, amount), price)
+        else -> return@interfaceOption
+    }
+    player["grand_exchange_offer_${slot}"] = id
+    exchange.refresh(player, slot)
+    clear()
 }
 
-fun InterfaceOption.back() {
+fun InterfaceOption.clear() {
     player["grand_exchange_box"] = -1
     player["grand_exchange_page"] = "offers"
     player.sendScript("item_dialogue_close")
     player.close("stock_side")
     player.close("item_info")
+    player.clear("grand_exchange_item")
+    player.clear("grand_exchange_item_id")
+    player.clear("grand_exchange_market_price")
+    player.clear("grand_exchange_range_min")
+    player.clear("grand_exchange_range_max")
+    player.clear("grand_exchange_quantity")
 }
 
 interfaceOption("Add *", "add_*", "grand_exchange") {
@@ -233,13 +234,18 @@ interfaceOption("Offer Maximum Price", "offer_max", "grand_exchange") {
 }
 
 continueItemDialogue { player ->
+    selectItem(player, item)
+    player["grand_exchange_price"] = player["grand_exchange_market_price", 0]
+    ItemInfo.showInfo(player, Item(item))
+}
+
+fun selectItem(player: Player, item: String) {
+    val definition = itemDefinitions.get(item)
     player["grand_exchange_item"] = item
-    player["grand_exchange_item_id"] = def.id
-    val price = def.cost
-    player["grand_exchange_price"] = price
+    player["grand_exchange_item_id"] = definition.id
+    player.interfaces.sendText("grand_exchange", "examine", definition["examine", ""])
+    val price = exchange.history.marketPrice(item)
     player["grand_exchange_market_price"] = price
-    player.interfaces.sendText("grand_exchange", "examine", def["examine", ""])
     player["grand_exchange_range_min"] = ceil(price * 0.95).toInt()
     player["grand_exchange_range_max"] = ceil(price * 1.05).toInt()
-    ItemInfo.showInfo(player, Item(item))
 }
