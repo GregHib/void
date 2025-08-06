@@ -6,6 +6,9 @@ import content.entity.obj.ship.CharterShips
 import content.entity.player.modal.book.Books
 import content.entity.world.music.MusicTracks
 import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
+import content.social.trade.exchange.GrandExchange
+import content.social.trade.exchange.history.ExchangeHistory
+import content.social.trade.exchange.offer.Offers
 import kotlinx.io.pool.DefaultPool
 import org.koin.dsl.module
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
@@ -15,6 +18,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.find
 import world.gregs.voidps.engine.data.list
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
+import java.io.File
 
 fun gameModule(files: ConfigFiles) = module {
     single { ItemSpawns() }
@@ -45,5 +49,23 @@ fun gameModule(files: ConfigFiles) = module {
             get(),
             InterfaceHandler(get(), get(), get()),
         )
+    }
+    single(createdAtStart = true) {
+        val buy = File(Settings["storage.grand.exchange.offers.buy.path"])
+        val sell = File(Settings["storage.grand.exchange.offers.sell.path"])
+        buy.mkdir()
+        sell.mkdir()
+        Offers().load(buy, sell)
+    }
+    single(createdAtStart = true) {
+        val file = File(files.find(Settings["storage.grand.exchange.history.path"]))
+        file.mkdir()
+        ExchangeHistory().read(file)
+    }
+    single(createdAtStart = true) {
+        val history = File(files.find(Settings["storage.grand.exchange.history.path"]))
+        val buy = File(files.find(Settings["storage.grand.exchange.offers.buy.path"]))
+        val sell = File(files.find(Settings["storage.grand.exchange.offers.sell.path"]))
+        GrandExchange(get(), get(), get(), get(), get(), history, buy, sell)
     }
 }
