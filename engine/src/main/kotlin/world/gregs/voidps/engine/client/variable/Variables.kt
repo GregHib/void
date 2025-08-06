@@ -22,7 +22,9 @@ open class Variables(
             return value
         }
         value = block.invoke()
-        set(key, value, false)
+        // Don't check if default or not as values must be set.
+        data(key)[key] = value
+        events.emit(VariableSet(key, null, value))
         return value
     }
 
