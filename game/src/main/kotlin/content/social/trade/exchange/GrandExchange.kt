@@ -26,7 +26,9 @@ class GrandExchange(
     private val history: ExchangeHistory,
     private val accounts: AccountDefinitions,
     private val players: Players,
-    private val directory: File
+    private val historyDirectory: File,
+    private val buyOffersDirectory: File,
+    private val sellOffersDirectory: File,
 ) : Runnable {
 
     private val pending = mutableListOf<Offer>()
@@ -46,8 +48,8 @@ class GrandExchange(
         if (GameLoop.tick % 6000 == 0) { // 1 hour
             history.clean()
             history.calculatePrices()
-            history.save(directory.resolve("price_history"))
-            offers.save(directory.resolve("offers.toml"))
+            history.save(historyDirectory)
+            offers.save(buyOffersDirectory, sellOffersDirectory)
         }
     }
 
@@ -153,8 +155,9 @@ class GrandExchange(
      * Add an offer to sell an item starting next tick
      */
     fun sell(player: Player, item: Item, price: Int): Long {
-        val offer = Offer(item.id, item.amount, price, sell = true, account = player.accountName)
-        val id = offers.add(offer)
+        val id = offers.id()
+        val offer = Offer(id, item.id, item.amount, price, sell = true, account = player.accountName)
+        offers.add(offer)
         pending.add(offer)
         return id
     }
@@ -163,8 +166,9 @@ class GrandExchange(
      * Add an offer to buy an item starting next tick
      */
     fun buy(player: Player, item: Item, price: Int): Long {
-        val offer = Offer(item.id, item.amount, price, sell = true, account = player.accountName)
-        val id = offers.add(offer)
+        val id = offers.id()
+        val offer = Offer(id, item.id, item.amount, price, sell = true, account = player.accountName)
+        offers.add(offer)
         pending.add(offer)
         return id
     }

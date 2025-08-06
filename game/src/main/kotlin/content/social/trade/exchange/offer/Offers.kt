@@ -3,30 +3,30 @@ package content.social.trade.exchange.offer
 import content.social.trade.exchange.offer.Offer.Companion.readOffer
 import content.social.trade.exchange.offer.Offer.Companion.write
 import world.gregs.config.Config
-import world.gregs.config.writePair
 import world.gregs.config.writeSection
 import java.io.File
 import java.util.*
+import kotlin.math.max
 
 class Offers(
-    val sellByItem: MutableMap<String, TreeMap<Int, MutableList<Offer>>> = mutableMapOf(),
-    val buyByItem: MutableMap<String, TreeMap<Int, MutableList<Offer>>> = mutableMapOf(),
-    val offers: MutableMap<Long, Offer> = mutableMapOf(),
-    var counter: Long = 0,
+    private val sellByItem: MutableMap<String, TreeMap<Int, MutableList<Offer>>> = mutableMapOf(),
+    private val buyByItem: MutableMap<String, TreeMap<Int, MutableList<Offer>>> = mutableMapOf(),
+    private val offers: MutableMap<Long, Offer> = mutableMapOf(),
+    private var counter: Long = 0,
 ) {
 
-    fun add(offer: Offer): Long {
-        val id = counter++
-        offers[id] = offer
-        return id
+    fun id(): Long = ++counter
+
+    fun add(offer: Offer) {
+        offers[offer.id] = offer
     }
 
     fun buy(offer: Offer) {
-        buyByItem[offer.item]?.get(offer.price)?.add(offer)
+        buyByItem.getOrPut(offer.item) { TreeMap() }.getOrPut(offer.price) { mutableListOf() }.add(offer)
     }
 
     fun sell(offer: Offer) {
-        sellByItem[offer.item]?.get(offer.price)?.add(offer)
+        sellByItem.getOrPut(offer.item) { TreeMap() }.getOrPut(offer.price) { mutableListOf() }.add(offer)
     }
 
     fun offer(id: Long): Offer? {
@@ -58,32 +58,46 @@ class Offers(
         sellByItem.clear()
     }
 
-    fun save(file: File) {
-        Config.fileWriter(file) {
-            writeSection("offers")
-            writePair("count", counter)
-            for ((id, offer) in offers) {
-                writeSection(id.toString())
-                write(offer)
+    fun save(buyDirectory: File, sellDirectory: File) {
+        save(buyDirectory, buyByItem)
+        save(sellDirectory, sellByItem)
+    }
+
+    private fun save(directory: File, map: Map<String, TreeMap<Int, MutableList<Offer>>>) {
+        for ((item, tree) in map) {
+            val file = directory.resolve("${item}.toml")
+            Config.fileWriter(file) {
+                for (offers in tree.values) {
+                    for (offer in offers) {
+                        writeSection(offer.id.toString())
+                        write(offer)
+                    }
+                }
             }
         }
     }
 
-    fun load(file: File) {
-        Config.fileReader(file) {
-            val section = section()
-            assert(section == "offers")
-            counter = long()
-            while (nextSection()) {
-                val id = long()
-                val offer = readOffer()
-                offers[id] = offer
-                if (offer.sell) {
-                    sell(offer)
-                } else {
-                    buy(offer)
+    fun load(buyDirectory: File, sellDirectory: File) {
+        load(buyDirectory, buyByItem, false)
+        load(sellDirectory, sellByItem, true)
+    }
+
+    private fun load(buyDirectory: File, map: MutableMap<String, TreeMap<Int, MutableList<Offer>>>, sell: Boolean) {
+        val files = buyDirectory.listFiles { _, name -> name.endsWith(".toml") } ?: return
+        for (file in files) {
+            val tree = TreeMap<Int, MutableList<Offer>>()
+            val item = file.nameWithoutExtension
+            Config.fileReader(file) {
+                while (nextSection()) {
+                    val id = section().toLong()
+                    val offer = readOffer(item, sell)
+                    counter = max(counter, id)
+                    tree.getOrPut(offer.price) { mutableListOf() }.add(offer)
+                    offers[id] = offer
+                    map[offer.item]?.get(offer.price)?.add(offer)
                 }
             }
+            map[item] = tree
         }
     }
 }

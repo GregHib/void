@@ -5,6 +5,7 @@ import world.gregs.config.ConfigWriter
 import world.gregs.config.writePair
 
 data class Offer(
+    val id: Long = 0,
     val item: String = "",
     val amount: Int = 0,
     val price: Int = 0,
@@ -19,11 +20,9 @@ data class Offer(
 
     companion object {
 
-        fun ConfigReader.readOffer(): Offer {
-            var item = ""
+        fun ConfigReader.readOffer(item: String, sell: Boolean): Offer {
             var amount = 0
             var price = 0
-            var sell = false
             var state: OfferState = OfferState.Pending
             var lastUpdated: Long = System.currentTimeMillis()
             var lastActive: Long = System.currentTimeMillis()
@@ -32,10 +31,8 @@ data class Offer(
             var account = ""
             while (nextPair()) {
                 when (val key = key()) {
-                    "item" -> item = string()
                     "amount" -> amount = int()
                     "price" -> price = int()
-                    "sell" -> sell = boolean()
                     "state" -> state = OfferState.valueOf(string())
                     "last_updated" -> lastUpdated = long()
                     "last_active" -> lastActive = long()
@@ -60,16 +57,20 @@ data class Offer(
         }
 
         fun ConfigWriter.write(offer: Offer) {
-            writePair("item", offer.item)
             writePair("amount", offer.amount)
             writePair("price", offer.price)
             writePair("state", offer.state.name)
-            writePair("sell", offer.sell)
             writePair("last_updated", offer.lastUpdated)
             writePair("last_active", offer.lastActive)
-            writePair("remaining", offer.remaining)
-            writePair("excess", offer.excess)
-            writePair("account", offer.account)
+            if (offer.remaining != 0) {
+                writePair("remaining", offer.remaining)
+            }
+            if (offer.excess != 0) {
+                writePair("excess", offer.excess)
+            }
+            if (offer.account != "") {
+                writePair("account", offer.account)
+            }
         }
 
         val EMPTY = Offer()

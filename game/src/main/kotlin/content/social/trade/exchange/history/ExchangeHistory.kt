@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
  * https://web.archive.org/web/20210430192551/https://secure.runescape.com/m%3Dforum/sl%3D0/forums?98,99,806,63785618
  */
 class ExchangeHistory(
-    private val history: MutableMap<String, ItemHistory> = mutableMapOf(),
+    private val history: MutableMap<String, ItemHistory> = mutableMapOf()
 ) {
     private val marketPrices = mutableMapOf<String, Int>()
 
@@ -47,25 +47,27 @@ class ExchangeHistory(
         }
     }
 
-    fun save(path: File) {
+    fun clear() {
+        history.clear()
+        marketPrices.clear()
+    }
+
+    fun save(directory: File) {
         for ((key, value) in history) {
-            Config.fileWriter(path.resolve("${key}.toml")) {
+            Config.fileWriter(directory.resolve("${key}.toml")) {
                 write(value)
             }
         }
     }
 
-    companion object {
-        fun read(path: File): ExchangeHistory {
-            val history: MutableMap<String, ItemHistory> = mutableMapOf()
-            for (file in path.listFiles()!!) {
-                Config.fileReader(file) {
-                    history[file.nameWithoutExtension] = readHistory()
-                }
+    fun read(directory: File): ExchangeHistory {
+        clear()
+        for (file in directory.listFiles()!!) {
+            Config.fileReader(file) {
+                history[file.nameWithoutExtension] = readHistory()
             }
-            val exchangeHistory = ExchangeHistory(history)
-            exchangeHistory.calculatePrices()
-            return exchangeHistory
         }
+        calculatePrices()
+        return this
     }
 }
