@@ -3,6 +3,8 @@ package content.social.trade.exchange.history
 import content.social.trade.exchange.history.ItemHistory.Companion.readHistory
 import content.social.trade.exchange.history.ItemHistory.Companion.write
 import world.gregs.config.Config
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.timedLoad
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -11,6 +13,7 @@ import java.util.concurrent.TimeUnit
  * https://web.archive.org/web/20210430192551/https://secure.runescape.com/m%3Dforum/sl%3D0/forums?98,99,806,63785618
  */
 class ExchangeHistory(
+    private val itemDefinitions: ItemDefinitions,
     private val history: MutableMap<String, ItemHistory> = mutableMapOf()
 ) {
     private val marketPrices = mutableMapOf<String, Int>()
@@ -28,7 +31,14 @@ class ExchangeHistory(
         }
     }
 
-    fun marketPrice(item: String): Int? = marketPrices[item]
+    fun marketPrice(item: String): Int {
+        val price = marketPrices[item]
+        if (price == null) {
+            val definition = itemDefinitions.get(item)
+            return definition["price", definition.cost]
+        }
+        return price
+    }
 
     fun calculatePrices() {
         val timestamp = System.currentTimeMillis()
@@ -60,14 +70,17 @@ class ExchangeHistory(
         }
     }
 
-    fun read(directory: File): ExchangeHistory {
-        clear()
-        for (file in directory.listFiles()!!) {
-            Config.fileReader(file) {
-                history[file.nameWithoutExtension] = readHistory()
+    fun load(directory: File): ExchangeHistory {
+        timedLoad("grand exchange history") {
+            clear()
+            for (file in directory.listFiles()!!) {
+                Config.fileReader(file) {
+                    history[file.nameWithoutExtension] = readHistory()
+                }
             }
+            calculatePrices()
+            history.size
         }
-        calculatePrices()
         return this
     }
 }

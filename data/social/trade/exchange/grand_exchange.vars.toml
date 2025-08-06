@@ -1,0 +1,25 @@
+[grand_exchange_offer_0]
+persist = true
+format = "int"
+
+[grand_exchange_offer_1]
+persist = true
+format = "int"
+
+[grand_exchange_offer_2]
+persist = true
+format = "int"
+
+[grand_exchange_offer_3]
+persist = true
+format = "int"
+
+
+[grand_exchange_offer_4]
+persist = true
+format = "int"
+
+
+[grand_exchange_offer_5]
+persist = true
+format = "int"

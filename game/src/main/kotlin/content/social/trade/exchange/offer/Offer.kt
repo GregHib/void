@@ -5,7 +5,7 @@ import world.gregs.config.ConfigWriter
 import world.gregs.config.writePair
 
 data class Offer(
-    val id: Long = 0,
+    val id: Int = 0,
     val item: String = "",
     val amount: Int = 0,
     val price: Int = 0,
@@ -13,20 +13,20 @@ data class Offer(
     var state: OfferState = OfferState.Pending,
     var lastUpdated: Long = System.currentTimeMillis(),
     var lastActive: Long = System.currentTimeMillis(),
-    var remaining: Int = amount,
+    var remaining: Int = 0,
     var excess: Int = 0,
     var account: String = "",
 ) {
 
     companion object {
 
-        fun ConfigReader.readOffer(item: String, sell: Boolean): Offer {
+        fun ConfigReader.readOffer(id: Int, item: String, sell: Boolean): Offer {
             var amount = 0
             var price = 0
             var state: OfferState = OfferState.Pending
             var lastUpdated: Long = System.currentTimeMillis()
             var lastActive: Long = System.currentTimeMillis()
-            var remaining = 0
+            var completed = 0
             var excess = 0
             var account = ""
             while (nextPair()) {
@@ -36,13 +36,14 @@ data class Offer(
                     "state" -> state = OfferState.valueOf(string())
                     "last_updated" -> lastUpdated = long()
                     "last_active" -> lastActive = long()
-                    "remaining" -> remaining = int()
+                    "completed" -> completed = int()
                     "excess" -> excess = int()
                     "account" -> account = string()
                     else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                 }
             }
             return Offer(
+                id = id,
                 item = item,
                 amount = amount,
                 price = price,
@@ -50,7 +51,7 @@ data class Offer(
                 state = state,
                 lastUpdated = lastUpdated,
                 lastActive = lastActive,
-                remaining = remaining,
+                remaining = completed,
                 excess = excess,
                 account = account
             )
@@ -63,7 +64,7 @@ data class Offer(
             writePair("last_updated", offer.lastUpdated)
             writePair("last_active", offer.lastActive)
             if (offer.remaining != 0) {
-                writePair("remaining", offer.remaining)
+                writePair("completed", offer.remaining)
             }
             if (offer.excess != 0) {
                 writePair("excess", offer.excess)

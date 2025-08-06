@@ -58,14 +58,14 @@ fun gameModule(files: ConfigFiles) = module {
         Offers().load(buy, sell)
     }
     single(createdAtStart = true) {
-        val file = File(files.find(Settings["storage.grand.exchange.history.path"]))
+        val file = File(Settings["storage.grand.exchange.history.path"])
         file.mkdir()
-        ExchangeHistory().read(file)
+        ExchangeHistory(get()).load(file)
     }
     single(createdAtStart = true) {
-        val history = File(files.find(Settings["storage.grand.exchange.history.path"]))
-        val buy = File(files.find(Settings["storage.grand.exchange.offers.buy.path"]))
-        val sell = File(files.find(Settings["storage.grand.exchange.offers.sell.path"]))
+        val history = File(Settings["storage.grand.exchange.history.path"])
+        val buy = File(Settings["storage.grand.exchange.offers.buy.path"])
+        val sell = File(Settings["storage.grand.exchange.offers.sell.path"])
         GrandExchange(get(), get(), get(), get(), get(), history, buy, sell)
     }
 }
