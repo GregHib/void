@@ -14,7 +14,7 @@ class VariableBits(
     }
 
     fun set(key: String, value: Any, refresh: Boolean): Boolean {
-        val values: MutableList<Any> = variables.getOrPut(key) { ObjectArrayList<Any>().apply { add(value) } }
+        val values: MutableList<Any> = variables.getOrPut(key) { ObjectArrayList() }
         if (!values.contains(value) && values.add(value)) {
             if (refresh) {
                 variables.send(key)
