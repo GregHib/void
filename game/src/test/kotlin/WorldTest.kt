@@ -264,6 +264,9 @@ abstract class WorldTest : KoinTest {
                 }
             }
             properties["storage.players.path"] = "../data/test-saves/"
+            properties["storage.grand.exchange.offers.buy.path"] = "../data/test-grand_exchange/buy_offers/"
+            properties["storage.grand.exchange.offers.sell.path"] = "../data/test-grand_exchange/sell_offers/"
+            properties["storage.grand.exchange.history.path"] = "../data/test-grand_exchange/price_history/"
             properties["world.npcs.randomWalk"] = false
             properties["bots.count"] = 0
             properties.remove("world.id")

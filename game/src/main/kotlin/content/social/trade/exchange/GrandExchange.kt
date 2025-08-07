@@ -4,7 +4,6 @@ import content.social.trade.exchange.history.ExchangeHistory
 import content.social.trade.exchange.limit.BuyLimits
 import content.social.trade.exchange.offer.Offer
 import content.social.trade.exchange.offer.OfferState
-import content.social.trade.exchange.offer.OfferType
 import content.social.trade.exchange.offer.Offers
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
@@ -76,7 +75,7 @@ class GrandExchange(
     override fun run() {
         for (id in cancellations) {
             val offer = offers.remove(id) ?: continue
-            offer.state = OfferState.Cancelled
+            offer.state = OfferState.Completed
         }
         cancellations.clear()
         for (offer in pending) {
@@ -98,7 +97,7 @@ class GrandExchange(
 
     private fun process(offer: Offer) {
         if (offer.sell) {
-            while (offer.remaining < offer.amount) {
+            while (offer.completed < offer.amount) {
                 // Find the highest buyer
                 val entry = offers.buying(offer.item).ceilingEntry(offer.price)
                 if (entry == null) {
@@ -109,7 +108,7 @@ class GrandExchange(
                 exchange(entry.value, offer, buy = false)
             }
         } else {
-            while (offer.remaining < offer.amount) {
+            while (offer.completed < offer.amount) {
                 // Find the cheapest seller
                 val entry = offers.selling(offer.item).floorEntry(offer.price)
                 if (entry == null) {
@@ -135,7 +134,12 @@ class GrandExchange(
     }
 
     fun refresh(player: Player, index: Int) {
-        val id: Int = player["grand_exchange_offer_${index}"] ?: return
+        val id: Int? = player["grand_exchange_offer_${index}"]
+        if (id == null) {
+            player.removeVarbit("grand_exchange_ranges", "slot_${index}")
+            player.client?.grandExchange(index)
+            return
+        }
         val offer = this.offers.offer(id)
         if (offer == null) {
             player.removeVarbit("grand_exchange_ranges", "slot_${index}")
@@ -152,50 +156,57 @@ class GrandExchange(
         val state = when (offer.state) {
             OfferState.Pending -> 1
             OfferState.Open -> 2
-            OfferState.Completed -> 3
-            OfferState.Cancelled -> 5
+            OfferState.Completed -> 5
         }
         val inv = player.inventories.inventory("collection_box_${index}")
         inv.transaction {
-            if (offer.remaining > 0) {
-                add(offer.item, offer.remaining)
+            if (offer.completed > 0) {
+                add(offer.item, offer.completed)
             }
             if (offer.excess > 0) {
                 add("coins", offer.excess)
             }
         }
-        player.client?.grandExchange(index, state, itemDef.id, offer.price, offer.amount, offer.remaining, offer.excess)
+        player.client?.grandExchange(index, state, itemDef.id, offer.price, offer.amount, offer.completed, offer.excess)
     }
 
     private fun exchange(traders: MutableList<Offer>, offer: Offer, buy: Boolean) {
         val trader = weightedSample(traders)
         // if offer has more or same as other
-        var traded = if (offer.remaining >= trader.remaining) trader.remaining else offer.remaining
+        val required = offer.amount - offer.completed
+        val available = trader.amount - trader.completed
+        var traded = if (required >= available) available else required
         if (buy) {
             traded = traded.coerceAtMost(limits.limit(offer.account, offer.item))
         }
 
-        offer.remaining -= traded
-        trader.remaining -= traded
-        trader.lastUpdated = System.currentTimeMillis()
+        if (traded <= 0) {
+            return
+        }
+
+        exchange(offer, traded)
+        exchange(trader, traded)
         // Return excess coins
         offer.excess += if (buy) {
             (offer.price - trader.price) * traded
         } else {
             trader.price * traded
         }
-
-        if (offer.remaining >= traded) {
-            trader.state = OfferState.Completed
-        } else {
-            offer.state = OfferState.Completed
-        }
+        /*
+            If player is online give items immediately
+            If player isn't online store items to give on next login
+         */
 
         limits.record(offer.account, offer.item, traded)
         history.record(offer.item, traded, offer.price)
         notify(trader.account)
         refresh(trader.account)
         refresh(offer.account)
+    }
+
+    private fun exchange(offer: Offer, amount: Int) {
+        offer.completed += amount
+        offer.state = if (offer.completed == amount) OfferState.Completed else OfferState.Open
     }
 
     private fun notify(account: String) {
@@ -221,7 +232,7 @@ class GrandExchange(
         val now = System.currentTimeMillis()
         for (offer in offers) {
             val age = now - offer.lastActive
-            if (offer.state == OfferState.Cancelled || offer.state == OfferState.Completed) {
+            if (offer.state == OfferState.Completed) {
                 continue
             }
             if (TimeUnit.MILLISECONDS.toDays(age) > 7) {
@@ -231,6 +242,9 @@ class GrandExchange(
             cumulativeMap[totalWeight] = offer
         }
 
+        if (totalWeight <= 0) {
+            throw IllegalStateException("Sampling failed due to invalid cumulative map")
+        }
         val randomValue = Random.nextLong(totalWeight)
         val entry = cumulativeMap.ceilingEntry(randomValue)
             ?: throw IllegalStateException("Sampling failed due to invalid cumulative map")

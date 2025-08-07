@@ -78,6 +78,7 @@ class ItemHistory(
             for ((timestamp, aggregate) in history) {
                 writeKey(timestamp.toString())
                 write(aggregate)
+                write("\n")
             }
         }
     }

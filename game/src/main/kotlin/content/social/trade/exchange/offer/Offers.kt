@@ -46,12 +46,20 @@ class Offers(
 
     fun remove(id: Int): Offer? {
         val offer = offers[id] ?: return null
-        if (offer.sell) {
-            sellByItem[offer.item]?.get(offer.price)?.remove(offer)
-        } else {
-            buyByItem[offer.item]?.get(offer.price)?.remove(offer)
-        }
+        remove(if (offer.sell) sellByItem else buyByItem, offer)
         return offer
+    }
+
+    private fun remove(offers: MutableMap<String, TreeMap<Int, MutableList<Offer>>>, offer: Offer) {
+        val map = offers[offer.item] ?: return
+        val list = map[offer.price] ?: return
+        list.remove(offer)
+        if (list.isEmpty()) {
+            map.remove(offer.price)
+        }
+        if (map.isEmpty()) {
+            buyByItem.remove(offer.item)
+        }
     }
 
     fun clear() {

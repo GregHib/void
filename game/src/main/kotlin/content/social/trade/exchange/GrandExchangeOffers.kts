@@ -23,11 +23,11 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
-import world.gregs.voidps.network.login.protocol.encode.grandExchange
 import kotlin.math.ceil
 
 val exchange: GrandExchange by inject()
@@ -42,10 +42,10 @@ interfaceOpen("grand_exchange") { player ->
     player.sendVariable("grand_exchange_ranges")
 }
 
-
 interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
     val index = component.removePrefix("collect_slot_").toInt()
     val box: Int = player["grand_exchange_box"] ?: return@interfaceOption
+    val id: Int = player["grand_exchange_offer_${box}"] ?: return@interfaceOption
     val collectionBox = player.inventories.inventory("collection_box_${box}")
     var item = collectionBox[index]
     if (option == "Collect_notes") {
@@ -59,7 +59,11 @@ interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
     when (player.inventory.transaction.error) {
         is TransactionError.Full -> player.inventoryFull()
         TransactionError.None -> if (collectionBox.isEmpty()) {
-            player.client?.grandExchange(box, 0)
+            val offer = exchange.offers.remove(id)
+            offer?.state = OfferState.Completed
+            player.clear("grand_exchange_offer_${box}")
+            clear()
+            exchange.refresh(player, box)
         }
         else -> logger.warn { "Issue collecting items from grand exchange ${player.inventory.transaction.error} ${player.name} $item $index" }
     }
@@ -67,18 +71,12 @@ interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
 
 interfaceOption("Abort Offer", "offer_abort", "grand_exchange") {
     val slot: Int = player["grand_exchange_box"] ?: return@interfaceOption
-    val id: Int = player["grand_exchange_offer_${slot}"] ?: return@interfaceOption
-    val offer = exchange.offers.offer(id) ?: return@interfaceOption
-    offer.state = OfferState.Cancelled
-    exchange.refresh(player, slot)
+    abort(player, slot)
 }
 
 interfaceOption("Abort Offer", "view_offer_*", "grand_exchange") {
     val slot = component.removePrefix("view_offer_").toInt()
-    val id: Int = player["grand_exchange_offer_${slot}"] ?: return@interfaceOption
-    val offer = exchange.offers.offer(id) ?: return@interfaceOption
-    offer.state = OfferState.Cancelled
-    exchange.refresh(player, slot)
+    abort(player, slot)
 }
 
 interfaceOption("Make Offer", "view_offer_*", "grand_exchange") {
@@ -157,8 +155,21 @@ interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
     val amount: Int = player["grand_exchange_quantity"] ?: return@interfaceOption
     val price: Int = player["grand_exchange_price"] ?: return@interfaceOption
     val id = when (player["grand_exchange_page", "offers"]) {
-        "buy" -> exchange.buy(player, Item(item, amount), price)
-        "sell" -> exchange.sell(player, Item(item, amount), price)
+        "buy" -> {
+            // TODO take from bank
+            if (!player.inventory.remove("coins", price * amount)) {
+                player.message("Not enough coins") // TODO proper message
+                return@interfaceOption
+            }
+            exchange.buy(player, Item(item, amount), price)
+        }
+        "sell" -> {
+            if (!player.inventory.remove(item, amount)) {
+                player.message("Not enough coins") // TODO proper message
+                return@interfaceOption
+            }
+            exchange.sell(player, Item(item, amount), price)
+        }
         else -> return@interfaceOption
     }
     player["grand_exchange_offer_${slot}"] = id
@@ -174,6 +185,7 @@ fun InterfaceOption.clear() {
     player.close("item_info")
     player.clear("grand_exchange_item")
     player.clear("grand_exchange_item_id")
+    player.clear("grand_exchange_price")
     player.clear("grand_exchange_market_price")
     player.clear("grand_exchange_range_min")
     player.clear("grand_exchange_range_max")
@@ -248,4 +260,33 @@ fun selectItem(player: Player, item: String) {
     player["grand_exchange_market_price"] = price
     player["grand_exchange_range_min"] = ceil(price * 0.95).toInt()
     player["grand_exchange_range_max"] = ceil(price * 1.05).toInt()
+}
+
+fun abort(player: Player, slot: Int) {
+    val id: Int = player["grand_exchange_offer_${slot}"] ?: return
+    val offer = exchange.offers.offer(id) ?: return
+    // TODO move this to pending queue
+    offer.state = OfferState.Completed
+    val inventory = player.inventories.inventory("collection_box_${slot}")
+    inventory.transaction {
+        if (offer.sell) {
+            val returned = offer.amount - offer.completed
+            if (returned > 0) {
+                add(offer.item, returned)
+            }
+            if (offer.excess > 0) {
+                add("coins", offer.excess)
+            }
+        } else {
+            if (offer.completed > 0) {
+                add(offer.item, offer.completed)
+            }
+            val returned = offer.amount - offer.completed
+            if (returned > 0) {
+                add("coins", returned * offer.price)
+            }
+        }
+    }
+    player.sendInventory(inventory)
+    exchange.refresh(player, slot)
 }

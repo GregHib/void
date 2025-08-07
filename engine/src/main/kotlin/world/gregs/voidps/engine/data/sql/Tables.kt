@@ -114,7 +114,6 @@ internal object OffersTable : Table("grand_exchange_offers") {
     val item = text("item")
     val amount = integer("amount")
     val price = integer("price")
-    val lastUpdated = long("last_updated")
     val lastActive = long("last_active")
     val remaining = integer("remaining")
     val excess = integer("excess")
