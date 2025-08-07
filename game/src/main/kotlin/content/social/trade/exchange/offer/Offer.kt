@@ -4,6 +4,13 @@ import world.gregs.config.ConfigReader
 import world.gregs.config.ConfigWriter
 import world.gregs.config.writePair
 
+/*
+    Id, Account, Item id, Amount, Price, LastActive
+
+    Id, Completed, Price, Excess
+
+    Id, Item id, Amount, Price, State, Completed, Excess
+ */
 data class Offer(
     val id: Int = 0,
     val item: String = "",
@@ -11,9 +18,8 @@ data class Offer(
     val price: Int = 0,
     val sell: Boolean = false,
     var state: OfferState = OfferState.Pending,
-    var lastUpdated: Long = System.currentTimeMillis(),
     var lastActive: Long = System.currentTimeMillis(),
-    var remaining: Int = 0,
+    var completed: Int = 0,
     var excess: Int = 0,
     var account: String = "",
 ) {
@@ -24,7 +30,6 @@ data class Offer(
             var amount = 0
             var price = 0
             var state: OfferState = OfferState.Pending
-            var lastUpdated: Long = System.currentTimeMillis()
             var lastActive: Long = System.currentTimeMillis()
             var completed = 0
             var excess = 0
@@ -34,7 +39,6 @@ data class Offer(
                     "amount" -> amount = int()
                     "price" -> price = int()
                     "state" -> state = OfferState.valueOf(string())
-                    "last_updated" -> lastUpdated = long()
                     "last_active" -> lastActive = long()
                     "completed" -> completed = int()
                     "excess" -> excess = int()
@@ -49,9 +53,8 @@ data class Offer(
                 price = price,
                 sell = sell,
                 state = state,
-                lastUpdated = lastUpdated,
                 lastActive = lastActive,
-                remaining = completed,
+                completed = completed,
                 excess = excess,
                 account = account
             )
@@ -61,10 +64,9 @@ data class Offer(
             writePair("amount", offer.amount)
             writePair("price", offer.price)
             writePair("state", offer.state.name)
-            writePair("last_updated", offer.lastUpdated)
             writePair("last_active", offer.lastActive)
-            if (offer.remaining != 0) {
-                writePair("completed", offer.remaining)
+            if (offer.completed != 0) {
+                writePair("completed", offer.completed)
             }
             if (offer.excess != 0) {
                 writePair("excess", offer.excess)

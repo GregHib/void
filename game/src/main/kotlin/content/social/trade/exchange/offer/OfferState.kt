@@ -4,5 +4,4 @@ enum class OfferState {
     Pending,
     Open,
     Completed,
-    Cancelled,
 }

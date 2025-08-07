@@ -39,9 +39,8 @@ class OffersTest {
         assertEquals(200, offer.price)
         assertFalse(offer.sell)
         assertEquals(OfferState.Open, offer.state)
-        assertEquals(1000000L, offer.lastUpdated)
         assertEquals(1000001L, offer.lastActive)
-        assertEquals(100, offer.remaining)
+        assertEquals(100, offer.completed)
         assertEquals("bob", offer.account)
     }
 
@@ -68,9 +67,8 @@ class OffersTest {
         assertEquals(200, offer.price)
         assertTrue(offer.sell)
         assertEquals(OfferState.Open, offer.state)
-        assertEquals(1000000L, offer.lastUpdated)
         assertEquals(1000001L, offer.lastActive)
-        assertEquals(100, offer.remaining)
+        assertEquals(100, offer.completed)
         assertEquals("bob", offer.account)
     }
 

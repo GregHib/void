@@ -139,14 +139,14 @@ modCommand("timers", "list all players active timers") {
 
 modCommand("variables", "list all players variables", listOf("vars")) {
     player.message("=== Variables ===", ChatType.Console)
-    for ((variable, value) in (player.variables as PlayerVariables).temp) {
+    for ((variable, value) in (player.variables as PlayerVariables).temp.toSortedMap()) {
         if (content.isNotBlank() && !variable.contains(content, ignoreCase = true)) {
             continue
         }
         player.message("$variable: $value", ChatType.Console)
     }
     player.message("=== Persistent Variables ===", ChatType.Console)
-    for ((variable, value) in player.variables.data) {
+    for ((variable, value) in player.variables.data.toSortedMap()) {
         if (content.isNotBlank() && !variable.contains(content, ignoreCase = true)) {
             continue
         }
