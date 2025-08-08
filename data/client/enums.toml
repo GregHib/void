@@ -393,6 +393,7 @@ id = 1279
 
 # From NPC id, used in interface 662, cs2 751
 # Fruit bat (6817) -> 662, 88
+# Seems to be 1 off on the component ID. Fruit bat's scroll is ID 89
 [pet_details_use_scroll_packed_components]
 id = 1282
 
