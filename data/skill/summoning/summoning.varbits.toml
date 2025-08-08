@@ -1,0 +1,29 @@
+[pet_details_chathead_animation]
+id = 4282
+format = "int"
+persist = true
+
+[pet_details_growth_percentage]
+id = 4285
+format = "int"
+persist = true
+
+[pet_details_hunger_percentage]
+id = 4286
+format = "int"
+persist = true
+
+[unknown_summoning_special_points]
+id = 4288
+format = "int"
+persist = true
+
+[pet_details_seconds_remaining]
+id = 4290
+format = "int"
+persist = true
+
+[pet_details_minutes_remaining]
+id = 4534
+format = "int"
+persist = true
