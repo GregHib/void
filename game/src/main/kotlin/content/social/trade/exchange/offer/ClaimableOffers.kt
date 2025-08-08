@@ -3,9 +3,13 @@ package content.social.trade.exchange.offer
 import world.gregs.config.*
 import java.io.File
 
-class UncollectedOffers(
+class ClaimableOffers(
     private val claims: MutableMap<Int, Claim> = mutableMapOf()
 ) {
+
+    fun add(id: Int, amount: Int, coins: Int = 0) {
+        claims[id] = Claim(amount, coins)
+    }
 
     fun claim(offerId: Int): Claim? {
         return claims.remove(offerId)
@@ -21,26 +25,26 @@ class UncollectedOffers(
                 writeKey(id.toString())
                 list(3) { index ->
                     when (index) {
-                        0 -> writeValue(claim.item)
-                        1 -> writeValue(claim.amount)
-                        2 -> writeValue(claim.coins)
+                        0 -> writeValue(claim.amount)
+                        1 -> writeValue(claim.coins)
                     }
                 }
             }
         }
     }
 
-    fun load(file: File): UncollectedOffers {
+    fun load(file: File): ClaimableOffers {
+        if (!file.exists()) {
+            return this
+        }
         Config.fileReader(file) {
             while (nextPair()) {
                 val id = key().toInt()
                 assert(nextElement())
-                val item = string()
-                assert(nextElement())
                 val amount = int()
                 assert(nextElement())
                 val coins = int()
-                claims[id] = Claim(item = item, amount = amount, coins = coins)
+                claims[id] = Claim(amount = amount, coins = coins)
             }
         }
         return this

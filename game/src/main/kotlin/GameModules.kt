@@ -8,6 +8,7 @@ import content.entity.world.music.MusicTracks
 import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
 import content.social.trade.exchange.GrandExchange
 import content.social.trade.exchange.history.ExchangeHistory
+import content.social.trade.exchange.offer.ClaimableOffers
 import content.social.trade.exchange.offer.Offers
 import kotlinx.io.pool.DefaultPool
 import org.koin.dsl.module
@@ -55,7 +56,7 @@ fun gameModule(files: ConfigFiles) = module {
         val sell = File(Settings["storage.grand.exchange.offers.sell.path"])
         buy.mkdir()
         sell.mkdir()
-        Offers().load(buy, sell)
+        Offers().load(buy, sell, Settings["grandExchange.offers.activeDays", 0])
     }
     single(createdAtStart = true) {
         val file = File(Settings["storage.grand.exchange.history.path"])
@@ -63,9 +64,14 @@ fun gameModule(files: ConfigFiles) = module {
         ExchangeHistory(get()).load(file)
     }
     single(createdAtStart = true) {
+        val file = File(Settings["storage.grand.exchange.offers.claim.path"])
+        ClaimableOffers().load(file)
+    }
+    single(createdAtStart = true) {
         val history = File(Settings["storage.grand.exchange.history.path"])
         val buy = File(Settings["storage.grand.exchange.offers.buy.path"])
         val sell = File(Settings["storage.grand.exchange.offers.sell.path"])
-        GrandExchange(get(), get(), get(), get(), get(), history, buy, sell)
+        val claims = File(Settings["storage.grand.exchange.offers.claim.path"])
+        GrandExchange(get(), get(), get(), get(), get(), get(), history, buy, sell, claims)
     }
 }

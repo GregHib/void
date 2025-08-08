@@ -7,6 +7,7 @@ import world.gregs.config.writeSection
 import world.gregs.voidps.engine.timedLoad
 import java.io.File
 import java.util.*
+import java.util.concurrent.TimeUnit
 import kotlin.math.max
 
 class Offers(
@@ -18,17 +19,30 @@ class Offers(
 
     fun id(): Int = ++counter
 
+    fun removeInactive(days: Int) {
+        if (days <= 0) {
+            return
+        }
+        val now = System.currentTimeMillis()
+        for ((_, offer) in offers) {
+            val age = now - offer.lastActive
+            if (TimeUnit.MILLISECONDS.toDays(age) > days) {
+                remove(if (offer.sell) sellByItem else buyByItem, offer)
+            }
+        }
+    }
+
     fun add(offer: Offer) {
         offers[offer.id] = offer
     }
 
     fun buy(offer: Offer) {
-        offer.state = OfferState.Open
+        offer.open()
         buyByItem.getOrPut(offer.item) { TreeMap() }.getOrPut(offer.price) { mutableListOf() }.add(offer)
     }
 
     fun sell(offer: Offer) {
-        offer.state = OfferState.Open
+        offer.open()
         sellByItem.getOrPut(offer.item) { TreeMap() }.getOrPut(offer.price) { mutableListOf() }.add(offer)
     }
 
@@ -58,7 +72,7 @@ class Offers(
             map.remove(offer.price)
         }
         if (map.isEmpty()) {
-            buyByItem.remove(offer.item)
+            offers.remove(offer.item)
         }
     }
 
@@ -88,17 +102,18 @@ class Offers(
         }
     }
 
-    fun load(buyDirectory: File, sellDirectory: File): Offers {
+    fun load(buyDirectory: File, sellDirectory: File, days: Int): Offers {
         timedLoad("grand exchange offer") {
-            load(buyDirectory, buyByItem, false)
-            load(sellDirectory, sellByItem, true)
+            load(buyDirectory, buyByItem, days, false)
+            load(sellDirectory, sellByItem, days, true)
             offers.size
         }
         return this
     }
 
-    private fun load(buyDirectory: File, map: MutableMap<String, TreeMap<Int, MutableList<Offer>>>, sell: Boolean) {
+    private fun load(buyDirectory: File, map: MutableMap<String, TreeMap<Int, MutableList<Offer>>>, days: Int, sell: Boolean) {
         val files = buyDirectory.listFiles { _, name -> name.endsWith(".toml") } ?: return
+        val now = System.currentTimeMillis()
         for (file in files) {
             val tree = TreeMap<Int, MutableList<Offer>>()
             val item = file.nameWithoutExtension
@@ -107,9 +122,11 @@ class Offers(
                     val id = section().toInt()
                     val offer = readOffer(id, item, sell)
                     counter = max(counter, id)
-                    tree.getOrPut(offer.price) { mutableListOf() }.add(offer)
                     offers[id] = offer
-                    map[offer.item]?.get(offer.price)?.add(offer)
+                    // Only store active offers
+                    if (!offer.state.cancelled && (days <= 0 || TimeUnit.MILLISECONDS.toDays(now - offer.lastActive) <= days)) {
+                        tree.getOrPut(offer.price) { mutableListOf() }.add(offer)
+                    }
                 }
             }
             map[item] = tree
