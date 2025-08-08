@@ -338,7 +338,8 @@ id = 1101
 id = 931
 
 # From NPC id, used in interface 662, cs2 751
-[pet_details_packed_components_1]
+# Fruit bat (6817) -> 747, 30
+[summoning_orb_packed_components]
 id = 1092
 
 # From index in crafting menu, no difference from summoning_pouch_ids_2
@@ -391,7 +392,8 @@ id = 1278
 id = 1279
 
 # From NPC id, used in interface 662, cs2 751
-[pet_details_packed_components_2]
+# Fruit bat (6817) -> 662, 88
+[pet_details_use_scroll_packed_components]
 id = 1282
 
 # From associated summoning pouch ID
