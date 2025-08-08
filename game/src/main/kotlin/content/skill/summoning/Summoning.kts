@@ -3,12 +3,16 @@ package content.skill.summoning
 import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Follow
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -28,13 +32,23 @@ inventoryItem("Summon", "*_pouch") {
         player.message("You don't have the level needed to summon that familiar...")
     }
 
-    summonFamiliar(player, familiar)
+    val familiarNpc = summonFamiliar(player, familiar) ?: return@inventoryItem
+    updateFamiliarInterface(player, familiarNpc, item)
     player.inventory.remove(item.id)
     player.experience.add(Skill.Summoning, summoningXp)
+
 }
 
-fun summonFamiliar(player: Player, familiar: NPCDefinition) {
+fun summonFamiliar(player: Player, familiar: NPCDefinition): NPC? {
     val familiarNpc = npcs.add(familiar.stringId, player.tile)
     familiarNpc.mode = Follow(familiarNpc, player)
 
+    return familiarNpc
+}
+
+fun updateFamiliarInterface(player: Player, familiar: NPC, pouch: Item) {
+    player.variables.set("pet_details_pet_name", pouch.def.id)
+    player.variables.set("pet_details_chathead", familiar.def.id)
+
+    player.addVarbit("pet_details_chathead_animation", 1)
 }
