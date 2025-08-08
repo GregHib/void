@@ -7,3 +7,8 @@ persist = true
 id = 1174
 format = "int"
 persist = true
+
+[summoning_special_points_remaining]
+id = 1177
+format = "int"
+persist = true
