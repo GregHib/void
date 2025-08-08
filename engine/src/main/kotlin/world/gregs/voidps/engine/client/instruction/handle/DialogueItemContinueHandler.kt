@@ -20,6 +20,6 @@ class DialogueItemContinueHandler(
             return
         }
 
-        player.emit(ContinueItemDialogue(definition.stringId, definition))
+        player.emit(ContinueItemDialogue(definition.stringId))
     }
 }

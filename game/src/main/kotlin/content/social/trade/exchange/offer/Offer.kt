@@ -15,6 +15,7 @@ data class Offer(
     var excess: Int = 0,
     var account: String = "",
 ) {
+
     val sell: Boolean
         get() = state.sell
 
@@ -24,6 +25,36 @@ data class Offer(
 
     fun cancel() {
         state = if (state.sell) OfferState.CompletedSell else OfferState.CompletedBuy
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Offer
+
+        if (id != other.id) return false
+        if (amount != other.amount) return false
+        if (price != other.price) return false
+        if (completed != other.completed) return false
+        if (excess != other.excess) return false
+        if (item != other.item) return false
+        if (state != other.state) return false
+        if (account != other.account) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id
+        result = 31 * result + amount
+        result = 31 * result + price
+        result = 31 * result + completed
+        result = 31 * result + excess
+        result = 31 * result + item.hashCode()
+        result = 31 * result + state.hashCode()
+        result = 31 * result + account.hashCode()
+        return result
     }
 
     companion object {

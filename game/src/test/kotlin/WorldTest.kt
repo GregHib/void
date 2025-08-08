@@ -289,7 +289,7 @@ abstract class WorldTest : KoinTest {
         private val npcDefinitions: NPCDefinitions by lazy {
             NPCDefinitions(NPCDecoder(member = true, parameterDefinitions).load(cache)).load(files.list(Settings["definitions.npcs"]))
         }
-        private val itemDefinitions: ItemDefinitions by lazy {
+        val itemDefinitions: ItemDefinitions by lazy {
             ItemDefinitions(ItemDecoder(parameterDefinitions).load(cache)).load(files.list(Settings["definitions.items"]))
         }
         private val animationDefinitions: AnimationDefinitions by lazy {

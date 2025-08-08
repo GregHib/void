@@ -50,15 +50,15 @@ components = {
   collect_slot_0 = {
     id = 209,
     options = {
-        Collect = 0,
-        Collect_notes = 1,
+        Collect_notes = 0,
+        Collect = 1,
     }
   },
   collect_slot_1 = {
     id = 211,
     options = {
-      Collect = 0,
-      Collect_notes = 1,
+      Collect_notes = 0,
+      Collect = 1,
     }
   },
 }
@@ -85,12 +85,19 @@ id = 108
 [collection_box]
 id = 109
 components = {
-  box1 = 19,
-  box2 = 23,
-  box3 = 27,
-  box4 = 32,
-  box5 = 37,
-  box6 = 42,
+  box0 = 19,
+  collect_slot_0 = {
+    id = 20,
+    options = {
+      Collect_notes = 0,
+      Collect = 1,
+    }
+  },
+  box1 = 23,
+  box2 = 27,
+  box3 = 32,
+  box4 = 37,
+  box5 = 42,
 }
 
 [exchange_offer]
