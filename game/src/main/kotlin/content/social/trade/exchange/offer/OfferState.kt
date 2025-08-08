@@ -1,7 +1,16 @@
 package content.social.trade.exchange.offer
 
-enum class OfferState {
-    Pending,
-    Open,
-    Completed,
+enum class OfferState(val int: Int) {
+    PendingBuy(1),
+    PendingSell(9),
+    OpenBuy(2),
+    OpenSell(10),
+    CompletedBuy(5),
+    CompletedSell(13);
+
+    val sell: Boolean
+        get() = int and 0x8 == 8
+
+    val cancelled: Boolean
+        get() = int.rem(0x8) == 5
 }

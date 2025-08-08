@@ -24,21 +24,20 @@ class OffersTest {
             [1]
             amount = 100
             price = 200
-            state = "Open"
-            last_updated = 1000000
+            state = 2
             last_active = 1000001
-            remaining = 100
+            completed = 100
             account = "bob"
         """.trimIndent())
         val offers = Offers()
-        offers.load(buyDirectory, sellDirectory)
-        val offer = offers.offer(1L)
+        offers.load(buyDirectory, sellDirectory, 1)
+        val offer = offers.offer(1)
         assertNotNull(offer)
         assertEquals("tinderbox", offer.item)
         assertEquals(100, offer.amount)
         assertEquals(200, offer.price)
         assertFalse(offer.sell)
-        assertEquals(OfferState.Open, offer.state)
+        assertEquals(OfferState.OpenBuy, offer.state)
         assertEquals(1000001L, offer.lastActive)
         assertEquals(100, offer.completed)
         assertEquals("bob", offer.account)
@@ -52,21 +51,19 @@ class OffersTest {
             [1]
             amount = 100
             price = 200
-            state = "Open"
-            last_updated = 1000000
+            state = 10
             last_active = 1000001
-            remaining = 100
+            completed = 100
             account = "bob"
         """.trimIndent())
         val offers = Offers()
-        offers.load(buyDirectory, sellDirectory)
-        val offer = offers.offer(1L)
+        offers.load(buyDirectory, sellDirectory, 1)
+        val offer = offers.offer(1)
         assertNotNull(offer)
         assertEquals("tinderbox", offer.item)
         assertEquals(100, offer.amount)
         assertEquals(200, offer.price)
-        assertTrue(offer.sell)
-        assertEquals(OfferState.Open, offer.state)
+        assertEquals(OfferState.OpenSell, offer.state)
         assertEquals(1000001L, offer.lastActive)
         assertEquals(100, offer.completed)
         assertEquals("bob", offer.account)
@@ -74,7 +71,7 @@ class OffersTest {
 
     @Test
     fun `Saving sale to file`() {
-        val offer = Offer(1, "tinderbox", 100, 200, true, OfferState.Open, 1000000, 1000001, account = "bob")
+        val offer = Offer(id = 1, item = "tinderbox", amount = 100, price = 200, state = OfferState.OpenSell, lastActive = 1000000, completed = 100, account = "bob")
         val offers = Offers()
         offers.sell(offer)
         offers.save(buyDirectory, sellDirectory)
@@ -84,10 +81,9 @@ class OffersTest {
             [1]
             amount = 100
             price = 200
-            state = "Open"
-            last_updated = 1000000
-            last_active = 1000001
-            remaining = 100
+            state = 10
+            last_active = 1000000
+            completed = 100
             account = "bob"
             
         """.trimIndent(), sellDirectory.resolve("tinderbox.toml").readText())
@@ -95,7 +91,7 @@ class OffersTest {
 
     @Test
     fun `Saving buy offer to file`() {
-        val offer = Offer(1, "tinderbox", 100, 200, false, OfferState.Open, 1000000, 1000001, account = "bob")
+        val offer = Offer(id = 1, item = "tinderbox", amount = 100, price = 200, state = OfferState.OpenBuy, lastActive = 1000000, completed = 100, account = "bob")
         val offers = Offers()
         offers.buy(offer)
         offers.save(buyDirectory, sellDirectory)
@@ -105,12 +101,12 @@ class OffersTest {
             [1]
             amount = 100
             price = 200
-            state = "Open"
-            last_updated = 1000000
-            last_active = 1000001
-            remaining = 100
+            state = 2
+            last_active = 1000000
+            completed = 100
             account = "bob"
             
         """.trimIndent(), buyDirectory.resolve("tinderbox.toml").readText())
     }
+
 }

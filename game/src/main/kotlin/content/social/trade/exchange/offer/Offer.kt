@@ -4,32 +4,34 @@ import world.gregs.config.ConfigReader
 import world.gregs.config.ConfigWriter
 import world.gregs.config.writePair
 
-/*
-    Id, Account, Item id, Amount, Price, LastActive
-
-    Id, Completed, Price, Excess
-
-    Id, Item id, Amount, Price, State, Completed, Excess
- */
 data class Offer(
     val id: Int = 0,
     val item: String = "",
     val amount: Int = 0,
     val price: Int = 0,
-    val sell: Boolean = false,
-    var state: OfferState = OfferState.Pending,
+    var state: OfferState = OfferState.PendingBuy,
     var lastActive: Long = System.currentTimeMillis(),
     var completed: Int = 0,
     var excess: Int = 0,
     var account: String = "",
 ) {
+    val sell: Boolean
+        get() = state.sell
+
+    fun open() {
+        state = if (state.sell) OfferState.OpenSell else OfferState.OpenBuy
+    }
+
+    fun cancel() {
+        state = if (state.sell) OfferState.CompletedSell else OfferState.CompletedBuy
+    }
 
     companion object {
 
         fun ConfigReader.readOffer(id: Int, item: String, sell: Boolean): Offer {
             var amount = 0
             var price = 0
-            var state: OfferState = OfferState.Pending
+            var state: OfferState = if (sell) OfferState.PendingSell else OfferState.PendingBuy
             var lastActive: Long = System.currentTimeMillis()
             var completed = 0
             var excess = 0
@@ -51,7 +53,6 @@ data class Offer(
                 item = item,
                 amount = amount,
                 price = price,
-                sell = sell,
                 state = state,
                 lastActive = lastActive,
                 completed = completed,
