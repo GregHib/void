@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.engineModule
+import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -209,8 +210,7 @@ abstract class WorldTest : KoinTest {
                 sequential = true,
             )
             engine = GameLoop(tickStages)
-
-            World.start(files)
+            World.emit(Spawn)
         }
         players = get()
         npcs = get()
@@ -263,11 +263,13 @@ abstract class WorldTest : KoinTest {
                     properties[key] = value.replace("./", "../")
                 }
             }
-            properties["storage.players.path"] = "../data/test-saves/"
-            properties["storage.grand.exchange.offers.buy.path"] = "../data/test-grand_exchange/buy_offers/"
-            properties["storage.grand.exchange.offers.sell.path"] = "../data/test-grand_exchange/sell_offers/"
-            properties["storage.grand.exchange.history.path"] = "../data/test-grand_exchange/price_history/"
+            properties["storage.players.path"] = "../temp/data/test-saves/"
+            properties["storage.grand.exchange.offers.buy.path"] = "../temp/data/test-grand_exchange/buy_offers/"
+            properties["storage.grand.exchange.offers.sell.path"] = "../temp/data/test-grand_exchange/sell_offers/"
+            properties["storage.grand.exchange.offers.claim.path"] = "../temp/data/test-grand_exchange/claimable_offers.toml"
+            properties["storage.grand.exchange.history.path"] = "../temp/data/test-grand_exchange/price_history/"
             properties["world.npcs.randomWalk"] = false
+            properties["events.shootingStars.enabled"] = false
             properties["bots.count"] = 0
             properties.remove("world.id")
             properties.remove("world.name")
