@@ -13,7 +13,9 @@ id = 4286
 format = "int"
 persist = true
 
-[unknown_summoning_special_points]
+# Changes the mouseover info for the cast button in inter 662 (pet_details)
+# E.g. "Level 1: Howl (-->#<-- Special Move points)"
+[summoning_special_points_needed]
 id = 4288
 format = "int"
 persist = true
