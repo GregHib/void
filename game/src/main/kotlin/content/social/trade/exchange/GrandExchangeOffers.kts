@@ -27,8 +27,8 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
+import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.ceil
 
 val exchange: GrandExchange by inject()
@@ -52,14 +52,15 @@ interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
     val box: Int = player["grand_exchange_box"] ?: return@interfaceOption
     val id: Int = player["grand_exchange_offer_${box}"] ?: return@interfaceOption
     val collectionBox = player.inventories.inventory("collection_box_${box}")
-    var item = collectionBox[index]
+    val item = collectionBox[index]
+    var noted = item
     if (option == "Collect_notes") {
-        item = item.noted ?: item
+        noted = item.noted ?: item
     }
     player.inventory.transaction {
         val txn = link(collectionBox)
-        txn.clear(index)
-        add(item.id, item.amount)
+        val added = addToLimit(noted.id, item.amount)
+        txn.remove(item.id, added)
     }
     when (player.inventory.transaction.error) {
         is TransactionError.Full -> player.inventoryFull()
@@ -94,7 +95,7 @@ interfaceOption("Make Offer", "view_offer_*", "grand_exchange") {
     selectItem(player, offer.item)
 }
 
-interfaceOption("Make Buy Offer", "buy_*", "grand_exchange") {
+interfaceOption("Make Buy Offer", "buy_offer_*", "grand_exchange") {
     val slot = component.removePrefix("buy_offer_").toInt()
     player["grand_exchange_box"] = slot
     player["grand_exchange_page"] = "buy"
@@ -111,7 +112,7 @@ fun openItemSearch(player: Player) {
     player.sendScript("item_dialogue_reset", "Grand Exchange Item Search")
 }
 
-interfaceOption("Make Sell Offer", "sell_*", "grand_exchange") {
+interfaceOption("Make Sell Offer", "sell_offer_*", "grand_exchange") {
     val slot = component.removePrefix("sell_offer_").toInt()
     player["grand_exchange_box"] = slot
     player["grand_exchange_page"] = "sell"
@@ -171,13 +172,15 @@ interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
             exchange.buy(player, Item(itemId, amount), price)
         }
         "sell" -> {
-            val item = Item(itemId, amount)
-            val noted = if (item.isNote) item.noted ?: item else item
-            if (!player.inventory.remove(noted.id, amount)) {
-                player.message("Not enough coins") // TODO proper message
-                return@interfaceOption
+            if (!player.inventory.remove(itemId, amount)) {
+                val item = Item(itemId, amount)
+                val noted = item.noted ?: item
+                if (!player.inventory.remove(noted.id, amount)) {
+                    player.message("Not enough items") // TODO proper message
+                    return@interfaceOption
+                }
             }
-            exchange.sell(player, item, price)
+            exchange.sell(player, Item(itemId, amount), price)
         }
         else -> return@interfaceOption
     }

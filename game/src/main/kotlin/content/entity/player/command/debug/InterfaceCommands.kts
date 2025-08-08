@@ -97,12 +97,23 @@ adminCommand("script (script-id) [params...]", "run a client script with any num
     }
 }
 
-adminCommand("sendItems") {
+adminCommand("sendItems (interface-id)") {
     repeat(1200) {
         player.sendInventoryItems(it, 0, intArrayOf(), false)
     }
     for (inventory in 0 until 1200) {
         player.sendInventoryItems(inventory, 1, intArrayOf(995, 100), false)
+    }
+    var setting = 0
+    for (i in 0 until 10) {
+        setting += (2 shl i)
+    }
+    val options = Array(9) { "Option $it" }
+    val definition = definitions.get(content)
+    for ((id, component) in definition.components ?: return@adminCommand) {
+        player.sendScript("primary_options", component.id, 0, 1, 1, 0, -1, *options)
+        player.sendScript("secondary_options", component.id, 0, 1, 1, 0, -1, *options)
+        player.sendInterfaceSettings(id, 0, 100, setting)
     }
 }
 

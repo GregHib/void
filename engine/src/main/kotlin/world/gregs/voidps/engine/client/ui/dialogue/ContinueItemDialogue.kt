@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.client.ui.dialogue
 
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
@@ -8,7 +7,6 @@ import world.gregs.voidps.engine.event.Events
 
 data class ContinueItemDialogue(
     val item: String,
-    val def: ItemDefinition,
 ) : Event {
 
     override val size = 2
