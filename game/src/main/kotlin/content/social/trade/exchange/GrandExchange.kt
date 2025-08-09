@@ -9,6 +9,8 @@ import content.social.trade.exchange.offer.OfferState
 import content.social.trade.exchange.offer.Offers
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
@@ -342,5 +344,22 @@ class GrandExchange(
         val entry = cumulativeMap.ceilingEntry(randomValue)
             ?: throw IllegalStateException("Sampling failed due to invalid cumulative map")
         return entry.value
+    }
+
+    companion object {
+        fun clear(player: Player) {
+            player["grand_exchange_box"] = -1
+            player["grand_exchange_page"] = "offers"
+            player.sendScript("item_dialogue_close")
+            player.close("stock_side")
+            player.close("item_info")
+            player.clear("grand_exchange_item")
+            player.clear("grand_exchange_item_id")
+            player.clear("grand_exchange_price")
+            player.clear("grand_exchange_market_price")
+            player.clear("grand_exchange_range_min")
+            player.clear("grand_exchange_range_max")
+            player.clear("grand_exchange_quantity")
+        }
     }
 }
