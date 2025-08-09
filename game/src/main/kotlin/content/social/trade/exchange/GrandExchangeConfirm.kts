@@ -35,6 +35,11 @@ val exchange: GrandExchange by inject()
 val logger = InlineLogger()
 
 interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
+    if (player["grand_exchange_item_id", -1] == -1) {
+        // https://youtu.be/wAtBnxSxgiA?si=jsurs070eip_6INS&t=191
+        player.message("You must choose an item first.")
+        return@interfaceOption
+    }
     val slot: Int = player["grand_exchange_box"] ?: return@interfaceOption
     val itemId: String = player["grand_exchange_item"] ?: return@interfaceOption
     val amount: Int = player["grand_exchange_quantity"] ?: return@interfaceOption
