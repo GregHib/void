@@ -3,6 +3,9 @@ package content.social.trade.exchange.offer
 import world.gregs.config.*
 import java.io.File
 
+/**
+ * Completed [Offers] which can be claimed by players when they log in
+ */
 class ClaimableOffers(
     private val claims: MutableMap<Int, Claim> = mutableMapOf()
 ) {
@@ -23,7 +26,7 @@ class ClaimableOffers(
         Config.fileWriter(file) {
             for ((id, claim) in claims) {
                 writeKey(id.toString())
-                list(3) { index ->
+                list(2) { index ->
                     when (index) {
                         0 -> writeValue(claim.amount)
                         1 -> writeValue(claim.coins)

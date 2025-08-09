@@ -10,6 +10,12 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
 
+/**
+ * @param sellByItem list of all [OfferState.OpenSell] [Offer]'s grouped by id and price
+ * @param buyByItem list of all [OfferState.OpenBuy] [Offer]'s grouped by id and price
+ * @param offers list of all Grand Exchange [Offer]'s
+ * @param counter accumulating id
+ */
 class Offers(
     private val sellByItem: MutableMap<String, TreeMap<Int, MutableList<Offer>>> = mutableMapOf(),
     private val buyByItem: MutableMap<String, TreeMap<Int, MutableList<Offer>>> = mutableMapOf(),
