@@ -13,7 +13,7 @@ data class Offer(
     var lastActive: Long = System.currentTimeMillis(),
     var completed: Int = 0,
     var coins: Int = 0,
-    var account: String = "",
+    val account: String = "",
 ) {
 
     val sell: Boolean

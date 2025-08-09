@@ -48,6 +48,7 @@ class GrandExchange(
 
     private val logger = InlineLogger()
 
+
     /**
      * Add an offer to sell an item starting next tick
      */
@@ -93,9 +94,19 @@ class GrandExchange(
         }
     }
 
+    fun clear() {
+        cancellations.clear()
+        pending.clear()
+        offers.clear()
+        claims.clear()
+    }
+
     override fun run() {
         for (id in cancellations) {
             val offer = offers.remove(id) ?: continue
+            if (offer.state.cancelled) {
+                continue
+            }
             offer.cancel()
             returnItems(offer)
         }

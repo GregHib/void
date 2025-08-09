@@ -1,10 +1,13 @@
 package content.social.trade.exchange
 
 import WorldTest
+import containsMessage
+import content.entity.player.bank.bank
 import content.social.trade.exchange.offer.Offer
 import content.social.trade.exchange.offer.OfferState
 import interfaceOption
 import npcOption
+import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.get
@@ -17,6 +20,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.IntSuspension
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
@@ -28,16 +32,16 @@ class GrandExchangeTest : WorldTest() {
     @BeforeEach
     fun setup() {
         exchange = get()
-        exchange.offers.clear()
+        exchange.clear()
         clerk = createNPC("grand_exchange_clerk_short", Tile(3164, 3488))
     }
 
     @Test
-    fun `Sell item mid price`() {
+    fun `Sell item mid price using coins in bank`() {
         val seller = createPlayer(Tile(3164, 3487), "seller")
         seller.inventory.add("rune_longsword")
         val buyer = createPlayer(Tile(3164, 3487), "buyer")
-        buyer.inventory.add("coins", 20_000)
+        buyer.bank.add("coins", 20_000)
 
 
         sell(seller, "rune_longsword")
@@ -62,9 +66,9 @@ class GrandExchangeTest : WorldTest() {
         collect(seller, 1)
 
         assertEquals(1, buyer.inventory.count("rune_longsword_noted"))
-        assertEquals(1000, buyer.inventory.count("coins"))
+        assertEquals(1_000, buyer.bank.count("coins"))
         assertEquals(0, seller.inventory.count("rune_longsword"))
-        assertEquals(19000, seller.inventory.count("coins"))
+        assertEquals(19_000, seller.inventory.count("coins"))
     }
 
     @Test
@@ -420,6 +424,192 @@ class GrandExchangeTest : WorldTest() {
         assertTrue(sellerBox.contains("coins", 60))
     }
 
+    @Test
+    fun `Cancel an uncompleted sale`() {
+        val seller = createPlayer(Tile(3164, 3487), "seller")
+        seller.inventory.add("air_rune", 100)
+
+        sell(seller, "air_rune")
+        confirm(seller)
+        val expectedSell = Offer(1, "air_rune", 100, 5, OfferState.PendingSell, account = "seller")
+        assertOffer(expectedSell, seller, 1)
+        tick()
+
+        abort(seller, 1)
+        assertOffer(expectedSell.copy(state = OfferState.CompletedSell), seller, 1)
+
+        collect(seller, 1)
+
+        assertEquals(100, seller.inventory.count("air_rune"))
+        assertEquals(0, seller.inventory.count("coins"))
+    }
+
+    @Test
+    fun `Cancel an uncompleted purchase`() {
+        val buyer = createPlayer(Tile(3164, 3487), "buyer")
+        buyer.inventory.add("coins", 1_000)
+
+        buy(buyer, "air_rune")
+        buyer.interfaceOption("grand_exchange", "add_100", "Add 100")
+        confirm(buyer)
+
+        val expectedBuy = Offer(1, "air_rune", 100, 5, OfferState.PendingBuy, account = "buyer")
+        assertOffer(expectedBuy, buyer, 0)
+        tick()
+
+        abort(buyer, 0)
+        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, coins = 500), buyer, 0)
+
+        collect(buyer, 0)
+
+        assertEquals(0, buyer.inventory.count("air_rune"))
+        assertEquals(1_000, buyer.inventory.count("coins"))
+    }
+
+    @Test
+    fun `Cancel a partially completed sale`() {
+        val seller = createPlayer(Tile(3164, 3487), "seller")
+        seller.inventory.add("rune_longsword", 2)
+        val buyer = createPlayer(Tile(3164, 3487), "buyer")
+        buyer.inventory.add("coins", 20_000)
+
+        buy(buyer, "rune_longsword")
+        buyer.interfaceOption("grand_exchange", "add_1", "Add 1")
+        confirm(buyer)
+        val expectedBuy = Offer(1, "rune_longsword", 1, 19_000, OfferState.PendingBuy, account = "buyer")
+        assertOffer(expectedBuy, buyer, 0)
+        tick()
+
+
+        sell(seller, "rune_longsword")
+        seller.interfaceOption("grand_exchange", "increase_quantity", "Increase Quantity")
+        confirm(seller)
+        val expectedSell = Offer(2, "rune_longsword", 2, 19_000, OfferState.PendingSell, account = "seller")
+        assertOffer(expectedSell, seller, 1)
+        tick()
+
+        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1), buyer, 0)
+        assertOffer(expectedSell.copy(state = OfferState.OpenSell, completed = 1, coins = 19_000), seller, 1)
+        val sellerBox = seller.inventories.inventory("collection_box_1")
+        assertTrue(sellerBox.contains("coins", 19_000))
+
+        abort(seller, 1)
+        collect(seller, 1)
+        assertEquals(1, seller.inventory.count("rune_longsword_noted"))
+        assertEquals(19_000, seller.inventory.count("coins"))
+    }
+
+    @Test
+    fun `Cancel a partially completed purchase`() {
+        val seller = createPlayer(Tile(3164, 3487), "seller")
+        seller.inventory.add("rune_longsword")
+        val buyer = createPlayer(Tile(3164, 3487), "buyer")
+        buyer.inventory.add("coins", 190_000)
+
+        sell(seller, "rune_longsword")
+        confirm(seller)
+        val expectedSell = Offer(1, "rune_longsword", 1, 19_000, OfferState.PendingSell, account = "seller")
+        assertOffer(expectedSell, seller, 1)
+
+        buy(buyer, "rune_longsword")
+        buyer.interfaceOption("grand_exchange", "add_10", "Add 10")
+        confirm(buyer)
+        val expectedBuy = Offer(2, "rune_longsword", 10, 19_000, OfferState.PendingBuy, account = "buyer")
+        assertOffer(expectedBuy, buyer, 0)
+        tick()
+
+        assertOffer(expectedBuy.copy(state = OfferState.OpenBuy, completed = 1), buyer, 0)
+        assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 19_000), seller, 1)
+        val buyerBox = buyer.inventories.inventory("collection_box_0")
+        assertTrue(buyerBox.contains("rune_longsword"))
+
+        abort(buyer, 0)
+        collect(buyer, 0)
+        assertEquals(1, buyer.inventory.count("rune_longsword_noted"))
+        assertEquals(171_000, buyer.inventory.count("coins"))
+    }
+
+    @Test
+    fun `Can't cancel completed offers`() {
+        val seller = createPlayer(Tile(3164, 3487), "seller")
+        seller.inventory.add("rune_longsword")
+        val buyer = createPlayer(Tile(3164, 3487), "buyer")
+        buyer.inventory.add("coins", 20_000)
+
+
+        sell(seller, "rune_longsword")
+        confirm(seller)
+        val expectedSell = Offer(1, "rune_longsword", 1, 19_000, OfferState.PendingSell, account = "seller")
+        assertOffer(expectedSell, seller, 1)
+        tick()
+        assertOffer(expectedSell.copy(state = OfferState.OpenSell), seller, 1)
+
+        buy(buyer, "rune_longsword")
+        buyer.interfaceOption("grand_exchange", "add_1", "Add 1")
+        confirm(buyer)
+
+        val expectedBuy = Offer(2, "rune_longsword", 1, 19_000, OfferState.PendingBuy, account = "buyer")
+        assertOffer(expectedBuy, buyer, 0)
+        tick()
+        assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 19000), seller, 1)
+        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1), buyer, 0)
+
+
+        abort(buyer, 0)
+        abort(seller, 1)
+
+        collect(buyer, 0)
+        collect(seller, 1)
+
+        assertEquals(1, buyer.inventory.count("rune_longsword_noted"))
+        assertEquals(1000, buyer.inventory.count("coins"))
+        assertEquals(0, seller.inventory.count("rune_longsword"))
+        assertEquals(19000, seller.inventory.count("coins"))
+    }
+
+    @Test
+    fun `Try sell more items than in inventory`() {
+        val seller = createPlayer(Tile(3164, 3487), "seller")
+        seller.inventory.add("rune_longsword")
+
+        sell(seller, "rune_longsword")
+        seller.interfaceOption("grand_exchange", "increase_quantity", "Increase Quantity")
+        confirm(seller)
+        val expectedSell = Offer(1, "rune_longsword", 1, 19_000, OfferState.PendingSell, account = "seller")
+        assertOffer(expectedSell, seller, 1)
+    }
+
+    @Test
+    fun `Can sell a mix of noted an unnoted items in inventory`() {
+        val seller = createPlayer(Tile(3164, 3487), "seller")
+        seller.inventory.add("rune_longsword")
+        seller.inventory.add("rune_longsword_noted")
+
+        sell(seller, "rune_longsword")
+        seller.interfaceOption("grand_exchange", "increase_quantity", "Increase Quantity")
+        confirm(seller)
+        val expectedSell = Offer(1, "rune_longsword", 2, 19_000, OfferState.PendingSell, account = "seller")
+        assertOffer(expectedSell, seller, 1)
+        tick()
+        assertOffer(expectedSell.copy(state = OfferState.OpenSell), seller, 1)
+
+        assertFalse(seller.inventory.contains("rune_longsword"))
+        assertFalse(seller.inventory.contains("rune_longsword_noted"))
+    }
+
+    @Test
+    fun `Can't buy for more the coins in inventory`() {
+        val buyer = createPlayer(Tile(3164, 3487), "buyer")
+        buyer.inventory.add("coins", 10_000)
+
+        buy(buyer, "rune_longsword")
+        buyer.interfaceOption("grand_exchange", "add_1", "Add 1")
+        confirm(buyer)
+        tick()
+        assertEquals(-1, buyer["grand_exchange_offer_0", -1])
+        assertTrue(buyer.containsMessage("You don't have enough coins."))
+    }
+
     private fun buy(player: Player, item: String) {
         player.npcOption(clerk, "Exchange")
         tick()
@@ -452,5 +642,10 @@ class GrandExchangeTest : WorldTest() {
         val sellOffer = exchange.offers.offer(expected.id)
         assertNotNull(sellOffer)
         assertEquals(expected, sellOffer)
+    }
+
+    private fun abort(player: Player, slot: Int) {
+        exchange.cancel(player["grand_exchange_offer_${slot}", -1])
+        tick()
     }
 }
