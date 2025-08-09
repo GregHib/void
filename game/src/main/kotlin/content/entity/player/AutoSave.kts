@@ -1,5 +1,6 @@
 package content.entity.player
 
+import content.social.trade.exchange.GrandExchange
 import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.settingsReload
@@ -12,6 +13,7 @@ import java.util.concurrent.TimeUnit
 
 val players: Players by inject()
 val saveQueue: SaveQueue by inject()
+val exchange: GrandExchange by inject()
 
 worldSpawn {
     autoSave()
@@ -35,6 +37,7 @@ fun autoSave() {
         for (player in players) {
             saveQueue.save(player)
         }
+        exchange.save()
         autoSave()
     }
 }

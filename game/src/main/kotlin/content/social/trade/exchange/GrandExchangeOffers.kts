@@ -2,6 +2,7 @@ package content.social.trade.exchange
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.npc.shop.stock.ItemInfo
+import content.entity.player.bank.bank
 import content.entity.player.bank.isNote
 import content.entity.player.bank.noted
 import content.entity.player.dialogue.type.intEntry
@@ -16,9 +17,12 @@ import world.gregs.voidps.engine.client.ui.dialogue.continueItemDialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.variableSet
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
@@ -166,12 +170,35 @@ interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
     val price: Int = player["grand_exchange_price"] ?: return@interfaceOption
     val id = when (player["grand_exchange_page", "offers"]) {
         "buy" -> {
-            // TODO take from bank
-            if (!player.inventory.remove("coins", price * amount)) {
-                player.message("Not enough coins") // TODO proper message
-                return@interfaceOption
+            var fromBank = false
+            player.inventory.transaction {
+                val total = price * amount
+                var removed = removeToLimit("coins", total)
+                if (removed < total && Settings["grandExchange.useBankCoins", false]) {
+                    val txn = link(player.bank)
+                    removed += txn.removeToLimit("coins", total - removed)
+                    fromBank = true
+                }
+                if (removed < total) {
+                    error = TransactionError.Deficient(total - removed)
+                }
             }
-            exchange.buy(player, Item(itemId, amount), price)
+            when (player.inventory.transaction.error) {
+                TransactionError.None -> {
+                    if (fromBank) {
+                        player.message("Payment has been taken from your bank.")
+                    }
+                    exchange.buy(player, Item(itemId, amount), price)
+                }
+                is TransactionError.Deficient -> {
+                    player.notEnough("coins")
+                    return@interfaceOption
+                }
+                else -> {
+                    logger.warn { "Error removing GE coins ${player.name} ${player.inventory.transaction.error} $slot $itemId $amount $price" }
+                    return@interfaceOption
+                }
+            }
         }
         "sell" -> {
             var removed = 0
@@ -188,12 +215,8 @@ interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
             }
             when (player.inventory.transaction.error) {
                 TransactionError.None -> exchange.sell(player, Item(itemId, amount), price)
-                is TransactionError.Deficient -> {
-                    player.message("Not enough items") // TODO proper message
-                    return@interfaceOption
-                }
                 else -> {
-                    logger.warn { "Error removing GE items ${player.inventory.transaction.error}" }
+                    logger.warn { "Error removing GE items ${player.name} ${player.inventory.transaction.error} $slot $itemId $amount $price" }
                     return@interfaceOption
                 }
             }
@@ -223,21 +246,15 @@ fun InterfaceOption.clear() {
 
 interfaceOption("Add *", "add_*", "grand_exchange") {
     when (player["grand_exchange_page", "offers"]) {
-        "sell" -> player["grand_exchange_quantity"] = when (component) {
-            "add_1" -> 1
-            "add_10" -> 10
-            "add_100" -> 100
-            "add_all" -> {
-                val item = Item(player["grand_exchange_item", ""])
-                val noted = item.noted
-                var total = 0
-                if (noted != null) {
-                    total += player.inventory.count(noted.id)
-                }
-                total += player.inventory.count(item.id)
-                total
-            }
-            else -> return@interfaceOption
+        "sell" -> {
+            val total = totalItems()
+            player["grand_exchange_quantity"] = when (component) {
+                "add_1" -> 1
+                "add_10" -> 10
+                "add_100" -> 100
+                "add_all" -> total
+                else -> return@interfaceOption
+            }.coerceAtMost(total)
         }
         "buy" -> when (component) {
             "add_1" -> player.inc("grand_exchange_quantity", 1)
@@ -251,7 +268,7 @@ interfaceOption("Add *", "add_*", "grand_exchange") {
 
 interfaceOption("Edit Quantity", "add_x", "grand_exchange") {
     player["grand_exchange_quantity"] = when (player["grand_exchange_page", "offers"]) {
-        "sell" -> intEntry("Enter the amount you wish to sell:")
+        "sell" -> intEntry("Enter the amount you wish to sell:").coerceAtMost(totalItems())
         "buy" -> intEntry("Enter the amount you wish to purchase:")
         else -> return@interfaceOption
     }
@@ -260,6 +277,7 @@ interfaceOption("Edit Quantity", "add_x", "grand_exchange") {
 interfaceOption("Increase Quantity", "increase_quantity", "grand_exchange") {
     if (player["grand_exchange_quantity", 0] < Int.MAX_VALUE - 1) {
         player.inc("grand_exchange_quantity", 1)
+        player["grand_exchange_quantity"] = (player["grand_exchange_quantity", 0] + 1).coerceAtMost(totalItems())
     }
 }
 
@@ -320,4 +338,15 @@ fun abort(player: Player, slot: Int) {
     val id: Int = player["grand_exchange_offer_${slot}"] ?: return
     exchange.cancel(id)
     player.message("Abort request acknowledged. Please be aware that your offer may have already been completed.")
+}
+
+fun InterfaceOption.totalItems(): Int {
+    val item = Item(player["grand_exchange_item", ""])
+    val noted = item.noted
+    var total = 0
+    if (noted != null) {
+        total += player.inventory.count(noted.id)
+    }
+    total += player.inventory.count(item.id)
+    return total
 }
