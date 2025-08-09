@@ -223,7 +223,7 @@ class GrandExchange(
         val price = history.marketPrice(offer.item)
         if (offer.price in ceil(price * 0.95).toInt()..ceil(price * 1.05).toInt()) {
             player.removeVarbit("grand_exchange_ranges", "slot_${index}")
-        } else {
+        } else if (Settings["grandExchange.priceLimit", true]) {
             player.addVarbit("grand_exchange_ranges", "slot_${index}")
         }
         val itemDef = itemDefinitions.get(offer.item)

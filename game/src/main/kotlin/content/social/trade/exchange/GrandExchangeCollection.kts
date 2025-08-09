@@ -23,7 +23,8 @@ interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
     val collectionBox = player.inventories.inventory("collection_box_${box}")
     val item = collectionBox[index]
     var noted = item
-    if (option == "Collect_notes") {
+    // Option 1 is to collect noted if amount > 1 otherwise options flip
+    if ((item.amount > 1 && option == "Collect_notes") || (item.amount == 1 && option == "Collect")) {
         noted = item.noted ?: item
     }
     player.inventory.transaction {
@@ -41,6 +42,8 @@ interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
                 GrandExchange.clear(player)
             }
             exchange.refresh(player, box)
+        } else if (collectionBox.contains(item.id)) {
+            player.inventoryFull()
         }
         else -> logger.warn { "Issue collecting items from grand exchange ${player.inventory.transaction.error} ${player.name} $item $index" }
     }

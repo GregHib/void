@@ -65,7 +65,7 @@ class GrandExchangeTest : WorldTest() {
         collect(buyer, 0)
         collect(seller, 1)
 
-        assertEquals(1, buyer.inventory.count("rune_longsword_noted"))
+        assertEquals(1, buyer.inventory.count("rune_longsword"))
         assertEquals(1_000, buyer.bank.count("coins"))
         assertEquals(0, seller.inventory.count("rune_longsword"))
         assertEquals(19_000, seller.inventory.count("coins"))
@@ -495,7 +495,7 @@ class GrandExchangeTest : WorldTest() {
 
         abort(seller, 1)
         collect(seller, 1)
-        assertEquals(1, seller.inventory.count("rune_longsword_noted"))
+        assertEquals(1, seller.inventory.count("rune_longsword"))
         assertEquals(19_000, seller.inventory.count("coins"))
     }
 
@@ -525,7 +525,7 @@ class GrandExchangeTest : WorldTest() {
 
         abort(buyer, 0)
         collect(buyer, 0)
-        assertEquals(1, buyer.inventory.count("rune_longsword_noted"))
+        assertEquals(1, buyer.inventory.count("rune_longsword"))
         assertEquals(171_000, buyer.inventory.count("coins"))
     }
 
@@ -561,7 +561,7 @@ class GrandExchangeTest : WorldTest() {
         collect(buyer, 0)
         collect(seller, 1)
 
-        assertEquals(1, buyer.inventory.count("rune_longsword_noted"))
+        assertEquals(1, buyer.inventory.count("rune_longsword"))
         assertEquals(1000, buyer.inventory.count("coins"))
         assertEquals(0, seller.inventory.count("rune_longsword"))
         assertEquals(19000, seller.inventory.count("coins"))

@@ -268,6 +268,7 @@ abstract class WorldTest : KoinTest {
             properties["storage.grand.exchange.offers.sell.path"] = "../temp/data/test-grand_exchange/sell_offers/"
             properties["storage.grand.exchange.offers.claim.path"] = "../temp/data/test-grand_exchange/claimable_offers.toml"
             properties["storage.grand.exchange.history.path"] = "../temp/data/test-grand_exchange/price_history/"
+            properties["grandExchange.priceLimit"] = true
             properties["world.npcs.randomWalk"] = false
             properties["events.shootingStars.enabled"] = false
             properties["bots.count"] = 0

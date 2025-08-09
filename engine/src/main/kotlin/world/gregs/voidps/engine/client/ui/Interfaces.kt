@@ -277,6 +277,7 @@ fun Player.closeDialogue(): Boolean {
     if (dialogueSuspension != null) {
         dialogueSuspension = null
     }
+    sendScript("close_entry")
     return closeType("dialogue_box") || closeType("dialogue_box_small")
 }
 
@@ -288,7 +289,6 @@ fun Player.closeInterfaces(): Boolean {
         closed = true
     }
     queue.clearWeak()
-    sendScript("close_entry")
     return closed
 }
 
