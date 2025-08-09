@@ -12,7 +12,7 @@ data class Offer(
     var state: OfferState = OfferState.PendingBuy,
     var lastActive: Long = System.currentTimeMillis(),
     var completed: Int = 0,
-    var excess: Int = 0,
+    var coins: Int = 0,
     var account: String = "",
 ) {
 
@@ -37,7 +37,7 @@ data class Offer(
         if (amount != other.amount) return false
         if (price != other.price) return false
         if (completed != other.completed) return false
-        if (excess != other.excess) return false
+        if (coins != other.coins) return false
         if (item != other.item) return false
         if (state != other.state) return false
         if (account != other.account) return false
@@ -50,7 +50,7 @@ data class Offer(
         result = 31 * result + amount
         result = 31 * result + price
         result = 31 * result + completed
-        result = 31 * result + excess
+        result = 31 * result + coins
         result = 31 * result + item.hashCode()
         result = 31 * result + state.hashCode()
         result = 31 * result + account.hashCode()
@@ -65,7 +65,7 @@ data class Offer(
             var state: OfferState = if (sell) OfferState.PendingSell else OfferState.PendingBuy
             var lastActive: Long = System.currentTimeMillis()
             var completed = 0
-            var excess = 0
+            var coins = 0
             var account = ""
             while (nextPair()) {
                 when (val key = key()) {
@@ -74,7 +74,7 @@ data class Offer(
                     "state" -> state = OfferState.valueOf(string())
                     "last_active" -> lastActive = long()
                     "completed" -> completed = int()
-                    "excess" -> excess = int()
+                    "coins" -> coins = int()
                     "account" -> account = string()
                     else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                 }
@@ -87,7 +87,7 @@ data class Offer(
                 state = state,
                 lastActive = lastActive,
                 completed = completed,
-                excess = excess,
+                coins = coins,
                 account = account
             )
         }
@@ -100,8 +100,8 @@ data class Offer(
             if (offer.completed != 0) {
                 writePair("completed", offer.completed)
             }
-            if (offer.excess != 0) {
-                writePair("excess", offer.excess)
+            if (offer.coins != 0) {
+                writePair("coins", offer.coins)
             }
             if (offer.account != "") {
                 writePair("account", offer.account)

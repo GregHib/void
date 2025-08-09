@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.encode.grandExchange
+import world.gregs.voidps.type.random
 import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -78,12 +79,17 @@ class GrandExchange(
 
     fun login(player: Player) {
         val now = System.currentTimeMillis()
+        var claimed = false
         for (slot in 0 until 6) {
             val id: Int = player["grand_exchange_offer_${slot}"] ?: continue
             val offer = offers.offer(id) ?: continue
             offer.lastActive = now
             val claim = claims.claim(id) ?: continue
-            claim(player, slot, offer, claim.amount, claim.coins, notify = true)
+            claim(player, slot, offer, claim.amount, claim.coins, notify = false)
+            claimed = true
+        }
+        if (claimed) {
+            player.message("You have items waiting in your Grand Exchange collection box!")
         }
     }
 
@@ -154,25 +160,23 @@ class GrandExchange(
             while (offer.completed < offer.amount) {
                 // Find the highest buyer
                 val buying = offers.buying(offer.item)
-                val entry = buying.ceilingEntry(offer.price)
-                if (entry == null) {
+                val entry = buying.lastEntry()
+                if (entry == null || entry.key < offer.price || !exchange(entry.value, offer)) {
                     offers.sell(offer)
                     refresh(offer.account)
-                    return
+                    break
                 }
-                exchange(entry.value, offer)
             }
         } else {
             while (offer.completed < offer.amount) {
                 // Find the cheapest seller
                 val selling = offers.selling(offer.item)
-                val entry = selling.floorEntry(offer.price)
-                if (entry == null) {
+                val entry = selling.firstEntry()
+                if (entry == null || entry.key > offer.price || !exchange(entry.value, offer)) {
                     offers.buy(offer)
                     refresh(offer.account)
                     break
                 }
-                exchange(entry.value, offer)
             }
         }
     }
@@ -210,10 +214,10 @@ class GrandExchange(
             player.addVarbit("grand_exchange_ranges", "slot_${index}")
         }
         val itemDef = itemDefinitions.get(offer.item)
-        player.client?.grandExchange(index, offer.state.int, itemDef.id, offer.price, offer.amount, offer.completed, offer.excess)
+        player.client?.grandExchange(index, offer.state.int, itemDef.id, offer.price, offer.amount, offer.completed, offer.coins)
     }
 
-    private fun exchange(traders: MutableList<Offer>, offer: Offer) {
+    private fun exchange(traders: MutableList<Offer>, offer: Offer): Boolean {
         val trader = weightedSample(traders)
         // if offer has more or same as other
         val required = offer.amount - offer.completed
@@ -222,7 +226,7 @@ class GrandExchange(
         traded = traded.coerceAtMost(limits.limit(if (offer.sell) trader.account else offer.account, offer.item))
 
         if (traded <= 0) {
-            return
+            return false
         }
 
         exchange(offer, traded)
@@ -237,6 +241,7 @@ class GrandExchange(
         }
         limits.record(offer.account, offer.item, traded)
         history.record(offer.item, traded, offer.price)
+        return true
     }
 
     private fun claim(offer: Offer, amount: Int = 0, coins: Int = 0, notify: Boolean = false) {
@@ -280,13 +285,11 @@ class GrandExchange(
             logger.warn { "Failed to claim GE sale: $slot $offer $amount $coins" }
             claims.add(offer.id, amount, coins)
             return
-        } else if (notify) {
-            if (player.hasClock("grand_exchange_message_cooldown")) {
-                return
-            }
+        } else if (notify && !player.hasClock("grand_exchange_message_cooldown")) {
             player.start("grand_exchange_message_cooldown", TimeUnit.MINUTES.toTicks(10))
             player.message("One or more of your Grand Exchange offers have been updated.")
         }
+        offer.coins += coins
         refresh(player, slot)
     }
 
@@ -323,7 +326,7 @@ class GrandExchange(
         if (totalWeight <= 0) {
             throw IllegalStateException("Sampling failed due to invalid cumulative map")
         }
-        val randomValue = Random.nextLong(totalWeight)
+        val randomValue = random.nextLong(totalWeight)
         val entry = cumulativeMap.ceilingEntry(randomValue)
             ?: throw IllegalStateException("Sampling failed due to invalid cumulative map")
         return entry.value

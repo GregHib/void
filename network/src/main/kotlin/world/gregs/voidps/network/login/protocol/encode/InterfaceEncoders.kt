@@ -228,14 +228,14 @@ fun Client.interfaceVisibility(
  * @param price price per item
  * @param amount quantity of items in offer
  * @param sold number of items sold so far
- * @param excess number of coins received
+ * @param coins number of coins received
  */
-fun Client.grandExchange(slot: Int, state: Int = 0, item: Int = 0, price: Int = 0, amount: Int = 0, sold: Int = 0, excess: Int = 0) = send(Protocol.GRAND_EXCHANGE_SLOT) {
+fun Client.grandExchange(slot: Int, state: Int = 0, item: Int = 0, price: Int = 0, amount: Int = 0, sold: Int = 0, coins: Int = 0) = send(Protocol.GRAND_EXCHANGE_SLOT) {
     writeByte(slot)
     writeByte(state)
     writeShort(item)
     writeInt(price)
     writeInt(amount)
     writeInt(sold)
-    writeInt(excess)
+    writeInt(coins)
 }
