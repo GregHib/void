@@ -188,6 +188,9 @@ id = 165
 [summoning_orb]
 id = 747
 type = "summoning_orb"
+components = {
+  familiar_options = 8
+}
 
 [health_orb]
 id = 748

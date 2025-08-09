@@ -3,8 +3,6 @@ package content.skill.summoning
 import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Follow
@@ -36,13 +34,13 @@ inventoryItem("Summon", "*_pouch") {
     updateFamiliarInterface(player, familiarNpc, item)
     player.inventory.remove(item.id)
     player.experience.add(Skill.Summoning, summoningXp)
-
 }
 
 fun summonFamiliar(player: Player, familiar: NPCDefinition): NPC? {
+    // TODO: Return null if there's not enough space around the player to spawn the familiar
     val familiarNpc = npcs.add(familiar.stringId, player.tile)
     familiarNpc.mode = Follow(familiarNpc, player)
-
+    player.interfaces.sendVisibility("summoning_orb", "familiar_options", true)
     return familiarNpc
 }
 
