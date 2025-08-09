@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.npc.shop.stock.ItemInfo
 import content.entity.player.bank.isNote
 import content.entity.player.bank.noted
+import content.entity.player.dialogue.type.intEntry
 import content.entity.player.inv.item.tradeable
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
@@ -29,6 +30,7 @@ import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import kotlin.math.ceil
 
 val exchange: GrandExchange by inject()
@@ -172,15 +174,29 @@ interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
             exchange.buy(player, Item(itemId, amount), price)
         }
         "sell" -> {
-            if (!player.inventory.remove(itemId, amount)) {
-                val item = Item(itemId, amount)
-                val noted = item.noted ?: item
-                if (!player.inventory.remove(noted.id, amount)) {
+            var removed = 0
+            player.inventory.transaction {
+                removed += removeToLimit(itemId, amount)
+                if (removed < amount) {
+                    val noted = Item(itemId, amount).noted?.id ?: itemId
+                    removed += removeToLimit(noted, amount - removed)
+                }
+
+                if (removed < amount) {
+                    error = TransactionError.Deficient(amount - removed)
+                }
+            }
+            when (player.inventory.transaction.error) {
+                TransactionError.None -> exchange.sell(player, Item(itemId, amount), price)
+                is TransactionError.Deficient -> {
                     player.message("Not enough items") // TODO proper message
                     return@interfaceOption
                 }
+                else -> {
+                    logger.warn { "Error removing GE items ${player.inventory.transaction.error}" }
+                    return@interfaceOption
+                }
             }
-            exchange.sell(player, Item(itemId, amount), price)
         }
         else -> return@interfaceOption
     }
@@ -211,16 +227,33 @@ interfaceOption("Add *", "add_*", "grand_exchange") {
             "add_1" -> 1
             "add_10" -> 10
             "add_100" -> 100
-            "add_all" -> player.inventory.count(player["grand_exchange_item", ""])
-            else -> -1
+            "add_all" -> {
+                val item = Item(player["grand_exchange_item", ""])
+                val noted = item.noted
+                var total = 0
+                if (noted != null) {
+                    total += player.inventory.count(noted.id)
+                }
+                total += player.inventory.count(item.id)
+                total
+            }
+            else -> return@interfaceOption
         }
         "buy" -> when (component) {
             "add_1" -> player.inc("grand_exchange_quantity", 1)
             "add_10" -> player.inc("grand_exchange_quantity", 10)
             "add_100" -> player.inc("grand_exchange_quantity", 100)
             "add_all" -> player.inc("grand_exchange_quantity", 1000)
-            "add_x" -> {}
+            else -> return@interfaceOption
         }
+    }
+}
+
+interfaceOption("Edit Quantity", "add_x", "grand_exchange") {
+    player["grand_exchange_quantity"] = when (player["grand_exchange_page", "offers"]) {
+        "sell" -> intEntry("Enter the amount you wish to sell:")
+        "buy" -> intEntry("Enter the amount you wish to purchase:")
+        else -> return@interfaceOption
     }
 }
 
@@ -246,6 +279,14 @@ interfaceOption("Increase Price", "increase_price", "grand_exchange") {
     if (player["grand_exchange_price", 0] < Int.MAX_VALUE - 1) {
         player.inc("grand_exchange_price", 1)
     }
+}
+
+interfaceOption("Edit Price", "offer_x", "grand_exchange") {
+    player["grand_exchange_price"] = when (player["grand_exchange_page", "offers"]) {
+        "sell" -> intEntry("Enter the price you wish to sell for:")
+        "buy" -> intEntry("Enter the price you wish to buy for:")
+        else -> return@interfaceOption
+    }.coerceIn(player["grand_exchange_range_min", 0], player["grand_exchange_range_max", 0])
 }
 
 // TODO: Toggle to replace min/max with +/- 5%
