@@ -4,6 +4,15 @@ import world.gregs.config.ConfigReader
 import world.gregs.config.ConfigWriter
 import world.gregs.config.writePair
 
+/**
+ * Grand Exchange Offer
+ * @param id unique
+ * @param item id
+ * @param amount to buy or sell
+ * @param completed number purchased or sold so far
+ * @param coins total received or refunded if bought below offer price
+ * @param account account name of the player
+ */
 data class Offer(
     val id: Int = 0,
     val item: String = "",
