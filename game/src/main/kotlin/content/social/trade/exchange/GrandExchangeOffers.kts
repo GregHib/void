@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.continueItemDialogue
+import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
@@ -75,7 +76,7 @@ interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
             if (offer != null && offer.state.cancelled) {
                 exchange.offers.remove(id)
                 player.clear("grand_exchange_offer_${box}")
-                clear()
+                clear(player)
             }
             exchange.refresh(player, box)
         }
@@ -134,14 +135,6 @@ interfaceOpen("stock_side") { player ->
     player.sendScript("grand_exchange_hide_all")
 }
 
-/*
- * https://youtu.be/3ussM7P1j00?si=IHR8ZXl2kN0bjIfx&t=398
- * "One or more of your Grand Exchange offers have been updated."
- *
- * "Abort request acknowledged. Please be aware that your offer may have already been completed."
- *
- */
-
 val logger = InlineLogger()
 
 interfaceOption("Offer", "items", "stock_side") {
@@ -151,7 +144,7 @@ interfaceOption("Offer", "items", "stock_side") {
         return@interfaceOption
     }
     if (!item.tradeable) {
-        player.message("This item can't be traded on the grand exchange.") // TODO proper message
+        player.message("You can't trade that item on the Grand Exchange.")
         return@interfaceOption
     }
     selectItem(player, item.id)
@@ -160,7 +153,7 @@ interfaceOption("Offer", "items", "stock_side") {
 }
 
 interfaceOption("Back", "back", "grand_exchange") {
-    clear()
+    clear(player)
 }
 
 interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
@@ -170,9 +163,9 @@ interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
     val price: Int = player["grand_exchange_price"] ?: return@interfaceOption
     val id = when (player["grand_exchange_page", "offers"]) {
         "buy" -> {
+            val total = price * amount
             var fromBank = false
             player.inventory.transaction {
-                val total = price * amount
                 var removed = removeToLimit("coins", total)
                 if (removed < total && Settings["grandExchange.useBankCoins", false]) {
                     val txn = link(player.bank)
@@ -191,13 +184,11 @@ interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
                     exchange.buy(player, Item(itemId, amount), price)
                 }
                 is TransactionError.Deficient -> {
+                    println(player.inventory.transaction.error)
                     player.notEnough("coins")
                     return@interfaceOption
                 }
-                else -> {
-                    logger.warn { "Error removing GE coins ${player.name} ${player.inventory.transaction.error} $slot $itemId $amount $price" }
-                    return@interfaceOption
-                }
+                else -> return@interfaceOption
             }
         }
         "sell" -> {
@@ -226,10 +217,14 @@ interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
     player.inventories.inventory("collection_box_${slot}").clear()
     player["grand_exchange_offer_${slot}"] = id
     exchange.refresh(player, slot)
-    clear()
+    clear(player)
 }
 
-fun InterfaceOption.clear() {
+interfaceClose("grand_exchange") {
+    clear(it)
+}
+
+fun clear(player: Player) {
     player["grand_exchange_box"] = -1
     player["grand_exchange_page"] = "offers"
     player.sendScript("item_dialogue_close")
@@ -276,7 +271,6 @@ interfaceOption("Edit Quantity", "add_x", "grand_exchange") {
 
 interfaceOption("Increase Quantity", "increase_quantity", "grand_exchange") {
     if (player["grand_exchange_quantity", 0] < Int.MAX_VALUE - 1) {
-        player.inc("grand_exchange_quantity", 1)
         player["grand_exchange_quantity"] = (player["grand_exchange_quantity", 0] + 1).coerceAtMost(totalItems())
     }
 }
@@ -288,15 +282,15 @@ interfaceOption("Decrease Quantity", "decrease_quantity", "grand_exchange") {
 }
 
 interfaceOption("Decrease Price", "decrease_price", "grand_exchange") {
-    if (player.dec("grand_exchange_price", 1) < 0) {
-        player["grand_exchange_quantity"] = 0
-    }
+    player["grand_exchange_price"] = (player["grand_exchange_price", 0] - 1).coerceAtLeast(player["grand_exchange_range_min", 0])
 }
 
 interfaceOption("Increase Price", "increase_price", "grand_exchange") {
-    if (player["grand_exchange_price", 0] < Int.MAX_VALUE - 1) {
-        player.inc("grand_exchange_price", 1)
-    }
+    player["grand_exchange_price"] = (player["grand_exchange_price", 0] + 1).coerceAtMost(player["grand_exchange_range_max", 0])
+}
+
+interfaceOption("Offer Market Price", "offer_market", "grand_exchange") {
+    player["grand_exchange_price"] = player["grand_exchange_market_price", 0]
 }
 
 interfaceOption("Edit Price", "offer_x", "grand_exchange") {
@@ -337,6 +331,7 @@ fun selectItem(player: Player, item: String) {
 fun abort(player: Player, slot: Int) {
     val id: Int = player["grand_exchange_offer_${slot}"] ?: return
     exchange.cancel(id)
+    // https://youtu.be/3ussM7P1j00?si=IHR8ZXl2kN0bjIfx&t=398
     player.message("Abort request acknowledged. Please be aware that your offer may have already been completed.")
 }
 

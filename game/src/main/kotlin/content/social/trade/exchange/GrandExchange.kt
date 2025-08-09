@@ -298,6 +298,7 @@ class GrandExchange(
             return
         } else if (notify && !player.hasClock("grand_exchange_message_cooldown")) {
             player.start("grand_exchange_message_cooldown", TimeUnit.MINUTES.toTicks(10))
+            // https://youtu.be/3ussM7P1j00?si=IHR8ZXl2kN0bjIfx&t=398
             player.message("One or more of your Grand Exchange offers have been updated.")
         }
         offer.coins += coins
