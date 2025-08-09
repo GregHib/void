@@ -280,3 +280,6 @@ params = [
   "friend_index",
   "rank"
 ]
+
+[refresh_item_info]
+id = 917

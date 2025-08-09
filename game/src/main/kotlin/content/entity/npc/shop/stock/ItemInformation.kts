@@ -1,6 +1,8 @@
 package content.entity.npc.shop.stock
 
 import content.entity.npc.shop.shopInventory
+import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
@@ -25,13 +27,19 @@ interfaceOption("Info", id = "shop") {
 }
 
 interfaceOption("Close", "exit", "item_info") {
-    if (player.menu == "shop") {
-        player.open("shop_side")
-        player.interfaceOptions.send("shop_side", "inventory")
+    when (player.menu) {
+        "shop" -> {
+            player.open("shop_side")
+            player.interfaceOptions.send("shop_side", "inventory")
+        }
+        "grand_exchange" -> player.close("item_info")
     }
 }
 
 inventoryChanged { player ->
+    if (player.interfaces.contains("item_info")) {
+        player.sendScript("refresh_item_info")
+    }
     if (!player.contains("info_sample")) {
         return@inventoryChanged
     }
