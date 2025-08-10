@@ -41,9 +41,11 @@ id = 79
 
 [pet_details]
 id = 662
+type = "follower_details_tab"
 
 [pet_hunger_details]
 id = 663
+type = "follower_details_tab"
 
 [summoning_scroll_creation]
 id = 666
