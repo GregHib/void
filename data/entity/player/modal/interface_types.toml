@@ -69,7 +69,7 @@ resizeIndex = 92
 fixedIndex = 209
 resizeIndex = 93
 
-[follower_details_tab]
+[unknown_tab_1]
 fixedIndex = 210
 resizeIndex = 94
 
@@ -104,6 +104,10 @@ resizeIndex = 101
 [overlay_tab]
 fixedIndex = 197
 resizeIndex = 83
+
+[follower_details_tab]
+fixedIndex = 219
+resizeIndex = 103
 
 [logout_tab]
 fixedIndex = 220

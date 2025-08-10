@@ -40,13 +40,15 @@ fun summonFamiliar(player: Player, familiar: NPCDefinition): NPC? {
     // TODO: Return null if there's not enough space around the player to spawn the familiar
     val familiarNpc = npcs.add(familiar.stringId, player.tile)
     familiarNpc.mode = Follow(familiarNpc, player)
-    player.interfaces.sendVisibility("summoning_orb", "familiar_options", true)
+
     return familiarNpc
 }
 
 fun updateFamiliarInterface(player: Player, familiar: NPC, pouch: Item) {
-    player.variables.set("pet_details_pet_name", pouch.def.id)
-    player.variables.set("pet_details_chathead", familiar.def.id)
+    player.interfaces.open("pet_details")
 
-    player.addVarbit("pet_details_chathead_animation", 1)
+    player["pet_details_pet_name"] = pouch.def.id
+    player["pet_details_chathead"] = familiar.def.id
+
+    player["pet_details_chathead_animation"] = 1
 }
