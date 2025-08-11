@@ -29,3 +29,13 @@ persist = true
 id = 4534
 format = "int"
 persist = true
+
+[summoning_orb_left_click_option]
+id = 6454
+format = "int"
+persist = true
+
+[summoning_menu_left_click_option]
+id = 6455
+format = "int"
+persist = true
