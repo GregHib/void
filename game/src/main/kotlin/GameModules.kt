@@ -59,19 +59,21 @@ fun gameModule(files: ConfigFiles) = module {
         Offers().load(buy, sell, Settings["grandExchange.offers.activeDays", 0])
     }
     single(createdAtStart = true) {
-        val file = File(Settings["storage.grand.exchange.history.path"])
-        file.mkdirs()
-        ExchangeHistory(get()).load(file)
+        val itemHistory = File(Settings["storage.grand.exchange.history.path"])
+        val playerHistory = File(Settings["storage.grand.exchange.offers.history.path"])
+        itemHistory.mkdirs()
+        ExchangeHistory(get()).load(itemHistory, playerHistory)
     }
     single(createdAtStart = true) {
         val file = File(Settings["storage.grand.exchange.offers.claim.path"])
         ClaimableOffers().load(file)
     }
     single(createdAtStart = true) {
-        val history = File(Settings["storage.grand.exchange.history.path"])
+        val itemHistory = File(Settings["storage.grand.exchange.history.path"])
+        val playerHistory = File(Settings["storage.grand.exchange.offers.history.path"])
         val buy = File(Settings["storage.grand.exchange.offers.buy.path"])
         val sell = File(Settings["storage.grand.exchange.offers.sell.path"])
         val claims = File(Settings["storage.grand.exchange.offers.claim.path"])
-        GrandExchange(get(), get(), get(), get(), get(), get(), history, buy, sell, claims)
+        GrandExchange(get(), get(), get(), get(), get(), get(), itemHistory, playerHistory, buy, sell, claims)
     }
 }

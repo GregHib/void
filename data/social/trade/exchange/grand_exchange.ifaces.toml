@@ -90,7 +90,13 @@ id = 108
 [collection_box]
 id = 109
 components = {
-  box0 = 19,
+  box0 = {
+    id = 19,
+    options = {
+      Collect_notes = 0,
+      Collect = 1,
+    }
+  },
   collect_slot_0 = {
     id = 20,
     options = {
@@ -111,6 +117,28 @@ type = "main_screen"
 
 [exchange_history]
 id = 643
+components = {
+  type_0 = 25,
+  type_1 = 26,
+  type_2 = 27,
+  type_3 = 28,
+  type_4 = 29,
+  amount_0 = 30,
+  amount_1 = 31,
+  amount_2 = 32,
+  amount_3 = 33,
+  amount_4 = 34,
+  name_0 = 35,
+  name_1 = 36,
+  name_2 = 37,
+  name_3 = 38,
+  name_4 = 39,
+  price_0 = 40,
+  price_1 = 41,
+  price_2 = 42,
+  price_3 = 43,
+  price_4 = 44,
+}
 
 [exchange_sets_side]
 id = 644
