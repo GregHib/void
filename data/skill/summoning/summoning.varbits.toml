@@ -1,4 +1,9 @@
-[pet_details_chathead_animation]
+[show_summoning_orb]
+id = 4280
+format = "boolean"
+persist = true
+
+[follower_details_chathead_animation]
 id = 4282
 format = "int"
 persist = true

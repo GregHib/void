@@ -1,9 +1,9 @@
-[pet_details_pet_name]
+[follower_details_name]
 id = 448
 format = "int"
 persist = true
 
-[pet_details_chathead]
+[follower_details_chathead]
 id = 1174
 format = "int"
 persist = true
