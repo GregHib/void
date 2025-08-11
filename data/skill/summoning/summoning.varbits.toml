@@ -2,6 +2,7 @@
 id = 4280
 format = "boolean"
 persist = true
+default = true
 
 [follower_details_chathead_animation]
 id = 4282
