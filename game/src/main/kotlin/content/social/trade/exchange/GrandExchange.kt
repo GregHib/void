@@ -28,7 +28,6 @@ import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.ceil
-import kotlin.random.Random
 
 class GrandExchange(
     val offers: Offers,
@@ -37,7 +36,8 @@ class GrandExchange(
     private val accounts: AccountDefinitions,
     private val players: Players,
     private val claims: ClaimableOffers,
-    private val historyDirectory: File,
+    private val itemHistoryDirectory: File,
+    private val playerHistoryDirectory: File,
     private val buyOffersDirectory: File,
     private val sellOffersDirectory: File,
     private val claimsDirectory: File
@@ -163,7 +163,7 @@ class GrandExchange(
     }
 
     fun save() {
-        history.save(historyDirectory)
+        history.save(itemHistoryDirectory, playerHistoryDirectory)
         offers.save(buyOffersDirectory, sellOffersDirectory)
         claims.save(claimsDirectory)
     }
@@ -312,6 +312,7 @@ class GrandExchange(
         if (offer.completed == offer.amount) {
             offer.cancel()
             offers.remove(offer.id)
+            history.record(offer.account, offer.id)
         } else {
             offer.open()
         }

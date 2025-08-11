@@ -47,6 +47,7 @@ class ClaimableOffers(
                 val amount = int()
                 assert(nextElement())
                 val coins = int()
+                assert(!nextElement())
                 claims[id] = Claim(amount = amount, coins = coins)
             }
         }

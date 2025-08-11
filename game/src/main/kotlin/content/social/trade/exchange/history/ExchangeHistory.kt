@@ -2,7 +2,10 @@ package content.social.trade.exchange.history
 
 import content.social.trade.exchange.history.ItemHistory.Companion.readHistory
 import content.social.trade.exchange.history.ItemHistory.Companion.write
+import content.social.trade.exchange.offer.Offer
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
+import world.gregs.config.writePair
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.timedLoad
 import java.io.File
@@ -62,7 +65,7 @@ class ExchangeHistory(
         marketPrices.clear()
     }
 
-    fun save(directory: File) {
+    fun save(directory: File, playerFile: File) {
         for ((key, value) in history) {
             Config.fileWriter(directory.resolve("${key}.toml")) {
                 write(value)
@@ -70,9 +73,9 @@ class ExchangeHistory(
         }
     }
 
-    fun load(directory: File): ExchangeHistory {
-        timedLoad("grand exchange history") {
-            clear()
+    fun load(directory: File, playerFile: File): ExchangeHistory {
+        clear()
+        timedLoad("grand exchange item history") {
             for (file in directory.listFiles()!!) {
                 Config.fileReader(file) {
                     history[file.nameWithoutExtension] = readHistory()
