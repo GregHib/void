@@ -1,5 +1,6 @@
 package content.skill.summoning
 
+import content.entity.player.dialogue.type.choice
 import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.message
@@ -59,6 +60,24 @@ interfaceOption("Confirm Selection", "confirm", "follower_left_click_options") {
     player.confirmFollowerLeftClickOptions()
 }
 
+interfaceOption("Dismiss", id = "summoning_orb") {
+    player.dismissFamiliar()
+}
+
+interfaceOption("Dismiss *", "dismiss", "familiar_details") {
+    when (option) {
+        "Dismiss Familiar" -> {
+            choice("Are you sure you want to dismiss your familiar?") {
+                option("Yes.") {
+                    player.dismissFamiliar()
+                }
+                option("No.")
+            }
+        }
+        "Dismiss Now" -> player.dismissFamiliar()
+    }
+}
+
 fun Player.summonFamiliar(familiar: NPCDefinition): NPC? {
     if (follower != null) {
         // TODO: Find actual message for this
@@ -73,15 +92,24 @@ fun Player.summonFamiliar(familiar: NPCDefinition): NPC? {
     return familiarNpc
 }
 
+fun Player.dismissFamiliar() {
+    npcs.remove(follower)
+    follower = null
+    interfaces.close("familiar_details")
+
+    this["follower_details_name"] = -1
+    this["follower_details_chathead"] = -1
+}
+
 fun Player.updateFamiliarInterface() {
     if (follower == null) return
 
-    this.interfaces.open("pet_details")
+    this.interfaces.open("familiar_details")
 
-    this["pet_details_pet_name"] = enums.get("summoning_familiar_ids").getKey(follower!!.def.id)
-    this["pet_details_chathead"] = follower!!.def.id
+    this["follower_details_name"] = enums.get("summoning_familiar_ids").getKey(follower!!.def.id)
+    this["follower_details_chathead"] = follower!!.def.id
 
-    this["pet_details_chathead_animation"] = 1
+    this["follower_details_chathead_animation"] = 1
 }
 
 fun Player.openFollowerLeftClickOptions() {
