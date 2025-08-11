@@ -1,0 +1,14 @@
+[follower_details_name]
+id = 448
+format = "int"
+persist = true
+
+[follower_details_chathead]
+id = 1174
+format = "int"
+persist = true
+
+[summoning_special_points_remaining]
+id = 1177
+format = "int"
+persist = true

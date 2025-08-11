@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.AreaQueue
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
@@ -47,6 +48,7 @@ class Player(
     var accountName: String = "",
     var passwordHash: String = "",
     val body: BodyParts = BodyParts(),
+    var follower: NPC? = null,
 ) : Character {
 
     override val visuals: PlayerVisuals = PlayerVisuals(body)

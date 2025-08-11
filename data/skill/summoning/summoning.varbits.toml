@@ -1,0 +1,47 @@
+[show_summoning_orb]
+id = 4280
+format = "boolean"
+persist = true
+default = true
+
+[follower_details_chathead_animation]
+id = 4282
+format = "int"
+persist = true
+
+[pet_details_growth_percentage]
+id = 4285
+format = "int"
+persist = true
+
+[pet_details_hunger_percentage]
+id = 4286
+format = "int"
+persist = true
+
+# Changes the mouseover info for the cast button in inter 662 (pet_details)
+# E.g. "Level 1: Howl (-->#<-- Special Move points)"
+[summoning_special_points_needed]
+id = 4288
+format = "int"
+persist = true
+
+[pet_details_seconds_remaining]
+id = 4290
+format = "int"
+persist = true
+
+[pet_details_minutes_remaining]
+id = 4534
+format = "int"
+persist = true
+
+[summoning_orb_left_click_option]
+id = 6454
+format = "int"
+persist = true
+
+[summoning_menu_left_click_option]
+id = 6455
+format = "int"
+persist = true
