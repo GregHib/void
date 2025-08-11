@@ -78,8 +78,26 @@ type = "dialogue_box"
 id = 737
 type = "dialogue_box"
 
-[familiar_options]
+[follower_left_click_options]
 id = 880
+type = "overlay_tab"
+components = {
+    follower_details_circle = 7,
+    follower_details = 8,
+    special_move_circle = 9,
+    special_move = 10,
+    attack_circle = 11,
+    attack = 12,
+    call_follower_circle = 13,
+    call_follower = 14,
+    dismiss_follower_cricle = 15,
+    dismiss_follower = 16,
+    take_bob_cricle = 17,
+    take_bob = 18,
+    renew_familiar_circle = 19,
+    renew_familiar = 20,
+    confirm = 21
+}
 
 [summoning_side]
 id = 722

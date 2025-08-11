@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
@@ -51,6 +52,7 @@ class Player(
     val body: BodyParts = BodyParts(),
     val offers: Array<ExchangeOffer> = Array(6) { ExchangeOffer() },
     val history: MutableList<ExchangeHistory> = mutableListOf(),
+    var follower: NPC? = null,
 ) : Character {
 
     override val visuals: PlayerVisuals = PlayerVisuals(body)
