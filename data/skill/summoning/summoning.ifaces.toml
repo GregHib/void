@@ -42,10 +42,21 @@ id = 79
 [familiar_details]
 id = 662
 type = "follower_details_tab"
+components = {
+    call = 49,
+    dismiss = 51,
+    attack = 65,
+    take_bob_items = 67,
+    renew = 69,
+}
 
 [pet_details]
 id = 663
 type = "follower_details_tab"
+components = {
+    call = 21,
+    dismiss = 23
+}
 
 [summoning_scroll_creation]
 id = 666
