@@ -39,11 +39,11 @@ id = 27
 [summoning_creation]
 id = 79
 
-[pet_details]
+[familiar_details]
 id = 662
 type = "follower_details_tab"
 
-[pet_hunger_details]
+[pet_details]
 id = 663
 type = "follower_details_tab"
 
