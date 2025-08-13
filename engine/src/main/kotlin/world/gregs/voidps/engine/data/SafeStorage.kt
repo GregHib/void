@@ -1,6 +1,10 @@
 package world.gregs.voidps.engine.data
 
 import world.gregs.voidps.engine.data.config.AccountDefinition
+import world.gregs.voidps.engine.data.exchange.Aggregate
+import world.gregs.voidps.engine.data.exchange.Claim
+import world.gregs.voidps.engine.data.exchange.Offers
+import world.gregs.voidps.engine.data.exchange.PriceHistory
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import java.io.File
 import java.time.LocalDateTime
@@ -11,11 +15,52 @@ import java.time.format.DateTimeFormatter
  */
 class SafeStorage(
     private val directory: File,
-) : AccountStorage {
+) : Storage {
 
     override fun names(): Map<String, AccountDefinition> = emptyMap()
 
     override fun clans(): Map<String, Clan> = emptyMap()
+
+    override fun offers(days: Int) = Offers()
+
+    override fun claims(): Map<Int, Claim> = emptyMap()
+
+    override fun priceHistory(): Map<String, PriceHistory> = emptyMap()
+
+    override fun saveClaims(claims: Map<Int, Claim>) {
+        val parent = directory.resolve("grand_exchange/")
+        parent.mkdirs()
+        val file = parent.resolve("claimable_offers.toml")
+        file.writeText(buildString {
+            for ((id, claim) in claims) {
+                appendLine("$id = [${claim.amount}, ${claim.coins}]")
+            }
+        })
+    }
+
+    override fun savePriceHistory(history: Map<String, PriceHistory>) {
+        val parent = directory.resolve("grand_exchange/price_history/")
+        parent.mkdirs()
+        for ((key, value) in history) {
+            val file = parent.resolve("$key.toml")
+            file.writeText(buildString {
+                appendLine("[day]")
+                writeAggregates(this, value.day)
+                appendLine("[week]")
+                writeAggregates(this, value.week)
+                appendLine("[month]")
+                writeAggregates(this, value.month)
+                appendLine("[year]")
+                writeAggregates(this, value.year)
+            })
+        }
+    }
+
+    private fun writeAggregates(stringBuilder: StringBuilder, frame: MutableMap<Long, Aggregate>) {
+        for ((timestamp, aggregate) in frame) {
+            stringBuilder.appendLine("$timestamp = [${aggregate.open}, ${aggregate.high}, ${aggregate.low}, ${aggregate.close}, ${aggregate.volume}, ${aggregate.count}, ${aggregate.averageHigh}, ${aggregate.averageLow}, ${aggregate.volumeHigh}, ${aggregate.volumeLow}]")
+        }
+    }
 
     override fun save(accounts: List<PlayerSave>) {
         directory.mkdirs()
@@ -23,11 +68,11 @@ class SafeStorage(
         val current = LocalDateTime.now().format(formatter)
         for (account in accounts) {
             val file = directory.resolve("$current-${account.name}.toml")
-            file.writeText(toJson(account))
+            file.writeText(toToml(account))
         }
     }
 
-    private fun toJson(save: PlayerSave): String = buildString {
+    private fun toToml(save: PlayerSave): String = buildString {
         appendLine("accountName = \"${save.name}\"")
         appendLine("passwordHash = \"${save.password}\"")
         appendLine("experience = [ ${save.experience.joinToString(", ")} ]")
@@ -48,7 +93,7 @@ class SafeStorage(
                 "$key = ${
                     when (value) {
                         is String -> "\"${value}\""
-                        is Collection<*> -> "[${value.map { if (it is String)"\"${it}\"" else it }.joinToString(", ")}]"
+                        is Collection<*> -> "[${value.map { if (it is String) "\"${it}\"" else it }.joinToString(", ")}]"
                         else -> value
                     }
                 }",
@@ -61,7 +106,7 @@ class SafeStorage(
         }
         appendLine()
         appendLine("[social]")
-        appendLine("friends = {${save.friends.toList().joinToString(", ") { "\"${it.first}\" = \"${it.second}\""}}}")
+        appendLine("friends = {${save.friends.toList().joinToString(", ") { "\"${it.first}\" = \"${it.second}\"" }}}")
         appendLine("ignores = [${save.ignores.joinToString(", ") { "\"${it}\"" }}]")
         appendLine()
         appendLine("[exchange]")

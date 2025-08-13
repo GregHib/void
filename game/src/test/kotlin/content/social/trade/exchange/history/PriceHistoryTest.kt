@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.util.concurrent.TimeUnit
 
-class ItemHistoryTest {
+class PriceHistoryTest {
 
     private lateinit var itemHistory: ItemHistory
     private val fixedTimestamp = 1_000_000_000_000L

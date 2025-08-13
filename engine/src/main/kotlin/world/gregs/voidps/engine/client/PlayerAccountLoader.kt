@@ -5,7 +5,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.data.AccountManager
-import world.gregs.voidps.engine.data.AccountStorage
+import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.World
@@ -25,7 +25,7 @@ import world.gregs.voidps.network.login.protocol.encode.login
  */
 class PlayerAccountLoader(
     private val queue: ConnectionQueue,
-    private val storage: AccountStorage,
+    private val storage: Storage,
     private val accounts: AccountManager,
     private val saveQueue: SaveQueue,
     private val accountDefinitions: AccountDefinitions,

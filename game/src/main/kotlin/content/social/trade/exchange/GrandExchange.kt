@@ -5,7 +5,6 @@ import content.social.trade.exchange.history.ExchangeHistory
 import content.social.trade.exchange.limit.BuyLimits
 import content.social.trade.exchange.offer.ClaimableOffers
 import content.social.trade.exchange.offer.Offer
-import content.social.trade.exchange.offer.OfferState
 import content.social.trade.exchange.offer.Offers
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
@@ -13,9 +12,11 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.exchange.OfferState
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.Item
@@ -24,7 +25,6 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.encode.grandExchange
 import world.gregs.voidps.type.random
-import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.ceil
@@ -36,11 +36,7 @@ class GrandExchange(
     private val accounts: AccountDefinitions,
     private val players: Players,
     private val claims: ClaimableOffers,
-    private val itemHistoryDirectory: File,
-    private val playerHistoryDirectory: File,
-    private val buyOffersDirectory: File,
-    private val sellOffersDirectory: File,
-    private val claimsDirectory: File
+    private val storage: Storage
 ) : Runnable {
 
     private val limits = BuyLimits(itemDefinitions)
@@ -163,9 +159,8 @@ class GrandExchange(
     }
 
     fun save() {
-        history.save(itemHistoryDirectory, playerHistoryDirectory)
-        offers.save(buyOffersDirectory, sellOffersDirectory)
-        claims.save(claimsDirectory)
+        storage.savePriceHistory(history.history)
+        storage.saveClaims(claims.claims)
     }
 
     private fun process(offer: Offer) {

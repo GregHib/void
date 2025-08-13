@@ -7,9 +7,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.Tile
 import kotlin.test.*
 
-abstract class AccountStorageTest {
+abstract class StorageTest {
 
-    abstract val storage: AccountStorage
+    abstract val storage: Storage
 
     @Test
     fun `Store an account`() {

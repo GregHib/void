@@ -2,15 +2,14 @@ package world.gregs.voidps.engine.data
 
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.exchange.Claim
-import world.gregs.voidps.engine.data.exchange.ItemHistory
+import world.gregs.voidps.engine.data.exchange.PriceHistory
 import world.gregs.voidps.engine.data.exchange.Offers
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
-import java.util.TreeMap
 
 /**
  * Saves and loads account data
  */
-interface AccountStorage {
+interface Storage {
 
     /**
      * Migrate any old formats to new
@@ -40,17 +39,17 @@ interface AccountStorage {
     /**
      * Batch saves claims
      */
-    fun save(claims: Map<Int, Claim>)
+    fun saveClaims(claims: Map<Int, Claim>)
 
     /**
      * Loads exchange completion history
      */
-    fun itemHistory(): Map<String, ItemHistory>
+    fun priceHistory(): Map<String, PriceHistory>
 
     /**
      * Batch saves item history
      */
-    fun save(history: Map<String, ItemHistory>)
+    fun savePriceHistory(history: Map<String, PriceHistory>)
 
     /**
      * Batch saves accounts

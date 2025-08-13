@@ -324,7 +324,7 @@ data class PlayerSave(
                                     "offers" -> {
                                         var index = 0
                                         while (nextElement()) {
-                                            while (nextPair()) {
+                                            while (nextEntry()) {
                                                 var id = 0
                                                 var item = ""
                                                 var amount = 0
