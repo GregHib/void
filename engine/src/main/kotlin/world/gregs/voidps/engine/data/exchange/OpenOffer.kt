@@ -3,17 +3,17 @@ package world.gregs.voidps.engine.data.exchange
 /**
  * An open Grand Exchange offer
  * @param id unique
- * @param amount to buy or sell
- * @param completed number purchased or sold so far
+ * @param remaining number left to purchase or sell
  * @param coins total received or refunded if bought below offer price
- * @param lastActive last time the player logged in
  * @param account account name of the player
  */
 data class OpenOffer(
-    val id: Int = 0,
-    val amount: Int = 0,
-    var completed: Int = 0,
-    var coins: Int = 0,
-    var lastActive: Long = System.currentTimeMillis(),
+    override val id: Int = 0,
+    var remaining: Int = 0,
+    override var coins: Int = 0,
     val account: String = "",
-)
+    var lastActive: Long = System.currentTimeMillis(),
+) : Offer {
+    val sell: Boolean
+        get() = remaining < 0
+}

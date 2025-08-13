@@ -50,8 +50,7 @@ interfaceClose("grand_exchange") {
 
 interfaceOption("Make Offer", "view_offer_*", "grand_exchange") {
     val slot = component.removePrefix("view_offer_").toInt()
-    val id: Int = player["grand_exchange_offer_${slot}"] ?: return@interfaceOption
-    val offer = exchange.offers.offer(id) ?: return@interfaceOption
+    val offer = player.offers.getOrNull(slot) ?: return@interfaceOption
     player["grand_exchange_box"] = slot
     selectItem(player, offer.item)
 }

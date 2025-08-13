@@ -19,7 +19,7 @@ val logger = InlineLogger()
 interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
     val index = component.removePrefix("collect_slot_").toInt()
     val box: Int = player["grand_exchange_box"] ?: return@interfaceOption
-    val id: Int = player["grand_exchange_offer_${box}"] ?: return@interfaceOption
+    val offer = player.offers.getOrNull(box) ?: return@interfaceOption
     val collectionBox = player.inventories.inventory("collection_box_${box}")
     val item = collectionBox[index]
     var noted = item
@@ -35,9 +35,8 @@ interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
     when (player.inventory.transaction.error) {
         is TransactionError.Full -> player.inventoryFull()
         TransactionError.None -> if (collectionBox.isEmpty()) {
-            val offer = exchange.offers.offer(id)
-            if (offer != null && offer.state.cancelled) {
-                exchange.offers.remove(id)
+            if (offer.state.cancelled) {
+                exchange.offers.remove(offer)
                 player.clear("grand_exchange_offer_${box}")
                 GrandExchange.clear(player)
             }
@@ -60,8 +59,8 @@ interfaceOption("Abort Offer", "view_offer_*", "grand_exchange") {
 }
 
 fun abort(player: Player, slot: Int) {
-    val id: Int = player["grand_exchange_offer_${slot}"] ?: return
-    exchange.cancel(id)
+    val offer = player.offers.getOrNull(slot) ?: return
+    exchange.cancel(player, offer.id)
     // https://youtu.be/3ussM7P1j00?si=IHR8ZXl2kN0bjIfx&t=398
     player.message("Abort request acknowledged. Please be aware that your offer may have already been completed.")
 }

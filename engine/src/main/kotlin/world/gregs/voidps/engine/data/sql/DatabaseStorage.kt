@@ -79,9 +79,9 @@ class DatabaseStorage : Storage {
     override fun offers(days: Int): Offers {
         val buy: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf()
         val sell: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf()
-        val offers = mutableMapOf<Int, OpenOffer>()
         val openOffers = OffersTable.selectAll().where { OffersTable.state eq "OpenBuy" }.orWhere { OffersTable.state eq "OpenSell" }
         var max = 0
+        val offers = Offers(sell, buy)
         val now = System.currentTimeMillis()
         for (row in openOffers) {
             val state = row[OffersTable.state]
@@ -92,8 +92,9 @@ class DatabaseStorage : Storage {
             val completed = row[OffersTable.completed]
             val lastActive = row[OffersTable.lastActive]
             val coins = row[OffersTable.coins]
-            val offer = OpenOffer(id = id, amount = amount, completed = completed, coins = coins)
-            offers[id] = offer
+            val remaining = amount - completed
+            val offer = OpenOffer(id = id, remaining = if (state == "OpenSell") -remaining else remaining, coins = coins)
+            offers.add(id, item, price, state == "OpenSell")
             if (id > max) {
                 max = id
             }
@@ -106,7 +107,10 @@ class DatabaseStorage : Storage {
                 }
             }
         }
-        return Offers(sell, buy, offers, max)
+        if (max > offers.counter) {
+            offers.counter = max
+        }
+        return offers
     }
 
     override fun saveClaims(claims: Map<Int, Claim>) {

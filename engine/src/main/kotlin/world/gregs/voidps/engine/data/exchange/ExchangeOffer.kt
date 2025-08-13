@@ -11,15 +11,32 @@ package world.gregs.voidps.engine.data.exchange
  * @param coins total received or refunded if bought below offer price
  */
 data class ExchangeOffer(
-    val id: Int = 0,
+    override val id: Int = 0,
     val item: String = "",
     val amount: Int = 0,
     val price: Int = 0,
     var state: OfferState = OfferState.PendingBuy,
     var completed: Int = 0,
-    var coins: Int = 0,
-) {
+    override var coins: Int = 0,
+) : Offer {
+
     fun isEmpty(): Boolean = id == 0
+
+    val sell: Boolean
+        get() = state.sell
+
+    fun open() {
+    }
+
+    fun open(account: String): OpenOffer {
+        val remaining = amount - completed
+        state = if (state.sell) OfferState.OpenSell else OfferState.OpenBuy
+        return OpenOffer(id, if (state.sell) -remaining else remaining, coins, account)
+    }
+
+    fun cancel() {
+        state = if (state.sell) OfferState.CompletedSell else OfferState.CompletedBuy
+    }
 
     companion object {
         val EMPTY = ExchangeOffer()
