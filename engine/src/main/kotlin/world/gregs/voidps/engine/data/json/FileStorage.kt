@@ -111,20 +111,19 @@ class FileStorage(
         val offers = Offers()
         val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
         if (buy.exists()) {
-            loadOffers(buy, offers, days, true)
+            loadOffers(buy, offers, days, false)
         }
         val sell = directory.resolve(Settings["storage.grand.exchange.offers.sell.path"])
         if (sell.exists()) {
-            loadOffers(sell, offers, days, false)
+            loadOffers(sell, offers, days, true)
         }
         return offers
     }
 
-    private fun loadOffers(directory: File, offers: Offers, days: Int, buy: Boolean) {
-        val now = System.currentTimeMillis()
+    private fun loadOffers(directory: File, offers: Offers, days: Int, sell: Boolean) {
         var max = 0
         val files = directory.listFiles { _, name -> name.endsWith(".toml") } ?: return
-        val map = if (buy) offers.buyByItem else offers.sellByItem
+        val map = if (sell) offers.sellByItem else offers.buyByItem
         for (file in files) {
             val tree = TreeMap<Int, MutableList<OpenOffer>>()
             val item = file.nameWithoutExtension
@@ -135,11 +134,8 @@ class FileStorage(
                     if (id > max) {
                         max = id
                     }
-                    offers.offers[id] = offer
-                    // Only store active offers
-                    if (days <= 0 || TimeUnit.MILLISECONDS.toDays(now - offer.lastActive) <= days) {
-                        tree.getOrPut(price) { mutableListOf() }.add(offer)
-                    }
+                    offers.add(id, item, price, sell)
+                    tree.getOrPut(price) { mutableListOf() }.add(offer)
                 }
             }
             map[item] = tree
@@ -148,17 +144,15 @@ class FileStorage(
     }
 
     private fun ConfigReader.readOffer(id: Int): Pair<OpenOffer, Int> {
-        var amount = 0
         var lastActive: Long = System.currentTimeMillis()
-        var completed = 0
+        var remaining = 0
         var coins = 0
         var price = 0
         var account = ""
         while (nextPair()) {
             when (val key = key()) {
-                "amount" -> amount = int()
                 "last_active" -> lastActive = long()
-                "completed" -> completed = int()
+                "remaining" -> remaining = int()
                 "coins" -> coins = int()
                 "account" -> account = string()
                 "price" -> price = int()
@@ -167,8 +161,7 @@ class FileStorage(
         }
         return OpenOffer(
             id = id,
-            amount = amount,
-            completed = completed,
+            remaining = remaining,
             coins = coins,
             lastActive = lastActive,
             account = account
@@ -197,6 +190,7 @@ class FileStorage(
 
     override fun saveClaims(claims: Map<Int, Claim>) {
         val file = directory.resolve(Settings["storage.grand.exchange.offers.claim.path"])
+        file.parentFile.mkdirs()
         Config.fileWriter(file) {
             for ((id, claim) in claims) {
                 writeKey(id.toString())
@@ -277,6 +271,7 @@ class FileStorage(
     }
 
     override fun savePriceHistory(history: Map<String, PriceHistory>) {
+        directory.resolve(Settings["storage.grand.exchange.history.path"]).mkdirs()
         for ((key, value) in history) {
             Config.fileWriter(directory.resolve("${Settings["storage.grand.exchange.history.path"]}/${key}.toml")) {
                 writeSection("day")

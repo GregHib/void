@@ -1,8 +1,5 @@
 package content.social.trade.exchange.offer
 
-import world.gregs.config.ConfigReader
-import world.gregs.config.ConfigWriter
-import world.gregs.config.writePair
 import world.gregs.voidps.engine.data.exchange.OfferState
 
 
@@ -70,56 +67,6 @@ data class Offer(
     }
 
     companion object {
-
-        fun ConfigReader.readOffer(id: Int, item: String, sell: Boolean): Offer {
-            var amount = 0
-            var price = 0
-            var state: OfferState = if (sell) OfferState.PendingSell else OfferState.PendingBuy
-            var lastActive: Long = System.currentTimeMillis()
-            var completed = 0
-            var coins = 0
-            var account = ""
-            while (nextPair()) {
-                when (val key = key()) {
-                    "amount" -> amount = int()
-                    "price" -> price = int()
-                    "state" -> state = OfferState.valueOf(string())
-                    "last_active" -> lastActive = long()
-                    "completed" -> completed = int()
-                    "coins" -> coins = int()
-                    "account" -> account = string()
-                    else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
-                }
-            }
-            return Offer(
-                id = id,
-                item = item,
-                amount = amount,
-                price = price,
-                state = state,
-                lastActive = lastActive,
-                completed = completed,
-                coins = coins,
-                account = account
-            )
-        }
-
-        fun ConfigWriter.write(offer: Offer) {
-            writePair("amount", offer.amount)
-            writePair("price", offer.price)
-            writePair("state", offer.state.name)
-            writePair("last_active", offer.lastActive)
-            if (offer.completed != 0) {
-                writePair("completed", offer.completed)
-            }
-            if (offer.coins != 0) {
-                writePair("coins", offer.coins)
-            }
-            if (offer.account != "") {
-                writePair("account", offer.account)
-            }
-        }
-
         val EMPTY = Offer()
     }
 }

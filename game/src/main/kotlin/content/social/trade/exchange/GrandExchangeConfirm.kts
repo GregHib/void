@@ -64,7 +64,7 @@ interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
                     if (fromBank) {
                         player.message("Payment has been taken from your bank.")
                     }
-                    exchange.buy(player, Item(itemId, amount), price)
+                    player.offers[slot] = exchange.buy(player, Item(itemId, amount), price)
                 }
                 is TransactionError.Deficient -> {
                     println(player.inventory.transaction.error)
@@ -88,7 +88,7 @@ interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
                 }
             }
             when (player.inventory.transaction.error) {
-                TransactionError.None -> exchange.sell(player, Item(itemId, amount), price)
+                TransactionError.None -> player.offers[slot] = exchange.sell(player, Item(itemId, amount), price)
                 else -> {
                     logger.warn { "Error removing GE items ${player.name} ${player.inventory.transaction.error} $slot $itemId $amount $price" }
                     return@interfaceOption
@@ -97,8 +97,8 @@ interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
         }
         else -> return@interfaceOption
     }
+
     player.inventories.inventory("collection_box_${slot}").clear()
-    player["grand_exchange_offer_${slot}"] = id
     exchange.refresh(player, slot)
     GrandExchange.clear(player)
 }
