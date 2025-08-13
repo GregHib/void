@@ -4,6 +4,28 @@ import world.gregs.config.ConfigReader
 import world.gregs.config.ConfigWriter
 import world.gregs.config.writePair
 
+// Stored on the player
+data class ExchangeOffer(
+    val id: Int = 0,
+    val item: String = "",
+    val amount: Int = 0,
+    val price: Int = 0,
+    var state: OfferState = OfferState.PendingBuy,
+    var completed: Int = 0,
+    var coins: Int = 0,
+)
+
+// Stored in Offers
+data class OpenOffer(
+    val id: Int = 0,
+    val amount: Int = 0,
+    var completed: Int = 0,
+    var coins: Int = 0,
+    var lastActive: Long = System.currentTimeMillis(),
+    val account: String = "",
+)
+
+
 /**
  * Grand Exchange Offer
  * @param id unique
@@ -13,6 +35,7 @@ import world.gregs.config.writePair
  * @param coins total received or refunded if bought below offer price
  * @param account account name of the player
  */
+
 data class Offer(
     val id: Int = 0,
     val item: String = "",
