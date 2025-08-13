@@ -312,7 +312,7 @@ class GrandExchange(
         if (offer.completed == offer.amount) {
             offer.cancel()
             offers.remove(offer.id)
-            history.record(offer.account, offer.id)
+            history.record(offer.account, offer.id, offer.price)
         } else {
             offer.open()
         }

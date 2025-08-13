@@ -1,7 +1,11 @@
 package world.gregs.voidps.engine.data
 
 import world.gregs.voidps.engine.data.config.AccountDefinition
+import world.gregs.voidps.engine.data.exchange.Claim
+import world.gregs.voidps.engine.data.exchange.ItemHistory
+import world.gregs.voidps.engine.data.exchange.Offers
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
+import java.util.TreeMap
 
 /**
  * Saves and loads account data
@@ -22,6 +26,31 @@ interface AccountStorage {
      * Loads all players clan chats
      */
     fun clans(): Map<String, Clan>
+
+    /**
+     * Loads all open grand exchange offers that haven't exceeded [days] since last updated
+     */
+    fun offers(days: Int): Offers
+
+    /**
+     * Loads all outstanding grand exchange claims
+     */
+    fun claims(): Map<Int, Claim>
+
+    /**
+     * Batch saves claims
+     */
+    fun save(claims: Map<Int, Claim>)
+
+    /**
+     * Loads exchange completion history
+     */
+    fun itemHistory(): Map<String, ItemHistory>
+
+    /**
+     * Batch saves item history
+     */
+    fun save(history: Map<String, ItemHistory>)
 
     /**
      * Batch saves accounts

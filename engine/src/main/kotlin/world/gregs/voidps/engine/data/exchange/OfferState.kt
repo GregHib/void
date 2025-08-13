@@ -1,4 +1,4 @@
-package content.social.trade.exchange.offer
+package world.gregs.voidps.engine.data.exchange
 
 enum class OfferState(val int: Int) {
     PendingBuy(1),
