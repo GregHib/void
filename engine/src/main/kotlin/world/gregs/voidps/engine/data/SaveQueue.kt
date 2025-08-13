@@ -9,8 +9,8 @@ import java.util.concurrent.ConcurrentHashMap
 import kotlin.system.measureTimeMillis
 
 class SaveQueue(
-    private val storage: AccountStorage,
-    private val fallback: AccountStorage = storage,
+    private val storage: Storage,
+    private val fallback: Storage = storage,
     private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO),
 ) : Runnable {
     private val pending = ConcurrentHashMap<String, PlayerSave>()

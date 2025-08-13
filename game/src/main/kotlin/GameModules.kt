@@ -14,11 +14,9 @@ import kotlinx.io.pool.DefaultPool
 import org.koin.dsl.module
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
-import world.gregs.voidps.engine.data.ConfigFiles
-import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.find
-import world.gregs.voidps.engine.data.list
+import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
+import world.gregs.voidps.engine.timedLoad
 import java.io.File
 
 fun gameModule(files: ConfigFiles) = module {
@@ -52,28 +50,15 @@ fun gameModule(files: ConfigFiles) = module {
         )
     }
     single(createdAtStart = true) {
-        val buy = File(Settings["storage.grand.exchange.offers.buy.path"])
-        val sell = File(Settings["storage.grand.exchange.offers.sell.path"])
-        buy.mkdirs()
-        sell.mkdirs()
-        Offers().load(buy, sell, Settings["grandExchange.offers.activeDays", 0])
+        get<Storage>().offers(Settings["grandExchange.offers.activeDays", 0])
     }
     single(createdAtStart = true) {
-        val itemHistory = File(Settings["storage.grand.exchange.history.path"])
-        val playerHistory = File(Settings["storage.grand.exchange.offers.history.path"])
-        itemHistory.mkdirs()
-        ExchangeHistory(get()).load(itemHistory, playerHistory)
+        ExchangeHistory(get(), get<Storage>().priceHistory().toMutableMap()).also { it.calculatePrices() }
     }
     single(createdAtStart = true) {
-        val file = File(Settings["storage.grand.exchange.offers.claim.path"])
-        ClaimableOffers().load(file)
+        ClaimableOffers(get<Storage>().claims().toMutableMap())
     }
     single(createdAtStart = true) {
-        val itemHistory = File(Settings["storage.grand.exchange.history.path"])
-        val playerHistory = File(Settings["storage.grand.exchange.offers.history.path"])
-        val buy = File(Settings["storage.grand.exchange.offers.buy.path"])
-        val sell = File(Settings["storage.grand.exchange.offers.sell.path"])
-        val claims = File(Settings["storage.grand.exchange.offers.claim.path"])
-        GrandExchange(get(), get(), get(), get(), get(), get(), itemHistory, playerHistory, buy, sell, claims)
+        GrandExchange(get(), get(), get(), get(), get(), get(), get())
     }
 }

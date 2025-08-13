@@ -13,7 +13,6 @@ scripts.txt
 *.jar
 /data/dump/
 /data/saves/
-/data/grand_exchange/
 /images/
 /temp/
 

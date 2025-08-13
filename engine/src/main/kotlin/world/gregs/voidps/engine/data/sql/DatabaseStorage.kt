@@ -5,7 +5,7 @@ import com.zaxxer.hikari.HikariDataSource
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.inList
 import org.jetbrains.exposed.sql.transactions.transaction
-import world.gregs.voidps.engine.data.AccountStorage
+import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.exchange.*
@@ -17,7 +17,7 @@ import world.gregs.voidps.type.Tile
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class DatabaseStorage : AccountStorage {
+class DatabaseStorage : Storage {
     private val variableNames = setOf("clan_name", "display_name", "clan_join_rank", "clan_talk_rank", "clan_kick_rank", "clan_loot_rank", "coin_share_setting")
 
     override fun names(): Map<String, AccountDefinition> = transaction {
@@ -109,7 +109,7 @@ class DatabaseStorage : AccountStorage {
         return Offers(sell, buy, offers, max)
     }
 
-    override fun save(claims: Map<Int, Claim>) {
+    override fun saveClaims(claims: Map<Int, Claim>) {
         ClaimsTable.deleteAll()
         ClaimsTable.batchUpsert(claims.toList(), ClaimsTable.offerId) { (id, claim) ->
             this[ClaimsTable.offerId] = id
@@ -118,7 +118,7 @@ class DatabaseStorage : AccountStorage {
         }
     }
 
-    override fun save(history: Map<String, ItemHistory>) {
+    override fun savePriceHistory(history: Map<String, PriceHistory>) {
         ItemHistoryTable.deleteAll()
         transaction {
             for ((item, itemHistory) in history) {
@@ -159,8 +159,8 @@ class DatabaseStorage : AccountStorage {
         }
     }
 
-    override fun itemHistory(): Map<String, ItemHistory> {
-        val history = mutableMapOf<String, ItemHistory>()
+    override fun priceHistory(): Map<String, PriceHistory> {
+        val history = mutableMapOf<String, PriceHistory>()
         ItemHistoryTable.selectAll().forEach { row ->
             val item = row[ItemHistoryTable.item]
             val timestamp = row[ItemHistoryTable.timestamp]
@@ -175,12 +175,12 @@ class DatabaseStorage : AccountStorage {
             val averageLow = row[ItemHistoryTable.averageLow]
             val volumeHigh = row[ItemHistoryTable.volumeHigh]
             val volumeLow = row[ItemHistoryTable.volumeLow]
-            val itemHistory = history.getOrPut(item) { ItemHistory() }
+            val priceHistory = history.getOrPut(item) { PriceHistory() }
             val frame = when (timeframe) {
-                "day" -> itemHistory.day
-                "week" -> itemHistory.week
-                "month" -> itemHistory.month
-                "year" -> itemHistory.year
+                "day" -> priceHistory.day
+                "week" -> priceHistory.week
+                "month" -> priceHistory.month
+                "year" -> priceHistory.year
                 else -> throw IllegalArgumentException("Unknown timeframe '$timeframe' for item history '$item' ${timestamp}.")
             }
             frame[timestamp] = Aggregate(open = open, high = high, low = low, close = close, volume = volume, count = count, averageHigh = averageHigh, averageLow = averageLow, volumeHigh = volumeHigh, volumeLow = volumeLow)

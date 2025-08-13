@@ -1,13 +1,15 @@
 package content.social.trade.exchange.offer
 
-import world.gregs.config.*
-import java.io.File
+import world.gregs.voidps.engine.data.exchange.Claim
+import kotlin.collections.MutableMap
+import kotlin.collections.mutableMapOf
+import kotlin.collections.set
 
 /**
  * Completed [Offers] which can be claimed by players when they log in
  */
 class ClaimableOffers(
-    private val claims: MutableMap<Int, Claim> = mutableMapOf()
+    val claims: MutableMap<Int, Claim> = mutableMapOf()
 ) {
 
     fun add(id: Int, amount: Int, coins: Int = 0) {
@@ -22,35 +24,4 @@ class ClaimableOffers(
         claims.clear()
     }
 
-    fun save(file: File) {
-        Config.fileWriter(file) {
-            for ((id, claim) in claims) {
-                writeKey(id.toString())
-                list(2) { index ->
-                    when (index) {
-                        0 -> writeValue(claim.amount)
-                        1 -> writeValue(claim.coins)
-                    }
-                }
-            }
-        }
-    }
-
-    fun load(file: File): ClaimableOffers {
-        if (!file.exists()) {
-            return this
-        }
-        Config.fileReader(file) {
-            while (nextPair()) {
-                val id = key().toInt()
-                assert(nextElement())
-                val amount = int()
-                assert(nextElement())
-                val coins = int()
-                assert(!nextElement())
-                claims[id] = Claim(amount = amount, coins = coins)
-            }
-        }
-        return this
-    }
 }

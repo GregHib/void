@@ -4,17 +4,17 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
-import world.gregs.voidps.engine.data.AccountStorage
-import world.gregs.voidps.engine.data.AccountStorageTest
+import world.gregs.voidps.engine.data.Storage
+import world.gregs.voidps.engine.data.StorageTest
 import java.io.File
 import kotlin.test.assertTrue
 
-class FileStorageTest : AccountStorageTest() {
+class FileStorageTest : StorageTest() {
 
     @field:TempDir
     lateinit var directory: File
 
-    override lateinit var storage: AccountStorage
+    override lateinit var storage: Storage
 
     @BeforeEach
     fun setup() {

@@ -26,7 +26,7 @@ import kotlin.test.assertNull
 internal class PlayerAccountLoaderTest : KoinMock() {
 
     private lateinit var queue: ConnectionQueue
-    private lateinit var storage: AccountStorage
+    private lateinit var storage: Storage
     private lateinit var saveQueue: SaveQueue
     private lateinit var accounts: AccountManager
     private lateinit var definitions: AccountDefinitions
@@ -37,7 +37,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     fun setup() {
         playerSave = null
         queue = mockk(relaxed = true)
-        storage = object : AccountStorage {
+        storage = object : Storage {
             override fun names(): Map<String, AccountDefinition> = emptyMap()
 
             override fun clans(): Map<String, Clan> = emptyMap()

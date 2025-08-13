@@ -45,7 +45,7 @@ class AccountManagerTest : KoinMock() {
         val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition.EMPTY))
         inventoryDefinitions.ids = mapOf("worn_equipment" to 0)
         connectionQueue = ConnectionQueue(1)
-        val storage = object : AccountStorage {
+        val storage = object : Storage {
             override fun names(): Map<String, AccountDefinition> = emptyMap()
 
             override fun clans(): Map<String, Clan> = emptyMap()

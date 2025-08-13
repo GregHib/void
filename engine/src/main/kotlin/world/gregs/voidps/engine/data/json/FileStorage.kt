@@ -2,10 +2,10 @@ package world.gregs.voidps.engine.data.json
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import world.gregs.config.Config
-import world.gregs.config.ConfigReader
-import world.gregs.voidps.engine.data.AccountStorage
+import world.gregs.config.*
+import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.exchange.*
 import world.gregs.voidps.engine.data.yaml.PlayerYamlReaderConfig
@@ -23,7 +23,7 @@ import kotlin.math.max
 
 class FileStorage(
     private val directory: File,
-) : AccountStorage {
+) : Storage {
 
     private val logger = InlineLogger()
 
@@ -109,11 +109,11 @@ class FileStorage(
 
     override fun offers(days: Int): Offers {
         val offers = Offers()
-        val buy = directory.resolve("grand_exchange/buy_offers/")
+        val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
         if (buy.exists()) {
             loadOffers(buy, offers, days, true)
         }
-        val sell = directory.resolve("grand_exchange/sell_offers/")
+        val sell = directory.resolve(Settings["storage.grand.exchange.offers.sell.path"])
         if (sell.exists()) {
             loadOffers(sell, offers, days, false)
         }
@@ -176,19 +176,139 @@ class FileStorage(
     }
 
     override fun claims(): Map<Int, Claim> {
-        TODO("Not yet implemented")
+        val file = directory.resolve(Settings["storage.grand.exchange.offers.claim.path"])
+        if (!file.exists()) {
+            return emptyMap()
+        }
+        val claims = mutableMapOf<Int, Claim>()
+        Config.fileReader(file) {
+            while (nextPair()) {
+                val id = key().toInt()
+                assert(nextElement())
+                val amount = int()
+                assert(nextElement())
+                val coins = int()
+                assert(!nextElement())
+                claims[id] = Claim(amount = amount, coins = coins)
+            }
+        }
+        return claims
     }
 
-    override fun save(claims: Map<Int, Claim>) {
-        TODO("Not yet implemented")
+    override fun saveClaims(claims: Map<Int, Claim>) {
+        val file = directory.resolve(Settings["storage.grand.exchange.offers.claim.path"])
+        Config.fileWriter(file) {
+            for ((id, claim) in claims) {
+                writeKey(id.toString())
+                list(2) { index ->
+                    when (index) {
+                        0 -> writeValue(claim.amount)
+                        1 -> writeValue(claim.coins)
+                    }
+                }
+            }
+        }
     }
 
-    override fun itemHistory(): Map<String, ItemHistory> {
-        TODO("Not yet implemented")
+    override fun priceHistory(): Map<String, PriceHistory> {
+        val directory = directory.resolve(Settings["storage.grand.exchange.history.path"])
+        val history = mutableMapOf<String, PriceHistory>()
+        for (file in directory.listFiles() ?: return emptyMap()) {
+            Config.fileReader(file) {
+                val priceHistory = PriceHistory()
+                while (nextSection()) {
+                    val section = section()
+                    val aggregates: MutableMap<Long, Aggregate> = when (section) {
+                        "day" -> priceHistory.day
+                        "week" -> priceHistory.week
+                        "month" -> priceHistory.month
+                        "year" -> priceHistory.year
+                        else -> continue
+                    }
+                    while (nextPair()) {
+                        val timestamp = key().toLong()
+                        aggregates[timestamp] = readAggregate()
+                    }
+                }
+                history[file.nameWithoutExtension] = priceHistory
+            }
+        }
+        return history
     }
 
-    override fun save(history: Map<String, ItemHistory>) {
-        TODO("Not yet implemented")
+    private fun ConfigReader.readAggregate(): Aggregate {
+        var open = 0
+        var high = 0
+        var low = Int.MAX_VALUE
+        var close = 0
+        var volume = 0L
+        var count = 0
+        var averageHigh = 0.0
+        var averageLow = 0.0
+        var volumeHigh = 0L
+        var volumeLow = 0L
+        var index = 0
+        while (nextElement()) {
+            when (index++) {
+                0 -> open = int()
+                1 -> high = int()
+                2 -> low = int()
+                3 -> close = int()
+                4 -> volume = long()
+                5 -> count = int()
+                6 -> averageHigh = double()
+                7 -> averageLow = double()
+                8 -> volumeHigh = long()
+                9 -> volumeLow = long()
+            }
+        }
+        return Aggregate(
+            open = open,
+            high = high,
+            low = low,
+            close = close,
+            volume = volume,
+            count = count,
+            averageHigh = averageHigh,
+            averageLow = averageLow,
+            volumeHigh = volumeHigh,
+            volumeLow = volumeLow
+        )
+    }
+
+    override fun savePriceHistory(history: Map<String, PriceHistory>) {
+        for ((key, value) in history) {
+            Config.fileWriter(directory.resolve("${Settings["storage.grand.exchange.history.path"]}/${key}.toml")) {
+                writeSection("day")
+                write(value.day)
+                writeSection("week")
+                write(value.week)
+                writeSection("month")
+                write(value.month)
+                writeSection("year")
+                write(value.year)
+            }
+        }
+    }
+    private fun ConfigWriter.write(history: MutableMap<Long, Aggregate>) {
+        for ((timestamp, aggregate) in history) {
+            writeKey(timestamp.toString())
+            list(10) { index ->
+                when (index) {
+                    0 -> writeValue(aggregate.open)
+                    1 -> writeValue(aggregate.high)
+                    2 -> writeValue(aggregate.low)
+                    3 -> writeValue(aggregate.close)
+                    4 -> writeValue(aggregate.volume)
+                    5 -> writeValue(aggregate.count)
+                    6 -> writeValue(aggregate.averageHigh)
+                    7 -> writeValue(aggregate.averageLow)
+                    8 -> writeValue(aggregate.volumeHigh)
+                    9 -> writeValue(aggregate.volumeLow)
+                }
+            }
+            write("\n")
+        }
     }
 
     override fun exists(accountName: String): Boolean = directory.resolve("${accountName.lowercase()}.toml").exists()
