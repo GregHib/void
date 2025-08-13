@@ -1,6 +1,5 @@
 package content.social.trade.exchange.history
 
-import content.entity.npc.shop.shopOpen
 import world.gregs.config.*
 
 /**

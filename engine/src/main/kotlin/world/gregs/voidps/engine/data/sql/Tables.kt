@@ -1,10 +1,6 @@
 package world.gregs.voidps.engine.data.sql
 
 import org.jetbrains.exposed.sql.Table
-import world.gregs.voidps.engine.data.sql.AccountsTable.autoIncrement
-import world.gregs.voidps.engine.data.sql.AccountsTable.uniqueIndex
-import world.gregs.voidps.engine.data.sql.ExperienceTable.references
-import world.gregs.voidps.engine.data.sql.ExperienceTable.uniqueIndex
 
 internal object AccountsTable : Table("accounts") {
     val id = integer("id").autoIncrement().uniqueIndex()
@@ -109,14 +105,51 @@ internal object InventoriesTable : Table("inventories") {
 }
 
 internal object OffersTable : Table("grand_exchange_offers") {
-    val id = integer("id").autoIncrement().uniqueIndex()
-    val sell = bool("sell").default(false)
+    val playerId = integer("player_id").references(AccountsTable.id)
+    val id = integer("id")
+    val index = integer("index")
     val item = text("item")
     val amount = integer("amount")
     val price = integer("price")
-    val lastActive = long("last_active")
-    val remaining = integer("remaining")
-    val excess = integer("excess")
-    val account = integer("account").references(AccountsTable.id).uniqueIndex()
+    val state = text("state")
+    val completed = integer("completed").default(0)
+    val lastActive = long("last_active").default(0)
+    val coins = integer("coins").default(0)
 
+    init {
+        index(true, playerId, id, index)
+    }
+}
+
+internal object PlayerHistoryTable : Table("player_exchange_history") {
+    val playerId = integer("player_id").references(AccountsTable.id)
+    val index = integer("index")
+    val item = text("item")
+    val amount = integer("amount")
+    val price = integer("price")
+    init {
+        index(true, playerId, index)
+    }
+}
+
+internal object ClaimsTable : Table("grand_exchange_claims") {
+    val offerId = integer("offer_id").references(OffersTable.id)
+    val amount = integer("amount")
+    val coins = integer("coins")
+}
+
+internal object ItemHistoryTable : Table("grand_exchange_item_history") {
+    val item = text("item")
+    val timestamp = long("timestamp")
+    val timeframe = text("timeframe")
+    val open = integer("open")
+    val high = integer("high")
+    val low = integer("low")
+    val close = integer("close")
+    val volume = long("volume")
+    val count = integer("count")
+    val averageHigh = double("average_high")
+    val averageLow = double("average_low")
+    val volumeHigh = long("volume_high")
+    val volumeLow = long("volume_low")
 }

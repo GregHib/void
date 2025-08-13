@@ -2,9 +2,12 @@ package world.gregs.voidps.engine.data.json
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.config.Config
+import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.AccountStorage
 import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.config.AccountDefinition
+import world.gregs.voidps.engine.data.exchange.*
 import world.gregs.voidps.engine.data.yaml.PlayerYamlReaderConfig
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
@@ -14,6 +17,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.Tile
 import world.gregs.yaml.Yaml
 import java.io.File
+import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.math.max
 
 class FileStorage(
     private val directory: File,
@@ -50,6 +56,8 @@ class FileStorage(
                 }.toMutableMap(),
                 friends = map["friends"] as MutableMap<String, ClanRank>,
                 ignores = map["ignores"] as MutableList<String>,
+                offers = Array(6) { ExchangeOffer() },
+                history = emptyList()
             )
             save.save(target)
             file.delete()
@@ -97,6 +105,90 @@ class FileStorage(
             )
         }
         return clans
+    }
+
+    override fun offers(days: Int): Offers {
+        val offers = Offers()
+        val buy = directory.resolve("grand_exchange/buy_offers/")
+        if (buy.exists()) {
+            loadOffers(buy, offers, days, true)
+        }
+        val sell = directory.resolve("grand_exchange/sell_offers/")
+        if (sell.exists()) {
+            loadOffers(sell, offers, days, false)
+        }
+        return offers
+    }
+
+    private fun loadOffers(directory: File, offers: Offers, days: Int, buy: Boolean) {
+        val now = System.currentTimeMillis()
+        var max = 0
+        val files = directory.listFiles { _, name -> name.endsWith(".toml") } ?: return
+        val map = if (buy) offers.buyByItem else offers.sellByItem
+        for (file in files) {
+            val tree = TreeMap<Int, MutableList<OpenOffer>>()
+            val item = file.nameWithoutExtension
+            Config.fileReader(file) {
+                while (nextSection()) {
+                    val id = section().toInt()
+                    val (offer, price) = readOffer(id)
+                    if (id > max) {
+                        max = id
+                    }
+                    offers.offers[id] = offer
+                    // Only store active offers
+                    if (days <= 0 || TimeUnit.MILLISECONDS.toDays(now - offer.lastActive) <= days) {
+                        tree.getOrPut(price) { mutableListOf() }.add(offer)
+                    }
+                }
+            }
+            map[item] = tree
+        }
+        offers.counter = max(offers.counter, max)
+    }
+
+    private fun ConfigReader.readOffer(id: Int): Pair<OpenOffer, Int> {
+        var amount = 0
+        var lastActive: Long = System.currentTimeMillis()
+        var completed = 0
+        var coins = 0
+        var price = 0
+        var account = ""
+        while (nextPair()) {
+            when (val key = key()) {
+                "amount" -> amount = int()
+                "last_active" -> lastActive = long()
+                "completed" -> completed = int()
+                "coins" -> coins = int()
+                "account" -> account = string()
+                "price" -> price = int()
+                else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+            }
+        }
+        return OpenOffer(
+            id = id,
+            amount = amount,
+            completed = completed,
+            coins = coins,
+            lastActive = lastActive,
+            account = account
+        ) to price
+    }
+
+    override fun claims(): Map<Int, Claim> {
+        TODO("Not yet implemented")
+    }
+
+    override fun save(claims: Map<Int, Claim>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun itemHistory(): Map<String, ItemHistory> {
+        TODO("Not yet implemented")
+    }
+
+    override fun save(history: Map<String, ItemHistory>) {
+        TODO("Not yet implemented")
     }
 
     override fun exists(accountName: String): Boolean = directory.resolve("${accountName.lowercase()}.toml").exists()
