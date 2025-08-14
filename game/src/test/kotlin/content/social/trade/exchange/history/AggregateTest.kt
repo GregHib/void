@@ -2,6 +2,7 @@ package content.social.trade.exchange.history
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.data.exchange.Aggregate
 
 class AggregateTest {
 
@@ -43,7 +44,7 @@ class AggregateTest {
         aggregate.update(110, 10)
         aggregate.update(5, 5) // low is ignored
 
-        assertEquals(105.0, aggregate.highAverage)
+        assertEquals(105.0, aggregate.averageHigh)
         assertEquals(20L, aggregate.volumeHigh)
         assertEquals(5L, aggregate.volumeLow)
     }
@@ -56,7 +57,7 @@ class AggregateTest {
         aggregate.update(100, 5)
         aggregate.update(50, 5)
 
-        assertEquals(75.0, aggregate.lowAverage)
+        assertEquals(75.0, aggregate.averageLow)
         assertEquals(5L, aggregate.volumeHigh)
         assertEquals(10L, aggregate.volumeLow)
     }
@@ -68,7 +69,7 @@ class AggregateTest {
         aggregate.update(100, 10)
         aggregate.update(100, 5)
 
-        assertEquals(100.0, aggregate.highAverage)
+        assertEquals(100.0, aggregate.averageHigh)
         assertEquals(15L, aggregate.volumeHigh)
         assertEquals(0L, aggregate.volumeLow)
     }

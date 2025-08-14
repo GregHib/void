@@ -3,15 +3,14 @@ package content.social.trade.exchange
 import WorldTest
 import containsMessage
 import content.entity.player.bank.bank
-import content.social.trade.exchange.offer.Offer
-import content.social.trade.exchange.offer.OfferState
 import interfaceOption
 import npcOption
-import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.get
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueItemDialogue
+import world.gregs.voidps.engine.data.exchange.ExchangeOffer
+import world.gregs.voidps.engine.data.exchange.OfferState
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -46,7 +45,7 @@ class GrandExchangeTest : WorldTest() {
 
         sell(seller, "rune_longsword")
         confirm(seller)
-        val expectedSell = Offer(1, "rune_longsword", 1, 19_000, OfferState.PendingSell, account = "seller")
+        val expectedSell = ExchangeOffer(1, "rune_longsword", 1, 19_000, OfferState.PendingSell)
         assertOffer(expectedSell, seller, 1)
         tick()
         assertOffer(expectedSell.copy(state = OfferState.OpenSell), seller, 1)
@@ -55,7 +54,7 @@ class GrandExchangeTest : WorldTest() {
         buyer.interfaceOption("grand_exchange", "add_1", "Add 1")
         confirm(buyer)
 
-        val expectedBuy = Offer(2, "rune_longsword", 1, 19_000, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy = ExchangeOffer(2, "rune_longsword", 1, 19_000, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)
         tick()
         assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 19000), seller, 1)
@@ -81,14 +80,14 @@ class GrandExchangeTest : WorldTest() {
         buy(buyer, "abyssal_whip")
         buyer.interfaceOption("grand_exchange", "add_1", "Add 1")
         confirm(buyer)
-        val expectedBuy = Offer(1, "abyssal_whip", 1, 865_326, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy = ExchangeOffer(1, "abyssal_whip", 1, 865_326, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)
 
 
         sell(seller, "abyssal_whip")
         seller.interfaceOption("grand_exchange", "offer_max", "Offer Maximum Price")
         confirm(seller)
-        val expectedSell = Offer(2, "abyssal_whip", 1, 908_593, OfferState.PendingSell, account = "seller")
+        val expectedSell = ExchangeOffer(2, "abyssal_whip", 1, 908_593, OfferState.PendingSell)
         assertOffer(expectedSell, seller, 1)
 
         tick()
@@ -109,21 +108,21 @@ class GrandExchangeTest : WorldTest() {
         buy(buyer1, "flax")
         buyer1.interfaceOption("grand_exchange", "add_100", "Add 100")
         confirm(buyer1)
-        val expectedBuy1 = Offer(1, "flax", 100, 67, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy1 = ExchangeOffer(1, "flax", 100, 67, OfferState.PendingBuy)
         assertOffer(expectedBuy1, buyer1, 0)
 
         buy(buyer2, "flax")
         buyer2.interfaceOption("grand_exchange", "add_100", "Add 100")
         buyer2.interfaceOption("grand_exchange", "offer_max", "Offer Maximum Price")
         confirm(buyer2)
-        val expectedBuy2 = Offer(2, "flax", 100, 71, OfferState.PendingBuy, account = "buyer2")
+        val expectedBuy2 = ExchangeOffer(2, "flax", 100, 71, OfferState.PendingBuy)
         assertOffer(expectedBuy2, buyer2, 0)
 
 
         sell(seller, "flax_noted")
         seller.interfaceOption("grand_exchange", "offer_min", "Offer Minimum Price")
         confirm(seller)
-        val expectedSell = Offer(3, "flax", 100, 64, OfferState.PendingSell, account = "seller")
+        val expectedSell = ExchangeOffer(3, "flax", 100, 64, OfferState.PendingSell)
         assertOffer(expectedSell, seller, 1)
 
         tick()
@@ -148,7 +147,7 @@ class GrandExchangeTest : WorldTest() {
 
         sell(seller1, "abyssal_whip")
         confirm(seller1)
-        val expectedSell = Offer(1, "abyssal_whip", 1, 865_326, OfferState.PendingSell, account = "seller")
+        val expectedSell = ExchangeOffer(1, "abyssal_whip", 1, 865_326, OfferState.PendingSell)
         assertOffer(expectedSell, seller1, 1)
 
         sell(seller2, "abyssal_whip")
@@ -160,7 +159,7 @@ class GrandExchangeTest : WorldTest() {
         buyer.interfaceOption("grand_exchange", "add_1", "Add 1")
         buyer.interfaceOption("grand_exchange", "offer_max", "Offer Maximum Price")
         confirm(buyer)
-        val expectedBuy = Offer(3, "abyssal_whip", 1, 908_593, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy = ExchangeOffer(3, "abyssal_whip", 1, 908_593, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)
 
         tick()
@@ -185,14 +184,14 @@ class GrandExchangeTest : WorldTest() {
 
         sell(seller, "abyssal_whip")
         confirm(seller)
-        val expectedSell = Offer(1, "abyssal_whip", 1, 865_326, OfferState.PendingSell, account = "seller")
+        val expectedSell = ExchangeOffer(1, "abyssal_whip", 1, 865_326, OfferState.PendingSell)
         assertOffer(expectedSell, seller, 1)
 
         buy(buyer, "abyssal_whip")
         buyer.interfaceOption("grand_exchange", "add_1", "Add 1")
         buyer.interfaceOption("grand_exchange", "offer_min", "Offer Minimum Price")
         confirm(buyer)
-        val expectedBuy = Offer(2, "abyssal_whip", 1, 822_060, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy = ExchangeOffer(2, "abyssal_whip", 1, 822_060, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)
 
         tick()
@@ -213,18 +212,18 @@ class GrandExchangeTest : WorldTest() {
         buy(buyer1, "fire_rune")
         buyer1.interfaceOption("grand_exchange", "add_100", "Add 100")
         confirm(buyer1)
-        val expectedBuy1 = Offer(1, "fire_rune", 100, 4, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy1 = ExchangeOffer(1, "fire_rune", 100, 4, OfferState.PendingBuy)
         assertOffer(expectedBuy1, buyer1, 0)
 
         buy(buyer2, "fire_rune")
         buyer2.interfaceOption("grand_exchange", "add_100", "Add 100")
         confirm(buyer2)
-        val expectedBuy2 = Offer(2, "fire_rune", 100, 4, OfferState.PendingBuy, account = "buyer2")
+        val expectedBuy2 = ExchangeOffer(2, "fire_rune", 100, 4, OfferState.PendingBuy)
         assertOffer(expectedBuy2, buyer2, 0)
 
         sell(seller, "fire_rune")
         confirm(seller)
-        val expectedSell = Offer(3, "fire_rune", 100, 4, OfferState.PendingSell, account = "seller")
+        val expectedSell = ExchangeOffer(3, "fire_rune", 100, 4, OfferState.PendingSell)
         assertOffer(expectedSell, seller, 1)
 
         tick()
@@ -249,18 +248,18 @@ class GrandExchangeTest : WorldTest() {
 
         sell(seller1, "abyssal_whip")
         confirm(seller1)
-        val expectedSell1 = Offer(1, "abyssal_whip", 1, 865_326, OfferState.PendingSell, account = "seller1")
+        val expectedSell1 = ExchangeOffer(1, "abyssal_whip", 1, 865_326, OfferState.PendingSell)
         assertOffer(expectedSell1, seller1, 1)
 
         sell(seller2, "abyssal_whip")
         confirm(seller2)
-        val expectedSell2 = Offer(2, "abyssal_whip", 1, 865_326, OfferState.PendingSell, account = "seller2")
+        val expectedSell2 = ExchangeOffer(2, "abyssal_whip", 1, 865_326, OfferState.PendingSell)
         assertOffer(expectedSell2, seller2, 1)
 
         buy(buyer, "abyssal_whip")
         buyer.interfaceOption("grand_exchange", "add_1", "Add 1")
         confirm(buyer)
-        val expectedBuy = Offer(3, "abyssal_whip", 1, 865_326, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy = ExchangeOffer(3, "abyssal_whip", 1, 865_326, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)
 
         tick()
@@ -286,19 +285,19 @@ class GrandExchangeTest : WorldTest() {
 
         sell(seller1, "abyssal_whip")
         confirm(seller1)
-        val expectedSell1 = Offer(1, "abyssal_whip", 1, 865_326, OfferState.PendingSell, account = "seller1")
+        val expectedSell1 = ExchangeOffer(1, "abyssal_whip", 1, 865_326, OfferState.PendingSell)
         assertOffer(expectedSell1, seller1, 1)
 
         sell(seller2, "abyssal_whip")
         confirm(seller2)
-        val expectedSell2 = Offer(2, "abyssal_whip", 1, 865_326, OfferState.PendingSell, account = "seller2")
+        val expectedSell2 = ExchangeOffer(2, "abyssal_whip", 1, 865_326, OfferState.PendingSell)
         assertOffer(expectedSell2, seller2, 1)
 
         buy(buyer, "abyssal_whip")
         buyer.interfaceOption("grand_exchange", "add_10", "Add 10")
         buyer.interfaceOption("grand_exchange", "offer_max", "Offer Maximum Price")
         confirm(buyer)
-        val expectedBuy = Offer(3, "abyssal_whip", 10, 908_593, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy = ExchangeOffer(3, "abyssal_whip", 10, 908_593, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)
 
         tick()
@@ -324,19 +323,19 @@ class GrandExchangeTest : WorldTest() {
 
         sell(seller1, "spirit_shards")
         confirm(seller1)
-        val expectedSell1 = Offer(1, "spirit_shards", 1_000, 24, OfferState.PendingSell, account = "seller1")
+        val expectedSell1 = ExchangeOffer(1, "spirit_shards", 1_000, 24, OfferState.PendingSell)
         assertOffer(expectedSell1, seller1, 1)
 
         sell(seller2, "spirit_shards")
         confirm(seller2)
-        val expectedSell2 = Offer(2, "spirit_shards", 1_000, 24, OfferState.PendingSell, account = "seller2")
+        val expectedSell2 = ExchangeOffer(2, "spirit_shards", 1_000, 24, OfferState.PendingSell)
         assertOffer(expectedSell2, seller2, 1)
 
         buy(buyer, "spirit_shards")
         buyer.interfaceOption("grand_exchange", "add_x", "Edit Quantity")
         (buyer.dialogueSuspension as? IntSuspension)?.resume(1_500)
         confirm(buyer)
-        val expectedBuy = Offer(3, "spirit_shards", 1_500, 24, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy = ExchangeOffer(3, "spirit_shards", 1_500, 24, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)
 
         tick()
@@ -362,18 +361,18 @@ class GrandExchangeTest : WorldTest() {
         buy(buyer1, "fire_rune")
         buyer1.interfaceOption("grand_exchange", "add_10", "Add 10")
         confirm(buyer1)
-        val expectedBuy1 = Offer(1, "fire_rune", 10, 4, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy1 = ExchangeOffer(1, "fire_rune", 10, 4, OfferState.PendingBuy)
         assertOffer(expectedBuy1, buyer1, 0)
 
         buy(buyer2, "fire_rune")
         buyer2.interfaceOption("grand_exchange", "add_10", "Add 10")
         confirm(buyer2)
-        val expectedBuy2 = Offer(2, "fire_rune", 10, 4, OfferState.PendingBuy, account = "buyer2")
+        val expectedBuy2 = ExchangeOffer(2, "fire_rune", 10, 4, OfferState.PendingBuy)
         assertOffer(expectedBuy2, buyer2, 0)
 
         sell(seller, "fire_rune")
         confirm(seller)
-        val expectedSell = Offer(3, "fire_rune", 100, 4, OfferState.PendingSell, account = "seller")
+        val expectedSell = ExchangeOffer(3, "fire_rune", 100, 4, OfferState.PendingSell)
         assertOffer(expectedSell, seller, 1)
 
         tick()
@@ -399,18 +398,18 @@ class GrandExchangeTest : WorldTest() {
         buy(buyer1, "fire_rune")
         buyer1.interfaceOption("grand_exchange", "add_10", "Add 10")
         confirm(buyer1)
-        val expectedBuy1 = Offer(1, "fire_rune", 10, 4, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy1 = ExchangeOffer(1, "fire_rune", 10, 4, OfferState.PendingBuy)
         assertOffer(expectedBuy1, buyer1, 0)
 
         buy(buyer2, "fire_rune")
         buyer2.interfaceOption("grand_exchange", "add_10", "Add 10")
         confirm(buyer2)
-        val expectedBuy2 = Offer(2, "fire_rune", 10, 4, OfferState.PendingBuy, account = "buyer2")
+        val expectedBuy2 = ExchangeOffer(2, "fire_rune", 10, 4, OfferState.PendingBuy)
         assertOffer(expectedBuy2, buyer2, 0)
 
         sell(seller, "fire_rune")
         confirm(seller)
-        val expectedSell = Offer(3, "fire_rune", 15, 4, OfferState.PendingSell, account = "seller")
+        val expectedSell = ExchangeOffer(3, "fire_rune", 15, 4, OfferState.PendingSell)
         assertOffer(expectedSell, seller, 1)
 
         tick()
@@ -431,7 +430,7 @@ class GrandExchangeTest : WorldTest() {
 
         sell(seller, "air_rune")
         confirm(seller)
-        val expectedSell = Offer(1, "air_rune", 100, 5, OfferState.PendingSell, account = "seller")
+        val expectedSell = ExchangeOffer(1, "air_rune", 100, 5, OfferState.PendingSell)
         assertOffer(expectedSell, seller, 1)
         tick()
 
@@ -453,7 +452,7 @@ class GrandExchangeTest : WorldTest() {
         buyer.interfaceOption("grand_exchange", "add_100", "Add 100")
         confirm(buyer)
 
-        val expectedBuy = Offer(1, "air_rune", 100, 5, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy = ExchangeOffer(1, "air_rune", 100, 5, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)
         tick()
 
@@ -476,7 +475,7 @@ class GrandExchangeTest : WorldTest() {
         buy(buyer, "rune_longsword")
         buyer.interfaceOption("grand_exchange", "add_1", "Add 1")
         confirm(buyer)
-        val expectedBuy = Offer(1, "rune_longsword", 1, 19_000, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy = ExchangeOffer(1, "rune_longsword", 1, 19_000, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)
         tick()
 
@@ -484,7 +483,7 @@ class GrandExchangeTest : WorldTest() {
         sell(seller, "rune_longsword")
         seller.interfaceOption("grand_exchange", "increase_quantity", "Increase Quantity")
         confirm(seller)
-        val expectedSell = Offer(2, "rune_longsword", 2, 19_000, OfferState.PendingSell, account = "seller")
+        val expectedSell = ExchangeOffer(2, "rune_longsword", 2, 19_000, OfferState.PendingSell)
         assertOffer(expectedSell, seller, 1)
         tick()
 
@@ -508,13 +507,13 @@ class GrandExchangeTest : WorldTest() {
 
         sell(seller, "rune_longsword")
         confirm(seller)
-        val expectedSell = Offer(1, "rune_longsword", 1, 19_000, OfferState.PendingSell, account = "seller")
+        val expectedSell = ExchangeOffer(1, "rune_longsword", 1, 19_000, OfferState.PendingSell)
         assertOffer(expectedSell, seller, 1)
 
         buy(buyer, "rune_longsword")
         buyer.interfaceOption("grand_exchange", "add_10", "Add 10")
         confirm(buyer)
-        val expectedBuy = Offer(2, "rune_longsword", 10, 19_000, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy = ExchangeOffer(2, "rune_longsword", 10, 19_000, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)
         tick()
 
@@ -539,7 +538,7 @@ class GrandExchangeTest : WorldTest() {
 
         sell(seller, "rune_longsword")
         confirm(seller)
-        val expectedSell = Offer(1, "rune_longsword", 1, 19_000, OfferState.PendingSell, account = "seller")
+        val expectedSell = ExchangeOffer(1, "rune_longsword", 1, 19_000, OfferState.PendingSell)
         assertOffer(expectedSell, seller, 1)
         tick()
         assertOffer(expectedSell.copy(state = OfferState.OpenSell), seller, 1)
@@ -548,7 +547,7 @@ class GrandExchangeTest : WorldTest() {
         buyer.interfaceOption("grand_exchange", "add_1", "Add 1")
         confirm(buyer)
 
-        val expectedBuy = Offer(2, "rune_longsword", 1, 19_000, OfferState.PendingBuy, account = "buyer")
+        val expectedBuy = ExchangeOffer(2, "rune_longsword", 1, 19_000, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)
         tick()
         assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 19000), seller, 1)
@@ -575,7 +574,7 @@ class GrandExchangeTest : WorldTest() {
         sell(seller, "rune_longsword")
         seller.interfaceOption("grand_exchange", "increase_quantity", "Increase Quantity")
         confirm(seller)
-        val expectedSell = Offer(1, "rune_longsword", 1, 19_000, OfferState.PendingSell, account = "seller")
+        val expectedSell = ExchangeOffer(1, "rune_longsword", 1, 19_000, OfferState.PendingSell)
         assertOffer(expectedSell, seller, 1)
     }
 
@@ -588,7 +587,7 @@ class GrandExchangeTest : WorldTest() {
         sell(seller, "rune_longsword")
         seller.interfaceOption("grand_exchange", "increase_quantity", "Increase Quantity")
         confirm(seller)
-        val expectedSell = Offer(1, "rune_longsword", 2, 19_000, OfferState.PendingSell, account = "seller")
+        val expectedSell = ExchangeOffer(1, "rune_longsword", 2, 19_000, OfferState.PendingSell)
         assertOffer(expectedSell, seller, 1)
         tick()
         assertOffer(expectedSell.copy(state = OfferState.OpenSell), seller, 1)
@@ -637,15 +636,16 @@ class GrandExchangeTest : WorldTest() {
         player.interfaceOption("grand_exchange", "collect_slot_1", "Collect_notes")
     }
 
-    private fun assertOffer(expected: Offer, player: Player, slot: Int) {
-        assertEquals(expected.id, player["grand_exchange_offer_${slot}", -1])
-        val sellOffer = exchange.offers.offer(expected.id)
+    private fun assertOffer(expected: ExchangeOffer, player: Player, slot: Int) {
+        val sellOffer = player.offers.getOrNull(slot)
         assertNotNull(sellOffer)
+        assertFalse(sellOffer.isEmpty())
+        assertEquals(expected.id, sellOffer.id)
         assertEquals(expected, sellOffer)
     }
 
     private fun abort(player: Player, slot: Int) {
-        exchange.cancel(player["grand_exchange_offer_${slot}", -1])
+        exchange.cancel(player, player.offers[slot].id)
         tick()
     }
 }
