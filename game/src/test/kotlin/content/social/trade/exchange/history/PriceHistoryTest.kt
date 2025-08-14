@@ -4,28 +4,29 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.data.exchange.PriceHistory
 import java.util.concurrent.TimeUnit
 
 class PriceHistoryTest {
 
-    private lateinit var itemHistory: ItemHistory
+    private lateinit var priceHistory: PriceHistory
     private val fixedTimestamp = 1_000_000_000_000L
 
     @BeforeEach
     fun setUp() {
-        itemHistory = ItemHistory()
+        priceHistory = PriceHistory()
     }
 
     @Test
     fun `Record adds data to all timeframes`() {
-        itemHistory.record(fixedTimestamp, 100, 10)
+        priceHistory.record(fixedTimestamp, 100, 10)
 
-        assertEquals(1, itemHistory.day.size)
-        assertEquals(1, itemHistory.week.size)
-        assertEquals(1, itemHistory.month.size)
-        assertEquals(1, itemHistory.year.size)
+        assertEquals(1, priceHistory.day.size)
+        assertEquals(1, priceHistory.week.size)
+        assertEquals(1, priceHistory.month.size)
+        assertEquals(1, priceHistory.year.size)
 
-        val aggregate = itemHistory.day.values.first()
+        val aggregate = priceHistory.day.values.first()
         assertEquals(100, aggregate.open)
         assertEquals(100, aggregate.high)
         assertEquals(100, aggregate.low)
@@ -35,10 +36,10 @@ class PriceHistoryTest {
 
     @Test
     fun `Record updates existing aggregates`() {
-        itemHistory.record(fixedTimestamp, 100, 10)
-        itemHistory.record(fixedTimestamp, 110, 5)
+        priceHistory.record(fixedTimestamp, 100, 10)
+        priceHistory.record(fixedTimestamp, 110, 5)
 
-        val aggregate = itemHistory.day.values.first()
+        val aggregate = priceHistory.day.values.first()
         assertEquals(100, aggregate.open)
         assertEquals(110, aggregate.high)
         assertEquals(100, aggregate.low)
@@ -50,10 +51,10 @@ class PriceHistoryTest {
     fun `Record assigns correct open price on new frame entry`() {
         val nextDay = fixedTimestamp + TimeUnit.DAYS.toMillis(1)
 
-        itemHistory.record(fixedTimestamp, 100, 10)
-        itemHistory.record(nextDay, 110, 5)
+        priceHistory.record(fixedTimestamp, 100, 10)
+        priceHistory.record(nextDay, 110, 5)
 
-        val opens = itemHistory.day.values.map { it.open }.sorted()
+        val opens = priceHistory.day.values.map { it.open }.sorted()
         assertEquals(listOf(100, 110), opens)
     }
 
@@ -63,33 +64,33 @@ class PriceHistoryTest {
         val currentTimestamp = fixedTimestamp
 
         // Add old entries
-        itemHistory.record(oldTimestamp, 90, 5)
+        priceHistory.record(oldTimestamp, 90, 5)
 
         // Add current entries
-        itemHistory.record(currentTimestamp, 100, 10)
+        priceHistory.record(currentTimestamp, 100, 10)
 
-        itemHistory.clean(currentTimestamp)
+        priceHistory.clean(currentTimestamp)
 
-        assertEquals(1, itemHistory.day.size)
-        assertEquals(1, itemHistory.week.size)
-        assertEquals(1, itemHistory.month.size)
-        assertEquals(1, itemHistory.year.size)
+        assertEquals(1, priceHistory.day.size)
+        assertEquals(1, priceHistory.week.size)
+        assertEquals(1, priceHistory.month.size)
+        assertEquals(1, priceHistory.year.size)
 
         // Validate remaining data is current
-        assertTrue(itemHistory.day.keys.all { it >= TimeFrame.Day.start(currentTimestamp - TimeUnit.DAYS.toMillis(1)) })
-        assertTrue(itemHistory.week.keys.all { it >= TimeFrame.Week.start(currentTimestamp - TimeUnit.DAYS.toMillis(7)) })
-        assertTrue(itemHistory.month.keys.all { it >= TimeFrame.Month.start(currentTimestamp - TimeUnit.DAYS.toMillis(30)) })
-        assertTrue(itemHistory.year.keys.all { it >= TimeFrame.Year.start(currentTimestamp - TimeUnit.DAYS.toMillis(365)) })
+        assertTrue(priceHistory.day.keys.all { it >= TimeFrame.Day.start(currentTimestamp - TimeUnit.DAYS.toMillis(1)) })
+        assertTrue(priceHistory.week.keys.all { it >= TimeFrame.Week.start(currentTimestamp - TimeUnit.DAYS.toMillis(7)) })
+        assertTrue(priceHistory.month.keys.all { it >= TimeFrame.Month.start(currentTimestamp - TimeUnit.DAYS.toMillis(30)) })
+        assertTrue(priceHistory.year.keys.all { it >= TimeFrame.Year.start(currentTimestamp - TimeUnit.DAYS.toMillis(365)) })
     }
 
     @Test
     fun `Clean doesn't remove entries exactly the right age`() {
         val oldTimestamp = fixedTimestamp - TimeUnit.DAYS.toMillis(365)
 
-        itemHistory.record(oldTimestamp, 90, 5)
-        itemHistory.clean(fixedTimestamp)
+        priceHistory.record(oldTimestamp, 90, 5)
+        priceHistory.clean(fixedTimestamp)
 
-        assertEquals(1, itemHistory.year.size)
+        assertEquals(1, priceHistory.year.size)
     }
 
 }
