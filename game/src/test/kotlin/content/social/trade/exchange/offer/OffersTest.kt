@@ -1,13 +1,7 @@
 package content.social.trade.exchange.offer
 
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
-import world.gregs.voidps.engine.data.exchange.Offers
 import java.io.File
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
 
 class OffersTest {
 
@@ -86,7 +80,7 @@ class OffersTest {
             last_active = 1000000
             completed = 100
             account = "bob"
-            
+
         """.trimIndent(), sellDirectory.resolve("tinderbox.toml").readText())
     }
 
@@ -106,8 +100,7 @@ class OffersTest {
             last_active = 1000000
             completed = 100
             account = "bob"
-            
+
         """.trimIndent(), buyDirectory.resolve("tinderbox.toml").readText())
     }*/
-
 }

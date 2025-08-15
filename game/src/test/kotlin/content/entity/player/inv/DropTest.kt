@@ -7,7 +7,14 @@ import itemOnObject
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.list
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
+import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -29,6 +36,7 @@ internal class DropTest : WorldTest() {
 
     @Test
     fun `Floor item respawns after delay`() {
+        loadItemSpawns(get<FloorItems>(), get<ItemSpawns>(), configFiles().list(Settings["spawns.items"]), get())
         val tile = Tile(3244, 3157)
         val player = createPlayer(tile)
 

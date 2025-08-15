@@ -3,9 +3,9 @@ package world.gregs.voidps.engine.data.json
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.*
-import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.exchange.*
 import world.gregs.voidps.engine.data.yaml.PlayerYamlReaderConfig
@@ -18,7 +18,6 @@ import world.gregs.voidps.type.Tile
 import world.gregs.yaml.Yaml
 import java.io.File
 import java.util.*
-import kotlin.math.max
 
 class FileStorage(
     private val directory: File,
@@ -56,7 +55,7 @@ class FileStorage(
                 friends = map["friends"] as MutableMap<String, ClanRank>,
                 ignores = map["ignores"] as MutableList<String>,
                 offers = Array(6) { ExchangeOffer() },
-                history = emptyList()
+                history = emptyList(),
             )
             save.save(target)
             file.delete()
@@ -130,20 +129,19 @@ class FileStorage(
     override fun saveOffers(offers: Offers) {
         val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
         buy.mkdirs()
-        saveOffers(buy, offers, false)
+        saveOffers(buy, offers.buyByItem)
         val sell = directory.resolve(Settings["storage.grand.exchange.offers.sell.path"])
         sell.mkdirs()
-        saveOffers(sell, offers, true)
+        saveOffers(sell, offers.sellByItem)
         val file = directory.resolve(Settings["storage.grand.exchange.offers.path"])
         Config.fileWriter(file) {
             writePair("counter", offers.counter)
         }
     }
 
-    private fun saveOffers(directory: File, offers: Offers, sell: Boolean) {
-        val byItem = if (sell) offers.sellByItem else offers.buyByItem
+    private fun saveOffers(directory: File, byItem: Map<String, TreeMap<Int, MutableList<OpenOffer>>>) {
         for ((item, map) in byItem) {
-            val file = directory.resolve("${item}.toml")
+            val file = directory.resolve("$item.toml")
             Config.fileWriter(file) {
                 for ((price, list) in map) {
                     for (offer in list) {
@@ -199,7 +197,7 @@ class FileStorage(
             remaining = remaining,
             coins = coins,
             lastActive = lastActive,
-            account = account
+            account = account,
         ) to price
     }
 
@@ -301,14 +299,14 @@ class FileStorage(
             averageHigh = averageHigh,
             averageLow = averageLow,
             volumeHigh = volumeHigh,
-            volumeLow = volumeLow
+            volumeLow = volumeLow,
         )
     }
 
     override fun savePriceHistory(history: Map<String, PriceHistory>) {
         directory.resolve(Settings["storage.grand.exchange.history.path"]).mkdirs()
         for ((key, value) in history) {
-            Config.fileWriter(directory.resolve("${Settings["storage.grand.exchange.history.path"]}/${key}.toml")) {
+            Config.fileWriter(directory.resolve("${Settings["storage.grand.exchange.history.path"]}/$key.toml")) {
                 writeSection("day")
                 write(value.day)
                 writeSection("week")

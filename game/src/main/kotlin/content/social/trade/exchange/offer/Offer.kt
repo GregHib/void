@@ -2,7 +2,6 @@ package content.social.trade.exchange.offer
 
 import world.gregs.voidps.engine.data.exchange.OfferState
 
-
 /**
  * Grand Exchange Offer
  * @param id unique

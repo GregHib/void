@@ -33,7 +33,7 @@ class BuyLimitsTest {
         buyLimits.record("other", itemId, 10)
 
         val remaining = buyLimits.limit(player, itemId)
-        assertEquals(60, remaining)  // 100 - (30 + 10)
+        assertEquals(60, remaining) // 100 - (30 + 10)
         assertEquals(90, buyLimits.limit("other", itemId))
     }
 
@@ -77,5 +77,4 @@ class BuyLimitsTest {
 
         assertEquals(true, buyLimits.limits.containsKey(key))
     }
-
 }

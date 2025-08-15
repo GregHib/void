@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.exchange.*
@@ -37,7 +37,7 @@ class GrandExchange(
     private val accounts: AccountDefinitions,
     private val players: Players,
     private val claims: ClaimableOffers,
-    private val storage: Storage
+    private val storage: Storage,
 ) : Runnable {
 
     private val limits = BuyLimits(itemDefinitions)
@@ -46,7 +46,6 @@ class GrandExchange(
     private val cancellations = mutableListOf<Pair<Int, String>>()
 
     private val logger = InlineLogger()
-
 
     /**
      * Add an offer to sell an item starting next tick
@@ -84,7 +83,7 @@ class GrandExchange(
             val offer = player.offers.getOrNull(slot) ?: continue
             offers.update(offer, now)
             val claim = claims.claim(offer.id) ?: continue
-            updateOffer(offer, player.accountName, claim.amount, claim.price) // TODO can this be done with just two values?
+            updateOffer(offer, player.accountName, claim.amount, claim.price)
             claimed = true
         }
         if (claimed) {
@@ -184,18 +183,18 @@ class GrandExchange(
     }
 
     fun refresh(player: Player, index: Int) {
-        player.sendInventory("collection_box_${index}")
+        player.sendInventory("collection_box_$index")
         val offer = player.offers.getOrNull(index) ?: return
         if (offer.isEmpty()) {
-            player.removeVarbit("grand_exchange_ranges", "slot_${index}")
+            player.removeVarbit("grand_exchange_ranges", "slot_$index")
             player.client?.grandExchange(index)
             return
         }
         val price = history.marketPrice(offer.item)
         if (offer.price in ceil(price * 0.95).toInt()..ceil(price * 1.05).toInt()) {
-            player.removeVarbit("grand_exchange_ranges", "slot_${index}")
+            player.removeVarbit("grand_exchange_ranges", "slot_$index")
         } else if (Settings["grandExchange.priceLimit", true]) {
-            player.addVarbit("grand_exchange_ranges", "slot_${index}")
+            player.addVarbit("grand_exchange_ranges", "slot_$index")
         }
         val itemDef = itemDefinitions.get(offer.item)
         player.client?.grandExchange(index, offer.state.int, itemDef.id, offer.price, offer.amount, offer.completed, offer.coins)
@@ -257,7 +256,7 @@ class GrandExchange(
      */
     private fun claim(player: Player, offer: ExchangeOffer, item: String, price: Int, otherPrice: Int, traded: Int, sell: Boolean): Boolean {
         val slot = slot(player, offer.id)
-        val inv = player.inventories.inventory("collection_box_${slot}")
+        val inv = player.inventories.inventory("collection_box_$slot")
         // Return excess coins if buying higher than lowest sold price.
         val coins = if (sell) price * traded else ((otherPrice - price) * traded).coerceAtLeast(0)
         inv.transaction {
@@ -281,9 +280,7 @@ class GrandExchange(
         return true
     }
 
-    private fun slot(player: Player, id: Int): Int {
-        return player.offers.indexOfFirst { it.id == id }
-    }
+    private fun slot(player: Player, id: Int): Int = player.offers.indexOfFirst { it.id == id }
 
     /**
      * Sample the offers provided and weigh in favour of oldest offers

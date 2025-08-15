@@ -18,6 +18,6 @@ interfaceOpen("collection_box") { player ->
     player.interfaceOptions.unlockAll(id, "box0")
     player.interfaceOptions.unlockAll(id, "collect_slot_0")
     for (slot in 0 until 6) {
-        player.sendInventory("collection_box_${slot}")
+        player.sendInventory("collection_box_$slot")
     }
 }

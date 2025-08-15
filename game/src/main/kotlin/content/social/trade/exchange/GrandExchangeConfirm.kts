@@ -83,14 +83,14 @@ interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
         else -> return@interfaceOption
     }
 
-    player.inventories.inventory("collection_box_${slot}").clear()
+    player.inventories.inventory("collection_box_$slot").clear()
     exchange.refresh(player, slot)
     GrandExchange.clearSelection(player)
 }
 
 interfaceOption("Back", "back", "grand_exchange") {
     val box: Int = player["grand_exchange_box", -1]
-    val collectionBox = player.inventories.inventory("collection_box_${box}")
+    val collectionBox = player.inventories.inventory("collection_box_$box")
     if (collectionBox.isEmpty()) {
         val offer = player.offers.getOrNull(box)
         if (offer != null && offer.state.cancelled) {

@@ -22,7 +22,7 @@ interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
     val index = component.removePrefix("collect_slot_").toInt()
     val box: Int = player["grand_exchange_box"] ?: return@interfaceOption
     val offer = player.offers.getOrNull(box) ?: return@interfaceOption
-    val collectionBox = player.inventories.inventory("collection_box_${box}")
+    val collectionBox = player.inventories.inventory("collection_box_$box")
     val item = collectionBox[index]
     var noted = item
     // Option 1 is to collect noted if amount > 1 otherwise options flip

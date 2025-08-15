@@ -18,7 +18,7 @@ import kotlin.collections.set
  */
 class ExchangeHistory(
     private val itemDefinitions: ItemDefinitions,
-    val history: MutableMap<String, PriceHistory> = mutableMapOf()
+    val history: MutableMap<String, PriceHistory> = mutableMapOf(),
 ) {
     private val marketPrices = mutableMapOf<String, Int>()
 

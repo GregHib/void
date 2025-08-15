@@ -100,7 +100,7 @@ class DecoderTest {
         FinishRegionLoad, // 4
         null, // 47
         ReportAbuse("name", 12, 123, "message"), // 66
-        null, // 28
+        InteractDialogueItem(12345), // 28
         ChangeDisplayMode(12, 345, 678, 9), // 7
         null, // 76
         EnterName("a string"), // 43

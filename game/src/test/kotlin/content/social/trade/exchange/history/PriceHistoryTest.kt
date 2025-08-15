@@ -92,5 +92,4 @@ class PriceHistoryTest {
 
         assertEquals(1, priceHistory.year.size)
     }
-
 }

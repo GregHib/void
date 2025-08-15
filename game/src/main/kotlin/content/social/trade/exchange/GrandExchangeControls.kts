@@ -74,13 +74,15 @@ interfaceOption("Increase Quantity", "increase_quantity", "grand_exchange") {
     if (!itemSelected()) {
         return@interfaceOption
     }
-    player.closeDialogue()    
+    player.closeDialogue()
     if (player["grand_exchange_quantity", 0] < Int.MAX_VALUE - 1) {
-        player["grand_exchange_quantity"] = (player["grand_exchange_quantity", 0] + 1).coerceAtMost(when (player["grand_exchange_page", "offers"]) {
-            "sell" -> totalItems()
-            "buy" -> Int.MAX_VALUE
-            else -> return@interfaceOption
-        })
+        player["grand_exchange_quantity"] = (player["grand_exchange_quantity", 0] + 1).coerceAtMost(
+            when (player["grand_exchange_page", "offers"]) {
+                "sell" -> totalItems()
+                "buy" -> Int.MAX_VALUE
+                else -> return@interfaceOption
+            },
+        )
     }
 }
 
@@ -88,7 +90,7 @@ interfaceOption("Decrease Quantity", "decrease_quantity", "grand_exchange") {
     if (!itemSelected()) {
         return@interfaceOption
     }
-    player.closeDialogue()    
+    player.closeDialogue()
     if (player.dec("grand_exchange_quantity", 1) < 0) {
         player["grand_exchange_quantity"] = 0
     }
@@ -98,7 +100,7 @@ interfaceOption("Increase Price", "increase_price", "grand_exchange") {
     if (!itemSelected()) {
         return@interfaceOption
     }
-    player.closeDialogue()    
+    player.closeDialogue()
     val limit = if (Settings["grandExchange.priceLimit", true]) player["grand_exchange_range_max", 0] else Int.MAX_VALUE
     player["grand_exchange_price"] = (player["grand_exchange_price", 0] + 1L).coerceAtMost(limit.toLong()).toInt()
     if (!Settings["grandExchange.priceLimit", true]) {
@@ -110,7 +112,7 @@ interfaceOption("Decrease Price", "decrease_price", "grand_exchange") {
     if (!itemSelected()) {
         return@interfaceOption
     }
-    player.closeDialogue()    
+    player.closeDialogue()
     val limit = if (Settings["grandExchange.priceLimit", true]) player["grand_exchange_range_min", 0] else 0
     player["grand_exchange_price"] = (player["grand_exchange_price", 0] - 1).coerceAtLeast(limit)
     if (!Settings["grandExchange.priceLimit", true]) {
@@ -122,7 +124,7 @@ interfaceOption("Offer Market Price", "offer_market", "grand_exchange") {
     if (!itemSelected()) {
         return@interfaceOption
     }
-    player.closeDialogue()    
+    player.closeDialogue()
     if (!Settings["grandExchange.priceLimit", true] && player.hasClock("grand_exchange_price_delay")) {
         return@interfaceOption
     }
@@ -137,7 +139,7 @@ interfaceOption("Edit Price", "offer_x", "grand_exchange") {
     if (!itemSelected()) {
         return@interfaceOption
     }
-    player.closeDialogue()    
+    player.closeDialogue()
     val min = if (Settings["grandExchange.priceLimit", true]) player["grand_exchange_range_min", 0] else 0
     val max = if (Settings["grandExchange.priceLimit", true]) player["grand_exchange_range_max", 0] else Int.MAX_VALUE
     player["grand_exchange_price"] = when (player["grand_exchange_page", "offers"]) {
@@ -154,7 +156,7 @@ interfaceOption("Offer Minimum Price", "offer_min", "grand_exchange") {
     if (!itemSelected()) {
         return@interfaceOption
     }
-    player.closeDialogue()    
+    player.closeDialogue()
     if (Settings["grandExchange.priceLimit", true]) {
         player["grand_exchange_price"] = player["grand_exchange_range_min", 0]
     } else {
@@ -173,7 +175,7 @@ interfaceOption("Offer Maximum Price", "offer_max", "grand_exchange") {
     if (!itemSelected()) {
         return@interfaceOption
     }
-    player.closeDialogue()    
+    player.closeDialogue()
     if (Settings["grandExchange.priceLimit", true]) {
         player["grand_exchange_price"] = player["grand_exchange_range_max", 0]
     } else {
