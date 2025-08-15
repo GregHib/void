@@ -6,7 +6,8 @@ enum class OfferState(val int: Int) {
     OpenBuy(2),
     OpenSell(10),
     CompletedBuy(5),
-    CompletedSell(13);
+    CompletedSell(13),
+    ;
 
     val sell: Boolean
         get() = int and 0x8 == 8

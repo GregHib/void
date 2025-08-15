@@ -121,6 +121,21 @@ internal object OffersTable : Table("grand_exchange_offers") {
     }
 }
 
+internal object ActiveOffersTable : Table("grand_exchange_active_offers") {
+    val playerId = integer("player_id").references(AccountsTable.id)
+    val id = integer("id")
+    val item = text("item")
+    val remaining = integer("remaining")
+    val price = integer("price")
+    val coins = integer("coins").default(0)
+    val lastActive = long("last_active").default(0)
+    val sell = bool("sell").default(true)
+
+    init {
+        index(true, playerId, id)
+    }
+}
+
 internal object PlayerHistoryTable : Table("player_exchange_history") {
     val playerId = integer("player_id").references(AccountsTable.id)
     val index = integer("index")

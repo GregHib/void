@@ -65,13 +65,9 @@ class Offers(
         open.lastActive = now
     }
 
-    fun selling(item: String): TreeMap<Int, MutableList<OpenOffer>> {
-        return sellByItem[item] ?: TreeMap()
-    }
+    fun selling(item: String): TreeMap<Int, MutableList<OpenOffer>> = sellByItem[item] ?: TreeMap()
 
-    fun buying(item: String): TreeMap<Int, MutableList<OpenOffer>> {
-        return buyByItem[item] ?: TreeMap()
-    }
+    fun buying(item: String): TreeMap<Int, MutableList<OpenOffer>> = buyByItem[item] ?: TreeMap()
 
     fun remove(offer: ExchangeOffer) {
         remove(offer.id, offer.item, offer.price, offer.state.sell)
@@ -101,5 +97,4 @@ class Offers(
         buyByItem.clear()
         sellByItem.clear()
     }
-
 }

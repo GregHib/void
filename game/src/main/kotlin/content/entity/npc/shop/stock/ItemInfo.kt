@@ -113,5 +113,4 @@ object ItemInfo {
             Summoning
             <br><br><br><br><br><br>
     """.trimIndent().replace("\n", "<br>")
-
 }

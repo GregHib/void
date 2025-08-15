@@ -55,7 +55,6 @@ interfaceOption("Make Offer", "view_offer_*", "grand_exchange") {
     selectItem(player, offer.item)
 }
 
-
 /*
     Buy Offer
  */
@@ -82,7 +81,6 @@ continueItemDialogue { player ->
     player["grand_exchange_price"] = player["grand_exchange_market_price", 0]
     ItemInfo.showInfo(player, Item(item))
 }
-
 
 /*
     Sell Offer

@@ -1,14 +1,12 @@
 package world.gregs.voidps.engine.data
 
 import world.gregs.voidps.engine.data.config.AccountDefinition
-import world.gregs.voidps.engine.data.exchange.Aggregate
-import world.gregs.voidps.engine.data.exchange.Claim
-import world.gregs.voidps.engine.data.exchange.Offers
-import world.gregs.voidps.engine.data.exchange.PriceHistory
+import world.gregs.voidps.engine.data.exchange.*
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import java.io.File
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 /**
  * A backup storage method to use when the primary one fails
@@ -31,11 +29,13 @@ class SafeStorage(
         val parent = directory.resolve("grand_exchange/")
         parent.mkdirs()
         val file = parent.resolve("claimable_offers.toml")
-        file.writeText(buildString {
-            for ((id, claim) in claims) {
-                appendLine("$id = [${claim.amount}, ${claim.price}]")
-            }
-        })
+        file.writeText(
+            buildString {
+                for ((id, claim) in claims) {
+                    appendLine("$id = [${claim.amount}, ${claim.price}]")
+                }
+            },
+        )
     }
 
     override fun savePriceHistory(history: Map<String, PriceHistory>) {
@@ -43,21 +43,51 @@ class SafeStorage(
         parent.mkdirs()
         for ((key, value) in history) {
             val file = parent.resolve("$key.toml")
-            file.writeText(buildString {
-                appendLine("[day]")
-                writeAggregates(this, value.day)
-                appendLine("[week]")
-                writeAggregates(this, value.week)
-                appendLine("[month]")
-                writeAggregates(this, value.month)
-                appendLine("[year]")
-                writeAggregates(this, value.year)
-            })
+            file.writeText(
+                buildString {
+                    appendLine("[day]")
+                    writeAggregates(this, value.day)
+                    appendLine("[week]")
+                    writeAggregates(this, value.week)
+                    appendLine("[month]")
+                    writeAggregates(this, value.month)
+                    appendLine("[year]")
+                    writeAggregates(this, value.year)
+                },
+            )
         }
     }
 
     override fun saveOffers(offers: Offers) {
-        TODO("Not yet implemented")
+        val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
+        buy.mkdirs()
+        saveOffers(buy, offers.buyByItem)
+        val sell = directory.resolve(Settings["storage.grand.exchange.offers.sell.path"])
+        sell.mkdirs()
+        saveOffers(sell, offers.sellByItem)
+        val file = directory.resolve(Settings["storage.grand.exchange.offers.path"])
+        file.writeText("counter = ${offers.counter}")
+    }
+
+    private fun saveOffers(directory: File, byItem: Map<String, TreeMap<Int, MutableList<OpenOffer>>>) {
+        for ((item, map) in byItem) {
+            val file = directory.resolve("$item.toml")
+            file.writeText(
+                buildString {
+                    for ((price, list) in map) {
+                        for (offer in list) {
+                            appendLine("[${offer.id}]")
+                            appendLine("price = $price")
+                            appendLine("remaining = ${offer.remaining}")
+                            appendLine("coins = ${offer.coins}")
+                            appendLine("account = \"${offer.account}\"")
+                            appendLine("last_active = ${offer.lastActive}")
+                            appendLine()
+                        }
+                    }
+                },
+            )
+        }
     }
 
     private fun writeAggregates(stringBuilder: StringBuilder, frame: MutableMap<Long, Aggregate>) {

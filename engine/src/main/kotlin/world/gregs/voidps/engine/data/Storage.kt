@@ -2,8 +2,8 @@ package world.gregs.voidps.engine.data
 
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.exchange.Claim
-import world.gregs.voidps.engine.data.exchange.PriceHistory
 import world.gregs.voidps.engine.data.exchange.Offers
+import world.gregs.voidps.engine.data.exchange.PriceHistory
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 
 /**

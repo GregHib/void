@@ -11,7 +11,8 @@ enum class TimeFrame(
     Day(TimeUnit.MINUTES, 5),
     Week(TimeUnit.HOURS, 1),
     Month(TimeUnit.HOURS, 6),
-    Year(TimeUnit.DAYS, 1);
+    Year(TimeUnit.DAYS, 1),
+    ;
 
     /**
      * Returns the start of the time bucket that contains the given timestamp.

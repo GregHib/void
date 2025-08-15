@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.exchange.Claim
+import world.gregs.voidps.engine.data.exchange.Offers
+import world.gregs.voidps.engine.data.exchange.PriceHistory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.script.KoinMock
@@ -43,6 +46,21 @@ internal class PlayerAccountLoaderTest : KoinMock() {
             override fun clans(): Map<String, Clan> = emptyMap()
 
             override fun save(accounts: List<PlayerSave>) {
+            }
+
+            override fun offers(days: Int): Offers = Offers()
+
+            override fun saveOffers(offers: Offers) {
+            }
+
+            override fun claims(): Map<Int, Claim> = emptyMap()
+
+            override fun saveClaims(claims: Map<Int, Claim>) {
+            }
+
+            override fun priceHistory(): Map<String, PriceHistory> = emptyMap()
+
+            override fun savePriceHistory(history: Map<String, PriceHistory>) {
             }
 
             override fun exists(accountName: String): Boolean = false

@@ -5,8 +5,8 @@ import com.zaxxer.hikari.HikariDataSource
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.inList
 import org.jetbrains.exposed.sql.transactions.transaction
-import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.exchange.*
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
@@ -26,11 +26,11 @@ class DatabaseStorage : Storage {
         AccountsTable
             .leftJoin(display) {
                 AccountsTable.id eq display[VariablesTable.playerId] and
-                        (display[VariablesTable.name] eq stringLiteral("display_name"))
+                    (display[VariablesTable.name] eq stringLiteral("display_name"))
             }
             .leftJoin(history) {
                 AccountsTable.id eq history[VariablesTable.playerId] and
-                        (history[VariablesTable.name] eq stringLiteral("name_history"))
+                    (history[VariablesTable.name] eq stringLiteral("name_history"))
             }
             .select(
                 AccountsTable.name,
@@ -77,37 +77,32 @@ class DatabaseStorage : Storage {
     }
 
     override fun offers(days: Int): Offers {
-        val buy: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf()
-        val sell: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf()
-        val openOffers = OffersTable.selectAll().where { OffersTable.state eq "OpenBuy" }.orWhere { OffersTable.state eq "OpenSell" }
-        var max = 0
-        val offers = Offers(sell, buy)
-        val now = System.currentTimeMillis()
-        for (row in openOffers) {
-            val state = row[OffersTable.state]
-            val item = row[OffersTable.item]
-            val price = row[OffersTable.price]
-            val id = row[OffersTable.id]
-            val amount = row[OffersTable.amount]
-            val completed = row[OffersTable.completed]
-            val lastActive = row[OffersTable.lastActive]
-            val coins = row[OffersTable.coins]
-            val remaining = amount - completed
-            val offer = OpenOffer(id = id, remaining = remaining, coins = coins)
-            offers.add(id, item, price, state == "OpenSell")
-            if (id > max) {
-                max = id
-            }
-            // Only store active offers
-            if (days <= 0 || TimeUnit.MILLISECONDS.toDays(now - lastActive) <= days) {
-                if (state == "OpenBuy") {
-                    buy.getOrPut(item) { TreeMap() }.getOrPut(price) { mutableListOf() }.add(offer)
-                } else if (state == "OpenSell") {
-                    sell.getOrPut(item) { TreeMap() }.getOrPut(price) { mutableListOf() }.add(offer)
-                }
-            }
+        val buyByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf()
+        val sellByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf()
+        val offers = Offers(sellByItem, buyByItem)
+        val query = (ActiveOffersTable innerJoin AccountsTable).selectAll()
+        if (days > 0) {
+            val time = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(days.toLong())
+            query.where { (ActiveOffersTable.id eq AccountsTable.id) and (ActiveOffersTable.lastActive greaterEq time) }
+        } else {
+            query.where { ActiveOffersTable.id eq AccountsTable.id }
         }
-        if (max > offers.counter) {
+        for (row in query) {
+            val id = row[ActiveOffersTable.id]
+            val item = row[ActiveOffersTable.item]
+            val name = row[AccountsTable.name]
+            val remaining = row[ActiveOffersTable.remaining]
+            val price = row[ActiveOffersTable.price]
+            val coins = row[ActiveOffersTable.coins]
+            val lastActive = row[ActiveOffersTable.lastActive]
+            val sell = row[ActiveOffersTable.sell]
+            val offer = OpenOffer(id = id, remaining = remaining, coins = coins, account = name, lastActive = lastActive)
+            offers.add(id, item, price, sell)
+            (if (sell) sellByItem else buyByItem).getOrPut(item) { TreeMap() }.getOrPut(price) { mutableListOf() }.add(offer)
+        }
+        val maxId = OffersTable.id.max()
+        for (row in OffersTable.select(maxId)) {
+            val max = row[maxId]!!
             offers.counter = max
         }
         return offers
@@ -154,13 +149,11 @@ class DatabaseStorage : Storage {
         }
     }
 
-    override fun claims(): Map<Int, Claim> {
-        return ClaimsTable.selectAll().associate { row ->
-            val id = row[ClaimsTable.offerId]
-            val amount = row[ClaimsTable.amount]
-            val coins = row[ClaimsTable.coins]
-            id to Claim(amount, coins)
-        }
+    override fun claims(): Map<Int, Claim> = ClaimsTable.selectAll().associate { row ->
+        val id = row[ClaimsTable.offerId]
+        val amount = row[ClaimsTable.amount]
+        val coins = row[ClaimsTable.coins]
+        id to Claim(amount, coins)
     }
 
     override fun priceHistory(): Map<String, PriceHistory> {
@@ -185,7 +178,7 @@ class DatabaseStorage : Storage {
                 "week" -> priceHistory.week
                 "month" -> priceHistory.month
                 "year" -> priceHistory.year
-                else -> throw IllegalArgumentException("Unknown timeframe '$timeframe' for item history '$item' ${timestamp}.")
+                else -> throw IllegalArgumentException("Unknown timeframe '$timeframe' for item history '$item' $timestamp.")
             }
             frame[timestamp] = Aggregate(open = open, high = high, low = low, close = close, volume = volume, count = count, averageHigh = averageHigh, averageLow = averageLow, volumeHigh = volumeHigh, volumeLow = volumeLow)
         }
@@ -283,7 +276,26 @@ class DatabaseStorage : Storage {
     }
 
     override fun saveOffers(offers: Offers) {
-        TODO("Not yet implemented - Override player saves?")
+        val playerIds = AccountsTable
+            .select(AccountsTable.id, AccountsTable.name)
+            .associate { it[AccountsTable.name].lowercase() to it[AccountsTable.id] }
+        ActiveOffersTable.deleteAll()
+        extracted(offers.buyByItem, playerIds, sell = false)
+        extracted(offers.sellByItem, playerIds, sell = true)
+    }
+
+    private fun extracted(byItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>>, playerIds: Map<String, Int>, sell: Boolean) {
+        val offerData = byItem.flatMap { (item, value) -> value.flatMap { (price, list) -> list.map { offer -> Triple(item, price, offer) } } }
+        ActiveOffersTable.batchUpsert(offerData, ActiveOffersTable.playerId, ActiveOffersTable.id) { (item, price, offer) ->
+            this[ActiveOffersTable.playerId] = playerIds.getValue(offer.account.lowercase())
+            this[ActiveOffersTable.id] = offer.id
+            this[ActiveOffersTable.item] = item
+            this[ActiveOffersTable.remaining] = offer.remaining
+            this[ActiveOffersTable.price] = price
+            this[ActiveOffersTable.coins] = offer.coins
+            this[ActiveOffersTable.lastActive] = offer.lastActive
+            this[ActiveOffersTable.sell] = sell
+        }
     }
 
     private fun saveHistories(accounts: List<PlayerSave>, playerIds: Map<String, Int>) {

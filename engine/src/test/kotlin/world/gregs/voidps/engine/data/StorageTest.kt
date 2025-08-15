@@ -1,6 +1,9 @@
 package world.gregs.voidps.engine.data
 
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.data.exchange.ExchangeHistory
+import world.gregs.voidps.engine.data.exchange.ExchangeOffer
+import world.gregs.voidps.engine.data.exchange.OfferState
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -61,6 +64,7 @@ abstract class StorageTest {
                 put("Bob", ClanRank.Captain)
                 remove("Greg")
             },
+            offers = arrayOf(ExchangeOffer(2, "whip", 1, 2, OfferState.OpenBuy)),
         )
         storage.save(listOf(override))
 
@@ -92,6 +96,7 @@ abstract class StorageTest {
         }
         assertFalse(account.friends.containsKey("Greg"))
         assertContentEquals(override.ignores, account.ignores)
+        assertContentEquals(override.offers, account.offers)
     }
 
     @Test
@@ -274,6 +279,8 @@ abstract class StorageTest {
             ),
             friends = mapOf("Greg" to ClanRank.Friend),
             ignores = listOf("Mod Murdoch"),
+            offers = arrayOf(ExchangeOffer(1, "item", 4, 123, OfferState.PendingSell, 1, 321)),
+            history = listOf(ExchangeHistory("item", 123, 321)),
         )
     }
 }

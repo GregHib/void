@@ -42,7 +42,6 @@ class GrandExchangeTest : WorldTest() {
         val buyer = createPlayer(Tile(3164, 3487), "buyer")
         buyer.bank.add("coins", 20_000)
 
-
         sell(seller, "rune_longsword")
         confirm(seller)
         val expectedSell = ExchangeOffer(1, "rune_longsword", 1, 19_000, OfferState.PendingSell)
@@ -59,7 +58,6 @@ class GrandExchangeTest : WorldTest() {
         tick()
         assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 19_000), seller, 1)
         assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1, coins = 19_000), buyer, 0)
-
 
         collect(buyer, 0)
         collect(seller, 1)
@@ -82,7 +80,6 @@ class GrandExchangeTest : WorldTest() {
         confirm(buyer)
         val expectedBuy = ExchangeOffer(1, "abyssal_whip", 1, 865_326, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)
-
 
         sell(seller, "abyssal_whip")
         seller.interfaceOption("grand_exchange", "offer_max", "Offer Maximum Price")
@@ -117,7 +114,6 @@ class GrandExchangeTest : WorldTest() {
         confirm(buyer2)
         val expectedBuy2 = ExchangeOffer(2, "flax", 100, 71, OfferState.PendingBuy)
         assertOffer(expectedBuy2, buyer2, 0)
-
 
         sell(seller, "flax_noted")
         seller.interfaceOption("grand_exchange", "offer_min", "Offer Minimum Price")
@@ -180,7 +176,6 @@ class GrandExchangeTest : WorldTest() {
         seller.inventory.add("abyssal_whip")
         val buyer = createPlayer(Tile(3164, 3487), "buyer")
         buyer.inventory.add("coins", 1_000_000)
-
 
         sell(seller, "abyssal_whip")
         confirm(seller)
@@ -479,7 +474,6 @@ class GrandExchangeTest : WorldTest() {
         assertOffer(expectedBuy, buyer, 0)
         tick()
 
-
         sell(seller, "rune_longsword")
         seller.interfaceOption("grand_exchange", "increase_quantity", "Increase Quantity")
         confirm(seller)
@@ -535,7 +529,6 @@ class GrandExchangeTest : WorldTest() {
         val buyer = createPlayer(Tile(3164, 3487), "buyer")
         buyer.inventory.add("coins", 20_000)
 
-
         sell(seller, "rune_longsword")
         confirm(seller)
         val expectedSell = ExchangeOffer(1, "rune_longsword", 1, 19_000, OfferState.PendingSell)
@@ -552,7 +545,6 @@ class GrandExchangeTest : WorldTest() {
         tick()
         assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 19_000), seller, 1)
         assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1, coins = 19_000), buyer, 0)
-
 
         abort(buyer, 0)
         abort(seller, 1)
@@ -630,7 +622,7 @@ class GrandExchangeTest : WorldTest() {
     }
 
     private fun collect(player: Player, slot: Int) {
-        player.interfaceOption("grand_exchange", "view_offer_${slot}", "Make Offer")
+        player.interfaceOption("grand_exchange", "view_offer_$slot", "Make Offer")
         tick()
         player.interfaceOption("grand_exchange", "collect_slot_0", "Collect_notes")
         player.interfaceOption("grand_exchange", "collect_slot_1", "Collect_notes")
