@@ -25,13 +25,6 @@ data class ExchangeOffer(
     val sell: Boolean
         get() = state.sell
 
-    fun exchange(amount: Int) {
-        completed += amount
-        if (completed == this.amount) {
-            cancel()
-        }
-    }
-
     fun open() {
     }
 

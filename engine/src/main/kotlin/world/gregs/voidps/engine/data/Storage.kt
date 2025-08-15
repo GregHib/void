@@ -32,6 +32,11 @@ interface Storage {
     fun offers(days: Int): Offers
 
     /**
+     * Batch saves claims
+     */
+    fun saveOffers(offers: Offers)
+
+    /**
      * Loads all outstanding grand exchange claims
      */
     fun claims(): Map<Int, Claim>

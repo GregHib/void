@@ -56,6 +56,10 @@ class SafeStorage(
         }
     }
 
+    override fun saveOffers(offers: Offers) {
+        TODO("Not yet implemented")
+    }
+
     private fun writeAggregates(stringBuilder: StringBuilder, frame: MutableMap<Long, Aggregate>) {
         for ((timestamp, aggregate) in frame) {
             stringBuilder.appendLine("$timestamp = [${aggregate.open}, ${aggregate.high}, ${aggregate.low}, ${aggregate.close}, ${aggregate.volume}, ${aggregate.count}, ${aggregate.averageHigh}, ${aggregate.averageLow}, ${aggregate.volumeHigh}, ${aggregate.volumeLow}]")
@@ -111,7 +115,7 @@ class SafeStorage(
         appendLine()
         appendLine("[exchange]")
         appendLine("offers = [${save.offers.joinToString(", ") { if (it.isEmpty()) "{}" else "{id = ${it.id}}, item = \"${it.item}\", amount = ${it.amount}, price = ${it.price}, state = \"${it.state.name}\", completed = ${it.completed}, coins = ${it.coins}}" }}]")
-        appendLine("history = [${save.history.joinToString(", ") { "{item = \"${it.item}\", amount = ${it.amount}, price = ${it.price}}" }}]")
+        appendLine("history = [${save.history.joinToString(", ") { "{item = \"${it.item}\", amount = ${it.amount}, price = ${it.coins}}" }}]")
     }
 
     override fun exists(accountName: String): Boolean = false

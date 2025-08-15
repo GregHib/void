@@ -45,7 +45,7 @@ interfaceOpen("grand_exchange") { player ->
 }
 
 interfaceClose("grand_exchange") {
-    GrandExchange.clear(it)
+    GrandExchange.clearSelection(it)
 }
 
 interfaceOption("Make Offer", "view_offer_*", "grand_exchange") {

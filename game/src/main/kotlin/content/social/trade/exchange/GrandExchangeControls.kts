@@ -76,7 +76,11 @@ interfaceOption("Increase Quantity", "increase_quantity", "grand_exchange") {
     }
     player.closeDialogue()    
     if (player["grand_exchange_quantity", 0] < Int.MAX_VALUE - 1) {
-        player["grand_exchange_quantity"] = (player["grand_exchange_quantity", 0] + 1).coerceAtMost(totalItems())
+        player["grand_exchange_quantity"] = (player["grand_exchange_quantity", 0] + 1).coerceAtMost(when (player["grand_exchange_page", "offers"]) {
+            "sell" -> totalItems()
+            "buy" -> Int.MAX_VALUE
+            else -> return@interfaceOption
+        })
     }
 }
 

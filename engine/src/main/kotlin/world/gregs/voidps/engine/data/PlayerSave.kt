@@ -118,25 +118,25 @@ data class PlayerSave(
                     write("{")
                     writeKey("id")
                     writeValue(offer.id)
-                    write(",")
+                    write(", ")
                     writeKey("item")
                     writeValue(offer.item)
-                    write(",")
+                    write(", ")
                     writeKey("amount")
                     writeValue(offer.amount)
-                    write(",")
+                    write(", ")
                     writeKey("price")
                     writeValue(offer.price)
-                    write(",")
+                    write(", ")
                     writeKey("state")
                     writeValue(offer.state.name)
                     if (offer.completed > 0) {
-                        write(",")
+                        write(", ")
                         writeKey("completed")
                         writeValue(offer.completed)
                     }
                     if (offer.coins > 0) {
-                        write(",")
+                        write(", ")
                         writeKey("coins")
                         writeValue(offer.coins)
                     }
@@ -150,12 +150,12 @@ data class PlayerSave(
                 write("{")
                 writeKey("item")
                 writeValue(history.item)
-                write(",")
-                writeKey("price")
-                writeValue(history.price)
-                write(",")
+                write(", ")
                 writeKey("amount")
                 writeValue(history.amount)
+                write(", ")
+                writeKey("coins")
+                writeValue(history.coins)
                 write("}")
             }
             write("\n")
@@ -324,14 +324,14 @@ data class PlayerSave(
                                     "offers" -> {
                                         var index = 0
                                         while (nextElement()) {
+                                            var id = 0
+                                            var item = ""
+                                            var amount = 0
+                                            var price = 0
+                                            var state: OfferState = OfferState.PendingBuy
+                                            var completed = 0
+                                            var coins = 0
                                             while (nextEntry()) {
-                                                var id = 0
-                                                var item = ""
-                                                var amount = 0
-                                                var price = 0
-                                                var state: OfferState = OfferState.PendingBuy
-                                                var completed = 0
-                                                var coins = 0
                                                 when (val key = key()) {
                                                     "id" -> id = int()
                                                     "item" -> item = string()
@@ -342,23 +342,23 @@ data class PlayerSave(
                                                     "coins" -> coins = int()
                                                     else -> throw IllegalArgumentException("Unexpected exchange offer key: '$key' ${exception()}")
                                                 }
-                                                offers[index++] = ExchangeOffer(id = id, item = item, amount = amount, price = price, state = state, completed = completed, coins = coins)
                                             }
+                                            offers[index++] = ExchangeOffer(id = id, item = item, amount = amount, price = price, state = state, completed = completed, coins = coins)
                                         }
                                     }
                                     "history" -> while (nextElement()) {
-                                        while (nextPair()) {
-                                            var item = ""
-                                            var price = 0
-                                            var amount = 0
+                                        var item = ""
+                                        var coins = 0
+                                        var amount = 0
+                                        while (nextEntry()) {
                                             when (val key = key()) {
                                                 "item" -> item = string()
-                                                "price" -> price = int()
                                                 "amount" -> amount = int()
+                                                "coins" -> coins = int()
                                                 else -> throw IllegalArgumentException("Unexpected exchange history key: '$key' ${exception()}")
                                             }
-                                            history.add(ExchangeHistory(item, price, amount))
                                         }
+                                        history.add(ExchangeHistory(item, amount, coins))
                                     }
                                     else -> throw IllegalArgumentException("Unexpected key: '$exchangeKey' ${exception()}")
                                 }

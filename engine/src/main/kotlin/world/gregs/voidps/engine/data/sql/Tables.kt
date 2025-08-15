@@ -126,7 +126,7 @@ internal object PlayerHistoryTable : Table("player_exchange_history") {
     val index = integer("index")
     val item = text("item")
     val amount = integer("amount")
-    val price = integer("price")
+    val coins = integer("coins")
     init {
         index(true, playerId, index)
     }

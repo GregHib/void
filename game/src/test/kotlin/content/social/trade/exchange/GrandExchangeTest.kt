@@ -605,7 +605,7 @@ class GrandExchangeTest : WorldTest() {
         buyer.interfaceOption("grand_exchange", "add_1", "Add 1")
         confirm(buyer)
         tick()
-        assertEquals(-1, buyer["grand_exchange_offer_0", -1])
+        assertTrue(buyer.offers[0].isEmpty())
         assertTrue(buyer.containsMessage("You don't have enough coins."))
     }
 

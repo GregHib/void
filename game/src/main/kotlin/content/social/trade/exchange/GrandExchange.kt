@@ -111,7 +111,7 @@ class GrandExchange(
                 continue
             }
             offer.cancel()
-            returnItems(player, offer, index)
+            returnItems(player, offer)
         }
         cancellations.clear()
         for (offer in pending) {
@@ -127,28 +127,19 @@ class GrandExchange(
         }
     }
 
-    private fun returnItems(player: Player?, offer: ExchangeOffer, index: Int) {
+    private fun returnItems(player: Player?, offer: ExchangeOffer) {
         val remaining = offer.amount - offer.completed
-        if (offer.sell) {
-            if (player == null) {
-                claims.add(offer.id, remaining, offer.price)
-                return
-            }
-            claim(player, offer, offer.item, offer.price, offer.price, remaining, !offer.sell)
-            refresh(player, index)
-        } else {
-            if (player == null) {
-                claims.add(offer.id, remaining, offer.price)
-                return
-            }
-            claim(player, offer, offer.item, offer.price, offer.price, remaining, !offer.sell)
-            refresh(player, index)
+        if (player == null) {
+            claims.add(offer.id, remaining, offer.price)
+            return
         }
+        claim(player, offer, offer.item, offer.price, offer.price, remaining, !offer.sell)
     }
 
     fun save() {
         storage.savePriceHistory(history.history)
         storage.saveClaims(claims.claims)
+        storage.saveOffers(offers)
     }
 
     private fun process(pending: PendingOffer) {
@@ -192,8 +183,8 @@ class GrandExchange(
 
     fun refresh(player: Player, index: Int) {
         player.sendInventory("collection_box_${index}")
-        val offer = player.offers.getOrNull(index)
-        if (offer == null || offer.isEmpty()) {
+        val offer = player.offers.getOrNull(index) ?: return
+        if (offer.isEmpty()) {
             player.removeVarbit("grand_exchange_ranges", "slot_${index}")
             player.client?.grandExchange(index)
             return
@@ -246,8 +237,11 @@ class GrandExchange(
             // Queue offer to be claimed next time they log in
             claims.add(id, traded, price)
         } else {
+            offer.completed += traded
+            if (offer.completed == offer.amount) {
+                offer.cancel()
+            }
             // Claim offer if player is online
-            offer.exchange(traded)
             claim(player, offer, item, price, otherPrice, traded, sell)
         }
     }
@@ -277,8 +271,8 @@ class GrandExchange(
                 // https://youtu.be/3ussM7P1j00?si=IHR8ZXl2kN0bjIfx&t=398
                 player.message("One or more of your Grand Exchange offers have been updated.")
             }
-            refresh(player, slot)
             offer.coins += coins
+            refresh(player, slot)
         }
     }
 
@@ -313,7 +307,7 @@ class GrandExchange(
     }
 
     companion object {
-        fun clear(player: Player) {
+        fun clearSelection(player: Player) {
             player["grand_exchange_box"] = -1
             player["grand_exchange_page"] = "offers"
             player.sendScript("item_dialogue_close")

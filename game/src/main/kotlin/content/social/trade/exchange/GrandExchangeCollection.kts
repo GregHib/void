@@ -4,6 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.bank.noted
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.data.exchange.ExchangeHistory
+import world.gregs.voidps.engine.data.exchange.ExchangeOffer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.name
@@ -36,9 +38,12 @@ interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
         is TransactionError.Full -> player.inventoryFull()
         TransactionError.None -> if (collectionBox.isEmpty()) {
             if (offer.state.cancelled) {
+                if (offer.completed > 0) {
+                    player.history.addFirst(ExchangeHistory(offer))
+                }
+                player.offers[box] = ExchangeOffer.EMPTY
                 exchange.offers.remove(offer)
-                player.clear("grand_exchange_offer_${box}")
-                GrandExchange.clear(player)
+                GrandExchange.clearSelection(player)
             }
             exchange.refresh(player, box)
         } else if (collectionBox.contains(item.id)) {
