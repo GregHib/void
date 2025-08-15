@@ -57,8 +57,8 @@ class GrandExchangeTest : WorldTest() {
         val expectedBuy = ExchangeOffer(2, "rune_longsword", 1, 19_000, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)
         tick()
-        assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 19000), seller, 1)
-        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1), buyer, 0)
+        assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 19_000), seller, 1)
+        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1, coins = 19_000), buyer, 0)
 
 
         collect(buyer, 0)
@@ -128,8 +128,8 @@ class GrandExchangeTest : WorldTest() {
         tick()
 
         assertOffer(expectedBuy1.copy(state = OfferState.OpenBuy), buyer1, 0)
-        assertOffer(expectedBuy2.copy(state = OfferState.CompletedBuy, completed = 100), buyer2, 0)
-        assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 100, coins = 7100), seller, 1)
+        assertOffer(expectedBuy2.copy(state = OfferState.CompletedBuy, completed = 100, coins = 7_100), buyer2, 0)
+        assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 100, coins = 7_100), seller, 1)
         val buyerBox = buyer2.inventories.inventory("collection_box_0")
         val sellerBox = seller.inventories.inventory("collection_box_1")
         assertTrue(buyerBox.contains("flax", 100))
@@ -165,8 +165,8 @@ class GrandExchangeTest : WorldTest() {
         tick()
 
         assertOffer(expectedSell.copy(id = 2, price = 908_593, state = OfferState.OpenSell), seller2, 1)
-        assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 865326), seller1, 1)
-        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1, coins = 43267), buyer, 0)
+        assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 865_326), seller1, 1)
+        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1, coins = 865_326), buyer, 0)
         val buyerBox = buyer.inventories.inventory("collection_box_0")
         val sellerBox = seller1.inventories.inventory("collection_box_1")
         assertTrue(buyerBox.contains("abyssal_whip"))
@@ -228,7 +228,7 @@ class GrandExchangeTest : WorldTest() {
 
         tick()
 
-        assertOffer(expectedBuy1.copy(state = OfferState.CompletedBuy, completed = 100), buyer1, 0)
+        assertOffer(expectedBuy1.copy(state = OfferState.CompletedBuy, completed = 100, coins = 400), buyer1, 0)
         assertOffer(expectedBuy2.copy(state = OfferState.OpenBuy), buyer2, 0)
         assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 100, coins = 400), seller, 1)
         val buyerBox = buyer1.inventories.inventory("collection_box_0")
@@ -266,7 +266,7 @@ class GrandExchangeTest : WorldTest() {
 
         assertOffer(expectedSell1.copy(state = OfferState.CompletedSell, completed = 1, coins = 865_326), seller1, 1)
         assertOffer(expectedSell2.copy(state = OfferState.OpenSell), seller2, 1)
-        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1), buyer, 0)
+        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1, coins = 865_326), buyer, 0)
         val buyerBox = buyer.inventories.inventory("collection_box_0")
         val sellerBox = seller1.inventories.inventory("collection_box_1")
         assertTrue(buyerBox.contains("abyssal_whip"))
@@ -302,9 +302,9 @@ class GrandExchangeTest : WorldTest() {
 
         tick()
 
-        assertOffer(expectedSell1.copy(state = OfferState.CompletedSell, completed = 1, coins = 865326), seller1, 1)
-        assertOffer(expectedSell2.copy(state = OfferState.CompletedSell, completed = 1, coins = 865326), seller2, 1)
-        assertOffer(expectedBuy.copy(state = OfferState.OpenBuy, completed = 2, coins = 86_534), buyer, 0)
+        assertOffer(expectedSell1.copy(state = OfferState.CompletedSell, completed = 1, coins = 865_326), seller1, 1)
+        assertOffer(expectedSell2.copy(state = OfferState.CompletedSell, completed = 1, coins = 865_326), seller2, 1)
+        assertOffer(expectedBuy.copy(state = OfferState.OpenBuy, completed = 2, coins = 1_730_652), buyer, 0)
         val buyerBox = buyer.inventories.inventory("collection_box_0")
         val sellerBox = seller1.inventories.inventory("collection_box_1")
         assertTrue(buyerBox.contains("abyssal_whip"))
@@ -342,7 +342,7 @@ class GrandExchangeTest : WorldTest() {
 
         assertOffer(expectedSell1.copy(state = OfferState.CompletedSell, completed = 1_000, coins = 24_000), seller1, 1)
         assertOffer(expectedSell2.copy(state = OfferState.OpenSell, completed = 500, coins = 12_000), seller2, 1)
-        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1_500), buyer, 0)
+        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1_500, coins = 36_000), buyer, 0)
         val buyerBox = buyer.inventories.inventory("collection_box_0")
         val sellerBox = seller1.inventories.inventory("collection_box_1")
         assertTrue(buyerBox.contains("spirit_shards", 1_500))
@@ -377,8 +377,8 @@ class GrandExchangeTest : WorldTest() {
 
         tick()
 
-        assertOffer(expectedBuy1.copy(state = OfferState.CompletedBuy, completed = 10), buyer1, 0)
-        assertOffer(expectedBuy2.copy(state = OfferState.CompletedBuy, completed = 10), buyer2, 0)
+        assertOffer(expectedBuy1.copy(state = OfferState.CompletedBuy, completed = 10, coins = 40), buyer1, 0)
+        assertOffer(expectedBuy2.copy(state = OfferState.CompletedBuy, completed = 10, coins = 40), buyer2, 0)
         assertOffer(expectedSell.copy(state = OfferState.OpenSell, completed = 20, coins = 80), seller, 1)
         val buyerBox = buyer1.inventories.inventory("collection_box_0")
         val sellerBox = seller.inventories.inventory("collection_box_1")
@@ -414,8 +414,8 @@ class GrandExchangeTest : WorldTest() {
 
         tick()
 
-        assertOffer(expectedBuy1.copy(state = OfferState.CompletedBuy, completed = 10), buyer1, 0)
-        assertOffer(expectedBuy2.copy(state = OfferState.OpenBuy, completed = 5), buyer2, 0)
+        assertOffer(expectedBuy1.copy(state = OfferState.CompletedBuy, completed = 10, coins = 40), buyer1, 0)
+        assertOffer(expectedBuy2.copy(state = OfferState.OpenBuy, completed = 5, coins = 20), buyer2, 0)
         assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 15, coins = 60), seller, 1)
         val buyerBox = buyer1.inventories.inventory("collection_box_0")
         val sellerBox = seller.inventories.inventory("collection_box_1")
@@ -457,7 +457,7 @@ class GrandExchangeTest : WorldTest() {
         tick()
 
         abort(buyer, 0)
-        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, coins = 500), buyer, 0)
+        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy), buyer, 0)
 
         collect(buyer, 0)
 
@@ -487,7 +487,7 @@ class GrandExchangeTest : WorldTest() {
         assertOffer(expectedSell, seller, 1)
         tick()
 
-        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1), buyer, 0)
+        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1, coins = 19_000), buyer, 0)
         assertOffer(expectedSell.copy(state = OfferState.OpenSell, completed = 1, coins = 19_000), seller, 1)
         val sellerBox = seller.inventories.inventory("collection_box_1")
         assertTrue(sellerBox.contains("coins", 19_000))
@@ -517,7 +517,7 @@ class GrandExchangeTest : WorldTest() {
         assertOffer(expectedBuy, buyer, 0)
         tick()
 
-        assertOffer(expectedBuy.copy(state = OfferState.OpenBuy, completed = 1), buyer, 0)
+        assertOffer(expectedBuy.copy(state = OfferState.OpenBuy, completed = 1, coins = 19_000), buyer, 0)
         assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 19_000), seller, 1)
         val buyerBox = buyer.inventories.inventory("collection_box_0")
         assertTrue(buyerBox.contains("rune_longsword"))
@@ -550,8 +550,8 @@ class GrandExchangeTest : WorldTest() {
         val expectedBuy = ExchangeOffer(2, "rune_longsword", 1, 19_000, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)
         tick()
-        assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 19000), seller, 1)
-        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1), buyer, 0)
+        assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 19_000), seller, 1)
+        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1, coins = 19_000), buyer, 0)
 
 
         abort(buyer, 0)
