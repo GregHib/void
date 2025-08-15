@@ -645,7 +645,7 @@ class GrandExchangeTest : WorldTest() {
     }
 
     private fun abort(player: Player, slot: Int) {
-        exchange.cancel(player, player.offers[slot].id)
+        exchange.cancel(player, slot)
         tick()
     }
 }

@@ -18,7 +18,6 @@ import world.gregs.voidps.type.Tile
 import world.gregs.yaml.Yaml
 import java.io.File
 import java.util.*
-import java.util.concurrent.TimeUnit
 import kotlin.math.max
 
 class FileStorage(
@@ -182,7 +181,7 @@ class FileStorage(
                 assert(nextElement())
                 val coins = int()
                 assert(!nextElement())
-                claims[id] = Claim(amount = amount, coins = coins)
+                claims[id] = Claim(amount = amount, price = coins)
             }
         }
         return claims
@@ -197,7 +196,7 @@ class FileStorage(
                 list(2) { index ->
                     when (index) {
                         0 -> writeValue(claim.amount)
-                        1 -> writeValue(claim.coins)
+                        1 -> writeValue(claim.price)
                     }
                 }
             }

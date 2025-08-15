@@ -47,14 +47,16 @@ class Offers(
         activity.add(Activity(item, if (sell) -price else price, id))
     }
 
-    fun buy(account: String, offer: ExchangeOffer) {
+    fun buy(account: String, offer: ExchangeOffer): OpenOffer {
         val open = offer.open(account)
         buyByItem.getOrPut(offer.item) { TreeMap() }.getOrPut(offer.price) { mutableListOf() }.add(open)
+        return open
     }
 
-    fun sell(account: String, offer: ExchangeOffer) {
+    fun sell(account: String, offer: ExchangeOffer): OpenOffer {
         val open = offer.open(account)
         sellByItem.getOrPut(offer.item) { TreeMap() }.getOrPut(offer.price) { mutableListOf() }.add(open)
+        return open
     }
 
     fun update(offer: ExchangeOffer, now: Long) {
