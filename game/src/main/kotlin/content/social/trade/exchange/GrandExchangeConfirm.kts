@@ -1,34 +1,20 @@
 package content.social.trade.exchange
 
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.npc.shop.stock.ItemInfo
 import content.entity.player.bank.bank
-import content.entity.player.bank.isNote
 import content.entity.player.bank.noted
-import content.entity.player.inv.item.tradeable
-import content.entity.player.modal.Tab
-import content.entity.player.modal.tab
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.dialogue.continueItemDialogue
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.data.exchange.ExchangeOffer
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
-import kotlin.math.ceil
 
 val exchange: GrandExchange by inject()
 
@@ -67,7 +53,6 @@ interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
                     player.offers[slot] = exchange.buy(player, Item(itemId, amount), price)
                 }
                 is TransactionError.Deficient -> {
-                    println(player.inventory.transaction.error)
                     player.notEnough("coins")
                     return@interfaceOption
                 }
@@ -100,9 +85,19 @@ interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
 
     player.inventories.inventory("collection_box_${slot}").clear()
     exchange.refresh(player, slot)
-    GrandExchange.clear(player)
+    GrandExchange.clearSelection(player)
 }
 
 interfaceOption("Back", "back", "grand_exchange") {
-    GrandExchange.clear(player)
+    val box: Int = player["grand_exchange_box", -1]
+    val collectionBox = player.inventories.inventory("collection_box_${box}")
+    if (collectionBox.isEmpty()) {
+        val offer = player.offers.getOrNull(box)
+        if (offer != null && offer.state.cancelled) {
+            player.offers[box] = ExchangeOffer.EMPTY
+            exchange.offers.remove(offer)
+            exchange.refresh(player, box)
+        }
+    }
+    GrandExchange.clearSelection(player)
 }

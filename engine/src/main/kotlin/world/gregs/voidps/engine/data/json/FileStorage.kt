@@ -110,17 +110,57 @@ class FileStorage(
         val offers = Offers()
         val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
         if (buy.exists()) {
-            loadOffers(buy, offers, days, false)
+            loadOffers(buy, offers, false)
         }
         val sell = directory.resolve(Settings["storage.grand.exchange.offers.sell.path"])
         if (sell.exists()) {
-            loadOffers(sell, offers, days, true)
+            loadOffers(sell, offers, true)
         }
+        val file = directory.resolve(Settings["storage.grand.exchange.offers.path"])
+        if (file.exists()) {
+            Config.fileReader(file) {
+                assert(key() == "counter")
+                offers.counter = int()
+            }
+        }
+        offers.removeInactive(days)
         return offers
     }
 
-    private fun loadOffers(directory: File, offers: Offers, days: Int, sell: Boolean) {
-        var max = 0
+    override fun saveOffers(offers: Offers) {
+        val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
+        buy.mkdirs()
+        saveOffers(buy, offers, false)
+        val sell = directory.resolve(Settings["storage.grand.exchange.offers.sell.path"])
+        sell.mkdirs()
+        saveOffers(sell, offers, true)
+        val file = directory.resolve(Settings["storage.grand.exchange.offers.path"])
+        Config.fileWriter(file) {
+            writePair("counter", offers.counter)
+        }
+    }
+
+    private fun saveOffers(directory: File, offers: Offers, sell: Boolean) {
+        val byItem = if (sell) offers.sellByItem else offers.buyByItem
+        for ((item, map) in byItem) {
+            val file = directory.resolve("${item}.toml")
+            Config.fileWriter(file) {
+                for ((price, list) in map) {
+                    for (offer in list) {
+                        writeSection(offer.id.toString())
+                        writePair("price", price)
+                        writePair("remaining", offer.remaining)
+                        writePair("coins", offer.coins)
+                        writePair("account", offer.account)
+                        writePair("last_active", offer.lastActive)
+                        write("\n")
+                    }
+                }
+            }
+        }
+    }
+
+    private fun loadOffers(directory: File, offers: Offers, sell: Boolean) {
         val files = directory.listFiles { _, name -> name.endsWith(".toml") } ?: return
         val map = if (sell) offers.sellByItem else offers.buyByItem
         for (file in files) {
@@ -130,16 +170,12 @@ class FileStorage(
                 while (nextSection()) {
                     val id = section().toInt()
                     val (offer, price) = readOffer(id)
-                    if (id > max) {
-                        max = id
-                    }
                     offers.add(id, item, price, sell)
                     tree.getOrPut(price) { mutableListOf() }.add(offer)
                 }
             }
             map[item] = tree
         }
-        offers.counter = max(offers.counter, max)
     }
 
     private fun ConfigReader.readOffer(id: Int): Pair<OpenOffer, Int> {
@@ -284,6 +320,7 @@ class FileStorage(
             }
         }
     }
+
     private fun ConfigWriter.write(history: MutableMap<Long, Aggregate>) {
         for ((timestamp, aggregate) in history) {
             writeKey(timestamp.toString())

@@ -282,6 +282,10 @@ class DatabaseStorage : Storage {
         }
     }
 
+    override fun saveOffers(offers: Offers) {
+        TODO("Not yet implemented - Override player saves?")
+    }
+
     private fun saveHistories(accounts: List<PlayerSave>, playerIds: Map<String, Int>) {
         PlayerHistoryTable.deleteWhere { playerId inList playerIds.values }
         val historyData = accounts.flatMap { save -> save.history.withIndex().map { Triple(save.name, it.index, it.value) } }
@@ -290,7 +294,7 @@ class DatabaseStorage : Storage {
             this[PlayerHistoryTable.index] = index
             this[PlayerHistoryTable.item] = history.item
             this[PlayerHistoryTable.amount] = history.amount
-            this[PlayerHistoryTable.price] = history.price
+            this[PlayerHistoryTable.coins] = history.coins
         }
     }
 
@@ -524,8 +528,8 @@ class DatabaseStorage : Storage {
     private fun loadHistory(playerId: Int): List<ExchangeHistory> = PlayerHistoryTable.selectAll().where { PlayerHistoryTable.playerId eq playerId }.map { row ->
         val item = row[PlayerHistoryTable.item]
         val amount = row[PlayerHistoryTable.amount]
-        val price = row[PlayerHistoryTable.price]
-        ExchangeHistory(item, price, amount)
+        val coins = row[PlayerHistoryTable.coins]
+        ExchangeHistory(item, amount, coins)
     }
 
     companion object {
