@@ -8,7 +8,6 @@ import content.entity.world.music.MusicTracks
 import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
 import content.social.trade.exchange.GrandExchange
 import content.social.trade.exchange.history.ExchangeHistory
-import content.social.trade.exchange.offer.ClaimableOffers
 import kotlinx.io.pool.DefaultPool
 import org.koin.dsl.module
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
@@ -53,9 +52,6 @@ fun gameModule(files: ConfigFiles) = module {
         ExchangeHistory(get(), get<Storage>().priceHistory().toMutableMap()).also { it.calculatePrices() }
     }
     single(createdAtStart = true) {
-        ClaimableOffers(get<Storage>().claims().toMutableMap())
-    }
-    single(createdAtStart = true) {
-        GrandExchange(get(), get(), get(), get(), get(), get(), get())
+        GrandExchange(get(), get(), get<Storage>().claims().toMutableMap(), get(), get(), get(), get())
     }
 }

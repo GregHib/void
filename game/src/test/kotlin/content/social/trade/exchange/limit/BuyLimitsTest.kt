@@ -54,27 +54,25 @@ class BuyLimitsTest {
     @Test
     fun `Tick removes entries older than 4 hours`() {
         val oldTimestamp = System.currentTimeMillis() - TimeUnit.HOURS.toMillis(5)
-        val oldLimit = BuyLimit(20, oldTimestamp)
 
         // Inject old data directly
-        buyLimits.limits["player_item"] = oldLimit
+        definition.extras = mapOf("limit" to 100)
+        buyLimits.record("player", "item", 20, oldTimestamp)
 
         buyLimits.tick()
 
-        assertEquals(false, buyLimits.limits.containsKey("player_item"))
+        assertEquals(100, buyLimits.limit("player", "item"))
     }
 
     @Test
     fun `Tick doesn't remove entries newer than 4 hours`() {
-        val key = "player_item"
-
         val recentTimestamp = System.currentTimeMillis() - TimeUnit.HOURS.toMillis(3)
-        val recentLimit = BuyLimit(10, recentTimestamp)
 
-        buyLimits.limits[key] = recentLimit
+        definition.extras = mapOf("limit" to 100)
+        buyLimits.record("player", "item", 10, recentTimestamp)
 
         buyLimits.tick()
 
-        assertEquals(true, buyLimits.limits.containsKey(key))
+        assertEquals(90, buyLimits.limit("player", "item"))
     }
 }

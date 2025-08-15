@@ -12,10 +12,18 @@ import java.util.concurrent.TimeUnit
  */
 class BuyLimits(private val itemDefinitions: ItemDefinitions) {
 
-    val limits = Object2ObjectOpenHashMap<String, BuyLimit>()
+    /**
+     * [amount] of an item a player has bought, last updated [timestamp].
+     */
+    private data class BuyLimit(
+        var amount: Int = 0,
+        val timestamp: Long = System.currentTimeMillis(),
+    )
 
-    fun record(account: String, item: String, amount: Int) {
-        limits.getOrPut("${account}_$item") { BuyLimit() }.amount += amount
+    private val limits = Object2ObjectOpenHashMap<String, BuyLimit>()
+
+    fun record(account: String, item: String, amount: Int, timestamp: Long = System.currentTimeMillis()) {
+        limits.getOrPut("${account}_$item") { BuyLimit(timestamp = timestamp) }.amount += amount
     }
 
     fun limit(account: String, item: String): Int {
