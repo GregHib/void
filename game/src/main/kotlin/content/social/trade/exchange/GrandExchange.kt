@@ -3,8 +3,6 @@ package content.social.trade.exchange
 import com.github.michaelbull.logging.InlineLogger
 import content.social.trade.exchange.history.ExchangeHistory
 import content.social.trade.exchange.limit.BuyLimits
-import content.social.trade.exchange.offer.ClaimableOffers
-import content.social.trade.exchange.offer.PendingOffer
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
@@ -38,10 +36,12 @@ import kotlin.math.ceil
  * - Buying an item priced over all existing offers will buy from the lowest seller
  * - Multiple identically priced offers are sampled based on their age; giving older offers a higher probability of being picked.
  *
- * If the target [OpenOffer.account] is not online when the exchange occurs then the items or coins they'll receive is added [ClaimableOffers]
+ * If the target [OpenOffer.account] is not online when the exchange occurs then the items or coins they'll receive is added [claims]
  * to be claimed on next [login].
  *
  * [OpenOffers] older than 7 days become deactivated and need to be canceled and remade.
+ *
+ * There are [BuyLimits] on number of items that can be purchased within a 4 hour period.
  *
  * TODO taxes
  *  F2p slot disabling
@@ -54,17 +54,22 @@ import kotlin.math.ceil
 class GrandExchange(
     val offers: OpenOffers,
     val history: ExchangeHistory,
+    private val claims: MutableMap<Int, Claim> = mutableMapOf(),
     private val itemDefinitions: ItemDefinitions,
     private val accounts: AccountDefinitions,
     private val players: Players,
-    private val claims: ClaimableOffers,
     private val storage: Storage,
 ) : Runnable {
 
     private val limits = BuyLimits(itemDefinitions)
 
+    private data class PendingOffer(val account: String, val offer: ExchangeOffer)
+
     private val pending = mutableListOf<PendingOffer>()
-    private val cancellations = mutableListOf<Pair<Int, String>>()
+
+    private data class Cancellation(val account: String, val slot: Int)
+
+    private val cancellations = mutableListOf<Cancellation>()
 
     private val logger = InlineLogger()
 
@@ -94,7 +99,7 @@ class GrandExchange(
      * Cancel an offer starting next tick
      */
     fun cancel(player: Player, slot: Int) {
-        cancellations.add(slot to player.accountName)
+        cancellations.add(Cancellation(player.accountName, slot))
     }
 
     /**
@@ -107,7 +112,7 @@ class GrandExchange(
         for (slot in 0 until 6) {
             val offer = player.offers.getOrNull(slot) ?: continue
             offers.update(offer, now)
-            val claim = claims.claim(offer.id) ?: continue
+            val claim = claims.remove(offer.id) ?: continue
             claim(offer.id, player.accountName, offer.item, claim.amount, claim.price, offer.price, offer.sell)
             claimed = true
         }
@@ -124,7 +129,7 @@ class GrandExchange(
     }
 
     override fun run() {
-        for ((index, account) in cancellations) {
+        for ((account, index) in cancellations) {
             val player = players.get(accounts.getByAccount(account)?.displayName ?: "") ?: continue
             val offer = player.offers[index]
             if (offer.isEmpty()) {
@@ -156,7 +161,7 @@ class GrandExchange(
 
     fun save() {
         storage.savePriceHistory(history.history)
-        storage.saveClaims(claims.claims)
+        storage.saveClaims(claims)
         storage.saveOffers(offers)
     }
 
@@ -249,7 +254,7 @@ class GrandExchange(
         val offer = player?.offers?.getOrNull(slot)
         if (offer == null) {
             // Queue offer to be claimed next time they log in
-            claims.add(id, traded, price)
+            claims[id] = Claim(traded, price)
             return
         }
         offer.completed += traded
@@ -281,7 +286,7 @@ class GrandExchange(
         }
         if (inv.transaction.failed) {
             logger.warn { "Failed to claim GE exchange: ${player.name} $slot $offer $traded $price $coins $sell" }
-            claims.add(offer.id, traded, price)
+            claims[offer.id] = Claim(traded, price)
             return false
         }
         if (player.menu != "grand_exchange" && !player.hasClock("grand_exchange_message_cooldown")) {

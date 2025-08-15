@@ -1,6 +1,5 @@
 package content.social.trade.exchange.history
 
-import world.gregs.config.*
 import world.gregs.voidps.engine.data.exchange.Aggregate
 import world.gregs.voidps.engine.data.exchange.PriceHistory
 import java.util.concurrent.TimeUnit
@@ -23,7 +22,7 @@ private fun record(timestamp: Long, frame: TimeFrame, map: MutableMap<Long, Aggr
 }
 
 /**
- * Keeps history limited to 288 [day], 168 [week], 120 [month] and 365 [year] aggregates
+ * Keeps history limited to 288 [TimeFrame.Day], 168 [TimeFrame.Week], 120 [TimeFrame.Month] and 365 [TimeFrame.Year] aggregates
  */
 fun PriceHistory.clean(timestamp: Long) {
     val dayAgo = TimeFrame.Day.start(timestamp - TimeUnit.DAYS.toMillis(1))
