@@ -64,8 +64,8 @@ abstract class StorageTest {
                 put("Bob", ClanRank.Captain)
                 remove("Greg")
             },
-            offers = Array(6) { if(it == 0) ExchangeOffer(2, "whip", 1, 2, OfferState.OpenBuy) else ExchangeOffer.EMPTY },
-            history = listOf(ExchangeHistory("item", 123, 321))
+            offers = Array(6) { if (it == 0) ExchangeOffer(2, "whip", 1, 2, OfferState.OpenBuy) else ExchangeOffer.EMPTY },
+            history = listOf(ExchangeHistory("item", 123, 321)),
         )
         storage.save(listOf(override))
 
