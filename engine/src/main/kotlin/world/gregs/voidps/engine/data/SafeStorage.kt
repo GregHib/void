@@ -33,7 +33,7 @@ class SafeStorage(
         val file = parent.resolve("claimable_offers.toml")
         file.writeText(buildString {
             for ((id, claim) in claims) {
-                appendLine("$id = [${claim.amount}, ${claim.coins}]")
+                appendLine("$id = [${claim.amount}, ${claim.price}]")
             }
         })
     }

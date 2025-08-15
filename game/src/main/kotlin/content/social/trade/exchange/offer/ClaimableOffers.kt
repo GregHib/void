@@ -12,8 +12,8 @@ class ClaimableOffers(
     val claims: MutableMap<Int, Claim> = mutableMapOf()
 ) {
 
-    fun add(id: Int, amount: Int, coins: Int = 0) {
-        claims[id] = Claim(amount, coins)
+    fun add(id: Int, amount: Int, price: Int = 0) {
+        claims[id] = Claim(amount, price)
     }
 
     fun claim(offerId: Int): Claim? {

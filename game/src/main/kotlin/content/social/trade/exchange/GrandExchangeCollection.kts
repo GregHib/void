@@ -59,8 +59,7 @@ interfaceOption("Abort Offer", "view_offer_*", "grand_exchange") {
 }
 
 fun abort(player: Player, slot: Int) {
-    val offer = player.offers.getOrNull(slot) ?: return
-    exchange.cancel(player, offer.id)
+    exchange.cancel(player, slot)
     // https://youtu.be/3ussM7P1j00?si=IHR8ZXl2kN0bjIfx&t=398
     player.message("Abort request acknowledged. Please be aware that your offer may have already been completed.")
 }

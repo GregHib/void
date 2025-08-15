@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Storage
@@ -18,6 +19,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.exchange.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -26,7 +28,6 @@ import world.gregs.voidps.network.login.protocol.encode.grandExchange
 import world.gregs.voidps.type.random
 import java.util.*
 import java.util.concurrent.TimeUnit
-import kotlin.math.absoluteValue
 import kotlin.math.ceil
 
 class GrandExchange(
@@ -72,8 +73,8 @@ class GrandExchange(
     /**
      * Cancel an offer starting next tick
      */
-    fun cancel(player: Player, id: Int) {
-        cancellations.add(id to player.accountName)
+    fun cancel(player: Player, slot: Int) {
+        cancellations.add(slot to player.accountName)
     }
 
     fun login(player: Player) {
@@ -83,7 +84,7 @@ class GrandExchange(
             val offer = player.offers.getOrNull(slot) ?: continue
             offers.update(offer, now)
             val claim = claims.claim(offer.id) ?: continue
-            claim(player, slot, offer, offer.item, claim.amount, claim.coins, notify = false)
+            updateOffer(offer, player.accountName, claim.amount, claim.price) // TODO can this be done with just two values?
             claimed = true
         }
         if (claimed) {
@@ -100,15 +101,17 @@ class GrandExchange(
 
     override fun run() {
         for ((index, account) in cancellations) {
-            val def = accounts.getByAccount(account)
-            val player = players.get(def?.displayName ?: "") ?: continue
+            val player = players.get(accounts.getByAccount(account)?.displayName ?: "") ?: continue
             val offer = player.offers[index]
+            if (offer.isEmpty()) {
+                continue
+            }
             offers.remove(offer)
             if (offer.state.cancelled) {
                 continue
             }
             offer.cancel()
-            returnItems(player, offer)
+            returnItems(player, offer, index)
         }
         cancellations.clear()
         for (offer in pending) {
@@ -124,37 +127,22 @@ class GrandExchange(
         }
     }
 
-    private fun returnItems(player: Player?, offer: ExchangeOffer) {
+    private fun returnItems(player: Player?, offer: ExchangeOffer, index: Int) {
         val remaining = offer.amount - offer.completed
-
         if (offer.sell) {
             if (player == null) {
-                claims.add(offer.id, remaining)
+                claims.add(offer.id, remaining, offer.price)
                 return
             }
-
-            val slot = slot(player, offer.id)
-            if (slot == -1) {
-                logger.warn { "Failed to find GE sell slot: $offer" }
-                claims.add(offer.id, remaining)
-                return
-            }
-            claim(player, slot, offer, offer.item, remaining)
-            refresh(player, slot)
+            claim(player, offer, offer.item, offer.price, offer.price, remaining, !offer.sell)
+            refresh(player, index)
         } else {
             if (player == null) {
-                claims.add(offer.id, 0, remaining * offer.price)
+                claims.add(offer.id, remaining, offer.price)
                 return
             }
-
-            val slot = slot(player, offer.id)
-            if (slot == -1) {
-                logger.warn { "Failed to find GE buy slot: $offer" }
-                claims.add(offer.id, 0, remaining * offer.price)
-                return
-            }
-            claim(player, slot, offer, offer.item, 0, remaining * offer.price)
-            refresh(player, slot)
+            claim(player, offer, offer.item, offer.price, offer.price, remaining, !offer.sell)
+            refresh(player, index)
         }
     }
 
@@ -220,95 +208,82 @@ class GrandExchange(
         player.client?.grandExchange(index, offer.state.int, itemDef.id, offer.price, offer.amount, offer.completed, offer.coins)
     }
 
-    private fun exchange(price: Int, traders: MutableList<OpenOffer>, offer: ExchangeOffer, account: String): Boolean {
+    private fun exchange(traderPrice: Int, traders: MutableList<OpenOffer>, offer: ExchangeOffer, account: String): Boolean {
         val trader = weightedSample(traders)
         // if offer has more or same as other
         val required = offer.amount - offer.completed
-        val available = trader.remaining.absoluteValue
+        val available = trader.remaining
         var traded = if (required >= available) available else required
         traded = traded.coerceAtMost(limits.limit(if (offer.sell) trader.account else account, offer.item))
-
         if (traded <= 0) {
             return false
         }
-
-        exchange(offer, account, traded)
-        exchange(trader, offer.item, price, traded, !offer.state.sell)
-        if (offer.sell) {
-            claim(offer, account, offer.item, coins = price * traded) // best possible offer
-            claim(trader, trader.account, offer.item, traded, notify = true)
-        } else {
-            // return excess coins from selling at lowest sell offer
-            claim(offer, account, offer.item, traded, coins = (offer.price - price) * traded)
-            claim(trader, trader.account, offer.item, coins = price * traded, notify = true)
-        }
+        updateOffer(offer, account, traded, traderPrice)
+        updateOpenOffer(trader, traded, offer.item, traderPrice, offer.price, !offer.sell)
         limits.record(account, offer.item, traded)
         history.record(offer.item, traded, offer.price)
         return true
     }
 
-    private fun claim(offer: Offer, account: String, item: String, amount: Int = 0, coins: Int = 0, notify: Boolean = false) {
+    private fun updateOffer(offer: ExchangeOffer, account: String, traded: Int, tradePrice: Int) {
+        claim(offer.id, account, offer.item, traded, tradePrice, offer.price, offer.sell)
+    }
+
+    private fun updateOpenOffer(open: OpenOffer, traded: Int, item: String, openPrice: Int, offerPrice: Int, sell: Boolean) {
+        // Update open offer and remove if complete
+        open.remaining -= traded
+        if (open.remaining == 0) {
+            offers.remove(open.id, item, openPrice, sell)
+        }
+        claim(open.id, open.account, item, traded, openPrice, offerPrice, sell)
+    }
+
+    private fun claim(id: Int, account: String, item: String, traded: Int, price: Int, otherPrice: Int, sell: Boolean) {
         val definition = accounts.getByAccount(account)
         val player = players.get(definition?.displayName ?: "")
-        if (player == null) {
-            claims.add(offer.id, amount, coins)
-            return
+        val offer = player?.offers?.firstOrNull { it.id == id }
+        if (offer == null) {
+            // Queue offer to be claimed next time they log in
+            claims.add(id, traded, price)
+        } else {
+            // Claim offer if player is online
+            offer.exchange(traded)
+            claim(player, offer, item, price, otherPrice, traded, sell)
         }
+    }
+
+    /**
+     * Put exchanged items and coins into the players collection box
+     */
+    private fun claim(player: Player, offer: ExchangeOffer, item: String, price: Int, otherPrice: Int, traded: Int, sell: Boolean) {
         val slot = slot(player, offer.id)
-        if (slot == -1) {
-            logger.warn { "Failed to find GE claim slot: $offer $amount $coins" }
-            claims.add(offer.id, amount, coins)
-            return
-        }
-        claim(player, slot, offer, item, amount, coins, notify)
-    }
-
-    private fun slot(player: Player, id: Int): Int {
-        return player.offers.indexOfFirst { it.id == id }
-    }
-
-    private fun claim(player: Player, slot: Int, offer: Offer, item: String, amount: Int, coins: Int = 0, notify: Boolean = false) {
         val inv = player.inventories.inventory("collection_box_${slot}")
+        // Return excess coins if buying higher than lowest sold price.
+        val coins = if (sell) price * traded else ((otherPrice - price) * traded).coerceAtLeast(0)
         inv.transaction {
-            if (amount > 0) {
-                add(item, amount)
+            if (!sell && traded > 0) {
+                add(item, traded)
             }
             if (coins > 0) {
                 add("coins", coins)
             }
         }
         if (inv.transaction.failed) {
-            logger.warn { "Failed to claim GE sale: $slot $offer $amount $coins" }
-            claims.add(offer.id, amount, coins)
-            return
-        } else if (notify && !player.hasClock("grand_exchange_message_cooldown")) {
-            player.start("grand_exchange_message_cooldown", TimeUnit.MINUTES.toTicks(10))
-            // https://youtu.be/3ussM7P1j00?si=IHR8ZXl2kN0bjIfx&t=398
-            player.message("One or more of your Grand Exchange offers have been updated.")
-        }
-        offer.coins += coins
-        refresh(player, slot)
-    }
-
-    private fun exchange(offer: ExchangeOffer, account: String, amount: Int) {
-        offer.completed += amount
-        if (offer.completed == offer.amount) {
-            offer.cancel()
-            offers.remove(offer)
-            history.record(account, offer.id, offer.price)
-        }
-    }
-
-    private fun exchange(offer: OpenOffer, item: String, price: Int, amount: Int, sell: Boolean) {
-        if (sell) {
-            offer.remaining += amount
+            logger.warn { "Failed to claim GE exchange: ${player.name} $slot $offer $traded $price $coins $sell" }
+            claims.add(offer.id, traded, price)
         } else {
-            offer.remaining -= amount
+            if (player.menu != "grand_exchange" && !player.hasClock("grand_exchange_message_cooldown")) {
+                player.start("grand_exchange_message_cooldown", TimeUnit.MINUTES.toTicks(10))
+                // https://youtu.be/3ussM7P1j00?si=IHR8ZXl2kN0bjIfx&t=398
+                player.message("One or more of your Grand Exchange offers have been updated.")
+            }
+            refresh(player, slot)
+            offer.coins += coins
         }
-        if (offer.remaining == 0) {
-            offers.remove(offer.id, item, price, sell)
-            history.record(offer.account, offer.id, price)
-        }
+    }
+
+    private fun slot(player: Player, id: Int): Int {
+        return player.offers.indexOfFirst { it.id == id }
     }
 
     /**

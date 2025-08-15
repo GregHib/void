@@ -13,7 +13,4 @@ data class OpenOffer(
     override var coins: Int = 0,
     val account: String = "",
     var lastActive: Long = System.currentTimeMillis(),
-) : Offer {
-    val sell: Boolean
-        get() = remaining < 0
-}
+) : Offer

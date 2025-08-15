@@ -93,7 +93,7 @@ class DatabaseStorage : Storage {
             val lastActive = row[OffersTable.lastActive]
             val coins = row[OffersTable.coins]
             val remaining = amount - completed
-            val offer = OpenOffer(id = id, remaining = if (state == "OpenSell") -remaining else remaining, coins = coins)
+            val offer = OpenOffer(id = id, remaining = remaining, coins = coins)
             offers.add(id, item, price, state == "OpenSell")
             if (id > max) {
                 max = id
@@ -118,7 +118,7 @@ class DatabaseStorage : Storage {
         ClaimsTable.batchUpsert(claims.toList(), ClaimsTable.offerId) { (id, claim) ->
             this[ClaimsTable.offerId] = id
             this[ClaimsTable.amount] = claim.amount
-            this[ClaimsTable.coins] = claim.coins
+            this[ClaimsTable.coins] = claim.price
         }
     }
 
