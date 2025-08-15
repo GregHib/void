@@ -144,7 +144,7 @@ class SafeStorage(
         appendLine("ignores = [${save.ignores.joinToString(", ") { "\"${it}\"" }}]")
         appendLine()
         appendLine("[exchange]")
-        appendLine("offers = [${save.offers.joinToString(", ") { if (it.isEmpty()) "{}" else "{id = ${it.id}}, item = \"${it.item}\", amount = ${it.amount}, price = ${it.price}, state = \"${it.state.name}\", completed = ${it.completed}, coins = ${it.coins}}" }}]")
+        appendLine("offers = [${save.offers.joinToString(", ") { if (it.isEmpty()) "{}" else "{id = ${it.id}, item = \"${it.item}\", amount = ${it.amount}, price = ${it.price}, state = \"${it.state.name}\", completed = ${it.completed}, coins = ${it.coins}}" }}]")
         appendLine("history = [${save.history.joinToString(", ") { "{item = \"${it.item}\", amount = ${it.amount}, price = ${it.coins}}" }}]")
     }
 
