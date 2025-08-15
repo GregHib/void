@@ -76,10 +76,10 @@ class DatabaseStorage : Storage {
             }
     }
 
-    override fun offers(days: Int): Offers {
+    override fun offers(days: Int): OpenOffers {
         val buyByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf()
         val sellByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf()
-        val offers = Offers(sellByItem, buyByItem)
+        val offers = OpenOffers(sellByItem, buyByItem)
         val query = (ActiveOffersTable innerJoin AccountsTable).selectAll()
         if (days > 0) {
             val time = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(days.toLong())
@@ -275,7 +275,7 @@ class DatabaseStorage : Storage {
         }
     }
 
-    override fun saveOffers(offers: Offers) {
+    override fun saveOffers(offers: OpenOffers) {
         val playerIds = AccountsTable
             .select(AccountsTable.id, AccountsTable.name)
             .associate { it[AccountsTable.name].lowercase() to it[AccountsTable.id] }

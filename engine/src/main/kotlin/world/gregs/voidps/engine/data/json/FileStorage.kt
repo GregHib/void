@@ -105,8 +105,8 @@ class FileStorage(
         return clans
     }
 
-    override fun offers(days: Int): Offers {
-        val offers = Offers()
+    override fun offers(days: Int): OpenOffers {
+        val offers = OpenOffers()
         val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
         if (buy.exists()) {
             loadOffers(buy, offers, false)
@@ -126,7 +126,7 @@ class FileStorage(
         return offers
     }
 
-    override fun saveOffers(offers: Offers) {
+    override fun saveOffers(offers: OpenOffers) {
         val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
         buy.mkdirs()
         saveOffers(buy, offers.buyByItem)
@@ -158,7 +158,7 @@ class FileStorage(
         }
     }
 
-    private fun loadOffers(directory: File, offers: Offers, sell: Boolean) {
+    private fun loadOffers(directory: File, offers: OpenOffers, sell: Boolean) {
         val files = directory.listFiles { _, name -> name.endsWith(".toml") } ?: return
         val map = if (sell) offers.sellByItem else offers.buyByItem
         for (file in files) {

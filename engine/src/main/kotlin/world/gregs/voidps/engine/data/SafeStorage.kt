@@ -19,7 +19,7 @@ class SafeStorage(
 
     override fun clans(): Map<String, Clan> = emptyMap()
 
-    override fun offers(days: Int) = Offers()
+    override fun offers(days: Int) = OpenOffers()
 
     override fun claims(): Map<Int, Claim> = emptyMap()
 
@@ -58,7 +58,7 @@ class SafeStorage(
         }
     }
 
-    override fun saveOffers(offers: Offers) {
+    override fun saveOffers(offers: OpenOffers) {
         val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
         buy.mkdirs()
         saveOffers(buy, offers.buyByItem)

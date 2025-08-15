@@ -11,14 +11,14 @@ package world.gregs.voidps.engine.data.exchange
  * @param coins total received or refunded if bought below offer price
  */
 data class ExchangeOffer(
-    override val id: Int = 0,
+    val id: Int = 0,
     val item: String = "",
     val amount: Int = 0,
     val price: Int = 0,
     var state: OfferState = OfferState.PendingBuy,
     var completed: Int = 0,
-    override var coins: Int = 0,
-) : Offer {
+    var coins: Int = 0,
+) {
 
     fun isEmpty(): Boolean = id == 0
 

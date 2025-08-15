@@ -10,7 +10,7 @@ import kotlin.math.absoluteValue
  * @param activity list of all Grand Exchange [OpenOffer]'s
  * @param counter accumulating id
  */
-class Offers(
+class OpenOffers(
     internal val sellByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf(),
     internal val buyByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf(),
     private val activity: SortedSet<Activity> = TreeSet(Comparator { a1, a2 -> a1.lastActive.compareTo(a2.lastActive) }),
@@ -30,14 +30,15 @@ class Offers(
         while (it.hasNext()) {
             val activity = it.next()
             val age = now - activity.lastActive
-            if (TimeUnit.MILLISECONDS.toDays(age) > days) {
-                it.remove()
-                remove(activity.id, activity.item, activity.price.absoluteValue, activity.price < 0)
-            } else {
+            if (TimeUnit.MILLISECONDS.toDays(age) <= days) {
                 break
             }
+            it.remove()
+            remove(activity.id, activity.item, activity.price.absoluteValue, activity.price < 0)
         }
     }
+
+    fun active(offer: ExchangeOffer): Boolean = (if (offer.sell) selling(offer.item) else buying(offer.item))[offer.price]?.any { it.id == offer.id } ?: false
 
     fun add(offer: ExchangeOffer) {
         add(offer.id, offer.item, offer.price, offer.state.sell)
