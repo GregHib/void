@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.exchange.Claim
-import world.gregs.voidps.engine.data.exchange.Offers
+import world.gregs.voidps.engine.data.exchange.OpenOffers
 import world.gregs.voidps.engine.data.exchange.PriceHistory
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -53,9 +53,9 @@ class AccountManagerTest : KoinMock() {
 
             override fun clans(): Map<String, Clan> = emptyMap()
 
-            override fun offers(days: Int): Offers = Offers()
+            override fun offers(days: Int): OpenOffers = OpenOffers()
 
-            override fun saveOffers(offers: Offers) {
+            override fun saveOffers(offers: OpenOffers) {
             }
 
             override fun claims(): Map<Int, Claim> = emptyMap()

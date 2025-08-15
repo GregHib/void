@@ -8,9 +8,9 @@ package world.gregs.voidps.engine.data.exchange
  * @param account account name of the player
  */
 data class OpenOffer(
-    override val id: Int = 0,
+    val id: Int = 0,
     var remaining: Int = 0,
-    override var coins: Int = 0,
+    var coins: Int = 0,
     val account: String = "",
     var lastActive: Long = System.currentTimeMillis(),
-) : Offer
+)

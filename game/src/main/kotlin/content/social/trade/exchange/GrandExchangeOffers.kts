@@ -41,7 +41,9 @@ interfaceOpen("grand_exchange") { player ->
     player["grand_exchange_box"] = -1
     player.interfaceOptions.unlockAll(id, "collect_slot_0")
     player.interfaceOptions.unlockAll(id, "collect_slot_1")
-    exchange.refresh(player)
+    for (i in 0 until 6) {
+        exchange.refresh(player, i)
+    }
 }
 
 interfaceClose("grand_exchange") {

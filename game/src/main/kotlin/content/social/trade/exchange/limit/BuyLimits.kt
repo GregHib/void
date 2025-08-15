@@ -14,13 +14,13 @@ class BuyLimits(private val itemDefinitions: ItemDefinitions) {
 
     val limits = Object2ObjectOpenHashMap<String, BuyLimit>()
 
-    fun record(player: String, item: String, amount: Int) {
-        limits.getOrPut("${player}_$item") { BuyLimit() }.amount += amount
+    fun record(account: String, item: String, amount: Int) {
+        limits.getOrPut("${account}_$item") { BuyLimit() }.amount += amount
     }
 
-    fun limit(player: String, item: String): Int {
+    fun limit(account: String, item: String): Int {
         val limit = itemDefinitions.get(item).getOrNull<Int>("limit") ?: return -1
-        return limit - (limits["${player}_$item"]?.amount ?: 0)
+        return limit - (limits["${account}_$item"]?.amount ?: 0)
     }
 
     fun tick() {
