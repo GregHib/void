@@ -248,7 +248,7 @@ fun <T> search(player: Player, definitions: DefinitionsDecoder<T>, search: Strin
     for (id in definitions.definitions.indices) {
         val def = definitions.getOrNull(id) ?: continue
         val name = getName(def)
-        if (name.lowercase().contains(search)) {
+        if (name.lowercase().contains(search) || def.stringId.lowercase().contains(search)) {
             player.message("[${name.lowercase().replace(utf8Regex, "")}] - id: $id${if (def.stringId.isNotBlank()) " (${def.stringId})" else ""}", ChatType.Console)
             found++
         }

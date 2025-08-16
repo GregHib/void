@@ -111,9 +111,11 @@ adminCommand("sendItems (interface-id)") {
     val options = Array(9) { "Option $it" }
     val definition = definitions.get(content)
     for ((id, component) in definition.components ?: return@adminCommand) {
-        player.sendScript("primary_options", component.id, 0, 1, 1, 0, -1, *options)
-        player.sendScript("secondary_options", component.id, 0, 1, 1, 0, -1, *options)
-        player.sendInterfaceSettings(id, 0, 100, setting)
+        if (InterfaceDefinition.componentId(id) == 16) {
+            player.sendScript("primary_options", component.id, 0, 1, 1, 0, -1, *options)
+            player.sendScript("secondary_options", component.id, 0, 1, 1, 0, -1, *options)
+            player.sendInterfaceSettings(id, 0, 100, setting)
+        }
     }
 }
 

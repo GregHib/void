@@ -46,7 +46,8 @@ val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 
 modCommand("test") {
-    player.client?.grandExchange(0)
+    player.sendInterfaceItemUpdate(645, listOf(Triple(0, 995, 100)), false)
+//    player.interfaces.sendItem("exchange_item_sets")
 }
 
 modCommand("commands") {

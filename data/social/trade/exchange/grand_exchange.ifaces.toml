@@ -142,9 +142,31 @@ components = {
 
 [exchange_sets_side]
 id = 644
+type = "overlay_tab"
+components = {
+  items = {
+    id = 0,
+    inventory = "inventory",
+    options = {
+      Components = 0,
+      Exchange = 1,
+      Examine = 2,
+    }
+  }
+}
 
 [exchange_item_sets]
 id = 645
+components = {
+  sets = {
+    id = 16,
+    options = {
+      Components = 0,
+      Exchange = 1,
+      Examine = 2,
+    }
+  }
+}
 
 [grand_exchange_item_dialog]
 id = 389

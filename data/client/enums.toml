@@ -401,3 +401,12 @@ id = 1081
 
 [collection_box_members_interfaces]
 id = 1082
+
+[exchange_item_sets]
+id = 1087
+
+[exchange_set_descriptions]
+id = 1088
+
+[exchange_set_items]
+id = 1089

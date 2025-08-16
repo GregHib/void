@@ -45,7 +45,6 @@ import kotlin.math.ceil
  *
  * TODO taxes
  *  Collection box
- *  Sets
  *  Dialogue\
  *  Other npcs
  */

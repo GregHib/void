@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.npc.shop.stock.ItemInfo
 import content.entity.player.bank.isNote
 import content.entity.player.bank.noted
-import content.entity.player.inv.item.tradeable
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import world.gregs.voidps.engine.client.message

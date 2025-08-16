@@ -25,7 +25,7 @@ object ItemDefinitions {
         val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(files.list(Settings["definitions.items"]))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.stringId.contains("anchor")) {
+            if (def.stringId.contains("dragon_plate")) {
                 //            if (def.get("category", "") != "")
 //            if (/*def.get("category", "") == "throwable" &&*/ def.contains("secondary_use_level"))
                 println("${def.stringId} ${def.extras}")

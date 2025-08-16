@@ -386,46 +386,6 @@ id = 14521
 clone = "water_key"
 id = 14522
 
-[dagonhai_robes_set]
-id = 14525
-price = 212381
-limit = 10
-weight = 2.267
-examine = "Grand Exchange set containing a hat, top and bottoms."
-
-[dagonhai_robes_set_noted]
-id = 14526
-
-[elite_black_armour_set]
-id = 14527
-price = 163300
-limit = 10
-weight = 2.267
-examine = "Grand Exchange set containing an elite black full helm, platebody and legs."
-
-[elite_black_armour_set_noted]
-id = 14528
-
-[dragon_plate_armour_set_lg]
-id = 14529
-price = 60200000
-limit = 10
-weight = 2.267
-examine = "Grand Exchange set containing a dragon full helm, platebody, legs."
-
-[dragon_plate_armour_set_lg_noted]
-id = 14530
-
-[dragon_plate_armour_set_sk]
-id = 14531
-price = 51600000
-limit = 10
-weight = 2.267
-examine = "Grand Exchange set containing a dragon full helm, platebody, skirt."
-
-[dragon_plate_armour_set_sk_noted]
-id = 14532
-
 [broav]
 id = 14533
 npc = 8491
