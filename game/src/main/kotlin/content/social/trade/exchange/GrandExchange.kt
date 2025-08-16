@@ -44,7 +44,6 @@ import kotlin.math.ceil
  * There are [BuyLimits] on number of items that can be purchased within a 4 hour period.
  *
  * TODO taxes
- *  Check valid items list
  *  Collection box
  *  Sets
  *  Dialogue\

@@ -51,7 +51,7 @@ class ItemDecoder(
             in 35..39 -> options[opcode - 35] = buffer.readString()
             40, 41 -> buffer.skip(buffer.readUnsignedByte() * 4)
             42 -> buffer.skip(buffer.readUnsignedByte())
-            65 -> return
+            65 -> exchangeable = true
             96 -> dummyItem = buffer.readUnsignedByte()
             97 -> noteId = buffer.readShort()
             98 -> notedTemplateId = buffer.readShort()

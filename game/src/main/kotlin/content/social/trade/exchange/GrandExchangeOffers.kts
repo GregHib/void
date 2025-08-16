@@ -86,6 +86,11 @@ fun openItemSearch(player: Player) {
 }
 
 continueItemDialogue { player ->
+    val def = itemDefinitions.getOrNull(item)
+    if (def == null || !def.exchangeable || def.noted || def.lent || def.dummyItem != 0) {
+        player.message("You can't trade that item on the Grand Exchange.")
+        return@continueItemDialogue
+    }
     selectItem(player, item)
     player["grand_exchange_price"] = player["grand_exchange_market_price", 0]
     ItemInfo.showInfo(player, Item(item))
@@ -120,7 +125,8 @@ interfaceOption("Offer", "items", "stock_side") {
         logger.warn { "Issue selling noted item on GE: ${this.item}" }
         return@interfaceOption
     }
-    if (!item.tradeable) {
+    val def = item.def
+    if (!def.exchangeable || def.noted || def.lent || def.dummyItem != 0) {
         player.message("You can't trade that item on the Grand Exchange.")
         return@interfaceOption
     }
