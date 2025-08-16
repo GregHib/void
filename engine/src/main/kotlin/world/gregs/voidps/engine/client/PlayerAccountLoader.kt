@@ -67,7 +67,7 @@ class PlayerAccountLoader(
         withContext(gameContext) {
             queue.await()
             logger.info { "${if (client != null) "Player" else "Bot"} logged in ${player.accountName} index ${player.index}." }
-            client?.login(player.name, player.index, player.rights.ordinal, membersWorld = World.members)
+            client?.login(player.name, player.index, player.rights.ordinal, member = World.members, membersWorld = World.members)
             accounts.spawn(player, client)
         }
     }

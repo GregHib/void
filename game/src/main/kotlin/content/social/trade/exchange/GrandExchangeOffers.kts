@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
@@ -52,6 +53,9 @@ interfaceClose("grand_exchange") {
 
 interfaceOption("Make Offer", "view_offer_*", "grand_exchange") {
     val slot = component.removePrefix("view_offer_").toInt()
+    if (slot > 1 && !World.members) {
+        return@interfaceOption
+    }
     val offer = player.offers.getOrNull(slot) ?: return@interfaceOption
     player["grand_exchange_box"] = slot
     selectItem(player, offer.item)
@@ -63,6 +67,9 @@ interfaceOption("Make Offer", "view_offer_*", "grand_exchange") {
 
 interfaceOption("Make Buy Offer", "buy_offer_*", "grand_exchange") {
     val slot = component.removePrefix("buy_offer_").toInt()
+    if (slot > 1 && !World.members) {
+        return@interfaceOption
+    }
     player["grand_exchange_box"] = slot
     player["grand_exchange_page"] = "buy"
     player["grand_exchange_item_id"] = -1
@@ -90,6 +97,9 @@ continueItemDialogue { player ->
 
 interfaceOption("Make Sell Offer", "sell_offer_*", "grand_exchange") {
     val slot = component.removePrefix("sell_offer_").toInt()
+    if (slot > 1 && !World.members) {
+        return@interfaceOption
+    }
     player["grand_exchange_box"] = slot
     player["grand_exchange_page"] = "sell"
     player.open("stock_side")

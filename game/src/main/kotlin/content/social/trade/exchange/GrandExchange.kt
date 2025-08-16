@@ -44,11 +44,10 @@ import kotlin.math.ceil
  * There are [BuyLimits] on number of items that can be purchased within a 4 hour period.
  *
  * TODO taxes
- *  F2p slot disabling
  *  Check valid items list
  *  Collection box
  *  Sets
- *  Dialogue
+ *  Dialogue\
  *  Other npcs
  */
 class GrandExchange(
@@ -204,6 +203,7 @@ class GrandExchange(
             return
         }
         val price = history.marketPrice(offer.item)
+        player.addVarbit("grand_exchange_ranges", "inactive_$index")
         if (!Settings["grandExchange.priceLimit", true] && !offers.active(offer)) {
             // Use timer for inactive offers
             player.addVarbit("grand_exchange_ranges", "slot_$index")
