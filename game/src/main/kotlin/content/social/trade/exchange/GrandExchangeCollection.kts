@@ -22,7 +22,17 @@ val logger = InlineLogger()
 interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
     val index = component.removePrefix("collect_slot_").toInt()
     val box: Int = player["grand_exchange_box"] ?: return@interfaceOption
-    val offer = player.offers.getOrNull(box) ?: return@interfaceOption
+    collect(player, option, box, index)
+}
+
+interfaceOption("Collect*", "collection_box_*", "collection_box") {
+    val box = component.removePrefix("collection_box_").toInt()
+    val index = if (itemSlot == 2) 1 else 0
+    collect(player, option, box, index)
+}
+
+fun collect(player: Player, option: String, box: Int, index: Int) {
+    val offer = player.offers.getOrNull(box) ?: return
     val collectionBox = player.inventories.inventory("collection_box_$box")
     val item = collectionBox[index]
     var noted = item

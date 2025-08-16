@@ -44,8 +44,7 @@ import kotlin.math.floor
  *
  * There are [BuyLimits] on number of items that can be purchased within a 4 hour period.
  *
- * TODO taxes
- *  Collection box
+ * TODO
  *  Dialogue\
  *  Other npcs
  */

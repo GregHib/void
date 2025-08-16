@@ -90,25 +90,48 @@ id = 108
 [collection_box]
 id = 109
 components = {
-  box0 = {
-    id = 19,
+  collection_box_0 = {
+    id = 18,
     options = {
       Collect_notes = 0,
       Collect = 1,
     }
   },
-  collect_slot_0 = {
-    id = 20,
+  collection_box_1 = {
+    id = 23,
     options = {
       Collect_notes = 0,
       Collect = 1,
     }
   },
-  box1 = 23,
-  box2 = 27,
-  box3 = 32,
-  box4 = 37,
-  box5 = 42,
+  collection_box_2 = {
+    id = 28,
+    options = {
+      Collect_notes = 0,
+      Collect = 1,
+    }
+  },
+  collection_box_3 = {
+    id = 36,
+    options = {
+      Collect_notes = 0,
+      Collect = 1,
+    }
+  },
+  collection_box_4 = {
+    id = 44,
+    options = {
+      Collect_notes = 0,
+      Collect = 1,
+    }
+  },
+  collection_box_5 = {
+    id = 52,
+    options = {
+      Collect_notes = 0,
+      Collect = 1,
+    }
+  }
 }
 
 [exchange_offer]
