@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.get
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueItemDialogue
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.exchange.ExchangeOffer
 import world.gregs.voidps.engine.data.exchange.OfferState
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -30,6 +31,7 @@ class GrandExchangeTest : WorldTest() {
 
     @BeforeEach
     fun setup() {
+        settings["grandExchange.tax"] = 0.0
         exchange = get()
         exchange.clear()
         clerk = createNPC("grand_exchange_clerk_short", Tile(3164, 3488))
@@ -66,6 +68,78 @@ class GrandExchangeTest : WorldTest() {
         assertEquals(1_000, buyer.bank.count("coins"))
         assertEquals(0, seller.inventory.count("rune_longsword"))
         assertEquals(19_000, seller.inventory.count("coins"))
+    }
+
+    @Test
+    fun `Sell item with sellers tax`() {
+        Settings.load(mapOf("grandExchange.tax" to "0.02"))
+        val seller = createPlayer(Tile(3164, 3487), "seller")
+        seller.inventory.add("rune_longsword")
+        val buyer = createPlayer(Tile(3164, 3487), "buyer")
+        buyer.bank.add("coins", 20_000)
+
+        sell(seller, "rune_longsword")
+        confirm(seller)
+        val expectedSell = ExchangeOffer(1, "rune_longsword", 1, 19_000, OfferState.PendingSell)
+        assertOffer(expectedSell, seller, 1)
+        tick()
+        assertOffer(expectedSell.copy(state = OfferState.OpenSell), seller, 1)
+
+        buy(buyer, "rune_longsword")
+        buyer.interfaceOption("grand_exchange", "add_1", "Add 1")
+        confirm(buyer)
+
+        val expectedBuy = ExchangeOffer(2, "rune_longsword", 1, 19_000, OfferState.PendingBuy)
+        assertOffer(expectedBuy, buyer, 0)
+        tick()
+        assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 19_000), seller, 1)
+        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1, coins = 19_000), buyer, 0)
+
+        collect(buyer, 0)
+        collect(seller, 1)
+
+        assertEquals(1, buyer.inventory.count("rune_longsword"))
+        assertEquals(1_000, buyer.bank.count("coins"))
+        assertEquals(0, seller.inventory.count("rune_longsword"))
+        assertEquals(18_620, seller.inventory.count("coins"))
+    }
+
+    @Test
+    fun `Sellers tax is capped`() {
+        Settings.load(mapOf("grandExchange.tax" to "0.02", "grandExchange.tax.limit" to "5000000", "grandExchange.priceLimit" to "false"))
+        val seller = createPlayer(Tile(3164, 3487), "seller")
+        seller.inventory.add("rune_longsword")
+        val buyer = createPlayer(Tile(3164, 3487), "buyer")
+        buyer.bank.add("coins", 500_000_000)
+
+        sell(seller, "rune_longsword")
+        seller.interfaceOption("grand_exchange", "offer_x", "Edit Price")
+        (seller.dialogueSuspension as? IntSuspension)?.resume(500_000_000)
+        confirm(seller)
+        val expectedSell = ExchangeOffer(1, "rune_longsword", 1, 500_000_000, OfferState.PendingSell)
+        assertOffer(expectedSell, seller, 1)
+        tick()
+        assertOffer(expectedSell.copy(state = OfferState.OpenSell), seller, 1)
+
+        buy(buyer, "rune_longsword")
+        buyer.interfaceOption("grand_exchange", "add_1", "Add 1")
+        buyer.interfaceOption("grand_exchange", "offer_x", "Edit Price")
+        (buyer.dialogueSuspension as? IntSuspension)?.resume(500_000_000)
+        confirm(buyer)
+
+        val expectedBuy = ExchangeOffer(2, "rune_longsword", 1, 500_000_000, OfferState.PendingBuy)
+        assertOffer(expectedBuy, buyer, 0)
+        tick()
+        assertOffer(expectedSell.copy(state = OfferState.CompletedSell, completed = 1, coins = 500_000_000), seller, 1)
+        assertOffer(expectedBuy.copy(state = OfferState.CompletedBuy, completed = 1, coins = 500_000_000), buyer, 0)
+
+        collect(buyer, 0)
+        collect(seller, 1)
+
+        assertEquals(1, buyer.inventory.count("rune_longsword"))
+        assertEquals(0, buyer.bank.count("coins"))
+        assertEquals(0, seller.inventory.count("rune_longsword"))
+        assertEquals(495_000_000, seller.inventory.count("coins"))
     }
 
     @Test

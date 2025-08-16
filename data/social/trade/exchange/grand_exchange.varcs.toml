@@ -1,4 +1,4 @@
 [grand_exchange_ranges]
 id = 789
 format = "bitwise"
-values = ["slot_0", "slot_1", "slot_2", "slot_3", "slot_4", "slot_5", "inactive_0", "inactive_1", "inactive_2", "inactive_3", "inactive_4", "inactive_5"]
+values = ["slot_0", "slot_1", "slot_2", "slot_3", "slot_4", "slot_5"]

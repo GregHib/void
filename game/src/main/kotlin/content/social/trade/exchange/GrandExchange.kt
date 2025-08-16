@@ -27,6 +27,7 @@ import world.gregs.voidps.type.random
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.ceil
+import kotlin.math.floor
 
 /**
  * The Grand Exchange matches buy and sell offers for items between players even when they are not in-game.
@@ -201,11 +202,10 @@ class GrandExchange(
             return
         }
         val price = history.marketPrice(offer.item)
-        player.addVarbit("grand_exchange_ranges", "inactive_$index")
-        if (!Settings["grandExchange.priceLimit", true] && !offers.active(offer)) {
+        if (!Settings["grandExchange.priceLimit", true] && offer.state.open && !offers.active(offer)) {
             // Use timer for inactive offers
             player.addVarbit("grand_exchange_ranges", "slot_$index")
-        } else if (Settings["grandExchange.priceLimit", true] && offer.price !in ceil(price * 0.95).toInt()..ceil(price * 1.05).toInt()) {
+        } else if (Settings["grandExchange.priceLimit", true] && offer.state.open && offer.price !in ceil(price * 0.95).toInt()..ceil(price * 1.05).toInt()) {
             // Timer icon for offers for out of range
             player.addVarbit("grand_exchange_ranges", "slot_$index")
         } else {
@@ -273,7 +273,16 @@ class GrandExchange(
         val slot = player.offers.indexOfFirst { it.id == offer.id }
         val inv = player.inventories.inventory("collection_box_$slot")
         // Return excess coins if buying higher than lowest sold price.
-        val coins = if (sell) price * traded else ((otherPrice - price) * traded).coerceAtLeast(0)
+        var coins = if (sell) price * traded else ((otherPrice - price) * traded).coerceAtLeast(0)
+        val tax = Settings["grandExchange.tax", 0.0]
+        if (sell && tax > 0.0) {
+            val max = Settings["grandExchange.tax.limit", -1]
+            coins -= if (max > 0) {
+                floor(coins * tax).toInt().coerceAtMost(max)
+            } else {
+                floor(coins * tax).toInt()
+            }
+        }
         inv.transaction {
             if (!sell && traded > 0) {
                 add(item, traded)
