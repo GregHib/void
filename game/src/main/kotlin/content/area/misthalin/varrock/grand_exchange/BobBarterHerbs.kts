@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 
-npcOperate("Talk-to", "bob_barter_herbs") {
+npcOperate("Talk-to", "bob_barter") {
     if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
         player<Talk>("Hello.")
         npc<Talk>("Mate, I haven't got time for you yet. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a simpler, plain lesson.")
@@ -51,7 +51,7 @@ fun ChoiceBuilder<NPCOption<Player>>.showPrices() {
     }
 }
 
-npcOperate("Info-herbs", "bob_barter_herbs") {
+npcOperate("Info-herbs", "bob_barter") {
     if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
         npc<Talk>("You'll need a tiny bit of training first, chum. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a smaller, plain lesson.")
         return@npcOperate
@@ -60,7 +60,7 @@ npcOperate("Info-herbs", "bob_barter_herbs") {
     player.open("common_item_costs")
 }
 
-npcOperate("Decant", "bob_barter_herbs") {
+npcOperate("Decant", "bob_barter") {
     if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
         player<Talk>("Hello.")
         npc<Talk>("Mate, I haven't got time for you yet. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a simpler, plain lesson.")
@@ -131,6 +131,8 @@ val potions = setOf(
     "sanfew_serum",
     "crafting_potion",
     "fletching_potion",
+    "hunter_potion",
+    "combat_potion",
     "recover_special",
     "super_antifire",
     "extreme_attack",
