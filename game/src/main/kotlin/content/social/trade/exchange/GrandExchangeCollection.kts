@@ -43,6 +43,9 @@ fun collect(player: Player, option: String, box: Int, index: Int) {
     player.inventory.transaction {
         val txn = link(collectionBox)
         val added = addToLimit(noted.id, item.amount)
+        if (added < 1) {
+            error = TransactionError.Full()
+        }
         txn.remove(item.id, added)
     }
     when (player.inventory.transaction.error) {

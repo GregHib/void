@@ -23,14 +23,12 @@ object AddItemLimit {
         return when (val error = error) {
             TransactionError.None -> amount
             is TransactionError.Full -> {
-                if (error.amount > 0) {
-                    this.error = TransactionError.None
-                    // Non-stackable items will have already been removed.
-                    if (inventory.stackable(id)) {
-                        add(id, error.amount)
-                        if (!failed) {
-                            return error.amount
-                        }
+                this.error = TransactionError.None
+                // Non-stackable items will have already been removed.
+                if (inventory.stackable(id) && error.amount > 0) {
+                    add(id, error.amount)
+                    if (!failed) {
+                        return error.amount
                     }
                 }
                 error.amount

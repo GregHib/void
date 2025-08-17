@@ -111,7 +111,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
 
         coVerify {
             queue.await()
-            client.login("name", 4, 0, membersWorld = false)
+            client.login("name", 4, 0, member = false, membersWorld = false)
             accounts.spawn(player, client)
         }
     }

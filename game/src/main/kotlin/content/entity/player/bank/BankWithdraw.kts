@@ -21,7 +21,7 @@ interfaceOption("Withdraw-*", "inventory", "bank") {
         "Withdraw-5" -> 5
         "Withdraw-10" -> 10
         "Withdraw-*" -> player["last_bank_amount", 0]
-        "Withdraw-All" -> player.inventory.count(item.id)
+        "Withdraw-All" -> player.bank.count(item.id)
         "Withdraw-All but one" -> item.amount - 1
         "Withdraw-X" -> intEntry("Enter amount:").also {
             player["last_bank_amount"] = it
