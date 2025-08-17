@@ -36,11 +36,11 @@ playerSpawn { player ->
     player.sendVariable("enter_the_abyss")
 }
 
-npcOperate("Teleport", "mage_of_zamorak_wilderness") {
+npcOperate("Teleport", "mage_of_zamorak_wilderness_*") {
     teleport(player, target)
 }
 
-npcOperate("Talk-to", "mage_of_zamorak_wilderness") {
+npcOperate("Talk-to", "mage_of_zamorak_wilderness_*") {
     if (player.equipment.items.any { it.id.contains("saradomin", ignoreCase = true) }) {
         npc<Angry>("I don't speak to Saradominist filth.")
         return@npcOperate

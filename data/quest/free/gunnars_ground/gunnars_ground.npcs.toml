@@ -1,0 +1,25 @@
+[dororan]
+id = 1168
+categories = ["dwarf"]
+examine = "A dwarf in anguish."
+
+[dororan_sad]
+id = 1175
+categories = ["dwarf"]
+examine = "A dwarf in anguish."
+
+[dororan_after_cutscene]
+id = 2646
+
+[dororan_after_cutscene2]
+id = 2647
+examine = "A dwarf on top of the world."
+
+[dororan_after_quest]
+id = 2648
+categories = ["dwarf"]
+examine = "A dwarf on top of the world."
+
+[dororan_after_quest2]
+clone = "dororan_after_quest"
+id = 2651

@@ -33,7 +33,7 @@ itemOnItem("chisel", "ring_from_jeffery") { player: Player ->
     }
 }
 
-npcOperate("Talk-to", "dororan") {
+npcOperate("Talk-to", "dororan_*") {
     when (player.quest("gunnars_ground")) {
         "started" -> started()
         "love_poem", "jeffery_ring" -> lovePoem()

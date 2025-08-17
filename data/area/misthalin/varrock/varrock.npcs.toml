@@ -45,6 +45,13 @@ categories = ["human"]
 wander_radius = 4
 examine = "A disciple of Zamorak."
 
+[mage_of_zamorak_wilderness_normal]
+id = 2259
+faces = false
+categories = ["human"]
+wander_radius = 4
+examine = "A disciple of Zamorak."
+
 [mage_of_zamorak_varrock]
 id = 2260
 clone = "mage_of_zamorak_normal"

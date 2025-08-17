@@ -109,6 +109,10 @@ examine = "I could get a beer from him."
 id = 844
 examine = "The hat is a dead give away."
 
+[wizard_cromperty_normal]
+id = 2328
+examine = "The hat is a dead give away."
+
 [tools_leprechaun]
 id = 3021
 categories = ["human"]
@@ -131,7 +135,7 @@ id = 5506
 categories = ["human"]
 examine = "A young master craftsman."
 
-[jeffery2]
+[jeffery_normal]
 id = 6298
 wander_radius = 4
 categories = ["human"]

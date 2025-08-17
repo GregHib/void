@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-npcOperate("Talk-to", "sir_prysin") {
+npcOperate("Talk-to", "sir_prysin_*") {
     when (player.quest("demon_slayer")) {
         "key_hunt" -> {
             if (!player["demon_slayer_silverlight", false]) {

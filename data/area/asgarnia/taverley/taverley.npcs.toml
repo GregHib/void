@@ -6,7 +6,7 @@ collision = "indoors"
 examine = "He's a very important druid."
 shop = "summoning_supplies"
 
-[pikkupstix_2]
+[pikkupstix_normal]
 id = 6971
 categories = ["human"]
 wander_radius = 2

@@ -1,6 +1,6 @@
 spawns = [
   # Knight
-  { id = "knight_sir_gerry", x = 2912, y = 3748, direction = "SOUTH", members = true },
+  { id = "sir_gerry", x = 2912, y = 3748, direction = "SOUTH", members = true },
   # Armadyl
   { id = "kree_arra", x = 2832, y = 5302, level = 2, members = true },
   { id = "spiritual_ranger_armadyl", x = 2845, y = 5260, level = 2, members = true },
