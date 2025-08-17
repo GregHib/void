@@ -45,7 +45,14 @@ categories = ["human"]
 wander_radius = 4
 examine = "A disciple of Zamorak."
 
-[mage_of_zamorak_wilderness_normal]
+[mage_of_zamorak_wilderness_trade]
+id = 2258
+faces = false
+categories = ["human"]
+wander_radius = 4
+examine = "A disciple of Zamorak."
+
+[mage_of_zamorak_wilderness_teleport]
 id = 2259
 faces = false
 categories = ["human"]
