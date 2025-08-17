@@ -70,6 +70,14 @@ components = {
 
 [grand_exchange_tutorial]
 id = 106
+components = {
+  summary_layer = 16,
+  summary = 124,
+  box_highlight = 140,
+  offer_highlight = 131,
+  continue_arrow = 125,
+  continue = 145,
+}
 
 [stock_side]
 id = 107
@@ -84,8 +92,13 @@ components = {
   }
 }
 
-[exchange_offer_tutorial]
+[exchange_confirm_tutorial]
 id = 108
+components = {
+  summary = 94,
+  continue = 97,
+  continue_arrow = 95,
+}
 
 [collection_box]
 id = 109
@@ -134,9 +147,14 @@ components = {
   }
 }
 
-[exchange_offer]
+[exchange_buy_tutorial]
 id = 110
 type = "main_screen"
+components = {
+  summary = 89,
+  continue_arrow = 90,
+  continue = 92,
+}
 
 [exchange_history]
 id = 643
@@ -194,3 +212,21 @@ components = {
 [grand_exchange_item_dialog]
 id = 389
 type = "chat_foreground"
+
+[exchange_wait_tutorial]
+id = 646
+components = {
+  continue = 13,
+  continue_arrow = 12
+}
+
+[common_item_costs]
+id = 885
+components = {
+  items = {
+    id = 16,
+    options = {
+      Examine = 0,
+    }
+  }
+}

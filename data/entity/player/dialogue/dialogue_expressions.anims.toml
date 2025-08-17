@@ -640,6 +640,9 @@ id = 7170
 [expression_child_evil]
 id = 7171
 
+[expression_child_talk]
+id = 7172
+
 [expression_child_neutral]
 id = 7172
 

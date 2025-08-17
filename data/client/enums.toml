@@ -410,3 +410,27 @@ id = 1088
 
 [exchange_set_items]
 id = 1089
+
+[exchange_items_interfaces]
+id = 737
+
+[exchange_items_ores]
+id = 738
+
+[exchange_items_runes]
+id = 739
+
+[exchange_items_logs]
+id = 740
+
+[exchange_items_herbs]
+id = 741
+
+[exchange_items_combat]
+id = 742
+
+[exchange_f2p_slot_overlays]
+id = 1077
+
+[exchange_slot_interfaces]
+id = 1078

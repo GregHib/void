@@ -9,3 +9,22 @@ id = 6530
 
 [grand_exchange_clerk_blonde]
 id = 6531
+
+[brugsen_bursen]
+id = 6522
+
+[grand_exchange_tutor]
+id = 6521
+
+[farid_morrisane]
+id = 6523
+dialogue = "child"
+
+[relobo_blinyo]
+id = 6526
+
+[murky_matt]
+id = 6525
+
+[hofuthand]
+id = 6527

@@ -2,3 +2,8 @@
 id = 789
 format = "bitwise"
 values = ["slot_0", "slot_1", "slot_2", "slot_3", "slot_4", "slot_5"]
+
+[common_item_costs]
+id = 1001
+format = "list"
+values = ["", "ores", "runes", "logs", "herbs", "combat"]

@@ -102,3 +102,14 @@ id = 571
 
 [grand_exchange_sets]
 id = 676
+
+[load_common_items]
+id = 1167
+
+[send_common_item_price]
+id = 1169
+params = [
+    "item_type",
+    "index",
+    "price_string",
+]

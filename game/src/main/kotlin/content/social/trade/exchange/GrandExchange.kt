@@ -42,11 +42,8 @@ import kotlin.math.floor
  *
  * [OpenOffers] older than 7 days become deactivated and need to be canceled and remade.
  *
- * There are [BuyLimits] on number of items that can be purchased within a 4 hour period.
+ * There are [BuyLimits] on number of items that can be purchased within a 4-hour period.
  *
- * TODO
- *  Dialogue\
- *  Other npcs
  */
 class GrandExchange(
     val offers: OpenOffers,
