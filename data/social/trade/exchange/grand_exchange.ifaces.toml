@@ -68,7 +68,7 @@ components = {
   },
 }
 
-[grand_exchange_tutorial]
+[exchange_offers_tutorial]
 id = 106
 components = {
   summary_layer = 16,
