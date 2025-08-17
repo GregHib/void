@@ -1,4 +1,4 @@
-package content.area.mithalin
+package content.area.misthalin
 
 import WorldTest
 import org.junit.jupiter.api.Assertions.assertEquals

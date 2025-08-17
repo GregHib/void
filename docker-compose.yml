@@ -4,7 +4,6 @@ services:
     image: greghib/void
     volumes:
       - ./data/saves/:/app/data/saves
-      - ./data/grand_exchange/:/app/data/grand_exchange
     environment:
       storage: database
       storage.database.username: postgres

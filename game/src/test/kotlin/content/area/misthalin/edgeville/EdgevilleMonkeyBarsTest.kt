@@ -1,4 +1,4 @@
-package content.area.mithalin.edgeville
+package content.area.misthalin.edgeville
 
 import WorldTest
 import containsMessage

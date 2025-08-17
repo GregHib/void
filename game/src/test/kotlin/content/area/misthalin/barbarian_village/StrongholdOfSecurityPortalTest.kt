@@ -1,4 +1,4 @@
-package content.area.mithalin.barbarian_village
+package content.area.misthalin.barbarian_village
 
 import WorldTest
 import objectOption
