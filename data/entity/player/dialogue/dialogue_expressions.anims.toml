@@ -28,16 +28,16 @@ id = 9748
 [expression_surprised4]
 id = 9749
 
-[expression_surprised_old1]
+[expression_old_surprised1]
 id = 571
 
-[expression_surprised_old2]
+[expression_old_surprised2]
 id = 572
 
-[expression_surprised_old3]
+[expression_old_surprised3]
 id = 573
 
-[expression_surprised_old4]
+[expression_old_surprised4]
 id = 574
 
 [expression_shock1]
@@ -64,16 +64,16 @@ id = 9759
 [expression_sad4]
 id = 9760
 
-[expression_sad_old1]
+[expression_old_sad1]
 id = 610
 
-[expression_sad_old2]
+[expression_old_sad2]
 id = 611
 
-[expression_sad_old3]
+[expression_old_sad3]
 id = 612
 
-[expression_sad_old4]
+[expression_old_sad4]
 id = 613
 
 [expression_upset1]
@@ -124,16 +124,16 @@ id = 9775
 [expression_afraid4]
 id = 9776
 
-[expression_afraid_old1]
+[expression_old_afraid1]
 id = 596
 
-[expression_afraid_old2]
+[expression_old_afraid2]
 id = 597
 
-[expression_afraid_old3]
+[expression_old_afraid3]
 id = 598
 
-[expression_afraid_old4]
+[expression_old_afraid4]
 id = 599
 
 [expression_scared1]
@@ -160,16 +160,16 @@ id = 9783
 [expression_frustrated4]
 id = 9784
 
-[expression_angry_old1]
+[expression_old_angry1]
 id = 614
 
-[expression_angry_old2]
+[expression_old_angry2]
 id = 615
 
-[expression_angry_old3]
+[expression_old_angry3]
 id = 616
 
-[expression_angry_old4]
+[expression_old_angry4]
 id = 617
 
 [expression_angry1]
@@ -238,16 +238,16 @@ id = 9805
 [expression_neutral4]
 id = 9806
 
-[expression_neutral_old1]
+[expression_old_neutral1]
 id = 588
 
-[expression_neutral_old2]
+[expression_old_neutral2]
 id = 589
 
-[expression_neutral_old3]
+[expression_old_neutral3]
 id = 590
 
-[expression_neutral_old4]
+[expression_old_neutral4]
 id = 591
 
 [expression_talk1]
@@ -274,16 +274,16 @@ id = 9813
 [expression_uncertain4]
 id = 9814
 
-[expression_uncertain_old1]
+[expression_old_uncertain1]
 id = 575
 
-[expression_uncertain_old2]
+[expression_old_uncertain2]
 id = 576
 
-[expression_uncertain_old3]
+[expression_old_uncertain3]
 id = 577
 
-[expression_uncertain_old4]
+[expression_old_uncertain4]
 id = 578
 
 [expression_admit1]
@@ -298,7 +298,7 @@ id = 9817
 [expression_admit4]
 id = 9818
 
-[expression_talk_old]
+[expression_old_talk]
 id = 579
 
 [expression_sneer1]
@@ -337,16 +337,16 @@ id = 9829
 [expression_quiz4]
 id = 9830
 
-[expression_quiz_old1]
+[expression_old_quiz1]
 id = 554
 
-[expression_quiz_old2]
+[expression_old_quiz2]
 id = 555
 
-[expression_quiz_old3]
+[expression_old_quiz3]
 id = 556
 
-[expression_quiz_old4]
+[expression_old_quiz4]
 id = 557
 
 [expression_roll_eyes1]
@@ -361,31 +361,31 @@ id = 9833
 [expression_roll_eyes4]
 id = 9834
 
-[expression_roll_eyes_old1]
+[expression_old_roll_eyes1]
 id = 562
 
-[expression_roll_eyes_old2]
+[expression_old_roll_eyes2]
 id = 563
 
-[expression_roll_eyes_old3]
+[expression_old_roll_eyes3]
 id = 564
 
-[expression_roll_eyes_old4]
+[expression_old_roll_eyes4]
 id = 565
 
 [expression_drunk]
 id = 9835
 
-[expression_drunk_old1]
+[expression_old_drunk1]
 id = 600
 
-[expression_drunk_old2]
+[expression_old_drunk2]
 id = 601
 
-[expression_drunk_old3]
+[expression_old_drunk3]
 id = 602
 
-[expression_drunk_old4]
+[expression_old_drunk4]
 id = 603
 
 [expression_shifty1]
@@ -400,16 +400,16 @@ id = 9838
 [expression_shifty4]
 id = 9839
 
-[expression_shifty_old1]
+[expression_old_shifty1]
 id = 592
 
-[expression_shifty_old2]
+[expression_old_shifty2]
 id = 593
 
-[expression_shifty_old3]
+[expression_old_shifty3]
 id = 594
 
-[expression_shifty_old4]
+[expression_old_shifty4]
 id = 595
 
 [expression_chuckle]
@@ -421,7 +421,7 @@ id = 9841
 [expression_evil_laugh]
 id = 9842
 
-[expression_evil_laugh_old]
+[expression_old_evil_laugh]
 id = 609
 
 [expression_pleased1]
@@ -448,16 +448,16 @@ id = 9849
 [expression_happy4]
 id = 9850
 
-[expression_happy_old1]
+[expression_old_happy1]
 id = 567
 
-[expression_happy_old2]
+[expression_old_happy2]
 id = 568
 
-[expression_happy_old3]
+[expression_old_happy3]
 id = 569
 
-[expression_happy_old4]
+[expression_old_happy4]
 id = 570
 
 [expression_laugh1]
@@ -472,16 +472,16 @@ id = 9853
 [expression_laugh4]
 id = 9854
 
-[expression_chuckle_old1]
+[expression_old_chuckle1]
 id = 605
 
-[expression_chuckle_old2]
+[expression_old_chuckle2]
 id = 606
 
-[expression_chuckle_old3]
+[expression_old_chuckle3]
 id = 607
 
-[expression_chuckle_old4]
+[expression_old_chuckle4]
 id = 608
 
 [expression_unamused1]
@@ -627,3 +627,36 @@ id = 584
 
 [expression_tree_happy]
 id = 585
+
+[expression_child_angry]
+id = 7168
+
+[expression_child_shifty]
+id = 7169
+
+[expression_child_quiz]
+id = 7170
+
+[expression_child_evil]
+id = 7171
+
+[expression_child_neutral]
+id = 7172
+
+[expression_child_happy]
+id = 7173
+
+[expression_child_laugh]
+id = 7175
+
+[expression_child_uncertain]
+id = 7176
+
+[expression_child_sad]
+id = 7177
+
+[expression_child_scared]
+id = 7178
+
+[expression_child_surprised]
+id = 7180

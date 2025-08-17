@@ -1,5 +1,7 @@
 [spirit_tree]
 id = 3636
+dialogue = "tree"
 
 [spirit_tree_gnome]
 id = 3637
+dialogue = "tree"

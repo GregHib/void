@@ -1,7 +1,7 @@
 package content.skill.agility.course
 
 import content.entity.combat.hit.damage
-import content.entity.player.dialogue.HappyOld
+import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
@@ -23,7 +23,7 @@ val npcs: NPCs by inject()
 
 objectOperate("Climb-up", "gnome_tree_branch_advanced") {
     if (!player.has(Skill.Agility, 85, message = true)) {
-        npc<HappyOld>("gnome_trainer", "Sorry mate, you're not experienced enough to try that route. I suggest you carry on over the balancing rope instead.")
+        npc<Happy>("gnome_trainer", "Sorry mate, you're not experienced enough to try that route. I suggest you carry on over the balancing rope instead.")
         return@objectOperate
     }
     npcs.gnomeTrainer("Terrorbirds could climb faster than that!", Zone(9263413))

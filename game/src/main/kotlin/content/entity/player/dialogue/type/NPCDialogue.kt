@@ -55,7 +55,7 @@ private suspend fun SuspendableContext<Player>.npc(lines: List<String>, clickToC
     val npcDef = get<NPCDefinitions>().get(npcId)
     val head = getChatHeadComponentName(largeHead ?: npcDef["large_head", false])
     sendNPCHead(player, id, head, npcDef.id)
-    player.interfaces.sendChat(id, head, if (npcDef["old_model", false]) "${expression}_old" else expression, title ?: npcDef.name, lines)
+    player.interfaces.sendChat(id, head, if (npcDef.contains("dialogue")) "${npcDef["dialogue", ""]}_$expression" else expression, title ?: npcDef.name, lines)
     if (clickToContinue) {
         ContinueSuspension.get(player)
         player.close(id)
