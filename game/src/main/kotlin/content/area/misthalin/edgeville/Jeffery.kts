@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
-npcOperate("Talk-to", "jeffery") {
+npcOperate("Talk-to", "jeffery_*") {
     npc<Quiz>("Keep it quick. What do you want?")
     choice {
         if (player.quest("gunnars_ground") != "unstarted" && player.quest("gunnars_ground") != "started" && player.quest("gunnars_ground") != "love_poem") {

@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
 
-npcOperate("Talk-to", "knight_sir_gerry") {
+npcOperate("Talk-to", "sir_gerry_*") {
     if (player.ownsItem("knights_notes") || player["godwars_knights_notes", false]) {
         player.message("He's still alive, but in no condition to talk. He appears to be almost unconscious.")
         return@npcOperate
@@ -68,7 +68,7 @@ objectOperate("Tie-rope", "godwars_hole") {
         player.inventory.remove("rope")
         player["godwars_entrance_rope"] = true
     } else {
-        npc<Scared>("knight_sir_gerry", "Cough... Hey, over here.")
+        npc<Scared>("sir_gerry", "Cough... Hey, over here.")
     }
 }
 

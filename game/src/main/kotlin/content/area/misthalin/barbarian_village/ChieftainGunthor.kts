@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
-npcOperate("Talk-to", "chieftain_gunthor") {
+npcOperate("Talk-to", "chieftain_gunthor_*") {
     when (player.quest("gunnars_ground")) {
         "completed" -> {
         }

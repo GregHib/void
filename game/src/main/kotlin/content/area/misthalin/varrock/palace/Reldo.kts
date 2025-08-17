@@ -11,7 +11,7 @@ import content.entity.player.dialogue.type.player
 import content.quest.quest
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
-npcOperate("Talk-to", "reldo") {
+npcOperate("Talk-to", "reldo*") {
     npc<Neutral>("Hello stranger.")
     choice {
         anythingToTrade()

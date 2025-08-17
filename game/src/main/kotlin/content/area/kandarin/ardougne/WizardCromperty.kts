@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.softQueue
 
-npcOperate("Talk-to", "wizard_cromperty") {
+npcOperate("Talk-to", "wizard_cromperty_*") {
     npc<Talk>("Hello there. My name is Cromperty. I am a wizard, and an inventor.")
     npc<Talk>("You must be ElderCadence. My good friend Sedridor has told me about you. As both wizard and inventor, he has aided me in my great invention!")
     player<Talk>("Hello there.")
@@ -36,7 +36,7 @@ npcOperate("Talk-to", "wizard_cromperty") {
     }
 }
 
-npcOperate("Teleport", "wizard_cromperty") {
+npcOperate("Teleport", "wizard_cromperty_*") {
     if (player.questCompleted("rune_mysteries")) {
         EssenceMine.teleport(target, player)
     } else {
