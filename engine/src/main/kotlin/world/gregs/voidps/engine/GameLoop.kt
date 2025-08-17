@@ -27,7 +27,9 @@ class GameLoop(
                 tick++
             }
         } catch (e: Exception) {
-            logger.error(e) { "Error in game loop!" }
+            if (e !is CancellationException) {
+                logger.error(e) { "Error in game loop!" }
+            }
         }
     }
 

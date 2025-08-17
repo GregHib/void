@@ -6,6 +6,7 @@ examine = "A dwarf smith. Quite handy with a hammer."
 
 [thurgo]
 id = 604
+dialogue = "old"
 categories = ["dwarf"]
 wander_radius = 4
 examine = "Dwarvish."

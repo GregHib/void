@@ -83,7 +83,11 @@ class GameServer(
     }
 
     fun stop() {
+        if (job == null) {
+            return
+        }
         job?.cancel()
+        job = null
         dispatcher?.close()
         server?.close()
         connections.clear()

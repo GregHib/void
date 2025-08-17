@@ -5,8 +5,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.data.AccountManager
-import world.gregs.voidps.engine.data.AccountStorage
 import world.gregs.voidps.engine.data.SaveQueue
+import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -25,13 +25,15 @@ import world.gregs.voidps.network.login.protocol.encode.login
  */
 class PlayerAccountLoader(
     private val queue: ConnectionQueue,
-    private val storage: AccountStorage,
+    private val storage: Storage,
     private val accounts: AccountManager,
     private val saveQueue: SaveQueue,
     private val accountDefinitions: AccountDefinitions,
     private val gameContext: CoroutineDispatcher,
 ) : AccountLoader {
     private val logger = InlineLogger()
+
+    var update: Boolean = false
 
     override fun exists(username: String): Boolean = storage.exists(username)
 
@@ -45,6 +47,10 @@ class PlayerAccountLoader(
             val saving = saveQueue.saving(username)
             if (saving) {
                 client.disconnect(Response.ACCOUNT_ONLINE)
+                return null
+            }
+            if (update) {
+                client.disconnect(Response.GAME_UPDATE)
                 return null
             }
             val player = storage.load(username)?.toPlayer() ?: accounts.create(username, passwordHash)
@@ -67,7 +73,7 @@ class PlayerAccountLoader(
         withContext(gameContext) {
             queue.await()
             logger.info { "${if (client != null) "Player" else "Bot"} logged in ${player.accountName} index ${player.index}." }
-            client?.login(player.name, player.index, player.rights.ordinal, membersWorld = World.members)
+            client?.login(player.name, player.index, player.rights.ordinal, member = World.members, membersWorld = World.members)
             accounts.spawn(player, client)
         }
     }

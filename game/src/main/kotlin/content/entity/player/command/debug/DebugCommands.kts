@@ -25,9 +25,7 @@ import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -37,10 +35,7 @@ import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.network.login.protocol.encode.clearCamera
-import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
-import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
-import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
+import world.gregs.voidps.network.login.protocol.encode.*
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import kotlin.system.measureNanoTime
@@ -51,15 +46,11 @@ val objects: GameObjects by inject()
 val npcs: NPCs by inject()
 
 modCommand("test") {
-    player.appearance.body.setLook(BodyPart.Hair, content.toInt())
-    player.flagAppearance()
-//    player["slayer_count"] = 15
-//    player["slayer_target"] = content.toInt()
-//    println()
-//    println("Facing ${player.tile.delta(player.visuals.face.targetX, player.visuals.face.targetY)}")
+    player.sendInterfaceItemUpdate(645, listOf(Triple(0, 995, 100)), false)
+//    player.interfaces.sendItem("exchange_item_sets")
 }
 
-modCommand("commands") {
+modCommand("commands [list]") {
     val commands = if (player.isAdmin()) Command.adminCommands else Command.modCommands
     val list = listOf(
         "Commands list with descriptions and usage instructions in the format:",
@@ -146,14 +137,14 @@ modCommand("timers", "list all players active timers") {
 
 modCommand("variables", "list all players variables", listOf("vars")) {
     player.message("=== Variables ===", ChatType.Console)
-    for ((variable, value) in (player.variables as PlayerVariables).temp) {
+    for ((variable, value) in (player.variables as PlayerVariables).temp.toSortedMap()) {
         if (content.isNotBlank() && !variable.contains(content, ignoreCase = true)) {
             continue
         }
         player.message("$variable: $value", ChatType.Console)
     }
     player.message("=== Persistent Variables ===", ChatType.Console)
-    for ((variable, value) in player.variables.data) {
+    for ((variable, value) in player.variables.data.toSortedMap()) {
         if (content.isNotBlank() && !variable.contains(content, ignoreCase = true)) {
             continue
         }

@@ -17,6 +17,8 @@ import kotlin.test.assertTrue
 
 internal class EnterTheAbyss : WorldTest() {
 
+    override var loadNpcs: Boolean = true
+
     @Test
     fun `Complete the mini-quest`() {
         // Talk to the mage of zamorak in the wilderness

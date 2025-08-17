@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.instruction
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -13,6 +14,7 @@ class InterfaceHandler(
     private val itemDefinitions: ItemDefinitions,
     private val interfaceDefinitions: InterfaceDefinitions,
     private val inventoryDefinitions: InventoryDefinitions,
+    private val enumDefinitions: EnumDefinitions,
 ) {
     private val logger = InlineLogger()
 
@@ -26,6 +28,15 @@ class InterfaceHandler(
             when {
                 id.startsWith("summoning_") && id.endsWith("_creation") -> item = Item(itemDefinitions.get(itemId).stringId)
                 id == "summoning_trade_in" -> item = Item(itemDefinitions.get(itemId).stringId)
+                id == "exchange_item_sets" -> {
+                    val expected = enumDefinitions.get("exchange_item_sets").getInt(itemSlot + 1)
+                    if (expected != itemId) {
+                        logger.info { "Exchange item sets don't match [$player, expected=$expected, actual=$itemId]" }
+                        return null
+                    }
+                    item = Item(itemDefinitions.get(expected).stringId)
+                }
+                id == "common_item_costs" -> item = Item(itemDefinitions.get(itemId).stringId)
                 else -> {
                     inventory = getInventory(player, id, component, componentDefinition) ?: return null
                     item = getInventoryItem(player, id, componentDefinition, inventory, itemId, itemSlot) ?: return null
@@ -62,7 +73,10 @@ class InterfaceHandler(
         if (id == "shop") {
             return player["shop"]
         }
-        val inventory = componentDefinition["inventory", ""]
+        var inventory = componentDefinition["inventory", ""]
+        if (id == "grand_exchange") {
+            inventory = "collection_box_${player["grand_exchange_box", -1]}"
+        }
         if (!player.inventories.contains(inventory)) {
             logger.info { "Player doesn't have interface inventory [$player, interface=$id, inventory=$inventory]" }
             return null
@@ -78,6 +92,7 @@ class InterfaceHandler(
             itemSlot == -1 && inventoryId == "returned_lent_items" -> 0
             id == "price_checker" -> itemSlot / 2
             id == "shop" -> itemSlot / 6
+            id == "grand_exchange" -> componentDefinition.stringId.removePrefix("collect_slot_").toInt()
             else -> itemSlot
         }
         val definition = inventoryDefinitions.get(inventoryId)
@@ -88,7 +103,7 @@ class InterfaceHandler(
             return null
         }
         if (slot !in inventory.items.indices) {
-            logger.info { "Player interface inventory out of bounds [$player, inventory=$inventoryId, item_index=$itemSlot, inventory_size=${definition.length}, indicies=${inventory.items.indices}]" }
+            logger.info { "Player interface inventory out of bounds [$player, slot=$slot, inventory=$inventoryId, item_index=$itemSlot, inventory_size=${definition.length}, indicies=${inventory.items.indices}]" }
             return null
         }
 

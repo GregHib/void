@@ -2,21 +2,27 @@
 id = 95
 stack = "Always"
 
-[collection_box_1]
+[collection_box_0]
 id = 523
+stack = "Always"
+
+[collection_box_1]
+id = 524
+stack = "Always"
 
 [collection_box_2]
-id = 524
+id = 525
+stack = "Always"
 
 [collection_box_3]
-id = 525
+id = 526
+stack = "Always"
 
 [collection_box_4]
-id = 526
+id = 527
+stack = "Always"
 
 [collection_box_5]
-id = 527
-
-[collection_box_6]
 id = 528
+stack = "Always"
 

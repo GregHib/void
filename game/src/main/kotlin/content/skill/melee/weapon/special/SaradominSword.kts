@@ -13,6 +13,7 @@ specialAttack("saradomins_lightning") { player ->
     val damage = Damage.roll(player, target, "melee", weapon)
     player.hit(target, damage = damage)
     if (damage > 0) {
+        target.gfx("saradomins_lightning_impact")
         areaSound("godwars_saradomin_magic_impact", target.tile, 10)
         player.hit(target, offensiveType = "magic")
     }

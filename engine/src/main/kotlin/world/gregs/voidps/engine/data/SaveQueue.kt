@@ -4,13 +4,14 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import java.lang.Runnable
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.system.measureTimeMillis
 
 class SaveQueue(
-    private val storage: AccountStorage,
-    private val fallback: AccountStorage = storage,
+    private val storage: Storage,
+    private val fallback: Storage = storage,
     private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO),
 ) : Runnable {
     private val pending = ConcurrentHashMap<String, PlayerSave>()
@@ -30,6 +31,8 @@ class SaveQueue(
         }
         scope.save(pending.values.toList())
     }
+
+    fun direct(players: Players): Job = scope.save(players.map { it.copy() })
 
     private fun CoroutineScope.save(accounts: List<PlayerSave>) = launch(handler) {
         val took = measureTimeMillis {
@@ -60,4 +63,6 @@ class SaveQueue(
     }
 
     fun saving(name: String) = pending.containsKey(name)
+
+    fun empty(): Boolean = pending.isEmpty()
 }

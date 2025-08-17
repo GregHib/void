@@ -389,3 +389,48 @@ id = 1283
 # From pouch id
 [summoning_familiar_ids]
 id = 1320
+
+[grand_exchange_slot_inv]
+id = 1079
+
+[collection_box_parent_layers]
+id = 1080
+
+[collection_box_tooltip_interfaces]
+id = 1081
+
+[collection_box_members_interfaces]
+id = 1082
+
+[exchange_item_sets]
+id = 1087
+
+[exchange_set_descriptions]
+id = 1088
+
+[exchange_set_items]
+id = 1089
+
+[exchange_items_interfaces]
+id = 737
+
+[exchange_items_ores]
+id = 738
+
+[exchange_items_runes]
+id = 739
+
+[exchange_items_logs]
+id = 740
+
+[exchange_items_herbs]
+id = 741
+
+[exchange_items_combat]
+id = 742
+
+[exchange_f2p_slot_overlays]
+id = 1077
+
+[exchange_slot_interfaces]
+id = 1078

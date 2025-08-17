@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.Character
 
 fun Character.cantReach() = message("I can't reach that.", ChatType.Engine)
 
-fun Character.inventoryFull() = notEnough("inventory space")
+fun Character.inventoryFull(to: String = "") = notEnough("inventory space${if (to.isNotBlank()) " $to" else ""}")
 
 fun Character.noInterest() = message("Nothing interesting happens.", ChatType.Engine)
 

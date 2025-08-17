@@ -1,4 +1,14 @@
 spawns = [
 # 12598
-  { id = "bob_barter_herbs", x = 3156, y = 3481 },
+  { id = "bob_barter", x = 3156, y = 3481 },
+  { id = "grand_exchange_clerk_ponytail", x = 3164, y = 3488, direction = "SOUTH" },
+  { id = "grand_exchange_clerk_blonde", x = 3165, y = 3488, direction = "SOUTH" },
+  { id = "grand_exchange_clerk_short", x = 3165, y = 3491, direction = "NORTH" },
+  { id = "grand_exchange_clerk_brown", x = 3164, y = 3491, direction = "NORTH" },
+  { id = "brugsen_bursen", x = 3168, y = 3475, direction = "NORTH" },
+  { id = "grand_exchange_tutor", x = 3161, y = 3475, direction = "SOUTH" },
+  { id = "farid_morrisane", x = 3173, y = 3498, direction = "SOUTH" },
+  { id = "relobo_blinyo", x = 3152, y = 3489, direction = "EAST" },
+  { id = "murky_matt", x = 3173, y = 3481, direction = "SOUTH" },
+  { id = "hofuthand", x = 3156, y = 3498, direction = "EAST" },
 ]

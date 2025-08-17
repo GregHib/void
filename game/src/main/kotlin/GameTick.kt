@@ -1,3 +1,4 @@
+import content.social.trade.exchange.GrandExchange
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.update.CharacterTask
@@ -38,6 +39,7 @@ fun getTickStages(
     accountSave: SaveQueue = get(),
     batches: ZoneBatchUpdates = get(),
     hunting: Hunting = get(),
+    grandExchange: GrandExchange = get(),
     sequential: Boolean = CharacterTask.DEBUG,
     handlers: InstructionHandlers = get(),
 ): List<Runnable> {
@@ -48,6 +50,7 @@ fun getTickStages(
         PlayerResetTask(sequentialPlayer, players, batches),
         NPCResetTask(sequentialNpc, npcs),
         hunting,
+        grandExchange,
         // Connections/Tick Input
         queue,
         npcs,

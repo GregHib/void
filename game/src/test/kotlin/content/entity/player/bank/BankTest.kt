@@ -94,7 +94,7 @@ internal class BankTest : WorldTest() {
 
         player.objectOption(bank, "Use-quickly")
         tick()
-        player.interfaceOption("bank", "inventory", "Withdraw-All", item = Item("coins"), slot = 0)
+        player.interfaceOption("bank", "inventory", "Withdraw-All", item = Item("coins", 1000), slot = 0)
         player.interfaceOption("bank", "inventory", "Withdraw-1", item = Item("bronze_sword"), slot = 0)
         player.interfaceOption("bank", "inventory", "Withdraw-1", item = Item("bronze_sword"), slot = 0)
 
@@ -114,7 +114,7 @@ internal class BankTest : WorldTest() {
         player.objectOption(bank, "Use-quickly")
         tick()
         player.interfaceOption("bank", "note_mode", "Toggle item/note withdrawl")
-        player.interfaceOption("bank", "inventory", "Withdraw-All", item = Item("coins"), slot = 0)
+        player.interfaceOption("bank", "inventory", "Withdraw-All", item = Item("coins", 1000), slot = 0)
         player.interfaceOption("bank", "inventory", "Withdraw-All", item = Item("bronze_sword"), slot = 0)
 
         assertEquals(Item("coins", 1000), player.inventory[0])

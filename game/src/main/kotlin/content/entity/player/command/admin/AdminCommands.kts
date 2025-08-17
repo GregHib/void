@@ -23,15 +23,14 @@ import content.quest.refreshQuestJournal
 import content.skill.prayer.PrayerConfigs
 import content.skill.prayer.PrayerConfigs.PRAYERS
 import content.skill.prayer.isCurses
+import content.social.trade.exchange.GrandExchange
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.*
@@ -72,9 +71,11 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.charge
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.encode.playJingle
 import world.gregs.voidps.network.login.protocol.encode.playMIDI
 import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
+import world.gregs.voidps.network.login.protocol.encode.systemUpdate
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import java.util.concurrent.TimeUnit
@@ -107,6 +108,7 @@ adminCommand("tele (x) (y) [level]", "teleport to given coordinates or area name
                 "barbarian_village", "barb_village" -> player.tele(3084, 3421, 0)
                 "al_kharid", "alkharid" -> player.tele(3293, 3183, 0)
                 "canifis" -> player.tele(3474, 3475, 0)
+                "ge", "grand_exchange" -> player.tele(3164, 3484, 0)
                 else -> player.tele(areas[content])
             }
             parts.size == 1 -> player.tele(Region(int).tile.add(32, 32))
@@ -150,9 +152,12 @@ adminCommand("npc (npc-id)", "spawn an npc") {
     npc.start("movement_delay", -1)
 }
 
+val exchange: GrandExchange by inject()
+
 modCommand("save", "save all players") {
     val account: SaveQueue = get()
     players.forEach(account::save)
+    exchange.save()
 }
 
 val definitions: ItemDefinitions by inject()
@@ -244,7 +249,7 @@ fun <T> search(player: Player, definitions: DefinitionsDecoder<T>, search: Strin
     for (id in definitions.definitions.indices) {
         val def = definitions.getOrNull(id) ?: continue
         val name = getName(def)
-        if (name.lowercase().contains(search)) {
+        if (name.lowercase().contains(search) || def.stringId.lowercase().contains(search)) {
             player.message("[${name.lowercase().replace(utf8Regex, "")}] - id: $id${if (def.stringId.isNotBlank()) " (${def.stringId})" else ""}", ChatType.Console)
             found++
         }
@@ -498,7 +503,7 @@ adminCommand("reload (config-name)", "reload any type of content or file e.g. np
         "patrols", "paths" -> get<PatrolDefinitions>().load(files.list(Settings["definitions.patrols"]))
         "prayers" -> get<PrayerDefinitions>().load(files.find(Settings["definitions.prayers"]))
         "drops" -> get<DropTables>().load(files.list(Settings["spawns.drops"]))
-        "cs2", "cs2s", "client scripts" -> get<ClientScriptDefinitions>().load(files.find(Settings["definitions.clientScripts"]))
+        "cs2", "cs2s", "client scripts" -> get<ClientScriptDefinitions>().load(files.list(Settings["definitions.clientScripts"]))
         "settings", "setting", "game setting", "game settings", "games settings", "properties", "props" -> {
             Settings.load()
             World.emit(SettingsReload)
@@ -673,5 +678,53 @@ fun Inventory.sortedByDescending(block: (Item) -> Long) {
         items.sortedByDescending(block).forEachIndexed { index, item ->
             set(index, item)
         }
+    }
+}
+
+adminCommand("update (time)[unit]", "start a system shutdown after a set amount of time e.g. 'update 100' = 1 minute or 'update 1h 2m 3s'") {
+    var ticks = 0
+    val input = content.toIntOrNull()
+    if (input == null) {
+        if (content.isBlank()) {
+            shutdown(0)
+            return@adminCommand
+        }
+        for (part in content.split(" ")) {
+            when {
+                part.endsWith("h") -> ticks += TimeUnit.HOURS.toTicks(part.removeSuffix("h").toInt())
+                part.endsWith("m") -> ticks += TimeUnit.MINUTES.toTicks(part.removeSuffix("m").toInt())
+                part.endsWith("s") -> ticks += TimeUnit.SECONDS.toTicks(part.removeSuffix("s").toInt())
+            }
+        }
+        if (ticks == 0) {
+            player.message("Unknown input '$content' please use hours minutes or seconds - e.g. 4h 20m 5s.", ChatType.Console)
+            return@adminCommand
+        }
+    } else {
+        ticks = input
+    }
+    if (ticks >= Short.MAX_VALUE) {
+        player.message("Update cannot exceed ${Short.MAX_VALUE} ticks (5 hours 26 mins 43 seconds)", ChatType.Console)
+        return@adminCommand
+    }
+    if (ticks < 1) {
+        player.message("Update time must be positive.", ChatType.Console)
+        return@adminCommand
+    }
+    for (player in players) {
+        player.client?.systemUpdate(ticks)
+    }
+    shutdown((ticks - 2).coerceAtLeast(0))
+}
+
+val accountLoader: PlayerAccountLoader by inject()
+
+fun shutdown(ticks: Int) {
+    // Prevent players logging-in 1 minute before update
+    World.queue("system_shutdown", (ticks - 100).coerceAtLeast(0)) {
+        accountLoader.update = true
+    }
+    World.queue("system_update", ticks) {
+        Main.server.stop()
     }
 }

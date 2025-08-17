@@ -219,3 +219,30 @@ fun Client.interfaceVisibility(
     writeByteAdd(hide)
     writeIntLittle(interfaceComponent)
 }
+
+/**
+ * Send an update to grand exchange slot
+ * @param slot offer slot
+ * @param state the offer state 1 - submitting, 2 - open, 5 - cancelled
+ * @param item item id
+ * @param price price per item
+ * @param amount quantity of items in offer
+ * @param sold number of items sold so far
+ * @param coins number of coins received
+ */
+fun Client.grandExchange(slot: Int, state: Int = 0, item: Int = 0, price: Int = 0, amount: Int = 0, sold: Int = 0, coins: Int = 0) = send(Protocol.GRAND_EXCHANGE_SLOT) {
+    writeByte(slot)
+    writeByte(state)
+    writeShort(item)
+    writeInt(price)
+    writeInt(amount)
+    writeInt(sold)
+    writeInt(coins)
+}
+
+/**
+ * Send system update timer
+ */
+fun Client.systemUpdate(ticks: Int) = send(Protocol.SYSTEM_UPDATE) {
+    writeShort(ticks)
+}

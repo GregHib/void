@@ -3,6 +3,9 @@ package world.gregs.voidps.engine.data
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.*
+import world.gregs.voidps.engine.data.exchange.ExchangeHistory
+import world.gregs.voidps.engine.data.exchange.ExchangeOffer
+import world.gregs.voidps.engine.data.exchange.OfferState
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
@@ -28,6 +31,8 @@ data class PlayerSave(
     val inventories: Map<String, Array<Item>>,
     val friends: Map<String, ClanRank>,
     val ignores: List<String>,
+    val offers: Array<ExchangeOffer>,
+    val history: List<ExchangeHistory>,
 ) {
 
     fun toPlayer(): Player = Player(
@@ -41,6 +46,8 @@ data class PlayerSave(
         inventories = Inventories(inventories),
         friends = friends.toMutableMap(),
         ignores = ignores.toMutableList(),
+        offers = offers,
+        history = history.toMutableList(),
     )
 
     fun save(file: File) {
@@ -100,6 +107,58 @@ data class PlayerSave(
             writeValue(friends, escapeKey = true)
             write("\n")
             writePair("ignores", ignores)
+            write("\n")
+            writeSection("exchange")
+            writeKey("offers")
+            list(offers.size) { index ->
+                val offer = offers[index]
+                if (offer.isEmpty()) {
+                    write("{}")
+                } else {
+                    write("{")
+                    writeKey("id")
+                    writeValue(offer.id)
+                    write(", ")
+                    writeKey("item")
+                    writeValue(offer.item)
+                    write(", ")
+                    writeKey("amount")
+                    writeValue(offer.amount)
+                    write(", ")
+                    writeKey("price")
+                    writeValue(offer.price)
+                    write(", ")
+                    writeKey("state")
+                    writeValue(offer.state.name)
+                    if (offer.completed > 0) {
+                        write(", ")
+                        writeKey("completed")
+                        writeValue(offer.completed)
+                    }
+                    if (offer.coins > 0) {
+                        write(", ")
+                        writeKey("coins")
+                        writeValue(offer.coins)
+                    }
+                    write("}")
+                }
+            }
+            write("\n")
+            writeKey("history")
+            list(history.size) { index ->
+                val history = history[index]
+                write("{")
+                writeKey("item")
+                writeValue(history.item)
+                write(", ")
+                writeKey("amount")
+                writeValue(history.amount)
+                write(", ")
+                writeKey("coins")
+                writeValue(history.coins)
+                write("}")
+            }
+            write("\n")
         }
     }
 
@@ -109,37 +168,41 @@ data class PlayerSave(
 
         other as PlayerSave
 
+        if (male != other.male) return false
         if (name != other.name) return false
         if (password != other.password) return false
         if (tile != other.tile) return false
         if (!experience.contentEquals(other.experience)) return false
         if (blocked != other.blocked) return false
         if (!levels.contentEquals(other.levels)) return false
-        if (male != other.male) return false
         if (!looks.contentEquals(other.looks)) return false
         if (!colours.contentEquals(other.colours)) return false
         if (variables != other.variables) return false
         if (inventories != other.inventories) return false
         if (friends != other.friends) return false
         if (ignores != other.ignores) return false
+        if (!offers.contentEquals(other.offers)) return false
+        if (history != other.history) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = name.hashCode()
+        var result = male.hashCode()
+        result = 31 * result + name.hashCode()
         result = 31 * result + password.hashCode()
         result = 31 * result + tile.hashCode()
         result = 31 * result + experience.contentHashCode()
         result = 31 * result + blocked.hashCode()
         result = 31 * result + levels.contentHashCode()
-        result = 31 * result + male.hashCode()
         result = 31 * result + looks.contentHashCode()
         result = 31 * result + colours.contentHashCode()
         result = 31 * result + variables.hashCode()
         result = 31 * result + inventories.hashCode()
         result = 31 * result + friends.hashCode()
         result = 31 * result + ignores.hashCode()
+        result = 31 * result + offers.contentHashCode()
+        result = 31 * result + history.hashCode()
         return result
     }
 
@@ -158,6 +221,8 @@ data class PlayerSave(
             val inventories = Object2ObjectOpenHashMap<String, Array<Item>>(4)
             val friends = Object2ObjectOpenHashMap<String, ClanRank>()
             val ignores = ObjectArrayList<String>()
+            val offers = Array(6) { ExchangeOffer.EMPTY }
+            val history = ObjectArrayList<ExchangeHistory>()
             Config.fileReader(file) {
                 while (nextPair()) {
                     when (val key = key()) {
@@ -206,7 +271,7 @@ data class PlayerSave(
                                     "x" -> x = int()
                                     "y" -> y = int()
                                     "level" -> level = int()
-                                    else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
+                                    else -> throw IllegalArgumentException("Unexpected account tile key: '$k' ${exception()}")
                                 }
                             }
                             tile = Tile(x, y, level)
@@ -230,7 +295,7 @@ data class PlayerSave(
                                                 amount = 1
                                             }
                                             "amount" -> amount = int()
-                                            else -> throw IllegalArgumentException("Unexpected key: '$itemKey' ${exception()}")
+                                            else -> throw IllegalArgumentException("Unexpected account inv key: '$itemKey' ${exception()}")
                                         }
                                     }
                                     items.add(Item(id, amount))
@@ -249,7 +314,53 @@ data class PlayerSave(
                                     "ignores" -> while (nextElement()) {
                                         ignores.add(string())
                                     }
-                                    else -> throw IllegalArgumentException("Unexpected key: '$socialKey' ${exception()}")
+                                    else -> throw IllegalArgumentException("Unexpected account social key: '$socialKey' ${exception()}")
+                                }
+                            }
+                        }
+                        "exchange" -> {
+                            while (nextPair()) {
+                                when (val exchangeKey = key()) {
+                                    "offers" -> {
+                                        var index = 0
+                                        while (nextElement()) {
+                                            var id = 0
+                                            var item = ""
+                                            var amount = 0
+                                            var price = 0
+                                            var state: OfferState = OfferState.PendingBuy
+                                            var completed = 0
+                                            var coins = 0
+                                            while (nextEntry()) {
+                                                when (val key = key()) {
+                                                    "id" -> id = int()
+                                                    "item" -> item = string()
+                                                    "amount" -> amount = int()
+                                                    "price" -> price = int()
+                                                    "state" -> state = OfferState.valueOf(string())
+                                                    "completed" -> completed = int()
+                                                    "coins" -> coins = int()
+                                                    else -> throw IllegalArgumentException("Unexpected exchange offer key: '$key' ${exception()}")
+                                                }
+                                            }
+                                            offers[index++] = ExchangeOffer(id = id, item = item, amount = amount, price = price, state = state, completed = completed, coins = coins)
+                                        }
+                                    }
+                                    "history" -> while (nextElement()) {
+                                        var item = ""
+                                        var coins = 0
+                                        var amount = 0
+                                        while (nextEntry()) {
+                                            when (val key = key()) {
+                                                "item" -> item = string()
+                                                "amount" -> amount = int()
+                                                "coins" -> coins = int()
+                                                else -> throw IllegalArgumentException("Unexpected exchange history key: '$key' ${exception()}")
+                                            }
+                                        }
+                                        history.add(ExchangeHistory(item, amount, coins))
+                                    }
+                                    else -> throw IllegalArgumentException("Unexpected key: '$exchangeKey' ${exception()}")
                                 }
                             }
                         }
@@ -257,7 +368,23 @@ data class PlayerSave(
                     }
                 }
             }
-            return PlayerSave(name = name, password = password, tile = tile, experience = experience, blocked = blocked, levels = levels, male = male, looks = looks, colours = colours, variables = variables, inventories = inventories, friends = friends, ignores = ignores)
+            return PlayerSave(
+                name = name,
+                password = password,
+                tile = tile,
+                experience = experience,
+                blocked = blocked,
+                levels = levels,
+                male = male,
+                looks = looks,
+                colours = colours,
+                variables = variables,
+                inventories = inventories,
+                friends = friends,
+                ignores = ignores,
+                offers = offers,
+                history = history,
+            )
         }
     }
 }
@@ -276,4 +403,6 @@ internal fun Player.copy() = PlayerSave(
     inventories = inventories.instances.mapValues { it.value.items.map { itm -> itm.copy() }.toTypedArray() },
     friends = friends,
     ignores = ignores.toList(),
+    offers = offers.copyOf(),
+    history = history.toList(),
 )

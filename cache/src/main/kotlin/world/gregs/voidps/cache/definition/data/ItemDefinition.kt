@@ -11,6 +11,7 @@ data class ItemDefinition(
     var members: Boolean = false,
     var floorOptions: Array<String?> = arrayOf(null, null, "Take", null, null, "Examine"),
     var options: Array<String?> = arrayOf(null, null, null, null, "Drop"),
+    var exchangeable: Boolean = false,
     var dummyItem: Int = 0,
     var noteId: Int = -1,
     var notedTemplateId: Int = -1,
@@ -41,6 +42,7 @@ data class ItemDefinition(
         if (members != other.members) return false
         if (!floorOptions.contentEquals(other.floorOptions)) return false
         if (!options.contentEquals(other.options)) return false
+        if (exchangeable != other.exchangeable) return false
         if (dummyItem != other.dummyItem) return false
         if (noteId != other.noteId) return false
         if (notedTemplateId != other.notedTemplateId) return false
@@ -59,6 +61,7 @@ data class ItemDefinition(
         result = 31 * result + members.hashCode()
         result = 31 * result + floorOptions.contentHashCode()
         result = 31 * result + options.contentHashCode()
+        result = 31 * result + exchangeable.hashCode()
         result = 31 * result + dummyItem
         result = 31 * result + noteId
         result = 31 * result + notedTemplateId

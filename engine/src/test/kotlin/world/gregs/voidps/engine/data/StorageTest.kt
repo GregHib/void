@@ -1,15 +1,18 @@
 package world.gregs.voidps.engine.data
 
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.data.exchange.ExchangeHistory
+import world.gregs.voidps.engine.data.exchange.ExchangeOffer
+import world.gregs.voidps.engine.data.exchange.OfferState
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.Tile
 import kotlin.test.*
 
-abstract class AccountStorageTest {
+abstract class StorageTest {
 
-    abstract val storage: AccountStorage
+    abstract val storage: Storage
 
     @Test
     fun `Store an account`() {
@@ -61,6 +64,8 @@ abstract class AccountStorageTest {
                 put("Bob", ClanRank.Captain)
                 remove("Greg")
             },
+            offers = Array(6) { if (it == 0) ExchangeOffer(2, "whip", 1, 2, OfferState.OpenBuy) else ExchangeOffer.EMPTY },
+            history = listOf(ExchangeHistory("item", 123, 321)),
         )
         storage.save(listOf(override))
 
@@ -92,6 +97,7 @@ abstract class AccountStorageTest {
         }
         assertFalse(account.friends.containsKey("Greg"))
         assertContentEquals(override.ignores, account.ignores)
+        assertContentEquals(override.offers, account.offers)
     }
 
     @Test
@@ -274,6 +280,8 @@ abstract class AccountStorageTest {
             ),
             friends = mapOf("Greg" to ClanRank.Friend),
             ignores = listOf("Mod Murdoch"),
+            offers = arrayOf(ExchangeOffer(1, "item", 4, 123, OfferState.PendingSell, 1, 321)),
+            history = listOf(ExchangeHistory("item", 123, 321)),
         )
     }
 }

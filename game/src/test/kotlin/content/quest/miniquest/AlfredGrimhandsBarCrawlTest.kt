@@ -18,6 +18,8 @@ import kotlin.test.assertTrue
 
 internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
 
+    override var loadNpcs: Boolean = true
+
     @Test
     fun `Complete the mini-quest`() {
         val player = createPlayer(Tile(2542, 3569))

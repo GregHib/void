@@ -6,14 +6,13 @@ import content.entity.obj.ship.CharterShips
 import content.entity.player.modal.book.Books
 import content.entity.world.music.MusicTracks
 import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
+import content.social.trade.exchange.GrandExchange
+import content.social.trade.exchange.history.ExchangeHistory
 import kotlinx.io.pool.DefaultPool
 import org.koin.dsl.module
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
-import world.gregs.voidps.engine.data.ConfigFiles
-import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.find
-import world.gregs.voidps.engine.data.list
+import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 
 fun gameModule(files: ConfigFiles) = module {
@@ -42,7 +41,17 @@ fun gameModule(files: ConfigFiles) = module {
             get(),
             get(),
             get(),
-            InterfaceHandler(get(), get(), get()),
+            get(),
+            InterfaceHandler(get(), get(), get(), get()),
         )
+    }
+    single(createdAtStart = true) {
+        get<Storage>().offers(Settings["grandExchange.offers.activeDays", 0])
+    }
+    single(createdAtStart = true) {
+        ExchangeHistory(get(), get<Storage>().priceHistory().toMutableMap()).also { it.calculatePrices() }
+    }
+    single(createdAtStart = true) {
+        GrandExchange(get(), get(), get<Storage>().claims().toMutableMap(), get(), get(), get(), get())
     }
 }

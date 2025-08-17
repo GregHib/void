@@ -5,16 +5,19 @@ import com.zaxxer.hikari.HikariDataSource
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.inList
 import org.jetbrains.exposed.sql.transactions.transaction
-import world.gregs.voidps.engine.data.AccountStorage
 import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.config.AccountDefinition
+import world.gregs.voidps.engine.data.exchange.*
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.Tile
+import java.util.*
+import java.util.concurrent.TimeUnit
 
-class DatabaseStorage : AccountStorage {
+class DatabaseStorage : Storage {
     private val variableNames = setOf("clan_name", "display_name", "clan_join_rank", "clan_talk_rank", "clan_kick_rank", "clan_loot_rank", "coin_share_setting")
 
     override fun names(): Map<String, AccountDefinition> = transaction {
@@ -73,6 +76,115 @@ class DatabaseStorage : AccountStorage {
             }
     }
 
+    override fun offers(days: Int): OpenOffers {
+        val buyByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf()
+        val sellByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf()
+        val offers = OpenOffers(sellByItem, buyByItem)
+        val query = (ActiveOffersTable innerJoin AccountsTable).selectAll()
+        if (days > 0) {
+            val time = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(days.toLong())
+            query.where { (ActiveOffersTable.id eq AccountsTable.id) and (ActiveOffersTable.lastActive greaterEq time) }
+        } else {
+            query.where { ActiveOffersTable.id eq AccountsTable.id }
+        }
+        for (row in query) {
+            val id = row[ActiveOffersTable.id]
+            val item = row[ActiveOffersTable.item]
+            val name = row[AccountsTable.name]
+            val remaining = row[ActiveOffersTable.remaining]
+            val price = row[ActiveOffersTable.price]
+            val coins = row[ActiveOffersTable.coins]
+            val lastActive = row[ActiveOffersTable.lastActive]
+            val sell = row[ActiveOffersTable.sell]
+            val offer = OpenOffer(id = id, remaining = remaining, coins = coins, account = name, lastActive = lastActive)
+            offers.add(id, item, price, sell)
+            (if (sell) sellByItem else buyByItem).getOrPut(item) { TreeMap() }.getOrPut(price) { mutableListOf() }.add(offer)
+        }
+        val maxId = OffersTable.id.max()
+        for (row in OffersTable.select(maxId)) {
+            val max = row[maxId]!!
+            offers.counter = max
+        }
+        return offers
+    }
+
+    override fun saveClaims(claims: Map<Int, Claim>) {
+        ClaimsTable.deleteAll()
+        ClaimsTable.batchUpsert(claims.toList(), ClaimsTable.offerId) { (id, claim) ->
+            this[ClaimsTable.offerId] = id
+            this[ClaimsTable.amount] = claim.amount
+            this[ClaimsTable.coins] = claim.price
+        }
+    }
+
+    override fun savePriceHistory(history: Map<String, PriceHistory>) {
+        ItemHistoryTable.deleteAll()
+        transaction {
+            for ((item, itemHistory) in history) {
+                insertAggregate(item, itemHistory.day, "day")
+                insertAggregate(item, itemHistory.week, "week")
+                insertAggregate(item, itemHistory.month, "month")
+                insertAggregate(item, itemHistory.year, "year")
+            }
+        }
+    }
+
+    private fun insertAggregate(itemId: String, aggregates: Map<Long, Aggregate>, time: String) {
+        for ((stamp, agg) in aggregates) {
+            ItemHistoryTable.insert {
+                it[item] = itemId
+                it[timestamp] = stamp
+                it[timeframe] = time
+                it[open] = agg.open
+                it[high] = agg.high
+                it[low] = agg.low
+                it[close] = agg.close
+                it[volume] = agg.volume
+                it[count] = agg.count
+                it[averageHigh] = agg.averageHigh
+                it[averageLow] = agg.averageLow
+                it[volumeHigh] = agg.volumeHigh
+                it[volumeLow] = agg.volumeLow
+            }
+        }
+    }
+
+    override fun claims(): Map<Int, Claim> = ClaimsTable.selectAll().associate { row ->
+        val id = row[ClaimsTable.offerId]
+        val amount = row[ClaimsTable.amount]
+        val coins = row[ClaimsTable.coins]
+        id to Claim(amount, coins)
+    }
+
+    override fun priceHistory(): Map<String, PriceHistory> {
+        val history = mutableMapOf<String, PriceHistory>()
+        ItemHistoryTable.selectAll().forEach { row ->
+            val item = row[ItemHistoryTable.item]
+            val timestamp = row[ItemHistoryTable.timestamp]
+            val timeframe = row[ItemHistoryTable.timeframe]
+            val open = row[ItemHistoryTable.open]
+            val high = row[ItemHistoryTable.high]
+            val low = row[ItemHistoryTable.low]
+            val close = row[ItemHistoryTable.close]
+            val volume = row[ItemHistoryTable.volume]
+            val count = row[ItemHistoryTable.count]
+            val averageHigh = row[ItemHistoryTable.averageHigh]
+            val averageLow = row[ItemHistoryTable.averageLow]
+            val volumeHigh = row[ItemHistoryTable.volumeHigh]
+            val volumeLow = row[ItemHistoryTable.volumeLow]
+            val priceHistory = history.getOrPut(item) { PriceHistory() }
+            val frame = when (timeframe) {
+                "day" -> priceHistory.day
+                "week" -> priceHistory.week
+                "month" -> priceHistory.month
+                "year" -> priceHistory.year
+                else -> throw IllegalArgumentException("Unknown timeframe '$timeframe' for item history '$item' $timestamp.")
+            }
+            frame[timestamp] = Aggregate(open = open, high = high, low = low, close = close, volume = volume, count = count, averageHigh = averageHigh, averageLow = averageLow, volumeHigh = volumeHigh, volumeLow = volumeLow)
+        }
+        return history
+    }
+
     override fun save(accounts: List<PlayerSave>) {
         transaction {
             saveAccounts(accounts)
@@ -85,6 +197,8 @@ class DatabaseStorage : AccountStorage {
             saveLevels(accounts, playerIds)
             saveVariables(accounts, playerIds)
             saveInventories(accounts, playerIds)
+            saveOffers(accounts, playerIds)
+            saveHistories(accounts, playerIds)
         }
     }
 
@@ -112,6 +226,8 @@ class DatabaseStorage : AccountStorage {
         val inventories = loadInventories(playerId)
         val friends = playerRow[AccountsTable.friends]
         val ranks = playerRow[AccountsTable.ranks]
+        val offers = loadOffers(playerId)
+        val history = loadHistory(playerId)
         return@transaction PlayerSave(
             name = playerRow[AccountsTable.name],
             password = playerRow[AccountsTable.passwordHash],
@@ -126,6 +242,8 @@ class DatabaseStorage : AccountStorage {
             inventories = inventories,
             friends = friends.zip(ranks) { name, rank -> name to ClanRank.valueOf(rank) }.toMap(),
             ignores = playerRow[AccountsTable.ignores],
+            offers = offers,
+            history = history,
         )
     }
 
@@ -137,6 +255,58 @@ class DatabaseStorage : AccountStorage {
             this[InventoriesTable.inventoryName] = inventory
             this[InventoriesTable.items] = items.map { it.id }
             this[InventoriesTable.amounts] = items.map { it.value }
+        }
+    }
+
+    private fun saveOffers(accounts: List<PlayerSave>, playerIds: Map<String, Int>) {
+        OffersTable.deleteWhere { playerId inList playerIds.values }
+        val offerData = accounts.flatMap { save -> save.offers.withIndex().map { (index, offer) -> Triple(save.name, index, offer) } }
+        OffersTable.batchUpsert(offerData, OffersTable.playerId, OffersTable.id, OffersTable.index) { (id, index, offer) ->
+            this[OffersTable.playerId] = playerIds.getValue(id.lowercase())
+            this[OffersTable.id] = offer.id
+            this[OffersTable.index] = index
+            this[OffersTable.item] = offer.item
+            this[OffersTable.amount] = offer.amount
+            this[OffersTable.price] = offer.price
+            this[OffersTable.state] = offer.state.name
+            this[OffersTable.completed] = offer.completed
+            this[OffersTable.lastActive] = System.currentTimeMillis()
+            this[OffersTable.coins] = offer.coins
+        }
+    }
+
+    override fun saveOffers(offers: OpenOffers) {
+        val playerIds = AccountsTable
+            .select(AccountsTable.id, AccountsTable.name)
+            .associate { it[AccountsTable.name].lowercase() to it[AccountsTable.id] }
+        ActiveOffersTable.deleteAll()
+        extracted(offers.buyByItem, playerIds, sell = false)
+        extracted(offers.sellByItem, playerIds, sell = true)
+    }
+
+    private fun extracted(byItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>>, playerIds: Map<String, Int>, sell: Boolean) {
+        val offerData = byItem.flatMap { (item, value) -> value.flatMap { (price, list) -> list.map { offer -> Triple(item, price, offer) } } }
+        ActiveOffersTable.batchUpsert(offerData, ActiveOffersTable.playerId, ActiveOffersTable.id) { (item, price, offer) ->
+            this[ActiveOffersTable.playerId] = playerIds.getValue(offer.account.lowercase())
+            this[ActiveOffersTable.id] = offer.id
+            this[ActiveOffersTable.item] = item
+            this[ActiveOffersTable.remaining] = offer.remaining
+            this[ActiveOffersTable.price] = price
+            this[ActiveOffersTable.coins] = offer.coins
+            this[ActiveOffersTable.lastActive] = offer.lastActive
+            this[ActiveOffersTable.sell] = sell
+        }
+    }
+
+    private fun saveHistories(accounts: List<PlayerSave>, playerIds: Map<String, Int>) {
+        PlayerHistoryTable.deleteWhere { playerId inList playerIds.values }
+        val historyData = accounts.flatMap { save -> save.history.withIndex().map { Triple(save.name, it.index, it.value) } }
+        PlayerHistoryTable.batchUpsert(historyData, PlayerHistoryTable.playerId, PlayerHistoryTable.index) { (id, index, history) ->
+            this[PlayerHistoryTable.playerId] = playerIds.getValue(id.lowercase())
+            this[PlayerHistoryTable.index] = index
+            this[PlayerHistoryTable.item] = history.item
+            this[PlayerHistoryTable.amount] = history.amount
+            this[PlayerHistoryTable.coins] = history.coins
         }
     }
 
@@ -351,6 +521,29 @@ class DatabaseStorage : AccountStorage {
         inventoryName to items
     }
 
+    private fun loadOffers(playerId: Int): Array<ExchangeOffer> {
+        val array = Array(6) { ExchangeOffer.EMPTY }
+        OffersTable.selectAll().where { OffersTable.playerId eq playerId }.map { row ->
+            val id = row[OffersTable.id]
+            val index = row[OffersTable.index]
+            val item = row[OffersTable.item]
+            val amount = row[OffersTable.amount]
+            val price = row[OffersTable.price]
+            val state = row[OffersTable.state]
+            val completed = row[OffersTable.completed]
+            val coins = row[OffersTable.coins]
+            array[index] = ExchangeOffer(id = id, item = item, amount = amount, price = price, state = OfferState.valueOf(state), completed = completed, coins = coins)
+        }
+        return array
+    }
+
+    private fun loadHistory(playerId: Int): List<ExchangeHistory> = PlayerHistoryTable.selectAll().where { PlayerHistoryTable.playerId eq playerId }.map { row ->
+        val item = row[PlayerHistoryTable.item]
+        val amount = row[PlayerHistoryTable.amount]
+        val coins = row[PlayerHistoryTable.coins]
+        ExchangeHistory(item, amount, coins)
+    }
+
     companion object {
 
         fun connect(username: String, password: String, driver: String, url: String, poolSize: Int) {
@@ -369,7 +562,7 @@ class DatabaseStorage : AccountStorage {
             }
         }
 
-        internal val tables = arrayOf(AccountsTable, ExperienceTable, LevelsTable, VariablesTable, InventoriesTable)
+        internal val tables = arrayOf(AccountsTable, ExperienceTable, LevelsTable, VariablesTable, InventoriesTable, OffersTable, PlayerHistoryTable)
 
         private const val TYPE_STRING = 0.toByte()
         private const val TYPE_INT = 1.toByte()

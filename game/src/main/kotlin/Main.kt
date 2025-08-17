@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
+import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
@@ -23,6 +24,7 @@ import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
 import world.gregs.voidps.network.login.protocol.decoders
 import java.util.*
+import kotlin.concurrent.thread
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -31,6 +33,8 @@ import java.util.*
 object Main {
 
     private val logger = InlineLogger()
+    lateinit var server: GameServer
+        private set
 
     @OptIn(ExperimentalUnsignedTypes::class)
     @JvmStatic
@@ -40,7 +44,7 @@ object Main {
 
         // File server
         val cache = timed("cache") { Cache.load(settings) }
-        val server = GameServer.load(cache, settings)
+        server = GameServer.load(cache, settings)
         val job = server.start(Settings["network.port"].toInt())
 
         // Content
@@ -90,6 +94,11 @@ object Main {
             )
         }
         ContentLoader.load()
+        Runtime.getRuntime().addShutdownHook(
+            thread(start = false) {
+                World.emit(Despawn)
+            },
+        )
     }
 
     private fun cache(cache: Cache, files: ConfigFiles) = module {

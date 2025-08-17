@@ -108,6 +108,7 @@ examine = "She plays pipes."
 [goblin_musician]
 id = 8712
 song = 700
+dialogue = "old"
 categories = ["goblin"]
 examine = "Bang-bang good!"
 

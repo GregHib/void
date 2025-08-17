@@ -38,3 +38,7 @@ bank = [{id = "coins", amount = 420000000}, {}, {}, {}, {}, {}, {}, {}, {}, {}, 
 [social]
 friends = {"Greg" = "Friend"}
 ignores = ["Mod Murdoch"]
+
+[exchange]
+offers = [{id = 1, item = "item", amount = 4, price = 123, state = "PendingSell", completed = 1, coins = 321}]
+history = [{item = "item", amount = 123, price = 321}]

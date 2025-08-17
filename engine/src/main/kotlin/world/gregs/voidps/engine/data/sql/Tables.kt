@@ -103,3 +103,68 @@ internal object InventoriesTable : Table("inventories") {
         index(true, playerId, inventoryName)
     }
 }
+
+internal object OffersTable : Table("grand_exchange_offers") {
+    val playerId = integer("player_id").references(AccountsTable.id)
+    val id = integer("id")
+    val index = integer("index")
+    val item = text("item")
+    val amount = integer("amount")
+    val price = integer("price")
+    val state = text("state")
+    val completed = integer("completed").default(0)
+    val lastActive = long("last_active").default(0)
+    val coins = integer("coins").default(0)
+
+    init {
+        index(true, playerId, id, index)
+    }
+}
+
+internal object ActiveOffersTable : Table("grand_exchange_active_offers") {
+    val playerId = integer("player_id").references(AccountsTable.id)
+    val id = integer("id")
+    val item = text("item")
+    val remaining = integer("remaining")
+    val price = integer("price")
+    val coins = integer("coins").default(0)
+    val lastActive = long("last_active").default(0)
+    val sell = bool("sell").default(true)
+
+    init {
+        index(true, playerId, id)
+    }
+}
+
+internal object PlayerHistoryTable : Table("player_exchange_history") {
+    val playerId = integer("player_id").references(AccountsTable.id)
+    val index = integer("index")
+    val item = text("item")
+    val amount = integer("amount")
+    val coins = integer("coins")
+    init {
+        index(true, playerId, index)
+    }
+}
+
+internal object ClaimsTable : Table("grand_exchange_claims") {
+    val offerId = integer("offer_id").references(OffersTable.id)
+    val amount = integer("amount")
+    val coins = integer("coins")
+}
+
+internal object ItemHistoryTable : Table("grand_exchange_item_history") {
+    val item = text("item")
+    val timestamp = long("timestamp")
+    val timeframe = text("timeframe")
+    val open = integer("open")
+    val high = integer("high")
+    val low = integer("low")
+    val close = integer("close")
+    val volume = long("volume")
+    val count = integer("count")
+    val averageHigh = double("average_high")
+    val averageLow = double("average_low")
+    val volumeHigh = long("volume_high")
+    val volumeLow = long("volume_low")
+}

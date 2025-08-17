@@ -3,6 +3,10 @@
 parent = "chat_box"
 index = 9
 
+[chat_foreground]
+parent = "chat_box"
+index = 7
+
 [chat_box]
 fixedIndex = 191
 resizeIndex = 68

@@ -11,7 +11,7 @@ class SafeStorageTest {
     @TempDir
     private lateinit var dir: File
 
-    private lateinit var storage: AccountStorage
+    private lateinit var storage: Storage
 
     @BeforeEach
     fun setup() {
@@ -20,7 +20,7 @@ class SafeStorageTest {
 
     @Test
     fun `Store an account`() {
-        storage.save(listOf(AccountStorageTest.save))
+        storage.save(listOf(StorageTest.save))
         val files = dir.listFiles()
         assertFalse(files.isNullOrEmpty())
         val file = files!!.first()
