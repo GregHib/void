@@ -53,7 +53,7 @@ fun collect(player: Player, option: String, box: Int, index: Int) {
         TransactionError.None -> if (collectionBox.isEmpty()) {
             if (offer.state.cancelled) {
                 if (offer.completed > 0) {
-                    player.history.addFirst(ExchangeHistory(offer))
+                    player.history.add(0, ExchangeHistory(offer))
                 }
                 player.offers[box] = ExchangeOffer.EMPTY
                 exchange.offers.remove(offer)
