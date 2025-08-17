@@ -50,7 +50,7 @@ modCommand("test") {
 //    player.interfaces.sendItem("exchange_item_sets")
 }
 
-modCommand("commands") {
+modCommand("commands [list]") {
     val commands = if (player.isAdmin()) Command.adminCommands else Command.modCommands
     val list = listOf(
         "Commands list with descriptions and usage instructions in the format:",

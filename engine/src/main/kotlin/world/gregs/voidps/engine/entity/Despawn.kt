@@ -42,3 +42,7 @@ fun floorItemDespawn(item: String = "*", handler: suspend Despawn.(FloorItem) ->
 fun objectDespawn(obj: String = "*", handler: suspend Despawn.(GameObject) -> Unit) {
     Events.handle("object_despawn", obj, handler = handler)
 }
+
+fun worldDespawn(handler: suspend Despawn.(World) -> Unit) {
+    Events.handle("world_despawn", "world", handler = handler)
+}

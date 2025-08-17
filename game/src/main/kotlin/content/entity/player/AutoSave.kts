@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.settingsReload
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.worldDespawn
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.toTicks
@@ -17,6 +18,11 @@ val exchange: GrandExchange by inject()
 
 worldSpawn {
     autoSave()
+}
+
+worldDespawn {
+    saveQueue.direct(players).join()
+    exchange.save()
 }
 
 settingsReload {

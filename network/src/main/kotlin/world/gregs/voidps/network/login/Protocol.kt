@@ -84,6 +84,7 @@ object Protocol {
     const val CAMERA_RESET = 80
     const val MINIMAP_STATE = 104
     const val GRAND_EXCHANGE_SLOT = 101
+    const val SYSTEM_UPDATE = 56
 
     object Batch {
         const val FLOOR_ITEM_REMOVE = 0
@@ -111,10 +112,10 @@ object Protocol {
     const val UNKNOWN_4 = 18 // size 0
     const val UNKNOWN_5 = 40 // size -1
     const val UNKNOWN_7 = 39 // size 8
-    const val UNKNOWN_11 = 60 // size 0
+    const val UNKNOWN_11 = 60 // size 0 - force logout?
     const val UNKNOWN_14 = 92 // size -1
     const val WORLD_LIST_FULL = 98 // size -2
-    const val UNKNOWN_16 = 12 // size 0
+    const val UNKNOWN_16 = 12 // size 0 - clear all players
     const val UNKNOWN_19 = 49 // size 4
     const val UNKNOWN_20 = 69 // size 12
     const val UNKNOWN_21 = 64 // size 2
@@ -123,12 +124,11 @@ object Protocol {
     const val UNKNOWN_24 = 89 // size 0
     const val UNKNOWN_25 = 43 // size 4
     const val UNKNOWN_26 = 6 // size 2
-    const val UNKNOWN_27 = 56 // size 2
     const val UNKNOWN_28 = 63 // size 5
     const val UNKNOWN_29 = 93 // size -2
     const val UNKNOWN_30 = 59 // size 3
     const val UNKNOWN_31 = 1 // size 2
-    const val UNKNOWN_32 = 55 // size 0
+    const val UNKNOWN_32 = 55 // size 0 - 60 without boolean
     const val UNKNOWN_33 = 110 // size 10
     const val UNKNOWN_34 = 74 // size 28
     const val UNKNOWN_35 = 11 // size 6
@@ -138,7 +138,7 @@ object Protocol {
     const val UNKNOWN_39 = 87 // size 1
     const val UNKNOWN_40 = 67 // size 3
     const val UNKNOWN_41 = 14 // size 2
-    const val UNKNOWN_48 = 97 // size 0
+    const val UNKNOWN_48 = 97 // size 0 - clear packet/ping?
     const val UNKNOWN_49 = 62 // size 4
     const val UNKNOWN_52 = 22 // size 0
     const val UNKNOWN_54 = 96 // size 8

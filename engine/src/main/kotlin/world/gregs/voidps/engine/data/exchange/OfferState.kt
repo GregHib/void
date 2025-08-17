@@ -12,6 +12,9 @@ enum class OfferState(val int: Int) {
     val open: Boolean
         get() = this == OpenBuy || this == OpenSell
 
+    val pending: Boolean
+        get() = this == PendingBuy || this == PendingSell
+
     val sell: Boolean
         get() = int and 0x8 == 8
 

@@ -21,6 +21,9 @@ class OpenOffers(
 
     fun id(): Int = ++counter
 
+    val size: Int
+        get() = activity.size
+
     fun removeInactive(days: Int) {
         if (days <= 0) {
             return
@@ -56,14 +59,29 @@ class OpenOffers(
 
     fun sell(account: String, offer: ExchangeOffer): OpenOffer {
         val open = offer.open(account)
+        if (offer.item.isBlank()) {
+            return open
+        }
         sellByItem.getOrPut(offer.item) { TreeMap() }.getOrPut(offer.price) { mutableListOf() }.add(open)
         return open
     }
 
-    fun update(offer: ExchangeOffer, now: Long) {
+    fun update(account: String, offer: ExchangeOffer, now: Long) {
         val byItem = if (offer.sell) sellByItem else buyByItem
-        val open = byItem[offer.item]?.get(offer.price)?.firstOrNull { it.id == offer.id } ?: return
-        open.lastActive = now
+        val open = byItem[offer.item]?.get(offer.price)?.firstOrNull { it.id == offer.id }
+        if (open != null) {
+            open.lastActive = now
+            return
+        }
+        if (!offer.state.pending) {
+            return
+        }
+        // If server shutdown same tick as pending, add the open offer
+        if (offer.state.sell) {
+            sell(account, offer)
+        } else {
+            buy(account, offer)
+        }
     }
 
     fun selling(item: String): TreeMap<Int, MutableList<OpenOffer>> = sellByItem[item] ?: TreeMap()

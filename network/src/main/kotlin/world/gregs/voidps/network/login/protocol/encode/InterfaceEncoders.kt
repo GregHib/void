@@ -239,3 +239,10 @@ fun Client.grandExchange(slot: Int, state: Int = 0, item: Int = 0, price: Int = 
     writeInt(sold)
     writeInt(coins)
 }
+
+/**
+ * Send system update timer
+ */
+fun Client.systemUpdate(ticks: Int) = send(Protocol.SYSTEM_UPDATE) {
+    writeShort(ticks)
+}

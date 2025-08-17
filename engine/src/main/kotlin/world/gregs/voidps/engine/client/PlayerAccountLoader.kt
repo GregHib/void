@@ -33,6 +33,8 @@ class PlayerAccountLoader(
 ) : AccountLoader {
     private val logger = InlineLogger()
 
+    var update: Boolean = false
+
     override fun exists(username: String): Boolean = storage.exists(username)
 
     override fun password(username: String): String? = accountDefinitions.get(username)?.passwordHash
@@ -45,6 +47,10 @@ class PlayerAccountLoader(
             val saving = saveQueue.saving(username)
             if (saving) {
                 client.disconnect(Response.ACCOUNT_ONLINE)
+                return null
+            }
+            if (update) {
+                client.disconnect(Response.GAME_UPDATE)
                 return null
             }
             val player = storage.load(username)?.toPlayer() ?: accounts.create(username, passwordHash)

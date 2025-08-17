@@ -128,10 +128,14 @@ class FileStorage(
 
     override fun saveOffers(offers: OpenOffers) {
         val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
-        buy.mkdirs()
+        if (buy.deleteRecursively()) {
+            buy.mkdirs()
+        }
         saveOffers(buy, offers.buyByItem)
         val sell = directory.resolve(Settings["storage.grand.exchange.offers.sell.path"])
-        sell.mkdirs()
+        if (sell.deleteRecursively()) {
+            sell.mkdirs()
+        }
         saveOffers(sell, offers.sellByItem)
         val file = directory.resolve(Settings["storage.grand.exchange.offers.path"])
         Config.fileWriter(file) {
@@ -172,7 +176,9 @@ class FileStorage(
                     tree.getOrPut(price) { mutableListOf() }.add(offer)
                 }
             }
-            map[item] = tree
+            if (tree.isNotEmpty()) {
+                map[item] = tree
+            }
         }
     }
 
@@ -233,6 +239,7 @@ class FileStorage(
                         1 -> writeValue(claim.price)
                     }
                 }
+                write("\n")
             }
         }
     }

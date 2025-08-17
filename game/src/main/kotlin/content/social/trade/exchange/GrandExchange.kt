@@ -6,6 +6,7 @@ import content.social.trade.exchange.limit.BuyLimits
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -105,7 +106,11 @@ class GrandExchange(
         var claimed = false
         for (slot in 0 until 6) {
             val offer = player.offers.getOrNull(slot) ?: continue
-            offers.update(offer, now)
+            if (offer.isEmpty()) {
+                continue
+            }
+            offers.update(player.accountName, offer, now)
+            refresh(player, slot)
             val claim = claims.remove(offer.id) ?: continue
             claim(offer.id, player.accountName, offer.item, claim.amount, claim.price, offer.price, offer.sell)
             claimed = true
@@ -145,7 +150,7 @@ class GrandExchange(
         }
         pending.clear()
         limits.tick()
-        if (GameLoop.tick % 6000 == 0) { // 1 hour
+        if (GameLoop.tick > 0 && GameLoop.tick % 6000 == 0) { // 1 hour
             offers.removeInactive(Settings["grandExchange.offers.activeDays", 0])
             history.clean()
             history.calculatePrices()
@@ -154,9 +159,15 @@ class GrandExchange(
     }
 
     fun save() {
+        var start = System.currentTimeMillis()
         storage.savePriceHistory(history.history)
+        logger.info { "Saved ${history.history.size} item ${"history".plural(history.history.size)} in ${System.currentTimeMillis() - start}ms" }
+        start = System.currentTimeMillis()
         storage.saveClaims(claims)
+        logger.info { "Saved ${claims.size} exchange ${"claim".plural(claims.size)} in ${System.currentTimeMillis() - start}ms" }
+        start = System.currentTimeMillis()
         storage.saveOffers(offers)
+        logger.info { "Saved ${offers.size} open ${"offer".plural(offers.size)} in ${System.currentTimeMillis() - start}ms" }
     }
 
     private fun process(pending: PendingOffer) {
