@@ -656,18 +656,23 @@ id = 2676
 
 [key_treasure_trail_1]
 id = 2832
+examine = "A key to unlock a treasure chest."
 
 [key_treasure_trail_2]
 id = 2834
+examine = "A key to some drawers."
 
 [key_treasure_trail_3]
 id = 2836
+examine = "A key to some drawers."
 
 [key_treasure_trail_4]
 id = 2838
+examine = "A key to some drawers."
 
 [key_treasure_trail_5]
 id = 2840
+examine = "A key to a chest."
 
 [black_plateskirt_t]
 id = 3472

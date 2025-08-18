@@ -1,5 +1,6 @@
 [cooking_pot]
 id = 977
+examine = "A cooking pot."
 
 [cooking_pot_noted]
 id = 978
@@ -89,6 +90,7 @@ examine = "A holy warrior."
 
 [gnome]
 id = 3257
+examine = "Looks like a gnome to me."
 
 [hero]
 id = 3259
@@ -132,6 +134,7 @@ examine = "The tongue of evil."
 
 [jelly]
 id = 4142
+examine = "A slayer monster."
 
 [turoth]
 id = 4143
@@ -215,6 +218,7 @@ id = 5055
 
 [master_farmer]
 id = 5068
+examine = "A master at Farming."
 
 [bank_icon]
 id = 5080
@@ -224,12 +228,15 @@ id = 5092
 
 [seeds]
 id = 5171
+examine = "Some seeds."
 
 [spirit_tree]
 id = 6063
+examine = "A Spirit Tree."
 
 [elf]
 id = 6105
+examine = "One of the elven folk."
 
 [dark_beast]
 id = 6637
@@ -365,21 +372,27 @@ id = 9964
 
 [crimson_swift]
 id = 9965
+examine = "Not at all subtly coloured."
 
 [copper_longtail]
 id = 9966
+examine = "Its long tail affords it great manoeuvrability."
 
 [cerulean_twitch]
 id = 9967
+examine = "Nothing to get in a flap about."
 
 [golden_warbler]
 id = 9968
+examine = "This bird can be easily identified by its hideously annoying song."
 
 [tropical_wagtail]
 id = 9969
+examine = "Its colourful feathers make excellent fly fishing lures."
 
 [giant_eagle]
 id = 9974
+examine = "A very large, very dangerous looking birdy."
 
 [rabbit]
 id = 9975
@@ -403,15 +416,6 @@ kept = "Wilderness"
 id = 10591
 examine = "A terrifying dog beast."
 
-[run]
-id = 10947
-
-[sit_up]
-id = 10948
-
-[star_jump]
-id = 10949
-
 [molanisk]
 id = 10997
 examine = "That white dot looks like an eye!"
@@ -426,19 +430,24 @@ examine = "Eww, a bald rat!"
 
 [grubfoot]
 id = 11792
+examine = "Follower"
 
 [zanik_3]
 clone = "zanik"
 id = 11793
+examine = "Follower"
 
 [fire_beacon]
 id = 13662
+examine = "A fire beacon."
 
 [hartwin]
 id = 13757
+examine = "Follower object."
 
 [captain_undak]
 id = 14668
+examine = "Follower"
 
 [zanik_4]
 clone = "zanik"
@@ -450,12 +459,15 @@ id = 14670
 
 [erjolf]
 id = 14741
+examine = "	Erjolf."
 
 [leela]
 id = 14817
+examine = "Leela."
 
 [arrav]
 id = 15118
+examine = "Arrav."
 
 [aquanite]
 id = 15125
@@ -463,9 +475,11 @@ examine = "It has a light on its forehead. What a pretty light... So shiny!"
 
 [arianwyn]
 id = 15340
+examine = "Follower"
 
 [statue]
 id = 15368
+examine = "Forever standing guard."
 
 [desert_strykewyrm]
 id = 15498
@@ -481,21 +495,27 @@ examine = "Now that's just cold."
 
 [miner_1]
 id = 20085
+examine = "A dwarf lava-flow miner."
 
 [miner_2]
 id = 20086
+examine = "A dwarf lava-flow miner."
 
 [miner_3]
 id = 20087
+examine = "A dwarf lava-flow miner."
 
 [miner_4]
 id = 20088
+examine = "A dwarf lava-flow miner."
 
 [miner_5]
 id = 20089
+examine = "A dwarf lava-flow miner."
 
 [miner_6]
 id = 20090
+examine = "A dwarf lava-flow miner."
 
 [more]
 id = 10165
@@ -575,27 +595,36 @@ id = 19734
 
 [small_portrait]
 id = 8086
+examine = "Small portrait"
 
 [mounted_sword]
 id = 8090
+examine = "Mounted sword"
 
 [small_landscape]
 id = 8091
+examine = "Small landscape"
 
 [guild_trophy]
 id = 8092
+examine = "Guild Trophy"
 
 [large_portrait]
 id = 8093
+examine = "Large portrait"
 
 [large_landscape]
 id = 8094
+examine = "Large landscape"
 
 [low_level_plants]
 id = 8096
+examine = "Low-level plants"
 
 [mid_level_plants]
 id = 8097
+examine = "Mid-level plants"
 
 [high_level_plants]
 id = 8098
+examine = "High-level plants"

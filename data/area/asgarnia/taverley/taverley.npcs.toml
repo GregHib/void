@@ -15,6 +15,7 @@ examine = "He's a very important druid."
 
 [pikkupstix_spawn]
 id = 6988
+examine = "He's a very important druid."
 
 [pikkupstix_spawn_2]
 id = 6989

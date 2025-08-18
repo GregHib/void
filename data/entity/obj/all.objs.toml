@@ -1919,6 +1919,7 @@ examine = "This huge web blocks your path."
 
 [web_slashed]
 id = 734
+examine = "A huge web, cruelly slashed in half."
 
 [web_spider]
 id = 29354

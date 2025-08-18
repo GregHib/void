@@ -15,7 +15,7 @@ import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-internal class EnterTheAbyss : WorldTest() {
+internal class EnterTheAbyssTest : WorldTest() {
 
     override var loadNpcs: Boolean = true
 

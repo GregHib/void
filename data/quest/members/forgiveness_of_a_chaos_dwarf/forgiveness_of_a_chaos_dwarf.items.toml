@@ -21,6 +21,7 @@ examine = "The bag contains shot and powder for the hand cannon."
 
 [commander_veldaban]
 id = 15244
+examine = "Follower."
 
 [mysterious_slip]
 id = 15245

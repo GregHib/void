@@ -281,9 +281,11 @@ id = 14502
 
 [silif]
 id = 14503
+examine = "Works for Crux Eqal as a spy."
 
 [silif_2]
 id = 14504
+examine = "The Crux Eqal spy disguised in elite Black Knight armour."
 
 [teleorb_while_guthix_sleeps]
 id = 14505

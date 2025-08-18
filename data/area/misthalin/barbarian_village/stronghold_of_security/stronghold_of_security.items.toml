@@ -36,6 +36,7 @@ kept = "Vanish"
 [right_skull_half]
 clone = "skull"
 id = 9007
+examine = "Ooooh spooky!"
 
 [left_skull_half]
 id = 9008

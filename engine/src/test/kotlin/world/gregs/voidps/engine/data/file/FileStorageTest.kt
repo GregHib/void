@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.data.json
+package world.gregs.voidps.engine.data.file
 
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach

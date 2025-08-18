@@ -14,6 +14,7 @@ val quests = listOf(
     "the_restless_ghost",
     "rune_mysteries",
     "the_knights_sword",
+    "prince_ali_rescue",
     // mini-quests
     "enter_the_abyss",
 )

@@ -8,6 +8,7 @@ kept = "Vanish"
 
 [veldaban]
 id = 20092
+examine = "Follower."
 
 [pretty_flower]
 id = 20093

@@ -10,7 +10,6 @@ dependencies {
     implementation(project(":cache"))
     implementation(project(":network"))
     implementation(project(":types"))
-    implementation(project(":yaml"))
     implementation(project(":config"))
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
     implementation("net.pearx.kasechange:kasechange:${findProperty("kaseChangeVersion")}")

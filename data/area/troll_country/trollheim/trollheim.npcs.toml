@@ -19,15 +19,19 @@ examine = "Small for a troll, but it's mean, ugly and throws rocks."
 
 [thrower_troll_death_plateau_large]
 id = 1102
+clone = "thrower_troll_death_plateau"
 
 [thrower_troll_death_plateau_grey]
 id = 1103
+clone = "thrower_troll_death_plateau"
 
 [thrower_troll_death_plateau_large_2]
 id = 1104
+clone = "thrower_troll_death_plateau"
 
 [thrower_troll_death_plateau_large_3]
 id = 1105
+clone = "thrower_troll_death_plateau"
 
 [thrower_troll_trollheim]
 id = 1130

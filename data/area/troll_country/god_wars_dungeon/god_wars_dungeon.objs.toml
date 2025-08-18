@@ -31,6 +31,7 @@ id = 26294
 
 [godwars_saradomin_rock_bottom_base]
 id = 26445
+examine = "A fitting end to a worthless bot."
 
 [godwars_saradomin_rock_bottom]
 id = 26300
@@ -49,6 +50,7 @@ id = 26298
 
 [godwars_bandos_big_door]
 id = 26384
+examine = "What's this?"
 
 [armadyl_pillar_grapple]
 id = 26302
@@ -63,21 +65,26 @@ id = 26440
 
 [godwars_zamorak_bridge]
 id = 26439
+examine = "Looks like I'll have to jump for it."
 
 [godwars_boulder]
 id = 26338
+examine = "Looks like it might be moveable, if I am strong enough."
 
 [godwars_little_hole]
 id = 26305
+examine = "Maybe I can crawl through here."
 
 [godwars_knight_base]
 id = 26446
 
 [godwars_knight]
 id = 26306
+examine = "He's dead."
 
 [godwars_rope]
 id = 26293
+examine = "Good for climbing."
 
 [big_door_saradomin_opened]
 id = 26851

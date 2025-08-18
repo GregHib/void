@@ -1,0 +1,11 @@
+[run]
+id = 10947
+examine = "A sign."
+
+[sit_up]
+id = 10948
+examine = "A sign."
+
+[star_jump]
+id = 10949
+examine = "A sign."

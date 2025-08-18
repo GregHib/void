@@ -146,6 +146,7 @@ id = 780
 
 [waiting_room_door_closed]
 id = 15984
+examine = "Leads outside."
 
 [edgeville_dungeon_door_opened]
 id = 2529

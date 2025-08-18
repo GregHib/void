@@ -151,6 +151,7 @@ kept = "Reclaim"
 
 [broken_glass_the_dig_site] # Unobtainable
 id = 690
+examine = "Watch those feet!"
 
 [level_1_certificate]
 id = 691

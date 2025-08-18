@@ -259,6 +259,7 @@ kept = "Wilderness"
 [burnt_oomlie]
 clone = "burnt_chicken"
 id = 2426
+examine = "Oh dear, it's totally burnt!"
 
 [burnt_oomlie_noted]
 id = 2427

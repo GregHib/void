@@ -31,6 +31,7 @@ kept = "Reclaim"
 
 [elf_crystal]
 id = 4211
+examine = "Elf crystal."
 
 [new_crystal_bow]
 id = 4212

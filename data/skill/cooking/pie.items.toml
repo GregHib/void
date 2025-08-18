@@ -245,6 +245,7 @@ limit = 1000
 heals = 80
 excess = "admiral_pie_half"
 weight = 0.001
+examine = "Much tastier than a normal fish pie."
 
 [admiral_pie_noted]
 id = 7199
@@ -256,6 +257,7 @@ limit = 1000
 heals = 80
 excess = "pie_dish"
 weight = 0.001
+examine = "Much tastier than a normal fish pie."
 
 [admiral_pie_half_noted]
 id = 7201

@@ -497,6 +497,7 @@ examine = "This space reserved for a shockingly bad pun."
 
 [ancient_gate_opened]
 id = 2914
+examine = "This gate has a horribly complex locking mechanism."
 
 [ancient_gate_closed]
 id = 2912
@@ -504,6 +505,7 @@ examine = "This gate has a horribly complex locking mechanism."
 
 [ancient_gate_2_opened]
 id = 2915
+examine = "This gate has a horribly complex locking mechanism."
 
 [ancient_gate_2_closed]
 id = 2913
@@ -1290,6 +1292,7 @@ examine = "This area is closed off."
 
 [gate_220_closed]
 id = 37507
+examine = "This area is closed off."
 
 [gate_202]
 id = 34777

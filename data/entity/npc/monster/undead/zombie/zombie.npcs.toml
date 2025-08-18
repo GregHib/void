@@ -88,6 +88,7 @@ drop_table = "zombie_empty"
 combat_anims = "zombie"
 combat_sounds = "zombie"
 categories = ["zombies", "undead"]
+examine = "Dead woman walking."
 
 [zombie_blue_skirt_sword]
 id = 74
@@ -119,6 +120,7 @@ combat_anims = "zombie"
 combat_sounds = "zombie"
 drop_table = "zombie_armed"
 categories = ["zombies", "undead"]
+examine = "The walking dead."
 
 [zombie_green_shorts_sword]
 id = 75

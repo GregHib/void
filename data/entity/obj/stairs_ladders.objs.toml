@@ -8,21 +8,27 @@ examine = "It's a flight of stairs."
 
 [games_room_stairs_up]
 id = 4627
+examine = "They go up."
 
 [games_room_stairs_up_2]
 id = 4626
+examine = "They go up."
 
 [games_room_stairs_down]
 id = 4625
+examine = "They go down."
 
 [games_room_stairs_down_2]
 id = 4624
+examine = "They go down."
 
 [games_room_basement_stairs_up]
 id = 4622
+examine = "They go up."
 
 [games_room_basement_stairs_down]
 id = 4620
+examine = "They go down."
 
 [fist_of_guthix_stairs]
 id = 30203

@@ -340,6 +340,7 @@ kept = "Reclaim"
 id = 9106
 slot = "Hat"
 type = "HairMid"
+examine = "A tiara infused with the properties of the heavens."
 
 [hunter_kit]
 id = 11159

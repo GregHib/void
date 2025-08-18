@@ -57,8 +57,6 @@ class AccountDefinitions(
 
     fun load(storage: Storage = get()): AccountDefinitions {
         timedLoad("account") {
-            storage.migrate()
-
             for ((name, definition) in storage.names()) {
                 definitions[name.lowercase()] = definition
             }

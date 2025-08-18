@@ -4,3 +4,4 @@ examine = "Hot!"
 
 [stronghold_of_security_entrance]
 id = 16154
+examine = "The entrance to the Stronghold of Security."
