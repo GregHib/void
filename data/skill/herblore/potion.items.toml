@@ -1416,6 +1416,7 @@ id = 15300
 weight = 0.035
 excess = "recover_special_3"
 empty = "vial"
+aka = ["spec_restore", "special_restore", "special_restore_4", "spec_restore_4", "restore_special_4", "restore_spec_4", "spec"]
 examine = "4 doses of recover special potion."
 
 [recover_special_3]
