@@ -139,6 +139,7 @@ drop_table = "dwarf"
 combat_anims = "dwarf"
 combat_sounds = "dwarf"
 categories = ["dwarves"]
+examine = "A dwarven worker."
 
 [chaos_dwarf]
 id = 119

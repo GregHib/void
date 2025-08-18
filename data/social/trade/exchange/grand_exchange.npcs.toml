@@ -1,30 +1,40 @@
 [grand_exchange_clerk_ponytail]
 id = 6528
+examine = "There to help me make my bids."
 
 [grand_exchange_clerk_short]
 id = 6529
+examine = "There to help me make my bids."
 
 [grand_exchange_clerk_brown]
 id = 6530
+examine = "There to help me make my bids."
 
 [grand_exchange_clerk_blonde]
 id = 6531
+examine = "There to help me make my bids."
 
 [brugsen_bursen]
 id = 6522
+examine = "Knows all about the Grand Exchange."
 
 [grand_exchange_tutor]
 id = 6521
+examine = "Gives an introduction to the Grand Exchange."
 
 [farid_morrisane]
 id = 6523
 dialogue = "child"
+examine = "The son of Ali M!"
 
 [relobo_blinyo]
 id = 6526
+examine = "A tribal man, for sure."
 
 [murky_matt]
 id = 6525
+examine = "You can never miss a pirate in disguise."
 
 [hofuthand]
 id = 6527
+examine = "He's travelled a long way."
