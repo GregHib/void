@@ -3948,6 +3948,7 @@ price = 54500
 limit = 2
 weight = 2.0
 slot = "Weapon"
+god = "zaros"
 examine = "A blessed crozier."
 
 [ancient_crozier_noted]
@@ -3983,6 +3984,7 @@ price = 145800
 limit = 2
 weight = 0.4
 slot = "Cape"
+god = "zaros"
 examine = "A blessed cloak."
 
 [ancient_cloak_noted]
@@ -4022,6 +4024,7 @@ weight = 0.3
 aka = ["zaros_mitre"]
 slot = "Hat"
 type = "Hair"
+god = "zaros"
 examine = "A blessed mitre."
 
 [ancient_mitre_noted]
@@ -4045,6 +4048,7 @@ price = 127900
 limit = 2
 weight = 1.8
 slot = "Chest"
+god = "zaros"
 examine = "A vestment of Zaros."
 
 [ancient_robe_top_noted]
@@ -4092,6 +4096,7 @@ price = 128900
 limit = 2
 weight = 2.7
 slot = "Legs"
+god = "zaros"
 examine = "Legs that match the Zaros vestment."
 
 [ancient_robe_legs_noted]
@@ -4127,6 +4132,7 @@ price = 108100
 limit = 2
 weight = 0.01
 slot = "Amulet"
+god = "zaros"
 examine = "A blessed stole."
 
 [ancient_stole_noted]
@@ -4140,6 +4146,7 @@ weight = 9.979
 aka = ["zaros_platebody"]
 slot = "Chest"
 material = "metal"
+god = "zaros"
 examine = "A rune platebody in the colours of Zaros."
 
 [rune_platebody_ancient_noted]
@@ -4156,6 +4163,7 @@ weight = 9.071
 aka = ["zaros_platelegs"]
 slot = "Legs"
 material = "metal"
+god = "zaros"
 examine = "Rune platelegs in the colours of Zaros."
 
 [rune_platelegs_ancient_noted]
@@ -4172,6 +4180,7 @@ weight = 9.071
 aka = ["zaros_plateskirt"]
 slot = "Legs"
 material = "metal"
+god = "zaros"
 examine = "A rune plateskirt in the colours of Zaros."
 
 [rune_plateskirt_ancient_noted]
@@ -4189,6 +4198,7 @@ aka = ["zaros_full_helm"]
 slot = "Hat"
 material = "metal"
 type = "FullFace"
+god = "zaros"
 examine = "A rune full helmet in the colours of Zaros."
 
 [rune_full_helm_ancient_noted]
@@ -4205,6 +4215,7 @@ weight = 5.443
 aka = ["zaros_kiteshield"]
 slot = "Shield"
 material = "metal"
+god = "zaros"
 examine = "A rune kiteshield in the colours of Zaros."
 
 [rune_kiteshield_ancient_noted]
@@ -4382,6 +4393,7 @@ limit = 2
 weight = 1.0
 slot = "Hands"
 material = "leather"
+god = "zaros"
 examine = "Blessed dragonhide vambraces."
 
 [ancient_vambraces_noted]
@@ -4395,6 +4407,7 @@ weight = 6.0
 aka = ["zaros_body"]
 slot = "Chest"
 material = "leather"
+god = "zaros"
 examine = "Blessed dragonhide body armour."
 
 [ancient_body_noted]
@@ -4407,6 +4420,7 @@ limit = 2
 weight = 5.0
 slot = "Legs"
 material = "leather"
+god = "zaros"
 examine = "Blessed dragonhide chaps."
 
 [ancient_chaps_noted]
@@ -4421,6 +4435,7 @@ aka = ["zaros_coif"]
 slot = "Hat"
 material = "leather"
 type = "Hair"
+god = "zaros"
 examine = "Blessed dragonhide coif."
 
 [ancient_coif_noted]

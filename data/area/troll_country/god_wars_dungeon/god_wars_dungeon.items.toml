@@ -376,6 +376,7 @@ id = 20115
 limit = 2
 slot = "Hat"
 type = "FullFace"
+god = "zaros"
 examine = "A ceremonial mask dedicated to an ancient god."
 
 [ancient_ceremonial_top_2]
@@ -442,6 +443,7 @@ limit = 2
 weight = 0.453
 slot = "Hat"
 type = "FullFace"
+god = "zaros"
 examine = "A ceremonial mask dedicated to an ancient god."
 
 [ancient_ceremonial_mask_noted]
@@ -453,6 +455,7 @@ price = 282900
 limit = 2
 weight = 2.721
 slot = "Chest"
+god = "zaros"
 examine = "The top half of ceremonial robes dedicated to an ancient god."
 
 [ancient_ceremonial_top_noted]
@@ -464,6 +467,7 @@ price = 157300
 limit = 2
 weight = 1.814
 slot = "Legs"
+god = "zaros"
 examine = "The bottom half of ceremonial robes dedicated to an ancient god."
 
 [ancient_ceremonial_legs_noted]
@@ -475,6 +479,7 @@ price = 185000
 limit = 2
 weight = 0.453
 slot = "Hands"
+god = "zaros"
 examine = "Ceremonial gloves dedicated to an ancient god."
 
 [ancient_ceremonial_gloves_noted]
@@ -486,6 +491,7 @@ price = 84800
 limit = 2
 weight = 0.453
 slot = "Feet"
+god = "zaros"
 examine = "Ceremonial boots dedicated to an ancient god."
 
 [ancient_ceremonial_boots_noted]

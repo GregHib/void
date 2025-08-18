@@ -80,6 +80,7 @@ special_energy = 1000
 special = "favour_of_the_war_god"
 god = "bandos"
 slot = "Weapon"
+god = "zaros"
 examine = "It has ancient goblin symbols on it."
 
 [zanik_slice]
