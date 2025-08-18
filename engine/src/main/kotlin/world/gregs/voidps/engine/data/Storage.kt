@@ -12,11 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 interface Storage {
 
     /**
-     * Migrate any old formats to new
-     */
-    fun migrate() {}
-
-    /**
      * Loads all players account, display and previous names
      */
     fun names(): Map<String, AccountDefinition>

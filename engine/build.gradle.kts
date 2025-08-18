@@ -3,7 +3,6 @@ dependencies {
     implementation(project(":cache"))
     implementation(project(":network"))
     implementation(project(":types"))
-    implementation(project(":yaml"))
     implementation(project(":config"))
 
     implementation(kotlin("reflect"))

@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
-import world.gregs.voidps.engine.data.json.FileStorage
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.data.sql.DatabaseStorage
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting

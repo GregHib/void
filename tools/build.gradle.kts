@@ -4,7 +4,6 @@ dependencies {
     implementation(project(":engine"))
     implementation(project(":game"))
     implementation(project(":network"))
-    implementation(project(":yaml"))
     implementation(project(":config"))
     implementation(project(":types"))
 
