@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
+import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.type.random
 
 val areas: AreaDefinitions by inject()
@@ -76,13 +77,17 @@ huntNPC(mode = "anti_zamorak_aggressive") { npc ->
 }
 
 npcSpawn { npc ->
+    if (npc.queue.contains(ActionPriority.Strong)) {
+        // Ignore re-spawns
+        return@npcSpawn
+    }
     randomHuntMode(npc)
 }
 
 npcDeath { npc ->
     val killer = npc.killer
     if (killer is NPC) {
-        randomHuntMode(npc)
+        randomHuntMode(killer)
     } else if (killer is Player) {
         val god = npc.def["god", ""]
         if (god != "") {
@@ -92,7 +97,12 @@ npcDeath { npc ->
 }
 
 fun randomHuntMode(npc: NPC) {
-    if (npc.tile in dungeon && (npc.def["hunt_mode", ""] == "zamorak_aggressive" || npc.def["hunt_mode", ""] == "anti_zamorak_aggressive")) {
-        npc["hunt_mode"] = if (random.nextBoolean()) npc.def["hunt_mode"] else "godwars_aggressive"
+    if (npc.tile !in dungeon) {
+        return
     }
+    val huntMode = npc.def["hunt_mode", ""]
+    if (huntMode != "zamorak_aggressive" && huntMode != "anti_zamorak_aggressive" && huntMode != "godwars_aggressive") {
+        return
+    }
+    npc["hunt_mode"] = if (random.nextBoolean()) npc.def["hunt_mode"] else "godwars_aggressive"
 }
