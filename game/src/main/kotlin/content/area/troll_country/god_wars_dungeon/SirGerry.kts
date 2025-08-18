@@ -68,7 +68,7 @@ objectOperate("Tie-rope", "godwars_hole") {
         player.inventory.remove("rope")
         player["godwars_entrance_rope"] = true
     } else {
-        npc<Scared>("sir_gerry", "Cough... Hey, over here.")
+        npc<Scared>("sir_gerry_normal", "Cough... Hey, over here.")
     }
 }
 
