@@ -20,7 +20,6 @@ interfaceOpen("travel_log") { player ->
     val list: List<String> = player["travel_log_locations"] ?: return@interfaceOpen
     for ((code, def) in fairyRing.codes) {
         if (list.contains(code)) {
-            println(code)
             player.interfaces.sendText(id, def.id.lowercase(), "<br>${def.name}")
         }
     }
