@@ -50,7 +50,7 @@ inventoryOptions("Eat", "Drink", "Heal") {
     } else {
         player.message("You ${if (drink) "drink" else "eat"} the ${item.def.name.lowercase()}.", ChatType.Filter)
     }
-    player.sound(if (drink) "pour_tea" else "eat")
+    player.sound(if (drink) "drink" else "eat")
     player.emit(Consume(item, slot))
     if (smash) {
         player.message("You quickly smash the empty vial using the trick a Barbarian taught you.", ChatType.Filter)
