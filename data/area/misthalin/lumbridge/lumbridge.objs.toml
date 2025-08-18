@@ -88,6 +88,7 @@ examine = "An ornate statuette of a demon holding a large ruby."
 
 [diamond_demon_statuette_barrier]
 id = 48676
+examine = "An ornate statuette of a demon holding a large diamond."
 
 [diamond_demon_statuette]
 id = 48675
@@ -95,6 +96,7 @@ examine = "An ornate statuette of a demon holding a large diamond."
 
 [taken_demon_statuette]
 id = 48663
+examine = "A plinth that once supported one of Dragith Nurn's demon statuettes."
 
 [sage_backpack]
 id = 33510

@@ -24,6 +24,7 @@ class ObjectDefinitions(
     fun load(paths: List<String>): ObjectDefinitions {
         timedLoad("object extra") {
             val ids = Object2IntOpenHashMap<String>()
+            ids.defaultReturnValue(-1)
             for (path in paths) {
                 Config.fileReader(path) {
                     while (nextSection()) {
@@ -38,9 +39,9 @@ class ObjectDefinitions(
                                 "mining" -> extras[key] = Rock(this)
                                 "clone" -> {
                                     val name = string()
-                                    val npc = ids.getInt(name)
-                                    require(npc >= 0) { "Cannot find object id to clone '$name'" }
-                                    val definition = definitions[npc]
+                                    val obj = ids.getInt(name)
+                                    require(obj >= 0) { "Cannot find object id to clone '$name'" }
+                                    val definition = definitions[obj]
                                     extras.putAll(definition.extras ?: continue)
                                 }
                                 "categories" -> {

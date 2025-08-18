@@ -8,6 +8,7 @@ examine = "There's a cover over this manhole."
 
 [varrock_manhole_open]
 id = 882
+examine = "How dangerous, someone has left this manhole open."
 
 [bank_booth_varrock]
 id = 11402

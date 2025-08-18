@@ -1,175 +1,175 @@
 [fairy_ring_zanaris]
-clone = "fairy_ring"
 id = 12094
+examine = "Better not eat them!"
 
 [fairy_ring_zanaris_2]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 12128
 
 [fairy_ring_piscatoris_hunter_area]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14058
 
 [fairy_ring_south_of_witchaven]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14061
 
 [fairy_ring_mudskipper_point]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14064
 
 [fairy_ring_mcgrubors_wood]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14067
 
 [fairy_ring_abyss]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14070
 
 [fairy_ring_jungle_hunter_area]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14073
 
 [fairy_ring_penguins_near_miscellania]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14076
 
 [fairy_ring_south_east_of_rellekka]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14079
 
 [fairy_ring_wizards_tower]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14082
 
 [fairy_ring_goraks_plane]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14085
 
 [fairy_ring_poison_waste_south_of_isafdar]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14088
 
 [fairy_ring_kharidian_desert_north_of_nardah]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14091
 
 [fairy_ring_fairy_queens_hideout]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14094
 
 [fairy_ring_edgeville]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14097
 
 [fairy_ring_tower_of_life]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14100
 
 [fairy_ring_snowy_hunter_area]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14103
 
 [fairy_ring_sinclair_mansion]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14106
 
 [fairy_ring_miscellania]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14109
 
 [fairy_ring_north_west_of_yanille]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14112
 
 [fairy_ring_south_of_draynor_village]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14115
 
 [fairy_ring_jungle_spiders_near_yanille]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14118
 
 [fairy_ring_canifis]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14121
 
 [fairy_ring_cosmic_entitys_plane]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14127
 
 [fairy_ring_south_of_tai_bwo_wannai]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14130
 
 [fairy_ring_south_west_of_mort_myre]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14133
 
 [fairy_ring_ardougne_zoo]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14136
 
 [fairy_ring_kharidian_desert_near_kalphite_hive]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14142
 
 [fairy_ring_legends_guild]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14145
 
 [fairy_ring_haunted_woods_east_of_canifis]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14148
 
 [fairy_ring_south_of_castle_wars]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14151
 
 [fairy_ring_mort_myre_south_of_canifis]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14154
 
 [fairy_ring_realm_of_the_fisher_king]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 14160
 
 [fairy_ring_karamja_south_of_musa_point]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 16184
 
 [fairy_ring_ancient_cavern]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 17012
 
 [fairy_ring_dorgesh_kaan_dungeon]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 23047
 
 [fairy_ring_dorgesh_kaan_dungeon_2]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 27325
 
 [fairy_ring_tzhaar_area]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 37727
 
 [fairy_ring_sparse_plane]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 52609
 
 [fairy_ring_mos_le_harmless]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 52613
 
 [fairy_ring_gu_tanoth_cave]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 52666
 
 [fairy_ring_orks_rift]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 52673
 
 [fairy_ring_ape_atoll]
-clone = "fairy_ring"
+clone = "fairy_ring_zanaris"
 id = 52679

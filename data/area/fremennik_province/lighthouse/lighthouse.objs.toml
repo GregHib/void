@@ -1,29 +1,39 @@
 [beach]
 id = 4550
+examine = "Safety!"
 
 [basalt_rock_start]
 id = 4551
+examine = "I can jump off this one."
 
 [basalt_rock_2]
 id = 4552
+examine = "I can jump off this one."
 
 [basalt_rock_3]
 id = 4553
+examine = "I can jump off this one."
 
 [basalt_rock_4]
 id = 4554
+examine = "I can jump off this one."
 
 [basalt_rock_5]
 id = 4555
+examine = "I can jump off this one."
 
 [basalt_rock_6]
 id = 4556
+examine = "I can jump off this one."
 
 [basalt_rock_7]
 id = 4557
+examine = "I can jump off this one."
 
 [basalt_rock_end]
 id = 4558
+examine = "I can jump off this one."
 
 [rocky_shore]
 id = 4559
+examine = "It looks barren."
