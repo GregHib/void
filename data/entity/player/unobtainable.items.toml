@@ -54,63 +54,83 @@ examine = "For use on daggers and projectiles. "
 
 [unfinished_cocktail_pineapple_punch_mixed]
 id = 2042
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_blurberry_special_mixed]
 id = 2056
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_blurberry_special_orange]
 id = 2058
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_blurberry_special_lemon]
 id = 2060
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_blurberry_special_lime]
 id = 2062
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_choc_saturday_mixed]
 id = 2066
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_choc_saturday_chocolate_bar]
 id = 2068
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_choc_saturday_heated]
 id = 2070
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_choc_saturday_cream]
 id = 2072
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_short_green_guy_mixed]
 id = 2076
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_short_green_guy_lime]
 id = 2078
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_fruit_blast]
 id = 2082
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_pineapple_punch_lime]
 id = 2044
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_pineapple_punch_pineapple]
 id = 2046
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_wizard_blizzard_mixed]
 id = 2050
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_wizard_blizzard_pineapple]
 id = 2052
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_drunk_dragon_mixed]
 id = 2086
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_drunk_dragon_pineapple]
 id = 2088
+examine = "This cocktail is just missing those little finishing touches."
 
 [unfinished_cocktail_drunk_dragon_cream]
 id = 2090
+examine = "This cocktail is just missing those little finishing touches."
 
 [equa_toads_legs]
 id = 2154
+examine = "They're a gnome delicacy apparently."
 
 [odd_batta]
 id = 2245
@@ -152,57 +172,68 @@ id = 2216
 
 [unfinished_batta_cheese_and_tomato]
 id = 2257
+examine = "This batta is just missing those little finishing touches."
 
 [unfinished_batta_fruit_baked]
 id = 2261
+examine = "This batta is just missing those little finishing touches."
 
 [unfinished_batta_fruit_baked_noted]
 id = 2262
 
 [unfinished_batta_fruit_lime]
 id = 2263
+examine = "This batta is just missing those little finishing touches."
 
 [unfinished_batta_fruit_lime_noted]
 id = 2264
 
 [unfinished_batta_fruit_orange]
 id = 2265
+examine = "This batta is just missing those little finishing touches."
 
 [unfinished_batta_fruit_orange_noted]
 id = 2266
 
 [unfinished_batta_fruit_pineapple]
 id = 2267
+examine = "This batta is just missing those little finishing touches."
 
 [unfinished_batta_fruit_pineapple_noted]
 id = 2268
 
 [unfinished_batta_fruit_lime_orange]
 id = 2269
+examine = "This batta is just missing those little finishing touches."
 
 [unfinished_batta_fruit_lime_orange_noted]
 id = 2270
 
 [unfinished_batta_fruit_lime_pineapple]
 id = 2271
+examine = "This batta is just missing those little finishing touches."
 
 [unfinished_batta_fruit_lime_pineapple_noted]
 id = 2272
 
 [unfinished_batta_fruit_orange_pineapple]
 id = 2273
+examine = "This batta is just missing those little finishing touches."
 
 [unfinished_batta_fruit_orange_pineapple_noted]
 id = 2274
 
 [unfinished_batta_fruit_lime_orange_pineapple]
 id = 2275
+examine = "This batta is just missing those little finishing touches."
 
 [unfinished_batta_vegetable]
 id = 2279
+examine = "This batta is just missing those little finishing touches.	"
 
 [unfinished_batta_worm]
 id = 2251
+examine = "This batta is just missing those little finishing touches."
 
 [odd_batta_noted]
 id = 2246
@@ -237,96 +268,123 @@ examine = "A flying Magic carpet."
 
 [poison_dagger_p+] 
 id = 5684
+examine = "The blade is covered with poison."
 
 [poison_dagger_p+_noted]
 id = 5685
 
 [poison_dagger_p++]
 id = 5702
+examine = "The blade is covered with poison."
 
 [poison_dagger_p++_noted]
 id = 5703
 
 [stool_dairy_cow_anim]
 id = 5732
+examine = "A stool for milking"
 
 [stool_dairy_cow_anim_noted]
 id = 6060
 
 [spirit_roots]
 id = 6053
+examine = "The roots of the Spirit tree."
 
 [spirit_roots_noted]
 id = 6054
 
 [dummy_2]
 id = 7586
+examine = "All is white!"
 
-[item]
+[item_digger_apron]
 id = 7597
+examine = "It seems bleached with age."
 
-[item_2]
+[item_digger_bones]
 id = 7598
+examine = "It seems bleached with age."
 
-[item_3]
+[item_digger_bowl_empty]
 id = 7599
+examine = "It seems bleached with age."
 
-[item_4]
+[item_digger_cake]
 id = 7600
+examine = "It seems bleached with age."
 
-[item_5]
+[item_digger_chefshat]
 id = 7601
+examine = "It seems bleached with age."
 
-[item_6]
+[item_digger_dibber]
 id = 7602
+examine = "It seems bleached with age."
 
-[item_7]
+[item_digger_hatchet]
 id = 7603
+examine = "It seems bleached with age."
 
-[item_8]
+[item_digger_kebab]
 id = 7604
+examine = "It seems bleached with age."
 
-[item_9]
+[item_digger_knife]
 id = 7605
+examine = "It seems bleached with age."
 
-[item_10]
+[item_digger_nuggets]
 id = 7606
+examine = "It seems bleached with age."
 
-[item_11]
+[item_digger_pick_axe]
 id = 7607
+examine = "It seems bleached with age."
 
-[item_12]
+[item_digger_plant_pot_empty]
 id = 7608
+examine = "It seems bleached with age."
 
-[item_13]
+[item_digger_potato_seeded]
 id = 7609
+examine = "It seems bleached with age."
 
-[item_14]
+[item_digger_secateurs]
 id = 7610
+examine = "It seems bleached with age."
 
-[item_15]
+[item_digger_skull]
 id = 7611
+examine = "It seems bleached with age."
 
-[item_16]
+[item_digger_woodlogs]
 id = 7612
+examine = "It seems bleached with age."
 
-[item_17]
+[item_digger_pot_empty]
 id = 7613
+examine = "It seems bleached with age."
 
-[item_18]
+[item_digger_stoneaxe]
 id = 7614
+examine = "It seems bleached with age."
 
-[item_19]
+[item_digger_stonecook]
 id = 7615
+examine = "It seems bleached with age."
 
-[item_20]
+[item_digger_stonemine]
 id = 7616
+examine = "It seems bleached with age."
 
-[item_21]
+[item_digger_stonespade]
 id = 7617
+examine = "It seems bleached with age."
 
-[item_22]
+[item_digger_stonevase]
 id = 7618
+examine = "It seems bleached with age."
 
 [hatchet_handle_2]
 id = 7952
@@ -337,6 +395,7 @@ id = 7953
 
 [flatpack_globe]
 id = 8630
+examine = "How does it all fit in there?"
 
 [flatpack_globe_noted]
 id = 8631
@@ -352,6 +411,7 @@ id = 9701
 
 [stick_2]
 id = 9702
+examine = "Random stick."
 
 [rock]
 id = 9716
@@ -365,8 +425,9 @@ tradeable = false
 id = 9816
 tradeable = false
 
-[scroll]
+[watchtower_scroll]
 id = 10485
+examine = "A scroll."
 
 [thingy] # Unreleased
 id = 10567
@@ -927,6 +988,7 @@ tradeable = false
 [ham_shirt_2]
 id = 11274
 tradeable = false
+examine = "A vivid crimson shirt."
 
 [mithril_grapple_unf_noted]
 id = 11275
@@ -936,6 +998,7 @@ id = 11276
 
 [logs_3]
 id = 11760
+examine = "A number of wooden logs."
 
 [black_cane_2]
 id = 13163
@@ -1083,9 +1146,11 @@ tradeable = false
 
 [bones_3]
 id = 14693
+examine = "Bones are for burying!"
 
 [beer_2]
 id = 14712
+examine = "Please enjoy beer responsibly."
 
 [elite_black_platelegs_2]
 id = 14729

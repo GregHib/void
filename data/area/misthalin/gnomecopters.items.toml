@@ -1,6 +1,7 @@
 [gnomecopter]
 id = 12842
 slot = "Cape"
+examine = "A flying machine made from wood and magical fabric."
 
 [gnomecopter_ticket]
 id = 12843

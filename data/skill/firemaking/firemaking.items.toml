@@ -29,6 +29,7 @@ kept = "Wilderness"
 
 [torch]
 id = 595
+examine = "A lit home-made torch."
 
 [unlit_torch]
 id = 596

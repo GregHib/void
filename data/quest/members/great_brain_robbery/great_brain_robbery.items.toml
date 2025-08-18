@@ -120,7 +120,8 @@ kept = "Wilderness"
 
 [skull_staples] # Unobtainable
 id = 10950
-examine = "Five skull staples. "
+examine = "Five skull staples."
 
 [skull_staples_2] # Unobtainable
 id = 10951
+examine = "Five skull staples."

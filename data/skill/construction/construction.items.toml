@@ -803,6 +803,7 @@ examine = "A tablet containing a magic spell."
 
 [telekinetic_grab] # Unobtainable
 id = 8022
+examine = "A tablet containing a magic spell."
 
 [boxing_ring]
 id = 8023
@@ -1081,15 +1082,19 @@ examine = "A dusty old suit of armour."
 
 [minor_head]
 id = 8087
+examine = "Teak mounted head display"
 
 [medium_head]
 id = 8088
+examine = "Mahogany mounted head display"
 
 [major_head]
 id = 8089
+examine = "Gilded mounted head display"
 
 [rune_display_case]
 id = 8095
+examine = "Rune display case"
 
 [rope_bell_pull]
 id = 8099
@@ -1121,6 +1126,7 @@ examine = "A shield with a family crest icon on it."
 
 [square_shield]
 id = 8106
+examine = "Square wall-mounted shield"
 
 [kite_shield]
 id = 8107
@@ -1222,9 +1228,11 @@ examine = "A rather macabre decoration."
 
 [candles]
 id = 8128
+examine = "Dungeon candles"
 
 [torches]
 id = 8129
+examine = "Dungeon torches"
 
 [skull_torches]
 id = 8130
@@ -1232,6 +1240,7 @@ examine = "Even a dungeon needs light!"
 
 [skeleton_guard]
 id = 8131
+examine = "Skeleton guard"
 
 [guard_dog]
 id = 8132
@@ -1239,6 +1248,7 @@ examine = "He doesn't seem pleased to see me."
 
 [hobgoblin_guard]
 id = 8133
+examine = "Hobgoblin guard"
 
 [baby_red_dragon]
 id = 8134
@@ -1246,9 +1256,11 @@ examine = "Young but still dangerous."
 
 [huge_spider]
 id = 8135
+examine = "Huge spider"
 
 [troll_guard]
 id = 8136
+examine = "Troll guard"
 
 [hellhound]
 id = 8137
@@ -1256,6 +1268,7 @@ examine = "Good doggie..."
 
 [demon]
 id = 8138
+examine = "Demon"
 
 [kalphite_soldier]
 id = 8139
@@ -1267,6 +1280,7 @@ examine = "I don't like the look of those spines..."
 
 [dagannoth]
 id = 8141
+examine = "Dagannoth"
 
 [steel_dragon]
 id = 8142
@@ -1282,6 +1296,7 @@ examine = "Watch out!"
 
 [tangle_vine]
 id = 8145
+examine = "Tangle vine"
 
 [marble_trap]
 clone = "man_trap"
@@ -1317,6 +1332,7 @@ examine = "See how much damage you can do to it!"
 
 [attack_stone]
 id = 8154
+examine = "Limestone attack stone"
 
 [marble_att_stone]
 id = 8155
@@ -1324,12 +1340,15 @@ examine = "Try to damage it!"
 
 [magical_balance_1]
 id = 8156
+examine = "Lesser magical balance"
 
 [magical_balance_2]
 id = 8157
+examine = "Medium balance"
 
 [magical_balance_3]
 id = 8158
+examine = "Greater magical balance"
 
 [jester]
 id = 8159
@@ -1389,6 +1408,7 @@ examine = "What horrors lurk below?"
 
 [tree]
 id = 8173
+examine = "Tree"
 
 [nice_tree]
 id = 8174
@@ -1721,12 +1741,15 @@ id = 8254
 
 [marble_staircase]
 id = 8255
+examine = "Marble staircase"
 
 [marble_staircase_2]
 id = 8256
+examine = "Marble staircase"
 
 [marble_staircase_3]
 id = 8257
+examine = "Marble staircase"
 
 [spiral_staircase]
 id = 8258
@@ -1734,6 +1757,7 @@ examine = "I can climb up or go down these stairs."
 
 [marble_spiral]
 id = 8259
+examine = "Marble spiral"
 
 [crawling_hand_3]
 clone = "crawling_hand"
@@ -1798,6 +1822,7 @@ examine = "Varies between item - A[item name] with finely detailed decoration"
 
 [intricate_decorative_armour]
 id = 8275
+examine = "Castlewars armour 3"
 
 [rune_case_1]
 id = 8276
@@ -1851,9 +1876,11 @@ kept = "Wilderness"
 
 [king_arthur]
 id = 8285
+examine = "Portrait of King Arthur"
 
 [elena]
 id = 8286
+examine = "Portrait of Elena"
 
 [giant_dwarf]
 id = 8287
@@ -1865,6 +1892,7 @@ examine = "A portrait of Prince Brand and Princess Astrid of Miscellania."
 
 [lumbridge]
 id = 8289
+examine = "Painting of Lumbridge"
 
 [the_desert]
 id = 8290
@@ -1872,12 +1900,15 @@ examine = "The Deserts of Kharidian."
 
 [morytania]
 id = 8291
+examine = "Painting of Morytania"
 
 [karamja]
 id = 8292
+examine = "Painting of Karamja"
 
 [isafdar]
 id = 8293
+examine = "Painting of Isafdar"
 
 [small_map_2]
 clone = "small_map"
@@ -1928,6 +1959,7 @@ examine = "Not very pleasant."
 
 [rocnar]
 id = 8305
+examine = "Rocnar"
 
 [oak_ladder]
 id = 8306
@@ -1935,6 +1967,7 @@ examine = "An oak ladder."
 
 [teak_ladder]
 id = 8307
+examine = "Teak oubliette ladder"
 
 [mahogany_ladder]
 id = 8308
@@ -2292,60 +2325,79 @@ examine = "You can make a banner with your logo on here."
 
 [parlour]
 id = 8395
+examine = "A room."
 
 [kitchen]
 id = 8396
+examine = "A room."
 
 [dining_room]
 id = 8397
+examine = "A room."
 
 [bedroom]
 id = 8398
+examine = "A room."
 
 [games_room]
 id = 8399
+examine = "A room."
 
 [combat_room]
 id = 8400
+examine = "A room."
 
 [hall]
 id = 8401
+examine = "A room."
 
 [hall_2]
 id = 8402
+examine = "A room."
 
 [hall_3]
 id = 8403
+examine = "A room."
 
 [hall_4]
 id = 8404
+examine = "A room."
 
 [chapel]
 id = 8405
+examine = "A room."
 
 [workshop]
 id = 8406
+examine = "A room."
 
 [study]
 id = 8407
+examine = "A room."
 
 [portal_chamber]
 id = 8408
+examine = "A room."
 
 [throne_room]
 id = 8409
+examine = "A room."
 
 [oubliette]
 id = 8410
+examine = "A room."
 
 [treasure_room]
 id = 8414
+examine = "A room."
 
 [garden]
 id = 8415
+examine = "A room."
 
 [formal_garden]
 id = 8416
+examine = "A room."
 
 [bagged_dead_tree]
 clone = "thorny_hedge"
@@ -4125,6 +4177,7 @@ examine = "A ready-to-assemble teak cape rack.."
 
 [mgany_cape_rack]
 id = 9819
+examine = "Mahogany cape rack"
 
 [gilded_cape_rack]
 id = 9820
@@ -4151,6 +4204,7 @@ id = 9824
 
 [mahogany_cos_box]
 id = 9825
+examine = "Mahogany fancy dress box"
 
 [oak_armour_case]
 id = 9826
@@ -4231,6 +4285,7 @@ id = 9841
 
 [costume_room]
 id = 9842
+examine = "A room."
 
 [oak_cape_rack_flatpack]
 id = 9843
@@ -4484,6 +4539,7 @@ id = 9892
 
 [menagerie]
 id = 15221
+examine = "30000 coins"
 
 [garden_habitat]
 id = 15222
@@ -4585,9 +4641,11 @@ examine = "Its scales are made of iron."
 
 [minor_pit_trap]
 id = 18797
+examine = "Minor, but still painful."
 
 [major_pit_trap]
 id = 18798
+examine = "Highly painful."
 
 [superior_pit_trap]
 id = 18799
@@ -4595,3 +4653,4 @@ examine = "Extremely painful."
 
 [dungeon_pit]
 id = 18800
+examine = "A room."

@@ -55,12 +55,16 @@ kept = "Reclaim"
 
 [summer_garden]
 id = 10852
+examine = "Part of the Sorceress's Garden minigame."
 
 [spring_garden]
 id = 10853
+examine = "Part of the Sorceress's Garden minigame."
 
 [autumn_garden]
 id = 10854
+examine = "Part of the Sorceress's Garden minigame."
 
 [winter_garden]
 id = 10855
+examine = "Part of the Sorceress's Garden minigame."

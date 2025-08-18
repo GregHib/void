@@ -250,6 +250,7 @@ id = 6925
 
 [bones_to_peaches_spell]
 id = 6926
+examine = "A spell to turn bones to peaches."
 
 [coins_mage_training_arena]
 id = 8890

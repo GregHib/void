@@ -1032,10 +1032,12 @@ id = 4953
 degrade = "torags_helm_50"
 
 [torags_helm_50]
+clone = "torags_helm_100"
 id = 4954
 degrade = "torags_helm_25"
 
 [torags_helm_25]
+clone = "torags_helm_100"
 id = 4955
 degrade = "torags_helm_broken"
 

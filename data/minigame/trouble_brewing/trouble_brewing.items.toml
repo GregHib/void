@@ -402,6 +402,7 @@ kept = "Wilderness"
 [torch_2]
 id = 8987
 slot = "Weapon"
+examine = "A flaming torch."
 
 [the_stuff]
 id = 8988

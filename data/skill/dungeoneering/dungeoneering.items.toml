@@ -3412,6 +3412,7 @@ tradeable = false
 slot = "Weapon"
 type = "TwoHanded"
 weight = 4.989
+examine = "A maul used to claim life from those who don't deserve it."
 
 [primal_maul_bound]
 id = 16184
@@ -4880,6 +4881,7 @@ id = 16423
 slot = "Weapon"
 type = "TwoHanded"
 weight = 4.989
+examine = "A maul used to claim life from those who don't deserve it."
 
 [promethium_maul_noted]
 id = 16424
@@ -12840,6 +12842,7 @@ examine = "The gloves of a mercenary."
 
 [dungeoneering_experience]
 id = 18348
+examine = "Experience all the way!"
 
 [chaotic_rapier]
 id = 18349
@@ -13127,6 +13130,7 @@ examine = "The spiritual remains of a defender of the dungeons."
 
 [stalker]
 id = 18507
+examine = "A Slayer monster."
 
 [cub_bloodrager_pouch_noted]
 id = 18511
@@ -13342,81 +13346,107 @@ id = 18579
 
 [scroll_3]
 id = 18586
+examine = "A scroll"
 
 [scroll_4]
 id = 18587
+examine = "A scroll"
 
 [scroll_5]
 id = 18588
+examine = "A scroll"
 
 [scroll_6]
 id = 18589
+examine = "A scroll"
 
 [scroll_7]
 id = 18590
+examine = "A scroll"
 
 [scroll_8]
 id = 18591
+examine = "A scroll"
 
 [scroll_9]
 id = 18592
+examine = "A scroll"
 
 [scroll_10]
 id = 18593
+examine = "A scroll"
 
 [herb]
 id = 18594
+examine = "A herb."
 
 [herb_2]
 id = 18595
+examine = "A herb."
 
 [herb_3]
 id = 18596
+examine = "A herb."
 
 [herb_4]
 id = 18597
+examine = "A herb."
 
 [herb_5]
 id = 18598
+examine = "A herb."
 
 [herb_6]
 id = 18599
+examine = "A herb."
 
 [herb_7]
 id = 18600
+examine = "A herb."
 
 [herb_8]
 id = 18601
+examine = "A herb."
 
 [scroll_11]
 id = 18602
+examine = "A scroll"
 
 [scroll_12]
 id = 18603
+examine = "A scroll"
 
 [herb_9]
 id = 18604
+examine = "A herb."
 
 [herb_10]
 id = 18605
+examine = "A herb."
 
 [herb_11]
 id = 18606
+examine = "A herb."
 
 [herb_12]
 id = 18607
+examine = "A herb."
 
 [herb_13]
 id = 18608
+examine = "A herb."
 
 [herb_14]
 id = 18609
+examine = "A herb."
 
 [herb_15]
 id = 18610
+examine = "A herb."
 
 [herb_16]
 id = 18611
+examine = "A herb."
 
 [power_crystal_noted]
 id = 18635
