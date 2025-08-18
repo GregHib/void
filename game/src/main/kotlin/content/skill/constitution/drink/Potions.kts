@@ -23,10 +23,10 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
 
 consume("*_4", "*_3", "*_2", "*_1") { player ->
-    effects(player, item.id)
     val doses = item.id.last().digitToInt()
     if (doses != 1) {
         player.message("You have ${doses - 1} ${"dose".plural(doses - 1)} of the potion left.")
+        effects(player, item.id)
         return@consume
     }
     player.message("You have finished your potion.")
@@ -34,6 +34,7 @@ consume("*_4", "*_3", "*_2", "*_1") { player ->
         player.inventory.remove(slot, item.id)
         player.message("You quickly smash the empty vial using the tick a Barbarian taught you.")
     }
+    effects(player, item.id)
 }
 
 fun hasHolyItem(player: Player) = player.equipped(EquipSlot.Cape).id.startsWith("prayer_cape") || player.holdsItem("holy_wrench")
@@ -112,11 +113,9 @@ fun effects(player: Player, potion: String) {
         potion.startsWith("energy_") -> player.runEnergy = (player.runEnergy / 100) * 10
         potion.startsWith("super_energy_") -> player.runEnergy = (player.runEnergy / 100) * 20
         potion.startsWith("recover_special") -> {
-            player.specialAttackEnergy = (MAX_SPECIAL_ATTACK / 100) * 25
-            val percentage = (player.specialAttackEnergy / MAX_SPECIAL_ATTACK) * 100
-            if (percentage == 0) {
-                player.message("Your special attack energy is now $percentage%.")
-            }
+            player.specialAttackEnergy = (player.specialAttackEnergy + (MAX_SPECIAL_ATTACK / 4)).coerceAtMost(MAX_SPECIAL_ATTACK)
+            val percentage = ((player.specialAttackEnergy / MAX_SPECIAL_ATTACK.toDouble()) * 100).toInt()
+            player.message("Your special attack energy is now $percentage%.")
             player["recover_special_delay"] = TimeUnit.SECONDS.toTicks(30) / 10
             player.softTimers.start("recover_special")
         }

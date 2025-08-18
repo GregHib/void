@@ -289,9 +289,10 @@ id = 19616
 tradeable = false
 weight = 1.0
 slot = "Shield"
+kept = "Wilderness"
+god = "zaros"
 destroy = "Talk to Jossik at the lighthouse west of Rellekka for another copy."
 examine = "An incomplete ancient book."
-kept = "Wilderness"
 
 [ancient_book]
 id = 19617
@@ -300,6 +301,7 @@ bank_stacks = false
 weight = 1.0
 aka = ["zaros_book"]
 slot = "Shield"
+god = "zaros"
 destroy = "This book can be reclaimed from the bookcase in your player-owned house for a fee, are you sure you wish to destroy it?"
 examine = "The holy book of a forgotten god."
 kept = "Reclaim"

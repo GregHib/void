@@ -43,7 +43,7 @@ objectOperate("Use", "fairy_ring_*") {
     player.walkOverDelay(target.tile)
     delay()
     Teleport.teleport(player, fairyRing.tile, "fairy_ring")
-    val list: MutableList<String> = player["travel_log_locations"] ?: return@objectOperate
+    val list: MutableList<String> = player.getOrPut("travel_log_locations") { mutableListOf() }
     list.add(code)
 }
 

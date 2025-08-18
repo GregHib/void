@@ -166,6 +166,7 @@ limit = 100
 weight = 2.267
 category = "staff"
 slot = "Weapon"
+god = "zaros"
 examine = "A magical staff of ancient origin..."
 
 [ancient_staff_noted]

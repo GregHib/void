@@ -48,7 +48,7 @@ objectOperate("Search", "godwars_knight*") {
     player.inventory.add("knights_notes")
 }
 
-inventoryItem("Open", "knights_notes") {
+inventoryItem("Read", "knights_notes") {
     choice("The scroll is sealed. Do you still want to open it?") {
         option("Yes") {
             if (player.inventory.replace(item.id, "knights_notes_opened")) {
@@ -68,7 +68,7 @@ objectOperate("Tie-rope", "godwars_hole") {
         player.inventory.remove("rope")
         player["godwars_entrance_rope"] = true
     } else {
-        npc<Scared>("sir_gerry", "Cough... Hey, over here.")
+        npc<Scared>("sir_gerry_normal", "Cough... Hey, over here.")
     }
 }
 
