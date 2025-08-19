@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Follow
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -78,6 +79,10 @@ interfaceOption("Dismiss *", "dismiss", "familiar_details") {
     }
 }
 
+interfaceOption("Call *", "call", "*_details") {
+    player.callFollower()
+}
+
 fun Player.summonFamiliar(familiar: NPCDefinition): NPC? {
     if (follower != null) {
         // TODO: Find actual message for this
@@ -125,4 +130,9 @@ fun Player.openFollowerLeftClickOptions() {
 fun Player.confirmFollowerLeftClickOptions() {
     this["summoning_orb_left_click_option"] = this["summoning_menu_left_click_option", -1]
     interfaces.close("follower_left_click_options")
+}
+
+fun Player.callFollower() {
+    follower!!.tele(steps.follow, clearMode = false)
+    follower!!.clearWatch()
 }
