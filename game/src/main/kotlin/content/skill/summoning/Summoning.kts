@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.queue.softQueue
 
 val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
@@ -32,7 +33,6 @@ inventoryItem("Summon", "*_pouch") {
     }
 
     player.summonFamiliar(familiar) ?: return@inventoryItem
-    player.updateFamiliarInterface()
     player.inventory.remove(item.id)
     player.experience.add(Skill.Summoning, summoningXp)
 }
@@ -87,7 +87,11 @@ fun Player.summonFamiliar(familiar: NPCDefinition): NPC? {
 
     val familiarNpc = npcs.add(familiar.stringId, tile)
     familiarNpc.mode = Follow(familiarNpc, this)
-    follower = familiarNpc
+
+    softQueue("summon_familiar", 2) {
+        follower = familiarNpc
+        player.updateFamiliarInterface()
+    }
 
     return familiarNpc
 }
