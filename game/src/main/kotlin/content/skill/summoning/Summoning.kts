@@ -83,6 +83,10 @@ interfaceOption("Call *", "call", "*_details") {
     player.callFollower()
 }
 
+interfaceOption("Call Follower", "*", "summoning_orb") {
+    player.callFollower()
+}
+
 fun Player.summonFamiliar(familiar: NPCDefinition): NPC? {
     if (follower != null) {
         // TODO: Find actual message for this
