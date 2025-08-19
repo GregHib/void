@@ -39,7 +39,7 @@ while (reader.nextElement()) {
 ### Reading maps
 
 ```kotlin
-while (reader.nextPair()) {
+while (reader.nextEntry()) {
     val key = reader.key()
     
     // TODO: Read your values using reader.string(), boolean(), int(), long(), double() etc... 

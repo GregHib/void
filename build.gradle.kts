@@ -1,14 +1,15 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 buildscript {
     dependencies {
-        classpath(kotlin("gradle-plugin", version = "1.9.22"))
+        classpath(kotlin("gradle-plugin", version = "2.2.0"))
         classpath("com.github.johnrengelman:shadow:8.1.1")
     }
 }
 
 plugins {
-    kotlin("jvm") version "1.9.22"
+    kotlin("jvm") version "2.2.0"
     id("jacoco-report-aggregation")
     id("com.diffplug.spotless") version "7.0.4"
 }
@@ -38,17 +39,11 @@ allprojects {
         testImplementation("org.junit.jupiter:junit-jupiter-engine:${findProperty("junitVersion")}")
     }
 
-    tasks {
-        compileKotlin {
-            kotlinOptions.jvmTarget = java.sourceCompatibility.toString()
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_19)
             // https://youtrack.jetbrains.com/issue/KT-4779/Generate-default-methods-for-implementations-in-interfaces
-            kotlinOptions.freeCompilerArgs =
-                listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
-        }
-        compileTestKotlin {
-            kotlinOptions.jvmTarget = java.sourceCompatibility.toString()
-            kotlinOptions.freeCompilerArgs =
-                listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
+            freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
         }
     }
 

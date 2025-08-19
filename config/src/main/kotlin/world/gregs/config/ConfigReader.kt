@@ -361,7 +361,7 @@ class ConfigReader(
     }
 
     /**
-     * Check if there are anymore map entries remaining
+     * Check if there are any more map entries remaining
      */
     fun nextEntry() = when (byte) {
         OPEN_BRACE, COMMA -> {

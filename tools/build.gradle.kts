@@ -1,4 +1,9 @@
+plugins {
+    id("com.google.devtools.ksp") version "2.2.0-2.0.2"
+}
+
 dependencies {
+    ksp(project(":config"))
     implementation(project(":buffer"))
     implementation(project(":cache"))
     implementation(project(":engine"))

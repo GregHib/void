@@ -26,9 +26,9 @@ object NPCDefinitions {
         val renderAnimations = RenderAnimationDecoder().load(cache)
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.name.contains("spiritual ranger", ignoreCase = true)) {
+            if (def.name.contains("walla", ignoreCase = true)) {
                 val emotes = renderAnimations.getOrNull(def.renderEmote)
-                println("$i ${def.name} ${emotes?.primaryIdle} ${emotes?.primaryWalk} ${emotes?.run}")
+                println("$i ${def.name} ${def.transforms} ${emotes?.primaryIdle} ${emotes?.primaryWalk} ${emotes?.run}")
             }
         }
     }
