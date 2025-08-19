@@ -17,10 +17,12 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventories
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.DialogueSuspension
@@ -52,7 +54,6 @@ class Player(
     val body: BodyParts = BodyParts(),
     val offers: Array<ExchangeOffer> = Array(6) { ExchangeOffer() },
     val history: MutableList<ExchangeHistory> = mutableListOf(),
-    var follower: NPC? = null,
 ) : Character {
 
     override val visuals: PlayerVisuals = PlayerVisuals(body)
@@ -109,6 +110,18 @@ class Player(
     override var variables: Variables = PlayerVariables(this, variables)
 
     override val steps = Steps(this)
+
+    var Player.follower: NPC?
+        get() {
+            val index = this["follower_index", -1]
+            return get<NPCs>().indexed(index)
+        }
+        set(value) {
+            if (value != null) {
+                this["follower_index"] = value.index
+                this["follower_id"] = value.id
+            }
+        }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
