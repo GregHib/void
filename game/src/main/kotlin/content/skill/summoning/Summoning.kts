@@ -28,9 +28,10 @@ inventoryItem("Summon", "*_pouch") {
     val summoningXp = item.def["summon_experience", 0.0]
     val familiar = npcDefinitions.get(familiarId)
 
-    if (player.levels.get(Skill.Summoning) <= familiarLevel) {
+    if (player.levels.get(Skill.Summoning) < familiarLevel) {
         //TODO: Get actual message
         player.message("You don't have the level needed to summon that familiar...")
+        return@inventoryItem
     }
 
     player.summonFamiliar(familiar) ?: return@inventoryItem
