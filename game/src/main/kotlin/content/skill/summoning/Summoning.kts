@@ -91,12 +91,7 @@ fun Player.summonFamiliar(familiar: NPCDefinition): NPC? {
     softQueue("summon_familiar", 2) {
         follower = familiarNpc
 
-        if (follower!!.size == 1) {
-            follower!!.gfx("summon_familiar_small")
-        } else {
-            follower!!.gfx("summon_familiar_large")
-        }
-
+        follower!!.gfx("summon_familiar_size_${follower!!.size}")
         player.updateFamiliarInterface()
     }
 
