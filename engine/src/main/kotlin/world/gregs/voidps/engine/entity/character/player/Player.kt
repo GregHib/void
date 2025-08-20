@@ -111,18 +111,6 @@ class Player(
 
     override val steps = Steps(this)
 
-    var Player.follower: NPC?
-        get() {
-            val index = this["follower_index", -1]
-            return get<NPCs>().indexed(index)
-        }
-        set(value) {
-            if (value != null) {
-                this["follower_index"] = value.index
-                this["follower_id"] = value.id
-            }
-        }
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

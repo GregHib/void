@@ -17,10 +17,24 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.timerStop
+import world.gregs.voidps.engine.timer.timerTick
 
 val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
 val npcDefinitions: NPCDefinitions by inject()
+var Player.follower: NPC?
+    get() {
+        val index = this["follower_index", -1]
+        return world.gregs.voidps.engine.get<NPCs>().indexed(index)
+    }
+    set(value) {
+        if (value != null) {
+            this["follower_index"] = value.index
+            this["follower_id"] = value.id
+        }
+    }
 
 inventoryItem("Summon", "*_pouch") {
     val familiarLevel = enums.get("summoning_pouch_levels").getInt(item.def.id)
@@ -103,6 +117,7 @@ fun Player.summonFamiliar(familiar: NPCDefinition): NPC? {
 
         follower!!.gfx("summon_familiar_size_${follower!!.size}")
         player.updateFamiliarInterface()
+        timers.start("familiar_timer")
     }
 
     return familiarNpc
@@ -115,6 +130,9 @@ fun Player.dismissFamiliar() {
 
     this["follower_details_name"] = -1
     this["follower_details_chathead"] = -1
+    this["familiar_details_minutes_remaining"] = 0
+    this["familiar_details_seconds_remaining"] = 0
+    timers.stop("familiar_timer")
 }
 
 fun Player.updateFamiliarInterface() {
@@ -140,4 +158,30 @@ fun Player.confirmFollowerLeftClickOptions() {
 fun Player.callFollower() {
     follower!!.tele(steps.follow, clearMode = false)
     follower!!.clearWatch()
+}
+
+timerStart("familiar_timer") {player ->
+    interval = 50 // 30 seconds
+
+    player["familiar_details_minutes_remaining"] = player.follower!!.def["familiar_time", 0]
+    player["familiar_details_seconds_remaining"] = 0
+}
+
+timerTick("familiar_timer") {player ->
+    if (player["familiar_details_seconds_remaining", 0] == 0) {
+        player.dec("familiar_details_minutes_remaining")
+    }
+    player["familiar_details_seconds_remaining"] = (player["familiar_details_seconds_remaining", 0] + 1) % 2
+
+    if (player["familiar_details_seconds_remaining", 0] <= 0 && player["familiar_details_minutes_remaining", 0] <= 0) {
+        cancel()
+    }
+
+    println("${player["familiar_details_minutes_remaining", 0]}:${player["familiar_details_seconds_remaining", 0]}")
+}
+
+timerStop("familiar_timer") {player ->
+    if (player.follower != null) {
+        player.dismissFamiliar()
+    }
 }
