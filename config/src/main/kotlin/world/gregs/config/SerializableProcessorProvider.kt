@@ -5,10 +5,8 @@ import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
 import com.google.devtools.ksp.processing.SymbolProcessorProvider
 
 class SerializableProcessorProvider : SymbolProcessorProvider {
-    override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
-        return SerializableProcessor(
-            codeGenerator = environment.codeGenerator,
-            logger = environment.logger
-        )
-    }
+    override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor = SerializableProcessor(
+        codeGenerator = environment.codeGenerator,
+        logger = environment.logger,
+    )
 }

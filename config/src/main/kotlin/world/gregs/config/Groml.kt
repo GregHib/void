@@ -32,9 +32,10 @@ private object NoOpEncoder : AbstractEncoder() {
 
 private val byteArraySerializer = serializer<ByteArray>()
 
-
 @ExperimentalSerializationApi
-class DataOutputEncoder : Encoder, CompositeEncoder {
+class DataOutputEncoder :
+    Encoder,
+    CompositeEncoder {
     private var firstElement = true
     private var inMap = false
     private var rootMap = false
@@ -107,8 +108,11 @@ class DataOutputEncoder : Encoder, CompositeEncoder {
 
     private fun encodeSeparator() {
         if (!firstElement) {
-            if (depth == 1 || mapDepth != 0) writer.write("\n") // root level = newline
-            else writer.write(", ")            // nested = comma
+            if (depth == 1 || mapDepth != 0) {
+                writer.write("\n") // root level = newline
+            } else {
+                writer.write(", ") // nested = comma
+            }
         }
         firstElement = false
     }
@@ -124,14 +128,14 @@ class DataOutputEncoder : Encoder, CompositeEncoder {
 
     override fun encodeInlineElement(
         descriptor: SerialDescriptor,
-        index: Int
+        index: Int,
     ): Encoder = encodeInline(descriptor.getElementDescriptor(index))
 
     override fun <T : Any?> encodeSerializableElement(
         descriptor: SerialDescriptor,
         index: Int,
         serializer: SerializationStrategy<T>,
-        value: T
+        value: T,
     ) {
         when (descriptor.kind) {
             StructureKind.LIST -> {
@@ -146,7 +150,7 @@ class DataOutputEncoder : Encoder, CompositeEncoder {
                         if (mapDepth == 0) {
                             writer.write("\n")
                         } else {
-                            writer.write(", ")            // nested = comma
+                            writer.write(", ") // nested = comma
                         }
                     }
                     firstElement = false
@@ -181,7 +185,7 @@ class DataOutputEncoder : Encoder, CompositeEncoder {
         descriptor: SerialDescriptor,
         index: Int,
         serializer: SerializationStrategy<T>,
-        value: T?
+        value: T?,
     ) {
         encodeNullableSerializableValue(serializer, value)
     }
@@ -262,16 +266,16 @@ class DataOutputEncoder : Encoder, CompositeEncoder {
     override fun encodeInline(descriptor: SerialDescriptor): Encoder = this
 
     override fun <T> encodeSerializableValue(serializer: SerializationStrategy<T>, value: T) {
-        if (serializer.descriptor == byteArraySerializer.descriptor)
+        if (serializer.descriptor == byteArraySerializer.descriptor) {
             encodeByteArray(value as ByteArray)
-        else
+        } else {
             super.encodeSerializableValue(serializer, value)
+        }
     }
 
     private fun encodeByteArray(bytes: ByteArray) {
         writer.write(bytes.joinToString(prefix = "[", postfix = "]"))
     }
-
 }
 
 @ExperimentalSerializationApi
@@ -287,7 +291,7 @@ inline fun <reified T> encodeTo(writer: Writer, value: T) = encodeTo(writer, ser
 @OptIn(ExperimentalSerializationApi::class)
 class DataInputDecoder(
     private val reader: Reader,
-    private var elementsCount: Int = 0
+    private var elementsCount: Int = 0,
 ) : AbstractDecoder() {
     private var elementIndex = 0
     override val serializersModule: SerializersModule = EmptySerializersModule
@@ -388,9 +392,8 @@ class DataInputDecoder(
     override fun decodeSequentially(): Boolean = false
 }
 
-
-//@Serializable
-//data class Project(
+// @Serializable
+// data class Project(
 //    val name: String,
 //    val owners: List<User>,
 //    val votes: Int,
@@ -398,16 +401,16 @@ class DataInputDecoder(
 //    var variables: Map<String, Int>,
 //    val social: Social,
 //    var mapMap: Map<String, Map<String, Int>>
-//)
+// )
 //
-//@Serializable
-//data class Social(val friends: Map<String, String>)
+// @Serializable
+// data class Social(val friends: Map<String, String>)
 //
-//@Serializable
-//data class User(val name: String)
+// @Serializable
+// data class User(val name: String)
 
-//@OptIn(ExperimentalSerializationApi::class)
-//fun main() {
+// @OptIn(ExperimentalSerializationApi::class)
+// fun main() {
 //    val data = Project(
 //        name = "kotlinx.serialization",
 //        owners = listOf(User("kotlin"), User("jetbrains")),
@@ -464,6 +467,6 @@ class DataInputDecoder(
 //    )
 //    val decoder = DataInputDecoder(reader)
 //    decoder.decodeSerializableValue(serializer)
-////    println(string2)
-////    println(time2.inWholeMilliseconds)
-//}
+// //    println(string2)
+// //    println(time2.inWholeMilliseconds)
+// }

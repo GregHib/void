@@ -1,5 +1,5 @@
 plugins {
-    id("com.google.devtools.ksp") version "2.2.0-2.0.2"
+    id("com.google.devtools.ksp") version "1.9.22-1.0.18"
 }
 
 dependencies {

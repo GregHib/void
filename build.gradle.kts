@@ -3,13 +3,13 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 buildscript {
     dependencies {
-        classpath(kotlin("gradle-plugin", version = "2.2.0"))
+        classpath(kotlin("gradle-plugin", version = "1.9.22"))
         classpath("com.github.johnrengelman:shadow:8.1.1")
     }
 }
 
 plugins {
-    kotlin("jvm") version "2.2.0"
+    kotlin("jvm") version "1.9.22"
     id("jacoco-report-aggregation")
     id("com.diffplug.spotless") version "7.0.4"
 }
@@ -43,7 +43,8 @@ allprojects {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_19)
             // https://youtrack.jetbrains.com/issue/KT-4779/Generate-default-methods-for-implementations-in-interfaces
-            freeCompilerArgs = listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
+            freeCompilerArgs =
+                listOf("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility", "-Xallow-any-scripts-in-source-roots")
         }
     }
 
@@ -108,7 +109,7 @@ reporting {
     reports {
         @Suppress("UnstableApiUsage")
         create("jacocoMergedReport", JacocoCoverageReport::class) {
-            testType = TestSuiteType.UNIT_TEST
+//            testType = TestSuiteType.UNIT_TEST
         }
     }
 }
