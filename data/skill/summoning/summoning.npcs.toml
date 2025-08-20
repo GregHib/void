@@ -1,0 +1,431 @@
+[spirit_terrorbird_familiar]
+id = 6794
+
+[granite_crab_familiar]
+id = 6796
+
+[praying_mantis_familiar]
+id = 6798
+
+[giant_ent_familiar]
+id = 6800
+
+[spirit_cobra_familiar]
+id = 6802
+
+[spirit_dagannoth_familiar]
+id = 6804
+
+[thorny_snail_familiar]
+id = 6806
+
+[beaver_familiar]
+id = 6808
+
+[karamthulhu_overlord_familiar]
+id = 6809
+
+[hydra_familiar]
+id = 6811
+
+[spirit_jelly_familiar]
+id = 6992
+
+[bunyip_familiar]
+id = 6813
+
+[war_tortoise_familiar]
+id = 6815
+
+[fruit_bat_familiar]
+id = 6817
+
+[abyssal_parasite_familiar]
+id = 6818
+
+[abyssal_lurker_familiar]
+id = 6820
+
+[unicorn_stallion_familiar]
+id = 6822
+
+[magpie_familiar]
+id = 6824
+
+[dreadfowl_familiar]
+id = 6825
+
+[stranger_plant_familiar]
+id = 6827
+
+[spirit_wolf_familiar]
+id = 6829
+
+[desert_wyrm_familiar]
+id = 6831
+
+[evil_turnip_familiar]
+id = 6833
+
+[vampire_bat_familiar]
+id = 6835
+
+[spirit_scorpion_familiar]
+id = 6837
+
+[arctic_bear_familiar]
+id = 6839
+
+[spirit_spider_familiar]
+id = 6841
+
+[bloated_leech_familiar]
+id = 6843
+
+[spirit_kalphite_familiar]
+id = 6994
+
+[honey_badger_familiar]
+id = 6845
+
+[albino_rat_familiar]
+id = 6847
+
+[granite_lobster_familiar]
+id = 6849
+
+[macaw_familiar]
+id = 6851
+
+[bronze_minotaur_familiar]
+id = 6853
+
+[iron_minotaur_familiar]
+id = 6855
+
+[steel_minotaur_familiar]
+id = 6857
+
+[mithril_minotaur_familiar]
+id = 6859
+
+[adamant_minotaur_familiar]
+id = 6861
+
+[rune_minotaur_familiar]
+id = 6863
+
+[smoke_devil_familiar]
+id = 6865
+
+[bull_ant_familiar]
+id = 6867
+
+[wolpertinger_familiar]
+id = 6869
+
+[compost_mound_familiar]
+id = 6871
+
+[pack_yak_familiar]
+id = 6873
+
+[spirit_cockatrice_familiar]
+id = 6875
+
+[spirit_guthatrice_familiar]
+id = 6877
+
+[spirit_saratrice_familiar]
+id = 6879
+
+[spirit_zamatrice_familiar]
+id = 6881
+
+[spirit_pengatrice_familiar]
+id = 6883
+
+[spirit_coraxatrice_familiar]
+id = 6885
+
+[spirit_vulatrice_familiar]
+id = 6887
+
+[barker_toad_familiar]
+id = 6889
+
+[ibis_familiar]
+id = 6991
+
+[swamp_titan_familiar]
+id = 7329
+
+[spirit_mosquito_familiar]
+id = 7331
+
+[void_spinner_familiar]
+id = 7333
+
+[forge_regent_familiar]
+id = 7335
+
+[spirit_larupia_familiar]
+id = 7337
+
+[geyser_titan_familiar]
+id = 7339
+
+[lava_titan_familiar]
+id = 7341
+
+[steel_titan_familiar]
+id = 7343
+
+[obsidian_golem_familiar]
+id = 7345
+
+[talon_beast_familiar]
+id = 7347
+
+[abyssal_titan_familiar]
+id = 7349
+
+[void_torcher_familiar]
+id = 7351
+
+[giant_chinchompa_familiar]
+id = 7353
+
+[fire_titan_familiar]
+id = 7355
+
+[moss_titan_familiar]
+id = 7357
+
+[ice_titan_familiar]
+id = 7359
+
+[spirit_tz-kih_familiar]
+id = 7361
+
+[spirit_graahk_familiar]
+id = 7363
+
+[spirit_kyatt_familiar]
+id = 7365
+
+[void_shifter_familiar]
+id = 7367
+
+[pyrelord_familiar]
+id = 7377
+
+[void_ravager_familiar]
+id = 7370
+
+[ravenous_locust_familiar]
+id = 7372
+
+[iron_titan_familiar]
+id = 7375
+
+[clay_familiar_class_1_familiar]
+id = 8240
+
+[clay_familiar_class_2_familiar]
+id = 8242
+
+[clay_familiar_class_3_familiar]
+id = 8244
+
+[clay_familiar_class_4_familiar]
+id = 8246
+
+[clay_familiar_class_5_familiar]
+id = 8248
+
+[phoenix_familiar]
+id = 8575
+
+[cub_bloodrager_familiar]
+id = 11106
+
+[little_bloodrager_familiar]
+id = 11108
+
+[naïve_bloodrager_familiar]
+id = 11110
+
+[keen_bloodrager_familiar]
+id = 11112
+
+[brave_bloodrager_familiar]
+id = 11114
+
+[brah_bloodrager_familiar]
+id = 11116
+
+[naabe_bloodrager_familiar]
+id = 11118
+
+[wise_bloodrager_familiar]
+id = 11120
+
+[adept_bloodrager_familiar]
+id = 11122
+
+[sachem_bloodrager_familiar]
+id = 11124
+
+[cub_stormbringer_familiar]
+id = 11126
+
+[little_stormbringer_familiar]
+id = 11128
+
+[naïve_stormbringer_familiar]
+id = 11130
+
+[keen_stormbringer_familiar]
+id = 11132
+
+[brave_stormbringer_familiar]
+id = 11134
+
+[brah_stormbringer_familiar]
+id = 11136
+
+[naabe_stormbringer_familiar]
+id = 11138
+
+[wise_stormbringer_familiar]
+id = 11140
+
+[adept_stormbringer_familiar]
+id = 11142
+
+[sachem_stormbringer_familiar]
+id = 11144
+
+[cub_hoardstalker_familiar]
+id = 11146
+
+[little_hoardstalker_familiar]
+id = 11148
+
+[naïve_hoardstalker_familiar]
+id = 11150
+
+[keen_hoardstalker_familiar]
+id = 11152
+
+[brave_hoardstalker_familiar]
+id = 11154
+
+[brah_hoardstalker_familiar]
+id = 11156
+
+[naabe_hoardstalker_familiar]
+id = 11158
+
+[wise_hoardstalker_familiar]
+id = 11160
+
+[adept_hoardstalker_familiar]
+id = 11162
+
+[sachem_hoardstalker_familiar]
+id = 11164
+
+[cub_skinweaver_familiar]
+id = 11166
+
+[little_skinweaver_familiar]
+id = 11168
+
+[naïve_skinweaver_familiar]
+id = 11170
+
+[keen_skinweaver_familiar]
+id = 11172
+
+[brave_skinweaver_familiar]
+id = 11174
+
+[brah_skinweaver_familiar]
+id = 11176
+
+[naabe_skinweaver_familiar]
+id = 11178
+
+[wise_skinweaver_familiar]
+id = 11180
+
+[adept_skinweaver_familiar]
+id = 11182
+
+[sachem_skinweaver_familiar]
+id = 11184
+
+[cub_worldbearer_familiar]
+id = 11186
+
+[little_worldbearer_familiar]
+id = 11188
+
+[naïve_worldbearer_familiar]
+id = 11190
+
+[keen_worldbearer_familiar]
+id = 11192
+
+[brave_worldbearer_familiar]
+id = 11194
+
+[brah_worldbearer_familiar]
+id = 11196
+
+[naabe_worldbearer_familiar]
+id = 11198
+
+[wise_worldbearer_familiar]
+id = 11200
+
+[adept_worldbearer_familiar]
+id = 11202
+
+[sachem_worldbearer_familiar]
+id = 11204
+
+[cub_deathslinger_familiar]
+id = 11206
+
+[little_deathslinger_familiar]
+id = 11208
+
+[naive_deathslinger_familiar]
+id = 11210
+
+[keen_deathslinger_familiar]
+id = 11212
+
+[brave_deathslinger_familiar]
+id = 11214
+
+[brah_deathslinger_familiar]
+id = 11216
+
+[naabe_deathslinger_familiar]
+id = 11218
+
+[wise_deathslinger_familiar]
+id = 11220
+
+[adept_deathslinger_familiar]
+id = 11222
+
+[sachem_deathslinger_familiar]
+id = 11224
+
+[meerkats_familiar]
+id = 11640
