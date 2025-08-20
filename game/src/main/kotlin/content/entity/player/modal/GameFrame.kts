@@ -55,7 +55,7 @@ instruction<ChangeDisplayMode> { player ->
 }
 
 interfaceOpen("toplevel*") { player ->
-    openGamframe(player)
+    openGameframe(player)
 }
 
 interfaceRefresh("toplevel*", "dialogue_npc*") { player ->
@@ -65,7 +65,7 @@ interfaceRefresh("toplevel*", "dialogue_npc*") { player ->
     }
 }
 
-fun GameFrame.openGamframe(player: Player) {
+fun openGameframe(player: Player) {
     for (name in list) {
         if (name.endsWith("_spellbook")) {
             val book = player["spellbook_config", 0] and 0x3

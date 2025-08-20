@@ -43,7 +43,7 @@ objectOperate("Craft-rune", "*_altar") {
     bindRunes(player, id, itemDefinitions.get(id))
 }
 
-fun Runecrafting.bindRunes(player: Player, id: String, itemDefinition: ItemDefinition) {
+fun bindRunes(player: Player, id: String, itemDefinition: ItemDefinition) {
     val rune: Rune = itemDefinition.getOrNull("runecrafting") ?: return
     if (!player.has(Skill.Runecrafting, rune.levels.first(), message = true)) {
         return
