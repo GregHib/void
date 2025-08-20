@@ -26,12 +26,12 @@ id = 4288
 format = "int"
 persist = true
 
-[pet_details_seconds_remaining]
+[familiar_details_seconds_remaining]
 id = 4290
 format = "int"
 persist = true
 
-[pet_details_minutes_remaining]
+[familiar_details_minutes_remaining]
 id = 4534
 format = "int"
 persist = true
