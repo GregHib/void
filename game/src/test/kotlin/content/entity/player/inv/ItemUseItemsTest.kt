@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import kotlin.test.assertEquals
 
-class ItemOnItemsTest : WorldTest() {
+class ItemUseItemsTest : WorldTest() {
 
     @Test
     fun `Combine full inventory of items`() {

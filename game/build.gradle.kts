@@ -3,9 +3,11 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     application
     id("com.github.johnrengelman.shadow")
+    id("com.google.devtools.ksp") version "1.9.22-1.0.18"
 }
 
 dependencies {
+    ksp(project(":engine"))
     implementation(project(":engine"))
     implementation(project(":cache"))
     implementation(project(":network"))

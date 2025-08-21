@@ -3,7 +3,6 @@ plugins {
 }
 
 dependencies {
-    ksp(project(":config"))
     implementation(project(":buffer"))
     implementation(project(":cache"))
     implementation(project(":engine"))

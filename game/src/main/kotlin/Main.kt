@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.event.Scripts
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
@@ -40,6 +41,8 @@ object Main {
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
+        Scripts.load()
+        return
         val settings = settings()
 
         // File server
