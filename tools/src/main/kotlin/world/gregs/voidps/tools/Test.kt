@@ -82,13 +82,13 @@ fun main() {
                     }
                 }
                 "" -> while (nextPair()) {
-                    when(val key = key()) {
+                    when (val key = key()) {
                         "name" -> println("$key = ${string()}")
                         "owners" -> {
                             val owners = mutableListOf<User>()
                             while (nextElement()) {
                                 while (nextEntry()) {
-                                    when(key()) {
+                                    when (key()) {
                                         "name" -> owners.add(User(string()))
                                     }
                                 }
@@ -100,6 +100,8 @@ fun main() {
                 }
             }
         }
+    }
+    Config.stringReader(string) {
         val project = ProjectCodec.read(this)
         println(project)
     }

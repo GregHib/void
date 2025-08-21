@@ -198,6 +198,51 @@ class SerializableProcessor(
         }
     }
 
+    /*
+        if object
+            lay out all variables
+            
+        if object || map && depth == 0
+            while(nextSection()) {
+                when(val section = section()) {
+                    "" -> while(nextPair() {
+                        when(val key = key()) {
+                            "array" -> while(nextElement()) { list.add(readValue()) }
+                            "map" -> while(nextEntry()) { val key = key() map[key] = readValue() }
+
+                        }
+                    }
+                    "variables" -> { // Map
+                        while(nextPair()) {
+
+                        }
+                    }
+                    "social" -> { // object
+                        // readFlat
+                        val friends = mutableMapOf()
+                        while (nextPair()) {
+                            when(val key = key()) {
+                                "friends" -> while(nextEntry()) {
+                                    val key = key()
+                                }
+                            }
+                        }
+
+                        // readInline
+                        //{friends = {friend = "friend", friend2 = "major"}}
+                        while(nextEntry()) {
+                            when(val key = key()) {
+                                "friends" -> while(nextEntry()) {
+                                    val key = key()
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+     */
     private fun buildLoadBody(classDecl: KSClassDeclaration, inline: Boolean): CodeBlock {
         val builder = CodeBlock.builder()
 
@@ -375,7 +420,7 @@ class SerializableProcessor(
 
         // inline -> read value
         var indent = 1
-        builder.addStatement("while (reader.nextPair()) {")
+        builder.addStatement("while (reader.nextEntry()) {")
         builder.addStatement("${"    ".repeat(indent++)}when (val key = reader.key()) {")
         for (prop in classDecl.getAllProperties()) {
             val name = prop.simpleName.asString()
@@ -467,15 +512,15 @@ class SerializableProcessor(
             }
             "kotlin.collections.List" -> {
                 // Handle List<List<T>>
-//                val nestedElementType = elementType.arguments.firstOrNull()?.type?.resolve()
-//                builder.addStatement("while (reader.nextElement()) {")
-//                builder.addStatement(
-//                    "    val listItem = mutableListOf<%T>()",
-//                    nestedElementType?.toTypeName(),
-//                )
-//                generateListDeserializationCode(builder, "listItem", nestedElementType)
-//                builder.addStatement("    %L.add(listItem)", name)
-//                builder.addStatement("}")
+                val nestedElementType = type.arguments.firstOrNull()?.type?.resolve()
+                builder.addStatement("while (reader.nextElement()) {")
+                builder.addStatement(
+                    "    val listItem = mutableListOf<%T>()",
+                    nestedElementType?.toTypeName(),
+                )
+                generateListDeserializationCode(builder, "listItem", nestedElementType)
+                builder.addStatement("    value${depth}.add(listItem)")
+                builder.addStatement("}")
             }
             else -> {
                 // Custom type - use its codec
