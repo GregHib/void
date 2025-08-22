@@ -97,6 +97,7 @@ object Main {
             )
         }
         ContentLoader.load()
+        Scripts.load()
         Runtime.getRuntime().addShutdownHook(
             thread(start = false) {
                 World.emit(Despawn)

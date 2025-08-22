@@ -62,6 +62,28 @@ class Events(
         node.handler!!.add(handler)
     }
 
+    fun insert(size: Int, one: Any, two: Any, handler: suspend Event.(EventDispatcher) -> Unit) {
+        var node = roots.getOrPut(size) { TrieNode() }
+        node = node.children.getOrPut(one) { TrieNode() }
+        node = node.children.getOrPut(two) { TrieNode() }
+        if (node.handler == null) {
+            node.handler = HashSet(1)
+        }
+        node.handler!!.add(handler)
+    }
+
+    fun insert(size: Int, one: Any, two: Any, three: Any, four: Any, handler: suspend Event.(EventDispatcher) -> Unit) {
+        var node = roots.getOrPut(size) { TrieNode() }
+        node = node.children.getOrPut(one) { TrieNode() }
+        node = node.children.getOrPut(two) { TrieNode() }
+        node = node.children.getOrPut(three) { TrieNode() }
+        node = node.children.getOrPut(four) { TrieNode() }
+        if (node.handler == null) {
+            node.handler = HashSet(1)
+        }
+        node.handler!!.add(handler)
+    }
+
     /**
      * Executes all handlers with [dispatcher] and [event] as arguments
      * @return any handlers were found and executed

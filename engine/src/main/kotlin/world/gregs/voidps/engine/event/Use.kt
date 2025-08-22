@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.event
 
-
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.SOURCE)
 annotation class Use(
@@ -9,4 +8,6 @@ annotation class Use(
     val on: Array<String> = [],
     val option: String = "",
     val component: String = "",
+    val approach: Boolean = false,
+    val arrive: Boolean = true,
 )
