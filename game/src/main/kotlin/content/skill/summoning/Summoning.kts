@@ -176,8 +176,6 @@ timerTick("familiar_timer") {player ->
     if (player["familiar_details_seconds_remaining", 0] <= 0 && player["familiar_details_minutes_remaining", 0] <= 0) {
         cancel()
     }
-
-    println("${player["familiar_details_minutes_remaining", 0]}:${player["familiar_details_seconds_remaining", 0]}")
 }
 
 timerStop("familiar_timer") {player ->
