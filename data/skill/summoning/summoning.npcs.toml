@@ -1,309 +1,233 @@
 [spirit_terrorbird_familiar]
 id = 6794
-familiar_time = 36
 
 [granite_crab_familiar]
 id = 6796
-familiar_time = 18
 
 [praying_mantis_familiar]
 id = 6798
-familiar_time = 69
 
 [giant_ent_familiar]
 id = 6800
-familiar_time = 49
 
 [spirit_cobra_familiar]
 id = 6802
-familiar_time = 56
 
 [spirit_dagannoth_familiar]
 id = 6804
-familiar_time = 57
 
 [thorny_snail_familiar]
 id = 6806
-familiar_time = 16
 
 [beaver_familiar]
 id = 6808
-familiar_time = 27
 
 [karamthulhu_overlord_familiar]
 id = 6809
-familiar_time = 44
 
 [hydra_familiar]
 id = 6811
-familiar_time = 49
 
 [spirit_jelly_familiar]
 id = 6992
-familiar_time = 43
 
 [bunyip_familiar]
 id = 6813
-familiar_time = 44
 
 [war_tortoise_familiar]
 id = 6815
-familiar_time = 43
 
 [fruit_bat_familiar]
 id = 6817
-familiar_time = 45
 
 [abyssal_parasite_familiar]
 id = 6818
-familiar_time = 30
 
 [abyssal_lurker_familiar]
 id = 6820
-familiar_time = 41
 
 [unicorn_stallion_familiar]
 id = 6822
-familiar_time = 54
 
 [magpie_familiar]
 id = 6824
-familiar_time = 34
 
 [dreadfowl_familiar]
 id = 6825
-familiar_time = 4
 
 [stranger_plant_familiar]
 id = 6827
-familiar_time = 49
 
 [spirit_wolf_familiar]
 id = 6829
-familiar_time = 6
 
 [desert_wyrm_familiar]
 id = 6831
-familiar_time = 19
 
 [evil_turnip_familiar]
 id = 6833
-familiar_time = 30
 
 [vampire_bat_familiar]
 id = 6835
 
 [spirit_scorpion_familiar]
 id = 6837
-familiar_time = 17
 
 [arctic_bear_familiar]
 id = 6839
-familiar_time = 28
 
 [spirit_spider_familiar]
 id = 6841
-familiar_time = 15
 
 [bloated_leech_familiar]
 id = 6843
-familiar_time = 34
 
 [spirit_kalphite_familiar]
 id = 6994
-familiar_time = 22
 
 [honey_badger_familiar]
 id = 6845
-familiar_time = 25
 
 [albino_rat_familiar]
 id = 6847
-familiar_time = 22
 
 [granite_lobster_familiar]
 id = 6849
-familiar_time = 47
 
 [macaw_familiar]
 id = 6851
-familiar_time = 31
 
 [bronze_minotaur_familiar]
 id = 6853
-familiar_time = 30
 
 [iron_minotaur_familiar]
 id = 6855
-familiar_time = 37
 
 [steel_minotaur_familiar]
 id = 6857
-familiar_time = 46
 
 [mithril_minotaur_familiar]
 id = 6859
-familiar_time = 55
 
 [adamant_minotaur_familiar]
 id = 6861
-familiar_time = 66
 
 [rune_minotaur_familiar]
 id = 6863
-familiar_time = 151
 
 [smoke_devil_familiar]
 id = 6865
-familiar_time = 48
 
 [bull_ant_familiar]
 id = 6867
-familiar_time = 30
 
 [wolpertinger_familiar]
 id = 6869
-familiar_time = 62
 
 [compost_mound_familiar]
 id = 6871
-familiar_time = 24
 
 [pack_yak_familiar]
 id = 6873
-familiar_time = 58
 
 [spirit_cockatrice_familiar]
 id = 6875
-familiar_time = 36
 
 [spirit_guthatrice_familiar]
 id = 6877
-familiar_time = 36
 
 [spirit_saratrice_familiar]
 id = 6879
-familiar_time = 36
 
 [spirit_zamatrice_familiar]
 id = 6881
-familiar_time = 36
 
 [spirit_pengatrice_familiar]
 id = 6883
-familiar_time = 36
 
 [spirit_coraxatrice_familiar]
 id = 6885
-familiar_time = 36
 
 [spirit_vulatrice_familiar]
 id = 6887
-familiar_time = 36
 
 [barker_toad_familiar]
 id = 6889
-familiar_time = 8
 
 [ibis_familiar]
 id = 6991
-familiar_time = 38
 
 [swamp_titan_familiar]
 id = 7329
-familiar_time = 56
 
 [spirit_mosquito_familiar]
 id = 7331
-familiar_time = 12
 
 [void_spinner_familiar]
 id = 7333
-familiar_time = 27
 
 [forge_regent_familiar]
 id = 7335
-familiar_time = 45
 
 [spirit_larupia_familiar]
 id = 7337
-familiar_time = 49
 
 [geyser_titan_familiar]
 id = 7339
-familiar_time = 69
 
 [lava_titan_familiar]
 id = 7341
-familiar_time = 61
 
 [steel_titan_familiar]
 id = 7343
-familiar_time = 64
 
 [obsidian_golem_familiar]
 id = 7345
-familiar_time = 55
 
 [talon_beast_familiar]
 id = 7347
-familiar_time = 49
 
 [abyssal_titan_familiar]
 id = 7349
-familiar_time = 32
 
 [void_torcher_familiar]
 id = 7351
-familiar_time = 94
 
 [giant_chinchompa_familiar]
 id = 7353
-familiar_time = 31
 
 [fire_titan_familiar]
 id = 7355
-familiar_time = 62
 
 [moss_titan_familiar]
 id = 7357
-familiar_time = 58
 
 [ice_titan_familiar]
 id = 7359
-familiar_time = 64
 
 [spirit_tz-kih_familiar]
 id = 7361
-familiar_time = 18
 
 [spirit_graahk_familiar]
 id = 7363
-familiar_time = 49
 
 [spirit_kyatt_familiar]
 id = 7365
-familiar_time = 49
 
 [void_shifter_familiar]
 id = 7367
-familiar_time = 94
 
 [pyrelord_familiar]
 id = 7377
-familiar_time = 32
 
 [void_ravager_familiar]
 id = 7370
-familiar_time = 27
 
 [ravenous_locust_familiar]
 id = 7372
-familiar_time = 24
 
 [iron_titan_familiar]
 id = 7375
-familiar_time = 60
 
 [clay_familiar_class_1_familiar]
 id = 8240
@@ -322,7 +246,6 @@ id = 8248
 
 [phoenix_familiar]
 id = 8575
-familiar_time = 30
 
 [cub_bloodrager_familiar]
 id = 11106
