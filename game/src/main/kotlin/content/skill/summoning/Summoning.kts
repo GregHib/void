@@ -6,6 +6,7 @@ import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -13,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -24,6 +26,8 @@ import world.gregs.voidps.engine.timer.timerTick
 val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
 val npcDefinitions: NPCDefinitions by inject()
+val itemDefinitions: ItemDefinitions by inject()
+
 var Player.follower: NPC?
     get() {
         val index = this["follower_index", -1]
@@ -80,6 +84,10 @@ interfaceOption("Dismiss", id = "summoning_orb") {
     player.dismissFamiliar()
 }
 
+interfaceOption("Renew Familiar", id = "summoning_orb") {
+    player.renewFamiliar()
+}
+
 interfaceOption("Dismiss *", "dismiss", "familiar_details") {
     when (option) {
         "Dismiss Familiar" -> {
@@ -92,6 +100,10 @@ interfaceOption("Dismiss *", "dismiss", "familiar_details") {
         }
         "Dismiss Now" -> player.dismissFamiliar()
     }
+}
+
+interfaceOption("Renew Familiar", "renew", "familiar_details") {
+    player.renewFamiliar()
 }
 
 interfaceOption("Call *", "call", "*_details") {
@@ -158,6 +170,22 @@ fun Player.confirmFollowerLeftClickOptions() {
 fun Player.callFollower() {
     follower!!.tele(steps.follow, clearMode = false)
     follower!!.clearWatch()
+}
+
+fun Player.renewFamiliar() {
+    val pouchId = enums.get("summoning_familiar_ids").getKey(follower!!.def.id)
+    val pouchItem = Item(itemDefinitions.get(pouchId).stringId)
+
+    if (!inventory.contains(pouchItem.id)) {
+        // TODO: Find the actual message used here in 2011
+        message("You don't have the required pouch to renew your familiar.")
+        return
+    }
+
+    inventory.remove(pouchItem.id)
+    this["familiar_details_minutes_remaining"] = follower!!.def["familiar_time", 0]
+    this["familiar_details_seconds_remaining"] = 0
+    follower!!.gfx("summon_familiar_size_${follower!!.size}")
 }
 
 timerStart("familiar_timer") {player ->
