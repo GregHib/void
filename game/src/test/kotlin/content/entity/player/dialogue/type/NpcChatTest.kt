@@ -25,7 +25,7 @@ import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
 import kotlin.test.assertTrue
 
-internal class NPCChatTest : DialogueTest() {
+internal class NpcChatTest : DialogueTest() {
 
     lateinit var npc: NPC
 

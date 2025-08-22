@@ -18,12 +18,14 @@ import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.event.Scripts
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
 import world.gregs.voidps.network.login.protocol.decoders
+import world.gregs.voidps.type.Tile
 import java.util.*
 import kotlin.concurrent.thread
 
@@ -40,9 +42,9 @@ object Main {
     @OptIn(ExperimentalUnsignedTypes::class)
     @JvmStatic
     fun main(args: Array<String>) {
-        val startTime = System.currentTimeMillis()
-        Scripts.load()
+        println(Scripts.trie)
         return
+        val startTime = System.currentTimeMillis()
         val settings = settings()
 
         // File server
@@ -97,7 +99,6 @@ object Main {
             )
         }
         ContentLoader.load()
-        Scripts.load()
         Runtime.getRuntime().addShutdownHook(
             thread(start = false) {
                 World.emit(Despawn)

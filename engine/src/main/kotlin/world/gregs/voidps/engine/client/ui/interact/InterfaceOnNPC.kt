@@ -3,8 +3,9 @@ package world.gregs.voidps.engine.client.ui.interact
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.EventDispatcher
-import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.*
+import world.gregs.voidps.engine.event.EventField.*
+import world.gregs.voidps.engine.event.EventField.Event
 
 data class InterfaceOnNPC(
     override val character: Player,

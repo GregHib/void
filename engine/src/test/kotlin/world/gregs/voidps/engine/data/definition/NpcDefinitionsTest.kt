@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.data.definition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 
-internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDecoder, NPCDefinitions>() {
+internal class NpcDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDecoder, NPCDefinitions>() {
 
     override var decoder: NPCDecoder = NPCDecoder(member = true)
     override lateinit var definitions: Array<NPCDefinition>
@@ -25,7 +25,7 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
     override fun definitions(): NPCDefinitions = NPCDefinitions(definitions)
 
     override fun load(definitions: NPCDefinitions) {
-        val uri = NPCDefinitionsTest::class.java.getResource("test-npc.toml")!!
+        val uri = NpcDefinitionsTest::class.java.getResource("test-npc.toml")!!
         definitions.load(listOf(uri.path))
     }
 }

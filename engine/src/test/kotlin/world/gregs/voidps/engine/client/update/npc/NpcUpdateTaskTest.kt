@@ -25,7 +25,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.Animation
 import world.gregs.voidps.network.login.protocol.visual.update.Face
 import world.gregs.voidps.type.Tile
 
-internal class NPCUpdateTaskTest : KoinMock() {
+internal class NpcUpdateTaskTest : KoinMock() {
 
     private lateinit var task: NPCUpdateTask
     private lateinit var npcs: NPCs

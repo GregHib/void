@@ -7,7 +7,7 @@ import kotlin.script.templates.standard.ScriptTemplateWithArgs
  * Class for testing scripts by mocking injections
  */
 @ExtendWith(MockKExtension::class)
-abstract class ScriptMock(private val suffix: String = "Test") : KoinMock() {
+abstract class MetadataMock(private val suffix: String = "Test") : KoinMock() {
 
     protected lateinit var script: ScriptTemplateWithArgs
 
