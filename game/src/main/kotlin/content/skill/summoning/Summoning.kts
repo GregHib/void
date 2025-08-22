@@ -183,7 +183,7 @@ fun Player.renewFamiliar() {
     }
 
     inventory.remove(pouchItem.id)
-    this["familiar_details_minutes_remaining"] = follower!!.def["familiar_time", 0]
+    this["familiar_details_minutes_remaining"] = follower!!.def["summoning_time_minutes", 0]
     this["familiar_details_seconds_remaining"] = 0
     follower!!.gfx("summon_familiar_size_${follower!!.size}")
 }
@@ -191,7 +191,7 @@ fun Player.renewFamiliar() {
 timerStart("familiar_timer") {player ->
     interval = 50 // 30 seconds
 
-    player["familiar_details_minutes_remaining"] = player.follower!!.def["familiar_time", 0]
+    player["familiar_details_minutes_remaining"] = player.follower!!.def["summoning_time_minutes", 0]
     player["familiar_details_seconds_remaining"] = 0
 }
 
