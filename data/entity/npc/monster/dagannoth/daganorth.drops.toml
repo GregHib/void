@@ -1,0 +1,94 @@
+[dagannoth_lighthouse_drop_table]
+type = "all"
+drops = [
+  { id = "bones" },
+  { table = "dagannoth_lighthouse_secondary" },
+  { table = "dagannoth_lighthouse_tertiary" },
+]
+
+[dagannoth_lighthouse_secondary]
+roll = 128
+drops = [
+  { id = "iron_spear", chance = 6 },
+  { id = "bronze_spear", chance = 5 },
+  { id = "mithril_spear" },
+  { id = "water_rune", amount = 15, chance = 4 },
+  { id = "steel_arrow", amount = 15, chance = 2 },
+  { id = "mithril_javelin", amount = 3 },
+  { table = "rare_seed_drop_table", chance = 18 },
+  { id = "lobster_pot", chance = 12 },
+  { id = "raw_herring", amount = 3, chance = 4 },
+  { id = "raw_sardine", amount = 5, chance = 4 },
+  { id = "harpoon", chance = 3 },
+  { id = "feather", amount = 15, chance = 2 },
+  { id = "fishing_bait", amount = 50, chance = 2 },
+  { id = "raw_lobster", chance = 2 },
+  { id = "raw_tuna", chance = 2 },
+  { id = "seaweed", amount = 10, chance = 2 },
+  { id = "oyster_pearls" },
+  { id = "oyster_pearl", amount = 2 },
+  { id = "coins", amount = 56, chance = 29 },
+  { id = "coins", amount = 25, chance = 9 },
+  { id = "coins", amount = 44, chance = 8 },
+  { id = "coins", amount = 41, chance = 6 },
+  { id = "casket" },
+  { id = "opal_bolt_tips", amount = 12, chance = 2 },
+  { table = "gem_drop_table" },
+]
+
+[dagannoth_lighthouse_tertiary]
+roll = 128
+drops = [
+  { id = "dagannoth_ribs", chance = 32 },
+  { table = "medium_clue_scroll", roll = 128 }
+]
+
+[dagannoth_waterbirth_drop_table]
+type = "all"
+drops = [
+  { id = "bones" },
+  { table = "dagannoth_waterbirth_secondary" },
+  { table = "dagannoth_waterbirth_tertiary" },
+]
+
+[dagannoth_waterbirth_secondary]
+roll = 2048
+drops = [
+  { id = "gloves_fremennik", chance = 32 },
+  { id = "fremennik_shirt_brown", chance = 32 },
+  { id = "fremennik_cloak_brown", chance = 32 },
+  { id = "mithril_javelin", min = 1, max = 3, chance = 32 },
+  { id = "steel_arrow", min = 1, max = 30, chance = 160 },
+  { id = "spined_boots", chance = 32 },
+  { id = "spined_gloves", chance = 32 },
+  { id = "fremennik_shield", chance = 48 },
+  { id = "fremennik_helm", chance = 48 },
+  { id = "fremennik_blade", chance = 48 },
+  { id = "berserker_helm" },
+  { id = "archer_helm" },
+  { id = "farseer_helm" },
+  { id = "warrior_helm" },
+  { table = "herb_drop_table", chance = 128 },
+  { table = "rare_seed_drop_table", chance = 16 },
+  { table = "talisman_drop_table", chance = 80 },
+  { id = "casket", chance = 80 },
+  { id = "oyster_pearls", chance = 80 },
+  { id = "opal_bolt_tips", min = 1, max = 20, chance = 160 },
+  { id = "seaweed", min = 1, max = 10, chance = 480 },
+  { id = "edible_seaweed", min = 1, max = 5, chance = 128 },
+  { id = "raw_bass", chance = 80 },
+  { id = "coins", min = 1, max = 140, chance = 160 },
+  { id = "flattened_hide", chance = 32 },
+  { id = "stretched_hide", chance = 32 },
+  { id = "circular_hide", chance = 32 },
+  { id = "keg_of_beer", chance = 32 },
+  { table = "gem_drop_table", chance = 16 },
+]
+
+[dagannoth_waterbirth_tertiary]
+roll = 128
+drops = [
+  { id = "dagannoth_ribs", chance = 32 },
+  { table = "medium_clue_scroll", roll = 128 }
+]
+
