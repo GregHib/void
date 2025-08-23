@@ -1,0 +1,9 @@
+[dagannoth_attack]
+id = 1343
+
+[dagannoth_defend]
+id = 1340
+
+[dagannoth_death]
+id = 1342
+ticks = 2
