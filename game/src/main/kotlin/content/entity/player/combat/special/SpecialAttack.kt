@@ -16,6 +16,8 @@ const val MAX_SPECIAL_ATTACK = 1000
 data class SpecialAttack(val id: String, val target: Character) : Event {
     override val size = 2
 
+    override val notification: Boolean = true
+
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "special_attack"
         1 -> id

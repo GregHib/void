@@ -3,6 +3,7 @@ package content.skill.melee.weapon.special
 import content.area.wilderness.inMultiCombat
 import content.entity.combat.Target
 import content.entity.combat.hit.hit
+import content.entity.player.combat.special.specialAttack
 import content.entity.player.combat.special.specialAttackDamage
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.CharacterSearch
@@ -15,10 +16,10 @@ import world.gregs.voidps.engine.map.spiral
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-specialAttackDamage("spear_wall", noHit = false) { player ->
+specialAttack("spear_wall") { player ->
     player.start(id, duration = 8)
     if (!player.inMultiCombat) {
-        return@specialAttackDamage
+        return@specialAttack
     }
     var remaining = 15
     val characters: CharacterSearch<*> = if (target is Player) players else npcs
@@ -29,7 +30,7 @@ specialAttackDamage("spear_wall", noHit = false) { player ->
             }
             player.hit(char)
             if (--remaining <= 0) {
-                return@specialAttackDamage
+                return@specialAttack
             }
         }
     }

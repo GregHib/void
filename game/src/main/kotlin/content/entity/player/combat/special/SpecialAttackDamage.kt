@@ -11,16 +11,15 @@ data class SpecialAttackDamage(
     val target: Character,
     val damage: Int,
 ) : Event {
-    override val size = 3
+    override val size = 2
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "special_attack_damage"
         1 -> id
-        2 -> damage >= 0
         else -> null
     }
 }
 
-fun specialAttackDamage(id: String, noHit: Boolean = true, handler: suspend SpecialAttackDamage.(Player) -> Unit) {
-    Events.handle("special_attack_damage", id, if (noHit) true else "*", handler = handler)
+fun specialAttackDamage(id: String, handler: suspend SpecialAttackDamage.(Player) -> Unit) {
+    Events.handle("special_attack_damage", id, handler = handler)
 }
