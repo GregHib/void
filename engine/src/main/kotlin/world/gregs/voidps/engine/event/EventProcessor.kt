@@ -4,22 +4,31 @@ import com.github.michaelbull.logging.InlineLogger
 import com.google.devtools.ksp.processing.*
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
+import com.google.devtools.ksp.symbol.KSType
 import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.handle.EventField
+import world.gregs.voidps.engine.get
+import kotlin.reflect.KClass
 
 class EventProcessor(
     private val codeGenerator: CodeGenerator,
     private val logger: KSPLogger,
-    private val eventSchemas: Map<String, List<EventField>>
+    private val eventSchemas: Map<KClass<out Annotation>, SchemaProvider>
 ) : SymbolProcessor {
 
     private data class Node(
         val key: Any?,
         val children: MutableMap<Any, Node> = mutableMapOf(),
-        val handlers: MutableList<Pair<KSFunctionDeclaration, Boolean>> = mutableListOf() // or store references
+        val handlers: MutableList<NodeHandler> = mutableListOf()
     )
+
+    private data class NodeHandler(
+        val method: ClassName, val extension: KSType?, val data: Map<String, Any?>, val dispatcher: ClassName, val schemaProvider: SchemaProvider, val params: List<ClassName>)
 
     private fun emitTrieNode(node: Node): CodeBlock {
         val cb = CodeBlock.builder()
@@ -33,7 +42,6 @@ class EventProcessor(
             cb.add("\n⇥") // indent
 
             if (hasChildren) {
-//                cb.add("children = mapOf(\n⇥")
                 for ((i, key) in children.keys.withIndex()) {
                     val child = children.getValue(key)
                     if (i > 0) {
@@ -41,7 +49,6 @@ class EventProcessor(
                     }
                     cb.add("%S to %L", key, emitTrieNode(child))
                 }
-//                cb.add("\n⇤)")
                 if (hasHandlers) {
                     cb.add(",\n")
                 }
@@ -50,18 +57,29 @@ class EventProcessor(
             if (hasHandlers) {
                 cb.add("handler = setOf(")
                 for (i in node.handlers.indices) {
-                    val (dec, arrive) = node.handlers[i]
+                    val (methodName, extension, data, dispatcher, schema, params) = node.handlers[i]
                     if (i > 0) {
                         cb.add(", ")
                     }
-                    val extension = dec.extensionReceiver?.resolve()?.toTypeName()
-                    val type = ClassName("world.gregs.voidps.engine.entity.character.player", "Player")
-                    val methodName = ClassName(dec.packageName.asString(), dec.simpleName.asString())
-                    if (arrive) {
-                        cb.add("handler<%T, %T> { arriveDelay(); %T() }", extension, type, methodName)
-                    } else {
-                        cb.add("handler<%T, %T> { %T() }", extension, type, methodName)
+                    cb.add("handler<%T, %T> { ", extension?.toTypeName() ?: schema.extension(), dispatcher)
+                    val prefix = schema.prefix(extension.toString(), data)
+                    if (prefix != "") {
+                        cb.add("$prefix;")
                     }
+                    cb.add("%T", methodName)
+                    cb.add("(")
+                    var index = 0
+                    for (param in params) {
+                        val field = schema.param(param)
+                        if (field != "") {
+                            if (index++ > 0) {
+                                cb.add(", ")
+                            }
+                            cb.add(field)
+                        }
+                    }
+                    cb.add(")")
+                    cb.add(" }")
                 }
                 cb.add(")")
             }
@@ -75,8 +93,10 @@ class EventProcessor(
 
     private fun generateHandlerFunction(): FunSpec {
         // Define generic type variables
-        val tTypeVar = TypeVariableName("T", ClassName("world.gregs.voidps.engine.event", "Event"))
-        val dTypeVar = TypeVariableName("D", ClassName("world.gregs.voidps.engine.event", "EventDispatcher"))
+        val eventClass = Event::class.asClassName()
+        val tTypeVar = TypeVariableName("T", eventClass)
+        val dispatcherClass = EventDispatcher::class.asClassName()
+        val dTypeVar = TypeVariableName("D", dispatcherClass)
 
         // Define the block parameter type: suspend T.(D) -> Unit
         val blockParamType = LambdaTypeName.get(
@@ -87,8 +107,8 @@ class EventProcessor(
 
         // Define the return type: suspend Event.(EventDispatcher) -> Unit
         val returnType = LambdaTypeName.get(
-            receiver = ClassName("", "Event"),
-            parameters = arrayOf(ClassName("", "EventDispatcher")),
+            receiver = eventClass,
+            parameters = arrayOf(dispatcherClass),
             returnType = UNIT
         ).copy(suspending = true)
 
@@ -104,17 +124,21 @@ class EventProcessor(
     }
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
-        val symbols = resolver.getSymbolsWithAnnotation(Use::class.qualifiedName!!)
-            .filterIsInstance<KSFunctionDeclaration>()
-        if (symbols.none()) {
-            logger.warn("No symbols found; skipping")
+        var count = 0
+        for ((kClass, schema) in eventSchemas) {
+            val symbols = resolver.getSymbolsWithAnnotation(kClass.qualifiedName!!)
+                .filterIsInstance<KSFunctionDeclaration>()
+            if (symbols.none()) {
+                logger.warn("No symbols found; skipping $kClass")
+                continue
+            }
+            count += buildTrieFromAnnotations(symbols, schema, kClass)
+        }
+        if (count == 0) {
             return emptyList()
         }
 
-        val (rootNode, count) = buildTrieFromAnnotations(symbols)
         val rootCode = emitTrieNode(rootNode)
-
-
         val funSpec = FunSpec.builder("loadTrie")
             .returns(Trie::class)
             .addModifiers(KModifier.PRIVATE)
@@ -124,6 +148,7 @@ class EventProcessor(
             .addStatement("return value")
             .build()
         val fileSpec = FileSpec.builder("world.gregs.voidps.engine.event", "Scripts")
+            .addImport("world.gregs.voidps.engine", "get")
             .addType(
                 TypeSpec.objectBuilder("Scripts")
                     .addProperty(
@@ -150,42 +175,45 @@ class EventProcessor(
         return emptyList()
     }
 
-    private fun buildTrieFromAnnotations(symbols: Sequence<KSFunctionDeclaration>): Pair<Node, Int> {
-        val root = Node("root")
+    private val rootNode = Node("root")
+
+    interface SchemaProvider {
+        fun schema(extension: String, params: List<ClassName>): List<EventField>
+        fun prefix(extension: String, data: Map<String, Any?>): String = ""
+        fun param(param: ClassName): String = "get()" // Works but ideally we can create variables in the method and reuse injected variables
+        open fun dispatcher(params: List<ClassName>): ClassName {
+            return params.firstOrNull() ?: Player::class.asClassName()
+        }
+        open fun extension(): TypeName = throw NotImplementedError("Extension not implemented")
+    }
+
+    private fun buildTrieFromAnnotations(symbols: Sequence<KSFunctionDeclaration>, provider: SchemaProvider, kClass: KClass<out Annotation>): Int {
         var count = 0
         for (funDec in symbols) {
             count++
             val useAnnotation = funDec.annotations.find {
-                it.annotationType.resolve().declaration.qualifiedName?.asString() == Use::class.qualifiedName
+                it.annotationType.resolve().declaration.qualifiedName?.asString() == kClass.qualifiedName
             }
             val methodName = funDec.simpleName.asString()
-            val extension = funDec.extensionReceiver?.resolve()?.toString() ?: throw IllegalStateException("Expected event extension on method $methodName e.g.\n@Use\nfun Spawn.playerSpawn() {}")
-            val data = UseData()
+            val receiver = funDec.extensionReceiver?.resolve()
+            val extension = receiver?.toString() ?: ""
+            val data = mutableMapOf<String, Any>()
             for (argument in useAnnotation?.arguments ?: emptyList()) {
-                when (argument.name?.asString()) {
-                    "id" -> {
-                        val id = argument.value as String
-                        if (id != "") {
-                            data.sources.add(id)
-                        }
-                    }
-                    "ids" -> data.sources.addAll(argument.value as List<String>)
-                    "on" -> data.targets.addAll(argument.value as List<String>)
-                    "npcs" -> data.targets.addAll(argument.value as List<String>)
-                    "option" -> data.option = argument.value as String
-                    "component" -> data.component = argument.value as String
-                    "approach" -> data.approach = argument.value as Boolean
-                    "arrive" -> data.arrive = argument.value as Boolean
-                    else -> throw IllegalArgumentException("Unexpected argument ${argument.name?.asString()}")
+                val key = argument.name!!.asString()
+                if (argument.value != null) {
+                    data[key] = argument.value!!
                 }
-
             }
-            val schema = eventSchemas[extension]
-                ?: throw IllegalStateException("No schema defined for extension type: $extension")
-
+            val types = funDec.parameters.map { it.type.resolve().toClassName() }
+            val schema = provider.schema(extension, types)
+            if (schema.isEmpty()) {
+                throw IllegalStateException("Expected method $methodName to have an Event as extension e.g.\"@Use fun Spawn.playerSpawn() {}\"")
+            }
+            val className = ClassName(funDec.packageName.asString(), methodName)
+            val dispatcher = provider.dispatcher(types)
             fun insert(node: Node, depth: Int) {
                 if (depth >= schema.size) {
-                    node.handlers.add(funDec to data.arrive)
+                    node.handlers.add(NodeHandler(className, receiver, data, dispatcher, provider, types))
                     return
                 }
                 val keys = schema[depth].get(data)
@@ -195,8 +223,8 @@ class EventProcessor(
                 }
             }
 
-            insert(root, 0)
+            insert(rootNode, 0)
         }
-        return root to count
+        return count
     }
 }

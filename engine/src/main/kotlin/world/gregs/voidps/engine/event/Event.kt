@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.event
 
 interface Event {
-
     /**
      * Event gets sent to all applicable handlers not just the first
      */
