@@ -31,7 +31,7 @@ object OptionSchema : EventProcessor.SchemaProvider {
         return super.param(param)
     }
 
-    override fun schema(extension: String, params: List<ClassName>) = when (extension) {
+    override fun schema(extension: String, params: List<ClassName>, data: Map<String, Any?>) = when (extension) {
         "NPCOption<Player>" -> listOf(
             EventField.Event("player_operate_npc"),
             EventField.StringKey("option"),
@@ -46,7 +46,7 @@ object OptionSchema : EventProcessor.SchemaProvider {
             EventField.Event("player_operate_floor_item"),
             EventField.StringKey("option"),
             EventField.StringList("targets"),
-            EventField.StaticString("player")
+            EventField.StaticValue("player")
         )
         "FloorItemOption<NPC>" -> listOf(
             EventField.Event("npc_operate_floor_item"),
@@ -58,7 +58,7 @@ object OptionSchema : EventProcessor.SchemaProvider {
             EventField.Event("player_operate_object"),
             EventField.StringKey("option"),
             EventField.StringList("ids"),
-            EventField.StaticString("player")
+            EventField.StaticValue("player")
         )
         "ObjectOption<NPC>" -> listOf(
             EventField.Event("npc_operate_object"),
@@ -69,7 +69,7 @@ object OptionSchema : EventProcessor.SchemaProvider {
         "PlayerOption<Player>" -> listOf(
             EventField.Event("player_operate_player"),
             EventField.StringKey("option"),
-            EventField.StaticString("player")
+            EventField.StaticValue("player")
         )
         "PlayerOption<NPC>" -> listOf(
             EventField.Event("npc_operate_player"),
@@ -82,6 +82,12 @@ object OptionSchema : EventProcessor.SchemaProvider {
             EventField.ListIndex("targets", 1),
             EventField.StringKey("option"),
             EventField.ListIndex("targets", 2)
+        )
+        "InventoryOption" -> listOf(
+            EventField.Event("inventory_option"),
+            EventField.StringKey("option"),
+            EventField.SplitList("ids", 0),
+            EventField.SplitList("ids", 1),
         )
         else -> emptyList()
     }

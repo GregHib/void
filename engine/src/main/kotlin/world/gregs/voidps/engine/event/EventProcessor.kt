@@ -23,7 +23,7 @@ class EventProcessor(
 
     private data class Node(
         val key: Any?,
-        val children: MutableMap<Any, Node> = mutableMapOf(),
+        val children: MutableMap<Any?, Node> = mutableMapOf(),
         val handlers: MutableList<NodeHandler> = mutableListOf()
     )
 
@@ -178,13 +178,13 @@ class EventProcessor(
     private val rootNode = Node("root")
 
     interface SchemaProvider {
-        fun schema(extension: String, params: List<ClassName>): List<EventField>
+        fun schema(extension: String, params: List<ClassName>, data: Map<String, Any?>): List<EventField>
         fun prefix(extension: String, data: Map<String, Any?>): String = ""
         fun param(param: ClassName): String = "get()" // Works but ideally we can create variables in the method and reuse injected variables
-        open fun dispatcher(params: List<ClassName>): ClassName {
+        fun dispatcher(params: List<ClassName>): ClassName {
             return params.firstOrNull() ?: Player::class.asClassName()
         }
-        open fun extension(): TypeName = throw NotImplementedError("Extension not implemented")
+        fun extension(): TypeName = throw NotImplementedError("Extension not implemented in ${this::class.simpleName}")
     }
 
     private fun buildTrieFromAnnotations(symbols: Sequence<KSFunctionDeclaration>, provider: SchemaProvider, kClass: KClass<out Annotation>): Int {
@@ -205,7 +205,7 @@ class EventProcessor(
                 }
             }
             val types = funDec.parameters.map { it.type.resolve().toClassName() }
-            val schema = provider.schema(extension, types)
+            val schema = provider.schema(extension, types, data)
             if (schema.isEmpty()) {
                 throw IllegalStateException("Expected method $methodName to have an Event as extension e.g.\"@Use fun Spawn.playerSpawn() {}\"")
             }

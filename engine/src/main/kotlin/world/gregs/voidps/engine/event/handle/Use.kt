@@ -35,49 +35,35 @@ object UseOnSchema : EventProcessor.SchemaProvider {
         return super.param(param)
     }
 
-    private data class SplitList(val index: Int) : EventField() {
-        override fun get(data: Map<String, Any>): Set<Any> {
-            val ids = data["use"] as? List<String>
-            return if (ids.isNullOrEmpty()) setOf("*") else ids.map {
-                val split = it.split(":")
-                if (index >= split.size) {
-                    "*"
-                } else {
-                    split[index]
-                }
-            }.toSet()
-        }
-    }
-
-    override fun schema(extension: String, params: List<ClassName>) = when (extension) {
+    override fun schema(extension: String, params: List<ClassName>, data: Map<String, Any?>) = when (extension) {
         "InterfaceOnFloorItem" -> listOf(
             EventField.Event("interface_operate_floor_item"),
             EventField.StringList("on"),
-            SplitList(0),
-            SplitList(1),
+            EventField.SplitList("use", 0),
+            EventField.SplitList("use", 1),
         )
         "InterfaceOnItem" -> listOf(
             EventField.Event("interface_on_item"),
             EventField.StringList("on"),
-            SplitList(0),
-            SplitList(1),
+            EventField.SplitList("use", 0),
+            EventField.SplitList("use", 1),
         )
         "InterfaceOnNPC" -> listOf(
             EventField.Event("interface_on_operate_npc"),
             EventField.StringList("on"),
-            SplitList(0),
-            SplitList(1),
+            EventField.SplitList("use", 0),
+            EventField.SplitList("use", 1),
         )
         "InterfaceOnObject" -> listOf(
             EventField.Event("interface_on_operate_object"),
             EventField.StringList("on"),
-            SplitList(0),
-            SplitList(1),
+            EventField.SplitList("use", 0),
+            EventField.SplitList("use", 1),
         )
         "InterfaceOnPlayer" -> listOf(
             EventField.Event("interface_on_operate_player"),
-            SplitList(0),
-            SplitList(1),
+            EventField.SplitList("use", 0),
+            EventField.SplitList("use", 1),
         )
         "ItemOnFloorItem" -> listOf(
             EventField.Event("item_operate_floor_item"),
@@ -107,13 +93,6 @@ object UseOnSchema : EventProcessor.SchemaProvider {
         else -> emptyList()
     }
 }
-
-@Repeatable
-@Target(AnnotationTarget.FUNCTION)
-@Retention(AnnotationRetention.SOURCE)
-annotation class EventHandler(
-    vararg val arguments: String
-)
 
 /*
 

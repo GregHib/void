@@ -15,11 +15,11 @@ sealed class EventField {
             return if (ids.isNullOrEmpty()) setOf("*") else ids.toSet()
         }
     }
-    data class StaticString(val value: String) : EventField() {
-        override fun get(data: Map<String, Any>): Set<Any> = setOf(value)
+    data class StaticValue(val value: Any?) : EventField() {
+        override fun get(data: Map<String, Any>): Set<Any?> = setOf(value)
     }
-    data class StaticSet(val value: Set<String>) : EventField() {
-        override fun get(data: Map<String, Any>): Set<Any> = value
+    data class StaticSet(val value: Set<Any?>) : EventField() {
+        override fun get(data: Map<String, Any>): Set<Any?> = value
     }
     data class ListIndex(val key: String, val index: Int) : EventField() {
         override fun get(data: Map<String, Any>): Set<Any> {
@@ -27,5 +27,19 @@ sealed class EventField {
             return if (targets.isNullOrEmpty()) setOf("*") else setOf(targets[index])
         }
     }
-    abstract fun get(data: Map<String, Any>): Set<Any>
+    data class SplitList(val key: String, val part: Int) : EventField() {
+        override fun get(data: Map<String, Any>): Set<Any> {
+            val ids = data[key] as? List<String>
+            return if (ids.isNullOrEmpty()) setOf("*") else ids.map {
+                val split = it.split(":")
+                if (part >= split.size) {
+                    "*"
+                } else {
+                    split[part]
+                }
+            }.toSet()
+        }
+    }
+    abstract fun get(data: Map<String, Any>): Set<Any?>
+
 }

@@ -31,7 +31,7 @@ object SpawnSchema : EventProcessor.SchemaProvider {
 
     override fun extension() = Spawn::class.asClassName()
 
-    override fun schema(extension: String, params: List<ClassName>) = listOf(
+    override fun schema(extension: String, params: List<ClassName>, data: Map<String, Any?>) = listOf(
         EventField.StaticSet(type(params)),
         EventField.StringList("ids")
     )
@@ -47,6 +47,6 @@ object SpawnSchema : EventProcessor.SchemaProvider {
                 World::class.simpleName -> return setOf("world_spawn")
             }
         }
-        throw IllegalArgumentException("Expected Spawn method to have a entity parameter e.g. \"@Spawn fun worldSpawn(world: World) {}\"")
+        throw IllegalArgumentException("Expected Spawn method to have an entity parameter e.g. \"@Spawn fun worldSpawn(world: World) {}\"")
     }
 }

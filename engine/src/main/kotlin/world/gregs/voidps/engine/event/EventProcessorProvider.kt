@@ -13,6 +13,8 @@ class EventProcessorProvider : SymbolProcessorProvider {
             UseOn::class to UseOnSchema,
             Option::class to OptionSchema,
             Spawn::class to SpawnSchema,
+            Handle::class to HandleSchema,
+            VarSet::class to VarSetSchema,
         )
     )
 }
