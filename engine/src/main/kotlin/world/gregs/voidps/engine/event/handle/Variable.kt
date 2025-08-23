@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.event.EventProcessor
 @Repeatable
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.SOURCE)
-annotation class VarSet(
+annotation class Variable(
     vararg val ids: String,
     val npc: String = "*",
     val fromInt: Int = -1,
@@ -23,7 +23,7 @@ annotation class VarSet(
     val toBool: Boolean = false,
 )
 
-object VarSetSchema : EventProcessor.SchemaProvider {
+object VariableSchema : EventProcessor.SchemaProvider {
 
     private val set = setOf(Player::class.simpleName, NPC::class.simpleName)
 
@@ -34,33 +34,30 @@ object VarSetSchema : EventProcessor.SchemaProvider {
         return super.param(param)
     }
 
-    override fun extension() = VariableSet::class.asClassName()
-
     override fun schema(extension: String, params: List<ClassName>, data: Map<String, Any?>): List<EventField> = when (extension) {
-        "VariableSet" -> {
-            val type = type(params)
-            listOf(
-                EventField.StaticSet(type),
-                EventField.StringList("ids"),
-                EventField.StaticValue(if (type.first() == "player_set_variable") "player" else data["npc"] as String),
-                EventField.StaticValue(value("from", data)),
-                EventField.StaticValue(value("to", data)),
-            )
-        }
+        "VariableSet" -> listOf(
+            params.key("set_variable"),
+            EventField.StringList("ids"),
+            params.identifier(),
+            EventField.StaticValue(value("from", data)),
+            EventField.StaticValue(value("to", data)),
+        )
+        "VariableBitAdded" -> listOf(
+            params.key("add_variable"),
+            EventField.StringList("ids"),
+            params.identifier(),
+            EventField.StaticValue(value("to", data)),
+        )
+        "VariableBitRemoved" -> listOf(
+            params.key("remove_variable"),
+            EventField.StringList("ids"),
+            params.identifier(),
+            EventField.StaticValue(value("to", data)),
+        )
         else -> emptyList()
     }
 
-    fun type(params: List<ClassName>): Set<String> {
-        for (param in params) {
-            when (param.simpleName) {
-                Player::class.simpleName -> return setOf("player_set_variable")
-                NPC::class.simpleName -> return setOf("npc_set_variable")
-            }
-        }
-        throw IllegalArgumentException("Expected VarSet method to have an entity parameter e.g. \"@VarSet fun changedVar(player: Player) {}\"")
-    }
-
-    fun value(key: String, data: Map<String, Any?>): Any? {
+    private fun value(key: String, data: Map<String, Any?>): Any? {
         val int = data["${key}Int"] as? Int ?: -1
         if (int != -1) {
             return int

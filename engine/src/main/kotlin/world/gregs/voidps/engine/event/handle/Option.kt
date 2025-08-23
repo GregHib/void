@@ -77,17 +77,23 @@ object OptionSchema : EventProcessor.SchemaProvider {
             EventField.StringList("targets")
         )
         "InterfaceOption" -> listOf(
-            EventField.Event("interface_option"),
+            EventField.StaticValue("interface_option"),
             EventField.ListIndex("targets", 0),
             EventField.ListIndex("targets", 1),
             EventField.StringKey("option"),
             EventField.ListIndex("targets", 2)
         )
         "InventoryOption" -> listOf(
-            EventField.Event("inventory_option"),
+            EventField.StaticValue("inventory_option"),
             EventField.StringKey("option"),
             EventField.SplitList("ids", 0),
             EventField.SplitList("ids", 1),
+        )
+        "ContinueDialogue" -> listOf(
+            EventField.StaticValue("continue_dialogue"),
+            EventField.SplitList("ids", 0),
+            EventField.SplitList("ids", 1),
+            EventField.StringKey("option"),
         )
         else -> emptyList()
     }

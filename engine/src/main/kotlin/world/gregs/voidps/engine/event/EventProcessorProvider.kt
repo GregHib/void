@@ -14,7 +14,10 @@ class EventProcessorProvider : SymbolProcessorProvider {
             Option::class to OptionSchema,
             Spawn::class to SpawnSchema,
             Handle::class to HandleSchema,
-            VarSet::class to VarSetSchema,
+            Variable::class to VariableSchema,
+            On::class to OnSchema,
+            Timer::class to TimerSchema,
+            Combat::class to CombatSchema,
         )
     )
 }

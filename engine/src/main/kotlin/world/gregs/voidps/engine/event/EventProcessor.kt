@@ -10,7 +10,12 @@ import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.handle.EventField
 import world.gregs.voidps.engine.get
 import kotlin.reflect.KClass
@@ -185,6 +190,33 @@ class EventProcessor(
             return params.firstOrNull() ?: Player::class.asClassName()
         }
         fun extension(): TypeName = throw NotImplementedError("Extension not implemented in ${this::class.simpleName}")
+
+        fun List<ClassName>.key(suffix: String): EventField {
+            for (param in this) {
+                when (param.simpleName) {
+                    Player::class.simpleName -> return EventField.StaticValue("player_$suffix")
+                    NPC::class.simpleName -> return EventField.StaticValue("npc_$suffix")
+                    Character::class.simpleName -> return EventField.StaticSet(setOf("player_$suffix", "npc_$suffix"))
+                    FloorItem::class.simpleName -> return EventField.StaticValue("floor_item_$suffix")
+                    GameObject::class.simpleName -> return EventField.StaticValue("object_$suffix")
+                    World::class.simpleName -> return EventField.StaticValue("world_$suffix")
+                }
+            }
+            throw IllegalArgumentException("Expected $suffix method to have an entity parameter e.g. \"@On fun method(world: World) {}\"")
+        }
+
+        fun List<ClassName>.identifier(): EventField {
+            for (param in this) {
+                when (param.simpleName) {
+                    NPC::class.simpleName -> return EventField.StringList("ids")
+                    FloorItem::class.simpleName -> return EventField.StringList("ids")
+                    GameObject::class.simpleName -> return EventField.StringList("ids")
+                    Player::class.simpleName -> return EventField.StaticValue("player")
+                    World::class.simpleName -> return EventField.StaticValue("world")
+                }
+            }
+            return EventField.StaticValue("")
+        }
     }
 
     private fun buildTrieFromAnnotations(symbols: Sequence<KSFunctionDeclaration>, provider: SchemaProvider, kClass: KClass<out Annotation>): Int {

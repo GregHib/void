@@ -43,7 +43,7 @@ object UseOnSchema : EventProcessor.SchemaProvider {
             EventField.SplitList("use", 1),
         )
         "InterfaceOnItem" -> listOf(
-            EventField.Event("interface_on_item"),
+            EventField.StaticValue("interface_on_item"),
             EventField.StringList("on"),
             EventField.SplitList("use", 0),
             EventField.SplitList("use", 1),
@@ -71,8 +71,7 @@ object UseOnSchema : EventProcessor.SchemaProvider {
             EventField.StringList("on"),
         )
         "ItemOnItem" -> listOf(
-            // TODO directional
-            EventField.Event("item_on_item"),
+            EventField.StaticValue("item_on_item"),
             EventField.StringList("use"),
             EventField.StringList("on"),
         )
