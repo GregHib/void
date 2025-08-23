@@ -1,6 +1,7 @@
 package content.area.fremennik_province.rellekka
 
 import content.entity.combat.inCombat
+import content.entity.combat.target
 import content.entity.effect.transform
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -15,7 +16,7 @@ import java.util.concurrent.TimeUnit
  */
 fun inactive(npc: NPC) {
     npc.softQueue("inactivity", TimeUnit.SECONDS.toTicks(30)) {
-        if (npc.inCombat) {
+        if (npc.target != null || npc.inCombat) {
             inactive(npc) // still fighting, reschedule
         } else {
             // Randomly transform back to one of the disguised rocks
@@ -30,7 +31,10 @@ fun inactive(npc: NPC) {
  */
 huntPlayer("rock*", "aggressive") { npc ->
     // Skip if already in combat form
-    if (npc.id == "rock_crab") return@huntPlayer
+    if (npc.transform == "rock_crab") {
+        npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
+        return@huntPlayer
+    }
     // Transform immediately to combat form
     npc.transform("rock_crab")
     // Attack the player after a short delay
