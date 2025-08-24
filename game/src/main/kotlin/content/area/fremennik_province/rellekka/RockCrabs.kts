@@ -12,15 +12,20 @@ import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 /**
- * Resets the Rock Crab to a disguised rock variant after 30s of no combat.
+ * Resets the Rock Crab to its original disguised form after 30s of no combat.
  */
 fun inactive(npc: NPC) {
     npc.softQueue("inactivity", TimeUnit.SECONDS.toTicks(30)) {
         if (npc.target != null || npc.inCombat) {
             inactive(npc) // still fighting, reschedule
         } else {
-            // Randomly transform back to one of the disguised rocks
-            npc.transform(listOf("rock", "rock_1").random())
+            // Transform back to correct disguise based on combat form
+            val disguise: String = when (npc.transform) {
+                "rock_crab_1" -> "rock_1"
+                "rock_crab" -> "rock"
+                else -> return@softQueue // if already a rock, do nothing
+            }
+            npc.transform(disguise)
         }
     }
 }
@@ -31,12 +36,18 @@ fun inactive(npc: NPC) {
  */
 huntPlayer("rock*", "aggressive") { npc ->
     // Skip if already in combat form
-    if (npc.transform == "rock_crab") {
+    if (npc.transform.startsWith("rock_crab")) {
         npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
         return@huntPlayer
     }
-    // Transform immediately to combat form
-    npc.transform("rock_crab")
+    // Transform immediately to the correct combat form based on the rock ID
+    val combatForm: String = when (npc.id) {
+        "rock" -> "rock_crab"
+        "rock_1" -> "rock_crab_1"
+        else -> return@huntPlayer
+    }
+    npc.transform(combatForm)
+
     // Attack the player after a short delay
     npc.softQueue("stand_up", 2) {
         npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
