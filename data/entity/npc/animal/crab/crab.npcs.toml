@@ -71,16 +71,10 @@ id = 2885
 
 [Boulder]
 id = 2453
-att = 1
-str = 1
-def = 1
-magic = 1
-hitpoints = 1
-max_hit_melee = 1
-wander_radius = 0
 hunt_mode = "aggressive"
-combat_anims = "rock_crab"
+hunt_radius = 3
 categories = ["crab"]
+combat_anims = "rock_crab"
 respawn_delay = 50
 examine = "Heavy boulder!"
 
