@@ -21,16 +21,14 @@ data class ObjectTeleport(
     var land: Boolean = false
     var move: (suspend SuspendableContext<Player>.(Tile) -> Unit)? = null
 
-    override val size = 5
+    override val size = 3
 
     override val notification: Boolean = true
 
     override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
         0 -> "${dispatcher.key}_obj_teleport_${if (land) "land" else "takeoff"}"
-        1 -> dispatcher.identifier
-        2 -> target.id
-        3 -> obj.stringId
-        4 -> option
+        1 -> obj.stringId
+        2 -> option
         else -> null
     }
 }
@@ -40,7 +38,7 @@ fun objTeleportTakeOff(option: String = "*", vararg ids: String = arrayOf("*"), 
         block.invoke(this)
     }
     for (id in ids) {
-        Events.handle("player_obj_teleport_takeoff", "player", "*", id, option, handler = handler)
+        Events.handle("player_obj_teleport_takeoff", id, option, handler = handler)
     }
 }
 
@@ -49,12 +47,6 @@ fun objTeleportLand(option: String = "*", vararg ids: String = arrayOf("*"), blo
         block.invoke(this)
     }
     for (id in ids) {
-        Events.handle("player_obj_teleport_land", "player", "*", id, option, handler = handler)
-    }
-}
-
-fun objTeleport(option: String = "*", obj: String = "*", id: String = "*", land: Boolean = true, handler: suspend ObjectTeleport.() -> Unit) {
-    Events.handle<Player, ObjectTeleport>("player_obj_teleport_${if (land) "land" else "takeoff"}", "player", id, obj, option) {
-        handler.invoke(this)
+        Events.handle("player_obj_teleport_land", id, option, handler = handler)
     }
 }
