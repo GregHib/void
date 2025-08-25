@@ -36,10 +36,6 @@ object OnSchema : EventProcessor.SchemaProvider {
             EventField.StaticValue("consume"),
             EventField.StringList("ids"),
         )
-        "Spawn" -> listOf(
-            params.key("spawn"),
-            params.identifier()
-        )
         "Despawn" -> listOf(
             params.key("despawn"),
             params.identifier()

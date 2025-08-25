@@ -20,6 +20,7 @@ class EventProcessorProvider : SymbolProcessorProvider {
             Area::class to AreaSchema,
             Move::class to MoveSchema,
             LevelChange::class to LevelChangeSchema,
+            Spawn::class to SpawnSchema,
         )
     )
 }
