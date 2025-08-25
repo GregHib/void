@@ -35,6 +35,7 @@ class Events(
     private val roots: MutableMap<Int, TrieNode> = Int2ObjectOpenHashMap(8)
     var all: ((Player, Event) -> Unit)? = null
     private val logger = InlineLogger()
+    var trie: Trie = Trie()
 
     private class TrieNode {
         val children: MutableMap<Any?, TrieNode> = Object2ObjectOpenHashMap(1, 0.5f)
@@ -56,28 +57,6 @@ class Events(
             }
             node = node.children[param]!!
         }
-        if (node.handler == null) {
-            node.handler = HashSet(1)
-        }
-        node.handler!!.add(handler)
-    }
-
-    fun insert(size: Int, one: Any, two: Any, handler: suspend Event.(EventDispatcher) -> Unit) {
-        var node = roots.getOrPut(size) { TrieNode() }
-        node = node.children.getOrPut(one) { TrieNode() }
-        node = node.children.getOrPut(two) { TrieNode() }
-        if (node.handler == null) {
-            node.handler = HashSet(1)
-        }
-        node.handler!!.add(handler)
-    }
-
-    fun insert(size: Int, one: Any, two: Any, three: Any, four: Any, handler: suspend Event.(EventDispatcher) -> Unit) {
-        var node = roots.getOrPut(size) { TrieNode() }
-        node = node.children.getOrPut(one) { TrieNode() }
-        node = node.children.getOrPut(two) { TrieNode() }
-        node = node.children.getOrPut(three) { TrieNode() }
-        node = node.children.getOrPut(four) { TrieNode() }
         if (node.handler == null) {
             node.handler = HashSet(1)
         }
@@ -130,6 +109,10 @@ class Events(
             return false
         }
         val root = roots[event.size] ?: return false
+        val value = trie.first(dispatcher, event, trie, 0, null)
+        if (value != null) {
+            return true
+        }
         return first(dispatcher, event, root, 0, null) != null
     }
 
@@ -147,7 +130,18 @@ class Events(
             return null
         }
         val root = roots[event.size] ?: return null
-        return if (event.notification) all(dispatcher, event, root, 0, skip) else first(dispatcher, event, root, 0, skip)
+        if (event.notification) {
+            val set = mutableSetOf<suspend Event.(EventDispatcher) -> Unit>()
+            trie.all(dispatcher, event, trie, 0, skip, set)
+            all(dispatcher, event, root, 0, skip, set)
+            return set
+        } else {
+            val value = trie.first(dispatcher, event, trie, 0, skip)
+            if (value != null) {
+                return value
+            }
+            return first(dispatcher, event, root, 0, skip)
+        }
     }
 
     private fun first(dispatcher: EventDispatcher, event: Event, node: TrieNode, depth: Int, skip: (suspend Event.(EventDispatcher) -> Unit)? = null): Set<suspend Event.(EventDispatcher) -> Unit>? {

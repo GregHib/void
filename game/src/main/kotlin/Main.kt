@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.event.Scripts
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
@@ -40,8 +41,7 @@ object Main {
     @OptIn(ExperimentalUnsignedTypes::class)
     @JvmStatic
     fun main(args: Array<String>) {
-        println(Scripts.trie)
-        return
+//        println(Scripts.trie)
         val startTime = System.currentTimeMillis()
         val settings = settings()
 
@@ -96,6 +96,7 @@ object Main {
                 cache(cache, configFiles),
             )
         }
+        Events.events.trie = Scripts.trie
         ContentLoader.load()
         Runtime.getRuntime().addShutdownHook(
             thread(start = false) {
