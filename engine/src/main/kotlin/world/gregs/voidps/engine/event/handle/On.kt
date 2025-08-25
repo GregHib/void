@@ -44,6 +44,10 @@ object OnSchema : EventProcessor.SchemaProvider {
             params.key("despawn"),
             params.identifier()
         )
+        "Death" -> listOf(
+            params.key("death"),
+            params.identifier()
+        )
         "Destroyed" -> listOf(
             EventField.StaticValue("destroy"),
             EventField.StringList("ids")
@@ -91,6 +95,14 @@ object OnSchema : EventProcessor.SchemaProvider {
         )
         "TimerStop" -> listOf(
             params.key("timer_stop"),
+            EventField.StringList("ids"),
+        )
+        "PrayerStart" -> listOf(
+            EventField.StaticValue("prayer_start"),
+            EventField.StringList("ids"),
+        )
+        "PrayerStop" -> listOf(
+            EventField.StaticValue("prayer_stop"),
             EventField.StringList("ids"),
         )
         else -> emptyList()

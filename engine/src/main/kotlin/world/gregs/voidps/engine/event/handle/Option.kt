@@ -95,6 +95,13 @@ object OptionSchema : EventProcessor.SchemaProvider {
             EventField.SplitList("ids", 1),
             EventField.StringKey("option"),
         )
+        "ObjectTeleport" -> listOf(
+            EventField {
+                setOf("player_obj_teleport_${if (it["arrive"] as Boolean) "land" else "takeoff"}")
+            },
+            EventField.StringList("ids"),
+            EventField.StringKey("option"),
+        )
         else -> emptyList()
     }
 }

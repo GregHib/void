@@ -33,25 +33,18 @@ object MoveSchema : EventProcessor.SchemaProvider {
         return super.param(param)
     }
 
-    private data class TileField(val key: String) : EventField() {
-        override fun get(data: Map<String, Any>): Set<Any> {
-            val id = data[key] as Int
-            return if (id == -1) setOf("*") else setOf(id)
-        }
-    }
-
     override fun schema(extension: String, params: List<ClassName>, data: Map<String, Any?>): List<EventField> = when (extension) {
         "Moved<Player>" -> listOf(
             EventField.StaticValue("player_move"),
             EventField.StaticValue("player"),
-            TileField("from"),
-            TileField("to"),
+            EventField.IntKey("from"),
+            EventField.IntKey("to"),
         )
         "Moved<NPC>" -> listOf(
             EventField.StaticValue("player_move"),
             EventField.StringList("ids"),
-            TileField("from"),
-            TileField("to"),
+            EventField.IntKey("from"),
+            EventField.IntKey("to"),
         )
         else -> emptyList()
     }

@@ -17,6 +17,9 @@ import world.gregs.voidps.engine.event.EventProcessor
 @Retention(AnnotationRetention.SOURCE)
 annotation class Combat(
     vararg val ids: String,
+    val weapon: String = "*",
+    val style: String = "*",
+    val spell: String = "*",
 )
 
 object CombatSchema : EventProcessor.SchemaProvider {

@@ -32,7 +32,8 @@ class EventProcessor(
     )
 
     private data class NodeHandler(
-        val method: ClassName, val extension: KSType?, val data: Map<String, Any?>, val dispatcher: ClassName, val schemaProvider: SchemaProvider, val params: List<ClassName>)
+        val method: ClassName, val extension: KSType?, val data: Map<String, Any?>, val dispatcher: ClassName, val schemaProvider: SchemaProvider, val params: List<ClassName>
+    )
 
     private fun emitTrieNode(node: Node): CodeBlock {
         val cb = CodeBlock.builder()
@@ -138,9 +139,6 @@ class EventProcessor(
             }
             count += buildTrieFromAnnotations(symbols, schema, kClass, resolver)
         }
-        if (count == 0) {
-            return emptyList()
-        }
 
         val rootCode = emitTrieNode(rootNode)
         val funSpec = FunSpec.builder("loadTrie")
@@ -171,11 +169,15 @@ class EventProcessor(
                     .build()
             )
             .build()
-        val dependencies = Dependencies(
-            aggregating = false,
-            sources = resolver.getAllFiles().toList().toTypedArray()
-        )
-        fileSpec.writeTo(codeGenerator, dependencies)
+        try {
+            val dependencies = Dependencies(
+                aggregating = false,
+                sources = resolver.getAllFiles().toList().toTypedArray()
+            )
+            fileSpec.writeTo(codeGenerator, dependencies)
+        } catch (exist: FileAlreadyExistsException) {
+            exist.printStackTrace()
+        }
         return emptyList()
     }
 
@@ -188,6 +190,7 @@ class EventProcessor(
         fun dispatcher(params: List<ClassName>): ClassName {
             return params.firstOrNull() ?: Player::class.asClassName()
         }
+
         fun extension(): TypeName = throw NotImplementedError("Extension not implemented in ${this::class.simpleName}")
 
         fun List<ClassName>.key(suffix: String): EventField {
@@ -217,6 +220,7 @@ class EventProcessor(
             return EventField.StaticValue("")
         }
     }
+
     fun extendsClass(classDeclaration: KSClassDeclaration, targetClassName: String): Boolean {
 
         return classDeclaration.superTypes.any { superType ->
@@ -254,7 +258,11 @@ class EventProcessor(
             val types = funDec.parameters.map { it.type.resolve().toClassName() }
             val schema = provider.schema(extension, types, data)
             if (schema.isEmpty()) {
-                throw IllegalStateException("Expected method $methodName to have an Event as extension e.g.\"@On fun Spawn.playerSpawn() {}\"")
+                val targetType = resolver.getClassDeclarationByName(Event::class.qualifiedName!!)?.asStarProjectedType()
+                if (receiver != null && targetType != null && !targetType.isAssignableFrom(receiver)) {
+                    throw IllegalStateException("Expected method $methodName to have an Event as extension e.g.\"@On fun Spawn.playerSpawn() {}\"")
+                }
+                throw IllegalStateException("No EventProcessor schema found for method $methodName; make sure you're using the correct annotation and event.")
             }
             val className = ClassName(funDec.packageName.asString(), methodName)
             val dispatcher = provider.dispatcher(types)
@@ -270,7 +278,12 @@ class EventProcessor(
                 }
             }
 
-            insert(rootNode, 0)
+            try {
+                insert(rootNode, 0)
+            } catch (e: Exception) {
+                logger.error("Error $className $methodName")
+                throw e
+            }
         }
         return count
     }

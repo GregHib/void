@@ -29,7 +29,7 @@ object InventorySchema : EventProcessor.SchemaProvider {
         return super.param(param)
     }
 
-    private data object SlotSet : EventField() {
+    private data object SlotSet : EventField {
         override fun get(data: Map<String, Any>): Set<Any> {
             val ids = data["slots"] as? List<KSType>
             return if (ids.isNullOrEmpty()) setOf("*") else ids.map { EquipSlot.by(it.toClassName().simpleName).index }.toSet()

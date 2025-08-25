@@ -1,33 +1,49 @@
 package world.gregs.voidps.engine.event.handle
 
-sealed class EventField {
-    data class Event(val type: String) : EventField() {
+fun interface EventField {
+    data class Event(val type: String) : EventField {
         override fun get(data: Map<String, Any>): Set<Any> {
             return if (data["approach"] == true) setOf(type.replace("operate", "approach")) else setOf(type)
         }
     }
-    data class StringKey(val key: String) : EventField() {
+
+    data class StringKey(val key: String) : EventField {
         override fun get(data: Map<String, Any>): Set<Any> = setOf(data[key] as String)
     }
-    data class StringList(val key: String) : EventField() {
+
+    data class IntKey(val key: String) : EventField {
+        override fun get(data: Map<String, Any>): Set<Any> {
+            val value = data[key] as? Int ?: -1
+            if (value == -1) {
+                return setOf("*")
+            }
+            return setOf(value)
+        }
+    }
+
+    data class StringList(val key: String) : EventField {
         override fun get(data: Map<String, Any>): Set<Any> {
             val ids = data[key] as? List<String>
             return if (ids.isNullOrEmpty()) setOf("*") else ids.toSet()
         }
     }
-    data class StaticValue(val value: Any?) : EventField() {
+
+    data class StaticValue(val value: Any?) : EventField {
         override fun get(data: Map<String, Any>): Set<Any?> = setOf(value)
     }
-    data class StaticSet(val value: Set<Any?>) : EventField() {
+
+    data class StaticSet(val value: Set<Any?>) : EventField {
         override fun get(data: Map<String, Any>): Set<Any?> = value
     }
-    data class ListIndex(val key: String, val index: Int) : EventField() {
+
+    data class ListIndex(val key: String, val index: Int) : EventField {
         override fun get(data: Map<String, Any>): Set<Any> {
             val targets = data[key] as? List<String>
             return if (targets.isNullOrEmpty()) setOf("*") else setOf(targets[index])
         }
     }
-    data class SplitList(val key: String, val part: Int) : EventField() {
+
+    data class SplitList(val key: String, val part: Int) : EventField {
         override fun get(data: Map<String, Any>): Set<Any> {
             val ids = data[key] as? List<String>
             return if (ids.isNullOrEmpty()) setOf("*") else ids.map {
@@ -40,6 +56,6 @@ sealed class EventField {
             }.toSet()
         }
     }
-    abstract fun get(data: Map<String, Any>): Set<Any?>
 
+    fun get(data: Map<String, Any>): Set<Any?>
 }
