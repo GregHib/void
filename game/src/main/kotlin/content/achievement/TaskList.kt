@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.event.handle.Variable
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.event.handle.On
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
@@ -15,12 +14,13 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.handle.Option
+import world.gregs.voidps.engine.event.handle.Spawn
 import world.gregs.voidps.engine.inject
 
 private val variables: VariableDefinitions by inject()
 
-@On
-fun Spawn.loginTasks(player: Player) {
+@Spawn
+fun loginTasks(player: Player) {
     player.sendVariable("task_disable_popups")
     player["task_popup"] = 0
     player["task_previous_popup"] = 0

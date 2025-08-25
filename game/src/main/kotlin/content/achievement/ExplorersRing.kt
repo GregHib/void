@@ -4,18 +4,17 @@ package content.achievement
 
 import content.entity.player.inv.InventoryOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.Spawn
-import world.gregs.voidps.engine.event.handle.On
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.event.handle.Option
+import world.gregs.voidps.engine.event.handle.Spawn
 import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.inventory
 import java.util.concurrent.TimeUnit
 
-@On
-fun Spawn.replenishExplorersRing(player : Player) {
+@Spawn
+fun replenishExplorersRing(player: Player) {
     val lastUse = player["explorers_ring_last_use", -1L]
     if (lastUse != -1L && lastUse != TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis())) {
         player["explorers_ring_charges"] = 1
