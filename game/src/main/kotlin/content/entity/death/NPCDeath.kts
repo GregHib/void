@@ -51,9 +51,9 @@ npcDeath { npc ->
         val killer = npc.killer
         val tile = npc.tile
         npc["death_tile"] = tile
-        npc.anim(NPCAttack.anim(animationDefinitions, npc, "death"))
+        val ticks = npc.anim(NPCAttack.anim(animationDefinitions, npc, "death"))
         (killer as? Player)?.sound(NPCAttack.sound(soundDefinitions, npc, "death"))
-        delay(4)
+        delay(if(ticks <= 0) 4 else ticks)
         if (killer is Player) {
             slay(killer, npc)
             dropLoot(npc, killer, tile)
