@@ -17,6 +17,8 @@ class EventProcessorProvider : SymbolProcessorProvider {
             Variable::class to VariableSchema,
             On::class to OnSchema,
             Combat::class to CombatSchema,
+            Area::class to AreaSchema,
+            Move::class to MoveSchema,
         )
     )
 }
