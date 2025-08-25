@@ -89,12 +89,47 @@ object ScriptConverter {
                     continue
                 }
                 line.startsWith("playerSpawn") -> {
-                    dependency("world.gregs.voidps.engine.event.handle.On")
-                    dependency("world.gregs.voidps.engine.entity.Spawn")
+                    dependency("world.gregs.voidps.engine.event.handle.Spawn")
                     dependency("world.gregs.voidps.engine.entity.character.player.Player")
                     output.add("// $line")
-                    output.add("@${line.replace("playerSpawn", "On").substringBeforeLast(" {")}")
-                    output.add("fun Spawn.playerSpawn(${params(line)}) {")
+                    output.add("@${line.replace("playerSpawn", "Spawn").substringBeforeLast(" {")}")
+                    output.add("fun playerSpawn(${params(line)}) {")
+                    depth++
+                    continue
+                }
+                line.startsWith("npcSpawn") -> {
+                    dependency("world.gregs.voidps.engine.event.handle.Spawn")
+                    dependency("world.gregs.voidps.engine.entity.character.npc.NPC")
+                    output.add("// $line")
+                    output.add("@${line.replace("npcSpawn", "Spawn").substringBeforeLast(" {")}")
+                    output.add("fun npcSpawn(${params(line)}) {")
+                    depth++
+                    continue
+                }
+                line.startsWith("characterSpawn") -> {
+                    dependency("world.gregs.voidps.engine.event.handle.Spawn")
+                    dependency("world.gregs.voidps.engine.entity.character.Character")
+                    output.add("// $line")
+                    output.add("@${line.replace("characterSpawn", "Spawn").substringBeforeLast(" {")}")
+                    output.add("fun characterSpawn(${params(line)}) {")
+                    depth++
+                    continue
+                }
+                line.startsWith("objectSpawn") -> {
+                    dependency("world.gregs.voidps.engine.event.handle.Spawn")
+                    dependency("world.gregs.voidps.engine.entity.obj.GameObject")
+                    output.add("// $line")
+                    output.add("@${line.replace("objectSpawn", "Spawn").substringBeforeLast(" {")}")
+                    output.add("fun objectSpawn(${params(line)}) {")
+                    depth++
+                    continue
+                }
+                line.startsWith("worldSpawn") -> {
+                    dependency("world.gregs.voidps.engine.event.handle.Spawn")
+                    dependency("world.gregs.voidps.engine.entity.World")
+                    output.add("// $line")
+                    output.add("@${line.replace("worldSpawn", "Spawn").substringBeforeLast(" {")}")
+                    output.add("fun worldSpawn(${params(line)}) {")
                     depth++
                     continue
                 }
