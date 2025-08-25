@@ -1,20 +1,26 @@
+@file:Suppress("UnusedReceiverParameter")
+
 package content.achievement
 
+import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.event.handle.Variable
+import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.entity.Spawn
+import world.gregs.voidps.engine.event.handle.On
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.handle.Option
 import world.gregs.voidps.engine.inject
 
-val variables: VariableDefinitions by inject()
+private val variables: VariableDefinitions by inject()
 
-playerSpawn { player ->
+@On
+fun Spawn.loginTasks(player: Player) {
     player.sendVariable("task_disable_popups")
     player["task_popup"] = 0
     player["task_previous_popup"] = 0
@@ -33,29 +39,34 @@ playerSpawn { player ->
     player.sendVariable("task_filter_sets")
 }
 
-interfaceOpen("task_list") { player ->
+@On("task_list")
+fun InterfaceOpened.openTaskList(player: Player) {
     player.interfaceOptions.unlockAll("task_list", "tasks", 0..492)
     refresh(player)
 }
 
-interfaceOption("Select", "area_*", "task_list") {
+@Option("Select", "area_*:task_list")
+fun InterfaceOption.selectTaskArea() {
     player["task_list_area"] = component.removePrefix("area_")
     refresh(player)
 }
 
-interfaceOption("Summary", "tasks", "task_list") {
+@Option("Summary", "tasks:task_list")
+fun InterfaceOption.taskSummary() {
     player["task_slot_selected"] = itemSlot / 4
 }
 
-interfaceOption("Pin", "tasks", "task_list") {
+@Option("Pin", "tasks:task_list")
+fun InterfaceOption.pinTask() {
     pin(player, itemSlot / 4)
 }
 
-interfaceOption("Pin", "pin", "task_list") {
+@Option("Pin", "pin:task_list")
+fun InterfaceOption.pinSelected() {
     pin(player, player["task_slot_selected", 0])
 }
 
-fun indexOfSlot(player: Player, slot: Int): Int? {
+private fun indexOfSlot(player: Player, slot: Int): Int? {
     var count = 0
     return Tasks.forEach(areaId(player)) {
         if (player["task_hide_completed", false] && Tasks.isCompleted(player, definition.stringId)) {
@@ -71,7 +82,7 @@ fun indexOfSlot(player: Player, slot: Int): Int? {
     }
 }
 
-fun find(player: Player, id: Int): Int {
+private fun find(player: Player, id: Int): Int {
     for (i in 0 until 6) {
         if (player["task_slot_$i", -1] == id) {
             return i
@@ -80,15 +91,18 @@ fun find(player: Player, id: Int): Int {
     return 1
 }
 
-interfaceOption("Filter-sets", "filter_sets", "task_list") {
+@Option("Filter-sets", "filter_sets:task_list")
+fun InterfaceOption.filterTaskSets() {
     player["task_filter_sets"] = !player["task_filter_sets", false]
 }
 
-interfaceOption("Filter-done", "filter_done", "task_list") {
+@Option("Filter-done", "filter_done:task_list")
+fun InterfaceOption.filterDoneTasks() {
     player["task_hide_completed"] = !player["task_hide_completed", false]
 }
 
-interfaceOption("Turn-off", "toggle_popups", "task_list") {
+@Option("Turn-off", "toggle_popups:task_list")
+fun InterfaceOption.toggleTaskPopups() {
     val disable = !player["task_disable_popups", false]
     player["task_disable_popups"] = disable
     if (disable) {
@@ -97,20 +111,21 @@ interfaceOption("Turn-off", "toggle_popups", "task_list") {
     }
 }
 
-fun refresh(player: Player) {
+private fun refresh(player: Player) {
     player.sendVariable("task_list_area")
     val id = areaId(player)
     player.sendScript("task_main_list_populate", id, 999, 999)
     refreshCompletedCount(player)
 }
 
-variableSet("task_pin_slot") { player ->
+@Variable("task_pin_slot")
+fun VariableSet.taskPinChanged(player: Player) {
     player.close("task_list")
 }
 
-fun areaId(player: Player) = variables.get("task_list_area")!!.values.toInt(player["task_list_area", "unstable_foundations"])
+private fun areaId(player: Player) = variables.get("task_list_area")!!.values.toInt(player["task_list_area", "unstable_foundations"])
 
-fun pin(player: Player, slot: Int) {
+private fun pin(player: Player, slot: Int) {
     val index = indexOfSlot(player, slot) ?: return
     if (player["task_pinned", -1] == index) {
         player.clear("task_pinned")
@@ -121,7 +136,7 @@ fun pin(player: Player, slot: Int) {
     }
 }
 
-fun refreshCompletedCount(player: Player) {
+private fun refreshCompletedCount(player: Player) {
     var total = 0
     var completed = 0
     Tasks.forEach(areaId(player)) {
@@ -142,10 +157,11 @@ fun refreshCompletedCount(player: Player) {
 
 val enumDefinitions: EnumDefinitions by inject()
 
-interfaceOption("Hint", "hint_*", "task_list") {
+@Option("Hint", "hint_*:task_list")
+fun InterfaceOption.showTaskHint() {
     val selected = player["task_slot_selected", 0]
-    val index = indexOfSlot(player, selected) ?: return@interfaceOption
-    val tile: Int = enumDefinitions.getStructOrNull("task_structs", index, component.replace("hint_", "task_hint_tile_")) ?: return@interfaceOption
+    val index = indexOfSlot(player, selected) ?: return
+    val tile: Int = enumDefinitions.getStructOrNull("task_structs", index, component.replace("hint_", "task_hint_tile_")) ?: return
     // TODO I expect the functionality is actually minimap highlights not world map
     player["world_map_marker_1"] = tile
     player["world_map_marker_text_1"] = ""
