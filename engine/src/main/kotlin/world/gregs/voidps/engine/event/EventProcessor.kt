@@ -1,10 +1,9 @@
 package world.gregs.voidps.engine.event
 
 import com.github.michaelbull.logging.InlineLogger
+import com.google.devtools.ksp.getClassDeclarationByName
 import com.google.devtools.ksp.processing.*
-import com.google.devtools.ksp.symbol.KSAnnotated
-import com.google.devtools.ksp.symbol.KSFunctionDeclaration
-import com.google.devtools.ksp.symbol.KSType
+import com.google.devtools.ksp.symbol.*
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
@@ -17,7 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.handle.EventField
-import world.gregs.voidps.engine.get
+import kotlin.math.log
 import kotlin.reflect.KClass
 
 class EventProcessor(
@@ -137,7 +136,7 @@ class EventProcessor(
                 logger.warn("No symbols found; skipping $kClass")
                 continue
             }
-            count += buildTrieFromAnnotations(symbols, schema, kClass)
+            count += buildTrieFromAnnotations(symbols, schema, kClass, resolver)
         }
         if (count == 0) {
             return emptyList()
@@ -218,8 +217,16 @@ class EventProcessor(
             return EventField.StaticValue("")
         }
     }
+    fun extendsClass(classDeclaration: KSClassDeclaration, targetClassName: String): Boolean {
 
-    private fun buildTrieFromAnnotations(symbols: Sequence<KSFunctionDeclaration>, provider: SchemaProvider, kClass: KClass<out Annotation>): Int {
+        return classDeclaration.superTypes.any { superType ->
+            val resolved = superType.resolve()
+            logger.info("Check: $classDeclaration $superType")
+            resolved.declaration.qualifiedName?.asString() == targetClassName
+        }
+    }
+
+    private fun buildTrieFromAnnotations(symbols: Sequence<KSFunctionDeclaration>, provider: SchemaProvider, kClass: KClass<out Annotation>, resolver: Resolver): Int {
         var count = 0
         for (funDec in symbols) {
             count++
@@ -236,10 +243,18 @@ class EventProcessor(
                     data[key] = argument.value!!
                 }
             }
+
+            if (funDec.modifiers.contains(Modifier.SUSPEND)) {
+                val targetType = resolver.getClassDeclarationByName(SuspendableEvent::class.qualifiedName!!)?.asStarProjectedType()
+                if (receiver != null && targetType != null && !targetType.isAssignableFrom(receiver)) {
+                    throw IllegalStateException("Suspend method $methodName does not extend a SuspendableEvent.")
+                }
+            }
+
             val types = funDec.parameters.map { it.type.resolve().toClassName() }
             val schema = provider.schema(extension, types, data)
             if (schema.isEmpty()) {
-                throw IllegalStateException("Expected method $methodName to have an Event as extension e.g.\"@Use fun Spawn.playerSpawn() {}\"")
+                throw IllegalStateException("Expected method $methodName to have an Event as extension e.g.\"@On fun Spawn.playerSpawn() {}\"")
             }
             val className = ClassName(funDec.packageName.asString(), methodName)
             val dispatcher = provider.dispatcher(types)

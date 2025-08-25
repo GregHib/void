@@ -1,7 +1,10 @@
 package world.gregs.voidps.engine.event.handle
 
+import com.google.devtools.ksp.symbol.KSType
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.asClassName
+import com.squareup.kotlinpoet.ksp.toClassName
+import com.squareup.kotlinpoet.ksp.toTypeName
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -28,8 +31,8 @@ object InventorySchema : EventProcessor.SchemaProvider {
 
     private data object SlotSet : EventField() {
         override fun get(data: Map<String, Any>): Set<Any> {
-            val ids = data["slots"] as? List<EquipSlot>
-            return if (ids.isNullOrEmpty()) setOf("*") else ids.map { it.index }.toSet()
+            val ids = data["slots"] as? List<KSType>
+            return if (ids.isNullOrEmpty()) setOf("*") else ids.map { EquipSlot.by(it.toClassName().simpleName).index }.toSet()
         }
     }
 

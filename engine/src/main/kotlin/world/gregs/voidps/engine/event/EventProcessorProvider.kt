@@ -12,11 +12,10 @@ class EventProcessorProvider : SymbolProcessorProvider {
         eventSchemas = mapOf(
             UseOn::class to UseOnSchema,
             Option::class to OptionSchema,
-            Spawn::class to SpawnSchema,
+            Inventory::class to InventorySchema,
             Handle::class to HandleSchema,
             Variable::class to VariableSchema,
             On::class to OnSchema,
-            Timer::class to TimerSchema,
             Combat::class to CombatSchema,
         )
     )

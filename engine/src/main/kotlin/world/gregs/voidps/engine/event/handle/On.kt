@@ -80,6 +80,19 @@ object OnSchema : EventProcessor.SchemaProvider {
             EventField.StaticValue("special_attack_prepare"),
             EventField.StringList("ids")
         )
+        "TimerStart" -> listOf(
+            params.key("timer_start"),
+            EventField.StringList("ids"),
+            // Npc ids aren't needed as timer ids should be unique to npcs anyway
+        )
+        "TimerTick" -> listOf(
+            params.key("timer_tick"),
+            EventField.StringList("ids"),
+        )
+        "TimerStop" -> listOf(
+            params.key("timer_stop"),
+            EventField.StringList("ids"),
+        )
         else -> emptyList()
     }
 

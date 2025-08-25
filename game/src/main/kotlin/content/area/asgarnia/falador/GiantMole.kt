@@ -1,3 +1,5 @@
+@file:Suppress("UnusedReceiverParameter")
+
 package content.area.asgarnia.falador
 
 import content.entity.player.combat.special.SpecialAttackPrepare
@@ -10,6 +12,7 @@ import world.gregs.voidps.engine.client.ui.interact.InterfaceOnItem
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
 import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.client.variable.VariableSet
+import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -18,10 +21,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.handle.*
+import world.gregs.voidps.engine.inv.ItemAdded
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
 private val acceptedTiles = listOf(
@@ -55,12 +60,7 @@ fun Consume.grog(player: Player) {
 
 @On("giant_mole")
 fun Spawn.moleSpawn(mole: NPC) {
-    println("Dirty!")
-}
-
-@Spawn("giant_mole")
-fun moleSpawn(mole: NPC) {
-    println("Holey moley!")
+    println("Holy Moley!")
 }
 
 @Handle("special_attack_prepare", "brine_sabre")
@@ -81,6 +81,11 @@ fun InventoryOption.ringOfDuelingEquipped() {
 @Variable("in_multi_combat", toBool = true)
 fun VariableSet.enterMulti(player: Player) {
     player.interfaces.sendVisibility("area_status_icon", "multi_combat", true)
+}
+
+@Inventory("avas_*", slots = [EquipSlot.Cape], inventory = "worn_equipment")
+fun ItemAdded.avasEquipped(player: Player) {
+
 }
 
 @UseOn(use = ["fishbowl_water"], on = ["seaweed"])
