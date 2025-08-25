@@ -1,6 +1,8 @@
 package content.area.asgarnia.falador
 
 import content.entity.player.combat.special.SpecialAttackPrepare
+import content.entity.player.inv.InventoryOption
+import content.skill.constitution.Consume
 import content.skill.magic.spell.spell
 import content.skill.melee.weapon.attackRange
 import world.gregs.voidps.engine.client.message
@@ -8,7 +10,6 @@ import world.gregs.voidps.engine.client.ui.interact.InterfaceOnItem
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
 import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.client.variable.VariableSet
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -17,9 +18,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.handle.*
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
@@ -48,6 +47,17 @@ fun InterfaceOnItem.superHeat() {
 
 }
 
+@On("grog")
+fun Consume.grog(player: Player) {
+    player.levels.boost(Skill.Strength, 3)
+    player.levels.drain(Skill.Attack, 6)
+}
+
+@On("giant_mole")
+fun Spawn.moleSpawn(mole: NPC) {
+    println("Dirty!")
+}
+
 @Spawn("giant_mole")
 fun moleSpawn(mole: NPC) {
     println("Holey moley!")
@@ -58,7 +68,17 @@ fun SpecialAttackPrepare.brineSabre() {
 
 }
 
-@VarSet("in_multi_combat", toBool = true)
+@Option("Rub", "ring_of_duelling_#:inventory")
+fun InventoryOption.ringOfDueling() {
+
+}
+
+@Option("*", "ring_of_duelling_#:worn_equipment")
+fun InventoryOption.ringOfDuelingEquipped() {
+
+}
+
+@Variable("in_multi_combat", toBool = true)
 fun VariableSet.enterMulti(player: Player) {
     player.interfaces.sendVisibility("area_status_icon", "multi_combat", true)
 }
