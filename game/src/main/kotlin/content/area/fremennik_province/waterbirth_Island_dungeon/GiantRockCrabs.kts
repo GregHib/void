@@ -21,8 +21,8 @@ fun inactive(npc: NPC) {
         } else {
             // Transform back to correct disguise based on combat form
             val disguise: String = when (npc.transform) {
-                "giant_rock_crab" -> "Boulder"
                 "giant_rock_crab_1" -> "Boulder_1"
+                "giant_rock_crab" -> "Boulder"
                 else -> return@softQueue // if already a rock, do nothing
             }
             npc.transform(disguise)
@@ -36,7 +36,7 @@ fun inactive(npc: NPC) {
  */
 huntPlayer("Boulder*", "aggressive") { npc ->
     // Skip if already in combat form
-    if (npc.transform.startsWith("giant_rock_crab*")) {
+    if (npc.transform.startsWith("giant_rock_crab")) {
         npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
         return@huntPlayer
     }
