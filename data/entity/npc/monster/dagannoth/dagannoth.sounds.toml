@@ -1,0 +1,8 @@
+[dagannoth_attack]
+id = 1623
+
+[dagannoth_defend]
+id = 1622
+
+[dagannoth_death]
+id = 1621
