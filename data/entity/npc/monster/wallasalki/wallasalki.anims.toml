@@ -1,0 +1,9 @@
+[wallasalki_attack]
+id = 2365
+
+[wallasalki_defend]
+id = 2366
+
+[wallasalki_death]
+id = 2367
+ticks = 2
