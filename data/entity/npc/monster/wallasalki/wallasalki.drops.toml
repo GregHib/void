@@ -1,0 +1,33 @@
+[wallasalki_drop_table]
+type = "all"
+drops = [
+  { id = "bones" },
+  { table = "wallasalki_secondary" },
+  { table = "medium_clue_scroll", roll = 128 },
+]
+
+[wallasalki_secondary]
+roll = 128
+drops = [
+  { id = "skeletal_gloves", chance = 2 },
+  { id = "skeletal_boots", chance = 2 },
+  { id = "air_rune", min = 1, max = 10, chance = 10 },
+  { id = "mind_rune", min = 1, max = 10, chance = 10 },
+  { id = "water_rune", min = 1, max = 10, chance = 10 },
+  { id = "earth_rune", min = 1, max = 10, chance = 10 },
+  { id = "chaos_rune", min = 1, max = 10, chance = 10 },
+  { id = "death_rune", min = 1, max = 10, chance = 10 },
+  { id = "blood_rune", min = 1, max = 5, chance = 10 },
+  { id = "steel_arrow", min = 1, max = 10, chance = 10 },
+  { table = "herb_drop_table", chance = 10 },
+  { table = "rare_seed_drop_table" },
+  { table = "talisman_drop_table", chance = 8 },
+  { id = "pure_essence_noted", amount = 9, chance = 10 },
+  { id = "fibula_piece", chance = 2 },
+  { id = "ribcage_piece", chance = 2 },
+  { id = "skull_piece", chance = 2 },
+  { id = "raw_herring", min = 1, max = 2, chance = 2 },
+  { id = "raw_mackerel", min = 1, max = 2, chance = 3 },
+  { id = "raw_tuna", min = 1, max = 2, chance = 2 },
+  { table = "gem_drop_table" },
+]
