@@ -1,4 +1,4 @@
-[climb_down]
+[human_pickupfloor]
 id = 827
 
 [climb_up]
@@ -9,9 +9,6 @@ id = 7299
 
 [human_death]
 id = 836
-
-[bend_down]
-id = 827
 
 [eat_drink]
 id = 829
