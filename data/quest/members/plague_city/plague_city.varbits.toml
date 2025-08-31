@@ -1,0 +1,36 @@
+[plaguecity_can_see_edmond_up_top]
+id = 1783
+persist = true
+format = "boolean"
+
+[plaguecity_elena_at_home]
+id = 1784
+persist = true
+format = "boolean"
+
+[plaguecity_dug_mud_pile]
+id = 1785
+persist = true
+format = "boolean"
+
+[plaguecity_checked_grill]
+id = 1786
+persist = true
+format = "boolean"
+
+[plaguecity_pipe]
+id = 1787
+persist = true
+format = "map"
+default = "grill"
+values = { grill = 0, grill_rope = 1, grill_open = 2 }
+
+[plaguecity_picture_asked]
+id = 9102
+persist = true
+format = "boolean"
+
+[plaguecity_key_asked]
+id = 9103
+persist = true
+format = "boolean"

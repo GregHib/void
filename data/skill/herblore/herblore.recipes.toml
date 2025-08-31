@@ -1,0 +1,10 @@
+[chocolatey_milk]
+ticks = 2
+members = true
+remove = ["bucket_of_milk", "chocolate_dust"]
+add = ["chocolatey_milk"]
+
+[hangover_cure]
+ticks = 2
+remove = ["chocolatey_milk", "snape_grass"]
+add = ["hangover_cure"]

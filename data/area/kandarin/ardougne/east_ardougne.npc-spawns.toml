@@ -13,6 +13,9 @@ spawns = [
   { id = "banker_4", x = 2618, y = 3330, direction = "NORTH", members = true },
   { id = "banker_4", x = 2619, y = 3330, direction = "NORTH", members = true },
   { id = "musician_fishing_guild", x = 2605, y = 3385, direction = "SOUTH", members = true },
+  { id = "alrena", x = 2573, y = 3333, members = true },
+  { id = "edmond_top", x = 2568, y = 3334, members = true },
+  { id = "elena2", x = 2592, y = 3336, members = true },
 # 10547
   { id = "banker_3", x = 2657, y = 3286, direction = "WEST", members = true },
   { id = "banker_3", x = 2657, y = 3283, direction = "WEST", members = true },

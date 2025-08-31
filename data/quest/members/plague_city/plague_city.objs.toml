@@ -1,0 +1,90 @@
+[alrenascupboardshut]
+id = 2524
+examine = "I wonder what's inside?"
+
+[alrenascupboardopen]
+id = 2525
+examine = "It's open."
+
+[plaguekeybarrel]
+id = 2530
+examine = "Used for storage."
+
+[plaguemudpatch1]
+id = 2531
+examine = "Looks like someone's tried digging here."
+
+[plaguemudpatch2]
+id = 2532
+
+[plaguemudpile_up]
+id = 2533
+examine = "A pile of what is hopefully mud."
+
+[plaguesewerpipe_open]
+id = 2542
+examine = "An outlet to the sewer."
+
+[plaguemanholeclosed]
+id = 2543
+examine = "There's a cover over this manhole."
+
+[plaguemanholeopen]
+id = 2544
+examine = "How dangerous, someone has left this manhole open."
+
+[plaguemanholecover]
+id = 2545
+examine = "This is supposed to stop people falling down the manhole."
+
+[straight_rope]
+id = 11411
+examine = "A bit of rope."
+
+[straight_rope_anim]
+id = 11412
+examine = "A section of rope."
+
+[straight_rope_end]
+id = 11413
+examine = "A bit of rope."
+
+[straight_rope_end_anim]
+id = 11414
+examine = "A bit of rope."
+
+[hanging_rope]
+id = 11415
+examine = "A bit of rope."
+
+[hanging_rope_anim]
+id = 11416
+examine = "A bit of rope."
+
+[plague_hole_down]
+id = 11417
+examine = "You can climb down here."
+
+[plague_mud]
+id = 11418
+examine = "Hard to notice, but this mud looks disturbed."
+
+[plague_hanging_rope_multi]
+id = 11419
+examine = "A bit of rope."
+
+[plague_straight_rope_multi]
+id = 11420
+examine = "A bit of rope."
+
+[plague_straight_rope_end_multi]
+id = 11421
+examine = "A bit of rope."
+
+[plague_grill]
+id = 11422
+examine = "It's a grill."
+
+[plague_grill_vis]
+id = 11423
+examine = "It's a grill."

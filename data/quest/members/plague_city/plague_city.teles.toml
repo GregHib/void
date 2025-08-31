@@ -1,0 +1,9 @@
+[plaguemudpile_up]
+option = "Climb"
+tile = { x = 2519, y = 9759 }
+to = { x = 2566, y = 3331 }
+
+[plague_hole_down]
+option = "Climb-down"
+tile = { x = 2566, y = 3332 }
+to = { x = 2518, y = 9760 }

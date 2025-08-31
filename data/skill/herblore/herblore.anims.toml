@@ -4,5 +4,8 @@ id = 3170
 [mixing_potion]
 id = 363
 
+[human_herbing_grind]
+id = 364
+
 [pestle_and_mortar]
 id = 5249
