@@ -4,8 +4,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -25,7 +23,6 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
-import kotlin.math.log
 
 val enums: EnumDefinitions by inject()
 val npcs: NPCs by inject()
