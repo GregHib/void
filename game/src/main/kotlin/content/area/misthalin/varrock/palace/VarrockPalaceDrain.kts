@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.inv.replace
 val logger = InlineLogger()
 
 objectOperate("Search", "varrock_palace_drain") {
-    player.anim("climb_down")
+    player.anim("human_pickupfloor")
     if (player["demon_slayer_drain_dislodged", false] || player.ownsItem("silverlight_key_sir_prysin")) {
         player.message("Nothing interesting seems to have been dropped down here today.")
     } else if (player.quest("demon_slayer") == "unstarted") {

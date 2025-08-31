@@ -32,7 +32,7 @@ inventoryOption("Bury", "inventory") {
         return@inventoryOption
     }
     player.start("bone_delay", 1)
-    player.anim("bend_down")
+    player.anim("human_pickupfloor")
     player.exp(Skill.Prayer, xp)
     player.sound("bury_bones")
     player["i_wonder_if_itll_sprout_task"] = true

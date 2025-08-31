@@ -50,11 +50,11 @@ suspend fun Interaction<Player>.smelt(player: Player, target: GameObject, id: St
     player.message("You heat the steel bar into a liquid state.", ChatType.Filter)
     delay(3)
     player.message("You poor the molten metal into your cannonball mould.", ChatType.Filter)
-    player.anim("climb_down")
+    player.anim("human_pickupfloor")
     delay(1)
     player.message("The molten metal cools slowly to form 4 cannonballs.", ChatType.Filter)
     delay(3)
-    player.anim("climb_down")
+    player.anim("human_pickupfloor")
     player.message("You remove the cannonballs from the mould.", ChatType.Filter)
     player.inventory.transaction {
         remove("steel_bar")

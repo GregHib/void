@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 
 val quests = listOf(
+    //free
     "unstable_foundations",
     "cooks_assistant",
     "demon_slayer",
@@ -15,6 +16,9 @@ val quests = listOf(
     "rune_mysteries",
     "the_knights_sword",
     "prince_ali_rescue",
+    //members
+    "druidic_ritual",
+    "plague_city",
     // mini-quests
     "enter_the_abyss",
 )
