@@ -1,0 +1,6 @@
+spawns = [
+# 11573
+  { id = "snape_grass", x = 2906, y = 3297, delay = 10, members = true },
+  { id = "snape_grass", x = 2907, y = 3295, delay = 10, members = true },
+  { id = "snape_grass", x = 2917, y = 3274, delay = 10, members = true },
+]
