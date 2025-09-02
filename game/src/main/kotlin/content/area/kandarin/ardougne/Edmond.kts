@@ -1,0 +1,256 @@
+package content.area.kandarin.ardougne
+
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.startQuest
+import content.entity.sound.jingle
+import content.quest.quest
+import content.quest.refreshQuestJournal
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.suspend.SuspendableContext
+import content.quest.startCutscene
+import world.gregs.voidps.engine.client.moveCamera
+import world.gregs.voidps.engine.client.turnCamera
+import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectShape
+import content.entity.sound.sound
+import content.quest.questComplete
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+
+val floorItems: FloorItems by inject()
+
+npcOperate("Talk-to", "edmond") {
+    when (player.quest("plague_city")) {
+        "unstarted" -> {
+            player<Happy>("Hello old man.")
+            npc<Sad>("Sorry, I can't stop to talk...")
+            player<Quiz>("Why, what's wrong?")
+            npc<Sad>("I've got to find my daughter. I pray that she is still alive...")
+            choice {
+                option<Quiz>("What's happened to her?") {
+                    npc<Sad>("Elena's a healer. Three weeks ago she managed to cross the wall into West Ardougne. No one's allowed to cross the wall in case they spread the plague.")
+                    player<Quiz>("Plague?")
+                    npc<Sad>("Not that long ago, West Ardougne was hit by a deadly plague. They had the wall built to try and keep it contained. No one is allowed to enter the city now apart from the mourners.")
+                    npc<Sad>("They say the plague is a horrible way to go... That's why Elena felt she had to go help. She said she'd be gone for a few days but we've heard nothing since.")
+                    player<Quiz>("Maybe I could help find her?")
+                    npc<Uncertain>("Really, would you? I've been working on a plan to get into West Ardougne, but I'm too old and tired to carry it through. But you on the other hand, you should have no problem.")
+                    if (startQuest("plague_city")) {
+                        player<Quiz>("Where should I start?")
+                        npc<Neutral>("If you're going into West Ardougne you'll need protection from the plague. My wife made a special gas mask for Elena with dwellberries rubbed into it.")
+                        npc<Neutral>("They help to repel the plague apparently. We need some more though...")
+                        player<Quiz>("Where can I find these dwellberries?")
+                        player["plague_city"] = "started"
+                        player.refreshQuestJournal()
+                        npc<Neutral>("The only place I know of is McGrubor's Wood, just west of Seers' Village. The berries are bright blue so they're easy to spot.")
+                        player<Neutral>("Okay, I'll go and get some.")
+                        npc<Neutral>("The foresters keep a close eye on it, but there is a back way in.")
+                    } else {
+                        player<Neutral>("On second thoughts, I'd better not.")
+                        npc<Neutral>("Well if you hear anything about Elena please tell me.")
+                        player<Neutral>("I will. Goodbye.")
+                    }
+                }
+                option<Neutral>("Well, good luck finding her.") {
+                }
+            }
+        }
+        "started" -> started()
+        "has_mask" -> hasMask()
+        "about_digging" -> aboutDigging()
+        "one_bucket_of_water" -> oneBucketOfWater()
+        "two_bucket_of_water" -> twoBucketOfWater()
+        "three_bucket_of_water" -> threeBucketOfWater()
+        "four_bucket_of_water" -> fourBucketOfWater()
+        "sewer" -> sewer()
+        "grill_rope" -> grillRope()
+        "grill_open", "spoken_to_jethick", "returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance", "talk_to_bravek", "has_cure_paper", "gave_cure" -> grillOpen()
+        "freed_elena" -> freedElena()
+        else -> completed()
+    }
+}
+
+suspend fun NPCOption<Player>.started() {
+    player<Happy>("Hello Edmond.")
+    npc<Quiz>("Have you got the dwellberries yet?")
+    if (player.holdsItem("dwellberries")) {
+        player<Happy>("Yes I've got some here.")
+        npc<Neutral>("Take them to my wife Alrena, she's inside.")
+    } else {
+        //todo if you don't have dwellberries
+    }
+}
+
+suspend fun NPCOption<Player>.hasMask() {
+    player<Happy>("Hi Edmond, I've got the gas mask now.")
+    npc<Neutral>("Good stuff, now for the digging. Beneath us are the Ardougne sewers. I've done some research, and I reckon you can use them to access to West Ardougne.")
+    player["plague_city"] = "about_digging"
+    npc<Neutral>("I've already tried digging down to them but the soil is rock hard. You'll need to pour on several buckets of water to soften it up. I reckon four buckets should do it.")
+}
+
+suspend fun NPCOption<Player>.aboutDigging() {
+    //todo
+}
+
+suspend fun NPCOption<Player>.oneBucketOfWater() {
+    npc<Quiz>("How's it going?")
+    player<Neutral>("I still need to pour three more buckets of water on the soil.")
+}
+
+suspend fun NPCOption<Player>.twoBucketOfWater() {
+    npc<Quiz>("How's it going?")
+    player<Neutral>("I still need to pour two more buckets of water on the soil.")
+}
+
+suspend fun NPCOption<Player>.threeBucketOfWater() {
+    npc<Quiz>("How's it going?")
+    player<Neutral>("I still need to pour one more bucket of water on the soil.")
+}
+
+suspend fun NPCOption<Player>.fourBucketOfWater() {
+    player<Happy>("I've soaked the soil with water.")
+    npc<Happy>("That's great, it should be soft enough to dig through now. There should be a spade nearby that you can use.")
+}
+
+suspend fun NPCOption<Player>.sewer() {
+    if (player["plaguecity_checked_grill", false]) {
+        player<Uncertain>("Edmond, I can't get through to West Ardougne! There's an iron grill blocking my way, I can't pull it off alone.")
+        npc<Neutral>("If you get some rope you could tie to the grill, then we could both pull it at the same time.")
+    } else {
+        npc<Neutral>("I think it's the pipe to the south that comes up in West Ardougne.")
+        player<Neutral>("Alright I'll check it out.")
+    }
+}
+
+suspend fun NPCOption<Player>.grillRope() {
+    player<Neutral>("I've tied a rope to the grill over there, will you help me pull it off?")
+    npc<Neutral>("Alright, let's get to it...")
+    cutscene()
+}
+
+suspend fun NPCOption<Player>.grillOpen() {
+    player<Neutral>("Hello.")
+    npc<Quiz>("Have you found Elena yet?")
+    player<Sad>("Not yet, it's a big city over there.")
+    npc<Sad>("I hope it's not too late.")
+}
+
+suspend fun NPCOption<Player>.freedElena() {
+    npc<Happy>("Thank you, thank you! Elena beat you back by minutes. Now I said I'd give you a reward. What can I give you as a reward I wonder? Here take this magic scroll, I have little use for it but it may help you.")
+    questComplete()//todo what if inv is full
+}
+
+suspend fun NPCOption<Player>.completed() {
+    player<Happy>("Hello there.")
+    npc<Happy>("Ah hello. Thank you again for rescuing my daughter.")
+    if (player.quest("plague_city") == "completed_with_spell") {
+        player<Happy>("No problem.")
+    } else {
+        choice {
+            option<Quiz>("Do you have any more of those scrolls?") {//todo check if you have one in bank
+                if (player.inventory.isFull()) {
+                    floorItems.add(player.tile, "a_magic_scroll", disappearTicks = 300, owner = player)
+                } else {
+                    player.inventory.add("a_magic_scroll")
+                }
+                npc<Happy>("Yes, here you go.")
+            }
+            option<Happy>("No problem.") {
+            }
+        }
+    }
+}
+
+val region = Region(10136)
+val npcs: NPCs by inject()
+val objects: GameObjects by inject()
+
+suspend fun SuspendableContext<Player>.cutscene() {
+    player["plaguecity_pipe"] = "grill_open"
+    player["plague_city"] = "grill_open"
+    player.open("fade_out")
+    val cutscene = startCutscene("grill", region)
+    cutscene.onEnd {
+        player.open("fade_out")
+        delay(3)
+        player.tele(2514, 9740)
+        player.clearCamera()
+        player.clearAnim()
+    }
+    delay(4)
+    player.tele(cutscene.tile(2514, 9740), clearInterfaces = false)
+    player.face(Direction.SOUTH)
+    val edmond = npcs.add("edmond", cutscene.tile(2514, 9741), Direction.SOUTH)
+    edmond.mode = PauseMode
+    delay(1)
+    player.moveCamera(cutscene.tile(2517, 9744), 300)
+    player.turnCamera(cutscene.tile(2513, 9740), 230)
+    val hangingopeend = objects.add("hanging_rope_anim", cutscene.tile(2514, 9739), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
+    val straightrope = objects.add("straight_rope_anim", cutscene.tile(2514, 9740), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
+    val straightropeend = objects.add("straight_rope_end_anim", cutscene.tile(2514, 9741), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
+    player.open("fade_in")
+    delay(2)
+    player.say("1...")
+    delay(2)
+    player.say("2...")
+    delay(2)
+    player.say("3...")
+    delay(2)
+    player.say("pull")
+    player.sound("plague_pull_grill")
+    player.animDelay("lift_and_pull")
+    edmond.animDelay("lift_and_pull")
+    hangingopeend.anim("hanging_rope_lift")
+    straightrope.anim("straight_rope_lift")
+    straightropeend.anim("straight_rope_lift")
+    delay(6)
+    player.face(edmond)
+    npc<Neutral>("Once you're in the city look for a man called Jethick. He's an old friend of the family. Hopefully he can help you.", clickToContinue = false)
+    delay(4)
+    player<Neutral>("Alright, thanks I will.", largeHead = true, clickToContinue = false)
+    delay(2)
+    player.open("fade_out")
+    delay(2)
+    player.clearAnim()
+    player.clearCamera()
+    player.tele(2514, 9740)
+    npcs.remove(edmond)
+}
+
+
+//todo after you close the interface he says
+//  npc<Happy>("Now I'd recommend you go and see Elena. She'll want to thank you herself. She lives in the house opposite ours.")
+fun Context<Player>.questComplete() {
+    player["plague_city"] = "completed"
+    player.jingle("quest_complete_2")
+    player.experience.add(Skill.Mining, 2425.0)
+    player.inventory.add("a_magic_scroll")
+    player.refreshQuestJournal()
+    player.inc("quest_points")
+    player.softQueue("quest_complete", 1) {
+        player.questComplete(
+            "Plague City",
+            "1 Quest Point",
+            "2,425 Mining XP",
+            "An Ardougne Teleport Scroll",
+            item = "gas_mask",
+        )
+    }
+}

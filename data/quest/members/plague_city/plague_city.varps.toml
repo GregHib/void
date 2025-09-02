@@ -1,0 +1,6 @@
+[plague_city]
+id = 165
+format = "map"
+persist = true
+default = "unstarted"
+values = { unstarted = 0, started = 1, has_mask = 2, about_digging = 3, one_bucket_of_water = 4, two_bucket_of_water = 5, three_bucket_of_water = 6, four_bucket_of_water = 7, sewer = 8, grill_rope = 9, grill_open = 10, spoken_to_jethick = 20, returned_book = 21, spoken_to_ted = 22, spoken_to_milli = 23, need_clearance = 24, talk_to_bravek = 25, has_cure_paper = 26, gave_cure = 27, freed_elena = 28, completed = 29, completed_with_spell = 30 }

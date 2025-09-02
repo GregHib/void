@@ -1,3 +1,19 @@
+[gnome_hudo]
+id = 600
+shop = "grand_tree_groceries"
+categories = ["gnome"]
+large_head = false
+wander_radius = 4
+examine = "It's another jolly tree gnome."
+
+[gnome_heckelfunch]
+id = 603
+shop = "funchs_fine_groceries"
+categories = ["gnome"]
+large_head = false
+wander_radius = 4
+examine = "It's another jolly tree gnome."
+
 [captain_errdo]
 id = 3811
 large_head = true

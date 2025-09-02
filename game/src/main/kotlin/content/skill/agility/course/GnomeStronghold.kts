@@ -71,7 +71,7 @@ objectOperate("Walk-on", "gnome_balancing_rope_end") {
 
 objectOperate("Climb-down", "gnome_tree_branch_down") {
     player.message("You climb the tree...", ChatType.Filter)
-    player.anim("climb_down")
+    player.anim("human_pickupfloor")
     delay(2)
     player.agilityStage(5)
     player.tele(2486, 3420, 0)

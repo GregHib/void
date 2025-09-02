@@ -20,7 +20,7 @@ objectOperate("Pick") {
     val pickable: Pickable = target.pickable ?: return@objectOperate
     if (player.inventory.add(pickable.item)) {
         player.sound("pick")
-        player.anim("climb_down")
+        player.anim("human_pickupfloor")
         if (random.nextInt(pickable.chance) == 0) {
             target.remove(TimeUnit.SECONDS.toTicks(pickable.respawnDelay))
         }
