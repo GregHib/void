@@ -33,14 +33,12 @@ suspend fun SuspendableContext<Player>.menu() {
     }
 }
 
+val stages = setOf("has_cure_paper", "gave_cure", "freed_elena", "completed", "completed_with_spell")
+
 suspend fun SuspendableContext<Player>.throughThatDoor() {
     npc<Neutral>("The city warder Bravek is in there.")
     player<Quiz>("Can I go in?")
-    if (player.quest("plague_city") == "has_cure_paper" ||
-        player.quest("plague_city") == "gave_cure" ||
-        player.quest("plague_city") == "freed_elena" ||
-        player.quest("plague_city") == "completed" ||
-        player.quest("plague_city") == "completed_with_spell") {
+    if (stages.contains(player.quest("plague_city"))) {
         npc<Neutral>("I suppose so.")
     } else {
         npc<Neutral>("He has asked not to be disturbed.")
