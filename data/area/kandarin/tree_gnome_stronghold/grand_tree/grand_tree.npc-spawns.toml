@@ -128,4 +128,6 @@ spawns = [
   { id = "gnome_waiter_grand_tree", x = 2448, y = 3503, level = 1 },
   { id = "gnome_waiter_grand_tree", x = 2450, y = 3503, level = 1 },
   { id = "gianne_jnr", x = 2439, y = 3502, level = 1 },
+  { id = "gnome_hudo", x = 2448, y = 3509, level = 1, members = true },
+  { id = "gnome_heckelfunch", x = 2493, y = 3488, level = 1, members = true },
 ]
