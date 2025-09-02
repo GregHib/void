@@ -513,19 +513,11 @@ suspend fun SuspendableContext<Player>.ropeOnGrill() {
     }
 }
 
+val stages = setOf("grill_open", "spoken_to_jethick", "returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance", "talk_to_bravek", "has_cure_paper", "gave_cure", "freed_elena", "completed", "completed_with_spell")
+
 objectOperate("Climb-up", "plaguesewerpipe_open") {
-    if (player["plaguecity_pipe", "grill"] == "grill_open" && player.quest("plague_city") == "grill_open" ||
-        player.quest("plague_city") == "spoken_to_jethick" ||
-        player.quest("plague_city") == "returned_book" ||
-        player.quest("plague_city") == "spoken_to_ted" ||
-        player.quest("plague_city") == "spoken_to_milli" ||
-        player.quest("plague_city") == "need_clearance" ||
-        player.quest("plague_city") == "talk_to_bravek" ||
-        player.quest("plague_city") == "has_cure_paper" ||
-        player.quest("plague_city") == "gave_cure" ||
-        player.quest("plague_city") == "freed_elena" ||
-        player.quest("plague_city") == "completed" ||
-        player.quest("plague_city") == "completed_with_spell") {
+    if (player["plaguecity_pipe", "grill"] == "grill_open" &&
+        stages.contains(player.quest("plague_city"))) {
         if (player.equipped(EquipSlot.Hat).id == "gas_mask") {
             player.anim("4855", delay = 10)
             statement("You climb up through the sewer pipe.", clickToContinue = false)

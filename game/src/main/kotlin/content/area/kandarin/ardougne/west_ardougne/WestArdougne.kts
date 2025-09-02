@@ -28,11 +28,9 @@ objectOperate("Search", "plaguekeybarrel") {//todo can you get it before talking
     item("a_small_key", 300, "You find a small key in the barrel.")
 }
 
+val stages = setOf("freed_elena", "completed", "completed_with_spell")
 objectOperate("Open", "door_55_closed") {
-    if (player.tile.x == 2540 || player.inventory.contains("a_small_key") ||
-        player.quest("plague_city") == "freed_elena" ||
-        player.quest("plague_city") == "completed" ||
-        player.quest("plague_city") == "completed_with_spell") {
+    if (player.tile.x == 2540 || player.inventory.contains("a_small_key") || stages.contains(player.quest("plague_city"))) {
         enterDoor(target, delay = 2)
         return@objectOperate
     }
@@ -74,17 +72,10 @@ objectOperate("Climb-down", "plaguemanholeopen") {
     statement("You climb down through the manhole.", clickToContinue = true)
 }
 
+val queststages = setOf("returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance", "talk_to_bravek", "has_cure_paper", "gave_cure", "freed_elena", "completed", "completed_with_spell")
+
 objectOperate("Open", "door_59_closed") {
-    if (player.tile.y == 3329 || player.quest("plague_city") == "returned_book" ||
-        player.quest("plague_city") == "spoken_to_ted" ||
-        player.quest("plague_city") == "spoken_to_milli" ||
-        player.quest("plague_city") == "need_clearance" ||
-        player.quest("plague_city") == "talk_to_bravek" ||
-        player.quest("plague_city") == "has_cure_paper" ||
-        player.quest("plague_city") == "gave_cure" ||
-        player.quest("plague_city") == "freed_elena" ||
-        player.quest("plague_city") == "completed" ||
-        player.quest("plague_city") == "completed_with_spell") {
+    if (player.tile.y == 3329 || queststages.contains(player.quest("plague_city"))) {
         enterDoor(target, delay = 2)
         return@objectOperate
     }
@@ -102,13 +93,10 @@ objectOperate("Open", "door_59_closed") {
     }
 }
 
+val queststage = setOf("talk_to_bravek", "has_cure_paper", "gave_cure", "freed_elena", "completed", "completed_with_spell")
+
 objectOperate("Open", "door_57_closed") {
-    if (player.tile.x == 2533 || player.quest("plague_city") == "talk_to_bravek" ||
-        player.quest("plague_city") == "has_cure_paper" ||
-        player.quest("plague_city") == "gave_cure" ||
-        player.quest("plague_city") == "freed_elena" ||
-        player.quest("plague_city") == "completed" ||
-        player.quest("plague_city") == "completed_with_spell") {
+    if (player.tile.x == 2533 || queststage.contains(player.quest("plague_city"))) {
         enterDoor(target, delay = 2)
         return@objectOperate
     }

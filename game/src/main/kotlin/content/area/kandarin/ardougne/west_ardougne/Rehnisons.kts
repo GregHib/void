@@ -7,12 +7,12 @@ import content.quest.quest
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
-//todo find out what they say mid quest
 
+
+val stages = setOf("freed_elena", "completed", "completed_with_spell")
+//todo find out what they say mid quest
 npcOperate("Talk-to", "ted_rehnison") {
-    if (player.quest("plague_city") == "freed_elena" || //todo check dialogue for this
-        player.quest("plague_city") == "completed" ||
-        player.quest("plague_city") == "completed_with_spell") {
+    if (stages.contains(player.quest("plague_city"))) {//todo check dialogue for freed_elena
         npc<Quiz>("Any luck finding Elena yet?")
         player<Happy>("Yes, she is safe at home now.")
         npc<Happy>("That's good to hear, she helped us a lot.")
@@ -38,9 +38,7 @@ npcOperate("Talk-to", "martha_rehnison") {//todo may also set the varbit looks l
 }
 
 npcOperate("Talk-to", "milli_rehnison") {//todo check what happens if you talk to her before talking to ted
-    if (player.quest("plague_city") == "freed_elena" || //todo check dialogue for this
-        player.quest("plague_city") == "completed" ||
-        player.quest("plague_city") == "completed_with_spell") {
+    if (stages.contains(player.quest("plague_city"))) {//todo check dialogue for freed_elena
         npc<Quiz>("Have you found Elena yet?")
         player<Happy>("Yes, she's safe at home.")
         npc<Neutral>("I hope she comes and visits sometime.")
