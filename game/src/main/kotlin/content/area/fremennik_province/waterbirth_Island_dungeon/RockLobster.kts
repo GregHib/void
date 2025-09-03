@@ -1,4 +1,4 @@
-package content.area.fremennik_province.rellekka
+package content.area.fremennik_province.waterbirth_Island_dungeon
 
 import content.entity.combat.inCombat
 import content.entity.combat.target
@@ -21,8 +21,7 @@ fun inactive(npc: NPC) {
         } else {
             // Transform back to correct disguise based on combat form
             val disguise: String = when (npc.transform) {
-                "rock_crab_1" -> "rock_1"
-                "rock_crab" -> "rock"
+                "rock_lobster" -> "rock_hidden_lobster"
                 else -> return@softQueue // if already a rock, do nothing
             }
             npc.transform(disguise)
@@ -34,16 +33,15 @@ fun inactive(npc: NPC) {
  * Hunt player handler for all disguised Rock Crabs.
  * Uses wildcard "rock*" to cover multiple disguised forms.
  */
-huntPlayer("rock*", "aggressive") { npc ->
+huntPlayer("rock_hidden_lobster*", "aggressive") { npc ->
     // Skip if already in combat form
-    if (npc.transform.startsWith("rock_crab")) {
+    if (npc.transform.startsWith("rock_lobster")) {
         npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
         return@huntPlayer
     }
     // Transform immediately to the correct combat form based on the rock ID
     val combatForm: String = when (npc.id) {
-        "rock" -> "rock_crab"
-        "rock_1" -> "rock_crab_1"
+        "rock_hidden_lobster" -> "rock_lobster"
         else -> return@huntPlayer
     }
     npc.transform(combatForm)

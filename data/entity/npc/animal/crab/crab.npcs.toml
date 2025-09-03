@@ -32,7 +32,6 @@ combat_anims = "rock_crab"
 hunt_mode = "aggressive"
 hunt_radius = 3
 categories = ["crab"]
-combat_anims = "rock_crab"
 drop_table = "rock_crab"
 respawn_delay = 50
 examine = "A rocky outcrop."

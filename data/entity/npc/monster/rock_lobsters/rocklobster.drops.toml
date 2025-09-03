@@ -1,0 +1,32 @@
+[rock_lobster_drop_table]
+type = "all"
+drops = [
+  { table = "rock_lobster_primary" },
+  { table = "rock_lobster_secondary" },
+  { table = "medium_clue_scroll", roll = 128 },
+]
+
+[rock_lobster_primary]
+drops = [
+  { id = "raw_lobster" },
+]
+
+[rock_lobster_secondary]
+roll = 128
+drops = [
+  { id = "earth_rune", min = 1, max = 20, chance = 10 },
+  { id = "water_rune", min = 1, max = 20, chance = 10 },
+  { id = "steel_arrow", min = 1, max = 10, chance = 10 },
+  { id = "iron_arrow", min = 1, max = 20, chance = 10 },
+  { table = "herb_drop_table", chance = 3 },
+  { table = "allotment_seed_drop_table" },
+  { table = "talisman_drop_table", chance = 4 },
+  { id = "pure_essence", amount = 4, chance = 10 },
+  { id = "seaweed", min = 1, max = 3, chance = 10 },
+  { id = "soda_ash", chance = 10 },
+  { id = "snape_grass", chance = 10 },
+  { id = "edible_seaweed", min = 1, max = 3, chance = 10 },
+  { id = "lobster_pot", chance = 10 },
+  { id = "tinderbox", chance = 10 },
+  { table = "gem_drop_table" },
+]
