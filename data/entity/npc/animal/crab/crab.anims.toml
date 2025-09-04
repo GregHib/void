@@ -1,0 +1,9 @@
+[rock_crab_attack]
+id = 1313
+
+[rock_crab_defend]
+id = 1312
+
+[rock_crab_death]
+id = 1314
+ticks = 2

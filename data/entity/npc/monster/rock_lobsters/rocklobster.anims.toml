@@ -1,0 +1,9 @@
+[rock_lobster_attack]
+id = 2859
+
+[rock_lobster_defend]
+id = 2860
+
+[rock_lobster_death]
+id = 2862
+ticks = 2
