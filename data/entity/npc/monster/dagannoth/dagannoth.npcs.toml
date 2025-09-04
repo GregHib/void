@@ -137,5 +137,29 @@ id = 9128
 clone = "dagannoth_waterbirth_melee_90"
 id = 9132
 
+[dagannoth_egg]
+id = 2449
+categories = ["egg"]
+respawn_delay = 5
+hunt_radius = 3
+examine = "A horror from the ocean depths..."
+
+[dagannoth_spawn]
+id = 2454
+att = 76
+str = 78
+def = 65
+hitpoints = 950
+slayer_xp = 120.0
+max_hit_melee = 150
+hunt_radius = 3
+wander_radius = 5
+attack_radius = 8
+hunt_mode = "aggressive"
+attack_speed = 4
+style = "stab"
+categories = ["dagannoth"]
+respawn_delay = 30
+examine = "A horror from the ocean depths..."
 
 
