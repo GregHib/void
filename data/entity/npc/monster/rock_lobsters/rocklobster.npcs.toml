@@ -2,6 +2,7 @@
 id = 2889
 wander_radius = 5
 attack_radius = 8
+hunt_radius = 3
 hunt_mode = "aggressive"
 categories = ["rock_lobster"]
 examine = "It wasn't a rock... it was a rock lobster!"
@@ -14,6 +15,7 @@ str = 100
 def = 100
 magic = 1
 hitpoints = 1500
+hunt_radius = 3
 max_hit_melee = 110
 attack_speed = 2
 wander_radius = 5
