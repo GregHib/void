@@ -142,14 +142,21 @@ id = 2449
 categories = ["egg"]
 respawn_delay = 5
 hunt_radius = 3
+hunt_mode = "aggressive"
 examine = "A horror from the ocean depths..."
+
+[dagannoth_egg_open]
+id = 2450
+
+[dagannoth_egg_opened]
+id = 2451
 
 [dagannoth_spawn]
 id = 2454
 att = 76
 str = 78
 def = 65
-hitpoints = 950
+hitpoints = 350
 slayer_xp = 120.0
 max_hit_melee = 150
 hunt_radius = 3
