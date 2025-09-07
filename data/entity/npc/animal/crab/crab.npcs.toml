@@ -50,11 +50,11 @@ hunt_mode = "aggressive"
 categories = ["crab"]
 examine = "No one likes crabs... especially really big ones!"
 
-[giant_rock_crab_1]
+[giant_rock_crab_light]
 clone = "giant_rock_crab"
 id = 2885
 
-[Boulder]
+[boulder]
 id = 2453
 att = 50
 str = 80
@@ -73,6 +73,6 @@ categories = ["crab"]
 respawn_delay = 50
 examine = "Heavy boulder!"
 
-[Boulder_1]
-clone = "Boulder"
+[boulder_light]
+clone = "boulder"
 id = 2886

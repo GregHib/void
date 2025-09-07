@@ -19,10 +19,7 @@ fun scheduleReset(npc: NPC) {
         if (npc.target != null || npc.inCombat) {
             scheduleReset(npc) // still in combat, reschedule
         } else {
-            when (npc.transform) {
-                "giant_rock_crab" -> npc.transform("Boulder")
-                "giant_rock_crab_1" -> npc.transform("Boulder_1")
-            }
+            npc.transform(npc.id.replace("giant_rock_crab", "boulder"))
         }
     }
 }
@@ -30,17 +27,12 @@ fun scheduleReset(npc: NPC) {
 /**
  * When a player comes close, disguised crabs transform and attack.
  */
-huntPlayer("Boulder*", "aggressive") { npc ->
-    // Already in combat form, do nothing
-    if (npc.transform.startsWith("giant_rock_crab")) return@huntPlayer
-
-    // Transform disguised rock into combat form
-    val combatForm = when (npc.id) {
-        "Boulder" -> "giant_rock_crab"
-        "Boulder_1" -> "giant_rock_crab_1"
-        else -> return@huntPlayer
+huntPlayer("boulder*", "aggressive") { npc ->
+    if (npc.transform.startsWith("giant_rock_crab")) {
+        return@huntPlayer
     }
-    npc.transform(combatForm)
+
+    npc.transform(npc.id.replace("boulder", "giant_rock_crab"))
 
     // Give a short delay before attacking (they "stand up")
     npc.softQueue("stand_up", 2) {
