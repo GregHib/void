@@ -22,5 +22,5 @@ npcDeath("door_support*") { npc ->
         attack.mode = EmptyMode
     }
     val base = objects[npc.tile, "door_support_base"]!!
-    base.remove(ticks = TimeUnit.SECONDS.toTicks(10))
+    base.remove(ticks = TimeUnit.SECONDS.toTicks(30))
 }
