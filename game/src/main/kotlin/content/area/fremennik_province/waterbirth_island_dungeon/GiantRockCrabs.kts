@@ -1,4 +1,4 @@
-package content.area.fremennik_province.waterbirth_Island_dungeon
+package content.area.fremennik_province.waterbirth_island_dungeon
 
 import content.entity.combat.inCombat
 import content.entity.combat.target

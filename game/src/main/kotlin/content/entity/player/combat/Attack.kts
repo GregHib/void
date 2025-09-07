@@ -45,6 +45,15 @@ npcApproach("Attack") {
     combatInteraction(character, target)
 }
 
+npcApproach("Destroy", "door_support*") {
+    if (character.attackRange != 1) {
+        approachRange(character.attackRange, update = false)
+    } else {
+        approachRange(null, update = true)
+    }
+    combatInteraction(character, target)
+}
+
 npcApproachNPC("Attack") {
     if (character.attackRange != 1) {
         approachRange(character.attackRange, update = false)

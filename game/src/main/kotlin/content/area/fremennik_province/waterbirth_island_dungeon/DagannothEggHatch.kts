@@ -1,4 +1,4 @@
-package content.area.fremennik_province.waterbirth_Island_dungeon
+package content.area.fremennik_province.waterbirth_island_dungeon
 
 import content.entity.effect.transform
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact

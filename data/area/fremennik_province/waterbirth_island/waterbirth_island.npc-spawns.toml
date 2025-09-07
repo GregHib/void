@@ -1,4 +1,9 @@
 spawns = [
   { id = "hobgoblin_unarmed", x = 2503, y = 3730, members = true },
   { id = "hobgoblin_unarmed", x = 2526, y = 3739, members = true },
+  { id = "door_support_north", x = 2545, y = 10145, direction = "NORTH", members = true },
+  { id = "door_support_east", x = 2543, y = 10143, direction = "SOUTH", members = true },
+  { id = "door_support_south", x = 2545, y = 10141, direction = "NORTH", members = true },
+  { id = "dagannoth_egg", x = 2546, y = 10142,  members = true },
+  { id = "dagannoth_egg", x = 2546, y = 10144,  members = true },
 ]

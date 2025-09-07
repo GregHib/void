@@ -27,6 +27,9 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 object Target {
     fun attackable(source: Character, target: Character): Boolean {
         if (target is NPC) {
+            if (target.id.startsWith("door_support") && get<NPCDefinitions>().get(target.id).options[1] == "Destroy") {
+                return true
+            }
             if (target.transform != "") {
                 if (get<NPCDefinitions>().get(target.transform).options[1] != "Attack") {
                     return false

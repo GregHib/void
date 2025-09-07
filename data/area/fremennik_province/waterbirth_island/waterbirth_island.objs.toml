@@ -161,3 +161,6 @@ examine = "A sturdy iron frame, for climbing up and down."
 [dks_ladder_up]
 id = 10229
 examine = "A sturdy iron frame, for climbing up and down."
+
+[door_support_base]
+id = 8967

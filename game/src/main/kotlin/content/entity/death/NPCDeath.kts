@@ -65,6 +65,7 @@ npcDeath { npc ->
         if (respawn != null) {
             npc.tele(respawn)
             delay(npc["respawn_delay", 60])
+            npc.clearAnim()
             npc.clearTransform()
             npc.damageDealers.clear()
             npc.levels.clear()
