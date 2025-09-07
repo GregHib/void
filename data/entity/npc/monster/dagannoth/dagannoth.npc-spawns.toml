@@ -175,5 +175,4 @@ spawns = [
         { id = "dagannoth_waterbirth_range_88_1", x = 1882, y = 4382,  members = true },
         { id = "dagannoth_waterbirth_range_88_1", x = 1890, y = 4368,  members = true },
         { id = "dagannoth_waterbirth_range_88_1", x = 1904, y = 4364,  members = true },
-        { id = "dagannoth_egg", x = 2485, y = 10168,  members = true },
 ]
