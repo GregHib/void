@@ -1,0 +1,8 @@
+[rock_crab_attack]
+id = 717
+
+[rock_crab_defend]
+id = 723
+
+[rock_crab_death]
+id = 722

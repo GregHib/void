@@ -1,0 +1,172 @@
+[dagannoth_lighthouse_range_74]
+id = 1338
+att = 68
+str = 70
+def = 50
+hitpoints = 1200
+slayer_xp = 120.0
+max_hit_melee = 80
+weapon_style = "bow"
+wander_radius = 5
+attack_range = 3
+attack_radius = 8
+hunt_mode = "aggressive"
+attack_speed = 4
+style = "range"
+ammo = "horror_spines_travel"
+combat_sounds = "dagannoth"
+combat_anims = "dagannoth"
+drop_table = "dagannoth_lighthouse"
+categories = ["dagannoth"]
+respawn_delay = 30
+examine = "A horror from the ocean depths..."
+
+[dagannoth_lighthouse_range_74_1]
+clone = "dagannoth_lighthouse_range_74"
+id = 1339
+
+[dagannoth_lighthouse_range_74_2]
+clone = "dagannoth_lighthouse_range_74"
+id = 1340
+
+[dagannoth_lighthouse_melee_92]
+id = 1341
+att = 68
+str = 70
+def = 71
+hitpoints = 1200
+slayer_xp = 120.0
+max_hit_melee = 80
+wander_radius = 5
+attack_radius = 8
+hunt_mode = "aggressive"
+attack_speed = 4
+style = "stab"
+combat_sounds = "dagannoth"
+combat_anims = "dagannoth"
+drop_table = "dagannoth_lighthouse"
+categories = ["dagannoth"]
+respawn_delay = 30
+examine = "A horror from the ocean depths..."
+
+[dagannoth_lighthouse_range_92_1]
+clone = "dagannoth_lighthouse_melee_92"
+id = 1342
+
+[dagannoth_lighthouse_range_92_2]
+clone = "dagannoth_lighthouse_melee_92"
+id = 1343
+
+[dagannoth_waterbirth_range_88]
+id = 1341
+att = 10
+str = 10
+def = 71
+hitpoints = 850
+slayer_xp = 85.0
+max_hit_melee = 200
+wander_radius = 5
+attack_radius = 8
+hunt_mode = "aggressive"
+attack_speed = 4
+style = "stab"
+combat_sounds = "dagannoth"
+combat_anims = "dagannoth"
+drop_table = "dagannoth_waterbirth"
+categories = ["dagannoth"]
+respawn_delay = 30
+examine = "A horror from the ocean depths..."
+
+[dagannoth_waterbirth_range_88_1]
+clone = "dagannoth_waterbirth_range_88"
+id = 2456
+
+[dagannoth_waterbirth_range_88_2]
+clone = "dagannoth_waterbirth_range_88"
+id = 2887
+
+[dagannoth_waterbirth_range_88_3]
+clone = "dagannoth_waterbirth_range_88"
+id = 9098
+
+[dagannoth_waterbirth_range_88_4]
+clone = "dagannoth_waterbirth_range_88"
+id = 9129
+
+[dagannoth_waterbirth_range_88_5]
+clone = "dagannoth_waterbirth_range_88"
+id = 9133
+
+[dagannoth_waterbirth_melee_90]
+id = 2455
+att = 76
+str = 78
+def = 65
+hitpoints = 950
+slayer_xp = 120.0
+max_hit_melee = 150
+wander_radius = 5
+attack_radius = 8
+hunt_mode = "aggressive"
+attack_speed = 4
+style = "stab"
+combat_sounds = "dagannoth"
+combat_anims = "dagannoth"
+drop_table = "dagannoth_waterbirth"
+categories = ["dagannoth"]
+respawn_delay = 30
+examine = "A horror from the ocean depths..."
+
+[dagannoth_waterbirth_melee_90_1]
+clone = "dagannoth_waterbirth_melee_90"
+id = 2888
+
+[dagannoth_waterbirth_melee_90_2]
+clone = "dagannoth_waterbirth_melee_90"
+id = 9097
+
+[dagannoth_waterbirth_melee_90_3]
+clone = "dagannoth_waterbirth_melee_90"
+id = 9103
+
+[dagannoth_waterbirth_melee_90_4]
+clone = "dagannoth_waterbirth_melee_90"
+id = 9128
+
+[dagannoth_waterbirth_melee_90_5]
+clone = "dagannoth_waterbirth_melee_90"
+id = 9132
+
+[dagannoth_egg]
+id = 2449
+categories = ["egg"]
+respawn_delay = 5
+hunt_radius = 3
+hunt_mode = "aggressive"
+examine = "A horror from the ocean depths..."
+
+[dagannoth_egg_open]
+id = 2450
+
+[dagannoth_egg_opened]
+id = 2451
+
+[dagannoth_spawn]
+id = 2454
+att = 76
+str = 78
+def = 65
+hitpoints = 350
+slayer_xp = 120.0
+max_hit_melee = 150
+hunt_radius = 3
+wander_radius = 5
+attack_radius = 8
+hunt_mode = "aggressive"
+attack_speed = 4
+style = "stab"
+categories = ["dagannoth"]
+respawn_delay = 30
+examine = "A horror from the ocean depths..."
+
+

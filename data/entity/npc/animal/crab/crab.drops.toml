@@ -1,0 +1,70 @@
+[rock_crab_drop_table]
+type = "all"
+drops = [
+  { table = "rock_crab_secondary" },
+  { table = "easy_clue_scroll", roll = 128 },
+]
+
+[rock_crab_secondary]
+roll = 128
+drops = [
+  { id = "bronze_pickaxe", chance = 6 },
+  { id = "iron_pickaxe", chance = 5 },
+  { id = "seaweed", chance = 4 },
+  { id = "seaweed", amount = 2, chance = 4 },
+  { id = "seaweed", amount = 5, chance = 2 },
+  { id = "edible_seaweed", amount = 2, chance = 2 },
+  { id = "tin_ore", amount = 3, chance = 4 },
+  { id = "iron_ore", chance = 2 },
+  { id = "coal", amount = 2, chance = 2 },
+  { id = "copper_ore", amount = 3, chance = 2 },
+  { id = "oyster", amount = 2, chance = 12 },
+  { id = "oyster", chance = 9 },
+  { id = "empty_oyster", chance = 3 },
+  { id = "empty_oyster", amount = 3 },
+  { id = "oyster_pearl" },
+  { id = "coins", amount = 4, chance = 29 },
+  { id = "coins", amount = 8, chance = 6 },
+  { id = "coins", amount = 36, chance = 8 },
+  { id = "nothing", amount = 0, chance = 19 },
+  { id = "fishing_bait", amount = 10, chance = 2 },
+  { id = "opal_bolt_tips", amount = 5, chance = 2 },
+  { id = "spinach_roll" },
+  { id = "casket" },
+  { table = "gem_drop_table" },
+]
+
+[giant_rock_crab_drop_table]
+type = "all"
+drops = [
+  { id = "bones" },
+  { table = "giant_rock_crab_secondary" },
+  { table = "medium_clue_scroll", roll = 128 },
+]
+
+[giant_rock_crab_secondary]
+roll = 128
+drops = [
+  { id = "steel_platebody", chance = 5 },
+  { id = "black_claws", chance = 5 },
+  { id = "black_platebody", chance = 5 },
+  { id = "mithril_hatchet", chance = 10 },
+  { id = "rock_shell_gloves", chance = 2 },
+  { id = "rock_shell_boots", chance = 2 },
+  { id = "black_warhammer", chance = 5 },
+  { id = "adamant_longsword", chance = 5 },
+  { id = "water_rune", min = 1, max = 40, chance = 10 },
+  { id = "earth_rune", min = 1, max = 40, chance = 10 },
+  { table = "herb_drop_table", chance = 8 },
+  { table = "rare_seed_drop_table" },
+  { table = "talisman_drop_table", chance = 10 },
+  { id = "coins", min = 1, max = 140, chance = 10 },
+  { id = "raw_lobster", chance = 10 },
+  { id = "raw_bass", chance = 10 },
+  { id = "tinderbox", chance = 10 },
+  { id = "casket", chance = 2 },
+  { id = "rock_shell_splinter", chance = 2 },
+  { id = "rock_shell_chunk", chance = 2 },
+  { id = "rock_shell_shard", chance = 2 },
+  { table = "gem_drop_table" },
+]

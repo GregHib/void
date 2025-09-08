@@ -1,0 +1,166 @@
+[cave_entrance]
+id = 8929
+examine = "A deep and terrifying cave."
+
+[waterbirth_outside_cave_entrance]
+id = 8930
+examine = "It looks cold in there."
+
+[waterbirth_dungeon_steps]
+id = 8966
+examine = "Leads to the surface."
+
+[ladder]
+id = 10177
+examine = "I could climb this if I wanted."
+
+[ladder_up]
+id = 10193
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_1]
+id = 10196
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_1]
+id = 10195
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_2]
+id = 10198
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_2]
+id = 10197
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_3]
+id = 10200
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_3]
+id = 10199
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_4]
+id = 10202
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_4]
+id = 10201
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_5]
+id = 10203
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_5]
+id = 10204
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_6]
+id = 10206
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_6]
+id = 10205
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_7]
+id = 10207
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_7]
+id = 10208
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_8]
+id = 10210
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_8]
+id = 10209
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_9]
+id = 10211
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_9]
+id = 10212
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_10]
+id = 10214
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_10]
+id = 10213
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_11]
+id = 10216
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_11]
+id = 10215
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_12]
+id = 10217
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_12]
+id = 10218
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_13]
+id = 10219
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_13]
+id = 10220
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_14]
+id = 10222
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_14]
+id = 10221
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_15]
+id = 10224
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_15]
+id = 10223
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_16]
+id = 10226
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_16]
+id = 10225
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_up_17]
+id = 10228
+examine = "A sturdy iron frame, for climbing up and down."
+
+[waterbirth_ladder_down_17]
+id = 10227
+examine = "A sturdy iron frame, for climbing up and down."
+
+[dks_ladder_down]
+id = 10230
+examine = "A sturdy iron frame, for climbing up and down."
+
+[dks_ladder_up]
+id = 10229
+examine = "A sturdy iron frame, for climbing up and down."
+
+[door_support_base]
+id = 8967

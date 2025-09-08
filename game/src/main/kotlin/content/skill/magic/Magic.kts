@@ -3,6 +3,7 @@ package content.skill.magic
 import content.entity.combat.characterCombatSwing
 import content.entity.combat.combatSwing
 import content.entity.combat.hit.hit
+import content.entity.npc.combat.NPCAttack
 import content.entity.proj.shoot
 import content.entity.sound.sound
 import content.skill.magic.book.modern.teleBlock
@@ -12,6 +13,7 @@ import content.skill.magic.spell.spell
 import content.skill.melee.weapon.weapon
 import content.skill.slayer.categories
 import world.gregs.voidps.engine.data.config.SpellDefinition
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -61,6 +63,8 @@ fun castSpell(source: Character, target: Character): Boolean {
     return true
 }
 
+val animationDefinitions: AnimationDefinitions by inject()
+
 fun animation(source: Character, definition: SpellDefinition): String {
     if (source.weapon.def["weapon_type", ""] == "salamander" && source.spell.isBlank()) {
         return "salamander_scorch"
@@ -73,7 +77,7 @@ fun animation(source: Character, definition: SpellDefinition): String {
             definition["animation", ""]
         }
     } else if (source is NPC) {
-        return source["combat_anims", definition["animation", ""]]
+        return NPCAttack.anim(animationDefinitions, source, "attack")
     }
     return ""
 }
@@ -82,12 +86,17 @@ fun graphic(source: Character, definition: SpellDefinition): String {
     if (source.weapon.def["weapon_type", ""] == "salamander" && source.spell.isBlank()) {
         return "salamander_blaze"
     }
-    val staff = source.weapon.def["category", ""] == "staff"
-    return if (staff && definition.contains("graphic_staff")) {
-        definition["graphic_staff"]
-    } else {
-        definition["graphic", ""]
+    if (source is Player || source is NPC && source.categories.contains("human")) {
+        val staff = source.weapon.def["category", ""] == "staff"
+        return if (staff && definition.contains("graphic_staff")) {
+            definition["graphic_staff"]
+        } else {
+            definition["graphic", ""]
+        }
+    } else if (source is NPC) {
+        return source.def["combat_gfxs", definition["graphic", ""]]
     }
+    return ""
 }
 
 fun time(source: Character, target: Character, definition: SpellDefinition): Int {

@@ -3,3 +3,76 @@ id = 2706
 categories = ["crab"]
 wander_radius = 3
 examine = "Nobody likes crabs..."
+
+[rock_crab]
+id = 1265
+wander_radius = 5
+attack_radius = 8
+hunt_mode = "aggressive"
+categories = ["crab"]
+examine = "No one likes crabs..."
+
+[rock_crab_1]
+clone = "rock_crab"
+id = 1267
+
+[rock]
+id = 1266
+att = 1
+str = 1
+def = 1
+magic = 1
+hitpoints = 130
+slayer_xp = 60.0
+max_hit_melee = 15
+attack_speed = 4
+style = "crush"
+combat_sounds = "rock_crab"
+combat_anims = "rock_crab"
+hunt_mode = "aggressive"
+hunt_radius = 3
+categories = ["crab"]
+drop_table = "rock_crab"
+respawn_delay = 50
+examine = "A rocky outcrop."
+
+[rock_1]
+clone = "rock"
+id = 1268
+
+
+[giant_rock_crab]
+id = 2452
+wander_radius = 5
+attack_range = 3
+attack_radius = 8
+hunt_mode = "aggressive"
+categories = ["crab"]
+examine = "No one likes crabs... especially really big ones!"
+
+[giant_rock_crab_light]
+clone = "giant_rock_crab"
+id = 2885
+
+[boulder]
+id = 2453
+att = 50
+str = 80
+def = 200
+hitpoints = 1800
+slayer_xp = 198.0
+max_hit_melee = 90
+attack_speed = 4
+style = "crush"
+combat_sounds = "rock_crab"
+combat_anims = "rock_crab"
+drop_table = "giant_rock_crab"
+hunt_mode = "aggressive"
+hunt_radius = 3
+categories = ["crab"]
+respawn_delay = 50
+examine = "Heavy boulder!"
+
+[boulder_light]
+clone = "boulder"
+id = 2886

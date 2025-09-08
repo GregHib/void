@@ -1,0 +1,38 @@
+[door_support_north]
+id = 2440
+retaliates = false
+respawn_delay = 0
+death_anim = "door_support_north_fall"
+
+[door_support_north_fall]
+id = 2441
+
+[door_support_north_fallen]
+id = 2442
+
+[door_support_east]
+id = 2443
+retaliates = false
+respawn_delay = 0
+death_anim = "door_support_east_fall"
+
+[door_support_east_fall]
+id = 2444
+
+[door_support_east_fallen]
+id = 2445
+
+[door_support_south]
+id = 2446
+retaliates = false
+respawn_delay = 0
+death_anim = "door_support_south_fall"
+
+[door_support_south_fall]
+id = 2447
+
+[door_support_south_fallen]
+id = 2448
+
+[akeladden]
+id = 2439

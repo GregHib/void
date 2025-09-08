@@ -4,6 +4,7 @@ import content.area.wilderness.Wilderness
 import content.area.wilderness.inPvp
 import content.area.wilderness.inSingleCombat
 import content.area.wilderness.inWilderness
+import content.entity.effect.transform
 import content.entity.player.equip.Equipment
 import content.skill.melee.weapon.fightStyle
 import content.skill.slayer.categories
@@ -11,6 +12,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -24,7 +26,14 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 object Target {
     fun attackable(source: Character, target: Character): Boolean {
         if (target is NPC) {
-            if (target.def.options[1] != "Attack") {
+            if (target.id.startsWith("door_support") && get<NPCDefinitions>().get(target.id).options[1] == "Destroy") {
+                return true
+            }
+            if (target.transform != "") {
+                if (get<NPCDefinitions>().get(target.transform).options[1] != "Attack") {
+                    return false
+                }
+            } else if (target.def.options[1] != "Attack") {
                 return false
             }
             if (target.index == -1) {

@@ -1,0 +1,26 @@
+[wallasalki]
+id = 2457
+hitpoints = 1200
+att = 10
+str = 10
+def = 80
+magic = 100
+slayer_xp = 120.0
+wander_radius = 5
+max_hit_magic = 30
+attack_range = 5
+spell = "water_blast"
+style = "magic"
+hunt_mode = "aggressive"
+attack_speed = 6
+combat_anims = "wallasalki"
+combat_gfxs = ""
+categories = ["wallasalki"]
+respawn_delay = 25
+examine = "A fearsome magical water creature."
+
+
+
+[wallasalki_1]
+clone = "wallasalki"
+id = 2884

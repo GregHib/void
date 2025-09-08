@@ -158,7 +158,7 @@ data class NPCs(
         npc.collision = collision.get(npc)
         map.add(npc.tile.regionLevel, npc)
         val respawnDelay = npc.def.getOrNull<Int>("respawn_delay")
-        if (respawnDelay != null && respawnDelay > 0) {
+        if (respawnDelay != null && respawnDelay >= 0) {
             npc["respawn_tile"] = npc.tile
             npc["respawn_delay"] = respawnDelay
             npc["respawn_direction"] = npc.direction

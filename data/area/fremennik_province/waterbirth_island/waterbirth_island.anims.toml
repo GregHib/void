@@ -1,0 +1,20 @@
+[door_support_north_fall]
+id = 2351
+ticks = 30
+
+[door_support_north_fallen]
+id = 2352
+
+[door_support_east_fall]
+id = 2353
+ticks = 30
+
+[door_support_east_fallen]
+id = 2355
+
+[door_support_south_fall]
+id = 2356
+ticks = 30
+
+[door_support_south_fallen]
+id = 2358
