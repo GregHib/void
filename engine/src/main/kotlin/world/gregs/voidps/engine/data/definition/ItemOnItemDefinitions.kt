@@ -51,6 +51,7 @@ class ItemOnItemDefinitions {
                         var failure = ""
                         var question: String? = null
                         var maximum: Int = -1
+                        var members: Boolean = false
 
                         while (nextPair()) {
                             val key = key()
@@ -74,6 +75,7 @@ class ItemOnItemDefinitions {
                                 "failure" -> failure = string()
                                 "question" -> question = string()
                                 "maximum" -> maximum = int()
+                                "members" -> members = boolean()
                             }
                         }
 
@@ -97,6 +99,7 @@ class ItemOnItemDefinitions {
                             failure = failure,
                             question = question ?: "How many would you like to $type?",
                             maximum = maximum,
+                            members = members,
                         )
                         requires.addAll(definition.one)
                         requires.addAll(definition.remove)
