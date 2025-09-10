@@ -9,6 +9,7 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.quest
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -46,6 +47,13 @@ npcOperate("Talk-to","bravek") {
         "has_cure_paper" -> hasCurePaper()
         "gave_cure" -> gaveCure()
         else -> completed()
+    }
+}
+
+itemOnNPCOperate("hangover_cure", "bravek") {
+    when (player.quest("plague_city")) {
+        "has_cure_paper" -> hasCurePaper()
+        else -> {}// TODO
     }
 }
 
