@@ -7,10 +7,11 @@ import content.quest.quest
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class DukeHoracio {
 
@@ -24,7 +25,6 @@ class DukeHoracio {
                 else -> completed()
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.started() {
@@ -49,7 +49,7 @@ class DukeHoracio {
             findMoney()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.unstarted() {
         choice {
             option<Quiz>("Have you any quests for me?") {
@@ -64,7 +64,7 @@ class DukeHoracio {
             findMoney()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.completed() {
         choice {
             option<Quiz>("Have you any quests for me?") {
@@ -73,11 +73,11 @@ class DukeHoracio {
             findMoney()
         }
     }
-    
+
     suspend fun PlayerChoice.findMoney(): Unit = option<Quiz>("Where can I find money?") {
         npc<Neutral>("I've heard that the blacksmiths are prosperous amongst the peasantry. Maybe you could try your hand at that?")
     }
-    
+
     suspend fun SuspendableContext<Player>.startQuest() {
         choice("Start the Rune Mysteries quest?") {
             option<Happy>("Sure, no problem.") {

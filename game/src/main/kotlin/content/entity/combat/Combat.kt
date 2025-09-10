@@ -22,8 +22,9 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.characterDespawn
-import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.event.onEvent
+
 @Script
 class Combat {
 
@@ -78,7 +79,6 @@ class Combat {
                 retaliate(character, source)
             }
         }
-
     }
 
     /**
@@ -86,11 +86,11 @@ class Combat {
      * to allow movement & [Interact] to complete and start [combat] on the same tick
      * After [Interact] is complete switch to using [CombatMovement]
      */
-    
+
     /**
      * [CombatReached] is emitted by [CombatMovement] every tick the [Character] is within range of the target
      */
-    
+
     fun combat(character: Character, target: Character) {
         if (character.mode !is CombatMovement || character.target != target) {
             character.mode = CombatMovement(character, target)
@@ -134,13 +134,13 @@ class Combat {
         }
         character.start("action_delay", nextDelay)
     }
-    
+
     fun retaliates(character: Character) = if (character is NPC) {
         character.def["retaliates", true]
     } else {
         character["auto_retaliate", false]
     }
-    
+
     fun retaliate(character: Character, source: Character) {
         if (character.dead || character.levels.get(Skill.Constitution) <= 0 || !retaliates(character)) {
             return

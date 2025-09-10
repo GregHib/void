@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -19,12 +20,12 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class LumbridgeSwamp {
 
     val npcs: NPCs by inject()
-    
+
     init {
         objectOperate("Search", "rocks_skull_restless_ghost_quest") {
             if (player.quest("the_restless_ghost") != "mining_spot" && player.quest("the_restless_ghost") != "found_skull") {
@@ -77,7 +78,5 @@ class LumbridgeSwamp {
         destroyed("muddy_skull") { player ->
             player["rocks_restless_ghost"] = "skull"
         }
-
     }
-
 }

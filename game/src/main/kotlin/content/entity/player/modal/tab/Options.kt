@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Options {
 
@@ -33,7 +34,5 @@ class Options {
         interfaceOption("Toggle Accept Aid", "aid", "options") {
             player.toggle("accept_aid")
         }
-
     }
-
 }

@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class SlayerAssignment {
 
@@ -36,7 +37,7 @@ class SlayerAssignment {
             }
             player.slayerPoints -= 30
             player.slayerTask = "nothing"
-        //    npc<Happy>(player["slayer_npc", ""], "") TODO proper message and save npc id on interface open
+            //    npc<Happy>(player["slayer_npc", ""], "") TODO proper message and save npc id on interface open
         }
 
         interfaceOption("Permanently *", "block_*", "slayer_rewards_assignment") {
@@ -58,12 +59,11 @@ class SlayerAssignment {
                     break
                 }
             }
-        
+
             if (!blocked) {
                 player.message("You don't have any free block slots.") // TODO proper message
             }
         }
-
     }
 
     fun refresh(player: Player, id: String) {
@@ -90,5 +90,4 @@ class SlayerAssignment {
         player.interfaces.sendColour(id, "block_text", if (points < 100 || !hasBlockedSlot) Colours.RED else Colours.ORANGE)
         player.interfaces.sendColour(id, "block_points", if (points < 100 || !hasBlockedSlot) Colours.RED else Colours.ORANGE)
     }
-    
 }

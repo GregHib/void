@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class SpellBookFilter {
 
@@ -36,7 +37,6 @@ class SpellBookFilter {
         interfaceOption("Defensive Casting", "defensive_cast", "*_spellbook") {
             player.toggle(component)
         }
-
     }
 
     fun InterfaceOption.filter() {
@@ -48,7 +48,7 @@ class SpellBookFilter {
             player.addVarbit(key, id)
         }
     }
-    
+
     fun InterfaceOption.sort() {
         val key = "spellbook_sort"
         if (component.startsWith("sort_")) {
@@ -60,5 +60,4 @@ class SpellBookFilter {
             player.addVarbit(key, "$id:$component", refresh = false)
         }
     }
-    
 }

@@ -18,20 +18,21 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class SirVyvin {
 
     val floorItems: FloorItems by inject()
     val npcs: NPCs by inject()
     val lineValidator: LineValidator by inject()
-    
+
     init {
         objectOperate("Open", "cupboard_the_knights_sword_closed") {
             player.sound("cupboard_open")
@@ -89,7 +90,5 @@ class SirVyvin {
                 }
             }
         }
-
     }
-
 }

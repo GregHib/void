@@ -7,8 +7,9 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.suspend.SuspendableContext
+
 @Script
 class Mubariz {
 
@@ -22,7 +23,6 @@ class Mubariz {
             )
             menu()
         }
-
     }
 
     suspend fun SuspendableContext<Player>.menu() {
@@ -34,7 +34,7 @@ class Mubariz {
             exit()
         }
     }
-    
+
     suspend fun PlayerChoice.place(): Unit = option<Uncertain>("What is this place?") {
         npc<Neutral>("The Duel Arena has six arenas where you can fight other players in a controlled environment. We have our own dedicated hospital where we guarantee to put you back together, even if you lose.")
         npc<Neutral>("The Duel Arena has six arenas where you can fight other players in a controlled environment. We have our own dedicated hospital where we guarantee to put you back together, even if you lose.")
@@ -47,7 +47,7 @@ class Mubariz {
             exit()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.looksOld() {
         player<Uncertain>("It looks really old. Where did it come from?")
         npc<Neutral>("The archaeologists that are excavating the area east of Varrock have been working on this site as well. From these cliffs they uncovered this huge building. The experts think it may date back to the second age!")
@@ -60,12 +60,12 @@ class Mubariz {
             exit()
         }
     }
-    
+
     suspend fun PlayerChoice.challenge(): Unit = option<Frustrated>("I challenge you!") {
         npc<Laugh>("Ho! Ho! Ho!")
         menu()
     }
-    
+
     suspend fun SuspendableContext<Player>.duelling() {
         player<Uncertain>("How do I challenge someone to a duel?")
         npc<Neutral>("When you go to the arena you'll go up an access ramp to the walkways that overlook the arenas. From the walkways you can watch the duels and challenge other players.")
@@ -78,7 +78,7 @@ class Mubariz {
             exit()
         }
     }
-    
+
     suspend fun PlayerChoice.options(): Unit = option<Uncertain>("What kind of options are there?") {
         npc<Neutral>("You and your opponent can offer coins or platinum as a stake. If you win, you receive what your opponent staked minus some tax, but if you lose, your opponent will get whatever items you staked.")
         npc<Neutral>("You can choose to use rules to spice things up a bit. For instance if you both agree to use the 'No Magic' rule then neither player can use magic to attack the other player. The fight will be restricted to ranging and")
@@ -91,11 +91,11 @@ class Mubariz {
             exit()
         }
     }
-    
+
     suspend fun PlayerChoice.advice(): Unit = option<Quiz>("Do you have any advice for me?") {
         npc<Chuckle>("Win. And if you ever stop having fun, stop dueling.")
     }
-    
+
     suspend fun PlayerChoice.exit(): Unit = option<RollEyes>("I'll be off.") {
         npc<Shifty>("See you in the arenas!")
     }

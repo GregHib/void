@@ -8,15 +8,16 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class CommonItemCosts {
 
     val enums: EnumDefinitions by inject()
     val exchange: GrandExchange by inject()
     val itemDefinitions: ItemDefinitions by inject()
-    
+
     init {
         interfaceOpen("common_item_costs") { player ->
             val type = player["common_item_costs", "ores"]
@@ -35,7 +36,5 @@ class CommonItemCosts {
         interfaceOption("Examine", "items", "common_item_costs") {
             player.message(item.def.getOrNull("examine") ?: return@interfaceOption)
         }
-
     }
-
 }

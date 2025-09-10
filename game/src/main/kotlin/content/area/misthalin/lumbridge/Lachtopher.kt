@@ -8,6 +8,7 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Lachtopher {
 
@@ -26,7 +27,5 @@ class Lachtopher {
             player<Angry>("I've had it with you! I don't think I've come across a less worthwhile person.")
             player<Angry>("I think I'll call you Lazy Lachtopher, from now on.")
         }
-
     }
-
 }

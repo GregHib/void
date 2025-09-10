@@ -4,6 +4,7 @@ import content.entity.combat.hit.combatAttack
 import content.skill.prayer.praying
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Smite {
 
@@ -14,7 +15,5 @@ class Smite {
             }
             target.levels.drain(Skill.Prayer, damage / 40)
         }
-
     }
-
 }

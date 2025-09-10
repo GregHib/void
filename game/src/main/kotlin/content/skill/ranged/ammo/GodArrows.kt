@@ -4,9 +4,10 @@ import content.entity.combat.hit.Damage
 import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.hit
 import content.skill.ranged.ammo
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GodArrows {
 
@@ -46,7 +47,5 @@ class GodArrows {
                 source.hit(target, weapon, "magic", CLIENT_TICKS.toTicks(delay), damage = damage)
             }
         }
-
     }
-
 }

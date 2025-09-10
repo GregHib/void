@@ -7,10 +7,11 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class RockCrabs {
 
@@ -21,24 +22,23 @@ class RockCrabs {
                 npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
                 return@huntPlayer
             }
-        
+
             // pick correct crab form based on rock variant
             val combatForm = when (npc.id) {
                 "rock" -> "rock_crab"
                 "rock_1" -> "rock_crab_1"
                 else -> return@huntPlayer
             }
-        
+
             // transform into crab
             npc.transform(combatForm)
-        
+
             // short stand-up delay before attacking
             npc.softQueue("rock_stand_up", 2) {
                 npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
                 resetToRock(npc) // start inactivity timer for disguise reset
             }
         }
-
     }
 
     /**
@@ -61,7 +61,7 @@ class RockCrabs {
             npc.transform(disguise)
         }
     }
-    
+
     /**
      * Rock crabs disguised as rocks – hatch into combat form when a player walks near.
      */

@@ -8,10 +8,11 @@ import content.quest.quest
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class RestlessGhost {
 
@@ -27,7 +28,6 @@ class RestlessGhost {
                 else -> player.message("The ghost doesn't appear to be interested in talking.")
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.ghost() {
@@ -72,7 +72,7 @@ class RestlessGhost {
             noGhostAmulet()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.noGhostAmulet() {
         player<Neutral>("Hello ghost, how are you?")
         npc<Neutral>("Wooo wooo wooooo!")
@@ -137,14 +137,14 @@ class RestlessGhost {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.dontSpeakGhost() {
         npc<Neutral>("Woo woo?")
         player<Neutral>("Nope, still don't understand you.")
         npc<Neutral>("WOOOOOOOOO!")
         player<Neutral>("Never mind.")
     }
-    
+
     suspend fun SuspendableContext<Player>.notSoSure() {
         npc<Neutral>("Wooo woo?")
         player<Angry>("Well, if you INSIST.")
@@ -153,7 +153,7 @@ class RestlessGhost {
         npc<Neutral>("Woo.")
         player<Neutral>("Bye.")
     }
-    
+
     suspend fun SuspendableContext<Player>.task() {
         npc<Neutral>("I should think it's because I've lost my head.")
         player<Neutral>("What? I can see your head perfectly fine well, see through it at least.")
@@ -162,7 +162,7 @@ class RestlessGhost {
         player<Neutral>("Okay. I'll try to get your skull back for you so you can rest in peace.")
         player["the_restless_ghost"] = "mining_spot"
     }
-    
+
     suspend fun SuspendableContext<Player>.helpMe() {
         choice {
             option<Happy>("Yes, ok. Do you know WHY you're a ghost?") {
@@ -175,7 +175,7 @@ class RestlessGhost {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.miningSpot() {
         if (player.equipment.contains("ghostspeak_amulet")) {
             if (player.inventory.contains("muddy_skull")) {

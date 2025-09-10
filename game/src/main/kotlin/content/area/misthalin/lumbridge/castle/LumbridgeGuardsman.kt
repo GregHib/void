@@ -8,8 +8,9 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.type.random
+
 @Script
 class LumbridgeGuardsman {
 
@@ -35,7 +36,6 @@ class LumbridgeGuardsman {
                 option<Neutral>("Bye.")
             }
         }
-
     }
 
     suspend fun PlayerChoice.tellMeGuardsmen(): Unit = option<Quiz>("Tell me about the Lumbridge Guardsmen.") {
@@ -51,7 +51,7 @@ class LumbridgeGuardsman {
             option<Neutral>("Bye.")
         }
     }
-    
+
     suspend fun PlayerChoice.aroundHere(): Unit = option<Quiz>("What is there to do around here?") {
         when (random.nextInt(0, 2)) {
             0 -> npc<Happy>("If you're interested in learning to make leather armour, there's the cow field to get hides. Then, you can take your the hides to a tanner.")
@@ -65,7 +65,7 @@ class LumbridgeGuardsman {
             option<Neutral>("Bye.")
         }
     }
-    
+
     suspend fun PlayerChoice.tellMeLumbridge(): Unit = option<Quiz>("Tell me about Lumbridge.") {
         when (random.nextInt(0, 3)) {
             0 -> npc<Neutral>("It used to be much nicer here, before the goblins overran the east side of town. You'd think that the Guardsmen would be sent to flush them out, but for every one we slay, three more appear in its place.")
@@ -80,7 +80,7 @@ class LumbridgeGuardsman {
             option<Neutral>("Bye.")
         }
     }
-    
+
     suspend fun PlayerChoice.whatAreGuarding(): Unit = option<Quiz>("What exactly are you guarding?") {
         when (random.nextInt(0, 2)) {
             0 -> npc<Happy>("Peace, happiness, tranquillity, that sort of thing. So, let me know if you see anything upsetting. Dragons in cellars, goblins under beds, that sort of thing.")

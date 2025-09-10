@@ -16,17 +16,18 @@ import world.gregs.voidps.engine.client.variable.ListValues
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class FairyRing {
 
     val fairyRing: FairyRingCodes by inject()
-    
+
     val variableDefinitions: VariableDefinitions by inject()
-    
+
     val Player.code: String
         get() = "${get("fairy_ring_code_1", "a")}${get("fairy_ring_code_2", "j")}${get("fairy_ring_code_3", "r")}"
 
@@ -78,7 +79,6 @@ class FairyRing {
             val codeIndex = component.removePrefix("anticlockwise_").toInt()
             rotate(player, codeIndex, -1)
         }
-
     }
 
     fun rotate(player: Player, codeIndex: Int, amount: Int) {
@@ -89,5 +89,4 @@ class FairyRing {
         val next = list.values[(valueIndex + amount) and 3]
         player["fairy_ring_code_$codeIndex"] = next
     }
-    
 }

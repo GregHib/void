@@ -17,12 +17,13 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ArcheryTarget {
 
@@ -32,7 +33,6 @@ class ArcheryTarget {
             player.face(target)
             swing(player, target, 0)
         }
-
     }
 
     fun swing(player: Player, obj: GameObject, delay: Int) {

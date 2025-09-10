@@ -9,9 +9,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class SaradominRock {
 
@@ -32,7 +33,6 @@ class SaradominRock {
         itemOnObjectOperate("rope", "godwars_saradomin_rock_top", handler = handler)
 
         itemOnObjectOperate("rope", "godwars_saradomin_rock_bottom", handler = handler)
-
     }
 
     fun tieRope(player: Player, id: String) {

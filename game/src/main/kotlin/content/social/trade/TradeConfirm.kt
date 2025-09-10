@@ -13,15 +13,16 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.MoveItem.moveAll
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class TradeConfirm {
 
     val logger = InlineLogger()
-    
+
     init {
         interfaceOption("Accept", "accept", "trade_main") {
             val partner = getPartner(player) ?: return@interfaceOption
@@ -66,14 +67,13 @@ class TradeConfirm {
                 requester.closeMenu()
             }
         }
-
     }
 
     /**
      * Both players accepting the request moves onto the confirmation screen.
      * Both players accepting the confirmation exchanges items and finishes the trade.
      */
-    
+
     fun confirm(player: Player) {
         player.interfaces.apply {
             remove("trade_main")
@@ -84,7 +84,7 @@ class TradeConfirm {
         }
         player.interfaces.sendText("trade_confirm", "status", "Are you sure you want to make this trade?")
     }
-    
+
     fun loanItem(player: Player, loanItem: Item, other: Player) {
         val duration = other["lend_time", -1]
         if (loanItem.id.isBlank() || duration == -1) {
@@ -92,12 +92,12 @@ class TradeConfirm {
         }
         Loan.lendItem(player, other, loanItem.id, duration)
     }
-    
+
     fun sendLoan(player: Player) {
         sendLoan(player, player.loan, "lend_time", "lend")
         sendLoan(player, player.otherLoan, "other_lend_time", "other_lend")
     }
-    
+
     fun sendLoan(player: Player, inventory: Inventory, key: String, prefix: String) {
         val lend = inventory.isFull()
         player.interfaces.sendVisibility("trade_confirm", "${prefix}_container", lend)
@@ -107,7 +107,7 @@ class TradeConfirm {
             player.interfaces.sendText("trade_confirm", "${prefix}_text", description)
         }
     }
-    
+
     fun sendItemsList(player: Player, prefix: String, inventory: Inventory) {
         val middle = inventory.count <= 14
         player.interfaces.sendVisibility("trade_confirm", "${prefix}_middle", middle)
@@ -120,7 +120,7 @@ class TradeConfirm {
             player.interfaces.sendText("trade_confirm", "${prefix}_right", itemsList(inventory.items.drop(14), false))
         }
     }
-    
+
     fun itemsList(items: List<Item>, exact: Boolean) = buildString {
         for (item in items) {
             if (item.isEmpty()) {
@@ -139,7 +139,7 @@ class TradeConfirm {
             append("<br>")
         }
     }
-    
+
     fun Int.toPrefix(): String = when {
         this >= 10_000_000 -> "${(this / 1_000_000).toDigitGroupString()}M"
         this >= 10_000 -> "${(this / 1_000).toDigitGroupString()}K"

@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class GnormadiumAvlafrim {
 
@@ -37,7 +38,6 @@ class GnormadiumAvlafrim {
             player["glider_location"] = "lemantolly_undri"
             player.open("glider_map")
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.howsWork() {
@@ -49,7 +49,7 @@ class GnormadiumAvlafrim {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.canIFly() {
         option<Talk>("Can I take a flight in the glider?") {
             npc<Happy>("Sure, go ahead.")
@@ -57,13 +57,13 @@ class GnormadiumAvlafrim {
             player.open("glider_map")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.bye() {
         option<Happy>("Have a nice day.") {
             npc<Happy>("You too, human.")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.helloThere() {
         option<Talk>("Hello there, what are you working on?") {
             npc<Talk>("Well, it's quite exciting... we're extending the glider network to include the Feldip Hills so that people can come and look at these curious ogres.")
@@ -71,25 +71,25 @@ class GnormadiumAvlafrim {
             menu()
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.whatAreYouWorkingOn() {
         option<Talk>("What are you working on?") {
             npc<Talk>("Well, people will be able to visit this area, once construction has finished, by using the most advanced network of glider routes in the whole of Gielinor... in fact, the only network of glider routes!")
             menu()
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.anythingICanDo() {
         option<Talk>("Is there anything I can do?") {
             npc<Talk>("Not really, I'm afraid, it's probably all far too technical for someone like you.")
             menu()
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.thanks() {
         option<Talk>("Okay, thanks.")
     }
-    
+
     suspend fun NPCOption<Player>.menu() {
         choice {
             helloThere()

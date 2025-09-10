@@ -8,8 +8,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.type.Direction
+
 @Script
 class Pipes {
 
@@ -37,7 +38,6 @@ class Pipes {
             }
             squeezeThroughHorizontal(3149, 3152, 3155, 10.0)
         }
-
     }
 
     suspend fun ObjectOption<Player>.squeezeThroughVertical(north: Int, middle: Int, south: Int, exp: Double) {
@@ -54,7 +54,7 @@ class Pipes {
         player.exactMoveDelay(targetTile, delay = 96, direction = direction)
         player.exp(Skill.Agility, exp)
     }
-    
+
     suspend fun ObjectOption<Player>.squeezeThroughHorizontal(east: Int, middle: Int, west: Int, exp: Double) {
         val right = player.tile.x < middle
         val targetTile = target.tile.copy(if (right) west else east)
@@ -68,5 +68,4 @@ class Pipes {
         player.exactMoveDelay(targetTile, delay = 96, direction = direction)
         player.exp(Skill.Agility, exp)
     }
-    
 }

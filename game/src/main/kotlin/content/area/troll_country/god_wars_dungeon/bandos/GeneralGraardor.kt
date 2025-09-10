@@ -13,21 +13,22 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.npcDespawn
 import world.gregs.voidps.engine.entity.npcSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GeneralGraardor {
 
     val players: Players by inject()
     val areas: AreaDefinitions by inject()
     val npcs: NPCs by inject()
-    
+
     var strongstack: NPC? = null
     var steelwill: NPC? = null
     var grimspike: NPC? = null
-    
+
     init {
         npcCombatSwing("general_graardor") { npc ->
             when (random.nextInt(2)) {
@@ -87,7 +88,5 @@ class GeneralGraardor {
                 target.sound("sergeant_steelwill_impact")
             }
         }
-
     }
-
 }

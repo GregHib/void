@@ -3,11 +3,12 @@ package content.entity.player.bank
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceSwap
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventoryUpdate
 import world.gregs.voidps.engine.inv.shift
 import world.gregs.voidps.engine.inv.swap
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class BankTabs {
 
@@ -47,11 +48,10 @@ class BankTabs {
             val toIndex = if (toTab == Bank.MAIN_TAB) player.bank.freeIndex() else Bank.tabIndex(player, toTab + 1)
             shiftTab(player, fromSlot, toIndex, fromTab, toTab)
         }
-
     }
 
     fun Inventory.countFreeToPlayItems(): Int = items.count { it.isNotEmpty() && !it.def.members }
-    
+
     /*
         Move to index in same tab -> shiftInsert
      */

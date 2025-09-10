@@ -14,15 +14,16 @@ import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.Action
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class EnchantedGem {
 
     val slayerDefinitions: SlayerTaskDefinitions by inject()
-    
+
     init {
         playerSpawn { player ->
             player.sendVariable("slayer_count")
@@ -50,7 +51,6 @@ class EnchantedGem {
                 player.message("Your current assignment is: ${player.slayerTask.lowercase()}; only ${player.slayerTaskRemaining} more to go.")
             }
         }
-
     }
 
     fun ChoiceBuilder<Action<Player>>.howAmIDoing() {
@@ -68,7 +68,7 @@ class EnchantedGem {
             }
         }
     }
-    
+
     fun ChoiceBuilder<Action<Player>>.whoAreYou() {
         option<Quiz>("Who are you?") {
             npc<Talk>(player.slayerMaster, "My name's ${player.slayerMaster.toSentenceCase()}, I'm the Slayer Master best able to train you.")
@@ -80,7 +80,7 @@ class EnchantedGem {
             }
         }
     }
-    
+
     fun ChoiceBuilder<Action<Player>>.whereAreYou() {
         option<Quiz>("Where are you?") {
             val location = when (player.slayerMaster) {
@@ -97,7 +97,7 @@ class EnchantedGem {
             }
         }
     }
-    
+
     fun ChoiceBuilder<Action<Player>>.anyTips() {
         option<Quiz>("Got any tips for me?") {
             val definition = slayerDefinitions.get(player.slayerMaster)[player.slayerTask]!!

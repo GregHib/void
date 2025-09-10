@@ -19,20 +19,21 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
 import world.gregs.voidps.engine.entity.character.player.chat.clan.clanChatLeave
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.FriendAdd
 import world.gregs.voidps.network.client.instruction.FriendDelete
 import world.gregs.voidps.network.login.protocol.encode.*
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class FriendsList {
 
     val players: Players by inject()
     val accounts: AccountDefinitions by inject()
     val accountDefinitions: AccountDefinitions by inject()
-    
+
     val maxFriends = 200
-    
+
     init {
         playerSpawn { player ->
             player.sendFriends()
@@ -49,27 +50,27 @@ class FriendsList {
                 player.message("Unable to find player with name '$friendsName'.")
                 return@instruction
             }
-        
+
             if (player.name == friendsName) {
                 player.message("You are already your own best friend!")
                 return@instruction
             }
-        
+
             if (player.ignores.contains(account.accountName)) {
                 player.message("Please remove $friendsName from your ignore list first.")
                 return@instruction
             }
-        
+
             if (player.friends.size >= maxFriends) {
                 player.message("Your friends list is full. Max of 100 for free users, and $maxFriends for members.")
                 return@instruction
             }
-        
+
             if (player.friends.contains(account.accountName)) {
                 player.message("$friendsName is already on your friends list.")
                 return@instruction
             }
-        
+
             player.friends[account.accountName] = ClanRank.Friend
             if (player.privateStatus == "friends") {
                 friendsName.updateFriend(player, online = true)
@@ -94,7 +95,7 @@ class FriendsList {
                 player.message("Unable to find player with name '$friendsName'.")
                 return@instruction
             }
-        
+
             player.friends.remove(account.accountName)
             if (player.privateStatus == "friends") {
                 friendsName.updateFriend(player, online = false)
@@ -158,7 +159,6 @@ class FriendsList {
                 ClanLootShare.update(player, clan, lootShare = false)
             }
         }
-
     }
 
     fun friends(player: Player) = { other: Player, status: String ->
@@ -169,13 +169,13 @@ class FriendsList {
             else -> false
         }
     }
-    
+
     fun friends(player: Player, it: Player) = player.friend(it) || it.isAdmin()
-    
+
     fun Player.sendFriends() {
         client?.sendFriendsList(friends.mapNotNull { toFriend(this, accounts.getByAccount(it.key) ?: return@mapNotNull null) })
     }
-    
+
     fun notifyBefriends(player: Player, online: Boolean, notify: (Player, String) -> Boolean = friends(player)) {
         players
             .filter { it.friend(player) && notify(it, player.privateStatus) }
@@ -191,7 +191,7 @@ class FriendsList {
                 )
             }
     }
-    
+
     fun String.updateFriend(friend: Player, online: Boolean) {
         val player = players.get(this) ?: return
         player.updateFriend(

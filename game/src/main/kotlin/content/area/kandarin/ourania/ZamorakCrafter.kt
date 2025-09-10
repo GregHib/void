@@ -5,15 +5,16 @@ import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.mode.move.npcMove
 import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ZamorakCrafter {
 
     val objects: GameObjects by inject()
     val patrols: PatrolDefinitions by inject()
-    
+
     init {
         npcSpawn("zamorak_crafter*") { npc ->
             val patrol = patrols.get(if (npc.id == "zamorak_crafter_start") "zamorak_crafter_to_altar" else "zamorak_crafter_to_bank")
@@ -38,7 +39,5 @@ class ZamorakCrafter {
             val patrol = patrols.get("zamorak_crafter_to_altar")
             npc.mode = Patrol(npc, patrol.waypoints)
         }
-
     }
-
 }

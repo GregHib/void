@@ -2,8 +2,9 @@ package content.skill.constitution.drink
 
 import content.skill.constitution.consume
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import kotlin.math.ceil
 import world.gregs.voidps.engine.event.Script
+import kotlin.math.ceil
+
 @Script
 class MatureAle {
 
@@ -77,7 +78,5 @@ class MatureAle {
                 player.levels.drain(Skill.Strength, 1, 0.05)
             }
         }
-
     }
-
 }

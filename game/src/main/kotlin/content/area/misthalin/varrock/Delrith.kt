@@ -43,6 +43,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
@@ -53,14 +54,14 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Delrith {
 
     val objects: GameObjects by inject()
     val npcs: NPCs by inject()
     val areas: AreaDefinitions by inject()
-    
+
     val area = areas["demon_slayer_stone_circle"]
     val defaultTile = Tile(3220, 3367)
     val targets = listOf(
@@ -69,9 +70,9 @@ class Delrith {
         Tile(3228, 3369) to Tile(3224, 3373),
         Tile(3228, 3370) to Tile(3231, 3373),
     )
-    
+
     val words = listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo")
-    
+
     init {
         enterArea("demon_slayer_stone_circle") {
             if (!player.questCompleted("demon_slayer") && player["demon_slayer_silverlight", false] && !player.hasClock("demon_slayer_instance_exit")) {
@@ -159,11 +160,10 @@ class Delrith {
             npc.strongQueue("death", TimeUnit.MINUTES.toTicks(5)) {
                 npc.emit(Death)
             }
-        //    player.playSound("demon_slayer_portal_open")
+            //    player.playSound("demon_slayer_portal_open")
             npc.transform("delrith_weakened")
             npc.mode = PauseMode
         }
-
     }
 
     fun exitArea(player: Player, to: Tile): Boolean {
@@ -171,7 +171,7 @@ class Delrith {
         val actual = cutscene.original(to)
         return !area.contains(actual) && !player.hasClock("demon_slayer_instance_exit")
     }
-    
+
     suspend fun SuspendableContext<Player>.cutscene() {
         val region = Region(12852)
         val cutscene = startCutscene("demon_slayer_delrith", region)
@@ -216,7 +216,7 @@ class Delrith {
         for (wizard in wizards) {
             wizard.anim("summon_demon")
         }
-    
+
         player.clearCamera()
         player.moveCamera(cutscene.tile(3224, 3376), 475, 232, 232)
         player.turnCamera(cutscene.tile(3227, 3369), 300, 232, 232)
@@ -226,7 +226,7 @@ class Delrith {
             wizard.say("Arise, Delrith!")
         }
         npc<Neutral>("dark_wizard_water", "Arise, Delrith!", title = "Dark wizards")
-    
+
         statement("The wizards cast an evil spell", clickToContinue = false)
         val regular = objects[cutscene.tile(3227, 3369), "demon_slayer_stone_table"]!!
         val table = objects.replace(regular, "demon_slayer_stone_table_summoning", ticks = 8)
@@ -291,7 +291,7 @@ class Delrith {
             wizard.mode = EmptyMode
         }
     }
-    
+
     fun Context<Player>.questComplete() {
         player.anim("silverlight_showoff")
         player.gfx("silverlight_sparkle")
@@ -309,7 +309,7 @@ class Delrith {
             )
         }
     }
-    
+
     /**
      * Spawns energy barriers in a clockwise ring
      */

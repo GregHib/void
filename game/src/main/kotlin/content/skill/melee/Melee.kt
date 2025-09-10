@@ -9,14 +9,15 @@ import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class Melee {
 
     val styleDefinitions: WeaponStyleDefinitions by inject()
     val animationDefinitions: WeaponAnimationDefinitions by inject()
-    
+
     init {
         combatPrepare("melee") { player ->
             if (player.specialAttack && !SpecialAttack.hasEnergy(player)) {
@@ -41,7 +42,5 @@ class Melee {
             player.anim(animation)
             player.hit(target)
         }
-
     }
-
 }

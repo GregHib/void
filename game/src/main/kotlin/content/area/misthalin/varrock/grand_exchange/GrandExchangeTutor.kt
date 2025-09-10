@@ -6,6 +6,7 @@ import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class GrandExchangeTutor {
 
@@ -14,7 +15,7 @@ class GrandExchangeTutor {
             npc<Talk>("How can I help?")
             choice {
                 option<Talk>("Can you teach me about the Grand Exchange again?") {
-        //            https://www.youtube.com/watch?v=g1estdWyrWU
+                    //            https://www.youtube.com/watch?v=g1estdWyrWU
                     npc<Talk>("Of course.")
                     npc<Talk>("The building you see here is the Grand Exchange. You can simply tell us what you want to buy or sell and for how much, and we'll pair you up with another player and make the trade for you!")
                     npc<Talk>("Buying and selling is done in a very similar way. Let me describe it in five steps.")
@@ -34,7 +35,5 @@ class GrandExchangeTutor {
                 }
             }
         }
-
     }
-
 }

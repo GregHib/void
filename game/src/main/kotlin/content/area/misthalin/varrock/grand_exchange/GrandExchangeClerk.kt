@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class GrandExchangeClerk {
 
@@ -60,7 +61,6 @@ class GrandExchangeClerk {
             approachRange(2)
             player.open("exchange_item_sets")
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.tradeOffers() {
@@ -68,22 +68,21 @@ class GrandExchangeClerk {
             player.open("grand_exchange")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.history() {
         option<Quiz>("Can I see a history of my offers?") {
             npc<Talk>("If that is your wish.")
             player.open("exchange_history")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.itemSets() {
         option<Quiz>("Can you help me with item sets?") {
             player.open("exchange_item_sets")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.bye() {
         option<Upset>("I'm fine, thanks.")
     }
-    
 }

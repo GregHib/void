@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Doomsayer {
 
@@ -72,7 +73,5 @@ class Doomsayer {
                 player[id] = count + 1
             }
         }
-
     }
-
 }

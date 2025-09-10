@@ -10,14 +10,15 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TICKS
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Charge {
 
     val definitions: SpellDefinitions by inject()
-    
+
     init {
         interfaceOption("Cast", "charge", "modern_spellbook") {
             if (player.hasClock("charge_delay")) {
@@ -29,7 +30,7 @@ class Charge {
             if (!player.removeSpellItems(spell)) {
                 return@interfaceOption
             }
-        
+
             val definition = definitions.get(spell)
             player.anim(spell)
             player.sound(spell)
@@ -37,7 +38,5 @@ class Charge {
             player.start("charge", definition["effect_ticks"])
             player.start("charge_delay", definition["delay_ticks"])
         }
-
     }
-
 }

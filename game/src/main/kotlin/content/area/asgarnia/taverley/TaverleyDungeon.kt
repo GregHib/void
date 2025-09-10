@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.remove
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -20,16 +21,16 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class TaverleyDungeon {
 
     val npcs: NPCs by inject()
     val objects: GameObjects by inject()
-    
+
     val leftSpawn = Tile(2887, 9832)
     val rightSpawn = Tile(2887, 9829)
-    
+
     init {
         objectOperate("Open", "door_taverley_1_closed", "door_taverley_2_closed") {
             if (player.tile.x >= 2889 || !spawn(player, leftSpawn) && !spawn(player, rightSpawn)) {
@@ -52,7 +53,6 @@ class TaverleyDungeon {
         itemOnObjectOperate("raw_chicken", "cauldron_of_thunder") {
             dip(player, item.id)
         }
-
     }
 
     fun spawn(player: Player, tile: Tile): Boolean {
@@ -60,7 +60,7 @@ class TaverleyDungeon {
         armour.remove(TimeUnit.MINUTES.toTicks(5))
         val suit = npcs.add("suit_of_armour", armour.tile)
         player.message("Suddenly the suit of armour comes to life!")
-    //    suit.setAnimation("suit_of_armour_stand") TODO find animation
+        //    suit.setAnimation("suit_of_armour_stand") TODO find animation
         suit.softQueue("despawn", TimeUnit.MINUTES.toTicks(5)) {
             World.queue("despawn_${suit.index}") {
                 npcs.remove(suit)
@@ -68,7 +68,7 @@ class TaverleyDungeon {
         }
         return true
     }
-    
+
     fun dip(player: Player, required: String) {
         if (player.quest("druidic_ritual") == "cauldron") {
             if (player.inventory.replace(required, required.replace("raw_", "enchanted_"))) {

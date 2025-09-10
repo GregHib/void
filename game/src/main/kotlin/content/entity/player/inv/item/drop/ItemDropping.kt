@@ -5,17 +5,18 @@ import content.entity.player.inv.inventoryOption
 import content.entity.player.inv.item.tradeable
 import content.entity.sound.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ItemDropping {
 
     val floorItems: FloorItems by inject()
     val logger = InlineLogger()
-    
+
     init {
         inventoryOption("Drop", "inventory") {
             player.queue.clearWeak()
@@ -36,7 +37,5 @@ class ItemDropping {
                 logger.info { "Error dropping item $item for $player" }
             }
         }
-
     }
-
 }

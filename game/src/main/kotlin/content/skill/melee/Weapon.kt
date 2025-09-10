@@ -7,9 +7,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Weapon {
 
@@ -37,7 +38,6 @@ class Weapon {
         variableSet("attack_style", from = "long_range") { player ->
             updateWeapon(player, player.weapon)
         }
-
     }
 
     fun updateWeapon(player: Player, weapon: Item, range: Int = 0) {

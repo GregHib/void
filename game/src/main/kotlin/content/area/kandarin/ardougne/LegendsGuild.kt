@@ -6,10 +6,11 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class LegendsGuild {
 
@@ -36,7 +37,6 @@ class LegendsGuild {
                 skillsNecklace(player)
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.combatBracelet(player: Player) {
@@ -44,7 +44,7 @@ class LegendsGuild {
         player.anim("bend_down")
         item("combat_bracelet", 300, "You feel a power emanating from the totem pole as it recharges your bracelet. You can now rub the bracelet to teleport and wear it to get information while on a Slayer assignment.")
     }
-    
+
     suspend fun SuspendableContext<Player>.skillsNecklace(player: Player) {
         player.message("You touch the jewellery against the totem pole...")
         player.anim("bend_down")

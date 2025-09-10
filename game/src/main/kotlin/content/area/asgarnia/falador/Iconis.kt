@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Iconis {
 
@@ -24,7 +25,6 @@ class Iconis {
                 return@npcOperate
             }
         }
-
     }
 
     suspend fun NPCOption<Player>.nonMember() {

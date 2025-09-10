@@ -13,10 +13,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Bob {
 
@@ -56,18 +57,17 @@ class Bob {
                 option("On second thoughts, no thanks.")
             }
         }
-
     }
 
     fun repairable(item: String) = item.endsWith("_100") || item.endsWith("_75") || item.endsWith("_50") || item.endsWith("_25") || item.endsWith("_broken")
-    
+
     fun repaired(item: String) = item
         .replace("_100", "_new")
         .replace("_75", "_new")
         .replace("_50", "_new")
         .replace("_25", "_new")
         .replace("_broken", "_new")
-    
+
     fun repairCost(player: Player, item: Item): Int {
         val cost = item.def.cost
         val max = (cost * 0.6).toInt()

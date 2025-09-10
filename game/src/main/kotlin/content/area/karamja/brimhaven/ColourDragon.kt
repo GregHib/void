@@ -7,8 +7,9 @@ import content.entity.sound.sound
 import kotlinx.coroutines.delay
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.type.random
+
 @Script
 class ColourDragon {
 
@@ -38,7 +39,5 @@ class ColourDragon {
         npcCombatSwing("green_dragon", handler = handler)
 
         npcCombatSwing("red_dragon", handler = handler)
-
     }
-
 }

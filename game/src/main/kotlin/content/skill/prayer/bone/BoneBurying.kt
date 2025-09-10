@@ -9,15 +9,16 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class BoneBurying {
 
     val logger = InlineLogger()
-    
+
     init {
         inventoryOption("Bury", "inventory") {
             if (!item.def.contains("prayer_xp")) {
@@ -44,7 +45,5 @@ class BoneBurying {
                 player.message("You bury the ${item.def.name.lowercase()}.", ChatType.Filter)
             }
         }
-
     }
-
 }

@@ -20,10 +20,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.timerStop
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class SmithingBot {
 
@@ -31,7 +32,7 @@ class SmithingBot {
     val itemDefinitions: ItemDefinitions by inject()
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()
-    
+
     init {
         timerStop("smithing") { player ->
             if (player.isBot) {
@@ -58,7 +59,6 @@ class SmithingBot {
                 tasks.register(task)
             }
         }
-
     }
 
     suspend fun Bot.smith(map: AreaDefinition, types: List<String>, set: GearDefinition) {
@@ -88,7 +88,7 @@ class SmithingBot {
             await("smithing")
         }
     }
-    
+
     fun isAnvil(map: AreaDefinition, obj: GameObject): Boolean {
         if (!map.area.contains(obj.tile)) {
             return false

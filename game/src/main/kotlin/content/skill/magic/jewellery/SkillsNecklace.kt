@@ -5,18 +5,19 @@ import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class SkillsNecklace {
 
     val areas: AreaDefinitions by inject()
-    
+
     val fishing = areas["fishing_guild_teleport"]
     val mining = areas["mining_guild_teleport"]
     val crafting = areas["crafting_guild_teleport"]
     val cooking = areas["cooking_guild_teleport"]
-    
+
     init {
         inventoryItem("Rub", "skills_necklace_#", "inventory") {
             if (player.contains("delay")) {
@@ -57,7 +58,5 @@ class SkillsNecklace {
             player.message("You rub the necklace...", ChatType.Filter)
             jewelleryTeleport(player, inventory, slot, area)
         }
-
     }
-
 }

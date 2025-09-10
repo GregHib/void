@@ -10,19 +10,20 @@ import world.gregs.voidps.engine.data.exchange.ExchangeOffer
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GrandExchangeConfirm {
 
     val exchange: GrandExchange by inject()
-    
+
     val logger = InlineLogger()
-    
+
     init {
         interfaceOption("Confirm Offer", "confirm", "grand_exchange") {
             if (player["grand_exchange_item_id", -1] == -1) {
@@ -71,7 +72,7 @@ class GrandExchangeConfirm {
                             val noted = Item(itemId, amount).noted?.id ?: itemId
                             removed += removeToLimit(noted, amount - removed)
                         }
-        
+
                         if (removed < amount) {
                             error = TransactionError.Deficient(amount - removed)
                         }
@@ -86,7 +87,7 @@ class GrandExchangeConfirm {
                 }
                 else -> return@interfaceOption
             }
-        
+
             player.inventories.inventory("collection_box_$slot").clear()
             exchange.refresh(player, slot)
             GrandExchange.clearSelection(player)
@@ -105,7 +106,5 @@ class GrandExchangeConfirm {
             }
             GrandExchange.clearSelection(player)
         }
-
     }
-
 }

@@ -12,19 +12,20 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class OuraniaAltar {
 
     val drops: DropTables by inject()
     val logger = InlineLogger()
-    
+
     init {
         objectOperate("Craft-rune", "ourania_altar") {
             val level = player.levels.get(Skill.Runecrafting)
@@ -72,7 +73,5 @@ class OuraniaAltar {
         itemOnObjectOperate("*_talisman", "ourania_altar") {
             player.message("Your talisman has no effect on the altar.")
         }
-
     }
-
 }

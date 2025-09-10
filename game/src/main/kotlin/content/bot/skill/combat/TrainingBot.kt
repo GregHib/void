@@ -25,18 +25,19 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class TrainingBot {
 
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()
-    
+
     init {
         worldSpawn {
             val area = areas.getOrNull("lumbridge_combat_tutors") ?: return@worldSpawn
@@ -61,7 +62,6 @@ class TrainingBot {
                 tasks.register(task)
             }
         }
-
     }
 
     suspend fun Bot.train(map: AreaDefinition, skill: Skill, range: IntRange) {
@@ -104,7 +104,7 @@ class TrainingBot {
             }
         }
     }
-    
+
     suspend fun Bot.setupGear(area: AreaDefinition, skill: Skill) {
         when (skill) {
             Skill.Magic -> {
@@ -146,7 +146,7 @@ class TrainingBot {
             }
         }
     }
-    
+
     suspend fun Bot.claim(npc: String) {
         val tutor = get<NPCs>().first { it.tile.within(player.tile, Viewport.VIEW_RADIUS) && it.id == npc }
         npcOption(tutor, "Talk-to")
@@ -157,7 +157,7 @@ class TrainingBot {
         dialogueOption("continue")
         dialogueOption("continue")
     }
-    
+
     fun Bot.isAvailableTarget(map: AreaDefinition, npc: NPC, skill: Skill): Boolean {
         if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
             return false
@@ -173,13 +173,13 @@ class TrainingBot {
         }
         return npc.id == if (skill == Skill.Magic) "magic_dummy" else "melee_dummy"
     }
-    
+
     fun Bot.canGetGearAndAmmo(skill: Skill): Boolean = when (skill) {
         Skill.Magic -> (player.ownsItem("air_rune") && player.ownsItem("mind_rune")) || player.remaining("claimed_tutor_consumables", epochSeconds()) <= 0 && player.spellBook == "modern_spellbook"
         Skill.Ranged -> (player.ownsItem("training_bow") && (player.ownsItem("training_arrows")) || player.remaining("claimed_tutor_consumables", epochSeconds()) <= 0)
         else -> true
     }
-    
+
     fun Bot.hasAmmo(skill: Skill): Boolean = when (skill) {
         Skill.Ranged -> player.has(EquipSlot.Ammo)
         Skill.Magic -> player.inventory.contains("air_rune") && player.inventory.contains("mind_rune")

@@ -7,18 +7,19 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.remove
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Picking {
 
     val GameObject.pickable: Pickable?
         get() = def.getOrNull("pickable")
-    
+
     init {
         objectOperate("Pick") {
             val pickable: Pickable = target.pickable ?: return@objectOperate
@@ -33,7 +34,5 @@ class Picking {
                 player.inventoryFull()
             }
         }
-
     }
-
 }

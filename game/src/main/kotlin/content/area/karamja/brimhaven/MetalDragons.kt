@@ -8,9 +8,10 @@ import content.entity.sound.sound
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class MetalDragons {
 
@@ -42,7 +43,6 @@ class MetalDragons {
         npcCombatSwing("iron_dragon", handler = handler)
 
         npcCombatSwing("steel_dragon", handler = handler)
-
     }
 
     /**

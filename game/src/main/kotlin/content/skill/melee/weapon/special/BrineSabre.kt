@@ -3,6 +3,7 @@ package content.skill.melee.weapon.special
 import content.entity.player.combat.special.specialAttackPrepare
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class BrineSabre {
 
@@ -13,7 +14,5 @@ class BrineSabre {
                 cancel()
             }
         }
-
     }
-
 }

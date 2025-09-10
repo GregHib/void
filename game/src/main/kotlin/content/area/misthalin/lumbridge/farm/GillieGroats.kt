@@ -9,9 +9,10 @@ import content.entity.player.dialogue.type.player
 import content.quest.quest
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GillieGroats {
 
@@ -31,7 +32,6 @@ class GillieGroats {
                 option<Happy>("I'm fine, thanks.")
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.whoAreYou() {
@@ -40,7 +40,7 @@ class GillieGroats {
         npc<Happy>("I'm afraid not. We need all of our milk to sell to market, but you can milk the cow yourself if you need milk.")
         player<Quiz>("Thanks.")
     }
-    
+
     suspend fun SuspendableContext<Player>.howToMilkCow() {
         player<Quiz>("So how do you get milk from a cow then?")
         npc<Happy>("It's very easy. First you need an empty bucket to hold the milk.")
@@ -50,7 +50,7 @@ class GillieGroats {
         npc<Happy>("There are a couple very near, in this field.")
         npc<Happy>("Then just milk the cow and your bucket will fill with tasty, nutritious milk.")
     }
-    
+
     suspend fun SuspendableContext<Player>.topQualityMilk() {
         npc<Talk>("Really? Is it for something special?")
         player<Happy>("Most certainly! It's for the cook to make a cake foe Duke Horacio!")

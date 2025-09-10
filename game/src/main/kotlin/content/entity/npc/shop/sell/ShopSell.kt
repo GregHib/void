@@ -10,16 +10,17 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ShopSell {
 
     val logger = InlineLogger()
-    
+
     init {
         interfaceOption("Value", "inventory", "shop_side") {
             val inventory = player.shopInventory(false)
@@ -42,13 +43,12 @@ class ShopSell {
             }
             sell(player, item, amount)
         }
-
     }
 
     fun Item.sellPrice() = (def.cost * 0.4).toInt()
-    
+
     fun Player.shopCurrency(): String = this["shop_currency", "coins"]
-    
+
     fun sell(player: Player, item: Item, amount: Int) {
         val notNoted = if (item.isNote) item.noted else item
         if (notNoted == null) {

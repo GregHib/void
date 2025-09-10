@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -15,12 +16,12 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Ned {
 
     val floorItems: FloorItems by inject()
-    
+
     init {
         npcOperate("Talk-to", "ned") {
             npc<Happy>("Why, hello there, ${if (player.male) "lad" else "lass"}. Me friends call me Ned. I was a man of the sea, but it's past me now. Could I be making or selling you some rope?")
@@ -32,11 +33,10 @@ class Ned {
                 }
             }
         }
-
     }
 
     // TODO add achievement dialogue
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.wig() {
         option<Quiz>("How about some sort of wig?") {
             npc<Talk>("Well... that's an interesting thought. Yes, I think I could do something. Give me three balls of wool and I might be able to do it.")
@@ -61,7 +61,7 @@ class Ned {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.otherThings(player: Player) {
         when (player.quest("prince_ali_rescue")) {
             "leela", "equipment", "joe_one_beer", "joe_two_beers", "joe_three_beers", "tie_up_lady_keli" -> {
@@ -85,7 +85,7 @@ class Ned {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.rope() {
         option<Talk>("Yes, I would like some rope.") {
             npc<Happy>("Well, I can sell you some rope for 15 coins. Or I can be making you some if you gets me four balls of wool. I strands them together I does, makes em strong.")
@@ -117,7 +117,7 @@ class Ned {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.buyRope() {
         if (player.inventory.contains("coins", 15)) {
             npc<Happy>("There you go, finest rope in Gielinor.")

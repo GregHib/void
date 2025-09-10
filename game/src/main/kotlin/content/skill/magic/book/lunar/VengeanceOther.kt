@@ -8,14 +8,15 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class VengeanceOther {
 
     val definitions: SpellDefinitions by inject()
-    
+
     init {
         interfaceOnPlayerApproach(id = "lunar_spellbook", component = "vengeance_other") {
             approachRange(2)
@@ -44,7 +45,5 @@ class VengeanceOther {
             target["vengeance"] = true
             player.start("vengeance_delay", definition["delay_seconds"], epochSeconds())
         }
-
     }
-
 }

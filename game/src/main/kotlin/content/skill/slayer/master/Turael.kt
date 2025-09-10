@@ -15,15 +15,16 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Turael {
 
     val slayerDefinitions: SlayerTaskDefinitions by inject()
-    
+
     init {
         npcOperate("Talk-to", "turael") {
             if (player.slayerTasks == 0) {
@@ -80,7 +81,6 @@ class Turael {
         npcOperate("Rewards", "turael") {
             player.open("slayer_rewards_learn")
         }
-
     }
 
     suspend fun NPCOption<Player>.assignTask() {
@@ -102,7 +102,7 @@ class Turael {
             option<Talk>("No, thanks.")
         }
     }
-    
+
     suspend fun NPCOption<Player>.roll() {
         val (definition, amount) = assign(player)
         npc<Happy>("Excellent, you're doing great. Your new task is to kill $amount ${definition.type.toSentenceCase()}.")
@@ -113,7 +113,7 @@ class Turael {
             option<Happy>("Okay, great!")
         }
     }
-    
+
     suspend fun NPCOption<Player>.teachMe() {
         choice {
             option<Talk>("Wow, can you teach me?") {
@@ -139,7 +139,7 @@ class Turael {
             }
         }
     }
-    
+
     fun assign(player: Player): Pair<SlayerTaskDefinition, Int> {
         val definitions = slayerDefinitions.get("turael")
         val definition = rollTask(player, definitions)

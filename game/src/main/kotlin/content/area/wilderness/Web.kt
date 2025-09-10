@@ -7,9 +7,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Web {
 
@@ -31,7 +32,6 @@ class Web {
             }
             slash(player, target)
         }
-
     }
 
     fun slash(player: Player, target: GameObject) {

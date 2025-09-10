@@ -22,16 +22,17 @@ import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.player.sex
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Thessalia {
 
     val enums: EnumDefinitions by inject()
-    
+
     init {
         npcOperate("Talk-to", "thessalia") {
             npc<Happy>("Would you like to buy any fine clothes?")
@@ -122,13 +123,12 @@ class Thessalia {
             player.closeMenu()
             npc<Happy>("thessalia", "A marvellous choice. You look splendid!")
         }
-
     }
 
     fun PlayerChoice.openShop(): Unit = option("I'd just like to buy some clothes.") {
         player.openShop("thessalias_fine_clothes")
     }
-    
+
     suspend fun Interaction<Player>.startMakeover() {
         player.closeDialogue()
         if (!player.equipment.isEmpty()) {
@@ -137,9 +137,9 @@ class Thessalia {
         }
         openDressingRoom("thessalias_makeovers")
     }
-    
+
     fun fullBodyChest(look: Int, male: Boolean) = look in if (male) 443..474 else 556..587
-    
+
     fun setDefaultArms(player: Player) {
         val default = if (player.male) BodyParts.DEFAULT_LOOK_MALE else BodyParts.DEFAULT_LOOK_FEMALE
         player["makeover_arms"] = default[BodyPart.Arms.index]

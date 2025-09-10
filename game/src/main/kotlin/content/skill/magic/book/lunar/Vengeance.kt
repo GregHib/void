@@ -11,14 +11,15 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Vengeance {
 
     val definitions: SpellDefinitions by inject()
-    
+
     init {
         interfaceOption("Cast", "vengeance", "lunar_spellbook") {
             val spell = component
@@ -50,7 +51,5 @@ class Vengeance {
             player.hit(target = source, offensiveType = "damage", delay = 0, damage = (damage * 0.75).toInt())
             player.stop("vengeance")
         }
-
     }
-
 }

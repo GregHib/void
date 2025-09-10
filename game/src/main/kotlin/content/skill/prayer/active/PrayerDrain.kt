@@ -9,17 +9,18 @@ import world.gregs.voidps.engine.data.definition.PrayerDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class PrayerDrain {
 
     val definitions: PrayerDefinitions by inject()
     val variableDefinitions: VariableDefinitions by inject()
-    
+
     init {
         timerStart("prayer_drain") {
             interval = 1
@@ -28,7 +29,7 @@ class PrayerDrain {
         timerTick("prayer_drain") { player ->
             val equipmentBonus = player["prayer", 0]
             var prayerDrainCounter = player["prayer_drain_counter", 0]
-        
+
             prayerDrainCounter += getTotalDrainEffect(player)
             val prayerDrainResistance = 60 + (equipmentBonus * 2)
             while (prayerDrainCounter > prayerDrainResistance) {
@@ -48,7 +49,6 @@ class PrayerDrain {
             player.clear(player.getActivePrayerVarKey())
             player[PrayerConfigs.USING_QUICK_PRAYERS] = false
         }
-
     }
 
     fun getTotalDrainEffect(player: Player): Int {

@@ -11,18 +11,19 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.engine.inv.sendInventory
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ShopOpen {
 
     val itemDefinitions: ItemDefinitions by inject()
     val inventoryDefinitions: InventoryDefinitions by inject()
     val logger = InlineLogger()
-    
+
     init {
         npcOperate("Trade") {
             if (def.contains("shop")) {
@@ -49,16 +50,16 @@ class ShopOpen {
             player.interfaces.open("shop")
             player.open("shop_side")
             val inventorySample = "${id}_sample"
-        
+
             player["free_inventory"] = inventoryDefinitions.get(inventorySample).id
             val sample = openShopInventory(player, inventorySample)
             player.interfaceOptions.unlockAll("shop", "sample", 0 until sample.size * 5)
-        
+
             player["main_inventory"] = definition.id
             val main = openShopInventory(player, id)
             sendAmounts(player, main)
             player.interfaceOptions.unlockAll("shop", "stock", 0 until main.size * 6)
-        
+
             player.interfaces.sendVisibility("shop", "store", id.endsWith("general_store"))
             player.interfaces.sendText("shop", "title", definition["title", "Shop"])
         }
@@ -73,7 +74,6 @@ class ShopOpen {
                 player["amount_$index"] = item.amount
             }
         }
-
     }
 
     fun openShopInventory(player: Player, id: String): Inventory = if (id.endsWith("general_store")) {
@@ -87,7 +87,7 @@ class ShopOpen {
         player.sendInventory(id)
         inventory
     }
-    
+
     fun fillShop(inventory: Inventory, shopId: String) {
         val definition = inventoryDefinitions.get(shopId)
         if (!definition.contains("shop")) {
@@ -100,7 +100,7 @@ class ShopOpen {
             inventory.transaction { set(index, Item(itemDefinition.stringId, amount)) }
         }
     }
-    
+
     fun sendAmounts(player: Player, inventory: Inventory) {
         for ((index, item) in inventory.items.withIndex()) {
             player["amount_$index"] = item.amount

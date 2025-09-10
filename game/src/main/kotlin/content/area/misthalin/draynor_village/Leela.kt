@@ -8,13 +8,14 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Leela {
 
@@ -24,7 +25,7 @@ class Leela {
         Item("wig_blonde"),
         Item("paste"),
     )
-    
+
     init {
         npcOperate("Talk-to", "leela") {
             when (player.quest("prince_ali_rescue")) {
@@ -74,7 +75,6 @@ class Leela {
                 }
             }
         }
-
     }
 
     suspend fun NPCOption<Player>.intro() {
@@ -88,7 +88,7 @@ class Leela {
             equipment()
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.key() {
         option<Talk>("I need to get the key made.") {
             npc<Talk>("Yes, that is most important. There is no way you can get the real key. It is on a chain around Keli's neck. Almost impossible to steal.")
@@ -100,7 +100,7 @@ class Leela {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.guards() {
         option<Talk>("What can I do with the guards?") {
             npc<Talk>("Most of the guards will be easy. The disguise will get past them. The only guard who will be a problem will be the one at the door.")
@@ -112,13 +112,13 @@ class Leela {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.equipment() {
         option<Talk>("I will go and get the rest of the escape equipment.") {
             npc<Shifty>("Good, I shall await your return with everything.")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.disguise() {
         option<Quiz>("I must make a disguise. What do you suggest?") {
             npc<Talk>("Only the lady Keli can wander about outside the jail. The guards will shoot to kill if they see the prince out, so we need a disguise good enough to fool them at a distance.")
@@ -149,7 +149,7 @@ class Leela {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.guard(unsure: Boolean) {
         choice {
             option<Talk>("I haven't spoken to him yet.") {
@@ -176,7 +176,7 @@ class Leela {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.lostKey(): Boolean {
         if (player.ownsItem("bronze_key_prince_ali_rescue")) {
             return false

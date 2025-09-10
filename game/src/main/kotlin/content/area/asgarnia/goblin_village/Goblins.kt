@@ -5,8 +5,9 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.type.random
+
 @Script
 class Goblins {
 
@@ -41,7 +42,7 @@ class Goblins {
                         option<Uncertain>("Err, okay.")
                     }
                 }
-        
+
                 1 -> {
                     player<Quiz>("Why are you fighting?")
                     npc<Frustrated>("He wearing red armour! General Wartface tell us wear green!")
@@ -55,7 +56,5 @@ class Goblins {
             npc<Quiz>("Why they not make up their minds?")
             npc<Frustrated>(npcId = "general_bentnoze_rfd", "Shut up Grubfoot!")
         }
-
     }
-
 }

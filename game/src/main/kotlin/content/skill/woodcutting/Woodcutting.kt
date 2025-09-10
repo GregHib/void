@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -29,7 +30,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Woodcutting {
 
@@ -38,10 +39,10 @@ class Woodcutting {
     val objects: GameObjects by inject()
     val floorItems: FloorItems by inject()
     val drops: DropTables by inject()
-    
+
     val minPlayers = 0
     val maxPlayers = 2000
-    
+
     init {
         objectOperate("Chop*") {
             val tree: Tree = def.getOrNull("woodcutting") ?: return@objectOperate
@@ -59,12 +60,12 @@ class Woodcutting {
                 if (!objects.contains(target) || !player.has(Skill.Woodcutting, tree.level, true)) {
                     break
                 }
-        
+
                 if (!ivy && player.inventory.isFull()) {
                     player.message("Your inventory is too full to hold any more logs.")
                     break
                 }
-        
+
                 if (!Hatchet.hasRequirements(player, hatchet, true)) {
                     break
                 }
@@ -97,36 +98,35 @@ class Woodcutting {
             }
             player.softTimers.stop("woodcutting")
         }
-
     }
 
     fun tryDropNest(player: Player, ivy: Boolean) {
         val dropChance = 254
         if (random.nextInt(dropChance) != 0) return
         val table = drops.get("birds_nest_table") ?: return
-    
+
         val hasRabbitFoot = player.equipment.contains("strung_rabbit_foot")
         val totalWeight = if (hasRabbitFoot) 95 else 100
-    
+
         val drop = table.role(totalWeight).firstOrNull() ?: return
-    
+
         val source = if (ivy) "ivy" else "tree"
         player.message("<red>A bird's nest falls out of the $source!")
         areaSound("bird_chirp", player.tile)
-    
+
         val dropTile = player.tile.toCuboid(1).random(player) ?: player.tile
         floorItems.add(tile = dropTile, id = drop.id, amount = drop.amount?.start ?: 1, disappearTicks = 50)
     }
-    
+
     fun success(level: Int, hatchet: Item, tree: Tree): Boolean {
         val lowHatchetChance = calculateChance(hatchet, tree.hatchetLowDifference)
         val highHatchetChance = calculateChance(hatchet, tree.hatchetHighDifference)
         val chance = tree.chance.first + lowHatchetChance..tree.chance.last + highHatchetChance
         return Level.success(level, chance)
     }
-    
+
     fun calculateChance(hatchet: Item, treeHatchetDifferences: IntRange): Int = (0 until hatchet.def["rank", 0]).sumOf { calculateHatchetChance(it, treeHatchetDifferences) }
-    
+
     /**
      * Calculates the chance of success out of 256 given a [hatchet] and the hatchet chances for that tree [treeHatchetDifferences]
      * @param hatchet The index of the hatchet (0..7)
@@ -134,7 +134,7 @@ class Woodcutting {
      * @return chance of success
      */
     fun calculateHatchetChance(hatchet: Int, treeHatchetDifferences: IntRange): Int = if (hatchet % 4 < 2) treeHatchetDifferences.last else treeHatchetDifferences.first
-    
+
     fun addLog(player: Player, tree: Tree): Boolean {
         val log = tree.log
         if (log.isEmpty()) {
@@ -148,7 +148,7 @@ class Woodcutting {
         }
         return added
     }
-    
+
     fun deplete(tree: Tree, obj: GameObject): Boolean {
         val depleted = random.nextDouble() <= tree.depleteRate
         if (!depleted) {
@@ -162,7 +162,7 @@ class Woodcutting {
         }
         return true
     }
-    
+
     /**
      * Returns regrow delay based on the type of tree and number of players online
      */

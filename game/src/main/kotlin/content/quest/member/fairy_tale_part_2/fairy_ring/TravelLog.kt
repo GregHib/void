@@ -3,13 +3,14 @@ package content.quest.member.fairy_tale_part_2.fairy_ring
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class TravelLog {
 
     val fairyRing: FairyRingCodes by inject()
-    
+
     init {
         interfaceOption("Re-sort list", "re_sort_list", "travel_log") {
             player.toggle("travel_log_re_sort")
@@ -28,7 +29,6 @@ class TravelLog {
                 }
             }
         }
-
     }
 
     fun Player.setCode(one: String, two: String, three: String) {

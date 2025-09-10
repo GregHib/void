@@ -13,11 +13,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class BasaltRock {
 
@@ -41,7 +42,6 @@ class BasaltRock {
         obstacle("Jump-across", "basalt_rock_end", Tile(2514, 3617), Direction.NORTH, exp = false)
 
         obstacle("Jump-to", "rocky_shore", Tile(2514, 3619), Direction.SOUTH, exp = false)
-
     }
 
     suspend fun ObjectOption<Player>.jump(opposite: Tile, direction: Direction, exp: Boolean) {
@@ -78,12 +78,12 @@ class BasaltRock {
             }
         }
     }
-    
+
     fun obstacle(option: String, rock: String, tile: Tile, direction: Direction, exp: Boolean) {
         objectOperate(option, rock) {
             jump(tile.add(direction).add(direction), direction, exp)
         }
-    
+
         objectApproach(option, rock) {
             val sameSide = when (direction) {
                 Direction.NORTH -> player.tile.y <= target.tile.y

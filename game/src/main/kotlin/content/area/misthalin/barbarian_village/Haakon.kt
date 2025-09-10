@@ -10,16 +10,16 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Haakon {
 
     val validStages = setOf("tell_gudrun", "write_poem", "more_poem", "one_more_poem", "poem_done", "poem", "recital", "gunnars_ground")
-    
+
     init {
         npcOperate("Talk-to", "haakon_the_champion") {
             menu()
         }
-
     }
 
     suspend fun NPCOption<Player>.menu() {
@@ -51,7 +51,7 @@ class Haakon {
             option<Amazed>("Er, no.")
         }
     }
-    
+
     suspend fun NPCOption<Player>.attack() {
         npc<Mad>("Make peace with your god, outerlander!")
         target.mode = Interact(target, player, PlayerOption(target, player, "Attack"))

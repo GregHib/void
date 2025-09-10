@@ -29,6 +29,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.CollisionFlags
@@ -40,18 +41,18 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class DebugCommands {
 
     val collisions: Collisions by inject()
     val objects: GameObjects by inject()
     val npcs: NPCs by inject()
-    
+
     init {
         modCommand("test") {
             player.sendInterfaceItemUpdate(645, listOf(Triple(0, 995, 100)), false)
-        //    player.interfaces.sendItem("exchange_item_sets")
+            //    player.interfaces.sendItem("exchange_item_sets")
         }
 
         modCommand("commands [list]") {
@@ -165,25 +166,25 @@ class DebugCommands {
                     pf.findPath(0, start.x, start.y, 3280, 3321)
                 }
             }
-        
+
             val timeMedium = measureTimeMillis {
                 repeat(10_000) {
                     pf.findPath(0, start.x, start.y, 3287, 3306)
                 }
             }
-        
+
             val timeLong = measureTimeMillis {
                 repeat(1_000) {
                     pf.findPath(0, start.x, start.y, 3270, 3268)
                 }
             }
-        
+
             val timeInvalid = measureTimeMillis {
                 repeat(1_000) {
                     pf.findPath(0, start.x, start.y, 3271, 3235)
                 }
             }
-        
+
             println("Durations: ")
             println("Short path: ${timeShort / 1000.0}s")
             println("Medium path: ${timeMedium}ms")
@@ -255,14 +256,14 @@ class DebugCommands {
             println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.level] and CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER == 0}")
             println(collisions[player.tile.x, player.tile.y, player.tile.level])
             println(player.tile.minus(y = 1))
-        
+
             println(CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER)
             println(CollisionFlag.BLOCK_NORTH)
             println(CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER)
             println(CollisionFlags.ROUTE_NORTH.bit)
-        //
-        //    val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = false)
-        //    println(pf.findPath(3205, 3220, 3205, 3223, 2))
+            //
+            //    val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = false)
+            //    println(pf.findPath(3205, 3220, 3205, 3223, 2))
         }
 
         adminCommand("walkToBank") {
@@ -367,7 +368,6 @@ class DebugCommands {
             pause(5)
             objects.add(stump, player.tile, type, 0, 5)
         }
-
     }
 
     operator fun Array<IntArray?>.get(baseX: Int, baseY: Int, localX: Int, localY: Int, z: Int): Int {
@@ -376,5 +376,4 @@ class DebugCommands {
         val zone = this[Zone.tileIndex(x, y, z)] ?: return 0
         return zone[Tile.index(x, y)]
     }
-    
 }

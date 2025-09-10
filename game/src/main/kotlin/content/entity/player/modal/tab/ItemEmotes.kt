@@ -16,11 +16,12 @@ import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.playerOperate
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ItemEmotes {
 
@@ -224,7 +225,7 @@ class ItemEmotes {
                     else -> "Neaahhhyyy! Giddy-up horsey!"
                 },
             )
-        //    player.say("Just say neigh to gambling!")
+            //    player.say("Just say neigh to gambling!")
             player.animDelay("emote_${item.id}")
         }
 
@@ -240,7 +241,5 @@ class ItemEmotes {
         inventoryItem("Summon Minion", "squirrel_ears", "worn_equipment") {
             // todo summon npc 9682 and 9681 if dismiss have to wait 30mins before able to summon again
         }
-
     }
-
 }

@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Fadli {
 
@@ -67,7 +68,5 @@ class Fadli {
             npc<RollEyes>("Sorry, I'm not interested.")
             player.message("You need to be on a members world to use this feature.")
         }
-
     }
-
 }

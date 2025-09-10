@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -15,7 +16,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Thurgo {
 
@@ -23,7 +24,7 @@ class Thurgo {
         Item("blurite_ore"),
         Item("iron_bar", 2),
     )
-    
+
     init {
         npcOperate("Talk-to", "thurgo") {
             when (player.quest("the_knights_sword")) {
@@ -42,7 +43,6 @@ class Thurgo {
                 else -> player<Uncertain>("Why would I give him my pie?")
             }
         }
-
     }
 
     suspend fun Interaction<Player>.menuReplacementSword() {
@@ -53,14 +53,14 @@ class Thurgo {
             whatCape()
         }
     }
-    
+
     suspend fun PlayerChoice.madeSword() = option<Happy>(
         "Thanks for making that sword for me!",
         { player.holdsItem("blurite_sword") },
     ) {
         npc<Happy>("You're welcome - thanks for the pie!")
     }
-    
+
     suspend fun PlayerChoice.replacementSword() = option<Happy>(
         "Can you make that replacement sword now?",
         { !player.holdsItem("blurite_sword") },
@@ -90,7 +90,7 @@ class Thurgo {
         player<Sad>("I don't have any of them yet.")
         npc<Happy>("Well, I need a blurite ore and two iron bars. The only place I know to get blurite is under this cliff here, but it is guarded by a very powerful ice giant.")
     }
-    
+
     suspend fun Interaction<Player>.menuAboutSword() {
         choice {
             aboutSword()
@@ -98,7 +98,7 @@ class Thurgo {
             whatCape()
         }
     }
-    
+
     suspend fun Interaction<Player>.menuSword() {
         choice {
             specialSword()
@@ -106,7 +106,7 @@ class Thurgo {
             whatCape()
         }
     }
-    
+
     suspend fun Interaction<Player>.menu() {
         choice {
             imcandoDwarf()
@@ -114,7 +114,7 @@ class Thurgo {
             whatCape()
         }
     }
-    
+
     suspend fun PlayerChoice.specialSword() = option<Happy>("Can you make a special sword for me?") {
         npc<Neutral>("Well, after bringing me my favorite food I guess I should give it a go. What sort of sword is it?")
         player<Neutral>("I need you to make a sword for one of Falador's knights. He had one which was passed down through five generations, but his squire has lost it.")
@@ -124,7 +124,7 @@ class Thurgo {
         npc<Neutral>("All the Faladian knights used to have swords with unique designs according to their position. Could you bring me a picture or something?")
         player<Neutral>("I'll go and ask his squire and see if I can find one.")
     }
-    
+
     suspend fun PlayerChoice.aboutSword() = option<Happy>("About that sword...") {
         npc<Quiz>("Have you got a picture of the sword for me yet?")
         if (!player.holdsItem("portrait")) {
@@ -143,7 +143,7 @@ class Thurgo {
         npc<Neutral>("You'll need a little bit of mining experience to be able to find it.")
         player<Neutral>("Okay. I'll go and find them then.")
     }
-    
+
     suspend fun PlayerChoice.imcandoDwarf() = option<Happy>("Are you an Imcando dwarf? I need a special sword.") {
         npc<Angry>("I don't talk about that sort of thing anymore. I'm getting old.")
         choice {
@@ -151,7 +151,7 @@ class Thurgo {
             option<Sad>("I'll come back another time.")
         }
     }
-    
+
     suspend fun PlayerChoice.redberryPie(): Unit = option<Quiz>(
         "Would you like a redberry pie?",
         { player.holdsItem("redberry_pie") },
@@ -165,15 +165,14 @@ class Thurgo {
         statement("You hand over the pie Thurgo eats the pie. Thurgo pats his stomach.")
         npc<Happy>("By Guthix! THAT was good pie! Anyone who makes pie like THAT has got to be alright!")
     }
-    
+
     suspend fun PlayerChoice.whatCape() = option("What is that cape you're wearing?") {
         thatCape()
     }
-    
+
     suspend fun SuspendableContext<Player>.thatCape() {
         player<Quiz>("What is that cape you're wearing?")
         npc<Happy>("It's a Skillcape of Smithing. It shows that I'm a master blacksmith, but that's only to be expected - after all, my ancestors were the greatest blacksmiths in dwarven history.")
         npc<Happy>("If you ever achieve level 99 Smithing you'll be able to wear a cape like this, and receive more experience when smelting gold ore.")
     }
-    
 }

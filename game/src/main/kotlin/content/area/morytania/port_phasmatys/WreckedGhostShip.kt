@@ -15,9 +15,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class WreckedGhostShip {
 
@@ -33,7 +34,7 @@ class WreckedGhostShip {
         Tile(3599, 3564) to Direction.EAST,
         Tile(3601, 3564) to Direction.WEST,
     )
-    
+
     init {
         objectOperate("Cross", "wrecked_ghost_ship_gangplank") {
             player.walkOverDelay(Tile(3605, 3546, 1))
@@ -67,7 +68,6 @@ class WreckedGhostShip {
                 jump(target.tile, direction.inverse())
             }
         }
-
     }
 
     suspend fun ObjectOption<Player>.jump(opposite: Tile, direction: Direction) {

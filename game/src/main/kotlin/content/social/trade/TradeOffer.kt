@@ -8,24 +8,25 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class TradeOffer {
 
     val definitions: ItemDefinitions by inject()
-    
+
     val tradeRestriction = object : ItemRestrictionRule {
         override fun restricted(id: String): Boolean {
             val def = definitions.get(id)
             return def.lendTemplateId != -1 || def.dummyItem != 0 || !def["tradeable", true]
         }
     }
-    
+
     init {
         playerSpawn { player ->
             player.offer.itemRule = tradeRestriction
@@ -46,15 +47,14 @@ class TradeOffer {
         interfaceOption("Value", "offer", "trade_side") {
             player.message("${item.def.name} is priceless!", ChatType.Trade)
         }
-
     }
 
     /**
      * Offering an item to trade or loan
      */
-    
+
     // Item must be tradeable and not lent or a dummy item
-    
+
     fun offer(player: Player, id: String, amount: Int) {
         if (!isTrading(player, amount)) {
             return

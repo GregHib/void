@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -23,12 +24,12 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class AlTheCamel {
 
     val objects: GameObjects by inject()
-    
+
     init {
         npcOperate("Talk-to", "*camel") {
             if (player.equipped(EquipSlot.Amulet).id == "camulet") {
@@ -73,25 +74,24 @@ class AlTheCamel {
             }
             scoopPoop()
         }
-
     }
 
     suspend fun SuspendableContext<Player>.bestOfLuck() {
         player<Talk>("Well, best of luck with that.")
         npc<Talk>("If you want to hear my poems once more, please come back again.")
     }
-    
+
     suspend fun SuspendableContext<Player>.noThankYou() {
         npc<Talk>("Ah, well. I shall return to writing poems to Elly's beauty.")
         whatDoesSheThink()
     }
-    
+
     suspend fun SuspendableContext<Player>.idLoveTo() {
         npc<Talk>("That's so kind of you. Which one would you like to hear?")
         npc<Talk>("'Shall I compare thee to a desert's day' is my finest yet, but I've also composed others.")
         poems()
     }
-    
+
     suspend fun SuspendableContext<Player>.poems() {
         choice("Select an Option") {
             option("Listen to 'Shall I compare thee to a desert's day'.") {
@@ -102,7 +102,7 @@ class AlTheCamel {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.justToSay() {
         npc<Upset>("I wrote this poem when I went to the oasis to nibble at a tree, then discovered I'd left nothing for Elly to nibble. I was distraught.")
         npc<Neutral>("This Is Just To Say")
@@ -112,7 +112,7 @@ class AlTheCamel {
         npc<Neutral>("I wonder if she's forgiven me for eating her snack.")
         whatDoesSheThink()
     }
-    
+
     suspend fun SuspendableContext<Player>.desertsDay(interrupt: Boolean) {
         if (!interrupt) {
             npc<Talk>("That's my favourite poem. Ahem...")
@@ -138,7 +138,7 @@ class AlTheCamel {
             whatDoesSheThink()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.whatDoesSheThink() {
         player<Quiz>("What does she think of your poems?")
         npc<Talk>("She's never heard them.")
@@ -155,7 +155,7 @@ class AlTheCamel {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.dung() {
         player<Pleased>("I'm sorry to bother you, but could you spare me a little dung?")
         npc<Talk>("Are you serious?")
@@ -171,7 +171,7 @@ class AlTheCamel {
         npc<Talk>("I hope that's what you wanted!")
         player<Talk>("Ohhh yes. Lovely.")
     }
-    
+
     suspend fun NPCOption<Player>.listenTo() {
         npc<Neutral>("Oh, it's you again. Have you come back to listen to my poems?")
         choice {
@@ -183,7 +183,7 @@ class AlTheCamel {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.talkingToMe() {
         npc<Talk>("Sorry, were you saying something to me?")
         player<Talk>("No, er, nothing important.")
@@ -195,7 +195,7 @@ class AlTheCamel {
         player<Neutral>("It's all right, I'm...")
         desertsDay(interrupt = true)
     }
-    
+
     suspend fun NPCOption<Player>.insult() {
         player<Talk>(
             when (random.nextInt(3)) {
@@ -205,7 +205,7 @@ class AlTheCamel {
             },
         )
     }
-    
+
     suspend fun SuspendableContext<Player>.scoopPoop() {
         if (!player.inventory.replace("bucket", "ugthanki_dung")) {
             return

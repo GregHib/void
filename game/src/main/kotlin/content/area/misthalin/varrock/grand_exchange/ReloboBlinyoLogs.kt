@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class ReloboBlinyoLogs {
 
@@ -37,7 +38,6 @@ class ReloboBlinyoLogs {
             player["common_item_costs"] = "logs"
             player.open("common_item_costs")
         }
-
     }
 
     suspend fun NPCOption<Player>.menu() {

@@ -15,17 +15,18 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Cannonballs {
 
     val logger = InlineLogger()
-    
+
     init {
         itemOnObjectOperate("steel_bar", "furnace*") {
             if (player.quest("dwarf_cannon") != "completed") {
@@ -40,7 +41,6 @@ class Cannonballs {
             val (item, amount) = makeAmount(listOf("cannonball"), "Make", max, names = listOf("Cannonball<br>(set of 4)"))
             smelt(player, target, item, amount)
         }
-
     }
 
     suspend fun Interaction<Player>.smelt(player: Player, target: GameObject, id: String, amount: Int) {

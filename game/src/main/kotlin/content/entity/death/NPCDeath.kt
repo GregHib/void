@@ -31,12 +31,13 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class NPCDeath {
 
@@ -45,13 +46,13 @@ class NPCDeath {
     val tables: DropTables by inject()
     val animationDefinitions: AnimationDefinitions by inject()
     val soundDefinitions: SoundDefinitions by inject()
-    
+
     var Player.lootSharePotential: Int
         get() = get("loot_share_potential", 0)
         set(value) = set("loot_share_potential", value)
-    
+
     val logger = InlineLogger()
-    
+
     init {
         npcDeath { npc ->
             npc.mode = PauseMode
@@ -92,7 +93,6 @@ class NPCDeath {
                 }
             }
         }
-
     }
 
     fun dropLoot(npc: NPC, killer: Character?, tile: Tile) {
@@ -119,7 +119,7 @@ class NPCDeath {
             }
         }
     }
-    
+
     fun shareLoot(killer: Player, npc: NPC, tile: Tile, drops: List<Item>) {
         val clan = killer.clan ?: return
         val members = npc.damageDealers.keys
@@ -147,7 +147,7 @@ class NPCDeath {
             }
         }
     }
-    
+
     fun shareCoin(item: Item, members: List<Player>, tile: Tile) {
         val total = item.def.cost * item.amount
         val split = total / members.size
@@ -156,9 +156,9 @@ class NPCDeath {
             member.message("<dark_green>You received $split gold as your split of this drop: ${item.amount} x ${item.def.name}.", ChatType.ClanChat)
         }
     }
-    
+
     fun getAwardee(item: Item, killer: Player, members: List<Player>) = if (item.tradeable) weightedSample(members.map { member -> member to member.lootSharePotential }) ?: killer else killer
-    
+
     fun notify(members: List<Player>, awardee: Player, item: Item) {
         for (member in members) {
             if (member == awardee) {
@@ -169,7 +169,7 @@ class NPCDeath {
             member.message("Your chance of receiving loot has improved.", ChatType.Filter)
         }
     }
-    
+
     fun slay(player: Player, npc: NPC) {
         if (player.slayerTask == "nothing" || !npc.categories.contains(player.slayerTask)) {
             return

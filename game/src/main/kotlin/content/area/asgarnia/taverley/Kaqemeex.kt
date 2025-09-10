@@ -14,13 +14,14 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Kaqemeex {
 
@@ -75,7 +76,6 @@ class Kaqemeex {
                 else -> completed()
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.startedQuest() {
@@ -96,19 +96,19 @@ class Kaqemeex {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.started() {
         player<Neutral>("Hello there.")
         npc<Neutral>("Hello again, adventurer. You will need to speak to my fellow druid Sanfew in the village south of here to continue in your quest.")
         player<Happy>("Okay, thanks.")
     }
-    
+
     suspend fun SuspendableContext<Player>.kaqemeex() {
         player<Neutral>("Hello there.")
         npc<Neutral>("I have word from Sanfew that you have been very helpful in assisting him with his preparations for the purification ritual. As promised I will now teach you the ancient arts of Herblore.")
         questComplete()
     }
-    
+
     suspend fun SuspendableContext<Player>.completed() {
         player<Neutral>("Hello there.")
         npc<Neutral>("Hello again. How is the Herblore going?")
@@ -174,7 +174,7 @@ class Kaqemeex {
             }
         }
     }
-    
+
     fun Context<Player>.questComplete() {
         player["druidic_ritual"] = "completed"
         player.jingle("quest_complete_1")

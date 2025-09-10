@@ -5,6 +5,7 @@ import content.entity.sound.sound
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class SpecialAttacks {
 
@@ -37,7 +38,5 @@ class SpecialAttacks {
             }
             player.emit(SpecialAttackDamage(id, target, damage))
         }
-
     }
-
 }

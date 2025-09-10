@@ -3,8 +3,9 @@ package content.quest.free.rune_mysteries
 import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
-import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inv.holdsItem
+
 @Script
 class RuneMysteries {
 
@@ -41,7 +42,7 @@ class RuneMysteries {
                         "<navy>called <maroon>Sedridor.<navy> I can find the <maroon>Wizards' Tower<navy> south west of",
                         "<maroon>Lumbridge, across the bridge from <maroon>Draynor Village.",
                     )
-        
+
                     if (!player.holdsItem("air_talisman")) {
                         list.add("<navy>If I lose the <maroon>Strange Talisman<navy> , I'll need to ask <maroon>Duke Horacio<navy> for")
                         list.add("<navy>another.")
@@ -124,7 +125,5 @@ class RuneMysteries {
             }
             player.questJournal("Rune Mysteries", lines)
         }
-
     }
-
 }

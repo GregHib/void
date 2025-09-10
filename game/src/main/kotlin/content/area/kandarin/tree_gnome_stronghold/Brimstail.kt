@@ -12,6 +12,7 @@ import content.skill.runecrafting.EssenceMine
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Brimstail {
 
@@ -55,7 +56,5 @@ class Brimstail {
         objTeleportTakeOff("Exit", "brimstails_cave_exit_*") {
             player.message("You crouch your way through a cramped tunnel.")
         }
-
     }
-
 }

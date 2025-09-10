@@ -6,6 +6,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Dommik {
 
@@ -25,7 +26,5 @@ class Dommik {
         npcOperate("Trade", "dommik") {
             player.openShop("dommiks_crafting_store")
         }
-
     }
-
 }

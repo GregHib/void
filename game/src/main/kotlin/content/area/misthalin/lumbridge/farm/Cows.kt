@@ -4,10 +4,11 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.npcSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Cows {
 
@@ -31,7 +32,5 @@ class Cows {
         itemOnNPCOperate("*", "cow*") {
             player.message("The cow doesn't want that.")
         }
-
     }
-
 }

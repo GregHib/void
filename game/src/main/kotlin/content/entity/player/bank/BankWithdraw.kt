@@ -8,16 +8,17 @@ import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
 import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shiftToFreeIndex
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class BankWithdraw {
 
     val logger = InlineLogger()
-    
+
     init {
         interfaceOption("Withdraw-*", "inventory", "bank") {
             val amount = when (option) {
@@ -38,14 +39,13 @@ class BankWithdraw {
         interfaceOption("Toggle item/note withdrawl", "note_mode", "bank") {
             player.toggle("bank_notes")
         }
-
     }
 
     fun withdraw(player: Player, item: Item, index: Int, amount: Int) {
         if (player.menu != "bank" || amount < 1) {
             return
         }
-    
+
         val note = player["bank_notes", false]
         val noted = if (note) item.noted ?: item else item
         if (note && noted.id == item.id) {

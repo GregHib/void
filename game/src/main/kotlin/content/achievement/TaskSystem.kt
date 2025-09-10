@@ -16,15 +16,16 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class TaskSystem {
 
     val variables: VariableDefinitions by inject()
     val enumDefinitions: EnumDefinitions by inject()
     val structDefinitions: StructDefinitions by inject()
-    
+
     init {
         interfaceOpen("task_system") { player ->
             player.sendVariable("task_pin_slot")
@@ -132,7 +133,6 @@ class TaskSystem {
             player["world_map_marker_text_1"] = ""
             player.open("world_map")
         }
-
     }
 
     fun pin(player: Player, slot: Int) {
@@ -144,7 +144,7 @@ class TaskSystem {
             player["task_pin_slot"] = slot
         }
     }
-    
+
     fun indexOfSlot(player: Player, slot: Int): Int? {
         var count = 1
         return Tasks.forEach(areaId(player)) {
@@ -166,7 +166,7 @@ class TaskSystem {
             null
         }
     }
-    
+
     fun refreshSlots(player: Player) {
         var slot = 1
         var completed = 0
@@ -198,18 +198,18 @@ class TaskSystem {
         player["task_progress_total"] = total
         player["task_progress_current"] = completed
     }
-    
+
     fun pinned(player: Player, slot: Int): Boolean {
         val pinned = player["task_pin_slot", -1]
         return pinned != -1 && slot == pinned
     }
-    
+
     fun areaId(player: Player) = variables.get("task_area")!!.values.toInt(player["task_area", "empty"])
-    
+
     /*
         Task completion
      */
-    
+
     fun completeTask(player: Player, id: String) {
         val definition = structDefinitions.get(id)
         val index = definition["task_index", -1]
@@ -244,9 +244,8 @@ class TaskSystem {
             player.message("set. Speak to $npc to claim your reward.")
         }
     }
-    
+
     /*
         Hints
      */
-    
 }

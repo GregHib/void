@@ -6,9 +6,10 @@ import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.directHit
 import content.entity.sound.sound
 import content.skill.melee.weapon.multiTargets
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.random
 import kotlin.random.nextInt
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Spells {
 
@@ -32,7 +33,5 @@ class Spells {
                 }
             }
         }
-
     }
-
 }

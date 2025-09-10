@@ -7,26 +7,27 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Saniboch {
 
     val dungeonEntryFee = 875
-    
+
     init {
         npcOperate("Talk-to", "saniboch") {
             npc<Talk>("Good day to you, Bwana.")
-        
+
             choice {
                 option<Quiz>("Can I go through that door please?") {
                     if (player["can_enter_brimhaven_dungeon", false]) {
                         npc<Talk>("Most certainly, you have already given me lots of nice coins.")
                         return@option
                     }
-        
+
                     npc<Talk>("Most certainly, but I must charge you the sum of 875 coins first.")
                     if (player.inventory.contains("coins", dungeonEntryFee)) {
                         choice {
@@ -52,16 +53,16 @@ class Saniboch {
                         npc<Talk>("Hummph.")
                     }
                 }
-        
+
                 option<Quiz>("Where does this strange entrance lead?") {
                     npc<Happy>("To a huge fearsome dungeon, populated by giants and strange dogs. Adventurers come from all around to explore its depths.")
                     npc<Talk>("I know not what lies deeper in myself, for my skills in agility and woodcutting are inadequate.")
                 }
-        
+
                 option("Good day to you too.") {
                     player<Talk>("Good day to you too.")
                 }
-        
+
                 option("I'm impressed, that tree is growing on that shed.") {
                     player<Talk>("I'm impressed, that tree is growing on that shed.")
                     npc<Talk>("My employer tells me it is an uncommon sort of tree called the Fyburglars tree.")
@@ -74,7 +75,7 @@ class Saniboch {
                 npc<Talk>("You have already given me lots of nice coins, you may go in.")
                 return@npcOperate
             }
-        
+
             val coins = player.inventory.count("coins")
             if (coins >= dungeonEntryFee) {
                 player.inventory.remove("coins", dungeonEntryFee)
@@ -95,16 +96,15 @@ class Saniboch {
                 }
                 return@objTeleportTakeOff
             }
-        
+
             // Reset access after one-time use
             player["can_enter_brimhaven_dungeon"] = false
         }
-
     }
 
     // Saniboch "Talk-to" dialogue
-    
+
     // Saniboch "Pay" right-click option
-    
+
     // Door object to enter dungeon
 }

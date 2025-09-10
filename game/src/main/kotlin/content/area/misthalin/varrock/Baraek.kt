@@ -7,12 +7,13 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Baraek {
 
@@ -41,7 +42,6 @@ class Baraek {
                 }
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.sellFur() {
@@ -76,7 +76,7 @@ class Baraek {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.buyFur() {
         npc<Neutral>("Let's have a look at it.")
         item("bear_fur", 645, "You hand Baraek your fur to look at.")

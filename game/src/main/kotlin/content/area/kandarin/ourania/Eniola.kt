@@ -14,12 +14,13 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Eniola {
 
@@ -39,7 +40,7 @@ class Eniola {
         "nature_rune",
         "soul_rune",
     )
-    
+
     init {
         npcOperate("Talk-to", "eniola") {
             npc<Quiz>("Well met, fellow adventurer! How can I help you?")
@@ -120,7 +121,6 @@ class Eniola {
                 }
             }
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.accessBank() {
@@ -128,40 +128,39 @@ class Eniola {
             openBank()
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.collectionBox() {
         option("I'd like to see my collection box.") {
             openCollection()
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.pinSettings() {
         option("I'd like to check my PIN settings.") {
         }
     }
-    
+
     suspend fun NPCOption<Player>.openCollection() {
         if (runePayment()) {
             player.open("collection_box")
         }
     }
-    
+
     suspend fun NPCOption<Player>.openBank() {
         if (runePayment()) {
             player.open("bank")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.runePayment(): Boolean {
         player.open("ourania_bank_charge")
         val rune = StringSuspension.get(player)
         player.close("ourania_bank_charge")
-    
+
         if (!player.inventory.remove(rune, 20)) {
             npc<Upset>("I'm afraid you don't have the necessary runes with you at this time, so I can't allow you to access your account. Please bring twenty runes of one type and you can open your account.")
             return false
         }
         return true
     }
-    
 }

@@ -10,13 +10,14 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class CureOther {
 
     val definitions: SpellDefinitions by inject()
-    
+
     init {
         interfaceOnPlayerApproach(id = "lunar_spellbook", component = "cure_other") {
             approachRange(2)
@@ -42,7 +43,5 @@ class CureOther {
             target.sound("cure_other_impact")
             target.message("You have been cured by ${player.name}.")
         }
-
     }
-
 }

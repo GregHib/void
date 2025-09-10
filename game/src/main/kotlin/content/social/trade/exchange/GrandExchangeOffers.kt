@@ -18,18 +18,19 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.sendInventory
 import kotlin.math.ceil
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GrandExchangeOffers {
 
     val exchange: GrandExchange by inject()
     val itemDefinitions: ItemDefinitions by inject()
     val logger = InlineLogger()
-    
+
     init {
         playerSpawn { player ->
             exchange.login(player)
@@ -120,26 +121,25 @@ class GrandExchangeOffers {
             player["grand_exchange_quantity"] = item.amount
             player["grand_exchange_price"] = player["grand_exchange_market_price", 0]
         }
-
     }
 
     /*
         Offers
      */
-    
+
     /*
         Buy Offer
      */
-    
+
     fun openItemSearch(player: Player) {
         player.open("grand_exchange_item_dialog")
         player.sendScript("item_dialogue_reset", "Grand Exchange Item Search")
     }
-    
+
     /*
         Sell Offer
      */
-    
+
     fun selectItem(player: Player, item: String) {
         val definition = itemDefinitions.get(item)
         player["grand_exchange_item"] = item

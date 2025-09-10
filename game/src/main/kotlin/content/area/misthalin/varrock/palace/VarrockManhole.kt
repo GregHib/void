@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class VarrockManhole {
 
@@ -19,7 +20,5 @@ class VarrockManhole {
             target.replace("varrock_manhole")
             player.message("You place the cover back over the manhole.")
         }
-
     }
-
 }

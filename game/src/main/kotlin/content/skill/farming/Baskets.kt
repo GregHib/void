@@ -5,18 +5,29 @@ import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Baskets {
 
     val logger = InlineLogger()
-    
+
+    private data class Fruit(val name: String, val plural: String, val description: String = "a $name")
+
+    private val fruit = mapOf(
+        "strawberry" to Fruit("strawberry", "strawberries"),
+        "orange" to Fruit("orange", "oranges", "an orange"),
+        "banana" to Fruit("banana", "bananas"),
+        "cooking_apple" to Fruit("apple", "apples", "an apple"),
+        "tomato" to Fruit("tomato", "tomatoes"),
+    )
+
     init {
         inventoryItem("Fill", "basket") {
             var index = -1
@@ -26,7 +37,7 @@ class Baskets {
                     break
                 }
             }
-        
+
             if (index == -1) {
                 player.message("You don't have any fruit with which to fill the basket.")
                 return@inventoryItem
@@ -61,40 +72,40 @@ class Baskets {
                     }
                     replace(slot, item.id, "${fruit.plural}_${current + removed}")
                 }
-        
+
                 when (player.inventory.transaction.error) {
                     is TransactionError.Deficient -> {}
                     TransactionError.None -> {}
                     else -> logger.warn { "Error filling ${fruit.plural}." }
                 }
             }
-        
+
             inventoryItem("Fill", "${fruit.plural}_5") {
                 player.message("The ${fruit.name} basket is already full.")
             }
-        
+
             itemOnItem(id, "${fruit.plural}_5") { player ->
                 player.message("The ${fruit.name} basket is already full.")
             }
-        
+
             inventoryItem("Remove-one", "${fruit.plural}_#") {
                 val current = item.id.removePrefix("${fruit.plural}_").toInt()
-        
+
                 player.inventory.transaction {
                     add(id)
                     replace(slot, item.id, if (current == 1) "basket" else "${fruit.plural}_${current - 1}")
                 }
-        
+
                 when (player.inventory.transaction.error) {
                     is TransactionError.Full -> player.inventoryFull()
                     TransactionError.None -> player.message("You take ${fruit.description} out of the ${fruit.name} basket.")
                     else -> logger.warn { "Error emptying ${fruit.description}." }
                 }
             }
-        
+
             inventoryItem("Empty", "${fruit.plural}_#") {
                 val current = item.id.removePrefix("${fruit.plural}_").toInt()
-        
+
                 player.inventory.transaction {
                     val added = addToLimit(id, current)
                     if (added == 0) {
@@ -102,7 +113,7 @@ class Baskets {
                     }
                     replace(slot, item.id, if (added == current) "basket" else "${fruit.plural}_${current - added}")
                 }
-        
+
                 when (player.inventory.transaction.error) {
                     is TransactionError.Full -> player.inventoryFull()
                     TransactionError.None -> {}
@@ -110,17 +121,5 @@ class Baskets {
                 }
             }
         }
-
     }
-
-    private data class Fruit(val name: String, val plural: String, val description: String = "a $name")
-    
-    private val fruit = mapOf(
-        "strawberry" to Fruit("strawberry", "strawberries"),
-        "orange" to Fruit("orange", "oranges", "an orange"),
-        "banana" to Fruit("banana", "bananas"),
-        "cooking_apple" to Fruit("apple", "apples", "an apple"),
-        "tomato" to Fruit("tomato", "tomatoes"),
-    )
-    
 }

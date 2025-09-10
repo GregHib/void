@@ -7,9 +7,10 @@ import world.gregs.voidps.engine.data.definition.data.LightSources
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class LightSource {
 
@@ -26,33 +27,32 @@ class LightSource {
         "black_candle",
         "unlit_torch",
     )
-    
+
     init {
         itemOnItems(arrayOf("tinderbox*"), acceptedUnlitSource) {
             val needsFlame: LightSources = toItem.def.getOrNull("light_source") ?: return@itemOnItems
-        
+
             if (!it.has(Skill.Firemaking, needsFlame.level, true)) {
                 return@itemOnItems
             }
-        
+
             it.inventory.transaction {
                 replace(toItem.id, needsFlame.onceLit)
             }
-        
+
             val litItem = determineLightSource(needsFlame.onceLit)
             it.message("You light the $litItem", ChatType.Game)
         }
 
         inventoryItem("Extinguish") {
             val source: LightSources = item.def.getOrNull("light_source") ?: return@inventoryItem
-        
+
             player.inventory.transaction {
                 replace(item.id, source.onceExtinguish)
             }
-        
+
             player.message("You extinguish the flame.", ChatType.Game)
         }
-
     }
 
     fun determineLightSource(itemName: String): String = when {

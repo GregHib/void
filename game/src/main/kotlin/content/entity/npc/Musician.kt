@@ -10,8 +10,9 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.suspend.SuspendableContext
+
 @Script
 class Musician {
 
@@ -19,7 +20,6 @@ class Musician {
         npcOperate("Talk-to", "musician*") {
             choice()
         }
-
     }
 
     suspend fun SuspendableContext<Player>.choice() {
@@ -35,7 +35,7 @@ class Musician {
             exit()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.resting() {
         choice("Can I ask you some questions about resting?") {
             option("How does resting work?") {
@@ -63,7 +63,7 @@ class Musician {
             exit()
         }
     }
-    
+
     suspend fun PlayerChoice.exit(): Unit = option<Quiz>("That's all for now.") {
         npc<Happy>("Well, don't forget to have a rest every now and again.")
     }

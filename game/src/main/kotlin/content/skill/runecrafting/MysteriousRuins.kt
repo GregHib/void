@@ -16,22 +16,23 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.equals
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class MysteriousRuins {
 
     val objectDefinitions: ObjectDefinitions by inject()
-    
+
     val omni = listOf("air", "mind", "water", "earth", "fire", "body", "cosmic", "law", "nature", "chaos", "death", "blood")
-    
+
     val teleports: ObjectTeleports by inject()
-    
+
     init {
         playerSpawn { player ->
             if (player.equipped(EquipSlot.Hat).id.endsWith("_tiara") || player.equipped(EquipSlot.Weapon).id == "omni_talisman_staff") {
@@ -111,7 +112,6 @@ class MysteriousRuins {
                 return@objTeleportTakeOff
             }
         }
-
     }
 
     fun updateAltarVars(player: Player) {
@@ -121,5 +121,4 @@ class MysteriousRuins {
             player["${type}_altar_ruins"] = type == tiara || tiara == "omni" || staff == "omni_talisman_staff"
         }
     }
-    
 }

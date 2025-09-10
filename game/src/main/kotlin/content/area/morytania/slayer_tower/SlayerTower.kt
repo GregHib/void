@@ -15,13 +15,14 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.objectDespawn
 import world.gregs.voidps.engine.entity.objectSpawn
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class SlayerTower {
 
     val objects: GameObjects by inject()
-    
+
     init {
         objectSpawn("slayer_tower_entrance_door_*_opened") { obj ->
             val statue = if (obj.id == "slayer_tower_entrance_door_west_opened") {
@@ -63,7 +64,5 @@ class SlayerTower {
         objectOperate("Open", "slayer_tower_door*_closed") {
             enterDoor(target)
         }
-
     }
-
 }

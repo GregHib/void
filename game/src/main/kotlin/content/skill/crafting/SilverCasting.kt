@@ -18,15 +18,16 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class SilverCasting {
 
     val itemDefinitions: ItemDefinitions by inject()
-    
+
     val moulds = listOf(
         Item("holy_mould"),
         Item("sickle_mould"),
@@ -39,10 +40,10 @@ class SilverCasting {
         Item("bolt_mould"),
         Item("key_mould"),
     )
-    
+
     val Item.silver: Silver?
         get() = def.getOrNull("silver_jewellery")
-    
+
     init {
         interfaceOpen("silver_mould") { player ->
             for (mould in moulds) {
@@ -90,7 +91,6 @@ class SilverCasting {
         interfaceClose("silver_mould") { player ->
             player.sendScript("clear_dialogues")
         }
-
     }
 
     fun Player.make(item: Item, amount: Int) {

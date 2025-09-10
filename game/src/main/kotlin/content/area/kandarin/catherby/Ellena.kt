@@ -5,6 +5,7 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Ellena {
 
@@ -16,7 +17,7 @@ class Ellena {
                         player<Talk>("Would you look after my crops for me?")
                         npc<Talk>("I'm afraid I can't help with that right now. Maybe once the Farming system is ready.")
                     }
-        
+
                     option("Can you give me any farming advice?") {
                         player<Talk>("Can you give me any Farming advice?")
                         val tips = listOf(
@@ -41,23 +42,21 @@ class Ellena {
                         npc<Talk>(tips.random())
                         showMainOptions()
                     }
-        
+
                     option("Can you sell me something?") {
                         player<Talk>("Can you sell me something?")
                         npc<Talk>("That depends on whether I have it to sell. What is it that you're looking for?")
                         player.openShop("ellena_farming_supplies")
                     }
-        
+
                     option("I'll come back another time.") {
                         player<Talk>("I'll come back another time.")
                         // Ends dialogue
                     }
                 }
             }
-        
+
             showMainOptions()
         }
-
     }
-
 }

@@ -5,15 +5,16 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Autocast {
 
     val interfaceDefinitions: InterfaceDefinitions by inject()
-    
+
     init {
         interfaceOption("Autocast", id = "*_spellbook") {
             toggle()
@@ -26,7 +27,6 @@ class Autocast {
         inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
             player.clear("autocast")
         }
-
     }
 
     fun InterfaceOption.toggle() {
@@ -39,5 +39,4 @@ class Autocast {
             player["autocast"] = value
         }
     }
-    
 }

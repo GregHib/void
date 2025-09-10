@@ -1,6 +1,7 @@
 package content.bot.skill.combat
 
 import content.bot.*
+import content.bot.Bot
 import content.bot.interact.item.pickup
 import content.bot.interact.navigation.await
 import content.bot.interact.navigation.cancel
@@ -12,6 +13,7 @@ import content.entity.death.playerDeath
 import content.entity.death.weightedSample
 import content.skill.magic.spell.removeSpellItems
 import content.skill.magic.spell.spell
+import content.skill.magic.spell.spellBook
 import content.skill.slayer.categories
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSnakeCase
@@ -21,6 +23,7 @@ import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -33,18 +36,14 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.levelChange
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
-
-import content.bot.Bot
-import content.skill.magic.spell.spellBook
-import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.network.client.instruction.InteractInterface
 
 suspend fun Bot.setAttackStyle(skill: Skill) {
     setAttackStyle(
@@ -65,13 +64,14 @@ suspend fun Bot.setAutoCast(spell: String) {
 suspend fun Bot.setAttackStyle(style: Int) {
     player.instructions.send(InteractInterface(interfaceId = 884, componentId = style + 11, itemId = -1, itemSlot = -1, option = 0))
 }
+
 @Script
 class CombatBot {
 
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()
     val floorItems: FloorItems by inject()
-    
+
     init {
         variableSet("in_combat", to = 1) { player ->
             if (player.isBot) {
@@ -118,7 +118,6 @@ class CombatBot {
                 }
             }
         }
-
     }
 
     suspend fun Bot.fight(map: AreaDefinition, skill: Skill, races: Set<String>) {
@@ -146,14 +145,14 @@ class CombatBot {
             // TODO on death run back and pickup stuff
         }
     }
-    
+
     fun Player.isRangedNotOutOfAmmo(skill: Skill): Boolean {
         if (skill != Skill.Ranged) {
             return true
         }
         return has(EquipSlot.Ammo)
     }
-    
+
     fun Player.isMagicNotOutOfRunes(skill: Skill): Boolean {
         if (skill != Skill.Magic) {
             return true
@@ -161,7 +160,7 @@ class CombatBot {
         val spell = spell
         return removeSpellItems(spell)
     }
-    
+
     suspend fun Bot.pickupItems(tile: Tile, amount: Int) {
         repeat(random.nextInt(2, 8)) {
             if (player.inventory.contains("bones")) {
@@ -175,7 +174,7 @@ class CombatBot {
             pickup(item)
         }
     }
-    
+
     fun Bot.isAvailableTarget(map: AreaDefinition, npc: NPC, races: Set<String>): Boolean {
         if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
             return false
@@ -198,7 +197,7 @@ class CombatBot {
         val difference = npc.def.combat - player.combatLevel
         return difference < 5
     }
-    
+
     fun Bot.equipAmmo(skill: Skill) {
         if (skill == Skill.Ranged) {
             val ammo = player.equipped(EquipSlot.Ammo)

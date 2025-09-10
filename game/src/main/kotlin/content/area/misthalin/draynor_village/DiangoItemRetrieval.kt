@@ -11,23 +11,24 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.playerDespawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class DiangoItemRetrieval {
 
     val itemLimit = 48
     val container = InterfaceDefinition.pack(468, 2)
     val scrollbar = InterfaceDefinition.pack(468, 3)
-    
+
     val inventoryDefinitions: InventoryDefinitions by inject()
     val itemDefinitions: ItemDefinitions by inject()
-    
+
     init {
         interfaceOpen("diangos_item_retrieval") { player ->
             refreshItems(player)
@@ -55,7 +56,6 @@ class DiangoItemRetrieval {
         interfaceClose("diangos_item_retrieval") { player ->
             player.inventories.clear(id)
         }
-
     }
 
     fun refreshItems(player: Player) {
@@ -103,5 +103,4 @@ class DiangoItemRetrieval {
             player.sendScript("interface_inv_init", container, 453, 8, 6, 0, -1, "Claim", "", "", "", "")
         }
     }
-    
 }

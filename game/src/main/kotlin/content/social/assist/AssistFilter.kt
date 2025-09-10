@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class AssistFilter {
 
@@ -40,19 +41,18 @@ class AssistFilter {
             player["assist_status"] = "off"
             cancel(player)
         }
-
     }
 
     /**
      * Assistance privacy filter settings
      */
-    
+
     fun cancel(player: Player) {
         if (player.contains("assistant")) {
             val assistant: Player? = player["assistant"]
             assistant?.closeMenu()
         }
-    
+
         if (player.contains("assisted")) {
             player.closeMenu()
         }

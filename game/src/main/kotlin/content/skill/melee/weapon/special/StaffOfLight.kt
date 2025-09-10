@@ -5,6 +5,7 @@ import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttackPrepare
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
@@ -12,7 +13,7 @@ import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class StaffOfLight {
 
@@ -58,7 +59,5 @@ class StaffOfLight {
             player.message("<red>The power of the light fades. Your resistance to melee attacks returns to normal.")
             player.clear("power_of_light")
         }
-
     }
-
 }

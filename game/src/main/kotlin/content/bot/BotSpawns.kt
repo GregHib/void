@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -34,21 +35,21 @@ import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.reflect.KClass
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class BotSpawns {
 
     val areas: AreaDefinitions by inject()
     val lumbridge = areas["lumbridge_teleport"]
-    
+
     val bots = mutableListOf<Player>()
     val enums: EnumDefinitions by inject()
     val structs: StructDefinitions by inject()
-    
+
     var counter = 0
-    
+
     val loader: PlayerAccountLoader by inject()
-    
+
     init {
         worldSpawn {
             if (Settings["bots.count", 0] > 0) {
@@ -116,7 +117,6 @@ class BotSpawns {
                 player.message("Bot enabled.")
             }
         }
-
     }
 
     fun spawn() {
@@ -136,13 +136,13 @@ class BotSpawns {
             bot.running = true
         }
     }
-    
+
     fun Player.initBot(): Bot {
         val bot = Bot(this)
         this["bot"] = bot
         return bot
     }
-    
+
     fun handleSuspensions(player: Player, event: Event) {
         val suspensions: MutableMap<KClass<*>, Pair<Event.(Player) -> Boolean, CancellableContinuation<Unit>>> = player["bot_suspensions"] ?: return
         val pair = suspensions[event::class] ?: return
@@ -152,7 +152,7 @@ class BotSpawns {
             continuation.resume(Unit)
         }
     }
-    
+
     fun setAppearance(player: Player): Player {
         val male = random.nextBoolean()
         player.body.male = male

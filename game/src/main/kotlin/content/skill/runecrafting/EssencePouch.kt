@@ -9,18 +9,19 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class EssencePouch {
 
     val pouches = arrayOf("small_pouch", "medium_pouch", "medium_pouch_damaged", "large_pouch", "large_pouch_damaged", "giant_pouch", "giant_pouch_damaged")
-    
+
     init {
         inventoryItem("Check", *pouches) {
             val essence = player["${item.id.removeSuffix("_damaged")}_essence", 0]
@@ -78,7 +79,7 @@ class EssencePouch {
                 player.message("There is no essence in this pouch.")
                 return@inventoryItem
             }
-        
+
             var added = 0
             val success = player.inventory.transaction {
                 added = addToLimit("${if (pure) "pure" else "rune"}_essence", essence)
@@ -107,7 +108,6 @@ class EssencePouch {
                 player.message("The contents of the pouch fell out as you dropped it!")
             }
         }
-
     }
 
     fun addSingle(
@@ -142,7 +142,7 @@ class EssencePouch {
         }
         player["${id}_essence"] = essence + 1
     }
-    
+
     private fun capacity(id: String, charges: Int) = when (id) {
         "medium_pouch" -> 6
         "medium_pouch_damaged" -> when {
@@ -169,7 +169,7 @@ class EssencePouch {
         }
         else -> 3
     }
-    
+
     private fun numberString(essence: Int) = when (essence) {
         1 -> "one"
         2 -> "two"

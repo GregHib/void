@@ -4,17 +4,18 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.inv.inventoryItem
 import content.skill.magic.jewellery.itemTeleport
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class PharaohsSceptre {
 
     val areas: AreaDefinitions by inject()
-    
+
     val jalsavrah = areas["jalsavrah_teleport"]
     val jaleustrophos = areas["jaleustrophos_teleport"]
     val jaldraocht = areas["jaldraocht_teleport"]
-    
+
     init {
         inventoryItem("Teleport", "pharaohs_sceptre_#", "inventory") {
             if (player.contains("delay")) {
@@ -46,7 +47,5 @@ class PharaohsSceptre {
             }
             itemTeleport(player, inventory, slot, area, "pharaohs_sceptre")
         }
-
     }
-
 }

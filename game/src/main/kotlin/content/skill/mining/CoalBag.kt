@@ -6,16 +6,17 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.addToLimit
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class CoalBag {
 
     val bagCapacity = 81
-    
+
     init {
         inventoryItem("Inspect", "coal_bag") {
             val coal = player["coal_bag_coal", 0]
@@ -75,7 +76,5 @@ class CoalBag {
                 cancel()
             }
         }
-
     }
-
 }

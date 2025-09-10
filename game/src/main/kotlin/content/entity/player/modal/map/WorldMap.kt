@@ -11,17 +11,18 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.network.client.instruction.WorldMapClick
 import world.gregs.voidps.network.login.protocol.encode.updateInterface
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class WorldMap {
 
     val definitions: InterfaceDefinitions by inject()
-    
+
     init {
         interfaceOpen("world_map") { player ->
             updateMap(player)
@@ -91,7 +92,6 @@ class WorldMap {
             player["previous_world_map_click"] = tile
             player.start("world_map_double_click", 1)
         }
-
     }
 
     fun updateMap(player: Player) {
@@ -99,5 +99,4 @@ class WorldMap {
         player["world_map_centre"] = tile
         player["world_map_marker_player"] = tile
     }
-    
 }

@@ -7,14 +7,15 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class WornEquipment {
 
     val logger = InlineLogger()
-    
+
     init {
         interfaceRefresh("worn_equipment") { player ->
             player.sendInventory(id)
@@ -43,7 +44,6 @@ class WornEquipment {
             player.closeInterfaces()
             player.emit(InventoryOption(player, id, item, slot.index, equipOption))
         }
-
     }
 
     fun getEquipmentOption(itemDef: ItemDefinition, optionId: Int): String? {

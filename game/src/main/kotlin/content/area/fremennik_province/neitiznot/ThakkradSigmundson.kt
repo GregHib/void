@@ -9,13 +9,14 @@ import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ThakkradSigmundson {
 
@@ -40,7 +41,6 @@ class ThakkradSigmundson {
         itemOnNPCOperate("yak_hide", "thakkrad_sigmundson") {
             cureHide()
         }
-
     }
 
     suspend fun SuspendableContext<Player>.cureHide() {
@@ -62,7 +62,7 @@ class ThakkradSigmundson {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.cure(amount: Int) {
         if (!player.inventory.contains("yak_hide")) {
             npc<Talk>("You have no yak-hide to cure.")

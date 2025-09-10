@@ -24,25 +24,26 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Mining {
 
     val objects: GameObjects by inject()
     val itemDefinitions: ItemDefinitions by inject()
-    
+
     val gems = setOf(
         "uncut_sapphire",
         "uncut_emerald",
         "uncut_ruby",
         "uncut_diamond",
     )
-    
+
     init {
         objectOperate("Mine") {
             if (target.id.startsWith("depleted")) {
@@ -55,22 +56,22 @@ class Mining {
                 if (!objects.contains(target)) {
                     break
                 }
-        
+
                 if (player.inventory.isFull()) {
                     player.message("Your inventory is too full to hold any more ore.")
                     break
                 }
-        
+
                 val rock: Rock? = target.def.getOrNull("mining")
                 if (rock == null || !player.has(Skill.Mining, rock.level, true)) {
                     break
                 }
-        
+
                 val pickaxe = Pickaxe.best(player)
                 if (!hasRequirements(player, pickaxe, true) || pickaxe == null) {
                     break
                 }
-        
+
                 val delay = if (pickaxe.id == "dragon_pickaxe" && random.nextInt(6) == 0) 2 else pickaxe.def["mining_delay", 8]
                 if (first) {
                     player.message("You swing your pickaxe at the rock.", ChatType.Filter)
@@ -135,7 +136,6 @@ class Mining {
                 player.message("This rock contains ${ore.toLowerSpaceCase()}.")
             }
         }
-
     }
 
     fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): Boolean {
@@ -148,7 +148,7 @@ class Mining {
         }
         return player.hasRequirementsToUse(pickaxe, message, setOf(Skill.Mining, Skill.Firemaking))
     }
-    
+
     fun addOre(player: Player, ore: String): Boolean {
         if (ore == "stardust") {
             ShootingStarHandler.addStarDustCollected()
@@ -166,7 +166,7 @@ class Mining {
         }
         return added
     }
-    
+
     fun deplete(rock: Rock, obj: GameObject): Boolean {
         if (obj.id.startsWith("crashed_star_tier_")) {
             ShootingStarHandler.handleMinedStarDust(obj)
@@ -178,5 +178,4 @@ class Mining {
         }
         return false
     }
-    
 }

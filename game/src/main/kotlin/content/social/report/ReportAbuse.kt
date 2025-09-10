@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class ReportAbuse {
 
@@ -16,7 +17,5 @@ class ReportAbuse {
             }
             player.open("report_abuse_select")
         }
-
     }
-
 }

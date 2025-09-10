@@ -13,15 +13,16 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.DiangoCodeDefinitions
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Diango {
 
     val codeDefinitions: DiangoCodeDefinitions by inject()
-    
+
     init {
         npcOperate("Talk-to", "diango") {
             npc<Happy>("Howdy there partner! Want to see my spinning plates? Or did ya want a holiday item back?")
@@ -70,7 +71,5 @@ class Diango {
                 player.inventoryFull()
             }
         }
-
     }
-
 }

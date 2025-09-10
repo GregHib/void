@@ -8,6 +8,7 @@ import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Sigmund {
 
@@ -30,7 +31,5 @@ class Sigmund {
         npcOperate("Pickpocket", "sigmund") {
             player.message("Sigmund doesn't seem to have anything of value.")
         }
-
     }
-
 }

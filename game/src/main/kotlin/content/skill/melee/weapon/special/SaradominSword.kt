@@ -6,6 +6,7 @@ import content.entity.player.combat.special.specialAttack
 import content.entity.sound.areaSound
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class SaradominSword {
 
@@ -22,7 +23,5 @@ class SaradominSword {
                 player.hit(target, offensiveType = "magic")
             }
         }
-
     }
-
 }

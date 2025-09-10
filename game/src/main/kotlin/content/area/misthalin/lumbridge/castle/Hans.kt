@@ -8,6 +8,7 @@ import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Hans {
 
@@ -27,7 +28,5 @@ class Hans {
                 }
             }
         }
-
     }
-
 }

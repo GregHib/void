@@ -16,19 +16,20 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.npcDespawn
 import world.gregs.voidps.engine.entity.npcSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class KrilTsutsaroth {
 
     val npcs: NPCs by inject()
-    
+
     var kreeyath: NPC? = null
     var karlak: NPC? = null
     var gritch: NPC? = null
-    
+
     init {
         npcCombatSwing("kril_tsutsaroth") { npc ->
             when (random.nextInt(3)) {
@@ -36,7 +37,7 @@ class KrilTsutsaroth {
                     target.sound("kril_tsutsaroth_magic", delay = 30)
                     npc.anim("kril_tsutsaroth_magic_attack")
                     npc.gfx("kril_tsutsaroth_magic_attack")
-        //            npc.shoot("1211", target)
+                    //            npc.shoot("1211", target)
                     npc.hit(target, offensiveType = "magic", delay = 1)
                 }
                 else -> { // Melee
@@ -51,7 +52,7 @@ class KrilTsutsaroth {
                         target.levels.drain(Skill.Prayer, multiplier = 0.5)
                         target.message("K'ril Tsutsaroth slams through your protection prayer, leaving you feeling drained.")
                         npc.say("YARRRRRRR!")
-        //                areaSound("3274", npc.tile, radius = 15)
+                        //                areaSound("3274", npc.tile, radius = 15)
                         npc.hit(target, offensiveType = "damage", damage = 350 + (random.nextInt(15) * 10)) // TODO prayer mod?
                     } else {
                         npc.hit(target, offensiveType = "melee")
@@ -94,7 +95,5 @@ class KrilTsutsaroth {
                 }
             }
         }
-
     }
-
 }

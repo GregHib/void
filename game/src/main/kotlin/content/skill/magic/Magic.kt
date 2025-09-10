@@ -18,15 +18,16 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class Magic {
 
     val spellDefinitions: SpellDefinitions by inject()
-    
+
     val animationDefinitions: AnimationDefinitions by inject()
-    
+
     init {
         combatSwing(style = "blaze") { player ->
             if (!castSpell(player, target)) {
@@ -39,7 +40,6 @@ class Magic {
                 cancel()
             }
         }
-
     }
 
     fun castSpell(source: Character, target: Character): Boolean {
@@ -49,7 +49,7 @@ class Magic {
         }
         val spell = source.spell
         val definition = spellDefinitions.get(spell)
-    
+
         val time = time(source, target, definition)
         source.anim(animation(source, definition))
         source.gfx(graphic(source, definition))
@@ -70,7 +70,7 @@ class Magic {
         }
         return true
     }
-    
+
     fun animation(source: Character, definition: SpellDefinition): String {
         if (source.weapon.def["weapon_type", ""] == "salamander" && source.spell.isBlank()) {
             return "salamander_scorch"
@@ -87,7 +87,7 @@ class Magic {
         }
         return ""
     }
-    
+
     fun graphic(source: Character, definition: SpellDefinition): String {
         if (source.weapon.def["weapon_type", ""] == "salamander" && source.spell.isBlank()) {
             return "salamander_blaze"
@@ -104,7 +104,7 @@ class Magic {
         }
         return ""
     }
-    
+
     fun time(source: Character, target: Character, definition: SpellDefinition): Int {
         if (source.weapon.def["weapon_type", ""] == "salamander" && source.spell.isBlank()) {
             return 0

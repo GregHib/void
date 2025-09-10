@@ -8,8 +8,9 @@ import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.type.Direction
+
 @Script
 class ZamorakBridge {
 
@@ -35,7 +36,5 @@ class ZamorakBridge {
             player.tele(target.tile.addY(direction.delta.y * 12))
             player.clearRenderEmote()
         }
-
     }
-
 }

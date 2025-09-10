@@ -9,11 +9,12 @@ import content.quest.quest
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Sanfew {
 
@@ -23,7 +24,7 @@ class Sanfew {
         Item("enchanted_bear_meat"),
         Item("enchanted_chicken"),
     )
-    
+
     init {
         npcOperate("Talk-to", "sanfew") {
             when (player.quest("druidic_ritual")) {
@@ -45,7 +46,6 @@ class Sanfew {
                 else -> eadgarsRuse()
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.started() {
@@ -70,7 +70,7 @@ class Sanfew {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.cauldron() {
         npc<Quiz>("Did you bring me the required ingredients for the potion?")
         if (!player.inventory.contains(enchantedMeat)) {
@@ -84,7 +84,7 @@ class Sanfew {
         player["druidic_ritual"] = "kaqemeex"
         npc<Neutral>("Now go and talk to Kaqemeex and he will introduce you to the wonderful world of herblore and potion making!")
     }
-    
+
     suspend fun SuspendableContext<Player>.noMeat() {
         player<Sad>("No, not yet...")
         npc<Neutral>("Well let me know when you do young 'un.")
@@ -106,7 +106,7 @@ class Sanfew {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.eadgarsRuse() {
         npc<Quiz>("What can I do for you young 'un?")
         choice {

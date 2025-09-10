@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class SlayerSkills {
 
@@ -47,7 +48,6 @@ class SlayerSkills {
         interfaceOption("Buy", "strike_wyrms", "slayer_rewards_learn") {
             purchase(player, component, 2000, "The secret is yours. You have learned how kill Ice Strykewyrms in a different way, without the need for a fire cape.")
         }
-
     }
 
     fun refreshText(player: Player, id: String) {
@@ -61,7 +61,7 @@ class SlayerSkills {
         updateUnlock(player, id, "malevolent_masquerade", 400)
         updateUnlock(player, id, "strike_wyrms", 2000)
     }
-    
+
     fun updateUnlock(player: Player, id: String, key: String, points: Int) {
         val unlocked = player[key, false]
         if (unlocked) {
@@ -76,7 +76,7 @@ class SlayerSkills {
             )
         }
     }
-    
+
     fun purchase(player: Player, key: String, points: Int, message: String) {
         if (player[key, false]) {
             return
@@ -90,6 +90,6 @@ class SlayerSkills {
             player.message(message)
         }
     }
-    
+
     // player.message("You need a nosepeg, face mask, earmuffs, spiny helmet and an uncharged black\nmask in your inventory in order to construct a fully-enhanced Slayer helmet.")
 }

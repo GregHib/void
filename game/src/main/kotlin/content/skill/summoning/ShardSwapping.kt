@@ -12,18 +12,19 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.min
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ShardSwapping {
 
     val enums: EnumDefinitions by inject()
     val itemDefinitions: ItemDefinitions by inject()
-    
+
     init {
         npcOperate("Swap", "bogrog") {
             openTradeInInterface(player, true)
@@ -41,12 +42,12 @@ class ShardSwapping {
             val enumIndex = (itemSlot + 3) / 5
             var actualItem = item
             val itemType = component.removeSuffix("_trade_in")
-        
+
             if (item.id.endsWith("_u")) {
                 val actualItemId = enums.get("summoning_${itemType}_ids_1").getInt(enumIndex)
                 actualItem = Item(itemDefinitions.get(actualItemId).stringId)
             }
-        
+
             sendValueMessage(player, actualItem, itemType)
         }
 
@@ -54,14 +55,14 @@ class ShardSwapping {
             val enumIndex = (itemSlot + 3) / 5
             var actualItem = item
             val itemType = component.removeSuffix("_trade_in")
-        
+
             if (item.id.endsWith("_u")) {
                 val actualItemId = enums.get("summoning_${itemType}_ids_1").getInt(enumIndex)
                 actualItem = Item(itemDefinitions.get(actualItemId).stringId)
                 sendValueMessage(player, actualItem, itemType)
                 return@interfaceOption
             }
-        
+
             when (option) {
                 "Trade" -> swapForShards(player, actualItem, 1)
                 "Trade-5" -> swapForShards(player, actualItem, 5)
@@ -73,7 +74,6 @@ class ShardSwapping {
                 "Trade-All" -> swapForShards(player, actualItem, Int.MAX_VALUE)
             }
         }
-
     }
 
     /**
@@ -90,17 +90,17 @@ class ShardSwapping {
         val actualNumberTraded = maxToSwap - (maxToSwap % itemsNeededPerSwap)
         val totalSwaps = actualNumberTraded / itemsNeededPerSwap
         val unnotedItemCount = player.inventory.count(item.id)
-    
+
         val unnotedToSwap = min(unnotedItemCount, actualNumberTraded)
         val notedToSwap = if (item != item.noted) actualNumberTraded - unnotedToSwap else 0
-    
+
         player.inventory.transaction {
             if (unnotedToSwap > 0) remove(item.id, unnotedToSwap)
             if (notedToSwap > 0) remove(item.noted!!.id, notedToSwap)
             add("spirit_shards", totalSwaps * shardsPerSwap)
         }
     }
-    
+
     /**
      * Gets the total number of a given item a player is holding, including noted items.
      *
@@ -111,10 +111,10 @@ class ShardSwapping {
         val notedItem = if (item.noted == item) Item.EMPTY else item.noted ?: Item.EMPTY
         val unnotedHeld = player.inventory.count(item.id)
         val notedHeld = player.inventory.count(notedItem.id)
-    
+
         return notedHeld + unnotedHeld
     }
-    
+
     /**
      * Sends a message to the given player with the number of shards they will receive
      * for trading in a scroll or pouch.
@@ -126,14 +126,14 @@ class ShardSwapping {
     fun sendValueMessage(player: Player, item: Item, itemType: String) {
         val refundAmountInverse = item.def["summoning_refund_amount_inverse", -1]
         val refundAmount = item.def["shard_refund_amount", -1]
-    
+
         if (refundAmountInverse == -1) {
             player.message("You will receive $refundAmount shards per $itemType.")
         } else {
             player.message("You will receive 1 shard for every $refundAmountInverse $itemType.")
         }
     }
-    
+
     /**
      * Opens the interface used for trading in summoning pouches and scrolls for shards.
      *
@@ -143,27 +143,27 @@ class ShardSwapping {
      */
     fun openTradeInInterface(player: Player, isPouchTradeIn: Boolean) {
         player.open("summoning_trade_in")
-    
+
         // Pouch trade in set up
         player.interfaces.sendVisibility("summoning_trade_in", "pouch_trade_in_text", isPouchTradeIn)
         player.interfaces.sendVisibility("summoning_trade_in", "pouch_trade_in", isPouchTradeIn)
         player.interfaces.sendVisibility("summoning_trade_in", "pouch_tab_scroll_bar", isPouchTradeIn)
-    
+
         // Scroll trade in set up
         player.interfaces.sendVisibility("summoning_trade_in", "scroll_trade_in_text", !isPouchTradeIn)
         player.interfaces.sendVisibility("summoning_trade_in", "scroll_trade_in", !isPouchTradeIn)
         player.interfaces.sendVisibility("summoning_trade_in", "scroll_tab_scroll_bar", !isPouchTradeIn)
-    
+
         val scrollTabActiveSprite = 1190
         val pouchTabActiveSprite = 1191
         val scrollTabInactiveSprite = 1192
         val pouchTabInactiveSprite = 1193
         val interfaceId = 78
-    
+
         val componentId: Int
         val componentString: String
         val script: String
-    
+
         if (isPouchTradeIn) {
             script = "populate_summoning_pouch_trade_in"
             componentId = 15
@@ -177,12 +177,12 @@ class ShardSwapping {
             player.interfaces.sendSprite("summoning_trade_in", "pouch_tab_sprite", pouchTabInactiveSprite)
             player.interfaces.sendSprite("summoning_trade_in", "scroll_tab_sprite", scrollTabActiveSprite)
         }
-    
+
         val width = 8
         val height = 10
         val startingIndex = 1
         val endingIndex = 78
-    
+
         player.sendScript(
             script,
             InterfaceDefinition.pack(interfaceId, componentId),
@@ -197,7 +197,7 @@ class ShardSwapping {
             "Trade-X<col=FF9040>",
             "Trade-All<col=FF9040>",
         )
-    
+
         player.interfaceOptions.unlockAll("summoning_trade_in", componentString, 0..400)
     }
 }

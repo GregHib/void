@@ -17,16 +17,17 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.sex
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Yrsa {
 
     val enums: EnumDefinitions by inject()
-    
+
     init {
         npcOperate("Talk-to", "yrsa") {
             npc<Pleased>("Hi. You wanted to buy some clothes? Or did you want to makeover your shoes?")
@@ -76,7 +77,6 @@ class Yrsa {
             player.closeMenu()
             npc<Happy>("yrsa", "Hey, They look great!")
         }
-
     }
 
     suspend fun Interaction<Player>.startShoeShopping() {
@@ -91,5 +91,4 @@ class Yrsa {
         }
         openDressingRoom("yrsas_shoe_store")
     }
-    
 }

@@ -6,12 +6,13 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class TradeRemove {
 
@@ -35,13 +36,12 @@ class TradeRemove {
         interfaceOption("Remove", "loan_item", "trade_main") {
             removeLend(player, item.id, 0)
         }
-
     }
 
     /**
      * Removing an item from an offer or loan
      */
-    
+
     fun remove(player: Player, id: String, slot: Int, amount: Int) {
         if (!isTrading(player, amount)) {
             return
@@ -55,7 +55,7 @@ class TradeRemove {
             }
         }
     }
-    
+
     fun removeLend(player: Player, id: String, slot: Int) {
         if (!isTrading(player, 1)) {
             return

@@ -6,8 +6,9 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inv.inventoryChanged
+
 @Script
 class ItemInformation {
 
@@ -50,11 +51,9 @@ class ItemInformation {
                 player["item_info_price"] = if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount)
             }
         }
-
     }
 
     /**
      * The item information side panel which shows a shop items requirements, stats and price
      */
-    
 }

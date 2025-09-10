@@ -12,9 +12,10 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import kotlin.math.ceil
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GrandExchangeControls {
 
@@ -192,7 +193,6 @@ class GrandExchangeControls {
                 updateLimits(player)
             }
         }
-
     }
 
     fun InterfaceOption.totalItems(): Int {
@@ -205,7 +205,7 @@ class GrandExchangeControls {
         total += player.inventory.count(item.id)
         return total
     }
-    
+
     /**
      * We have to update the min and max range everytime the price changes to avoid the price conflicting with cs2
      */
@@ -215,7 +215,7 @@ class GrandExchangeControls {
         player["grand_exchange_range_min"] = (player["grand_exchange_price", 0] - percent).coerceAtLeast(0)
         player["grand_exchange_range_max"] = (player["grand_exchange_price", 0] + percent).coerceAtMost(Int.MAX_VALUE)
     }
-    
+
     fun InterfaceOption.itemSelected(): Boolean {
         if (player["grand_exchange_item_id", -1] == -1) {
             // https://youtu.be/wAtBnxSxgiA?si=jsurs070eip_6INS&t=191

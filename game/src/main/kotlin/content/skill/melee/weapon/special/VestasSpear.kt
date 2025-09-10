@@ -9,15 +9,16 @@ import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class VestasSpear {
 
     val players: Players by inject()
     val npcs: NPCs by inject()
-    
+
     init {
         specialAttackDamage("spear_wall", noHit = false) { player ->
             player.start(id, duration = 8)
@@ -38,7 +39,5 @@ class VestasSpear {
                 }
             }
         }
-
     }
-
 }

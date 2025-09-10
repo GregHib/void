@@ -7,18 +7,19 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
 import world.gregs.voidps.engine.entity.item.floor.npcOperateFloorItem
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ItemTake {
 
     val floorItems: FloorItems by inject()
     val logger = InlineLogger()
-    
+
     init {
         floorItemOperate("Take") {
             approachRange(-1)
@@ -36,7 +37,7 @@ class ItemTake {
                 player.message("Too late - it's gone!")
                 return@floorItemOperate
             }
-        
+
             player.inventory.transaction {
                 val freeIndex = inventory.freeIndex()
                 add(item, target.amount)
@@ -68,7 +69,5 @@ class ItemTake {
                 npc.clearAnim()
             }
         }
-
     }
-
 }

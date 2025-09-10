@@ -18,15 +18,16 @@ import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class Ranged {
 
     val weaponStyles: WeaponStyleDefinitions by inject()
     val weaponDefinitions: WeaponAnimationDefinitions by inject()
     val animationDefinitions: AnimationDefinitions by inject()
-    
+
     init {
         combatPrepare("range") { player ->
             if (player.specialAttack && !SpecialAttack.hasEnergy(player)) {
@@ -41,7 +42,6 @@ class Ranged {
         characterCombatSwing(style = "range") { character ->
             swing(character, target)
         }
-
     }
 
     fun swing(character: Character, target: Character) {

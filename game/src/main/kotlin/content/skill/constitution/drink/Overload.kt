@@ -9,13 +9,14 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Overload {
 
@@ -26,7 +27,7 @@ class Overload {
         Skill.Magic,
         Skill.Ranged,
     )
-    
+
     init {
         canConsume("overload*") { player ->
             if (player.inWilderness) {
@@ -96,7 +97,6 @@ class Overload {
             player.message("<dark_red>The effects of overload have worn off and you feel normal again.")
             player["overload_refreshes_remaining"] = 0
         }
-
     }
 
     fun applyBoost(player: Player) {
@@ -106,13 +106,13 @@ class Overload {
         player.levels.boost(Skill.Magic, 7)
         player.levels.boost(Skill.Ranged, 4, 0.1923)
     }
-    
+
     fun removeBoost(player: Player) {
         for (skill in skills) {
             reset(player, skill)
         }
     }
-    
+
     fun reset(player: Player, skill: Skill) {
         if (player.levels.getOffset(skill) > 0) {
             player.levels.clear(skill)

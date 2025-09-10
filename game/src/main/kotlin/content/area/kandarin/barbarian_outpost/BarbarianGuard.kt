@@ -9,10 +9,11 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class BarbarianGuard {
 
@@ -28,7 +29,6 @@ class BarbarianGuard {
                 }
             }
         }
-
     }
 
     suspend fun NPCOption<Player>.startBarCrawl() {
@@ -58,7 +58,7 @@ class BarbarianGuard {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.toggleVialSmashing() {
         if (player["vial_smashing", false]) {
             npc<Quiz>("'Ello friend. I see you're drinking like a barbarian - do you want to stop smashing your vials when you finish them?")
@@ -85,7 +85,7 @@ class BarbarianGuard {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.questComplete() {
         npc<Quiz>("So, how's the Barcrawl coming along?")
         player<Drunk>("I tink I jusht 'bout done dem all... but I losht count...")
@@ -104,7 +104,7 @@ class BarbarianGuard {
             option<Talk>("No thank you, I'd rather keep my vials.")
         }
     }
-    
+
     suspend fun NPCOption<Player>.checkProcess() {
         npc<Quiz>("So, how's the Barcrawl coming along?")
         if (player.ownsItem("barcrawl_card")) {

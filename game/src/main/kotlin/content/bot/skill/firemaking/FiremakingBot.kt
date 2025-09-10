@@ -16,18 +16,19 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.client.instruction.InteractInterfaceItem
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class FiremakingBot {
 
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()
     val objects: GameObjects by inject()
-    
+
     init {
         timerStop("firemaking") { player ->
             if (player.isBot) {
@@ -55,7 +56,6 @@ class FiremakingBot {
                 tasks.register(task)
             }
         }
-
     }
 
     suspend fun Bot.light(map: AreaDefinition, lighter: Item, logs: Item) {

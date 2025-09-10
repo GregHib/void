@@ -7,15 +7,16 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.type.random
+
 @Script
 class Gorak {
 
     val skills = Skill.entries.toMutableSet().apply {
         remove(Skill.Constitution)
     }
-    
+
     init {
         npcCombatAttack("gorak*") {
             if (target is Player && damage > 0) {
@@ -28,7 +29,5 @@ class Gorak {
                 player.message("Your protective prayer doesn't seem to work!")
             }
         }
-
     }
-
 }

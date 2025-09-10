@@ -9,13 +9,14 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class MeleeTutor {
 
@@ -24,7 +25,6 @@ class MeleeTutor {
             npc<Quiz>("Greetings adventurer, I am the Melee combat tutor. Is there anything I can do for you?")
             menu()
         }
-
     }
 
     suspend fun SuspendableContext<Player>.menu(followUp: String = "") {
@@ -39,7 +39,7 @@ class MeleeTutor {
             option("Goodbye.")
         }
     }
-    
+
     suspend fun PlayerChoice.meleeCombat(): Unit = option<Quiz>("Tell me about melee combat.") {
         npc<Neutral>("Well adventurer, the first thing you will need is a sword and a shield appropriate for your level.")
         // look down talking, look up eyebrow raised then quiet
@@ -78,7 +78,7 @@ class MeleeTutor {
             option("Goodbye.")
         }
     }
-    
+
     suspend fun PlayerChoice.weaponTypes(): Unit = option<Neutral>("Tell me about different weapon types I can use.") {
         npc<Happy>("Well let me see now...There are stabbing type weapons such as daggers, then you have swords which are slashing, maces that have great crushing abilities, battle axes which are powerful.")
         npc<Happy>("There are also spears. Spears can be good for Defence and many forms of Attack.")
@@ -87,7 +87,7 @@ class MeleeTutor {
         npc<Neutral>("You might also find that different weapon types are more accurate against different monsters.")
         menu("Is there anything else you would like to know?")
     }
-    
+
     suspend fun PlayerChoice.skillcapes(): Unit = option<Neutral>("Tell me about skillcapes.") {
         if (player.levels.getMax(Skill.Defence) < Level.MAX_LEVEL) {
             npc<Neutral>("Of course. Skillcapes are a symbol of achievement. Only people who have mastered a skill and reached level 99 can get their hands on them and gain the benefits they carry.")
@@ -116,7 +116,7 @@ class MeleeTutor {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.buySkillcape() {
         player<Quiz>("May I buy a Skillcape of Defence, please?")
         npc<Neutral>("You wish to join the elite defenders of this world? I'm afraid such things do not come cheaply - in fact they cost 99000 coins, to be precise!")
@@ -145,20 +145,20 @@ class MeleeTutor {
             }
         }
     }
-    
+
     suspend fun PlayerChoice.training(): Unit = option<Neutral>("I'd like a training sword and shield.") {
         if (player.ownsItem("training_sword") || player.ownsItem("training_shield")) {
             npc<Quiz>("You already have a training sword and shield. Save some for the other adventurers.")
             menu("Is there anything else I can help you with?")
             return@option
         }
-    
+
         if (player.inventory.spaces < 2) {
             npc<Upset>("You don't have enough space for me to give you a training sword, nor a shield.")
             menu("Is there anything else I can help you with?")
             return@option
         }
-    
+
         item("training_sword", 800, "Harlan gives you a Training sword.")
         player.inventory.add("training_sword")
         item("training_shield", 800, "Harlan gives you a Training shield.")

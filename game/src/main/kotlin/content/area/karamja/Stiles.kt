@@ -7,14 +7,15 @@ import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Stiles {
 
     val fishes = setOf("raw_swordfish", "swordfish", "raw_lobster", "lobster", "raw_tuna", "tuna")
-    
+
     init {
         npcOperate("Talk-to", "stiles") {
             npc<Happy>("Ay-uh, 'tis a grand day for the fishin'. Will ye be wantin' to exchange yer fish for banknotes?")
@@ -36,7 +37,6 @@ class Stiles {
         npcOperate("Exchange", "stiles") {
             exchange()
         }
-
     }
 
     suspend fun NPCOption<Player>.whoAreYou() {
@@ -58,7 +58,7 @@ class Stiles {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.witchFish() {
         npc<Happy>("Ahhh, ol' Stiles has banknotes for yer lobbies, yer swordies and yer tuna. 'Tis a grand service I be offerin' here, and nary a penny do I ask in return.")
         choice {
@@ -85,7 +85,7 @@ class Stiles {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.exchange() {
         var total = 0
         player.inventory.transaction {

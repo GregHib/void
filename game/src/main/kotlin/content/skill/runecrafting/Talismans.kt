@@ -5,17 +5,18 @@ import content.entity.player.inv.inventoryItem
 import net.pearx.kasechange.toKebabCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.area.Rectangle
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Talismans {
 
     val overworld = Rectangle(2048, 2496, 3903, 4159)
-    
+
     val teleports: ObjectTeleports by inject()
-    
+
     init {
         inventoryItem("Locate", "*_talisman") {
             if (item.id == "elemental_talisman") {
@@ -36,7 +37,5 @@ class Talismans {
                 player.message("The talisman is having trouble pin-pointing the location.")
             }
         }
-
     }
-
 }

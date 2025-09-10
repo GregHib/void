@@ -14,17 +14,18 @@ import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.*
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Grapple {
 
     val objects: GameObjects by inject()
-    
+
     val areas: AreaDefinitions by inject()
-    
+
     init {
         objectApproach("Grapple", "lumbridge_broken_raft") {
             if (!hasRequirements(ranged = 37, agility = 8, strength = 17)) {
@@ -234,7 +235,6 @@ class Grapple {
             }
             player.tele(dest.copy(level = 0))
         }
-
     }
 
     fun Grapple.lumbridgeTree(grapple: Boolean) {
@@ -244,7 +244,7 @@ class Grapple {
             objects.add("grapple_rope", Tile(x, 3179), shape = ObjectShape.GROUND_DECOR, ticks = 8)
         }
     }
-    
+
     fun Grapple.alKharidTree(grapple: Boolean) {
         val tree = objects[Tile(3260, 3179), "strong_tree"]
         tree?.replace("strong_tree_${if (grapple) "grapple" else "rope"}", ticks = 8)
@@ -252,7 +252,7 @@ class Grapple {
             objects.add("grapple_rope", Tile(x, 3180), shape = ObjectShape.GROUND_DECOR, ticks = 8)
         }
     }
-    
+
     suspend fun ObjectOption<Player>.hasRequirements(ranged: Int, agility: Int, strength: Int): Boolean {
         if (!player.has(Skill.Ranged, ranged) || !player.has(Skill.Agility, agility) || !player.has(Skill.Strength, strength)) {
             statement("You need at least $ranged Ranged, $agility Agility and $strength Strength to do that.")
@@ -260,5 +260,4 @@ class Grapple {
         }
         return Weapon.hasGrapple(player)
     }
-    
 }

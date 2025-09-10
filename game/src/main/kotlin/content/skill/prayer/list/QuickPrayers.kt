@@ -20,14 +20,15 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.playerDespawn
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class QuickPrayers {
 
     val enums: EnumDefinitions by inject()
     val definitions: PrayerDefinitions by inject()
-    
+
     init {
         interfaceOption(component = "regular_prayers", id = "prayer_list") {
             val prayers = player.getActivePrayerVarKey()
@@ -90,14 +91,13 @@ class QuickPrayers {
         playerDeath { player ->
             player[USING_QUICK_PRAYERS] = false
         }
-
     }
 
     /**
      * Prayers
      * Handles the activation of prayers and selection of quick prayers
      */
-    
+
     fun Player.togglePrayer(index: Int, listKey: String, quick: Boolean) {
         val curses = isCurses()
         val definition = if (curses) definitions.getCurse(index) else definitions.getPrayer(index)
@@ -126,22 +126,22 @@ class QuickPrayers {
             sendVariable(listKey)
         }
     }
-    
+
     /**
      * Quick prayers
      * Until the new quick prayer selection is confirmed old
      * quick prayers are stored in [TEMP_QUICK_PRAYERS]
      */
-    
+
     fun Player.saveQuickPrayers() {
         set(SELECTING_QUICK_PRAYERS, false)
         clear(TEMP_QUICK_PRAYERS)
     }
-    
+
     fun Player.cancelQuickPrayers() {
         set(getQuickVarKey(), get(TEMP_QUICK_PRAYERS, 0))
         clear(TEMP_QUICK_PRAYERS)
     }
-    
+
     fun Player.getQuickVarKey(): String = if (isCurses()) QUICK_CURSES else QUICK_PRAYERS
 }

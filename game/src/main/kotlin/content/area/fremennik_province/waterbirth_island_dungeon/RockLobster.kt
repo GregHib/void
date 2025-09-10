@@ -7,10 +7,11 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class RockLobster {
 
@@ -21,17 +22,16 @@ class RockLobster {
                 npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
                 return@huntPlayer
             }
-        
+
             // transform into combat form
             npc.transform("rock_lobster")
-        
+
             // stand-up delay
             npc.softQueue("stand_up", 2) {
                 npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
                 resetToHidden(npc)
             }
         }
-
     }
 
     /**
@@ -48,7 +48,7 @@ class RockLobster {
             }
         }
     }
-    
+
     /**
      * Rock Lobster disguised as a rock – transform when player walks nearby.
      */

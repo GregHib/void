@@ -4,8 +4,9 @@ import content.entity.obj.door.enterDoor
 import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inv.inventory
+
 @Script
 class BrassKey {
 
@@ -19,7 +20,5 @@ class BrassKey {
                 player.message("The door is locked. You need a brass key to open it.")
             }
         }
-
     }
-
 }

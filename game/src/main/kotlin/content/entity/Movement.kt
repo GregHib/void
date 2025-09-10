@@ -13,13 +13,14 @@ import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.move.npcMove
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Rectangle
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Movement {
 
@@ -28,7 +29,7 @@ class Movement {
     val players: Players by inject()
     val borders = mutableMapOf<Zone, Rectangle>()
     val areas: AreaDefinitions by inject()
-    
+
     init {
         worldSpawn {
             for (border in areas.getTagged("border")) {
@@ -50,7 +51,7 @@ class Movement {
             if (minimap && !player["a_world_in_microcosm_task", false]) {
                 player["a_world_in_microcosm_task"] = true
             }
-        
+
             val target = player.tile.copy(x, y)
             val border = borders[target.zone]
             if (border != null && (target in border || player.tile in border)) {
@@ -96,7 +97,6 @@ class Movement {
                 remove(npc)
             }
         }
-
     }
 
     fun add(char: Character) {
@@ -108,7 +108,7 @@ class Movement {
             }
         }
     }
-    
+
     fun remove(char: Character) {
         val mask = char.collisionFlag
         val size = char.size

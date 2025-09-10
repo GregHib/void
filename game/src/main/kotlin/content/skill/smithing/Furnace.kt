@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
@@ -25,7 +26,7 @@ import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Furnace {
 
@@ -40,10 +41,10 @@ class Furnace {
         "adamant_bar",
         "rune_bar",
     )
-    
+
     val logger = InlineLogger()
     val itemDefinitions: ItemDefinitions by inject()
-    
+
     init {
         objectOperate("Smelt", "furnace*", arrive = false) {
             smeltingOptions(player, target, bars)
@@ -57,7 +58,6 @@ class Furnace {
             }
             smeltingOptions(player, target, list)
         }
-
     }
 
     suspend fun Context<Player>.smeltingOptions(
@@ -88,13 +88,13 @@ class Furnace {
         val (item, amount) = makeAmount(available, "Make", max)
         smelt(player, gameObject, item, amount)
     }
-    
+
     fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
         if (amount <= 0) {
             player.softTimers.stop("smelting")
             return
         }
-    
+
         val definition = itemDefinitions.get(id)
         val smelting: Smelting = definition.getOrNull("smelting") ?: return
         if (!player.has(Skill.Smithing, smelting.level, message = true)) {
@@ -132,7 +132,7 @@ class Furnace {
             }
         }
     }
-    
+
     fun varrockArmour(
         player: Player,
         target: GameObject,

@@ -17,18 +17,19 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.client.instruction.InteractDialogue
 import world.gregs.voidps.network.client.instruction.InteractInterfaceObject
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class CookingBot {
 
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()
-    
+
     init {
         timerStop("cooking") { player ->
             if (player.isBot) {
@@ -56,7 +57,6 @@ class CookingBot {
                 tasks.register(task)
             }
         }
-
     }
 
     suspend fun Bot.cook(map: AreaDefinition, rawItem: Item, set: GearDefinition) {
@@ -90,7 +90,7 @@ class CookingBot {
             }
         }
     }
-    
+
     fun isRange(map: AreaDefinition, obj: GameObject): Boolean {
         if (!map.area.contains(obj.tile)) {
             return false

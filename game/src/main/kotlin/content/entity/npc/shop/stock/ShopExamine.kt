@@ -4,6 +4,7 @@ import content.entity.npc.shop.shopInventory
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class ShopExamine {
 
@@ -24,7 +25,5 @@ class ShopExamine {
             val examine: String = item.def.getOrNull("examine") ?: return@interfaceOption
             player.message(examine)
         }
-
     }
-
 }

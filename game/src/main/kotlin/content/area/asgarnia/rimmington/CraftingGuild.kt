@@ -11,17 +11,18 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class CraftingGuild {
 
     val logger = InlineLogger()
-    
+
     init {
         objectOperate("Open", "guild_door_2_closed") {
             if (player.tile.y == 3288) {
@@ -85,7 +86,5 @@ class CraftingGuild {
             player<Neutral>("I suppose not.")
             npc<Happy>("Right on!")
         }
-
     }
-
 }

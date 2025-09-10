@@ -4,8 +4,9 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
-import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inv.holdsItem
+
 @Script
 class TheKnightsSword {
 
@@ -78,7 +79,7 @@ class TheKnightsSword {
                         "<str>until I gave him a Redberry pie, which he gobbled up.",
                         "<str>Thurgo needed a picture of the sword before he could",
                         "<str>start work on a replacement. I took him a portrait of it.",
-        
+
                     )
                     if (player.holdsItem("blurite_sword") || player.ownsItem("blurite_sword")) {
                         list.add("<str>Thurgo has now smithed me a replica of Sir Vyvin's sword.")
@@ -102,7 +103,5 @@ class TheKnightsSword {
             }
             player.questJournal("The Knight's Sword", lines)
         }
-
     }
-
 }

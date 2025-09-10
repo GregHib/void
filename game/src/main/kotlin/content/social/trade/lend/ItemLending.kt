@@ -9,15 +9,16 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ItemLending {
 
     val players: Players by inject()
-    
+
     init {
         playerSpawn { player ->
             checkBorrowComplete(player)
@@ -59,14 +60,13 @@ class ItemLending {
                 returnLoan(player)
             }
         }
-
     }
 
     /**
      * Reschedule timers on player login
      * On logout return items borrowed or lent until logout
      */
-    
+
     fun checkBorrowComplete(player: Player) {
         if (!player.contains("borrowed_item")) {
             return
@@ -79,7 +79,7 @@ class ItemLending {
             player.softTimers.start("borrow_message", true)
         }
     }
-    
+
     fun checkLoanComplete(player: Player) {
         if (!player.returnedItems.isFull()) {
             return
@@ -91,13 +91,13 @@ class ItemLending {
             player.softTimers.start("loan_message", true)
         }
     }
-    
+
     fun checkBorrowUntilLogout(player: Player) {
         if (!player.contains("borrow_timeout") && player.contains("borrowed_item")) {
             returnLoan(player)
         }
     }
-    
+
     fun checkLoanUntilLogout(player: Player) {
         if (!player.contains("lend_timeout") && player.returnedItems.isFull() && player.contains("lent_to")) {
             val name: String? = player["lent_to"]
@@ -109,7 +109,7 @@ class ItemLending {
             borrower.message("The item you borrowed has been returned to its owner.")
         }
     }
-    
+
     fun stopLending(player: Player) {
         player.message("The item you lent has been returned to your collection box.")
         player.clear("lent_to")

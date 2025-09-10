@@ -12,13 +12,14 @@ import world.gregs.voidps.engine.entity.character.npc.hunt.HuntPlayer
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntNPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class Aggression {
 
     val areas: AreaDefinitions by inject()
-    
+
     val playerHandler: suspend HuntPlayer.(npc: NPC) -> Unit = huntPlayer@{ npc ->
         if (!Settings["world.npcs.aggression", true] || attacking(npc, target)) {
             return@huntPlayer
@@ -59,7 +60,6 @@ class Aggression {
             }
             npc.mode = Interact(npc, target, NPCOption(npc, target, target.def, "Attack"))
         }
-
     }
 
     fun attacking(npc: NPC, target: Character): Boolean {

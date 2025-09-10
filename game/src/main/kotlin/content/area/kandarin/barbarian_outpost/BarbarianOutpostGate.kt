@@ -7,13 +7,14 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class BarbarianOutpostGate {
 
     val npcs: NPCs by inject()
-    
+
     init {
         objectOperate("Open", "barbarian_outpost_gate_left_closed", "barbarian_outpost_gate_right_closed") {
             if (!player.questCompleted("alfred_grimhands_barcrawl")) {
@@ -25,7 +26,5 @@ class BarbarianOutpostGate {
             player.walkToDelay(player.tile.copy(y = player.tile.y.coerceIn(2569, 3570)))
             enterDoor(target, delay = 2)
         }
-
     }
-
 }

@@ -4,10 +4,11 @@ import content.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GuthansSet {
 
@@ -34,7 +35,6 @@ class GuthansSet {
                 target.gfx("guthans_effect")
             }
         }
-
     }
 
     fun Player.hasFullSet() = BarrowsArmour.hasSet(
@@ -44,5 +44,4 @@ class GuthansSet {
         "guthans_platebody",
         "guthans_chainskirt",
     )
-    
 }

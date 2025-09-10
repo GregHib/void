@@ -10,9 +10,10 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Joe {
 
@@ -63,7 +64,6 @@ class Joe {
                 else -> player<Talk>("I don't see any need to give the guard my beer. I'll keep it for myself.")
             }
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.fancyABeer() {
@@ -71,7 +71,7 @@ class Joe {
             beer()
         }
     }
-    
+
     suspend fun TargetInteraction<Player, NPC>.beer() {
         npc<Happy>("Ah, that would be lovely. Only one though, just to wet my throat.")
         player<Talk>("Of course. It must be tough being here without a drink.")
@@ -82,7 +82,7 @@ class Joe {
         npc<Happy>("That was perfect! I can't thank you enough.")
         anotherBeer()
     }
-    
+
     suspend fun TargetInteraction<Player, NPC>.anotherBeer() {
         player<Quiz>("How are you? Still ok? Not too drunk?")
         if (!player.inventory.contains("beer", 2)) {
@@ -98,7 +98,7 @@ class Joe {
         items("beer", "beer", "You hand two more beers to the guard. He takes a sip of one, and then he quickly drinks them both.")
         npc<Drunk>("Franksh! That wash jusht what I need to shtay on guard. No more beersh, I don't want to get drunk.")
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.guardLife() {
         option<Talk>("Tell me about the life of a guard.") {
             npc<RollEyes>("Well, the hours are good, but most of those hours are a drag.")
@@ -109,7 +109,7 @@ class Joe {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.guardDreams() {
         option<Talk>("What did you want to be when you were a boy?") {
             npc<RollEyes>("Well, I loved to sit by the lake, with my toes in the water. I'd shoot the fish with my bow and arrow.")
@@ -154,7 +154,7 @@ class Joe {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.betterGo() {
         option<Talk>("I'd better go.") {
             npc<Talk>("Thanks, I appreciate that. Talking on duty can be punished by having your mouth stitched up. These are tough people, make no mistake.")

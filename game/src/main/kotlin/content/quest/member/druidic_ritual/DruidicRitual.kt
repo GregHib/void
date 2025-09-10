@@ -4,6 +4,7 @@ import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class DruidicRitual {
 
@@ -42,7 +43,5 @@ class DruidicRitual {
             }
             player.questJournal("Druidic Ritual", lines)
         }
-
     }
-
 }

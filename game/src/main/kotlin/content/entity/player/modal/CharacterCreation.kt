@@ -10,17 +10,18 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class CharacterCreation {
 
     val enums: EnumDefinitions by inject()
     val structs: StructDefinitions by inject()
-    
+
     init {
         interfaceOpen("character_creation") { player ->
             player.interfaceOptions.unlockAll(id, "skin_colour", 0 until enums.get("character_skin_interfaces").length)
@@ -138,7 +139,6 @@ class CharacterCreation {
             player.flagAppearance()
             player.open(player.interfaces.gameFrame)
         }
-
     }
 
     fun updateStyle(
@@ -156,7 +156,7 @@ class CharacterCreation {
         player["makeover_shoes"] = struct["character_style_shoes"]
         updateColours(player, styleIndex, subIndex)
     }
-    
+
     fun updateColours(
         player: Player,
         styleIndex: Int = (player["character_creation_style", 0] - 1).coerceAtLeast(0),
@@ -169,7 +169,7 @@ class CharacterCreation {
         player["makeover_colour_legs"] = struct["character_style_colour_legs_$colour"]
         player["makeover_colour_shoes"] = struct["character_style_colour_shoes_$colour"]
     }
-    
+
     fun setStyle(player: Player, id: Int) {
         val size = enums.get("character_styles").length
         val sex = if (player["makeover_female", false]) "female" else "male"
@@ -184,7 +184,7 @@ class CharacterCreation {
             }
         }
     }
-    
+
     fun swapSex(player: Player, female: Boolean) {
         player["makeover_female"] = female
         player["character_creation_female"] = female
@@ -196,7 +196,7 @@ class CharacterCreation {
         player["character_creation_sub_style"] = 1
         updateStyle(player)
     }
-    
+
     fun getStyleStruct(player: Player, styleIndex: Int, subIndex: Int): StructDefinition {
         val female = player["makeover_female", false]
         val sex = if (female) "female" else "male"

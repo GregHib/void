@@ -21,23 +21,24 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Jewellery {
 
     val moulds = listOf("ring", "necklace", "amulet_unstrung", "bracelet")
     val gems = listOf("gold", "sapphire", "emerald", "ruby", "diamond", "dragonstone", "onyx", "enchanted_gem")
-    
+
     val logger = InlineLogger()
-    
+
     val Item.jewellery: Jewellery?
         get() = def.getOrNull("jewellery")
-    
+
     init {
         itemOnObjectOperate("*_mould", "furnace*", arrive = false) {
             player.open("make_mould${if (World.members) "_slayer" else ""}")
@@ -61,7 +62,6 @@ class Jewellery {
         interfaceClose("make_mould*") { player ->
             player.sendScript("clear_dialogues")
         }
-
     }
 
     fun InterfaceRefreshed.makeMould(player: Player) {
@@ -86,7 +86,7 @@ class Jewellery {
             }
         }
     }
-    
+
     fun Context<Player>.make(component: String, amount: Int) {
         val split = component.removePrefix("make_").split("_option_")
         val type = split.first()
@@ -95,7 +95,7 @@ class Jewellery {
         player.closeMenu()
         player.make(item, gem, amount)
     }
-    
+
     fun Player.make(item: Item, gem: String, amount: Int) {
         if (amount <= 0) {
             return

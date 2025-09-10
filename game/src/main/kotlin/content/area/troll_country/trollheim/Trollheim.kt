@@ -7,10 +7,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Trollheim {
 
@@ -159,9 +160,7 @@ class Trollheim {
             }
             player.exp(Skill.Agility, 8.0)
         }
-
     }
 
     // TODO levels and failing
-    
 }

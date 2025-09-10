@@ -6,19 +6,20 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Satchel {
 
     val cake = 0x1
     val banana = 0x2
     val sandwich = 0x4
-    
+
     init {
         inventoryItem("Inspect", "*_satchel") {
             val charges = player.inventory.charges(player, slot)
@@ -70,7 +71,6 @@ class Satchel {
                 setCharge(toSlot, charges + sandwich)
             }
         }
-
     }
 
     fun withdraw(player: Player, slot: Int, charges: Int, id: String, food: Int): Int {
@@ -87,5 +87,4 @@ class Satchel {
         }
         return charges
     }
-    
 }

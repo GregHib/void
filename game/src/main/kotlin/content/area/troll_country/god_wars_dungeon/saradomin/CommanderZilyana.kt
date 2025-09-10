@@ -12,21 +12,22 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.npcDespawn
 import world.gregs.voidps.engine.entity.npcSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class CommanderZilyana {
 
     val players: Players by inject()
     val areas: AreaDefinitions by inject()
     val npcs: NPCs by inject()
-    
+
     var starlight: NPC? = null
     var bree: NPC? = null
     var growler: NPC? = null
-    
+
     init {
         npcCombatSwing("commander_zilyana") { npc ->
             when (random.nextInt(2)) {
@@ -85,7 +86,5 @@ class CommanderZilyana {
                 }
             }
         }
-
     }
-
 }

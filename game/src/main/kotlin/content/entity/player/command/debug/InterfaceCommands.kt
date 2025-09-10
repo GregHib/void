@@ -14,15 +14,16 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.encode.*
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class InterfaceCommands {
 
     val definitions: InterfaceDefinitions by inject()
-    
+
     init {
         Command.adminCommands.add("${Colours.PURPLE.toTag()}====== Interface Commands ======</col>")
 
@@ -176,12 +177,10 @@ class InterfaceCommands {
                 player.client?.sendVarcStr(intId, string)
             }
         }
-
     }
 
     fun closeInterface(player: Player): Boolean {
         val id = player.interfaces.get("main_screen") ?: player.interfaces.get("wide_screen") ?: player.interfaces.get("underlay") ?: return false
         return player.interfaces.close(id)
     }
-    
 }

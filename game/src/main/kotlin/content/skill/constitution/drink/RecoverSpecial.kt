@@ -4,10 +4,11 @@ import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import content.entity.player.combat.special.specialAttackEnergy
 import content.skill.constitution.canConsume
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class RecoverSpecial {
 
@@ -36,7 +37,5 @@ class RecoverSpecial {
         timerStop("recover_special") { player ->
             player.clear("recover_special_delay")
         }
-
     }
-
 }

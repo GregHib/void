@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -28,19 +29,19 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Fishing {
 
     val logger = InlineLogger()
     val itemDefinitions: ItemDefinitions by inject()
-    
+
     val NPC.spot: Map<String, Spot>
         get() = def["fishing", emptyMap()]
-    
+
     val Spot.minimumLevel: Int
         get() = bait.keys.minOf { minimumLevel(it) ?: Int.MAX_VALUE }
-    
+
     init {
         npcOperate("*", "fishing_spot_*") {
             arriveDelay()
@@ -57,22 +58,22 @@ class Fishing {
                     player.message("Your inventory is too full to hold any more fish.")
                     break
                 }
-        
+
                 if (target.tile != tile) {
                     break
                 }
-        
+
                 val data = target.spot[option] ?: return@npcOperate
                 if (!player.has(Skill.Fishing, data.minimumLevel, true)) {
                     break
                 }
-        
+
                 val tackle = data.tackle.firstOrNull { tackle -> player.holdsItem(tackle) }
                 if (tackle == null) {
                     player.message("You need a ${data.tackle.first().toTitleCase()} to catch these fish.")
                     break@fishing
                 }
-        
+
                 val bait = data.bait.keys.firstOrNull { bait -> bait == "none" || player.holdsItem(bait) }
                 val catches = data.bait[bait]
                 if (bait == null || catches == null) {
@@ -83,7 +84,7 @@ class Fishing {
                     player.message(itemDefinitions.get(tackle)["cast", ""], ChatType.Filter)
                     first = false
                 }
-        
+
                 val remaining = player.remaining("action_delay")
                 if (remaining < 0) {
                     player.face(target)
@@ -110,7 +111,6 @@ class Fishing {
             target.get<MutableSet<String>>("fishers")?.remove(player.name)
             player.softTimers.stop("fishing")
         }
-
     }
 
     fun addCatch(player: Player, catch: String) {
@@ -127,7 +127,7 @@ class Fishing {
             else -> logger.warn { "Error adding fish $fish ${player.inventory.transaction.error}" }
         }
     }
-    
+
     fun bigCatch(catch: String): Boolean = when {
         World.members -> false
         catch == "raw_bass" && random.nextInt(1000) == 0 -> true
@@ -135,6 +135,6 @@ class Fishing {
         catch == "raw_shark" && random.nextInt(5000) == 0 -> true
         else -> false
     }
-    
+
     fun Spot.minimumLevel(bait: String): Int? = this.bait[bait]?.minOf { itemDefinitions.get(it)["fishing", Catch.EMPTY].level }
 }

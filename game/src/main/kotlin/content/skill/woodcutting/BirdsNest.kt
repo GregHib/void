@@ -5,17 +5,18 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class BirdsNest {
 
     val drops: DropTables by inject()
     val itemDefinitions: ItemDefinitions by inject()
-    
+
     init {
         inventoryOptions("Search", "inventory") {
             val tableId = when {
@@ -28,25 +29,25 @@ class BirdsNest {
                 item.id == "birds_nest_raven_egg" -> "birds_nest_egg_raven_table"
                 else -> return@inventoryOptions
             }
-        
+
             val table = drops.get(tableId) ?: return@inventoryOptions
             val items = mutableListOf<ItemDrop>()
             table.role(list = items)
-        
+
             val drop = items.firstOrNull() ?: return@inventoryOptions
             val itemId = drop.id
             val itemAmount = drop.amount?.start ?: 1
-        
+
             if (player.inventory.isFull()) {
                 player.message("Your inventory is too full to take anything out of the bird's nest.")
                 return@inventoryOptions
             }
-        
+
             val itemName = itemDefinitions.get(drop.id).name.lowercase()
             if (player.inventory.replace(slot, item.id, "birds_nest_empty")) {
                 player.inventory.add(itemId, itemAmount)
             }
-        
+
             if (itemId.contains("acorn") || itemId.contains("orange") || itemId.contains("apple_tree") || itemId.contains("emerald")) {
                 if (itemAmount > 1) {
                     player.message("You take $itemAmount ${itemName}s out of the bird's nest.")
@@ -61,7 +62,5 @@ class BirdsNest {
                 }
             }
         }
-
     }
-
 }

@@ -14,34 +14,35 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.min
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class SummoningCrafting {
 
     val enums: EnumDefinitions by inject()
     val itemDefinitions: ItemDefinitions by inject()
-    
+
     val pouchInterfaceId = 672
     val pouchComponentId = 16
-    
+
     val scrollInterfaceId = 666
     val scrollComponentId = 16
-    
+
     val width = 8
     val height = 10
-    
+
     val startingIndex = 1
     val endingIndex = 78
-    
+
     val startingDungeoneeringIndex = 1100
     val endingDungeoneeringIndex = 1159
-    
+
     init {
         objectOperate("Infuse-pouch") {
             openPouchCraftingInterface(player)
@@ -58,12 +59,12 @@ class SummoningCrafting {
         interfaceOption("Infuse*", "pouches", "summoning_pouch_creation") {
             // TODO: When dungeoneering support is implemented, this will need to change
             val enumIndex = (itemSlot + 3) / 5
-        
+
             if (item.id.endsWith("_u")) {
                 sendIngredientMessage(player, enumIndex)
                 return@interfaceOption
             }
-        
+
             when (option) {
                 "Infuse" -> infusePouches(player, enumIndex, 1)
                 "Infuse-5" -> infusePouches(player, enumIndex, 5)
@@ -85,7 +86,7 @@ class SummoningCrafting {
         interfaceOption("Transform*", "scrolls", "summoning_scroll_creation") {
             // TODO: When dungeoneering support is implemented, this will need to change
             val enumIndex = (itemSlot + 3) / 5
-        
+
             when (option) {
                 "Transform" -> transformScrolls(player, enumIndex, 1)
                 "Transform-5" -> transformScrolls(player, enumIndex, 5)
@@ -97,11 +98,10 @@ class SummoningCrafting {
                 "Transform-All" -> transformScrolls(player, enumIndex, Int.MAX_VALUE)
             }
         }
-
     }
 
     private val logger = InlineLogger()
-    
+
     /**
      * Crafts summoning familiar pouches.
      *
@@ -112,16 +112,16 @@ class SummoningCrafting {
     fun infusePouches(player: Player, enumIndex: Int, amount: Int) {
         val pouchItemId = enums.get("summoning_pouch_ids_1").getInt(enumIndex)
         val pouchItem = Item(itemDefinitions.get(pouchItemId).stringId)
-    
+
         val shards = getShards(pouchItem)
         val charms = getCharms(pouchItem)
         val pouches = getPouches(pouchItem)
         val tertiaries = getTertiaries(pouchItem)
-    
+
         val xpPerCraft: Double = pouchItem.def["infuse_experience"]
         val maxCraftable = maxCraftable(player, shards, charms, pouches, tertiaries) ?: return
         val amountToCraft = min(amount, maxCraftable)
-    
+
         player.inventory.transaction {
             remove(shards.id, shards.amount * amountToCraft)
             remove(charms.id, charms.amount * amountToCraft)
@@ -129,14 +129,14 @@ class SummoningCrafting {
             tertiaries.forEach { tertiary -> remove(tertiary.id, tertiary.amount * amountToCraft) }
             add(pouchItem.id, amountToCraft)
         }
-    
+
         if (player.inventory.transaction.error == TransactionError.None) {
             player.anim("summoning_infuse")
             player.exp(Skill.Summoning, xpPerCraft * amountToCraft)
             player.closeMenu()
         }
     }
-    
+
     /**
      * Crafts summoning scrolls.
      *
@@ -147,27 +147,27 @@ class SummoningCrafting {
     fun transformScrolls(player: Player, enumIndex: Int, amount: Int) {
         val scrollItemId = enums.get("summoning_scroll_ids_1").getInt(enumIndex)
         val scrollItem = Item(itemDefinitions.get(scrollItemId).stringId)
-    
+
         val pouchId = enums.get("summoning_scroll_ids_2").getKey(scrollItemId)
         val pouchItem = Item(itemDefinitions.get(pouchId).stringId)
-    
+
         val maxTransformAmount = player.inventory.count(pouchItem.id)
         val amountToTransform = min(amount, maxTransformAmount)
-    
+
         val xpPerCraft: Double = scrollItem.def["transform_experience"]
-    
+
         player.inventory.transaction {
             remove(pouchItem.id, amountToTransform)
             add(scrollItem.id, amountToTransform * 10)
         }
-    
+
         if (player.inventory.transaction.error == TransactionError.None) {
             player.anim("summoning_infuse")
             player.exp(Skill.Summoning, xpPerCraft * amountToTransform)
             player.closeMenu()
         }
     }
-    
+
     /**
      * Gets the one or two tertiaries and amount needed to craft the given familiar pouch.
      *
@@ -180,16 +180,16 @@ class SummoningCrafting {
         val tertiaryItemAmount1: Int = pouch.def["summoning_pouch_req_item_amount_1"]
         val tertiaryItemId2 = pouch.def["summoning_pouch_req_item_id_2", -1]
         val tertiaryItemAmount2 = pouch.def["summoning_pouch_req_item_amount_2", -1]
-    
+
         val tertiaries = mutableListOf(Item(itemDefinitions.get(tertiaryItemId1).stringId, tertiaryItemAmount1))
-    
+
         if (tertiaryItemId2 != -1 && tertiaryItemAmount2 != -1) {
             tertiaries.add(Item(itemDefinitions.get(tertiaryItemId2).stringId, tertiaryItemAmount2))
         }
-    
+
         return tertiaries.toList()
     }
-    
+
     /**
      * Gets the shard and amount needed to craft the given familiar pouch.
      *
@@ -202,7 +202,7 @@ class SummoningCrafting {
         val shardAmount: Int = pouch.def["summoning_shard_amount"]
         return Item(itemDefinitions.get(shardItemId).stringId, shardAmount)
     }
-    
+
     /**
      * Gets the charm and amount needed to craft the given familiar pouch.
      *
@@ -215,7 +215,7 @@ class SummoningCrafting {
         val charmAmount: Int = pouch.def["summoning_charm_amount"]
         return Item(itemDefinitions.get(charmItemId).stringId, charmAmount)
     }
-    
+
     /**
      * Gets the pouch and amount needed to craft the given familiar pouch.
      *
@@ -228,7 +228,7 @@ class SummoningCrafting {
         val pouchAmount: Int = pouch.def["summoning_pouch_amount"]
         return Item(itemDefinitions.get(pouchItemId).stringId, pouchAmount)
     }
-    
+
     /**
      * Gets the maximum number of pouches the player can craft with the items they currently have in their
      * inventory.
@@ -247,7 +247,7 @@ class SummoningCrafting {
             logger.info { "No tertiaries were provided." }
             return null
         }
-    
+
         val charmCount = player.inventory.count(charm.id).floorDiv(charm.amount)
         val shardCount = player.inventory.count(shards.id).floorDiv(shards.amount)
         val pouchCount = player.inventory.count(pouch.id).floorDiv(pouch.amount)
@@ -258,10 +258,10 @@ class SummoningCrafting {
                 minTertiaries = count
             }
         }
-    
+
         return minOf(charmCount, shardCount, pouchCount, minTertiaries)
     }
-    
+
     /**
      * Sends a message to the given player with the ingredients needed for crafting a pouch.
      *
@@ -271,10 +271,10 @@ class SummoningCrafting {
     fun sendIngredientMessage(player: Player, enumIndex: Int) {
         val realPouchId = enums.get("summoning_pouch_ids_1").getInt(enumIndex)
         val ingredientString = enums.get("summoning_pouch_crafting_ingredient_strings").getString(realPouchId)
-    
+
         player.message(ingredientString)
     }
-    
+
     /**
      * Opens the interface used for crafting summoning pouches.
      *
@@ -299,7 +299,7 @@ class SummoningCrafting {
         )
         player.interfaceOptions.unlockAll("summoning_pouch_creation", "pouches", 0..400)
     }
-    
+
     /**
      * Opens the interface used for crafting summoning scrolls.
      *

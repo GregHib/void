@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -15,7 +16,7 @@ import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class AvasDevices {
 
@@ -42,7 +43,7 @@ class AvasDevices {
         "steel_full_helm",
         "toy_mouse",
     )
-    
+
     val accumulator = setOf(
         "steel_arrow",
         "iron_ore",
@@ -69,9 +70,9 @@ class AvasDevices {
         "broken_arrow",
         "toy_mouse",
     )
-    
+
     val floorItems: FloorItems by inject()
-    
+
     init {
         playerSpawn { player ->
             update(player)
@@ -108,7 +109,6 @@ class AvasDevices {
                 floorItems.add(player.tile, item, revealTicks = 100, disappearTicks = 200, owner = player)
             }
         }
-
     }
 
     fun update(player: Player) {
@@ -118,5 +118,4 @@ class AvasDevices {
             player.timers.stop("junk_collection")
         }
     }
-    
 }

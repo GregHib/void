@@ -6,6 +6,7 @@ import content.entity.sound.sound
 import content.skill.melee.weapon.drainByDamage
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class BarrelchestAnchor {
 
@@ -19,7 +20,5 @@ class BarrelchestAnchor {
                 drainByDamage(target, damage, Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Ranged)
             }
         }
-
     }
-
 }

@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.charges
@@ -30,12 +31,12 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ItemOnItems {
 
     val itemOnItemDefs: ItemOnItemDefinitions by inject()
-    
+
     init {
         itemOnItem(bidirectional = false) { player ->
             val overlaps = itemOnItemDefs.getOrNull(fromItem, toItem)
@@ -72,7 +73,6 @@ class ItemOnItems {
         interfaceOpen("dialogue_skill_creation") { player ->
             player["selecting_amount"] = true
         }
-
     }
 
     fun useItemOnItem(
@@ -86,12 +86,12 @@ class ItemOnItems {
             player.softTimers.stop("item_on_item")
             return
         }
-    
+
         if (skill != null && !player.has(skill, def.level, true)) {
             player.softTimers.stop("item_on_item")
             return
         }
-    
+
         val transaction = player.inventory.transaction
         transaction.start()
         val message = transaction.removeItems(def, success = true)
@@ -118,7 +118,7 @@ class ItemOnItems {
             replaceItems(def, player, skill, amount, count)
         }
     }
-    
+
     fun replaceItems(
         def: ItemOnItemDefinition,
         player: Player,
@@ -149,7 +149,7 @@ class ItemOnItems {
         }
         useItemOnItem(player, skill, def, amount, count + 1)
     }
-    
+
     fun makeImmediately(player: Player, overlaps: List<ItemOnItemDefinition>, maximum: Int, inventory: Inventory): Boolean {
         if (overlaps.size != 1) {
             return false
@@ -158,7 +158,7 @@ class ItemOnItems {
         val stackable = definition.maximum == -1 && definition.remove.all { inventory.stackable(it.id) } && definition.one.all { inventory.stackable(it.id) }
         return stackable || maximum == 1 || player["selecting_amount", false] || player.inCombat
     }
-    
+
     fun getMaximum(overlaps: List<ItemOnItemDefinition>, player: Player): Int {
         var max = 0
         for (overlap in overlaps) {
@@ -176,7 +176,7 @@ class ItemOnItems {
         }
         return max
     }
-    
+
     fun Transaction.removeItems(def: ItemOnItemDefinition, success: Boolean): String {
         for (item in def.requires) {
             if (!inventory.contains(item.id, item.amount)) {
@@ -201,7 +201,7 @@ class ItemOnItems {
             val first = def.one.first()
             return "You don't have enough ${first.def.name.lowercase().plural(first.amount)} to ${def.type} this."
         }
-    
+
         for (add in if (success) def.add else def.fail) {
             val index = inventory.freeIndex()
             add(add.id, add.amount)

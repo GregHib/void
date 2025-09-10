@@ -7,12 +7,13 @@ import content.quest.quest
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Osman {
 
@@ -86,7 +87,6 @@ class Osman {
                 }
             }
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.findThings() {
@@ -94,7 +94,7 @@ class Osman {
             npc<Shifty>("May good luck travel with you. Don't forget to find Leela. It can't be done without her help.")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.firstThing() {
         option<Talk>("What is the first thing I must do?") {
             npc<Shifty>("The prince is guarded by some stupid guards and a clever woman. The woman is our only way to get the prince out. Only she can walk freely about the area.")
@@ -111,7 +111,7 @@ class Osman {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.secondThing(text: String = "What is the second thing you need?") {
         option<Quiz>(text) {
             npc<Shifty>("We need the key, or we need a copy made. If you can get some soft clay then you can copy the key...")
@@ -124,7 +124,7 @@ class Osman {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.remainingItems() {
         if (player.inventory.contains("bronze_key_prince_ali_rescue")) {
             npc<Shifty>("The key you already have. Good.")

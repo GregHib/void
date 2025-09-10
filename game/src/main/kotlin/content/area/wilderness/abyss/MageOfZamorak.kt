@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -26,15 +27,15 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class MageOfZamorak {
 
     val areas: AreaDefinitions by inject()
-    
+
     val abyss = areas["abyss_multi_area"]
     val abyssCenter = areas["abyss_center"]
-    
+
     init {
         playerSpawn { player ->
             player.sendVariable("enter_the_abyss")
@@ -49,7 +50,7 @@ class MageOfZamorak {
                 npc<Angry>("I don't speak to Saradominist filth.")
                 return@npcOperate
             }
-        
+
             if (player.questCompleted("rune_mysteries")) {
                 when (player["enter_the_abyss", "unstarted"]) {
                     "unstarted" -> {
@@ -62,7 +63,7 @@ class MageOfZamorak {
             } else {
                 npc<Angry>("This isn't the place to talk. Unless you're here to buy something, you should leave.")
             }
-        
+
             choice {
                 option("Let's see what you're selling.") {
                     player.openShop("mage_of_zamorak")
@@ -137,7 +138,6 @@ class MageOfZamorak {
                 }
             }
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.aboutGroup() {
@@ -162,7 +162,7 @@ class MageOfZamorak {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.aboutAbyss() {
         option<Quiz>("Can you tell me more about the Abyss?") {
             npc<Talk>("It is a hard place to describe. We often refer to it as another plane, but that isn't quite accurate. If anything, it is more like a plane that sits between all other planes.")
@@ -186,7 +186,7 @@ class MageOfZamorak {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.takenOrb() {
         npc<Happy>("You have done well. Now, time for us to uphold our end of the bargin.")
         npc<Neutral>("The reason we are able to craft so many runes is because we do not visit the runic altars in the traditional way. Instead, we have found a way to teleport to them directly.")
@@ -208,7 +208,7 @@ class MageOfZamorak {
         player["enter_the_abyss"] = "completed"
         player.exp(Skill.Runecrafting, 1000.0)
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.whereRunes() {
         option<Quiz>("Where do you get your runes from?") {
             npc<Uncertain>("Well we craft them of course.")
@@ -236,7 +236,7 @@ class MageOfZamorak {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.accessLostMine() {
         npc<Angry>("Until recently, our runecrafting secrets allowed us to produce runes at a far superior rate compared to the inept Order of Wizards, but something has changed.")
         npc<Angry>("From what we can gather, they've somehow rediscovered how to access the lost Rune Essence Mine.")
@@ -266,13 +266,13 @@ class MageOfZamorak {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.deal() {
         npc<Uncertain>("Alright, if you help us access the Rune Essence Mine, we will share our runecrafting secrets with you in return.")
         player["enter_abyss_offer"] = true
         offer()
     }
-    
+
     fun teleport(player: Player, target: NPC) {
         if (player.queue.contains(ActionPriority.Normal)) {
             return
@@ -300,7 +300,7 @@ class MageOfZamorak {
             player.clearAnim()
         }
     }
-    
+
     suspend fun NPCOption<Player>.offer() {
         choice {
             option<Talk>("Deal.") {

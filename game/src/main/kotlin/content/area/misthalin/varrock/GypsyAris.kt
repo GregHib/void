@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
@@ -33,7 +34,7 @@ import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GypsyAris {
 
@@ -83,7 +84,6 @@ class GypsyAris {
             }
             areaSound("demon_slayer_crystal_ball_anim", npc.tile)
         }
-
     }
 
     suspend fun SuspendableContext<Player>.whatToDo() {
@@ -95,7 +95,7 @@ class GypsyAris {
             notVeryHeroicName()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.howToDo() {
         choice {
             cityDestroyer {
@@ -105,12 +105,12 @@ class GypsyAris {
             howWallyWon()
         }
     }
-    
+
     suspend fun PlayerChoice.howWallyWon(): Unit = option<Quiz>("So, how did Wally kill Delrith?") {
         player.playTrack("wally_the_hero")
         cutscene()
     }
-    
+
     suspend fun SuspendableContext<Player>.finalQuestions() {
         choice {
             cityDestroyer {
@@ -125,7 +125,7 @@ class GypsyAris {
             okThanks()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.otherQuestions() {
         choice {
             whereIsHe()
@@ -141,37 +141,37 @@ class GypsyAris {
             okThanks()
         }
     }
-    
+
     suspend fun PlayerChoice.cityDestroyer(end: suspend Context<Player>.() -> Unit): Unit = option<Afraid>("How am I meant to fight a demon who can destroy cities?") {
         npc<Talk>("If you face Delrith while he is still weak from being summoned, and use the correct weapon, you will not find the task too arduous.")
         npc<Talk>("Do not fear. If you follow the path of the great hero Wally, then you are sure to defeat the demon.")
         end.invoke(this)
     }
-    
+
     suspend fun PlayerChoice.whereIsHe(): Unit = option<Happy>("Okay, where is he? I'll kill him for you.") {
         npc<Chuckle>("Ah, the overconfidence of the young!")
         npc<Talk>("Delrith can't be harmed by ordinary weapons. You must face him using the same weapon that Wally used.")
         howToDo()
     }
-    
+
     suspend fun PlayerChoice.notVeryHeroicName(): Unit = option<Happy>("Wally doesn't sound like a very heroic name.") {
         npc<Talk>("Yes, I know. Maybe that is why history doesn't remember him. However, he was a great hero.")
         npc<Talk>("Who knows how much pain and suffering Delrith would have brought forth without Wally to stop him!")
         npc<Talk>("It looks like you are needed to perform similar heroics.")
         howToDo()
     }
-    
+
     suspend fun SuspendableContext<Player>.incantation() {
         player<Talk>("What is the magical incantation?")
         npc<Talk>("Oh yes, let me think a second.")
         npc<Neutral>("Aright, I think I've got it now, it goes... ${getWord(player, 1)}... ${getWord(player, 2)}... ${getWord(player, 3)}.,. ${getWord(player, 4)}.,. ${getWord(player, 5)}. Have you got that?")
         player<Neutral>("I think so, yes.")
     }
-    
+
     suspend fun PlayerChoice.notBeliever(): Unit = option<Talk>("No, I don't believe in that stuff.") {
         npc<Upset>("Ok suit yourself.")
     }
-    
+
     suspend fun ChoiceBuilder<NPCOption<Player>>.hereYouGo(): Unit = option<Talk>("Okay, here you go.") {
         player.inventory.remove("coins", 1)
         npc<Happy>("Come closer and listen carefully to what the future holds, as I peer into the swirling mists o the crystal ball.")
@@ -194,7 +194,7 @@ class GypsyAris {
         npc<Surprised>("Ye gods! Silverlight was the sword you were holding in my vision! You are the one destined to stop the demon this time.")
         whatToDo()
     }
-    
+
     suspend fun ChoiceBuilder<NPCOption<Player>>.whoYouCallingYoung(): Unit = option<Frustrated>("Who are you called 'young one'?") {
         npc<Talk>("You have been on this world a relatively short time. At least compared to me.")
         npc<Talk>("So, do you want your fortune told or not?")
@@ -207,7 +207,7 @@ class GypsyAris {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.cutscene() {
         val region = Region(12852)
         player.open("fade_out")
@@ -235,7 +235,7 @@ class GypsyAris {
         delay(1)
         player.open("fade_in")
         npc<Talk>("gypsy_aris", "Wally managed to arrive at the stone circle just as Delrith was summoned by a cult of chaos druids...")
-    
+
         player.face(Direction.NORTH)
         player.clearCamera()
         player.turnCamera(cutscene.tile(3227, 3367), height = 200, constantSpeed = 2, variableSpeed = 10)
@@ -244,7 +244,7 @@ class GypsyAris {
         player.sound("rumbling")
         npc<Angry>("wally", "Die, foul demon!", clickToContinue = false)
         player.tele(cutscene.tile(3225, 3363), clearInterfaces = false)
-    
+
         delay(2)
         player.running = true
         player.walkOverDelay(cutscene.tile(3227, 3367), forceWalk = false)
@@ -252,7 +252,7 @@ class GypsyAris {
         player.anim("wally_demon_slay")
         player.sound("demon_slayer_wally_sword", delay = 10)
         delay(4)
-    
+
         player.clearCamera()
         player.moveCamera(cutscene.tile(3227, 3369), height = 100, constantSpeed = 2, variableSpeed = 10)
         player.shakeCamera(type = 1, intensity = 0, movement = 10, speed = 5, cycle = 0)
@@ -276,16 +276,16 @@ class GypsyAris {
         player.anim("silverlight_showoff")
         player.gfx("silverlight_sparkle")
         npc<Pleased>("wally", "I am the greatest demon slayer EVER!")
-    
+
         npc<Talk>("By reciting the correct magical incantation, and thrusting Silverlight into Delrith while he was newly summoned, Wally was able to imprison Delrith in the stone table at the centre of the circle.")
-    
+
         statement("", clickToContinue = false)
         player.queue.clear("demon_slayer_wally_cutscene_end")
         cutscene.end(this)
         player["demon_slayer"] = "sir_prysin"
         delrithWillCome()
     }
-    
+
     suspend fun ChoiceBuilder<NPCOption<Player>>.withSilver(): Unit = option<Quiz>("With silver?") {
         npc<Neutral>("Oh, sorry, I forgot. With gold, I mean. They haven't used silver coins since before you were born! So, do you want your fortune told?")
         choice {
@@ -293,7 +293,7 @@ class GypsyAris {
             notBeliever()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.delrithWillCome() {
         npc<Upset>("Delrith will come forth from the stone circle again.")
         npc<Upset>("I would imagine an evil sorcerer is already beginning the rituals to summon Delrith as we speak.")
@@ -312,13 +312,13 @@ class GypsyAris {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.whereSilverlight() {
         player<Frustrated>("Where can I find Silverlight?")
         npc<Talk>("Silverlight has been passed down by Wally's descendants. I believe it is currently in the care of one of the king's knights called Sir Prysin.")
         npc<Pleased>("He shouldn't be too hard to find. He lives in the royal palace in this city. Tell him Gypsy Aris sent you.")
     }
-    
+
     suspend fun NPCOption<Player>.howGoesQuest() {
         npc<Happy>("Greetings. How goes thy quest?")
         player<Talk>("I'm still working on it.")
@@ -332,11 +332,11 @@ class GypsyAris {
             }
         }
     }
-    
+
     suspend fun PlayerChoice.okThanks(): Unit = option<Talk>("Ok thanks. I'll do my best to stop the demon.") {
         npc<Happy>("Good luck, and may Guthix be with you!")
     }
-    
+
     suspend fun PlayerChoice.silverlightReminder(): Unit = option("Where can I find Silverlight?") {
         whereSilverlight()
         choice {
@@ -344,7 +344,7 @@ class GypsyAris {
             incantationReminder()
         }
     }
-    
+
     suspend fun PlayerChoice.incantationReminder(): Unit = option("What is the magical incantation?") {
         incantation()
         choice {
@@ -352,7 +352,7 @@ class GypsyAris {
             silverlightReminder()
         }
     }
-    
+
     suspend fun PlayerChoice.stopCallingMeThat(): Unit = option<Angry>("Stop calling me that!") {
         npc<Talk>("In the scheme of things you are very young.")
         choice {
@@ -365,7 +365,7 @@ class GypsyAris {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.wallyQuestions() {
         choice {
             whereIsHe()

@@ -25,11 +25,12 @@ import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperience
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.timer.TICKS
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class RequestAssist {
 
@@ -45,7 +46,7 @@ class RequestAssist {
         Skill.Herblore,
     )
     val logger = InlineLogger()
-    
+
     init {
         playerOperate("Req Assist") {
             val filter = target["assist_filter", "on"]
@@ -100,13 +101,12 @@ class RequestAssist {
                 }
             }
         }
-
     }
 
     /**
      * Requesting assistance from a player, accepting the request and redirecting earned experience
      */
-    
+
     fun requestingTooQuickly(player: Player): Boolean {
         if (player.hasClock("recent_assist_request")) {
             val time = TICKS.toSeconds(player.remaining("recent_assist_request"))
@@ -117,7 +117,7 @@ class RequestAssist {
         player.start("recent_assist_request", 16)
         return false
     }
-    
+
     fun refuseRequest(target: Player, player: Player): Boolean {
         if (hasEarnedMaximumExperience(target)) {
             val hours = getHoursRemaining(target)
@@ -127,7 +127,7 @@ class RequestAssist {
         }
         return false
     }
-    
+
     fun setupAssisted(player: Player, assistant: Player) {
         player.message("You are being assisted by ${assistant.name}.", ChatType.Assist)
         player["assistant"] = assistant
@@ -136,7 +136,7 @@ class RequestAssist {
         player.anim("assist", delay = 60)
         player.face(assistant)
     }
-    
+
     fun setupAssistant(player: Player, assisted: Player) {
         player["assisted"] = assisted
         player.message("You are assisting ${assisted.name}.", ChatType.Assist)
@@ -152,7 +152,7 @@ class RequestAssist {
         player.gfx("assist")
         toggleInventory(player, enabled = false)
     }
-    
+
     fun applyExistingSkillRedirects(player: Player, assisted: Player) {
         var clearedAny = false
         for (skill in skills) {
@@ -170,7 +170,7 @@ class RequestAssist {
             player.message("You can only assist skills which are higher than whom you are helping.")
         }
     }
-    
+
     fun cancelAssist(assistant: Player?, assisted: Player?) {
         if (assistant != null) {
             toggleInventory(assistant, enabled = true)
@@ -190,13 +190,13 @@ class RequestAssist {
             logger.error { "Assisting cancellation error $assistant $assisted" }
         }
     }
-    
+
     fun stopRedirectingAllExp(player: Player) {
         for (skill in skills) {
             stopRedirectingSkillExp(player, skill)
         }
     }
-    
+
     fun setAssistAreaStatus(player: Player, visible: Boolean) {
         player.interfaces.sendVisibility("area_status_icon", "assist", visible)
     }

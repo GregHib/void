@@ -5,6 +5,7 @@ import content.entity.player.effect.energy.runEnergy
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class AbyssalWhip {
 
@@ -20,7 +21,5 @@ class AbyssalWhip {
                 target.message("You feel drained!")
             }
         }
-
     }
-
 }

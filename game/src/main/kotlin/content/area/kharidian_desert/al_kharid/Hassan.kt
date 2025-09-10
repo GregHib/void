@@ -10,10 +10,11 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Hassan {
 
@@ -56,7 +57,6 @@ class Hassan {
                 else -> npc<Talk>("Hello again. I hear you have agreed to help rescue Prince Ali. On behalf of the Emir, I will have a reward ready for you upon your success.")
             }
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.killWarriors() {
@@ -70,14 +70,14 @@ class Hassan {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.anyHelp() {
         option<Happy>("Can I help you? You must need some help here in the desert.") {
             player["prince_ali_rescue"] = "osman"
             npc<Uncertain>("I need the services of someone, yes. If you are interested, see the spymaster, Osman. I manage the finances here. Come to me when you need payment.")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.tooHot() {
         option<Upset>("It's just too hot here. How can you stand it?") {
             npc<Talk>("We manage, in our humble way. We are a wealthy town and we have water. It cures many thirsts.")

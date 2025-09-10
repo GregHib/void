@@ -9,17 +9,18 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class WindChill {
 
     val areas: AreaDefinitions by inject()
-    
+
     init {
         enterArea("godwars_chill_area") {
             player.sendVariable("godwars_knights_notes")
@@ -59,7 +60,5 @@ class WindChill {
         timerStop("windchill") { player ->
             player.close("snow_flakes")
         }
-
     }
-
 }

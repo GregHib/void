@@ -12,12 +12,13 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Cook {
 
@@ -46,7 +47,6 @@ class Cook {
                 else -> completed()
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.started() {
@@ -101,7 +101,7 @@ class Cook {
             stillNeed()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.completed() {
         npc<Happy>("Hello, friend, how is the adventuring going?")
         choice {
@@ -117,7 +117,7 @@ class Cook {
             }
         }
     }
-    
+
     fun Context<Player>.questComplete() {
         player["cooks_assistant"] = "completed"
         player.jingle("quest_complete_1")
@@ -137,7 +137,7 @@ class Cook {
             item = "cake",
         )
     }
-    
+
     suspend fun SuspendableContext<Player>.startQuest() {
         player<Neutral>("What's wrong?")
         npc<Afraid>("Oh dear, oh dear, oh dear, I'm in a terrible terrible mess! It's the Duke's birthday today, and I should be making him a lovely big birthday cake using special ingredients...")
@@ -158,12 +158,12 @@ class Cook {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.whereToFind() {
         npc<Quiz>("That's the problem: I don't exactly know. I usually send my assistant to get them for me but he quit.")
         npc<Talk>("I've marked some places on your world map in red. You might want to consider investigating them.")
     }
-    
+
     suspend fun SuspendableContext<Player>.stillNeed() {
         statement("You still need to get: ${if (player["cooks_assistant_milk", 0] == 0) "Some top-quality milk." else ""}${if (player["cooks_assistant_flour", 0] == 0) " Some extra fine flour." else ""}${if (player["cooks_assistant_egg", 0] == 0) " A super large egg." else ""}")
         choice {
@@ -173,7 +173,7 @@ class Cook {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.niceHat() {
         npc<Sad>("Err thank you. It's a pretty ordinary cooks hat really.")
         player<Happy>("Still, suits you. The trousers are pretty special too. ")
@@ -182,7 +182,7 @@ class Cook {
         npc<Frustrated>("I am a real cook! I haven't got time to be chatting about Culinary Fashion. I am in desperate need of help!")
         startQuest()
     }
-    
+
     suspend fun SuspendableContext<Player>.canIUseRange() {
         npc<Happy>("Go ahead! It's very good range; it's better than most other ranges.")
         npc<Happy>("It's called the Cook-o-Matic 25 and it uses a combination of state-of-the-art temperature regulation and magic.")
@@ -199,7 +199,7 @@ class Cook {
         }
         player<Talk>("Thanks!")
     }
-    
+
     suspend fun NPCOption<Player>.dontLookHappy() {
         npc<Sad>("No, I'm not. The world is caving in around me - I am overcome by dark feelings of impending doom.")
         choice {

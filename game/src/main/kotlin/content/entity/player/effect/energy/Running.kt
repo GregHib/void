@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Running {
 
@@ -33,7 +34,6 @@ class Running {
             }
             toggleRun(player, player.running)
         }
-
     }
 
     fun toggleRun(player: Player, run: Boolean) {

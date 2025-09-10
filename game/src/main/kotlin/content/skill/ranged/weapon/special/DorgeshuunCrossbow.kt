@@ -5,6 +5,7 @@ import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.entity.sound.sound
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class DorgeshuunCrossbow {
 
@@ -15,7 +16,5 @@ class DorgeshuunCrossbow {
             val time = player.shoot(id = "snipe_special", target = target)
             player.hit(target, delay = time)
         }
-
     }
-
 }

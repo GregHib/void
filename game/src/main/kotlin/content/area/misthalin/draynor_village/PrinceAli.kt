@@ -13,13 +13,14 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class PrinceAli {
 
@@ -28,7 +29,7 @@ class PrinceAli {
         Item("wig_blonde"),
         Item("paste"),
     )
-    
+
     init {
         npcOperate("Talk-to", "prince_ali") {
             when (player.quest("prince_ali_rescue")) {
@@ -45,7 +46,6 @@ class PrinceAli {
         itemOnNPCOperate("pink_skirt", "prince_ali") {
             escape()
         }
-
     }
 
     suspend fun TargetInteraction<Player, NPC>.leave() {
@@ -57,7 +57,7 @@ class PrinceAli {
         }
         statement("The prince has escaped, well done! You are now a friend of Al-Kharid and may pass through the Al-Kharid toll gate for free.")
     }
-    
+
     suspend fun TargetInteraction<Player, NPC>.escape() {
         player<Happy>("Prince, I've come to rescue you.")
         npc<Talk>("That is very very kind of you, how do I get out?")

@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.contains
@@ -19,18 +20,18 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Doric {
 
     val floorItems: FloorItems by inject()
-    
+
     val ores = listOf(
         Item("clay", 6),
         Item("copper_ore", 4),
         Item("iron_ore", 2),
     )
-    
+
     init {
         npcOperate("Talk-to", "doric") {
             when (player.quest("dorics_quest")) {
@@ -52,7 +53,6 @@ class Doric {
                 else -> unstarted()
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.noOre() {
@@ -69,7 +69,7 @@ class Doric {
             option<Happy>("Certainly, I'll be right back!")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.unstarted() {
         npc<Quiz>("Hello traveller, what brings you to my humble smithy?")
         choice {
@@ -108,7 +108,7 @@ class Doric {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.startQuest() {
         if (player.levels.get(Skill.Mining) < 15) {
             statement("Before starting this quest, be aware that one or more of your skill levels are lower than recommended.")
@@ -140,13 +140,13 @@ class Doric {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.takeOre() {
         item("copper_ore", 600, "You hand the clay, copper, and iron to Doric.")
         player.inventory.remove(ores)
         questComplete()
     }
-    
+
     fun Context<Player>.questComplete() {
         player["dorics_quest"] = "completed"
         player.jingle("quest_complete_1")

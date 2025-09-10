@@ -5,8 +5,9 @@ import content.entity.combat.hit.Hit
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.specialAttack
 import content.skill.melee.weapon.weapon
-import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.type.random
+
 @Script
 class DragonClaws {
 
@@ -14,7 +15,7 @@ class DragonClaws {
         specialAttack("slice_and_dice") { player ->
             player.anim("${id}_special")
             player.gfx("${id}_special")
-        
+
             val weapon = player.weapon
             var (hit1, hit2, hit3, hit4) = intArrayOf(0, 0, 0, 0)
             val maxHit = Damage.maximum(player, target, "melee", weapon)
@@ -36,13 +37,11 @@ class DragonClaws {
                 hit3 = if (random.nextBoolean()) 10 else 0
                 hit4 = if (random.nextBoolean()) 10 else 0
             }
-        
+
             player.hit(target, damage = hit1)
             player.hit(target, damage = hit2)
             player.hit(target, damage = hit3, delay = 30)
             player.hit(target, damage = hit4, delay = 30)
         }
-
     }
-
 }

@@ -15,10 +15,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class SpinningWheel {
 
@@ -31,17 +32,17 @@ class SpinningWheel {
         Item("magic_roots"),
         Item("yak_hair"),
     )
-    
+
     val treeRoots = listOf(
         Item("oak_roots"),
         Item("willow_roots"),
         Item("maple_roots"),
         Item("yew_roots"),
     )
-    
+
     val Item.spinning: Spinning
         get() = def["spinning"]
-    
+
     init {
         objectOperate("Spin", "spinning_wheel*", arrive = false) {
             val strings = fibres.map { if (it.id == "tree_roots") "crossbow_string" else it.spinning.to }
@@ -54,7 +55,7 @@ class SpinningWheel {
                 maximum = 28,
                 text = "How many would you like to make?",
             )
-        
+
             delay()
             var fibre = fibres[index]
             if (fibre.id == "tree_roots") {
@@ -80,7 +81,6 @@ class SpinningWheel {
             )
             start(player, target, item, amount)
         }
-
     }
 
     fun start(player: Player, obj: GameObject, fibre: Item, amount: Int) {
@@ -93,7 +93,7 @@ class SpinningWheel {
         val actualAmount = if (current < amount) current else amount
         player.spin(obj, fibre, actualAmount)
     }
-    
+
     fun Player.spin(obj: GameObject, fibre: Item, amount: Int) {
         if (amount <= 0) {
             return

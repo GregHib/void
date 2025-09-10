@@ -9,15 +9,16 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class TreeGnomeStronghold {
 
     val objects: GameObjects by inject()
-    
+
     init {
         objectOperate("Open", "tree_gnome_door_east_closed", "tree_gnome_door_west_closed") {
             if (player.tile.x !in 2465..2466) {
@@ -70,7 +71,5 @@ class TreeGnomeStronghold {
             player.clearRenderEmote()
             player.walkToDelay(Tile(2486, 3515))
         }
-
     }
-
 }

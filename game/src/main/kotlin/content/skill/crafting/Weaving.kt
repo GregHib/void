@@ -16,12 +16,13 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Weaving {
 
@@ -31,10 +32,10 @@ class Weaving {
         Item("flax"),
         Item("ball_of_wool"),
     )
-    
+
     val Item.weaving: Weaving
         get() = def["weaving"]
-    
+
     init {
         objectOperate("Weave", "loom_*", arrive = false) {
             val strings = materials.map { it.weaving.to }
@@ -60,7 +61,6 @@ class Weaving {
             )
             weave(target, item, amount)
         }
-
     }
 
     fun Context<Player>.weave(obj: GameObject, item: Item, amount: Int) {
@@ -74,7 +74,7 @@ class Weaving {
         val actualAmount = if (current < amount * data.amount) current / data.amount else amount
         player.weave(obj, item, actualAmount)
     }
-    
+
     fun Player.weave(obj: GameObject, item: Item, amount: Int) {
         if (amount <= 0) {
             return
@@ -108,7 +108,7 @@ class Weaving {
             weave(obj, item, amount - 1)
         }
     }
-    
+
     fun plural(item: Item): String = when (item.id) {
         "willow_branch" -> "willow branches"
         "jute_fibre" -> "jute fibres"

@@ -13,17 +13,18 @@ import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class KorasiSword {
 
     val players: Players by inject()
     val npcs: NPCs by inject()
     val lineOfSight: LineValidator by inject()
-    
+
     init {
         specialAttack("disrupt") { player ->
             player["korasi_chain"] = mutableSetOf(target.index)
@@ -69,7 +70,5 @@ class KorasiSword {
                 }
             }
         }
-
     }
-
 }

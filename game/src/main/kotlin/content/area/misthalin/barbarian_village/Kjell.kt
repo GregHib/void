@@ -9,9 +9,10 @@ import content.entity.player.dialogue.type.npc
 import content.quest.quest
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Kjell {
 
@@ -24,7 +25,6 @@ class Kjell {
                 else -> unstarted()
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.completed() {
@@ -51,7 +51,7 @@ class Kjell {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.advice() {
         choice {
             option<Neutral>("This music isn't very restful.") {
@@ -65,7 +65,7 @@ class Kjell {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.unstarted() {
         npc<Frustrated>("Get out of here, outerlander!")
         choice {

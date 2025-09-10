@@ -2,6 +2,7 @@ package content.area.misthalin.lumbridge.castle
 
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class LumbridgeFlag {
 
@@ -14,7 +15,5 @@ class LumbridgeFlag {
             player.animDelay("emote_salute")
             player["raise_the_roof_task"] = true
         }
-
     }
-
 }

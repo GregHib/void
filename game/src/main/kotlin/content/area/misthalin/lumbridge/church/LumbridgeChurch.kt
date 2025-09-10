@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -31,14 +32,14 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class LumbridgeChurch {
 
     val npcs: NPCs by inject()
-    
+
     val ghostSpawn = Tile(3250, 3195)
-    
+
     init {
         objectOperate("Play", "lumbridge_organ") {
             player.anim("play_organ")
@@ -108,7 +109,6 @@ class LumbridgeChurch {
             player.sendVariable("rocks_restless_ghost")
             player.sendVariable("restless_ghost_coffin")
         }
-
     }
 
     suspend fun Interaction<Player>.returnSkull() {
@@ -145,7 +145,7 @@ class LumbridgeChurch {
         cutscene.end(this)
         questComplete()
     }
-    
+
     fun Context<Player>.questComplete() {
         player["restless_ghost_coffin"] = "skull"
         player["the_restless_ghost"] = "completed"
@@ -163,7 +163,7 @@ class LumbridgeChurch {
             )
         }
     }
-    
+
     suspend fun Interaction<Player>.spawnGhost() {
         val ghostExists = npcs[ghostSpawn.zone].any { it.id == "restless_ghost" }
         if (!ghostExists) {
@@ -182,5 +182,4 @@ class LumbridgeChurch {
             player.message("There's a skeleton without a skull in here. There's no point in disturbing it.")
         }
     }
-    
 }

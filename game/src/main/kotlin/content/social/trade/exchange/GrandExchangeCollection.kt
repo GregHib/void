@@ -10,18 +10,19 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GrandExchangeCollection {
 
     val exchange: GrandExchange by inject()
     val logger = InlineLogger()
-    
+
     init {
         interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
             val index = component.removePrefix("collect_slot_").toInt()
@@ -47,7 +48,6 @@ class GrandExchangeCollection {
             }
             abort(player, slot)
         }
-
     }
 
     fun collect(player: Player, option: String, box: Int, index: Int) {
@@ -85,7 +85,7 @@ class GrandExchangeCollection {
             else -> logger.warn { "Issue collecting items from grand exchange ${player.inventory.transaction.error} ${player.name} $item $index" }
         }
     }
-    
+
     fun abort(player: Player, slot: Int) {
         exchange.cancel(player, slot)
         // https://youtu.be/3ussM7P1j00?si=IHR8ZXl2kN0bjIfx&t=398

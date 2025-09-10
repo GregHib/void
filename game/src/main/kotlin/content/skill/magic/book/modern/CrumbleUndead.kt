@@ -6,6 +6,7 @@ import content.skill.slayer.undead
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class CrumbleUndead {
 
@@ -17,7 +18,5 @@ class CrumbleUndead {
                 cancel()
             }
         }
-
     }
-
 }

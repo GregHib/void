@@ -1,9 +1,10 @@
 package content.entity.effect
 
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerStop
 import world.gregs.voidps.engine.timer.characterTimerTick
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ColourOverlay {
 
@@ -20,7 +21,5 @@ class ColourOverlay {
         characterTimerStop("colour_overlay") { character ->
             character.visuals.colourOverlay.reset()
         }
-
     }
-
 }

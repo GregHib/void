@@ -10,16 +10,15 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.characterSpawn
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerStop
 import world.gregs.voidps.engine.timer.characterTimerTick
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
-import kotlin.math.sign
-import world.gregs.voidps.engine.event.Script
-
-import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
+import kotlin.math.sign
 
 val Character.poisoned: Boolean get() = poisonCounter > 0
 
@@ -59,6 +58,7 @@ fun Player.antiPoison(duration: Int, timeUnit: TimeUnit) {
     clear("poison_source")
     timers.startIfAbsent("poison")
 }
+
 @Script
 class Poison {
 
@@ -124,11 +124,10 @@ class Poison {
                 player.poison(player, damage)
             }
         }
-
     }
 
     fun immune(character: Character) = character is NPC && character.def["immune_poison", false] || character is Player && character.equipped(EquipSlot.Shield).id == "anti_poison_totem"
-    
+
     fun damage(character: Character) {
         val damage = character["poison_damage", 0]
         if (damage <= 10) {
@@ -139,9 +138,8 @@ class Poison {
         val source = character["poison_source", character]
         character.directHit(source, damage, "poison")
     }
-    
+
     fun isPoisoned(id: String) = id.endsWith("_p") || id.endsWith("_p+") || id.endsWith("_p++") || id == "emerald_bolts_e"
-    
+
     fun poisonous(source: Character, weapon: Item) = source is Player && isPoisoned(weapon.id)
-    
 }

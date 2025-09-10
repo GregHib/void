@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -22,12 +23,12 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class LadyKeli {
 
     val npcs: NPCs by inject()
-    
+
     init {
         npcOperate("Talk-to", "lady_keli") {
             when (player.quest("prince_ali_rescue")) {
@@ -101,7 +102,6 @@ class LadyKeli {
                 else -> player.noInterest()
             }
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.escape() {
@@ -135,13 +135,13 @@ class LadyKeli {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.disturb() {
         option<Happy>("I should not disturb someone as tough as you.") {
             npc<Talk>("Yes, I am very busy. Goodbye.")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.areYouSure(text: String = "That's great, are you sure they will pay?") {
         option(text) {
             player<Quiz>("Are you sure they will pay?")
@@ -155,7 +155,7 @@ class LadyKeli {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.skillful() {
         option<Talk>("Ah I see. You must have been very skillful.") {
             npc<Talk>("Yes, I did most of the work. We had to grab the Pr...")
@@ -167,7 +167,7 @@ class LadyKeli {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.latestPlan() {
         option("What is your latest plan then?") {
             player<Quiz>("What is your latest plan then? Of course, you need not go into specific details.")
@@ -181,13 +181,13 @@ class LadyKeli {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.trained() {
         option<Happy>("You must have trained a lot for this work.") {
             npc<Angry>("I have used a sword since I was a girl. My first kill was before I was even six years old.")
         }
     }
-    
+
     suspend fun NPCOption<Player>.heard() {
         npc<Happy>("That's very kind of you to say. Reputations are not easily earned. I have managed to succeed where many fail.")
         choice {
@@ -197,13 +197,13 @@ class LadyKeli {
             disturb()
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.katrine(text: String = "I think Katrine is tougher.") {
         option<Talk>(text) {
             npc<Angry>("Well you can think that all you like. I know those blackarm cowards dare not leave the city. Out here, I am toughest. You can tell them that! Now get out of my sight, before I call my guards.")
         }
     }
-    
+
     suspend fun TargetInteraction<Player, NPC>.tieUp() {
         statement("You overpower Keli, tie her up, and put her in a cupboard.")
         player.inventory.remove("rope")

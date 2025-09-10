@@ -8,15 +8,16 @@ import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCLevels
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class CombatDebug {
 
     val npcDefinitions: NPCDefinitions by inject()
-    
+
     init {
         modCommand("maxhit [npc-id] [spell-id]", "calculate your max hit against an npc") {
             val debug = player["debug", false]
@@ -41,7 +42,5 @@ class CombatDebug {
             player.message("Ranged: $rangeChance Melee: $meleeChance Magic: $magicChance")
             player["debug"] = debug
         }
-
     }
-
 }

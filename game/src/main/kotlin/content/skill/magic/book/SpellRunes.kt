@@ -4,6 +4,7 @@ import content.entity.combat.combatPrepare
 import content.skill.magic.spell.hasSpellItems
 import content.skill.magic.spell.spell
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class SpellRunes {
 
@@ -15,7 +16,5 @@ class SpellRunes {
                 return@combatPrepare
             }
         }
-
     }
-
 }

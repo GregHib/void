@@ -6,8 +6,9 @@ import content.entity.combat.npcCombatSwing
 import content.entity.proj.shoot
 import content.entity.sound.areaSound
 import content.entity.sound.sound
-import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.type.random
+
 @Script
 class ThrowerTroll {
 
@@ -15,7 +16,7 @@ class ThrowerTroll {
         characterCombatDamage("troll_rock", "range") { character ->
             // TODO need range gfx field
             //  Could potentially rename `type` and have type as the spell/ammo?
-        //      TODO Combat vs attack style
+            //      TODO Combat vs attack style
             character.sound("troll_rock_defend")
         }
 
@@ -28,7 +29,5 @@ class ThrowerTroll {
             npc.shoot("troll_rock", target)
             npc.hit(target, offensiveType = "range")
         }
-
     }
-
 }

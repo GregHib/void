@@ -12,11 +12,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class BarbarianOutpost {
 
@@ -44,7 +45,7 @@ class BarbarianOutpost {
             player.face(Direction.SOUTH)
             val disable = Settings["agility.disableCourseFailure", false]
             val success = disable || Level.success(player.levels.get(Skill.Agility), 70) // 50% success at 35
-        //  player.message("The rope swing is being used at the moment.", ChatType.Filter)
+            //  player.message("The rope swing is being used at the moment.", ChatType.Filter)
             player.anim("rope_swing")
             target.anim("swing_rope")
             delay()
@@ -168,7 +169,5 @@ class BarbarianOutpost {
             player.exp(Skill.Agility, 13.7)
             delay()
         }
-
     }
-
 }

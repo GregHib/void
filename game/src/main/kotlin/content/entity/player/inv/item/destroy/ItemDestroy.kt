@@ -4,14 +4,15 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.type.destroy
 import content.entity.player.inv.inventoryOptions
 import content.entity.sound.sound
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ItemDestroy {
 
     val logger = InlineLogger()
-    
+
     init {
         inventoryOptions("Destroy", "Dismiss", "Release", inventory = "inventory") {
             if (item.isEmpty() || item.amount <= 0) {
@@ -41,7 +42,5 @@ class ItemDestroy {
                 logger.info { "Error destroying item $item for $player" }
             }
         }
-
     }
-
 }

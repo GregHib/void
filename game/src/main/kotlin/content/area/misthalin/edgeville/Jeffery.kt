@@ -10,11 +10,12 @@ import content.quest.quest
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Jeffery {
 
@@ -93,7 +94,6 @@ class Jeffery {
                 option<Talk>("Er, nothing.")
             }
         }
-
     }
 
     suspend fun NPCOption<Player>.lovePoem() {
@@ -109,7 +109,7 @@ class Jeffery {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.cheekyLittle() {
         npc<Frustrated>("That cheeky little...")
         npc<Frustrated>("He just can't leave it alone, can he? Fine! I'll trade you for the poem. What is it you want?")
@@ -124,7 +124,7 @@ class Jeffery {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.goldRing() {
         player.inventory.replace("love_poem", "ring_from_jeffery")
         player["gunnars_ground"] = "jeffery_ring"

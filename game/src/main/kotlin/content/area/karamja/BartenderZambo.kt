@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class BartenderZambo {
 
@@ -37,7 +38,6 @@ class BartenderZambo {
             }
             barCrawl()
         }
-
     }
 
     suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(

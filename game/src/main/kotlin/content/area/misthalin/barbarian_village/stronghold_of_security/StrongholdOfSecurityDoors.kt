@@ -11,8 +11,9 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.type.random
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.type.random
+
 @Script
 class StrongholdOfSecurityDoors {
 
@@ -40,7 +41,6 @@ class StrongholdOfSecurityDoors {
         objectOperate("Open", "portal_of_death*") {
             openDoor("unlocked_emote_stomp")
         }
-
     }
 
     suspend fun ObjectOption<Player>.openDoor(variable: String) {
@@ -54,7 +54,7 @@ class StrongholdOfSecurityDoors {
         }
         enterDoor()
     }
-    
+
     suspend fun ObjectOption<Player>.enterDoor() {
         player.anim("stronghold_of_security_door")
         player.sound("stronghold_of_security_through_door")
@@ -84,7 +84,7 @@ class StrongholdOfSecurityDoors {
         player["stronghold_safe_space"] = !player["stronghold_safe_space", false]
         player.anim("stronghold_of_security_door_appear")
     }
-    
+
     suspend fun ObjectOption<Player>.randomQuestion(door: String) {
         when (random.nextInt(29)) {
             0 -> {

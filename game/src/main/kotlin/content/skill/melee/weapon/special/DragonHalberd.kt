@@ -8,14 +8,15 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class DragonHalberd {
 
     val players: Players by inject()
     val npcs: NPCs by inject()
-    
+
     init {
         specialAttack("sweep") { player ->
             player.anim("${id}_special")
@@ -40,7 +41,5 @@ class DragonHalberd {
                 player.clear("second_hit")
             }
         }
-
     }
-
 }

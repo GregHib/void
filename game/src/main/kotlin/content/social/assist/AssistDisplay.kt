@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class AssistDisplay {
 
@@ -23,13 +24,12 @@ class AssistDisplay {
                 blockSkillExperience(player, assisted, skill)
             }
         }
-
     }
 
     /**
      * Assistance system display interface
      */
-    
+
     fun blockSkillExperience(player: Player, assisted: Player, skill: Skill) {
         val key = "assist_toggle_${skill.name.lowercase()}"
         if (!canAssist(player, assisted, skill)) {

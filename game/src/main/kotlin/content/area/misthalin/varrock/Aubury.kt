@@ -10,11 +10,12 @@ import content.skill.runecrafting.EssenceMine
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Aubury {
 
@@ -44,17 +45,16 @@ class Aubury {
         npcOperate("Teleport", "aubury") {
             EssenceMine.teleport(target, player)
         }
-
     }
 
     fun PlayerChoice.openShop(): Unit = option<Happy>("Yes please!") {
         player.emit(OpenShop("auburys_rune_shop"))
     }
-    
+
     suspend fun PlayerChoice.noThanks(message: String = "Oh, it's a rune shop. No thank you, then."): Unit = option<Neutral>(message) {
         npc<Happy>("Well, if you find someone who does want runes, please send them my way.")
     }
-    
+
     fun PlayerChoice.teleport(npc: NPC): Unit = option(
         "Can you teleport me to the Rune Essence?",
         { player.quest("rune_mysteries") == "completed" },
@@ -62,7 +62,7 @@ class Aubury {
         npc<Neutral>("Of course. By the way, if you end up making any runes from the essence you mine, I'll happily buy them from you.")
         EssenceMine.teleport(npc, player)
     }
-    
+
     suspend fun PlayerChoice.packageForYou(): Unit = option<Neutral>(
         "I've been sent here with a package for you.",
         { player.quest("rune_mysteries") == "research_package" },
@@ -82,7 +82,7 @@ class Aubury {
             npc<Neutral>("Come back when you have it.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.researchPackage() {
         item("research_package_rune_mysteries", 600, "Aubury goes through the package of research notes.")
         npc<Surprised>("This... this is incredible.")
@@ -99,7 +99,7 @@ class Aubury {
         player.inventory.add("research_notes_rune_mysteries")
         item("research_notes_rune_mysteries", 600, "Aubury hands you some research notes.")
     }
-    
+
     suspend fun SuspendableContext<Player>.checkNotes() {
         npc<Quiz>("Hello. Did you take those notes back to Sedridor?")
         if (player.inventory.contains("research_notes_rune_mysteries")) {
@@ -124,7 +124,7 @@ class Aubury {
             item("research_notes_rune_mysteries", 600, "Aubury hands you some research notes.")
         }
     }
-    
+
     suspend fun PlayerChoice.skillcapes(): Unit = option("Can you tell me about your cape?") {
         npc<Happy>("Certainly! Skillcapes are a symbol of achievement. Only people who have mastered a skill and reached level 99 can get their hands on them and gain the benefits they carry.")
         npc<Neutral>("The Cape of Runecrafting has been upgraded with each talisman, allowing you to access all Runecrafting altars. Is there anything else I can help you with?")

@@ -23,20 +23,21 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.client.instruction.InteractNPC
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class FishingBot {
 
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()
     val gear: GearDefinitions by inject()
-    
+
     init {
         timerStop("fishing") { player ->
             if (player.isBot) {
@@ -70,7 +71,6 @@ class FishingBot {
                 }
             }
         }
-
     }
 
     suspend fun Bot.fish(map: AreaDefinition, option: String, bait: String, set: GearDefinition) {
@@ -92,7 +92,7 @@ class FishingBot {
             await("fishing")
         }
     }
-    
+
     fun Bot.isAvailableSpot(map: AreaDefinition, npc: NPC, option: String, bait: String): Boolean {
         if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
             return false

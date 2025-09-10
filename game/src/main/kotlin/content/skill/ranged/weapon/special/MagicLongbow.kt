@@ -5,6 +5,7 @@ import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.entity.sound.sound
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class MagicLongbow {
 
@@ -16,7 +17,5 @@ class MagicLongbow {
             val time = player.shoot(id = "special_arrow", target = target)
             player.hit(target, delay = time)
         }
-
     }
-
 }

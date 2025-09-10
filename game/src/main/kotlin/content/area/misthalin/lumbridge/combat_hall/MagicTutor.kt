@@ -16,12 +16,13 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class MagicTutor {
 
@@ -30,7 +31,6 @@ class MagicTutor {
             npc<Quiz>("Hello there adventurer, I am the Magic combat tutor. Would you like to learn about magic combat, or perhaps how to make runes?")
             menu()
         }
-
     }
 
     suspend fun SuspendableContext<Player>.menu(followUp: String = "") {
@@ -44,7 +44,7 @@ class MagicTutor {
             option("Goodbye.")
         }
     }
-    
+
     suspend fun PlayerChoice.magicCombat(): Unit = option<Neutral>("Tell me about magic combat please.") {
         npc<Happy>("Of course ${player.name}! As a rule of thumb, if you cast the highest spell of which you're capable, you'll get the best experience possible.")
         npc<Happy>("Wearing metal armour and ranged armour can seriously impair your magical abilities. Make sure you wear some robes to maximise your capabilities.")
@@ -53,7 +53,7 @@ class MagicTutor {
         npc<Happy>("I see you already have access to the ancient magicks. Well done, these will aid you greatly.")
         menu("Is there anything else you would like to know?")
     }
-    
+
     suspend fun PlayerChoice.runeMaking(): Unit = option<Quiz>("How do I make runes?") {
         npc<Happy>("There are a couple of things you will need to make runes, rune essence and a talisman to enter the temple ruins.")
         if (player.experience.get(Skill.Runecrafting) > 0.0) {
@@ -72,7 +72,7 @@ class MagicTutor {
         npc<Happy>("To make one, take a tiara and talisman to the ruins and use the tiara on the temple altar. This will bind the talisman to your tiara.")
         menu("Is there anything else you would like to know?")
     }
-    
+
     suspend fun PlayerChoice.claimRunes(): Unit = option("I'd like some air and mind runes.") {
         if (player.remaining("claimed_tutor_consumables", epochSeconds()) > 0) {
             npc<Amazed>("I work with the Ranged Combat tutor to give out consumable items that you may need for combat such as arrows and runes. However we have had some cheeky people try to take both!")
@@ -99,7 +99,7 @@ class MagicTutor {
         item("mind_rune", 400, "Mikasi gives you 30 mind runes.")
         player.inventory.add("mind_rune", 30)
     }
-    
+
     suspend fun SuspendableContext<Player>.hasRunes() {
         var banked = false
         if (player.bank.contains("mind_rune")) {

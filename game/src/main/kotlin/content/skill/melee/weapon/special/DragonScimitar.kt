@@ -6,11 +6,12 @@ import content.skill.prayer.isCurses
 import content.skill.prayer.prayerStart
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class DragonScimitar {
 
@@ -46,7 +47,5 @@ class DragonScimitar {
                 player.removeVarbit(key, prayer.removePrefix("prayer_").toTitleCase())
             }
         }
-
     }
-
 }

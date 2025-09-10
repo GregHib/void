@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -32,15 +33,15 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Gudrun {
 
     val objects: GameObjects by inject()
-    
+
     val npcs: NPCs by inject()
     val region = Region(12341)
-    
+
     init {
         npcOperate("Talk-to", "gudrun*") {
             when (player.quest("gunnars_ground")) {
@@ -77,7 +78,6 @@ class Gudrun {
                 else -> player.message("error")
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.recital() {
@@ -90,7 +90,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.cutscene() {
         player.open("fade_out")
         val cutscene = startCutscene("gudrun", region)
@@ -123,7 +123,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.cutsceneMenu(cutscene: Cutscene) {
         npc<Sad>("dororan_cutscene", "This isn't going to work.")
         choice {
@@ -137,7 +137,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.cutsceneMenu2(cutscene: Cutscene) {
         npc<Cry>("dororan_cutscene", "What was I thinking? You should go in there and stop them before Gudrun makes a fool of herself.")
         choice {
@@ -153,7 +153,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.cutsceneMenu3(cutscene: Cutscene) {
         npc<Sad>("dororan_cutscene", "I can't hear what's happening. Can you hear what's happening?")
         player.anim("player_calm_doroan")
@@ -169,7 +169,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.cutsceneMenu4(cutscene: Cutscene) {
         npc<Talk>("dororan_cutscene", "The poem says you can honour your ancestors by settling peacefully on the land they conquered.")
         npc<Sad>("dororan_cutscene", "He'll probably just find it insulting.")
@@ -183,7 +183,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.cutscenePart2(cutscene: Cutscene) {
         player.open("fade_out")
         delay(3)
@@ -250,7 +250,7 @@ class Gudrun {
             gunnarsGround()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.gunnarsGround() {
         npc<Happy>("Papa was so impressed by Dororan's poem, he's made him the village poet!")
         npc<Happy>("dororan_after_cutscene2", "I'm more then a little surprised! He even gave me a house to live in!")
@@ -272,7 +272,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.poem() {
         if (player.holdsItem("gunnars_ground")) {
             npc<Quiz>("What have you got there?")
@@ -292,7 +292,7 @@ class Gudrun {
             player<Upset>("I was meant to bring you a poem, but I seem to have mislaid it.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.whatHeSay() {
         npc<Quiz>("What did he say?")
         player<Talk>("He mentioned someone called Gunnar, and that you should think about his feelings.")
@@ -309,7 +309,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.fathersAttitude() {
         choice {
             option<Neutral>("You don't seem to share your father's attitude towards him.") {
@@ -325,7 +325,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.meetChieftain() {
         choice {
             option<Neutral>("Where is he?") {
@@ -335,7 +335,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.showGudrun() {
         npc<Frustrated>("kjell_sword", "Gudrun! You caught enough fish?")
         npc<Frustrated>("Yes! I have plenty of fish!")
@@ -368,7 +368,7 @@ class Gudrun {
             player<Sad>("I was meant to bring you a ring but I seem to have mislaid it.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.aboutRing() {
         npc<Pleased>("This is beautiful gift, stranger. Thank you.")
         choice {
@@ -381,7 +381,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.thatsRight() {
         choice {
             option<Pleased>("That's right.") {
@@ -394,7 +394,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.whoFrom() {
         npc<Surprised>("Oh! Who is it from?")
         choice {
@@ -415,7 +415,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.outsideVillage() {
         npc<Quiz>("This man, he is from outside the village?")
         player<Talk>("Yes.")
@@ -435,14 +435,14 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.reasonWithHim() {
         npc<Sad>("I've tried to reason with him, but he's impossible! Maybe he'll listen to you. I know some of the others feel the same, but they're loyal to papa.")
         player["gunnars_ground"] = "meet_chieftain"
         player.inventory.remove("dororans_engraved_ring")
         meetChieftain()
     }
-    
+
     suspend fun SuspendableContext<Player>.unstarted() {
         npc<Pleased>("Can I help you, stranger?")
         npc<Frustrated>("kjell_sword", "Why are you talking to that outerlander?")
@@ -459,7 +459,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.whoAreYou() {
         npc<Pleased>("My name is Gudrun. My father, Gunthor, is chieftain of the village.")
         choice {
@@ -470,7 +470,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.whatIsThisPlace() {
         npc<Pleased>("Outerlanders call this the barbarian village. It doesn't have a name because...it's complicated.")
         npc<Talk>("if you want to know more, you should talk to Hunding. He's up in the tower at the east entrance.")
@@ -482,7 +482,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.finishQuest() {
         npc<Happy>("dororan_after_cutscene2", "Goodbye!")
         npc<Happy>("Goodbye!")
@@ -499,7 +499,7 @@ class Gudrun {
         player.open("fade_in")
         questComplete()
     }
-    
+
     fun Context<Player>.questComplete() {
         player.jingle("quest_complete_3")
         player["gunnars_ground"] = "completed"
@@ -518,7 +518,7 @@ class Gudrun {
         player.inventory.add("antique_lamp_gunnars_ground")
         player.inventory.add("swanky_boots")
     }
-    
+
     suspend fun SuspendableContext<Player>.menu() {
         choice {
             option<Neutral>("How are things with Dororan?") {
@@ -546,7 +546,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.theory() {
         choice {
             option<Neutral>("Do you have a theory?") {
@@ -562,7 +562,7 @@ class Gudrun {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.elseGoodbye() {
         choice {
             option<Neutral>("I want to ask about something else.") {

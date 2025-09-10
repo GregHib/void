@@ -8,9 +8,10 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.queue
 import kotlin.random.Random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Morphing {
 
@@ -26,7 +27,6 @@ class Morphing {
         interfaceOption("Ok", "unmorph", "morph") {
             unmorph(player)
         }
-
     }
 
     fun morph(player: Player, npc: String) {
@@ -37,7 +37,7 @@ class Morphing {
         player.queue("morph", onCancel = { unmorph(player) }) {
         }
     }
-    
+
     fun unmorph(player: Player) {
         player.queue.clear()
         player.clearTransform()

@@ -10,14 +10,15 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class BrimhavenShotcuts {
 
     val steps = mutableListOf(Direction.SOUTH, Direction.SOUTH, Direction.WEST, Direction.WEST, Direction.SOUTH, Direction.SOUTH, Direction.SOUTH)
-    
+
     init {
         objectOperate("Swing-on", "brimhaven_ropeswing_west") {
             player.face(target.tile.add(Direction.WEST))
@@ -85,7 +86,6 @@ class BrimhavenShotcuts {
         objectOperate("Walk-across", "brimhaven_log_balance_end") {
             walkAcross(30, 2682, 10.0)
         }
-
     }
 
     suspend fun ObjectOption<Player>.walkAcross(level: Int, targetX: Int, exp: Double) {

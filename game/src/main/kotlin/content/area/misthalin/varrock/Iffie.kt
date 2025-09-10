@@ -7,6 +7,7 @@ import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Iffie {
 
@@ -31,7 +32,5 @@ class Iffie {
         npcOperate("Claim-costume", "iffie") {
             player.openShop("iffies_random_costume_shop")
         }
-
     }
-
 }

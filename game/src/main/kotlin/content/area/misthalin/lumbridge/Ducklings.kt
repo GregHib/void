@@ -7,18 +7,19 @@ import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.npcSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Ducklings {
 
     val npcs: NPCs by inject()
-    
+
     init {
         npcSpawn("ducklings") { npc ->
             followParent(npc)
@@ -49,15 +50,14 @@ class Ducklings {
             }
             cancel()
         }
-
     }
 
     fun isDuck(it: NPC) = it.id.startsWith("duck") && it.id.endsWith("swim")
-    
+
     fun followParent(npc: NPC) {
         npc.softTimers.start("follow_parent")
     }
-    
+
     fun findParent(npc: NPC): NPC? {
         for (dir in Direction.cardinal) {
             return npcs[npc.tile.add(dir.delta)].firstOrNull { isDuck(it) && !it.contains("ducklings") } ?: continue

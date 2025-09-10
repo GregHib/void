@@ -9,9 +9,10 @@ import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.client.instruction.ChangeDisplayMode
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GameFrame {
 
@@ -42,7 +43,7 @@ class GameFrame {
         "notes",
         "area_status_icon",
     )
-    
+
     init {
         Tab.entries.forEach { tab ->
             val name = tab.name.toSnakeCase()
@@ -68,7 +69,6 @@ class GameFrame {
                 player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)
             }
         }
-
     }
 
     fun GameFrame.openGamframe(player: Player) {

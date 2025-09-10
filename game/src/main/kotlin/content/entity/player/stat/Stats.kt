@@ -8,18 +8,19 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class Stats {
 
     val definitions: InterfaceDefinitions by inject()
-    
+
     val menu = listOf(
         Attack, Strength, Ranged, Magic, Defence, Constitution, Prayer, Agility, Herblore, Thieving, Crafting, Runecrafting,
         Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Fletching, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering,
     )
-    
+
     init {
         interfaceOpen("stats") { player ->
             player.sendVariable("skill_stat_flash")
@@ -49,7 +50,5 @@ class Stats {
             val menuIndex = player["active_skill_guide", 1]
             player["skill_guide"] = menuIndex + index * 1024
         }
-
     }
-
 }

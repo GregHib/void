@@ -7,21 +7,22 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.area.Rectangle
 import kotlin.collections.set
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class BorderGuard {
 
     val objects: GameObjects by inject()
     val areas: AreaDefinitions by inject()
-    
+
     val guards = mutableMapOf<Rectangle, List<GameObject>>()
-    
+
     val raised = mutableMapOf<GameObject, Boolean>()
-    
+
     init {
         worldSpawn {
             for (border in areas.getTagged("border")) {
@@ -54,7 +55,6 @@ class BorderGuard {
             player.steps.update(noCollision = false, noRun = false)
             changeGuardState(guards, false)
         }
-
     }
 
     fun changeGuardState(guards: List<GameObject>, raise: Boolean) {

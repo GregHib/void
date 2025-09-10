@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class HofuthandCombat {
 
@@ -41,7 +42,6 @@ class HofuthandCombat {
             player["common_item_costs"] = "combat"
             player.open("common_item_costs")
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.showPrices() {
@@ -50,13 +50,13 @@ class HofuthandCombat {
             player.open("common_item_costs")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.bye() {
         option<Shifty>("I'll leave you alone.") {
             npc<Talk>("Thank you, I have much on my mind.")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.flustered() {
         option<Happy>("You seem a bit flustered.") {
             npc<Uncertain>("Sorry, I'm just deep in thought. I'm waiting for many deals to complete today.")

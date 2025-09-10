@@ -3,14 +3,15 @@ package content.social.trade.exchange
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import kotlin.math.absoluteValue
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GrandExchangeHistory {
 
     val definitions: ItemDefinitions by inject()
-    
+
     init {
         interfaceOpen("exchange_history") { player ->
             for (i in 0 until 5) {
@@ -29,7 +30,5 @@ class GrandExchangeHistory {
                 player.interfaces.sendText("exchange_history", "price_$i", "${if (sell) "You got" else "It cost you"}<br>${(history.coins.absoluteValue).toDigitGroupString()} gp")
             }
         }
-
     }
-
 }

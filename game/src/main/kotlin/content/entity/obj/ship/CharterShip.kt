@@ -18,12 +18,13 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class CharterShip {
 
@@ -33,10 +34,10 @@ class CharterShip {
         "port_khazard",
         "port_sarim",
     )
-    
+
     val ships: CharterShips by inject()
     val teles: ObjectTeleports by inject()
-    
+
     init {
         interfaceRefresh("charter_ship_map") { player ->
             val currentLocation = player["charter_ship", ""]
@@ -48,7 +49,7 @@ class CharterShip {
             player.interfaces.sendVisibility(id, "oo_glog", hasQuestRequirements(player, "oo_glog") && prices.containsKey("oo_glog"))
             player.interfaces.sendVisibility(id, "crandor", false)
             player.interfaces.sendVisibility(id, "musa_point", false)
-        
+
             for (location in locations) {
                 player.interfaces.sendVisibility(id, location, location != currentLocation && prices.containsKey(location))
             }
@@ -143,7 +144,6 @@ class CharterShip {
                 }
             }
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.trading() {
@@ -151,7 +151,7 @@ class CharterShip {
             player.openShop("trader_stans_trading_post")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.charter() {
         option<Talk>("Yes, I would like to charter a ship.") {
             npc<Talk>("Certainly sir. Where would you like to go?")
@@ -159,7 +159,7 @@ class CharterShip {
             player.open("charter_ship_map")
         }
     }
-    
+
     fun hasQuestRequirements(player: Player, location: String): Boolean {
         return player.questCompleted(
             when (location) {
@@ -172,7 +172,7 @@ class CharterShip {
             },
         )
     }
-    
+
     fun location(npc: NPC) = when (npc["spawn_tile", Tile.EMPTY]) {
         Tile(3033, 3192), Tile(3039, 3193), Tile(3042, 3192) -> "port_sarim"
         Tile(2759, 3239), Tile(2760, 3239) -> "brimhaven"

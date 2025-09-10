@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.add
@@ -16,14 +17,14 @@ import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 import kotlin.math.max
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Restock {
 
     val inventoryDefinitions: InventoryDefinitions by inject()
     val restockTimeTicks = TimeUnit.SECONDS.toTicks(60)
     val logger = InlineLogger()
-    
+
     init {
         playerSpawn { player ->
             player.softTimers.restart("shop_restock")
@@ -75,15 +76,14 @@ class Restock {
                 restock(def, inventory)
             }
         }
-
     }
 
     /**
      * Every [restockTimeTicks] all players shops and [GeneralStores] update their stock by 10%
      */
-    
+
     // Remove restocked shops to save space
-    
+
     fun restock(def: InventoryDefinition, inventory: Inventory) {
         for (index in 0 until def.length) {
             val id = def.ids?.getOrNull(index)

@@ -11,14 +11,15 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import kotlin.math.floor
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class CombatExperience {
 
     val definitions: SpellDefinitions by inject()
-    
+
     init {
         combatAttack { player ->
             if (damage <= 0) {
@@ -56,13 +57,12 @@ class CombatExperience {
             }
             grant(player, target, Skill.Constitution, damage / 7.5)
         }
-
     }
 
     fun grant(player: Player, target: Character, skill: Skill, experience: Double) {
         player.exp(skill, experience * calcBonus(target))
     }
-    
+
     fun calcBonus(target: Character): Double = when (target) {
         is NPC -> {
             val combinedLevels = target.levels.get(Skill.Attack) +

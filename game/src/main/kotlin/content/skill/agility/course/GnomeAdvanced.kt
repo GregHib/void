@@ -14,16 +14,17 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GnomeAdvanced {
 
     val npcs: NPCs by inject()
-    
+
     init {
         objectOperate("Climb-up", "gnome_tree_branch_advanced") {
             if (!player.has(Skill.Agility, 85, message = true)) {
@@ -105,7 +106,5 @@ class GnomeAdvanced {
             }
             player.exp(Skill.Agility, 25.0)
         }
-
     }
-
 }

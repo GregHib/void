@@ -5,10 +5,11 @@ import content.entity.player.effect.energy.runEnergy
 import content.entity.player.inv.inventoryOption
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.inventory
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ExplorersRing {
 
@@ -29,7 +30,5 @@ class ExplorersRing {
                 player.message("You feel refreshed as the ring revitalises you and a charge is used up.")
             }
         }
-
     }
-
 }

@@ -14,10 +14,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class AbyssObstacles {
 
@@ -35,15 +36,15 @@ class AbyssObstacles {
         Tile(3021, 4842) to (Tile(3020, 4843) to Tile(3027, 4840)),
         Tile(3028, 4849) to (Tile(3029, 4851) to Tile(3032, 4844)),
     )
-    
+
     val chance = 2..100
-    
+
     val distractions = arrayOf(
         "emote_clap",
         "stomp_eyes",
         "distract_eyes",
     )
-    
+
     init {
         objectOperate("Mine", "abyss_rock") {
             player.message("You attempt to mine your way through...", ChatType.Filter)
@@ -216,12 +217,11 @@ class AbyssObstacles {
             val (_, teleTile) = positions[target.tile]!!
             player.tele(teleTile)
         }
-
     }
 
     // Object tile, opposite passage tile, teleport tile
     // Target tiles should be slightly randomised
-    
+
     fun direction(tile: Tile): Direction {
         val delta = tile.minus(tile.region.tile)
         return when {

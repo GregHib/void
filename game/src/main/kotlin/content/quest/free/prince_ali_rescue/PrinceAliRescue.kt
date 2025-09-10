@@ -10,10 +10,11 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class PrinceAliRescue {
 
@@ -23,7 +24,7 @@ class PrinceAliRescue {
         Item("wig_blonde"),
         Item("paste"),
     )
-    
+
     init {
         objectOperate("Open", "draynor_prison_door_closed") {
             if (player.inventory.contains("bronze_key_prince_ali_rescue") || player.quest("prince_ali_rescue") == "prince_ali_disguise") {
@@ -84,7 +85,7 @@ class PrinceAliRescue {
                             append(" him a disguise to make him look like <maroon>Lady Keli<navy>, the leader of the <maroon>Bandits<navy>. ")
                             append(if (key) "I have also made" else "I also need to make")
                             append(" a copy of the key to his cell.")
-        
+
                             if (disguise && key) {
                                 append(" I should speak with <maroon>Leela<navy> outside the <maroon>Abandoned Jail<navy> and let her know that I've done all of this.")
                             }
@@ -232,7 +233,5 @@ class PrinceAliRescue {
             }
             player.questJournal("Prince Ali Rescue", lines)
         }
-
     }
-
 }

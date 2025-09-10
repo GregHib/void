@@ -23,21 +23,22 @@ import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.ObjectShape
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Firemaking {
 
     val floorItems: FloorItems by inject()
     val objects: GameObjects by inject()
-    
+
     val directions = listOf(Direction.WEST, Direction.EAST, Direction.SOUTH, Direction.NORTH)
-    
+
     val Item.burnable: Boolean
         get() = def.contains("firemaking")
 
@@ -62,7 +63,6 @@ class Firemaking {
         floorItemOperate("Light") {
             lightFire(player, target)
         }
-
     }
 
     suspend fun Interaction<Player>.lightFire(
@@ -102,7 +102,7 @@ class Firemaking {
         player.start("action_delay", 1)
         player.softTimers.stop("firemaking")
     }
-    
+
     fun Player.canLight(log: String, fire: Fire, item: FloorItem): Boolean {
         if (log.endsWith("branches") && !inventory.contains("tinderbox_dungeoneering")) {
             message("You don't have the required items to light this.")
@@ -121,7 +121,7 @@ class Firemaking {
         }
         return floorItems[item.tile].contains(item)
     }
-    
+
     fun spawnFire(player: Player, tile: Tile, fire: Fire) {
         val obj = objects.add("fire_${fire.colour}", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = fire.life)
         floorItems.add(tile, "ashes", revealTicks = fire.life, disappearTicks = 60, owner = "")
@@ -134,5 +134,4 @@ class Firemaking {
         }
         player["face_entity"] = obj
     }
-    
 }

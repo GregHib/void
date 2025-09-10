@@ -8,17 +8,18 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class FatherUrhney {
 
     val floorItems: FloorItems by inject()
-    
+
     init {
         npcOperate("Talk-to", "father_urhney") {
             npc<Frustrated>("Go away! I'm meditating!")
@@ -87,7 +88,6 @@ class FatherUrhney {
             player.message("<red>You don't want to dip into those pockets without good reason.")
             player.message("<red>They're holy ...and filthy.")
         }
-
     }
 
     suspend fun SuspendableContext<Player>.ghost() {
@@ -108,5 +108,4 @@ class FatherUrhney {
         npc<Neutral>("Maybe if you know what this task is, you can get rid of the ghost. I'm not making any guarantees mind you, but it is the best I can do right now.")
         player<Neutral>("Thank you. I'll give it a try!")
     }
-    
 }

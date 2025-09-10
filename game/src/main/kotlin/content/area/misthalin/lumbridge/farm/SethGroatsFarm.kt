@@ -7,11 +7,12 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class SethGroatsFarm {
 
@@ -33,7 +34,5 @@ class SethGroatsFarm {
                 cancel()
             }
         }
-
     }
-
 }

@@ -7,10 +7,11 @@ import content.entity.proj.shoot
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerTick
 import world.gregs.voidps.engine.timer.npcTimerStop
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class MorrigansJavelin {
 
@@ -51,7 +52,5 @@ class MorrigansJavelin {
             npc.clear("phantom_damage")
             npc.clear("phantom_first")
         }
-
     }
-
 }

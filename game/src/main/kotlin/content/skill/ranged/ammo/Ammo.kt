@@ -16,15 +16,16 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasUseLevel
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Ammo {
 
     val ammoDefinitions: AmmoDefinitions by inject()
     val weaponStyles: WeaponStyleDefinitions by inject()
-    
+
     init {
         combatPrepare { player ->
             if (player.fightStyle != "range" && player.weapon.def["weapon_style", 0] == 21 && !checkAmmo(player)) { // Salamanders
@@ -50,7 +51,6 @@ class Ammo {
                 cancel()
             }
         }
-
     }
 
     fun checkAmmo(player: Player): Boolean {

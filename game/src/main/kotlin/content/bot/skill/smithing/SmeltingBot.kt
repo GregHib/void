@@ -17,18 +17,19 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.client.instruction.InteractDialogue
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class SmeltingBot {
 
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()
     val itemDefinitions: ItemDefinitions by inject()
-    
+
     init {
         timerStop("smelting") { player ->
             if (player.isBot) {
@@ -54,7 +55,6 @@ class SmeltingBot {
                 tasks.register(task)
             }
         }
-
     }
 
     suspend fun Bot.smelt(map: AreaDefinition, set: GearDefinition) {
@@ -93,7 +93,7 @@ class SmeltingBot {
             await("smelting")
         }
     }
-    
+
     fun isFurnace(map: AreaDefinition, obj: GameObject): Boolean {
         if (!map.area.contains(obj.tile)) {
             return false

@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class TradeDecline {
 
@@ -38,13 +39,12 @@ class TradeDecline {
                 other?.closeMenu()
             }
         }
-
     }
 
     /**
      * Declining or closing cancels the trade
      */
-    
+
     fun InterfaceOption.decline() {
         val other = getPartner(player)
         player.message("Declined trade.", ChatType.Trade)

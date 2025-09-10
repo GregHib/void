@@ -8,15 +8,16 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.dialogue.type.warning
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.equals
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class StrongholdOfSecurityLadders {
 
     val teleports: ObjectTeleports by inject()
-    
+
     init {
         objTeleportLand("Climb-down", "stronghold_of_security_entrance") {
             player.queue("stronghold_of_security_entrance") {
@@ -62,7 +63,5 @@ class StrongholdOfSecurityLadders {
         objTeleportTakeOff("Climb-up", "stronghold_famine_ladder_up", "stronghold_pestilence_ladder_up", "stronghold_death_ladder_up") {
             player.message("You climb up the ladder to the level above.")
         }
-
     }
-
 }

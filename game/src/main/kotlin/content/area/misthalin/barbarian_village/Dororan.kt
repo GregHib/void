@@ -12,13 +12,14 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Dororan {
 
@@ -165,7 +166,6 @@ class Dororan {
                 someThingElse()
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.poem() {
@@ -188,7 +188,7 @@ class Dororan {
             option<Talk>("I expect so.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.poemDone() {
         npc<Laugh>("At last! It's done! It's finished! My finest work! Thank you so much for your help!")
         player<Pleased>("Are you ready to present it to Chieftain?!")
@@ -207,20 +207,20 @@ class Dororan {
             option<Talk>("This had better be the last time.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.sweptToWar() {
         npc<Pleased>("'Who then, in face of madness, <blue>swept to war.</col>'")
         npc<Happy>("That's it! That's brilliant!")
         player["gunnars_ground"] = "poem_done"
         poemDone()
     }
-    
+
     suspend fun SuspendableContext<Player>.oneMore() {
         npc<Pleased>("It's coming together. We're nearly done! One more to go!")
         npc<Quiz>("This one is tricky, though. It's a phrase I need. Someone did something.")
         phraseMenu()
     }
-    
+
     suspend fun SuspendableContext<Player>.phraseMenu() {
         choice {
             option<Talk>("Threw the ball.") {
@@ -241,7 +241,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.threeSyllablesMenu() {
         choice {
             option<Talk>("Picked a rose.") {
@@ -265,7 +265,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.threeSyllablesMenu2() {
         choice {
             option<Talk>("Heard a song.") {
@@ -288,7 +288,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.fightMenu() {
         choice {
             option<Talk>("Picked a fight.") {
@@ -312,7 +312,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.fightMenu2() {
         choice {
             option<Talk>("Swept to war.") {
@@ -335,7 +335,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.loreMenu() {
         choice {
             option<Talk>("Started a war.") {
@@ -359,7 +359,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.loreMenu2() {
         choice {
             option<Talk>("Learned to soar") {
@@ -382,14 +382,14 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.threat() {
         npc<Pleased>("'But long is gone the author of that <blue>threat.</col>'")
         npc<Happy>("Perfect! Yes!")
         player["gunnars_ground"] = "one_more_poem"
         oneMore()
     }
-    
+
     suspend fun SuspendableContext<Player>.morePoem() {
         npc<Sad>("The poem still isn't finished, though. I have another missing word. Give me another one; anything, to get me started.")
         choice {
@@ -411,7 +411,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.syllablePoemMenu() {
         choice {
             option<Talk>("Storm.") {
@@ -435,7 +435,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.syllablePoemMenu2() {
         choice {
             option<Talk>("Debt.") {
@@ -458,7 +458,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.rhymePoemMenu() {
         choice {
             option<Talk>("Debt.") {
@@ -482,7 +482,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.rhymePoemMenu2() {
         choice {
             option<Talk>("Threat.") {
@@ -505,7 +505,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.dangerPoemMenu() {
         choice {
             option<Talk>("Risk.") {
@@ -529,7 +529,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.dangerPoemMenu2() {
         choice {
             option<Talk>("Upset.") {
@@ -552,7 +552,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.aboutRing() {
         npc<Quiz>("Did you give Gudrun the ring? What did she think? Did it capture her heart?")
         player<Talk>("There's a problem.")
@@ -568,7 +568,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.mostCruel() {
         player<Talk>("Gudrun's father won't let her be with someone from outside the village.")
         npc<Amazed>("Most cruel is fate! Most cruel! Why not?")
@@ -586,7 +586,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.anyIdea() {
         npc<Amazed>("An idea occurs to me, but it is hubris of the greatest magnitude.")
         player<Quiz>("What is it?")
@@ -600,7 +600,7 @@ class Dororan {
         player["gunnars_ground"] = "write_poem"
         writePoem()
     }
-    
+
     suspend fun SuspendableContext<Player>.writePoem() {
         npc<Talk>("'Even the bloodiest rose must settle.' Mixed metaphor. Whats settles? Detritus. That's hardly flattering.")
         npc<Talk>("'Even the rolliest boulder...'")
@@ -615,7 +615,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.stuckOnWord() {
         npc<Cry>("I'm stuck on a word. By the colossus of King Alvis! I can't find the words!")
         player<Talk>("Maybe I can help. What sort of word?")
@@ -624,7 +624,7 @@ class Dororan {
         player<Talk>("Alright, How about, uh...")
         poemMenu()
     }
-    
+
     suspend fun SuspendableContext<Player>.poemMenu() {
         choice {
             option<Happy>("Cucumber.") {
@@ -645,7 +645,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.syllableMenu() {
         choice {
             option<Happy>("Ham.") {
@@ -669,7 +669,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.syllableMenu2() {
         choice {
             option<Happy>("Roam.") {
@@ -692,7 +692,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.wordsMenu() {
         choice {
             option<Happy>("Deviate.") {
@@ -716,7 +716,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.wordsMenu2() {
         choice {
             option<Happy>("Meander.") {
@@ -739,7 +739,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.rhymeMenu() {
         choice {
             option<Happy>("Lay.") {
@@ -763,7 +763,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.rhymeMenu2() {
         choice {
             option<Happy>("Stray.") {
@@ -786,20 +786,20 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.stray() {
         npc<Talk>("'And from his righteous purpose never <blue>stray.</col>'")
         npc<Pleased>("That fits! It fits perfectly. Right meaning, right length, right rhyme. Well done!")
         player["gunnars_ground"] = "more_poem"
         morePoem()
     }
-    
+
     suspend fun SuspendableContext<Player>.meetChieftain() {
         npc<Quiz>("Did you give Gudrun the ring? What did she think?")
         player<Talk>("She liked it, but there's a problem. I'm dealing with it.")
         npc<Amazed>("Oh no!")
     }
-    
+
     suspend fun SuspendableContext<Player>.showGudrun() {
         if (!player.ownsItem("dororans_engraved_ring")) {
             npc<Surprised>("I know. I found it on the ground.")
@@ -817,7 +817,7 @@ class Dororan {
             option<Talk>("I'm on it.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.engravedRing() {
         npc<Neutral>("Is it done? Have you created a work of magnificent beauty?")
         if (!player.ownsItem("dororans_engraved_ring")) {
@@ -851,7 +851,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.oneMoreThing() {
         choice {
             option<Talk>("Of course.") {
@@ -862,7 +862,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.veryWell() {
         npc<Sad>("I fear she will only judge this poor book by its cover. Would you take the ring to Gudrun for me?")
         choice {
@@ -874,7 +874,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.whereIsShe() {
         npc<Talk>("Please don't tell her I'm a dwarf just yet.")
         player["gunnars_ground"] = "show_gudrun"
@@ -885,7 +885,7 @@ class Dororan {
             option<Talk>("I'm on it.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.unstarted() {
         npc<Upset>("'My heart with burdens heavy does it lie.'")
         npc<Upset>("'For never did I...'")
@@ -902,7 +902,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.started() {
         npc<Talk>("I need a ring of purest gold. Then we can engrave it with the words of my heart.")
         player.refreshQuestJournal()
@@ -925,7 +925,7 @@ class Dororan {
             option<Neutral>("I'll return with a ring from Jeffery.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.somethingElse() {
         choice {
             option<Neutral>("I want to ask about something else.") {
@@ -935,7 +935,7 @@ class Dororan {
             option<Neutral>("I'll return with a ring from Jeffery.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.lovePoemMenu() {
         choice {
             option<Neutral>("Does it have to be a ring from Jeffery?") {
@@ -961,7 +961,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.lovePoem() {
         npc<Neutral>("'I await in eagerness for a loop of lustrous grandeur.' No, that just sounds ridiculous. Have you brought me a ring from Jeffery?'")
         if (!player.ownsItem("ring_from_jeffery") && player.quest("gunnars_ground") == "jeffery_ring") {
@@ -1015,7 +1015,7 @@ class Dororan {
             option<Neutral>("I'll return with a ring from Jeffery.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.engrave() {
         npc<Talk>("Now, would you engrave something on it for me?")
         choice {
@@ -1027,7 +1027,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.engraveSomething() {
         npc<Pleased>("I've given this some thought.")
         npc<Happy>("'Gudrun the Fair, Gudrun the Fiery.'")
@@ -1044,7 +1044,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.engraveMenu() {
         choice {
             option<Neutral>("Do you have a chisel I can use?") {
@@ -1056,7 +1056,7 @@ class Dororan {
             option<Talk>("Not yet.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.haveChisel() {
         npc<Happy>("Yes, here you go.")
         if (player.inventory.isFull()) {
@@ -1073,7 +1073,7 @@ class Dororan {
             option<Talk>("Okay.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.chiselBitClumsy() {
         npc<Happy>("I've seen jewelcrafters use them for all sorts of precise work.")
         choice {
@@ -1083,7 +1083,7 @@ class Dororan {
             option<Talk>("Okay.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.poet() {
         npc<Happy>("You're a poet too?")
         choice {
@@ -1101,7 +1101,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.identify() {
         npc<Cry>("My heart is stricken with that most audacious of maladies!")
         choice {
@@ -1116,7 +1116,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.love() {
         npc<Amazed>("Love!")
         npc<Upset>("The walls of my heart are besieged by love's armies, and those walls begin to tumble!")
@@ -1138,7 +1138,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.getToThePoint() {
         npc<Sad>("The people of this village value strength, stature and riches. I have none of these things.")
         npc<Upset>("My people are indomitable warriors, dripping with gold and precious gems, but not I.")
@@ -1153,7 +1153,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.helpMe() {
         npc<Quiz>("If Gudrun could ever love a dwarf, surely she would need to see my artisanry.")
         npc<Talk>("Will you help me? I am no crafter of metal.")
@@ -1170,7 +1170,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.someThingElse() {
         choice {
             option<Neutral>("How are things?") {
@@ -1209,7 +1209,7 @@ class Dororan {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.giveRing(): Boolean {
         if (player.inventory.isFull()) {
             statement("You don't have room for the ring. Speak to Dororan again when you have room.")
@@ -1220,7 +1220,7 @@ class Dororan {
         item("dororans_engraved_ring", 400, "Dororan hands you back the engraved ring.")
         return true
     }
-    
+
     suspend fun SuspendableContext<Player>.elseGoodbye() {
         choice {
             option<Neutral>("I want to talk about something else.") {

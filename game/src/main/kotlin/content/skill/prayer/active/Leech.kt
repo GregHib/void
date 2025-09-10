@@ -15,11 +15,12 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Leech {
 
@@ -32,7 +33,7 @@ class Leech {
         "leech_defence" to Skill.Defence,
         "leech_magic" to Skill.Magic,
     )
-    
+
     init {
         timerStart("prayer_bonus_drain") {
             interval = 50
@@ -89,7 +90,7 @@ class Leech {
             val amount = MAX_SPECIAL_ATTACK / 10
             target.specialAttackEnergy = (energy - amount).coerceAtLeast(0)
             cast(player, target, false, "special_attack")
-        
+
             energy = player.specialAttackEnergy
             if (energy == MAX_SPECIAL_ATTACK) {
                 drainMessage(player, "special_attack")
@@ -115,7 +116,7 @@ class Leech {
             val amount = MAX_RUN_ENERGY / 10
             target.runEnergy = energy - amount
             cast(player, target, false, "energy")
-        
+
             energy = player.runEnergy
             if (energy == MAX_RUN_ENERGY) {
                 drainMessage(player, "run_energy")
@@ -131,7 +132,7 @@ class Leech {
                     continue
                 }
                 val sap = prayer.startsWith("sap")
-        
+
                 if (random.nextDouble() >= if (sap) 0.25 else 0.15) {
                     continue
                 }
@@ -141,9 +142,9 @@ class Leech {
                     weakMessage(source, sap, name)
                     continue
                 }
-        
+
                 cast(source, target, sap, name)
-        
+
                 if (sap) {
                     source.message("Your curse drains ${skill.name} from the enemy, boosting your ${skill.name}.")
                 }
@@ -155,7 +156,7 @@ class Leech {
                     target.setDrain(skill, drain, 10)
                 }
                 target.updateBonus(skill)
-        
+
                 if (!sap) {
                     val leech = source.getLeech(skill) + 1
                     if (leech * 100.0 / source.levels.getMax(skill) > 5) {
@@ -176,7 +177,6 @@ class Leech {
                 player.clear("${skill.name.lowercase()}_leech_msg")
             }
         }
-
     }
 
     fun restore(player: Player, skill: Skill, leech: Int) {
@@ -192,9 +192,9 @@ class Leech {
         }
         player.updateBonus(skill)
     }
-    
+
     fun getLevel(target: Character, skill: Skill): Int = target.levels.getMax(skill)
-    
+
     fun cast(source: Character, target: Character, sap: Boolean, name: String) {
         source.queue("leech", 1) {
             val type = if (sap) "sap" else "leech"
@@ -204,7 +204,7 @@ class Leech {
             target.gfx("land_${type}_$name", delay = time)
         }
     }
-    
+
     fun weakMessage(source: Character, sap: Boolean, name: String) {
         val key = "${name}_drain_msg"
         if (!source[key, false]) {
@@ -212,11 +212,11 @@ class Leech {
             source.message("Your opponent has been weakened so much that your ${if (sap) "sap" else "leech"} curse has no effect.")
         }
     }
-    
+
     fun boostMessage(source: Character, name: String) {
         source.message("Your curse drains $name from the enemy, boosting your $name.")
     }
-    
+
     fun drainMessage(source: Character, name: String) {
         val key = "${name}_leech_msg"
         if (!source[key, false]) {

@@ -10,6 +10,7 @@ import content.skill.runecrafting.EssenceMine
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class WizardDistentor {
 
@@ -38,7 +39,5 @@ class WizardDistentor {
                 player.message("You need to have completed the Rune Mysteries Quest to use this feature.")
             }
         }
-
     }
-
 }

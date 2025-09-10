@@ -16,18 +16,19 @@ import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.npcSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GodwarsAggression {
 
     val areas: AreaDefinitions by inject()
     val dungeon = areas["godwars_dungeon_multi_area"]
-    
+
     init {
         enterArea("godwars_dungeon_multi_area") {
             player.open("godwars_overlay")
@@ -94,7 +95,6 @@ class GodwarsAggression {
                 }
             }
         }
-
     }
 
     fun randomHuntMode(npc: NPC) {

@@ -18,11 +18,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import kotlin.math.round
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class SteppingStones {
 
@@ -98,7 +99,7 @@ class SteppingStones {
         objectOperate("Jump-onto", "draynor_stepping_stone") {
             if (player.tile == target.tile) {
                 // Approach incorrectly calls this after moving causing it to fire every time
-        //        player.message("You're already standing there.")
+                //        player.message("You're already standing there.")
                 return@objectOperate
             }
             draynorCross()
@@ -123,7 +124,6 @@ class SteppingStones {
             player.sound("jump", delay = 15)
             player.exactMoveDelay(target.tile.addY(direction.delta.y * 3), startDelay = 30, delay = 45, direction = direction) // startDelta = Delta(0, -2), endDelta = Delta(0, 0)
         }
-
     }
 
     suspend fun ObjectOption<Player>.shiloCross() {
@@ -152,17 +152,17 @@ class SteppingStones {
             delay()
             player.renderEmote("swim")
             player.walkOverDelay(Tile(2931, if (direction == Direction.SOUTH) 2947 else 2951))
-    
+
             player.clearRenderEmote()
             player.walkOverDelay(Tile(2931, if (direction == Direction.SOUTH) 2945 else 2953))
-    
+
             player.message("You get washed up on the side of the river, after being nearly half drowned.", ChatType.Filter)
             player.specialAttackEnergy = (player.specialAttackEnergy - 100).coerceAtLeast(0)
             player.damage(round(player.levels.get(Skill.Constitution) / 5.5).toInt())
             player.exp(Skill.Agility, 1.0)
         }
     }
-    
+
     suspend fun ObjectOption<Player>.draynorCross() {
         if (!player.has(Skill.Agility, 31)) {
             player.message("You need level 31 Agility to tackle this obstacle.")
@@ -203,5 +203,4 @@ class SteppingStones {
             player.exp(Skill.Agility, 1.0)
         }
     }
-    
 }

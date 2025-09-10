@@ -1,26 +1,109 @@
+@file:Suppress("UNCHECKED_CAST")
+
+package content.entity.player.command.admin
+
+import content.bot.interact.navigation.graph.NavigationGraph
+import content.entity.npc.shop.OpenShop
+import content.entity.obj.ObjectTeleports
+import content.entity.obj.ship.CharterShips
+import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import content.entity.player.combat.special.specialAttackEnergy
+import content.entity.player.effect.energy.MAX_RUN_ENERGY
+import content.entity.player.effect.skull
+import content.entity.player.effect.unskull
+import content.entity.player.modal.book.Books
+import content.entity.sound.jingle
+import content.entity.sound.midi
+import content.entity.sound.sound
+import content.entity.world.music.MusicTracks
+import content.entity.world.music.MusicUnlock
+import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
+import content.quest.quests
+import content.quest.refreshQuestJournal
+import content.skill.prayer.PrayerConfigs
+import content.skill.prayer.PrayerConfigs.PRAYERS
+import content.skill.prayer.isCurses
+import content.social.trade.exchange.GrandExchange
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import kotlinx.coroutines.*
+import net.pearx.kasechange.toSentenceCase
+import net.pearx.kasechange.toSnakeCase
+import world.gregs.voidps.cache.Definition
+import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.engine.client.PlayerAccountLoader
+import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.*
+import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.event.Command
+import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.client.ui.event.modCommand
+import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.ui.playTrack
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.*
+import world.gregs.voidps.engine.data.definition.*
+import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
+import world.gregs.voidps.engine.entity.character.player.*
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.drop.DropTable
+import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.entity.item.drop.ItemDrop
+import world.gregs.voidps.engine.entity.item.drop.TableType
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
+import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
+import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.*
+import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.charge
+import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
+import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.network.login.protocol.encode.playJingle
+import world.gregs.voidps.network.login.protocol.encode.playMIDI
+import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
+import world.gregs.voidps.network.login.protocol.encode.systemUpdate
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Region
+import java.util.concurrent.TimeUnit
+import kotlin.collections.set
+import kotlin.system.measureTimeMillis
 
 @Script
 class AdminCommands {
 
     val areas: AreaDefinitions by inject()
     val players: Players by inject()
-    
+
     val exchange: GrandExchange by inject()
-    
+
     val definitions: ItemDefinitions by inject()
     val alternativeNames = Object2ObjectOpenHashMap<String, String>()
-    
+
     val utf8Regex = "[^\\x20-\\x7e]".toRegex()
-    
+
     val enums: EnumDefinitions by inject()
-    
+
     val itemDefinitions: ItemDefinitions by inject()
-    
+
     val tables: DropTables by inject()
-    
+
     val accountLoader: PlayerAccountLoader by inject()
-    
+
     init {
         Command.adminCommands.add("${Colours.PURPLE.toTag()}====== Admin Commands ======</col>")
 
@@ -584,93 +667,8 @@ class AdminCommands {
             }
             shutdown((ticks - 2).coerceAtLeast(0))
         }
-
     }
 
-    @file:Suppress("UNCHECKED_CAST")
-    
-    package content.entity.player.command.admin
-    
-    import content.bot.interact.navigation.graph.NavigationGraph
-    import content.entity.npc.shop.OpenShop
-    import content.entity.obj.ObjectTeleports
-    import content.entity.obj.ship.CharterShips
-    import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
-    import content.entity.player.combat.special.specialAttackEnergy
-    import content.entity.player.effect.energy.MAX_RUN_ENERGY
-    import content.entity.player.effect.skull
-    import content.entity.player.effect.unskull
-    import content.entity.player.modal.book.Books
-    import content.entity.sound.jingle
-    import content.entity.sound.midi
-    import content.entity.sound.sound
-    import content.entity.world.music.MusicTracks
-    import content.entity.world.music.MusicUnlock
-    import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
-    import content.quest.quests
-    import content.quest.refreshQuestJournal
-    import content.skill.prayer.PrayerConfigs
-    import content.skill.prayer.PrayerConfigs.PRAYERS
-    import content.skill.prayer.isCurses
-    import content.social.trade.exchange.GrandExchange
-    import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-    import kotlinx.coroutines.*
-    import net.pearx.kasechange.toSentenceCase
-    import net.pearx.kasechange.toSnakeCase
-    import world.gregs.voidps.cache.Definition
-    import world.gregs.voidps.cache.definition.Extra
-    import world.gregs.voidps.engine.client.PlayerAccountLoader
-    import world.gregs.voidps.engine.client.clearCamera
-    import world.gregs.voidps.engine.client.message
-    import world.gregs.voidps.engine.client.ui.chat.*
-    import world.gregs.voidps.engine.client.ui.close
-    import world.gregs.voidps.engine.client.ui.event.Command
-    import world.gregs.voidps.engine.client.ui.event.adminCommand
-    import world.gregs.voidps.engine.client.ui.event.modCommand
-    import world.gregs.voidps.engine.client.ui.open
-    import world.gregs.voidps.engine.client.ui.playTrack
-    import world.gregs.voidps.engine.client.variable.start
-    import world.gregs.voidps.engine.data.*
-    import world.gregs.voidps.engine.data.definition.*
-    import world.gregs.voidps.engine.entity.World
-    import world.gregs.voidps.engine.entity.character.move.tele
-    import world.gregs.voidps.engine.entity.character.npc.NPCs
-    import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
-    import world.gregs.voidps.engine.entity.character.player.*
-    import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-    import world.gregs.voidps.engine.entity.character.player.skill.Skill
-    import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
-    import world.gregs.voidps.engine.entity.character.player.skill.level.Level
-    import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
-    import world.gregs.voidps.engine.entity.item.Item
-    import world.gregs.voidps.engine.entity.item.drop.DropTable
-    import world.gregs.voidps.engine.entity.item.drop.DropTables
-    import world.gregs.voidps.engine.entity.item.drop.ItemDrop
-    import world.gregs.voidps.engine.entity.item.drop.TableType
-    import world.gregs.voidps.engine.entity.item.floor.FloorItems
-    import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
-    import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
-    import world.gregs.voidps.engine.entity.obj.GameObjects
-    import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
-    import world.gregs.voidps.engine.entity.worldSpawn
-    import world.gregs.voidps.engine.get
-    import world.gregs.voidps.engine.inject
-    import world.gregs.voidps.engine.inv.*
-    import world.gregs.voidps.engine.inv.transact.TransactionError
-    import world.gregs.voidps.engine.inv.transact.charge
-    import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
-    import world.gregs.voidps.engine.queue.softQueue
-    import world.gregs.voidps.engine.timer.toTicks
-    import world.gregs.voidps.network.login.protocol.encode.playJingle
-    import world.gregs.voidps.network.login.protocol.encode.playMIDI
-    import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
-    import world.gregs.voidps.network.login.protocol.encode.systemUpdate
-    import world.gregs.voidps.type.Direction
-    import world.gregs.voidps.type.Region
-    import java.util.concurrent.TimeUnit
-    import kotlin.collections.set
-    import kotlin.system.measureTimeMillis
-    
     fun <T> search(player: Player, definitions: DefinitionsDecoder<T>, search: String, getName: (T) -> String): Int where T : Definition, T : Extra {
         var found = 0
         for (id in definitions.definitions.indices) {
@@ -683,7 +681,7 @@ class AdminCommands {
         }
         return found
     }
-    
+
     class InventoryDelegate(
         private val inventory: Inventory,
         private val list: MutableList<ItemDrop> = mutableListOf(),
@@ -695,7 +693,7 @@ class AdminCommands {
             return true
         }
     }
-    
+
     fun ItemDrop.chance(table: DropTable): Double {
         if (table.type == TableType.All) {
             return 1.0
@@ -705,7 +703,7 @@ class AdminCommands {
         }
         return table.roll / chance.toDouble()
     }
-    
+
     fun collectChances(player: Player, table: DropTable, map: MutableMap<ItemDrop, Double>, multiplier: Double = 1.0) {
         for (drop in table.drops) {
             if (drop is ItemDrop) {
@@ -717,7 +715,7 @@ class AdminCommands {
             }
         }
     }
-    
+
     fun Inventory.sortedByDescending(block: (Item) -> Long) {
         transaction {
             val items = items.clone()
@@ -727,7 +725,7 @@ class AdminCommands {
             }
         }
     }
-    
+
     fun shutdown(ticks: Int) {
         // Prevent players logging-in 1 minute before update
         World.queue("system_shutdown", (ticks - 100).coerceAtLeast(0)) {

@@ -17,18 +17,19 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.network.login.protocol.visual.VisualMask.APPEARANCE_MASK
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class EquipmentBonuses {
 
     val definitions: ItemDefinitions by inject()
-    
+
     val df = DecimalFormat("0.0").apply {
         roundingMode = RoundingMode.FLOOR
     }
@@ -92,25 +93,24 @@ class EquipmentBonuses {
                 checkEmoteUpdate(player)
             }
         }
-
     }
 
     fun Player.equipping() = menu == "equipment_bonuses"
-    
+
     /*
         Redirect equipping actions to regular inventories
      */
-    
+
     fun checkEmoteUpdate(player: Player) {
         if (player.visuals.flagged(APPEARANCE_MASK)) {
             updateEmote(player)
         }
     }
-    
+
     fun updateEmote(player: Player) {
         player["equipment_emote"] = player.appearance.emote
     }
-    
+
     fun updateStats(player: Player, item: Item, add: Boolean) {
         names.forEach { (name, key) ->
             val value = item.def[key, 0]
@@ -126,13 +126,13 @@ class EquipmentBonuses {
             }
         }
     }
-    
+
     fun sendBonus(player: Player, name: String, key: String, value: Int) {
         if (player.menu == "equipment_bonuses") {
             player.interfaces.sendText("equipment_bonuses", key, "$name: ${EquipBonuses.format(key, value, true)}")
         }
     }
-    
+
     fun updateStats(player: Player) {
         names.forEach { (name, key) ->
             player[key] = 0
@@ -144,20 +144,20 @@ class EquipmentBonuses {
             }
         }
     }
-    
+
     /*
         https://www.reddit.com/r/runescape/comments/k0irv/new_clothing_and_weapons_from_branches_of/
         https://www.wikihow-fun.com/images/thumb/0/04/Mine-for-Gems-in-RuneScape-Step-6.jpg/aid803430-v4-728px-Mine-for-Gems-in-RuneScape-Step-6.jpg
      */
     fun showStats(player: Player, item: ItemDefinition) {
         player["equipment_name"] = item.name
-    
+
         val titles = StringBuilder()
         val types = StringBuilder()
         val stats = StringBuilder()
-    
+
         var first = true
-    
+
         fun appendTitle(name: String, prefix: Boolean) {
             if (prefix) {
                 titles.append("<br>")
@@ -168,14 +168,14 @@ class EquipmentBonuses {
             types.append("<br>")
             stats.append("<br>")
         }
-    
+
         fun appendLine(name: String, value: String) {
             titles.append("<br>")
             types.append(name.replace("Ranged Strength", "Ranged Str."), if (first) ":                 " else ":", "<br>")
             stats.append(value, "<br>")
             first = false
         }
-    
+
         fun addValue(index: Int) {
             val (name, key) = names[index]
             val value = EquipBonuses.getValue(item, key)
@@ -183,7 +183,7 @@ class EquipmentBonuses {
                 appendLine(name, value)
             }
         }
-    
+
         appendTitle("Attack bonus", false)
         for (i in 0 until 5) {
             addValue(i)
@@ -196,7 +196,7 @@ class EquipmentBonuses {
         for (i in 14 until 18) {
             addValue(i)
         }
-    
+
         if (item.contains("attack_speed")) {
             val attackSpeed = item["attack_speed", 4]
             if (attackSpeed != 0) {
@@ -214,7 +214,7 @@ class EquipmentBonuses {
             }
         }
         appendLine("Weight", "${df.format(item["weight", 0.0])} kg")
-    
+
         player["equipment_titles"] = titles.toString()
         player["equipment_names"] = types.toString()
         player["equipment_stats"] = stats.toString()
@@ -222,5 +222,4 @@ class EquipmentBonuses {
         player.sendVariable("equipment_names")
         player.sendVariable("equipment_stats")
     }
-    
 }

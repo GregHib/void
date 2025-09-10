@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -17,12 +18,12 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Aggie {
 
     val floorItems: FloorItems by inject()
-    
+
     init {
         npcOperate("Talk-to", "aggie") {
             npc<Happy>("What can I help you with?")
@@ -109,7 +110,6 @@ class Aggie {
                 }
             }
         }
-
     }
 
     suspend fun NPCOption<Player>.menu() {
@@ -131,7 +131,7 @@ class Aggie {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.yellowDye() {
         choice {
             option<Quiz>("Okay, make me some yellow dye please.") {
@@ -153,7 +153,7 @@ class Aggie {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.redDye() {
         choice {
             option<Quiz>("Okay, make me some red dye please.") {
@@ -175,7 +175,7 @@ class Aggie {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.blueDye() {
         choice {
             option<Quiz>("Okay, make me some blue dye please.") {
@@ -197,7 +197,7 @@ class Aggie {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.otherColours() {
         choice {
             option<Quiz>("What other colours can you make?") {
@@ -209,7 +209,7 @@ class Aggie {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.makeYellow() {
         if (!player.inventory.contains("coins", 5)) {
             statement("You don't have enough coins to pay for the dye.")
@@ -229,7 +229,7 @@ class Aggie {
             item("yellow_dye", 380, "You hand the onions and payment to Aggie. Aggie produces a yellow bottle and hands it to you.")
         }
     }
-    
+
     suspend fun NPCOption<Player>.makeRed() {
         if (!player.inventory.contains("coins", 5)) {
             statement("You don't have enough coins to pay for the dye.")
@@ -249,7 +249,7 @@ class Aggie {
             item("red_dye", 380, "You hand the berries and payment to Aggie. Aggie produces a red bottle and hands it to you.")
         }
     }
-    
+
     suspend fun NPCOption<Player>.makeBlue() {
         if (!player.inventory.contains("coins", 5)) {
             statement("You don't have enough coins to pay for the dye.")

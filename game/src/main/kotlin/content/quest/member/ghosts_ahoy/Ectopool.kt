@@ -6,8 +6,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.type.Direction
+
 @Script
 class Ectopool {
 
@@ -38,7 +39,5 @@ class Ectopool {
             }
             player.anim("jump_up")
         }
-
     }
-
 }

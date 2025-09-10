@@ -9,8 +9,9 @@ import content.quest.quest
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.suspend.SuspendableContext
+
 @Script
 class Zeke {
 
@@ -48,7 +49,6 @@ class Zeke {
                 }
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.takeALook() {

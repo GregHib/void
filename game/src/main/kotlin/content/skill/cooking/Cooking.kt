@@ -20,21 +20,22 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Cooking {
 
     val definitions: ItemDefinitions by inject()
     val objects: GameObjects by inject()
-    
+
     val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
-    
+
     init {
         itemOnObjectOperate(objects = setOf("fire_*", "cooking_range*")) {
             val start = GameLoop.tick
@@ -65,7 +66,6 @@ class Cooking {
             player.softTimers.start("cooking")
             player.cook(item, amount, target, cooking, offset)
         }
-
     }
 
     fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked, offset: Int? = null) {
@@ -73,18 +73,18 @@ class Cooking {
             softTimers.stop("cooking")
             return
         }
-    
+
         if (!has(Skill.Cooking, cooking.level, true)) {
             softTimers.stop("cooking")
             return
         }
-    
+
         if (cooking.leftover.isNotEmpty() && inventory.isFull()) {
             inventoryFull()
             softTimers.stop("cooking")
             return
         }
-    
+
         if (cooking.rangeOnly && !obj.cookingRange) {
             noInterest()
             softTimers.stop("cooking")
@@ -112,7 +112,7 @@ class Cooking {
             cook(item, count - 1, obj, cooking)
         }
     }
-    
+
     fun Player.failedToReplace(item: Item, raw: Uncooked, cooked: Boolean): Boolean {
         val id = if (cooked) raw.cooked else raw.burnt
         val itemId = id.ifEmpty { item.id.replace("raw", if (cooked) "cooked" else "burnt") }

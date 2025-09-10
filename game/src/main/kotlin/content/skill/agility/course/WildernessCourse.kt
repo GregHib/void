@@ -16,17 +16,18 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class WildernessCourse {
 
     val objects: GameObjects by inject()
-    
+
     init {
         objectOperate("Open", "wilderness_agility_door_closed") {
             if (!player.has(Skill.Agility, 52, message = true)) {
@@ -39,15 +40,15 @@ class WildernessCourse {
                 return@objectOperate
             }
             // Not sure if you can fail going up
-        //    val disable = Settings["agility.disableCourseFailure", false]
+            //    val disable = Settings["agility.disableCourseFailure", false]
             val success = true // disable || Level.success(player.levels.get(Skill.Agility), 200..250)
             player.message("You go through the gate and try to edge over the ridge...", ChatType.Filter)
             enterDoor(target, delay = 1)
             player.renderEmote("beam_balance")
-        //    if (!success) {
-        //        fallIntoPit()
-        //        return@strongQueue
-        //    }
+            //    if (!success) {
+            //        fallIntoPit()
+            //        return@strongQueue
+            //    }
             player.walkOverDelay(Tile(2998, 3930))
             player.clearRenderEmote()
             val gateTile = Tile(2998, 3931)
@@ -205,7 +206,6 @@ class WildernessCourse {
                 player.inc("wilderness_course_laps")
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.fallIntoPit() {
@@ -217,5 +217,4 @@ class WildernessCourse {
         delay()
         player.exactMoveDelay(Tile(3001, 3923), 25, Direction.SOUTH)
     }
-    
 }

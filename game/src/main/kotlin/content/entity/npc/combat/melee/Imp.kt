@@ -8,13 +8,14 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.npcSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.npcTimerStart
 import world.gregs.voidps.engine.timer.npcTimerTick
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Imp {
 
@@ -36,7 +37,6 @@ class Imp {
                 teleportImp(npc, teleportChanceHit)
             }
         }
-
     }
 
     private val teleportRadiusMax = 20
@@ -44,7 +44,7 @@ class Imp {
     private val teleportChance = 0.25
     private val teleportChanceHit = 0.10
     private val telePoofVfxRadius = 5
-    
+
     fun randomValidTile(npc: NPC): Tile {
         repeat(10) {
             val dest = npc.tile.toCuboid(teleportRadiusMax).random(npc) ?: return@repeat
@@ -54,7 +54,7 @@ class Imp {
         }
         return npc.tile
     }
-    
+
     fun teleportImp(npc: NPC, chance: Double) {
         if (npc.queue.contains("death")) {
             return
@@ -62,13 +62,13 @@ class Imp {
         if (random.nextDouble() > chance) {
             return
         }
-    
+
         npc.softTimers.restart("teleport_timer")
         val destination = randomValidTile(npc)
         if (destination == npc.tile) {
             return
         }
-    
+
         npc.softQueue("imp_teleport") {
             areaSound("imp_puff_teleport", npc.tile, telePoofVfxRadius)
             areaGfx("imp_puff", npc.tile)
@@ -81,5 +81,4 @@ class Imp {
             npc.mode = mode
         }
     }
-    
 }

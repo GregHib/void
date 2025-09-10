@@ -10,15 +10,16 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class TaskList {
 
     val variables: VariableDefinitions by inject()
-    
+
     val enumDefinitions: EnumDefinitions by inject()
-    
+
     init {
         playerSpawn { player ->
             player.sendVariable("task_disable_popups")
@@ -91,7 +92,6 @@ class TaskList {
             player["world_map_marker_text_1"] = ""
             player.open("world_map")
         }
-
     }
 
     fun indexOfSlot(player: Player, slot: Int): Int? {
@@ -109,7 +109,7 @@ class TaskList {
             null
         }
     }
-    
+
     fun find(player: Player, id: Int): Int {
         for (i in 0 until 6) {
             if (player["task_slot_$i", -1] == id) {
@@ -118,16 +118,16 @@ class TaskList {
         }
         return 1
     }
-    
+
     fun refresh(player: Player) {
         player.sendVariable("task_list_area")
         val id = areaId(player)
         player.sendScript("task_main_list_populate", id, 999, 999)
         refreshCompletedCount(player)
     }
-    
+
     fun areaId(player: Player) = variables.get("task_list_area")!!.values.toInt(player["task_list_area", "unstable_foundations"])
-    
+
     fun pin(player: Player, slot: Int) {
         val index = indexOfSlot(player, slot) ?: return
         if (player["task_pinned", -1] == index) {
@@ -138,7 +138,7 @@ class TaskList {
             player["task_pin_slot"] = find(player, index)
         }
     }
-    
+
     fun refreshCompletedCount(player: Player) {
         var total = 0
         var completed = 0
@@ -153,9 +153,8 @@ class TaskList {
         player["task_progress_current"] = completed
         player["task_progress_total"] = total
     }
-    
+
     /*
         Hints
      */
-    
 }

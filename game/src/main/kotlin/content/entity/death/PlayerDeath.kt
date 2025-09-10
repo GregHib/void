@@ -30,6 +30,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.characterSpawn
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.map.Spiral
@@ -37,22 +38,22 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class PlayerDeath {
 
     val floorItems: FloorItems by inject()
     val enums: EnumDefinitions by inject()
-    
+
     val Character.damageDealers: MutableMap<Character, Int>
         get() = getOrPut("damage_dealers") { mutableMapOf() }
-    
+
     val respawnTile: Tile
         get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
-    
+
     val players: Players by inject()
     val npcs: NPCs by inject()
-    
+
     init {
         characterSpawn { character ->
             character["damage_dealers"] = Object2IntOpenHashMap<Character>(1)
@@ -95,7 +96,6 @@ class PlayerDeath {
                 player.dead = false
             }
         }
-
     }
 
     fun dropItems(player: Player, killer: Character?, tile: Tile, inWilderness: Boolean) {
@@ -104,14 +104,14 @@ class PlayerDeath {
         }
         val items = ItemsKeptOnDeath.getAllOrdered(player)
         val kept = ItemsKeptOnDeath.kept(player, items, enums)
-    
+
         // Remove kept so they aren't dropped
         for (item in kept) {
             if (player.inventory.remove(item.id, item.amount) || player.equipment.remove(item.id, item.amount)) {
                 continue
             }
         }
-    
+
         // Spawn grave
         val time = if (!inWilderness || killer !is Player) Gravestone.spawn(npcs, player, tile) else 0
         // Drop everything
@@ -121,13 +121,13 @@ class PlayerDeath {
         // Clear everything
         player.inventory.clear()
         player.equipment.clear()
-    
+
         // Return kept items
         for (item in kept) {
             player.inventory.add(item.id, item.amount)
         }
     }
-    
+
     fun drop(player: Player, inventory: Inventory, tile: Tile, inWilderness: Boolean, killer: Character?, time: Int) {
         for (item in inventory.items) {
             if (item.isEmpty()) {
@@ -136,7 +136,7 @@ class PlayerDeath {
             drop(player, item, tile, inWilderness, killer, time)
         }
     }
-    
+
     fun drop(
         player: Player,
         item: Item,
@@ -155,9 +155,9 @@ class PlayerDeath {
             floorItems.add(tile, item.id, item.amount, revealTicks = time, disappearTicks = time + 60, owner = player)
         }
     }
-    
+
     // TODO get correct graphic heights, delays and curves
-    
+
     fun retribution(source: Player) {
         if (!source.praying("retribution")) {
             return
@@ -175,7 +175,7 @@ class PlayerDeath {
             source.shoot("retribution_splash", tile, height = 30, endHeight = 30)
         }
     }
-    
+
     fun wrath(source: Player) {
         if (!source.praying("wrath")) {
             return
@@ -202,7 +202,7 @@ class PlayerDeath {
             }
         }
     }
-    
+
     fun hitCharacters(tile: Tile, source: Player, maxHit: Int) {
         val players = players[tile]
         for (player in players) {

@@ -9,11 +9,12 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class SlayerRewards {
 
@@ -67,7 +68,6 @@ class SlayerRewards {
                 add("broad_arrow", 250)
             }
         }
-
     }
 
     fun refreshText(player: Player, id: String) {
@@ -86,7 +86,7 @@ class SlayerRewards {
         player.interfaces.sendColour(id, "buy_arrows_text", colour)
         player.interfaces.sendColour(id, "buy_arrows_points", colour)
     }
-    
+
     fun buy(player: Player, points: Int, message: String, transaction: Transaction.() -> Unit) {
         if (player.slayerPoints < points) {
             player.message("Sorry. That would cost $points and you only have ${player.slayerPoints} Slayer ${"Point".plural(player.slayerPoints)}.")

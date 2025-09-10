@@ -4,15 +4,14 @@ import content.entity.combat.combatPrepare
 import content.skill.magic.spell.spell
 import content.skill.prayer.protectMagic
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import kotlin.math.sign
-import world.gregs.voidps.engine.event.Script
-
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 
 val Character.teleBlocked: Boolean get() = teleBlockCounter > 0
 
@@ -42,6 +41,7 @@ fun Character.teleBlockImmunity(minutes: Int) {
 fun Character.unblockTeleport() {
     softTimers.stop("teleport_block")
 }
+
 @Script
 class TeleportBlock {
 
@@ -83,7 +83,5 @@ class TeleportBlock {
                 1 -> player.message("Your teleblock is about to wear off.")
             }
         }
-
     }
-
 }

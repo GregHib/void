@@ -4,9 +4,10 @@ import content.entity.player.inv.inventoryOption
 import world.gregs.voidps.engine.data.definition.data.Cleaning
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class HerbCleaning {
 
@@ -16,12 +17,10 @@ class HerbCleaning {
             if (!player.has(Skill.Herblore, herb.level, true)) {
                 return@inventoryOption
             }
-        
+
             if (player.inventory.replace(slot, item.id, item.id.replace("grimy", "clean"))) {
                 player.experience.add(Skill.Herblore, herb.xp)
             }
         }
-
     }
-
 }

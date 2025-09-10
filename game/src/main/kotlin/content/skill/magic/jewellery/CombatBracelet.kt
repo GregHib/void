@@ -5,18 +5,19 @@ import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class CombatBracelet {
 
     val areas: AreaDefinitions by inject()
-    
+
     val warriorsGuild = areas["warriors_guild_teleport"]
     val championsGuild = areas["champions_guild_teleport"]
     val monastery = areas["monastery_teleport"]
     val rangingGuild = areas["ranging_guild_teleport"]
-    
+
     init {
         inventoryItem("Rub", "combat_bracelet_#", "inventory") {
             if (player.contains("delay")) {
@@ -57,7 +58,5 @@ class CombatBracelet {
             player.message("You rub the bracelet...", ChatType.Filter)
             jewelleryTeleport(player, inventory, slot, area)
         }
-
     }
-
 }

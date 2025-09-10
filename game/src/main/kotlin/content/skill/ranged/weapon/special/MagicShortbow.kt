@@ -6,6 +6,7 @@ import content.entity.proj.shoot
 import content.entity.sound.sound
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class MagicShortbow {
 
@@ -21,7 +22,5 @@ class MagicShortbow {
             player.hit(target, delay = time1)
             player.hit(target, delay = time2)
         }
-
     }
-
 }

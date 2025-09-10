@@ -5,8 +5,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.event.onEvent
+
 @Script
 class SoftClay {
 
@@ -16,7 +17,5 @@ class SoftClay {
                 player.message("You now have some soft, workable clay.", ChatType.Filter)
             }
         }
-
     }
-
 }

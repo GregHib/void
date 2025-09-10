@@ -22,19 +22,20 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Gravestones {
 
     val players: Players by inject()
     val npcs: NPCs by inject()
-    
+
     val floorItems: FloorItems by inject()
-    
+
     init {
         playerSpawn { player ->
             val tile: Tile = player["gravestone_tile"] ?: return@playerSpawn
@@ -191,7 +192,6 @@ class Gravestones {
                 }
             }
         }
-
     }
 
     fun remainMessage(player: Player, grave: NPC) {
@@ -208,7 +208,7 @@ class Gravestones {
         }
         player.message("It looks like it'll survive another $time.")
     }
-    
+
     fun updateItems(tile: Tile, name: String, seconds: Int) {
         val items = floorItems[tile].filter { it.owner == name }
         for (item in items) {

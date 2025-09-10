@@ -8,17 +8,18 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class QuestJournals {
 
     val logger = InlineLogger()
-    
+
     val questDefinitions: QuestDefinitions by inject()
-    
+
     init {
         interfaceOpen("quest_journals") { player ->
             player.interfaceOptions.unlock(id, "journals", 0 until 201, "View")
@@ -54,7 +55,5 @@ class QuestJournals {
         playerSpawn { player ->
             player.clearCamera()
         }
-
     }
-
 }

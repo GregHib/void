@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
@@ -29,14 +30,14 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Tollgate {
 
     val objects: GameObjects by inject()
-    
+
     val gates = Rectangle(Tile(3268, 3227), 1, 2)
-    
+
     init {
         objectOperate("Pay-toll(10gp)", "toll_gate_al_kharid*") {
             if (!player.inventory.remove("coins", 10)) {
@@ -59,11 +60,10 @@ class Tollgate {
         npcOperate("Talk-to", "border_guard_al_kharid*") {
             dialogue(player, target)
         }
-
     }
 
     fun getGuard(player: Player) = get<NPCs>()[player.tile.regionLevel].firstOrNull { it.id.startsWith("border_guard_al_kharid") }
-    
+
     suspend fun SuspendableContext<Player>.dialogue(player: Player, npc: NPC? = getGuard(player)) {
         if (npc == null) {
             return
@@ -92,12 +92,12 @@ class Tollgate {
             }
         }
     }
-    
+
     fun getGate(player: Player): GameObject {
         val tile = gates.nearestTo(player.tile)
         return objects[tile].first { it.id.startsWith("toll_gate_al_kharid") }
     }
-    
+
     fun pass(player: Player) {
         val gate = getGate(player)
         player.mode = Interact(player, gate, ObjectOption(player, gate, gate.def, "Pay-toll(10gp)"))

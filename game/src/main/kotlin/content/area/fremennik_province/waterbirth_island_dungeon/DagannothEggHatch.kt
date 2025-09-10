@@ -5,16 +5,17 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class DagannothEggHatch {
 
     val npcs: NPCs by inject()
-    
+
     init {
         huntPlayer("dagannoth_egg", "aggressive") { npc ->
             // Ignore if already transformed
@@ -22,7 +23,7 @@ class DagannothEggHatch {
                 return@huntPlayer
             }
             npc.transform("dagannoth_egg_open")
-        
+
             // Small stand-up delay before attacking
             npc.softQueue("dagannoth_hatch_attack", 1) {
                 npc.transform("dagannoth_egg_opened")
@@ -33,7 +34,6 @@ class DagannothEggHatch {
                 npc.transform("dagannoth_egg")
             }
         }
-
     }
 
     /**

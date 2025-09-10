@@ -16,16 +16,17 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.player.sex
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Hairdresser {
 
     val enums: EnumDefinitions by inject()
-    
+
     init {
         npcOperate("Talk-to", "hairdresser") {
             npc<Pleased>("Good afternoon ${if (player.male) "sir" else "madam"}. In need of a haircut${if (player.male) " or shave" else ""} are we?")
@@ -94,7 +95,6 @@ class Hairdresser {
                 }.random(),
             )
         }
-
     }
 
     suspend fun NPCOption<Player>.startHairdressing() {
@@ -109,5 +109,4 @@ class Hairdresser {
         }
         openDressingRoom("hairdressers_salon")
     }
-    
 }

@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -22,17 +23,17 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Traiborn {
 
     val floorItems: FloorItems by inject()
     val objects: GameObjects by inject()
-    
+
     var Player.bonesRequired: Int
         get() = get("demon_slayer_bones", -1)
         set(value) = set("demon_slayer_bones", value)
-    
+
     init {
         npcOperate("Talk-to", "traiborn") {
             npc<Uncertain>("Ello young thingummywut.")
@@ -59,7 +60,6 @@ class Traiborn {
                 giveBones()
             }
         }
-
     }
 
     suspend fun PlayerChoice.thingummywut(): Unit = option<Uncertain>("What's a thingummywut?") {
@@ -77,11 +77,11 @@ class Traiborn {
             }
         }
     }
-    
+
     suspend fun PlayerChoice.betterBeOff(): Unit = option<Talk>("Err I'd better be off really.") {
         npc<Uncertain>("Oh ok, have a good time, and watch out for sheep! They're more cunning than they look.")
     }
-    
+
     suspend fun PlayerChoice.teachMe(): Unit = option<Talk>("Teach me to be a mighty and powerful wizard.") {
         npc<Uncertain>("Wizard eh? You don't want any truck with that sort. They're not to be trusted. That's what I've heard anyways.")
         choice {
@@ -93,7 +93,7 @@ class Traiborn {
             }
         }
     }
-    
+
     suspend fun PlayerChoice.youLookedAfterIt(): Unit = option<Talk>("He told me you were looking after it for him.") {
         npc<Uncertain>("That wasn't very clever of him. I'd lose my head if it wasn't screwed on. Go and tell him to find someone else to look after his valuables in future.")
         choice {
@@ -107,7 +107,7 @@ class Traiborn {
             anyKeys()
         }
     }
-    
+
     suspend fun PlayerChoice.needAKey(): Unit = option<Talk>("I need to get a key given to you by Sir Prysin.") {
         npc<Uncertain>("Sir Prysin? Who's that? What would I want his key for?")
         choice {
@@ -116,7 +116,7 @@ class Traiborn {
             anyKeys()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.betterBeOffChoice() {
         choice {
             betterBeOff()
@@ -125,7 +125,7 @@ class Traiborn {
             }
         }
     }
-    
+
     suspend fun PlayerChoice.kingsKnight(): Unit = option<Talk>("He's one of the King's knights.") {
         npc<Happy>("Say, I remember one of the King's knights. He had nice shoes...")
         npc<Upset>("...and didn't like my homemade spinach rolls. Would you like a spinach roll?")
@@ -136,7 +136,7 @@ class Traiborn {
             justTellMe()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.spinachRoll() {
         player.inventory.add("spinach_roll")
         if (player.inventory.transaction.error != TransactionError.None) {
@@ -146,7 +146,7 @@ class Traiborn {
         player<Neutral>("Thank you very much.")
         betterBeOffChoice()
     }
-    
+
     suspend fun PlayerChoice.anyKeys(): Unit = option<Talk>("Well, have you got any keys knocking around?") {
         npc<Uncertain>("Now you come to mention it, yes I do have a key. It's in my special closet of valuable stuff. Now how do I get into that?")
         npc<Uncertain>("I sealed it using one of my magic rituals. So it would make sense that another ritual would open it again.")
@@ -164,7 +164,7 @@ class Traiborn {
             }
         }
     }
-    
+
     suspend fun PlayerChoice.keyForSilverlight(): Unit = option<Talk>("It's the key to get a sword called Silverlight.") {
         npc<Uncertain>("Silverlight? Never heard of that. Sounds a good name for a ship. Are you sure it's not the name of a ship rather than a sword?")
         choice {
@@ -175,7 +175,7 @@ class Traiborn {
             anyKeys()
         }
     }
-    
+
     suspend fun PlayerChoice.justTellMe(): Unit = option<Talk>("Just tell me if you have the key.") {
         npc<Uncertain>("The key? The key to what?")
         npc<Uncertain>("There's more than one key in the world don't you know? Would be a bit odd if there was only the one.")
@@ -187,7 +187,7 @@ class Traiborn {
             }
         }
     }
-    
+
     suspend fun TargetInteraction<Player, NPC>.startSpell() {
         npc<Neutral>("Hurrah! That's all 25 sets of bones.")
         target.anim("traiborn_bone_spell")
@@ -212,12 +212,12 @@ class Traiborn {
         player<Neutral>("Thank you very much.")
         npc<Neutral>("Not a problem for a friend of Sir What's-his-face.")
     }
-    
+
     suspend fun SuspendableContext<Player>.somewhereToBe() {
         npc<Uncertain>("Don't you have somewhere to be, young thingummywut? You still have that key you asked me for.")
         player<Talk>("You're right. I've got a demon to slay.")
     }
-    
+
     suspend fun NPCOption<Player>.bonesCheck() {
         when (player.bonesRequired) {
             0 -> lostKey()
@@ -233,20 +233,20 @@ class Traiborn {
                     npc<Talk>("Nevermind, keep working on it.")
                     return
                 }
-    
+
                 player<Talk>("I have some bones.")
                 npc<Talk>("Give 'em here then.")
                 giveBones()
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.lostKey() {
         player<Upset>("I've lost the key you gave to me.")
         npc<Uncertain>("Yes I know, it was returned to me. If you want it back you're going to have to collect another 25 sets of bones.")
         player.bonesRequired = 25
     }
-    
+
     suspend fun TargetInteraction<Player, NPC>.giveBones() {
         val removed = player.inventory.removeToLimit("bones", player.bonesRequired)
         statement("You give Traiborn $removed ${"set".plural(removed)} of bones.")

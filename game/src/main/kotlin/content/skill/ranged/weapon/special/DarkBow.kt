@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class DarkBow {
 
@@ -21,13 +22,13 @@ class DarkBow {
             player.gfx("${player.ammo}_double_shot")
             player.sound("dark_bow_special")
             player.sound("descent_of_${if (dragon) "dragons" else "darkness"}")
-        
+
             val time1 = player.shoot("descent_of_arrow", target, true)
             player.shoot("arrow_smoke", target, true)
             if (dragon) {
                 player.shoot("descent_of_dragons_head", target, true)
             }
-        
+
             val time2 = player.shoot("descent_of_arrow", target, false)
             player.shoot("arrow_smoke_2", target, false)
             if (dragon) {
@@ -52,7 +53,6 @@ class DarkBow {
             player.hit(target, delay = time1)
             player.hit(target, delay = time2)
         }
-
     }
 
     fun Player.shoot(id: String, target: Character, high: Boolean): Int {

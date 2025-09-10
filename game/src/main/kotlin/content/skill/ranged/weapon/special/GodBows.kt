@@ -5,9 +5,10 @@ import content.entity.sound.sound
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GodBows {
 
@@ -16,7 +17,7 @@ class GodBows {
         set(value) {
             this["restoration"] = value
         }
-    
+
     val specialHandler: suspend CombatAttack.(Player) -> Unit = combatAttack@{ source ->
         if (!special) {
             return@combatAttack
@@ -75,7 +76,5 @@ class GodBows {
             player.clear("restoration")
             player.clear("restoration_amount")
         }
-
     }
-
 }

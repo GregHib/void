@@ -9,20 +9,21 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class WildernessObelisk {
 
     val areas: AreaDefinitions by inject()
     val objects: GameObjects by inject()
     val players: Players by inject()
-    
+
     val obelisks = areas.getTagged("obelisk")
-    
+
     init {
         objectOperate("Activate", "wilderness_obelisk_*") {
             if (World.containsQueue(target.id)) {
@@ -45,7 +46,6 @@ class WildernessObelisk {
                 }
             }
         }
-
     }
 
     fun replace(obj: GameObject, tile: Tile) {

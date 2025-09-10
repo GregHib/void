@@ -10,8 +10,9 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.suspend.ContinueSuspension
+
 @Script
 class BrugsenBurson {
 
@@ -61,11 +62,10 @@ class BrugsenBurson {
         interfaceOption("Continue", "continue*", "exchange_wait_tutorial") {
             (player.dialogueSuspension as? ContinueSuspension)?.resume(Unit)
         }
-
     }
 
     // https://www.youtube.com/watch?v=2gpKlHgdQ30
-    
+
     suspend fun NPCOption<Player>.tutorial() {
         // TODO camera
         statement("~ The Grand Exchange ~")
@@ -111,7 +111,7 @@ class BrugsenBurson {
             whereDidItComeFrom()
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.whereDidItComeFrom() {
         option<Quiz>("Where did the Grand Exchange come from?") {
             npc<Happy>("I'm glad you ask! I like telling this story. Are you sitting comfortably?")
@@ -131,10 +131,10 @@ class BrugsenBurson {
             player<Happy>("I feel quite excited now! I have a strange urge to shout, 'Buy, buy, sell, sell!'.")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.commonPrices() {
         option<Talk>("Can you tell me prices for common items, like...") {
-    //            https://youtu.be/K1vo3SY7Z_g?si=Hgole9yhfo2ORjwK&t=98
+            //            https://youtu.be/K1vo3SY7Z_g?si=Hgole9yhfo2ORjwK&t=98
             choice {
                 option<Talk>("The prices of ores.") {
                     npc<Talk>("By all means, but you can probably get at this information quicker by visiting Farid M.")
@@ -164,7 +164,7 @@ class BrugsenBurson {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.systemDetails() {
         option<Talk>("Can you tell me more about how the system works?") {
             npc<Happy>("Oh, I simply love passing on knowledge. Okay, let me hit you with some facts...")
@@ -188,7 +188,7 @@ class BrugsenBurson {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.teachMeAgain() {
         option<Quiz>("Can you teach me about the Grand Exchange again?") {
             npc<Laugh>("Hahaha. It would be my absolute pleasure!")

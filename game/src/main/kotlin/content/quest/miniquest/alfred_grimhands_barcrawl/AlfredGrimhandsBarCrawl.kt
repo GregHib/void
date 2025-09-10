@@ -1,21 +1,20 @@
 package content.quest.miniquest.alfred_grimhands_barcrawl
 
-import content.entity.player.inv.inventoryItem
-import content.quest.messageScroll
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.Colours
-import world.gregs.voidps.engine.client.ui.chat.toTag
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Context
-import world.gregs.voidps.engine.event.Script
-
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.entity.player.inv.inventoryItem
+import content.quest.messageScroll
 import content.quest.quest
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.Colours
+import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.event.TargetContext
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -48,6 +47,7 @@ val barCrawlFilter: TargetContext<Player, NPC>.() -> Boolean = filter@{
     val id = info["id"] as String
     player.quest("alfred_grimhands_barcrawl") == "signatures" && !player.containsVarbit("barcrawl_signatures", id)
 }
+
 @Script
 class AlfredGrimhandsBarCrawl {
 
@@ -75,7 +75,6 @@ class AlfredGrimhandsBarCrawl {
                 ),
             )
         }
-
     }
 
     fun Context<Player>.line(name: String, id: String): String {

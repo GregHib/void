@@ -3,6 +3,7 @@ package content.skill.constitution.drink
 import content.skill.constitution.consume
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Bottled {
 
@@ -32,7 +33,5 @@ class Bottled {
             player.levels.drain(Skill.Agility, multiplier = 0.05)
             player.levels.drain(Skill.Herblore, multiplier = 0.05)
         }
-
     }
-
 }

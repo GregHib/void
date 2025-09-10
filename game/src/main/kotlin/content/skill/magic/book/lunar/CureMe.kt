@@ -8,13 +8,14 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class CureMe {
 
     val definitions: SpellDefinitions by inject()
-    
+
     init {
         interfaceOption("Cast", "cure_me", "lunar_spellbook") {
             val spell = component
@@ -32,7 +33,5 @@ class CureMe {
             player.experience.add(Skill.Magic, definition.experience)
             player.curePoison()
         }
-
     }
-
 }

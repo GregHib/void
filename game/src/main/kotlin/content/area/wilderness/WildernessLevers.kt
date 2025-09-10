@@ -13,15 +13,16 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class WildernessLevers {
 
     val teleports: ObjectTeleports by inject()
-    
+
     init {
         objTeleportTakeOff("Pull", "lever_*") {
             if (obj.stringId == "lever_ardougne_edgeville" && player["wilderness_lever_warning", true]) {
@@ -61,7 +62,6 @@ class WildernessLevers {
             val message: String = obj.getOrNull("land_message") ?: return@objTeleportLand
             player.message(message, ChatType.Filter)
         }
-
     }
 
     fun pullLever(player: Player) {
@@ -69,7 +69,7 @@ class WildernessLevers {
         player.anim("pull_lever")
         player.start("movement_delay", 3)
     }
-    
+
     suspend fun SuspendableContext<Player>.pullLever(teleport: ObjectTeleport, target: GameObject) {
         pullLever(player)
         delay(2)
@@ -81,5 +81,4 @@ class WildernessLevers {
         val definition = teleports.get("Pull")[target.tile.id]!!
         teleports.teleportContinue(this, player, definition, teleport)
     }
-    
 }

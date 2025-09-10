@@ -3,13 +3,14 @@ package content.skill.magic.book.ancient
 import content.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class BloodSpells {
 
     val definitions: SpellDefinitions by inject()
-    
+
     init {
         characterCombatAttack(spell = "blood_*", type = "magic") { source ->
             if (damage <= 0) {
@@ -19,7 +20,5 @@ class BloodSpells {
             val health = (damage / 4).coerceAtMost(maxHeal)
             source.levels.restore(Skill.Constitution, health)
         }
-
     }
-
 }

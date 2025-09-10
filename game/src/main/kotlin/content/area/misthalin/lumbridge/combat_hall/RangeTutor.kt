@@ -9,13 +9,14 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class RangeTutor {
 
@@ -24,7 +25,6 @@ class RangeTutor {
             npc<Quiz>("Hey there adventurer, I am the Ranged combat tutor. Is there anything you would like to know?")
             menu()
         }
-
     }
 
     suspend fun SuspendableContext<Player>.menu(followUp: String = "") {
@@ -40,7 +40,7 @@ class RangeTutor {
             option("Goodbye.")
         }
     }
-    
+
     suspend fun PlayerChoice.rangedTraining(): Unit = option<Neutral>("How can I train my Ranged?") {
         npc<Happy>("To start with you'll need a bow and arrows, you were given a Shortbow and some arrows when you arrived here from Tutorial island.")
         npc<Happy>("Alternatively, you can claim a training bow and some arrows from me.")
@@ -58,7 +58,7 @@ class RangeTutor {
         npc<Neutral>("If you are ever in the market for a new bow or some arrows, you should head on over to Lowe's Archery Emporium in Varrock.")
         menu("Is there anything else you want to know?")
     }
-    
+
     suspend fun PlayerChoice.arrowMaking(): Unit = option<Quiz>("How do I create a bow and arrows?") {
         npc<Happy>("Ahh the art of fletching. Fletching is used to create your own bow and arrows.")
         npc<Amazed>("It's quite simple really. You'll need an axe to cut some logs from trees and a knife. Knives can be found in and around the Lumbridge castle and in the Varrock General store upstairs.")
@@ -72,7 +72,7 @@ class RangeTutor {
         player<Happy>("Brilliant. If I forget anything I'll come talk to you again.")
         menu("Is there anything else you want to know?")
     }
-    
+
     suspend fun SuspendableContext<Player>.claimBow() {
         if (player.remaining("claimed_tutor_consumables", epochSeconds()) > 0) {
             npc<Amazed>("I work with the Magic tutor to give out consumable items that you may need for combat such as arrows and runes. However we have had some cheeky people try to take both!")
@@ -105,7 +105,7 @@ class RangeTutor {
         player.inventory.add("training_arrows", 25)
         player.start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
     }
-    
+
     suspend fun SuspendableContext<Player>.hasEquipment() {
         var banked = false
         if (player.bank.contains("training_arrows")) {

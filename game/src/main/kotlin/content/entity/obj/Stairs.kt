@@ -4,13 +4,14 @@ import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class Stairs {
 
     val teleports: ObjectTeleports by inject()
-    
+
     init {
         objectOperate("Climb", arrive = false) {
             if (def.options?.filterNotNull()?.any { it.startsWith("Climb-") } != true) {
@@ -36,11 +37,10 @@ class Stairs {
                 delay = 2
             }
         }
-
     }
 
     fun String.isLadder() = contains("ladder", true) || contains("rope", true) || contains("chain", true) || contains("vine", true) || isTrapDoor()
-    
+
     fun String.isTrapDoor(): Boolean {
         val name = replace(" ", "")
         return name.equals("trapdoor", true) || name.equals("manhole", true)

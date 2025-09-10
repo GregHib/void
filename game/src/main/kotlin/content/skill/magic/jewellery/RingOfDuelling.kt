@@ -3,18 +3,19 @@ package content.skill.magic.jewellery
 import content.entity.player.dialogue.type.choice
 import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class RingOfDuelling {
 
     val areas: AreaDefinitions by inject()
-    
+
     val duelArena = areas["duel_arena_teleport"]
     val castleWars = areas["castle_wars_teleport"]
     val mobilisingArmies = areas["mobilising_armies_teleport"]
     val fistOfGuthix = areas["fist_of_guthix_teleport"]
-    
+
     init {
         inventoryItem("Rub", "ring_of_duelling_#", "inventory") {
             if (player.contains("delay")) {
@@ -50,7 +51,5 @@ class RingOfDuelling {
             }
             jewelleryTeleport(player, inventory, slot, area)
         }
-
     }
-
 }

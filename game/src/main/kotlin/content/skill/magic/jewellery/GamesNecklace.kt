@@ -5,19 +5,20 @@ import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.inventoryItem
 import content.quest.questCompleted
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class GamesNecklace {
 
     val areas: AreaDefinitions by inject()
-    
+
     val burthorpe = areas["burthorpe_teleport"]
     val barbarianOutput = areas["barbarian_outpost_teleport"]
     val clanWars = areas["clan_wars_teleport"]
     val wildernessVolcano = areas["wilderness_volcano_teleport"]
     val burghDeRott = areas["burgh_de_rott_teleport"]
-    
+
     init {
         inventoryItem("Rub", "games_necklace_#", "inventory") {
             if (player.contains("delay")) {
@@ -63,7 +64,5 @@ class GamesNecklace {
             }
             jewelleryTeleport(player, inventory, slot, area)
         }
-
     }
-
 }

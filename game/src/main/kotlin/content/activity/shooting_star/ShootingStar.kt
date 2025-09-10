@@ -29,6 +29,7 @@ import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.entity.objectDespawn
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -43,7 +44,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ShootingStar {
 
@@ -51,7 +52,7 @@ class ShootingStar {
     val npcs: NPCs by inject()
     val players: Players by inject()
     val logger = InlineLogger()
-    
+
     init {
         worldSpawn {
             if (Settings["events.shootingStars.enabled", false]) {
@@ -164,14 +165,13 @@ class ShootingStar {
                 }
             }
         }
-
     }
 
     fun eventUpdate() {
         val minutes = Settings["events.shootingStars.minRespawnTimeMinutes", 60]..Settings["events.shootingStars.maxRespawnTimeMinutes", 60]
         eventUpdate(minutes.random(random))
     }
-    
+
     fun eventUpdate(minutes: Int) {
         World.queue("shooting_star_event_timer", TimeUnit.MINUTES.toTicks(minutes)) {
             if (currentStarTile != Tile.EMPTY) {
@@ -182,7 +182,7 @@ class ShootingStar {
             eventUpdate()
         }
     }
-    
+
     fun startCrashedStarEvent() {
         val location = StarLocationData.entries.random()
         currentStarTile = location.tile
@@ -216,7 +216,7 @@ class ShootingStar {
             }
         }
     }
-    
+
     fun cleanseEvent(forceStopped: Boolean) {
         currentActiveObject?.let { current -> objects[currentStarTile, current.id] }?.remove()
         if (!forceStopped) {
@@ -231,24 +231,24 @@ class ShootingStar {
         currentActiveObject = null
         ShootingStarHandler.earlyBird = false
     }
-    
+
     fun getLayerPercentage(totalCollected: Int, totalNeeded: Int): String {
         val remaining = totalNeeded - totalCollected
         val percentageRemaining = (remaining.toDouble() / totalNeeded.toDouble()) * 100
         return String.format("%.2f", percentageRemaining)
     }
-    
+
     fun calculateRewards(stardust: Int): Map<String, Int> {
         val coinsPerStardust = 50002.0 / 200
         val astralRunesPerStardust = 52.0 / 200
         val cosmicRunesPerStardust = 152.0 / 200
         val goldOresPerStardust = 20.0 / 200
-    
+
         val coins = (coinsPerStardust * stardust).toInt()
         val astralRunes = (astralRunesPerStardust * stardust).roundToInt()
         val cosmicRunes = (cosmicRunesPerStardust * stardust).roundToInt()
         val goldOres = (goldOresPerStardust * stardust).roundToInt()
-    
+
         return mapOf(
             "coins" to coins,
             "astral_rune" to astralRunes,
@@ -256,10 +256,9 @@ class ShootingStar {
             "gold_ore_noted" to goldOres,
         )
     }
-    
+
     fun givePlayerBonusOreReward(player: Player) {
         player["shooting_star_bonus_ore"] = 900
         player.timers.start("shooting_star_bonus_ore_timer")
     }
-    
 }

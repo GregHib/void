@@ -11,16 +11,17 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class NameChange {
 
     val players: Players by inject()
-    
+
     init {
         modCommand("rename", "rename your accounts display name (login stays the same)") {
             val remaining = player.remaining("rename_delay", epochSeconds()).toLong()
@@ -52,7 +53,5 @@ class NameChange {
                 option("No, I like my current name")
             }
         }
-
     }
-
 }

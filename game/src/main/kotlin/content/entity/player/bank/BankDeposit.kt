@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.equipment
@@ -15,12 +16,12 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
 import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shift
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class BankDeposit {
 
     val logger = InlineLogger()
-    
+
     init {
         interfaceOption("Deposit-*", "inventory", "bank_side") {
             val amount = when (option) {
@@ -61,25 +62,24 @@ class BankDeposit {
                 bankAll(player, player.beastOfBurden)
             }
         }
-
     }
 
     fun deposit(player: Player, inventory: Inventory, item: Item, amount: Int): Boolean {
         if (player.menu != "bank" || amount < 1) {
             return true
         }
-    
+
         if (item.def["unbankable", 0] == 1) {
             player.message("This item cannot be banked.")
             return true
         }
-    
+
         val notNoted = if (item.isNote) item.noted else item
         if (notNoted == null) {
             logger.warn { "Issue depositing noted item $item" }
             return true
         }
-    
+
         val tab = player["open_bank_tab", 1] - 1
         val bank = player.bank
         var shifted = false
@@ -104,7 +104,7 @@ class BankDeposit {
         }
         return true
     }
-    
+
     fun bankAll(player: Player, inventory: Inventory) {
         for (index in inventory.indices) {
             val item = inventory[index]

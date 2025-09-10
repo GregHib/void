@@ -8,15 +8,16 @@ import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import world.gregs.voidps.type.Delta
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class NPCUpdatingCommands {
 
     val npcs: NPCs by inject()
-    
+
     init {
         adminCommand("npckill", "kill all npcs") {
             npcs.forEach { npc ->
@@ -77,18 +78,16 @@ class NPCUpdatingCommands {
 
         adminCommand("npccrawl") {
             val npc = npcs[player.tile.addY(1)].first()
-        //    npc.def["crawl"] = true
-        //    npc.walkTo(npc.tile)
-        //    npc.movement.steps.add(Tile(npc.tile.x, npc.tile.y + 1))
+            //    npc.def["crawl"] = true
+            //    npc.walkTo(npc.tile)
+            //    npc.movement.steps.add(Tile(npc.tile.x, npc.tile.y + 1))
         }
 
         adminCommand("npcrun") {
             val npc = npcs[player.tile.addY(1)].first()
             npc.running = true
-        //    npc.walkTo(npc.tile)
-        //    npc.movement.steps.add(Tile(npc.tile.x, npc.tile.y + 2))
+            //    npc.walkTo(npc.tile)
+            //    npc.movement.steps.add(Tile(npc.tile.x, npc.tile.y + 2))
         }
-
     }
-
 }

@@ -6,10 +6,11 @@ import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class DarkMage {
 
@@ -42,7 +43,6 @@ class DarkMage {
                 npc<Angry>("You don't seem to have any pouches in need of repair.<br>Leave me alone!")
             }
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.whyNot() {
@@ -60,7 +60,7 @@ class DarkMage {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.whyAreYouHere() {
         option<Quiz>("What are you doing here?") {
             npc<Talk>("Do you mean what am I doing here in the Abyss? Or are you asking me what I consider my ultimate role to be in this voyage that we call life?")
@@ -75,7 +75,7 @@ class DarkMage {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.needHelp() {
         option<Talk>("I need your help with something.") {
             npc<Angry>("What? Oh... very well. What did you want?")
@@ -107,13 +107,13 @@ class DarkMage {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.illGo() {
         option<Upset>("Sorry, I'll go.") {
             npc<Angry>("Good. I'm attempting to subdue the elemental mechanisms of the universe to my will. Inane chatter from random idiots is not helping me achieve this!")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.askForPouch() {
         option<Quiz>("Can I have a new essence pouch?") {
             if (player.ownsItem("small_pouch")) {

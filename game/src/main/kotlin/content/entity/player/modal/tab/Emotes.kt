@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.engine.map.collision.blocked
@@ -23,18 +24,18 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Emotes {
 
     val definitions: InterfaceDefinitions by inject()
-    
+
     val unlockableEmotes = listOf(
         "glass_box", "climb_rope", "lean", "glass_wall", "idea", "stomp", "flap", "slap_head", "zombie_walk", "zombie_dance",
         "zombie_hand", "scared", "bunny_hop", "snowman_dance", "air_guitar", "safety_first", "explore", "trick", "freeze", "give_thanks",
         "around_the_world_in_eggty_days", "dramatic_point", "faint", "puppet_master", "taskmaster", "seal_of_approval",
     )
-    
+
     init {
         interfaceOpen("emotes") { player ->
             for (compId in unlockableEmotes) {
@@ -90,7 +91,6 @@ class Emotes {
         inventoryChanged("worn_equipment", EquipSlot.Cape) { player ->
             player["unlocked_emote_skillcape"] = item.def.contains("skill_cape") || item.def.contains("skill_cape_t") || item.id == "quest_point_cape"
         }
-
     }
 
     suspend fun SuspendableContext<Player>.unlocked(id: String, emote: String): Boolean {
@@ -153,7 +153,7 @@ class Emotes {
         }
         return true
     }
-    
+
     fun areaClear(player: Player): Boolean {
         Direction.all.forEach {
             if (player.blocked(it)) {
@@ -163,16 +163,16 @@ class Emotes {
         }
         return true
     }
-    
+
     suspend fun Interaction<Player>.playEnhancedEmote(player: Player, type: String) {
         player.animDelay("emote_enhanced_$type")
     }
-    
+
     suspend fun Interaction<Player>.playEnhancedYawnEmote(player: Player) {
         player.gfx("emote_enhanced_yawn")
         player.animDelay("emote_enhanced_yawn")
     }
-    
+
     suspend fun Interaction<Player>.playGiveThanksEmote(player: Player) {
         player.gfx("emote_give_thanks")
         player.animDelay("emote_turkey_transform")
@@ -182,7 +182,7 @@ class Emotes {
         player.clearTransform()
         player.animDelay("emote_turkey_return")
     }
-    
+
     suspend fun Interaction<Player>.playSealOfApprovalEmote(player: Player) {
         player.gfx("emote_seal_of_approval")
         player.animDelay("emote_seal_of_approval")
@@ -193,12 +193,12 @@ class Emotes {
         player.clearTransform()
         player.animDelay("emote_seal_stand")
     }
-    
+
     suspend fun Interaction<Player>.playSkillCapeEmote(player: Player, skill: String) {
         player.gfx("emote_$skill")
         player.animDelay("emote_$skill")
     }
-    
+
     suspend fun Interaction<Player>.playDungeoneeringCapeEmote(player: Player) {
         player.gfx("emote_dungeoneering_start")
         player.animDelay("emote_dungeoneering_start")
@@ -218,24 +218,24 @@ class Emotes {
         }
         player.clearTransform()
     }
-    
+
     suspend fun Interaction<Player>.playDungeoneeringMasterCapeEmote(player: Player) {
         val direction = player.direction
-    
+
         player.transform("sagittarian_ranger")
         player.gfx("emote_dung_master_bow")
         var tile = player.tile.add(direction.rotate(1))
         var rotation = tile.delta(player.tile).toDirection().rotate(2)
         areaGfx("emote_dung_master_hobgoblin", tile, rotation = rotation)
         player.animDelay("emote_dung_master_bow")
-    
+
         player.transform("celestial_mage")
         player.gfx("emote_dung_master_spell")
         tile = player.tile.add(direction.rotate(7))
         rotation = tile.delta(player.tile).toDirection().rotate(4)
         areaGfx("emote_dung_master_gravecreeper", tile, rotation = rotation)
         player.animDelay("emote_dung_master_spell")
-    
+
         player.transform("primal_warrior")
         player.gfx("emote_dung_master_return")
         tile = player.tile.add(direction)
@@ -245,7 +245,7 @@ class Emotes {
         rotation = direction.rotate(3)
         areaGfx("emote_dung_master_cursebearer", tile, rotation = rotation)
         player.animDelay("emote_dung_master_sword")
-    
+
         player.clearTransform()
     }
 }

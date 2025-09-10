@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventoryUpdate
 import world.gregs.voidps.engine.map.collision.random
@@ -33,25 +34,25 @@ import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.random.Random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GiantMole {
 
     val logger = InlineLogger()
     val areas: AreaDefinitions by inject()
     val players: Players by inject()
-    
+
     val acceptedTiles = listOf(
         Tile(3005, 3376, 0),
         Tile(2999, 3375, 0),
         Tile(2996, 3377, 0),
         Tile(2989, 3378, 0),
     )
-    
+
     val giantMoleLair = areas["giant_mole_lair"]
     val gianMoleSpawns = areas["giant_mole_spawn_area"]
     val initialCaveTile: Tile = Tile(1752, 5237, 0)
-    
+
     init {
         inventoryItem("Dig", "spade") {
             val playerTile: Tile = player.tile
@@ -113,7 +114,6 @@ class GiantMole {
                 }
             }
         }
-
     }
 
     fun giantMoleBurrow(mole: NPC) {
@@ -141,7 +141,7 @@ class GiantMole {
             mole.anim("mole_burrow_up")
         }
     }
-    
+
     fun getRandomFacing(currentlyFacing: Direction): Direction {
         var randomDirection: Direction
         do {
@@ -149,13 +149,13 @@ class GiantMole {
         } while (randomDirection == currentlyFacing)
         return randomDirection
     }
-    
+
     // 13% chance to throw dirt on players screen
     fun shouldThrowDirt(): Boolean {
         val dirtChance = Random.nextInt(0, 100)
         return dirtChance <= 13
     }
-    
+
     fun handleDirtOnScreen(moleTile: Tile) {
         val nearMole = mutableListOf<Player>()
         for (tile in moleTile.toCuboid(5)) {
@@ -173,7 +173,7 @@ class GiantMole {
             }
         }
     }
-    
+
     fun shouldBurrowAway(health: Int): Boolean {
         val maxHealth = 2000
         val minThreshold = maxHealth * 0.05
@@ -184,5 +184,4 @@ class GiantMole {
         }
         return false
     }
-    
 }

@@ -9,9 +9,10 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class LumbridgeCatacombs {
 
@@ -22,7 +23,7 @@ class LumbridgeCatacombs {
                 return@objectOperate
             }
             statement("The air grows tense as you approach the statuette. You sense a hostile presence nearby...")
-        
+
             choice {
                 option("Take the statuette.") {
                     if (player.inventory.add(def.stringId)) {
@@ -56,7 +57,5 @@ class LumbridgeCatacombs {
         destroyed("*_demon_statuette") { player ->
             player[item.id] = "take"
         }
-
     }
-
 }

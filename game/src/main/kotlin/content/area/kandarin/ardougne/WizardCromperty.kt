@@ -13,8 +13,9 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.queue.softQueue
+
 @Script
 class WizardCromperty {
 
@@ -47,7 +48,6 @@ class WizardCromperty {
                 player.message("You need to have completed the Rune Mysteries Quest to use this feature.")
             }
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.whatHaveYouInvented() {
@@ -72,7 +72,7 @@ class WizardCromperty {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.teleportMe() {
         option<Quiz>("Can I be teleported please?") {
             npc<Happy>("By all means! I'm afraid I can't give you any specifics as to where you will come out however. Presumably wherever the other block is located.")

@@ -15,10 +15,11 @@ import world.gregs.voidps.engine.entity.character.player.playerOperate
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.moveAll
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class TradeRequest {
 
@@ -48,14 +49,13 @@ class TradeRequest {
             reset(player, other)
             reset(other, player)
         }
-
     }
 
     /**
      * Requesting to trade with another player, accepting the request and setting up the trade
      * When an offer is updated the change is persisted to the other player
      */
-    
+
     fun startTrade(player: Player, partner: Player) {
         reset(player, partner)
         player["other_trader_name"] = partner.name
@@ -73,40 +73,40 @@ class TradeRequest {
         player.interfaceOptions.apply {
             send("trade_main", "offer_options")
             unlockAll("trade_main", "offer_options", 0 until 28)
-    
+
             send("trade_main", "other_options")
             unlockAll("trade_main", "other_options", 0 until 28)
-    
+
             send("trade_side", "offer")
             unlockAll("trade_side", "offer", 0 until 28)
-    
+
             unlockAll("trade_main", "loan_item")
             unlockAll("trade_main", "other_loan_item")
             unlockAll("trade_main", "loan_time")
         }
     }
-    
+
     fun updateInventorySpaces(player: Player, other: Player) {
         player.interfaces.sendText("trade_main", "slots", "has ${other.inventory.spaces} free inventory slots.")
     }
-    
+
     fun reset(player: Player, other: Player) {
         player.closeType("main_screen")
         player.closeType("underlay")
         player.interfaces.close("trade_side")
         player.interfaces.open("inventory")
-    
+
         player.tab(Tab.Inventory)
         player["offer_value"] = 0
         player["other_offer_value"] = 0
         player["lend_time"] = 0
-    
+
         player.clear("trade_partner")
-    
+
         player.removeRequest(other, "trade")
         player.removeRequest(other, "accept_trade")
         player.removeRequest(other, "confirm_trade")
-    
+
         player.offer.moveAll(player.inventory)
         player.offer.clear()
         player.otherOffer.clear()

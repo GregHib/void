@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class PrayerAltars {
 
@@ -21,7 +22,6 @@ class PrayerAltars {
         objectOperate("Check", "prayer_altar_chaos_varrock") {
             player.message("An altar to the evil god Zamorak.")
         }
-
     }
 
     fun ObjectOption<Player>.pray() {
@@ -34,5 +34,4 @@ class PrayerAltars {
             player["prayer_point_power_task"] = true
         }
     }
-    
 }

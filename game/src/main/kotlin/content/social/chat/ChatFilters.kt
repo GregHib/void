@@ -3,10 +3,9 @@ package content.social.chat
 import world.gregs.voidps.engine.client.privateStatus
 import world.gregs.voidps.engine.client.publicStatus
 import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
-
-import world.gregs.voidps.engine.entity.character.player.Player
 
 var Player.publicStatus: String
     get() = get("public_status", "on")
@@ -28,6 +27,7 @@ var Player.tradeStatus: String
         set("trade_status", value)
         publicStatus(publicStatus, value)
     }
+
 @Script
 class ChatFilters {
 
@@ -48,7 +48,5 @@ class ChatFilters {
                 "trade" -> player.tradeStatus = option.lowercase()
             }
         }
-
     }
-
 }

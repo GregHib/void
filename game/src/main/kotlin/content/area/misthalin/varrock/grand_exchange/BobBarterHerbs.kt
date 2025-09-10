@@ -11,11 +11,12 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class BobBarterHerbs {
 
@@ -110,7 +111,6 @@ class BobBarterHerbs {
             }
             decantPotions()
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.showPrices() {
@@ -119,7 +119,7 @@ class BobBarterHerbs {
             player.open("common_item_costs")
         }
     }
-    
+
     suspend fun NPCOption<Player>.decantPotions() {
         // Check if the player has any potions to decant
         player.inventory.transaction {
@@ -149,5 +149,4 @@ class BobBarterHerbs {
             else -> npc<Uncertain>("Sorry, I can't do anything with those potions.")
         }
     }
-    
 }

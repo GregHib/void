@@ -8,15 +8,16 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ItemsKeptOnDeathScreen {
 
     val enums: EnumDefinitions by inject()
-    
+
     init {
         timerStart("skull") { player ->
             if (player.interfaces.contains("items_kept_on_death")) {
@@ -42,7 +43,6 @@ class ItemsKeptOnDeathScreen {
                 skull = player.skulled,
             )
         }
-
     }
 
     fun Player.updateItemsOnDeath(items: List<Item>, carriedWealth: Int, riskedWealth: Int, familiar: Boolean = false, gravestone: Boolean = false, skull: Boolean = false) {

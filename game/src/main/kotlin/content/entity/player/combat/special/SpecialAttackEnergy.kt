@@ -2,16 +2,17 @@ package content.entity.player.combat.special
 
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import kotlin.math.min
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class SpecialAttackEnergy {
 
     val half = MAX_SPECIAL_ATTACK / 2
     val tenth = MAX_SPECIAL_ATTACK / 10
-    
+
     init {
         playerSpawn { player ->
             if (player.specialAttackEnergy < MAX_SPECIAL_ATTACK) {
@@ -35,7 +36,5 @@ class SpecialAttackEnergy {
                 player.message("Your special attack energy is now ${if (player.specialAttackEnergy == MAX_SPECIAL_ATTACK) 100 else 50}%.")
             }
         }
-
     }
-
 }

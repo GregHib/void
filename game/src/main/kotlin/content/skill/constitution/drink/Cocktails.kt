@@ -3,6 +3,7 @@ package content.skill.constitution.drink
 import content.skill.constitution.consume
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Cocktails {
 
@@ -31,7 +32,5 @@ class Cocktails {
             player.levels.boost(Skill.Strength, 6)
             player.levels.drain(Skill.Attack, 4)
         }
-
     }
-
 }

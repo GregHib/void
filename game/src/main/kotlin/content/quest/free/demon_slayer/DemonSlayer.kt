@@ -4,8 +4,9 @@ import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inv.inventory
+
 @Script
 class DemonSlayer {
 
@@ -63,7 +64,6 @@ class DemonSlayer {
             }
             player.questJournal("Demon Slayer", lines)
         }
-
     }
 
     fun listKeys(
@@ -86,13 +86,13 @@ class DemonSlayer {
                 list.add("<navy>Maybe some water can dislodge it.")
             }
         }
-    
+
         if (rovin) {
             list.add("<str>I have the 2nd Key with me.")
         } else {
             list.add("<navyThe <maroon>2nd Key<navy> is with Captain Rovin in Varrock Palace.")
         }
-    
+
         if (traiborn) {
             list.add("<str>I have the 3rd Key with me.")
         } else {

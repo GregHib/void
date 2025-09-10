@@ -2,9 +2,10 @@ package content.entity.obj
 
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class TrapDoors {
 
@@ -18,7 +19,5 @@ class TrapDoors {
             player.anim("close_chest")
             target.replace(target.id.replace("_opened", "_closed"), ticks = TimeUnit.MINUTES.toTicks(3))
         }
-
     }
-
 }

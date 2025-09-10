@@ -5,15 +5,16 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GravestoneShop {
 
     val enums: EnumDefinitions by inject()
-    
+
     init {
         interfaceOpen("gravestone_shop") { player ->
             player.sendVariable("gravestone_current")
@@ -58,7 +59,5 @@ class GravestoneShop {
             }
             player["gravestone_current"] = id
         }
-
     }
-
 }

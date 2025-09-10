@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.charge
@@ -19,7 +20,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import kotlin.math.min
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class CelestialSurgeBox {
 
@@ -101,7 +102,6 @@ class CelestialSurgeBox {
         itemOnItem("death_rune", "celestial_surgebox*") {
             charge(it, toItem, toSlot)
         }
-
     }
 
     fun emptyRunes(player: Player, surge: Boolean, dungeoneering: String, slot: Int, charges: Int): Boolean = player.inventory.transaction {
@@ -112,17 +112,17 @@ class CelestialSurgeBox {
         }
         discharge(player, slot, amount = charges)
     }
-    
+
     fun updateCharges(player: Player, index: Int, dungeoneering: Boolean) {
         val charges = player.equipment.charges(player, index)
         setCharges(player, charges, dungeoneering)
     }
-    
+
     fun setCharges(player: Player, charges: Int, dungeoneering: Boolean) {
         val type = if (player["celestial_surgebox_mode${if (dungeoneering) "_dungeoneering" else ""}", false]) "surge" else "wave"
         player["celestial_surgebox_$type"] = charges
     }
-    
+
     fun charge(player: Player, item: Item, slot: Int) {
         val dungeoneering = if (item.id == "celestial_surgebox") "" else "_dungeoneering"
         val surge = player["celestial_surgebox_mode$dungeoneering", false]
@@ -136,7 +136,7 @@ class CelestialSurgeBox {
                     min(inventory.count("air_rune$dungeoneering") / 5, inventory.count("blood_rune$dungeoneering"))
                 }
                 ).coerceAtMost(maximum - charges)
-    
+
             remove("air_rune$dungeoneering", actual * if (surge) 7 else 5)
             remove("blood_rune$dungeoneering", actual)
             if (surge) {

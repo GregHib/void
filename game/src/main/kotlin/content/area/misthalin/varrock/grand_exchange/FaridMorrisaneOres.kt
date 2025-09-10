@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class FaridMorrisaneOres {
 
@@ -41,7 +42,6 @@ class FaridMorrisaneOres {
             player["common_item_costs"] = "ores"
             player.open("common_item_costs")
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.oresAndBars() {
@@ -50,13 +50,13 @@ class FaridMorrisaneOres {
             player.open("common_item_costs")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.bye() {
         option<Talk>("I best go and speak with someone more my height.") {
             npc<Talk>("Then I shall not stop you. I've too much work to do.")
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.calmDown() {
         option<Talk>("Calm down, junior.") {
             npc<Talk>("Don't tell me to calm down! And don't call me 'junior'.")

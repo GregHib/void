@@ -8,6 +8,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class LumbridgeSage {
 
@@ -20,7 +21,6 @@ class LumbridgeSage {
                 option<Neutral>("I'm fine for now, thanks.")
             }
         }
-
     }
 
     suspend fun PlayerChoice.whoSage(): Unit = option<Quiz> ("Who are you?") {
@@ -31,7 +31,7 @@ class LumbridgeSage {
             goodBye()
         }
     }
-    
+
     suspend fun PlayerChoice.castleLum(): Unit = option<Quiz>("Tell me about the town of Lumbridge.") {
         npc<Neutral>("Lumbridge is one of the older towns in the human-controlled kingdoms. It was founded over two hundred years ago towards the end of the Fourth Age. It's called Lumbridge because of this bridge built over the")
         npc<Neutral>("River Lum. The town is governed by Duke Horacio, who is a good friend of our monarch, King Roald of Misthalin.")
@@ -41,7 +41,7 @@ class LumbridgeSage {
             goodBye()
         }
     }
-    
+
     suspend fun PlayerChoice.goodBye(): Unit = option<Happy>("Goodbye.") {
         npc<Happy>("Good adventuring, traveller.")
     }

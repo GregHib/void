@@ -9,16 +9,17 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class WysonTheGardener {
 
     val floorItems: FloorItems by inject()
-    
+
     init {
         npcOperate("Talk-to", "wyson_the_gardener") {
             npc<Neutral>("I'm the head gardener around here. If you're looking for woad leaves, or if you need help with owt, I'm yer man.")
@@ -58,11 +59,10 @@ class WysonTheGardener {
                 }
             }
         }
-
     }
 
     // TODO add selling mole parts
-    
+
     suspend fun NPCOption<Player>.howAboutTen() {
         npc<Angry>("No no, that's far too little. Woad leaves are hard to get. I used to have plenty but someone kept stealing them off me!")
         choice {
@@ -75,7 +75,7 @@ class WysonTheGardener {
             option<Neutral>("Actually, I've changed my mind.")
         }
     }
-    
+
     suspend fun NPCOption<Player>.buyWoadLeaf() {
         npc<Neutral>("Mmmm... okay, that sounds fair.")
         if (player.inventory.remove("coins", 15)) {
@@ -89,7 +89,7 @@ class WysonTheGardener {
             player<Sad>("I don't have enough coins to buy the leaves. I'll come back later.")
         }
     }
-    
+
     suspend fun NPCOption<Player>.buyWoadLeaves() {
         npc<Happy>("Okay, that's more than fair.")
         if (player.inventory.remove("coins", 20)) {

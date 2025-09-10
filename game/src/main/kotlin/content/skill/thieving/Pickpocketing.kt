@@ -19,19 +19,20 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Pickpocketing {
 
     val animationDefinitions: AnimationDefinitions by inject()
     val dropTables: DropTables by inject()
     val logger = InlineLogger()
-    
+
     init {
         npcApproach("Pickpocket") {
             approachRange(2)
@@ -70,7 +71,6 @@ class Pickpocketing {
                 delay(2)
             }
         }
-
     }
 
     fun getLoot(target: NPC): List<ItemDrop>? {
@@ -85,7 +85,7 @@ class Pickpocketing {
         }
         return table?.role()
     }
-    
+
     fun canLoot(player: Player, drops: List<ItemDrop>): Boolean {
         val transaction = player.inventory.transaction
         transaction.start()
@@ -98,7 +98,7 @@ class Pickpocketing {
         }
         return false
     }
-    
+
     fun Transaction.addLoot(drops: List<ItemDrop>) {
         for (drop in drops) {
             val item = drop.toItem()

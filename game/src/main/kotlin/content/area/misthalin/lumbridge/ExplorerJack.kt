@@ -23,19 +23,20 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class ExplorerJack {
 
     val npcs: NPCs by inject()
-    
+
     val variables: VariableDefinitions by inject()
-    
+
     init {
         npcOperate("Talk-to", "explorer_jack") {
             if (player["introducing_explorer_jack_task", "uncompleted"] == "uncompleted") {
@@ -92,7 +93,7 @@ class ExplorerJack {
             npc<Talk>("Eventually, with enough exploration, you will be rewarded for your explorative efforts.")
             npc<Talk>("You can find your Achievement Diary by clicking on the green star icon.")
             npc<Talk>("You should see the icon flashing now. Go ahead and click on it to find your Achievement Diary. If you have any questions, feel free to speak to me again.") // TODO
-        */
+             */
         }
 
         objectOperate("Open", "explorer_jack_trapdoor") {
@@ -102,7 +103,6 @@ class ExplorerJack {
             player<Quiz>("What's down there?")
             npc<RollEyes>("Crates, boxes, shelves - nothing you won't see in dozens of houses across Runescape. Go on, explore somewhere else!")
         }
-
     }
 
     suspend fun NPCOption<Player>.whatIsTaskSystem() {
@@ -114,7 +114,7 @@ class ExplorerJack {
         player.sendScript("task_list_button_hide", 0)
         player.interfaces.sendVisibility("task_system", "ok", true)
     }
-    
+
     suspend fun NPCOption<Player>.claim(inventoryId: String) {
         npc<Neutral>("I'll just fill your $inventoryId with what you need, then.")
         val inventory = player.inventories.inventory(inventoryId)
@@ -156,7 +156,7 @@ class ExplorerJack {
             }
         }
     }
-    
+
     fun completedAllBeginner(player: Player): Boolean {
         return Tasks.forEach(1) {
             if (definition["task_difficulty", 0] == 1 && !isCompleted(player, definition.stringId)) {
@@ -165,5 +165,4 @@ class ExplorerJack {
             null
         } ?: false
     }
-    
 }

@@ -11,16 +11,17 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Ectophial {
 
     val objects: GameObjects by inject()
-    
+
     init {
         inventoryItem("Empty", "ectophial", "inventory") {
             player.gfx("empty_ectophial")
@@ -48,7 +49,5 @@ class Ectophial {
             val slot = player.inventory.indexOf("ectophial")
             player.mode = Interact(player, ectofuntus, ItemOnObject(player, ectofuntus, Item("ectophial_empty"), slot, "inventory"))
         }
-
     }
-
 }

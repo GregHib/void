@@ -18,17 +18,18 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRe
 import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Equipping {
 
     val areas: AreaDefinitions by inject()
     val logger = InlineLogger()
-    
+
     init {
         inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
             val def = item.def
@@ -86,24 +87,23 @@ class Equipping {
         playerSpawn { player ->
             updateWeaponEmote(player)
         }
-
     }
 
     fun replaceWeaponShieldWith2h(player: Player, item: ItemDefinition) = player.has(EquipSlot.Shield) && player.has(EquipSlot.Weapon) && item.type == EquipType.TwoHanded
-    
+
     fun replaceShieldWith2h(player: Player, item: ItemDefinition) = player.has(EquipSlot.Shield) && !player.has(EquipSlot.Weapon) && item.type == EquipType.TwoHanded
-    
+
     fun replace2hWithShield(player: Player, item: ItemDefinition) = player.equipped(EquipSlot.Weapon).type == EquipType.TwoHanded && item.slot == EquipSlot.Shield
-    
+
     fun getOtherHandSlot(slot: EquipSlot) = if (slot == EquipSlot.Shield) EquipSlot.Weapon else EquipSlot.Shield
-    
+
     fun updateWeaponEmote(player: Player) {
         val weapon = player.equipped(EquipSlot.Weapon)
         val emote = weapon.def["render_emote", 1426]
         player.appearance.emote = emote
         player.flagAppearance()
     }
-    
+
     fun playEquipSound(player: Player, item: ItemDefinition) {
         val name = item.name.lowercase()
         val material = item["material", "cloth"]
@@ -127,12 +127,12 @@ class Equipping {
                 name == "silverlight" -> "equip_silverlight"
                 else -> if (material == "metal") "equip_sword" else "equip_clothes"
             }
-    
+
             EquipSlot.Hat -> when {
                 name == "jack lantern mask" -> "equip_halloween_pumpkin"
                 else -> if (material == "metal") "equip_helm" else "equip_clothes"
             }
-    
+
             EquipSlot.Chest -> if (material == "metal") "equip_body" else "equip_clothes"
             EquipSlot.Shield -> if (material == "metal") "equip_shield" else "equip_clothes"
             EquipSlot.Legs -> if (material == "metal") "equip_legs" else "equip_clothes"

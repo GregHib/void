@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.headIcon
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Prayers {
 
@@ -40,7 +41,6 @@ class Prayers {
             stopPrayerDrain(player, curses)
             updateOverheadIcon(player, curses)
         }
-
     }
 
     fun stopPrayerDrain(player: Player, curses: Boolean) {
@@ -54,7 +54,7 @@ class Prayers {
             return
         }
     }
-    
+
     fun updateOverheadIcon(player: Player, curses: Boolean) {
         val changed = if (curses) {
             player.changedCurseIcon()
@@ -65,7 +65,7 @@ class Prayers {
             player.flagAppearance()
         }
     }
-    
+
     fun Player.changedCurseIcon(): Boolean {
         var value = -1
         when {
@@ -75,7 +75,7 @@ class Prayers {
                 if (praying("deflect_summoning")) {
                     value += 4
                 }
-    
+
                 value += when {
                     praying("deflect_magic") -> if (value > -1) 3 else 2
                     praying("deflect_missiles") -> if (value > -1) 2 else 3
@@ -93,7 +93,7 @@ class Prayers {
         }
         return false
     }
-    
+
     fun Player.changedPrayerIcon(): Boolean {
         var value = -1
         when {
@@ -104,7 +104,7 @@ class Prayers {
                 if (praying("protect_from_summoning")) {
                     value += 8
                 }
-    
+
                 value += when {
                     praying("protect_from_magic") -> 3
                     praying("protect_from_missiles") -> 2
@@ -113,7 +113,7 @@ class Prayers {
                 }
             }
         }
-    
+
         if (headIcon != value) {
             headIcon = value
             return true

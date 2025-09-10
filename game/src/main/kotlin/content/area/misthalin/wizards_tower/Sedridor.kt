@@ -16,13 +16,14 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Sedridor {
 
@@ -46,7 +47,6 @@ class Sedridor {
             player["what_is_this_place_task"] = true
             EssenceMine.teleport(target, player)
         }
-
     }
 
     suspend fun SuspendableContext<Player>.started() {
@@ -77,7 +77,7 @@ class Sedridor {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.okHere() {
         player<Neutral>("Okay, here you are.")
         if (player.inventory.contains("air_talisman")) {
@@ -126,7 +126,7 @@ class Sedridor {
             npc<Uncertain>("Hmm? You are a very odd person. Come back again when you have it.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.discovery() {
         npc<Happy>("It is critical I share this discovery with my associate, Aubury, as soon as possible. He's not much of a wizard, but he's an expert on runecrafting, and his insight will be essential.")
         npc<Quiz>("Would you be willing to visit him for me? I would go myself, but I wish to study this talisman some more.")
@@ -135,7 +135,7 @@ class Sedridor {
             imBusy()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.visitAubury() {
         npc<Quiz>("Hello again, adventurer. You have already done so much, but I would really appreciate it if you were to visit my associate, Aubury. Would you be willing to?")
         choice {
@@ -143,7 +143,7 @@ class Sedridor {
             imBusy()
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.checkPackageDelivered() {
         npc<Quiz>("Hello again, adventurer. Did you take that package to Aubury?")
         if (player.ownsItem("research_package_rune_mysteries")) {
@@ -164,7 +164,7 @@ class Sedridor {
             npc<Happy>("Best of luck, ${player.name}.")
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.checkResearchDelivered() {
         npc<Neutral>("Ah, ${player.name}. How goes your quest? Have you delivered my research to Aubury yet?")
         player<Neutral>("Yes, I have. He gave me some notes to give to you.")
@@ -191,11 +191,11 @@ class Sedridor {
             npc<Uncertain>("Right... You're rather careless aren't you. I suggest you go and speak to Aubury once more. With luck he will have made copies.")
         }
     }
-    
+
     suspend fun PlayerChoice.imBusy(): Unit = option<Neutral>("No, I'm busy.") {
         npc<Neutral>("As you wish adventurer. I will continue to study this talisman you have brought me. Return here if you find yourself with some spare time to help me.")
     }
-    
+
     suspend fun PlayerChoice.yesCertainly(): Unit = option<Neutral>("Yes, certainly.") {
         player["rune_mysteries"] = "research_package"
         npc<Happy>("He runs a rune shop in the south east of Varrock. Please, take this package of research notes to him. If all goes well, the secrets of the essence mine may soon be ours once more!")
@@ -207,7 +207,7 @@ class Sedridor {
         item("research_package_rune_mysteries", 600, "Sedridor hands you a package.")
         npc<Happy>("Best of luck, ${player.name}.")
     }
-    
+
     suspend fun NPCOption<Player>.completed() {
         player<Neutral>("Hello there.")
         npc<Happy>("Hello again, ${player.name}. What can I do for you?")
@@ -220,12 +220,12 @@ class Sedridor {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.teleportEssenceMine(): Unit = option<Quiz>("Can you teleport me to the Rune Essence Mine?") {
         player["what_is_this_place_task"] = true
         EssenceMine.teleport(target, player)
     }
-    
+
     suspend fun ChoiceBuilder<NPCOption<Player>>.whoElseKnows(): Unit = option<Quiz>("Who else knows the teleport to the Rune Essence Mine?") {
         npc<Happy>("Apart from myself, there's also Aubury in Varrock, Wizard Cromperty in East Ardougne, Brimstail in the Tree Gnome Stronghold and Wizard Distentor in Yanille's Wizards' Guild.")
         player["enter_abyss_knows_mages"] = true
@@ -235,7 +235,7 @@ class Sedridor {
             thanksForInformation()
         }
     }
-    
+
     suspend fun ChoiceBuilder<NPCOption<Player>>.oldWizardsTower(): Unit = option<Quiz>("Could you tell me about the old Wizards' Tower?") {
         npc<Happy>("Of course. The first Wizards' Tower was built at the same time the Order of Wizards was founded. It was at the dawn of the Fifth Age, when the secrets of runecrafting were rediscovered.")
         npc<Happy>("For years, the tower was a hub of magical research. Wizards of all races and religions were welcomed into our order.")
@@ -250,11 +250,11 @@ class Sedridor {
             thanksForInformation()
         }
     }
-    
+
     suspend fun PlayerChoice.thanksForInformation(): Unit = option<Happy>("Thanks for the information.") {
         npc<Happy>("My pleasure.")
     }
-    
+
     fun Context<Player>.questComplete() {
         player["rune_mysteries"] = "completed"
         player.jingle("quest_complete_1")

@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanQuickChat
 import world.gregs.voidps.engine.entity.character.player.chat.friend.PrivateQuickChatMessage
 import world.gregs.voidps.engine.entity.character.player.chat.global.PublicQuickChatMessage
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.QuickChatPrivate
@@ -25,7 +26,7 @@ import world.gregs.voidps.network.login.protocol.encode.clanQuickChat
 import world.gregs.voidps.network.login.protocol.encode.privateQuickChatFrom
 import world.gregs.voidps.network.login.protocol.encode.privateQuickChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicQuickChat
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class QuickChat {
 
@@ -34,7 +35,7 @@ class QuickChat {
     val variables: VariableDefinitions by inject()
     val enums: EnumDefinitions by inject()
     val items: ItemDefinitions by inject()
-    
+
     init {
         instruction<QuickChatPrivate> { player ->
             val target = players.get(friend)
@@ -45,7 +46,7 @@ class QuickChat {
             val definition = phrases.get(file)
             val data = generateData(player, file, data)
             player.client?.privateQuickChatTo(target.name, file, data)
-        
+
             val text = definition.buildString(enums.definitions, items.definitions, data)
             val message = PrivateQuickChatMessage(player, file, text, data)
             target.emit(message)
@@ -94,7 +95,6 @@ class QuickChat {
         onEvent<Player, ClanQuickChatMessage> { player ->
             player.client?.clanQuickChat(source.name, player.clan!!.name, source.rights.ordinal, file, data)
         }
-
     }
 
     fun generateData(player: Player, file: Int, data: ByteArray): ByteArray {
@@ -142,6 +142,6 @@ class QuickChat {
             return list.map { it }.toByteArray()
         }
     }
-    
+
     fun int(value: Int) = byteArrayOf((value shr 24).toByte(), (value shr 16).toByte(), (value shr 8).toByte(), value.toByte())
 }

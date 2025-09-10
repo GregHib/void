@@ -3,14 +3,15 @@ package content.bot
 import content.bot.interact.navigation.await
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.worldSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.Walk
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class WalkingBot {
 
     val tasks: TaskManager by inject()
-    
+
     init {
         worldSpawn {
             val task = Task(
@@ -30,7 +31,5 @@ class WalkingBot {
                 tasks.idle(task)
             }
         }
-
     }
-
 }

@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -29,7 +30,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class BarmaidsRisingSunInn {
 
@@ -44,13 +45,13 @@ class BarmaidsRisingSunInn {
         player.inventory.remove("coins", 1)
         npc<Happy>("Thanks!")
     }
-    
+
     val emptyGlass: suspend ItemOnNPC.() -> Unit = {
         player.mode = Interact(player, target, NPCOption(player, target, target.def, "Talk-to"))
     }
-    
+
     val itemDefinitions: ItemDefinitions by inject()
-    
+
     init {
         npcApproach("Talk-to", "barmaid_emily") {
             approachRange(3)
@@ -78,15 +79,14 @@ class BarmaidsRisingSunInn {
         itemOnNPCApproach("beer_glass", "barmaid_kaylee", handler = emptyGlass)
 
         itemOnNPCApproach("beer_glass", "barmaid_tina", handler = emptyGlass)
-
     }
 
     // Dialogue
-    
+
     // Bar crawl
-    
+
     // Misc
-    
+
     suspend fun NPCOption<Player>.menu() {
         npc<Quiz>("Heya! What can I get you?")
         choice {
@@ -118,7 +118,7 @@ class BarmaidsRisingSunInn {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.buyBeer(beer: String) {
         player.inventory.transaction {
             remove("coin", 3)
@@ -137,7 +137,7 @@ class BarmaidsRisingSunInn {
             else -> {}
         }
     }
-    
+
     suspend fun NPCOption<Player>.buyEmptyGlasses() {
         choice {
             option<Talk>("Okay, sure.") {
@@ -151,7 +151,7 @@ class BarmaidsRisingSunInn {
             option<Shifty>("No thanks, I like empty beer glasses.")
         }
     }
-    
+
     suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
         start = {
             npc<Laugh>("Heehee, this'll be fun!")
@@ -162,10 +162,10 @@ class BarmaidsRisingSunInn {
             player.levels.drain(Skill.Defence, 6)
             player.levels.drain(Skill.Fishing, 6)
             player.levels.drain(Skill.Attack, 7)
-    //        player.shakeCamera() TODO camera shake
-    //        player.softQueue("clear_shake", random.nextInt(2, 5)) {
-    //            player.clearCamera()
-    //        }
+            //        player.shakeCamera() TODO camera shake
+            //        player.softQueue("clear_shake", random.nextInt(2, 5)) {
+            //            player.clearCamera()
+            //        }
             player.damage(10)
         },
     )

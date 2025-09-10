@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class StrongholdOfSecurityPortals {
 
@@ -48,7 +49,5 @@ class StrongholdOfSecurityPortals {
             player.message("You must have completed this level to take this shortcut.")
             cancel()
         }
-
     }
-
 }

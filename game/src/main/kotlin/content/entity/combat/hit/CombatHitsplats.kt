@@ -8,16 +8,17 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.flagHits
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import kotlin.collections.set
 import kotlin.math.floor
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class CombatHitsplats {
 
     val definitions: SpellDefinitions by inject()
-    
+
     init {
         characterCombatDamage { character ->
             if (damage < 0 || type == "magic" && definitions.get(spell).maxHit == -1 || type == "healed") {
@@ -64,7 +65,6 @@ class CombatHitsplats {
                 character.levels.restore(Skill.Constitution, damage)
             }
         }
-
     }
 
     fun Character.hit(source: Character, amount: Int, mark: HitSplat.Mark, delay: Int = 0, critical: Boolean = false, soak: Int = -1) {

@@ -9,13 +9,14 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.timer.epochSeconds
+
 @Script
 class Doors {
 
     val doorStuckCount = 5
-    
+
     init {
         objectOperate("Close") {
             if (!def.isDoor()) {
@@ -37,11 +38,10 @@ class Doors {
                 player.emit(DoorOpened)
             }
         }
-
     }
 
     // Times a door can be closed consecutively before getting stuck
-    
+
     fun stuck(player: Player): Boolean {
         if (player.remaining("stuck_door", epochSeconds()) > 0) {
             player.message("The door seems to be stuck.")

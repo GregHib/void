@@ -5,6 +5,7 @@ import content.entity.player.combat.special.specialAttackPrepare
 import content.entity.sound.sound
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class DragonBattleaxe {
 
@@ -24,7 +25,5 @@ class DragonBattleaxe {
             player.levels.drain(Skill.Ranged, multiplier = 0.10)
             player.levels.boost(Skill.Strength, amount = 5, multiplier = 0.15)
         }
-
     }
-
 }

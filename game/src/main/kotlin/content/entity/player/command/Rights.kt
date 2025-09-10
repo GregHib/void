@@ -9,8 +9,9 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.get
+
 @Script
 class Rights {
 
@@ -41,7 +42,5 @@ class Rights {
                 target.message("${player.name} granted you $rights rights. Please re-log to activate.")
             }
         }
-
     }
-
 }

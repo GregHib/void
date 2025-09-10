@@ -21,17 +21,18 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.type.Direction
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Canoes {
 
     val objects: GameObjects by inject()
-    
+
     val stations: CanoeDefinitions by inject()
-    
+
     init {
         playerSpawn { player ->
             player.sendVariable("canoe_state_lumbridge")
@@ -74,11 +75,11 @@ class Canoes {
             val dugout = player.levels.get(Skill.Woodcutting) > 26
             player.interfaces.sendVisibility(id, "visible_dugout", dugout)
             player.interfaces.sendVisibility(id, "invisible_dugout", !dugout)
-        
+
             val stable = player.levels.get(Skill.Woodcutting) > 41
             player.interfaces.sendVisibility(id, "visible_stable_dugout", stable)
             player.interfaces.sendVisibility(id, "invisible_stable_dugout", !stable)
-        
+
             val waka = player.levels.get(Skill.Woodcutting) > 56
             player.interfaces.sendVisibility(id, "visible_waka", waka)
             player.interfaces.sendVisibility(id, "invisible_waka", !waka)
@@ -180,7 +181,6 @@ class Canoes {
             player.sound("canoe_sink")
             player.message(definition.message, type = ChatType.Filter)
         }
-
     }
 
     suspend fun ObjectOption<Player>.float() {
@@ -199,5 +199,4 @@ class Canoes {
         delay(2)
         player["canoe_state_$location"] = "water_$canoe"
     }
-    
 }

@@ -15,19 +15,20 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GrandExchangeItemSets {
 
     val enumDefinitions: EnumDefinitions by inject()
     val logger = InlineLogger()
-    
+
     init {
         interfaceOpen("exchange_item_sets") { player ->
             player.open("exchange_sets_side")
@@ -54,12 +55,12 @@ class GrandExchangeItemSets {
             }
             when (player.inventory.transaction.error) {
                 is TransactionError.Deficient -> {
-        //             https://youtu.be/Tz2jgdj1bWg?si=PQz8E4H2bPoBlAfA&t=94
+                    //             https://youtu.be/Tz2jgdj1bWg?si=PQz8E4H2bPoBlAfA&t=94
                     player.message("You don't have the parts that make up this set.")
                 }
                 is TransactionError.Full -> player.inventoryFull()
                 TransactionError.None -> {
-        //            https://youtu.be/FfVilurxzj0?si=wnz1ujXs_Xomfzmu&t=39
+                    //            https://youtu.be/FfVilurxzj0?si=wnz1ujXs_Xomfzmu&t=39
                     player.message("You successfully traded your item components for a set!")
                 }
                 TransactionError.Invalid -> logger.warn { "Invalid set exchange for item ${item.id} $components" }
@@ -99,13 +100,12 @@ class GrandExchangeItemSets {
             approachRange(2)
             exchangeSet(player, item, itemSlot)
         }
-
     }
 
     /*
         Side
      */
-    
+
     fun exchangeSet(player: Player, item: Item, slot: Int) {
         val components: List<String>? = item.def.getOrNull("items")
         if (components == null) {
@@ -121,7 +121,7 @@ class GrandExchangeItemSets {
         when (player.inventory.transaction.error) {
             is TransactionError.Full -> player.inventoryFull("for the component parts")
             TransactionError.None -> {
-    //            https://youtu.be/FfVilurxzj0?si=wnz1ujXs_Xomfzmu&t=39
+                //            https://youtu.be/FfVilurxzj0?si=wnz1ujXs_Xomfzmu&t=39
                 player.message("You successfully traded your set for its component items!")
             }
             else -> logger.warn { "${player.inventory.transaction.error} set exchange for item ${item.id} $components" }

@@ -9,14 +9,15 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
+
 @Script
 class HealGroup {
 
     val definitions: SpellDefinitions by inject()
     val players: Players by inject()
-    
+
     init {
         interfaceOption("Cast", "heal_group", "lunar_spellbook") {
             val spell = component
@@ -46,7 +47,5 @@ class HealGroup {
                 player.damage(healed, delay = 2)
             }
         }
-
     }
-
 }

@@ -14,10 +14,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Pottery {
 
@@ -39,7 +40,6 @@ class Pottery {
             val item = player.inventory.items.firstOrNull { it.def.contains("pottery") && it.id != "soft_clay" } ?: return@objectOperate
             make("cook_range", item)
         }
-
     }
 
     suspend fun TargetInteraction<Player, GameObject>.make(animation: String, item: Item) {
@@ -59,7 +59,7 @@ class Pottery {
         player.softTimers.start("pottery")
         player.make(animation, target, item, id, data, actualAmount)
     }
-    
+
     fun Player.make(animation: String, obj: GameObject, item: Item, id: String, data: Pottery.Ceramic, amount: Int) {
         if (amount <= 0) {
             softTimers.stop("pottery")

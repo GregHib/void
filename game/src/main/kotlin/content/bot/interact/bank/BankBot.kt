@@ -1,18 +1,17 @@
 package content.bot.interact.bank
 
-import content.bot.bot
-import content.bot.interact.navigation.resume
-import content.bot.isBot
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.event.Script
-
 import content.bot.*
+import content.bot.bot
 import content.bot.interact.navigation.await
 import content.bot.interact.navigation.cancel
 import content.bot.interact.navigation.goToNearest
+import content.bot.interact.navigation.resume
+import content.bot.isBot
 import content.entity.player.bank.bank
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -132,6 +131,7 @@ suspend fun Bot.withdrawCoins() {
         closeBank()
     }
 }
+
 @Script
 class BankBot {
 
@@ -141,7 +141,5 @@ class BankBot {
                 player.bot.resume("bank")
             }
         }
-
     }
-
 }

@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class AliMorrisane {
 
@@ -25,7 +26,6 @@ class AliMorrisane {
                 }
             }
         }
-
     }
 
     fun ChoiceBuilder<NPCOption<Player>>.whatsInIt() {
@@ -53,7 +53,7 @@ class AliMorrisane {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.okayIllSee() {
         option<Talk>("Ok I'll see what I can do.") {
             npc<Talk>("I think I need just one more product type, something magical ... now what could I stock that's magical, has large demand and a pretty good profit margin...")
@@ -72,7 +72,7 @@ class AliMorrisane {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.fued() {
         player<Talk>("Hi Ali. Not bad. How are you?")
         npc<Talk>("Still selling.")

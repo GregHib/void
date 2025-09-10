@@ -20,21 +20,22 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class LumbridgeBeginnerTasks {
 
     val areas: AreaDefinitions by inject()
-    
+
     val objects: GameObjects by inject()
-    
+
     val styleDefinitions: WeaponStyleDefinitions by inject()
-    
+
     init {
         move({ player.running && !player["on_the_run_task", false] }) {
             player["on_the_run_task"] = true
@@ -372,7 +373,5 @@ class LumbridgeBeginnerTasks {
         enterArea("wizards_tower_top_floor") {
             player["tower_power_task"] = true
         }
-
     }
-
 }

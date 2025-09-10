@@ -13,17 +13,18 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Greegrees {
 
     val items: FloorItems by inject()
     val areas: AreaDefinitions by inject()
-    
+
     init {
         playerSpawn { player ->
             val item = player.equipped(EquipSlot.Weapon).id
@@ -80,7 +81,6 @@ class Greegrees {
         exitArea("ape_atoll_agility_dungeon") {
             forceRemove(player)
         }
-
     }
 
     fun forceRemove(player: Player) {

@@ -6,9 +6,10 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Degradation {
 
@@ -19,7 +20,7 @@ class Degradation {
         EquipSlot.Shield.index,
         EquipSlot.Legs.index,
     )
-    
+
     init {
         combatDamage { player ->
             degrade(player)
@@ -44,7 +45,6 @@ class Degradation {
             val message: String = fromItem.def.getOrNull("degrade_message") ?: return@inventoryChanged
             player.message(message)
         }
-
     }
 
     fun degrade(player: Player) {
@@ -62,5 +62,4 @@ class Degradation {
             inventory.discharge(player, slot)
         }
     }
-    
 }

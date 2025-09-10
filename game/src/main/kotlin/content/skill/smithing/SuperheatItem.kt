@@ -9,18 +9,19 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smelting
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.remove
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class SuperheatItem {
 
     val spellDefinitions: SpellDefinitions by inject()
     val itemDefinitions: ItemDefinitions by inject()
-    
+
     init {
         interfaceOnItem("modern_spellbook", "superheat_item") { player ->
             if (!item.id.endsWith("_ore")) {
@@ -54,7 +55,5 @@ class SuperheatItem {
                 player.sound("superheat_fail")
             }
         }
-
     }
-
 }

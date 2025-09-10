@@ -5,17 +5,18 @@ import content.entity.player.inv.item.destroy.canDestroy
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.itemOnItems
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GemBag {
 
     val bagCapacity = 100
-    
+
     val gems = setOf("uncut_sapphire", "uncut_emerald", "uncut_ruby", "uncut_diamond")
-    
+
     init {
         inventoryItem("Inspect", "gem_bag") {
             val sapphires = player["gem_bag_sapphire", 0]
@@ -94,7 +95,5 @@ class GemBag {
                 cancel()
             }
         }
-
     }
-
 }

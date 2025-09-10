@@ -12,20 +12,21 @@ import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.IgnoreAdd
 import world.gregs.voidps.network.client.instruction.IgnoreDelete
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import world.gregs.voidps.network.login.protocol.encode.sendIgnoreList
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class IgnoreList {
 
     val accounts: AccountDefinitions by inject()
     val players: Players by inject()
-    
+
     val maxIgnores = 100
-    
+
     init {
         playerSpawn { player ->
             player.sendIgnores()
@@ -37,27 +38,27 @@ class IgnoreList {
                 player.message("Unable to find player with name '$name'.")
                 return@instruction
             }
-        
+
             if (player.name == name) {
                 player.message("We all get irritated with ourselves sometimes, take a break!")
                 return@instruction
             }
-        
+
             if (player.friends.contains(account.accountName)) {
                 player.message("Please remove $name from your ignores list first.")
                 return@instruction
             }
-        
+
             if (player.ignores.size >= maxIgnores) {
                 player.message("Your ignore list is full. Max of $maxIgnores.")
                 return@instruction
             }
-        
+
             if (player.ignores.contains(account.accountName)) {
                 player.message("$name is already on your ignores list.")
                 return@instruction
             }
-        
+
             player.ignores.add(account.accountName)
             player.sendIgnore(account)
             val other = players.get(name)
@@ -75,13 +76,13 @@ class IgnoreList {
                 player.message("Unable to find player with name '$name'.")
                 return@instruction
             }
-        
+
             val account = accounts.getByAccount(accountName)
             if (account == null || !player.ignores.contains(account.accountName)) {
                 player.message("Unable to find player with name '$name'.")
                 return@instruction
             }
-        
+
             val name = account.displayName
             player.ignores.remove(account.accountName)
             if (player.privateStatus != "on") {
@@ -92,7 +93,6 @@ class IgnoreList {
                 other.updateFriend(Friend(player.name, player.previousName, world = Settings.world, worldName = Settings.worldName))
             }
         }
-
     }
 
     fun Player.sendIgnores() {
@@ -103,7 +103,7 @@ class IgnoreList {
             },
         )
     }
-    
+
     fun Player.sendIgnore(account: AccountDefinition) {
         client?.sendIgnoreList(listOf(account.displayName to account.previousName))
     }

@@ -10,18 +10,19 @@ import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.obj.objectApproach
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.ExamineItem
 import world.gregs.voidps.network.client.instruction.ExamineNpc
 import world.gregs.voidps.network.client.instruction.ExamineObject
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Examines {
 
     val itemDefinitions: ItemDefinitions by inject()
     val npcDefinitions: NPCDefinitions by inject()
     val objectDefinitions: ObjectDefinitions by inject()
-    
+
     init {
         interfaceOption("Examine", id = "equipment_bonuses") {
             player.message(item.def.getOrNull("examine") ?: return@interfaceOption, ChatType.ItemExamine)
@@ -59,7 +60,5 @@ class Examines {
                 player.message(definition["examine"], ChatType.Game)
             }
         }
-
     }
-
 }

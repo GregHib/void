@@ -8,15 +8,16 @@ import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Dragon2hSword {
 
     val players: Players by inject()
     val npcs: NPCs by inject()
-    
+
     init {
         specialAttackDamage("powerstab") { player ->
             if (!player.inMultiCombat) {
@@ -37,7 +38,5 @@ class Dragon2hSword {
                 }
             }
         }
-
     }
-
 }

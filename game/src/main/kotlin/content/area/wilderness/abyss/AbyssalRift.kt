@@ -5,6 +5,7 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class AbyssalRift {
 
@@ -43,7 +44,5 @@ class AbyssalRift {
             player.message("You have not yet unlocked this rift.")
             cancel()
         }
-
     }
-
 }

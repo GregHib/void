@@ -11,11 +11,12 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class MurkyMattRunes {
 
@@ -59,7 +60,6 @@ class MurkyMattRunes {
             }
             combineJewellery()
         }
-
     }
 
     suspend fun NPCOption<Player>.menu() {
@@ -94,7 +94,7 @@ class MurkyMattRunes {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.combineJewellery() {
         player.inventory.transaction {
             val chargeMap = mutableMapOf<String, Int>()
@@ -124,5 +124,4 @@ class MurkyMattRunes {
             else -> npc<Talk>("Arrr, ye've got nothing that I can combine.")
         }
     }
-    
 }

@@ -9,11 +9,12 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class FatherAereck {
 
@@ -53,7 +54,6 @@ class FatherAereck {
                 else -> completed()
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.started() {
@@ -62,13 +62,13 @@ class FatherAereck {
         npc<Happy>("Well, you can get to the swamp he lives in by going south through the cemetery.")
         npc<Happy>("You'll have to go right into the far western depths of the swamp, near the coastline. That is where his house is.")
     }
-    
+
     suspend fun SuspendableContext<Player>.ghost() {
         npc<Neutral>("Have you got rid of the ghost yet?")
         player<Neutral>("I had a talk with Father Urhney. He has given me this funny amulet to talk to the ghost with.")
         npc<Uncertain>("I always wondered what that amulet was... Well, I hope it's useful. Tell me when you get rid of the ghost!")
     }
-    
+
     suspend fun SuspendableContext<Player>.miningSpot() {
         npc<Neutral>("Have you got rid of the ghost yet?")
         player<Neutral>("I've found out that the ghost's corpse has lost its skull. If I can find the skull, the ghost should leave.")
@@ -78,7 +78,7 @@ class FatherAereck {
         npc<Angry>("I hate warlocks.")
         npc<Happy>("Ah well, good luck!")
     }
-    
+
     suspend fun SuspendableContext<Player>.foundSkull() {
         if (player.holdsItem("ghostspeak_amulet")) {
             npc<Neutral>("Have you got rid of the ghost yet?")
@@ -90,7 +90,7 @@ class FatherAereck {
             npc<Neutral>("Don't worry, I'm sure you'll find it again.")
         }
     }
-    
+
     suspend fun NPCOption<Player>.completed() {
         npc<Happy>("Thank you for getting rid of that awful ghost for me! May Saradomin always smile upon you!")
         choice {
@@ -115,7 +115,7 @@ class FatherAereck {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.whosSaradomin() {
         option<Quiz>("Who's Saradomin?") {
             npc<Surprised>("Surely you have heard of the god, Saradomin?")
@@ -145,7 +145,7 @@ class FatherAereck {
             }
         }
     }
-    
+
     fun ChoiceBuilder<NPCOption<Player>>.nicePlace() {
         option<Happy>("Nice place you've got here.") {
             npc<Happy>("It is, isn't it? It was built over 230 years ago.")

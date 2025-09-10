@@ -15,13 +15,14 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Potions {
 
@@ -40,11 +41,10 @@ class Potions {
             }
             effects(player, item.id)
         }
-
     }
 
     fun hasHolyItem(player: Player) = player.equipped(EquipSlot.Cape).id.startsWith("prayer_cape") || player.holdsItem("holy_wrench")
-    
+
     fun effects(player: Player, potion: String) {
         when {
             potion.startsWith("antifire") -> player.antifire(6)
@@ -73,7 +73,7 @@ class Potions {
             }
             potion.startsWith("summoning_") -> {
                 player.levels.boost(Skill.Summoning, 7, 0.25)
-    //            player.familiar.specialEnergy = (player.familiar.specialEnergy / 100) * 15
+                //            player.familiar.specialEnergy = (player.familiar.specialEnergy / 100) * 15
             }
             potion.startsWith("relicyms_") -> player.cureDisease()
             potion.startsWith("sanfew_serum") -> {

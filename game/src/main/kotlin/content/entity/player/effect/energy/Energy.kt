@@ -1,6 +1,7 @@
 package content.entity.player.effect.energy
 
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.client.sendRunEnergy
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.mode.move.move
@@ -9,10 +10,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.engine.event.Script
-
-import world.gregs.voidps.engine.client.sendRunEnergy
+import world.gregs.voidps.engine.timer.timerTick
 
 const val MAX_RUN_ENERGY = 10000
 
@@ -25,6 +24,7 @@ var Player.runEnergy: Int
         softTimers.startIfAbsent("energy_restore")
         sendRunEnergy(energyPercent())
     }
+
 @Script
 class Energy {
 
@@ -53,7 +53,6 @@ class Energy {
                 walkWhenOutOfEnergy(player)
             }
         }
-
     }
 
     fun getRestoreAmount(player: Player): Int {
@@ -65,7 +64,7 @@ class Energy {
             else -> Interpolation.interpolate(agility, 27, 157, 1, 99)
         }
     }
-    
+
     fun getDrainAmount(player: Player): Int {
         val weight = player["weight", 0].coerceIn(0, 64)
         var decrement = 67 + ((67 * weight) / 64)
@@ -74,7 +73,7 @@ class Energy {
         }
         return decrement
     }
-    
+
     fun walkWhenOutOfEnergy(player: Player) {
         if (player.runEnergy == 0) {
             player["movement"] = "walk"

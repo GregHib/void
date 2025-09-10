@@ -14,22 +14,23 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.npcDespawn
 import world.gregs.voidps.engine.entity.npcSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class KreeArra {
 
     val players: Players by inject()
     val areas: AreaDefinitions by inject()
     val npcs: NPCs by inject()
-    
+
     var kilisa: NPC? = null
     var skree: NPC? = null
     var geerin: NPC? = null
-    
+
     init {
         npcCombatSwing("kree_arra") { npc ->
             if (npc.attackers.isEmpty() && random.nextInt(2) == 0) { // Enrage
@@ -96,7 +97,5 @@ class KreeArra {
                 areaSound("kree_arra_impact", target.tile)
             }
         }
-
     }
-
 }

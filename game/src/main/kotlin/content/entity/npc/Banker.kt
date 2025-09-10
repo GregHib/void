@@ -13,21 +13,22 @@ import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Banker {
 
     val npcs: NPCs by inject()
-    
+
     init {
         npcApproach("Talk-to", "banker*") {
             approachRange(2)
             npc<Quiz>("Good day. How may I help you?")
             val loanReturned = getSecondsRemaining(player, "lend_timeout") < 0
             val collection = false
-        
+
             if (loanReturned) {
                 npc<Talk>("Before we go any further, I should inform you that an item you lent out has been returned to you.")
             } else if (collection) {
@@ -51,7 +52,6 @@ class Banker {
             approachRange(2)
             player.open("collection_box")
         }
-
     }
 
     suspend fun SuspendableContext<Player>.menu() {
@@ -75,7 +75,7 @@ class Banker {
             }
         }
     }
-    
+
     fun Context<Player>.achievement() {
         if (!player["you_can_bank_on_us_task", false]) {
             player["you_can_bank_on_us_task"] = true

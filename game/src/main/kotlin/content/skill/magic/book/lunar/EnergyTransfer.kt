@@ -13,14 +13,15 @@ import world.gregs.voidps.engine.client.ui.interact.interfaceOnPlayerApproach
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class EnergyTransfer {
 
     val definitions: SpellDefinitions by inject()
-    
+
     init {
         interfaceOnPlayerApproach(id = "lunar_spellbook", component = "energy_transfer") {
             approachRange(2)
@@ -59,7 +60,5 @@ class EnergyTransfer {
             target.specialAttackEnergy = MAX_SPECIAL_ATTACK
             target.runEnergy = MAX_RUN_ENERGY
         }
-
     }
-
 }

@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.npcSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -31,13 +32,13 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class MakeoverMage {
 
     val enums: EnumDefinitions by inject()
     val npcs: NPCs by inject()
-    
+
     init {
         npcOperate("Talk-to", "makeover_mage*") {
             npc<Pleased>("Hello there! I am known as the Makeover Mage! I have spent many years researching magicks that can change your physical appearance.")
@@ -135,7 +136,6 @@ class MakeoverMage {
                 npc.say(if (toFemale) "Ooh!" else "Aha!")
             }
         }
-
     }
 
     suspend fun ChoiceBuilder<NPCOption<Player>>.more(): Unit = option<Quiz>("Tell me more about this 'makeover'.") {
@@ -147,7 +147,7 @@ class MakeoverMage {
         npc<Happy>("It's as safe as houses! Why, I have only had thirty-six major accidents this month!")
         whatDoYouSay()
     }
-    
+
     suspend fun NPCOption<Player>.whatDoYouSay() {
         npc<Uncertain>("So, what do you say? Feel like a change?")
         choice {
@@ -155,17 +155,17 @@ class MakeoverMage {
             exit()
         }
     }
-    
+
     suspend fun ChoiceBuilder<NPCOption<Player>>.start(): Unit = option<Talk>("Sure, do it.") {
         npc<Happy>("You, of course, agree that if by some accident you are turned into a frog you have no rights for compensation or refund.")
         openDressingRoom("skin_colour")
     }
-    
+
     suspend fun ChoiceBuilder<NPCOption<Player>>.exit(): Unit = option("No, thanks.") {
         player<Frustrated>("No, thanks. I'm happy as I am.")
         npc<Sad>("Ehhh..suit yourself.")
     }
-    
+
     suspend fun ChoiceBuilder<NPCOption<Player>>.amulet(): Unit = option<Pleased>("Cool amulet! Can I have one?") {
         val cost = 100
         npc<Talk>("No problem, but please remember that the amulet I will sell you is only a copy of my own. It contains no magical powers and, as such, will only cost you $cost coins.")
@@ -195,7 +195,7 @@ class MakeoverMage {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.explain() {
         npc<Pleased>("I can alter your physical form if you wish. Would you like me to perform my magicks on you?")
         choice {
@@ -204,12 +204,12 @@ class MakeoverMage {
             exit()
         }
     }
-    
+
     suspend fun ChoiceBuilder<NPCOption<Player>>.colour(): Unit = option<Pleased>("Can you make me a different colour?") {
         npc<Happy>("Why, of course! I have a wide array of colours for you to choose from.")
         whatDoYouSay()
     }
-    
+
     fun swapSex(player: Player, male: Boolean) {
         player.body.male = male
         val key = "look_hair_${if (male) "male" else "female"}"
@@ -221,12 +221,11 @@ class MakeoverMage {
         swapLook(player, male, BodyPart.Chest, "top")
         swapLook(player, male, BodyPart.Feet, "shoes")
     }
-    
+
     fun swapLook(player: Player, male: Boolean, bodyPart: BodyPart, name: String) {
         val old = enums.get("look_${name}_${if (male) "female" else "male"}")
         val new = enums.get("look_${name}_${if (male) "male" else "female"}")
         val key = old.getKey(player.body.getLook(bodyPart))
         player.body.setLook(bodyPart, new.getInt(key))
     }
-    
 }

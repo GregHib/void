@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.flagMovementType
 import world.gregs.voidps.engine.entity.character.player.flagTemporaryMoveType
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
+
 @Script
 class Login {
 
@@ -21,7 +22,5 @@ class Login {
                 player.clearFace()
             }
         }
-
     }
-
 }

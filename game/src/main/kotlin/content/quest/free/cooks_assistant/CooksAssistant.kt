@@ -4,8 +4,9 @@ import content.entity.player.bank.bank
 import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
-import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inv.holdsItem
+
 @Script
 class CooksAssistant {
 
@@ -40,7 +41,7 @@ class CooksAssistant {
                     } else {
                         list.add("<navy>I need to find a <maroon>bucket of top-quality milk.")
                     }
-        
+
                     if (player["cooks_assistant_flour", 0] == 1) {
                         list.add("<str>I have given the cook a pot of extra fine flour.")
                     } else if (player.holdsItem("extra_fine_flour")) {
@@ -50,7 +51,7 @@ class CooksAssistant {
                     } else {
                         list.add("<navy>I need to find a <maroon>pot of extra fine flour.")
                     }
-        
+
                     if (player["cooks_assistant_egg", 0] == 1) {
                         list.add("<str>I have given the cook a super large egg.")
                     } else if (player.holdsItem("super_large_egg")) {
@@ -60,7 +61,7 @@ class CooksAssistant {
                     } else {
                         list.add("<navy>I need to find a <maroon>super large egg.")
                     }
-        
+
                     if (player["cooks_assistant_milk", 0] == 1 && player["cooks_assistant_flour", 0] == 1 && player["cooks_assistant_egg", 0] == 1) {
                         list.add("")
                         list.add("<str>According to the cook, I can find the ingredients in the")
@@ -83,7 +84,5 @@ class CooksAssistant {
             }
             player.questJournal("Cook's Aassistant", lines)
         }
-
     }
-
 }

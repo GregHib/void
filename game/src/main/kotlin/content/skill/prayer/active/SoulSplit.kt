@@ -8,10 +8,11 @@ import content.skill.summoning.isFamiliar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerStop
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class SoulSplit {
 
@@ -45,9 +46,7 @@ class SoulSplit {
             }
             target.shoot("soul_split", player, height = 10, endHeight = 10)
         }
-
     }
 
     fun usingSoulSplit(player: Player) = player.praying("soul_split") && player.levels.getOffset(Skill.Constitution) < 0
-    
 }

@@ -7,8 +7,9 @@ import content.entity.player.dialogue.type.player
 import content.quest.quest
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.suspend.SuspendableContext
+
 @Script
 class ChieftainGunthor {
 
@@ -26,7 +27,6 @@ class ChieftainGunthor {
                 else -> unstarted()
             }
         }
-
     }
 
     suspend fun SuspendableContext<Player>.meetChieftain() {
@@ -40,7 +40,7 @@ class ChieftainGunthor {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.makeItShort() {
         npc<Frustrated>("Make it short.")
         player<Talk>("Your daughter seeks permission to court an outerlander.")
@@ -54,7 +54,7 @@ class ChieftainGunthor {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.barbarians() {
         npc<Frustrated>("Do you have ANY idea who we are?")
         choice {
@@ -66,7 +66,7 @@ class ChieftainGunthor {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.waitAMoment() {
         npc<Angry>("We are storm that sweeps from the mountains! We are the scourge of these soft lands!")
         choice {
@@ -78,7 +78,7 @@ class ChieftainGunthor {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.campOfWar() {
         npc<Frustrated>("We are the freemen of the ice. You think this a settlement, but it is a camp of war!")
         npc<Frustrated>("haakon_the_champion", "Chieftain! May I interrupt?")
@@ -99,7 +99,7 @@ class ChieftainGunthor {
         npc<Frustrated>("Tell her to think of Gunnar and what he would think of this insult! Now go before I have Haakon dismember you.")
         seeHimTry()
     }
-    
+
     suspend fun SuspendableContext<Player>.seeHimTry() {
         choice {
             option<Talk>("I'm going!") {
@@ -112,7 +112,7 @@ class ChieftainGunthor {
             }
         }
     }
-    
+
     suspend fun SuspendableContext<Player>.unstarted() {
         npc<Frustrated>("Begone, outerlander! Your kind are not welcome here!")
     }

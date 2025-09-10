@@ -8,9 +8,10 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class GhostlyPiper {
 
@@ -24,7 +25,6 @@ class GhostlyPiper {
             }
             choice()
         }
-
     }
 
     suspend fun SuspendableContext<Player>.choice() {
@@ -35,7 +35,7 @@ class GhostlyPiper {
                 npc<Happy>("Why, the great battles with the forces of Zamorak, of course!")
                 player<Quiz>("I see. How long have you been standing here then?")
                 npc<Happy>("Well, it is all a bit fuzzy. I remember standing at the front of the massed forces of Saradomin, and playing the Call to Arms, but after that I can't quite recall.")
-    
+
                 player<Talk>("I think you've been here for quite some time. You do know you're a gh-")
                 player<Neutral>("No, never mind, you look happy enough here, and your music is quite rousing. I might rest here a while.")
                 choice()

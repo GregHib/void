@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.friend.PrivateChat
 import world.gregs.voidps.engine.entity.character.player.chat.global.PublicChatMessage
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.ChatPrivate
@@ -25,13 +26,13 @@ import world.gregs.voidps.network.login.protocol.encode.clanChat
 import world.gregs.voidps.network.login.protocol.encode.privateChatFrom
 import world.gregs.voidps.network.login.protocol.encode.privateChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicChat
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Chat {
 
     val players: Players by inject()
     val huffman: Huffman by inject()
-    
+
     init {
         onEvent<Player, PublicChatMessage> { player ->
             player.client?.publicChat(source.index, effects, source.rights.ordinal, compressed)
@@ -65,7 +66,7 @@ class Chat {
             } else {
                 text.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
             }
-        
+
             when (player.chatType) {
                 "public" -> {
                     val message = PublicChatMessage(player, effects, text, huffman)
@@ -94,7 +95,5 @@ class Chat {
         onEvent<Player, ClanChatMessage> { player ->
             player.client?.clanChat(source.name, player.clan!!.name, source.rights.ordinal, compressed)
         }
-
     }
-
 }

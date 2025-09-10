@@ -8,8 +8,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.type.Direction
+
 @Script
 class Stiles {
 
@@ -60,7 +61,6 @@ class Stiles {
             climbStile(Direction.EAST)
             player.exp(Skill.Agility, 0.5)
         }
-
     }
 
     suspend fun ObjectOption<Player>.climbStile(rotation: Direction) {

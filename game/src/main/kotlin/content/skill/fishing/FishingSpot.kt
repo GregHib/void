@@ -9,22 +9,23 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.npcSpawn
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class FishingSpot {
 
     val areas: AreaDefinitions by inject()
     val players: Players by inject()
     val collisions: Collisions by inject()
-    
+
     val water = CollisionStrategies.Blocked
     val land = CollisionStrategies.Normal
-    
+
     init {
         npcSpawn("fishing_spot_*") { npc ->
             npc.softTimers.start("fishing_spot_respawn")
@@ -39,7 +40,6 @@ class FishingSpot {
             nextInterval = random.nextInt(280, 530)
             move(npc)
         }
-
     }
 
     fun move(npc: NPC) {
@@ -67,7 +67,7 @@ class FishingSpot {
         }
         fishers.clear()
     }
-    
+
     fun check(tile: Tile, strategy: CollisionStrategy): Boolean {
         val tileFlag = collisions[tile.x, tile.y, tile.level]
         return strategy.canMove(

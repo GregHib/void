@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -29,7 +30,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class Anvil {
 
@@ -66,11 +67,11 @@ class Anvil {
         "crossbow_bolt",
         "crossbow_limbs",
     )
-    
+
     val itemDefinitions: ItemDefinitions by inject()
     val interfaceDefinitions: InterfaceDefinitions by inject()
     val logger = InlineLogger()
-    
+
     init {
         interfaceOption(id = "smithing") {
             val metal: String = player["smithing_metal"] ?: return@interfaceOption
@@ -108,7 +109,7 @@ class Anvil {
                 val required = componentDefinition?.getOrNull("bars") ?: 1
                 player.interfaces.sendColour("smithing", "${type}_bar", if (bars < required) Colours.ORANGE else Colours.GREEN)
             }
-        
+
             player.interfaces.sendVisibility("smithing", "wire_bronze", metal == "bronze")
             player.interfaces.sendVisibility("smithing", "spit_iron", metal == "iron")
             player.interfaces.sendVisibility("smithing", "studs_steel", metal == "steel")
@@ -127,7 +128,6 @@ class Anvil {
         interfaceClose("smithing") { player ->
             player.sendScript("clear_dialogues")
         }
-
     }
 
     suspend fun SuspendableContext<Player>.smith(player: Player, metal: String, type: String, amount: Int) {
@@ -154,7 +154,7 @@ class Anvil {
         }
         smith(smithing, metal, bars, quantity, type, item, actualAmount, true)
     }
-    
+
     suspend fun SuspendableContext<Player>.smith(
         smithing: Smithing,
         metal: String,
@@ -174,14 +174,14 @@ class Anvil {
             player.softTimers.stop("smithing")
             return
         }
-    
+
         if (!player.has(Skill.Smithing, smithing.level, message = false)) {
             val name = item.removeSuffix("_unf")
             statement("You need a Smithing level of ${smithing.level} to make${name.an()} ${name.toTitleCase()}.")
             player.softTimers.stop("smithing")
             return
         }
-    
+
         val bar = "${metal}_bar"
         player.anim("smith_item")
         player.weakQueue("smithing", if (first) 0 else 5) {

@@ -15,14 +15,15 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.event.Script
+
 @Script
 class SpiritTree {
 
     val enums: EnumDefinitions by inject()
-    
+
     init {
         objectOperate("Talk-to", "spirit_tree") {
             if (!player.questCompleted("the_grand_tree")) {
@@ -90,7 +91,6 @@ class SpiritTree {
             Teleport.teleport(player, Tile(map[index] as Int), "spirit_tree", sound = false)
             player.message("You feel at one with the spirit tree.")
         }
-
     }
 
     fun updatePosition(player: Player) {
@@ -105,5 +105,4 @@ class SpiritTree {
         }
         player["spirit_tree_tile"] = tile
     }
-    
 }
