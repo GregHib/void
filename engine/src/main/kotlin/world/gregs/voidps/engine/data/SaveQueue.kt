@@ -56,7 +56,7 @@ class SaveQueue(
     }
 
     fun save(player: Player) {
-        if (player.contains("bot")) {
+        if (player.contains("bot") || Settings["storage.disabled", false]) {
             return
         }
         pending[player.accountName] = player.copy()

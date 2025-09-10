@@ -43,8 +43,12 @@ tasks {
         dependsOn("scriptMetadata")
     }
 
-    withType<KotlinCompile> {
-        finalizedBy("scriptMetadata")
+    named("build") {
+        dependsOn("scriptMetadata")
+    }
+
+    named("classes") {
+        dependsOn("scriptMetadata")
     }
 
     register("scriptMetadata", ScriptMetadataTask::class.java) {
