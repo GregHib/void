@@ -1,12 +1,16 @@
 package content.area.kharidian_desert.al_kharid.duel_arena
 
-import content.entity.player.dialogue.Chuckle
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Uncertain
-import content.entity.player.dialogue.type.PlayerChoice
+import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.event.Script
+
+import content.entity.player.dialogue.Chuckle
+import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.type.PlayerChoice
 import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
@@ -36,4 +40,27 @@ internal suspend fun TargetInteraction<Player, NPC>.heal() {
 internal suspend fun PlayerChoice.often(): Unit = option<Uncertain>("Do you come here often?") {
     npc<Happy>("I work here, so yes!")
     npc<Chuckle>("You're silly!")
+}
+@Script
+class Nurses {
+
+    init {
+        npcOperate("Talk-to", "sabreen", "a_abla") {
+            player<Happy>("Hi!")
+            npc<Happy>("Hi. How can I help?")
+            choice {
+                option<Uncertain>("Can you heal me?") {
+                    heal()
+                }
+                fighters()
+                often()
+            }
+        }
+
+        npcOperate("Heal", "sabreen", "a_abla") {
+            heal()
+        }
+
+    }
+
 }

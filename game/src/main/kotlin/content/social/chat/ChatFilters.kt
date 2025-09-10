@@ -2,6 +2,10 @@ package content.social.chat
 
 import world.gregs.voidps.engine.client.privateStatus
 import world.gregs.voidps.engine.client.publicStatus
+import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.event.Script
+
 import world.gregs.voidps.engine.entity.character.player.Player
 
 var Player.publicStatus: String
@@ -24,3 +28,27 @@ var Player.tradeStatus: String
         set("trade_status", value)
         publicStatus(publicStatus, value)
     }
+@Script
+class ChatFilters {
+
+    init {
+        playerSpawn { player ->
+            player.privateStatus(player.privateStatus)
+            player.publicStatus(player.publicStatus, player.tradeStatus)
+            player.sendVariable("game_status")
+            player.sendVariable("assist_status")
+            player.sendVariable("clan_status")
+        }
+
+        interfaceOption("View", id = "filter_buttons") {
+            when (component) {
+                "game", "clan" -> player["${component}_status"] = option.lowercase()
+                "public" -> player.publicStatus = option.lowercase()
+                "private" -> player.privateStatus = option.lowercase()
+                "trade" -> player.tradeStatus = option.lowercase()
+            }
+        }
+
+    }
+
+}

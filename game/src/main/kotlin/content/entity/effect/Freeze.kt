@@ -1,5 +1,13 @@
 package content.entity.effect
 
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.timer.characterTimerStart
+import world.gregs.voidps.engine.timer.characterTimerStop
+import world.gregs.voidps.engine.timer.characterTimerTick
+import kotlin.math.sign
+import world.gregs.voidps.engine.event.Script
+
 import content.skill.prayer.praying
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
@@ -39,4 +47,32 @@ fun Character.freeze(ticks: Int, force: Boolean = false) {
 fun Character.freezeImmune(ticks: Int) {
     movementDelay = -ticks
     softTimers.start("movement_delay")
+}
+@Script
+class Freeze {
+
+    init {
+        characterTimerStart("movement_delay") { character ->
+            character.start("movement_delay", -1)
+            interval = 1
+        }
+
+        characterTimerTick("movement_delay") { character ->
+            val frozen = character.frozen
+            character.movementDelay -= character.movementDelay.sign
+            if (character.movementDelay == 0) {
+                if (frozen) {
+                    character.movementDelay = -5
+                } else {
+                    cancel()
+                }
+            }
+        }
+
+        characterTimerStop("movement_delay") { character ->
+            character.stop("movement_delay")
+        }
+
+    }
+
 }

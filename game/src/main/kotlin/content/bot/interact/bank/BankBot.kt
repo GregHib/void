@@ -1,5 +1,11 @@
 package content.bot.interact.bank
 
+import content.bot.bot
+import content.bot.interact.navigation.resume
+import content.bot.isBot
+import world.gregs.voidps.engine.client.ui.event.interfaceOpen
+import world.gregs.voidps.engine.event.Script
+
 import content.bot.*
 import content.bot.interact.navigation.await
 import content.bot.interact.navigation.cancel
@@ -125,4 +131,17 @@ suspend fun Bot.withdrawCoins() {
         withdrawAllButOne("coins")
         closeBank()
     }
+}
+@Script
+class BankBot {
+
+    init {
+        interfaceOpen("bank") { player ->
+            if (player.isBot) {
+                player.bot.resume("bank")
+            }
+        }
+
+    }
+
 }

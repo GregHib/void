@@ -1,0 +1,70 @@
+package content.skill.magic.weapon
+
+import content.entity.player.inv.inventoryItem
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.interact.itemOnItem
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.inv.charges
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.charge
+import world.gregs.voidps.engine.inv.transact.discharge
+import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.event.Script
+@Script
+class NatureStaff {
+
+    init {
+        playerSpawn { player ->
+            player.sendVariable("nature_staff_charges")
+        }
+
+        inventoryItem("Inspect", "nature_staff", "inventory") {
+            val charges = player.inventory.charges(player, slot)
+            player.message("The staff has ${if (charges == 0) "no" else charges} ${"charge".plural(charges)}.")
+        }
+
+        inventoryItem("Empty", "nature_staff", "inventory") {
+            val charges = player.inventory.charges(player, slot)
+            if (charges == 0) {
+                player.message("The staff has no charges for your to remove.")
+                return@inventoryItem
+            }
+            val success = player.inventory.transaction {
+                val added = addToLimit("nature_rune", charges)
+                if (added <= 0) {
+                    error = TransactionError.Deficient(charges)
+                } else {
+                    discharge(player, slot, amount = added)
+                }
+            }
+            if (success) {
+                player.message("You remove charges from the staff and retrieve some nature runes.")
+            } else {
+                player.inventoryFull()
+            }
+        }
+
+        itemOnItem("nature_rune", "nature_staff") { player ->
+            val maximum = toItem.def.getOrNull<Int>("charges_max") ?: return@itemOnItem
+            val spaces = maximum - player.inventory.charges(player, toSlot)
+            val count = player.inventory.count(fromItem.id).coerceAtMost(spaces)
+            if (count <= 0) {
+                player.message("The staff already has the maximum amount of charges.")
+                return@itemOnItem
+            }
+            val success = player.inventory.transaction {
+                remove(fromItem.id, count)
+                charge(player, toSlot, count)
+            }
+            if (success) {
+                player.message("You charge the staff with nature runes.")
+            }
+        }
+
+    }
+
+}
