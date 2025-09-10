@@ -1,4 +1,5 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.kotlin.dsl.test
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 buildscript {
@@ -101,15 +102,6 @@ tasks.register("printVersion") {
 tasks.register("printCacheVersion") {
     doLast {
         println(cacheVersion)
-    }
-}
-
-reporting {
-    reports {
-        @Suppress("UnstableApiUsage")
-        create("jacocoMergedReport", JacocoCoverageReport::class) {
-//            testType = TestSuiteType.UNIT_TEST
-        }
     }
 }
 

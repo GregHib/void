@@ -83,8 +83,8 @@ tasks {
         from(replacement)
     }
 
-    withType<Test> {
-        jvmArgs("-XX:-OmitStackTraceInFastThrow")
+    test {
+        jvmArgs("-XX:-OmitStackTraceInFastThrow", "--add-opens", "java.base/java.lang=ALL-UNNAMED", "--add-opens", "java.base/java.util=ALL-UNNAMED")
     }
 }
 

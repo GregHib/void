@@ -129,7 +129,6 @@ internal class NPCChatTest : DialogueTest() {
         mockkStatic("world.gregs.voidps.network.login.protocol.encode.InterfaceEncodersKt")
         val client: Client = mockk(relaxed = true)
         player.client = client
-        every { interfaceDefinitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 321))
         npc = NPC(id = "john")
         dialogue {
             npc<Talk>(text = "Text", largeHead = large)
@@ -184,7 +183,6 @@ internal class NPCChatTest : DialogueTest() {
         mockkStatic("world.gregs.voidps.engine.data.definition.InterfaceDefinitions")
         val client: Client = mockk(relaxed = true)
         player.client = client
-        every { interfaceDefinitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 321))
         npc = NPC("bill")
         dialogue {
             npc<Talk>(npcId = "jim", title = "Bill", text = "text")
