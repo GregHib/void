@@ -10,7 +10,6 @@ import kotlin.system.exitProcess
  */
 object ContentLoader {
     private val logger = InlineLogger()
-    private val arguments = emptyArray<String>()
 
     fun load() {
         val start = System.currentTimeMillis()
@@ -35,7 +34,7 @@ object ContentLoader {
                 scripts.close()
                 logger.error(e) { "Failed to load script: $script" }
                 logger.error { "If the file exists make sure the scripts package is correct." }
-                logger.error { "If the file has been deleted make sure 'gradle collectSourcePaths' is correctly running." }
+                logger.error { "If the file has been deleted make sure 'gradle scriptMetadata' is correctly running." }
                 exitProcess(1)
             }
         }
@@ -49,7 +48,7 @@ object ContentLoader {
     private fun loadScript(name: String) {
         val clazz = Class.forName(name)
         val constructor = clazz.declaredConstructors.first()
-        constructor.newInstance(arguments)
+        constructor.newInstance()
     }
 
     private fun loadScriptPaths(sourcePath: String): List<String> = File(sourcePath)
