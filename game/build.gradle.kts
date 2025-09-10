@@ -92,7 +92,6 @@ distributions {
     create("bundle") {
         distributionBaseName = "void"
         contents {
-            from(tasks["scriptMetadata"])
             from(tasks["shadowJar"])
 
             val emptyDirs = setOf("cache", "saves")
