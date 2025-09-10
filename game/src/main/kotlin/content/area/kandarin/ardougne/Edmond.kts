@@ -68,8 +68,7 @@ npcOperate("Talk-to", "edmond") {
                         player<Neutral>("I will. Goodbye.")
                     }
                 }
-                option<Neutral>("Well, good luck finding her.") {
-                }
+                option<Neutral>("Well, good luck finding her.")
             }
         }
         "started" -> started()
@@ -221,6 +220,8 @@ suspend fun SuspendableContext<Player>.cutscene() {
     straightrope.anim("straight_rope_lift")
     straightropeend.anim("straight_rope_lift")
     delay(6)
+    player.clearAnim()
+    edmond.clearAnim()
     player.face(edmond)
     npc<Neutral>("Once you're in the city look for a man called Jethick. He's an old friend of the family. Hopefully he can help you.", clickToContinue = false)
     delay(4)
