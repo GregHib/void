@@ -7,7 +7,7 @@
 [![Release](https://github.com/GregHib/void/actions/workflows/create_release.yml/badge.svg)](https://github.com/GregHib/void/actions/workflows/create_release.yml)
 [![Docker](https://img.shields.io/badge/Docker-latest-blue.svg?logo=docker)](https://hub.docker.com/r/greghib/void)
 [![Codecov](https://codecov.io/gh/GregHib/void/graph/badge.svg?token=7W6PTSHUTT)](https://codecov.io/gh/GregHib/void)
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.2.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 <h1>RuneScape Revived</h1>
