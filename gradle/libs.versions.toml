@@ -1,0 +1,73 @@
+[versions]
+kotlin = "2.2.20"
+kotlinPlugin = "2.2.10"
+junit = "5.13.4"
+ktor = "3.2.3"
+displeeCache = "7.1.7"
+fastUtil = "8.5.16"
+kotlinIo = "0.1.16"
+kotlinCoroutines = "1.10.2"
+koin = "4.1.1"
+logback = "1.5.18"
+inlineLogging = "1.0.6"
+mockk = "1.14.5"
+jbcrypt = "0.4"
+kaseChange = "1.4.1"
+pathfinder = "4.2.1"
+exposed = "0.61.0"
+postgresql = "42.7.7"
+hikari = "7.0.2"
+testcontainers = "1.20.4"
+postgres = "16.2.0"
+embeddedPostgres = "2.1.0"
+lzma = "1.3"
+shadow = "9.1.0"
+spotless = "7.0.4"
+
+[libraries]
+kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-embeddable = { module = "org.jetbrains.kotlin:kotlin-compiler-embeddable", version.ref = "kotlin" }
+kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinCoroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinCoroutines" }
+kotlinx-io = { module = "org.jetbrains.kotlinx:kotlinx-io-jvm", version.ref = "kotlinIo" }
+junit = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+junit-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
+ktor = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
+ktor-network = { module = "io.ktor:ktor-network-jvm", version.ref = "ktor" }
+displee-cache = { module = "com.displee:rs-cache-library", version.ref = "displeeCache" }
+fastutil = { module = "it.unimi.dsi:fastutil", version.ref = "fastUtil" }
+lzma = { module = "com.github.jponge:lzma-java", version.ref = "lzma" }
+koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
+koin-log = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+inline-logging = { module = "com.michael-bull.kotlin-inline-logger:kotlin-inline-logger-jvm", version.ref = "inlineLogging" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+jbcrypt = { module = "org.mindrot:jbcrypt", version.ref = "jbcrypt" }
+kasechange = { module = "net.pearx.kasechange:kasechange", version.ref = "kaseChange" }
+rsmod-pathfinder = { module = "org.rsmod:rsmod-pathfinder", version.ref = "pathfinder" }
+exposed = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
+exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+hikari = { module = "com.zaxxer:HikariCP", version.ref = "hikari" }
+testcontainers = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
+testcontainers-junit = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
+testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+embedded-postgres-binaries = { module = "io.zonky.test.postgres:embedded-postgres-binaries-bom", version.ref = "postgres" }
+embedded-postgres = { module = "io.zonky.test:embedded-postgres", version.ref = "embeddedPostgres" }
+kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinPlugin" }
+shadow = { module = "com.gradleup.shadow:shadow-gradle-plugin", version.ref = "shadow" }
+spotless = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
+
+[bundles]
+testing = ["junit-params", "mockk", "kotlinx-coroutines-test", "koin-test"]
+kotlinx = ["kotlinx-io", "kotlinx-coroutines"]
+logging = ["koin-log", "logback", "inline-logging"]
+postgres = ["testcontainers", "testcontainers-junit", "testcontainers-postgresql", "embedded-postgres"]
+database = ["exposed", "exposed-jdbc", "postgresql", "hikari"]
+
+[plugins]
+shadow = { id = "com.gradleup.shadow" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+jacoco-aggregation = { id = "jacoco-report-aggregation" }
