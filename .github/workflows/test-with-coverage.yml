@@ -46,7 +46,7 @@ jobs:
 
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
-      - run: ./gradlew -q printCacheVersion | tail -n1 | xargs
+
       - name: Get cache version
         run: echo "cache_version=$(./gradlew -q printCacheVersion | tail -n1 | xargs)" >> $GITHUB_ENV
 

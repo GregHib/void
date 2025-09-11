@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.event
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
-import kotlin.test.Test
+import org.junit.jupiter.api.Test
 
 class EventsTest {
 
