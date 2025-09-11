@@ -5,14 +5,17 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Uncertain
 import content.entity.player.dialogue.type.PlayerChoice
+import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Script
 
 internal suspend fun PlayerChoice.fighters(): Unit = option<Uncertain>("Do you see a lot of injured fighters?") {
     npc<Neutral>("Yes I do. Thankfully we can cope with almost anything. Jaraah really is a wonderful surgeon, his methods are a little unorthodox but he gets the job done.")
@@ -36,4 +39,26 @@ internal suspend fun TargetInteraction<Player, NPC>.heal() {
 internal suspend fun PlayerChoice.often(): Unit = option<Uncertain>("Do you come here often?") {
     npc<Happy>("I work here, so yes!")
     npc<Chuckle>("You're silly!")
+}
+
+@Script
+class Nurses {
+
+    init {
+        npcOperate("Talk-to", "sabreen", "a_abla") {
+            player<Happy>("Hi!")
+            npc<Happy>("Hi. How can I help?")
+            choice {
+                option<Uncertain>("Can you heal me?") {
+                    heal()
+                }
+                fighters()
+                often()
+            }
+        }
+
+        npcOperate("Heal", "sabreen", "a_abla") {
+            heal()
+        }
+    }
 }

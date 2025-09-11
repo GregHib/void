@@ -38,40 +38,27 @@ application {
 
 tasks {
 
+    processResources {
+        dependsOn("scriptMetadata")
+    }
+
     named("build") {
-        dependsOn("collectSourcePaths")
+        dependsOn("scriptMetadata")
     }
 
     named("classes") {
-        dependsOn("collectSourcePaths")
+        dependsOn("scriptMetadata")
     }
 
-    register("collectSourcePaths") {
-        doLast {
-            val start = System.nanoTime()
-            val main = sourceSets.getByName("main")
-            val outputFile = main.resources.srcDirs.first { it.name == "resources" }.resolve("scripts.txt")
-            var count = 0
-            outputFile.writer().buffered().use { output ->
-                for (file in main.allSource.srcDirs.first { it.name == "kotlin" }.walkTopDown()) {
-                    if (file.extension == "kts") {
-                        output.write(
-                            file.absolutePath
-                                .substringAfter("kotlin${File.separatorChar}")
-                                .replace(File.separatorChar, '.')
-                                .removeSuffix(".kts"),
-                        )
-                        output.write('\n'.code)
-                        count++
-                    }
-                }
-            }
-            println("Collected $count source file paths to ${outputFile.path} in ${System.nanoTime() - start} ms")
-        }
+    register("scriptMetadata", ScriptMetadataTask::class.java) {
+        val main = sourceSets.getByName("main")
+        val resources = main.resources.srcDirs.first { it.name == "resources" }
+        inputDirectory.set(layout.projectDirectory.dir("src/main/kotlin/content"))
+        scriptsFile = resources.resolve("scripts.txt")
     }
 
     named<ShadowJar>("shadowJar") {
-        dependsOn("collectSourcePaths")
+        dependsOn("scriptMetadata")
         from(layout.buildDirectory.file("scripts.txt"))
         minimize {
             exclude("world/gregs/voidps/engine/log/**")
@@ -105,7 +92,6 @@ distributions {
     create("bundle") {
         distributionBaseName = "void"
         contents {
-            from(tasks["collectSourcePaths"])
             from(tasks["shadowJar"])
 
             val emptyDirs = setOf("cache", "saves")

@@ -1,13 +1,23 @@
 package content.bot.interact.navigation
 
 import content.bot.Bot
+import content.bot.bot
+import content.bot.isBot
+import content.entity.obj.door.DoorOpened
+import content.entity.obj.objTeleport
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.move.Movement
+import world.gregs.voidps.engine.entity.character.mode.move.move
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.timer.TICKS
 import kotlin.collections.set
 import kotlin.coroutines.resume
@@ -55,4 +65,28 @@ fun <T : Any> Bot.resume(type: Any, value: T) {
 fun Bot.cancel(cause: Throwable? = null) {
     val cont: CancellableContinuation<*>? = player.remove("cont")
     cont?.cancel(cause)
+}
+
+@Script
+class Navigation {
+
+    init {
+        move({ (player.mode is Movement && player.steps.size <= 1) || player.mode == EmptyMode }) { player ->
+            if (player.isBot) {
+                player.bot.resume("move")
+            }
+        }
+
+        onEvent<Player, DoorOpened> { player ->
+            if (player.isBot) {
+                player.bot.resume("move")
+            }
+        }
+
+        objTeleport {
+            if (player.isBot) {
+                player.bot.resume("move")
+            }
+        }
+    }
 }
