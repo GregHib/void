@@ -4,15 +4,15 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 buildscript {
     dependencies {
-        classpath(kotlin("gradle-plugin", version = "2.2.20"))
-        classpath("com.gradleup.shadow:shadow-gradle-plugin:9.1.0")
+        classpath(libs.kotlin)
+        classpath(libs.shadow)
     }
 }
 
 plugins {
-    kotlin("jvm") version "2.2.20"
-    id("jacoco-report-aggregation")
-    id("com.diffplug.spotless") version "7.0.4"
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.jacoco.aggregation)
+    alias(libs.plugins.spotless)
 }
 
 val cacheVersion = "1.3.1"
@@ -36,8 +36,8 @@ allprojects {
 
     dependencies {
         implementation(kotlin("stdlib-jdk8"))
-        testImplementation("org.junit.jupiter:junit-jupiter-api:${findProperty("junitVersion")}")
-        testImplementation("org.junit.jupiter:junit-jupiter-engine:${findProperty("junitVersion")}")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:5.13.4")
+        testImplementation("org.junit.jupiter:junit-jupiter-engine:5.13.4")
     }
 
     kotlin {

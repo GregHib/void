@@ -1,6 +1,6 @@
 dependencies {
-    implementation("net.pearx.kasechange:kasechange:${findProperty("kaseChangeVersion")}")
-    implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
+    implementation(libs.kasechange)
+    implementation(libs.fastutil)
 
-    testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
+    testImplementation(libs.mockk)
 }

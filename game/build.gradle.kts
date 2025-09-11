@@ -2,7 +2,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     application
-    id("com.gradleup.shadow")
+    alias(libs.plugins.shadow)
 }
 
 dependencies {
@@ -11,24 +11,18 @@ dependencies {
     implementation(project(":network"))
     implementation(project(":types"))
     implementation(project(":config"))
-    implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
-    implementation("net.pearx.kasechange:kasechange:${findProperty("kaseChangeVersion")}")
+
+    implementation(libs.fastutil)
+    implementation(libs.kasechange)
+    implementation(libs.rsmod.pathfinder)
 
     implementation(kotlin("script-runtime"))
-    implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")
+    implementation(libs.bundles.kotlinx)
 
-    implementation("org.rsmod:rsmod-pathfinder:${findProperty("pathfinderVersion")}")
-    implementation("io.insert-koin:koin-core:${findProperty("koinVersion")}")
+    implementation(libs.koin)
+    implementation(libs.bundles.logging)
 
-    implementation("io.insert-koin:koin-logger-slf4j:${findProperty("koinLogVersion")}")
-    implementation("ch.qos.logback:logback-classic:${findProperty("logbackVersion")}")
-    implementation("com.michael-bull.kotlin-inline-logger:kotlin-inline-logger-jvm:${findProperty("inlineLoggingVersion")}")
-
-    testImplementation("org.junit.jupiter:junit-jupiter-params:${findProperty("junitVersion")}")
-    testImplementation("io.insert-koin:koin-test:${findProperty("koinVersion")}")
-    testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${findProperty("kotlinCoroutinesVersion")}")
+    testImplementation(libs.bundles.testing)
 }
 
 application {

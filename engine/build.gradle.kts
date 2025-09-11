@@ -6,33 +6,21 @@ dependencies {
     implementation(project(":config"))
 
     implementation(kotlin("reflect"))
-    implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")
 
-    implementation("org.jetbrains.exposed:exposed-core:${findProperty("exposedVersion")}")
-    implementation("org.jetbrains.exposed:exposed-jdbc:${findProperty("exposedVersion")}")
-    implementation("org.postgresql:postgresql:${findProperty("postgresqlVersion")}")
-    implementation("com.zaxxer:HikariCP:${findProperty("hikariVersion")}")
+    implementation(libs.bundles.database)
 
-    implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
-    implementation("net.pearx.kasechange:kasechange:${findProperty("kaseChangeVersion")}")
+    implementation(libs.fastutil)
+    implementation(libs.kasechange)
 
-    implementation("io.insert-koin:koin-core:${findProperty("koinVersion")}")
-    implementation("org.rsmod:rsmod-pathfinder:${findProperty("pathfinderVersion")}")
+    implementation(libs.koin)
+    implementation(libs.rsmod.pathfinder)
 
-    implementation("io.insert-koin:koin-logger-slf4j:${findProperty("koinLogVersion")}")
-    implementation("ch.qos.logback:logback-classic:${findProperty("logbackVersion")}")
-    implementation("com.michael-bull.kotlin-inline-logger:kotlin-inline-logger-jvm:${findProperty("inlineLoggingVersion")}")
+    implementation(libs.bundles.logging)
+    implementation(libs.bundles.kotlinx)
 
-    testImplementation("io.insert-koin:koin-test:${findProperty("koinVersion")}")
-    testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:${findProperty("junitVersion")}")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${findProperty("kotlinCoroutinesVersion")}")
-
-    testImplementation("org.testcontainers:junit-jupiter:${findProperty("testcontainersVersion")}")
-    testImplementation("org.testcontainers:postgresql:${findProperty("testcontainersVersion")}")
-    testImplementation(enforcedPlatform("io.zonky.test.postgres:embedded-postgres-binaries-bom:${findProperty("postgresVersion")}"))
-    testImplementation("io.zonky.test:embedded-postgres:${findProperty("embeddedPostgresVersion")}")
+    testImplementation(libs.bundles.testing)
+    testImplementation(libs.bundles.postgres)
+    testImplementation(enforcedPlatform(libs.embedded.postgres.binaries))
 }
 
 tasks.withType<Test> {
