@@ -6,8 +6,6 @@ plugins {
     alias(libs.plugins.shadow)
 }
 
-val cacheVersion = "1.3.1"
-
 dependencies {
     implementation(project(":engine"))
     implementation(project(":cache"))
@@ -34,7 +32,6 @@ application {
 }
 
 tasks {
-
     processResources {
         dependsOn("scriptMetadata")
     }
@@ -95,7 +92,7 @@ tasks {
 
     register("printCacheVersion") {
         doLast {
-            println(cacheVersion)
+            println(libs.versions.cacheVersion.get())
         }
     }
 
