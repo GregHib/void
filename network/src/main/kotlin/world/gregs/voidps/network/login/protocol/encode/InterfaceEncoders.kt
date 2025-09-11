@@ -196,7 +196,7 @@ fun Client.interfaceText(
     text: String,
 ) = send(Protocol.INTERFACE_TEXT, 4 + string(text), SHORT) {
     writeIntLittle(interfaceComponent)
-    writeString(text)
+    writeText(text)
 }
 
 fun Client.updateInterface(

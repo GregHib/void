@@ -86,7 +86,7 @@ suspend fun ByteWriteChannel.writeSmart(value: Int) {
     }
 }
 
-suspend fun ByteWriteChannel.writeString(value: String?) {
+suspend fun ByteWriteChannel.writeText(value: String?) {
     if (value != null) {
         writeFully(value.toByteArray())
     }
@@ -204,9 +204,9 @@ fun Source.readSmart(): Int {
 suspend fun ByteWriteChannel.writeName(displayName: String, responseName: String = displayName) {
     val different = displayName != responseName
     writeByte(different)
-    writeString(displayName)
+    writeText(displayName)
     if (different) {
-        writeString(responseName)
+        writeText(responseName)
     }
 }
 

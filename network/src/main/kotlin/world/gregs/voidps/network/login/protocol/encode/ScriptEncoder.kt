@@ -6,7 +6,7 @@ import world.gregs.voidps.network.client.Client.Companion.SHORT
 import world.gregs.voidps.network.client.Client.Companion.string
 import world.gregs.voidps.network.login.Protocol.SCRIPT
 import world.gregs.voidps.network.login.protocol.writeByte
-import world.gregs.voidps.network.login.protocol.writeString
+import world.gregs.voidps.network.login.protocol.writeText
 
 /**
  * Sends a client script to run
@@ -21,11 +21,11 @@ fun Client.sendScript(
     for (param in params) {
         types.append(if (param == null || param is String) "s" else "i")
     }
-    writeString(types.toString())
+    writeText(types.toString())
     for (param in params.reversed()) {
         when (param) {
             null -> writeByte(0)
-            is String -> writeString(param)
+            is String -> writeText(param)
             is Int -> writeInt(param)
         }
     }
@@ -36,14 +36,11 @@ private fun getLength(params: List<Any?>): Int {
     var count = 4
     count += params.size + 1
     count += params.sumOf {
-        if (it == null) {
-            1
-        } else if (it is String) {
-            string(it)
-        } else if (it is Int) {
-            4
-        } else {
-            0
+        when (it) {
+            null -> 1
+            is String -> string(it)
+            is Int -> 4
+            else -> 0
         }
     }
     return count

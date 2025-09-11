@@ -98,8 +98,10 @@ class BotSpawns {
             val count = content.toIntOrNull() ?: MAX_PLAYERS
             World.queue("bot_$counter") {
                 val manager = get<AccountManager>()
-                for (bot in bots.take(count)) {
-                    manager.logout(bot, false)
+                runBlocking {
+                    for (bot in bots.take(count)) {
+                        manager.logout(bot, false)
+                    }
                 }
             }
         }

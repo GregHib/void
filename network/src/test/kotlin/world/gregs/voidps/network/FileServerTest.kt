@@ -3,6 +3,7 @@ package world.gregs.voidps.network
 import io.ktor.utils.io.*
 import io.mockk.mockk
 import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.channels.ClosedReceiveChannelException
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
@@ -10,9 +11,11 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.network.file.FileProvider
+import world.gregs.voidps.network.login.protocol.writeByte
 import world.gregs.voidps.network.login.protocol.writeMedium
 import java.util.*
 
@@ -186,7 +189,9 @@ class FileServerTest {
         val writeChannel = ByteChannel(autoFlush = true)
 
         launch {
-            server.connect(readChannel, writeChannel, "localhost")
+            assertThrows<ClosedReadChannelException> {
+                server.connect(readChannel, writeChannel, "localhost")
+            }
         }
 
         readChannel.writeInt(123)
@@ -196,10 +201,8 @@ class FileServerTest {
         }
         readChannel.writeByte(Request.ACKNOWLEDGE)
         readChannel.writeMedium(3)
-
-        delay(10) // required for coroutine context switching
         readChannel.writeByte(Request.LOGIN)
-        delay(10)
+        delay(1)
         assertTrue(readChannel.isClosedForWrite)
         assertTrue(writeChannel.isClosedForRead)
     }

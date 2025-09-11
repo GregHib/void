@@ -64,7 +64,7 @@ class JagExtensionsTest {
     fun `Read and write string`() = runTest {
         val channel = ByteChannel(autoFlush = true)
         val text = "Hello"
-        channel.writeString(text)
+        channel.writeText(text)
         channel.close()
         val packet = ByteReadPacket(channel.readRemaining().readBytes())
         assertEquals(text, packet.readString())

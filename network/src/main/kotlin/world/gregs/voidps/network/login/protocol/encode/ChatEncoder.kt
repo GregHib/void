@@ -34,12 +34,12 @@ fun Client.message(text: String, type: Int, tile: Int = 0, name: String? = null,
         writeInt(tile)
         writeByte(mask)
         if (name != null) {
-            writeString(name)
+            writeText(name)
             if (mask and 0x2 == 0x2) {
-                writeString(formatted)
+                writeText(formatted)
             }
         }
-        writeString(message)
+        writeText(message)
     }
 }
 
@@ -105,14 +105,14 @@ fun Client.privateQuickChatFrom(displayName: String, rights: Int, file: Int, dat
 
 fun Client.privateChatTo(displayName: String, data: ByteArray) {
     send(PRIVATE_CHAT_TO, string(displayName) + data.size, BYTE) {
-        writeString(displayName)
+        writeText(displayName)
         writeBytes(data)
     }
 }
 
 fun Client.privateQuickChatTo(displayName: String, file: Int, data: ByteArray) {
     send(PRIVATE_QUICK_CHAT_TO, string(displayName) + 2 + data.size, BYTE) {
-        writeString(displayName)
+        writeText(displayName)
         writeShort(file)
         writeBytes(data)
     }

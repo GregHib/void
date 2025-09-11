@@ -1,8 +1,10 @@
 package world.gregs.voidps.engine.data
 
+import io.mockk.coVerify
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.verify
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -123,7 +125,7 @@ class AccountManagerTest : KoinMock() {
     }
 
     @Test
-    fun `Despawn player`() {
+    fun `Despawn player`() = runTest {
         mockkStatic("world.gregs.voidps.network.login.protocol.encode.LogoutEncoderKt")
         val client: Client = mockk(relaxed = true)
         val player = Player(0)
@@ -134,7 +136,7 @@ class AccountManagerTest : KoinMock() {
         GameLoop.tick = 2
         World.run()
 
-        verify {
+        coVerify {
             client.logout()
             client.disconnect()
         }

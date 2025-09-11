@@ -20,18 +20,20 @@ open class Client(
     private val logger = InlineLogger()
     private val handler = CoroutineExceptionHandler { _, throwable ->
         logger.warn { "Client error: ${throwable.message}" }
-        disconnect()
+        runBlocking {
+            disconnect()
+        }
     }
     var disconnected: Boolean = false
     private var disconnect: (() -> Unit)? = null
-    private var disconnecting: (() -> Unit)? = null
+    private var disconnecting: (suspend () -> Unit)? = null
     private var state: ClientState = ClientState.Connected
 
     fun onDisconnected(block: () -> Unit) {
         disconnect = block
     }
 
-    fun onDisconnecting(block: () -> Unit) {
+    fun onDisconnecting(block: suspend () -> Unit) {
         disconnecting = block
     }
 
@@ -43,19 +45,17 @@ open class Client(
         disconnect()
     }
 
-    fun disconnect() {
+    suspend fun disconnect() {
         if (disconnected) {
             return
         }
         disconnected = true
-        runBlocking {
-            write.flushAndClose()
-        }
+        write.flushAndClose()
         state = ClientState.Disconnected
         disconnect?.invoke()
     }
 
-    fun exit() {
+    suspend fun exit() {
         if (state == ClientState.Connected) {
             state = ClientState.Disconnecting
             disconnecting?.invoke()
@@ -77,7 +77,6 @@ open class Client(
         if (disconnected) {
             return
         }
-
         runBlocking(handler) {
             write.header(opcode, type, size, cipherOut)
             block.invoke(write)

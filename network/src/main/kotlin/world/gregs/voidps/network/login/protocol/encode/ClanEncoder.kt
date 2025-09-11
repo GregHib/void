@@ -44,10 +44,10 @@ fun Client.appendClanChat(member: Member) {
 fun Client.updateClanChat(displayName: String, clan: String, kickRank: Int, members: List<Member>, responseName: String = displayName) {
     val different = displayName != responseName
     send(UPDATE_CLAN_CHAT, string(displayName) + (if (different) string(responseName) else 0) + 11 + members.sumOf { count(it) }, SHORT) {
-        writeString(displayName)
+        writeText(displayName)
         writeByte(different)
         if (different) {
-            writeString(responseName)
+            writeText(responseName)
         }
         writeLong(clan)
         writeByte(kickRank)
@@ -69,13 +69,13 @@ private fun count(member: Member): Int {
 }
 
 private suspend fun ByteWriteChannel.writeMember(member: Member) {
-    writeString(member.displayName)
+    writeText(member.displayName)
     val different = member.displayName != member.responseName
     writeByte(different)
     if (different) {
-        writeString(member.responseName)
+        writeText(member.responseName)
     }
     writeShort(member.world)
     writeByte(member.rank)
-    writeString(member.worldName)
+    writeText(member.worldName)
 }

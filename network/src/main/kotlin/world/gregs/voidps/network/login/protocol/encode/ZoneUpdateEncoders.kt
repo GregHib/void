@@ -21,11 +21,11 @@ fun encodeBatch(messages: Collection<ZoneUpdate>): ByteArray {
             writeChannel.writeByte(update.packetIndex.toByte())
             writeChannel.encode(update)
         }
-        if (writeChannel.availableForRead > 0) {
-            writeChannel.readByteArray(writeChannel.availableForRead - 1)
-        } else {
-            ByteArray(0)
+        val buffer = ByteArray(writeChannel.availableForRead)
+        if (buffer.isNotEmpty()) {
+            writeChannel.readAvailable(buffer)
         }
+        buffer
     }
 }
 

@@ -8,7 +8,7 @@ import world.gregs.voidps.network.login.Protocol.CLIENT_VARC_STR
 import world.gregs.voidps.network.login.Protocol.CLIENT_VARC_STR_LARGE
 import world.gregs.voidps.network.login.protocol.writeShortAdd
 import world.gregs.voidps.network.login.protocol.writeShortAddLittle
-import world.gregs.voidps.network.login.protocol.writeString
+import world.gregs.voidps.network.login.protocol.writeText
 
 /**
  * Client variable; also known as "GlobalString"
@@ -19,13 +19,13 @@ fun Client.sendVarcStr(id: Int, value: String) {
     val size = 2 + string(value)
     if (size in 0..Byte.MAX_VALUE) {
         send(CLIENT_VARC_STR, size, BYTE) {
-            writeString(value)
+            writeText(value)
             writeShortAdd(id)
         }
     } else {
         send(CLIENT_VARC_STR_LARGE, size, SHORT) {
             writeShortAddLittle(id)
-            writeString(value)
+            writeText(value)
         }
     }
 }
