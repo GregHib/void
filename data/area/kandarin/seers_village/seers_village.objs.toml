@@ -5,7 +5,3 @@ examine = "The bank teller will serve you from here."
 [spinning_wheel_seers_village]
 id = 25824
 examine = "Used for spinning thread."
-
-[mcgrubor_wood_railing]
-id = 51
-examine = "Hmmm... I wonder if it's loose enough to get through."
