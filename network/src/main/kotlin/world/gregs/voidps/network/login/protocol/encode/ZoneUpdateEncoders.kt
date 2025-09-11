@@ -1,14 +1,7 @@
 package world.gregs.voidps.network.login.protocol.encode
 
 import io.ktor.utils.io.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlinx.io.Buffer
-import kotlinx.io.Sink
-import kotlinx.io.Source
-import kotlinx.io.readByteArray
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.Protocol
 import world.gregs.voidps.network.login.protocol.*

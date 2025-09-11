@@ -3,7 +3,6 @@ package world.gregs.voidps.network.login.protocol
 import io.ktor.utils.io.*
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.buffer.write.BufferWriter

@@ -1,9 +1,12 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
+    id("shared")
     application
     alias(libs.plugins.shadow)
 }
+
+val cacheVersion = "1.3.1"
 
 dependencies {
     implementation(project(":engine"))
@@ -67,11 +70,18 @@ tasks {
         // https://github.com/GradleUp/shadow/issues/638
         exclude("logback.xml")
         val resourcesDir = layout.projectDirectory.dir("src/main/resources")
-        val logback = resourcesDir.file("logback.xml").asFile
-            .readText()
-            .replace("%colour", "%highlight")
-            .replace("%message(%msg){}", "%msg")
-        val replacement = layout.buildDirectory.file("logback-test.xml").get().asFile
+        val logback =
+            resourcesDir
+                .file("logback.xml")
+                .asFile
+                .readText()
+                .replace("%colour", "%highlight")
+                .replace("%message(%msg){}", "%msg")
+        val replacement =
+            layout.buildDirectory
+                .file("logback-test.xml")
+                .get()
+                .asFile
         replacement.parentFile.mkdirs()
         replacement.writeText(logback)
         from(replacement)
@@ -89,7 +99,12 @@ distributions {
             from(tasks["shadowJar"])
 
             val emptyDirs = setOf("cache", "saves")
-            val configs = parent!!.rootDir.resolve("data").list()!!.toMutableList()
+            val configs =
+                parent!!
+                    .rootDir
+                    .resolve("data")
+                    .list()!!
+                    .toMutableList()
             configs.removeAll(emptyDirs)
             for (config in configs) {
                 from("../data/$config/") {
@@ -97,13 +112,21 @@ distributions {
                 }
             }
             for (dir in emptyDirs) {
-                val file = layout.buildDirectory.get().dir("tmp/empty/$dir/").asFile
+                val file =
+                    layout.buildDirectory
+                        .get()
+                        .dir("tmp/empty/$dir/")
+                        .asFile
                 file.mkdirs()
             }
             from(layout.buildDirectory.dir("tmp/empty/")) {
                 into("data")
             }
-            val tempDir = layout.buildDirectory.dir("tmp/scripts").get().asFile
+            val tempDir =
+                layout.buildDirectory
+                    .dir("tmp/scripts")
+                    .get()
+                    .asFile
             tempDir.mkdirs()
             val resourcesDir = layout.projectDirectory.dir("src/main/resources")
             from(resourcesDir.file("game.properties"))
@@ -114,7 +137,50 @@ distributions {
             val shell = resourcesDir.file("run-server.sh").asFile
             val tempShell = File(tempDir, "run-server.sh")
             tempShell.writeText(shell.readText().replace("-dev.jar", "-$version.jar"))
+            println("Bundling $tempShell")
             from(tempShell)
         }
+    }
+}
+
+
+tasks.register("printVersion") {
+    doLast {
+        println(project.version)
+    }
+}
+
+tasks.register("printCacheVersion") {
+    doLast {
+        println(cacheVersion)
+    }
+}
+
+dependencies {
+    allprojects.filter { it.name != "tools" }.forEach {
+        jacocoAggregation(it)
+    }
+}
+
+spotless {
+    kotlin {
+        target("**/*.kt", "**/*.kts")
+        targetExclude("temp/", "**/build/**", "**/out/**")
+        ktlint()
+            .editorConfigOverride(
+                mapOf(
+                    "ktlint_code_style" to "intellij_idea",
+                    "ktlint_standard_no-wildcard-imports" to "disabled",
+                    "ktlint_standard_package-name" to "disabled",
+                ),
+            )
+    }
+    kotlinGradle {
+        target("*.gradle.kts")
+        ktlint()
+    }
+    flexmark {
+        target("**/*.md")
+        flexmark()
     }
 }

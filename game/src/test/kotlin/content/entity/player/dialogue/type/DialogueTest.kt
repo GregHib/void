@@ -58,9 +58,11 @@ abstract class DialogueTest : KoinMock() {
         interfaceDefinitions = spyk(InterfaceDefinitions(arrayOf(InterfaceDefinition(components = mutableMapOf(0 to InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 321)))))))
         interfaceDefinitions.ids = mapOf("" to 0, "dialogue_level_up" to 0, "dialogue_npc_chat1" to 0, "dialogue_chat1" to 0)
         interfaceDefinitions.componentIds = mapOf("" to 0, "dialogue_level_up" to 0, "dialogue_npc_chat1:head_large" to 0, "dialogue_npc_chat1:head" to 0, "dialogue_chat1" to 0)
-        loadModules(module {
-            single { interfaceDefinitions }
-        })
+        loadModules(
+            module {
+                single { interfaceDefinitions }
+            },
+        )
         fontDefinitions = declareMock()
         clientScriptDefinitions = declareMock()
         continuation = object : Continuation<Any> {

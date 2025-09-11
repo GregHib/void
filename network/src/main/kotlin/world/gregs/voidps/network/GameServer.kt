@@ -6,12 +6,10 @@ import io.ktor.network.sockets.*
 import io.ktor.util.network.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.channels.ClosedReceiveChannelException
 import kotlinx.io.EOFException
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.network.client.ConnectionTracker
 import world.gregs.voidps.network.login.protocol.finish
-import java.net.SocketException
 import java.util.*
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread

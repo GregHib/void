@@ -1,7 +1,11 @@
+plugins {
+    id("shared")
+}
+
 dependencies {
     implementation(project(":buffer"))
     implementation(project(":cache"))
-    
+
     implementation(libs.ktor)
     implementation(libs.ktor.network)
     implementation(libs.jbcrypt)

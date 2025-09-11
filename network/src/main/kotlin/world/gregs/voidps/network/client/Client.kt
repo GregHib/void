@@ -3,8 +3,6 @@ package world.gregs.voidps.network.client
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.network.login.protocol.writeByte
 import world.gregs.voidps.network.login.protocol.writeShort

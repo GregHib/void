@@ -1,3 +1,10 @@
+dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
+    repositories {
+        mavenCentral()
+    }
+}
+
 rootProject.name = "void"
 
 include("game")

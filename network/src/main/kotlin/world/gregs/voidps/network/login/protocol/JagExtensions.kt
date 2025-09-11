@@ -42,7 +42,7 @@ suspend fun ByteWriteChannel.writeShortAdd(value: Int) {
     writeByteAdd(value)
 }
 
-suspend fun ByteWriteChannel.writeShortLittle(value: Int) = writeShort(value.toShort().reverseByteOrder())//, ByteOrder.LITTLE_ENDIAN)
+suspend fun ByteWriteChannel.writeShortLittle(value: Int) = writeShort(value.toShort().reverseByteOrder()) // , ByteOrder.LITTLE_ENDIAN)
 
 suspend fun ByteWriteChannel.writeShortAddLittle(value: Int) {
     writeByteAdd(value)
@@ -63,7 +63,7 @@ suspend fun ByteWriteChannel.writeIntInverse(value: Int) {
     writeByteInverse(value)
 }
 
-suspend fun ByteWriteChannel.writeIntLittle(value: Int) = writeInt(value.reverseByteOrder())//, ByteOrder.LITTLE_ENDIAN)
+suspend fun ByteWriteChannel.writeIntLittle(value: Int) = writeInt(value.reverseByteOrder()) // , ByteOrder.LITTLE_ENDIAN)
 
 suspend fun ByteWriteChannel.writeIntInverseMiddle(value: Int) {
     writeByte(value shr 16)

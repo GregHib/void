@@ -11,7 +11,6 @@ import world.gregs.voidps.network.login.protocol.readMedium
 import world.gregs.voidps.network.login.protocol.readUByte
 import world.gregs.voidps.network.login.protocol.readUMedium
 import world.gregs.voidps.network.login.protocol.writeByte
-import world.gregs.voidps.network.login.protocol.writeByteAdd
 import java.util.*
 
 /**

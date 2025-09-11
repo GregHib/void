@@ -1,3 +1,7 @@
+plugins {
+    id("shared")
+}
+
 dependencies {
     implementation(project(":buffer"))
     implementation(project(":types"))

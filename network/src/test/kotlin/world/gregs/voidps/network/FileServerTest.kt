@@ -3,7 +3,6 @@ package world.gregs.voidps.network
 import io.ktor.utils.io.*
 import io.mockk.mockk
 import kotlinx.coroutines.cancelAndJoin
-import kotlinx.coroutines.channels.ClosedReceiveChannelException
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
