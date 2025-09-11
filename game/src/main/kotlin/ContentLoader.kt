@@ -1,7 +1,6 @@
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.data.Settings
-import java.io.File
+import world.gregs.voidps.engine.get
 import java.nio.file.NoSuchFileException
 import kotlin.system.exitProcess
 
@@ -16,27 +15,22 @@ object ContentLoader {
         var scriptCount = 0
         val scripts = ContentLoader::class.java.getResourceAsStream("scripts.txt")?.bufferedReader()
         if (scripts == null) {
-            logger.debug { "No auto-generated script file found, falling back to manual search." }
-            for (script in loadScriptPaths(Settings["storage.scripts.path"])) {
+            error("No auto-generated script file found, make sure 'gradle scriptMetadata' is correctly running")
+        }
+        var script = ""
+        try {
+            while (scripts.ready()) {
+                script = scripts.readLine()
                 loadScript(script)
                 scriptCount++
             }
-        } else {
-            var script = ""
-            try {
-                while (scripts.ready()) {
-                    script = scripts.readLine()
-                    loadScript(script)
-                    scriptCount++
-                }
-                scripts.close()
-            } catch (e: Exception) {
-                scripts.close()
-                logger.error(e) { "Failed to load script: $script" }
-                logger.error { "If the file exists make sure the scripts package is correct." }
-                logger.error { "If the file has been deleted make sure 'gradle scriptMetadata' is correctly running." }
-                exitProcess(1)
-            }
+            scripts.close()
+        } catch (e: Exception) {
+            scripts.close()
+            logger.error(e) { "Failed to load script: $script" }
+            logger.error { "If the file exists make sure the scripts package is correct." }
+            logger.error { "If the file has been deleted make sure 'gradle scriptMetadata' is correctly running." }
+            exitProcess(1)
         }
 
         if (scriptCount == 0) {
@@ -48,17 +42,8 @@ object ContentLoader {
     private fun loadScript(name: String) {
         val clazz = Class.forName(name)
         val constructor = clazz.declaredConstructors.first()
-        constructor.newInstance()
+        val params = constructor.parameters.map { get(it.type.kotlin) }.toTypedArray()
+        constructor.newInstance(*params)
     }
 
-    private fun loadScriptPaths(sourcePath: String): List<String> = File(sourcePath)
-        .walkTopDown()
-        .filter { it.isFile && it.extension == "kts" }
-        .map {
-            it.path
-                .substringAfter("kotlin${File.separator}")
-                .replace(File.separator, ".")
-                .removeSuffix(".kts")
-        }
-        .toList()
 }
