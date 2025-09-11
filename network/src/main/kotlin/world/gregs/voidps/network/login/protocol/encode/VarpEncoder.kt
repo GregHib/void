@@ -4,7 +4,9 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.Protocol.CLIENT_VARP
 import world.gregs.voidps.network.login.Protocol.CLIENT_VARP_LARGE
+import world.gregs.voidps.network.login.protocol.writeByte
 import world.gregs.voidps.network.login.protocol.writeIntInverseMiddle
+import world.gregs.voidps.network.login.protocol.writeShort
 import world.gregs.voidps.network.login.protocol.writeShortAdd
 
 /**

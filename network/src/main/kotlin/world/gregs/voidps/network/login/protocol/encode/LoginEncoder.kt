@@ -5,6 +5,7 @@ import world.gregs.voidps.network.Response
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.writeByte
 import world.gregs.voidps.network.login.protocol.writeMedium
+import world.gregs.voidps.network.login.protocol.writeShort
 import world.gregs.voidps.network.login.protocol.writeString
 
 fun Client.login(username: String, index: Int, rights: Int, member: Boolean = true, membersWorld: Boolean = true) = send(-1) {

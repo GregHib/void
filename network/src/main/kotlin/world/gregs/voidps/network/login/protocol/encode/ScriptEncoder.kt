@@ -1,9 +1,11 @@
 package world.gregs.voidps.network.login.protocol.encode
 
+import io.ktor.utils.io.writeInt
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.SHORT
 import world.gregs.voidps.network.client.Client.Companion.string
 import world.gregs.voidps.network.login.Protocol.SCRIPT
+import world.gregs.voidps.network.login.protocol.writeByte
 import world.gregs.voidps.network.login.protocol.writeString
 
 /**

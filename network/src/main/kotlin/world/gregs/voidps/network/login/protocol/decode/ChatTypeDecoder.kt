@@ -1,6 +1,8 @@
 package world.gregs.voidps.network.login.protocol.decode
 
 import io.ktor.utils.io.core.*
+import kotlinx.io.Source
+import kotlinx.io.readUByte
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.ChatTypeChange
 import world.gregs.voidps.network.login.protocol.Decoder
@@ -12,5 +14,5 @@ import world.gregs.voidps.network.login.protocol.Decoder
 class ChatTypeDecoder : Decoder(1) {
 
     @OptIn(ExperimentalUnsignedTypes::class)
-    override suspend fun decode(packet: ByteReadPacket): Instruction = ChatTypeChange(packet.readUByte().toInt())
+    override suspend fun decode(packet: Source): Instruction = ChatTypeChange(packet.readUByte().toInt())
 }

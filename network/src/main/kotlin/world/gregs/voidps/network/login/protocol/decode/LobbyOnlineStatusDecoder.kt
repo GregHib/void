@@ -1,6 +1,6 @@
 package world.gregs.voidps.network.login.protocol.decode
 
-import io.ktor.utils.io.core.*
+import kotlinx.io.Source
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.login.protocol.Decoder
 
@@ -9,7 +9,7 @@ import world.gregs.voidps.network.login.protocol.Decoder
  */
 class LobbyOnlineStatusDecoder : Decoder(3) {
 
-    override suspend fun decode(packet: ByteReadPacket): Instruction? {
+    override suspend fun decode(packet: Source): Instruction? {
         val first = packet.readByte()
         val status = packet.readByte()
         val second = packet.readByte()

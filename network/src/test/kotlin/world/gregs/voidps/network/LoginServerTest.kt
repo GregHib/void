@@ -9,6 +9,8 @@ import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
+import kotlinx.io.Source
+import kotlinx.io.writeUShort
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
@@ -57,7 +59,7 @@ internal class LoginServerTest {
             }
         }
         protocol[0] = object : Decoder(4) {
-            override suspend fun decode(packet: ByteReadPacket): Instruction {
+            override suspend fun decode(packet: Source): Instruction {
                 val value = packet.readInt()
                 return TestInstruction(value)
             }
@@ -77,7 +79,7 @@ internal class LoginServerTest {
                 val readChannel = ByteChannel(autoFlush = true)
                 val writeChannel = ByteChannel(autoFlush = true)
                 protocol[0] = object : Decoder(size) {
-                    override suspend fun decode(packet: ByteReadPacket): Instruction {
+                    override suspend fun decode(packet: Source): Instruction {
                         val value = packet.readInt()
                         return TestInstruction(value)
                     }
@@ -355,7 +357,7 @@ internal class LoginServerTest {
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)
         protocol[0] = object : Decoder(4) {
-            override suspend fun decode(packet: ByteReadPacket): Instruction {
+            override suspend fun decode(packet: Source): Instruction {
                 val value = packet.readInt()
                 return TestInstruction(value)
             }

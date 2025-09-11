@@ -3,6 +3,8 @@ package world.gregs.voidps.network.login.protocol.encode
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.Protocol
+import world.gregs.voidps.network.login.protocol.writeByte
+import world.gregs.voidps.network.login.protocol.writeShort
 
 /**
  * @param offset The tile offset from the zone update sent (encoded with 3 rather than the usual 4)

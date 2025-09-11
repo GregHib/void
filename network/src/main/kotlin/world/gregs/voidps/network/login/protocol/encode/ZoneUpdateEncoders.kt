@@ -1,21 +1,32 @@
 package world.gregs.voidps.network.login.protocol.encode
 
 import io.ktor.utils.io.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.io.Buffer
+import kotlinx.io.Sink
+import kotlinx.io.Source
+import kotlinx.io.readByteArray
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.Protocol
 import world.gregs.voidps.network.login.protocol.*
 import world.gregs.voidps.network.login.protocol.encode.zone.*
 
 fun encodeBatch(messages: Collection<ZoneUpdate>): ByteArray {
-    val writeChannel = ByteArrayChannel()
-    runBlocking {
+    val writeChannel = ByteChannel(true)
+    return runBlocking {
         messages.forEach { update ->
             writeChannel.writeByte(update.packetIndex.toByte())
             writeChannel.encode(update)
         }
+        if (writeChannel.availableForRead > 0) {
+            writeChannel.readByteArray(writeChannel.availableForRead - 1)
+        } else {
+            ByteArray(0)
+        }
     }
-    return writeChannel.toByteArray()
 }
 
 fun Client.sendBatch(messages: ByteArray, zoneOffsetX: Int, zoneOffsetY: Int, zoneLevel: Int) {

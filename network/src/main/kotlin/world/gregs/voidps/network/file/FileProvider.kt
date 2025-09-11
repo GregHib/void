@@ -6,6 +6,8 @@ import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.network.file.type.CacheFileProvider
 import world.gregs.voidps.network.file.type.MemoryFileProvider
+import world.gregs.voidps.network.login.protocol.writeByte
+import world.gregs.voidps.network.login.protocol.writeShort
 import java.util.*
 import kotlin.math.min
 

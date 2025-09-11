@@ -3,7 +3,11 @@ package world.gregs.voidps.network.client
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import world.gregs.voidps.network.login.protocol.writeByte
+import world.gregs.voidps.network.login.protocol.writeShort
 import world.gregs.voidps.network.login.protocol.writeSmart
 
 open class Client(
@@ -44,8 +48,9 @@ open class Client(
             return
         }
         disconnected = true
-        write.flush()
-        write.close()
+        runBlocking {
+            write.flushAndClose()
+        }
         state = ClientState.Disconnected
         disconnect?.invoke()
     }
@@ -61,7 +66,9 @@ open class Client(
         if (disconnected) {
             return
         }
-        write.flush()
+        runBlocking {
+            write.flush()
+        }
     }
 
     open fun send(opcode: Int, block: suspend ByteWriteChannel.() -> Unit) = send(opcode, -1, FIXED, block)

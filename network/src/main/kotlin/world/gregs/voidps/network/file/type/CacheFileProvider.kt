@@ -8,6 +8,7 @@ import world.gregs.voidps.network.file.FileProvider.Companion.OFFSET
 import world.gregs.voidps.network.file.FileProvider.Companion.SEPARATOR
 import world.gregs.voidps.network.file.FileProvider.Companion.SPLIT
 import world.gregs.voidps.network.file.FileProvider.Companion.getInt
+import world.gregs.voidps.network.login.protocol.writeByte
 import kotlin.math.min
 
 /**
@@ -27,12 +28,12 @@ class CacheFileProvider(private val cache: Cache) : FileProvider {
         val compression = data[0].toInt()
         val size = getInt(data[1], data[2], data[3], data[4]) + if (compression != 0) 8 else 4
         var length = min(size, LARGEST_BLOCK)
-        write.writeFully(data, OFFSET, length)
+        write.writeFully(data, OFFSET, OFFSET + length)
         var written = length
         while (written < size) {
             write.writeByte(SEPARATOR)
             length = if (size - written < SPLIT) size - written else SPLIT - 1
-            write.writeFully(data, written + OFFSET, length)
+            write.writeFully(data, written + OFFSET, written + OFFSET + length)
             written += length
         }
     }

@@ -34,7 +34,9 @@ class GameServer(
         this.dispatcher = dispatcher
         try {
             val selector = ActorSelectorManager(dispatcher)
-            this.server = aSocket(selector).tcp().bind(port = port)
+            runBlocking {
+                this@GameServer.server = aSocket(selector).tcp().bind(port = port)
+            }
         } catch (exception: Exception) {
             stop()
             throw exception
