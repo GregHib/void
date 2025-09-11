@@ -92,7 +92,7 @@ tasks {
 
     register("printCacheVersion") {
         doLast {
-            println(libs.versions.cacheVersion.get())
+            println(libs.versions.cacheVersion.get().trim('"'))
         }
     }
 
