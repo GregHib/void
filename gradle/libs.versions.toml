@@ -1,7 +1,6 @@
 [versions]
 cacheVersion = "1.3.1"
 kotlin = "2.2.20"
-kotlinPlugin = "2.2.10"
 junit = "5.13.4"
 ktor = "3.2.3"
 displeeCache = "7.1.7"
@@ -57,7 +56,7 @@ testcontainers-junit = { module = "org.testcontainers:junit-jupiter", version.re
 testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
 embedded-postgres-binaries = { module = "io.zonky.test.postgres:embedded-postgres-binaries-bom", version.ref = "postgres" }
 embedded-postgres = { module = "io.zonky.test:embedded-postgres", version.ref = "embeddedPostgres" }
-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinPlugin" }
+kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 shadow = { module = "com.gradleup.shadow:shadow-gradle-plugin", version.ref = "shadow" }
 spotless = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 

@@ -17,7 +17,6 @@ java.sourceCompatibility = JavaVersion.VERSION_21
 java.targetCompatibility = java.sourceCompatibility
 
 kotlin {
-    jvmToolchain(21)
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_21)
 //         https://youtrack.jetbrains.com/issue/KT-4779/Generate-default-methods-for-implementations-in-interfaces
