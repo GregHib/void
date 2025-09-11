@@ -30,7 +30,6 @@ import world.gregs.voidps.network.login.protocol.writeShort
 import java.math.BigInteger
 import java.util.*
 
-@ExperimentalUnsignedTypes
 internal class LoginServerTest {
 
     private lateinit var server: LoginServer

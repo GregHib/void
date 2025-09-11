@@ -87,6 +87,18 @@ tasks {
         from(replacement)
     }
 
+    register("printVersion") {
+        doLast {
+            println(project.version)
+        }
+    }
+
+    register("printCacheVersion") {
+        doLast {
+            println(cacheVersion)
+        }
+    }
+
     test {
         jvmArgs("-XX:-OmitStackTraceInFastThrow")
     }
@@ -140,19 +152,6 @@ distributions {
             println("Bundling $tempShell")
             from(tempShell)
         }
-    }
-}
-
-
-tasks.register("printVersion") {
-    doLast {
-        println(project.version)
-    }
-}
-
-tasks.register("printCacheVersion") {
-    doLast {
-        println(cacheVersion)
     }
 }
 

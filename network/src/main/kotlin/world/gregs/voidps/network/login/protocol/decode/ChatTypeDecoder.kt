@@ -12,7 +12,5 @@ import world.gregs.voidps.network.login.protocol.Decoder
  * The type of message sent (0 = public, 1 = clan chat)
  */
 class ChatTypeDecoder : Decoder(1) {
-
-    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(packet: Source): Instruction = ChatTypeChange(packet.readUByte().toInt())
 }

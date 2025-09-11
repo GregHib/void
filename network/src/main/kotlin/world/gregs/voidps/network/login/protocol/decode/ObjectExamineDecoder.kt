@@ -9,9 +9,9 @@ import world.gregs.voidps.network.login.protocol.Decoder
 
 class ObjectExamineDecoder : Decoder(2) {
 
-    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(packet: Source): Instruction {
         val objectId = packet.readUShort().toInt()
         return ExamineObject(objectId)
     }
+
 }

@@ -12,7 +12,6 @@ import world.gregs.voidps.network.login.protocol.Decoder
  */
 class KeysPressedDecoder : Decoder(BYTE) {
 
-    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(packet: Source): Instruction? {
         val keys = ArrayList<Pair<Int, Int>>()
         while (packet.remaining > 0) {
@@ -20,4 +19,5 @@ class KeysPressedDecoder : Decoder(BYTE) {
         }
         return null
     }
+
 }

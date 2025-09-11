@@ -150,7 +150,6 @@ internal class GameServerTest {
         assertTrue(writeChannel.isClosedForRead)
     }
 
-    @ExperimentalUnsignedTypes
     @Test
     fun `Connect with properties server`() = runTest {
         val readChannel = ByteChannel(autoFlush = true)

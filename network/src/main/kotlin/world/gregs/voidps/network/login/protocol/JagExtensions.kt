@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalUnsignedTypes::class)
-
 package world.gregs.voidps.network.login.protocol
 
 import io.ktor.utils.io.*

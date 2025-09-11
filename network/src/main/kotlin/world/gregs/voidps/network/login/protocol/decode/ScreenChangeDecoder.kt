@@ -10,11 +10,11 @@ import world.gregs.voidps.network.login.protocol.Decoder
 
 class ScreenChangeDecoder : Decoder(6) {
 
-    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(packet: Source): Instruction = ChangeDisplayMode(
         displayMode = packet.readUByte().toInt(),
         width = packet.readUShort().toInt(),
         height = packet.readUShort().toInt(),
         antialiasLevel = packet.readUByte().toInt(),
     )
+
 }

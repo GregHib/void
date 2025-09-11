@@ -96,7 +96,6 @@ class GameServer(
 
     companion object {
 
-        @ExperimentalUnsignedTypes
         fun load(cache: Cache, properties: Properties): GameServer {
             val limit = properties.getProperty("network.maxClientPerIP").toInt()
             val fileServer = FileServer.load(cache, properties)

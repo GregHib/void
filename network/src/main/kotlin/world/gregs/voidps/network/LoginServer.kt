@@ -23,7 +23,6 @@ import java.util.concurrent.ConcurrentHashMap
 /**
  * Connects a client to their account in the game world
  */
-@ExperimentalUnsignedTypes
 class LoginServer(
     private val protocol: Array<Decoder?>,
     private val revision: Int,

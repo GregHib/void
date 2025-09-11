@@ -9,7 +9,6 @@ import world.gregs.voidps.network.login.protocol.readString
 
 class ConsoleCommandDecoder : Decoder(BYTE) {
 
-    @OptIn(ExperimentalUnsignedTypes::class)
     override suspend fun decode(packet: Source): Instruction {
         packet.readUByte()
         packet.readUByte()
