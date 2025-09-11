@@ -45,5 +45,4 @@ object ContentLoader {
         val params = constructor.parameters.map { get(it.type.kotlin) }.toTypedArray()
         constructor.newInstance(*params)
     }
-
 }
