@@ -10,11 +10,9 @@ import world.gregs.voidps.network.login.protocol.readString
 class ConsoleCommandDecoder : Decoder(BYTE) {
 
     override suspend fun decode(packet: Source): Instruction {
-        packet.readUByte()
-        val tab = packet.readUByte().toInt() == 1
+        val automatic = packet.readUByte().toInt() == 1
+        val retainText = packet.readUByte().toInt() == 1
         val command = packet.readString()
-        val parts = command.split(" ")
-        val prefix = parts[0]
-        return ExecuteCommand(prefix, command.removePrefix(prefix).trim(), tab)
+        return ExecuteCommand(command, automatic, retainText)
     }
 }

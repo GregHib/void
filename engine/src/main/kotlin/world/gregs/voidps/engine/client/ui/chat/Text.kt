@@ -134,3 +134,28 @@ fun String.an(): String {
     // Instances where y followed by specific letters is preceded by 'an'
     return if (lowercaseWord.matches(yRegex)) " an" else " a"
 }
+
+/**
+ * Split a string ignoring occurrences of [delimiter] inside double quotes
+ */
+fun String.splitSafe(delimiter: Char): List<String> {
+    var inQuotes = false
+    var i = 0
+    val parts = mutableListOf<String>()
+    val sb = StringBuilder()
+    while (i < length) {
+        val c = this[i++]
+        when {
+            c == '"' -> inQuotes = !inQuotes
+            c == delimiter && !inQuotes -> {
+                parts.add(sb.toString())
+                sb.clear()
+            }
+            else -> sb.append(c)
+        }
+    }
+    if (sb.isNotEmpty()) {
+        parts.add(sb.toString())
+    }
+    return parts
+}

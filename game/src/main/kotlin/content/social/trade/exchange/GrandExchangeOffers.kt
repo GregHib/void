@@ -8,14 +8,21 @@ import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.dialogue.continueItemDialogue
+import world.gregs.voidps.engine.client.ui.event.Arg
+import world.gregs.voidps.engine.client.ui.event.Commands
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
@@ -29,6 +36,7 @@ class GrandExchangeOffers {
 
     val exchange: GrandExchange by inject()
     val itemDefinitions: ItemDefinitions by inject()
+    val accountDefinitions: AccountDefinitions by inject()
     val logger = InlineLogger()
 
     init {
@@ -51,6 +59,10 @@ class GrandExchangeOffers {
             GrandExchange.clearSelection(it)
         }
 
+        /*
+            Offers
+         */
+
         interfaceOption("Make Offer", "view_offer_*", "grand_exchange") {
             val slot = component.removePrefix("view_offer_").toInt()
             if (slot > 1 && !World.members) {
@@ -60,6 +72,10 @@ class GrandExchangeOffers {
             player["grand_exchange_box"] = slot
             selectItem(player, offer.item)
         }
+
+        /*
+            Buy Offer
+         */
 
         interfaceOption("Make Buy Offer", "buy_offer_*", "grand_exchange") {
             val slot = component.removePrefix("buy_offer_").toInt()
@@ -86,6 +102,10 @@ class GrandExchangeOffers {
             player["grand_exchange_price"] = player["grand_exchange_market_price", 0]
             ItemInfo.showInfo(player, Item(item))
         }
+
+        /*
+            Sell Offer
+         */
 
         interfaceOption("Make Sell Offer", "sell_offer_*", "grand_exchange") {
             val slot = component.removePrefix("sell_offer_").toInt()
@@ -121,24 +141,56 @@ class GrandExchangeOffers {
             player["grand_exchange_quantity"] = item.amount
             player["grand_exchange_price"] = player["grand_exchange_market_price", 0]
         }
+
+        val grandExchangeItems = itemDefinitions.definitions.filter { def -> def.exchangeable && !def.noted && !def.lent && def.dummyItem == 0 }.map { it.stringId }.toSet()
+
+        Commands.admin(
+            "offers",
+            Arg<String>("name", desc = "the item id to search for", autoComplete = { grandExchangeItems }),
+            description = "search all grand exchange open offers"
+        ) {
+            if (player.hasClock("search_delay")) {
+                return@admin
+            }
+            player.start("search_delay", 1)
+            player.message("===== Offers =====", ChatType.Console)
+            val id = args[0].lowercase()
+            val definition = itemDefinitions.getOrNull(id)
+            if (definition == null) {
+                player.message("No results found for '$id'", ChatType.Console)
+                return@admin
+            }
+            val buying = exchange.offers.buying(id)
+            val foundBuy = buying.values.sumOf { it.size }
+            player.message("[$id] market price: ${exchange.history.marketPrice(id).toDigitGroupString()}", ChatType.Console)
+            if (buying.isNotEmpty()) {
+                player.message("$foundBuy buy offers found.", ChatType.Console)
+                val price = buying.higherKey(0)
+                val highest = buying[price]!!
+                for (offer in highest) {
+                    val user = accountDefinitions.getByAccount(offer.account)?.displayName
+                    player.message("[${id}] - price: $price amount: ${offer.remaining} player: $user", ChatType.Console)
+                }
+            }
+            val selling = exchange.offers.selling(id)
+            val foundSell = buying.values.sumOf { it.size }
+            if (selling.isNotEmpty()) {
+                player.message("$foundSell sell offers found.", ChatType.Console)
+                val price = buying.lowerKey(Int.MAX_VALUE)
+                val highest = buying[price]!!
+                for (offer in highest) {
+                    val user = accountDefinitions.getByAccount(offer.account)?.displayName
+                    player.message("[${id}] - price: $price amount: ${offer.remaining} player: $user", ChatType.Console)
+                }
+            }
+            player.message("${foundBuy + foundSell} results found for '$id'", ChatType.Console)
+        }
     }
-
-    /*
-        Offers
-     */
-
-    /*
-        Buy Offer
-     */
 
     fun openItemSearch(player: Player) {
         player.open("grand_exchange_item_dialog")
         player.sendScript("item_dialogue_reset", "Grand Exchange Item Search")
     }
-
-    /*
-        Sell Offer
-     */
 
     fun selectItem(player: Player, item: String) {
         val definition = itemDefinitions.get(item)

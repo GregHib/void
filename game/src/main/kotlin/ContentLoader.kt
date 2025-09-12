@@ -29,7 +29,7 @@ object ContentLoader {
             scripts.close()
             logger.error(e) { "Failed to load script: $script" }
             logger.error { "If the file exists make sure the scripts package is correct." }
-            logger.error { "If the file has been deleted make sure 'gradle scriptMetadata' is correctly running." }
+            logger.error { "If the file has been deleted try running 'gradle cleanScriptMetadata scriptMetadata'." }
             exitProcess(1)
         }
 

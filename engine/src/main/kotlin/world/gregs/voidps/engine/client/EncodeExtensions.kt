@@ -33,7 +33,7 @@ fun Character.message(
     }
     getOrPut("messages") { FixedSizeQueue<String>(100) }.add(text)
     val font = get<FontDefinitions>().get("p12_full")
-    for (line in font.splitLines(Colours.replaceCustomTags(text), 484)) {
+    for (line in font.splitLines(Colours.replaceCustomTags(text), if (type == ChatType.Console) 600 else 484)) {
         client?.message(line, type.id, tile, name, name?.lowercase(Locale.getDefault())?.replace(' ', '_'))
     }
 }

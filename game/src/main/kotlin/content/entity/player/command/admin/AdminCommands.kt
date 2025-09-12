@@ -2,6 +2,7 @@
 
 package content.entity.player.command.admin
 
+import Main
 import content.bot.interact.navigation.graph.NavigationGraph
 import content.entity.npc.shop.OpenShop
 import content.entity.obj.ObjectTeleports
@@ -25,19 +26,18 @@ import content.skill.prayer.PrayerConfigs.PRAYERS
 import content.skill.prayer.isCurses
 import content.social.trade.exchange.GrandExchange
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import kotlinx.coroutines.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import net.pearx.kasechange.toSentenceCase
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.*
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.engine.client.ui.event.adminCommand
-import world.gregs.voidps.engine.client.ui.event.modCommand
+import world.gregs.voidps.engine.client.ui.event.*
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.variable.start
@@ -79,8 +79,8 @@ import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
 import world.gregs.voidps.network.login.protocol.encode.systemUpdate
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
-import kotlin.collections.set
 import kotlin.system.measureTimeMillis
 
 @Script
@@ -109,39 +109,50 @@ class AdminCommands {
 
         Command.adminCommands.add("")
 
-        adminCommand("tele (x) (y) [level]", "teleport to given coordinates or area name", listOf("tp")) {
-            if (content.contains(",")) {
-                val params = content.split(",")
-                val level = params[0].toInt()
-                val x = params[1].toInt() shl 6 or params[3].toInt()
-                val y = params[2].toInt() shl 6 or params[4].toInt()
-                player.tele(x, y, level)
+        val coords = Commands.signature(Arg<Int>("x"), Arg<Int>("y"), Arg<Int>("level", optional = true), description = "Teleport to given coordinates") {
+            val x = args[1].trim(',').toInt()
+            val y = args[2].trim(',').toInt()
+            val level = args.getOrNull(3)?.trim(',')?.toInt() ?: player.tile.level
+            player.tele(x, y, level)
+            player["world_map_centre"] = player.tile.id
+            player["world_map_marker_player"] = player.tile.id
+        }
+
+        val places = mapOf(
+            "draynor" to Tile(3086, 3248, 0),
+            "varrock" to Tile(3212, 3429, 0),
+            "lumbridge" to Tile(3222, 3219, 0),
+            "burthorpe" to Tile(2899, 3546, 0),
+            "falador" to Tile(2966, 3379, 0),
+            "barbarian_village" to Tile(3084, 3421, 0),
+            "al_kharid" to Tile(3293, 3183, 0),
+            "canifis" to Tile(3474, 3475, 0),
+            "grand_exchange" to Tile(3164, 3484, 0),
+        )
+
+        val place = Commands.signature(Arg<String>("name", autoComplete = { places.keys + areas.names }, desc = "Area Name"), description = "Teleport to given area") {
+            val name = content.lowercase().replace(" ", "_")
+            val place = places[name]
+            if (place != null) {
+                player.tele(place)
             } else {
-                val parts = content.split(" ")
-                val int = parts[0].toIntOrNull()
-                when {
-                    int == null -> when (content.lowercase()) {
-                        "draynor" -> player.tele(3086, 3248, 0)
-                        "varrock" -> player.tele(3212, 3429, 0)
-                        "lumbridge", "lumb", "lummy" -> player.tele(3222, 3219, 0)
-                        "burthorpe" -> player.tele(2899, 3546, 0)
-                        "falador" -> player.tele(2966, 3379, 0)
-                        "barbarian_village", "barb_village" -> player.tele(3084, 3421, 0)
-                        "al_kharid", "alkharid" -> player.tele(3293, 3183, 0)
-                        "canifis" -> player.tele(3474, 3475, 0)
-                        "ge", "grand_exchange" -> player.tele(3164, 3484, 0)
-                        else -> player.tele(areas[content])
-                    }
-                    parts.size == 1 -> player.tele(Region(int).tile.add(32, 32))
-                    else -> player.tele(int, parts[1].toInt(), if (parts.size > 2) parts[2].toInt() else 0)
-                }
+                player.tele(areas[name])
             }
             player["world_map_centre"] = player.tile.id
             player["world_map_marker_player"] = player.tile.id
         }
 
-        adminCommand("teleto (player-name)", "teleport to another player") {
-            val target = players.firstOrNull { it.name.equals(content, true) }
+        val region = Commands.signature(Arg<Int>("region", desc = "Region ID"), description = "Teleport to given region id") {
+            player.tele(Region(args[0].toInt()).tile.add(32, 32))
+            player["world_map_centre"] = player.tile.id
+            player["world_map_marker_player"] = player.tile.id
+        }
+
+        Commands.admin("tele", coords, place, region)
+        Commands.alias("tele", "tp")
+
+        Commands.admin("teleto", Arg<String>("player-name", desc = "player name (use quotes if contains spaces)"), description = "Teleport to another player") {
+            val target = players.firstOrNull { it.name.equals(args[0], true) }
             if (target != null) {
                 player.tele(target.tile)
             }
@@ -235,27 +246,6 @@ class AdminCommands {
             } else {
                 target.inventory.add(id, if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt())
             }
-        }
-
-        modCommand("find (content-name)", "search for a piece of content by name", aliases = listOf("search")) {
-            val search = content.lowercase()
-            var found = 0
-            player.message("===== Items =====", ChatType.Console)
-            found += search(player, get<ItemDefinitions>(), search) { it.name }
-            player.message("===== Objects =====", ChatType.Console)
-            found += search(player, get<ObjectDefinitions>(), search) { it.name }
-            player.message("===== NPCs =====", ChatType.Console)
-            found += search(player, get<NPCDefinitions>(), search) { it.name }
-            player.message("===== Commands =====", ChatType.Console)
-            for (command in Command.adminCommands) {
-                if (command.startsWith(Colours.BLUE.toTag()) && command.contains(content, ignoreCase = true)) {
-                    val colourless = command.removePrefix(Colours.BLUE.toTag()).removeSuffix("</col>")
-                    val cmd = colourless.substringBefore("(").substringBefore("[").trim()
-                    player.message("[$cmd] - usage: $colourless", ChatType.Console)
-                    found++
-                }
-            }
-            player.message("$found results found for '$search'", ChatType.Console)
         }
 
         modCommand("clear", "delete all items in the players inventory") {
@@ -667,19 +657,6 @@ class AdminCommands {
             }
             shutdown((ticks - 2).coerceAtLeast(0))
         }
-    }
-
-    fun <T> search(player: Player, definitions: DefinitionsDecoder<T>, search: String, getName: (T) -> String): Int where T : Definition, T : Extra {
-        var found = 0
-        for (id in definitions.definitions.indices) {
-            val def = definitions.getOrNull(id) ?: continue
-            val name = getName(def)
-            if (name.lowercase().contains(search) || def.stringId.lowercase().contains(search)) {
-                player.message("[${name.lowercase().replace(utf8Regex, "")}] - id: $id${if (def.stringId.isNotBlank()) " (${def.stringId})" else ""}", ChatType.Console)
-                found++
-            }
-        }
-        return found
     }
 
     class InventoryDelegate(
