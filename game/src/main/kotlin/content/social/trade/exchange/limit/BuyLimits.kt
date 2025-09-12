@@ -43,4 +43,8 @@ class BuyLimits(private val itemDefinitions: ItemDefinitions) {
             }
         }
     }
+
+    fun clear() {
+        limits.clear()
+    }
 }
