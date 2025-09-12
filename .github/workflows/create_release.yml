@@ -40,7 +40,7 @@ jobs:
       - name: Get cache version
         run: echo "cache_version=$(./gradlew -q printCacheVersion | tail -n1 | xargs)" >> $GITHUB_ENV
       - name: Get build version
-        run: echo "build_version=$(./gradlew -q printVersion)" >> $GITHUB_ENV
+        run: echo "build_version=$(./gradlew -q printVersion | tail -n1 | xargs)" >> $GITHUB_ENV
       - name: Cache game files
         if: steps.check_secret.outputs.exists == 'true'
         id: cache-files
