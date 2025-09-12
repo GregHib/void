@@ -4,7 +4,7 @@ import WorldTest
 import containsMessage
 import interfaceOption
 import objectOption
-import org.junit.Assert.assertNotEquals
+import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.inv.equipment

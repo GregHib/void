@@ -6,11 +6,10 @@ import io.ktor.network.sockets.*
 import io.ktor.util.network.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.channels.ClosedReceiveChannelException
+import kotlinx.io.EOFException
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.network.client.ConnectionTracker
 import world.gregs.voidps.network.login.protocol.finish
-import java.net.SocketException
 import java.util.*
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread
@@ -34,7 +33,9 @@ class GameServer(
         this.dispatcher = dispatcher
         try {
             val selector = ActorSelectorManager(dispatcher)
-            this.server = aSocket(selector).tcp().bind(port = port)
+            runBlocking {
+                this@GameServer.server = aSocket(selector).tcp().bind(port = port)
+            }
         } catch (exception: Exception) {
             stop()
             throw exception
@@ -95,7 +96,6 @@ class GameServer(
 
     companion object {
 
-        @ExperimentalUnsignedTypes
         fun load(cache: Cache, properties: Properties): GameServer {
             val limit = properties.getProperty("network.maxClientPerIP").toInt()
             val fileServer = FileServer.load(cache, properties)
@@ -104,9 +104,9 @@ class GameServer(
 
         private val logger = InlineLogger()
         private val exceptionHandler = CoroutineExceptionHandler { context, throwable ->
-            if (throwable is SocketException && throwable.message == "Connection reset") {
+            if (throwable is ClosedByteChannelException && throwable.message == "Connection reset") {
                 logger.trace { "Connection reset: ${context.job}" }
-            } else if (throwable is ClosedReceiveChannelException && throwable.message == "EOF while 1 bytes expected") {
+            } else if (throwable is EOFException && throwable.message == "Not enough data available") {
                 logger.trace { "EOF disconnection: ${context.job}" }
             } else {
                 logger.error(throwable) { "Connection error" }

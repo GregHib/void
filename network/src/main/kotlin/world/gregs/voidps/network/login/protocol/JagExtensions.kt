@@ -1,9 +1,10 @@
-@file:OptIn(ExperimentalUnsignedTypes::class)
-
 package world.gregs.voidps.network.login.protocol
 
 import io.ktor.utils.io.*
+import io.ktor.utils.io.bits.reverseByteOrder
 import io.ktor.utils.io.core.*
+import kotlinx.io.Source
+import kotlinx.io.readUByte
 import world.gregs.voidps.buffer.write.BufferWriter
 import kotlin.random.Random
 import kotlin.text.toByteArray
@@ -22,6 +23,8 @@ suspend fun ByteWriteChannel.writeByteAdd(value: Boolean) = writeByteAdd(if (val
 
 suspend fun ByteWriteChannel.writeByteInverse(value: Boolean) = writeByteInverse(if (value) 1 else 0)
 
+suspend fun ByteWriteChannel.writeByte(value: Int) = writeByte(value.toByte())
+
 suspend fun ByteWriteChannel.writeByteAdd(value: Int) = writeByte(value + 128)
 
 suspend fun ByteWriteChannel.writeByteInverse(value: Int) = writeByte(-value)
@@ -30,12 +33,14 @@ suspend fun ByteWriteChannel.writeByteSubtract(value: Int) = writeByte(-value + 
 
 suspend fun ByteWriteChannel.writeBytes(value: ByteArray) = writeFully(value)
 
+suspend fun ByteWriteChannel.writeShort(value: Int) = writeShort(value.toShort())
+
 suspend fun ByteWriteChannel.writeShortAdd(value: Int) {
     writeByte(value shr 8)
     writeByteAdd(value)
 }
 
-suspend fun ByteWriteChannel.writeShortLittle(value: Int) = writeShort(value.toShort(), ByteOrder.LITTLE_ENDIAN)
+suspend fun ByteWriteChannel.writeShortLittle(value: Int) = writeShort(value.toShort().reverseByteOrder()) // , ByteOrder.LITTLE_ENDIAN)
 
 suspend fun ByteWriteChannel.writeShortAddLittle(value: Int) {
     writeByteAdd(value)
@@ -56,7 +61,7 @@ suspend fun ByteWriteChannel.writeIntInverse(value: Int) {
     writeByteInverse(value)
 }
 
-suspend fun ByteWriteChannel.writeIntLittle(value: Int) = writeInt(value, ByteOrder.LITTLE_ENDIAN)
+suspend fun ByteWriteChannel.writeIntLittle(value: Int) = writeInt(value.reverseByteOrder()) // , ByteOrder.LITTLE_ENDIAN)
 
 suspend fun ByteWriteChannel.writeIntInverseMiddle(value: Int) {
     writeByte(value shr 16)
@@ -79,7 +84,7 @@ suspend fun ByteWriteChannel.writeSmart(value: Int) {
     }
 }
 
-suspend fun ByteWriteChannel.writeString(value: String?) {
+suspend fun ByteWriteChannel.writeText(value: String?) {
     if (value != null) {
         writeFully(value.toByteArray())
     }
@@ -139,10 +144,10 @@ suspend fun ByteWriteChannel.respond(value: Int) {
 
 suspend fun ByteWriteChannel.finish(value: Int) {
     respond(value)
-    close()
+    flushAndClose()
 }
 
-fun ByteReadPacket.readString(): String {
+fun Source.readString(): String {
     val sb = StringBuilder()
     var b: Int
     while (remaining > 0) {
@@ -155,37 +160,37 @@ fun ByteReadPacket.readString(): String {
     return sb.toString()
 }
 
-fun ByteReadPacket.readBoolean(): Boolean = readByte().toInt() == 1
+fun Source.readBoolean(): Boolean = readByte().toInt() == 1
 
-fun ByteReadPacket.readBooleanInverse() = readByteInverse() == 1
+fun Source.readBooleanInverse() = readByteInverse() == 1
 
-fun ByteReadPacket.readBooleanSubtract() = readByteSubtract() == 1
+fun Source.readBooleanSubtract() = readByteSubtract() == 1
 
-fun ByteReadPacket.readBooleanAdd() = readByteAdd() == 1
+fun Source.readBooleanAdd() = readByteAdd() == 1
 
-fun ByteReadPacket.readByteAdd(): Int = (readByte() - 128).toByte().toInt()
+fun Source.readByteAdd(): Int = (readByte() - 128).toByte().toInt()
 
-fun ByteReadPacket.readByteInverse(): Int = -readByte()
+fun Source.readByteInverse(): Int = -readByte()
 
-fun ByteReadPacket.readByteSubtract(): Int = (readByteInverse() + 128).toByte().toInt()
+fun Source.readByteSubtract(): Int = (readByteInverse() + 128).toByte().toInt()
 
-fun ByteReadPacket.readShortAdd(): Int = (readByte().toInt() shl 8) or readByteAdd()
+fun Source.readShortAdd(): Int = (readByte().toInt() shl 8) or readByteAdd()
 
-fun ByteReadPacket.readShortAddLittle(): Int = ((readByte().toInt() - 128) and 0xff) or (readByte().toInt() shl 8)
+fun Source.readShortAddLittle(): Int = ((readByte().toInt() - 128) and 0xff) or (readByte().toInt() shl 8)
 
-fun ByteReadPacket.readUnsignedShortAdd(): Int = (readByte().toInt() shl 8) or ((readByte() - 128) and 0xff)
+fun Source.readUnsignedShortAdd(): Int = (readByte().toInt() shl 8) or ((readByte() - 128) and 0xff)
 
-fun ByteReadPacket.readUnsignedShortLittle(): Int = readUByte().toInt() or (readUByte().toInt() shl 8)
+fun Source.readUnsignedShortLittle(): Int = readUByte().toInt() or (readUByte().toInt() shl 8)
 
-fun ByteReadPacket.readUnsignedShortAddLittle(): Int = (readByte() - 128 and 0xff) + (readByte().toInt() shl 8 and 0xff00)
+fun Source.readUnsignedShortAddLittle(): Int = (readByte() - 128 and 0xff) + (readByte().toInt() shl 8 and 0xff00)
 
-fun ByteReadPacket.readUnsignedIntMiddle(): Int = (readUByte().toInt() shl 8) or readUByte().toInt() or (readUByte().toInt() shl 24) or (readUByte().toInt() shl 16)
+fun Source.readUnsignedIntMiddle(): Int = (readUByte().toInt() shl 8) or readUByte().toInt() or (readUByte().toInt() shl 24) or (readUByte().toInt() shl 16)
 
-fun ByteReadPacket.readIntInverseMiddle(): Int = (readByte().toInt() shl 16) or (readByte().toInt() shl 24) or readUByte().toInt() or (readByte().toInt() shl 8)
+fun Source.readIntInverseMiddle(): Int = (readByte().toInt() shl 16) or (readByte().toInt() shl 24) or readUByte().toInt() or (readByte().toInt() shl 8)
 
-fun ByteReadPacket.readUnsignedIntInverseMiddle(): Int = (readUByte().toInt() shl 16) or (readUByte().toInt() shl 24) or readUByte().toInt() or (readUByte().toInt() shl 8)
+fun Source.readUnsignedIntInverseMiddle(): Int = (readUByte().toInt() shl 16) or (readUByte().toInt() shl 24) or readUByte().toInt() or (readUByte().toInt() shl 8)
 
-fun ByteReadPacket.readSmart(): Int {
+fun Source.readSmart(): Int {
     val peek = readUByte().toInt()
     return if (peek < 128) {
         peek and 0xFF
@@ -197,9 +202,9 @@ fun ByteReadPacket.readSmart(): Int {
 suspend fun ByteWriteChannel.writeName(displayName: String, responseName: String = displayName) {
     val different = displayName != responseName
     writeByte(different)
-    writeString(displayName)
+    writeText(displayName)
     if (different) {
-        writeString(responseName)
+        writeText(responseName)
     }
 }
 

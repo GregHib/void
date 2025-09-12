@@ -6,9 +6,11 @@ import world.gregs.voidps.network.login.Protocol.JINGLE
 import world.gregs.voidps.network.login.Protocol.MIDI_SOUND
 import world.gregs.voidps.network.login.Protocol.PLAY_MUSIC
 import world.gregs.voidps.network.login.Protocol.SOUND_EFFECT
+import world.gregs.voidps.network.login.protocol.writeByte
 import world.gregs.voidps.network.login.protocol.writeByteInverse
 import world.gregs.voidps.network.login.protocol.writeByteSubtract
 import world.gregs.voidps.network.login.protocol.writeMedium
+import world.gregs.voidps.network.login.protocol.writeShort
 import world.gregs.voidps.network.login.protocol.writeShortAddLittle
 
 fun Client.playMusicTrack(

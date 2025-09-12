@@ -21,7 +21,7 @@ jobs:
 
       - uses: actions/setup-java@v3
         with:
-          java-version: "19"
+          java-version: "21"
           distribution: "temurin"
           architecture: x64
           cache: "gradle"
@@ -48,7 +48,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Get cache version
-        run: echo "cache_version=$(./gradlew -q printCacheVersion)" >> $GITHUB_ENV
+        run: echo "cache_version=$(./gradlew -q printCacheVersion | tail -n1 | xargs)" >> $GITHUB_ENV
 
       - name: Restore game cache files from cache
         id: cache-files

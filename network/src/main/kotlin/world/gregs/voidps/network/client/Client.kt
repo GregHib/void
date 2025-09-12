@@ -4,6 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.runBlocking
+import world.gregs.voidps.network.login.protocol.writeByte
+import world.gregs.voidps.network.login.protocol.writeShort
 import world.gregs.voidps.network.login.protocol.writeSmart
 
 open class Client(
@@ -16,18 +18,20 @@ open class Client(
     private val logger = InlineLogger()
     private val handler = CoroutineExceptionHandler { _, throwable ->
         logger.warn { "Client error: ${throwable.message}" }
-        disconnect()
+        runBlocking {
+            disconnect()
+        }
     }
     var disconnected: Boolean = false
     private var disconnect: (() -> Unit)? = null
-    private var disconnecting: (() -> Unit)? = null
+    private var disconnecting: (suspend () -> Unit)? = null
     private var state: ClientState = ClientState.Connected
 
     fun onDisconnected(block: () -> Unit) {
         disconnect = block
     }
 
-    fun onDisconnecting(block: () -> Unit) {
+    fun onDisconnecting(block: suspend () -> Unit) {
         disconnecting = block
     }
 
@@ -39,18 +43,17 @@ open class Client(
         disconnect()
     }
 
-    fun disconnect() {
+    suspend fun disconnect() {
         if (disconnected) {
             return
         }
         disconnected = true
-        write.flush()
-        write.close()
+        write.flushAndClose()
         state = ClientState.Disconnected
         disconnect?.invoke()
     }
 
-    fun exit() {
+    suspend fun exit() {
         if (state == ClientState.Connected) {
             state = ClientState.Disconnecting
             disconnecting?.invoke()
@@ -61,7 +64,9 @@ open class Client(
         if (disconnected) {
             return
         }
-        write.flush()
+        runBlocking {
+            write.flush()
+        }
     }
 
     open fun send(opcode: Int, block: suspend ByteWriteChannel.() -> Unit) = send(opcode, -1, FIXED, block)
@@ -70,7 +75,6 @@ open class Client(
         if (disconnected) {
             return
         }
-
         runBlocking(handler) {
             write.header(opcode, type, size, cipherOut)
             block.invoke(write)

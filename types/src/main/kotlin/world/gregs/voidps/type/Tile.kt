@@ -3,15 +3,15 @@ package world.gregs.voidps.type
 import world.gregs.voidps.type.area.Cuboid
 
 @JvmInline
-value class Tile(val id: Int) : Coordinate3D<Tile> {
+value class Tile(val id: Int) {
 
     constructor(x: Int, y: Int, level: Int = 0) : this(id(x, y, level))
 
-    override val x: Int
+    val x: Int
         get() = x(id)
-    override val y: Int
+    val y: Int
         get() = y(id)
-    override val level: Int
+    val level: Int
         get() = level(id)
 
     val zone: Zone
@@ -21,7 +21,7 @@ value class Tile(val id: Int) : Coordinate3D<Tile> {
     val regionLevel: RegionLevel
         get() = RegionLevel(x shr 6, y shr 6, level)
 
-    override fun copy(x: Int, y: Int, level: Int) = Tile(x, y, level)
+    fun copy(x: Int = this.x, y: Int = this.y, level: Int = this.level) = Tile(x, y, level)
 
     fun distanceTo(other: Tile, width: Int, height: Int) = distanceTo(Distance.getNearest(other, width, height, this))
 
@@ -40,6 +40,26 @@ value class Tile(val id: Int) : Coordinate3D<Tile> {
     fun toCuboid(radius: Int) = Cuboid(minus(radius, radius), radius * 2 + 1, radius * 2 + 1, 1)
 
     override fun toString(): String = "Tile($x, $y, $level)"
+
+    fun add(x: Int = 0, y: Int = 0, level: Int = 0) = copy(this.x + x, this.y + y, this.level + level)
+    fun minus(x: Int = 0, y: Int = 0, level: Int = 0) = add(-x, -y, -level)
+    fun delta(x: Int = 0, y: Int = 0, level: Int = 0) = Delta(this.x - x, this.y - y, this.level - level)
+
+    fun add(value: Tile) = add(value.x, value.y, value.level)
+    fun minus(value: Tile) = minus(value.x, value.y, value.level)
+    fun delta(value: Tile) = delta(value.x, value.y, value.level)
+
+    fun add(value: Delta) = add(value.x, value.y, value.level)
+    fun minus(value: Delta) = minus(value.x, value.y, value.level)
+    fun delta(value: Delta) = delta(value.x, value.y, value.level)
+
+    fun add(direction: Direction) = add(direction.delta)
+    fun minus(direction: Direction) = minus(direction.delta)
+    fun delta(direction: Direction) = minus(direction.delta)
+
+    fun addX(value: Int) = add(value, 0, 0)
+    fun addY(value: Int) = add(0, value, 0)
+    fun addLevel(value: Int) = add(0, 0, value)
 
     companion object {
         fun id(x: Int, y: Int, level: Int = 0) = (y and 0x3fff) + ((x and 0x3fff) shl 14) + ((level and 0x3) shl 28)

@@ -99,7 +99,7 @@ class AccountManager(
         }
     }
 
-    fun logout(player: Player, safely: Boolean) {
+    suspend fun logout(player: Player, safely: Boolean) {
         if (player["logged_out", false]) {
             return
         }

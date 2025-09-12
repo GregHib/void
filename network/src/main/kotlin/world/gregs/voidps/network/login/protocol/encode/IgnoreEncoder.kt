@@ -6,7 +6,7 @@ import world.gregs.voidps.network.client.Client.Companion.string
 import world.gregs.voidps.network.login.Protocol.UNLOCK_IGNORES
 import world.gregs.voidps.network.login.Protocol.UPDATE_IGNORE
 import world.gregs.voidps.network.login.protocol.writeByte
-import world.gregs.voidps.network.login.protocol.writeString
+import world.gregs.voidps.network.login.protocol.writeText
 
 fun Client.updateIgnoreList(name: String, previous: String, renamed: Boolean) {
     send(UPDATE_IGNORE, 1 + count(name, previous), Client.BYTE) {
@@ -28,12 +28,12 @@ fun Client.sendIgnoreList(ignores: List<Pair<String, String>>) {
 }
 
 private suspend fun ByteWriteChannel.writeNames(name: String, previous: String) {
-    writeString(name)
+    writeText(name)
     var formatted = name.format()
-    writeString(if (previous == formatted) "" else formatted)
-    writeString(previous)
+    writeText(if (previous == formatted) "" else formatted)
+    writeText(previous)
     formatted = previous.format()
-    writeString(if (previous == formatted) "" else formatted)
+    writeText(if (previous == formatted) "" else formatted)
 }
 
 private fun count(name: String, previous: String): Int {

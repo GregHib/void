@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
+import org.koin.dsl.module
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.data.FontDefinition
@@ -54,7 +55,14 @@ abstract class DialogueTest : KoinMock() {
         player = spyk(Player())
         interfaces = mockk(relaxed = true)
         player.interfaces = interfaces
-        interfaceDefinitions = declareMock()
+        interfaceDefinitions = spyk(InterfaceDefinitions(arrayOf(InterfaceDefinition(components = mutableMapOf(0 to InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 321)))))))
+        interfaceDefinitions.ids = mapOf("" to 0, "dialogue_level_up" to 0, "dialogue_npc_chat1" to 0, "dialogue_chat1" to 0)
+        interfaceDefinitions.componentIds = mapOf("" to 0, "dialogue_level_up" to 0, "dialogue_npc_chat1:head_large" to 0, "dialogue_npc_chat1:head" to 0, "dialogue_chat1" to 0)
+        loadModules(
+            module {
+                single { interfaceDefinitions }
+            },
+        )
         fontDefinitions = declareMock()
         clientScriptDefinitions = declareMock()
         continuation = object : Continuation<Any> {
@@ -71,8 +79,7 @@ abstract class DialogueTest : KoinMock() {
         })
         every { clientScriptDefinitions.get("string_entry") } returns ClientScriptDefinition(id = 109)
         every { player.open(any()) } returns true
-        every { interfaceDefinitions.get(any<String>()) } returns InterfaceDefinition()
-        every { interfaceDefinitions.getComponent(any<String>(), any<String>()) } returns InterfaceComponentDefinition()
+
         val glyphWidths = DialogueTest::class.java.getResourceAsStream("glyph-widths-497.dat")!!.readAllBytes()
         every { fontDefinitions.get(any<String>()) } returns FontDefinition(id = 497, verticalSpacing = 15, topPadding = 15, bottomPadding = 15, glyphWidths = glyphWidths)
     }

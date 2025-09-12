@@ -1,11 +1,11 @@
 package world.gregs.voidps.network.login.protocol.encode
 
-import io.ktor.utils.io.*
 import world.gregs.voidps.network.Response
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.writeByte
 import world.gregs.voidps.network.login.protocol.writeMedium
-import world.gregs.voidps.network.login.protocol.writeString
+import world.gregs.voidps.network.login.protocol.writeShort
+import world.gregs.voidps.network.login.protocol.writeText
 
 fun Client.login(username: String, index: Int, rights: Int, member: Boolean = true, membersWorld: Boolean = true) = send(-1) {
     writeByte(Response.SUCCESS)
@@ -20,6 +20,6 @@ fun Client.login(username: String, index: Int, rights: Int, member: Boolean = tr
     writeByte(member)
     writeMedium(0)
     writeByte(membersWorld)
-    writeString(username)
+    writeText(username)
     flush()
 }

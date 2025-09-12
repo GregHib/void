@@ -12,7 +12,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
-import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
@@ -129,7 +128,6 @@ internal class NPCChatTest : DialogueTest() {
         mockkStatic("world.gregs.voidps.network.login.protocol.encode.InterfaceEncodersKt")
         val client: Client = mockk(relaxed = true)
         player.client = client
-        every { interfaceDefinitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 321))
         npc = NPC(id = "john")
         dialogue {
             npc<Talk>(text = "Text", largeHead = large)
@@ -184,7 +182,6 @@ internal class NPCChatTest : DialogueTest() {
         mockkStatic("world.gregs.voidps.engine.data.definition.InterfaceDefinitions")
         val client: Client = mockk(relaxed = true)
         player.client = client
-        every { interfaceDefinitions.getComponent("dialogue_npc_chat1", any<String>()) } returns InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 321))
         npc = NPC("bill")
         dialogue {
             npc<Talk>(npcId = "jim", title = "Bill", text = "text")

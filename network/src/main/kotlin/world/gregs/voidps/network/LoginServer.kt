@@ -4,6 +4,10 @@ import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.io.Source
+import kotlinx.io.readByteArray
+import kotlinx.io.readUByte
+import kotlinx.io.readUShort
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.client.Client
@@ -19,7 +23,6 @@ import java.util.concurrent.ConcurrentHashMap
 /**
  * Connects a client to their account in the game world
  */
-@ExperimentalUnsignedTypes
 class LoginServer(
     private val protocol: Array<Decoder?>,
     private val revision: Int,
@@ -45,7 +48,7 @@ class LoginServer(
         checkClientVersion(read, packet, write, hostname)
     }
 
-    private suspend fun checkClientVersion(read: ByteReadChannel, packet: ByteReadPacket, write: ByteWriteChannel, hostname: String) {
+    private suspend fun checkClientVersion(read: ByteReadChannel, packet: Source, write: ByteWriteChannel, hostname: String) {
         val version = packet.readInt()
         if (version != revision) {
             logger.trace { "Invalid client revision: $version" }
@@ -58,12 +61,12 @@ class LoginServer(
             write.finish(Response.COULD_NOT_COMPLETE_LOGIN)
             return
         }
-        val data = packet.readBytes(rsaBlockSize)
+        val data = packet.readByteArray(rsaBlockSize)
         val rsa = RSA.crypt(data, modulus, private)
         validateSession(read, ByteReadPacket(rsa), packet, write, hostname)
     }
 
-    private suspend fun validateSession(read: ByteReadChannel, rsa: ByteReadPacket, packet: ByteReadPacket, write: ByteWriteChannel, hostname: String) {
+    private suspend fun validateSession(read: ByteReadChannel, rsa: Source, packet: Source, write: ByteWriteChannel, hostname: String) {
         val sessionId = rsa.readUByte().toInt()
         if (sessionId != Request.SESSION) {
             logger.debug { "Bad session id $sessionId" }
@@ -124,8 +127,8 @@ class LoginServer(
         return Client(write, inCipher, outCipher, hostname)
     }
 
-    private fun decryptXtea(packet: ByteReadPacket, isaacKeys: IntArray): ByteReadPacket {
-        val remaining = packet.readBytes(packet.remaining.toInt())
+    private fun decryptXtea(packet: Source, isaacKeys: IntArray): Source {
+        val remaining = packet.readByteArray(packet.remaining.toInt())
         Xtea.decipher(remaining, isaacKeys)
         return ByteReadPacket(remaining)
     }
@@ -143,7 +146,7 @@ class LoginServer(
     private suspend fun readPackets(client: Client, instructions: SendChannel<Instruction>, read: ByteReadChannel) {
         while (!client.disconnected) {
             val cipher = client.cipherIn.nextInt()
-            val opcode = (read.readUByte() - cipher) and 0xff
+            val opcode = (read.readUByte() - cipher) and 0xff // Exhausted due to client termination. Something not written correctly I would guess.
             val decoder = protocol[opcode]
             if (decoder == null) {
                 logger.error { "No decoder for message opcode $opcode" }
@@ -154,7 +157,7 @@ class LoginServer(
                 Decoder.SHORT -> read.readUShort()
                 else -> decoder.length
             }
-            val packet = read.readPacket(size = size)
+            val packet = read.readPacket(size)
             instructions.send(decoder.decode(packet) ?: continue)
         }
     }

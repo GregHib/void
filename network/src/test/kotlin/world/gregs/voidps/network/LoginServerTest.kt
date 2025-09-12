@@ -4,11 +4,14 @@ import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.ClosedReceiveChannelException
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
+import kotlinx.io.EOFException
+import kotlinx.io.Source
+import kotlinx.io.writeUByte
+import kotlinx.io.writeUShort
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
@@ -22,10 +25,11 @@ import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.login.AccountLoader
 import world.gregs.voidps.network.login.PasswordManager
 import world.gregs.voidps.network.login.protocol.Decoder
+import world.gregs.voidps.network.login.protocol.writeByte
+import world.gregs.voidps.network.login.protocol.writeShort
 import java.math.BigInteger
 import java.util.*
 
-@ExperimentalUnsignedTypes
 internal class LoginServerTest {
 
     private lateinit var server: LoginServer
@@ -57,7 +61,7 @@ internal class LoginServerTest {
             }
         }
         protocol[0] = object : Decoder(4) {
-            override suspend fun decode(packet: ByteReadPacket): Instruction {
+            override suspend fun decode(packet: Source): Instruction {
                 val value = packet.readInt()
                 return TestInstruction(value)
             }
@@ -77,7 +81,7 @@ internal class LoginServerTest {
                 val readChannel = ByteChannel(autoFlush = true)
                 val writeChannel = ByteChannel(autoFlush = true)
                 protocol[0] = object : Decoder(size) {
-                    override suspend fun decode(packet: ByteReadPacket): Instruction {
+                    override suspend fun decode(packet: Source): Instruction {
                         val value = packet.readInt()
                         return TestInstruction(value)
                     }
@@ -205,7 +209,7 @@ internal class LoginServerTest {
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)
         launch {
-            assertThrows<ClosedReceiveChannelException> {
+            assertThrows<EOFException> {
                 server.connect(readChannel, writeChannel, "localhost")
             }
         }
@@ -355,7 +359,7 @@ internal class LoginServerTest {
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)
         protocol[0] = object : Decoder(4) {
-            override suspend fun decode(packet: ByteReadPacket): Instruction {
+            override suspend fun decode(packet: Source): Instruction {
                 val value = packet.readInt()
                 return TestInstruction(value)
             }
@@ -378,14 +382,14 @@ internal class LoginServerTest {
 
     private suspend fun writeTestPacket(readChannel: ByteChannel, size: Int = 4) {
         // Test packet
-        readChannel.writePacket {
-            writeUByte(405143795.toUByte()) // packet 0
-            when (size) {
-                Decoder.BYTE -> writeByte(4)
-                Decoder.SHORT -> writeShort(4)
-            }
-            writeInt(42)
+        val buffer = Buffer()
+        buffer.writeUByte(405143795.toUByte()) // packet 0
+        when (size) {
+            Decoder.BYTE -> buffer.writeByte(4)
+            Decoder.SHORT -> buffer.writeShort(4)
         }
+        buffer.writeInt(42)
+        readChannel.writePacket(buffer)
         delay(10)
     }
 

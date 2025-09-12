@@ -7,7 +7,7 @@
 [![Release](https://github.com/GregHib/void/actions/workflows/create_release.yml/badge.svg)](https://github.com/GregHib/void/actions/workflows/create_release.yml)
 [![Docker](https://img.shields.io/badge/Docker-latest-blue.svg?logo=docker)](https://hub.docker.com/r/greghib/void)
 [![Codecov](https://codecov.io/gh/GregHib/void/graph/badge.svg?token=7W6PTSHUTT)](https://codecov.io/gh/GregHib/void)
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.2.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 <h1>RuneScape Revived</h1>
@@ -37,7 +37,7 @@
 
 ## Quick setup
 
-1. Make sure you have [java 19 or above installed](https://adoptium.net/temurin/releases/?package=jre). (`java --version` on command line)
+1. Make sure you have [java 21 or above installed](https://adoptium.net/temurin/releases/?package=jre). (`java --version` on command line)
 2. Extract the [latest void.zip released bundle](https://github.com/GregHib/void/releases) into a directory.
 3. Extract the [latest pre-modified game files cache.zip](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into `/void/data/cache/`.
 4. Run either the `run-server.bat` on Windows, or `run-server.sh` on Linux.
@@ -69,7 +69,7 @@ Selecting `git` version control and entering the void project URL Found under th
 
 Press "clone" and after the download is complete the project will be opened for you.
 
-Under `Project Structure... | Project` settings set `SDK` to JDk 19+ (download as needed) and let it index.
+Under `Project Structure... | Project` settings set `SDK` to JDK 21+ (download as needed) and let it index.
 
 Run the following command in the terminal to set up Gradle or close and re-open the project to trigger IntelliJ's `Open as Gradle Project` popup.
 

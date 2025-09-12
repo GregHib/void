@@ -36,7 +36,6 @@ object Main {
     lateinit var server: GameServer
         private set
 
-    @OptIn(ExperimentalUnsignedTypes::class)
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()

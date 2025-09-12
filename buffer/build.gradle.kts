@@ -1,2 +1,3 @@
-dependencies {
+plugins {
+    id("shared")
 }

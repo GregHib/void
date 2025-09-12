@@ -7,6 +7,7 @@ import world.gregs.voidps.network.login.Protocol.INTERFACE_ITEMS
 import world.gregs.voidps.network.login.protocol.writeByte
 import world.gregs.voidps.network.login.protocol.writeByteAdd
 import world.gregs.voidps.network.login.protocol.writeIntMiddle
+import world.gregs.voidps.network.login.protocol.writeShort
 import world.gregs.voidps.network.login.protocol.writeShortAdd
 
 /**

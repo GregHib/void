@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.network.client.ConnectionTracker
+import world.gregs.voidps.network.login.protocol.writeByte
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.Socket
@@ -149,7 +150,6 @@ internal class GameServerTest {
         assertTrue(writeChannel.isClosedForRead)
     }
 
-    @ExperimentalUnsignedTypes
     @Test
     fun `Connect with properties server`() = runTest {
         val readChannel = ByteChannel(autoFlush = true)

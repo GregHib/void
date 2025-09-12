@@ -1,7 +1,8 @@
 package world.gregs.voidps.network.login.protocol
 
+import io.ktor.utils.io.*
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.buffer.write.BufferWriter
@@ -36,10 +37,11 @@ class EncodersTest {
         val expected = zonePackets[index]
         dynamicTest("Test ${update::class.simpleName} encoder") {
             runTest {
-                val channel = ByteArrayChannel()
+                val channel = ByteChannel(autoFlush = true)
                 channel.encode(update)
-                val actual = channel.toByteArray()
-                assertContentEquals(expected, actual)
+                val buffer = ByteArray(channel.availableForRead)
+                channel.readAvailable(buffer)
+                assertContentEquals(expected, buffer)
             }
         }
     }
@@ -123,17 +125,20 @@ class EncodersTest {
         random = Random(0)
         val (name, expected) = packets[index]
         dynamicTest("Test $name encoder") {
-            val channel = ByteArrayChannel()
+            val channel = ByteChannel(true)
             val client = Client(channel, IsaacCipher(IntArray(4)), IsaacCipher(IntArray(4)), "")
 
             packet.invoke(client)
 
-            val actual = channel.toByteArray()
+            val actual = ByteArray(channel.availableForRead)
+            runTest {
+                channel.readAvailable(actual)
+            }
             assertContentEquals(expected, actual)
         }
     }
 
     private fun assertContentEquals(expected: ByteArray, actual: ByteArray) {
-        assertTrue(expected.contentEquals(actual)) { "Expected: ${expected.contentToString()}, Actual: ${actual.contentToString()}" }
+        assertEquals(expected.toList(), actual.toList())
     }
 }

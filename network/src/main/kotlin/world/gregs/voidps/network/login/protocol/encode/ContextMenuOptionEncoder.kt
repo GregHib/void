@@ -7,7 +7,7 @@ import world.gregs.voidps.network.login.Protocol.PLAYER_OPTION
 import world.gregs.voidps.network.login.protocol.writeByteAdd
 import world.gregs.voidps.network.login.protocol.writeByteSubtract
 import world.gregs.voidps.network.login.protocol.writeShortAddLittle
-import world.gregs.voidps.network.login.protocol.writeString
+import world.gregs.voidps.network.login.protocol.writeText
 
 /**
  * Sends a player right click option
@@ -23,7 +23,7 @@ fun Client.contextMenuOption(
     cursor: Int = -1,
 ) = send(PLAYER_OPTION, 4 + string(option), BYTE) {
     writeShortAddLittle(cursor)
-    writeString(option)
+    writeText(option)
     writeByteSubtract(slot)
     writeByteAdd(top)
 }

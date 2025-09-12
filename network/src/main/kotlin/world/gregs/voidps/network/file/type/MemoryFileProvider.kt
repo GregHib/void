@@ -30,6 +30,6 @@ class MemoryFileProvider(cache: Cache) : FileProvider {
     override fun data(index: Int, archive: Int): ByteArray? = sectors.getOrNull(index)?.getOrNull(archive)
 
     override suspend fun encode(write: ByteWriteChannel, data: ByteArray) {
-        write.writeFully(data, 1, data.size - 1)
+        write.writeFully(data, 1, data.size)
     }
 }

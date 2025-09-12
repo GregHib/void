@@ -1,11 +1,23 @@
-plugins {
-    `kotlin-dsl`
+buildscript {
+    dependencies {
+        classpath(libs.kotlin)
+        classpath(libs.shadow)
+    }
 }
 
-dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-compiler-embeddable:1.9.20")
+plugins {
+    `kotlin-dsl`
+    alias(libs.plugins.jacoco.aggregation)
+    alias(libs.plugins.spotless)
 }
 
 repositories {
     mavenCentral()
+}
+
+dependencies {
+    implementation(libs.kotlin.gradle)
+    implementation(libs.shadow)
+    implementation(libs.spotless)
+    implementation(libs.kotlin.embeddable)
 }

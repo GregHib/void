@@ -47,7 +47,7 @@ class ExplicitCollectionWriterTest {
 
     @Test
     fun `Write type arrays`() {
-        val input = arrayOf(doubleArrayOf(1.1, 2.2, 3.3), intArrayOf(1, 2, 3), charArrayOf('a', 'b', 'c'), longArrayOf(1, 2, 3))
+        val input = arrayOf<Any>(doubleArrayOf(1.1, 2.2, 3.3), intArrayOf(1, 2, 3), charArrayOf('a', 'b', 'c'), longArrayOf(1, 2, 3))
         val actual = yaml.writeToString(input)
         val expected = """
             - [ 1.1, 2.2, 3.3 ]

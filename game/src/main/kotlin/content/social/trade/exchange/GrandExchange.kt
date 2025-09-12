@@ -125,6 +125,8 @@ class GrandExchange(
         pending.clear()
         offers.clear()
         claims.clear()
+        history.clear()
+        limits.clear()
     }
 
     override fun run() {

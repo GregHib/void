@@ -5,7 +5,8 @@ import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.string
 import world.gregs.voidps.network.login.Protocol.UPDATE_FRIENDS
 import world.gregs.voidps.network.login.protocol.writeByte
-import world.gregs.voidps.network.login.protocol.writeString
+import world.gregs.voidps.network.login.protocol.writeShort
+import world.gregs.voidps.network.login.protocol.writeText
 
 data class Friend(
     val name: String,
@@ -29,12 +30,12 @@ private fun count(friend: Friend) = 4 + string(friend.name) + string(friend.prev
 
 private suspend fun ByteWriteChannel.writeFriend(friend: Friend) {
     writeByte(friend.renamed)
-    writeString(friend.name)
-    writeString(friend.previousName)
+    writeText(friend.name)
+    writeText(friend.previousName)
     writeShort(friend.world)
     writeByte(friend.rank)
     if (friend.world > 0) {
-        writeString(friend.worldName)
+        writeText(friend.worldName)
         writeByte(friend.gameQuickChat)
     }
 }

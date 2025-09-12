@@ -4,15 +4,15 @@ package world.gregs.voidps.type
  * Difference between two coordinates
  */
 @JvmInline
-value class Delta(val id: Long) : Coordinate3D<Delta> {
+value class Delta(val id: Long) {
 
     constructor(x: Int, y: Int, level: Int = 0) : this(id(x, y, level))
 
-    override val x: Int
+    val x: Int
         get() = x(id)
-    override val y: Int
+    val y: Int
         get() = y(id)
-    override val level: Int
+    val level: Int
         get() = level(id)
 
     fun isDiagonal() = isHorizontal() && isVertical()
@@ -25,7 +25,7 @@ value class Delta(val id: Long) : Coordinate3D<Delta> {
 
     fun invert() = Delta(-x, -y, -level)
 
-    override fun copy(x: Int, y: Int, level: Int) = Delta(x, y, level)
+    fun copy(x: Int = this.x, y: Int = this.y, level: Int = this.level) = Delta(x, y, level)
 
     fun toDirection(): Direction = when {
         x > 0 -> when {
@@ -44,6 +44,22 @@ value class Delta(val id: Long) : Coordinate3D<Delta> {
             else -> Direction.NONE
         }
     }
+
+    fun add(x: Int = 0, y: Int = 0, level: Int = 0) = copy(this.x + x, this.y + y, this.level + level)
+    fun minus(x: Int = 0, y: Int = 0, level: Int = 0) = add(-x, -y, -level)
+    fun delta(x: Int = 0, y: Int = 0, level: Int = 0) = Delta(this.x - x, this.y - y, this.level - level)
+
+    fun add(value: Delta) = add(value.x, value.y, value.level)
+    fun minus(value: Delta) = minus(value.x, value.y, value.level)
+    fun delta(value: Delta) = delta(value.x, value.y, value.level)
+
+    fun add(direction: Direction) = add(direction.delta)
+    fun minus(direction: Direction) = minus(direction.delta)
+    fun delta(direction: Direction) = minus(direction.delta)
+
+    fun addX(value: Int) = add(value, 0, 0)
+    fun addY(value: Int) = add(0, value, 0)
+    fun addLevel(value: Int) = add(0, 0, value)
 
     override fun toString(): String = "Delta($x, $y, $level)"
 

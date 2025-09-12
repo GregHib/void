@@ -8,14 +8,18 @@ import world.gregs.voidps.network.login.protocol.*
 import world.gregs.voidps.network.login.protocol.encode.zone.*
 
 fun encodeBatch(messages: Collection<ZoneUpdate>): ByteArray {
-    val writeChannel = ByteArrayChannel()
-    runBlocking {
+    val writeChannel = ByteChannel(true)
+    return runBlocking {
         messages.forEach { update ->
             writeChannel.writeByte(update.packetIndex.toByte())
             writeChannel.encode(update)
         }
+        val buffer = ByteArray(writeChannel.availableForRead)
+        if (buffer.isNotEmpty()) {
+            writeChannel.readAvailable(buffer)
+        }
+        buffer
     }
-    return writeChannel.toByteArray()
 }
 
 fun Client.sendBatch(messages: ByteArray, zoneOffsetX: Int, zoneOffsetY: Int, zoneLevel: Int) {

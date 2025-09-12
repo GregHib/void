@@ -1,12 +1,13 @@
 package world.gregs.voidps.network.login.protocol.encode
 
-import io.ktor.utils.io.*
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Client.Companion.BYTE
 import world.gregs.voidps.network.client.Client.Companion.string
 import world.gregs.voidps.network.login.Protocol.TILE_TEXT
+import world.gregs.voidps.network.login.protocol.writeByte
 import world.gregs.voidps.network.login.protocol.writeMedium
-import world.gregs.voidps.network.login.protocol.writeString
+import world.gregs.voidps.network.login.protocol.writeShort
+import world.gregs.voidps.network.login.protocol.writeText
 
 fun Client.tileText(
     tile: Int,
@@ -20,5 +21,5 @@ fun Client.tileText(
     writeShort(duration)
     writeByte(height)
     writeMedium(color)
-    writeString(text)
+    writeText(text)
 }

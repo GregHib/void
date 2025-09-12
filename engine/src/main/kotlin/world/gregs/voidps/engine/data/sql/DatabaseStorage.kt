@@ -339,12 +339,17 @@ class DatabaseStorage : Storage {
                     this[VariablesTable.long] = value
                 }
                 is List<*> -> {
-                    if (value.isNotEmpty() && value.all { it is Int }) {
+                    if (value.isEmpty()) {
+                        this[VariablesTable.type] = TYPE_STRING_LIST
+                        this[VariablesTable.intList] = null
+                    } else if (value.all { it is Int }) {
                         this[VariablesTable.type] = TYPE_INT_LIST
                         this[VariablesTable.intList] = value as List<Int>
-                    } else {
+                    } else if (value.all { it is String }) {
                         this[VariablesTable.type] = TYPE_STRING_LIST
                         this[VariablesTable.stringList] = value as List<String>
+                    } else {
+                        throw IllegalArgumentException("Unsupported list element type: $value")
                     }
                 }
                 else -> throw IllegalArgumentException("Unsupported variable type: ${value::class.simpleName}")
@@ -503,7 +508,7 @@ class DatabaseStorage : Storage {
             TYPE_BOOLEAN -> row[VariablesTable.boolean]!!
             TYPE_DOUBLE -> row[VariablesTable.double]!!
             TYPE_LONG -> row[VariablesTable.long]!!
-            TYPE_STRING_LIST -> row[VariablesTable.stringList]!!
+            TYPE_STRING_LIST -> row[VariablesTable.stringList] ?: emptyList<String>()
             TYPE_INT_LIST -> row[VariablesTable.intList]!!
             else -> throw IllegalArgumentException("Unsupported variable type: $variableType")
         }

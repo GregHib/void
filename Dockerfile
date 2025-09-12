@@ -1,4 +1,4 @@
-FROM eclipse-temurin:19-jdk-alpine
+FROM eclipse-temurin:21-jdk-alpine
 LABEL authors="Greg"
 EXPOSE 43594/tcp
 

@@ -10,6 +10,7 @@ import world.gregs.voidps.network.file.prefetchKeys
 import world.gregs.voidps.network.login.protocol.readMedium
 import world.gregs.voidps.network.login.protocol.readUByte
 import world.gregs.voidps.network.login.protocol.readUMedium
+import world.gregs.voidps.network.login.protocol.writeByte
 import java.util.*
 
 /**
@@ -39,7 +40,7 @@ class FileServer(
         if (opcode != Request.ACKNOWLEDGE) {
             logger.trace { "Invalid ack opcode: $opcode" }
             write.writeByte(Response.LOGIN_SERVER_REJECTED_SESSION)
-            write.close()
+            write.flushAndClose()
             return false
         }
 
@@ -47,7 +48,7 @@ class FileServer(
         if (id != ACKNOWLEDGE_ID) {
             logger.trace { "Invalid session id expected: $ACKNOWLEDGE_ID actual: $id" }
             write.writeByte(Response.BAD_SESSION_ID)
-            write.close()
+            write.flushAndClose()
             return false
         }
         return true
@@ -61,7 +62,7 @@ class FileServer(
         if (revision != this.revision) {
             logger.trace { "Invalid game revision: $revision" }
             write.writeByte(Response.GAME_UPDATE)
-            write.close()
+            write.flushAndClose()
             return
         }
 
@@ -85,7 +86,7 @@ class FileServer(
                     else -> {
                         logger.warn { "Unknown file-server request $opcode." }
                         read.cancel()
-                        write.close()
+                        write.flushAndClose()
                     }
                 }
             }
@@ -102,7 +103,7 @@ class FileServer(
         if (id != expected) {
             logger.trace { "Invalid session id expected: $expected actual: $id" }
             write.writeByte(Response.BAD_SESSION_ID)
-            write.close()
+            write.flushAndClose()
             return false
         }
         return true
@@ -125,7 +126,7 @@ class FileServer(
         private fun offlineFileServer() = object : Server {
             override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
                 write.writeByte(Response.LOGIN_SERVER_OFFLINE)
-                write.close()
+                write.flushAndClose()
             }
         }
     }

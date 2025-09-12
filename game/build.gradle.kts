@@ -1,8 +1,9 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
+    id("shared")
     application
-    id("com.github.johnrengelman.shadow")
+    alias(libs.plugins.shadow)
 }
 
 dependencies {
@@ -11,24 +12,18 @@ dependencies {
     implementation(project(":network"))
     implementation(project(":types"))
     implementation(project(":config"))
-    implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
-    implementation("net.pearx.kasechange:kasechange:${findProperty("kaseChangeVersion")}")
+
+    implementation(libs.fastutil)
+    implementation(libs.kasechange)
+    implementation(libs.rsmod.pathfinder)
 
     implementation(kotlin("script-runtime"))
-    implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")
+    implementation(libs.bundles.kotlinx)
 
-    implementation("org.rsmod:rsmod-pathfinder:${findProperty("pathfinderVersion")}")
-    implementation("io.insert-koin:koin-core:${findProperty("koinVersion")}")
+    implementation(libs.koin)
+    implementation(libs.bundles.logging)
 
-    implementation("io.insert-koin:koin-logger-slf4j:${findProperty("koinLogVersion")}")
-    implementation("ch.qos.logback:logback-classic:${findProperty("logbackVersion")}")
-    implementation("com.michael-bull.kotlin-inline-logger:kotlin-inline-logger-jvm:${findProperty("inlineLoggingVersion")}")
-
-    testImplementation("org.junit.jupiter:junit-jupiter-params:${findProperty("junitVersion")}")
-    testImplementation("io.insert-koin:koin-test:${findProperty("koinVersion")}")
-    testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${findProperty("kotlinCoroutinesVersion")}")
+    testImplementation(libs.bundles.testing)
 }
 
 application {
@@ -37,7 +32,6 @@ application {
 }
 
 tasks {
-
     processResources {
         dependsOn("scriptMetadata")
     }
@@ -73,17 +67,36 @@ tasks {
         // https://github.com/GradleUp/shadow/issues/638
         exclude("logback.xml")
         val resourcesDir = layout.projectDirectory.dir("src/main/resources")
-        val logback = resourcesDir.file("logback.xml").asFile
-            .readText()
-            .replace("%colour", "%highlight")
-            .replace("%message(%msg){}", "%msg")
-        val replacement = layout.buildDirectory.file("logback-test.xml").get().asFile
+        val logback =
+            resourcesDir
+                .file("logback.xml")
+                .asFile
+                .readText()
+                .replace("%colour", "%highlight")
+                .replace("%message(%msg){}", "%msg")
+        val replacement =
+            layout.buildDirectory
+                .file("logback-test.xml")
+                .get()
+                .asFile
         replacement.parentFile.mkdirs()
         replacement.writeText(logback)
         from(replacement)
     }
 
-    withType<Test> {
+    register("printVersion") {
+        doLast {
+            println(project.version)
+        }
+    }
+
+    register("printCacheVersion") {
+        doLast {
+            println(libs.versions.cacheVersion.get())
+        }
+    }
+
+    test {
         jvmArgs("-XX:-OmitStackTraceInFastThrow")
     }
 }
@@ -95,7 +108,12 @@ distributions {
             from(tasks["shadowJar"])
 
             val emptyDirs = setOf("cache", "saves")
-            val configs = parent!!.rootDir.resolve("data").list()!!.toMutableList()
+            val configs =
+                parent!!
+                    .rootDir
+                    .resolve("data")
+                    .list()!!
+                    .toMutableList()
             configs.removeAll(emptyDirs)
             for (config in configs) {
                 from("../data/$config/") {
@@ -103,13 +121,21 @@ distributions {
                 }
             }
             for (dir in emptyDirs) {
-                val file = layout.buildDirectory.get().dir("tmp/empty/$dir/").asFile
+                val file =
+                    layout.buildDirectory
+                        .get()
+                        .dir("tmp/empty/$dir/")
+                        .asFile
                 file.mkdirs()
             }
             from(layout.buildDirectory.dir("tmp/empty/")) {
                 into("data")
             }
-            val tempDir = layout.buildDirectory.dir("tmp/scripts").get().asFile
+            val tempDir =
+                layout.buildDirectory
+                    .dir("tmp/scripts")
+                    .get()
+                    .asFile
             tempDir.mkdirs()
             val resourcesDir = layout.projectDirectory.dir("src/main/resources")
             from(resourcesDir.file("game.properties"))
@@ -120,7 +146,37 @@ distributions {
             val shell = resourcesDir.file("run-server.sh").asFile
             val tempShell = File(tempDir, "run-server.sh")
             tempShell.writeText(shell.readText().replace("-dev.jar", "-$version.jar"))
+            println("Bundling $tempShell")
             from(tempShell)
         }
+    }
+}
+
+dependencies {
+    allprojects.filter { it.name != "tools" }.forEach {
+        jacocoAggregation(it)
+    }
+}
+
+spotless {
+    kotlin {
+        target("**/*.kt", "**/*.kts")
+        targetExclude("temp/", "**/build/**", "**/out/**")
+        ktlint()
+            .editorConfigOverride(
+                mapOf(
+                    "ktlint_code_style" to "intellij_idea",
+                    "ktlint_standard_no-wildcard-imports" to "disabled",
+                    "ktlint_standard_package-name" to "disabled",
+                ),
+            )
+    }
+    kotlinGradle {
+        target("*.gradle.kts")
+        ktlint()
+    }
+    flexmark {
+        target("**/*.md")
+        flexmark()
     }
 }

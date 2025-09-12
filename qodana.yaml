@@ -14,5 +14,5 @@ exclude:
       - tools
       - types
       - yaml
-projectJDK: 19
-linter: jetbrains/qodana-jvm-community:2023.3
+projectJDK: 21
+linter: jetbrains/qodana-jvm-community:2025.2
