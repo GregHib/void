@@ -21,6 +21,7 @@ enum class ChatType(val id: Int) {
     ObjectExamine(29),
     FriendsList(30),
     IgnoresList(31),
+    ConsoleSet(98),
     Console(99),
     TradeRequest(100),
     ChallengeDuel(101),
