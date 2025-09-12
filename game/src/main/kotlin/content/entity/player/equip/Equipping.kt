@@ -44,6 +44,10 @@ class Equipping : Api {
                 player.message("You attempt to use the Monkey Greegree but nothing happens.")
                 return@inventoryOptions
             }
+            if (item.slot == EquipSlot.Hat && player.tile in areas["west_ardougne"]) {
+                player.message("You should leave your gas mask on while you're in West Ardougne.")
+                return@inventoryOptions
+            }
             if (item.id.endsWith("goblin_mail")) {
                 player.message("That armour is too small for a human.")
                 return@inventoryOptions
@@ -73,6 +77,10 @@ class Equipping : Api {
         }
 
         inventoryOption("Remove", "worn_equipment") {
+            if (item.id == "gas_mask" && player.tile in areas["west_ardougne"]) {
+                player.message("You should leave your gas mask on while you're in West Ardougne.")
+                return@inventoryOption
+            }
             if (item.id == "rubber_chicken" || item.id == "easter_carrot") {
                 player.options.remove("Whack")
             }
