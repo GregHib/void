@@ -33,3 +33,7 @@ dependencies {
 
     testImplementation(libs.mockk)
 }
+
+tasks.withType<AbstractTestTask>().configureEach {
+    failOnNoDiscoveredTests = false
+}

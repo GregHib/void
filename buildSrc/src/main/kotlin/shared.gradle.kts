@@ -20,7 +20,7 @@ kotlin {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_21)
 //         https://youtrack.jetbrains.com/issue/KT-4779/Generate-default-methods-for-implementations-in-interfaces
-        freeCompilerArgs.addAll("-Xinline-classes", "-Xcontext-receivers", "-Xjvm-default=all-compatibility")
+        freeCompilerArgs.addAll("-Xinline-classes", "-Xcontext-parameters", "-Xjvm-default=all-compatibility")
     }
 }
 
