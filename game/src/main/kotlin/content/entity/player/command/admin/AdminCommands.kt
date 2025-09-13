@@ -88,28 +88,22 @@ class AdminCommands {
 
     val areas: AreaDefinitions by inject()
     val players: Players by inject()
-
     val exchange: GrandExchange by inject()
-
     val definitions: ItemDefinitions by inject()
-    val alternativeNames = Object2ObjectOpenHashMap<String, String>()
-
-    val utf8Regex = "[^\\x20-\\x7e]".toRegex()
-
     val enums: EnumDefinitions by inject()
-
     val itemDefinitions: ItemDefinitions by inject()
-
     val tables: DropTables by inject()
-
     val accountLoader: PlayerAccountLoader by inject()
+
+    val alternativeNames = Object2ObjectOpenHashMap<String, String>()
+    val utf8Regex = "[^\\x20-\\x7e]".toRegex()
 
     init {
         Command.adminCommands.add("${Colours.PURPLE.toTag()}====== Admin Commands ======</col>")
 
         Command.adminCommands.add("")
 
-        val coords = Commands.signature(Arg<Int>("x"), Arg<Int>("y"), Arg<Int>("level", optional = true), description = "Teleport to given coordinates") {
+        val coords = command(arg<Int>("x"), arg<Int>("y"), arg<Int>("level", optional = true), desc = "Teleport to given coordinates") { player, args ->
             val x = args[1].trim(',').toInt()
             val y = args[2].trim(',').toInt()
             val level = args.getOrNull(3)?.trim(',')?.toInt() ?: player.tile.level
@@ -117,7 +111,6 @@ class AdminCommands {
             player["world_map_centre"] = player.tile.id
             player["world_map_marker_player"] = player.tile.id
         }
-
         val places = mapOf(
             "draynor" to Tile(3086, 3248, 0),
             "varrock" to Tile(3212, 3429, 0),
@@ -129,9 +122,8 @@ class AdminCommands {
             "canifis" to Tile(3474, 3475, 0),
             "grand_exchange" to Tile(3164, 3484, 0),
         )
-
-        val place = Commands.signature(Arg<String>("name", autoComplete = { places.keys + areas.names }, desc = "Area Name"), description = "Teleport to given area") {
-            val name = content.lowercase().replace(" ", "_")
+        val place = command(arg<String>("name", autofill = { places.keys + areas.names }, desc = "Area Name"), desc = "Teleport to given area") { player, args ->
+            val name = args.joinToString(" ").lowercase().replace(" ", "_")
             val place = places[name]
             if (place != null) {
                 player.tele(place)
@@ -141,17 +133,15 @@ class AdminCommands {
             player["world_map_centre"] = player.tile.id
             player["world_map_marker_player"] = player.tile.id
         }
-
-        val region = Commands.signature(Arg<Int>("region", desc = "Region ID"), description = "Teleport to given region id") {
+        val region = command(arg<Int>("region", desc = "Region ID"), desc = "Teleport to given region id") { player, args ->
             player.tele(Region(args[0].toInt()).tile.add(32, 32))
             player["world_map_centre"] = player.tile.id
             player["world_map_marker_player"] = player.tile.id
         }
+        adminCommands("tele", coords, place, region)
+        commandAlias("tele", "tp")
 
-        Commands.admin("tele", coords, place, region)
-        Commands.alias("tele", "tp")
-
-        Commands.admin("teleto", Arg<String>("player-name", desc = "player name (use quotes if contains spaces)"), description = "Teleport to another player") {
+        adminCommand("teleto", arg<String>("player-name", desc = "player name (use quotes if contains spaces)"), desc = "Teleport to another player") { player, args ->
             val target = players.firstOrNull { it.name.equals(args[0], true) }
             if (target != null) {
                 player.tele(target.tile)

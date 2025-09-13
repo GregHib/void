@@ -19,7 +19,7 @@ class ExecuteCommandHandler : InstructionHandler<ExecuteCommand>() {
 
     override fun validate(player: Player, instruction: ExecuteCommand) {
         if (instruction.tab) {
-            Commands.autoComplete(player, instruction.command)
+            Commands.autofill(player, instruction.command)
             return
         }
         val parts = instruction.command.split(" ")

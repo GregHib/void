@@ -1,13 +1,15 @@
 package world.gregs.voidps.engine.client.ui.event
 
+import world.gregs.voidps.engine.entity.character.player.Player
+
 /**
  * Command argument signature
  * For commands that can take multiple different types of arguments
  */
 data class CommandSignature(
-    val args: List<Arg>,
+    val args: List<CommandArgument> = emptyList(),
     val description: String = "",
-    val handler: suspend CommandContext.() -> Unit,
+    val handler: suspend (Player, List<String>) -> Unit,
 ) {
 
     /**

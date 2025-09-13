@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.ui.event
 
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.splitSafe
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -8,15 +9,23 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.hasRights
 import world.gregs.voidps.type.Distance
 
-object Commands {
+open class Commands {
     private val aliases: MutableMap<String, String> = mutableMapOf()
     private val suggestions: MutableMap<String, String> = mutableMapOf()
     val commands: MutableMap<String, CommandMetadata> = mutableMapOf()
+    private val logger = InlineLogger("Commands")
 
-    private fun register(metadata: CommandMetadata) {
-        commands[metadata.name] = metadata
+
+    /**
+     * Register a command
+     */
+    fun register(name: String, signatures: List<CommandSignature>, rights: PlayerRights = PlayerRights.None) {
+        commands[name] = CommandMetadata(name = name, rights = rights, signatures = signatures)
     }
 
+    /**
+     * Call a command
+     */
     suspend fun call(player: Player, command: String) {
         val parts = command.splitSafe(' ')
         val prefix = parts.getOrNull(0)?.lowercase() ?: return
@@ -34,28 +43,35 @@ object Commands {
             }
             return
         }
-        val content = command.removePrefix(parts[0]).trim()
-        signature.handler.invoke(CommandContext(player, arguments, content))
+        try {
+            signature.handler.invoke(player, arguments)
+        } catch (e: Exception) {
+            logger.error(e) { "Error in command '${metadata.name}'" }
+        }
     }
 
-    fun find(player: Player, prefix: String): CommandMetadata? {
-        val metadata = commands[prefix]
+    /**
+     * Find a command given [commandName], [PlayerRights], an exact name match or [alias].
+     * If no command found return null but give [suggestions] or nearest match.
+     */
+    fun find(player: Player, commandName: String): CommandMetadata? {
+        val metadata = commands[commandName]
         if (metadata == null) {
-            val alias = aliases[prefix]
+            val alias = aliases[commandName]
             if (alias != null) {
                 return commands[alias]
             }
-            val suggestion = suggestions[prefix]
+            val suggestion = suggestions[commandName]
             if (suggestion != null) {
-                player.message("Unknown command: $prefix. Did you mean '$suggestion'?", ChatType.Console)
+                player.message("Unknown command: $commandName. Did you mean '$suggestion'?", ChatType.Console)
                 return null
             }
-            val closest = commands.keys.minByOrNull { Distance.levenshtein(it, prefix) }
-            if (closest != null && Distance.levenshtein(closest, prefix) <= 2) {
-                player.message("Unknown command: $prefix. Did you mean '$closest'?", ChatType.Console)
+            val closest = commands.keys.minByOrNull { Distance.levenshtein(it, commandName) }
+            if (closest != null && Distance.levenshtein(closest, commandName) <= 2) {
+                player.message("Unknown command: $commandName. Did you mean '$closest'?", ChatType.Console)
                 return null
             }
-            player.message("Unknown command: $prefix.", ChatType.Console)
+            player.message("Unknown command: $commandName.", ChatType.Console)
             return null
         }
         if (!player.hasRights(metadata.rights)) {
@@ -65,9 +81,11 @@ object Commands {
         return metadata
     }
 
-    fun autoComplete(player: Player, content: String) {
-        val parts = content.splitSafe(' ')
-
+    /**
+     * Autofill partially complete console [command] with [commands] or [CommandArgument.autofill] values
+     */
+    fun autofill(player: Player, command: String) {
+        val parts = command.splitSafe(' ')
         if (parts.isEmpty()) {
             return
         }
@@ -81,12 +99,12 @@ object Commands {
         }
 
         // Match arguments
-        val command = find(player, parts[0]) ?: return
+        val metadata = find(player, parts[0]) ?: return
         val arguments = parts.drop(1)
-        val signatures = command.find(arguments) ?: return
+        val signatures = metadata.find(arguments) ?: return
         val arg = signatures.args.getOrNull(arguments.lastIndex) ?: return
         val last = parts.last()
-        val filtered = arg.autoComplete?.invoke()?.filter { it.startsWith(last, ignoreCase = true) } ?: return
+        val filtered = arg.autofill?.invoke()?.filter { it.startsWith(last, ignoreCase = true) } ?: return
         if (filtered.size > 1) {
             val take = player["auto_complete_match", 5]
             player.message("Multiple matches${if (filtered.size < 6) "" else " (showing $take of ${filtered.size})"}:", ChatType.Console)
@@ -99,6 +117,9 @@ object Commands {
         player.message("${parts.dropLast(1).joinToString(" ")} $complete", ChatType.ConsoleSet)
     }
 
+    /**
+     * Find the longest string which all [strings] start with
+     */
     private fun longestCommonPrefix(strings: List<String>): String? {
         if (strings.isEmpty()) {
             return null
@@ -130,6 +151,7 @@ object Commands {
 
     /**
      * Common incorrect [name] which should be corrected
+     * For replacements @see [alias]
      */
     fun suggest(name: String, vararg alternatives: String) {
         for (alternative in alternatives) {
@@ -137,42 +159,36 @@ object Commands {
         }
     }
 
-    fun player(name: String, vararg arguments: Arg, description: String = "", handler: suspend CommandContext.() -> Unit) {
-        player(name, CommandSignature(arguments.toList(), description, handler))
-    }
+    companion object : Commands()
+}
 
-    fun mod(name: String, vararg arguments: Arg, description: String = "", handler: suspend CommandContext.() -> Unit) {
-        mod(name, CommandSignature(arguments.toList(), description, handler))
-    }
+fun playerCommand(name: String, vararg arguments: CommandArgument, desc: String = "", handler: suspend (Player, List<String>) -> Unit) {
+    Commands.register(name, listOf(CommandSignature(arguments.toList(), desc, handler)))
+}
 
-    fun admin(name: String, vararg arguments: Arg, description: String = "", handler: suspend CommandContext.() -> Unit) {
-        admin(name, CommandSignature(arguments.toList(), description, handler))
-    }
+fun modCommand(name: String, vararg arguments: CommandArgument, desc: String = "", handler: suspend (Player, List<String>) -> Unit) {
+    Commands.register(name, listOf(CommandSignature(arguments.toList(), desc, handler)), PlayerRights.Mod)
+}
 
-    fun player(name: String, vararg signatures: CommandSignature) {
-        register(CommandMetadata(name = name, signatures = signatures.toList()))
-    }
+fun adminCommand(name: String, vararg arguments: CommandArgument, desc: String = "", handler: suspend (Player, List<String>) -> Unit) {
+    Commands.register(name, listOf(CommandSignature(arguments.toList(), desc, handler)), PlayerRights.Admin)
+}
 
-    fun mod(name: String, vararg signatures: CommandSignature) {
-        register(
-            CommandMetadata(
-                name = name,
-                rights = PlayerRights.Mod,
-                signatures = signatures.toList(),
-            )
-        )
-    }
+fun commandAlias(name: String, vararg alternatives: String) {
+    Commands.alias(name, *alternatives)
+}
 
-    fun admin(name: String, vararg signatures: CommandSignature) {
-        register(
-            CommandMetadata(
-                name = name,
-                rights = PlayerRights.Admin,
-                signatures = signatures.toList(),
-            )
-        )
-    }
+fun command(vararg args: CommandArgument, desc: String = "", handler: suspend (Player, List<String>) -> Unit) = CommandSignature(args.toList(), desc, handler)
 
-    fun signature(vararg args: Arg, description: String = "", handler: suspend CommandContext.() -> Unit) = CommandSignature(args.toList(), description, handler)
 
+fun playerCommands(name: String, vararg signatures: CommandSignature) {
+    Commands.register(name, signatures.toList())
+}
+
+fun modCommands(name: String, vararg signatures: CommandSignature) {
+    Commands.register(name, signatures.toList(), PlayerRights.Mod)
+}
+
+fun adminCommands(name: String, vararg signatures: CommandSignature) {
+    Commands.register(name, signatures.toList(), PlayerRights.Admin)
 }

@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.dialogue.continueItemDialogue
-import world.gregs.voidps.engine.client.ui.event.Arg
-import world.gregs.voidps.engine.client.ui.event.Commands
+import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.client.ui.event.arg
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -144,47 +144,45 @@ class GrandExchangeOffers {
 
         val grandExchangeItems = itemDefinitions.definitions.filter { def -> def.exchangeable && !def.noted && !def.lent && def.dummyItem == 0 }.map { it.stringId }.toSet()
 
-        Commands.admin(
-            "offers",
-            Arg<String>("name", desc = "the item id to search for", autoComplete = { grandExchangeItems }),
-            description = "search all grand exchange open offers"
-        ) {
-            if (player.hasClock("search_delay")) {
-                return@admin
-            }
-            player.start("search_delay", 1)
-            player.message("===== Offers =====", ChatType.Console)
-            val id = args[0].lowercase()
-            val definition = itemDefinitions.getOrNull(id)
-            if (definition == null) {
-                player.message("No results found for '$id'", ChatType.Console)
-                return@admin
-            }
-            val buying = exchange.offers.buying(id)
-            val foundBuy = buying.values.sumOf { it.size }
-            player.message("[$id] market price: ${exchange.history.marketPrice(id).toDigitGroupString()}", ChatType.Console)
-            if (buying.isNotEmpty()) {
-                player.message("$foundBuy buy offers found.", ChatType.Console)
-                val price = buying.higherKey(0)
-                val highest = buying[price]!!
-                for (offer in highest) {
-                    val user = accountDefinitions.getByAccount(offer.account)?.displayName
-                    player.message("[${id}] - price: $price amount: ${offer.remaining} player: $user", ChatType.Console)
-                }
-            }
-            val selling = exchange.offers.selling(id)
-            val foundSell = buying.values.sumOf { it.size }
-            if (selling.isNotEmpty()) {
-                player.message("$foundSell sell offers found.", ChatType.Console)
-                val price = buying.lowerKey(Int.MAX_VALUE)
-                val highest = buying[price]!!
-                for (offer in highest) {
-                    val user = accountDefinitions.getByAccount(offer.account)?.displayName
-                    player.message("[${id}] - price: $price amount: ${offer.remaining} player: $user", ChatType.Console)
-                }
-            }
-            player.message("${foundBuy + foundSell} results found for '$id'", ChatType.Console)
+        adminCommand("offers", arg<String>("name", desc = "the item id to search for", autofill = grandExchangeItems), desc = "search all grand exchange open offers", handler = ::offersCommand)
+    }
+
+    fun offersCommand(player: Player, args: List<String>) {
+        if (player.hasClock("search_delay")) {
+            return
         }
+        player.start("search_delay", 1)
+        player.message("===== Offers =====", ChatType.Console)
+        val id = args[0].lowercase()
+        val definition = itemDefinitions.getOrNull(id)
+        if (definition == null) {
+            player.message("No results found for '$id'", ChatType.Console)
+            return
+        }
+        val buying = exchange.offers.buying(id)
+        val foundBuy = buying.values.sumOf { it.size }
+        player.message("[$id] market price: ${exchange.history.marketPrice(id).toDigitGroupString()}", ChatType.Console)
+        if (buying.isNotEmpty()) {
+            player.message("$foundBuy buy offers found.", ChatType.Console)
+            val price = buying.higherKey(0)
+            val highest = buying[price]!!
+            for (offer in highest) {
+                val user = accountDefinitions.getByAccount(offer.account)?.displayName
+                player.message("[$id] - price: $price amount: ${offer.remaining} player: $user", ChatType.Console)
+            }
+        }
+        val selling = exchange.offers.selling(id)
+        val foundSell = buying.values.sumOf { it.size }
+        if (selling.isNotEmpty()) {
+            player.message("$foundSell sell offers found.", ChatType.Console)
+            val price = buying.lowerKey(Int.MAX_VALUE)
+            val highest = buying[price]!!
+            for (offer in highest) {
+                val user = accountDefinitions.getByAccount(offer.account)?.displayName
+                player.message("[$id] - price: $price amount: ${offer.remaining} player: $user", ChatType.Console)
+            }
+        }
+        player.message("${foundBuy + foundSell} results found for '$id'", ChatType.Console)
     }
 
     fun openItemSearch(player: Player) {
