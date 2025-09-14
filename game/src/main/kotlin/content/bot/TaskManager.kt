@@ -5,6 +5,7 @@ import world.gregs.voidps.type.random
 import java.util.*
 
 class TaskManager {
+    val names = mutableSetOf<String>()
     private val queue = LinkedList<Task>()
     private var idle = Task(
         name = "do nothing",
@@ -17,6 +18,7 @@ class TaskManager {
     )
 
     fun register(task: Task) {
+        names.add(task.name)
         queue.add(task)
     }
 

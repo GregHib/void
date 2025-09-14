@@ -1,4 +1,6 @@
-package world.gregs.voidps.engine.client.ui.event
+package world.gregs.voidps.engine.client.command
+
+import world.gregs.voidps.engine.client.ui.chat.toSIIntOrNull
 
 /**
  * Command argument
@@ -18,7 +20,7 @@ data class CommandArgument(
     fun canParse(value: String): Boolean {
         return when (type) {
             ArgType.String -> true
-            ArgType.Int -> value.toIntOrNull() != null
+            ArgType.Int -> value.toSIIntOrNull() != null
             ArgType.Double -> value.toDoubleOrNull() != null
             ArgType.Boolean -> value.equals("true", ignoreCase = true) || value.equals("false", ignoreCase = true)
         }
@@ -32,7 +34,7 @@ enum class ArgType { String, Int, Double, Boolean }
 /**
  * Dynamic [autofill] values
  */
-inline fun <reified T : Any> arg(key: String, optional: Boolean = false, desc: String = "", noinline autofill: (() -> Set<String>)? = null) = CommandArgument(
+inline fun <reified T : Any> arg(key: String, desc: String = "", optional: Boolean = false, noinline autofill: (() -> Set<String>)? = null) = CommandArgument(
     key,
     when (T::class) {
         Boolean::class -> ArgType.Boolean
@@ -46,7 +48,7 @@ inline fun <reified T : Any> arg(key: String, optional: Boolean = false, desc: S
 )
 
 
-inline fun <reified T : Any> arg(key: String, optional: Boolean = false, desc: String = "", autofill: Set<String>) = CommandArgument(
+inline fun <reified T : Any> arg(key: String, desc: String = "", optional: Boolean = false, autofill: Set<String>) = CommandArgument(
     key,
     when (T::class) {
         Boolean::class -> ArgType.Boolean

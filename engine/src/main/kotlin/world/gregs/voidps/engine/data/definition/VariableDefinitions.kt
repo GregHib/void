@@ -10,7 +10,7 @@ import kotlin.collections.set
 
 class VariableDefinitions {
 
-    private var definitions: Map<String, VariableDefinition> = emptyMap()
+    var definitions: Map<String, VariableDefinition> = emptyMap()
     private var varbitIds: Map<Int, String> = emptyMap()
     private var varpIds: Map<Int, String> = emptyMap()
 

@@ -12,7 +12,7 @@ import world.gregs.voidps.type.Tile
  */
 class PatrolDefinitions {
 
-    private lateinit var definitions: Map<String, PatrolDefinition>
+    lateinit var definitions: Map<String, PatrolDefinition>
 
     fun get(key: String) = definitions[key] ?: PatrolDefinition()
 

@@ -7,13 +7,14 @@ import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
-import world.gregs.voidps.engine.client.ui.event.Commands
-import world.gregs.voidps.engine.client.ui.event.arg
-import world.gregs.voidps.engine.client.ui.event.commandAlias
-import world.gregs.voidps.engine.client.ui.event.modCommand
-import world.gregs.voidps.engine.client.ui.event.playerCommand
+import world.gregs.voidps.engine.client.command.Commands
+import world.gregs.voidps.engine.client.command.arg
+import world.gregs.voidps.engine.client.command.commandAlias
+import world.gregs.voidps.engine.client.command.modCommand
+import world.gregs.voidps.engine.client.command.playerCommand
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.config.VariableDefinition.Companion.persist
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -31,6 +32,7 @@ class MetaCommands {
     val npcDefinitions: NPCDefinitions by inject()
     val accountDefinitions: AccountDefinitions by inject()
     val grandExchange: GrandExchange by inject()
+    val variableDefinitions: VariableDefinitions by inject()
 
     init {
         playerCommand(
@@ -130,6 +132,8 @@ class MetaCommands {
         found += searchPlayers(player, search)
         player.message("===== Clans =====", ChatType.Console)
         found += searchClans(player, search)
+        player.message("===== Variables =====", ChatType.Console)
+        found += searchVariables(player, search)
         player.message("$found results found for '$search'", ChatType.Console)
     }
 
@@ -200,12 +204,12 @@ class MetaCommands {
         val commands = Commands.commands.values
             .filter {
                 player.rights.ordinal >= it.rights.ordinal &&
-                    (
-                        filter == null ||
-                            it.name.contains(filter, ignoreCase = true) ||
-                            it.signatures.any { sig -> sig.description.contains(filter, ignoreCase = true) } ||
-                            it.signatures.any { sig -> sig.args.any { arg -> arg.key.contains(filter, ignoreCase = true) } }
-                        )
+                        (
+                                filter == null ||
+                                        it.name.contains(filter, ignoreCase = true) ||
+                                        it.signatures.any { sig -> sig.description.contains(filter, ignoreCase = true) } ||
+                                        it.signatures.any { sig -> sig.args.any { arg -> arg.key.contains(filter, ignoreCase = true) } }
+                                )
             }
             .sortedByDescending { it.name }
         for (command in commands) {
@@ -265,6 +269,17 @@ class MetaCommands {
         for ((name, clan) in accountDefinitions.clans) {
             if (name.contains(content, ignoreCase = true)) {
                 player.message("[$name] - members: ${clan.members.size}", ChatType.Console)
+                found++
+            }
+        }
+        return found
+    }
+
+    private fun searchVariables(player: Player, content: String): Int {
+        var found = 0
+        for ((name, definition) in variableDefinitions.definitions) {
+            if (name.contains(content, ignoreCase = true)) {
+                player.message("[$name] - id: ${definition.id}, default: ${definition.defaultValue}, persist: ${definition.persist}, values: ${definition.values}", ChatType.Console)
                 found++
             }
         }

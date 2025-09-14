@@ -7,7 +7,7 @@ class TextKtTest {
     @Test
     fun `Test indefinite articles`() {
         assertEquals(" a", "test".an())
-        assertEquals(" an", "world/gregs/voidps/engine/event".an())
+        assertEquals(" an", "event".an())
         assertEquals("", "tests".an())
     }
 }

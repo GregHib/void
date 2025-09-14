@@ -3,7 +3,6 @@ package content.entity.effect.toxin
 import content.entity.combat.hit.characterCombatAttack
 import content.entity.combat.hit.directHit
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -116,14 +115,6 @@ class Poison {
             }
         }
 
-        adminCommand("poison [damage]", "toggle hitting player with poison") {
-            val damage = content.toIntOrNull() ?: 100
-            if (player.poisoned || damage < 0) {
-                player.curePoison()
-            } else {
-                player.poison(player, damage)
-            }
-        }
     }
 
     fun immune(character: Character) = character is NPC && character.def["immune_poison", false] || character is Player && character.equipped(EquipSlot.Shield).id == "anti_poison_totem"

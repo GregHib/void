@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.dialogue.continueItemDialogue
-import world.gregs.voidps.engine.client.ui.event.adminCommand
-import world.gregs.voidps.engine.client.ui.event.arg
+import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.command.arg
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption

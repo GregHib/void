@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.client.ui.event
+package world.gregs.voidps.engine.client.command
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.*

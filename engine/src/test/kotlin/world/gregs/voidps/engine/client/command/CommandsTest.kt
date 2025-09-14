@@ -1,6 +1,5 @@
-package world.gregs.voidps.engine.client.ui.event
+package world.gregs.voidps.engine.client.command
 
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*

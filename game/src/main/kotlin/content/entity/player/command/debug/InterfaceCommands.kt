@@ -1,180 +1,176 @@
 package content.entity.player.command.debug
 
+import content.entity.npc.shop.OpenShop
+import content.entity.player.dialogue.sendLines
+import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.sendInventoryItems
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.chat.Colours
-import world.gregs.voidps.engine.client.ui.chat.toTag
-import world.gregs.voidps.engine.client.ui.event.Command
-import world.gregs.voidps.engine.client.ui.event.adminCommand
+import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.command.adminCommands
+import world.gregs.voidps.engine.client.command.arg
+import world.gregs.voidps.engine.client.command.command
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
+import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.VariableDefinitions
+import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.encode.*
 
 @Script
 class InterfaceCommands {
 
     val definitions: InterfaceDefinitions by inject()
+    val animationDefinitions: AnimationDefinitions by inject()
+    val inventoryDefinitions: InventoryDefinitions by inject()
 
     init {
-        Command.adminCommands.add("${Colours.PURPLE.toTag()}====== Interface Commands ======</col>")
+        adminCommand("inter", arg<String>("interface-id"), desc = "open an interface with int or string id", handler = ::open)
 
-        Command.adminCommands.add("")
-
-        adminCommand("inter (interface-id)", "open an interface with int or string id") {
-            val id = content.toIntOrNull()
-            if (id == null) {
-                val name = content
-                player.interfaces.open(name)
-            } else if (id != -1 || !closeInterface(player)) {
-                val inter = definitions.get(content)
-                var parent = if (player.interfaces.resizable) 746 else 548
-                var index = if (player.interfaces.resizable) 5 else 8
-                val p = inter["parent_${if (player.interfaces.resizable) "resize" else "fixed"}", ""]
-                if (p.isNotBlank()) {
-                    parent = definitions.get(p).id
-                    index = inter["index_${if (player.interfaces.resizable) "resize" else "fixed"}", -1]
-                }
-                if (id == -1) {
-                    player.client?.closeInterface(InterfaceDefinition.pack(parent, index))
-                } else {
-                    println("Open $parent $index $id")
-                    player.client?.openInterface(false, InterfaceDefinition.pack(parent, index), id)
-                }
-            }
+        adminCommand("show", arg<String>("interface-id"), arg<String>("component-id"), arg<Boolean>("visible"), desc = "toggle visibility of an interface component") { player, args ->
+            player.client?.interfaceVisibility(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), !args[2].toBoolean())
         }
 
-        adminCommand("show (interface-id) (interface-component-id) (visibility)", "set the visibility of an interface component") {
-            val parts = content.split(" ")
-            player.client?.interfaceVisibility(InterfaceDefinition.pack(parts[0].toInt(), parts[1].toInt()), !parts[2].toBoolean())
+        adminCommand("colour", arg<String>("interface-id"), arg<String>("component-id"), arg<Int>("red"), arg<Int>("green"), arg<Int>("blue"), desc = "set colour of an interface component") { player, args ->
+            player.client?.colourInterface(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), args[2].toInt(), args[3].toInt(), args[4].toInt())
         }
 
-        adminCommand("colour (interface-id) (interface-component-id) (red) (green) (blue)", "set colour of interface component") {
-            val parts = content.split(" ")
-            player.client?.colourInterface(InterfaceDefinition.pack(parts[0].toInt(), parts[1].toInt()), parts[2].toInt(), parts[3].toInt(), parts[4].toInt())
+        adminCommand("send_text", arg<String>("interface-id"), arg<String>("component-id"), arg<String>("text", "text to send (use quotes for spaces)"), desc = "set text of an interface component") { player, args ->
+            player.interfaces.sendText(args[0], args[1], args[2])
         }
 
-        adminCommand("sendItem (interface) (interface-component) (item-id) [item-amount]", "send an item to an interface component") {
-            val parts = content.split(" ")
-            player.interfaces.sendItem(parts[0], parts[1], parts[2].toInt(), parts.getOrNull(3)?.toInt() ?: 1)
-        }
-
-        adminCommand("sendText (interface) (interface-component) (text...)", "send any text to an interface component") {
-            val parts = content.split(" ")
-            player.interfaces.sendText(parts[0], parts[1], content.removePrefix("${parts[0]} ${parts[1]} "))
-        }
-
-        adminCommand("setting (interface) (component-id) (from-slot) (to-slot) (settings...)", "send settings to an interface component") {
-            val parts = content.split(" ")
-            val remainder = parts.subList(4, parts.size).map { it.toIntOrNull() }.requireNoNulls().toIntArray()
+        adminCommand("send_setting", arg<String>("interface-id"), arg<String>("component-id"), arg<Int>("from-slot"), arg<Int>("t-slot"), arg<Int>("setting"), arg<Int>("setting", optional = true), arg<Int>("setting", optional = true), desc = "send settings to an interface component") { player, args ->
+            val remainder = args.subList(4, args.size).map { it.toIntOrNull() }.requireNoNulls().toIntArray()
             player.message("Settings sent ${remainder.toList()}", ChatType.Console)
-            player.sendInterfaceSettings(InterfaceDefinition.pack(parts[0].toInt(), parts[1].toInt()), parts[2].toInt(), parts[3].toInt(), getHash(*remainder))
+            player.sendInterfaceSettings(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), args[2].toInt(), args[3].toInt(), getHash(*remainder))
         }
 
-        adminCommand("script (script-id) [params...]", "run a client script with any number of parameters") {
-            val parts = content.split(" ")
-            val remainder = parts.subList(1, parts.size).map {
-                if (it == "true") {
-                    1
-                } else if (it == "false") {
-                    0
+        adminCommand(
+            "script",
+            arg<String>("script-id"),
+            arg<String>("param-1", optional = true),
+            arg<String>("param-2", optional = true),
+            arg<String>("param-3", optional = true),
+            arg<String>("param-4", optional = true),
+            arg<String>("param-5", optional = true),
+            desc = "run a client script with any number of parameters",
+            handler = ::sendScript
+        )
+
+        val component = command(arg<String>("interface-id"), arg<String>("component-id"), arg<Int>("item-id"), arg<Int>("item-amount"), desc = "send an item to an interface component") { player, args ->
+            player.interfaces.sendItem(args[0], args[1], args[2].toInt(), args.getOrNull(3)?.toInt() ?: 1)
+        }
+        val inventory = command(arg<String>("interface-id"), desc = "send an item to an interface component", handler = ::sendInventory)
+
+        adminCommands("send_items", component, inventory)
+
+        adminCommand(
+            "expr",
+            arg<String>("expression-id", autofill = { animationDefinitions.definitions.filter { it.stringId.startsWith("expression_") }.map { it.stringId.removePrefix("expression_") }.toSet() }),
+            desc = "display dialogue head with an animation expression",
+            handler = ::expression
+        )
+
+        adminCommand("shop", arg<String>("shop-id", autofill = { inventoryDefinitions.definitions.filter { it["shop", false] }.map { it.stringId }.toSet() }), desc = "open a shop by id") { player, args ->
+            player.emit(OpenShop(args[0]))
+        }
+    }
+
+    fun open(player: Player, args: List<String>) {
+        val id = args[0].toIntOrNull()
+        if (id == null) {
+            player.interfaces.open(args[0])
+            return
+        }
+        if (id == -1 && closeInterface(player)) {
+            return
+        }
+        val inter = definitions.get(args[0])
+        var parent = if (player.interfaces.resizable) 746 else 548
+        var index = if (player.interfaces.resizable) 5 else 8
+        val p = inter["parent_${if (player.interfaces.resizable) "resize" else "fixed"}", ""]
+        if (p.isNotBlank()) {
+            parent = definitions.get(p).id
+            index = inter["index_${if (player.interfaces.resizable) "resize" else "fixed"}", -1]
+        }
+        if (id == -1) {
+            player.client?.closeInterface(InterfaceDefinition.pack(parent, index))
+        } else {
+            println("Open $parent $index $id")
+            player.client?.openInterface(false, InterfaceDefinition.pack(parent, index), id)
+        }
+    }
+
+    fun sendScript(player: Player, args: List<String>) {
+        val remainder: List<Any> = args.subList(1, args.size).map {
+            when (it) {
+                "true" -> 1
+                "false" -> 0
+                else -> it.toIntOrNull() ?: it
+            }
+        }
+        val id = args[0].toIntOrNull()
+        if (id == null) {
+            player.sendScript(id = args[0], *remainder.toTypedArray())
+        } else {
+            player.sendScript(id, remainder)
+        }
+    }
+
+    fun expression(player: Player, args: List<String>) {
+        val id = args[0].toIntOrNull()
+        val content = args.joinToString(" ")
+        if (id != null) {
+            val npc = id < 1000
+            if (player.open("dialogue_${if (npc) "npc_" else ""}chat1")) {
+                if (npc) {
+                    player.client?.npcDialogueHead(15794178, 2176)
                 } else {
-                    it.toIntOrNull() ?: it
+                    player.client?.playerDialogueHead(4194306)
                 }
+                player.interfaces.sendAnimation("dialogue_${if (npc) "npc_" else ""}chat1", "head", id)
+                player.interfaces.sendText("dialogue_${if (npc) "npc_" else ""}chat1", "title", "title")
+                player.interfaces.sendLines("dialogue_${if (npc) "npc_" else ""}chat1", listOf(content))
             }
-            val id = parts[0].toIntOrNull()
-            if (id == null) {
-                player.sendScript(id = parts[0], *remainder.toTypedArray())
-            } else {
-                player.sendScript(id, remainder)
-            }
-        }
-
-        adminCommand("sendItems (interface-id)") {
-            repeat(1200) {
-                player.sendInventoryItems(it, 0, intArrayOf(), false)
-            }
-            for (inventory in 0 until 1200) {
-                player.sendInventoryItems(inventory, 1, intArrayOf(995, 100), false)
-            }
-            var setting = 0
-            for (i in 0 until 10) {
-                setting += (2 shl i)
-            }
-            val options = Array(9) { "Option $it" }
-            val definition = definitions.get(content)
-            for ((id, component) in definition.components ?: return@adminCommand) {
-                if (InterfaceDefinition.componentId(id) == 16) {
-                    player.sendScript("primary_options", component.id, 0, 1, 1, 0, -1, *options)
-                    player.sendScript("secondary_options", component.id, 0, 1, 1, 0, -1, *options)
-                    player.sendInterfaceSettings(id, 0, 100, setting)
-                }
+        } else {
+            player.queue("dialogue_command") {
+                npc("1902", content, content)
             }
         }
-
-        adminCommand("var (variable-name) (variable-value)", "set a variable") {
-            val parts = content.split(" ")
-            player[parts.first()] = parts.last().toBooleanStrictOrNull() ?: parts.last().toIntOrNull() ?: parts.last()
+    }
+    fun sendInventory(player: Player, args: List<String>) {
+//        val array = IntArray(28 * 2)
+//        array[0] = 995
+//        array[28] = 1
+//        player.sendInventoryItems(90, 28, array, false)
+//        val ags = IntArray(28 * 2)
+//        ags[0] = 11694
+//        ags[28] = 1
+//        player.sendInventoryItems(90, 28, ags, true)
+        repeat(1200) {
+            player.sendInventoryItems(it, 0, intArrayOf(), false)
         }
-
-        adminCommand("varp (varp-id) (int-value)", "send a player-variable value to the client by string or int id") {
-            val parts = content.split(" ")
-            val intId = parts.first().toIntOrNull()
-            if (intId == null) {
-                player.variables.set(parts.first(), parts.last().toInt())
-            } else {
-                val def: VariableDefinitions = get()
-                val name = def.getVarp(intId)
-                if (name == null) {
-                    player.client?.sendVarp(intId, parts.last().toInt())
-                } else {
-                    player.variables.set(name, parts.last().toInt())
-                }
-            }
+        for (inventory in 0 until 1200) {
+            player.sendInventoryItems(inventory, 1, intArrayOf(995, 100), false)
         }
-
-        adminCommand("varbit (varbit-id) (int-value)", "send a variable-bit value to the client by string or int id") {
-            val parts = content.split(" ")
-            val intId = parts.first().toIntOrNull()
-            if (intId == null) {
-                player.variables.set(parts.first(), parts.last().toInt())
-            } else {
-                val def: VariableDefinitions = get()
-                val name = def.getVarbit(intId)
-                if (name == null) {
-                    player.client?.sendVarbit(intId, parts.last().toInt())
-                } else {
-                    player.variables.set(name, parts.last().toInt())
-                }
-            }
+        var setting = 0
+        for (i in 0 until 10) {
+            setting += (2 shl i)
         }
-
-        adminCommand("varc (varc-id) (int-value)", "send a client-variable value to the client by string or int id") {
-            val parts = content.split(" ")
-            val intId = parts.first().toIntOrNull()
-            if (intId == null) {
-                player.variables.set(parts.first(), parts.last().toInt())
-            } else {
-                player.client?.sendVarc(intId, parts.last().toInt())
-            }
-        }
-
-        adminCommand("varcstr (varcstr-id) (string-value)", "send a variable-client-string value to the client") {
-            val parts = content.split(" ")
-            val intId = parts.first().toIntOrNull()
-            val string = content.removePrefix("${parts.first()} ")
-            if (intId == null) {
-                player.variables.set(parts.first(), string)
-            } else {
-                player.client?.sendVarcStr(intId, string)
+        val options = Array(9) { "Option $it" }
+        val definition = definitions.get(args[0])
+        for ((id, component) in definition.components ?: return) {
+            if (InterfaceDefinition.componentId(id) == 16) {
+                player.sendScript("primary_options", component.id, 0, 1, 1, 0, -1, *options)
+                player.sendScript("secondary_options", component.id, 0, 1, 1, 0, -1, *options)
+                player.sendInterfaceSettings(id, 0, 100, setting)
             }
         }
     }

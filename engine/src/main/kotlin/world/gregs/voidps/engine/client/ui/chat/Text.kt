@@ -54,7 +54,25 @@ fun String.toSILong(): Long {
     }
 }
 
+fun String.toSILongOrNull(): Long? {
+    val last = last()
+    return if (last.isLetter()) {
+        val long = removeSuffix(last.toString()).toLongOrNull() ?: return null
+        when (last().lowercaseChar()) {
+            't' -> long * 0xe8d4a51000
+            'b' -> long * 0x3b9aCa00
+            'm' -> long * 0xf4240
+            'k' -> long * 0x3e8
+            else -> return null
+        }
+    } else {
+        toLongOrNull()
+    }
+}
+
 fun String.toSIInt() = toSILong().toInt()
+
+fun String.toSIIntOrNull() = toSILongOrNull()?.toInt()
 
 fun Boolean?.toInt() = if (this == true) 1 else 0
 

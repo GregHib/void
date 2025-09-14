@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.client.ui.event
+package world.gregs.voidps.engine.client.command
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.message
@@ -12,15 +12,14 @@ import world.gregs.voidps.type.Distance
 open class Commands {
     private val aliases: MutableMap<String, String> = mutableMapOf()
     private val suggestions: MutableMap<String, String> = mutableMapOf()
-    val commands: MutableMap<String, CommandMetadata> = mutableMapOf()
+    val commands: MutableMap<String, Command> = mutableMapOf()
     private val logger = InlineLogger("Commands")
-
 
     /**
      * Register a command
      */
     fun register(name: String, signatures: List<CommandSignature>, rights: PlayerRights = PlayerRights.None) {
-        commands[name] = CommandMetadata(name = name, rights = rights, signatures = signatures)
+        commands[name] = Command(name = name, rights = rights, signatures = signatures)
     }
 
     /**
@@ -47,6 +46,7 @@ open class Commands {
         try {
             signature.handler.invoke(player, arguments)
         } catch (e: Exception) {
+            player.message(e.message ?: "error", ChatType.Console)
             logger.error(e) { "Error in command '${metadata.name}'" }
         }
     }
@@ -55,7 +55,7 @@ open class Commands {
      * Find a command given [commandName], [PlayerRights], an exact name match or [alias].
      * If no command found return null but give [suggestions] or nearest match.
      */
-    fun find(player: Player, commandName: String): CommandMetadata? {
+    fun find(player: Player, commandName: String): Command? {
         val metadata = commands[commandName]
         if (metadata == null) {
             val alias = aliases[commandName]
@@ -183,6 +183,10 @@ fun adminCommand(name: String, vararg arguments: CommandArgument, desc: String =
 
 fun commandAlias(name: String, vararg alternatives: String) {
     Commands.alias(name, *alternatives)
+}
+
+fun commandSuggestion(name: String, vararg alternatives: String) {
+    Commands.suggest(name, *alternatives)
 }
 
 fun command(vararg args: CommandArgument, desc: String = "", handler: suspend (Player, List<String>) -> Unit) = CommandSignature(args.toList(), desc, handler)

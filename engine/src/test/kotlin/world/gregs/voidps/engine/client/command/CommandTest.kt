@@ -1,11 +1,11 @@
-package world.gregs.voidps.engine.client.ui.event
+package world.gregs.voidps.engine.client.command
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-class CommandMetadataTest {
+class CommandTest {
 
-    private fun command(vararg signatures: CommandSignature) = CommandMetadata("test", signatures = signatures.toList())
+    private fun command(vararg signatures: CommandSignature) = Command("test", signatures = signatures.toList())
 
     private fun sig(vararg args: CommandArgument) =
         CommandSignature(args.toList()) { _, _ -> }
@@ -18,7 +18,7 @@ class CommandMetadataTest {
 
     @Test
     fun `No signature matches`() {
-        val meta = command(sig(arg<Int>("num", false)))
+        val meta = command(sig(arg<Int>("num")))
         assertNull(meta.find(listOf("not-a-number")))
     }
 
