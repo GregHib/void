@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.inject
 class Rights {
 
     val accounts: AccountDefinitions by inject()
+
     init {
         playerSpawn { player ->
             if (player.name == Settings.getOrNull("development.admin.name") && player.rights != PlayerRights.Admin) {
