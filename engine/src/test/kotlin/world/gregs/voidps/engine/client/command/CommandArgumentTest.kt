@@ -31,6 +31,13 @@ class CommandArgumentTest {
     fun `Can parse double`() {
         val arg = CommandArgument("test", ArgType.Double)
         assertTrue(arg.canParse("123.0"))
+        assertTrue(arg.canParse("123"))
+    }
+
+    @Test
+    fun `Can't parse double`() {
+        val arg = CommandArgument("test", ArgType.Double)
+        assertFalse(arg.canParse("12_3"))
     }
 
     @Test

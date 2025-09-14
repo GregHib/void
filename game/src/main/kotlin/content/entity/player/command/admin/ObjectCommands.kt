@@ -1,7 +1,8 @@
 package content.entity.player.command.admin
 
 import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.arg
+import world.gregs.voidps.engine.client.command.intArg
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.Script
@@ -15,14 +16,13 @@ class ObjectCommands {
     init {
         adminCommand(
             "obj",
-            arg<String>("object-id"),
-            arg<Int>("object-shape", optional = true),
-            arg<Int>("object-rotation", optional = true),
-            arg<Int>("ticks", optional = true),
+            stringArg("object-id"),
+            intArg("object-shape", optional = true),
+            intArg("object-rotation", optional = true),
+            intArg("ticks", optional = true),
             desc = "Spawn an object",
-            handler = ::spawn
+            handler = ::spawn,
         )
-
     }
 
     fun spawn(player: Player, args: List<String>) {

@@ -1,9 +1,9 @@
 package content.entity.player.command.admin
 
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.arg
 import world.gregs.voidps.engine.client.command.modCommand
+import world.gregs.voidps.engine.client.command.stringArg
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -24,7 +24,7 @@ class NPCCommands {
         modCommand("npcs", desc = "get total npc count") { player, _ ->
             player.message("NPCs: ${npcs.count()}")
         }
-        adminCommand("npc", arg<String>("npc-id", autofill = npcDefinitions.ids.keys), desc = "spawn an npc", handler = ::spawn)
+        adminCommand("npc", stringArg("npc-id", autofill = npcDefinitions.ids.keys), desc = "spawn an npc", handler = ::spawn)
     }
 
     fun spawn(player: Player, args: List<String>) {
@@ -39,5 +39,4 @@ class NPCCommands {
         val npc = npcs.add(definition.stringId, player.tile, Direction.NORTH)
         npc.start("movement_delay", -1)
     }
-
 }

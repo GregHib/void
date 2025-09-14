@@ -3,9 +3,10 @@ package content.entity.effect
 import content.entity.effect.toxin.*
 import content.entity.player.command.admin.find
 import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.arg
 import world.gregs.voidps.engine.client.command.commandAlias
 import world.gregs.voidps.engine.client.command.commandSuggestion
+import world.gregs.voidps.engine.client.command.intArg
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -21,11 +22,11 @@ class EffectCommands {
     val npcDefinitions: NPCDefinitions by inject()
 
     init {
-        adminCommand("disease", arg<Int>("damage", optional = true), arg<String>("player-name", optional = true), desc = "disease the player", handler = ::poison)
-        adminCommand("poison", arg<Int>("damage", optional = true), arg<String>("player-name", optional = true), desc = "poison the player", handler = ::poison)
-        adminCommand("freeze", arg<Int>("ticks", optional = true), arg<String>("player-name", optional = true), desc = "freeze the player", handler = ::freeze)
-        adminCommand("cure", arg<String>("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "cure the player", handler = ::cure)
-        adminCommand("tfm", arg<String>("npc-id", autofill = npcDefinitions.ids.keys), arg<String>("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "transform into an npc (-1 to clear)", handler = ::transform)
+        adminCommand("disease", intArg("damage", optional = true), stringArg("player-name", optional = true), desc = "disease the player", handler = ::poison)
+        adminCommand("poison", intArg("damage", optional = true), stringArg("player-name", optional = true), desc = "poison the player", handler = ::poison)
+        adminCommand("freeze", intArg("ticks", optional = true), stringArg("player-name", optional = true), desc = "freeze the player", handler = ::freeze)
+        adminCommand("cure", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "cure the player", handler = ::cure)
+        adminCommand("tfm", stringArg("npc-id", autofill = npcDefinitions.ids.keys), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "transform into an npc (-1 to clear)", handler = ::transform)
         commandAlias("tfm", "transform")
         commandSuggestion("tfm", "pnpc", "morph")
     }

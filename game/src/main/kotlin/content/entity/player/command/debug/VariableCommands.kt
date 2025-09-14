@@ -2,7 +2,8 @@ package content.entity.player.command.debug
 
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.arg
+import world.gregs.voidps.engine.client.command.intArg
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -17,11 +18,11 @@ class VariableCommands {
     val variables: VariableDefinitions by inject()
 
     init {
-        adminCommand("var", arg<String>("variable-name", autofill = variables.definitions.keys), arg<String>("value"), desc = "set a variable") { player, args ->
+        adminCommand("var", stringArg("variable-name", autofill = variables.definitions.keys), stringArg("value"), desc = "set a variable") { player, args ->
             player[args.first()] = args.last().toBooleanStrictOrNull() ?: args.last().toIntOrNull() ?: args.last()
         }
 
-        adminCommand("varp", arg<String>("id", autofill = variables.definitions.keys), arg<Int>("value"), desc = "send player-variable to client") { player, args ->
+        adminCommand("varp", stringArg("id", autofill = variables.definitions.keys), intArg("value"), desc = "send player-variable to client") { player, args ->
             val intId = args.first().toIntOrNull()
             if (intId == null) {
                 player.variables.set(args.first(), args.last().toInt())
@@ -35,7 +36,7 @@ class VariableCommands {
             }
         }
 
-        adminCommand("varbit", arg<String>("id", autofill = variables.definitions.keys), arg<Int>("value"), desc = "send variable-bit to client") { player, args ->
+        adminCommand("varbit", stringArg("id", autofill = variables.definitions.keys), intArg("value"), desc = "send variable-bit to client") { player, args ->
             val intId = args.first().toIntOrNull()
             if (intId == null) {
                 player.variables.set(args.first(), args.last().toInt())
@@ -49,7 +50,7 @@ class VariableCommands {
             }
         }
 
-        adminCommand("varc", arg<String>("id", autofill = variables.definitions.keys), arg<Int>("value"), desc = "send client-variable to client") { player, args ->
+        adminCommand("varc", stringArg("id", autofill = variables.definitions.keys), intArg("value"), desc = "send client-variable to client") { player, args ->
             val intId = args.first().toIntOrNull()
             if (intId == null) {
                 player.variables.set(args.first(), args.last().toInt())
@@ -58,7 +59,7 @@ class VariableCommands {
             }
         }
 
-        adminCommand("varcstr", arg<String>("id", autofill = variables.definitions.keys), arg<String>("value"), desc = "send variable-client-string to client") { player, args ->
+        adminCommand("varcstr", stringArg("id", autofill = variables.definitions.keys), stringArg("value"), desc = "send variable-client-string to client") { player, args ->
             val intId = args.first().toIntOrNull()
             val string = args.drop(1).joinToString(" ")
             if (intId == null) {

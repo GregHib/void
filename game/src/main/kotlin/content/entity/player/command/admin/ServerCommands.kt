@@ -7,9 +7,9 @@ import content.entity.player.modal.book.Books
 import content.entity.world.music.MusicTracks
 import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
 import world.gregs.voidps.engine.client.PlayerAccountLoader
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.arg
+import world.gregs.voidps.engine.client.command.stringArg
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.SettingsReload
 import world.gregs.voidps.engine.data.configFiles
@@ -66,19 +66,19 @@ class ServerCommands {
     init {
         adminCommand(
             "update",
-            arg<String>("time", desc = "time unit (e.g. 100=1 minute or 1h 2m)", optional = true),
+            stringArg("time", desc = "time unit (e.g. 100=1 minute or 1h 2m)", optional = true),
             desc = "Start a system shutdown after a set amount of time",
-            handler = ::update
+            handler = ::update,
         )
         val configs = setOf(
             "books", "teleports", "music_tracks", "fairy_rings", "ships", "objects", "items", "nav_graph", "npcs", "areas", "emotes", "anims", "containers", "graphics",
-            "item_on_item", "sounds", "quests", "midis", "variables", "music", "interfaces", "spells", "patrols", "prayers", "drops", "client_scripts", "settings"
+            "item_on_item", "sounds", "quests", "midis", "variables", "music", "interfaces", "spells", "patrols", "prayers", "drops", "client_scripts", "settings",
         )
         adminCommand(
             "reload",
-            arg<String>("config-type", "type of content config file to reload", autofill = configs),
+            stringArg("config-type", "type of content config file to reload", autofill = configs),
             desc = "Reload configuration files for the game server",
-            handler = ::reload
+            handler = ::reload,
         )
     }
 
@@ -189,5 +189,4 @@ class ServerCommands {
             Main.server.stop()
         }
     }
-
 }

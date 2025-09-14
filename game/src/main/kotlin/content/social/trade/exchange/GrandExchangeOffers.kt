@@ -6,12 +6,12 @@ import content.entity.player.bank.isNote
 import content.entity.player.bank.noted
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
+import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.dialogue.continueItemDialogue
-import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.arg
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -144,7 +144,7 @@ class GrandExchangeOffers {
 
         val grandExchangeItems = itemDefinitions.definitions.filter { def -> def.exchangeable && !def.noted && !def.lent && def.dummyItem == 0 }.map { it.stringId }.toSet()
 
-        adminCommand("offers", arg<String>("name", desc = "the item id to search for", autofill = grandExchangeItems), desc = "search all grand exchange open offers", handler = ::offersCommand)
+        adminCommand("offers", stringArg("name", desc = "the item id to search for", autofill = grandExchangeItems), desc = "search all grand exchange open offers", handler = ::offersCommand)
     }
 
     fun offersCommand(player: Player, args: List<String>) {

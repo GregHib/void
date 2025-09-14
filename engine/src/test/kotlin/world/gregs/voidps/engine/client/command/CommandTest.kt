@@ -18,13 +18,13 @@ class CommandTest {
 
     @Test
     fun `No signature matches`() {
-        val meta = command(sig(arg<Int>("num")))
+        val meta = command(sig(intArg("num")))
         assertNull(meta.find(listOf("not-a-number")))
     }
 
     @Test
     fun `Matching signature`() {
-        val s1 = sig(arg<String>("a"))
+        val s1 = sig(stringArg("a"))
         val meta = command(s1)
         val result = meta.find(listOf("foo"))
         assertEquals(s1, result)
@@ -32,8 +32,8 @@ class CommandTest {
 
     @Test
     fun `Highest score when multiple match`() {
-        val s1 = sig(arg<String>("a"))
-        val s2 = sig(arg<String>("a"), arg<String>("b"))
+        val s1 = sig(stringArg("a"))
+        val s2 = sig(stringArg("a"), stringArg("b"))
         val meta = command(s1, s2)
         val result = meta.find(listOf("foo", "bar"))
         assertEquals(s2, result)
@@ -41,8 +41,8 @@ class CommandTest {
 
     @Test
     fun `First signature if scores are equal`() {
-        val s1 = sig(arg<String>("a"))
-        val s2 = sig(arg<String>("b"))
+        val s1 = sig(stringArg("a"))
+        val s2 = sig(stringArg("b"))
         val meta = command(s1, s2)
         val result = meta.find(listOf("x"))
         assertEquals(s1, result)

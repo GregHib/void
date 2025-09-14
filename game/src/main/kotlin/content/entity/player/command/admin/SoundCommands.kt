@@ -6,10 +6,10 @@ import content.entity.sound.jingle
 import content.entity.sound.midi
 import content.entity.sound.sound
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.arg
 import world.gregs.voidps.engine.client.command.commandAlias
+import world.gregs.voidps.engine.client.command.stringArg
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.event.Script
@@ -24,7 +24,7 @@ class SoundCommands {
     val enums: EnumDefinitions by inject()
 
     init {
-        adminCommand("sound", arg<String>("sound-id"), desc = "play a sound by int or string id") { player, args ->
+        adminCommand("sound", stringArg("sound-id"), desc = "play a sound by int or string id") { player, args ->
             val id = args[0].toIntOrNull()
             if (id == null) {
                 player.sound(args[0].toSnakeCase())
@@ -33,7 +33,7 @@ class SoundCommands {
             player.client?.playSoundEffect(id)
         }
 
-        adminCommand("midi", arg<String>("midi-id"), desc = "play a midi effect by int or string id") { player, args ->
+        adminCommand("midi", stringArg("midi-id"), desc = "play a midi effect by int or string id") { player, args ->
             val id = args[0].toIntOrNull()
             if (id == null) {
                 player.midi(args[0].toSnakeCase())
@@ -42,7 +42,7 @@ class SoundCommands {
             player.client?.playMIDI(id)
         }
 
-        adminCommand("jingle", arg<String>("jingle-id"), desc = "play a jingle sound by int or string id") { player, args ->
+        adminCommand("jingle", stringArg("jingle-id"), desc = "play a jingle sound by int or string id") { player, args ->
             val id = args[0].toIntOrNull()
             if (id == null) {
                 player.jingle(args[0].toSnakeCase())
@@ -51,7 +51,7 @@ class SoundCommands {
             player.client?.playJingle(id)
         }
 
-        adminCommand("song", arg<String>("song-id"), desc = "play a song by int id") { player, args ->
+        adminCommand("song", stringArg("song-id"), desc = "play a song by int id") { player, args ->
             val names = enums.get("music_track_names").map!!
             var id = args[0].toIntOrNull()
             if (id != null) {
@@ -72,8 +72,5 @@ class SoundCommands {
             }
         }
         commandAlias("song", "track")
-
     }
-
-
 }

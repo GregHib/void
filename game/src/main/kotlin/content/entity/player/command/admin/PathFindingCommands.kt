@@ -9,7 +9,7 @@ import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.arg
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -31,7 +31,7 @@ class PathFindingCommands {
     val collisions: Collisions by inject()
 
     init {
-        adminCommand("patrol", arg<String>("patrol-id", autofill = patrols.definitions.keys), desc = "walk along a patrol route") { player, args ->
+        adminCommand("patrol", stringArg("patrol-id", autofill = patrols.definitions.keys), desc = "walk along a patrol route") { player, args ->
             val patrol = patrols.get(args[0])
             player.tele(patrol.waypoints.first().first)
             player.mode = Patrol(player, patrol.waypoints)
@@ -70,7 +70,6 @@ class PathFindingCommands {
             println("Long path: ${timeLong}ms")
             println("Invalid path: ${timeInvalid}ms")
         }
-
 
         adminCommand("show_col", desc = "show nearby collision") { player, _ ->
             val area = player.tile.toCuboid(10)
@@ -159,5 +158,4 @@ class PathFindingCommands {
             }*/
         }
     }
-
 }

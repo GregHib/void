@@ -2,7 +2,8 @@ package content.entity.player.command.debug
 
 import content.entity.effect.transform
 import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.arg
+import world.gregs.voidps.engine.client.command.intArg
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
@@ -26,17 +27,17 @@ class NPCUpdatingCommands {
     val graphicDefinitions: GraphicDefinitions by inject()
 
     init {
-        adminCommand("npc_tfm", arg<String>("transform-id", autofill = definitions.ids.keys)) { player, args ->
+        adminCommand("npc_tfm", stringArg("transform-id", autofill = definitions.ids.keys)) { player, args ->
             val npc = npcs[player.tile.addY(1)].first()
             npc.transform(args[0])
         }
 
-        adminCommand("npc_turn", arg<Int>("delta-x"), arg<Int>("delta-y")) { player, args ->
+        adminCommand("npc_turn", intArg("delta-x"), intArg("delta-y")) { player, args ->
             val npc = npcs[player.tile.addY(1)].first()
             npc.face(Delta(args[0].toInt(), args[1].toInt()))
         }
 
-        adminCommand("npc_anim", arg<String>("anim-id", autofill = animationDefinitions.ids.keys)) { player, args ->
+        adminCommand("npc_anim", stringArg("anim-id", autofill = animationDefinitions.ids.keys)) { player, args ->
             val npc = npcs[player.tile.addY(1)].first()
             npc.anim(args[0]) // 863
         }
@@ -46,12 +47,12 @@ class NPCUpdatingCommands {
             npc.colourOverlay(-2108002746, 10, 100)
         }
 
-        adminCommand("npc_chat", arg<String>("message", optional = true)) { player, args ->
+        adminCommand("npc_chat", stringArg("message", optional = true)) { player, args ->
             val npc = npcs[player.tile.addY(1)].first()
             npc.say(args.getOrNull(0) ?: "Testing")
         }
 
-        adminCommand("npc_gfx", arg<String>("gfx-id", autofill = graphicDefinitions.ids.keys)) { player, args ->
+        adminCommand("npc_gfx", stringArg("gfx-id", autofill = graphicDefinitions.ids.keys)) { player, args ->
             val npc = npcs[player.tile.addY(1)].first()
             npc.gfx(args[0]) // 93
         }

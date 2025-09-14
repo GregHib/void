@@ -4,14 +4,14 @@ import content.quest.questJournal
 import content.social.trade.exchange.GrandExchange
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.Colours
-import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.command.Commands
-import world.gregs.voidps.engine.client.command.arg
 import world.gregs.voidps.engine.client.command.commandAlias
 import world.gregs.voidps.engine.client.command.modCommand
 import world.gregs.voidps.engine.client.command.playerCommand
+import world.gregs.voidps.engine.client.command.stringArg
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.Colours
+import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.config.VariableDefinition.Companion.persist
@@ -37,27 +37,27 @@ class MetaCommands {
     init {
         playerCommand(
             "commands",
-            arg<String>("filter", optional = true, desc = "term to search command list with"),
+            stringArg("filter", optional = true, desc = "term to search command list with"),
             desc = "display a list of available commands",
             handler = ::listCommands,
         )
 
         playerCommand(
             "help",
-            arg<String>("command-name", desc = "command name to lookup"),
+            stringArg("command-name", desc = "command name to lookup"),
             desc = "find more information about a specific command",
             handler = ::help,
         )
 
         modCommand(
             "find",
-            arg<String>("content-name", desc = "the term to search content for", autofill = { itemDefinitions.ids.keys + objectDefinitions.ids.keys + npcDefinitions.ids.keys + accountDefinitions.displayNames.keys + accountDefinitions.clans.keys }),
+            stringArg("content-name", desc = "the term to search content for", autofill = { itemDefinitions.ids.keys + objectDefinitions.ids.keys + npcDefinitions.ids.keys + accountDefinitions.displayNames.keys + accountDefinitions.clans.keys }),
             desc = "search all content",
             handler = ::find,
         )
         commandAlias("find", "search")
 
-        modCommand("items", arg<String>("name", desc = "the item name or id to search for", autofill = itemDefinitions.ids.keys), desc = "search all items") { player, args ->
+        modCommand("items", stringArg("name", desc = "the item name or id to search for", autofill = itemDefinitions.ids.keys), desc = "search all items") { player, args ->
             if (player.hasClock("search_delay")) {
                 return@modCommand
             }
@@ -68,7 +68,7 @@ class MetaCommands {
             player.message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("objects", arg<String>("name", desc = "the object name or id to search for", autofill = objectDefinitions.ids.keys), desc = "search all game objects") { player, args ->
+        modCommand("objects", stringArg("name", desc = "the object name or id to search for", autofill = objectDefinitions.ids.keys), desc = "search all game objects") { player, args ->
             if (player.hasClock("search_delay")) {
                 return@modCommand
             }
@@ -79,7 +79,7 @@ class MetaCommands {
             player.message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("npcs", arg<String>("name", desc = "the npc name or id to search for", autofill = npcDefinitions.ids.keys), desc = "search all npcs") { player, args ->
+        modCommand("npcs", stringArg("name", desc = "the npc name or id to search for", autofill = npcDefinitions.ids.keys), desc = "search all npcs") { player, args ->
             if (player.hasClock("search_delay")) {
                 return@modCommand
             }
@@ -90,7 +90,7 @@ class MetaCommands {
             player.message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("players", arg<String>("name", desc = "the player name or id to search for", autofill = accountDefinitions.displayNames.keys), desc = "search all players") { player, args ->
+        modCommand("players", stringArg("name", desc = "the player name or id to search for", autofill = accountDefinitions.displayNames.keys), desc = "search all players") { player, args ->
             if (player.hasClock("search_delay")) {
                 return@modCommand
             }
@@ -101,7 +101,7 @@ class MetaCommands {
             player.message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("clans", arg<String>("name", desc = "the clan name or id to search for", autofill = accountDefinitions.clans.keys), desc = "search all clans") { player, args ->
+        modCommand("clans", stringArg("name", desc = "the clan name or id to search for", autofill = accountDefinitions.clans.keys), desc = "search all clans") { player, args ->
             if (player.hasClock("search_delay")) {
                 return@modCommand
             }
@@ -204,12 +204,12 @@ class MetaCommands {
         val commands = Commands.commands.values
             .filter {
                 player.rights.ordinal >= it.rights.ordinal &&
-                        (
-                                filter == null ||
-                                        it.name.contains(filter, ignoreCase = true) ||
-                                        it.signatures.any { sig -> sig.description.contains(filter, ignoreCase = true) } ||
-                                        it.signatures.any { sig -> sig.args.any { arg -> arg.key.contains(filter, ignoreCase = true) } }
-                                )
+                    (
+                        filter == null ||
+                            it.name.contains(filter, ignoreCase = true) ||
+                            it.signatures.any { sig -> sig.description.contains(filter, ignoreCase = true) } ||
+                            it.signatures.any { sig -> sig.args.any { arg -> arg.key.contains(filter, ignoreCase = true) } }
+                        )
             }
             .sortedByDescending { it.name }
         for (command in commands) {

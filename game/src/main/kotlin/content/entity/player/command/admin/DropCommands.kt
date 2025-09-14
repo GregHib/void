@@ -4,13 +4,14 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import world.gregs.voidps.engine.client.command.intArg
+import world.gregs.voidps.engine.client.command.modCommand
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.chat.toSIInt
 import world.gregs.voidps.engine.client.ui.chat.toSIPrefix
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.command.arg
-import world.gregs.voidps.engine.client.command.modCommand
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -32,17 +33,17 @@ class DropCommands {
     init {
         modCommand(
             "chance",
-            arg<String>("drop-table-id", autofill = tables.tables.keys),
+            stringArg("drop-table-id", autofill = tables.tables.keys),
             desc = "Display chances for every item in a drop table",
-            handler = ::chance
+            handler = ::chance,
         )
 
         modCommand(
             "sim",
-            arg<String>("drop-table-id", autofill = tables.tables.keys),
-            arg<Int>("drop-count", desc = "Number of drops to simulate", optional = true),
+            stringArg("drop-table-id", autofill = tables.tables.keys),
+            intArg("drop-count", desc = "Number of drops to simulate", optional = true),
             desc = "simulate any amount of drops from a drop-table/boss",
-            handler = ::simulate
+            handler = ::simulate,
         )
     }
 

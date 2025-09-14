@@ -4,13 +4,13 @@ import content.entity.player.bank.Bank.tabs
 import content.entity.player.command.admin.find
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
+import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.arg
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -30,7 +30,7 @@ class BankOpen {
     val accounts: AccountDefinitions by inject()
 
     init {
-        adminCommand("bank", arg<String>("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "open the players bank", handler = ::bank)
+        adminCommand("bank", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "open the players bank", handler = ::bank)
 
         objectOperate("Use-quickly") {
             player.open("bank")

@@ -2,9 +2,9 @@ package content.entity.combat
 
 import content.entity.combat.hit.Damage
 import content.entity.combat.hit.Hit
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.command.arg
 import world.gregs.voidps.engine.client.command.modCommand
+import world.gregs.voidps.engine.client.command.stringArg
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCLevels
@@ -23,17 +23,17 @@ class CombatDebug {
     init {
         modCommand(
             "maxhit",
-            arg<String>("npc-id", "npc to hit against", optional = true),
-            arg<String>("spell-id", "magic spell to use", optional = true),
+            stringArg("npc-id", "npc to hit against", optional = true),
+            stringArg("spell-id", "magic spell to use", optional = true),
             desc = "calculate your max hit against an npc",
-            handler = ::maxHit
+            handler = ::maxHit,
         )
     }
 
     fun maxHit(player: Player, args: List<String>) {
         val debug = player["debug", false]
         player["debug"] = false
-        val npcName =  args.getOrNull(0) ?: "rat"
+        val npcName = args.getOrNull(0) ?: "rat"
         val spell = args.getOrNull(1) ?: "wind_rush"
         val weapon = player.equipped(EquipSlot.Weapon)
         player.message("Max Hit (target=$npcName, spell=$spell)")

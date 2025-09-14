@@ -2,9 +2,9 @@ package content.social.friend
 
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.nameEntry
+import world.gregs.voidps.engine.client.command.modCommand
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.command.modCommand
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings

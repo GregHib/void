@@ -114,7 +114,6 @@ class Poison {
                 source.poison(target, poison + 20)
             }
         }
-
     }
 
     fun immune(character: Character) = character is NPC && character.def["immune_poison", false] || character is Player && character.equipped(EquipSlot.Shield).id == "anti_poison_totem"

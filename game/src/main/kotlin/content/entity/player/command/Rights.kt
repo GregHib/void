@@ -1,10 +1,10 @@
 package content.entity.player.command
 
 import net.pearx.kasechange.toSentenceCase
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.arg
 import world.gregs.voidps.engine.client.command.commandSuggestion
+import world.gregs.voidps.engine.client.command.stringArg
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -31,7 +31,7 @@ class Rights {
         }
 
         val rights = PlayerRights.entries.map { it.name }.toSet()
-        adminCommand("rights", arg<String>("player-name", autofill = accounts.displayNames.keys), arg<String>("rights-name", autofill = rights), desc = "set the rights for another player", handler = ::grant)
+        adminCommand("rights", stringArg("player-name", autofill = accounts.displayNames.keys), stringArg("rights-name", autofill = rights), desc = "set the rights for another player", handler = ::grant)
         commandSuggestion("rights", "promote")
     }
 

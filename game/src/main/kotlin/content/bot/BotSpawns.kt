@@ -3,9 +3,10 @@ package content.bot
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.PlayerAccountLoader
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.arg
+import world.gregs.voidps.engine.client.command.intArg
+import world.gregs.voidps.engine.client.command.stringArg
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -81,9 +82,9 @@ class BotSpawns {
             spawn()
         }
 
-        adminCommand("bots", arg<Int>("count", optional = true), desc = "spawn (count) number of bots", handler = ::spawn)
-        adminCommand("clear_bots", arg<Int>("count", optional = true), desc = "clear all or some amount of bots", handler = ::clear)
-        adminCommand("bot", arg<String>("task", optional = true, autofill = tasks.names), desc = "toggle yourself on/off as a bot player", handler = ::toggle)
+        adminCommand("bots", intArg("count", optional = true), desc = "spawn (count) number of bots", handler = ::spawn)
+        adminCommand("clear_bots", intArg("count", optional = true), desc = "clear all or some amount of bots", handler = ::clear)
+        adminCommand("bot", stringArg("task", optional = true, autofill = tasks.names), desc = "toggle yourself on/off as a bot player", handler = ::toggle)
     }
 
     fun spawn(player: Player, args: List<String>) {

@@ -6,7 +6,8 @@ import content.social.trade.exchange.GrandExchange
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.arg
+import world.gregs.voidps.engine.client.command.intArg
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.*
 import world.gregs.voidps.engine.data.definition.*
@@ -47,30 +48,30 @@ class ItemCommands {
 
         adminCommand(
             "item",
-            arg<String>("item-id", autofill = itemDefinitions.ids.keys),
-            arg<Int>("item-amount", "number of items to spawn (e.g. 100, 10k, 5m, default 1)", optional = true),
+            stringArg("item-id", autofill = itemDefinitions.ids.keys),
+            intArg("item-amount", "number of items to spawn (e.g. 100, 10k, 5m, default 1)", optional = true),
             desc = "Spawn an item into your inventory",
-            handler = ::itemSpawn
+            handler = ::itemSpawn,
         )
 
         adminCommand(
             "give",
-            arg<String>("player-name", autofill = accounts.displayNames.keys),
-            arg<String>("item-id", autofill = itemDefinitions.ids.keys),
-            arg<Int>("item-amount", "number of items to spawn (e.g. 100, 10k, 5m)", optional = true),
+            stringArg("player-name", autofill = accounts.displayNames.keys),
+            stringArg("item-id", autofill = itemDefinitions.ids.keys),
+            intArg("item-amount", "number of items to spawn (e.g. 100, 10k, 5m)", optional = true),
             desc = "Spawn an item into another players inventory",
-            handler = ::targetSpawn
+            handler = ::targetSpawn,
         )
 
         adminCommand(
             "items",
-            arg<String>("item-id", autofill = itemDefinitions.ids.keys),
-            arg<String>("item-id", autofill = itemDefinitions.ids.keys, optional = true),
-            arg<String>("item-id", autofill = itemDefinitions.ids.keys, optional = true),
-            arg<String>("item-id", autofill = itemDefinitions.ids.keys, optional = true),
-            arg<String>("item-id", autofill = itemDefinitions.ids.keys, optional = true),
+            stringArg("item-id", autofill = itemDefinitions.ids.keys),
+            stringArg("item-id", autofill = itemDefinitions.ids.keys, optional = true),
+            stringArg("item-id", autofill = itemDefinitions.ids.keys, optional = true),
+            stringArg("item-id", autofill = itemDefinitions.ids.keys, optional = true),
+            stringArg("item-id", autofill = itemDefinitions.ids.keys, optional = true),
             desc = "Spawn multiple items at once",
-            handler = ::itemSpawns
+            handler = ::itemSpawns,
         )
     }
 
@@ -126,5 +127,4 @@ class ItemCommands {
             source.message("Success", ChatType.Console)
         }
     }
-
 }

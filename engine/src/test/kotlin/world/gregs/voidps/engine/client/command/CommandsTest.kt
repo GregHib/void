@@ -133,49 +133,49 @@ class CommandsTest {
 
     @Test
     fun `Autofill complete command argument`() {
-        register("command", arg<String>("test", autofill = setOf("test")))
+        register("command", stringArg("test", autofill = setOf("test")))
         autofill("command test ")
         assertTrue(player.messages.isEmpty())
     }
 
     @Test
     fun `Autofill partial command argument`() {
-        register("command", arg<String>("test", autofill = setOf("test")))
+        register("command", stringArg("test", autofill = setOf("test")))
         autofill("command t")
         assertTrue(player.containsMessage("command test"))
     }
 
     @Test
     fun `Autofill singular argument`() {
-        register("command", arg<String>("test", autofill = setOf("test")))
+        register("command", stringArg("test", autofill = setOf("test")))
         autofill("command ")
         assertTrue(player.containsMessage("command test"))
     }
 
     @Test
     fun `Autofill invalid command argument`() {
-        register("command", arg<String>("test", autofill = setOf("test")))
+        register("command", stringArg("test", autofill = setOf("test")))
         autofill("command inval")
         assertTrue(player.messages.isEmpty())
     }
 
     @Test
     fun `Don't autofill commands without rights`() {
-        register("name", arg<String>("test", autofill = setOf("test")), rights = PlayerRights.Admin)
+        register("name", stringArg("test", autofill = setOf("test")), rights = PlayerRights.Admin)
         autofill("na")
         assertTrue(player.messages.isEmpty())
     }
 
     @Test
     fun `Don't autofill arguments without rights`() {
-        register("name", arg<String>("test", autofill = setOf("test")), rights = PlayerRights.Admin)
+        register("name", stringArg("test", autofill = setOf("test")), rights = PlayerRights.Admin)
         autofill("name t")
         assertTrue(player.containsMessage("Unauthorized command: name"))
     }
 
     @Test
     fun `Autofill multiple matching command arguments`() {
-        register("command", arg<String>("test", autofill = setOf("testable", "testing", "tester")))
+        register("command", stringArg("test", autofill = setOf("testable", "testing", "tester")))
         autofill("command te")
         assertTrue(player.containsMessage("command test"))
     }
@@ -189,7 +189,7 @@ class CommandsTest {
 
     @Test
     fun `Call a command with invalid argument`() = runTest {
-        register("name", arg<String>("test"))
+        register("name", stringArg("test"))
         commands.call(player, "name test two")
         assertEquals(0, calls)
         assertTrue(player.containsMessage("Unknown arguments for command 'name'"))
@@ -198,7 +198,7 @@ class CommandsTest {
 
     @Test
     fun `Call a command with invalid arguments`() = runTest {
-        commands.register("name", listOf(CommandSignature { _, _ -> }, CommandSignature(listOf(arg<String>("test"))) { _, _ -> }))
+        commands.register("name", listOf(CommandSignature { _, _ -> }, CommandSignature(listOf(stringArg("test"))) { _, _ -> }))
         commands.call(player, "name one two")
         assertEquals(0, calls)
         assertTrue(player.containsMessage("Unknown arguments for command 'name'"))
