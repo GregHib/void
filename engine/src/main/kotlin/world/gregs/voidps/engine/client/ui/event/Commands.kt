@@ -38,8 +38,9 @@ open class Commands {
                 player.message("Valid arguments: ${metadata.signatures.first().usage()}", ChatType.Console)
                 return
             }
+            player.message("Usages:", ChatType.Console)
             for (sig in metadata.signatures) {
-                player.message("  ${sig.usage()}", ChatType.Console)
+                player.message("  ${metadata.name} ${sig.usage()}", ChatType.Console)
             }
             return
         }
@@ -75,7 +76,7 @@ open class Commands {
             return null
         }
         if (!player.hasRights(metadata.rights)) {
-            player.message("Unauthorized command: ${metadata.name}. ${metadata.rights.name} rights required", ChatType.Console)
+            player.message("Unauthorized command: ${metadata.name}; ${metadata.rights.name} rights required.", ChatType.Console)
             return null
         }
         return metadata
@@ -92,8 +93,9 @@ open class Commands {
 
         // Match commands
         if (parts.size == 1) {
-            val keys = commands.keys.filter { it.startsWith(parts[0], ignoreCase = true) }
-            val match = (if (keys.size == 1) keys.firstOrNull() else longestCommonPrefix(keys)) ?: return
+            val filtered = commands.filter { (key, cmd) -> player.hasRights(cmd.rights) && key.startsWith(parts[0], ignoreCase = true) }
+            printMatches(filtered.keys, player)
+            val match = (if (filtered.size == 1) filtered.keys.firstOrNull() else longestCommonPrefix(filtered.keys)) ?: return
             player.message(match, ChatType.ConsoleSet)
             return
         }
@@ -105,22 +107,27 @@ open class Commands {
         val arg = signatures.args.getOrNull(arguments.lastIndex) ?: return
         val last = parts.last()
         val filtered = arg.autofill?.invoke()?.filter { it.startsWith(last, ignoreCase = true) } ?: return
-        if (filtered.size > 1) {
-            val take = player["auto_complete_match", 5]
-            player.message("Multiple matches${if (filtered.size < 6) "" else " (showing $take of ${filtered.size})"}:", ChatType.Console)
-            for (match in filtered.take(take)) {
-                player.message("  $match", ChatType.Console)
-            }
-        }
+        printMatches(filtered, player)
         val match = (if (filtered.size == 1) filtered.firstOrNull() else longestCommonPrefix(filtered)) ?: return
         val complete = if (match.contains(' ')) "\"$match\"" else match
         player.message("${parts.dropLast(1).joinToString(" ")} $complete", ChatType.ConsoleSet)
     }
 
+    private fun printMatches(matches: Collection<String>, player: Player) {
+        if (matches.size <= 1) {
+            return
+        }
+        val take = player["auto_complete_match", 5]
+        player.message("Multiple matches${if (matches.size < 6) "" else " (showing $take of ${matches.size})"}:", ChatType.Console)
+        for (match in matches.take(take)) {
+            player.message("  $match", ChatType.Console)
+        }
+    }
+
     /**
      * Find the longest string which all [strings] start with
      */
-    private fun longestCommonPrefix(strings: List<String>): String? {
+    private fun longestCommonPrefix(strings: Collection<String>): String? {
         if (strings.isEmpty()) {
             return null
         }

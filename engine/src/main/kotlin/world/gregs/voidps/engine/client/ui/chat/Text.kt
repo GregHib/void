@@ -154,8 +154,6 @@ fun String.splitSafe(delimiter: Char): List<String> {
             else -> sb.append(c)
         }
     }
-    if (sb.isNotEmpty()) {
-        parts.add(sb.toString())
-    }
+    parts.add(sb.toString())
     return parts
 }

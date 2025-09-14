@@ -15,9 +15,6 @@ data class CommandMetadata(
      * Find the signature which closest matches the given [input] arguments
      */
     fun find(input: List<String>): CommandSignature? {
-        if (signatures.size == 1) {
-            return signatures.first()
-        }
         val matches = signatures.mapNotNull { sig ->
             sig.score(input)?.let { score -> sig to score }
         }

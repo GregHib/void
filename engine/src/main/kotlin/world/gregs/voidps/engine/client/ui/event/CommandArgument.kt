@@ -24,20 +24,6 @@ data class CommandArgument(
         }
     }
 
-    companion object {
-        inline operator fun <reified T : Any> invoke(key: String, optional: Boolean = false, desc: String = "", noinline autoComplete: (() -> Set<String>)? = null) = CommandArgument(
-            key,
-            when (T::class) {
-                Boolean::class -> ArgType.Boolean
-                Double::class -> ArgType.Double
-                Int::class -> ArgType.Int
-                else -> ArgType.String
-            },
-            optional = optional,
-            autofill = autoComplete,
-            description = desc,
-        )
-    }
 }
 
 enum class ArgType { String, Int, Double, Boolean }

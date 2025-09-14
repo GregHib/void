@@ -3,6 +3,7 @@ package world.gregs.voidps.engine
 import io.mockk.ConstantMatcher
 import io.mockk.MockKGateway.CallRecorder
 import io.mockk.MockKMatcherScope
+import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty1
 import kotlin.reflect.full.declaredMemberProperties
@@ -40,3 +41,9 @@ val KClass<*>.isInline: Boolean
     get() = !isData &&
         primaryConstructor?.parameters?.size == 1 &&
         java.declaredMethods.any { it.name == "box-impl" }
+
+
+fun Player.containsMessage(message: String) = messages.any { it.contains(message) }
+
+val Player.messages: List<String>
+    get() = get("messages", emptyList())
