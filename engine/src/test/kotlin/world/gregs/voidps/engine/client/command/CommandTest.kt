@@ -40,11 +40,29 @@ class CommandTest {
     }
 
     @Test
-    fun `First signature if scores are equal`() {
+    fun `Find returns first signature if scores are equal`() {
         val s1 = sig(stringArg("a"))
         val s2 = sig(stringArg("b"))
         val meta = command(s1, s2)
         val result = meta.find(listOf("x"))
+        assertEquals(s1, result)
+    }
+
+    @Test
+    fun `Find no result signature if not all required args given`() {
+        val s1 = sig(stringArg("a"), stringArg("b"))
+        val s2 = sig(stringArg("b"), stringArg("d"))
+        val meta = command(s1, s2)
+        val result = meta.find(listOf("x"))
+        assertNull(result)
+    }
+
+    @Test
+    fun `First signature even if not all required given`() {
+        val s1 = sig(stringArg("a"), stringArg("b"))
+        val s2 = sig(stringArg("c"), stringArg("d"))
+        val meta = command(s1, s2)
+        val result = meta.first(listOf("x"))
         assertEquals(s1, result)
     }
 

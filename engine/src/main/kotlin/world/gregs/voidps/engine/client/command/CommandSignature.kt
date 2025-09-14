@@ -17,15 +17,19 @@ data class CommandSignature(
      */
     fun score(input: List<String>): Int? {
         val requiredCount = args.count { !it.optional }
-        val maxCount = args.size
-
         if (input.size < requiredCount) {
             return null
         }
-        if (input.size > maxCount) {
+        return valid(input)
+    }
+
+    /**
+     * Score how many passed of the arguments are valid
+     */
+    fun valid(input: List<String>): Int? {
+        if (input.size > args.size) {
             return null
         }
-
         var score = 0
         for (i in input.indices) {
             val arg = args.getOrNull(i) ?: return null

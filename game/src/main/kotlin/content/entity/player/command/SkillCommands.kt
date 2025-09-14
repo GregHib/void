@@ -29,7 +29,7 @@ class SkillCommands {
 
     init {
         val skills = Skill.entries.map { it.name }.toSet()
-        adminCommand("master", stringArg("player-name", "target player (default self)", optional = true), desc = "set all skills to level 99", handler = ::master)
+        adminCommand("master", stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "set all skills to level 99", handler = ::master)
         val self = command(
             stringArg("skill-name", "the name of the skill", autofill = skills),
             intArg("level", "level to set it to"),
@@ -37,20 +37,20 @@ class SkillCommands {
             handler = ::set,
         )
         val other = command(
-            stringArg("player-name", "the name of target player", autofill = accounts.displayNames.keys),
             stringArg("skill-name", "the name of the skill", autofill = skills),
             intArg("level", "level to set it to"),
+            stringArg("player-name", "the name of target player", autofill = accounts.displayNames.keys),
             desc = "set any players skill to a specific level",
             handler = ::set,
         )
         adminCommands("set_level", self, other)
-        adminCommand("reset", stringArg("player-name", "target player (default self)", optional = true), desc = "set all skills to level 1", handler = ::reset)
+        adminCommand("reset", stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "set all skills to level 1", handler = ::reset)
     }
 
     fun set(player: Player, args: List<String>) {
-        val target = players.find(player, if (args.size == 3) args[0] else null) ?: return
-        val skill = Skill.valueOf(args[if (args.size == 3) 1 else 0].toSentenceCase())
-        val level = args.last().toInt()
+        val target = players.find(player, if (args.size == 3) args[2] else null) ?: return
+        val skill = Skill.valueOf(args[0].toSentenceCase())
+        val level = args[1].toInt()
         target.experience.set(skill, Level.experience(skill, level))
         player.levels.set(skill, level)
         player.softQueue("flash_reset", 1) {

@@ -103,7 +103,7 @@ open class Commands {
         // Match arguments
         val metadata = find(player, parts[0]) ?: return
         val arguments = parts.drop(1)
-        val signatures = metadata.find(arguments) ?: return
+        val signatures = metadata.first(arguments) ?: return
         val arg = signatures.args.getOrNull(arguments.lastIndex) ?: return
         val last = parts.last()
         val filtered = arg.autofill?.invoke()?.filter { it.startsWith(last, ignoreCase = true) } ?: return

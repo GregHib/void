@@ -19,4 +19,11 @@ data class Command(
         }
         return matches.maxByOrNull { it.second }?.first
     }
+
+    /**
+     * Find the first valid signature
+     */
+    fun first(input: List<String>): CommandSignature? {
+        return signatures.firstOrNull { it.valid(input) != null }
+    }
 }
