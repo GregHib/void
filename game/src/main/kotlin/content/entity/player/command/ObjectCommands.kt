@@ -1,4 +1,4 @@
-package content.entity.player.command.admin
+package content.entity.player.command
 
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
@@ -16,9 +16,9 @@ class ObjectCommands {
     init {
         adminCommand(
             "obj",
-            stringArg("object-id"),
-            intArg("object-shape", optional = true),
-            intArg("object-rotation", optional = true),
+            stringArg("id"),
+            intArg("shape", optional = true),
+            intArg("rotation", optional = true),
             intArg("ticks", optional = true),
             desc = "Spawn an object",
             handler = ::spawn,

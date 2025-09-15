@@ -1,4 +1,4 @@
-package content.entity.player.command.admin
+package content.entity.player.command
 
 import content.bot.interact.navigation.graph.NavigationGraph
 import content.entity.obj.ObjectTeleports
@@ -66,7 +66,7 @@ class ServerCommands {
     init {
         adminCommand(
             "update",
-            stringArg("time", desc = "time unit (e.g. 100=1 minute or 1h 2m)", optional = true),
+            stringArg("time", desc = "Time unit (e.g. 100=1 minute or 1h 2m)", optional = true),
             desc = "Start a system shutdown after a set amount of time",
             handler = ::update,
         )

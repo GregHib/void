@@ -1,4 +1,4 @@
-package content.entity.player.command.debug
+package content.entity.player.command
 
 import content.entity.effect.transform
 import world.gregs.voidps.engine.client.command.adminCommand

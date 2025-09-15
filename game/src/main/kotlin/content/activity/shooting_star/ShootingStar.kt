@@ -154,7 +154,7 @@ class ShootingStar {
                 }
             }
         }
-        adminCommand("star", stringArg("minutes"), desc = "start a new shooting star event in [minutes]", handler = ::spawn)
+        adminCommand("star", stringArg("minutes"), desc = "Start a new shooting star event in [minutes]", handler = ::spawn)
     }
 
     fun spawn(player: Player, args: List<String>) {

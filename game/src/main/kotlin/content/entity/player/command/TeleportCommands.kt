@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package content.entity.player.command.admin
+package content.entity.player.command
 
 import content.social.trade.exchange.GrandExchange
 import world.gregs.voidps.engine.client.command.adminCommand
@@ -58,7 +58,7 @@ class TeleportCommands {
         adminCommands("tele", coords, place, region)
         commandAlias("tele", "tp")
 
-        adminCommand("tele_to", stringArg("player-name", desc = "player name (use quotes if contains spaces)", autofill = accounts.displayNames.keys), desc = "Teleport to another player") { player, args ->
+        adminCommand("tele_to", stringArg("player-name", desc = "Player name (use quotes if contains spaces)", autofill = accounts.displayNames.keys), desc = "Teleport to another player") { player, args ->
             val target = players.firstOrNull { it.name.equals(args[0], true) }
             if (target == null) {
                 player.message("Unable to find player '${args[0]}' online.", ChatType.Console)
@@ -67,7 +67,7 @@ class TeleportCommands {
             player.tele(target.tile)
         }
 
-        adminCommand("tele_to_me", stringArg("player-name", desc = "player name (use quotes if contains spaces)", autofill = accounts.displayNames.keys), desc = "teleport another player to you") { player, args ->
+        adminCommand("tele_to_me", stringArg("player-name", desc = "Player name (use quotes if contains spaces)", autofill = accounts.displayNames.keys), desc = "Teleport another player to you") { player, args ->
             val target = players.firstOrNull { it.name.equals(args[0], true) }
             if (target == null) {
                 player.message("Unable to find player '${args[0]}' online.", ChatType.Console)

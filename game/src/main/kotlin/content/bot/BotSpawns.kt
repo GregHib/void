@@ -82,9 +82,9 @@ class BotSpawns {
             spawn()
         }
 
-        adminCommand("bots", intArg("count", optional = true), desc = "spawn (count) number of bots", handler = ::spawn)
-        adminCommand("clear_bots", intArg("count", optional = true), desc = "clear all or some amount of bots", handler = ::clear)
-        adminCommand("bot", stringArg("task", optional = true, autofill = tasks.names), desc = "toggle yourself on/off as a bot player", handler = ::toggle)
+        adminCommand("bots", intArg("count", optional = true), desc = "Spawn (count) number of bots", handler = ::spawn)
+        adminCommand("clear_bots", intArg("count", optional = true), desc = "Clear all or some amount of bots", handler = ::clear)
+        adminCommand("bot", stringArg("task", optional = true, autofill = tasks.names), desc = "Toggle yourself on/off as a bot player", handler = ::toggle)
     }
 
     fun spawn(player: Player, args: List<String>) {

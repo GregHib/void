@@ -1,4 +1,4 @@
-package content.entity.player.command.debug
+package content.entity.player.command
 
 import content.entity.npc.shop.OpenShop
 import content.entity.player.dialogue.sendLines
@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.encode.*
+import kotlin.collections.iterator
 
 @Script
 class InterfaceCommands {
@@ -34,21 +35,21 @@ class InterfaceCommands {
     val inventoryDefinitions: InventoryDefinitions by inject()
 
     init {
-        adminCommand("inter", stringArg("interface-id"), desc = "open an interface with int or string id", handler = ::open)
+        adminCommand("inter", stringArg("interface-id"), desc = "Open an interface with int or string id", handler = ::open)
 
-        adminCommand("show", stringArg("interface-id"), stringArg("component-id"), boolArg("visible"), desc = "toggle visibility of an interface component") { player, args ->
+        adminCommand("show", stringArg("interface-id"), stringArg("component-id"), boolArg("visible"), desc = "Toggle visibility of an interface component") { player, args ->
             player.client?.interfaceVisibility(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), !args[2].toBoolean())
         }
 
-        adminCommand("colour", stringArg("interface-id"), stringArg("component-id"), intArg("red"), intArg("green"), intArg("blue"), desc = "set colour of an interface component") { player, args ->
+        adminCommand("colour", stringArg("iface-id"), stringArg("comp-id"), intArg("red"), intArg("green"), intArg("blue"), desc = "Set colour of an interface component") { player, args ->
             player.client?.colourInterface(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), args[2].toInt(), args[3].toInt(), args[4].toInt())
         }
 
-        adminCommand("send_text", stringArg("interface-id"), stringArg("component-id"), stringArg("text", "text to send (use quotes for spaces)"), desc = "set text of an interface component") { player, args ->
+        adminCommand("send_text", stringArg("interface-id"), stringArg("component-id"), stringArg("text", "text to send (use quotes for spaces)"), desc = "Set text of an interface component") { player, args ->
             player.interfaces.sendText(args[0], args[1], args[2])
         }
 
-        adminCommand("send_setting", stringArg("interface-id"), stringArg("component-id"), intArg("from-slot"), intArg("t-slot"), intArg("setting"), intArg("setting", optional = true), intArg("setting", optional = true), desc = "send settings to an interface component") { player, args ->
+        adminCommand("setting", stringArg("id"), stringArg("comp"), intArg("from"), intArg("to"), intArg("setting", optional = true), intArg("s2", optional = true), intArg("s3", optional = true), desc = "Send settings to an interface component") { player, args ->
             val remainder = args.subList(4, args.size).map { it.toIntOrNull() }.requireNoNulls().toIntArray()
             player.message("Settings sent ${remainder.toList()}", ChatType.Console)
             player.sendInterfaceSettings(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), args[2].toInt(), args[3].toInt(), getHash(*remainder))
@@ -56,31 +57,31 @@ class InterfaceCommands {
 
         adminCommand(
             "script",
-            stringArg("script-id"),
-            stringArg("param-1", optional = true),
-            stringArg("param-2", optional = true),
-            stringArg("param-3", optional = true),
-            stringArg("param-4", optional = true),
-            stringArg("param-5", optional = true),
-            desc = "run a client script with any number of parameters",
+            stringArg("id"),
+            stringArg("p1", desc = "First parameter", optional = true),
+            stringArg("p2", optional = true),
+            stringArg("p3", optional = true),
+            stringArg("p4", optional = true),
+            stringArg("p5", optional = true),
+            desc = "Run a client script with any number of parameters",
             handler = ::sendScript,
         )
 
-        val component = command(stringArg("interface-id"), stringArg("component-id"), intArg("item-id"), intArg("item-amount"), desc = "send an item to an interface component") { player, args ->
+        val component = command(stringArg("iface-id"), stringArg("comp-id"), intArg("item"), intArg("amount"), desc = "Send an item to an interface component") { player, args ->
             player.interfaces.sendItem(args[0], args[1], args[2].toInt(), args.getOrNull(3)?.toInt() ?: 1)
         }
-        val inventory = command(stringArg("interface-id"), desc = "send an item to an interface component", handler = ::sendInventory)
+        val inventory = command(stringArg("interface-id"), desc = "Send an item to an interface component", handler = ::sendInventory)
 
         adminCommands("send_items", component, inventory)
 
         adminCommand(
             "expr",
             stringArg("expression-id", autofill = { animationDefinitions.definitions.filter { it.stringId.startsWith("expression_") }.map { it.stringId.removePrefix("expression_") }.toSet() }),
-            desc = "display dialogue head with an animation expression",
+            desc = "Display dialogue head with an animation expression",
             handler = ::expression,
         )
 
-        adminCommand("shop", stringArg("shop-id", autofill = { inventoryDefinitions.definitions.filter { it["shop", false] }.map { it.stringId }.toSet() }), desc = "open a shop by id") { player, args ->
+        adminCommand("shop", stringArg("shop-id", autofill = { inventoryDefinitions.definitions.filter { it["shop", false] }.map { it.stringId }.toSet() }), desc = "Open a shop by id") { player, args ->
             player.emit(OpenShop(args[0]))
         }
     }

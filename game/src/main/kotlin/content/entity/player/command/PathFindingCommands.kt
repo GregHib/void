@@ -1,4 +1,4 @@
-package content.entity.player.command.admin
+package content.entity.player.command
 
 import content.bot.interact.path.Dijkstra
 import content.bot.interact.path.EdgeTraversal
@@ -31,7 +31,7 @@ class PathFindingCommands {
     val collisions: Collisions by inject()
 
     init {
-        adminCommand("patrol", stringArg("patrol-id", autofill = patrols.definitions.keys), desc = "walk along a patrol route") { player, args ->
+        adminCommand("patrol", stringArg("patrol-id", autofill = patrols.definitions.keys), desc = "Walk along a patrol route") { player, args ->
             val patrol = patrols.get(args[0])
             player.tele(patrol.waypoints.first().first)
             player.mode = Patrol(player, patrol.waypoints)
@@ -71,7 +71,7 @@ class PathFindingCommands {
             println("Invalid path: ${timeInvalid}ms")
         }
 
-        adminCommand("show_col", desc = "show nearby collision") { player, _ ->
+        adminCommand("show_col", desc = "Show nearby collision") { player, _ ->
             val area = player.tile.toCuboid(10)
             val steps: StepValidator = get()
             val strategy = CollisionStrategies.Normal
@@ -95,7 +95,7 @@ class PathFindingCommands {
             }
         }
 
-        adminCommand("path", desc = "show calculated walk paths") { player, _ ->
+        adminCommand("path", desc = "Show calculated walk paths") { player, _ ->
             player.softTimers.toggle("show_path")
         }
 

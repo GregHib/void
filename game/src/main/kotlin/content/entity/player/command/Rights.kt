@@ -32,7 +32,7 @@ class Rights {
         }
 
         val rights = PlayerRights.entries.map { it.name }.toSet()
-        adminCommand("rights", stringArg("player-name", autofill = accounts.displayNames.keys), stringArg("rights-name", autofill = rights), desc = "set the rights for another player", handler = ::grant)
+        adminCommand("rights", stringArg("player-name", autofill = accounts.displayNames.keys), stringArg("rights-name", autofill = rights), desc = "Set the rights for another player", handler = ::grant)
         commandSuggestion("rights", "promote")
     }
 

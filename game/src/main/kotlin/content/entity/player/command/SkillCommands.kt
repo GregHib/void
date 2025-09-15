@@ -1,4 +1,4 @@
-package content.entity.player.command.admin
+package content.entity.player.command
 
 import content.skill.prayer.PrayerConfigs
 import content.skill.prayer.isCurses
@@ -29,22 +29,22 @@ class SkillCommands {
 
     init {
         val skills = Skill.entries.map { it.name }.toSet()
-        adminCommand("master", stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "set all skills to level 99", handler = ::master)
+        adminCommand("master", stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "Set all skills to level 99", handler = ::master)
         val self = command(
             stringArg("skill-name", "the name of the skill", autofill = skills),
             intArg("level", "level to set it to"),
-            desc = "set any skill to a specific level",
+            desc = "Set any skill to a specific level",
             handler = ::set,
         )
         val other = command(
             stringArg("skill-name", "the name of the skill", autofill = skills),
             intArg("level", "level to set it to"),
             stringArg("player-name", "the name of target player", autofill = accounts.displayNames.keys),
-            desc = "set any players skill to a specific level",
+            desc = "Set any players skill to a specific level",
             handler = ::set,
         )
         adminCommands("set_level", self, other)
-        adminCommand("reset", stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "set all skills to level 1", handler = ::reset)
+        adminCommand("reset", stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "Set all skills to level 1", handler = ::reset)
     }
 
     fun set(player: Player, args: List<String>) {

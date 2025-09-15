@@ -1,4 +1,4 @@
-package content.entity.player.command.admin
+package content.entity.player.command
 
 import content.entity.combat.hit.damage
 import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
@@ -43,6 +43,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.timer.TimerQueue
+import kotlin.collections.iterator
 import kotlin.getValue
 
 @Script
@@ -57,56 +58,56 @@ class PlayerCommands {
     val variables: VariableDefinitions by inject()
 
     init {
-        modCommand("save", desc = "save all players") { _, _ ->
+        modCommand("save", desc = "Save all players") { _, _ ->
             players.forEach(saveQueue::save)
             exchange.save()
         }
 
-        adminCommand("skull", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "apply a skull to the player", handler = ::skull)
-        adminCommand("unskull", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "remove skull from the player", handler = ::unskull)
-        adminCommand("rest", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "set run energy to full", handler = ::rest)
-        adminCommand("spec", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "set special attack energy to full", handler = ::specialRestore)
-        adminCommand("pray", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "restore full prayer points", handler = ::prayerRestore)
-        adminCommand("restore", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "restore all skills", handler = ::restore)
-        adminCommand("hide", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "toggle invisibility to other players", handler = ::hide)
-        adminCommand("pos", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "position of the players", handler = ::position)
+        adminCommand("skull", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Apply a skull to the player", handler = ::skull)
+        adminCommand("unskull", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Remove skull from the player", handler = ::unskull)
+        adminCommand("rest", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Set run energy to full", handler = ::rest)
+        adminCommand("spec", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Set special attack energy to full", handler = ::specialRestore)
+        adminCommand("pray", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Restore full prayer points", handler = ::prayerRestore)
+        adminCommand("restore", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Restore all skills", handler = ::restore)
+        adminCommand("hide", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Toggle invisibility to other players", handler = ::hide)
+        adminCommand("pos", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Position of the players", handler = ::position)
         commandAlias("pos", "mypos")
-        adminCommand("chat", stringArg("message", desc = "text to display (use quotes for spaces)"), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "force a chat message over a players head", handler = ::chat)
-        adminCommand("hit", intArg("amount", desc = "damage to deal", optional = true), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "damage player by an amount", handler = ::hit)
-        adminCommand("watch", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "look at another player", handler = ::watch)
-        adminCommand("debug", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "toggle debug mode and logs", handler = ::debug)
+        adminCommand("chat", stringArg("message", desc = "Text to display (use quotes for spaces)"), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Force a chat message over a players head", handler = ::chat)
+        adminCommand("hit", intArg("amount", desc = "Damage to deal", optional = true), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Damage player by an amount", handler = ::hit)
+        adminCommand("watch", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Look at another player", handler = ::watch)
+        adminCommand("debug", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Toggle debug mode and logs", handler = ::debug)
         val activities = setOf("all", "music", "songs", "music_tracks", "tasks", "achievements", "emotes", "quests")
         adminCommand(
             "unlock",
-            stringArg("activity-type", desc = "type of activity", autofill = activities),
+            stringArg("activity-type", desc = "Type of activity", autofill = activities),
             stringArg("player-name", optional = true, autofill = accounts.displayNames.keys),
             desc = "Unlock all content for an activity for the player",
             handler = ::unlock,
         )
         val spellbooks = setOf("ancient", "lunar", "modern", "dungeoneering")
-        adminCommand("spellbook", stringArg("spellbook-type", autofill = spellbooks, optional = true), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "switch spellbook", handler = ::spellbook)
+        adminCommand("spellbook", stringArg("spellbook-type", autofill = spellbooks, optional = true), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Switch spellbook", handler = ::spellbook)
         val prayers = setOf("normal", "curses")
-        adminCommand("prayers", stringArg("prayer-type", autofill = prayers, optional = true), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "switch prayers", handler = ::prayers)
+        adminCommand("prayers", stringArg("prayer-type", autofill = prayers, optional = true), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Switch prayers", handler = ::prayers)
         adminCommand(
             "variables",
-            stringArg("var-name", desc = "the variable name to search for", optional = true, autofill = variables.definitions.keys),
+            stringArg("var-name", desc = "The variable name to search for", optional = true, autofill = variables.definitions.keys),
             stringArg("player-name", optional = true, autofill = accounts.displayNames.keys),
-            desc = "search the players set variables",
+            desc = "Search the players set variables",
             handler = ::listVariables,
         )
         adminCommand(
             "timers",
-            stringArg("timer-name", desc = "the timer name to search for", optional = true, autofill = variables.definitions.keys),
+            stringArg("timer-name", desc = "The timer name to search for", optional = true, autofill = variables.definitions.keys),
             stringArg("player-name", optional = true, autofill = accounts.displayNames.keys),
-            desc = "search the players active timers",
+            desc = "Search the players active timers",
             handler = ::listTimers,
         )
         val types = setOf("all", "objects", "players", "npcs", "items", "collisions")
         adminCommand(
             "under",
-            stringArg("entity-type", desc = "the type of entity to search for", optional = true, autofill = types),
+            stringArg("entity-type", desc = "The type of entity to search for", optional = true, autofill = types),
             stringArg("player-name", optional = true, autofill = accounts.displayNames.keys),
-            desc = "list entity types under the players",
+            desc = "List entity types under the players",
             handler = ::listEntities,
         )
     }

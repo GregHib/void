@@ -1,4 +1,4 @@
-package content.entity.player.command.admin
+package content.entity.player.command
 
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.modCommand
@@ -21,10 +21,10 @@ class NPCCommands {
     val npcDefinitions: NPCDefinitions by inject()
 
     init {
-        modCommand("npcs", desc = "get total npc count") { player, _ ->
+        modCommand("npcs", desc = "Get total npc count") { player, _ ->
             player.message("NPCs: ${npcs.count()}")
         }
-        adminCommand("npc", stringArg("npc-id", autofill = npcDefinitions.ids.keys), desc = "spawn an npc", handler = ::spawn)
+        adminCommand("npc", stringArg("npc-id", autofill = npcDefinitions.ids.keys), desc = "Spawn an npc", handler = ::spawn)
     }
 
     fun spawn(player: Player, args: List<String>) {

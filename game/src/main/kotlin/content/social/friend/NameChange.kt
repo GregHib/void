@@ -25,7 +25,7 @@ class NameChange {
     val players: Players by inject()
 
     init {
-        modCommand("rename", desc = "rename your accounts display name (login stays the same)", handler = ::rename)
+        modCommand("rename", desc = "Change your display name (login stays the same)", handler = ::rename)
     }
 
     fun rename(player: Player, args: List<String>) {

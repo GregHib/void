@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package content.entity.player.command.admin
+package content.entity.player.command
 
 import content.social.trade.exchange.GrandExchange
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
@@ -66,10 +66,10 @@ class ItemCommands {
         adminCommand(
             "items",
             stringArg("item-id", autofill = itemDefinitions.ids.keys),
-            stringArg("item-id", autofill = itemDefinitions.ids.keys, optional = true),
-            stringArg("item-id", autofill = itemDefinitions.ids.keys, optional = true),
-            stringArg("item-id", autofill = itemDefinitions.ids.keys, optional = true),
-            stringArg("item-id", autofill = itemDefinitions.ids.keys, optional = true),
+            stringArg("id", autofill = itemDefinitions.ids.keys, optional = true),
+            stringArg("id", autofill = itemDefinitions.ids.keys, optional = true),
+            stringArg("id", autofill = itemDefinitions.ids.keys, optional = true),
+            stringArg("id", autofill = itemDefinitions.ids.keys, optional = true),
             desc = "Spawn multiple items at once",
             handler = ::itemSpawns,
         )

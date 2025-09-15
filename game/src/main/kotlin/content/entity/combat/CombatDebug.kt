@@ -25,7 +25,7 @@ class CombatDebug {
             "maxhit",
             stringArg("npc-id", "npc to hit against", optional = true),
             stringArg("spell-id", "magic spell to use", optional = true),
-            desc = "calculate your max hit against an npc",
+            desc = "Calculate your max hit against an npc",
             handler = ::maxHit,
         )
     }

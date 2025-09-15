@@ -144,7 +144,7 @@ class GrandExchangeOffers {
 
         val grandExchangeItems = itemDefinitions.definitions.filter { def -> def.exchangeable && !def.noted && !def.lent && def.dummyItem == 0 }.map { it.stringId }.toSet()
 
-        adminCommand("offers", stringArg("name", desc = "the item id to search for", autofill = grandExchangeItems), desc = "search all grand exchange open offers", handler = ::offersCommand)
+        adminCommand("offers", stringArg("name", desc = "Item id to search for", autofill = grandExchangeItems), desc = "Search all grand exchange open offers", handler = ::offersCommand)
     }
 
     fun offersCommand(player: Player, args: List<String>) {

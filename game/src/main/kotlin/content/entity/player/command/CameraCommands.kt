@@ -1,4 +1,4 @@
-package content.entity.player.command.debug
+package content.entity.player.command
 
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
@@ -14,11 +14,11 @@ import world.gregs.voidps.type.Tile
 class CameraCommands {
 
     init {
-        modCommand("camera_reset", desc = "reset camera to normal") { player, _ ->
+        modCommand("camera_reset", desc = "Reset camera to normal") { player, _ ->
             player.client?.clearCamera()
         }
 
-        adminCommand("move_to", intArg("x"), intArg("y"), intArg("height"), intArg("c-speed"), intArg("v-speed"), desc = "move camera to look at coordinates") { player, args ->
+        adminCommand("move_to", intArg("x"), intArg("y"), intArg("height"), intArg("c-speed"), intArg("v-speed"), desc = "Move camera to look at coordinates") { player, args ->
             val viewport = player.viewport!!
             val result = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
             val local = Tile(args[0].toInt(), args[1].toInt()).minus(result.tile)
@@ -26,7 +26,7 @@ class CameraCommands {
             player.moveCamera(local, args[2].toInt(), args[3].toInt(), args[4].toInt())
         }
 
-        adminCommand("look_at", intArg("x"), intArg("y"), intArg("height"), intArg("c-speed"), intArg("v-speed"), desc = "turn camera to look at coordinates") { player, args ->
+        adminCommand("look_at", intArg("x"), intArg("y"), intArg("height"), intArg("c-speed"), intArg("v-speed"), desc = "Turn camera to look at coordinates") { player, args ->
             val viewport = player.viewport!!
             val result = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
             val local = Tile(args[0].toInt(), args[1].toInt()).minus(result.tile)
@@ -34,7 +34,7 @@ class CameraCommands {
             player.turnCamera(local, args[2].toInt(), args[3].toInt(), args[4].toInt())
         }
 
-        adminCommand("shake", intArg("intensity"), intArg("type"), intArg("cycle"), intArg("movement"), intArg("speed"), desc = "shake camera") { player, args ->
+        adminCommand("shake", intArg("intensity"), intArg("type"), intArg("cycle"), intArg("movement"), intArg("speed"), desc = "Shake camera") { player, args ->
             player.shakeCamera(args[0].toInt(), args[1].toInt(), args[2].toInt(), args[3].toInt(), args[4].toInt())
         }
     }

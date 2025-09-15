@@ -1,4 +1,4 @@
-package content.entity.player.command.admin
+package content.entity.player.command
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import java.util.concurrent.TimeUnit
+import kotlin.collections.iterator
 import kotlin.system.measureTimeMillis
 
 @Script
@@ -42,7 +43,7 @@ class DropCommands {
             "sim",
             stringArg("drop-table-id", autofill = tables.tables.keys),
             intArg("drop-count", desc = "Number of drops to simulate", optional = true),
-            desc = "simulate any amount of drops from a drop-table/boss",
+            desc = "Simulate any amount of drops from a drop-table/boss",
             handler = ::simulate,
         )
     }

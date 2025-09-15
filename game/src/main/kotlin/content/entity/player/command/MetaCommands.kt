@@ -37,27 +37,27 @@ class MetaCommands {
     init {
         playerCommand(
             "commands",
-            stringArg("filter", optional = true, desc = "term to search command list with"),
-            desc = "display a list of available commands",
+            stringArg("filter", optional = true, desc = "Term to search command list with"),
+            desc = "Display a list of available commands",
             handler = ::listCommands,
         )
 
         playerCommand(
             "help",
-            stringArg("command-name", desc = "command name to lookup"),
-            desc = "find more information about a specific command",
+            stringArg("command-name", desc = "Command name to lookup"),
+            desc = "Find more information about a specific command",
             handler = ::help,
         )
 
         modCommand(
             "find",
-            stringArg("content-name", desc = "the term to search content for", autofill = { itemDefinitions.ids.keys + objectDefinitions.ids.keys + npcDefinitions.ids.keys + accountDefinitions.displayNames.keys + accountDefinitions.clans.keys }),
-            desc = "search all content",
+            stringArg("content-name", desc = "The term to search content for", autofill = { itemDefinitions.ids.keys + objectDefinitions.ids.keys + npcDefinitions.ids.keys + accountDefinitions.displayNames.keys + accountDefinitions.clans.keys }),
+            desc = "Search all content",
             handler = ::find,
         )
         commandAlias("find", "search")
 
-        modCommand("items", stringArg("name", desc = "the item name or id to search for", autofill = itemDefinitions.ids.keys), desc = "search all items") { player, args ->
+        modCommand("items", stringArg("name", desc = "Item name or id to search for", autofill = itemDefinitions.ids.keys), desc = "Search all items") { player, args ->
             if (player.hasClock("search_delay")) {
                 return@modCommand
             }
@@ -68,7 +68,7 @@ class MetaCommands {
             player.message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("objects", stringArg("name", desc = "the object name or id to search for", autofill = objectDefinitions.ids.keys), desc = "search all game objects") { player, args ->
+        modCommand("objects", stringArg("name", desc = "Object name or id to search for", autofill = objectDefinitions.ids.keys), desc = "Search all game objects") { player, args ->
             if (player.hasClock("search_delay")) {
                 return@modCommand
             }
@@ -79,7 +79,7 @@ class MetaCommands {
             player.message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("npcs", stringArg("name", desc = "the npc name or id to search for", autofill = npcDefinitions.ids.keys), desc = "search all npcs") { player, args ->
+        modCommand("npcs", stringArg("name", desc = "Npc name or id to search for", autofill = npcDefinitions.ids.keys), desc = "Search all npcs") { player, args ->
             if (player.hasClock("search_delay")) {
                 return@modCommand
             }
@@ -90,7 +90,7 @@ class MetaCommands {
             player.message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("players", stringArg("name", desc = "the player name or id to search for", autofill = accountDefinitions.displayNames.keys), desc = "search all players") { player, args ->
+        modCommand("players", stringArg("name", desc = "Player name or id to search for", autofill = accountDefinitions.displayNames.keys), desc = "Search all players") { player, args ->
             if (player.hasClock("search_delay")) {
                 return@modCommand
             }
@@ -101,7 +101,7 @@ class MetaCommands {
             player.message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("clans", stringArg("name", desc = "the clan name or id to search for", autofill = accountDefinitions.clans.keys), desc = "search all clans") { player, args ->
+        modCommand("clans", stringArg("name", desc = "Clan name or id to search for", autofill = accountDefinitions.clans.keys), desc = "Search all clans") { player, args ->
             if (player.hasClock("search_delay")) {
                 return@modCommand
             }
@@ -204,12 +204,12 @@ class MetaCommands {
         val commands = Commands.commands.values
             .filter {
                 player.rights.ordinal >= it.rights.ordinal &&
-                    (
-                        filter == null ||
-                            it.name.contains(filter, ignoreCase = true) ||
-                            it.signatures.any { sig -> sig.description.contains(filter, ignoreCase = true) } ||
-                            it.signatures.any { sig -> sig.args.any { arg -> arg.key.contains(filter, ignoreCase = true) } }
-                        )
+                        (
+                                filter == null ||
+                                        it.name.contains(filter, ignoreCase = true) ||
+                                        it.signatures.any { sig -> sig.description.contains(filter, ignoreCase = true) } ||
+                                        it.signatures.any { sig -> sig.args.any { arg -> arg.key.contains(filter, ignoreCase = true) } }
+                                )
             }
             .sortedByDescending { it.name }
         for (command in commands) {
@@ -218,9 +218,16 @@ class MetaCommands {
                     continue
                 }
                 list.add("${Colours.BLUE.toTag()}${command.name} ${signature.usage()}</col>")
-                list.add(signature.description)
-                list.add("")
+                if (signature.description.isNotBlank()) {
+                    list.add(signature.description)
+                }
+                if (filter != null) {
+                    list.add("")
+                }
             }
+        }
+        for (line in list) {
+            println(line)
         }
         player.questJournal("Commands List", list)
     }
