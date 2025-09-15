@@ -38,7 +38,7 @@ class DecoderTest {
         ClanChatKick("clan chat"), // 64
         EnterString("a string"), // 1
         ClanChatRank("friend name", 123), // 74
-        ExecuteCommand("item", "abyssal_whip 1"), // 53
+        ExecuteCommand("item abyssal_whip 1", automatic = false, tab = true), // 53
         FriendDelete("friends_name"), // 6
         IgnoreDelete("ignore_name"), // 73
         InteractDialogue(123, 456, 7), // 2
