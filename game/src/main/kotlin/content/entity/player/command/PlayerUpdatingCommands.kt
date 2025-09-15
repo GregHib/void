@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.colourOverlay
 import world.gregs.voidps.engine.entity.character.flagExactMovement
 import world.gregs.voidps.engine.entity.character.player.*
