@@ -22,7 +22,7 @@ class EffectCommands {
     val npcDefinitions: NPCDefinitions by inject()
 
     init {
-        adminCommand("disease", intArg("damage", optional = true), stringArg("player-name", optional = true), desc = "Disease the player", handler = ::poison)
+        adminCommand("disease", intArg("damage", optional = true), stringArg("player-name", optional = true), desc = "Disease the player", handler = ::disease)
         adminCommand("poison", intArg("damage", optional = true), stringArg("player-name", optional = true), desc = "Poison the player", handler = ::poison)
         adminCommand("freeze", intArg("ticks", optional = true), stringArg("player-name", optional = true), desc = "Freeze the player", handler = ::freeze)
         adminCommand("cure", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Cure the player", handler = ::cure)

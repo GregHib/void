@@ -27,7 +27,6 @@ class PlayerUpdatingCommands {
     val players: Players by inject()
     val animationDefinitions: AnimationDefinitions by inject()
     val graphicDefinitions: GraphicDefinitions by inject()
-    val npcDefinitions: NPCDefinitions by inject()
 
     init {
         adminCommand("kill", desc = "Remove all bots") { _, _ ->
