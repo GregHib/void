@@ -54,7 +54,25 @@ fun String.toSILong(): Long {
     }
 }
 
+fun String.toSILongOrNull(): Long? {
+    val last = last()
+    return if (last.isLetter()) {
+        val long = removeSuffix(last.toString()).toLongOrNull() ?: return null
+        when (last().lowercaseChar()) {
+            't' -> long * 0xe8d4a51000
+            'b' -> long * 0x3b9aCa00
+            'm' -> long * 0xf4240
+            'k' -> long * 0x3e8
+            else -> return null
+        }
+    } else {
+        toLongOrNull()
+    }
+}
+
 fun String.toSIInt() = toSILong().toInt()
+
+fun String.toSIIntOrNull() = toSILongOrNull()?.toInt()
 
 fun Boolean?.toInt() = if (this == true) 1 else 0
 
@@ -133,4 +151,27 @@ fun String.an(): String {
 
     // Instances where y followed by specific letters is preceded by 'an'
     return if (lowercaseWord.matches(yRegex)) " an" else " a"
+}
+
+/**
+ * Split a string ignoring occurrences of [delimiter] inside double quotes
+ */
+fun String.splitSafe(delimiter: Char): List<String> {
+    var inQuotes = false
+    var i = 0
+    val parts = mutableListOf<String>()
+    val sb = StringBuilder()
+    while (i < length) {
+        val c = this[i++]
+        when {
+            c == '"' -> inQuotes = !inQuotes
+            c == delimiter && !inQuotes -> {
+                parts.add(sb.toString())
+                sb.clear()
+            }
+            else -> sb.append(c)
+        }
+    }
+    parts.add(sb.toString())
+    return parts
 }

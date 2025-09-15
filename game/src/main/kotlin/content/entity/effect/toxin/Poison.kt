@@ -3,7 +3,6 @@ package content.entity.effect.toxin
 import content.entity.combat.hit.characterCombatAttack
 import content.entity.combat.hit.directHit
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -113,15 +112,6 @@ class Poison {
                 source.poison(target, if (weapon.id == "emerald_bolts_e") 50 else poison)
             } else if (type == "melee" && random.nextDouble() < 0.25) {
                 source.poison(target, poison + 20)
-            }
-        }
-
-        adminCommand("poison [damage]", "toggle hitting player with poison") {
-            val damage = content.toIntOrNull() ?: 100
-            if (player.poisoned || damage < 0) {
-                player.curePoison()
-            } else {
-                player.poison(player, damage)
             }
         }
     }

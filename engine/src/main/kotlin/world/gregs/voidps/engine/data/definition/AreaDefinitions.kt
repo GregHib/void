@@ -19,6 +19,9 @@ class AreaDefinitions(
     private var areas: Map<Int, Set<AreaDefinition>> = Int2ObjectOpenHashMap(),
 ) {
 
+    val names: Set<String>
+        get() = named.keys
+
     fun getOrNull(name: String): AreaDefinition? = named[name]
 
     operator fun get(name: String): Area = named[name]?.area ?: AreaDefinition.EMPTY.area

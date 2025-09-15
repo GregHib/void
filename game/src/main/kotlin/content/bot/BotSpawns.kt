@@ -3,8 +3,10 @@ package content.bot
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.PlayerAccountLoader
+import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.command.intArg
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -35,6 +37,7 @@ import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.reflect.KClass
+import kotlin.text.toIntOrNull
 
 @Script
 class BotSpawns {
@@ -45,6 +48,7 @@ class BotSpawns {
     val bots = mutableListOf<Player>()
     val enums: EnumDefinitions by inject()
     val structs: StructDefinitions by inject()
+    val tasks: TaskManager by inject()
 
     var counter = 0
 
@@ -78,46 +82,50 @@ class BotSpawns {
             spawn()
         }
 
-        adminCommand("bots (count)", "spawn (count) number of bots") {
-            val count = content.toIntOrNull() ?: 1
-            GlobalScope.launch {
-                repeat(count) {
-                    if (it % Settings["network.maxLoginsPerTick", 25] == 0) {
-                        suspendCancellableCoroutine { cont ->
-                            World.queue("bot_$counter") {
-                                cont.resume(Unit)
-                            }
+        adminCommand("bots", intArg("count", optional = true), desc = "Spawn (count) number of bots", handler = ::spawn)
+        adminCommand("clear_bots", intArg("count", optional = true), desc = "Clear all or some amount of bots", handler = ::clear)
+        adminCommand("bot", stringArg("task", optional = true, autofill = tasks.names), desc = "Toggle yourself on/off as a bot player", handler = ::toggle)
+    }
+
+    fun spawn(player: Player, args: List<String>) {
+        val count = args[0].toIntOrNull() ?: 1
+        GlobalScope.launch {
+            repeat(count) {
+                if (it % Settings["network.maxLoginsPerTick", 25] == 0) {
+                    suspendCancellableCoroutine { cont ->
+                        World.queue("bot_$counter") {
+                            cont.resume(Unit)
                         }
                     }
-                    spawn()
+                }
+                spawn()
+            }
+        }
+    }
+
+    fun clear(player: Player, args: List<String>) {
+        val count = args[0].toIntOrNull() ?: MAX_PLAYERS
+        World.queue("bot_$counter") {
+            val manager = get<AccountManager>()
+            runBlocking {
+                for (bot in bots.take(count)) {
+                    manager.logout(bot, false)
                 }
             }
         }
+    }
 
-        adminCommand("clear_bots [count]", "clear all or some amount of bots") {
-            val count = content.toIntOrNull() ?: MAX_PLAYERS
-            World.queue("bot_$counter") {
-                val manager = get<AccountManager>()
-                runBlocking {
-                    for (bot in bots.take(count)) {
-                        manager.logout(bot, false)
-                    }
-                }
+    fun toggle(player: Player, args: List<String>) {
+        if (player.isBot) {
+            player.clear("bot")
+            player.message("Bot disabled.")
+        } else {
+            val bot = player.initBot()
+            if (args[0].isNotBlank()) {
+                player["task_bot"] = args[0]
             }
-        }
-
-        adminCommand("bot", "toggle yourself on/off as a bot player") {
-            if (player.isBot) {
-                player.clear("bot")
-                player.message("Bot disabled.")
-            } else {
-                val bot = player.initBot()
-                if (content.isNotBlank()) {
-                    player["task_bot"] = content
-                }
-                bot.emit(StartBot)
-                player.message("Bot enabled.")
-            }
+            bot.emit(StartBot)
+            player.message("Bot enabled.")
         }
     }
 

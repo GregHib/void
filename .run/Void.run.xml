@@ -4,7 +4,7 @@
     <module name="void.game.main" />
     <shortenClasspath name="NONE" />
     <method v="2">
-      <option name="Gradle.BeforeRunTask" enabled="false" tasks="collectSourcePaths" externalProjectPath="$PROJECT_DIR$/game" vmOptions="" scriptParameters="" />
+      <option name="Gradle.BeforeRunTask" enabled="false" tasks="scriptMetadata" externalProjectPath="$PROJECT_DIR$/game" vmOptions="" scriptParameters="" />
       <option name="Make" enabled="true" />
     </method>
   </configuration>

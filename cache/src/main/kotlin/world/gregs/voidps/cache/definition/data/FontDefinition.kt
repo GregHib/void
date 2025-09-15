@@ -101,6 +101,44 @@ data class FontDefinition(
 
     fun splitLines(input: String, width: Int, icons: Array<IndexedSprite>? = null) = splitLines(input, intArrayOf(width), icons)
 
+    fun width(text: String): Int {
+        var openBracket = -1
+        var prev = -1
+        var width = 0
+        val len = text.length
+        for (i in 0..<len) {
+            var curr = text[i]
+            if (curr == '<') {
+                openBracket = i
+            } else {
+                if (curr == '>' && openBracket != -1) {
+                    val escaped = text.substring(openBracket + 1, i)
+                    openBracket = -1
+                    curr = when (escaped) {
+                        "lt" -> '<'
+                        "gt" -> '>'
+                        "nbsp" -> ' '
+                        "shy" -> '­'
+                        "times" -> '×'
+                        "euro" -> '€'
+                        "copy" -> '©'
+                        "reg" -> '®'
+                        else -> continue
+                    }
+                }
+
+                if (openBracket == -1) {
+                    width += this.glyphWidths[charToByte(curr) and 0xFF].toInt() and 0xFF
+                    if (this.kerningAdjustments != null && prev != -1) {
+                        width += this.kerningAdjustments!![prev][curr.code].toInt()
+                    }
+                    prev = curr.code
+                }
+            }
+        }
+        return width
+    }
+
     fun splitLines(input: String, widths: IntArray? = null, icons: Array<IndexedSprite>? = null): List<String> {
         val output = mutableListOf<String>()
         var totalWidth = 0

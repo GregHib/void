@@ -2,7 +2,6 @@ package content.entity.effect.toxin
 
 import content.entity.combat.hit.directHit
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -99,15 +98,6 @@ class Disease {
             character.diseaseCounter = 0
             character.clear("disease_damage")
             character.clear("disease_source")
-        }
-
-        adminCommand("disease [damage]", "toggle hitting player with disease") {
-            val damage = content.toIntOrNull() ?: 100
-            if (player.diseased || damage < 0) {
-                player.cureDisease()
-            } else {
-                player.disease(player, damage)
-            }
         }
     }
 

@@ -9,11 +9,12 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.npc
 import content.entity.sound.areaSound
+import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toTag
-import world.gregs.voidps.engine.client.ui.event.adminCommand
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.data.settingsReload
@@ -44,6 +45,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
+import kotlin.text.toIntOrNull
 
 @Script
 class ShootingStar {
@@ -65,19 +67,6 @@ class ShootingStar {
                 eventUpdate()
             } else if (!Settings["events.shootingStars.enabled", false] && World.contains("shooting_star_event_timer")) {
                 World.clearQueue("shooting_star_event_timer")
-            }
-        }
-
-        adminCommand("star [minutes]", "start a new shooting star event in [minutes]") {
-            cleanseEvent(true)
-            val minutes = content.toIntOrNull()
-            if (minutes != null) {
-                World.clearQueue("shooting_star_event_timer")
-                eventUpdate(minutes)
-            } else if (minutes == -1) {
-                World.clearQueue("shooting_star_event_timer")
-            } else {
-                startCrashedStarEvent()
             }
         }
 
@@ -164,6 +153,18 @@ class ShootingStar {
                     npc<Happy>("You already have the ability to mine an extra ore, ${messageBuilder.replace(0, 4, "However")}.")
                 }
             }
+        }
+        adminCommand("star", stringArg("minutes"), desc = "Start a new shooting star event in [minutes]", handler = ::spawn)
+    }
+
+    fun spawn(player: Player, args: List<String>) {
+        cleanseEvent(true)
+        val minutes = args[0].toIntOrNull()
+        if (minutes != null) {
+            World.clearQueue("shooting_star_event_timer")
+            eventUpdate(minutes)
+        } else {
+            World.clearQueue("shooting_star_event_timer")
         }
     }
 

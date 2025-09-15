@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.timedLoad
 
 class DropTables {
 
-    private lateinit var tables: Map<String, DropTable>
+    lateinit var tables: Map<String, DropTable>
 
     fun get(key: String) = tables[key]
 

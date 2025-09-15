@@ -35,7 +35,7 @@ class GrandExchangeConfirm {
             val itemId: String = player["grand_exchange_item"] ?: return@interfaceOption
             val amount: Int = player["grand_exchange_quantity"] ?: return@interfaceOption
             val price: Int = player["grand_exchange_price"] ?: return@interfaceOption
-            val id = when (player["grand_exchange_page", "offers"]) {
+            when (player["grand_exchange_page", "offers"]) {
                 "buy" -> {
                     val total = price * amount
                     var fromBank = false

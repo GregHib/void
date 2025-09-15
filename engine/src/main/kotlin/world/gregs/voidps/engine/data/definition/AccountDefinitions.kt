@@ -16,8 +16,8 @@ import world.gregs.voidps.engine.timedLoad
  */
 class AccountDefinitions(
     private val definitions: MutableMap<String, AccountDefinition> = Object2ObjectOpenHashMap(),
-    private val displayNames: MutableMap<String, String> = Object2ObjectOpenHashMap(),
-    private val clans: MutableMap<String, Clan> = Object2ObjectOpenHashMap(),
+    val displayNames: MutableMap<String, String> = Object2ObjectOpenHashMap(),
+    val clans: MutableMap<String, Clan> = Object2ObjectOpenHashMap(),
 ) {
 
     fun add(player: Player) {

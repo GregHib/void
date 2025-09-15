@@ -59,7 +59,12 @@ abstract class ScriptMetadataTask : DefaultTask() {
             val packageName = psiFile.packageFqName.asString()
             if (change.changeType == ChangeType.MODIFIED || change.changeType == ChangeType.REMOVED) {
                 for (name in classes.map { it.name }) {
-                    scriptsList.removeIf { it == "$packageName.$name" }
+                    if (!scriptsList.removeIf { it == "$packageName.$name" } && change.changeType == ChangeType.MODIFIED) {
+                        if (scriptsList.count { it.endsWith(".$name") } > 1) {
+                            error("Deletion failed due to duplicate script names: ${scriptsList.filter { it.endsWith(".$name") }}. Please update scripts.txt or run `gradle cleanScriptMetadata`.")
+                        }
+                        scriptsList.removeIf { it.endsWith(".$name") }
+                    }
                 }
             }
             if (change.changeType == ChangeType.MODIFIED || change.changeType == ChangeType.ADDED) {
