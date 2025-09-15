@@ -1,0 +1,28 @@
+[thormac_sorcerers_tower]
+id = 389
+examine = "Nice hat."
+
+[ignatius_vulcan_sorcerers_tower]
+id = 4946
+examine = "The Master of Fire!"
+
+[baby_raccoon_sorcerers_tower]
+id = 7275
+examine = "A stripy little baby raccoon."
+
+[baby_raccoon_sorcerers_tower_2]
+id = 7276
+
+[baby_squirrel_sorcerers_tower]
+id = 7310
+
+[baby_squirrel_sorcerers_tower_2]
+id = 7311
+
+[baby_squirrel_sorcerers_tower_3]
+id = 7312
+
+[geoffrey_sorcerers_tower]
+id = 8590
+examine = "He collects flax."
+

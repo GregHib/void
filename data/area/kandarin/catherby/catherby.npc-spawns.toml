@@ -11,6 +11,7 @@ spawns = [
   { id = "trader_crewmember_hat", x = 2794, y = 3414, members = true },
   { id = "trader_crewmember_blue", x = 2795, y = 3414, members = true },
   { id = "sir_mordred", x = 1695, y = 4258, level = 2, members = true },
+  { id = "sir_mordred", x = 2769, y = 3403, level = 2, members = false },
   { id = "renegade_knight", x = 2766, y = 3397, members = true },
   { id = "renegade_knight", x = 2767, y = 3399, members = true },
   { id = "renegade_knight", x = 2773, y = 3399, members = true },

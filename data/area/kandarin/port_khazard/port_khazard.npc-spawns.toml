@@ -3,4 +3,8 @@ spawns = [
   { id = "musician_port_khazard", x = 2630, y = 3196, direction = "WEST", members = true },
   { id = "trader_crewmember_grey", x = 2673, y = 3144, members = true },
   { id = "trader_crewmember_pink", x = 2675, y = 3144, members = true },
+  { id = "tindel_marchant_port_khazard", x = 2678, y = 3153, members = true },
+  { id = "murphy_port_khazard", x = 2668, y = 3162, members = false },
+  { id = "shopkeeper_port_khazard", x = 2640, y = 3171, members = false },
+  { id = "shopkeeper_port_khazard", x = 2655, y = 3152, members = false },
 ]

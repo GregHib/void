@@ -1,0 +1,7 @@
+spawns = [
+  { id = "apprentice_clerval", x = 3625, y = 4817, members = true },
+  { id = "wizard_dougal", x = 3633, y = 4815, members = true },
+  { id = "wizard_edvin", x = 3637, y = 4814, members = true },
+  { id = "rune_guardian", x = 3627, y = 4813, members = true },
+  { id = "rune_guardian_2", x = 3625, y = 4814, members = true },
+]

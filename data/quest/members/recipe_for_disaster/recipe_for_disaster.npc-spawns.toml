@@ -2,4 +2,12 @@ spawns = [
 # 7507
   { id = "general_wartface_rfd", x = 1862, y = 5351, direction = "SOUTH", members = true },
   { id = "general_bentnoze_rfd", x = 1862, y = 5349, direction = "NORTH", members = true },
+  { id = "culinaromancer_recipe_for_disaster", x = 1863, y = 5317, members = true },
+  { id = "pirate_pete_recipe_for_disaster", x = 1862, y = 5347, members = false },
+  { id = "mountain_dwarf_recipe_for_disaster", x = 1862, y = 5345, members = false },
+  { id = "lumbridge_sage_recipe_for_disaster", x = 1865, y = 5349, members = false },
+  { id = "evil_dave_recipe_for_disaster", x = 1865, y = 5347, members = true },
+  { id = "sir_amik_varze_recipe_for_disaster", x = 1865, y = 5345, members = false },
+  { id = "awowogei_recipe_for_disaster", x = 1865, y = 5343, members = false },
+  { id = "skrach_uglogwee_recipe_for_disaster", x = 1863, y = 5352, members = true },
 ]

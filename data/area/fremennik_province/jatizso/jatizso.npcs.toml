@@ -1,0 +1,79 @@
+[fishing_spot_jatizso]
+id = 5470
+
+[fishing_spot_jatizso_2]
+id = 5471
+
+[king_gjuki_sorvott_iv]
+id = 5478
+examine = "An ill-tempered king."
+
+[hrh_hrafn]
+id = 5479
+examine = "A regal cat with an evil glint in his eye."
+
+[thorkel_silkbeard]
+id = 5480
+examine = "Jatizso's Chancellor."
+
+[mord_gunnars_jatizo]
+id = 5482
+
+[hring_hring]
+id = 5483
+examine = "Harder than the rock he sells."
+
+[flosi_dalksson]
+id = 5484
+examine = "Jatizso's fishmonger."
+
+[raum_urda_stein]
+id = 5485
+examine = "A guy that will sell you armour."
+
+[skuli_myrka]
+id = 5486
+examine = "Jatizso's armour merchant."
+
+[keepa_kettilon]
+id = 5487
+examine = "A rough-looking chef."
+
+[magnus_gram]
+id = 5488
+examine = "He can look after your money."
+
+[guard_jatizso]
+id = 5489
+examine = "A guard on insult duty."
+
+[guard_jatizso_2]
+id = 5491
+
+[guard_jatizso_3]
+id = 5492
+examine = "One of King Sorvott's militia."
+
+[freygerd]
+id = 5493
+
+[lensa]
+id = 5494
+
+[vanligga_gastfrihet]
+id = 5495
+
+[sassilik]
+id = 5496
+
+[miner_jatizso]
+id = 5498
+
+[eric_jatizso]
+id = 5499
+examine = "A bedraggled-looking tramp."
+
+[gruva_patrull_jatizso]
+id = 5500
+examine = "Mina guards the mine entrance."
+

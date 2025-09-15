@@ -1,0 +1,26 @@
+[san_fan_trouble_brewing]
+id = 4360
+examine = "A pirate from the lands to the east."
+
+[fancy_dan_trouble_brewing]
+id = 4361
+examine = "A very flamboyant pirate."
+
+[honest_jimmy_trouble_brewing]
+id = 4362
+examine = "I can't wait to buy from a guy with Honest in his name..."
+
+[monkey_trouble_brewing]
+id = 4363
+
+[parrot_trouble_brewing]
+id = 4373
+examine = "A colourful bird."
+
+[parrot_trouble_brewing_2]
+id = 4374
+
+[pirate_impling_trouble_brewing]
+id = 7867
+examine = "A pirate impling. Aarrrr!"
+

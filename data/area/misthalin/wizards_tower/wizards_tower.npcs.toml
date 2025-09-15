@@ -11,3 +11,7 @@ categories = ["human"]
 wander_radius = 4
 collision = "indoors"
 examine = "Head wizard of the Wizard's Tower."
+
+[professor_onglewip]
+id = 4585
+examine = "A gnome mage on sabbatical."

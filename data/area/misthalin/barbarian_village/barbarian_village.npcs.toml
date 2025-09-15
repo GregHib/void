@@ -89,3 +89,140 @@ examine = "A mighty warrior, Haakon is powerfully concerned for his tribe."
 [sigurd]
 id = 3329
 examine = "His furs look very damp."
+
+[tassie_slipcast_barbarian_village]
+id = 1793
+examine = "A hard-working potter."
+
+[rolad_barbarian_village]
+id = 1841
+examine = "He looks a little absent-minded."
+
+[nulodion_barbarian_village]
+id = 209
+examine = "The Dwarven armoury engineer."
+
+[barbarian_barbarian_village]
+id = 3249
+examine = "Siegmund, a guard in the Barbarian Village."
+
+[barbarian_barbarian_village_2]
+id = 3251
+examine = "Lydspor, a well-travelled barbarian warrior."
+
+[barbarian_barbarian_village_3]
+id = 3252
+examine = "Hagen, a guard in the Barbarian Village."
+
+[hunding_barbarian_village]
+id = 3254
+examine = "Likes a good fight."
+
+[barbarian_barbarian_village_4]
+id = 3255
+examine = "Wotan, a sturdy barbarian warrior."
+
+[barbarian_barbarian_village_5]
+id = 3256
+examine = "Acelin, a guard in the Barbarian Village."
+
+[barbarian_barbarian_village_6]
+id = 3257
+examine = "Adelino, a barbarian warrior with a big axe."
+
+[barbarian_barbarian_village_7]
+id = 3258
+examine = "Adolpho, a barbarian warrior with a warhammer."
+
+[barbarian_barbarian_village_8]
+id = 3259
+examine = "Aitan, a barbarian archer."
+
+[barbarian_barbarian_village_9]
+id = 3261
+examine = "Gutrune, a mighty barbarian warrior."
+
+[barbarian_barbarian_village_10]
+id = 3263
+examine = "Sieglinde, a muscular barbarian warrior."
+
+[goblin_barbarian_village]
+id = 3265
+categories = ["goblins"]
+examine = "An ugly green creature."
+
+[goblin_barbarian_village_2]
+id = 3266
+categories = ["goblins"]
+examine = "An ugly green creature."
+
+[goblin_barbarian_village_3]
+id = 3267
+categories = ["goblins"]
+examine = "An ugly green creature."
+
+[black_guard_barbarian_village]
+id = 3276
+categories = ["dwarves"]
+examine = "A member of the Black Guard, a special division of the dwarven army."
+
+[black_guard_barbarian_village_2]
+id = 3277
+categories = ["dwarves"]
+examine = "A member of the Black Guard, a special division of the dwarven army."
+
+[black_guard_barbarian_village_3]
+id = 3278
+categories = ["dwarves"]
+examine = "A member of the Black Guard, a special division of the dwarven army."
+
+[black_guard_barbarian_village_4]
+id = 3279
+categories = ["dwarves"]
+examine = "A member of the Black Guard, a special division of the dwarven army."
+
+[fishing_spot_barbarian_village]
+id = 328
+
+[engineering_assistant_barbarian_village]
+id = 3280
+examine = "He looks busy."
+
+[engineering_assistant_barbarian_village_2]
+id = 3281
+examine = "He's wandering around aimlessly with a box of spare parts."
+
+[engineer_barbarian_village]
+id = 3282
+examine = "He's building a cannon."
+
+[litara_barbarian_village]
+id = 4376
+examine = "Litara, a barbarian explorer."
+
+[peksa_barbarian_village]
+id = 538
+examine = "Always up-to-date with the latest helmet fashions."
+
+[student_barbarian_village]
+id = 7152
+examine = "A person sitting an exam."
+
+[student_barbarian_village_2]
+id = 7153
+examine = "A person sitting an exam."
+
+[student_barbarian_village_3]
+id = 7155
+examine = "A person sitting an exam."
+
+[student_barbarian_village_4]
+id = 7157
+examine = "A person sitting an exam."
+
+[lakki_the_delivery_dwarf_barbarian_village]
+id = 7728
+
+[unicorn]
+id = 89
+examine = "Horse with a horn."

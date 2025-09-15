@@ -1,0 +1,16 @@
+[dungeon_rat_ardougne_sewers]
+id = 4928
+
+[claus_the_chef_ardougne_sewers]
+id = 886
+
+[alomone_ardougne_sewers]
+id = 891
+
+[clivet_ardougne_sewers]
+id = 893
+examine = "A member of the Hazeel cult."
+
+[hazeel_cultist_ardougne_sewers]
+id = 894
+examine = "A member of the Hazeel cult."

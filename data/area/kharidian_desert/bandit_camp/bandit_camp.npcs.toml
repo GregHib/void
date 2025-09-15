@@ -1,0 +1,34 @@
+[bandit_shopkeeper_bandit_camp]
+id = 1917
+examine = "I guess he sells what he steals...?"
+
+[bartender_bandit_camp]
+id = 1921
+examine = "Looks like a rough-and-ready type."
+
+[eblis_bandit_camp]
+id = 1922
+
+[bandit_bandit_camp]
+id = 1926
+examine = "A tough-looking criminal."
+
+[bandit_bandit_camp_2]
+id = 1927
+examine = "A tough-looking criminal."
+
+[bandit_bandit_camp_3]
+id = 1928
+
+[bandit_bandit_camp_4]
+id = 1929
+
+[bandit_bandit_camp_5]
+id = 1930
+
+[bandit_bandit_camp_6]
+id = 1931
+
+[mysterious_ghost_bandit_camp]
+id = 2384
+

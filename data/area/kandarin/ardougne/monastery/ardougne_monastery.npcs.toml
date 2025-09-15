@@ -1,0 +1,36 @@
+[brother_kojo_monastery]
+id = 223
+examine = "A peaceful monk."
+
+[torrell_monastery]
+id = 2338
+examine = "Perhaps this gardener might look after your crops for you."
+
+[lady_servil_monastery]
+id = 258
+
+[brother_omad_monastery]
+id = 279
+examine = "An old monk."
+
+[brother_cedric_monastery]
+id = 280
+examine = "An old drunk monk."
+
+[monk_monastery]
+id = 281
+examine = "An Ardougne Monk."
+
+[ferret_monastery]
+id = 5139
+
+[justin_servil_monastery]
+id = 7541
+
+[tool_leprechaun_monastery]
+id = 7562
+examine = "Looks after your Farming tools."
+
+[chuck_monastery]
+id = 8677
+

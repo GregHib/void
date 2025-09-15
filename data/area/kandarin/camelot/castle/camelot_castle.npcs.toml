@@ -1,0 +1,46 @@
+[merlin_camelot_castle]
+id = 213
+
+[sir_lancelot_camelot_castle]
+id = 239
+examine = "One of the Knights of the Round Table."
+
+[sir_gawain_camelot_castle]
+id = 240
+examine = "One of the Knights of the Round Table."
+
+[sir_kay_camelot_castle]
+id = 241
+examine = "One of the Knights of the Round Table."
+
+[sir_bedivere_camelot_castle]
+id = 242
+examine = "One of the Knights of the Round Table."
+
+[sir_tristram_camelot_castle]
+id = 243
+examine = "One of the Knights of the Round Table."
+
+[sir_pelleas_camelot_castle]
+id = 244
+examine = "One of the Knights of the Round Table."
+
+[sir_lucan_camelot_castle]
+id = 245
+examine = "One of the Knights of the Round Table."
+
+[king_arthur_camelot_castle]
+id = 251
+examine = "Legendary King of the Britons."
+
+[vestri_camelot_castle]
+id = 3679
+examine = "He looks short and grumpy."
+
+[sir_palomedes_camelot_castle]
+id = 3787
+
+[ice_giant_camelot_castle]
+id = 4686
+categories = ["ice_giants"]
+examine = "He's got icicles in his beard."

@@ -1,0 +1,41 @@
+[blessed_giant_rat_underground_pass_dungeon]
+id = 4941
+categories = ["rats"]
+examine = "It's one of Iban's pet vermin."
+
+[blessed_giant_rat_underground_pass_dungeon_2]
+id = 978
+categories = ["rats"]
+examine = "It's one of Iban's pet vermin."
+
+[slave_underground_pass_dungeon]
+id = 979
+examine = "A wretched slave of Iban."
+
+[slave_underground_pass_dungeon_2]
+id = 980
+examine = "A wretched slave of Iban."
+
+[slave_underground_pass_dungeon_3]
+id = 981
+examine = "A wretched slave of Iban."
+
+[slave_underground_pass_dungeon_4]
+id = 982
+examine = "A wretched slave of Iban."
+
+[slave_underground_pass_dungeon_5]
+id = 983
+examine = "A wretched slave of Iban."
+
+[slave_underground_pass_dungeon_6]
+id = 984
+examine = "A wretched slave of Iban."
+
+[slave_underground_pass_dungeon_7]
+id = 985
+examine = "A wretched slave of Iban."
+
+[unicorn_underground_pass_dungeon]
+id = 987
+

@@ -1,0 +1,13 @@
+spawns = [
+  { id = "mogre_guard", x = 2968, y = 9523, level = 1, members = true },
+  { id = "mudskipper", x = 2948, y = 9522, level = 1, members = true },
+  { id = "mudskipper", x = 2949, y = 9525, level = 1, members = true },
+  { id = "mudskipper", x = 2951, y = 9522, level = 1, members = true },
+  { id = "mudskipper", x = 2952, y = 9528, level = 1, members = true },
+  { id = "mudskipper", x = 2953, y = 9523, level = 1, members = true },
+  { id = "mudskipper", x = 2954, y = 9530, level = 1, members = true },
+  { id = "mudskipper_2", x = 2949, y = 9528, level = 1, members = true },
+  { id = "mudskipper", x = 2952, y = 9525, level = 1, members = true },
+  { id = "crab_underwater", x = 2977, y = 9520, level = 1, members = true },
+  { id = "crab_underwater", x = 2977, y = 9522, level = 1, members = true },
+]

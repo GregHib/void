@@ -1,0 +1,3 @@
+spawns = [
+  { id = "arzinian_being_of_bordanzan", x = 2367, y = 4960, level = 3, members = false },
+]

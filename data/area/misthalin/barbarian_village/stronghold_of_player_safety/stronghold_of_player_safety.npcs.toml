@@ -1,0 +1,48 @@
+[guard_stronghold_of_player_safety]
+id = 7142
+examine = "He thumps people who cheat."
+
+[gublinch_jailmate_stronghold_of_player_safety]
+id = 7144
+examine = "An imprisoned gublinch."
+
+[gublinchette_jailmate_stronghold_of_player_safety]
+id = 7145
+examine = "An imprisoned gublinch."
+
+[gublinchette_jailmate_stronghold_of_player_safety_2]
+id = 7146
+examine = "An imprisoned gublinch."
+
+[gublinch_jailmate_stronghold_of_player_safety_2]
+id = 7147
+examine = "An imprisoned gublinch."
+
+[gublinch_jailmate_stronghold_of_player_safety_3]
+id = 7148
+examine = "An imprisoned gublinch."
+
+[gublinch_jailmate_stronghold_of_player_safety_4]
+id = 7149
+examine = "An imprisoned gublinch."
+
+[gublinch_jailmate_stronghold_of_player_safety_5]
+id = 7150
+examine = "An imprisoned gublinch."
+
+[cockroach_worker_stronghold_of_player_safety]
+id = 7159
+categories = ["cockroaches"]
+examine = "Eurgh! A big bug."
+
+[cockroach_soldier_stronghold_of_player_safety]
+id = 7160
+categories = ["cockroaches"]
+examine = "Euww! A giant bug."
+
+[mugger_stronghold_of_player_safety]
+id = 7161
+
+[mugger_stronghold_of_player_safety_2]
+id = 7162
+

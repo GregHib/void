@@ -1,0 +1,100 @@
+[robe_store_owner_yanille]
+id = 1658
+examine = "A Supplier of Magical robes."
+
+[zavistic_rarve_yanille]
+id = 2059
+examine = "The Grand Secretary of the Wizards' Guild in Yanille."
+
+[selena_yanille]
+id = 2332
+examine = "Perhaps this gardener might look after your crops for you."
+
+[tramp_yanille]
+id = 2794
+
+[bert_yanille]
+id = 3108
+
+[guard_captain_yanille]
+id = 3109
+examine = "This guard looks rather drunk and has beer stains down his armour."
+
+[watchman_yanille]
+id = 34
+examine = "Watches stuff. But who watches him?"
+
+[soldier_yanille]
+id = 35
+examine = "A soldier of the town of Yanille."
+
+[professor_imblewyn_yanille]
+id = 4586
+examine = "A visiting gnome mage."
+
+[magic_store_owner_yanille]
+id = 461
+examine = "A Supplier of Magical items."
+
+[aleck_yanille]
+id = 5110
+examine = "He acts as if he owns the place."
+
+[leon_yanille]
+id = 5111
+examine = "He seems to be making odd sucking noises with his teeth."
+
+[wizard_yanille]
+id = 5195
+examine = "A wizard."
+
+[wizard_yanille_2]
+id = 5196
+examine = "A wizard."
+
+[wizard_yanille_3]
+id = 5197
+examine = "A wizard."
+
+[frenita_yanille]
+id = 593
+examine = "A recipe for success- in Cooking."
+
+[pet_shop_owner_yanille]
+id = 6892
+examine = "The lady of the pet shop."
+
+[dalmatian_yanille]
+id = 6896
+examine = "A dalmatian puppy."
+
+[bulldog_yanille]
+id = 6897
+examine = "A bulldog puppy."
+
+[tool_leprechaun_yanille]
+id = 7561
+examine = "Looks after your Farming tools."
+
+[og_yanille]
+id = 853
+categories = ["ogres"]
+examine = "A senior member of the ogre community."
+
+[grew_yanille]
+id = 854
+categories = ["ogres"]
+examine = "Very probably an ogre."
+
+[watchtower_wizard_yanille]
+id = 872
+examine = "The hat is a dead giveaway."
+
+[tower_guard_yanille]
+id = 877
+examine = "Tries to keep the peace."
+
+[colonel_radick_yanille]
+id = 878
+examine = "A military man."
+

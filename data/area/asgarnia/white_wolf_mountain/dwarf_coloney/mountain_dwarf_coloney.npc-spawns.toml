@@ -1,0 +1,13 @@
+spawns = [
+  { id = "ice_warrior", x = 2822, y = 9901, members = false },
+  { id = "ice_warrior", x = 2836, y = 9905, members = false },
+  { id = "ice_warrior", x = 2838, y = 9917, members = false },
+  { id = "ice_warrior", x = 2847, y = 9919, members = false },
+  { id = "ice_warrior", x = 2848, y = 9912, members = false },
+  { id = "khorvak_a_dwarven_engineer", x = 2864, y = 9876, members = true },
+  { id = "cart_conductor_dwarf_coloney", x = 2874, y = 9872, members = false },
+  { id = "rohak", x = 2865, y = 9876, members = true },
+  { id = "holoy", x = 2865, y = 9871, members = true },
+  { id = "captain_ninto", x = 2869, y = 9877, members = false },
+  { id = "ice_spider_default", x = 2869, y = 9912, members = false },
+]

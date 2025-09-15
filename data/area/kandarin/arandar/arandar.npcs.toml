@@ -1,0 +1,27 @@
+[deadly_red_spider_arandar]
+id = 63
+categories = ["spiders"]
+examine = "I think this spider has been magically modified."
+
+[dire_wolf_isafdar]
+id = 1198
+categories = ["wolves"]
+examine = "What big teeth you have."
+
+[elf_warrior_arandar_pass]
+id = 1201
+
+[yaktwee_swinmari_cianta_arandar_pass]
+id = 12337
+examine = "A gnome mage and hunter with a somewhat enthusiastic swagger."
+
+[gnome]
+id = 66
+examine = "Like a mini man!"
+
+[gnome_2]
+id = 67
+examine = "Like a mini man!"
+
+[gnome_3]
+id = 68

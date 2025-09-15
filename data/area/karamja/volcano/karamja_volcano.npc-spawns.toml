@@ -19,4 +19,12 @@ spawns = [
     { id = "snake", x = 2875, y = 3164 },
     { id = "snake", x = 2879, y = 3151 },
     { id = "snake", x = 2819, y = 3194 },
+    { id = "imp", x = 2829, y = 3176, members = false },
+    { id = "imp", x = 2831, y = 3170, members = false },
+    { id = "imp", x = 2832, y = 3185, members = false },
+    { id = "imp", x = 2842, y = 3162, members = false },
+    { id = "imp", x = 2849, y = 3162, members = false },
+    { id = "imp", x = 2849, y = 3189, members = false },
+    { id = "imp", x = 2857, y = 3181, members = false },
+    { id = "imp", x = 2861, y = 3171, members = false },
 ]

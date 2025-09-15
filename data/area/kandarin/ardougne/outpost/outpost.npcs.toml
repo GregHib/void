@@ -1,0 +1,15 @@
+[jorral_outpost]
+id = 2932
+examine = "A sensible looking man."
+
+[scout_outpost]
+id = 5575
+
+[femi_outpost]
+id = 676
+examine = "A gnome trader."
+
+[ticket_vendor_outpost]
+id = 8088
+examine = "Gives out tickets for the circus."
+

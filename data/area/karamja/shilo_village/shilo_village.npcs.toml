@@ -1,0 +1,64 @@
+[fishing_spot_shilo_village]
+id = 317
+
+[undead_one_shilo_village]
+id = 504
+categories = ["zombies"]
+examine = "The animated dead; one of Rashiliyia's minions."
+
+[undead_one_shilo_village_2]
+id = 505
+categories = ["zombies"]
+examine = "The animated dead; one of Rashiliyia's minions."
+
+[vigroy_shilo_village]
+id = 511
+examine = "A cart driver; it looks like he's quite experienced."
+
+[kaleb_paramaya_shilo_village]
+id = 512
+examine = "This is Kaleb Paramaya, a warm and friendly inn owner."
+
+[yohnus_shilo_village]
+id = 513
+examine = "This is Yohnus, he runs the local smithery."
+
+[seravel_shilo_village]
+id = 514
+examine = "This is Seravel, he sells tickets for the 'Lady of the Waves'."
+
+[yanni_salika_shilo_village]
+id = 515
+examine = "Yanni Salika; he buys and sells antiques."
+
+[obli_shilo_village]
+id = 516
+examine = "An intelligent-looking shop owner."
+
+[fernahei_shilo_village]
+id = 517
+examine = "This is Fernahei; he owns the local fishing tackle shop."
+
+[undead_one_shilo_village_3]
+id = 5355
+categories = ["zombies"]
+examine = "The animated dead; one of Rashiliyia's minions."
+
+[undead_one_shilo_village_4]
+id = 5356
+categories = ["zombies"]
+examine = "The animated dead; one of Rashiliyia's minions."
+
+[undead_one_shilo_village_5]
+id = 5357
+categories = ["zombies"]
+examine = "The animated dead; one of Rashiliyia's minions."
+
+[undead_one_shilo_village_6]
+id = 5358
+categories = ["zombies"]
+examine = "The animated dead; one of Rashiliyia's minions."
+
+[lapalok_shilo_village]
+id = 8483
+

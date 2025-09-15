@@ -1,0 +1,8 @@
+spawns = [
+  { id = "tyras_guard_port_tyras", x = 2154, y = 3121, members = true },
+  { id = "tyras_guard_port_tyras", x = 2154, y = 3123, members = true },
+  { id = "tyras_guard_port_tyras", x = 2159, y = 3125, members = true },
+  { id = "tyras_guard_port_tyras", x = 2160, y = 3122, members = true },
+  { id = "tyras_guard_port_tyras", x = 2141, y = 3122, members = true },
+  { id = "tyras_guard_port_tyras", x = 2148, y = 3122, members = true },
+]

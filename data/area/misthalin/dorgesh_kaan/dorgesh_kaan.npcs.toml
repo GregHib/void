@@ -1,0 +1,311 @@
+[gerdi_dorgesh_kaan]
+id = 1720
+
+[jobo_dorgesh_kaan]
+id = 1722
+
+[oldak_dorgesh_kaan]
+id = 1728
+
+[merchant_walton_dorgesh_kaan]
+id = 1792
+
+[merchant_vernon_dorgesh_kaan]
+id = 2463
+examine = "He sells 'exotic' ingredients to the cave goblins."
+
+[merchant_uriah_dorgesh_kaan]
+id = 2464
+examine = "He sells 'exotic' ingredients to the cave goblins."
+
+[merchant_xenia_dorgesh_kaan]
+id = 2465
+examine = "She sells 'exotic' ingredients to the cave goblins."
+
+[merchant_yuri_dorgesh_kaan]
+id = 2466
+examine = "He sells 'exotic' ingredients to the cave goblins."
+
+[merchant_zakia_dorgesh_kaan]
+id = 2467
+examine = "She sells 'exotic' ingredients to the cave goblins."
+
+[zanik_dorgesh_kaan]
+id = 2545
+
+[captain_undak_dorgesh_kaan]
+id = 423
+
+[captain_undak_dorgesh_kaan_2]
+id = 424
+
+[captain_undak_dorgesh_kaan_3]
+id = 425
+
+[torzek_dorgesh_kaan]
+id = 439
+
+[andil_dorgesh_kaan]
+id = 441
+
+[delgon_dorgesh_kaan]
+id = 443
+
+[cave_goblin_dorgesh_kaan]
+id = 5752
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[cave_goblin_dorgesh_kaan_2]
+id = 5753
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[cave_goblin_dorgesh_kaan_3]
+id = 5755
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[cave_goblin_dorgesh_kaan_4]
+id = 5756
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[cave_goblin_dorgesh_kaan_5]
+id = 5757
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[cave_goblin_dorgesh_kaan_6]
+id = 5758
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[cave_goblin_dorgesh_kaan_7]
+id = 5759
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[cave_goblin_dorgesh_kaan_8]
+id = 5761
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[cave_goblin_dorgesh_kaan_9]
+id = 5764
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[cave_goblin_dorgesh_kaan_10]
+id = 5765
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[cave_goblin_dorgesh_kaan_11]
+id = 5766
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[cave_goblin_dorgesh_kaan_12]
+id = 5767
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[cave_goblin_dorgesh_kaan_13]
+id = 5768
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[ur_zek_dorgesh_kaan]
+id = 5770
+examine = "A respected member of the Dorgeshuun Council."
+
+[ur_vass_dorgesh_kaan]
+id = 5771
+examine = "A respected member of the Dorgeshuun Council."
+
+[ur_taal_dorgesh_kaan]
+id = 5772
+examine = "A respected member of the Dorgeshuun Council."
+
+[ur_meg_dorgesh_kaan]
+id = 5773
+examine = "A respected member of the Dorgeshuun Council."
+
+[ur_lun_dorgesh_kaan]
+id = 5774
+examine = "A respected member of the Dorgeshuun Council."
+
+[ur_pel_dorgesh_kaan]
+id = 5775
+examine = "A respected member of the Dorgeshuun Council."
+
+[bartak_dorgesh_kaan]
+id = 5778
+examine = "He works the city's metal."
+
+[reldak_dorgesh_kaan]
+id = 5780
+examine = "Sells leather goods made of frog!"
+
+[miltog_dorgesh_kaan]
+id = 5781
+examine = "Sells lamps to light your way in dark caves."
+
+[mernik_dorgesh_kaan]
+id = 5782
+examine = "She looks after the kiddies."
+
+[cave_goblin_dorgesh_kaan_14]
+id = 5783
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[crate_goblin_dorgesh_kaan]
+id = 5784
+examine = "Taking a terribly important box from one place to another."
+
+[cave_goblin_dorgesh_kaan_15]
+id = 5785
+examine = "One of the many citizens of Dorgesh-Kaan."
+
+[goblin_scribe_dorgesh_kaan]
+id = 5786
+examine = "Good at shorthand."
+
+[oldak_dorgesh_kaan_2]
+id = 5787
+
+[gourmet_dorgesh_kaan]
+id = 5788
+examine = "A connoisseur of exotic foods from outside Dorgesh-Kaan."
+
+[gourmet_dorgesh_kaan_2]
+id = 5789
+examine = "A connoisseur of exotic foods from outside Dorgesh-Kaan."
+
+[gourmet_dorgesh_kaan_3]
+id = 5790
+examine = "A connoisseur of exotic foods from outside Dorgesh-Kaan."
+
+[gourmet_dorgesh_kaan_4]
+id = 5791
+examine = "A connoisseur of exotic foods from outside Dorgesh-Kaan."
+
+[turgok_dorgesh_kaan]
+id = 5792
+examine = "Sells cave goblin fast food."
+
+[markog_dorgesh_kaan]
+id = 5793
+examine = "Sells cave goblin fast food."
+
+[durgok_dorgesh_kaan]
+id = 5794
+examine = "Sells cave goblin fast food."
+
+[tindar_dorgesh_kaan]
+id = 5795
+examine = "Sells cave goblin fast food."
+
+[gundik_dorgesh_kaan]
+id = 5796
+examine = "Sells cave goblin fast food."
+
+[zenkog_dorgesh_kaan]
+id = 5797
+examine = "Sells cave goblin fast food."
+
+[lurgon_dorgesh_kaan]
+id = 5798
+examine = "Oversees the market."
+
+[ur_tag_dorgesh_kaan]
+id = 5799
+examine = "He's the head of the Dorgeshuun Council."
+
+[guard_dorgesh_kaan]
+id = 5800
+categories = ["goblins"]
+examine = "He keeps order in the city."
+
+[guard_dorgesh_kaan_2]
+id = 5801
+categories = ["goblins"]
+examine = "He keeps order in the city."
+
+[zanik_dorgesh_kaan_2]
+id = 5802
+
+[young_un_dorgesh_kaan]
+id = 5803
+examine = "A goblin baby."
+
+[tyke_dorgesh_kaan]
+id = 5804
+examine = "A goblin baby."
+
+[nipper_dorgesh_kaan]
+id = 5805
+examine = "A goblin baby."
+
+[nipper_dorgesh_kaan_2]
+id = 5806
+
+[bozin_dorgesh_kaan]
+id = 5808
+
+[fandon_dorgesh_kaan]
+id = 5809
+examine = "A goblin child."
+
+[horgon_dorgesh_kaan]
+id = 5811
+examine = "A goblin child."
+
+[lorzan_dorgesh_kaan]
+id = 5813
+examine = "A goblin child."
+
+[caldi_dorgesh_kaan]
+id = 5815
+examine = "A goblin child."
+
+[elzik_dorgesh_kaan]
+id = 5817
+examine = "A goblin child."
+
+[inglin_dorgesh_kaan]
+id = 5819
+examine = "A goblin child."
+
+[kenti_dorgesh_kaan]
+id = 5821
+examine = "A goblin child."
+
+[spit_goblin_dorgesh_kaan]
+id = 5823
+examine = "Don't spit, it's unhygienic."
+
+[goblin_fish_dorgesh_kaan]
+id = 5824
+examine = "A bug-eyed little goblin fish. How cute."
+
+[moths_dorgesh_kaan]
+id = 5827
+examine = "Annoying little flappy things."
+
+[barlak_dorgesh_kaan]
+id = 5828
+examine = "Sells bone goods."
+
+[ambassador_alvijar_dorgesh_kaan]
+id = 5832
+
+[tegdak_dorgesh_kaan]
+id = 5869
+
+[ambassador_alvijar_dorgesh_kaan_2]
+id = 5887
+
+[zanik_dorgesh_kaan_3]
+id = 6394
+
+[zanik_dorgesh_kaan_4]
+id = 8654
+
+[zanik_dorgesh_kaan_5]
+id = 8655
+
+[grubfoot_dorgesh_kaan]
+id = 8656
+
+[grubfoot_dorgesh_kaan_2]
+id = 8657
+

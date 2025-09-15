@@ -24,4 +24,12 @@ spawns = [
   { id = "balloon_animal_goat", x = 2084, y = 4465 },
   { id = "balloon_animal_goat", x = 2084, y = 4470 },
   { id = "balloon_animal_goat", x = 2080, y = 4467 },
+  # 7502
+  { id = "mr_mordau", x = 1884, y = 5020, direction = "NORTH" },
+  { id = "zombie_surprise_exam", x = 1885, y = 5026, direction = "SOUTH" },
+  { id = "giant_surprise_exam", x = 1885, y = 5029, direction = "SOUTH" },
+  { id = "goblin_surprise_exam", x = 1883, y = 5026, direction = "SOUTH" },
+  { id = "goblin_2_surprise_exam", x = 1883, y = 5029, direction = "SOUTH" },
+  { id = "mummy_surprise_exam", x = 1887, y = 5026, direction = "SOUTH" },
+  { id = "dunce_surprise_exam", x = 1890, y = 5018, direction = "SOUTH" },
 ]

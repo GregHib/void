@@ -1,0 +1,19 @@
+[khorvak_a_dwarven_engineer]
+id = 1842
+examine = "The little guy is having trouble standing up right."
+
+[cart_conductor_dwarf_coloney]
+id = 2185
+examine = "Remember: don't drink and ride in mine carts."
+
+[rohak]
+id = 3401
+
+[holoy]
+id = 4559
+examine = "A seller of crossbow parts."
+
+[captain_ninto]
+id = 4594
+examine = "A gnome pilot off duty, he looks a bit worse for wear..."
+

@@ -1,0 +1,65 @@
+[grish]
+id = 2038
+examine = "An ogre shaman"
+
+[uglug_nar]
+id = 2039
+examine = "An ogre shaman"
+
+[pilg]
+id = 2040
+examine = "They're done for!"
+
+[grug]
+id = 2041
+examine = "They're done for!"
+
+[ogre_guard_jiggig]
+id = 2042
+
+[ogre_guard_jiggig_2]
+id = 2043
+
+[zogre_jiggig]
+id = 2044
+categories = ["ogres"]
+examine = "A partially decomposing zombie ogre."
+
+[zogre_jiggig_2]
+id = 2045
+categories = ["ogres"]
+examine = "A partially decomposing zombie ogre."
+
+[skogre_jiggig]
+id = 2050
+categories = ["ogres"]
+examine = "An undead skeletal ogre."
+
+[zogre_jiggig_3]
+id = 2051
+
+[zogre_jiggig_4]
+id = 2052
+
+[zogre_jiggig_5]
+id = 2053
+
+[zogre_jiggig_6]
+id = 2054
+
+[zogre_jiggig_7]
+id = 2055
+categories = ["ogres"]
+examine = "A partially decomposing zombie ogre."
+
+[skogre_jiggig_2]
+id = 2056
+categories = ["ogres"]
+examine = "Looks like he's de-composing."
+
+[skogre_jiggig_3]
+id = 2057
+
+[ogre_cook_jiggig]
+id = 791
+

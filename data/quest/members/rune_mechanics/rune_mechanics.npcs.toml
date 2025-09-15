@@ -1,0 +1,18 @@
+[apprentice_clerval]
+id = 5026
+examine = "An apprentice."
+
+[wizard_dougal]
+id = 9433
+examine = "He's a bit uptight."
+
+[wizard_edvin]
+id = 9434
+examine = "He's working hard on something."
+
+[rune_guardian]
+id = 9435
+
+[rune_guardian_2]
+id = 9438
+

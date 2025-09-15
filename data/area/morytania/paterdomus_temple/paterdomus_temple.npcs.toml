@@ -1,0 +1,32 @@
+[monk_of_zamorak_paterdomus_temple]
+id = 1044
+
+[monk_of_zamorak_paterdomus_temple_2]
+id = 1045
+
+[monk_of_zamorak_paterdomus_temple_3]
+id = 1046
+
+[drezel_paterdomus_temple]
+id = 1047
+
+[mercenary_adventurer_paterdomus_temple]
+id = 1048
+
+[ulizius_paterdomus_temple]
+id = 1054
+examine = "A slightly nervous guard."
+
+[hiylik_myna_paterdomus_temple]
+id = 1514
+examine = "A local holy man who supports the people trying to get through Mort Myre."
+
+[monk_paterdomus_temple]
+id = 3074
+
+[dead_monk_paterdomus_temple]
+id = 3076
+
+[blaze_sharpeye_paterdomus_temple]
+id = 8065
+

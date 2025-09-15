@@ -1,0 +1,5 @@
+spawns = [
+  { id = "captain_errdo_crashed", x = 3321, y = 3431, members = true },
+  { id = "elissa_digsite", x = 3380, y = 3442, members = true },
+  { id = "assassin_digsite", x = 3378, y = 3442, members = true },
+]

@@ -30,3 +30,37 @@ categories = ["human"]
 wander_radius = 3
 collision = "indoors"
 examine = "Appears slightly drunk."
+
+[captain_korasi_musa_point]
+id = 11655
+
+[jessika_musa_point]
+id = 11666
+
+[man_musa_point]
+id = 170
+examine = "One of Gielinor's many citizens, apparently trying to be an explorer."
+
+[fishing_spot_musa_point]
+id = 323
+
+[fishing_spot_musa_point_2]
+id = 324
+
+[luthas_musa_point]
+id = 379
+examine = "The owner of the banana plantation."
+
+[swarm_musa_point]
+id = 411
+examine = "Insects buzzing around."
+
+[jack_musa_point]
+id = 5020
+
+[jill_musa_point]
+id = 5021
+
+[jeff_musa_point]
+id = 5022
+

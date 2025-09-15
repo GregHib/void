@@ -1,0 +1,14 @@
+[fishing_spot_isafdar]
+id = 1190
+
+[elf_tracker]
+id = 1199
+examine = "An elf tracker."
+
+[eluned]
+id = 1679
+
+[islwyn]
+id = 1680
+examine = "An elven bowyer."
+

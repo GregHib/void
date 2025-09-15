@@ -1,0 +1,20 @@
+[simon_templeton]
+id = 3123
+examine = "He looks like he's seen the inside of a few tombs."
+
+[vulture_agility_pyramid]
+id = 3675
+examine = "If you see them circling, run."
+
+[mummy_agility_pyramid]
+id = 6753
+
+[mummy_agility_pyramid_2]
+id = 6754
+
+[mummy_agility_pyramid_3]
+id = 6755
+
+[mummy_agility_pyramid_4]
+id = 6756
+

@@ -1,0 +1,39 @@
+[veliaf_hurtz_meiyerditch_tunnels]
+id = 1569
+examine = "Looks like the leader of the Myreque."
+
+[sani_piliu_meiyerditch_tunnels]
+id = 1570
+examine = "A pretty young rogue."
+
+[harold_evans_meiyerditch_tunnels]
+id = 1571
+examine = "Hot headed, big built youth, who trained in the militia."
+
+[ivan_strom_meiyerditch_tunnels]
+id = 1574
+examine = "A member of the Myreque and an aspiring young priest."
+
+[fishing_spot_meiyerditch_tunnels]
+id = 7636
+
+[skeletal_hand_meiyerditch_tunnels]
+id = 7640
+categories = ["crawling_hands"]
+examine = "A giant, skeletal hand. I don't think I should offer to shake hands."
+
+[zombie_hand_meiyerditch_tunnels]
+id = 7641
+categories = ["crawling_hands"]
+examine = "A giant, zombified hand. I don't think I should offer to shake hands."
+
+[mutated_bloodveld_meiyerditch_tunnels]
+id = 7642
+categories = ["bloodveld"]
+examine = "A bloodveld with a very mixed heritage."
+
+[mutated_bloodveld_meiyerditch_tunnels_2]
+id = 7643
+categories = ["bloodveld"]
+examine = "A bloodveld with a very mixed heritage."
+

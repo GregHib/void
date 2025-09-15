@@ -1,0 +1,17 @@
+[rock_pile_goblin_cave]
+id = 1803
+examine = "A pile of boulders."
+
+[dungeon_rat_goblin_cave]
+id = 4929
+categories = ["rats"]
+examine = "Overgrown vermin."
+
+[goblin_guard_goblin_cave]
+id = 6496
+examine = "He doesn't look very welcoming."
+
+[goblin_guard_goblin_cave_2]
+id = 6497
+examine = "He doesn't look very welcoming."
+

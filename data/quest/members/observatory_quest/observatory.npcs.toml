@@ -1,0 +1,33 @@
+[gileth_observatory]
+id = 2344
+examine = "Perhaps this gardener might look after your crops for you."
+
+[observatory_assistant_observatory]
+id = 6118
+examine = "He helps the professor."
+
+[observatory_professor_observatory]
+id = 6119
+
+[observatory_professor_observatory_2]
+id = 6120
+
+[greasycheeks_observatory]
+id = 6127
+examine = "Big appetite for a small creature."
+
+[smellytoes_observatory]
+id = 6128
+examine = "Likes drink a little too much."
+
+[creakyknees_observatory]
+id = 6129
+examine = "Lean and green."
+
+[clothears_observatory]
+id = 6130
+examine = "He looks to be in a world of his own."
+
+[fishing_spot_observatory]
+id = 927
+

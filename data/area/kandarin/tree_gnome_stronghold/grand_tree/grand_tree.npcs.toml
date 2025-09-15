@@ -29,3 +29,59 @@ examine = "He looks embarrassed"
 [shipyard_guard]
 id = 675
 wander_radius = 4
+
+[timble_grand_tree]
+id = 4573
+examine = "An underpayed gnome!"
+
+[tamble_grand_tree]
+id = 4574
+examine = "An overworked gnome!"
+
+[spang_grand_tree]
+id = 4575
+examine = "A lazy gnome."
+
+[perrdur_grand_tree]
+id = 4587
+examine = "Gnome customer."
+
+[dalila_grand_tree]
+id = 4588
+examine = "Gnome customer."
+
+[assistant_le_smith_grand_tree]
+id = 5064
+
+[hudo_grand_tree]
+id = 600
+examine = "It's another jolly tree gnome."
+
+[rometti_grand_tree]
+id = 601
+examine = "It's a well-dressed tree gnome."
+
+[gulluck_grand_tree]
+id = 602
+examine = "He sells weapons."
+
+[heckel_funch_grand_tree]
+id = 603
+examine = "It's another jolly tree gnome."
+
+[king_narnode_shareen_grand_tree]
+id = 670
+examine = "An important looking gnome."
+
+[glough_grand_tree]
+id = 671
+examine = "A rough looking gnome."
+
+[aluft_gianne_snr]
+id = 850
+examine = "The famous tree gnome chef."
+
+[gnome_waiter_grand_tree]
+id = 851
+examine = "He can serve you gnome food."
+

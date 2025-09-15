@@ -1,0 +1,70 @@
+[guard_neitiznot]
+id = 5490
+
+[fridleif_shieldson_neitiznot]
+id = 5505
+examine = "Commander of Neitiznot's guards."
+
+[maria_gunnars_neitiznot]
+id = 5507
+examine = "Ferry-mistress."
+
+[jofridr_mordstatter_neitiznot]
+id = 5509
+examine = "Mistress of the stores."
+
+[morten_holdstrom_neitiznot]
+id = 5510
+examine = "A yak handler's brother."
+
+[gunnar_holdstrom_neitiznot]
+id = 5511
+examine = "A yak handler."
+
+[anne_isaakson_neitiznot]
+id = 5512
+examine = "A farmhand."
+
+[lisse_isaakson_neitiznot]
+id = 5513
+examine = "A farmhand."
+
+[honour_guard_neitiznot]
+id = 5514
+examine = "The Burgher's protectors."
+
+[honour_guard_neitiznot_2]
+id = 5515
+
+[honour_guard_neitiznot_3]
+id = 5516
+examine = "The Burgher's protectors."
+
+[kjedelig_uppsen_neitiznot]
+id = 5518
+examine = "Guards the Burgher's room."
+
+[trogen_konungarde_neitiznot]
+id = 5519
+examine = "Guards the Burgher's room."
+
+[slug_hemligssen_neitiznot]
+id = 5520
+examine = "A man in a jester's costume."
+
+[ice_troll_runt_neitiznot]
+id = 5521
+
+[ice_troll_male_neitiznot]
+id = 5522
+
+[ice_troll_female_neitiznot]
+id = 5523
+
+[yak_neitiznot]
+id = 5529
+examine = "A hairy, smelly, grazing animal."
+
+[mawnis_burowgar_neitiznot]
+id = 5530
+

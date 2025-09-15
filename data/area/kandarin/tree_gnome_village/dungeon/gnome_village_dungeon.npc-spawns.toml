@@ -1,0 +1,24 @@
+spawns = [
+#10309
+  { id = "hobgoblin_unarmed", x = 2576, y = 4462, members = true },
+  { id = "hobgoblin_unarmed", x = 2579, y = 4463, members = true },
+  { id = "hobgoblin_unarmed", x = 2581, y = 4462, members = true },
+  { id = "hobgoblin_unarmed", x = 2576, y = 4460, members = true },
+  { id = "hobgoblin_unarmed", x = 2579, y = 4461, members = true },
+  { id = "hobgoblin_unarmed", x = 2581, y = 4460, members = true },
+  { id = "hobgoblin_unarmed", x = 2579, y = 4458, members = true },
+#10133
+  { id = "zombie", x = 2541, y = 9569, members = true },
+  { id = "hobgoblin_unarmed", x = 2515, y = 9573, members = true },
+  { id = "hobgoblin_unarmed", x = 2515, y = 9571, members = true },
+  { id = "hobgoblin_unarmed", x = 2519, y = 9571, members = true },
+  { id = "hobgoblin_unarmed", x = 2513, y = 9569, members = true },
+  { id = "hobgoblin_unarmed", x = 2515, y = 9568, members = true },
+  { id = "hobgoblin_unarmed", x = 2519, y = 9561, members = true },
+  { id = "hobgoblin_unarmed", x = 2522, y = 9561, members = true },
+  { id = "hobgoblin_unarmed", x = 2529, y = 9555, members = true },
+  { id = "hobgoblin_unarmed", x = 2533, y = 9556, members = true },
+  { id = "golrie", x = 2515, y = 9581, members = false },
+  { id = "zombie_armour_green_shorts", x = 2548, y = 9567, members = false },
+  { id = "zombie_green_shorts_sword", x = 2539, y = 9566, members = false },
+]

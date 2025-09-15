@@ -3,3 +3,102 @@ id = 4472
 wander_radius = 5
 examine = "Ugly and bad-tempered."
 shop = "summoning_supplies"
+
+[ogre_shaman_gu_tanoth]
+id = 5175
+
+[ogre_shaman_gu_tanoth_2]
+id = 5180
+
+[ogre_shaman_gu_tanoth_3]
+id = 5183
+
+[ogre_shaman_gu_tanoth_4]
+id = 5186
+
+[ogre_shaman_gu_tanoth_5]
+id = 5189
+
+[ogre_shaman_gu_tanoth_6]
+id = 5192
+
+[ogre_chieftain_gu_tanoth]
+id = 852
+categories = ["ogres"]
+examine = "Tough-looking."
+
+[toban_gu_tanoth]
+id = 855
+categories = ["ogres"]
+examine = "Ogre-ish."
+
+[gorad_gu_tanoth]
+id = 856
+categories = ["ogres"]
+examine = "Big, dumb and ugly."
+
+[ogre_guard_gu_tanoth]
+id = 858
+categories = ["ogres"]
+examine = "These ogres protect the city."
+
+[ogre_guard_gu_tanoth_2]
+id = 859
+categories = ["ogres"]
+examine = "An ogre that guards."
+
+[ogre_guard_gu_tanoth_3]
+id = 860
+
+[ogre_guard_gu_tanoth_4]
+id = 861
+
+[city_guard_gu_tanoth]
+id = 862
+categories = ["ogres"]
+examine = "Tries to keep the peace."
+
+[scared_skavid_gu_tanoth]
+id = 863
+examine = "Frightened-looking."
+
+[mad_skavid_gu_tanoth]
+id = 864
+examine = "Looks mad."
+
+[skavid_gu_tanoth]
+id = 865
+examine = "A skavid."
+
+[skavid_gu_tanoth_2]
+id = 866
+
+[skavid_gu_tanoth_3]
+id = 867
+
+[skavid_gu_tanoth_4]
+id = 868
+
+[enclave_guard_gu_tanoth]
+id = 870
+categories = ["ogres"]
+examine = "Big and ugly looking."
+
+[ogre_trader_gu_tanoth]
+id = 873
+categories = ["ogres"]
+examine = "Funnily enough, he doesn't actually buy or sell ogres."
+
+[ogre_merchant_gu_tanoth]
+id = 874
+categories = ["ogres"]
+examine = "Funnily enough, he doesn't actually buy or sell ogres."
+
+[ogre_trader_gu_tanoth_2]
+id = 875
+categories = ["ogres"]
+examine = "Funnily enough, he doesn't actually buy or sell ogres."
+
+[ogre_trader_gu_tanoth_3]
+id = 876
+

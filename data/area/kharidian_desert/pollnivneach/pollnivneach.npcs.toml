@@ -1,0 +1,52 @@
+[market_seller_pollnivneach]
+id = 1866
+examine = "A market stall keeper."
+
+[street_urchin_pollnivneach]
+id = 1868
+examine = "A mischievous looking child."
+
+[snake_pollnivneach]
+id = 1875
+examine = "A toothless old Snake."
+
+[blackjack_seller_pollnivneach]
+id = 1876
+
+[bandit_leader_pollnivneach]
+id = 1877
+
+[bandit_pollnivneach]
+id = 1879
+
+[cowardly_bandit_pollnivneach]
+id = 1886
+examine = "Probably the weakest bandit in the world ....ever."
+
+[villager_pollnivneach]
+id = 1887
+
+[villager_pollnivneach_2]
+id = 1891
+
+[villager_pollnivneach_3]
+id = 1895
+
+[menaphite_leader_pollnivneach]
+id = 1899
+
+[menaphite_thug_pollnivneach]
+id = 1903
+
+[aristarchus_pollnivneach]
+id = 3127
+
+[bandit_pollnivneach_2]
+id = 7478
+
+[sumona_pollnivneach]
+id = 7779
+
+[ali_cat_pollnivneach]
+id = 7784
+

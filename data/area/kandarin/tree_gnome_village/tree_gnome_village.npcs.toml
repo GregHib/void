@@ -1,0 +1,29 @@
+[king_bolren_tree_gnome_village]
+id = 469
+examine = "It's a gnome. He looks important."
+
+[bolkoy_tree_gnome_village]
+id = 471
+examine = "It's a tree gnome."
+
+[remsai_tree_gnome_village]
+id = 472
+examine = "It's a tree gnome."
+
+[elkoy_tree_gnome_village]
+id = 473
+
+[elkoy_tree_gnome_village_2]
+id = 474
+
+[local_gnome_tree_gnome_village]
+id = 485
+examine = "It's a young tree gnome."
+
+[kalron_tree_gnome_village]
+id = 486
+examine = "He looks lost."
+
+[evil_creature_tree_gnome_village]
+id = 6333
+

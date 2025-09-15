@@ -1,0 +1,111 @@
+[pirate_pete_braindeath_island]
+id = 2826
+
+[captain_braindeath_braindeath_island]
+id = 2827
+examine = "A shabby-looking leader."
+
+[50_luke_braindeath_island]
+id = 2828
+
+[davey_braindeath_island]
+id = 2829
+examine = "Looks like he's taking a break."
+
+[captain_donnie_braindeath_island]
+id = 2830
+
+[zombie_protester_braindeath_island]
+id = 2831
+
+[zombie_protester_braindeath_island_2]
+id = 2832
+
+[zombie_protester_braindeath_island_3]
+id = 2833
+
+[zombie_protester_braindeath_island_4]
+id = 2834
+
+[zombie_protester_braindeath_island_5]
+id = 2835
+
+[zombie_protester_braindeath_island_6]
+id = 2836
+
+[zombie_pirate_braindeath_island]
+id = 2837
+
+[zombie_pirate_braindeath_island_2]
+id = 2838
+
+[zombie_pirate_braindeath_island_3]
+id = 2839
+
+[zombie_pirate_braindeath_island_4]
+id = 2840
+
+[zombie_pirate_braindeath_island_5]
+id = 2841
+
+[zombie_pirate_braindeath_island_6]
+id = 2842
+
+[zombie_swab_braindeath_island]
+id = 2843
+
+[zombie_swab_braindeath_island_2]
+id = 2844
+
+[zombie_swab_braindeath_island_3]
+id = 2845
+
+[zombie_swab_braindeath_island_4]
+id = 2846
+
+[zombie_swab_braindeath_island_5]
+id = 2847
+
+[zombie_swab_braindeath_island_6]
+id = 2848
+
+[fever_spider_braindeath_island]
+id = 2850
+categories = ["fever_spiders"]
+examine = "A bunch of legs, eyes and teeth."
+
+[brewer_braindeath_island]
+id = 2851
+examine = "A worker in the brewery."
+
+[brewer_braindeath_island_2]
+id = 2852
+examine = "A worker in the brewery."
+
+[brewer_braindeath_island_3]
+id = 2853
+examine = "A worker in the brewery."
+
+[brewer_braindeath_island_4]
+id = 2854
+examine = "A worker in the brewery."
+
+[brewer_braindeath_island_5]
+id = 2855
+examine = "A worker in the brewery."
+
+[brewer_braindeath_island_6]
+id = 2856
+examine = "A worker in the brewery."
+
+[brewer_braindeath_island_7]
+id = 2857
+examine = "A worker in the brewery."
+
+[brewer_braindeath_island_8]
+id = 2858
+examine = "A worker in the brewery."
+
+[fishing_spot_braindeath_island]
+id = 2859
+

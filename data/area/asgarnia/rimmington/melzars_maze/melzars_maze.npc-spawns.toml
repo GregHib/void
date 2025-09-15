@@ -4,4 +4,8 @@ spawns = [
     { id = "rat", x = 2936, y = 9648 },
     { id = "rat", x = 2923, y = 9639 },
     { id = "lesser_demon_melzars_maze", x = 2936, y = 9650 },
+    { id = "spider", x = 2929, y = 9659, members = false },
+    { id = "spider", x = 2930, y = 9648, members = false },
+    { id = "spider", x = 2936, y = 9654, members = false },
+    { id = "melzar_the_mad", x = 2929, y = 9649, members = false },
 ]

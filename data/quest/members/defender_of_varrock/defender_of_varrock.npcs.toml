@@ -1,0 +1,121 @@
+[tramp_defender_of_varrock]
+id = 11
+examine = "A man down on his luck."
+
+[market_guard_defender_of_varrock]
+id = 11269
+examine = "On guard for thieves and ne'erdowells."
+
+[urist_loric_defender_of_varrock]
+id = 11270
+
+[man_defender_of_varrock]
+id = 12345
+
+[man_defender_of_varrock_2]
+id = 12347
+
+[tramp_defender_of_varrock_2]
+id = 2792
+examine = "A man down on his luck."
+
+[sani_defender_of_varrock]
+id = 4905
+examine = "A master smith."
+
+[zaff_defender_of_varrock]
+id = 546
+examine = "Sells superior staffs."
+
+[horvik_defender_of_varrock]
+id = 549
+examine = "The man with the armour."
+
+[lowe_defender_of_varrock]
+id = 550
+examine = "Sells arrows."
+
+[shopkeeper_defender_of_varrock]
+id = 551
+examine = "Ironically, makes a living from swords."
+
+[shop_assistant_defender_of_varrock]
+id = 552
+examine = "Helps the shopkeeper sell swords."
+
+[barbarian_defender_of_varrock]
+id = 5909
+examine = "Don't let her arm-wrestle you for money."
+
+[cook_defender_of_varrock]
+id = 5910
+examine = "A greasy, grimy gourmet."
+
+[stray_dog_defender_of_varrock]
+id = 5917
+examine = "A mangy mutt."
+
+[stray_dog_defender_of_varrock_2]
+id = 5918
+
+[guard_defender_of_varrock]
+id = 5919
+examine = "He tries to keep order around here. His bizarre uniform isn't helping."
+
+[man_defender_of_varrock_3]
+id = 5923
+examine = "One of Gielinor's many citizens."
+
+[woman_defender_of_varrock]
+id = 5924
+examine = "One of Gielinor's many citizens."
+
+[benny_defender_of_varrock]
+id = 5925
+examine = "Newspaper seller."
+
+[thief_defender_of_varrock]
+id = 5926
+examine = "Known for his light-fingered qualities."
+
+[thief_defender_of_varrock_2]
+id = 5928
+examine = "Known for her light-fingered qualities."
+
+[thief_defender_of_varrock_3]
+id = 5929
+examine = "Known for her light-fingered qualities."
+
+[apothecary_defender_of_varrock]
+id = 638
+examine = "A dealer in potions."
+
+[charlie_the_tramp_defender_of_varrock]
+id = 641
+examine = "Looks down on his luck."
+
+[jonny_the_beard_defender_of_varrock]
+id = 645
+examine = "Looks kind of shifty..."
+
+[dr_harlow_defender_of_varrock]
+id = 756
+examine = "A retired vampyre hunter."
+
+[shilop_defender_of_varrock]
+id = 781
+examine = "One of Gertrude's sons."
+
+[wilough_defender_of_varrock]
+id = 783
+examine = "One of Gertrude's sons."
+
+[armoured_zombie_defender_of_varrock]
+id = 8161
+
+[armoured_zombie_defender_of_varrock_2]
+id = 8162
+
+[armoured_zombie_defender_of_varrock_3]
+id = 8163
+

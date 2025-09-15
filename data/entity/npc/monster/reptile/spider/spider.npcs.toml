@@ -136,20 +136,6 @@ categories = ["spiders"]
 height = 10
 examine = "I think this spider has been genetically modified."
 
-[spider_ape_atoll]
-id = 1473
-attack_bonus = 1
-max_hit_melee = 10
-attack_speed = 6
-respawn_delay = 2
-hunt_mode = "cowardly"
-clone = "spider"
-style = "slash"
-poison = 10
-combat_anims = "spider"
-combat_sounds = "spider"
-examine = "It's an extremely small brown spider, probably very poisonous."
-
 [spider_haunted_woods]
 id = 1221
 categories = ["spiders"]

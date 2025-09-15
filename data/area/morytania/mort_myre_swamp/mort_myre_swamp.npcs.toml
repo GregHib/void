@@ -1,0 +1,53 @@
+[ghast_mort_myre_swamp]
+id = 1052
+categories = ["ghosts"]
+examine = "Arrghhh... A Ghast."
+
+[myre_blamish_snail_mort_myre_swamp]
+id = 1227
+examine = "A marsh coloured blamish snail, these types are said to spit acid."
+
+[blood_blamish_snail_mort_myre_swamp]
+id = 1228
+examine = "A blood coloured blamish snail, these types are said to spit acid."
+
+[ochre_blamish_snail_mort_myre_swamp]
+id = 1229
+examine = "A muddy coloured blamish snail, these types are said to spit acid."
+
+[bruise_blamish_snail_mort_myre_swamp]
+id = 1230
+examine = "A bruise blue coloured blamish snail, these types are said to spit acid."
+
+[bark_blamish_snail_mort_myre_swamp]
+id = 1231
+examine = "A branch bark coloured blamish snail, these types are said to spit acid."
+
+[myre_blamish_snail_mort_myre_swamp_2]
+id = 1232
+examine = "A marsh coloured blamish snail, these types are said to spit acid."
+
+[blood_blamish_snail_mort_myre_swamp_2]
+id = 1233
+examine = "A blood coloured blamish snail, these types are said to spit acid."
+
+[ochre_blamish_snail_mort_myre_swamp_2]
+id = 1234
+examine = "A muddy coloured blamish snail, these types are said to spit acid."
+
+[bruise_blamish_snail_mort_myre_swamp_2]
+id = 1235
+examine = "A bruise blue coloured blamish snail, these types are said to spit acid."
+
+[fishing_spot_mort_myre_swamp]
+id = 1236
+
+[fishing_spot_mort_myre_swamp_2]
+id = 1237
+
+[fishing_spot_mort_myre_swamp_3]
+id = 1238
+
+[curpile_fyod_mort_myre_swamp]
+id = 1568
+

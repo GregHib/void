@@ -1,0 +1,3 @@
+spawns = [
+  { id = "blue_dragon_dragon_1", x = 2908, y = 9905, members = false },
+]

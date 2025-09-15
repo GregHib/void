@@ -214,3 +214,48 @@ id = 7884
 id = 8867
 categories = ["human"]
 examine = "A helpful soul who loves dispensing advice."
+
+[chief_thief_robin_lumbridge]
+id = 11268
+
+[farmer_lumbridge]
+id = 1757
+examine = "He grows the crops in this area."
+
+[farmer_lumbridge_2]
+id = 1759
+examine = "Farming."
+
+[vasquen]
+id = 2333
+examine = "Perhaps this gardener might look after your crops for you."
+
+[dwarf_lumbridge]
+id = 4315
+
+[ham_member_lumbridge]
+id = 4321
+
+[seth_groats_lumbridge]
+id = 452
+examine = "A large, well built farmer."
+
+[nastroth_lumbridge]
+id = 6539
+examine = "A collector of ancient artefacts."
+
+[tool_leprechaun_lumbridge]
+id = 7565
+examine = "Looks after your Farming tools."
+
+[fred_the_farmer_lumbridge]
+id = 758
+examine = "A well-fed farmer."
+
+[explorer_jack_lumbridge]
+id = 7969
+examine = "He looks like a professional explorer."
+
+[fayeth]
+id = 2342
+examine = "Perhaps this gardener might look after your crops for you."

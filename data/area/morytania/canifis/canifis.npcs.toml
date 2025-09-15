@@ -1,0 +1,117 @@
+[rufus_canifis]
+id = 1038
+examine = "There's something strange about him..."
+
+[barker_canifis]
+id = 1039
+examine = "Has a distinguished air about him."
+
+[fidelio_canifis]
+id = 1040
+examine = "A lycanthrope shopkeeper."
+
+[sbott_canifis]
+id = 1041
+examine = "Has a faint smell of chemicals about him."
+
+[roavar_canifis]
+id = 1042
+examine = "Seems a jolly chap."
+
+[malak_canifis]
+id = 1920
+examine = "One of Morytania's vampyric nobility."
+
+[stranger_canifis]
+id = 2020
+
+[taxidermist_canifis]
+id = 4246
+examine = "She smells unpleasantly of chemicals."
+
+[boris_canifis]
+id = 6026
+examine = "A traveling man. Are those fleas?"
+
+[imre_canifis]
+id = 6027
+examine = "A well organised shop keeper."
+
+[yuri_canifis]
+id = 6028
+examine = "He's staring at the moon."
+
+[joseph_canifis]
+id = 6029
+examine = "He keeps calling me comrade."
+
+[nikolai_canifis]
+id = 6030
+examine = "There's a set of brows that mean business."
+
+[eduard_canifis]
+id = 6031
+examine = "This is one feral looking innkeeper."
+
+[lev_canifis]
+id = 6032
+examine = "A tough looking villager."
+
+[georgy_canifis]
+id = 6033
+examine = "A simple villager."
+
+[svetlana_canifis]
+id = 6034
+examine = "Seems a bit of a drama queen."
+
+[irina_canifis]
+id = 6035
+examine = "I bet she works out."
+
+[alexis_canifis]
+id = 6036
+examine = "She doesn't say much."
+
+[milla_canifis]
+id = 6037
+examine = "She looks like she can handle herself."
+
+[galina_canifis]
+id = 6038
+examine = "She seems light on her feet."
+
+[sofiya_canifis]
+id = 6039
+examine = "A wise villager."
+
+[ksenia_canifis]
+id = 6040
+examine = "Not exactly a warrior princess."
+
+[yadviga_canifis]
+id = 6041
+examine = "A well off villager."
+
+[nikita_canifis]
+id = 6042
+examine = "The woman."
+
+[vera_canifis]
+id = 6043
+examine = "She seems sure of herself."
+
+[zoja_canifis]
+id = 6044
+examine = "A healthy villager."
+
+[liliya_canifis]
+id = 6045
+examine = "She's looking for flowers."
+
+[achtryn_canifis]
+id = 8481
+
+[mazchna_canifis]
+id = 8482
+

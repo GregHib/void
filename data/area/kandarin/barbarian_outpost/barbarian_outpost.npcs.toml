@@ -10,3 +10,63 @@ id = 607
 categories = ["human"]
 wander_radius = 4
 examine = "He maintains this agility course."
+
+[fishing_spot_barbarian_outpost]
+id = 2724
+
+[barbarian_barbarian_outpost]
+id = 3246
+examine = "Alberich, a fierce barbarian warrior."
+
+[barbarian_barbarian_outpost_2]
+id = 3247
+examine = "Fafner, a tough barbarian warrior."
+
+[barbarian_barbarian_outpost_3]
+id = 3248
+examine = "Fasolt, a strong barbarian warrior."
+
+[barbarian_barbarian_outpost_4]
+id = 3250
+examine = "Siegfried, a young guard in the Barbarian Village."
+
+[barbarian_barbarian_outpost_5]
+id = 3253
+examine = "Minarch, a barbarian who likes his beer."
+
+[barbarian_barbarian_outpost_6]
+id = 3260
+examine = "Brunnhilde, a fierce barbarian warrior."
+
+[barbarian_barbarian_outpost_7]
+id = 3262
+examine = "Edelschwarz, a barbarian warrior with a spear."
+
+[kharid_scorpion_barbarian_outpost]
+id = 386
+
+[commander_connad_barbarian_outpost]
+id = 5029
+examine = "A slightly more approachable barbarian."
+
+[captain_cain_barbarian_outpost]
+id = 5030
+examine = "He looks pretty mean."
+
+[private_pendron_barbarian_outpost]
+id = 5032
+examine = "A barbarian private."
+
+[private_pierreb_barbarian_outpost]
+id = 5033
+examine = "A barbarian private."
+
+[private_paldon_barbarian_outpost]
+id = 5034
+examine = "A barbarian private."
+
+[chicken_tyras_camp]
+id = 1017
+categories = ["birds"]
+examine = "Yep. Definitely a chicken."
+

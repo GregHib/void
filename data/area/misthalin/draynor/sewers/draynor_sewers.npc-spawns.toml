@@ -1,0 +1,18 @@
+spawns = [
+# 12439
+  { id = "rat", x = 3083, y = 9673, members = true },
+  { id = "rat", x = 3091, y = 9670, members = true },
+  { id = "rat", x = 3099, y = 9674, members = true },
+  { id = "rat", x = 3108, y = 9672, members = true },
+  { id = "rat", x = 3118, y = 9670, members = true },
+  { id = "rat", x = 3122, y = 9673, members = true },
+  { id = "rat", x = 3123, y = 9666, members = true },
+  { id = "rat", x = 3117, y = 9694, members = true },
+  { id = "rat", x = 3106, y = 9689, members = true },
+  { id = "rat", x = 3113, y = 9683, members = true },
+  { id = "ruantun_draynor_sewers", x = 3112, y = 9690, members = true },
+  { id = "skeleton_unarmed", x = 3123, y = 9669, members = false },
+  { id = "skeleton_sword_shield", x = 3101, y = 9671, members = false },
+  { id = "skeleton_shield_helmet", x = 3115, y = 9674, members = false },
+  { id = "skeleton_mace_shield", x = 3109, y = 9675, members = false },
+]

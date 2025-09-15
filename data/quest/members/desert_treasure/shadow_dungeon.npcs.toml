@@ -1,0 +1,15 @@
+[giant_skeleton_shadow_dungeon]
+id = 1973
+categories = ["skeletons"]
+examine = "A giant skeleton."
+
+[shadow_hound_shadow_dungeon]
+id = 1976
+categories = ["dogs"]
+examine = "Looks hungry!"
+
+[giant_skeleton_shadow_dungeon_2]
+id = 5359
+categories = ["skeletons"]
+examine = "A giant skeleton."
+

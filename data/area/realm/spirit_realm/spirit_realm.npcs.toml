@@ -1,0 +1,10 @@
+[ghostly_warrior_spirit_realm]
+id = 7994
+categories = ["ghosts"]
+examine = "A spectral warrior with no axe."
+
+[tormented_wraith_spirit_realm]
+id = 8125
+categories = ["ghosts"]
+examine = "The wraith of a long-dead prisoner."
+

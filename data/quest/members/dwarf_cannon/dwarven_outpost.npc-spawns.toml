@@ -3,4 +3,10 @@ spawns = [
   { id = "rat", x = 2610, y = 3479, members = true },
   { id = "rat", x = 2614, y = 3478, members = true },
   { id = "rat", x = 2611, y = 3475, members = true },
+  { id = "captain_lawgof", x = 2567, y = 3460, members = false },
+  { id = "galahad", x = 2612, y = 3474, members = false },
+  { id = "stankers", x = 2575, y = 3486, members = false },
+  { id = "guard_dwarven_outpost", x = 2572, y = 3456, members = false },
+  { id = "guard_dwarven_outpost_2", x = 2560, y = 3456, members = false },
+  { id = "goblin_dwarven_outpost", x = 2564, y = 3456, members = false },
 ]

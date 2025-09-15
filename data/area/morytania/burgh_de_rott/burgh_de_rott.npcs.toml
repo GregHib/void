@@ -1,0 +1,142 @@
+[veliaf_hurtz_burgh_de_rott]
+id = 3510
+
+[vampyre_juvinate_burgh_de_rott]
+id = 3512
+
+[vampyre_juvinate_burgh_de_rott_2]
+id = 3513
+
+[gadderanks_burgh_de_rott]
+id = 3516
+
+[vampyre_juvinate_burgh_de_rott_3]
+id = 3522
+
+[vampyre_juvinate_burgh_de_rott_4]
+id = 3523
+
+[vampyre_juvinate_burgh_de_rott_5]
+id = 3524
+
+[vampyre_juvinate_burgh_de_rott_6]
+id = 3525
+
+[vampyre_juvenile_burgh_de_rott]
+id = 3531
+categories = ["vampyres"]
+examine = "He looks really hungry!"
+
+[vampyre_juvenile_burgh_de_rott_2]
+id = 3532
+categories = ["vampyres"]
+examine = "She looks really hungry!"
+
+[vampyre_juvenile_burgh_de_rott_3]
+id = 3533
+
+[elisabeta_burgh_de_rott]
+id = 3540
+examine = "The leader of Burgh de Rott."
+
+[aurel_burgh_de_rott]
+id = 3541
+examine = "A flea infested, pale looking excuse of a man."
+
+[sorin_burgh_de_rott]
+id = 3542
+
+[luscion_burgh_de_rott]
+id = 3543
+
+[sergiu_burgh_de_rott]
+id = 3544
+
+[radu_burgh_de_rott]
+id = 3545
+examine = "A citizen of Burgh de Rott."
+
+[grigore_burgh_de_rott]
+id = 3546
+
+[ileana_burgh_de_rott]
+id = 3547
+
+[valeria_burgh_de_rott]
+id = 3548
+
+[emilia_burgh_de_rott]
+id = 3549
+
+[florin_burgh_de_rott]
+id = 3550
+
+[catalina_burgh_de_rott]
+id = 3551
+
+[ivan_burgh_de_rott]
+id = 3552
+
+[teodor_burgh_de_rott]
+id = 3555
+
+[calin_burgh_de_rott]
+id = 3559
+
+[mihail_burgh_de_rott]
+id = 3560
+
+[nicoleta_burgh_de_rott]
+id = 3561
+
+[simona_burgh_de_rott]
+id = 3562
+
+[vasile_burgh_de_rott]
+id = 3563
+
+[razvan_burgh_de_rott]
+id = 3564
+
+[luminata_burgh_de_rott]
+id = 3565
+
+[cornelius_burgh_de_rott]
+id = 3566
+
+[cornelius_burgh_de_rott_2]
+id = 3567
+
+[fishing_spot_burgh_de_rott]
+id = 3574
+
+[fishing_spot_burgh_de_rott_2]
+id = 3575
+
+[vyrewatch_burgh_de_rott]
+id = 7691
+
+[vyrewatch_burgh_de_rott_2]
+id = 7692
+
+[vyrewatch_burgh_de_rott_3]
+id = 7693
+
+[vyrewatch_burgh_de_rott_4]
+id = 7694
+
+[vyrewatch_burgh_de_rott_5]
+id = 7699
+
+[vyrewatch_burgh_de_rott_6]
+id = 7700
+
+[vyrewatch_burgh_de_rott_7]
+id = 7701
+
+[vyrewatch_burgh_de_rott_8]
+id = 7702
+
+[ivan_strom_burgh_de_rott]
+id = 7708
+

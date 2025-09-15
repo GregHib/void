@@ -1,0 +1,10 @@
+[shadow_spider_waterfall_dungeon]
+id = 58
+categories = ["spiders"]
+examine = "Is it a spider or is it a shadow?"
+
+[skeleton_mage_waterfall_dungeon]
+id = 94
+categories = ["skeletons"]
+examine = "An undead worker of dark magic."
+

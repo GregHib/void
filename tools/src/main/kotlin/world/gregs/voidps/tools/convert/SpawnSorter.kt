@@ -18,17 +18,17 @@ object SpawnSorter {
         for (line in lines) {
             if (line.trim(' ').startsWith("#")) {
                 region = line.trim('#', ' ').toInt()
-                val file = directory.resolve("${regionName(region)}$type")
+                val file = directory.resolve("${regionName(region) ?: region.toString()}$type")
                 if (file.exists()) {
-                    append(file, "# $region ${regionName(region)}\n")
+                    append(file, "# $region ${regionName(region) ?: region.toString()}\n")
                 } else {
                     file.createNewFile()
-                    append(file, "# $region ${regionName(region)}\n")
+                    append(file, "# $region ${regionName(region) ?: region.toString()}\n")
                     files.add(file)
                 }
                 continue
             }
-            val name = regionName(region)
+            val name = regionName(region) ?: region.toString()
             val file = directory.resolve("${name}$type")
             append(file, "${line.trim()}\n")
         }
@@ -39,7 +39,7 @@ object SpawnSorter {
 //        print("[${file.name}]$text")
     }
 
-    private fun regionName(region: Int): String = when (region) {
+    fun regionName(region: Int): String? = when (region) {
         8005, 6726 -> "christmas"
         6989 -> "varrock"
         8787 -> "summoning"
@@ -48,7 +48,7 @@ object SpawnSorter {
         12192 -> "wilderness"
         8523, 8779, 9804, 10571, 10315, 13899, 11339, 10059, 11083, 9803, 9547, 9035 -> "runecrafting"
         8781 -> "burthorpe_games_room"
-        14411 -> "dungeoneering"
+        14411 -> "rune_mechanics"
         14669, 13133 -> "unstable_foundations"
         6475, 15696, 15184, 14930, 17237, 17235, 15699, 15186, 6731 -> "halloween"
         9882 -> "grand_tree_tunnels"
@@ -227,7 +227,7 @@ object SpawnSorter {
         11417, 11673, 11416, 11928 -> "taverley_dungeon"
         11343, 7753 -> "rat_catchers"
         7507 -> "recipe_for_disaster"
-        7510 -> "demon_slayer"
+        7510 -> "defender_of_varrock"
         7243 -> "cabin_fever"
         6743 -> "fist_of_guthix"
         7496 -> "mournings_end_part_2"
@@ -250,6 +250,6 @@ object SpawnSorter {
         12870, 12614 -> "swept_away"
         9625 -> "brimstails_home"
         12696 -> "champions_challenge"
-        else -> region.toString()
+        else -> null
     }
 }

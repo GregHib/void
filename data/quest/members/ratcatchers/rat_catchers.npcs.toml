@@ -1,0 +1,107 @@
+[ceril_carnillean_rat_catchers]
+id = 2953
+examine = "Head of the Carnillean household."
+
+[councillor_halgrive_rat_catchers]
+id = 2954
+
+[spice_seller_rat_catchers]
+id = 2955
+
+[fur_trader_rat_catchers]
+id = 2956
+
+[gem_merchant_rat_catchers]
+id = 2957
+
+[silver_merchant_rat_catchers]
+id = 2958
+examine = "Looks fairly well fed."
+
+[silk_merchant_rat_catchers]
+id = 2959
+
+[zenesha_rat_catchers]
+id = 2960
+
+[ali_morrisane_rat_catchers]
+id = 2961
+
+[guard_rat_catchers]
+id = 2962
+examine = "He tries to keep order around here."
+
+[guard_rat_catchers_2]
+id = 2963
+
+[guard_rat_catchers_3]
+id = 2964
+
+[guard_rat_catchers_4]
+id = 2965
+
+[guard_rat_catchers_5]
+id = 2966
+
+[guard_rat_catchers_6]
+id = 2967
+
+[guard_rat_catchers_7]
+id = 2968
+
+[guard_rat_catchers_8]
+id = 2969
+
+[guard_rat_catchers_9]
+id = 2970
+
+[guard_rat_catchers_10]
+id = 2971
+
+[guard_rat_catchers_11]
+id = 2972
+
+[guard_rat_catchers_12]
+id = 2973
+
+[loki_rat_catchers]
+id = 2985
+examine = "A tricky bag of troublesome fluff."
+
+[captain_tom_rat_catchers]
+id = 2986
+examine = "A not-so friendly, not-so little cat."
+
+[rauborn_rat_catchers]
+id = 2991
+examine = "Barman."
+
+[vaeringk_rat_catchers]
+id = 2992
+examine = "Black Guard off duty, I hope."
+
+[oxi_rat_catchers]
+id = 2993
+examine = "The rat keeper."
+
+[fior_rat_catchers]
+id = 2994
+examine = "Happy not to be working."
+
+[sagira_rat_catchers]
+id = 2995
+examine = "Well tanned for someone who lives under a mountain."
+
+[anleif_rat_catchers]
+id = 2996
+examine = "Prim and proper."
+
+[rat_rat_catchers]
+id = 3010
+
+[rat_rat_catchers_2]
+id = 3011
+
+[rat_rat_catchers_3]
+id = 3012
+

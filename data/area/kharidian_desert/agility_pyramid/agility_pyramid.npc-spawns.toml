@@ -1,0 +1,10 @@
+spawns = [
+  { id = "simon_templeton", x = 3029, y = 4683, members = false },
+  { id = "vulture_agility_pyramid", x = 3013, y = 4720, members = true },
+  { id = "vulture_agility_pyramid", x = 3015, y = 4716, members = true },
+  { id = "vulture_agility_pyramid", x = 3018, y = 4720, members = true },
+  { id = "mummy_agility_pyramid", x = 3061, y = 4672, level = 1, members = true },
+  { id = "mummy_agility_pyramid_2", x = 3066, y = 4680, level = 1, members = true },
+  { id = "mummy_agility_pyramid_3", x = 3062, y = 4676, level = 1, members = true },
+  { id = "mummy_agility_pyramid_4", x = 3064, y = 4678, level = 1, members = true },
+]

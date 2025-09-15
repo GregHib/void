@@ -37,4 +37,7 @@ spawns = [
   { id = "dagannoth_egg", x = 2458, y = 10147,  members = true },
   { id = "dagannoth_egg", x = 2466, y = 10141,  members = true },
   { id = "dagannoth_egg", x = 2467, y = 10141,  members = true },
+  { id = "jarvald_waterbirth_island", x = 2544, y = 3761, members = false },
+  { id = "akeladden", x = 2539, y = 3739, members = true },
+  { id = "bardur_waterbirth_island", x = 2528, y = 3743, members = true },
 ]

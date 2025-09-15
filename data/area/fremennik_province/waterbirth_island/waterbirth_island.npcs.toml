@@ -36,3 +36,11 @@ id = 2448
 
 [akeladden]
 id = 2439
+
+[jarvald_waterbirth_island]
+id = 2438
+examine = "A Fremennik raider."
+
+[bardur_waterbirth_island]
+id = 9104
+

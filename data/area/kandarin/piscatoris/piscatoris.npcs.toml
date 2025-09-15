@@ -1,0 +1,33 @@
+[herman_caranos_piscatoris]
+id = 3822
+examine = "Founder and Director of the Piscatoris Fishing Colony."
+
+[franklin_caranos_piscatoris]
+id = 3823
+examine = "Engineer for the Piscatoris Fishing Colony."
+
+[arnold_lydspor_piscatoris]
+id = 3824
+examine = "Secretary and Storemaster for the Piscatoris Fishing Colony."
+
+[devin_mendelberg_piscatoris]
+id = 3825
+examine = "A member of the Piscatoris Fishing Colony."
+
+[george_laxmeister_piscatoris]
+id = 3826
+examine = "A member of the Piscatoris Fishing Colony."
+
+[ramara_du_croissant_piscatoris]
+id = 3827
+examine = "A member of the Piscatoris Fishing Colony."
+
+[wise_old_man_piscatoris]
+id = 3832
+
+[wise_old_man_piscatoris_2]
+id = 3833
+
+[skeleton_mage_piscatoris]
+id = 3851
+

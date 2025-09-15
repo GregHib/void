@@ -1,0 +1,589 @@
+[chair_keldagrim]
+id = 13291
+
+[chair_keldagrim_2]
+id = 13292
+
+[hreidmar_keldagrim]
+id = 13299
+
+[veldaban_keldagrim]
+id = 13329
+
+[veldaban_keldagrim_2]
+id = 13330
+
+[veldaban_keldagrim_3]
+id = 13331
+
+[klaas_keldagrim]
+id = 13365
+
+[black_guard_keldagrim]
+id = 13366
+
+[protester_keldagrim]
+id = 13367
+
+[protester_keldagrim_2]
+id = 13368
+
+[protester_keldagrim_3]
+id = 13369
+
+[protester_keldagrim_4]
+id = 13370
+
+[protester_keldagrim_5]
+id = 13371
+
+[protester_keldagrim_6]
+id = 13372
+
+[protester_keldagrim_7]
+id = 13373
+
+[protester_keldagrim_8]
+id = 13374
+
+[protester_keldagrim_9]
+id = 13375
+
+[protester_keldagrim_10]
+id = 13376
+
+[protester_keldagrim_11]
+id = 13377
+
+[protester_keldagrim_12]
+id = 13378
+
+[protester_keldagrim_13]
+id = 13379
+
+[protester_keldagrim_14]
+id = 13380
+
+[protester_keldagrim_15]
+id = 13382
+
+[protester_keldagrim_16]
+id = 13383
+
+[protester_keldagrim_17]
+id = 13384
+
+[protester_keldagrim_18]
+id = 13385
+
+[protester_keldagrim_19]
+id = 13386
+
+[protester_keldagrim_20]
+id = 13387
+
+[protester_keldagrim_21]
+id = 13388
+
+[lava_flow_miner_sven_keldagrim]
+id = 13396
+examine = "A dwarf miner in heat-resistant overalls."
+
+[lava_flow_miner_keldagrim]
+id = 13403
+
+[lava_flow_miner_keldagrim_2]
+id = 13404
+
+[lava_flow_miner_keldagrim_3]
+id = 13405
+
+[lava_flow_miner_keldagrim_4]
+id = 13406
+
+[lava_flow_miner_keldagrim_5]
+id = 13407
+
+[lava_flow_miner_keldagrim_6]
+id = 13408
+
+[meike_keldagrim]
+id = 13414
+
+[meike_keldagrim_2]
+id = 13415
+
+[meike_keldagrim_3]
+id = 13416
+
+[dondakan_the_dwarf_keldagrim]
+id = 1836
+
+[dwarven_engineer_keldagrim]
+id = 1840
+examine = "A short angry guy."
+
+[dwarven_ferryman_keldagrim]
+id = 1843
+examine = "It's probably you who will be paying the ferryman."
+
+[dwarven_ferryman_keldagrim_2]
+id = 1844
+examine = "It's probably you who will be paying the ferryman."
+
+[dwarven_boatman_keldagrim]
+id = 1845
+
+[miodvetnir_keldagrim]
+id = 1847
+examine = "He seems deeply engaged in conversation with his fellow boatmen."
+
+[dernu_keldagrim]
+id = 1848
+examine = "He seems deeply engaged in conversation with his fellow boatmen."
+
+[derni_keldagrim]
+id = 1849
+examine = "He seems deeply engaged in conversation with his fellow boatmen."
+
+[purple_pewter_secretary_keldagrim]
+id = 2092
+examine = "The head secretary of the Purple Pewter mining company."
+
+[yellow_fortune_secretary_keldagrim]
+id = 2093
+examine = "The head secretary of the Yellow Fortune mining company."
+
+[blue_opal_secretary_keldagrim]
+id = 2094
+examine = "The head secretary of the Blue Opal mining company."
+
+[green_gemstone_secretary_keldagrim]
+id = 2095
+examine = "The head secretary of the Green Gemstone mining company."
+
+[white_chisel_secretary_keldagrim]
+id = 2096
+examine = "The head secretary of the White Chisel mining company."
+
+[silver_cog_secretary_keldagrim]
+id = 2097
+examine = "The head secretary of the Silver Cog mining company."
+
+[brown_engine_secretary_keldagrim]
+id = 2098
+examine = "The head secretary of the Brown Engine mining company."
+
+[purple_pewter_director_keldagrim]
+id = 2100
+examine = "One of the leaders of the business Consortium."
+
+[blue_opal_director_keldagrim]
+id = 2101
+examine = "One of the leaders of the business Consortium."
+
+[yellow_fortune_director_keldagrim]
+id = 2102
+examine = "One of the leaders of the business Consortium."
+
+[green_gemstone_director_keldagrim]
+id = 2103
+examine = "One of the leaders of the business Consortium."
+
+[white_chisel_director_keldagrim]
+id = 2104
+examine = "One of the leaders of the business Consortium."
+
+[silver_cog_director_keldagrim]
+id = 2105
+examine = "One of the leaders of the business Consortium."
+
+[brown_engine_director_keldagrim]
+id = 2106
+examine = "One of the leaders of the business Consortium."
+
+[trader_keldagrim]
+id = 2109
+examine = "A trader for the Purple Pewter mining company."
+
+[trader_keldagrim_2]
+id = 2110
+examine = "A trader for the Purple Pewter mining company."
+
+[trader_keldagrim_3]
+id = 2111
+examine = "A trader for the Blue Opal mining company."
+
+[trader_keldagrim_4]
+id = 2112
+examine = "A trader for the Blue Opal mining company."
+
+[trader_keldagrim_5]
+id = 2113
+examine = "A trader for the Yellow Fortune mining company."
+
+[trader_keldagrim_6]
+id = 2114
+examine = "A trader for the Yellow Fortune mining company."
+
+[trader_keldagrim_7]
+id = 2115
+examine = "A trader for the Green Gemstone mining company."
+
+[trader_keldagrim_8]
+id = 2116
+examine = "A trader for the Green Gemstone mining company."
+
+[trader_keldagrim_9]
+id = 2117
+examine = "A trader for the White Chisel mining company."
+
+[trader_keldagrim_10]
+id = 2118
+examine = "A trader for the White Chisel mining company."
+
+[trader_keldagrim_11]
+id = 2119
+examine = "A trader for the Silver Cog mining company."
+
+[trader_keldagrim_12]
+id = 2120
+examine = "A trader for the Silver Cog mining company."
+
+[trader_keldagrim_13]
+id = 2121
+examine = "A trader for the Brown Engine mining company."
+
+[trader_keldagrim_14]
+id = 2122
+examine = "A trader for the Brown Engine mining company."
+
+[trader_keldagrim_15]
+id = 2123
+
+[trader_keldagrim_16]
+id = 2125
+
+[commander_veldaban_keldagrim]
+id = 2129
+
+[black_guard_keldagrim_2]
+id = 2130
+categories = ["dwarves"]
+examine = "A member of the Black Guard, a special division of the dwarven army."
+
+[black_guard_keldagrim_3]
+id = 2131
+categories = ["dwarves"]
+examine = "A member of the Black Guard, a special division of the dwarven army."
+
+[black_guard_keldagrim_4]
+id = 2132
+categories = ["dwarves"]
+examine = "A member of the Black Guard, a special division of the dwarven army."
+
+[black_guard_keldagrim_5]
+id = 2133
+categories = ["dwarves"]
+examine = "A member of the Black Guard, a special division of the dwarven army."
+
+[black_guard_berserker_keldagrim]
+id = 2134
+categories = ["dwarves"]
+examine = "An elite member of the Black Guard."
+
+[black_guard_berserker_keldagrim_2]
+id = 2135
+categories = ["dwarves"]
+examine = "An elite member of the Black Guard."
+
+[black_guard_berserker_keldagrim_3]
+id = 2136
+
+[dromunds_cat_keldagrim]
+id = 2140
+examine = "Very protective of his master...and his property."
+
+[blasidar_the_sculptor_keldagrim]
+id = 2141
+examine = "Makes sculptures."
+
+[riki_the_sculptors_model_keldagrim]
+id = 2142
+
+[santiri_keldagrim]
+id = 2152
+examine = "Proprietor of the Quality Weapons Shop."
+
+[saro_keldagrim]
+id = 2153
+examine = "Proprietor of the Quality Armour Shop."
+
+[gunslik_keldagrim]
+id = 2154
+examine = "Proprietor of Gunslik's Assorted Items."
+
+[wemund_keldagrim]
+id = 2155
+examine = "Looks like some kind of engineer or mechanic."
+
+[randivor_keldagrim]
+id = 2156
+examine = "He's selling his bread on the market here."
+
+[hervi_keldagrim]
+id = 2157
+examine = "A gem stall owner, with goods from the deepest of mines."
+
+[nolar_keldagrim]
+id = 2158
+examine = "A crafty dwarf."
+
+[gulldamar_keldagrim]
+id = 2159
+examine = "He has lots of silver on display. And only silver."
+
+[tati_keldagrim]
+id = 2160
+examine = "An old mining dwarf, now he sells pickaxes and generally acts grumpy."
+
+[agmundi_keldagrim]
+id = 2161
+examine = "She seems to be doing rather well for herself, selling clothes in a palace shop."
+
+[vermundi_keldagrim]
+id = 2162
+examine = "A rather poor looking little dwarf, selling her clothes on the market."
+
+[librarian_keldagrim]
+id = 2165
+examine = "He takes care of the library and its many books."
+
+[assistant_keldagrim]
+id = 2166
+examine = "Library assistant, to be exact."
+
+[customer_keldagrim]
+id = 2167
+examine = "A customer looking for books."
+
+[customer_keldagrim_2]
+id = 2168
+examine = "Looks like a human traveler visiting the library."
+
+[dromund_keldagrim]
+id = 2169
+examine = "What an eccentric little fellow!"
+
+[rind_the_gardener_keldagrim]
+id = 2170
+examine = "He tends to the plants in the palace garden."
+
+[factory_manager_keldagrim]
+id = 2171
+examine = "Looks after the factory."
+
+[factory_worker_keldagrim]
+id = 2172
+examine = "Works hard at whatever it is he does."
+
+[factory_worker_keldagrim_2]
+id = 2173
+examine = "Works hard at whatever it is he does."
+
+[factory_worker_keldagrim_3]
+id = 2174
+examine = "Works hard at whatever it is he does."
+
+[factory_worker_keldagrim_4]
+id = 2175
+examine = "Works hard at whatever it is he does."
+
+[inn_keeper_keldagrim]
+id = 2177
+examine = "A rich landlord, fat and jolly."
+
+[barmaid_keldagrim]
+id = 2178
+examine = "These Dwarf ladies are so attractive!"
+
+[barman_keldagrim]
+id = 2179
+examine = "Makes a living off his tips I'm sure."
+
+[cart_conductor_keldagrim]
+id = 2180
+examine = "He makes sure the carts don't run anyone over."
+
+[cart_conductor_keldagrim_2]
+id = 2181
+examine = "He makes sure the carts don't run anyone over."
+
+[cart_conductor_keldagrim_3]
+id = 2182
+examine = "He makes sure the carts don't run anyone over."
+
+[cart_conductor_keldagrim_4]
+id = 2183
+examine = "He makes sure the carts don't run anyone over."
+
+[cart_conductor_keldagrim_5]
+id = 2184
+examine = "He makes sure the carts don't run anyone over."
+
+[rowdy_dwarf_keldagrim]
+id = 2187
+examine = "A loud, drunk and generally obnoxious dwarf."
+
+[hegir_keldagrim]
+id = 2188
+examine = "A bickering old dwarf."
+
+[haera_keldagrim]
+id = 2189
+examine = "A bickering old dwarf."
+
+[runvastr_keldagrim]
+id = 2190
+examine = "A sad old dwarf living in a sad old home."
+
+[sune_keldagrim]
+id = 2191
+examine = "He seems to always be busy."
+
+[bentamir_keldagrim]
+id = 2192
+examine = "This dwarf doesn't seem to be very well off."
+
+[ulifed_keldagrim]
+id = 2193
+examine = "A dwarf minding his own business."
+
+[reinald_keldagrim]
+id = 2194
+examine = "A seller of fine wrist-wear."
+
+[karl_keldagrim]
+id = 2195
+examine = "A short, merry guy."
+
+[gauss_keldagrim]
+id = 2196
+examine = "A beer-drinking dwarf who is - for once - not totally drunk."
+
+[myndill_keldagrim]
+id = 2197
+examine = "A dwarf, wandering the streets of Keldagrim."
+
+[kjut_keldagrim]
+id = 2198
+examine = "His kebabs certainly smell delicious."
+
+[tombar_keldagrim]
+id = 2199
+examine = "He seems very tall. For a dwarf."
+
+[odmar_keldagrim]
+id = 2200
+examine = "A dwarf, wandering around Keldagrim."
+
+[audmann_keldagrim]
+id = 2201
+examine = "He seems to be very well off."
+
+[drunken_dwarf_keldagrim]
+id = 2202
+
+[dwarven_boatman_keldagrim_2]
+id = 2205
+
+[dwarven_boatman_keldagrim_3]
+id = 2206
+examine = "His ship miraculously survived the crash into the statue earlier."
+
+[black_guard_berserker_keldagrim_4]
+id = 2231
+
+[blandebir_keldagrim]
+id = 2321
+examine = "An expert on the brewing of ales and cider."
+
+[orange_flame_secretary_keldagrim]
+id = 2403
+
+[orange_flame_director_keldagrim]
+id = 2404
+
+[red_axe_cat_keldagrim]
+id = 2405
+
+[gnome_emissary_keldagrim]
+id = 2406
+
+[gnome_traveller_keldagrim]
+id = 2407
+
+[gnome_traveller_keldagrim_2]
+id = 2408
+
+[cart_conductor_keldagrim_6]
+id = 2409
+examine = "He makes sure the carts don't run anyone over."
+
+[the_beast_keldagrim]
+id = 2941
+examine = "Who ate all the rats?"
+
+[smokin_joe_keldagrim]
+id = 2952
+examine = "What is he?"
+
+[stonemason_keldagrim]
+id = 4248
+examine = "Someone has to get rid of all the stone they dug Keldagrim out of."
+
+[hirko_keldagrim]
+id = 4558
+examine = "A seller of crossbow parts."
+
+[professor_manglethorp_keldagrim]
+id = 4583
+examine = "Crazy professor!"
+
+[chair_keldagrim_3]
+id = 6732
+
+[chair_keldagrim_4]
+id = 6733
+
+[chair_keldagrim_5]
+id = 6734
+
+[lieutenant_brae_keldagrim]
+id = 8749
+
+[black_guard_keldagrim_6]
+id = 8753
+
+[commander_veldaban_keldagrim_2]
+id = 8756
+
+[veldaban_keldagrim_4]
+id = 8764
+
+[thak_keldagrim]
+id = 8786
+examine = "A private dwarven guard."
+
+[trade_floor_guard_keldagrim]
+id = 8813
+categories = ["dwarves"]
+examine = "An elite Black Guard soldier assigned to protect the trade floor."
+
+[colonel_grenda_keldagrim]
+id = 8817
+
+[supreme_commander_keldagrim]
+id = 8819
+examine = "He is the Supreme Commander of all regiments of the Black Guard."
+

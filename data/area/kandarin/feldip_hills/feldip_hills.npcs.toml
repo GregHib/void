@@ -1,0 +1,77 @@
+[ogre_feldip_hills]
+id = 115
+categories = ["ogres"]
+examine = "A large dim looking humanoid."
+
+[ogre_feldip_hills_2]
+id = 3451
+categories = ["ogres"]
+examine = "A large dim looking humanoid."
+
+[ogre_boat_feldip_hills]
+id = 3469
+
+[rantz_feldip_hills]
+id = 4471
+
+[carnivorous_chinchompa]
+id = 5080
+examine = "It looks fluffy and cute; it's probably deadly."
+
+[black_warlock_feldip_hills]
+id = 5082
+examine = "A black warlock. The air seems to distort wherever it passes."
+
+[barb_tailed_kebbit_feldip_hills]
+id = 5088
+examine = "It uses its tail to hunt and skewer fish."
+
+[spined_larupia_feldip_hills]
+id = 5104
+examine = "If you tried to ride that, you'd just impale yourself!"
+
+[hunting_expert_feldip_hills]
+id = 5113
+examine = "With all the furs, I almost mistook her for a wild animal."
+
+[ogress_champion_feldip_hills]
+id = 7078
+categories = ["ogres"]
+examine = "A fearsome adversary with no sense of humour."
+
+[ogress_warrior_feldip_hills]
+id = 7079
+categories = ["ogres"]
+examine = "Irascible, belligerent and stupefyingly impolite."
+
+[ogress_warrior_feldip_hills_2]
+id = 7080
+categories = ["ogres"]
+examine = "Irascible, belligerent and stupefyingly impolite."
+
+[ogress_feldip_hills]
+id = 7081
+categories = ["ogres"]
+examine = "A large and contentious lady ogre."
+
+[ogress_feldip_hills_2]
+id = 7082
+categories = ["ogres"]
+examine = "A large and contentious lady ogre."
+
+[rantz_feldip_hills_2]
+id = 8659
+
+[mound_feldip_hills]
+id = 9466
+
+[swamp_toad_feldip_hills]
+id = 1013
+examine = "A green skinned croaker, loves the swamp."
+
+[ogre_chef_feldip_hills]
+id = 13174
+
+[crimson_swift]
+id = 5073
+examine = "This bird obviously doesn't believe in subtlety."

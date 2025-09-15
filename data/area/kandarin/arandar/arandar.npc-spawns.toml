@@ -1,0 +1,15 @@
+spawns = [
+  { id = "dire_wolf_isafdar", x = 2311, y = 3271, members = false },
+  { id = "dire_wolf_isafdar", x = 2317, y = 3271, members = false },
+  { id = "dire_wolf_isafdar", x = 2320, y = 3266, members = false },
+  { id = "dire_wolf_isafdar", x = 2335, y = 3276, members = false },
+  { id = "dire_wolf_isafdar", x = 2339, y = 3272, members = false },
+  { id = "dire_wolf_isafdar", x = 2339, y = 3279, members = false },
+  { id = "deadly_red_spider", x = 2338, y = 3310, members = false },
+  { id = "deadly_red_spider", x = 2341, y = 3309, members = false },
+  { id = "deadly_red_spider", x = 2343, y = 3309, members = false },
+  { id = "deadly_red_spider", x = 2344, y = 3318, members = false },
+  { id = "deadly_red_spider", x = 2345, y = 3310, members = false },
+  { id = "deadly_red_spider", x = 2345, y = 3312, members = false },
+  { id = "deadly_red_spider", x = 2350, y = 3310, members = false },
+]

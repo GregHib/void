@@ -78,9 +78,9 @@ class TeleportCommands {
     }
 
     fun coords(player: Player, args: List<String>) {
-        val x = args[1].trim(',').toInt()
-        val y = args[2].trim(',').toInt()
-        val level = args.getOrNull(3)?.trim(',')?.toInt() ?: player.tile.level
+        val x = args[0].trim(',').toInt()
+        val y = args[1].trim(',').toInt()
+        val level = args.getOrNull(2)?.trim(',')?.toInt() ?: player.tile.level
         player.tele(x, y, level)
         player["world_map_centre"] = player.tile.id
         player["world_map_marker_player"] = player.tile.id

@@ -1,0 +1,20 @@
+[grail_maiden_fisher_realm]
+id = 210
+examine = "She looks serene."
+
+[king_percival_fisher_realm]
+id = 212
+examine = "A former Knight of the Round Table."
+
+[peasant_fisher_realm]
+id = 215
+
+[fishing_spot_fisher_realm]
+id = 314
+
+[ram_fisher_realm]
+id = 5168
+
+[ram_fisher_realm_2]
+id = 5169
+

@@ -1,0 +1,291 @@
+[penguin_miscellania]
+id = 131
+categories = ["birds"]
+examine = "An inhabitant of icy regions."
+
+[gull_miscellania]
+id = 1325
+
+[queen_sigrid_miscellania]
+id = 1359
+
+[arnor_miscellania]
+id = 1361
+examine = "A subject of Etceteria."
+
+[haming_miscellania]
+id = 1362
+examine = "A subject of Etceteria."
+
+[moldof_miscellania]
+id = 1363
+examine = "A subject of Etceteria."
+
+[helga_miscellania]
+id = 1364
+examine = "A subject of Etceteria."
+
+[matilda_miscellania]
+id = 1365
+examine = "A subject of Etceteria."
+
+[ashild_miscellania]
+id = 1366
+examine = "A subject of Etceteria."
+
+[skraeling_miscellania]
+id = 1367
+examine = "A warrior of Etceteria."
+
+[skraeling_miscellania_2]
+id = 1368
+examine = "A warrior of Etceteria."
+
+[fishmonger_miscellania]
+id = 1369
+examine = "Hmm, he smells."
+
+[greengrocer_miscellania]
+id = 1370
+examine = "At least he eats his greens."
+
+[prince_brand_miscellania]
+id = 1371
+
+[princess_astrid_miscellania]
+id = 1372
+
+[king_vargas_miscellania]
+id = 1373
+
+[guard_miscellania]
+id = 1374
+examine = "He's guarding the throne room."
+
+[advisor_ghrim_miscellania]
+id = 1375
+
+[derrik_miscellania]
+id = 1376
+examine = "Smithy for Sogthorpe."
+
+[farmer_miscellania]
+id = 1377
+examine = "He's cutting the wheat."
+
+[flower_girl_miscellania]
+id = 1378
+examine = "No-one would mistake her for a duchess."
+
+[ragnar_miscellania]
+id = 1379
+examine = "A subject of Miscellania."
+
+[einar_miscellania]
+id = 1380
+examine = "A subject of Miscellania."
+
+[alrik_miscellania]
+id = 1381
+examine = "A subject of Miscellania."
+
+[thorhild_miscellania]
+id = 1382
+examine = "A subject of Miscellania."
+
+[halla_miscellania]
+id = 1383
+examine = "A subject of Miscellania."
+
+[sailor_miscellania]
+id = 1385
+
+[rannveig_miscellania]
+id = 1386
+examine = "A subject of Miscellania."
+
+[thora_miscellania]
+id = 1387
+examine = "A subject of Miscellania."
+
+[valgerd_miscellania]
+id = 1388
+examine = "A subject of Miscellania."
+
+[skraeling_miscellania_3]
+id = 1389
+
+[broddi_miscellania]
+id = 1390
+examine = "A subject of Miscellania."
+
+[skraeling_miscellania_4]
+id = 1391
+examine = "A warrior of Miscellania."
+
+[ragnvald_miscellania]
+id = 1392
+examine = "A subject of Miscellania."
+
+[fishmonger_miscellania_2]
+id = 1393
+
+[greengrocer_miscellania_2]
+id = 1394
+examine = "At least he eats his greens."
+
+[lumberjack_leif_miscellania]
+id = 1395
+examine = "He's a lumberjack, and he's okay."
+
+[miner_magnus_miscellania]
+id = 1396
+examine = "He's just mining his own business."
+
+[fisherman_frodi_miscellania]
+id = 1397
+examine = "There's something fishy about him."
+
+[gardener_gunnhild_miscellania]
+id = 1398
+examine = "She's looking a bit weedy."
+
+[fishing_spot_miscellania]
+id = 1399
+
+[chicken_miscellania]
+id = 1401
+categories = ["birds"]
+examine = "Yep. Definitely a chicken."
+
+[chicken_miscellania_2]
+id = 1402
+
+[rooster_miscellania]
+id = 1403
+
+[rabbit_miscellania]
+id = 1404
+
+[rhazien_miscellania]
+id = 2337
+examine = "Perhaps this gardener might look after your crops for you."
+
+[carpenter_kjallak_miscellania]
+id = 3916
+examine = "His bark's worse than his blight."
+
+[farmer_fromund_miscellania]
+id = 3917
+examine = "He looks a bit seedy."
+
+[runa_miscellania]
+id = 3920
+examine = "The barmaid of the Esoterican Arms."
+
+[halla_miscellania_2]
+id = 3921
+examine = "She owns the clothes shop."
+
+[finn_miscellania]
+id = 3922
+examine = "Runs the general store."
+
+[osvald_miscellania]
+id = 3923
+examine = "If it's edible, he'll sell it."
+
+[runolf_miscellania]
+id = 3924
+examine = "A subject of Miscellania."
+
+[tjorvi_miscellania]
+id = 3925
+examine = "A subject of Miscellania."
+
+[ingrid_miscellania]
+id = 3926
+examine = "A subject of Miscellania."
+
+[thora_miscellania_2]
+id = 3927
+examine = "A subject of Miscellania."
+
+[signy_miscellania]
+id = 3928
+examine = "A Fremennik teenager."
+
+[hild_miscellania]
+id = 3929
+examine = "A Fremennik teenager."
+
+[armod_miscellania]
+id = 3930
+examine = "A Fremennik teenager."
+
+[beigarth_miscellania]
+id = 3931
+examine = "A Fremennik teenager."
+
+[reinn_miscellania]
+id = 3932
+examine = "A Fremennik teenager."
+
+[alviss_miscellania]
+id = 3933
+examine = "A dwarf who's currently living in Miscellania."
+
+[fullangr_miscellania]
+id = 3934
+examine = "A dwarf who's currently living in Miscellania."
+
+[jari_miscellania]
+id = 3935
+examine = "A dwarf who's currently living in Miscellania."
+
+[thorodin_miscellania]
+id = 3936
+examine = "A dwarf miner. He's digging holes in the walls."
+
+[ferd_miscellania]
+id = 3937
+examine = "A dwarf miner. He's shoring up the walls."
+
+[donal_miscellania]
+id = 3938
+examine = "A rather scared-looking dwarf. He doesn't seem all that drunk."
+
+[sea_snake_young_miscellania]
+id = 3939
+categories = ["sea_snakes"]
+examine = "Snake, snake, oh, it's a young snake..."
+
+[sea_snake_hatchling_miscellania]
+id = 3940
+categories = ["sea_snakes"]
+examine = "A baby sea snake. Snaaaaaaake!"
+
+[guard_miscellania_2]
+id = 3941
+
+[guard_miscellania_3]
+id = 3942
+examine = "He's guarding the entrance to the dungeons."
+
+[yulf_squecks_miscellania]
+id = 4561
+examine = "Perhaps this gardener might look after your crops for you."
+
+[rabbit_miscellania_2]
+id = 5829
+
+[king_vargas_miscellania_2]
+id = 7403
+
+[tool_leprechaun_miscellania]
+id = 7557
+examine = "Looks after your Farming tools."
+
+[queen_sigrid_miscellania_2]
+id = 9349
+

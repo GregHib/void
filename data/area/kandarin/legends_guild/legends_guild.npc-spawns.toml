@@ -4,4 +4,9 @@ spawns = [
   { id = "banker_3", x = 2731, y = 3377, level = 2, members = true },
   { id = "banker_4", x = 2732, y = 3379, level = 2, members = true },
   { id = "banker_4", x = 2733, y = 3377, level = 2, members = true },
+  { id = "kent", x = 2726, y = 3347, members = true },
+  { id = "radimus_erkle", x = 2724, y = 3368, members = true },
+  { id = "radimus_erkle_2", x = 2724, y = 3377, members = true },
+  { id = "fionella", x = 2725, y = 3378, level = 1, members = false },
+  { id = "siegfried_erkle", x = 2725, y = 3381, level = 2, members = false },
 ]

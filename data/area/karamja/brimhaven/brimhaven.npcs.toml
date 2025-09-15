@@ -20,3 +20,115 @@ categories = ["human"]
 wander_radius = 5
 collision = "indoors"
 examine = "I could get a beer from him."
+
+[pirate_jackie_the_fruit_brimhaven]
+id = 1055
+examine = "Ticket trader for the Brimhaven Agility Arena."
+
+[lubufu_brimhaven]
+id = 1171
+examine = "A crotchety old fisherman who doesn't like young whippersnappers."
+
+[fishing_spot_brimhaven]
+id = 1178
+
+[fly_trap_brimhaven]
+id = 151
+
+[trobert_brimhaven]
+id = 1884
+examine = "A well dressed thief."
+
+[garth_brimhaven]
+id = 2330
+examine = "Perhaps this gardener might look after your crops for you."
+
+[sandy_brimhaven]
+id = 3110
+
+[sandy_brimhaven_2]
+id = 3111
+
+[dell_monti_brimhaven]
+id = 3227
+examine = "Avast ye, scurvy landlubbers. Give us yer pineapples!"
+
+[customs_officer_brimhaven]
+id = 380
+examine = "Inspects people's packages."
+
+[capn_izzy_no_beard_brimhaven]
+id = 437
+examine = "Entrance clerk for the Brimhaven Agility Arena."
+
+[praistan_ebola_brimhaven]
+id = 4562
+examine = "Perhaps this gardener might look after your crops for you."
+
+[my_arm_brimhaven]
+id = 4955
+
+[hajedy_brimhaven]
+id = 510
+examine = "A cart driver; it looks like he's quite experienced."
+
+[davon_brimhaven]
+id = 588
+examine = "An amulet trader."
+
+[pirate_brimhaven]
+id = 6346
+examine = "Avast ye scurvy land lubbers!"
+
+[pirate_brimhaven_2]
+id = 6347
+examine = "Avast ye scurvy land lubbers!"
+
+[pirate_brimhaven_3]
+id = 6348
+examine = "Avast ye scurvy land lubbers!"
+
+[pirate_brimhaven_4]
+id = 6349
+examine = "Avast ye scurvy land lubbers!"
+
+[pirate_brimhaven_5]
+id = 6350
+examine = "Avast ye scurvy land lubbers!"
+
+[tool_leprechaun_brimhaven]
+id = 7558
+examine = "Looks after your Farming tools."
+
+[garv_brimhaven]
+id = 788
+examine = "A diligent guard."
+
+[grubor_brimhaven]
+id = 789
+examine = "A rough looking thief."
+
+[grip_brimhaven]
+id = 792
+examine = "Looks like he's been in the wars..."
+
+[alfonse_the_waiter_brimhaven]
+id = 793
+examine = "Smartly dressed, and ready to deliver food."
+
+[charlie_the_cook_brimhaven]
+id = 794
+examine = "Distinctly cook-like."
+
+[pirate_guard_brimhaven]
+id = 799
+examine = "A morally ambiguous guard."
+
+[thief_brimhaven]
+id = 8
+examine = "Known for his light-fingered qualities."
+
+[kangai_mau_brimhaven]
+id = 846
+examine = "A happening kind of guy!"
+

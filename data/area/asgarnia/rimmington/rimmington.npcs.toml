@@ -13,3 +13,88 @@ shop = "rimmington_general_store"
 wander_radius = 2
 collision = "indoors"
 examine = "Works on commission."
+
+[wise_old_man_rimmington]
+id = 11597
+
+[wise_old_man_rimmington_2]
+id = 11598
+
+[captain_korasi_rimmington]
+id = 11656
+
+[jessika_rimmington]
+id = 11667
+
+[taria_rimmington]
+id = 2336
+examine = "Perhaps this gardener might look after your crops for you."
+
+[hetty_rimmington]
+id = 307
+examine = "An old motherly witch with a curious smile and a hooked nose."
+
+[da_vinci_rimmington]
+id = 336
+examine = "He has a colourful personality."
+
+[chancy_rimmington]
+id = 338
+examine = "He's ready for a bet."
+
+[hops_rimmington]
+id = 340
+examine = "He's drunk."
+
+[chemist_rimmington]
+id = 367
+examine = "Smells very chemically..."
+
+[zombie_rat_rimmington]
+id = 6088
+categories = ["rats"]
+examine = "Overgrown undead vermin."
+
+[zombie_rat_rimmington_2]
+id = 6089
+categories = ["rats"]
+examine = "Overgrown undead vermin."
+
+[zombie_rat_rimmington_3]
+id = 6090
+categories = ["rats"]
+examine = "Overgrown undead vermin."
+
+[skeleton_rimmington]
+id = 6091
+
+[skeleton_rimmington_2]
+id = 6092
+categories = ["skeletons"]
+examine = "Could do with gaining a few pounds."
+
+[skeleton_rimmington_3]
+id = 6093
+categories = ["skeletons"]
+examine = "Could do with gaining a few pounds."
+
+[ghost_rimmington]
+id = 6094
+
+[ghost_rimmington_2]
+id = 6095
+
+[ghost_rimmington_3]
+id = 6096
+
+[ghost_rimmington_4]
+id = 6097
+categories = ["ghosts"]
+examine = "Eeek! A ghost!"
+
+[ghost_rimmington_5]
+id = 6098
+
+[tool_leprechaun_rimmington]
+id = 7559
+examine = "Looks after your Farming tools."

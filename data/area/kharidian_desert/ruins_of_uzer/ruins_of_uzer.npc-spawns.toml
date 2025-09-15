@@ -1,0 +1,13 @@
+spawns = [
+  { id = "clay_golem_ruins_of_uzer", x = 3488, y = 3090, members = true },
+  { id = "rug_merchant_ruins_of_uzer", x = 3467, y = 3110, members = true },
+  { id = "monkey_ruins_of_uzer", x = 3467, y = 3109, members = true },
+  { id = "father_reen_ruins_of_uzer", x = 3483, y = 3093, members = true },
+  { id = "father_badden_ruins_of_uzer", x = 3483, y = 3090, members = true },
+  { id = "evil_dave_ruins_of_uzer", x = 2721, y = 4910, members = true },
+  { id = "sand_storm_ruins_of_uzer", x = 3472, y = 3086, members = true },
+  { id = "sand_storm_ruins_of_uzer", x = 3475, y = 3100, members = true },
+  { id = "sand_storm_ruins_of_uzer", x = 3482, y = 3084, members = true },
+  { id = "sand_storm_ruins_of_uzer", x = 3489, y = 3102, members = true },
+  { id = "evil_dave_ruins_of_uzer_2", x = 2723, y = 4897, members = true },
+]

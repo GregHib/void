@@ -1,0 +1,36 @@
+[snowy_knight_rellekka_hunter_area]
+id = 5083
+examine = "It's a snowy knight butterfly."
+
+[sapphire_glacialis_rellekka_hunter_area]
+id = 5084
+examine = "A sapphire glacialis. It doesn't look as pretentious as its name sounds."
+
+[sabre_toothed_kyatt_rellekka_hunter_area]
+id = 5103
+examine = "It's just like a big, white, furry, deadly can opener."
+
+[hunting_expert_rellekka_hunter_area]
+id = 5112
+examine = "He must be good at hunting; even his hair blends in with the surroundings."
+
+[yeti_rellekka_hunter_area]
+id = 7379
+examine = "Aww, aren't the little ones cute?"
+
+[yeti_rellekka_hunter_area_2]
+id = 7380
+
+[gnoeals_rellekka_hunter_area]
+id = 7381
+examine = "A strange, magical beast."
+
+[gnoeals_rellekka_hunter_area_2]
+id = 7382
+
+[erjolf_rellekka_hunter_area]
+id = 7405
+
+[natural_historian_rellekka_hunter_area]
+id = 7457
+

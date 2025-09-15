@@ -3,3 +3,19 @@ id = 6202
 
 [sir_gerry_normal]
 id = 6201
+
+[ashuelot_reis]
+id = 13455
+examine = "An ancient spirit of nature."
+
+[ancient_warrior]
+id = 13456
+examine = "He looks angry and dangerous!"
+
+[ancient_ranger]
+id = 13457
+examine = "A dangerous ranger."
+
+[blood_reaver]
+id = 13458
+examine = "A strange and twisted creature."

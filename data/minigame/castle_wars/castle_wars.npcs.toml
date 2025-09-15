@@ -1,0 +1,11 @@
+[lanthus_castle_wars]
+id = 1526
+examine = "He runs this place."
+
+[postie_pete_castle_wars]
+id = 3805
+examine = "Posts things."
+
+[assistant_marrow_castle_wars]
+id = 5063
+

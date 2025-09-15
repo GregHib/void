@@ -1,0 +1,6 @@
+spawns = [
+  { id = "gnome_guard", x = 2461, y = 9895, members = false },
+  { id = "gnome_guard", x = 2465, y = 9894, members = false },
+  { id = "gnome_guard", x = 2465, y = 9899, members = false },
+  { id = "king_narnode_shareen_grand_tree", x = 2464, y = 9897, members = false },
+]

@@ -45,3 +45,97 @@ id = 9688
 id = 9696
 categories = ["birds"]
 examine = "The bird looks awake and alert."
+
+[beny_easter]
+id = 7414
+examine = "A cute, cuddly, little squirrel - with teeth."
+
+[bubbles_easter]
+id = 7415
+examine = "A cute, cuddly, little squirrel - with teeth."
+
+[big_ben_easter]
+id = 7416
+examine = "A cute, cuddly, little squirrel - with teeth."
+
+[impling_worker_easter]
+id = 7423
+
+[impling_manager_easter]
+id = 7425
+examine = "An impling manager: what a terrifying thought!"
+
+[impling_worker_easter_2]
+id = 7426
+examine = "This worker looks after the incubator."
+
+[easter_bunny_jr_easter]
+id = 7429
+
+[easter_bunny_jr_easter_2]
+id = 7430
+
+[easter_bunny_jr_easter_3]
+id = 7431
+
+[easter_bunny_jr_easter_4]
+id = 7432
+
+[easter_bunny_jr_easter_5]
+id = 7433
+
+[easter_bunny_jr_easter_6]
+id = 7434
+
+[easter_bird_easter]
+id = 7435
+
+[easter_impling_easter]
+id = 7436
+
+[easter_impling_easter_2]
+id = 7437
+
+[easter_impling_easter_3]
+id = 7438
+
+[easter_impling_easter_4]
+id = 7439
+
+[easter_impling_easter_5]
+id = 7440
+
+[impling_worker_easter_3]
+id = 7441
+
+[impling_worker_easter_4]
+id = 7442
+
+[big_ben_easter_2]
+id = 9695
+
+[impling_manager_easter_2]
+id = 9705
+
+[rat_easter_2]
+id = 7202
+examine = "It has chocolate all round its mouth."
+
+[rat_easter_3]
+id = 7204
+examine = "It's had more than its fair share of chocolate this Easter."
+
+[mouse_easter_3]
+id = 7205
+
+[cockroach_easter]
+id = 7206
+examine = "It seems to have eaten a lot of chocolate."
+
+[spider_easter]
+id = 7207
+examine = "It's searching for crumbs of chocolate."
+
+[snail_easter]
+id = 7209
+examine = "It seems to have eaten a lot of chocolate."

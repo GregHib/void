@@ -1,0 +1,95 @@
+[slave_sophanem]
+id = 1978
+examine = "A malnourished worker."
+
+[slave_sophanem_2]
+id = 1979
+examine = "A malnourished worker."
+
+[embalmer_sophanem]
+id = 1980
+examine = "A strange-smelling merchant."
+
+[carpenter_sophanem]
+id = 1981
+examine = "A block of a man."
+
+[raetul_sophanem]
+id = 1982
+examine = "A dedicated follower of fashion."
+
+[siamun_sophanem]
+id = 1983
+examine = "I wonder if they dislike me examining them?"
+
+[sphinx_sophanem]
+id = 1990
+examine = "An awe inspiring combination of a lady, a lion and an eagle."
+
+[neite_sophanem]
+id = 1992
+examine = "A graceful feline."
+
+[locust_sophanem]
+id = 1995
+examine = "Obnoxious, overgrown insect."
+
+[plague_frog_sophanem]
+id = 1997
+categories = ["frogs"]
+examine = "A very smelly frog."
+
+[plague_cow_sophanem]
+id = 1998
+examine = "I might give the burgers a miss in this town."
+
+[plague_cow_sophanem_2]
+id = 1999
+examine = "I don't fancy eating any part of this."
+
+[plague_cow_sophanem_3]
+id = 2000
+
+[klenter_sophanem]
+id = 2013
+
+[neferti_the_camel_sophanem]
+id = 2815
+examine = "A camel who wants to see the world."
+
+[tarik_sophanem]
+id = 4478
+examine = "That's a strange hat for a local."
+
+[stonemason_sophanem]
+id = 5261
+
+[nathifa_sophanem]
+id = 5263
+
+[urbi_sophanem]
+id = 5265
+
+[jamila_sophanem]
+id = 5267
+
+[sophanem_guard_sophanem]
+id = 5269
+
+[sophanem_guard_sophanem_2]
+id = 5271
+
+[sophanem_guard_sophanem_3]
+id = 5273
+
+[sophanem_guard_sophanem_4]
+id = 5275
+
+[jex_sophanem]
+id = 5279
+examine = "Preach, my brother!"
+
+[doorman_sophanem]
+id = 6769
+examine = "A guard."
+

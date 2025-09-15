@@ -1,4 +1,0 @@
-spawns = [
-# 13364
-  { id = "panning_tray", x = 3369, y = 3378, delay = 100, members = true },
-]

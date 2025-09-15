@@ -29,9 +29,9 @@ data class NPCs(
     CharacterSearch<NPC> {
     private val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private var indexer = 1
-    private val spawnQueue: Array<NPC?> = arrayOfNulls(MAX_NPCS / 4)
+    private val spawnQueue: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private var spawnIndex = 0
-    private val removeQueue: IntArray = IntArray(MAX_NPCS / 4)
+    private val removeQueue: IntArray = IntArray(MAX_NPCS)
     private var removeIndex = 0
     var size = 0
         private set

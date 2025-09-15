@@ -104,4 +104,6 @@ spawns = [
     { id = "abyssal_demon", x = 3423, y = 3565, level = 2, members = true },
     { id = "abyssal_demon", x = 3426, y = 3569, level = 2, members = true },
     { id = "abyssal_demon", x = 3427, y = 3572, level = 2, members = true },
+    { id = "mysterious_ghost_slayer_tower", x = 3438, y = 3545, level = 1, members = true },
+    { id = "bat", x = 3411, y = 3550, members = false },
 ]

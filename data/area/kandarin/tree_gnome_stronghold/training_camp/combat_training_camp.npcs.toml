@@ -1,0 +1,19 @@
+[ogre_combat_training_camp]
+id = 2801
+categories = ["ogres"]
+examine = "Big, ugly, and smelly."
+
+[guard_combat_training_camp]
+id = 344
+examine = "He tries to keep order around here."
+
+[guard_combat_training_camp_2]
+id = 345
+examine = "He tries to keep order around here."
+
+[guard_combat_training_camp_3]
+id = 346
+
+[shopkeeper_combat_training_camp]
+id = 561
+examine = "Could stand to lose a few pounds."

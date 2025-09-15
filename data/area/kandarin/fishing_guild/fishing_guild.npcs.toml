@@ -1,0 +1,36 @@
+[master_fisher_fishing_guild]
+id = 308
+examine = "The man in charge of the fishing guild."
+
+[fishing_spot_fishing_guild]
+id = 313
+
+[goblin_fishing_guild]
+id = 4272
+categories = ["goblins"]
+examine = "An ugly green creature."
+
+[goblin_fishing_guild_2]
+id = 4273
+categories = ["goblins"]
+examine = "An ugly green creature."
+
+[goblin_fishing_guild_3]
+id = 4274
+categories = ["goblins"]
+examine = "An ugly green creature."
+
+[goblin_fishing_guild_4]
+id = 4275
+categories = ["goblins"]
+examine = "An ugly green creature."
+
+[goblin_fishing_guild_5]
+id = 4276
+categories = ["goblins"]
+examine = "An ugly green creature."
+
+[roachey]
+id = 592
+examine = "He runs the Fishing Guild shop."
+

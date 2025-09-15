@@ -1,0 +1,23 @@
+[examiner_exam_centre]
+id = 4566
+examine = "Upon examining the examiner you examine it is indeed an examiner!"
+
+[examiner_exam_centre_2]
+id = 4567
+examine = "Upon examining the examiner you examine it is indeed an examiner!"
+
+[researcher_exam_centre]
+id = 4568
+examine = "Must be hard at work."
+
+[examiner_exam_centre_3]
+id = 618
+examine = "Upon examining the examiner you examine it is indeed an examiner!"
+
+[panning_guide_exam_centre]
+id = 620
+examine = "A specialist in panning for gold."
+
+[dr_nabanik_exam_centre]
+id = 9045
+

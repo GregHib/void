@@ -1,0 +1,5 @@
+spawns = [
+  { id = "lanthus_castle_wars", x = 2442, y = 3089, members = false },
+  { id = "postie_pete_castle_wars", x = 2446, y = 3097, members = true },
+  { id = "assistant_marrow_castle_wars", x = 2462, y = 3108, members = true },
+]

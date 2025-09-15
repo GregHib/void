@@ -372,4 +372,16 @@ spawns = [
   { id = "gorak_god_wars", x = 2888, y = 5313, level = 2, members = true },
   { id = "gorak_god_wars", x = 2881, y = 5329, level = 2, members = true },
   { id = "gorak_god_wars", x = 2864, y = 5293, level = 2, members = true },
+
+  { id = "ancient_warrior", x = 2885, y = 5204, members = false },
+  { id = "ancient_warrior", x = 2888, y = 5198, members = false },
+  { id = "ancient_warrior", x = 2891, y = 5203, members = false },
+  { id = "ancient_ranger", x = 2881, y = 5220, members = false },
+  { id = "ancient_ranger", x = 2882, y = 5215, members = false },
+  { id = "ancient_ranger", x = 2883, y = 5223, members = false },
+  { id = "ancient_ranger", x = 2887, y = 5214, members = false },
+  { id = "ancient_ranger", x = 2888, y = 5220, members = false },
+  { id = "ashuelot_reis", x = 2903, y = 5206, members = true },
+  { id = "blood_reaver", x = 2882, y = 5198, members = false },
+  { id = "blood_reaver", x = 2896, y = 5206, members = false },
 ]

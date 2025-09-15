@@ -1,0 +1,13 @@
+[mogre_guard]
+id = 3420
+examine = "An angry Ogre in a highly amusing hat."
+
+[mudskipper]
+id = 3422
+examine = "Not the most beautiful fish in the sea."
+
+[mudskipper_2]
+id = 3423
+
+[crab_underwater]
+id = 3424

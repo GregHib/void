@@ -1,0 +1,74 @@
+[eudav]
+id = 2352
+examine = "Buys wholesale, sells retail."
+
+[oronwen]
+id = 2353
+examine = "An elven Seamstress."
+
+[dalldav]
+id = 2356
+examine = "Buys and sells bows."
+
+[gethin]
+id = 2357
+examine = "Looks like he knows his way around a kitchen."
+
+[elf_warrior_lletya]
+id = 2359
+
+[elf_warrior_lletya_2]
+id = 2360
+
+[elf_warrior_lletya_3]
+id = 2361
+
+[elf_warrior_lletya_4]
+id = 2362
+
+[goreu]
+id = 2363
+examine = "An elf."
+
+[ysgawyn]
+id = 2364
+examine = "An elf."
+
+[arvel]
+id = 2365
+examine = "An elf."
+
+[mawrth]
+id = 2366
+examine = "An elf."
+
+[eoin]
+id = 2368
+examine = "An elven child."
+
+[iona]
+id = 2369
+examine = "An elven child."
+
+[eluned_lletya]
+id = 2375
+
+[amaethwr]
+id = 2860
+examine = "Perhaps this gardener might look after your crops for you."
+
+[teclyn]
+id = 2861
+examine = "Looks after your Farming tools."
+
+[ram_lletya]
+id = 3673
+examine = "White and fluffy."
+
+[gwir]
+id = 8894
+examine = "An elven scribe."
+
+[arianwyn]
+id = 8951
+

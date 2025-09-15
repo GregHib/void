@@ -47,7 +47,7 @@ spawns = [
     { id = "skeleton_sword_shield_45", x = 3108, y = 9951 },
     { id = "skeleton_sword_shield_45", x = 3104, y = 9948 },
     { id = "skeleton_sword_shield_45", x = 3104, y = 9955 },
-    { id = "skeleton_sword_shield_45", x = 3101, y = 9958 },
+    { id = "skeleton_sword_shield_45", x = 3101, y = 9956 },
     { id = "skeleton_axe_shield", x = 3139, y = 9877 },
     { id = "skeleton_shield", x = 3138, y = 9874 },
     { id = "skeleton_sword_shield", x = 3141, y = 9873 },
