@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -33,23 +34,24 @@ class InterfaceCommands {
     val definitions: InterfaceDefinitions by inject()
     val animationDefinitions: AnimationDefinitions by inject()
     val inventoryDefinitions: InventoryDefinitions by inject()
+    val scriptDefinitions: ClientScriptDefinitions by inject()
 
     init {
-        adminCommand("inter", stringArg("interface-id"), desc = "Open an interface with int or string id", handler = ::open)
+        adminCommand("inter", stringArg("interface-id", autofill = definitions.ids.keys), desc = "Open an interface with int or string id", handler = ::open)
 
-        adminCommand("show", stringArg("interface-id"), stringArg("component-id"), boolArg("visible"), desc = "Toggle visibility of an interface component") { player, args ->
+        adminCommand("show", stringArg("interface-id", autofill = definitions.ids.keys), stringArg("component-id", autofill = definitions.componentIds.keys), boolArg("visible"), desc = "Toggle visibility of an interface component") { player, args ->
             player.client?.interfaceVisibility(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), !args[2].toBoolean())
         }
 
-        adminCommand("colour", stringArg("iface-id"), stringArg("comp-id"), intArg("red"), intArg("green"), intArg("blue"), desc = "Set colour of an interface component") { player, args ->
+        adminCommand("colour", stringArg("iface-id", autofill = definitions.ids.keys), stringArg("comp-id", autofill = definitions.componentIds.keys), intArg("red"), intArg("green"), intArg("blue"), desc = "Set colour of an interface component") { player, args ->
             player.client?.colourInterface(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), args[2].toInt(), args[3].toInt(), args[4].toInt())
         }
 
-        adminCommand("send_text", stringArg("interface-id"), stringArg("component-id"), stringArg("text", "text to send (use quotes for spaces)"), desc = "Set text of an interface component") { player, args ->
+        adminCommand("send_text", stringArg("interface-id", autofill = definitions.ids.keys), stringArg("component-id", autofill = definitions.componentIds.keys), stringArg("text", "text to send (use quotes for spaces)"), desc = "Set text of an interface component") { player, args ->
             player.interfaces.sendText(args[0], args[1], args[2])
         }
 
-        adminCommand("setting", stringArg("id"), stringArg("comp"), intArg("from"), intArg("to"), intArg("setting", optional = true), intArg("s2", optional = true), intArg("s3", optional = true), desc = "Send settings to an interface component") { player, args ->
+        adminCommand("setting", stringArg("id", autofill = definitions.ids.keys), stringArg("comp", autofill = definitions.componentIds.keys), intArg("from"), intArg("to"), intArg("setting", optional = true), intArg("s2", optional = true), intArg("s3", optional = true), desc = "Send settings to an interface component") { player, args ->
             val remainder = args.subList(4, args.size).map { it.toIntOrNull() }.requireNoNulls().toIntArray()
             player.message("Settings sent ${remainder.toList()}", ChatType.Console)
             player.sendInterfaceSettings(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), args[2].toInt(), args[3].toInt(), getHash(*remainder))
@@ -57,7 +59,7 @@ class InterfaceCommands {
 
         adminCommand(
             "script",
-            stringArg("id"),
+            stringArg("id", autofill = scriptDefinitions.ids.keys),
             stringArg("p1", desc = "First parameter", optional = true),
             stringArg("p2", optional = true),
             stringArg("p3", optional = true),
@@ -67,10 +69,10 @@ class InterfaceCommands {
             handler = ::sendScript,
         )
 
-        val component = command(stringArg("iface-id"), stringArg("comp-id"), intArg("item"), intArg("amount"), desc = "Send an item to an interface component") { player, args ->
+        val component = command(stringArg("iface-id", autofill = definitions.ids.keys), stringArg("comp-id", autofill = definitions.componentIds.keys), intArg("item"), intArg("amount"), desc = "Send an item to an interface component") { player, args ->
             player.interfaces.sendItem(args[0], args[1], args[2].toInt(), args.getOrNull(3)?.toInt() ?: 1)
         }
-        val inventory = command(stringArg("interface-id"), desc = "Send an item to an interface component", handler = ::sendInventory)
+        val inventory = command(stringArg("interface-id", autofill = definitions.ids.keys), desc = "Send an item to an interface component", handler = ::sendInventory)
 
         adminCommands("send_items", component, inventory)
 
