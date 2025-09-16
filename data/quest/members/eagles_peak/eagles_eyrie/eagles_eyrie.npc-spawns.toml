@@ -3,5 +3,5 @@ spawns = [
   { id = "desert_eagle_eagles_eyrie", x = 3428, y = 9565, members = true },
   { id = "jungle_eagle_eagles_eyrie", x = 2516, y = 9322, members = true },
   { id = "jungle_eagle_eagles_eyrie", x = 2523, y = 9317, members = true },
-  { id = "boulder_eagles_eyrie", x = 3419, y = 9564, members = false },
+  { id = "boulder_eagles_eyrie", x = 3419, y = 9564 },
 ]

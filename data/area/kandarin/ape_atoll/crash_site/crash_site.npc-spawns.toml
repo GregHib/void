@@ -1,6 +1,6 @@
 spawns = [
   { id = "auguste_crash_site", x = 1800, y = 4893, members = true },
-  { id = "shark_crash_site", x = 1803, y = 4895, members = false },
+  { id = "shark_crash_site", x = 1803, y = 4895 },
   { id = "shark_crash_site_2", x = 1804, y = 4895, members = true },
   { id = "shark_crash_site_3", x = 1805, y = 4895, members = true },
 ]

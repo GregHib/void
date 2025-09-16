@@ -11,8 +11,8 @@ spawns = [
   { id = "rat", x = 3106, y = 9689, members = true },
   { id = "rat", x = 3113, y = 9683, members = true },
   { id = "ruantun_draynor_sewers", x = 3112, y = 9690, members = true },
-  { id = "skeleton_unarmed", x = 3123, y = 9669, members = false },
-  { id = "skeleton_sword_shield", x = 3101, y = 9671, members = false },
-  { id = "skeleton_shield_helmet", x = 3115, y = 9674, members = false },
-  { id = "skeleton_mace_shield", x = 3109, y = 9675, members = false },
+  { id = "skeleton_unarmed", x = 3123, y = 9669 },
+  { id = "skeleton_sword_shield", x = 3101, y = 9671 },
+  { id = "skeleton_shield_helmet", x = 3115, y = 9674 },
+  { id = "skeleton_mace_shield", x = 3109, y = 9675 },
 ]

@@ -17,9 +17,9 @@ spawns = [
   { id = "goblin_light_grey_bald_spear", x = 2307, y = 9359 },
   { id = "goblin_light_grey_bald_spear", x = 2351, y = 9359 },
   { id = "goblin_light_grey_bald_spear", x = 2342, y = 9347 },
-  { id = "sleeping_guard_observatory_dungeon", x = 2327, y = 9394, members = false },
-  { id = "naghead_observatory_dungeon", x = 2364, y = 9399, members = false },
-  { id = "wagchin_observatory_dungeon", x = 2364, y = 9398, members = false },
-  { id = "goblin_observatory_dungeon", x = 2323, y = 9377, members = false },
+  { id = "sleeping_guard_observatory_dungeon", x = 2327, y = 9394 },
+  { id = "naghead_observatory_dungeon", x = 2364, y = 9399 },
+  { id = "wagchin_observatory_dungeon", x = 2364, y = 9398 },
+  { id = "goblin_observatory_dungeon", x = 2323, y = 9377 },
   { id = "goblin_observatory_dungeon_2", x = 2351, y = 9358, members = true },
 ]

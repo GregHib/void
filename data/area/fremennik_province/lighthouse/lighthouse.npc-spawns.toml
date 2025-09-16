@@ -1,5 +1,5 @@
 spawns = [
-  { id = "jossik_lighthouse", x = 2509, y = 3639, level = 1, members = false },
-  { id = "larrissa_lighthouse", x = 2508, y = 3635, members = false },
-  { id = "jossik_lighthouse_dungeon", x = 2518, y = 4633, members = false },
+  { id = "jossik_lighthouse", x = 2509, y = 3639, level = 1 },
+  { id = "larrissa_lighthouse", x = 2508, y = 3635 },
+  { id = "jossik_lighthouse_dungeon", x = 2518, y = 4633 },
 ]

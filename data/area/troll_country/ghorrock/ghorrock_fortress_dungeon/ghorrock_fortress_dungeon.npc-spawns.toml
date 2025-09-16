@@ -1,5 +1,5 @@
 spawns = [
-  { id = "ice_demon_ghorrock_fortress_dungeon", x = 2896, y = 10319, level = 1, members = false },
+  { id = "ice_demon_ghorrock_fortress_dungeon", x = 2896, y = 10319, level = 1 },
   { id = "waterfiend_ghorrock_fortress_dungeon", x = 2894, y = 10384, members = true },
   { id = "waterfiend_ghorrock_fortress_dungeon", x = 2894, y = 10389, members = true },
   { id = "waterfiend_ghorrock_fortress_dungeon", x = 2896, y = 10401, members = true },

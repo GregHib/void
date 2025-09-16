@@ -1,3 +1,3 @@
 spawns = [
-  { id = "larrissa_lighthouse_instance", x = 2445, y = 4599, members = false },
+  { id = "larrissa_lighthouse_instance", x = 2445, y = 4599 },
 ]

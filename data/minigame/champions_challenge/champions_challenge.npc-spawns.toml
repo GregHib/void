@@ -1,9 +1,9 @@
 spawns = [
-  { id = "larxus_champions_challenge", x = 3187, y = 9766, members = false },
-  { id = "mystery_figure_champions_challenge", x = 3168, y = 9773, members = false },
-  { id = "mystery_figure_champions_challenge_2", x = 3175, y = 9760, members = false },
-  { id = "mystery_figure_champions_challenge_3", x = 3175, y = 9771, members = false },
-  { id = "mystery_figure_champions_challenge_4", x = 3160, y = 9760, members = false },
-  { id = "mystery_figure_champions_challenge_5", x = 3160, y = 9771, members = false },
-  { id = "mystery_figure_champions_challenge_6", x = 3168, y = 9758, members = false },
+  { id = "larxus_champions_challenge", x = 3187, y = 9766 },
+  { id = "mystery_figure_champions_challenge", x = 3168, y = 9773 },
+  { id = "mystery_figure_champions_challenge_2", x = 3175, y = 9760 },
+  { id = "mystery_figure_champions_challenge_3", x = 3175, y = 9771 },
+  { id = "mystery_figure_champions_challenge_4", x = 3160, y = 9760 },
+  { id = "mystery_figure_champions_challenge_5", x = 3160, y = 9771 },
+  { id = "mystery_figure_champions_challenge_6", x = 3168, y = 9758 },
 ]

@@ -1,4 +1,4 @@
 spawns = [
-  { id = "flippa_pinball", x = 1973, y = 5038, members = false },
-  { id = "tilt_pinball", x = 1970, y = 5038, members = false },
+  { id = "flippa_pinball", x = 1973, y = 5038 },
+  { id = "tilt_pinball", x = 1970, y = 5038 },
 ]

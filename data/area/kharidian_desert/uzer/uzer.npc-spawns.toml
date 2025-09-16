@@ -1,7 +1,7 @@
 spawns = [
-  { id = "bandit_looter_uzer", x = 3488, y = 3028, members = false },
-  { id = "bandit_looter_uzer_2", x = 3489, y = 3032, members = false },
-  { id = "bandit_looter_uzer_3", x = 3496, y = 3042, members = false },
-  { id = "bandit_looter_uzer_4", x = 3490, y = 3040, members = false },
-  { id = "bandit_looter_uzer_5", x = 3500, y = 3040, members = false },
+  { id = "bandit_looter_uzer", x = 3488, y = 3028 },
+  { id = "bandit_looter_uzer_2", x = 3489, y = 3032 },
+  { id = "bandit_looter_uzer_3", x = 3496, y = 3042 },
+  { id = "bandit_looter_uzer_4", x = 3490, y = 3040 },
+  { id = "bandit_looter_uzer_5", x = 3500, y = 3040 },
 ]

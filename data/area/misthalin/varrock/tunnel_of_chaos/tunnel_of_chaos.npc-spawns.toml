@@ -1,5 +1,5 @@
 spawns = [
-  { id = "mishkalun_dorn_tunnel_of_chaos", x = 3183, y = 5205, members = false },
-  { id = "dakhthoulan_aegis_tunnel_of_chaos", x = 3159, y = 5212, members = false },
-  { id = "silas_dahcsnu_tunnel_of_chaos", x = 3175, y = 5217, members = false },
+  { id = "mishkalun_dorn_tunnel_of_chaos", x = 3183, y = 5205 },
+  { id = "dakhthoulan_aegis_tunnel_of_chaos", x = 3159, y = 5212 },
+  { id = "silas_dahcsnu_tunnel_of_chaos", x = 3175, y = 5217 },
 ]

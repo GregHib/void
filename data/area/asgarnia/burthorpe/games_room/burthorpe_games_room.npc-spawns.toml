@@ -1,4 +1,4 @@
 spawns = [
-  { id = "sam_burthorpe_games_room", x = 2201, y = 4942, members = false },
-  { id = "rachael_burthorpe_games_room", x = 2207, y = 4958, members = false },
+  { id = "sam_burthorpe_games_room", x = 2201, y = 4942 },
+  { id = "rachael_burthorpe_games_room", x = 2207, y = 4958 },
 ]

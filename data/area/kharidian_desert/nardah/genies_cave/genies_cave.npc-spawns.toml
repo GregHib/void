@@ -13,5 +13,5 @@ spawns = [
   { id = "desert_snake_kharidian_desert", x = 3375, y = 9305, members = true },
   { id = "desert_snake_kharidian_desert", x = 3375, y = 9307, members = true },
   { id = "desert_snake_kharidian_desert", x = 3375, y = 9309, members = true },
-  { id = "genie_genies_cave", x = 3371, y = 9320, members = false },
+  { id = "genie_genies_cave", x = 3371, y = 9320 },
 ]

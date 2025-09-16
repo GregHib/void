@@ -1,5 +1,5 @@
 spawns = [
-  { id = "forester_mcgrubors_wood", x = 2650, y = 3468, members = false },
+  { id = "forester_mcgrubors_wood", x = 2650, y = 3468 },
   { id = "tramp_mcgrubors_wood", x = 2683, y = 3484, members = true },
-  { id = "guard_dog", x = 2629, y = 3475, members = false },
+  { id = "guard_dog", x = 2629, y = 3475 },
 ]

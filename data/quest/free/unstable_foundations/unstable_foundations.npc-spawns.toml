@@ -1,3 +1,3 @@
 spawns = [
-  { id = "sir_vant_unstable_foundations", x = 3294, y = 4937, direction = "SOUTH", members = false },
+  { id = "sir_vant_unstable_foundations", x = 3294, y = 4937, direction = "SOUTH" },
 ]

@@ -1,5 +1,5 @@
 spawns = [
-  { id = "guard_ham_store_rooms", x = 2585, y = 5198, members = false },
+  { id = "guard_ham_store_rooms", x = 2585, y = 5198 },
   { id = "guard_ham_store_rooms_2", x = 2585, y = 5212, members = true },
   { id = "guard_ham_store_rooms_3", x = 2586, y = 5206, members = true },
   { id = "guard_ham_store_rooms_4", x = 2597, y = 5212, members = true },

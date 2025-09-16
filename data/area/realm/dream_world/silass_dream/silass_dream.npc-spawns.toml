@@ -1,4 +1,4 @@
 spawns = [
   { id = "baba_yaga_silass_dream", x = 4431, y = 5878, level = 1, members = true },
-  { id = "silas_silass_dream", x = 4432, y = 5873, level = 1, members = false },
+  { id = "silas_silass_dream", x = 4432, y = 5873, level = 1 },
 ]

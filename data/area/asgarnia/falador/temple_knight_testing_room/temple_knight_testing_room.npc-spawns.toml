@@ -1,9 +1,9 @@
 spawns = [
-  { id = "sir_spishyus_temple_knight_testing_room", x = 2488, y = 4973, members = false },
-  { id = "lady_table_temple_knight_testing_room", x = 2458, y = 4981, members = false },
-  { id = "sir_kuam_ferentse_temple_knight_testing_room", x = 2457, y = 4966, members = false },
-  { id = "sir_tinley_temple_knight_testing_room", x = 2476, y = 4958, members = false },
-  { id = "sir_ren_itchood_temple_knight_testing_room", x = 2443, y = 4956, members = false },
-  { id = "miss_cheevers_temple_knight_testing_room", x = 2469, y = 4941, members = false },
-  { id = "ms__hynn_terprett_temple_knight_testing_room", x = 2451, y = 4939, members = false },
+  { id = "sir_spishyus_temple_knight_testing_room", x = 2488, y = 4973 },
+  { id = "lady_table_temple_knight_testing_room", x = 2458, y = 4981 },
+  { id = "sir_kuam_ferentse_temple_knight_testing_room", x = 2457, y = 4966 },
+  { id = "sir_tinley_temple_knight_testing_room", x = 2476, y = 4958 },
+  { id = "sir_ren_itchood_temple_knight_testing_room", x = 2443, y = 4956 },
+  { id = "miss_cheevers_temple_knight_testing_room", x = 2469, y = 4941 },
+  { id = "ms__hynn_terprett_temple_knight_testing_room", x = 2451, y = 4939 },
 ]

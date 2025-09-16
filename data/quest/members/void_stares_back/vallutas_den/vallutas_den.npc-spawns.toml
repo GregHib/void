@@ -1,6 +1,6 @@
 spawns = [
   { id = "captain_korasi_vallutas_den", x = 4577, y = 5600, members = true },
   { id = "commodore_tyr_vallutas_den", x = 4575, y = 5600, members = true },
-  { id = "valluta_vallutas_den", x = 4501, y = 5588, members = false },
-  { id = "valluta_vallutas_den", x = 4565, y = 5588, members = false },
+  { id = "valluta_vallutas_den", x = 4501, y = 5588 },
+  { id = "valluta_vallutas_den", x = 4565, y = 5588 },
 ]

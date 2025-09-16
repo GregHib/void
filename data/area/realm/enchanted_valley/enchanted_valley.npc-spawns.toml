@@ -1,9 +1,9 @@
 spawns = [
   { id = "general_gromblod_enchanted_valley", x = 3034, y = 4509, members = true },
-  { id = "centaur_enchanted_valley", x = 3025, y = 4503, members = false },
-  { id = "centaur_enchanted_valley_2", x = 3024, y = 4506, members = false },
-  { id = "stag_enchanted_valley", x = 3037, y = 4503, members = false },
-  { id = "wood_dryad_enchanted_valley", x = 3027, y = 4520, members = false },
+  { id = "centaur_enchanted_valley", x = 3025, y = 4503 },
+  { id = "centaur_enchanted_valley_2", x = 3024, y = 4506 },
+  { id = "stag_enchanted_valley", x = 3037, y = 4503 },
+  { id = "wood_dryad_enchanted_valley", x = 3027, y = 4520 },
   { id = "rabbit_enchanted_valley", x = 3034, y = 4505, members = true },
   { id = "rabbit_enchanted_valley", x = 3059, y = 4503, members = true },
   { id = "rabbit_enchanted_valley_2", x = 3032, y = 4505, members = true },

@@ -13,7 +13,7 @@ spawns = [
   { id = "rat", x = 3483, y = 3210, members = true },
   { id = "rat", x = 3489, y = 3211, members = true },
   { id = "rat", x = 3498, y = 3212, members = true },
-  { id = "hiylik_myna_paterdomus_temple", x = 3479, y = 3238, members = false },
+  { id = "hiylik_myna_paterdomus_temple", x = 3479, y = 3238 },
   { id = "veliaf_hurtz_burgh_de_rott", x = 3515, y = 3242, members = true },
   { id = "vampyre_juvinate_burgh_de_rott", x = 3513, y = 3241, members = true },
   { id = "vampyre_juvinate_burgh_de_rott_2", x = 3513, y = 3242, members = true },

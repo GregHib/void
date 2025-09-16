@@ -2,8 +2,8 @@ spawns = [
   { id = "angry_unicorn_tolnas_rift", x = 3276, y = 9836, members = true },
   { id = "angry_unicorn_tolnas_rift", x = 3287, y = 9840, members = true },
   { id = "angry_giant_rat_tolnas_rift", x = 3280, y = 9849, members = true },
-  { id = "angry_goblin_tolnas_rift", x = 3269, y = 9849, members = false },
-  { id = "angry_goblin_tolnas_rift", x = 3291, y = 9843, members = false },
+  { id = "angry_goblin_tolnas_rift", x = 3269, y = 9849 },
+  { id = "angry_goblin_tolnas_rift", x = 3291, y = 9843 },
   { id = "angry_bear_tolnas_rift", x = 3269, y = 9843, members = true },
   { id = "angry_bear_tolnas_rift", x = 3275, y = 9833, members = true },
   { id = "fear_reaper_tolnas_rift", x = 3305, y = 9832, members = true },
@@ -37,5 +37,5 @@ spawns = [
   { id = "hopeless_creature_tolnas_rift", x = 3288, y = 9819, members = true },
   { id = "hopeless_creature_tolnas_rift", x = 3289, y = 9809, members = true },
   { id = "hopeless_creature_tolnas_rift", x = 3290, y = 9797, members = true },
-  { id = "angry_giant_rat_tolnas_rift_2", x = 3286, y = 9830, members = false },
+  { id = "angry_giant_rat_tolnas_rift_2", x = 3286, y = 9830 },
 ]

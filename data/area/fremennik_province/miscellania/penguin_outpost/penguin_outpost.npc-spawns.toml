@@ -7,7 +7,7 @@ spawns = [
   { id = "icelord_penguin_outpost_2", x = 2644, y = 10424, members = true },
   { id = "icelord_penguin_outpost_3", x = 2647, y = 10425, members = true },
   { id = "icelord_penguin_outpost_4", x = 2650, y = 10423, members = true },
-  { id = "kgp_interrogator_penguin_outpost", x = 2649, y = 10383, members = false },
+  { id = "kgp_interrogator_penguin_outpost", x = 2649, y = 10383 },
   { id = "office_penguin_penguin_outpost", x = 2679, y = 10378, members = true },
   { id = "office_penguin_penguin_outpost_2", x = 2677, y = 10377, members = true },
   { id = "office_penguin_penguin_outpost_3", x = 2671, y = 10378, members = true },

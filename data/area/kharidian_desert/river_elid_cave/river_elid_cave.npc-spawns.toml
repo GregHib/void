@@ -6,8 +6,8 @@ spawns = [
   { id = "fishing_spot_river_elid_cave", x = 3362, y = 9588, members = true },
   { id = "fishing_spot_river_elid_cave", x = 3371, y = 9576, members = true },
   { id = "fishing_spot_river_elid_cave", x = 3371, y = 9578, members = true },
-  { id = "nirrie_river_elid_cave", x = 3367, y = 9586, members = false },
-  { id = "tirrie_river_elid_cave", x = 3368, y = 9587, members = false },
-  { id = "hallak_river_elid_cave", x = 3368, y = 9585, members = false },
+  { id = "nirrie_river_elid_cave", x = 3367, y = 9586 },
+  { id = "tirrie_river_elid_cave", x = 3368, y = 9587 },
+  { id = "hallak_river_elid_cave", x = 3368, y = 9585 },
   { id = "target_river_elid_cave", x = 3379, y = 9556, members = true },
 ]

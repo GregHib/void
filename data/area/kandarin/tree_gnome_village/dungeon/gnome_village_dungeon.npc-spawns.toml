@@ -18,7 +18,7 @@ spawns = [
   { id = "hobgoblin_unarmed", x = 2522, y = 9561, members = true },
   { id = "hobgoblin_unarmed", x = 2529, y = 9555, members = true },
   { id = "hobgoblin_unarmed", x = 2533, y = 9556, members = true },
-  { id = "golrie", x = 2515, y = 9581, members = false },
-  { id = "zombie_armour_green_shorts", x = 2548, y = 9567, members = false },
-  { id = "zombie_green_shorts_sword", x = 2539, y = 9566, members = false },
+  { id = "golrie", x = 2515, y = 9581 },
+  { id = "zombie_armour_green_shorts", x = 2548, y = 9567 },
+  { id = "zombie_green_shorts_sword", x = 2539, y = 9566 },
 ]

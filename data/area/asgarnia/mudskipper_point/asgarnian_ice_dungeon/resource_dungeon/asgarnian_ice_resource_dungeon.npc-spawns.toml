@@ -11,7 +11,7 @@ spawns = [
   { id = "frost_dragon_asgarnian_ice_resource_dungeon_4", x = 1309, y = 4486, members = true },
   { id = "frost_dragon_asgarnian_ice_resource_dungeon_4", x = 1312, y = 4517, members = true },
   { id = "frost_dragon_asgarnian_ice_resource_dungeon_4", x = 1312, y = 4532, members = true },
-  { id = "frost_dragon_asgarnian_ice_resource_dungeon_5", x = 1292, y = 4496, members = false },
-  { id = "frost_dragon_asgarnian_ice_resource_dungeon_5", x = 1318, y = 4497, members = false },
-  { id = "frost_dragon_asgarnian_ice_resource_dungeon_5", x = 1321, y = 4533, members = false },
+  { id = "frost_dragon_asgarnian_ice_resource_dungeon_5", x = 1292, y = 4496 },
+  { id = "frost_dragon_asgarnian_ice_resource_dungeon_5", x = 1318, y = 4497 },
+  { id = "frost_dragon_asgarnian_ice_resource_dungeon_5", x = 1321, y = 4533 },
 ]

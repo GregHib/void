@@ -1,6 +1,6 @@
 spawns = [
-  { id = "rabbit_air_rune_temple", x = 2823, y = 4827, members = false },
-  { id = "rabbit_air_rune_temple", x = 2847, y = 4814, members = false },
-  { id = "rabbit_air_rune_temple", x = 2847, y = 4849, members = false },
-  { id = "rabbit_air_rune_temple", x = 2858, y = 4831, members = false },
+  { id = "rabbit_air_rune_temple", x = 2823, y = 4827 },
+  { id = "rabbit_air_rune_temple", x = 2847, y = 4814 },
+  { id = "rabbit_air_rune_temple", x = 2847, y = 4849 },
+  { id = "rabbit_air_rune_temple", x = 2858, y = 4831 },
 ]

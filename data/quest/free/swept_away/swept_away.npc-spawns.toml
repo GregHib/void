@@ -7,6 +7,6 @@ spawns = [
   { id = "snail_pen_swept_away", x = 3222, y = 4504 },
   { id = "spider_pen_swept_away", x = 3231, y = 4504 },
   { id = "reptile_pen_swept_away", x = 3240, y = 4503 },
-  { id = "gus_swept_away", x = 3167, y = 4516, members = false },
-  { id = "lottie_swept_away", x = 3222, y = 4523, members = false },
+  { id = "gus_swept_away", x = 3167, y = 4516 },
+  { id = "lottie_swept_away", x = 3222, y = 4523 },
 ]
