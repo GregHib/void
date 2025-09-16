@@ -10,6 +10,9 @@ id = 70
 [iron_door_open]
 id = 71
 
+[irondoor_locked]
+id = 72
+
 [gate_close]
 id = 66
 

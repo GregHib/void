@@ -2,6 +2,7 @@ package content.skill.magic.spell
 
 import content.entity.player.inv.inventoryItem
 import content.entity.sound.sound
+import content.quest.quest
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.client.message
@@ -67,6 +68,15 @@ class Teleports {
                     player["click_your_heels_three_times_task"] = true
                     player.start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
                 }
+            }
+        }
+
+        interfaceOption("Cast", "ardougne_teleport", "*_spellbook") {
+            if (player.quest("plague_city") != "completed_with_spell") {
+                player.message("You haven't learnt how to cast this spell yet.")
+                return@interfaceOption
+            } else {
+                cast()
             }
         }
 

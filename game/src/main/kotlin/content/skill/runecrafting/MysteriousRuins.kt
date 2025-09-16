@@ -63,7 +63,7 @@ class MysteriousRuins {
             val id = target.def.transforms?.getOrNull(1) ?: return@itemOnObjectOperate
             val definition = objectDefinitions.get(id)
             player.message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
-            player.anim("bend_down")
+            player.anim("human_pickupfloor")
             delay(2)
             player.mode = Interact(player, target, ObjectOption(player, target, definition, "Enter"), approachRange = -1)
         }

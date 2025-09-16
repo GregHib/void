@@ -61,9 +61,13 @@ class Stiles {
             climbStile(Direction.EAST)
             player.exp(Skill.Agility, 0.5)
         }
+
+        objectOperate("Squeeze-through", "mcgrubor_wood_railing") {
+            climbStile(Direction.WEST, "railing_squeeze")
+        }
     }
 
-    suspend fun ObjectOption<Player>.climbStile(rotation: Direction) {
+    suspend fun ObjectOption<Player>.climbStile(rotation: Direction, anim: String = "rocks_pile_climb") {
         val direction = when (rotation) {
             Direction.NORTH -> if (player.tile.y > target.tile.y) Direction.SOUTH else Direction.NORTH
             Direction.SOUTH -> if (player.tile.y < target.tile.y) Direction.NORTH else Direction.SOUTH
@@ -75,7 +79,7 @@ class Stiles {
         player.walkOverDelay(start)
         player.face(direction)
         delay()
-        player.anim("rocks_pile_climb")
+        player.anim(anim)
         val target = if (direction == rotation) target.tile.add(direction) else target.tile
         player.exactMoveDelay(target, 30, direction = direction)
     }

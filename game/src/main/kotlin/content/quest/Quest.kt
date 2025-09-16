@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 
 val quests = listOf(
+    // free
     "unstable_foundations",
     "cooks_assistant",
     "demon_slayer",
@@ -15,13 +16,16 @@ val quests = listOf(
     "rune_mysteries",
     "the_knights_sword",
     "prince_ali_rescue",
+    // members
+    "druidic_ritual",
+    "plague_city",
     // mini-quests
     "enter_the_abyss",
 )
 
 fun Player.quest(name: String): String = this[name, "unstarted"]
 
-fun Player.questCompleted(name: String): Boolean = quest(name) == "completed"
+fun Player.questCompleted(name: String): Boolean = quest(name).startsWith("completed")
 
 fun Player.refreshQuestJournal() {
     sendScript("quest_journal_refresh")

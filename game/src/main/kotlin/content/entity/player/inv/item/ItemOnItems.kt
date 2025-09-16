@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemOnItemDefinitions
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
@@ -39,7 +40,7 @@ class ItemOnItems {
 
     init {
         itemOnItem(bidirectional = false) { player ->
-            val overlaps = itemOnItemDefs.getOrNull(fromItem, toItem)
+            val overlaps = itemOnItemDefs.getOrNull(fromItem, toItem)?.filter { !it.members || World.members }
             if (overlaps.isNullOrEmpty()) {
                 player.noInterest()
                 return@itemOnItem

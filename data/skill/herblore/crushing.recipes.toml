@@ -63,3 +63,10 @@ remove = ["uncut_opal"]
 add = ["crushed_gem"]
 animation = "pestle_and_mortar"
 message = "You crush the uncut opal."
+
+[chocolate_dust]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["chocolate_bar"]
+add = ["chocolate_dust"]
+animation = "pestle_and_mortar"
