@@ -1,0 +1,14 @@
+spawns = [
+  { id = "swamp_lizard", x =  3532, y = 3446, members = true },
+  { id = "swamp_lizard", x =  3537, y = 3445, members = true },
+  { id = "swamp_lizard", x =  3537, y = 3451, members = true },
+  { id = "swamp_lizard", x =  3547, y = 3442, members = true },
+  { id = "swamp_lizard", x =  3549, y = 3437, members = true },
+  { id = "swamp_lizard", x =  3549, y = 3449, members = true },
+  { id = "swamp_lizard", x =  3552, y = 3450, members = true },
+  { id = "swamp_lizard", x =  3554, y = 3440, members = true },
+  { id = "swamp_lizard", x =  3554, y = 3453, members = true },
+  { id = "swamp_lizard", x =  3556, y = 3438, members = true },
+  { id = "swamp_lizard", x =  3558, y = 3444, members = true },
+  { id = "swamp_lizard", x =  3562, y = 3435, members = true },
+]

@@ -91,4 +91,8 @@ spawns = [
   { id = "pack_yak_spirit_plane", x = 3677, y = 5609, members = true },
   { id = "pack_yak_spirit_plane", x = 3757, y = 5561, members = true },
   { id = "pack_yak_spirit_plane", x = 3756, y = 5589, members = true },
+  { id = "vampire_bat_spirit_plane", x = 3697, y = 5521, members = true },
+  { id = "vampire_bat_spirit_plane", x = 3682, y = 5605, members = true },
+  { id = "vampire_bat_spirit_plane", x = 3760, y = 5529, members = true },
+  { id = "vampire_bat_spirit_plane", x = 3717, y = 5592, members = true },
 ]

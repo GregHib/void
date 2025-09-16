@@ -75,3 +75,8 @@ id = 13174
 [crimson_swift]
 id = 5073
 examine = "This bird obviously doesn't believe in subtlety."
+
+[rantz]
+id = 3587
+wander_radius = 4
+examine = "A large dim looking humanoid."

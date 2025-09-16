@@ -7,7 +7,7 @@ collision = "indoors"
 examine = "Clearly takes pride in his appearance."
 
 [shop_assistant_musa_point]
-id = 11678
+id = 11677
 categories = ["human"]
 shop = "karamja_general_store"
 wander_radius = 2

@@ -1,5 +1,5 @@
 [chicken]
-id = 1017
+id = 41
 hitpoints = 30
 attack_bonus = -47
 height = 15
@@ -15,3 +15,7 @@ drop_table = "chicken"
 combat_anims = "chicken"
 combat_sounds = "chicken"
 examine = "Yep. Definitely a chicken."
+
+[chicken_brown]
+id = 1017
+clone = "chicken"

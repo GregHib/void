@@ -77,3 +77,11 @@ examine = "A bedraggled-looking tramp."
 id = 5500
 examine = "Mina guards the mine entrance."
 
+[grundt]
+id = 5502
+examine = "A dwarven trader from Keldagrim."
+
+[brendt]
+id = 5501
+examine = "A dwarven trader from Keldagrim."
+

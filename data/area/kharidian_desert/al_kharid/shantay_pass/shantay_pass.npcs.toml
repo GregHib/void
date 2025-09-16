@@ -17,3 +17,7 @@ examine = "He's in control of the Shantay Pass."
 [ugthanki]
 id = 840
 examine = "A vicious attacking camel."
+
+[shantay_guard]
+id = 837
+examine = "He patrols the Shantay Pass."

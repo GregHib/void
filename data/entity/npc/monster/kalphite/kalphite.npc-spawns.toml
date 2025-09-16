@@ -22,8 +22,8 @@ spawns = [
     { id = "kalphite_soldier", x = 3463, y = 9481, level = 2, members = true },
     { id = "kalphite_guardian", x = 3511, y = 9499, level = 2, members = true },
     { id = "kalphite_guardian", x = 3505, y = 9493, level = 2, members = true },
-    { id = "kalphite_guardian", x = 3496, y = 9502, members = true },
-    { id = "kalphite_guardian", x = 3495, y = 9489, members = true },
+    { id = "kalphite_guardian_2", x = 3496, y = 9502, members = true },
+    { id = "kalphite_guardian_2", x = 3495, y = 9489, members = true },
     # Kalphite Hive
     { id = "kalphite_guardian", x = 3545, y = 9507, members = true },
     { id = "kalphite_guardian", x = 3556, y = 9503, members = true },

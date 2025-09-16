@@ -71,3 +71,11 @@ clone = "thrower_troll_trollheim"
 [thrower_troll_trollheim_large_3]
 id = 1134
 clone = "thrower_troll_trollheim"
+
+[egg]
+id = 8075
+examine = "She looks rather kindly, for a troll."
+
+[drunken_dwarfs_leg]
+id = 4970
+examine = "A little troll who has no name."

@@ -18,3 +18,9 @@ examine = "A member of the Hazeel cult."
 [elena_southern_ardougne_sewer]
 id = 715
 
+[giant_rat_ardounge_sewer]
+id = 4922
+
+[giant_rat_ardounge_sewer_stubby]
+id = 4923
+

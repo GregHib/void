@@ -19,3 +19,11 @@ respawn_delay = 30
 categories = ["ice_giants"]
 slayer_xp = 70.0
 examine = "He's got icicles in his beard."
+
+[ice_giant_beard]
+id = 3072
+clone = "ice_giant"
+
+[ice_giant_hair]
+id = 4687
+clone = "ice_giant"

@@ -1,6 +1,7 @@
 spawns = [
   { id = "rokuh_nardah", x = 3430, y = 2914, members = true },
   { id = "monkey_bedabin_camp", x = 3400, y = 2918, members = true },
+  { id = "rug_merchant_bedabin_camp", x = 3401, y = 2918, members = true },
   { id = "ghaslor_the_elder_nardah", x = 3441, y = 2933, members = true },
   { id = "usi_nardah", x = 3428, y = 2908 },
   { id = "nkuku_nardah", x = 3415, y = 2938 },
@@ -26,7 +27,7 @@ spawns = [
   { id = "billy_goat_nardah", x = 3413, y = 2888 },
   { id = "goat", x = 3395, y = 2932, members = true },
   { id = "goat_2", x = 3396, y = 2934, members = true },
-  { id = "billy_goat_default", x = 3397, y = 2932, members = true },
+  { id = "billy_goat_kharidian_desert", x = 3397, y = 2932, members = true },
   { id = "artimeus_nardah", x = 3443, y = 2902, members = true },
   { id = "ali_the_wise_nardah", x = 3420, y = 2938, members = true },
 ]

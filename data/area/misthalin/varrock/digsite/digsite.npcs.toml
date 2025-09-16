@@ -4,3 +4,6 @@ examine = "An old archaeologist."
 
 [assassin_digsite]
 id = 9043
+
+[digsite_workman]
+id = 9049

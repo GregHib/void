@@ -13,7 +13,7 @@ spawns = [
   { id = "rat", x = 2700, y = 5061, members = true },
   { id = "rat", x = 2713, y = 5061, members = true },
   { id = "giant_rat", x = 2721, y = 5102, members = true },
-  { id = "giant_rat_dark_injured", x = 2737, y = 5062, members = true },
+  { id = "giant_rat_wilderness", x = 2737, y = 5062, members = true },
   { id = "giant_skeleton_shadow_dungeon", x = 2626, y = 5065, members = true },
   { id = "giant_skeleton_shadow_dungeon", x = 2637, y = 5099, members = true },
   { id = "giant_skeleton_shadow_dungeon", x = 2638, y = 5058, members = true },

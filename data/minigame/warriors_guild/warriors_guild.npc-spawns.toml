@@ -1,0 +1,17 @@
+spawns = [
+    { id = "ghommal", x = 2879, y = 3547, members = true },
+    { id = "laidee_gnonock", x = 2879, y = 3547, members = true },
+    { id = "sloane", x = 2855, y = 3553, level = 1, members = true },
+    { id = "harrallak_menarous", x = 2866, y = 3547, members = true },
+    { id = "ref", x = 2867, y = 3556, level = 1, members = true },
+    { id = "ref", x = 2867, y = 3544, level = 1, members = true },
+    { id = "jimmy", x = 2872, y = 3540, level = 1, members = true },
+    { id = "jade", x = 2843, y = 3543, members = true },
+    { id = "anton", x = 2857, y = 3537, level = 1, members = true },
+    { id = "lilly", x = 2846, y = 3552, members = true },
+    { id = "lidio", x = 2841, y = 3552, members = true },
+    { id = "shanomi", x = 2857, y = 3542, members = true },
+    { id = "kamfreena", x = 2844, y = 3540, level = 2, members = true },
+    { id = "ajjat", x = 2851, y = 3553, members = true },
+    { id = "gamfred", x = 2841, y = 3541, level = 1, members = true },
+]

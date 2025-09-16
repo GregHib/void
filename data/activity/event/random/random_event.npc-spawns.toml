@@ -2,7 +2,7 @@ spawns = [
 # 7754
   { id = "quiz_master", x = 1952, y = 4768, level = 1, direction = "SOUTH" },
 # 8261
-  { id = "prison_pete", x = 2084, y = 4460, direction = "NORTH" },
+  { id = "prison_pete", x = 2084, y = 4466, direction = "NORTH" },
   { id = "balloon_animal_dog", x = 2078, y = 4462 },
   { id = "balloon_animal_dog", x = 2090, y = 4464 },
   { id = "balloon_animal_dog", x = 2091, y = 4461 },
@@ -28,8 +28,8 @@ spawns = [
   { id = "mr_mordau", x = 1884, y = 5020, direction = "NORTH" },
   { id = "zombie_surprise_exam", x = 1885, y = 5026, direction = "SOUTH" },
   { id = "giant_surprise_exam", x = 1885, y = 5029, direction = "SOUTH" },
-  { id = "goblin_surprise_exam", x = 1883, y = 5026, direction = "SOUTH" },
-  { id = "goblin_2_surprise_exam", x = 1883, y = 5029, direction = "SOUTH" },
+  { id = "goblin_2_surprise_exam", x = 1883, y = 5026, direction = "SOUTH" },
+  { id = "goblin_surprise_exam", x = 1883, y = 5029, direction = "SOUTH" },
   { id = "mummy_surprise_exam", x = 1887, y = 5026, direction = "SOUTH" },
   { id = "dunce_surprise_exam", x = 1890, y = 5018, direction = "SOUTH" },
 ]

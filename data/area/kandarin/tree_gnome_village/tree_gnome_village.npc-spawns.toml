@@ -12,7 +12,7 @@ spawns = [
   { id = "rat", x = 2513, y = 3187, members = true },
   { id = "rat", x = 2502, y = 3184, members = true },
   { id = "giant_rat", x = 2517, y = 3184, members = true },
-  { id = "giant_rat_dark", x = 2520, y = 3187, members = true },
+  { id = "giant_rat_brimhaven", x = 2520, y = 3187, members = true },
   { id = "goblin_light_grey_bald_spear", x = 2557, y = 3198 },
   { id = "goblin_light_grey_bald_spear", x = 2505, y = 3176 },
   { id = "goblin_light_grey_bald_spear", x = 2550, y = 3166 },

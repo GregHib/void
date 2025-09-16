@@ -2,8 +2,8 @@ spawns = [
   { id = "gunnjorn", x = 2540, y = 3548, members = true },
   { id = "barbarian_guard", x = 2544, y = 3567, members = true },
   { id = "barbarian_guard", x = 2544, y = 3571, members = true },
-  { id = "chicken", x = 2553, y = 3562 },
-  { id = "chicken", x = 2553, y = 3565 },
+  { id = "chicken_brown", x = 2553, y = 3562 },
+  { id = "chicken_brown", x = 2553, y = 3565 },
   { id = "fishing_spot_barbarian_outpost", x = 2498, y = 3547, members = true },
   { id = "fishing_spot_barbarian_outpost", x = 2511, y = 3562, members = true },
   { id = "fishing_spot_barbarian_outpost", x = 2516, y = 3575, members = true },
@@ -20,4 +20,9 @@ spawns = [
   { id = "private_pendron_barbarian_outpost", x = 2525, y = 3564, members = true },
   { id = "private_pierreb_barbarian_outpost", x = 2520, y = 3568, members = true },
   { id = "private_paldon_barbarian_outpost", x = 2526, y = 3575, members = true },
+
+  { id = "penance_fighter", x = 1880, y = 5486, members = true },
+  { id = "penance_ranger", x = 1874, y = 5485, members = true },
+  { id = "penance_runner", x = 1898, y = 5485, members = true },
+  { id = "penance_healer", x = 1892, y = 5486, members = true },
 ]

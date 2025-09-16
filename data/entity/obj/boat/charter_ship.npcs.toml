@@ -38,6 +38,14 @@ shop = "trader_stans_trading_post"
 collision = "outdoors"
 examine = "She'll never be able to climb rigging in that."
 
+[trader_crewmember_hidden_pink]
+id = 7065
+clone = "trader_crewmember_pink"
+
+[trader_crewmember_hidden_black]
+id = 7066
+clone = "trader_crewmember_black"
+
 [trader_crewmember_purple]
 id = 4655
 categories = ["human"]

@@ -9,4 +9,5 @@ spawns = [
   { id = "ethereal_mimic_dream_world", x = 1770, y = 5070, level = 2, members = true },
   { id = "me_dream_world", x = 1823, y = 5087, level = 2, members = true },
   { id = "the_inadequacy_dream_world", x = 1823, y = 5149, level = 2, members = true },
+  { id = "shooting_star", x = 2058, y = 4828, level = 2, members = true },
 ]

@@ -11,4 +11,13 @@ spawns = [
   { id = "skeleton_shield_helmet", x = 3279, y = 5704 },
   { id = "skeleton_shield_helmet", x = 3282, y = 5708 },
   { id = "azzanadra_senntisten_temple", x = 3309, y = 5714 },
+
+  { id = "digsite_workman", x = 3298, y = 5716 },
+  { id = "digsite_workman", x = 3301, y = 5712 },
+  { id = "digsite_workman", x = 3304, y = 5716 },
+  { id = "digsite_workman", x = 3307, y = 5705 },
+  { id = "digsite_workman", x = 3311, y = 5716 },
+  { id = "digsite_workman", x = 3317, y = 5711 },
+  { id = "digsite_workman", x = 3321, y = 5720 },
+  { id = "digsite_workman", x = 3322, y = 5708 },
 ]

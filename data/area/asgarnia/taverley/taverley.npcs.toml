@@ -33,3 +33,22 @@ wander_radius = 4
 categories = ["human"]
 collision = "indoors"
 examine = "A wise druid."
+
+[thaerisk_cemphier]
+id = 8420
+wander_radius = 4
+categories = ["human"]
+collision = "indoors"
+examine = "A wise druid."
+
+[ivy_ophista]
+id = 8417
+examine = "An impressive, statuesque druidess. She must be of high status."
+
+[terrier_taverley]
+id = 6894
+examine = "A terrier puppy."
+
+[pet_shop_owner_taverley]
+id = 6893
+examine = "The man of the pet shop."

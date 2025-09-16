@@ -6,4 +6,5 @@ spawns = [
   { id = "examiner_exam_centre_3", x = 3351, y = 3345 },
   { id = "panning_guide_exam_centre", x = 3376, y = 3373 },
   { id = "dr_nabanik_exam_centre", x = 3354, y = 3353, members = true },
+  { id = "terry_balando", x = 3353, y = 3335, members = true },
 ]

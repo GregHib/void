@@ -1,7 +1,7 @@
 spawns = [
 # 11055
-  { id = "chicken", x = 2788, y = 3061, members = true },
-  { id = "chicken", x = 2805, y = 3064, members = true },
+  { id = "chicken_brown", x = 2788, y = 3061, members = true },
+  { id = "chicken_brown", x = 2805, y = 3064, members = true },
   { id = "hobgoblin_unarmed", x = 2787, y = 3013, members = true },
   { id = "hobgoblin_unarmed", x = 2791, y = 3012, members = true },
   { id = "hobgoblin_unarmed", x = 2794, y = 3012, members = true },

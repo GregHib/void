@@ -98,6 +98,10 @@ categories = ["human"]
 collision = "indoors"
 examine = "He looks like a professional explorer."
 
+[explorer_jack_lumbridge]
+id = 7969
+examine = "He looks like a professional explorer."
+
 [duke_horacio]
 id = 741
 categories = ["human"]
@@ -248,13 +252,13 @@ examine = "A collector of ancient artefacts."
 id = 7565
 examine = "Looks after your Farming tools."
 
+[wheelbarrow_lumbridge]
+id = 7566
+examine = "Looks after your Farming tools."
+
 [fred_the_farmer_lumbridge]
 id = 758
 examine = "A well-fed farmer."
-
-[explorer_jack_lumbridge]
-id = 7969
-examine = "He looks like a professional explorer."
 
 [fayeth]
 id = 2342
@@ -263,3 +267,11 @@ examine = "Perhaps this gardener might look after your crops for you."
 [farmer_lumbridge_3]
 id = 1758
 examine = "He grows the crops in this area."
+
+[sigmund_lumbridge]
+id = 2079
+examine = "He grows the crops in this area."
+
+[xenia]
+id = 9633
+examine = "An old adventurer."

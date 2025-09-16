@@ -86,3 +86,6 @@ examine = "He looks a bit aggressive."
 id = 831
 examine = "He's in control of the whole mining camp."
 
+[mine_cart_driver]
+id = 841
+examine = "He looks busy attending to his cart."

@@ -26,4 +26,5 @@ spawns = [
     { id = "pyrefiend_soul_wars", x = 1927, y = 3210, members = true },
     { id = "pyrefiend_soul_wars", x = 1928, y = 3207, members = true },
     { id = "pyrefiend_soul_wars", x = 1931, y = 3213, members = true },
+    { id = "zimberfizz", x = 1888, y = 3178, members = true },
 ]

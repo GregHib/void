@@ -1,0 +1,66 @@
+[laidee_gnonock]
+id = 8492
+examine = "The small but tough doorman of the Warrior's Guild."
+
+[ghommal]
+id = 8492
+examine = "A powerful warrior, guarding the Warriors' Guild."
+
+[sloane]
+id = 8269
+examine = "He looks like a strong warrior."
+
+[harrallak_menarous]
+id = 70
+wander_radius = 5
+examine = "The guildmaster of the Warriors' Guild."
+
+[ref]
+id = 4300
+wander_radius = 2
+examine = "He looks fair and reliable."
+
+[jimmy]
+id = 4298
+wander_radius = 4
+examine = "He looks a bit drunk."
+
+[jade]
+id = 4296
+wander_radius = 3
+examine = "Bank staff."
+
+[anton]
+id = 4295
+wander_radius = 5
+examine = "Armour shopkeeper."
+
+[lilly]
+id = 4294
+wander_radius = 5
+examine = "Potion shopkeeper."
+
+[lidio]
+id = 4293
+wander_radius = 4
+examine = "Food shopkeeper."
+
+[shanomi]
+id = 4290
+wander_radius = 3
+examine = "A warrior mage from the east."
+
+[kamfreena]
+id = 4289
+wander_radius = 3
+examine = "Blademistress, skillful female warrior."
+
+[ajjat]
+id = 4288
+wander_radius = 2
+examine = "Used to be a black knight."
+
+[gamfred]
+id = 4287
+wander_radius = 2
+examine = "The guild engineer."

@@ -37,3 +37,8 @@ examine = "It's like looking in the mirror."
 id = 5902
 examine = "Are you good enough to fight?"
 
+[shooting_star]
+id = 4420
+
+[shooting_star_2]
+id = 3093

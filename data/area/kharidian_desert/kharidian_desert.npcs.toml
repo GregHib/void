@@ -84,3 +84,10 @@ id = 5283
 [ali_the_wise_kharidian_desert]
 id = 7406
 
+[desert_wolf]
+id = 839
+examine = "A vicious desert wolf."
+
+[desert_wolf_brown]
+id = 6051
+examine = "A vicious desert wolf."

@@ -100,6 +100,7 @@ spawns = [
   { id = "sheep", x = 3194, y = 3295 },
   { id = "duck_swim", x = 3144, y = 3269 },
   { id = "lil_lamb", x = 3188, y = 3293 },
+  { id = "black_lamb", x = 3190, y = 3290 },
   { id = "sheep_light_2", x = 3191, y = 3292, members = true },
   { id = "larry_freds_farm_2", x = 3185, y = 3292, members = true },
   { id = "ducklings", x = 3143, y = 3271 },

@@ -4,4 +4,6 @@ spawns = [
     { id = "thrower_troll_trollheim_grey", x = 2893, y = 3700 },
     { id = "thrower_troll_trollheim_large", x = 2898, y = 3698 },
     { id = "thrower_troll_trollheim", x = 2902, y = 3696 },
+    { id = "egg", x = 2938, y = 3678 },
+    { id = "drunken_dwarfs_leg", x = 2825, y = 3681 },
 ]

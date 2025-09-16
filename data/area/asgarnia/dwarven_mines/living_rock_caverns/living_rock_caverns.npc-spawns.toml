@@ -75,4 +75,5 @@ spawns = [
   { id = "rocktail_shoal_living_rock_caverns", x = 3631, y = 5144 },
   { id = "rocktail_shoal_living_rock_caverns", x = 3683, y = 5109 },
   { id = "rocktail_shoal_living_rock_caverns", x = 3653, y = 5141 },
+  { id = "living_rock_caverns_controller", x = 3654, y = 5118 },
 ]

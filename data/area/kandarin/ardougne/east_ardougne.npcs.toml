@@ -298,3 +298,7 @@ id = 890
 id = 9166
 examine = "She'll serve you a drink as quick as a shot!"
 
+[king_lathas]
+id = 364
+wander_radius = 4
+examine = "King Lathas of East Ardougne."

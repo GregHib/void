@@ -42,6 +42,10 @@ examine = "An overworked gnome!"
 id = 4575
 examine = "A lazy gnome."
 
+[gianne_jnr]
+id = 4572
+examine = "The delivery honcho!"
+
 [perrdur_grand_tree]
 id = 4587
 examine = "Gnome customer."

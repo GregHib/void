@@ -228,4 +228,5 @@ spawns = [
   { id = "mound_feldip_hills", x = 2465, y = 2911, members = true },
   { id = "mound_feldip_hills", x = 2466, y = 2921, members = true },
   { id = "wolf", x = 2470, y = 2865 },
+  { id = "rantz", x = 2630, y = 2981 },
 ]

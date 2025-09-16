@@ -29,7 +29,7 @@ open class Commands {
         val parts = command.splitSafe(' ')
         val prefix = parts.getOrNull(0)?.lowercase() ?: return
         val metadata = find(player, prefix) ?: return
-        val arguments = parts.drop(1)
+        val arguments = parts.drop(1).filter { it.isNotBlank() }
         val signature = metadata.find(arguments)
         if (signature == null) {
             player.message("Unknown arguments for command '${metadata.name}'.", ChatType.Console)

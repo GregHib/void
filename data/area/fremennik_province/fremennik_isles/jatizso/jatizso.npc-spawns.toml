@@ -38,4 +38,6 @@ spawns = [
   { id = "gruva_patrull", x = 2398, y = 3814, members = true },
   { id = "ice_troll_runt_fremennik_isle", x = 2370, y = 3833, members = true },
   { id = "ice_troll_female_fremennik_isle", x = 2372, y = 3833, members = true },
+  { id = "brendt", x = 2408, y = 3815, members = true },
+  { id = "grundt", x = 2406, y = 3816, members = true },
 ]

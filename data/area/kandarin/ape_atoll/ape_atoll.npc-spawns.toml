@@ -141,6 +141,7 @@ spawns = [
   { id = "monkey_zombie_ape_atoll_3", x = 2806, y = 9201, members = true },
   { id = "monkey_zombie_ape_atoll_3", x = 2807, y = 9200, members = true },
   { id = "monkey_zombie_ape_atoll_3", x = 2807, y = 9202, members = true },
+  { id = "monkey_guard_ape_atoll_3", x = 2793, y = 2789, members = true },
   { id = "spider_ape_atoll", x = 2734, y = 2792, level = 1, members = true },
   { id = "spider_ape_atoll", x = 2749, y = 2768, level = 2, members = true },
   { id = "spider_ape_atoll", x = 2767, y = 2765, level = 1, members = true },

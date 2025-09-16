@@ -139,3 +139,6 @@ examine = "It's searching for crumbs of chocolate."
 [snail_easter]
 id = 7209
 examine = "It seems to have eaten a lot of chocolate."
+
+[easter_bunny_2009]
+id = 7409

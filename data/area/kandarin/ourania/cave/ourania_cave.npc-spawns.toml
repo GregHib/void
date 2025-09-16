@@ -1,8 +1,8 @@
 spawns = [
 # 13131
   { id = "eniola", x = 3269, y = 4857, direction = "SOUTH", members = true },
-  { id = "zamorak_warrior_square", x = 3271, y = 4815, members = true },
-  { id = "zamorak_warrior_kite", x = 3271, y = 4838, members = true },
+  { id = "zamorak_warrior_kite", x = 3271, y = 4815, members = true },
+  { id = "zamorak_warrior_square", x = 3271, y = 4838, members = true },
   { id = "zamorak_warrior_kite", x = 3284, y = 4806, members = true },
   { id = "zamorak_mage", x = 3268, y = 4810, members = true },
   { id = "zamorak_mage_fancy", x = 3273, y = 4809, members = true },

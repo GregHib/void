@@ -17,7 +17,7 @@ spawns = [
   { id = "cow_zanaris", x = 2439, y = 4457, members = true },
   { id = "cow_zanaris", x = 2441, y = 4448, members = true },
   { id = "cow_zanaris", x = 2435, y = 4442, members = true },
-  { id = "chicken", x = 2451, y = 4477 },
+  { id = "chicken_brown", x = 2451, y = 4477 },
   { id = "gnarly_zanaris", x = 2377, y = 4468, members = true },
   { id = "general_breegth_zanaris", x = 2401, y = 4452, members = true },
   { id = "fairy_zanaris", x = 2386, y = 4431, members = true },

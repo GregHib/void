@@ -35,11 +35,11 @@ spawns = [
       { id = "wallasalki", x = 1806, y = 4406, level = 3, members = true },
       { id = "wallasalki", x = 1803, y = 4405, level = 3, members = true },
       { id = "wallasalki", x = 1802, y = 4383, level = 2, members = true },
-      { id = "wallasalki", x = 1796, y = 4383, level = 2, members = true },
+      { id = "wallasalki_1", x = 1796, y = 4383, level = 2, members = true },
       # Waterbirth Dungeon (Sub-level 4)
       { id = "wallasalki", x = 1810, y = 4392, level = 1, members = true },
       { id = "wallasalki", x = 1802, y = 4395, level = 1, members = true },
-      { id = "wallasalki", x = 1801, y = 4391, level = 1, members = true },
+      { id = "wallasalki_1", x = 1801, y = 4391, level = 1, members = true },
       { id = "wallasalki", x = 1805, y = 4390, level = 1, members = true },
       { id = "wallasalki", x = 1804, y = 4372, level = 1, members = true },
       { id = "wallasalki", x = 1799, y = 4372, level = 1, members = true },

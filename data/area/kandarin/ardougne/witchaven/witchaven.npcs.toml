@@ -64,3 +64,11 @@ id = 7193
 [kent_witchaven_3]
 id = 7195
 
+[ezekial_lovecraft]
+id = 7190
+examine = "Smells a bit fishy."
+
+[ezekial_lovecraft_armed]
+id = 4856
+examine = "An unlikely savior."
+

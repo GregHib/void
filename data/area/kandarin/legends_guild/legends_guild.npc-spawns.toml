@@ -9,4 +9,6 @@ spawns = [
   { id = "radimus_erkle_2", x = 2724, y = 3377, members = true },
   { id = "fionella", x = 2725, y = 3378, level = 1 },
   { id = "siegfried_erkle", x = 2725, y = 3381, level = 2 },
+  { id = "legends_guard_west", x = 2726, y = 3349, direction = "SOUTH", members = true },
+  { id = "legends_guard_east", x = 2731, y = 3348, direction = "SOUTH", members = true },
 ]

@@ -1,8 +1,8 @@
 spawns = [
 # 11316
-  { id = "chicken", x = 2850, y = 3371 },
-  { id = "chicken", x = 2853, y = 3368 },
-  { id = "chicken", x = 2853, y = 3373 },
+  { id = "chicken_brown", x = 2850, y = 3371 },
+  { id = "chicken_brown", x = 2853, y = 3368 },
+  { id = "chicken_brown", x = 2853, y = 3373 },
   { id = "high_priest_entrana", x = 2851, y = 3349 },
   { id = "monk_entrana", x = 2843, y = 3346 },
   { id = "monk_entrana", x = 2850, y = 3354 },
@@ -32,4 +32,5 @@ spawns = [
   { id = "unicorn", x = 2850, y = 3378 },
   { id = "unicorn", x = 2860, y = 3375 },
   { id = "unicorn", x = 2863, y = 3378 },
+  { id = "entrana_firebird", x = 2847, y = 3386 },
 ]

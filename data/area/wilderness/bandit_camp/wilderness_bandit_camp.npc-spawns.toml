@@ -14,7 +14,7 @@ spawns = [
   { id = "skeleton_shield_helmet", x = 3021, y = 3593 },
 # 12089
   { id = "giant_rat", x = 3049, y = 3691 },
-  { id = "giant_rat_dark_injured", x = 3049, y = 3695 },
+  { id = "giant_rat_wilderness", x = 3049, y = 3695 },
   { id = "neil_wilderness_bandit_camp", x = 3016, y = 3704 },
   { id = "sam_wilderness_bandit_camp", x = 3046, y = 3628 },
   { id = "dark_warrior_wilderness_bandit_camp", x = 3022, y = 3624, members = true },

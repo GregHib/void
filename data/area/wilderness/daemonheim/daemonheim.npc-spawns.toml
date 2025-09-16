@@ -32,4 +32,5 @@ spawns = [
   { id = "lobster_wilderness", x = 3403, y = 3614 },
   { id = "lobster_wilderness", x = 3411, y = 3625 },
   { id = "lobster_wilderness", x = 3439, y = 3633 },
+  { id = "thok_master_of_dungeoneering", x = 3439, y = 3698 },
 ]

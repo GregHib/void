@@ -127,4 +127,5 @@ spawns = [
   { id = "aluft_gianne_snr", x = 2449, y = 3501, level = 1 },
   { id = "gnome_waiter_grand_tree", x = 2448, y = 3503, level = 1 },
   { id = "gnome_waiter_grand_tree", x = 2450, y = 3503, level = 1 },
+  { id = "gianne_jnr", x = 2439, y = 3502, level = 1 },
 ]

@@ -127,3 +127,6 @@ examine = "She tends the wheat."
 id = 6073
 examine = "He looks a little lost."
 
+[otherworldy_being]
+id = 126
+examine = "Is he invisible or just a set of floating clothing?"

@@ -29,4 +29,9 @@ spawns = [
   { id = "hazeel_cultist_ardougne_sewers", x = 2609, y = 9672, members = true },
   { id = "hazeel_cultist_ardougne_sewers", x = 2610, y = 9686, members = true },
   { id = "elena_southern_ardougne_sewer", x = 2541, y = 9672, members = true },
+  { id = "giant_rat_ardounge_sewer", x = 2636, y = 9697, members = true },
+  { id = "giant_rat_ardounge_sewer", x = 2644, y = 9708, members = true },
+  { id = "giant_rat_ardounge_sewer", x = 2651, y = 9700, members = true },
+  { id = "giant_rat_ardounge_sewer_stubby", x = 2642, y = 9712, members = true },
+  { id = "giant_rat_ardounge_sewer_stubby", x = 2644, y = 9696, members = true },
 ]

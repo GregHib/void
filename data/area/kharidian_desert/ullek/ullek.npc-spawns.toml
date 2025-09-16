@@ -47,4 +47,8 @@ spawns = [
   { id = "crocodile_ullek", x = 3429, y = 2802, members = true },
   { id = "lead_archaeologist_abigail_ullek", x = 3409, y = 2812, level = 1 },
   { id = "assistant_archaeologist_kerner_ullek", x = 3408, y = 2813, level = 1 },
+  { id = "mummy_agility_pyramid", x = 3381, y = 2816, level = 1, members = true },
+  { id = "mummy_agility_pyramid_2", x = 3386, y = 2824, level = 1, members = true },
+  { id = "mummy_agility_pyramid_3", x = 3382, y = 2820, level = 1, members = true },
+  { id = "mummy_agility_pyramid_4", x = 3384, y = 2822, level = 1, members = true },
 ]

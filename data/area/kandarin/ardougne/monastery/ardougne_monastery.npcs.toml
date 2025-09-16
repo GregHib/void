@@ -9,6 +9,10 @@ examine = "Perhaps this gardener might look after your crops for you."
 [lady_servil_monastery]
 id = 258
 
+[jeremy_servil]
+id = 7533
+examine = "A scared but defiant squire."
+
 [brother_omad_monastery]
 id = 279
 examine = "An old monk."

@@ -1,6 +1,6 @@
 spawns = [
 # 11062
-  { id = "man", x = 2784, y = 3463, members = true },
+  { id = "man_camelot", x = 2784, y = 3463, members = true },
   { id = "ice_giant", x = 2809, y = 3506, level = 2 },
   { id = "merlin_camelot_castle", x = 2767, y = 3499, level = 1, members = true },
   { id = "sir_lancelot_camelot_castle", x = 2759, y = 3515, level = 1 },

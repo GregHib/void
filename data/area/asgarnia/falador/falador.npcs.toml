@@ -443,3 +443,8 @@ examine = "An armourer."
 [estate_agent]
 id = 4247
 examine = "A fancy businessman with a mighty fine hat."
+
+[gadrin]
+id = 3295
+wander_radius = 3
+examine = "He's in charge of the mining guild."

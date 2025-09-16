@@ -64,3 +64,19 @@ examine = "A barbarian private."
 [private_paldon_barbarian_outpost]
 id = 5034
 examine = "A barbarian private."
+
+[penance_fighter]
+id = 5040
+examine = "What on Gielinor is that?"
+
+[penance_ranger]
+id = 5041
+examine = "Shooty-shooty."
+
+[penance_runner]
+id = 5042
+examine = "He's making a run for it!"
+
+[penance_healer]
+id = 5043
+examine = "A nasty piece of work."

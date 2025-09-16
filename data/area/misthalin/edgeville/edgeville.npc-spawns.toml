@@ -19,7 +19,7 @@ spawns = [
   { id = "giant_spider", x = 3134, y = 3483 },
   { id = "rat", x = 3127, y = 3489 },
   { id = "rat", x = 3123, y = 3487 },
-  { id = "rat", x = 3128, y = 3485 },
+  { id = "local_thug_east_ardougne", x = 3128, y = 3485 },
   { id = "hari", x = 3133, y = 3509 },
   { id = "jeffery", x = 3108, y = 3500 },
 # 11671

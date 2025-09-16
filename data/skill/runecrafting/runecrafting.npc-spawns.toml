@@ -18,4 +18,5 @@ spawns = [
   { id = "bird_default_2", x = 2407, y = 4827 },
   { id = "shark_karamja_ship_yard", x = 3484, y = 4808 },
   { id = "shark_karamja_ship_yard", x = 3507, y = 4852 },
+  { id = "shooting_star_2", x = 2135, y = 4842, level = 3 },
 ]

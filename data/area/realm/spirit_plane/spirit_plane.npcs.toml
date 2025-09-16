@@ -90,3 +90,7 @@ examine = "It'll kill your enemies, and makes a great cup of tea."
 id = 9491
 examine = "Bulk haulage never smelled so bad."
 
+[vampire_bat_spirit_plane]
+id = 9474
+examine = "It vants to suck my blood!"
+

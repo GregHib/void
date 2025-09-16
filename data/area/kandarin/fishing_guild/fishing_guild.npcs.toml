@@ -34,3 +34,7 @@ examine = "An ugly green creature."
 id = 592
 examine = "He runs the Fishing Guild shop."
 
+[fishermans_wife]
+id = 3709
+examine = "She seems happy in her work."
+

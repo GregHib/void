@@ -30,7 +30,7 @@ spawns = [
   { id = "crow_5", x = 3115, y = 3270 },
   { id = "crow_6", x = 3107, y = 3286 },
   { id = "crow_6", x = 3124, y = 3271 },
-  { id = "goblin_light_grey_hat", x = 3110, y = 3281 },
+  { id = "goblin_light_grey_bald", x = 3110, y = 3281 },
   { id = "goblin_light_brown_mohawk", x = 3114, y = 3310 },
 # 12340
   { id = "armour_draynor_manor", x = 3113, y = 3363, direction = "EAST" },
@@ -100,4 +100,5 @@ spawns = [
   { id = "shady_stranger", x = 3080, y = 3240, members = true },
   { id = "shady_stranger", x = 3099, y = 3263, members = true },
   { id = "suspicious_outsider", x = 3097, y = 3253, members = true },
+  { id = "witch", x = 3099, y = 3370, members = true },
 ]

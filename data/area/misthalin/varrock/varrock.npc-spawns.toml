@@ -132,8 +132,8 @@ spawns = [
   { id = "schoolgirl_varrock", x = 1755, y = 4951 },
   { id = "schoolgirl_varrock", x = 1771, y = 4985 },
   { id = "schoolgirl_varrock", x = 1783, y = 4951 },
-  { id = "chicken", x = 3197, y = 3352 },
-  { id = "chicken", x = 3198, y = 3354 },
+  { id = "chicken_brown", x = 3197, y = 3352 },
+  { id = "chicken_brown", x = 3198, y = 3354 },
   { id = "tramp_defender_of_varrock", x = 3235, y = 3401 },
   { id = "market_guard_defender_of_varrock", x = 3214, y = 3425 },
   { id = "urist_loric_defender_of_varrock", x = 3222, y = 3424, members = true },
@@ -390,4 +390,5 @@ spawns = [
   { id = "unicorn", x = 3286, y = 3349 },
   { id = "overseer_varrock", x = 3316, y = 3491, members = true },
   { id = "guardian_varrock", x = 3323, y = 3501, level = 3, members = true },
+  { id = "orlando_smith", x = 1759, y = 4955, members = true },
 ]

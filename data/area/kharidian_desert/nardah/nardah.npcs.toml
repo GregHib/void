@@ -76,3 +76,6 @@ examine = "He looks like he knows what he's doing."
 [ali_the_wise_nardah]
 id = 7468
 
+[rug_merchant_bedabin_camp]
+id = 3020
+examine = "A carpet merchant."

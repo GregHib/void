@@ -127,7 +127,6 @@ spawns = [
   { id = "earth_wizard", x = 3003, y = 3268 },
   { id = "air_wizard", x = 2999, y = 3264 },
   { id = "malignius_mortifer", x = 3001, y = 3267 },
-  { id = "doric", x = 2959, y = 3439 },
   { id = "drunken_man_falador", x = 2956, y = 3369, level = 1 },
   { id = "man_falador", x = 2990, y = 3365 },
   { id = "woman_falador", x = 2990, y = 3384 },
@@ -271,4 +270,5 @@ spawns = [
   { id = "guard_falador_8", x = 2965, y = 3398 },
   { id = "guard_falador_8", x = 2967, y = 3396 },
   { id = "dog_falador", x = 3022, y = 3288 },
+  { id = "gadrin", x = 3021, y = 3339 },
 ]

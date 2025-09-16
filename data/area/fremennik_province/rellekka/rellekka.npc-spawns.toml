@@ -9,7 +9,7 @@ spawns = [
   { id = "yrsa", x = 2625, y = 3675, members = true },
   { id = "musician_rellekka", x = 2655, y = 3694, direction = "SOUTH", members = true },
   { id = "chicken", x = 2679, y = 3665, members = true },
-  { id = "chicken", x = 2681, y = 3663, members = true },
+  { id = "chicken_brown", x = 2681, y = 3663, members = true },
 # 10553
   { id = "hobgoblin_armed", x = 2659, y = 3733, members = true },
   { id = "hobgoblin_armed", x = 2654, y = 3729, members = true },
@@ -180,7 +180,8 @@ spawns = [
   { id = "maria_gunnars_rellekka", x = 2644, y = 3710, members = true },
   { id = "general_khazard_rellekka", x = 2723, y = 3622, members = true },
   { id = "erjolf_rellekka", x = 2736, y = 3730, members = true },
-  { id = "tool_leprechaun_rellekka", x = 2671, y = 3525, members = true },
+  { id = "tool_leprechaun_rellekka", x = 2671, y = 3525, direction = "SOUTH", members = true },
+  { id = "wheelbarrow_rellekka", x = 2671, y = 3526, direction = "SOUTH", members = true },
   { id = "larry_rellekka", x = 2707, y = 3733, members = true },
   { id = "fishing_spot_rellekka_4", x = 2678, y = 3595, members = true },
   { id = "fishing_spot_rellekka_4", x = 2687, y = 3598, members = true },
@@ -190,4 +191,5 @@ spawns = [
   { id = "musician_mountain_camp", x = 2760, y = 3644 },
   { id = "unicorn", x = 2718, y = 3610 },
   { id = "unicorn", x = 2741, y = 3605 },
+  { id = "lokar_searunner", x = 2621, y = 3694 },
 ]

@@ -58,3 +58,47 @@ examine = "One of Gielinor's many citizens."
 
 [edmond_western_ardougne_sewer]
 id = 3214
+
+[mourner_vial_1]
+id = 717
+examine = "A mourner, or plague healer."
+
+[mourner_vial_2]
+id = 718
+examine = "A mourner, or plague healer."
+
+[mourner_vial_3]
+id = 719
+examine = "A mourner, or plague healer."
+
+[mourner_1]
+id = 369
+examine = "A mourner, or plague healer."
+
+[mourner_2]
+id = 370
+examine = "A mourner, or plague healer."
+
+[mourner_3]
+id = 371
+examine = "A mourner, or plague healer."
+
+[mourner_vial_4]
+id = 372
+examine = "A mourner, or plague healer."
+
+[mourner_4]
+id = 347
+examine = "A mourner, or plague healer."
+
+[mourner_5]
+id = 348
+examine = "A mourner, or plague healer."
+
+[mourner_staff]
+id = 357
+examine = "A mourner, or plague healer."
+
+[mourner_guard]
+id = 3216
+examine = "A mourner, or plague healer."

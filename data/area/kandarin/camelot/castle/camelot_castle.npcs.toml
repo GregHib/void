@@ -44,3 +44,6 @@ id = 3787
 id = 4686
 categories = ["ice_giants"]
 examine = "He's got icicles in his beard."
+
+[man_camelot]
+id = 2324

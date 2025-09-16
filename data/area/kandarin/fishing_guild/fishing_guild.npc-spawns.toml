@@ -108,4 +108,5 @@ spawns = [
   { id = "ducklings", x = 2604, y = 3431 },
   { id = "ducklings", x = 2613, y = 3423 },
   { id = "ducklings", x = 2616, y = 3424 },
+  { id = "fishermans_wife", x = 2618, y = 3385 },
 ]

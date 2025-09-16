@@ -15,3 +15,13 @@ examine = "She sells general items at the Legends' Guild."
 id = 933
 examine = "An eccentric shopkeeper, related to the Grand Vizier of the Legends' Guild."
 
+[legends_guard_west]
+id = 399
+wander_radius = 2
+examine = "A Legends' Guild guard; he protects the entrance to the Legends' Guild."
+
+[legends_guard_east]
+id = 398
+wander_radius = 2
+examine = "A Legends' Guild guard; he protects the entrance to the Legends' Guild."
+

@@ -1,3 +1,8 @@
 [nora_t_hagg]
 id = 896
 examine = "Her friends call her Nor-T for short."
+
+[doronbol]
+id = 8073
+examine = "A dog-like cat with a wonky tail."
+

@@ -183,3 +183,10 @@ examine = "Haven't seen his sort around here before; what's he doing here?"
 [ruantun_draynor_sewers]
 id = 1916
 examine = "Luckily, I can't see much of his face."
+
+[witch]
+id = 5201
+
+[witch_normal]
+id = 5200
+examine = "The hat's a dead giveaway."

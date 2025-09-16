@@ -91,4 +91,5 @@ spawns = [
   { id = "ugthanki", x = 3307, y = 3055 },
   { id = "ugthanki", x = 3318, y = 3020 },
   { id = "ugthanki", x = 3318, y = 3040 },
+  { id = "mine_cart_driver", x = 3287, y = 3022 },
 ]

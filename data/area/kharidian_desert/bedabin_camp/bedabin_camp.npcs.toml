@@ -6,3 +6,11 @@ examine = "Perhaps our oldest relatives."
 id = 832
 examine = "He's the leader of the Bedabin tribe."
 
+[bedabin_nomad_guard]
+id = 834
+examine = "A bedabin nomad guard - it looks like he's protecting an area."
+
+[bedabin_nomad]
+id = 833
+examine = "A bedabin nomad, they live in the harshest extremes in the desert."
+

@@ -37,6 +37,11 @@ clone = "sheep"
 id = 5146
 examine = "How cute!"
 
+[black_lamb]
+clone = "sheep"
+id = 5147
+examine = "The black sheep of the family."
+
 [sheep_light_1_shorn]
 clone = "sheep"
 id = 5148

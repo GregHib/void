@@ -17,3 +17,7 @@ id = 8472
 [cave_goblin_tears_of_guthix_cavern]
 id = 8473
 
+[fiara]
+id = 7600
+examine = "A trusted and fierce-temped creature of Guthix."
+

@@ -552,3 +552,7 @@ id = 8906
 
 [man_varrock]
 id = 12346
+
+[orlando_smith]
+id = 5965
+examine = "Looks very young."

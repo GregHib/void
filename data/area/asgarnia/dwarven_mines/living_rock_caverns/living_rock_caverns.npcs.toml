@@ -20,3 +20,5 @@ examine = "It looks like there are fish swimming in the water."
 id = 8842
 examine = "It looks like there are fish swimming in the water."
 
+[living_rock_caverns_controller]
+id = 8831

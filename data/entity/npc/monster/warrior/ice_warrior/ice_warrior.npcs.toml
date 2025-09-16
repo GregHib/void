@@ -17,3 +17,7 @@ combat_anims = "ice_warrior"
 combat_sounds = "ice_warrior"
 slayer_xp = 59.0
 examine = "A cold-hearted elemental warrior."
+
+[ice_warrior_2]
+id = 3073
+clone = "ice_warrior"

@@ -7,4 +7,5 @@ spawns = [
   { id = "kaqemeex", x = 2925, y = 3486, members = true },
   # 11575
   { id = "turael", x = 2931, y = 3536 },
+  { id = "doronbol", x = 2942, y = 3559 },
 ]

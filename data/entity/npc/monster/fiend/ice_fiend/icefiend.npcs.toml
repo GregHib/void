@@ -1,5 +1,5 @@
 [icefiend]
-id = 7714
+id = 7716
 hitpoints = 150
 att = 10
 str = 10
@@ -13,6 +13,9 @@ combat_anims = "icefiend"
 combat_sounds = "icefiend"
 categories = ["icefiends"]
 examine = "A small ice demon."
+
+[icefiend_normal]
+id = 7714
 
 [icefiend_melting]
 id = 7715

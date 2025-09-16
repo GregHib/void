@@ -1,2 +1,6 @@
 [ned_crandor]
 id = 6083
+
+[elvarg]
+id = 742
+examine = "Roar! A dragon!"

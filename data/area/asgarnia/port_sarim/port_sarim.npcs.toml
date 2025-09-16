@@ -9,7 +9,7 @@ categories = ["human"]
 examine = "Keeping an eye out for suspicious activity."
 
 [bartender_rusty_anchor]
-id = 11707
+id = 734
 bar_crawl = {
     id = "black_skull_ale",
     price = 8,

@@ -21,3 +21,8 @@ examine = "A specialist in panning for gold."
 [dr_nabanik_exam_centre]
 id = 9045
 
+[terry_balando]
+id = 619
+wander_radius = 4
+examine = "An expert on archaeology."
+

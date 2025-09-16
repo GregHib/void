@@ -209,11 +209,19 @@ categories = ["dragons"]
 respawn_delay = 30
 examine = "Its scales seem to be made of iron."
 
-[red_dragon_1]
+[red_dragon_orange]
+id = 4669
+clone = "red_dragon"
+
+[red_dragon_deep]
 id = 4670
 clone = "red_dragon"
 
-[red_dragon_2]
+[red_dragon_red]
+id = 4671
+clone = "red_dragon"
+
+[red_dragon_orange_light]
 id = 4672
 clone = "red_dragon"
 

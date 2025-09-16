@@ -3,4 +3,9 @@ spawns = [
   { id = "sanfew", x = 2897, y = 3426, level = 1, members = true },
   { id = "pikkupstix_spawn", x = 2925, y = 3443 },
   { id = "pikkupstix_spawn_2", x = 2925, y = 3443 },
+  { id = "thaerisk_cemphier", x = 2916, y = 3449, level = 1, members = true },
+  { id = "ivy_ophista", x = 2917, y = 3449, members = true },
+  { id = "dalmatian_yanille", x = 2931, y = 3430, members = true },
+  { id = "terrier_taverley", x = 2928, y = 3432, members = true },
+  { id = "pet_shop_owner_taverley", x = 2922, y = 3435, members = true },
 ]

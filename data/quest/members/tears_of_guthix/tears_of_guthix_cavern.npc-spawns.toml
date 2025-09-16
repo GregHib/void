@@ -15,4 +15,5 @@ spawns = [
   { id = "cave_goblin_tears_of_guthix_cavern", x = 3227, y = 9528, level = 2, members = true },
   { id = "cave_goblin_tears_of_guthix_cavern", x = 3229, y = 9529, level = 2, members = true },
   { id = "cave_goblin_tears_of_guthix_cavern", x = 3231, y = 9527, level = 2, members = true },
+  { id = "fiara", x = 1714, y = 5602, direction = "SOUTH_EAST", members = true },
 ]
