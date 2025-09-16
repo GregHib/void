@@ -1,0 +1,8 @@
+spawns = [
+  { id = "builder_dorgesh_kaan_station_construction_site", x = 2511, y = 5536, members = true },
+  { id = "builder_dorgesh_kaan_station_construction_site_2", x = 2512, y = 5535, members = true },
+  { id = "builder_dorgesh_kaan_station_construction_site_3", x = 2513, y = 5533, members = true },
+  { id = "builder_dorgesh_kaan_station_construction_site_4", x = 2511, y = 5532, members = true },
+  { id = "tegdak_dorgesh_kaan_station_construction_site", x = 2511, y = 5563, members = true },
+  { id = "zanik_dorgesh_kaan_station_construction_site", x = 2512, y = 5563, members = true },
+]

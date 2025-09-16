@@ -1,0 +1,28 @@
+[angry_unicorn_tolnas_rift]
+id = 3661
+
+[angry_giant_rat_tolnas_rift]
+id = 3662
+
+[angry_goblin_tolnas_rift]
+id = 3663
+categories = ["goblins"]
+examine = "He looks a little on the cross side!"
+
+[angry_bear_tolnas_rift]
+id = 3664
+
+[fear_reaper_tolnas_rift]
+id = 3665
+
+[confusion_beast_tolnas_rift]
+id = 3666
+
+[hopeless_creature_tolnas_rift]
+id = 3667
+
+[angry_giant_rat_tolnas_rift_2]
+id = 4940
+categories = ["rats"]
+examine = "He looks a little on the cross side!"
+

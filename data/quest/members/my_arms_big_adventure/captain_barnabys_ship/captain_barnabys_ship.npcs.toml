@@ -1,0 +1,7 @@
+[my_arm_captain_barnabys_ship]
+id = 4949
+
+[captain_barnaby_captain_barnabys_ship]
+id = 4962
+examine = "An old sailor."
+

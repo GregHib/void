@@ -30,4 +30,5 @@ spawns = [
     { id = "jethick_west_ardougne", x = 2540, y = 3305, members = true },
     { id = "man_west_ardougne", x = 2540, y = 3308, members = true },
     { id = "man_west_ardougne_2", x = 2536, y = 3308, members = true },
+    { id = "edmond_western_ardougne_sewer", x = 2517, y = 9755, members = true },
 ]

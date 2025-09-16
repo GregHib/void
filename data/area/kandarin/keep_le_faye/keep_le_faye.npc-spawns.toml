@@ -1,0 +1,17 @@
+spawns = [
+  { id = "sir_lucan_keep_le_faye", x = 1698, y = 4256, level = 1, members = true },
+  { id = "sir_lancelot_keep_le_faye", x = 1694, y = 4257, level = 1, members = true },
+  { id = "sir_bedivere_keep_le_faye", x = 1692, y = 4256, members = true },
+  { id = "sir_tristram_keep_le_faye", x = 1694, y = 4251, level = 1, members = true },
+  { id = "sir_pelleas_keep_le_faye", x = 1692, y = 4258, level = 1, members = true },
+  { id = "sir_gawain_keep_le_faye", x = 1698, y = 4257, members = true },
+  { id = "sir_kay_keep_le_faye", x = 1695, y = 4257, members = true },
+  { id = "renegade_knight_keep_le_faye", x = 1692, y = 4252, members = true },
+  { id = "renegade_knight_keep_le_faye", x = 1693, y = 4254, members = true },
+  { id = "renegade_knight_keep_le_faye", x = 1699, y = 4254, members = true },
+  { id = "renegade_knight_keep_le_faye", x = 1692, y = 4261, level = 1, members = true },
+  { id = "renegade_knight_keep_le_faye", x = 1693, y = 4255, level = 1, members = true },
+  { id = "renegade_knight_keep_le_faye", x = 1696, y = 4251, level = 1, members = true },
+  { id = "renegade_knight_keep_le_faye", x = 1697, y = 4257, level = 1, members = true },
+  { id = "renegade_knight_keep_le_faye", x = 1700, y = 4260, level = 1, members = true },
+]

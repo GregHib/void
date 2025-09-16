@@ -1,0 +1,47 @@
+[troll_pretty_flowers_cave]
+id = 13316
+examine = "Trollish."
+
+[troll_pretty_flowers_cave_2]
+id = 13317
+examine = "Trollish."
+
+[troll_pretty_flowers_cave_3]
+id = 13318
+examine = "Trollish."
+
+[troll_pretty_flowers_cave_4]
+id = 13319
+examine = "Trollish."
+
+[troll_pretty_flowers_cave_5]
+id = 13320
+examine = "Trollish."
+
+[troll_pretty_flowers_cave_6]
+id = 13321
+examine = "Trollish."
+
+[troll_pretty_flowers_cave_7]
+id = 13322
+examine = "Trollish."
+
+[troll_pretty_flowers_cave_8]
+id = 13323
+examine = "Trollish."
+
+[my_arm_pretty_flowers_cave]
+id = 13324
+
+[pretty_flower_pretty_flowers_cave]
+id = 13325
+examine = "A mighty troll warlord."
+
+[big_rock_pretty_flowers_cave]
+id = 13326
+examine = "A big troll."
+
+[sparkly_crystal_pretty_flowers_cave]
+id = 13328
+examine = "Sparkly Crystal, son of Pretty Flower, and maybe someday a mighty troll warlord."
+

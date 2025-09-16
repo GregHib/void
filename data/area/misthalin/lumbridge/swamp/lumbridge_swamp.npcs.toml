@@ -7,3 +7,30 @@ id = 330
 [fremennik_shipmaster_lumbridge_swamp]
 id = 9708
 
+[ilona]
+id = 9632
+
+[giant_spider_lumbridge]
+id = 12352
+
+[sergeant_mossfists]
+id = 5889
+
+[sergeant_slimetoes]
+id = 5890
+
+[archer_lumbridge]
+id = 649
+examine = "She looks quite experienced."
+
+[warrior_lumbridge]
+id = 650
+examine = "He looks big and dumb."
+
+[monk_lumbridge]
+id = 651
+examine = "He looks holy."
+
+[wizard_lumbridge]
+id = 652
+examine = "He looks kind of puny..."

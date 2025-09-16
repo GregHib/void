@@ -1,0 +1,5 @@
+spawns = [
+  { id = "laura_meeting_history", x = 3307, y = 5291, members = false },
+  { id = "max_the_traveller_meeting_history", x = 3370, y = 5202, members = true },
+  { id = "jack_meeting_history", x = 3301, y = 5279, members = false },
+]

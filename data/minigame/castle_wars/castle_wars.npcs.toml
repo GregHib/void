@@ -9,3 +9,15 @@ examine = "Posts things."
 [assistant_marrow_castle_wars]
 id = 5063
 
+[gargh_castle_wars]
+id = 2063
+examine = "An ogre hunting chompies."
+
+[scarg_castle_wars]
+id = 2064
+examine = "An ogre hunting chompies."
+
+[gruh_castle_wars]
+id = 2065
+examine = "An ogre hunting chompies."
+

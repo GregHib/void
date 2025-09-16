@@ -1,0 +1,10 @@
+spawns = [
+  { id = "elite_khazard_guard_movarios_base", x = 2005, y = 4379, members = false },
+  { id = "elite_khazard_guard_movarios_base", x = 2021, y = 4368, members = false },
+  { id = "elite_khazard_guard_movarios_base_2", x = 2012, y = 4372, members = false },
+  { id = "elite_khazard_guard_movarios_base_2", x = 2018, y = 4395, members = false },
+  { id = "elite_khazard_guard_movarios_base_3", x = 2021, y = 4379, members = false },
+  { id = "elite_khazard_guard_movarios_base_3", x = 2022, y = 4395, members = false },
+  { id = "elite_khazard_guard_movarios_base_4", x = 2028, y = 4379, members = false },
+  { id = "elite_khazard_guard_movarios_base_4", x = 2031, y = 4367, members = false },
+]

@@ -243,7 +243,7 @@ spawns = [
   { id = "gillie_groats", x = 3254, y = 3274 },
   { id = "chief_thief_robin_lumbridge", x = 3212, y = 3208, members = true },
   { id = "farmer_lumbridge", x = 3233, y = 3308, members = false },
-  { id = "farmer_default", x = 3262, y = 3325, members = false },
+  { id = "farmer_lumbridge_3", x = 3262, y = 3325, members = false },
   { id = "farmer_lumbridge_2", x = 3250, y = 3310, members = false },
   { id = "master_farmer", x = 3203, y = 3254, members = true },
   { id = "crow_4", x = 3208, y = 3301, members = true },

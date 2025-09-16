@@ -289,3 +289,6 @@ examine = "Looks after your Farming tools."
 [queen_sigrid_miscellania_2]
 id = 9349
 
+[macaroni_penguin_miscellania]
+id = 4252
+examine = "Beak areful with this one, he looks shifty!"

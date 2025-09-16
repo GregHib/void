@@ -1,0 +1,3 @@
+spawns = [
+  { id = "general_shredflesh_shredfleshs_cave", x = 2467, y = 4204, members = true },
+]

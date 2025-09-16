@@ -1,0 +1,16 @@
+[agility_assistant_circus]
+id = 8082
+examine = "Here to help."
+
+[magic_assistant_circus]
+id = 8083
+examine = "Here to help."
+
+[ranged_assistant_circus]
+id = 8084
+examine = "Here to help."
+
+[ringmaster_circus]
+id = 8085
+examine = "The master of the big top."
+

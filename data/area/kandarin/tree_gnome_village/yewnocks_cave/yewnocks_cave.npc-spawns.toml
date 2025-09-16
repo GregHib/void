@@ -1,0 +1,7 @@
+spawns = [
+  { id = "big_monolith_yewnocks_cave", x = 2019, y = 5533, members = true },
+  { id = "big_monolith_yewnocks_cave", x = 2019, y = 5536, members = true },
+  { id = "big_monolith_yewnocks_cave", x = 2020, y = 5525, members = true },
+  { id = "big_monolith_yewnocks_cave", x = 2022, y = 5533, members = true },
+  { id = "small_monolith_yewnocks_cave", x = 2023, y = 5537, members = true },
+]

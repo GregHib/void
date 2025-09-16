@@ -20,4 +20,5 @@ spawns = [
   { id = "imp", x = 2633, y = 3243, members = false },
   { id = "imp", x = 2639, y = 3206, members = false },
   { id = "imp", x = 2639, y = 3230, members = false },
+  { id = "homunculus_tower_of_life_3", x = 3038, y = 4395, members = true },
 ]

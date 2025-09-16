@@ -1,0 +1,22 @@
+[guardian_of_armadyl_temple_of_ikov]
+id = 274
+examine = "A guard who has devoted their life to Armadyl."
+
+[guardian_of_armadyl_temple_of_ikov_2]
+id = 275
+examine = "A guard who has devoted their life to Armadyl."
+
+[winelda_temple_of_ikov]
+id = 276
+examine = "A witch."
+
+[skeleton_temple_of_ikov]
+id = 5341
+categories = ["skeletons"]
+examine = "Could do with gaining a few pounds."
+
+[ice_spider_temple_of_ikov]
+id = 64
+categories = ["spiders"]
+examine = "I think this spider has been magically modified."
+

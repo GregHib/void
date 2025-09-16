@@ -1,0 +1,11 @@
+[jungle_spider_hazelmeres_island]
+id = 62
+categories = ["spiders"]
+examine = "A barely visible, deadly jungle spider."
+
+[larry_hazelmeres_island]
+id = 7576
+
+[hazelmere_hazelmeres_island]
+id = 8460
+

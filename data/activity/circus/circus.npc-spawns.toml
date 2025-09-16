@@ -1,0 +1,6 @@
+spawns = [
+  { id = "agility_assistant_circus", x = 3550, y = 5606, level = 2, members = true },
+  { id = "magic_assistant_circus", x = 3559, y = 5604, members = true },
+  { id = "ranged_assistant_circus", x = 3541, y = 5591, members = true },
+  { id = "ringmaster_circus", x = 3550, y = 5598, members = true },
+]

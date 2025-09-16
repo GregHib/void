@@ -1,0 +1,15 @@
+spawns = [
+  { id = "high_priest_klenters_pyramid", x = 3307, y = 9196, members = true },
+  { id = "priest_klenters_pyramid", x = 3305, y = 9193, members = true },
+  { id = "priest_klenters_pyramid", x = 3305, y = 9197, members = true },
+  { id = "priest_klenters_pyramid", x = 3308, y = 9194, members = true },
+  { id = "wanderer_klenters_pyramid", x = 3304, y = 9196, members = true },
+  { id = "wanderer_klenters_pyramid_2", x = 3304, y = 9195, members = true },
+  { id = "icthlarin_klenters_pyramid", x = 3277, y = 9170, members = true },
+  { id = "mummy_klenters_pyramid", x = 3279, y = 9176, members = true },
+  { id = "mummy_klenters_pyramid_2", x = 3277, y = 9186, members = true },
+  { id = "mummy_klenters_pyramid_3", x = 3310, y = 9171, members = true },
+  { id = "mummy_klenters_pyramid_4", x = 3284, y = 9189, members = true },
+  { id = "mummy_klenters_pyramid_4", x = 3287, y = 9177, members = true },
+  { id = "mummy_klenters_pyramid_5", x = 3306, y = 9183, members = true },
+]

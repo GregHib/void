@@ -1,0 +1,13 @@
+[auguste_crash_site]
+id = 5051
+
+[shark_crash_site]
+id = 5067
+examine = "Time to run away..."
+
+[shark_crash_site_2]
+id = 5068
+
+[shark_crash_site_3]
+id = 5069
+

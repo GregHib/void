@@ -1,0 +1,15 @@
+spawns = [
+  { id = "snow_angel_statue_xmas_2010", x = 2847, y = 5808, members = true },
+  { id = "fishing_spot_xmas_2010", x = 2915, y = 5810, members = true },
+  { id = "fishing_spot_xmas_2010_2", x = 2915, y = 5807, members = true },
+  { id = "fishing_spot_xmas_2010_3", x = 2915, y = 5804, members = true },
+  { id = "fishing_spot_xmas_2010_4", x = 2912, y = 5810, members = true },
+  { id = "fishing_spot_xmas_2010_5", x = 2912, y = 5807, members = true },
+  { id = "fishing_spot_xmas_2010_6", x = 2912, y = 5804, members = true },
+  { id = "fishing_spot_xmas_2010_7", x = 2909, y = 5810, members = true },
+  { id = "fishing_spot_xmas_2010_8", x = 2909, y = 5807, members = true },
+  { id = "fishing_spot_xmas_2010_9", x = 2909, y = 5804, members = true },
+  { id = "fishing_spot_xmas_2010_10", x = 2906, y = 5810, members = true },
+  { id = "fishing_spot_xmas_2010_11", x = 2906, y = 5807, members = true },
+  { id = "fishing_spot_xmas_2010_12", x = 2906, y = 5804, members = true },
+]

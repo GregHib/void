@@ -139,3 +139,12 @@ examine = "Glough's girlfriend."
 id = 849
 examine = "He serves cocktails."
 
+[trainer_nacklepen_tree_gnome_stronghold]
+id = 3818
+examine = "The cruel tortoise trainer. Boo!"
+
+[tortoise_tree_gnome_stronghold]
+id = 3819
+examine = "A large tortoise."
+
+

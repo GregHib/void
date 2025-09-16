@@ -1,0 +1,36 @@
+[harrallak_menarous_while_guthix_sleeps]
+id = 8299
+examine = "Master of the Warriors' Guild."
+
+[turael_while_guthix_sleeps]
+id = 8302
+examine = "He looks dangerous!"
+
+[cyrisus_while_guthix_sleeps]
+id = 8304
+examine = "He's a meleer - prepared to go face-to-face."
+
+[ghommal_while_guthix_sleeps]
+id = 8306
+examine = "The big doorman of the Warriors' Guild."
+
+[mazchna_while_guthix_sleeps]
+id = 8307
+examine = "He looks dangerous!"
+
+[duradel_while_guthix_sleeps]
+id = 8310
+examine = "He looks dangerous!"
+
+[sloane_while_guthix_sleeps]
+id = 8311
+examine = "He looks like a strong warrior."
+
+[lucien_while_guthix_sleeps]
+id = 8443
+examine = "A Mahjarrat of incomprehensible power."
+
+[hazelmere_while_guthix_sleeps]
+id = 8485
+examine = "An ancient-looking gnome."
+

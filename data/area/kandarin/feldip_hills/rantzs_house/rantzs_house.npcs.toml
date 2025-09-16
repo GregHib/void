@@ -1,0 +1,8 @@
+[fycie_rantzs_house]
+id = 1011
+examine = "This must be Rantz's daughter."
+
+[bugs_rantzs_house]
+id = 1012
+examine = "This must be Rantz's son."
+

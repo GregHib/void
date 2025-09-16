@@ -17,7 +17,7 @@ spawns = [
   { id = "cow_zanaris", x = 2439, y = 4457, members = true },
   { id = "cow_zanaris", x = 2441, y = 4448, members = true },
   { id = "cow_zanaris", x = 2435, y = 4442, members = true },
-  { id = "chicken_tyras_camp", x = 2451, y = 4477, members = false },
+  { id = "chicken", x = 2451, y = 4477, members = false },
   { id = "gnarly_zanaris", x = 2377, y = 4468, members = true },
   { id = "general_breegth_zanaris", x = 2401, y = 4452, members = true },
   { id = "fairy_zanaris", x = 2386, y = 4431, members = true },
@@ -118,4 +118,5 @@ spawns = [
   { id = "fairy_aeryka_zanaris", x = 2426, y = 4442, members = false },
   { id = "wandering_impling_zanaris", x = 2424, y = 4436, members = true },
   { id = "banker_zanaris_2", x = 2379, y = 4459, members = true },
+  { id = "fairy_very_wise_fairy_hq", x = 2453, y = 4395, members = true },
 ]

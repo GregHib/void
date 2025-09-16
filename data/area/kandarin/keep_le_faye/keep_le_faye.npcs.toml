@@ -1,0 +1,25 @@
+[sir_lucan_keep_le_faye]
+id = 6158
+
+[sir_lancelot_keep_le_faye]
+id = 6160
+
+[sir_bedivere_keep_le_faye]
+id = 6161
+
+[sir_tristram_keep_le_faye]
+id = 6162
+
+[sir_pelleas_keep_le_faye]
+id = 6163
+
+[sir_gawain_keep_le_faye]
+id = 6164
+
+[sir_kay_keep_le_faye]
+id = 6165
+
+[renegade_knight_keep_le_faye]
+id = 6188
+examine = "He isn't very friendly."
+

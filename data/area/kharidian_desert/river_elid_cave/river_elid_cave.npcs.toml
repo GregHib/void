@@ -1,0 +1,18 @@
+[fishing_spot_river_elid_cave]
+id = 3019
+
+[nirrie_river_elid_cave]
+id = 3023
+examine = "An elemental waterspirit."
+
+[tirrie_river_elid_cave]
+id = 3024
+examine = "An elemental waterspirit."
+
+[hallak_river_elid_cave]
+id = 3025
+examine = "An elemental waterspirit."
+
+[target_river_elid_cave]
+id = 3049
+

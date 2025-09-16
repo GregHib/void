@@ -25,4 +25,5 @@ spawns = [
   { id = "skeleton_mage_piscatoris", x = 2331, y = 3666, members = true },
   { id = "skeleton_mage_piscatoris", x = 2331, y = 3671, members = true },
   { id = "skeleton_mage_piscatoris", x = 2333, y = 3671, members = true },
+  { id = "brian_twitcher_piscatoris", x = 2292, y = 3626, members = true },
 ]

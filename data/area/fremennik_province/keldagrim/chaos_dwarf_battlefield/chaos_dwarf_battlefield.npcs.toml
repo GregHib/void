@@ -1,0 +1,55 @@
+[chaos_dwogre_chaos_dwarf_battlefield]
+id = 8771
+examine = "A magical cross between an ogre and a dwarf."
+
+[black_guard_chaos_dwarf_battlefield]
+id = 8772
+
+[black_guard_chaos_dwarf_battlefield_2]
+id = 8773
+
+[black_guard_chaos_dwarf_battlefield_3]
+id = 8774
+
+[chaos_dwarf_hand_cannoneer_chaos_dwarf_battlefield]
+id = 8776
+categories = ["dwarves"]
+examine = "A dwarf gone bad."
+
+[chaos_dwarf_hand_cannoneer_chaos_dwarf_battlefield_2]
+id = 8777
+categories = ["dwarves"]
+examine = "A dwarf gone bad."
+
+[chaos_dwarf_chaos_dwarf_battlefield]
+id = 8778
+
+[chaos_dwarf_chaos_dwarf_battlefield_2]
+id = 8779
+categories = ["dwarves"]
+examine = "A dwarf gone bad."
+
+[black_guard_crossbowdwarf_chaos_dwarf_battlefield]
+id = 8781
+categories = ["dwarves"]
+examine = "A member of the Black Guard with a crossbow."
+
+[black_guard_crossbowdwarf_chaos_dwarf_battlefield_2]
+id = 8782
+categories = ["dwarves"]
+examine = "A member of the Black Guard with a crossbow."
+
+[black_guard_berserker_chaos_dwarf_battlefield]
+id = 8783
+categories = ["dwarves"]
+examine = "An elite member of the Black Guard."
+
+[black_guard_berserker_chaos_dwarf_battlefield_2]
+id = 8784
+categories = ["dwarves"]
+examine = "An elite member of the Black Guard."
+
+[colonel_grenda_chaos_dwarf_battlefield]
+id = 8818
+examine = "A colonel in the dwarven Black Guard."
+

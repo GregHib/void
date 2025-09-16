@@ -1,0 +1,95 @@
+[elite_black_knight_luciens_camp]
+id = 8324
+examine = "A Black Knight with lots of combat experience."
+
+[elite_black_knight_luciens_camp_2]
+id = 8329
+examine = "A Black Knight with lots of combat experience."
+
+[elite_black_knight_luciens_camp_3]
+id = 8330
+
+[undead_troll_luciens_camp]
+id = 8377
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_2]
+id = 8378
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_3]
+id = 8379
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_4]
+id = 8380
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_5]
+id = 8381
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_6]
+id = 8382
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_7]
+id = 8383
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_8]
+id = 8384
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_9]
+id = 8385
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_10]
+id = 8386
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_11]
+id = 8387
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_12]
+id = 8388
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_13]
+id = 8389
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_14]
+id = 8390
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_15]
+id = 8391
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_troll_luciens_camp_16]
+id = 8392
+categories = ["trolls"]
+examine = "Going by how trolls are named, this one's probably changed its name to 'Braiiins'."
+
+[undead_mage_luciens_camp]
+id = 8486
+examine = "One of Lucien's finest undead mages."
+

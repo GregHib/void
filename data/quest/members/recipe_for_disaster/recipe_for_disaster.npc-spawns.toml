@@ -10,4 +10,6 @@ spawns = [
   { id = "sir_amik_varze_recipe_for_disaster", x = 1865, y = 5345, members = false },
   { id = "awowogei_recipe_for_disaster", x = 1865, y = 5343, members = false },
   { id = "skrach_uglogwee_recipe_for_disaster", x = 1863, y = 5352, members = true },
+  { id = "goblin_cook_recipe_for_disaster", x = 2982, y = 9909, members = true },
+  { id = "goblin_cook_recipe_for_disaster_2", x = 2980, y = 9871, members = true },
 ]

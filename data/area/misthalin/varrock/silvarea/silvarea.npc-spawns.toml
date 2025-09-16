@@ -1,0 +1,4 @@
+spawns = [
+  { id = "squire_fyre_silvarea", x = 3346, y = 3513, members = true },
+  { id = "odd_old_man_silvarea", x = 3361, y = 3505, members = true },
+]

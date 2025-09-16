@@ -1,0 +1,133 @@
+[commodore_matthias_pest_control]
+id = 11497
+
+[jessika_pest_control]
+id = 11500
+
+[jessika_pest_control_2]
+id = 11501
+
+[squire_pest_control]
+id = 11502
+
+[commander_korasi_pest_control]
+id = 11505
+
+[captain_tyr_pest_control]
+id = 11509
+
+[knight_ami_pest_control]
+id = 11514
+
+[knight_diana_pest_control]
+id = 11515
+
+[terry_gord_pest_control]
+id = 11516
+
+[mrs_gord_pest_control]
+id = 11517
+
+[knight_mikhal_pest_control]
+id = 11518
+
+[mariah_pest_control]
+id = 11519
+
+[squire_sam_pest_control]
+id = 11520
+
+[knight_bernard_pest_control]
+id = 11521
+
+[captain_korasi_pest_control]
+id = 11651
+
+[jessika_pest_control_3]
+id = 11661
+
+[jessika_pest_control_4]
+id = 11662
+
+[commodore_tyr_pest_control]
+id = 11681
+
+[captain_ethar_pest_control]
+id = 12195
+examine = "In charge of Conquest training."
+
+[knight_dorian_pest_control]
+id = 12196
+examine = "Deals with Conquest squad recruitment and formations."
+
+[void_knight_pest_control]
+id = 3786
+examine = "A powerful knight of balance."
+
+[void_knight_pest_control_2]
+id = 3788
+examine = "A powerful knight of balance."
+
+[void_knight_pest_control_3]
+id = 3789
+
+[squire_pest_control_2]
+id = 3790
+examine = "A squire of balance."
+
+[squire_pest_control_3]
+id = 3791
+examine = "A squire of balance."
+
+[squire_pest_control_4]
+id = 3792
+examine = "A squire of balance."
+
+[squire_pest_control_5]
+id = 3793
+examine = "A squire of balance."
+
+[squire_pest_control_6]
+id = 3794
+examine = "A squire of balance."
+
+[squire_pest_control_7]
+id = 3795
+examine = "A squire of balance."
+
+[squire_pest_control_8]
+id = 3796
+examine = "A squire of balance."
+
+[squire_pest_control_9]
+id = 3797
+examine = "A squire of balance."
+
+[squire_pest_control_10]
+id = 3798
+examine = "A squire of balance."
+
+[squire_pest_control_11]
+id = 3799
+examine = "A squire of balance."
+
+[squire_pest_control_12]
+id = 3800
+examine = "A squire of balance."
+
+[squire_(novice)_pest_control]
+id = 3802
+examine = "A squire of balance."
+
+[void_knight_pest_control_4]
+id = 5956
+examine = "A powerful knight of balance."
+
+[squire_(intermediate)_pest_control]
+id = 6140
+examine = "A squire of balance."
+
+[squire_(veteran)_pest_control]
+id = 6141
+examine = "A squire of balance."
+

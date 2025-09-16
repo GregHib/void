@@ -1,0 +1,4 @@
+spawns = [
+  { id = "fycie_rantzs_house", x = 2650, y = 9393, members = false },
+  { id = "bugs_rantzs_house", x = 2640, y = 9391, members = false },
+]

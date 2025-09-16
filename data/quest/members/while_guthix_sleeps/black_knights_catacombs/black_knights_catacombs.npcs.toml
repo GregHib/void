@@ -1,0 +1,19 @@
+[elite_dark_warrior_black_knights_catacombs]
+id = 8312
+examine = "An elite dark warrior with lots of combat experience."
+
+[elite_dark_ranger_black_knights_catacombs]
+id = 8316
+examine = "An elite dark ranger with lots of combat experience."
+
+[elite_dark_mage_black_knights_catacombs]
+id = 8320
+examine = "An elite dark mage with lots of combat experience."
+
+[elite_black_knight_black_knights_catacombs]
+id = 8328
+examine = "He appears to be guarding the ladder."
+
+[silif_black_knights_catacombs]
+id = 8470
+

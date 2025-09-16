@@ -43,8 +43,8 @@ spawns = [
   { id = "rat", x = 3102, y = 3355 },
   { id = "skeleton_builder", x = 3110, y = 3367 },
 
-  { id = "zenevivia_default", x = 3089, y = 3255, members = true },
-  { id = "wise_old_man_default", x = 3090, y = 3250, members = true },
+  { id = "zenevivia_draynor_instance", x = 3089, y = 3255, members = true },
+  { id = "wise_old_man_draynor_instance", x = 3090, y = 3250, members = true },
   { id = "undead_tree_draynor", x = 3103, y = 3347, members = true },
   { id = "undead_tree_draynor", x = 3107, y = 3337, members = true },
   { id = "undead_tree_draynor", x = 3107, y = 3342, members = true },

@@ -17,23 +17,23 @@ combat_sounds = "giant"
 categories = ["fire_giants"]
 examine = "His beard seems to have a life of its own."
 
-[fire_giant_1]
+[fire_giant_sword]
 id = 1583
 clone = "fire_giant"
 
-[fire_giant_2]
+[fire_giant_club]
 id = 1584
 clone = "fire_giant"
 
-[fire_giant_3]
+[fire_giant_club_small]
 id = 1585
 clone = "fire_giant"
 
-[fire_giant_4]
+[fire_giant_sword_small]
 id = 1586
 clone = "fire_giant"
 
-[fire_giant_5]
+[fire_giant_spikes]
 id = 110
 clone = "fire_giant"
 

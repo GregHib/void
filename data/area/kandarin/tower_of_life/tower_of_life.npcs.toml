@@ -41,3 +41,6 @@ id = 5601
 [currency_the_alchemist_tower_of_life]
 id = 5602
 
+[homunculus_tower_of_life_3]
+id = 5581
+examine = "Is it male or female?"

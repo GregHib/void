@@ -64,9 +64,3 @@ examine = "A barbarian private."
 [private_paldon_barbarian_outpost]
 id = 5034
 examine = "A barbarian private."
-
-[chicken_tyras_camp]
-id = 1017
-categories = ["birds"]
-examine = "Yep. Definitely a chicken."
-

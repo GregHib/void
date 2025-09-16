@@ -1,0 +1,14 @@
+[zogre_jiggig_dungeon]
+id = 2046
+categories = ["ogres"]
+examine = "A partially decomposing zombie ogre."
+
+[zogre_jiggig_dungeon_2]
+id = 2047
+
+[zogre_jiggig_dungeon_3]
+id = 2048
+
+[zogre_jiggig_dungeon_4]
+id = 2049
+

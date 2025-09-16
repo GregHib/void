@@ -254,3 +254,42 @@ id = 7863
 [larry_rellekka_2]
 id = 8694
 
+[olaf_the_bard]
+id = 1269
+examine = "A Fremennik bard."
+
+[freidir]
+id = 1306
+examine = "One of Rellekka's many citizens."
+
+[borrokar]
+id = 1307
+examine = "One of Rellekka's many citizens."
+
+[lanzig]
+id = 1308
+examine = "One of Rellekka's many citizens."
+
+[inga]
+id = 1314
+examine = "One of Rellekka's many citizens."
+
+[warrior_rellekka]
+id = 1318
+examine = "A hardened Fremennik warrior."
+
+[black_unicorn_foal]
+id = 1329
+examine = "Cute but evil."
+
+[black_unicorn]
+id = 133
+examine = "A unicorn with a blackened heart."
+
+[svidi]
+id = 1809
+examine = "Is he walking around in circles?"
+
+[blanin]
+id = 2940
+examine = "A docile warrior"

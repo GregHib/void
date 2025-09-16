@@ -1,0 +1,3 @@
+spawns = [
+  { id = "zanik_zanik_cave", x = 2426, y = 4257, members = true },
+]

@@ -14,3 +14,7 @@ drop_table = "human"
 combat_anims = "human"
 categories = ["human"]
 examine = "A dusty old suit of armour."
+
+[fishing_spot_taverley_dungeon]
+id = 800
+examine = "It looks like there might be eels swimming in the lava."

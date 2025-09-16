@@ -1,0 +1,3 @@
+spawns = [
+  { id = "cabin_boy_jenkins_the_lady_lumbridge", x = 2064, y = 5516, level = 1, members = true },
+]

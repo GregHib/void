@@ -1,0 +1,26 @@
+[loading_crane_haunted_mine]
+id = 1542
+
+[innocent_looking_key_haunted_mine]
+id = 1543
+
+[mine_cart_haunted_mine]
+id = 1544
+
+[mine_cart_haunted_mine_2]
+id = 1545
+
+[mine_cart_haunted_mine_3]
+id = 1546
+
+[mine_cart_haunted_mine_4]
+id = 1547
+
+[mine_cart_haunted_mine_5]
+id = 1548
+
+[skeleton_haunted_mine]
+id = 5392
+categories = ["skeletons"]
+examine = "Put some meat on those bones!"
+

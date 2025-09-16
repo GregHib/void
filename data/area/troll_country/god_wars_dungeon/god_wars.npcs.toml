@@ -19,3 +19,11 @@ examine = "A dangerous ranger."
 [blood_reaver]
 id = 13458
 examine = "A strange and twisted creature."
+
+[ancient_mage_god_wars_dungeon]
+id = 13459
+examine = "A mage well practised in the art of ancient spellcasting."
+
+[nanuq]
+id = 8076
+

@@ -1,0 +1,64 @@
+[warped_terrorbird_poison_waste_slayer_dungeon]
+id = 6285
+categories = ["warped_terrorbirds"]
+examine = "You don't think you can harm this terrorbird."
+
+[warped_terrorbird_poison_waste_slayer_dungeon_2]
+id = 6286
+categories = ["warped_terrorbirds"]
+examine = "You don't think you can harm this terrorbird."
+
+[warped_terrorbird_poison_waste_slayer_dungeon_3]
+id = 6287
+categories = ["warped_terrorbirds"]
+examine = "You don't think you can harm this terrorbird."
+
+[warped_terrorbird_poison_waste_slayer_dungeon_4]
+id = 6288
+categories = ["warped_terrorbirds"]
+examine = "You don't think you can harm this terrorbird."
+
+[warped_terrorbird_poison_waste_slayer_dungeon_5]
+id = 6289
+categories = ["warped_terrorbirds"]
+examine = "You don't think you can harm this terrorbird."
+
+[warped_terrorbird_poison_waste_slayer_dungeon_6]
+id = 6290
+
+[warped_terrorbird_poison_waste_slayer_dungeon_7]
+id = 6291
+categories = ["warped_terrorbirds"]
+examine = "You don't think you can harm this terrorbird."
+
+[warped_terrorbird_poison_waste_slayer_dungeon_8]
+id = 6292
+categories = ["warped_terrorbirds"]
+examine = "You don't think you can harm this terrorbird."
+
+[warped_terrorbird_poison_waste_slayer_dungeon_9]
+id = 6293
+
+[warped_terrorbird_poison_waste_slayer_dungeon_10]
+id = 6294
+categories = ["warped_terrorbirds"]
+examine = "You don't think you can harm this terrorbird."
+
+[warped_terrorbird_poison_waste_slayer_dungeon_11]
+id = 6295
+categories = ["warped_terrorbirds"]
+examine = "You don't think you can harm this terrorbird."
+
+[warped_tortoise_poison_waste_slayer_dungeon]
+id = 6296
+categories = ["warped_tortoises"]
+examine = "You don't think you can harm this creature."
+
+[guard_no__21_poison_waste_slayer_dungeon]
+id = 6314
+examine = "She looks bored."
+
+[guard_no__72_poison_waste_slayer_dungeon]
+id = 6315
+examine = "He looks even more bored."
+

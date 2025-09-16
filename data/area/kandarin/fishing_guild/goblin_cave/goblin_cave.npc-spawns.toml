@@ -1,0 +1,3 @@
+spawns = [
+  { id = "ghost_goblin_cave", x = 1761, y = 4708, members = true },
+]

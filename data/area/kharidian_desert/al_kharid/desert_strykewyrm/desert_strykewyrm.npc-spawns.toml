@@ -1,0 +1,14 @@
+spawns = [
+  { id = "mound_desert_strykewyrm", x = 3363, y = 3155, members = true },
+  { id = "mound_desert_strykewyrm", x = 3364, y = 3147, members = true },
+  { id = "mound_desert_strykewyrm", x = 3366, y = 3161, members = true },
+  { id = "mound_desert_strykewyrm", x = 3371, y = 3154, members = true },
+  { id = "mound_desert_strykewyrm", x = 3371, y = 3166, members = true },
+  { id = "mound_desert_strykewyrm", x = 3373, y = 3143, members = true },
+  { id = "mound_desert_strykewyrm", x = 3375, y = 3158, members = true },
+  { id = "mound_desert_strykewyrm", x = 3378, y = 3141, members = true },
+  { id = "mound_desert_strykewyrm", x = 3378, y = 3148, members = true },
+  { id = "mound_desert_strykewyrm", x = 3378, y = 3161, members = true },
+  { id = "mound_desert_strykewyrm", x = 3384, y = 3153, members = true },
+  { id = "mound_desert_strykewyrm", x = 3384, y = 3163, members = true },
+]

@@ -1,0 +1,26 @@
+[captain_korasi_kinshra_workshop]
+id = 11658
+
+[jessika_kinshra_workshop]
+id = 11669
+
+[black_knight_doorkeeper_kinshra_workshop]
+id = 11691
+
+[indentured_worker_kinshra_workshop]
+id = 11693
+examine = "The hours are long, but the pay is good: one family not killed per day."
+
+[indentured_worker_kinshra_workshop_2]
+id = 11694
+
+[indentured_worker_kinshra_workshop_3]
+id = 11695
+
+[black_knight_guardian_kinshra_workshop]
+id = 11696
+examine = "A Black Knight with lots of combat experience."
+
+[black_knight_guardian_kinshra_workshop_2]
+id = 11697
+

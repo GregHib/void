@@ -12,3 +12,16 @@ id = 1679
 id = 1680
 examine = "An elven bowyer."
 
+[rabbit_isafdar]
+id = 1193
+
+[rabbit_isafdar_2]
+id = 1194
+
+[grenwall]
+id = 7010
+examine = "A spiny creature."
+
+[pawya]
+id = 7012
+examine = "What a strange little creature."

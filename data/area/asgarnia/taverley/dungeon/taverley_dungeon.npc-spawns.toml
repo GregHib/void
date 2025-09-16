@@ -108,4 +108,7 @@ spawns = [
     { id = "kharid_scorpion_taverley_dungeon", x = 2875, y = 9797, members = false },
     { id = "greater_demon_2", x = 2862, y = 9751, members = false },
     { id = "greater_demon_4", x = 2861, y = 9747, members = true },
+    { id = "fishing_spot_taverley_dungeon", x = 2889, y = 9766, members = false },
+    { id = "fishing_spot_taverley_dungeon", x = 2890, y = 9766, members = false },
+    { id = "fishing_spot_taverley_dungeon", x = 2891, y = 9766, members = false },
 ]

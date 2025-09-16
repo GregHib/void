@@ -1,0 +1,5 @@
+spawns = [
+  { id = "big_snake_snake_pit", x = 3021, y = 5488, members = true },
+  { id = "big_snake_snake_pit", x = 3023, y = 5486, members = true },
+  { id = "big_snake_snake_pit", x = 3025, y = 5489, members = true },
+]

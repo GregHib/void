@@ -148,3 +148,13 @@ examine = "What could be beneath that hood?"
 [muncher_halloween_2]
 id = 8983
 
+[spider_queen]
+id = 8975
+examine = "Would scare anyone off their tuffet."
+
+[spider_halloween]
+id = 8978
+
+[spider_halloween_2]
+id = 8979
+examine = "This spider is not budging from the bathtub."

@@ -1,0 +1,23 @@
+[builder_dorgesh_kaan_station_construction_site]
+id = 5864
+examine = "A worker on the train link."
+
+[builder_dorgesh_kaan_station_construction_site_2]
+id = 5865
+examine = "A worker on the train link."
+
+[builder_dorgesh_kaan_station_construction_site_3]
+id = 5866
+examine = "A worker on the train link."
+
+[builder_dorgesh_kaan_station_construction_site_4]
+id = 5867
+examine = "A worker on the train link."
+
+[tegdak_dorgesh_kaan_station_construction_site]
+id = 5868
+examine = "He's digging up cave goblin history!"
+
+[zanik_dorgesh_kaan_station_construction_site]
+id = 5888
+

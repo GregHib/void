@@ -1,0 +1,3 @@
+spawns = [
+  { id = "ghost_captain_port_phasmatys", x = 3792, y = 3560, members = true },
+]

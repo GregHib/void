@@ -1,0 +1,34 @@
+[general_gromblod_enchanted_valley]
+id = 11311
+
+[centaur_enchanted_valley]
+id = 4438
+examine = "Horseplay."
+
+[centaur_enchanted_valley_2]
+id = 4439
+examine = "Half horse, half woman."
+
+[stag_enchanted_valley]
+id = 4440
+examine = "A noble creature!"
+
+[wood_dryad_enchanted_valley]
+id = 4441
+examine = "Twiggy."
+
+[rabbit_enchanted_valley]
+id = 4447
+
+[rabbit_enchanted_valley_2]
+id = 4448
+
+[butterfly_enchanted_valley]
+id = 4449
+
+[butterfly_enchanted_valley_2]
+id = 4450
+
+[fishing_spot_enchanted_valley]
+id = 8647
+

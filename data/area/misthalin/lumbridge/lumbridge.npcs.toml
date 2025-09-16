@@ -259,3 +259,7 @@ examine = "He looks like a professional explorer."
 [fayeth]
 id = 2342
 examine = "Perhaps this gardener might look after your crops for you."
+
+[farmer_lumbridge_3]
+id = 1758
+examine = "He grows the crops in this area."

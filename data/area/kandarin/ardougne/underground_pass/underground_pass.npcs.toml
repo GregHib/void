@@ -165,3 +165,8 @@ examine = "This dwarf looks intoxicated."
 id = 997
 examine = "A giant spider."
 
+[boulder_underground_pass]
+id = 986
+examine = "Precariously balanced..."
+
+

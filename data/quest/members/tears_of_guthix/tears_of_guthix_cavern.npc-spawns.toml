@@ -1,0 +1,18 @@
+spawns = [
+  { id = "light_creature_tears_of_guthix_cavern", x = 3224, y = 9516, level = 2, members = false },
+  { id = "light_creature_tears_of_guthix_cavern", x = 3224, y = 9517, level = 2, members = false },
+  { id = "light_creature_tears_of_guthix_cavern", x = 3224, y = 9518, level = 2, members = false },
+  { id = "light_creature_tears_of_guthix_cavern", x = 3225, y = 9516, level = 2, members = false },
+  { id = "light_creature_tears_of_guthix_cavern", x = 3225, y = 9517, level = 2, members = false },
+  { id = "light_creature_tears_of_guthix_cavern", x = 3225, y = 9518, level = 2, members = false },
+  { id = "light_creature_tears_of_guthix_cavern", x = 3226, y = 9516, level = 2, members = false },
+  { id = "light_creature_tears_of_guthix_cavern", x = 3226, y = 9517, level = 2, members = false },
+  { id = "light_creature_tears_of_guthix_cavern", x = 3226, y = 9518, level = 2, members = false },
+  { id = "juna_tears_of_guthix_cavern", x = 3253, y = 9517, level = 1, members = true },
+  { id = "zanik_tears_of_guthix_cavern", x = 3251, y = 9517, level = 2, members = true },
+  { id = "movario_tears_of_guthix_cavern", x = 3228, y = 9527, level = 2, members = true },
+  { id = "darve_tears_of_guthix_cavern", x = 3230, y = 9528, level = 2, members = true },
+  { id = "cave_goblin_tears_of_guthix_cavern", x = 3227, y = 9528, level = 2, members = true },
+  { id = "cave_goblin_tears_of_guthix_cavern", x = 3229, y = 9529, level = 2, members = true },
+  { id = "cave_goblin_tears_of_guthix_cavern", x = 3231, y = 9527, level = 2, members = true },
+]

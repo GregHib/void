@@ -1,0 +1,24 @@
+[ice_troll_runt_ice_troll_caves]
+id = 5473
+examine = "An ice troll youngling."
+
+[ice_troll_male_ice_troll_caves]
+id = 5474
+examine = "A male troll wielding a large club."
+
+[ice_troll_female_ice_troll_caves]
+id = 5475
+examine = "An ice troll with a bag of rocks."
+
+[ice_troll_grunt_ice_troll_caves]
+id = 5476
+examine = "A large ice troll."
+
+[bork_sigmundson_ice_troll_caves]
+id = 5477
+examine = "Physician to Neitiznot's militia."
+
+[honour_guard_ice_troll_caves]
+id = 5517
+examine = "One of your militia."
+

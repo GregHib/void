@@ -1,0 +1,4 @@
+spawns = [
+  { id = "my_arm_captain_barnabys_ship", x = 1895, y = 4869, level = 1, members = true },
+  { id = "captain_barnaby_captain_barnabys_ship", x = 1886, y = 4870, level = 1, members = false },
+]

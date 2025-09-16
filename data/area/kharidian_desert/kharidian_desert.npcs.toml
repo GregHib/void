@@ -1,0 +1,86 @@
+[banana_merchant_kharidian_desert]
+id = 13186
+
+[banana_merchant_kharidian_desert_2]
+id = 13187
+
+[banana_merchant_kharidian_desert_3]
+id = 13188
+
+[monkey_knife_fighter_kharidian_desert]
+id = 13192
+
+[monkey_colonist_kharidian_desert]
+id = 13196
+
+[chimp_ice_chimp_kharidian_desert]
+id = 13198
+
+[rock_kharidian_desert]
+id = 13200
+
+[rock_kharidian_desert_2]
+id = 13201
+
+[rock_kharidian_desert_3]
+id = 13202
+
+[dead_monkey_kharidian_desert]
+id = 13209
+
+[assistant_kharidian_desert]
+id = 13235
+
+[rug_merchant_kharidian_desert]
+id = 13237
+
+[desert_snake_kharidian_desert]
+id = 1874
+examine = "A slithering serpent."
+
+[desert_phoenix_kharidian_desert]
+id = 1911
+examine = "Definitely not a chicken."
+
+[eblis_kharidian_desert]
+id = 1924
+
+[priest_kharidian_desert]
+id = 1989
+examine = "Priestly."
+
+[crocodile_kharidian_desert]
+id = 1993
+categories = ["crocodiles"]
+examine = "Never smile at a..."
+
+[wanderer_kharidian_desert]
+id = 2002
+
+[rug_merchant_kharidian_desert_2]
+id = 2297
+
+[monkey_kharidian_desert]
+id = 2302
+
+[wingstone_kharidian_desert]
+id = 4577
+examine = "He looks like he's a long way from home."
+
+[goat_kharidian_desert]
+id = 4930
+examine = "They'll eat anything!"
+
+[goat_kharidian_desert_2]
+id = 4931
+examine = "They'll eat anything!"
+
+[billy_goat_kharidian_desert]
+id = 4935
+
+[osman_kharidian_desert]
+id = 5283
+
+[ali_the_wise_kharidian_desert]
+id = 7406
+

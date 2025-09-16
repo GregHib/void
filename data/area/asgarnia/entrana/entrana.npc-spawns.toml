@@ -1,8 +1,8 @@
 spawns = [
 # 11316
-  { id = "chicken_tyras_camp", x = 2850, y = 3371, members = false },
-  { id = "chicken_tyras_camp", x = 2853, y = 3368, members = false },
-  { id = "chicken_tyras_camp", x = 2853, y = 3373, members = false },
+  { id = "chicken", x = 2850, y = 3371, members = false },
+  { id = "chicken", x = 2853, y = 3368, members = false },
+  { id = "chicken", x = 2853, y = 3373, members = false },
   { id = "high_priest_entrana", x = 2851, y = 3349, members = false },
   { id = "monk_entrana", x = 2843, y = 3346, members = false },
   { id = "monk_entrana", x = 2850, y = 3354, members = false },

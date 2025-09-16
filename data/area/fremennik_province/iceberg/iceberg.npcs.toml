@@ -1,0 +1,59 @@
+[penguin_iceberg]
+id = 5427
+
+[noodle_iceberg]
+id = 5443
+
+[agility_instructor_iceberg]
+id = 5447
+examine = "Instructs agility."
+
+[army_commander_iceberg]
+id = 5448
+examine = "An army commander."
+
+[penguin_iceberg_2]
+id = 5449
+
+[penguin_iceberg_3]
+id = 5450
+
+[penguin_iceberg_4]
+id = 5451
+
+[crusher_iceberg]
+id = 5456
+
+[crusher_iceberg_2]
+id = 5457
+
+[crusher_iceberg_3]
+id = 5458
+
+[crusher_iceberg_4]
+id = 5459
+
+[larry_iceberg]
+id = 7577
+
+[noodle_iceberg_2]
+id = 8673
+
+[jim_iceberg]
+id = 8674
+
+[penguin_iceberg_5]
+id = 8690
+
+[penguin_iceberg_6]
+id = 8691
+
+[penguin_iceberg_7]
+id = 8692
+
+[larry_iceberg_2]
+id = 8695
+
+[kgp_agent_iceberg]
+id = 8696
+

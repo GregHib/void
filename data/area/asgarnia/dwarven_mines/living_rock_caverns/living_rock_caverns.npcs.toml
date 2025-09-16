@@ -1,0 +1,22 @@
+[living_rock_protector_living_rock_caverns]
+id = 8832
+categories = ["living_rock_creatures"]
+examine = "A being of ore and minerals."
+
+[living_rock_striker_living_rock_caverns]
+id = 8833
+categories = ["living_rock_creatures"]
+examine = "A being of ore and minerals."
+
+[rock_critter_living_rock_caverns]
+id = 8840
+examine = "What are these things?"
+
+[cavefish_shoal_living_rock_caverns]
+id = 8841
+examine = "It looks like there are fish swimming in the water."
+
+[rocktail_shoal_living_rock_caverns]
+id = 8842
+examine = "It looks like there are fish swimming in the water."
+

@@ -1,0 +1,4 @@
+spawns = [
+  { id = "mining_tutor_lumbridge_swamp_mine", x = 3179, y = 4962, members = false },
+  { id = "smithing_tutor_lumbridge_swamp_mine", x = 3182, y = 4947, members = false },
+]

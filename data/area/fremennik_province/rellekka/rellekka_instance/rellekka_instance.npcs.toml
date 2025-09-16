@@ -1,0 +1,27 @@
+[brundt_the_chieftain_rellekka_instance]
+id = 9118
+
+[koschei_the_deathless_rellekka_instance]
+id = 9119
+examine = "He lives again!"
+
+[market_guard_rellekka_instance]
+id = 9122
+examine = "Fighting to the death for his home and his family."
+
+[fremennik_warrior_rellekka_instance]
+id = 9123
+examine = "A hardy defender of Rellekka."
+
+[agnar_rellekka_instance]
+id = 9124
+
+[pontak_rellekka_instance]
+id = 9125
+
+[jennella_rellekka_instance]
+id = 9126
+
+[sassilik_rellekka_instance]
+id = 9127
+

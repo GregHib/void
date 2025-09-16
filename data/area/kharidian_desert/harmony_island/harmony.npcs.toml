@@ -136,3 +136,6 @@ id = 5671
 [monk_harmony_8]
 id = 5672
 
+[puffin]
+id = 5614
+examine = "I'd prefer it if it were a muffin..."

@@ -182,4 +182,5 @@ spawns = [
   { id = "trade_floor_guard_keldagrim", x = 2885, y = 10201, level = 1, members = true },
   { id = "colonel_grenda_keldagrim", x = 2871, y = 10170, members = true },
   { id = "supreme_commander_keldagrim", x = 2827, y = 10209, level = 1, members = true },
+  { id = "dwarven_miner", x = 2945, y = 10182, members = true },
 ]

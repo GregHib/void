@@ -34,3 +34,6 @@ id = 7405
 [natural_historian_rellekka_hunter_area]
 id = 7457
 
+[cerulean_twitch]
+id = 5074
+examine = "Best served ice cold."

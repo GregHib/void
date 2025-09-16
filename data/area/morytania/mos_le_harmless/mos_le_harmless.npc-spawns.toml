@@ -232,4 +232,5 @@ spawns = [
   { id = "patchy_mos_le_harmless", x = 3677, y = 2978, members = false },
   { id = "50_ships_mufassah_mos_le_harmless", x = 3666, y = 2992, level = 1, members = true },
   { id = "brass_hand_harry_mos_le_harmless", x = 3668, y = 2995, level = 1, members = true },
+  { id = "kchunk_mos_leharmless", x = 3763, y = 2922, members = true },
 ]

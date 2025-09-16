@@ -1,0 +1,14 @@
+spawns = [
+  { id = "skeleton_helmet", x = 3142, y = 5708, members = false },
+  { id = "skeleton_helmet", x = 3151, y = 5711, members = false },
+  { id = "skeleton_helmet", x = 3156, y = 5703, members = false },
+  { id = "skeleton_unarmed", x = 3149, y = 5707, members = false },
+  { id = "skeleton_unarmed", x = 3153, y = 5710, members = false },
+  { id = "skeleton_shield", x = 3150, y = 5701, members = false },
+  { id = "skeleton_shield", x = 3150, y = 5709, members = false },
+  { id = "doug_deeping_senntisten_temple", x = 3158, y = 5725, members = false },
+  { id = "skeleton_shield_helmet", x = 3145, y = 5705, members = false },
+  { id = "skeleton_shield_helmet", x = 3151, y = 5704, members = false },
+  { id = "skeleton_shield_helmet", x = 3154, y = 5708, members = false },
+  { id = "azzanadra_senntisten_temple", x = 3182, y = 5713, members = false },
+]

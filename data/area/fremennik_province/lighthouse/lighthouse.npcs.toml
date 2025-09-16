@@ -6,3 +6,6 @@ examine = "Apparently he keeps a lighthouse."
 id = 1336
 examine = "A fremennik girl."
 
+[jossik_lighthouse_dungeon]
+id = 1335
+examine = "Looks like he's in trouble..."

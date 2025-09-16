@@ -9,5 +9,5 @@ spawns = [
   { id = "rohak", x = 2865, y = 9876, members = true },
   { id = "holoy", x = 2865, y = 9871, members = true },
   { id = "captain_ninto", x = 2869, y = 9877, members = false },
-  { id = "ice_spider_default", x = 2869, y = 9912, members = false },
+  { id = "ice_spider_temple_of_ikov", x = 2869, y = 9912, members = false },
 ]

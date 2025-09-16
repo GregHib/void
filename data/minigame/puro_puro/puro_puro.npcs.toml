@@ -1,0 +1,30 @@
+[baby_impling_puro_puro]
+id = 6055
+
+[young_impling_puro_puro]
+id = 6056
+
+[gourmet_impling_puro_puro]
+id = 6057
+
+[earth_impling_puro_puro]
+id = 6058
+
+[essence_impling_puro_puro]
+id = 6059
+
+[eclectic_impling_puro_puro]
+id = 6060
+
+[elnock_inquisitor_puro_puro]
+id = 6070
+examine = "Insurance investigator extraordinaire."
+
+[immenizz_puro_puro]
+id = 6071
+examine = "An impling."
+
+[imp_defender_puro_puro]
+id = 6074
+examine = "An angry little imp. Grrr."
+

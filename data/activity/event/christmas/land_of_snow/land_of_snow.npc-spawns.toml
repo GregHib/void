@@ -1,0 +1,6 @@
+spawns = [
+  { id = "stone_block_land_of_snow", x = 2005, y = 5717, members = true },
+  { id = "stone_block_land_of_snow", x = 2008, y = 5714, members = true },
+  { id = "yeti_land_of_snow", x = 2023, y = 5718, members = true },
+  { id = "yeti_land_of_snow", x = 2039, y = 5718, members = true },
+]

@@ -1,0 +1,47 @@
+[cave_goblin_miner_goblin_mines]
+id = 2069
+categories = ["goblins"]
+examine = "This one is slacking off."
+
+[cave_goblin_miner_goblin_mines_2]
+id = 2070
+categories = ["goblins"]
+examine = "This one is slacking off."
+
+[cave_goblin_miner_goblin_mines_3]
+id = 2071
+categories = ["goblins"]
+examine = "This one is slacking off."
+
+[cave_goblin_miner_goblin_mines_4]
+id = 2072
+categories = ["goblins"]
+examine = "This one is slacking off."
+
+[cave_goblin_guard_goblin_mines]
+id = 2073
+categories = ["goblins"]
+examine = "He protects the miners."
+
+[cave_goblin_guard_goblin_mines_2]
+id = 2074
+categories = ["goblins"]
+examine = "He protects the miners."
+
+[cave_goblin_miner_goblin_mines_5]
+id = 2075
+
+[cave_goblin_miner_goblin_mines_6]
+id = 2076
+
+[mistag_goblin_mines]
+id = 2084
+examine = "He looks like he's in charge of the miners."
+
+[nardok_goblin_mines]
+id = 4312
+examine = "What has he got under his coat?"
+
+[grubfoot_goblin_mines]
+id = 6480
+

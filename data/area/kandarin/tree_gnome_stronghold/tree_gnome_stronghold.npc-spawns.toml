@@ -222,4 +222,11 @@ spawns = [
   { id = "gnome_3", x = 2400, y = 3514, level = 1, members = true },
   { id = "gnome_3", x = 2418, y = 3485, level = 1, members = true },
   { id = "barman_tree_gnome_stronghold", x = 2417, y = 3498, level = 1, members = false },
+  { id = "tortoise", x = 2410, y = 3528, members = false },
+  { id = "trainer_nacklepen_tree_gnome_stronghold", x = 2421, y = 3525, members = false },
+  { id = "tortoise_tree_gnome_stronghold", x = 2416, y = 3527, members = false },
+  { id = "tortoise_tree_gnome_stronghold", x = 2424, y = 3529, members = false },
+  { id = "dashing_kebbit_piscatoris_hunter_area", x = 2370, y = 3583, members = false },
+  { id = "dashing_kebbit_piscatoris_hunter_area", x = 2375, y = 3578, members = false },
+  { id = "dashing_kebbit_piscatoris_hunter_area", x = 2380, y = 3580, members = false },
 ]

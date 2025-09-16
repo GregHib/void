@@ -1,0 +1,8 @@
+spawns = [
+  { id = "gull_battle_of_the_archipelago", x = 1617, y = 5021, level = 1, members = true },
+  { id = "gull_battle_of_the_archipelago", x = 1623, y = 5030, level = 1, members = true },
+  { id = "gull_battle_of_the_archipelago", x = 1630, y = 5033, level = 1, members = true },
+  { id = "gull_battle_of_the_archipelago", x = 1638, y = 5033, level = 1, members = true },
+  { id = "gull_battle_of_the_archipelago", x = 1646, y = 5026, level = 1, members = true },
+  { id = "jack_battle_of_the_archipelago", x = 1631, y = 5026, level = 1, members = false },
+]

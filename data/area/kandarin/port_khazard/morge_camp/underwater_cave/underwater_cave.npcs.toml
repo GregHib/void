@@ -1,0 +1,95 @@
+[crab_underwater_cave]
+id = 3421
+examine = "Nice claw!"
+
+[fish_underwater_cave]
+id = 3425
+examine = "A Red Fantail."
+
+[fish_underwater_cave_2]
+id = 3426
+examine = "A Red Fantail."
+
+[fish_underwater_cave_3]
+id = 3427
+examine = "A Red Fantail."
+
+[fish_underwater_cave_4]
+id = 3428
+
+[fish_underwater_cave_5]
+id = 3429
+
+[fish_underwater_cave_6]
+id = 3430
+
+[fish_underwater_cave_7]
+id = 3431
+examine = "An Angel Fish."
+
+[fish_underwater_cave_8]
+id = 3432
+examine = "An Angel Fish."
+
+[fish_underwater_cave_9]
+id = 3433
+examine = "An Angel Fish."
+
+[fish_underwater_cave_10]
+id = 3434
+examine = "A Harlequin Fish."
+
+[fish_underwater_cave_11]
+id = 3435
+examine = "A Harlequin Fish."
+
+[fish_underwater_cave_12]
+id = 3436
+examine = "A Harlequin Fish."
+
+[fish_underwater_cave_13]
+id = 3437
+examine = "A Discus Fish."
+
+[fish_underwater_cave_14]
+id = 3438
+examine = "A Discus Fish."
+
+[fish_underwater_cave_15]
+id = 3439
+examine = "A Discus Fish."
+
+[fish_underwater_cave_16]
+id = 3440
+
+[fish_underwater_cave_17]
+id = 3441
+
+[fish_underwater_cave_18]
+id = 3442
+
+[fish_underwater_cave_19]
+id = 3443
+examine = "A shoal of Neon Tetra."
+
+[fish_underwater_cave_20]
+id = 3444
+examine = "A shoal of Neon Tetra."
+
+[fish_underwater_cave_21]
+id = 3445
+examine = "A shoal of Neon Tetra."
+
+[fish_underwater_cave_22]
+id = 3446
+
+[fish_underwater_cave_23]
+id = 3447
+
+[fish_underwater_cave_24]
+id = 3448
+
+[nung_underwater_cave]
+id = 3465
+examine = "A fat, angry Ogre in a highly amusing hat."
+

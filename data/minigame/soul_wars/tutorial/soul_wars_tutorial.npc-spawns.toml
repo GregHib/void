@@ -1,0 +1,14 @@
+spawns = [
+  { id = "soul_wars_jelly", x = 3603, y = 5383, members = true },
+  { id = "soul_wars_jelly", x = 3606, y = 5386, members = true },
+  { id = "soul_wars_jelly", x = 3608, y = 5382, members = true },
+  { id = "soul_wars_jelly", x = 3610, y = 5384, members = true },
+  { id = "soul_wars_jelly", x = 3614, y = 5383, members = true },
+  { id = "soul_wars_jelly", x = 3619, y = 5384, members = true },
+  { id = "soul_wars_jelly", x = 3619, y = 5427, members = true },
+  { id = "soul_wars_jelly", x = 3620, y = 5430, members = true },
+  { id = "soul_wars_jelly", x = 3624, y = 5426, members = true },
+  { id = "soul_wars_jelly", x = 3625, y = 5429, members = true },
+  { id = "soul_wars_jelly", x = 3631, y = 5426, members = true },
+  { id = "soul_wars_jelly", x = 3631, y = 5430, members = true },
+]

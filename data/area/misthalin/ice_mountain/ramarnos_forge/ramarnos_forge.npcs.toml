@@ -1,0 +1,11 @@
+[ramarno_ramarnos_forge]
+id = 8170
+examine = "A blind, bearded dwarf."
+
+[fish_ramarnos_forge]
+id = 8176
+examine = "It seems to be travelling upstream."
+
+[fish_ramarnos_forge_2]
+id = 8177
+

@@ -1,0 +1,17 @@
+spawns = [
+  { id = "cave_goblin_miner_goblin_mines", x = 3316, y = 9632, members = false },
+  { id = "cave_goblin_miner_goblin_mines_2", x = 3314, y = 9636, members = false },
+  { id = "cave_goblin_miner_goblin_mines_3", x = 3315, y = 9620, members = false },
+  { id = "cave_goblin_miner_goblin_mines_3", x = 3324, y = 9621, members = false },
+  { id = "cave_goblin_miner_goblin_mines_4", x = 3314, y = 9630, members = false },
+  { id = "cave_goblin_miner_goblin_mines_4", x = 3321, y = 9646, members = false },
+  { id = "cave_goblin_guard_goblin_mines", x = 3318, y = 9602, members = false },
+  { id = "cave_goblin_guard_goblin_mines", x = 3323, y = 9645, members = false },
+  { id = "cave_goblin_guard_goblin_mines_2", x = 3320, y = 9632, members = false },
+  { id = "cave_goblin_guard_goblin_mines_2", x = 3322, y = 9617, members = false },
+  { id = "cave_goblin_miner_goblin_mines_5", x = 3313, y = 9654, members = true },
+  { id = "cave_goblin_miner_goblin_mines_6", x = 3312, y = 9646, members = true },
+  { id = "mistag_goblin_mines", x = 3319, y = 9615, members = false },
+  { id = "nardok_goblin_mines", x = 3324, y = 9607, members = false },
+  { id = "grubfoot_goblin_mines", x = 3318, y = 9614, members = true },
+]

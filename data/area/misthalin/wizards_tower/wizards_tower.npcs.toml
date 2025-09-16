@@ -15,3 +15,6 @@ examine = "Head wizard of the Wizard's Tower."
 [professor_onglewip]
 id = 4585
 examine = "A gnome mage on sabbatical."
+
+[mysterious_ghost_wizards_tower]
+id = 2385

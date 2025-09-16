@@ -1,0 +1,4 @@
+spawns = [
+  { id = "zombie_temple_trekking", x = 2599, y = 5045, members = true },
+  { id = "rook_temple_trekking", x = 2035, y = 5044, members = false },
+]

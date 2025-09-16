@@ -1,0 +1,5 @@
+spawns = [
+  { id = "dragon_head_ancient_cavern_cave", x = 1816, y = 5278, members = true },
+  { id = "dragon_head_ancient_cavern_cave", x = 1822, y = 5284, members = true },
+  { id = "dragon_head_ancient_cavern_cave", x = 1828, y = 5278, members = true },
+]

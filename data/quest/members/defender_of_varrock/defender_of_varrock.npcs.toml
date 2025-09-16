@@ -110,12 +110,55 @@ examine = "One of Gertrude's sons."
 id = 783
 examine = "One of Gertrude's sons."
 
+[treznor_defender_of_varrock]
+id = 2341
+examine = "Perhaps this gardener might look after your crops for you."
+
+[ambassador_ferrnook_defender_of_varrock]
+id = 4582
+examine = "Peaceful man!"
+
+[guard_defender_of_varrock_2]
+id = 5920
+examine = "He tries to keep order around here. His bizarre uniform isn't helping."
+
+[trainee_guard_defender_of_varrock]
+id = 5921
+examine = "He's studying to be a guard."
+
+[king_roald_defender_of_varrock]
+id = 648
+examine = "Varrock's resident monarch."
+
 [armoured_zombie_defender_of_varrock]
-id = 8161
+id = 8159
 
 [armoured_zombie_defender_of_varrock_2]
-id = 8162
+id = 8160
 
 [armoured_zombie_defender_of_varrock_3]
+id = 8161
+
+[armoured_zombie_defender_of_varrock_4]
+id = 8162
+
+[armoured_zombie_defender_of_varrock_5]
 id = 8163
+
+[arrav_defender_of_varrock]
+id = 8169
+examine = "He has seen better, happier days."
+
+[guard_defender_of_varrock_3]
+id = 8173
+
+[ellamaria_defender_of_varrock]
+id = 8175
+
+[monk_of_zamorak_defender_of_varrock]
+id = 8178
+
+[sir_prysin_defender_of_varrock]
+id = 9360
+examine = "One of the king's knights."
 

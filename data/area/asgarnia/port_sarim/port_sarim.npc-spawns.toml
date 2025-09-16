@@ -70,6 +70,6 @@ spawns = [
     { id = "thaki_the_delivery_dwarf_port_sarim", x = 3050, y = 3259, direction = "SOUTH", members = true },
     { id = "klarense_port_sarim", x = 3047, y = 3204, members = false },
     { id = "wormbrain_port_sarim", x = 3014, y = 3189, members = false },
-    { id = "cabin_boy_jenkins_default", x = 3048, y = 3208, members = true },
+    { id = "cabin_boy_jenkins_the_lady_lumbridge", x = 3048, y = 3208, members = true },
     { id = "thief_brimhaven", x = 3014, y = 3232, members = false },
 ]

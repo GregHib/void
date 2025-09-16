@@ -1,0 +1,17 @@
+spawns = [
+  { id = "golden_warbler", x = 3402, y = 3095, members = false },
+  { id = "golden_warbler", x = 3406, y = 3097, members = false },
+  { id = "golden_warbler", x = 3407, y = 3085, members = false },
+  { id = "golden_warbler", x = 3410, y = 3085, members = false },
+  { id = "orange_salamander_uzer_hunter_area", x = 3402, y = 3134, members = false },
+  { id = "orange_salamander_uzer_hunter_area", x = 3403, y = 3090, members = false },
+  { id = "orange_salamander_uzer_hunter_area", x = 3405, y = 3101, members = false },
+  { id = "orange_salamander_uzer_hunter_area", x = 3405, y = 3133, members = false },
+  { id = "orange_salamander_uzer_hunter_area", x = 3407, y = 3132, members = false },
+  { id = "orange_salamander_uzer_hunter_area", x = 3408, y = 3095, members = false },
+  { id = "orange_salamander_uzer_hunter_area", x = 3410, y = 3088, members = false },
+  { id = "orange_salamander_uzer_hunter_area", x = 3412, y = 3081, members = false },
+  { id = "orange_salamander_uzer_hunter_area", x = 3414, y = 3075, members = false },
+  { id = "orange_salamander_uzer_hunter_area", x = 3415, y = 3080, members = false },
+  { id = "orange_salamander_uzer_hunter_area", x = 3417, y = 3073, members = false },
+]

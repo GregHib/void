@@ -1,0 +1,24 @@
+[telekinetic_guardian_mage_training_arena]
+id = 3098
+examine = "A guardian of the arena."
+
+[alchemy_guardian_mage_training_arena]
+id = 3099
+examine = "A guardian of the arena."
+
+[enchantment_guardian_mage_training_arena]
+id = 3100
+examine = "A guardian of the arena."
+
+[graveyard_guardian_mage_training_arena]
+id = 3101
+examine = "A guardian of the arena."
+
+[maze_guardian_mage_training_arena]
+id = 3102
+examine = "A guardian of the arena."
+
+[sweeper_mage_training_arena]
+id = 3298
+examine = "Keeps this magic area tidy."
+

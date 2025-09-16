@@ -1,0 +1,133 @@
+[mountain_troll_troll_stronghold_tunnels]
+id = 1106
+categories = ["trolls"]
+examine = "Small for a troll, but mean and ugly."
+
+[mountain_troll_troll_stronghold_tunnels_2]
+id = 1107
+categories = ["trolls"]
+examine = "Small for a troll, but mean and ugly."
+
+[mountain_troll_troll_stronghold_tunnels_3]
+id = 1108
+categories = ["trolls"]
+examine = "Small for a troll, but mean and ugly."
+
+[mountain_troll_troll_stronghold_tunnels_4]
+id = 1109
+categories = ["trolls"]
+examine = "Small for a troll, but mean and ugly."
+
+[mountain_troll_troll_stronghold_tunnels_5]
+id = 1110
+categories = ["trolls"]
+examine = "Small for a troll, but mean and ugly."
+
+[mountain_troll_troll_stronghold_tunnels_6]
+id = 1111
+categories = ["trolls"]
+examine = "Small for a troll, but mean and ugly."
+
+[mountain_troll_troll_stronghold_tunnels_7]
+id = 1112
+categories = ["trolls"]
+examine = "Small for a troll, but mean and ugly."
+
+[eadgar_troll_stronghold_tunnels]
+id = 1113
+
+[godric_troll_stronghold_tunnels]
+id = 1114
+
+[troll_general_troll_stronghold_tunnels]
+id = 1115
+categories = ["trolls"]
+examine = "One of the troll generals."
+
+[troll_general_troll_stronghold_tunnels_2]
+id = 1116
+categories = ["trolls"]
+examine = "One of the troll generals."
+
+[troll_general_troll_stronghold_tunnels_3]
+id = 1117
+categories = ["trolls"]
+examine = "One of the troll generals."
+
+[twig_troll_stronghold_tunnels]
+id = 1128
+categories = ["trolls"]
+examine = "He's guarding the cells."
+
+[berry_troll_stronghold_tunnels]
+id = 1129
+categories = ["trolls"]
+examine = "He's guarding the cells."
+
+[cook_troll_stronghold_tunnels]
+id = 1135
+examine = "Human is his speciality."
+
+[cook_troll_stronghold_tunnels_2]
+id = 1136
+examine = "Human is his speciality."
+
+[cook_troll_stronghold_tunnels_3]
+id = 1137
+examine = "Human is his speciality."
+
+[mountain_troll_troll_stronghold_tunnels_8]
+id = 1138
+categories = ["trolls"]
+examine = "Small for a troll, but mean and ugly."
+
+[guard_troll_stronghold_tunnels]
+id = 1142
+examine = "He's guarding the storeroom."
+
+[guard_troll_stronghold_tunnels_2]
+id = 1143
+examine = "He's guarding the storeroom."
+
+[guard_troll_stronghold_tunnels_3]
+id = 1144
+
+[guard_troll_stronghold_tunnels_4]
+id = 1145
+
+[guard_troll_stronghold_tunnels_5]
+id = 1146
+
+[guard_troll_stronghold_tunnels_6]
+id = 1147
+
+[guard_troll_stronghold_tunnels_7]
+id = 1148
+
+[guard_troll_stronghold_tunnels_8]
+id = 1149
+
+[guard_troll_stronghold_tunnels_9]
+id = 1150
+examine = "He's guarding the goutweed."
+
+[burntmeat_troll_stronghold_tunnels]
+id = 1151
+examine = "Human is his speciality."
+
+[ug_troll_stronghold_tunnels]
+id = 1553
+examine = "A frail little troll."
+
+[aga_troll_stronghold_tunnels]
+id = 1554
+examine = "A beautiful troll."
+
+[arrg_troll_stronghold_tunnels]
+id = 1555
+categories = ["trolls"]
+examine = "A massive, scary-looking troll."
+
+[my_arm_troll_stronghold_tunnels]
+id = 4950
+

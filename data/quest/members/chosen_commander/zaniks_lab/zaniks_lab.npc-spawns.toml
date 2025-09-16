@@ -1,0 +1,13 @@
+spawns = [
+  { id = "zanik_zaniks_lab", x = 2587, y = 4206, members = true },
+  { id = "goblin_zaniks_lab", x = 2590, y = 4202, members = true },
+  { id = "goblin_zaniks_lab", x = 2591, y = 4199, members = true },
+  { id = "goblin_zaniks_lab", x = 2594, y = 4199, members = true },
+  { id = "goblin_zaniks_lab", x = 2599, y = 4195, members = true },
+  { id = "goblin_zaniks_lab_2", x = 2596, y = 4195, members = true },
+  { id = "goblin_zaniks_lab_3", x = 2601, y = 4192, members = true },
+  { id = "goblin_zaniks_lab_4", x = 2599, y = 4193, members = true },
+  { id = "goblin_zaniks_lab_5", x = 2589, y = 4207, members = true },
+  { id = "goblin_zaniks_lab_5", x = 2601, y = 4196, members = true },
+  { id = "goblin_zaniks_lab_6", x = 2596, y = 4192, members = true },
+]

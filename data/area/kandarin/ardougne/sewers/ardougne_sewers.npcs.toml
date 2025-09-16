@@ -14,3 +14,7 @@ examine = "A member of the Hazeel cult."
 [hazeel_cultist_ardougne_sewers]
 id = 894
 examine = "A member of the Hazeel cult."
+
+[elena_southern_ardougne_sewer]
+id = 715
+

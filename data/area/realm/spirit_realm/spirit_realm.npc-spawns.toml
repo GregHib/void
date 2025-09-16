@@ -24,4 +24,6 @@ spawns = [
   { id = "rat", x = 2960, y = 4280, members = true },
   { id = "rat", x = 2963, y = 4279, members = true },
   { id = "rat", x = 2961, y = 4278, members = true },
+  { id = "edward_spirit_realm", x = 3216, y = 4184, members = false },
+  { id = "spirit_spirit_realm", x = 3295, y = 4188, members = true },
 ]

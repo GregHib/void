@@ -1,0 +1,5 @@
+spawns = [
+  { id = "sithaph_dragonkin_castle", x = 3423, y = 4961, members = true },
+  { id = "strisath_dragonkin_castle", x = 3421, y = 4958, members = true },
+  { id = "sakirth_dragonkin_castle", x = 3425, y = 4958, members = true },
+]

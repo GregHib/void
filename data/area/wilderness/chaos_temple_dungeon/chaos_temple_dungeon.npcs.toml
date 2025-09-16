@@ -1,0 +1,50 @@
+[zemouregal_chaos_temple_dungeon]
+id = 8147
+
+[armoured_zombie_chaos_temple_dungeon]
+id = 8149
+categories = ["zombies"]
+examine = "It hasn't quite got round to dying."
+
+[armoured_zombie_chaos_temple_dungeon_2]
+id = 8150
+categories = ["zombies"]
+examine = "This is a rotten one."
+
+[armoured_zombie_chaos_temple_dungeon_3]
+id = 8151
+categories = ["zombies"]
+examine = "This is a rotten one."
+
+[armoured_zombie_chaos_temple_dungeon_4]
+id = 8152
+categories = ["zombies"]
+examine = "This is a rotten one."
+
+[armoured_zombie_chaos_temple_dungeon_5]
+id = 8153
+
+[armoured_zombie_chaos_temple_dungeon_6]
+id = 8154
+
+[armoured_zombie_chaos_temple_dungeon_7]
+id = 8155
+
+[armoured_zombie_chaos_temple_dungeon_8]
+id = 8156
+
+[armoured_zombie_chaos_temple_dungeon_9]
+id = 8157
+
+[armoured_zombie_chaos_temple_dungeon_10]
+id = 8158
+
+[sharathteerk_chaos_temple_dungeon]
+id = 8166
+
+[zemouregal_chaos_temple_dungeon_2]
+id = 8183
+
+[sharathteerk_chaos_temple_dungeon_2]
+id = 8184
+

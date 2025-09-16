@@ -1,0 +1,9 @@
+[zombie_temple_trekking]
+id = 3622
+categories = ["zombies"]
+examine = "I wonder if he'd let me borrow his hatchet?"
+
+[rook_temple_trekking]
+id = 9719
+examine = "You're being watched."
+

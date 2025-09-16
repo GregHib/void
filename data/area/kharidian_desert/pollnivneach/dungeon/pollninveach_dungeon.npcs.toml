@@ -1,0 +1,26 @@
+[leeuni_pollninveach_dungeon]
+id = 13214
+
+[iwazaru_pollninveach_dungeon]
+id = 13225
+
+[basilisk_pollninveach_dungeon]
+id = 1617
+categories = ["basilisks"]
+examine = "The eyes of evil."
+
+[catolax_pollninveach_dungeon]
+id = 7783
+
+[aberrant_spectre_pollninveach_dungeon]
+id = 7801
+
+[aberrant_spectre_pollninveach_dungeon_2]
+id = 7802
+
+[aberrant_spectre_pollninveach_dungeon_3]
+id = 7803
+
+[aberrant_spectre_pollninveach_dungeon_4]
+id = 7804
+

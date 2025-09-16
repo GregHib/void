@@ -1,0 +1,3 @@
+spawns = [
+  { id = "cosmic_being_cosmic_entity_plane", x = 2090, y = 4829, members = false },
+]

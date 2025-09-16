@@ -1,0 +1,16 @@
+spawns = [
+  { id = "iron_dragon", x = 2891, y = 3919, members = false },
+  { id = "iron_dragon", x = 2901, y = 3914, members = false },
+  { id = "iron_dragon", x = 2910, y = 3921, members = false },
+  { id = "iron_dragon", x = 2920, y = 3919, members = false },
+  { id = "iron_dragon", x = 2929, y = 3919, members = false },
+  { id = "iron_dragon", x = 2929, y = 3935, members = false },
+  { id = "iron_dragon", x = 2929, y = 3944, members = false },
+  { id = "steel_dragon", x = 2893, y = 3929, members = false },
+  { id = "steel_dragon", x = 2893, y = 3942, members = false },
+  { id = "steel_dragon", x = 2897, y = 3951, members = false },
+  { id = "steel_dragon", x = 2903, y = 3954, members = false },
+  { id = "steel_dragon", x = 2910, y = 3954, members = false },
+  { id = "steel_dragon", x = 2920, y = 3952, members = false },
+  { id = "steel_dragon", x = 2929, y = 3952, members = false },
+]

@@ -1,0 +1,32 @@
+[wizard_korvak_runecrafting_guild]
+id = 8029
+examine = "A Runecrafting wizard."
+
+[wizard_vief_runecrafting_guild]
+id = 8030
+examine = "A Runecrafting wizard."
+
+[wizard_acantha_runecrafting_guild]
+id = 8031
+examine = "A Runecrafting wizard."
+
+[wizard_elriss_runecrafting_guild]
+id = 8032
+examine = "She is in charge of the Runecrafting Guild."
+
+[wizard_runecrafting_guild]
+id = 8033
+examine = "He's doing arcane research."
+
+[wizard_runecrafting_guild_2]
+id = 8036
+examine = "He's doing arcane research."
+
+[wizard_runecrafting_guild_3]
+id = 8037
+examine = "She's doing arcane research."
+
+[wizard_runecrafting_guild_4]
+id = 8038
+examine = "She's doing arcane research."
+
