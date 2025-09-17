@@ -155,10 +155,10 @@ id = 3820
 id = 3671
 examine = "He looks as if he could do with a sip of Amontillado."
 
-[gull_5]
+[gull_draynor]
 id = 450
 
-[gull_6]
+[gull_draynor_2]
 id = 451
 
 [town_crier_draynor]

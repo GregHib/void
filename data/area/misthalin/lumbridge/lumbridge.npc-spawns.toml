@@ -260,7 +260,7 @@ spawns = [
   { id = "sheep_light_5", x = 3200, y = 3291, members = true },
   { id = "sheep_light_6", x = 3201, y = 3296, members = true },
   { id = "nastroth_lumbridge", x = 3223, y = 3212 },
-  { id = "farmer_freds_farm_2", x = 3227, y = 3292 },
+  { id = "farmer", x = 3227, y = 3292 },
   { id = "imp", x = 3214, y = 3281 },
   { id = "imp", x = 3240, y = 3307 },
   { id = "tool_leprechaun_lumbridge", x = 3231, y = 3320, direction = "SOUTH" },

@@ -184,15 +184,15 @@ examine = "A huge brutish gorilla stands here, blocking the way."
 [elder_guard_ape_atoll_2]
 id = 1462
 
-[monkey_zombie]
+[monkey_zombie_medium]
 id = 1465
 categories = ["monkeys"]
 examine = "A large and lumbering undead monkey."
 
-[monkey_zombie_ape_atoll_2]
+[monkey_zombie_large]
 id = 1466
 
-[monkey_zombie_ape_atoll_3]
+[monkey_zombie_small]
 id = 1467
 
 [scorpion_ape_atoll]

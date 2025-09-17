@@ -117,15 +117,15 @@ id = 9695
 [impling_manager_easter_2]
 id = 9705
 
-[rat_easter_2]
+[rat_easter]
 id = 7202
 examine = "It has chocolate all round its mouth."
 
-[rat_easter_3]
+[rat_easter_2]
 id = 7204
 examine = "It's had more than its fair share of chocolate this Easter."
 
-[mouse_easter_3]
+[mouse_easter]
 id = 7205
 
 [cockroach_easter]

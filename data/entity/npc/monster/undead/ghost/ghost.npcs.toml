@@ -21,31 +21,31 @@ id = 103
 clone = "ghost_draynor_manor"
 combat_anims = "ghost_tendril"
 
-[ghost_3]
+[ghost_2]
 id = 5342
 clone = "ghost_draynor_manor"
 
-[ghost_4]
+[ghost_3]
 id = 5343
 clone = "ghost_draynor_manor"
 
-[ghost_5]
+[ghost_4]
 id = 5344
 clone = "ghost_draynor_manor"
 
-[ghost_6]
+[ghost_5]
 id = 5345
 clone = "ghost_draynor_manor"
 
-[ghost_7]
+[ghost_6]
 id = 5346
 clone = "ghost_draynor_manor"
 
-[ghost_8]
+[ghost_7]
 id = 5347
 clone = "ghost_draynor_manor"
 
-[ghost_9]
+[ghost_8]
 id = 5348
 clone = "ghost_draynor_manor"
 

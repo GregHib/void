@@ -4,7 +4,7 @@ id = 11627
 [hay_bale]
 id = 11630
 
-[zenevivia_2]
+[zenevivia]
 id = 11629
 
 [ram_freds_farm]
@@ -20,9 +20,9 @@ id = 12371
 id = 246
 examine = "Specialist meat transporter."
 
-[larry_freds_farm_2]
+[larry_farmer]
 id = 5423
 
-[farmer_freds_farm_2]
+[farmer]
 id = 7
 examine = "He grows the crops in this area."

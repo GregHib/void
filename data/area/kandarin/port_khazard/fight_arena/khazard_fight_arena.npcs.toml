@@ -34,7 +34,7 @@ examine = "A slave fighter. He looks mistreated and weak."
 id = 263
 examine = "He looks mistreated but he hasn't given up."
 
-[slave_fighter_khazard_fight_arena_2]
+[slave_fighter_2]
 id = 267
 
 [local_khazard_fight_arena]

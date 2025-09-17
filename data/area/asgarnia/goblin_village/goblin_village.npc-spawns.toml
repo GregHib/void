@@ -46,7 +46,7 @@ spawns = [
   { id = "goblin_mohawk_staff_green", x = 2955, y = 3495, level = 2 },
   { id = "general_bentnoze_goblin_village", x = 2958, y = 3513, members = true },
   { id = "general_wartface_goblin_village", x = 2957, y = 3513 },
-  { id = "grubfoot_goblin_village_2", x = 2955, y = 3512, members = true },
+  { id = "grubfoot_goblin_village", x = 2955, y = 3512, members = true },
   { id = "miazrqa", x = 2967, y = 3473 },
   { id = "drain_pipe_goblin_village", x = 2966, y = 3466, members = true },
   { id = "rupert_the_beard", x = 2970, y = 3473, members = true },
