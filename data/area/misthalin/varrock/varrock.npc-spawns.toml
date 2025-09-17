@@ -101,7 +101,8 @@ spawns = [
   { id = "shopkeeper_varrock", x = 3218, y = 3415 },
   { id = "shop_assistant_varrock", x = 3217, y = 3411 },
   { id = "ash_cleaner", x = 3250, y = 3429 },
-  { id = "iffie", x = 3204, y = 3419 },
+  { id = "iffie", x = 3204, y = 3419, direction = "SOUTH" },
+  { id = "iffie", x = 1880, y = 5537, direction = "SOUTH" },
   { id = "aubury", x = 3253, y = 3402 },
   { id = "thessalia", x = 3204, y = 3417 },
   { id = "baraek", x = 3217, y = 3435 },
@@ -391,4 +392,5 @@ spawns = [
   { id = "overseer_varrock", x = 3316, y = 3491, members = true },
   { id = "guardian_varrock", x = 3323, y = 3501, level = 3, members = true },
   { id = "orlando_smith", x = 1759, y = 4955, members = true },
+  { id = "elsie", x = 2960, y = 3280, members = true },
 ]

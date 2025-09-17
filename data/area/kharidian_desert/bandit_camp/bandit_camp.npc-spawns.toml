@@ -33,4 +33,10 @@ spawns = [
   { id = "bandit_bandit_camp_6", x = 3185, y = 2985, members = true },
   { id = "bandit_bandit_camp_6", x = 3187, y = 2984, members = true },
   { id = "mysterious_ghost_bandit_camp", x = 3162, y = 2982, members = true },
+  { id = "bandit_bandit_camp_7", x = 3029, y = 3701, members = true },
+  { id = "bandit_bandit_camp_7", x = 3031, y = 3685, members = true },
+  { id = "bandit_bandit_camp_7", x = 3031, y = 3705, members = true },
+  { id = "bandit_bandit_camp_7", x = 3032, y = 3695, members = true },
+  { id = "bandit_bandit_camp_7", x = 3037, y = 3683, members = true },
+  { id = "bandit_bandit_camp_7", x = 3040, y = 3702, members = true },
 ]

@@ -26,6 +26,7 @@ spawns = [
   { id = "butterfly_1", x = 2204, y = 3180, members = true },
   { id = "chicken", x = 2184, y = 3152, members = true },
   { id = "chicken", x = 2186, y = 3153, members = true },
+  { id = "chicken_brown", x = 2185, y = 3152 },
   { id = "trader_crewmember_black", x = 2144, y = 3122, members = true },
   { id = "trader_crewmember_pink", x = 2145, y = 3122, members = true },
   { id = "rabbit_air_rune_temple", x = 2206, y = 3198 },

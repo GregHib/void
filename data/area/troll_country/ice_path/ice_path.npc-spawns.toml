@@ -1,0 +1,4 @@
+spawns = [
+    { id = "ice_block_father", x = 2825, y = 3807, level = 2, direction = "NORTH", members = true },
+    { id = "ice_block_mother", x = 2825, y = 3811, level = 2, direction = "SOUTH", members = true },
+]

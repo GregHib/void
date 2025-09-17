@@ -72,4 +72,12 @@ spawns = [
     { id = "wormbrain_port_sarim", x = 3014, y = 3189 },
     { id = "cabin_boy_jenkins_the_lady_lumbridge", x = 3048, y = 3208, members = true },
     { id = "thief_brimhaven", x = 3014, y = 3232 },
+    { id = "port_sarim_guard_7", x = 3015, y = 3194, level = 2 },
+    { id = "port_sarim_guard_7", x = 3020, y = 3179, level = 2 },
+    { id = "port_sarim_guard_7", x = 3020, y = 3190, level = 2 },
+    { id = "port_sarim_guard", x = 3016, y = 3184, level = 1 },
+    { id = "port_sarim_guard_1", x = 3016, y = 3182, level = 1 },
+    { id = "port_sarim_guard_2", x = 3011, y = 3181, level = 1 },
+    { id = "port_sarim_guard_3", x = 3019, y = 3180, level = 1 },
+    { id = "port_sarim_guard_4", x = 3012, y = 3185, level = 1 },
 ]

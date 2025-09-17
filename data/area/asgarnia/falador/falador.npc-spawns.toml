@@ -1,6 +1,6 @@
 spawns = [
 # 11571
-  { id = "master_crafter", x = 2932, y = 3287 },
+  { id = "master_crafter", x = 2933, y = 3286 },
   { id = "master_crafter_2", x = 2931, y = 3280 },
   { id = "master_crafter_3", x = 2937, y = 3290 },
   { id = "tanner", x = 2934, y = 3284, level = 1 },
@@ -236,7 +236,6 @@ spawns = [
   { id = "tool_leprechaun_rimmington", x = 3004, y = 3376, members = true },
   { id = "assistant_falador", x = 2996, y = 3451 },
   { id = "brother_bordiss_falador", x = 2996, y = 3450, members = true },
-  { id = "master_crafter", x = 2933, y = 3286 },
   { id = "cow", x = 3027, y = 3307 },
   { id = "hazelmere_falador", x = 2997, y = 3341, members = true },
   { id = "ghommal_falador", x = 2994, y = 3343, members = true },
@@ -271,4 +270,5 @@ spawns = [
   { id = "guard_falador_8", x = 2967, y = 3396 },
   { id = "dog_falador", x = 3022, y = 3288 },
   { id = "gadrin", x = 3021, y = 3339 },
+  { id = "pig_2", x = 3017, y = 3307, members = true },
 ]

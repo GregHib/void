@@ -72,3 +72,7 @@ examine = "An elven scribe."
 [arianwyn]
 id = 8951
 
+[kelyn]
+id = 2367
+wander_radius = 4
+examine = "She seems to have a flair for vibrancy."

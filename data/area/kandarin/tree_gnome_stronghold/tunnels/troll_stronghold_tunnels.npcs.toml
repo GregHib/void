@@ -131,3 +131,6 @@ examine = "A massive, scary-looking troll."
 [my_arm_troll_stronghold_tunnels]
 id = 4950
 
+[ug]
+id = 1553
+examine = "A frail little troll."

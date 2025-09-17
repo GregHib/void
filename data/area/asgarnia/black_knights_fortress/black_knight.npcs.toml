@@ -9,3 +9,7 @@ examine = "Wears a stylish suit of armour."
 [jailer_black_knights_base]
 id = 201
 examine = "Guards prisoners for the black knights."
+
+[black_knight_void_stares_back]
+id = 12317
+examine = "One of the Black Knights."

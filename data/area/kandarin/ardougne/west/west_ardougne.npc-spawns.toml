@@ -78,4 +78,9 @@ spawns = [
     { id = "mourner_staff", x = 2552, y = 3319, members = true },
     { id = "mourner_guard", x = 2534, y = 3273, members = true },
     { id = "mourner_guard", x = 2539, y = 3273, members = true },
+    { id = "mourner", x = 2037, y = 4636, members = true },
+    { id = "mourner", x = 2038, y = 4644, members = true },
+    { id = "mourner", x = 2041, y = 4638, members = true },
+    { id = "mourner", x = 2044, y = 4642, members = true },
+    { id = "head_mourner", x = 2044, y = 4628, members = true },
 ]

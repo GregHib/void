@@ -2,6 +2,8 @@ spawns = [
 # 10803
   { id = "chicken", x = 2691, y = 3273, members = true },
   { id = "chicken", x = 2695, y = 3274, members = true },
+  { id = "chicken_brown", x = 2691, y = 3277, members = true },
+  { id = "chicken_brown", x = 2692, y = 3271, members = true },
   { id = "chair_witchaven", x = 2740, y = 3310, members = true },
   { id = "mayor_hobb_witchaven", x = 2711, y = 3292, members = true },
   { id = "brother_maledict_witchaven", x = 2722, y = 3283, members = true },

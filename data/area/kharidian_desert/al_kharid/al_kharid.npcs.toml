@@ -100,3 +100,19 @@ examine = "A camel who wants to fly some day."
 id = 2810
 wander_radius = 4
 examine = "A camel whose love is unrequited."
+
+[al_kharid_warrior]
+id = 18
+wander_radius = 4
+examine = "Part of Al Kharid's elite fighting force."
+
+[man_al_kharid]
+id = 16
+
+[apprentice]
+id = 5532
+examine = "Come, old broomstick, you are needed."
+
+[sorceress]
+id = 5531
+examine = "Antisocial."

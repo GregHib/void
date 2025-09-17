@@ -6,3 +6,156 @@ examine = "Her friends call her Nor-T for short."
 id = 8073
 examine = "A dog-like cat with a wonky tail."
 
+[unferth]
+id = 2654
+wander_radius = 3
+examine = "Nice but dim."
+
+[neite]
+id = 2652
+wander_radius = 3
+examine = "A graceful feline."
+
+[bernald]
+id = 2580
+wander_radius = 5
+examine = "he guardian of Burthorpe's lost horticultural heritage."
+
+[bob_cat]
+id = 1091
+wander_radius = 4
+examine = "The Jagex cat."
+
+[hild]
+id = 1090
+wander_radius = 5
+examine = "A pretty young woman with an air of mystery around her."
+
+[ceolburg]
+id = 1089
+wander_radius = 5
+examine = "A citizen of Burthorpe."
+
+[penda]
+id = 1087
+wander_radius = 5
+examine = "A citizen of Burthorpe."
+
+[ocga]
+id = 1085
+wander_radius = 5
+examine = "A citizen of Burthorpe."
+
+[breoca]
+id = 1084
+wander_radius = 5
+examine = "A citizen of Burthorpe."
+
+[hygd]
+id = 1088
+wander_radius = 5
+examine = "A citizen of Burthorpe."
+
+[dunstan]
+id = 1082
+wander_radius = 3
+examine = "Smithy for Burthorpe."
+
+[servant_burthorpe]
+id = 1081
+wander_radius = 5
+examine = "A servant for Prince Anlaf."
+
+[eohric]
+id = 1080
+wander_radius = 5
+examine = "Head servant for Prince Anlaf."
+
+[tostig]
+id = 1079
+wander_radius = 5
+examine = "Barman of the Toad and Chicken."
+
+[guard_burthorpe]
+id = 1076
+wander_radius = 5
+examine = "A Burthorpe Castle guard."
+
+[guard_burthorpe_grey]
+id = 1077
+wander_radius = 5
+examine = "A Burthorpe Castle guard."
+
+[eadburg]
+id = 1072
+wander_radius = 5
+examine = "The Burthorpe Castle cook."
+
+[denulth]
+id = 1060
+wander_radius = 3
+examine = "Commander of the Imperial Guard."
+
+[archer_burthorpe_clean]
+id = 1073
+wander_radius = 3
+examine = "A Burthorpe Castle Archer."
+
+[archer_burthorpe_beard]
+id = 1074
+wander_radius = 3
+examine = "A Burthorpe Castle Archer."
+
+[archer_burthorpe]
+id = 1075
+wander_radius = 3
+examine = "A Burthorpe Castle Archer."
+
+[imperial_soldier]
+id = 1063
+wander_radius = 15
+examine = "A soldier of the Imperial Guard."
+
+[imperial_soldier_2]
+id = 1064
+wander_radius = 15
+examine = "A soldier of the Imperial Guard."
+
+[imperial_soldier_attackable]
+id = 1065
+examine = "A soldier of the Imperial Guard."
+
+[imperial_soldier_hair]
+id = 1066
+examine = "A soldier of the Imperial Guard."
+
+[imperial_soldier_bald]
+id = 1067
+examine = "A soldier of the Imperial Guard."
+
+[imperial_soldier_long]
+id = 1068
+examine = "A soldier of the Imperial Guard."
+
+[sergeant_south]
+id = 1061
+examine = "A sergeant of the Imperial Guard."
+
+[sergeant_east]
+id = 1062
+examine = "A sergeant of the Imperial Guard."
+
+[wistan]
+id = 1083
+wander_radius = 5
+examine = "Shopkeeper for Burthorpe."
+
+[achietties]
+id = 796
+wander_radius = 3
+examine = "Distinctly heroic."
+
+[white_knight_burthorpe]
+id = 1092
+wander_radius = 5
+examine = "The knight seems to be watching something."

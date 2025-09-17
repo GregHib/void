@@ -102,4 +102,6 @@ spawns = [
   { id = "lava_monster_tzhaar_caves", x = 2079, y = 5671, level = 2, members = true },
   { id = "fire_monster_tzhaar_caves", x = 2074, y = 5670, level = 1, members = true },
   { id = "fire_monster_tzhaar_caves", x = 2084, y = 5671, level = 2, members = true },
+  { id = "tzHaar_mej_zuh", x = 2445, y = 5180, members = true },
+  { id = "tzHaar_mej_roh", x = 2462, y = 5125, members = true },
 ]

@@ -101,4 +101,5 @@ spawns = [
   { id = "shady_stranger", x = 3099, y = 3263, members = true },
   { id = "suspicious_outsider", x = 3097, y = 3253, members = true },
   { id = "witch", x = 3099, y = 3370, members = true },
+  { id = "pig", x = 3077, y = 3260, members = true },
 ]

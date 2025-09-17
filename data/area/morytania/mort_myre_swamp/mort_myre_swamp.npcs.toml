@@ -51,3 +51,7 @@ id = 1238
 [curpile_fyod_mort_myre_swamp]
 id = 1568
 
+[vampire]
+id = 1223
+examine = "A feral vampyre. It looks really hungry!"
+

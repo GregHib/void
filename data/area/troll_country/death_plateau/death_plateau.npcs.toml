@@ -1,0 +1,34 @@
+[ash]
+id = 1100
+wander_radius = 6
+categories = ["trolls"]
+examine = "Human is his speciality."
+
+[dung]
+id = 1099
+categories = ["trolls"]
+examine = "Human is his speciality."
+
+[kraka]
+id = 1098
+categories = ["trolls"]
+examine = "A nasty looking troll."
+
+[pee_hat]
+id = 1097
+categories = ["trolls"]
+examine = "A nasty looking troll."
+
+[stick]
+id = 1096
+categories = ["trolls"]
+examine = "A big, bad troll."
+
+[rock_troll]
+id = 1095
+categories = ["trolls"]
+examine = "The biggest and baddest troll."
+
+[billy]
+id = 1093
+examine = "Billy is a baa-a-a-d goat."

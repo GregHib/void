@@ -4,6 +4,8 @@ spawns = [
   { id = "goblin_mohawk_dark", x = 2631, y = 3398, members = true },
   { id = "chicken", x = 2650, y = 3442, members = true },
   { id = "chicken", x = 2651, y = 3441, members = true },
+  { id = "chicken_brown", x = 2650, y = 3441 },
+  { id = "chicken_brown", x = 2651, y = 3442 },
   { id = "bonzo_ranging_guild", x = 2641, y = 3437 },
   { id = "sinister_stranger_ranging_guild", x = 2637, y = 3440, members = true },
   { id = "morris_ranging_guild", x = 2643, y = 3440 },

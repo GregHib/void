@@ -214,4 +214,5 @@ spawns = [
   { id = "snake_ape_atoll", x = 2784, y = 2714, members = true },
   { id = "snake_ape_atoll", x = 2789, y = 2758, members = true },
   { id = "snake_ape_atoll", x = 2809, y = 2754, members = true },
+  { id = "waydar", x = 2803, y = 2707, members = true },
 ]

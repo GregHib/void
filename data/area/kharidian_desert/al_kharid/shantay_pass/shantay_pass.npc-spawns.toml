@@ -17,4 +17,5 @@ spawns = [
   { id = "ugthanki", x = 3321, y = 3104 },
   { id = "shantay_guard", x = 3305, y = 3129 },
   { id = "shantay_guard", x = 3307, y = 3123 },
+  { id = "rug_merchant_shantay_pass", x = 3311, y = 3109 },
 ]

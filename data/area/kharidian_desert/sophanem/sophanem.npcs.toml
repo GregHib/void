@@ -93,3 +93,7 @@ examine = "Preach, my brother!"
 id = 6769
 examine = "A guard."
 
+[rug_station_attendant]
+id = 2299
+examine = "A man who deals in rugs."
+

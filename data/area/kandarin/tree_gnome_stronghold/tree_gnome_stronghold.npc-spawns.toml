@@ -229,4 +229,6 @@ spawns = [
   { id = "dashing_kebbit_piscatoris_hunter_area", x = 2370, y = 3583 },
   { id = "dashing_kebbit_piscatoris_hunter_area", x = 2375, y = 3578 },
   { id = "dashing_kebbit_piscatoris_hunter_area", x = 2380, y = 3580 },
+  { id = "terrorchick_gnome", x = 2440, y = 3500 },
+  { id = "terrorchick_gnome", x = 2440, y = 3502 },
 ]

@@ -147,4 +147,8 @@ examine = "The cruel tortoise trainer. Boo!"
 id = 3819
 examine = "A large tortoise."
 
+[terrorchick_gnome]
+id = 137
+examine = "Aaw baby chick!"
+
 

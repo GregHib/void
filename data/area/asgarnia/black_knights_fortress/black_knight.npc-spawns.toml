@@ -46,4 +46,5 @@ spawns = [
       { id = "jailer_black_knights_base", x = 2933, y = 9693 },
       { id = "captain_gilroy", x = 2915, y = 9674, members = true },
       { id = "lord_daquarius", x = 2892, y = 9680, members = true },
+      { id = "black_knight_void_stares_back", x = 2913, y = 9674, members = true },
 ]

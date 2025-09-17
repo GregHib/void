@@ -32,6 +32,7 @@ spawns = [
   { id = "abyssal_leech", x = 3060, y = 4838, members = true },
   { id = "abyssal_leech", x = 3062, y = 4837, members = true },
   { id = "abyssal_leech", x = 3066, y = 4822, members = true },
+  { id = "abyssal_leech", x = 3042, y = 4808, members = true },
   { id = "abyssal_guardian", x = 3040, y = 4857, members = true },
   { id = "abyssal_guardian", x = 3050, y = 4855, members = true },
   { id = "abyssal_guardian", x = 3056, y = 4851, members = true },

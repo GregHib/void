@@ -102,3 +102,11 @@ examine = "A mourner, or plague healer."
 [mourner_guard]
 id = 3216
 examine = "A mourner, or plague healer."
+
+[mourner]
+id = 2373
+examine = "A mourner, or plague healer."
+
+[head_mourner]
+id = 2372
+examine = "A Mourner showing his true identity."

@@ -589,3 +589,16 @@ examine = "He is the Supreme Commander of all regiments of the Black Guard."
 
 [dwarven_miner]
 id = 2211
+
+[vigr]
+id = 2151
+examine = "Proprietor of Vigr's Warhammers."
+
+[trade_referee]
+id = 2127
+wander_radius = 3
+examine = "He is regulating the flow of goods on the trade floor and maintaining order."
+
+[king_veldaban]
+id = 13312
+examine = "King of the dwarves."

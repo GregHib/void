@@ -6,4 +6,13 @@ spawns = [
     { id = "thrower_troll_trollheim", x = 2902, y = 3696 },
     { id = "egg", x = 2938, y = 3678 },
     { id = "drunken_dwarfs_leg", x = 2825, y = 3681 },
+    { id = "thistle", x = 2891, y = 3676 },
+    { id = "mountain_troll_troll_stronghold_tunnels", x = 2843, y = 3675, members = true },
+    { id = "mountain_troll_troll_stronghold_tunnels_2", x = 2843, y = 3682, members = true },
+    { id = "mountain_troll_troll_stronghold_tunnels_2", x = 2845, y = 3685, members = true },
+    { id = "mountain_troll_troll_stronghold_tunnels_5", x = 2847, y = 3676, members = true },
+    { id = "mountain_troll_troll_stronghold_tunnels", x = 2850, y = 3673, members = true },
+    { id = "mountain_troll_troll_stronghold_tunnels", x = 2850, y = 3682, members = true },
+    { id = "mountain_troll_troll_stronghold_tunnels_4", x = 2852, y = 3677, members = true },
+    { id = "mountain_troll_troll_stronghold_tunnels_6", x = 2856, y = 3683, members = true },
 ]

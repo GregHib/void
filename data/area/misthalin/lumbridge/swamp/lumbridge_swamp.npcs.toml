@@ -34,3 +34,11 @@ examine = "He looks holy."
 [wizard_lumbridge]
 id = 652
 examine = "He looks kind of puny..."
+
+[rockslug_small]
+id = 1632
+examine = "The slime of evil."
+
+[rockslug]
+id = 1631
+examine = "The slime of evil."

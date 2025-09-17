@@ -8,6 +8,7 @@ spawns = [
   { id = "rat", x = 2730, y = 3571, members = true },
   { id = "chicken", x = 2736, y = 3562, members = true },
   { id = "chicken", x = 2735, y = 3559, members = true },
+  { id = "chicken_brown", x = 2738, y = 3560, members = true },
   { id = "wolf", x = 2706, y = 3580, members = true },
   { id = "wolf", x = 2717, y = 3569, members = true },
   { id = "milk_seller_sinclair_mansion", x = 2738, y = 3562 },

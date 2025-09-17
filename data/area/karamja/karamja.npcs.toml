@@ -160,3 +160,7 @@ id = 7290
 [gecko_karamja_4]
 id = 7292
 
+[tribesman]
+id = 191
+examine = "A vicious warrior."
+

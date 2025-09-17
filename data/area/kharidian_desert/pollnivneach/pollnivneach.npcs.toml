@@ -50,3 +50,47 @@ id = 7779
 [ali_cat_pollnivneach]
 id = 7784
 
+[ali_the_dyer]
+id = 2549
+wander_radius = 3
+collision = "indoors"
+examine = "A colourful character."
+
+[rug_merchant_north_pollnivneach]
+id = 2294
+examine = "A man who deals in rugs."
+
+[rug_merchant_south_pollnivneach]
+id = 2293
+examine = "A man who deals in rugs."
+
+[ali_the_operator]
+id = 1902
+wander_radius = 5
+examine = "Smooth operator."
+
+[ali_the_camel]
+id = 1873
+wander_radius = 4
+examine = "A foul tempered, ugly, lumpy yellow horse prone to spitting."
+
+[ali_the_snake_charmer]
+id = 1872
+wander_radius = 2
+examine = "A snake charmer."
+
+[ali_the_hag]
+id = 1871
+wander_radius = 4
+examine = "An old hag named Alisha."
+
+[ali_the_mayor]
+id = 1869
+wander_radius = 3
+examine = "Mayor of Pollnivneach."
+
+[ali_the_kebab_seller]
+id = 1865
+wander_radius = 3
+examine = "A kebab seller."
+

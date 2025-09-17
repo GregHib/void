@@ -13,4 +13,12 @@ spawns = [
   { id = "bedabin_nomad_guard", x = 3173, y = 3035, members = true },
   { id = "bedabin_nomad_guard", x = 3176, y = 3038, members = true },
   { id = "bedabin_nomad_guard", x = 3176, y = 3043, members = true },
+  { id = "rug_merchant_bedabin", x = 3182, y = 3043, members = true },
+  { id = "asgarnia_smith", x = 3178, y = 3043, members = true },
+  { id = "bedabin_nomad_fighter", x = 3160, y = 3031, members = true },
+  { id = "bedabin_nomad_fighter", x = 3162, y = 3033, members = true },
+  { id = "bedabin_nomad_fighter", x = 3164, y = 3031, members = true },
+  { id = "bedabin_nomad_fighter", x = 3177, y = 3033, members = true },
+  { id = "bedabin_nomad_fighter", x = 3178, y = 3030, members = true },
+  { id = "bedabin_nomad_fighter", x = 3180, y = 3033, members = true },
 ]

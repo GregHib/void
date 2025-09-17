@@ -556,3 +556,7 @@ id = 12346
 [orlando_smith]
 id = 5965
 examine = "Looks very young."
+
+[elsie]
+id = 5915
+examine = "Armed with a pair of needles."

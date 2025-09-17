@@ -301,3 +301,8 @@ id = 7568
 id = 413
 wander_radius = 3
 examine = "Either a very fremennikey pirate, or a very piratey fremennik."
+
+[fish_monger]
+id = 1315
+wander_radius = 4
+examine = "Fish-tastic!"

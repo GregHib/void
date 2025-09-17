@@ -5,17 +5,21 @@ object NPCSpawnConverter {
     @JvmStatic
     fun main(args: Array<String>) {
         val string = """
+==Locations==
+{{LocTableHead|league=yes}}
 {{LocLine
-|name = Pyrefiend
-|location = [[God Wars Dungeon]]
-|levels = 48
+|name = Thrower Troll
+|location = [[Death Plateau (location)|Death Plateau]]
+|levels = 67
 |members = Yes
-|mapID = 7
+|mapID = 0
 |plane = 0
-|x:2863,y:5307|x:2864,y:5280|x:2864,y:5281|x:2873,y:5312
+|x:2851,y:3598|x:2854,y:3600|x:2859,y:3600|x:2863,y:3600|x:2867,y:3600|x:2870,y:3600
 |mtype = pin
-|leagueRegion = asgarnia
+|leagueRegion = Asgarnia
 }}
+{{LocTableBottom}}
+
         """.trimIndent()
         val lines = string.lines()
         for (i in lines.indices) {

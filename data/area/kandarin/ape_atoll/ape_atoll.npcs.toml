@@ -232,3 +232,6 @@ examine = "It's a brightly coloured bird of the jungle."
 id = 1476
 categories = ["birds"]
 examine = "It's a brightly coloured bird of the jungle. It flies very quickly."
+
+[daero]
+id = 1407

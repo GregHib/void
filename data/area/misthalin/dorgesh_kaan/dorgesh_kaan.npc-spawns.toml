@@ -106,4 +106,5 @@ spawns = [
   { id = "zanik_dorgesh_kaan_5", x = 2745, y = 5353, level = 1, members = true },
   { id = "grubfoot_dorgesh_kaan", x = 2703, y = 5367, members = true },
   { id = "grubfoot_dorgesh_kaan_2", x = 2729, y = 5291, members = true },
+  { id = "ham_agent_walton", x = 3303, y = 3024, members = true },
 ]

@@ -2,4 +2,10 @@ spawns = [
   { id = "captain_errdo_crashed", x = 3321, y = 3431, members = true },
   { id = "elissa_digsite", x = 3380, y = 3442, members = true },
   { id = "assassin_digsite", x = 3378, y = 3442, members = true },
+  { id = "digsite_student_blue", x = 3335, y = 3409, members = true },
+  { id = "digsite_student_orange", x = 3378, y = 3400, members = true },
+  { id = "digsite_student_purple", x = 3357, y = 3426, members = true },
+  { id = "dig_site_workman", x = 3337, y = 3414, members = true },
+  { id = "dig_site_workman", x = 3358, y = 3423, members = true },
+  { id = "dig_site_workman", x = 3376, y = 3442, members = true },
 ]

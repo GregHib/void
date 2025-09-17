@@ -279,4 +279,13 @@ spawns = [
   { id = "chicken", x = 3206, y = 3285 },
   { id = "chicken", x = 3208, y = 3286 },
   { id = "chicken", x = 3210, y = 3285 },
+  { id = "chicken_brown", x = 3204, y = 3286 },
+  { id = "chicken_brown", x = 3205, y = 3286 },
+  { id = "chicken_brown", x = 3208, y = 3285 },
+  { id = "chicken_brown", x = 3210, y = 3286 },
+  { id = "chicken_brown", x = 3225, y = 3300 },
+  { id = "chicken_brown", x = 3228, y = 3297 },
+  { id = "chicken_brown", x = 3228, y = 3299 },
+  { id = "chicken_brown", x = 3231, y = 3297 },
+  { id = "chicken_brown", x = 3232, y = 3299 },
 ]

@@ -3,7 +3,7 @@ id = 8492
 examine = "The small but tough doorman of the Warrior's Guild."
 
 [ghommal]
-id = 8492
+id = 4285
 examine = "A powerful warrior, guarding the Warriors' Guild."
 
 [sloane]
@@ -64,3 +64,21 @@ examine = "Used to be a black knight."
 id = 4287
 wander_radius = 2
 examine = "The guild engineer."
+
+[cyclopse_hammer]
+id = 6081
+
+[cyclopse_hammer_steel]
+id = 6078
+
+[cyclopse_club_lepard]
+id = 4291
+
+[cyclopse_club]
+id = 6080
+
+[cyclopse_club_mohawk]
+id = 6079
+
+[cyclopse_knife]
+id = 4292

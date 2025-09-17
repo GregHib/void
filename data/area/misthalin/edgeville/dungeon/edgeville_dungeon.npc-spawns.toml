@@ -61,7 +61,7 @@ spawns = [
   { id = "earth_warrior", x = 3121, y = 9992 },
   { id = "earth_warrior", x = 3122, y = 9996 },
   { id = "earth_warrior", x = 3123, y = 9988 },
-  { id = "earth_warrior", x = 3125, y = 9994 },
+  { id = "earth_warrior", x = 3124, y = 9994 },
   { id = "earth_warrior", x = 3126, y = 9992 },
   { id = "mysterious_ghost_edgeville_dungeon", x = 3122, y = 9963, members = true },
   { id = "evil_dave_edgeville_dungeon", x = 3080, y = 9890, members = true },

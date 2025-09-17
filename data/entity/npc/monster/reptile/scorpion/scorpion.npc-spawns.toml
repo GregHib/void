@@ -1,14 +1,14 @@
 spawns = [
     # Al Kharid mine
     { id = "scorpion", x = 3292, y = 3297 },
-    { id = "scorpion", x = 3298, y = 3304 },
+    { id = "scorpion", x = 3298, y = 3303 },
     { id = "scorpion", x = 3298, y = 3311 },
     { id = "scorpion", x = 3299, y = 3288 },
     { id = "scorpion", x = 3300, y = 3315 },
     { id = "scorpion", x = 3301, y = 3278 },
     { id = "scorpion", x = 3302, y = 3306 },
-    { id = "scorpion", x = 3303, y = 3292 },
-    { id = "scorpion", x = 3298, y = 3299 },
+    { id = "scorpion", x = 3301, y = 3291 },
+    { id = "scorpion", x = 3297, y = 3298 },
     # Al Kharid (South of bank)
     { id = "scorpion", x = 3292, y = 3142 },
     # Ape Atoll

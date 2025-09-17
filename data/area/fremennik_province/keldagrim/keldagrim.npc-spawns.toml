@@ -87,6 +87,7 @@ spawns = [
   { id = "trader_keldagrim_14", x = 2880, y = 10194, level = 1, members = true },
   { id = "trader_keldagrim_15", x = 2878, y = 10196, level = 1, members = true },
   { id = "trader_keldagrim_16", x = 2877, y = 10195, level = 1, members = true },
+  { id = "trade_referee", x = 2880, y = 10199, level = 1, members = true },
   { id = "commander_veldaban_keldagrim", x = 2826, y = 10215, members = true },
   { id = "black_guard_keldagrim_2", x = 2889, y = 10207, members = true },
   { id = "black_guard_keldagrim_3", x = 2822, y = 10212, members = true },
@@ -183,4 +184,6 @@ spawns = [
   { id = "colonel_grenda_keldagrim", x = 2871, y = 10170, members = true },
   { id = "supreme_commander_keldagrim", x = 2827, y = 10209, level = 1, members = true },
   { id = "dwarven_miner", x = 2945, y = 10182, members = true },
+  { id = "vigr", x = 2873, y = 10209, members = true },
+  { id = "king_veldaban", x = 2879, y = 10193, level = 2, members = true },
 ]

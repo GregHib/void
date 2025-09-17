@@ -8,12 +8,18 @@ range = 60
 max_hit_range = 100 # TODO always successful hits, neitiznot shield reduce max hit to 2
 max_hit_melee = 90
 hunt_mode = "aggressive"
-style = "crush"
+style = "range"
+weapon_style = "thrown"
+ammo = "troll_rock"
 respawn_delay = 25
 attack_speed = 7
 slayer_xp = 95.0
 categories = ["trolls"]
+combat_sounds = "thrower_troll"
+combat_anims = "thrower_troll"
+drop_table = "thrower_troll"
 drop_table = "thrower_troll_death_plateau"
+attack_range = 8
 attack_radius = 8
 examine = "Small for a troll, but it's mean, ugly and throws rocks."
 
@@ -79,3 +85,7 @@ examine = "She looks rather kindly, for a troll."
 [drunken_dwarfs_leg]
 id = 4970
 examine = "A little troll who has no name."
+
+[thistle]
+id = 1214
+examine = "It's a Troll Thistle."

@@ -115,6 +115,16 @@ examine = "Porcine."
 [piglet_2]
 id = 2243
 
+[pig]
+id = 2239
+wander_radius = 4
+examine = "Porker."
+
+[pig_2]
+id = 2240
+wander_radius = 4
+examine = "Swine."
+
 [master_farmer]
 id = 2234
 examine = "A master at farming."

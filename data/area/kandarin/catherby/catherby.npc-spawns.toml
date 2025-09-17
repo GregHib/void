@@ -43,8 +43,6 @@ spawns = [
 
   # 11318
   { id = "vanessa", x = 2820, y = 3462, members = true },
-
-
   #7490
   { id = "renegade_knight_keep_le_faye", x = 1901, y = 4271, level = 0, members = true },
   { id = "renegade_knight_keep_le_faye", x = 1909, y = 4271, level = 0, members = true },
