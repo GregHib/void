@@ -4,7 +4,7 @@ id = 145
 [ice_giant_ice_queens_lair]
 id = 4685
 
-[ice_queen_ice_queens_lair]
+[ice_queen]
 id = 795
 examine = "The exiled elder sister of the Queen of Snow."
 

@@ -3,7 +3,7 @@ id = 4671
 categories = ["red_dragons"]
 examine = "A big powerful dragon."
 
-[mithril_dragon_brimhaven_dungeon]
+[mithril_dragon]
 id = 5363
 categories = ["mithril_dragons"]
 examine = "Experimenting with mithril gone bad!"

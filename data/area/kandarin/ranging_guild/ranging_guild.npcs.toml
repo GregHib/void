@@ -1,23 +1,23 @@
-[bonzo_ranging_guild]
+[bonzo]
 id = 225
 examine = "The Fishing Contest judge."
 
-[sinister_stranger_ranging_guild]
+[sinister_stranger]
 id = 226
 
-[morris_ranging_guild]
+[morris]
 id = 227
 examine = "He checks the entrants to the Fishing Contest."
 
-[big_dave_ranging_guild]
+[big_dave]
 id = 228
 examine = "I can see how he got his name."
 
-[joshua_ranging_guild]
+[joshua]
 id = 229
 examine = "He loves to fish!"
 
-[grandpa_jack_ranging_guild]
+[grandpa_jack]
 id = 230
 examine = "He looks elderly."
 
@@ -38,7 +38,7 @@ id = 236
 id = 678
 examine = "Keeps order in the ranging guild."
 
-[ranging_guild_doorman_ranging_guild]
+[ranging_guild_doorman]
 id = 679
 examine = "The keeper of the gates to the ranging guild."
 
@@ -54,27 +54,27 @@ examine = "Supplier of Rangers armour."
 id = 683
 examine = "Supplier of Archery equipment."
 
-[tower_advisor_ranging_guild]
+[tower_advisor]
 id = 684
 examine = "Tower keeper and competition judge."
 
-[tower_advisor_ranging_guild_2]
+[tower_advisor_2]
 id = 685
 
-[tower_advisor_ranging_guild_3]
+[tower_advisor_3]
 id = 686
 
-[tower_advisor_ranging_guild_4]
+[tower_advisor_4]
 id = 687
 
 [tribal_weapon_salesman_ranging_guild]
 id = 692
 examine = "Supplier of authentic throwing weapons."
 
-[competition_judge_ranging_guild]
+[competition_judge]
 id = 693
 
-[ticket_merchant_ranging_guild]
+[ticket_merchant]
 id = 694
 examine = "Sells equipment in exchange for archery tickets."
 

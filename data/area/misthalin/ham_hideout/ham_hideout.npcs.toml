@@ -2,31 +2,31 @@
 id = 1709
 examine = "The leader of the 'Humans Against Monsters' group."
 
-[h_a_m__guard_ham_cave]
+[ham_guard_ham_cave]
 id = 1710
 examine = "A guard for the humans against monster group."
 
-[h_a_m__guard_ham_cave_2]
+[ham_guard_ham_cave_2]
 id = 1711
 examine = "A guard for the humans against monster group."
 
-[h_a_m__guard_ham_cave_3]
+[ham_guard_ham_cave_3]
 id = 1712
 examine = "A guard for the humans against monster group."
 
-[h_a_m__deacon_ham_cave]
+[ham_deacon_ham_cave]
 id = 1713
 examine = "A deacon in the Humans Against Monsters group. A rather enthusiastic chap."
 
-[h_a_m__member_ham_cave]
+[ham_member_ham_cave]
 id = 1714
 examine = "A member of the 'Humans Against Monsters' group."
 
-[h_a_m__member_ham_cave_2]
+[ham_member_ham_cave_2]
 id = 1715
 examine = "A member of the 'Humans Against Monsters' group."
 
-[h_a_m__member_ham_cave_3]
+[ham_member_ham_cave_3]
 id = 1717
 examine = "A member of the 'Humans Against Monsters' group."
 

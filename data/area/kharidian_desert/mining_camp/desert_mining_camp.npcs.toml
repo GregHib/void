@@ -78,7 +78,7 @@ examine = "It looks like he's been here a long time."
 id = 827
 examine = "He looks a bit aggressive."
 
-[mercenary_captain_desert_mining_camp]
+[mercenary_captain]
 id = 830
 examine = "He looks a bit aggressive."
 

@@ -1,27 +1,27 @@
-[neil_wilderness_bandit_camp]
+[neil]
 id = 1784
 examine = "A very brave merchant."
 
-[sam_wilderness_bandit_camp]
+[sam]
 id = 1787
 examine = "A very brave merchant."
 
-[dark_warrior_wilderness_bandit_camp]
+[dark_warrior]
 id = 192
 
-[guard_bandit_wilderness_bandit_camp]
+[guard_bandit]
 id = 196
 examine = "There's bloodlust in his eyes."
 
-[black_heather_wilderness_bandit_camp]
+[black_heather]
 id = 202
 examine = "Has a fearsome scowl. Moreso, after being told to smile once in a while."
 
-[donny_the_lad_wilderness_bandit_camp]
+[donny_the_lad]
 id = 203
 examine = "Has a fearsome posture, and a fearsome pair of weapons!"
 
-[speedy_keith_wilderness_bandit_camp]
+[speedy_keith]
 id = 204
 examine = "Refuses to accept his hairstyle has gone out of fashion."
 
@@ -31,11 +31,11 @@ id = 2383
 [fishing_spot_wilderness_bandit_camp]
 id = 326
 
-[fat_tony_wilderness_bandit_camp]
+[fat_tony]
 id = 596
 examine = "A pizza expert; in both making and eating."
 
-[noterazzo_wilderness_bandit_camp]
+[noterazzo]
 id = 597
 examine = "The lawless shopkeeper."
 

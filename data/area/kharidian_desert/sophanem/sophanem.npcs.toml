@@ -6,23 +6,23 @@ examine = "A malnourished worker."
 id = 1979
 examine = "A malnourished worker."
 
-[embalmer_sophanem]
+[embalmer]
 id = 1980
 examine = "A strange-smelling merchant."
 
-[carpenter_sophanem]
+[carpenter]
 id = 1981
 examine = "A block of a man."
 
-[raetul_sophanem]
+[raetul]
 id = 1982
 examine = "A dedicated follower of fashion."
 
-[siamun_sophanem]
+[siamun]
 id = 1983
 examine = "I wonder if they dislike me examining them?"
 
-[sphinx_sophanem]
+[sphinx]
 id = 1990
 examine = "An awe inspiring combination of a lady, a lion and an eagle."
 
@@ -30,62 +30,62 @@ examine = "An awe inspiring combination of a lady, a lion and an eagle."
 id = 1992
 examine = "A graceful feline."
 
-[locust_sophanem]
+[locust]
 id = 1995
 examine = "Obnoxious, overgrown insect."
 
-[plague_frog_sophanem]
+[plague_frog]
 id = 1997
 categories = ["frogs"]
 examine = "A very smelly frog."
 
-[plague_cow_sophanem]
+[plague_cow]
 id = 1998
 examine = "I might give the burgers a miss in this town."
 
-[plague_cow_sophanem_2]
+[plague_cow_2]
 id = 1999
 examine = "I don't fancy eating any part of this."
 
-[plague_cow_sophanem_3]
+[plague_cow_3]
 id = 2000
 
-[klenter_sophanem]
+[klenter]
 id = 2013
 
-[neferti_the_camel_sophanem]
+[neferti_the_camel]
 id = 2815
 examine = "A camel who wants to see the world."
 
-[tarik_sophanem]
+[tarik]
 id = 4478
 examine = "That's a strange hat for a local."
 
-[stonemason_sophanem]
+[stonemason]
 id = 5261
 
-[nathifa_sophanem]
+[nathifa]
 id = 5263
 
-[urbi_sophanem]
+[urbi]
 id = 5265
 
-[jamila_sophanem]
+[jamila]
 id = 5267
 
-[sophanem_guard_sophanem]
+[sophanem_guard]
 id = 5269
 
-[sophanem_guard_sophanem_2]
+[sophanem_guard_2]
 id = 5271
 
-[sophanem_guard_sophanem_3]
+[sophanem_guard_3]
 id = 5273
 
-[sophanem_guard_sophanem_4]
+[sophanem_guard_4]
 id = 5275
 
-[jex_sophanem]
+[jex]
 id = 5279
 examine = "Preach, my brother!"
 

@@ -2,7 +2,6 @@ spawns = [
   { id = "examiner_exam_centre", x = 3354, y = 3346 },
   { id = "examiner_exam_centre_2", x = 3357, y = 3345 },
   { id = "researcher_exam_centre", x = 3361, y = 3357 },
-  { id = "mr_mordau", x = 1884, y = 4998 },
   { id = "examiner_exam_centre_3", x = 3351, y = 3345 },
   { id = "panning_guide_exam_centre", x = 3376, y = 3373 },
   { id = "dr_nabanik_exam_centre", x = 3354, y = 3353, members = true },

@@ -146,59 +146,59 @@ examine = "He seems deeply engaged in conversation with his fellow boatmen."
 id = 1849
 examine = "He seems deeply engaged in conversation with his fellow boatmen."
 
-[purple_pewter_secretary_keldagrim]
+[purple_pewter_secretary]
 id = 2092
 examine = "The head secretary of the Purple Pewter mining company."
 
-[yellow_fortune_secretary_keldagrim]
+[yellow_fortune_secretary]
 id = 2093
 examine = "The head secretary of the Yellow Fortune mining company."
 
-[blue_opal_secretary_keldagrim]
+[blue_opal_secretary]
 id = 2094
 examine = "The head secretary of the Blue Opal mining company."
 
-[green_gemstone_secretary_keldagrim]
+[green_gemstone_secretary]
 id = 2095
 examine = "The head secretary of the Green Gemstone mining company."
 
-[white_chisel_secretary_keldagrim]
+[white_chisel_secretary]
 id = 2096
 examine = "The head secretary of the White Chisel mining company."
 
-[silver_cog_secretary_keldagrim]
+[silver_cog_secretary]
 id = 2097
 examine = "The head secretary of the Silver Cog mining company."
 
-[brown_engine_secretary_keldagrim]
+[brown_engine_secretary]
 id = 2098
 examine = "The head secretary of the Brown Engine mining company."
 
-[purple_pewter_director_keldagrim]
+[purple_pewter_director]
 id = 2100
 examine = "One of the leaders of the business Consortium."
 
-[blue_opal_director_keldagrim]
+[blue_opal_director]
 id = 2101
 examine = "One of the leaders of the business Consortium."
 
-[yellow_fortune_director_keldagrim]
+[yellow_fortune_director]
 id = 2102
 examine = "One of the leaders of the business Consortium."
 
-[green_gemstone_director_keldagrim]
+[green_gemstone_director]
 id = 2103
 examine = "One of the leaders of the business Consortium."
 
-[white_chisel_director_keldagrim]
+[white_chisel_director]
 id = 2104
 examine = "One of the leaders of the business Consortium."
 
-[silver_cog_director_keldagrim]
+[silver_cog_director]
 id = 2105
 examine = "One of the leaders of the business Consortium."
 
-[brown_engine_director_keldagrim]
+[brown_engine_director]
 id = 2106
 examine = "One of the leaders of the business Consortium."
 
@@ -308,7 +308,7 @@ examine = "Very protective of his master...and his property."
 id = 2141
 examine = "Makes sculptures."
 
-[riki_the_sculptors_model_keldagrim]
+[riki_the_sculptors_model]
 id = 2142
 
 [santiri_keldagrim]
@@ -508,10 +508,10 @@ id = 2231
 id = 2321
 examine = "An expert on the brewing of ales and cider."
 
-[orange_flame_secretary_keldagrim]
+[orange_flame_secretary]
 id = 2403
 
-[orange_flame_director_keldagrim]
+[orange_flame_director]
 id = 2404
 
 [red_axe_cat_keldagrim]

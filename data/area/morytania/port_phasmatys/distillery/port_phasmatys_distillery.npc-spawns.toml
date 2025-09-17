@@ -1,3 +1,3 @@
 spawns = [
-  { id = "metarialus_port_phasmatys_distillery", x = 3680, y = 9958 },
+  { id = "metarialus", x = 3680, y = 9958 },
 ]

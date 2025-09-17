@@ -2,25 +2,25 @@
 id = 1658
 examine = "A Supplier of Magical robes."
 
-[zavistic_rarve_yanille]
+[zavistic_rarve]
 id = 2059
 examine = "The Grand Secretary of the Wizards' Guild in Yanille."
 
-[selena_yanille]
+[selena]
 id = 2332
 examine = "Perhaps this gardener might look after your crops for you."
 
 [tramp_yanille]
 id = 2794
 
-[bert_yanille]
+[bert]
 id = 3108
 
-[guard_captain_yanille]
+[guard_captain]
 id = 3109
 examine = "This guard looks rather drunk and has beer stains down his armour."
 
-[watchman_yanille]
+[watchman]
 id = 34
 examine = "Watches stuff. But who watches him?"
 
@@ -28,19 +28,19 @@ examine = "Watches stuff. But who watches him?"
 id = 35
 examine = "A soldier of the town of Yanille."
 
-[professor_imblewyn_yanille]
+[professor_imblewyn]
 id = 4586
 examine = "A visiting gnome mage."
 
-[magic_store_owner_yanille]
+[magic_store_owner]
 id = 461
 examine = "A Supplier of Magical items."
 
-[aleck_yanille]
+[aleck]
 id = 5110
 examine = "He acts as if he owns the place."
 
-[leon_yanille]
+[leon]
 id = 5111
 examine = "He seems to be making odd sucking noises with his teeth."
 
@@ -56,7 +56,7 @@ examine = "A wizard."
 id = 5197
 examine = "A wizard."
 
-[frenita_yanille]
+[frenita]
 id = 593
 examine = "A recipe for success- in Cooking."
 
@@ -64,11 +64,11 @@ examine = "A recipe for success- in Cooking."
 id = 6892
 examine = "The lady of the pet shop."
 
-[dalmatian_yanille]
+[dalmatian]
 id = 6896
 examine = "A dalmatian puppy."
 
-[bulldog_yanille]
+[bulldog]
 id = 6897
 examine = "A bulldog puppy."
 
@@ -76,25 +76,25 @@ examine = "A bulldog puppy."
 id = 7561
 examine = "Looks after your Farming tools."
 
-[og_yanille]
+[og]
 id = 853
 categories = ["ogres"]
 examine = "A senior member of the ogre community."
 
-[grew_yanille]
+[grew]
 id = 854
 categories = ["ogres"]
 examine = "Very probably an ogre."
 
-[watchtower_wizard_yanille]
+[watchtower_wizard]
 id = 872
 examine = "The hat is a dead giveaway."
 
-[tower_guard_yanille]
+[tower_guard]
 id = 877
 examine = "Tries to keep the peace."
 
-[colonel_radick_yanille]
+[colonel_radick]
 id = 878
 examine = "A military man."
 

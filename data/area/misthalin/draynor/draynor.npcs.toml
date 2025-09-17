@@ -79,28 +79,28 @@ id = 152
 id = 1761
 examine = "Farming the wheat."
 
-[veronica_draynor]
+[veronica]
 id = 285
 examine = "She doesn't look too happy."
 
-[professor_oddenstein_draynor]
+[professor_oddenstein]
 id = 286
 examine = "A mad scientist if ever I saw one!"
 
 [chicken_draynor]
 id = 3290
 
-[maris_draynor]
+[maris]
 id = 3292
 examine = "She's married to Morgan."
 
-[ava_draynor]
+[ava]
 id = 5199
 
 [scout_draynor]
 id = 5576
 
-[morgan_draynor]
+[morgan]
 id = 755
 examine = "He looks scared."
 

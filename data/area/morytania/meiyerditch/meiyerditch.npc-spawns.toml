@@ -190,7 +190,7 @@ spawns = [
   { id = "flying_female_vampire", x = 3641, y = 3344, members = true },
   { id = "flying_female_vampire", x = 3636, y = 3349, members = true },
   { id = "flying_female_vampire", x = 3646, y = 3351, members = true },
-  { id = "vyrewatch", x = 3634, y = 3344, members = true },
+  { id = "vyrewatch_meiyerditch_12", x = 3634, y = 3344, members = true },
   { id = "vampyre_juvenile_male", x = 3603, y =  3189, members = true },
   { id = "vampyre_juvenile_male", x = 3638, y =  3196, members = true },
   { id = "vampyre_juvenile_female", x = 3527, y =  3351, members = true },

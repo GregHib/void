@@ -30,12 +30,12 @@ examine = "An imprisoned gublinch."
 id = 7150
 examine = "An imprisoned gublinch."
 
-[cockroach_worker_stronghold_of_player_safety]
+[cockroach_worker]
 id = 7159
 categories = ["cockroaches"]
 examine = "Eurgh! A big bug."
 
-[cockroach_soldier_stronghold_of_player_safety]
+[cockroach_soldier]
 id = 7160
 categories = ["cockroaches"]
 examine = "Euww! A giant bug."

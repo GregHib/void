@@ -2,12 +2,12 @@
 id = 6772
 examine = "It's not quite small enough to stamp upon."
 
-[scabaras_ranger_scabaras_dungeon]
+[scabaras_ranger]
 id = 6773
 categories = ["scabarites"]
 examine = "Bred to shoot you down."
 
-[scabaras_lancer_scabaras_dungeon]
+[scabaras_lancer]
 id = 6774
 categories = ["scabarites"]
 examine = "It might be angry...it's hard to tell."

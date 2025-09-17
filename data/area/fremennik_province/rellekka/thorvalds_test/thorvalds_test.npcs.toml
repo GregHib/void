@@ -1,0 +1,27 @@
+[brundt_the_chieftain_thorvalds_test]
+id = 9118
+
+[koschei_the_deathless_thorvalds_test]
+id = 9119
+examine = "He lives again!"
+
+[market_guard_thorvalds_test]
+id = 9122
+examine = "Fighting to the death for his home and his family."
+
+[fremennik_warrior_thorvalds_test]
+id = 9123
+examine = "A hardy defender of Rellekka."
+
+[agnar_thorvalds_test]
+id = 9124
+
+[pontak_thorvalds_test]
+id = 9125
+
+[jennella_thorvalds_test]
+id = 9126
+
+[sassilik_thorvalds_test]
+id = 9127
+

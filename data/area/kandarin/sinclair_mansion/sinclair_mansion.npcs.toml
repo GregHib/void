@@ -1,4 +1,4 @@
-[milk_seller_sinclair_mansion]
+[milk_seller]
 id = 11547
 examine = "She sells milk."
 
@@ -12,45 +12,45 @@ id = 315
 [guard_sinclair_mansion]
 id = 6191
 
-[anna_sinclair_mansion]
+[anna]
 id = 6192
 
 [bob_sinclair_mansion]
 id = 6193
 
-[carol_sinclair_mansion]
+[carol]
 id = 6194
 
-[david_sinclair_mansion]
+[david]
 id = 6195
 
-[elizabeth_sinclair_mansion]
+[elizabeth]
 id = 6196
 
-[frank_sinclair_mansion]
+[frank]
 id = 6197
 
-[donovan_the_family_handyman_sinclair_mansion]
+[donovan_the_family_handyman]
 id = 806
 examine = "He looks very tired..."
 
-[pierre_sinclair_mansion]
+[pierre]
 id = 807
 examine = "His job doesn't look very fun..."
 
-[hobbes_sinclair_mansion]
+[hobbes]
 id = 808
 examine = "He looks kind of stuck up..."
 
-[louisa_sinclair_mansion]
+[louisa]
 id = 809
 examine = "She looks like she enjoys her job."
 
-[mary_sinclair_mansion]
+[mary]
 id = 810
 examine = "She looks very nervous..."
 
-[stanford_sinclair_mansion]
+[stanford]
 id = 811
 examine = "He looks like he spends a lot of time outdoors."
 
@@ -58,11 +58,11 @@ examine = "He looks like he spends a lot of time outdoors."
 id = 812
 examine = "An officer of the Law."
 
-[gossip_sinclair_mansion]
+[gossip]
 id = 813
 examine = "One of those people who love to gossip!"
 
-[sinclair_guard_dog_sinclair_mansion]
+[sinclair_guard_dog]
 id = 821
 examine = "Big, noisy, and scary looking!"
 

@@ -25,10 +25,10 @@ id = 2485
 [tamayu_karamja]
 id = 2487
 
-[murcaily_karamja]
+[murcaily]
 id = 2528
 
-[harpie_bug_swarm_karamja]
+[harpie_bug_swarm]
 id = 3153
 categories = ["harpie_bug_swarms"]
 examine = "A swarm of bugs."
@@ -38,27 +38,27 @@ id = 3783
 categories = ["frogs"]
 examine = "Long legged licker."
 
-[jungle_forester_karamja]
+[jungle_forester]
 id = 401
 examine = "He deals in exotic types of wood."
 
-[jungle_forester_karamja_2]
+[jungle_forester_2]
 id = 402
 examine = "She deals in exotic types of wood."
 
-[penwie_karamja]
+[penwie]
 id = 4578
 examine = "He looks like he's a long way from home."
 
-[mosol_rei_karamja]
+[mosol_rei]
 id = 500
 examine = "A warrior from Shilo Village."
 
-[horned_graahk_karamja]
+[horned_graahk]
 id = 5105
 examine = "Get in a graahk's way and you're going to know about it...however briefly."
 
-[captain_shanks_karamja]
+[captain_shanks]
 id = 518
 examine = "He's the Captain of the 'Lady of the Waves'."
 
@@ -71,39 +71,39 @@ id = 6376
 [jungle_spider_karamja_2]
 id = 6377
 
-[tenacious_toucan_karamja]
+[tenacious_toucan]
 id = 6378
 categories = ["birds"]
 examine = "I wouldn't want to be footing that bill."
 
-[giant_ant_worker_karamja]
+[giant_ant_worker]
 id = 6379
 examine = "I wonder how much he can lift."
 
-[giant_ant_soldier_karamja]
+[giant_ant_soldier]
 id = 6380
 examine = "Gi-ant-ant-ant-ant..."
 
-[giant_wasp_karamja]
+[giant_wasp]
 id = 6381
 examine = "That stinger has to hurt..."
 
-[pernicious_parrot_karamja]
+[pernicious_parrot]
 id = 6382
 categories = ["birds"]
 examine = "Polynomial - a parrot that goes without breakfast, lunch or dinner."
 
-[giant_wasp_karamja_2]
+[giant_wasp_2]
 id = 6383
 
-[karamjan_jungle_eagle_karamja]
+[karamjan_jungle_eagle]
 id = 6387
 
 [baby_gecko_karamja]
 id = 6917
 examine = "It's so adorably tiny!"
 
-[gecko_karamja]
+[gecko]
 id = 6918
 examine = "How cute!"
 
@@ -150,14 +150,14 @@ id = 7286
 [baby_gecko_karamja_4]
 id = 7288
 
-[gecko_karamja_2]
+[gecko_2]
 id = 7289
 examine = "How cute!"
 
-[gecko_karamja_3]
+[gecko_3]
 id = 7290
 
-[gecko_karamja_4]
+[gecko_4]
 id = 7292
 
 [tribesman]

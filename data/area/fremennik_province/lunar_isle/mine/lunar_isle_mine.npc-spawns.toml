@@ -1,3 +1,3 @@
 spawns = [
-  { id = "fallen_man_lunar_isle_mine", x = 2348, y = 10362, level = 2, members = true },
+  { id = "fallen_man_mine", x = 2348, y = 10362, level = 2, members = true },
 ]

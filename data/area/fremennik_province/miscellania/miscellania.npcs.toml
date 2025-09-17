@@ -6,38 +6,38 @@ examine = "An inhabitant of icy regions."
 [gull_miscellania]
 id = 1325
 
-[queen_sigrid_miscellania]
+[queen_sigrid]
 id = 1359
 
-[arnor_miscellania]
+[arnor]
 id = 1361
 examine = "A subject of Etceteria."
 
-[haming_miscellania]
+[haming]
 id = 1362
 examine = "A subject of Etceteria."
 
-[moldof_miscellania]
+[moldof]
 id = 1363
 examine = "A subject of Etceteria."
 
-[helga_miscellania]
+[helga]
 id = 1364
 examine = "A subject of Etceteria."
 
-[matilda_miscellania]
+[matilda]
 id = 1365
 examine = "A subject of Etceteria."
 
-[ashild_miscellania]
+[ashild]
 id = 1366
 examine = "A subject of Etceteria."
 
-[skraeling_miscellania]
+[skraeling]
 id = 1367
 examine = "A warrior of Etceteria."
 
-[skraeling_miscellania_2]
+[skraeling_2]
 id = 1368
 examine = "A warrior of Etceteria."
 
@@ -49,23 +49,23 @@ examine = "Hmm, he smells."
 id = 1370
 examine = "At least he eats his greens."
 
-[prince_brand_miscellania]
+[prince_brand]
 id = 1371
 
-[princess_astrid_miscellania]
+[princess_astrid]
 id = 1372
 
-[king_vargas_miscellania]
+[king_vargas]
 id = 1373
 
 [guard_miscellania]
 id = 1374
 examine = "He's guarding the throne room."
 
-[advisor_ghrim_miscellania]
+[advisor_ghrim]
 id = 1375
 
-[derrik_miscellania]
+[derrik]
 id = 1376
 examine = "Smithy for Sogthorpe."
 
@@ -77,53 +77,53 @@ examine = "He's cutting the wheat."
 id = 1378
 examine = "No-one would mistake her for a duchess."
 
-[ragnar_miscellania]
+[ragnar]
 id = 1379
 examine = "A subject of Miscellania."
 
-[einar_miscellania]
+[einar]
 id = 1380
 examine = "A subject of Miscellania."
 
-[alrik_miscellania]
+[alrik]
 id = 1381
 examine = "A subject of Miscellania."
 
-[thorhild_miscellania]
+[thorhild]
 id = 1382
 examine = "A subject of Miscellania."
 
-[halla_miscellania]
+[halla]
 id = 1383
 examine = "A subject of Miscellania."
 
 [sailor_miscellania]
 id = 1385
 
-[rannveig_miscellania]
+[rannveig]
 id = 1386
 examine = "A subject of Miscellania."
 
-[thora_miscellania]
+[thora]
 id = 1387
 examine = "A subject of Miscellania."
 
-[valgerd_miscellania]
+[valgerd]
 id = 1388
 examine = "A subject of Miscellania."
 
-[skraeling_miscellania_3]
+[skraeling_3]
 id = 1389
 
-[broddi_miscellania]
+[broddi]
 id = 1390
 examine = "A subject of Miscellania."
 
-[skraeling_miscellania_4]
+[skraeling_4]
 id = 1391
 examine = "A warrior of Miscellania."
 
-[ragnvald_miscellania]
+[ragnvald]
 id = 1392
 examine = "A subject of Miscellania."
 
@@ -179,39 +179,39 @@ examine = "His bark's worse than his blight."
 id = 3917
 examine = "He looks a bit seedy."
 
-[runa_miscellania]
+[runa]
 id = 3920
 examine = "The barmaid of the Esoterican Arms."
 
-[halla_miscellania_2]
+[halla_2]
 id = 3921
 examine = "She owns the clothes shop."
 
-[finn_miscellania]
+[finn]
 id = 3922
 examine = "Runs the general store."
 
-[osvald_miscellania]
+[osvald]
 id = 3923
 examine = "If it's edible, he'll sell it."
 
-[runolf_miscellania]
+[runolf]
 id = 3924
 examine = "A subject of Miscellania."
 
-[tjorvi_miscellania]
+[tjorvi]
 id = 3925
 examine = "A subject of Miscellania."
 
-[ingrid_miscellania]
+[ingrid]
 id = 3926
 examine = "A subject of Miscellania."
 
-[thora_miscellania_2]
+[thora_2]
 id = 3927
 examine = "A subject of Miscellania."
 
-[signy_miscellania]
+[signy]
 id = 3928
 examine = "A Fremennik teenager."
 
@@ -219,48 +219,48 @@ examine = "A Fremennik teenager."
 id = 3929
 examine = "A Fremennik teenager."
 
-[armod_miscellania]
+[armod]
 id = 3930
 examine = "A Fremennik teenager."
 
-[beigarth_miscellania]
+[beigarth]
 id = 3931
 examine = "A Fremennik teenager."
 
-[reinn_miscellania]
+[reinn]
 id = 3932
 examine = "A Fremennik teenager."
 
-[alviss_miscellania]
+[alviss]
 id = 3933
 examine = "A dwarf who's currently living in Miscellania."
 
-[fullangr_miscellania]
+[fullangr]
 id = 3934
 examine = "A dwarf who's currently living in Miscellania."
 
-[jari_miscellania]
+[jari]
 id = 3935
 examine = "A dwarf who's currently living in Miscellania."
 
-[thorodin_miscellania]
+[thorodin]
 id = 3936
 examine = "A dwarf miner. He's digging holes in the walls."
 
-[ferd_miscellania]
+[ferd]
 id = 3937
 examine = "A dwarf miner. He's shoring up the walls."
 
-[donal_miscellania]
+[donal]
 id = 3938
 examine = "A rather scared-looking dwarf. He doesn't seem all that drunk."
 
-[sea_snake_young_miscellania]
+[sea_snake_young]
 id = 3939
 categories = ["sea_snakes"]
 examine = "Snake, snake, oh, it's a young snake..."
 
-[sea_snake_hatchling_miscellania]
+[sea_snake_hatchling]
 id = 3940
 categories = ["sea_snakes"]
 examine = "A baby sea snake. Snaaaaaaake!"
@@ -272,23 +272,23 @@ id = 3941
 id = 3942
 examine = "He's guarding the entrance to the dungeons."
 
-[yulf_squecks_miscellania]
+[yulf_squecks]
 id = 4561
 examine = "Perhaps this gardener might look after your crops for you."
 
 [rabbit_miscellania_2]
 id = 5829
 
-[king_vargas_miscellania_2]
+[king_vargas_2]
 id = 7403
 
 [tool_leprechaun_miscellania]
 id = 7557
 examine = "Looks after your Farming tools."
 
-[queen_sigrid_miscellania_2]
+[queen_sigrid_2]
 id = 9349
 
-[macaroni_penguin_miscellania]
+[macaroni_penguin]
 id = 4252
 examine = "Beak areful with this one, he looks shifty!"

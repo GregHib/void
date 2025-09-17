@@ -163,9 +163,9 @@ spawns = [
   { id = "greater_demon_2", x = 2630, y = 9482, level = 2 },
   { id = "red_dragon", x = 2706, y = 9507 },
   { id = "red_dragon", x = 2723, y = 9517 },
-  { id = "mithril_dragon_brimhaven_dungeon", x = 1091, y = 4528, members = true },
-  { id = "mithril_dragon_brimhaven_dungeon", x = 1093, y = 4537, members = true },
-  { id = "mithril_dragon_brimhaven_dungeon", x = 1103, y = 4530, members = true },
-  { id = "mithril_dragon_brimhaven_dungeon", x = 1103, y = 4541, members = true },
+  { id = "mithril_dragon", x = 1091, y = 4528, members = true },
+  { id = "mithril_dragon", x = 1093, y = 4537, members = true },
+  { id = "mithril_dragon", x = 1103, y = 4530, members = true },
+  { id = "mithril_dragon", x = 1103, y = 4541, members = true },
   { id = "black_demon", x = 2739, y = 9487, members = true },
 ]

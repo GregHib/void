@@ -17,9 +17,9 @@ spawns = [
   { id = "kharid_scorpion_barbarian_outpost", x = 2552, y = 3570, members = true },
   { id = "commander_connad_barbarian_outpost", x = 2536, y = 3577, members = true },
   { id = "captain_cain_barbarian_outpost", x = 2534, y = 3568, members = true },
-  { id = "private_pendron_barbarian_outpost", x = 2525, y = 3564, members = true },
-  { id = "private_pierreb_barbarian_outpost", x = 2520, y = 3568, members = true },
-  { id = "private_paldon_barbarian_outpost", x = 2526, y = 3575, members = true },
+  { id = "private_pendron", x = 2525, y = 3564, members = true },
+  { id = "private_pierreb", x = 2520, y = 3568, members = true },
+  { id = "private_paldon", x = 2526, y = 3575, members = true },
 
   { id = "penance_fighter", x = 1880, y = 5486, members = true },
   { id = "penance_ranger", x = 1874, y = 5485, members = true },

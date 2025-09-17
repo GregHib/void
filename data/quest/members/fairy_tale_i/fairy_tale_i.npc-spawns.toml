@@ -1,10 +1,10 @@
 spawns = [
-  { id = "baby_tanglefoot_fairy_tale_part_1", x = 2325, y = 4394, members = true },
-  { id = "baby_tanglefoot_fairy_tale_part_1", x = 2325, y = 4398, members = true },
-  { id = "baby_tanglefoot_fairy_tale_part_1", x = 2329, y = 4383, members = true },
-  { id = "baby_tanglefoot_fairy_tale_part_1", x = 2329, y = 4393, members = true },
-  { id = "baby_tanglefoot_fairy_tale_part_1", x = 2344, y = 4386, members = true },
-  { id = "baby_tanglefoot_fairy_tale_part_1_2", x = 2327, y = 4388, members = true },
-  { id = "baby_tanglefoot_fairy_tale_part_1_2", x = 2346, y = 4385, members = true },
-  { id = "baby_tanglefoot_fairy_tale_part_1_2", x = 2349, y = 4365, members = true },
+  { id = "baby_tanglefoot", x = 2325, y = 4394, members = true },
+  { id = "baby_tanglefoot", x = 2325, y = 4398, members = true },
+  { id = "baby_tanglefoot", x = 2329, y = 4383, members = true },
+  { id = "baby_tanglefoot", x = 2329, y = 4393, members = true },
+  { id = "baby_tanglefoot", x = 2344, y = 4386, members = true },
+  { id = "baby_tanglefoot_2", x = 2327, y = 4388, members = true },
+  { id = "baby_tanglefoot_2", x = 2346, y = 4385, members = true },
+  { id = "baby_tanglefoot_2", x = 2349, y = 4365, members = true },
 ]

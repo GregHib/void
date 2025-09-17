@@ -106,7 +106,7 @@ wander_radius = 3
 collision = "indoors"
 examine = "Anyone fancy a trim?"
 
-[ali_tist_falador]
+[ali_tist]
 id = 11641
 
 [customer_falador]
@@ -121,7 +121,7 @@ id = 11657
 [jessika_falador]
 id = 11668
 
-[ikis_krum_falador]
+[ikis_krum]
 id = 12237
 examine = "One of Gielinor's many citizens."
 
@@ -131,18 +131,18 @@ id = 12264
 [jessika_falador_2]
 id = 12271
 
-[idria_falador]
+[idria]
 id = 1599
 
-[sir_tiffy_cashien_falador]
+[sir_tiffy_cashien]
 id = 2290
 examine = "Head of recruitment for the Temple Knights."
 
-[sarah_falador]
+[sarah]
 id = 2304
 examine = "She sells Farming equipment."
 
-[sheepdog_falador]
+[sheepdog]
 id = 2311
 examine = "Farmer/sheep liaison officer. Go on - give the dog a bone!"
 
@@ -160,11 +160,11 @@ id = 2315
 categories = ["birds"]
 examine = "Yep. Definitely a chicken."
 
-[elstan_falador]
+[elstan]
 id = 2323
 examine = "Perhaps this gardener might look after your crops for you."
 
-[heskel_falador]
+[heskel]
 id = 2340
 examine = "Perhaps this gardener might look after your crops for you."
 
@@ -225,7 +225,7 @@ examine = "Keeping an eye out for threats to the city."
 id = 3233
 examine = "Keeping an eye out for threats to the city."
 
-[apprentice_workman_falador]
+[apprentice_workman]
 id = 3235
 examine = "He's learning a trade."
 
@@ -267,14 +267,14 @@ examine = "A practicer of dark arts."
 id = 3245
 examine = "A practicer of dark arts."
 
-[squirrel_falador]
+[squirrel]
 id = 3283
 examine = "Bushy tail!"
 
-[squirrel_falador_2]
+[squirrel_2]
 id = 3284
 
-[squirrel_falador_3]
+[squirrel_3]
 id = 3285
 
 [raccoon_falador]
@@ -354,18 +354,18 @@ examine = "He likes to paaaarty!"
 id = 661
 examine = "Pretty barmaid."
 
-[lucy_falador]
+[lucy]
 id = 662
 examine = "Pretty barmaid."
 
-[baby_raccoon_falador]
+[baby_raccoon_grey]
 id = 6997
 examine = "A stripy little baby raccoon."
 
-[baby_squirrel_falador]
+[baby_squirrel_golden]
 id = 7309
 
-[baby_squirrel_falador_2]
+[baby_squirrel_cream]
 id = 6921
 examine = "A tiny nut-thief."
 
@@ -413,13 +413,13 @@ id = 8477
 [cyrisus_falador]
 id = 8478
 
-[karma_the_chameleon_falador]
+[karma_the_chameleon]
 id = 8588
 
 [sir_vant_falador]
 id = 8854
 
-[dog_falador]
+[dog]
 id = 98
 categories = ["dogs"]
 examine = "Bow wow."

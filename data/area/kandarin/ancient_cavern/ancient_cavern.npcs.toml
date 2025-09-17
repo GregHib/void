@@ -30,11 +30,11 @@ examine = "Floats like an anvil, hits like a hammer."
 id = 749
 examine = "He looks a tad upset."
 
-[enraged_barbarian_spirit_ancient_cavern]
+[enraged_barbarian_spirit]
 id = 750
 examine = "He looks a tad upset."
 
-[berserk_barbarian_spirit_ancient_cavern]
+[berserk_barbarian_spirit]
 id = 751
 examine = "He looks a tad upset."
 

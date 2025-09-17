@@ -49,47 +49,47 @@ id = 9092
 categories = ["dagannoth"]
 examine = "The Dagannoth Mother's guardians."
 
-[bardur_waterbirth_dungeon]
+[bardur]
 id = 2879
 examine = "A Fremennik warrior, hard at work."
 
-[dagannoth_fledgeling_waterbirth_dungeon]
+[dagannoth_fledgeling]
 id = 2880
 categories = ["dagannoth"]
 examine = "A knee-high horror from the ocean depths..."
 
-[dagannoth_supreme_waterbirth_dungeon]
+[dagannoth_supreme]
 id = 2881
 categories = ["dagannoth"]
 examine = "The dagannoth king responsible for the death of the Bukalla."
 
-[dagannoth_prime_waterbirth_dungeon]
+[dagannoth_prime]
 id = 2882
 categories = ["dagannoth"]
 examine = "A legendary dagannoth king, rumoured to fly on the North winds."
 
-[dagannoth_rex_waterbirth_dungeon]
+[dagannoth_rex]
 id = 2883
 categories = ["dagannoth"]
 examine = "Firstborn of the legendary dagannoth kings."
 
-[suspicious_water_waterbirth_dungeon]
+[suspicious_water]
 id = 2891
 
-[spinolyp_waterbirth_dungeon]
+[spinolyp]
 id = 2892
 examine = "A sneaky, spiny, subterranean sea-dwelling scamp."
 
-[suspicious_water_waterbirth_dungeon_2]
+[suspicious_water_2]
 id = 2893
 
-[spinolyp_waterbirth_dungeon_2]
+[spinolyp_2]
 id = 2894
 
-[suspicious_water_waterbirth_dungeon_3]
+[suspicious_water_3]
 id = 2895
 
-[spinolyp_waterbirth_dungeon_3]
+[spinolyp_3]
 id = 2896
 
 

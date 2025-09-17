@@ -1,24 +1,24 @@
-[telekinetic_guardian_mage_training_arena]
+[telekinetic_guardian]
 id = 3098
 examine = "A guardian of the arena."
 
-[alchemy_guardian_mage_training_arena]
+[alchemy_guardian]
 id = 3099
 examine = "A guardian of the arena."
 
-[enchantment_guardian_mage_training_arena]
+[enchantment_guardian]
 id = 3100
 examine = "A guardian of the arena."
 
-[graveyard_guardian_mage_training_arena]
+[graveyard_guardian]
 id = 3101
 examine = "A guardian of the arena."
 
-[maze_guardian_mage_training_arena]
+[maze_guardian]
 id = 3102
 examine = "A guardian of the arena."
 
-[sweeper_mage_training_arena]
+[sweeper]
 id = 3298
 examine = "Keeps this magic area tidy."
 

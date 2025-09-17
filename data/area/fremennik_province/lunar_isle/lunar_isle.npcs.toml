@@ -1,155 +1,155 @@
-[captain_bentley_lunar_isle]
+[captain_bentley]
 id = 414
 
-[birds_eye_jack_lunar_isle]
+[birds_eye_jack]
 id = 431
 
-[oneiromancer_lunar_isle]
+[oneiromancer]
 id = 4511
 examine = "Spiritual leader of the Moonclan."
 
-[house_lunar_isle]
+[house]
 id = 4512
 examine = "The craziest house I ever did see!"
 
-[pauline_polaris_lunar_isle]
+[pauline_polaris]
 id = 4514
 
-[meteora_lunar_isle]
+[meteora]
 id = 4515
 examine = "As beautiful as a fallen star... I feel sick."
 
-[melana_moonlander_lunar_isle]
+[melana_moonlander]
 id = 4516
 examine = "Did she just wink at me?"
 
-[selene_lunar_isle]
+[selene]
 id = 4517
 examine = "In a world of her own."
 
-[rimae_sirsalis_lunar_isle]
+[rimae_sirsalis]
 id = 4518
 examine = "Not a single hair on her head. But one or two warts."
 
-[sirsal_banker_lunar_isle]
+[sirsal_banker]
 id = 4519
 examine = "Glad to be one of only three men on the island."
 
-[enchanted_broom_lunar_isle]
+[enchanted_broom]
 id = 4521
 examine = "How does it see where to sweep?"
 
-[enchanted_broom_lunar_isle_2]
+[enchanted_broom_2]
 id = 4522
 
-[enchanted_broom_lunar_isle_3]
+[enchanted_broom_3]
 id = 4523
 
-[enchanted_bucket_lunar_isle]
+[enchanted_bucket]
 id = 4524
 examine = "I'm not sure if it's actually doing anything of use."
 
-[enchanted_bucket_lunar_isle_2]
+[enchanted_bucket_2]
 id = 4525
 
-[bouquet_mac_hyacinth_lunar_isle]
+[bouquet_mac_hyacinth]
 id = 4526
 examine = "Should I pronounce it 'bucket'?"
 
-[suqah_lunar_isle]
+[suqah]
 id = 4527
 categories = ["suqahs"]
 examine = "A strange creature unique to Lunar Isle."
 
-[suqah_lunar_isle_2]
+[suqah_2]
 id = 4528
 categories = ["suqahs"]
 examine = "A strange creature unique to Lunar Isle."
 
-[suqah_lunar_isle_3]
+[suqah_3]
 id = 4529
 
-[suqah_lunar_isle_4]
+[suqah_4]
 id = 4530
 categories = ["suqahs"]
 examine = "A strange creature unique to Lunar Isle."
 
-[suqah_lunar_isle_5]
+[suqah_5]
 id = 4531
 categories = ["suqahs"]
 examine = "A strange creature unique to Lunar Isle."
 
-[suqah_lunar_isle_6]
+[suqah_6]
 id = 4532
 categories = ["suqahs"]
 examine = "A strange creature unique to Lunar Isle."
 
-[suqah_lunar_isle_7]
+[suqah_7]
 id = 4533
 categories = ["suqahs"]
 examine = "A strange creature unique to Lunar Isle."
 
-[cabin_boy_lunar_isle]
+[cabin_boy]
 id = 4538
 
-[cabin_boy_lunar_isle_2]
+[cabin_boy_2]
 id = 4539
 examine = "I always wondered what that job description actually meant..."
 
-[beefy_burns_lunar_isle]
+[beefy_burns]
 id = 4541
 examine = "A stickler for hygiene in the kitchen."
 
-[eagle_eye_shultz_lunar_isle]
+[eagle_eye_shultz]
 id = 4542
 examine = "A keen-eyed lookout with a telescope."
 
-[first_mate_davey_boy_lunar_isle]
+[first_mate_davey_boy]
 id = 4543
 examine = "First mate to Captain Bentley."
 
-[picarron_pete_lunar_isle]
+[picarron_pete]
 id = 4545
 examine = "A pirate through and through."
 
-[bedread_the_bold_lunar_isle]
+[bedread_the_bold]
 id = 4547
 examine = "He got his name from his favourite hobby. Reading about beds."
 
-[tommy_2_times_lunar_isle]
+[tommy_2_times]
 id = 4549
 examine = "Nobody really knows why he's called Tommy 2-times..."
 
-[murky_pat_lunar_isle]
+[murky_pat]
 id = 4550
 examine = "Don't look him straight in the eyes. He'll eat you alive!"
 
-[jack_sails_lunar_isle]
+[jack_sails]
 id = 4551
 examine = "Nice beard."
 
-[betty_b_boppin_lunar_isle]
+[betty_b_boppin]
 id = 4553
 examine = "He never stops talking about Betty..."
 
-[beedy_eye_jones_lunar_isle]
+[beedy_eye_jones]
 id = 4554
 examine = "Is he looking at me?"
 
-[jenny_blade_lunar_isle]
+[jenny_blade]
 id = 4555
 examine = "Yes, it is indeed the infamous Jenny Blade!"
 
-[lecherous_lee_lunar_isle]
+[lecherous_lee]
 id = 4556
 examine = "A low-down, mean, dirty, cheating pirate with a fondness for kittens."
 
-[cyrisus_lunar_isle]
+[cyrisus]
 id = 5899
 
-[cyrisus_lunar_isle_2]
+[cyrisus_2]
 id = 5900
 
-[birds_eye_jack_lunar_isle_2]
+[birds_eye_jack_2]
 id = 5901
 

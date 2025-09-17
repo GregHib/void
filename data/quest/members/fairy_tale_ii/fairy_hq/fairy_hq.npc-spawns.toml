@@ -30,6 +30,6 @@ spawns = [
   { id = "fairy_very_wise_fairy_hq_2", x = 2279, y = 4446, members = true },
   { id = "fairy_queen_fairy_hq_2", x = 1584, y = 4265, members = true },
   { id = "fairy_queen_fairy_hq_2", x = 2278, y = 4457, members = true },
-  { id = "fairy_very_wise_fairy_hq_3", x = 2275, y = 4435, members = true },
+  { id = "fairy_very_wis_fairy_hqe_3", x = 2275, y = 4435, members = true },
   { id = "fairy_queen_fairy_hq_3", x = 2274, y = 4433, members = true },
 ]

@@ -53,15 +53,15 @@ examine = "A slightly more approachable barbarian."
 id = 5030
 examine = "He looks pretty mean."
 
-[private_pendron_barbarian_outpost]
+[private_pendron]
 id = 5032
 examine = "A barbarian private."
 
-[private_pierreb_barbarian_outpost]
+[private_pierreb]
 id = 5033
 examine = "A barbarian private."
 
-[private_paldon_barbarian_outpost]
+[private_paldon]
 id = 5034
 examine = "A barbarian private."
 

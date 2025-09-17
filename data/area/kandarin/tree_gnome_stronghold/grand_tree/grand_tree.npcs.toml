@@ -73,7 +73,7 @@ examine = "He sells weapons."
 id = 603
 examine = "It's another jolly tree gnome."
 
-[king_narnode_shareen_grand_tree]
+[king_narnode_shareen]
 id = 670
 examine = "An important looking gnome."
 

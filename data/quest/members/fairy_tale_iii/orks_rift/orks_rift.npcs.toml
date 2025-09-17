@@ -1,19 +1,19 @@
-[ivory_shredflesh_(cursed)_orks_rift]
+[ivory_shredflesh_cursed]
 id = 11352
 examine = "A cursed ivory version of General Shredflesh."
 
-[ivory_gromblod_(cursed)_orks_rift]
+[ivory_gromblod_cursed]
 id = 11353
 examine = "A cursed ivory version of General Gromblod."
 
-[ivory_breegth_(cursed)_orks_rift]
+[ivory_breegth_cursed]
 id = 11354
 examine = "A cursed ivory version of General Breegth."
 
 [farming_patch_orks_rift]
 id = 11383
 
-[fairy_godfather_orks_rift]
+[fairy_godfather]
 id = 3304
 examine = "I'm gonna make him an offer he can't refuse."
 

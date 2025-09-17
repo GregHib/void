@@ -1,8 +1,8 @@
-[sophanem_guard_sophanem_dungeon]
+[sophanem_guard_dungeon]
 id = 5270
 examine = "A guard of Sophanem."
 
-[sophanem_guard_sophanem_dungeon_2]
+[sophanem_guard_dungeon_2]
 id = 5274
 examine = "A guard of Sophanem."
 

@@ -214,18 +214,18 @@ wander_radius = 4
 collision = "indoors"
 examine = "I could get a beer from him."
 
-[schoolgirl_varrock]
+[schoolgirl]
 id = 10
 examine = "She looks happy."
 
-[dealga_varrock]
+[dealga]
 id = 11475
 examine = "A shrewd-looking monkey salesman."
 
-[tolna_varrock]
+[tolna]
 id = 1732
 
-[guildmaster_varrock]
+[guildmaster]
 id = 198
 examine = "Master of the Champions' Guild."
 
@@ -240,88 +240,88 @@ examine = "A master at farming."
 id = 2320
 examine = "He has a certain bovine aroma."
 
-[dreven_varrock]
+[dreven]
 id = 2335
 examine = "Perhaps this gardener might look after your crops for you."
 
-[ellamaria_varrock]
+[ellamaria]
 id = 2581
 examine = "Queen Ellamaria of Varrock."
 
-[pox_varrock]
+[pox]
 id = 2943
 examine = "Not the healthiest cat you've ever seen."
 
-[hooknosed_jack_varrock]
+[hooknosed_jack]
 id = 2948
 examine = "Obviously punches above his weight."
 
-[romily_weaklax_varrock]
+[romily_weaklax]
 id = 3205
 examine = "A family baker, from the North."
 
-[martina_scorsby_varrock]
+[martina_scorsby]
 id = 3326
 examine = "A less enthusiastic ecclesiastic woman, she seems slightly tired."
 
-[jeremy_clerksin_varrock]
+[jeremy_clerksin]
 id = 3327
 examine = "Rather more tired than most."
 
-[da_vinci_varrock]
+[da_vinci]
 id = 337
 examine = "He has a colourful personality."
 
-[chancy_varrock]
+[chancy]
 id = 339
 examine = "He's ready for a bet."
 
-[hops_varrock]
+[hops]
 id = 341
 examine = "He's drunk."
 
-[guidors_wife_varrock]
+[guidors_wife]
 id = 342
 examine = "She looks rather concerned."
 
-[guidor_varrock]
+[guidor]
 id = 343
 examine = "He's not that ill."
 
-[naff_varrock]
+[naff]
 id = 359
 examine = "Cheeky little chappy."
 
-[launa_varrock]
+[launa]
 id = 3638
 
-[guard_varrock]
+[guard_biohazard]
 id = 368
 examine = "He tries to keep order around here."
 
-[sawmill_operator_varrock]
+[sawmill_operator]
 id = 4250
 
-[assistant_serf_varrock]
+[assistant_serf]
 id = 5066
 
-[valaine_varrock]
+[valaine]
 id = 536
 examine = "A champion saleswoman!"
 
-[scavvo_varrock]
+[scavvo]
 id = 537
 examine = "He's got the best armour around."
 
-[fancy_dress_shop_owner_varrock]
+[fancy_dress_shop_owner]
 id = 554
 examine = "For the interesting clothing items you just can't find elsewhere."
 
-[rat_burgiss_varrock]
+[rat_burgiss]
 id = 5833
 examine = "A travelling trader."
 
-[anna_jones_varrock]
+[anna_jones]
 id = 5837
 examine = "An archeologist."
 
@@ -329,7 +329,7 @@ examine = "An archeologist."
 id = 5854
 examine = "For sitting on."
 
-[cook_varrock]
+[cook_jolly_boar_inn]
 id = 5911
 examine = "He's suspiciously talented with a meat-cleaver."
 
@@ -337,165 +337,165 @@ examine = "He's suspiciously talented with a meat-cleaver."
 id = 5922
 examine = "Trains the guards of the future."
 
-[thief_varrock]
+[thief_phoenix_gang]
 id = 5927
 examine = "Known for his light-fingered qualities."
 
-[art_critic_jacques_varrock]
+[art_critic_jacques]
 id = 5930
 examine = "Jacques Netis - a slightly pompous art expert."
 
-[historian_minas_varrock]
+[historian_minas]
 id = 5931
 examine = "Seth Minas - an aged expert in Gielinorian history."
 
-[barnabus_hurma_varrock]
+[barnabus_hurma]
 id = 5932
 
-[marius_giste_varrock]
+[marius_giste]
 id = 5933
 
-[caden_azro_varrock]
+[caden_azro]
 id = 5934
 
-[thias_leacke_varrock]
+[thias_leacke]
 id = 5935
 
-[sinco_doar_varrock]
+[sinco_doar]
 id = 5936
 
-[tinse_torpe_varrock]
+[tinse_torpe]
 id = 5937
 
-[information_clerk_varrock]
+[information_clerk]
 id = 5938
 examine = "A lady with lots of information about the Museum."
 
-[torrcs_varrock]
+[torrcs]
 id = 5939
 examine = "A brave adventurer."
 
-[marfet_varrock]
+[marfet]
 id = 5940
 examine = "Looks like he knows a thing or two."
 
-[museum_guard_varrock]
+[museum_guard]
 id = 5941
 
-[museum_guard_varrock_2]
+[museum_guard_2]
 id = 5943
 
-[teacher_and_pupil_varrock]
+[teacher_and_pupil]
 id = 5944
 examine = "A teacher and one of his pupils."
 
-[schoolboy_varrock]
+[schoolboy]
 id = 5945
 examine = "Looks kind of familiar."
 
-[schoolboy_varrock_2]
+[schoolboy_2]
 id = 5946
 
-[teacher_and_pupil_varrock_2]
+[teacher_and_pupil_2]
 id = 5947
 examine = "A teacher and one of her pupils."
 
-[tea_seller_varrock]
+[tea_seller]
 id = 595
 examine = "He seems to sell tea."
 
-[natural_historian_varrock]
+[natural_historian]
 id = 5966
 examine = "An aged expert in natural history."
 
-[natural_historian_varrock_2]
+[natural_historian_2]
 id = 5967
 
-[natural_historian_varrock_3]
+[natural_historian_3]
 id = 5968
 
-[natural_historian_varrock_4]
+[natural_historian_4]
 id = 5969
 
-[leech_display_varrock]
+[leech_display]
 id = 5971
 examine = "Bloodsuckers!"
 
-[sea_slugs_display_varrock]
+[sea_slugs_display]
 id = 5972
 examine = "Slugs of the sea variety."
 
-[snail_display_varrock]
+[snail_display]
 id = 5973
 examine = "A house on its back."
 
-[monkey_display_varrock]
+[monkey_display]
 id = 5974
 examine = "A cheeky little monkey."
 
-[lizard_display_varrock]
+[lizard_display]
 id = 5975
 examine = "A scaly little fellow."
 
-[penguin_display_varrock]
+[penguin_display]
 id = 5976
 examine = "Nice suit."
 
-[camel_display_varrock]
+[camel_display]
 id = 5977
 examine = "He's got the hump."
 
-[terrorbird_display_varrock]
+[terrorbird_display]
 id = 5978
 examine = "Terrifying!"
 
-[dragon_display_varrock]
+[dragon_display]
 id = 5979
 examine = "Looks like a fire-breather."
 
-[wyvern_display_varrock]
+[wyvern_display]
 id = 5980
 examine = "Needs a good square meal."
 
-[battle_tortoise_display_varrock]
+[battle_tortoise_display]
 id = 5981
 examine = "A huge beast."
 
-[mole_display_varrock]
+[mole_display]
 id = 5982
 examine = "Loves making molehills."
 
-[schoolgirl_varrock_2]
+[schoolgirl_2]
 id = 5984
 
 [town_crier_varrock]
 id = 6135
 examine = "Get useful information from this guy."
 
-[father_lawrence_varrock]
+[father_lawrence]
 id = 640
 examine = "A religious man... And occasional drunk."
 
-[katrine_varrock]
+[katrine]
 id = 642
 examine = "An empowered woman."
 
-[weaponsmaster_varrock]
+[weaponsmaster]
 id = 643
 examine = "Looks kind of obsessive..."
 
-[straven_varrock]
+[straven]
 id = 644
 examine = "Kind of funny looking."
 
-[curator_haig_halen_varrock]
+[curator_haig_halen]
 id = 646
 examine = "Curator of the museum."
 
-[dimintheis_varrock]
+[dimintheis]
 id = 664
 
-[johnathon_varrock]
+[johnathon]
 id = 668
 examine = "A well-dressed nobleman."
 
@@ -506,51 +506,51 @@ id = 7009
 id = 732
 examine = "I could get a beer from him."
 
-[fluffs_varrock]
+[fluffs]
 id = 759
 
-[will_varrock]
+[will]
 id = 7737
 
-[phil_varrock]
+[phil]
 id = 7739
 
-[fluffs_varrock_2]
+[fluffs_2]
 id = 7744
 
-[gertrude_varrock]
+[gertrude]
 id = 780
 examine = "A busy housewife."
 
-[philop_varrock]
+[philop]
 id = 782
 examine = "One of Gertrude's sons."
 
-[kanel_varrock]
+[kanel]
 id = 784
 examine = "One of Gertrude's sons."
 
-[rogue_varrock]
+[rogue]
 id = 8124
 
-[hartwin_varrock]
+[hartwin]
 id = 8141
 
-[clive_varrock]
+[clive]
 id = 8174
 examine = "Rather dense and soppy-looking."
 
-[head_chef_varrock]
+[head_chef]
 id = 847
 examine = "Despite his name, rarely actually cooks heads."
 
-[overseer_varrock]
+[overseer]
 id = 8904
 
 [guardian_varrock]
 id = 8906
 
-[man_varrock]
+[man_varrock_4]
 id = 12346
 
 [orlando_smith]

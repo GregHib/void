@@ -1,7 +1,7 @@
 spawns = [
   { id = "captain_korasi_kinshra_workshop", x = 4384, y = 5644, members = true },
   { id = "jessika_kinshra_workshop", x = 4383, y = 5644, members = true },
-  { id = "black_knight_doorkeeper_kinshra_workshop", x = 4380, y = 5654, members = true },
+  { id = "black_knight_doorkeeper", x = 4380, y = 5654, members = true },
   { id = "indentured_worker_kinshra_workshop", x = 4376, y = 5666 },
   { id = "indentured_worker_kinshra_workshop_2", x = 4376, y = 5664, members = true },
   { id = "indentured_worker_kinshra_workshop_3", x = 4385, y = 5664, members = true },

@@ -17,7 +17,7 @@ spawns = [
   { id = "arresting_officer_seers_village", x = 2739, y = 3467, members = true },
   { id = "estate_agent_seers_village", x = 2732, y = 3467, members = true },
   { id = "idria_seers_village", x = 2692, y = 3493, level = 1, members = true },
-  { id = "phantuwti_fanstuwi_farsight_seers_village", x = 2705, y = 3474, members = true },
+  { id = "phantuwti_fanstuwi_farsight", x = 2705, y = 3474, members = true },
   { id = "seer_seers_village", x = 2702, y = 3475 },
   { id = "seer_seers_village", x = 2705, y = 3473 },
   { id = "seer_seers_village", x = 2714, y = 3471 },

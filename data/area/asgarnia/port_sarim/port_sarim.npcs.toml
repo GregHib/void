@@ -69,30 +69,30 @@ id = 11652
 [jessika_port_sarim]
 id = 11663
 
-[drunken_sailor_port_sarim]
+[drunken_sailor]
 id = 1205
 
-[drunken_sailor_port_sarim_2]
+[drunken_sailor_2]
 id = 1207
 
 [mysterious_ghost_port_sarim]
 id = 2392
 
-[rick_turpentine_port_sarim]
+[rick_turpentine]
 id = 2476
 
-[capn_hand_port_sarim]
+[capn_hand]
 id = 2539
 
 [thief_port_sarim]
 id = 2674
 examine = "Known for his light-fingered qualities."
 
-[jack_seagull_port_sarim]
+[jack_seagull]
 id = 2690
 examine = "A salty seafarer. Needs a wash."
 
-[longbow_ben_port_sarim]
+[longbow_ben]
 id = 2691
 examine = "A strange man with a strange name. Probably a strange past, too."
 
@@ -184,7 +184,7 @@ id = 6116
 id = 657
 examine = "Holy looking."
 
-[thaki_the_delivery_dwarf_port_sarim]
+[thaki_the_delivery_dwarf]
 id = 7115
 examine = "He seems to be enjoying his time in the bar."
 

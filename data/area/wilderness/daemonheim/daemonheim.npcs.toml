@@ -8,15 +8,15 @@ id = 11257
 id = 9707
 examine = "He looks at home in this climate."
 
-[fremennik_banker_daemonheim]
+[fremennik_banker]
 id = 9710
 examine = "Protects the items that are forbidden from Daemonheim."
 
-[rewards_trader_daemonheim]
+[rewards_trader]
 id = 9711
 examine = "He is trembling and is covered in cuts and scrapes."
 
-[dungeoneering_tutor_daemonheim]
+[dungeoneering_tutor]
 id = 9712
 examine = "Your contact for forming parties in Daemonheim."
 

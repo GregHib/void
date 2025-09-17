@@ -1,14 +1,14 @@
-[giant_frog_dorgesh_kaan_agility_course]
+[giant_frog]
 id = 1828
 categories = ["frogs"]
 examine = "It didn't get that big eating flies."
 
-[big_frog_dorgesh_kaan_agility_course]
+[big_frog]
 id = 1829
 categories = ["frogs"]
 examine = "It didn't get that big eating flies."
 
-[cave_bug_larva_dorgesh_kaan_agility_course]
+[cave_bug_larva]
 id = 1833
 examine = "A little, slimy beetle-thing."
 

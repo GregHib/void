@@ -47,11 +47,11 @@ examine = "He'll have someone's eye out with that."
 [crocodile_ullek]
 id = 6779
 
-[lead_archaeologist_abigail_ullek]
+[lead_archaeologist_abigail]
 id = 6786
 examine = "She looks a bit dirty from digging."
 
-[assistant_archaeologist_kerner_ullek]
+[kerner]
 id = 6787
 examine = "He looks a bit dusty from troweling."
 

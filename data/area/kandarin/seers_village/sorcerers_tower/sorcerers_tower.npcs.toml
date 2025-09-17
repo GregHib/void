@@ -6,20 +6,20 @@ examine = "Nice hat."
 id = 4946
 examine = "The Master of Fire!"
 
-[baby_raccoon_sorcerers_tower]
+[baby_raccoon_brown]
 id = 7275
 examine = "A stripy little baby raccoon."
 
-[baby_raccoon_sorcerers_tower_2]
+[baby_raccoon_red]
 id = 7276
 
-[baby_squirrel_sorcerers_tower]
+[baby_squirrel_white]
 id = 7310
 
-[baby_squirrel_sorcerers_tower_2]
+[baby_squirrel_grey]
 id = 7311
 
-[baby_squirrel_sorcerers_tower_3]
+[baby_squirrel_orange]
 id = 7312
 
 [geoffrey_sorcerers_tower]

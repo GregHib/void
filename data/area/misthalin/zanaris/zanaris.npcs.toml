@@ -1,82 +1,82 @@
-[gnarly_zanaris]
+[gnarly]
 id = 11308
 
-[general_breegth_zanaris]
+[general_breegth]
 id = 11317
 
-[fairy_zanaris]
+[fairy]
 id = 11415
 
-[fairy_zanaris_2]
+[fairy_2]
 id = 11416
 
-[fairy_zanaris_3]
+[fairy_3]
 id = 11417
 
-[fairy_zanaris_4]
+[fairy_4]
 id = 11418
 
-[fairy_zanaris_5]
+[fairy_5]
 id = 11419
 
-[fairy_zanaris_6]
+[fairy_6]
 id = 11420
 
-[fairy_zanaris_7]
+[fairy_7]
 id = 11421
 
-[fairy_zanaris_8]
+[fairy_8]
 id = 11422
 
-[chaeldar_zanaris]
+[chaeldar]
 id = 1598
 examine = "She looks dangerous!"
 
-[blaec_zanaris]
+[blaec]
 id = 3115
 examine = "Blaec seems to be covered in sand."
 
-[co_ordinator_zanaris]
+[co_ordinator]
 id = 3302
 examine = "Manages the fairies."
 
-[gatekeeper_zanaris]
+[gatekeeper]
 id = 3307
 examine = "Guardian of the market gate."
 
 [sheep_zanaris]
 id = 3310
 
-[fairy_queen_zanaris]
+[fairy_queen]
 id = 3314
 
-[fairy_queen_zanaris_2]
+[fairy_queen_2]
 id = 3315
 
-[fairy_very_wise_zanaris]
+[fairy_very_wise]
 id = 3316
 
-[tooth_fairy_zanaris]
+[tooth_fairy]
 id = 3317
 
-[gatekeeper_zanaris_2]
+[gatekeeper_2]
 id = 3318
 
-[fairy_chef_zanaris]
+[fairy_chef]
 id = 3322
 examine = "Likes to cook with mushrooms."
 
-[fungi_zanaris]
+[fungi]
 id = 3344
 examine = "A fun guy. No wait, that's awful. Plus it doesn't even make sense."
 
-[fungi_zanaris_2]
+[fungi_2]
 id = 3345
 
-[fairy_zanaris_9]
+[fairy_9]
 id = 4422
 
-[fairy_zanaris_10]
+[fairy_10]
 id = 4423
 
 [ork_zanaris]
@@ -85,45 +85,45 @@ id = 4424
 [ork_zanaris_2]
 id = 4425
 
-[fairy_nuff_zanaris]
+[fairy_nuff]
 id = 4431
 
-[fairy_fixit_zanaris]
+[fairy_fixit]
 id = 4455
 examine = "Fairy ring maintenance division."
 
 [sheep_zanaris_2]
 id = 5164
 
-[fairy_shopkeeper_zanaris]
+[fairy_shopkeeper]
 id = 534
 examine = "Sells stuff."
 
-[fairy_shop_assistant_zanaris]
+[fairy_shop_assistant]
 id = 535
 examine = "Sells stuff."
 
-[jukat_zanaris]
+[jukat]
 id = 564
 examine = "A being from a mysterious other realm."
 
-[lunderwin_zanaris]
+[lunderwin]
 id = 565
 examine = "Smells strangely of cabbage."
 
-[irksol_zanaris]
+[irksol]
 id = 566
 examine = "Is he invisible or just floating clothing?"
 
-[fairy_zanaris_11]
+[fairy_11]
 id = 567
 examine = "Looks strange and mysterious."
 
-[fairy_aeryka_zanaris]
+[fairy_aeryka]
 id = 6072
 examine = "She tends the wheat."
 
-[wandering_impling_zanaris]
+[wandering_impling]
 id = 6073
 examine = "He looks a little lost."
 

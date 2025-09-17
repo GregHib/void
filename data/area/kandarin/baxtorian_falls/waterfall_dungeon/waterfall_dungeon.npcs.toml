@@ -1,4 +1,4 @@
-[shadow_spider_waterfall_dungeon]
+[shadow_spider]
 id = 58
 categories = ["spiders"]
 examine = "Is it a spider or is it a shadow?"

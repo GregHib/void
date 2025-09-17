@@ -1,46 +1,46 @@
-[invrigar_the_necromancer_tower_of_life]
+[invrigar_the_necromancer]
 id = 173
 examine = "An evil user of Magic powers."
 
-[necromancer_tower_of_life]
+[necromancer]
 id = 194
 examine = "A crazy evil necromancer."
 
-[irwin_feaselbaum_tower_of_life]
+[irwin_feaselbaum]
 id = 2066
 examine = "A young assistant necromancer."
 
-[bonafido_tower_of_life]
+[bonafido]
 id = 5580
 examine = "He knows everything has a reason."
 
-[black_eye_tower_of_life]
+[black_eye]
 id = 5589
 examine = "Famous for his fights."
 
-[no_fingers_tower_of_life]
+[no_fingers]
 id = 5590
 examine = "Count them pinkies!"
 
-[gummy_tower_of_life]
+[gummy]
 id = 5591
 examine = "He wishes he had teeth."
 
-[effigy_tower_of_life]
+[effigy]
 id = 5598
 
-[homunculus_tower_of_life]
+[homunculus]
 id = 5599
 
-[homunculus_tower_of_life_2]
+[homunculus_2]
 id = 5600
 
-[transmute_the_alchemist_tower_of_life]
+[transmute_the_alchemist]
 id = 5601
 
-[currency_the_alchemist_tower_of_life]
+[currency_the_alchemist]
 id = 5602
 
-[homunculus_tower_of_life_3]
+[homunculus_3]
 id = 5581
 examine = "Is it male or female?"

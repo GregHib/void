@@ -34,7 +34,7 @@ id = 13235
 [rug_merchant_kharidian_desert]
 id = 13237
 
-[desert_snake_kharidian_desert]
+[desert_snake]
 id = 1874
 examine = "A slithering serpent."
 
@@ -75,7 +75,7 @@ examine = "They'll eat anything!"
 id = 4931
 examine = "They'll eat anything!"
 
-[billy_goat_kharidian_desert]
+[billy_goat]
 id = 4935
 
 [osman_kharidian_desert]

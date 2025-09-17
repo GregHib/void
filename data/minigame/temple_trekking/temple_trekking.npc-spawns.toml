@@ -4,5 +4,5 @@ spawns = [
   { id = "fyiona_fray", x = 3481, y = 3237, members = true },
   { id = "valantay_eppel", x = 3480, y = 3237, members = true },
   { id = "jayene_kliyn", x = 3482, y = 3236, members = true },
-  { id = "sorin", x = 3515, y = 3235, members = true },
+  { id = "sorin_temple_trekking", x = 3515, y = 3235, members = true },
 ]

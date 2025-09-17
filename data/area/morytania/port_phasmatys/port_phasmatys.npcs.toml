@@ -42,11 +42,11 @@ examine = "A ghost banker."
 id = 1703
 examine = "A ghost sailor."
 
-[ghost_captain_port_phasmatys]
+[ghost_captain]
 id = 1704
 examine = "A ghostship captain."
 
-[ghost_captain_port_phasmatys_2]
+[ghost_captain_2]
 id = 1705
 
 [ghost_guard_port_phasmatys]

@@ -4,7 +4,7 @@ id = 12273
 [commodore_tyr_vallutas_den]
 id = 12279
 
-[valluta_vallutas_den]
+[valluta]
 id = 12285
 examine = "The fabled Valluta?"
 

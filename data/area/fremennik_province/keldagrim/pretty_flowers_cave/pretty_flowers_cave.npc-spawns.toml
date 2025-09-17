@@ -12,5 +12,5 @@ spawns = [
   { id = "my_arm_pretty_flowers_cave", x = 1562, y = 5852, members = true },
   { id = "pretty_flower_pretty_flowers_cave", x = 1565, y = 5856 },
   { id = "big_rock_pretty_flowers_cave", x = 1565, y = 5862 },
-  { id = "sparkly_crystal_pretty_flowers_cave", x = 1565, y = 5855, members = true },
+  { id = "sparkly_crystal", x = 1565, y = 5855, members = true },
 ]

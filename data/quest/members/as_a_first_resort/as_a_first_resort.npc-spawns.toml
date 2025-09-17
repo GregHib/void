@@ -21,7 +21,7 @@ spawns = [
   { id = "thuddley_as_a_first_resort", x = 2571, y = 5517 },
   { id = "grrbah_as_a_first_resort", x = 2587, y = 5525 },
   { id = "chomp_as_a_first_resort", x = 2610, y = 5535 },
-  { id = "ogress_warrior_feldip_hills_2", x = 2562, y = 5530 },
+  { id = "ogress_warrior_2", x = 2562, y = 5530 },
   { id = "ogress_feldip_hills_2", x = 2569, y = 5541 },
   { id = "dawg_oo_glog", x = 2603, y = 5529 },
 ]

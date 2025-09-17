@@ -1,47 +1,47 @@
-[rokuh_nardah]
+[rokuh]
 id = 13181
 
-[ghaslor_the_elder_nardah]
+[ghaslor_the_elder]
 id = 3029
 examine = "The oldest man in Nardah."
 
-[usi_nardah]
+[usi]
 id = 3031
 examine = "A citizen of Nardah."
 
-[nkuku_nardah]
+[nkuku]
 id = 3032
 examine = "A citizen of Nardah."
 
-[garai_nardah]
+[garai]
 id = 3033
 examine = "A citizen of Nardah."
 
-[habibah_nardah]
+[habibah]
 id = 3034
 examine = "A citizen of Nardah."
 
-[meskhenet_nardah]
+[meskhenet]
 id = 3035
 examine = "A citizen of Nardah."
 
-[zahra_nardah]
+[zahra]
 id = 3036
 examine = "A citizen of Nardah."
 
-[zahur_nardah]
+[zahur]
 id = 3037
 examine = "A herbalist... sells herbs."
 
-[seddu_nardah]
+[seddu]
 id = 3038
 examine = "An armour merchant."
 
-[kazemde_nardah]
+[kazemde]
 id = 3039
 examine = "A seller of many things."
 
-[awusah_the_mayor_nardah]
+[awusah_the_mayor]
 id = 3040
 examine = "The Mayor of Nardah."
 
@@ -49,15 +49,15 @@ examine = "The Mayor of Nardah."
 id = 3041
 examine = "The mayor's guard."
 
-[poltenip_nardah]
+[poltenip]
 id = 3042
 examine = "The mayor's guard."
 
-[radat_nardah]
+[radat]
 id = 3043
 examine = "The mayor's guard."
 
-[shiratti_the_custodian_nardah]
+[shiratti_the_custodian]
 id = 3044
 examine = "Custodian of the shrine to Elidinis."
 
@@ -69,11 +69,11 @@ examine = "A banker of Nardah."
 id = 4932
 examine = "They'll eat anything!"
 
-[artimeus_nardah]
+[artimeus]
 id = 5109
 examine = "He looks like he knows what he's doing."
 
-[ali_the_wise_nardah]
+[ali_the_wise]
 id = 7468
 
 [rug_merchant_bedabin_camp]

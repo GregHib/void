@@ -36,7 +36,7 @@ examine = "A dwarven guard."
 [mysterious_ghost_edgeville]
 id = 2386
 
-[brother_althric_edgeville]
+[brother_althric]
 id = 2588
 examine = "A holy man."
 
@@ -114,11 +114,11 @@ examine = "A mean looking outlaw. Don't get too close!"
 id = 5851
 examine = "A mean looking outlaw. Don't get too close!"
 
-[mandrith_edgeville]
+[mandrith]
 id = 6537
 examine = "A collector of ancient artefacts."
 
-[professor_henry_edgeville]
+[professor_henry]
 id = 7143
 examine = "A buttoned-down examiner."
 
@@ -130,16 +130,16 @@ examine = "A person sitting an exam."
 id = 7156
 examine = "A person sitting an exam."
 
-[cockroach_drone_edgeville]
+[cockroach_drone]
 id = 7158
 categories = ["cockroaches"]
 examine = "A household pest."
 
-[oracle_edgeville]
+[oracle]
 id = 746
 examine = "A mystical fount of knowledge."
 
-[oziach_edgeville]
+[oziach]
 id = 747
 examine = "A strange little man."
 
@@ -147,21 +147,21 @@ examine = "A strange little man."
 id = 7727
 examine = "A holy man."
 
-[brother_bordiss_edgeville]
+[brother_bordiss]
 id = 7730
 
-[abbot_langley_edgeville]
+[abbot_langley]
 id = 801
 examine = "A holy man."
 
-[brother_jered_edgeville]
+[brother_jered]
 id = 802
 examine = "A holy man."
 
-[gjalp_edgeville]
+[gjalp]
 id = 8070
 
-[brother_fintan_edgeville]
+[brother_fintan]
 id = 8071
 
 [local_mage_edgeville]

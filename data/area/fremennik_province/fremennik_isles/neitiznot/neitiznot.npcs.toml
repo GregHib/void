@@ -1,54 +1,54 @@
 [guard_neitiznot]
 id = 5490
 
-[fridleif_shieldson_neitiznot]
+[fridleif_shieldson]
 id = 5505
 examine = "Commander of Neitiznot's guards."
 
-[maria_gunnars_neitiznot]
+[maria_gunnars]
 id = 5507
 examine = "Ferry-mistress."
 
-[jofridr_mordstatter_neitiznot]
+[jofridr_mordstatter]
 id = 5509
 examine = "Mistress of the stores."
 
-[morten_holdstrom_neitiznot]
+[morten_holdstrom]
 id = 5510
 examine = "A yak handler's brother."
 
-[gunnar_holdstrom_neitiznot]
+[gunnar_holdstrom]
 id = 5511
 examine = "A yak handler."
 
-[anne_isaakson_neitiznot]
+[anne_isaakson]
 id = 5512
 examine = "A farmhand."
 
-[lisse_isaakson_neitiznot]
+[lisse_isaakson]
 id = 5513
 examine = "A farmhand."
 
-[honour_guard_neitiznot]
+[honour_guard]
 id = 5514
 examine = "The Burgher's protectors."
 
-[honour_guard_neitiznot_2]
+[honour_guard_2]
 id = 5515
 
-[honour_guard_neitiznot_3]
+[honour_guard_3]
 id = 5516
 examine = "The Burgher's protectors."
 
-[kjedelig_uppsen_neitiznot]
+[kjedelig_uppsen]
 id = 5518
 examine = "Guards the Burgher's room."
 
-[trogen_konungarde_neitiznot]
+[trogen_konungarde]
 id = 5519
 examine = "Guards the Burgher's room."
 
-[slug_hemligssen_neitiznot]
+[slug_hemligssen]
 id = 5520
 examine = "A man in a jester's costume."
 
@@ -61,7 +61,7 @@ id = 5522
 [ice_troll_female_neitiznot]
 id = 5523
 
-[yak_neitiznot]
+[yak]
 id = 5529
 examine = "A hairy, smelly, grazing animal."
 

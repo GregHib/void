@@ -50,7 +50,7 @@ examine = "A Fremennik hunter."
 id = 1282
 examine = "A Fremennik merchant."
 
-[swensen_the_navigator_rellekka]
+[swensen_the_navigator]
 id = 1283
 examine = "A Fremennik navigator."
 
@@ -216,7 +216,7 @@ examine = "One of the inhabitants of the camp."
 id = 3696
 examine = "One of the inhabitants of the camp."
 
-[sabre_toothed_kebbit_rellekka]
+[sabre_toothed_kebbit]
 id = 5087
 examine = "Now that's a big overbite."
 

@@ -109,7 +109,7 @@ id = 4346
 id = 4347
 examine = "A flying blood sucker."
 
-[jungle_horror_mos_le_harmless]
+[jungle_horror]
 id = 4352
 categories = ["jungle_horrors"]
 examine = "A horrible, emaciated ape like creature with beady pink eyes."

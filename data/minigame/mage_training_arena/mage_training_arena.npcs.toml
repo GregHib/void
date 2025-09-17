@@ -1,34 +1,34 @@
-[flying_book_mage_training_arena]
+[flying_book]
 id = 3094
 examine = "The book moves by itself!"
 
-[flying_book_mage_training_arena_2]
+[flying_book_2]
 id = 3095
 
-[entrance_guardian_mage_training_arena]
+[entrance_guardian]
 id = 3097
 examine = "A guardian of the arena."
 
-[rewards_guardian_mage_training_arena]
+[rewards_guardian]
 id = 3103
 examine = "A guardian of the arena."
 
-[charmed_warrior_mage_training_arena]
+[charmed_warrior]
 id = 3104
 examine = "Equipment that moves by itself!"
 
-[charmed_warrior_mage_training_arena_2]
+[charmed_warrior_2]
 id = 3105
 examine = "Equipment that moves by itself!"
 
-[charmed_warrior_mage_training_arena_3]
+[charmed_warrior_3]
 id = 3106
 examine = "Equipment that moves by itself!"
 
-[charmed_warrior_mage_training_arena_4]
+[charmed_warrior_4]
 id = 3107
 
-[wizard_shug_mage_training_arena]
+[wizard_shug]
 id = 5027
 examine = "A tired old wizard."
 

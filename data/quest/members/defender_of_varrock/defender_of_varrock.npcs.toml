@@ -1,45 +1,45 @@
-[tramp_defender_of_varrock]
+[tramp_varrock]
 id = 11
 examine = "A man down on his luck."
 
-[market_guard_defender_of_varrock]
+[market_guard_varrock]
 id = 11269
 examine = "On guard for thieves and ne'erdowells."
 
-[urist_loric_defender_of_varrock]
+[urist_loric]
 id = 11270
 
-[man_defender_of_varrock]
+[man_varrock]
 id = 12345
 
-[man_defender_of_varrock_2]
+[man_varrock_2]
 id = 12347
 
-[tramp_defender_of_varrock_2]
+[tramp_varrock_2]
 id = 2792
 examine = "A man down on his luck."
 
-[sani_defender_of_varrock]
+[sani]
 id = 4905
 examine = "A master smith."
 
-[zaff_defender_of_varrock]
+[zaff]
 id = 546
 examine = "Sells superior staffs."
 
-[horvik_defender_of_varrock]
+[horvik]
 id = 549
 examine = "The man with the armour."
 
-[lowe_defender_of_varrock]
+[lowe]
 id = 550
 examine = "Sells arrows."
 
-[shopkeeper_defender_of_varrock]
+[sword_shopkeeper_varrock]
 id = 551
 examine = "Ironically, makes a living from swords."
 
-[shop_assistant_defender_of_varrock]
+[sword_shop_assistant_varrock]
 id = 552
 examine = "Helps the shopkeeper sell swords."
 
@@ -47,7 +47,7 @@ examine = "Helps the shopkeeper sell swords."
 id = 5909
 examine = "Don't let her arm-wrestle you for money."
 
-[cook_defender_of_varrock]
+[cook_blue_moon_inn]
 id = 5910
 examine = "A greasy, grimy gourmet."
 
@@ -58,71 +58,71 @@ examine = "A mangy mutt."
 [stray_dog_defender_of_varrock_2]
 id = 5918
 
-[guard_defender_of_varrock]
+[guard_varrock]
 id = 5919
 examine = "He tries to keep order around here. His bizarre uniform isn't helping."
 
-[man_defender_of_varrock_3]
+[man_varrock_3]
 id = 5923
 examine = "One of Gielinor's many citizens."
 
-[woman_defender_of_varrock]
+[woman_varrock]
 id = 5924
 examine = "One of Gielinor's many citizens."
 
-[benny_defender_of_varrock]
+[benny]
 id = 5925
 examine = "Newspaper seller."
 
-[thief_defender_of_varrock]
+[thief_black_arm_gang]
 id = 5926
 examine = "Known for his light-fingered qualities."
 
-[thief_defender_of_varrock_2]
+[thief_black_arm_gang_red]
 id = 5928
 examine = "Known for her light-fingered qualities."
 
-[thief_defender_of_varrock_3]
+[thief_black_arm_gang_blonde]
 id = 5929
 examine = "Known for her light-fingered qualities."
 
-[apothecary_defender_of_varrock]
+[apothecary]
 id = 638
 examine = "A dealer in potions."
 
-[charlie_the_tramp_defender_of_varrock]
+[charlie_the_tramp]
 id = 641
 examine = "Looks down on his luck."
 
-[jonny_the_beard_defender_of_varrock]
+[jonny_the_beard]
 id = 645
 examine = "Looks kind of shifty..."
 
-[dr_harlow_defender_of_varrock]
+[dr_harlow]
 id = 756
 examine = "A retired vampyre hunter."
 
-[shilop_defender_of_varrock]
+[shilop]
 id = 781
 examine = "One of Gertrude's sons."
 
-[wilough_defender_of_varrock]
+[wilough]
 id = 783
 examine = "One of Gertrude's sons."
 
-[treznor_defender_of_varrock]
+[treznor]
 id = 2341
 examine = "Perhaps this gardener might look after your crops for you."
 
-[ambassador_ferrnook_defender_of_varrock]
+[ambassador_ferrnook]
 id = 4582
 examine = "Peaceful man!"
 
-[guard_defender_of_varrock_2]
+[guard_varrock_2]
 id = 5920
 examine = "He tries to keep order around here. His bizarre uniform isn't helping."
 
-[trainee_guard_defender_of_varrock]
+[trainee_guard]
 id = 5921
 examine = "He's studying to be a guard."
 

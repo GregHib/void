@@ -22,7 +22,7 @@ id = 3628
 wander_radius = 7
 examine = "A Burgh de Rott female militia volunteer."
 
-[sorin]
+[sorin_temple_trekking]
 id = 3509
 wander_radius = 4
 examine = "A flea infested, pale looking excuse of a man."

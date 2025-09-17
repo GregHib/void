@@ -1,28 +1,28 @@
-[kathy_corkat_piscatoris_hunter_area]
+[kathy_corkat_piscatoris]
 id = 3831
 examine = "Carries supplies to the Piscatoris Fishing Colony."
 
-[chinchompa_piscatoris_hunter_area]
+[chinchompa]
 id = 5079
 examine = "It looks fluffy and cute; it's probably deadly."
 
-[ruby_harvest_piscatoris_hunter_area]
+[ruby_harvest]
 id = 5085
 examine = "It's a ruby harvest butterfly."
 
-[prickly_kebbit_piscatoris_hunter_area]
+[prickly_kebbit]
 id = 5086
 examine = "Curls up into a ball to protect itself from attack."
 
-[wild_kebbit_piscatoris_hunter_area]
+[wild_kebbit]
 id = 5089
 examine = "That's a mean looking set of claws."
 
-[dark_kebbit_piscatoris_hunter_area]
+[dark_kebbit]
 id = 5099
 examine = "Quieter than a ninja mouse with slippers on."
 
-[dashing_kebbit_piscatoris_hunter_area]
+[dashing_kebbit]
 id = 5100
 examine = "Now you see it; now you don't."
 

@@ -1,6 +1,6 @@
 spawns = [
   { id = "zenevivia_draynor_instance", x = 2129, y = 4919, members = true },
-  { id = "wise_old_man_draynor_instance", x = 2130, y = 4914, members = true },
+  { id = "wise_old_man", x = 2130, y = 4914, members = true },
   { id = "olivia", x = 2119, y = 4917 },
   { id = "master_farmer", x = 2120, y = 4914, members = true },
   { id = "market_guard_draynor", x = 2123, y = 4911, members = true },

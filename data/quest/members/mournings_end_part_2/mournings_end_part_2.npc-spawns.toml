@@ -95,5 +95,5 @@ spawns = [
   { id = "shadow_mournings_end_part_2", x = 1911, y = 4626, level = 2 },
   { id = "shadow_mournings_end_part_2", x = 1916, y = 4613, level = 2 },
   { id = "shadow_mournings_end_part_2", x = 1916, y = 4666, level = 2 },
-  { id = "arianwyn_mournings_end_part_2", x = 1861, y = 4641, members = true },
+  { id = "arianwyn", x = 1861, y = 4641, members = true },
 ]

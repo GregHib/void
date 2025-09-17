@@ -1,6 +1,6 @@
 spawns = [
-  { id = "radigad_ponfit_myreque_hideout", x = 3497, y = 9626, members = true },
-  { id = "polmafi_ferdygris_myreque_hideout", x = 3494, y = 9626, members = true },
+  { id = "radigad_ponfit", x = 3497, y = 9626, members = true },
+  { id = "polmafi_ferdygris", x = 3494, y = 9626, members = true },
   { id = "veliaf_hurtz_myreque_hideout", x = 3494, y = 9628, members = true },
   { id = "ivan_strom_myreque_hideout", x = 3494, y = 9631, members = true },
 ]

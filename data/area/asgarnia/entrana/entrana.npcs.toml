@@ -6,17 +6,17 @@ examine = "High Priest of Entrana."
 id = 222
 examine = "A holy man."
 
-[francis_entrana]
+[francis]
 id = 2327
 examine = "Perhaps this gardener might look after your crops for you."
 
 [mysterious_ghost_entrana]
 id = 2391
 
-[monk_of_entrana_entrana]
+[monk_of_entrana]
 id = 2730
 
-[monk_of_entrana_entrana_2]
+[monk_of_entrana_2]
 id = 2731
 examine = "Holy looking."
 
@@ -30,7 +30,7 @@ id = 318
 [fishing_spot_entrana_2]
 id = 319
 
-[fritz_the_glassblower_entrana]
+[fritz_the_glassblower]
 id = 4909
 examine = "His motives are see-through."
 
@@ -38,15 +38,15 @@ examine = "His motives are see-through."
 id = 5049
 examine = "Balloonist extraordinaire."
 
-[frincos_entrana]
+[frincos]
 id = 578
 examine = "Kind of funny-looking."
 
-[cave_monk_entrana]
+[cave_monk]
 id = 656
 examine = "Unsurprisingly monk like."
 
-[monk_of_entrana_entrana_3]
+[monk_of_entrana_3]
 id = 658
 examine = "Holy looking."
 

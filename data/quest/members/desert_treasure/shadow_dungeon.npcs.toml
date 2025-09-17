@@ -3,7 +3,7 @@ id = 1973
 categories = ["skeletons"]
 examine = "A giant skeleton."
 
-[shadow_hound_shadow_dungeon]
+[shadow_hound]
 id = 1976
 categories = ["dogs"]
 examine = "Looks hungry!"

@@ -60,7 +60,7 @@ id = 4927
 categories = ["rats"]
 examine = "Overgrown vermin."
 
-[black_salamander_wilderness]
+[black_salamander]
 id = 5116
 examine = "Slightly slimy and somewhat menacing."
 

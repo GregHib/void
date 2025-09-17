@@ -25,7 +25,7 @@ spawns = [
   { id = "mine_cart_haunted_mine_5", x = 2739, y = 4528, members = true },
   { id = "skeleton_haunted_mine", x = 3427, y = 9644 },
   { id = "skeleton_haunted_mine", x = 3428, y = 9658 },
-  { id = "possessed_pickaxe_chaos_tunnels", x = 3423, y = 9658, members = true },
-  { id = "animated_spade_chaos_tunnels", x = 3420, y = 9657 },
-  { id = "animated_spade_chaos_tunnels", x = 3429, y = 9648 },
+  { id = "possessed_pickaxe", x = 3423, y = 9658, members = true },
+  { id = "animated_spade", x = 3420, y = 9657 },
+  { id = "animated_spade", x = 3429, y = 9648 },
 ]

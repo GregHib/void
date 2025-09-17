@@ -1,16 +1,16 @@
-[wizard_korvak_runecrafting_guild]
+[wizard_korvak]
 id = 8029
 examine = "A Runecrafting wizard."
 
-[wizard_vief_runecrafting_guild]
+[wizard_vief]
 id = 8030
 examine = "A Runecrafting wizard."
 
-[wizard_acantha_runecrafting_guild]
+[wizard_acantha]
 id = 8031
 examine = "A Runecrafting wizard."
 
-[wizard_elriss_runecrafting_guild]
+[wizard_elriss]
 id = 8032
 examine = "She is in charge of the Runecrafting Guild."
 

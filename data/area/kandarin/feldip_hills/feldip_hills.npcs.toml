@@ -34,17 +34,17 @@ examine = "If you tried to ride that, you'd just impale yourself!"
 id = 5113
 examine = "With all the furs, I almost mistook her for a wild animal."
 
-[ogress_champion_feldip_hills]
+[ogress_champion]
 id = 7078
 categories = ["ogres"]
 examine = "A fearsome adversary with no sense of humour."
 
-[ogress_warrior_feldip_hills]
+[ogress_warrior]
 id = 7079
 categories = ["ogres"]
 examine = "Irascible, belligerent and stupefyingly impolite."
 
-[ogress_warrior_feldip_hills_2]
+[ogress_warrior_2]
 id = 7080
 categories = ["ogres"]
 examine = "Irascible, belligerent and stupefyingly impolite."

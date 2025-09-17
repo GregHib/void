@@ -22,5 +22,5 @@ spawns = [
   { id = "eagle_2", x = 2007, y = 4954, level = 3, members = true },
   { id = "polar_eagle_2", x = 2727, y = 10217, members = true },
   { id = "polar_eagle_2", x = 2730, y = 10203, members = true },
-  { id = "karamjan_jungle_eagle", x = 2019, y = 4961, level = 3, members = true },
+  { id = "karamjan_jungle_eagle_peak", x = 2019, y = 4961, level = 3, members = true },
 ]

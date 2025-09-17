@@ -2,7 +2,7 @@
 id = 1219
 examine = "Yuck! It's all slimy!"
 
-[dust_devil_chaos_tunnels]
+[dust_devil]
 id = 1624
 categories = ["dust_devils"]
 examine = "The vacuumed face of evil."
@@ -19,12 +19,12 @@ id = 2033
 categories = ["rats"]
 examine = "A nasty overgrown rodent."
 
-[crypt_spider_chaos_tunnels]
+[crypt_spider]
 id = 2034
 categories = ["spiders"]
 examine = "Incey wincey."
 
-[giant_crypt_spider_chaos_tunnels]
+[giant_crypt_spider]
 id = 2035
 categories = ["spiders"]
 examine = "Not very incey wincey."
@@ -39,10 +39,10 @@ id = 4921
 categories = ["rats"]
 examine = "A nasty overgrown rodent."
 
-[possessed_pickaxe_chaos_tunnels]
+[possessed_pickaxe]
 id = 5413
 
-[animated_spade_chaos_tunnels]
+[animated_spade]
 id = 5414
 categories = ["phantoms"]
 examine = "How does it move of its own accord?"

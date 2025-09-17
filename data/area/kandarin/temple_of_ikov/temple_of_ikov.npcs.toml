@@ -15,7 +15,7 @@ id = 5341
 categories = ["skeletons"]
 examine = "Could do with gaining a few pounds."
 
-[ice_spider_temple_of_ikov]
+[ice_spider]
 id = 64
 categories = ["spiders"]
 examine = "I think this spider has been magically modified."

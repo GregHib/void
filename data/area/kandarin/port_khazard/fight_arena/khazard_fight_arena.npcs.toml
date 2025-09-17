@@ -1,36 +1,36 @@
-[khazard_guard_khazard_fight_arena]
+[khazard]
 id = 253
 examine = "He's guarding the door."
 
-[khazard_guard_khazard_fight_arena_2]
+[khazard_2]
 id = 254
 examine = "He's been guarding the tavern for a bit too long."
 
-[khazard_guard_khazard_fight_arena_3]
+[khazard_3]
 id = 255
 examine = "His armour indicates he's a Khazard Guard."
 
-[khazard_guard_khazard_fight_arena_4]
+[khazard_4]
 id = 256
 examine = "His armour indicates he's a Khazard Guard."
 
-[angor_khazard_fight_arena]
+[angor]
 id = 259
 examine = "A tough-looking Khazard barman."
 
-[kelvin_khazard_fight_arena]
+[kelvin]
 id = 260
 examine = "A slave fighter. He looks mistreated and weak."
 
-[joe_khazard_fight_arena]
+[joe]
 id = 261
 examine = "A slave fighter. He looks mistreated and weak."
 
-[slave_fighter_khazard_fight_arena]
+[slave_fighter]
 id = 262
 examine = "A slave fighter. He looks mistreated and weak."
 
-[hengrad_khazard_fight_arena]
+[hengrad]
 id = 263
 examine = "He looks mistreated but he hasn't given up."
 
@@ -41,69 +41,69 @@ id = 267
 id = 268
 examine = "A scruffy-looking chap."
 
-[khazard_guard_khazard_fight_arena_5]
+[khazard_5]
 id = 7504
 examine = "He likes a good fight, as long as he's not part of it."
 
-[khazard_guard_khazard_fight_arena_6]
+[khazard_6]
 id = 7505
 examine = "He likes a good fight, as long as he's not part of it."
 
-[khazard_guard_khazard_fight_arena_7]
+[khazard_7]
 id = 7506
 examine = "His favourite must be winning."
 
-[khazard_guard_khazard_fight_arena_8]
+[khazard_8]
 id = 7507
 examine = "Blood-thirsty and enthusiastic."
 
-[khazard_guard_khazard_fight_arena_9]
+[khazard_9]
 id = 7508
 examine = "Probably discussing the strengths and weaknesses of the fighting slaves."
 
-[khazard_guard_khazard_fight_arena_10]
+[khazard_10]
 id = 7509
 
-[khazard_guard_khazard_fight_arena_11]
+[khazard_11]
 id = 7510
 examine = "His favourite must be winning."
 
-[khazard_guard_khazard_fight_arena_12]
+[khazard_12]
 id = 7511
 examine = "His favourite must be winning."
 
-[khazard_guard_khazard_fight_arena_13]
+[khazard_13]
 id = 7512
 examine = "Probably discussing the strengths and weaknesses of the fighting slaves."
 
-[khazard_guard_khazard_fight_arena_14]
+[khazard_14]
 id = 7513
 examine = "Probably discussing the strengths and weaknesses of the fighting slaves."
 
-[khazard_guard_khazard_fight_arena_15]
+[khazard_15]
 id = 7514
 examine = "Bloodthirsty and enthusiastic."
 
-[khazard_guard_khazard_fight_arena_16]
+[khazard_16]
 id = 7515
 examine = "Bloodthirsty and enthusiastic."
 
-[khazard_guard_khazard_fight_arena_17]
+[khazard_17]
 id = 7518
 examine = "He's asleep."
 
-[khazard_guard_khazard_fight_arena_18]
+[khazard_18]
 id = 7519
 examine = "He's propping the bar up. Or is it the other way round?"
 
-[khazard_guard_khazard_fight_arena_19]
+[khazard_19]
 id = 7520
 examine = "He demands to have some booze."
 
-[khazard_guard_khazard_fight_arena_20]
+[khazard_20]
 id = 7528
 
-[lazy_khazard_guard_khazard_fight_arena]
+[lazy_khazard]
 id = 7550
 
 [citizen_khazard_fight_arena]

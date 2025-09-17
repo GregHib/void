@@ -1,16 +1,16 @@
-[mime_mime_event]
+[mime]
 id = 1056
 examine = "A mute performer."
 
-[strange_watcher_mime_event]
+[strange_watcher]
 id = 1057
 examine = "A member of the audience."
 
-[strange_watcher_mime_event_2]
+[strange_watcher_2]
 id = 1058
 examine = "A member of the audience."
 
-[strange_watcher_mime_event_3]
+[strange_watcher_3]
 id = 1059
 examine = "A member of the audience."
 

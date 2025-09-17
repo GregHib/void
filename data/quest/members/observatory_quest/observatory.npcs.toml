@@ -2,7 +2,7 @@
 id = 2344
 examine = "Perhaps this gardener might look after your crops for you."
 
-[observatory_assistant_observatory]
+[observatory_assistant]
 id = 6118
 examine = "He helps the professor."
 

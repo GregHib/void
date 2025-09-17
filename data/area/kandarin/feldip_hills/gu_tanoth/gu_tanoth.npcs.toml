@@ -22,7 +22,7 @@ id = 5189
 [ogre_shaman_gu_tanoth_6]
 id = 5192
 
-[ogre_chieftain_gu_tanoth]
+[ogre_chieftain]
 id = 852
 categories = ["ogres"]
 examine = "Tough-looking."

@@ -1,31 +1,31 @@
-[tyras_guard_tyras_camp]
+[tyras_guard]
 id = 1203
 
-[tyras_guard_tyras_camp_2]
+[tyras_guard_2]
 id = 1204
 
-[tyras_guard_tyras_camp_3]
+[tyras_guard_3]
 id = 1206
 
-[quartermaster_tyras_camp]
+[quartermaster]
 id = 1208
 examine = "Responsible for the food and equipment of the troops."
 
-[will_o_the_wisp_tyras_camp]
+[will_o_the_wisp]
 id = 1211
 examine = "Mysterious swamp lights..."
 
-[will_o_the_wisp_tyras_camp_2]
+[will_o_the_wisp_2]
 id = 1212
 
-[catapult_engineer_tyras_camp]
+[catapult_engineer]
 id = 7119
 
-[tyras_guard_tyras_camp_4]
+[tyras_guard_4]
 id = 7120
 examine = "One of King Tyras's men."
 
-[general_hining_tyras_camp]
+[general_hining]
 id = 7121
 examine = "Leader of King Tyras's men."
 
