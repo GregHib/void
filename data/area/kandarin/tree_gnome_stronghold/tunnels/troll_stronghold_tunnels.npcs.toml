@@ -115,10 +115,6 @@ examine = "He's guarding the goutweed."
 id = 1151
 examine = "Human is his speciality."
 
-[ug_troll_stronghold_tunnels]
-id = 1553
-examine = "A frail little troll."
-
 [aga_troll_stronghold_tunnels]
 id = 1554
 examine = "A beautiful troll."

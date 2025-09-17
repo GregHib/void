@@ -1,8 +1,3 @@
-[deadly_red_spider_arandar]
-id = 63
-categories = ["spiders"]
-examine = "I think this spider has been magically modified."
-
 [dire_wolf_isafdar]
 id = 1198
 categories = ["wolves"]

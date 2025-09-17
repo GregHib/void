@@ -35,10 +35,6 @@ hunt_mode = "aggressive"
 height = 60
 examine = "Big, red, and incredibly evil."
 
-[greater_demon_1]
-id = 1585
-clone = "greater_demon"
-
 [greater_demon_2]
 id = 4698
 clone = "greater_demon"

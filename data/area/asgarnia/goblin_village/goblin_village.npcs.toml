@@ -9,10 +9,6 @@ id = 4493
 id = 4494
 examine = "An ugly green creature."
 
-[miazrqa_goblin_village]
-id = 5988
-examine = "A slightly insane princess."
-
 [drain_pipe_goblin_village]
 id = 5991
 

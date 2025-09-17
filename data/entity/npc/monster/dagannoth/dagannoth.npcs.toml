@@ -58,7 +58,7 @@ clone = "dagannoth_lighthouse_melee_92"
 id = 1343
 
 [dagannoth_waterbirth_range_88]
-id = 1341
+id = 2456
 att = 10
 str = 10
 def = 71
@@ -76,10 +76,6 @@ drop_table = "dagannoth_waterbirth"
 categories = ["dagannoth"]
 respawn_delay = 30
 examine = "A horror from the ocean depths..."
-
-[dagannoth_waterbirth_range_88_1]
-clone = "dagannoth_waterbirth_range_88"
-id = 2456
 
 [dagannoth_waterbirth_range_88_2]
 clone = "dagannoth_waterbirth_range_88"

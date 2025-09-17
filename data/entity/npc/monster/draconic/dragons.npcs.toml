@@ -217,10 +217,6 @@ clone = "red_dragon"
 id = 4670
 clone = "red_dragon"
 
-[red_dragon_red]
-id = 4671
-clone = "red_dragon"
-
 [red_dragon_orange_light]
 id = 4672
 clone = "red_dragon"
