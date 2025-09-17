@@ -55,7 +55,7 @@ spawns = [
   { id = "guard_varrock_2", x = 1889, y = 5609, level = 2 },
   { id = "trainee_guard", x = 1889, y = 5608, level = 2 },
   { id = "reldo", x = 1885, y = 5613, members = true },
-  { id = "king_roald_defender_of_varrock", x = 1898, y = 5594 },
+  { id = "king_roald", x = 1898, y = 5594 },
   { id = "imp", x = 1910, y = 5624 },
   { id = "armoured_zombie_defender_of_varrock", x = 1880, y = 5613, members = true },
   { id = "armoured_zombie_defender_of_varrock", x = 1882, y = 5582, members = true },

@@ -386,7 +386,7 @@ spawns = [
   { id = "rogue", x = 3238, y = 3412, members = true },
   { id = "hartwin", x = 3204, y = 3497, level = 2, members = true },
   { id = "clive", x = 3203, y = 3479 },
-  { id = "head_chef_", x = 3143, y = 3444 },
+  { id = "head_chef", x = 3143, y = 3444 },
   { id = "unicorn", x = 3283, y = 3355 },
   { id = "unicorn", x = 3286, y = 3349 },
   { id = "overseer", x = 3316, y = 3491, members = true },

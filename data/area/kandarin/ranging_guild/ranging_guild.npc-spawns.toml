@@ -7,7 +7,7 @@ spawns = [
   { id = "chicken_brown", x = 2650, y = 3441 },
   { id = "chicken_brown", x = 2651, y = 3442 },
   { id = "bonzo", x = 2641, y = 3437 },
-  { id = "sinister_stranger_ranging_guild", x = 2637, y = 3440, members = true },
+  { id = "sinister_stranger", x = 2637, y = 3440, members = true },
   { id = "morris", x = 2643, y = 3440 },
   { id = "big_dave", x = 2634, y = 3425 },
   { id = "joshua", x = 2629, y = 3415 },

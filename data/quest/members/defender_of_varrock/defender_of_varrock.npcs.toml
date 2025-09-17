@@ -126,7 +126,7 @@ examine = "He tries to keep order around here. His bizarre uniform isn't helping
 id = 5921
 examine = "He's studying to be a guard."
 
-[king_roald_defender_of_varrock]
+[king_roald]
 id = 648
 examine = "Varrock's resident monarch."
 
