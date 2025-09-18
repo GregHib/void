@@ -18,7 +18,7 @@ spawns = [
     { id = "trader_stan", x = 3033, y = 3192, members = true },
     # 12082
     { id = "man", x = 3017, y = 3238 },
-    { id = "bartender_rusty_anchor", x = 3045, y = 3257 },
+    { id = "bartender_rusty_anchor_inn", x = 3045, y = 3257 },
     { id = "commander_korasi_port_sarim", x = 3042, y = 3203, members = true },
     { id = "lady_table_port_sarim", x = 3043, y = 3203, members = true },
     { id = "sir_tiffy_port_sarim", x = 3039, y = 3202, members = true },

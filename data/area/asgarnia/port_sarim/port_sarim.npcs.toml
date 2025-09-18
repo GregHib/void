@@ -38,7 +38,7 @@ id = 2759
 categories = ["human"]
 examine = "Keeping an eye out for suspicious activity."
 
-[bartender_rusty_anchor]
+[bartender_rusty_anchor_inn]
 id = 734
 bar_crawl = {
     id = "black_skull_ale",
@@ -53,6 +53,14 @@ categories = ["human"]
 wander_radius = 4
 collision = "indoors"
 examine = "I could get a beer from him."
+
+[bartender_rusty_anchor_inn_2]
+id = 11706
+clone = "bartender_rusty_anchor_inn"
+
+[bartender_rusty_anchor_inn_3]
+id = 11707
+clone = "bartender_rusty_anchor_inn"
 
 [commander_korasi_port_sarim]
 id = 11503
