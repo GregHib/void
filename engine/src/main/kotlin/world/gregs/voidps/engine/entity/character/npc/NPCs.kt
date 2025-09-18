@@ -65,14 +65,13 @@ data class NPCs(
 
     fun indexed(index: Int): NPC? = indexArray.getOrNull(index)
 
-    fun add(id: String, tile: Tile, direction: Direction = Direction.NONE): NPC {
+    fun add(id: String, tile: Tile, direction: Direction = Direction.SOUTH): NPC {
         val def = definitions.getOrNull(id) ?: return NPC(id, tile, NPCDefinition.EMPTY)
         val npc = NPC(id, tile, def)
         if (spawnIndex < spawnQueue.size) {
             spawnQueue[spawnIndex++] = npc
         }
-        val dir = if (direction == Direction.NONE) Direction.all.random() else direction
-        npc.face(dir)
+        npc.face(direction)
         return npc
     }
 
