@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.event.Script
 class BartenderRustyAnchor : Api {
 
     override fun spawn(player: Player) {
-        player["void_dance_bartender"] = 8
+        player["void_dance_bartender"] = 19
     }
 
     init {
