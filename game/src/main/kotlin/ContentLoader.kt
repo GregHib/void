@@ -58,6 +58,12 @@ object ContentLoader {
         logger.info { "Loaded $scriptCount ${"script".plural(scriptCount)} in ${System.currentTimeMillis() - start}ms" }
     }
 
+    fun clear() {
+        for (dispatcher in dispatchers.values) {
+            dispatcher.clear()
+        }
+    }
+
     private fun loadScript(name: String): Any {
         val clazz = Class.forName(name)
         val constructor = clazz.declaredConstructors.first()

@@ -249,6 +249,7 @@ abstract class WorldTest : KoinTest {
     @AfterAll
     fun afterAll() {
         saves?.deleteRecursively()
+        ContentLoader.clear()
         Events.events.clear()
         stopKoin()
     }

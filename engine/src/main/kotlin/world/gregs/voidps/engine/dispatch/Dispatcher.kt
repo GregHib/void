@@ -6,5 +6,6 @@ package world.gregs.voidps.engine.dispatch
 @Suppress("UNCHECKED_CAST")
 interface Dispatcher<T : Any> {
     fun process(instance: T)
-    fun load(clazz: Any) = process(clazz as T)
+    fun load(instance: Any) = process(instance as T)
+    fun clear()
 }
