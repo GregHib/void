@@ -1,11 +1,8 @@
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.entity.NPCSpawn
-import world.gregs.voidps.engine.entity.PlayerSpawn
-import world.gregs.voidps.engine.entity.character.player.skill.level.NPCLevelChanged
-import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevelChanged
 import world.gregs.voidps.engine.dispatch.Dispatcher
-import world.gregs.voidps.engine.entity.WorldSpawn
+import world.gregs.voidps.engine.entity.Spawn
+import world.gregs.voidps.engine.entity.character.player.skill.level.LevelChanged
 import world.gregs.voidps.engine.get
 import java.nio.file.NoSuchFileException
 import kotlin.system.exitProcess
@@ -18,6 +15,13 @@ object ContentLoader {
     private val logger = InlineLogger()
 
     val dispatchers = mutableMapOf<String, Dispatcher<*>>(
+        "spawn(Player)" to Spawn.playerDispatcher,
+        "spawn(NPC)" to Spawn.npcDispatcher,
+        "spawn(FloorItem)" to Spawn.floorItemDispatcher,
+        "spawn(GameObject)" to Spawn.objectDispatcher,
+        "worldSpawn()" to Spawn.worldDispatcher,
+        "levelChanged(NPC,Skill,Int,Int)" to LevelChanged.npcDispatcher,
+        "levelChanged(Player,Skill,Int,Int)" to LevelChanged.playerDispatcher,
     )
 
     fun load() {

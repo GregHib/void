@@ -2,29 +2,29 @@ package content.social.trade.lend
 
 import content.social.trade.lend.Loan.returnLoan
 import content.social.trade.returnedItems
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.playerDespawn
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
 @Script
-class ItemLending {
+class ItemLending : Api {
 
     val players: Players by inject()
 
-    init {
-        playerSpawn { player ->
-            checkBorrowComplete(player)
-            checkLoanComplete(player)
-        }
+    override fun spawn(player: Player) {
+        checkBorrowComplete(player)
+        checkLoanComplete(player)
+    }
 
+    init {
         playerDespawn { player ->
             checkBorrowUntilLogout(player)
             checkLoanUntilLogout(player)

@@ -1,11 +1,11 @@
 package content.entity.player.effect
 
 import content.skill.prayer.praying
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.levelChange
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
@@ -13,27 +13,27 @@ import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 @Script
-class LevelRestoration {
+class LevelRestoration : Api {
 
     val skills = Skill.all.filterNot { it == Skill.Prayer || it == Skill.Summoning || it == Skill.Constitution }
 
-    init {
-        playerSpawn { player ->
-            if (skills.any { player.levels.getOffset(it) != 0 }) {
-                player.softTimers.start("restore_stats")
-            }
+    override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
+        if (skill == Skill.Prayer || skill == Skill.Summoning || skill == Skill.Constitution) {
+            return
         }
+        if (to == player.levels.getMax(skill) || player.softTimers.contains("restore_stats")) {
+            return
+        }
+        player.softTimers.start("restore_stats")
+    }
 
-        levelChange { player ->
-            if (skill == Skill.Prayer || skill == Skill.Summoning || skill == Skill.Constitution) {
-                return@levelChange
-            }
-            if (to == player.levels.getMax(skill) || player.softTimers.contains("restore_stats")) {
-                return@levelChange
-            }
+    override fun spawn(player: Player) {
+        if (skills.any { player.levels.getOffset(it) != 0 }) {
             player.softTimers.start("restore_stats")
         }
+    }
 
+    init {
         timerStart("restore_stats") {
             interval = TimeUnit.SECONDS.toTicks(60)
         }

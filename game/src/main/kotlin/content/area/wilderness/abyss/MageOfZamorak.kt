@@ -6,6 +6,7 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.sound.sound
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -16,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -29,18 +29,18 @@ import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
 
 @Script
-class MageOfZamorak {
+class MageOfZamorak : Api {
 
     val areas: AreaDefinitions by inject()
 
     val abyss = areas["abyss_multi_area"]
     val abyssCenter = areas["abyss_center"]
 
-    init {
-        playerSpawn { player ->
-            player.sendVariable("enter_the_abyss")
-        }
+    override fun spawn(player: Player) {
+        player.sendVariable("enter_the_abyss")
+    }
 
+    init {
         npcOperate("Teleport", "mage_of_zamorak_wilderness_*") {
             teleport(player, target)
         }

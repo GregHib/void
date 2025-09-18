@@ -10,6 +10,7 @@ import content.entity.sound.areaSound
 import content.skill.firemaking.Light
 import content.skill.firemaking.Light.hasLightSource
 import content.skill.melee.weapon.fightStyle
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -25,7 +26,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventoryUpdate
@@ -36,7 +36,7 @@ import world.gregs.voidps.type.Tile
 import kotlin.random.Random
 
 @Script
-class GiantMole {
+class GiantMole : Api {
 
     val logger = InlineLogger()
     val areas: AreaDefinitions by inject()
@@ -52,6 +52,14 @@ class GiantMole {
     val giantMoleLair = areas["giant_mole_lair"]
     val gianMoleSpawns = areas["giant_mole_spawn_area"]
     val initialCaveTile: Tile = Tile(1752, 5237, 0)
+
+    override fun spawn(player: Player) {
+        if (giantMoleLair.contains(player.tile)) {
+            if (!hasLightSource(player)) {
+                player.open("level_three_darkness")
+            }
+        }
+    }
 
     init {
         inventoryItem("Dig", "spade") {
@@ -93,14 +101,6 @@ class GiantMole {
         exitArea("giant_mole_lair") {
             if (player.interfaces.contains("level_three_darkness")) {
                 player.close("level_three_darkness")
-            }
-        }
-
-        playerSpawn { player ->
-            if (giantMoleLair.contains(player.tile)) {
-                if (!hasLightSource(player)) {
-                    player.open("level_three_darkness")
-                }
             }
         }
 

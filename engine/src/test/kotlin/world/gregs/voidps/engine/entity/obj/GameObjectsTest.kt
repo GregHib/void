@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
+import world.gregs.voidps.engine.dispatch.ListDispatcher
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.event.Events
@@ -23,6 +24,7 @@ class GameObjectsTest {
     private lateinit var objects: GameObjects
     private lateinit var updates: ZoneBatchUpdates
     private lateinit var events: Events
+    private lateinit var spawn: Spawn
 
     @BeforeEach
     fun setup() {
@@ -34,6 +36,13 @@ class GameObjectsTest {
         objects = GameObjects(mockk(relaxed = true), mockk(relaxed = true), updates, definitions, storeUnused = true)
         events = spyk(Events())
         Events.setEvents(events)
+        val dispatcher = ListDispatcher<Spawn>()
+        spawn = spyk(object : Spawn {
+            override fun spawn(obj: GameObject) {
+            }
+        })
+        dispatcher.instances.add(spawn)
+        Spawn.objectDispatcher = dispatcher
     }
 
     @Test
@@ -48,6 +57,7 @@ class GameObjectsTest {
         objects.clear()
         assertNull(objects.getLayer(obj.tile, ObjectLayer.GROUND))
         verify(exactly = 0) {
+            spawn.spawn(obj)
             events.emit(obj, any())
         }
     }
@@ -66,6 +76,7 @@ class GameObjectsTest {
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
         }
         verify(exactly = 0) {
+            spawn.spawn(obj)
             events.emit(obj, any())
         }
     }
@@ -83,7 +94,7 @@ class GameObjectsTest {
         assertFalse(objects.contains(obj))
         verifyOrder {
             updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
-            events.emit(obj, Spawn)
+            spawn.spawn(obj)
             events.emit(obj, Despawn)
         }
     }
@@ -108,9 +119,9 @@ class GameObjectsTest {
         assertFalse(objects.contains(override))
         verifyOrder {
             updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
-            events.emit(obj, Spawn)
+            spawn.spawn(obj)
             updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 4321, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            events.emit(override, Spawn)
+            spawn.spawn(override)
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
             events.emit(override, Despawn)
         }
@@ -131,7 +142,7 @@ class GameObjectsTest {
         verifyOrder {
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
             updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            events.emit(obj, Spawn)
+            spawn.spawn(obj)
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
             events.emit(obj, Despawn)
             updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 123, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
@@ -158,12 +169,12 @@ class GameObjectsTest {
             // Add 1234
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
             updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            events.emit(obj, Spawn)
+            spawn.spawn(obj)
             // Add 4321
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
             events.emit(obj, Despawn)
             updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 4321, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            events.emit(override, Spawn)
+            spawn.spawn(override)
             // Remove 4321
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
             events.emit(override, Despawn)
@@ -180,7 +191,7 @@ class GameObjectsTest {
         }
         assertFalse(objects.contains(obj))
         verifyOrder {
-            events.emit(obj, Spawn)
+            spawn.spawn(obj)
             events.emit(obj, Despawn)
         }
     }
@@ -196,9 +207,9 @@ class GameObjectsTest {
         }
         assertTrue(objects.contains(obj))
         verifyOrder {
-            events.emit(obj, Spawn)
+            spawn.spawn(obj)
             events.emit(obj, Despawn)
-            events.emit(obj, Spawn)
+            spawn.spawn(obj)
         }
     }
 
@@ -215,10 +226,10 @@ class GameObjectsTest {
         assertTrue(objects.contains(obj))
         assertFalse(objects.contains(replacement))
         verifyOrder {
-            events.emit(obj, Spawn)
+            spawn.spawn(obj)
             events.emit(obj, Despawn)
-            events.emit(replacement, Spawn)
-            events.emit(obj, Spawn)
+            spawn.spawn(replacement)
+            spawn.spawn(obj)
         }
     }
 
@@ -235,7 +246,7 @@ class GameObjectsTest {
         assertTrue(objects.contains(original))
         assertFalse(objects.contains(replacement))
         verifyOrder {
-            events.emit(replacement, Spawn)
+            spawn.spawn(replacement)
             events.emit(replacement, Despawn)
         }
     }

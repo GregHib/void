@@ -5,27 +5,28 @@ import content.entity.player.modal.tab.questJournalOpen
 import content.quest.letterScroll
 import content.quest.quest
 import content.quest.questJournal
-import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.holdsItem
 
 @Script
-class GunnarsGround {
+class GunnarsGround : Api {
+
+    override fun spawn(player: Player) {
+        player.sendVariable("gudrun_after_quest")
+        player.sendVariable("dororan_after_quest")
+        player.sendVariable("kjell")
+        player.sendVariable("dororan")
+        player.sendVariable("dororan_after_cutscene")
+        player.sendVariable("gudrun")
+        player.sendVariable("gudrun_after_cutscene")
+        player.sendVariable("dororan_ruby_bracelet")
+        player.sendVariable("dororan_dragonstone_necklace")
+        player.sendVariable("dororan_onyx_amulet")
+    }
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("gudrun_after_quest")
-            player.sendVariable("dororan_after_quest")
-            player.sendVariable("kjell")
-            player.sendVariable("dororan")
-            player.sendVariable("dororan_after_cutscene")
-            player.sendVariable("gudrun")
-            player.sendVariable("gudrun_after_cutscene")
-            player.sendVariable("dororan_ruby_bracelet")
-            player.sendVariable("dororan_dragonstone_necklace")
-            player.sendVariable("dororan_onyx_amulet")
-        }
-
         inventoryItem("Read", "gunnars_ground", "inventory") {
             player.letterScroll(
                 "Gunnar's Ground",

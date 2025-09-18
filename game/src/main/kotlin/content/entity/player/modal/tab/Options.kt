@@ -1,14 +1,19 @@
 package content.entity.player.modal.tab
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Options {
+class Options : Api {
+
+    override fun spawn(player: Player) {
+        player.sendVariable("accept_aid")
+    }
 
     init {
         interfaceOption("Graphics Settings", "graphics", "options") {
@@ -25,10 +30,6 @@ class Options {
                 return@interfaceOption
             }
             player.open("audio_options")
-        }
-
-        playerSpawn { player ->
-            player.sendVariable("accept_aid")
         }
 
         interfaceOption("Toggle Accept Aid", "aid", "options") {

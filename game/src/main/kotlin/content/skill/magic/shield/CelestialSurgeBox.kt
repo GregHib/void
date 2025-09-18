@@ -3,6 +3,7 @@ package content.skill.magic.shield
 import content.entity.combat.hit.combatAttack
 import content.entity.player.dialogue.type.choice
 import content.entity.player.inv.inventoryItem
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
@@ -10,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -22,7 +22,16 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import kotlin.math.min
 
 @Script
-class CelestialSurgeBox {
+class CelestialSurgeBox : Api {
+
+    override fun spawn(player: Player) {
+        val box = player.equipped(EquipSlot.Shield).id
+        if (box.startsWith("celestial_surgebox")) {
+            updateCharges(player, EquipSlot.Shield.index, box != "celestial_surgebox")
+        } else {
+            setCharges(player, 0, box != "celestial_surgebox")
+        }
+    }
 
     init {
         inventoryItem("Check*", "celestial_surgebox*", "inventory") {
@@ -54,15 +63,6 @@ class CelestialSurgeBox {
             val surge = player["celestial_surgebox_mode", false]
             val charges = player.equipment.charges(player, EquipSlot.Shield.index)
             player.message("The box is currently charged with $charges ${if (surge) "Surge" else "Wave"} ${"spell".plural(charges)}.") // TODO proper message
-        }
-
-        playerSpawn { player ->
-            val box = player.equipped(EquipSlot.Shield).id
-            if (box.startsWith("celestial_surgebox")) {
-                updateCharges(player, EquipSlot.Shield.index, box != "celestial_surgebox")
-            } else {
-                setCharges(player, 0, box != "celestial_surgebox")
-            }
         }
 
         itemAdded("celestial_surgebox*", EquipSlot.Shield, "worn_equipment") { player ->

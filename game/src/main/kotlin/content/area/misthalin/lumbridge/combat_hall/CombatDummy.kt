@@ -3,32 +3,26 @@ package content.area.misthalin.lumbridge.combat_hall
 import content.entity.combat.attackers
 import content.entity.combat.combatPrepare
 import content.skill.melee.weapon.fightStyle
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
-import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelChange
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class CombatDummy {
+class CombatDummy : Api {
 
-    val levelHandler: suspend CurrentLevelChanged.(NPC) -> Unit = handler@{ npc ->
-        if (to > 10) {
-            return@handler
-        }
-        npc.levels.clear()
-        for (attacker in npc.attackers) {
-            attacker.mode = EmptyMode
+    override fun levelChanged(npc: NPC, skill: Skill, from: Int, to: Int) {
+        if (skill == Skill.Constitution && to <= 10 && (npc.id == "melee_dummy" || npc.id == "magic_dummy")) {
+            npc.levels.clear()
+            for (attacker in npc.attackers) {
+                attacker.mode = EmptyMode
+            }
         }
     }
 
     init {
-        npcLevelChange("melee_dummy", Skill.Constitution, handler = levelHandler)
-
-        npcLevelChange("magic_dummy", Skill.Constitution, handler = levelHandler)
-
         combatPrepare { player ->
             if (target is NPC && target.id == "magic_dummy" && player.fightStyle != "magic") {
                 player.message("You can only use Magic against this dummy.")

@@ -1,7 +1,7 @@
 package content.entity.player.equip
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.equipment
@@ -10,7 +10,11 @@ import world.gregs.voidps.engine.inv.inventoryUpdate
 import world.gregs.voidps.network.login.protocol.encode.weight
 
 @Script
-class Weight {
+class Weight : Api {
+
+    override fun spawn(player: Player) {
+        updateWeight(player)
+    }
 
     init {
         inventoryUpdate("worn_equipment") { player ->
@@ -18,10 +22,6 @@ class Weight {
         }
 
         inventoryUpdate("inventory") { player ->
-            updateWeight(player)
-        }
-
-        playerSpawn { player ->
             updateWeight(player)
         }
     }

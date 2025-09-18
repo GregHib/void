@@ -11,6 +11,7 @@ import content.entity.player.bank.ownsItem
 import content.skill.magic.spell.spellBook
 import content.skill.melee.weapon.attackRange
 import net.pearx.kasechange.toLowerSpaceCase
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.remaining
@@ -24,7 +25,6 @@ import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -33,34 +33,32 @@ import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 @Script
-class TrainingBot {
+class TrainingBot : Api {
 
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()
 
-    init {
-        worldSpawn {
-            val area = areas.getOrNull("lumbridge_combat_tutors") ?: return@worldSpawn
-            val range = 1..5
-            val skills = listOf(Skill.Attack, Skill.Magic, Skill.Ranged)
-            val melees = listOf(Skill.Attack, Skill.Strength, Skill.Defence)
-            for (skill in skills) {
-                val melee = skill == Skill.Attack
-                val task = Task(
-                    name = "train ${if (melee) "melee" else skill.name} at ${area.name}".toLowerSpaceCase(),
-                    block = {
-                        val actualSkill = if (melee) melees.filter { levels.getMax(it) in range }.random() else skill
-                        bot.train(area, actualSkill, range)
-                    },
-                    area = area.area,
-                    spaces = if (melee) 3 else 2,
-                    requirements = listOf(
-                        { if (melee) melees.any { levels.getMax(it) in range } else levels.getMax(skill) in range },
-                        { bot.canGetGearAndAmmo(skill) },
-                    ),
-                )
-                tasks.register(task)
-            }
+    override fun worldSpawn() {
+        val area = areas.getOrNull("lumbridge_combat_tutors") ?: return@worldSpawn
+        val range = 1..5
+        val skills = listOf(Skill.Attack, Skill.Magic, Skill.Ranged)
+        val melees = listOf(Skill.Attack, Skill.Strength, Skill.Defence)
+        for (skill in skills) {
+            val melee = skill == Skill.Attack
+            val task = Task(
+                name = "train ${if (melee) "melee" else skill.name} at ${area.name}".toLowerSpaceCase(),
+                block = {
+                    val actualSkill = if (melee) melees.filter { levels.getMax(it) in range }.random() else skill
+                    bot.train(area, actualSkill, range)
+                },
+                area = area.area,
+                spaces = if (melee) 3 else 2,
+                requirements = listOf(
+                    { if (melee) melees.any { levels.getMax(it) in range } else levels.getMax(skill) in range },
+                    { bot.canGetGearAndAmmo(skill) },
+                ),
+            )
+            tasks.register(task)
         }
     }
 

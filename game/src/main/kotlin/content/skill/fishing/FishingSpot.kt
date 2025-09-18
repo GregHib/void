@@ -3,12 +3,12 @@ package content.skill.fishing
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -17,7 +17,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 @Script
-class FishingSpot {
+class FishingSpot : Api {
 
     val areas: AreaDefinitions by inject()
     val players: Players by inject()
@@ -26,11 +26,13 @@ class FishingSpot {
     val water = CollisionStrategies.Blocked
     val land = CollisionStrategies.Normal
 
-    init {
-        npcSpawn("fishing_spot_*") { npc ->
+    override fun spawn(npc: NPC) {
+        if (npc.id.startsWith("fishing_spot")) {
             npc.softTimers.start("fishing_spot_respawn")
         }
+    }
 
+    init {
         npcTimerStart("fishing_spot_respawn") {
             // https://x.com/JagexAsh/status/1604892218380021761
             interval = random.nextInt(280, 530)

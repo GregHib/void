@@ -1,16 +1,16 @@
 package content.skill.melee.armour
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 @Script
-class VoidSet {
+class VoidSet : Api {
 
     val slots = setOf(
         EquipSlot.Hat.index,
@@ -19,15 +19,15 @@ class VoidSet {
         EquipSlot.Hands.index,
     )
 
-    init {
-        playerSpawn { player ->
-            if (player.hasFullSet("")) {
-                player["void_set_effect"] = true
-            } else if (player.hasFullSet("elite_")) {
-                player["elite_void_set_effect"] = true
-            }
+    override fun spawn(player: Player) {
+        if (player.hasFullSet("")) {
+            player["void_set_effect"] = true
+        } else if (player.hasFullSet("elite_")) {
+            player["elite_void_set_effect"] = true
         }
+    }
 
+    init {
         itemRemoved("void_*", slots, "worn_equipment") { player ->
             player.clear("void_set_effect")
             player.clear("elite_void_set_effect")

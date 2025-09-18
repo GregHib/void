@@ -2,26 +2,27 @@ package content.skill.constitution.drink
 
 import content.entity.player.effect.antifire
 import content.entity.player.effect.superAntifire
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerStop
 import world.gregs.voidps.engine.timer.timerTick
 
 @Script
-class Antifire {
+class Antifire : Api {
+
+    override fun spawn(player: Player) {
+        if (player.antifire) {
+            player.timers.restart("fire_resistance")
+        }
+        if (player.superAntifire) {
+            player.timers.restart("fire_immunity")
+        }
+    }
 
     init {
-        playerSpawn { player ->
-            if (player.antifire) {
-                player.timers.restart("fire_resistance")
-            }
-            if (player.superAntifire) {
-                player.timers.restart("fire_immunity")
-            }
-        }
-
         timerStart("fire_resistance") {
             interval = 30
         }

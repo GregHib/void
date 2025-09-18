@@ -4,6 +4,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
 import content.skill.woodcutting.Hatchet
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
@@ -20,28 +21,27 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.type.Direction
 
 @Script
-class Canoes {
+class Canoes : Api {
 
     val objects: GameObjects by inject()
 
     val stations: CanoeDefinitions by inject()
 
-    init {
-        playerSpawn { player ->
-            player.sendVariable("canoe_state_lumbridge")
-            player.sendVariable("canoe_state_champions_guild")
-            player.sendVariable("canoe_state_barbarian_village")
-            player.sendVariable("canoe_state_edgeville")
-            player.sendVariable("canoe_state_wilderness_pond")
-        }
+    override fun spawn(player: Player) {
+        player.sendVariable("canoe_state_lumbridge")
+        player.sendVariable("canoe_state_champions_guild")
+        player.sendVariable("canoe_state_barbarian_village")
+        player.sendVariable("canoe_state_edgeville")
+        player.sendVariable("canoe_state_wilderness_pond")
+    }
 
+    init {
         objectOperate("Chop-down", "canoe_station") {
             if (!player.has(Skill.Woodcutting, 12, false)) {
                 statement("You must have at least level 12 woodcutting to start making canoes.")

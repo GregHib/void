@@ -1,25 +1,26 @@
 package content.entity.player.combat.special
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
 import kotlin.math.min
 
 @Script
-class SpecialAttackEnergy {
+class SpecialAttackEnergy : Api {
 
     val half = MAX_SPECIAL_ATTACK / 2
     val tenth = MAX_SPECIAL_ATTACK / 10
 
-    init {
-        playerSpawn { player ->
-            if (player.specialAttackEnergy < MAX_SPECIAL_ATTACK) {
-                player.softTimers.start("restore_special_energy")
-            }
+    override fun spawn(player: Player) {
+        if (player.specialAttackEnergy < MAX_SPECIAL_ATTACK) {
+            player.softTimers.start("restore_special_energy")
         }
+    }
 
+    init {
         timerStart("restore_special_energy") {
             interval = 50
         }

@@ -2,23 +2,23 @@ package content.skill.melee
 
 import content.skill.melee.weapon.attackRange
 import content.skill.melee.weapon.weapon
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 @Script
-class Weapon {
+class Weapon : Api {
+
+    override fun spawn(player: Player) {
+        updateWeapon(player, player.equipped(EquipSlot.Weapon))
+    }
 
     init {
-        playerSpawn { player ->
-            updateWeapon(player, player.equipped(EquipSlot.Weapon))
-        }
-
         inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
             updateWeapon(player, item)
         }

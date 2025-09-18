@@ -1,21 +1,21 @@
 package content.skill.melee.armour.barrows
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 
 @Script
-class DharoksSet {
+class DharoksSet : Api {
+
+    override fun spawn(player: Player) {
+        if (player.hasFullSet()) {
+            player["dharoks_set_effect"] = true
+        }
+    }
 
     init {
-        playerSpawn { player ->
-            if (player.hasFullSet()) {
-                player["dharoks_set_effect"] = true
-            }
-        }
-
         itemRemoved("dharoks_*", BarrowsArmour.slots, "worn_equipment") { player ->
             player.clear("dharoks_set_effect")
         }

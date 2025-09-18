@@ -1,5 +1,6 @@
 package content.achievement
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
@@ -9,37 +10,36 @@ import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
 @Script
-class TaskList {
+class TaskList : Api {
 
     val variables: VariableDefinitions by inject()
 
     val enumDefinitions: EnumDefinitions by inject()
 
-    init {
-        playerSpawn { player ->
-            player.sendVariable("task_disable_popups")
-            player["task_popup"] = 0
-            player["task_previous_popup"] = 0
-            var total = 0
-            for (area in 0 until 8) {
-                Tasks.forEach(area) {
-                    if (Tasks.isCompleted(player, definition.stringId)) {
-                        player.sendVariable(definition.stringId)
-                        total++
-                    }
-                    null
+    override fun spawn(player: Player) {
+        player.sendVariable("task_disable_popups")
+        player["task_popup"] = 0
+        player["task_previous_popup"] = 0
+        var total = 0
+        for (area in 0 until 8) {
+            Tasks.forEach(area) {
+                if (Tasks.isCompleted(player, definition.stringId)) {
+                    player.sendVariable(definition.stringId)
+                    total++
                 }
+                null
             }
-            player["task_progress_overall"] = total
-            player.sendVariable("task_hide_completed")
-            player.sendVariable("task_filter_sets")
         }
+        player["task_progress_overall"] = total
+        player.sendVariable("task_hide_completed")
+        player.sendVariable("task_filter_sets")
+    }
 
+    init {
         interfaceOpen("task_list") { player ->
             player.interfaceOptions.unlockAll("task_list", "tasks", 0..492)
             refresh(player)

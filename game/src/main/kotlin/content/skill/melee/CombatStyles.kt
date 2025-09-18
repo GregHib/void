@@ -1,28 +1,29 @@
 package content.skill.melee
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 @Script
-class CombatStyles {
+class CombatStyles : Api {
 
     val styles: WeaponStyleDefinitions by inject()
 
-    init {
-        npcSpawn { npc ->
-            npc["combat_style"] = npc.def["style", ""]
-        }
+    override fun spawn(npc: NPC) {
+        npc["combat_style"] = npc.def.getOrNull("style") ?: return
+    }
 
+    init {
         interfaceOpen("combat_styles") { player ->
             player.sendVariable("attack_style_index")
             player.sendVariable("special_attack_energy")

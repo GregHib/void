@@ -47,7 +47,7 @@ class FloorItems(
         removeQueue.clear()
         for (floorItem in addQueue) {
             add(floorItem)
-            floorItem.emit(Spawn)
+            Spawn.spawn(floorItem)
         }
         addQueue.clear()
     }

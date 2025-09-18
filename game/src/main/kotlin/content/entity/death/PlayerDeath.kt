@@ -17,17 +17,18 @@ import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.praying
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.characterSpawn
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.Script
@@ -40,7 +41,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 @Script
-class PlayerDeath {
+class PlayerDeath : Api {
 
     val floorItems: FloorItems by inject()
     val enums: EnumDefinitions by inject()
@@ -54,12 +55,20 @@ class PlayerDeath {
     val players: Players by inject()
     val npcs: NPCs by inject()
 
-    init {
-        characterSpawn { character ->
-            character["damage_dealers"] = Object2IntOpenHashMap<Character>(1)
-            character["attackers"] = ObjectArrayList<Character>(1)
-        }
+    override fun spawn(player: Player) {
+        player["damage_dealers"] = Object2IntOpenHashMap<Character>(1)
+        player["attackers"] = ObjectArrayList<Character>(1)
+    }
 
+    override fun spawn(npc: NPC) {
+        if (npc.def.combat == -1) {
+            return
+        }
+        npc["damage_dealers"] = Object2IntOpenHashMap<Character>(1)
+        npc["attackers"] = ObjectArrayList<Character>(1)
+    }
+
+    init {
         playerDeath { player ->
             player.dead = true
             player.strongQueue("death") {

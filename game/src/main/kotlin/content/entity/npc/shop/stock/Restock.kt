@@ -3,11 +3,11 @@ package content.entity.npc.shop.stock
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.npc.shop.general.GeneralStores
 import world.gregs.voidps.cache.config.data.InventoryDefinition
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerDespawn
-import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
@@ -19,17 +19,21 @@ import kotlin.math.abs
 import kotlin.math.max
 
 @Script
-class Restock {
+class Restock : Api {
 
     val inventoryDefinitions: InventoryDefinitions by inject()
     val restockTimeTicks = TimeUnit.SECONDS.toTicks(60)
     val logger = InlineLogger()
 
-    init {
-        playerSpawn { player ->
-            player.softTimers.restart("shop_restock")
-        }
+    override fun spawn(player: Player) {
+        player.softTimers.restart("shop_restock")
+    }
 
+    override fun worldSpawn() {
+        World.timers.start("general_store_restock")
+    }
+
+    init {
         timerStart("shop_restock") {
             interval = restockTimeTicks
         }
@@ -59,10 +63,6 @@ class Restock {
             for (name in removal) {
                 player.inventories.instances.remove(name)
             }
-        }
-
-        worldSpawn {
-            World.timers.start("general_store_restock")
         }
 
         worldTimerStart("general_store_restock") {

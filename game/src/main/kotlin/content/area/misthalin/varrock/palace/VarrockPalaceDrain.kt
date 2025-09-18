@@ -9,19 +9,26 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.player
 import content.entity.sound.sound
 import content.quest.quest
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
 @Script
-class VarrockPalaceDrain {
+class VarrockPalaceDrain : Api {
 
     val logger = InlineLogger()
+
+    override fun spawn(player: Player) {
+        if (player["demon_slayer_drain_dislodged", false]) {
+            player.sendVariable("demon_slayer_drain_dislodged")
+        }
+    }
 
     init {
         objectOperate("Search", "varrock_palace_drain") {
@@ -33,12 +40,6 @@ class VarrockPalaceDrain {
             } else {
                 player<Neutral>("That must be the key Sir Prysin dropped.")
                 player<Shifty>("I don't seem to be able to reach it. I wonder if I can dislodge it somehow. That way it may go down into the sewers.")
-            }
-        }
-
-        playerSpawn { player ->
-            if (player["demon_slayer_drain_dislodged", false]) {
-                player.sendVariable("demon_slayer_drain_dislodged")
             }
         }
 

@@ -8,7 +8,6 @@ import set
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.Spawn
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -48,7 +47,7 @@ class SpellRunesTest : MagicSpellTest() {
     @Test
     fun `Members spell`() {
         Settings.load(mapOf("world.members" to "false"))
-        World.emit(Spawn)
+        Spawn.worldSpawn()
 
         val player = player()
         setItems(Item("blood_rune") to ItemDefinition(stringId = "blood_rune", members = true))

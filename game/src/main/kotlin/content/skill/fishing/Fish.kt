@@ -1,8 +1,8 @@
 package content.skill.fishing
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.softQueue
@@ -10,14 +10,14 @@ import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.random
 
 @Script
-class Fish {
+class Fish : Api {
 
     val minRespawnTick = 280
     val maxRespawnTick = 530
 
-    init {
-        npcSpawn("fishing_spot*") { npc ->
-            val area: Area = npc["area"] ?: return@npcSpawn
+    override fun spawn(npc: NPC) {
+        if (npc.id.startsWith("fishing_spot")) {
+            val area: Area = npc["area"] ?: return
             move(npc, area)
         }
     }

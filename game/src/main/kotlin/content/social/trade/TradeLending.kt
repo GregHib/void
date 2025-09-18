@@ -2,11 +2,11 @@ package content.social.trade
 
 import content.entity.player.dialogue.type.intEntry
 import content.social.trade.Trade.getPartner
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.inv.transact.operation.SwapItem.swap
 
 @Script
-class TradeLending {
+class TradeLending : Api {
 
     val definitions: ItemDefinitions by inject()
 
@@ -22,11 +22,11 @@ class TradeLending {
         override fun restricted(id: String) = definitions.get(id).lendId == -1
     }
 
-    init {
-        playerSpawn { player ->
-            player.loan.itemRule = lendRestriction
-        }
+    override fun spawn(player: Player) {
+        player.loan.itemRule = lendRestriction
+    }
 
+    init {
         interfaceOption("Specify", "loan_time", "trade_main") {
             val hours = intEntry("Set the loan duration in hours: (1 - 72)<br>(Enter <col=7f0000>0</col> for 'Just until logout'.)").coerceIn(0, 72)
             setLend(player, hours)

@@ -8,6 +8,7 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
@@ -15,17 +16,16 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class BartenderRustyAnchor {
+class BartenderRustyAnchor : Api {
+
+    override fun spawn(player: Player) {
+        player["void_dance_bartender"] = 8
+    }
 
     init {
-        playerSpawn { player ->
-            player["void_dance_bartender"] = 8
-        }
-
         npcOperate("Talk-to", "bartender_rusty_anchor_inn*") {
             choice {
                 option<Quiz>("Could I buy a beer please?") {

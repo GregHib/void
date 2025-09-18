@@ -9,6 +9,7 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.npc
 import content.entity.sound.areaSound
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
@@ -28,8 +29,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.entity.objectDespawn
-import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -48,31 +47,31 @@ import kotlin.math.roundToInt
 import kotlin.text.toIntOrNull
 
 @Script
-class ShootingStar {
+class ShootingStar : Api {
 
     val objects: GameObjects by inject()
     val npcs: NPCs by inject()
     val players: Players by inject()
     val logger = InlineLogger()
 
-    init {
-        worldSpawn {
-            if (Settings["events.shootingStars.enabled", false]) {
-                eventUpdate()
-            }
+    override fun spawn(player: Player) {
+        if (player["shooting_star_bonus_ore", 0] > 0) {
+            player.timers.restart("shooting_star_bonus_ore_timer")
         }
+    }
 
+    override fun worldSpawn() {
+        if (Settings["events.shootingStars.enabled", false]) {
+            eventUpdate()
+        }
+    }
+
+    init {
         settingsReload {
             if (Settings["events.shootingStars.enabled", false] && !World.contains("shooting_star_event_timer")) {
                 eventUpdate()
             } else if (!Settings["events.shootingStars.enabled", false] && World.contains("shooting_star_event_timer")) {
                 World.clearQueue("shooting_star_event_timer")
-            }
-        }
-
-        playerSpawn { player ->
-            if (player["shooting_star_bonus_ore", 0] > 0) {
-                player.timers.restart("shooting_star_bonus_ore_timer")
             }
         }
 

@@ -3,6 +3,7 @@ package content.entity.player
 import content.bot.isBot
 import content.entity.player.bank.bank
 import content.entity.player.dialogue.type.statement
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.open
@@ -13,32 +14,31 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
 
 @Script
-class Introduction {
+class Introduction : Api {
+
+    override fun spawn(player: Player) {
+        player.message("Welcome to ${Settings["server.name"]}.", ChatType.Welcome)
+        if (player.contains("creation")) {
+            return
+        }
+        if (Settings["world.start.creation", true] && !player.isBot) {
+            player["delay"] = -1
+            World.queue("welcome_${player.name}", 1) {
+                player.open("character_creation")
+            }
+        } else {
+            player.flagAppearance()
+            setup(player)
+        }
+    }
 
     init {
-        playerSpawn(priority = true) { player ->
-            player.message("Welcome to ${Settings["server.name"]}.", ChatType.Welcome)
-            if (player.contains("creation")) {
-                return@playerSpawn
-            }
-            if (Settings["world.start.creation", true] && !player.isBot) {
-                player["delay"] = -1
-                World.queue("welcome_${player.name}", 1) {
-                    player.open("character_creation")
-                }
-            } else {
-                player.flagAppearance()
-                setup(player)
-            }
-        }
-
         interfaceClose("character_creation") { player ->
             player.flagAppearance()
             setup(player)

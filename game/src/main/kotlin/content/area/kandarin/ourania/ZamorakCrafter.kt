@@ -1,26 +1,29 @@
 package content.area.kandarin.ourania
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.mode.move.npcMove
-import world.gregs.voidps.engine.entity.npcSpawn
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 
 @Script
-class ZamorakCrafter {
+class ZamorakCrafter : Api {
 
     val objects: GameObjects by inject()
     val patrols: PatrolDefinitions by inject()
 
-    init {
-        npcSpawn("zamorak_crafter*") { npc ->
+    override fun spawn(npc: NPC) {
+        if (npc.id.startsWith("zamorak_crafter")) {
             val patrol = patrols.get(if (npc.id == "zamorak_crafter_start") "zamorak_crafter_to_altar" else "zamorak_crafter_to_bank")
             npc.mode = Patrol(npc, patrol.waypoints)
         }
+    }
 
+    init {
         npcMove("zamorak_crafter*", to = Tile(3314, 4811)) {
             val altar = objects[Tile(3315, 4810), "ourania_altar"]
             if (altar != null) {
