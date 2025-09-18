@@ -57,6 +57,8 @@ data class NPC(
     override lateinit var collision: CollisionStrategy
 
     var regenCounter = 0
+    var huntMode: String? = null
+    var huntCounter = 0
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

@@ -2,6 +2,7 @@ package content.area.troll_country.god_wars_dungeon
 
 import content.entity.combat.killer
 import content.entity.death.npcDeath
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
@@ -15,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.npc.hunt.huntNPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
-import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
@@ -24,10 +24,14 @@ import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.type.random
 
 @Script
-class GodwarsAggression {
+class GodwarsAggression : Api {
 
     val areas: AreaDefinitions by inject()
     val dungeon = areas["godwars_dungeon_multi_area"]
+
+    override fun spawn(npc: NPC) {
+        randomHuntMode(npc)
+    }
 
     init {
         enterArea("godwars_dungeon_multi_area") {
@@ -80,10 +84,6 @@ class GodwarsAggression {
             npc.mode = Interact(npc, target, NPCOption(npc, target, target.def, "Attack"))
         }
 
-        npcSpawn { npc ->
-            randomHuntMode(npc)
-        }
-
         npcDeath { npc ->
             val killer = npc.killer
             if (killer is NPC) {
@@ -99,7 +99,7 @@ class GodwarsAggression {
 
     fun randomHuntMode(npc: NPC) {
         if (npc.tile in dungeon && (npc.def["hunt_mode", ""] == "zamorak_aggressive" || npc.def["hunt_mode", ""] == "anti_zamorak_aggressive")) {
-            npc["hunt_mode"] = if (random.nextBoolean()) npc.def["hunt_mode"] else "godwars_aggressive"
+            npc.huntMode = if (random.nextBoolean()) npc.def["hunt_mode"] else "godwars_aggressive"
         }
     }
 }

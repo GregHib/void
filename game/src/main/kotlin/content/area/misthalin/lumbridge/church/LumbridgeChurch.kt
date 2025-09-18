@@ -8,6 +8,7 @@ import content.entity.sound.jingle
 import content.entity.sound.midi
 import content.entity.sound.sound
 import content.quest.*
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
@@ -20,7 +21,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -34,7 +34,7 @@ import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
 @Script
-class LumbridgeChurch {
+class LumbridgeChurch : Api {
 
     val npcs: NPCs by inject()
 
@@ -104,11 +104,11 @@ class LumbridgeChurch {
                 spawnGhost()
             }
         }
+    }
 
-        playerSpawn { player ->
-            player.sendVariable("rocks_restless_ghost")
-            player.sendVariable("restless_ghost_coffin")
-        }
+    override fun spawn(player: Player) {
+        player.sendVariable("rocks_restless_ghost")
+        player.sendVariable("restless_ghost_coffin")
     }
 
     suspend fun Interaction<Player>.returnSkull() {

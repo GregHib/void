@@ -19,6 +19,7 @@ import content.quest.free.demon_slayer.DemonSlayerSpell
 import content.quest.questComplete
 import content.quest.questCompleted
 import content.quest.startCutscene
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.shakeCamera
@@ -38,7 +39,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.npcLevelChange
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.playerDespawn
@@ -56,7 +56,7 @@ import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
 @Script
-class Delrith {
+class Delrith : Api {
 
     val objects: GameObjects by inject()
     val npcs: NPCs by inject()
@@ -149,10 +149,12 @@ class Delrith {
                 cancel()
             }
         }
+    }
 
-        npcLevelChange("delrith", Skill.Constitution) { npc ->
+    override fun levelChanged(npc: NPC, skill: Skill, from: Int, to: Int) {
+        if (npc.id == "delrith" && skill == Skill.Constitution) {
             if (to > 0) {
-                return@npcLevelChange
+                return
             }
             if (npc.queue.contains("death")) {
                 npc.queue.clear("death")

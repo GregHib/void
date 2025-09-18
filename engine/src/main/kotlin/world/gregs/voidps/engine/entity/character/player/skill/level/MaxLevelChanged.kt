@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.event.Events
 
 /**
  * Notification when a skills max level changes
- * @see [CurrentLevelChanged]
+ * @see [LevelChanged]
  */
 data class MaxLevelChanged(val skill: Skill, val from: Int, val to: Int) : Event {
 

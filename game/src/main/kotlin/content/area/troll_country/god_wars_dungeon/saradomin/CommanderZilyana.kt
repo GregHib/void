@@ -6,19 +6,19 @@ import content.entity.combat.npcCombatSwing
 import content.entity.gfx.areaGfx
 import content.entity.sound.areaSound
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.npcDespawn
-import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 @Script
-class CommanderZilyana {
+class CommanderZilyana : Api {
 
     val players: Players by inject()
     val areas: AreaDefinitions by inject()
@@ -27,6 +27,21 @@ class CommanderZilyana {
     var starlight: NPC? = null
     var bree: NPC? = null
     var growler: NPC? = null
+
+    override fun spawn(npc: NPC) {
+        if (npc.id != "commander_zilyana") {
+            return
+        }
+        if (starlight == null) {
+            starlight = npcs.add("starlight", Tile(2903, 5260))
+        }
+        if (bree == null) {
+            bree = npcs.add("bree", Tile(2902, 5270))
+        }
+        if (growler == null) {
+            growler = npcs.add("growler", Tile(2898, 5262))
+        }
+    }
 
     init {
         npcCombatSwing("commander_zilyana") { npc ->
@@ -46,18 +61,6 @@ class CommanderZilyana {
                     target.sound("commander_zilyana_attack")
                     npc.hit(target, offensiveType = "melee")
                 }
-            }
-        }
-
-        npcSpawn("commander_zilyana") {
-            if (starlight == null) {
-                starlight = npcs.add("starlight", Tile(2903, 5260))
-            }
-            if (bree == null) {
-                bree = npcs.add("bree", Tile(2902, 5270))
-            }
-            if (growler == null) {
-                growler = npcs.add("growler", Tile(2898, 5262))
             }
         }
 

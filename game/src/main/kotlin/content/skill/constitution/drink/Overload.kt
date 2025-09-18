@@ -3,12 +3,12 @@ package content.skill.constitution.drink
 import content.area.wilderness.inWilderness
 import content.entity.combat.hit.directHit
 import content.skill.constitution.canConsume
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.timerStart
@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 @Script
-class Overload {
+class Overload : Api {
 
     val skills = listOf(
         Skill.Attack,
@@ -27,6 +27,12 @@ class Overload {
         Skill.Magic,
         Skill.Ranged,
     )
+
+    override fun spawn(player: Player) {
+        if (player["overload_refreshes_remaining", 0] > 0) {
+            player.timers.restart("overload")
+        }
+    }
 
     init {
         canConsume("overload*") { player ->
@@ -53,12 +59,6 @@ class Overload {
                 if (offset > superBoost) {
                     player.levels.drain(skill, offset - superBoost)
                 }
-            }
-        }
-
-        playerSpawn { player ->
-            if (player["overload_refreshes_remaining", 0] > 0) {
-                player.timers.restart("overload")
             }
         }
 

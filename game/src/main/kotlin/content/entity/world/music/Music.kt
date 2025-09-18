@@ -1,6 +1,7 @@
 package content.entity.world.music
 
 import content.bot.isBot
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceSwap
@@ -10,26 +11,26 @@ import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.to
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
 @Script
-class Music {
+class Music : Api {
 
     val tracks: MusicTracks by inject()
     val enums: EnumDefinitions by inject()
 
-    init {
-        playerSpawn { player ->
-            if (!player.isBot) {
-                unlockDefaultTracks(player)
-                playAreaTrack(player)
-                sendUnlocks(player)
-                sendPlaylist(player)
-            }
+    override fun spawn(player: Player) {
+        if (player.isBot) {
+            return
         }
+        unlockDefaultTracks(player)
+        playAreaTrack(player)
+        sendUnlocks(player)
+        sendPlaylist(player)
+    }
 
+    init {
         move({ !it.isBot }) { player ->
             val tracks = tracks[player.tile.region]
             for (track in tracks) {

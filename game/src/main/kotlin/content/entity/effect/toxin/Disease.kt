@@ -1,12 +1,12 @@
 package content.entity.effect.toxin
 
 import content.entity.combat.hit.directHit
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.characterSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.characterTimerStart
 import world.gregs.voidps.engine.timer.characterTimerStop
@@ -56,16 +56,21 @@ fun Player.antiDisease(duration: Int, timeUnit: TimeUnit) {
 }
 
 @Script
-class Disease {
+class Disease : Api {
+
+    override fun spawn(player: Player) {
+        if (player.diseaseCounter != 0) {
+            player.timers.restart("disease")
+        }
+    }
+
+    override fun spawn(npc: NPC) {
+        if (npc.diseaseCounter != 0) {
+            npc.softTimers.restart("disease")
+        }
+    }
 
     init {
-        characterSpawn { character ->
-            if (character.diseaseCounter != 0) {
-                val timers = if (character is Player) character.timers else character.softTimers
-                timers.restart("disease")
-            }
-        }
-
         characterTimerStart("disease") { character ->
             if (character.antiDisease || immune(character)) {
                 cancel()

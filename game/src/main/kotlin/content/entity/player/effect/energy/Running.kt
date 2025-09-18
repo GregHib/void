@@ -1,5 +1,6 @@
 package content.entity.player.effect.energy
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendRunEnergy
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
@@ -9,19 +10,18 @@ import world.gregs.voidps.engine.entity.character.mode.Rest
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Running {
+class Running : Api {
+
+    override fun spawn(player: Player) {
+        player.sendVariable("movement")
+    }
 
     init {
         interfaceOpen("energy_orb") { player ->
             player.sendRunEnergy(player.energyPercent())
-        }
-
-        playerSpawn { player ->
-            player.sendVariable("movement")
         }
 
         interfaceOption(option = "Turn Run mode on", id = "energy_orb") {

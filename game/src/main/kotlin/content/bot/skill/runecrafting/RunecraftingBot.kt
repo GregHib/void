@@ -6,44 +6,42 @@ import content.bot.interact.navigation.awaitInteract
 import content.bot.interact.navigation.goToArea
 import content.bot.skill.combat.hasExactGear
 import content.bot.skill.combat.setupGear
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.InteractObject
 
 @Script
-class RunecraftingBot {
+class RunecraftingBot : Api {
 
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()
 
-    init {
-        worldSpawn {
-            for (area in areas.getTagged("altar")) {
-                val type: String = area["type"]
-                val spaces: Int = area["spaces", 1]
-                val range: IntRange = area["levels", "1-5"].toIntRange()
-                val task = Task(
-                    name = "craft $type runes at ${area.name}",
-                    block = {
-                        while (levels.getMax(Skill.Runecrafting) < range.last + 1) {
-                            bot.craftRunes(area)
-                        }
-                    },
-                    area = area.area,
-                    spaces = spaces,
-                    requirements = listOf(
-                        { levels.getMax(Skill.Runecrafting) in range },
-                        { bot.hasExactGear(Skill.Runecrafting) },
-                    ),
-                )
-                tasks.register(task)
-            }
+    override fun worldSpawn() {
+        for (area in areas.getTagged("altar")) {
+            val type: String = area["type"]
+            val spaces: Int = area["spaces", 1]
+            val range: IntRange = area["levels", "1-5"].toIntRange()
+            val task = Task(
+                name = "craft $type runes at ${area.name}",
+                block = {
+                    while (levels.getMax(Skill.Runecrafting) < range.last + 1) {
+                        bot.craftRunes(area)
+                    }
+                },
+                area = area.area,
+                spaces = spaces,
+                requirements = listOf(
+                    { levels.getMax(Skill.Runecrafting) in range },
+                    { bot.hasExactGear(Skill.Runecrafting) },
+                ),
+            )
+            tasks.register(task)
         }
     }
 

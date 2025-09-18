@@ -1,14 +1,20 @@
 package content.skill.magic.book
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class SpellBookFilter {
+class SpellBookFilter : Api {
+
+    override fun spawn(player: Player) {
+        player.sendVariable("spellbook_sort")
+        player.sendVariable("spellbook_config")
+    }
 
     init {
         interfaceOpen("*_spellbook") { player ->
@@ -19,11 +25,6 @@ class SpellBookFilter {
                 else -> 0
             }
             player["spellbook_config"] = id or (player["defensive_cast", false].toInt() shl 8)
-        }
-
-        playerSpawn { player ->
-            player.sendVariable("spellbook_sort")
-            player.sendVariable("spellbook_config")
         }
 
         interfaceOption(component = "filter_*", id = "*_spellbook") {

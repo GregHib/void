@@ -1,6 +1,7 @@
 package content.bot
 
 import kotlinx.coroutines.*
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.command.adminCommand
@@ -19,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.sex
-import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.event.Script
@@ -40,30 +40,29 @@ import kotlin.reflect.KClass
 import kotlin.text.toIntOrNull
 
 @Script
-class BotSpawns {
+class BotSpawns : Api {
 
     val areas: AreaDefinitions by inject()
-    val lumbridge = areas["lumbridge_teleport"]
-
     val bots = mutableListOf<Player>()
     val enums: EnumDefinitions by inject()
     val structs: StructDefinitions by inject()
     val tasks: TaskManager by inject()
+    val loader: PlayerAccountLoader by inject()
+
+    val lumbridge = areas["lumbridge_teleport"]
 
     var counter = 0
 
-    val loader: PlayerAccountLoader by inject()
+    override fun worldSpawn() {
+        if (Settings["bots.count", 0] > 0) {
+            World.timers.start("bot_spawn")
+        }
+        Events.events.all = { player, event ->
+            handleSuspensions(player, event)
+        }
+    }
 
     init {
-        worldSpawn {
-            if (Settings["bots.count", 0] > 0) {
-                World.timers.start("bot_spawn")
-            }
-            Events.events.all = { player, event ->
-                handleSuspensions(player, event)
-            }
-        }
-
         settingsReload {
             if (Settings["bots.count", 0] > bots.size) {
                 World.timers.start("bot_spawn")

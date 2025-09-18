@@ -3,24 +3,24 @@ package content.skill.prayer
 import content.entity.sound.sound
 import content.skill.prayer.PrayerConfigs.ACTIVE_CURSES
 import content.skill.prayer.PrayerConfigs.ACTIVE_PRAYERS
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.headIcon
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Prayers {
+class Prayers : Api {
+
+    override fun spawn(player: Player) {
+        player.sendVariable("attack_bonus")
+        player.sendVariable("strength_bonus")
+        player.sendVariable("defence_bonus")
+        player.sendVariable("ranged_bonus")
+        player.sendVariable("magic_bonus")
+    }
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("attack_bonus")
-            player.sendVariable("strength_bonus")
-            player.sendVariable("defence_bonus")
-            player.sendVariable("ranged_bonus")
-            player.sendVariable("magic_bonus")
-        }
-
         prayerStart { player ->
             if (!restart) {
                 val curses = player.isCurses()

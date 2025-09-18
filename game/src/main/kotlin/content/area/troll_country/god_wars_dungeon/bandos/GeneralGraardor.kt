@@ -7,19 +7,19 @@ import content.entity.gfx.areaGfx
 import content.entity.proj.shoot
 import content.entity.sound.areaSound
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.npcDespawn
-import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 @Script
-class GeneralGraardor {
+class GeneralGraardor : Api {
 
     val players: Players by inject()
     val areas: AreaDefinitions by inject()
@@ -28,6 +28,21 @@ class GeneralGraardor {
     var strongstack: NPC? = null
     var steelwill: NPC? = null
     var grimspike: NPC? = null
+
+    override fun spawn(npc: NPC) {
+        if (npc.id != "general_graardor") {
+            return
+        }
+        if (strongstack == null) {
+            strongstack = npcs.add("sergeant_strongstack", Tile(2866, 5358, 2))
+        }
+        if (steelwill == null) {
+            steelwill = npcs.add("sergeant_steelwill", Tile(2872, 5352, 2))
+        }
+        if (grimspike == null) {
+            grimspike = npcs.add("sergeant_grimspike", Tile(2868, 5362, 2))
+        }
+    }
 
     init {
         npcCombatSwing("general_graardor") { npc ->
@@ -48,18 +63,6 @@ class GeneralGraardor {
                     npc.anim("general_graardor_attack")
                     npc.hit(target, offensiveType = "melee")
                 }
-            }
-        }
-
-        npcSpawn("general_graardor") {
-            if (strongstack == null) {
-                strongstack = npcs.add("sergeant_strongstack", Tile(2866, 5358, 2))
-            }
-            if (steelwill == null) {
-                steelwill = npcs.add("sergeant_steelwill", Tile(2872, 5352, 2))
-            }
-            if (grimspike == null) {
-                grimspike = npcs.add("sergeant_grimspike", Tile(2868, 5362, 2))
             }
         }
 

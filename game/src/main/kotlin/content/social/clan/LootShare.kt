@@ -1,10 +1,11 @@
 package content.social.clan
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
@@ -12,13 +13,13 @@ import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 @Script
-class LootShare {
+class LootShare : Api {
+
+    override fun spawn(player: Player) {
+        player.sendVariable("loot_share")
+    }
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("loot_share")
-        }
-
         interfaceOption(component = "loot_share", id = "clan_chat") {
             val clan = player.clan ?: return@interfaceOption
             if (clan.lootRank == ClanRank.None) {

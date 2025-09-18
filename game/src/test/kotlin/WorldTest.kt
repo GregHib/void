@@ -210,7 +210,7 @@ abstract class WorldTest : KoinTest {
                 sequential = true,
             )
             engine = GameLoop(tickStages)
-            World.emit(Spawn)
+            Spawn.worldSpawn()
         }
         players = get()
         npcs = get()
@@ -249,6 +249,7 @@ abstract class WorldTest : KoinTest {
     @AfterAll
     fun afterAll() {
         saves?.deleteRecursively()
+        ContentLoader.clear()
         Events.events.clear()
         stopKoin()
     }

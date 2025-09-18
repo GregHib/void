@@ -3,11 +3,9 @@ package content.entity.death
 import content.area.misthalin.lumbridge.church.Gravestone
 import content.area.wilderness.inMultiCombat
 import content.area.wilderness.inWilderness
+import content.entity.combat.*
 import content.entity.combat.Target
-import content.entity.combat.attackers
-import content.entity.combat.dead
 import content.entity.combat.hit.directHit
-import content.entity.combat.target
 import content.entity.gfx.areaGfx
 import content.entity.player.inv.item.tradeable
 import content.entity.player.kept.ItemsKeptOnDeath
@@ -15,8 +13,7 @@ import content.entity.proj.shoot
 import content.entity.sound.jingle
 import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.praying
-import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -27,7 +24,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.characterSpawn
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.Script
@@ -40,13 +36,10 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 @Script
-class PlayerDeath {
+class PlayerDeath : Api {
 
     val floorItems: FloorItems by inject()
     val enums: EnumDefinitions by inject()
-
-    val Character.damageDealers: MutableMap<Character, Int>
-        get() = getOrPut("damage_dealers") { mutableMapOf() }
 
     val respawnTile: Tile
         get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
@@ -55,11 +48,6 @@ class PlayerDeath {
     val npcs: NPCs by inject()
 
     init {
-        characterSpawn { character ->
-            character["damage_dealers"] = Object2IntOpenHashMap<Character>(1)
-            character["attackers"] = ObjectArrayList<Character>(1)
-        }
-
         playerDeath { player ->
             player.dead = true
             player.strongQueue("death") {

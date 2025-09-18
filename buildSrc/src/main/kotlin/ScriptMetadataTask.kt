@@ -10,7 +10,10 @@ import org.jetbrains.kotlin.com.intellij.openapi.Disposable
 import org.jetbrains.kotlin.com.intellij.openapi.util.Disposer
 import org.jetbrains.kotlin.com.intellij.psi.PsiManager
 import org.jetbrains.kotlin.config.CompilerConfiguration
-import org.jetbrains.kotlin.psi.*
+import org.jetbrains.kotlin.lexer.KtTokens
+import org.jetbrains.kotlin.psi.KtClass
+import org.jetbrains.kotlin.psi.KtFile
+import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.psiUtil.collectDescendantsOfType
 import java.io.File
 
@@ -59,7 +62,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
             val packageName = psiFile.packageFqName.asString()
             if (change.changeType == ChangeType.MODIFIED || change.changeType == ChangeType.REMOVED) {
                 for (name in classes.map { it.name }) {
-                    if (!scriptsList.removeIf { it == "$packageName.$name" } && change.changeType == ChangeType.MODIFIED) {
+                    if (!scriptsList.removeIf { it.endsWith("$packageName.$name") } && change.changeType == ChangeType.MODIFIED) {
                         if (scriptsList.count { it.endsWith(".$name") } > 1) {
                             error("Deletion failed due to duplicate script names: ${scriptsList.filter { it.endsWith(".$name") }}. Please update scripts.txt or run `gradle cleanScriptMetadata`.")
                         }
@@ -71,7 +74,16 @@ abstract class ScriptMetadataTask : DefaultTask() {
                 for (ktClass in classes) {
                     val className = ktClass.name ?: "Anonymous"
                     if (ktClass.annotationEntries.any { anno -> anno.shortName!!.asString() == "Script" }) {
-                        scriptsList.add("$packageName.$className")
+                        val methods = ktClass.declarations.filterIsInstance<KtNamedFunction>().filter { it.hasModifier(KtTokens.OVERRIDE_KEYWORD) }
+                        if (methods.isEmpty()) {
+                            scriptsList.add("$packageName.$className")
+                            continue
+                        }
+                        val signatures = methods.joinToString(separator = "|", postfix = "|") { method ->
+                            val returnType = method.typeReference
+                            "${method.name}(${method.valueParameters.joinToString(",") { param -> param.typeReference!!.getTypeText() }})${if (returnType == null) "" else ":${returnType.getTypeText()}"}"
+                        }
+                        scriptsList.add("$signatures$packageName.$className")
                     }
                 }
             }

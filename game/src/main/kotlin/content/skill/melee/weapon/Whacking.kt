@@ -1,13 +1,20 @@
 package content.skill.melee.weapon
 
-import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 @Script
-class Whacking {
+class Whacking : Api {
+
+    override fun spawn(player: Player) {
+        if (player.weapon.id == "rubber_chicken" || player.weapon.id == "easter_carrot") {
+            player.options.set(5, "Whack")
+        }
+    }
 
     init {
         itemAdded("rubber_chicken", EquipSlot.Weapon, "worn_equipment") { player ->
@@ -24,12 +31,6 @@ class Whacking {
 
         itemRemoved("easter_carrot", EquipSlot.Weapon, "worn_equipment") { player ->
             player.options.remove("Whack")
-        }
-
-        playerSpawn { player ->
-            if (player.weapon.id == "rubber_chicken" || player.weapon.id == "easter_carrot") {
-                player.options.set(5, "Whack")
-            }
         }
     }
 }

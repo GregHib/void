@@ -9,27 +9,27 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.inv.inventoryItem
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.Action
 import world.gregs.voidps.engine.queue.strongQueue
 
 @Script
-class EnchantedGem {
+class EnchantedGem : Api {
 
     val slayerDefinitions: SlayerTaskDefinitions by inject()
 
-    init {
-        playerSpawn { player ->
-            player.sendVariable("slayer_count")
-            player.sendVariable("slayer_target")
-        }
+    override fun spawn(player: Player) {
+        player.sendVariable("slayer_count")
+        player.sendVariable("slayer_target")
+    }
 
+    init {
         inventoryItem("Activate", "enchanted_gem") {
             player.strongQueue("enchanted_gem_activate") {
                 val master = player.slayerMaster

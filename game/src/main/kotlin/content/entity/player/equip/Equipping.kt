@@ -5,6 +5,7 @@ import content.entity.player.inv.inventoryOption
 import content.entity.player.inv.inventoryOptions
 import content.entity.sound.sound
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -17,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
 import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.entity.item.type
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
@@ -25,10 +25,14 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 @Script
-class Equipping {
+class Equipping : Api {
 
     val areas: AreaDefinitions by inject()
     val logger = InlineLogger()
+
+    override fun spawn(player: Player) {
+        updateWeaponEmote(player)
+    }
 
     init {
         inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
@@ -81,10 +85,6 @@ class Equipping {
         }
 
         inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
-            updateWeaponEmote(player)
-        }
-
-        playerSpawn { player ->
             updateWeaponEmote(player)
         }
     }

@@ -6,6 +6,7 @@ import content.entity.player.bank.isNote
 import content.entity.player.bank.noted
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
@@ -24,7 +25,6 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
@@ -32,18 +32,18 @@ import world.gregs.voidps.engine.inv.sendInventory
 import kotlin.math.ceil
 
 @Script
-class GrandExchangeOffers {
+class GrandExchangeOffers : Api {
 
     val exchange: GrandExchange by inject()
     val itemDefinitions: ItemDefinitions by inject()
     val accountDefinitions: AccountDefinitions by inject()
     val logger = InlineLogger()
 
-    init {
-        playerSpawn { player ->
-            exchange.login(player)
-        }
+    override fun spawn(player: Player) {
+        exchange.login(player)
+    }
 
+    init {
         interfaceOpen("grand_exchange") { player ->
             player.sendVariable("grand_exchange_ranges")
             player["grand_exchange_page"] = "offers"

@@ -1,19 +1,20 @@
 package content.social.chat
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.playerSpawn
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class ChatSetup {
+class ChatSetup : Api {
+
+    override fun spawn(player: Player) {
+        player.sendVariable("clan_chat_colour")
+        player.sendVariable("private_chat_colour")
+    }
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("clan_chat_colour")
-            player.sendVariable("private_chat_colour")
-        }
-
         interfaceOption("Open chat display options", "chat", "options") {
             player.open("chat_setup")
         }

@@ -1,12 +1,12 @@
 package content.area.misthalin.lumbridge
 
 import content.entity.death.npcDeath
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
@@ -16,15 +16,17 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
 
 @Script
-class Ducklings {
+class Ducklings : Api {
 
     val npcs: NPCs by inject()
 
-    init {
-        npcSpawn("ducklings") { npc ->
+    override fun spawn(npc: NPC) {
+        if (npc.id == "ducklings") {
             followParent(npc)
         }
+    }
 
+    init {
         npcDeath("duck*swim") { npc ->
             val ducklings: NPC = npc["ducklings"] ?: return@npcDeath
             ducklings.say("Eek!")

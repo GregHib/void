@@ -1,5 +1,6 @@
 package content.entity.player.effect.energy
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.sendRunEnergy
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -9,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.timerTick
 
@@ -26,15 +26,15 @@ var Player.runEnergy: Int
     }
 
 @Script
-class Energy {
+class Energy : Api {
+
+    override fun spawn(player: Player) {
+        if (player.runEnergy < MAX_RUN_ENERGY) {
+            player.softTimers.start("energy_restore")
+        }
+    }
 
     init {
-        playerSpawn { player ->
-            if (player.runEnergy < MAX_RUN_ENERGY) {
-                player.softTimers.start("energy_restore")
-            }
-        }
-
         timerTick("energy_restore") { player ->
             if (player.runEnergy >= MAX_RUN_ENERGY) {
                 cancel()

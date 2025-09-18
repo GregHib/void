@@ -7,6 +7,7 @@ import content.entity.effect.toxin.poison
 import content.entity.sound.areaSound
 import content.entity.sound.sound
 import content.skill.prayer.protectMelee
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
@@ -15,20 +16,34 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.npcDespawn
-import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 @Script
-class KrilTsutsaroth {
+class KrilTsutsaroth : Api {
 
     val npcs: NPCs by inject()
 
     var kreeyath: NPC? = null
     var karlak: NPC? = null
     var gritch: NPC? = null
+
+    override fun spawn(npc: NPC) {
+        if (npc.id != "kril_tsutsaroth") {
+            return
+        }
+        if (kreeyath == null) {
+            kreeyath = npcs.add("balfrug_kreeyath", Tile(2921, 5319, 2))
+        }
+        if (karlak == null) {
+            karlak = npcs.add("tstanon_karlak", Tile(2932, 5328, 2))
+        }
+        if (gritch == null) {
+            gritch = npcs.add("zakln_gritch", Tile(2919, 5327, 2))
+        }
+    }
 
     init {
         npcCombatSwing("kril_tsutsaroth") { npc ->
@@ -58,18 +73,6 @@ class KrilTsutsaroth {
                         npc.hit(target, offensiveType = "melee")
                     }
                 }
-            }
-        }
-
-        npcSpawn("kril_tsutsaroth") {
-            if (kreeyath == null) {
-                kreeyath = npcs.add("balfrug_kreeyath", Tile(2921, 5319, 2))
-            }
-            if (karlak == null) {
-                karlak = npcs.add("tstanon_karlak", Tile(2932, 5328, 2))
-            }
-            if (gritch == null) {
-                gritch = npcs.add("zakln_gritch", Tile(2919, 5327, 2))
             }
         }
 

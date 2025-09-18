@@ -28,7 +28,7 @@ fun loadNpcSpawns(
                     require(key() == "spawns")
                     while (nextElement()) {
                         var id = ""
-                        var direction = Direction.NONE
+                        var direction = Direction.SOUTH
                         var x = 0
                         var y = 0
                         var level = 0

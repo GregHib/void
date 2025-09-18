@@ -4,6 +4,7 @@ import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -12,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
@@ -20,24 +20,24 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 @Script
-class Greegrees {
+class Greegrees : Api {
 
     val items: FloorItems by inject()
     val areas: AreaDefinitions by inject()
 
-    init {
-        playerSpawn { player ->
-            val item = player.equipped(EquipSlot.Weapon).id
-            if (item.endsWith("_greegree")) {
-                if (player.tile in areas["ape_atoll"] || player.tile in areas["ape_atoll_agility_dungeon"]) {
-                    player.transform(item.replace("_greegree", ""))
-                    player.closeType("spellbook_tab")
-                } else {
-                    forceRemove(player)
-                }
+    override fun spawn(player: Player) {
+        val item = player.equipped(EquipSlot.Weapon).id
+        if (item.endsWith("_greegree")) {
+            if (player.tile in areas["ape_atoll"] || player.tile in areas["ape_atoll_agility_dungeon"]) {
+                player.transform(item.replace("_greegree", ""))
+                player.closeType("spellbook_tab")
+            } else {
+                forceRemove(player)
             }
         }
+    }
 
+    init {
         itemAdded("*_greegree", EquipSlot.Weapon, "worn_equipment") { player ->
             val sound = when {
                 item.id.endsWith("gorilla_greegree") -> "human_into_gorilla"

@@ -1,10 +1,10 @@
 package content.entity.player.effect
 
 import content.entity.player.inv.inventoryItem
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -18,7 +18,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
 
 @Script
-class AvasDevices {
+class AvasDevices : Api {
 
     val attractor = setOf(
         "iron_arrow",
@@ -73,11 +73,11 @@ class AvasDevices {
 
     val floorItems: FloorItems by inject()
 
-    init {
-        playerSpawn { player ->
-            update(player)
-        }
+    override fun spawn(player: Player) {
+        update(player)
+    }
 
+    init {
         inventoryChanged("worn_equipment", EquipSlot.Chest) { player ->
             if (item.def["material", ""] == "metal" || fromItem.def["material", ""] == "metal") {
                 update(player)

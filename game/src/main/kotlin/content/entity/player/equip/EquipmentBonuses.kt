@@ -5,6 +5,7 @@ import content.entity.player.inv.InventoryOption
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
@@ -16,7 +17,6 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
@@ -26,7 +26,7 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 
 @Script
-class EquipmentBonuses {
+class EquipmentBonuses : Api {
 
     val definitions: ItemDefinitions by inject()
 
@@ -34,12 +34,12 @@ class EquipmentBonuses {
         roundingMode = RoundingMode.FLOOR
     }
 
-    init {
-        playerSpawn { player ->
-            updateStats(player)
-            player["bank_hidden"] = true
-        }
+    override fun spawn(player: Player) {
+        updateStats(player)
+        player["bank_hidden"] = true
+    }
 
+    init {
         inventoryChanged("worn_equipment") { player ->
             updateStats(player, fromItem, false)
             updateStats(player, item, true)

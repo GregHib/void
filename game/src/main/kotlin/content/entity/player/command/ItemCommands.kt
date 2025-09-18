@@ -5,6 +5,7 @@ package content.entity.player.command
 import content.social.trade.exchange.GrandExchange
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
@@ -14,7 +15,6 @@ import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.worldSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.inv.transact.charge
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 
 @Script
-class ItemCommands {
+class ItemCommands : Api {
 
     val areas: AreaDefinitions by inject()
     val players: Players by inject()
@@ -35,17 +35,17 @@ class ItemCommands {
 
     val alternativeNames = Object2ObjectOpenHashMap<String, String>()
 
-    init {
-        worldSpawn {
-            for (id in 0 until definitions.size) {
-                val definition = definitions.get(id)
-                val list = (definition.extras as? MutableMap<String, Any>)?.remove("aka") as? List<String> ?: continue
-                for (name in list) {
-                    alternativeNames[name] = definition.stringId
-                }
+    override fun worldSpawn() {
+        for (id in 0 until definitions.size) {
+            val definition = definitions.get(id)
+            val list = (definition.extras as? MutableMap<String, Any>)?.remove("aka") as? List<String> ?: continue
+            for (name in list) {
+                alternativeNames[name] = definition.stringId
             }
         }
+    }
 
+    init {
         adminCommand(
             "item",
             stringArg("item-id", autofill = itemDefinitions.ids.keys),

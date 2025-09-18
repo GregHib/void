@@ -5,17 +5,18 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.npcSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
 
 @Script
-class PortSarimGuard {
+class PortSarimGuard : Api {
 
     val patrols: PatrolDefinitions by inject()
 
@@ -59,8 +60,10 @@ class PortSarimGuard {
                 }
             }
         }
+    }
 
-        npcSpawn("port_sarim_guard_6") { npc ->
+    override fun spawn(npc: NPC) {
+        if (npc.id == "port_sarim_guard_6") {
             val patrol = patrols.get("port_sarim_guard")
             npc.mode = Patrol(npc, patrol.waypoints)
         }

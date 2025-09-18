@@ -1,11 +1,10 @@
 package content.entity.player.effect
 
 import content.skill.prayer.praying
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.levelChange
-import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
@@ -14,22 +13,22 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
 
 @Script
-class HitpointRestoration {
+class HitpointRestoration : Api {
 
-    init {
-        playerSpawn { player ->
-            if (player.levels.getOffset(Skill.Constitution) < 0) {
-                player.softTimers.start("restore_hitpoints")
-            }
+    override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
+        if (skill != Skill.Constitution || to <= 0 || to >= player.levels.getMax(skill) || player.softTimers.contains("restore_hitpoints")) {
+            return
         }
+        player.softTimers.start("restore_hitpoints")
+    }
 
-        levelChange(Skill.Constitution) { player ->
-            if (to <= 0 || to >= player.levels.getMax(skill) || player.softTimers.contains("restore_hitpoints")) {
-                return@levelChange
-            }
+    override fun spawn(player: Player) {
+        if (player.levels.getOffset(Skill.Constitution) < 0) {
             player.softTimers.start("restore_hitpoints")
         }
+    }
 
+    init {
         timerStart("restore_hitpoints") {
             interval = TimeUnit.SECONDS.toTicks(6)
         }

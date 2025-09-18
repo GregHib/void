@@ -1,27 +1,28 @@
 package content.area.misthalin.edgeville
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.*
-import world.gregs.voidps.engine.entity.npcSpawn
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
 @Script
-class MultiCombat {
+class MultiCombat : Api {
 
     val areaDefinitions: AreaDefinitions by inject()
 
-    init {
-        npcSpawn { npc ->
-            for (def in areaDefinitions.get(npc.tile.zone)) {
-                if (def.tags.contains("multi_combat")) {
-                    npc["in_multi_combat"] = true
-                    break
-                }
+    override fun spawn(npc: NPC) {
+        for (def in areaDefinitions.get(npc.tile.zone)) {
+            if (def.tags.contains("multi_combat")) {
+                npc["in_multi_combat"] = true
+                break
             }
         }
+    }
 
+    init {
         enterArea(tag = "multi_combat") {
             player["in_multi_combat"] = true
         }

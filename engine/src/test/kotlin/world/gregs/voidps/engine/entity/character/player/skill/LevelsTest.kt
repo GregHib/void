@@ -1,31 +1,40 @@
 package world.gregs.voidps.engine.entity.character.player.skill
 
 import io.mockk.mockk
-import io.mockk.verify
+import io.mockk.spyk
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.dispatch.ListDispatcher
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
-import world.gregs.voidps.engine.entity.character.player.skill.level.CurrentLevelChanged
+import world.gregs.voidps.engine.entity.character.player.skill.level.LevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
-import world.gregs.voidps.engine.event.EventDispatcher
 
 internal class LevelsTest {
 
     private lateinit var exp: Experience
     private lateinit var levels: Levels
-    private lateinit var events: EventDispatcher
+    private lateinit var player: Player
+    val calls = mutableListOf<Triple<Skill, Int, Int>>()
 
     @BeforeEach
     fun setup() {
         exp = Experience(maximum = 10000.0)
-        events = mockk(relaxed = true)
+        player = mockk(relaxed = true)
         levels = Levels()
-        exp.events = events
-        levels.link(events, PlayerLevels(exp))
+        exp.events = player
+        levels.link(player, PlayerLevels(exp))
+        val levelChanged = spyk(ListDispatcher<LevelChanged>())
+        levelChanged.instances.add(object : LevelChanged {
+            override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
+                calls.add(Triple(skill, from, to))
+            }
+        })
+        LevelChanged.playerDispatcher = levelChanged
     }
 
     @Test
@@ -119,8 +128,8 @@ internal class LevelsTest {
     @Test
     fun `Boosting with stack has arbitrary limit`() {
         exp = Experience()
-        exp.events = events
-        levels.link(events, PlayerLevels(exp))
+        exp.events = player
+        levels.link(player, PlayerLevels(exp))
 
         exp.set(Skill.Strength, 14000000.0)
         levels.set(Skill.Strength, 99)
@@ -287,17 +296,19 @@ internal class LevelsTest {
     fun `Listen to boost change`() {
         exp.set(Skill.Magic, 1154.0)
         levels.set(Skill.Magic, 9)
+        calls.clear()
         levels.set(Skill.Magic, 12)
-        verify {
-            events.emit(CurrentLevelChanged(Skill.Magic, 9, 12))
-        }
+        val (skill, from, to) = calls.first()
+        assertEquals(Skill.Magic, skill)
+        assertEquals(9, from)
+        assertEquals(12, to)
     }
 
     @Test
     fun `Listen to level up`() {
         exp.set(Skill.Magic, 1154.0)
         verifyOrder {
-            events.emit(any<MaxLevelChanged>()) // (Skill.Magic, 1, 10))
+            player.emit(any<MaxLevelChanged>()) // (Skill.Magic, 1, 10))
         }
     }
 }
