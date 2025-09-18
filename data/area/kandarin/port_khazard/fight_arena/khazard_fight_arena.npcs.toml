@@ -1,0 +1,122 @@
+[khazard]
+id = 253
+examine = "He's guarding the door."
+
+[khazard_2]
+id = 254
+examine = "He's been guarding the tavern for a bit too long."
+
+[khazard_3]
+id = 255
+examine = "His armour indicates he's a Khazard Guard."
+
+[khazard_4]
+id = 256
+examine = "His armour indicates he's a Khazard Guard."
+
+[angor]
+id = 259
+examine = "A tough-looking Khazard barman."
+
+[kelvin]
+id = 260
+examine = "A slave fighter. He looks mistreated and weak."
+
+[joe]
+id = 261
+examine = "A slave fighter. He looks mistreated and weak."
+
+[slave_fighter]
+id = 262
+examine = "A slave fighter. He looks mistreated and weak."
+
+[hengrad]
+id = 263
+examine = "He looks mistreated but he hasn't given up."
+
+[slave_fighter_2]
+id = 267
+
+[local_khazard_fight_arena]
+id = 268
+examine = "A scruffy-looking chap."
+
+[khazard_5]
+id = 7504
+examine = "He likes a good fight, as long as he's not part of it."
+
+[khazard_6]
+id = 7505
+examine = "He likes a good fight, as long as he's not part of it."
+
+[khazard_7]
+id = 7506
+examine = "His favourite must be winning."
+
+[khazard_8]
+id = 7507
+examine = "Blood-thirsty and enthusiastic."
+
+[khazard_9]
+id = 7508
+examine = "Probably discussing the strengths and weaknesses of the fighting slaves."
+
+[khazard_10]
+id = 7509
+
+[khazard_11]
+id = 7510
+examine = "His favourite must be winning."
+
+[khazard_12]
+id = 7511
+examine = "His favourite must be winning."
+
+[khazard_13]
+id = 7512
+examine = "Probably discussing the strengths and weaknesses of the fighting slaves."
+
+[khazard_14]
+id = 7513
+examine = "Probably discussing the strengths and weaknesses of the fighting slaves."
+
+[khazard_15]
+id = 7514
+examine = "Bloodthirsty and enthusiastic."
+
+[khazard_16]
+id = 7515
+examine = "Bloodthirsty and enthusiastic."
+
+[khazard_17]
+id = 7518
+examine = "He's asleep."
+
+[khazard_18]
+id = 7519
+examine = "He's propping the bar up. Or is it the other way round?"
+
+[khazard_19]
+id = 7520
+examine = "He demands to have some booze."
+
+[khazard_20]
+id = 7528
+
+[lazy_khazard]
+id = 7550
+
+[citizen_khazard_fight_arena]
+id = 7554
+examine = "He's snoring."
+
+[general_khazard_khazard_fight_arena]
+id = 7555
+
+[general_khazard_khazard_fight_arena_2]
+id = 7556
+
+[khazard_launderer_khazard_fight_arena]
+id = 8428
+examine = "He's carefully folding clothes."
+

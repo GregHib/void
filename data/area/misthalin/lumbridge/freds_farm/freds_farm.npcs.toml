@@ -1,0 +1,28 @@
+[hay_bales]
+id = 11627
+
+[hay_bale]
+id = 11630
+
+[zenevivia]
+id = 11629
+
+[ram_freds_farm]
+id = 12369
+
+[ram_freds_farm_2]
+id = 12370
+
+[ram_freds_farm_3]
+id = 12371
+
+[beefy_bill]
+id = 246
+examine = "Specialist meat transporter."
+
+[larry_farmer]
+id = 5423
+
+[farmer]
+id = 7
+examine = "He grows the crops in this area."

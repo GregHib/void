@@ -1,0 +1,20 @@
+[iceberg_fremennik_isle]
+id = 5467
+examine = "Like an icecube's big, fat uncle."
+
+[iceberg_fremennik_isle_2]
+id = 5468
+examine = "A floating chunk of ice."
+
+[ice_troll_runt_fremennik_isle]
+id = 5525
+
+[ice_troll_male_fremennik_isle]
+id = 5526
+
+[ice_troll_female_fremennik_isle]
+id = 5527
+
+[ice_troll_grunt_fremennik_isle]
+id = 5528
+

@@ -1,0 +1,18 @@
+spawns = [
+  { id = "guard_mountain_camp", x = 2764, y = 3653, members = true },
+  { id = "guard_mountain_camp_2", x = 2780, y = 3658 },
+  { id = "hamal_the_chieftain_mountain_camp", x = 2794, y = 3663, members = true },
+  { id = "ragnar_mountain_camp", x = 2764, y = 3679 },
+  { id = "jokul_mountain_camp", x = 2794, y = 3671 },
+  { id = "camp_dweller_mountain_camp", x = 2776, y = 3659 },
+  { id = "camp_dweller_mountain_camp_2", x = 2784, y = 3659 },
+  { id = "camp_dweller_mountain_camp_3", x = 2786, y = 3658 },
+  { id = "camp_dweller_mountain_camp_4", x = 2779, y = 3663 },
+  { id = "camp_dweller_mountain_camp_5", x = 2785, y = 3664 },
+  { id = "mountain_goat_mountain_camp", x = 2796, y = 3677 },
+  { id = "mountain_goat_mountain_camp_2", x = 2795, y = 3675 },
+  { id = "my_arm_mountain_camp", x = 2815, y = 3683, members = true },
+  { id = "tool_leprechaun_mountain_camp", x = 2810, y = 3676 },
+  { id = "mountain_goat_mountain_camp_3", x = 2794, y = 3677 },
+  { id = "mountain_goat_mountain_camp_4", x = 2793, y = 3674 },
+]

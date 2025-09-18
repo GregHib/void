@@ -1,0 +1,61 @@
+[captain_korasi_black_knights_fortress_basement]
+id = 12265
+
+[jessika_black_knights_fortress_basement]
+id = 12272
+
+[commodore_tyr_black_knights_fortress_basement]
+id = 12276
+
+[void_knight_black_knights_fortress_basement]
+id = 12281
+
+[void_knight_black_knights_fortress_basement_2]
+id = 12283
+
+[sir_tiffy_black_knights_fortress_basement]
+id = 12296
+
+[white_knight_black_knights_fortress_basement]
+id = 12301
+
+[lord_daquarius_black_knights_fortress_basement]
+id = 12303
+
+[captain_gilroy_black_knights_fortress_basement]
+id = 12314
+
+[black_knight_black_knights_fortress_basement]
+id = 12318
+
+[black_knight_black_knights_fortress_basement_2]
+id = 12321
+
+[void_knight_black_knights_fortress_basement_3]
+id = 12336
+
+[rat_black_knights_fortress]
+id = 2682
+
+[arthur_black_knights_fortress_basement]
+id = 3778
+
+[merlin_black_knights_fortress_basement]
+id = 3780
+
+[sir_pelleas_black_knights_fortress_basement]
+id = 6166
+examine = "One of the Knights of the Round Table."
+
+[sir_gawain_black_knights_fortress_basement]
+id = 6167
+examine = "One of the Knights of the Round Table."
+
+[sir_kay_black_knights_fortress_basement]
+id = 6168
+examine = "One of the Knights of the Round Table."
+
+[guard_black_knights_fortress_basement]
+id = 6190
+examine = "Primping with combs and hair clips."
+

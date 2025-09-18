@@ -1,0 +1,27 @@
+[monkey_bedabin_camp]
+id = 2301
+examine = "Perhaps our oldest relatives."
+
+[al_shabim_bedabin_camp]
+id = 832
+examine = "He's the leader of the Bedabin tribe."
+
+[bedabin_nomad_guard]
+id = 834
+examine = "A bedabin nomad guard - it looks like he's protecting an area."
+
+[bedabin_nomad]
+id = 833
+examine = "A bedabin nomad, they live in the harshest extremes in the desert."
+
+[bedabin_nomad_fighter]
+id = 1239
+examine = "A bedabin nomad fighter - a sandy swordsman."
+
+[rug_merchant_bedabin]
+id = 2292
+examine = "A man who deals in rugs."
+
+[asgarnia_smith]
+id = 1918
+examine = "Hardened by the cutthroat world of archaeology."

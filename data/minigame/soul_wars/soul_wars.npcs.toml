@@ -1,0 +1,21 @@
+[soul_wars_jelly]
+id = 8599
+
+[nomad_soul_wars]
+id = 8525
+
+[avatar_of_destruction_soul_wars]
+id = 8596
+examine = "The essence of ruination."
+
+[avatar_of_creation_soul_wars]
+id = 8597
+examine = "A being of unsurpassed vitality."
+
+[pyrefiend_soul_wars]
+id = 8598
+
+[zimberfizz]
+id = 8527
+examine = "Nomad's unfortunate minion."
+

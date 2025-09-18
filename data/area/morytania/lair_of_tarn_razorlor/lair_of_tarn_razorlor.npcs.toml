@@ -1,0 +1,45 @@
+[odovacar_lair_of_tarn_razorlor]
+id = 5383
+examine = "A roving banker."
+
+[giant_skeleton_lair_of_tarn_razorlor]
+id = 5384
+
+[skeleton_lair_of_tarn_razorlor]
+id = 5385
+categories = ["skeletons"]
+examine = "A magic skeleton!"
+
+[skeleton_lair_of_tarn_razorlor_2]
+id = 5387
+categories = ["skeletons"]
+examine = "Look: another skeleton."
+
+[skeleton_lair_of_tarn_razorlor_3]
+id = 5388
+categories = ["skeletons"]
+examine = "That skeleton's grinning at me."
+
+[skeleton_lair_of_tarn_razorlor_4]
+id = 5389
+categories = ["skeletons"]
+examine = "He needs a tan."
+
+[skeleton_lair_of_tarn_razorlor_5]
+id = 5390
+categories = ["skeletons"]
+examine = "How do you know if a skeleton's male or female?"
+
+[skeleton_lair_of_tarn_razorlor_6]
+id = 5391
+categories = ["skeletons"]
+examine = "He obviously hasn't realised he's dead."
+
+[terror_dog_lair_of_tarn_razorlor]
+id = 5417
+categories = ["terror_dogs"]
+examine = "A terrifying dog beast."
+
+[terror_dog_lair_of_tarn_razorlor_2]
+id = 5418
+

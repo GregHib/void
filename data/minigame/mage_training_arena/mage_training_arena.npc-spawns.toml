@@ -1,0 +1,12 @@
+spawns = [
+  { id = "flying_book", x = 3367, y = 3304, members = true },
+  { id = "flying_book_2", x = 3364, y = 3308, members = true },
+  { id = "flying_book_2", x = 3365, y = 3318, level = 1, members = true },
+  { id = "entrance_guardian", x = 3363, y = 3304, members = true },
+  { id = "rewards_guardian", x = 3362, y = 3318, level = 1, members = true },
+  { id = "charmed_warrior", x = 3359, y = 3304 },
+  { id = "charmed_warrior_2", x = 3364, y = 3311, level = 1 },
+  { id = "charmed_warrior_3", x = 3363, y = 3307, level = 1 },
+  { id = "charmed_warrior_4", x = 3364, y = 3311, members = true },
+  { id = "wizard_shug", x = 3365, y = 3321, level = 1, members = true },
+]

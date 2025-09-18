@@ -1,0 +1,38 @@
+[chicken_daemonheim]
+id = 11256
+
+[chicken_daemonheim_2]
+id = 11257
+
+[fremennik_shipmaster_daemonheim]
+id = 9707
+examine = "He looks at home in this climate."
+
+[fremennik_banker]
+id = 9710
+examine = "Protects the items that are forbidden from Daemonheim."
+
+[rewards_trader]
+id = 9711
+examine = "He is trembling and is covered in cuts and scrapes."
+
+[dungeoneering_tutor]
+id = 9712
+examine = "Your contact for forming parties in Daemonheim."
+
+[estrith_daemonheim]
+id = 9714
+examine = "She is finding it hard to hide her boredom."
+
+[sonje_daemonheim]
+id = 9715
+
+[wiglaf_daemonheim]
+id = 9716
+examine = "He's cooking up a storm."
+
+[cormorant_daemonheim]
+id = 9718
+
+[thok_master_of_dungeoneering]
+id = 9713

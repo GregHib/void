@@ -1,0 +1,8 @@
+spawns = [
+  { id = "zombie_temple_trekking", x = 2599, y = 5045, members = true },
+  { id = "rook_temple_trekking", x = 2035, y = 5044 },
+  { id = "fyiona_fray", x = 3481, y = 3237, members = true },
+  { id = "valantay_eppel", x = 3480, y = 3237, members = true },
+  { id = "jayene_kliyn", x = 3482, y = 3236, members = true },
+  { id = "sorin_temple_trekking", x = 3515, y = 3235, members = true },
+]

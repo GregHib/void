@@ -1,0 +1,13 @@
+spawns = [
+  { id = "tiadeche_karamja_jungle_instance", x = 2528, y = 4589 },
+  { id = "tamayu_karamja_jungle_instance", x = 2523, y = 4567 },
+  { id = "tamayu_karamja_jungle_instance_2", x = 2541, y = 4565, members = true },
+  { id = "the_shaikahan_karamja_jungle_instance", x = 2524, y = 4567, members = true },
+  { id = "the_shaikahan_karamja_jungle_instance", x = 2540, y = 4566, members = true },
+  { id = "fishing_spot_karamja_jungle_instance", x = 2515, y = 4591, members = true },
+  { id = "fishing_spot_karamja_jungle_instance_2", x = 2528, y = 4591, members = true },
+  { id = "gull_karamja_2", x = 2553, y = 4576 },
+  { id = "cormorant", x = 2547, y = 4580 },
+  { id = "pelican_karamja_jungle_instance", x = 2530, y = 4578 },
+  { id = "pelican_karamja_jungle_instance", x = 2550, y = 4577 },
+]

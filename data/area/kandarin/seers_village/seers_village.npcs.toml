@@ -1,0 +1,53 @@
+[clerk_seers_village]
+id = 11461
+examine = "The courthouse clerk."
+
+[barbarian_seers_village]
+id = 11466
+
+[wizard_seers_village]
+id = 11467
+
+[arresting_officer_seers_village]
+id = 11468
+
+[estate_agent_seers_village]
+id = 11469
+
+[idria_seers_village]
+id = 1596
+
+[phantuwti_fanstuwi_farsight]
+id = 1798
+examine = "A slightly more eccentric seer."
+
+[seer_seers_village]
+id = 388
+examine = "Could do with a shave..."
+
+[sin_seer_seers_village]
+id = 5571
+examine = "She's honest about the things you aren't."
+
+[town_crier_seers_village]
+id = 6139
+
+[squire_seers_village]
+id = 6169
+examine = "Squire to the Knights of the Round Table."
+
+[guard_seers_village]
+id = 6183
+examine = "An officer of the law."
+
+[guard_seers_village_2]
+id = 6184
+examine = "An officer of the law."
+
+[anna_seers_village]
+id = 6199
+
+[poison_salesman_seers_village]
+id = 820
+examine = "He sure likes to sell stuff!"
+

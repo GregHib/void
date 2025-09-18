@@ -21,31 +21,31 @@ id = 103
 clone = "ghost_draynor_manor"
 combat_anims = "ghost_tendril"
 
-[ghost_3]
+[ghost_2]
 id = 5342
 clone = "ghost_draynor_manor"
 
-[ghost_4]
+[ghost_3]
 id = 5343
 clone = "ghost_draynor_manor"
 
-[ghost_5]
+[ghost_4]
 id = 5344
 clone = "ghost_draynor_manor"
 
-[ghost_6]
+[ghost_5]
 id = 5345
 clone = "ghost_draynor_manor"
 
-[ghost_7]
+[ghost_6]
 id = 5346
 clone = "ghost_draynor_manor"
 
-[ghost_8]
+[ghost_7]
 id = 5347
 clone = "ghost_draynor_manor"
 
-[ghost_9]
+[ghost_8]
 id = 5348
 clone = "ghost_draynor_manor"
 
@@ -64,29 +64,6 @@ clone = "ghost_draynor_manor"
 [ghost_draynor_manor_5]
 id = 5352
 clone = "ghost_draynor_manor"
-
-[ghost_abandoned_mine]
-id = 1549
-hitpoints = 300
-att = 23
-str = 23
-def = 28
-max_hit_melee = 30
-style = "crush"
-slayer_xp = 30.0
-attack_radius = 11
-wander_radius = 10
-hunt_mode = "cowardly"
-combat_anims = "ghost_tendril"
-combat_sounds = "ghost"
-categories = ["ghosts", "undead"]
-examine = "Eeek! A ghost!"
-
-[haze_abandoned_mine]
-id = 1537
-hunt_mode = "cowardly"
-respawn_delay = 40
-examine = "A strange disturbance in the air."
 
 [stronghold_ghost_hair]
 id = 5369

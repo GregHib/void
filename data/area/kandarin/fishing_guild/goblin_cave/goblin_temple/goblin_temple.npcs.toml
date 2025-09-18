@@ -1,0 +1,173 @@
+[zanik_goblin_temple]
+id = 6396
+
+[goblin_goblin_temple]
+id = 6405
+examine = "An ugly green creature."
+
+[goblin_goblin_temple_2]
+id = 6406
+
+[goblin_goblin_temple_3]
+id = 6407
+
+[goblin_goblin_temple_4]
+id = 6408
+
+[goblin_goblin_temple_5]
+id = 6409
+
+[goblin_goblin_temple_6]
+id = 6410
+
+[goblin_goblin_temple_7]
+id = 6416
+examine = "An ugly green creature."
+
+[goblin_goblin_temple_8]
+id = 6417
+
+[goblin_goblin_temple_9]
+id = 6418
+
+[goblin_goblin_temple_10]
+id = 6419
+
+[goblin_goblin_temple_11]
+id = 6420
+
+[goblin_goblin_temple_12]
+id = 6421
+
+[goblin_goblin_temple_13]
+id = 6427
+examine = "An ugly green creature."
+
+[goblin_goblin_temple_14]
+id = 6428
+
+[goblin_goblin_temple_15]
+id = 6429
+
+[goblin_goblin_temple_16]
+id = 6430
+
+[goblin_goblin_temple_17]
+id = 6431
+
+[goblin_goblin_temple_18]
+id = 6432
+
+[goblin_goblin_temple_19]
+id = 6438
+examine = "An ugly green creature."
+
+[goblin_goblin_temple_20]
+id = 6439
+
+[goblin_goblin_temple_21]
+id = 6440
+
+[goblin_goblin_temple_22]
+id = 6441
+
+[goblin_goblin_temple_23]
+id = 6442
+
+[goblin_goblin_temple_24]
+id = 6443
+
+[goblin_goblin_temple_25]
+id = 6449
+examine = "An ugly green creature."
+
+[goblin_goblin_temple_26]
+id = 6450
+
+[goblin_goblin_temple_27]
+id = 6451
+
+[goblin_goblin_temple_28]
+id = 6452
+
+[goblin_goblin_temple_29]
+id = 6453
+
+[goblin_goblin_temple_30]
+id = 6454
+
+[goblin_goblin_temple_31]
+id = 6458
+examine = "An ugly green creature."
+
+[goblin_goblin_temple_32]
+id = 6459
+
+[goblin_goblin_temple_33]
+id = 6460
+
+[goblin_goblin_temple_34]
+id = 6461
+
+[goblin_goblin_temple_35]
+id = 6462
+
+[goblin_goblin_temple_36]
+id = 6463
+
+[goblin_goblin_temple_37]
+id = 6464
+
+[goblin_goblin_temple_38]
+id = 6465
+
+[priest_goblin_temple]
+id = 6482
+examine = "Priest of the Ekeleshuun tribe."
+
+[priest_goblin_temple_2]
+id = 6483
+
+[priest_goblin_temple_3]
+id = 6484
+
+[priest_goblin_temple_4]
+id = 6485
+
+[priest_goblin_temple_5]
+id = 6486
+
+[priest_goblin_temple_6]
+id = 6487
+
+[preacher_goblin_temple]
+id = 6488
+examine = "He is expounding the word of the Big High War God."
+
+[high_priest_goblin_temple]
+id = 6489
+
+[guard_goblin_temple]
+id = 6498
+examine = "A guard wearing blue armour."
+
+[guard_goblin_temple_2]
+id = 6499
+examine = "A guard wearing orange armour."
+
+[guard_goblin_temple_3]
+id = 6500
+examine = "A guard wearing black armour."
+
+[guard_goblin_temple_4]
+id = 6501
+examine = "A guard wearing white armour."
+
+[guard_goblin_temple_5]
+id = 6502
+examine = "A guard wearing purple armour."
+
+[guard_goblin_temple_6]
+id = 6503
+examine = "A guard wearing yellow armour."
+

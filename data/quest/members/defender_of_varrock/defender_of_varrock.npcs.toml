@@ -1,0 +1,164 @@
+[tramp_varrock]
+id = 11
+examine = "A man down on his luck."
+
+[market_guard_varrock]
+id = 11269
+examine = "On guard for thieves and ne'erdowells."
+
+[urist_loric]
+id = 11270
+
+[man_varrock]
+id = 12345
+
+[man_varrock_2]
+id = 12347
+
+[tramp_varrock_2]
+id = 2792
+examine = "A man down on his luck."
+
+[sani]
+id = 4905
+examine = "A master smith."
+
+[zaff]
+id = 546
+examine = "Sells superior staffs."
+
+[horvik]
+id = 549
+examine = "The man with the armour."
+
+[lowe]
+id = 550
+examine = "Sells arrows."
+
+[sword_shopkeeper_varrock]
+id = 551
+examine = "Ironically, makes a living from swords."
+
+[sword_shop_assistant_varrock]
+id = 552
+examine = "Helps the shopkeeper sell swords."
+
+[barbarian_defender_of_varrock]
+id = 5909
+examine = "Don't let her arm-wrestle you for money."
+
+[cook_blue_moon_inn]
+id = 5910
+examine = "A greasy, grimy gourmet."
+
+[stray_dog_defender_of_varrock]
+id = 5917
+examine = "A mangy mutt."
+
+[stray_dog_defender_of_varrock_2]
+id = 5918
+
+[guard_varrock]
+id = 5919
+examine = "He tries to keep order around here. His bizarre uniform isn't helping."
+
+[man_varrock_3]
+id = 5923
+examine = "One of Gielinor's many citizens."
+
+[woman_varrock]
+id = 5924
+examine = "One of Gielinor's many citizens."
+
+[benny]
+id = 5925
+examine = "Newspaper seller."
+
+[thief_black_arm_gang]
+id = 5926
+examine = "Known for his light-fingered qualities."
+
+[thief_black_arm_gang_red]
+id = 5928
+examine = "Known for her light-fingered qualities."
+
+[thief_black_arm_gang_blonde]
+id = 5929
+examine = "Known for her light-fingered qualities."
+
+[apothecary]
+id = 638
+examine = "A dealer in potions."
+
+[charlie_the_tramp]
+id = 641
+examine = "Looks down on his luck."
+
+[jonny_the_beard]
+id = 645
+examine = "Looks kind of shifty..."
+
+[dr_harlow]
+id = 756
+examine = "A retired vampyre hunter."
+
+[shilop]
+id = 781
+examine = "One of Gertrude's sons."
+
+[wilough]
+id = 783
+examine = "One of Gertrude's sons."
+
+[treznor]
+id = 2341
+examine = "Perhaps this gardener might look after your crops for you."
+
+[ambassador_ferrnook]
+id = 4582
+examine = "Peaceful man!"
+
+[guard_varrock_2]
+id = 5920
+examine = "He tries to keep order around here. His bizarre uniform isn't helping."
+
+[trainee_guard]
+id = 5921
+examine = "He's studying to be a guard."
+
+[king_roald]
+id = 648
+examine = "Varrock's resident monarch."
+
+[armoured_zombie_defender_of_varrock]
+id = 8159
+
+[armoured_zombie_defender_of_varrock_2]
+id = 8160
+
+[armoured_zombie_defender_of_varrock_3]
+id = 8161
+
+[armoured_zombie_defender_of_varrock_4]
+id = 8162
+
+[armoured_zombie_defender_of_varrock_5]
+id = 8163
+
+[arrav_defender_of_varrock]
+id = 8169
+examine = "He has seen better, happier days."
+
+[guard_defender_of_varrock]
+id = 8173
+
+[ellamaria_defender_of_varrock]
+id = 8175
+
+[monk_of_zamorak_defender_of_varrock]
+id = 8178
+
+[sir_prysin_defender_of_varrock]
+id = 9360
+examine = "One of the king's knights."
+

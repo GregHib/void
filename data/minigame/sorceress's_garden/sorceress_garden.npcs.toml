@@ -1,0 +1,86 @@
+[autumn_elemental_sorceress_garden]
+id = 5533
+examine = "An autumn elemental."
+
+[autumn_elemental_sorceress_garden_2]
+id = 5534
+
+[autumn_elemental_sorceress_garden_3]
+id = 5535
+
+[autumn_elemental_sorceress_garden_4]
+id = 5536
+
+[autumn_elemental_sorceress_garden_5]
+id = 5537
+
+[autumn_elemental_sorceress_garden_6]
+id = 5538
+
+[spring_elemental_sorceress_garden]
+id = 5539
+examine = "A spring elemental."
+
+[spring_elemental_sorceress_garden_2]
+id = 5540
+
+[spring_elemental_sorceress_garden_3]
+id = 5541
+
+[spring_elemental_sorceress_garden_4]
+id = 5542
+
+[spring_elemental_sorceress_garden_5]
+id = 5543
+
+[spring_elemental_sorceress_garden_6]
+id = 5544
+
+[spring_elemental_sorceress_garden_7]
+id = 5545
+
+[spring_elemental_sorceress_garden_8]
+id = 5546
+
+[summer_elemental_sorceress_garden]
+id = 5547
+examine = "A summer elemental."
+
+[summer_elemental_sorceress_garden_2]
+id = 5548
+
+[summer_elemental_sorceress_garden_3]
+id = 5549
+
+[summer_elemental_sorceress_garden_4]
+id = 5550
+
+[summer_elemental_sorceress_garden_5]
+id = 5551
+
+[summer_elemental_sorceress_garden_6]
+id = 5552
+
+[winter_elemental_sorceress_garden]
+id = 5553
+examine = "A winter elemental."
+
+[winter_elemental_sorceress_garden_2]
+id = 5554
+
+[winter_elemental_sorceress_garden_3]
+id = 5555
+
+[winter_elemental_sorceress_garden_4]
+id = 5556
+
+[winter_elemental_sorceress_garden_5]
+id = 5557
+
+[winter_elemental_sorceress_garden_6]
+id = 5558
+
+[del_monty_sorceress_garden]
+id = 5563
+examine = "Loves living in an orchard."
+

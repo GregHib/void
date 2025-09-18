@@ -106,26 +106,6 @@ combat_sounds = "scorpion"
 categories = ["scorpions"]
 examine = "A vicious, little, stinging thing."
 
-[scorpion_ape_atoll]
-id = 1477
-hitpoints = 150
-att = 50
-str = 50
-def = 10
-poisonous = true
-attack_bonus = 100
-max_hit_melee = 150
-hunt_mode = "cowardly"
-style = "stab"
-respawn_delay = 50
-slayer_xp = 15.0
-wander_radius = 5
-attack_radius = 7
-combat_anims = "small_scorpion"
-combat_sounds = "scorpion"
-categories = ["scorpions"]
-examine = "It's an extremely dangerous looking scorpion."
-
 [scorpion_stronghold_of_security]
 id = 4402
 hitpoints = 550

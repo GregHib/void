@@ -1,0 +1,41 @@
+[hammerspike_stoutbeard]
+id = 1794
+examine = "He looks quite independent in an aggressive and business like way."
+
+[dwarf_gang_member]
+id = 1795
+categories = ["dwarves"]
+examine = "A short stout menacing fellow."
+
+[dwarf_gang_member_2]
+id = 1796
+categories = ["dwarves"]
+examine = "A short stout menacing fellow."
+
+[dwarf_gang_member_3]
+id = 1797
+
+[cart_conductor]
+id = 2186
+examine = "Keeps the line clear of traffic."
+
+[hura]
+id = 4563
+examine = "A seller of crossbow parts."
+
+[drogo_dwarf]
+id = 579
+examine = "He runs a Mining store."
+
+[dwarf_dwarven_mine]
+id = 582
+examine = "I wonder if he wants to buy my junk?"
+
+[nurmof]
+id = 594
+examine = "He runs a pickaxe store."
+
+[boot_dwarven_mine]
+id = 665
+examine = "I wonder why he's called boot."
+

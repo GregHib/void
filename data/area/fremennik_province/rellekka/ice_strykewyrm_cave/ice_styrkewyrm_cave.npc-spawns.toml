@@ -1,0 +1,14 @@
+spawns = [
+  { id = "mound_wilderness", x = 3412, y = 5675, members = true },
+  { id = "mound_wilderness", x = 3413, y = 5667, members = true },
+  { id = "mound_wilderness", x = 3415, y = 5654, members = true },
+  { id = "mound_wilderness", x = 3419, y = 5661, members = true },
+  { id = "mound_wilderness", x = 3421, y = 5674, members = true },
+  { id = "mound_wilderness", x = 3423, y = 5654, members = true },
+  { id = "mound_wilderness", x = 3423, y = 5667, members = true },
+  { id = "mound_wilderness", x = 3426, y = 5679, members = true },
+  { id = "mound_wilderness", x = 3430, y = 5652, members = true },
+  { id = "mound_wilderness", x = 3430, y = 5660, members = true },
+  { id = "mound_wilderness", x = 3432, y = 5673, members = true },
+  { id = "mound_wilderness", x = 3437, y = 5665, members = true },
+]

@@ -1,0 +1,7 @@
+spawns = [
+  { id = "mountain_goat_trollweiss", x = 2802, y = 3841 },
+  { id = "mountain_goat_trollweiss", x = 2807, y = 3843 },
+  { id = "mountain_goat_trollweiss_2", x = 2804, y = 3843 },
+  { id = "brambickle_trollweiss", x = 2786, y = 3862 },
+  { id = "mountain_goat_trollweiss_3", x = 2798, y = 3842 },
+]

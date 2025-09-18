@@ -1,0 +1,4 @@
+spawns = [
+  { id = "kuradal_dragon_forge", x = 1688, y = 5287, level = 1, members = true },
+  { id = "abyssal_demon_dragon_forge", x = 1683, y = 5288, level = 1, members = true },
+]

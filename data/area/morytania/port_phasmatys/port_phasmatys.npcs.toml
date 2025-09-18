@@ -1,0 +1,74 @@
+[velorina_port_phasmatys]
+id = 1683
+examine = "A ghost lady."
+
+[necrovarus_port_phasmatys]
+id = 1684
+examine = "An evil priest."
+
+[ghost_disciple_port_phasmatys]
+id = 1686
+examine = "A ghost disciple."
+
+[ak_haranu_port_phasmatys]
+id = 1687
+
+[robin_port_phasmatys]
+id = 1694
+examine = "A master bowman."
+
+[ghost_villager_port_phasmatys]
+id = 1697
+examine = "A spooky ghost villager."
+
+[tortured_soul_port_phasmatys]
+id = 1698
+categories = ["ghosts"]
+examine = "This poor soul cannot understand why it has not passed to the next world."
+
+[ghost_shopkeeper_port_phasmatys]
+id = 1699
+examine = "Beware the ghostly shopkeeper's wares!"
+
+[ghost_innkeeper_port_phasmatys]
+id = 1700
+examine = "Doesn't look like the bar's open anymore."
+
+[ghost_banker_port_phasmatys]
+id = 1702
+examine = "A ghost banker."
+
+[ghost_sailor_port_phasmatys]
+id = 1703
+examine = "A ghost sailor."
+
+[ghost_captain]
+id = 1704
+examine = "A ghostship captain."
+
+[ghost_captain_2]
+id = 1705
+
+[ghost_guard_port_phasmatys]
+id = 1706
+examine = "This ghost guards the gates of Port Phasmatys."
+
+[pirate_pete_port_phasmatys]
+id = 2825
+examine = "A shifty-looking character."
+
+[melina_port_phasmatys]
+id = 2933
+
+[droalak_port_phasmatys]
+id = 2936
+
+[bill_teach_port_phasmatys]
+id = 3157
+
+[gravingas_port_phasmatys]
+id = 6075
+
+[gravingas_port_phasmatys_2]
+id = 6076
+

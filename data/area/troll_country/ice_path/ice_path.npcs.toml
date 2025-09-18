@@ -1,0 +1,7 @@
+[ice_block_father]
+id = 1943
+examine = "A troll frozen in a block of ice."
+
+[ice_block_mother]
+id = 1945
+examine = "A troll frozen in a block of ice."

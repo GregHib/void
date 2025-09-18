@@ -1,0 +1,172 @@
+[dark_mage_underground_pass]
+id = 1001
+examine = "A user of dark magic."
+
+[ogre_underground_pass]
+id = 3419
+categories = ["ogres"]
+examine = "A large dim looking humanoid."
+
+[man_underground_pass]
+id = 351
+examine = "One of Ardougne's many citizens."
+
+[woman_underground_pass]
+id = 352
+examine = "One of Ardougne's many citizens."
+
+[woman_underground_pass_2]
+id = 353
+examine = "One of Ardougne's many citizens."
+
+[woman_underground_pass_3]
+id = 354
+examine = "One of Ardougne's many citizens."
+
+[child_underground_pass]
+id = 355
+examine = "A child of West Ardougne."
+
+[child_underground_pass_2]
+id = 356
+
+[woman_underground_pass_4]
+id = 360
+examine = "One of Ardougne's many citizens."
+
+[woman_underground_pass_5]
+id = 361
+examine = "One of Ardougne's many citizens."
+
+[woman_underground_pass_6]
+id = 362
+examine = "One of Ardougne's many citizens."
+
+[woman_underground_pass_7]
+id = 363
+examine = "One of Ardougne's many citizens."
+
+[goblin_underground_pass]
+id = 4499
+categories = ["goblins"]
+examine = "An ugly goblin... bleurgh!"
+
+[khazard_trooper_underground_pass]
+id = 475
+examine = "It's one of General Khazard's warriors."
+
+[khazard_warlord_underground_pass]
+id = 477
+examine = "He looks real nasty, smells bad too."
+
+[child_underground_pass_3]
+id = 6334
+examine = "A child of West Ardougne."
+
+[child_underground_pass_4]
+id = 6335
+examine = "A child of West Ardougne."
+
+[child_underground_pass_5]
+id = 6336
+examine = "A child of West Ardougne."
+
+[child_underground_pass_6]
+id = 6337
+examine = "A child of West Ardougne."
+
+[child_underground_pass_7]
+id = 6338
+examine = "A child of West Ardougne."
+
+[child_underground_pass_8]
+id = 6339
+examine = "A child of West Ardougne."
+
+[child_underground_pass_9]
+id = 6340
+
+[child_underground_pass_10]
+id = 6341
+
+[child_underground_pass_11]
+id = 6342
+
+[child_underground_pass_12]
+id = 6343
+
+[carla_underground_pass]
+id = 712
+
+[civilian_underground_pass]
+id = 785
+examine = "A citizen of Ardougne."
+
+[civilian_underground_pass_2]
+id = 786
+examine = "A citizen of Ardougne."
+
+[civilian_underground_pass_3]
+id = 787
+examine = "A citizen of Ardougne."
+
+[ogre_underground_pass_2]
+id = 8658
+categories = ["ogres"]
+examine = "A large dim looking humanoid."
+
+[chadwell_underground_pass]
+id = 971
+examine = "Shopkeeper."
+
+[koftik_underground_pass]
+id = 972
+
+[koftik_underground_pass_2]
+id = 973
+examine = "The cave guide."
+
+[koftik_underground_pass_3]
+id = 974
+
+[koftik_underground_pass_4]
+id = 976
+
+[blessed_spider_underground_pass]
+id = 977
+categories = ["spiders"]
+examine = "It's one of Iban's pets."
+
+[sir_jerro_underground_pass]
+id = 988
+examine = "A mighty-looking warrior."
+
+[sir_carl_underground_pass]
+id = 989
+examine = "A mighty-looking warrior."
+
+[sir_harry_underground_pass]
+id = 990
+examine = "A mighty-looking warrior."
+
+[niloof_underground_pass]
+id = 994
+examine = "A strong and hardy dwarf."
+
+[klank_underground_pass]
+id = 995
+examine = "A dwarven maker of gauntlets."
+
+[kamen_underground_pass]
+id = 996
+examine = "This dwarf looks intoxicated."
+
+[kalrag_underground_pass]
+id = 997
+examine = "A giant spider."
+
+[boulder_underground_pass]
+id = 986
+examine = "Precariously balanced..."
+
+

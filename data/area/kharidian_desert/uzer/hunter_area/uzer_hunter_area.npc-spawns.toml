@@ -1,0 +1,17 @@
+spawns = [
+  { id = "golden_warbler", x = 3402, y = 3095 },
+  { id = "golden_warbler", x = 3406, y = 3097 },
+  { id = "golden_warbler", x = 3407, y = 3085 },
+  { id = "golden_warbler", x = 3410, y = 3085 },
+  { id = "orange_salamander", x = 3402, y = 3134 },
+  { id = "orange_salamander", x = 3403, y = 3090 },
+  { id = "orange_salamander", x = 3405, y = 3101 },
+  { id = "orange_salamander", x = 3405, y = 3133 },
+  { id = "orange_salamander", x = 3407, y = 3132 },
+  { id = "orange_salamander", x = 3408, y = 3095 },
+  { id = "orange_salamander", x = 3410, y = 3088 },
+  { id = "orange_salamander", x = 3412, y = 3081 },
+  { id = "orange_salamander", x = 3414, y = 3075 },
+  { id = "orange_salamander", x = 3415, y = 3080 },
+  { id = "orange_salamander", x = 3417, y = 3073 },
+]

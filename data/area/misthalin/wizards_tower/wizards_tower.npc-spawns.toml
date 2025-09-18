@@ -5,4 +5,6 @@ spawns = [
     # 12437
     { id = "sedridor", x = 3103, y = 9571 },
     { id = "chicken", x = 3109, y = 9569 },
+    { id = "mysterious_ghost_wizards_tower", x = 3112, y = 3158, members = true },
+    { id = "professor_onglewip", x = 3110, y = 3157 },
 ]

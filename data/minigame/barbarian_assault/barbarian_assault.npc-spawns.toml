@@ -1,0 +1,13 @@
+spawns = [
+  { id = "egg_launcher_barbarian_assault", x = 1877, y = 5410, members = true },
+  { id = "egg_launcher_barbarian_assault", x = 1877, y = 5474, members = true },
+  { id = "egg_launcher_barbarian_assault", x = 1896, y = 5474, members = true },
+  { id = "major_attack_barbarian_assault", x = 1889, y = 5401, members = true },
+  { id = "major_attack_barbarian_assault", x = 1882, y = 5477, members = true },
+  { id = "major_collect_barbarian_assault", x = 1883, y = 5401, members = true },
+  { id = "major_collect_barbarian_assault", x = 1891, y = 5477, members = true },
+  { id = "major_defend_barbarian_assault", x = 1892, y = 5401, members = true },
+  { id = "major_defend_barbarian_assault", x = 1891, y = 5466, members = true },
+  { id = "major_heal_barbarian_assault", x = 1886, y = 5401, members = true },
+  { id = "major_heal_barbarian_assault", x = 1882, y = 5466, members = true },
+]

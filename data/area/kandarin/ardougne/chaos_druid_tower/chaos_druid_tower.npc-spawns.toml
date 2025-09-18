@@ -1,0 +1,9 @@
+spawns = [
+  { id = "ogre_feldip_hills", x = 2581, y = 9738 },
+  { id = "ogre_feldip_hills", x = 2587, y = 9733 },
+  { id = "ogre_underground_pass", x = 2581, y = 9742 },
+  { id = "ogre_underground_pass", x = 2587, y = 9740 },
+  { id = "ogre_feldip_hills_2", x = 2584, y = 9734 },
+  { id = "ogre_feldip_hills_2", x = 2590, y = 9737 },
+  { id = "ogre_underground_pass_2", x = 2585, y = 9738 },
+]

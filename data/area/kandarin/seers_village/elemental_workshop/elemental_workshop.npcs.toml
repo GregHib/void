@@ -1,0 +1,16 @@
+[earth_elemental_elemental_workshop]
+id = 1020
+examine = "An earth elemental."
+
+[air_elemental_elemental_workshop]
+id = 1021
+examine = "An air elemental."
+
+[water_elemental_elemental_workshop]
+id = 1022
+examine = "A water elemental."
+
+[elemental_rock_elemental_workshop]
+id = 4911
+examine = "An elemental rock."
+

@@ -1,0 +1,136 @@
+[commander_colby_wilderness]
+id = 12311
+
+[dark_wizard_wilderness]
+id = 172
+examine = "A practicer of dark arts."
+
+[dark_wizard_wilderness_2]
+id = 174
+examine = "He works evil magic."
+
+[william_wilderness]
+id = 1778
+examine = "A very brave merchant."
+
+[ian_wilderness]
+id = 1779
+examine = "A very brave merchant."
+
+[darren_wilderness]
+id = 1781
+examine = "A very brave merchant."
+
+[edmond_wilderness]
+id = 1785
+examine = "A very brave merchant."
+
+[simon_wilderness]
+id = 1786
+examine = "A very brave merchant."
+
+[pirate_wilderness]
+id = 184
+examine = "This one's had too much to drink!"
+
+[mysterious_ghost_wilderness]
+id = 2382
+
+[mysterious_ghost_wilderness_2]
+id = 2388
+
+[mysterious_ghost_wilderness_3]
+id = 2389
+
+[mysterious_ghost_wilderness_4]
+id = 2390
+
+[mysterious_ghost_wilderness_5]
+id = 2394
+
+[chaos_elemental_wilderness]
+id = 3200
+examine = "pUre A cHaOs of crEatuRe!"
+
+[fishing_spot_wilderness]
+id = 3804
+
+[giant_rat_wilderness]
+id = 4927
+categories = ["rats"]
+examine = "Overgrown vermin."
+
+[black_salamander]
+id = 5116
+examine = "Slightly slimy and somewhat menacing."
+
+[pirate_wilderness_2]
+id = 6351
+examine = "This one's had too much to drink!"
+
+[pirate_wilderness_3]
+id = 6352
+examine = "This one's had too much to drink!"
+
+[pirate_wilderness_4]
+id = 6353
+examine = "This one's had too much to drink!"
+
+[pirate_wilderness_5]
+id = 6354
+examine = "This one's had too much to drink!"
+
+[pirate_wilderness_6]
+id = 6355
+
+[pirate_wilderness_7]
+id = 6356
+examine = "This one's had too much to drink!"
+
+[goth_leprechaun_wilderness]
+id = 8000
+examine = "Looks after your Farming tools."
+
+[goth_leprechaun_wilderness_2]
+id = 8001
+
+[orry_wilderness]
+id = 8067
+
+[ube_wilderness]
+id = 8068
+
+[waldo_wilderness]
+id = 8069
+
+[crate_wilderness]
+id = 8074
+
+[rogue_wilderness]
+id = 8123
+
+[giant_rat_wilderness_2]
+id = 87
+
+[battle_mage_wilderness]
+id = 912
+examine = "He kills in the name of Zamorak."
+
+[battle_mage_wilderness_2]
+id = 913
+examine = "He kills in the name of Saradomin."
+
+[battle_mage_wilderness_3]
+id = 914
+examine = "He kills in the name of Guthix."
+
+[mound_wilderness]
+id = 9462
+
+[gull_wilderness]
+id = 9717
+
+[lobster_wilderness]
+id = 9720
+examine = "He looks really cold."
+

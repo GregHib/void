@@ -1,0 +1,20 @@
+[egg_launcher_barbarian_assault]
+id = 5028
+examine = "An egg launcher."
+
+[major_attack_barbarian_assault]
+id = 5035
+examine = "A barbarian army teacher."
+
+[major_collect_barbarian_assault]
+id = 5036
+examine = "A barbarian army teacher."
+
+[major_defend_barbarian_assault]
+id = 5037
+examine = "A barbarian army teacher."
+
+[major_heal_barbarian_assault]
+id = 5038
+examine = "A barbarian army teacher."
+

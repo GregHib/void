@@ -1,0 +1,48 @@
+[undead_one_kharazi_caves]
+id = 502
+categories = ["skeletons"]
+examine = "A minion of Rashiliyia."
+
+[undead_one_kharazi_caves_2]
+id = 503
+categories = ["skeletons"]
+examine = "A minion of Rashiliyia."
+
+[undead_one_kharazi_caves_3]
+id = 5353
+categories = ["skeletons"]
+examine = "A minion of Rashiliyia."
+
+[undead_one_kharazi_caves_4]
+id = 5354
+categories = ["skeletons"]
+examine = "A minion of Rashiliyia."
+
+[death_wing_kharazi_caves]
+id = 79
+categories = ["ghosts"]
+examine = "A shadowy, barely visible flying entity from some evil place."
+
+[ungadulu_kharazi_caves]
+id = 929
+examine = "The Kharazi tribe's elusive shaman."
+
+[san_tojalon_kharazi_caves]
+id = 936
+categories = ["skeletons"]
+examine = "The spirit of a long-dead warrior."
+
+[irvig_senay_kharazi_caves]
+id = 937
+categories = ["skeletons"]
+examine = "The spirit of a long-dead warrior."
+
+[ranalph_devere_kharazi_caves]
+id = 938
+categories = ["skeletons"]
+examine = "The spirit of a long-dead warrior."
+
+[boulder_kharazi_caves]
+id = 939
+examine = "I wonder what this is doing here."
+

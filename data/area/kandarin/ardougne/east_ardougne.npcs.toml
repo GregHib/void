@@ -1,0 +1,304 @@
+[guard_ardougne]
+id = 11271
+examine = "The key to the vault lever hangs from his belt."
+
+[registrar]
+id = 11272
+examine = "The Registrar of Guilds."
+
+[jogre_ardougne]
+id = 113
+examine = "An aggressive humanoid."
+
+[cyclops_ardougne]
+id = 116
+categories = ["cyclopes"]
+examine = "A one-eyed man eater."
+
+[parrots_ardougne]
+id = 1215
+
+[parroty_pete]
+id = 1216
+examine = "He seems strangely familiar..."
+
+[monkey_ardougne]
+id = 1463
+
+[monkey_minder_ardougne]
+id = 1469
+examine = "He looks like the type of guy who would mind monkeys."
+
+[warrior_woman]
+id = 15
+examine = "A woman, who is a warrior."
+
+[milton_the_miller]
+id = 1739
+examine = "Manages the mill."
+
+[paladin]
+id = 20
+examine = "A holy warrior."
+
+[hero]
+id = 21
+examine = "Heroic!"
+
+[paladin_2]
+id = 2256
+
+[knight_of_ardougne]
+id = 23
+examine = "A member of Ardougne's militia."
+
+[richard_ardougne]
+id = 2306
+examine = "He sells Farming equipment."
+
+[kragen_ardougne]
+id = 2325
+examine = "Perhaps this gardener might look after your crops for you."
+
+[man_ardougne]
+id = 24
+examine = "One of Gielinor's many citizens."
+
+[woman_ardougne]
+id = 25
+examine = "One of Gielinor's many citizens."
+
+[archer_ardougne]
+id = 27
+examine = "Good with arrows."
+
+[zookeeper]
+id = 28
+examine = "Enjoys locking up animals in small pens."
+
+[councillor_halgrive]
+id = 289
+examine = "An official of Ardougne."
+
+[doctor_orbon]
+id = 290
+examine = "A serious-looking doctor."
+
+[farmer_brumty]
+id = 291
+examine = "A farmer who's seen happier times."
+
+[sick_looking_sheep_1]
+id = 292
+
+[sick_looking_sheep_2]
+id = 293
+
+[sick_looking_sheep_3]
+id = 294
+
+[bones_ardougne]
+id = 2945
+examine = "Lovely, cute, and possibly what dreams are made of."
+
+[jimmy_dazzler]
+id = 2949
+examine = "Looks rich like an actor of sorts."
+
+[sick_looking_sheep_4]
+id = 295
+
+[priest_ardougne]
+id = 31
+examine = "A holy man."
+
+[fishing_spot_ardougne]
+id = 311
+
+[guard_ardougne_2]
+id = 32
+examine = "Keeps the peace... kind of."
+
+[edmond_ardougne]
+id = 3213
+
+[elena_ardougne]
+id = 335
+
+[jerico]
+id = 366
+examine = "He looks friendly enough."
+
+[captain_barnaby]
+id = 381
+
+[rick]
+id = 4236
+
+[maid_ardougne]
+id = 4238
+
+[cook_ardougne]
+id = 4240
+
+[butler_ardougne]
+id = 4242
+
+[demon_butler_ardougne]
+id = 4244
+
+[chief_servant_ardougne]
+id = 4245
+examine = "Head of the servants' guild."
+
+[sick_looking_sheep_1_2]
+id = 4253
+
+[sick_looking_sheep_2_2]
+id = 4254
+
+[sick_looking_sheep_3_2]
+id = 4255
+
+[sick_looking_sheep_4_2]
+id = 4256
+
+[ambassador_gimblewap]
+id = 4580
+examine = "He's very diplomatic."
+
+[my_arm_ardougne]
+id = 4953
+
+[captain_barnaby_2]
+id = 4961
+
+[charlie_ardougne]
+id = 5138
+examine = "One of the zookeepers; enjoys locking up animals in small pens."
+
+[penguin_ardougne]
+id = 5445
+
+[silver_merchant_ardougne]
+id = 569
+examine = "Looks fairly well fed."
+
+[gem_merchant_ardougne]
+id = 570
+examine = "Seems very well-off."
+
+[baker_ardougne]
+id = 571
+examine = "So where are the butcher and the candlestick-maker?"
+
+[spice_seller_ardougne]
+id = 572
+examine = "Has a very exotic aroma about him."
+
+[fur_trader_ardougne]
+id = 573
+examine = "Knows how to keep warm in the winter."
+
+[silk_merchant_ardougne]
+id = 574
+examine = "Seems very well-off."
+
+[zenesha]
+id = 589
+examine = "Sells top quality platemail armour."
+
+[aemad]
+id = 590
+examine = "He runs the adventurers' shop."
+
+[kortan]
+id = 591
+examine = "He helps to run the adventurers' shop."
+
+[town_crier_ardougne]
+id = 6138
+
+[wizard_cromperty_ardougne]
+id = 6386
+
+[penguin_keeper_ardougne]
+id = 6891
+examine = "He looks like the type of guy who would keep penguins."
+
+[alrena]
+id = 710
+examine = "She looks concerned."
+
+[tool_leprechaun_ardougne]
+id = 7563
+examine = "Looks after your Farming tools."
+
+[zookeeper_2]
+id = 7570
+examine = "Enjoys locking up animals in small pens."
+
+[zookeeper_3]
+id = 7571
+examine = "Enjoys locking up animals in small pens."
+
+[monkey_minder_ardougne_2]
+id = 7572
+examine = "He looks like the type of guy who would mind monkeys."
+
+[monkey_minder_ardougne_3]
+id = 7573
+examine = "He looks like the type of guy who would mind monkeys."
+
+[larry_ardougne]
+id = 7574
+
+[chief_zookeeper]
+id = 7580
+
+[camel_ardougne]
+id = 80
+examine = "Oh, it's a camel."
+
+[lucien_ardougne]
+id = 8345
+
+[rpdt_employee]
+id = 843
+examine = "Inefficient looking."
+
+[horacio]
+id = 845
+examine = "Could do with losing a few pounds."
+
+[local_thug_ardougne]
+id = 8468
+
+[larry_ardougne_2]
+id = 8693
+
+[ceril_carnillean]
+id = 885
+examine = "Head of the Carnillean household."
+
+[guard_ardougne_3]
+id = 887
+
+[philipe_carnillean]
+id = 888
+
+[henryeta_carnillean]
+id = 889
+examine = "Ceril Carnillean's wife."
+
+[butler_jones]
+id = 890
+
+[marion]
+id = 9166
+examine = "She'll serve you a drink as quick as a shot!"
+
+[king_lathas]
+id = 364
+wander_radius = 4
+examine = "King Lathas of East Ardougne."

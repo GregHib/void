@@ -20,3 +20,15 @@ categories = ["skeletal_wyverns"]
 slayer_xp = 210.0
 slayer_level = 72
 examine = "A very dangerous pile of animated wyvern bones."
+
+[skeletal_wyvern_horns]
+id = 3069
+clone = "skeletal_wyvern"
+
+[skeletal_wyvern_double]
+id = 3070
+clone = "skeletal_wyvern"
+
+[skeletal_wyvern_single]
+id = 3071
+clone = "skeletal_wyvern"

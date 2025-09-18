@@ -1,0 +1,11 @@
+spawns = [
+  { id = "pentyn_enakhras_temple", x = 3091, y = 9324, level = 1, members = true },
+  { id = "pile_of_bones_enakhras_temple", x = 3104, y = 9307, level = 2, members = true },
+  { id = "crust_of_ice_enakhras_temple", x = 3091, y = 9307, level = 1, members = true },
+  { id = "furnace_grate_enakhras_temple", x = 3115, y = 9323, level = 1, members = true },
+  { id = "enakhra_enakhras_temple", x = 3104, y = 9286, level = 1, members = true },
+  { id = "akthanakos_enakhras_temple", x = 3105, y = 9297, level = 1, members = true },
+  { id = "lazim_enakhras_temple", x = 3127, y = 9325, members = true },
+  { id = "lazim_enakhras_temple_2", x = 3102, y = 9311, level = 1, members = true },
+  { id = "lazim_enakhras_temple_3", x = 3108, y = 9320, level = 2, members = true },
+]

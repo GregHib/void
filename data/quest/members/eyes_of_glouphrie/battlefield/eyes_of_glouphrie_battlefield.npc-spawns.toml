@@ -1,0 +1,14 @@
+spawns = [
+  { id = "goblin_glouphrie_battlefield", x = 2149, y = 4957 },
+  { id = "goblin_glouphrie_battlefield_2", x = 2150, y = 4956 },
+  { id = "goblin_glouphrie_battlefield_3", x = 2148, y = 4956 },
+  { id = "goblin_glouphrie_battlefield_4", x = 2151, y = 4956 },
+  { id = "goblin_glouphrie_battlefield_5", x = 2147, y = 4956 },
+  { id = "gnome_soldier_glouphrie_battlefield", x = 2146, y = 4965 },
+  { id = "gnome_soldier_glouphrie_battlefield_2", x = 2151, y = 4966 },
+  { id = "gnome_soldier_glouphrie_battlefield_3", x = 2152, y = 4965 },
+  { id = "gnome_soldier_glouphrie_battlefield_4", x = 2147, y = 4966 },
+  { id = "gnome_soldier_glouphrie_battlefield_5", x = 2150, y = 4964 },
+  { id = "healthorg_and_tortoise", x = 2148, y = 4961 },
+  { id = "glouphrie_the_untrusted", x = 2149, y = 4960 },
+]

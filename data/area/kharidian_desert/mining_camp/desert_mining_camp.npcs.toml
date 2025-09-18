@@ -1,0 +1,91 @@
+[male_slave_desert_mining_camp]
+id = 4975
+examine = "It looks like he's been here a long time."
+
+[male_slave_desert_mining_camp_2]
+id = 4976
+
+[female_slave_desert_mining_camp]
+id = 4977
+examine = "She looks like she's been down here a long time."
+
+[female_slave_desert_mining_camp_2]
+id = 4978
+
+[ana_desert_mining_camp]
+id = 4984
+
+[escaping_slave_desert_mining_camp]
+id = 4985
+
+[mercenary_desert_mining_camp]
+id = 4989
+examine = "He looks a bit aggressive."
+
+[mercenary_desert_mining_camp_2]
+id = 4990
+examine = "He looks a bit aggressive."
+
+[mercenary_desert_mining_camp_3]
+id = 4991
+examine = "He looks a bit aggressive."
+
+[mercenary_desert_mining_camp_4]
+id = 4992
+examine = "He looks a bit aggressive."
+
+[guard_desert_mining_camp]
+id = 4993
+examine = "He looks a bit aggressive."
+
+[guard_desert_mining_camp_2]
+id = 4994
+examine = "He looks a bit aggressive."
+
+[guard_desert_mining_camp_3]
+id = 4995
+examine = "He looks a bit aggressive."
+
+[guard_desert_mining_camp_4]
+id = 4996
+examine = "He looks a bit aggressive."
+
+[guard_desert_mining_camp_5]
+id = 4997
+examine = "He looks a bit aggressive."
+
+[guard_desert_mining_camp_6]
+id = 4998
+examine = "He looks a bit aggressive."
+
+[guard_desert_mining_camp_7]
+id = 4999
+
+[guard_desert_mining_camp_8]
+id = 5000
+
+[guard_desert_mining_camp_9]
+id = 5001
+
+[guard_desert_mining_camp_10]
+id = 5002
+
+[male_slave_desert_mining_camp_3]
+id = 825
+examine = "It looks like he's been here a long time."
+
+[rowdy_slave_desert_mining_camp]
+id = 827
+examine = "He looks a bit aggressive."
+
+[mercenary_captain]
+id = 830
+examine = "He looks a bit aggressive."
+
+[captain_siad_desert_mining_camp]
+id = 831
+examine = "He's in control of the whole mining camp."
+
+[mine_cart_driver]
+id = 841
+examine = "He looks busy attending to his cart."

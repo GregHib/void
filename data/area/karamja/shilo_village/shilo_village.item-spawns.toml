@@ -1,6 +1,5 @@
 spawns = [
 # 11310
   { id = "seaweed", x = 2867, y = 2976, delay = 100, members = true },
-  { id = "seaweed", x = 2855, y = 2977, delay = 100, members = true },
   { id = "seaweed", x = 2845, y = 2975, delay = 100, members = true },
 ]

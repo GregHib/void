@@ -1,0 +1,48 @@
+[troll_child_troll_country]
+id = 1932
+
+[ice_troll_troll_country]
+id = 1935
+examine = "An ice troll."
+
+[ice_troll_troll_country_2]
+id = 1936
+categories = ["trolls"]
+examine = "Brrrrr...he must be cold!"
+
+[ice_troll_troll_country_3]
+id = 1937
+categories = ["trolls"]
+examine = "Brrrrr...he must be cold!"
+
+[ice_troll_troll_country_4]
+id = 1938
+categories = ["trolls"]
+examine = "Brrrrr...he must be cold!"
+
+[ice_troll_troll_country_5]
+id = 1939
+categories = ["trolls"]
+examine = "Brrrrr...he must be cold!"
+
+[ice_troll_troll_country_6]
+id = 1940
+categories = ["trolls"]
+examine = "Brrrrr...he must be cold!"
+
+[ice_troll_troll_country_7]
+id = 1941
+categories = ["trolls"]
+examine = "Brrrrr...he must be cold!"
+
+[ice_troll_troll_country_8]
+id = 1942
+categories = ["trolls"]
+examine = "Brrrrr...he must be cold!"
+
+[troll_father_troll_country]
+id = 1947
+
+[troll_mother_troll_country]
+id = 1949
+

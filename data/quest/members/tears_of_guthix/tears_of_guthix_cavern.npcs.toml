@@ -1,0 +1,23 @@
+[light_creature_tears_of_guthix_cavern]
+id = 2021
+examine = "A shimmering creature of blue light."
+
+[juna_tears_of_guthix_cavern]
+id = 2023
+
+[zanik_tears_of_guthix_cavern]
+id = 3363
+
+[movario_tears_of_guthix_cavern]
+id = 8471
+
+[darve_tears_of_guthix_cavern]
+id = 8472
+
+[cave_goblin_tears_of_guthix_cavern]
+id = 8473
+
+[fiara]
+id = 7600
+examine = "A trusted and fierce-temped creature of Guthix."
+

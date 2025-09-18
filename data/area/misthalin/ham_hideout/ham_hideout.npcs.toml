@@ -1,0 +1,39 @@
+[johanhus_ulsbrecht_ham_cave]
+id = 1709
+examine = "The leader of the 'Humans Against Monsters' group."
+
+[ham_guard_ham_cave]
+id = 1710
+examine = "A guard for the humans against monster group."
+
+[ham_guard_ham_cave_2]
+id = 1711
+examine = "A guard for the humans against monster group."
+
+[ham_guard_ham_cave_3]
+id = 1712
+examine = "A guard for the humans against monster group."
+
+[ham_deacon_ham_cave]
+id = 1713
+examine = "A deacon in the Humans Against Monsters group. A rather enthusiastic chap."
+
+[ham_member_ham_cave]
+id = 1714
+examine = "A member of the 'Humans Against Monsters' group."
+
+[ham_member_ham_cave_2]
+id = 1715
+examine = "A member of the 'Humans Against Monsters' group."
+
+[ham_member_ham_cave_3]
+id = 1717
+examine = "A member of the 'Humans Against Monsters' group."
+
+[jimmy_the_chisel_ham_cave]
+id = 1718
+examine = "A young man with a dark and mysterious past."
+
+[sigmund_ham_cave]
+id = 2081
+

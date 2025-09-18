@@ -1,0 +1,48 @@
+[goblin_glouphrie_battlefield]
+id = 4633
+examine = "An ugly green creature."
+
+[goblin_glouphrie_battlefield_2]
+id = 4634
+examine = "An ugly green creature."
+
+[goblin_glouphrie_battlefield_3]
+id = 4635
+examine = "An ugly green creature."
+
+[goblin_glouphrie_battlefield_4]
+id = 4636
+examine = "An ugly green creature."
+
+[goblin_glouphrie_battlefield_5]
+id = 4637
+examine = "An ugly green creature."
+
+[gnome_soldier_glouphrie_battlefield]
+id = 4638
+examine = "A little warrior."
+
+[gnome_soldier_glouphrie_battlefield_2]
+id = 4639
+examine = "A little warrior."
+
+[gnome_soldier_glouphrie_battlefield_3]
+id = 4640
+examine = "A little warrior."
+
+[gnome_soldier_glouphrie_battlefield_4]
+id = 4641
+examine = "A little warrior."
+
+[gnome_soldier_glouphrie_battlefield_5]
+id = 4642
+examine = "A little warrior."
+
+[healthorg_and_tortoise]
+id = 4643
+examine = "King Healthorg riding his War Tortoise."
+
+[glouphrie_the_untrusted]
+id = 4645
+examine = "A weasly, shifty-looking Gnome Mage."
+

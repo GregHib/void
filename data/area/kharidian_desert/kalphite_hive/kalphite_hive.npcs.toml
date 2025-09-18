@@ -1,0 +1,19 @@
+[kalphite_queen_kalphite_hive]
+id = 1158
+categories = ["kalphite"]
+examine = "I don't think insect repellent will work..."
+
+[weird_old_man]
+id = 1152
+examine = "What's he mumbling about?"
+
+[kalphite_larva]
+id = 1161
+categories = ["kalphite"]
+examine = "I don't think insect repellent will work..."
+
+[goat]
+id = 4933
+
+[goat_2]
+id = 4934

@@ -1,0 +1,38 @@
+[iron_pickaxe_abandoned_mine]
+id = 1015
+categories = ["phantoms"]
+examine = "Useful for hitting rocks."
+
+[zealot_abandoned_mine]
+id = 1528
+examine = "His robes prominently display the star of Saradomin."
+
+[ghost_abandoned_mine]
+id = 1549
+hitpoints = 300
+att = 23
+str = 23
+def = 28
+max_hit_melee = 30
+style = "crush"
+slayer_xp = 30.0
+attack_radius = 11
+wander_radius = 10
+hunt_mode = "cowardly"
+combat_anims = "ghost_tendril"
+combat_sounds = "ghost"
+categories = ["ghosts", "undead"]
+examine = "Eeek! A ghost!"
+
+[haze_abandoned_mine]
+id = 1537
+hunt_mode = "cowardly"
+respawn_delay = 40
+categories = ["ghosts"]
+examine = "A strange disturbance in the air."
+
+[corpse_abandoned_mine]
+id = 1538
+categories = ["skeletons"]
+examine = "Well, at least he doesn't have to worry about getting 'black lung'."
+

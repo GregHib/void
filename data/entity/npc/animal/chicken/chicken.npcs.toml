@@ -15,3 +15,7 @@ drop_table = "chicken"
 combat_anims = "chicken"
 combat_sounds = "chicken"
 examine = "Yep. Definitely a chicken."
+
+[chicken_brown]
+id = 1017
+clone = "chicken"

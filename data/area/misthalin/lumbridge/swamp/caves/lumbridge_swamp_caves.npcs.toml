@@ -1,0 +1,38 @@
+[cave_goblin_lumbridge_swamp_caves]
+id = 1822
+categories = ["goblins"]
+examine = "A goblin with big bulging eyes."
+
+[cave_goblin_lumbridge_swamp_caves_2]
+id = 1823
+categories = ["goblins"]
+examine = "A goblin with big bulging eyes."
+
+[cave_goblin_lumbridge_swamp_caves_3]
+id = 1824
+categories = ["goblins"]
+examine = "A goblin with big bulging eyes."
+
+[cave_goblin_lumbridge_swamp_caves_4]
+id = 1825
+categories = ["goblins"]
+examine = "A goblin with big bulging eyes."
+
+[hole_in_the_wall_lumbridge_swamp_caves]
+id = 2058
+categories = ["wall_beasts"]
+examine = "What could be hiding in that crack in the wall?"
+
+[fishing_spot_lumbridge_swamp_caves]
+id = 2067
+examine = "I can see fish swimming in the water."
+
+[fishing_spot_lumbridge_swamp_caves_2]
+id = 2068
+
+[sergeant_mossfists_lumbridge_swamp_caves]
+id = 5891
+
+[sergeant_slimetoes_lumbridge_swamp_caves]
+id = 5892
+

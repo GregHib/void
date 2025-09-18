@@ -1,0 +1,3 @@
+spawns = [
+  { id = "nigel_easter_2007", x = 2079, y = 5405, level = 1 },
+]

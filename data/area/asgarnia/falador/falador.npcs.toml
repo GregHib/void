@@ -105,3 +105,346 @@ categories = ["human"]
 wander_radius = 3
 collision = "indoors"
 examine = "Anyone fancy a trim?"
+
+[ali_tist]
+id = 11641
+
+[customer_falador]
+id = 11644
+
+[customer_falador_2]
+id = 11646
+
+[captain_korasi_falador]
+id = 11657
+
+[jessika_falador]
+id = 11668
+
+[ikis_krum]
+id = 12237
+examine = "One of Gielinor's many citizens."
+
+[captain_korasi_falador_2]
+id = 12264
+
+[jessika_falador_2]
+id = 12271
+
+[idria]
+id = 1599
+
+[sir_tiffy_cashien]
+id = 2290
+examine = "Head of recruitment for the Temple Knights."
+
+[sarah]
+id = 2304
+examine = "She sells Farming equipment."
+
+[sheepdog]
+id = 2311
+examine = "Farmer/sheep liaison officer. Go on - give the dog a bone!"
+
+[rooster_falador]
+id = 2312
+
+[chicken_falador]
+id = 2313
+
+[chicken_falador_2]
+id = 2314
+
+[chicken_falador_3]
+id = 2315
+categories = ["birds"]
+examine = "Yep. Definitely a chicken."
+
+[elstan]
+id = 2323
+examine = "Perhaps this gardener might look after your crops for you."
+
+[heskel]
+id = 2340
+examine = "Perhaps this gardener might look after your crops for you."
+
+[mysterious_ghost_falador]
+id = 2387
+
+[frog_falador]
+id = 2689
+examine = "Didn't the mage say this procedure was totally safe?"
+
+[fire_wizard]
+id = 2709
+examine = "Caution: HOT!"
+
+[air_wizard]
+id = 2712
+examine = "At least he looks solid enough to fight."
+
+[malignius_mortifer]
+id = 2713
+examine = "A master of necromancy!"
+
+[drunken_man_falador]
+id = 3222
+examine = "One of Gielinor's many citizens, currently incapacitated by alcohol."
+
+[man_falador]
+id = 3223
+examine = "One of Gielinor's many citizens."
+
+[man_falador_2]
+id = 1086
+
+[woman_falador]
+id = 3226
+examine = "One of Gielinor's many citizens."
+
+[guard_falador]
+id = 3228
+
+[guard_falador_2]
+id = 3229
+examine = "He tries to keep order around here."
+
+[guard_falador_3]
+id = 3230
+examine = "He tries to keep order around here."
+
+[guard_falador_4]
+id = 3231
+examine = "He tries to keep order around here."
+
+[guard_falador_5]
+id = 3232
+examine = "Keeping an eye out for threats to the city."
+
+[guard_falador_6]
+id = 3233
+examine = "Keeping an eye out for threats to the city."
+
+[apprentice_workman]
+id = 3235
+examine = "He's learning a trade."
+
+[workman_falador]
+id = 3236
+examine = "A busy workman"
+
+[cuffs]
+id = 3237
+examine = "He looks a bit dodgy."
+
+[narf]
+id = 3238
+examine = "Looks unpleasant."
+
+[rusty]
+id = 3239
+examine = "Seems to be loitering."
+
+[jeff]
+id = 3240
+examine = "Untrustworthy."
+
+[guard_falador_7]
+id = 3241
+
+[dark_wizard_falador]
+id = 3242
+
+[dark_wizard_falador_2]
+id = 3243
+examine = "A practicer of dark arts."
+
+[dark_wizard_falador_3]
+id = 3244
+examine = "A practicer of dark arts."
+
+[dark_wizard_falador_4]
+id = 3245
+examine = "A practicer of dark arts."
+
+[squirrel]
+id = 3283
+examine = "Bushy tail!"
+
+[squirrel_2]
+id = 3284
+
+[squirrel_3]
+id = 3285
+
+[raccoon_falador]
+id = 3286
+examine = "A raccoon."
+
+[raccoon_falador_2]
+id = 3287
+
+[raccoon_falador_3]
+id = 3288
+examine = "A raccoon."
+
+[dwarf_falador]
+id = 3294
+examine = "A dwarf who looks after the mining guild."
+
+[swan_falador]
+id = 3296
+examine = "A graceful bird."
+
+[zandar_horfyre_falador]
+id = 3308
+examine = "A practitioner of dark arts."
+
+[dwarf_falador_2]
+id = 382
+examine = "A dwarf who looks after the mining guild."
+
+[sir_renitee]
+id = 4249
+examine = "Chief Herald of Falador."
+
+[garden_supplier_falador]
+id = 4251
+examine = "She has green fingers. (Not literally.)"
+
+[ambassador_spanfipple_falador]
+id = 4581
+examine = "Peaceful man!"
+
+[wilfred_falador]
+id = 4906
+examine = "A chip off the old block."
+
+[assistant_brock_falador]
+id = 5065
+
+[cassie_falador]
+id = 577
+examine = "Nice eyes."
+
+[flynn_falador]
+id = 580
+examine = "The mace salesman."
+
+[herquin_falador]
+id = 584
+examine = "Seems very well-off."
+
+[sylas_falador]
+id = 5987
+examine = "A gnarly old man."
+
+[sir_amik_varze_falador]
+id = 608
+examine = "Leader of the White Knights."
+
+[town_crier_falador]
+id = 6137
+
+[party_pete_falador]
+id = 659
+examine = "He likes to paaaarty!"
+
+[megan_falador]
+id = 661
+examine = "Pretty barmaid."
+
+[lucy]
+id = 662
+examine = "Pretty barmaid."
+
+[baby_raccoon_grey]
+id = 6997
+examine = "A stripy little baby raccoon."
+
+[baby_squirrel_golden]
+id = 7309
+
+[baby_squirrel_cream]
+id = 6921
+examine = "A tiny nut-thief."
+
+[highwayman_falador]
+id = 7443
+examine = "He holds up passers by."
+
+[assistant_falador]
+id = 7726
+examine = "He works in the power station."
+
+[brother_bordiss_falador]
+id = 7729
+
+[hazelmere_falador]
+id = 8276
+
+[ghommal_falador]
+id = 8277
+
+[harrallak_menarous_falador]
+id = 8278
+
+[surok_magis_falador]
+id = 8342
+
+[thaerisk_cemphier_falador]
+id = 8421
+
+[silif_falador]
+id = 8469
+
+[turael_falador]
+id = 8474
+
+[mazchna_falador]
+id = 8475
+
+[duradel_falador]
+id = 8476
+
+[sloane_falador]
+id = 8477
+
+[cyrisus_falador]
+id = 8478
+
+[karma_the_chameleon]
+id = 8588
+
+[sir_vant_falador]
+id = 8854
+
+[dog]
+id = 98
+categories = ["dogs"]
+examine = "Bow wow."
+
+[guard_falador_8]
+id = 9
+examine = "He tries to keep order around here."
+
+[water_wizard]
+id = 2710
+examine = "Hydro-power!"
+
+[earth_wizard]
+id = 2711
+examine = "His hands are covered in mud. At least, I hope that's mud."
+
+[wayne]
+id = 581
+examine = "An armourer."
+
+[estate_agent]
+id = 4247
+examine = "A fancy businessman with a mighty fine hat."
+
+[gadrin]
+id = 3295
+wander_radius = 3
+examine = "He's in charge of the mining guild."

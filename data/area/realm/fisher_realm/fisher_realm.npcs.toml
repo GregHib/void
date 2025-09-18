@@ -1,0 +1,32 @@
+[peasant_fisher_realm]
+id = 214
+examine = "He looks unhappy..."
+
+[fisherman_fisher_realm]
+id = 219
+examine = "It's a fisherman."
+
+[the_fisher_king_fisher_realm]
+id = 220
+examine = "He doesn't look very well..."
+
+[grail_maiden_fisher_realm]
+id = 210
+examine = "She looks serene."
+
+[king_percival_fisher_realm]
+id = 212
+examine = "A former Knight of the Round Table."
+
+[peasant_fisher_realm_2]
+id = 215
+
+[fishing_spot_fisher_realm]
+id = 314
+
+[ram_fisher_realm]
+id = 5168
+
+[ram_fisher_realm_2]
+id = 5169
+

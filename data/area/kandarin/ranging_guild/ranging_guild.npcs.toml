@@ -1,0 +1,80 @@
+[bonzo]
+id = 225
+examine = "The Fishing Contest judge."
+
+[sinister_stranger]
+id = 226
+
+[morris]
+id = 227
+examine = "He checks the entrants to the Fishing Contest."
+
+[big_dave]
+id = 228
+examine = "I can see how he got his name."
+
+[joshua]
+id = 229
+examine = "He loves to fish!"
+
+[grandpa_jack]
+id = 230
+examine = "He looks elderly."
+
+[fishing_spot_ranging_guild]
+id = 233
+examine = "I can fish here."
+
+[fishing_spot_ranging_guild_2]
+id = 234
+
+[fishing_spot_ranging_guild_3]
+id = 235
+
+[fishing_spot_ranging_guild_4]
+id = 236
+
+[guard_ranging_guild]
+id = 678
+examine = "Keeps order in the ranging guild."
+
+[ranging_guild_doorman]
+id = 679
+examine = "The keeper of the gates to the ranging guild."
+
+[leatherworker_ranging_guild]
+id = 680
+examine = "An expert leatherworker."
+
+[armour_salesman_ranging_guild]
+id = 682
+examine = "Supplier of Rangers armour."
+
+[bow_and_arrow_salesman_ranging_guild]
+id = 683
+examine = "Supplier of Archery equipment."
+
+[tower_advisor]
+id = 684
+examine = "Tower keeper and competition judge."
+
+[tower_advisor_2]
+id = 685
+
+[tower_advisor_3]
+id = 686
+
+[tower_advisor_4]
+id = 687
+
+[tribal_weapon_salesman_ranging_guild]
+id = 692
+examine = "Supplier of authentic throwing weapons."
+
+[competition_judge]
+id = 693
+
+[ticket_merchant]
+id = 694
+examine = "Sells equipment in exchange for archery tickets."
+

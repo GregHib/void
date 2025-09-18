@@ -56,3 +56,7 @@ combat_anims = "kalphite"
 combat_sounds = "kalphite"
 categories = ["kalphites"]
 examine = "I don't think insect repellent will work..."
+
+[kalphite_guardian_2]
+id = 1157
+clone = "kalphite_guardian"

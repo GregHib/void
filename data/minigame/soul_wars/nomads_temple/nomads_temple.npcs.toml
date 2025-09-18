@@ -1,0 +1,38 @@
+[statue_nomads_temple]
+id = 8535
+
+[statue_nomads_temple_2]
+id = 9423
+
+[statue_nomads_temple_3]
+id = 9424
+
+[statue_nomads_temple_4]
+id = 9425
+
+[statue_nomads_temple_5]
+id = 9426
+
+[statue_nomads_temple_6]
+id = 9427
+
+[statue_nomads_temple_7]
+id = 9428
+
+[statue_nomads_temple_8]
+id = 9429
+
+[statue_nomads_temple_9]
+id = 9430
+
+[statue_nomads_temple_10]
+id = 9431
+
+[knight_nomads_temple]
+id = 9450
+
+[spectral_worshipper_nomads_temple]
+id = 9453
+categories = ["ghosts"]
+examine = "A lingering soul."
+

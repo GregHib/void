@@ -1,0 +1,74 @@
+[felkrash_rat_pits]
+id = 2951
+examine = "What is she looking at?"
+
+[turbogroomer_rat_pits]
+id = 2983
+examine = "Poorly named for such a scraggly cat."
+
+[pusskins_rat_pits]
+id = 2984
+examine = "Not a soft touch."
+
+[treacle_rat_pits]
+id = 2987
+examine = "A sticky character."
+
+[mittens_rat_pits]
+id = 2988
+examine = "A fully grown feline."
+
+[gertrudes_cat_rat_pits]
+id = 2997
+examine = "A friendly feline?"
+
+[gambler_rat_pits]
+id = 2998
+examine = "Very well to do. I wonder what he's doing here."
+
+[barman_rat_pits]
+id = 3000
+examine = "Definitely overworked."
+
+[gambler_rat_pits_2]
+id = 3001
+examine = "Rich."
+
+[gambler_rat_pits_3]
+id = 3002
+examine = "Poor."
+
+[gambler_rat_pits_4]
+id = 3003
+examine = "Poor."
+
+[gambler_rat_pits_5]
+id = 3004
+examine = "Poor."
+
+[gambler_rat_pits_6]
+id = 3005
+examine = "Poor."
+
+[gambler_rat_pits_7]
+id = 3006
+examine = "Poor."
+
+[rat_rat_pits]
+id = 3013
+
+[rat_rat_pits_2]
+id = 3014
+
+[rat_rat_pits_3]
+id = 3015
+
+[rat_rat_pits_4]
+id = 3016
+
+[rat_rat_pits_5]
+id = 3017
+
+[rat_rat_pits_6]
+id = 3018
+

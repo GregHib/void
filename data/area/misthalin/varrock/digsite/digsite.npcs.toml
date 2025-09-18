@@ -1,0 +1,21 @@
+[elissa_digsite]
+id = 1912
+examine = "An old archaeologist."
+
+[assassin_digsite]
+id = 9043
+
+[digsite_workman]
+id = 9049
+
+[digsite_student_blue]
+id = 615
+
+[digsite_student_orange]
+id = 616
+
+[digsite_student_purple]
+id = 617
+
+[dig_site_workman]
+id = 613

@@ -1,0 +1,11 @@
+spawns = [
+  { id = "jelly_jhallans_resting_place", x = 2833, y = 10342, members = true },
+  { id = "jelly_jhallans_resting_place", x = 2837, y = 10337, members = true },
+  { id = "jelly_jhallans_resting_place", x = 2841, y = 10315, members = true },
+  { id = "jelly_jhallans_resting_place", x = 2843, y = 10314, members = true },
+  { id = "jelly_jhallans_resting_place", x = 2866, y = 10323, members = true },
+  { id = "jelly_jhallans_resting_place", x = 2870, y = 10325, members = true },
+  { id = "jelly_jhallans_resting_place_2", x = 2835, y = 10338, members = true },
+  { id = "jelly_jhallans_resting_place_2", x = 2836, y = 10341, members = true },
+  { id = "jelly_jhallans_resting_place_2", x = 2867, y = 10321, members = true },
+]

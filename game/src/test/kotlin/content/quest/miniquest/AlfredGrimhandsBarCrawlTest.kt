@@ -200,7 +200,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
 
         // Rusty Anchor
         player.tele(3045, 3256)
-        bartender = findNpc(player, "bartender_rusty_anchor")
+        bartender = findNpc(player, "bartender_rusty_anchor_inn")
         player.npcOption(bartender, 0) // Talk-to
         tickIf { player.dialogue == null }
         player.dialogueOption("line3") // Doing bar crawl

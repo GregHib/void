@@ -1,0 +1,3 @@
+spawns = [
+  { id = "eir_fremennik_spiritual_realm", x = 4383, y = 5922, members = true },
+]

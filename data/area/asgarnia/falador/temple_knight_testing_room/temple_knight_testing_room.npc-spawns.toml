@@ -1,0 +1,9 @@
+spawns = [
+  { id = "sir_spishyus", x = 2488, y = 4973 },
+  { id = "lady_table", x = 2458, y = 4981 },
+  { id = "sir_kuam_ferentse", x = 2457, y = 4966 },
+  { id = "sir_tinley", x = 2476, y = 4958 },
+  { id = "sir_ren_itchood", x = 2443, y = 4956 },
+  { id = "miss_cheevers", x = 2469, y = 4941 },
+  { id = "ms_hynn_terprett", x = 2451, y = 4939 },
+]

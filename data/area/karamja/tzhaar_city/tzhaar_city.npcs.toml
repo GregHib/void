@@ -1,0 +1,203 @@
+[tz_haar_mej_tzhaar_city]
+id = 2591
+categories = ["tz_haar"]
+examine = "The Mej caste protect the TzHaar using powerful fire magic."
+
+[tz_haar_mej_tzhaar_city_2]
+id = 2592
+categories = ["tz_haar"]
+examine = "The Mej caste protect the TzHaar using powerful fire magic."
+
+[tz_haar_mej_tzhaar_city_3]
+id = 2594
+
+[tz_haar_mej_tzhaar_city_4]
+id = 2595
+categories = ["tz_haar"]
+examine = "The Mej caste protect the TzHaar using powerful fire magic."
+
+[tz_haar_mej_tzhaar_city_5]
+id = 2596
+
+[tz_haar_mej_tzhaar_city_6]
+id = 2597
+
+[tz_haar_hur_tzhaar_city]
+id = 2600
+categories = ["tz_haar"]
+examine = "The Hur caste, with their small, dexterous hands, are skilled craftsmen."
+
+[tz_haar_hur_tzhaar_city_2]
+id = 2601
+
+[tz_haar_hur_tzhaar_city_3]
+id = 2602
+
+[tz_haar_hur_tzhaar_city_4]
+id = 2603
+
+[tz_haar_xil_tzhaar_city]
+id = 2605
+categories = ["tz_haar"]
+examine = "It belongs to the hunter class."
+
+[tz_haar_xil_tzhaar_city_2]
+id = 2606
+categories = ["tz_haar"]
+examine = "It belongs to the hunter class."
+
+[tz_haar_xil_tzhaar_city_3]
+id = 2607
+categories = ["tz_haar"]
+examine = "It belongs to the hunter class."
+
+[tz_haar_xil_tzhaar_city_4]
+id = 2608
+categories = ["tz_haar"]
+examine = "It belongs to the hunter class."
+
+[tz_haar_xil_tzhaar_city_5]
+id = 2609
+categories = ["tz_haar"]
+examine = "It belongs to the hunter class."
+
+[tz_haar_ket_tzhaar_city]
+id = 2611
+categories = ["tz_haar"]
+examine = "Must be a guard or something."
+
+[tz_haar_ket_tzhaar_city_2]
+id = 2614
+categories = ["tz_haar"]
+examine = "Must be a guard or something."
+
+[tz_haar_ket_tzhaar_city_3]
+id = 2615
+categories = ["tz_haar"]
+examine = "Must be a guard or something."
+
+[tz_haar_ket_tzhaar_city_4]
+id = 2616
+categories = ["tz_haar"]
+examine = "Must be a guard or something."
+
+[tz_haar_mej_jal_tzhaar_city]
+id = 2617
+examine = "This TzHaar-Mej runs the Fight Cave."
+
+[tz_haar_hur_tel_tzhaar_city]
+id = 2620
+examine = "It stocks obsidian weapons."
+
+[tz_haar_hur_lek_tzhaar_city]
+id = 2622
+examine = "It stocks ores and gems."
+
+[tz_haar_ket_tzhaar_city_5]
+id = 2624
+
+[tz_haar_ket_tzhaar_city_6]
+id = 2625
+
+[tz_haar_mej_malk_tzhaar_city]
+id = 7746
+examine = "It looks concerned."
+
+[tz_haar_xil_tog_tzhaar_city]
+id = 7747
+examine = "It looks upset."
+
+[tz_haar_hur_frok_tzhaar_city]
+id = 7748
+examine = "It looks worried."
+
+[tz_haar_ket_grol_tzhaar_city]
+id = 7749
+examine = "It is guarding a crack in the wall."
+
+[tz_haar_ket_rok_tzhaar_city]
+id = 7750
+examine = "It guards the mine entrance."
+
+[tz_haar_ket_lurk_tzhaar_caves]
+id = 7751
+examine = "It guards the miners."
+
+[tz_haar_mej_lor_tzhaar_caves]
+id = 7752
+examine = "A TzHaar librarian."
+
+[tz_haar_mej_tzhaar_caves]
+id = 7753
+examine = "It's busy reading."
+
+[tz_haar_hur_tzhaar_caves]
+id = 7754
+
+[tz_haar_xil_tzhaar_caves]
+id = 7755
+examine = "It's probably just looking at the pictures."
+
+[library_assistant_tzhaar_caves]
+id = 7756
+examine = "A TzHaar-Hur stamping stone tablets."
+
+[tz_haar_hur_brekt_tzhaar_caves]
+id = 7757
+examine = "A senior citizen TzHaar-Hur."
+
+[tz_haar_hur_brekt_tzhaar_caves_2]
+id = 7758
+
+[tz_haar_ket_jok_tzhaar_caves]
+id = 7759
+examine = "A senior citizen TzHaar-Ket."
+
+[tz_haar_ket_jok_tzhaar_caves_2]
+id = 7760
+
+[tz_haar_xil_mor_tzhaar_caves]
+id = 7761
+examine = "A senior citizen TzHaar-Xil."
+
+[tz_haar_xil_mor_tzhaar_caves_2]
+id = 7762
+
+[tz_haar_mej_kol_tzhaar_caves]
+id = 7763
+examine = "A senior citizen TzHaar-Mej."
+
+[tz_haar_mej_kol_tzhaar_caves_2]
+id = 7764
+
+[tz_haar_hur_klag_tzhaar_caves]
+id = 7765
+examine = "A senior citizen TzHaar-Hur."
+
+[tz_haar_hur_klag_tzhaar_caves_2]
+id = 7766
+examine = "A senior citizen TzHaar-Hur."
+
+[tz_haar_hur_tzhaar_caves_2]
+id = 7767
+
+[tz_haar_hur_tzhaar_caves_3]
+id = 7768
+
+[tz_haar_hur_tzhaar_caves_4]
+id = 7769
+
+[lava_monster_tzhaar_caves]
+id = 7772
+examine = "A monster made of magma."
+
+[fire_monster_tzhaar_caves]
+id = 7773
+examine = "A monster like many others, but on fire."
+
+[tzHaar_mej_roh]
+id = 2623
+
+[tzHaar_mej_zuh]
+id = 2619
+

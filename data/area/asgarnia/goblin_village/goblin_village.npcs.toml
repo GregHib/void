@@ -1,0 +1,44 @@
+[monk_of_zamorak_goblin_village]
+id = 188
+examine = "A Zamorakian human cleric."
+
+[general_bentnoze_goblin_village]
+id = 4493
+
+[general_wartface_goblin_village]
+id = 4494
+examine = "An ugly green creature."
+
+[drain_pipe_goblin_village]
+id = 5991
+
+[grubfoot_goblin_village]
+id = 4495
+
+[rupert_the_beard]
+id = 5998
+
+[rupert_the_beard_2]
+id = 6000
+
+[baby_icefiend]
+id = 7732
+
+[baby_icefiend_2]
+id = 7733
+
+[baby_icefiend_3]
+id = 7734
+
+[baby_icefiend_4]
+id = 7735
+
+[miazrqa]
+id = 5988
+examine = "A slightly insane princess."
+
+[professor_arblenap]
+id = 7731
+
+[stubthumb]
+id = 8072

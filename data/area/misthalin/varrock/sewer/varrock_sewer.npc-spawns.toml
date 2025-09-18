@@ -31,10 +31,10 @@ spawns = [
   { id = "rat", x = 3246, y = 9864 },
   { id = "rat", x = 3253, y = 9867 },
   { id = "rat", x = 3255, y = 9869 },
-  { id = "giant_spider", x = 3219, y = 9886 },
-  { id = "giant_spider", x = 3221, y = 9886 },
-  { id = "giant_rat", x = 3220, y = 9863 },
-  { id = "giant_rat", x = 3233, y = 9866 },
+  { id = "giant_spider_lumbridge", x = 3219, y = 9886 },
+  { id = "giant_spider_lumbridge", x = 3221, y = 9886 },
+  { id = "giant_rat_lumbridge_swamp", x = 3220, y = 9863 },
+  { id = "giant_rat_lumbridge_swamp", x = 3233, y = 9866 },
   { id = "giant_rat_dark", x = 3239, y = 9864 },
   { id = "giant_rat_dark_injured", x = 3223, y = 9860 },
 # 13210
@@ -45,4 +45,8 @@ spawns = [
   { id = "rat", x = 3275, y = 9865 },
   { id = "rat", x = 3277, y = 9863 },
   { id = "giant_rat_dark", x = 3279, y = 9894 },
+  { id = "vannaka_varrock_sewers", x = 3147, y = 9914, direction = "WEST" },
+  { id = "giant_rat_varrock", x = 3283, y = 9896, members = true },
+  { id = "grimesquit_varrock_sewers", x = 3243, y = 9866, members = true },
+  { id = "phingspet_varrock_sewers", x = 3245, y = 9868, members = true },
 ]

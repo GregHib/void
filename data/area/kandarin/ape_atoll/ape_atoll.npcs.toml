@@ -1,0 +1,237 @@
+[waydar_ape_atoll]
+id = 1409
+examine = "Waydar is some kind of flight officer."
+
+[glo_caranock_ape_atoll]
+id = 1428
+
+[awowogei]
+id = 1448
+examine = "A rather dapper little monkey."
+
+[spider_ape_atoll_unattackable]
+id = 1474
+examine = "It's an extremely small brown spider, probably very poisonous."
+
+[spider_ape_atoll]
+id = 1473
+hitpoints = 20
+attack_radius = 11
+wander_radius = 9
+slayer_xp = 2.0
+categories = ["spiders"]
+height = 10
+attack_bonus = 1
+max_hit_melee = 10
+attack_speed = 6
+respawn_delay = 2
+hunt_mode = "cowardly"
+style = "slash"
+poison = 10
+combat_anims = "spider"
+combat_sounds = "spider"
+examine = "It's an extremely small brown spider, probably very poisonous."
+
+[pedestal_ape_atoll]
+id = 13176
+
+[pedestal_ape_atoll_2]
+id = 13178
+
+[pedestal_ape_atoll_3]
+id = 13179
+
+[monkey_knife_fighter_ape_atoll]
+id = 13211
+
+[monkey_guard_ape_atoll]
+id = 13239
+
+[monkey_guard_ape_atoll_2]
+id = 13240
+
+[fishing_spot_ape_atoll]
+id = 1405
+
+[fishing_spot_ape_atoll_2]
+id = 1406
+
+[garkor_ape_atoll]
+id = 1411
+examine = "A large and weathered looking Gnome veteran."
+
+[lumo_ape_atoll]
+id = 1413
+examine = "A seasoned looking Gnome foot soldier."
+
+[bunkdo_ape_atoll]
+id = 1415
+examine = "A seasoned looking Gnome foot soldier."
+
+[carado_ape_atoll]
+id = 1417
+examine = "A seasoned looking Gnome foot soldier."
+
+[karam_ape_atoll]
+id = 1420
+examine = "All you see is a glimmer of light and the suggestion of shadow."
+
+[karam_ape_atoll_2]
+id = 1422
+
+[dugopul_ape_atoll]
+id = 1429
+examine = "A large hairy monkey with a spade."
+
+[trefaji_ape_atoll]
+id = 1431
+examine = "A huge brutish gorilla. He looks like a jail guard."
+
+[aberab_ape_atoll]
+id = 1432
+
+[solihib_ape_atoll]
+id = 1433
+examine = "The food merchant of Ape Atoll."
+
+[daga_ape_atoll]
+id = 1434
+examine = "A shrewd-looking monkey swordsmith."
+
+[tutab_ape_atoll]
+id = 1435
+examine = "A magical trinket dealer."
+
+[ifaba_ape_atoll]
+id = 1436
+examine = "A general store type of monkey."
+
+[hamab_ape_atoll]
+id = 1437
+examine = "A female monkey skilled in crafting."
+
+[hafuba_ape_atoll]
+id = 1438
+examine = "A huge gorilla, head priest of this temple."
+
+[denadu_ape_atoll]
+id = 1439
+examine = "A small, well dressed monkey clasping a mace. He looks like a priest."
+
+[lofu_ape_atoll]
+id = 1440
+examine = "A small, well dressed monkey clasping a mace. He looks like a priest."
+
+[kruk_ape_atoll]
+id = 1441
+examine = "A large ninja monkey wielding two scimitars."
+
+[padulah_ape_atoll]
+id = 1447
+categories = ["monkeys"]
+examine = "A scimitar wielding ninja monkey. He looks like he is guarding something."
+
+[uwogo_ape_atoll]
+id = 1449
+examine = "A smartly clothed large monkey."
+
+[muruwoi_ape_atoll]
+id = 1450
+examine = "A smartly clothed large monkey."
+
+[sleeping_monkey_ape_atoll]
+id = 1451
+examine = "A rather sleepy looking guard, wielding some kind of bat."
+
+[monkey_child_ape_atoll]
+id = 1452
+examine = "An adorable little monkey child."
+
+[the_monkeys_uncle_ape_atoll]
+id = 1453
+examine = "He looks like the Monkey's Uncle."
+
+[the_monkeys_aunt_ape_atoll]
+id = 1454
+examine = "She looks like the Monkey's Aunt."
+
+[monkey_archer_ape_atoll]
+id = 1456
+categories = ["monkeys"]
+examine = "A bow wielding ninja monkey."
+
+[monkey_archer_ape_atoll_2]
+id = 1457
+
+[monkey_archer_ape_atoll_3]
+id = 1458
+
+[monkey_guard_ape_atoll_3]
+id = 1459
+categories = ["monkeys"]
+examine = "A huge brutish gorilla armoured with dangerous looking vambraces."
+
+[monkey_guard_ape_atoll_4]
+id = 1460
+categories = ["monkeys"]
+examine = "A huge brutish gorilla armoured with dangerous looking vambraces."
+
+[elder_guard_ape_atoll]
+id = 1461
+categories = ["monkeys"]
+examine = "A huge brutish gorilla stands here, blocking the way."
+
+[elder_guard_ape_atoll_2]
+id = 1462
+
+[monkey_zombie_medium]
+id = 1465
+categories = ["monkeys"]
+examine = "A large and lumbering undead monkey."
+
+[monkey_zombie_large]
+id = 1466
+
+[monkey_zombie_small]
+id = 1467
+
+[scorpion_ape_atoll]
+id = 1477
+hitpoints = 150
+att = 50
+str = 50
+def = 10
+poisonous = true
+attack_bonus = 100
+max_hit_melee = 150
+hunt_mode = "cowardly"
+style = "stab"
+respawn_delay = 50
+slayer_xp = 15.0
+wander_radius = 5
+attack_radius = 7
+combat_anims = "small_scorpion"
+combat_sounds = "scorpion"
+categories = ["scorpions"]
+examine = "It's an extremely dangerous looking scorpion."
+
+[jungle_spider_ape_atoll]
+id = 1478
+categories = ["spiders"]
+examine = "A very dangerous looking spider, with its fangs unsheathed."
+
+[snake_ape_atoll]
+id = 1479
+
+[bird_default]
+id = 1475
+categories = ["birds"]
+examine = "It's a brightly coloured bird of the jungle."
+
+[bird_default_2]
+id = 1476
+categories = ["birds"]
+examine = "It's a brightly coloured bird of the jungle. It flies very quickly."
+
+[daero]
+id = 1407

@@ -36,19 +36,19 @@ slayer_xp = 49
 respawn_delay = 30
 examine = "An ugly, smelly creature wielding a spear."
 
-[rimmington_hobgoblin_unarmed_1]
+[rimmington_hobgoblin_unarmed]
 clone = "hobgoblin_unarmed"
 id = 2685
 
-[rimmington_hobgoblin_unarmed_2]
+[rimmington_hobgoblin_unarmed_brown]
 clone = "hobgoblin_unarmed"
 id = 2686
 
-[rimmington_hobgoblin_unarmed_3]
+[rimmington_hobgoblin_unarmed_red]
 clone = "hobgoblin_unarmed"
 id = 2687
 
-[rimmington_hobgoblin_armed_1]
+[rimmington_hobgoblin_armed]
 clone = "hobgoblin_armed"
 id = 2688
 

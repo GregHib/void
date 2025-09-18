@@ -1,0 +1,47 @@
+[holthion_ibans_lair]
+id = 1000
+examine = "One of the guardians of Iban."
+
+[disciple_of_iban_ibans_lair]
+id = 1002
+examine = "A dark magic user."
+
+[lord_iban_ibans_lair]
+id = 1003
+examine = "The great and dreadful Lord Iban."
+
+[giant_bat_ibans_lair]
+id = 1005
+
+[koftik_ibans_lair]
+id = 1209
+
+[soulless_ibans_lair]
+id = 140
+categories = ["undead"]
+examine = "A servant to Iban."
+
+[half_soulless_ibans_lair]
+id = 991
+examine = "A creature empty of emotion."
+
+[kardia_ibans_lair]
+id = 992
+examine = "A dark and evil crone."
+
+[witchs_cat_ibans_lair]
+id = 993
+examine = "Curiosity is yet to kill this one..."
+
+[othainian_ibans_lair]
+id = 998
+examine = "One of the guardians of Iban."
+
+[doomion_ibans_lair]
+id = 999
+examine = "One of the guardians of Iban."
+
+[wizard_ibans_lair]
+id = 13
+examine = "Slightly magical."
+

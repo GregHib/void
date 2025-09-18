@@ -4,3 +4,305 @@ categories = ["human"]
 wander_radius = 2
 shop = "yrsas_shoe_store"
 examine = "Pretty shabbily dressed for a clothes shop owner."
+
+[rooster_rellekka]
+id = 1018
+categories = ["birds"]
+examine = "He rules the, er, roost."
+
+[lalli_rellekka]
+id = 1270
+examine = "Distinctly troll-shaped."
+
+[golden_sheep_rellekka]
+id = 1271
+examine = "Freshly shorn."
+
+[golden_sheep_rellekka_2]
+id = 1272
+examine = "Lovely thick wool."
+
+[ospak_rellekka]
+id = 1274
+examine = "Looks like he's had a few drinks already."
+
+[styrmir_rellekka]
+id = 1275
+examine = "Doesn't look like the musical type."
+
+[torbrund_rellekka]
+id = 1276
+examine = "Waiting for the show."
+
+[fridgeir_rellekka]
+id = 1277
+examine = "A music lover?"
+
+[longhall_bouncer_rellekka]
+id = 1278
+examine = "He's fat, he's round, he bounces on the ground. That's how he got the job."
+
+[sigli_the_huntsman_rellekka]
+id = 1281
+examine = "A Fremennik hunter."
+
+[sigmund_the_merchant_rellekka]
+id = 1282
+examine = "A Fremennik merchant."
+
+[swensen_the_navigator]
+id = 1283
+examine = "A Fremennik navigator."
+
+[bjorn_rellekka]
+id = 1284
+examine = "Looks like he's having fun!"
+
+[eldgrim_rellekka]
+id = 1285
+examine = "He's only as think as you drunk he is!"
+
+[manni_the_reveller_rellekka]
+id = 1286
+examine = "Every innkeeper's best friend!"
+
+[council_workman_rellekka]
+id = 1287
+examine = "Supposedly fixes things around Gielinor."
+
+[peer_the_seer_rellekka]
+id = 1288
+examine = "A Fremennik riddler."
+
+[thorvald_the_warrior_rellekka]
+id = 1289
+examine = "A Fremennik hero."
+
+[brundt_the_chieftain_rellekka]
+id = 1294
+examine = "The Fremennik tribe's chieftain."
+
+[askeladden_rellekka]
+id = 1295
+examine = "Looks like a wanna be Fremennik."
+
+[guard_rellekka]
+id = 1296
+examine = "Stands around and looks at stuff all day."
+
+[guard_rellekka_2]
+id = 1297
+
+[town_guard_rellekka]
+id = 1298
+examine = "What a rubbish job he has."
+
+[town_guard_rellekka_2]
+id = 1299
+
+[thora_the_barkeep_rellekka]
+id = 1300
+examine = "The Longhall barkeep."
+
+[fisherman_rellekka]
+id = 1302
+examine = "There's something fishy about this guy."
+
+[skulgrimen_rellekka]
+id = 1303
+examine = "Sells and makes weapons and armour."
+
+[sailor_rellekka]
+id = 1304
+examine = "He's strong to the finish, because he eats cabbage."
+
+[agnar_rellekka]
+id = 1305
+examine = "One of Rellekka's many citizens."
+
+[pontak_rellekka]
+id = 1309
+examine = "One of Rellekka's many citizens."
+
+[freygerd_rellekka]
+id = 1310
+examine = "One of Rellekka's many citizens."
+
+[lensa_rellekka]
+id = 1311
+examine = "One of Rellekka's many citizens."
+
+[jennella_rellekka]
+id = 1312
+examine = "One of Rellekka's many citizens."
+
+[sassilik_rellekka]
+id = 1313
+examine = "One of Rellekka's many citizens."
+
+[fur_trader_rellekka]
+id = 1316
+examine = "I wonder what he does with all that fur?"
+
+[market_guard_rellekka]
+id = 1317
+examine = "Keeps the stalls secure."
+
+[peter_rellekka]
+id = 13175
+
+[fox_rellekka]
+id = 1319
+examine = "A cunning animal."
+
+[bunny_rellekka]
+id = 1320
+examine = "Hoppity, hoppity."
+
+[bunny_rellekka_2]
+id = 1321
+
+[gull_rellekka]
+id = 1322
+
+[gull_rellekka_2]
+id = 1323
+
+[gull_rellekka_3]
+id = 1324
+
+[unicorn_foal_rellekka]
+id = 1328
+examine = "Horned Horsey."
+
+[fenris_wolf_rellekka]
+id = 1330
+categories = ["wolves"]
+examine = "Fearsome predator found only in the Fremennik Province, renowned for its fur."
+
+[fishing_spot_rellekka]
+id = 1331
+
+[fishing_spot_rellekka_2]
+id = 1332
+
+[fishing_spot_rellekka_3]
+id = 1333
+
+[rhonen_rellekka]
+id = 2334
+examine = "Perhaps this gardener might look after your crops for you."
+
+[jarvald_rellekka]
+id = 2435
+
+[olaf_hradson_rellekka]
+id = 2621
+examine = "A soggy, smelly Fremennik."
+
+[dron_rellekka]
+id = 2939
+examine = "He looks scary."
+
+[reeso_rellekka]
+id = 3116
+examine = "Reeso seems to be covered in sand."
+
+[volf_olafson_rellekka]
+id = 3695
+examine = "One of the inhabitants of the camp."
+
+[ingrid_hradson_rellekka]
+id = 3696
+examine = "One of the inhabitants of the camp."
+
+[sabre_toothed_kebbit]
+id = 5087
+examine = "Now that's a big overbite."
+
+[golden_sheep_rellekka_3]
+id = 5172
+
+[golden_sheep_rellekka_4]
+id = 5173
+
+[mord_gunnars_rellekka]
+id = 5481
+examine = "A humble ferryman."
+
+[maria_gunnars_rellekka]
+id = 5508
+
+[general_khazard_rellekka]
+id = 5573
+
+[erjolf_rellekka]
+id = 7404
+
+[tool_leprechaun_rellekka]
+id = 7567
+
+[larry_rellekka]
+id = 7575
+
+[fishing_spot_rellekka_4]
+id = 7862
+
+[fishing_spot_rellekka_5]
+id = 7863
+
+[larry_rellekka_2]
+id = 8694
+
+[olaf_the_bard]
+id = 1269
+examine = "A Fremennik bard."
+
+[freidir]
+id = 1306
+examine = "One of Rellekka's many citizens."
+
+[borrokar]
+id = 1307
+examine = "One of Rellekka's many citizens."
+
+[lanzig]
+id = 1308
+examine = "One of Rellekka's many citizens."
+
+[inga]
+id = 1314
+examine = "One of Rellekka's many citizens."
+
+[warrior_rellekka]
+id = 1318
+examine = "A hardened Fremennik warrior."
+
+[black_unicorn_foal]
+id = 1329
+examine = "Cute but evil."
+
+[black_unicorn]
+id = 133
+examine = "A unicorn with a blackened heart."
+
+[svidi]
+id = 1809
+examine = "Is he walking around in circles?"
+
+[blanin]
+id = 2940
+examine = "A docile warrior"
+
+[wheelbarrow_rellekka]
+id = 7568
+
+[lokar_searunner]
+id = 413
+wander_radius = 3
+examine = "Either a very fremennikey pirate, or a very piratey fremennik."
+
+[fish_monger]
+id = 1315
+wander_radius = 4
+examine = "Fish-tastic!"

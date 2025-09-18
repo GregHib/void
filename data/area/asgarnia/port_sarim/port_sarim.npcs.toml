@@ -3,13 +3,43 @@ id = 2704
 categories = ["human"]
 examine = "He's asleep."
 
+[port_sarim_guard]
+id = 2699
+categories = ["human"]
+examine = "Keeping an eye out for suspicious activity."
+
+[port_sarim_guard_1]
+id = 2700
+categories = ["human"]
+examine = "Keeping an eye out for suspicious activity."
+
+[port_sarim_guard_2]
+id = 2701
+categories = ["human"]
+examine = "Keeping an eye out for suspicious activity."
+
+[port_sarim_guard_3]
+id = 2702
+categories = ["human"]
+examine = "Keeping an eye out for suspicious activity."
+
+[port_sarim_guard_4]
+id = 2703
+categories = ["human"]
+examine = "Keeping an eye out for suspicious activity."
+
 [port_sarim_guard_6]
 id = 2705
 categories = ["human"]
 examine = "Keeping an eye out for suspicious activity."
 
-[bartender_rusty_anchor]
-id = 11707
+[port_sarim_guard_7]
+id = 2759
+categories = ["human"]
+examine = "Keeping an eye out for suspicious activity."
+
+[bartender_rusty_anchor_inn]
+id = 734
 bar_crawl = {
     id = "black_skull_ale",
     price = 8,
@@ -23,3 +53,155 @@ categories = ["human"]
 wander_radius = 4
 collision = "indoors"
 examine = "I could get a beer from him."
+
+[bartender_rusty_anchor_inn_2]
+id = 11706
+clone = "bartender_rusty_anchor_inn"
+
+[bartender_rusty_anchor_inn_3]
+id = 11707
+clone = "bartender_rusty_anchor_inn"
+
+[commander_korasi_port_sarim]
+id = 11503
+
+[lady_table_port_sarim]
+id = 11504
+
+[sir_tiffy_port_sarim]
+id = 11513
+
+[captain_korasi_port_sarim]
+id = 11652
+
+[jessika_port_sarim]
+id = 11663
+
+[drunken_sailor]
+id = 1205
+
+[drunken_sailor_2]
+id = 1207
+
+[mysterious_ghost_port_sarim]
+id = 2392
+
+[rick_turpentine]
+id = 2476
+
+[capn_hand]
+id = 2539
+
+[thief_port_sarim]
+id = 2674
+examine = "Known for his light-fingered qualities."
+
+[jack_seagull]
+id = 2690
+examine = "A salty seafarer. Needs a wash."
+
+[longbow_ben]
+id = 2691
+examine = "A strange man with a strange name. Probably a strange past, too."
+
+[ahab_port_sarim]
+id = 2692
+examine = "So what can one do with a drunken sailor?"
+
+[pirate_port_sarim]
+id = 2695
+
+[thief_port_sarim_2]
+id = 2696
+
+[mugger_port_sarim]
+id = 2697
+
+[monk_of_entrana_port_sarim]
+id = 2728
+examine = "Holy looking."
+
+[monk_of_entrana_port_sarim_2]
+id = 2729
+examine = "Holy looking."
+
+[bellemorde_port_sarim]
+id = 2942
+examine = "Unkempt and a bit smelly."
+
+[the_face_port_sarim]
+id = 2950
+examine = "Once beautiful, now repugnant."
+
+[redbeard_frank_port_sarim]
+id = 375
+examine = "A pirate."
+
+[captain_tobias_port_sarim]
+id = 376
+
+[seaman_lorris_port_sarim]
+id = 377
+
+[seaman_thresnor_port_sarim]
+id = 378
+
+[squire_port_sarim]
+id = 3801
+examine = "A squire of balance."
+
+[security_guard_port_sarim]
+id = 4375
+examine = "A retired security guard."
+
+[frizzy_skernip_port_sarim]
+id = 4560
+examine = "Perhaps this gardener might look after your crops for you."
+
+[grum_port_sarim]
+id = 556
+examine = "Loves his gold."
+
+[wydin_port_sarim]
+id = 557
+examine = "Likes his food to be kept fresh."
+
+[gerrant_port_sarim]
+id = 558
+
+[brian_port_sarim]
+id = 559
+examine = "An axe expert."
+
+[betty_port_sarim]
+id = 583
+examine = "She seems like a nice sort of person."
+
+[ned_port_sarim]
+id = 6082
+
+[seagull_port_sarim]
+id = 6115
+categories = ["birds"]
+examine = "A messy bird."
+
+[seagull_port_sarim_2]
+id = 6116
+
+[monk_of_entrana_port_sarim_3]
+id = 657
+examine = "Holy looking."
+
+[thaki_the_delivery_dwarf]
+id = 7115
+examine = "He seems to be enjoying his time in the bar."
+
+[klarense_port_sarim]
+id = 744
+examine = "A young sailor."
+
+[wormbrain_port_sarim]
+id = 745
+categories = ["goblins"]
+examine = "A badly-behaved goblin."
+

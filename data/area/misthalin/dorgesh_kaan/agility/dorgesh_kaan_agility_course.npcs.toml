@@ -1,0 +1,39 @@
+[giant_frog]
+id = 1828
+categories = ["frogs"]
+examine = "It didn't get that big eating flies."
+
+[big_frog]
+id = 1829
+categories = ["frogs"]
+examine = "It didn't get that big eating flies."
+
+[cave_bug_larva]
+id = 1833
+examine = "A little, slimy beetle-thing."
+
+[fishing_spot_dorgesh_kaan_agility_course]
+id = 5748
+
+[fishing_spot_dorgesh_kaan_agility_course_2]
+id = 5749
+
+[turgall_dorgesh_kaan_agility_course]
+id = 5779
+examine = "He keeps the cave goblin magic working."
+
+[movario_dorgesh_kaan_agility_course]
+id = 5830
+
+[darve_dorgesh_kaan_agility_course]
+id = 5831
+
+[zanik_dorgesh_kaan_agility_course]
+id = 6398
+
+[oldak_dorgesh_kaan_agility_course]
+id = 6400
+
+[zanik_dorgesh_kaan_agility_course_2]
+id = 8651
+

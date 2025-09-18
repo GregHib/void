@@ -36,3 +36,60 @@ id = 2448
 
 [akeladden]
 id = 2439
+
+[jarvald_waterbirth_island]
+id = 2438
+examine = "A Fremennik raider."
+
+[bardur_waterbirth_island]
+id = 9104
+
+[dagannoth_guardian_dagannoth_caves]
+id = 9092
+categories = ["dagannoth"]
+examine = "The Dagannoth Mother's guardians."
+
+[bardur]
+id = 2879
+examine = "A Fremennik warrior, hard at work."
+
+[dagannoth_fledgeling]
+id = 2880
+categories = ["dagannoth"]
+examine = "A knee-high horror from the ocean depths..."
+
+[dagannoth_supreme]
+id = 2881
+categories = ["dagannoth"]
+examine = "The dagannoth king responsible for the death of the Bukalla."
+
+[dagannoth_prime]
+id = 2882
+categories = ["dagannoth"]
+examine = "A legendary dagannoth king, rumoured to fly on the North winds."
+
+[dagannoth_rex]
+id = 2883
+categories = ["dagannoth"]
+examine = "Firstborn of the legendary dagannoth kings."
+
+[suspicious_water]
+id = 2891
+
+[spinolyp]
+id = 2892
+examine = "A sneaky, spiny, subterranean sea-dwelling scamp."
+
+[suspicious_water_2]
+id = 2893
+
+[spinolyp_2]
+id = 2894
+
+[suspicious_water_3]
+id = 2895
+
+[spinolyp_3]
+id = 2896
+
+

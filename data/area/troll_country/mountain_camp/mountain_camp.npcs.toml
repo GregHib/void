@@ -1,0 +1,65 @@
+[guard_mountain_camp]
+id = 1805
+examine = "He seems to be guarding a pile of rocks. Interesting job."
+
+[guard_mountain_camp_2]
+id = 1806
+examine = "He seems to be guarding a single rock. Interesting job."
+
+[hamal_the_chieftain_mountain_camp]
+id = 1807
+examine = "The Chieftain of the mountain camp."
+
+[ragnar_mountain_camp]
+id = 1808
+examine = "He looks a little lost, himself."
+
+[jokul_mountain_camp]
+id = 1810
+examine = "He seems to be minding the goats."
+
+[camp_dweller_mountain_camp]
+id = 1814
+examine = "One of the inhabitants of the camp."
+
+[camp_dweller_mountain_camp_2]
+id = 1815
+examine = "One of the inhabitants of the camp."
+
+[camp_dweller_mountain_camp_3]
+id = 1816
+examine = "One of the inhabitants of the camp."
+
+[camp_dweller_mountain_camp_4]
+id = 1817
+examine = "One of the inhabitants of the camp."
+
+[camp_dweller_mountain_camp_5]
+id = 1818
+examine = "One of the inhabitants of the camp."
+
+[mountain_goat_mountain_camp]
+id = 1819
+examine = "Looks a little underfed."
+
+[mountain_goat_mountain_camp_2]
+id = 1820
+examine = "This goat belongs to the mountain camp people."
+
+[my_arm_mountain_camp]
+id = 4947
+categories = ["trolls"]
+examine = "Trollish."
+
+[tool_leprechaun_mountain_camp]
+id = 4965
+examine = "It's a leprechaun sunbathing on a mountain."
+
+[mountain_goat_mountain_camp_3]
+id = 5166
+examine = "This goat belongs to the mountain camp people."
+
+[mountain_goat_mountain_camp_4]
+id = 5167
+examine = "This goat belongs to the mountain camp people."
+

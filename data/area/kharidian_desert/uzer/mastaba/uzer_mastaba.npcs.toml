@@ -1,0 +1,12 @@
+[golem_guard_uzer_mastaba]
+id = 7497
+examine = "A rocky horror."
+
+[golems_remains_uzer_mastaba]
+id = 7498
+
+[small_scarab_uzer_mastaba]
+id = 7500
+categories = ["scabarites"]
+examine = "This dung beetle has mistaken you for its staple diet."
+

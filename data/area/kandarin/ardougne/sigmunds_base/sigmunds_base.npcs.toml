@@ -1,0 +1,44 @@
+[sigmund_sigmunds_base]
+id = 1730
+examine = "What is he plotting this time?"
+
+[ham_guard_sigmunds_base]
+id = 1740
+examine = "One of Sigmund's elite guards."
+
+[ham_guard_sigmunds_base_2]
+id = 1741
+examine = "One of Sigmund's elite guards."
+
+[ham_agent_brian]
+id = 1742
+examine = "A member of Sigmund's H.A.M. splinter group."
+
+[ham_agent_william]
+id = 1743
+examine = "A member of Sigmund's H.A.M. splinter group."
+
+[ham_agent_charles]
+id = 1744
+examine = "A member of Sigmund's H.A.M. splinter group."
+
+[ham_agent_sam]
+id = 1745
+examine = "A member of Sigmund's H.A.M. splinter group."
+
+[ham_agent_christopher]
+id = 1746
+examine = "A member of Sigmund's H.A.M. splinter group."
+
+[ham_agent_daniel]
+id = 1747
+examine = "A member of Sigmund's H.A.M. splinter group."
+
+[ham_agent_michael]
+id = 1748
+examine = "A member of Sigmund's H.A.M. splinter group."
+
+[grubfoot_sigmunds_base]
+id = 3849
+examine = "What have they done to him?"
+

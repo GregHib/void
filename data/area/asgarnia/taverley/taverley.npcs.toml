@@ -33,3 +33,126 @@ wander_radius = 4
 categories = ["human"]
 collision = "indoors"
 examine = "A wise druid."
+
+[thaerisk_cemphier]
+id = 8420
+wander_radius = 4
+categories = ["human"]
+collision = "indoors"
+examine = "A wise druid."
+
+[ivy_ophista]
+id = 8417
+examine = "An impressive, statuesque druidess. She must be of high status."
+
+[terrier_taverley]
+id = 6894
+examine = "A terrier puppy."
+
+[pet_shop_owner_taverley]
+id = 6893
+examine = "The man of the pet shop."
+
+[lady_of_the_lake]
+id = 250
+wander_radius = 3
+examine = "A powerful sorceress who guards Excalibur."
+
+[alain]
+id = 2339
+wander_radius = 4
+examine = "Perhaps this gardener might look after your crops for you."
+
+[austri]
+id = 232
+wander_radius = 3
+examine = "He looks short and grumpy."
+
+[tegid]
+id = 1213
+examine = "He's washing his clothes in the lake."
+
+[gaius]
+id = 586
+wander_radius = 3
+examine = "Ironically, makes a living from swords."
+
+[druid_grey_stick]
+id = 6972
+wander_radius = 4
+examine = "Loves nature."
+
+[druid_hair]
+id = 6973
+wander_radius = 4
+examine = "Loves nature."
+
+[druid_ponytail]
+id = 6974
+wander_radius = 4
+examine = "Loves nature."
+
+[druid_bald_stick]
+id = 6975
+wander_radius = 4
+examine = "Loves nature."
+
+[druid_grey]
+id = 6976
+wander_radius = 4
+examine = "Loves nature."
+
+[druid_sickle]
+id = 6977
+wander_radius = 4
+examine = "Loves nature."
+
+[druid_hood]
+id = 6978
+wander_radius = 4
+examine = "Loves nature."
+
+[druid_bald_stick_dark]
+id = 6979
+wander_radius = 4
+examine = "Loves nature."
+
+[druid_bald]
+id = 6980
+wander_radius = 4
+examine = "Loves nature."
+
+[druidess_white]
+id = 6981
+wander_radius = 4
+examine = "A nature lover."
+
+[druidess_brunette_stick]
+id = 6982
+wander_radius = 4
+examine = "A nature lover."
+
+[druidess_grey]
+id = 6983
+wander_radius = 4
+examine = "A nature lover."
+
+[druidess_stick]
+id = 6984
+wander_radius = 4
+examine = "A nature lover."
+
+[druidess_sickle]
+id = 6985
+wander_radius = 4
+examine = "A nature lover."
+
+[druidess_mask]
+id = 6986
+wander_radius = 4
+examine = "A nature lover."
+
+[druidess]
+id = 6987
+wander_radius = 4
+examine = "A nature lover."

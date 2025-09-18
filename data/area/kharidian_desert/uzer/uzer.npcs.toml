@@ -1,0 +1,20 @@
+[bandit_looter_uzer]
+id = 7492
+examine = "A desert dweller taken to banditry."
+
+[bandit_looter_uzer_2]
+id = 7493
+examine = "Calls himself an archaeologist."
+
+[bandit_looter_uzer_3]
+id = 7494
+examine = "He hasn't found much of use, clearly."
+
+[bandit_looter_uzer_4]
+id = 7495
+examine = "An amateur historian with added greed."
+
+[bandit_looter_uzer_5]
+id = 7496
+examine = "It all started with her love of genealogy."
+

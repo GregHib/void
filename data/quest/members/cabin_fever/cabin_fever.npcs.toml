@@ -1,0 +1,35 @@
+[bill_teach_cabin_fever]
+id = 3158
+examine = "Bill Teach the pirate."
+
+[pirate_cabin_fever]
+id = 3188
+
+[pirate_cabin_fever_2]
+id = 3189
+
+[pirate_cabin_fever_3]
+id = 3190
+
+[pirate_cabin_fever_4]
+id = 3191
+
+[pirate_cabin_fever_5]
+id = 3192
+
+[pirate_cabin_fever_6]
+id = 3193
+
+[pirate_cabin_fever_7]
+id = 3194
+
+[pirate_cabin_fever_8]
+id = 3195
+
+[pirate_cabin_fever_9]
+id = 3196
+examine = "An enemy pirate."
+
+[gull_cabin_fever]
+id = 3197
+

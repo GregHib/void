@@ -1,0 +1,14 @@
+spawns = [
+  { id = "skeleton_helmet", x = 3142, y = 5708 },
+  { id = "skeleton_helmet", x = 3151, y = 5711 },
+  { id = "skeleton_helmet", x = 3156, y = 5703 },
+  { id = "skeleton_unarmed", x = 3149, y = 5707 },
+  { id = "skeleton_unarmed", x = 3153, y = 5710 },
+  { id = "skeleton_shield", x = 3150, y = 5701 },
+  { id = "skeleton_shield", x = 3150, y = 5709 },
+  { id = "doug_deeping", x = 3158, y = 5725 },
+  { id = "skeleton_shield_helmet", x = 3145, y = 5705 },
+  { id = "skeleton_shield_helmet", x = 3151, y = 5704 },
+  { id = "skeleton_shield_helmet", x = 3154, y = 5708 },
+  { id = "azzanadra", x = 3182, y = 5713 },
+]

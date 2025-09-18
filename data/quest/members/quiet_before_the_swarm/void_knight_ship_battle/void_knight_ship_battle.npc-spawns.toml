@@ -1,0 +1,8 @@
+spawns = [
+  { id = "gull_fishing_trawler", x = 4247, y = 5602, members = true },
+  { id = "gull_fishing_trawler", x = 4252, y = 5583, members = true },
+  { id = "gull_fishing_trawler", x = 4261, y = 5600, members = true },
+  { id = "gull_fishing_trawler", x = 4264, y = 5587, members = true },
+  { id = "gull_fishing_trawler_2", x = 4256, y = 5599, members = true },
+  { id = "gull_fishing_trawler_2", x = 4257, y = 5586, members = true },
+]

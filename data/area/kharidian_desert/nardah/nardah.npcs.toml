@@ -1,0 +1,81 @@
+[rokuh]
+id = 13181
+
+[ghaslor_the_elder]
+id = 3029
+examine = "The oldest man in Nardah."
+
+[usi]
+id = 3031
+examine = "A citizen of Nardah."
+
+[nkuku]
+id = 3032
+examine = "A citizen of Nardah."
+
+[garai]
+id = 3033
+examine = "A citizen of Nardah."
+
+[habibah]
+id = 3034
+examine = "A citizen of Nardah."
+
+[meskhenet]
+id = 3035
+examine = "A citizen of Nardah."
+
+[zahra]
+id = 3036
+examine = "A citizen of Nardah."
+
+[zahur]
+id = 3037
+examine = "A herbalist... sells herbs."
+
+[seddu]
+id = 3038
+examine = "An armour merchant."
+
+[kazemde]
+id = 3039
+examine = "A seller of many things."
+
+[awusah_the_mayor]
+id = 3040
+examine = "The Mayor of Nardah."
+
+[tarik_nardah]
+id = 3041
+examine = "The mayor's guard."
+
+[poltenip]
+id = 3042
+examine = "The mayor's guard."
+
+[radat]
+id = 3043
+examine = "The mayor's guard."
+
+[shiratti_the_custodian]
+id = 3044
+examine = "Custodian of the shrine to Elidinis."
+
+[nardah_banker]
+id = 3046
+examine = "A banker of Nardah."
+
+[billy_goat_nardah]
+id = 4932
+examine = "They'll eat anything!"
+
+[artimeus]
+id = 5109
+examine = "He looks like he knows what he's doing."
+
+[ali_the_wise]
+id = 7468
+
+[rug_merchant_bedabin_camp]
+id = 3020
+examine = "A carpet merchant."

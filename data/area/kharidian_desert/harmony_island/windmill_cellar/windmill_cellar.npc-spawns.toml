@@ -1,0 +1,18 @@
+spawns = [
+  { id = "dr_fenkenstrain_windmill_cellar", x = 3784, y = 9225, members = true },
+  { id = "zombie_pirate_windmill_cellar", x = 3797, y = 9253, level = 1, members = true },
+  { id = "zombie_pirate_windmill_cellar_2", x = 3819, y = 9253, level = 1, members = true },
+  { id = "zombie_pirate_windmill_cellar_3", x = 3803, y = 9249, level = 1, members = true },
+  { id = "zombie_pirate_windmill_cellar_4", x = 3792, y = 9254, level = 1, members = true },
+  { id = "zombie_pirate_windmill_cellar_5", x = 3809, y = 9253, level = 1, members = true },
+  { id = "zombie_pirate_windmill_cellar_6", x = 3798, y = 9258, level = 1, members = true },
+  { id = "zombie_pirate_windmill_cellar_7", x = 3799, y = 9247, level = 1, members = true },
+  { id = "zombie_pirate_windmill_cellar_8", x = 3814, y = 9250, level = 1, members = true },
+  { id = "zombie_pirate_windmill_cellar_9", x = 3817, y = 9259, level = 1, members = true },
+  { id = "zombie_pirate_windmill_cellar_10", x = 3805, y = 9255, level = 1, members = true },
+  { id = "zombie_pirate_windmill_cellar_11", x = 3823, y = 9254, level = 1, members = true },
+  { id = "monk_windmill_cellar", x = 3784, y = 9227, members = true },
+  { id = "monk_windmill_cellar_2", x = 3786, y = 9226, members = true },
+  { id = "monk_windmill_cellar_3", x = 3783, y = 9223, members = true },
+  { id = "monk_windmill_cellar_4", x = 3787, y = 9222, members = true },
+]

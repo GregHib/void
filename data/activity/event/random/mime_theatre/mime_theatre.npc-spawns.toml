@@ -1,0 +1,6 @@
+spawns = [
+  { id = "mime", x = 2011, y = 4762 },
+  { id = "strange_watcher", x = 2015, y = 4756 },
+  { id = "strange_watcher_2", x = 2012, y = 4754 },
+  { id = "strange_watcher_3", x = 2006, y = 4755 },
+]

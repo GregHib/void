@@ -1,0 +1,14 @@
+spawns = [
+  { id = "jogre_ardougne", x = 2826, y = 9518 },
+  { id = "jogre_ardougne", x = 2834, y = 9499 },
+  { id = "jogre_ardougne", x = 2849, y = 9517 },
+  { id = "jogre_ardougne", x = 2866, y = 9512 },
+  { id = "jogre_pothole_dungeon", x = 2836, y = 9522 },
+  { id = "jogre_pothole_dungeon", x = 2848, y = 9483 },
+  { id = "jogre_pothole_dungeon", x = 2857, y = 9501 },
+  { id = "jogre_pothole_dungeon", x = 2860, y = 9517 },
+  { id = "jogre_pothole_dungeon_2", x = 2834, y = 9513 },
+  { id = "jogre_pothole_dungeon_2", x = 2838, y = 9490 },
+  { id = "jogre_pothole_dungeon_2", x = 2857, y = 9523 },
+  { id = "jogre_pothole_dungeon_2", x = 2863, y = 9493 },
+]

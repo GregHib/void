@@ -1,0 +1,17 @@
+spawns = [
+  { id = "undead_cow_alices_farm", x = 3611, y = 3527 },
+  { id = "undead_cow_alices_farm", x = 3616, y = 3525 },
+  { id = "undead_cow_alices_farm", x = 3620, y = 3524 },
+  { id = "undead_cow_alices_farm", x = 3622, y = 3527 },
+  { id = "undead_chicken_alices_farm", x = 3627, y = 3531 },
+  { id = "undead_chicken_alices_farm", x = 3629, y = 3530 },
+  { id = "undead_chicken_alices_farm", x = 3631, y = 3529 },
+  { id = "undead_chicken_alices_farm", x = 3631, y = 3531 },
+  { id = "undead_chicken_alices_farm", x = 3632, y = 3526 },
+  { id = "undead_chicken_alices_farm", x = 3633, y = 3525 },
+  { id = "old_man_alices_farm", x = 3617, y = 3544, level = 1, members = true },
+  { id = "alice_alices_farm", x = 3627, y = 3526, members = true },
+  { id = "lyra_alices_farm", x = 3601, y = 3527, members = true },
+  { id = "alices_husband_alices_farm", x = 3617, y = 3528, members = true },
+  { id = "tool_leprechaun_alices_farm", x = 3604, y = 3528, members = true },
+]

@@ -1,4 +1,8 @@
 spawns = [
 # 6743
   { id = "banker_fist_of_guthix", x = 1705, y = 5599 },
+  { id = "reggie", x = 1697, y = 5605 },
+  { id = "getorix", x = 1693, y = 5598 },
+  { id = "pontimer", x = 1696, y = 5600 },
+  { id = "alran", x = 1699, y = 5599 },
 ]

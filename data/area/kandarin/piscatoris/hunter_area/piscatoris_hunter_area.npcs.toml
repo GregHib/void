@@ -1,0 +1,31 @@
+[kathy_corkat_piscatoris]
+id = 3831
+examine = "Carries supplies to the Piscatoris Fishing Colony."
+
+[chinchompa]
+id = 5079
+examine = "It looks fluffy and cute; it's probably deadly."
+
+[ruby_harvest]
+id = 5085
+examine = "It's a ruby harvest butterfly."
+
+[prickly_kebbit]
+id = 5086
+examine = "Curls up into a ball to protect itself from attack."
+
+[wild_kebbit]
+id = 5089
+examine = "That's a mean looking set of claws."
+
+[dark_kebbit]
+id = 5099
+examine = "Quieter than a ninja mouse with slippers on."
+
+[dashing_kebbit]
+id = 5100
+examine = "Now you see it; now you don't."
+
+[copper_longtail]
+id = 5076
+examine = "Nothing much to get in a flap about."

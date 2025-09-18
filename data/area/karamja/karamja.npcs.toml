@@ -2,3 +2,165 @@
 id = 11267
 categories = [ "human"]
 examine = "Exchanges lobsters, tuna and swordfish for banknotes."
+
+[the_shaikahan]
+id = 1172
+examine = "A huge beast, resembling in some ways a lion, but mostly a twisted nightmare."
+
+[gull_karamja]
+id = 1179
+
+[cormorant_karamja]
+id = 1180
+
+[pelican_karamja]
+id = 1181
+
+[tiadeche_karamja]
+id = 2483
+
+[tinsay_karamja]
+id = 2485
+
+[tamayu_karamja]
+id = 2487
+
+[murcaily]
+id = 2528
+
+[harpie_bug_swarm]
+id = 3153
+categories = ["harpie_bug_swarms"]
+examine = "A swarm of bugs."
+
+[frog_karamja]
+id = 3783
+categories = ["frogs"]
+examine = "Long legged licker."
+
+[jungle_forester]
+id = 401
+examine = "He deals in exotic types of wood."
+
+[jungle_forester_2]
+id = 402
+examine = "She deals in exotic types of wood."
+
+[penwie]
+id = 4578
+examine = "He looks like he's a long way from home."
+
+[mosol_rei]
+id = 500
+examine = "A warrior from Shilo Village."
+
+[horned_graahk]
+id = 5105
+examine = "Get in a graahk's way and you're going to know about it...however briefly."
+
+[captain_shanks]
+id = 518
+examine = "He's the Captain of the 'Lady of the Waves'."
+
+[scout_karamja]
+id = 5574
+
+[jungle_spider_karamja]
+id = 6376
+
+[jungle_spider_karamja_2]
+id = 6377
+
+[tenacious_toucan]
+id = 6378
+categories = ["birds"]
+examine = "I wouldn't want to be footing that bill."
+
+[giant_ant_worker]
+id = 6379
+examine = "I wonder how much he can lift."
+
+[giant_ant_soldier]
+id = 6380
+examine = "Gi-ant-ant-ant-ant..."
+
+[giant_wasp]
+id = 6381
+examine = "That stinger has to hurt..."
+
+[pernicious_parrot]
+id = 6382
+categories = ["birds"]
+examine = "Polynomial - a parrot that goes without breakfast, lunch or dinner."
+
+[giant_wasp_2]
+id = 6383
+
+[karamjan_jungle_eagle]
+id = 6387
+
+[baby_gecko_karamja]
+id = 6917
+examine = "It's so adorably tiny!"
+
+[gecko]
+id = 6918
+examine = "How cute!"
+
+[baby_monkey_karamja]
+id = 6944
+examine = "It's a tiny, cheeky monkey!"
+
+[baby_monkey_karamja_2]
+id = 7228
+examine = "It's a tiny, cheeky monkey!"
+
+[baby_monkey_karamja_3]
+id = 7229
+examine = "It's a tiny, cheeky monkey!"
+
+[baby_monkey_karamja_4]
+id = 7230
+examine = "It's a tiny, cheeky monkey!"
+
+[baby_monkey_karamja_5]
+id = 7231
+examine = "It's a tiny, cheeky monkey!"
+
+[baby_monkey_karamja_6]
+id = 7233
+examine = "It's a tiny, cheeky monkey!"
+
+[baby_monkey_karamja_7]
+id = 7234
+
+[baby_monkey_karamja_8]
+id = 7235
+
+[baby_monkey_karamja_9]
+id = 7236
+
+[baby_gecko_karamja_2]
+id = 7285
+examine = "It's so adorably tiny!"
+
+[baby_gecko_karamja_3]
+id = 7286
+
+[baby_gecko_karamja_4]
+id = 7288
+
+[gecko_2]
+id = 7289
+examine = "How cute!"
+
+[gecko_3]
+id = 7290
+
+[gecko_4]
+id = 7292
+
+[tribesman]
+id = 191
+examine = "A vicious warrior."
+

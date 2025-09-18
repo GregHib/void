@@ -1,0 +1,16 @@
+spawns = [
+  { id = "rock_clan_wars", x = 2861, y = 5925, level = 1, members = true },
+  { id = "penguin_clan_wars", x = 2867, y = 5919, level = 1, members = true },
+  { id = "bush_clan_wars", x = 2861, y = 5920, level = 1, members = true },
+  { id = "bush_clan_wars", x = 2862, y = 5919, level = 1, members = true },
+  { id = "cactus_clan_wars", x = 2862, y = 5920, level = 1, members = true },
+  { id = "cactus_clan_wars", x = 2863, y = 5919, level = 1, members = true },
+  { id = "crate_clan_wars", x = 2864, y = 5920, level = 1, members = true },
+  { id = "crate_clan_wars", x = 2866, y = 5919, level = 1, members = true },
+  { id = "rock_clan_wars_2", x = 2861, y = 5919, level = 1, members = true },
+  { id = "rock_clan_wars_2", x = 2863, y = 5920, level = 1, members = true },
+  { id = "rock_clan_wars_2", x = 2866, y = 5920, level = 1, members = true },
+  { id = "toadstool_clan_wars", x = 2864, y = 5919, level = 1, members = true },
+  { id = "toadstool_clan_wars", x = 2865, y = 5920, level = 1, members = true },
+  { id = "pikkenmix_clan_wars", x = 2861, y = 5917, level = 1, members = true },
+]

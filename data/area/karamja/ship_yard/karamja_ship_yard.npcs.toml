@@ -1,0 +1,20 @@
+[glo_caranock_karamja_ship_yard]
+id = 1427
+examine = "An official looking Gnome with small beady eyes."
+
+[shipyard_worker_karamja_ship_yard]
+id = 38
+examine = "Builds ships for a living."
+
+[shipyard_worker_karamja_ship_yard_2]
+id = 39
+examine = "Builds ships for a living."
+
+[shark_karamja_ship_yard]
+id = 40
+examine = "Let's not go skinny dipping eh?"
+
+[foreman_karamja_ship_yard]
+id = 674
+examine = "The boss!"
+

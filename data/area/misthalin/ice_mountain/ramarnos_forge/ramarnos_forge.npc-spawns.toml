@@ -1,0 +1,5 @@
+spawns = [
+  { id = "ramarno_ramarnos_forge", x = 3045, y = 9881 },
+  { id = "fish_ramarnos_forge", x = 3030, y = 9892 },
+  { id = "fish_ramarnos_forge_2", x = 3030, y = 9896, members = true },
+]

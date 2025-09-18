@@ -1,0 +1,39 @@
+[culinaromancer_recipe_for_disaster]
+id = 3387
+examine = "A demented evil wizard who specialises in food spells."
+
+[pirate_pete_recipe_for_disaster]
+id = 3389
+examine = "A shifty-looking character."
+
+[mountain_dwarf_recipe_for_disaster]
+id = 3390
+examine = "He looks short and grumpy."
+
+[lumbridge_sage_recipe_for_disaster]
+id = 3393
+examine = "He provides new players with useful information."
+
+[evil_dave_recipe_for_disaster]
+id = 3394
+examine = "He seems to like wearing black."
+
+[sir_amik_varze_recipe_for_disaster]
+id = 3395
+examine = "Leader of the White Knights."
+
+[awowogei_recipe_for_disaster]
+id = 3396
+examine = "A rather dapper little monkey."
+
+[skrach_uglogwee_recipe_for_disaster]
+id = 3398
+examine = "An ogre."
+
+[goblin_cook_recipe_for_disaster]
+id = 3413
+examine = "He may be a funky cook, but he's still an ugly green creature."
+
+[goblin_cook_recipe_for_disaster_2]
+id = 3414
+examine = "More like a goblin cooked."

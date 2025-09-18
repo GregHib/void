@@ -15,13 +15,18 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
+import world.gregs.voidps.engine.entity.playerSpawn
 import world.gregs.voidps.engine.event.Script
 
 @Script
 class BartenderRustyAnchor {
 
     init {
-        npcOperate("Talk-to", "bartender_rusty_anchor") {
+        playerSpawn { player ->
+            player["void_dance_bartender"] = 8
+        }
+
+        npcOperate("Talk-to", "bartender_rusty_anchor_inn*") {
             choice {
                 option<Quiz>("Could I buy a beer please?") {
                     npc<Talk>("Sure, that will be 2 gold coins please.")
@@ -38,7 +43,7 @@ class BartenderRustyAnchor {
             }
         }
 
-        itemOnNPCOperate("barcrawl_card", "bartender_rusty_anchor") {
+        itemOnNPCOperate("barcrawl_card", "bartender_rusty_anchor_inn*") {
             if (player.containsVarbit("barcrawl_signatures", "black_skull_ale")) {
                 player.noInterest() // TODO proper message
                 return@itemOnNPCOperate

@@ -1,0 +1,44 @@
+[ethereal_man_dream_world]
+id = 4501
+examine = "Is he real or is it just my imagination?"
+
+[ethereal_lady_dream_world]
+id = 4502
+examine = "Does she really exist?"
+
+[ethereal_numerator_dream_world]
+id = 4503
+examine = "He reminds me of my old mathematics teacher."
+
+[ethereal_expert_dream_world]
+id = 4504
+examine = "The master of accomplishment."
+
+[ethereal_perceptive_dream_world]
+id = 4505
+examine = "He knows what is possible."
+
+[ethereal_guide_dream_world]
+id = 4506
+examine = "He knows the past, present and future. But what of my shoe size?"
+
+[ethereal_fluke_dream_world]
+id = 4507
+examine = "Luck is probably on his side."
+
+[ethereal_mimic_dream_world]
+id = 4508
+
+[me_dream_world]
+id = 4509
+examine = "It's like looking in the mirror."
+
+[the_inadequacy_dream_world]
+id = 5902
+examine = "Are you good enough to fight?"
+
+[shooting_star]
+id = 4420
+
+[shooting_star_2]
+id = 3093

@@ -1,0 +1,4 @@
+spawns = [
+  { id = "gull_fremennik_fleet", x = 4454, y = 5927, level = 1, members = true },
+  { id = "gull_fremennik_fleet", x = 4464, y = 5917, level = 1, members = true },
+]

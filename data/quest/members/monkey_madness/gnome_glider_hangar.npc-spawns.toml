@@ -9,4 +9,6 @@ spawns = [
   { id = "rat", x = 3116, y = 9754, members = true },
   { id = "rat", x = 3111, y = 9752, members = true },
   { id = "rat", x = 3101, y = 9748, members = true },
+  { id = "daero", x = 2648, y = 4519, members = true },
+  { id = "daero", x = 2392, y = 9895, members = true },
 ]

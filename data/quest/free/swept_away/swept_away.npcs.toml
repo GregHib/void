@@ -38,3 +38,11 @@ id = 8224
 
 [reptile_pen_swept_away]
 id = 8225
+
+[gus_swept_away]
+id = 8205
+examine = "An underpaid delivery ghoul."
+
+[lottie_swept_away]
+id = 8206
+examine = "A witch-in-training."

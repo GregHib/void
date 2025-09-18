@@ -1,0 +1,16 @@
+[gundai_mage_arena_bank]
+id = 902
+examine = "He must get lonely out here."
+
+[lundail_mage_arena_bank]
+id = 903
+examine = "He sells rune stones."
+
+[chamber_guardian_mage_arena_bank]
+id = 904
+examine = "He hasn't seen much sun lately."
+
+[kolodion_mage_arena_bank]
+id = 905
+examine = "He runs the mage arena."
+

@@ -1,0 +1,28 @@
+[zombie_temple_trekking]
+id = 3622
+categories = ["zombies"]
+examine = "I wonder if he'd let me borrow his hatchet?"
+
+[rook_temple_trekking]
+id = 9719
+examine = "You're being watched."
+
+[fyiona_fray]
+id = 3634
+wander_radius = 3
+examine = "A retired but dangerous looking female soldier."
+
+[valantay_eppel]
+id = 3629
+wander_radius = 6
+examine = "A Burgh de Rott male militia volunteer."
+
+[jayene_kliyn]
+id = 3628
+wander_radius = 7
+examine = "A Burgh de Rott female militia volunteer."
+
+[sorin_temple_trekking]
+id = 3509
+wander_radius = 4
+examine = "A flea infested, pale looking excuse of a man."

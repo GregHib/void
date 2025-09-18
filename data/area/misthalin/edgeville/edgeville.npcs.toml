@@ -17,3 +17,159 @@ examine = "She's here on work experience."
 [hari]
 id = 3330
 examine = "Strange looking fella."
+
+[captain_korasi_edgeville]
+id = 11659
+
+[jessika_edgeville]
+id = 11670
+
+[richard_edgeville]
+id = 1783
+examine = "A very brave merchant."
+
+[guard_edgeville]
+id = 206
+categories = ["dwarves"]
+examine = "A dwarven guard."
+
+[mysterious_ghost_edgeville]
+id = 2386
+
+[brother_althric]
+id = 2588
+examine = "A holy man."
+
+[guard_edgeville_2]
+id = 296
+examine = "He tries to keep order around here."
+
+[guard_edgeville_3]
+id = 297
+examine = "He tries to keep order around here."
+
+[guard_edgeville_4]
+id = 298
+examine = "He tries to keep order around here."
+
+[guard_edgeville_5]
+id = 299
+examine = "He tries to keep order around here."
+
+[doris_edgeville]
+id = 3381
+examine = "One of Gielinor's many citizens."
+
+[guard_edgeville_6]
+id = 3407
+examine = "He tries to keep order around here."
+
+[guard_edgeville_7]
+id = 3408
+examine = "He tries to keep order around here."
+
+[kharid_scorpion_edgeville]
+id = 387
+
+[ram_edgeville]
+id = 5170
+
+[outlaw_edgeville]
+id = 5842
+examine = "A mean looking outlaw. Don't get too close!"
+
+[outlaw_edgeville_2]
+id = 5843
+examine = "A mean looking outlaw. Don't get too close!"
+
+[outlaw_edgeville_3]
+id = 5844
+examine = "A mean looking outlaw. Don't get too close!"
+
+[outlaw_edgeville_4]
+id = 5845
+examine = "A mean looking outlaw. Don't get too close!"
+
+[outlaw_edgeville_5]
+id = 5846
+examine = "A mean looking outlaw. Don't get too close!"
+
+[outlaw_edgeville_6]
+id = 5847
+examine = "A mean looking outlaw. Don't get too close!"
+
+[outlaw_edgeville_7]
+id = 5848
+examine = "A mean looking outlaw. Don't get too close!"
+
+[outlaw_edgeville_8]
+id = 5849
+examine = "A mean looking outlaw. Don't get too close!"
+
+[outlaw_edgeville_9]
+id = 5850
+examine = "A mean looking outlaw. Don't get too close!"
+
+[outlaw_edgeville_10]
+id = 5851
+examine = "A mean looking outlaw. Don't get too close!"
+
+[mandrith]
+id = 6537
+examine = "A collector of ancient artefacts."
+
+[professor_henry]
+id = 7143
+examine = "A buttoned-down examiner."
+
+[student_edgeville]
+id = 7154
+examine = "A person sitting an exam."
+
+[student_edgeville_2]
+id = 7156
+examine = "A person sitting an exam."
+
+[cockroach_drone]
+id = 7158
+categories = ["cockroaches"]
+examine = "A household pest."
+
+[oracle]
+id = 746
+examine = "A mystical fount of knowledge."
+
+[oziach]
+id = 747
+examine = "A strange little man."
+
+[monk_edgeville]
+id = 7727
+examine = "A holy man."
+
+[brother_bordiss]
+id = 7730
+
+[abbot_langley]
+id = 801
+examine = "A holy man."
+
+[brother_jered]
+id = 802
+examine = "A holy man."
+
+[gjalp]
+id = 8070
+
+[brother_fintan]
+id = 8071
+
+[local_mage_edgeville]
+id = 8347
+
+[mysterious_ghost_edgeville_dungeon]
+id = 2396
+
+[evil_dave_edgeville_dungeon]
+id = 3378
+examine = "He seems to like wearing black."

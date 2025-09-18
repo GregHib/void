@@ -1,0 +1,44 @@
+[skeleton_fremennik_brine_rat_caverns]
+id = 3697
+categories = ["skeletons"]
+examine = "Could use a good meal."
+
+[skeleton_fremennik_brine_rat_caverns_2]
+id = 3698
+
+[skeleton_fremennik_brine_rat_caverns_3]
+id = 3699
+
+[skeleton_fremennik_brine_rat_caverns_4]
+id = 3700
+categories = ["skeletons"]
+examine = "He seems a little underweight."
+
+[skeleton_fremennik_brine_rat_caverns_5]
+id = 3701
+categories = ["skeletons"]
+examine = "He seems a little underweight."
+
+[skeleton_fremennik_brine_rat_caverns_6]
+id = 3702
+categories = ["skeletons"]
+examine = "He seems a little underweight."
+
+[skeleton_fremennik_brine_rat_caverns_7]
+id = 3703
+categories = ["skeletons"]
+examine = "He seems a little underweight."
+
+[skeleton_fremennik_brine_rat_caverns_8]
+id = 3704
+categories = ["skeletons"]
+examine = "He seems a little underweight."
+
+[brine_rat_brine_rat_caverns]
+id = 3707
+categories = ["brine_rats"]
+examine = "Eww, a bald rat!"
+
+[boulder_brine_rat_caverns]
+id = 3708
+

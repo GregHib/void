@@ -1,0 +1,17 @@
+spawns = [
+  { id = "desert_snake", x = 3371, y = 9301, members = true },
+  { id = "desert_snake", x = 3371, y = 9303, members = true },
+  { id = "desert_snake", x = 3371, y = 9305, members = true },
+  { id = "desert_snake", x = 3371, y = 9307, members = true },
+  { id = "desert_snake", x = 3371, y = 9309, members = true },
+  { id = "desert_snake", x = 3373, y = 9301, members = true },
+  { id = "desert_snake", x = 3373, y = 9303, members = true },
+  { id = "desert_snake", x = 3373, y = 9306, members = true },
+  { id = "desert_snake", x = 3373, y = 9308, members = true },
+  { id = "desert_snake", x = 3375, y = 9301, members = true },
+  { id = "desert_snake", x = 3375, y = 9303, members = true },
+  { id = "desert_snake", x = 3375, y = 9305, members = true },
+  { id = "desert_snake", x = 3375, y = 9307, members = true },
+  { id = "desert_snake", x = 3375, y = 9309, members = true },
+  { id = "genie_genies_cave", x = 3371, y = 9320 },
+]

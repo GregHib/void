@@ -1,0 +1,7 @@
+[tree_haunted_woods]
+id = 1226
+
+[werewolf_haunted_woods]
+id = 1665
+examine = "Looks like he's guarding a trapdoor..."
+

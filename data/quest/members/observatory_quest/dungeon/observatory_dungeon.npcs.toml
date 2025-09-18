@@ -1,0 +1,19 @@
+[sleeping_guard_observatory_dungeon]
+id = 6122
+examine = "Sleeping like an ugly baby."
+
+[naghead_observatory_dungeon]
+id = 6123
+examine = "An old goblin hag."
+
+[wagchin_observatory_dungeon]
+id = 6124
+examine = "A young goblin 'beauty'."
+
+[goblin_observatory_dungeon]
+id = 6125
+examine = "An ugly green creature."
+
+[goblin_observatory_dungeon_2]
+id = 6126
+

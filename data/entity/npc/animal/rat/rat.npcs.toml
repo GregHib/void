@@ -83,6 +83,10 @@ combat_anims = "giant_rat"
 combat_sounds = "rat"
 categories = ["giant_rats", "rats"]
 
+[giant_rat_brimhaven]
+clone = "giant_rat"
+id = 4926
+
 [giant_rat_dark]
 clone = "giant_rat"
 id = 8828

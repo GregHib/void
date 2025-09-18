@@ -1,0 +1,3 @@
+spawns = [
+  { id = "captain_marlin_red_raktuber", x = 3570, y = 5802, level = 1 },
+]

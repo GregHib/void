@@ -19,4 +19,9 @@ spawns = [
   { id = "ice_warrior", x = 2847, y = 3514, members = true },
   { id = "ice_warrior", x = 2850, y = 3512, members = true },
   { id = "captain_bleemadge", x = 2848, y = 3498, members = true },
+  { id = "grimgnash", x = 2865, y = 3496, members = true },
+  { id = "ice_giant_ice_queens_lair", x = 2821, y = 3509, members = true },
+  { id = "ice_giant_camelot_castle", x = 2817, y = 3512, members = true },
+  { id = "ice_giant_camelot_castle", x = 2811, y = 3506, members = true },
+  { id = "ice_giant", x = 2804, y = 3507, members = true },
 ]

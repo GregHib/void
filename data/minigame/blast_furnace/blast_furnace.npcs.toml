@@ -1,0 +1,12 @@
+[blast_furnace_foreman]
+id = 2553
+examine = "Looks after the blast furnace."
+
+[ordan]
+id = 2564
+examine = "He smells of rock dust."
+
+[jorzik]
+id = 2565
+examine = "He buys stuff."
+

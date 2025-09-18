@@ -1,0 +1,19 @@
+[skullball_boss]
+id = 1660
+examine = "He's in charge of the Skullball Course."
+
+[agility_boss]
+id = 1661
+examine = "He's in charge of the Agility Course."
+
+[skullball_trainer]
+id = 1662
+examine = "A skullball guide."
+
+[agility_trainer]
+id = 1663
+examine = "A werewolf agility trainer."
+
+[agility_trainer_2]
+id = 1664
+

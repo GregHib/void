@@ -1,0 +1,18 @@
+[young_ralph_rock_island_prison]
+id = 7859
+examine = "He's going for that 'stripy' look."
+
+[gull_rock_island]
+id = 1400
+
+[customs_officer]
+id = 7837
+examine = "Inspects people's packages."
+
+[customs_officer_2]
+id = 7838
+examine = "Inspects people's packages."
+
+[locker_officer]
+id = 7842
+examine = "He looks after all of the files."

@@ -1,0 +1,68 @@
+[milk_seller]
+id = 11547
+examine = "She sells milk."
+
+[highwayman_sinclair_mansion]
+id = 180
+examine = "He holds up passers by."
+
+[fishing_spot_sinclair_mansion]
+id = 315
+
+[guard_sinclair_mansion]
+id = 6191
+
+[anna]
+id = 6192
+
+[bob_sinclair_mansion]
+id = 6193
+
+[carol]
+id = 6194
+
+[david]
+id = 6195
+
+[elizabeth]
+id = 6196
+
+[frank]
+id = 6197
+
+[donovan_the_family_handyman]
+id = 806
+examine = "He looks very tired..."
+
+[pierre]
+id = 807
+examine = "His job doesn't look very fun..."
+
+[hobbes]
+id = 808
+examine = "He looks kind of stuck up..."
+
+[louisa]
+id = 809
+examine = "She looks like she enjoys her job."
+
+[mary]
+id = 810
+examine = "She looks very nervous..."
+
+[stanford]
+id = 811
+examine = "He looks like he spends a lot of time outdoors."
+
+[guard_sinclair_mansion_2]
+id = 812
+examine = "An officer of the Law."
+
+[gossip]
+id = 813
+examine = "One of those people who love to gossip!"
+
+[sinclair_guard_dog]
+id = 821
+examine = "Big, noisy, and scary looking!"
+

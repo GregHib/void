@@ -1,0 +1,33 @@
+[cyreg_paddlehorn_barrows]
+id = 1567
+examine = "A tall and imposing man who's more than familiar with boating."
+
+[strange_old_man_barrows]
+id = 2024
+examine = "Wonder how long he's been here..."
+
+[crypt_rat_barrows]
+id = 2032
+categories = ["rats"]
+examine = "A nasty little rodent."
+
+[skeleton_barrows]
+id = 2036
+categories = ["skeletons"]
+examine = "Could do with gaining a few pounds."
+
+[skeleton_barrows_2]
+id = 2037
+categories = ["skeletons"]
+examine = "Could do with gaining a few pounds."
+
+[skeleton_barrows_3]
+id = 5381
+categories = ["skeletons"]
+examine = "Could do with gaining a few pounds."
+
+[skeleton_barrows_4]
+id = 5422
+categories = ["skeletons"]
+examine = "Could do with gaining a few pounds."
+

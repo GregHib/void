@@ -1,0 +1,43 @@
+[rasolo_baxtorian_falls]
+id = 1972
+examine = "A travelling merchant."
+
+[mysterious_ghost_baxtorian_falls]
+id = 2381
+
+[fishing_spot_baxtorian_falls]
+id = 2722
+
+[otto_godblessed_baxtorian_falls]
+id = 2725
+examine = "A wise barbarian, apparently. He still looks like a thug."
+
+[hadley_baxtorian_falls]
+id = 302
+examine = "Could do with losing a bit of weight."
+
+[gerald_baxtorian_falls]
+id = 303
+examine = "Looks suspiciously like a fisherman."
+
+[almera_baxtorian_falls]
+id = 304
+examine = "Nice hair."
+
+[hudon_baxtorian_falls]
+id = 305
+examine = "Looks young."
+
+[fishing_spot_baxtorian_falls_2]
+id = 310
+
+[guard_baxtorian_falls]
+id = 4259
+categories = ["dwarves"]
+examine = "A dwarven guard."
+
+[guard_baxtorian_falls_2]
+id = 4260
+categories = ["dwarves"]
+examine = "A dwarven guard."
+

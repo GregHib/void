@@ -1,0 +1,154 @@
+[prissy_scilla_tree_gnome_stronghold]
+id = 1037
+examine = "Perhaps this gardener might look after your crops for you."
+
+[terrorbird]
+id = 138
+categories = ["birds"]
+examine = "A giant raptor."
+
+[terrorbird_2]
+id = 139
+
+[gnome_child]
+id = 159
+examine = "Small, even by gnome standards."
+
+[gnome_child_2]
+id = 160
+examine = "Small, even by gnome standards."
+
+[gnome_child_3]
+id = 161
+examine = "Small, even by gnome standards."
+
+[gnome_guard]
+id = 163
+examine = "A tree gnome guard."
+
+[gnome_guard_2]
+id = 164
+examine = "A tree gnome guard."
+
+[gnome_woman]
+id = 168
+examine = "A female gnome."
+
+[gnome_woman_2]
+id = 169
+examine = "A female gnome."
+
+[terrorbird_3]
+id = 1751
+
+[mounted_terrorbird]
+id = 1752
+categories = ["birds"]
+examine = "These gnomes know how to get around!"
+
+[bolongo_tree]
+id = 2343
+examine = "Perhaps this gardener might look after your crops for you."
+
+[mysterious_ghost_tree_gnome_stronghold]
+id = 2393
+
+[gnome_coach]
+id = 2802
+examine = "They just call him 'Coach'."
+
+[fishing_spot_tree_gnome_stronghold]
+id = 309
+
+[devin_mendelberg]
+id = 3828
+
+[kathy_corkat]
+id = 3829
+
+[damwin]
+id = 4584
+examine = "Bubbly cheerleader!"
+
+[eebel]
+id = 4591
+examine = "A gnome whom likes antiques."
+
+[ermin]
+id = 4592
+examine = "A gnome spinner."
+
+[meegle]
+id = 4597
+examine = "She looks after the terrorbirds."
+
+[wurbel]
+id = 4598
+examine = "He looks like a big gnomeball fan."
+
+[sarble]
+id = 4599
+examine = "She tends the toads and worms in the swamp."
+
+[guard_vemmeldo]
+id = 4600
+examine = "He looks alert and ready for action."
+
+[burkor]
+id = 4601
+examine = "A lean mean gnome fighting machine."
+
+[froono]
+id = 4602
+examine = "He looks like he needs something useful to do."
+
+[gnome_troop]
+id = 479
+examine = "It's a tree gnome trooper."
+
+[gnome_troop_2]
+id = 480
+
+[gnome_baller]
+id = 621
+examine = "A professional gnome baller."
+
+[gnome_baller_2]
+id = 625
+
+[gnome_baller_3]
+id = 629
+
+[gnome_winger]
+id = 633
+examine = "A professional gnome baller."
+
+[gnome_ball_referee]
+id = 635
+examine = "Keeps the game fair."
+
+[cheerleader]
+id = 636
+examine = "Cheerleading is a real sport!"
+
+[anita]
+id = 672
+examine = "Glough's girlfriend."
+
+[barman_tree_gnome_stronghold]
+id = 849
+examine = "He serves cocktails."
+
+[trainer_nacklepen]
+id = 3818
+examine = "The cruel tortoise trainer. Boo!"
+
+[tortoise_gnome_stronghold]
+id = 3819
+examine = "A large tortoise."
+
+[terrorchick_gnome]
+id = 137
+examine = "Aaw baby chick!"
+
+

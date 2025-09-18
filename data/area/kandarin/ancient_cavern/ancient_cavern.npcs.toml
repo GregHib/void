@@ -1,0 +1,43 @@
+[brutal_green_dragon_ancient_cavern]
+id = 5362
+categories = ["green_dragons"]
+examine = "It appears intelligent and savage."
+
+[confused_barbarian_ancient_cavern]
+id = 5364
+examine = "He looks about, blankly."
+
+[lost_barbarian_ancient_cavern]
+id = 6102
+examine = "His face is expressionless."
+
+[skeleton_brute_ancient_cavern]
+id = 6104
+categories = ["skeletons"]
+examine = "An ex-barbarian, willing to make you ex too."
+
+[skeleton_warlord_ancient_cavern]
+id = 6105
+categories = ["skeletons"]
+examine = "He's heartless."
+
+[skeleton_thug_ancient_cavern]
+id = 6107
+categories = ["skeletons"]
+examine = "Floats like an anvil, hits like a hammer."
+
+[angry_barbarian_spirit_ancient_cavern]
+id = 749
+examine = "He looks a tad upset."
+
+[enraged_barbarian_spirit]
+id = 750
+examine = "He looks a tad upset."
+
+[berserk_barbarian_spirit]
+id = 751
+examine = "He looks a tad upset."
+
+[gargoyle_ancient_cavern]
+id = 9087
+

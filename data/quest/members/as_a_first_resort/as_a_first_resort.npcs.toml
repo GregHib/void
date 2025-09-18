@@ -75,3 +75,26 @@ id = 7097
 [peanut_platypus_3]
 clone = "peanut_platypus"
 id = 7098
+
+[snert_as_a_first_resort]
+id = 7067
+
+[tyke_as_a_first_resort]
+id = 7068
+examine = "On the scrawny side...for an ogre child."
+
+[snarrl_as_a_first_resort]
+id = 7069
+examine = "Snappish, snippy and snide."
+
+[thuddley_as_a_first_resort]
+id = 7072
+examine = "A strapping young ogre child."
+
+[grrbah_as_a_first_resort]
+id = 7073
+examine = "A surly-looking little whippersnapper."
+
+[chomp_as_a_first_resort]
+id = 7074
+examine = "A little nipper."

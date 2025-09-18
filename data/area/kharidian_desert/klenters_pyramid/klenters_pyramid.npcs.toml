@@ -1,0 +1,34 @@
+[high_priest_klenters_pyramid]
+id = 1984
+
+[priest_klenters_pyramid]
+id = 1987
+
+[wanderer_klenters_pyramid]
+id = 2003
+
+[wanderer_klenters_pyramid_2]
+id = 2004
+
+[icthlarin_klenters_pyramid]
+id = 2011
+
+[mummy_klenters_pyramid]
+id = 2015
+categories = ["zombies"]
+examine = "This mummy looks like it means business!"
+
+[mummy_klenters_pyramid_2]
+id = 2016
+categories = ["zombies"]
+examine = "An irate warrior-mummy."
+
+[mummy_klenters_pyramid_3]
+id = 2017
+
+[mummy_klenters_pyramid_4]
+id = 2018
+
+[mummy_klenters_pyramid_5]
+id = 2019
+

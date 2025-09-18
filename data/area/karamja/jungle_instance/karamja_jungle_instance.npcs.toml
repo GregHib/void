@@ -1,0 +1,31 @@
+[tiadeche_karamja_jungle_instance]
+id = 1163
+examine = "A rather depressed looking fisherman."
+
+[tamayu_karamja_jungle_instance]
+id = 1169
+examine = "A hunter who long ago succumbed to blood lust."
+
+[tamayu_karamja_jungle_instance_2]
+id = 1170
+
+[the_shaikahan_karamja_jungle_instance]
+id = 1173
+
+[fishing_spot_karamja_jungle_instance]
+id = 1176
+
+[fishing_spot_karamja_jungle_instance_2]
+id = 1177
+
+[pelican_karamja_jungle_instance]
+id = 148
+examine = "A sea bird."
+
+[gull_karamja_2]
+id = 146
+examine = "A sea bird."
+
+[cormorant]
+id = 147
+examine = "A sea bird."

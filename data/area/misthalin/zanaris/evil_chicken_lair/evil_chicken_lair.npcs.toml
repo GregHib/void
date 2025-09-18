@@ -1,0 +1,15 @@
+[black_dragon_evil_chicken_lair]
+id = 4674
+categories = ["black_dragons"]
+examine = "A fierce dragon with black scales!"
+
+[black_dragon_evil_chicken_lair_2]
+id = 4675
+categories = ["black_dragons"]
+examine = "A fierce dragon with black scales!"
+
+[black_dragon_evil_chicken_lair_3]
+id = 4676
+categories = ["black_dragons"]
+examine = "A fierce dragon with black scales!"
+

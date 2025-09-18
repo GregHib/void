@@ -1,0 +1,294 @@
+[penguin_miscellania]
+id = 131
+categories = ["birds"]
+examine = "An inhabitant of icy regions."
+
+[gull_miscellania]
+id = 1325
+
+[queen_sigrid]
+id = 1359
+
+[arnor]
+id = 1361
+examine = "A subject of Etceteria."
+
+[haming]
+id = 1362
+examine = "A subject of Etceteria."
+
+[moldof]
+id = 1363
+examine = "A subject of Etceteria."
+
+[helga]
+id = 1364
+examine = "A subject of Etceteria."
+
+[matilda]
+id = 1365
+examine = "A subject of Etceteria."
+
+[ashild]
+id = 1366
+examine = "A subject of Etceteria."
+
+[skraeling]
+id = 1367
+examine = "A warrior of Etceteria."
+
+[skraeling_2]
+id = 1368
+examine = "A warrior of Etceteria."
+
+[fishmonger_miscellania]
+id = 1369
+examine = "Hmm, he smells."
+
+[greengrocer_miscellania]
+id = 1370
+examine = "At least he eats his greens."
+
+[prince_brand]
+id = 1371
+
+[princess_astrid]
+id = 1372
+
+[king_vargas]
+id = 1373
+
+[guard_miscellania]
+id = 1374
+examine = "He's guarding the throne room."
+
+[advisor_ghrim]
+id = 1375
+
+[derrik]
+id = 1376
+examine = "Smithy for Sogthorpe."
+
+[farmer_miscellania]
+id = 1377
+examine = "He's cutting the wheat."
+
+[flower_girl_miscellania]
+id = 1378
+examine = "No-one would mistake her for a duchess."
+
+[ragnar]
+id = 1379
+examine = "A subject of Miscellania."
+
+[einar]
+id = 1380
+examine = "A subject of Miscellania."
+
+[alrik]
+id = 1381
+examine = "A subject of Miscellania."
+
+[thorhild]
+id = 1382
+examine = "A subject of Miscellania."
+
+[halla]
+id = 1383
+examine = "A subject of Miscellania."
+
+[sailor_miscellania]
+id = 1385
+
+[rannveig]
+id = 1386
+examine = "A subject of Miscellania."
+
+[thora]
+id = 1387
+examine = "A subject of Miscellania."
+
+[valgerd]
+id = 1388
+examine = "A subject of Miscellania."
+
+[skraeling_3]
+id = 1389
+
+[broddi]
+id = 1390
+examine = "A subject of Miscellania."
+
+[skraeling_4]
+id = 1391
+examine = "A warrior of Miscellania."
+
+[ragnvald]
+id = 1392
+examine = "A subject of Miscellania."
+
+[fishmonger_miscellania_2]
+id = 1393
+
+[greengrocer_miscellania_2]
+id = 1394
+examine = "At least he eats his greens."
+
+[lumberjack_leif_miscellania]
+id = 1395
+examine = "He's a lumberjack, and he's okay."
+
+[miner_magnus_miscellania]
+id = 1396
+examine = "He's just mining his own business."
+
+[fisherman_frodi_miscellania]
+id = 1397
+examine = "There's something fishy about him."
+
+[gardener_gunnhild_miscellania]
+id = 1398
+examine = "She's looking a bit weedy."
+
+[fishing_spot_miscellania]
+id = 1399
+
+[chicken_miscellania]
+id = 1401
+categories = ["birds"]
+examine = "Yep. Definitely a chicken."
+
+[chicken_miscellania_2]
+id = 1402
+
+[rooster_miscellania]
+id = 1403
+
+[rabbit_miscellania]
+id = 1404
+
+[rhazien_miscellania]
+id = 2337
+examine = "Perhaps this gardener might look after your crops for you."
+
+[carpenter_kjallak_miscellania]
+id = 3916
+examine = "His bark's worse than his blight."
+
+[farmer_fromund_miscellania]
+id = 3917
+examine = "He looks a bit seedy."
+
+[runa]
+id = 3920
+examine = "The barmaid of the Esoterican Arms."
+
+[halla_2]
+id = 3921
+examine = "She owns the clothes shop."
+
+[finn]
+id = 3922
+examine = "Runs the general store."
+
+[osvald]
+id = 3923
+examine = "If it's edible, he'll sell it."
+
+[runolf]
+id = 3924
+examine = "A subject of Miscellania."
+
+[tjorvi]
+id = 3925
+examine = "A subject of Miscellania."
+
+[ingrid]
+id = 3926
+examine = "A subject of Miscellania."
+
+[thora_2]
+id = 3927
+examine = "A subject of Miscellania."
+
+[signy]
+id = 3928
+examine = "A Fremennik teenager."
+
+[hild_miscellania]
+id = 3929
+examine = "A Fremennik teenager."
+
+[armod]
+id = 3930
+examine = "A Fremennik teenager."
+
+[beigarth]
+id = 3931
+examine = "A Fremennik teenager."
+
+[reinn]
+id = 3932
+examine = "A Fremennik teenager."
+
+[alviss]
+id = 3933
+examine = "A dwarf who's currently living in Miscellania."
+
+[fullangr]
+id = 3934
+examine = "A dwarf who's currently living in Miscellania."
+
+[jari]
+id = 3935
+examine = "A dwarf who's currently living in Miscellania."
+
+[thorodin]
+id = 3936
+examine = "A dwarf miner. He's digging holes in the walls."
+
+[ferd]
+id = 3937
+examine = "A dwarf miner. He's shoring up the walls."
+
+[donal]
+id = 3938
+examine = "A rather scared-looking dwarf. He doesn't seem all that drunk."
+
+[sea_snake_young]
+id = 3939
+categories = ["sea_snakes"]
+examine = "Snake, snake, oh, it's a young snake..."
+
+[sea_snake_hatchling]
+id = 3940
+categories = ["sea_snakes"]
+examine = "A baby sea snake. Snaaaaaaake!"
+
+[guard_miscellania_2]
+id = 3941
+
+[guard_miscellania_3]
+id = 3942
+examine = "He's guarding the entrance to the dungeons."
+
+[yulf_squecks]
+id = 4561
+examine = "Perhaps this gardener might look after your crops for you."
+
+[rabbit_miscellania_2]
+id = 5829
+
+[king_vargas_2]
+id = 7403
+
+[tool_leprechaun_miscellania]
+id = 7557
+examine = "Looks after your Farming tools."
+
+[queen_sigrid_2]
+id = 9349
+
+[macaroni_penguin]
+id = 4252
+examine = "Beak areful with this one, he looks shifty!"

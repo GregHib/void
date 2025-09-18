@@ -1,0 +1,17 @@
+[frost_dragon_asgarnian_ice_resource_dungeon]
+id = 11633
+
+[frost_dragon_asgarnian_ice_resource_dungeon_2]
+id = 11634
+
+[frost_dragon_asgarnian_ice_resource_dungeon_3]
+id = 11635
+
+[frost_dragon_asgarnian_ice_resource_dungeon_4]
+id = 11636
+
+[frost_dragon_asgarnian_ice_resource_dungeon_5]
+id = 51
+categories = ["dragons"]
+examine = "A dragon covered in frost and ice."
+

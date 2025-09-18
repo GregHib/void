@@ -1,4 +1,0 @@
-spawns = [
-    { id = "hellhound", x = 2734, y = 9688, members = true },
-    { id = "hellhound", x = 2734, y = 9693, members = true },
-]

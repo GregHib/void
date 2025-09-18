@@ -1,0 +1,17 @@
+[bunkwicket]
+id = 1423
+examine = "This Gnome is busy applying some kind of pasty material to the cave walls."
+
+[waymottin]
+id = 1424
+examine = "This Gnome is busy applying some kind of pasty material to the cave walls."
+
+[zooknock]
+id = 1425
+examine = "A wizened little Gnome dressed in brightly coloured clothes."
+
+[skeleton_ape_atoll_tunnels]
+id = 1471
+categories = ["skeletons"]
+examine = "It looks just a bit... underfed."
+

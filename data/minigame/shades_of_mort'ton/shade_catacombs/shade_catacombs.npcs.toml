@@ -1,0 +1,20 @@
+[phrin_shadow_shade_catacombs]
+id = 1243
+categories = ["shades"]
+examine = "A shadowy sort of entity, kind of creepy looking."
+
+[riyl_shadow_shade_catacombs]
+id = 1245
+categories = ["shades"]
+examine = "A shadowy sort of entity, kind of creepy looking."
+
+[asyn_shadow_shade_catacombs]
+id = 1247
+categories = ["shades"]
+examine = "A shadowy sort of entity, kind of creepy looking."
+
+[fiyr_shadow_shade_catacombs]
+id = 1249
+categories = ["shades"]
+examine = "A shadowy sort of entity, kind of creepy looking."
+

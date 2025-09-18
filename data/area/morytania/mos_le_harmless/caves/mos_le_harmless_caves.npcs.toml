@@ -1,0 +1,10 @@
+[albino_bat_mos_leharmless_caves]
+id = 4345
+categories = ["bats"]
+examine = "It's all white by me."
+
+[cave_horror_mos_leharmless_caves]
+id = 4355
+categories = ["cave_horrors"]
+examine = "A horrible, emaciated ape like creature with beady red eyes."
+

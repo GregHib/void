@@ -1,0 +1,144 @@
+[leech_chaos_tunnels]
+id = 1219
+examine = "Yuck! It's all slimy!"
+
+[dust_devil]
+id = 1624
+categories = ["dust_devils"]
+examine = "The vacuumed face of evil."
+
+[turoth_chaos_tunnels]
+id = 1629
+
+[bloodworm_chaos_tunnels]
+id = 2031
+examine = "I think I should keep my distance..."
+
+[giant_crypt_rat_chaos_tunnels]
+id = 2033
+categories = ["rats"]
+examine = "A nasty overgrown rodent."
+
+[crypt_spider]
+id = 2034
+categories = ["spiders"]
+examine = "Incey wincey."
+
+[giant_crypt_spider]
+id = 2035
+categories = ["spiders"]
+examine = "Not very incey wincey."
+
+[giant_crypt_rat_chaos_tunnels_2]
+id = 4920
+categories = ["rats"]
+examine = "A nasty overgrown rodent."
+
+[giant_crypt_rat_chaos_tunnels_3]
+id = 4921
+categories = ["rats"]
+examine = "A nasty overgrown rodent."
+
+[possessed_pickaxe]
+id = 5413
+
+[animated_spade]
+id = 5414
+categories = ["phantoms"]
+examine = "How does it move of its own accord?"
+
+[dagonhai_monk_chaos_tunnels]
+id = 7138
+examine = "A monk of the Dagon'hai."
+
+[dagonhai_monk_chaos_tunnels_2]
+id = 7139
+examine = "A monk of the Dagon'hai."
+
+[dagonhai_monk_chaos_tunnels_3]
+id = 7140
+examine = "A monk of the Dagon'hai."
+
+[fire_elemental]
+id = 1019
+examine = "A fire elemental."
+
+
+[turoth]
+id = 1623
+categories = ["turoth"]
+examine = "He's one big leg short!"
+
+[turoth_2]
+id = 1626
+categories = ["turoth"]
+examine = "She's one leg short!"
+
+[turoth_3]
+id = 1627
+categories = ["turoth"]
+examine = "It's one leg short!"
+
+[turoth_4]
+id = 1628
+categories = ["turoth"]
+examine = "It's one small leg short!"
+
+[turoth_5]
+id = 1630
+
+[jelly]
+id = 1637
+categories = ["jellies"]
+examine = "Looks scared to see me."
+
+[jelly_2]
+id = 1638
+categories = ["jellies"]
+examine = "Doesn't look so tough..."
+
+[jelly_3]
+id = 1639
+categories = ["jellies"]
+examine = "Wibbly."
+
+[jelly_4]
+id = 1640
+categories = ["jellies"]
+examine = "There's always room for jelly."
+
+[jelly_5]
+id = 1641
+
+[jelly_6]
+id = 1642
+
+[mummy]
+id = 1961
+categories = ["zombies"]
+examine = "A tightly-wrapped monster."
+
+[mummy_2]
+id = 1962
+categories = ["zombies"]
+examine = "Spooky, bandaged dead dude."
+
+[mummy_3]
+id = 1963
+categories = ["zombies"]
+examine = "A victim of poor first aid."
+
+[mummy_4]
+id = 1964
+categories = ["zombies"]
+examine = "But who's the daddy?"
+
+[waterfiend]
+id = 5361
+categories = ["waterfiends"]
+examine = "A fiendish embodiment of water."
+
+[skeleton_chaos_tunnels]
+id = 5386
+categories = ["skeletons"]
+examine = "Achingly thin."

@@ -2,4 +2,10 @@ spawns = [
 # 14486
   { id = "rat", x = 3619, y = 9621, members = true },
   { id = "rat", x = 3627, y = 9618, members = true },
+  { id = "vertida_sefalatis", x = 3630, y = 9643, members = true },
+  { id = "safalaan", x = 3627, y = 9646, members = true },
+  { id = "mekritus_ahara", x = 3623, y = 9630, members = true },
+  { id = "andiess_juip", x = 3630, y = 9646, members = true },
+  { id = "kael_forshaw", x = 3629, y = 9646, members = true },
+  { id = "flaygian_screwte", x = 3622, y = 9644, members = true },
 ]

@@ -1,0 +1,34 @@
+[mud_minesweeper]
+id = 7124
+
+[rabbit_minesweeper]
+id = 7125
+
+[rabbit_minesweeper_2]
+id = 7126
+examine = "A hungry-looking rabbit."
+
+[rabbit_minesweeper_3]
+id = 7127
+examine = "A hungry-looking rabbit."
+
+[farmer_minesweeper]
+id = 7128
+examine = "A gnome farmer."
+
+[farmer_minesweeper_2]
+id = 7129
+examine = "A gnome farmer."
+
+[farmer_minesweeper_3]
+id = 7130
+examine = "A gnome farmer."
+
+[farmer_blinkin_minesweeper]
+id = 7131
+examine = "The head farmer, apparently."
+
+[mrs__winkin_minesweeper]
+id = 7132
+examine = "Owner of this homestead."
+

@@ -1,0 +1,12 @@
+[tindel_marchant_port_khazard]
+id = 1799
+examine = "He seems quietly enthusiastic about his profession."
+
+[murphy_port_khazard]
+id = 463
+examine = "Salty old sea dog."
+
+[shopkeeper_port_khazard]
+id = 555
+examine = "Has a fine moustache."
+

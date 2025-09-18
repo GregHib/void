@@ -64,3 +64,55 @@ id = 2824
 categories = ["human"]
 collision = "indoors"
 examine = "Manufacturer of fine leathers."
+
+[fremennik_warrior]
+id = 9709
+examine = "He's not from around here."
+
+[faruq]
+id = 9159
+examine = "He's not from around here."
+
+[tool_leprechaun_al_kharid]
+id = 7564
+examine = "Looks after your Farming tools."
+
+[father_reen]
+id = 2897
+examine = "Looks a bit lost."
+
+[alice_the_camel]
+id = 2813
+wander_radius = 5
+examine = "A camel who's come from the south."
+
+[cam_the_camel]
+id = 2812
+wander_radius = 4
+examine = "A camel who likes to rest."
+
+[ollie_the_camel]
+id = 2811
+wander_radius = 6
+examine = "A camel who wants to fly some day."
+
+[elly_the_camel]
+id = 2810
+wander_radius = 4
+examine = "A camel whose love is unrequited."
+
+[al_kharid_warrior]
+id = 18
+wander_radius = 4
+examine = "Part of Al Kharid's elite fighting force."
+
+[man_al_kharid]
+id = 16
+
+[apprentice]
+id = 5532
+examine = "Come, old broomstick, you are needed."
+
+[sorceress]
+id = 5531
+examine = "Antisocial."

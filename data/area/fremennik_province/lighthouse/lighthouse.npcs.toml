@@ -1,0 +1,11 @@
+[jossik_lighthouse]
+id = 1334
+examine = "Apparently he keeps a lighthouse."
+
+[larrissa_lighthouse]
+id = 1336
+examine = "A fremennik girl."
+
+[jossik_lighthouse_dungeon]
+id = 1335
+examine = "Looks like he's in trouble..."

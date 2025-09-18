@@ -1,0 +1,16 @@
+[chaos_druid_warrior]
+id = 193
+examine = "A crazy evil druid."
+
+[salarin_the_twisted]
+id = 205
+examine = "A crazy, evil druid."
+
+[sigbert_the_adventurer]
+id = 37
+examine = "A bold knight famed for his travels."
+
+[wizard_frumscone]
+id = 460
+examine = "A Wizard of the Magic Guild."
+

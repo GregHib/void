@@ -1,4 +1,21 @@
 spawns = [
 # 13104
   { id = "musician_shantay_pass", x = 3309, y = 3126, direction = "WEST" },
+  { id = "monkey_bedabin_camp", x = 3311, y = 3108, members = true },
+  { id = "irena_shantay_pass", x = 3303, y = 3113, members = true },
+  { id = "irena_shantay_pass_2", x = 3304, y = 3113, members = true },
+  { id = "scout_shantay_pass", x = 3301, y = 3100, members = true },
+  { id = "ana_shantay_pass", x = 3305, y = 3112, members = true },
+  { id = "shantay_shantay_pass", x = 3304, y = 3118 },
+  { id = "ugthanki", x = 3267, y = 3077 },
+  { id = "ugthanki", x = 3269, y = 3110 },
+  { id = "ugthanki", x = 3275, y = 3094 },
+  { id = "ugthanki", x = 3291, y = 3078 },
+  { id = "ugthanki", x = 3291, y = 3100 },
+  { id = "ugthanki", x = 3305, y = 3089 },
+  { id = "ugthanki", x = 3318, y = 3078 },
+  { id = "ugthanki", x = 3321, y = 3104 },
+  { id = "shantay_guard", x = 3305, y = 3129 },
+  { id = "shantay_guard", x = 3307, y = 3123 },
+  { id = "rug_merchant_shantay_pass", x = 3311, y = 3109 },
 ]

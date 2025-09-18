@@ -1,0 +1,84 @@
+[tropical_wagtail]
+id = 5072
+examine = "It blends in very well with its surroundings."
+
+[platypus_brown]
+id = 7021
+examine = "A most unlikely creature."
+
+[platypus_light_brown]
+id = 7022
+
+[platypus_dark_brown]
+id = 7023
+
+[baby_platypus_brown]
+id = 7024
+examine = "A most unlikely creature."
+
+[baby_platypus_light_brown]
+id = 7025
+
+[baby_platypus_dark_brown]
+id = 7026
+
+[balnea]
+id = 7047
+examine = "She looks like she means business."
+
+[frawd]
+id = 7048
+examine = "I'm surprised she can use a needle with those big hands."
+
+[ogress_banker]
+id = 7049
+examine = "Fit to wear the uniform?"
+
+[ogress_banker_2]
+id = 7050
+
+[chief_tess]
+id = 7051
+examine = "She walks as if she owns the place."
+
+[seegud]
+id = 7052
+examine = "An ogress shaman."
+
+[chargurr]
+id = 7055
+
+[chargurr_2]
+id = 7056
+
+[snurgh]
+id = 7057
+examine = "Rather unconvincing as a hotelier."
+
+[muggh]
+id = 7062
+examine = "Up to her arms in mud."
+
+[glum]
+id = 7077
+examine = "Does his mother know where he is?"
+
+[kringk]
+id = 7099
+
+[thump]
+id = 7100
+
+[thump_2]
+id = 7101
+
+[kringk_2]
+id = 7102
+
+[hairdryer]
+id = 7103
+
+[dawg]
+id = 7104
+examine = "Ferocious larupia with a dainty collar."
+

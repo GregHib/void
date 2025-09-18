@@ -1,0 +1,26 @@
+[sophanem_guard_dungeon]
+id = 5270
+examine = "A guard of Sophanem."
+
+[sophanem_guard_dungeon_2]
+id = 5274
+examine = "A guard of Sophanem."
+
+[scarab_mage_sophanem_dungeon]
+id = 5250
+categories = ["scabarites"]
+examine = "Part scarab, part man."
+
+[locust_rider_sophanem_dungeon]
+id = 5251
+categories = ["scabarites"]
+examine = "A mounted lancer."
+
+[locust_rider_sophanem_dungeon_2]
+id = 5252
+categories = ["scabarites"]
+examine = "A mounted archer."
+
+[maisa_sophanem_dungeon]
+id = 5280
+

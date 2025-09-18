@@ -1,0 +1,55 @@
+[cave_goblin_dorgesh_kaan_station]
+id = 5873
+
+[cave_goblin_dorgesh_kaan_station_2]
+id = 5874
+categories = ["goblins"]
+examine = "A goblin with big, bulging eyes."
+
+[cave_goblin_dorgesh_kaan_station_3]
+id = 5875
+categories = ["goblins"]
+examine = "A goblin with big, bulging eyes."
+
+[cave_goblin_dorgesh_kaan_station_4]
+id = 5876
+
+[cave_goblin_dorgesh_kaan_station_5]
+id = 5877
+
+[cave_goblin_dorgesh_kaan_station_6]
+id = 5878
+
+[ticket_goblin_dorgesh_kaan_station]
+id = 5879
+categories = ["goblins"]
+examine = "He sells tickets to Keldagrim."
+
+[dwarf_dorgesh_kaan_station]
+id = 5880
+examine = "A dwarf from Keldagrim."
+
+[dwarf_dorgesh_kaan_station_2]
+id = 5881
+examine = "A dwarf from Keldagrim."
+
+[dwarf_dorgesh_kaan_station_3]
+id = 5882
+examine = "A dwarf from Keldagrim."
+
+[dwarf_dorgesh_kaan_station_4]
+id = 5883
+examine = "A dwarf from Keldagrim."
+
+[dwarf_dorgesh_kaan_station_5]
+id = 5884
+examine = "A dwarf from Keldagrim."
+
+[dwarf_dorgesh_kaan_station_6]
+id = 5885
+examine = "A dwarf from Keldagrim."
+
+[ticket_dwarf_dorgesh_kaan_station]
+id = 5886
+examine = "He sells tickets to Dorgesh-Kaan."
+

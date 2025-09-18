@@ -1,0 +1,46 @@
+[invrigar_the_necromancer]
+id = 173
+examine = "An evil user of Magic powers."
+
+[necromancer]
+id = 194
+examine = "A crazy evil necromancer."
+
+[irwin_feaselbaum]
+id = 2066
+examine = "A young assistant necromancer."
+
+[bonafido]
+id = 5580
+examine = "He knows everything has a reason."
+
+[black_eye]
+id = 5589
+examine = "Famous for his fights."
+
+[no_fingers]
+id = 5590
+examine = "Count them pinkies!"
+
+[gummy]
+id = 5591
+examine = "He wishes he had teeth."
+
+[effigy]
+id = 5598
+
+[homunculus]
+id = 5599
+
+[homunculus_2]
+id = 5600
+
+[transmute_the_alchemist]
+id = 5601
+
+[currency_the_alchemist]
+id = 5602
+
+[homunculus_3]
+id = 5581
+examine = "Is it male or female?"

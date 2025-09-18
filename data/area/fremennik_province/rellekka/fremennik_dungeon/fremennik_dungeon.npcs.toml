@@ -1,0 +1,37 @@
+[kurask_fremennik_dungeon]
+id = 1608
+categories = ["kurask"]
+examine = "Large, heavy, with sharp things attached to its head."
+
+[kurask_fremennik_dungeon_2]
+id = 1609
+
+[basilisk_fremennik_dungeon]
+id = 1616
+categories = ["basilisks"]
+examine = "The eyes of evil."
+
+[cockatrice_fremennik_dungeon]
+id = 1620
+categories = ["cockatrice"]
+examine = "The winged reptile."
+
+[pyrefiend_fremennik_dungeon]
+id = 1633
+categories = ["pyrefiends"]
+examine = "A small fire demon."
+
+[pyrefiend_fremennik_dungeon_2]
+id = 1634
+
+[pyrefiend_fremennik_dungeon_3]
+id = 1635
+
+[pyrefiend_fremennik_dungeon_4]
+id = 1636
+
+[aquanite_fremennik_dungeon]
+id = 9172
+categories = ["aquanites"]
+examine = "It has a light on its forehead. What a pretty light... So shiny!"
+

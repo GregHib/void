@@ -1,0 +1,5 @@
+spawns = [
+  { id = "blast_furnace_foreman", x = 1944, y = 4958, members = true },
+  { id = "ordan", x = 1936, y = 4966, members = true },
+  { id = "jorzik", x = 1939, y = 4968, members = true },
+]

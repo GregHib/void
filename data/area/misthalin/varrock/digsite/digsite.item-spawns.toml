@@ -1,5 +1,7 @@
 spawns = [
-# 13365
+  # 13364
+  { id = "panning_tray", x = 3369, y = 3378, delay = 100, members = true },
+  # 13365
   { id = "bones", x = 3369, y = 3412, delay = 100, members = true },
   { id = "bones", x = 3368, y = 3411, delay = 100, members = true },
   { id = "bones", x = 3361, y = 3411, delay = 100, members = true },

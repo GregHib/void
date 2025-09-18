@@ -71,3 +71,132 @@ id = 13172
 categories = ["human"]
 wander_radius = 4
 examine = "She comes from Al Kharid."
+
+[undead_tree_draynor]
+id = 152
+
+[farmer_draynor]
+id = 1761
+examine = "Farming the wheat."
+
+[veronica]
+id = 285
+examine = "She doesn't look too happy."
+
+[professor_oddenstein]
+id = 286
+examine = "A mad scientist if ever I saw one!"
+
+[chicken_draynor]
+id = 3290
+
+[maris]
+id = 3292
+examine = "She's married to Morgan."
+
+[ava]
+id = 5199
+
+[scout_draynor]
+id = 5576
+
+[morgan]
+id = 755
+examine = "He looks scared."
+
+[olivia]
+id = 2233
+examine = "She's a seed merchant."
+
+[piglet]
+id = 2242
+examine = "Porcine."
+
+[piglet_2]
+id = 2243
+
+[pig]
+id = 2239
+wander_radius = 4
+examine = "Porker."
+
+[pig_2]
+id = 2240
+wander_radius = 4
+examine = "Swine."
+
+[master_farmer]
+id = 2234
+examine = "A master at farming."
+
+[market_guard_draynor]
+id = 2236
+examine = "He guards the Draynor Market stalls from thieves."
+
+[bed_draynor]
+id = 2254
+
+[bank_guard_draynor]
+id = 2574
+examine = "He's guarding the bank."
+
+[miss_schism]
+id = 2634
+examine = "A busy-body who loves a bit of gossip."
+
+[martin_the_master_gardener]
+id = 3299
+examine = "A master at gardening."
+
+[wise_old_man_2]
+id = 3820
+
+[fortunato]
+id = 3671
+examine = "He looks as if he could do with a sip of Amontillado."
+
+[gull_draynor]
+id = 450
+
+[gull_draynor_2]
+id = 451
+
+[town_crier_draynor]
+id = 6136
+
+[maggie]
+id = 8078
+examine = "A young witch."
+
+[wendy]
+id = 8201
+examine = "A young witch."
+
+[trogs]
+id = 8202
+examine = "A feisty cat."
+
+[norman]
+id = 8203
+
+[babe]
+id = 8204
+
+[shady_stranger]
+id = 8339
+examine = "He seems to be trying to watch everyone at once."
+
+[suspicious_outsider]
+id = 8436
+examine = "Haven't seen his sort around here before; what's he doing here?"
+
+[ruantun_draynor_sewers]
+id = 1916
+examine = "Luckily, I can't see much of his face."
+
+[witch]
+id = 5201
+
+[witch_normal]
+id = 5200
+examine = "The hat's a dead giveaway."

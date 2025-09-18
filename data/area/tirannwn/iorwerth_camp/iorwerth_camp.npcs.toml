@@ -1,0 +1,16 @@
+[lord_iorwerth]
+id = 1182
+
+[elf_warrior]
+id = 1183
+categories = ["elves"]
+examine = "He looks pretty handy with that bow."
+
+[elf_warrior_2]
+id = 1184
+categories = ["elves"]
+examine = "I don't wanna be at the wrong end of that pike."
+
+[fishing_spot_iorwerth_camp]
+id = 1189
+

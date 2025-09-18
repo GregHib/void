@@ -1,3 +1,33 @@
 [a_pile_of_broken_glass]
 id = 2800
 examine = "It looks like some broken bottles"
+
+[captain_korasi_mudskipper_point]
+id = 11654
+
+[jessika_mudskipper_point]
+id = 11665
+
+[brian_mudskipper_point]
+id = 1860
+examine = "He sells ranged equipment."
+
+[gull_mudskipper_point]
+id = 2726
+
+[gull_mudskipper_point_2]
+id = 2727
+
+[fishing_spot_mudskipper_point]
+id = 325
+
+[giant_rat_mudskipper_point]
+id = 446
+
+[giant_rat_mudskipper_point_2]
+id = 4924
+
+[rommik_mudskipper_point]
+id = 585
+examine = "If Crafting's your thing, he's your man."
+

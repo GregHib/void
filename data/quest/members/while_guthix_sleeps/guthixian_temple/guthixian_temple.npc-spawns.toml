@@ -1,0 +1,11 @@
+spawns = [
+  { id = "light_creature_guthixian_temple", x = 2540, y = 5884, members = true },
+  { id = "light_creature_guthixian_temple", x = 2540, y = 5885, members = true },
+  { id = "light_creature_guthixian_temple", x = 2540, y = 5886, members = true },
+  { id = "light_creature_guthixian_temple", x = 2541, y = 5884, members = true },
+  { id = "light_creature_guthixian_temple", x = 2541, y = 5885, members = true },
+  { id = "light_creature_guthixian_temple", x = 2541, y = 5886, members = true },
+  { id = "light_creature_guthixian_temple", x = 2542, y = 5884, members = true },
+  { id = "light_creature_guthixian_temple", x = 2542, y = 5885, members = true },
+  { id = "light_creature_guthixian_temple", x = 2542, y = 5886, members = true },
+]

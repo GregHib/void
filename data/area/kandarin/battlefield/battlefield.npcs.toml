@@ -1,0 +1,61 @@
+[khazard_trooper_battlefield]
+id = 2245
+
+[khazard_trooper_battlefield_2]
+id = 2246
+examine = "It's one of General Khazard's warriors."
+
+[gnome_troop_battlefield]
+id = 2247
+
+[gnome_troop_battlefield_2]
+id = 2248
+
+[gnome_battlefield]
+id = 2249
+examine = "Like a mini man!"
+
+[gnome_battlefield_2]
+id = 2250
+
+[gnome_battlefield_3]
+id = 2251
+
+[lieutenant_schepbur_battlefield]
+id = 3817
+examine = "The battle tortoise commander. Sir!"
+
+[commander_montai_battlefield]
+id = 470
+examine = "It's a tree gnome."
+
+[khazard_commander_battlefield]
+id = 478
+examine = "It's one of General Khazard's commanders."
+
+[tracker_gnome_1_battlefield]
+id = 481
+examine = "It's a gnome who specialises in covert operations."
+
+[tracker_gnome_2_battlefield]
+id = 482
+examine = "It's a gnome who specialises in covert operations."
+
+[tracker_gnome_3_battlefield]
+id = 483
+examine = "It's a gnome who specialises in covert operations."
+
+[mounted_terrorbird_gnome_battlefield]
+id = 6109
+categories = ["birds"]
+examine = "These gnomes know how to get around!"
+
+[mounted_terrorbird_gnome_battlefield_2]
+id = 6110
+
+[mounted_terrorbird_gnome_battlefield_3]
+id = 6111
+
+[tortoise_battlefield]
+id = 3808
+examine = "Massive beast of War with extra Gnome."

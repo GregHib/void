@@ -1,0 +1,37 @@
+[ferret]
+id = 5081
+examine = "Wild."
+
+[eagle]
+id = 5120
+examine = "A very large, very dangerous-looking birdy."
+
+[nickolaus]
+id = 5124
+
+[nickolaus_2]
+id = 5125
+
+[desert_eagle]
+id = 5130
+examine = "A very large, very dangerous, very sandy-looking birdy."
+
+[jungle_eagle]
+id = 5131
+examine = "A very large, very dangerous-looking birdy."
+
+[polar_eagle]
+id = 5132
+examine = "A very large, very dangerous, very cold-looking birdy."
+
+[eagle_2]
+id = 5133
+examine = "It seems to be protecting the nest."
+
+[polar_eagle_2]
+id = 5136
+
+[karamjan_jungle_eagle_peak]
+id = 6385
+examine = "A very large, very dangerous-looking birdy."
+

@@ -1,0 +1,27 @@
+[captain_lawgof]
+id = 208
+examine = "The head honcho around here."
+
+[galahad]
+id = 218
+examine = "A former Knight of the Round Table."
+
+[stankers]
+id = 383
+examine = "He's in control of the coal trucks."
+
+[guard_dwarven_outpost]
+id = 4257
+categories = ["dwarves"]
+examine = "A dwarven guard."
+
+[guard_dwarven_outpost_2]
+id = 4258
+categories = ["dwarves"]
+examine = "A dwarven guard."
+
+[goblin_dwarven_outpost]
+id = 4261
+categories = ["goblins"]
+examine = "An ugly green creature."
+

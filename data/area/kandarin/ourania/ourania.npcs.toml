@@ -139,3 +139,16 @@ drop_table = "monk_of_zamorak"
 combat_anims = "human"
 respawn_delay = 50
 examine = "An evil human cleric."
+
+[ghost_ourania]
+id = 491
+categories = ["ghosts"]
+examine = "Spooky."
+
+[spirit_of_scorpius_ourania]
+id = 492
+examine = "The essence of evil."
+
+[red_salamander]
+id = 5115
+examine = "Slightly slimy but certainly striking."

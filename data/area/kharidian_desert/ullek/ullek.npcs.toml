@@ -1,0 +1,57 @@
+[dried_zombie_ullek]
+id = 6761
+categories = ["zombies"]
+examine = "Cut-down and dried."
+
+[dried_zombie_ullek_2]
+id = 6762
+categories = ["zombies"]
+examine = "Needs moisturising."
+
+[dried_zombie_ullek_3]
+id = 6763
+categories = ["zombies"]
+examine = "I bet it's parched."
+
+[skeleton_ullek]
+id = 6764
+
+[skeleton_ullek_2]
+id = 6765
+
+[skeleton_ullek_3]
+id = 6766
+
+[skeleton_ullek_4]
+id = 6767
+
+[skeleton_ullek_5]
+id = 6768
+categories = ["skeletons"]
+examine = "Heartless, in every sense of the word."
+
+[scabaras_locust_ullek]
+id = 6776
+examine = "A giant, mountable locust."
+
+[locust_lancer_ullek]
+id = 6777
+categories = ["scabarites"]
+examine = "Bouncy, but not fun."
+
+[locust_ranger_ullek]
+id = 6778
+categories = ["scabarites"]
+examine = "He'll have someone's eye out with that."
+
+[crocodile_ullek]
+id = 6779
+
+[lead_archaeologist_abigail]
+id = 6786
+examine = "She looks a bit dirty from digging."
+
+[kerner]
+id = 6787
+examine = "He looks a bit dusty from troweling."
+

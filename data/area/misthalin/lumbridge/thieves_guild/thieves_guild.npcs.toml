@@ -1,0 +1,47 @@
+[guildmaster_darren]
+id = 11273
+
+[chief_thief_robin]
+id = 11279
+
+[pickpocketing_trainer]
+id = 11281
+examine = "A Thieves' Guild trainer."
+
+[pickpocketing_volunteer]
+id = 11283
+
+[pickpocketing_volunteer_2]
+id = 11285
+
+[pickpocketing_volunteer_3]
+id = 11287
+
+[coshing_volunteer]
+id = 11289
+
+[coshing_volunteer_2]
+id = 11291
+
+[coshing_volunteer_3]
+id = 11293
+
+[locks_and_traps_trainer]
+id = 11294
+examine = "A Thieves' Guild trainer."
+
+[safe_cracking_trainer]
+id = 11295
+examine = "A Thieves' Guild trainer."
+
+[advanced_pickpocketing_trainer]
+id = 11297
+
+[dodgy_derek]
+id = 11298
+examine = "A shady dealer."
+
+[mr_pinsworth]
+id = 11299
+examine = "Our man on the inside."
+

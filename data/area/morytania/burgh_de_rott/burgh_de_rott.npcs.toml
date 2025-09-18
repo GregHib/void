@@ -1,0 +1,142 @@
+[veliaf_hurtz]
+id = 3510
+
+[vampyre_juvinate]
+id = 3512
+
+[vampyre_juvinate_2]
+id = 3513
+
+[gadderanks]
+id = 3516
+
+[vampyre_juvinate_3]
+id = 3522
+
+[vampyre_juvinate_4]
+id = 3523
+
+[vampyre_juvinate_5]
+id = 3524
+
+[vampyre_juvinate_6]
+id = 3525
+
+[vampyre_juvenile]
+id = 3531
+categories = ["vampyres"]
+examine = "He looks really hungry!"
+
+[vampyre_juvenile_2]
+id = 3532
+categories = ["vampyres"]
+examine = "She looks really hungry!"
+
+[vampyre_juvenile_3]
+id = 3533
+
+[elisabeta]
+id = 3540
+examine = "The leader of Burgh de Rott."
+
+[aurel]
+id = 3541
+examine = "A flea infested, pale looking excuse of a man."
+
+[sorin]
+id = 3542
+
+[luscion]
+id = 3543
+
+[sergiu]
+id = 3544
+
+[radu]
+id = 3545
+examine = "A citizen of Burgh de Rott."
+
+[grigore]
+id = 3546
+
+[ileana]
+id = 3547
+
+[valeria]
+id = 3548
+
+[emilia]
+id = 3549
+
+[florin]
+id = 3550
+
+[catalina]
+id = 3551
+
+[ivan]
+id = 3552
+
+[teodor]
+id = 3555
+
+[calin]
+id = 3559
+
+[mihail]
+id = 3560
+
+[nicoleta]
+id = 3561
+
+[simona]
+id = 3562
+
+[vasile]
+id = 3563
+
+[razvan]
+id = 3564
+
+[luminata]
+id = 3565
+
+[cornelius]
+id = 3566
+
+[cornelius_2]
+id = 3567
+
+[fishing_spot_burgh_de_rott]
+id = 3574
+
+[fishing_spot_burgh_de_rott_2]
+id = 3575
+
+[vyrewatch]
+id = 7691
+
+[vyrewatch_2]
+id = 7692
+
+[vyrewatch_3]
+id = 7693
+
+[vyrewatch_4]
+id = 7694
+
+[vyrewatch_5]
+id = 7699
+
+[vyrewatch_6]
+id = 7700
+
+[vyrewatch_7]
+id = 7701
+
+[vyrewatch_8]
+id = 7702
+
+[ivan_strom]
+id = 7708
+

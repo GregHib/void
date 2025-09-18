@@ -1,0 +1,10 @@
+spawns = [
+  { id = "wizard_korvak", x = 1701, y = 5474, level = 2 },
+  { id = "wizard_vief", x = 1701, y = 5465, level = 2 },
+  { id = "wizard_acantha", x = 1692, y = 5471, level = 2 },
+  { id = "wizard_elriss", x = 1692, y = 5465, level = 2 },
+  { id = "wizard_runecrafting_guild", x = 1700, y = 5463, level = 2 },
+  { id = "wizard_runecrafting_guild_2", x = 1703, y = 5467, level = 2 },
+  { id = "wizard_runecrafting_guild_3", x = 1692, y = 5475, level = 2 },
+  { id = "wizard_runecrafting_guild_4", x = 1690, y = 5467, level = 2 },
+]

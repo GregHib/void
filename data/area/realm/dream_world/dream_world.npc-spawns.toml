@@ -1,0 +1,13 @@
+spawns = [
+  { id = "ethereal_man_dream_world", x = 1761, y = 5088, level = 2, members = true },
+  { id = "ethereal_lady_dream_world", x = 1761, y = 5087, level = 2, members = true },
+  { id = "ethereal_numerator_dream_world", x = 1786, y = 5066, level = 2, members = true },
+  { id = "ethereal_expert_dream_world", x = 1787, y = 5079, level = 2, members = true },
+  { id = "ethereal_perceptive_dream_world", x = 1765, y = 5112, level = 2, members = true },
+  { id = "ethereal_guide_dream_world", x = 1734, y = 5111, level = 2, members = true },
+  { id = "ethereal_fluke_dream_world", x = 1737, y = 5068, level = 2, members = true },
+  { id = "ethereal_mimic_dream_world", x = 1770, y = 5070, level = 2, members = true },
+  { id = "me_dream_world", x = 1823, y = 5087, level = 2, members = true },
+  { id = "the_inadequacy_dream_world", x = 1823, y = 5149, level = 2, members = true },
+  { id = "shooting_star", x = 2058, y = 4828, level = 2, members = true },
+]

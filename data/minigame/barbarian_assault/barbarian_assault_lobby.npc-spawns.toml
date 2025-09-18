@@ -1,0 +1,6 @@
+spawns = [
+  { id = "private_paldo_barbarian_assault_lobby", x = 2589, y = 5256, members = true },
+  { id = "private_pendron", x = 2603, y = 5293, members = true },
+  { id = "private_pierreb", x = 2593, y = 5283, members = true },
+  { id = "private_paldon", x = 2580, y = 5293, members = true },
+]

@@ -1,0 +1,96 @@
+[divine_skinweaver_dungeoneering]
+id = 10058
+examine = "An immensely powerful healer of the gorajo."
+
+[magic_construct_dungeoneering]
+id = 11006
+examine = "Created to perform menial tasks."
+
+[guardian_sphere_dungeoneering]
+id = 11009
+examine = "A sphere of dangerous portal energy."
+
+[smuggler_dungeoneering]
+id = 11226
+examine = "Our contact on the inside."
+
+[behemoth_dungeoneering]
+id = 11243
+
+[poltergeist_dungeoneering]
+id = 11245
+examine = "Pretty active for a dead guy."
+
+[pondskater_dungeoneering]
+id = 12089
+examine = "One of these things has the key. Could it be this one?"
+
+[pondskater_dungeoneering_2]
+id = 12091
+examine = "One of these things has the key. Could it be this one?"
+
+[pondskater_dungeoneering_3]
+id = 12092
+
+[pondskater_dungeoneering_4]
+id = 12093
+
+[sliding_block_dungeoneering]
+id = 12125
+
+[sliding_block_dungeoneering_2]
+id = 12126
+
+[sliding_block_dungeoneering_3]
+id = 12127
+
+[sliding_block_dungeoneering_4]
+id = 12128
+
+[sliding_block_dungeoneering_5]
+id = 12129
+
+[sliding_block_dungeoneering_6]
+id = 12130
+
+[sliding_block_dungeoneering_7]
+id = 12131
+
+[sliding_block_dungeoneering_8]
+id = 12132
+
+[sliding_block_dungeoneering_9]
+id = 12135
+
+[sliding_block_dungeoneering_10]
+id = 12145
+
+[sliding_block_dungeoneering_11]
+id = 12152
+
+[ferret_dungeoneering]
+id = 12157
+examine = "An intelligent little critter."
+
+[ferret_dungeoneering_2]
+id = 12158
+examine = "An intelligent little critter."
+
+[ferret_dungeoneering_3]
+id = 12159
+examine = "An intelligent little critter."
+
+[ferret_dungeoneering_4]
+id = 12160
+examine = "An intelligent little critter."
+
+[ferret_dungeoneering_5]
+id = 12161
+examine = "An intelligent little critter."
+
+[sliding_block_dungeoneering_12]
+id = 12964
+
+[luminescent_icefiend_dungeoneering]
+id = 9913
+

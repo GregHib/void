@@ -1,0 +1,5 @@
+spawns = [
+  { id = "kazgar", x = 3231, y = 9610, members = true },
+  { id = "dartog", x = 3245, y = 9647, members = true },
+  { id = "zanik_lumbridge_basement", x = 3210, y = 9623, members = true },
+]

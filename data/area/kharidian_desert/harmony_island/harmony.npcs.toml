@@ -1,0 +1,141 @@
+[monk_harmony]
+id = 5608
+examine = "Holier than thou."
+
+[monk_harmony_2]
+id = 5609
+examine = "Holier than thou."
+
+[monk_harmony_3]
+id = 5610
+examine = "Holier than thou."
+
+[monk_harmony_4]
+id = 5611
+examine = "Holier than thou."
+
+[sorebones_harmony]
+id = 5627
+categories = ["zombies"]
+examine = "Bedside manner is a little lacking, I think."
+
+[sorebones_harmony_2]
+id = 5628
+categories = ["zombies"]
+examine = "I hope his hands don't shake."
+
+[zombie_pirate_harmony]
+id = 5629
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_2]
+id = 5631
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_3]
+id = 5633
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_4]
+id = 5634
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_5]
+id = 5635
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_6]
+id = 5637
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_7]
+id = 5638
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_8]
+id = 5639
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_9]
+id = 5640
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_10]
+id = 5641
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_11]
+id = 5642
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_12]
+id = 5644
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_13]
+id = 5646
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_14]
+id = 5647
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_15]
+id = 5650
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_16]
+id = 5656
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_17]
+id = 5658
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_18]
+id = 5659
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_19]
+id = 5661
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_harmony_20]
+id = 5665
+categories = ["zombies"]
+examine = "Aaaarg, me hearty!"
+
+[monk_harmony_5]
+id = 5669
+
+[monk_harmony_6]
+id = 5670
+
+[monk_harmony_7]
+id = 5671
+
+[monk_harmony_8]
+id = 5672
+
+[puffin]
+id = 5614
+examine = "I'd prefer it if it were a muffin..."

@@ -1,0 +1,24 @@
+[pirate_pirates_cove]
+id = 183
+examine = "Avast ye scurvy land lubbers!"
+
+[lokar_searunner_pirates_cove]
+id = 4537
+examine = "Either a very fremennikey pirate, or a very piratey fremennik."
+
+[jake_pirates_cove]
+id = 4546
+examine = "A deadly pirate."
+
+[wilson_pirates_cove]
+id = 4548
+examine = "A pirate."
+
+[palmer_pirates_cove]
+id = 4552
+examine = "Nice shave."
+
+[sticky_sanders_pirates_cove]
+id = 4557
+examine = "Apparently his nickname comes from his fondness for jam."
+

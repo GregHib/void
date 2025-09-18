@@ -63,7 +63,7 @@ categories = ["dragons"]
 respawn_delay = 30
 examine = "A fierce dragon with black scales!"
 
-[black_dragon_dragon_1]
+[black_dragon_dark]
 id = 4673
 clone = "black_dragon"
 
@@ -89,19 +89,19 @@ categories = ["dragons"]
 respawn_delay = 30
 examine = "A mother dragon."
 
-[blue_dragon_dragon_1]
+[blue_dragon_ocean]
 id = 4681
 clone = "blue_dragon"
 
-[blue_dragon_dragon_2]
+[blue_dragon_purple]
 id = 4682
 clone = "blue_dragon"
 
-[blue_dragon_dragon_3]
+[blue_dragon_turquoise]
 id = 4683
 clone = "blue_dragon"
 
-[blue_dragon_dragon_4]
+[blue_dragon_sky]
 id = 4684
 clone = "blue_dragon"
 
@@ -209,11 +209,15 @@ categories = ["dragons"]
 respawn_delay = 30
 examine = "Its scales seem to be made of iron."
 
-[red_dragon_1]
+[red_dragon_orange]
+id = 4669
+clone = "red_dragon"
+
+[red_dragon_deep]
 id = 4670
 clone = "red_dragon"
 
-[red_dragon_2]
+[red_dragon_orange_light]
 id = 4672
 clone = "red_dragon"
 

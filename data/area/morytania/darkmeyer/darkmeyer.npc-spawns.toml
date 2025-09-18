@@ -1,0 +1,13 @@
+spawns = [
+  { id = "safalaan_darkmeyer", x = 3589, y = 3335, members = true },
+  { id = "sarius_guile_darkmeyer", x = 3590, y = 3337, members = true },
+  { id = "vyrewatch_darkmeyer", x = 3526, y = 3351, members = true },
+  { id = "vyrewatch_darkmeyer", x = 3535, y = 3349, members = true },
+  { id = "vyrewatch_darkmeyer_2", x = 3568, y = 3339, members = true },
+  { id = "vyrewatch_darkmeyer_3", x = 3570, y = 3338, members = true },
+  { id = "vyrewatch_darkmeyer_4", x = 3549, y = 3337, level = 1, members = true },
+  { id = "vyrewatch_darkmeyer_4", x = 3566, y = 3377, level = 1, members = true },
+  { id = "vyrewatch_darkmeyer_5", x = 3533, y = 3339, level = 1, members = true },
+  { id = "vyrewatch_darkmeyer_6", x = 3531, y = 3372, level = 1, members = true },
+  { id = "vyrewatch_darkmeyer_7", x = 3569, y = 3338, level = 1, members = true },
+]

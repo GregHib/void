@@ -1,0 +1,56 @@
+[high_priest_entrana]
+id = 216
+examine = "High Priest of Entrana."
+
+[monk_entrana]
+id = 222
+examine = "A holy man."
+
+[francis]
+id = 2327
+examine = "Perhaps this gardener might look after your crops for you."
+
+[mysterious_ghost_entrana]
+id = 2391
+
+[monk_of_entrana]
+id = 2730
+
+[monk_of_entrana_2]
+id = 2731
+examine = "Holy looking."
+
+[mazion_entrana]
+id = 3114
+examine = "Mazion seems to be covered in sand."
+
+[fishing_spot_entrana]
+id = 318
+
+[fishing_spot_entrana_2]
+id = 319
+
+[fritz_the_glassblower]
+id = 4909
+examine = "His motives are see-through."
+
+[auguste_entrana]
+id = 5049
+examine = "Balloonist extraordinaire."
+
+[frincos]
+id = 578
+examine = "Kind of funny-looking."
+
+[cave_monk]
+id = 656
+examine = "Unsurprisingly monk like."
+
+[monk_of_entrana_3]
+id = 658
+examine = "Holy looking."
+
+[entrana_firebird]
+id = 6108
+examine = "Probably not a chicken."
+

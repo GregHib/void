@@ -1,0 +1,30 @@
+[scarab_larva_scabaras_dungeon]
+id = 6772
+examine = "It's not quite small enough to stamp upon."
+
+[scabaras_ranger]
+id = 6773
+categories = ["scabarites"]
+examine = "Bred to shoot you down."
+
+[scabaras_lancer]
+id = 6774
+categories = ["scabarites"]
+examine = "It might be angry...it's hard to tell."
+
+[scabaras_mage_scabaras_dungeon]
+id = 6780
+categories = ["scabarites"]
+examine = "Part scarab, part man."
+
+[scabaras_mage_scabaras_dungeon_2]
+id = 6781
+
+[clay_golem_scabaras_dungeon]
+id = 6785
+examine = "An animated clay statue."
+
+[high_priest_of_scabaras_scabaras_dungeon]
+id = 6788
+examine = "He exudes something like holiness."
+
