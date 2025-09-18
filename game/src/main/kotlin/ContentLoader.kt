@@ -1,14 +1,24 @@
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.entity.NPCSpawn
+import world.gregs.voidps.engine.entity.PlayerSpawn
+import world.gregs.voidps.engine.entity.character.player.skill.level.NPCLevelChanged
+import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevelChanged
+import world.gregs.voidps.engine.dispatch.Dispatcher
+import world.gregs.voidps.engine.entity.WorldSpawn
 import world.gregs.voidps.engine.get
 import java.nio.file.NoSuchFileException
 import kotlin.system.exitProcess
 
 /**
- * Loads content scripts from a precomputed list made by gradle build task
+ * Loads content scripts from a precomputed scripts.txt list made by scriptMetadata gradle build task
+ * Script instances are passed to their relevant [Dispatcher] when they contain an overridden method (also listed in the precomputed list)
  */
 object ContentLoader {
     private val logger = InlineLogger()
+
+    val dispatchers = mutableMapOf<String, Dispatcher<*>>(
+    )
 
     fun load() {
         val start = System.currentTimeMillis()
@@ -21,8 +31,17 @@ object ContentLoader {
         try {
             while (scripts.ready()) {
                 script = scripts.readLine()
-                loadScript(script)
+                val name = script.substringAfterLast("|")
+                val instance = loadScript(name)
                 scriptCount++
+                if (!script.contains("|")) {
+                    continue
+                }
+                val methods = script.split("|").dropLast(1)
+                for (method in methods) {
+                    val dispatcher = dispatchers[method] ?: error("Unknown dispatcher for method: $method")
+                    dispatcher.load(instance)
+                }
             }
             scripts.close()
         } catch (e: Exception) {
@@ -39,10 +58,10 @@ object ContentLoader {
         logger.info { "Loaded $scriptCount ${"script".plural(scriptCount)} in ${System.currentTimeMillis() - start}ms" }
     }
 
-    private fun loadScript(name: String) {
+    private fun loadScript(name: String): Any {
         val clazz = Class.forName(name)
         val constructor = clazz.declaredConstructors.first()
         val params = constructor.parameters.map { get(it.type.kotlin) }.toTypedArray()
-        constructor.newInstance(*params)
+        return constructor.newInstance(*params)
     }
 }
