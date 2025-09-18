@@ -35,7 +35,7 @@ class CaveLizard : Api {
         }
 
         npcTimerTick("aggressive_hunt_mode_switch") { npc ->
-            npc["hunt_mode"] = if (random.nextBoolean()) "aggressive" else "aggressive_npcs"
+            npc.huntMode = if (random.nextBoolean()) "aggressive" else "aggressive_npcs"
         }
     }
 }

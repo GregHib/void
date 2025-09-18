@@ -47,13 +47,20 @@ class Hunting(
 
     override fun run() {
         for (npc in npcs) {
-            val mode: String = npc["hunt_mode"] ?: npc.def.getOrNull("hunt_mode") ?: continue
-            if (mode == "" || npc.contains("delay") || npc.dec("hunt_count_down") >= 0) {
+            if (npc.huntCounter == -1) {
+                continue
+            }
+            val mode: String? = npc.huntMode ?: npc.def.getOrNull("hunt_mode")
+            if (mode == null || mode == "") {
+                npc.huntCounter = -1
+                continue
+            }
+            if (npc.contains("delay") || --npc.huntCounter >= 0) {
                 continue
             }
             val range = npc.def["hunt_range", 5]
             val definition = huntModes.get(mode)
-            npc["hunt_count_down"] = definition.rate
+            npc.huntCounter = definition.rate
             when (definition.type) {
                 "player" -> {
                     val targets = getCharacters(npc, players, range, definition)
