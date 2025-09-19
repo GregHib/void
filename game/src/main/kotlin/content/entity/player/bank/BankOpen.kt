@@ -76,6 +76,10 @@ class BankOpen {
                 player.open("bank")
             }
         }
+
+        objectOperate("Deposit", "bank_deposit_box") {
+            player.open("bank_deposit_box")
+        }
     }
 
     fun bank(player: Player, args: List<String>) {

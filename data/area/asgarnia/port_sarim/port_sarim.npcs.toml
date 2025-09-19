@@ -117,12 +117,16 @@ id = 2696
 [mugger_port_sarim]
 id = 2697
 
-[monk_of_entrana_port_sarim]
+[monk_of_entrana_port_sarim_grey]
 id = 2728
 examine = "Holy looking."
 
-[monk_of_entrana_port_sarim_2]
+[monk_of_entrana_port_sarim_white]
 id = 2729
+examine = "Holy looking."
+
+[monk_of_entrana_port_sarim_ginger]
+id = 657
 examine = "Holy looking."
 
 [bellemorde_port_sarim]
@@ -187,10 +191,6 @@ examine = "A messy bird."
 
 [seagull_port_sarim_2]
 id = 6116
-
-[monk_of_entrana_port_sarim_3]
-id = 657
-examine = "Holy looking."
 
 [thaki_the_delivery_dwarf]
 id = 7115

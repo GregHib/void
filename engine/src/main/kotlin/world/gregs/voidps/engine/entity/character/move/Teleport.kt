@@ -12,7 +12,7 @@ import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-fun Character.tele(x: Int = tile.x, y: Int = tile.y, level: Int = tile.level) = tele(Delta(x - tile.x, y - tile.y, level - tile.level))
+fun Character.tele(x: Int = tile.x, y: Int = tile.y, level: Int = tile.level, clearInterfaces: Boolean = true) = tele(Delta(x - tile.x, y - tile.y, level - tile.level), clearInterfaces = clearInterfaces)
 
 fun Character.tele(area: Area) = tele(area.random())
 

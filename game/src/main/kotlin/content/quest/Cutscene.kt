@@ -35,7 +35,9 @@ class Cutscene(
     var block: (suspend SuspendableContext<Player>.() -> Unit)? = null
 
     init {
-        get<DynamicZones>().copy(region, instance)
+        if (region != Region.EMPTY) {
+            get<DynamicZones>().copy(region, instance)
+        }
         offset = instance.offset(region)
         hideTabs()
     }
@@ -109,4 +111,4 @@ class Cutscene(
     }
 }
 
-fun Context<Player>.startCutscene(name: String, region: Region): Cutscene = Cutscene(player, name, region)
+fun Context<Player>.startCutscene(name: String, region: Region = Region.EMPTY): Cutscene = Cutscene(player, name, region)

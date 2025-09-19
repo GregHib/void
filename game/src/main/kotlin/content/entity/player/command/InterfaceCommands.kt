@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.adminCommands
 import world.gregs.voidps.engine.client.command.boolArg
 import world.gregs.voidps.engine.client.command.command
+import world.gregs.voidps.engine.client.command.commandAlias
 import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
@@ -38,7 +39,7 @@ class InterfaceCommands {
 
     init {
         adminCommand("inter", stringArg("interface-id", autofill = definitions.ids.keys), desc = "Open an interface with int or string id", handler = ::open)
-
+        commandAlias("inter", "iface")
         adminCommand("show", stringArg("interface-id", autofill = definitions.ids.keys), stringArg("component-id", autofill = definitions.componentIds.keys), boolArg("visible"), desc = "Toggle visibility of an interface component") { player, args ->
             player.client?.interfaceVisibility(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), !args[2].toBoolean())
         }
@@ -69,7 +70,7 @@ class InterfaceCommands {
             handler = ::sendScript,
         )
 
-        val component = command(stringArg("iface-id", autofill = definitions.ids.keys), stringArg("comp-id", autofill = definitions.componentIds.keys), intArg("item"), intArg("amount"), desc = "Send an item to an interface component") { player, args ->
+        val component = command(stringArg("iface-id", autofill = definitions.ids.keys), stringArg("comp-id", autofill = { definitions.componentIds.keys.map { it.substringAfterLast(":") }.toSet() }), intArg("item"), intArg("amount", optional = true), desc = "Send an item to an interface component") { player, args ->
             player.interfaces.sendItem(args[0], args[1], args[2].toInt(), args.getOrNull(3)?.toInt() ?: 1)
         }
         val inventory = command(stringArg("interface-id", autofill = definitions.ids.keys), desc = "Send an item to an interface component", handler = ::sendInventory)

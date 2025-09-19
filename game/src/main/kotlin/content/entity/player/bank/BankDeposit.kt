@@ -46,7 +46,23 @@ class BankDeposit {
             }
         }
 
+        interfaceOption("Deposit carried items", "carried", "bank_deposit_box") {
+            if (player.inventory.isEmpty()) {
+                player.message("You have no items in your inventory to deposit.")
+            } else {
+                bankAll(player, player.inventory)
+            }
+        }
+
         interfaceOption("Deposit worn items", "worn", "bank") {
+            if (player.equipment.isEmpty()) {
+                player.message("You have no equipped items to deposit.")
+            } else {
+                bankAll(player, player.equipment)
+            }
+        }
+
+        interfaceOption("Deposit worn items", "worn", "bank_deposit_box") {
             if (player.equipment.isEmpty()) {
                 player.message("You have no equipped items to deposit.")
             } else {
@@ -62,10 +78,19 @@ class BankDeposit {
                 bankAll(player, player.beastOfBurden)
             }
         }
+
+        interfaceOption("Deposit beast of burden inventory", "burden", "bank_deposit_box") {
+            // TODO no familiar & no bob familiar messages
+            if (player.beastOfBurden.isEmpty()) {
+                player.message("Your familiar has no items to deposit.")
+            } else {
+                bankAll(player, player.beastOfBurden)
+            }
+        }
     }
 
     fun deposit(player: Player, inventory: Inventory, item: Item, amount: Int): Boolean {
-        if (player.menu != "bank" || amount < 1) {
+        if ((player.menu != "bank" && player.menu != "bank_deposit_box") || amount < 1) {
             return true
         }
 

@@ -1,0 +1,7 @@
+[port_sarim_entrana_gangplank_exit]
+id = 2413
+examine = "Handy for boarding the ship."
+
+[port_sarim_entrana_gangplank_enter]
+id = 2412
+examine = "Handy for boarding the ship."

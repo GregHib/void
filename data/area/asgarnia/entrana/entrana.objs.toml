@@ -1,3 +1,11 @@
 [candles_entrana]
 id = 19127
 examine = "Lit to remember the souls of the departed."
+
+[entrana_gangplank_exit]
+id = 2415
+examine = "Handy for boarding the ship."
+
+[entrana_gangplank_enter]
+id = 2414
+examine = "Handy for boarding the ship."
