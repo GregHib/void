@@ -1,0 +1,8 @@
+spawns = [
+    { id = "nulodion", x = 3011, y = 3453 },
+    { id = "black_guard", x = 3012, y = 3444 },
+    { id = "black_guard_2", x = 3016, y = 3445 },
+    { id = "black_guard_3", x = 3019, y = 3444 },
+    { id = "black_guard_4", x = 3015, y = 3448 },
+    { id = "rolad", x = 3022, y = 3452, members = true },
+]

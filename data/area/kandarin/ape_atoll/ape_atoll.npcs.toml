@@ -56,86 +56,93 @@ id = 1405
 [fishing_spot_ape_atoll_2]
 id = 1406
 
-[garkor_ape_atoll]
+[garkor]
 id = 1411
 examine = "A large and weathered looking Gnome veteran."
 
-[lumo_ape_atoll]
+[lumo]
 id = 1413
 examine = "A seasoned looking Gnome foot soldier."
 
-[bunkdo_ape_atoll]
+[bunkdo]
 id = 1415
 examine = "A seasoned looking Gnome foot soldier."
 
-[carado_ape_atoll]
+[carado]
 id = 1417
 examine = "A seasoned looking Gnome foot soldier."
 
-[karam_ape_atoll]
+[karam]
 id = 1420
 examine = "All you see is a glimmer of light and the suggestion of shadow."
 
-[karam_ape_atoll_2]
+[karam_2]
 id = 1422
 
-[dugopul_ape_atoll]
+[dugopul]
 id = 1429
 examine = "A large hairy monkey with a spade."
 
-[trefaji_ape_atoll]
+[trefaji]
 id = 1431
 examine = "A huge brutish gorilla. He looks like a jail guard."
 
-[aberab_ape_atoll]
+[aberab]
 id = 1432
 
-[solihib_ape_atoll]
+[solihib]
 id = 1433
+shop = "solihibs_food_stall"
+collision = "indoors"
 examine = "The food merchant of Ape Atoll."
 
-[daga_ape_atoll]
+[daga]
 id = 1434
+shop = "dagas_scimitar_smithy"
 examine = "A shrewd-looking monkey swordsmith."
 
-[tutab_ape_atoll]
+[tutab]
 id = 1435
+shop = "tutabs_magical_market"
 examine = "A magical trinket dealer."
 
-[ifaba_ape_atoll]
+[ifaba]
 id = 1436
+shop = "ifabas_general_store"
 examine = "A general store type of monkey."
 
-[hamab_ape_atoll]
+[hamab]
 id = 1437
+shop = "hamabs_crafting_emporium"
+collision = "indoors"
 examine = "A female monkey skilled in crafting."
 
-[hafuba_ape_atoll]
+[hafuba]
 id = 1438
 examine = "A huge gorilla, head priest of this temple."
 
-[denadu_ape_atoll]
+[denadu]
 id = 1439
 examine = "A small, well dressed monkey clasping a mace. He looks like a priest."
 
-[lofu_ape_atoll]
+[lofu]
 id = 1440
 examine = "A small, well dressed monkey clasping a mace. He looks like a priest."
 
-[kruk_ape_atoll]
+[kruk]
 id = 1441
 examine = "A large ninja monkey wielding two scimitars."
 
-[padulah_ape_atoll]
+[padulah]
 id = 1447
 categories = ["monkeys"]
 examine = "A scimitar wielding ninja monkey. He looks like he is guarding something."
 
-[uwogo_ape_atoll]
+[uwogo]
 id = 1449
 examine = "A smartly clothed large monkey."
 
-[muruwoi_ape_atoll]
+[muruwoi]
 id = 1450
 examine = "A smartly clothed large monkey."
 

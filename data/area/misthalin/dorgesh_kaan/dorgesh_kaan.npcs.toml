@@ -133,10 +133,12 @@ examine = "He works the city's metal."
 
 [reldak_dorgesh_kaan]
 id = 5780
+shop = "reldaks_leather_armour"
 examine = "Sells leather goods made of frog!"
 
 [miltog_dorgesh_kaan]
 id = 5781
+shop = "miltogs_lamps"
 examine = "Sells lamps to light your way in dark caves."
 
 [mernik_dorgesh_kaan]
@@ -204,6 +206,7 @@ examine = "Sells cave goblin fast food."
 
 [lurgon_dorgesh_kaan]
 id = 5798
+shop = "dorgesh_kaan_general_supplies"
 examine = "Oversees the market."
 
 [ur_tag_dorgesh_kaan]

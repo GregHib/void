@@ -15,7 +15,7 @@ y = [3456, 3456, 3328, 3328, 3304, 3304]
 level = 0
 tags = ["multi_combat"]
 
-[fally_castle_non_combat_multi_area]
+[falador_castle_non_combat_multi_area]
 x = [2960, 2967]
 y = [3328, 3335]
 level = 0

@@ -1,27 +1,28 @@
-[loar_shadow_mort_ton]
+[loar_shadow]
 id = 1240
 categories = ["shades"]
 examine = "A shadowy sort of entity, kind of creepy looking."
 
-[afflicted_mort_ton]
+[afflicted]
 id = 1257
 examine = "A local villager of Mort'ton."
 
-[afflicted_mort_ton_2]
+[afflicted_2]
 id = 1258
 examine = "A local villager of Mort'ton."
 
-[afflicted_mort_ton_3]
+[afflicted_3]
 id = 1261
 examine = "A local villager of Mort'ton."
 
-[afflicted_mort_ton_4]
+[afflicted_4]
 id = 1262
 examine = "A local villager of Mort'ton."
 
-[ulsquire_shauncy_mort_ton]
+[ulsquire_shauncy]
 id = 7898
 
-[razmire_keelgan_mort_ton]
+[razmire_keelgan]
 id = 7899
+examine = "A local villager of Mort'ton."
 

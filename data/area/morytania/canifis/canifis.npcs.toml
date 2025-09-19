@@ -1,13 +1,16 @@
 [rufus]
 id = 1038
+shop = "rufuss_meat_emporium"
 examine = "There's something strange about him..."
 
 [barker]
 id = 1039
+shop = "barkers_haberdashery"
 examine = "Has a distinguished air about him."
 
 [fidelio]
 id = 1040
+shop = "canifis_general_store"
 examine = "A lycanthrope shopkeeper."
 
 [sbott]

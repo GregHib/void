@@ -1,6 +1,7 @@
 [runecrafting_guild_teleport]
 x = [1695, 1697]
 y = [5463, 5465]
+level = 2
 tags = ["teleport"]
 
 [wizards_tower_multi_area]

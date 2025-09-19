@@ -4,9 +4,11 @@ examine = "Looks after the blast furnace."
 
 [ordan]
 id = 2564
+shop = "ore_seller"
 examine = "He smells of rock dust."
 
 [jorzik]
 id = 2565
+shop = "armour_store"
 examine = "He buys stuff."
 

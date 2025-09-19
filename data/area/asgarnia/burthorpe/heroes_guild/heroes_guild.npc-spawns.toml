@@ -1,4 +1,5 @@
 spawns = [
   { id = "blue_dragon_ocean", x = 2908, y = 9905 },
   { id = "achietties", x = 2902, y = 3511, members = true },
+  { id = "helemos", x = 2894, y = 3510, level = 1, members = true },
 ]

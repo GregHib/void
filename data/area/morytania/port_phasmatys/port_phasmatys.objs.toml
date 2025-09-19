@@ -45,3 +45,7 @@ examine = "These stairs were carved out of the rock of the cavern."
 [ectopool_staircase_up]
 id = 5262
 examine = "These stairs were carved out of the rock of the cavern."
+
+[phasmatys_barrier]
+id = 52760
+examine = "A ghostly barrier."

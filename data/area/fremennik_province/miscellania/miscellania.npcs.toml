@@ -41,12 +41,14 @@ examine = "A warrior of Etceteria."
 id = 1368
 examine = "A warrior of Etceteria."
 
-[fishmonger_miscellania]
+[fishmonger_etceteria]
 id = 1369
+shop = "etceteria_fish"
 examine = "Hmm, he smells."
 
-[greengrocer_miscellania]
+[greengrocer_etceteria]
 id = 1370
+shop = "island_greengrocer"
 examine = "At least he eats his greens."
 
 [prince_brand]
@@ -95,6 +97,7 @@ examine = "A subject of Miscellania."
 
 [halla]
 id = 1383
+shop = "miscellanian_clothes_shop"
 examine = "A subject of Miscellania."
 
 [sailor_miscellania]
@@ -127,11 +130,14 @@ examine = "A warrior of Miscellania."
 id = 1392
 examine = "A subject of Miscellania."
 
-[fishmonger_miscellania_2]
+[fishmonger_miscellania]
 id = 1393
+shop = "island_fishmonger"
+examine = "Hmm, he smells."
 
-[greengrocer_miscellania_2]
+[greengrocer_miscellania]
 id = 1394
+shop = "greengrocer_of_miscellania"
 examine = "At least he eats his greens."
 
 [lumberjack_leif_miscellania]
@@ -181,6 +187,7 @@ examine = "He looks a bit seedy."
 
 [runa]
 id = 3920
+shop = "the_esoterican_arms"
 examine = "The barmaid of the Esoterican Arms."
 
 [halla_2]
@@ -189,10 +196,12 @@ examine = "She owns the clothes shop."
 
 [finn]
 id = 3922
+shop = "miscellanian_general_store"
 examine = "Runs the general store."
 
 [osvald]
 id = 3923
+shop = "miscellanian_food_shop"
 examine = "If it's edible, he'll sell it."
 
 [runolf]

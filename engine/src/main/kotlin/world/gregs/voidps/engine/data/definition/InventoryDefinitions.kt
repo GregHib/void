@@ -70,7 +70,7 @@ class InventoryDefinitions(
                             }
                         }
                         "length" -> length = int()
-                        "stack", "currency" -> extras[key] = string()
+                        "stack", "currency", "title" -> extras[key] = string()
                         "width", "height" -> extras[key] = int()
                         else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                     }

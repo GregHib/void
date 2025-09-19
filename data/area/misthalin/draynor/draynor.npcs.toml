@@ -106,6 +106,7 @@ examine = "He looks scared."
 
 [olivia]
 id = 2233
+shop = "draynor_seed_market"
 examine = "She's a seed merchant."
 
 [piglet]
@@ -153,6 +154,7 @@ id = 3820
 
 [fortunato]
 id = 3671
+shop = "fortunatos_fine_wine"
 examine = "He looks as if he could do with a sip of Amontillado."
 
 [gull_draynor]

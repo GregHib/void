@@ -12,6 +12,7 @@ examine = "It's just like a big, white, furry, deadly can opener."
 
 [hunting_expert_rellekka]
 id = 5112
+shop = "hunting_supplies_rellekka"
 examine = "He must be good at hunting; even his hair blends in with the surroundings."
 
 [yeti]

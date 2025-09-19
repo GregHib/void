@@ -21,14 +21,17 @@ examine = "Keeps the line clear of traffic."
 
 [hura]
 id = 4563
+shop = "crossbow_shop_dwarven_mine"
 examine = "A seller of crossbow parts."
 
 [drogo_dwarf]
 id = 579
+shop = "drogos_mining_emporium"
 examine = "He runs a Mining store."
 
 [dwarf_dwarven_mine]
 id = 582
+shop = "dwarven_shopping_store"
 examine = "I wonder if he wants to buy my junk?"
 
 [nurmof]

@@ -27,7 +27,7 @@ spawns = [
   { id = "khazard_4", x = 2610, y = 3149 },
   { id = "angor", x = 2566, y = 3140 },
   { id = "kelvin", x = 2589, y = 3142 },
-  { id = "joe", x = 2587, y = 3142 },
+  { id = "slave_joe", x = 2587, y = 3142 },
   { id = "slave_fighter", x = 2595, y = 3142 },
   { id = "slave_fighter", x = 2616, y = 3160 },
   { id = "slave_fighter", x = 2616, y = 3163 },

@@ -1,11 +1,12 @@
-[jossik_lighthouse]
+[jossik]
 id = 1334
+shop = "the_lighthouse_store"
 examine = "Apparently he keeps a lighthouse."
 
-[larrissa_lighthouse]
+[larrissa]
 id = 1336
 examine = "A fremennik girl."
 
-[jossik_lighthouse_dungeon]
+[jossik_dungeon]
 id = 1335
 examine = "Looks like he's in trouble..."

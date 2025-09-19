@@ -1,6 +1,0 @@
-spawns = [
-  { id = "gundai_mage_arena_bank", x = 2534, y = 4714 },
-  { id = "lundail_mage_arena_bank", x = 2534, y = 4719 },
-  { id = "chamber_guardian_mage_arena_bank", x = 2508, y = 4696, members = true },
-  { id = "kolodion_mage_arena_bank", x = 2541, y = 4715, members = true },
-]

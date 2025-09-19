@@ -140,6 +140,8 @@ examine = "Head of recruitment for the Temple Knights."
 
 [sarah]
 id = 2304
+shop = "sarahs_farming_shop"
+collision = "indoors"
 examine = "She sells Farming equipment."
 
 [sheepdog]
@@ -308,8 +310,9 @@ examine = "A dwarf who looks after the mining guild."
 id = 4249
 examine = "Chief Herald of Falador."
 
-[garden_supplier_falador]
+[garden_supplier]
 id = 4251
+shop = "garden_centre"
 examine = "She has green fingers. (Not literally.)"
 
 [ambassador_spanfipple_falador]
@@ -323,16 +326,22 @@ examine = "A chip off the old block."
 [assistant_brock_falador]
 id = 5065
 
-[cassie_falador]
+[cassie]
 id = 577
+shop = "cassies_shield_shop"
+collision = "indoors"
 examine = "Nice eyes."
 
-[flynn_falador]
+[flynn]
 id = 580
+shop = "flynns_mace_market"
+collision = "indoors"
 examine = "The mace salesman."
 
-[herquin_falador]
+[herquin]
 id = 584
+shop = "herquins_gems"
+collision = "indoors"
 examine = "Seems very well-off."
 
 [sylas_falador]
@@ -346,8 +355,10 @@ examine = "Leader of the White Knights."
 [town_crier_falador]
 id = 6137
 
-[party_pete_falador]
+[party_pete]
 id = 659
+shop = "party_petes_emporium"
+collision = "indoors"
 examine = "He likes to paaaarty!"
 
 [megan_falador]
@@ -438,6 +449,8 @@ examine = "His hands are covered in mud. At least, I hope that's mud."
 
 [wayne]
 id = 581
+shop = "waynes_chains_chainmail_specialist"
+collision = "indoors"
 examine = "An armourer."
 
 [estate_agent]

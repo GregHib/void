@@ -94,14 +94,6 @@ examine = "His furs look very damp."
 id = 1793
 examine = "A hard-working potter."
 
-[rolad_barbarian_village]
-id = 1841
-examine = "He looks a little absent-minded."
-
-[nulodion_barbarian_village]
-id = 209
-examine = "The Dwarven armoury engineer."
-
 [barbarian_barbarian_village]
 id = 3249
 examine = "Siegmund, a guard in the Barbarian Village."
@@ -161,26 +153,6 @@ id = 3267
 categories = ["goblins"]
 examine = "An ugly green creature."
 
-[black_guard_barbarian_village]
-id = 3276
-categories = ["dwarves"]
-examine = "A member of the Black Guard, a special division of the dwarven army."
-
-[black_guard_barbarian_village_2]
-id = 3277
-categories = ["dwarves"]
-examine = "A member of the Black Guard, a special division of the dwarven army."
-
-[black_guard_barbarian_village_3]
-id = 3278
-categories = ["dwarves"]
-examine = "A member of the Black Guard, a special division of the dwarven army."
-
-[black_guard_barbarian_village_4]
-id = 3279
-categories = ["dwarves"]
-examine = "A member of the Black Guard, a special division of the dwarven army."
-
 [fishing_spot_barbarian_village]
 id = 328
 
@@ -202,6 +174,7 @@ examine = "Litara, a barbarian explorer."
 
 [peksa_barbarian_village]
 id = 538
+shop = "peksas_helmet_shop"
 examine = "Always up-to-date with the latest helmet fashions."
 
 [student_barbarian_village]

@@ -9,6 +9,7 @@ id = 1206
 
 [quartermaster]
 id = 1208
+shop = "quartermasters_stores"
 examine = "Responsible for the food and equipment of the troops."
 
 [will_o_the_wisp]

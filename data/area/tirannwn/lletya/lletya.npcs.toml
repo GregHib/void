@@ -1,17 +1,24 @@
 [eudav]
 id = 2352
+shop = "lletya_general_store"
+collision = "indoors"
 examine = "Buys wholesale, sells retail."
 
 [oronwen]
 id = 2353
+shop = "lletya_seamstress"
+collision = "indoors"
 examine = "An elven Seamstress."
 
 [dalldav]
 id = 2356
+shop = "lletya_archery_shop"
+collision = "indoors"
 examine = "Buys and sells bows."
 
 [gethin]
 id = 2357
+shop = "lletya_food_store"
 examine = "Looks like he knows his way around a kitchen."
 
 [elf_warrior_lletya]

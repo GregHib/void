@@ -44,6 +44,8 @@ examine = "Balloonist extraordinaire."
 
 [frincos]
 id = 578
+shop = "frincoss_fabulous_herb_store"
+collision = "indoors"
 examine = "Kind of funny-looking."
 
 [cave_monk]

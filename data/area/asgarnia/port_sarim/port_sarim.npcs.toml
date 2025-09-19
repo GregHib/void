@@ -162,23 +162,34 @@ examine = "A retired security guard."
 id = 4560
 examine = "Perhaps this gardener might look after your crops for you."
 
-[grum_port_sarim]
+[grum]
 id = 556
+shop = "grums_gold_exchange"
+collision = "indoors"
 examine = "Loves his gold."
 
-[wydin_port_sarim]
+[wydin]
 id = 557
+shop = "wydins_food_store"
+collision = "indoors"
 examine = "Likes his food to be kept fresh."
 
-[gerrant_port_sarim]
+[gerrant]
 id = 558
+shop = "gerrants_fishy_business"
+collision = "indoors"
+examine = "A Fishing expert."
 
 [brian_port_sarim]
 id = 559
+shop = "brians_battleaxe_bazaar"
+collision = "indoors"
 examine = "An axe expert."
 
 [betty_port_sarim]
 id = 583
+shop = "bettys_magic_emporium"
+collision = "indoors"
 examine = "She seems like a nice sort of person."
 
 [ned_port_sarim]

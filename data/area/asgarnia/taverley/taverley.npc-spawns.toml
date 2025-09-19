@@ -40,6 +40,9 @@ spawns = [
   { id = "druid_sickle", x = 2915, y = 3446, members = true },
   # Jatix's Herblore Shop
   { id = "druid_grey", x = 2898, y = 3432, level = 1, members = true },
+  { id = "jatix", x = 2899, y = 3429, members = true },
   # Taverley, long building
   { id = "druid_ponytail", x = 2906, y = 3451, level = 1, members = true },
+  { id = "bettamax", x = 2889, y = 3443, members = true },
+  { id = "wilbur", x = 2888, y = 3443, members = true },
 ]

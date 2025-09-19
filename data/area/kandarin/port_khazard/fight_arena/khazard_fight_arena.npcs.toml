@@ -22,7 +22,7 @@ examine = "A tough-looking Khazard barman."
 id = 260
 examine = "A slave fighter. He looks mistreated and weak."
 
-[joe]
+[slave_joe]
 id = 261
 examine = "A slave fighter. He looks mistreated and weak."
 

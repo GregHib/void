@@ -311,48 +311,68 @@ examine = "Makes sculptures."
 [riki_the_sculptors_model]
 id = 2142
 
-[santiri_keldagrim]
+[santiri]
 id = 2152
+shop = "quality_weapons_shop"
+collision = "indoors"
 examine = "Proprietor of the Quality Weapons Shop."
 
-[saro_keldagrim]
+[saro]
 id = 2153
+shop = "quality_armour_shop"
+collision = "indoors"
 examine = "Proprietor of the Quality Armour Shop."
 
-[gunslik_keldagrim]
+[gunslik]
 id = 2154
+shop = "gunsliks_assorted_items"
+collision = "indoors"
 examine = "Proprietor of Gunslik's Assorted Items."
 
 [wemund_keldagrim]
 id = 2155
 examine = "Looks like some kind of engineer or mechanic."
 
-[randivor_keldagrim]
+[randivor]
 id = 2156
+shop = "keldagrims_best_bread"
+collision = "indoors"
 examine = "He's selling his bread on the market here."
 
-[hervi_keldagrim]
+[hervi]
 id = 2157
+shop = "green_gemstone_gems"
+collision = "indoors"
 examine = "A gem stall owner, with goods from the deepest of mines."
 
-[nolar_keldagrim]
+[nolar]
 id = 2158
+shop = "carefree_crafting_stall"
+collision = "indoors"
 examine = "A crafty dwarf."
 
-[gulldamar_keldagrim]
+[gulldamar]
 id = 2159
+shop = "silver_cog_silver_stall"
+collision = "indoors"
 examine = "He has lots of silver on display. And only silver."
 
-[tati_keldagrim]
+[tati]
 id = 2160
+shop = "pickaxe_is_mine"
+collision = "indoors"
 examine = "An old mining dwarf, now he sells pickaxes and generally acts grumpy."
 
-[agmundi_keldagrim]
+[agmundi]
 id = 2161
+shop = "agmundi_quality_clothes"
+collision = "indoors"
 examine = "She seems to be doing rather well for herself, selling clothes in a palace shop."
 
-[vermundi_keldagrim]
+[vermundi]
 id = 2162
+shop = "vermundis_clothes_stall"
+collision = "indoors"
 examine = "A rather poor looking little dwarf, selling her clothes on the market."
 
 [librarian_keldagrim]
@@ -447,8 +467,10 @@ examine = "A bickering old dwarf."
 id = 2190
 examine = "A sad old dwarf living in a sad old home."
 
-[sune_keldagrim]
+[sune]
 id = 2191
+shop = "pickaxe_is_mine"
+collision = "indoors"
 examine = "He seems to always be busy."
 
 [bentamir_keldagrim]
@@ -540,10 +562,14 @@ examine = "What is he?"
 
 [stonemason_keldagrim]
 id = 4248
+shop = "keldagrim_stonemason"
+collision = "indoors"
 examine = "Someone has to get rid of all the stone they dug Keldagrim out of."
 
-[hirko_keldagrim]
+[hirko]
 id = 4558
+shop = "crossbow_shop_keldagrim"
+collision = "indoors"
 examine = "A seller of crossbow parts."
 
 [professor_manglethorp_keldagrim]
@@ -592,6 +618,8 @@ id = 2211
 
 [vigr]
 id = 2151
+shop = "vigrs_warhammers"
+collision = "indoors"
 examine = "Proprietor of Vigr's Warhammers."
 
 [trade_referee]

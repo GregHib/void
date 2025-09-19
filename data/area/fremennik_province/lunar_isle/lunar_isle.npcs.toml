@@ -21,6 +21,8 @@ examine = "As beautiful as a fallen star... I feel sick."
 
 [melana_moonlander]
 id = 4516
+shop = "moon_clan_general_store"
+collision = "indoors"
 examine = "Did she just wink at me?"
 
 [selene]
@@ -29,6 +31,8 @@ examine = "In a world of her own."
 
 [rimae_sirsalis]
 id = 4518
+shop = "moon_clan_fine_clothes"
+collision = "indoors"
 examine = "Not a single hair on her head. But one or two warts."
 
 [sirsal_banker]

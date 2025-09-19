@@ -1,0 +1,28 @@
+[nulodion]
+id = 209
+shop = "nulodions_multicannon_parts"
+examine = "The Dwarven armoury engineer."
+
+[black_guard]
+id = 3276
+categories = ["dwarves"]
+examine = "A member of the Black Guard, a special division of the dwarven army."
+
+[black_guard_2]
+id = 3277
+categories = ["dwarves"]
+examine = "A member of the Black Guard, a special division of the dwarven army."
+
+[black_guard_3]
+id = 3278
+categories = ["dwarves"]
+examine = "A member of the Black Guard, a special division of the dwarven army."
+
+[black_guard_4]
+id = 3279
+categories = ["dwarves"]
+examine = "A member of the Black Guard, a special division of the dwarven army."
+
+[rolad]
+id = 1841
+examine = "He looks a little absent-minded."

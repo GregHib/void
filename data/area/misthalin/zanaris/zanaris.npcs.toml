@@ -97,14 +97,17 @@ id = 5164
 
 [fairy_shopkeeper]
 id = 534
+shop = "zanaris_general_store"
 examine = "Sells stuff."
 
 [fairy_shop_assistant]
 id = 535
+shop = "zanaris_general_store"
 examine = "Sells stuff."
 
 [jukat]
 id = 564
+shop = "jukats_dragon_sword_shop"
 examine = "A being from a mysterious other realm."
 
 [lunderwin]
@@ -113,6 +116,7 @@ examine = "Smells strangely of cabbage."
 
 [irksol]
 id = 566
+shop = "irksols_ruby_rings"
 examine = "Is he invisible or just floating clothing?"
 
 [fairy_11]

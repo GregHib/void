@@ -3,6 +3,7 @@ id = 1301
 categories = ["human"]
 wander_radius = 2
 shop = "yrsas_shoe_store"
+collision = "indoors"
 examine = "Pretty shabbily dressed for a clothes shop owner."
 
 [rooster_rellekka]
@@ -46,8 +47,9 @@ examine = "He's fat, he's round, he bounces on the ground. That's how he got the
 id = 1281
 examine = "A Fremennik hunter."
 
-[sigmund_the_merchant_rellekka]
+[sigmund_the_merchant]
 id = 1282
+shop = "sigmund_the_merchant"
 examine = "A Fremennik merchant."
 
 [swensen_the_navigator]
@@ -100,16 +102,20 @@ examine = "What a rubbish job he has."
 [town_guard_rellekka_2]
 id = 1299
 
-[thora_the_barkeep_rellekka]
+[thora_the_barkeep]
 id = 1300
+shop = "rellekka_longhall_bar"
+collision = "indoors"
 examine = "The Longhall barkeep."
 
 [fisherman_rellekka]
 id = 1302
 examine = "There's something fishy about this guy."
 
-[skulgrimen_rellekka]
+[skulgrimen]
 id = 1303
+shop = "skulgrimens_battle_gear"
+collision = "indoors"
 examine = "Sells and makes weapons and armour."
 
 [sailor_rellekka]
@@ -142,6 +148,7 @@ examine = "One of Rellekka's many citizens."
 
 [fur_trader_rellekka]
 id = 1316
+shop = "fremennik_fur_trader"
 examine = "I wonder what he does with all that fur?"
 
 [market_guard_rellekka]

@@ -41,6 +41,7 @@ examine = "The leader of Burgh de Rott."
 
 [aurel]
 id = 3541
+shop = "aurels_supplies"
 examine = "A flea infested, pale looking excuse of a man."
 
 [sorin]

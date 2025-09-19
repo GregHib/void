@@ -26,6 +26,8 @@ id = 11670
 
 [richard_edgeville]
 id = 1783
+wander_radius = 10
+shop = "richards_wilderness_cape_shop"
 examine = "A very brave merchant."
 
 [guard_edgeville]
@@ -141,6 +143,7 @@ examine = "A mystical fount of knowledge."
 
 [oziach]
 id = 747
+shop = "oziachs_armour"
 examine = "A strange little man."
 
 [monk_edgeville]

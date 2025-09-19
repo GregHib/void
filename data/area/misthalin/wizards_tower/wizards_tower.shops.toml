@@ -1,15 +1,3 @@
-[runecrafting_skillcape]
-id = 459
-defaults = [
-    { id = "runecrafting_cape", amount = 1 },
-]
-
-[runecrafting_skillcape_trimmed]
-id = 460
-defaults = [
-    { id = "runecrafting_cape_t", amount = 1 },
-]
-
 [mizgogs_amulets_of_accuracy]
 id = 602
 defaults = [

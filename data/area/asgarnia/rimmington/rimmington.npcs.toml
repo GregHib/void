@@ -2,8 +2,8 @@
 id = 530
 categories = ["human"]
 shop = "rimmington_general_store"
-wander_radius = 2
 collision = "indoors"
+wander_radius = 2
 examine = "Has an interesting assortment of items for sale."
 
 [shop_assistant_rimmington]
@@ -98,3 +98,15 @@ id = 6098
 [tool_leprechaun_rimmington]
 id = 7559
 examine = "Looks after your Farming tools."
+
+[rommik]
+id = 585
+shop = "rommiks_crafty_supplies"
+collision = "indoors"
+examine = "If Crafting's your thing, he's your man."
+
+[brian_rimmington]
+id = 1860
+shop = "brians_archery_supplies"
+collision = "indoors"
+examine = "He sells ranged equipment."

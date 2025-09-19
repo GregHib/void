@@ -8,8 +8,10 @@ id = 8125
 categories = ["ghosts"]
 examine = "The wraith of a long-dead prisoner."
 
-[edward_spirit_realm]
+[edward]
 id = 1782
+wander_radius = 10
+shop = "edwards_wilderness_cape_shop"
 examine = "A very brave merchant."
 
 [spirit_spirit_realm]

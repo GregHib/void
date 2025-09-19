@@ -2,6 +2,7 @@ package content.entity.npc.shop
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.npc.shop.general.GeneralStores
+import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
@@ -61,7 +62,7 @@ class ShopOpen {
             player.interfaceOptions.unlockAll("shop", "stock", 0 until main.size * 6)
 
             player.interfaces.sendVisibility("shop", "store", id.endsWith("general_store"))
-            player.interfaces.sendText("shop", "title", definition["title", "Shop"])
+            player.interfaces.sendText("shop", "title", definition["title", definition.stringId.toTitleCase()])
         }
 
         interfaceRefresh("shop_side") { player ->

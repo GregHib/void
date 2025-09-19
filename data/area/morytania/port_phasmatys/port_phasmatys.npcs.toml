@@ -12,6 +12,8 @@ examine = "A ghost disciple."
 
 [ak_haranu_port_phasmatys]
 id = 1687
+shop = "ak_haranus_exotic_shop"
+examine = "A trader from across the eastern sea."
 
 [robin_port_phasmatys]
 id = 1694
@@ -28,6 +30,7 @@ examine = "This poor soul cannot understand why it has not passed to the next wo
 
 [ghost_shopkeeper_port_phasmatys]
 id = 1699
+shop = "port_phasmatys_general_store"
 examine = "Beware the ghostly shopkeeper's wares!"
 
 [ghost_innkeeper_port_phasmatys]

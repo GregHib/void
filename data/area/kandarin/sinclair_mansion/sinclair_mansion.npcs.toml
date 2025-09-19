@@ -1,5 +1,6 @@
 [milk_seller]
 id = 11547
+shop = "the_milk_shop"
 examine = "She sells milk."
 
 [highwayman_sinclair_mansion]

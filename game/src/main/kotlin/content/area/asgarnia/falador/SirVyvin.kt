@@ -1,5 +1,6 @@
 package content.area.asgarnia.falador
 
+import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Frustrated
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -73,7 +74,16 @@ class SirVyvin {
             npc<Neutral>("Greetings traveller.")
             choice {
                 option<Quiz>("Do you have anything to trade?") {
-                    npc<Neutral>("No, I'm sorry.")
+                    val kills = player["black_knight_kills", 0]
+                    when {
+                        kills >= 1300 -> player.openShop("white_knight_master_armoury")
+                        kills >= 800 -> player.openShop("white_knight_adept_armoury")
+                        kills >= 500 -> player.openShop("white_knight_noble_armoury")
+                        kills >= 300 -> player.openShop("white_knight_page_armoury")
+                        kills >= 200 -> player.openShop("white_knight_peon_armoury")
+                        kills >= 100 -> player.openShop("white_knight_novice_armoury")
+                        else -> npc<Neutral>("No, I'm sorry.")
+                    }
                 }
                 option<Quiz>("Why are there so many knights in this city?") {
                     npc<Neutral>("We are the White Knights of Falador. We are the most powerful order of knights in the land. We are helping the king Vallance rule the kingdom as he is getting old and tired.")
