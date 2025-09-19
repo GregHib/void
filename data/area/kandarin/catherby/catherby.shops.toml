@@ -142,7 +142,6 @@ defaults = [
     { id = "fletching_cape_t", amount = 1 },
 ]
 
-
 [candle_shop_merlins_crystal]
 id = 547
 defaults = [

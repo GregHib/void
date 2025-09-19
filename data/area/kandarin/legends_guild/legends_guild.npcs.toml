@@ -9,10 +9,12 @@ id = 8479
 
 [fionella]
 id = 932
+shop = "legends_guild_general_store"
 examine = "She sells general items at the Legends' Guild."
 
 [siegfried_erkle]
 id = 933
+shop = "legends_guild_shop_of_useful_items"
 examine = "An eccentric shopkeeper, related to the Grand Vizier of the Legends' Guild."
 
 [legends_guard_west]

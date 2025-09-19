@@ -32,6 +32,7 @@ examine = "If you tried to ride that, you'd just impale yourself!"
 
 [hunting_expert_feldip_hills]
 id = 5113
+shop = "hunting_supplies_feldip"
 examine = "With all the furs, I almost mistook her for a wild animal."
 
 [ogress_champion]

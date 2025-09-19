@@ -3,6 +3,7 @@ id = 576
 categories = ["human"]
 wander_radius = 2
 shop = "harrys_fishing_shop"
+collision = "indoors"
 examine = "Something fishy about him."
 
 [candle_maker]
@@ -10,6 +11,7 @@ id = 562
 categories = ["human"]
 wander_radius = 2
 collision = "indoors"
+shop = "candle_shop"
 examine = "HHas an odd smell about him."
 
 [arhein]
@@ -37,6 +39,7 @@ examine = "A well dressed nobleman."
 id = 2305
 categories = ["human"]
 wander_radius = 2
+shop = "vanessas_farming_shop"
 collision = "indoors"
 examine = "She sells farming equipment."
 

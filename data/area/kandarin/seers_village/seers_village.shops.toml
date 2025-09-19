@@ -1,5 +1,6 @@
 [ignatiuss_hot_deals]
 id = 558
+title = "Ignatius's Hot Deals"
 defaults = [
     { id = "tinderbox", amount = 60000 },
     { id = "unlit_torch", amount = 10 },
@@ -8,6 +9,7 @@ defaults = [
 
 [ignatiuss_hot_deals_skillcape]
 id = 559
+title = "Ignatius's Hot Deals"
 defaults = [
     { id = "tinderbox", amount = 60000 },
     { id = "unlit_torch", amount = 10 },
@@ -17,6 +19,7 @@ defaults = [
 
 [ignatiuss_hot_deals_trimmed]
 id = 560
+title = "Ignatius's Hot Deals"
 defaults = [
     { id = "tinderbox", amount = 60000 },
     { id = "unlit_torch", amount = 10 },
