@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
@@ -20,6 +19,12 @@ class QuestJournals : Api {
     val logger = InlineLogger()
 
     val questDefinitions: QuestDefinitions by inject()
+
+    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
+        if (questDefinitions.ids.containsKey(key)) {
+            player.softTimers.start("refresh_quest_journal")
+        }
+    }
 
     init {
         interfaceOpen("quest_journals") { player ->
@@ -39,10 +44,6 @@ class QuestJournals : Api {
                 return@interfaceOption
             }
             player.emit(OpenQuestJournal(player, quest.stringId))
-        }
-
-        variableSet(ids = questDefinitions.ids.keys.toTypedArray()) { player ->
-            player.softTimers.start("refresh_quest_journal")
         }
 
         timerStart("refresh_quest_journal") {

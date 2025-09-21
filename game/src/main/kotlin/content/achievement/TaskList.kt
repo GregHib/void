@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -79,10 +78,6 @@ class TaskList : Api {
             }
         }
 
-        variableSet("task_pin_slot") { player ->
-            player.close("task_list")
-        }
-
         interfaceOption("Hint", "hint_*", "task_list") {
             val selected = player["task_slot_selected", 0]
             val index = indexOfSlot(player, selected) ?: return@interfaceOption
@@ -91,6 +86,12 @@ class TaskList : Api {
             player["world_map_marker_1"] = tile
             player["world_map_marker_text_1"] = ""
             player.open("world_map")
+        }
+    }
+
+    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
+        if (key == "task_pin_slot") {
+            player.close("task_list")
         }
     }
 

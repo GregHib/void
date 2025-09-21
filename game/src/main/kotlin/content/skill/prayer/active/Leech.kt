@@ -9,8 +9,8 @@ import content.entity.player.effect.energy.runEnergy
 import content.entity.proj.shoot
 import content.skill.prayer.*
 import net.pearx.kasechange.toTitleCase
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.timer.timerTick
 import world.gregs.voidps.type.random
 
 @Script
-class Leech {
+class Leech : Api {
 
     val map = mapOf(
         "sap_warrior" to Skill.Attack,
@@ -170,8 +170,10 @@ class Leech {
                 }
             }
         }
+    }
 
-        variableSet("in_combat", to = 0) { player ->
+    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
+        if (key == "in_combat" && to == 0) {
             for ((_, skill) in map) {
                 player.clear("${skill.name.lowercase()}_drain_msg")
                 player.clear("${skill.name.lowercase()}_leech_msg")

@@ -1,10 +1,10 @@
 package content.area.misthalin.edgeville
 
 import world.gregs.voidps.engine.Api
-import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
@@ -22,6 +22,16 @@ class MultiCombat : Api {
         }
     }
 
+    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
+        if (key == "in_multi_combat") {
+            if (to == true) {
+                player.interfaces.sendVisibility("area_status_icon", "multi_combat", true)
+            } else if (to == null) {
+                player.interfaces.sendVisibility("area_status_icon", "multi_combat", false)
+            }
+        }
+    }
+
     init {
         enterArea(tag = "multi_combat") {
             player["in_multi_combat"] = true
@@ -29,14 +39,6 @@ class MultiCombat : Api {
 
         exitArea(tag = "multi_combat") {
             player.clear("in_multi_combat")
-        }
-
-        variableSet("in_multi_combat", to = true) { player ->
-            player.interfaces.sendVisibility("area_status_icon", "multi_combat", true)
-        }
-
-        variableSet("in_multi_combat", to = null) { player ->
-            player.interfaces.sendVisibility("area_status_icon", "multi_combat", false)
         }
     }
 }

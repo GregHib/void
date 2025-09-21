@@ -20,7 +20,6 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -104,13 +103,13 @@ class CombatBot : Api {
         }
     }
 
-    init {
-        variableSet("in_combat", to = 1) { player ->
-            if (player.isBot) {
-                player.bot.resume("combat")
-            }
+    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
+        if (key == "in_combat" && to == 1 && player.isBot) {
+            player.bot.resume("combat")
         }
+    }
 
+    init {
         playerDeath { player ->
             if (player.isBot) {
                 player.clear("area")

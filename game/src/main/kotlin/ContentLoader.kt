@@ -1,5 +1,6 @@
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.dispatch.Dispatcher
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
@@ -25,6 +26,8 @@ object ContentLoader {
         "levelChanged(Player,Skill,Int,Int)" to LevelChanged.playerDispatcher,
         "move(Player,Tile,Tile)" to Moved.playerDispatcher,
         "move(NPC,Tile,Tile)" to Moved.npcDispatcher,
+        "variableSet(Player,String,Any?,Any?)" to VariableSet.playerDispatcher,
+        "variableSet(NPC,String,Any?,Any?)" to VariableSet.npcDispatcher,
     )
 
     fun load() {

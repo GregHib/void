@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.client.variable
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventDispatcher
 
 open class Variables(
@@ -24,7 +26,11 @@ open class Variables(
         value = block.invoke()
         // Don't check if default or not as values must be set.
         data(key)[key] = value
-        events.emit(VariableSet(key, null, value))
+        if (events is Player) {
+            VariableSet.variableSet(events as Player, key, null, value)
+        } else if (events is NPC) {
+            VariableSet.variableSet(events as NPC, key, null, value)
+        }
         return value
     }
 
@@ -42,7 +48,11 @@ open class Variables(
         if (refresh) {
             send(key)
         }
-        events.emit(VariableSet(key, previous, value))
+        if (events is Player) {
+            VariableSet.variableSet(events as Player, key, previous, value)
+        } else if (events is NPC) {
+            VariableSet.variableSet(events as NPC, key, previous, value)
+        }
     }
 
     open fun clear(key: String, refresh: Boolean = true): Any? {
@@ -50,7 +60,12 @@ open class Variables(
         if (refresh) {
             send(key)
         }
-        events.emit(VariableSet(key, removed ?: return null, null))
+        val previous = removed ?: return null
+        if (events is Player) {
+            VariableSet.variableSet(events as Player, key, previous, null)
+        } else if (events is NPC) {
+            VariableSet.variableSet(events as NPC, key, previous, null)
+        }
         return removed
     }
 

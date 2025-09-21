@@ -3,7 +3,6 @@ package content.skill.melee
 import content.skill.melee.weapon.attackRange
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Api
-import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
@@ -18,25 +17,23 @@ class Weapon : Api {
         updateWeapon(player, player.equipped(EquipSlot.Weapon))
     }
 
+    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
+        if (key == "autocast" && to == null) {
+            updateWeapon(player, player.weapon)
+        } else if (key == "spell" && to == null) {
+            updateWeapon(player, player.weapon)
+        } else if (key == "attack_style") {
+            if (to == "long_range") {
+                updateWeapon(player, player.weapon, 2)
+            } else if (from == "long_range") {
+                updateWeapon(player, player.weapon)
+            }
+        }
+    }
+
     init {
         inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
             updateWeapon(player, item)
-        }
-
-        variableSet("autocast", to = null) { player ->
-            updateWeapon(player, player.weapon)
-        }
-
-        variableSet("spell", to = null) { player ->
-            updateWeapon(player, player.weapon)
-        }
-
-        variableSet("attack_style", to = "long_range") { player ->
-            updateWeapon(player, player.weapon, 2)
-        }
-
-        variableSet("attack_style", from = "long_range") { player ->
-            updateWeapon(player, player.weapon)
         }
     }
 

@@ -10,7 +10,6 @@ import content.skill.melee.weapon.attackStyle
 import content.skill.prayer.prayerStart
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Api
-import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
@@ -39,6 +38,14 @@ class LumbridgeBeginnerTasks : Api {
     override fun move(player: Player, from: Tile, to: Tile) {
         if (player.running && !player["on_the_run_task", false]) {
             player["on_the_run_task"] = true
+        }
+    }
+
+    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
+        if (key == "task_progress_overall" && (from == null || from is Int && from < 10) && to is Int && to >= 10) {
+            player["on_your_way_task"] = true
+        } else if (key == "quest_points" && (from == null || from is Int && from < 4) && to != null && to is Int && to >= 4) {
+            player["fledgeling_adventurer_task"] = true
         }
     }
 
@@ -162,12 +169,6 @@ class LumbridgeBeginnerTasks : Api {
         inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
             if (player["armed_and_dangerous_task", false] && player["just_cant_get_the_staff_task", false] && player["reach_out_and_touch_someone_task", false]) {
                 return@inventoryChanged
-            }
-        }
-
-        variableSet("task_progress_overall") { player ->
-            if ((from == null || from is Int && (from as Int) < 10) && to is Int && (to as Int) >= 10) {
-                player["on_your_way_task"] = true
             }
         }
 
@@ -347,12 +348,6 @@ class LumbridgeBeginnerTasks : Api {
         combatAttack(type = "range") { player ->
             if (player.ammo == "steel_arrow") {
                 player["get_the_point_task"] = true
-            }
-        }
-
-        variableSet("quest_points") { player ->
-            if ((from == null || from is Int && (from as Int) < 4) && to != null && to is Int && to as Int >= 4) {
-                player["fledgeling_adventurer_task"] = true
             }
         }
 
