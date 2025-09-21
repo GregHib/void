@@ -10,7 +10,7 @@ spawns = [
   { id = "ghost_disciple_port_phasmatys", x = 3655, y = 3516 },
   { id = "ghost_disciple_port_phasmatys", x = 3662, y = 3516 },
   { id = "ghost_disciple_port_phasmatys", x = 3653, y = 3518, level = 1 },
-  { id = "ak_haranu_port_phasmatys", x = 3689, y = 3495, members = true },
+  { id = "ak_haranu", x = 3689, y = 3495, members = true },
   { id = "robin_port_phasmatys", x = 3672, y = 3491, members = true },
   { id = "ghost_villager_port_phasmatys", x = 3658, y = 3465, members = true },
   { id = "ghost_villager_port_phasmatys", x = 3661, y = 3494, members = true },

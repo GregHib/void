@@ -17,6 +17,9 @@ id = 11469
 [idria_seers_village]
 id = 1596
 
+[idria_2]
+id = 8336
+
 [phantuwti_fanstuwi_farsight]
 id = 1798
 examine = "A slightly more eccentric seer."

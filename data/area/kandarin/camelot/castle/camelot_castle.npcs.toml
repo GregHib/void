@@ -1,6 +1,9 @@
 [merlin_camelot_castle]
 id = 213
 
+[merlin_normal]
+id = 249
+
 [sir_lancelot_camelot_castle]
 id = 239
 examine = "One of the Knights of the Round Table."

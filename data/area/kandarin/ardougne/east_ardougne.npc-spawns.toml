@@ -168,7 +168,7 @@ spawns = [
   { id = "ambassador_gimblewap", x = 2572, y = 3299, level = 1 },
   { id = "banker_4", x = 2616, y = 3330 },
   { id = "my_arm_ardougne", x = 2684, y = 3274, members = true },
-  { id = "captain_barnaby_2", x = 2683, y = 3275, members = true },
+  { id = "captain_barnaby_1", x = 2683, y = 3275, members = true },
   { id = "charlie_ardougne", x = 2607, y = 3264, members = true },
   { id = "penguin_ardougne", x = 2596, y = 3270, members = true },
   { id = "silver_merchant_ardougne", x = 2659, y = 3316 },

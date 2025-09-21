@@ -304,6 +304,9 @@ examine = "A docile warrior"
 [wheelbarrow_rellekka]
 id = 7568
 
+[lokar_searunner_2]
+id = 406
+
 [lokar_searunner]
 id = 413
 wander_radius = 3

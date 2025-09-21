@@ -8,6 +8,12 @@ examine = "An elf tracker."
 [eluned]
 id = 1679
 
+[eluned_2]
+id = 2376
+
+[eluned_3]
+id = 404
+
 [islwyn]
 id = 1680
 examine = "An elven bowyer."

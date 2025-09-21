@@ -1,8 +1,17 @@
 [captain_bentley]
 id = 414
 
+[captain_bentley_2]
+id = 407
+
 [birds_eye_jack]
 id = 431
+
+[birds_eye_jack_2]
+id = 5901
+
+[birds_eye_jack_3]
+id = 4544
 
 [oneiromancer]
 id = 4511
@@ -153,7 +162,4 @@ id = 5899
 
 [cyrisus_2]
 id = 5900
-
-[birds_eye_jack_2]
-id = 5901
 

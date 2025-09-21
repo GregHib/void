@@ -10,8 +10,14 @@ id = 1046
 [drezel_paterdomus_temple]
 id = 1047
 
-[mercenary_adventurer_paterdomus_temple]
+[drezel_paterdomus_temple_normal]
+id = 7707
+
+[mercenary_adventurer]
 id = 1048
+
+[mercenary_adventurer_normal]
+id = 7664
 
 [ulizius_paterdomus_temple]
 id = 1054

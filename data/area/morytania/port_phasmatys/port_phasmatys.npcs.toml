@@ -10,10 +10,13 @@ examine = "An evil priest."
 id = 1686
 examine = "A ghost disciple."
 
-[ak_haranu_port_phasmatys]
+[ak_haranu]
 id = 1687
 shop = "ak_haranus_exotic_shop"
 examine = "A trader from across the eastern sea."
+
+[ak_haranu_2]
+id = 1688
 
 [robin_port_phasmatys]
 id = 1694

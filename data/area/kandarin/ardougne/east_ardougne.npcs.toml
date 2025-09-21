@@ -134,6 +134,12 @@ examine = "He looks friendly enough."
 [captain_barnaby]
 id = 381
 
+[captain_barnaby_1]
+id = 4961
+
+[captain_barnaby_2]
+id = 4974
+
 [rick]
 id = 4236
 
@@ -171,9 +177,6 @@ examine = "He's very diplomatic."
 
 [my_arm_ardougne]
 id = 4953
-
-[captain_barnaby_2]
-id = 4961
 
 [charlie_ardougne]
 id = 5138

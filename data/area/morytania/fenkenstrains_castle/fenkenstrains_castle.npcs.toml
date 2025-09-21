@@ -1,15 +1,27 @@
-[gardener_ghost_fenkenstrains_castle]
+[gardener_ghost]
 id = 1667
+
+[gardener_ghost_normal]
+id = 1675
 
 [dr_fenkenstrain]
 id = 1668
 
-[dr_fenkenstrain_2]
+[dr_fenkenstrain_hidden]
 id = 1669
+
+[dr_fenkenstrain_normal]
+id = 1670
 
 [fenkenstrains_monster]
 id = 1671
 
+[fenkenstrains_monster_parts]
+id = 1673
+
 [lord_rologarth]
 id = 1672
+
+[lord_rologarth_2]
+id = 1674
 

@@ -70,6 +70,9 @@ wander_radius = 4
 collision = "indoors"
 examine = "Reldo the librarian"
 
+[reldo_plaque]
+id = 2660
+
 [reldo_normal]
 id = 2661
 categories = ["human"]
@@ -503,6 +506,12 @@ examine = "Curator of the museum."
 [dimintheis]
 id = 664
 
+[dimintheis_shield]
+id = 8171
+
+[dimintheis_normal]
+id = 8172
+
 [johnathon]
 id = 668
 examine = "A well-dressed nobleman."
@@ -517,14 +526,17 @@ examine = "I could get a beer from him."
 [fluffs]
 id = 759
 
+[fluffs_hidden]
+id = 7744
+
+[fluffs_normal]
+id = 7742
+
 [will]
 id = 7737
 
 [phil]
 id = 7739
-
-[fluffs_2]
-id = 7744
 
 [gertrude]
 id = 780

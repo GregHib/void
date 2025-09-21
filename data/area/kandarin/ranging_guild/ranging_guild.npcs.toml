@@ -79,6 +79,12 @@ examine = "Supplier of authentic throwing weapons."
 [competition_judge]
 id = 693
 
+[competition_judge_1]
+id = 8524
+
+[competition_judge_2]
+id = 8523
+
 [ticket_merchant]
 id = 694
 shop = "ranging_guild_ticket_exchange"

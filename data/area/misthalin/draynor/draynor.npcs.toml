@@ -75,6 +75,12 @@ examine = "She comes from Al Kharid."
 [undead_tree_draynor]
 id = 152
 
+[undead_tree_draynor_1]
+id = 5207
+
+[undead_tree_draynor_2]
+id = 5208
+
 [farmer_draynor]
 id = 1761
 examine = "Farming the wheat."

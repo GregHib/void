@@ -80,8 +80,14 @@ id = 11663
 [drunken_sailor]
 id = 1205
 
+[drunken_sailor_normal]
+id = 7116
+
 [drunken_sailor_2]
 id = 1207
+
+[drunken_sailor_normal_2]
+id = 7117
 
 [mysterious_ghost_port_sarim]
 id = 2392
@@ -141,14 +147,32 @@ examine = "Once beautiful, now repugnant."
 id = 375
 examine = "A pirate."
 
-[captain_tobias_port_sarim]
+[captain_tobias]
 id = 376
 
-[seaman_lorris_port_sarim]
+[captain_tobias_1]
+id = 11700
+
+[captain_tobias_2]
+id = 11703
+
+[seaman_lorris]
 id = 377
 
-[seaman_thresnor_port_sarim]
+[seaman_lorris_1]
+id = 11701
+
+[seaman_lorris_2]
+id = 11704
+
+[seaman_thresnor]
 id = 378
+
+[seaman_thresnor_1]
+id = 11702
+
+[seaman_thresnor_2]
+id = 11705
 
 [squire_port_sarim]
 id = 3801
@@ -179,6 +203,12 @@ id = 558
 shop = "gerrants_fishy_business"
 collision = "indoors"
 examine = "A Fishing expert."
+
+[gerrant_1]
+id = 11699
+
+[gerrant_2]
+id = 12261
 
 [brian_port_sarim]
 id = 559

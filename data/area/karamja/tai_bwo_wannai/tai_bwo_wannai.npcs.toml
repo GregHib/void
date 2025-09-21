@@ -66,3 +66,6 @@ examine = "Looks after your Farming tools."
 [imiago_tai_bwo_wannai]
 id = 871
 
+[imiago_tai_bwo_wannai_normal]
+id = 8041
+

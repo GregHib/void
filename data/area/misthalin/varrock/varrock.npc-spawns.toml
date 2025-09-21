@@ -376,7 +376,7 @@ spawns = [
   { id = "fluffs", x = 3306, y = 3512, level = 1, members = true },
   { id = "will", x = 3316, y = 3513, members = true },
   { id = "phil", x = 3319, y = 3504, members = true },
-  { id = "fluffs_2", x = 3148, y = 3411, members = true },
+  { id = "fluffs", x = 3148, y = 3411, members = true },
   { id = "gertrude", x = 3151, y = 3410 },
   { id = "shilop", x = 3221, y = 3434 },
   { id = "philop", x = 3150, y = 3407 },
