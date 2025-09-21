@@ -25,15 +25,5 @@ class PortSarim {
             player.anim("take")
             player.message("You take an apron. It feels freshly starched and smells of laundry.")
         }
-
-        objectOperate("Cross", "port_sarim_entrana_gangplank_exit") {
-            player.walkOverDelay(Tile(3048, 3232, 1))
-            player.tele(3048, 3234, 0)
-        }
-
-        objectOperate("Cross", "port_sarim_entrana_gangplank_enter") {
-            player.walkOverDelay(Tile(3048, 3233))
-            player.tele(3048, 3231, 1)
-        }
     }
 }

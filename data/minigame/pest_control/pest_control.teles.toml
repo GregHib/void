@@ -1,0 +1,9 @@
+[pest_control_gangplank_exit]
+option = "Cross"
+tile = { x = 2661, y = 2676, level = 1 }
+to = { x = 2659, y = 2676 }
+
+[pest_control_gangplank_enter]
+option = "Cross"
+tile = { x = 2660, y = 2676 }
+to = { x = 2662, y = 2676, level = 1  }

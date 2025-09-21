@@ -3,6 +3,7 @@ package content.area.asgarnia.port_sarim
 import content.entity.obj.ship.boatTravel
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.Upset
@@ -21,7 +22,8 @@ import world.gregs.voidps.type.Tile
 class SquirePortSarim {
     init {
         npcOperate("Talk-to", "squire_port_sarim") {
-            npc<Talk>("Hi, how can I help you?")
+            npc<Upset>("Well the order has become quite diminished over the years, it's a very long process to learn the skills of a Void Knight. Recently there have been breaches into our realm from somewhere else, and strange creatures")
+            npc<Sad>("Hi, how can I help you?")
             choice {
                 option<Quiz>("Who are you?") {
                     npc<Talk>("I'm a Squire for the Void Knights.")

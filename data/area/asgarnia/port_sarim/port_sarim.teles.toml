@@ -135,3 +135,33 @@ option = "Climb-up"
 tile = { x = 3026, y = 3248 }
 to = { x = 3026, y = 3247, level = 1 }
 
+[port_sarim_entrana_gangplank_exit]
+option = "Cross"
+tile = { x = 3048, y = 3232, level = 1 }
+to = { x = 3048, y = 3234 }
+
+[port_sarim_entrana_gangplank_enter]
+option = "Cross"
+tile = { x = 3048, y = 3233 }
+to = { x = 3048, y = 3231, level = 1 }
+
+[port_sarim_musa_point_gangplank_exit]
+option = "Cross"
+tile = { x = 3031, y = 3217, level = 1 }
+to = { x = 3029, y = 3217 }
+
+[port_sarim_musa_point_gangplank_enter]
+option = "Cross"
+tile = { x = 3030, y = 3217 }
+to = { x = 3032, y = 3217, level = 1 }
+
+[port_sarim_void_outpost_gangplank_exit]
+option = "Cross"
+tile = { x = 3041, y = 3200, level = 1 }
+to = { x = 3041, y = 3202 }
+
+[port_sarim_void_outpost_gangplank_enter]
+option = "Cross"
+tile = { x = 3041, y = 3201 }
+to = { x = 3041, y = 3199, level = 1 }
+

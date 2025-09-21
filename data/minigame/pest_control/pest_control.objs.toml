@@ -1,3 +1,11 @@
 [bank_booth_void_knights_outpost]
 id = 14369
 examine = "The bank teller will serve you from here."
+
+[pest_control_gangplank_exit]
+id = 14307
+examine = "Handy for boarding the ship."
+
+[pest_control_gangplank_enter]
+id = 14306
+examine = "Handy for boarding the ship."
