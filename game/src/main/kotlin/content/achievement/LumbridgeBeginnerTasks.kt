@@ -9,11 +9,10 @@ import content.entity.obj.objTeleportLand
 import content.skill.melee.weapon.attackStyle
 import content.skill.prayer.prayerStart
 import content.skill.ranged.ammo
-import world.gregs.voidps.engine.client.variable.variableSet
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
-import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -28,7 +27,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
 @Script
-class LumbridgeBeginnerTasks {
+class LumbridgeBeginnerTasks : Api {
 
     val areas: AreaDefinitions by inject()
 
@@ -36,11 +35,21 @@ class LumbridgeBeginnerTasks {
 
     val styleDefinitions: WeaponStyleDefinitions by inject()
 
-    init {
-        move({ player.running && !player["on_the_run_task", false] }) {
+    override fun move(player: Player, from: Tile, to: Tile) {
+        if (player.running && !player["on_the_run_task", false]) {
             player["on_the_run_task"] = true
         }
+    }
 
+    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
+        if (key == "task_progress_overall" && (from == null || from is Int && from < 10) && to is Int && to >= 10) {
+            player["on_your_way_task"] = true
+        } else if (key == "quest_points" && (from == null || from is Int && from < 4) && to != null && to is Int && to >= 4) {
+            player["fledgeling_adventurer_task"] = true
+        }
+    }
+
+    init {
         objTeleportLand("Climb-up", "lumbridge_castle_ladder") {
             player["master_of_all_i_survey_task"] = true
         }
@@ -160,12 +169,6 @@ class LumbridgeBeginnerTasks {
         inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
             if (player["armed_and_dangerous_task", false] && player["just_cant_get_the_staff_task", false] && player["reach_out_and_touch_someone_task", false]) {
                 return@inventoryChanged
-            }
-        }
-
-        variableSet("task_progress_overall") { player ->
-            if ((from == null || from is Int && (from as Int) < 10) && to is Int && (to as Int) >= 10) {
-                player["on_your_way_task"] = true
             }
         }
 
@@ -345,12 +348,6 @@ class LumbridgeBeginnerTasks {
         combatAttack(type = "range") { player ->
             if (player.ammo == "steel_arrow") {
                 player["get_the_point_task"] = true
-            }
-        }
-
-        variableSet("quest_points") { player ->
-            if ((from == null || from is Int && (from as Int) < 4) && to != null && to is Int && to as Int >= 4) {
-                player["fledgeling_adventurer_task"] = true
             }
         }
 

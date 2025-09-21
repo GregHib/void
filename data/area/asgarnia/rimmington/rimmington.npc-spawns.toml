@@ -56,4 +56,6 @@ spawns = [
   { id = "baby_raccoon_red", x = 2994, y = 3255, members = true },
   { id = "baby_raccoon_red", x = 3002, y = 3250, members = true },
   { id = "tool_leprechaun_rimmington", x = 2939, y = 3219, members = true },
+  { id = "rommik", x = 2949, y = 3205 },
+  { id = "brian_rimmington", x = 2957, y = 3204 },
 ]

@@ -32,6 +32,7 @@ examine = "If you tried to ride that, you'd just impale yourself!"
 
 [hunting_expert_feldip_hills]
 id = 5113
+shop = "hunting_supplies_feldip"
 examine = "With all the furs, I almost mistook her for a wild animal."
 
 [ogress_champion]
@@ -80,3 +81,13 @@ examine = "This bird obviously doesn't believe in subtlety."
 id = 3587
 wander_radius = 4
 examine = "A large dim looking humanoid."
+
+[ogre_boat_feldip_hills_2]
+id = 3472
+
+[rantz_feldip_hills_3]
+id = 3467
+
+[rantz_feldip_hills_2_2]
+id = 1010
+

@@ -80,8 +80,14 @@ id = 11663
 [drunken_sailor]
 id = 1205
 
+[drunken_sailor_normal]
+id = 7116
+
 [drunken_sailor_2]
 id = 1207
+
+[drunken_sailor_normal_2]
+id = 7117
 
 [mysterious_ghost_port_sarim]
 id = 2392
@@ -117,12 +123,16 @@ id = 2696
 [mugger_port_sarim]
 id = 2697
 
-[monk_of_entrana_port_sarim]
+[monk_of_entrana_port_sarim_grey]
 id = 2728
 examine = "Holy looking."
 
-[monk_of_entrana_port_sarim_2]
+[monk_of_entrana_port_sarim_white]
 id = 2729
+examine = "Holy looking."
+
+[monk_of_entrana_port_sarim_ginger]
+id = 657
 examine = "Holy looking."
 
 [bellemorde_port_sarim]
@@ -137,14 +147,32 @@ examine = "Once beautiful, now repugnant."
 id = 375
 examine = "A pirate."
 
-[captain_tobias_port_sarim]
+[captain_tobias]
 id = 376
 
-[seaman_lorris_port_sarim]
+[captain_tobias_1]
+id = 11700
+
+[captain_tobias_2]
+id = 11703
+
+[seaman_lorris]
 id = 377
 
-[seaman_thresnor_port_sarim]
+[seaman_lorris_1]
+id = 11701
+
+[seaman_lorris_2]
+id = 11704
+
+[seaman_thresnor]
 id = 378
+
+[seaman_thresnor_1]
+id = 11702
+
+[seaman_thresnor_2]
+id = 11705
 
 [squire_port_sarim]
 id = 3801
@@ -158,23 +186,40 @@ examine = "A retired security guard."
 id = 4560
 examine = "Perhaps this gardener might look after your crops for you."
 
-[grum_port_sarim]
+[grum]
 id = 556
+shop = "grums_gold_exchange"
+collision = "indoors"
 examine = "Loves his gold."
 
-[wydin_port_sarim]
+[wydin]
 id = 557
+shop = "wydins_food_store"
+collision = "indoors"
 examine = "Likes his food to be kept fresh."
 
-[gerrant_port_sarim]
+[gerrant]
 id = 558
+shop = "gerrants_fishy_business"
+collision = "indoors"
+examine = "A Fishing expert."
+
+[gerrant_1]
+id = 11699
+
+[gerrant_2]
+id = 12261
 
 [brian_port_sarim]
 id = 559
+shop = "brians_battleaxe_bazaar"
+collision = "indoors"
 examine = "An axe expert."
 
 [betty_port_sarim]
 id = 583
+shop = "bettys_magic_emporium"
+collision = "indoors"
 examine = "She seems like a nice sort of person."
 
 [ned_port_sarim]
@@ -188,10 +233,6 @@ examine = "A messy bird."
 [seagull_port_sarim_2]
 id = 6116
 
-[monk_of_entrana_port_sarim_3]
-id = 657
-examine = "Holy looking."
-
 [thaki_the_delivery_dwarf]
 id = 7115
 examine = "He seems to be enjoying his time in the bar."
@@ -204,4 +245,17 @@ examine = "A young sailor."
 id = 745
 categories = ["goblins"]
 examine = "A badly-behaved goblin."
+
+[port_sarim_guard_7_2]
+id = 2747
+examine = "Keeping an eye out for suspicious activity."
+
+[ned_port_sarim_2]
+id = 4475
+
+[commander_korasi_port_sarim_2]
+id = 11508
+
+[sir_tiffy_port_sarim_2]
+id = 11512
 

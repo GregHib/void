@@ -3,32 +3,34 @@ package content.area.misthalin.edgeville
 import content.area.wilderness.inWilderness
 import content.skill.prayer.prayerStart
 import content.skill.prayer.prayerStop
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class WildernessIcons {
+class WildernessIcons : Api {
+
+    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
+        if (key == "in_wilderness") {
+            if (to == true) {
+                player.options.set(1, "Attack")
+                player.open("wilderness_skull")
+                //    player.setVar("no_pvp_zone", false)
+                resetIcons(player)
+                updateIcon(player)
+            } else if (to == null) {
+                player.options.remove("Attack")
+                player.close("wilderness_skull")
+                //    player.setVar("no_pvp_zone", true)
+                resetIcons(player)
+            }
+        }
+    }
 
     init {
-        variableSet("in_wilderness", to = true) { player ->
-            player.options.set(1, "Attack")
-            player.open("wilderness_skull")
-            //    player.setVar("no_pvp_zone", false)
-            resetIcons(player)
-            updateIcon(player)
-        }
-
-        variableSet("in_wilderness", to = null) { player ->
-            player.options.remove("Attack")
-            player.close("wilderness_skull")
-            //    player.setVar("no_pvp_zone", true)
-            resetIcons(player)
-        }
-
         interfaceOpen("wilderness_skull") { player ->
             player.interfaces.sendSprite(id, "right_skull", 439)
         }

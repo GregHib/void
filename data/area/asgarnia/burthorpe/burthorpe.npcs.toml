@@ -49,11 +49,13 @@ examine = "A citizen of Burthorpe."
 [breoca]
 id = 1084
 wander_radius = 5
+collision = "outdoors"
 examine = "A citizen of Burthorpe."
 
 [hygd]
 id = 1088
 wander_radius = 5
+collision = "outdoors"
 examine = "A citizen of Burthorpe."
 
 [dunstan]
@@ -74,6 +76,8 @@ examine = "Head servant for Prince Anlaf."
 [tostig]
 id = 1079
 wander_radius = 5
+shop = "toad_and_chicken"
+collision = "indoors"
 examine = "Barman of the Toad and Chicken."
 
 [guard_burthorpe]
@@ -148,14 +152,62 @@ examine = "A sergeant of the Imperial Guard."
 [wistan]
 id = 1083
 wander_radius = 5
+shop = "burthorpe_supplies"
+collision = "indoors"
 examine = "Shopkeeper for Burthorpe."
 
 [achietties]
 id = 796
 wander_radius = 3
+collision = "outdoors"
 examine = "Distinctly heroic."
 
 [white_knight_burthorpe]
 id = 1092
 wander_radius = 5
 examine = "The knight seems to be watching something."
+
+[helemos]
+id = 797
+shop = "happy_heroes_hemporium"
+examine = "A retired hero."
+
+[turael]
+id = 8461
+categories = ["human"]
+wander_radius = 3
+collision = "indoors"
+examine = "He looks dangerous!"
+
+[neite_2]
+id = 2653
+examine = "A graceful feline."
+
+[unferth_2]
+id = 2655
+examine = "Nice but dim."
+
+[unferth_3]
+id = 2656
+examine = "Nice but dim."
+
+[unferth_4]
+id = 2657
+examine = "Nice but dim."
+
+[unferth_5]
+id = 2658
+examine = "Nice but dim."
+
+[unferth_6]
+id = 2659
+examine = "Nice but dim."
+
+[doronbol_2]
+id = 8057
+examine = "A dog-like cat with a wonky tail."
+
+[doronbol_3]
+id = 8058
+examine = "A dog-like cat with a wonky tail."
+

@@ -17,6 +17,9 @@ id = 11469
 [idria_seers_village]
 id = 1596
 
+[idria_2]
+id = 8336
+
 [phantuwti_fanstuwi_farsight]
 id = 1798
 examine = "A slightly more eccentric seer."
@@ -51,3 +54,65 @@ id = 6199
 id = 820
 examine = "He sure likes to sell stuff!"
 
+[anna_seers_village_2]
+id = 6178
+
+[barbarian_seers_village_2]
+id = 11452
+
+[barbarian_seers_village_3]
+id = 11454
+
+[barbarian_seers_village_4]
+id = 956
+
+[barbarian_seers_village_5]
+id = 11456
+
+[barbarian_seers_village_6]
+id = 12189
+
+[barbarian_seers_village_7]
+id = 3508
+
+[barbarian_seers_village_8]
+id = 12234
+
+[barbarian_seers_village_9]
+id = 12239
+
+[barbarian_seers_village_10]
+id = 12190
+
+[barbarian_seers_village_11]
+id = 12230
+
+[wizard_seers_village_2]
+id = 11455
+
+[wizard_seers_village_3]
+id = 11460
+
+[wizard_seers_village_4]
+id = 12233
+
+[wizard_seers_village_5]
+id = 12235
+
+[wizard_seers_village_6]
+id = 12238
+
+[wizard_seers_village_7]
+id = 12232
+
+[wizard_seers_village_8]
+id = 12192
+
+[wizard_seers_village_9]
+id = 12231
+
+[arresting_officer_seers_village_2]
+id = 11457
+
+[estate_agent_seers_village_2]
+id = 11459

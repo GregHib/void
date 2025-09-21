@@ -1,9 +1,9 @@
-[undead_cow_alices_farm]
+[undead_cow]
 id = 1691
 categories = ["cows"]
 examine = "It's an undead cow."
 
-[undead_chicken_alices_farm]
+[undead_chicken]
 id = 1692
 categories = ["birds"]
 examine = "Yep, definitely a chicken...an undead chicken."
@@ -11,18 +11,24 @@ examine = "Yep, definitely a chicken...an undead chicken."
 [old_man_alices_farm]
 id = 1696
 
-[alice_alices_farm]
+[alice]
 id = 2307
+shop = "alices_farming_shop"
 examine = "She sells Farming equipment."
 
-[lyra_alices_farm]
+[lyra]
 id = 2326
 examine = "Perhaps this gardener might look after your crops for you."
 
-[alices_husband_alices_farm]
+[alices_husband]
 id = 5206
 
 [tool_leprechaun_alices_farm]
 id = 7569
 examine = "Looks after your Farming tools."
 
+[alices_husband_2]
+id = 5202
+
+[alices_husband_3]
+id = 5203

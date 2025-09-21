@@ -9,10 +9,10 @@ import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.ui.songEnd
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.type.Tile
 
 @Script
 class Music : Api {
@@ -30,8 +30,8 @@ class Music : Api {
         sendPlaylist(player)
     }
 
-    init {
-        move({ !it.isBot }) { player ->
+    override fun move(player: Player, from: Tile, to: Tile) {
+        if (!player.isBot) {
             val tracks = tracks[player.tile.region]
             for (track in tracks) {
                 if (!track.area.contains(from) && track.area.contains(to)) {
@@ -39,7 +39,9 @@ class Music : Api {
                 }
             }
         }
+    }
 
+    init {
         interfaceOption("Play", "tracks", "music_player") {
             val index = itemSlot / 2
             if (player.hasUnlocked(index)) {

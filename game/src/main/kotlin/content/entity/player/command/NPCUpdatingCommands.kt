@@ -59,7 +59,7 @@ class NPCUpdatingCommands {
 
         adminCommand("npc_hit") { player, _ ->
             val npc = npcs[player.tile.addY(1)].first()
-            npc.visuals.hits.splats.add(HitSplat(10, HitSplat.Mark.Healed, npc.levels.getPercent(Skill.Constitution, fraction = 255.0).toInt()))
+            npc.visuals.hits.add(HitSplat(10, HitSplat.Mark.Healed, npc.levels.getPercent(Skill.Constitution, fraction = 255.0).toInt()))
             npc.flagHits()
         }
 

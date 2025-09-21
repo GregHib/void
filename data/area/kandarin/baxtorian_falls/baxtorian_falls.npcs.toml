@@ -41,3 +41,6 @@ id = 4260
 categories = ["dwarves"]
 examine = "A dwarven guard."
 
+[mysterious_ghost_baxtorian_falls_2]
+id = 2399
+

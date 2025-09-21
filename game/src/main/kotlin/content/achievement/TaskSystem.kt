@@ -3,12 +3,12 @@ package content.achievement
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
 @Script
-class TaskSystem {
+class TaskSystem : Api {
 
     val variables: VariableDefinitions by inject()
     val enumDefinitions: EnumDefinitions by inject()
@@ -99,10 +99,6 @@ class TaskSystem {
             player.interfaces.sendVisibility("task_system", "summary_overlay", false)
         }
 
-        variableSet("task_pin_slot", "task_area") { player ->
-            refreshSlots(player)
-        }
-
         interfaceOption("Details", "details", "task_popup") {
             if (player.questCompleted("unstable_foundations")) {
                 player["task_popup_summary"] = true
@@ -118,12 +114,6 @@ class TaskSystem {
             player.tab(Tab.TaskSystem)
         }
 
-        variableSet("*_task") { player ->
-            if (to == true || to == "completed") {
-                completeTask(player, key)
-            }
-        }
-
         interfaceOption("Hint", "hint_*", "task_system") {
             val selected = player["task_slot_selected", 0]
             val index = indexOfSlot(player, selected) ?: return@interfaceOption
@@ -132,6 +122,14 @@ class TaskSystem {
             player["world_map_marker_1"] = tile
             player["world_map_marker_text_1"] = ""
             player.open("world_map")
+        }
+    }
+
+    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
+        if (key == "task_pin_slot" || key == "task_area") {
+            refreshSlots(player)
+        } else if (key.endsWith("_task") && (to == true || to == "completed")) {
+            completeTask(player, key)
         }
     }
 

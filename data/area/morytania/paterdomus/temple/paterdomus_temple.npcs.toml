@@ -10,8 +10,14 @@ id = 1046
 [drezel_paterdomus_temple]
 id = 1047
 
-[mercenary_adventurer_paterdomus_temple]
+[drezel_paterdomus_temple_normal]
+id = 7707
+
+[mercenary_adventurer]
 id = 1048
+
+[mercenary_adventurer_normal]
+id = 7664
 
 [ulizius_paterdomus_temple]
 id = 1054
@@ -30,3 +36,14 @@ id = 3076
 [blaze_sharpeye_paterdomus_temple]
 id = 8065
 
+[monk_paterdomus_temple_2]
+id = 3075
+
+[dead_monk_paterdomus_temple_2]
+id = 3077
+
+[blaze_sharpeye_paterdomus_temple_2]
+id = 5191
+
+[blaze_sharpeye_paterdomus_temple_3]
+id = 5194

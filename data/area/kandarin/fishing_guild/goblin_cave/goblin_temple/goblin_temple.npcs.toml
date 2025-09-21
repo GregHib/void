@@ -171,3 +171,9 @@ examine = "A guard wearing purple armour."
 id = 6503
 examine = "A guard wearing yellow armour."
 
+[high_priest_goblin_temple_2]
+id = 421
+
+[high_priest_goblin_temple_3]
+id = 420
+

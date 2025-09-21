@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.queue.LogoutBehaviour
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
@@ -32,18 +31,20 @@ class Cutscene(
 ) {
     val instance: Region = Instances.small()
     val offset: Delta
-    var block: (suspend SuspendableContext<Player>.() -> Unit)? = null
+    var block: (suspend () -> Unit)? = null
 
     init {
-        get<DynamicZones>().copy(region, instance)
+        if (region != Region.EMPTY) {
+            get<DynamicZones>().copy(region, instance)
+        }
         offset = instance.offset(region)
         hideTabs()
     }
 
-    fun onEnd(block: suspend SuspendableContext<Player>.() -> Unit) {
+    fun onEnd(block: suspend () -> Unit) {
         player.queue("${name}_cutscene_end", 1, LogoutBehaviour.Accelerate) {
-            block.invoke(this)
-            end(this)
+            block.invoke()
+            end()
         }
         this@Cutscene.block = block
     }
@@ -56,11 +57,11 @@ class Cutscene(
 
     private var end = false
 
-    suspend fun end(context: SuspendableContext<Player>) {
+    suspend fun end() {
         if (!end) {
             end = true
             destroy()
-            block?.invoke(context)
+            block?.invoke()
             player.open("fade_in")
             showTabs()
         }
@@ -109,4 +110,4 @@ class Cutscene(
     }
 }
 
-fun Context<Player>.startCutscene(name: String, region: Region): Cutscene = Cutscene(player, name, region)
+fun Context<Player>.startCutscene(name: String, region: Region = Region.EMPTY): Cutscene = Cutscene(player, name, region)

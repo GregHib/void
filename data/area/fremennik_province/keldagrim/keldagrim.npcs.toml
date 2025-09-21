@@ -311,48 +311,68 @@ examine = "Makes sculptures."
 [riki_the_sculptors_model]
 id = 2142
 
-[santiri_keldagrim]
+[santiri]
 id = 2152
+shop = "quality_weapons_shop"
+collision = "indoors"
 examine = "Proprietor of the Quality Weapons Shop."
 
-[saro_keldagrim]
+[saro]
 id = 2153
+shop = "quality_armour_shop"
+collision = "indoors"
 examine = "Proprietor of the Quality Armour Shop."
 
-[gunslik_keldagrim]
+[gunslik]
 id = 2154
+shop = "gunsliks_assorted_items"
+collision = "indoors"
 examine = "Proprietor of Gunslik's Assorted Items."
 
 [wemund_keldagrim]
 id = 2155
 examine = "Looks like some kind of engineer or mechanic."
 
-[randivor_keldagrim]
+[randivor]
 id = 2156
+shop = "keldagrims_best_bread"
+collision = "indoors"
 examine = "He's selling his bread on the market here."
 
-[hervi_keldagrim]
+[hervi]
 id = 2157
+shop = "green_gemstone_gems"
+collision = "indoors"
 examine = "A gem stall owner, with goods from the deepest of mines."
 
-[nolar_keldagrim]
+[nolar]
 id = 2158
+shop = "carefree_crafting_stall"
+collision = "indoors"
 examine = "A crafty dwarf."
 
-[gulldamar_keldagrim]
+[gulldamar]
 id = 2159
+shop = "silver_cog_silver_stall"
+collision = "indoors"
 examine = "He has lots of silver on display. And only silver."
 
-[tati_keldagrim]
+[tati]
 id = 2160
+shop = "pickaxe_is_mine"
+collision = "indoors"
 examine = "An old mining dwarf, now he sells pickaxes and generally acts grumpy."
 
-[agmundi_keldagrim]
+[agmundi]
 id = 2161
+shop = "agmundi_quality_clothes"
+collision = "indoors"
 examine = "She seems to be doing rather well for herself, selling clothes in a palace shop."
 
-[vermundi_keldagrim]
+[vermundi]
 id = 2162
+shop = "vermundis_clothes_stall"
+collision = "indoors"
 examine = "A rather poor looking little dwarf, selling her clothes on the market."
 
 [librarian_keldagrim]
@@ -447,8 +467,10 @@ examine = "A bickering old dwarf."
 id = 2190
 examine = "A sad old dwarf living in a sad old home."
 
-[sune_keldagrim]
+[sune]
 id = 2191
+shop = "pickaxe_is_mine"
+collision = "indoors"
 examine = "He seems to always be busy."
 
 [bentamir_keldagrim]
@@ -540,10 +562,14 @@ examine = "What is he?"
 
 [stonemason_keldagrim]
 id = 4248
+shop = "keldagrim_stonemason"
+collision = "indoors"
 examine = "Someone has to get rid of all the stone they dug Keldagrim out of."
 
-[hirko_keldagrim]
+[hirko]
 id = 4558
+shop = "crossbow_shop_keldagrim"
+collision = "indoors"
 examine = "A seller of crossbow parts."
 
 [professor_manglethorp_keldagrim]
@@ -592,6 +618,8 @@ id = 2211
 
 [vigr]
 id = 2151
+shop = "vigrs_warhammers"
+collision = "indoors"
 examine = "Proprietor of Vigr's Warhammers."
 
 [trade_referee]
@@ -602,3 +630,158 @@ examine = "He is regulating the flow of goods on the trade floor and maintaining
 [king_veldaban]
 id = 13312
 examine = "King of the dwarves."
+
+[dondakan_the_dwarf_keldagrim_2]
+id = 1837
+
+[dondakan_the_dwarf_keldagrim_3]
+id = 1838
+
+[dwarven_boatman_keldagrim_4]
+id = 1846
+
+[trader_keldagrim_15_2]
+id = 2124
+
+[trader_keldagrim_15_3]
+id = 8824
+
+[trader_keldagrim_16_2]
+id = 2126
+
+[trader_keldagrim_16_3]
+id = 8827
+
+[commander_veldaban_keldagrim_3]
+id = 8821
+
+[riki_the_sculptors_model_2]
+id = 2143
+
+[riki_the_sculptors_model_3]
+id = 2144
+
+[riki_the_sculptors_model_4]
+id = 2145
+
+[riki_the_sculptors_model_5]
+id = 2147
+
+[riki_the_sculptors_model_6]
+id = 2146
+
+[riki_the_sculptors_model_7]
+id = 2148
+
+[riki_the_sculptors_model_8]
+id = 2149
+
+[riki_the_sculptors_model_9]
+id = 2150
+
+[drunken_dwarf_keldagrim_2]
+id = 2203
+
+[drunken_dwarf_keldagrim_3]
+id = 2204
+
+[black_guard_berserker_keldagrim_4_2]
+id = 2232
+
+[orange_flame_secretary_2]
+id = 2099
+
+[orange_flame_secretary_3]
+id = 8823
+
+[orange_flame_director_2]
+id = 2107
+
+[orange_flame_director_3]
+id = 8822
+
+[red_axe_cat_keldagrim_2]
+id = 2108
+
+[gnome_emissary_keldagrim_2]
+id = 2137
+
+[gnome_traveller_keldagrim_3]
+id = 2138
+
+[gnome_traveller_keldagrim_2_2]
+id = 2139
+
+[chair_keldagrim_3_2]
+id = 6735
+
+[chair_keldagrim_3_3]
+id = 13290
+
+[chair_keldagrim_4_2]
+id = 6736
+
+[chair_keldagrim_4_3]
+id = 6738
+
+[chair_keldagrim_5_2]
+id = 6737
+
+[black_guard_keldagrim_6_2]
+id = 8752
+
+[commander_veldaban_keldagrim_2_2]
+id = 8754
+
+[veldaban_keldagrim_4_2]
+id = 8766
+
+[colonel_grenda_keldagrim_2]
+id = 8814
+
+[chair_keldagrim_6]
+id = 13293
+
+[chair_keldagrim_7]
+id = 13289
+
+[chair_keldagrim_2_2]
+id = 13294
+
+[chair_keldagrim_2_3]
+id = 13288
+
+[hreidmar_keldagrim_2]
+id = 13300
+
+[king_veldaban_2]
+id = 13313
+examine = "King of the dwarves."
+
+[veldaban_keldagrim_5]
+id = 13332
+
+[klaas_keldagrim_2]
+id = 13364
+
+[protester_keldagrim_22]
+id = 13393
+
+[protester_keldagrim_2_2]
+id = 13390
+
+[protester_keldagrim_3_2]
+id = 13394
+
+[protester_keldagrim_4_2]
+id = 13392
+
+[protester_keldagrim_5_2]
+id = 13389
+
+[protester_keldagrim_7_2]
+id = 13391
+
+[meike_keldagrim_4]
+id = 13411
+

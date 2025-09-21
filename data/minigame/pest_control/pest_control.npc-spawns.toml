@@ -33,8 +33,8 @@ spawns = [
   { id = "squire_pest_control_10", x = 2630, y = 2656 },
   { id = "squire_pest_control_11", x = 2637, y = 2667 },
   { id = "squire_pest_control_12", x = 2651, y = 2674 },
-  { id = "squire_(novice)_pest_control", x = 2650, y = 2633 },
+  { id = "squire_novice_pest_control", x = 2650, y = 2633 },
   { id = "void_knight_pest_control_4", x = 2652, y = 2660 },
-  { id = "squire_(intermediate)_pest_control", x = 2637, y = 2630 },
-  { id = "squire_(veteran)_pest_control", x = 2633, y = 2646 },
+  { id = "squire_intermediate_pest_control", x = 2637, y = 2630 },
+  { id = "squire_veteran_pest_control", x = 2633, y = 2646 },
 ]

@@ -102,6 +102,7 @@ defaults = [
 
 [keldagrims_best_bread]
 id = 267
+title = "Keldagrim's Best Bread"
 defaults = [
     { id = "bread", amount = 10 },
     { id = "cake", amount = 10 },
@@ -127,6 +128,7 @@ defaults = [
     { id = "ruby", amount = 0 },
     { id = "diamond", amount = 0 },
 ]
+
 [vermundis_clothes_stall]
 id = 271
 defaults = [

@@ -97,3 +97,27 @@ examine = "A guard."
 id = 2299
 examine = "A man who deals in rugs."
 
+[klenter_2]
+id = 2014
+
+[rug_station_attendant_2]
+id = 2300
+examine = "A man who deals in rugs."
+
+[stonemason_2]
+id = 5262
+
+[nathifa_2]
+id = 5264
+
+[urbi_2]
+id = 5266
+
+[jamila_2]
+id = 5268
+
+[sophanem_guard_2_2]
+id = 5272
+
+[sophanem_guard_4_2]
+id = 5276

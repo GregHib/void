@@ -1,0 +1,9 @@
+[gangplank_musa_point_exit]
+option = "Cross"
+tile = { x = 2956, y = 3144, level = 1 }
+to = { x = 2956, y = 3146 }
+
+[gangplank_musa_point_enter]
+option = "Cross"
+tile = { x = 2956, y = 3145 }
+to = { x = 2956, y = 3143, level = 1 }

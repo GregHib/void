@@ -139,3 +139,15 @@ id = 5672
 [puffin]
 id = 5614
 examine = "I'd prefer it if it were a muffin..."
+
+[monk_harmony_5_2]
+id = 5623
+
+[monk_harmony_6_2]
+id = 5624
+
+[monk_harmony_7_2]
+id = 5625
+
+[monk_harmony_8_2]
+id = 5626

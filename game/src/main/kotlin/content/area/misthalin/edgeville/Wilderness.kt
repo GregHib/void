@@ -2,7 +2,6 @@ package content.area.misthalin.edgeville
 
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -22,12 +21,12 @@ class Wilderness : Api {
         }
     }
 
-    init {
-        move({ !inWilderness(from) && inWilderness(to) }) { player ->
+    override fun move(player: Player, from: Tile, to: Tile) {
+        val was = inWilderness(from)
+        val now = inWilderness(to)
+        if (!was && now) {
             player["in_wilderness"] = true
-        }
-
-        move({ inWilderness(from) && !inWilderness(to) }) { player ->
+        } else if (was && !now) {
             player.clear("in_wilderness")
         }
     }

@@ -75,6 +75,8 @@ examine = "He's washing his clothes in the lake."
 [gaius]
 id = 586
 wander_radius = 3
+shop = "gaiuss_two_handed_shop"
+collision = "indoors"
 examine = "Ironically, makes a living from swords."
 
 [druid_grey_stick]
@@ -156,3 +158,26 @@ examine = "A nature lover."
 id = 6987
 wander_radius = 4
 examine = "A nature lover."
+
+[jatix]
+id = 587
+shop = "jatixs_herblore_shop"
+collision = "indoors"
+wander_radius = 4
+examine = "Master of herbs and potions."
+
+[bettamax]
+id = 13106
+shop = "bettamaxs_shop"
+collision = "outdoors"
+wander_radius = 4
+examine = "A botanist in training."
+
+[wilbur]
+id = 13107
+examine = "He seems a little out of place."
+
+[thaerisk_cemphier_2]
+id = 8418
+examine = "A wise druid."
+

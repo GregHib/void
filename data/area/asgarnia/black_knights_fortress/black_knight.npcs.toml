@@ -13,3 +13,12 @@ examine = "Guards prisoners for the black knights."
 [black_knight_void_stares_back]
 id = 12317
 examine = "One of the Black Knights."
+
+[captain_gilroy_2]
+id = 12315
+examine = "One of the Black Knights."
+
+[black_knight_void_stares_back_2]
+id = 12319
+examine = "One of the Black Knights."
+

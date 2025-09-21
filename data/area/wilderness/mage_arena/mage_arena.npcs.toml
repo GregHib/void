@@ -1,16 +1,18 @@
-[gundai_mage_arena_bank]
+[gundai]
 id = 902
 examine = "He must get lonely out here."
 
-[lundail_mage_arena_bank]
+[lundail]
 id = 903
+shop = "lundails_arena_side_rune_shop"
 examine = "He sells rune stones."
 
-[chamber_guardian_mage_arena_bank]
+[chamber_guardian]
 id = 904
+shop = "mage_arena_staves"
 examine = "He hasn't seen much sun lately."
 
-[kolodion_mage_arena_bank]
+[kolodion]
 id = 905
 examine = "He runs the mage arena."
 

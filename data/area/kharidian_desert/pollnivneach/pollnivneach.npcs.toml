@@ -94,3 +94,66 @@ id = 1865
 wander_radius = 3
 examine = "A kebab seller."
 
+[ali_the_mayor_2]
+id = 1870
+examine = "Mayor of Pollnivneach."
+
+[blackjack_seller_pollnivneach_2]
+id = 2548
+
+[bandit_leader_pollnivneach_2]
+id = 1878
+
+[bandit_pollnivneach_3]
+id = 1880
+
+[bandit_pollnivneach_4]
+id = 1881
+
+[villager_pollnivneach_4]
+id = 1888
+
+[villager_pollnivneach_5]
+id = 1889
+
+[villager_pollnivneach_6]
+id = 1890
+
+[villager_pollnivneach_2_2]
+id = 1892
+
+[villager_pollnivneach_2_3]
+id = 1893
+
+[villager_pollnivneach_2_4]
+id = 1894
+
+[villager_pollnivneach_3_2]
+id = 1896
+
+[villager_pollnivneach_3_3]
+id = 1897
+
+[villager_pollnivneach_3_4]
+id = 1898
+
+[menaphite_leader_pollnivneach_2]
+id = 1901
+
+[menaphite_thug_pollnivneach_2]
+id = 1904
+
+[menaphite_thug_pollnivneach_3]
+id = 1905
+
+[bandit_pollnivneach_2_2]
+id = 6174
+
+[bandit_pollnivneach_2_3]
+id = 6388
+
+[sumona_pollnivneach_2]
+id = 7780
+
+[ali_cat_pollnivneach_2]
+id = 7785

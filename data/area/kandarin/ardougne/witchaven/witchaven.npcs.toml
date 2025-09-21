@@ -72,3 +72,60 @@ examine = "Smells a bit fishy."
 id = 4856
 examine = "An unlikely savior."
 
+[chair_witchaven_2]
+id = 4872
+
+[chair_witchaven_3]
+id = 4873
+
+[chair_witchaven_4]
+id = 8984
+
+[mayor_hobb_witchaven_2]
+id = 4874
+
+[mayor_hobb_witchaven_3]
+id = 4875
+
+[brother_maledict_witchaven_2]
+id = 4878
+
+[brother_maledict_witchaven_3]
+id = 4879
+
+[witchaven_villager_witchaven_7]
+id = 4883
+
+[witchaven_villager_witchaven_2_2]
+id = 4885
+
+[witchaven_villager_witchaven_3_2]
+id = 4887
+
+[jeb_witchaven_2]
+id = 4895
+
+[jeb_witchaven_3]
+id = 4896
+
+[witchaven_villager_witchaven_4_2]
+id = 4884
+
+[witchaven_villager_witchaven_5_2]
+id = 4886
+
+[witchaven_villager_witchaven_6_2]
+id = 4888
+
+[caroline_witchaven_5]
+id = 696
+
+[kimberly_witchaven_3]
+id = 7168
+
+[kennith_witchaven_2_2]
+id = 7171
+
+[kent_witchaven_3_2]
+id = 7189
+

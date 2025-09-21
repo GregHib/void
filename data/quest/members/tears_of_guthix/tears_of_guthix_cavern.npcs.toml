@@ -21,3 +21,11 @@ id = 8473
 id = 7600
 examine = "A trusted and fierce-temped creature of Guthix."
 
+[movario_tears_of_guthix_cavern_2]
+id = 8449
+
+[darve_tears_of_guthix_cavern_2]
+id = 8450
+
+[cave_goblin_tears_of_guthix_cavern_2]
+id = 8451

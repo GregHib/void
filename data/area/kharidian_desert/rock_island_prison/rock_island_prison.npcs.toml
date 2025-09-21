@@ -16,3 +16,15 @@ examine = "Inspects people's packages."
 [locker_officer]
 id = 7842
 examine = "He looks after all of the files."
+
+[young_ralph_rock_island_prison_2]
+id = 7832
+examine = "He's going for that 'stripy' look."
+
+[young_ralph_rock_island_prison_3]
+id = 7835
+examine = "He's going for that 'stripy' look."
+
+[young_ralph_rock_island_prison_4]
+id = 7834
+examine = "He's going for that 'stripy' look."

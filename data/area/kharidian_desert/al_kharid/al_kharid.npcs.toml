@@ -116,3 +116,11 @@ examine = "Come, old broomstick, you are needed."
 [sorceress]
 id = 5531
 examine = "Antisocial."
+
+[alice_the_camel_2]
+id = 2814
+examine = "A camel who's come from the south."
+
+[father_reen_2]
+id = 2899
+examine = "Looks a bit lost."

@@ -21,22 +21,32 @@ id = 5482
 
 [hring_hring]
 id = 5483
+shop = "ore_store"
+collision = "indoors"
 examine = "Harder than the rock he sells."
 
 [flosi_dalksson]
 id = 5484
+shop = "flosis_fishmongers"
+collision = "indoors"
 examine = "Jatizso's fishmonger."
 
 [raum_urda_stein]
 id = 5485
+shop = "armour_shop"
+collision = "indoors"
 examine = "A guy that will sell you armour."
 
 [skuli_myrka]
 id = 5486
+shop = "weapons_galore"
+collision = "indoors"
 examine = "Jatizso's armour merchant."
 
 [keepa_kettilon]
 id = 5487
+shop = "keepa_kettilons_store"
+collision = "indoors"
 examine = "A rough-looking chef."
 
 [magnus_gram]
@@ -62,6 +72,9 @@ id = 5494
 
 [vanligga_gastfrihet]
 id = 5495
+shop = "contraband_yak_produce"
+collision = "indoors"
+examine = "A happy, friendly landlady."
 
 [sassilik]
 id = 5496

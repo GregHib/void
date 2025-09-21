@@ -11,8 +11,8 @@ spawns = [
   { id = "camp_dweller_mountain_camp_5", x = 2785, y = 3664 },
   { id = "mountain_goat_mountain_camp", x = 2796, y = 3677 },
   { id = "mountain_goat_mountain_camp_2", x = 2795, y = 3675 },
-  { id = "my_arm_mountain_camp", x = 2815, y = 3683, members = true },
-  { id = "tool_leprechaun_mountain_camp", x = 2810, y = 3676 },
+  { id = "my_arm_mountain_camp", x = 2830, y = 3697, members = true },
+  { id = "tool_leprechaun_mountain_camp", x = 2825, y = 3685 },
   { id = "mountain_goat_mountain_camp_3", x = 2794, y = 3677 },
   { id = "mountain_goat_mountain_camp_4", x = 2793, y = 3674 },
 ]

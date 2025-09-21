@@ -9,24 +9,36 @@ examine = "A practicer of dark arts."
 id = 174
 examine = "He works evil magic."
 
-[william_wilderness]
+[william]
 id = 1778
+shop = "williams_wilderness_cape_shop"
+wander_radius = 15
 examine = "A very brave merchant."
 
-[ian_wilderness]
+[ian]
 id = 1779
+shop = "ians_wilderness_cape_shop"
+wander_radius = 15
 examine = "A very brave merchant."
 
-[darren_wilderness]
+[larry]
+id = 1780
+shop = "larrys_wilderness_cape_shop"
+examine = "A very brave merchant."
+
+[darren]
 id = 1781
+shop = "darrens_wilderness_cape_shop"
 examine = "A very brave merchant."
 
 [edmond_wilderness]
 id = 1785
+shop = "edmonds_wilderness_cape_shop"
 examine = "A very brave merchant."
 
 [simon_wilderness]
 id = 1786
+shop = "simons_wilderness_cape_shop"
 examine = "A very brave merchant."
 
 [pirate_wilderness]
@@ -134,3 +146,41 @@ id = 9717
 id = 9720
 examine = "He looks really cold."
 
+[mysterious_ghost_wilderness_6]
+id = 2397
+
+[mysterious_ghost_wilderness_2_2]
+id = 2400
+
+[mysterious_ghost_wilderness_5_2]
+id = 2402
+
+[orry_wilderness_2]
+id = 8044
+
+[orry_wilderness_3]
+id = 8045
+
+[ube_wilderness_2]
+id = 8046
+
+[ube_wilderness_3]
+id = 8047
+
+[waldo_wilderness_2]
+id = 8048
+
+[waldo_wilderness_3]
+id = 8049
+
+[crate_wilderness_2]
+id = 8059
+
+[crate_wilderness_3]
+id = 8060
+
+[rogue_wilderness_2]
+id = 8122
+
+[commander_colby_wilderness_2]
+id = 12312

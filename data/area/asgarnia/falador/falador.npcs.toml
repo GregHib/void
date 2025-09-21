@@ -140,6 +140,8 @@ examine = "Head of recruitment for the Temple Knights."
 
 [sarah]
 id = 2304
+shop = "sarahs_farming_shop"
+collision = "indoors"
 examine = "She sells Farming equipment."
 
 [sheepdog]
@@ -308,8 +310,9 @@ examine = "A dwarf who looks after the mining guild."
 id = 4249
 examine = "Chief Herald of Falador."
 
-[garden_supplier_falador]
+[garden_supplier]
 id = 4251
+shop = "garden_centre"
 examine = "She has green fingers. (Not literally.)"
 
 [ambassador_spanfipple_falador]
@@ -323,16 +326,22 @@ examine = "A chip off the old block."
 [assistant_brock_falador]
 id = 5065
 
-[cassie_falador]
+[cassie]
 id = 577
+shop = "cassies_shield_shop"
+collision = "indoors"
 examine = "Nice eyes."
 
-[flynn_falador]
+[flynn]
 id = 580
+shop = "flynns_mace_market"
+collision = "indoors"
 examine = "The mace salesman."
 
-[herquin_falador]
+[herquin]
 id = 584
+shop = "herquins_gems"
+collision = "indoors"
 examine = "Seems very well-off."
 
 [sylas_falador]
@@ -346,8 +355,10 @@ examine = "Leader of the White Knights."
 [town_crier_falador]
 id = 6137
 
-[party_pete_falador]
+[party_pete]
 id = 659
+shop = "party_petes_emporium"
+collision = "indoors"
 examine = "He likes to paaaarty!"
 
 [megan_falador]
@@ -438,6 +449,8 @@ examine = "His hands are covered in mud. At least, I hope that's mud."
 
 [wayne]
 id = 581
+shop = "waynes_chains_chainmail_specialist"
+collision = "indoors"
 examine = "An armourer."
 
 [estate_agent]
@@ -448,3 +461,67 @@ examine = "A fancy businessman with a mighty fine hat."
 id = 3295
 wander_radius = 3
 examine = "He's in charge of the mining guild."
+
+[assistant_brock_falador_2]
+id = 5054
+
+[brother_bordiss_falador_2]
+id = 7723
+
+[brother_bordiss_falador_3]
+id = 7724
+
+[hazelmere_falador_2]
+id = 669
+
+[harrallak_menarous_falador_2]
+id = 4286
+
+[surok_magis_falador_2]
+id = 8340
+
+[surok_magis_falador_3]
+id = 8442
+
+[silif_falador_2]
+id = 8430
+
+[silif_falador_3]
+id = 8431
+
+[turael_falador_2]
+id = 8273
+
+[mazchna_falador_2]
+id = 8274
+
+[duradel_falador_2]
+id = 8275
+
+[sloane_falador_2]
+id = 8280
+
+[cyrisus_falador_2]
+id = 8279
+
+[sir_vant_falador_2]
+id = 8848
+
+[ali_tist_2]
+id = 11643
+
+[ali_tist_3]
+id = 11642
+
+[customer_falador_3]
+id = 11645
+
+[customer_falador_2_2]
+id = 11647
+
+[captain_korasi_falador_2_2]
+id = 6361
+
+[jessika_falador_2_2]
+id = 12266
+

@@ -4,6 +4,7 @@ examine = "A flea-infested, pale-looking excuse for a man."
 
 [trader_sven_meiyerditch]
 id = 4716
+shop = "trader_svens_black_market_goods"
 examine = "A flea-infested black market trader."
 
 [meiyerditch_citizen_meiyerditch]

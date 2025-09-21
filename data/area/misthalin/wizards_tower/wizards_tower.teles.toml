@@ -30,3 +30,13 @@ option = "Climb-up"
 tile = { x = 3111, y = 9526 }
 delta = { y = -6400 }
 
+[portal_runecrafting_guild]
+option = "Enter"
+tile = { x = 1696, y = 5460, level = 2 }
+to = { x = 3107, y = 3160, level = 1 }
+
+[portal_runecrafting_guild]
+option = "Enter"
+tile = { x = 3107, y = 3160, level = 1 }
+to = { x = 1696, y = 5460, level = 2 }
+

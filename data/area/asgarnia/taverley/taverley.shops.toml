@@ -21,6 +21,7 @@ defaults = [
 
 [bettamaxs_shop]
 id = 604
+title = "Bettamax's Shop"
 defaults = [
     { id = "juju_teleport_spiritbag", amount = 100 },
 ]

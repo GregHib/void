@@ -11,6 +11,8 @@ examine = "Ferry-mistress."
 
 [jofridr_mordstatter]
 id = 5509
+shop = "neitiznot_supplies"
+collision = "indoors"
 examine = "Mistress of the stores."
 
 [morten_holdstrom]
@@ -67,4 +69,10 @@ examine = "A hairy, smelly, grazing animal."
 
 [mawnis_burowgar_neitiznot]
 id = 5530
+
+[mawnis_burowgar_neitiznot_2]
+id = 5503
+
+[mawnis_burowgar_neitiznot_3]
+id = 5504
 

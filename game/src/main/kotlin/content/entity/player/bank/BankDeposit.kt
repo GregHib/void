@@ -38,7 +38,29 @@ class BankDeposit {
             deposit(player, player.inventory, item, amount)
         }
 
+        interfaceOption("Deposit-*", "inventory", "bank_deposit_box") {
+            val amount = when (option) {
+                "Deposit-1" -> 1
+                "Deposit-5" -> 5
+                "Deposit-10" -> 10
+                "Deposit-All" -> Int.MAX_VALUE
+                "Deposit-X" -> intEntry("Enter amount:").also {
+                    player["last_bank_amount"] = it
+                }
+                else -> return@interfaceOption
+            }
+            deposit(player, player.inventory, item, amount)
+        }
+
         interfaceOption("Deposit carried items", "carried", "bank") {
+            if (player.inventory.isEmpty()) {
+                player.message("You have no items in your inventory to deposit.")
+            } else {
+                bankAll(player, player.inventory)
+            }
+        }
+
+        interfaceOption("Deposit carried items", "carried", "bank_deposit_box") {
             if (player.inventory.isEmpty()) {
                 player.message("You have no items in your inventory to deposit.")
             } else {
@@ -54,7 +76,24 @@ class BankDeposit {
             }
         }
 
+        interfaceOption("Deposit worn items", "worn", "bank_deposit_box") {
+            if (player.equipment.isEmpty()) {
+                player.message("You have no equipped items to deposit.")
+            } else {
+                bankAll(player, player.equipment)
+            }
+        }
+
         interfaceOption("Deposit beast of burden inventory", "burden", "bank") {
+            // TODO no familiar & no bob familiar messages
+            if (player.beastOfBurden.isEmpty()) {
+                player.message("Your familiar has no items to deposit.")
+            } else {
+                bankAll(player, player.beastOfBurden)
+            }
+        }
+
+        interfaceOption("Deposit beast of burden inventory", "burden", "bank_deposit_box") {
             // TODO no familiar & no bob familiar messages
             if (player.beastOfBurden.isEmpty()) {
                 player.message("Your familiar has no items to deposit.")
@@ -65,7 +104,7 @@ class BankDeposit {
     }
 
     fun deposit(player: Player, inventory: Inventory, item: Item, amount: Int): Boolean {
-        if (player.menu != "bank" || amount < 1) {
+        if ((player.menu != "bank" && player.menu != "bank_deposit_box") || amount < 1) {
             return true
         }
 

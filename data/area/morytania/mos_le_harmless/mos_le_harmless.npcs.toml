@@ -1,21 +1,25 @@
-[charley_mos_le_harmless]
+[charley]
 id = 3161
+shop = "two_feet_charleys_fish_shop"
 examine = "'Two Feet' Charley."
 
-[smith_mos_le_harmless]
+[smith]
 id = 3162
+shop = "smithing_smiths_shop"
 examine = "Smithing Smith."
 
-[joe_mos_le_harmless]
+[joe]
 id = 3163
+shop = "harpoon_joes_house_of_rum"
 examine = "Harpoon Joe."
 
-[mama_mos_le_harmless]
+[mama]
 id = 3164
 examine = "Mama La'Fiette."
 
-[mike_mos_le_harmless]
+[mike]
 id = 3166
+shop = "dodgy_mikes_second_hand_clothing"
 examine = "Dodgy Mike."
 
 [pirate_mos_le_harmless]
@@ -105,7 +109,7 @@ id = 4344
 [crab_mos_le_harmless]
 id = 4346
 
-[giant_mosquito_mos_le_harmless]
+[giant_mosquito]
 id = 4347
 examine = "A flying blood sucker."
 
@@ -114,21 +118,27 @@ id = 4352
 categories = ["jungle_horrors"]
 examine = "A horrible, emaciated ape like creature with beady pink eyes."
 
-[cavey_davey_mos_le_harmless]
+[cavey_davey]
 id = 4358
 examine = "A pirate of Mos Le'Harmless."
 
-[patchy_mos_le_harmless]
+[patchy]
 id = 4359
 examine = "Patchy the pirate."
 
-[50_ships_mufassah_mos_le_harmless]
+[50_ships_mufassah]
 id = 7825
 examine = "How novel - a pirate with a leg injury that does not involve a wooden peg."
 
-[brass_hand_harry_mos_le_harmless]
+[brass_hand_harry]
 id = 7857
 examine = "Talk to the hand, because the Harry ain't interested."
 
-[kchunk_mos_leharmless]
+[kchunk]
 id = 11319
+
+[kchunk_2]
+id = 11320
+
+[kchunk_3]
+id = 11321

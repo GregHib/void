@@ -26,3 +26,6 @@ stack = "Always"
 id = 528
 stack = "Always"
 
+[deposit_box]
+id = 3
+stack = "Always"

@@ -35,6 +35,11 @@ class ObjectTeleports {
         if (teleport.cancelled) {
             return false
         }
+        if (target.id.contains("gangplank")) {
+            with(context) {
+                player.walkOverDelay(target.tile)
+            }
+        }
         teleportContinue(context, player, definition, teleport)
         return true
     }

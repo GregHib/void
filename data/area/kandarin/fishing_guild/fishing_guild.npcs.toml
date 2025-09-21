@@ -32,6 +32,8 @@ examine = "An ugly green creature."
 
 [roachey]
 id = 592
+shop = "fishing_guild_shop"
+collision = "indoors"
 examine = "He runs the Fishing Guild shop."
 
 [fishermans_wife]

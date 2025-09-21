@@ -31,7 +31,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
-import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -43,6 +42,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.event.Context
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
@@ -73,16 +73,20 @@ class Delrith : Api {
 
     val words = listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo")
 
+    override fun move(player: Player, from: Tile, to: Tile) {
+        if (exitArea(player, to)) {
+            val cutscene: Cutscene = player.remove("demon_slayer_cutscene") ?: return
+            Events.events.launch {
+                cutscene.end()
+            }
+        }
+    }
+
     init {
         enterArea("demon_slayer_stone_circle") {
             if (!player.questCompleted("demon_slayer") && player["demon_slayer_silverlight", false] && !player.hasClock("demon_slayer_instance_exit")) {
                 cutscene()
             }
-        }
-
-        move({ exitArea(it, to) }) { player ->
-            val cutscene: Cutscene = player.remove("demon_slayer_cutscene") ?: return@move
-            cutscene.end(this)
         }
 
         playerDespawn { player ->
@@ -133,7 +137,7 @@ class Delrith : Api {
                     statement("...back into the dark dimension from which he came.")
                     val cutscene: Cutscene? = player.remove("demon_slayer_cutscene")
                     if (cutscene != null) {
-                        cutscene.end(this)
+                        cutscene.end()
                     } else {
                         player.tele(defaultTile)
                     }
@@ -288,7 +292,7 @@ class Delrith : Api {
         player.moveCamera(cutscene.tile(3226, 3383), 1000, 1, 1)
         npc<Shifty>("denath", "I've got to get out of here...")
         player.queue.clear("demon_slayer_delrith_cutscene_end")
-        cutscene.end(this)
+        cutscene.end()
         for (wizard in wizards) {
             wizard.mode = EmptyMode
         }

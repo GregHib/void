@@ -117,6 +117,8 @@ examine = "A large dim looking humanoid."
 
 [chadwell_underground_pass]
 id = 971
+shop = "west_ardougne_general_store"
+collision = "indoors"
 examine = "Shopkeeper."
 
 [koftik_underground_pass]

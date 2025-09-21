@@ -1,0 +1,5 @@
+[ships_set_destination]
+id = 75
+format = "map"
+default = "empty"
+values = { empty = 0, port_sarim_to_entrana = 1, entrana_to_port_sarim = 2, port_sarim_to_crandor = 3, port_sarim_to_karamja = 5, karamja_to_port_sarim = 6, ardougne_to_brimhaven = 7, brimhaven_to_ardougne = 8, ape_atoll_to_port_khazard = 10, port_khazard_to_ship_yard = 11, ship_yard_to_port_khazard = 12, cairn_isle_to_ship_yard = 13, port_sarim_to_ape_atoll = 14, ape_atoll_to_port_sarim = 15, feldip_hills_to_cairn_isle = 16, cairn_isle_to_feldip_hills = 17 }

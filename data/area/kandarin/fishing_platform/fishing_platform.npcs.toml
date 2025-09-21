@@ -11,6 +11,12 @@ examine = "He smells of fish..."
 [kennith_fishing_platform]
 id = 697
 
+[kennith_fishing_platform_invisible]
+id = 4864
+
+[kennith_fishing_platform_2]
+id = 7194
+
 [holgart_fishing_platform]
 id = 698
 examine = "A very good sailor."
@@ -18,9 +24,6 @@ examine = "A very good sailor."
 [kent_fishing_platform]
 id = 701
 examine = "He looks very tired and hungry."
-
-[kennith_fishing_platform_2]
-id = 7194
 
 [jeb]
 id = 4871
@@ -36,3 +39,10 @@ id = 703
 
 [fisherman_3]
 id = 704
+
+[jeb_2]
+id = 699
+
+[giant_lobster_2]
+id = 4892
+

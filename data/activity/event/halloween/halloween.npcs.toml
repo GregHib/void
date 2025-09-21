@@ -158,3 +158,31 @@ id = 8978
 [spider_halloween_2]
 id = 8979
 examine = "This spider is not budging from the bathtub."
+
+[spider_halloween_3]
+id = 8982
+
+[purple_spider_halloween_2]
+id = 12423
+
+[blue_spider_halloween_2]
+id = 12424
+
+[red_spider_halloween_2]
+id = 12425
+
+[green_spider_halloween_2]
+id = 12426
+
+[orange_spider_halloween_3]
+id = 12427
+
+[turquoise_spider_halloween_2]
+id = 12428
+
+[pink_spider_halloween_2]
+id = 12429
+
+[beige_spider_halloween_2]
+id = 12430
+

@@ -42,3 +42,12 @@ examine = "The slime of evil."
 [rockslug]
 id = 1631
 examine = "The slime of evil."
+
+[sergeant_mossfists_2]
+id = 5871
+
+[sergeant_slimetoes_2]
+id = 5872
+
+[ilona_2]
+id = 9631

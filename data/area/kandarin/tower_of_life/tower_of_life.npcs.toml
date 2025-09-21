@@ -44,3 +44,15 @@ id = 5602
 [homunculus_3]
 id = 5581
 examine = "Is it male or female?"
+
+[effigy_2]
+id = 5578
+
+[homunculus_4]
+id = 5583
+
+[transmute_the_alchemist_2]
+id = 5585
+
+[currency_the_alchemist_2]
+id = 5587

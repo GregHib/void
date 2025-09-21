@@ -59,3 +59,30 @@ examine = "One of the Knights of the Round Table."
 id = 6190
 examine = "Primping with combs and hair clips."
 
+[arthur_black_knights_fortress_basement_2]
+id = 3779
+
+[captain_korasi_black_knights_fortress_basement_2]
+id = 7900
+
+[commodore_tyr_black_knights_fortress_basement_2]
+id = 12274
+
+[void_knight_black_knights_fortress_basement_4]
+id = 12282
+
+[void_knight_black_knights_fortress_basement_2_2]
+id = 12284
+
+[sir_tiffy_black_knights_fortress_basement_2]
+id = 12293
+
+[white_knight_black_knights_fortress_basement_2]
+id = 12302
+
+[lord_daquarius_black_knights_fortress_basement_2]
+id = 12306
+
+[black_knight_black_knights_fortress_basement_2_2]
+id = 12322
+

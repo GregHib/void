@@ -6,8 +6,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
+import world.gregs.voidps.engine.dispatch.ListDispatcher
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.network.client.Client
 
 internal class VariablesTest {
@@ -17,8 +17,8 @@ internal class VariablesTest {
     private lateinit var variable: VariableDefinition
     private lateinit var player: Player
     private lateinit var client: Client
-    private lateinit var events: EventDispatcher
     private lateinit var map: MutableMap<String, Any>
+    private lateinit var varSet: VariableSet
 
     private val id = 0
     private val default = "First"
@@ -34,15 +34,21 @@ internal class VariablesTest {
         every { variable.persistent } returns true
         every { variable.defaultValue } returns 0
         definitions = mockk(relaxed = true)
-        events = mockk(relaxed = true)
-        variables = spyk(PlayerVariables(events, map))
-        variables.bits = VariableBits(variables, events)
         player = mockk(relaxed = true)
+        variables = spyk(PlayerVariables(player, map))
+        variables.bits = VariableBits(variables, player)
         client = mockk(relaxed = true)
         every { player.variables } returns variables
         every { definitions.get(KEY) } returns variable
         variables.definitions = definitions
         variables.client = client
+        val dispatcher = ListDispatcher<VariableSet>()
+        varSet = spyk(object : VariableSet {
+            override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
+            }
+        })
+        dispatcher.instances.add(varSet)
+        VariableSet.playerDispatcher = dispatcher
     }
 
     @Test
@@ -56,7 +62,7 @@ internal class VariablesTest {
         assertEquals(42, map[KEY])
         verify {
             variables.send(any())
-            events.emit(VariableSet(KEY, 1, 42))
+            varSet.variableSet(player, KEY, 1, 42)
         }
     }
 
@@ -127,7 +133,7 @@ internal class VariablesTest {
         assertEquals(arrayListOf("First"), map[KEY])
         verify {
             variables.send(KEY)
-            events.emit(VariableBitAdded(KEY, "First"))
+            player.emit(VariableBitAdded(KEY, "First"))
         }
     }
 
@@ -143,7 +149,7 @@ internal class VariablesTest {
         assertEquals(arrayListOf("First", "Second"), map[KEY])
         verify {
             variables.send(KEY)
-            events.emit(VariableBitAdded(KEY, "Second"))
+            player.emit(VariableBitAdded(KEY, "Second"))
         }
     }
 
@@ -185,7 +191,7 @@ internal class VariablesTest {
         assertEquals(emptyList<Any>(), map[KEY])
         verify {
             variables.send(KEY)
-            events.emit(VariableBitRemoved(KEY, "First"))
+            player.emit(VariableBitRemoved(KEY, "First"))
         }
     }
 
@@ -227,7 +233,7 @@ internal class VariablesTest {
         assertNull(map[KEY])
         verifyOrder {
             variables.send(KEY)
-            events.emit(VariableSet(KEY, arrayListOf("Third"), null))
+            varSet.variableSet(player, KEY, arrayListOf("Third"), null)
         }
     }
 

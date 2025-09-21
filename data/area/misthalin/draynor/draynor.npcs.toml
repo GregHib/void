@@ -75,6 +75,12 @@ examine = "She comes from Al Kharid."
 [undead_tree_draynor]
 id = 152
 
+[undead_tree_draynor_1]
+id = 5207
+
+[undead_tree_draynor_2]
+id = 5208
+
 [farmer_draynor]
 id = 1761
 examine = "Farming the wheat."
@@ -106,6 +112,7 @@ examine = "He looks scared."
 
 [olivia]
 id = 2233
+shop = "draynor_seed_market"
 examine = "She's a seed merchant."
 
 [piglet]
@@ -153,6 +160,7 @@ id = 3820
 
 [fortunato]
 id = 3671
+shop = "fortunatos_fine_wine"
 examine = "He looks as if he could do with a sip of Amontillado."
 
 [gull_draynor]
@@ -200,3 +208,18 @@ id = 5201
 [witch_normal]
 id = 5200
 examine = "The hat's a dead giveaway."
+
+[chicken_draynor_2]
+id = 288
+
+[wise_old_man_2_2]
+id = 2253
+
+[wise_old_man_2_3]
+id = 11569
+
+[ava_2]
+id = 5198
+
+[scout_draynor_2]
+id = 5569

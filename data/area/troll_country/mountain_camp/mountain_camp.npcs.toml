@@ -53,6 +53,7 @@ examine = "Trollish."
 
 [tool_leprechaun_mountain_camp]
 id = 4965
+shop = "leprechaun_larrys_farming_supplies"
 examine = "It's a leprechaun sunbathing on a mountain."
 
 [mountain_goat_mountain_camp_3]

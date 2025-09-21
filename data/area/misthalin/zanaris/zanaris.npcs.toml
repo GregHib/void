@@ -97,14 +97,17 @@ id = 5164
 
 [fairy_shopkeeper]
 id = 534
+shop = "zanaris_general_store"
 examine = "Sells stuff."
 
 [fairy_shop_assistant]
 id = 535
+shop = "zanaris_general_store"
 examine = "Sells stuff."
 
 [jukat]
 id = 564
+shop = "jukats_dragon_sword_shop"
 examine = "A being from a mysterious other realm."
 
 [lunderwin]
@@ -113,6 +116,7 @@ examine = "Smells strangely of cabbage."
 
 [irksol]
 id = 566
+shop = "irksols_ruby_rings"
 examine = "Is he invisible or just floating clothing?"
 
 [fairy_11]
@@ -130,3 +134,75 @@ examine = "He looks a little lost."
 [otherworldy_being]
 id = 126
 examine = "Is he invisible or just a set of floating clothing?"
+
+[fairy_queen_3]
+id = 653
+
+[fairy_queen_2_2]
+id = 4433
+
+[fairy_queen_2_3]
+id = 4437
+
+[fairy_very_wise_2]
+id = 3305
+
+[fairy_very_wise_3]
+id = 4442
+
+[tooth_fairy_2]
+id = 3306
+
+[tooth_fairy_3]
+id = 11376
+
+[gatekeeper_2_2]
+id = 3321
+
+[fairy_9_2]
+id = 57
+
+[fairy_10_2]
+id = 5165
+
+[ork_zanaris_3]
+id = 11423
+
+[ork_zanaris_2_2]
+id = 11424
+
+[fairy_nuff_2]
+id = 4434
+
+[gnarly_2]
+id = 11309
+
+[gnarly_3]
+id = 11310
+
+[general_breegth_2]
+id = 11318
+
+[fairy_12]
+id = 11427
+
+[fairy_2_2]
+id = 11428
+
+[fairy_3_2]
+id = 11429
+
+[fairy_4_2]
+id = 11430
+
+[fairy_5_2]
+id = 11431
+
+[fairy_6_2]
+id = 11432
+
+[fairy_7_2]
+id = 11433
+
+[fairy_8_2]
+id = 11434

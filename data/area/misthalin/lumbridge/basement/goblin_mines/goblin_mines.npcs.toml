@@ -40,8 +40,11 @@ examine = "He looks like he's in charge of the miners."
 
 [nardok]
 id = 4312
+shop = "nardoks_bone_weapons"
 examine = "What has he got under his coat?"
 
 [grubfoot_goblin_mines]
 id = 6480
 
+[grubfoot_goblin_mines_2]
+id = 6479

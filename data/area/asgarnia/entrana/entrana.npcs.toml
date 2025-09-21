@@ -13,11 +13,15 @@ examine = "Perhaps this gardener might look after your crops for you."
 [mysterious_ghost_entrana]
 id = 2391
 
-[monk_of_entrana]
+[entrana_monk_grey]
 id = 2730
 
-[monk_of_entrana_2]
+[entrana_monk_white]
 id = 2731
+examine = "Holy looking."
+
+[entrana_monk_ginger]
+id = 658
 examine = "Holy looking."
 
 [mazion_entrana]
@@ -40,17 +44,18 @@ examine = "Balloonist extraordinaire."
 
 [frincos]
 id = 578
+shop = "frincoss_fabulous_herb_store"
+collision = "indoors"
 examine = "Kind of funny-looking."
 
 [cave_monk]
 id = 656
 examine = "Unsurprisingly monk like."
 
-[monk_of_entrana_3]
-id = 658
-examine = "Holy looking."
-
 [entrana_firebird]
 id = 6108
 examine = "Probably not a chicken."
+
+[mysterious_ghost_entrana_2]
+id = 2401
 

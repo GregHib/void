@@ -32,6 +32,7 @@ defaults = [
 
 [aarons_archery_appendages]
 id = 81
+title = "Aaron's Archery Appendages"
 defaults = [
     { id = "leather_body", amount = 10 },
     { id = "hardleather_body", amount = 10 },
@@ -74,6 +75,7 @@ defaults = [
 
 [aarons_archery_appendages_skillcape]
 id = 457
+title = "Aaron's Archery Appendages"
 defaults = [
     { id = "leather_body", amount = 10 },
     { id = "hardleather_body", amount = 10 },
@@ -88,6 +90,7 @@ defaults = [
 
 [aarons_archery_appendages_trimmed]
 id = 458
+title = "Aaron's Archery Appendages"
 defaults = [
     { id = "leather_body", amount = 10 },
     { id = "hardleather_body", amount = 10 },

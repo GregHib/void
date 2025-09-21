@@ -25,10 +25,6 @@ class CandleMaker {
                 }
             }
         }
-
-        npcOperate("Trade", "candle_maker") {
-            player.openShop("candle_shop")
-        }
     }
 
     // TODO: add Merlin's Crystal quest as that how you got black candle from the shop

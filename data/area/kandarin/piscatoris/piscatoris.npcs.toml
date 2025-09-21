@@ -1,24 +1,26 @@
-[herman_caranos_piscatoris]
+[herman_caranos]
 id = 3822
 examine = "Founder and Director of the Piscatoris Fishing Colony."
 
-[franklin_caranos_piscatoris]
+[franklin_caranos]
 id = 3823
 examine = "Engineer for the Piscatoris Fishing Colony."
 
-[arnold_lydspor_piscatoris]
+[arnold_lydspor]
 id = 3824
+shop = "arnolds_eclectic_supplies"
+collision = "indoors"
 examine = "Secretary and Storemaster for the Piscatoris Fishing Colony."
 
 [devin_mendelberg_piscatoris]
 id = 3825
 examine = "A member of the Piscatoris Fishing Colony."
 
-[george_laxmeister_piscatoris]
+[george_laxmeister]
 id = 3826
 examine = "A member of the Piscatoris Fishing Colony."
 
-[ramara_du_croissant_piscatoris]
+[ramara_du_croissant]
 id = 3827
 examine = "A member of the Piscatoris Fishing Colony."
 
@@ -31,5 +33,15 @@ id = 3833
 [skeleton_mage_piscatoris]
 id = 3851
 
-[brian_twitcher_piscatoris]
+[brian_twitcher]
 id = 8579
+
+[wise_old_man_piscatoris_3]
+id = 2567
+
+[brian_twitcher_2]
+id = 8555
+
+[brian_twitcher_3]
+id = 8556
+

@@ -281,7 +281,7 @@ class GypsyAris {
 
         statement("", clickToContinue = false)
         player.queue.clear("demon_slayer_wally_cutscene_end")
-        cutscene.end(this)
+        cutscene.end()
         player["demon_slayer"] = "sir_prysin"
         delrithWillCome()
     }

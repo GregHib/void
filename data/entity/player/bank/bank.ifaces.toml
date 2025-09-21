@@ -3,6 +3,27 @@ id = 13
 
 [bank_deposit_box]
 id = 11
+type = "main_screen"
+components = {
+  close = 15,
+  inventory = {
+    id = 17,
+    inventory = "inventory",
+    width = 6,
+    height = 5,
+    options = {
+      Deposit-1 = 0,
+      Deposit-5 = 1,
+      Deposit-10 = 2,
+      Deposit-X = 4,
+      Deposit-All = 5,
+      Examine = 9,
+    }
+  },
+  carried = 18,
+  worn = 20,
+  burden = 22,
+}
 
 [bank_pin_settings]
 id = 14

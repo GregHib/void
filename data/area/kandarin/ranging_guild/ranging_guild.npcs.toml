@@ -46,12 +46,15 @@ examine = "The keeper of the gates to the ranging guild."
 id = 680
 examine = "An expert leatherworker."
 
-[armour_salesman_ranging_guild]
+[armour_salesman]
 id = 682
+collision = "indoors"
 examine = "Supplier of Rangers armour."
 
-[bow_and_arrow_salesman_ranging_guild]
+[bow_and_arrow_salesman]
 id = 683
+shop = "dargauds_bows_and_arrows"
+collision = "indoors"
 examine = "Supplier of Archery equipment."
 
 [tower_advisor]
@@ -67,14 +70,28 @@ id = 686
 [tower_advisor_4]
 id = 687
 
-[tribal_weapon_salesman_ranging_guild]
+[tribal_weapon_salesman]
 id = 692
+shop = "authentic_throwing_weapons"
+collision = "indoors"
 examine = "Supplier of authentic throwing weapons."
 
 [competition_judge]
 id = 693
 
+[competition_judge_1]
+id = 8524
+
+[competition_judge_2]
+id = 8523
+
 [ticket_merchant]
 id = 694
+shop = "ranging_guild_ticket_exchange"
 examine = "Sells equipment in exchange for archery tickets."
 
+[sinister_stranger_2]
+id = 3677
+
+[sinister_stranger_3]
+id = 3678

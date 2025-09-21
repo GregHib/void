@@ -1,9 +1,13 @@
 [neil]
 id = 1784
+wander_radius = 15
+shop = "neils_wilderness_cape_shop"
 examine = "A very brave merchant."
 
 [sam]
 id = 1787
+wander_radius = 15
+shop = "sams_wilderness_cape_shop"
 examine = "A very brave merchant."
 
 [dark_warrior]
@@ -33,9 +37,11 @@ id = 326
 
 [fat_tony]
 id = 596
+shop = "tonys_pizza_bases"
 examine = "A pizza expert; in both making and eating."
 
 [noterazzo]
 id = 597
+shop = "bandit_duty_free"
 examine = "The lawless shopkeeper."
 

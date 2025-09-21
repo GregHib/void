@@ -45,3 +45,38 @@ examine = "A shady dealer."
 id = 11299
 examine = "Our man on the inside."
 
+[guildmaster_darren_2]
+id = 11274
+
+[guildmaster_darren_3]
+id = 11275
+
+[guildmaster_darren_4]
+id = 11276
+
+[guildmaster_darren_5]
+id = 11277
+
+[chief_thief_robin_2]
+id = 11280
+
+[pickpocketing_volunteer_4]
+id = 11282
+
+[pickpocketing_volunteer_2_2]
+id = 11284
+
+[pickpocketing_volunteer_3_2]
+id = 11286
+
+[coshing_volunteer_4]
+id = 11288
+
+[coshing_volunteer_2_2]
+id = 11290
+
+[coshing_volunteer_3_2]
+id = 11292
+
+[advanced_pickpocketing_trainer_2]
+id = 11296

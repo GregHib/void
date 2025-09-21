@@ -10,8 +10,13 @@ examine = "An evil priest."
 id = 1686
 examine = "A ghost disciple."
 
-[ak_haranu_port_phasmatys]
+[ak_haranu]
 id = 1687
+shop = "ak_haranus_exotic_shop"
+examine = "A trader from across the eastern sea."
+
+[ak_haranu_2]
+id = 1688
 
 [robin_port_phasmatys]
 id = 1694
@@ -28,6 +33,7 @@ examine = "This poor soul cannot understand why it has not passed to the next wo
 
 [ghost_shopkeeper_port_phasmatys]
 id = 1699
+shop = "port_phasmatys_general_store"
 examine = "Beware the ghostly shopkeeper's wares!"
 
 [ghost_innkeeper_port_phasmatys]
@@ -72,3 +78,17 @@ id = 6075
 [gravingas_port_phasmatys_2]
 id = 6076
 
+[melina_port_phasmatys_2]
+id = 2935
+
+[droalak_port_phasmatys_2]
+id = 2938
+
+[bill_teach_port_phasmatys_2]
+id = 3160
+
+[bill_teach_port_phasmatys_3]
+id = 3156
+
+[gravingas_port_phasmatys_3]
+id = 1685

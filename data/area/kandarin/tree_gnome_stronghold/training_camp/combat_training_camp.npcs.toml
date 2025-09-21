@@ -16,4 +16,6 @@ id = 346
 
 [shopkeeper_combat_training_camp]
 id = 561
+shop = "king_lathass_armoury"
+collision = "indoors"
 examine = "Could stand to lose a few pounds."

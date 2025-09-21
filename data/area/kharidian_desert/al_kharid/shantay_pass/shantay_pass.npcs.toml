@@ -25,3 +25,12 @@ examine = "He patrols the Shantay Pass."
 [rug_merchant_shantay_pass]
 id = 2291
 examine = "A man who deals in rugs."
+
+[irena_shantay_pass_3]
+id = 835
+
+[irena_shantay_pass_2_2]
+id = 4988
+
+[scout_shantay_pass_2]
+id = 5570

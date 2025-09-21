@@ -1,0 +1,7 @@
+[gangplank_musa_point_exit]
+id = 2082
+examine = "Handy for boarding the ship."
+
+[gangplank_musa_point_enter]
+id = 2081
+examine = "Handy for boarding the ship."

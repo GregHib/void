@@ -102,3 +102,21 @@ examine = "Funnily enough, he doesn't actually buy or sell ogres."
 [ogre_trader_gu_tanoth_3]
 id = 876
 
+[ogre_shaman_gu_tanoth_7]
+id = 5176
+
+[ogre_shaman_gu_tanoth_2_2]
+id = 5181
+
+[ogre_shaman_gu_tanoth_3_2]
+id = 5184
+
+[ogre_shaman_gu_tanoth_4_2]
+id = 5187
+
+[ogre_shaman_gu_tanoth_5_2]
+id = 5190
+
+[ogre_shaman_gu_tanoth_6_2]
+id = 5193
+

@@ -1,27 +1,30 @@
 package content.skill.magic.spell
 
 import content.skill.melee.weapon.attackRange
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 @Script
-class Autocast {
+class Autocast : Api {
 
     val interfaceDefinitions: InterfaceDefinitions by inject()
+
+    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
+        if (key == "autocast" && to == null) {
+            player.clear("autocast_spell")
+        }
+    }
 
     init {
         interfaceOption("Autocast", id = "*_spellbook") {
             toggle()
-        }
-
-        variableSet("autocast", to = null) { player ->
-            player.clear("autocast_spell")
         }
 
         inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->

@@ -89,3 +89,9 @@ examine = "He's in control of the whole mining camp."
 [mine_cart_driver]
 id = 841
 examine = "He looks busy attending to his cart."
+
+[ana_desert_mining_camp_2]
+id = 822
+
+[escaping_slave_desert_mining_camp_2]
+id = 826

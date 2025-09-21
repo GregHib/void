@@ -54,6 +54,8 @@ examine = "A member of Ardougne's militia."
 
 [richard_ardougne]
 id = 2306
+shop = "richards_farming_shop"
+collision = "indoors"
 examine = "He sells Farming equipment."
 
 [kragen_ardougne]
@@ -132,6 +134,12 @@ examine = "He looks friendly enough."
 [captain_barnaby]
 id = 381
 
+[captain_barnaby_1]
+id = 4961
+
+[captain_barnaby_2]
+id = 4974
+
 [rick]
 id = 4236
 
@@ -170,9 +178,6 @@ examine = "He's very diplomatic."
 [my_arm_ardougne]
 id = 4953
 
-[captain_barnaby_2]
-id = 4961
-
 [charlie_ardougne]
 id = 5138
 examine = "One of the zookeepers; enjoys locking up animals in small pens."
@@ -182,34 +187,48 @@ id = 5445
 
 [silver_merchant_ardougne]
 id = 569
+wander_radius = -1
+shop = "ardougne_silver_stall"
 examine = "Looks fairly well fed."
 
 [gem_merchant_ardougne]
 id = 570
+wander_radius = -1
+shop = "ardougne_gem_stall"
 examine = "Seems very well-off."
 
 [baker_ardougne]
 id = 571
+wander_radius = -1
 examine = "So where are the butcher and the candlestick-maker?"
 
 [spice_seller_ardougne]
 id = 572
+wander_radius = -1
+shop = "ardougne_spice_stall"
 examine = "Has a very exotic aroma about him."
 
 [fur_trader_ardougne]
 id = 573
+wander_radius = -1
+shop = "ardougne_fur_stall"
 examine = "Knows how to keep warm in the winter."
 
 [silk_merchant_ardougne]
 id = 574
+wander_radius = -1
 examine = "Seems very well-off."
 
 [zenesha]
 id = 589
+shop = "zeneshas_platebody_shop"
+collision = "indoors"
 examine = "Sells top quality platemail armour."
 
 [aemad]
 id = 590
+shop = "aemads_adventuring_supplies"
+collision = "indoors"
 examine = "He runs the adventurers' shop."
 
 [kortan]
@@ -302,3 +321,63 @@ examine = "She'll serve you a drink as quick as a shot!"
 id = 364
 wander_radius = 4
 examine = "King Lathas of East Ardougne."
+
+[sick_looking_sheep_1_3]
+id = 2345
+
+[sick_looking_sheep_1_4]
+id = 2377
+
+[sick_looking_sheep_2_3]
+id = 2346
+
+[sick_looking_sheep_2_4]
+id = 2378
+
+[sick_looking_sheep_3_3]
+id = 2347
+
+[sick_looking_sheep_3_4]
+id = 2379
+
+[sick_looking_sheep_4_3]
+id = 2348
+
+[sick_looking_sheep_4_4]
+id = 2380
+
+[elena_ardougne_2]
+id = 3209
+
+[edmond_ardougne_2]
+id = 714
+
+[rick_2]
+id = 11303
+
+[maid_ardougne_2]
+id = 11304
+
+[cook_ardougne_2]
+id = 11305
+
+[butler_ardougne_2]
+id = 11306
+
+[demon_butler_ardougne_2]
+id = 11307
+
+[wizard_cromperty_ardougne_2]
+id = 6375
+
+[larry_ardougne_3]
+id = 7578
+
+[chief_zookeeper_2]
+id = 7581
+
+[lucien_ardougne_2]
+id = 273
+
+[local_thug_ardougne_2]
+id = 8346
