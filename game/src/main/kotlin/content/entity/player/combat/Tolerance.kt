@@ -29,5 +29,4 @@ class Tolerance : Api {
             player.start("tolerance", toleranceTime.toInt(), epochSeconds())
         }
     }
-
 }

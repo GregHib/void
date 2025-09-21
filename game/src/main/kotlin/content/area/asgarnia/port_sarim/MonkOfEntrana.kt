@@ -79,7 +79,7 @@ class MonkOfEntrana {
         "prayer_armour",
         "prayer_consumable",
         "range_armour",
-        "range_weapon"
+        "range_weapon",
     )
 
     private suspend fun NPCOption<Player>.passedCheck(): Boolean {
@@ -121,5 +121,4 @@ class MonkOfEntrana {
         boatTravel("entrana_to_port_sarim", 14, Tile(3048, 3231, 1))
         statement("The ship arrives at Port Sarim.")
     }
-
 }

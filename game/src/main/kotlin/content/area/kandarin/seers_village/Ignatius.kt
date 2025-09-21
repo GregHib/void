@@ -12,12 +12,13 @@ class Ignatius {
         npcOperate("Trade", "armour_salesman") {
             player.openShop(
                 "ignatiuss_hot_deals${
-                when {
-                    Skill.all.any { it != Skill.Firemaking && player.levels.getMax(it) == Level.MAX_LEVEL } -> "_trimmed"
-                    player.levels.getMax(Skill.Firemaking) == Level.MAX_LEVEL -> "_skillcape"
-                    else -> ""
-                }
-            }")
+                    when {
+                        Skill.all.any { it != Skill.Firemaking && player.levels.getMax(it) == Level.MAX_LEVEL } -> "_trimmed"
+                        player.levels.getMax(Skill.Firemaking) == Level.MAX_LEVEL -> "_skillcape"
+                        else -> ""
+                    }
+                }",
+            )
         }
     }
 }

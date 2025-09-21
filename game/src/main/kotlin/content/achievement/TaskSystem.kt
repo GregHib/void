@@ -114,7 +114,6 @@ class TaskSystem : Api {
             player.tab(Tab.TaskSystem)
         }
 
-
         interfaceOption("Hint", "hint_*", "task_system") {
             val selected = player["task_slot_selected", 0]
             val index = indexOfSlot(player, selected) ?: return@interfaceOption

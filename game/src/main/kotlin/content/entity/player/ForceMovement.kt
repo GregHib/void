@@ -18,5 +18,4 @@ class ForceMovement : Api {
         val block: () -> Unit = npc.remove("force_walk") ?: return
         block.invoke()
     }
-
 }

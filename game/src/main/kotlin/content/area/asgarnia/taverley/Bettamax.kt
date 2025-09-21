@@ -19,5 +19,4 @@ class Bettamax : Api {
             npc.watch(bettamax)
         }
     }
-
 }
