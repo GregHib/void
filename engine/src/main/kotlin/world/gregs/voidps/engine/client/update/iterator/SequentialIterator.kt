@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.Character
 
 class SequentialIterator<C : Character> : TaskIterator<C> {
     override fun run(task: CharacterTask<C>) {
-        task.characters.forEach { character ->
+        for (character in task.characters) {
             if (task.predicate(character)) {
                 task.run(character)
             }

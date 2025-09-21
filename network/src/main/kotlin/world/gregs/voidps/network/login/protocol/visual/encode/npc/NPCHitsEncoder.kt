@@ -10,8 +10,11 @@ class NPCHitsEncoder : VisualEncoder<NPCVisuals>(NPC_HITS_MASK) {
     override fun encode(writer: Writer, visuals: NPCVisuals, index: Int) {
         val (damage, player, other) = visuals.hits
         writer.apply {
-            writeByteSubtract(damage.size)
-            damage.forEach { hit ->
+            writeByteSubtract(damage.count { it != null })
+            for (hit in damage) {
+                if (hit == null) {
+                    break
+                }
                 hit.write(writer, index, player, add = false)
             }
         }

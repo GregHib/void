@@ -10,8 +10,11 @@ class PlayerHitsEncoder : VisualEncoder<PlayerVisuals>(PLAYER_HITS_MASK) {
     override fun encode(writer: Writer, visuals: PlayerVisuals, index: Int) {
         val (damage, player, other) = visuals.hits
         writer.apply {
-            writeByteInverse(damage.size)
-            damage.forEach { hit ->
+            writeByteInverse(damage.count { it != null })
+            for (hit in damage) {
+                if (hit == null) {
+                    break
+                }
                 hit.write(writer, index, player, add = true)
             }
         }

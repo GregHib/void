@@ -70,7 +70,7 @@ class CombatHitsplats {
     fun Character.hit(source: Character, amount: Int, mark: HitSplat.Mark, delay: Int = 0, critical: Boolean = false, soak: Int = -1) {
         val after = (levels.get(Skill.Constitution) - amount).coerceAtLeast(0)
         val percentage = levels.getPercent(Skill.Constitution, after, 255.0).toInt()
-        visuals.hits.splats.add(HitSplat(amount, mark, percentage, delay, critical, if (source is NPC) -source.index else source.index, soak))
+        visuals.hits.add(HitSplat(amount, mark, percentage, delay, critical, if (source is NPC) -source.index else source.index, soak))
         flagHits()
     }
 }
