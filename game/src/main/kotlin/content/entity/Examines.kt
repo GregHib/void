@@ -24,7 +24,7 @@ class Examines {
     val objectDefinitions: ObjectDefinitions by inject()
 
     init {
-        interfaceOption("Examine", id = "equipment_bonuses") {
+        interfaceOption("Examine", id = "*") {
             player.message(item.def.getOrNull("examine") ?: return@interfaceOption, ChatType.ItemExamine)
         }
 

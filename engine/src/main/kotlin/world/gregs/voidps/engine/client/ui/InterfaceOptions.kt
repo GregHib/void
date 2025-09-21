@@ -20,7 +20,7 @@ class InterfaceOptions(
         if (inventory.id != -1) {
             val all = comp.getOrNull("options") ?: emptyArray<String>()
             val options = all.copyOfRange(0, min(9, all.size))
-            player.sendScript(script, comp.id, inventory.id, inventory["width", 0], inventory["height", 0], 0, -1, *options)
+            player.sendScript(script, comp.id, inventory.id, comp["width", inventory["width", 0]], comp["height", inventory["height", 0]], 0, -1, *options)
         }
     }
 

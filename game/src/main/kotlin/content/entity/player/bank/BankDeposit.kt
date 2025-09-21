@@ -38,6 +38,20 @@ class BankDeposit {
             deposit(player, player.inventory, item, amount)
         }
 
+        interfaceOption("Deposit-*", "inventory", "bank_deposit_box") {
+            val amount = when (option) {
+                "Deposit-1" -> 1
+                "Deposit-5" -> 5
+                "Deposit-10" -> 10
+                "Deposit-All" -> Int.MAX_VALUE
+                "Deposit-X" -> intEntry("Enter amount:").also {
+                    player["last_bank_amount"] = it
+                }
+                else -> return@interfaceOption
+            }
+            deposit(player, player.inventory, item, amount)
+        }
+
         interfaceOption("Deposit carried items", "carried", "bank") {
             if (player.inventory.isEmpty()) {
                 player.message("You have no items in your inventory to deposit.")

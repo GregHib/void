@@ -46,6 +46,19 @@ class BankOpen {
             player.sendScript("clear_dialogues")
         }
 
+        interfaceOpen("bank_deposit_box") { player ->
+            player.tab(Tab.Inventory)
+            player.open("bank_side")
+            player.interfaceOptions.send("bank_deposit_box", "inventory")
+            player.interfaceOptions.unlockAll("bank_deposit_box", "inventory", 0 until 28)
+            player.interfaceOptions.unlockAll("bank_side", "inventory", 0 until 28)
+        }
+
+        interfaceClose("bank_deposit_box") { player ->
+            player.close("bank_side")
+            player.sendScript("clear_dialogues")
+        }
+
         interfaceOpen("bank") { player ->
             player["bank_hidden"] = false
             player.sendInventory("bank")
