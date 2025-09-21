@@ -67,3 +67,19 @@ id = 5021
 [jeff_musa_point]
 id = 5022
 
+[jack_musa_point_2]
+id = 5023
+
+[jill_musa_point_2]
+id = 5024
+
+[jeff_musa_point_2]
+id = 5025
+
+[shop_assistant_musa_point_2]
+id = 11679
+examine = "Needs a haircut."
+
+[shop_assistant_musa_point_3]
+id = 11678
+examine = "Needs a haircut."

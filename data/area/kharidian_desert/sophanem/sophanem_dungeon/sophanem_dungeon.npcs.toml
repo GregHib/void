@@ -24,3 +24,5 @@ examine = "A mounted archer."
 [maisa_sophanem_dungeon]
 id = 5280
 
+[maisa_sophanem_dungeon_2]
+id = 5281

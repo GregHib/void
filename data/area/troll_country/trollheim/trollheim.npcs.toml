@@ -89,3 +89,15 @@ examine = "A little troll who has no name."
 [thistle]
 id = 1214
 examine = "It's a Troll Thistle."
+
+[drunken_dwarfs_leg_2]
+id = 4969
+examine = "A little troll who has no name."
+
+[egg_2]
+id = 8061
+examine = "She looks rather kindly, for a troll."
+
+[egg_3]
+id = 8062
+examine = "She looks rather kindly, for a troll."

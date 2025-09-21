@@ -461,3 +461,67 @@ examine = "A fancy businessman with a mighty fine hat."
 id = 3295
 wander_radius = 3
 examine = "He's in charge of the mining guild."
+
+[assistant_brock_falador_2]
+id = 5054
+
+[brother_bordiss_falador_2]
+id = 7723
+
+[brother_bordiss_falador_3]
+id = 7724
+
+[hazelmere_falador_2]
+id = 669
+
+[harrallak_menarous_falador_2]
+id = 4286
+
+[surok_magis_falador_2]
+id = 8340
+
+[surok_magis_falador_3]
+id = 8442
+
+[silif_falador_2]
+id = 8430
+
+[silif_falador_3]
+id = 8431
+
+[turael_falador_2]
+id = 8273
+
+[mazchna_falador_2]
+id = 8274
+
+[duradel_falador_2]
+id = 8275
+
+[sloane_falador_2]
+id = 8280
+
+[cyrisus_falador_2]
+id = 8279
+
+[sir_vant_falador_2]
+id = 8848
+
+[ali_tist_2]
+id = 11643
+
+[ali_tist_3]
+id = 11642
+
+[customer_falador_3]
+id = 11645
+
+[customer_falador_2_2]
+id = 11647
+
+[captain_korasi_falador_2_2]
+id = 6361
+
+[jessika_falador_2_2]
+id = 12266
+

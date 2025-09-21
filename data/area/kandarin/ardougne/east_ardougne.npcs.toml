@@ -321,3 +321,63 @@ examine = "She'll serve you a drink as quick as a shot!"
 id = 364
 wander_radius = 4
 examine = "King Lathas of East Ardougne."
+
+[sick_looking_sheep_1_3]
+id = 2345
+
+[sick_looking_sheep_1_4]
+id = 2377
+
+[sick_looking_sheep_2_3]
+id = 2346
+
+[sick_looking_sheep_2_4]
+id = 2378
+
+[sick_looking_sheep_3_3]
+id = 2347
+
+[sick_looking_sheep_3_4]
+id = 2379
+
+[sick_looking_sheep_4_3]
+id = 2348
+
+[sick_looking_sheep_4_4]
+id = 2380
+
+[elena_ardougne_2]
+id = 3209
+
+[edmond_ardougne_2]
+id = 714
+
+[rick_2]
+id = 11303
+
+[maid_ardougne_2]
+id = 11304
+
+[cook_ardougne_2]
+id = 11305
+
+[butler_ardougne_2]
+id = 11306
+
+[demon_butler_ardougne_2]
+id = 11307
+
+[wizard_cromperty_ardougne_2]
+id = 6375
+
+[larry_ardougne_3]
+id = 7578
+
+[chief_zookeeper_2]
+id = 7581
+
+[lucien_ardougne_2]
+id = 273
+
+[local_thug_ardougne_2]
+id = 8346

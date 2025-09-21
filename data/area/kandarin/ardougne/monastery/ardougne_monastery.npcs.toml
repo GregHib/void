@@ -38,3 +38,22 @@ examine = "Looks after your Farming tools."
 [chuck_monastery]
 id = 8677
 
+[lady_servil_monastery_2]
+id = 7529
+
+[lady_servil_monastery_3]
+id = 7530
+
+[jeremy_servil_2]
+id = 7534
+examine = "A scared but defiant squire."
+
+[justin_servil_monastery_2]
+id = 7542
+
+[chuck_monastery_2]
+id = 12188
+
+[chuck_monastery_3]
+id = 8678
+

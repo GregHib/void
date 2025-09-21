@@ -246,3 +246,16 @@ id = 745
 categories = ["goblins"]
 examine = "A badly-behaved goblin."
 
+[port_sarim_guard_7_2]
+id = 2747
+examine = "Keeping an eye out for suspicious activity."
+
+[ned_port_sarim_2]
+id = 4475
+
+[commander_korasi_port_sarim_2]
+id = 11508
+
+[sir_tiffy_port_sarim_2]
+id = 11512
+

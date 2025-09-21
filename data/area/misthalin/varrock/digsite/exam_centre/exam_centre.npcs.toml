@@ -26,3 +26,5 @@ id = 619
 wander_radius = 4
 examine = "An expert on archaeology."
 
+[dr_nabanik_exam_centre_2]
+id = 9046

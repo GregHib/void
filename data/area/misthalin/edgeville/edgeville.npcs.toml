@@ -176,3 +176,25 @@ id = 2396
 [evil_dave_edgeville_dungeon]
 id = 3378
 examine = "He seems to like wearing black."
+
+[mandrith_2]
+id = 8725
+examine = "A collector of ancient artefacts."
+
+[gjalp_2]
+id = 8050
+
+[gjalp_3]
+id = 8051
+
+[brother_fintan_2]
+id = 8052
+
+[brother_fintan_3]
+id = 8053
+
+[local_mage_edgeville_2]
+id = 272
+
+[local_mage_edgeville_3]
+id = 8348

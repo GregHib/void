@@ -27,3 +27,9 @@ id = 398
 wander_radius = 2
 examine = "A Legends' Guild guard; he protects the entrance to the Legends' Guild."
 
+[radimus_erkle_3]
+id = 400
+
+[radimus_erkle_4]
+id = 8272
+

@@ -176,3 +176,8 @@ examine = "A botanist in training."
 [wilbur]
 id = 13107
 examine = "He seems a little out of place."
+
+[thaerisk_cemphier_2]
+id = 8418
+examine = "A wise druid."
+

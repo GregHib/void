@@ -164,3 +164,17 @@ id = 7292
 id = 191
 examine = "A vicious warrior."
 
+[tinsay_karamja_2]
+id = 1165
+
+[tamayu_karamja_2]
+id = 1167
+
+[murcaily_2]
+id = 2529
+
+[murcaily_3]
+id = 2530
+
+[scout_karamja_2]
+id = 5567

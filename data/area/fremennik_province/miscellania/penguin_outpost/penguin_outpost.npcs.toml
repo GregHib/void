@@ -77,3 +77,21 @@ id = 8683
 id = 8697
 examine = "Killer Gentoo Penguin."
 
+[kgp_agent_penguin_outpost_4]
+id = 5441
+
+[kgp_agent_penguin_outpost_2_2]
+id = 7595
+
+[medwin_penguin_outpost_2]
+id = 8687
+
+[obert_penguin_outpost_2]
+id = 8686
+
+[baden_penguin_outpost_2]
+id = 8685
+
+[glosur_penguin_outpost_2]
+id = 8684
+

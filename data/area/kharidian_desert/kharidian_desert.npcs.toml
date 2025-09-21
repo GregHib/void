@@ -91,3 +91,66 @@ examine = "A vicious desert wolf."
 [desert_wolf_brown]
 id = 6051
 examine = "A vicious desert wolf."
+
+[eblis_kharidian_desert_2]
+id = 1925
+
+[wanderer_kharidian_desert_2]
+id = 2006
+
+[rug_merchant_kharidian_desert_2_2]
+id = 2298
+
+[ali_the_wise_kharidian_desert_2]
+id = 7447
+
+[banana_merchant_kharidian_desert_4]
+id = 13197
+
+[banana_merchant_kharidian_desert_5]
+id = 13189
+
+[banana_merchant_kharidian_desert_6]
+id = 13190
+
+[banana_merchant_kharidian_desert_7]
+id = 13191
+
+[monkey_knife_fighter_kharidian_desert_2]
+id = 13193
+
+[monkey_knife_fighter_kharidian_desert_3]
+id = 13194
+
+[monkey_knife_fighter_kharidian_desert_4]
+id = 13195
+
+[chimp_ice_chimp_kharidian_desert_2]
+id = 13199
+
+[rock_kharidian_desert_4]
+id = 13203
+
+[rock_kharidian_desert_5]
+id = 13204
+
+[rock_kharidian_desert_2_2]
+id = 13207
+
+[rock_kharidian_desert_2_3]
+id = 13205
+
+[rock_kharidian_desert_3_2]
+id = 13208
+
+[rock_kharidian_desert_3_3]
+id = 13206
+
+[dead_monkey_kharidian_desert_2]
+id = 13210
+
+[assistant_kharidian_desert_2]
+id = 13236
+
+[rug_merchant_kharidian_desert_3]
+id = 13238

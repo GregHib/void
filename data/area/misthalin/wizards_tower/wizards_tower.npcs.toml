@@ -23,3 +23,6 @@ id = 2385
 id = 706
 shop = "mizgogs_amulets_of_accuracy"
 examine = "An old wizard."
+
+[mysterious_ghost_wizards_tower_2]
+id = 2398

@@ -709,3 +709,18 @@ examine = "He's studying to be a guard."
 [king_roald]
 id = 648
 examine = "Varrock's resident monarch."
+
+[tolna_2]
+id = 5462
+
+[launa_2]
+id = 3639
+
+[assistant_serf_2]
+id = 5053
+
+[surok_magis_varrock_2]
+id = 7002
+
+[hartwin_2]
+id = 8140

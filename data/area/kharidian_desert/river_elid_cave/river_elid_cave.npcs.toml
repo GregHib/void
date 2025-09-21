@@ -16,3 +16,8 @@ examine = "An elemental waterspirit."
 [target_river_elid_cave]
 id = 3049
 
+[target_river_elid_cave_2]
+id = 3047
+
+[target_river_elid_cave_3]
+id = 3048

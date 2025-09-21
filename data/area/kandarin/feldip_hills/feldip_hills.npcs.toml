@@ -81,3 +81,13 @@ examine = "This bird obviously doesn't believe in subtlety."
 id = 3587
 wander_radius = 4
 examine = "A large dim looking humanoid."
+
+[ogre_boat_feldip_hills_2]
+id = 3472
+
+[rantz_feldip_hills_3]
+id = 3467
+
+[rantz_feldip_hills_2_2]
+id = 1010
+

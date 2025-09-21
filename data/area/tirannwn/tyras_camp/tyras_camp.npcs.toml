@@ -30,3 +30,5 @@ examine = "One of King Tyras's men."
 id = 7121
 examine = "Leader of King Tyras's men."
 
+[catapult_engineer_2]
+id = 7118

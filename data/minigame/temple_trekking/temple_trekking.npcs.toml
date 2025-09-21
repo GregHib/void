@@ -26,3 +26,7 @@ examine = "A Burgh de Rott female militia volunteer."
 id = 3509
 wander_radius = 4
 examine = "A flea infested, pale looking excuse of a man."
+
+[valantay_eppel_2]
+id = 3630
+examine = "A Burgh de Rott male militia volunteer."

@@ -89,3 +89,5 @@ examine = "The famous tree gnome chef."
 id = 851
 examine = "He can serve you gnome food."
 
+[assistant_le_smith_grand_tree_2]
+id = 5056

@@ -13,3 +13,6 @@ examine = "A gnome trader."
 id = 8088
 examine = "Gives out tickets for the circus."
 
+[scout_outpost_2]
+id = 5568
+

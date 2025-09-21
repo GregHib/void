@@ -146,3 +146,41 @@ id = 9717
 id = 9720
 examine = "He looks really cold."
 
+[mysterious_ghost_wilderness_6]
+id = 2397
+
+[mysterious_ghost_wilderness_2_2]
+id = 2400
+
+[mysterious_ghost_wilderness_5_2]
+id = 2402
+
+[orry_wilderness_2]
+id = 8044
+
+[orry_wilderness_3]
+id = 8045
+
+[ube_wilderness_2]
+id = 8046
+
+[ube_wilderness_3]
+id = 8047
+
+[waldo_wilderness_2]
+id = 8048
+
+[waldo_wilderness_3]
+id = 8049
+
+[crate_wilderness_2]
+id = 8059
+
+[crate_wilderness_3]
+id = 8060
+
+[rogue_wilderness_2]
+id = 8122
+
+[commander_colby_wilderness_2]
+id = 12312

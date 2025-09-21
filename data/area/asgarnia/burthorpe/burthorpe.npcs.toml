@@ -178,3 +178,36 @@ categories = ["human"]
 wander_radius = 3
 collision = "indoors"
 examine = "He looks dangerous!"
+
+[neite_2]
+id = 2653
+examine = "A graceful feline."
+
+[unferth_2]
+id = 2655
+examine = "Nice but dim."
+
+[unferth_3]
+id = 2656
+examine = "Nice but dim."
+
+[unferth_4]
+id = 2657
+examine = "Nice but dim."
+
+[unferth_5]
+id = 2658
+examine = "Nice but dim."
+
+[unferth_6]
+id = 2659
+examine = "Nice but dim."
+
+[doronbol_2]
+id = 8057
+examine = "A dog-like cat with a wonky tail."
+
+[doronbol_3]
+id = 8058
+examine = "A dog-like cat with a wonky tail."
+

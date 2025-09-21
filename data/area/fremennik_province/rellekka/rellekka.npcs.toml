@@ -316,3 +316,19 @@ examine = "Either a very fremennikey pirate, or a very piratey fremennik."
 id = 1315
 wander_radius = 4
 examine = "Fish-tastic!"
+
+[jarvald_rellekka_2]
+id = 2436
+
+[jarvald_rellekka_3]
+id = 2437
+
+[general_khazard_rellekka_2]
+id = 5566
+
+[erjolf_rellekka_2]
+id = 7462
+
+[larry_rellekka_3]
+id = 5425
+

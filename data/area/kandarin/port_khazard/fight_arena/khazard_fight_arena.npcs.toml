@@ -120,3 +120,20 @@ id = 7556
 id = 8428
 examine = "He's carefully folding clothes."
 
+[slave_fighter_2_2]
+id = 7535
+
+[lazy_khazard_2]
+id = 7524
+
+[lazy_khazard_3]
+id = 7525
+
+[lazy_khazard_4]
+id = 7526
+
+[lazy_khazard_5]
+id = 7527
+
+[general_khazard_khazard_fight_arena_3]
+id = 7551

@@ -126,7 +126,7 @@ spawns = [
   { id = "rabbit_miscellania_2", x = 2592, y = 3867, members = true },
   { id = "king_vargas_2", x = 2501, y = 3859, level = 1, members = true },
   { id = "tool_leprechaun_miscellania", x = 2589, y = 3863 },
-  { id = "queen_sigrid_2", x = 2501, y = 3863, level = 1, members = true },
+  { id = "queen_sigrid_hidden", x = 2501, y = 3863, level = 1, members = true },
   { id = "penguin_miscellania", x = 2579, y = 3908 },
   { id = "penguin_miscellania", x = 2580, y = 3910 },
   { id = "penguin_miscellania", x = 2581, y = 3912 },

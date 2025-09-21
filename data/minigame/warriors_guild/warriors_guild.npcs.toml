@@ -82,3 +82,19 @@ id = 6079
 
 [cyclopse_knife]
 id = 4292
+
+[harrallak_menarous_2]
+id = 8268
+examine = "The guildmaster of the Warriors' Guild."
+
+[sloane_2]
+id = 4297
+examine = "He looks like a strong warrior."
+
+[sloane_3]
+id = 8270
+examine = "He looks like a strong warrior."
+
+[laidee_gnonock_2]
+id = 8484
+examine = "The small but tough doorman of the Warrior's Guild."

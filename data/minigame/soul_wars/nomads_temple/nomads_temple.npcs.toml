@@ -36,3 +36,8 @@ id = 9453
 categories = ["ghosts"]
 examine = "A lingering soul."
 
+[knight_nomads_temple_2]
+id = 9448
+
+[knight_nomads_temple_3]
+id = 9449

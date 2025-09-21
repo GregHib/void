@@ -242,3 +242,25 @@ examine = "It's a brightly coloured bird of the jungle. It flies very quickly."
 
 [daero]
 id = 1407
+
+[pedestal_ape_atoll_4]
+id = 3481
+
+[pedestal_ape_atoll_5]
+id = 13177
+
+[pedestal_ape_atoll_2_2]
+id = 3482
+
+[pedestal_ape_atoll_3_2]
+id = 3483
+
+[monkey_knife_fighter_ape_atoll_2]
+id = 13213
+
+[monkey_knife_fighter_ape_atoll_3]
+id = 13212
+
+[monkey_guard_ape_atoll_5]
+id = 13242
+

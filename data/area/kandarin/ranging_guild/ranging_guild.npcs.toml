@@ -89,3 +89,9 @@ id = 8523
 id = 694
 shop = "ranging_guild_ticket_exchange"
 examine = "Sells equipment in exchange for archery tickets."
+
+[sinister_stranger_2]
+id = 3677
+
+[sinister_stranger_3]
+id = 3678

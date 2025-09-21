@@ -5,3 +5,19 @@ examine = "A troll frozen in a block of ice."
 [ice_block_mother]
 id = 1945
 examine = "A troll frozen in a block of ice."
+
+[ice_block_father_2]
+id = 1944
+examine = "A troll frozen in a block of ice."
+
+[ice_block_father_3]
+id = 1948
+examine = "A troll frozen in a block of ice."
+
+[ice_block_mother_2]
+id = 1946
+examine = "A troll frozen in a block of ice."
+
+[ice_block_mother_3]
+id = 1950
+examine = "A troll frozen in a block of ice."

@@ -208,3 +208,18 @@ id = 5201
 [witch_normal]
 id = 5200
 examine = "The hat's a dead giveaway."
+
+[chicken_draynor_2]
+id = 288
+
+[wise_old_man_2_2]
+id = 2253
+
+[wise_old_man_2_3]
+id = 11569
+
+[ava_2]
+id = 5198
+
+[scout_draynor_2]
+id = 5569
