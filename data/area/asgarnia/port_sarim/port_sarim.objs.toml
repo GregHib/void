@@ -21,3 +21,11 @@ examine = "Handy for boarding the ship."
 [port_sarim_void_outpost_gangplank_enter]
 id = 14304
 examine = "Handy for boarding the ship."
+
+[port_sarim_lady_lumbridge_gangplank_exit]
+id = 2594
+examine = "Handy for boarding the ship."
+
+[port_sarim_lady_lumbridge_gangplank_enter]
+id = 2593
+examine = "Handy for boarding the ship."

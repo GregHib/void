@@ -113,9 +113,10 @@ examine = "A squire of balance."
 
 [squire_pest_control_12]
 id = 3800
+wander_radius = 3
 examine = "A squire of balance."
 
-[squire_(novice)_pest_control]
+[squire_novice_pest_control]
 id = 3802
 examine = "A squire of balance."
 
@@ -123,11 +124,11 @@ examine = "A squire of balance."
 id = 5956
 examine = "A powerful knight of balance."
 
-[squire_(intermediate)_pest_control]
+[squire_intermediate_pest_control]
 id = 6140
 examine = "A squire of balance."
 
-[squire_(veteran)_pest_control]
+[squire_veteran_pest_control]
 id = 6141
 examine = "A squire of balance."
 

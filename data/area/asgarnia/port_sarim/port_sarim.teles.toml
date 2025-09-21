@@ -165,3 +165,13 @@ option = "Cross"
 tile = { x = 3041, y = 3201 }
 to = { x = 3041, y = 3199, level = 1 }
 
+[port_sarim_lady_lumbridge_gangplank_exit]
+option = "Cross"
+tile = { x = 3047, y = 3206, level = 1 }
+to = { x = 3047, y = 3204 }
+
+[port_sarim_void_outpost_gangplank_enter]
+option = "Cross"
+tile = { x = 3047, y = 3205 }
+to = { x = 3047, y = 3207, level = 1 }
+
