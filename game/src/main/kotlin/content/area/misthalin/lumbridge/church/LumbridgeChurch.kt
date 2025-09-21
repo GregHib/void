@@ -142,7 +142,7 @@ class LumbridgeChurch : Api {
         player.turnCamera(cutscene.tile(3254, 3180), 900, 3, 3)
         cutscene.tile(3244, 3190).shoot("restless_ghost", cutscene.tile(3255, 3179), height = 50, endHeight = 0, flightTime = 100)
         delay(5)
-        cutscene.end(this)
+        cutscene.end()
         questComplete()
     }
 

@@ -20,5 +20,5 @@ suspend fun SuspendableContext<Player>.boatTravel(journey: String, delay: Int, d
     player.open("journey_ship")
     player["ships_set_destination"] = journey
     delay(delay)
-    cutscene.end(this)
+    cutscene.end()
 }

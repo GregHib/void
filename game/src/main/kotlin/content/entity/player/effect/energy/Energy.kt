@@ -5,13 +5,13 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.sendRunEnergy
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.timerTick
+import world.gregs.voidps.type.Tile
 
 const val MAX_RUN_ENERGY = 10000
 
@@ -34,6 +34,17 @@ class Energy : Api {
         }
     }
 
+    override fun move(player: Player, from: Tile, to: Tile) {
+        if (player.visuals.runStep == -1 || player["last_energy_drain", -1] == GameLoop.tick || !Settings["players.energy.drain", true]) {
+            return
+        }
+        player["last_energy_drain"] = GameLoop.tick
+        if (player.visuals.runStep != -1) {
+            player.runEnergy -= getDrainAmount(player)
+            walkWhenOutOfEnergy(player)
+        }
+    }
+
     init {
         timerTick("energy_restore") { player ->
             if (player.runEnergy >= MAX_RUN_ENERGY) {
@@ -41,17 +52,6 @@ class Energy : Api {
                 return@timerTick
             }
             player.runEnergy += getRestoreAmount(player)
-        }
-
-        move({ it.visuals.runStep != -1 }) { player ->
-            if (player["last_energy_drain", -1] == GameLoop.tick || !Settings["players.energy.drain", true]) {
-                return@move
-            }
-            player["last_energy_drain"] = GameLoop.tick
-            if (player.visuals.runStep != -1) {
-                player.runEnergy -= getDrainAmount(player)
-                walkWhenOutOfEnergy(player)
-            }
         }
     }
 

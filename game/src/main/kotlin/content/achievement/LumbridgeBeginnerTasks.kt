@@ -9,11 +9,11 @@ import content.entity.obj.objTeleportLand
 import content.skill.melee.weapon.attackStyle
 import content.skill.prayer.prayerStart
 import content.skill.ranged.ammo
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.variable.variableSet
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
-import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -28,7 +28,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
 @Script
-class LumbridgeBeginnerTasks {
+class LumbridgeBeginnerTasks : Api {
 
     val areas: AreaDefinitions by inject()
 
@@ -36,11 +36,13 @@ class LumbridgeBeginnerTasks {
 
     val styleDefinitions: WeaponStyleDefinitions by inject()
 
-    init {
-        move({ player.running && !player["on_the_run_task", false] }) {
+    override fun move(player: Player, from: Tile, to: Tile) {
+        if (player.running && !player["on_the_run_task", false]) {
             player["on_the_run_task"] = true
         }
+    }
 
+    init {
         objTeleportLand("Climb-up", "lumbridge_castle_ladder") {
             player["master_of_all_i_survey_task"] = true
         }

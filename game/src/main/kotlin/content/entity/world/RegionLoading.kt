@@ -1,11 +1,11 @@
 package content.entity.world
 
 import content.bot.isBot
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.character.mode.move.ReloadRegion
-import world.gregs.voidps.engine.entity.character.mode.move.move
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.playerDespawn
@@ -22,15 +22,22 @@ import world.gregs.voidps.network.login.protocol.encode.dynamicMapRegion
 import world.gregs.voidps.network.login.protocol.encode.mapRegion
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
 @Script
-class RegionLoading {
+class RegionLoading : Api {
 
     val players: Players by inject()
     val dynamicZones: DynamicZones by inject()
 
     val playerRegions = IntArray(MAX_PLAYERS - 1)
+
+    override fun move(player: Player, from: Tile, to: Tile) {
+        if (from.regionLevel != to.regionLevel) {
+            playerRegions[player.index - 1] = to.regionLevel.id
+        }
+    }
 
     init {
         instruction<FinishRegionLoad> { player ->
@@ -60,10 +67,6 @@ class RegionLoading {
 
         playerDespawn { player ->
             playerRegions[player.index - 1] = 0
-        }
-
-        move({ from.regionLevel != to.regionLevel }) { player ->
-            playerRegions[player.index - 1] = to.regionLevel.id
         }
 
         onEvent<Player, ReloadRegion> { player ->

@@ -236,7 +236,7 @@ class Gudrun {
         gudrunHugging.anim("gudrun_hugging")
         delay(4)
         player.queue.clear("gunnars_ground_cutscene_end")
-        cutscene.end(this)
+        cutscene.end()
         player["gunnars_ground"] = "gunnars_ground"
         player["kjell"] = "guitar"
         player["dororan"] = "hidden"

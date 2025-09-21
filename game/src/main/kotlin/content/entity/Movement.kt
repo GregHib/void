@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
-import world.gregs.voidps.engine.entity.character.mode.move.npcMove
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -21,6 +20,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Distance.nearestTo
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Rectangle
 
@@ -54,6 +54,10 @@ class Movement : Api {
         }
     }
 
+    override fun move(npc: NPC, from: Tile, to: Tile) {
+        npcs.update(from, to, npc)
+    }
+
     init {
         instruction<Walk> { player ->
             if (player.contains("delay")) {
@@ -85,10 +89,6 @@ class Movement : Api {
             if (Settings["world.players.collision", false]) {
                 remove(player)
             }
-        }
-
-        npcMove {
-            npcs.update(from, to, npc)
         }
 
         npcDeath { npc ->
