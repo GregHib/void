@@ -52,8 +52,8 @@ class SkillCommands {
         val skill = Skill.valueOf(args[0].toSentenceCase())
         val level = args[1].toInt()
         target.experience.set(skill, Level.experience(skill, level))
-        player.levels.set(skill, level)
-        player.softQueue("flash_reset", 1) {
+        target.levels.set(skill, level)
+        target.softQueue("flash_reset", 1) {
             target.removeVarbit("skill_stat_flash", skill.name.lowercase())
         }
     }
