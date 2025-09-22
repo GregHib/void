@@ -72,6 +72,8 @@ examine = "The door is open."
 
 [ardougne_locked_door_closed]
 id = 34812
+level = 1
+exp = 3.8
 examine = "The door is locked."
 
 [coin_chest]
@@ -85,7 +87,7 @@ examine = "I wonder what's inside it."
 id = 2567
 level = 28
 exp = 25.0
-restock = 6
+restock = 13
 examine = "I wonder what's inside it."
 
 [big_coin_chest]
@@ -124,3 +126,31 @@ level = 47
 exp = 150.0
 restock = 150
 examine = "I wonder what's inside it."
+
+[chaos_druid_tower_locked_door_opened]
+id = 2538
+examine = "A door."
+
+[chaos_druid_tower_locked_door_closed]
+id = 2554
+level = 46
+exp = 37.5
+examine = "A secure door."
+
+[ardougne_house_locked_door_opened]
+id = 2055
+
+[ardougne_house_locked_door_closed]
+id = 2556
+level = 13
+exp = 15.0
+examine = "A secure door."
+
+[ardougne_castle_locked_door_opened]
+id = 34233
+
+[ardougne_castle_locked_door_closed]
+id = 2555
+level = 61
+exp = 50.0
+examine = "A secure door."
