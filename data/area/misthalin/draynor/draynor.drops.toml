@@ -1,0 +1,31 @@
+[wine_stall_drop_table]
+roll = 100
+drops = [
+    { id = "bottle_of_wine", chance = 11 },
+    { id = "grapes", chance = 17 },
+    { id = "jug", chance = 39 },
+    { id = "jug_of_water", chance = 20 },
+    { id = "jug_of_wine", chance = 13 },
+]
+
+[seed_stall_drop_table]
+roll = 1000
+drops = [
+    { id = "hammerstone_seed", chance = 120 },
+    { id = "potato_seed", chance = 119 },
+    { id = "marigold_seed", chance = 119 },
+    { id = "barley_seed", chance = 118 },
+    { id = "onion_seed", chance = 89 },
+    { id = "asgarnian_seed", chance = 83 },
+    { id = "cabbage_seed", chance = 71 },
+    { id = "yanillian_seed", chance = 47 },
+    { id = "rosemary_seed", chance = 36 },
+    { id = "nasturtium_seed", chance = 35 },
+    { id = "tomato_seed", chance = 35 },
+    { id = "jute_seed", chance = 35 },
+    { id = "sweetcorn_seed", chance = 30 },
+    { id = "krandorian_seed", chance = 24 },
+    { id = "strawberry_seed", chance = 18 },
+    { id = "wildblood_seed", chance = 12 },
+    { id = "watermelon_seed", chance = 9 },
+]

@@ -1,0 +1,9 @@
+[veg_stall_drop_table]
+roll = 10
+drops = [
+    { id = "cabbage", chance = 2 },
+    { id = "raw_potato", chance = 3 },
+    { id = "onion", chance = 2 },
+    { id = "tomato", chance = 2 },
+    { id = "garlic" },
+]

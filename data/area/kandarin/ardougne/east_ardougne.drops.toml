@@ -1,0 +1,39 @@
+[bakers_stall_drop_table]
+roll = 20
+drops = [
+    { id = "bread", chance = 5 },
+    { id = "cake", chance = 13 },
+    { id = "chocolate_slice", chance = 2 },
+]
+
+[silk_stall_drop_table]
+drops = [
+    { id = "silk" },
+]
+
+[spice_stall_drop_table]
+drops = [
+    { id = "spice" },
+]
+
+[grey_fur_stall_drop_table]
+drops = [
+    { id = "grey_wolf_fur" },
+]
+
+[silver_stall_drop_table]
+roll = 20
+drops = [
+    { id = "silver_ore", chance = 16 },
+    { id = "silver_bar", chance = 3 },
+    { id = "tiara" },
+]
+
+[gem_stall_drop_table]
+roll = 128
+drops = [
+    { id = "uncut_sapphire", chance = 105 },
+    { id = "uncut_emerald", chance = 17 },
+    { id = "uncut_ruby", chance = 5 },
+    { id = "uncut_diamond" },
+]

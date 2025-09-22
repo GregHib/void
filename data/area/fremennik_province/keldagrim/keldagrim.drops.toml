@@ -1,0 +1,42 @@
+[bakery_stall_keldagrim_drop_table]
+roll = 20
+drops = [
+    { id = "bread", chance = 5 },
+    { id = "cake", chance = 13 },
+    { id = "chocolate_slice", chance = 2 },
+]
+
+[crossbow_stall_drop_table]
+roll = 80
+drops = [
+    { id = "bronze_bolts", amount = 3, chance = 46 },
+    { id = "bronze_limbs", amount = 3, chance = 18 },
+    { id = "mithril_bolts", amount = 3, chance = 3 },
+    { id = "mithril_limbs", amount = 3 },
+    { id = "wooden_stock", amount = 3, chance = 12 },
+]
+
+[silver_stall_keldagrim_drop_table]
+drops = [
+    { id = "silver_ore" },
+]
+
+[gem_stall_keldagrim_drop_table]
+roll = 128
+drops = [
+    { id = "uncut_sapphire", chance = 105 },
+    { id = "uncut_emerald", chance = 17 },
+    { id = "uncut_ruby", chance = 5 },
+    { id = "uncut_diamond" },
+]
+
+[crafting_stall_keldagrim_drop_table]
+roll = 54
+drops = [
+    { id = "amulet_mould", chance = 12 },
+    { id = "bracelet_mould", chance = 12 },
+    { id = "chisel", chance = 6 },
+    { id = "gold_bar", chance = 2 },
+    { id = "necklace_mould", chance = 11 },
+    { id = "ring_mould", chance = 11 },
+]

@@ -1,0 +1,12 @@
+[fur_stall_drop_table]
+drops = [
+    { id = "grey_wolf_fur" },
+]
+
+[fish_stall_drop_table]
+roll = 20
+drops = [
+    { id = "raw_salmon", chance = 14 },
+    { id = "raw_tuna", chance = 5 },
+    { id = "raw_lobster" },
+]

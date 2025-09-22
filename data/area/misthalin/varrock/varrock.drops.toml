@@ -1,0 +1,4 @@
+[tea_stall_drop_table]
+drops = [
+    { id = "cup_of_tea" },
+]

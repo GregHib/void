@@ -1,4 +1,5 @@
 import com.github.michaelbull.logging.InlineLogger
+import content.skill.thieving.Stole
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.dispatch.Dispatcher
@@ -16,7 +17,7 @@ import kotlin.system.exitProcess
 object ContentLoader {
     private val logger = InlineLogger()
 
-    val dispatchers = mutableMapOf<String, Dispatcher<*>>(
+    private val dispatchers = mutableMapOf<String, Dispatcher<*>>(
         "spawn(Player)" to Spawn.playerDispatcher,
         "spawn(NPC)" to Spawn.npcDispatcher,
         "spawn(FloorItem)" to Spawn.floorItemDispatcher,
@@ -28,6 +29,7 @@ object ContentLoader {
         "move(NPC,Tile,Tile)" to Moved.npcDispatcher,
         "variableSet(Player,String,Any?,Any?)" to VariableSet.playerDispatcher,
         "variableSet(NPC,String,Any?,Any?)" to VariableSet.npcDispatcher,
+        "stole(Player,GameObject,Item)" to Stole.dispatcher,
     )
 
     fun load() {
@@ -49,7 +51,7 @@ object ContentLoader {
                 }
                 val methods = script.split("|").dropLast(1)
                 for (method in methods) {
-                    val dispatcher = dispatchers[method] ?: error("Unknown dispatcher for method: $method")
+                    val dispatcher = dispatchers[method] ?: error("Unknown dispatcher for method: $method. Make sure it's registered in ContentLoader.kt")
                     dispatcher.load(instance)
                 }
             }

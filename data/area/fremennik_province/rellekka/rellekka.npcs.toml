@@ -153,6 +153,7 @@ examine = "I wonder what he does with all that fur?"
 
 [market_guard_rellekka]
 id = 1317
+hunt_mode = "guarding"
 examine = "Keeps the stalls secure."
 
 [peter_rellekka]

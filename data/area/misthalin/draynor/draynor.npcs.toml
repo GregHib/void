@@ -138,6 +138,7 @@ examine = "A master at farming."
 
 [market_guard_draynor]
 id = 2236
+hunt_mode = "guarding"
 examine = "He guards the Draynor Market stalls from thieves."
 
 [bed_draynor]

@@ -1,0 +1,4 @@
+[food_stall_drop_table]
+drops = [
+    { id = "rock_cake" },
+]

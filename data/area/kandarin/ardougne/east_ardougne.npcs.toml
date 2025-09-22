@@ -1,4 +1,4 @@
-[guard_ardougne]
+[hero_guard_ardougne]
 id = 11271
 examine = "The key to the vault lever hangs from his belt."
 
@@ -50,6 +50,7 @@ id = 2256
 
 [knight_of_ardougne]
 id = 23
+hunt_mode = "guarding"
 examine = "A member of Ardougne's militia."
 
 [richard_ardougne]
@@ -117,8 +118,9 @@ examine = "A holy man."
 [fishing_spot_ardougne]
 id = 311
 
-[guard_ardougne_2]
+[guard_ardougne]
 id = 32
+hunt_mode = "guarding"
 examine = "Keeps the peace... kind of."
 
 [edmond_ardougne]

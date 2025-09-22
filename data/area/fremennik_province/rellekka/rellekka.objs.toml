@@ -1,3 +1,23 @@
 [pottery_oven_rellekka]
 id = 4308
 examine = "Bake your clay items in here."
+
+[fur_stall]
+id = 4278
+level = 35
+exp = 45.0
+restock = 12
+examine = "All manner of animal clothing."
+
+[fur_stall_empty]
+id = 4276
+
+[fish_stall]
+id = 4277
+level = 42
+exp = 42.0
+restock = 12
+examine = "There's something fishy about this stall."
+
+[fish_stall_empty]
+id = 4276

@@ -1,0 +1,42 @@
+[food_stall_drop_table]
+drops = [
+    { id = "banana" },
+]
+
+[crafting_stall_drop_table]
+roll = 54
+drops = [
+    { id = "amulet_mould", chance = 12 },
+    { id = "bracelet_mould", chance = 12 },
+    { id = "chisel", chance = 6 },
+    { id = "gold_bar", chance = 2 },
+    { id = "necklace_mould", chance = 11 },
+    { id = "ring_mould", chance = 11 },
+]
+
+[general_stall_drop_table]
+roll = 3
+drops = [
+    { id = "hammer" },
+    { id = "pot" },
+    { id = "tinderbox" },
+]
+
+[magic_stall_drop_table]
+roll = 20
+drops = [
+    { id = "air_rune", chance = 6 },
+    { id = "earth_rune", chance = 6 },
+    { id = "fire_rune", chance = 6 },
+    { id = "law_rune" },
+    { id = "nature_rune" },
+]
+
+[scimitar_stall_drop_table]
+roll = 40
+drops = [
+    { id = "iron_scimitar", chance = 23 },
+    { id = "steel_scimitar", chance = 13 },
+    { id = "mithril_scimitar", chance = 3 },
+    { id = "adamant_scimitar" },
+]
