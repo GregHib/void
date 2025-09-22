@@ -6,7 +6,7 @@ drops = [
 [crafting_stall_drop_table]
 roll = 54
 drops = [
-    { id = "amulet_mould", chance = 12 },
+    { id = "amulet_unstrung_mould", chance = 12 },
     { id = "bracelet_mould", chance = 12 },
     { id = "chisel", chance = 6 },
     { id = "gold_bar", chance = 2 },
@@ -18,7 +18,7 @@ drops = [
 roll = 3
 drops = [
     { id = "hammer" },
-    { id = "pot" },
+    { id = "empty_pot" },
     { id = "tinderbox" },
 ]
 

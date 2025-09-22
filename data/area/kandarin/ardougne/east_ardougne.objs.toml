@@ -65,3 +65,62 @@ examine = "Precious stones from around the world."
 
 [gem_stall_empty]
 id = 34381
+
+[ardougne_locked_door_opened]
+id = 34813
+examine = "The door is open."
+
+[ardougne_locked_door_closed]
+id = 34812
+examine = "The door is locked."
+
+[coin_chest]
+id = 2566
+level = 13
+exp = 7.8
+restock = 6
+examine = "I wonder what's inside it."
+
+[nature_chest]
+id = 2567
+level = 28
+exp = 25.0
+restock = 6
+examine = "I wonder what's inside it."
+
+[big_coin_chest]
+id = 2568
+level = 43
+exp = 125.0
+restock = 115
+examine = "I wonder what's inside it."
+
+[blood_rune_chest]
+id = 2569
+level = 59
+exp = 250.0
+restock = 225
+examine = "I wonder what's inside it."
+
+[ardougne_castle_chest]
+id = 2570
+level = 72
+exp = 500.0
+restock = 834
+examine = "I wonder what's inside it."
+
+[trap_chest_empty_light]
+id = 2571
+
+[trap_chest_open]
+id = 2574
+
+[trap_chest_empty]
+id = 2572
+
+[steel_arrows_chest]
+id = 2573
+level = 47
+exp = 150.0
+restock = 150
+examine = "I wonder what's inside it."

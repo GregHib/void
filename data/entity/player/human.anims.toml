@@ -63,3 +63,6 @@ id = 819
 
 [human_walk_backwards]
 id = 820
+
+[human_lockedchest]
+id = 537

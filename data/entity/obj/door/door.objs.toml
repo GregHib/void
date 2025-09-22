@@ -3225,14 +3225,6 @@ examine = "The door is open."
 id = 34811
 examine = "The door is closed."
 
-[door_581_opened]
-id = 34813
-examine = "The door is open."
-
-[door_581_closed]
-id = 34812
-examine = "The door is locked."
-
 [door_583_opened]
 id = 34818
 examine = "The door is open."

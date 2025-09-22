@@ -37,3 +37,43 @@ drops = [
     { id = "uncut_ruby", chance = 5 },
     { id = "uncut_diamond" },
 ]
+
+[coin_chest_drop_table]
+drops = [
+    { id = "coins", amount = 10 },
+]
+
+[nature_chest_drop_table]
+type = "all"
+drops = [
+    { id = "nature_rune" },
+    { id = "coins", amount = 3 },
+]
+
+[big_coin_chest_drop_table]
+drops = [
+    { id = "coins", amount = 50 },
+]
+
+[steel_arrows_chest_drop_table]
+type = "all"
+drops = [
+    { id = "steel_arrowtips", amount = 5 },
+    { id = "coins", amount = 20 },
+]
+
+[blood_rune_chest_drop_table]
+type = "all"
+drops = [
+    { id = "blood_rune", amount = 2 },
+    { id = "coins", amount = 500 },
+]
+
+[ardougne_castle_chest_drop_table]
+type = "all"
+drops = [
+    { id = "coins", amount = 1000 },
+    { id = "raw_shark" },
+    { id = "adamantite_ore" },
+    { id = "uncut_sapphire" },
+]
