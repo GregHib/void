@@ -406,3 +406,6 @@ id = 142
 
 [spell_splash]
 id = 227
+
+[stun]
+id = 2727

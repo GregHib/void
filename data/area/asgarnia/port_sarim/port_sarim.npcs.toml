@@ -6,27 +6,24 @@ examine = "He's asleep."
 [port_sarim_guard]
 id = 2699
 categories = ["human"]
+pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "Keeping an eye out for suspicious activity."
 
 [port_sarim_guard_1]
 id = 2700
-categories = ["human"]
-examine = "Keeping an eye out for suspicious activity."
+clone = "port_sarim_guard"
 
 [port_sarim_guard_2]
 id = 2701
-categories = ["human"]
-examine = "Keeping an eye out for suspicious activity."
+clone = "port_sarim_guard"
 
 [port_sarim_guard_3]
 id = 2702
-categories = ["human"]
-examine = "Keeping an eye out for suspicious activity."
+clone = "port_sarim_guard"
 
 [port_sarim_guard_4]
 id = 2703
-categories = ["human"]
-examine = "Keeping an eye out for suspicious activity."
+clone = "port_sarim_guard"
 
 [port_sarim_guard_6]
 id = 2705

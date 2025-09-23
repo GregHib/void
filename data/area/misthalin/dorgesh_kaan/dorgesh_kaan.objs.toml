@@ -1,3 +1,29 @@
 [bank_booth_dorgesh_kaan]
 id = 22819
 examine = "Deposit your monies here."
+
+[dorgesh_kaan_chest]
+id = 22697
+level = 52
+exp = 200.0
+restock = 150
+examine = "A stone chest."
+
+[dorgesh_kaan_chest_empty]
+id = 22698
+
+[dorgesh_kaan_chest_open]
+id = 22699
+
+[dorgesh_kaan_gem_chest]
+id = 22681
+level = 78
+exp = 650.0
+restock = 500
+examine = "A metal bound stone chest."
+
+[dorgesh_kaan_gem_chest_empty]
+id = 22682
+
+[dorgesh_kaan_gem_chest_open]
+id = 22683

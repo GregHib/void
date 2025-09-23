@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.Inventory
@@ -83,6 +84,9 @@ class MonkOfEntrana {
     )
 
     private suspend fun NPCOption<Player>.passedCheck(): Boolean {
+        if (player.isAdmin()) {
+            return true
+        }
         var forbidden = itemCheck(player.inventory)
         if (forbidden.isEmpty()) {
             forbidden = itemCheck(player.equipment)

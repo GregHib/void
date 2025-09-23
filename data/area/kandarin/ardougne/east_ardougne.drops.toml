@@ -1,0 +1,106 @@
+[bakers_stall_drop_table]
+roll = 20
+drops = [
+    { id = "bread", chance = 5 },
+    { id = "cake", chance = 13 },
+    { id = "chocolate_slice", chance = 2 },
+]
+
+[silk_stall_drop_table]
+drops = [
+    { id = "silk" },
+]
+
+[spice_stall_drop_table]
+drops = [
+    { id = "spice" },
+]
+
+[grey_fur_stall_drop_table]
+drops = [
+    { id = "grey_wolf_fur" },
+]
+
+[silver_stall_drop_table]
+roll = 20
+drops = [
+    { id = "silver_ore", chance = 16 },
+    { id = "silver_bar", chance = 3 },
+    { id = "tiara" },
+]
+
+[gem_stall_drop_table]
+roll = 128
+drops = [
+    { id = "uncut_sapphire", chance = 105 },
+    { id = "uncut_emerald", chance = 17 },
+    { id = "uncut_ruby", chance = 5 },
+    { id = "uncut_diamond" },
+]
+
+[coin_chest_drop_table]
+drops = [
+    { id = "coins", amount = 10 },
+]
+
+[nature_chest_drop_table]
+type = "all"
+drops = [
+    { id = "nature_rune" },
+    { id = "coins", amount = 3 },
+]
+
+[big_coin_chest_drop_table]
+drops = [
+    { id = "coins", amount = 50 },
+]
+
+[steel_arrows_chest_drop_table]
+type = "all"
+drops = [
+    { id = "steel_arrowtips", amount = 5 },
+    { id = "coins", amount = 20 },
+]
+
+[blood_rune_chest_drop_table]
+type = "all"
+drops = [
+    { id = "blood_rune", amount = 2 },
+    { id = "coins", amount = 500 },
+]
+
+[ardougne_castle_chest_drop_table]
+type = "all"
+drops = [
+    { id = "coins", amount = 1000 },
+    { id = "raw_shark" },
+    { id = "adamantite_ore" },
+    { id = "uncut_sapphire" },
+]
+
+[knight_pickpocket]
+drops = [
+    { id = "coins", amount = 50 },
+]
+
+[paladin_pickpocket]
+roll = 1000
+drops = [
+    { id = "coins", amount = 80, chance = 1000 },
+    { id = "chaos_rune", amount = 2, chance = 1000 },
+    { table = "hard_clue_scroll" },
+]
+
+[hero_pickpocket]
+roll = 1400
+drops = [
+    { id = "coins", amount = 300, chance = 1050 },
+    { id = "coins", amount = 200, chance = 1050 },
+    { id = "death_rune", amount = 2, chance = 80 },
+    { id = "jug_of_wine", chance = 60 },
+    { id = "blood_rune", chance = 50 },
+    { id = "diamond", chance = 10 },
+    { id = "fire_orb", chance = 20 },
+    { id = "gold_ore", chance = 10 },
+    { table = "elite_clue_scroll" },
+]

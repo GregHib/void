@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.item.drop
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.type.random
 
 /**
  * A [DropTable] [Drop] which when selected will produce an [Item]
@@ -24,6 +25,6 @@ data class ItemDrop(
         if (id == "nothing" || id.isBlank()) {
             return Item.EMPTY
         }
-        return Item(id, amount.random())
+        return Item(id, amount.random(random))
     }
 }

@@ -267,19 +267,22 @@ id = 2125
 [commander_veldaban_keldagrim]
 id = 2129
 
-[black_guard_keldagrim_2]
+[black_guard_keldagrim_market]
 id = 2130
 categories = ["dwarves"]
+hunt_mode = "guarding"
 examine = "A member of the Black Guard, a special division of the dwarven army."
 
-[black_guard_keldagrim_3]
+[black_guard_keldagrim_market_2]
 id = 2131
 categories = ["dwarves"]
+hunt_mode = "guarding"
 examine = "A member of the Black Guard, a special division of the dwarven army."
 
-[black_guard_keldagrim_4]
+[black_guard_keldagrim_market_3]
 id = 2132
 categories = ["dwarves"]
+hunt_mode = "guarding"
 examine = "A member of the Black Guard, a special division of the dwarven army."
 
 [black_guard_keldagrim_5]

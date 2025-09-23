@@ -239,6 +239,7 @@ id = 2091
 
 [master_farmer_varrock]
 id = 2235
+pickpocket = { level = 38, stun_ticks = 8, stun_hit = 30, xp = 43.0, chance_min = 90, chance_max = 240, table = "master_farmer" }
 examine = "A master at farming."
 
 [tanner_varrock]
@@ -640,6 +641,7 @@ examine = "A greasy, grimy gourmet."
 
 [guard_varrock]
 id = 5919
+pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here. His bizarre uniform isn't helping."
 
 [man_varrock_3]
@@ -700,6 +702,7 @@ examine = "Peaceful man!"
 
 [guard_varrock_2]
 id = 5920
+pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here. His bizarre uniform isn't helping."
 
 [trainee_guard]

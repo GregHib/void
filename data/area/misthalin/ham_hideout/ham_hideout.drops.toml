@@ -1,0 +1,50 @@
+[ham_member_pickpocket]
+roll = 50
+drops = [
+    { id = "clue_scroll_easy", lacks = "clue_scroll_easy*", members = true, chance = 1 },
+    { table = "ham_member_secondary", chance = 49 },
+]
+
+[ham_member_secondary]
+roll = 561
+drops = [
+    { id = "ham_boots", chance = 5 },
+    { id = "ham_cloak", chance = 5 },
+    { id = "ham_gloves", chance = 5 },
+    { id = "ham_hood", chance = 5 },
+    { id = "ham_logo", chance = 5 },
+    { id = "ham_robe", chance = 5 },
+    { id = "ham_shirt", chance = 5 },
+    { id = "bronze_arrow", min = 1, max = 13, chance = 15 },
+    { id = "bronze_hatchet", chance = 15 },
+    { id = "bronze_dagger", chance = 15 },
+    { id = "bronze_pickaxe", chance = 15 },
+    { id = "iron_hatchet", chance = 15 },
+    { id = "iron_dagger", chance = 15 },
+    { id = "iron_pickaxe", chance = 15 },
+    { id = "leather_body", chance = 15 },
+    { id = "steel_arrow", min = 1, max = 13, chance = 10 },
+    { id = "steel_hatchet", chance = 10 },
+    { id = "steel_dagger", chance = 10 },
+    { id = "steel_pickaxe", chance = 10 },
+    { id = "buttons", chance = 20 },
+    { id = "coins", min = 2, max = 21, chance = 85 },
+    { id = "feather", min = 1, max = 7, chance = 15 },
+    { id = "knife", chance = 10 },
+    { id = "logs", chance = 15 },
+    { id = "needle", chance = 10 },
+    { id = "raw_anchovies", chance = 10 },
+    { id = "raw_chicken", chance = 10 },
+    { id = "thread", min = 1, max = 10, chance = 15 },
+    { id = "tinderbox", chance = 10 },
+    { id = "uncut_opal", chance = 10 },
+    { id = "coal", chance = 10 },
+    { id = "cowhide", chance = 15 },
+    { id = "damaged_armour", chance = 20 },
+    { id = "grimy_guam", chance = 6 },
+    { id = "grimy_marrentill", chance = 3 },
+    { id = "grimy_tarromin", chance = 2 },
+    { id = "iron_ore", chance = 10 },
+    { id = "rusty_sword", chance = 20 },
+    { id = "uncut_jade", chance = 10 },
+]

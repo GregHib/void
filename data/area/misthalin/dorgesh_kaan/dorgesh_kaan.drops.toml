@@ -1,0 +1,41 @@
+[dorgesh_kaan_chest_drop_table]
+roll = 7
+drops = [
+    { id = "coins", min = 1, max = 250, chance = 3 },
+    { id = "oil_lantern" },
+    { id = "bullseye_lantern_empty" },
+    { id = "mining_helmet" },
+    { id = "cave_goblin_wire", min = 1, max = 2 },
+]
+
+[dorgesh_kaan_gem_chest_drop_table]
+roll = 15
+drops = [
+    { id = "uncut_sapphire" },
+    { id = "uncut_emerald" },
+    { id = "uncut_ruby" },
+    { id = "uncut_diamond" },
+    { id = "uncut_opal" },
+    { id = "uncut_jade" },
+    { id = "uncut_red_topaz" },
+    { id = "bullseye_lantern_empty" },
+    { id = "mining_helmet" },
+    { id = "frog_leather_chaps" },
+    { id = "frog_leather_body" },
+    { id = "iron_bar" },
+    { id = "cave_goblin_wire", min = 1, max = 2 },
+    { id = "light_orb" },
+    { id = "empty_light_orb" },
+]
+
+[cave_goblin_pickpocket]
+roll = 20
+drops = [
+    { id = "coins", min = 10, max = 50, chance = 7 },
+    { id = "bullseye_lantern_empty" },
+    { id = "cave_goblin_wire", min = 1, max = 2 },
+    { id = "oil_lantern" },
+    { id = "swamp_tar" },
+    { id = "tinderbox" },
+    { id = "unlit_torch" },
+]

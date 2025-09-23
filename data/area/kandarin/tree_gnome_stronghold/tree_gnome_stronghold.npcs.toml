@@ -12,15 +12,16 @@ id = 139
 
 [gnome_child]
 id = 159
+pickpocket = { level = 75, stun_ticks = 8, stun_hit = 10, xp = 133.5, chance_min = 43, chance_max = 175, table = "gnome" }
 examine = "Small, even by gnome standards."
 
 [gnome_child_2]
 id = 160
-examine = "Small, even by gnome standards."
+clone = "gnome_child"
 
 [gnome_child_3]
 id = 161
-examine = "Small, even by gnome standards."
+clone = "gnome_child"
 
 [gnome_guard]
 id = 163
@@ -32,11 +33,12 @@ examine = "A tree gnome guard."
 
 [gnome_woman]
 id = 168
+pickpocket = { level = 75, stun_ticks = 8, stun_hit = 10, xp = 133.5, chance_min = 43, chance_max = 175, table = "gnome" }
 examine = "A female gnome."
 
 [gnome_woman_2]
 id = 169
-examine = "A female gnome."
+clone = "gnome_woman"
 
 [terrorbird_3]
 id = 1751

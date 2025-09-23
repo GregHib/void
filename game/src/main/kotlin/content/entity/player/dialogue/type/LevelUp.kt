@@ -27,11 +27,12 @@ suspend fun SuspendableContext<Player>.levelUp(skill: Skill, text: String) {
 
 fun levelUp(player: Player, skill: Skill, text: String) {
     val lines = text.trimIndent().lines()
+    player["level_up_icon"] = skill.name
+    player.sendVariable("level_up_icon")
     check(player.open(LEVEL_UP_INTERFACE_ID)) { "Unable to open level up interface for $player" }
     for ((index, line) in lines.withIndex()) {
         player.interfaces.sendText(LEVEL_UP_INTERFACE_ID, "line${index + 1}", line)
     }
-    player["level_up_icon"] = skill.name
 }
 
 @Script

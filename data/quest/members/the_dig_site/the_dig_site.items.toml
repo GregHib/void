@@ -12,7 +12,7 @@ weight = 0.056
 examine = "A small brush used to clean rock samples."
 kept = "Wilderness"
 
-[animal_skull_the_dig_site]
+[animal_skull]
 id = 671
 tradeable = false
 weight = 0.085

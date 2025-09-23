@@ -5,3 +5,152 @@ examine = "Bake your clay items in here."
 [bank_booth_ardougne]
 id = 34752
 examine = "The bank teller will serve you from here."
+
+[bakers_stall]
+id = 34384
+exp = 16.0
+level = 5
+restock = 4
+examine = "This stall smells great."
+
+[bakers_stall_empty]
+id = 34381
+
+[silk_stall]
+id = 34383
+level = 20
+exp = 24.0
+restock = 8
+examine = "Fine silk woven by experts."
+
+[silk_stall_empty]
+id = 34381
+
+[grey_fur_stall]
+id = 34387
+level = 35
+exp = 45.0
+restock = 12
+examine = "All manner of animal clothing."
+
+[grey_fur_stall_empty]
+id = 34381
+
+[silver_stall]
+id = 34382
+level = 50
+exp = 205.0
+restock = 32
+examine = "Fine silver items are for sale here."
+
+[silver_stall_empty]
+id = 34381
+
+[spice_stall]
+id = 34386
+level = 65
+exp = 92.0
+restock = 10
+examine = "Spices to tingle your taste buds."
+
+[spice_stall_empty]
+id = 34381
+
+[gem_stall]
+id = 34385
+level = 75
+exp = 408.0
+restock = 100
+examine = "Precious stones from around the world."
+
+[gem_stall_empty]
+id = 34381
+
+[ardougne_locked_door_opened]
+id = 34813
+examine = "The door is open."
+
+[ardougne_locked_door_closed]
+id = 34812
+level = 1
+exp = 3.8
+examine = "The door is locked."
+
+[coin_chest]
+id = 2566
+level = 13
+exp = 7.8
+restock = 6
+examine = "I wonder what's inside it."
+
+[nature_chest]
+id = 2567
+level = 28
+exp = 25.0
+restock = 13
+examine = "I wonder what's inside it."
+
+[big_coin_chest]
+id = 2568
+level = 43
+exp = 125.0
+restock = 115
+examine = "I wonder what's inside it."
+
+[blood_rune_chest]
+id = 2569
+level = 59
+exp = 250.0
+restock = 225
+examine = "I wonder what's inside it."
+
+[ardougne_castle_chest]
+id = 2570
+level = 72
+exp = 500.0
+restock = 834
+examine = "I wonder what's inside it."
+
+[trap_chest_empty_light]
+id = 2571
+
+[trap_chest_open]
+id = 2574
+
+[trap_chest_empty]
+id = 2572
+
+[steel_arrows_chest]
+id = 2573
+level = 47
+exp = 150.0
+restock = 150
+examine = "I wonder what's inside it."
+
+[chaos_druid_tower_locked_door_opened]
+id = 2538
+examine = "A door."
+
+[chaos_druid_tower_locked_door_closed]
+id = 2554
+level = 46
+exp = 37.5
+examine = "A secure door."
+
+[ardougne_house_locked_door_opened]
+id = 2055
+
+[ardougne_house_locked_door_closed]
+id = 2556
+level = 13
+exp = 15.0
+examine = "A secure door."
+
+[ardougne_castle_locked_door_opened]
+id = 34233
+
+[ardougne_castle_locked_door_closed]
+id = 2555
+level = 61
+exp = 50.0
+examine = "A secure door."

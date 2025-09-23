@@ -17,3 +17,13 @@ examine = "The bank teller will serve you from here."
 [varrock_dungeon_pipe]
 id = 29370
 examine = "A pipe I can squeeze through."
+
+[tea_stall]
+id = 635
+level = 5
+exp = 16.0
+restock = 4
+examine = "Fine brews from exotic regions."
+
+[tea_stall_empty]
+id = 634

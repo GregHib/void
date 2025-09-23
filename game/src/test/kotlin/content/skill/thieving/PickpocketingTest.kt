@@ -13,7 +13,7 @@ import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
-internal class PickpocketTest : WorldTest() {
+internal class PickpocketingTest : WorldTest() {
 
     @Test
     fun `Successfully pickpocket`() {

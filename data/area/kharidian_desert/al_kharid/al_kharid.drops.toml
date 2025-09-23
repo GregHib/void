@@ -1,0 +1,4 @@
+[warrior_pickpocket]
+drops = [
+    { id = "coins", amount = 18 },
+]

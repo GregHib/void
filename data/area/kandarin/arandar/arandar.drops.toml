@@ -1,0 +1,12 @@
+[gnome_pickpocket]
+roll = 150
+drops = [
+    { id = "arrow_shaft", min = 2, max = 4, chance = 56 },
+    { id = "coins", amount = 300, chance = 30 },
+    { id = "swamp_toad", chance = 24 },
+    { id = "gold_ore", chance = 8 },
+    { id = "earth_rune", chance = 5 },
+    { id = "king_worm", chance = 3 },
+    { id = "fire_orb", chance = 2 },
+    { table = "medium_clue_scroll" },
+]

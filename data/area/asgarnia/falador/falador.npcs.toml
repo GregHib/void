@@ -206,26 +206,28 @@ examine = "One of Gielinor's many citizens."
 
 [guard_falador]
 id = 3228
+pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
+examine = "He tries to keep order around here."
 
 [guard_falador_2]
 id = 3229
-examine = "He tries to keep order around here."
+clone = "guard_falador"
 
 [guard_falador_3]
 id = 3230
-examine = "He tries to keep order around here."
+clone = "guard_falador"
 
 [guard_falador_4]
 id = 3231
-examine = "He tries to keep order around here."
+clone = "guard_falador"
 
 [guard_falador_5]
 id = 3232
-examine = "Keeping an eye out for threats to the city."
+clone = "guard_falador"
 
 [guard_falador_6]
 id = 3233
-examine = "Keeping an eye out for threats to the city."
+clone = "guard_falador"
 
 [apprentice_workman]
 id = 3235
@@ -253,6 +255,7 @@ examine = "Untrustworthy."
 
 [guard_falador_7]
 id = 3241
+clone = "guard_falador"
 
 [dark_wizard_falador]
 id = 3242
@@ -437,6 +440,7 @@ examine = "Bow wow."
 
 [guard_falador_8]
 id = 9
+pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here."
 
 [water_wizard]

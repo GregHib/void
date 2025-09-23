@@ -6,3 +6,23 @@ examine = "An enigmatic cabbage."
 [draynor_stepping_stone]
 id = 9315
 examine = "I can jump from this stepping stone."
+
+[wine_stall]
+id = 14011
+level = 22
+exp = 27.0
+restock = 8
+examine = "The wine merchant's stall."
+
+[wine_stall_empty]
+id = 14012
+
+[seed_stall]
+id = 7053
+level = 27
+exp = 10.0
+restock = 4
+examine = "Lots of seeds here."
+
+[seed_stall_empty]
+id = 14012

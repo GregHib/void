@@ -1,0 +1,6 @@
+[watchman_pickpocket]
+type = "all"
+drops = [
+    { id = "bread" },
+    { id = "coins", amount = 60 },
+]

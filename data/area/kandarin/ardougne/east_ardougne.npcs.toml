@@ -1,4 +1,4 @@
-[guard_ardougne]
+[hero_guard_ardougne]
 id = 11271
 examine = "The key to the vault lever hangs from his belt."
 
@@ -31,6 +31,7 @@ examine = "He looks like the type of guy who would mind monkeys."
 
 [warrior_woman]
 id = 15
+pickpocket = { level = 25, stun_ticks = 8, stun_hit = 20, xp = 26.0, chance_min = 100, chance_max = 240, table = "warrior" }
 examine = "A woman, who is a warrior."
 
 [milton_the_miller]
@@ -39,17 +40,22 @@ examine = "Manages the mill."
 
 [paladin]
 id = 20
+pickpocket = { level = 70, stun_ticks = 8, stun_hit = 30, xp = 131.8, chance_min = 40, chance_max = 170, table = "paladin" }
 examine = "A holy warrior."
 
 [hero]
 id = 21
+pickpocket = { level = 80, stun_ticks = 10, stun_hit = 30, xp = 163.3, chance_min = 39, chance_max = 160, table = "hero" }
 examine = "Heroic!"
 
 [paladin_2]
 id = 2256
+clone = "paladin"
 
 [knight_of_ardougne]
 id = 23
+hunt_mode = "guarding"
+pickpocket = { level = 55, stun_ticks = 10, stun_hit = 30, xp = 84.3, chance_min = 50, chance_max = 240, table = "knight" }
 examine = "A member of Ardougne's militia."
 
 [richard_ardougne]
@@ -117,8 +123,10 @@ examine = "A holy man."
 [fishing_spot_ardougne]
 id = 311
 
-[guard_ardougne_2]
+[guard_ardougne]
 id = 32
+hunt_mode = "guarding"
+pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "Keeps the peace... kind of."
 
 [edmond_ardougne]

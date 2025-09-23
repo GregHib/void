@@ -1,0 +1,4 @@
+[guard_pickpocket]
+drops = [
+    { id = "coins", amount = 30 },
+]

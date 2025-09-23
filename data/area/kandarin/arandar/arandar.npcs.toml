@@ -12,11 +12,13 @@ examine = "A gnome mage and hunter with a somewhat enthusiastic swagger."
 
 [gnome]
 id = 66
+pickpocket = { level = 75, stun_ticks = 8, stun_hit = 10, xp = 133.5, chance_min = 43, chance_max = 175, table = "gnome" }
 examine = "Like a mini man!"
 
 [gnome_2]
 id = 67
-examine = "Like a mini man!"
+clone = "gnome"
 
 [gnome_3]
 id = 68
+clone = "gnome"

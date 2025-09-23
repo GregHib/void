@@ -224,6 +224,7 @@ id = 11268
 
 [farmer_lumbridge]
 id = 1757
+pickpocket = { level = 10, stun_hit = 10, stun_ticks = 8, xp = 14.5, chance_min = 150, chance_max = 240, table = "farmer" }
 examine = "He grows the crops in this area."
 
 [farmer_lumbridge_2]
@@ -266,6 +267,7 @@ examine = "Perhaps this gardener might look after your crops for you."
 
 [farmer_lumbridge_3]
 id = 1758
+pickpocket = { level = 10, stun_hit = 10, stun_ticks = 8, xp = 14.5, chance_min = 150, chance_max = 240, table = "farmer" }
 examine = "He grows the crops in this area."
 
 [sigmund_lumbridge]

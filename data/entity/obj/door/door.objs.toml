@@ -474,13 +474,6 @@ id = 2055
 id = 2054
 examine = "It's a door."
 
-[door_67_opened]
-id = 2055
-
-[door_67_closed]
-id = 2556
-examine = "A secure door."
-
 [door_37_opened]
 id = 2070
 
@@ -687,14 +680,6 @@ examine = "A door."
 id = 2537
 examine = "The door is closed."
 
-[door_65_opened]
-id = 2538
-examine = "A door."
-
-[door_65_closed]
-id = 2554
-examine = "A secure door."
-
 [door_69_opened]
 id = 2538
 examine = "A door."
@@ -782,13 +767,6 @@ examine = "A door."
 [door_63_closed]
 id = 2548
 examine = "A door."
-
-[door_66_opened]
-id = 34233
-
-[door_66_closed]
-id = 2555
-examine = "A secure door."
 
 [door_70_opened]
 id = 20988
@@ -3224,14 +3202,6 @@ examine = "The door is open."
 [door_580_closed]
 id = 34811
 examine = "The door is closed."
-
-[door_581_opened]
-id = 34813
-examine = "The door is open."
-
-[door_581_closed]
-id = 34812
-examine = "The door is locked."
 
 [door_583_opened]
 id = 34818

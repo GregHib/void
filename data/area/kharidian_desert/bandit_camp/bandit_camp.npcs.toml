@@ -11,10 +11,12 @@ id = 1922
 
 [bandit_bandit_camp]
 id = 1926
+pickpocket = { level = 53, xp = 79.4, table = "desert_bandit" }
 examine = "A tough-looking criminal."
 
 [bandit_bandit_camp_2]
 id = 1927
+pickpocket = { level = 53, xp = 79.4, table = "desert_bandit" }
 examine = "A tough-looking criminal."
 
 [bandit_bandit_camp_3]

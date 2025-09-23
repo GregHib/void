@@ -184,3 +184,8 @@ id = 8122
 
 [commander_colby_wilderness_2]
 id = 12312
+
+[rogue_castle]
+id = 187
+pickpocket = { level = 32, stun_ticks = 8, stun_hit = 20, xp = 36.5, chance_min = 75, chance_max = 240, table = "rouge" }
+examine = "Rogueish."

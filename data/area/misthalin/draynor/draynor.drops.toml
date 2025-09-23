@@ -1,0 +1,78 @@
+[wine_stall_drop_table]
+roll = 100
+drops = [
+    { id = "bottle_of_wine", chance = 11 },
+    { id = "grapes", chance = 17 },
+    { id = "jug", chance = 39 },
+    { id = "jug_of_water", chance = 20 },
+    { id = "jug_of_wine", chance = 13 },
+]
+
+[seed_stall_drop_table]
+roll = 1000
+drops = [
+    { id = "hammerstone_seed", chance = 120 },
+    { id = "potato_seed", chance = 119 },
+    { id = "marigold_seed", chance = 119 },
+    { id = "barley_seed", chance = 118 },
+    { id = "onion_seed", chance = 89 },
+    { id = "asgarnian_seed", chance = 83 },
+    { id = "cabbage_seed", chance = 71 },
+    { id = "yanillian_seed", chance = 47 },
+    { id = "rosemary_seed", chance = 36 },
+    { id = "nasturtium_seed", chance = 35 },
+    { id = "tomato_seed", chance = 35 },
+    { id = "jute_seed", chance = 35 },
+    { id = "sweetcorn_seed", chance = 30 },
+    { id = "krandorian_seed", chance = 24 },
+    { id = "strawberry_seed", chance = 18 },
+    { id = "wildblood_seed", chance = 12 },
+    { id = "watermelon_seed", chance = 9 },
+]
+
+[master_farmer_pickpocket]
+roll = 9271
+drops = [
+    { id = "potato_seed", min = 1, max = 4, chance = 1854 },
+    { id = "onion_seed", min = 1, max = 3, chance = 1324 },
+    { id = "cabbage_seed", min = 1, max = 3, chance = 662 },
+    { id = "tomato_seed", min = 1, max = 2, chance = 618 },
+    { id = "sweetcorn_seed", min = 1, max = 2, chance = 206 },
+    { id = "strawberry_seed", chance = 103 },
+    { id = "watermelon_seed", chance = 49 },
+    { id = "bittercap_mushroom_spore", chance = 35 },
+    { id = "barley_seed", min = 1, max = 12, chance = 515 },
+    { id = "hammerstone_seed", min = 1, max = 9, chance = 515 },
+    { id = "asgarnian_seed", min = 1, max = 6, chance = 403 },
+    { id = "jute_seed", min = 1, max = 9, chance = 386 },
+    { id = "yanillian_seed", min = 1, max = 6, chance = 257 },
+    { id = "krandorian_seed", min = 1, max = 6, chance = 128 },
+    { id = "wildblood_seed", min = 1, max = 3, chance = 65 },
+    { id = "marigold_seed", chance = 441 },
+    { id = "nasturtium_seed", chance = 289 },
+    { id = "rosemary_seed", chance = 185 },
+    { id = "woad_seed", chance = 136 },
+    { id = "limpwurt_seed", chance = 107 },
+    { id = "redberry_seed", chance = 370 },
+    { id = "cadavaberry_seed", chance = 257 },
+    { id = "dwellberry_seed", chance = 181 },
+    { id = "jangerberry_seed", chance = 71 },
+    { id = "whiteberry_seed", chance = 26 },
+    { id = "poison_ivy_seed", chance = 9 },
+    { id = "belladonna_seed", chance = 11 },
+    { id = "cactus_seed", chance = 7 },
+    { id = "guam_seed", chance = 159 },
+    { id = "marrentill_seed", chance = 97 },
+    { id = "tarromin_seed", chance = 66 },
+    { id = "harralander_seed", chance = 45 },
+    { id = "ranarr_seed", chance = 34 },
+    { id = "toadflax_seed", chance = 20 },
+    { id = "irit_seed", chance = 14 },
+    { id = "avantoe_seed", chance = 9 },
+    { id = "kwuarm_seed", chance = 6 },
+    { id = "snapdragon_seed", chance = 5 },
+    { id = "cadantine_seed", chance = 3 },
+    { id = "lantadyme_seed", chance = 2 },
+    { id = "dwarf_weed_seed" },
+    { id = "torstol_seed" },
+]

@@ -1,6 +1,7 @@
 package content.entity.effect
 
-import content.entity.combat.hit.damage
+import content.entity.combat.hit.directHit
+import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
@@ -20,9 +21,10 @@ fun Character.stun(target: Character, ticks: Int, hit: Int = -1): Boolean {
         return false
     }
     if (hit != -1) {
-        target.damage(hit)
+        target.directHit(hit)
     }
     target.gfx("stun_long")
+    target.sound("stun")
     target.message("You've been stunned!")
     target["delay"] = ticks
     target.start("stunned", ticks)

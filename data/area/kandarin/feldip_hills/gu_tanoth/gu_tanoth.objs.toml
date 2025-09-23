@@ -1,0 +1,10 @@
+[counter]
+id = 2793
+level = 15
+exp = 6.4
+restock = 12
+examine = "An ogre is selling cakes here."
+
+[counter_empty]
+id = 2792
+examine = "A counter made from a stone block."
