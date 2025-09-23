@@ -15,14 +15,12 @@ import content.entity.player.dialogue.type.statement
 import content.entity.proj.shoot
 import content.entity.sound.sound
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.queue.softQueue
 
 @Script
 class Apprentice {
