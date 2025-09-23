@@ -144,7 +144,7 @@ level = 45
 xp = 100.0
 ticks = 2
 remove = ["irit_potion_unf", "eye_of_newt"]
-add = ["super_attack_potion_3"]
+add = ["super_attack_3"]
 animation = "mixing_potion"
 message = "You mix the eye of newt into your potion."
 
@@ -184,7 +184,7 @@ level = 52
 xp = 117.5
 ticks = 2
 remove = ["avantoe_potion_unf", "mort_myre_fungus"]
-add = ["super_energy_potion_3"]
+add = ["super_energy_3"]
 animation = "mixing_potion"
 message = "You mix the mort myre fungus into your potion."
 
@@ -204,7 +204,7 @@ level = 55
 xp = 125.0
 ticks = 2
 remove = ["kwuarm_potion_unf", "limpwurt_root"]
-add = ["super_strength_potion_3"]
+add = ["super_strength_3"]
 animation = "mixing_potion"
 message = "You mix the limpwurt root into your potion."
 
@@ -234,7 +234,7 @@ level = 60
 xp = 137.5
 ticks = 2
 remove = ["kwuarm_potion_unf", "dragon_scale_dust"]
-add = ["weapon_poison_3"]
+add = ["weapon_poison"]
 animation = "mixing_potion"
 message = "You mix the dragon scale dust into your potion."
 
@@ -294,7 +294,7 @@ level = 66
 xp = 150.0
 ticks = 2
 remove = ["cadantine_potion_unf", "white_berries"]
-add = ["cw_super_defence_potion_3"]
+add = ["super_defence_3"]
 animation = "mixing_potion"
 message = "You mix the white berries into your potion"
 
@@ -308,13 +308,13 @@ add = ["antipoison+_3"]
 animation = "mixing_potion"
 message = "You mix the yew roots into your potion"
 
-[anti_fire_potion_finished]
+[antifire_potion_finished]
 skill = "herblore"
 level = 69
 xp = 157.5
 ticks = 2
 remove = ["lantadyme_potion_unf", "dragon_scale_dust"]
-add = ["anti_fire_potion_3"]
+add = ["antifire_3"]
 animation = "mixing_potion"
 message = "You mix the dragon scale dust into your potion."
 
@@ -334,7 +334,7 @@ level = 73
 xp = 137.5
 ticks = 2
 remove = ["weapon_poison+_unf", "red_spiders_eggs"]
-add = ["weapon_poison+_3"]
+add = ["weapon_poison+"]
 animation = "mixing_potion"
 message = "You mix the wine of red spiders eggs into your potion"
 
@@ -433,7 +433,7 @@ skill = "herblore"
 level = 91
 xp = 250.0
 ticks = 2
-remove = ["super_magic_3", "ground_mud_runes"]
+remove = ["super_magic_potion_3", "ground_mud_runes"]
 add = ["extreme_magic_3"]
 animation = "mixing_potion"
 message = "You mix the ground mud runes into your potion"
@@ -443,7 +443,7 @@ skill = "herblore"
 level = 92
 xp = 250.0
 ticks = 2
-remove = ["super_ranging_3", "grenwall_spikes"]
+remove = ["super_ranging_potion_3", "grenwall_spikes"]
 add = ["extreme_ranging_3"]
 animation = "mixing_potion"
 message = "You mix the grenwall spikes into your potion"

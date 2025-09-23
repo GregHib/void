@@ -51,7 +51,6 @@ class ItemOnItemDefinitions {
                         var failure = ""
                         var question: String? = null
                         var maximum: Int = -1
-
                         while (nextPair()) {
                             val key = key()
                             when (key) {
@@ -138,7 +137,11 @@ class ItemOnItemDefinitions {
                 }
                 items.add(Item(id, amount))
             } else {
-                items.add(Item(string()))
+                val id = string()
+                if (itemDefinitions != null && !itemDefinitions.contains(id)) {
+                    logger.warn { "Invalid item-on-item id: $id" }
+                }
+                items.add(Item(id))
             }
         }
     }

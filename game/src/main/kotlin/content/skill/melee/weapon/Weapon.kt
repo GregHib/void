@@ -114,7 +114,7 @@ object Weapon {
 
     fun isDemonbane(item: Item) = item.id == "silverlight" || item.id == "darklight" || item.id == "holy_water"
 
-    private fun isOutlier(special: Boolean, id: String): Boolean = (special && id.startsWith("magic") || id == "seercull" || id == "rune_thrownaxe") || id == "ogre_bow"
+    private fun isOutlier(special: Boolean, id: String): Boolean = (special && id.startsWith("magic") || id == "seercull" || id == "rune_throwing_axe") || id == "ogre_bow"
 
     fun mark(type: String): HitSplat.Mark = when (type) {
         "range" -> HitSplat.Mark.Range
@@ -210,7 +210,7 @@ object Weapon {
             } else if (isOutlier(special, weapon.id)) {
                 val strengthBonus = strengthBonus(source, type, weapon)
                 damage = (0.5 + (source.levels.get(Skill.Ranged) + 10) * strengthBonus / 64).toInt()
-                if (weapon.id == "rune_thrownaxe" || (weapon.id == "magic_shortbow" && target is Player)) {
+                if (weapon.id == "rune_throwing_axe" || (weapon.id == "magic_shortbow" && target is Player)) {
                     damage += 1
                 }
             }

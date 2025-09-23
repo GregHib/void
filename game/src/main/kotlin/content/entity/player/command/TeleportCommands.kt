@@ -65,6 +65,7 @@ class TeleportCommands {
         "ardougne" to Tile(2662, 3304),
         "west_ardougne" to Tile(2530, 3306),
         "catherby" to Tile(2805, 3434),
+        "dks" to Tile(1922, 4365),
     )
 
     init {

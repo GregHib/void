@@ -11,12 +11,16 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
+
 @Script
 class DagannothEggHatch {
 
     val npcs: NPCs by inject()
 
     init {
+        /**
+         * When a player enters hunt radius, egg transforms to spawn and attacks.
+         */
         huntPlayer("dagannoth_egg", "aggressive") { npc ->
             // Ignore if already transformed
             if (npc.transform == "dagannoth_spawn") {
@@ -35,8 +39,4 @@ class DagannothEggHatch {
             }
         }
     }
-
-    /**
-     * When a player enters hunt radius, egg transforms to spawn and attacks.
-     */
 }

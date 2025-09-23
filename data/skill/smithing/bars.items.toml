@@ -108,7 +108,7 @@ smelting = {
   items = [{id = "adamantite_ore"}, {id = "coal", amount = 6}],
   message = "You place the adamantite and six heaps of coal into the furnace.",
 }
-aka = ["adamantite_bar"]
+aka = ["adamant_bar"]
 examine = "It's a bar of adamant."
 
 [adamant_bar_noted]
