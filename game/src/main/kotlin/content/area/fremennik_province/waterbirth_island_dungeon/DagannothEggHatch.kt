@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-
 @Script
 class DagannothEggHatch {
 
