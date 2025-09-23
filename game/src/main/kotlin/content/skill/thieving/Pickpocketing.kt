@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -22,10 +23,13 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.discharge
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 
 @Script
@@ -58,7 +62,11 @@ class Pickpocketing {
         if (!player.has(Skill.Thieving, pocket.level)) {
             return
         }
-        val success = success(player.levels.get(Skill.Thieving), pocket.chance)
+        var chances = pocket.chance
+        if (player.equipped(EquipSlot.Hands).id == "gloves_of_silence" && player.equipment.discharge(player, EquipSlot.Hands.index)) {
+            chances = (chances.first + (chances.first / 20)).coerceAtMost(255)..(chances.last + (chances.last / 20)).coerceAtMost(255)
+        }
+        val success = success(player.levels.get(Skill.Thieving), chances)
         val drops = getLoot(target, pocket.table) ?: emptyList()
         if (success && !canLoot(player, drops)) {
             return
