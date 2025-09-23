@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Script
@@ -69,7 +70,6 @@ class SorceressGarden : Api {
         objectOperate("Pick", "sorceress_herbs_spring", "sorceress_herbs_summer", "sorceress_herbs_autumn", "sorceress_herbs_winter") {
             pickHerb(target.id.removePrefix("sorceress_herbs_"))
         }
-
     }
 
     fun enterGarden(target: GameObject, player: Player) {
@@ -105,13 +105,18 @@ class SorceressGarden : Api {
     }
 
     suspend fun SuspendableContext<Player>.pickHerb(type: String) {
+        if (player.inventory.spaces < 2) {
+            player<Neutral>("I cannot carry any more.")
+            return
+        }
         val table = dropTables.get("${type}_herbs_drop_table")
         if (table != null) {
-            val loot = table.role()
+            val drops = mutableListOf<ItemDrop>()
+            table.role(list = drops)
+            table.role(list = drops)
             player.inventory.transaction {
-                for (drop in loot) {
-                    val item = drop.toItem()
-                    add(item.id, item.amount)
+                for (drop in drops) {
+                    add(drop.id, 1)
                 }
             }
             when (player.inventory.transaction.error) {
@@ -128,5 +133,4 @@ class SorceressGarden : Api {
         player.experience.add(Skill.Farming, 25.0)
         leave()
     }
-
 }
