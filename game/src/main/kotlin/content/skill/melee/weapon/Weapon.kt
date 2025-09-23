@@ -8,6 +8,7 @@ import content.skill.magic.spell.spell
 import content.skill.prayer.Prayer
 import content.skill.ranged.Ammo
 import content.skill.ranged.ammo
+import content.skill.slayer.categories
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -133,6 +134,13 @@ object Weapon {
             return "magic"
         }
         val definitions = get<WeaponStyleDefinitions>()
+        if (character is NPC && !character.categories.contains("human")) {
+            return when (character.combatStyle) {
+                "range" -> "range"
+                "magic" -> "magic"
+                else -> "melee"
+            }
+        }
         val style = if (character is NPC) {
             definitions.get(character.def["weapon_style", "unarmed"])
         } else {
