@@ -53,55 +53,60 @@ id = 443
 
 [cave_goblin_dorgesh_kaan]
 id = 5752
+pickpocket = { level = 36, stun_ticks = 8, stun_hit = 10, xp = 40.0, chance_min = 80, chance_max = 240, table = "cave_goblin" }
 examine = "One of the many citizens of Dorgesh-Kaan."
 
 [cave_goblin_dorgesh_kaan_2]
 id = 5753
-examine = "One of the many citizens of Dorgesh-Kaan."
+clone = "cave_goblin_dorgesh_kaan"
 
 [cave_goblin_dorgesh_kaan_3]
 id = 5755
-examine = "One of the many citizens of Dorgesh-Kaan."
+clone = "cave_goblin_dorgesh_kaan"
 
 [cave_goblin_dorgesh_kaan_4]
 id = 5756
-examine = "One of the many citizens of Dorgesh-Kaan."
+clone = "cave_goblin_dorgesh_kaan"
 
 [cave_goblin_dorgesh_kaan_5]
 id = 5757
-examine = "One of the many citizens of Dorgesh-Kaan."
+clone = "cave_goblin_dorgesh_kaan"
 
 [cave_goblin_dorgesh_kaan_6]
 id = 5758
-examine = "One of the many citizens of Dorgesh-Kaan."
+clone = "cave_goblin_dorgesh_kaan"
 
 [cave_goblin_dorgesh_kaan_7]
 id = 5759
-examine = "One of the many citizens of Dorgesh-Kaan."
+clone = "cave_goblin_dorgesh_kaan"
 
 [cave_goblin_dorgesh_kaan_8]
 id = 5761
-examine = "One of the many citizens of Dorgesh-Kaan."
+clone = "cave_goblin_dorgesh_kaan"
 
 [cave_goblin_dorgesh_kaan_9]
 id = 5764
-examine = "One of the many citizens of Dorgesh-Kaan."
+clone = "cave_goblin_dorgesh_kaan"
 
 [cave_goblin_dorgesh_kaan_10]
 id = 5765
-examine = "One of the many citizens of Dorgesh-Kaan."
+clone = "cave_goblin_dorgesh_kaan"
 
 [cave_goblin_dorgesh_kaan_11]
 id = 5766
-examine = "One of the many citizens of Dorgesh-Kaan."
+clone = "cave_goblin_dorgesh_kaan"
 
 [cave_goblin_dorgesh_kaan_12]
 id = 5767
-examine = "One of the many citizens of Dorgesh-Kaan."
+clone = "cave_goblin_dorgesh_kaan"
 
 [cave_goblin_dorgesh_kaan_13]
 id = 5768
-examine = "One of the many citizens of Dorgesh-Kaan."
+clone = "cave_goblin_dorgesh_kaan"
+
+[cave_goblin_dorgesh_kaan_16]
+id = 5769
+clone = "cave_goblin_dorgesh_kaan"
 
 [ur_zek_dorgesh_kaan]
 id = 5770

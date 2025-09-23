@@ -1,0 +1,9 @@
+[rouge_pickpocket]
+roll = 144
+drops = [
+    { id = "coins", min = 25, max = 40, chance = 123 },
+    { id = "air_rune", amount = 8, chance = 9 },
+    { id = "jug_of_wine", chance = 6 },
+    { id = "lockpick", chance = 5 },
+    { id = "iron_dagger_p" },
+]

@@ -29,9 +29,6 @@ id = 1887
 [villager_pollnivneach_2]
 id = 1891
 
-[villager_pollnivneach_3]
-id = 1895
-
 [menaphite_leader_pollnivneach]
 id = 1899
 
@@ -106,36 +103,63 @@ id = 1878
 
 [bandit_pollnivneach_3]
 id = 1880
+pickpocket = { level = 55, xp = 84.3, table = "bandit" }
+examine = "Tough-looking."
 
 [bandit_pollnivneach_4]
 id = 1881
+pickpocket = { level = 55, xp = 84.3, table = "bandit" }
+examine = "Tough-looking."
 
 [villager_pollnivneach_4]
 id = 1888
+pickpocket = { level = 30, xp = 8.0, table = "villager" }
+examine = "An old male villager."
 
 [villager_pollnivneach_5]
 id = 1889
+pickpocket = { level = 30, xp = 8.0, table = "villager" }
+examine = "An old male villager."
 
 [villager_pollnivneach_6]
 id = 1890
+pickpocket = { level = 30, xp = 8.0, table = "villager" }
+examine = "An old male villager."
 
 [villager_pollnivneach_2_2]
 id = 1892
+pickpocket = { level = 30, xp = 8.0, table = "villager" }
+examine = "Male desert villager."
 
 [villager_pollnivneach_2_3]
 id = 1893
+pickpocket = { level = 30, xp = 8.0, table = "villager" }
+examine = "Male desert villager."
 
 [villager_pollnivneach_2_4]
 id = 1894
+pickpocket = { level = 30, xp = 8.0, table = "villager" }
+examine = "Male desert villager."
+
+[villager_pollnivneach_3]
+id = 1895
+pickpocket = { level = 30, xp = 8.0, table = "villager" }
+examine = "Female desert villager."
 
 [villager_pollnivneach_3_2]
 id = 1896
+pickpocket = { level = 30, xp = 8.0, table = "villager" }
+examine = "Male desert villager."
 
 [villager_pollnivneach_3_3]
 id = 1897
+pickpocket = { level = 30, xp = 8.0, table = "villager" }
+examine = "Female desert villager."
 
 [villager_pollnivneach_3_4]
 id = 1898
+pickpocket = { level = 30, xp = 8.0, table = "villager" }
+examine = "Female desert villager."
 
 [menaphite_leader_pollnivneach_2]
 id = 1901
@@ -145,12 +169,15 @@ id = 1904
 
 [menaphite_thug_pollnivneach_3]
 id = 1905
+pickpocket = { level = 65, xp = 137.5, table = "thug" }
 
 [bandit_pollnivneach_2_2]
 id = 6174
+pickpocket = { level = 45, xp = 65.0, table = "bearded_bandit" }
 
 [bandit_pollnivneach_2_3]
 id = 6388
+pickpocket = { level = 45, xp = 65.0, table = "bearded_bandit" }
 
 [sumona_pollnivneach_2]
 id = 7780

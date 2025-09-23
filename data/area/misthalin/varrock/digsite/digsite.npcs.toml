@@ -5,8 +5,10 @@ examine = "An old archaeologist."
 [assassin_digsite]
 id = 9043
 
-[digsite_workman]
+[desert_digsite_workman]
 id = 9049
+pickpocket = { level = 25, stun_ticks = 8, stun_hit = 100, xp = 10.4, chance_min = 100, chance_max = 240, table = "workman" }
+examine = "This person is working on the site."
 
 [digsite_student_blue]
 id = 615
@@ -17,8 +19,22 @@ id = 616
 [digsite_student_purple]
 id = 617
 
-[dig_site_workman]
-id = 613
-
 [assassin_digsite_2]
 id = 9044
+
+[digsite_workman_dirty]
+id = 613
+pickpocket = { level = 25, stun_ticks = 8, stun_hit = 100, xp = 10.4, chance_min = 100, chance_max = 240, table = "workman" }
+examine = "This person is working on the site."
+
+[digsite_workman_apron]
+id = 4564
+clone = "digsite_workman_dirty"
+
+[digsite_workman_long_hair]
+id = 4565
+clone = "digsite_workman_dirty"
+
+[digsite_workman_dirty_2]
+id = 5958
+clone = "digsite_workman_dirty"

@@ -1,0 +1,12 @@
+[workman_pickpocket]
+roll = 11
+drops = [
+    { id = "coins", amount = 10 },
+    { id = "specimen_brush", chance = 3 },
+    { id = "rope" },
+    { id = "bucket" },
+    { id = "leather_gloves" },
+    { id = "spade" },
+    { id = "coins", amount = 10, chance = 3, variable = "the_dig_site", equals = "completed", default = "unstarted" },
+    { id = "animal_skull", chance = 3, variable = "the_dig_site", not_equals = "completed", default = "unstarted" },
+]

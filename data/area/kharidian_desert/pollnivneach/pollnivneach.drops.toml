@@ -1,0 +1,27 @@
+[villager_pickpocket]
+drops = [
+    { id = "coins", amount = 5 },
+]
+
+[bandit_pickpocket]
+drops = [
+    { id = "coins", amount = 50 },
+]
+
+[desert_bandit_pickpocket]
+roll = 7
+drops = [
+    { id = "coins", amount = 30, chance = 5 },
+    { id = "antipoison_1" },
+    { id = "lockpick" },
+]
+
+[bearded_bandit_pickpocket]
+drops = [
+    { id = "coins", amount = 40 },
+]
+
+[thug_pickpocket]
+drops = [
+    { id = "coins", amount = 60 },
+]

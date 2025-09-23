@@ -30,7 +30,7 @@ wander_radius = 10
 shop = "richards_wilderness_cape_shop"
 examine = "A very brave merchant."
 
-[guard_edgeville]
+[black_guard_edgeville]
 id = 206
 categories = ["dwarves"]
 examine = "A dwarven guard."
@@ -42,21 +42,22 @@ id = 2386
 id = 2588
 examine = "A holy man."
 
-[guard_edgeville_2]
+[guard_edgeville]
 id = 296
+pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here."
+
+[guard_edgeville_2]
+id = 297
+clone = "guard_edgeville"
 
 [guard_edgeville_3]
-id = 297
-examine = "He tries to keep order around here."
+id = 298
+clone = "guard_edgeville"
 
 [guard_edgeville_4]
-id = 298
-examine = "He tries to keep order around here."
-
-[guard_edgeville_5]
 id = 299
-examine = "He tries to keep order around here."
+clone = "guard_edgeville"
 
 [doris_edgeville]
 id = 3381
@@ -64,11 +65,11 @@ examine = "One of Gielinor's many citizens."
 
 [guard_edgeville_6]
 id = 3407
-examine = "He tries to keep order around here."
+clone = "guard_edgeville"
 
 [guard_edgeville_7]
 id = 3408
-examine = "He tries to keep order around here."
+clone = "guard_edgeville"
 
 [kharid_scorpion_edgeville]
 id = 387

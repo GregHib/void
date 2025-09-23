@@ -10,3 +10,8 @@ drops = [
     { id = "raw_tuna", chance = 5 },
     { id = "raw_lobster" },
 ]
+
+[fremennik_pickpocket]
+drops = [
+    { id = "coins", amount = 40 },
+]

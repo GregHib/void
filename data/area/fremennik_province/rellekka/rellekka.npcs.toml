@@ -124,27 +124,28 @@ examine = "He's strong to the finish, because he eats cabbage."
 
 [agnar_rellekka]
 id = 1305
+pickpocket = { level = 45, stun_ticks = 8, stun_hit = 20, xp = 65.0, chance_min = 90, chance_max = 240, table = "fremmennik" }
 examine = "One of Rellekka's many citizens."
 
 [pontak_rellekka]
 id = 1309
-examine = "One of Rellekka's many citizens."
+clone = "agnar_rellekka"
 
 [freygerd_rellekka]
 id = 1310
-examine = "One of Rellekka's many citizens."
+clone = "agnar_rellekka"
 
 [lensa_rellekka]
 id = 1311
-examine = "One of Rellekka's many citizens."
+clone = "agnar_rellekka"
 
 [jennella_rellekka]
 id = 1312
-examine = "One of Rellekka's many citizens."
+clone = "agnar_rellekka"
 
 [sassilik_rellekka]
 id = 1313
-examine = "One of Rellekka's many citizens."
+clone = "agnar_rellekka"
 
 [fur_trader_rellekka]
 id = 1316
@@ -268,19 +269,19 @@ examine = "A Fremennik bard."
 
 [freidir]
 id = 1306
-examine = "One of Rellekka's many citizens."
+clone = "agnar_rellekka"
 
 [borrokar]
 id = 1307
-examine = "One of Rellekka's many citizens."
+clone = "agnar_rellekka"
 
 [lanzig]
 id = 1308
-examine = "One of Rellekka's many citizens."
+clone = "agnar_rellekka"
 
 [inga]
 id = 1314
-examine = "One of Rellekka's many citizens."
+clone = "agnar_rellekka"
 
 [warrior_rellekka]
 id = 1318
