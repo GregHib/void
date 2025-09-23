@@ -72,7 +72,7 @@ class Imp : Api {
         }
 
         npc.softQueue("imp_teleport") {
-            areaSound("imp_puff_teleport", npc.tile, telePoofVfxRadius)
+            areaSound("smoke_puff", npc.tile, telePoofVfxRadius)
             areaGfx("imp_puff", npc.tile)
             npc.steps.clear()
             val mode = npc.mode

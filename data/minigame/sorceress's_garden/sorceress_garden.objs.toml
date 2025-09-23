@@ -1,0 +1,51 @@
+[sorceress_garden_fountain]
+id = 21764
+examine = "A beautiful fountain."
+
+[sorceress_herbs_spring]
+id = 21668
+examine = "A fully-grown herb."
+
+[sorceress_herbs_summer]
+id = 21669
+examine = "A fully-grown herb."
+
+[sorceress_herbs_autumn]
+id = 21670
+examine = "A fully-grown herb."
+
+[sorceress_herbs_winter]
+id = 21671
+examine = "A fully-grown herb."
+
+[sorceress_gate_summer]
+id = 21687
+examine = "It looks like summer in there."
+
+[sorceress_gate_winter]
+id = 21709
+examine = "It looks like winter in there."
+
+[sorceress_gate_autumn]
+id = 21731
+examine = "It looks like autumn in there."
+
+[sorceress_gate_spring]
+id = 21753
+examine = "It looks like spring in there."
+
+[sqirk_tree_summer]
+id = 21766
+examine = "It bears really good fruit."
+
+[sqirk_tree_spring]
+id = 21767
+examine = "It bears nearly-ripe fruit."
+
+[sqirk_tree_autumn]
+id = 21768
+examine = "It bears over-ripe fruit."
+
+[sqirk_tree_winter]
+id = 21769
+examine = "It bears withered fruit."

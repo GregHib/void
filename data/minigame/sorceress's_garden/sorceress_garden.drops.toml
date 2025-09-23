@@ -1,0 +1,50 @@
+[winter_herbs_drop_table]
+roll = 54
+drops = [
+    { id = "clean_guam", chance = 16 },
+    { id = "clean_marrentill", chance = 14 },
+    { id = "clean_tarromin", chance = 13 },
+    { id = "clean_harralander", chance = 11 },
+]
+
+[spring_herbs_drop_table]
+roll = 75
+drops = [
+    { id = "clean_guam", chance = 16 },
+    { id = "clean_marrentill", chance = 14 },
+    { id = "clean_tarromin", chance = 13 },
+    { id = "clean_harralander", chance = 12 },
+    { id = "clean_guam", chance = 11 },
+    { id = "clean_avantoe", chance = 9 },
+]
+
+[autumn_herbs_drop_table]
+roll = 99
+drops = [
+    { id = "clean_guam", chance = 16 },
+    { id = "clean_marrentill", chance = 14 },
+    { id = "clean_tarromin", chance = 13 },
+    { id = "clean_harralander", chance = 12 },
+    { id = "clean_guam", chance = 11 },
+    { id = "clean_avantoe", chance = 10 },
+    { id = "clean_ranarr", chance = 9 },
+    { id = "clean_kwuarm", chance = 8 },
+    { id = "clean_cadantine", chance = 6 },
+]
+
+[summer_herbs_drop_table]
+roll = 111
+drops = [
+    { id = "clean_guam", chance = 16 },
+    { id = "clean_marrentill", chance = 14 },
+    { id = "clean_tarromin", chance = 13 },
+    { id = "clean_harralander", chance = 12 },
+    { id = "clean_guam", chance = 11 },
+    { id = "clean_avantoe", chance = 10 },
+    { id = "clean_ranarr", chance = 9 },
+    { id = "clean_kwuarm", chance = 8 },
+    { id = "clean_cadantine", chance = 7 },
+    { id = "clean_lantadyme", chance = 6 },
+    { id = "clean_dwarf_weed", chance = 5 },
+]
+

@@ -1,5 +1,7 @@
 [nora_t_hagg]
 id = 896
+hunt_range = 3
+hunt_mode = "spotted"
 examine = "Her friends call her Nor-T for short."
 
 [doronbol]

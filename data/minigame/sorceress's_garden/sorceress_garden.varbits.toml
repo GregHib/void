@@ -1,0 +1,9 @@
+[sorceress_garden_unlocked]
+id = 3328
+persist = true
+format = "boolean"
+
+[spoken_to_osman]
+id = 3329
+persist = true
+format = "boolean"

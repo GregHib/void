@@ -407,5 +407,5 @@ id = 142
 [spell_splash]
 id = 227
 
-[stun]
+[stunned]
 id = 2727

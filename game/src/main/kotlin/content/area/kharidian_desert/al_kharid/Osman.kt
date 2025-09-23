@@ -4,15 +4,25 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
+import content.quest.questCompleted
+import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
+import world.gregs.voidps.engine.client.ui.chat.toSIPrefix
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 
 @Script
 class Osman {
@@ -20,6 +30,17 @@ class Osman {
     init {
         npcOperate("Talk-to", "osman_*") {
             when (player.quest("prince_ali_rescue")) {
+                "completed" -> {
+                    if (!Settings["quests.requirements.skipMissing", false] && !player.questCompleted("contact")) {
+                        npc<Talk>("Well done. A great rescue. I will remember you if I have anything dangerous to do.")
+                        return@npcOperate
+                    }
+                    choice {
+                        option("I'd like to talk about sq'irks.") {
+                            sqirks()
+                        }
+                    }
+                }
                 "unstarted" -> {
                     npc<Shifty>("Hello. I am Osman. What can I assist you with?")
                     choice {
@@ -85,6 +106,95 @@ class Osman {
                     player<Quiz>("Can you tell me what I still need to get?")
                     remainingItems()
                 }
+            }
+        }
+    }
+
+    private suspend fun NPCOption<Player>.sqirks() {
+        if (player.inventory.contains("winter_sqirkjuice") || player.inventory.contains("spring_sqirkjuice") || player.inventory.contains("autumn_sqirkjuice") || player.inventory.contains("summer_sqirkjuice")) {
+            player<Talk>("I have some sq'irk juice for you.")
+            var experience = 0.0
+            player.inventory.transaction {
+                experience += removeToLimit("winter_sqirkjuice", 28) * 350.0
+                experience += removeToLimit("spring_sqirkjuice", 28) * 1350.0
+                experience += removeToLimit("autumn_sqirkjuice", 28) * 2350.0
+                experience += removeToLimit("summer_sqirkjuice", 28) * 3000.0
+            }
+            player.exp(Skill.Thieving, experience)
+            statement("Osman imparts some Thieving advice to you (${experience.toDigitGroupString()} Thieving experience points) as a reward for the sq'irk juice.")
+            npc<Happy>("Thank you very much ${player.name}. If you get some more sq'irks be sure to come back.")
+            player<Happy>("I will. It's been a pleasure doing business with you.")
+        }
+        player["spoken_to_osman"] = true
+        choice {
+            whereSqirks()
+            howSqirks()
+            whySqirks()
+            whatSqirks()
+            option<Talk>("I should go.")
+        }
+    }
+
+    private fun ChoiceBuilder<NPCOption<Player>>.whatSqirks() {
+        option<Quiz>("What's so good about sq'irk juice?") {
+            npc<Talk>("It is a sweet nectar for a thief or spy. It makes light fingers lighter, fleet feet flightier and comes in four different colours for those who are easily amused.")
+            statement("Osman starts salivating at the thought of sq'irk juice.")
+            player<Quiz>("It wouldn't have addictive properties, would it?")
+            npc<Talk>("It only holds power over those with poor self-control. Something which I have an abundance of.")
+            player<Talk>("I see.")
+            choice {
+                whereSqirks()
+                howSqirks()
+                whySqirks()
+                option<Talk>("I should go.")
+            }
+        }
+    }
+
+    private fun ChoiceBuilder<NPCOption<Player>>.whySqirks() {
+        option<Quiz>("Is there a reward for getting these sq'irks?") {
+            npc<Talk>("Of course. I'll train you in the art of Thieving for your troubles.")
+            player<Quiz>("How much training will you give?")
+            npc<Talk>("That depends on the quantity and ripeness of the sq'irks you put into the juice.")
+            player<Talk>("That sounds fair enough.")
+            choice {
+                whereSqirks()
+                howSqirks()
+                whatSqirks()
+                option<Talk>("I should go.")
+            }
+        }
+    }
+
+    private fun ChoiceBuilder<NPCOption<Player>>.howSqirks() {
+        option<Quiz>("How should I squeeze the fruit?") {
+            npc<Talk>("Use a pestle and mortar. Make sure you have an empty glass with you to collect the juice.")
+            choice {
+                whereSqirks()
+                whySqirks()
+                whatSqirks()
+                option<Talk>("I should go.")
+            }
+        }
+    }
+
+    private fun ChoiceBuilder<NPCOption<Player>>.whereSqirks() {
+        option<Quiz>("Where do I get sq'irks?") {
+            npc<Talk>("There is a sorceress near the south eastern edge of Al Kharid who grows them. She used to be friends with Osman, but they fell out.")
+            player<Quiz>("What happened?")
+            npc<Talk>("I don't know. All I know is she won't give us any more fruit.")
+            player<Quiz>("So all I have to do is ask her for some fruit for you?")
+            npc<Talk>("I doubt it will be that easy. She is not renowned for her generosity and is very secretive about her garden's location.")
+            player<Talk>("Oh come on, it should be easy enough to find.")
+            npc<Talk>("Her garden has remained hidden even from Osman. I believe it must be hidden by magical means.")
+            player<Quiz>("I see. And why can't you do this yourself?")
+            npc<Talk>("My work requires that I remain here.")
+            player<Talk>("Okay. This should be an interesting task.")
+            choice {
+                howSqirks()
+                whySqirks()
+                whatSqirks()
+                option<Talk>("I should go.")
             }
         }
     }

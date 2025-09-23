@@ -165,7 +165,8 @@ class ItemOnItems {
             val min = overlap.remove.distinct().minOf { item ->
                 val count = player.inventory.count(item.id)
                 val required = overlap.remove.filter { it.id == item.id }.sumOf { it.amount }
-                count / required
+                println("Required ${item} $required")
+                if (required == 0) 0 else count / required
             }
             if (min > max) {
                 max = min

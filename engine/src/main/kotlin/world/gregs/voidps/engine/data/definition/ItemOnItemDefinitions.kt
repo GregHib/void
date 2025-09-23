@@ -126,7 +126,7 @@ class ItemOnItemDefinitions {
         while (nextElement()) {
             if (peek == '{') {
                 var id = ""
-                var amount = 0
+                var amount = 1
                 while (nextEntry()) {
                     when (key()) {
                         "id" -> id = string()

@@ -1,0 +1,23 @@
+[winter_sqirk_juice]
+remove = [{ id = "winter_sqirk", amount = 5 }, { id = "beer_glass" }]
+requires = ["pestle_and_mortar"]
+animation = "pestle_and_mortar"
+add = ["winter_sqirkjuice"]
+
+[spring_sqirk_juice]
+remove = [{ id = "spring_sqirk", amount = 4 }, { id = "beer_glass" }]
+requires = ["pestle_and_mortar"]
+animation = "pestle_and_mortar"
+add = ["spring_sqirkjuice"]
+
+[autumn_sqirk_juice]
+remove = [{ id = "autumn_sqirk", amount = 3 }, { id = "beer_glass" }]
+requires = ["pestle_and_mortar"]
+animation = "pestle_and_mortar"
+add = ["autumn_sqirkjuice"]
+
+[summer_sqirk_juice]
+remove = [{ id = "summer_sqirk", amount = 2 }, { id = "beer_glass" }]
+requires = ["pestle_and_mortar"]
+animation = "pestle_and_mortar"
+add = ["summer_sqirkjuice"]

@@ -1,86 +1,114 @@
-[autumn_elemental_sorceress_garden]
+[autumn_elemental]
 id = 5533
+hunt_mode = "spotted"
 examine = "An autumn elemental."
 
-[autumn_elemental_sorceress_garden_2]
+[autumn_elemental_2]
 id = 5534
+clone = "autumn_elemental"
 
-[autumn_elemental_sorceress_garden_3]
+[autumn_elemental_3]
 id = 5535
+clone = "autumn_elemental"
 
-[autumn_elemental_sorceress_garden_4]
+[autumn_elemental_4]
 id = 5536
+clone = "autumn_elemental"
 
-[autumn_elemental_sorceress_garden_5]
+[autumn_elemental_5]
 id = 5537
+clone = "autumn_elemental"
 
-[autumn_elemental_sorceress_garden_6]
+[autumn_elemental_6]
 id = 5538
+clone = "autumn_elemental"
 
-[spring_elemental_sorceress_garden]
+[spring_elemental]
 id = 5539
+hunt_mode = "spotted"
 examine = "A spring elemental."
 
-[spring_elemental_sorceress_garden_2]
+[spring_elemental_2]
 id = 5540
+clone = "spring_elemental"
 
-[spring_elemental_sorceress_garden_3]
+[spring_elemental_3]
 id = 5541
+clone = "spring_elemental"
 
-[spring_elemental_sorceress_garden_4]
+[spring_elemental_4]
 id = 5542
+clone = "spring_elemental"
 
-[spring_elemental_sorceress_garden_5]
+[spring_elemental_5]
 id = 5543
+clone = "spring_elemental"
 
-[spring_elemental_sorceress_garden_6]
+[spring_elemental_6]
 id = 5544
+clone = "spring_elemental"
 
-[spring_elemental_sorceress_garden_7]
+[spring_elemental_7]
 id = 5545
+clone = "spring_elemental"
 
-[spring_elemental_sorceress_garden_8]
+[spring_elemental_8]
 id = 5546
+clone = "spring_elemental"
 
-[summer_elemental_sorceress_garden]
+[summer_elemental]
 id = 5547
+hunt_mode = "spotted"
 examine = "A summer elemental."
 
-[summer_elemental_sorceress_garden_2]
+[summer_elemental_2]
 id = 5548
+clone = "summer_elemental"
 
-[summer_elemental_sorceress_garden_3]
+[summer_elemental_3]
 id = 5549
+clone = "summer_elemental"
 
-[summer_elemental_sorceress_garden_4]
+[summer_elemental_4]
 id = 5550
+clone = "summer_elemental"
 
-[summer_elemental_sorceress_garden_5]
+[summer_elemental_5]
 id = 5551
+clone = "summer_elemental"
 
-[summer_elemental_sorceress_garden_6]
+[summer_elemental_6]
 id = 5552
+clone = "summer_elemental"
 
-[winter_elemental_sorceress_garden]
+[winter_elemental]
 id = 5553
+hunt_mode = "spotted"
 examine = "A winter elemental."
 
-[winter_elemental_sorceress_garden_2]
+[winter_elemental_2]
 id = 5554
+clone = "winter_elemental"
 
-[winter_elemental_sorceress_garden_3]
+[winter_elemental_3]
 id = 5555
+clone = "winter_elemental"
 
-[winter_elemental_sorceress_garden_4]
+[winter_elemental_4]
 id = 5556
+clone = "winter_elemental"
 
-[winter_elemental_sorceress_garden_5]
+[winter_elemental_5]
 id = 5557
+clone = "winter_elemental"
 
-[winter_elemental_sorceress_garden_6]
+[winter_elemental_6]
 id = 5558
+clone = "winter_elemental"
 
-[del_monty_sorceress_garden]
+[del_monty]
 id = 5563
+wander_radius = 4
+dialogue = "cat"
 examine = "Loves living in an orchard."
 
