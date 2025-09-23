@@ -2,7 +2,6 @@ package content.area.misthalin.lumbridge.farm
 
 import content.entity.effect.stun
 import content.entity.player.dialogue.type.statement
-import content.quest.questComplete
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
