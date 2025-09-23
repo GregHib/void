@@ -134,21 +134,16 @@ class Apprentice {
             player.message("You need to be on a members world to use this feature.")
             return
         }
-        player.start("movement_delay", 4)
         target.face(player)
         target.say("Seventior Disthinte Molesko!")
         target.gfx("curse_cast")
-        player.sound("curse_cast_and_fire")
-        if (!target.contains("old_model")) {
-            target.anim("curse")
-        }
+        player.sound("curse_cast")
+        target.anim("curse")
         target.shoot("curse", player.tile)
-        player.sound("curse_hit")
-        player.softQueue("delay", 2) {
-            player.gfx("curse_hit")
-        }
-        player.softQueue("teleport", 4) {
-            player.tele(2912, 5474)
-        }
+        delay(3)
+        player.sound("curse_impact", delay = 100)
+        player.gfx("curse_impact", delay = 100)
+        delay(1)
+        player.tele(2912, 5474)
     }
 }
