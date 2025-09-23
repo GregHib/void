@@ -18,3 +18,15 @@ ticks = 30
 
 [door_support_south_fallen]
 id = 2358
+
+[dagannoth_king_attack]
+id = 2855
+
+[dagannoth_rex_attack]
+id = 2853
+
+[dagannoth_king_defend]
+id = 2852
+
+[dagannoth_king_death]
+id = 2856

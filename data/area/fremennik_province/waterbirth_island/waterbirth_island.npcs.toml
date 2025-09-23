@@ -60,16 +60,68 @@ examine = "A knee-high horror from the ocean depths..."
 
 [dagannoth_supreme]
 id = 2881
+attack_range = 8
+hunt_range = 8
+attack_radius = 20
+max_hit_range = 300
+hunt_mode = "aggressive"
+style = "range"
+attack_speed = 4
+respawn_delay = 150
+slayer_xp = 255.0
+hitpoints = 2550
+att = 255
+str = 255
+def = 128
+mage = 255
+range = 255
+ammo = "dagannoth_supreme_shoot"
+combat_sounds = "dagannoth"
+combat_anims = "dagannoth_king"
 categories = ["dagannoth"]
 examine = "The dagannoth king responsible for the death of the Bukalla."
 
 [dagannoth_prime]
 id = 2882
+attack_range = 8
+hunt_range = 8
+attack_radius = 20
+max_hit_magic = 500
+hunt_mode = "aggressive"
+style = "magic"
+spell = "water_surge"
+attack_speed = 4
+respawn_delay = 150
+slayer_xp = 331.4
+hitpoints = 2550
+att = 255
+str = 255
+def = 255
+mage = 255
+combat_anims = "dagannoth_king"
+combat_sounds = "dagannoth"
+combat_anims = "dagannoth_king"
 categories = ["dagannoth"]
 examine = "A legendary dagannoth king, rumoured to fly on the North winds."
 
 [dagannoth_rex]
 id = 2883
+attack_radius = 20
+max_hit_melee = 260
+hunt_range = 8
+hunt_mode = "aggressive"
+style = "slash"
+attack_speed = 4
+respawn_delay = 150
+slayer_xp = 331.4
+hitpoints = 2550
+att = 255
+str = 255
+def = 255
+range = 255
+combat_sounds = "dagannoth"
+combat_attack = "dagannoth_rex"
+combat_anims = "dagannoth_king"
 categories = ["dagannoth"]
 examine = "Firstborn of the legendary dagannoth kings."
 
