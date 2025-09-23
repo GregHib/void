@@ -51,22 +51,29 @@ abstract class ScriptMetadataTask : DefaultTask() {
 
         val disposable = Disposer.newDisposable()
         val environment = createKotlinEnvironment(disposable)
+        var additions = 0
         for (change in inputChanges.getFileChanges(inputDirectory)) {
             val file = change.file
+            if (change.changeType == ChangeType.REMOVED) {
+                val name = file.nameWithoutExtension
+                removeName(scriptsList, name)
+                continue
+            }
             if (!file.isFile || !file.name.endsWith(".kt")) {
                 continue
             }
-            val localFile = environment.findLocalFile(file.path)!!
+            val localFile = environment.findLocalFile(file.path)
+            if (localFile == null) {
+                println("Local file not found: ${file.path}")
+                continue
+            }
             val psiFile: KtFile = PsiManager.getInstance(environment.project).findFile(localFile) as KtFile
             val classes = psiFile.collectDescendantsOfType<KtClass>()
             val packageName = psiFile.packageFqName.asString()
-            if (change.changeType == ChangeType.MODIFIED || change.changeType == ChangeType.REMOVED) {
+            if (change.changeType == ChangeType.MODIFIED) {
                 for (name in classes.map { it.name }) {
                     if (!scriptsList.removeIf { it.endsWith("$packageName.$name") } && change.changeType == ChangeType.MODIFIED) {
-                        if (scriptsList.count { it.endsWith(".$name") } > 1) {
-                            error("Deletion failed due to duplicate script names: ${scriptsList.filter { it.endsWith(".$name") }}. Please update scripts.txt or run `gradle cleanScriptMetadata`.")
-                        }
-                        scriptsList.removeIf { it.endsWith(".$name") }
+                        removeName(scriptsList, name)
                     }
                 }
             }
@@ -75,6 +82,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
                     val className = ktClass.name ?: "Anonymous"
                     if (ktClass.annotationEntries.any { anno -> anno.shortName!!.asString() == "Script" }) {
                         val methods = ktClass.declarations.filterIsInstance<KtNamedFunction>().filter { it.hasModifier(KtTokens.OVERRIDE_KEYWORD) }
+                        additions++
                         if (methods.isEmpty()) {
                             scriptsList.add("$packageName.$className")
                             continue
@@ -90,7 +98,14 @@ abstract class ScriptMetadataTask : DefaultTask() {
         }
         scriptsFile.writeText(scriptsList.joinToString("\n"))
         disposable.dispose()
-        println("Metadata collected in ${System.currentTimeMillis() - start} ms")
+        println("Metadata for $additions scripts collected in ${System.currentTimeMillis() - start} ms")
+    }
+
+    private fun removeName(scriptsList: MutableList<String>, name: String?) {
+        if (scriptsList.count { it.endsWith(".$name") } > 1) {
+            error("Deletion failed due to duplicate script names: ${scriptsList.filter { it.endsWith(".$name") }}. Please update scripts.txt or run `gradle cleanScriptMetadata`.")
+        }
+        scriptsList.removeIf { it.endsWith(".$name") }
     }
 
     private fun createKotlinEnvironment(disposable: Disposable): KotlinCoreEnvironment = KotlinCoreEnvironment.createForProduction(
