@@ -4,11 +4,13 @@ import content.entity.effect.transform
 import world.gregs.config.Config
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.find
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -30,12 +32,30 @@ class PenguinHideAndSeek : Api {
 
     val npcs: NPCs by inject()
 
+    val penguins = arrayOfNulls<NPC>(10)
+
     private data class PenguinLocation(val type: String, val tile: Tile, val hint: String)
 
     init {
-        adminCommand("penguins", desc = "Respawn hide and seek penguins") { player, _ ->
+        // TODO convert hints into areas
+        //      Hint by select random penguin and checking it's area
+        //      Track spotted penguins in custom varp
+        //      Track week they were spotted in
+        //      If last tracked week is old reset weekly counter
+        //      Add points on spotting with quest multiplier
+        //      Add larry and rewards
+
+        adminCommand("respawn_penguins", desc = "Respawn hide and seek penguins") { player, _ ->
             clear()
             worldSpawn(configFiles())
+        }
+
+        adminCommand("clear_penguins", desc = "Remove all hide and seek penguins") { player, _ ->
+            clear()
+        }
+
+        adminCommand("penguins", intArg("index", optional = true), desc = "Get info about a hide and seek penguin") { player, _ ->
+            // TODO exact location, type and hint
         }
     }
 
@@ -43,16 +63,17 @@ class PenguinHideAndSeek : Api {
         if (!Settings["events.penguinHideAndSeek.enabled", false]) {
             return
         }
-        val day = DayOfWeek.valueOf(Settings["events.penguinHideAndSeek.resetDay", "WEDNESDAY"])
-        timedLoad("penguins") {
+        val day = DayOfWeek.of(Settings["events.penguinHideAndSeek.resetDay", 3])
+        timedLoad("penguin location") {
             val locations = load(files)
             val weeks = weeksSince(day)
             val random = Random(weeks)
             val spots = locations.shuffled(random).take(10)
-            var i = 1
+            var i = 0
             for (spot in spots) {
-                val penguin = npcs.add("hidden_penguin_${i++}", spot.tile)
-                penguin.transform(disguise(spot.type))
+                val penguin = npcs.add("hidden_penguin_${i}", spot.tile)
+                penguin.transform(disguise(spot.type), collision = false)
+                penguins[i++] = penguin
             }
             locations.size
         }
@@ -68,7 +89,7 @@ class PenguinHideAndSeek : Api {
      * Clear all penguins
      */
     private fun clear() {
-        for (penguin in npcs.filter { it.id.startsWith("hidden_penguin") }) {
+        for (penguin in penguins) {
             npcs.remove(penguin)
         }
     }
@@ -111,7 +132,7 @@ class PenguinHideAndSeek : Api {
      * Count the number of weeks since a fixed start date
      */
     private fun weeksSince(day: DayOfWeek): Long {
-        val epoch = LocalDate.of(2008, 9, 0).with(TemporalAdjusters.nextOrSame(day))
+        val epoch = LocalDate.of(2008, 9, 1).with(TemporalAdjusters.nextOrSame(day))
         val now = ZonedDateTime.now(ZoneOffset.UTC)
         val daysSinceReset = (now.dayOfWeek.value - day.value + 7) % 7
         val lastReset = now

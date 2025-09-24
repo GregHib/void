@@ -8,34 +8,34 @@ id = 8077
 wander_radius = 30
 examine = "What's black and white and smells of pumpkin?"
 
-[hidden_penguin_1]
+[hidden_penguin_0]
 id = 8094
 
-[hidden_penguin_2]
+[hidden_penguin_1]
 id = 8095
 
-[hidden_penguin_3]
+[hidden_penguin_2]
 id = 8096
 
-[hidden_penguin_4]
+[hidden_penguin_3]
 id = 8097
 
-[hidden_penguin_5]
+[hidden_penguin_4]
 id = 8098
 
-[hidden_penguin_6]
+[hidden_penguin_5]
 id = 8099
 
-[hidden_penguin_7]
+[hidden_penguin_6]
 id = 8100
 
-[hidden_penguin_8]
+[hidden_penguin_7]
 id = 8101
 
-[hidden_penguin_9]
+[hidden_penguin_8]
 id = 8102
 
-[hidden_penguin_10]
+[hidden_penguin_9]
 id = 8103
 
 [barrel_penguin]
