@@ -1229,14 +1229,14 @@ examine = "This super restore and unicorn dust potion needs more ingredients."
 [mixture_step_1_2_noted]
 id = 10914
 
-[mixture_step_1]
+[mixture_step_1_1]
 id = 10915
 price = 2168
 weight = 0.02
 empty = "vial"
 examine = "This super restore and unicorn dust potion needs more ingredients."
 
-[mixture_step_1_noted]
+[mixture_step_1_1_noted]
 id = 10916
 
 [mixture_step_2_4]
@@ -1259,14 +1259,14 @@ examine = "This super restore, unicorn dust, snake weed potion needs more ingred
 [mixture_step_2_3_noted]
 id = 10920
 
-[mixture_step_2]
+[mixture_step_2_2]
 id = 10921
 price = 4335
 weight = 0.025
 empty = "vial"
 examine = "This super restore, unicorn dust, snake weed potion needs more ingredients."
 
-[mixture_step_2_noted]
+[mixture_step_2_2_noted]
 id = 10922
 
 [mixture_step_2_1]

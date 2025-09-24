@@ -100,7 +100,7 @@ class Magic {
                 definition["graphic", ""]
             }
         } else if (source is NPC) {
-            return source.def["combat_gfxs", definition["graphic", ""]]
+            return source.def["combat_gfxs", ""]
         }
         return ""
     }

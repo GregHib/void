@@ -215,14 +215,14 @@ ticks = 1
 message = "You split the potion between the two vials."
 
 ["antipoison+_mix_combine"]
-remove = ["antipoison+_mix_1", "antipoison+_mix_1"]
-add = ["antipoison+_mix_2", "vial"]
+remove = ["super_antipoison_mix_1", "super_antipoison_mix_1"]
+add = ["super_antipoison_mix_2", "vial"]
 ticks = 1
 message = "You pour from one container into the other."
 
 ["antipoison+_mix_split"]
-remove = ["antipoison+_mix_2", "vial"]
-add = ["antipoison+_mix_1", "antipoison+_mix_1"]
+remove = ["super_antipoison_mix_2", "vial"]
+add = ["super_antipoison_mix_1", "super_antipoison_mix_1"]
 ticks = 1
 message = "You split the potion between the two vials."
 

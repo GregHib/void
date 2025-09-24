@@ -14,7 +14,6 @@ style = "magic"
 hunt_mode = "aggressive"
 attack_speed = 6
 combat_anims = "wallasalki"
-combat_gfxs = ""
 categories = ["wallasalki"]
 respawn_delay = 25
 examine = "A fearsome magical water creature."

@@ -8,10 +8,10 @@ slayer_xp = 120.0
 max_hit_melee = 80
 weapon_style = "bow"
 wander_radius = 5
-attack_range = 3
-attack_radius = 8
 hunt_mode = "aggressive"
 attack_speed = 4
+attack_range = 3
+attack_radius = 8
 style = "range"
 ammo = "horror_spines_travel"
 combat_sounds = "dagannoth"
@@ -49,11 +49,11 @@ categories = ["dagannoth"]
 respawn_delay = 30
 examine = "A horror from the ocean depths..."
 
-[dagannoth_lighthouse_range_92_1]
+[dagannoth_lighthouse_melee_92_1]
 clone = "dagannoth_lighthouse_melee_92"
 id = 1342
 
-[dagannoth_lighthouse_range_92_2]
+[dagannoth_lighthouse_melee_92_2]
 clone = "dagannoth_lighthouse_melee_92"
 id = 1343
 
@@ -66,10 +66,12 @@ hitpoints = 850
 slayer_xp = 85.0
 max_hit_melee = 200
 wander_radius = 5
-attack_radius = 8
 hunt_mode = "aggressive"
 attack_speed = 4
-style = "stab"
+attack_range = 3
+attack_radius = 8
+style = "range"
+ammo = "horror_spines_travel"
 combat_sounds = "dagannoth"
 combat_anims = "dagannoth"
 drop_table = "dagannoth_waterbirth"
