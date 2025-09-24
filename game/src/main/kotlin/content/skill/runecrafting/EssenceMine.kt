@@ -17,9 +17,7 @@ object EssenceMine {
         npc.say("Senventior Disthine Molenko!")
         npc.gfx("curse_cast")
         npc.face(player)
-        if (!npc.contains("old_model")) {
-            npc.anim("curse")
-        }
+        npc.anim("curse")
         player.gfx("curse_impact")
         player.shoot("curse", player.tile)
         player.softQueue("essence_mine_teleport", 3) {

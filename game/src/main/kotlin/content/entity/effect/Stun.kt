@@ -24,7 +24,7 @@ fun Character.stun(target: Character, ticks: Int, hit: Int = -1): Boolean {
         target.directHit(hit)
     }
     target.gfx("stun_long")
-    target.sound("stun")
+    target.sound("stunned")
     target.message("You've been stunned!")
     target["delay"] = ticks
     target.start("stunned", ticks)

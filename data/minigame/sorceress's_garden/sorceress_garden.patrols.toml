@@ -1,0 +1,185 @@
+[winter_elemental]
+points = [
+    { x = 2899, y = 5468 },
+    { x = 2897, y = 5468 },
+    { x = 2897, y = 5466 },
+    { x = 2897, y = 5468 },
+    { x = 2899, y = 5468 },
+    { x = 2899, y = 5466 },
+]
+
+[winter_elemental_2]
+points = [
+    { x = 2897, y = 5470 },
+    { x = 2891, y = 5470 },
+]
+
+[winter_elemental_3]
+points = [
+    { x = 2897, y = 5471 },
+    { x = 2899, y = 5471 },
+    { x = 2899, y = 5478 },
+    { x = 2897, y = 5478 },
+]
+
+[winter_elemental_4]
+points = [
+    { x = 2898, y = 5480 },
+    { x = 2897, y = 5481 },
+    { x = 2896, y = 5481 },
+    { x = 2896, y = 5483 },
+    { x = 2900, y = 5483 },
+    { x = 2900, y = 5480 },
+]
+
+[winter_elemental_5]
+points = [
+    { x = 2896, y = 5483 },
+    { x = 2896, y = 5481 },
+    { x = 2891, y = 5481 },
+    { x = 2891, y = 5483 },
+]
+
+[winter_elemental_6]
+points = [
+    { x = 2889, y = 5485 },
+    { x = 2900, y = 5485 },
+]
+
+[autumn_elemental]
+points = [
+    { x = 2908, y = 5460 },
+    { x = 2898, y = 5460 },
+]
+
+[autumn_elemental_2]
+points = [
+    { x = 2900, y = 5450 },
+    { x = 2900, y = 5455 },
+]
+
+[autumn_elemental_3]
+points = [
+    { x = 2905, y = 5449 },
+    { x = 2899, y = 5449 },
+]
+
+[autumn_elemental_4]
+points = [
+    { x = 2903, y = 5455 },
+    { x = 2905, y = 5455 },
+    { x = 2905, y = 5451 },
+    { x = 2903, y = 5451 },
+]
+
+[autumn_elemental_5]
+points = [
+    { x = 2917, y = 5457 },
+    { x = 2904, y = 5457 },
+]
+
+[autumn_elemental_6]
+points = [
+    { x = 2908, y = 5455 },
+    { x = 2917, y = 5455 },
+]
+
+[summer_elemental]
+points = [
+    { x = 2907, y = 5483 },
+    { x = 2907, y = 5488 },
+]
+
+[summer_elemental_2]
+points = [
+    { x = 2907, y = 5490 },
+    { x = 2907, y = 5495 },
+]
+
+[summer_elemental_3]
+points = [
+    { x = 2910, y = 5487 },
+    { x = 2910, y = 5493 },
+]
+
+[summer_elemental_4]
+points = [
+    { x = 2915, y = 5485 },
+    { x = 2915, y = 5483 },
+    { x = 2918, y = 5483 },
+    { x = 2918, y = 5485 },
+    { x = 2915, y = 5485 },
+    { x = 2915, y = 5483 },
+    { x = 2912, y = 5483 },
+    { x = 2912, y = 5485 },
+]
+
+[summer_elemental_5]
+points = [
+    { x = 2923, y = 5486 },
+    { x = 2921, y = 5486 },
+    { x = 2923, y = 5486 },
+    { x = 2923, y = 5490 },
+]
+
+[summer_elemental_6]
+points = [
+    { x = 2921, y = 5491 },
+    { x = 2923, y = 5491 },
+    { x = 2923, y = 5495 },
+    { x = 2921, y = 5495 },
+]
+
+[spring_elemental]
+points = [
+    { x = 2922, y = 5459 },
+    { x = 2922, y = 5471 },
+]
+
+[spring_elemental_2]
+points = [
+    { x = 2928, y = 5463 },
+    { x = 2928, y = 5461 },
+    { x = 2924, y = 5461 },
+    { x = 2924, y = 5463 },
+]
+
+[spring_elemental_3]
+points = [
+    { x = 2926, y = 5458 },
+    { x = 2924, y = 5458 },
+    { x = 2924, y = 5461 },
+    { x = 2926, y = 5461 },
+]
+
+[spring_elemental_4]
+points = [
+    { x = 2934, y = 5458 },
+    { x = 2928, y = 5458 },
+    { x = 2928, y = 5460 },
+    { x = 2934, y = 5460 },
+]
+
+[spring_elemental_5]
+points = [
+    { x = 2935, y = 5461 },
+    { x = 2935, y = 5468 },
+]
+
+[spring_elemental_6]
+points = [
+    { x = 2935, y = 5469 },
+    { x = 2928, y = 5469 },
+]
+
+[spring_elemental_7]
+points = [
+    { x = 2925, y = 5464 },
+    { x = 2925, y = 5475 },
+]
+
+[spring_elemental_8]
+points = [
+    { x = 2931, y = 5470 },
+    { x = 2931, y = 5477 },
+]

@@ -905,10 +905,6 @@ examine = "A crystal is placed here to charge the machine."
 id = 21548
 examine = "A crystal is placed here to charge the machine."
 
-[fountain_10]
-id = 21764
-examine = "A beautiful fountain."
-
 [crack_8]
 id = 21800
 examine = "A crack in the wall."

@@ -81,6 +81,7 @@ check_not_combat_self = true
 check_not_busy = false
 check_zamorak = true
 
+# Thieving stalls
 [guarding]
 type = "player"
 check_visual = "line_of_walk"
@@ -89,3 +90,13 @@ check_not_combat = true
 check_not_combat_self = true
 check_not_busy = false
 check_afk = false
+
+# Sorceress's Garden
+[spotted]
+type = "player"
+check_visual = "line_of_sight"
+check_afk = false
+check_not_too_strong = false
+check_not_combat = false
+check_not_combat_self = false
+check_not_busy = false
