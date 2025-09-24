@@ -1,6 +1,7 @@
 package content.area.misthalin
 
 import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea

@@ -210,7 +210,7 @@ abstract class WorldTest : KoinTest {
                 sequential = true,
             )
             engine = GameLoop(tickStages)
-            Spawn.worldSpawn()
+            Spawn.worldSpawn(files)
         }
         players = get()
         npcs = get()

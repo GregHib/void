@@ -1,0 +1,238 @@
+[al_kharid]
+name = "Al Kharid"
+disguise = "cactus"
+x = 3311
+y = 3163
+hint = "Located around the Al Kharid region, north of Shantay Pass."
+
+[barbarian_outpost]
+name = "Barbarian Outpost"
+disguise = "bush"
+x = 2532
+y = 3588
+hint = "Located near the Barbarian Outpost."
+
+[brimhaven]
+name = "Brimhaven"
+disguise = "bush"
+x = 2740
+y = 3233
+hint = "Located where banana smugglers dwell."
+
+[castle_wars]
+name = "Castle Wars"
+disguise = "bush"
+x = 2458
+y = 3095
+hint = "Located south of Ardougne."
+
+[central_karamja]
+name = "Central Karamja"
+disguise = "bush"
+x = 2846
+y = 3059
+hint = "Located deep in the jungle."
+
+[death_plateau]
+name = "Death Plateau"
+disguise = "rock"
+x = 2867
+y = 3606
+hint = "Located where the Imperial Guard train."
+
+[digsite]
+name = "Digsite"
+disguise = "rock"
+x = 3339
+y = 3424
+hint = "Located in the north of the kingdom of Misthalin."
+
+[draynor_manor]
+name = "Draynor Manor"
+disguise = "crate"
+x = 3116
+y = 3335
+hint = "Located around a village between a great tower and a vampyre's manor."
+
+[dorgesh_kaan]
+name = "Dorgesh-Kaan"
+disguise = "barrel"
+x = 2732
+y = 5326
+hint = "Located where the big-eyed goblins dwell."
+
+[eagles_peak]
+name = "Eagles' Peak"
+disguise = "bush"
+x = 2311
+y = 3519
+hint = "Located where eagles fly."
+
+[east_karamja]
+name = "East Karamja"
+disguise = "bush"
+x = 2938
+y = 2978
+hint = "Located deep in the jungle."
+
+[entrana]
+name = "Entrana"
+disguise = "barrel"
+x = 2810
+y = 3383
+hint = "Located where no weapons may go."
+
+[feldip_hills]
+name = "Feldip Hills"
+disguise = "rock"
+x = 2606
+y = 3006
+hint = "Located around Feldip Hills, near Gu'Tanoth."
+
+[fist_of_guthix]
+name = "Fist of Guthix"
+disguise = "crate"
+x = 3314
+y = 3551
+hint = "Located in or around Fort Forinthry."
+
+[gnome_maze]
+name = "Gnome Maze"
+disguise = "bush"
+x = 2513
+y = 3154
+hint = "Located south of Ardougne."
+
+[gnome_stronghold]
+name = "Gnome Stronghold"
+disguise = "bush"
+x = 2386
+y = 3454
+hint = "Located near a big tree surrounded by short people."
+
+[goblin_village]
+name = "Goblin Village"
+disguise = "bush"
+x = 2949
+y = 3510
+hint = "Located around the Ice Mountain region."
+
+[ice_mountain]
+name = "Ice Mountain"
+disguise = "rock"
+x = 3013
+y = 3501
+hint = "Located around the Ice Mountain region."
+
+[lighthouse]
+name = "Lighthouse"
+disguise = "rock"
+x = 2524
+y = 3625
+hint = "Located between Fremennik and barbarians."
+
+[lumbridge_swamp]
+name = "Lumbridge Swamp"
+disguise = "toadstool"
+x = 3211
+y = 3156
+hint = "Located in the south of the kingdom of Misthalin."
+
+[mage_training_arena]
+name = "Mage Training Arena"
+disguise = "bush"
+x = 3349
+y = 3310
+hint = "Located around the Al Kharid region, north of Shantay Pass."
+
+[mcgrubors_wood]
+name = "McGrubor's Wood"
+disguise = "bush"
+x = 2633
+y = 3501
+hint = "Located in the east of the kingdom of Kandarin."
+
+[mudskipper_point]
+name = "Mudskipper Point"
+disguise = "bush"
+x = 2989
+y = 3121
+hint = "Located near the mud skippers."
+
+[musa_point]
+name = "Musa Point"
+disguise = "Crate"
+x = 2869
+y = 3156
+hint = "Located where banana smugglers dwell."
+
+[north_ardougne]
+name = "North Ardougne"
+disguise = "bush"
+x = 2440
+y = 3206
+hint = "Located north of Ardougne."
+
+[observatory]
+name = "Observatory"
+disguise = "crate"
+x = 2440
+y = 3206
+hint = "Located south of Ardougne."
+
+[port_khazard]
+name = "Port Khazard"
+disguise = "barrel"
+x = 2662
+y = 3152
+hint = "Located south of Ardougne."
+
+[rellekka]
+name = "Rellekka"
+disguise = "rock"
+x = 2675
+y = 3717
+hint = "Located between Fremennik and barbarians."
+
+
+[mining_camp]
+name = "Southern Desert (Mining Camp)"
+disguise = "cactus"
+x = 3252
+y = 2963
+hint = "Located in the north of the Kharidian desert."
+
+[southern_desert]
+name = "Southern Desert"
+disguise = "cactus"
+x = 3252
+y = 2963
+hint = "Located in the south of the Kharidian desert."
+
+[white_wolf_mountain]
+name = "White Wolf Mountain"
+disguise = "rock"
+x = 2859
+y = 3506
+hint = "Located near a mountain of wolves."
+
+[witchaven]
+name = "Witchaven"
+disguise = "rock"
+x = 2733
+y = 3283
+hint = "Located near the coast, east of Ardougne."
+
+[wizards_tower]
+name = "Wizards' Tower"
+disguise = "bush"
+x = 3110
+y = 3152
+hint = "Located where wizards study."
+
+[zanaris]
+name = "Zanaris"
+disguise = "toadstool"
+x = 2420
+y = 4472
+hint = "Located in the fairy realm."

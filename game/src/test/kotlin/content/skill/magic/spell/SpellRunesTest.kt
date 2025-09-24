@@ -47,7 +47,7 @@ class SpellRunesTest : MagicSpellTest() {
     @Test
     fun `Members spell`() {
         Settings.load(mapOf("world.members" to "false"))
-        Spawn.worldSpawn()
+        Spawn.worldSpawn(emptyMap())
 
         val player = player()
         setItems(Item("blood_rune") to ItemDefinition(stringId = "blood_rune", members = true))
