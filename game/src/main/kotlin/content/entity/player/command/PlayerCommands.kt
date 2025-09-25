@@ -243,7 +243,7 @@ class PlayerCommands {
         }
         player.start("search_delay", 1)
         val target = players.find(player, args.getOrNull(1)) ?: return
-        val type = args.getOrNull(0)
+        val type = args.getOrNull(0) ?: "all"
         val tile = target.tile
         if (type == "all" || type == "objects") {
             val objs = get<GameObjects>()[tile]
@@ -265,6 +265,7 @@ class PlayerCommands {
         }
         if (type == "all" || type == "npcs") {
             val npcs = get<NPCs>()[tile]
+            println(npcs)
             if (npcs.isNotEmpty()) {
                 player.message("--- NPCs ---", ChatType.Console)
                 for (npc in npcs) {

@@ -22,15 +22,13 @@ fun Character.clearTransform() {
             runSound = -1
             soundDistance = 0
         }
-        clear("transform_id")
         flagAppearance()
-        collision = remove("old_collision") ?: return
     } else if (this is NPC) {
         visuals.transform.id = def.id
-        clear("transform_id")
         flagTransform()
-        collision = remove("old_collision") ?: return
     }
+    clear("transform_id")
+    collision = remove("old_collision") ?: return
 }
 
 fun Character.transform(id: String, collision: Boolean = true) {
