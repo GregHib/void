@@ -1,5 +1,6 @@
 package content.social.chat
 
+import com.github.michaelbull.logging.InlineLogger
 import content.social.clan.clan
 import content.social.ignore.ignores
 import world.gregs.voidps.cache.definition.data.QuickChatType
@@ -35,6 +36,7 @@ class QuickChat {
     val variables: VariableDefinitions by inject()
     val enums: EnumDefinitions by inject()
     val items: ItemDefinitions by inject()
+    val logger = InlineLogger("QuickChat")
 
     init {
         instruction<QuickChatPrivate> { player ->
@@ -108,14 +110,28 @@ class QuickChat {
                     return byteArrayOf(level.toByte())
                 }
                 QuickChatType.Varp -> {
-                    val variable = definition.ids!!.first().first()
-                    val key = variables.getVarp(variable)!!
-                    return int(player[key]!!)
+                    try {
+                        val variable = definition.ids!!.first().first()
+                        val key = variables.getVarp(variable)!!
+                        val def = variables.get(key)!!
+                        val int = def.values.toInt(player[key, def.defaultValue!!])
+                        return int(int)
+                    } catch (e: Exception) {
+                        logger.error(e) { "Quick chat varp: $file ${data.contentToString()}" }
+                        return byteArrayOf()
+                    }
                 }
                 QuickChatType.Varbit -> {
-                    val variable = definition.ids!!.first().first()
-                    val key = variables.getVarbit(variable)!!
-                    return int(player[key]!!)
+                    try {
+                        val variable = definition.ids!!.first().first()
+                        val key = variables.getVarbit(variable)!!
+                        val def = variables.get(key)!!
+                        val int = def.values.toInt(player[key, def.defaultValue!!])
+                        return int(int)
+                    } catch (e: Exception) {
+                        logger.error(e) { "Quick chat varbit: $file ${data.contentToString()}" }
+                        return byteArrayOf()
+                    }
                 }
                 QuickChatType.CombatLevel -> return byteArrayOf(player.combatLevel.toByte())
                 QuickChatType.SlayerAssignment -> {
@@ -125,7 +141,7 @@ class QuickChat {
                 QuickChatType.ClanRank,
                 QuickChatType.AverageCombatLevel,
                 QuickChatType.SoulWars,
-                -> return byteArrayOf(0)
+                    -> return byteArrayOf(0)
                 else -> return data
             }
         } else {
