@@ -29,6 +29,7 @@ class InstructionHandlers(
 ) {
     private val interactFloorItem = FloorItemOptionHandler(items)
     private val interactDialogue = DialogueContinueHandler(interfaceDefinitions)
+    private val continueKey = DialogueContinueKeyHandler(interfaceDefinitions)
     private val interactDialogueItem = DialogueItemContinueHandler(itemDefinitions)
     private val closeInterface = InterfaceClosedHandler()
     val interactInterface = InterfaceOptionHandler(handler, interfaceDefinitions)
@@ -83,6 +84,7 @@ class InstructionHandlers(
             is InteractInterfaceFloorItem -> interactInterfaceFloorItem.validate(player, instruction)
             is InteractFloorItem -> interactFloorItem.validate(player, instruction)
             is InteractDialogue -> interactDialogue.validate(player, instruction)
+            is ContinueKey -> continueKey.validate(player, instruction)
             is InteractDialogueItem -> interactDialogueItem.validate(player, instruction)
             is InterfaceClosedInstruction -> closeInterface.validate(player, instruction)
             is InteractInterface -> interactInterface.validate(player, instruction)
