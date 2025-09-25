@@ -2,3 +2,9 @@
 x = [2916, 2920]
 y = [3175, 3177]
 tags = ["teleport"]
+
+[karamja]
+x = [2752,2752,2979,2979,3007,3007]
+y = [2880,3135,3135,3104,3104,2880]
+tags = ["penguin_area"]
+hint = "deep in the jungle."

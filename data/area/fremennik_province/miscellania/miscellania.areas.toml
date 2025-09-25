@@ -2,3 +2,9 @@
 x = [2511, 2515]
 y = [3856, 3860]
 tags = ["teleport", "scroll"]
+
+[miscellania]
+x = [2492, 2625]
+y = [3836, 3905]
+tags = ["penguin_area"]
+hint = "on and island, etc."

@@ -3,6 +3,12 @@ x = [2963, 2967]
 y = [3379, 3383]
 tags = ["teleport"]
 
+[falador]
+x = [2880, 3071]
+y = [3264, 3391]
+tags = ["penguin_area"]
+hint = "in or around Falador."
+
 [chaos_temple_multi_area]
 x = [2928, 2943]
 y = [3512, 3519]

@@ -277,7 +277,7 @@ examine = "He looks like the type of guy who would mind monkeys."
 id = 7573
 examine = "He looks like the type of guy who would mind monkeys."
 
-[larry_ardougne]
+[larry_ardougne_2]
 id = 7574
 
 [chief_zookeeper]
@@ -301,7 +301,10 @@ examine = "Could do with losing a few pounds."
 [local_thug_ardougne]
 id = 8468
 
-[larry_ardougne_2]
+[larry_ardougne_normal]
+id = 5424
+
+[larry_ardougne]
 id = 8693
 
 [ceril_carnillean]

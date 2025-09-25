@@ -2,6 +2,12 @@
 x = [3072, 3135]
 y = [3136, 3391]
 
+[greater_draynor]
+x = [3072, 3135]
+y = [3200, 3391]
+tags = ["penguin_area"]
+hint = "around a village between a great tower and a vampyre's manor."
+
 [draynor_willow_trees]
 x = [3083, 3090]
 y = [3227, 3238]

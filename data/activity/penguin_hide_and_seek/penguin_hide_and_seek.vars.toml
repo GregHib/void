@@ -1,0 +1,8 @@
+[penguins_found]
+persist = true
+format = "bitwise"
+values = ["penguin_0", "penguin_1", "penguin_2", "penguin_3", "penguin_4", "penguin_5", "penguin_6", "penguin_7", "penguin_8", "penguin_9", "polar_bear"]
+
+[penguin_week]
+persist = true
+format = "int"

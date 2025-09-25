@@ -1,0 +1,5 @@
+[daemonheim]
+x = [3392, 3392, 3519, 3519, 3455, 3455]
+y = [3612, 3839, 3839, 3648, 3648, 3612]
+tags = ["penguin_area"]
+hint = "where the Fremennik 'heim' and seek."

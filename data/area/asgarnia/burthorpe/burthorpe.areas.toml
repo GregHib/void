@@ -8,3 +8,9 @@ tags = ["multi_combat"]
 x = [2205, 2206]
 y = [4937, 4938]
 tags = ["teleport"]
+
+[burthorpe]
+x = [2816, 2943]
+y = [3520, 3647]
+tags = ["penguin_area"]
+hint = "where the Imperial Guard train."

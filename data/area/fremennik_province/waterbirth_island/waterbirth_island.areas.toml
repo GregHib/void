@@ -12,3 +12,9 @@ tags = ["multi_combat"]
 x = [1792, 1983]
 y = [4352, 4415]
 tags = ["multi_combat"]
+
+[waterbirth]
+x = [2496, 2559]
+y = [3712, 3775]
+tags = ["penguin_area"]
+hint = "on a small crescent island."

@@ -50,7 +50,7 @@ class Cows : Api {
                 return@objectOperate
             }
             if (!player.questCompleted("cold_war")) {
-                statement("You need to have started teh Cold War quest to attempt this.")
+                statement("You need to have started the Cold War quest to attempt this.")
                 return@objectOperate
             }
             if (!Level.success(player.levels.get(Skill.Thieving), 128, 200)) {

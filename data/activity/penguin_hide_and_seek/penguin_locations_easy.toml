@@ -1,0 +1,169 @@
+[al_kharid]
+disguise = "cactus"
+x = 3311
+y = 3163
+
+[barbarian_outpost]
+disguise = "bush"
+x = 2532
+y = 3588
+
+[brimhaven]
+disguise = "bush"
+x = 2740
+y = 3233
+
+[castle_wars]
+disguise = "bush"
+x = 2458
+y = 3095
+
+[central_karamja]
+disguise = "bush"
+x = 2846
+y = 3059
+
+[death_plateau]
+disguise = "rock"
+x = 2872
+y = 3603
+
+[digsite]
+disguise = "rock"
+x = 3339
+y = 3424
+
+[draynor_manor]
+disguise = "crate"
+x = 3116
+y = 3335
+
+[dorgesh_kaan]
+disguise = "barrel"
+x = 2732
+y = 5326
+
+[eagles_peak]
+disguise = "bush"
+x = 2311
+y = 3519
+
+[east_karamja]
+disguise = "bush"
+x = 2938
+y = 2978
+
+[entrana]
+disguise = "barrel"
+x = 2810
+y = 3383
+
+[feldip_hills]
+disguise = "rock"
+x = 2606
+y = 3006
+
+[wilderness]
+disguise = "crate"
+x = 3314
+y = 3551
+
+[gnome_maze]
+disguise = "bush"
+x = 2513
+y = 3154
+
+[gnome_stronghold]
+disguise = "bush"
+x = 2386
+y = 3454
+
+[goblin_village]
+disguise = "bush"
+x = 2949
+y = 3510
+
+[ice_mountain]
+disguise = "rock"
+x = 3013
+y = 3501
+
+[lighthouse]
+disguise = "rock"
+x = 2524
+y = 3625
+
+[lumbridge_swamp]
+disguise = "toadstool"
+x = 3211
+y = 3156
+
+[mage_training_arena]
+disguise = "bush"
+x = 3349
+y = 3310
+
+[mcgrubors_wood]
+disguise = "bush"
+x = 2633
+y = 3501
+
+[mudskipper_point]
+disguise = "bush"
+x = 2989
+y = 3121
+
+[musa_point]
+disguise = "crate"
+x = 2870
+y = 3156
+
+[north_ardougne]
+disguise = "bush"
+x = 2398
+y = 3361
+
+[observatory]
+disguise = "crate"
+x = 2440
+y = 3206
+
+[port_khazard]
+disguise = "barrel"
+x = 2662
+y = 3152
+
+[rellekka]
+disguise = "rock"
+x = 2675
+y = 3717
+
+[southern_desert_mining_camp]
+disguise = "cactus"
+x = 3257
+y = 3055
+
+[southern_desert]
+disguise = "cactus"
+x = 3252
+y = 2963
+
+[white_wolf_mountain]
+disguise = "rock"
+x = 2859
+y = 3506
+
+[witchaven]
+disguise = "rock"
+x = 2733
+y = 3283
+
+[wizards_tower]
+disguise = "bush"
+x = 3110
+y = 3152
+
+[zanaris]
+disguise = "toadstool"
+x = 2420
+y = 4472

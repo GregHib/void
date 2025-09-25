@@ -1,0 +1,9 @@
+[port_sarim]
+x = [3008, 3064]
+y = [3171, 3263]
+
+[greater_port_sarim]
+x = [2962,2962,2909,2909,3071,3071]
+y = [3136,3187,3187,3263,3263,3136]
+tags = ["penguin_area"]
+hint = "near Port Sarim."

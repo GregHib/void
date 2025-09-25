@@ -10,3 +10,9 @@ y = [3416, 3427, 3427, 3422, 3416]
 [mountain_shortcut_grapple_area]
 x = [2860, 2866]
 y = [3427, 3432]
+
+[greater_catherby]
+x = [2784, 2879]
+y = [3392, 3519]
+tags = ["penguin_area"]
+hint = "near a mountain of wolves."

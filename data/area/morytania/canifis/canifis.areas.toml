@@ -2,3 +2,9 @@
 x = [3498, 3500]
 y = [3481, 3483]
 tags = ["teleport"]
+
+[morytania]
+x = [3392,3392,3519,3519,3647,3647]
+y = [3456,3611,3611,3583,3583,3456]
+tags = ["penguin_area"]
+hint = "near a town of werewolves."

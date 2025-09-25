@@ -1,0 +1,41 @@
+[polar_bear_well_rellekka]
+id = 43100
+examine = "No this is not a mirage!"
+
+[polar_bear_well_varrock]
+id = 43101
+examine = "No this is not a mirage!"
+
+[polar_bear_well_rimmington]
+id = 43102
+examine = "No this is not a mirage!"
+
+[polar_bear_well_musa_point]
+id = 43103
+examine = "No this is not a mirage!"
+
+[polar_bear_well_ardougne]
+id = 43104
+examine = "No this is not a mirage!"
+
+[polar_bear_well_falador]
+id = 43105
+examine = "No this is not a mirage!"
+
+[rellekka_well]
+id = 43094
+
+[varrock_well]
+id = 43095
+
+[rimmington_well]
+id = 43096
+
+[musa_point_well]
+id = 43097
+
+[ardougne_well]
+id = 43098
+
+[falador_well]
+id = 43099

@@ -12,3 +12,33 @@ x = [2656, 2680, 2680, 2664, 2664, 2656]
 y = [3256, 3256, 3216, 3216, 3232, 3232]
 level = 0
 tags = ["multi_combat"]
+
+[ardougne]
+x = [2432, 2687]
+y = [3264, 3339]
+tags = ["penguin_area"]
+hint = "around Ardougne."
+
+[ardougne_coast]
+x = [2688, 2779]
+y = [3264, 3391]
+tags = ["penguin_area"]
+hint = "near the coast, east of Ardougne."
+
+[north_ardougne]
+x = [2368,2368,2687,2687,2431,2431]
+y = [3328,3391,3391,3340,3340,3328]
+tags = ["penguin_area"]
+hint = "north of Ardougne."
+
+[west_ardougne_hills]
+x = [2368, 2431]
+y = [3200, 3327]
+tags = ["penguin_area"]
+hint = "west of Ardougne, in the hills."
+
+[south_ardougne]
+x = [2432,2432,2368,2368,2432,2432,2687,2687]
+y = [3072,3136,3136,3199,3199,3263,3263,3072]
+tags = ["penguin_area"]
+hint = "south of Ardougne."

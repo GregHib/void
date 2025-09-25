@@ -4,6 +4,12 @@ y = [3904, 3904, 3840, 3840, 3816, 3816, 3824, 3824]
 level = 0
 tags = ["multi_combat"]
 
+[fremennik_isles]
+x = [2304, 2431]
+y = [3776, 3903]
+hint = "on islands where brothers quarrel."
+tags = ["penguin_area"]
+
 [fremennik_isles_dungeon_multi_area]
 x = [2368, 2431]
 y = [10240, 10303]

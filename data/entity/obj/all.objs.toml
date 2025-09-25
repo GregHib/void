@@ -2121,30 +2121,6 @@ examine = "Ideal for washing things in."
 id = 40063
 examine = "Running water - a nice feature."
 
-[well_14]
-id = 43100
-examine = "Best used with a bucket."
-
-[well_15]
-id = 43101
-examine = "Best used with a bucket."
-
-[well_16]
-id = 43102
-examine = "Best used with a bucket."
-
-[well_17]
-id = 43103
-examine = "No this is not a mirage!"
-
-[well_18]
-id = 43104
-examine = "Best used with a bucket."
-
-[well_19]
-id = 43105
-examine = "Best used with a bucket."
-
 [sink_29]
 id = 45299
 examine = "A source of water."

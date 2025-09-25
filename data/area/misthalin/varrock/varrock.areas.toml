@@ -49,3 +49,9 @@ tags = ["teleport"]
 x = [3140, 3143]
 y = [3440, 3443]
 tags = ["teleport"]
+
+[north_mithalin]
+x = [3136, 3391]
+y = [3328, 3519]
+tags = ["penguin_area"]
+hint = "in the north of the kingdom of Misthalin."

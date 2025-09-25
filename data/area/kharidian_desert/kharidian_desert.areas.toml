@@ -1,0 +1,11 @@
+[north_kharidian_desert]
+x = [3200, 3519]
+y = [3072, 3135]
+tags = ["penguin_area"]
+hint = "in the north of the Kharidian desert."
+
+[south_kharidian_desert]
+x = [3200,3200,3136,3136,3519,3519,3455,3455,3328,3328,3263,3263]
+y = [2752,2880,2880,3071,3071,3008,3008,2752,2752,2816,2816,2752]
+tags = ["penguin_area"]
+hint = "in the south of the Kharidian desert."

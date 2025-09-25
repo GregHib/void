@@ -12,3 +12,9 @@ persist = true
 id = 5277
 format = "boolean"
 persist = true
+
+[polar_bear_well]
+id = 2045
+format = "list"
+values = ["rellekka", "varrock", "rimmington", "musa_point", "ardougne", "falador", "hidden"]
+default = "hidden"

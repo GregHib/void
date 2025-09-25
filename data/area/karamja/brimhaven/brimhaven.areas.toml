@@ -1,0 +1,9 @@
+[brimhaven]
+x = [2752, 2815]
+y = [3145, 3240]
+
+[greater_brimhaven]
+x = [2688,2688,2815,2815,2879,2879,2908,2908,2961,2961]
+y = [3136,3263,3263,3207,3207,3199,3199,3186,3186,3136]
+tags = ["penguin_area"]
+hint = "where banana smugglers dwell."
