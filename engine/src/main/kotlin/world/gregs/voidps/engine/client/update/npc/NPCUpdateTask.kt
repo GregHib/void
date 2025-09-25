@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.login.protocol.encode.updateNPCs
 import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
 import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
+import world.gregs.voidps.network.login.protocol.visual.VisualMask.TRANSFORM_MASK
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.RegionLevel
 
@@ -17,6 +18,8 @@ class NPCUpdateTask(
     private val npcs: NPCs,
     private val encoders: List<VisualEncoder<NPCVisuals>>,
 ) {
+
+    private val initialFlag = encoders.filter { it.initial }.sumOf { it.mask }
 
     fun run(player: Player) {
         val viewport = player.viewport ?: return
@@ -117,7 +120,10 @@ class NPCUpdateTask(
                     continue
                 }
                 val visuals = npc.visuals
-                val flag = visuals.flag
+                var flag = visuals.flag or initialFlag
+                if (visuals.transform.id == -1){
+                    flag = flag xor TRANSFORM_MASK
+                }
                 val delta = npc.tile.delta(client.tile)
                 set.add(npc.index)
                 sync.writeBits(15, index)
@@ -156,7 +162,6 @@ class NPCUpdateTask(
             if (flag and encoder.mask == 0) {
                 continue
             }
-
             encoder.encode(updates, visuals, index)
         }
     }
