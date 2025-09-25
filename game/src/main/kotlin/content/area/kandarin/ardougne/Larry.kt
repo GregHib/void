@@ -1,5 +1,6 @@
 package content.area.kandarin.ardougne
 
+import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Afraid
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
@@ -18,17 +19,24 @@ import content.entity.player.dialogue.type.statement
 import content.quest.questCompleted
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
 @Script
 class Larry {
+
+    val npcs: NPCs by inject()
+    val areas: AreaDefinitions by inject()
+
     init {
         npcOperate("Talk-to", "larry_ardougne_normal") {
             choice("I want to speak to Larry about:") {
@@ -47,6 +55,14 @@ class Larry {
         if (!player["penguin_hide_and_seek_explained", false]) {
             explain()
             return
+        }
+        if (player.ownsItem("spy_notebook")) {
+            npc<Afraid>("Wait! Where is your notebook? Did it fall into enemy hands?")
+            player<Talk>("I only turned around for a second...")
+            npc<Upset>("Be more careful next time, who knows what would have happened if it go into the wrong hands!") // TODO proper message
+            if (player.inventory.add("spy_notebook")) {
+                item("spy_notebook", 600, "Larry hands you a small notebook.")
+            }
         }
         // https://youtu.be/s8tOI3CM9pc?si=Hv6ACh2QgWFLLAj8&t=264
         npc<Afraid>("Do you have news? Have you found more?")
@@ -118,7 +134,18 @@ class Larry {
     }
 
     private fun ChoiceBuilder<NPCOption<Player>>.havingTrouble() {
-        option("I'm having trouble finding the penguins; can I have a hint?")
+        option("I'm having trouble finding the penguins; can I have a hint?") {
+            for (i in 0 until 10) {
+                if (!player.containsVarbit("penguins_found", "penguin_$i")) {
+                    val penguin = npcs.firstOrNull { it.id == "penguin_$i" } ?: continue
+                    val area = areas.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") } ?: continue
+                    val hint: String = area.getOrNull("hint") ?: continue
+                    npc<Shifty>("I've heard there's a penguin located $hint")
+                    return@option
+                }
+            }
+            npc<Shifty>("I haven't heard of any penguins sightings recently, come back and ask me another time.") // TODO proper message
+        }
     }
 
     private suspend fun NPCOption<Player>.explain() {
