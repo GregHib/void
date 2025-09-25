@@ -57,7 +57,12 @@ class PenguinHideAndSeek : Api {
     var bear = "hidden"
 
     private val bearLocations = listOf(
-        "rellekka", "varrock", "rimmington", "musa_point", "ardougne", "falador"
+        "rellekka",
+        "varrock",
+        "rimmington",
+        "musa_point",
+        "ardougne",
+        "falador",
     )
 
     init {
@@ -140,14 +145,14 @@ class PenguinHideAndSeek : Api {
             var spots = easy.shuffled(random).take(5)
             var i = 0
             for ((type, tile) in spots) {
-                val penguin = npcs.add("hidden_penguin_${i}", tile)
+                val penguin = npcs.add("hidden_penguin_$i", tile)
                 penguin.transform(disguise(type), collision = false)
                 penguins[i++] = penguin
             }
             val hard = load(files, "spawns.penguins.hard")
             spots = hard.shuffled(random).take(5)
             for ((type, tile) in spots) {
-                val penguin = npcs.add("hidden_penguin_${i}", tile)
+                val penguin = npcs.add("hidden_penguin_$i", tile)
                 penguin.transform(disguise(type), collision = false)
                 penguins[i++] = penguin
             }
@@ -166,7 +171,7 @@ class PenguinHideAndSeek : Api {
         player["polar_bear_well"] = if (Settings["quests.requirements.skipMissing", false] || player.questCompleted("hunt_for_red_rektuber")) bear else "hidden"
     }
 
-    private fun sendBear() {
+    fun sendBear() {
         for (player in players) {
             spawn(player)
         }
@@ -175,9 +180,11 @@ class PenguinHideAndSeek : Api {
     /**
      * Clear all penguins
      */
-    private fun clear() {
-        for (penguin in penguins) {
+    fun clear() {
+        for (i in penguins.indices) {
+            val penguin = penguins[i] ?: continue
             npcs.remove(penguin)
+            penguins[i] = null
         }
         bear = "hidden"
         sendBear()
@@ -186,8 +193,7 @@ class PenguinHideAndSeek : Api {
     /**
      * Number of ticks till the next penguin respawn [day]
      */
-    fun ticksUntil(day: DayOfWeek): Int {
-        val now = ZonedDateTime.now(ZoneOffset.UTC)
+    fun ticksUntil(day: DayOfWeek, now: ZonedDateTime = ZonedDateTime.now(ZoneOffset.UTC)): Int {
         var nextWed = now.withHour(0).withMinute(0).withSecond(0).withNano(0)
             .with(TemporalAdjusters.next(day))
         if (!nextWed.isAfter(now)) {
@@ -199,8 +205,7 @@ class PenguinHideAndSeek : Api {
     /**
      * Pick a disguise
      */
-    private fun disguise(type: String): String {
-        val now = LocalDate.now()
+    fun disguise(type: String, now: LocalDate = LocalDate.now()): String {
         if (now.month == Month.DECEMBER) {
             return "snowman_penguin"
         }
@@ -220,9 +225,8 @@ class PenguinHideAndSeek : Api {
     /**
      * Count the number of weeks since a fixed start date
      */
-    private fun weeksSince(day: DayOfWeek): Int {
+    fun weeksSince(day: DayOfWeek, now: ZonedDateTime = ZonedDateTime.now(ZoneOffset.UTC)): Int {
         val epoch = LocalDate.of(2008, 9, 1).with(TemporalAdjusters.nextOrSame(day))
-        val now = ZonedDateTime.now(ZoneOffset.UTC)
         val daysSinceReset = (now.dayOfWeek.value - day.value + 7) % 7
         val lastReset = now
             .minusDays(daysSinceReset.toLong())
@@ -257,7 +261,7 @@ class PenguinHideAndSeek : Api {
         val list = mutableListOf(
             "Penguin Points: ${player["penguin_points", 0]}",
             "Penguins found this week: ${player["penguins_found_weekly", 0]}",
-            ""
+            "",
         )
         val target = players.find(player, args.getOrNull(0)) ?: return
         for ((index, penguin) in penguins.withIndex()) {
@@ -272,7 +276,7 @@ class PenguinHideAndSeek : Api {
             } else {
                 list.add("${Colours.BLUE.toTag()}Penguin ${index + 1}")
             }
-            if (target.containsVarbit("penguins_found", "penguin_${index}")) {
+            if (target.containsVarbit("penguins_found", "penguin_$index")) {
                 list.add("${Colours.DARK_GREEN.toTag()}${penguin.transform.toTitleCase()}")
             } else {
                 list.add(penguin.transform.toTitleCase())

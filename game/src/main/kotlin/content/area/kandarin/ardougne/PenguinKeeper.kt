@@ -21,7 +21,7 @@ class PenguinKeeper {
         npcOperate("Talk-to", "penguin_keeper_ardougne") {
             player<Talk>("Hello there. how are the penguins doing today?")
             npc<Happy>("They are doing fine, thanks.")
-            if (player.has(Skill.Summoning, 30)) {
+            if (player.has(Skill.Summoning, 30) && !player.ownsItem("penguin_egg")) {
                 npc<Quiz>("Actually, you might be able to help me with something - if you are interested.")
                 player<Quiz>("What do you mean?")
                 var penguinCount = 0
@@ -47,6 +47,7 @@ class PenguinKeeper {
                         npc<Talk>("Well, we are now taking care of an incomprehensible amount of penguins!")
                         npc<Talk>("It would be great if you could take care of just one more - would you like to raise a final penguin for us?")
                     }
+                    else -> return@npcOperate
                 }
                 choice {
                     option<Talk>("Yes, of course.") {

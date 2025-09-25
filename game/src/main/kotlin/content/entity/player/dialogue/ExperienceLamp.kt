@@ -12,7 +12,7 @@ class ExperienceLamp {
             player["stat_advance_selected_skill"] = component
         }
 
-        interfaceOption("Confirm", id = "skill_stat_advance") {
+        interfaceOption("Confirm", "confirm", "skill_stat_advance") {
             (player.dialogueSuspension as? StringSuspension)?.resume(player["stat_advance_selected_skill", "none"])
         }
     }

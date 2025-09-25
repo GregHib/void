@@ -56,7 +56,7 @@ class Larry {
             explain()
             return
         }
-        if (player.ownsItem("spy_notebook")) {
+        if (!player.ownsItem("spy_notebook")) {
             npc<Afraid>("Wait! Where is your notebook? Did it fall into enemy hands?")
             player<Talk>("I only turned around for a second...")
             npc<Upset>("Be more careful next time, who knows what would have happened if it go into the wrong hands!") // TODO proper message
@@ -134,10 +134,10 @@ class Larry {
     }
 
     private fun ChoiceBuilder<NPCOption<Player>>.havingTrouble() {
-        option("I'm having trouble finding the penguins; can I have a hint?") {
+        option<Talk>("I'm having trouble finding the penguins; can I have a hint?") {
             for (i in 0 until 10) {
                 if (!player.containsVarbit("penguins_found", "penguin_$i")) {
-                    val penguin = npcs.firstOrNull { it.id == "penguin_$i" } ?: continue
+                    val penguin = npcs.firstOrNull { it.id == "hidden_penguin_$i" } ?: continue
                     val area = areas.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") } ?: continue
                     val hint: String = area.getOrNull("hint") ?: continue
                     npc<Shifty>("I've heard there's a penguin located $hint")
