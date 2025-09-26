@@ -27,9 +27,6 @@ id = 5423
 id = 7
 examine = "He grows the crops in this area."
 
-[larry_farmer_2]
-id = 5424
-
 [hay_bales_2]
 id = 11625
 

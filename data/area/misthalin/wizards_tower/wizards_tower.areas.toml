@@ -19,3 +19,9 @@ tags = ["multi_combat"]
 [sedridor_return]
 x = [3105, 3106]
 y = [9572, 9573]
+
+[wizards_tower]
+x = [3072, 3135]
+y = [3136, 3199]
+tags = ["penguin_area"]
+hint = "where wizards study."

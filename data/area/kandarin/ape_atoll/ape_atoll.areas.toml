@@ -7,7 +7,8 @@ tags = ["multi_combat"]
 [ape_atoll]
 x = [2688, 2815]
 y = [2688, 2815]
-tags = ["multi_combat"]
+tags = ["multi_combat", "penguin_area"]
+hint = "where monkeys rule."
 
 [ape_atoll_agility_dungeon]
 x = [3008, 3071]

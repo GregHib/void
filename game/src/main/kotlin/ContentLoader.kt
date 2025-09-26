@@ -23,6 +23,7 @@ object ContentLoader {
         "spawn(FloorItem)" to Spawn.floorItemDispatcher,
         "spawn(GameObject)" to Spawn.objectDispatcher,
         "worldSpawn()" to Spawn.worldDispatcher,
+        "worldSpawn(ConfigFiles)" to Spawn.worldDispatcher,
         "levelChanged(NPC,Skill,Int,Int)" to LevelChanged.npcDispatcher,
         "levelChanged(Player,Skill,Int,Int)" to LevelChanged.playerDispatcher,
         "move(Player,Tile,Tile)" to Moved.playerDispatcher,

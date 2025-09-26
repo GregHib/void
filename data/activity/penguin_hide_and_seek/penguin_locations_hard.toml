@@ -1,0 +1,164 @@
+[ape_atoll]
+disguise = "barrel"
+x = 2751
+y = 2700
+
+[ape_atoll]
+disguise = "bush"
+x = 2802
+y = 2806
+
+[castle_wars]
+disguise = "rock"
+x = 2340
+y = 3064
+
+[dragontooth_isle]
+disguise = "crate"
+x = 3824
+y = 3562
+
+[feldip_hills]
+disguise = "bush"
+x = 2578
+y = 2909
+
+[haunted_woods]
+disguise = "bush"
+x = 3600
+y = 3487
+
+[haunted_woods]
+disguise = "crate"
+x = 3637
+y = 3486
+
+[jatizso]
+disguise = "bush"
+x = 2355
+y = 3848
+
+[jatizso]
+disguise = "rock"
+x = 2413
+y = 3846
+
+[jiggig]
+disguise = "rock"
+x = 2438
+y = 3050
+
+[keldagrim]
+disguise = "rock"
+x = 2909
+y = 10210
+
+[lunar_isle]
+disguise = "rock"
+x = 2118
+y = 3942
+
+[miscellania]
+disguise = "bush"
+x = 2534
+y = 3871
+
+[mort_myre]
+disguise = "bush"
+x = 3472
+y = 3392
+
+[mort_myre]
+disguise = "rock"
+x = 3545
+y = 3439
+
+[mort_myre]
+disguise = "toadstool"
+x = 3417
+y = 3438
+
+[mos_le_harmless]
+disguise = "barrel"
+x = 3738
+y = 3001
+
+[neitiznot]
+disguise = "bush"
+x = 2353
+y = 3834
+
+[neitiznot]
+disguise = "rock"
+x = 2357
+y = 3797
+
+[piscatoris]
+disguise = "crate"
+x = 2322
+y = 3658
+
+[port_phasmatys]
+disguise = "barrel"
+x = 3654
+y = 3491
+
+[sophanem]
+disguise = "cactus"
+x = 3276
+y = 2797
+
+[nardah]
+disguise = "cactus"
+x = 3433
+y = 3000
+
+[southern_desert]
+disguise = "cactus"
+x = 3281
+y = 2908
+
+[prifddinas_south_gate]
+disguise = "rock"
+x = 2284
+y = 3265
+
+[south_of_elf_camp]
+disguise = "toadstool"
+x = 2219
+y = 3227
+
+[lletya]
+disguise = "toadstool"
+x = 2314
+y = 3174
+
+[north_of_tyras_camp]
+disguise = "toadstool"
+x = 2181
+y = 3172
+
+[scorpion_pit]
+disguise = "rock"
+x = 3236
+y = 3927
+
+[wilderness_north_kbd]
+disguise = "rock"
+x = 3019
+y = 3866
+
+[wilderness_lava_maze]
+disguise = "rock"
+x = 3108
+y = 3837
+
+[wilderness_south_kbd]
+disguise = "rock"
+x = 2991
+y = 3824
+
+[wilderness_volcano]
+disguise = "rock"
+x = 3169
+y = 3650

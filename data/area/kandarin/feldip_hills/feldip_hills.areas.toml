@@ -3,3 +3,15 @@ x = [2648, 2655]
 y = [2952, 2975]
 level = 0
 tags = ["multi_combat"]
+
+[feldip_hills]
+x = [2304,2304,2367,2367,2687,2687]
+y = [2944,3094,3094,3071,3071,2944]
+tags = ["penguin_area"]
+hint = "around Feldip Hills, near Gu'Tanoth."
+
+[south_feldip_hills]
+x = [2368, 2687]
+y = [2816, 2943]
+tags = ["penguin_area"]
+hint = "near some ogres in South Feldip Hills."

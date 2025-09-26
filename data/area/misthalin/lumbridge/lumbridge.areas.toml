@@ -202,3 +202,9 @@ tags = ["smithing", "smelting", "spaces_2"]
 [freds_farmhouse]
 x = [3184, 3192]
 y = [3270, 3275]
+
+[south_misthalin]
+x = [3136, 3263]
+y = [3136, 3327]
+tags = ["penguin_area"]
+hint = "in the south of the kingdom of Misthalin."

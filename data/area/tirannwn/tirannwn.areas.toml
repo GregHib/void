@@ -1,0 +1,5 @@
+[tirannwn]
+x = [2112,2112,2240,2240,2367,2367,2303,2303]
+y = [3072,3327,3327,3391,3391,3095,3095,3072]
+tags = ["penguin_area"]
+hint = "near the pointy-eared ones."

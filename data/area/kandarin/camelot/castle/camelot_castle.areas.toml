@@ -1,0 +1,5 @@
+[camelot_castle_area]
+x = [2783,2752,2752,2773,2773,2752,2752,2783]
+y = [3392,3392,3423,3423,3456,3456,3519,3519]
+tags = ["penguin_area"]
+hint = "near the Castle of Arthur."

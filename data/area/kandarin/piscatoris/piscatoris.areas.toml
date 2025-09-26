@@ -2,9 +2,16 @@
 x = [2304, 2367]
 y = [3648, 3711]
 level = 0
-tags = ["multi_combat"]
+tags = ["multi_combat", "penguin_area"]
+hint = "where fishers colonise."
 
 [phoenix_lair_teleport]
 x = [2290, 2294]
 y = [3618, 3622]
 tags = ["teleport", "scroll"]
+
+[piscatoris_hunter_area]
+x = [2304,2304,2240,2240,2431,2431,2379,2379,2367,2367]
+y = [3392,3584,3584,3647,3647,3550,3550,3520,3520,3392]
+tags = ["penguin_area"]
+hint = "where eagles fly."

@@ -22,3 +22,9 @@ tags = ["teleport"]
 x = [3085, 3089]
 y = [3494, 3498]
 tags = ["teleport"]
+
+[west_of_varrock]
+x = [3072, 3135]
+y = [3392, 3519]
+tags = ["penguin_area"]
+hint = "west of Varrock."

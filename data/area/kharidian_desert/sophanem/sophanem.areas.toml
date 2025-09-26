@@ -13,3 +13,9 @@ tags = ["teleport"]
 x = [3232]
 y = [2897]
 tags = ["teleport"]
+
+[sophanem]
+x = [3264, 3327]
+y = [2752, 2815]
+tags = ["penguin_area"]
+hint = "in a city of plagues within the desert."

@@ -14,4 +14,5 @@ format = "int"
 
 [stat_advance_selected_skill]
 id = 261
-format = "int"
+format = "list"
+values = [ -1, "attack", "strength", "ranged", "magic", "defence", "constitution", "prayer", "agility", "herblore", "thieving", "crafting", "runecrafting", "mining", "smithing", "fishing", "cooking", "firemaking", "woodcutting", "fletching", "slayer", "farming", "construction", "hunter", "summoning", "dungeoneering" ]

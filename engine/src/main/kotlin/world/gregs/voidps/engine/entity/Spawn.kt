@@ -1,17 +1,21 @@
 package world.gregs.voidps.engine.entity
 
+import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.dispatch.ListDispatcher
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 
-// TODO rename Spawn
 interface Spawn {
     fun spawn(player: Player) {}
     fun spawn(npc: NPC) {}
     fun spawn(obj: GameObject) {}
     fun spawn(floorItem: FloorItem) {}
+    fun worldSpawn(files: ConfigFiles) {
+        worldSpawn()
+    }
+
     fun worldSpawn() {}
 
     companion object : Spawn {
@@ -45,9 +49,9 @@ interface Spawn {
             }
         }
 
-        override fun worldSpawn() {
+        override fun worldSpawn(files: ConfigFiles) {
             for (spawner in worldDispatcher.instances) {
-                spawner.worldSpawn()
+                spawner.worldSpawn(files)
             }
         }
     }

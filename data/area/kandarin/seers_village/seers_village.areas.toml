@@ -1,0 +1,11 @@
+[seers_village]
+x = [2688, 2751]
+y = [3456, 3519]
+tags = ["penguin_area"]
+hint = "near where they see."
+
+[flax_field]
+x = [2772, 2728]
+y = [3424, 3455]
+tags = ["penguin_area"]
+hint = "near the bees and flax."

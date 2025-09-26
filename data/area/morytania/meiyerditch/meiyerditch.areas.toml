@@ -1,0 +1,5 @@
+[greater_morytania]
+x = [3647,3456,3456,3424,3424,3418,3418,3392,3392,3647]
+y = [3160,3160,3200,3200,3264,3264,3335,3335,3455,3455]
+tags = ["penguin_area"]
+hint = "where bloodsuckers rule."

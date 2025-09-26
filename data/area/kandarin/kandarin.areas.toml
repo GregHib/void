@@ -1,0 +1,11 @@
+[east_kandarin]
+x = [2599,2599,2624,2624,2761,2761,2687,2687]
+y = [3392,3519,3519,3596,3596,3520,3520,3392]
+tags = ["penguin_area"]
+hint = "in the east of the kingdom of Kandarin."
+
+[west_kandarin]
+x = [2496, 2598]
+y = [3392, 3519]
+tags = ["penguin_area"]
+hint = "in the west of the kingdom of Kandarin."

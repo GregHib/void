@@ -202,11 +202,11 @@ internal class NPCUpdateTaskTest : KoinMock() {
             sync.writeBits(5, 35)
             sync.writeBits(5, 37)
             sync.writeBits(3, 2)
-            sync.writeBits(1, update)
+            sync.writeBits(1, true)
             sync.writeBits(14, id)
+            task.writeFlag(updates, if (update) 10 else 2)
+            initialEncoder.encode(updates, any(), any())
             if (update) {
-                task.writeFlag(updates, 10)
-                initialEncoder.encode(updates, any(), any())
                 encoder.encode(updates, any(), any())
             }
             sync.writeBits(15, -1)

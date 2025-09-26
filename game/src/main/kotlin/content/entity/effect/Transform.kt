@@ -22,18 +22,16 @@ fun Character.clearTransform() {
             runSound = -1
             soundDistance = 0
         }
-        clear("transform_id")
         flagAppearance()
-        collision = remove("old_collision") ?: return
     } else if (this is NPC) {
         visuals.transform.id = def.id
-        clear("transform_id")
         flagTransform()
-        collision = remove("old_collision") ?: return
     }
+    clear("transform_id")
+    collision = remove("old_collision") ?: return
 }
 
-fun Character.transform(id: String) {
+fun Character.transform(id: String, collision: Boolean = true) {
     if (id.isBlank() || id == "-1") {
         clearTransform()
         return
@@ -56,8 +54,10 @@ fun Character.transform(id: String) {
         visuals.transform.id = definition.id
         flagTransform()
     }
-    this["old_collision"] = collision
-    collision = get<CollisionStrategyProvider>().get(definition)
+    if (collision) {
+        this["old_collision"] = this.collision
+        this.collision = get<CollisionStrategyProvider>().get(definition)
+    }
 }
 
 val Character.transform: String

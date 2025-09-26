@@ -12,4 +12,5 @@ tags = ["teleport"]
 x = [2048, 2175]
 y = [3840, 3967]
 level = 0
-tags = ["multi_combat"]
+tags = ["multi_combat", "penguin_area"]
+hint = "on a large crescent island."
