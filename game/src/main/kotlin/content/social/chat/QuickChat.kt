@@ -140,7 +140,8 @@ class QuickChat {
                 }
                 QuickChatType.ClanRank,
                 QuickChatType.AverageCombatLevel,
-                QuickChatType.SoulWars -> return byteArrayOf(0)
+                QuickChatType.SoulWars,
+                -> return byteArrayOf(0)
                 else -> return data
             }
         } else {
