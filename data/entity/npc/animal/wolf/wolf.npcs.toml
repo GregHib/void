@@ -63,6 +63,10 @@ def = 62
 mage = 1
 range = 1
 max_hit_melee = 70
+hunt_mode = "cowardly"
+slayer_xp = 74.0
+categories = ["wolves"]
+respawn_delay = 90
 examine = "Must be the pack leader."
 
 [wolf_stronghold_of_security]

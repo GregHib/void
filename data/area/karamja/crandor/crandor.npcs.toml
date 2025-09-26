@@ -3,4 +3,17 @@ id = 6083
 
 [elvarg]
 id = 742
+hitpoints = 800
+att = 70
+str = 70
+def = 70
+mage = 70
+style = "slash"
+max_hit_melee = 80
+max_hit_dragonfire = 690
+xp_bonus = 0.0
+hunt_mode = "cowardly"
+slayer_xp = 80.0
+categories = ["green_dragons"]
+respawn_delay = 50
 examine = "Roar! A dragon!"

@@ -16,6 +16,15 @@ id = 4471
 
 [carnivorous_chinchompa]
 id = 5080
+hitpoints = 10
+att = 2
+str = 2
+def = 2
+mage = 2
+range = 2
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 7
 examine = "It looks fluffy and cute; it's probably deadly."
 
 [black_warlock_feldip_hills]

@@ -20,3 +20,15 @@ id = 64
 categories = ["spiders"]
 examine = "I think this spider has been magically modified."
 
+[fire_warrior_of_lesarkus]
+id = 277
+hitpoints = 590
+att = 78
+str = 78
+def = 78
+mage = 62
+style = "magic"
+max_hit_magic = 80
+attack_bonus = -12
+hunt_mode = "cowardly"
+examine = "Intimidating!"

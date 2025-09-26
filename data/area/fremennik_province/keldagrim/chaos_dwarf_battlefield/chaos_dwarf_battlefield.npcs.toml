@@ -4,12 +4,26 @@ examine = "A magical cross between an ogre and a dwarf."
 
 [black_guard_chaos_dwarf_battlefield]
 id = 8772
+hitpoints = 400
+att = 40
+str = 45
+def = 45
+attack_speed = 3
+style = "crush"
+max_hit_melee = 80
+attack_bonus = 30
+slayer_xp = 40.0
+categories = ["dwarves"]
+respawn_delay = 30
+examine = "A member of the Black Guard, a special division of the dwarven army."
 
 [black_guard_chaos_dwarf_battlefield_2]
 id = 8773
+clone = "black_guard_chaos_dwarf_battlefield"
 
 [black_guard_chaos_dwarf_battlefield_3]
 id = 8774
+clone = "black_guard_chaos_dwarf_battlefield"
 
 [chaos_dwarf_hand_cannoneer_chaos_dwarf_battlefield]
 id = 8776
@@ -41,13 +55,23 @@ examine = "A member of the Black Guard with a crossbow."
 
 [black_guard_berserker_chaos_dwarf_battlefield]
 id = 8783
+hitpoints = 500
+att = 60
+str = 60
+def = 60
+attack_speed = 3
+style = "crush"
+max_hit_melee = 130
+attack_bonus = 55
+xp_bonus = 2.5
+slayer_xp = 50.0
 categories = ["dwarves"]
+respawn_delay = 30
 examine = "An elite member of the Black Guard."
 
 [black_guard_berserker_chaos_dwarf_battlefield_2]
 id = 8784
-categories = ["dwarves"]
-examine = "An elite member of the Black Guard."
+clone = "black_guard_berserker_chaos_dwarf_battlefield"
 
 [colonel_grenda_chaos_dwarf_battlefield]
 id = 8818

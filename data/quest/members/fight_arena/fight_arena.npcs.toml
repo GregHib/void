@@ -1,0 +1,13 @@
+[bouncer_quest]
+id = 269
+hitpoints = 1160
+att = 120
+str = 120
+def = 120
+style = "stab"
+max_hit_melee = 130
+hunt_mode = "cowardly"
+slayer_xp = 116.0
+categories = ["hellhounds"]
+respawn_delay = 50
+examine = "Postie Pete's worst nightmare."

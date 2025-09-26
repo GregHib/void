@@ -71,7 +71,15 @@ id = 2848
 
 [fever_spider]
 id = 2850
+hitpoints = 400
+att = 60
+str = 30
+def = 40
+style = "stab"
+max_hit_melee = 40
+slayer_xp = 40.0
 categories = ["fever_spiders"]
+respawn_delay = 5
 examine = "A bunch of legs, eyes and teeth."
 
 [brewer]

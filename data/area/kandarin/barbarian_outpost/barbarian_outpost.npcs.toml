@@ -16,6 +16,14 @@ id = 2724
 
 [barbarian_barbarian_outpost]
 id = 3246
+hitpoints = 240
+att = 15
+str = 14
+def = 10
+style = "crush"
+max_hit_melee = 30
+attack_bonus = 9
+respawn_delay = 50
 examine = "Alberich, a fierce barbarian warrior."
 
 [barbarian_barbarian_outpost_2]
@@ -24,22 +32,34 @@ examine = "Fafner, a tough barbarian warrior."
 
 [barbarian_barbarian_outpost_3]
 id = 3248
+clone = "barbarian_barbarian_outpost"
 examine = "Fasolt, a strong barbarian warrior."
 
 [barbarian_barbarian_outpost_4]
 id = 3250
+hitpoints = 180
+att = 8
+str = 7
+def = 3
+style = "crush"
+max_hit_melee = 20
+attack_bonus = 9
+respawn_delay = 50
 examine = "Siegfried, a young guard in the Barbarian Village."
 
 [barbarian_barbarian_outpost_5]
 id = 3253
+clone = "barbarian_barbarian_outpost"
 examine = "Minarch, a barbarian who likes his beer."
 
 [barbarian_barbarian_outpost_6]
 id = 3260
+clone = "barbarian_barbarian_outpost"
 examine = "Brunnhilde, a fierce barbarian warrior."
 
 [barbarian_barbarian_outpost_7]
 id = 3262
+clone = "barbarian_barbarian_outpost_4"
 examine = "Edelschwarz, a barbarian warrior with a spear."
 
 [kharid_scorpion_barbarian_outpost]
@@ -80,3 +100,16 @@ examine = "He's making a run for it!"
 [penance_healer]
 id = 5043
 examine = "A nasty piece of work."
+
+[ferocious_barbarian_spirit]
+id = 752
+hitpoints = 1900
+att = 150
+str = 140
+def = 100
+style = "crush"
+max_hit_melee = 180
+attack_bonus = 9
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+examine = "He looks a tad upset."

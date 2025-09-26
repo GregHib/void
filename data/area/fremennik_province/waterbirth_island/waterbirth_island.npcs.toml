@@ -55,7 +55,16 @@ examine = "A Fremennik warrior, hard at work."
 
 [dagannoth_fledgeling]
 id = 2880
+hitpoints = 1000
+att = 50
+str = 50
+def = 50
+style = "stab"
+max_hit_melee = 60
+xp_bonus = -10.0
+slayer_xp = 0.0
 categories = ["dagannoth"]
+respawn_delay = 30
 examine = "A knee-high horror from the ocean depths..."
 
 [dagannoth_supreme]
@@ -79,6 +88,7 @@ ammo = "dagannoth_supreme_shoot"
 combat_sounds = "dagannoth"
 combat_anims = "dagannoth_king"
 categories = ["dagannoth"]
+xp_bonus = 3.0
 examine = "The dagannoth king responsible for the death of the Bukalla."
 
 [dagannoth_prime]
@@ -102,6 +112,7 @@ combat_anims = "dagannoth_king"
 combat_sounds = "dagannoth"
 combat_anims = "dagannoth_king"
 categories = ["dagannoth"]
+xp_bonus = 3.0
 examine = "A legendary dagannoth king, rumoured to fly on the North winds."
 
 [dagannoth_rex]
@@ -123,6 +134,7 @@ combat_sounds = "dagannoth"
 combat_attack = "dagannoth_rex"
 combat_anims = "dagannoth_king"
 categories = ["dagannoth"]
+xp_bonus = 3.0
 examine = "Firstborn of the legendary dagannoth kings."
 
 [suspicious_water]

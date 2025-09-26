@@ -1,0 +1,15 @@
+[barrelchest_normal]
+id = 5666
+hitpoints = 1340
+att = 170
+str = 145
+def = 140
+mage = 90
+attack_speed = 5
+style = "crush"
+style = "ranged"
+max_hit_melee = 350
+attack_bonus = 80
+xp_bonus = 1.0
+hunt_mode = "cowardly"
+examine = "It's trying to mash you flat! Less examine, more fight!"

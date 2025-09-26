@@ -4,7 +4,15 @@ examine = "Yuck! It's all slimy!"
 
 [dust_devil]
 id = 1624
+hitpoints = 1050
+att = 105
+str = 70
+def = 40
+style = "ranged_melee"
+max_hit_melee = 8
+slayer_xp = 105.0
 categories = ["dust_devils"]
+respawn_delay = 15
 examine = "The vacuumed face of evil."
 
 [turoth_chaos_tunnels]
@@ -12,32 +20,56 @@ id = 1629
 
 [bloodworm_chaos_tunnels]
 id = 2031
+hitpoints = 450
+att = 80
+str = 20
+def = 35
+style = "stab"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+respawn_delay = 50
 examine = "I think I should keep my distance..."
 
 [giant_crypt_rat_chaos_tunnels]
 id = 2033
+hitpoints = 350
+att = 70
+str = 20
+def = 20
+style = "stab"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+slayer_xp = 35.0
 categories = ["rats"]
+respawn_delay = 50
 examine = "A nasty overgrown rodent."
 
 [crypt_spider]
 id = 2034
+hitpoints = 600
+att = 45
+str = 47
+def = 45
+style = "stab"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 45.0
 categories = ["spiders"]
+respawn_delay = 50
 examine = "Incey wincey."
 
 [giant_crypt_spider]
 id = 2035
-categories = ["spiders"]
+clone = "crypt_spider"
 examine = "Not very incey wincey."
 
 [giant_crypt_rat_chaos_tunnels_2]
 id = 4920
-categories = ["rats"]
-examine = "A nasty overgrown rodent."
+clone = "giant_crypt_rat_chaos_tunnels"
 
 [giant_crypt_rat_chaos_tunnels_3]
 id = 4921
-categories = ["rats"]
-examine = "A nasty overgrown rodent."
+clone = "giant_crypt_rat_chaos_tunnels"
 
 [possessed_pickaxe]
 id = 5413
@@ -61,8 +93,16 @@ examine = "A monk of the Dagon'hai."
 
 [fire_elemental]
 id = 1019
+hitpoints = 300
+att = 35
+str = 35
+def = 20
+mage = 20
+range = 20
+style = "slash"
+max_hit_melee = 40
+respawn_delay = 50
 examine = "A fire elemental."
-
 
 [turoth]
 id = 1623

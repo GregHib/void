@@ -28,7 +28,7 @@ spawns = [
   { id = "barbarian_barbarian_outpost_6", x = 3078, y = 3440 },
   { id = "barbarian_barbarian_village_9", x = 3084, y = 3426 },
   { id = "barbarian_barbarian_outpost_7", x = 3077, y = 3422 },
-  { id = "barbarian_barbarian_village_10", x = 3086, y = 3419 },
+  { id = "barbarian_sieglinde", x = 3086, y = 3419 },
   { id = "goblin_barbarian_village", x = 3126, y = 3431 },
   { id = "goblin_barbarian_village_2", x = 3118, y = 3432 },
   { id = "goblin_barbarian_village_3", x = 3119, y = 3444 },

@@ -37,3 +37,49 @@ examine = "He may be a funky cook, but he's still an ugly green creature."
 [goblin_cook_recipe_for_disaster_2]
 id = 3414
 examine = "More like a goblin cooked."
+
+[culinaromancer_normal]
+id = 3491
+hitpoints = 1500
+att = 10
+str = 100
+def = 10
+style = "melee"
+style = "magic"
+max_hit_25 = 250
+max_hit_crush = 110
+hunt_mode = "cowardly"
+examine = "A demented evil wizard who specialises in food spells."
+
+[dessourt_normal]
+id = 3496
+hitpoints = 1300
+att = 99
+str = 99
+def = 99
+attack_speed = 3
+style = "crush"
+style = "magic"
+max_hit_melee = 190
+attack_bonus = 50
+xp_bonus = 1.0
+hunt_mode = "cowardly"
+examine = "Bad for your teeth...and the rest of your body too."
+
+[dessous_normal]
+id = 1914
+hitpoints = 2000
+att = 99
+str = 99
+def = 99
+attack_speed = 3
+style = "crush"
+style = "magic"
+style = "ranged"
+max_hit_melee = 190
+attack_bonus = 50
+xp_bonus = 1.0
+hunt_mode = "cowardly"
+slayer_xp = 220.0
+categories = ["vampyres"]
+examine = "A vampyre warrior of Zamorak."

@@ -1,5 +1,14 @@
 [barbarian_defender_of_varrock]
 id = 5909
+hitpoints = 140
+att = 6
+str = 5
+def = 5
+attack_speed = 6
+style = "stab"
+max_hit_melee = 20
+attack_bonus = 8
+respawn_delay = 25
 examine = "Don't let her arm-wrestle you for money."
 
 [stray_dog_defender_of_varrock]

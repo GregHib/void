@@ -1,38 +1,63 @@
 [cave_goblin_miner]
 id = 2069
+hitpoints = 100
+att = 10
+str = 12
+def = 7
+style = "crush"
+max_hit_melee = 20
+slayer_xp = 10.0
 categories = ["goblins"]
+respawn_delay = 50
 examine = "This one is slacking off."
 
 [cave_goblin_miner_2]
 id = 2070
-categories = ["goblins"]
-examine = "This one is slacking off."
+clone = "cave_goblin_miner"
 
 [cave_goblin_miner_3]
 id = 2071
-categories = ["goblins"]
-examine = "This one is slacking off."
+clone = "cave_goblin_miner"
 
 [cave_goblin_miner_4]
 id = 2072
-categories = ["goblins"]
-examine = "This one is slacking off."
+clone = "cave_goblin_miner"
 
 [cave_goblin_guard]
 id = 2073
+hitpoints = 260
+att = 25
+str = 18
+def = 25
+attack_speed = 6
+style = "crush"
+max_hit_melee = 30
+slayer_xp = 26.0
 categories = ["goblins"]
+respawn_delay = 50
 examine = "He protects the miners."
 
 [cave_goblin_guard_2]
 id = 2074
+hitpoints = 260
+att = 22
+str = 16
+def = 22
+attack_speed = 6
+style = "crush"
+max_hit_melee = 30
+slayer_xp = 26.0
 categories = ["goblins"]
+respawn_delay = 50
 examine = "He protects the miners."
 
 [cave_goblin_miner_5]
 id = 2075
+clone = "cave_goblin_miner"
 
 [cave_goblin_miner_6]
 id = 2076
+clone = "cave_goblin_miner"
 
 [mistag]
 id = 2084

@@ -30,6 +30,10 @@ data class WikiPage(
 
     private val page: EngPage by lazy { engine.parse(pageId, revision.text, null).page }
 
+    fun contains(text: String): Boolean {
+        return revision.text.contains(text)
+    }
+
     val templates: List<Pair<String, Any>> by lazy {
         content.filterIsInstance<WtTemplate>().mapNotNull { template ->
             if (template.name.isResolved) {

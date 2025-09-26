@@ -1,0 +1,11 @@
+[bandit_champion]
+id = 1885
+hitpoints = 500
+att = 59
+str = 80
+def = 50
+style = "slash"
+max_hit_melee = 100
+attack_bonus = 9
+hunt_mode = "aggressive"
+examine = "A very tough-looking bandit."

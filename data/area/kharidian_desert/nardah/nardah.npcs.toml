@@ -67,6 +67,14 @@ examine = "A banker of Nardah."
 
 [billy_goat_nardah]
 id = 4932
+hitpoints = 280
+att = 31
+str = 29
+def = 29
+style = "crush"
+max_hit_melee = 60
+attack_bonus = 30
+respawn_delay = 50
 examine = "They'll eat anything!"
 
 [artimeus]

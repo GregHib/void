@@ -4,6 +4,13 @@ examine = "One of the guardians of Iban."
 
 [disciple_of_iban_ibans_lair]
 id = 1002
+hitpoints = 200
+att = 8
+str = 8
+def = 12
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 250
 examine = "A dark magic user."
 
 [lord_iban_ibans_lair]
@@ -39,6 +46,15 @@ examine = "One of the guardians of Iban."
 
 [doomion_ibans_lair]
 id = 999
+hitpoints = 870
+att = 76
+str = 78
+def = 77
+style = "slash"
+max_hit_melee = 90
+xp_bonus = -7.5
+hunt_mode = "cowardly"
+respawn_delay = 30
 examine = "One of the guardians of Iban."
 
 [wizard_ibans_lair]

@@ -6,7 +6,15 @@ id = 13225
 
 [basilisk_pollninveach_dungeon]
 id = 1617
+hitpoints = 750
+att = 30
+str = 45
+def = 75
+style = "slash"
+max_hit_melee = 50
+slayer_xp = 75.0
 categories = ["basilisks"]
+respawn_delay = 15
 examine = "The eyes of evil."
 
 [catolax_pollninveach_dungeon]

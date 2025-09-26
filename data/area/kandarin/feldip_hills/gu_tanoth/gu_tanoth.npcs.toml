@@ -55,7 +55,16 @@ id = 861
 
 [city_guard_gu_tanoth]
 id = 862
+hitpoints = 800
+att = 70
+str = 70
+def = 70
+style = "crush"
+max_hit_melee = 100
+attack_bonus = 9
+slayer_xp = 80.0
 categories = ["ogres"]
+respawn_delay = 50
 examine = "Tries to keep the peace."
 
 [scared_skavid_gu_tanoth]
@@ -81,7 +90,16 @@ id = 868
 
 [enclave_guard_gu_tanoth]
 id = 870
+hitpoints = 800
+att = 70
+str = 70
+def = 70
+style = "crush"
+max_hit_melee = 100
+attack_bonus = 9
+slayer_xp = 80.0
 categories = ["ogres"]
+respawn_delay = 12
 examine = "Big and ugly looking."
 
 [ogre_trader_gu_tanoth]

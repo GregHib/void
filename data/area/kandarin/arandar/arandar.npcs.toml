@@ -1,6 +1,15 @@
 [dire_wolf_isafdar]
 id = 1198
+hitpoints = 850
+att = 75
+str = 75
+def = 75
+style = "stab"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+slayer_xp = 85.0
 categories = ["wolves"]
+respawn_delay = 90
 examine = "What big teeth you have."
 
 [elf_warrior_arandar_pass]

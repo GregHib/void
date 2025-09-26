@@ -230,13 +230,31 @@ examine = "A very dangerous looking spider, with its fangs unsheathed."
 [snake_ape_atoll]
 id = 1479
 
-[bird_default]
+[bird_black]
 id = 1475
+hitpoints = 100
+att = 10
+str = 10
+def = 10
+mage = 10
+style = "stab"
+max_hit_melee = 20
+slayer_xp = 10.0
 categories = ["birds"]
+respawn_delay = 5
 examine = "It's a brightly coloured bird of the jungle."
 
-[bird_default_2]
+[bird_green]
 id = 1476
+hitpoints = 50
+att = 5
+str = 5
+def = 5
+mage = 5
+style = "stab"
+max_hit_melee = 10
+slayer_xp = 5.0
+respawn_delay = 5
 categories = ["birds"]
 examine = "It's a brightly coloured bird of the jungle. It flies very quickly."
 
@@ -264,3 +282,15 @@ id = 13212
 [monkey_guard_ape_atoll_5]
 id = 13242
 
+[duke]
+id = 1442
+hitpoints = 1300
+att = 130
+str = 130
+def = 130
+mage = 130
+style = "melee"
+max_hit_melee = 140
+attack_bonus = 50
+hunt_mode = "cowardly"
+examine = "A large ninja monkey wielding two scimitars."

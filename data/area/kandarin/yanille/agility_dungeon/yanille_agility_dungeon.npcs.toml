@@ -1,5 +1,17 @@
 [chaos_druid_warrior]
 id = 193
+hitpoints = 400
+att = 32
+str = 34
+def = 25
+attack_speed = 5
+style = "crush"
+max_hit_melee = 50
+attack_bonus = 9
+hunt_mode = "cowardly"
+slayer_xp = 40.0
+categories = ["chaos_druids"]
+respawn_delay = 50
 examine = "A crazy evil druid."
 
 [salarin_the_twisted]

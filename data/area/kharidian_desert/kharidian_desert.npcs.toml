@@ -51,7 +51,16 @@ examine = "Priestly."
 
 [crocodile_kharidian_desert]
 id = 1993
+hitpoints = 620
+att = 53
+str = 54
+def = 54
+style = "slash"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 62.0
 categories = ["crocodiles"]
+respawn_delay = 40
 examine = "Never smile at a..."
 
 [wanderer_kharidian_desert]
@@ -77,6 +86,15 @@ examine = "They'll eat anything!"
 
 [billy_goat]
 id = 4935
+hitpoints = 280
+att = 31
+str = 29
+def = 29
+style = "crush"
+max_hit_melee = 60
+attack_bonus = 30
+respawn_delay = 50
+examine = "They'll eat anything!"
 
 [osman_kharidian_desert]
 id = 5283
@@ -86,11 +104,25 @@ id = 7406
 
 [desert_wolf]
 id = 839
+hitpoints = 340
+att = 20
+str = 21
+def = 22
+style = "slash"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+slayer_xp = 34.0
+categories = ["wolves"]
+respawn_delay = 50
 examine = "A vicious desert wolf."
+
+[desert_wolf_dark]
+id = 6050
+clone = "desert_wolf"
 
 [desert_wolf_brown]
 id = 6051
-examine = "A vicious desert wolf."
+clone = "desert_wolf"
 
 [eblis_kharidian_desert_2]
 id = 1925

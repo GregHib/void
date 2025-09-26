@@ -29,7 +29,7 @@ spawns = [
   { id = "troll_general_troll_stronghold_tunnels_2", x = 2822, y = 10073, level = 2, members = true },
   { id = "troll_general_troll_stronghold_tunnels_3", x = 2829, y = 10100, level = 2, members = true },
   { id = "twig_troll_stronghold_tunnels", x = 2832, y = 10079, members = true },
-  { id = "berry_troll_stronghold_tunnels", x = 2832, y = 10083, members = true },
+  { id = "berry_troll_sleeping", x = 2832, y = 10083, members = true },
   { id = "cook_troll_stronghold_tunnels", x = 2842, y = 10056, level = 1, members = true },
   { id = "cook_troll_stronghold_tunnels_2", x = 2840, y = 10054, level = 1, members = true },
   { id = "cook_troll_stronghold_tunnels_3", x = 2846, y = 10055, level = 1, members = true },

@@ -54,6 +54,13 @@ examine = "Unsurprisingly monk like."
 
 [entrana_firebird]
 id = 6108
+hitpoints = 50
+style = "stab"
+max_hit_melee = 10
+attack_bonus = -31
+slayer_xp = 5.0
+categories = ["birds"]
+respawn_delay = 35
 examine = "Probably not a chicken."
 
 [mysterious_ghost_entrana_2]

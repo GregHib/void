@@ -3,13 +3,33 @@ id = 1182
 
 [elf_warrior]
 id = 1183
+hitpoints = 1050
+att = 10
+str = 10
+def = 80
+range = 90
+style = "ranged"
+max_hit_melee = 110
+ranged_strength = 8
+slayer_xp = 105.0
 categories = ["elves"]
+respawn_delay = 30
 examine = "He looks pretty handy with that bow."
 
 [elf_warrior_2]
 id = 1184
+hitpoints = 1050
+att = 95
+str = 95
+def = 80
+range = 0
+style = "stab"
+max_hit_melee = 100
+xp_bonus = 2.5
+slayer_xp = 107.5
 categories = ["elves"]
-examine = "I don't wanna be at the wrong end of that pike."
+respawn_delay = 30
+examine = "I don't want to get on the wrong side of him."
 
 [fishing_spot_iorwerth_camp]
 id = 1189

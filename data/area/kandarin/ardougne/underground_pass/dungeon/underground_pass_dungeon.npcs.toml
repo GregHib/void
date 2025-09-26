@@ -1,12 +1,17 @@
 [blessed_giant_rat_underground_pass_dungeon]
 id = 4941
+hitpoints = 300
+att = 5
+style = "stab"
+max_hit_melee = 10
+slayer_xp = 30.0
 categories = ["rats"]
-examine = "It's one of Iban's pet vermin."
+respawn_delay = 300
+examine = "Some oversized vermin, blessed by Zamorak."
 
 [blessed_giant_rat_underground_pass_dungeon_2]
 id = 978
-categories = ["rats"]
-examine = "It's one of Iban's pet vermin."
+clone = "blessed_giant_rat_underground_pass_dungeon"
 
 [slave_underground_pass_dungeon]
 id = 979

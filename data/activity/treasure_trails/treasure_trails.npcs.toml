@@ -1,0 +1,25 @@
+[double_agent_level_65]
+id = 5144
+hitpoints = 800
+att = 80
+str = 43
+def = 24
+mage = 24
+style = "crush"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+examine = "He's playing both sides!"
+
+[double_agent_level_108]
+id = 5145
+hitpoints = 1200
+att = 100
+str = 80
+def = 80
+mage = 80
+style = "crush"
+max_hit_melee = 140
+attack_bonus = 40
+xp_bonus = 2.5
+hunt_mode = "cowardly"
+examine = "He's playing both sides!"

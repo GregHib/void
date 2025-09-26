@@ -110,3 +110,11 @@ id = 1860
 shop = "brians_archery_supplies"
 collision = "indoors"
 examine = "He sells ranged equipment."
+
+[anja]
+id = 2684
+hitpoints = 70
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
+examine = "A citizen of Rimmington."

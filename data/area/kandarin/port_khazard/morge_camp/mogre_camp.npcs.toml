@@ -11,3 +11,11 @@ id = 3423
 
 [crab_underwater]
 id = 3424
+hitpoints = 180
+att = 17
+str = 17
+def = 22
+style = "crush"
+max_hit_melee = 30
+respawn_delay = 5
+examine = "Nice claw!"

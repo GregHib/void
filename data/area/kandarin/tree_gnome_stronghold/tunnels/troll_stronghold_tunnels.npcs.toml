@@ -59,8 +59,21 @@ id = 1128
 categories = ["trolls"]
 examine = "He's guarding the cells."
 
-[berry_troll_stronghold_tunnels]
+[berry_troll_awake]
+id = 1127
+
+[berry_troll_sleeping]
 id = 1129
+hitpoints = 900
+att = 40
+str = 90
+def = 25
+attack_speed = 6
+style = "melee"
+max_hit_melee = 130
+attack_bonus = 20
+hunt_mode = "cowardly"
+slayer_xp = 90.0
 categories = ["trolls"]
 examine = "He's guarding the cells."
 
@@ -121,6 +134,17 @@ examine = "A beautiful troll."
 
 [arrg_troll_stronghold_tunnels]
 id = 1555
+hitpoints = 1400
+att = 70
+str = 140
+def = 40
+range = 70
+style = "slash"
+max_hit_melee = 380
+attack_bonus = 60
+xp_bonus = 7.5
+hunt_mode = "cowardly"
+slayer_xp = 150.5
 categories = ["trolls"]
 examine = "A massive, scary-looking troll."
 
