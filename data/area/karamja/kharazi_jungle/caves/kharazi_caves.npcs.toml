@@ -20,7 +20,17 @@ examine = "A minion of Rashiliyia."
 
 [death_wing_kharazi_caves]
 id = 79
+hitpoints = 800
+att = 70
+str = 70
+def = 70
+style = "stab"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+slayer_xp = 80.0
+categories = ["bats"]
 categories = ["ghosts"]
+respawn_delay = 35
 examine = "A shadowy, barely visible flying entity from some evil place."
 
 [ungadulu_kharazi_caves]

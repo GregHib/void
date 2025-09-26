@@ -1,0 +1,12 @@
+[chompy_bird]
+id = 1550
+hitpoints = 100
+att = 5
+str = 5
+def = 3
+style = "none"
+max_hit_melee = 0
+slayer_xp = 10.0
+categories = ["birds"]
+immune_poison = true
+examine = "A large boisterous bird, a delicacy for ogres."

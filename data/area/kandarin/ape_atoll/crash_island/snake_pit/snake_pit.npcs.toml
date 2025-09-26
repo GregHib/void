@@ -1,4 +1,14 @@
-[big_snake_snake_pit]
+[big_snake]
 id = 3484
+hitpoints = 1200
+att = 60
+str = 60
+def = 60
+attack_speed = 6
+style = "stab"
+max_hit_melee = 140
+attack_bonus = 66
+xp_bonus = 2.5
+hunt_mode = "cowardly"
 examine = "A big snake."
 

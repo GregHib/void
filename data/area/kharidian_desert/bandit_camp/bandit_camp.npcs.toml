@@ -11,6 +11,14 @@ id = 1922
 
 [bandit_bandit_camp]
 id = 1926
+hitpoints = 650
+att = 65
+str = 65
+def = 65
+style = "crush"
+max_hit_melee = 70
+immune_poison = true
+respawn_delay = 15
 pickpocket = { level = 53, xp = 79.4, table = "desert_bandit" }
 examine = "A tough-looking criminal."
 
@@ -30,6 +38,15 @@ id = 1930
 
 [bandit_bandit_camp_6]
 id = 1931
+hitpoints = 500
+att = 50
+str = 50
+def = 50
+style = "crush"
+max_hit_melee = 60
+immune_poison = true
+respawn_delay = 15
+examine = "A tough-looking criminal."
 
 [mysterious_ghost_bandit_camp]
 id = 2384

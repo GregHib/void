@@ -102,6 +102,16 @@ examine = "I should get it stuffed!"
 
 [cave_crawler]
 id = 4134
+hitpoints = 220
+att = 22
+str = 18
+def = 18
+style = "stab"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+slayer_xp = 22.0
+categories = ["cave_crawlers"]
+respawn_delay = 15
 examine = "A spiky crawling critter."
 
 [banshee]
@@ -426,6 +436,15 @@ examine = "One of the many citizens of Dorgesh-Kaan."
 
 [brine_rat]
 id = 11047
+hitpoints = 500
+att = 70
+str = 79
+def = 40
+style = "stab"
+max_hit_melee = 90
+slayer_xp = 50.0
+categories = ["brine_rats", "rats"]
+respawn_delay = 30
 examine = "Eww, a bald rat!"
 
 [grubfoot]

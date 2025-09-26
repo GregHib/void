@@ -1,0 +1,13 @@
+[black_knight_titan_normal]
+id = 221
+hitpoints = 1420
+att = 91
+str = 100
+def = 91
+attack_speed = 7
+style = "crush"
+max_hit_melee = 150
+attack_bonus = 27
+xp_bonus = -7.5
+respawn_delay = 5
+examine = "He looks mean and powerful."

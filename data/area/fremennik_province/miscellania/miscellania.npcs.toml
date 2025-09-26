@@ -106,6 +106,10 @@ examine = "A subject of Miscellania."
 
 [einar]
 id = 1380
+hitpoints = 10
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 50
 examine = "A subject of Miscellania."
 
 [alrik]
@@ -141,6 +145,13 @@ id = 1389
 
 [broddi]
 id = 1390
+hitpoints = 10
+att = 3
+str = 3
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "A subject of Miscellania."
 
 [skraeling_4]

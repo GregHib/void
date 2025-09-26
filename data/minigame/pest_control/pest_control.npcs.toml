@@ -211,3 +211,141 @@ examine = "In charge of Conquest training."
 [knight_dorian_pest_control]
 id = 12196
 examine = "Deals with Conquest squad recruitment and formations."
+
+[brawler_level_51]
+id = 3772
+hitpoints = 530
+att = 27
+str = 57
+def = 43
+style = "crush"
+max_hit_melee = 70
+hunt_mode = "cowardly"
+examine = "Mind your toes!"
+
+[brawler_level_76]
+id = 3773
+hitpoints = 830
+att = 37
+str = 82
+def = 67
+style = "crush"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+examine = "Mind your toes!"
+
+[brawler_level_101]
+id = 3774
+hitpoints = 1130
+att = 47
+str = 107
+def = 93
+style = "crush"
+max_hit_melee = 120
+hunt_mode = "cowardly"
+examine = "Mind your toes!"
+
+[brawler_level_129]
+id = 3775
+hitpoints = 1430
+att = 67
+str = 132
+def = 118
+style = "crush"
+max_hit_melee = 140
+hunt_mode = "cowardly"
+examine = "Mind your toes!"
+
+[brawler_level_158]
+id = 3776
+style = "crush"
+max_hit_melee = 150
+hunt_mode = "cowardly"
+examine = "Mind your toes!"
+
+[defiler_level_33]
+id = 3762
+hitpoints = 270
+att = 0
+str = 0
+def = 17
+range = 46
+style = "ranged"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+examine = "Duck!"
+
+[defiler_level_33_2]
+id = 3763
+
+[defiler_level_50]
+id = 3764
+hitpoints = 450
+att = 0
+str = 0
+def = 29
+range = 66
+style = "ranged"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+examine = "Duck!"
+
+[defiler_level_50_2]
+id = 3765
+clone = "defiler_level_50"
+
+[defiler_level_66]
+id = 3766
+hitpoints = 620
+att = 0
+str = 0
+def = 41
+range = 84
+style = "ranged"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+examine = "Duck!"
+
+[defiler_level_67]
+id = 3767
+hitpoints = 620
+att = 0
+str = 0
+def = 41
+range = 85
+style = "ranged"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+examine = "Duck!"
+
+[defiler_level_80]
+id = 3768
+hitpoints = 780
+att = 0
+str = 0
+def = 53
+range = 98
+style = "ranged"
+max_hit_melee = 110
+hunt_mode = "cowardly"
+examine = "Duck!"
+
+[defiler_level_80_2]
+id = 3769
+clone = "defiler_level_80"
+
+[defiler_level_97]
+id = 3770
+hitpoints = 970
+att = 0
+str = 0
+def = 65
+range = 117
+style = "ranged"
+max_hit_melee = 130
+hunt_mode = "cowardly"
+examine = "Duck!"
+
+[defiler_level_97_2]
+id = 3771
+clone = "defiler_level_97"

@@ -1,0 +1,11 @@
+[baby_roc]
+id = 4971
+hitpoints = 500
+att = 70
+str = 70
+def = 70
+style = "crush"
+max_hit_melee = 80
+slayer_xp = 50.0
+categories = ["birds"]
+examine = "A mountain-dwelling bird. Cute, but vicious."

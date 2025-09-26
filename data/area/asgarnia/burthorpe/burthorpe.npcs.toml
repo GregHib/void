@@ -36,6 +36,13 @@ examine = "A pretty young woman with an air of mystery around her."
 [ceolburg]
 id = 1089
 wander_radius = 5
+hitpoints = 100
+att = 3
+str = 2
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "A citizen of Burthorpe."
 
 [penda]
@@ -50,6 +57,13 @@ examine = "A citizen of Burthorpe."
 
 [breoca]
 id = 1084
+hitpoints = 100
+att = 3
+str = 3
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 wander_radius = 5
 collision = "outdoors"
 examine = "A citizen of Burthorpe."
@@ -95,6 +109,13 @@ examine = "A Burthorpe Castle guard."
 [eadburg]
 id = 1072
 wander_radius = 5
+hitpoints = 100
+att = 3
+str = 2
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "The Burthorpe Castle cook."
 
 [denulth]

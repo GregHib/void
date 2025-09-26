@@ -8,12 +8,28 @@ id = 1609
 
 [basilisk_fremennik_dungeon]
 id = 1616
+hitpoints = 750
+att = 30
+str = 45
+def = 75
+style = "slash"
+max_hit_melee = 50
+slayer_xp = 75.0
 categories = ["basilisks"]
+respawn_delay = 15
 examine = "The eyes of evil."
 
 [cockatrice_fremennik_dungeon]
 id = 1620
+hitpoints = 370
+att = 22
+str = 37
+def = 37
+style = "stab"
+max_hit_melee = 50
+slayer_xp = 37.0
 categories = ["cockatrice"]
+respawn_delay = 15
 examine = "The winged reptile."
 
 [pyrefiend_fremennik_dungeon]

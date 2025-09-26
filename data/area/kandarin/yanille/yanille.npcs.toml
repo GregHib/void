@@ -97,5 +97,13 @@ examine = "Tries to keep the peace."
 
 [colonel_radick]
 id = 878
+hitpoints = 650
+att = 25
+str = 25
+def = 25
+style = "slash"
+max_hit_melee = 40
+attack_bonus = 9
+respawn_delay = 50
 examine = "A military man."
 

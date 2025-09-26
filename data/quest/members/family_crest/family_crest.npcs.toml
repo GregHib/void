@@ -1,0 +1,12 @@
+[chronozon]
+id = 667
+hitpoints = 600
+att = 173
+str = 172
+def = 173
+style = "slash"
+max_hit_melee = 180
+xp_bonus = -9.0
+hunt_mode = "cowardly"
+respawn_delay = 30
+examine = "Chronozon the blood demon."

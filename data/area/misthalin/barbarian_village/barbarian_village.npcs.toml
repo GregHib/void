@@ -96,14 +96,31 @@ examine = "A hard-working potter."
 
 [barbarian_barbarian_village]
 id = 3249
+hitpoints = 240
+att = 15
+str = 14
+def = 10
+style = "crush"
+max_hit_melee = 30
+attack_bonus = 9
+respawn_delay = 50
 examine = "Siegmund, a guard in the Barbarian Village."
 
 [barbarian_barbarian_village_2]
 id = 3251
+hitpoints = 180
+att = 8
+str = 7
+def = 3
+style = "crush"
+max_hit_melee = 20
+attack_bonus = 9
+respawn_delay = 50
 examine = "Lydspor, a well-travelled barbarian warrior."
 
 [barbarian_barbarian_village_3]
 id = 3252
+clone = "barbarian_barbarian_village_2"
 examine = "Hagen, a guard in the Barbarian Village."
 
 [hunding_barbarian_village]
@@ -112,30 +129,52 @@ examine = "Likes a good fight."
 
 [barbarian_barbarian_village_4]
 id = 3255
+clone = "barbarian_barbarian_village_2"
 examine = "Wotan, a sturdy barbarian warrior."
 
 [barbarian_barbarian_village_5]
 id = 3256
+clone = "barbarian_barbarian_village_2"
 examine = "Acelin, a guard in the Barbarian Village."
 
 [barbarian_barbarian_village_6]
 id = 3257
+clone = "barbarian_barbarian_village_2"
 examine = "Adelino, a barbarian warrior with a big axe."
 
 [barbarian_barbarian_village_7]
 id = 3258
+clone = "barbarian_barbarian_village_2"
 examine = "Adolpho, a barbarian warrior with a warhammer."
 
 [barbarian_barbarian_village_8]
 id = 3259
+hitpoints = 240
+att = 15
+str = 3
+def = 10
+range = 15
+style = "ranged"
+max_hit_ranged = 10
+attack_bonus = 9
+respawn_delay = 50
 examine = "Aitan, a barbarian archer."
 
 [barbarian_barbarian_village_9]
 id = 3261
+clone = "barbarian_barbarian_village_2"
 examine = "Gutrune, a mighty barbarian warrior."
 
-[barbarian_barbarian_village_10]
+[barbarian_sieglinde]
 id = 3263
+hitpoints = 200
+att = 6
+str = 7
+def = 3
+style = "crush"
+max_hit_melee = 20
+attack_bonus = 9
+respawn_delay = 50
 examine = "Sieglinde, a muscular barbarian warrior."
 
 [goblin_barbarian_village]

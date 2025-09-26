@@ -26,3 +26,14 @@ examine = "A mysterious watcher."
 id = 3056
 examine = "A mysterious watcher."
 
+[earth_warrior_champion]
+id = 3057
+hitpoints = 1080
+att = 84
+str = 84
+def = 84
+style = "crush"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+examine = "Champion of the earth warriors."
+

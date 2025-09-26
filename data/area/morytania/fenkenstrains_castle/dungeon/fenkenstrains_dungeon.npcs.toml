@@ -1,12 +1,29 @@
-[experiment_fenkenstrains_dungeon]
+[experiment_dog]
 id = 1676
+hitpoints = 400
+att = 40
+str = 50
+def = 50
+style = "stab"
+max_hit_melee = 60
+respawn_delay = 8
 examine = "It has a key hanging from its collar."
 
-[experiment_fenkenstrains_dungeon_2]
+[experiment_spider]
 id = 1677
+hitpoints = 1000
+def = 30
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 50
 examine = "One of Fenkenstrain's failed experiments."
 
-[experiment_fenkenstrains_dungeon_3]
+[experiment_sheep]
 id = 1678
+hitpoints = 1000
+def = 30
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 50
 examine = "One of Fenkenstrain's failed experiments."
 

@@ -136,8 +136,17 @@ id = 976
 
 [blessed_spider_underground_pass]
 id = 977
+hitpoints = 320
+att = 35
+str = 35
+def = 35
+style = "crush"
+max_hit_melee = 40
+hunt_mode = "cowardly"
+slayer_xp = 32.0
 categories = ["spiders"]
-examine = "It's one of Iban's pets."
+respawn_delay = 300
+examine = "A nasty spider, blessed by Zamorak."
 
 [sir_jerro_underground_pass]
 id = 988

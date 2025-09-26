@@ -12,7 +12,16 @@ examine = "An aggressive humanoid."
 
 [cyclops_ardougne]
 id = 116
+hitpoints = 750
+att = 47
+str = 50
+def = 26
+style = "crush"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 75.0
 categories = ["cyclopes"]
+respawn_delay = 30
 examine = "A one-eyed man eater."
 
 [parrots_ardougne]

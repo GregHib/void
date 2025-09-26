@@ -162,14 +162,27 @@ id = 13175
 
 [fox_rellekka]
 id = 1319
+hitpoints = 300
+str = 20
+def = 20
+style = "crush"
+max_hit_melee = 40
+attack_bonus = 30
+respawn_delay = 10
 examine = "A cunning animal."
 
 [bunny_rellekka]
 id = 1320
+hitpoints = 50
+style = "crush"
+max_hit_melee = 0
+attack_bonus = -47
+respawn_delay = 25
 examine = "Hoppity, hoppity."
 
 [bunny_rellekka_2]
 id = 1321
+clone = "bunny_rellekka"
 
 [gull_rellekka]
 id = 1322
@@ -269,11 +282,25 @@ examine = "A Fremennik bard."
 
 [freidir]
 id = 1306
+hitpoints = 500
+att = 40
+str = 40
+def = 40
+style = "crush"
+max_hit_melee = 60
+respawn_delay = 30
 clone = "agnar_rellekka"
 
 [borrokar]
 id = 1307
 clone = "agnar_rellekka"
+hitpoints = 500
+att = 40
+str = 40
+def = 40
+style = "crush"
+max_hit_melee = 60
+respawn_delay = 30
 
 [lanzig]
 id = 1308
@@ -289,10 +316,24 @@ examine = "A hardened Fremennik warrior."
 
 [black_unicorn_foal]
 id = 1329
+hitpoints = 250
+att = 18
+str = 18
+def = 18
+style = "stab"
+max_hit_melee = 30
+respawn_delay = 20
 examine = "Cute but evil."
 
 [black_unicorn]
 id = 133
+hitpoints = 290
+att = 21
+str = 23
+def = 23
+style = "stab"
+max_hit_melee = 30
+respawn_delay = 90
 examine = "A unicorn with a blackened heart."
 
 [svidi]

@@ -7,35 +7,64 @@ examine = "Arrghhh... A Ghast."
 id = 1227
 examine = "A marsh coloured blamish snail, these types are said to spit acid."
 
-[blood_blamish_snail_mort_myre_swamp]
+[blood_blamish_snail]
 id = 1228
+hitpoints = 130
+def = 45
+range = 12
+attack_speed = 6
+style = "ranged"
+max_hit_melee = 20
+attack_bonus = 10
+hunt_mode = "cowardly"
+respawn_delay = 50
 examine = "A blood coloured blamish snail, these types are said to spit acid."
 
 [ochre_blamish_snail_mort_myre_swamp]
 id = 1229
 examine = "A muddy coloured blamish snail, these types are said to spit acid."
 
-[bruise_blamish_snail_mort_myre_swamp]
+[bruise_blamish_snail]
 id = 1230
+hitpoints = 120
+att = 0
+str = 0
+def = 40
+range = 15
+attack_speed = 6
+style = "ranged"
+max_hit_range = 20
+attack_bonus = 10
+hunt_mode = "cowardly"
+respawn_delay = 50
 examine = "A bruise blue coloured blamish snail, these types are said to spit acid."
 
-[bark_blamish_snail_mort_myre_swamp]
+[bark_blamish_snail]
 id = 1231
+hitpoints = 220
+def = 20
+range = 10
+attack_speed = 6
+style = "ranged"
+max_hit_range = 20
+attack_bonus = 10
+hunt_mode = "cowardly"
+respawn_delay = 50
 examine = "A branch bark coloured blamish snail, these types are said to spit acid."
 
 [myre_blamish_snail_mort_myre_swamp_2]
 id = 1232
 examine = "A marsh coloured blamish snail, these types are said to spit acid."
 
-[blood_blamish_snail_mort_myre_swamp_2]
+[blood_blamish_snail_2]
 id = 1233
-examine = "A blood coloured blamish snail, these types are said to spit acid."
+clone = "blood_blamish_snail"
 
 [ochre_blamish_snail_mort_myre_swamp_2]
 id = 1234
 examine = "A muddy coloured blamish snail, these types are said to spit acid."
 
-[bruise_blamish_snail_mort_myre_swamp_2]
+[bruise_blamish_snail_2]
 id = 1235
 examine = "A bruise blue coloured blamish snail, these types are said to spit acid."
 

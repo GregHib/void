@@ -16,5 +16,14 @@ examine = "Let's not go skinny dipping eh?"
 
 [foreman_karamja_ship_yard]
 id = 674
+hitpoints = 200
+att = 20
+str = 20
+def = 20
+mage = 0
+range = 0
+style = "crush"
+max_hit_melee = 30
+respawn_delay = 5
 examine = "The boss!"
 

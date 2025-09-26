@@ -1,22 +1,24 @@
 [cave_goblin_lumbridge_swamp_caves]
 id = 1822
+hitpoints = 100
+style = "crush"
+max_hit_melee = 10
+slayer_xp = 10.0
 categories = ["goblins"]
+respawn_delay = 50
 examine = "A goblin with big bulging eyes."
 
 [cave_goblin_lumbridge_swamp_caves_2]
 id = 1823
-categories = ["goblins"]
-examine = "A goblin with big bulging eyes."
+clone = "cave_goblin_lumbridge_swamp_caves"
 
 [cave_goblin_lumbridge_swamp_caves_3]
 id = 1824
-categories = ["goblins"]
-examine = "A goblin with big bulging eyes."
+clone = "cave_goblin_lumbridge_swamp_caves"
 
 [cave_goblin_lumbridge_swamp_caves_4]
 id = 1825
-categories = ["goblins"]
-examine = "A goblin with big bulging eyes."
+clone = "cave_goblin_lumbridge_swamp_caves"
 
 [hole_in_the_wall_lumbridge_swamp_caves]
 id = 2058

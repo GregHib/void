@@ -1,28 +1,72 @@
 [angry_unicorn_tolnas_rift]
 id = 3661
+hitpoints = 500
+att = 38
+str = 41
+def = 38
+style = "stab"
+max_hit_melee = 50
+examine = "He looks a little on the cross side!"
 
 [angry_giant_rat_tolnas_rift]
 id = 3662
+hitpoints = 500
+att = 38
+str = 41
+def = 38
+style = "stab"
+max_hit_melee = 50
+categories = ["rats"]
+examine = "He looks a little on the cross side!"
 
 [angry_goblin_tolnas_rift]
 id = 3663
+hitpoints = 500
+att = 38
+str = 41
+def = 38
+style = "stab"
+max_hit_melee = 50
 categories = ["goblins"]
 examine = "He looks a little on the cross side!"
 
 [angry_bear_tolnas_rift]
 id = 3664
+hitpoints = 500
+att = 38
+str = 41
+def = 38
+style = "stab"
+max_hit_melee = 50
+examine = "He looks a little on the cross side!"
 
 [fear_reaper_tolnas_rift]
 id = 3665
+hitpoints = 570
+att = 45
+str = 48
+def = 45
+style = "slash"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+examine = "AHHHH!"
 
 [confusion_beast_tolnas_rift]
 id = 3666
+hitpoints = 640
+att = 52
+str = 55
+def = 52
+style = "slash"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+respawn_delay = 25
+examine = "What on Gielinor is that?!?"
 
 [hopeless_creature_tolnas_rift]
 id = 3667
 
 [angry_giant_rat_tolnas_rift_2]
 id = 4940
-categories = ["rats"]
-examine = "He looks a little on the cross side!"
+clone = "angry_giant_rat_tolnas_rift"
 

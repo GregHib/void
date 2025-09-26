@@ -1,0 +1,49 @@
+[damis_first_form]
+id = 1974
+hitpoints = 900
+att = 90
+str = 90
+def = 90
+style = "crush"
+max_hit_melee = 220
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+examine = "The warrior of darkness."
+
+[damis_second_form]
+id = 1975
+hitpoints = 2000
+att = 160
+str = 100
+def = 160
+attack_speed = 3
+style = "crush"
+max_hit_melee = 280
+xp_bonus = 1.5
+hunt_mode = "cowardly"
+examine = "The warrior of darkness."
+
+[fareed_normal]
+id = 1977
+hitpoints = 1300
+att = 190
+str = 120
+def = 135
+style = "slash"
+max_hit_melee = 360
+xp_bonus = 1.5
+hunt_mode = "cowardly"
+examine = "Zamorak's warrior of fire."
+
+[flambeed_normal]
+id = 3494
+hitpoints = 2100
+att = 120
+str = 120
+def = 75
+style = "crush"
+max_hit_melee = 250
+attack_bonus = 100
+xp_bonus = 7.5
+hunt_mode = "cowardly"
+examine = "Will give you a beating as well as indigestion."

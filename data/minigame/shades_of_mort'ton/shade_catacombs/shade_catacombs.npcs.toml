@@ -10,11 +10,42 @@ examine = "A shadowy sort of entity, kind of creepy looking."
 
 [asyn_shadow_shade_catacombs]
 id = 1247
+hitpoints = 940
+att = 110
+str = 96
+def = 80
+mage = 50
+range = 50
+style = "crush"
+max_hit_melee = 110
+hunt_mode = "cowardly"
+slayer_xp = 94.0
 categories = ["shades"]
-examine = "A shadowy sort of entity, kind of creepy looking."
+examine = "The shadowy remains of a long-departed soul."
 
 [fiyr_shadow_shade_catacombs]
 id = 1249
+hitpoints = 900
+att = 102
+str = 84
+def = 70
+style = "crush"
+max_hit_melee = 90
+slayer_xp = 90.0
 categories = ["shades"]
+immune_poison = true
+respawn_delay = 50
 examine = "A shadowy sort of entity, kind of creepy looking."
 
+[asyn_shade]
+id = 1248
+hitpoints = 900
+att = 102
+str = 84
+def = 70
+style = "crush"
+max_hit_melee = 90
+slayer_xp = 90.0
+categories = ["shades"]
+immune_poison = true
+examine = "The shadowy remains of a long departed soul."

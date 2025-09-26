@@ -1,0 +1,11 @@
+[black_golem]
+id = 3026
+hitpoints = 800
+att = 80
+str = 30
+def = 80
+style = "crush"
+max_hit_melee = 40
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+examine = "An animated clay statue."
