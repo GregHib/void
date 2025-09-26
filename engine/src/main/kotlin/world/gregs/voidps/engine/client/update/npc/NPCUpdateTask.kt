@@ -19,8 +19,6 @@ class NPCUpdateTask(
     private val encoders: List<VisualEncoder<NPCVisuals>>,
 ) {
 
-    private val initialFlag = encoders.filter { it.initial }.sumOf { it.mask }
-
     fun run(player: Player) {
         val viewport = player.viewport ?: return
         val npcs = viewport.npcs
@@ -120,9 +118,9 @@ class NPCUpdateTask(
                     continue
                 }
                 val visuals = npc.visuals
-                var flag = visuals.flag or initialFlag
-                if (visuals.transform.id == -1){
-                    flag = flag xor TRANSFORM_MASK
+                var flag = visuals.flag
+                if (visuals.transform.id != -1){
+                    flag = flag or TRANSFORM_MASK
                 }
                 val delta = npc.tile.delta(client.tile)
                 set.add(npc.index)
