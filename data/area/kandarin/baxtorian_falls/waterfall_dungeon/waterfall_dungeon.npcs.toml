@@ -1,10 +1,29 @@
 [shadow_spider]
 id = 58
+hitpoints = 550
+att = 44
+str = 42
+def = 44
+style = "stab"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+slayer_xp = 55.0
 categories = ["spiders"]
+respawn_delay = 30
 examine = "Is it a spider or is it a shadow?"
 
 [skeleton_mage_waterfall_dungeon]
 id = 94
+hitpoints = 170
+att = 14
+str = 14
+def = 14
+mage = 18
+style = "magic"
+style = "melee"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+slayer_xp = 17.0
 categories = ["skeletons"]
+respawn_delay = 25
 examine = "An undead worker of dark magic."
-

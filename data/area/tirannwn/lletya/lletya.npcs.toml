@@ -96,6 +96,11 @@ examine = "Looks after your Farming tools."
 
 [ram_lletya]
 id = 3673
+hitpoints = 80
+style = "crush"
+max_hit_melee = 10
+attack_bonus = -15
+respawn_delay = 45
 examine = "White and fluffy."
 
 [gwir]

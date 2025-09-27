@@ -8,13 +8,61 @@ examine = "A floating chunk of ice."
 
 [ice_troll_runt_fremennik_isle]
 id = 5525
+hitpoints = 600
+att = 60
+str = 70
+def = 70
+style = "crush"
+max_hit_melee = 170
+attack_bonus = 60
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+slayer_xp = 63.0
+categories = ["trolls"]
+respawn_delay = 50
+examine = "An ice troll youngling."
 
 [ice_troll_male_fremennik_isle]
 id = 5526
+hitpoints = 800
+att = 80
+str = 80
+def = 40
+style = "crush"
+max_hit_melee = 170
+attack_bonus = 60
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+slayer_xp = 84.0
+categories = ["trolls"]
+examine = "A male troll wielding a large club."
 
 [ice_troll_female_fremennik_isle]
 id = 5527
+hitpoints = 800
+att = 80
+str = 80
+def = 40
+style = "ranged"
+max_hit_melee = 170
+attack_bonus = 60
+xp_bonus = 0.5
+slayer_xp = 84.0
+categories = ["trolls"]
+examine = "An ice troll with a bag of rocks."
 
 [ice_troll_grunt_fremennik_isle]
 id = 5528
-
+hitpoints = 800
+att = 100
+str = 100
+def = 60
+style = "crush"
+max_hit_melee = 210
+attack_bonus = 60
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+slayer_xp = 84.0
+categories = ["trolls"]
+respawn_delay = 50
+examine = "A large ice troll."

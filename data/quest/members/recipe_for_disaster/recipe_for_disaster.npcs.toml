@@ -83,3 +83,62 @@ hunt_mode = "cowardly"
 slayer_xp = 220.0
 categories = ["vampyres"]
 examine = "A vampyre warrior of Zamorak."
+
+[gelatinnoth_mother_white]
+id = 3497
+hitpoints = 2400
+att = 78
+str = 78
+def = 81
+range = 50
+style = "stab"
+max_hit_melee = 90
+max_hit_range = 200
+max_hit_magic = 200
+xp_bonus = 7.5
+hunt_mode = "cowardly"
+examine = "Deadly AND fruity!"
+
+[gelatinnoth_mother_orange]
+id = 3498
+clone = "gelatinnoth_mother_white"
+
+[gelatinnoth_mother_blue]
+id = 3499
+clone = "gelatinnoth_mother_white"
+
+[gelatinnoth_mother_red]
+id = 3500
+clone = "gelatinnoth_mother_white"
+
+[gelatinnoth_mother_green]
+id = 3501
+clone = "gelatinnoth_mother_white"
+
+[gelatinnoth_mother_brown]
+id = 3502
+clone = "gelatinnoth_mother_white"
+
+[jubbly_bird]
+id = 3476
+att = 5
+str = 5
+def = 6
+slayer_xp = 8.0
+examine = "A large boisterous bird, a delicacy for ogres."
+
+[karamel_normal]
+id = 3495
+hitpoints = 2500
+def = 100
+range = 100
+attack_speed = 3
+style = "magic"
+style = "ranged"
+max_hit_magic = 70
+max_hit_range = 200
+xp_bonus = 0.5
+ranged_strength = 55
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "Pure evil lightly whipped with a juicy cherry on top."

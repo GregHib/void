@@ -1,10 +1,40 @@
 [invrigar_the_necromancer]
 id = 173
+hitpoints = 240
+att = 17
+str = 17
+def = 14
+mage = 18
+style = "magic"
+max_hit_magic = 30
+respawn_delay = 50
 examine = "An evil user of Magic powers."
 
 [necromancer]
 id = 194
+hitpoints = 400
+att = 18
+str = 18
+def = 18
+mage = 18
+style = "melee"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+respawn_delay = 250
 examine = "A crazy evil necromancer."
+
+[summoned_zombie]
+id = 77
+hitpoints = 220
+att = 8
+str = 9
+def = 10
+style = "crush"
+max_hit_melee = 20
+hunt_mode = "cowardly"
+slayer_xp = 22.0
+categories = ["zombies"]
+examine = "The living dead."
 
 [irwin_feaselbaum]
 id = 2066

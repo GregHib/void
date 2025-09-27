@@ -1,0 +1,19 @@
+[ice_troll_king_normal]
+id = 5472
+hitpoints = 1500
+att = 100
+str = 100
+def = 80
+style = "crush"
+style = "magic"
+style = "ranged"
+max_hit_melee = 210
+max_hit_special = 160
+max_hit_magic = 110
+max_hit_range = 70
+attack_bonus = 60
+xp_bonus = 7.5
+hunt_mode = "cowardly"
+slayer_xp = 161.0
+categories = ["trolls"]
+examine = "An impressive looking troll."

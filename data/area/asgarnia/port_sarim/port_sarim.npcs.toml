@@ -97,6 +97,14 @@ id = 2539
 
 [thief_port_sarim]
 id = 2674
+hitpoints = 170
+att = 14
+str = 13
+def = 12
+style = "melee"
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "Known for his light-fingered qualities."
 
 [jack_seagull]
@@ -113,12 +121,32 @@ examine = "So what can one do with a drunken sailor?"
 
 [pirate_port_sarim]
 id = 2695
+hitpoints = 200
+att = 20
+str = 20
+def = 20
+style = "slash"
+max_hit_melee = 30
+attack_bonus = 10
+slayer_xp = 20.0
+categories = ["pirates"]
+respawn_delay = 25
+examine = "Yar! Shiver me timbers!"
 
 [thief_port_sarim_2]
 id = 2696
+clone = "thief_port_sarim"
 
 [mugger_port_sarim]
 id = 2697
+hitpoints = 80
+att = 5
+str = 5
+def = 5
+style = "crush"
+max_hit_melee = 10
+hunt_mode = "cowardly"
+examine = "He jumps out and attacks people."
 
 [monk_of_entrana_port_sarim_grey]
 id = 2728
@@ -224,11 +252,25 @@ id = 6082
 
 [seagull_port_sarim]
 id = 6115
+hitpoints = 60
+style = "crush"
+max_hit_melee = 0
+attack_bonus = -47
+slayer_xp = 5.0
 categories = ["birds"]
+respawn_delay = 25
 examine = "A messy bird."
 
 [seagull_port_sarim_2]
 id = 6116
+hitpoints = 100
+style = "crush"
+max_hit_melee = 0
+attack_bonus = -47
+slayer_xp = 5.0
+categories = ["birds"]
+respawn_delay = 25
+examine = "Smells of rotten fish."
 
 [thaki_the_delivery_dwarf]
 id = 7115
@@ -240,6 +282,10 @@ examine = "A young sailor."
 
 [wormbrain_port_sarim]
 id = 745
+hitpoints = 50
+style = "crush"
+max_hit_melee = 10
+slayer_xp = 5.0
 categories = ["goblins"]
 examine = "A badly-behaved goblin."
 

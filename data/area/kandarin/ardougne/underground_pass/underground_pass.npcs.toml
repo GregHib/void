@@ -4,7 +4,17 @@ examine = "A user of dark magic."
 
 [ogre_underground_pass]
 id = 3419
+hitpoints = 600
+att = 43
+str = 43
+def = 43
+attack_speed = 6
+style = "crush"
+max_hit_melee = 70
+attack_bonus = 22
+slayer_xp = 60.0
 categories = ["ogres"]
+respawn_delay = 30
 examine = "A large dim looking humanoid."
 
 [man_underground_pass]
@@ -53,10 +63,25 @@ examine = "An ugly goblin... bleurgh!"
 
 [khazard_trooper_underground_pass]
 id = 475
+hitpoints = 220
+att = 17
+str = 18
+def = 12
+attack_speed = 6
+style = "crush"
+max_hit_melee = 30
+attack_bonus = 8
+respawn_delay = 100
 examine = "It's one of General Khazard's warriors."
 
 [khazard_warlord_underground_pass]
 id = 477
+hitpoints = 1700
+att = 75
+str = 78
+def = 80
+style = "crush"
+max_hit_melee = 100
 examine = "He looks real nasty, smells bad too."
 
 [child_underground_pass_3]
@@ -150,14 +175,47 @@ examine = "A nasty spider, blessed by Zamorak."
 
 [sir_jerro_underground_pass]
 id = 988
+hitpoints = 570
+att = 54
+str = 54
+def = 54
+attack_speed = 5
+style = "slash"
+max_hit_melee = 80
+attack_bonus = 20
+xp_bonus = 2.5
+immune_cannon = true
+respawn_delay = 100
 examine = "A mighty-looking warrior."
 
 [sir_carl_underground_pass]
 id = 989
+hitpoints = 570
+att = 54
+str = 54
+def = 54
+attack_speed = 5
+style = "slash"
+max_hit_melee = 80
+attack_bonus = 20
+xp_bonus = 2.5
+immune_cannon = true
+respawn_delay = 100
 examine = "A mighty-looking warrior."
 
 [sir_harry_underground_pass]
 id = 990
+hitpoints = 570
+att = 54
+str = 54
+def = 54
+attack_speed = 5
+style = "slash"
+max_hit_melee = 80
+attack_bonus = 20
+xp_bonus = 2.5
+immune_cannon = true
+respawn_delay = 100
 examine = "A mighty-looking warrior."
 
 [niloof_underground_pass]
@@ -174,6 +232,15 @@ examine = "This dwarf looks intoxicated."
 
 [kalrag_underground_pass]
 id = 997
+hitpoints = 780
+att = 78
+str = 78
+def = 78
+style = "stab"
+max_hit_melee = 90
+xp_bonus = -7.5
+hunt_mode = "cowardly"
+respawn_delay = 50
 examine = "A giant spider."
 
 [boulder_underground_pass]

@@ -7,7 +7,6 @@ hunt_mode = "aggressive"
 categories = ["rock_lobster"]
 examine = "It wasn't a rock... it was a rock lobster!"
 
-
 [rock_hidden_lobster]
 id = 2890
 att = 100
@@ -25,6 +24,7 @@ drop_table = "rock_lobster"
 combat_sounds = "rock_lobster"
 hunt_mode = "aggressive"
 hunt_radius = 3
+xp_bonus = 2.5
 categories = ["rock_lobster"]
 respawn_delay = 50
 examine = "A Rock."

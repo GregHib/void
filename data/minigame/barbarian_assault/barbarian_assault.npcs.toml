@@ -18,3 +18,345 @@ examine = "A barbarian army teacher."
 id = 5038
 examine = "A barbarian army teacher."
 
+[penance_fighter_wave_1]
+id = 5044
+hitpoints = 280
+att = 26
+str = 26
+def = 25
+style = "crush"
+max_hit_melee = 40
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "What on Gielinor is that?"
+
+[penance_fighter_wave_2]
+id = 5045
+hitpoints = 290
+att = 28
+str = 29
+def = 27
+style = "crush"
+max_hit_melee = 30
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "What on Gielinor is that?"
+
+[penance_fighter_wave_3]
+id = 5213
+hitpoints = 320
+att = 33
+str = 32
+def = 34
+style = "crush"
+max_hit_melee = 40
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "What on Gielinor is that?"
+
+[penance_fighter_wave_4]
+id = 5214
+hitpoints = 370
+att = 36
+str = 38
+def = 37
+style = "crush"
+max_hit_melee = 50
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "What on Gielinor is that?"
+
+[penance_fighter_wave_5]
+id = 5215
+hitpoints = 380
+att = 41
+str = 43
+def = 44
+style = "crush"
+max_hit_melee = 50
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "What on Gielinor is that?"
+
+[penance_fighter_wave_6]
+id = 5216
+hitpoints = 490
+att = 50
+str = 48
+def = 48
+style = "crush"
+max_hit_melee = 60
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "What on Gielinor is that?"
+
+[penance_fighter_wave_7_10]
+id = 5217
+hitpoints = 500
+att = 56
+str = 55
+def = 52
+style = "crush"
+max_hit_melee = 60
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "What on Gielinor is that?"
+
+[penance_fighter_wave_8]
+id = 5218
+hitpoints = 550
+att = 60
+str = 61
+def = 62
+style = "crush"
+max_hit_melee = 70
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "What on Gielinor is that?"
+
+[penance_fighter_wave_9]
+id = 5219
+hitpoints = 560
+att = 71
+str = 73
+def = 66
+style = "crush"
+max_hit_melee = 80
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "What on Gielinor is that?"
+
+[penance_healer_wave_1]
+id = 5238
+hitpoints = 270
+style = "poison"
+hunt_mode = "cowardly"
+examine = "A nasty piece of work."
+
+[penance_healer_wave_2]
+id = 5239
+hitpoints = 320
+style = "poison"
+hunt_mode = "cowardly"
+examine = "A nasty piece of work."
+
+[penance_healer_wave_3]
+id = 5240
+hitpoints = 370
+style = "poison"
+hunt_mode = "cowardly"
+examine = "A nasty piece of work."
+
+[penance_healer_wave_4]
+id = 5241
+hitpoints = 430
+style = "poison"
+hunt_mode = "cowardly"
+examine = "A nasty piece of work."
+
+[penance_healer_wave_5]
+id = 5242
+hitpoints = 490
+style = "poison"
+hunt_mode = "cowardly"
+examine = "A nasty piece of work."
+
+[penance_healer_wave_6]
+id = 5243
+hitpoints = 550
+style = "poison"
+hunt_mode = "cowardly"
+examine = "A nasty piece of work."
+
+[penance_healer_wave_7_10]
+id = 5244
+hitpoints = 600
+style = "poison"
+hunt_mode = "cowardly"
+examine = "A nasty piece of work."
+
+[penance_healer_wave_8]
+id = 5245
+hitpoints = 670
+style = "poison"
+hunt_mode = "cowardly"
+examine = "A nasty piece of work."
+
+[penance_healer_wave_9]
+id = 5246
+hitpoints = 760
+style = "poison"
+hunt_mode = "cowardly"
+examine = "A nasty piece of work."
+
+[penance_queen]
+id = 5247
+hitpoints = 2500
+att = 260
+str = 92
+def = 132
+range = 116
+style = "melee"
+style = "single_and_multi_target_ranged"
+max_hit_range = 130
+max_hit_melee = 130
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "Run away! Run away!"
+
+[penance_ranger_wave_1]
+id = 5229
+hitpoints = 200
+def = 21
+range = 23
+style = "ranged"
+max_hit_melee = 30
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "Shooty-shooty."
+
+[penance_ranger_wave_2]
+id = 5230
+hitpoints = 280
+def = 29
+range = 24
+style = "ranged"
+max_hit_melee = 40
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "Shooty-shooty."
+
+[penance_ranger_wave_3]
+id = 5231
+hitpoints = 290
+def = 33
+range = 34
+style = "ranged"
+max_hit_melee = 40
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "Shooty-shooty."
+
+[penance_ranger_wave_4]
+id = 5232
+hitpoints = 340
+def = 42
+range = 40
+style = "ranged"
+max_hit_melee = 50
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "Shooty-shooty."
+
+[penance_ranger_wave_5]
+id = 5233
+hitpoints = 410
+def = 46
+range = 45
+style = "ranged"
+max_hit_melee = 60
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "Shooty-shooty."
+
+[penance_ranger_wave_6]
+id = 5234
+hitpoints = 500
+def = 54
+range = 52
+style = "ranged"
+max_hit_melee = 60
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "Shooty-shooty."
+
+[penance_ranger_wave_7_10]
+id = 5235
+hitpoints = 500
+def = 61
+range = 62
+style = "ranged"
+max_hit_melee = 70
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "Shooty-shooty."
+
+[penance_ranger_wave_8]
+id = 5236
+hitpoints = 540
+def = 68
+range = 70
+style = "ranged"
+max_hit_melee = 80
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "Shooty-shooty."
+
+[penance_ranger_wave_9]
+id = 5237
+hitpoints = 580
+def = 80
+range = 78
+style = "ranged"
+max_hit_melee = 90
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "Shooty-shooty."
+
+[penance_runner_wave_1]
+id = 5220
+hitpoints = 50
+examine = "He's making a run for it!"
+
+[penance_runner_wave_2]
+id = 5221
+hitpoints = 50
+max_hit_melee = 0
+examine = "He's making a run for it!"
+
+[penance_runner_wave_3]
+id = 5222
+hitpoints = 50
+examine = "He's making a run for it!"
+
+[penance_runner_wave_4]
+id = 5223
+hitpoints = 50
+examine = "He's making a run for it!"
+
+[penance_runner_wave_5]
+id = 5224
+hitpoints = 50
+examine = "He's making a run for it!"
+
+[penance_runner_wave_6]
+id = 5225
+hitpoints = 50
+examine = "He's making a run for it!"
+
+[penance_runner_wave_7_10]
+id = 5226
+hitpoints = 50
+examine = "He's making a run for it!"
+
+[penance_runner_wave_8]
+id = 5227
+hitpoints = 50
+examine = "He's making a run for it!"
+
+[penance_runner_wave_9]
+id = 5228
+hitpoints = 50
+examine = "He's making a run for it!"
+
+[queen_spawn]
+id = 5248
+hitpoints = 450
+att = 60
+str = 62
+def = 50
+style = "crush"
+max_hit_melee = 70
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+examine = "What's it looking at?"

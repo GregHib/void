@@ -2,3 +2,42 @@
 id = 2458
 wander_radius = 3
 examine = "He's at home in the forests."
+
+[pheasant_1_tail]
+id = 4277
+hitpoints = 50
+att = 3
+str = 3
+def = 3
+style = "stab"
+max_hit_melee = 10
+respawn_delay = 5
+examine = "A brightly coloured game bird."
+
+[pheasant_1_tail_2]
+id = 7445
+clone = "pheasant_1_tail"
+
+[pheasant_2_tails]
+id = 7446
+clone = "pheasant_1_tail"
+
+[pheasant_2_tails_2]
+id = 13246
+clone = "pheasant_1_tail"
+
+[pheasant_3_tails]
+id = 13247
+clone = "pheasant_1_tail"
+
+[pheasant_3_tails_2]
+id = 13248
+clone = "pheasant_1_tail"
+
+[pheasant_4_tails]
+id = 13249
+clone = "pheasant_1_tail"
+
+[pheasant_4_tails_2]
+id = 13250
+clone = "pheasant_1_tail"

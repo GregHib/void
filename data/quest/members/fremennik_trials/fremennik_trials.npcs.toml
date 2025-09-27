@@ -1,0 +1,22 @@
+[koschei_the_deathless]
+id = 1290
+hitpoints = 300
+att = 20
+str = 20
+def = 20
+style = "melee"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+examine = "Your challenge awaits!"
+
+[the_draugen]
+id = 1279
+hitpoints = 600
+att = 60
+str = 60
+def = 60
+style = "crush"
+max_hit_melee = 70
+xp_bonus = 2.5
+hunt_mode = "cowardly"
+examine = "A fearful spirit of the drowned."

@@ -78,11 +78,19 @@ examine = "He looks like he's a long way from home."
 
 [goat_kharidian_desert]
 id = 4930
+hitpoints = 210
+att = 20
+str = 20
+def = 20
+style = "crush"
+max_hit_melee = 60
+attack_bonus = 10
+respawn_delay = 50
 examine = "They'll eat anything!"
 
 [goat_kharidian_desert_2]
 id = 4931
-examine = "They'll eat anything!"
+clone = "goat_kharidian_desert"
 
 [billy_goat]
 id = 4935

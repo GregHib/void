@@ -108,8 +108,16 @@ examine = "A diligent guard."
 id = 789
 examine = "A rough looking thief."
 
-[grip_brimhaven]
+[grip]
 id = 792
+hitpoints = 250
+att = 18
+str = 17
+def = 18
+style = "slash"
+max_hit_melee = 30
+attack_bonus = 5
+respawn_delay = 50
 examine = "Looks like he's been in the wars..."
 
 [alfonse_the_waiter_brimhaven]
@@ -122,10 +130,26 @@ examine = "Distinctly cook-like."
 
 [pirate_guard_brimhaven]
 id = 799
+hitpoints = 250
+att = 18
+str = 16
+def = 10
+style = "slash"
+max_hit_melee = 30
+attack_bonus = 20
+respawn_delay = 50
 examine = "A morally ambiguous guard."
 
 [thief_brimhaven]
 id = 8
+hitpoints = 170
+att = 14
+str = 13
+def = 12
+style = "melee"
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "Known for his light-fingered qualities."
 
 [kangai_mau_brimhaven]

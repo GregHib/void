@@ -32,10 +32,24 @@ examine = "A graceful feline."
 
 [locust]
 id = 1995
-examine = "Obnoxious, overgrown insect."
+hitpoints = 270
+att = 17
+str = 18
+style = "crush"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+respawn_delay = 50
+examine = "An obnoxious, overgrown insect."
 
 [plague_frog]
 id = 1997
+hitpoints = 100
+att = 18
+str = 10
+style = "crush"
+max_hit_melee = 20
+hunt_mode = "cowardly"
+respawn_delay = 50
 categories = ["frogs"]
 examine = "A very smelly frog."
 

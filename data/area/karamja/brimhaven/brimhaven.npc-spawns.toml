@@ -61,7 +61,7 @@ spawns = [
     { id = "tool_leprechaun_brimhaven", x = 2764, y = 3210, members = true },
     { id = "garv_brimhaven", x = 2776, y = 3186 },
     { id = "grubor_brimhaven", x = 2812, y = 3171 },
-    { id = "grip_brimhaven", x = 2774, y = 3192 },
+    { id = "grip", x = 2774, y = 3192 },
     { id = "alfonse_the_waiter_brimhaven", x = 2793, y = 3188 },
     { id = "charlie_the_cook_brimhaven", x = 2790, y = 3191 },
     { id = "pirate_guard_brimhaven", x = 2761, y = 3191 },

@@ -1,6 +1,16 @@
 [ogre_combat_training_camp]
 id = 2801
+hitpoints = 600
+att = 54
+str = 54
+def = 54
+style = "crush"
+max_hit_melee = 70
+attack_bonus = 8
+hunt_mode = "cowardly"
+slayer_xp = 60.0
 categories = ["ogres"]
+respawn_delay = 50
 examine = "Big, ugly, and smelly."
 
 [guard_combat_training_camp]

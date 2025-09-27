@@ -20,19 +20,29 @@ id = 4985
 
 [mercenary_desert_mining_camp]
 id = 4989
+hitpoints = 600
+att = 32
+str = 32
+def = 39
+mage = 0
+range = 0
+style = "crush"
+max_hit_melee = 50
+attack_bonus = 9
+respawn_delay = 50
 examine = "He looks a bit aggressive."
 
 [mercenary_desert_mining_camp_2]
 id = 4990
-examine = "He looks a bit aggressive."
+clone = "mercenary_desert_mining_camp"
 
 [mercenary_desert_mining_camp_3]
 id = 4991
-examine = "He looks a bit aggressive."
+clone = "mercenary_desert_mining_camp"
 
 [mercenary_desert_mining_camp_4]
 id = 4992
-examine = "He looks a bit aggressive."
+clone = "mercenary_desert_mining_camp"
 
 [guard_desert_mining_camp]
 id = 4993
@@ -74,12 +84,31 @@ id = 5002
 id = 825
 examine = "It looks like he's been here a long time."
 
-[rowdy_slave_desert_mining_camp]
+[rowdy_slave]
 id = 827
+hitpoints = 160
+att = 7
+str = 7
+def = 7
+mage = 0
+range = 0
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 50
 examine = "He looks a bit aggressive."
 
 [mercenary_captain]
 id = 830
+hitpoints = 600
+att = 32
+str = 32
+def = 39
+mage = 0
+range = 0
+style = "crush"
+max_hit_melee = 50
+attack_bonus = 9
+respawn_delay = 50
 examine = "He looks a bit aggressive."
 
 [captain_siad_desert_mining_camp]

@@ -23,3 +23,16 @@ attack_bonus = 40
 xp_bonus = 2.5
 hunt_mode = "cowardly"
 examine = "He's playing both sides!"
+
+[zamorak_wizard]
+id = 1007
+hitpoints = 760
+att = 24
+str = 24
+def = 24
+mage = 80
+style = "magic"
+max_hit_melee = 200
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "A servant of Zamorak."

@@ -1,0 +1,12 @@
+[giant_lobster_ghosts_ahoy]
+id = 1693
+hitpoints = 320
+att = 18
+str = 26
+def = 40
+style = "stab"
+max_hit_melee = 40
+hunt_mode = "cowardly"
+slayer_xp = 32.0
+categories = ["scorpions"]
+examine = "An extremely vicious lobster."

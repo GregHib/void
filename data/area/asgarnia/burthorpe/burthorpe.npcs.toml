@@ -48,11 +48,25 @@ examine = "A citizen of Burthorpe."
 [penda]
 id = 1087
 wander_radius = 5
+hitpoints = 100
+att = 3
+str = 3
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "A citizen of Burthorpe."
 
 [ocga]
 id = 1085
 wander_radius = 5
+hitpoints = 100
+att = 3
+str = 3
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "A citizen of Burthorpe."
 
 [breoca]
@@ -72,6 +86,13 @@ examine = "A citizen of Burthorpe."
 id = 1088
 wander_radius = 5
 collision = "outdoors"
+hitpoints = 100
+att = 3
+str = 2
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "A citizen of Burthorpe."
 
 [dunstan]
@@ -82,6 +103,13 @@ examine = "Smithy for Burthorpe."
 [servant_burthorpe]
 id = 1081
 wander_radius = 5
+hitpoints = 100
+att = 3
+str = 3
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "A servant for Prince Anlaf."
 
 [eohric]
@@ -150,6 +178,15 @@ examine = "A soldier of the Imperial Guard."
 
 [imperial_soldier_attackable]
 id = 1065
+hitpoints = 500
+att = 40
+str = 40
+def = 40
+range = 0
+style = "slash"
+max_hit_melee = 60
+attack_bonus = 11
+respawn_delay = 25
 examine = "A soldier of the Imperial Guard."
 
 [imperial_soldier_hair]
@@ -188,6 +225,15 @@ examine = "Distinctly heroic."
 [white_knight_burthorpe]
 id = 1092
 wander_radius = 5
+hitpoints = 520
+att = 27
+str = 29
+def = 21
+attack_speed = 7
+style = "slash"
+max_hit_melee = 60
+attack_bonus = 30
+respawn_delay = 50
 examine = "The knight seems to be watching something."
 
 [helemos]

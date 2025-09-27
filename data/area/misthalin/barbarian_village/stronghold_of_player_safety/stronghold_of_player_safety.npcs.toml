@@ -42,7 +42,16 @@ examine = "Euww! A giant bug."
 
 [mugger_stronghold_of_player_safety]
 id = 7161
+hitpoints = 80
+att = 5
+str = 5
+def = 5
+style = "crush"
+max_hit_melee = 10
+hunt_mode = "cowardly"
+examine = "He jumps out and attacks people."
 
 [mugger_stronghold_of_player_safety_2]
 id = 7162
+clone = "mugger_stronghold_of_player_safety"
 

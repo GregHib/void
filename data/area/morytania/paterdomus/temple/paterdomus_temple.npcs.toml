@@ -6,6 +6,17 @@ id = 1045
 
 [monk_of_zamorak_paterdomus_temple_3]
 id = 1046
+hitpoints = 250
+att = 25
+str = 25
+def = 25
+mage = 40
+style = "crush"
+max_hit_melee = 30
+max_hit_magic = 80
+hunt_mode = "cowardly"
+respawn_delay = 25
+examine = "An evil human cleric."
 
 [drezel_paterdomus_temple]
 id = 1047

@@ -4,6 +4,13 @@ examine = "High Priest of Entrana."
 
 [monk_entrana]
 id = 222
+hitpoints = 150
+att = 2
+str = 2
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "A holy man."
 
 [francis]

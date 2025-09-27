@@ -32,6 +32,17 @@ id = 3833
 
 [skeleton_mage_piscatoris]
 id = 3851
+hitpoints = 800
+att = 10
+str = 10
+def = 60
+mage = 100
+style = "magic"
+max_hit_melee = 110
+slayer_xp = 80.0
+categories = ["skeletons"]
+respawn_delay = 50
+examine = "Doesn't seem to want to go away."
 
 [brian_twitcher]
 id = 8579

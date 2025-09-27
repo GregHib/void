@@ -11,3 +11,27 @@ slayer_xp = 116.0
 categories = ["hellhounds"]
 respawn_delay = 50
 examine = "Postie Pete's worst nightmare."
+
+[general_khazard]
+id = 7552
+hitpoints = 1700
+att = 75
+str = 78
+def = 80
+style = "slash"
+max_hit_melee = 90
+respawn_delay = 100
+examine = "He looks really nasty. Smells bad too."
+
+[khazard_ogre]
+id = 270
+hitpoints = 600
+att = 54
+str = 53
+def = 53
+attack_speed = 6
+style = "crush"
+max_hit_melee = 80
+attack_bonus = 22
+hunt_mode = "cowardly"
+examine = "Khazard's strongest ogre warrior."

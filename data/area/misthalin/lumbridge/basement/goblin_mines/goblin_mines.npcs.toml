@@ -51,6 +51,20 @@ categories = ["goblins"]
 respawn_delay = 50
 examine = "He protects the miners."
 
+[goblin_guard]
+id = 489
+hitpoints = 430
+att = 32
+str = 37
+def = 37
+style = "stab"
+max_hit_melee = 50
+attack_bonus = 8
+slayer_xp = 43.0
+categories = ["goblins"]
+respawn_delay = 250
+examine = "He doesn't look like he'd trust his own mother."
+
 [cave_goblin_miner_5]
 id = 2075
 clone = "cave_goblin_miner"

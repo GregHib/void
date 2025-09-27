@@ -1,10 +1,29 @@
 [albino_bat_mos_leharmless_caves]
 id = 4345
+hitpoints = 330
+att = 57
+str = 57
+def = 30
+style = "stab"
+max_hit_melee = 70
+hunt_mode = "cowardly"
+slayer_xp = 33.0
 categories = ["bats"]
+respawn_delay = 35
 examine = "It's all white by me."
 
-[cave_horror_mos_leharmless_caves]
+[cave_horror]
 id = 4355
+hitpoints = 550
+att = 80
+str = 77
+def = 62
+mage = 80
+style = "magical_melee"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+slayer_xp = 55.0
 categories = ["cave_horrors"]
+respawn_delay = 50
 examine = "A horrible, emaciated ape like creature with beady red eyes."
 

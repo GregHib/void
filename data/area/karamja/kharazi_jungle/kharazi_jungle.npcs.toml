@@ -137,7 +137,16 @@ id = 13162
 
 [jungle_wolf_kharazi_jungle]
 id = 143
+hitpoints = 690
+att = 50
+str = 55
+def = 52
+style = "stab"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 70.0
 categories = ["wolves"]
+respawn_delay = 90
 examine = "A rare jungle wolf - specific to the Kharazi jungle."
 
 [tool_leprechaun_kharazi_jungle]
@@ -150,7 +159,15 @@ examine = "I saw the witchdoctor, he told me what to do."
 
 [oomlie_bird_kharazi_jungle]
 id = 48
+hitpoints = 400
+att = 40
+str = 40
+def = 40
+style = "stab"
+max_hit_melee = 50
+slayer_xp = 40.0
 categories = ["birds"]
+respawn_delay = 25
 examine = "A jungle version of the chicken, but more vicious."
 
 [baby_gecko_kharazi_jungle]

@@ -36,3 +36,16 @@ id = 1538
 categories = ["skeletons"]
 examine = "Well, at least he doesn't have to worry about getting 'black lung'."
 
+[skeletal_miner]
+id = 1539
+hitpoints = 390
+att = 35
+str = 37
+def = 38
+style = "stab"
+max_hit_melee = 60
+attack_bonus = 15
+hunt_mode = "cowardly"
+slayer_xp = 39.0
+categories = ["skeletons"]
+examine = "I don't think the pickaxe is for hitting rocks."

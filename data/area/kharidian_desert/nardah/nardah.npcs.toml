@@ -47,14 +47,38 @@ examine = "The Mayor of Nardah."
 
 [tarik_nardah]
 id = 3041
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+style = "stab"
+max_hit_melee = 30
+attack_bonus = 4
+respawn_delay = 50
 examine = "The mayor's guard."
 
 [poltenip]
 id = 3042
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+style = "stab"
+max_hit_melee = 30
+attack_bonus = 4
+respawn_delay = 50
 examine = "The mayor's guard."
 
 [radat]
 id = 3043
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+style = "stab"
+max_hit_melee = 30
+attack_bonus = 4
+respawn_delay = 50
 examine = "The mayor's guard."
 
 [shiratti_the_custodian]

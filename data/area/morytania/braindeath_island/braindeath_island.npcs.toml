@@ -35,39 +35,70 @@ id = 2836
 
 [zombie_pirate]
 id = 2837
+hitpoints = 520
+att = 49
+str = 50
+def = 50
+style = "crush"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 52.0
+categories = ["zombies"]
+respawn_delay = 50
+examine = "An undead sea scoundrel."
 
 [zombie_pirate_2]
 id = 2838
+clone = "zombie_pirate"
 
 [zombie_pirate_3]
 id = 2839
+clone = "zombie_pirate"
 
 [zombie_pirate_4]
 id = 2840
+clone = "zombie_pirate"
 
 [zombie_pirate_5]
 id = 2841
+clone = "zombie_pirate"
 
 [zombie_pirate_6]
 id = 2842
+clone = "zombie_pirate"
 
 [zombie_swab]
 id = 2843
+hitpoints = 500
+att = 45
+str = 50
+def = 50
+style = "crush"
+max_hit_melee = 60
+slayer_xp = 50.0
+categories = ["zombies"]
+respawn_delay = 37
+examine = "He talks a good fight."
 
 [zombie_swab_2]
 id = 2844
+clone = "zombie_swab"
 
 [zombie_swab_3]
 id = 2845
+clone = "zombie_swab"
 
 [zombie_swab_4]
 id = 2846
+clone = "zombie_swab"
 
 [zombie_swab_5]
 id = 2847
+clone = "zombie_swab"
 
 [zombie_swab_6]
 id = 2848
+clone = "zombie_swab"
 
 [fever_spider]
 id = 2850

@@ -52,18 +52,24 @@ examine = "Smells very chemically..."
 
 [zombie_rat_rimmington]
 id = 6088
-categories = ["rats"]
+hitpoints = 50
+att = 2
+str = 3
+def = 2
+style = "stab"
+max_hit_melee = 10
+slayer_xp = 2.0
+categories = ["rats", "zombies"]
+respawn_delay = 30
 examine = "Overgrown undead vermin."
 
 [zombie_rat_rimmington_2]
 id = 6089
-categories = ["rats"]
-examine = "Overgrown undead vermin."
+clone = "zombie_rat_rimmington"
 
 [zombie_rat_rimmington_3]
 id = 6090
-categories = ["rats"]
-examine = "Overgrown undead vermin."
+clone = "zombie_rat_rimmington"
 
 [skeleton_rimmington]
 id = 6091
@@ -113,6 +119,14 @@ examine = "He sells ranged equipment."
 
 [anja]
 id = 2684
+hitpoints = 70
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
+examine = "A citizen of Rimmington."
+
+[hengel]
+id = 2683
 hitpoints = 70
 style = "crush"
 max_hit_melee = 10

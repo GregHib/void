@@ -1,14 +1,28 @@
 [zogre_jiggig_dungeon]
 id = 2046
+hitpoints = 710
+att = 20
+str = 36
+def = 35
+attack_speed = 6
+style = "crush"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+slayer_xp = 71.0
 categories = ["ogres"]
+categories = ["zombies"]
+respawn_delay = 50
 examine = "A partially decomposing zombie ogre."
 
 [zogre_jiggig_dungeon_2]
 id = 2047
+clone = "zogre_jiggig_dungeon"
 
 [zogre_jiggig_dungeon_3]
 id = 2048
+clone = "zogre_jiggig_dungeon"
 
 [zogre_jiggig_dungeon_4]
 id = 2049
+clone = "zogre_jiggig_dungeon"
 

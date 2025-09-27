@@ -1,15 +1,16 @@
 [monk_of_zamorak]
 id = 190
-max_hit_melee = 50
-hitpoints = 100
-att = 8
-str = 8
-def = 12
-magic = 25
-wander_radius = 4
+hitpoints = 400
+att = 38
+str = 38
+def = 42
+mage = 40
 style = "crush"
-attack_speed = 4
-respawn_delay = 50
+max_hit_melee = 50
+max_hit_magic = 130
+hunt_mode = "cowardly"
+respawn_delay = 250
+wander_radius = 4
 drop_table = "chaos_dwarf"
 combat_sounds = "monk_of_zamorak"
 categories = ["monk_of_zamorak"]

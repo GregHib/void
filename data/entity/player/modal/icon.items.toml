@@ -144,6 +144,16 @@ examine = "The tongue of evil."
 
 [jelly]
 id = 4142
+hitpoints = 750
+att = 45
+str = 45
+def = 120
+mage = 45
+style = "magical_melee"
+max_hit_melee = 50
+slayer_xp = 75.0
+categories = ["jellies"]
+respawn_delay = 15
 examine = "A slayer monster."
 
 [turoth]

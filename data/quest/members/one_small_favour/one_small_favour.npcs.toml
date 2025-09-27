@@ -3,3 +3,16 @@ id = 1800
 large_head = true
 wander_radius = 3
 examine = "Enthusiastic gnome construction engineer."
+
+[slagilith_normal]
+id = 1802
+hitpoints = 600
+att = 60
+str = 120
+def = 75
+style = "crush"
+max_hit_melee = 130
+attack_bonus = 10
+xp_bonus = 3.0
+hunt_mode = "cowardly"
+examine = "This monster totally rocks!"

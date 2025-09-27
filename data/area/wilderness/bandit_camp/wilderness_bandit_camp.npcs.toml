@@ -72,6 +72,16 @@ examine = "Has a fearsome posture, and a fearsome pair of weapons!"
 
 [speedy_keith]
 id = 204
+hitpoints = 370
+att = 32
+str = 26
+def = 27
+style = "slash"
+max_hit_melee = 40
+attack_bonus = 9
+slayer_xp = 37.0
+categories = ["bandits"]
+respawn_delay = 50
 examine = "Refuses to accept his hairstyle has gone out of fashion."
 
 [mysterious_ghost_wilderness_bandit_camp]

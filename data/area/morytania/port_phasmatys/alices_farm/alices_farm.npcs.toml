@@ -1,12 +1,24 @@
 [undead_cow]
 id = 1691
-categories = ["cows"]
+hitpoints = 80
+style = "crush"
+max_hit_melee = 10
+attack_bonus = -15
+slayer_xp = 8.0
+categories = ["cows", "zombies"]
+respawn_delay = 5
 examine = "It's an undead cow."
 
 [undead_chicken]
 id = 1692
-categories = ["birds"]
-examine = "Yep, definitely a chicken...an undead chicken."
+hitpoints = 30
+style = "stab"
+max_hit_melee = 10
+attack_bonus = -47
+slayer_xp = 3.0
+categories = ["birds", "zombies"]
+respawn_delay = 25
+examine = "Yep, definitely a chicken... an undead chicken."
 
 [old_man_alices_farm]
 id = 1696

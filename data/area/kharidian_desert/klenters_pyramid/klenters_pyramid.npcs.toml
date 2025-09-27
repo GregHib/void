@@ -15,22 +15,31 @@ id = 2011
 
 [mummy_klenters_pyramid]
 id = 2015
+hitpoints = 900
+att = 90
+str = 30
+def = 90
+style = "crush"
+max_hit_melee = 60
+respawn_delay = 10
 categories = ["zombies"]
 examine = "This mummy looks like it means business!"
 
 [mummy_klenters_pyramid_2]
 id = 2016
-categories = ["zombies"]
-examine = "An irate warrior-mummy."
+clone = "mummy_klenters_pyramid"
 
 [mummy_klenters_pyramid_3]
 id = 2017
+clone = "mummy_klenters_pyramid"
 
 [mummy_klenters_pyramid_4]
 id = 2018
+clone = "mummy_klenters_pyramid"
 
 [mummy_klenters_pyramid_5]
 id = 2019
+clone = "mummy_klenters_pyramid"
 
 [high_priest_klenters_pyramid_2]
 id = 1986
@@ -40,3 +49,25 @@ id = 1988
 
 [icthlarin_klenters_pyramid_2]
 id = 2012
+
+[mummy_level_96]
+id = 1958
+hitpoints = 10
+att = 255
+str = 2
+def = 50
+style = "melee"
+style = "crush"
+max_hit_melee = 10
+examine = "Highly flammable!"
+
+[mummy_level_98]
+id = 1959
+hitpoints = 100
+att = 255
+str = 2
+def = 50
+style = "melee"
+style = "crush"
+max_hit_melee = 10
+examine = "Highly flammable!"

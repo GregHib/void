@@ -8,6 +8,13 @@ examine = "Wears a stylish suit of armour."
 
 [jailer_black_knights_base]
 id = 201
+hitpoints = 470
+att = 40
+str = 40
+def = 40
+style = "crush"
+max_hit_melee = 50
+respawn_delay = 50
 examine = "Guards prisoners for the black knights."
 
 [black_knight_void_stares_back]

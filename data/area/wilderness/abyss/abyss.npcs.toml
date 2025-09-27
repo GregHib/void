@@ -24,6 +24,7 @@ attack_bonus = 15
 wander_radius = 8
 attack_radius = 4
 max_hit_melee = 110
+xp_bonus = -7.5
 hunt_mode = "aggressive"
 style = "stab"
 height = 30
@@ -45,6 +46,7 @@ style = "crush"
 height = 50
 attack_speed = 5
 respawn_delay = 5
+xp_bonus = -7.5
 examine = "Apparently walks the Abyss."
 
 [dark_mage]

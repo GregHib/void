@@ -160,36 +160,77 @@ id = 4769
 
 [vyrewatch_meiyerditch]
 id = 4813
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+attack_speed = 8
+style = "crush"
+max_hit_melee = 110
+hunt_mode = "cowardly"
+slayer_xp = 90.0
+categories = ["vampyres"]
+immune_poison = true
+immune_cannon = true
+respawn_delay = 25
+examine = "An evil, bloodsucking vampyre."
 
-[vyrewatch_meiyerditch_2]
+[vyrewatch_meiyerditch_level_120]
 id = 4814
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+attack_speed = 8
+style = "crush"
+max_hit_melee = 120
+hunt_mode = "cowardly"
+slayer_xp = 105.0
+categories = ["vampyres"]
+immune_poison = true
+immune_cannon = true
+respawn_delay = 25
+examine = "A thirsty-looking, airborne bloodsucker!"
 
 [vyrewatch_meiyerditch_3]
 id = 4815
+clone = "vyrewatch_meiyerditch"
 
 [vyrewatch_meiyerditch_4]
 id = 4825
+clone = "vyrewatch_meiyerditch"
 
 [vyrewatch_meiyerditch_5]
 id = 4826
+clone = "vyrewatch_meiyerditch_level_120"
 
 [vyrewatch_meiyerditch_6]
 id = 4827
+clone = "vyrewatch_meiyerditch"
 
 [vyrewatch_meiyerditch_7]
 id = 4828
+clone = "vyrewatch_meiyerditch"
 
 [vyrewatch_meiyerditch_8]
 id = 4829
+clone = "vyrewatch_meiyerditch"
 
 [vyrewatch_meiyerditch_9]
 id = 4830
+clone = "vyrewatch_meiyerditch_level_120"
 
 [vyrewatch_meiyerditch_10]
 id = 4831
+clone = "vyrewatch_meiyerditch"
 
 [vyrewatch_meiyerditch_11]
 id = 4833
+clone = "vyrewatch_meiyerditch"
 
 [flying_female_vampire]
 id = 7613
@@ -199,6 +240,17 @@ id = 7622
 
 [vampyre_juvenile_male]
 id = 4774
+hitpoints = 600
+att = 40
+str = 30
+def = 30
+style = "crush"
+max_hit_melee = 40
+slayer_xp = 60.0
+categories = ["vampyres"]
+immune_poison = true
+respawn_delay = 51
+examine = "A juvenile vampyre. It looks really hungry!"
 
 [vampyre_juvenile_female]
 id = 4775
@@ -206,3 +258,111 @@ id = 4775
 [papers_meiyerditch]
 id = 4765
 
+[vampyre_juvinate_level_50]
+id = 3520
+hitpoints = 600
+att = 50
+str = 37
+def = 30
+style = "crush"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+slayer_xp = 60.0
+categories = ["vampyres"]
+immune_poison = true
+examine = "A juvinate vampyre. It looks really hungry!"
+
+[vampyre_juvinate_level_50_2]
+id = 3538
+clone = "vampyre_juvinate_level_50"
+
+[vampyre_juvinate_level_54]
+id = 3521
+hitpoints = 850
+att = 40
+str = 40
+def = 30
+style = "crush"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+slayer_xp = 65.0
+categories = ["vampyres"]
+immune_poison = true
+examine = "A juvinate vampyre. It looks really hungry!"
+
+[vampyre_juvinate_level_59]
+id = 681
+hitpoints = 500
+att = 95
+str = 16
+def = 45
+mage = 50
+range = 50
+style = "slash"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 50.0
+categories = ["vampyres"]
+immune_poison = true
+examine = "A juvinate vampyre. It looks really hungry!"
+
+[vampyre_juvinate_level_75]
+id = 3537
+hitpoints = 1100
+att = 70
+str = 50
+def = 35
+style = "crush"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 110.0
+categories = ["vampyres"]
+immune_poison = true
+examine = "A juvinate vampyre. It looks really hungry!"
+
+[vampyre_juvinate_level_90]
+id = 4461
+hitpoints = 1000
+att = 113
+str = 46
+def = 55
+mage = 50
+range = 50
+style = "slash"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 100.0
+categories = ["vampyres"]
+immune_poison = true
+examine = "A juvinate vampyre. It looks really hungry!"
+
+[vampyre_juvinate_level_119]
+id = 4462
+hitpoints = 1500
+att = 127
+str = 76
+def = 65
+mage = 50
+range = 50
+style = "slash"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+slayer_xp = 150.0
+categories = ["vampyres"]
+immune_poison = true
+examine = "A juvinate vampyre. It looks really hungry!"
+
+[vanstrom_klause]
+id = 4793
+hitpoints = 1550
+att = 150
+str = 136
+def = 150
+mage = 150
+range = 150
+attack_speed = 8
+style = "melee"
+max_hit_melee = 160
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "An evil vampyre."

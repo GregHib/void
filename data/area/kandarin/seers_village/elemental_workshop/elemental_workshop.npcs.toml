@@ -1,13 +1,41 @@
 [earth_elemental_elemental_workshop]
 id = 1020
+hitpoints = 350
+att = 20
+str = 35
+def = 35
+mage = 10
+range = 30
+attack_speed = 6
+style = "crush"
+max_hit_melee = 40
+respawn_delay = 50
 examine = "An earth elemental."
 
 [air_elemental_elemental_workshop]
 id = 1021
+hitpoints = 300
+att = 40
+str = 20
+def = 30
+mage = 40
+range = 20
+style = "stab"
+max_hit_melee = 30
+respawn_delay = 50
 examine = "An air elemental."
 
 [water_elemental_elemental_workshop]
 id = 1022
+hitpoints = 300
+att = 30
+str = 30
+def = 30
+mage = 30
+range = 30
+style = "stab"
+max_hit_melee = 40
+respawn_delay = 50
 examine = "A water elemental."
 
 [elemental_rock_elemental_workshop]

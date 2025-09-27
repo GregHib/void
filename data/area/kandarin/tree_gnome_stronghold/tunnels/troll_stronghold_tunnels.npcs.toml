@@ -1,37 +1,44 @@
 [mountain_troll_troll_stronghold_tunnels]
 id = 1106
+hitpoints = 900
+att = 40
+str = 75
+def = 40
+mage = 0
+range = 0
+attack_speed = 6
+style = "crush"
+max_hit_melee = 110
+attack_bonus = 20
+hunt_mode = "cowardly"
+slayer_xp = 90.0
 categories = ["trolls"]
-examine = "Small for a troll, but mean and ugly."
+respawn_delay = 50
+examine = "Small for a troll but mean and ugly."
 
 [mountain_troll_troll_stronghold_tunnels_2]
 id = 1107
-categories = ["trolls"]
-examine = "Small for a troll, but mean and ugly."
+clone = "mountain_troll_troll_stronghold_tunnels"
 
 [mountain_troll_troll_stronghold_tunnels_3]
 id = 1108
-categories = ["trolls"]
-examine = "Small for a troll, but mean and ugly."
+clone = "mountain_troll_troll_stronghold_tunnels"
 
 [mountain_troll_troll_stronghold_tunnels_4]
 id = 1109
-categories = ["trolls"]
-examine = "Small for a troll, but mean and ugly."
+clone = "mountain_troll_troll_stronghold_tunnels"
 
 [mountain_troll_troll_stronghold_tunnels_5]
 id = 1110
-categories = ["trolls"]
-examine = "Small for a troll, but mean and ugly."
+clone = "mountain_troll_troll_stronghold_tunnels"
 
 [mountain_troll_troll_stronghold_tunnels_6]
 id = 1111
-categories = ["trolls"]
-examine = "Small for a troll, but mean and ugly."
+clone = "mountain_troll_troll_stronghold_tunnels"
 
 [mountain_troll_troll_stronghold_tunnels_7]
 id = 1112
-categories = ["trolls"]
-examine = "Small for a troll, but mean and ugly."
+clone = "mountain_troll_troll_stronghold_tunnels"
 
 [eadgar_troll_stronghold_tunnels]
 id = 1113
@@ -56,6 +63,17 @@ examine = "One of the troll generals."
 
 [twig_troll_stronghold_tunnels]
 id = 1128
+hitpoints = 900
+att = 40
+str = 90
+def = 25
+mage = 0
+range = 0
+attack_speed = 6
+style = "crush"
+max_hit_melee = 130
+attack_bonus = 20
+slayer_xp = 90.0
 categories = ["trolls"]
 examine = "He's guarding the cells."
 
@@ -91,7 +109,20 @@ examine = "Human is his speciality."
 
 [mountain_troll_troll_stronghold_tunnels_8]
 id = 1138
+hitpoints = 900
+att = 40
+str = 90
+def = 25
+mage = 0
+range = 0
+attack_speed = 6
+style = "crush"
+max_hit_melee = 130
+attack_bonus = 20
+hunt_mode = "cowardly"
+slayer_xp = 90.0
 categories = ["trolls"]
+respawn_delay = 50
 examine = "Small for a troll, but mean and ugly."
 
 [guard_troll_stronghold_tunnels]

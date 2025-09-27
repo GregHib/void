@@ -1,5 +1,17 @@
 [shadow_warrior_legends_guild_dungeon]
 id = 158
+hitpoints = 670
+att = 36
+str = 33
+def = 36
+mage = 0
+range = 0
+style = "slash"
+max_hit_melee = 60
+attack_bonus = 20
+hunt_mode = "cowardly"
+slayer_xp = 67.0
 categories = ["shadow_warriors"]
+respawn_delay = 30
 examine = "A fighter from the supernatural world. He's a shadow of his former self."
 

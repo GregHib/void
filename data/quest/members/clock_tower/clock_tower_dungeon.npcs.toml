@@ -9,6 +9,16 @@ examine = "A dastardly blanket thief."
 
 [head_thief_clocktower_dungeon]
 id = 283
+hitpoints = 370
+att = 24
+str = 18
+def = 16
+mage = 0
+range = 2
+attack_speed = 5
+style = "slash"
+max_hit_melee = 30
+respawn_delay = 25
 examine = "The head of the treacherous blanket stealing gang."
 
 [dungeon_rat_clocktower_dungeon_2]

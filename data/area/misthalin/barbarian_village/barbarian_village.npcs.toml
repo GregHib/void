@@ -155,7 +155,7 @@ str = 3
 def = 10
 range = 15
 style = "ranged"
-max_hit_ranged = 10
+max_hit_range = 10
 attack_bonus = 9
 respawn_delay = 50
 examine = "Aitan, a barbarian archer."
@@ -237,6 +237,13 @@ id = 7728
 
 [unicorn]
 id = 89
+hitpoints = 190
+att = 11
+str = 13
+def = 13
+style = "stab"
+max_hit_melee = 20
+respawn_delay = 90
 examine = "Horse with a horn."
 
 [lakki_the_delivery_dwarf_2]

@@ -1,5 +1,17 @@
 [the_kendal_mountain_camp_caves]
 id = 1811
+hitpoints = 500
+att = 65
+str = 65
+def = 60
+mage = 0
+range = 0
+style = "crush"
+max_hit_melee = 90
+attack_bonus = 5
+hunt_mode = "cowardly"
+examine = "Is that a bear... or a man?"
 
 [the_kendal_mountain_camp_caves_2]
 id = 1812
+clone = "the_kendal_mountain_camp_caves"

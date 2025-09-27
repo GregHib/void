@@ -111,12 +111,28 @@ id = 4346
 
 [giant_mosquito]
 id = 4347
+hitpoints = 30
+att = 5
+def = 45
+attack_speed = 12
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 50
 examine = "A flying blood sucker."
 
 [jungle_horror]
 id = 4352
+hitpoints = 450
+att = 70
+str = 70
+def = 55
+style = "stab"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+slayer_xp = 45.0
 categories = ["jungle_horrors"]
-examine = "A horrible, emaciated ape like creature with beady pink eyes."
+respawn_delay = 50
+examine = "A horrible, emaciated ape like creature with beady red eyes."
 
 [cavey_davey]
 id = 4358

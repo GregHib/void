@@ -8,7 +8,16 @@ examine = "Wonder how long he's been here..."
 
 [crypt_rat_barrows]
 id = 2032
+hitpoints = 350
+att = 70
+str = 20
+def = 20
+style = "stab"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+slayer_xp = 35.0
 categories = ["rats"]
+respawn_delay = 50
 examine = "A nasty little rodent."
 
 [skeleton_barrows]
@@ -31,3 +40,89 @@ id = 5422
 categories = ["skeletons"]
 examine = "Could do with gaining a few pounds."
 
+[ahrim_the_blighted]
+id = 2025
+hitpoints = 1000
+def = 100
+mage = 100
+attack_speed = 6
+style = "magic"
+max_hit_melee = 200
+xp_bonus = 2.5
+hunt_mode = "cowardly"
+slayer_xp = 102.5
+categories = ["bosses"]
+examine = "A vengeful spirit corrupted by dark magic."
+
+[dharok_the_wretched]
+id = 2026
+hitpoints = 1000
+att = 100
+str = 100
+def = 100
+attack_speed = 7
+style = "slash"
+max_hit_melee = 57
+xp_bonus = 1.5
+hunt_mode = "cowardly"
+slayer_xp = 115.0
+categories = ["bosses"]
+examine = "A vengeful spirit corrupted by dark magic."
+
+[guthan_the_infested]
+id = 2027
+hitpoints = 1000
+att = 100
+str = 100
+def = 100
+attack_speed = 5
+style = "crush"
+max_hit_melee = 240
+xp_bonus = 1.5
+hunt_mode = "cowardly"
+slayer_xp = 115.0
+categories = ["bosses"]
+examine = "A vengeful spirit corrupted by dark magic."
+
+[karil_the_tainted]
+id = 2028
+hitpoints = 1000
+def = 100
+range = 100
+style = "ranged"
+max_hit_melee = 200
+ranged_strength = 55
+hunt_mode = "cowardly"
+slayer_xp = 100.0
+categories = ["bosses"]
+examine = "A vengeful spirit corrupted by dark magic."
+
+[torag_the_corrupted]
+id = 2029
+hitpoints = 1000
+att = 100
+str = 100
+def = 100
+attack_speed = 5
+style = "crush"
+max_hit_melee = 230
+xp_bonus = 12.5
+hunt_mode = "cowardly"
+slayer_xp = 112.5
+categories = ["bosses"]
+examine = "A vengeful spirit corrupted by dark magic."
+
+[verac_the_defiled]
+id = 2030
+hitpoints = 1000
+att = 100
+str = 100
+def = 100
+attack_speed = 5
+style = "stab"
+max_hit_melee = 23
+xp_bonus = 12.5
+hunt_mode = "cowardly"
+slayer_xp = 112.5
+categories = ["bosses"]
+examine = "A vengeful spirit corrupted by dark magic."

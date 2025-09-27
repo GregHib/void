@@ -8,11 +8,19 @@ examine = "He's been guarding the tavern for a bit too long."
 
 [khazard_3]
 id = 255
+hitpoints = 250
+att = 20
+str = 18
+def = 20
+style = "slash"
+max_hit_melee = 30
+attack_bonus = 10
+respawn_delay = 50
 examine = "His armour indicates he's a Khazard Guard."
 
 [khazard_4]
 id = 256
-examine = "His armour indicates he's a Khazard Guard."
+clone = "khazard_3"
 
 [angor]
 id = 259
@@ -102,6 +110,7 @@ examine = "He demands to have some booze."
 
 [khazard_20]
 id = 7528
+clone = "khazard_3"
 
 [lazy_khazard]
 id = 7550

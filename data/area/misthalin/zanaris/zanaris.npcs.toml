@@ -133,6 +133,15 @@ examine = "He looks a little lost."
 
 [otherworldy_being]
 id = 126
+hitpoints = 660
+att = 56
+str = 56
+def = 46
+style = "crush"
+max_hit_melee = 70
+slayer_xp = 66.0
+categories = ["otherworldly_beings"]
+respawn_delay = 20
 examine = "Is he invisible or just a set of floating clothing?"
 
 [fairy_queen_3]
@@ -206,3 +215,25 @@ id = 11433
 
 [fairy_8_2]
 id = 11434
+
+[zygomite]
+id = 3346
+hitpoints = 650
+att = 65
+str = 65
+def = 65
+mage = 65
+range = 65
+style = "magical_melee"
+style = "magical_ranged"
+max_hit_melee = 80
+max_hit_ranged = 60
+attack_bonus = 30
+slayer_xp = 65.0
+categories = ["mutated_zygomites"]
+respawn_delay = 30
+examine = "A bouncy fungus."
+
+[zygomite_2]
+id = 3347
+clone = "zygomite"

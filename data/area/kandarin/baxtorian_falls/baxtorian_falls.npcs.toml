@@ -44,3 +44,29 @@ examine = "A dwarven guard."
 [mysterious_ghost_baxtorian_falls_2]
 id = 2399
 
+[skeleton_heavy]
+id = 6106
+hitpoints = 1240
+att = 115
+str = 114
+def = 110
+style = "crush"
+max_hit_melee = 150
+attack_bonus = 9
+slayer_xp = 124.0
+categories = ["skeletons"]
+examine = "He's less heavy now."
+
+[skeleton_hero]
+id = 6103
+hitpoints = 1240
+att = 145
+str = 134
+def = 110
+style = "crush"
+max_hit_melee = 180
+attack_bonus = 9
+hunt_mode = "cowardly"
+slayer_xp = 124.0
+categories = ["skeletons"]
+examine = "An opponent from the grave. He seems unimpressed by your bone rummaging."

@@ -65,8 +65,53 @@ examine = "What on Gielinor is that?!?"
 
 [hopeless_creature_tolnas_rift]
 id = 3667
+hitpoints = 710
+att = 59
+str = 62
+def = 59
+style = "slash"
+max_hit_melee = 70
+hunt_mode = "cowardly"
+respawn_delay = 25
+examine = "A hopeless poor creature."
 
 [angry_giant_rat_tolnas_rift_2]
 id = 4940
 clone = "angry_giant_rat_tolnas_rift"
+
+[tolna_south]
+id = 3658
+hitpoints = 370
+att = 42
+str = 41
+def = 40
+style = "slash"
+max_hit_melee = 50
+attack_speed = 5
+hunt_mode = "cowardly"
+examine = "Is that really Tolna?"
+
+[tolna_east]
+id = 3659
+hitpoints = 370
+att = 42
+str = 41
+def = 40
+style = "ranged"
+max_hit_range = 50
+attack_speed = 5
+hunt_mode = "cowardly"
+examine = "Is that really Tolna?"
+
+[tolna_north]
+id = 3660
+hitpoints = 370
+att = 42
+str = 41
+def = 40
+style = "stab"
+max_hit_melee = 50
+attack_speed = 5
+hunt_mode = "cowardly"
+examine = "Is that really Tolna?"
 

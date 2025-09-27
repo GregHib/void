@@ -1,5 +1,21 @@
 [killerwatt_killerwatt_plane]
 id = 3202
+hitpoints = 510
+att = 50
+str = 50
+def = 40
+mage = 67
+range = 67
+attack_speed = 2
+style = "magical_ranged"
+max_hit_range = 60
+max_hit_melee = 80
+max_hit_range = 13
+attack_bonus = 30
+slayer_xp = 51.0
+categories = ["killerwatts"]
+respawn_delay = 30
+examine = "A ball of electrical energy."
 
 [storm_cloud_killerwatt_plane]
 id = 3203

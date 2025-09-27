@@ -179,10 +179,27 @@ examine = "Didn't the mage say this procedure was totally safe?"
 
 [fire_wizard]
 id = 2709
+hitpoints = 250
+att = 5
+str = 5
+def = 10
+mage = 10
+range = 0
+style = "magic"
+max_hit_magic = 60
+respawn_delay = 50
 examine = "Caution: HOT!"
 
 [air_wizard]
 id = 2712
+hitpoints = 250
+att = 5
+str = 5
+def = 10
+mage = 10
+style = "magic"
+max_hit_melee = 10
+respawn_delay = 50
 examine = "At least he looks solid enough to fight."
 
 [malignius_mortifer]
@@ -191,6 +208,11 @@ examine = "A master of necromancy!"
 
 [drunken_man_falador]
 id = 3222
+hitpoints = 70
+str = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "One of Gielinor's many citizens, currently incapacitated by alcohol."
 
 [man_falador]
@@ -206,6 +228,14 @@ examine = "One of Gielinor's many citizens."
 
 [guard_falador]
 id = 3228
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+style = "stab"
+max_hit_melee = 30
+attack_bonus = 4
+respawn_delay = 50
 pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here."
 
@@ -239,18 +269,35 @@ examine = "A busy workman"
 
 [cuffs]
 id = 3237
+hitpoints = 70
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "He looks a bit dodgy."
 
 [narf]
 id = 3238
+hitpoints = 70
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "Looks unpleasant."
 
 [rusty]
 id = 3239
+hitpoints = 70
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "Seems to be loitering."
 
 [jeff]
 id = 3240
+hitpoints = 70
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "Untrustworthy."
 
 [guard_falador_7]
@@ -259,13 +306,41 @@ clone = "guard_falador"
 
 [dark_wizard_falador]
 id = 3242
+hitpoints = 250
+att = 20
+str = 10
+def = 20
+mage = 25
+style = "magic"
+max_hit_magic = 60
+hunt_mode = "cowardly"
+respawn_delay = 50
+examine = "A practicer of dark arts."
 
 [dark_wizard_falador_2]
 id = 3243
+hitpoints = 250
+att = 20
+str = 10
+def = 15
+mage = 25
+style = "magic"
+max_hit_magic = 60
+hunt_mode = "cowardly"
+respawn_delay = 50
 examine = "A practicer of dark arts."
 
 [dark_wizard_falador_3]
 id = 3244
+hitpoints = 150
+att = 5
+str = 5
+def = 10
+mage = 10
+style = "magic"
+max_hit_magic = 60
+hunt_mode = "cowardly"
+respawn_delay = 50
 examine = "A practicer of dark arts."
 
 [dark_wizard_falador_4]
@@ -385,6 +460,15 @@ examine = "A tiny nut-thief."
 
 [highwayman_falador]
 id = 7443
+hitpoints = 130
+att = 2
+str = 2
+def = 4
+style = "stab"
+max_hit_melee = 10
+attack_bonus = 6
+hunt_mode = "cowardly"
+respawn_delay = 100
 examine = "He holds up passers by."
 
 [assistant_falador]
@@ -440,15 +524,41 @@ examine = "Bow wow."
 
 [guard_falador_8]
 id = 9
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+style = "stab"
+max_hit_melee = 30
+attack_bonus = 4
+respawn_delay = 50
 pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here."
 
 [water_wizard]
 id = 2710
+hitpoints = 250
+att = 5
+str = 5
+def = 10
+mage = 10
+range = 0
+style = "magic"
+max_hit_melee = 20
+respawn_delay = 50
 examine = "Hydro-power!"
 
 [earth_wizard]
 id = 2711
+hitpoints = 250
+att = 5
+str = 5
+def = 10
+mage = 10
+range = 0
+style = "magic"
+max_hit_melee = 60
+respawn_delay = 50
 examine = "His hands are covered in mud. At least, I hope that's mud."
 
 [wayne]
@@ -529,3 +639,38 @@ id = 6361
 [jessika_falador_2_2]
 id = 12266
 
+[gardener_level_3]
+id = 3234
+hitpoints = 70
+att = 2
+def = 5
+style = "stab"
+max_hit_melee = 10
+respawn_delay = 50
+examine = "An old gardener."
+
+[gardener_level_4]
+id = 1217
+hitpoints = 70
+def = 7
+style = "stab"
+max_hit_melee = 10
+respawn_delay = 50
+examine = "An old gardener."
+
+[gardener_level_4_2]
+id = 3914
+clone = "gardener_level_4"
+
+[white_knight]
+id = 19
+hitpoints = 520
+att = 27
+str = 29
+def = 21
+attack_speed = 7
+style = "slash"
+max_hit_melee = 60
+attack_bonus = 30
+respawn_delay = 50
+examine = "The knight seems to be watching something."

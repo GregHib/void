@@ -24,3 +24,17 @@ id = 5392
 categories = ["skeletons"]
 examine = "Put some meat on those bones!"
 
+[treus_dayth]
+id = 1540
+hitpoints = 1000
+att = 70
+str = 70
+def = 100
+style = "crush"
+max_hit_range = 150
+max_hit_crush = 80
+hunt_mode = "cowardly"
+slayer_xp = 100.0
+categories = ["ghosts"]
+immune_poison = true
+examine = "Eeek! A big ghost!"

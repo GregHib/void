@@ -34,82 +34,233 @@ examine = "She smells unpleasantly of chemicals."
 
 [boris]
 id = 6026
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "A traveling man. Are those fleas?"
 
 [imre]
 id = 6027
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "A well organised shop keeper."
 
 [yuri]
 id = 6028
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "He's staring at the moon."
 
 [joseph]
 id = 6029
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "He keeps calling me comrade."
 
 [nikolai]
 id = 6030
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "There's a set of brows that mean business."
 
 [eduard]
 id = 6031
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "This is one feral looking innkeeper."
 
 [lev]
 id = 6032
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "A tough looking villager."
 
 [georgy]
 id = 6033
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "A simple villager."
 
 [svetlana]
 id = 6034
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "Seems a bit of a drama queen."
 
 [irina]
 id = 6035
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "I bet she works out."
 
 [alexis]
 id = 6036
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "She doesn't say much."
 
 [milla]
 id = 6037
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "She looks like she can handle herself."
 
 [galina]
 id = 6038
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "She seems light on her feet."
 
 [sofiya]
 id = 6039
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "A wise villager."
 
 [ksenia]
 id = 6040
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "Not exactly a warrior princess."
 
 [yadviga]
 id = 6041
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "A well off villager."
 
 [nikita]
 id = 6042
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "The woman."
 
 [vera]
 id = 6043
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "She seems sure of herself."
 
 [zoja]
 id = 6044
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "A healthy villager."
+
+[werewolf_boris]
+id = 6006
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+style = "slash"
+max_hit_melee = 80
+slayer_xp = 100.0
+categories = ["werewolves"]
+examine = "Eek! A werewolf!"
 
 [liliya]
 id = 6045
+hitpoints = 600
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
 examine = "She's looking for flowers."
 
 [achtryn]
@@ -120,7 +271,16 @@ id = 8482
 
 [ghoul_canifis]
 id = 1218
+hitpoints = 500
+att = 30
+str = 40
+def = 30
+style = "crush"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+slayer_xp = 50.0
 categories = ["ghouls"]
+respawn_delay = 35
 examine = "It's totally savage."
 
 [old_crone]

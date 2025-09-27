@@ -1,0 +1,13 @@
+[giant_sea_snake]
+id = 3943
+hitpoints = 1000
+att = 170
+str = 90
+def = 160
+range = 130
+style = "crush"
+style = "ranged"
+max_hit_melee = 140
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "A big snake that lives in the sea. How did it get in here?"

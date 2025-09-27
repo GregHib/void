@@ -9,3 +9,20 @@ max_hit_melee = 80
 slayer_xp = 50.0
 categories = ["birds"]
 examine = "A mountain-dwelling bird. Cute, but vicious."
+
+[giant_roc_normal]
+id = 4972
+hitpoints = 2500
+att = 130
+str = 130
+def = 100
+range = 130
+attack_speed = 6
+style = "crush"
+style = "ranged"
+max_hit_melee = 140
+max_hit_range = 200
+hunt_mode = "cowardly"
+slayer_xp = 250.0
+categories = ["birds"]
+examine = "A very, very large mountain-dwelling bird."

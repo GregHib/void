@@ -1,25 +1,78 @@
 [khazard_trooper_battlefield]
 id = 2245
+hitpoints = 220
+att = 17
+str = 18
+def = 12
+attack_speed = 6
+style = "crush"
+max_hit_melee = 30
+attack_bonus = 8
+respawn_delay = 100
+examine = "It's one of General Khazard's warriors."
 
 [khazard_trooper_battlefield_2]
 id = 2246
-examine = "It's one of General Khazard's warriors."
+clone = "khazard_trooper_battlefield"
 
 [gnome_troop_battlefield]
 id = 2247
+hitpoints = 30
+range = 5
+style = "ranged"
+max_hit_range = 10
+attack_bonus = -42
+ranged_strength = 2
+respawn_delay = 60
+examine = "Like a mini man!"
 
 [gnome_troop_battlefield_2]
 id = 2248
+clone = "gnome_troop_battlefield"
 
 [gnome_battlefield]
 id = 2249
-examine = "Like a mini man!"
+clone = "gnome_troop_battlefield"
 
 [gnome_battlefield_2]
 id = 2250
 
 [gnome_battlefield_3]
 id = 2251
+clone = "gnome_troop_battlefield"
+
+[gnome_archer]
+id = 3814
+hitpoints = 100
+range = 6
+attack_speed = 6
+style = "ranged"
+max_hit_range = 20
+hunt_mode = "cowardly"
+examine = "A Gnome Arrow-chucker"
+
+[gnome_driver]
+id = 3815
+hitpoints = 100
+att = 3
+str = 5
+def = 3
+attack_speed = 6
+style = "crush"
+max_hit_melee = 10
+hunt_mode = "cowardly"
+examine = "Yee haa!"
+
+[gnome_mage]
+id = 3816
+hitpoints = 100
+att = 3
+range = 5
+attack_speed = 6
+style = "magic"
+max_hit_magic = 10
+hunt_mode = "cowardly"
+examine = "A battle mage of the gnomish variety."
 
 [lieutenant_schepbur_battlefield]
 id = 3817
@@ -47,15 +100,36 @@ examine = "It's a gnome who specialises in covert operations."
 
 [mounted_terrorbird_gnome_battlefield]
 id = 6109
+hitpoints = 550
+att = 40
+str = 40
+def = 40
+style = "stab"
+max_hit_melee = 50
+ranged_strength = 2
+slayer_xp = 55.0
 categories = ["birds"]
+respawn_delay = 30
 examine = "These gnomes know how to get around!"
 
 [mounted_terrorbird_gnome_battlefield_2]
 id = 6110
+clone = "mounted_terrorbird_gnome_battlefield"
 
 [mounted_terrorbird_gnome_battlefield_3]
 id = 6111
+clone = "mounted_terrorbird_gnome_battlefield"
 
 [tortoise_battlefield]
 id = 3808
+hitpoints = 1200
+att = 30
+str = 100
+def = 80
+mage = 50
+range = 50
+max_hit_melee = 110
+max_hit_magic = 110
+max_hit_range = 110
+respawn_delay = 50
 examine = "Massive beast of War with extra Gnome."

@@ -1,0 +1,16 @@
+[slash_bash]
+id = 2060
+hitpoints = 1000
+att = 100
+str = 120
+def = 60
+range = 100
+attack_speed = 6
+style = "ranged"
+style = "crush"
+max_hit_melee = 130
+attack_bonus = 22
+hunt_mode = "cowardly"
+slayer_xp = 100.0
+categories = ["zombies"]
+examine = "A powerful looking Zogre."

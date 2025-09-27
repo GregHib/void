@@ -89,14 +89,33 @@ examine = "A mourner, or plague healer."
 
 [mourner_4]
 id = 347
+hitpoints = 190
+att = 8
+str = 8
+def = 8
+style = "crush"
+max_hit_melee = 20
+attack_bonus = 6
 examine = "A mourner, or plague healer."
 
 [mourner_5]
 id = 348
+hitpoints = 130
+att = 12
+str = 16
+def = 12
+style = "crush"
+max_hit_melee = 30
 examine = "A mourner, or plague healer."
 
 [mourner_staff]
 id = 357
+hitpoints = 190
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
 examine = "A mourner, or plague healer."
 
 [mourner_guard]
@@ -105,6 +124,12 @@ examine = "A mourner, or plague healer."
 
 [mourner]
 id = 2373
+hitpoints = 1000
+att = 95
+str = 95
+def = 80
+style = "stab"
+max_hit_melee = 100
 examine = "A mourner, or plague healer."
 
 [head_mourner]

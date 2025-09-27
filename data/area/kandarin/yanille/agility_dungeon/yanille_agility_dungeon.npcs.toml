@@ -16,7 +16,17 @@ examine = "A crazy evil druid."
 
 [salarin_the_twisted]
 id = 205
-examine = "A crazy, evil druid."
+hitpoints = 700
+att = 58
+str = 58
+def = 62
+style = "crush"
+max_hit_melee = 70
+hunt_mode = "cowardly"
+slayer_xp = 70.0
+categories = ["chaos_druids"]
+respawn_delay = 50
+examine = "Twisted by name, twisted by nature."
 
 [sigbert_the_adventurer]
 id = 37

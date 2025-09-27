@@ -25,16 +25,6 @@ id = 1587
 clone = "moss_giant"
 id = 1588
 
-[moss_giant_glarials_tomb]
-clone = "moss_giant"
-id = 1681
-hitpoints = 1200
-att = 60
-str = 60
-def = 60
-max_hit_melee = 140
-examine = "Bigger than your average moss giant."
-
 [moss_giant_4]
 clone = "moss_giant"
 id = 4688

@@ -172,12 +172,22 @@ examine = "Female desert villager."
 [menaphite_leader_pollnivneach_2]
 id = 1901
 
-[menaphite_thug_pollnivneach_2]
+[menaphite_thug_pollnivneach_before_quest]
 id = 1904
+hitpoints = 600
+att = 60
+str = 50
+def = 20
+style = "crush"
+max_hit_melee = 70
+attack_bonus = 4
+respawn_delay = 5
+examine = "Menaphite thug."
 
-[menaphite_thug_pollnivneach_3]
+[menaphite_thug_pollnivneach_after_quest]
 id = 1905
 pickpocket = { level = 65, xp = 137.5, table = "thug" }
+clone = "menaphite_thug_pollnivneach_before_quest"
 
 [bandit_pollnivneach_2_2]
 id = 6174

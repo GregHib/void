@@ -5,6 +5,21 @@ examine = "A big powerful dragon."
 
 [mithril_dragon]
 id = 5363
+hitpoints = 2540
+att = 268
+str = 268
+def = 268
+mage = 168
+range = 168
+style = "stab"
+max_hit_melee = 280
+max_hit_magic = 180
+max_hit_range = 220
+max_hit_dragonfire = 500
+xp_bonus = 7.5
+hunt_mode = "cowardly"
+slayer_xp = 273.0
 categories = ["mithril_dragons"]
+respawn_delay = 30
 examine = "Experimenting with mithril gone bad!"
 

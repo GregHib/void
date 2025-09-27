@@ -349,3 +349,430 @@ examine = "Duck!"
 [defiler_level_97_2]
 id = 3771
 clone = "defiler_level_97"
+
+[portal_shield_purple]
+id = 6142
+def = 120
+mage = 0
+immune_poison = true
+examine = "The Void Knight will soon weaken the shield."
+
+[portal_shield_blue]
+id = 6143
+clone = "portal_shield_purple"
+
+[portal_shield_yellow]
+id = 6144
+clone = "portal_shield_purple"
+
+[portal_shield_red]
+id = 6145
+clone = "portal_shield_purple"
+
+[portal_purple]
+id = 6150
+def = 120
+mage = 0
+immune_poison = true
+examine = "Not somewhere I want to go..."
+
+[portal_blue]
+id = 6151
+clone = "portal_purple"
+
+[portal_yellow]
+id = 6152
+clone = "portal_purple"
+
+[portal_red]
+id = 6153
+clone = "portal_purple"
+
+[ravager_level_36]
+id = 3742
+hitpoints = 230
+att = 27
+str = 57
+def = 13
+mage = 0
+range = 0
+style = "crush"
+max_hit_melee = 70
+hunt_mode = "cowardly"
+examine = "Worse than termites!"
+
+[ravager_level_53]
+id = 3743
+hitpoints = 380
+att = 37
+str = 82
+def = 23
+mage = 0
+range = 0
+style = "crush"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+examine = "Worse than termites!"
+
+[ravager_level_71]
+id = 3744
+hitpoints = 530
+att = 47
+str = 107
+def = 33
+mage = 0
+range = 0
+style = "crush"
+max_hit_melee = 120
+hunt_mode = "cowardly"
+examine = "Worse than termites!"
+
+[ravager_level_89]
+id = 3745
+hitpoints = 680
+att = 57
+str = 132
+def = 43
+mage = 0
+range = 0
+style = "crush"
+max_hit_melee = 140
+hunt_mode = "cowardly"
+examine = "Worse than termites!"
+
+[ravager_level_106]
+id = 3746
+hitpoints = 830
+att = 67
+str = 157
+def = 53
+mage = 0
+range = 0
+style = "crush"
+max_hit_melee = 170
+hunt_mode = "cowardly"
+examine = "Worse than termites!"
+
+[shifter_level_38]
+id = 3732
+hitpoints = 230
+att = 47
+str = 37
+def = 23
+mage = 27
+range = 0
+style = "stab"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "Nippy little thing!"
+
+[shifter_level_38_2]
+id = 3733
+clone = "shifter_level_38"
+
+[shifter_level_57]
+id = 3734
+hitpoints = 380
+att = 67
+str = 52
+def = 38
+mage = 37
+range = 0
+style = "stab"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "Nippy little thing!"
+
+[shifter_level_57_2]
+id = 3735
+clone = "shifter_level_57"
+
+[shifter_level_76]
+id = 3736
+hitpoints = 530
+att = 87
+str = 67
+def = 53
+mage = 47
+range = 0
+style = "stab"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "Nippy little thing!"
+
+[shifter_level_76_2]
+id = 3737
+clone = "shifter_level_76"
+
+[shifter_level_90]
+id = 3738
+hitpoints = 680
+att = 100
+str = 75
+def = 68
+mage = 50
+range = 0
+style = "stab"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "Nippy little thing!"
+
+[shifter_level_90_2]
+id = 3739
+clone = "shifter_level_90"
+
+[shifter_level_104]
+id = 3740
+hitpoints = 830
+att = 110
+str = 83
+def = 83
+mage = 60
+range = 0
+style = "stab"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "Nippy little thing!"
+
+[shifter_level_104_2]
+id = 3741
+clone = "shifter_level_104"
+
+[spinner_level_36]
+id = 3747
+hitpoints = 330
+att = 17
+str = 17
+def = 43
+mage = 37
+range = 0
+style = "melee"
+style = "crush"
+max_hit_melee = 30
+examine = "Eeewww!"
+
+[spinner_level_55]
+id = 3748
+hitpoints = 530
+att = 22
+str = 22
+def = 68
+mage = 52
+range = 0
+style = "melee"
+style = "crush"
+max_hit_melee = 30
+examine = "Eeewww!"
+
+[spinner_level_74]
+id = 3749
+hitpoints = 730
+att = 27
+str = 27
+def = 93
+mage = 67
+range = 0
+style = "melee"
+style = "crush"
+max_hit_melee = 40
+examine = "Eeewww!"
+
+[spinner_level_88]
+id = 3751
+hitpoints = 930
+att = 37
+str = 37
+def = 143
+mage = 37
+range = 0
+style = "melee"
+style = "crush"
+max_hit_melee = 50
+examine = "Eeewww!"
+
+[spinner_level_92]
+id = 3750
+hitpoints = 1010
+att = 32
+str = 32
+def = 118
+mage = 82
+range = 0
+style = "melee"
+style = "crush"
+max_hit_melee = 40
+examine = "Eeewww!"
+
+[splatter_level_22]
+id = 3727
+hitpoints = 130
+att = 17
+str = 17
+def = 33
+mage = 17
+range = 0
+style = "crush"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+examine = "Don't burst its bubble!"
+
+[splatter_level_33]
+id = 3728
+hitpoints = 230
+att = 22
+str = 22
+def = 53
+mage = 22
+range = 0
+style = "crush"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+examine = "Don't burst its bubble!"
+
+[splatter_level_44]
+id = 3729
+hitpoints = 330
+att = 27
+str = 27
+def = 73
+mage = 27
+range = 0
+style = "crush"
+max_hit_melee = 40
+hunt_mode = "cowardly"
+examine = "Don't burst its bubble!"
+
+[splatter_level_54]
+id = 3730
+hitpoints = 430
+att = 32
+str = 32
+def = 93
+mage = 32
+range = 0
+style = "crush"
+max_hit_melee = 40
+hunt_mode = "cowardly"
+examine = "Don't burst its bubble!"
+
+[splatter_level_65]
+id = 3731
+hitpoints = 530
+att = 37
+str = 37
+def = 113
+mage = 37
+range = 0
+style = "crush"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+examine = "Don't burst its bubble!"
+
+[torcher_level_33]
+id = 3752
+hitpoints = 180
+att = 0
+str = 0
+def = 25
+mage = 46
+range = 0
+style = "ranged_magic"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+examine = "Burn baby, burn!"
+
+[torcher_level_33_2]
+id = 3753
+clone = "torcher_level_33"
+
+[torcher_level_49]
+id = 3754
+hitpoints = 300
+att = 0
+str = 0
+def = 41
+mage = 66
+range = 0
+style = "ranged_magic"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+examine = "Burn baby, burn!"
+
+[torcher_level_49_2]
+id = 3755
+clone = "torcher_level_49"
+
+[torcher_level_49_3]
+id = 11535
+clone = "torcher_level_49"
+
+[torcher_level_66]
+id = 3756
+hitpoints = 450
+att = 0
+str = 0
+def = 57
+mage = 85
+range = 0
+style = "ranged_magic"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+examine = "Burn baby, burn!"
+
+[torcher_level_66_2]
+id = 3757
+clone = "torcher_level_66"
+
+[torcher_level_79]
+id = 3758
+hitpoints = 570
+att = 0
+str = 0
+def = 73
+mage = 97
+range = 0
+style = "ranged_magic"
+max_hit_melee = 110
+hunt_mode = "cowardly"
+examine = "Burn baby, burn!"
+
+[torcher_level_79_2]
+id = 3759
+clone = "torcher_level_79"
+
+[torcher_level_91]
+id = 3760
+hitpoints = 710
+att = 0
+str = 0
+def = 89
+mage = 107
+range = 0
+style = "ranged_magic"
+max_hit_melee = 120
+hunt_mode = "cowardly"
+examine = "Burn baby, burn!"
+
+[torcher_level_92]
+id = 3761
+hitpoints = 710
+att = 0
+str = 0
+def = 89
+mage = 107
+range = 0
+style = "ranged_magic"
+max_hit_melee = 120
+hunt_mode = "cowardly"
+examine = "Burn baby, burn!"
+
+[void_knight]
+id = 3782
+def = 50
+mage = 50
+examine = "A powerful knight of balance."

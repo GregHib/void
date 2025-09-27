@@ -1,0 +1,9 @@
+[thrantax_the_mighty]
+id = 238
+hitpoints = 800
+att = 80
+str = 80
+def = 80
+style = "crush"
+max_hit_melee = 90
+examine = "A terrifying spirit."

@@ -1,0 +1,67 @@
+[frogeel]
+id = 5593
+hitpoints = 900
+att = 91
+str = 89
+def = 90
+style = "slash"
+max_hit_melee = 100
+hunt_mode = "cowardly"
+examine = "Is it a frog, or is it an eel?"
+
+[jubster]
+id = 5596
+hitpoints = 600
+att = 82
+str = 78
+def = 81
+style = "crush"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+examine = "A jubbly bird with claws."
+
+[newtroost]
+id = 5597
+hitpoints = 180
+att = 18
+str = 16
+def = 17
+style = "stab"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+examine = "Since when did newts have beaks?"
+
+[spidine]
+id = 5594
+hitpoints = 350
+att = 37
+str = 40
+def = 36
+style = "slash"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+examine = "It's a spider. No, a giant sardine..."
+
+[swordchick]
+id = 5595
+hitpoints = 350
+att = 41
+str = 42
+def = 45
+style = "stab"
+max_hit_melee = 50
+attack_bonus = +0
+hunt_mode = "cowardly"
+examine = "Definitely not a chicken or a swordfish."
+
+[unicow]
+id = 5603
+hitpoints = 240
+att = 18
+str = 26
+def = 22
+style = "crush"
+max_hit_melee = 40
+attack_bonus = +0
+hunt_mode = "cowardly"
+examine = "Half unicorn, half cow."

@@ -30,7 +30,7 @@ spawns = [
   { id = "mithril_dragon", x = 1781, y = 5356, level = 1, members = true },
   { id = "mithril_dragon", x = 1783, y = 5328, level = 1, members = true },
   { id = "confused_barbarian", x = 1767, y = 5345 },
-  { id = "lost_barbarian_ancient_cavern", x = 1761, y = 5322 },
+  { id = "lost_barbarian", x = 1761, y = 5322 },
   { id = "skeleton_brute_ancient_cavern", x = 1748, y = 5323 },
   { id = "skeleton_warlord_ancient_cavern", x = 1763, y = 5355 },
   { id = "skeleton_warlord_ancient_cavern", x = 1789, y = 5333, level = 1 },

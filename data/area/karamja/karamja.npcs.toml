@@ -5,6 +5,14 @@ examine = "Exchanges lobsters, tuna and swordfish for banknotes."
 
 [the_shaikahan]
 id = 1172
+hitpoints = 1000
+att = 80
+str = 80
+def = 25
+style = "slash"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+respawn_delay = 50
 examine = "A huge beast, resembling in some ways a lion, but mostly a twisted nightmare."
 
 [gull_karamja]
@@ -30,7 +38,16 @@ id = 2528
 
 [harpie_bug_swarm]
 id = 3153
+hitpoints = 250
+att = 54
+str = 46
+def = 32
+style = "crush"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 25.0
 categories = ["harpie_bug_swarms"]
+respawn_delay = 25
 examine = "A swarm of bugs."
 
 [frog_karamja]
@@ -162,6 +179,15 @@ id = 7292
 
 [tribesman]
 id = 191
+hitpoints = 390
+att = 23
+str = 27
+def = 26
+style = "stab"
+max_hit_melee = 40
+attack_bonus = 8
+hunt_mode = "cowardly"
+respawn_delay = 50
 examine = "A vicious warrior."
 
 [tinsay_karamja_2]

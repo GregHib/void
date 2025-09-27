@@ -1,3 +1,14 @@
+[tanglefoot_normal]
+id = 3313
+hitpoints = 1020
+att = 97
+str = 97
+def = 91
+style = "slash"
+max_hit_melee = 120
+immune_poison = true
+examine = "A walking thorn bush!"
+
 [baby_tanglefoot]
 id = 3319
 hitpoints = 400

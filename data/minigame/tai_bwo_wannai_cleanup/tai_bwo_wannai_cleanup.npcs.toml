@@ -1,0 +1,31 @@
+[large_mosquito]
+id = 2493
+hitpoints = 30
+att = 5
+def = 45
+style = "crush"
+max_hit_melee = 10
+hunt_mode = "cowardly"
+examine = "A flying bloodsucker."
+
+[mosquito_swarm_level_17]
+id = 2494
+hitpoints = 90
+att = 10
+def = 45
+attack_speed = 2
+style = "crush"
+max_hit_melee = 10
+hunt_mode = "cowardly"
+examine = "A swarm of three highly agile mosquitoes."
+
+[mosquito_swarm_level_20]
+id = 2495
+hitpoints = 150
+att = 15
+def = 45
+attack_speed = 2
+style = "crush"
+max_hit_melee = 10
+hunt_mode = "cowardly"
+examine = "A swarm of five highly agile mosquitoes."

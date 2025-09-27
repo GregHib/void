@@ -9,3 +9,27 @@ max_hit_melee = 40
 xp_bonus = 0.5
 hunt_mode = "cowardly"
 examine = "An animated clay statue."
+
+[grey_golem]
+id = 3028
+hitpoints = 800
+att = 80
+str = 30
+def = 80
+style = "crush"
+max_hit_melee = 40
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+examine = "An animated clay statue."
+
+[white_golem]
+id = 3027
+hitpoints = 800
+att = 80
+str = 30
+def = 80
+style = "crush"
+max_hit_melee = 40
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+examine = "An animated clay statue."

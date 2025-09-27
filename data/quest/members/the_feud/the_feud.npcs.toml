@@ -9,3 +9,17 @@ max_hit_melee = 100
 attack_bonus = 9
 hunt_mode = "aggressive"
 examine = "A very tough-looking bandit."
+
+[tough_guy]
+id = 1906
+hitpoints = 750
+att = 85
+str = 50
+def = 50
+mage = 80
+range = 0
+style = "crush"
+max_hit_melee = 70
+attack_bonus = 9
+hunt_mode = "cowardly"
+examine = "Tough looking Menaphite."

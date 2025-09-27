@@ -1,38 +1,67 @@
 [skeleton_fremennik_brine_rat_caverns]
 id = 3697
+hitpoints = 250
+att = 53
+str = 30
+def = 30
+attack_speed = 6
+style = "slash"
+max_hit_melee = 50
+attack_bonus = 8
+slayer_xp = 25.0
 categories = ["skeletons"]
+respawn_delay = 50
 examine = "Could use a good meal."
 
 [skeleton_fremennik_brine_rat_caverns_2]
 id = 3698
+clone = "skeleton_fremennik_brine_rat_caverns"
 
 [skeleton_fremennik_brine_rat_caverns_3]
 id = 3699
+clone = "skeleton_fremennik_brine_rat_caverns"
 
 [skeleton_fremennik_brine_rat_caverns_4]
 id = 3700
+hitpoints = 350
+att = 60
+str = 43
+def = 35
+attack_speed = 6
+style = "slash"
+max_hit_melee = 60
+attack_bonus = 8
+slayer_xp = 35.0
 categories = ["skeletons"]
+respawn_delay = 50
 examine = "He seems a little underweight."
 
 [skeleton_fremennik_brine_rat_caverns_5]
 id = 3701
-categories = ["skeletons"]
-examine = "He seems a little underweight."
+clone = "skeleton_fremennik_brine_rat_caverns_4"
 
 [skeleton_fremennik_brine_rat_caverns_6]
 id = 3702
-categories = ["skeletons"]
-examine = "He seems a little underweight."
+clone = "skeleton_fremennik_brine_rat_caverns_4"
 
 [skeleton_fremennik_brine_rat_caverns_7]
 id = 3703
+hitpoints = 400
+att = 72
+str = 54
+def = 40
+attack_speed = 6
+style = "slash"
+max_hit_melee = 80
+attack_bonus = 8
+slayer_xp = 40.0
 categories = ["skeletons"]
+respawn_delay = 50
 examine = "He seems a little underweight."
 
 [skeleton_fremennik_brine_rat_caverns_8]
 id = 3704
-categories = ["skeletons"]
-examine = "He seems a little underweight."
+clone = "skeleton_fremennik_brine_rat_caverns_7"
 
 [brine_rat_brine_rat_caverns]
 id = 3707

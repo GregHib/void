@@ -7,9 +7,6 @@ id = 3512
 [vampyre_juvinate_2]
 id = 3513
 
-[gadderanks]
-id = 3516
-
 [vampyre_juvinate_3]
 id = 3522
 
@@ -149,6 +146,9 @@ id = 3514
 
 [vampyre_juvinate_2_2]
 id = 3515
+
+[gadderanks]
+id = 3516
 
 [gadderanks_2]
 id = 3517

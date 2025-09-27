@@ -5,7 +5,16 @@ examine = "A giant skeleton."
 
 [shadow_hound]
 id = 1976
+hitpoints = 620
+att = 53
+str = 54
+def = 54
+style = "stab"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 62.0
 categories = ["dogs"]
+respawn_delay = 50
 examine = "Looks hungry!"
 
 [giant_skeleton_shadow_dungeon_2]

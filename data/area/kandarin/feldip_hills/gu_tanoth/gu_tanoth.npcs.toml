@@ -24,7 +24,16 @@ id = 5192
 
 [ogre_chieftain]
 id = 852
+hitpoints = 600
+att = 75
+str = 71
+def = 75
+style = "crush"
+max_hit_melee = 90
+attack_bonus = 5
+slayer_xp = 60.0
 categories = ["ogres"]
+respawn_delay = 300
 examine = "Tough-looking."
 
 [toban_gu_tanoth]
@@ -34,7 +43,16 @@ examine = "Ogre-ish."
 
 [gorad_gu_tanoth]
 id = 856
+hitpoints = 800
+att = 54
+str = 54
+def = 54
+style = "crush"
+max_hit_melee = 70
+attack_bonus = 8
+slayer_xp = 80.0
 categories = ["ogres"]
+respawn_delay = 30
 examine = "Big, dumb and ugly."
 
 [ogre_guard_gu_tanoth]
@@ -122,19 +140,29 @@ id = 876
 
 [ogre_shaman_gu_tanoth_7]
 id = 5176
+hitpoints = 10
+style = "magic"
+max_hit_magic = 300
+respawn_delay = 51
+examine = "Seems intelligent... for an ogre."
 
 [ogre_shaman_gu_tanoth_2_2]
 id = 5181
+clone = "ogre_shaman_gu_tanoth_7"
 
 [ogre_shaman_gu_tanoth_3_2]
 id = 5184
+clone = "ogre_shaman_gu_tanoth_7"
 
 [ogre_shaman_gu_tanoth_4_2]
 id = 5187
+clone = "ogre_shaman_gu_tanoth_7"
 
 [ogre_shaman_gu_tanoth_5_2]
 id = 5190
+clone = "ogre_shaman_gu_tanoth_7"
 
 [ogre_shaman_gu_tanoth_6_2]
 id = 5193
+clone = "ogre_shaman_gu_tanoth_7"
 

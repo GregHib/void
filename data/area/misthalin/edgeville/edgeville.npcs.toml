@@ -76,46 +76,60 @@ id = 387
 
 [ram_edgeville]
 id = 5170
+hitpoints = 80
+style = "crush"
+max_hit_melee = 10
+attack_bonus = -15
+respawn_delay = 45
+examine = "White and fluffy."
 
 [outlaw_edgeville]
 id = 5842
+hitpoints = 200
+att = 35
+str = 30
+def = 25
+style = "crush"
+max_hit_melee = 30
+xp_bonus = -97.5
+respawn_delay = 2
 examine = "A mean looking outlaw. Don't get too close!"
 
 [outlaw_edgeville_2]
 id = 5843
-examine = "A mean looking outlaw. Don't get too close!"
+clone = "outlaw_edgeville"
 
 [outlaw_edgeville_3]
 id = 5844
-examine = "A mean looking outlaw. Don't get too close!"
+clone = "outlaw_edgeville"
 
 [outlaw_edgeville_4]
 id = 5845
-examine = "A mean looking outlaw. Don't get too close!"
+clone = "outlaw_edgeville"
 
 [outlaw_edgeville_5]
 id = 5846
-examine = "A mean looking outlaw. Don't get too close!"
+clone = "outlaw_edgeville"
 
 [outlaw_edgeville_6]
 id = 5847
-examine = "A mean looking outlaw. Don't get too close!"
+clone = "outlaw_edgeville"
 
 [outlaw_edgeville_7]
 id = 5848
-examine = "A mean looking outlaw. Don't get too close!"
+clone = "outlaw_edgeville"
 
 [outlaw_edgeville_8]
 id = 5849
-examine = "A mean looking outlaw. Don't get too close!"
+clone = "outlaw_edgeville"
 
 [outlaw_edgeville_9]
 id = 5850
-examine = "A mean looking outlaw. Don't get too close!"
+clone = "outlaw_edgeville"
 
 [outlaw_edgeville_10]
 id = 5851
-examine = "A mean looking outlaw. Don't get too close!"
+clone = "outlaw_edgeville"
 
 [mandrith]
 id = 6537
@@ -149,6 +163,13 @@ examine = "A strange little man."
 
 [monk_edgeville]
 id = 7727
+hitpoints = 150
+att = 2
+str = 2
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "A holy man."
 
 [brother_bordiss]
@@ -196,6 +217,15 @@ id = 8053
 
 [local_mage_edgeville_2]
 id = 272
+hitpoints = 170
+att = 12
+str = 11
+def = 10
+style = "stab"
+max_hit_melee = 20
+attack_bonus = 5
+respawn_delay = 26
+examine = "He walks with a slight limp."
 
 [local_mage_edgeville_3]
 id = 8348

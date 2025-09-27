@@ -8,6 +8,15 @@ examine = "Not the most beautiful fish in the sea."
 
 [mudskipper_2]
 id = 3423
+hitpoints = 200
+att = 30
+str = 30
+def = 29
+style = "crush"
+max_hit_melee = 40
+hunt_mode = "cowardly"
+respawn_delay = 5
+examine = "Not the most beautiful fish in the sea."
 
 [crab_underwater]
 id = 3424
