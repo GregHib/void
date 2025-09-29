@@ -40,6 +40,7 @@ style = "stab"
 max_hit_melee = 30
 attack_bonus = 5
 respawn_delay = 25
+drop_table = "bones"
 examine = "A generic evil henchman."
 
 [fortress_guard_2]

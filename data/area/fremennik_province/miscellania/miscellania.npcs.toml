@@ -136,6 +136,7 @@ hitpoints = 10
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 50
+drop_table = "bones"
 examine = "A subject of Miscellania."
 
 [alrik]
@@ -197,6 +198,7 @@ def = 3
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 25
+drop_table = "bones"
 examine = "A subject of Miscellania."
 
 [ragnvald]

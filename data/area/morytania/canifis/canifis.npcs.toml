@@ -41,205 +41,98 @@ def = 10
 style = "crush"
 max_hit_melee = 20
 respawn_delay = 25
+drop_table = "canifis_werewolf"
 examine = "A traveling man. Are those fleas?"
 
 [imre]
 id = 6027
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "A well organised shop keeper."
 
 [yuri]
 id = 6028
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "He's staring at the moon."
 
 [joseph]
 id = 6029
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "He keeps calling me comrade."
 
 [nikolai]
 id = 6030
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "There's a set of brows that mean business."
 
 [eduard]
 id = 6031
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "This is one feral looking innkeeper."
 
 [lev]
 id = 6032
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "A tough looking villager."
 
 [georgy]
 id = 6033
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "A simple villager."
 
 [svetlana]
 id = 6034
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "Seems a bit of a drama queen."
 
 [irina]
 id = 6035
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "I bet she works out."
 
 [alexis]
 id = 6036
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 drop_table = "werewolf"
 examine = "She doesn't say much."
 
 [milla]
 id = 6037
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "She looks like she can handle herself."
 
 [galina]
 id = 6038
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "She seems light on her feet."
 
 [sofiya]
 id = 6039
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "A wise villager."
 
 [ksenia]
 id = 6040
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "Not exactly a warrior princess."
 
 [yadviga]
 id = 6041
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "A well off villager."
 
 [nikita]
 id = 6042
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "The woman."
 
 [vera]
 id = 6043
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "She seems sure of herself."
 
 [zoja]
 id = 6044
-hitpoints = 600
-att = 10
-str = 10
-def = 10
-style = "crush"
-max_hit_melee = 20
-respawn_delay = 25
+clone = "boris"
 examine = "A healthy villager."
 
 [werewolf_boris]
@@ -282,6 +175,7 @@ hunt_mode = "cowardly"
 slayer_xp = 50.0
 categories = ["ghouls"]
 respawn_delay = 35
+drop_table = "ghoul"
 examine = "It's totally savage."
 
 [old_crone]

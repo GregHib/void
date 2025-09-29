@@ -222,3 +222,10 @@ type = "all"
 drops = [
   { id = "ashes" }
 ]
+
+
+[ashes_drop_table]
+type = "all"
+drops = [
+  { id = "ashes" }
+]

@@ -27,6 +27,7 @@ def = 25
 style = "crush"
 max_hit_melee = 50
 respawn_delay = 50
+drop_table = "bones"
 examine = "One of the inhabitants of the camp."
 
 [camp_dweller_mountain_camp_2]

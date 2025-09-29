@@ -104,6 +104,7 @@ style = "crush"
 max_hit_melee = 30
 attack_bonus = 9
 respawn_delay = 50
+drop_table = "barbarian_high"
 examine = "Siegmund, a guard in the Barbarian Village."
 
 [barbarian_barbarian_village_2]
@@ -244,6 +245,7 @@ def = 13
 style = "stab"
 max_hit_melee = 20
 respawn_delay = 90
+drop_table = "unicorn"
 examine = "Horse with a horn."
 
 [lakki_the_delivery_dwarf_2]

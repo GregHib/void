@@ -1,0 +1,7 @@
+[chompy_bird_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "raw_chompy" },
+    { id = "feather", min = 10, max = 30 },
+]

@@ -111,6 +111,7 @@ max_hit_melee = 40
 slayer_xp = 40.0
 categories = ["fever_spiders"]
 respawn_delay = 5
+drop_table = "fever_spider"
 examine = "A bunch of legs, eyes and teeth."
 
 [brewer]

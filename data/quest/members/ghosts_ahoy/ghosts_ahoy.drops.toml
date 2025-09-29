@@ -1,0 +1,5 @@
+[giant_lobster_ghosts_ahoy_drop_table]
+type = "all"
+drops = [
+    { id = "seaweed" },
+]

@@ -16,3 +16,114 @@ drops = [
     { id = "air_rune", min = 5, max = 10, chance = 19 },
     { id = "air_talisman" },
 ]
+
+[dark_wizard_low_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "dark_wizard_low_secondary" },
+]
+
+[dark_wizard_low_secondary]
+roll = 128
+drops = [
+    { id = "staff", chance = 8 },
+    { id = "black_wizard_hat", chance = 6 },
+    { id = "black_wizard_robe_top", chance = 3 },
+    { id = "earth_rune", amount = 36, chance = 4 },
+    { id = "air_rune", amount = 10, chance = 3 },
+    { id = "water_rune", amount = 10, chance = 3 },
+    { id = "earth_rune", amount = 10, chance = 3 },
+    { id = "fire_rune", amount = 10, chance = 3 },
+    { id = "air_rune", amount = 18, chance = 2 },
+    { id = "water_rune", amount = 18, chance = 2 },
+    { id = "earth_rune", amount = 18, chance = 2 },
+    { id = "fire_rune", amount = 18, chance = 2 },
+    { id = "nature_rune", amount = 4, chance = 7 },
+    { id = "chaos_rune", amount = 5, chance = 6 },
+    { id = "mind_rune", amount = 10, chance = 3 },
+    { id = "body_rune", amount = 10, chance = 3 },
+    { id = "mind_rune", amount = 18, chance = 2 },
+    { id = "body_rune", amount = 18, chance = 2 },
+    { id = "blood_rune", amount = 2, chance = 2 },
+    { id = "cosmic_rune", amount = 2 },
+    { id = "law_rune", amount = 3 },
+    { id = "coins", chance = 17 },
+    { id = "coins", amount = 2, chance = 16 },
+    { id = "coins", amount = 4, chance = 7 },
+    { id = "coins", amount = 29, chance = 3 },
+    { id = "coins", amount = 30 },
+    { id = "nothing", amount = 0, chance = 16 },
+    { id = "water_talisman" },
+    { id = "fire_talisman" },
+]
+
+
+[dark_wizard_high_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "dark_wizard_high_secondary" },
+]
+
+[dark_wizard_high_secondary]
+roll = 128
+drops = [
+    { id = "staff", chance = 4 },
+    { id = "black_wizard_hat", chance = 6 },
+    { id = "black_wizard_robe_top", chance = 3 },
+    { id = "earth_rune", amount = 36, chance = 4 },
+    { id = "air_rune", amount = 10, chance = 3 },
+    { id = "water_rune", amount = 10, chance = 3 },
+    { id = "earth_rune", amount = 10, chance = 3 },
+    { id = "fire_rune", amount = 10, chance = 3 },
+    { id = "air_rune", amount = 18, chance = 2 },
+    { id = "water_rune", amount = 18, chance = 2 },
+    { id = "earth_rune", amount = 18, chance = 2 },
+    { id = "fire_rune", amount = 18, chance = 2 },
+    { id = "nature_rune", amount = 4, chance = 7 },
+    { id = "chaos_rune", amount = 4, chance = 6 },
+    { id = "mind_rune", amount = 10, chance = 3 },
+    { id = "body_rune", amount = 10, chance = 3 },
+    { id = "mind_rune", amount = 18, chance = 2 },
+    { id = "body_rune", amount = 18, chance = 2 },
+    { id = "blood_rune", amount = 2, chance = 2 },
+    { id = "cosmic_rune", amount = 2 },
+    { id = "law_rune", amount = 3 },
+    { id = "coins", chance = 17 },
+    { id = "coins", amount = 2, chance = 16 },
+    { id = "coins", amount = 4, chance = 9 },
+    { id = "coins", amount = 29, chance = 3 },
+    { id = "coins", amount = 30 },
+    { id = "nothing", amount = 0, chance = 16 },
+    { id = "water_talisman", chance = 2 },
+    { id = "fire_talisman", chance = 2 },
+]
+
+[earth_wizard_drop_table]
+type = "all"
+drops = [
+    { table = "ashes" },
+    { table = "earth_wizard_secondary" },
+]
+
+[earth_wizard_secondary]
+roll = 20
+drops = [
+    { id = "earth_rune", min = 5, max = 10, chance = 19 },
+    { id = "earth_talisman" },
+]
+
+[fire_wizard_drop_table]
+type = "all"
+drops = [
+    { table = "ashes" },
+    { table = "fire_wizard_secondary" },
+]
+
+[fire_wizard_secondary]
+roll = 20
+drops = [
+    { id = "fire_rune", min = 5, max = 10, chance = 19 },
+    { id = "fire_talisman" },
+]

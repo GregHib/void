@@ -1,0 +1,61 @@
+[giant_skeleton_tarns_lair_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "giant_skeleton_tarns_lair_secondary" },
+    { table = "giant_skeleton_tarns_lair_tertiary" },
+]
+
+[giant_skeleton_tarns_lair_secondary]
+roll = 128
+drops = [
+    { id = "iron_kiteshield", chance = 8 },
+    { id = "bronze_full_helm", chance = 5 },
+    { id = "bronze_plateskirt", chance = 5 },
+    { id = "iron_warhammer", chance = 5 },
+    { id = "steel_dagger", chance = 5 },
+    { id = "steel_spear", chance = 5 },
+    { id = "shortbow", chance = 3 },
+    { id = "iron_battleaxe", chance = 3 },
+    { id = "iron_scimitar", chance = 2 },
+    { id = "steel_hatchet", chance = 2 },
+    { id = "steel_chainbody", chance = 2 },
+    { id = "mithril_mace", chance = 2 },
+    { id = "magic_staff" },
+    { id = "black_longsword" },
+    { id = "steel_full_helm" },
+    { id = "steel_kiteshield" },
+    { id = "mithril_med_helm" },
+    { id = "mithril_sq_shield" },
+    { id = "adamant_battleaxe" },
+    { id = "rune_scimitar" },
+    { id = "blood_rune", amount = 3, chance = 3 },
+    { id = "steel_arrow", amount = 11, chance = 2 },
+    { id = "steel_bolts_p+", amount = 2, chance = 3 },
+    { id = "steel_javelin_p+", amount = 2, chance = 3 },
+    { id = "silver_bolts", amount = 5, chance = 3 },
+    { id = "adamant_arrow", amount = 4, chance = 2 },
+    { table = "herb_drop_table", chance = 5 },
+    { id = "coins", amount = 17, chance = 5 },
+    { id = "coins", amount = 41, chance = 5 },
+    { id = "coins", amount = 142, chance = 5 },
+    { id = "coins", amount = 206, chance = 3 },
+    { id = "coins", amount = 106, chance = 2 },
+    { id = "coins", amount = 323 },
+    { id = "steel_studs", amount = 6, chance = 5 },
+    { id = "steel_nails", amount = 12, chance = 5 },
+    { id = "white_candle", chance = 5 },
+    { id = "strength_potion_3", chance = 5 },
+    { id = "knife", chance = 3 },
+    { id = "gold_ore", chance = 2 },
+    { id = "adamant_bar", chance = 2 },
+    { id = "sapphire_ring", chance = 2 },
+    { table = "gem_drop_table", chance = 2 },
+]
+
+[giant_skeleton_tarns_lair_tertiary]
+roll = 5000
+drops = [
+    { table = "medium_clue_scroll", chance = 39 },
+    { id = "skeleton_champions_scroll", members = true, lacks = "giant_champions_scroll" },
+]

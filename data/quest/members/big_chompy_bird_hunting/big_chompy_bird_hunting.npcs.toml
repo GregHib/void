@@ -9,4 +9,5 @@ max_hit_melee = 0
 slayer_xp = 10.0
 categories = ["birds"]
 immune_poison = true
+drop_table = "chompy_bird"
 examine = "A large boisterous bird, a delicacy for ogres."

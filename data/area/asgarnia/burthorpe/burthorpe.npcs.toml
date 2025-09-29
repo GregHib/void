@@ -43,6 +43,7 @@ def = 3
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 25
+drop_table = "citizen"
 examine = "A citizen of Burthorpe."
 
 [penda]
@@ -80,6 +81,7 @@ max_hit_melee = 10
 respawn_delay = 25
 wander_radius = 5
 collision = "outdoors"
+drop_table = "citizen"
 examine = "A citizen of Burthorpe."
 
 [hygd]
@@ -144,6 +146,7 @@ def = 3
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 25
+drop_table = "bones"
 examine = "The Burthorpe Castle cook."
 
 [denulth]

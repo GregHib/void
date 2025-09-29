@@ -281,6 +281,7 @@ slayer_xp = 40.0
 categories = ["dwarves"]
 respawn_delay = 30
 hunt_mode = "guarding"
+drop_table = "black_guard_high"
 examine = "A member of the Black Guard, a special division of the dwarven army."
 
 [black_guard_keldagrim_market_2]
@@ -309,6 +310,7 @@ xp_bonus = 2.5
 slayer_xp = 50.0
 categories = ["dwarves"]
 respawn_delay = 30
+drop_table = "black_guard_high"
 examine = "An elite member of the Black Guard."
 
 [black_guard_berserker_keldagrim_2]

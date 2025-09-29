@@ -86,6 +86,7 @@ style = "crush"
 max_hit_melee = 60
 attack_bonus = 10
 respawn_delay = 50
+drop_table = "billy_goat"
 examine = "They'll eat anything!"
 
 [goat_kharidian_desert_2]
@@ -102,6 +103,7 @@ style = "crush"
 max_hit_melee = 60
 attack_bonus = 30
 respawn_delay = 50
+drop_table = "billy_goat"
 examine = "They'll eat anything!"
 
 [osman_kharidian_desert]
@@ -122,6 +124,7 @@ hunt_mode = "cowardly"
 slayer_xp = 34.0
 categories = ["wolves"]
 respawn_delay = 50
+drop_table = "desert_wolf"
 examine = "A vicious desert wolf."
 
 [desert_wolf_dark]

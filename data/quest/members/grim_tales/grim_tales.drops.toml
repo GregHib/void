@@ -1,0 +1,31 @@
+[experiment_no_2_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "shrunk_ogleroot" },
+    { table = "experiment_no_2_secondary" },
+    { table = "experiment_no_2_tertiary" },
+]
+
+[experiment_no_2_secondary]
+roll = 128
+drops = [
+    { id = "earth_rune", min = 1, max = 20, chance = 10 },
+    { id = "water_rune", min = 1, max = 14, chance = 10 },
+    { id = "chaos_rune", min = 1, max = 15, chance = 7 },
+    { id = "nature_rune", min = 1, max = 5, chance = 3 },
+    { table = "herb_drop_table", chance = 42 },
+    { id = "grimy_tarromin", min = 1, max = 3, chance = 27 },
+    { id = "coins", min = 1, max = 75, chance = 18 },
+    { id = "coins", min = 76, max = 100, chance = 3 },
+    { id = "mole_claw" },
+    { id = "mystic_earth_staff" },
+    { table = "gem_drop_table", chance = 6 },
+]
+
+[experiment_no_2_tertiary]
+roll = 128
+drops = [
+    { id = "experiment_bone", chance = 32, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { table = "hard_clue_scroll" },
+]

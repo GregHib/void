@@ -21,6 +21,7 @@ def = 12
 style = "crush"
 max_hit_melee = 20
 respawn_delay = 250
+drop_table = "disciple_of_iban"
 examine = "A dark magic user."
 
 [lord_iban_ibans_lair]
@@ -82,6 +83,7 @@ max_hit_melee = 90
 xp_bonus = -7.5
 hunt_mode = "cowardly"
 respawn_delay = 30
+drop_table = "disciple_of_iban"
 examine = "One of the guardians of Iban."
 
 [wizard]

@@ -27,6 +27,7 @@ max_hit_melee = 0
 attack_bonus = -42
 respawn_delay = 50
 pickpocket = { level = 75, stun_ticks = 8, stun_hit = 10, xp = 133.5, chance_min = 43, chance_max = 175, table = "gnome" }
+drop_table = "bones"
 examine = "Small, even by gnome standards."
 
 [gnome_child_2]
@@ -48,6 +49,7 @@ style = "slash"
 max_hit_melee = 30
 attack_bonus = 8
 respawn_delay = 30
+drop_table = "bones"
 examine = "A tree gnome guard."
 
 [gnome_guard_sword]
@@ -60,6 +62,7 @@ style = "slash"
 max_hit_melee = 30
 attack_bonus = 6
 respawn_delay = 30
+drop_table = "bones"
 examine = "A tree gnome guard."
 
 [gnome_woman]
@@ -70,6 +73,7 @@ max_hit_melee = 10
 attack_bonus = -42
 respawn_delay = 50
 pickpocket = { level = 75, stun_ticks = 8, stun_hit = 10, xp = 133.5, chance_min = 43, chance_max = 175, table = "gnome" }
+drop_table = "bones"
 examine = "A female gnome."
 
 [gnome_woman_2]

@@ -49,6 +49,7 @@ attack_speed = 6
 style = "ranged"
 max_hit_range = 20
 hunt_mode = "cowardly"
+drop_table = "bones"
 examine = "A Gnome Arrow-chucker"
 
 [gnome_driver]

@@ -69,6 +69,7 @@ def = 52
 style = "melee"
 max_hit_melee = 50
 hunt_mode = "cowardly"
+drop_table = "giant_champion"
 examine = "Champion of the giants."
 
 [goblin_champion]

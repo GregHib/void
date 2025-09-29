@@ -83,6 +83,7 @@ attack_bonus = 9
 slayer_xp = 80.0
 categories = ["ogres"]
 respawn_delay = 50
+drop_table = "city_guard"
 examine = "Tries to keep the peace."
 
 [scared_skavid_gu_tanoth]
@@ -118,6 +119,7 @@ attack_bonus = 9
 slayer_xp = 80.0
 categories = ["ogres"]
 respawn_delay = 12
+drop_table = "city_guard"
 examine = "Big and ugly looking."
 
 [ogre_trader_gu_tanoth]

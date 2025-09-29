@@ -1,0 +1,13 @@
+[experiment_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "cavern_key", variable = "creature_of_fenkenstrain", equals = "experiments", default = "unstarted" },
+    { table = "experiment_secondary" },
+]
+
+[experiment_secondary]
+roll = 4
+drops = [
+    { id = "experiment_bone", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]

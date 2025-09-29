@@ -40,3 +40,40 @@ drops = [
     { id = "necklace_mould", chance = 11 },
     { id = "ring_mould", chance = 11 },
 ]
+
+[black_guard_high_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "black_guard_low_secondary" },
+    { table = "black_guard_tertiary" },
+]
+
+[black_guard_high_secondary]
+roll = 128
+drops = [
+    { id = "bronze_warhammer", chance = 3 },
+    { id = "iron_warhammer", chance = 6 },
+    { id = "steel_warhammer" },
+    { id = "black_warhammer", chance = 2 },
+    { table = "herb_drop_table", chance = 2 },
+    { id = "copper_ore", amount = 5, chance = 2 },
+    { id = "tin_ore" },
+    { id = "iron_ore", amount = 2, chance = 3 },
+    { id = "coins", amount = 15, chance = 45 },
+    { id = "coins", amount = 17, chance = 5 },
+    { id = "coins", amount = 22, chance = 9 },
+    { id = "coins", amount = 27, chance = 3 },
+    { id = "beer" },
+    { id = "keg_of_beer", chance = 4 },
+    { id = "cake", chance = 4 },
+    { id = "bucket_of_water" },
+    { id = "ring_mould" },
+    { table = "gem_drop_table" },
+]
+
+[black_guard_tertiary]
+roll = 128
+drops = [
+    { table = "medium_clue_scroll" },
+]

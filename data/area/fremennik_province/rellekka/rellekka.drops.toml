@@ -15,3 +15,57 @@ drops = [
 drops = [
     { id = "coins", amount = 40 },
 ]
+
+[rellekka_citizen_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "rellekka_citizen_secondary" },
+    { table = "easy_clue_scroll", roll = 128 },
+]
+
+[rellekka_citizen_secondary]
+roll = 512
+drops = [
+    { id = "bronze_warhammer", chance = 100 },
+    { id = "iron_warhammer", chance = 70 },
+    { id = "fremennik_blade" },
+    { id = "fremennik_shield" },
+    { id = "fremennik_helm" },
+    { table = "herb_drop_table", chance = 10 },
+    { id = "copper_ore", amount = 5, chance = 10 },
+    { id = "tin_ore", amount = 5, chance = 10 },
+    { id = "iron_ore", amount = 5, chance = 10 },
+    { id = "coal", chance = 10 },
+    { id = "steel_bar", chance = 10 },
+    { id = "coins", amount = 6, chance = 20 },
+    { id = "coins", amount = 15, chance = 15 },
+    { id = "coins", amount = 16, chance = 10 },
+    { id = "coins", amount = 20, chance = 10 },
+    { id = "coins", amount = 38, chance = 5 },
+    { id = "tinderbox", chance = 50 },
+    { id = "vial", chance = 50 },
+    { id = "vial_of_water", chance = 50 },
+    { id = "bucket", chance = 17 },
+    { id = "lyre", chance = 30 },
+    { id = "beer", chance = 2 },
+    { id = "eye_of_newt", chance = 4 },
+    { id = "snape_grass", chance = 2 },
+    { id = "jangerberries", chance = 2 },
+    { id = "blamish_oil" },
+    { table = "gem_drop_table" },
+]
+
+[bunny_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "raw_rabbit" },
+    { table = "bunny_tertiary" },
+]
+
+[bunny_tertiary]
+roll = 4
+drops = [
+    { id = "rabbit_bone", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]

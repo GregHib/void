@@ -1,0 +1,52 @@
+[bark_blamish_snail_drop_table]
+type = "all"
+drops = [
+    { id = "blamish_bark_shell" },
+    { id = "lean_snail" },
+]
+
+[blood_blamish_snail_drop_table]
+type = "all"
+drops = [
+    { id = "fat_snail" },
+    { id = "blamish_red_shell_round" },
+]
+
+[bruise_blamish_snail_drop_table]
+type = "all"
+drops = [
+    { id = "fat_snail" },
+    { id = "blamish_blue_shell_round" },
+]
+
+[ghast_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "ghast_secondary" },
+]
+
+[ghast_secondary]
+roll = 128
+drops = [
+    { id = "iron_mace", chance = 3 },
+    { id = "iron_dagger", chance = 2 },
+    { id = "bronze_kiteshield" },
+    { id = "body_rune", amount = 3, chance = 2 },
+    { id = "air_rune", amount = 4, chance = 3 },
+    { id = "chaos_rune", amount = 4 },
+    { id = "cosmic_rune", amount = 2 },
+    { id = "fire_rune", amount = 7 },
+    { table = "herb_drop_table", chance = 33 },
+    { id = "coins", amount = 10, chance = 10 },
+    { id = "coins", amount = 18, chance = 21 },
+    { id = "coins", amount = 26, chance = 8 },
+    { id = "coins", amount = 35, chance = 6 },
+    { id = "coins", chance = 2 },
+    { id = "fishing_bait", amount = 7, chance = 26 },
+    { id = "nothing", amount = 0, chance = 3 },
+    { id = "tinderbox", chance = 2 },
+    { id = "eye_of_newt" },
+    { id = "tin_ore" },
+    { table = "gem_drop_table" },
+]

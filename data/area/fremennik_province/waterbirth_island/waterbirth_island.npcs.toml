@@ -65,6 +65,7 @@ xp_bonus = -10.0
 slayer_xp = 0.0
 categories = ["dagannoth"]
 respawn_delay = 30
+drop_table = "bones"
 examine = "A knee-high horror from the ocean depths..."
 
 [dagannoth_supreme]

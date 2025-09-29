@@ -10,6 +10,7 @@ attack_speed = 6
 style = "crush"
 max_hit_melee = 40
 respawn_delay = 50
+drop_table = "earth_elemental"
 examine = "An earth elemental."
 
 [air_elemental_elemental_workshop]

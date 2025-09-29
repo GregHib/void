@@ -1,0 +1,40 @@
+[giant_skeleton_shadow_dungeon_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "giant_skeleton_shadow_dungeon_secondary" },
+    { table = "giant_skeleton_shadow_dungeon_tertiary" },
+]
+
+[giant_skeleton_shadow_dungeon_secondary]
+roll = 128
+drops = [
+    { table = "herb_drop_table", chance = 13 },
+    { id = "steel_med_helm", chance = 6 },
+    { id = "steel_sword", chance = 4 },
+    { id = "steel_scimitar" },
+    { id = "steel_hatchet", chance = 2 },
+    { id = "iron_arrow", amount = 24, chance = 2 },
+    { id = "air_rune", amount = 30, chance = 3 },
+    { id = "water_rune", amount = 18, chance = 3 },
+    { id = "chaos_rune", amount = 8, chance = 3 },
+    { id = "cosmic_rune", amount = 4 },
+    { id = "law_rune", amount = 4, chance = 2 },
+    { id = "coins", amount = 2, chance = 8 },
+    { id = "coins", amount = 10, chance = 25 },
+    { id = "coins", amount = 20, chance = 24 },
+    { id = "coins", amount = 50, chance = 8 },
+    { id = "coins", amount = 90, chance = 4 },
+    { id = "coins", amount = 120 },
+    { id = "iron_bar", chance = 5 },
+    { table = "gem_drop_table", chance = 2 },
+]
+
+[giant_skeleton_shadow_dungeon_tertiary]
+roll = 5012
+drops = [
+    { table = "medium_clue_scroll", chance = 39 },
+    { id = "long_bone", chance = 12 },
+    { id = "skeleton_champions_scroll", members = true, lacks = "giant_champions_scroll" },
+    { id = "curved_bone" },
+]

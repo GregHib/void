@@ -202,6 +202,7 @@ style = "crush"
 max_hit_melee = 40
 attack_bonus = 30
 respawn_delay = 10
+drop_table = "bones"
 examine = "A cunning animal."
 
 [bunny_rellekka]
@@ -211,6 +212,7 @@ style = "crush"
 max_hit_melee = 0
 attack_bonus = -47
 respawn_delay = 25
+drop_table = "bunny"
 examine = "Hoppity, hoppity."
 
 [bunny_rellekka_2]
@@ -330,6 +332,7 @@ style = "crush"
 max_hit_melee = 60
 respawn_delay = 30
 clone = "agnar_rellekka"
+drop_table = "rellekka_citizen"
 
 [borrokar]
 id = 1307
@@ -341,6 +344,7 @@ def = 40
 style = "crush"
 max_hit_melee = 60
 respawn_delay = 30
+drop_table = "rellekka_citizen"
 
 [lanzig]
 id = 1308
@@ -380,6 +384,7 @@ def = 18
 style = "stab"
 max_hit_melee = 30
 respawn_delay = 20
+drop_table = "bones"
 examine = "Cute but evil."
 
 [black_unicorn]
@@ -391,6 +396,7 @@ def = 23
 style = "stab"
 max_hit_melee = 30
 respawn_delay = 90
+drop_table = "unicorn"
 examine = "A unicorn with a blackened heart."
 
 [svidi]

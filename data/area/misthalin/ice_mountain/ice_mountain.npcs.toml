@@ -15,6 +15,7 @@ attack_bonus = 5
 slayer_xp = 30.0
 categories = ["dwarves"]
 respawn_delay = 25
+drop_table = "black_guard_low"
 examine = "A member of the Black Guard, a special division of the dwarven army."
 
 [black_guard_2]

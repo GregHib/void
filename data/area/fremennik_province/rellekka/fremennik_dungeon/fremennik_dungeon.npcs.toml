@@ -40,6 +40,7 @@ max_hit_melee = 50
 slayer_xp = 37.0
 categories = ["cockatrice"]
 respawn_delay = 15
+drop_table = "cockatrice"
 examine = "The winged reptile."
 
 [pyrefiend_fremennik_dungeon]

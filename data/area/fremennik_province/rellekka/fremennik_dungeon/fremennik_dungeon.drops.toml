@@ -1,0 +1,82 @@
+[basilisk_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "basilisk_secondary" },
+    { table = "basilisk_tertiary" },
+]
+
+[basilisk_secondary]
+roll = 512
+drops = [
+    { id = "mithril_hatchet", chance = 12 },
+    { id = "mithril_spear", chance = 8 },
+    { id = "steel_battleaxe", chance = 12 },
+    { id = "adamant_full_helm", chance = 4 },
+    { id = "mithril_kiteshield", chance = 4 },
+    { id = "rune_dagger", chance = 4 },
+    { id = "light_mystic_hat" },
+    { id = "water_rune", amount = 75, chance = 32 },
+    { id = "nature_rune", amount = 15, chance = 20 },
+    { id = "law_rune", amount = 3, chance = 12 },
+    { id = "nature_rune", amount = 37, chance = 4 },
+    { table = "herb_drop_table", chance = 140 },
+    { id = "adamantite_ore", chance = 12 },
+    { id = "coins", amount = 44, chance = 116 },
+    { id = "coins", amount = 200, chance = 68 },
+    { id = "coins", amount = 132, chance = 20 },
+    { id = "coins", amount = 11, chance = 20 },
+    { id = "coins", amount = 440, chance = 4 },
+    { table = "gem_drop_table", chance = 20 },
+]
+
+[basilisk_tertiary]
+roll = 2000
+drops = [
+    { table = "elite_clue_scroll", roll = 2000 },
+    { id = "basilisk_bone", chance = 500, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { id = "basilisk_head", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]
+
+[cockatrice_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "cockatrice_secondary" },
+    { table = "cockatrice_tertiary" },
+]
+
+[cockatrice_secondary]
+roll = 512
+drops = [
+    { id = "iron_sword", chance = 12 },
+    { id = "steel_dagger", chance = 12 },
+    { id = "iron_boots", chance = 4 },
+    { id = "iron_javelin", amount = 5, chance = 4 },
+    { id = "steel_longsword", chance = 4 },
+    { id = "light_mystic_boots" },
+    { id = "nature_rune", amount = 2, chance = 24 },
+    { id = "nature_rune", amount = 4, chance = 16 },
+    { id = "nature_rune", amount = 6, chance = 8 },
+    { id = "law_rune", amount = 2, chance = 12 },
+    { id = "water_rune", amount = 2, chance = 8 },
+    { id = "fire_rune", amount = 7, chance = 8 },
+    { table = "herb_drop_table", chance = 40 },
+    { id = "coins", amount = 15, chance = 64 },
+    { id = "coins", amount = 5, chance = 48 },
+    { id = "coins", amount = 28, chance = 48 },
+    { id = "coins", amount = 62, chance = 16 },
+    { id = "coins", amount = 42, chance = 12 },
+    { id = "coins", chance = 4 },
+    { id = "limpwurt_root", chance = 84 },
+    { id = "nothing", amount = 0, chance = 4 },
+    { table = "gem_drop_table", chance = 8 },
+]
+
+[cockatrice_tertiary]
+roll = 1000
+drops = [
+    { table = "medium_clue_scroll", chance = 7 },
+    { id = "cockatrice_head" },
+]
+

@@ -41,6 +41,7 @@ mage = 30
 range = 70
 style = "ranged"
 max_hit_melee = 80
+drop_table = "giant_snail"
 examine = "Euew."
 
 [giant_snail_level_109]
@@ -53,6 +54,7 @@ mage = 30
 range = 110
 style = "ranged"
 max_hit_melee = 130
+drop_table = "giant_snail"
 examine = "Euew."
 
 [giant_snail_level_139]
@@ -65,6 +67,7 @@ mage = 30
 range = 160
 style = "ranged"
 max_hit_melee = 170
+drop_table = "giant_snail"
 examine = "Euew."
 
 [head_visible]

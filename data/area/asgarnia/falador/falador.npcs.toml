@@ -188,6 +188,7 @@ range = 0
 style = "magic"
 max_hit_magic = 60
 respawn_delay = 50
+drop_table = "fire_wizard"
 examine = "Caution: HOT!"
 
 [air_wizard]
@@ -214,6 +215,7 @@ str = 3
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 25
+drop_table = "citizen"
 examine = "One of Gielinor's many citizens, currently incapacitated by alcohol."
 
 [man_falador]
@@ -275,6 +277,7 @@ def = 3
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 25
+drop_table = "citizen"
 examine = "He looks a bit dodgy."
 
 [narf]
@@ -316,20 +319,12 @@ style = "magic"
 max_hit_magic = 60
 hunt_mode = "cowardly"
 respawn_delay = 50
+drop_table = "dark_wizard_high"
 examine = "A practicer of dark arts."
 
 [dark_wizard_falador_2]
 id = 3243
-hitpoints = 250
-att = 20
-str = 10
-def = 15
-mage = 25
-style = "magic"
-max_hit_magic = 60
-hunt_mode = "cowardly"
-respawn_delay = 50
-examine = "A practicer of dark arts."
+clone = "dark_wizard_falador"
 
 [dark_wizard_falador_3]
 id = 3244
@@ -342,11 +337,12 @@ style = "magic"
 max_hit_magic = 60
 hunt_mode = "cowardly"
 respawn_delay = 50
+drop_table = "dark_wizard_low"
 examine = "A practicer of dark arts."
 
 [dark_wizard_falador_4]
 id = 3245
-examine = "A practicer of dark arts."
+clone = "dark_wizard_falador_3"
 
 [squirrel]
 id = 3283
@@ -560,6 +556,7 @@ range = 0
 style = "magic"
 max_hit_melee = 60
 respawn_delay = 50
+drop_table = "earth_wizard"
 examine = "His hands are covered in mud. At least, I hope that's mud."
 
 [wayne]
@@ -648,6 +645,7 @@ def = 5
 style = "stab"
 max_hit_melee = 10
 respawn_delay = 50
+drop_table = "bones"
 examine = "An old gardener."
 
 [gardener_level_4]
@@ -657,6 +655,7 @@ def = 7
 style = "stab"
 max_hit_melee = 10
 respawn_delay = 50
+drop_table = "bones"
 examine = "An old gardener."
 
 [gardener_level_4_2]

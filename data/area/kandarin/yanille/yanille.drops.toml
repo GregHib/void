@@ -4,3 +4,36 @@ drops = [
     { id = "bread" },
     { id = "coins", amount = 60 },
 ]
+
+[colonel_radick_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "colonel_radick_secondary" },
+]
+
+[colonel_radick_secondary]
+roll = 128
+drops = [
+    { id = "steel_longsword", chance = 6 },
+    { id = "steel_med_helm" },
+    { id = "bronze_arrow", amount = 4, chance = 5 },
+    { id = "steel_arrow", amount = 2, chance = 4 },
+    { id = "air_rune", amount = 8, chance = 2 },
+    { id = "earth_rune", amount = 4, chance = 2 },
+    { id = "fire_rune", amount = 6, chance = 2 },
+    { id = "chaos_rune", amount = 3 },
+    { id = "blood_rune", amount = 2 },
+    { id = "nature_rune", amount = 2 },
+    { id = "steel_arrow", amount = 8 },
+    { id = "coins", amount = 9, chance = 37 },
+    { id = "coins", amount = 8, chance = 16 },
+    { id = "coins", amount = 24, chance = 9 },
+    { id = "coins", amount = 6, chance = 8 },
+    { id = "coins", amount = 30, chance = 4 },
+    { id = "coins", amount = 12, chance = 4 },
+    { id = "coins", amount = 35, chance = 2 },
+    { id = "nothing", amount = 0, chance = 18 },
+    { id = "mind_talisman", chance = 3 },
+    { id = "iron_ore" },
+]

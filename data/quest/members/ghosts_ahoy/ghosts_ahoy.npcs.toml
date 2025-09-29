@@ -9,4 +9,5 @@ max_hit_melee = 40
 hunt_mode = "cowardly"
 slayer_xp = 32.0
 categories = ["scorpions"]
+drop_table = "giant_lobster_ghosts_ahoy"
 examine = "An extremely vicious lobster."

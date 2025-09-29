@@ -9,6 +9,7 @@ max_hit_melee = 20
 slayer_xp = 10.0
 categories = ["goblins"]
 respawn_delay = 50
+drop_table = "cave_goblin_miner"
 examine = "This one is slacking off."
 
 [cave_goblin_miner_2]
@@ -35,21 +36,15 @@ max_hit_melee = 30
 slayer_xp = 26.0
 categories = ["goblins"]
 respawn_delay = 50
+drop_table = "cave_goblin_guard"
 examine = "He protects the miners."
 
 [cave_goblin_guard_2]
 id = 2074
-hitpoints = 260
+clone = "cave_goblin_guard"
 att = 22
 str = 16
 def = 22
-attack_speed = 6
-style = "crush"
-max_hit_melee = 30
-slayer_xp = 26.0
-categories = ["goblins"]
-respawn_delay = 50
-examine = "He protects the miners."
 
 [goblin_guard]
 id = 489
@@ -63,6 +58,7 @@ attack_bonus = 8
 slayer_xp = 43.0
 categories = ["goblins"]
 respawn_delay = 250
+drop_table = "goblin"
 examine = "He doesn't look like he'd trust his own mother."
 
 [cave_goblin_miner_5]

@@ -60,6 +60,7 @@ hunt_mode = "cowardly"
 slayer_xp = 35.0
 categories = ["rats"]
 respawn_delay = 50
+drop_table = "crypt_rat"
 examine = "A nasty overgrown rodent."
 
 [crypt_spider]
@@ -139,6 +140,7 @@ range = 20
 style = "slash"
 max_hit_melee = 40
 respawn_delay = 50
+drop_table = "fire_elemental"
 examine = "A fire elemental."
 
 [turoth]

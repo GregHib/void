@@ -3,3 +3,41 @@ type = "all"
 drops = [
     { id = "bat_bones" },
 ]
+
+[cave_horror_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "cave_horror_secondary" },
+    { table = "cave_horror_tertiary" },
+]
+
+[cave_horror_secondary]
+roll = 512
+drops = [
+    { id = "mithril_hatchet", chance = 12 },
+    { id = "rune_dagger", chance = 4 },
+    { id = "adamant_full_helm", chance = 4 },
+    { id = "mithril_kiteshield", chance = 4 },
+    { id = "black_mask_10" },
+    { id = "nature_rune", amount = 6, chance = 24 },
+    { id = "nature_rune", amount = 4, chance = 20 },
+    { id = "nature_rune", amount = 3, chance = 4 },
+    { table = "herb_drop_table", chance = 52 },
+    { table = "rare_seed_drop_table", chance = 72 },
+    { id = "coins", amount = 44, chance = 112 },
+    { id = "coins", amount = 132, chance = 48 },
+    { id = "coins", amount = 440, chance = 4 },
+    { id = "limpwurt_root", chance = 28 },
+    { id = "teak_logs_noted", amount = 4, chance = 28 },
+    { id = "mahogany_logs", amount = 2, chance = 12 },
+    { table = "gem_drop_table", chance = 20 },
+]
+
+[cave_horror_tertiary]
+roll = 5012
+drops = [
+    { table = "hard_clue_scroll", chance = 39 },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]

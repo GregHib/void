@@ -17,6 +17,7 @@ slayer_xp = 183.0
 categories = ["green_dragons"]
 immune_poison = true
 respawn_delay = 30
+drop_table = "brutal_green_dragon"
 examine = "It appears intelligent and savage."
 
 [confused_barbarian]
@@ -29,6 +30,7 @@ style = "crush"
 max_hit_melee = 150
 attack_bonus = 9
 respawn_delay = 50
+drop_table = "mangled_bones"
 examine = "He looks about, blankly."
 
 [lost_barbarian]
@@ -98,7 +100,7 @@ max_hit_melee = 180
 attack_bonus = 9
 hunt_mode = "cowardly"
 respawn_delay = 50
-drop_table = "angry_barbarian_spirit"
+drop_table = "barbarian_spirit"
 examine = "He looks a tad upset."
 
 [enraged_barbarian_spirit]
@@ -112,6 +114,7 @@ max_hit_melee = 180
 attack_bonus = 9
 hunt_mode = "cowardly"
 respawn_delay = 50
+drop_table = "barbarian_spirit"
 examine = "He looks a tad upset."
 
 [berserk_barbarian_spirit]
@@ -125,6 +128,7 @@ max_hit_melee = 180
 attack_bonus = 9
 hunt_mode = "cowardly"
 respawn_delay = 50
+drop_table = "barbarian_spirit"
 examine = "He looks a tad upset."
 
 [gargoyle_ancient_cavern]

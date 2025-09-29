@@ -33,5 +33,6 @@ def = 20
 style = "crush"
 max_hit_melee = 30
 respawn_delay = 5
+drop_table = "bones"
 examine = "The boss!"
 

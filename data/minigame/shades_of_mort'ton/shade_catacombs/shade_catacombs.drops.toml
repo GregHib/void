@@ -3,3 +3,9 @@ type = "all"
 drops = [
     { id = "asyn_remains" },
 ]
+
+[fiyr_shade_drop_table]
+type = "all"
+drops = [
+    { id = "fiyr_remains" },
+]

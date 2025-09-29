@@ -31,15 +31,15 @@ drops = [
     { table = "gem_drop_table" },
 ]
 
-[barbarian_mid_drop_table]
+[barbarian_high_drop_table]
 type = "all"
 drops = [
     { id = "bones" },
-    { table = "barbarian_mid_secondary" },
+    { table = "barbarian_high_secondary" },
     { table = "easy_clue_scroll", roll = 128 },
 ]
 
-[barbarian_mid_secondary]
+[barbarian_high_secondary]
 roll = 128
 drops = [
     { id = "iron_hatchet", chance = 6 },
@@ -65,3 +65,43 @@ drops = [
     { table = "gem_drop_table" },
 ]
 
+[ferocious_barbarian_spirit_drop_table]
+type = "all"
+drops = [
+    { table = "ferocious_barbarian_spirit_secondary" },
+]
+
+[ferocious_barbarian_spirit_secondary]
+roll = 128
+drops = [
+    { id = "mithril_mace", chance = 5 },
+    { id = "adamant_mace", chance = 4 },
+    { id = "rune_mace" },
+    { id = "mithril_hasta", chance = 2 },
+    { id = "adamant_knife", amount = 20, chance = 4 },
+    { id = "adamant_dart_p", amount = 20, chance = 4 },
+    { id = "rune_arrow", amount = 10, chance = 4 },
+    { id = "runite_bolts", amount = 10, chance = 4 },
+    { id = "death_rune", min = 5, max = 9, chance = 8 },
+    { id = "ranarr_seed", chance = 5 },
+    { id = "prayer_mix_1", chance = 16 },
+    { id = "prayer_mix_2", chance = 8 },
+    { id = "super_strength_mix_1", chance = 2 },
+    { id = "super_strength_mix_2", chance = 2 },
+    { id = "super_attack_mix_1", chance = 2 },
+    { id = "super_attack_mix_2", chance = 3 },
+    { id = "super_defence_mix_1", chance = 2 },
+    { id = "super_defence_mix_2", chance = 3 },
+    { id = "antifire_mix_1", chance = 4 },
+    { id = "antifire_mix_2", chance = 4 },
+    { id = "super_antipoison_mix_2" },
+    { id = "fishing_mix_2" },
+    { id = "yew_logs", amount = 3, chance = 2 },
+    { id = "steel_bar_noted", amount = 2, chance = 2 },
+    { id = "mithril_bar_noted", amount = 2, chance = 2 },
+    { id = "adamant_bar_noted" },
+    { id = "rune_bar_noted" },
+    { id = "big_bones_noted", amount = 10, chance = 7 },
+    { id = "shark", amount = 3, chance = 6 },
+    { table = "gem_drop_table", chance = 8 },
+]

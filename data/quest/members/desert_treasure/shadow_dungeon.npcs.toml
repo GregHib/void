@@ -1,6 +1,16 @@
 [giant_skeleton_shadow_dungeon]
 id = 1973
+hitpoints = 700
+att = 70
+str = 70
+def = 70
+style = "crush"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+slayer_xp = 70.0
 categories = ["skeletons"]
+respawn_delay = 15
+drop_table = "giant_skeleton_shadow_dungeon"
 examine = "A giant skeleton."
 
 [shadow_hound]
@@ -19,6 +29,5 @@ examine = "Looks hungry!"
 
 [giant_skeleton_shadow_dungeon_2]
 id = 5359
-categories = ["skeletons"]
-examine = "A giant skeleton."
+clone = "giant_skeleton_shadow_dungeon"
 

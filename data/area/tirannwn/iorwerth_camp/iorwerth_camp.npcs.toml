@@ -14,6 +14,7 @@ ranged_strength = 8
 slayer_xp = 105.0
 categories = ["elves"]
 respawn_delay = 30
+drop_table = "elf_warrior"
 examine = "He looks pretty handy with that bow."
 
 [elf_warrior_2]
@@ -29,6 +30,7 @@ xp_bonus = 2.5
 slayer_xp = 107.5
 categories = ["elves"]
 respawn_delay = 30
+drop_table = "elf_warrior"
 examine = "I don't want to get on the wrong side of him."
 
 [fishing_spot_iorwerth_camp]

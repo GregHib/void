@@ -1,0 +1,31 @@
+[elf_warrior_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "elf_warrior_secondary" },
+    { table = "hard_clue_scroll", roll = 128 },
+]
+
+[elf_warrior_secondary]
+roll = 128
+drops = [
+    { id = "green_dragonhide_chaps", chance = 3 },
+    { id = "green_dragonhide_body", chance = 4 },
+    { id = "mithril_spear", chance = 2 },
+    { id = "mithril_kiteshield" },
+    { id = "adamant_full_helm" },
+    { id = "rune_dagger" },
+    { id = "water_rune", amount = 70, chance = 8 },
+    { id = "nature_rune", amount = 12, chance = 5 },
+    { id = "law_rune", amount = 2, chance = 3 },
+    { id = "fire_rune", amount = 37, chance = 3 },
+    { table = "herb_drop_table", chance = 15 },
+    { id = "coins", amount = 20, chance = 5 },
+    { id = "coins", amount = 44, chance = 29 },
+    { id = "coins", amount = 180, chance = 10 },
+    { id = "blank_teleport_crystal" },
+    { id = "bass", chance = 3 },
+    { id = "shark", chance = 3 },
+    { id = "adamantite_ore" },
+    { table = "gem_drop_table", chance = 5 },
+]

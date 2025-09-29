@@ -165,6 +165,7 @@ attack_speed = 4
 style = "stab"
 categories = ["dagannoth"]
 respawn_delay = 30
+drop_table = "dagannoth_spawn"
 examine = "A horror from the ocean depths..."
 
 

@@ -1,0 +1,12 @@
+[giant_snail_drop_table]
+type = "all"
+drops = [
+    { table = "giant_snail_secondary" },
+]
+
+[giant_snail_secondary]
+roll = 50
+drops = [
+    { id = "snail_shell", chance = 50 },
+    { id = "perfect_snail_shell" },
+]

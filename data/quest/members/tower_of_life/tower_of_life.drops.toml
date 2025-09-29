@@ -1,0 +1,14 @@
+[frogeel_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "raw_cave_eel", min = 5, max = 10 },
+    { table = "frogeel_secondary" },
+]
+
+[frogeel_secondary]
+roll = 20
+drops = [
+    { id = "plain_satchel", chance = 3 },
+    { id = "tea_flask", chance = 2 },
+]

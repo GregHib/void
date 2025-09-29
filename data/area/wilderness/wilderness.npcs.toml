@@ -93,6 +93,7 @@ hunt_mode = "cowardly"
 slayer_xp = 268.75
 categories = ["bosses"]
 respawn_delay = 100
+drop_table = "chaos_elemental"
 examine = "pUre A cHaOs of crEatuRe!"
 
 [fishing_spot_wilderness]
@@ -163,6 +164,7 @@ style = "magic"
 max_hit_melee = 200
 immune_cannon = true
 respawn_delay = 150
+drop_table = "bones"
 examine = "He kills in the name of Zamorak."
 
 [battle_mage_saradomin]
@@ -173,6 +175,7 @@ style = "magic"
 max_hit_melee = 200
 immune_cannon = true
 respawn_delay = 150
+drop_table = "bones"
 examine = "He kills in the name of Saradomin."
 
 [battle_mage_guthix]
@@ -183,6 +186,7 @@ style = "magic"
 max_hit_melee = 200
 immune_cannon = true
 respawn_delay = 150
+drop_table = "bones"
 examine = "He kills in the name of Guthix."
 
 [mound_wilderness]

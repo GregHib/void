@@ -25,5 +25,6 @@ hunt_mode = "cowardly"
 slayer_xp = 55.0
 categories = ["cave_horrors"]
 respawn_delay = 50
+drop_table = "cave_horror"
 examine = "A horrible, emaciated ape like creature with beady red eyes."
 

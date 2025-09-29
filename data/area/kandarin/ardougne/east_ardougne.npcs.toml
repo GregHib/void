@@ -32,6 +32,7 @@ hunt_mode = "cowardly"
 slayer_xp = 75.0
 categories = ["cyclopes"]
 respawn_delay = 30
+drop_table = "hill_giant"
 examine = "A one-eyed man eater."
 
 [parrots_ardougne]

@@ -129,5 +129,6 @@ style = "slash"
 max_hit_melee = 40
 attack_bonus = 9
 respawn_delay = 50
+drop_table = "colonel_radick"
 examine = "A military man."
 

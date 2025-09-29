@@ -1,0 +1,12 @@
+[fever_spider_drop_table]
+type = "all"
+drops = [
+    { id = "fever_spider_body" },
+    { table = "fever_spider_secondary" },
+]
+
+[fever_spider_secondary]
+roll = 100
+drops = [
+    { id = "grimy_kwuarm", chance = 6 },
+]

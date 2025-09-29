@@ -40,3 +40,9 @@ drops = [
     { id = "mithril_scimitar", chance = 3 },
     { id = "adamant_scimitar" },
 ]
+
+[duke_drop_table]
+type = "all"
+drops = [
+    { id = "medium_ninja_monkey_bones" },
+]

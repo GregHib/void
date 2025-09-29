@@ -10,6 +10,13 @@ drops = [
     { table = "rat_tertiary" }
 ]
 
+[crypt_rat_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "rat_tertiary" }
+]
+
 [stronghold_rat_drop_table]
 type = "all"
 drops = [

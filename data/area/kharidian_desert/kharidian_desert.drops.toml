@@ -1,0 +1,20 @@
+[billy_goat_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "desert_goat_horn" },
+]
+
+[crocodile_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "herb_drop_table", roll = 20 },
+    { table = "elite_clue_scroll" },
+]
+
+[desert_wolf_drop_table]
+type = "all"
+drops = [
+    { id = "wolf_bones" }
+]

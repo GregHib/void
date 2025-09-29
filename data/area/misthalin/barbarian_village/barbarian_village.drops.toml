@@ -1,0 +1,5 @@
+[unicorn_primary]
+drops = [
+    { id = "bones" },
+    { id = "unicorn_horn" },
+]

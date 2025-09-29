@@ -7,4 +7,5 @@ def = 100
 style = "crush"
 max_hit_melee = 280
 hunt_mode = "cowardly"
+drop_table = "ashes"
 examine = "The pun was intended."

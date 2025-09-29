@@ -24,11 +24,20 @@ style = "crush"
 max_hit_melee = 30
 attack_bonus = 9
 respawn_delay = 50
-drop_table = "barbarian_low"
+drop_table = "barbarian_high"
 examine = "Alberich, a fierce barbarian warrior."
 
 [barbarian_barbarian_outpost_2]
 id = 3247
+hitpoints = 180
+att = 8
+str = 7
+def = 3
+style = "crush"
+max_hit_melee = 20
+attack_bonus = 9
+respawn_delay = 50
+drop_table = "barbarian_low"
 examine = "Fafner, a tough barbarian warrior."
 
 [barbarian_barbarian_outpost_3]
@@ -46,6 +55,7 @@ style = "crush"
 max_hit_melee = 20
 attack_bonus = 9
 respawn_delay = 50
+drop_table = "barbarian_low"
 examine = "Siegfried, a young guard in the Barbarian Village."
 
 [barbarian_barbarian_outpost_5]

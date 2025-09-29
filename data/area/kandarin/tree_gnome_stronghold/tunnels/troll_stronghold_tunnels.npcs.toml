@@ -93,6 +93,7 @@ attack_bonus = 20
 hunt_mode = "cowardly"
 slayer_xp = 90.0
 categories = ["trolls"]
+drop_table = "berry"
 examine = "He's guarding the cells."
 
 [cook_troll_stronghold_tunnels]

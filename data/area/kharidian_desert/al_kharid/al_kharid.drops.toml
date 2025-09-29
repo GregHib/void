@@ -2,36 +2,3 @@
 drops = [
     { id = "coins", amount = 18 },
 ]
-
-[al_kharid_warrior_drop_table]
-type = "all"
-drops = [
-    { id = "bones" },
-    { table = "al_kharid_warrior_secondary" },
-    { table = "easy_clue_scroll", roll = 128 },
-]
-
-[al_kharid_warrior_secondary]
-roll = 128
-drops = [
-    { id = "bronze_med_helm", chance = 2 },
-    { id = "iron_dagger" },
-    { id = "bronze_bolts", min = 2, max = 12, chance = 22 },
-    { id = "bronze_arrow", amount = 7, chance = 3 },
-    { id = "earth_rune", amount = 4, chance = 2 },
-    { id = "fire_rune", amount = 6, chance = 2 },
-    { id = "mind_rune", amount = 9, chance = 2 },
-    { id = "chaos_rune", amount = 2 },
-    { table = "herb_drop_table", chance = 23 },
-    { id = "coins", amount = 3, chance = 38 },
-    { id = "coins", amount = 10, chance = 23 },
-    { id = "coins", amount = 5, chance = 9 },
-    { id = "coins", amount = 15, chance = 4 },
-    { id = "coins", amount = 25 },
-    { id = "nothing", amount = 0, chance = 8 },
-    { id = "nothing", amount = 0, chance = 22 },
-    { id = "fishing_bait", chance = 5 },
-    { id = "copper_ore", chance = 2 },
-    { id = "earth_talisman", chance = 2 },
-    { id = "cabbage" },
-]

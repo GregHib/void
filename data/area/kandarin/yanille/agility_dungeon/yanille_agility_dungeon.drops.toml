@@ -1,0 +1,32 @@
+[chaos_druid_warrior_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "chaos_druid_warrior_secondary" },
+]
+
+[chaos_druid_warrior_secondary]
+roll = 128
+drops = [
+    { id = "black_dagger" },
+    { id = "fire_rune", amount = 12, chance = 5 },
+    { id = "law_rune", amount = 2, chance = 4 },
+    { id = "earth_rune", amount = 9, chance = 2 },
+    { id = "air_rune", amount = 36 },
+    { id = "nature_rune", amount = 3 },
+    { table = "herb_drop_table", chance = 44 },
+    { id = "white_berries", chance = 5 },
+    { id = "unicorn_horn_dust", chance = 2 },
+    { id = "limpwurt_root" },
+    { id = "limpwurt_root", amount = 2 },
+    { id = "snape_grass" },
+    { id = "vial_of_water" },
+    { id = "coins", amount = 3, chance = 15 },
+    { id = "coins", amount = 29, chance = 3 },
+    { id = "coins", amount = 10 },
+    { id = "nothing", amount = 0, chance = 37 },
+    { id = "limpwurt_seed" },
+    { id = "super_defence_1" },
+    { table = "gem_drop_table" },
+]
+

@@ -54,6 +54,7 @@ attack_bonus = 9
 slayer_xp = 37.0
 categories = ["bandits"]
 respawn_delay = 50
+drop_table = "wilderness_bandit"
 examine = "Has a fearsome scowl. Moreso, after being told to smile once in a while."
 
 [donny_the_lad]
@@ -68,6 +69,7 @@ attack_bonus = 9
 slayer_xp = 37.0
 categories = ["bandits"]
 respawn_delay = 50
+drop_table = "wilderness_bandit"
 examine = "Has a fearsome posture, and a fearsome pair of weapons!"
 
 [speedy_keith]

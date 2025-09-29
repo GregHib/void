@@ -1,12 +1,12 @@
-[werewolf_drop_table]
+[canifis_werewolf_drop_table]
 type = "all"
 drops = [
     { id = "wolf_bones" },
-    { table = "werewolf_secondary" },
-    { table = "easy_clue_scroll", roll = 128 },
+    { table = "canifis_werewolf_secondary" },
+    { table = "canifis_werewolf_tertiary" },
 ]
 
-[werewolf_secondary]
+[canifis_werewolf_secondary]
 roll = 512
 drops = [
     { id = "steel_hatchet", chance = 10 },
@@ -41,4 +41,25 @@ drops = [
     { id = "grey_wolf_fur", chance = 100 },
     { id = "blamish_oil" },
     { table = "gem_drop_table" },
+]
+
+[canifis_werewolf_tertiary]
+roll = 512
+drops = [
+    { id = "werewolf_bone", chance = 128, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { table = "easy_clue_scroll", chance = 4 },
+]
+
+[ghoul_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "ghoul_tertiary" },
+]
+
+[ghoul_tertiary]
+roll = 5000
+drops = [
+    { id = "ghoul_bone", chance = 1250, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { id = "ghoul_champions_scroll", lacks = "ghoul_champions_scroll" },
 ]

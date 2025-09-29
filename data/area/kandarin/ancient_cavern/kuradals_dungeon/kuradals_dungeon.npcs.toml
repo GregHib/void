@@ -6,13 +6,13 @@ str = 160
 def = 120
 mage = 160
 style = "crush"
-style = "magic"
 max_hit_melee = 170
 max_hit_magic = 80
 xp_bonus = 2.5
-hunt_mode = "cowardly"
+hunt_mode = "aggressive"
 slayer_xp = 225.4
 categories = ["dark_beasts"]
 respawn_delay = 50
+drop_table = "dark_beast"
 examine = "From a darker dimension."
 

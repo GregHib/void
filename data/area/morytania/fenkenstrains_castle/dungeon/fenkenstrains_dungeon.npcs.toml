@@ -7,6 +7,7 @@ def = 50
 style = "stab"
 max_hit_melee = 60
 respawn_delay = 8
+drop_table = "experiment"
 examine = "It has a key hanging from its collar."
 
 [experiment_spider]
@@ -16,6 +17,7 @@ def = 30
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 50
+drop_table = "experiment"
 examine = "One of Fenkenstrain's failed experiments."
 
 [experiment_sheep]
@@ -25,5 +27,6 @@ def = 30
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 50
+drop_table = "experiment"
 examine = "One of Fenkenstrain's failed experiments."
 

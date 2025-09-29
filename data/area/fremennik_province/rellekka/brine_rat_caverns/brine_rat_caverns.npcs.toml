@@ -1,4 +1,4 @@
-[skeleton_fremennik_brine_rat_caverns]
+[skeleton_fremennik]
 id = 3697
 hitpoints = 250
 att = 53
@@ -13,15 +13,15 @@ categories = ["skeletons"]
 respawn_delay = 50
 examine = "Could use a good meal."
 
-[skeleton_fremennik_brine_rat_caverns_2]
+[skeleton_fremennik_2]
 id = 3698
-clone = "skeleton_fremennik_brine_rat_caverns"
+clone = "skeleton_fremennik"
 
-[skeleton_fremennik_brine_rat_caverns_3]
+[skeleton_fremennik_3]
 id = 3699
-clone = "skeleton_fremennik_brine_rat_caverns"
+clone = "skeleton_fremennik"
 
-[skeleton_fremennik_brine_rat_caverns_4]
+[skeleton_fremennik_4]
 id = 3700
 hitpoints = 350
 att = 60
@@ -36,15 +36,15 @@ categories = ["skeletons"]
 respawn_delay = 50
 examine = "He seems a little underweight."
 
-[skeleton_fremennik_brine_rat_caverns_5]
+[skeleton_fremennik_5]
 id = 3701
-clone = "skeleton_fremennik_brine_rat_caverns_4"
+clone = "skeleton_fremennik_4"
 
-[skeleton_fremennik_brine_rat_caverns_6]
+[skeleton_fremennik_6]
 id = 3702
-clone = "skeleton_fremennik_brine_rat_caverns_4"
+clone = "skeleton_fremennik_4"
 
-[skeleton_fremennik_brine_rat_caverns_7]
+[skeleton_fremennik_7]
 id = 3703
 hitpoints = 400
 att = 72
@@ -59,13 +59,22 @@ categories = ["skeletons"]
 respawn_delay = 50
 examine = "He seems a little underweight."
 
-[skeleton_fremennik_brine_rat_caverns_8]
+[skeleton_fremennik_8]
 id = 3704
-clone = "skeleton_fremennik_brine_rat_caverns_7"
+clone = "skeleton_fremennik_7"
 
-[brine_rat_brine_rat_caverns]
+[brine_rat]
 id = 3707
-categories = ["brine_rats"]
+hitpoints = 500
+att = 70
+str = 79
+def = 40
+style = "stab"
+max_hit_melee = 90
+slayer_xp = 50.0
+categories = ["brine_rats", "rats"]
+respawn_delay = 30
+drop_table = "brine_rat"
 examine = "Eww, a bald rat!"
 
 [boulder_brine_rat_caverns]

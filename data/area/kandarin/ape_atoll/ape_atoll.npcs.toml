@@ -385,6 +385,7 @@ style = "melee"
 max_hit_melee = 140
 attack_bonus = 50
 hunt_mode = "cowardly"
+drop_table = "duke"
 examine = "A large ninja monkey wielding two scimitars."
 
 [oipuis]

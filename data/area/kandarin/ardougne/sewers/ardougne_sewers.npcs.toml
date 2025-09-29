@@ -25,6 +25,7 @@ def = 4
 style = "crush"
 max_hit_melee = 20
 respawn_delay = 50
+drop_table = "bones"
 examine = "A member of the Hazeel cult."
 
 [hazeel_cultist_ardougne_sewers]

@@ -1,0 +1,12 @@
+[giant_champion_drop_table]
+type = "all"
+drops = [
+    { table = "giant_champion_tertiary" },
+]
+
+[giant_champion_tertiary]
+roll = 5012
+drops = [
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]

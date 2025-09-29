@@ -1,0 +1,15 @@
+[disciple_of_iban_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "zamorak_robe_top" },
+    { id = "zamorak_robe_bottom" },
+    { id = "ibans_staff_broken" },
+]
+
+[disciple_of_iban_drop_table]
+type = "all"
+drops = [
+    { id = "ashes" },
+    { id = "amulet_of_doomion" },
+]
