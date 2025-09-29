@@ -151,6 +151,7 @@ def = 10
 style = "crush"
 max_hit_melee = 20
 respawn_delay = 25
+drop_table = "werewolf"
 examine = "She doesn't say much."
 
 [milla]

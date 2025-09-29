@@ -17,6 +17,7 @@ str = 38
 def = 40
 style = "slash"
 max_hit_melee = 50
+drop_table = "baby_tanglefoot"
 examine = "An animated shrub."
 
 [baby_tanglefoot_bush]
@@ -27,5 +28,6 @@ str = 38
 def = 40
 style = "slash"
 max_hit_melee = 50
+drop_table = "baby_tanglefoot"
 examine = "An aggressive bush."
 

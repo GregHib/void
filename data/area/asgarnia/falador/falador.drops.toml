@@ -2,3 +2,17 @@
 drops = [
     { id = "coins", amount = 30 },
 ]
+
+[air_wizard_drop_table]
+type = "all"
+drops = [
+    { table = "ashes" },
+    { table = "air_wizard_secondary" },
+]
+
+[air_wizard_secondary]
+roll = 20
+drops = [
+    { id = "air_rune", min = 5, max = 10, chance = 19 },
+    { id = "air_talisman" },
+]

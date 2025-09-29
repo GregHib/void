@@ -1,0 +1,5 @@
+[asyn_shade_drop_table]
+type = "all"
+drops = [
+    { id = "asyn_remains" },
+]

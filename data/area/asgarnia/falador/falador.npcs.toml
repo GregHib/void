@@ -200,6 +200,7 @@ mage = 10
 style = "magic"
 max_hit_melee = 10
 respawn_delay = 50
+drop_table = "air_wizard"
 examine = "At least he looks solid enough to fight."
 
 [malignius_mortifer]

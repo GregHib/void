@@ -23,6 +23,7 @@ range = 20
 style = "stab"
 max_hit_melee = 30
 respawn_delay = 50
+drop_table = "air_elemental"
 examine = "An air elemental."
 
 [water_elemental_elemental_workshop]

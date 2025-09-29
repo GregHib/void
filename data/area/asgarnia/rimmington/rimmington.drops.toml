@@ -1,17 +1,12 @@
-[warrior_pickpocket]
-drops = [
-    { id = "coins", amount = 18 },
-]
-
-[al_kharid_warrior_drop_table]
+[anja_drop_table]
 type = "all"
 drops = [
     { id = "bones" },
-    { table = "al_kharid_warrior_secondary" },
+    { table = "anja_secondary" },
     { table = "easy_clue_scroll", roll = 128 },
 ]
 
-[al_kharid_warrior_secondary]
+[anja_secondary]
 roll = 128
 drops = [
     { id = "bronze_med_helm", chance = 2 },
@@ -29,7 +24,6 @@ drops = [
     { id = "coins", amount = 15, chance = 4 },
     { id = "coins", amount = 25 },
     { id = "nothing", amount = 0, chance = 8 },
-    { id = "nothing", amount = 0, chance = 22 },
     { id = "fishing_bait", chance = 5 },
     { id = "copper_ore", chance = 2 },
     { id = "earth_talisman", chance = 2 },

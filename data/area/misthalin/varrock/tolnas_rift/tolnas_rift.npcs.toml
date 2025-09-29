@@ -17,6 +17,7 @@ def = 38
 style = "stab"
 max_hit_melee = 50
 categories = ["rats"]
+drop_table = "bones"
 examine = "He looks a little on the cross side!"
 
 [angry_goblin_tolnas_rift]

@@ -1,0 +1,5 @@
+[albino_bat_drop_table]
+type = "all"
+drops = [
+    { id = "bat_bones" },
+]

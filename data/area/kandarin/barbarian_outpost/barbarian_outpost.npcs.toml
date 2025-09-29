@@ -24,6 +24,7 @@ style = "crush"
 max_hit_melee = 30
 attack_bonus = 9
 respawn_delay = 50
+drop_table = "barbarian_low"
 examine = "Alberich, a fierce barbarian warrior."
 
 [barbarian_barbarian_outpost_2]

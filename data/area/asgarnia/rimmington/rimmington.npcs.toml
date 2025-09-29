@@ -123,6 +123,7 @@ hitpoints = 70
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 25
+drop_table = "anja"
 examine = "A citizen of Rimmington."
 
 [hengel]

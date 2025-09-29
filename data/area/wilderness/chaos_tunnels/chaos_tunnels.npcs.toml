@@ -113,6 +113,7 @@ examine = "How does it move of its own accord?"
 [animated_spade]
 id = 5414
 categories = ["phantoms"]
+drop_table = "animated_spade"
 examine = "How does it move of its own accord?"
 
 [dagonhai_monk_chaos_tunnels]

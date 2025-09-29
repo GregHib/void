@@ -126,6 +126,7 @@ examine = "One of Gielinor's many citizens."
 
 [archer_ardougne]
 id = 27
+drop_table = "bones"
 examine = "Good with arrows."
 
 [zookeeper]

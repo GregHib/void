@@ -1,0 +1,47 @@
+[angry_barbarian_spirit_drop_table]
+type = "all"
+drops = [
+    { table = "angry_barbarian_spirit_secondary" },
+    { table = "medium_clue_scroll", roll = 128 },
+]
+
+[angry_barbarian_spirit_secondary]
+roll = 128
+drops = [
+    { id = "iron_kiteshield", chance = 8 },
+    { id = "iron_plateskirt", chance = 5 },
+    { id = "steel_hasta", chance = 5 },
+    { id = "steel_longsword", chance = 5 },
+    { id = "yew_shortbow", chance = 3 },
+    { id = "steel_knife", amount = 10, chance = 3 },
+    { id = "steel_mace", chance = 2 },
+    { id = "steel_scimitar", chance = 2 },
+    { id = "steel_dart", amount = 10 },
+    { id = "steel_full_helm" },
+    { id = "steel_kiteshield" },
+    { id = "mithril_med_helm" },
+    { id = "mithril_sq_shield" },
+    { id = "adamant_battleaxe" },
+    { id = "rune_scimitar" },
+    { id = "battlestaff" },
+    { id = "death_rune", amount = 5, chance = 5 },
+    { id = "blood_rune", amount = 3, chance = 3 },
+    { id = "steel_arrow", amount = 20, chance = 3 },
+    { id = "silver_bolts", amount = 5, chance = 3 },
+    { id = "adamant_arrow", amount = 5, chance = 2 },
+    { table = "herb_drop_table", chance = 5 },
+    { id = "yew_logs", chance = 12 },
+    { id = "steel_bar_noted", amount = 3, chance = 5 },
+    { id = "silver_bar_noted", amount = 3, chance = 5 },
+    { id = "gold_bar", chance = 5 },
+    { id = "adamant_bar", chance = 2 },
+    { id = "gold_ore", chance = 2 },
+    { id = "coins", amount = 142, chance = 10 },
+    { id = "coins", amount = 106, chance = 5 },
+    { id = "coins", amount = 106, chance = 2 },
+    { id = "coins", amount = 323 },
+    { id = "strength_mix_2", chance = 5 },
+    { id = "mithril_grapple", amount = 2, chance = 3 },
+    { id = "sapphire_ring", chance = 2 },
+    { table = "gem_drop_table", chance = 2 },
+]

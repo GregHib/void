@@ -1,0 +1,25 @@
+[bandit_bandit_camp_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "bandit_bandit_camp_secondary" },
+]
+
+[bandit_bandit_camp_secondary]
+roll = 128
+drops = [
+    { id = "chaos_rune", amount = 2, chance = 21 },
+    { id = "death_rune", amount = 2, chance = 3 },
+    { id = "nature_rune", amount = 2, chance = 2 },
+    { id = "cosmic_rune", amount = 2, chance = 2 },
+    { id = "law_rune", amount = 2, chance = 2 },
+    { id = "iron_battleaxe", chance = 2 },
+    { id = "steel_hatchet" },
+    { table = "herb_drop_table", chance = 14 },
+    { id = "coins", amount = 12, chance = 23 },
+    { id = "coins", amount = 20, chance = 12 },
+    { id = "coins", amount = 30 },
+    { id = "coins", amount = 45, chance = 6 },
+    { id = "coal", chance = 4 },
+    { id = "steel_bar", chance = 5 },
+]

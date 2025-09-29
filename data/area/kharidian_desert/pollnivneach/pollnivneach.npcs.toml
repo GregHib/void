@@ -18,6 +18,16 @@ id = 1877
 
 [bandit_pollnivneach]
 id = 1879
+hitpoints = 300
+att = 40
+str = 50
+def = 20
+style = "slash"
+max_hit_melee = 70
+attack_bonus = 9
+respawn_delay = 50
+drop_table = "bones"
+examine = "Tough-looking."
 
 [cowardly_bandit_pollnivneach]
 id = 1886

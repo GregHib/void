@@ -112,6 +112,7 @@ max_hit_melee = 20
 attack_bonus = 10
 respawn_delay = 25
 wander_radius = 4
+drop_table = "al_kharid_warrior"
 pickpocket = { level = 25, stun_ticks = 8, stun_hit = 20, xp = 26.0, chance_min = 100, chance_max = 240, table = "warrior" }
 examine = "Part of Al Kharid's elite fighting force."
 

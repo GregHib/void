@@ -1,0 +1,7 @@
+[bandit_champion_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "willow_blackjack" },
+    { id = "adamant_scimitar" },
+]

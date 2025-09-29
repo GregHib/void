@@ -13,6 +13,7 @@ def = 4
 style = "crush"
 max_hit_melee = 20
 respawn_delay = 50
+drop_table = "bones"
 examine = "Leader of the Hazeel Cult."
 
 [clivet_ardougne_sewers]

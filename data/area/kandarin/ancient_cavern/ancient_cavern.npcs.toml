@@ -87,7 +87,7 @@ categories = ["skeletons"]
 respawn_delay = 50
 examine = "Floats like an anvil, hits like a hammer."
 
-[angry_barbarian_spirit_ancient_cavern]
+[angry_barbarian]
 id = 749
 hitpoints = 1900
 att = 150
@@ -98,6 +98,7 @@ max_hit_melee = 180
 attack_bonus = 9
 hunt_mode = "cowardly"
 respawn_delay = 50
+drop_table = "angry_barbarian_spirit"
 examine = "He looks a tad upset."
 
 [enraged_barbarian_spirit]

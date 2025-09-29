@@ -1,0 +1,4 @@
+[animated_spade_drop_table]
+drops = [
+    { id = "spade" },
+]

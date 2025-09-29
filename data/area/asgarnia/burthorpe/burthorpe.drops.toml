@@ -1,0 +1,33 @@
+[archer_burthorpe_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "archer_burthorpe_secondary" },
+]
+
+[archer_burthorpe_secondary]
+roll = 128
+drops = [
+    { id = "willow_longbow", chance = 4 },
+    { id = "studded_chaps", chance = 8 },
+    { id = "green_dragonhide_chaps", chance = 6 },
+    { id = "maple_shortbow" },
+    { id = "earth_rune", amount = 18, chance = 2 },
+    { id = "bronze_arrow", amount = 14, chance = 3 },
+    { id = "steel_arrow", amount = 14, chance = 2 },
+    { id = "fire_rune", amount = 17, chance = 2 },
+    { id = "air_rune", amount = 29, chance = 2 },
+    { id = "nature_rune", amount = 6 },
+    { id = "blood_rune" },
+    { id = "chaos_rune", amount = 2 },
+    { id = "coins", amount = 3 },
+    { id = "coins", amount = 5, chance = 39 },
+    { id = "coins", amount = 15, chance = 16 },
+    { id = "coins", amount = 12, chance = 9 },
+    { id = "coins", amount = 28, chance = 4 },
+    { id = "coins", amount = 42, chance = 4 },
+    { id = "coins", amount = 46, chance = 2 },
+    { id = "earth_talisman", chance = 3 },
+    { id = "mithril_ore" },
+    { id = "nothing", amount = 0, chance = 16 },
+]

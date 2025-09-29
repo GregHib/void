@@ -25,4 +25,5 @@ max_hit_range = 200
 hunt_mode = "cowardly"
 slayer_xp = 250.0
 categories = ["birds"]
+drop_table = "bones"
 examine = "A very, very large mountain-dwelling bird."

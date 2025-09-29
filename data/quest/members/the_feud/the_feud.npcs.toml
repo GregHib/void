@@ -8,6 +8,7 @@ style = "slash"
 max_hit_melee = 100
 attack_bonus = 9
 hunt_mode = "aggressive"
+drop_table = "bandit_champion"
 examine = "A very tough-looking bandit."
 
 [tough_guy]
