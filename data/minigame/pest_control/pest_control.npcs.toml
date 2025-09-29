@@ -1,127 +1,78 @@
-[commodore_matthias_pest_control]
-id = 11497
-
-[jessika_pest_control]
-id = 11500
-
-[jessika_pest_control_2]
-id = 11501
-
-[squire_pest_control]
-id = 11502
-
-[commander_korasi_pest_control]
-id = 11505
-
-[captain_tyr_pest_control]
-id = 11509
-
-[knight_ami_pest_control]
-id = 11514
-
-[knight_diana_pest_control]
-id = 11515
-
-[terry_gord_pest_control]
-id = 11516
-
-[mrs_gord_pest_control]
-id = 11517
-
-[knight_mikhal_pest_control]
-id = 11518
-
-[mariah_pest_control]
-id = 11519
-
-[squire_sam_pest_control]
-id = 11520
-
-[knight_bernard_pest_control]
-id = 11521
-
-[captain_korasi_pest_control]
-id = 11651
-
-[jessika_pest_control_3]
-id = 11661
-
-[jessika_pest_control_4]
-id = 11662
-
-[commodore_tyr_pest_control]
-id = 11681
-
-[captain_ethar_pest_control]
-id = 12195
-examine = "In charge of Conquest training."
-
-[knight_dorian_pest_control]
-id = 12196
-examine = "Deals with Conquest squad recruitment and formations."
+[squire_instance_pest_control]
+id = 3781
+examine = "A squire of balance."
 
 [void_knight_pest_control]
 id = 3786
+wander_radius = 1
 examine = "A powerful knight of balance."
 
-[void_knight_pest_control_2]
+[void_knight_2_pest_control]
 id = 3788
+wander_radius = 1
 examine = "A powerful knight of balance."
 
-[void_knight_pest_control_3]
+[void_knight_3_pest_control]
 id = 3789
+wander_radius = 1
+examine = "A powerful knight of balance."
 
-[squire_pest_control_2]
+[squire_pest_control]
 id = 3790
 examine = "A squire of balance."
 
-[squire_pest_control_3]
+[squire_2_pest_control]
 id = 3791
 examine = "A squire of balance."
 
-[squire_pest_control_4]
+[squire_3_pest_control]
 id = 3792
+wander_radius = 1
 examine = "A squire of balance."
 
-[squire_pest_control_5]
+[squire_4_pest_control]
 id = 3793
 examine = "A squire of balance."
 
-[squire_pest_control_6]
+[squire_bank_pest_control]
 id = 3794
 examine = "A squire of balance."
 
-[squire_pest_control_7]
+[squire_bank_2_pest_control]
 id = 3795
 examine = "A squire of balance."
 
-[squire_pest_control_8]
+[squire_rangeshop_pest_control]
 id = 3796
+wander_radius = 1
 examine = "A squire of balance."
 
-[squire_pest_control_9]
+[squire_blacksmith_pest_control]
 id = 3797
+wander_radius = 1
 examine = "A squire of balance."
 
-[squire_pest_control_10]
+[squire_runeshop_pest_control]
 id = 3798
+wander_radius = 1
 examine = "A squire of balance."
 
-[squire_pest_control_11]
+[squire_storemaster_pest_control]
 id = 3799
+wander_radius = 1
 examine = "A squire of balance."
 
-[squire_pest_control_12]
+[squire_ship_island_pest_control]
 id = 3800
-wander_radius = 3
 examine = "A squire of balance."
 
 [squire_novice_pest_control]
 id = 3802
 examine = "A squire of balance."
 
-[void_knight_pest_control_4]
+[void_knight_4_pest_control]
 id = 5956
+wander_radius = 1
 examine = "A powerful knight of balance."
 
 [squire_intermediate_pest_control]
@@ -132,50 +83,131 @@ examine = "A squire of balance."
 id = 6141
 examine = "A squire of balance."
 
-[commodore_matthias_pest_control_2]
+[commodore_matthias_spawn_pest_control]
+id = 11497
+wander_radius = 2
+
+[commodore_matthias_pest_control]
 id = 11498
+examine = "Leader of the Void Knights."
 
-[jessika_pest_control_5]
+[jessika_pest_control]
 id = 11499
+wander_radius = 2
+examine = "A mage and researcher."
 
-[commander_korasi_pest_control_2]
+[jessika_spawn_pest_control]
+id = 11500
+
+[jessika_spawn_2_pest_control]
+id = 11501
+
+[squire_spawn_pest_control]
+id = 11502
+
+[commander_korasi_spawn_pest_control]
+id = 11505
+
+[commander_korasi_pest_control]
 id = 11506
+examine = "A Void Knight commander/captain."
 
-[captain_tyr_pest_control_2]
+[captain_tyr_spawn_pest_control]
+id = 11509
+
+[captain_tyr_pest_control]
 id = 11510
+examine = "The Void Knights' commanding officer in the field."
 
-[knight_ami_pest_control_2]
+[knight_ami_spawn_pest_control]
+id = 11514
+
+[knight_spawn_diana_pest_control]
+id = 11515
+
+[terry_gord_spawn_pest_control]
+id = 11516
+
+[mrs_gord_spawn_pest_control]
+id = 11517
+
+[knight_mikhal_spawn_pest_control]
+id = 11518
+
+[mariah_spawn_pest_control]
+id = 11519
+
+[squire_sam_spawn_pest_control]
+id = 11520
+
+[knight_bernard_spawn_pest_control]
+id = 11521
+
+[knight_ami_pest_control]
 id = 11522
+examine = "A Void Knight."
 
-[knight_diana_pest_control_2]
+[knight_diana_pest_control]
 id = 11523
+examine = "A Void knight."
 
-[terry_gord_pest_control_2]
+[terry_gord_pest_control]
 id = 11524
+examine = "A mama's boy."
 
-[mrs_gord_pest_control_2]
+[mrs_gord_pest_control]
 id = 11525
+examine = "Terry's mum."
 
-[knight_mikhal_pest_control_2]
+[knight_mikhal_pest_control]
 id = 11526
+examine = "A Void knight."
 
-[mariah_pest_control_2]
+[mariah_pest_control]
 id = 11527
+examine = "Mikhal's girlfriend."
 
-[mariah_pest_control_3]
+[mariah_upset_pest_control]
 id = 11528
+examine = "Mikhal's girlfriend."
 
-[squire_sam_pest_control_2]
+[squire_sam_pest_control]
 id = 11529
+examine = "A Void Knight squire."
 
-[knight_bernard_pest_control_2]
+[knight_bernard_pest_control]
 id = 11530
+examine = "A Void knight."
 
-[captain_korasi_pest_control_2]
-id = 11648
-
-[jessika_pest_control_3_2]
+[jessika_a_void_dance]
 id = 11660
+wander_radius = 2
+examine = "A mage and researcher."
 
-[commodore_tyr_pest_control_2]
+[jessika_spawn_a_void_dance_pest_control]
+id = 11661
+
+[jessika_spawn_2_a_void_dance_pest_control]
+id = 11662
+
+[commodore_spawn_tyr_pest_control]
+id = 11681
+
+[commodore_tyr_pest_control]
 id = 11682
+examine = "The newly appointed leader of the Void Knights."
+
+[captain_korasi_pest_control]
+id = 11648
+examine = "Void Knight Captain Korasi, on the warpath."
+
+[captain_korasi_spawn_pest_control]
+id = 11651
+
+[captain_ethar_pest_control]
+id = 12195
+examine = "In charge of Conquest training."
+
+[knight_dorian_pest_control]
+id = 12196
+examine = "Deals with Conquest squad recruitment and formations."

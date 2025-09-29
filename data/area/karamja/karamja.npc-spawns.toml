@@ -11,7 +11,7 @@ spawns = [
     { id = "snake", x = 2928, y = 2973, members = true },
     { id = "snake", x = 2923, y = 2970, members = true },
     # 11567
-    { id = "captain_errdo_crashed", x = 2917, y = 3056, members = true },
+    { id = "captain_errdo_crashed", x = 2918, y = 3057, members = true },
     { id = "jogre_ardougne", x = 2896, y = 2945 },
     { id = "jogre_ardougne", x = 2918, y = 2963 },
     { id = "jogre_ardougne", x = 2923, y = 2985 },
@@ -74,8 +74,6 @@ spawns = [
     { id = "frog_karamja", x = 2919, y = 2977, level = 1, members = true },
     { id = "frog_karamja", x = 2924, y = 2970, level = 1, members = true },
     { id = "frog_karamja", x = 2893, y = 3004, level = 2, members = true },
-    { id = "captain_errdo", x = 2918, y = 3057, members = true },
-    { id = "captain_klemfoodle", x = 2970, y = 2973 },
     { id = "jungle_forester", x = 2764, y = 2944 },
     { id = "jungle_forester", x = 2798, y = 2944 },
     { id = "jungle_forester_2", x = 2759, y = 2944 },
