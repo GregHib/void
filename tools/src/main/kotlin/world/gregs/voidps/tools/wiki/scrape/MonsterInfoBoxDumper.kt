@@ -1,6 +1,9 @@
 package world.gregs.voidps.tools.wiki.scrape
 
 import net.pearx.kasechange.toSnakeCase
+import org.sweble.wikitext.parser.nodes.WtHeading
+import org.sweble.wikitext.parser.nodes.WtTemplate
+import org.sweble.wikitext.parser.nodes.WtText
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
@@ -11,11 +14,15 @@ import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ParameterDefinitions
 import world.gregs.voidps.engine.data.find
+import world.gregs.voidps.tools.convert.DropTableConverter
+import world.gregs.voidps.tools.convert.DropTableConverter.Builder
 import world.gregs.voidps.tools.wiki.model.Wiki
 import java.io.File
 import java.io.PrintStream
 
 object MonsterInfoBoxDumper {
+    private val save = false
+    private val infoBox = false
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -28,28 +35,138 @@ object MonsterInfoBoxDumper {
         val definitions = NPCDecoder(true, parameters).load(cache)
         val decoder = NPCDefinitions(definitions).load(files.getValue(Settings["definitions.npcs"]))
         val wiki = Wiki.load("C:\\Users\\Greg\\Downloads\\oldschool-runescape-wiki-2023-10-08.xml")
-        val file = File("./osrs_npcs.toml")
-        System.setOut(PrintStream(file.outputStream(), true))
-        for (page in wiki.pages) {
-            if (!page.contains("Infobox Monster")) {
+        if (infoBox) {
+            if (save) {
+                val file = File("./osrs_npcs.toml")
+                System.setOut(PrintStream(file.outputStream(), true))
+            }
+            for (page in wiki.pages) {
+                if (!page.contains("Infobox Monster")) {
+                    continue
+                }
+                val infobox = page.getTemplateMap("Infobox Monster") ?: continue
+                if (infobox.contains("name1") || infobox.contains("version1")) {
+                    for (i in 1 until 25) {
+                        if (infobox.contains("name$i") || infobox.contains("version$i")) {
+                            print(decoder, infobox, i.toString())
+                        } else {
+                            break
+                        }
+                    }
+                } else if (infobox.contains("name")) {
+                    print(decoder, infobox, "")
+                }
+            }
+        }
+        if (save) {
+            val file = File("./osrs_drops.toml")
+            System.setOut(PrintStream(file.outputStream(), true))
+        }
+        pages@ for (page in wiki.pages) {
+            if (!page.contains("DropsTableHead")) {
                 continue
             }
-            val infobox = page.getTemplateMap("Infobox Monster") ?: continue
-            if (infobox.contains("name1") || infobox.contains("version1")) {
-                for (i in 1 until 25) {
-                    if (infobox.contains("name$i") || infobox.contains("version$i")) {
-                        print(decoder, infobox, i.toString())
-                    } else {
-                        break
+            if (page.contains("Infobox Monster")) {
+                val infobox = page.getTemplateMap("Infobox Monster") ?: continue
+                for (release in infobox.filter { it.key.startsWith("release") }.values) {
+                    val date = (release as String).replace(nameRegex, "").toSnakeCase()
+                    for (year in 2013..2025) {
+                        if (date.endsWith("_$year")) {
+                            continue@pages
+                        }
                     }
                 }
-            } else if (infobox.contains("name")) {
-                print(decoder, infobox, "")
+            } else {
+                continue
+            }
+            if (page.contains("DropsTableHead")) {
+                val all = mutableListOf<Builder>()
+                var builder = Builder()
+                for (element in page.content) {
+                    if (element is WtTemplate && element.name.isResolved) {
+                        val name = element.name.asString.trim()
+                        val arguments = element.args
+                        val template = page.getTemplate(arguments)
+                        when (name) {
+                            "DropsLineClue" -> {
+                                val map = (template as Map<String, Any>).toMutableMap()
+                                if (map["rarity"] is List<*>) {
+                                    println("# Invalid rarity: ${map.remove("rarity")}")
+                                    map["rarity"] = ""
+                                }
+                                if (map["quantity"] is List<*> || map["quantity"] == "" || map["quantity"] == "N/A") {
+                                    println("# Invalid quantity: ${map.remove("quantity")}")
+                                }
+                                map["quantity"] = "1"
+                                map["name"] = "${map["type"]} clue scroll"
+                                DropTableConverter.process(builder, map as Map<String, String>)
+                            }
+                            "DropsLine" -> {
+                                val map = (template as Map<String, Any>).toMutableMap()
+                                if ((map["rarity"] as? String)?.startsWith("rarity=") == true) {
+                                    map["rarity"] = (map["rarity"] as String).removePrefix("rarity=")
+                                }
+                                if (map["rarity"] is List<*>) {
+                                    println("# Invalid rarity: ${map.remove("rarity")}")
+                                    map["rarity"] = ""
+                                }
+                                if (map["quantity"] is List<*> || map["quantity"] == "" || map["quantity"] == "N/A") {
+                                    println("# Invalid quantity: ${map.remove("quantity")}")
+                                }
+                                DropTableConverter.process(builder, map as Map<String, String>)
+                            }
+                            "GemDropTable", "RareDropTable", "HerbDropTable", "RareSeedDropTable" -> {
+                                val (chance, roll) = if (template is Map<*, *> && (template[""] as? String)?.contains("/") != true && template.contains("rolls")) {
+                                    val map = template as Map<String, String>
+                                    val chance = map[""]?.split("-")
+                                    (chance?.first()?.toInt() ?: 1) to (map["rolls"] as String).toInt()
+                                } else {
+                                    val string: String? = if (template is List<*>) {
+                                        (template as List<String>).first()
+                                    } else {
+                                        (template as Map<String, String>)[""]
+                                    }
+                                    val (chance, roll) = (string ?: "1/1").split("/")
+                                    chance.toInt() to roll.toInt()
+                                }
+                                val table = when (name) {
+                                    "HerbDropTable" -> "herb_drop_table"
+                                    "RareSeedDropTable" -> "rare_seed_drop_table"
+                                    "RareDropTable" -> "rare_drop_table"
+                                    else -> "gem_drop_table"
+                                }
+                                builder.addDrop(Builder.Drop.table(table, chance = chance, roll = roll))
+                                builder.withRoll(roll)
+                                all.add(builder)
+                                builder = Builder()
+                            }
+                            "DropsTableBottom" -> {
+                                if (builder.drops.isNotEmpty()) {
+                                    all.add(builder)
+                                }
+                                builder = Builder()
+                            }
+                            else -> continue
+                        }
+                    } else if (element is WtHeading) {
+                        val first = element.firstOrNull() ?: continue
+                        if (first is WtText) {
+                            builder.name = first.content.replace(nameRegex, "").toSnakeCase()
+                        }
+                    }
+                }
+                if (builder.drops.isNotEmpty()) {
+                    all.add(builder)
+                }
+                if (all.isNotEmpty()) {
+                    DropTableConverter.print(page.title.toSnakeCase().replace(nameRegex, ""), all)
+                }
             }
         }
     }
 
     val nameRegex = "[(\\[\\])']".toRegex()
+
     private fun print(decoder: NPCDefinitions, infobox: Map<String, Any>, suffix: String) {
         val name = infobox["name$suffix"] as? String ?: infobox["name"] as? String ?: return
         val release = infobox["release$suffix"] as? String ?: infobox["release"] as? String
