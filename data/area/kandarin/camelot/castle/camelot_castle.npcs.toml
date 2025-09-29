@@ -36,10 +36,6 @@ examine = "One of the Knights of the Round Table."
 id = 251
 examine = "Legendary King of the Britons."
 
-[vestri_camelot_castle]
-id = 3679
-examine = "He looks short and grumpy."
-
 [sir_palomedes_camelot_castle]
 id = 3787
 
@@ -47,6 +43,3 @@ id = 3787
 id = 4686
 categories = ["ice_giants"]
 examine = "He's got icicles in his beard."
-
-[man_camelot]
-id = 2324

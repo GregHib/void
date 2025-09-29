@@ -46,6 +46,10 @@ examine = "Looks a little underfed."
 id = 1820
 examine = "This goat belongs to the mountain camp people."
 
+[bald_headed_eagle_mountain_camp]
+id = 1821
+examine = "A big birdy."
+
 [my_arm_mountain_camp]
 id = 4947
 categories = ["trolls"]

@@ -1,7 +1,7 @@
 spawns = [
     { id = "trader_crewmember_grey", x = 3001, y = 3033, members = true },
     { id = "trader_crewmember_pink", x = 3001, y = 3034, members = true },
-    { id = "captain_klemfoodle", x = 2972, y = 2974, members = true },
+    { id = "captain_klemfoodle", x = 2970, y = 2973, members = true },
     { id = "shipyard_guard", x = 2944, y = 3040, members = true },
     { id = "glo_caranock_karamja_ship_yard", x = 2956, y = 3025 },
     { id = "gull_karamja_2", x = 2974, y = 3068 },

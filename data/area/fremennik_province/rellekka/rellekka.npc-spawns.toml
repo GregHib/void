@@ -19,7 +19,7 @@ spawns = [
   { id = "hobgoblin_armed", x = 2675, y = 3731, members = true },
   { id = "hobgoblin_armed", x = 2684, y = 3730, members = true },
 # 11064
-  { id = "musician_mountain_camp", x = 2760, y = 3645, direction = "SOUTH", members = true },
+  { id = "musician_mountain_camp", x = 2760, y = 3644, direction = "SOUTH", members = true },
   { id = "rooster_rellekka", x = 2680, y = 3662 },
   { id = "olaf_the_bard", x = 2673, y = 3683 },
   { id = "lalli_rellekka", x = 2770, y = 3622 },
@@ -48,7 +48,7 @@ spawns = [
   { id = "town_guard_rellekka", x = 2660, y = 3646 },
   { id = "town_guard_rellekka_2", x = 2663, y = 3646, members = true },
   { id = "thora_the_barkeep", x = 2662, y = 3673 },
-  { id = "fisherman_rellekka", x = 2641, y = 3699 },
+  { id = "fisherman_rellekka", x = 2641, y = 3699, direction = "NORTH" },
   { id = "skulgrimen", x = 2663, y = 3694 },
   { id = "sailor_rellekka", x = 2629, y = 3693 },
   { id = "agnar_rellekka", x = 2642, y = 3677 },
@@ -189,9 +189,8 @@ spawns = [
   { id = "fishing_spot_rellekka_5", x = 2690, y = 3598, members = true },
   { id = "fishing_spot_rellekka_5", x = 2692, y = 3598, members = true },
   { id = "larry_rellekka_2", x = 2707, y = 3734, members = true },
-  { id = "musician_mountain_camp", x = 2760, y = 3644 },
   { id = "unicorn", x = 2718, y = 3610 },
   { id = "unicorn", x = 2741, y = 3605 },
-  { id = "lokar_searunner", x = 2621, y = 3694 },
+  { id = "lokar_searunner", x = 2621, y = 3688 },
   { id = "fish_monger", x = 2646, y = 3676 },
 ]

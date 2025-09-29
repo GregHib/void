@@ -199,3 +199,7 @@ id = 272
 
 [local_mage_edgeville_3]
 id = 8348
+
+[hellrat]
+id = 3382
+examine = "Vermin from the underworld."

@@ -211,7 +211,6 @@ spawns = [
   { id = "sani", x = 3187, y = 3423 },
   { id = "woman_2", x = 3278, y = 3502 },
   { id = "assistant_serf", x = 3298, y = 3483, members = true },
-  { id = "captain_errdo_crashed", x = 3318, y = 3440 },
   { id = "valaine", x = 3193, y = 3361, level = 1 },
   { id = "scavvo", x = 3191, y = 3351, level = 1 },
   { id = "zaff", x = 3203, y = 3433 },

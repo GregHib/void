@@ -91,3 +91,11 @@ drop_table = "human"
 combat_anims = "human"
 respawn_delay = 50
 examine = "He isn't very friendly."
+
+[vestri]
+id = 3679
+examine = "He looks short and grumpy."
+
+[dantaera]
+id = 2324
+examine = "Perhaps this gardener might look after your crops for you."
