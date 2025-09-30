@@ -15,7 +15,10 @@ import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.psiUtil.collectDescendantsOfType
+import org.jetbrains.kotlin.utils.addToStdlib.indexOfOrNull
+import java.io.BufferedInputStream
 import java.io.File
+import java.io.FileInputStream
 
 /**
  * Gradle task which incrementally collects annotation info about classes inside a given directory.
@@ -27,6 +30,9 @@ abstract class ScriptMetadataTask : DefaultTask() {
     @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val inputDirectory: DirectoryProperty
 
+    @get:Internal
+    abstract var dataDirectory: File
+
     @get:OutputFile
     abstract var scriptsFile: File
 
@@ -35,28 +41,41 @@ abstract class ScriptMetadataTask : DefaultTask() {
         group = "metadata"
     }
 
+    private val annotations = mapOf(
+        "id" to listOf("name" to "npc")
+    )
+
     @TaskAction
     fun execute(inputChanges: InputChanges) {
         val start = System.currentTimeMillis()
 
-        val scriptsList: MutableList<String>
+        var npcIds = mutableSetOf<String>()
+        var itemIds = mutableSetOf<String>()
+        var objectIds = mutableSetOf<String>()
+        var interfaceIds = mutableSetOf<String>()
+        var componentIds = mutableSetOf<String>()
+        collectIds(npcIds, itemIds, objectIds, interfaceIds, componentIds)
+
+        val lines: MutableList<String>
         if (!inputChanges.isIncremental) {
             // Clean output for non-incremental runs
             scriptsFile.delete()
             logger.info("Non-incremental run: analyzing all files")
-            scriptsList = mutableListOf()
+            lines = mutableListOf()
         } else {
-            scriptsList = if (scriptsFile.exists()) scriptsFile.readLines().toMutableList() else mutableListOf()
+            lines = if (scriptsFile.exists()) scriptsFile.readLines().toMutableList() else mutableListOf()
         }
-
         val disposable = Disposer.newDisposable()
         val environment = createKotlinEnvironment(disposable)
-        var additions = 0
+        var scripts = 0
+        var methodCount = 0
+        var annotationCount = 0
+        val instance = PsiManager.getInstance(environment.project)
+        val scriptClasses = mutableListOf<Pair<KtClass, String>>()
         for (change in inputChanges.getFileChanges(inputDirectory)) {
             val file = change.file
             if (change.changeType == ChangeType.REMOVED) {
-                val name = file.nameWithoutExtension
-                removeName(scriptsList, name)
+                removeName(lines, file.nameWithoutExtension)
                 continue
             }
             if (!file.isFile || !file.name.endsWith(".kt")) {
@@ -67,13 +86,14 @@ abstract class ScriptMetadataTask : DefaultTask() {
                 println("Local file not found: ${file.path}")
                 continue
             }
-            val psiFile: KtFile = PsiManager.getInstance(environment.project).findFile(localFile) as KtFile
+            val psiFile: KtFile = instance.findFile(localFile) as KtFile
+
             val classes = psiFile.collectDescendantsOfType<KtClass>()
             val packageName = psiFile.packageFqName.asString()
             if (change.changeType == ChangeType.MODIFIED) {
                 for (name in classes.map { it.name }) {
-                    if (!scriptsList.removeIf { it.endsWith("$packageName.$name") } && change.changeType == ChangeType.MODIFIED) {
-                        removeName(scriptsList, name)
+                    if (!lines.removeIf { it.endsWith("$packageName.$name") }) {
+                        removeName(lines, name)
                     }
                 }
             }
@@ -81,29 +101,133 @@ abstract class ScriptMetadataTask : DefaultTask() {
                 for (ktClass in classes) {
                     val className = ktClass.name ?: "Anonymous"
                     if (ktClass.annotationEntries.any { anno -> anno.shortName!!.asString() == "Script" }) {
-                        val methods = ktClass.declarations.filterIsInstance<KtNamedFunction>().filter { it.hasModifier(KtTokens.OVERRIDE_KEYWORD) }
-                        additions++
-                        if (methods.isEmpty()) {
-                            scriptsList.add("$packageName.$className")
-                            continue
-                        }
-                        val signatures = methods.joinToString(separator = "|", postfix = "|") { method ->
-                            val returnType = method.typeReference
-                            "${method.name}(${method.valueParameters.joinToString(",") { param -> param.typeReference!!.getTypeText() }})${if (returnType == null) "" else ":${returnType.getTypeText()}"}"
-                        }
-                        scriptsList.add("$signatures$packageName.$className")
+                        scriptClasses.add(ktClass to "$packageName.$className")
                     }
                 }
             }
         }
-        scriptsFile.writeText(scriptsList.joinToString("\n"))
+
+        for ((ktClass, packagePath) in scriptClasses) {
+            val methods = ktClass.declarations.filterIsInstance<KtNamedFunction>().filter { it.hasModifier(KtTokens.OVERRIDE_KEYWORD) }
+            scripts++
+            if (methods.isEmpty()) {
+                lines.add(packagePath)
+                continue
+            }
+            for (method in methods) {
+                methodCount++
+                val returnType = method.typeReference
+                val signature = "${method.name}(${method.valueParameters.joinToString(",") { param -> param.typeReference!!.getTypeText() }})${if (returnType == null) "" else ":${returnType.getTypeText()}"}"
+                val entries = method.annotationEntries
+                if (entries.isEmpty()) {
+                    lines.add("${signature}|$packagePath")
+                    continue
+                }
+                for (annotation in entries) {
+                    val annotationName = annotation.shortName?.asString() ?: ""
+                    val info = annotations.get(annotationName) ?: error("Annotation ${annotationName} metadata not found. Make sure your annotation is registered in ScriptMetadataTask.kt")
+                    val params = Array<MutableList<String>>(info.size) { mutableListOf() }
+                    var index = 0
+                    for (arg in annotation.valueArguments) {
+                        val name = arg.getArgumentName()?.asName?.asString()
+                        val value = arg.getArgumentExpression()?.text?.trim('"') ?: ""
+                        var idx = if (name != null) info.indexOfFirst { it.first == name } else index++
+                        params[idx].add(value)
+                    }
+                    for (i in info.indices) {
+                        val set = when (info[i].second) {
+                            "npc" -> npcIds
+                            "interface" -> interfaceIds
+                            "component" -> componentIds
+                            "object" -> objectIds
+                            "item" -> itemIds
+                            "" -> continue
+                            else -> error("Unknown wildcard type: ${info[i].second}")
+                        }
+                        val value = params[i].first()
+                        if (value.contains("*") || value.contains("#")) {
+                            val matches = set.filter { wildcardEquals(value, it) }
+                            if (matches.isEmpty()) {
+                                error("No matches for wildcard '${value}' in ${packagePath} ${annotation.text}")
+                            }
+                            params[i].removeAt(0)
+                            params[i].addAll(matches)
+                        }
+                    }
+                    generateCombinations(params) { args ->
+                        annotationCount++
+                        lines.add("@${annotation.shortName}|${args.joinToString(":")}|$signature|$packagePath")
+                    }
+                }
+            }
+        }
+        scriptsFile.writeText(lines.joinToString("\n"))
         disposable.dispose()
-        println("Metadata for $additions scripts collected in ${System.currentTimeMillis() - start} ms")
+        println("Metadata for $scripts scripts, $methodCount methods and ${annotationCount} annotations collected in ${System.currentTimeMillis() - start} ms")
+    }
+
+    private fun generateCombinations(arrays: Array<MutableList<String>>, index: Int = 0, current: MutableList<String> = mutableListOf(), call: (List<String>) -> Unit) {
+        if (index == arrays.size) {
+            call.invoke(current)
+            return;
+        }
+        val currentArray = arrays.get(index);
+        for (element in currentArray) {
+            current.add(element);
+            generateCombinations(arrays, index + 1, current, call);
+            current.removeAt(current.size - 1);
+        }
+    }
+
+    private fun collectIds(
+        npcIds: MutableSet<String>,
+        itemIds: MutableSet<String>,
+        objectIds: MutableSet<String>,
+        interfaceIds: MutableSet<String>,
+        componentIds: MutableSet<String>,
+    ) {
+        val start = System.currentTimeMillis()
+        for (file in dataDirectory.walkTopDown()) {
+            if (!file.isFile) {
+                continue
+            }
+            if (file.name.endsWith(".npcs.toml")) {
+                for (line in file.readLines()) {
+                    if (line.startsWith('[')) {
+                        npcIds.add(line.substringBefore(']').trim('['))
+                    }
+                }
+            } else if (file.name.endsWith(".items.toml")) {
+                for (line in file.readLines()) {
+                    if (line.startsWith('[')) {
+                        itemIds.add(line.substringBefore(']').trim('['))
+                    }
+                }
+            } else if (file.name.endsWith(".objs.toml")) {
+                for (line in file.readLines()) {
+                    if (line.startsWith('[')) {
+                        objectIds.add(line.substringBefore(']').trim('['))
+                    }
+                }
+            } else if (file.name.endsWith(".ifaces.toml")) {
+                for (line in file.readLines()) {
+                    if (line.startsWith('[')) {
+                        val key = line.substringBefore(']').trim('[')
+                        if (key.contains(".")) {
+                            componentIds.add(key.substringAfter('.'))
+                        } else {
+                            interfaceIds.add(key)
+                        }
+                    }
+                }
+            }
+        }
+        println("Collected ${npcIds.size} npcs, ${itemIds.size} items, ${objectIds.size} objects, ${interfaceIds.size} interfaces in ${System.currentTimeMillis() - start}ms")
     }
 
     private fun removeName(scriptsList: MutableList<String>, name: String?) {
-        if (scriptsList.count { it.endsWith(".$name") } > 1) {
-            error("Deletion failed due to duplicate script names: ${scriptsList.filter { it.endsWith(".$name") }}. Please update scripts.txt or run `gradle cleanScriptMetadata`.")
+        if (scriptsList.filter { it.endsWith(".$name") }.map { it.split("|").last() }.distinct().count() > 1) {
+            error("Deletion failed due to duplicate script names: ${scriptsList.filter { it.endsWith(".$name") }.map { it.split("|").last() }.distinct()}. Please update scripts.txt or run `gradle cleanScriptMetadata`.")
         }
         scriptsList.removeIf { it.endsWith(".$name") }
     }
@@ -113,4 +237,46 @@ abstract class ScriptMetadataTask : DefaultTask() {
         CompilerConfiguration.EMPTY,
         EnvironmentConfigFiles.JVM_CONFIG_FILES,
     )
+
+
+    private fun wildcardEquals(wildcard: String, other: String): Boolean {
+        if (wildcard == "*") {
+            return true
+        }
+        var wildIndex = 0
+        var otherIndex = 0
+        var starIndex = -1
+        var matchIndex = -1
+
+        while (otherIndex < other.length) {
+            when {
+                wildIndex < wildcard.length && (wildcard[wildIndex] == '#' && other[otherIndex].isDigit()) -> {
+                    wildIndex++
+                    otherIndex++
+                }
+                wildIndex < wildcard.length && wildcard[wildIndex] == '*' -> {
+                    starIndex = wildIndex
+                    matchIndex = otherIndex
+                    wildIndex++
+                }
+                wildIndex < wildcard.length && wildcard[wildIndex] == other[otherIndex] -> {
+                    wildIndex++
+                    otherIndex++
+                }
+                starIndex != -1 -> {
+                    wildIndex = starIndex + 1
+                    matchIndex++
+                    otherIndex = matchIndex
+                }
+                else -> return false
+            }
+        }
+
+        while (wildIndex < wildcard.length && wildcard[wildIndex] == '*') {
+            wildIndex++
+        }
+
+        return wildIndex == wildcard.length && otherIndex == other.length
+    }
+
 }

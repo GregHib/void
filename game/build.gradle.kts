@@ -48,6 +48,7 @@ tasks {
         val main = sourceSets.getByName("main")
         val resources = main.resources.srcDirs.first { it.name == "resources" }
         inputDirectory.set(layout.projectDirectory.dir("src/main/kotlin/content"))
+        dataDirectory = parent!!.rootDir.resolve("data")
         scriptsFile = resources.resolve("scripts.txt")
     }
 

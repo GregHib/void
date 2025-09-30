@@ -18,44 +18,47 @@ object ContentLoader {
     private val logger = InlineLogger()
 
     private val dispatchers = mutableMapOf<String, Dispatcher<*>>(
-        "spawn(Player)" to Spawn.playerDispatcher,
-        "spawn(NPC)" to Spawn.npcDispatcher,
-        "spawn(FloorItem)" to Spawn.floorItemDispatcher,
-        "spawn(GameObject)" to Spawn.objectDispatcher,
-        "worldSpawn()" to Spawn.worldDispatcher,
-        "worldSpawn(ConfigFiles)" to Spawn.worldDispatcher,
-        "levelChanged(NPC,Skill,Int,Int)" to LevelChanged.npcDispatcher,
-        "levelChanged(Player,Skill,Int,Int)" to LevelChanged.playerDispatcher,
-        "move(Player,Tile,Tile)" to Moved.playerDispatcher,
-        "move(NPC,Tile,Tile)" to Moved.npcDispatcher,
-        "variableSet(Player,String,Any?,Any?)" to VariableSet.playerDispatcher,
-        "variableSet(NPC,String,Any?,Any?)" to VariableSet.npcDispatcher,
-        "stole(Player,GameObject,Item)" to Stole.dispatcher,
+        method("spawn", "Player") to Spawn.playerDispatcher,
+        method("spawn", "NPC") to Spawn.npcDispatcher,
+        method("spawn", "FloorItem") to Spawn.floorItemDispatcher,
+        method("spawn", "GameObject") to Spawn.objectDispatcher,
+        method("worldSpawn") to Spawn.worldDispatcher,
+        method("worldSpawn", "ConfigFiles") to Spawn.worldDispatcher,
+        method("levelChanged", "NPC", "Skill", "Int", "Int") to LevelChanged.npcDispatcher,
+        method("levelChanged", "Player", "Skill", "Int", "Int") to LevelChanged.playerDispatcher,
+        method("move", "Player", "Tile", "Tile") to Moved.playerDispatcher,
+        method("move", "NPC", "Tile", "Tile") to Moved.npcDispatcher,
+        method("variableSet", "Player", "String", "Any?", "Any?") to VariableSet.playerDispatcher,
+        method("variableSet", "NPC", "String", "Any?", "Any?") to VariableSet.npcDispatcher,
+        method("stole", "Player", "GameObject", "Item") to Stole.dispatcher,
     )
 
     fun load() {
         val start = System.currentTimeMillis()
+        val scripts = ContentLoader::class.java.getResourceAsStream("scripts.txt")?.bufferedReader() ?: error("No auto-generated script file found, make sure 'gradle scriptMetadata' is correctly running")
         var scriptCount = 0
-        val scripts = ContentLoader::class.java.getResourceAsStream("scripts.txt")?.bufferedReader()
-        if (scripts == null) {
-            error("No auto-generated script file found, make sure 'gradle scriptMetadata' is correctly running")
-        }
         var script = ""
         try {
+            val instances = mutableMapOf<String, Any>()
             while (scripts.ready()) {
                 script = scripts.readLine()
                 val name = script.substringAfterLast("|")
-                val instance = loadScript(name)
-                scriptCount++
-                if (!script.contains("|")) {
+                val instance = instances.getOrPut(name) { loadScript(name) }
+                if (name.length == script.length) {
                     continue
                 }
-                val methods = script.split("|").dropLast(1)
-                for (method in methods) {
-                    val dispatcher = dispatchers[method] ?: error("Unknown dispatcher for method: $method. Make sure it's registered in ContentLoader.kt")
-                    dispatcher.load(instance)
+                val parts = script.split("|")
+                val method = parts[parts.lastIndex - 1]
+                val dispatcher = dispatchers[method] ?: error("Unknown dispatcher for method: $method. Make sure it's registered in ContentLoader.kt")
+                if (script[0] == '@' && parts.size == 4) {
+                    dispatcher.load(instance, parts[0], parts[1])
+                } else if (script[0] == '@' && parts.size == 3) {
+                    dispatcher.load(instance, parts[0], "*")
+                } else {
+                    dispatcher.load(instance, "", "*")
                 }
             }
+            scriptCount = instances.size
             scripts.close()
         } catch (e: Exception) {
             scripts.close()
@@ -69,6 +72,17 @@ object ContentLoader {
             throw NoSuchFileException("No content scripts found.")
         }
         logger.info { "Loaded $scriptCount ${"script".plural(scriptCount)} in ${System.currentTimeMillis() - start}ms" }
+    }
+
+    private fun method(name: String, vararg argTypes: String, returnType: Any = Unit, annotation: String? = null) = buildString {
+        if (annotation != null) {
+            append(annotation).append("@")
+        }
+        append(name)
+        append("(").append(argTypes.joinToString(",")).append(")")
+        if (returnType != Unit) {
+            append(":").append(returnType::class.simpleName)
+        }
     }
 
     fun clear() {
