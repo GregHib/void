@@ -255,7 +255,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
             override fun nextInt(from: Int, until: Int) = until
         })
         val player = createPlayer(Tile(3257, 3260))
-        val npc = npcs[Tile(3258, 3260)].first { it.id.startsWith("cow") }
+        val npc = npcs[Tile(3258, 3260)].first { it.id.startsWith("cow_") }
 
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
         player.levels.set(Skill.Attack, 100)

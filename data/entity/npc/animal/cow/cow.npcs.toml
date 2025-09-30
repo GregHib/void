@@ -1,4 +1,4 @@
-[cow]
+[cow_default]
 id = 81
 hitpoints = 80
 attack_bonus = -15
@@ -16,11 +16,11 @@ height = 30
 examine = "Converts grass to beef."
 
 [cow_brown]
-clone = "cow"
+clone = "cow_default"
 id = 397
 
 [cow_light_spots]
-clone = "cow"
+clone = "cow_default"
 id = 1767
 
 [cow_calf]
@@ -40,15 +40,15 @@ height = 15
 examine = "Young, but still beefy."
 
 [cow_zanaris]
-clone = "cow"
+clone = "cow_default"
 id = 3309
 
 [cow_2]
-clone = "cow"
+clone = "cow_default"
 id = 12362
 
 [cow_brown_2]
-clone = "cow"
+clone = "cow_default"
 id = 12363
 
 [cow_calf_2]
@@ -56,7 +56,7 @@ clone = "cow_calf"
 id = 12364
 
 [cow_light_spots_2]
-clone = "cow"
+clone = "cow_default"
 id = 12365
 
 [cow_calf_3]

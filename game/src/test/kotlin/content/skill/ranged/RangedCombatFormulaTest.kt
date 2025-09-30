@@ -36,7 +36,7 @@ internal class RangedCombatFormulaTest : CombatFormulaTest() {
         val weapon = Item("maple_shortbow")
         player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_arrow")
-        val npc = createNPC("cow")
+        val npc = createNPC("cow_default")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "range", weapon)
 

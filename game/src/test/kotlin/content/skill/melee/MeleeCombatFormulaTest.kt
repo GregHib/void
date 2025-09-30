@@ -29,7 +29,7 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
     @Test
     fun `80 strength player punching a cow`() {
         val player = createPlayer(Skill.Strength to 80)
-        val npc = createNPC("cow")
+        val npc = createNPC("cow_default")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee")
 

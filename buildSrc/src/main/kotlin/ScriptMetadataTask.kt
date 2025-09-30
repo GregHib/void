@@ -42,7 +42,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
     }
 
     private val annotations = mapOf(
-        "id" to listOf("name" to "npc")
+        "Id" to listOf("name" to "npc")
     )
 
     @TaskAction
