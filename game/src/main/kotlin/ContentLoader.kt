@@ -52,8 +52,6 @@ object ContentLoader {
                 val dispatcher = dispatchers[method] ?: error("Unknown dispatcher for method: $method. Make sure it's registered in ContentLoader.kt")
                 if (script[0] == '@' && parts.size == 4) {
                     dispatcher.load(instance, parts[0], parts[1])
-                } else if (script[0] == '@' && parts.size == 3) {
-                    dispatcher.load(instance, parts[0], "*")
                 } else {
                     dispatcher.load(instance, "", "*")
                 }
