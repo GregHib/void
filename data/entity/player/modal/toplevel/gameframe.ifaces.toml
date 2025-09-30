@@ -1,82 +1,188 @@
-# https//www.rune-server.ee/runescape-development/rs-503-client-server/configuration/683354-interface-list-official-names.html
 [root]
 id = -1
 type = "full_screen"
-
 [toplevel]
 id = 548
 type = "full_screen"
-components = {
-  logout = 181,
-  adviser = 183,
-  compass = 177,
-  world_map = 179,
-  xp_orb = 0,
-  combat_styles = 128,
-  task_system = 129,
-  stats = 130,
-  quest_journals = 131,
-  inventory = 132,
-  worn_equipment = 133,
-  prayer_list = 134,
-  magic_spellbook = 135,
-  follower_details = 98,
-  friends_list = 99,
-  ignore_list = 100,
-  clan_chat = 101,
-  options = 102,
-  emotes = 103,
-  music_player = 104,
-  notes = 105,
-  logout_tab = 220,
-  wilderness_level = 9,
-  gravestone = 11,
-  gravestone_background = 12,
-  gravestone_timer = 13,
-}
+
+[.logout]
+id = 181
+
+[.adviser]
+id = 183
+
+[.compass]
+id = 177
+
+[.world_map]
+id = 179
+
+[.xp_orb]
+id = 0
+
+[.combat_styles]
+id = 128
+
+[.task_system]
+id = 129
+
+[.stats]
+id = 130
+
+[.quest_journals]
+id = 131
+
+[.inventory]
+id = 132
+
+[.worn_equipment]
+id = 133
+
+[.prayer_list]
+id = 134
+
+[.magic_spellbook]
+id = 135
+
+[.follower_details]
+id = 98
+
+[.friends_list]
+id = 99
+
+[.ignore_list]
+id = 100
+
+[.clan_chat]
+id = 101
+
+[.options]
+id = 102
+
+[.emotes]
+id = 103
+
+[.music_player]
+id = 104
+
+[.notes]
+id = 105
+
+[.logout_tab]
+id = 220
+
+[.wilderness_level]
+id = 9
+
+[.gravestone]
+id = 11
+
+[.gravestone_background]
+id = 12
+
+[.gravestone_timer]
+id = 13
 
 [area_status_icon]
 id = 745
 type = "area_status"
-components = {
-  multi_combat = 1,
-  assist = 2,
-  protect_disabled = 3,
-  no_protection = 4,
-  text = 5,
-  protection_active = 6,
-}
+
+[.multi_combat]
+id = 1
+
+[.assist]
+id = 2
+
+[.protect_disabled]
+id = 3
+
+[.no_protection]
+id = 4
+
+[.text]
+id = 5
+
+[.protection_active]
+id = 6
 
 [toplevel_full]
 id = 746
 type = "full_screen"
-components = {
-  logout = 172,
-  adviser = 171,
-  compass = 170,
-  world_map = 178,
-  xp_orb = 224,
-  combat_styles = 35,
-  task_system = 36,
-  stats = 37,
-  quest_journals = 38,
-  inventory = 39,
-  worn_equipment = 40,
-  prayer_list = 41,
-  magic_spellbook = 42,
-  familiar_details = 43,
-  friends_list = 44,
-  ignore_list = 45,
-  clan_chat = 46,
-  options = 47,
-  emotes = 48,
-  music_player = 49,
-  notes = 50,
-  wilderness_level = 13,
-  gravestone = 10,
-  gravestone_background = 164,
-  gravestone_timer = 165,
-}
+
+[.logout]
+id = 172
+
+[.adviser]
+id = 171
+
+[.compass]
+id = 170
+
+[.world_map]
+id = 178
+
+[.xp_orb]
+id = 224
+
+[.combat_styles]
+id = 35
+
+[.task_system]
+id = 36
+
+[.stats]
+id = 37
+
+[.quest_journals]
+id = 38
+
+[.inventory]
+id = 39
+
+[.worn_equipment]
+id = 40
+
+[.prayer_list]
+id = 41
+
+[.magic_spellbook]
+id = 42
+
+[.familiar_details]
+id = 43
+
+[.friends_list]
+id = 44
+
+[.ignore_list]
+id = 45
+
+[.clan_chat]
+id = 46
+
+[.options]
+id = 47
+
+[.emotes]
+id = 48
+
+[.music_player]
+id = 49
+
+[.notes]
+id = 50
+
+[.wilderness_level]
+id = 13
+
+[.gravestone]
+id = 10
+
+[.gravestone_background]
+id = 164
+
+[.gravestone_timer]
+id = 165
 
 [summoning_orb]
 id = 747
@@ -85,35 +191,38 @@ type = "summoning_orb"
 [health_orb]
 id = 748
 type = "health_orb"
-components = {
-  poison = 2,
-}
+
+[.poison]
+id = 2
 
 [prayer_orb]
 id = 749
 type = "prayer_orb"
-components = {
-  orb = 1,
-}
+
+[.orb]
+id = 1
 
 [energy_orb]
 id = 750
 type = "energy_orb"
-components = {
-  run_background = 1,
-}
+
+[.run_background]
+id = 1
 
 [world_map]
 id = 755
 type = "full_screen"
-components = {
-  close = 44,
-  order = 54,
-  marker = 42,
-  key_list = {
-    id = 49,
-    options = {
-      Select = 0
-    }
-  }
-}
+
+[.close]
+id = 44
+
+[.order]
+id = 54
+
+[.marker]
+id = 42
+
+[.key_list]
+id = 49
+options = { Select = 0 }
+

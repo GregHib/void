@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
-import world.gregs.config.ConfigReader
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces
@@ -27,6 +26,7 @@ class InterfaceDefinitions(
 
     override fun empty() = InterfaceDefinition.EMPTY
 
+
     fun load(paths: List<String>, typePath: String): InterfaceDefinitions {
         timedLoad("interface extra") {
             val ids = Object2IntOpenHashMap<String>()
@@ -34,14 +34,75 @@ class InterfaceDefinitions(
             val componentIds = Object2IntOpenHashMap<String>()
             for (path in paths) {
                 Config.fileReader(path) {
+                    var parentIntId = -1
+                    val components = mutableListOf<Pair<String, Int>>()
                     while (nextSection()) {
                         val interfaceStringId = section()
+                        if (interfaceStringId.contains(".")) {
+                            val (interfaceId, key) = interfaceStringId.split(".")
+                            val componentExtras = Object2ObjectOpenHashMap<String, Any>(1, Hash.VERY_FAST_LOAD_FACTOR)
+                            var optionsArray = emptyArray<String?>()
+                            components.clear()
+                            while (nextPair()) {
+                                when (val componentKey = key()) {
+                                    "id" -> {
+                                        if (peek == '"') {
+                                            val range = string().toIntRange(inclusive = true)
+                                            val startDigit = key.takeLastWhile { it.isDigit() }.toInt()
+                                            val prefix = key.removeSuffix(startDigit.toString())
+                                            for ((index, id) in range.withIndex()) {
+                                                val name = "$prefix${startDigit + index}"
+                                                components.add(name to id)
+                                            }
+                                        } else {
+                                            components.add(key to int())
+                                        }
+                                    }
+                                    "options" -> {
+                                        val options = Object2IntOpenHashMap<String>(4, Hash.VERY_FAST_LOAD_FACTOR)
+                                        var max = 0
+                                        while (nextEntry()) {
+                                            val option = key()
+                                            val index = int()
+                                            if (index > max) {
+                                                max = index
+                                            }
+                                            options[option] = index
+                                        }
+                                        optionsArray = Array(max + 1) { "" }
+                                        for ((option, index) in options) {
+                                            optionsArray[index] = option
+                                        }
+                                    }
+                                    "cast_id", "amount", "bars" -> componentExtras[componentKey] = int()
+                                    else -> componentExtras[componentKey] = value()
+                                }
+                            }
+                            if (components.isEmpty()) {
+                                throw IllegalArgumentException("Invalid component id.")
+                            }
+                            for ((stringId, componentId) in components) {
+                                componentIds["$interfaceId:$stringId"] = componentId
+                                val componentDefinition = getOrPut(parentIntId, componentId)
+                                require(componentDefinition.stringId == "") { "Found duplicate interface component id $stringId ${componentDefinition.stringId}" }
+                                componentDefinition.stringId = stringId
+                                if (optionsArray.isNotEmpty()) {
+                                    componentExtras["options"] = optionsArray
+                                }
+                                if (componentExtras.isNotEmpty()) {
+                                    componentDefinition.extras = componentExtras
+                                }
+                            }
+                            continue
+                        }
                         var interfaceId = -1
                         var type: String? = null
                         while (nextPair()) {
                             when (val key = key()) {
-                                "id" -> interfaceId = int()
-                                "components" -> components(componentIds, interfaceStringId, interfaceId)
+                                "id" -> {
+                                    interfaceId = int()
+                                    parentIntId = interfaceId
+                                }
                                 "type" -> type = string()
                                 else -> throw IllegalArgumentException("Unknown interface key '$key' in ${exception()}.")
                             }
@@ -111,72 +172,6 @@ class InterfaceDefinitions(
             ids.size
         }
         return this
-    }
-
-    private fun ConfigReader.components(componentIds: Object2IntOpenHashMap<String>, interfaceId: String, interfaceIntId: Int) {
-        while (nextEntry()) {
-            val key = key()
-            when (peek) {
-                '{' -> {
-                    var componentId = -1
-                    val componentExtras = Object2ObjectOpenHashMap<String, Any>(1, Hash.VERY_FAST_LOAD_FACTOR)
-                    var optionsArray = emptyArray<String?>()
-                    while (nextEntry()) {
-                        when (val componentKey = key()) {
-                            "id" -> componentId = int()
-                            "options" -> {
-                                val options = Object2IntOpenHashMap<String>(4, Hash.VERY_FAST_LOAD_FACTOR)
-                                var max = 0
-                                while (nextEntry()) {
-                                    val option = key()
-                                    val index = int()
-                                    if (index > max) {
-                                        max = index
-                                    }
-                                    options[option] = index
-                                }
-                                optionsArray = Array(max + 1) { "" }
-                                for ((option, index) in options) {
-                                    optionsArray[index] = option
-                                }
-                            }
-                            "cast_id", "amount", "bars" -> componentExtras[componentKey] = int()
-                            else -> componentExtras[componentKey] = value()
-                        }
-                    }
-                    if (componentId == -1) {
-                        throw IllegalArgumentException("Invalid component id.")
-                    }
-                    componentIds["$interfaceId:$key"] = componentId
-                    val componentDefinition = getOrPut(interfaceIntId, componentId)
-                    require(componentDefinition.stringId == "") { "Found duplicate interface component id $key ${componentDefinition.stringId}" }
-                    componentDefinition.stringId = key
-                    if (optionsArray.isNotEmpty()) {
-                        componentExtras["options"] = optionsArray
-                    }
-                    if (componentExtras.isNotEmpty()) {
-                        componentDefinition.extras = componentExtras
-                    }
-                }
-                '"' -> {
-                    val range = string().toIntRange(inclusive = true)
-                    val startDigit = key.takeLastWhile { it.isDigit() }.toInt()
-                    val prefix = key.removeSuffix(startDigit.toString())
-                    for ((index, id) in range.withIndex()) {
-                        val name = "$prefix${startDigit + index}"
-                        componentIds["$interfaceId:$name"] = id
-                        val componentDefinition = getOrPut(interfaceIntId, id)
-                        componentDefinition.stringId = name
-                    }
-                }
-                else -> {
-                    val value = int()
-                    componentIds["$interfaceId:$key"] = value
-                    val componentDefinition = getOrPut(interfaceIntId, value)
-                    componentDefinition.stringId = key
-                }
-            }
-        }
     }
 
     private fun getOrPut(id: Int, index: Int): InterfaceComponentDefinition {

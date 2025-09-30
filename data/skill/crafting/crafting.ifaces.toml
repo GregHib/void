@@ -1,186 +1,504 @@
 [tanner]
 id = 324
-components = {
-  cowhide = 1,
-  cowhide_1 = 2,
-  snake_hide = 3,
-  snake_hide_swamp = 4,
-  green_dragonhide = 5,
-  blue_dragonhide = 6,
-  red_dragonhide = 7,
-  black_dragonhide = 8,
-}
+
+[.cowhide]
+id = 1
+
+[.cowhide_1]
+id = 2
+
+[.snake_hide]
+id = 3
+
+[.snake_hide_swamp]
+id = 4
+
+[.green_dragonhide]
+id = 5
+
+[.blue_dragonhide]
+id = 6
+
+[.red_dragonhide]
+id = 7
+
+[.black_dragonhide]
+id = 8
 
 [battlestaff_enchant]
 id = 332
 
 [silver_mould]
 id = 438
-components = {
-  holy_mould_button = 16,
-  holy_mould_model = 17,
-  holy_mould_text = 18,
-  unholy_mould_button = 23,
-  unholy_mould_model = 24,
-  unholy_mould_text = 25,
-  sickle_mould_button = 30,
-  sickle_mould_model = 31,
-  sickle_mould_text = 32,
-  conductor_mould_button = 37,
-  conductor_mould_model = 38,
-  conductor_mould_text = 39,
-  tiara_mould_button = 44,
-  tiara_mould_model = 45,
-  tiara_mould_text = 46,
-  rod_clay_mould = 50,
-  rod_clay_mould_button = 52,
-  rod_clay_mould_model = 53,
-  rod_clay_mould_text = 54,
-  demonic_sigil_mould_button = 59,
-  demonic_sigil_mould_model = 60,
-  demonic_sigil_mould_text = 61,
-  bolt_mould_button = 66,
-  bolt_mould_model = 67,
-  bolt_mould_text = 68,
-  chain_link_mould = 72,
-  chain_link_mould_button = 73,
-  chain_link_mould_model = 74,
-  chain_link_mould_text = 75,
-  key_mould = 78,
-  key_mould_button = 79,
-  key_mould_model = 80,
-  key_mould_text = 81,
-}
+
+[.holy_mould_button]
+id = 16
+
+[.holy_mould_model]
+id = 17
+
+[.holy_mould_text]
+id = 18
+
+[.unholy_mould_button]
+id = 23
+
+[.unholy_mould_model]
+id = 24
+
+[.unholy_mould_text]
+id = 25
+
+[.sickle_mould_button]
+id = 30
+
+[.sickle_mould_model]
+id = 31
+
+[.sickle_mould_text]
+id = 32
+
+[.conductor_mould_button]
+id = 37
+
+[.conductor_mould_model]
+id = 38
+
+[.conductor_mould_text]
+id = 39
+
+[.tiara_mould_button]
+id = 44
+
+[.tiara_mould_model]
+id = 45
+
+[.tiara_mould_text]
+id = 46
+
+[.rod_clay_mould]
+id = 50
+
+[.rod_clay_mould_button]
+id = 52
+
+[.rod_clay_mould_model]
+id = 53
+
+[.rod_clay_mould_text]
+id = 54
+
+[.demonic_sigil_mould_button]
+id = 59
+
+[.demonic_sigil_mould_model]
+id = 60
+
+[.demonic_sigil_mould_text]
+id = 61
+
+[.bolt_mould_button]
+id = 66
+
+[.bolt_mould_model]
+id = 67
+
+[.bolt_mould_text]
+id = 68
+
+[.chain_link_mould]
+id = 72
+
+[.chain_link_mould_button]
+id = 73
+
+[.chain_link_mould_model]
+id = 74
+
+[.chain_link_mould_text]
+id = 75
+
+[.key_mould]
+id = 78
+
+[.key_mould_button]
+id = 79
+
+[.key_mould_model]
+id = 80
+
+[.key_mould_text]
+id = 81
 
 [make_mould_slayer]
 id = 446
-components = {
-  ring_text = 17,
-  necklace_text = 21,
-  amulet_unstrung_text = 26,
-  bracelet_text = 30,
-  make_ring = 81,
-  make_ring_gold = 81,
-  make_ring_option_gold = 82,
-  make_ring_sapphire = 83,
-  make_ring_option_sapphire = 84,
-  make_ring_emerald = 85,
-  make_ring_option_emerald = 86,
-  make_ring_ruby = 87,
-  make_ring_option_ruby = 88,
-  make_ring_diamond = 89,
-  make_ring_option_diamond = 90,
-  make_ring_dragonstone = 91,
-  make_ring_option_dragonstone = 92,
-  make_ring_onyx = 93,
-  make_ring_option_onyx = 94,
-  make_ring_enchanted_gem = 96,
-  make_ring_option_enchanted_gem = 97,
-  make_necklace_gold = 67,
-  make_necklace_option_gold = 68,
-  make_necklace_sapphire = 69,
-  make_necklace_option_sapphire = 70,
-  make_necklace_emerald = 71,
-  make_necklace_option_emerald = 72,
-  make_necklace_ruby = 73,
-  make_necklace_option_ruby = 74,
-  make_necklace_diamond = 75,
-  make_necklace_option_diamond = 76,
-  make_necklace_dragonstone = 77,
-  make_necklace_option_dragonstone = 78,
-  make_necklace_onyx = 79,
-  make_necklace_option_onyx = 80,
-  make_amulet_unstrung_gold = 52,
-  make_amulet_unstrung_option_gold = 53,
-  make_amulet_unstrung_sapphire = 54,
-  make_amulet_unstrung_option_sapphire = 55,
-  make_amulet_unstrung_emerald = 56,
-  make_amulet_unstrung_option_emerald = 57,
-  make_amulet_unstrung_ruby = 58,
-  make_amulet_unstrung_option_ruby = 59,
-  make_amulet_unstrung_diamond = 60,
-  make_amulet_unstrung_option_diamond = 61,
-  make_amulet_unstrung_dragonstone = 62,
-  make_amulet_unstrung_option_dragonstone = 63,
-  make_amulet_unstrung_onyx = 64,
-  make_amulet_unstrung_option_onyx = 65,
-  make_bracelet_gold = 32,
-  make_bracelet_option_gold = 33,
-  make_bracelet_sapphire = 34,
-  make_bracelet_option_sapphire = 35,
-  make_bracelet_emerald = 36,
-  make_bracelet_option_emerald = 37,
-  make_bracelet_ruby = 38,
-  make_bracelet_option_ruby = 39,
-  make_bracelet_diamond = 40,
-  make_bracelet_option_diamond = 41,
-  make_bracelet_dragonstone = 42,
-  make_bracelet_option_dragonstone = 43,
-  make_bracelet_onyx = 44,
-  make_bracelet_option_onyx = 45,
-}
+
+[.ring_text]
+id = 17
+
+[.necklace_text]
+id = 21
+
+[.amulet_unstrung_text]
+id = 26
+
+[.bracelet_text]
+id = 30
+
+[.make_ring_gold]
+id = 81
+
+[.make_ring_option_gold]
+id = 82
+
+[.make_ring_sapphire]
+id = 83
+
+[.make_ring_option_sapphire]
+id = 84
+
+[.make_ring_emerald]
+id = 85
+
+[.make_ring_option_emerald]
+id = 86
+
+[.make_ring_ruby]
+id = 87
+
+[.make_ring_option_ruby]
+id = 88
+
+[.make_ring_diamond]
+id = 89
+
+[.make_ring_option_diamond]
+id = 90
+
+[.make_ring_dragonstone]
+id = 91
+
+[.make_ring_option_dragonstone]
+id = 92
+
+[.make_ring_onyx]
+id = 93
+
+[.make_ring_option_onyx]
+id = 94
+
+[.make_ring_enchanted_gem]
+id = 96
+
+[.make_ring_option_enchanted_gem]
+id = 97
+
+[.make_necklace_gold]
+id = 67
+
+[.make_necklace_option_gold]
+id = 68
+
+[.make_necklace_sapphire]
+id = 69
+
+[.make_necklace_option_sapphire]
+id = 70
+
+[.make_necklace_emerald]
+id = 71
+
+[.make_necklace_option_emerald]
+id = 72
+
+[.make_necklace_ruby]
+id = 73
+
+[.make_necklace_option_ruby]
+id = 74
+
+[.make_necklace_diamond]
+id = 75
+
+[.make_necklace_option_diamond]
+id = 76
+
+[.make_necklace_dragonstone]
+id = 77
+
+[.make_necklace_option_dragonstone]
+id = 78
+
+[.make_necklace_onyx]
+id = 79
+
+[.make_necklace_option_onyx]
+id = 80
+
+[.make_amulet_unstrung_gold]
+id = 52
+
+[.make_amulet_unstrung_option_gold]
+id = 53
+
+[.make_amulet_unstrung_sapphire]
+id = 54
+
+[.make_amulet_unstrung_option_sapphire]
+id = 55
+
+[.make_amulet_unstrung_emerald]
+id = 56
+
+[.make_amulet_unstrung_option_emerald]
+id = 57
+
+[.make_amulet_unstrung_ruby]
+id = 58
+
+[.make_amulet_unstrung_option_ruby]
+id = 59
+
+[.make_amulet_unstrung_diamond]
+id = 60
+
+[.make_amulet_unstrung_option_diamond]
+id = 61
+
+[.make_amulet_unstrung_dragonstone]
+id = 62
+
+[.make_amulet_unstrung_option_dragonstone]
+id = 63
+
+[.make_amulet_unstrung_onyx]
+id = 64
+
+[.make_amulet_unstrung_option_onyx]
+id = 65
+
+[.make_bracelet_gold]
+id = 32
+
+[.make_bracelet_option_gold]
+id = 33
+
+[.make_bracelet_sapphire]
+id = 34
+
+[.make_bracelet_option_sapphire]
+id = 35
+
+[.make_bracelet_emerald]
+id = 36
+
+[.make_bracelet_option_emerald]
+id = 37
+
+[.make_bracelet_ruby]
+id = 38
+
+[.make_bracelet_option_ruby]
+id = 39
+
+[.make_bracelet_diamond]
+id = 40
+
+[.make_bracelet_option_diamond]
+id = 41
+
+[.make_bracelet_dragonstone]
+id = 42
+
+[.make_bracelet_option_dragonstone]
+id = 43
+
+[.make_bracelet_onyx]
+id = 44
+
+[.make_bracelet_option_onyx]
+id = 45
 
 [make_mould]
 id = 675
-components = {
-  ring_text = 16,
-  necklace_text = 35,
-  amulet_unstrung_text = 54,
-  bracelet_text = 73,
-  make_ring_gold = 19,
-  make_ring_option_gold = 20,
-  make_ring_sapphire = 21,
-  make_ring_option_sapphire = 22,
-  make_ring_emerald = 23,
-  make_ring_option_emerald = 24,
-  make_ring_ruby = 25,
-  make_ring_option_ruby = 26,
-  make_ring_diamond = 27,
-  make_ring_option_diamond = 28,
-  make_ring_dragonstone = 29,
-  make_ring_option_dragonstone = 30,
-  make_ring_onyx = 31,
-  make_ring_option_onyx = 32,
-  make_necklace_gold = 38,
-  make_necklace_option_gold = 39,
-  make_necklace_sapphire = 40,
-  make_necklace_option_sapphire = 41,
-  make_necklace_emerald = 42,
-  make_necklace_option_emerald = 43,
-  make_necklace_ruby = 44,
-  make_necklace_option_ruby = 45,
-  make_necklace_diamond = 46,
-  make_necklace_option_diamond = 47,
-  make_necklace_dragonstone = 48,
-  make_necklace_option_dragonstone = 49,
-  make_necklace_onyx = 50,
-  make_necklace_option_onyx = 51,
-  make_amulet_unstrung_gold = 57,
-  make_amulet_unstrung_option_gold = 58,
-  make_amulet_unstrung_sapphire = 59,
-  make_amulet_unstrung_option_sapphire = 60,
-  make_amulet_unstrung_emerald = 61,
-  make_amulet_unstrung_option_emerald = 62,
-  make_amulet_unstrung_ruby = 63,
-  make_amulet_unstrung_option_ruby = 64,
-  make_amulet_unstrung_diamond = 65,
-  make_amulet_unstrung_option_diamond = 66,
-  make_amulet_unstrung_dragonstone = 67,
-  make_amulet_unstrung_option_dragonstone = 68,
-  make_amulet_unstrung_onyx = 69,
-  make_amulet_unstrung_option_onyx = 70,
-  make_bracelet_gold = 76,
-  make_bracelet_option_gold = 77,
-  make_bracelet_sapphire = 78,
-  make_bracelet_option_sapphire = 79,
-  make_bracelet_emerald = 80,
-  make_bracelet_option_emerald = 81,
-  make_bracelet_ruby = 82,
-  make_bracelet_option_ruby = 83,
-  make_bracelet_diamond = 84,
-  make_bracelet_option_diamond = 85,
-  make_bracelet_dragonstone = 86,
-  make_bracelet_option_dragonstone = 87,
-  make_bracelet_onyx = 88,
-  make_bracelet_option_onyx = 89,
-}
+
+[.ring_text]
+id = 16
+
+[.necklace_text]
+id = 35
+
+[.amulet_unstrung_text]
+id = 54
+
+[.bracelet_text]
+id = 73
+
+[.make_ring_gold]
+id = 19
+
+[.make_ring_option_gold]
+id = 20
+
+[.make_ring_sapphire]
+id = 21
+
+[.make_ring_option_sapphire]
+id = 22
+
+[.make_ring_emerald]
+id = 23
+
+[.make_ring_option_emerald]
+id = 24
+
+[.make_ring_ruby]
+id = 25
+
+[.make_ring_option_ruby]
+id = 26
+
+[.make_ring_diamond]
+id = 27
+
+[.make_ring_option_diamond]
+id = 28
+
+[.make_ring_dragonstone]
+id = 29
+
+[.make_ring_option_dragonstone]
+id = 30
+
+[.make_ring_onyx]
+id = 31
+
+[.make_ring_option_onyx]
+id = 32
+
+[.make_necklace_gold]
+id = 38
+
+[.make_necklace_option_gold]
+id = 39
+
+[.make_necklace_sapphire]
+id = 40
+
+[.make_necklace_option_sapphire]
+id = 41
+
+[.make_necklace_emerald]
+id = 42
+
+[.make_necklace_option_emerald]
+id = 43
+
+[.make_necklace_ruby]
+id = 44
+
+[.make_necklace_option_ruby]
+id = 45
+
+[.make_necklace_diamond]
+id = 46
+
+[.make_necklace_option_diamond]
+id = 47
+
+[.make_necklace_dragonstone]
+id = 48
+
+[.make_necklace_option_dragonstone]
+id = 49
+
+[.make_necklace_onyx]
+id = 50
+
+[.make_necklace_option_onyx]
+id = 51
+
+[.make_amulet_unstrung_gold]
+id = 57
+
+[.make_amulet_unstrung_option_gold]
+id = 58
+
+[.make_amulet_unstrung_sapphire]
+id = 59
+
+[.make_amulet_unstrung_option_sapphire]
+id = 60
+
+[.make_amulet_unstrung_emerald]
+id = 61
+
+[.make_amulet_unstrung_option_emerald]
+id = 62
+
+[.make_amulet_unstrung_ruby]
+id = 63
+
+[.make_amulet_unstrung_option_ruby]
+id = 64
+
+[.make_amulet_unstrung_diamond]
+id = 65
+
+[.make_amulet_unstrung_option_diamond]
+id = 66
+
+[.make_amulet_unstrung_dragonstone]
+id = 67
+
+[.make_amulet_unstrung_option_dragonstone]
+id = 68
+
+[.make_amulet_unstrung_onyx]
+id = 69
+
+[.make_amulet_unstrung_option_onyx]
+id = 70
+
+[.make_bracelet_gold]
+id = 76
+
+[.make_bracelet_option_gold]
+id = 77
+
+[.make_bracelet_sapphire]
+id = 78
+
+[.make_bracelet_option_sapphire]
+id = 79
+
+[.make_bracelet_emerald]
+id = 80
+
+[.make_bracelet_option_emerald]
+id = 81
+
+[.make_bracelet_ruby]
+id = 82
+
+[.make_bracelet_option_ruby]
+id = 83
+
+[.make_bracelet_diamond]
+id = 84
+
+[.make_bracelet_option_diamond]
+id = 85
+
+[.make_bracelet_dragonstone]
+id = 86
+
+[.make_bracelet_option_dragonstone]
+id = 87
+
+[.make_bracelet_onyx]
+id = 88
+
+[.make_bracelet_option_onyx]
+id = 89
+

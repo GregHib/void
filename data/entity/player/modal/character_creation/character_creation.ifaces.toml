@@ -1,45 +1,70 @@
 [skin_colour]
 id = 900
-components = {
-  male = 16,
-  female = 17,
-  colour_0 = "20-31",
-  confirm = 33,
-}
+
+[.male]
+id = 16
+
+[.female]
+id = 17
+
+[.colour_0]
+id = "20-31"
+
+[.confirm]
+id = 33
 
 [character_creation]
 id = 1028
 type = "full_screen"
-components = {
-  male = 38,
-  female = 39,
-  style_0 = "48-67",
-  type_0 = "83-88",
-  modify_further = 115,
-  part_skin = 95,
-  part_hair = 96,
-  part_top = 97,
-  part_legs = 98,
-  part_shoes = 99,
-  part_beard = 100,
-  skin_colour = {
-    id = 45,
-    options = {
-      Select = 0,
-    },
-  },
-  colours = {
-    id = 111,
-    options = {
-      Select = 0,
-    },
-  },
-  styles = {
-    id = 107,
-    options = {
-      Select = 0,
-    },
-  },
-  choose_colour = 102,
-  confirm = 117
-}
+
+[.male]
+id = 38
+
+[.female]
+id = 39
+
+[.style_0]
+id = "48-67"
+
+[.type_0]
+id = "83-88"
+
+[.modify_further]
+id = 115
+
+[.part_skin]
+id = 95
+
+[.part_hair]
+id = 96
+
+[.part_top]
+id = 97
+
+[.part_legs]
+id = 98
+
+[.part_shoes]
+id = 99
+
+[.part_beard]
+id = 100
+
+[.skin_colour]
+id = 45
+options = { Select = 0 }
+
+[.colours]
+id = 111
+options = { Select = 0 }
+
+[.styles]
+id = 107
+options = { Select = 0 }
+
+[.choose_colour]
+id = 102
+
+[.confirm]
+id = 117
+

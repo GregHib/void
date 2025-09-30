@@ -1,7 +1,10 @@
 [ignore_list]
 id = 551
 type = "ignore_list_tab"
-components = {
-  add = 4,
-  delete = 5,
-}
+
+[.add]
+id = 4
+
+[.delete]
+id = 5
+

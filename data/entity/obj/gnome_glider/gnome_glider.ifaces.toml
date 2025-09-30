@@ -1,21 +1,54 @@
 [glider_map]
 id = 138
-components = {
-  ta_quir_priw = 16,
-  sindarpos = 17,
-  lemanto_andra = 18,
-  lemantolly_undri = 20,
-  gandius = 15,
-  kar_hewo = 19,
-  ta_quir_priw_to_lemantolly_undri = 22,
-  lemantolly_undri_to_ta_quir_priw = 23,
-  ta_quir_priw_to_lemanto_andra = 24,
-  ta_quir_priw_to_crash_island = 25,
-  crash_island_to_ta_quir_priw = 26,
-  ta_quir_priw_to_gandius = 27,
-  gandius_to_ta_quir_priw = 28,
-  sindarpos_to_ta_quir_priw = 29,
-  ta_quir_priw_to_sindarpos = 30,
-  kar_hewo_to_ta_quir_priw = 31,
-  ta_quir_priw_to_kar_hewo = 32,
-}
+
+[.ta_quir_priw]
+id = 16
+
+[.sindarpos]
+id = 17
+
+[.lemanto_andra]
+id = 18
+
+[.lemantolly_undri]
+id = 20
+
+[.gandius]
+id = 15
+
+[.kar_hewo]
+id = 19
+
+[.ta_quir_priw_to_lemantolly_undri]
+id = 22
+
+[.lemantolly_undri_to_ta_quir_priw]
+id = 23
+
+[.ta_quir_priw_to_lemanto_andra]
+id = 24
+
+[.ta_quir_priw_to_crash_island]
+id = 25
+
+[.crash_island_to_ta_quir_priw]
+id = 26
+
+[.ta_quir_priw_to_gandius]
+id = 27
+
+[.gandius_to_ta_quir_priw]
+id = 28
+
+[.sindarpos_to_ta_quir_priw]
+id = 29
+
+[.ta_quir_priw_to_sindarpos]
+id = 30
+
+[.kar_hewo_to_ta_quir_priw]
+id = 31
+
+[.ta_quir_priw_to_kar_hewo]
+id = 32
+

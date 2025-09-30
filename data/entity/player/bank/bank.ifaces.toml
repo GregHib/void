@@ -4,26 +4,25 @@ id = 13
 [bank_deposit_box]
 id = 11
 type = "main_screen"
-components = {
-  close = 15,
-  inventory = {
-    id = 17,
-    inventory = "inventory",
-    width = 6,
-    height = 5,
-    options = {
-      Deposit-1 = 0,
-      Deposit-5 = 1,
-      Deposit-10 = 2,
-      Deposit-X = 4,
-      Deposit-All = 5,
-      Examine = 9,
-    }
-  },
-  carried = 18,
-  worn = 20,
-  burden = 22,
-}
+
+[.close]
+id = 15
+
+[.inventory]
+id = 17
+inventory = "inventory"
+width = 6
+height = 5
+options = { Deposit-1 = 0, Deposit-5 = 1, Deposit-10 = 2, Deposit-X = 4, Deposit-All = 5, Examine = 9 }
+
+[.carried]
+id = 18
+
+[.worn]
+id = 20
+
+[.burden]
+id = 22
 
 [bank_pin_settings]
 id = 14
@@ -31,106 +30,172 @@ id = 14
 [ourania_bank_charge]
 id = 619
 type = "main_screen"
-components = {
-  air_rune = 28,
-  mind_rune = 29,
-  water_rune = 30,
-  earth_rune = 31,
-  fire_rune = 32,
-  body_rune = 33,
-  cosmic_rune = 34,
-  chaos_rune = 35,
-  astral_rune = 36,
-  law_rune = 37,
-  death_rune = 38,
-  blood_rune = 39,
-  nature_rune = 40,
-  soul_rune = 41,
-  text = 44,
-  mind_rune_hide = 45,
-  air_rune_hide = 46,
-  water_rune_hide = 47,
-  earth_rune_hide = 48,
-  fire_rune_hide = 49,
-  body_rune_hide = 50,
-  cosmic_rune_hide = 51,
-  chaos_rune_hide = 52,
-  astral_rune_hide = 53,
-  law_rune_hide = 54,
-  death_rune_hide = 55,
-  blood_rune_hide = 56,
-  nature_rune_hide = 57,
-  soul_rune_hide = 58,
-}
+
+[.air_rune]
+id = 28
+
+[.mind_rune]
+id = 29
+
+[.water_rune]
+id = 30
+
+[.earth_rune]
+id = 31
+
+[.fire_rune]
+id = 32
+
+[.body_rune]
+id = 33
+
+[.cosmic_rune]
+id = 34
+
+[.chaos_rune]
+id = 35
+
+[.astral_rune]
+id = 36
+
+[.law_rune]
+id = 37
+
+[.death_rune]
+id = 38
+
+[.blood_rune]
+id = 39
+
+[.nature_rune]
+id = 40
+
+[.soul_rune]
+id = 41
+
+[.text]
+id = 44
+
+[.mind_rune_hide]
+id = 45
+
+[.air_rune_hide]
+id = 46
+
+[.water_rune_hide]
+id = 47
+
+[.earth_rune_hide]
+id = 48
+
+[.fire_rune_hide]
+id = 49
+
+[.body_rune_hide]
+id = 50
+
+[.cosmic_rune_hide]
+id = 51
+
+[.chaos_rune_hide]
+id = 52
+
+[.astral_rune_hide]
+id = 53
+
+[.law_rune_hide]
+id = 54
+
+[.death_rune_hide]
+id = 55
+
+[.blood_rune_hide]
+id = 56
+
+[.nature_rune_hide]
+id = 57
+
+[.soul_rune_hide]
+id = 58
 
 [bank]
 id = 762
-components = {
-  item_mode = 15,
-  note_mode = 19,
-  equipment = 117,
-  carried = 33,
-  worn = 35,
-  burden = 37,
-  help = 44,
-  tab_9 = 46,
-  tab_8 = 48,
-  tab_7 = 50,
-  tab_6 = 52,
-  tab_5 = 54,
-  tab_4 = 56,
-  tab_3 = 58,
-  tab_2 = 60,
-  tab_1 = 62,
-  close = 75,
-  inventory = {
-    id = 93,
-    inventory = "bank",
-    options = {
-      Withdraw-1 = 0,
-      Withdraw-5 = 1,
-      Withdraw-10 = 2,
-      "Withdraw-*" = 3,
-      Withdraw-X = 4,
-      Withdraw-All = 5,
-      "Withdraw-All but one" = 6,
-      Examine = 9,
-      Drag-Tab = 18,
-      Drag = 20,
-    }
-  }
-}
+
+[.item_mode]
+id = 15
+
+[.note_mode]
+id = 19
+
+[.equipment]
+id = 117
+
+[.carried]
+id = 33
+
+[.worn]
+id = 35
+
+[.burden]
+id = 37
+
+[.help]
+id = 44
+
+[.tab_9]
+id = 46
+
+[.tab_8]
+id = 48
+
+[.tab_7]
+id = 50
+
+[.tab_6]
+id = 52
+
+[.tab_5]
+id = 54
+
+[.tab_4]
+id = 56
+
+[.tab_3]
+id = 58
+
+[.tab_2]
+id = 60
+
+[.tab_1]
+id = 62
+
+[.close]
+id = 75
+
+[.inventory]
+id = 93
+inventory = "bank"
+options = { Withdraw-1 = 0, Withdraw-5 = 1, Withdraw-10 = 2, Withdraw-* = 3, Withdraw-X = 4, Withdraw-All = 5, "Withdraw-All but one" = 6, Examine = 9, Drag-Tab = 18, Drag = 20 }
 
 [bank_side]
 id = 763
 type = "overlay_tab"
-components = {
-  inventory = {
-    id = 0,
-    inventory = "inventory",
-    options = {
-      Deposit-1 = 0,
-      Deposit-5 = 1,
-      Deposit-10 = 2,
-      "Deposit-*" = 3,
-      Deposit-X = 4,
-      Deposit-All = 5,
-      Examine = 9,
-    }
-  }
-}
+
+[.inventory]
+id = 0
+inventory = "inventory"
+options = { Deposit-1 = 0, Deposit-5 = 1, Deposit-10 = 2, Deposit-* = 3, Deposit-X = 4, Deposit-All = 5, Examine = 9 }
 
 [bank_help]
 id = 767
 
 [returned_items]
 id = 772
-components = {
-  item = {
-    id = 10,
-    inventory = "returned_lent_items",
-  }
-}
+
+[.item]
+id = 10
+inventory = "returned_lent_items"
 
 [loan_return_side]
 id = 771
+

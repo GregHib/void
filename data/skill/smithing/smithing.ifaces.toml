@@ -1,295 +1,724 @@
 [smithing]
 id = 300
-components = {
-  title = 14,
-  dagger = 18,
-  dagger_name = 19,
-  dagger_bar = 20,
-  dagger_all = 21,
-  dagger_x = 22,
-  dagger_5 = 23,
-  dagger_1 = 24,
-  hatchet = 26,
-  hatchet_name = 27,
-  hatchet_bar = 28,
-  hatchet_all = 29,
-  hatchet_x = 30,
-  hatchet_5 = 31,
-  hatchet_1 = 32,
-  mace = 34,
-  mace_name = 35,
-  mace_bar = 36,
-  mace_all = 37,
-  mace_x = 38,
-  mace_5 = 39,
-  mace_1 = 40,
-  med_helm = 42,
-  med_helm_name = 43,
-  med_helm_bar = 44,
-  med_helm_all = 45,
-  med_helm_x = 46,
-  med_helm_5 = 47,
-  med_helm_1 = 48,
-  bolts_unf = {
-    id = 50,
-    amount = 10,
-  },
-  bolts_unf_name = 51,
-  bolts_unf_bar = 52,
-  bolts_unf_all = 53,
-  bolts_unf_x = 54,
-  bolts_unf_5 = 55,
-  bolts_unf_1 = 56,
-  sword = 58,
-  sword_name = 59,
-  sword_bar = 60,
-  sword_all = 61,
-  sword_x = 62,
-  sword_5 = 63,
-  sword_1 = 64,
-  darts = 65,
-  dart_tip = {
-    id = 66,
-    amount = 10,
-  },
-  dart_tip_name = 67,
-  dart_tip_bar = 68,
-  dart_tip_all = 69,
-  dart_tip_x = 70,
-  dart_tip_5 = 71,
-  dart_tip_1 = 72,
-  nails = {
-    id = 74,
-    amount = 15,
-  },
-  nails_name = 75,
-  nails_bar = 76,
-  nails_all = 77,
-  nails_x = 78,
-  nails_5 = 79,
-  nails_1 = 80,
-  wire_bronze = 81,
-  wire = 82,
-  wire_name = 83,
-  wire_bar = 84,
-  wire_all = 85,
-  wire_x = 86,
-  wire_5 = 87,
-  wire_1 = 88,
-  spit_iron = 89,
-  spit = 90,
-  spit_name = 91,
-  spit_bar = 92,
-  spit_all = 93,
-  spit_x = 94,
-  spit_5 = 95,
-  spit_1 = 96,
-  studs_steel = 97,
-  studs = 98,
-  studs_name = 99,
-  studs_bar = 100,
-  studs_all = 101,
-  studs_x = 102,
-  studs_5 = 103,
-  studs_1 = 104,
-  arrowtips = {
-    id = 106,
-    amount = 15,
-  },
-  arrowtips_name = 107,
-  arrowtips_bar = 108,
-  arrowtips_all = 109,
-  arrowtips_x = 110,
-  arrowtips_5 = 111,
-  arrowtips_1 = 112,
-  scimitar = {
-    id = 114,
-    bars = 2,
-  },
-  scimitar_name = 115,
-  scimitar_bar = 116,
-  scimitar_all = 117,
-  scimitar_x = 118,
-  scimitar_5 = 119,
-  scimitar_1 = 120,
-  limbs = 122,
-  limbs_name = 123,
-  limbs_bar = 124,
-  limbs_all = 125,
-  limbs_x = 126,
-  limbs_5 = 127,
-  limbs_1 = 128,
-  longsword = {
-    id = 130,
-    bars = 2,
-  },
-  longsword_name = 131,
-  longsword_bar = 132,
-  longsword_all = 133,
-  longsword_x = 134,
-  longsword_5 = 135,
-  longsword_1 = 136,
-  knife = {
-    id = 138,
-    amount = 5,
-  },
-  knife_name = 139,
-  knife_bar = 140,
-  knife_all = 141,
-  knife_x = 142,
-  knife_5 = 143,
-  knife_1 = 144,
-  full_helm = {
-    id = 146,
-    bars = 2,
-  },
-  full_helm_name = 147,
-  full_helm_bar = 148,
-  full_helm_all = 149,
-  full_helm_x = 150,
-  full_helm_5 = 151,
-  full_helm_1 = 152,
-  sq_shield = {
-    id = 154,
-    bars = 2,
-  },
-  sq_shield_name = 155,
-  sq_shield_bar = 156,
-  sq_shield_all = 157,
-  sq_shield_x = 158,
-  sq_shield_5 = 159,
-  sq_shield_1 = 160,
-  bullseye_lantern = 161,
-  lantern = 162,
-  lantern_name = 163,
-  lantern_bar = 164,
-  lantern_all = 165,
-  lantern_x = 166,
-  lantern_5 = 167,
-  lantern_1 = 168,
-  grapple = 169,
-  grapple_tip = 170,
-  grapple_tip_name = 171,
-  grapple_tip_bar = 172,
-  grapple_tip_all = 173,
-  grapple_tip_x = 174,
-  grapple_tip_5 = 175,
-  grapple_tip_1 = 176,
-  warhammer = {
-    id = 178,
-    bars = 3,
-  },
-  warhammer_name = 179,
-  warhammer_bar = 180,
-  warhammer_all = 181,
-  warhammer_x = 182,
-  warhammer_5 = 183,
-  warhammer_1 = 184,
-  battleaxe = {
-    id = 186,
-    bars = 3,
-  },
-  battleaxe_name = 187,
-  battleaxe_bar = 188,
-  battleaxe_all = 189,
-  battleaxe_x = 190,
-  battleaxe_5 = 191,
-  battleaxe_1 = 192,
-  chainbody = {
-    id = 194,
-    bars = 3,
-  },
-  chainbody_name = 195,
-  chainbody_bar = 196,
-  chainbody_all = 197,
-  chainbody_x = 198,
-  chainbody_5 = 199,
-  chainbody_1 = 200,
-  kiteshield = {
-    id = 202,
-    bars = 3,
-  },
-  kiteshield_name = 203,
-  kiteshield_bar = 204,
-  kiteshield_all = 205,
-  kiteshield_x = 206,
-  kiteshield_5 = 207,
-  kiteshield_1 = 208,
-  claw = 209,
-  claws = {
-    id = 210,
-    bars = 2,
-  },
-  claws_name = 211,
-  claws_bar = 212,
-  claws_all = 213,
-  claws_x = 214,
-  claws_5 = 215,
-  claws_1 = 216,
-  2h_sword = {
-    id = 218,
-    bars = 3,
-  },
-  2h_sword_name = 219,
-  2h_sword_bar = 220,
-  2h_sword_all = 221,
-  2h_sword_x = 222,
-  2h_sword_5 = 223,
-  2h_sword_1 = 224,
-  plateskirt = {
-    id = 226,
-    bars = 3,
-  },
-  plateskirt_name = 227,
-  plateskirt_bar = 228,
-  plateskirt_all = 229,
-  plateskirt_x = 230,
-  plateskirt_5 = 231,
-  plateskirt_1 = 232,
-  platelegs = {
-    id = 234,
-    bars = 3,
-  },
-  platelegs_name = 235,
-  platelegs_bar = 236,
-  platelegs_all = 237,
-  platelegs_x = 238,
-  platelegs_5 = 239,
-  platelegs_1 = 240,
-  platebody = {
-    id = 242,
-    bars = 5,
-  },
-  platebody_name = 243,
-  platebody_bar = 244,
-  platebody_all = 245,
-  platebody_x = 246,
-  platebody_5 = 247,
-  platebody_1 = 248,
-  pickaxes = 266,
-  pickaxe = {
-    id = 267,
-    bars = 2,
-  },
-  pickaxe_name = 268,
-  pickaxe_bar = 269,
-  pickaxe_all = 270,
-  pickaxe_x = 271,
-  pickaxe_5 = 272,
-  pickaxe_1 = 273,
-  crossbows = 249,
-  crossbow_bolt = 251,
-  crossbow_bolt_name = 252,
-  crossbow_bolt_bar = 253,
-  crossbow_bolt_all = 254,
-  crossbow_bolt_x = 255,
-  crossbow_bolt_5 = 256,
-  crossbow_bolt_1 = 257,
-  crossbow_limbs = 259,
-  crossbow_limbs_name = 260,
-  crossbow_limbs_bar = 261,
-  crossbow_limbs_all = 262,
-  crossbow_limbs_x = 263,
-  crossbow_limbs_5 = 264,
-  crossbow_limbs_1 = 265,
-}
+
+[.title]
+id = 14
+
+[.dagger]
+id = 18
+
+[.dagger_name]
+id = 19
+
+[.dagger_bar]
+id = 20
+
+[.dagger_all]
+id = 21
+
+[.dagger_x]
+id = 22
+
+[.dagger_5]
+id = 23
+
+[.dagger_1]
+id = 24
+
+[.hatchet]
+id = 26
+
+[.hatchet_name]
+id = 27
+
+[.hatchet_bar]
+id = 28
+
+[.hatchet_all]
+id = 29
+
+[.hatchet_x]
+id = 30
+
+[.hatchet_5]
+id = 31
+
+[.hatchet_1]
+id = 32
+
+[.mace]
+id = 34
+
+[.mace_name]
+id = 35
+
+[.mace_bar]
+id = 36
+
+[.mace_all]
+id = 37
+
+[.mace_x]
+id = 38
+
+[.mace_5]
+id = 39
+
+[.mace_1]
+id = 40
+
+[.med_helm]
+id = 42
+
+[.med_helm_name]
+id = 43
+
+[.med_helm_bar]
+id = 44
+
+[.med_helm_all]
+id = 45
+
+[.med_helm_x]
+id = 46
+
+[.med_helm_5]
+id = 47
+
+[.med_helm_1]
+id = 48
+
+[.bolts_unf]
+id = 50
+amount = 10
+
+[.bolts_unf_name]
+id = 51
+
+[.bolts_unf_bar]
+id = 52
+
+[.bolts_unf_all]
+id = 53
+
+[.bolts_unf_x]
+id = 54
+
+[.bolts_unf_5]
+id = 55
+
+[.bolts_unf_1]
+id = 56
+
+[.sword]
+id = 58
+
+[.sword_name]
+id = 59
+
+[.sword_bar]
+id = 60
+
+[.sword_all]
+id = 61
+
+[.sword_x]
+id = 62
+
+[.sword_5]
+id = 63
+
+[.sword_1]
+id = 64
+
+[.darts]
+id = 65
+
+[.dart_tip]
+id = 66
+amount = 10
+
+[.dart_tip_name]
+id = 67
+
+[.dart_tip_bar]
+id = 68
+
+[.dart_tip_all]
+id = 69
+
+[.dart_tip_x]
+id = 70
+
+[.dart_tip_5]
+id = 71
+
+[.dart_tip_1]
+id = 72
+
+[.nails]
+id = 74
+amount = 15
+
+[.nails_name]
+id = 75
+
+[.nails_bar]
+id = 76
+
+[.nails_all]
+id = 77
+
+[.nails_x]
+id = 78
+
+[.nails_5]
+id = 79
+
+[.nails_1]
+id = 80
+
+[.wire_bronze]
+id = 81
+
+[.wire]
+id = 82
+
+[.wire_name]
+id = 83
+
+[.wire_bar]
+id = 84
+
+[.wire_all]
+id = 85
+
+[.wire_x]
+id = 86
+
+[.wire_5]
+id = 87
+
+[.wire_1]
+id = 88
+
+[.spit_iron]
+id = 89
+
+[.spit]
+id = 90
+
+[.spit_name]
+id = 91
+
+[.spit_bar]
+id = 92
+
+[.spit_all]
+id = 93
+
+[.spit_x]
+id = 94
+
+[.spit_5]
+id = 95
+
+[.spit_1]
+id = 96
+
+[.studs_steel]
+id = 97
+
+[.studs]
+id = 98
+
+[.studs_name]
+id = 99
+
+[.studs_bar]
+id = 100
+
+[.studs_all]
+id = 101
+
+[.studs_x]
+id = 102
+
+[.studs_5]
+id = 103
+
+[.studs_1]
+id = 104
+
+[.arrowtips]
+id = 106
+amount = 15
+
+[.arrowtips_name]
+id = 107
+
+[.arrowtips_bar]
+id = 108
+
+[.arrowtips_all]
+id = 109
+
+[.arrowtips_x]
+id = 110
+
+[.arrowtips_5]
+id = 111
+
+[.arrowtips_1]
+id = 112
+
+[.scimitar]
+id = 114
+bars = 2
+
+[.scimitar_name]
+id = 115
+
+[.scimitar_bar]
+id = 116
+
+[.scimitar_all]
+id = 117
+
+[.scimitar_x]
+id = 118
+
+[.scimitar_5]
+id = 119
+
+[.scimitar_1]
+id = 120
+
+[.limbs]
+id = 122
+
+[.limbs_name]
+id = 123
+
+[.limbs_bar]
+id = 124
+
+[.limbs_all]
+id = 125
+
+[.limbs_x]
+id = 126
+
+[.limbs_5]
+id = 127
+
+[.limbs_1]
+id = 128
+
+[.longsword]
+id = 130
+bars = 2
+
+[.longsword_name]
+id = 131
+
+[.longsword_bar]
+id = 132
+
+[.longsword_all]
+id = 133
+
+[.longsword_x]
+id = 134
+
+[.longsword_5]
+id = 135
+
+[.longsword_1]
+id = 136
+
+[.knife]
+id = 138
+amount = 5
+
+[.knife_name]
+id = 139
+
+[.knife_bar]
+id = 140
+
+[.knife_all]
+id = 141
+
+[.knife_x]
+id = 142
+
+[.knife_5]
+id = 143
+
+[.knife_1]
+id = 144
+
+[.full_helm]
+id = 146
+bars = 2
+
+[.full_helm_name]
+id = 147
+
+[.full_helm_bar]
+id = 148
+
+[.full_helm_all]
+id = 149
+
+[.full_helm_x]
+id = 150
+
+[.full_helm_5]
+id = 151
+
+[.full_helm_1]
+id = 152
+
+[.sq_shield]
+id = 154
+bars = 2
+
+[.sq_shield_name]
+id = 155
+
+[.sq_shield_bar]
+id = 156
+
+[.sq_shield_all]
+id = 157
+
+[.sq_shield_x]
+id = 158
+
+[.sq_shield_5]
+id = 159
+
+[.sq_shield_1]
+id = 160
+
+[.bullseye_lantern]
+id = 161
+
+[.lantern]
+id = 162
+
+[.lantern_name]
+id = 163
+
+[.lantern_bar]
+id = 164
+
+[.lantern_all]
+id = 165
+
+[.lantern_x]
+id = 166
+
+[.lantern_5]
+id = 167
+
+[.lantern_1]
+id = 168
+
+[.grapple]
+id = 169
+
+[.grapple_tip]
+id = 170
+
+[.grapple_tip_name]
+id = 171
+
+[.grapple_tip_bar]
+id = 172
+
+[.grapple_tip_all]
+id = 173
+
+[.grapple_tip_x]
+id = 174
+
+[.grapple_tip_5]
+id = 175
+
+[.grapple_tip_1]
+id = 176
+
+[.warhammer]
+id = 178
+bars = 3
+
+[.warhammer_name]
+id = 179
+
+[.warhammer_bar]
+id = 180
+
+[.warhammer_all]
+id = 181
+
+[.warhammer_x]
+id = 182
+
+[.warhammer_5]
+id = 183
+
+[.warhammer_1]
+id = 184
+
+[.battleaxe]
+id = 186
+bars = 3
+
+[.battleaxe_name]
+id = 187
+
+[.battleaxe_bar]
+id = 188
+
+[.battleaxe_all]
+id = 189
+
+[.battleaxe_x]
+id = 190
+
+[.battleaxe_5]
+id = 191
+
+[.battleaxe_1]
+id = 192
+
+[.chainbody]
+id = 194
+bars = 3
+
+[.chainbody_name]
+id = 195
+
+[.chainbody_bar]
+id = 196
+
+[.chainbody_all]
+id = 197
+
+[.chainbody_x]
+id = 198
+
+[.chainbody_5]
+id = 199
+
+[.chainbody_1]
+id = 200
+
+[.kiteshield]
+id = 202
+bars = 3
+
+[.kiteshield_name]
+id = 203
+
+[.kiteshield_bar]
+id = 204
+
+[.kiteshield_all]
+id = 205
+
+[.kiteshield_x]
+id = 206
+
+[.kiteshield_5]
+id = 207
+
+[.kiteshield_1]
+id = 208
+
+[.claw]
+id = 209
+
+[.claws]
+id = 210
+bars = 2
+
+[.claws_name]
+id = 211
+
+[.claws_bar]
+id = 212
+
+[.claws_all]
+id = 213
+
+[.claws_x]
+id = 214
+
+[.claws_5]
+id = 215
+
+[.claws_1]
+id = 216
+
+[.2h_sword]
+id = 218
+bars = 3
+
+[.2h_sword_name]
+id = 219
+
+[.2h_sword_bar]
+id = 220
+
+[.2h_sword_all]
+id = 221
+
+[.2h_sword_x]
+id = 222
+
+[.2h_sword_5]
+id = 223
+
+[.2h_sword_1]
+id = 224
+
+[.plateskirt]
+id = 226
+bars = 3
+
+[.plateskirt_name]
+id = 227
+
+[.plateskirt_bar]
+id = 228
+
+[.plateskirt_all]
+id = 229
+
+[.plateskirt_x]
+id = 230
+
+[.plateskirt_5]
+id = 231
+
+[.plateskirt_1]
+id = 232
+
+[.platelegs]
+id = 234
+bars = 3
+
+[.platelegs_name]
+id = 235
+
+[.platelegs_bar]
+id = 236
+
+[.platelegs_all]
+id = 237
+
+[.platelegs_x]
+id = 238
+
+[.platelegs_5]
+id = 239
+
+[.platelegs_1]
+id = 240
+
+[.platebody]
+id = 242
+bars = 5
+
+[.platebody_name]
+id = 243
+
+[.platebody_bar]
+id = 244
+
+[.platebody_all]
+id = 245
+
+[.platebody_x]
+id = 246
+
+[.platebody_5]
+id = 247
+
+[.platebody_1]
+id = 248
+
+[.pickaxes]
+id = 266
+
+[.pickaxe]
+id = 267
+bars = 2
+
+[.pickaxe_name]
+id = 268
+
+[.pickaxe_bar]
+id = 269
+
+[.pickaxe_all]
+id = 270
+
+[.pickaxe_x]
+id = 271
+
+[.pickaxe_5]
+id = 272
+
+[.pickaxe_1]
+id = 273
+
+[.crossbows]
+id = 249
+
+[.crossbow_bolt]
+id = 251
+
+[.crossbow_bolt_name]
+id = 252
+
+[.crossbow_bolt_bar]
+id = 253
+
+[.crossbow_bolt_all]
+id = 254
+
+[.crossbow_bolt_x]
+id = 255
+
+[.crossbow_bolt_5]
+id = 256
+
+[.crossbow_bolt_1]
+id = 257
+
+[.crossbow_limbs]
+id = 259
+
+[.crossbow_limbs_name]
+id = 260
+
+[.crossbow_limbs_bar]
+id = 261
+
+[.crossbow_limbs_all]
+id = 262
+
+[.crossbow_limbs_x]
+id = 263
+
+[.crossbow_limbs_5]
+id = 264
+
+[.crossbow_limbs_1]
+id = 265
+

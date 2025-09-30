@@ -1,127 +1,342 @@
 [book_indexed]
 id = 958
 type = "main_screen"
-components = {
-  close = 5,
-  title = 104,
-  turn_page_left = 3,
-  turn_page_right = 4,
-  line1 = 9,
-  line2 = 33,
-  line3 = 20,
-  line4 = 12,
-  line5 = 31,
-  line6 = 16,
-  line7 = 30,
-  line8 = 23,
-  line9 = 28,
-  line10 = 26,
-  line11 = 21,
-  line12 = 19,
-  line13 = 38,
-  line14 = 11,
-  line15 = 29,
-  line16 = 13,
-  line17 = 22,
-  line18 = 37,
-  line19 = 35,
-  line20 = 36,
-  line21 = 27,
-  line22 = 10,
-  line23 = 24,
-  line24 = 18,
-  line25 = 34,
-  line26 = 15,
-  line27 = 17,
-  line28 = 32,
-  line29 = 14,
-  line30 = 25,
-  line_click1 = 98,
-  line_click2 = 99,
-  line_click3 = 92,
-  line_click4 = 78,
-  line_click5 = 87,
-  line_click6 = 89,
-  line_click7 = 71,
-  line_click8 = 84,
-  line_click9 = 88,
-  line_click10 = 94,
-  line_click11 = 95,
-  line_click12 = 74,
-  line_click13 = 79,
-  line_click14 = 85,
-  line_click15 = 75,
-  line_click16 = 81,
-  line_click17 = 73,
-  line_click18 = 90,
-  line_click19 = 91,
-  line_click20 = 77,
-  line_click21 = 82,
-  line_click22 = 76,
-  line_click23 = 83,
-  line_click24 = 72,
-  line_click25 = 96,
-  line_click26 = 93,
-  line_click27 = 80,
-  line_click28 = 70,
-  line_click29 = 86,
-  line_click30 = 97,
-  page_number_left = 1,
-  page_number_right = 2,
-  index = 100,
-}
+
+[.close]
+id = 5
+
+[.title]
+id = 104
+
+[.turn_page_left]
+id = 3
+
+[.turn_page_right]
+id = 4
+
+[.line1]
+id = 9
+
+[.line2]
+id = 33
+
+[.line3]
+id = 20
+
+[.line4]
+id = 12
+
+[.line5]
+id = 31
+
+[.line6]
+id = 16
+
+[.line7]
+id = 30
+
+[.line8]
+id = 23
+
+[.line9]
+id = 28
+
+[.line10]
+id = 26
+
+[.line11]
+id = 21
+
+[.line12]
+id = 19
+
+[.line13]
+id = 38
+
+[.line14]
+id = 11
+
+[.line15]
+id = 29
+
+[.line16]
+id = 13
+
+[.line17]
+id = 22
+
+[.line18]
+id = 37
+
+[.line19]
+id = 35
+
+[.line20]
+id = 36
+
+[.line21]
+id = 27
+
+[.line22]
+id = 10
+
+[.line23]
+id = 24
+
+[.line24]
+id = 18
+
+[.line25]
+id = 34
+
+[.line26]
+id = 15
+
+[.line27]
+id = 17
+
+[.line28]
+id = 32
+
+[.line29]
+id = 14
+
+[.line30]
+id = 25
+
+[.line_click1]
+id = 98
+
+[.line_click2]
+id = 99
+
+[.line_click3]
+id = 92
+
+[.line_click4]
+id = 78
+
+[.line_click5]
+id = 87
+
+[.line_click6]
+id = 89
+
+[.line_click7]
+id = 71
+
+[.line_click8]
+id = 84
+
+[.line_click9]
+id = 88
+
+[.line_click10]
+id = 94
+
+[.line_click11]
+id = 95
+
+[.line_click12]
+id = 74
+
+[.line_click13]
+id = 79
+
+[.line_click14]
+id = 85
+
+[.line_click15]
+id = 75
+
+[.line_click16]
+id = 81
+
+[.line_click17]
+id = 73
+
+[.line_click18]
+id = 90
+
+[.line_click19]
+id = 91
+
+[.line_click20]
+id = 77
+
+[.line_click21]
+id = 82
+
+[.line_click22]
+id = 76
+
+[.line_click23]
+id = 83
+
+[.line_click24]
+id = 72
+
+[.line_click25]
+id = 96
+
+[.line_click26]
+id = 93
+
+[.line_click27]
+id = 80
+
+[.line_click28]
+id = 70
+
+[.line_click29]
+id = 86
+
+[.line_click30]
+id = 97
+
+[.page_number_left]
+id = 1
+
+[.page_number_right]
+id = 2
+
+[.index]
+id = 100
 
 [book]
 id = 959
 type = "main_screen"
-components = {
-  close = 4,
-  title = 5,
-  turn_page_left = 28,
-  turn_page_right = 29,
-  line1 = "30-51",
-  page_number_left = 52,
-  page_number_right = 53,
-}
+
+[.close]
+id = 4
+
+[.title]
+id = 5
+
+[.turn_page_left]
+id = 28
+
+[.turn_page_right]
+id = 29
+
+[.line1]
+id = "30-51"
+
+[.page_number_left]
+id = 52
+
+[.page_number_right]
+id = 53
 
 [book_long]
 id = 960
 type = "main_screen"
-components = {
-  line1 = 19,
-  line2 = 26,
-  line3 = 31,
-  line4 = 32,
-  line5 = 24,
-  line6 = 33,
-  line7 = 25,
-  line8 = 21,
-  line9 = 30,
-  line10 = 28,
-  line11 = 23,
-  line12 = 20,
-  line13 = 27,
-  line14 = 29,
-  line15 = 22,
-  line16 = 3,
-  line17 = 9,
-  line18 = 6,
-  line19 = 14,
-  line20 = 7,
-  line21 = 16,
-  line22 = 10,
-  line23 = 12,
-  line24 = 4,
-  line25 = 5,
-  line26 = 8,
-  line27 = 13,
-  line28 = 17,
-  line29 = 15,
-  line30 = 11,
-  page_number_left = 70,
-  page_number_right = 71,
-  turn_page_left = 72,
-  turn_page_right = 73,
-  close = 74,
-  title = 39,
-}
+
+[.line1]
+id = 19
+
+[.line2]
+id = 26
+
+[.line3]
+id = 31
+
+[.line4]
+id = 32
+
+[.line5]
+id = 24
+
+[.line6]
+id = 33
+
+[.line7]
+id = 25
+
+[.line8]
+id = 21
+
+[.line9]
+id = 30
+
+[.line10]
+id = 28
+
+[.line11]
+id = 23
+
+[.line12]
+id = 20
+
+[.line13]
+id = 27
+
+[.line14]
+id = 29
+
+[.line15]
+id = 22
+
+[.line16]
+id = 3
+
+[.line17]
+id = 9
+
+[.line18]
+id = 6
+
+[.line19]
+id = 14
+
+[.line20]
+id = 7
+
+[.line21]
+id = 16
+
+[.line22]
+id = 10
+
+[.line23]
+id = 12
+
+[.line24]
+id = 4
+
+[.line25]
+id = 5
+
+[.line26]
+id = 8
+
+[.line27]
+id = 13
+
+[.line28]
+id = 17
+
+[.line29]
+id = 15
+
+[.line30]
+id = 11
+
+[.page_number_left]
+id = 70
+
+[.page_number_right]
+id = 71
+
+[.turn_page_left]
+id = 72
+
+[.turn_page_right]
+id = 73
+
+[.close]
+id = 74
+
+[.title]
+id = 39
+

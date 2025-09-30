@@ -1,27 +1,24 @@
 [music_player]
 id = 187
 type = "music_player_tab"
-components = {
-  tracks = {
-    id = 1,
-    options = {
-      Play = 0,
-      Unlock = 1,
-      "Add to playlist" = 2,
-      "Remove from playlist" = 3,
-    }
-  },
-  currently_playing = 4,
-  playlist = {
-    id = 9,
-    options = {
-      Play = 0,
-      "Remove from playlist" = 1,
-      Option3 = 17,
-      Drag = 20
-    }
-  },
-  playlist_toggle = 10,
-  clear_playlist = 11,
-  shuffle_playlist = 13
-}
+
+[.tracks]
+id = 1
+options = { Play = 0, Unlock = 1, "Add to playlist" = 2, "Remove from playlist" = 3 }
+
+[.currently_playing]
+id = 4
+
+[.playlist]
+id = 9
+options = { Play = 0, "Remove from playlist" = 1, Option3 = 17, Drag = 20 }
+
+[.playlist_toggle]
+id = 10
+
+[.clear_playlist]
+id = 11
+
+[.shuffle_playlist]
+id = 13
+

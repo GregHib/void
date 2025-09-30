@@ -1,48 +1,27 @@
 [shop]
 id = 620
 type = "main_screen"
-components = {
-  title = 20,
-  store = 19,
-  sample = {
-    id = 26,
-    options = {
-      Info = 0,
-      Take-1 = 1,
-      Take-5 = 2,
-      Take-10 = 3,
-      Take-50 = 4,
-      Examine = 9,
-    },
-  },
-  stock = {
-    id = 25,
-    options = {
-      Info = 0,
-      Buy-1 = 1,
-      Buy-5 = 2,
-      Buy-10 = 3,
-      Buy-50 = 4,
-      Buy-500 = 5,
-      Examine = 9,
-    }
-  }
-}
+
+[.title]
+id = 20
+
+[.store]
+id = 19
+
+[.sample]
+id = 26
+options = { Info = 0, Take-1 = 1, Take-5 = 2, Take-10 = 3, Take-50 = 4, Examine = 9 }
+
+[.stock]
+id = 25
+options = { Info = 0, Buy-1 = 1, Buy-5 = 2, Buy-10 = 3, Buy-50 = 4, Buy-500 = 5, Examine = 9 }
 
 [shop_side]
 id = 621
 type = "overlay_tab"
-components = {
-  inventory = {
-    id = 0,
-    inventory = "inventory",
-    options = {
-      Value = 0,
-      "Sell 1" = 1,
-      "Sell 5" = 2,
-      "Sell 10" = 3,
-      "Sell 50" = 4,
-      Examine = 5,
-    }
-  }
-}
+
+[.inventory]
+id = 0
+inventory = "inventory"
+options = { Value = 0, "Sell 1" = 1, "Sell 5" = 2, "Sell 10" = 3, "Sell 50" = 4, Examine = 5 }
+

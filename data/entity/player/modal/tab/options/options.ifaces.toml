@@ -1,16 +1,30 @@
 [options]
 id = 261
 type = "options_tab"
-components = {
-  graphics = 16,
-  audio = 18,
-  run = 3,
-  mouse = 6,
-  effects = 4,
-  chat = 5,
-  aid = 7,
-  house = 8,
-}
+
+[.graphics]
+id = 16
+
+[.audio]
+id = 18
+
+[.run]
+id = 3
+
+[.mouse]
+id = 6
+
+[.effects]
+id = 4
+
+[.chat]
+id = 5
+
+[.aid]
+id = 7
+
+[.house]
+id = 8
 
 [graphics_options]
 id = 742
@@ -19,17 +33,26 @@ type = "main_screen"
 [audio_options]
 id = 743
 type = "main_screen"
-components = {
-  mono = 49,
-  stereo = 51,
-}
+
+[.mono]
+id = 49
+
+[.stereo]
+id = 51
 
 [chat_setup]
 id = 982
 type = "options_tab"
-components = {
-  close = 5,
-  clan_colour1 = "13-32",
-  no_split = 37,
-  private_colour1 = "45-62",
-}
+
+[.close]
+id = 5
+
+[.clan_colour1]
+id = "13-32"
+
+[.no_split]
+id = 37
+
+[.private_colour1]
+id = "45-62"
+

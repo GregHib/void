@@ -1,11 +1,22 @@
 [items_kept_on_death]
 id = 102
 type = "main_screen"
-components = {
-  enter_wild = 28,
-  max_items = 30,
-  carried_wealth = 31,
-  risked_wealth = 32,
-  kept_items = 18,
-  lost_items = 21,
-}
+
+[.enter_wild]
+id = 28
+
+[.max_items]
+id = 30
+
+[.carried_wealth]
+id = 31
+
+[.risked_wealth]
+id = 32
+
+[.kept_items]
+id = 18
+
+[.lost_items]
+id = 21
+

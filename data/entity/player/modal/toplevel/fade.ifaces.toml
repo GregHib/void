@@ -1,7 +1,9 @@
 [fade_out]
 id = 120
 type = "overlay"
-components = { text = 1 }
+
+[.text]
+id = 1
 
 [fade_in]
 id = 170
@@ -22,3 +24,4 @@ type = "overlay"
 [level_three_darkness]
 id = 96
 type = "overlay"
+

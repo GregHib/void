@@ -14,3 +14,4 @@ type = "dialogue_box"
 [conquest_tutorial_instructions]
 id = 1020
 type = "dialogue_box"
+

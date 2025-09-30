@@ -8,3 +8,4 @@ id = 56
 [castlewars_status_overlay]
 id = 57
 type = "dialogue_box"
+

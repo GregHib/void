@@ -1,68 +1,76 @@
 [hairdressers_salon]
 id = 309
 type = "main_screen"
-components = {
-  style_hair = 6,
-  style_beard = 7,
-  styles = {
-    id = 10,
-    options = {
-      Select = 0,
-    },
-  },
-  colours = {
-    id = 16,
-    options = {
-      Select = 0,
-    },
-  },
-  confirm = 18,
-  confirm_text = 20,
-}
+
+[.style_hair]
+id = 6
+
+[.style_beard]
+id = 7
+
+[.styles]
+id = 10
+options = { Select = 0 }
+
+[.colours]
+id = 16
+options = { Select = 0 }
+
+[.confirm]
+id = 18
+
+[.confirm_text]
+id = 20
 
 [smithing_emporium]
 id = 725
 
 [yrsas_shoe_store]
 id = 728
-components = {
-  styles = {
-    id = 7,
-    options = {
-      Select = 0,
-    },
-  },
-  colours = {
-    id = 12,
-    options = {
-      Select = 0,
-    },
-  },
-  confirm = 14,
-  confirm_text = 16,
-}
 
+[.styles]
+id = 7
+options = { Select = 0 }
+
+[.colours]
+id = 12
+options = { Select = 0 }
+
+[.confirm]
+id = 14
+
+[.confirm_text]
+id = 16
 
 [thessalias_makeovers]
 id = 729
-components = {
-  close = 4,
-  part_top = 6,
-  part_arms = 7,
-  part_wrists = 8,
-  part_legs = 9,
-  styles = {
-    id = 12,
-    options = {
-      Select = 0,
-    },
-  },
-  colours = {
-    id = 17,
-    options = {
-      Select = 0,
-    },
-  },
-  confirm = 19,
-  confirm_text = 21,
-}
+
+[.close]
+id = 4
+
+[.part_top]
+id = 6
+
+[.part_arms]
+id = 7
+
+[.part_wrists]
+id = 8
+
+[.part_legs]
+id = 9
+
+[.styles]
+id = 12
+options = { Select = 0 }
+
+[.colours]
+id = 17
+options = { Select = 0 }
+
+[.confirm]
+id = 19
+
+[.confirm_text]
+id = 21
+
