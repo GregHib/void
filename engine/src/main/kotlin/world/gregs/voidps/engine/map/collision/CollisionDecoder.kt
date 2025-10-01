@@ -67,6 +67,7 @@ class CollisionDecoder(private val collisions: Collisions) {
                     }
                     val rotX = rotateX(localX, localY, zoneRotation)
                     val rotY = rotateY(localX, localY, zoneRotation)
+
                     if (isTile(settings, localX, localY, level, ROOF_TILE)) {
                         collisions.setUnsafe(targetX + rotX, targetY + rotY, height, CollisionFlag.ROOF)
                     }

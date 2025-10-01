@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.region.RegionRetry
 import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
@@ -54,10 +53,6 @@ open class Movement(
 
     override fun tick() {
         if (character is Player && character.viewport?.loaded == false) {
-            if (character.viewport != null && character.inc("fail_load_count") > 10) {
-                character.emit(RegionRetry)
-                character.clear("fail_load_count")
-            }
             return
         }
         if (hasDelay() && !canMove() && !character.steps.destination.noCollision) {

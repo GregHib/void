@@ -16,13 +16,22 @@ class DynamicZones(
     private val objects: GameObjects,
     private val collisions: Collisions,
     private val extract: MapDefinitions,
-) {
+) : Runnable {
     private val zones: MutableMap<Int, Int> = Int2IntArrayMap()
+    // All dynamic regions
     private val regions = IntOpenHashSet()
 
-    fun isDynamic(region: Region) = regions.contains(region.id)
+    // Dynamic regions that have recently been modified (not cleared)
+    private val refresh = IntOpenHashSet()
 
-    fun getDynamicZone(zone: Zone) = zones[zone.id]
+    // All recent region changes (including clearing)
+    private val updated = IntOpenHashSet()
+
+    fun dynamic(region: Region) = regions.contains(region.id)
+
+    fun dynamicUpdate(region: Region) = refresh.contains(region.id)
+
+    fun dynamicZone(zone: Zone) = zones[zone.id]
 
     /**
      * @param from The zone to be copied
@@ -30,7 +39,14 @@ class DynamicZones(
      */
     fun copy(from: Zone, to: Zone = from, rotation: Int = 0) {
         zones[to.id] = from.rotatedId(rotation)
-        update(from, to, rotation, true)
+        objects.reset(to)
+        collisions.clear(to)
+        extract.loadZone(from, to, rotation)
+        for (region in to.toCuboid(radius = 3).toRegions()) {
+            regions.add(region.id)
+            refresh.add(region.id)
+        }
+        updated.add(to.region.id)
     }
 
     /**
@@ -49,7 +65,15 @@ class DynamicZones(
      */
     fun clear(zone: Zone) {
         zones.remove(zone.id)
-        update(zone, zone, 0, false)
+        objects.reset(zone)
+        collisions.clear(zone)
+        extract.loadZone(zone, zone, 0)
+        for (region in zone.toCuboid(radius = 3).toRegions()) {
+            if (region.toRectangle().toZones().none { zones.containsKey(it.id) }) {
+                regions.remove(region.id)
+            }
+        }
+        updated.add(zone.region.id)
     }
 
     /**
@@ -57,27 +81,30 @@ class DynamicZones(
      */
     fun clear(region: Region) {
         for (zone in region.toCuboid().toZones()) {
-            objects.clear(zone)
-            collisions.clear(zone)
-            extract.loadZone(zone, zone, 0)
-            zones.remove(zone.id)
-        }
-        regions.remove(region.id)
-        World.emit(ClearRegion(region))
-    }
-
-    private fun update(from: Zone, to: Zone, rotation: Int, set: Boolean) {
-        objects.reset(to)
-        collisions.clear(to)
-        extract.loadZone(from, to, rotation)
-        for (region in to.toCuboid(radius = 3).toRegions()) {
-            if (set) {
-                regions.add(region.id)
-            } else if (region.toRectangle().toZones().none { zones.containsKey(it.id) }) {
-                regions.remove(region.id)
+            if (zones.containsKey(zone.id)) {
+                objects.clear(zone)
+                collisions.clear(zone)
+                extract.loadZone(zone, zone, 0)
+                zones.remove(zone.id)
             }
         }
-        World.emit(ReloadZone(to))
+        if (regions.remove(region.id)) {
+            updated.add(region.id)
+        }
+    }
+
+    /**
+     * Send updated regions to clients
+     */
+    override fun run() {
+        if (updated.isEmpty()) {
+            return
+        }
+        for (region in updated.iterator()) {
+            World.emit(RegionReload(Region(region)))
+        }
+        updated.clear()
+        refresh.clear()
     }
 
     companion object {
