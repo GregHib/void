@@ -2,9 +2,13 @@ package content.entity.player.command
 
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
 
 @Script
@@ -21,6 +25,11 @@ class ZoneCommands {
         }
         adminCommand("copy_zone", intArg("from"), intArg("to", optional = true), intArg("rotation", optional = true), desc = "Create a dynamic zone copy") { player, args ->
             zones.copy(Zone(args[0].toInt()), args.getOrNull(1)?.toIntOrNull()?.let { Zone(it) } ?: player.tile.zone, rotation = args.getOrNull(2)?.toIntOrNull() ?: 0)
+        }
+        adminCommand("test", desc = "Reset the current zone back to static") { player, args ->
+            val region = Instances.small()
+            player.tele(region.tile)
+            get<DynamicZones>().copy(Region(11842), region)
         }
     }
 }
