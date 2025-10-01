@@ -26,10 +26,5 @@ class ZoneCommands {
         adminCommand("copy_zone", intArg("from"), intArg("to", optional = true), intArg("rotation", optional = true), desc = "Create a dynamic zone copy") { player, args ->
             zones.copy(Zone(args[0].toInt()), args.getOrNull(1)?.toIntOrNull()?.let { Zone(it) } ?: player.tile.zone, rotation = args.getOrNull(2)?.toIntOrNull() ?: 0)
         }
-        adminCommand("test", desc = "Reset the current zone back to static") { player, args ->
-            val region = Instances.small()
-            player.tele(region.tile)
-            get<DynamicZones>().copy(Region(11842), region)
-        }
     }
 }
