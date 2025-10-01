@@ -6,7 +6,6 @@ str = 80
 def = 80
 mage = 120
 attack_speed = 5
-style = "magic"
 style = "crush"
 max_hit_magic = 130
 max_hit_melee = 90

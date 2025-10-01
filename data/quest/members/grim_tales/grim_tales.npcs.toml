@@ -6,7 +6,6 @@ str = 92
 def = 90
 range = 100
 style = "crush"
-style = "ranged"
 max_hit_melee = 110
 xp_bonus = 2.5
 respawn_delay = 10

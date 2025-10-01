@@ -7,7 +7,6 @@ def = 140
 mage = 90
 attack_speed = 5
 style = "crush"
-style = "ranged"
 max_hit_melee = 350
 attack_bonus = 80
 xp_bonus = 1.0

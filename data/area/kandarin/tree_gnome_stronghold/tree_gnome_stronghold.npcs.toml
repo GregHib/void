@@ -156,7 +156,10 @@ examine = "He looks like he needs something useful to do."
 [gnome_troop]
 id = 479
 hitpoints = 30
-style = "ranged"
+style = "range"
+weapon_style = "bow"
+ammo = "bronze_arrow"
+attack_range = 8
 max_hit_range = 10
 attack_bonus = 2
 ranged_strength = 2

@@ -34,7 +34,7 @@ examine = "It is the avatar of the Arzinian Being of Bordanzan, representing mag
 
 [arzinian_avatar_of_ranging_invincible]
 id = 1853
-style = "ranged"
+style = "range"
 max_hit_melee = 170
 xp_bonus = 0.5
 hunt_mode = "cowardly"
@@ -47,10 +47,10 @@ att = 10
 str = 100
 def = 120
 range = 110
-style = "ranged"
-max_hit_melee = 140
+style = "range"
+max_hit_range = 140
 xp_bonus = 2.5
-#Unexpected ranged bonus
+ranged_strength = 10
 hunt_mode = "cowardly"
 examine = "It is the avatar of the Arzinian Being of Bordanzan, representing ranging."
 
@@ -61,17 +61,17 @@ att = 10
 str = 40
 def = 75
 range = 75
-style = "ranged"
-max_hit_melee = 90
+style = "range"
+max_hit_range = 90
 xp_bonus = 0.0
-#Unexpected ranged bonus
+ranged_strength = 5
 hunt_mode = "cowardly"
 examine = "It is the avatar of the Arzinian Being of Bordanzan, representing ranging."
 
 [arzinian_avatar_of_strength_invincible]
 id = 1850
 style = "crush"
-max_hit_melee = 140
+max_hit_range = 140
 xp_bonus = 0.5
 hunt_mode = "cowardly"
 examine = "It is the avatar of the Arzinian Being of Bordanzan, representing strength."

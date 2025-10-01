@@ -6,7 +6,6 @@ str = 90
 def = 160
 range = 130
 style = "crush"
-style = "ranged"
 max_hit_melee = 140
 hunt_mode = "cowardly"
 immune_poison = true

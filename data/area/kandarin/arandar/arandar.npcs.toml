@@ -22,7 +22,10 @@ examine = "A gnome mage and hunter with a somewhat enthusiastic swagger."
 [gnome]
 id = 66
 hitpoints = 30
-style = "ranged"
+style = "range"
+weapon_style = "bow"
+ammo = "bronze_arrow"
+attack_range = 8
 max_hit_range = 10
 attack_bonus = -42
 ranged_strength = 2

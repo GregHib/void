@@ -28,7 +28,6 @@ str = 170
 def = 240
 range = 170
 style = "crush"
-style = "ranged"
 max_hit_melee = 180
 max_hit_range = 20
 hunt_mode = "cowardly"

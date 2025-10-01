@@ -19,7 +19,6 @@ att = 14
 str = 14
 def = 14
 mage = 18
-style = "magic"
 style = "melee"
 max_hit_melee = 30
 hunt_mode = "cowardly"

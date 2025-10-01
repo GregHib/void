@@ -78,6 +78,7 @@ def = 95
 attack_speed = 6
 style = "stab"
 style = "magic"
+spell = "water_wave"
 max_hit_melee = 100
 xp_bonus = 2.5
 hunt_mode = "cowardly"

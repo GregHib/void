@@ -6,7 +6,6 @@ str = 120
 def = 60
 range = 100
 attack_speed = 6
-style = "ranged"
 style = "crush"
 max_hit_melee = 130
 attack_bonus = 22

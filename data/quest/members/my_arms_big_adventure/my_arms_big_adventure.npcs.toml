@@ -19,7 +19,6 @@ def = 100
 range = 130
 attack_speed = 6
 style = "crush"
-style = "ranged"
 max_hit_melee = 140
 max_hit_range = 200
 hunt_mode = "cowardly"
