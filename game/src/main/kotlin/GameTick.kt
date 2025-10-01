@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.login.protocol.npcVisualEncoders
 import world.gregs.voidps.network.login.protocol.playerVisualEncoders
@@ -42,6 +43,7 @@ fun getTickStages(
     grandExchange: GrandExchange = get(),
     sequential: Boolean = CharacterTask.DEBUG,
     handlers: InstructionHandlers = get(),
+    dynamicZones: DynamicZones = get(),
 ): List<Runnable> {
     val sequentialNpc: TaskIterator<NPC> = SequentialIterator()
     val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
@@ -63,6 +65,7 @@ fun getTickStages(
         floorItems,
         objects.timers,
         // Update
+        dynamicZones,
         batches,
         CharacterUpdateTask(
             iterator,

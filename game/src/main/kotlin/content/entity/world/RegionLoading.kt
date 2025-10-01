@@ -12,11 +12,9 @@ import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.region.RegionRetry
-import world.gregs.voidps.engine.map.zone.ClearRegion
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.map.zone.RegionLoad
-import world.gregs.voidps.engine.map.zone.ReloadZone
+import world.gregs.voidps.engine.map.zone.RegionReload
 import world.gregs.voidps.network.client.instruction.FinishRegionLoad
 import world.gregs.voidps.network.login.protocol.encode.dynamicMapRegion
 import world.gregs.voidps.network.login.protocol.encode.mapRegion
@@ -25,6 +23,10 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
+/**
+ * Keeps track of when players enter and move between regions
+ * Loads maps when they are accessed
+ */
 @Script
 class RegionLoading : Api {
 
@@ -33,6 +35,8 @@ class RegionLoading : Api {
 
     val playerRegions = IntArray(MAX_PLAYERS - 1)
 
+    private val blankXtea = IntArray(4)
+
     override fun move(player: Player, from: Tile, to: Tile) {
         if (from.regionLevel != to.regionLevel) {
             playerRegions[player.index - 1] = to.regionLevel.id
@@ -40,10 +44,12 @@ class RegionLoading : Api {
     }
 
     init {
+
+        /*
+            Player regions
+         */
+
         instruction<FinishRegionLoad> { player ->
-            if (player["debug", false]) {
-                println("Finished region load. $player ${player.viewport}")
-            }
             player.viewport?.loaded = true
         }
 
@@ -58,13 +64,6 @@ class RegionLoading : Api {
             viewport.players.addSelf(player)
         }
 
-        onEvent<Player, RegionRetry> { player ->
-            if (player.networked) {
-                println("Failed to load region. Retrying...")
-                updateRegion(player, initial = false, force = true)
-            }
-        }
-
         playerDespawn { player ->
             playerRegions[player.index - 1] = 0
         }
@@ -75,37 +74,18 @@ class RegionLoading : Api {
             }
         }
 
-        onEvent<ReloadZone> {
-            players.forEach { player ->
-                if (player.networked && inViewOfZone(player, zone)) {
-                    updateRegion(player, initial = false, force = true)
-                }
-            }
-        }
+        /*
+            Region updating
+         */
 
-        onEvent<ClearRegion> {
+        onEvent<RegionReload> {
             players.forEach { player ->
-                if (player.networked && inViewOfRegion(player, region)) {
+                if (player.networked && needsRegionChange(player)) {
                     updateRegion(player, initial = false, force = true)
                 }
             }
         }
     }
-
-    /**
-     * Keeps track of when players enter and move between regions
-     * Loads maps when they are accessed
-     */
-
-    private val blankXtea = IntArray(4)
-
-    /*
-        Player regions
-     */
-
-    /*
-        Region updating
-     */
 
     fun needsRegionChange(player: Player) = !inViewOfZone(player, player.viewport!!.lastLoadZone) || crossedDynamicBoarder(player)
 
@@ -121,9 +101,9 @@ class RegionLoading : Api {
         return Distance.within(player.tile.region.x, player.tile.region.y, region.x, region.y, radius)
     }
 
-    fun crossedDynamicBoarder(player: Player) = player.viewport!!.dynamic != inDynamicView(player)
+    fun crossedDynamicBoarder(player: Player) = player.viewport!!.dynamic != inDynamicView(player) || dynamicZones.dynamicUpdate(player.tile.region)
 
-    fun inDynamicView(player: Player): Boolean = dynamicZones.isDynamic(player.tile.region)
+    fun inDynamicView(player: Player): Boolean = dynamicZones.dynamic(player.tile.region)
 
     fun updateRegion(player: Player, initial: Boolean, force: Boolean) {
         val dynamic = inDynamicView(player)
@@ -140,6 +120,7 @@ class RegionLoading : Api {
         if (!player.isBot) {
             viewport.loaded = false
         }
+        println("Update region $player")
         viewport.lastLoadZone = player.tile.zone
     }
 
@@ -183,7 +164,7 @@ class RegionLoading : Api {
         val zoneSize = viewport.zoneArea
         var append = 0
         for (origin in view.toCuboid(zoneSize, zoneSize).copy(minLevel = 0, maxLevel = 3).toZones()) {
-            val target = dynamicZones.getDynamicZone(origin)
+            val target = dynamicZones.dynamicZone(origin)
             if (target == null) {
                 zones.add(null)
                 continue

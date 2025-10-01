@@ -3,6 +3,9 @@ package world.gregs.voidps.engine.map.zone
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
 
+/**
+ * Send region load to a player
+ */
 object RegionLoad : Event {
     override val size = 1
 
