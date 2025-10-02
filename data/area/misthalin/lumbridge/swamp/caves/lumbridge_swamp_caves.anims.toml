@@ -1,0 +1,42 @@
+[wall_beast_retreat]
+id = 1801
+
+[wall_beast_swipe]
+id = 1802
+
+[wall_beast_defend]
+id = 1803
+
+[wall_beast_death]
+id = 1804
+
+[wall_beast_repelled_attack]
+id = 1805
+
+[wall_beast_attack]
+id = 1806
+
+[wall_beast_hold]
+id = 1807
+
+[wall_beast_release]
+id = 1808
+
+[grabbed_by_wall_beast]
+id = 1809
+
+[held_by_wall_beast]
+id = 1810
+
+[released_by_wall_beast]
+id = 1811
+
+[cave_goblin_attack]
+id = 6001
+
+[cave_goblin_defend]
+id = 6002
+
+[cave_goblin_death]
+id = 6003
+

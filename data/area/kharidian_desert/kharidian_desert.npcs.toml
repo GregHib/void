@@ -61,6 +61,8 @@ hunt_mode = "cowardly"
 slayer_xp = 62.0
 categories = ["crocodiles"]
 respawn_delay = 40
+combat_anims = "crocodile"
+combat_sounds = "crocodile"
 examine = "Never smile at a..."
 
 [wanderer_kharidian_desert]
@@ -87,6 +89,7 @@ max_hit_melee = 60
 attack_bonus = 10
 respawn_delay = 50
 drop_table = "billy_goat"
+combat_anims = "goat"
 examine = "They'll eat anything!"
 
 [goat_kharidian_desert_2]

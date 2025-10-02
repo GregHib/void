@@ -1,0 +1,20 @@
+[underwater_crab_turn]
+id = 3427
+
+[underwater_crab_attack]
+id = 3428
+
+[underwater_crab_defend]
+id = 3429
+
+[underwater_crab_death]
+id = 3430
+
+[mudskipper_attack]
+id = 3433
+
+[mudskipper_defend]
+id = 3434
+
+[mudskipper_death]
+id = 3435

@@ -259,6 +259,7 @@ attack_bonus = -47
 slayer_xp = 5.0
 categories = ["birds"]
 respawn_delay = 25
+combat_anims = "seagull"
 examine = "A messy bird."
 
 [seagull_port_sarim_2]

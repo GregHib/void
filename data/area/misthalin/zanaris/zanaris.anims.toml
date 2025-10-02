@@ -1,0 +1,8 @@
+[zygomite_defend]
+id = 2775
+
+[zygomite_attack]
+id = 2776
+
+[zygomite_death]
+id = 2777

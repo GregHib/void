@@ -1,0 +1,8 @@
+[bird_attack]
+id = 6775
+
+[bird_defend]
+id = 6776
+
+[bird_death]
+id = 6777

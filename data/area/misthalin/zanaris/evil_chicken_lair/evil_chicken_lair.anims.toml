@@ -1,0 +1,8 @@
+[evil_chicken_defend]
+id = 2300
+
+[evil_chicken_death]
+id = 2301
+
+[evil_chicken_attack]
+id = 2302

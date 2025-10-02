@@ -111,4 +111,7 @@ max_hit_melee = 10
 hunt_mode = "cowardly"
 slayer_xp = 1.0
 categories = ["scabarites"]
+attack_anim = "scarab_attack"
+attack_death = "scarab_death"
+combat_sounds = "scarabs"
 examine = "I think they're some kind of beetle..."

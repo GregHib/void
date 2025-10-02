@@ -152,6 +152,7 @@ style = "ranged_magic"
 max_hit_melee = 100
 hunt_mode = "cowardly"
 respawn_delay = 10
+combat_anims = "spinolyp"
 examine = "A sneaky, spiny, subterranean sea-dwelling scamp."
 
 [suspicious_water_2]

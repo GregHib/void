@@ -1,0 +1,8 @@
+[zygomite_attack]
+id = 1968
+
+[zygomite_death]
+id = 1969
+
+[zygomite_defend]
+id = 1970

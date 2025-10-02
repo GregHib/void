@@ -1,0 +1,17 @@
+[leech_death]
+id = 602
+
+[leech_defend]
+id = 603
+
+[leech_attack]
+id = 604
+
+[dust_devil_attack]
+id = 414
+
+[dust_devil_death]
+id = 415
+
+[dust_devil_defend]
+id = 416

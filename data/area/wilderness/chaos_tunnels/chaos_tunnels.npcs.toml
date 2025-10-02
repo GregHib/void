@@ -8,6 +8,8 @@ style = "stab"
 max_hit_melee = 30
 hunt_mode = "cowardly"
 respawn_delay = 50
+combat_anims = "leech"
+combat_sounds = "leech"
 examine = "Yuck! It's all slimy!"
 
 [dust_devil]
@@ -21,6 +23,8 @@ max_hit_melee = 8
 slayer_xp = 105.0
 categories = ["dust_devils"]
 respawn_delay = 15
+combat_anims = "dust_devil"
+combat_sounds = "dust_devil"
 examine = "The vacuumed face of evil."
 
 [turoth_chaos_tunnels]
@@ -61,6 +65,7 @@ slayer_xp = 35.0
 categories = ["rats"]
 respawn_delay = 50
 drop_table = "crypt_rat"
+combat_anims = "giant_crypt_rat"
 examine = "A nasty overgrown rodent."
 
 [crypt_spider]
@@ -141,6 +146,8 @@ style = "slash"
 max_hit_melee = 40
 respawn_delay = 50
 drop_table = "fire_elemental"
+combat_anims = "fire_elemental"
+combat_sounds = "fire_elemental"
 examine = "A fire elemental."
 
 [turoth]

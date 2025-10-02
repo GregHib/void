@@ -94,6 +94,9 @@ slayer_xp = 268.75
 categories = ["bosses"]
 respawn_delay = 100
 drop_table = "chaos_elemental"
+attack_anim = "chaos_elemental_attack"
+death_anim = "chaos_elemental_death"
+combat_sounds = "chaos_elemental"
 examine = "pUre A cHaOs of crEatuRe!"
 
 [fishing_spot_wilderness]

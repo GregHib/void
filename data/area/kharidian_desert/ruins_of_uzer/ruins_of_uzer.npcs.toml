@@ -1,5 +1,6 @@
 [clay_golem_ruins_of_uzer]
 id = 1907
+combat_anims = "golem"
 
 [rug_merchant_ruins_of_uzer]
 id = 2295

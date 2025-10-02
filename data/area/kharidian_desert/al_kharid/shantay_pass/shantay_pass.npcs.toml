@@ -26,6 +26,7 @@ style = "stab"
 max_hit_melee = 40
 hunt_mode = "cowardly"
 respawn_delay = 350
+combat_anims = "ugthanki"
 examine = "A vicious attacking camel."
 
 [shantay_guard]

@@ -337,6 +337,7 @@ max_hit_melee = 20
 slayer_xp = 10.0
 categories = ["birds"]
 respawn_delay = 5
+combat_anims = "bird"
 examine = "It's a brightly coloured bird of the jungle."
 
 [bird_green]
@@ -351,6 +352,7 @@ max_hit_melee = 10
 slayer_xp = 5.0
 respawn_delay = 5
 categories = ["birds"]
+combat_anims = "bird"
 examine = "It's a brightly coloured bird of the jungle. It flies very quickly."
 
 [daero]

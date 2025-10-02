@@ -1,0 +1,14 @@
+[shaikahan_attack]
+id = 1199
+
+[shaikahan_defend]
+id = 1200
+
+[harpie_bug_swarm_defend]
+id = 1583
+
+[harpie_bug_swarm_attack]
+id = 1584
+
+[harpie_bug_swarm_death]
+id = 1585

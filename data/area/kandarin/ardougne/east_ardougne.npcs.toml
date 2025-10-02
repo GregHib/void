@@ -18,6 +18,7 @@ max_hit_melee = 70
 attack_bonus = 22
 hunt_mode = "cowardly"
 respawn_delay = 30
+combat_anims = "jogre"
 examine = "An aggressive humanoid."
 
 [cyclops_ardougne]

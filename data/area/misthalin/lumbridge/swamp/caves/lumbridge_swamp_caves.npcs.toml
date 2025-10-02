@@ -32,6 +32,8 @@ hunt_mode = "cowardly"
 slayer_xp = 105.0
 categories = ["wall_beasts"]
 immune_poison = true
+combat_anims = "cave_goblin"
+combat_sounds = "cave_goblin"
 examine = "What could be hiding in that crack in the wall?"
 
 [wall_beast]
@@ -46,6 +48,8 @@ hunt_mode = "cowardly"
 slayer_xp = 105.0
 categories = ["wall_beasts"]
 immune_poison = true
+combat_anims = "wall_beast"
+combat_sounds = "wall_beast"
 examine = "A big, scary hand!"
 
 [fishing_spot_lumbridge_swamp_caves]

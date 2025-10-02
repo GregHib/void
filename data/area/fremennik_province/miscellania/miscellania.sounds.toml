@@ -1,0 +1,8 @@
+[rabbit_attack]
+id = 700
+
+[rabbit_death]
+id = 701
+
+[rabbit_defend]
+id = 702

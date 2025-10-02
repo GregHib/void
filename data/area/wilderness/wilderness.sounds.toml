@@ -1,0 +1,29 @@
+[chaos_elemental_confusion_cast]
+id = 344
+
+[chaos_elemental_attack]
+id = 345
+
+[chaos_elemental_confusion_impact]
+id = 346
+
+[chaos_elemental_death]
+id = 347
+
+[chaos_elemental_discord_cast]
+id = 348
+
+[chaos_elemental_discord_cast2]
+id = 349
+
+[chaos_elemental_discord_impact]
+id = 350
+
+[chaos_elemental_defend]
+id = 351
+
+[chaos_elemental_madness_cast]
+id = 352
+
+[chaos_elemental_madness_impact]
+id = 353

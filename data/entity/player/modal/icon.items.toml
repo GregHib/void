@@ -446,15 +446,6 @@ examine = "One of the many citizens of Dorgesh-Kaan."
 
 [brine_rat]
 id = 11047
-hitpoints = 500
-att = 70
-str = 79
-def = 40
-style = "stab"
-max_hit_melee = 90
-slayer_xp = 50.0
-categories = ["brine_rats", "rats"]
-respawn_delay = 30
 examine = "Eww, a bald rat!"
 
 [grubfoot]

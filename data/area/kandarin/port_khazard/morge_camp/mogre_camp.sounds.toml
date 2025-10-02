@@ -1,0 +1,17 @@
+[underwater_rock_crab_attack]
+id = 721
+
+[underwater_rock_crab_death]
+id = 724
+
+[underwater_rock_crab_defend]
+id = 725
+
+[mudskipper_attack]
+id = 241
+
+[mudskipper_death]
+id = 242
+
+[mudskipper_defend]
+id = 243

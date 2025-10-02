@@ -26,5 +26,9 @@ slayer_xp = 55.0
 categories = ["cave_horrors"]
 respawn_delay = 50
 drop_table = "cave_horror"
+attack_anims = "cave_horror_swing"
+defend_anims = "cave_horror_defend"
+death_anims = "cave_horror_howl"
+combat_sounds = "jungle_horror"
 examine = "A horrible, emaciated ape like creature with beady red eyes."
 

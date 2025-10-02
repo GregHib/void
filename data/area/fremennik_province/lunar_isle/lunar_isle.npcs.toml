@@ -84,6 +84,7 @@ xp_bonus = 2.5
 hunt_mode = "cowardly"
 slayer_xp = 107.6
 categories = ["suqahs"]
+combat_anims = "suqah"
 examine = "A strange creature unique to Lunar Isle."
 
 [suqah_2]

@@ -13,6 +13,8 @@ style = "slash"
 max_hit_melee = 90
 hunt_mode = "cowardly"
 respawn_delay = 50
+attack_anim = "shaikahan_attack"
+defend_anim = "shaikahan_defend"
 examine = "A huge beast, resembling in some ways a lion, but mostly a twisted nightmare."
 
 [gull_karamja]
@@ -48,6 +50,8 @@ hunt_mode = "cowardly"
 slayer_xp = 25.0
 categories = ["harpie_bug_swarms"]
 respawn_delay = 25
+combat_anims = "harpie_bug_swarm"
+combat_sounds = "harpie_bug_swarm"
 examine = "A swarm of bugs."
 
 [frog_karamja]

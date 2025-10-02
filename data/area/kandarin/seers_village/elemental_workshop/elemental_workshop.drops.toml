@@ -15,7 +15,7 @@ drops = [
     { table = "gem_drop_table", chance = 2 },
 ]
 
-[earth_elemental_secondary]
+[earth_elemental_drop_table]
 roll = 128
 drops = [
     { id = "earth_rune", amount = 15, chance = 13 },

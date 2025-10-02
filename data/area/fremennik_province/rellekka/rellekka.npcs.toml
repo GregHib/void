@@ -203,6 +203,7 @@ max_hit_melee = 40
 attack_bonus = 30
 respawn_delay = 10
 drop_table = "bones"
+combat_anims = "fox"
 examine = "A cunning animal."
 
 [bunny_rellekka]
@@ -213,6 +214,7 @@ max_hit_melee = 0
 attack_bonus = -47
 respawn_delay = 25
 drop_table = "bunny"
+combat_anims = "bunny"
 examine = "Hoppity, hoppity."
 
 [bunny_rellekka_2]

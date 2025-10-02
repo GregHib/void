@@ -1,0 +1,8 @@
+[ugthanki_attack]
+id = 49
+
+[ugthanki_defend]
+id = 50
+
+[ugthanki_death]
+id = 52

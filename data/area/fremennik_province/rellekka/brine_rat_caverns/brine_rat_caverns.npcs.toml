@@ -75,6 +75,7 @@ slayer_xp = 50.0
 categories = ["brine_rats", "rats"]
 respawn_delay = 30
 drop_table = "brine_rat"
+combat_anims = "brine_rat"
 examine = "Eww, a bald rat!"
 
 [boulder_brine_rat_caverns]

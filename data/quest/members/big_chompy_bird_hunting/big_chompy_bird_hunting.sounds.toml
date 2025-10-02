@@ -1,0 +1,14 @@
+[chompy_bird_screech]
+id = 1448
+
+[chompy_bird_attack]
+id = 1449
+
+[chompy_bird_death]
+id = 1450
+
+[chompy_bird_defend]
+id = 1451
+
+[chompy_bird_squak]
+id = 1453

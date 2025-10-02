@@ -1,4 +1,4 @@
-[killerwatt_killerwatt_plane]
+[killerwatt]
 id = 3202
 hitpoints = 510
 att = 50
@@ -15,6 +15,8 @@ attack_bonus = 30
 slayer_xp = 51.0
 categories = ["killerwatts"]
 respawn_delay = 30
+combat_anims = "killerwatt"
+combat_sounds = "killerwatt"
 examine = "A ball of electrical energy."
 
 [storm_cloud_killerwatt_plane]

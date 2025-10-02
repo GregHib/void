@@ -16,6 +16,8 @@ style = "crush"
 max_hit_melee = 40
 hunt_mode = "cowardly"
 respawn_delay = 5
+combat_anims = "mudskipper"
+combat_sounds = "mudskipper"
 examine = "Not the most beautiful fish in the sea."
 
 [crab_underwater]
@@ -27,4 +29,6 @@ def = 22
 style = "crush"
 max_hit_melee = 30
 respawn_delay = 5
+combat_anims = "underwater_crab"
+combat_sounds = "underwater_rock_crab"
 examine = "Nice claw!"

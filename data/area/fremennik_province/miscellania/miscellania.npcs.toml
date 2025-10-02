@@ -263,6 +263,14 @@ examine = "He rules the, er, roost."
 
 [rabbit_miscellania]
 id = 1404
+hitpoints = 50
+style = "crush"
+max_hit_melee = 10
+attack_bonus = -47
+respawn_delay = 25
+combat_anims = "rabbit"
+combat_sounds = "rabbit"
+examine = "A cute bunny rabbit."
 
 [rhazien_miscellania]
 id = 2337
