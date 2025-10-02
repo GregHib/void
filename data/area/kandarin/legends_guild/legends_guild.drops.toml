@@ -1,0 +1,19 @@
+[shadow_warrior_drop_table]
+roll = 128
+drops = [
+    { id = "adamant_spear" },
+    { id = "black_dagger_p" },
+    { id = "black_knife" },
+    { id = "black_longsword" },
+    { id = "black_wizard_robe_top" },
+    { id = "cosmic_rune", amount = 3, chance = 9 },
+    { id = "blood_rune", amount = 2, chance = 6 },
+    { id = "air_rune", amount = 45, chance = 4 },
+    { id = "death_rune", amount = 2, chance = 4 },
+    { table = "herb_drop_table", chance = 18 },
+    { id = "coins", amount = 8, chance = 47 },
+    { id = "nothing", amount = 0, chance = 22 },
+    { id = "mithril_bar", chance = 4 },
+    { id = "weapon_poison" },
+    { table = "gem_drop_table", chance = 8 },
+]

@@ -46,6 +46,7 @@ max_hit_melee = 40
 slayer_xp = 27.0
 categories = ["rockslugs"]
 respawn_delay = 15
+drop_table = "rockslug"
 examine = "The slime of evil."
 
 [rockslug_small]

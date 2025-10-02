@@ -67,6 +67,7 @@ style = "stab"
 max_hit_melee = 30
 attack_bonus = 4
 respawn_delay = 50
+drop_table = "bones"
 examine = "The mayor's guard."
 
 [radat]
@@ -79,6 +80,7 @@ style = "stab"
 max_hit_melee = 30
 attack_bonus = 4
 respawn_delay = 50
+drop_table = "bones"
 examine = "The mayor's guard."
 
 [shiratti_the_custodian]

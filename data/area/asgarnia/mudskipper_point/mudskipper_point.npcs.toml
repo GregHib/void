@@ -34,6 +34,7 @@ hunt_mode = "cowardly"
 slayer_xp = 48.0
 categories = ["mogres"]
 categories = ["ogres"]
+drop_table = "mogre"
 examine = "An angry Ogre in a funny hat."
 
 

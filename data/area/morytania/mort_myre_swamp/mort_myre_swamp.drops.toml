@@ -50,3 +50,18 @@ drops = [
     { id = "tin_ore" },
     { table = "gem_drop_table" },
 ]
+
+[myre_blamish_snail_drop_table]
+type = "all"
+drops = [
+    { id = "thin_snail" },
+    { id = "blamish_myre_shell_round" },
+]
+
+[ochre_blamish_snail_drop_table]
+type = "all"
+drops = [
+    { id = "blamish_ochre_shell_round" },
+    { id = "blamish_ochre_shell_pointed" },
+    { id = "thin_snail" },
+]

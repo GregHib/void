@@ -13,3 +13,10 @@ drops = [
     { id = "ashes" },
     { id = "amulet_of_doomion" },
 ]
+
+[othainian_drop_table]
+type = "all"
+drops = [
+    { id = "ashes" },
+    { id = "amulet_of_othanian" },
+]

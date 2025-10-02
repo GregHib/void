@@ -6,7 +6,7 @@ spawns = [
   { id = "kalphite_soldier", x = 3554, y = 9509 },
   { id = "kalphite_soldier", x = 3557, y = 9494 },
   { id = "kalphite_soldier", x = 3557, y = 9499 },
-  { id = "kalphite_queen_kalphite_hive", x = 3474, y = 9496 },
+  { id = "kalphite_queen", x = 3474, y = 9496 },
   { id = "kalphite_larva", x = 3472, y = 9490 },
   { id = "kalphite_larva", x = 3475, y = 9504 },
   { id = "kalphite_larva", x = 3484, y = 9510 },

@@ -9,6 +9,7 @@ style = "slash"
 max_hit_melee = 60
 attack_bonus = 14
 respawn_delay = 50
+drop_table = "guardian_of_armadyl"
 examine = "A guard who has devoted their life to Armadyl."
 
 [guardian_of_armadyl_temple_of_ikov_2]

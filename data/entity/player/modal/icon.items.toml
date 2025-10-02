@@ -102,16 +102,6 @@ examine = "I should get it stuffed!"
 
 [cave_crawler]
 id = 4134
-hitpoints = 220
-att = 22
-str = 18
-def = 18
-style = "stab"
-max_hit_melee = 30
-hunt_mode = "cowardly"
-slayer_xp = 22.0
-categories = ["cave_crawlers"]
-respawn_delay = 15
 examine = "A spiky crawling critter."
 
 [banshee]
@@ -144,16 +134,6 @@ examine = "The tongue of evil."
 
 [jelly]
 id = 4142
-hitpoints = 750
-att = 45
-str = 45
-def = 120
-mage = 45
-style = "magical_melee"
-max_hit_melee = 50
-slayer_xp = 75.0
-categories = ["jellies"]
-respawn_delay = 15
 examine = "A slayer monster."
 
 [turoth]

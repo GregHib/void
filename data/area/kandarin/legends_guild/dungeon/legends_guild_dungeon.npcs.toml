@@ -13,5 +13,6 @@ hunt_mode = "cowardly"
 slayer_xp = 67.0
 categories = ["shadow_warriors"]
 respawn_delay = 30
+drop_table = "shadow_warrior"
 examine = "A fighter from the supernatural world. He's a shadow of his former self."
 

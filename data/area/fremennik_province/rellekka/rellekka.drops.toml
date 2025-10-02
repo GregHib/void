@@ -69,3 +69,39 @@ roll = 4
 drops = [
     { id = "rabbit_bone", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
 ]
+
+[market_guard_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "market_guard_secondary" },
+    { table = "medium_clue_scroll", roll = 256 },
+]
+
+[market_guard_secondary]
+roll = 128
+drops = [
+    { id = "bronze_warhammer", chance = 3 },
+    { id = "iron_warhammer", chance = 6 },
+    { id = "steel_warhammer" },
+    { id = "black_warhammer" },
+    { id = "fremennik_helm" },
+    { id = "fremennik_blade" },
+    { id = "fremennik_shield" },
+    { table = "herb_drop_table", chance = 2 },
+    { id = "coins", amount = 15, chance = 42 },
+    { id = "coins", amount = 17, chance = 5 },
+    { id = "coins", amount = 22, chance = 9 },
+    { id = "coins", amount = 27, chance = 3 },
+    { id = "bucket_of_water" },
+    { id = "bear_fur" },
+    { id = "keg_of_beer", chance = 4 },
+    { id = "copper_ore", amount = 5, chance = 2 },
+    { id = "tin_ore", amount = 5 },
+    { id = "iron_ore", amount = 2, chance = 3 },
+    { id = "raw_sardine" },
+    { id = "beer" },
+    { id = "cake", chance = 4 },
+    { id = "ring_mould" },
+    { table = "gem_drop_table" },
+]

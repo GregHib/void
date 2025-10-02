@@ -10,6 +10,7 @@ hunt_mode = "cowardly"
 slayer_xp = 97.0
 categories = ["kurask"]
 respawn_delay = 15
+drop_table = "kurask"
 examine = "Large, heavy, with sharp things attached to its head."
 
 [kurask_fremennik_dungeon_2]

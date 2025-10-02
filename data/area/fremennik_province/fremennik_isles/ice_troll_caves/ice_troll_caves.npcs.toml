@@ -27,6 +27,7 @@ xp_bonus = 0.5
 hunt_mode = "cowardly"
 slayer_xp = 84.0
 categories = ["trolls"]
+drop_table = "ice_troll_male"
 examine = "A male troll wielding a large club."
 
 [ice_troll_female_ice_troll_caves]
@@ -44,6 +45,7 @@ attack_bonus = 60
 xp_bonus = 0.5
 slayer_xp = 84.0
 categories = ["trolls"]
+drop_table = "ice_troll_female"
 examine = "An ice troll with a bag of rocks."
 
 [ice_troll_grunt_ice_troll_caves]
@@ -60,6 +62,7 @@ hunt_mode = "cowardly"
 slayer_xp = 84.0
 categories = ["trolls"]
 respawn_delay = 50
+drop_table = "ice_troll_grunt"
 examine = "A large ice troll."
 
 [bork_sigmundson_ice_troll_caves]

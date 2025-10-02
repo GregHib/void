@@ -12,6 +12,7 @@ attack_speed = 7
 style = "crush"
 max_hit_melee = 20
 respawn_delay = 25
+drop_table = "ham_guard"
 examine = "A guard for the humans against monster group."
 
 [ham_guard_ham_cave_2]

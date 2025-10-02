@@ -378,4 +378,5 @@ max_hit_melee = 50
 hunt_mode = "cowardly"
 slayer_xp = 52.0
 categories = ["molanisks"]
+drop_table = "molanisk"
 examine = "A strange mole-like being."

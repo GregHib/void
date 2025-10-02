@@ -155,6 +155,7 @@ str = 10
 def = 10
 style = "crush"
 max_hit_melee = 20
+drop_table = "canifis_werewolf"
 examine = "She's looking for flowers."
 
 [achtryn]

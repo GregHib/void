@@ -123,6 +123,7 @@ att = 5
 str = 5
 def = 6
 slayer_xp = 8.0
+drop_table = "jubbly_bird"
 examine = "A large boisterous bird, a delicacy for ogres."
 
 [karamel_normal]

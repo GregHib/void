@@ -83,6 +83,7 @@ xp_bonus = 0.5
 hunt_mode = "cowardly"
 slayer_xp = 84.0
 categories = ["trolls"]
+drop_table = "ice_troll_male"
 examine = "A male troll wielding a large club."
 
 [ice_troll_female_neitiznot]
@@ -100,6 +101,7 @@ attack_bonus = 60
 xp_bonus = 0.5
 slayer_xp = 84.0
 categories = ["trolls"]
+drop_table = "ice_troll_female"
 examine = "An ice troll with a bag of rocks."
 
 [yak]

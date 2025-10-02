@@ -114,6 +114,7 @@ style = "stab"
 max_hit_melee = 60
 hunt_mode = "cowardly"
 respawn_delay = 30
+drop_table = "possessed_pickaxe"
 examine = "How does it move of its own accord?"
 
 [animated_spade]
@@ -221,7 +222,17 @@ examine = "He's one big leg short!"
 
 [jelly]
 id = 1637
+hitpoints = 750
+att = 45
+str = 45
+def = 120
+mage = 45
+style = "magical_melee"
+max_hit_melee = 50
+slayer_xp = 75.0
 categories = ["jellies"]
+respawn_delay = 15
+drop_table = "jelly"
 examine = "Looks scared to see me."
 
 [jelly_2]
@@ -255,6 +266,7 @@ style = "crush"
 max_hit_melee = 240
 hunt_mode = "cowardly"
 categories = ["zombies"]
+drop_table = "mummy"
 examine = "A tightly-wrapped monster."
 
 [mummy_2]

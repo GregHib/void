@@ -10,3 +10,18 @@ drops = [
     { id = "snail_shell", chance = 50 },
     { id = "perfect_snail_shell" },
 ]
+
+[nail_beast_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { id = "nail_beast_nails" },
+    { table = "nail_beast_tertiary" },
+]
+
+[nail_beast_tertiary]
+roll = 5012
+drops = [
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]

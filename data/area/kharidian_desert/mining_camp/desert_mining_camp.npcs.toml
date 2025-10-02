@@ -109,6 +109,7 @@ style = "crush"
 max_hit_melee = 50
 attack_bonus = 9
 respawn_delay = 50
+drop_table = "mercenary_captain"
 examine = "He looks a bit aggressive."
 
 [captain_siad_desert_mining_camp]

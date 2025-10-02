@@ -12,3 +12,18 @@ drops = [
     { id = "plain_satchel", chance = 3 },
     { id = "tea_flask", chance = 2 },
 ]
+
+[jubster_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "raw_jubbly", min = 3, max = 7 },
+    { table = "jubster_secondary" },
+]
+
+[jubster_secondary]
+roll = 20
+drops = [
+    { id = "gold_satchel", chance = 3 },
+    { id = "tea_flask", chance = 2 },
+]

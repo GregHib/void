@@ -21,6 +21,7 @@ style = "melee"
 max_hit_melee = 30
 hunt_mode = "cowardly"
 respawn_delay = 250
+drop_table = "necromancer"
 examine = "A crazy evil necromancer."
 
 [summoned_zombie]

@@ -1,0 +1,42 @@
+[rock_troll_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "rock_troll_secondary" },
+    { table = "rock_troll_tertiary" },
+]
+
+[rock_troll_secondary]
+roll = 128
+drops = [
+    { id = "steel_platebody", chance = 4 },
+    { id = "black_warhammer", chance = 3 },
+    { id = "steel_warhammer", chance = 3 },
+    { id = "adamant_hatchet", chance = 2 },
+    { id = "adamant_sq_shield" },
+    { id = "granite_shield" },
+    { id = "mithril_platebody" },
+    { id = "rune_warhammer" },
+    { id = "earth_rune", amount = 80, chance = 8 },
+    { id = "nature_rune", amount = 16, chance = 5 },
+    { id = "law_rune", amount = 4, chance = 3 },
+    { id = "earth_rune", amount = 65 },
+    { id = "earth_rune", amount = 25 },
+    { table = "herb_drop_table", chance = 15 },
+    { id = "coins", amount = 40, chance = 29 },
+    { id = "coins", amount = 135, chance = 25 },
+    { id = "coins", amount = 190, chance = 10 },
+    { id = "coins", amount = 20, chance = 4 },
+    { id = "coins", amount = 420 },
+    { id = "coal_noted", amount = 6, chance = 3 },
+    { id = "raw_tuna_noted", amount = 4, chance = 2 },
+    { table = "gem_drop_table", chance = 5 },
+]
+
+[rock_troll_tertiary]
+roll = 5012
+drops = [
+    { id = "troll_bone", chance = 1253, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]

@@ -41,6 +41,7 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 combat_anims = "locust"
 combat_sounds = "locust"
+drop_table = "locust"
 examine = "An obnoxious, overgrown insect."
 
 [plague_frog]

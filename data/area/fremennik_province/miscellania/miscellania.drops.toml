@@ -7,3 +7,49 @@ drops = [
     { id = "tomato", chance = 2 },
     { id = "garlic" },
 ]
+
+[rabbit_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "raw_rabbit" },
+    { table = "rabbit_tertiary" },
+]
+
+[rabbit_tertiary]
+roll = 4
+drops = [
+    { id = "rabbit_bone" },
+]
+
+[sea_snake_hatchling_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "sea_snake_hatchling_secondary" },
+    { table = "medium_clue_scroll", roll = 128 },
+]
+
+[sea_snake_hatchling_secondary]
+roll = 128
+drops = [
+    { id = "water_rune", amount = 15, chance = 2 },
+    { id = "mist_rune", chance = 2 },
+    { id = "broad_arrows", amount = 4, chance = 2 },
+    { id = "coins", amount = 44, chance = 60 },
+    { id = "coins", amount = 32, chance = 11 },
+    { id = "coins", amount = 24, chance = 9 },
+    { id = "coins", amount = 23, chance = 7 },
+    { id = "adamant_dart_tip", amount = 2, chance = 10 },
+    { id = "fishing_bait", amount = 50, chance = 4 },
+    { id = "pearl_bolt_tips", amount = 3, chance = 4 },
+    { id = "water_orb", chance = 3 },
+    { id = "raw_bass", amount = 2, chance = 4 },
+    { id = "raw_lobster", chance = 2 },
+    { id = "seaweed", amount = 5, chance = 2 },
+    { id = "edible_seaweed", amount = 5, chance = 2 },
+    { id = "oyster_pearl", amount = 2 },
+    { id = "oyster_pearls" },
+    { id = "casket" },
+    { table = "gem_drop_table" },
+]

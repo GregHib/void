@@ -24,6 +24,7 @@ def = 50
 style = "crush"
 max_hit_melee = 60
 hunt_mode = "cowardly"
+drop_table = "sea_troll"
 examine = "An aquatic troll."
 
 [sea_troll_level_79]
@@ -35,6 +36,7 @@ def = 60
 style = "crush"
 max_hit_melee = 70
 hunt_mode = "cowardly"
+drop_table = "sea_troll"
 examine = "An aquatic troll."
 
 [sea_troll_level_87]
@@ -46,6 +48,7 @@ def = 75
 style = "crush"
 max_hit_melee = 80
 hunt_mode = "cowardly"
+drop_table = "sea_troll"
 examine = "An aquatic troll."
 
 [sea_troll_level_101]
@@ -57,4 +60,5 @@ def = 90
 style = "crush"
 max_hit_melee = 100
 hunt_mode = "cowardly"
+drop_table = "sea_troll"
 examine = "An aquatic troll."

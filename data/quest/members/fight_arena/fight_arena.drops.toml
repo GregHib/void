@@ -1,0 +1,12 @@
+[khazard_ogre_drop_table]
+type = "all"
+drops = [
+    { table = "khazard_ogre_tertiary" },
+]
+
+[khazard_ogre_tertiary]
+roll = 5012
+drops = [
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]

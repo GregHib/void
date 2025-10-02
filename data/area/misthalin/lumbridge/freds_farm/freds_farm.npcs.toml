@@ -9,12 +9,15 @@ id = 11629
 
 [ram_freds_farm]
 id = 12369
+drop_table = "ram"
 
 [ram_freds_farm_2]
 id = 12370
+drop_table = "ram"
 
 [ram_freds_farm_3]
 id = 12371
+drop_table = "ram"
 
 [beefy_bill]
 id = 246

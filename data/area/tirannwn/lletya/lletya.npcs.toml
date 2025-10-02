@@ -101,6 +101,7 @@ style = "crush"
 max_hit_melee = 10
 attack_bonus = -15
 respawn_delay = 45
+drop_table = "ram"
 examine = "White and fluffy."
 
 [gwir]

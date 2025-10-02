@@ -18,6 +18,7 @@ slayer_xp = 7.0
 categories = ["birds"]
 immune_poison = true
 respawn_delay = 25
+drop_table = "rooster"
 examine = "He rules the, er, roost."
 
 [lalli_rellekka]
@@ -153,6 +154,7 @@ def = 40
 style = "crush"
 max_hit_melee = 60
 respawn_delay = 30
+drop_table = "rellekka_citizen"
 examine = "One of Rellekka's many citizens."
 
 [jennella_rellekka]
@@ -164,6 +166,7 @@ def = 40
 style = "crush"
 max_hit_melee = 60
 respawn_delay = 30
+drop_table = "rellekka_citizen"
 examine = "One of Rellekka's many citizens."
 
 [sassilik_rellekka]
@@ -188,6 +191,7 @@ max_hit_melee = 80
 attack_bonus = 40
 xp_bonus = 2.5
 respawn_delay = 30
+drop_table = "market_guard"
 examine = "Keeps the stalls secure."
 
 [peter_rellekka]
@@ -357,6 +361,7 @@ def = 40
 style = "crush"
 max_hit_melee = 60
 respawn_delay = 30
+drop_table = "rellekka_citizen"
 examine = "One of Rellekka's many citizens."
 
 [inga]

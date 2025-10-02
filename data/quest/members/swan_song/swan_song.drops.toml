@@ -1,0 +1,13 @@
+[sea_troll_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "sea_troll_tertiary" },
+]
+
+[sea_troll_tertiary]
+roll = 5012
+drops = [
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]

@@ -127,3 +127,67 @@ drops = [
     { id = "fire_rune", min = 5, max = 10, chance = 19 },
     { id = "fire_talisman" },
 ]
+
+[guard_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "guard_burthorpe_secondary" },
+    { table = "medium_clue_scroll", roll = 128 },
+]
+
+[guard_burthorpe_secondary]
+roll = 128
+drops = [
+    { id = "steel_warhammer", chance = 8 },
+    { id = "mithril_warhammer", chance = 6 },
+    { id = "mithril_platebody", chance = 4 },
+    { id = "mithril_full_helm" },
+    { id = "blood_rune", amount = 3 },
+    { id = "chaos_rune", amount = 3 },
+    { id = "nature_rune", amount = 4 },
+    { id = "fire_rune", amount = 22, chance = 2 },
+    { id = "earth_rune", amount = 23, chance = 2 },
+    { id = "air_rune", amount = 25, chance = 2 },
+    { id = "bronze_arrow", amount = 12, chance = 3 },
+    { id = "steel_arrow", amount = 12, chance = 2 },
+    { id = "coins", amount = 2 },
+    { id = "coins", amount = 4, chance = 37 },
+    { id = "coins", amount = 12, chance = 16 },
+    { id = "coins", amount = 18, chance = 9 },
+    { id = "coins", amount = 32, chance = 4 },
+    { id = "coins", amount = 45, chance = 4 },
+    { id = "coins", amount = 50, chance = 2 },
+    { id = "nothing", amount = 0, chance = 18 },
+    { id = "earth_talisman", chance = 3 },
+    { id = "mithril_ore" },
+]
+
+[highwayman_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "cape_black" },
+    { table = "highwayman_primary" },
+]
+
+[highwayman_primary]
+roll = 20
+drops = [
+    { id = "iron_bolts", min = 2, max = 12 },
+]
+
+[rooster_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "raw_chicken" },
+    { table = "rooster_secondary" },
+]
+
+[rooster_secondary]
+roll = 128
+drops = [
+    { id = "feather", amount = 5, chance = 64 },
+    { id = "feather", amount = 15, chance = 32 },
+]

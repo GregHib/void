@@ -34,6 +34,7 @@ attack_bonus = 5
 slayer_xp = 60.0
 categories = ["ogres"]
 respawn_delay = 300
+drop_table = "city_guard"
 examine = "Tough-looking."
 
 [toban_gu_tanoth]
@@ -53,6 +54,7 @@ attack_bonus = 8
 slayer_xp = 80.0
 categories = ["ogres"]
 respawn_delay = 30
+drop_table = "gorad"
 examine = "Big, dumb and ugly."
 
 [ogre_guard_gu_tanoth]

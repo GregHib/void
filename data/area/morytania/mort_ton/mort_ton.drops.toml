@@ -12,3 +12,9 @@ drops = [
     { table = "easy_clue_scroll", chance = 39 },
     { id = "zombie_champions_scroll", lacks = "zombie_champions_scroll", members = true },
 ]
+
+[loar_shade_drop_table]
+type = "all"
+drops = [
+    { id = "loar_remains" },
+]

@@ -142,6 +142,7 @@ max_hit_melee = 70
 slayer_xp = 66.0
 categories = ["otherworldly_beings"]
 respawn_delay = 20
+drop_table = "otherworldly_being"
 examine = "Is he invisible or just a set of floating clothing?"
 
 [fairy_queen_3]

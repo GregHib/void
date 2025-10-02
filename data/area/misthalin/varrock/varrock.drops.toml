@@ -2,3 +2,10 @@
 drops = [
     { id = "cup_of_tea" },
 ]
+
+[jonny_the_beard_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "intel_report" },
+]

@@ -1,0 +1,35 @@
+[harpie_bug_swarm_drop_table]
+type = "all"
+drops = [
+    { table = "harpie_bug_swarm_secondary" },
+    { table = "medium_clue_scroll", roll = 128 },
+]
+
+[harpie_bug_swarm_secondary]
+roll = 128
+drops = [
+    { id = "steel_hatchet", chance = 4 },
+    { id = "steel_full_helm", chance = 4 },
+    { id = "staff_of_fire", chance = 3 },
+    { id = "mithril_chainbody", chance = 2 },
+    { id = "adamant_med_helm" },
+    { id = "steel_boots" },
+    { id = "fire_rune", amount = 30, chance = 20 },
+    { id = "fire_rune", amount = 60, chance = 8 },
+    { id = "chaos_rune", amount = 15, chance = 5 },
+    { id = "death_rune", amount = 3, chance = 3 },
+    { id = "coins", amount = 40, chance = 25 },
+    { id = "coins", amount = 160, chance = 20 },
+    { id = "coins", amount = 230, chance = 10 },
+    { id = "coins", amount = 30, chance = 7 },
+    { id = "coins", amount = 490, chance = 2 },
+    { id = "gold_ore", chance = 8 },
+    { id = "jug_of_wine", chance = 2 },
+    { table = "gem_drop_table", chance = 3 },
+]
+
+[jungle_spider_drop_table]
+type = "all"
+drops = [
+    { id = "spider_carcass" },
+]

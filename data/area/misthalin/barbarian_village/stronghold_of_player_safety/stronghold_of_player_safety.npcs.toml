@@ -49,6 +49,7 @@ def = 5
 style = "crush"
 max_hit_melee = 10
 hunt_mode = "cowardly"
+drop_table = "mugger"
 examine = "He jumps out and attacks people."
 
 [mugger_stronghold_of_player_safety_2]

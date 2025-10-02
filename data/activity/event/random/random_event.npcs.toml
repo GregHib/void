@@ -12,6 +12,7 @@ def = 3
 style = "stab"
 max_hit_melee = 10
 respawn_delay = 5
+drop_table = "pheasant"
 examine = "A brightly coloured game bird."
 
 [pheasant_1_tail_2]

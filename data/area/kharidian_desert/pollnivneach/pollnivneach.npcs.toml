@@ -44,6 +44,16 @@ id = 1899
 
 [menaphite_thug_pollnivneach]
 id = 1903
+hitpoints = 600
+att = 60
+str = 50
+def = 20
+style = "crush"
+max_hit_melee = 70
+attack_bonus = 4
+respawn_delay = 5
+drop_table = "bones"
+examine = "Menaphite thug."
 
 [aristarchus_pollnivneach]
 id = 3127
@@ -192,6 +202,7 @@ style = "crush"
 max_hit_melee = 70
 attack_bonus = 4
 respawn_delay = 5
+drop_table = "bones"
 examine = "Menaphite thug."
 
 [menaphite_thug_pollnivneach_after_quest]

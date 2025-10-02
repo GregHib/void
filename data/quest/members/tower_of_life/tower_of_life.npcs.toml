@@ -19,6 +19,7 @@ def = 81
 style = "crush"
 max_hit_melee = 90
 hunt_mode = "cowardly"
+drop_table = "jubster"
 examine = "A jubbly bird with claws."
 
 [newtroost]

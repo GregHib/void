@@ -1,0 +1,35 @@
+[killerwatt_drop_table]
+type = "all"
+drops = [
+    { id = "ashes" },
+    { table = "killerwatt_secondary" },
+]
+
+[killerwatt_secondary]
+roll = 512
+drops = [
+    { id = "staff_of_fire", chance = 6 },
+    { id = "staff_of_air", chance = 6 },
+    { id = "fire_battlestaff", chance = 3 },
+    { id = "air_battlestaff", chance = 3 },
+    { id = "mystic_fire_staff" },
+    { id = "air_rune", amount = 5, chance = 9 },
+    { id = "air_rune", amount = 17, chance = 6 },
+    { id = "fire_rune", amount = 18, chance = 15 },
+    { id = "fire_rune", amount = 45, chance = 24 },
+    { id = "nature_rune", amount = 8, chance = 33 },
+    { id = "nature_rune", amount = 37, chance = 3 },
+    { id = "chaos_rune", amount = 4, chance = 27 },
+    { id = "death_rune", amount = 2, chance = 9 },
+    { id = "steam_rune", amount = 2, chance = 6 },
+    { id = "cannonball", amount = 3, chance = 6 },
+    { table = "herb_drop_table", chance = 105 },
+    { id = "coins", amount = 11, chance = 69 },
+    { id = "coins", amount = 44, chance = 84 },
+    { id = "coins", amount = 76, chance = 3 },
+    { id = "coins", amount = 127, chance = 3 },
+    { id = "coins", amount = 200, chance = 33 },
+    { id = "fire_orb", amount = 2, chance = 3 },
+    { id = "soda_ash", amount = 4, chance = 3 },
+    { table = "gem_drop_table", chance = 15 },
+]

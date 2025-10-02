@@ -56,6 +56,7 @@ def = 3
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 25
+drop_table = "citizen"
 examine = "A citizen of Burthorpe."
 
 [ocga]
@@ -68,6 +69,7 @@ def = 3
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 25
+drop_table = "citizen"
 examine = "A citizen of Burthorpe."
 
 [breoca]
@@ -95,6 +97,7 @@ def = 3
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 25
+drop_table = "citizen"
 examine = "A citizen of Burthorpe."
 
 [dunstan]
@@ -129,12 +132,20 @@ examine = "Barman of the Toad and Chicken."
 [guard_burthorpe]
 id = 1076
 wander_radius = 5
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+style = "stab"
+max_hit_melee = 30
+attack_bonus = 4
+respawn_delay = 50
+drop_table = "guard"
 examine = "A Burthorpe Castle guard."
 
 [guard_burthorpe_grey]
 id = 1077
-wander_radius = 5
-examine = "A Burthorpe Castle guard."
+clone = "guard_burthorpe"
 
 [eadburg]
 id = 1072

@@ -9,6 +9,7 @@ style = "crush"
 max_hit_melee = 30
 attack_bonus = 8
 respawn_delay = 100
+drop_table = "bones"
 examine = "It's one of General Khazard's warriors."
 
 [khazard_trooper_battlefield_2]
@@ -91,6 +92,7 @@ examine = "It's a tree gnome."
 
 [khazard_commander_battlefield]
 id = 478
+drop_table = "khazard_commander"
 examine = "It's one of General Khazard's commanders."
 
 [tracker_gnome_1_battlefield]
@@ -117,6 +119,7 @@ ranged_strength = 2
 slayer_xp = 55.0
 categories = ["birds"]
 respawn_delay = 30
+drop_table = "bones"
 examine = "These gnomes know how to get around!"
 
 [mounted_terrorbird_gnome_battlefield_2]

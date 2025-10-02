@@ -14,6 +14,7 @@ hunt_mode = "cowardly"
 slayer_xp = 90.0
 categories = ["trolls"]
 respawn_delay = 50
+drop_table = "mountain_troll"
 examine = "Small for a troll but mean and ugly."
 
 [mountain_troll_troll_stronghold_tunnels_2]

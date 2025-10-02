@@ -60,6 +60,7 @@ style = "range"
 max_hit_range = 20
 xp_bonus = -97.5
 hunt_mode = "cowardly"
+drop_table = "rock_golem"
 examine = "Rock with attitude."
 
 [tree_spirit_level_14]

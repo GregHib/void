@@ -1,3 +1,11 @@
+[giant_sea_snake_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "giant_sea_snake_secondary" },
+    { table = "giant_sea_snake_tertiary" },
+]
+
 [giant_sea_snake_secondary]
 roll = 128
 drops = [

@@ -9,3 +9,9 @@ type = "all"
 drops = [
     { id = "fiyr_remains" },
 ]
+
+[riyl_shade_drop_table]
+type = "all"
+drops = [
+    { id = "riyl_remains" },
+]

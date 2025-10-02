@@ -138,6 +138,7 @@ style = "slash"
 max_hit_melee = 30
 attack_bonus = 20
 respawn_delay = 50
+drop_table = "bones"
 examine = "A morally ambiguous guard."
 
 [thief_brimhaven]

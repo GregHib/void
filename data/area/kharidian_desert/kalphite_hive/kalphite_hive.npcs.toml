@@ -1,4 +1,4 @@
-[kalphite_queen_kalphite_hive]
+[kalphite_queen]
 id = 1158
 hitpoints = 2550
 att = 300
@@ -13,6 +13,7 @@ slayer_xp = 535.5
 categories = ["kalphite", "bosses"]
 aka = ["kq"]
 respawn_delay = 50
+drop_table = "kalphite_queen"
 examine = "I don't think insect repellent will work..."
 
 [kalphite_queen_airborne]
@@ -29,6 +30,7 @@ hunt_mode = "cowardly"
 slayer_xp = 535.5
 categories = ["kalphite", "bosses"]
 aka = ["kq"]
+drop_table = "kalphite_queen"
 examine = "I don't think insect repellent will work..."
 
 [weird_old_man]

@@ -105,3 +105,36 @@ drops = [
     { id = "shark", amount = 3, chance = 6 },
     { table = "gem_drop_table", chance = 8 },
 ]
+
+[penance_fighter_drop_table]
+type = "all"
+drops = [
+    { id = "blue_egg", amount = 2 },
+    { id = "green_egg", amount = 2 },
+    { id = "red_egg", amount = 2 },
+]
+
+[penance_healer_drop_table]
+type = "all"
+drops = [
+    { id = "blue_egg", amount = 2 },
+    { id = "green_egg", amount = 2 },
+    { id = "red_egg", amount = 2 },
+]
+
+[penance_ranger_drop_table]
+type = "all"
+drops = [
+    { id = "blue_egg", amount = 2 },
+    { id = "green_egg", amount = 2 },
+    { id = "red_egg", amount = 2 },
+]
+
+[penance_runner_drop_table]
+type = "all"
+drops = [
+    { id = "blue_egg", amount = 2 },
+    { id = "green_egg", amount = 2 },
+    { id = "red_egg", amount = 2 },
+]
+

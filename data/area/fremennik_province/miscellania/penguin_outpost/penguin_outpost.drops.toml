@@ -1,0 +1,13 @@
+[icelord_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "icelord_tertiary" },
+]
+
+[icelord_tertiary]
+roll = 5012
+drops = [
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]

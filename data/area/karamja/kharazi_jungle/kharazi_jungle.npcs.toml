@@ -147,6 +147,7 @@ hunt_mode = "cowardly"
 slayer_xp = 70.0
 categories = ["wolves"]
 respawn_delay = 90
+drop_table = "ice_wolf"
 examine = "A rare jungle wolf - specific to the Kharazi jungle."
 
 [tool_leprechaun_kharazi_jungle]
@@ -168,6 +169,7 @@ max_hit_melee = 50
 slayer_xp = 40.0
 categories = ["birds"]
 respawn_delay = 25
+drop_table = "oomlie_bird"
 examine = "A jungle version of the chicken, but more vicious."
 
 [baby_gecko_kharazi_jungle]

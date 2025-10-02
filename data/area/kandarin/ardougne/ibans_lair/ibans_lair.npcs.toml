@@ -70,6 +70,7 @@ max_hit_melee = 90
 xp_bonus = -7.5
 hunt_mode = "cowardly"
 respawn_delay = 30
+drop_table = "othainian"
 examine = "One of the guardians of Iban."
 
 [doomion_ibans_lair]

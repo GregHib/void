@@ -53,6 +53,7 @@ hunt_mode = "cowardly"
 slayer_xp = 92.5
 categories = ["scabarites"]
 respawn_delay = 7
+drop_table = "locust_rider"
 examine = "A mounted lancer."
 
 [locust_rider_sophanem_dungeon_2]
@@ -73,6 +74,7 @@ ranged_strength = 80
 hunt_mode = "cowardly"
 slayer_xp = 92.5
 categories = ["scabarites"]
+drop_table = "locust_rider"
 examine = "A mounted archer."
 
 [maisa_sophanem_dungeon]

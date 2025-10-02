@@ -13,5 +13,6 @@ def = 95
 style = "crush"
 max_hit_melee = 100
 respawn_delay = 50
+drop_table = "ice_queen"
 examine = "A cold hearted lady."
 

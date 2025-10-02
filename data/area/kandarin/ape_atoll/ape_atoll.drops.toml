@@ -46,3 +46,32 @@ type = "all"
 drops = [
     { id = "medium_ninja_monkey_bones" },
 ]
+
+[monkey_archer_drop_table]
+drops = [
+    { id = "small_ninja_monkey_bones" },
+]
+
+[monkey_zombie_drop_table]
+type = "all"
+drops = [
+    { table = "monkey_zombie_primary" },
+    { table = "monkey_zombie_tertiary" },
+]
+
+[monkey_zombie_primary]
+drops = [
+    { id = "small_zombie_monkey_bones" },
+    { id = "large_zombie_monkey_bones" },
+]
+
+[monkey_zombie_tertiary]
+drops = [
+    { id = "monkey_paw" },
+]
+
+[medium_ninja_monkey_drop_table]
+type = "all"
+drops = [
+    { id = "medium_ninja_monkey_bones" },
+]

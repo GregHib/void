@@ -34,4 +34,5 @@ style = "crush"
 max_hit_melee = 80
 attack_bonus = 22
 hunt_mode = "cowardly"
+drop_table = "khazard_ogre"
 examine = "Khazard's strongest ogre warrior."

@@ -172,6 +172,7 @@ def = 3
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 25
+drop_table = "bones"
 examine = "A subject of Miscellania."
 
 [thora]
@@ -210,6 +211,7 @@ def = 3
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 25
+drop_table = "bones"
 examine = "A subject of Miscellania."
 
 [fishmonger_miscellania]
@@ -270,6 +272,7 @@ attack_bonus = -47
 respawn_delay = 25
 combat_anims = "rabbit"
 combat_sounds = "rabbit"
+drop_table = "rabbit"
 examine = "A cute bunny rabbit."
 
 [rhazien_miscellania]
@@ -374,6 +377,7 @@ max_hit_melee = 80
 slayer_xp = 85.0
 categories = ["sea_snakes"]
 respawn_delay = 50
+drop_table = "sea_snake_hatchling"
 examine = "Snake, snake, oh, it's a young snake..."
 
 [sea_snake_hatchling]
@@ -387,6 +391,7 @@ max_hit_melee = 60
 slayer_xp = 50.0
 categories = ["sea_snakes"]
 respawn_delay = 50
+drop_table = "sea_snake_hatchling"
 examine = "A baby sea snake. Snaaaaaaake!"
 
 [guard_miscellania_2]

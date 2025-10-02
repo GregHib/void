@@ -16,6 +16,7 @@ hunt_mode = "cowardly"
 slayer_xp = 60.0
 categories = ["ice_warriors"]
 respawn_delay = 50
+drop_table = "icelord"
 examine = "Sturdy cold being."
 
 [icelord_penguin_outpost_2]

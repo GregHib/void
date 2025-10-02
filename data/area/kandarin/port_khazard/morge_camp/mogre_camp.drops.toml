@@ -1,0 +1,12 @@
+[mudskipper_drop_table]
+type = "all"
+drops = [
+    { id = "mudskipper_hide" },
+    { table = "mudskipper_secondary" },
+]
+
+[mudskipper_secondary]
+roll = 128
+drops = [
+    { id = "oyster", chance = 22 },
+]

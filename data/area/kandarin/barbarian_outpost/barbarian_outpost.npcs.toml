@@ -98,10 +98,12 @@ examine = "A barbarian private."
 
 [penance_fighter]
 id = 5040
+drop_table = "penance_fighter"
 examine = "What on Gielinor is that?"
 
 [penance_ranger]
 id = 5041
+drop_table = "penance_ranger"
 examine = "Shooty-shooty."
 
 [penance_runner]
@@ -110,6 +112,7 @@ examine = "He's making a run for it!"
 
 [penance_healer]
 id = 5043
+drop_table = "penance_healer"
 examine = "A nasty piece of work."
 
 [ferocious_barbarian_spirit]

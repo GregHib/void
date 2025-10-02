@@ -94,6 +94,7 @@ attack_speed = 8
 style = "slash"
 max_hit_melee = 20
 hunt_mode = "cowardly"
+drop_table = "nail_beast"
 examine = "A huge nail beast. Its nails appear very sharp."
 
 [nail_beast_level_98]
@@ -106,6 +107,7 @@ attack_speed = 8
 style = "slash"
 max_hit_melee = 30
 hunt_mode = "cowardly"
+drop_table = "nail_beast"
 examine = "A huge nail beast. Its nails appear very sharp."
 
 [nail_beast_level_141]
@@ -118,6 +120,7 @@ attack_speed = 8
 style = "slash"
 max_hit_melee = 40
 hunt_mode = "cowardly"
+drop_table = "nail_beast"
 examine = "A huge nail beast. Its nails appear very sharp."
 
 [swamp_snake_level_80]

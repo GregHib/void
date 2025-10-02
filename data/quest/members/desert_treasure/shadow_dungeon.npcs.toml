@@ -25,6 +25,7 @@ hunt_mode = "cowardly"
 slayer_xp = 62.0
 categories = ["dogs"]
 respawn_delay = 50
+drop_table = "bones"
 examine = "Looks hungry!"
 
 [giant_skeleton_shadow_dungeon_2]

@@ -160,6 +160,7 @@ attack_bonus = 50
 xp_bonus = 2.5
 hunt_mode = "cowardly"
 respawn_delay = 50
+drop_table = "medium_ninja_monkey"
 examine = "A scimitar wielding ninja monkey. He looks like he is guarding something."
 
 [uwogo]
@@ -201,6 +202,7 @@ max_hit_range = 200
 slayer_xp = 50.0
 categories = ["monkeys"]
 respawn_delay = 50
+drop_table = "monkey_archer"
 examine = "A bow wielding ninja monkey. It looks particularly dangerous."
 
 [monkey_archer_ape_atoll_2]
@@ -253,6 +255,7 @@ hunt_mode = "cowardly"
 slayer_xp = 60.0
 categories = ["monkeys", "zombies"]
 respawn_delay = 50
+drop_table = "monkey_zombie"
 examine = "A large and lumbering undead monkey."
 
 [monkey_zombie_large]
@@ -269,6 +272,7 @@ hunt_mode = "cowardly"
 slayer_xp = 90.0
 categories = ["monkeys", "zombies"]
 respawn_delay = 12
+drop_table = "monkey_zombie"
 examine = "A large and lumbering undead monkey stands here, blocking the way."
 
 [monkey_zombie_small]
@@ -404,6 +408,7 @@ style = "melee"
 max_hit_melee = 140
 attack_bonus = 50
 hunt_mode = "cowardly"
+drop_table = "medium_ninja_monkey"
 examine = "A large ninja monkey wielding two scimitars."
 
 [ouhai]
@@ -417,6 +422,7 @@ style = "melee"
 max_hit_melee = 140
 attack_bonus = 50
 hunt_mode = "cowardly"
+drop_table = "medium_ninja_monkey"
 examine = "A large ninja monkey wielding two scimitars."
 
 [uodai]

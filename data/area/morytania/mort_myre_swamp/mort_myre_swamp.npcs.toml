@@ -73,6 +73,7 @@ max_hit_melee = 20
 attack_bonus = 10
 hunt_mode = "cowardly"
 respawn_delay = 50
+drop_table = "myre_blamish_snail"
 examine = "A marsh coloured blamish snail, these types are said to spit acid."
 
 [blood_blamish_snail]

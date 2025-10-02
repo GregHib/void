@@ -150,6 +150,16 @@ examine = "Farmer/sheep liaison officer. Go on - give the dog a bone!"
 
 [rooster_falador]
 id = 2312
+drop_table = "rooster"
+hitpoints = 50
+style = "stab"
+max_hit_melee = 0
+attack_bonus = -47
+slayer_xp = 5.0
+categories = ["birds"]
+immune_poison = true
+respawn_delay = 25
+examine = "He rules the, er, roost."
 
 [chicken_falador]
 id = 2313
@@ -241,6 +251,7 @@ style = "stab"
 max_hit_melee = 30
 attack_bonus = 4
 respawn_delay = 50
+drop_table = "guard"
 pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here."
 
@@ -288,6 +299,7 @@ hitpoints = 70
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 25
+drop_table = "citizen"
 examine = "Looks unpleasant."
 
 [rusty]
@@ -296,6 +308,7 @@ hitpoints = 70
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 25
+drop_table = "citizen"
 examine = "Seems to be loitering."
 
 [jeff]
@@ -468,6 +481,7 @@ max_hit_melee = 10
 attack_bonus = 6
 hunt_mode = "cowardly"
 respawn_delay = 100
+drop_table = "highwayman"
 examine = "He holds up passers by."
 
 [assistant_falador]

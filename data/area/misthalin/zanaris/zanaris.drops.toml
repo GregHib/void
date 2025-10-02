@@ -1,0 +1,23 @@
+[otherworldly_being_drop_table]
+type = "all"
+drops = [
+    { table = "otherworldly_being_secondary" },
+]
+
+[otherworldly_being_secondary]
+roll = 128
+drops = [
+    { id = "nature_rune", amount = 5, chance = 9 },
+    { id = "chaos_rune", amount = 4, chance = 8 },
+    { id = "law_rune", amount = 2, chance = 7 },
+    { id = "cosmic_rune", amount = 2, chance = 5 },
+    { id = "death_rune", amount = 2, chance = 4 },
+    { id = "blood_rune", amount = 2 },
+    { table = "herb_drop_table", chance = 10 },
+    { id = "coins", amount = 15, chance = 59 },
+    { id = "nothing", amount = 0, chance = 18 },
+    { id = "ruby_ring", chance = 2 },
+    { id = "mithril_mace" },
+    { id = "mackerel" },
+    { table = "gem_drop_table", chance = 3 },
+]

@@ -708,6 +708,7 @@ hitpoints = 80
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 37
+drop_table = "jonny_the_beard"
 examine = "Looks kind of shifty..."
 
 [dr_harlow]

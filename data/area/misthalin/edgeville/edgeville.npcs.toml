@@ -81,6 +81,7 @@ style = "crush"
 max_hit_melee = 10
 attack_bonus = -15
 respawn_delay = 45
+drop_table = "ram"
 examine = "White and fluffy."
 
 [outlaw_edgeville]
@@ -93,6 +94,7 @@ style = "crush"
 max_hit_melee = 30
 xp_bonus = -97.5
 respawn_delay = 2
+drop_table = "outlaw"
 examine = "A mean looking outlaw. Don't get too close!"
 
 [outlaw_edgeville_2]

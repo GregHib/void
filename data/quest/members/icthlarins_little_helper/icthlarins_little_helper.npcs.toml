@@ -10,4 +10,5 @@ style = "crush"
 max_hit_melee = 60
 xp_bonus = 0.5
 hunt_mode = "cowardly"
+drop_table = "possessed_priest"
 examine = "He has a dangerous glint in his eye."

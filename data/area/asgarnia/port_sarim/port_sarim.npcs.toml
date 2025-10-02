@@ -6,6 +6,15 @@ examine = "He's asleep."
 [port_sarim_guard]
 id = 2699
 categories = ["human"]
+drop_table = "guard_port_sarim"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+style = "stab"
+max_hit_melee = 30
+attack_bonus = 4
+respawn_delay = 50
 pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "Keeping an eye out for suspicious activity."
 
@@ -146,6 +155,7 @@ def = 5
 style = "crush"
 max_hit_melee = 10
 hunt_mode = "cowardly"
+drop_table = "mugger"
 examine = "He jumps out and attacks people."
 
 [monk_of_entrana_port_sarim_grey]
@@ -260,6 +270,7 @@ slayer_xp = 5.0
 categories = ["birds"]
 respawn_delay = 25
 combat_anims = "seagull"
+drop_table = "seagull"
 examine = "A messy bird."
 
 [seagull_port_sarim_2]
@@ -271,6 +282,7 @@ attack_bonus = -47
 slayer_xp = 5.0
 categories = ["birds"]
 respawn_delay = 25
+drop_table = "seagull"
 examine = "Smells of rotten fish."
 
 [thaki_the_delivery_dwarf]

@@ -9,4 +9,5 @@ style = "crush"
 max_hit_melee = 140
 hunt_mode = "cowardly"
 immune_poison = true
+drop_table = "giant_sea_snake"
 examine = "A big snake that lives in the sea. How did it get in here?"

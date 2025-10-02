@@ -42,6 +42,7 @@ def = 110
 style = "crush"
 max_hit_melee = 120
 respawn_delay = 50
+drop_table = "mangled_bones"
 examine = "His face is expressionless."
 
 [skeleton_brute_ancient_cavern]

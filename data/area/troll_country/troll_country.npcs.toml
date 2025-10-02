@@ -19,6 +19,7 @@ hunt_mode = "cowardly"
 slayer_xp = 86.0
 categories = ["trolls"]
 respawn_delay = 50
+drop_table = "ice_troll"
 examine = "Brrrrr...he must be cold!"
 
 [ice_troll_troll_country_3]
@@ -35,6 +36,7 @@ hunt_mode = "cowardly"
 slayer_xp = 86.0
 categories = ["trolls"]
 respawn_delay = 50
+drop_table = "ice_troll"
 examine = "Brrrrr...he must be cold!"
 
 [ice_troll_troll_country_4]
@@ -51,6 +53,7 @@ hunt_mode = "cowardly"
 slayer_xp = 129.0
 categories = ["trolls"]
 respawn_delay = 50
+drop_table = "ice_troll"
 examine = "Brrrrr...he must be cold!"
 
 [ice_troll_troll_country_5]
@@ -67,6 +70,7 @@ hunt_mode = "cowardly"
 slayer_xp = 97.0
 categories = ["trolls"]
 respawn_delay = 50
+drop_table = "ice_troll"
 examine = "Brrrrr...he must be cold!"
 
 [ice_troll_troll_country_6]

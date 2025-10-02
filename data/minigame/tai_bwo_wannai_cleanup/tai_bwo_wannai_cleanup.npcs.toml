@@ -6,6 +6,7 @@ def = 45
 style = "crush"
 max_hit_melee = 10
 hunt_mode = "cowardly"
+drop_table = "mosquito"
 examine = "A flying bloodsucker."
 
 [mosquito_swarm_level_17]
@@ -17,6 +18,7 @@ attack_speed = 2
 style = "crush"
 max_hit_melee = 10
 hunt_mode = "cowardly"
+drop_table = "mosquito"
 examine = "A swarm of three highly agile mosquitoes."
 
 [mosquito_swarm_level_20]
@@ -28,6 +30,7 @@ attack_speed = 2
 style = "crush"
 max_hit_melee = 10
 hunt_mode = "cowardly"
+drop_table = "mosquito"
 examine = "A swarm of five highly agile mosquitoes."
 
 [broodoo_victim_green]

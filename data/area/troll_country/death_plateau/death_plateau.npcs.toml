@@ -26,26 +26,12 @@ hunt_mode = "cowardly"
 slayer_xp = 126.0
 categories = ["trolls"]
 respawn_delay = 50
+drop_table = "rock_troll"
 examine = "A nasty looking troll."
 
 [pee_hat]
 id = 1097
-hitpoints = 1200
-att = 50
-str = 100
-def = 50
-mage = 0
-range = 0
-attack_speed = 6
-style = "crush"
-max_hit_melee = 230
-attack_bonus = 40
-xp_bonus = 0.5
-hunt_mode = "cowardly"
-slayer_xp = 126.0
-categories = ["trolls"]
-respawn_delay = 50
-examine = "A nasty looking troll."
+clone = "kraka"
 
 [stick]
 id = 1096
@@ -69,6 +55,7 @@ examine = "A big, bad troll."
 [rock_troll]
 id = 1095
 categories = ["trolls"]
+drop_table = "rock_troll"
 examine = "The biggest and baddest troll."
 
 [billy]
