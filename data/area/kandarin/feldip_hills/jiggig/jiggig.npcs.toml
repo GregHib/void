@@ -22,18 +22,47 @@ id = 2043
 
 [zogre_jiggig]
 id = 2044
-categories = ["ogres"]
+hitpoints = 710
+att = 20
+str = 36
+def = 35
+attack_speed = 6
+style = "crush"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+slayer_xp = 71.0
+categories = ["ogres", "zombies"]
+respawn_delay = 50
+drop_table = "zogre"
 examine = "A partially decomposing zombie ogre."
 
 [zogre_jiggig_2]
 id = 2045
-categories = ["ogres"]
-examine = "A partially decomposing zombie ogre."
+clone = "zogre_jiggig"
 
 [skogre_jiggig]
 id = 2050
+hitpoints = 710
+att = 20
+str = 36
+def = 35
+attack_speed = 6
+style = "crush"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+slayer_xp = 71.0
 categories = ["ogres"]
+categories = ["skeletons"]
+respawn_delay = 50
 examine = "An undead skeletal ogre."
+
+[skogre_jiggig_2]
+id = 2056
+clone = "skogre_jiggig"
+
+[skogre_jiggig_3]
+id = 2057
+clone = "skogre_jiggig"
 
 [zogre_jiggig_3]
 id = 2051
@@ -51,14 +80,6 @@ id = 2054
 id = 2055
 categories = ["ogres"]
 examine = "A partially decomposing zombie ogre."
-
-[skogre_jiggig_2]
-id = 2056
-categories = ["ogres"]
-examine = "Looks like he's de-composing."
-
-[skogre_jiggig_3]
-id = 2057
 
 [ogre_cook_jiggig]
 id = 791

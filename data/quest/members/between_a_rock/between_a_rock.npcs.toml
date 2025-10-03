@@ -1,0 +1,101 @@
+[arzinian_avatar_of_magic_invincible]
+id = 1856
+style = "magic"
+max_hit_melee = 150
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+examine = "It is the avatar of the Arzinian Being of Bordanzan, representing magic."
+
+[arzinian_avatar_of_magic_level_125]
+id = 1857
+hitpoints = 1000
+att = 10
+str = 90
+def = 120
+mage = 120
+style = "magic"
+max_hit_melee = 130
+xp_bonus = 2.5
+hunt_mode = "cowardly"
+examine = "It is the avatar of the Arzinian Being of Bordanzan, representing magic."
+
+[arzinian_avatar_of_magic_level_75]
+id = 1858
+hitpoints = 700
+att = 10
+str = 50
+def = 75
+mage = 75
+style = "magic"
+max_hit_melee = 80
+xp_bonus = 0.0
+hunt_mode = "cowardly"
+examine = "It is the avatar of the Arzinian Being of Bordanzan, representing magic."
+
+[arzinian_avatar_of_ranging_invincible]
+id = 1853
+style = "range"
+max_hit_melee = 170
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+examine = "It is the avatar of the Arzinian Being of Bordanzan, representing ranging."
+
+[arzinian_avatar_of_ranging_level_125]
+id = 1854
+hitpoints = 1000
+att = 10
+str = 100
+def = 120
+range = 110
+style = "range"
+max_hit_range = 140
+xp_bonus = 2.5
+ranged_strength = 10
+hunt_mode = "cowardly"
+examine = "It is the avatar of the Arzinian Being of Bordanzan, representing ranging."
+
+[arzinian_avatar_of_ranging_level_75]
+id = 1855
+hitpoints = 700
+att = 10
+str = 40
+def = 75
+range = 75
+style = "range"
+max_hit_range = 90
+xp_bonus = 0.0
+ranged_strength = 5
+hunt_mode = "cowardly"
+examine = "It is the avatar of the Arzinian Being of Bordanzan, representing ranging."
+
+[arzinian_avatar_of_strength_invincible]
+id = 1850
+style = "crush"
+max_hit_range = 140
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+examine = "It is the avatar of the Arzinian Being of Bordanzan, representing strength."
+
+[arzinian_avatar_of_strength_level_125]
+id = 1851
+hitpoints = 1000
+att = 110
+str = 100
+def = 95
+style = "crush"
+max_hit_melee = 110
+xp_bonus = 2.5
+hunt_mode = "cowardly"
+examine = "It is the avatar of the Arzinian Being of Bordanzan, representing strength."
+
+[arzinian_avatar_of_strength_level_75]
+id = 1852
+hitpoints = 700
+att = 70
+str = 65
+def = 50
+style = "crush"
+max_hit_melee = 70
+xp_bonus = 0.0
+hunt_mode = "cowardly"
+examine = "It is the avatar of the Arzinian Being of Bordanzan, representing strength."

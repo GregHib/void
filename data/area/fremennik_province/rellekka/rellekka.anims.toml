@@ -1,0 +1,17 @@
+[bunny_defend]
+id = 1244
+
+[bunny_attack]
+id = 1245
+
+[bunny_death]
+id = 1246
+
+[fox_attack]
+id = 6562
+
+[fox_defend]
+id = 6569
+
+[fox_death]
+id = 6570

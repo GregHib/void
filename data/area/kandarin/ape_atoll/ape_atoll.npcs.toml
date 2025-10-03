@@ -131,11 +131,36 @@ examine = "A small, well dressed monkey clasping a mace. He looks like a priest.
 
 [kruk]
 id = 1441
+hitpoints = 2100
+att = 130
+str = 130
+def = 150
+mage = 130
+range = 170
+style = "slash"
+max_hit_melee = 330
+max_hit_range = 370
+attack_bonus = 160
+xp_bonus = 2.5
+ranged_strength = 70
+hunt_mode = "cowardly"
+immune_poison = true
 examine = "A large ninja monkey wielding two scimitars."
 
 [padulah]
 id = 1447
-categories = ["monkeys"]
+hitpoints = 1300
+att = 130
+str = 130
+def = 130
+mage = 130
+style = "slash"
+max_hit_melee = 20
+attack_bonus = 50
+xp_bonus = 2.5
+hunt_mode = "cowardly"
+respawn_delay = 50
+drop_table = "medium_ninja_monkey"
 examine = "A scimitar wielding ninja monkey. He looks like he is guarding something."
 
 [uwogo]
@@ -164,24 +189,49 @@ examine = "She looks like the Monkey's Aunt."
 
 [monkey_archer_ape_atoll]
 id = 1456
+hitpoints = 500
+att = 80
+str = 80
+def = 80
+range = 110
+style = "range"
+weapon_style = "thrown"
+ammo = "bronze_arrow"
+attack_range = 8
+max_hit_range = 200
+slayer_xp = 50.0
 categories = ["monkeys"]
-examine = "A bow wielding ninja monkey."
+respawn_delay = 50
+drop_table = "monkey_archer"
+examine = "A bow wielding ninja monkey. It looks particularly dangerous."
 
 [monkey_archer_ape_atoll_2]
 id = 1457
+clone = "monkey_archer_ape_atoll"
 
 [monkey_archer_ape_atoll_3]
 id = 1458
+clone = "monkey_archer_ape_atoll"
 
 [monkey_guard_ape_atoll_3]
 id = 1459
+hitpoints = 1300
+att = 130
+str = 130
+def = 200
+mage = 130
+style = "crush"
+max_hit_melee = 140
+attack_bonus = 50
+xp_bonus = 2.5
+slayer_xp = 130.0
 categories = ["monkeys"]
+respawn_delay = 50
 examine = "A huge brutish gorilla armoured with dangerous looking vambraces."
 
 [monkey_guard_ape_atoll_4]
 id = 1460
-categories = ["monkeys"]
-examine = "A huge brutish gorilla armoured with dangerous looking vambraces."
+clone = "monkey_guard_ape_atoll_3"
 
 [elder_guard_ape_atoll]
 id = 1461
@@ -193,14 +243,53 @@ id = 1462
 
 [monkey_zombie_medium]
 id = 1465
-categories = ["monkeys"]
+hitpoints = 600
+att = 150
+str = 60
+def = 60
+mage = 60
+style = "crush"
+max_hit_melee = 70
+attack_bonus = 35
+hunt_mode = "cowardly"
+slayer_xp = 60.0
+categories = ["monkeys", "zombies"]
+respawn_delay = 50
+drop_table = "monkey_zombie"
 examine = "A large and lumbering undead monkey."
 
 [monkey_zombie_large]
 id = 1466
+hitpoints = 900
+att = 150
+str = 110
+def = 90
+mage = 90
+style = "crush"
+max_hit_melee = 120
+attack_bonus = 35
+hunt_mode = "cowardly"
+slayer_xp = 90.0
+categories = ["monkeys", "zombies"]
+respawn_delay = 12
+drop_table = "monkey_zombie"
+examine = "A large and lumbering undead monkey stands here, blocking the way."
 
 [monkey_zombie_small]
 id = 1467
+hitpoints = 600
+att = 100
+str = 60
+def = 60
+mage = 60
+style = "crush"
+max_hit_melee = 70
+attack_bonus = 15
+hunt_mode = "cowardly"
+slayer_xp = 60.0
+categories = ["monkeys", "zombies"]
+respawn_delay = 50
+examine = "A recently deceased monkey. Its flesh seems to be worse for the wear."
 
 [scorpion_ape_atoll]
 id = 1477
@@ -224,20 +313,50 @@ examine = "It's an extremely dangerous looking scorpion."
 
 [jungle_spider_ape_atoll]
 id = 1478
+hitpoints = 350
+att = 50
+str = 30
+def = 10
+mage = 10
+style = "stab"
+max_hit_melee = 100
+attack_bonus = 100
+xp_bonus = 2.5
 categories = ["spiders"]
+respawn_delay = 50
 examine = "A very dangerous looking spider, with its fangs unsheathed."
 
 [snake_ape_atoll]
 id = 1479
 
-[bird_default]
+[bird_black]
 id = 1475
+hitpoints = 100
+att = 10
+str = 10
+def = 10
+mage = 10
+style = "stab"
+max_hit_melee = 20
+slayer_xp = 10.0
 categories = ["birds"]
+respawn_delay = 5
+combat_anims = "bird"
 examine = "It's a brightly coloured bird of the jungle."
 
-[bird_default_2]
+[bird_green]
 id = 1476
+hitpoints = 50
+att = 5
+str = 5
+def = 5
+mage = 5
+style = "stab"
+max_hit_melee = 10
+slayer_xp = 5.0
+respawn_delay = 5
 categories = ["birds"]
+combat_anims = "bird"
 examine = "It's a brightly coloured bird of the jungle. It flies very quickly."
 
 [daero]
@@ -264,3 +383,70 @@ id = 13212
 [monkey_guard_ape_atoll_5]
 id = 13242
 
+[duke]
+id = 1442
+hitpoints = 1300
+att = 130
+str = 130
+def = 130
+mage = 130
+style = "melee"
+max_hit_melee = 140
+attack_bonus = 50
+hunt_mode = "cowardly"
+drop_table = "duke"
+examine = "A large ninja monkey wielding two scimitars."
+
+[oipuis]
+id = 1443
+hitpoints = 1300
+att = 130
+str = 130
+def = 130
+mage = 130
+style = "melee"
+max_hit_melee = 140
+attack_bonus = 50
+hunt_mode = "cowardly"
+drop_table = "medium_ninja_monkey"
+examine = "A large ninja monkey wielding two scimitars."
+
+[ouhai]
+id = 1445
+hitpoints = 1300
+att = 130
+str = 130
+def = 130
+mage = 130
+style = "melee"
+max_hit_melee = 140
+attack_bonus = 50
+hunt_mode = "cowardly"
+drop_table = "medium_ninja_monkey"
+examine = "A large ninja monkey wielding two scimitars."
+
+[uodai]
+id = 1446
+hitpoints = 1300
+att = 130
+str = 130
+def = 130
+mage = 130
+style = "melee"
+max_hit_melee = 140
+attack_bonus = 50
+hunt_mode = "cowardly"
+examine = "A large ninja monkey wielding two scimitars."
+
+[uyoro]
+id = 1444
+hitpoints = 1300
+att = 130
+str = 130
+def = 130
+mage = 130
+style = "melee"
+max_hit_melee = 140
+attack_bonus = 50
+hunt_mode = "cowardly"
+examine = "A large ninja monkey wielding two scimitars."

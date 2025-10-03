@@ -1,0 +1,91 @@
+[archer_burthorpe_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "archer_burthorpe_secondary" },
+]
+
+[archer_burthorpe_secondary]
+roll = 128
+drops = [
+    { id = "willow_longbow", chance = 4 },
+    { id = "studded_chaps", chance = 8 },
+    { id = "green_dragonhide_chaps", chance = 6 },
+    { id = "maple_shortbow" },
+    { id = "earth_rune", amount = 18, chance = 2 },
+    { id = "bronze_arrow", amount = 14, chance = 3 },
+    { id = "steel_arrow", amount = 14, chance = 2 },
+    { id = "fire_rune", amount = 17, chance = 2 },
+    { id = "air_rune", amount = 29, chance = 2 },
+    { id = "nature_rune", amount = 6 },
+    { id = "blood_rune" },
+    { id = "chaos_rune", amount = 2 },
+    { id = "coins", amount = 3 },
+    { id = "coins", amount = 5, chance = 39 },
+    { id = "coins", amount = 15, chance = 16 },
+    { id = "coins", amount = 12, chance = 9 },
+    { id = "coins", amount = 28, chance = 4 },
+    { id = "coins", amount = 42, chance = 4 },
+    { id = "coins", amount = 46, chance = 2 },
+    { id = "earth_talisman", chance = 3 },
+    { id = "mithril_ore" },
+    { id = "nothing", amount = 0, chance = 16 },
+]
+
+[citizen_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "citizen_secondary" },
+    { table = "easy_clue_scroll", roll = 128 },
+]
+
+[citizen_secondary]
+roll = 128
+drops = [
+    { id = "bronze_med_helm", chance = 2 },
+    { id = "iron_dagger" },
+    { id = "bronze_bolts", min = 2, max = 12, chance = 22 },
+    { id = "bronze_arrow", amount = 7, chance = 3 },
+    { id = "earth_rune", amount = 4, chance = 2 },
+    { id = "fire_rune", amount = 6, chance = 2 },
+    { id = "mind_rune", amount = 9, chance = 2 },
+    { id = "chaos_rune", amount = 2 },
+    { table = "herb_drop_table", chance = 23 },
+    { id = "coins", amount = 3, chance = 38 },
+    { id = "coins", amount = 5, chance = 9 },
+    { id = "coins", amount = 15, chance = 4 },
+    { id = "coins", amount = 25 },
+    { id = "nothing", amount = 0, chance = 8 },
+    { id = "fishing_bait", chance = 5 },
+    { id = "copper_ore", chance = 2 },
+    { id = "earth_talisman", chance = 2 },
+    { id = "cabbage" },
+]
+
+[soldier_burthorpe_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "soldier_burthorpe_secondary" },
+]
+
+[soldier_burthorpe_secondary]
+roll = 128
+drops = [
+    { id = "steel_full_helm" },
+    { id = "black_dart", amount = 6, chance = 9 },
+    { id = "black_knife", amount = 6, chance = 13 },
+    { id = "steel_claws", chance = 2 },
+    { id = "black_claws" },
+    { id = "steel_bar" },
+    { id = "mithril_bar" },
+    { table = "herb_drop_table", chance = 8 },
+    { id = "coins", amount = 3, chance = 17 },
+    { id = "coins", amount = 5, chance = 10 },
+    { id = "coins", amount = 18, chance = 20 },
+    { id = "coins", amount = 50, chance = 40 },
+    { id = "coins", amount = 115, chance = 2 },
+    { id = "blood_rune", amount = 2 },
+    { table = "gem_drop_table", chance = 2 },
+]

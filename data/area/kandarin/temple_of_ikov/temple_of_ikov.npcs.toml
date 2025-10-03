@@ -1,10 +1,20 @@
 [guardian_of_armadyl_temple_of_ikov]
 id = 274
+hitpoints = 500
+att = 37
+str = 37
+def = 37
+attack_speed = 5
+style = "slash"
+max_hit_melee = 60
+attack_bonus = 14
+respawn_delay = 50
+drop_table = "guardian_of_armadyl"
 examine = "A guard who has devoted their life to Armadyl."
 
 [guardian_of_armadyl_temple_of_ikov_2]
 id = 275
-examine = "A guard who has devoted their life to Armadyl."
+clone = "guardian_of_armadyl_temple_of_ikov"
 
 [winelda_temple_of_ikov]
 id = 276
@@ -17,6 +27,27 @@ examine = "Could do with gaining a few pounds."
 
 [ice_spider]
 id = 64
+hitpoints = 650
+att = 50
+str = 55
+def = 43
+style = "crush"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 65.0
 categories = ["spiders"]
+respawn_delay = 30
 examine = "I think this spider has been magically modified."
 
+[fire_warrior_of_lesarkus]
+id = 277
+hitpoints = 590
+att = 78
+str = 78
+def = 78
+mage = 62
+style = "magic"
+max_hit_magic = 80
+attack_bonus = -12
+hunt_mode = "cowardly"
+examine = "Intimidating!"

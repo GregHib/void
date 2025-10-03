@@ -1,0 +1,64 @@
+[sea_troll_queen]
+id = 3847
+hitpoints = 2000
+att = 100
+str = 70
+def = 100
+mage = 150
+style = "crush"
+style = "magic"
+max_hit_melee = 160
+max_hit_magic = 370
+max_hit_on_wise_old_man = 2540
+attack_bonus = 100
+xp_bonus = 7.5
+hunt_mode = "cowardly"
+examine = "The mother of all sea trolls!"
+
+[sea_troll_level_65]
+id = 3841
+hitpoints = 800
+att = 50
+str = 50
+def = 50
+style = "crush"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+drop_table = "sea_troll"
+examine = "An aquatic troll."
+
+[sea_troll_level_79]
+id = 3840
+hitpoints = 1000
+att = 60
+str = 60
+def = 60
+style = "crush"
+max_hit_melee = 70
+hunt_mode = "cowardly"
+drop_table = "sea_troll"
+examine = "An aquatic troll."
+
+[sea_troll_level_87]
+id = 3842
+hitpoints = 800
+att = 75
+str = 75
+def = 75
+style = "crush"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+drop_table = "sea_troll"
+examine = "An aquatic troll."
+
+[sea_troll_level_101]
+id = 3843
+hitpoints = 800
+att = 90
+str = 90
+def = 90
+style = "crush"
+max_hit_melee = 100
+hunt_mode = "cowardly"
+drop_table = "sea_troll"
+examine = "An aquatic troll."

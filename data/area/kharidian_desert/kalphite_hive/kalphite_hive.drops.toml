@@ -1,0 +1,61 @@
+[kalphite_queen_drop_table]
+type = "all"
+drops = [
+    { table = "kalphite_queen_secondary" },
+    { table = "kalphite_queen_tertiary" },
+]
+
+[kalphite_queen_secondary]
+roll = 126
+drops = [
+    { id = "monkfish", amount = 3, chance = 14 },
+    { id = "shark", amount = 2, chance = 14 },
+    { id = "saradomin_brew_4", chance = 14 },
+    { id = "prayer_potion_4", amount = 2, chance = 14 },
+    { id = "super_restore_4", chance = 14 },
+    { id = "combat_potion_2", chance = 14 },
+    { id = "super_ranging_potion_3", chance = 14 },
+    { id = "super_antipoison_2", chance = 14 },
+    { id = "battlestaff_noted", amount = 10, chance = 5 },
+    { id = "rune_chainbody", chance = 4 },
+    { id = "red_dragonhide_body", chance = 4 },
+    { id = "rune_knife_p++", amount = 25, chance = 4 },
+    { id = "lava_battlestaff", chance = 2 },
+    { id = "death_rune", amount = 150, chance = 6 },
+    { id = "blood_rune", amount = 100, chance = 6 },
+    { id = "mithril_arrow", amount = 500, chance = 5 },
+    { id = "rune_arrow", amount = 250, chance = 3 },
+    { id = "grimy_toadflax_noted", amount = 25, chance = 2 },
+    { id = "grimy_ranarr_noted", amount = 25, chance = 2 },
+    { id = "grimy_snapdragon_noted", amount = 25, chance = 2 },
+    { id = "grimy_torstol_noted", amount = 25, chance = 2 },
+    { id = "torstol_seed", amount = 2, chance = 4 },
+    { id = "watermelon_seed", amount = 25, chance = 3 },
+    { id = "papaya_tree_seed", amount = 2, chance = 3 },
+    { id = "palm_tree_seed", amount = 2, chance = 3 },
+    { id = "magic_seed", amount = 2, chance = 3 },
+    { id = "rune_bar_noted", amount = 3, chance = 5 },
+    { id = "bucket_of_sand_noted", amount = 100, chance = 4 },
+    { id = "gold_ore_noted", amount = 250, chance = 4 },
+    { id = "magic_logs_noted", amount = 60, chance = 4 },
+    { id = "uncut_emerald_noted", amount = 25, chance = 3 },
+    { id = "uncut_ruby_noted", amount = 25, chance = 3 },
+    { id = "uncut_diamond_noted", amount = 25, chance = 3 },
+    { id = "wine_of_zamorak_noted", amount = 60, chance = 10 },
+    { id = "potato_cactus_noted", amount = 100, chance = 8 },
+    { id = "coins", min = 15000, max = 20000, chance = 5 },
+    { id = "grapes_noted", amount = 100, chance = 5 },
+    { id = "weapon_poison++_noted", amount = 5, chance = 5 },
+    { id = "cactus_spine_noted", amount = 10, chance = 3 },
+    { table = "rare_drop_table" },
+]
+
+[kalphite_queen_tertiary]
+roll = 3000
+drops = [
+    { table = "elite_clue_scroll", chance = 30 },
+    { id = "kq_head", chance = 23 },
+    { id = "dragon_chainbody", chance = 23 },
+    { id = "dragon_2h_sword", chance = 11 },
+    { id = "dragon_pickaxe", chance = 7 },
+]

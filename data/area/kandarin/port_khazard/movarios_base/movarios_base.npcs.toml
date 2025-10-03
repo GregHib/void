@@ -1,16 +1,28 @@
 [elite_khazard_guard_movarios_base]
 id = 8437
+hitpoints = 850
+att = 80
+str = 88
+def = 80
+mage = 30
+range = 1
+style = "slash"
+max_hit_melee = 30
+hunt_mode = "aggressive"
+max_hit_melee = 120
+attack_bonus = 10
+respawn_delay = 50
 examine = "A well-trained Khazard warrior, on orders to guard this area."
 
 [elite_khazard_guard_movarios_base_2]
 id = 8438
-examine = "A well-trained Khazard warrior, on orders to guard this area."
+clone = "elite_khazard_guard_movarios_base"
 
 [elite_khazard_guard_movarios_base_3]
 id = 8439
-examine = "A well-trained Khazard warrior, on orders to guard this area."
+clone = "elite_khazard_guard_movarios_base"
 
 [elite_khazard_guard_movarios_base_4]
 id = 8440
-examine = "A well-trained Khazard warrior, on orders to guard this area."
+clone = "elite_khazard_guard_movarios_base"
 

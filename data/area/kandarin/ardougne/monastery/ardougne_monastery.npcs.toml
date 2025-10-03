@@ -23,6 +23,13 @@ examine = "An old drunk monk."
 
 [monk_monastery]
 id = 281
+hitpoints = 50
+att = 2
+str = 2
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "An Ardougne Monk."
 
 [ferret_monastery]

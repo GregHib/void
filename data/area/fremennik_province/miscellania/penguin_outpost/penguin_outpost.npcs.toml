@@ -6,23 +6,30 @@ id = 5440
 
 [icelord_penguin_outpost]
 id = 5452
+hitpoints = 600
+att = 40
+str = 40
+def = 40
+style = "crush"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+slayer_xp = 60.0
 categories = ["ice_warriors"]
+respawn_delay = 50
+drop_table = "icelord"
 examine = "Sturdy cold being."
 
 [icelord_penguin_outpost_2]
 id = 5453
-categories = ["ice_warriors"]
-examine = "Sturdy cold being."
+clone = "icelord_penguin_outpost"
 
 [icelord_penguin_outpost_3]
 id = 5454
-categories = ["ice_warriors"]
-examine = "Sturdy cold being."
+clone = "icelord_penguin_outpost"
 
 [icelord_penguin_outpost_4]
 id = 5455
-categories = ["ice_warriors"]
-examine = "Sturdy cold being."
+clone = "icelord_penguin_outpost"
 
 [kgp_interrogator_penguin_outpost]
 id = 7582

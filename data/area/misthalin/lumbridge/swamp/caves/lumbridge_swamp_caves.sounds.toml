@@ -1,0 +1,23 @@
+[wall_beast_attack]
+id = 893
+
+[wall_beast_death]
+id = 894
+
+[wall_beast_foiled]
+id = 895
+
+[wall_beast_defend]
+id = 896
+
+[wall_beast_swipe]
+id = 897
+
+[cave_goblin_attack]
+id = 465
+
+[cave_goblin_death]
+id = 466
+
+[cave_goblin_defend]
+id = 467

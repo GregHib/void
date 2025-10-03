@@ -1,0 +1,8 @@
+[terrorbird_attack]
+id = 1010
+
+[terrorbird_defend]
+id = 1012
+
+[terrorbird_death]
+id = 1013

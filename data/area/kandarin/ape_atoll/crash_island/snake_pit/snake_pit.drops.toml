@@ -1,0 +1,6 @@
+[big_snake_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "snake_corpse" },
+]

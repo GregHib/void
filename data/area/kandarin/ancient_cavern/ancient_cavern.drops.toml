@@ -1,0 +1,91 @@
+[barbarian_spirit_drop_table]
+type = "all"
+drops = [
+    { table = "barbarian_spirit_secondary" },
+    { table = "medium_clue_scroll", roll = 128 },
+]
+
+[barbarian_spirit_secondary]
+roll = 128
+drops = [
+    { id = "iron_kiteshield", chance = 8 },
+    { id = "iron_plateskirt", chance = 5 },
+    { id = "steel_hasta", chance = 5 },
+    { id = "steel_longsword", chance = 5 },
+    { id = "yew_shortbow", chance = 3 },
+    { id = "steel_knife", amount = 10, chance = 3 },
+    { id = "steel_mace", chance = 2 },
+    { id = "steel_scimitar", chance = 2 },
+    { id = "steel_dart", amount = 10 },
+    { id = "steel_full_helm" },
+    { id = "steel_kiteshield" },
+    { id = "mithril_med_helm" },
+    { id = "mithril_sq_shield" },
+    { id = "adamant_battleaxe" },
+    { id = "rune_scimitar" },
+    { id = "battlestaff" },
+    { id = "death_rune", amount = 5, chance = 5 },
+    { id = "blood_rune", amount = 3, chance = 3 },
+    { id = "steel_arrow", amount = 20, chance = 3 },
+    { id = "silver_bolts", amount = 5, chance = 3 },
+    { id = "adamant_arrow", amount = 5, chance = 2 },
+    { table = "herb_drop_table", chance = 5 },
+    { id = "yew_logs", chance = 12 },
+    { id = "steel_bar_noted", amount = 3, chance = 5 },
+    { id = "silver_bar_noted", amount = 3, chance = 5 },
+    { id = "gold_bar", chance = 5 },
+    { id = "adamant_bar", chance = 2 },
+    { id = "gold_ore", chance = 2 },
+    { id = "coins", amount = 142, chance = 10 },
+    { id = "coins", amount = 106, chance = 5 },
+    { id = "coins", amount = 106, chance = 2 },
+    { id = "coins", amount = 323 },
+    { id = "strength_mix_2", chance = 5 },
+    { id = "mithril_grapple", amount = 2, chance = 3 },
+    { id = "sapphire_ring", chance = 2 },
+    { table = "gem_drop_table", chance = 2 },
+]
+
+[brutal_green_dragon_drop_table]
+type = "all"
+drops = [
+    { id = "dragon_bones" },
+    { id = "green_dragonhide", amount = 2 },
+    { table = "brutal_green_dragon_secondary" },
+    { table = "hard_clue_scroll", roll = 128 },
+]
+
+[brutal_green_dragon_secondary]
+roll = 128
+drops = [
+    { id = "adamant_dart_p", amount = 25, chance = 5 },
+    { id = "adamant_2h_sword", chance = 4 },
+    { id = "mithril_hasta", chance = 3 },
+    { id = "adamant_knife", amount = 8, chance = 3 },
+    { id = "adamant_med_helm", chance = 3 },
+    { id = "rune_throwing_axe", amount = 8, chance = 3 },
+    { id = "adamant_spear", chance = 2 },
+    { id = "adamant_chainbody" },
+    { id = "adamant_kiteshield" },
+    { id = "adamant_platelegs" },
+    { id = "rune_full_helm" },
+    { id = "rune_chainbody" },
+    { id = "blood_rune", amount = 20, chance = 29 },
+    { id = "lava_rune", amount = 35, chance = 8 },
+    { id = "steam_rune", amount = 37, chance = 6 },
+    { id = "nature_rune", amount = 17, chance = 5 },
+    { id = "law_rune", amount = 15, chance = 3 },
+    { id = "adamant_arrow", amount = 8, chance = 3 },
+    { table = "herb_drop_table", chance = 15 },
+    { id = "mithril_ore_noted", amount = 5, chance = 3 },
+    { id = "coins", amount = 242, chance = 11 },
+    { id = "coins", amount = 621, chance = 10 },
+    { id = "curry", min = 1, max = 2, chance = 2 },
+    { table = "rare_drop_table", chance = 2 },
+]
+
+[mangled_bones_drop_table]
+type = "all"
+drops = [
+    { id = "mangled_bones" },
+]

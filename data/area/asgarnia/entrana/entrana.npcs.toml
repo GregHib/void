@@ -4,6 +4,13 @@ examine = "High Priest of Entrana."
 
 [monk_entrana]
 id = 222
+hitpoints = 150
+att = 2
+str = 2
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "A holy man."
 
 [francis]
@@ -54,6 +61,14 @@ examine = "Unsurprisingly monk like."
 
 [entrana_firebird]
 id = 6108
+hitpoints = 50
+style = "stab"
+max_hit_melee = 10
+attack_bonus = -31
+slayer_xp = 5.0
+categories = ["birds"]
+respawn_delay = 35
+drop_table = "firebird"
 examine = "Probably not a chicken."
 
 [mysterious_ghost_entrana_2]

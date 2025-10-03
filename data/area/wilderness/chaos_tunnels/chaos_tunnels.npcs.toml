@@ -1,50 +1,127 @@
 [leech_chaos_tunnels]
 id = 1219
+hitpoints = 450
+att = 80
+str = 20
+def = 35
+style = "stab"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+respawn_delay = 50
+combat_anims = "leech"
+combat_sounds = "leech"
 examine = "Yuck! It's all slimy!"
 
 [dust_devil]
 id = 1624
+hitpoints = 1050
+att = 105
+str = 70
+def = 40
+style = "ranged_melee"
+max_hit_melee = 8
+slayer_xp = 105.0
 categories = ["dust_devils"]
+respawn_delay = 15
+combat_anims = "dust_devil"
+combat_sounds = "dust_devil"
 examine = "The vacuumed face of evil."
 
 [turoth_chaos_tunnels]
 id = 1629
+hitpoints = 800
+att = 57
+str = 87
+def = 87
+style = "stab"
+max_hit_melee = 100
+slayer_xp = 80.0
+categories = ["turoth"]
+immune_cannon = true
+drop_table = "turoth"
+examine = "He's one big leg short!"
 
 [bloodworm_chaos_tunnels]
 id = 2031
+hitpoints = 450
+att = 80
+str = 20
+def = 35
+style = "stab"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+respawn_delay = 50
 examine = "I think I should keep my distance..."
 
 [giant_crypt_rat_chaos_tunnels]
 id = 2033
+hitpoints = 350
+att = 70
+str = 20
+def = 20
+style = "stab"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+slayer_xp = 35.0
 categories = ["rats"]
+respawn_delay = 50
+drop_table = "crypt_rat"
+combat_anims = "giant_crypt_rat"
 examine = "A nasty overgrown rodent."
 
 [crypt_spider]
 id = 2034
+hitpoints = 600
+att = 45
+str = 47
+def = 45
+style = "stab"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 45.0
 categories = ["spiders"]
+respawn_delay = 50
 examine = "Incey wincey."
 
 [giant_crypt_spider]
 id = 2035
+hitpoints = 800
+att = 65
+str = 67
+def = 65
+style = "stab"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+slayer_xp = 80.0
 categories = ["spiders"]
+respawn_delay = 50
 examine = "Not very incey wincey."
 
 [giant_crypt_rat_chaos_tunnels_2]
 id = 4920
-categories = ["rats"]
-examine = "A nasty overgrown rodent."
+clone = "giant_crypt_rat_chaos_tunnels"
 
 [giant_crypt_rat_chaos_tunnels_3]
 id = 4921
-categories = ["rats"]
-examine = "A nasty overgrown rodent."
+clone = "giant_crypt_rat_chaos_tunnels"
 
 [possessed_pickaxe]
 id = 5413
+hitpoints = 400
+att = 40
+str = 55
+def = 40
+style = "stab"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+respawn_delay = 30
+drop_table = "possessed_pickaxe"
+examine = "How does it move of its own accord?"
 
 [animated_spade]
 id = 5414
 categories = ["phantoms"]
+drop_table = "animated_spade"
 examine = "How does it move of its own accord?"
 
 [dagonhai_monk_chaos_tunnels]
@@ -61,35 +138,107 @@ examine = "A monk of the Dagon'hai."
 
 [fire_elemental]
 id = 1019
+hitpoints = 300
+att = 35
+str = 35
+def = 20
+mage = 20
+range = 20
+style = "slash"
+max_hit_melee = 40
+respawn_delay = 50
+drop_table = "fire_elemental"
+combat_anims = "fire_elemental"
+combat_sounds = "fire_elemental"
 examine = "A fire elemental."
-
 
 [turoth]
 id = 1623
+hitpoints = 810
+att = 58
+str = 88
+def = 88
+style = "stab"
+max_hit_melee = 100
+slayer_xp = 81.0
 categories = ["turoth"]
+immune_cannon = true
+respawn_delay = 15
+drop_table = "turoth"
 examine = "He's one big leg short!"
 
-[turoth_2]
+[turoth_level_87]
 id = 1626
+hitpoints = 790
+att = 56
+str = 86
+def = 86
+style = "stab"
+max_hit_melee = 100
+slayer_xp = 79.0
 categories = ["turoth"]
+immune_cannon = true
+respawn_delay = 15
+drop_table = "turoth"
 examine = "She's one leg short!"
 
-[turoth_3]
+[turoth_level_85]
 id = 1627
+hitpoints = 770
+att = 54
+str = 84
+def = 84
+style = "stab"
+max_hit_melee = 90
+slayer_xp = 77.0
 categories = ["turoth"]
+immune_cannon = true
+respawn_delay = 15
+drop_table = "turoth"
 examine = "It's one leg short!"
 
-[turoth_4]
+[turoth_level_83]
 id = 1628
+hitpoints = 760
+att = 53
+str = 83
+def = 83
+style = "stab"
+max_hit_melee = 90
+slayer_xp = 76.0
 categories = ["turoth"]
+immune_cannon = true
+respawn_delay = 15
+drop_table = "turoth"
 examine = "It's one small leg short!"
 
 [turoth_5]
 id = 1630
+hitpoints = 800
+att = 57
+str = 87
+def = 87
+style = "stab"
+max_hit_melee = 100
+slayer_xp = 80.0
+categories = ["turoth"]
+immune_cannon = true
+drop_table = "turoth"
+examine = "He's one big leg short!"
 
 [jelly]
 id = 1637
+hitpoints = 750
+att = 45
+str = 45
+def = 120
+mage = 45
+style = "magical_melee"
+max_hit_melee = 50
+slayer_xp = 75.0
 categories = ["jellies"]
+respawn_delay = 15
+drop_table = "jelly"
 examine = "Looks scared to see me."
 
 [jelly_2]
@@ -115,26 +264,45 @@ id = 1642
 
 [mummy]
 id = 1961
+hitpoints = 900
+att = 90
+str = 90
+def = 90
+style = "crush"
+max_hit_melee = 240
+hunt_mode = "cowardly"
 categories = ["zombies"]
+drop_table = "mummy"
 examine = "A tightly-wrapped monster."
 
 [mummy_2]
 id = 1962
-categories = ["zombies"]
+clone = "mummy"
 examine = "Spooky, bandaged dead dude."
 
 [mummy_3]
 id = 1963
-categories = ["zombies"]
+clone = "mummy"
 examine = "A victim of poor first aid."
 
 [mummy_4]
 id = 1964
-categories = ["zombies"]
+clone = "mummy"
 examine = "But who's the daddy?"
 
 [waterfiend]
 id = 5361
+hitpoints = 1280
+att = 0
+str = 0
+def = 128
+mage = 105
+range = 105
+style = "magic"
+style = "magical_ranged"
+max_hit_melee = 160
+hunt_mode = "cowardly"
+slayer_xp = 128.0
 categories = ["waterfiends"]
 examine = "A fiendish embodiment of water."
 

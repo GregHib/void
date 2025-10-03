@@ -18,6 +18,16 @@ id = 1877
 
 [bandit_pollnivneach]
 id = 1879
+hitpoints = 300
+att = 40
+str = 50
+def = 20
+style = "slash"
+max_hit_melee = 70
+attack_bonus = 9
+respawn_delay = 50
+drop_table = "bones"
+examine = "Tough-looking."
 
 [cowardly_bandit_pollnivneach]
 id = 1886
@@ -34,6 +44,16 @@ id = 1899
 
 [menaphite_thug_pollnivneach]
 id = 1903
+hitpoints = 600
+att = 60
+str = 50
+def = 20
+style = "crush"
+max_hit_melee = 70
+attack_bonus = 4
+respawn_delay = 5
+drop_table = "bones"
+examine = "Menaphite thug."
 
 [aristarchus_pollnivneach]
 id = 3127
@@ -108,6 +128,14 @@ examine = "Tough-looking."
 
 [bandit_pollnivneach_4]
 id = 1881
+hitpoints = 300
+att = 59
+str = 70
+def = 30
+style = "slash"
+max_hit_melee = 90
+attack_bonus = 9
+respawn_delay = 50
 pickpocket = { level = 55, xp = 84.3, table = "bandit" }
 examine = "Tough-looking."
 
@@ -164,15 +192,34 @@ examine = "Female desert villager."
 [menaphite_leader_pollnivneach_2]
 id = 1901
 
-[menaphite_thug_pollnivneach_2]
+[menaphite_thug_pollnivneach_before_quest]
 id = 1904
+hitpoints = 600
+att = 60
+str = 50
+def = 20
+style = "crush"
+max_hit_melee = 70
+attack_bonus = 4
+respawn_delay = 5
+drop_table = "bones"
+examine = "Menaphite thug."
 
-[menaphite_thug_pollnivneach_3]
+[menaphite_thug_pollnivneach_after_quest]
 id = 1905
 pickpocket = { level = 65, xp = 137.5, table = "thug" }
+clone = "menaphite_thug_pollnivneach_before_quest"
 
 [bandit_pollnivneach_2_2]
 id = 6174
+hitpoints = 300
+att = 40
+str = 50
+def = 20
+style = "slash"
+max_hit_melee = 70
+attack_bonus = 9
+respawn_delay = 50
 pickpocket = { level = 45, xp = 65.0, table = "bearded_bandit" }
 
 [bandit_pollnivneach_2_3]

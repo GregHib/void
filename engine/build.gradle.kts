@@ -9,8 +9,6 @@ dependencies {
     implementation(project(":types"))
     implementation(project(":config"))
 
-    implementation(kotlin("reflect"))
-
     implementation(libs.bundles.database)
 
     implementation(libs.fastutil)

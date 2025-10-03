@@ -8,11 +8,32 @@ examine = "The Registrar of Guilds."
 
 [jogre_ardougne]
 id = 113
+hitpoints = 600
+att = 43
+str = 43
+def = 43
+attack_speed = 6
+style = "crush"
+max_hit_melee = 70
+attack_bonus = 22
+hunt_mode = "cowardly"
+respawn_delay = 30
+combat_anims = "jogre"
 examine = "An aggressive humanoid."
 
 [cyclops_ardougne]
 id = 116
+hitpoints = 750
+att = 47
+str = 50
+def = 26
+style = "crush"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 75.0
 categories = ["cyclopes"]
+respawn_delay = 30
+drop_table = "hill_giant"
 examine = "A one-eyed man eater."
 
 [parrots_ardougne]
@@ -40,11 +61,31 @@ examine = "Manages the mill."
 
 [paladin]
 id = 20
+hitpoints = 570
+att = 54
+str = 54
+def = 54
+attack_speed = 5
+style = "slash"
+max_hit_melee = 80
+attack_bonus = 20
+xp_bonus = 2.5
+respawn_delay = 50
 pickpocket = { level = 70, stun_ticks = 8, stun_hit = 30, xp = 131.8, chance_min = 40, chance_max = 170, table = "paladin" }
 examine = "A holy warrior."
 
 [hero]
 id = 21
+hitpoints = 820
+att = 54
+str = 55
+def = 54
+attack_speed = 5
+style = "slash"
+max_hit_melee = 90
+attack_bonus = 20
+xp_bonus = 2.5
+respawn_delay = 50
 pickpocket = { level = 80, stun_ticks = 10, stun_hit = 30, xp = 163.3, chance_min = 39, chance_max = 160, table = "hero" }
 examine = "Heroic!"
 
@@ -54,6 +95,15 @@ clone = "paladin"
 
 [knight_of_ardougne]
 id = 23
+hitpoints = 520
+att = 38
+str = 40
+def = 31
+attack_speed = 5
+style = "slash"
+max_hit_melee = 60
+attack_bonus = 8
+respawn_delay = 25
 hunt_mode = "guarding"
 pickpocket = { level = 55, stun_ticks = 10, stun_hit = 30, xp = 84.3, chance_min = 50, chance_max = 240, table = "knight" }
 examine = "A member of Ardougne's militia."
@@ -78,6 +128,7 @@ examine = "One of Gielinor's many citizens."
 
 [archer_ardougne]
 id = 27
+drop_table = "bones"
 examine = "Good with arrows."
 
 [zookeeper]
@@ -126,6 +177,15 @@ id = 311
 [guard_ardougne]
 id = 32
 hunt_mode = "guarding"
+hitpoints = 220
+att = 17
+str = 18
+def = 13
+style = "crush"
+max_hit_melee = 30
+attack_bonus = 4
+respawn_delay = 50
+attack_speed = 5
 pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "Keeps the peace... kind of."
 

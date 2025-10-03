@@ -1,0 +1,14 @@
+[dad_normal]
+id = 1125
+hitpoints = 1200
+att = 60
+str = 120
+def = 50
+attack_speed = 8
+style = "crush"
+max_hit_melee = 270
+attack_bonus = 40
+xp_bonus = 0.5
+slayer_xp = 126.0
+categories = ["trolls"]
+examine = "An unusually large troll."

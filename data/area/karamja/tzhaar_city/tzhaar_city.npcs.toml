@@ -1,85 +1,125 @@
 [tz_haar_mej_tzhaar_city]
 id = 2591
+hitpoints = 1000
+att = 80
+str = 80
+def = 80
+mage = 120
+attack_speed = 5
+style = "crush"
+max_hit_magic = 130
+max_hit_melee = 90
+slayer_xp = 100.0
 categories = ["tz_haar"]
-examine = "The Mej caste protect the TzHaar using powerful fire magic."
+respawn_delay = 50
+drop_table = "tz_haar_mej"
+examine = "Appears to be some kind of mystic."
 
 [tz_haar_mej_tzhaar_city_2]
 id = 2592
-categories = ["tz_haar"]
-examine = "The Mej caste protect the TzHaar using powerful fire magic."
+clone = "tz_haar_mej_tzhaar_city"
 
 [tz_haar_mej_tzhaar_city_3]
 id = 2594
+clone = "tz_haar_mej_tzhaar_city"
 
 [tz_haar_mej_tzhaar_city_4]
 id = 2595
-categories = ["tz_haar"]
-examine = "The Mej caste protect the TzHaar using powerful fire magic."
+clone = "tz_haar_mej_tzhaar_city"
 
 [tz_haar_mej_tzhaar_city_5]
 id = 2596
+clone = "tz_haar_mej_tzhaar_city"
 
 [tz_haar_mej_tzhaar_city_6]
 id = 2597
+clone = "tz_haar_mej_tzhaar_city"
 
 [tz_haar_hur_tzhaar_city]
 id = 2600
+hitpoints = 800
+att = 60
+str = 60
+def = 60
+mage = 80
+attack_speed = 5
+style = "crush"
+max_hit_melee = 70
+slayer_xp = 80.0
 categories = ["tz_haar"]
-examine = "The Hur caste, with their small, dexterous hands, are skilled craftsmen."
+respawn_delay = 50
+drop_table = "tz_haar_hur"
+examine = "Looks like a craftsman of some kind."
 
 [tz_haar_hur_tzhaar_city_2]
 id = 2601
+clone = "tz_haar_hur_tzhaar_city"
 
 [tz_haar_hur_tzhaar_city_3]
 id = 2602
+clone = "tz_haar_hur_tzhaar_city"
 
 [tz_haar_hur_tzhaar_city_4]
 id = 2603
+clone = "tz_haar_hur_tzhaar_city"
 
 [tz_haar_xil_tzhaar_city]
 id = 2605
+hitpoints = 1200
+att = 140
+str = 100
+def = 100
+mage = 40
+range = 120
+style = "crush"
+max_hit_melee = 110
+slayer_xp = 120.0
 categories = ["tz_haar"]
-examine = "It belongs to the hunter class."
+respawn_delay = 50
+drop_table = "tz_haar_xil"
+examine = "Doesn't look very social."
 
 [tz_haar_xil_tzhaar_city_2]
 id = 2606
-categories = ["tz_haar"]
-examine = "It belongs to the hunter class."
+clone = "tz_haar_xil_tzhaar_city"
 
 [tz_haar_xil_tzhaar_city_3]
 id = 2607
-categories = ["tz_haar"]
-examine = "It belongs to the hunter class."
+clone = "tz_haar_xil_tzhaar_city"
 
 [tz_haar_xil_tzhaar_city_4]
 id = 2608
-categories = ["tz_haar"]
-examine = "It belongs to the hunter class."
+clone = "tz_haar_xil_tzhaar_city"
 
 [tz_haar_xil_tzhaar_city_5]
 id = 2609
-categories = ["tz_haar"]
-examine = "It belongs to the hunter class."
+clone = "tz_haar_xil_tzhaar_city"
 
 [tz_haar_ket_tzhaar_city]
 id = 2611
+hitpoints = 1400
+att = 120
+str = 140
+def = 120
+mage = 40
+style = "crush"
+max_hit_melee = 150
+slayer_xp = 140.0
 categories = ["tz_haar"]
+respawn_delay = 50
 examine = "Must be a guard or something."
 
 [tz_haar_ket_tzhaar_city_2]
 id = 2614
-categories = ["tz_haar"]
-examine = "Must be a guard or something."
+clone = "tz_haar_ket_tzhaar_city"
 
 [tz_haar_ket_tzhaar_city_3]
 id = 2615
-categories = ["tz_haar"]
-examine = "Must be a guard or something."
+clone = "tz_haar_ket_tzhaar_city"
 
 [tz_haar_ket_tzhaar_city_4]
 id = 2616
-categories = ["tz_haar"]
-examine = "Must be a guard or something."
+clone = "tz_haar_ket_tzhaar_city"
 
 [tz_haar_mej_jal_tzhaar_city]
 id = 2617

@@ -30,3 +30,12 @@ id = 2852
 
 [dagannoth_king_death]
 id = 2856
+
+[spinolyp_death]
+id = 2866
+
+[spinolyp_attack]
+id = 2868
+
+[spinolyp_defend]
+id = 2869

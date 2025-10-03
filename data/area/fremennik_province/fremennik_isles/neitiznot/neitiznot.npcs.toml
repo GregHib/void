@@ -56,15 +56,66 @@ examine = "A man in a jester's costume."
 
 [ice_troll_runt_neitiznot]
 id = 5521
+hitpoints = 600
+att = 60
+str = 70
+def = 70
+style = "crush"
+max_hit_melee = 170
+attack_bonus = 60
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+slayer_xp = 63.0
+categories = ["trolls"]
+respawn_delay = 50
+examine = "An ice troll youngling."
 
 [ice_troll_male_neitiznot]
 id = 5522
+hitpoints = 800
+att = 80
+str = 80
+def = 40
+style = "crush"
+max_hit_melee = 170
+attack_bonus = 60
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+slayer_xp = 84.0
+categories = ["trolls"]
+drop_table = "ice_troll_male"
+examine = "A male troll wielding a large club."
 
 [ice_troll_female_neitiznot]
 id = 5523
+hitpoints = 800
+att = 80
+str = 80
+def = 40
+style = "range"
+weapon_style = "thrown"
+ammo = "troll_rock"
+attack_range = 8
+max_hit_range = 170
+attack_bonus = 60
+xp_bonus = 0.5
+slayer_xp = 84.0
+categories = ["trolls"]
+drop_table = "ice_troll_female"
+examine = "An ice troll with a bag of rocks."
 
 [yak]
 id = 5529
+hitpoints = 500
+att = 20
+str = 10
+style = "crush"
+max_hit_melee = 20
+immune_poison = true
+respawn_delay = 5
+combat_anims = "yak"
+combat_sounds = "yak"
+drop_table = "yak"
 examine = "A hairy, smelly, grazing animal."
 
 [mawnis_burowgar_neitiznot]

@@ -1,0 +1,88 @@
+[animated_bronze_armour_drop_table]
+type = "all"
+drops = [
+    { id = "warrior_guild_token", amount = 5 },
+    { table = "animated_bronze_armour_helm" },
+    { table = "animated_bronze_armour_body" },
+    { table = "animated_bronze_armour_legs" },
+]
+
+[animated_bronze_armour_helm]
+roll = 10
+drops = [
+    { id = "bronze_full_helm", chance = 9 },
+]
+
+[animated_bronze_armour_body]
+roll = 10
+drops = [
+    { id = "bronze_platebody", chance = 9 },
+]
+
+[animated_bronze_armour_legs]
+roll = 10
+drops = [
+    { id = "bronze_platelegs", chance = 9 },
+]
+
+[animated_iron_armour_drop_table]
+type = "all"
+drops = [
+    { id = "warrior_guild_token", amount = 10 },
+    { id = "iron_full_helm" },
+    { id = "iron_platebody" },
+    { table = "animated_iron_armour_secondary" },
+]
+
+[animated_iron_armour_secondary]
+roll = 10
+drops = [
+    { id = "iron_platelegs", chance = 9 },
+]
+
+[animated_black_armour_drop_table]
+drops = [
+    { id = "warrior_guild_token", amount = 20 },
+    { id = "black_full_helm" },
+    { id = "black_platebody" },
+    { id = "black_platelegs" },
+]
+
+[animated_steel_armour_drop_table]
+type = "all"
+drops = [
+    { id = "warrior_guild_token", amount = 15 },
+    { table = "animated_steel_armour_secondary" },
+    { id = "steel_platebody" },
+    { id = "steel_platelegs" },
+]
+
+[animated_steel_armour_secondary]
+roll = 100
+drops = [
+    { id = "steel_full_helm", chance = 9 },
+]
+
+[animated_mithril_armour_drop_table]
+drops = [
+    { id = "warrior_guild_token", amount = 25 },
+    { id = "mithril_full_helm" },
+    { id = "mithril_platebody" },
+    { id = "mithril_platelegs" },
+]
+
+[animated_adamant_armour_drop_table]
+drops = [
+    { id = "warrior_guild_token", amount = 30 },
+    { id = "adamant_full_helm" },
+    { id = "adamant_platebody" },
+    { id = "adamant_platelegs" },
+]
+
+[animated_rune_armour_drop_table]
+drops = [
+    { id = "warrior_guild_token", amount = 40 },
+    { id = "rune_full_helm" },
+    { id = "rune_platebody" },
+    { id = "rune_platelegs" },
+]

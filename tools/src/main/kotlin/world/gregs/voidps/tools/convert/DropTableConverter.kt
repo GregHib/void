@@ -17,6 +17,10 @@ object DropTableConverter {
 {{DropsTableBottom}}
         """.trimIndent()
         val npc = "moss_giant"
+        convert(string, npc)
+    }
+
+    fun convert(string: String, npc: String) {
         val all = mutableListOf<Builder>()
         var builder = Builder()
         for (line in string.lines()) {
@@ -63,6 +67,10 @@ object DropTableConverter {
         if (builder.drops.isNotEmpty()) {
             all.add(builder)
         }
+        print(npc, all)
+    }
+
+    fun print(npc: String, all: MutableList<Builder>) {
         val queue = LinkedList<Builder>()
         val parent = Builder()
         parent.name = "${npc}_drop_table"
@@ -114,9 +122,12 @@ object DropTableConverter {
             }
         }
 
+        process(builder, map)
+    }
+
+    fun process(builder: Builder, map: Map<String, String>) {
         assert(map.containsKey("name"))
         assert(map.containsKey("rarity"))
-
         var id = toIdentifier(map.getValue("name"))
         val notes = toIdentifier(map.getOrDefault("namenotes", ""))
         val members = when (notes) {
@@ -128,17 +139,19 @@ object DropTableConverter {
         val rarity = map.getValue("rarity")
         val (chance, roll) = if (rarity.contains("/")) {
             rarity.split("/").map { if (it.contains(".")) it.toDouble().toInt() else it.toInt() }
+        } else if (rarity.contains("%")) {
+            return
         } else {
-            when (rarity) {
-                "Always" -> listOf(1, 1)
-                "Very common" -> listOf(1, 8)
-                "Common" -> listOf(1, 16)
-                "Semi-common" -> listOf(1, 32)
-                "Uncommon" -> listOf(1, 64)
-                "Semi-rare" -> listOf(1, 128)
-                "Rare" -> listOf(1, 256)
-                "Very rare" -> listOf(1, 512)
-                "Brimstone rarity" -> return
+            when (rarity.lowercase()) {
+                "always" -> listOf(1, 1)
+                "very common" -> listOf(1, 8)
+                "common" -> listOf(1, 16)
+                "semi-common" -> listOf(1, 32)
+                "uncommon" -> listOf(1, 64)
+                "semi-rare" -> listOf(1, 128)
+                "rare" -> listOf(1, 256)
+                "very rare" -> listOf(1, 512)
+                "brimstone rarity", "", "varies", "once", "unknown", "random" -> return
                 else -> throw IllegalArgumentException("Unknown rarity '$rarity'")
             }
         }
@@ -152,13 +165,21 @@ object DropTableConverter {
             id = id.replace("_axe", "_hatchet")
         }
         if (quantity.contains("-")) {
-            val (low, high) = quantity.removeSuffix(" (noted)").split("-")
-            builder.addDrop(Builder.Drop(id, low.toInt()..high.toInt(), chance, roll, members))
+            var (low, high) = quantity.removeSuffix(" (noted)").split("-")
+            if (high.contains(",")) {
+                high = high.split(",").last()
+            }
+            builder.addDrop(Builder.Drop(id, low.trim().toInt()..high.trim().toInt(), chance, roll, members))
         } else if (quantity.contains(",")) {
-            val values = quantity.split(",").map { it.trim().toInt() }
+            val values = quantity.split(",").map { it.removeSuffix(" (noted)").trim().toInt() }
             val low = values.min()
             val high = values.max()
             builder.addDrop(Builder.Drop(id, low..high, chance, roll, members))
+        } else if (quantity.contains(";")) {
+            val values = quantity.split(";").map { it.removeSuffix(" (noted)").trim().toInt() }
+            for (value in values) {
+                builder.addDrop(Builder.Drop(id, value..value, chance, roll, members))
+            }
         } else {
             val amount = quantity.removeSuffix(" (noted)").toInt()
             builder.addDrop(Builder.Drop(id, amount..amount, chance, roll, members))
@@ -184,7 +205,7 @@ object DropTableConverter {
         }
 
         fun build() {
-            val roll = drops.maxOf { it.roll }
+            val roll = drops.maxOfOrNull { it.roll } ?: 0
             withRoll(roll)
             for (drop in drops) {
                 val multiplier = roll / drop.roll
@@ -199,35 +220,39 @@ object DropTableConverter {
             val roll: Int = 1,
             val members: Boolean? = null,
         ) {
-            override fun toString(): String = Config.stringWriter {
-                write("  { ")
-                val table = amount == -1..-1
-                writeKey(if (table) "table" else "id")
-                writeValue(id)
-                if (!table && amount != 1..1) {
-                    write(", ")
-                    if (amount.first == amount.last) {
-                        writeKey("amount")
-                        writeValue(amount.first)
-                    } else {
-                        writeKey("min")
-                        writeValue(amount.first)
+            val isTable: Boolean
+                get() = amount == -1..-1
+
+            override fun toString(): String {
+                return Config.stringWriter {
+                    write("  { ")
+                    writeKey(if (isTable) "table" else "id")
+                    writeValue(id)
+                    if (!isTable && amount != 1..1) {
                         write(", ")
-                        writeKey("max")
-                        writeValue(amount.last)
+                        if (amount.first == amount.last) {
+                            writeKey("amount")
+                            writeValue(amount.first)
+                        } else {
+                            writeKey("min")
+                            writeValue(amount.first)
+                            write(", ")
+                            writeKey("max")
+                            writeValue(amount.last)
+                        }
                     }
+                    if (chance != 1) {
+                        write(", ")
+                        writeKey("chance")
+                        writeValue(chance)
+                    }
+                    if (members != null) {
+                        write(", ")
+                        writeKey("members")
+                        writeValue(members)
+                    }
+                    write(" },\n")
                 }
-                if (chance != 1) {
-                    write(", ")
-                    writeKey("chance")
-                    writeValue(chance)
-                }
-                if (members != null) {
-                    write(", ")
-                    writeKey("members")
-                    writeValue(members)
-                }
-                write(" },\n")
             }
 
             companion object {

@@ -1,0 +1,137 @@
+[ice_troll_female_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "ice_troll_female_secondary" },
+    { table = "ice_troll_female_tertiary" },
+]
+
+[ice_troll_female_secondary]
+roll = 5012
+drops = [
+    { id = "adamant_full_helm", chance = 390 },
+    { id = "steel_platebody", chance = 390 },
+    { id = "mithril_warhammer", chance = 195 },
+    { id = "adamant_hatchet", chance = 195 },
+    { id = "rune_kiteshield", chance = 78 },
+    { id = "granite_shield", chance = 39 },
+    { id = "rune_warhammer", chance = 39 },
+    { id = "earth_rune", min = 8, max = 14, chance = 390 },
+    { id = "earth_rune", min = 12, max = 36, chance = 390 },
+    { id = "nature_rune", min = 4, max = 12, chance = 195 },
+    { id = "law_rune", min = 4, max = 8, chance = 195 },
+    { table = "herb_drop_table", chance = 78 },
+    { id = "coins", amount = 200, chance = 780 },
+    { id = "raw_shark_noted", min = 2, max = 8, chance = 390 },
+    { id = "seaweed_noted", min = 3, max = 9, chance = 390 },
+    { id = "ball_of_wool_noted", min = 18, max = 42, chance = 390 },
+    { table = "gem_drop_table", chance = 39 },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]
+
+[ice_troll_female_tertiary]
+roll = 5012
+drops = [
+    { id = "arctic_pine_logs_noted", min = 2, max = 4, chance = 358 },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]
+
+[ice_troll_male_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "ice_troll_male_secondary" },
+    { table = "ice_troll_male_tertiary" },
+]
+
+[ice_troll_male_secondary]
+roll = 5012
+drops = [
+    { id = "adamant_full_helm", chance = 390 },
+    { id = "steel_platebody", chance = 390 },
+    { id = "mithril_warhammer", chance = 195 },
+    { id = "adamant_hatchet", chance = 195 },
+    { id = "rune_kiteshield", chance = 78 },
+    { id = "granite_shield", chance = 39 },
+    { id = "rune_warhammer", chance = 39 },
+    { id = "earth_rune", min = 8, max = 14, chance = 390 },
+    { id = "earth_rune", min = 12, max = 36, chance = 390 },
+    { id = "nature_rune", min = 4, max = 12, chance = 195 },
+    { id = "law_rune", min = 4, max = 8, chance = 195 },
+    { table = "herb_drop_table", chance = 78 },
+    { id = "coins", amount = 200, chance = 780 },
+    { id = "raw_shark_noted", min = 2, max = 8, chance = 390 },
+    { id = "seaweed_noted", min = 3, max = 9, chance = 390 },
+    { id = "ball_of_wool_noted", min = 18, max = 42, chance = 390 },
+    { table = "gem_drop_table", chance = 39 },
+    { id = "steel_med_helm", chance = 156 },
+    { id = "black_warhammer", chance = 117 },
+    { id = "steel_warhammer", chance = 117 },
+    { id = "adamant_med_helm", chance = 39 },
+    { id = "adamant_warhammer", chance = 39 },
+    { id = "mithril_sq_shield", chance = 39 },
+    { id = "earth_rune", amount = 60, chance = 312 },
+    { id = "nature_rune", amount = 7, chance = 195 },
+    { id = "law_rune", amount = 2, chance = 117 },
+    { id = "earth_rune", amount = 45, chance = 39 },
+    { id = "earth_rune", amount = 25, chance = 39 },
+    { table = "herb_drop_table", chance = 585 },
+    { id = "coins", amount = 35, chance = 1131 },
+    { id = "coins", amount = 100, chance = 390 },
+    { id = "coins", amount = 8, chance = 273 },
+    { id = "coins", amount = 50, chance = 234 },
+    { id = "coins", amount = 250, chance = 39 },
+    { id = "coal_noted", amount = 3, chance = 117 },
+    { id = "raw_mackerel_noted", amount = 3, chance = 78 },
+    { table = "gem_drop_table", chance = 195 },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]
+
+[ice_troll_male_tertiary]
+roll = 5012
+drops = [
+    { id = "arctic_pine_logs_noted", min = 2, max = 4, chance = 358 },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]
+
+[ice_troll_grunt_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "ice_troll_grunt_secondary" },
+    { table = "ice_troll_grunt_tertiary" },
+]
+
+[ice_troll_grunt_secondary]
+roll = 128
+drops = [
+    { id = "adamant_full_helm", chance = 10 },
+    { id = "steel_platebody", chance = 10 },
+    { id = "mithril_warhammer", chance = 5 },
+    { id = "adamant_hatchet", chance = 5 },
+    { id = "rune_kiteshield", chance = 2 },
+    { id = "granite_shield" },
+    { id = "rune_warhammer" },
+    { id = "earth_rune", min = 8, max = 14, chance = 10 },
+    { id = "earth_rune", min = 12, max = 36, chance = 10 },
+    { id = "nature_rune", min = 4, max = 12, chance = 5 },
+    { id = "law_rune", min = 4, max = 8, chance = 5 },
+    { table = "herb_drop_table", chance = 2 },
+    { id = "coins", amount = 200, chance = 20 },
+    { id = "raw_shark_noted", min = 2, max = 8, chance = 10 },
+    { id = "seaweed_noted", min = 3, max = 9, chance = 10 },
+    { id = "ball_of_wool_noted", min = 18, max = 42, chance = 10 },
+    { table = "gem_drop_table" },
+]
+
+[ice_troll_grunt_tertiary]
+roll = 5012
+drops = [
+    { id = "arctic_pine_logs_noted", min = 2, max = 4, chance = 358 },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]

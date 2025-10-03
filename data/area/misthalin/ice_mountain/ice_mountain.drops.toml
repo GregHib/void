@@ -1,0 +1,30 @@
+[black_guard_low_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "black_guard_low_secondary" },
+]
+
+[black_guard_low_secondary]
+roll = 128
+drops = [
+    { id = "bronze_pickaxe", chance = 13 },
+    { id = "bronze_med_helm", chance = 4 },
+    { id = "bronze_battleaxe", chance = 2 },
+    { id = "iron_battleaxe" },
+    { id = "bronze_bolts", min = 2, max = 12, chance = 7 },
+    { id = "chaos_rune", amount = 2, chance = 4 },
+    { id = "nature_rune", amount = 2, chance = 4 },
+    { id = "coins", amount = 4, chance = 20 },
+    { id = "coins", amount = 10, chance = 15 },
+    { id = "coins", amount = 30, chance = 2 },
+    { id = "nothing", amount = 0, chance = 23 },
+    { id = "hammer", chance = 10 },
+    { id = "bronze_bar", chance = 7 },
+    { id = "iron_ore", chance = 4 },
+    { id = "tin_ore", chance = 3 },
+    { id = "copper_ore", chance = 3 },
+    { id = "iron_bar", chance = 3 },
+    { id = "coal", chance = 2 },
+    { table = "gem_drop_table" },
+]

@@ -12,21 +12,79 @@ examine = "A very brave merchant."
 
 [dark_warrior]
 id = 192
+hitpoints = 170
+att = 5
+str = 5
+def = 5
+style = "slash"
+max_hit_melee = 20
+attack_bonus = 20
+xp_bonus = 0.0
+hunt_mode = "cowardly"
+slayer_xp = 17.0
+categories = ["dark_warriors"]
+respawn_delay = 50
+examine = "A warrior touched by chaos."
 
 [guard_bandit]
 id = 196
-examine = "There's bloodlust in his eyes."
+hitpoints = 270
+att = 17
+str = 17
+def = 17
+style = "stab"
+max_hit_melee = 30
+attack_bonus = 11
+xp_bonus = 0.0
+hunt_mode = "aggressive"
+slayer_xp = 29.0
+categories = ["bandits"]
+respawn_delay = 100
+examine = "A wilderness outlaw."
 
 [black_heather]
 id = 202
+hitpoints = 370
+att = 32
+str = 26
+def = 27
+style = "slash"
+max_hit_melee = 40
+attack_bonus = 9
+slayer_xp = 37.0
+categories = ["bandits"]
+respawn_delay = 50
+drop_table = "wilderness_bandit"
 examine = "Has a fearsome scowl. Moreso, after being told to smile once in a while."
 
 [donny_the_lad]
 id = 203
+hitpoints = 370
+att = 32
+str = 26
+def = 27
+style = "slash"
+max_hit_melee = 40
+attack_bonus = 9
+slayer_xp = 37.0
+categories = ["bandits"]
+respawn_delay = 50
+drop_table = "wilderness_bandit"
 examine = "Has a fearsome posture, and a fearsome pair of weapons!"
 
 [speedy_keith]
 id = 204
+hitpoints = 370
+att = 32
+str = 26
+def = 27
+style = "slash"
+max_hit_melee = 40
+attack_bonus = 9
+slayer_xp = 37.0
+categories = ["bandits"]
+respawn_delay = 50
+drop_table = "wilderness_bandit"
 examine = "Refuses to accept his hairstyle has gone out of fashion."
 
 [mysterious_ghost_wilderness_bandit_camp]

@@ -7,16 +7,24 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.definition.AmmoDefinitions
+import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.ParameterDefinitions
+import world.gregs.voidps.engine.data.find
+import world.gregs.voidps.engine.data.list
 import world.gregs.voidps.engine.entity.item.drop.DropTables
-import world.gregs.voidps.engine.entity.item.drop.ItemDrop
-import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.inv.add
 
 object DropTableDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
-        Settings.load("game.properties")
+        Settings.load()
+        val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
+        val files = configFiles()
+        val categories = CategoryDefinitions().load(files.find(Settings["definitions.categories"]))
+        val ammo = AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"]))
+        val parameters = ParameterDefinitions(categories, ammo).load(files.find(Settings["definitions.parameters"]))
+        val itemDefinitions = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(files.list(Settings["definitions.items"]))
         startKoin {
             modules(
                 module {
@@ -26,24 +34,24 @@ object DropTableDefinitions {
                 },
             )
         }
-        val decoder = DropTables().load(configFiles().getValue(Settings["spawns.drops"]))
-        val table = decoder.getValue("goblin_drop_table")
-
-        val list = mutableListOf<ItemDrop>()
-        repeat(1000000) {
-            table.role(list = list)
-        }
-        val inventory = Inventory.debug(capacity = 100)
-        list.forEach {
-            val item = it.toItem()
-            if (item.isNotEmpty()) {
-                inventory.add(item.id, item.amount)
-            }
-        }
-        for (item in inventory.items) {
-            if (item.isNotEmpty()) {
-                println(item)
-            }
-        }
+        val decoder = DropTables().load(configFiles().getValue(Settings["spawns.drops"]), itemDefinitions)
+//        val table = decoder.getValue("goblin_drop_table")
+//
+//        val list = mutableListOf<ItemDrop>()
+//        repeat(1000000) {
+//            table.role(list = list)
+//        }
+//        val inventory = Inventory.debug(capacity = 100)
+//        list.forEach {
+//            val item = it.toItem()
+//            if (item.isNotEmpty()) {
+//                inventory.add(item.id, item.amount)
+//            }
+//        }
+//        for (item in inventory.items) {
+//            if (item.isNotEmpty()) {
+//                println(item)
+//            }
+//        }
     }
 }

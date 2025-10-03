@@ -1,0 +1,107 @@
+[mountain_troll_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "mountain_troll_secondary" },
+    { table = "mountain_troll_tertiary" },
+]
+
+[mountain_troll_secondary]
+roll = 128
+drops = [
+    { id = "steel_med_helm", chance = 4 },
+    { id = "black_warhammer", chance = 3 },
+    { id = "steel_warhammer", chance = 3 },
+    { id = "adamant_med_helm" },
+    { id = "adamant_warhammer" },
+    { id = "mithril_sq_shield" },
+    { id = "earth_rune", amount = 60, chance = 8 },
+    { id = "nature_rune", amount = 7, chance = 5 },
+    { id = "law_rune", amount = 2, chance = 3 },
+    { id = "earth_rune", amount = 45 },
+    { id = "earth_rune", amount = 25 },
+    { table = "herb_drop_table", chance = 15 },
+    { id = "coins", amount = 35, chance = 29 },
+    { id = "coins", amount = 100, chance = 10 },
+    { id = "coins", amount = 8, chance = 7 },
+    { id = "coins", amount = 50, chance = 6 },
+    { id = "coins", amount = 250 },
+    { id = "coal_noted", amount = 3, chance = 3 },
+    { id = "raw_mackerel_noted", amount = 3, chance = 2 },
+    { table = "gem_drop_table", chance = 5 },
+]
+
+[mountain_troll_tertiary]
+roll = 5012
+drops = [
+    { id = "troll_bone", chance = 1253, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]
+
+[terrorbird_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "terrorbird_wing", roll = 4, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]
+
+[tortoise_riderless_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "tortoise_riderless_secondary" },
+]
+
+[tortoise_riderless_secondary]
+roll = 128
+drops = [
+    { id = "nature_rune", min = 1, max = 3, chance = 10 },
+    { id = "steel_arrow", min = 12, max = 23, chance = 20 },
+    { id = "earth_rune", min = 10, max = 14, chance = 5 },
+    { table = "herb_drop_table", chance = 10 },
+    { table = "allotment_seed_drop_table", chance = 10 },
+    { id = "cabbage_seed", min = 10, max = 19, chance = 10 },
+    { id = "cabbage_noted", min = 20, max = 59, chance = 20 },
+    { id = "pineapple", chance = 10 },
+    { id = "worm_batta", chance = 8 },
+    { id = "swamp_toad", chance = 20 },
+    { id = "nothing", amount = 0, chance = 10 },
+    { id = "tortoise_shell", min = 1, max = 3, chance = 10 },
+    { id = "mahogany_logs", chance = 2 },
+    { id = "teak_logs", chance = 2 },
+    { id = "teak_logs", amount = 2 },
+]
+
+[tortoise_rider_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "tortoise_rider_secondary" },
+]
+
+[tortoise_rider_secondary]
+roll = 128
+drops = [
+    { id = "pink_boots" },
+    { id = "pink_robe_bottoms" },
+    { id = "pink_robe_top" },
+    { id = "earth_rune", min = 10, max = 14, chance = 10 },
+    { id = "mithril_arrow", min = 6, max = 11, chance = 20 },
+    { id = "nature_rune", min = 1, max = 3, chance = 10 },
+    { id = "steel_arrow", min = 12, max = 23, chance = 10 },
+    { table = "herb_drop_table", chance = 10 },
+    { table = "allotment_seed_drop_table", chance = 10 },
+    { id = "cabbage_seed", min = 10, max = 19, chance = 10 },
+    { id = "cabbage_noted", min = 20, max = 59, chance = 20 },
+    { id = "pineapple", chance = 10 },
+    { id = "toad_crunchies", chance = 10 },
+    { id = "worm_batta", chance = 4 },
+    { id = "blurberry_special" },
+    { id = "tortoise_shell", min = 1, max = 3, chance = 8 },
+    { id = "swamp_toad", chance = 5 },
+    { id = "mahogany_logs", amount = 2, chance = 2 },
+    { id = "perfect_shell", min = 1, max = 3, chance = 2 },
+    { id = "teak_logs", amount = 2, chance = 2 },
+    { id = "teak_logs", amount = 4 },
+]

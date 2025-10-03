@@ -1,0 +1,9 @@
+[gadderanks_normal]
+id = 3518
+hitpoints = 200
+att = 20
+str = 20
+def = 70
+style = "crush"
+max_hit_melee = 30
+examine = "A human working for the vampyres."

@@ -1,0 +1,38 @@
+[mogre_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "mogre_secondary" },
+    { table = "mogre_tertiary" },
+]
+
+[mogre_secondary]
+roll = 128
+drops = [
+    { id = "water_rune", amount = 5, chance = 4 },
+    { id = "water_rune", amount = 7, chance = 4 },
+    { id = "water_rune", amount = 14, chance = 4 },
+    { id = "raw_swordfish", chance = 20 },
+    { id = "raw_tuna", chance = 9 },
+    { id = "raw_pike", chance = 7 },
+    { id = "raw_salmon", chance = 4 },
+    { id = "raw_herring", chance = 3 },
+    { id = "raw_sardine", chance = 3 },
+    { id = "raw_shark", chance = 3 },
+    { id = "fishing_bait", amount = 5, chance = 30 },
+    { id = "fishing_bait", amount = 15, chance = 10 },
+    { id = "mudskipper_hat", chance = 5 },
+    { id = "oyster", chance = 3 },
+    { id = "flippers", chance = 2 },
+    { id = "seaweed", chance = 2 },
+    { id = "staff_of_water" },
+    { id = "fishbowl" },
+]
+
+[mogre_tertiary]
+roll = 5012
+drops = [
+    { id = "mogre_bone", chance = 1253 },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]

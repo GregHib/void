@@ -1,0 +1,37 @@
+[locust_rider_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "locust_rider_secondary" },
+]
+
+[locust_rider_secondary]
+roll = 128
+drops = [
+    { id = "adamant_kiteshield", chance = 3 },
+    { id = "battlestaff_noted", amount = 3, chance = 2 },
+    { id = "rune_dagger", chance = 2 },
+    { id = "rune_mace" },
+    { id = "rune_sq_shield" },
+    { id = "adamant_arrow", amount = 36, chance = 4 },
+    { id = "blood_rune", amount = 18, chance = 4 },
+    { id = "fire_rune", amount = 250, chance = 2 },
+    { id = "cosmic_rune", amount = 35, chance = 2 },
+    { id = "lava_rune", amount = 150, chance = 2 },
+    { id = "rune_arrow", amount = 18, chance = 2 },
+    { table = "herb_drop_table", chance = 20 },
+    { table = "rare_seed_drop_table", chance = 2 },
+    { id = "raw_lobster_noted", amount = 15, chance = 7 },
+    { id = "adamantite_ore_noted", amount = 14, chance = 2 },
+    { id = "coal_noted", amount = 32, chance = 6 },
+    { id = "desert_goat_horn_noted", amount = 6, chance = 2 },
+    { id = "mithril_bar_noted", amount = 22, chance = 2 },
+    { id = "raw_bass_noted", amount = 24, chance = 4 },
+    { id = "uncut_sapphire_noted", amount = 4, chance = 3 },
+    { id = "coins", min = 2000, max = 3000, chance = 32 },
+    { id = "waterskin_4" },
+    { id = "bass", amount = 6, chance = 4 },
+    { id = "lobster", amount = 5 },
+    { id = "marrentill_tar", amount = 80 },
+    { table = "rare_drop_table", chance = 15 },
+]

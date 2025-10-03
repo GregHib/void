@@ -1,0 +1,33 @@
+[outlaw_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "rats_paper" },
+    { table = "outlaw_secondary" },
+]
+
+[outlaw_secondary]
+roll = 128
+drops = [
+    { id = "bronze_med_helm", chance = 2 },
+    { id = "mind_rune", amount = 9, chance = 2 },
+    { id = "water_rune", amount = 6, chance = 2 },
+    { id = "earth_rune", amount = 5, chance = 2 },
+    { table = "herb_drop_table", chance = 32 },
+    { id = "coins", amount = 10, chance = 32 },
+    { id = "coins", amount = 5, chance = 12 },
+    { id = "coins", amount = 15, chance = 4 },
+    { id = "coins", amount = 25 },
+    { id = "rope", chance = 46 },
+    { id = "fishing_bait", chance = 15 },
+    { id = "copper_ore", chance = 2 },
+    { id = "cabbage", chance = 6 },
+    { id = "knife" },
+]
+
+[ram_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "ram_skull", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]

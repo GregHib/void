@@ -1,0 +1,35 @@
+[brine_rat_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "raw_rat_meat" },
+    { table = "brine_rat_secondary" },
+    { table = "medium_clue_scroll", roll = 128 },
+]
+
+[brine_rat_secondary]
+roll = 512
+drops = [
+    { id = "brine_sabre" },
+    { id = "death_rune", amount = 7, chance = 72 },
+    { id = "air_rune", amount = 18, chance = 8 },
+    { id = "earth_rune", amount = 10, chance = 24 },
+    { id = "earth_rune", amount = 18, chance = 8 },
+    { id = "earth_rune", amount = 36, chance = 16 },
+    { id = "water_rune", amount = 10, chance = 12 },
+    { id = "water_rune", amount = 18, chance = 8 },
+    { id = "blood_rune", amount = 4, chance = 8 },
+    { id = "raw_lobster_noted", amount = 10, chance = 24 },
+    { id = "raw_shark_noted", amount = 3, chance = 24 },
+    { id = "raw_rat_meat_noted", amount = 18, chance = 8 },
+    { id = "raw_pike_noted", amount = 18, chance = 8 },
+    { id = "raw_shark_noted", amount = 8, chance = 8 },
+    { id = "raw_swordfish", amount = 9, chance = 8 },
+    { id = "raw_shark", chance = 4 },
+    { id = "coins", chance = 84 },
+    { id = "coins", amount = 2, chance = 64 },
+    { id = "coins", amount = 4, chance = 36 },
+    { id = "coins", amount = 29, chance = 12 },
+    { id = "nothing", amount = 0, chance = 64 },
+    { id = "water_talisman", chance = 12 },
+]

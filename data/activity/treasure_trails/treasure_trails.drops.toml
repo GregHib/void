@@ -1,0 +1,69 @@
+[zamorak_wizard_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "zamorak_wizard_secondary" },
+]
+
+[zamorak_wizard_secondary]
+roll = 128
+drops = [
+    { id = "zamorak_robe_top", chance = 3 },
+    { id = "zamorak_robe_bottom", chance = 4 },
+    { id = "air_battlestaff", chance = 2 },
+    { id = "water_battlestaff", chance = 3 },
+    { id = "earth_battlestaff", chance = 3 },
+    { id = "fire_battlestaff" },
+    { id = "air_rune", amount = 60, chance = 3 },
+    { id = "air_rune", amount = 189, chance = 2 },
+    { id = "water_rune", amount = 42, chance = 3 },
+    { id = "water_rune", amount = 126, chance = 2 },
+    { id = "earth_rune", amount = 79, chance = 3 },
+    { id = "earth_rune", amount = 86, chance = 4 },
+    { id = "earth_rune", amount = 107, chance = 2 },
+    { id = "fire_rune", amount = 51, chance = 3 },
+    { id = "fire_rune", amount = 180, chance = 2 },
+    { id = "cosmic_rune", amount = 25 },
+    { id = "nature_rune", amount = 30, chance = 7 },
+    { id = "law_rune", amount = 9 },
+    { id = "death_rune", amount = 45, chance = 6 },
+    { id = "blood_rune", amount = 8, chance = 12 },
+    { id = "coins", amount = 77, chance = 17 },
+    { id = "coins", amount = 89, chance = 25 },
+    { id = "coins", amount = 240, chance = 3 },
+]
+
+[saradomin_wizard_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "saradomin_wizard_secondary" },
+]
+
+[saradomin_wizard_secondary]
+roll = 128
+drops = [
+    { id = "air_battlestaff", chance = 2 },
+    { id = "water_battlestaff", chance = 3 },
+    { id = "earth_battlestaff", chance = 3 },
+    { id = "fire_battlestaff" },
+    { id = "air_rune", amount = 60, chance = 3 },
+    { id = "air_rune", amount = 189, chance = 2 },
+    { id = "water_rune", amount = 42, chance = 3 },
+    { id = "water_rune", amount = 126, chance = 2 },
+    { id = "earth_rune", amount = 79, chance = 3 },
+    { id = "earth_rune", amount = 86, chance = 4 },
+    { id = "earth_rune", amount = 107, chance = 2 },
+    { id = "fire_rune", amount = 51, chance = 3 },
+    { id = "fire_rune", amount = 180, chance = 2 },
+    { id = "cosmic_rune", amount = 25 },
+    { id = "nature_rune", amount = 28, chance = 3 },
+    { id = "nature_rune", amount = 30, chance = 7 },
+    { id = "law_rune", amount = 9 },
+    { id = "law_rune", amount = 10, chance = 4 },
+    { id = "death_rune", amount = 45, chance = 6 },
+    { id = "blood_rune", amount = 8, chance = 12 },
+    { id = "coins", amount = 77, chance = 17 },
+    { id = "coins", amount = 89, chance = 25 },
+    { id = "coins", amount = 240, chance = 3 },
+]

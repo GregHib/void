@@ -1,0 +1,74 @@
+[large_mosquito]
+id = 2493
+hitpoints = 30
+att = 5
+def = 45
+style = "crush"
+max_hit_melee = 10
+hunt_mode = "cowardly"
+drop_table = "mosquito"
+examine = "A flying bloodsucker."
+
+[mosquito_swarm_level_17]
+id = 2494
+hitpoints = 90
+att = 10
+def = 45
+attack_speed = 2
+style = "crush"
+max_hit_melee = 10
+hunt_mode = "cowardly"
+drop_table = "mosquito"
+examine = "A swarm of three highly agile mosquitoes."
+
+[mosquito_swarm_level_20]
+id = 2495
+hitpoints = 150
+att = 15
+def = 45
+attack_speed = 2
+style = "crush"
+max_hit_melee = 10
+hunt_mode = "cowardly"
+drop_table = "mosquito"
+examine = "A swarm of five highly agile mosquitoes."
+
+[broodoo_victim_green]
+id = 2499
+hitpoints = 1000
+att = 0
+str = 0
+def = 26
+mage = 60
+attack_speed = 6
+style = "magic"
+max_hit_magic = 70
+hunt_mode = "cowardly"
+drop_table = "broodoo_victim_green"
+examine = "An undead victim of some ancient murderous ritual; his skin appears deep green."
+
+[broodoo_victim_orange]
+id = 2501
+clone = "broodoo_victim_green"
+drop_table = "broodoo_victim_orange"
+
+[broodoo_victim_blue]
+id = 2503
+clone = "broodoo_victim_green"
+drop_table = "broodoo_victim_blue"
+
+[bush_snake]
+id = 2489
+hitpoints = 250
+att = 25
+str = 25
+def = 50
+attack_speed = 3
+style = "stab"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+examine = "A slithering serpent that likes to hide in the bush."
+
+[bush_snake_2]
+id = 2490
+clone = "bush_snake"

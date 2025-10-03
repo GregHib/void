@@ -1,7 +1,20 @@
 [bear_drop_table]
 type = "all"
 drops = [
+    { table = "bear_cub_primary" },
+    { table = "bear_cub_tertiary" },
+]
+
+[bear_cub_primary]
+type = "all"
+drops = [
     { id = "bones" },
     { id = "bear_fur" },
     { id = "raw_bear_meat" },
+]
+
+[bear_cub_tertiary]
+roll = 90
+drops = [
+    { id = "bear_ribs", chance = 90, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
 ]

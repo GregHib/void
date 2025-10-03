@@ -140,6 +140,15 @@ examine = "A master at farming."
 [market_guard_draynor]
 id = 2236
 hunt_mode = "guarding"
+hitpoints = 220
+att = 17
+str = 18
+def = 13
+attack_speed = 5
+style = "crush"
+max_hit_melee = 30
+attack_bonus = 9
+respawn_delay = 50
 examine = "He guards the Draynor Market stalls from thieves."
 
 [bed_draynor]
@@ -225,3 +234,10 @@ id = 5198
 
 [scout_draynor_2]
 id = 5569
+
+[thing_under_the_bed]
+id = 2255
+hitpoints = 250
+def = 5
+style = "melee"
+max_hit_melee = 10

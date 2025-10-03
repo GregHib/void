@@ -1,7 +1,16 @@
 [mouse_mouse_hole]
 id = 5994
+hitpoints = 700
+att = 95
+str = 80
+def = 86
+style = "crush"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+respawn_delay = 35
 examine = "A huge mouse. It looks hungry..."
 
-[mouse_mouse_hole_2]
+[mouse_mouse_hole_dark]
 id = 5995
+clone = "mouse_mouse_hole"
 

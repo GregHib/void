@@ -16,3 +16,39 @@ examine = "He hasn't seen much sun lately."
 id = 905
 examine = "He runs the mage arena."
 
+[kolodion_human]
+id = 907
+hitpoints = 30
+attack_speed = 7
+style = "magic"
+max_hit_melee = 200
+hunt_mode = "cowardly"
+categories = ["no"]
+immune_poison = true
+examine = "'''In the Mage Arena cave:''' Runs the Mage Arena.<br/>'''In battle:''' He's a shape-shifter."
+
+[kolodion_ogre]
+id = 908
+hitpoints = 650
+attack_speed = 7
+style = "magic"
+max_hit_melee = 200
+hunt_mode = "cowardly"
+categories = ["no"]
+immune_poison = true
+examine = "He's a shape-shifter."
+
+[kolodion_demon]
+id = 911
+hitpoints = 1070
+att = 85
+str = 98
+def = 105
+mage = 80
+style = "magic"
+max_hit_melee = 200
+hunt_mode = "cowardly"
+slayer_xp = 107.0
+categories = ["black_demons"]
+examine = "He's a shape-shifter."
+

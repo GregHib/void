@@ -1,0 +1,26 @@
+[killerwatt_ball_attack]
+id = 575
+
+[killerwatt_attack]
+id = 576
+
+[killerwatt_electrocutes]
+id = 577
+
+[killerwatt_ball_death]
+id = 578
+
+[killerwatt_ball_defend]
+id = 579
+
+[killerwatt_death]
+id = 580
+
+[killerwatt_electrocute]
+id = 581
+
+[killerwatt_transforms]
+id = 582
+
+[killerwatt_defend]
+id = 583

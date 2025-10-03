@@ -22,11 +22,28 @@ examine = "This guard looks rather drunk and has beer stains down his armour."
 
 [watchman]
 id = 34
+hitpoints = 220
+att = 31
+str = 31
+def = 31
+style = "crush"
+max_hit_melee = 40
+respawn_delay = 50
 pickpocket = { level = 65, stun_ticks = 8, stun_hit = 30, xp = 137.5, chance_min = 15, chance_max = 160, table = "watchman" }
 examine = "Watches stuff. But who watches him?"
 
 [soldier_yanille]
 id = 35
+hitpoints = 220
+att = 26
+str = 25
+def = 26
+attack_speed = 5
+style = "slash"
+max_hit_melee = 40
+attack_bonus = 8
+respawn_delay = 50
+drop_table = "soldier_yanille"
 examine = "A soldier of the town of Yanille."
 
 [professor_imblewyn]
@@ -93,9 +110,27 @@ examine = "The hat is a dead giveaway."
 
 [tower_guard]
 id = 877
+hitpoints = 220
+att = 26
+str = 26
+def = 26
+style = "stab"
+max_hit_melee = 40
+attack_bonus = 8
+respawn_delay = 50
+drop_table = "soldier_yanille"
 examine = "Tries to keep the peace."
 
 [colonel_radick]
 id = 878
+hitpoints = 650
+att = 25
+str = 25
+def = 25
+style = "slash"
+max_hit_melee = 40
+attack_bonus = 9
+respawn_delay = 50
+drop_table = "soldier_yanille"
 examine = "A military man."
 

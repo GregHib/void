@@ -1,11 +1,30 @@
 [tyras_guard]
 id = 1203
+hitpoints = 1100
+att = 85
+str = 95
+def = 100
+range = 0
+attack_speed = 5
+style = "stab"
+max_hit_melee = 150
+attack_bonus = 20
+xp_bonus = 0.5
+respawn_delay = 50
+drop_table = "tyras_guard"
+examine = "One of King Tyras's men."
+
+[tyras_guard_port_tyras]
+id = 4649
+clone = "tyras_guard"
 
 [tyras_guard_2]
 id = 1204
+clone = "tyras_guard"
 
 [tyras_guard_3]
 id = 1206
+clone = "tyras_guard"
 
 [quartermaster]
 id = 1208

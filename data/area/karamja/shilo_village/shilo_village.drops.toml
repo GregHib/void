@@ -1,0 +1,13 @@
+[undead_one_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "undead_one_tertiary" },
+]
+
+[undead_one_tertiary]
+roll = 5000
+drops = [
+    { id = "skeleton_champions_scroll", members = true, lacks = "skeleton_champions_scroll" },
+    { id = "zombie_champions_scroll", members = true, lacks = "zombie_champions_scroll" },
+]

@@ -30,3 +30,524 @@ examine = "A flea infested, pale looking excuse of a man."
 [valantay_eppel_2]
 id = 3630
 examine = "A Burgh de Rott male militia volunteer."
+
+[giant_snail_level_80]
+id = 3612
+hitpoints = 1250
+att = 30
+str = 30
+def = 60
+mage = 30
+range = 70
+style = "range"
+max_hit_melee = 80
+drop_table = "giant_snail"
+examine = "Euew."
+
+[giant_snail_level_109]
+id = 3613
+hitpoints = 1500
+att = 30
+str = 30
+def = 75
+mage = 30
+range = 110
+style = "range"
+max_hit_melee = 130
+drop_table = "giant_snail"
+examine = "Euew."
+
+[giant_snail_level_139]
+id = 3614
+hitpoints = 1600
+att = 30
+str = 30
+def = 86
+mage = 30
+range = 160
+style = "range"
+max_hit_melee = 170
+drop_table = "giant_snail"
+examine = "Euew."
+
+[head_visible]
+id = 3619
+hitpoints = 1500
+att = 73
+str = 186
+def = 75
+mage = 50
+range = 50
+attack_speed = 10
+style = "crush"
+max_hit_melee = 200
+hunt_mode = "cowardly"
+examine = "I'm glad I can't see the rest of it!"
+
+[nail_beast_level_69]
+id = 1521
+hitpoints = 550
+att = 150
+str = 6
+def = 2
+attack_speed = 8
+style = "slash"
+max_hit_melee = 20
+hunt_mode = "cowardly"
+drop_table = "nail_beast"
+examine = "A huge nail beast. Its nails appear very sharp."
+
+[nail_beast_level_98]
+id = 1522
+hitpoints = 650
+att = 215
+str = 16
+def = 30
+attack_speed = 8
+style = "slash"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+drop_table = "nail_beast"
+examine = "A huge nail beast. Its nails appear very sharp."
+
+[nail_beast_level_141]
+id = 1523
+hitpoints = 750
+att = 320
+str = 26
+def = 40
+attack_speed = 8
+style = "slash"
+max_hit_melee = 40
+hunt_mode = "cowardly"
+drop_table = "nail_beast"
+examine = "A huge nail beast. Its nails appear very sharp."
+
+[swamp_snake_level_80]
+id = 3599
+hitpoints = 1200
+att = 50
+str = 50
+def = 70
+mage = 30
+range = 30
+style = "crush"
+max_hit_melee = 60
+examine = "A large snake that thrives in swamps."
+
+[swamp_snake_level_109]
+id = 3600
+hitpoints = 1250
+att = 70
+str = 110
+def = 80
+mage = 30
+range = 30
+style = "crush"
+max_hit_melee = 120
+examine = "A large snake that thrives in swamps."
+
+[swamp_snake_level_139]
+id = 3601
+hitpoints = 1300
+att = 90
+str = 170
+def = 90
+mage = 30
+range = 30
+style = "crush"
+max_hit_melee = 180
+examine = "A large snake that thrives in swamps."
+
+[tentacle_visible]
+id = 3618
+hitpoints = 750
+att = 115
+str = 76
+def = 75
+mage = 50
+range = 115
+attack_speed = 6
+style = "crush"
+max_hit_melee = 120
+hunt_mode = "cowardly"
+examine = "I'm glad I can't see the rest of it!"
+
+[tentacle_submerged]
+id = 3621
+clone = "tentacle_visible"
+
+[undead_lumberjack_level_30]
+id = 1524
+hitpoints = 100
+att = 73
+str = 6
+def = 10
+style = "crush"
+max_hit_melee = 20
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+slayer_xp = 0.0
+categories = ["zombies"]
+drop_table = "undead_lumberjack"
+examine = "He is one, but he's not alright."
+
+[undead_lumberjack_level_30_2]
+id = 1525
+clone = "undead_lumberjack_level_30"
+
+[undead_lumberjack_level_30_3]
+id = 5678
+clone = "undead_lumberjack_level_30"
+
+[undead_lumberjack_level_30_4]
+id = 5679
+clone = "undead_lumberjack_level_30"
+
+[undead_lumberjack_level_30_5]
+id = 5680
+clone = "undead_lumberjack_level_30"
+
+[undead_lumberjack_level_30_6]
+id = 5681
+clone = "undead_lumberjack_level_30"
+
+[undead_lumberjack_level_30_7]
+id = 5682
+clone = "undead_lumberjack_level_30"
+
+[undead_lumberjack_level_30_8]
+id = 5683
+clone = "undead_lumberjack_level_30"
+
+[undead_lumberjack_level_35]
+id = 5684
+hitpoints = 120
+style = "crush"
+max_hit_melee = 20
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+slayer_xp = 0.0
+categories = ["zombies"]
+drop_table = "undead_lumberjack"
+examine = "He is one, but he's not alright."
+
+[undead_lumberjack_level_35_2]
+id = 5685
+clone = "undead_lumberjack_level_35"
+
+[undead_lumberjack_level_35_3]
+id = 5686
+clone = "undead_lumberjack_level_35"
+
+[undead_lumberjack_level_35_4]
+id = 5687
+clone = "undead_lumberjack_level_35"
+
+[undead_lumberjack_level_35_5]
+id = 5688
+clone = "undead_lumberjack_level_35"
+
+[undead_lumberjack_level_35_6]
+id = 5689
+clone = "undead_lumberjack_level_35"
+
+[undead_lumberjack_level_35_7]
+id = 5690
+clone = "undead_lumberjack_level_35"
+
+[undead_lumberjack_level_35_8]
+id = 5691
+clone = "undead_lumberjack_level_35"
+
+[undead_lumberjack_level_40]
+id = 5692
+hitpoints = 120
+att = 101
+str = 6
+def = 12
+style = "crush"
+max_hit_melee = 20
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+slayer_xp = 0.0
+categories = ["zombies"]
+drop_table = "undead_lumberjack"
+examine = "He is one, but he's not alright."
+
+[undead_lumberjack_level_40_2]
+id = 5693
+clone = "undead_lumberjack_level_40"
+
+[undead_lumberjack_level_40_3]
+id = 5694
+clone = "undead_lumberjack_level_40"
+
+[undead_lumberjack_level_40_4]
+id = 5695
+clone = "undead_lumberjack_level_40"
+
+[undead_lumberjack_level_40_5]
+id = 5696
+clone = "undead_lumberjack_level_40"
+
+[undead_lumberjack_level_40_6]
+id = 5697
+clone = "undead_lumberjack_level_40"
+
+[undead_lumberjack_level_40_7]
+id = 5698
+clone = "undead_lumberjack_level_40"
+
+[undead_lumberjack_level_40_8]
+id = 5699
+clone = "undead_lumberjack_level_40"
+
+[undead_lumberjack_level_45]
+id = 5700
+hitpoints = 130
+att = 105
+str = 16
+def = 13
+style = "crush"
+max_hit_melee = 30
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+slayer_xp = 0.0
+categories = ["zombies"]
+drop_table = "undead_lumberjack"
+examine = "He is one, but he's not alright."
+
+[undead_lumberjack_level_45_2]
+id = 5701
+clone = "undead_lumberjack_level_45"
+
+[undead_lumberjack_level_45_3]
+id = 5702
+clone = "undead_lumberjack_level_45"
+
+[undead_lumberjack_level_45_4]
+id = 5703
+clone = "undead_lumberjack_level_45"
+
+[undead_lumberjack_level_45_5]
+id = 5704
+clone = "undead_lumberjack_level_45"
+
+[undead_lumberjack_level_45_6]
+id = 5705
+clone = "undead_lumberjack_level_45"
+
+[undead_lumberjack_level_45_7]
+id = 5706
+clone = "undead_lumberjack_level_45"
+
+[undead_lumberjack_level_45_8]
+id = 5707
+clone = "undead_lumberjack_level_45"
+
+[undead_lumberjack_level_50]
+id = 5708
+hitpoints = 140
+att = 117
+str = 16
+def = 14
+style = "crush"
+max_hit_melee = 30
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+slayer_xp = 0.0
+categories = ["zombies"]
+drop_table = "undead_lumberjack"
+examine = "He is one, but he's not alright."
+
+[undead_lumberjack_level_50_2]
+id = 5709
+clone = "undead_lumberjack_level_50"
+
+[undead_lumberjack_level_50_3]
+id = 5710
+clone = "undead_lumberjack_level_50"
+
+[undead_lumberjack_level_50_4]
+id = 5711
+clone = "undead_lumberjack_level_50"
+
+[undead_lumberjack_level_50_5]
+id = 5712
+clone = "undead_lumberjack_level_50"
+
+[undead_lumberjack_level_50_6]
+id = 5713
+clone = "undead_lumberjack_level_50"
+
+[undead_lumberjack_level_50_7]
+id = 5714
+clone = "undead_lumberjack_level_50"
+
+[undead_lumberjack_level_50_8]
+id = 5715
+clone = "undead_lumberjack_level_50"
+
+[undead_lumberjack_level_55]
+id = 5716
+hitpoints = 120
+style = "crush"
+max_hit_melee = 40
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+slayer_xp = 0.0
+categories = ["zombies"]
+drop_table = "undead_lumberjack"
+examine = "He is one, but he's not alright."
+
+[undead_lumberjack_level_55_2]
+id = 5717
+clone = "undead_lumberjack_level_55"
+
+[undead_lumberjack_level_55_3]
+id = 5718
+clone = "undead_lumberjack_level_55"
+
+[undead_lumberjack_level_55_4]
+id = 5719
+clone = "undead_lumberjack_level_55"
+
+[undead_lumberjack_level_55_5]
+id = 5720
+clone = "undead_lumberjack_level_55"
+
+[undead_lumberjack_level_55_6]
+id = 5721
+clone = "undead_lumberjack_level_55"
+
+[undead_lumberjack_level_55_7]
+id = 5722
+clone = "undead_lumberjack_level_55"
+
+[undead_lumberjack_level_55_8]
+id = 5723
+clone = "undead_lumberjack_level_55"
+
+[undead_lumberjack_level_60]
+id = 5724
+hitpoints = 120
+att = 137
+str = 26
+def = 16
+style = "crush"
+max_hit_melee = 40
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+slayer_xp = 0.0
+categories = ["zombies"]
+drop_table = "undead_lumberjack"
+examine = "He is one, but he's not alright."
+
+[undead_lumberjack_level_60_2]
+id = 5725
+clone = "undead_lumberjack_level_60"
+
+[undead_lumberjack_level_60_3]
+id = 5726
+clone = "undead_lumberjack_level_60"
+
+[undead_lumberjack_level_60_4]
+id = 5727
+clone = "undead_lumberjack_level_60"
+
+[undead_lumberjack_level_60_5]
+id = 5728
+clone = "undead_lumberjack_level_60"
+
+[undead_lumberjack_level_60_6]
+id = 5729
+clone = "undead_lumberjack_level_60"
+
+[undead_lumberjack_level_60_7]
+id = 5730
+clone = "undead_lumberjack_level_60"
+
+[undead_lumberjack_level_60_8]
+id = 5731
+clone = "undead_lumberjack_level_60"
+
+[undead_lumberjack_level_64]
+id = 5732
+hitpoints = 120
+style = "crush"
+max_hit_melee = 40
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+slayer_xp = 0.0
+categories = ["zombies"]
+drop_table = "undead_lumberjack"
+examine = "He is one, but he's not alright."
+
+[undead_lumberjack_level_64_2]
+id = 5733
+clone = "undead_lumberjack_level_64"
+
+[undead_lumberjack_level_64_3]
+id = 5734
+clone = "undead_lumberjack_level_64"
+
+[undead_lumberjack_level_64_4]
+id = 5735
+clone = "undead_lumberjack_level_64"
+
+[undead_lumberjack_level_64_5]
+id = 5736
+clone = "undead_lumberjack_level_64"
+
+[undead_lumberjack_level_64_6]
+id = 5737
+clone = "undead_lumberjack_level_64"
+
+[undead_lumberjack_level_64_7]
+id = 5738
+clone = "undead_lumberjack_level_64"
+
+[undead_lumberjack_level_64_8]
+id = 5739
+clone = "undead_lumberjack_level_64"
+
+[undead_lumberjack_level_70]
+id = 5740
+hitpoints = 120
+style = "crush"
+max_hit_melee = 40
+xp_bonus = -10.0
+hunt_mode = "cowardly"
+slayer_xp = 0.0
+categories = ["zombies"]
+drop_table = "undead_lumberjack"
+examine = "He is one, but he's not alright."
+
+[undead_lumberjack_level_70_2]
+id = 5741
+clone = "undead_lumberjack_level_70"
+
+[undead_lumberjack_level_70_3]
+id = 5742
+clone = "undead_lumberjack_level_70"
+
+[undead_lumberjack_level_70_4]
+id = 5743
+clone = "undead_lumberjack_level_70"
+
+[undead_lumberjack_level_70_5]
+id = 5744
+clone = "undead_lumberjack_level_70"
+
+[undead_lumberjack_level_70_6]
+id = 5745
+clone = "undead_lumberjack_level_70"
+
+[undead_lumberjack_level_70_7]
+id = 5746
+clone = "undead_lumberjack_level_70"
+
+[undead_lumberjack_level_70_8]
+id = 5747
+clone = "undead_lumberjack_level_70"

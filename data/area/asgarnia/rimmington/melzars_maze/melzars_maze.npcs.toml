@@ -1,4 +1,14 @@
 [melzar_the_mad]
 id = 753
+hitpoints = 440
+att = 37
+str = 37
+def = 34
+mage = 40
+style = "magic"
+style = "crush"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+respawn_delay = 30
 examine = "He looks totally insane!"
 

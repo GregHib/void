@@ -1,0 +1,25 @@
+[experiment_no_2]
+id = 5993
+hitpoints = 950
+att = 104
+str = 92
+def = 90
+range = 100
+style = "crush"
+max_hit_melee = 110
+xp_bonus = 2.5
+respawn_delay = 10
+examine = "A very odd looking creature."
+
+[glod_normal]
+id = 5996
+hitpoints = 1600
+att = 115
+str = 120
+def = 110
+style = "crush"
+max_hit_melee = 250
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "A cloud giant."

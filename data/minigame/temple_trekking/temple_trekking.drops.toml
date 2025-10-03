@@ -1,0 +1,51 @@
+[giant_snail_drop_table]
+type = "all"
+drops = [
+    { table = "giant_snail_secondary" },
+]
+
+[giant_snail_secondary]
+roll = 50
+drops = [
+    { id = "snail_shell", chance = 50 },
+    { id = "perfect_snail_shell" },
+]
+
+[nail_beast_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { id = "nail_beast_nails" },
+    { table = "nail_beast_tertiary" },
+]
+
+[nail_beast_tertiary]
+roll = 5012
+drops = [
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]
+
+[undead_lumberjack_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "plank" },
+    { table = "undead_lumberjack_secondary" },
+    { table = "undead_lumberjack_tertiary" },
+]
+
+[undead_lumberjack_secondary]
+roll = 4
+drops = [
+    { id = "lumberjack_top" },
+    { id = "lumberjack_legs" },
+    { id = "lumberjack_hat" },
+    { id = "lumberjack_boots" },
+]
+
+[undead_lumberjack_tertiary]
+roll = 5000
+drops = [
+    { id = "zombie_champions_scroll", members = true, lacks = "zombie_champions_scroll" },
+]

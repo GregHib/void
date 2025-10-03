@@ -1,6 +1,13 @@
 [penguin_miscellania]
 id = 131
+hitpoints = 40
+str = 2
+def = 2
+style = "stab"
+max_hit_melee = 10
+slayer_xp = 4.0
 categories = ["birds"]
+respawn_delay = 30
 examine = "An inhabitant of icy regions."
 
 [gull_miscellania]
@@ -41,11 +48,27 @@ examine = "A subject of Etceteria."
 
 [skraeling]
 id = 1367
+hitpoints = 10
+att = 3
+str = 3
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
+drop_table = "bones"
 examine = "A warrior of Etceteria."
 
-[skraeling_2]
+[skraeling_battleaxe]
 id = 1368
-examine = "A warrior of Etceteria."
+clone = "skraeling"
+
+[skraeling_brown_shirt]
+id = 1389
+clone = "skraeling"
+
+[skraeling_green_shirt]
+id = 1391
+clone = "skraeling"
 
 [fishmonger_etceteria]
 id = 1369
@@ -102,10 +125,19 @@ examine = "No-one would mistake her for a duchess."
 
 [ragnar]
 id = 1379
+hitpoints = 10
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 50
 examine = "A subject of Miscellania."
 
 [einar]
 id = 1380
+hitpoints = 10
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 50
+drop_table = "bones"
 examine = "A subject of Miscellania."
 
 [alrik]
@@ -114,10 +146,19 @@ examine = "A subject of Miscellania."
 
 [thorhild]
 id = 1382
+hitpoints = 10
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 50
+drop_table = "bones"
 examine = "A subject of Miscellania."
 
 [halla]
 id = 1383
+hitpoints = 10
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 50
 shop = "miscellanian_clothes_shop"
 examine = "A subject of Miscellania."
 
@@ -126,6 +167,14 @@ id = 1385
 
 [rannveig]
 id = 1386
+hitpoints = 10
+att = 3
+str = 3
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
+drop_table = "bones"
 examine = "A subject of Miscellania."
 
 [thora]
@@ -134,21 +183,37 @@ examine = "A subject of Miscellania."
 
 [valgerd]
 id = 1388
+hitpoints = 10
+att = 3
+str = 3
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "A subject of Miscellania."
-
-[skraeling_3]
-id = 1389
 
 [broddi]
 id = 1390
+hitpoints = 10
+att = 3
+str = 3
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
+drop_table = "bones"
 examine = "A subject of Miscellania."
-
-[skraeling_4]
-id = 1391
-examine = "A warrior of Miscellania."
 
 [ragnvald]
 id = 1392
+hitpoints = 10
+att = 3
+str = 3
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
+drop_table = "bones"
 examine = "A subject of Miscellania."
 
 [fishmonger_miscellania]
@@ -190,9 +255,27 @@ id = 1402
 
 [rooster_miscellania]
 id = 1403
+hitpoints = 50
+style = "stab"
+max_hit_melee = 0
+attack_bonus = -47
+slayer_xp = 5.0
+categories = ["birds"]
+immune_poison = true
+respawn_delay = 25
+examine = "He rules the, er, roost."
 
 [rabbit_miscellania]
 id = 1404
+hitpoints = 50
+style = "crush"
+max_hit_melee = 10
+attack_bonus = -47
+respawn_delay = 25
+combat_anims = "rabbit"
+combat_sounds = "rabbit"
+drop_table = "rabbit"
+examine = "A cute bunny rabbit."
 
 [rhazien_miscellania]
 id = 2337
@@ -287,12 +370,30 @@ examine = "A rather scared-looking dwarf. He doesn't seem all that drunk."
 
 [sea_snake_young]
 id = 3939
+hitpoints = 850
+att = 90
+str = 70
+def = 70
+style = "crush"
+max_hit_melee = 80
+slayer_xp = 85.0
 categories = ["sea_snakes"]
+respawn_delay = 50
+drop_table = "sea_snake_hatchling"
 examine = "Snake, snake, oh, it's a young snake..."
 
 [sea_snake_hatchling]
 id = 3940
+hitpoints = 500
+att = 60
+str = 55
+def = 50
+style = "crush"
+max_hit_melee = 60
+slayer_xp = 50.0
 categories = ["sea_snakes"]
+respawn_delay = 50
+drop_table = "sea_snake_hatchling"
 examine = "A baby sea snake. Snaaaaaaake!"
 
 [guard_miscellania_2]

@@ -1,0 +1,5 @@
+[ice_queen_drop_table]
+type = "all"
+drops = [
+    { id = "ice_gloves" },
+]

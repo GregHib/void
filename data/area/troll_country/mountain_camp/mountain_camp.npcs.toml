@@ -20,22 +20,37 @@ examine = "He seems to be minding the goats."
 
 [camp_dweller_mountain_camp]
 id = 1814
+hitpoints = 300
+att = 25
+str = 30
+def = 25
+style = "crush"
+max_hit_melee = 50
+respawn_delay = 50
+drop_table = "bones"
 examine = "One of the inhabitants of the camp."
 
 [camp_dweller_mountain_camp_2]
 id = 1815
-examine = "One of the inhabitants of the camp."
+clone = "camp_dweller_mountain_camp"
 
 [camp_dweller_mountain_camp_3]
 id = 1816
-examine = "One of the inhabitants of the camp."
+clone = "camp_dweller_mountain_camp"
 
 [camp_dweller_mountain_camp_4]
 id = 1817
-examine = "One of the inhabitants of the camp."
+clone = "camp_dweller_mountain_camp"
 
 [camp_dweller_mountain_camp_5]
 id = 1818
+hitpoints = 250
+att = 20
+str = 25
+def = 20
+style = "crush"
+max_hit_melee = 30
+respawn_delay = 50
 examine = "One of the inhabitants of the camp."
 
 [mountain_goat_mountain_camp]

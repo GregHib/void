@@ -1,0 +1,7 @@
+[evil_chicken_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "raw_chicken" },
+    { id = "feather", min = 50, max = 250 },
+]

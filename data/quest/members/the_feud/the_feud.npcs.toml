@@ -1,0 +1,27 @@
+[bandit_champion]
+id = 1885
+hitpoints = 500
+att = 59
+str = 80
+def = 50
+style = "slash"
+max_hit_melee = 100
+attack_bonus = 9
+hunt_mode = "aggressive"
+drop_table = "bandit_champion"
+examine = "A very tough-looking bandit."
+
+[tough_guy]
+id = 1906
+hitpoints = 750
+att = 85
+str = 50
+def = 50
+mage = 80
+range = 0
+style = "crush"
+max_hit_melee = 70
+attack_bonus = 9
+hunt_mode = "cowardly"
+drop_table = "tough_guy"
+examine = "Tough looking Menaphite."

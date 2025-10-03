@@ -35,13 +35,23 @@ examine = "He looks holy."
 id = 652
 examine = "He looks kind of puny..."
 
-[rockslug_small]
-id = 1632
-examine = "The slime of evil."
-
 [rockslug]
 id = 1631
+hitpoints = 270
+att = 22
+str = 27
+def = 27
+style = "crush"
+max_hit_melee = 40
+slayer_xp = 27.0
+categories = ["rockslugs"]
+respawn_delay = 15
+drop_table = "rockslug"
 examine = "The slime of evil."
+
+[rockslug_small]
+id = 1632
+clone = "rockslug"
 
 [sergeant_mossfists_2]
 id = 5871

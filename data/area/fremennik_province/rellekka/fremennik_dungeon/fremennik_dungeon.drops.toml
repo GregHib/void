@@ -1,0 +1,123 @@
+[basilisk_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "basilisk_secondary" },
+    { table = "basilisk_tertiary" },
+]
+
+[basilisk_secondary]
+roll = 512
+drops = [
+    { id = "mithril_hatchet", chance = 12 },
+    { id = "mithril_spear", chance = 8 },
+    { id = "steel_battleaxe", chance = 12 },
+    { id = "adamant_full_helm", chance = 4 },
+    { id = "mithril_kiteshield", chance = 4 },
+    { id = "rune_dagger", chance = 4 },
+    { id = "light_mystic_hat" },
+    { id = "water_rune", amount = 75, chance = 32 },
+    { id = "nature_rune", amount = 15, chance = 20 },
+    { id = "law_rune", amount = 3, chance = 12 },
+    { id = "nature_rune", amount = 37, chance = 4 },
+    { table = "herb_drop_table", chance = 140 },
+    { id = "adamantite_ore", chance = 12 },
+    { id = "coins", amount = 44, chance = 116 },
+    { id = "coins", amount = 200, chance = 68 },
+    { id = "coins", amount = 132, chance = 20 },
+    { id = "coins", amount = 11, chance = 20 },
+    { id = "coins", amount = 440, chance = 4 },
+    { table = "gem_drop_table", chance = 20 },
+]
+
+[basilisk_tertiary]
+roll = 2000
+drops = [
+    { table = "elite_clue_scroll", roll = 2000 },
+    { id = "basilisk_bone", chance = 500, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { id = "basilisk_head", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]
+
+[cockatrice_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "cockatrice_secondary" },
+    { table = "cockatrice_tertiary" },
+]
+
+[cockatrice_secondary]
+roll = 512
+drops = [
+    { id = "iron_sword", chance = 12 },
+    { id = "steel_dagger", chance = 12 },
+    { id = "iron_boots", chance = 4 },
+    { id = "iron_javelin", amount = 5, chance = 4 },
+    { id = "steel_longsword", chance = 4 },
+    { id = "light_mystic_boots" },
+    { id = "nature_rune", amount = 2, chance = 24 },
+    { id = "nature_rune", amount = 4, chance = 16 },
+    { id = "nature_rune", amount = 6, chance = 8 },
+    { id = "law_rune", amount = 2, chance = 12 },
+    { id = "water_rune", amount = 2, chance = 8 },
+    { id = "fire_rune", amount = 7, chance = 8 },
+    { table = "herb_drop_table", chance = 40 },
+    { id = "coins", amount = 15, chance = 64 },
+    { id = "coins", amount = 5, chance = 48 },
+    { id = "coins", amount = 28, chance = 48 },
+    { id = "coins", amount = 62, chance = 16 },
+    { id = "coins", amount = 42, chance = 12 },
+    { id = "coins", chance = 4 },
+    { id = "limpwurt_root", chance = 84 },
+    { id = "nothing", amount = 0, chance = 4 },
+    { table = "gem_drop_table", chance = 8 },
+]
+
+[cockatrice_tertiary]
+roll = 1000
+drops = [
+    { table = "medium_clue_scroll", chance = 7 },
+    { id = "cockatrice_head" },
+]
+
+[kurask_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "kurask_secondary" },
+    { table = "kurask_tertiary" },
+]
+
+[kurask_secondary]
+roll = 1026
+drops = [
+    { id = "mithril_kiteshield", chance = 24 },
+    { id = "rune_longsword", chance = 24 },
+    { id = "adamant_platebody", chance = 24 },
+    { id = "rune_hatchet", chance = 24 },
+    { id = "leaf_bladed_sword", chance = 2 },
+    { id = "light_mystic_robe_top", chance = 2 },
+    { id = "leaf_bladed_spear" },
+    { id = "nature_rune", amount = 10, chance = 80 },
+    { id = "nature_rune", amount = 15, chance = 56 },
+    { id = "nature_rune", amount = 30, chance = 32 },
+    { table = "rare_seed_drop_table", chance = 120 },
+    { id = "limpwurt_seed", chance = 48 },
+    { id = "coins", min = 2000, max = 3000, chance = 128 },
+    { id = "coins", amount = 10000, chance = 40 },
+    { id = "flax_noted", amount = 100, chance = 48 },
+    { id = "white_berries_noted", amount = 12, chance = 48 },
+    { id = "papaya_fruit_noted", amount = 10, chance = 32 },
+    { id = "coconut_noted", amount = 10, chance = 32 },
+    { id = "big_bones_noted", amount = 20, chance = 40 },
+    { table = "gem_drop_table", chance = 48 },
+]
+
+[kurask_tertiary]
+roll = 3000
+drops = [
+    { id = "crystal_teleport_seed_uncharged", chance = 125 },
+    { table = "hard_clue_scroll", chance = 23 },
+    { id = "kurask_head" },
+]
+

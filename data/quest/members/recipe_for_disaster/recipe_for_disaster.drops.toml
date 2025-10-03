@@ -1,0 +1,7 @@
+[jubbly_bird_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { id = "raw_jubbly" },
+    { id = "feather", min = 15, max = 45 },
+]

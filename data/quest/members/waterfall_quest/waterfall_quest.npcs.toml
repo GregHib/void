@@ -1,0 +1,16 @@
+[moss_giant_glarials_tomb]
+id = 1681
+hitpoints = 1200
+att = 60
+str = 60
+def = 60
+attack_speed = 6
+style = "crush"
+style = "magic_melee"
+max_hit_melee = 140
+attack_bonus = 66
+xp_bonus = 2.5
+hunt_mode = "cowardly"
+slayer_xp = 120.0
+respawn_delay = 10
+examine = "Bigger than your average moss giant."

@@ -1,0 +1,11 @@
+[count_draynor_normal]
+id = 9356
+hitpoints = 350
+att = 30
+str = 25
+def = 30
+style = "crush"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+categories = ["vampyres"]
+examine = "Stop looking and run!"

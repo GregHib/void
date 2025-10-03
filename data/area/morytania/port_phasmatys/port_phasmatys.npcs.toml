@@ -28,7 +28,16 @@ examine = "A spooky ghost villager."
 
 [tortured_soul_port_phasmatys]
 id = 1698
+hitpoints = 510
+att = 52
+str = 62
+def = 38
+style = "crush"
+max_hit_melee = 70
+slayer_xp = 51.0
 categories = ["ghosts"]
+respawn_delay = 50
+drop_table = "tortured_soul"
 examine = "This poor soul cannot understand why it has not passed to the next world."
 
 [ghost_shopkeeper_port_phasmatys]

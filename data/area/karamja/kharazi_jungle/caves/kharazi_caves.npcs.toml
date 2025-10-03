@@ -1,44 +1,130 @@
 [undead_one_kharazi_caves]
 id = 502
+hitpoints = 470
+att = 63
+str = 63
+def = 63
+mage = 0
+range = 0
+style = "slash"
+max_hit_melee = 70
+hunt_mode = "cowardly"
+slayer_xp = 50.0
 categories = ["skeletons"]
+respawn_delay = 50
 examine = "A minion of Rashiliyia."
 
 [undead_one_kharazi_caves_2]
 id = 503
+hitpoints = 470
+att = 55
+str = 55
+def = 55
+mage = 0
+range = 0
+style = "slash"
+max_hit_melee = 70
+attack_bonus = 7
+hunt_mode = "cowardly"
+slayer_xp = 73.0
 categories = ["skeletons"]
+respawn_delay = 50
 examine = "A minion of Rashiliyia."
 
 [undead_one_kharazi_caves_3]
 id = 5353
-categories = ["skeletons"]
-examine = "A minion of Rashiliyia."
+clone = "undead_one_kharazi_caves"
 
 [undead_one_kharazi_caves_4]
 id = 5354
-categories = ["skeletons"]
-examine = "A minion of Rashiliyia."
+clone = "undead_one_kharazi_caves_2"
 
 [death_wing_kharazi_caves]
 id = 79
+hitpoints = 800
+att = 70
+str = 70
+def = 70
+style = "stab"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+slayer_xp = 80.0
+categories = ["bats"]
 categories = ["ghosts"]
+respawn_delay = 35
 examine = "A shadowy, barely visible flying entity from some evil place."
 
 [ungadulu_kharazi_caves]
 id = 929
+hitpoints = 650
+att = 57
+str = 61
+def = 65
+mage = 65
+range = 0
+style = "magic"
+style = "crush"
+max_hit_melee = 70
+attack_bonus = 7
+range_strength = 7
 examine = "The Kharazi tribe's elusive shaman."
+
+[ungadulu_possessed]
+id = 930
+hitpoints = 1500
+att = 147
+str = 147
+def = 147
+mage = 0
+range = 0
+style = "magic"
+style = "crush"
+max_hit_melee = 160
+range_strength = 7
+examine = "The Kharazi tribe's elusive shaman; something doesn't look quite right with him."
 
 [san_tojalon_kharazi_caves]
 id = 936
+hitpoints = 1200
+att = 86
+str = 84
+def = 86
+mage = 0
+range = 0
+style = "stab"
+max_hit_melee = 120
+attack_bonus = 16
+respawn_delay = 26
 categories = ["skeletons"]
 examine = "The spirit of a long-dead warrior."
 
 [irvig_senay_kharazi_caves]
 id = 937
+hitpoints = 1250
+att = 76
+str = 74
+def = 81
+style = "slash"
+max_hit_melee = 120
+attack_bonus = 29
+xp_bonus = 2.5
+respawn_delay = 51
 categories = ["skeletons"]
 examine = "The spirit of a long-dead warrior."
 
-[ranalph_devere_kharazi_caves]
+[ranalph_devere]
 id = 938
+hitpoints = 1300
+att = 66
+str = 67
+def = 66
+mage = 0
+range = 0
+style = "slash"
+max_hit_melee = 130
+attack_bonus = 45
+xp_bonus = 0.5
+respawn_delay = 51
 categories = ["skeletons"]
 examine = "The spirit of a long-dead warrior."
 

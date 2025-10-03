@@ -365,3 +365,18 @@ id = 3370
 
 [grubfoot_dorgesh_kaan_3]
 id = 4417
+
+[molanisk]
+id = 5751
+hitpoints = 520
+att = 40
+str = 40
+def = 50
+mage = 0
+style = "crush"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+slayer_xp = 52.0
+categories = ["molanisks"]
+drop_table = "molanisk"
+examine = "A strange mole-like being."

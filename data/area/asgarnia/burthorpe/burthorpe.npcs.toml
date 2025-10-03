@@ -36,28 +36,68 @@ examine = "A pretty young woman with an air of mystery around her."
 [ceolburg]
 id = 1089
 wander_radius = 5
+hitpoints = 100
+att = 3
+str = 2
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
+drop_table = "citizen"
 examine = "A citizen of Burthorpe."
 
 [penda]
 id = 1087
 wander_radius = 5
+hitpoints = 100
+att = 3
+str = 3
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
+drop_table = "citizen"
 examine = "A citizen of Burthorpe."
 
 [ocga]
 id = 1085
 wander_radius = 5
+hitpoints = 100
+att = 3
+str = 3
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
+drop_table = "citizen"
 examine = "A citizen of Burthorpe."
 
 [breoca]
 id = 1084
+hitpoints = 100
+att = 3
+str = 3
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 wander_radius = 5
 collision = "outdoors"
+drop_table = "citizen"
 examine = "A citizen of Burthorpe."
 
 [hygd]
 id = 1088
 wander_radius = 5
 collision = "outdoors"
+hitpoints = 100
+att = 3
+str = 2
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
+drop_table = "citizen"
 examine = "A citizen of Burthorpe."
 
 [dunstan]
@@ -68,6 +108,13 @@ examine = "Smithy for Burthorpe."
 [servant_burthorpe]
 id = 1081
 wander_radius = 5
+hitpoints = 100
+att = 3
+str = 3
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
 examine = "A servant for Prince Anlaf."
 
 [eohric]
@@ -85,16 +132,32 @@ examine = "Barman of the Toad and Chicken."
 [guard_burthorpe]
 id = 1076
 wander_radius = 5
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+style = "stab"
+max_hit_melee = 30
+attack_bonus = 4
+respawn_delay = 50
+drop_table = "guard"
 examine = "A Burthorpe Castle guard."
 
 [guard_burthorpe_grey]
 id = 1077
-wander_radius = 5
-examine = "A Burthorpe Castle guard."
+clone = "guard_burthorpe"
 
 [eadburg]
 id = 1072
 wander_radius = 5
+hitpoints = 100
+att = 3
+str = 2
+def = 3
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 25
+drop_table = "bones"
 examine = "The Burthorpe Castle cook."
 
 [denulth]
@@ -129,6 +192,16 @@ examine = "A soldier of the Imperial Guard."
 
 [imperial_soldier_attackable]
 id = 1065
+hitpoints = 500
+att = 40
+str = 40
+def = 40
+range = 0
+style = "slash"
+max_hit_melee = 60
+attack_bonus = 11
+respawn_delay = 25
+drop_table = "soldier_burthorpe"
 examine = "A soldier of the Imperial Guard."
 
 [imperial_soldier_hair]
@@ -167,6 +240,15 @@ examine = "Distinctly heroic."
 [white_knight_burthorpe]
 id = 1092
 wander_radius = 5
+hitpoints = 520
+att = 27
+str = 29
+def = 21
+attack_speed = 7
+style = "slash"
+max_hit_melee = 60
+attack_bonus = 30
+respawn_delay = 50
 examine = "The knight seems to be watching something."
 
 [helemos]

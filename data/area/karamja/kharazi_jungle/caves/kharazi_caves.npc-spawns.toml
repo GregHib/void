@@ -48,7 +48,7 @@ spawns = [
   { id = "ungadulu_kharazi_caves", x = 2792, y = 9327 },
   { id = "san_tojalon_kharazi_caves", x = 2395, y = 4721 },
   { id = "irvig_senay_kharazi_caves", x = 2405, y = 4712 },
-  { id = "ranalph_devere_kharazi_caves", x = 2424, y = 4701 },
+  { id = "ranalph_devere", x = 2424, y = 4701 },
   { id = "boulder_kharazi_caves", x = 2373, y = 4692 },
   { id = "boulder_kharazi_caves", x = 2386, y = 4689 },
   { id = "boulder_kharazi_caves", x = 2392, y = 4678 },

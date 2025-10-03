@@ -1,5 +1,12 @@
 [crab_underwater_cave]
 id = 3421
+hitpoints = 190
+att = 19
+str = 20
+def = 26
+style = "crush"
+max_hit_melee = 30
+respawn_delay = 10
 examine = "Nice claw!"
 
 [fish_underwater_cave]

@@ -1,0 +1,29 @@
+[skogre_drop_table]
+type = "all"
+drops = [
+    { id = "zogre_bones" },
+    { id = "ogre_coffin_key" },
+    { table = "skogre_tertiary" },
+]
+
+[skogre_tertiary]
+roll = 5000
+drops = [
+    { id = "skeleton_champions_scroll", members = true, lacks = "skeleton_champions_scroll" },
+    { id = "zombie_champions_scroll", members = true, lacks = "zombie_champions_scroll" },
+]
+
+[zogre_drop_table]
+type = "all"
+drops = [
+    { id = "ogre_coffin_key" },
+    { id = "zogre_bones" },
+    { table = "zogre_tertiary" },
+]
+
+[zogre_tertiary]
+roll = 5000
+drops = [
+    { id = "zogre_bone", chance = 1250 },
+    { id = "zombie_champions_scroll", members = true, lacks = "zombie_champions_scroll" },
+]

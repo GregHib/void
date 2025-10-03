@@ -1,5 +1,16 @@
 [giant_lobster_witchaven_dungeon]
 id = 4893
+hitpoints = 500
+att = 40
+str = 30
+def = 40
+style = "stab"
+max_hit_melee = 40
+hunt_mode = "cowardly"
+slayer_xp = 50.0
+categories = ["scorpions"]
+respawn_delay = 25
+drop_table = "giant_lobster"
 examine = "An extremely vicious lobster."
 
 [sea_slug_witchaven_dungeon]

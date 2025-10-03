@@ -1,5 +1,16 @@
 [pirate_pirates_cove]
 id = 183
+hitpoints = 200
+att = 21
+str = 21
+def = 21
+attack_speed = 5
+style = "slash"
+max_hit_melee = 30
+attack_bonus = 8
+slayer_xp = 20.0
+categories = ["pirates"]
+respawn_delay = 25
 examine = "Avast ye scurvy land lubbers!"
 
 [lokar_searunner_pirates_cove]
@@ -8,14 +19,35 @@ examine = "Either a very fremennikey pirate, or a very piratey fremennik."
 
 [jake_pirates_cove]
 id = 4546
+hitpoints = 500
+att = 27
+str = 31
+def = 25
+style = "crush"
+max_hit_melee = 40
+respawn_delay = 25
 examine = "A deadly pirate."
 
 [wilson_pirates_cove]
 id = 4548
+hitpoints = 500
+att = 27
+str = 31
+def = 25
+style = "crush"
+max_hit_melee = 40
+respawn_delay = 25
 examine = "A pirate."
 
 [palmer_pirates_cove]
 id = 4552
+hitpoints = 500
+att = 27
+str = 31
+def = 25
+style = "crush"
+max_hit_melee = 40
+respawn_delay = 25
 examine = "Nice shave."
 
 [sticky_sanders_pirates_cove]

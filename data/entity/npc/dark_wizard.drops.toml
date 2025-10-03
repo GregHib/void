@@ -1,7 +1,7 @@
 [dark_wizard_water_drop_table]
 type = "all"
 drops = [
-    { table = "bones" },
+    { id = "bones" },
     { table = "dark_wizard_water_secondary" },
     { table = "easy_clue_scroll", roll = 50 }
 ]
@@ -44,7 +44,7 @@ drops = [
 [dark_wizard_earth_drop_table]
 type = "all"
 drops = [
-    { table = "bones" },
+    { id = "bones" },
     { table = "dark_wizard_earth_secondary" },
     { table = "easy_clue_scroll", roll = 35 }
 ]

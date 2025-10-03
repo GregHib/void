@@ -1,0 +1,65 @@
+[canifis_werewolf_drop_table]
+type = "all"
+drops = [
+    { id = "wolf_bones" },
+    { table = "canifis_werewolf_secondary" },
+    { table = "canifis_werewolf_tertiary" },
+]
+
+[canifis_werewolf_secondary]
+roll = 512
+drops = [
+    { id = "steel_hatchet", chance = 10 },
+    { id = "steel_arrow", amount = 50, chance = 10 },
+    { id = "steel_arrow_p", amount = 5, chance = 10 },
+    { table = "herb_drop_table", chance = 2 },
+    { id = "eye_of_newt", chance = 2 },
+    { id = "snape_grass", chance = 2 },
+    { id = "jangerberries", chance = 2 },
+    { id = "white_berries", chance = 2 },
+    { id = "limpwurt_root", chance = 2 },
+    { id = "wine_of_zamorak", chance = 2 },
+    { id = "iron_ore", amount = 5, chance = 10 },
+    { id = "coal", amount = 2, chance = 10 },
+    { id = "steel_bar", amount = 2, chance = 10 },
+    { id = "raw_chicken", amount = 2, chance = 10 },
+    { id = "raw_beef", amount = 2, chance = 10 },
+    { id = "raw_bear_meat", amount = 2, chance = 10 },
+    { id = "vial_of_water", amount = 2, chance = 50 },
+    { id = "coins", amount = 6, chance = 20 },
+    { id = "coins", amount = 15, chance = 5 },
+    { id = "coins", amount = 16, chance = 5 },
+    { id = "coins", amount = 20, chance = 10 },
+    { id = "coins", amount = 38, chance = 5 },
+    { id = "coins", amount = 50, chance = 5 },
+    { id = "coins", amount = 96, chance = 5 },
+    { id = "coins", amount = 120, chance = 5 },
+    { id = "bucket", amount = 2, chance = 25 },
+    { id = "tinderbox", amount = 2, chance = 20 },
+    { id = "vial", amount = 2, chance = 50 },
+    { id = "fur", chance = 100 },
+    { id = "grey_wolf_fur", chance = 100 },
+    { id = "blamish_oil" },
+    { table = "gem_drop_table" },
+]
+
+[canifis_werewolf_tertiary]
+roll = 512
+drops = [
+    { id = "werewolf_bone", chance = 128, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { table = "easy_clue_scroll", chance = 4 },
+]
+
+[ghoul_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "ghoul_tertiary" },
+]
+
+[ghoul_tertiary]
+roll = 5000
+drops = [
+    { id = "ghoul_bone", chance = 1250, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { id = "ghoul_champions_scroll", lacks = "ghoul_champions_scroll" },
+]

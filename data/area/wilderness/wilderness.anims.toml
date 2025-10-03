@@ -1,2 +1,8 @@
 [wild_ditch_jump]
 id = 6132
+
+[chaos_elemental_death]
+id = 3147
+
+[chaos_elemental_attack]
+id = 3149

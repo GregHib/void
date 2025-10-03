@@ -1,15 +1,34 @@
 [giant_skeleton_shadow_dungeon]
 id = 1973
+hitpoints = 700
+att = 70
+str = 70
+def = 70
+style = "crush"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+slayer_xp = 70.0
 categories = ["skeletons"]
+respawn_delay = 15
+drop_table = "giant_skeleton_shadow_dungeon"
 examine = "A giant skeleton."
 
 [shadow_hound]
 id = 1976
+hitpoints = 620
+att = 53
+str = 54
+def = 54
+style = "stab"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 62.0
 categories = ["dogs"]
+respawn_delay = 50
+drop_table = "bones"
 examine = "Looks hungry!"
 
 [giant_skeleton_shadow_dungeon_2]
 id = 5359
-categories = ["skeletons"]
-examine = "A giant skeleton."
+clone = "giant_skeleton_shadow_dungeon"
 

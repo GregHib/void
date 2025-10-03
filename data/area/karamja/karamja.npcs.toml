@@ -5,6 +5,17 @@ examine = "Exchanges lobsters, tuna and swordfish for banknotes."
 
 [the_shaikahan]
 id = 1172
+hitpoints = 1000
+att = 80
+str = 80
+def = 25
+style = "slash"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+respawn_delay = 50
+attack_anim = "shaikahan_attack"
+defend_anim = "shaikahan_defend"
+drop_table = "the_shaikahan"
 examine = "A huge beast, resembling in some ways a lion, but mostly a twisted nightmare."
 
 [gull_karamja]
@@ -30,7 +41,18 @@ id = 2528
 
 [harpie_bug_swarm]
 id = 3153
+hitpoints = 250
+att = 54
+str = 46
+def = 32
+style = "crush"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 25.0
 categories = ["harpie_bug_swarms"]
+respawn_delay = 25
+combat_anims = "harpie_bug_swarm"
+combat_sounds = "harpie_bug_swarm"
 examine = "A swarm of bugs."
 
 [frog_karamja]
@@ -67,9 +89,22 @@ id = 5574
 
 [jungle_spider_karamja]
 id = 6376
+hitpoints = 500
+att = 35
+str = 37
+def = 35
+style = "stab"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+slayer_xp = 50.0
+categories = ["spiders"]
+respawn_delay = 30
+drop_table = "jungle_spider"
+examine = "A barely visible deadly jungle spider."
 
 [jungle_spider_karamja_2]
 id = 6377
+clone = "jungle_spider_karamja"
 
 [tenacious_toucan]
 id = 6378
@@ -162,6 +197,15 @@ id = 7292
 
 [tribesman]
 id = 191
+hitpoints = 390
+att = 23
+str = 27
+def = 26
+style = "stab"
+max_hit_melee = 40
+attack_bonus = 8
+hunt_mode = "cowardly"
+respawn_delay = 50
 examine = "A vicious warrior."
 
 [tinsay_karamja_2]

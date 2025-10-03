@@ -1,5 +1,12 @@
 [bat_drop_table]
 type = "all"
 drops = [
-    { id = "bat_bones" }
+    { id = "bat_bones" },
+    { table = "bat_tertiary" },
+]
+
+[bat_tertiary]
+roll = 4
+drops = [
+    { id = "bat_wing", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
 ]

@@ -1,0 +1,38 @@
+[ice_troll_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "ice_troll_secondary" },
+    { table = "ice_troll_tertiary" },
+]
+
+[ice_troll_secondary]
+roll = 128
+drops = [
+    { id = "adamant_kiteshield", chance = 8 },
+    { id = "black_platebody", chance = 4 },
+    { id = "adamant_hatchet", chance = 2 },
+    { id = "black_warhammer" },
+    { id = "mithril_platebody" },
+    { id = "rune_battleaxe" },
+    { id = "blood_rune", amount = 2, chance = 8 },
+    { id = "blood_rune", amount = 5, chance = 5 },
+    { id = "law_rune", amount = 4, chance = 3 },
+    { id = "death_rune", amount = 15 },
+    { id = "water_rune", amount = 65 },
+    { table = "herb_drop_table", chance = 18 },
+    { id = "coins", amount = 30, chance = 29 },
+    { id = "coins", amount = 136, chance = 25 },
+    { id = "coins", amount = 200, chance = 10 },
+    { id = "coins", amount = 20, chance = 4 },
+    { id = "lobster_noted", amount = 6, chance = 3 },
+    { id = "raw_tuna", amount = 4, chance = 2 },
+    { table = "gem_drop_table", chance = 8 },
+]
+
+[ice_troll_tertiary]
+roll = 5012
+drops = [
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]

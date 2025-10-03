@@ -1,27 +1,57 @@
 [cave_goblin_lumbridge_swamp_caves]
 id = 1822
+hitpoints = 100
+style = "crush"
+max_hit_melee = 10
+slayer_xp = 10.0
 categories = ["goblins"]
+respawn_delay = 50
 examine = "A goblin with big bulging eyes."
 
 [cave_goblin_lumbridge_swamp_caves_2]
 id = 1823
-categories = ["goblins"]
-examine = "A goblin with big bulging eyes."
+clone = "cave_goblin_lumbridge_swamp_caves"
 
 [cave_goblin_lumbridge_swamp_caves_3]
 id = 1824
-categories = ["goblins"]
-examine = "A goblin with big bulging eyes."
+clone = "cave_goblin_lumbridge_swamp_caves"
 
 [cave_goblin_lumbridge_swamp_caves_4]
 id = 1825
-categories = ["goblins"]
-examine = "A goblin with big bulging eyes."
+clone = "cave_goblin_lumbridge_swamp_caves"
 
 [hole_in_the_wall_lumbridge_swamp_caves]
 id = 2058
+hitpoints = 1050
+att = 30
+str = 30
+def = 16
+style = "crush"
+max_hit_melee = 40
+hunt_mode = "cowardly"
+slayer_xp = 105.0
 categories = ["wall_beasts"]
+immune_poison = true
+combat_anims = "cave_goblin"
+combat_sounds = "cave_goblin"
 examine = "What could be hiding in that crack in the wall?"
+
+[wall_beast]
+id = 7823
+hitpoints = 1050
+att = 30
+str = 30
+def = 16
+style = "crush"
+max_hit_melee = 40
+hunt_mode = "cowardly"
+slayer_xp = 105.0
+categories = ["wall_beasts"]
+immune_poison = true
+combat_anims = "wall_beast"
+combat_sounds = "wall_beast"
+drop_table = "wall_beast"
+examine = "A big, scary hand!"
 
 [fishing_spot_lumbridge_swamp_caves]
 id = 2067

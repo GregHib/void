@@ -92,3 +92,27 @@ drops = [
   { table = "medium_clue_scroll", roll = 128 }
 ]
 
+[dagannoth_spawn_drop_table]
+type = "all"
+drops = [
+  { id = "bones" },
+  { table = "dagannoth_spawn_secondary" },
+  { table = "easy_clue_scroll", roll = 128 },
+]
+
+[dagannoth_spawn_secondary]
+roll = 128
+drops = [
+  { id = "water_rune", amount = 3, chance = 10 },
+  { id = "raw_tuna", chance = 10 },
+  { id = "raw_herring", chance = 5 },
+  { id = "raw_sardine", chance = 10 },
+  { id = "coins", amount = 16, chance = 10 },
+  { id = "coins", amount = 25, chance = 10 },
+  { id = "seaweed", chance = 10 },
+  { id = "feather", amount = 2, chance = 38 },
+  { id = "fishing_bait", amount = 3, chance = 10 },
+  { id = "oyster_pearl", chance = 4 },
+  { id = "water_talisman", chance = 10 },
+  { table = "gem_drop_table" },
+]

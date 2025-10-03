@@ -1,0 +1,25 @@
+[huge_spider]
+id = 3585
+hitpoints = 900
+att = 59
+str = 70
+def = 69
+style = "crush"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+examine = "No spider could grow that big! It's unrealistic!"
+
+[rocnar]
+id = 3594
+hitpoints = 1000
+att = 80
+str = 80
+def = 80
+mage = 0
+range = 0
+attack_speed = 6
+style = "crush"
+max_hit_melee = 120
+attack_bonus = 22
+hunt_mode = "cowardly"
+examine = "It's full of pent-up aggression."

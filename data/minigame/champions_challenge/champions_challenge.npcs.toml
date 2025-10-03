@@ -1,3 +1,14 @@
+[leon_d_cour]
+id = 3067
+hitpoints = 1230
+att = 123
+str = 123
+def = 123
+style = "crush"
+max_hit_melee = 130
+hunt_mode = "cowardly"
+examine = "Champion of Champions!"
+
 [larxus_champions_challenge]
 id = 3050
 examine = "Not the smartest of butlers."
@@ -26,3 +37,104 @@ examine = "A mysterious watcher."
 id = 3056
 examine = "A mysterious watcher."
 
+[earth_warrior_champion]
+id = 3057
+hitpoints = 1080
+att = 84
+str = 84
+def = 84
+style = "crush"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+examine = "Champion of the earth warriors."
+
+[ghoul_champion]
+id = 3059
+hitpoints = 1000
+att = 60
+str = 80
+def = 60
+range = 60
+style = "crush"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+examine = "Champion of the ghouls."
+
+[giant_champion]
+id = 3058
+hitpoints = 700
+att = 36
+str = 44
+def = 52
+style = "melee"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+drop_table = "giant_champion"
+examine = "Champion of the giants."
+
+[goblin_champion]
+id = 3060
+hitpoints = 320
+def = 14
+mage = 26
+style = "magic"
+max_hit_melee = 40
+examine = "Champion of the goblins."
+
+[hobgoblin_champion]
+id = 3061
+hitpoints = 580
+att = 44
+str = 48
+def = 48
+range = 44
+style = "range"
+max_hit_range = 60
+hunt_mode = "cowardly"
+examine = "Champion of the hobgoblins."
+
+[imp_champion]
+id = 3062
+hitpoints = 400
+att = 5
+str = 5
+def = 5
+range = 5
+style = "melee"
+max_hit_melee = 10
+hunt_mode = "cowardly"
+examine = "Champion of the imps."
+
+[jogre_champion]
+id = 3063
+hitpoints = 1200
+att = 86
+str = 86
+def = 86
+style = "stab"
+max_hit_melee = 100
+hunt_mode = "cowardly"
+examine = "Champion of the jogres."
+
+[lesser_demon_champion]
+id = 3064
+hitpoints = 1480
+att = 136
+str = 140
+def = 142
+mage = 136
+style = "slash"
+max_hit_melee = 150
+max_hit_magic = 140
+hunt_mode = "cowardly"
+examine = "Champion of the lesser demons."
+
+[skeleton_champion]
+id = 3065
+hitpoints = 580
+def = 34
+range = 36
+style = "range"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+examine = "Champion of the skeletons."

@@ -3,12 +3,37 @@ id = 317
 
 [undead_one_shilo_village]
 id = 504
-categories = ["zombies"]
-examine = "The animated dead; one of Rashiliyia's minions."
+hitpoints = 470
+att = 63
+str = 63
+def = 63
+mage = 0
+range = 0
+style = "slash"
+max_hit_melee = 70
+hunt_mode = "cowardly"
+slayer_xp = 50.0
+categories = ["skeletons"]
+respawn_delay = 50
+drop_table = "undead_one"
+examine = "A minion of Rashiliyia."
 
 [undead_one_shilo_village_2]
 id = 505
+hitpoints = 590
+att = 65
+str = 65
+def = 65
+mage = 0
+range = 0
+style = "slash"
+max_hit_melee = 80
+attack_bonus = 4
+hunt_mode = "cowardly"
+slayer_xp = 59.0
 categories = ["zombies"]
+respawn_delay = 50
+drop_table = "undead_one"
 examine = "The animated dead; one of Rashiliyia's minions."
 
 [vigroy_shilo_village]
@@ -41,23 +66,19 @@ examine = "This is Fernahei; he owns the local fishing tackle shop."
 
 [undead_one_shilo_village_3]
 id = 5355
-categories = ["zombies"]
-examine = "The animated dead; one of Rashiliyia's minions."
+clone = "undead_one_shilo_village"
 
 [undead_one_shilo_village_4]
 id = 5356
-categories = ["zombies"]
-examine = "The animated dead; one of Rashiliyia's minions."
+clone = "undead_one_shilo_village"
 
 [undead_one_shilo_village_5]
 id = 5357
-categories = ["zombies"]
-examine = "The animated dead; one of Rashiliyia's minions."
+clone = "undead_one_shilo_village_2"
 
 [undead_one_shilo_village_6]
 id = 5358
-categories = ["zombies"]
-examine = "The animated dead; one of Rashiliyia's minions."
+clone = "undead_one_shilo_village_2"
 
 [lapalok_shilo_village]
 id = 8483
@@ -67,3 +88,49 @@ id = 8466
 
 [lapalok_shilo_village_3]
 id = 8467
+
+[nazastarool_zombie]
+id = 507
+hitpoints = 700
+att = 85
+str = 80
+def = 80
+mage = 0
+range = 0
+style = "slash"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+slayer_xp = 70.0
+categories = ["zombies"]
+examine = "A giant zombie of huge strength and devastating power."
+
+[nazastarool_skeleton]
+id = 508
+hitpoints = 700
+att = 58
+str = 54
+def = 58
+mage = 0
+range = 0
+style = "slash"
+max_hit_melee = 80
+attack_bonus = 15
+hunt_mode = "cowardly"
+slayer_xp = 70.0
+categories = ["skeletons"]
+examine = "A giant skeleton of huge strength and devastating power."
+
+[nazastarool_ghost]
+id = 509
+hitpoints = 800
+att = 85
+str = 80
+def = 80
+mage = 0
+range = 0
+style = "slash"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+slayer_xp = 80.0
+categories = ["ghosts"]
+examine = "A giant ghost of huge strength and devastating power."

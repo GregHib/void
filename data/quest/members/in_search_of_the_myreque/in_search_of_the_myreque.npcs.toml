@@ -24,3 +24,16 @@ id = 7675
 
 [flaygian_screwte_2]
 id = 7672
+
+[skeleton_hellhound]
+id = 1575
+hitpoints = 550
+att = 70
+str = 110
+def = 100
+style = "crush"
+max_hit_melee = 120
+hunt_mode = "cowardly"
+slayer_xp = 55.0
+categories = ["hellhounds"]
+examine = "A creature summoned by Vanstrom to kill the remaining Myreque."

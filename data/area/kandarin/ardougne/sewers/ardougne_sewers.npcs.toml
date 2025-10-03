@@ -6,13 +6,37 @@ id = 886
 
 [alomone_ardougne_sewers]
 id = 891
+hitpoints = 250
+att = 10
+str = 10
+def = 4
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 50
+drop_table = "bones"
+examine = "Leader of the Hazeel Cult."
 
 [clivet_ardougne_sewers]
 id = 893
+hitpoints = 250
+att = 10
+str = 10
+def = 4
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 50
+drop_table = "bones"
 examine = "A member of the Hazeel cult."
 
 [hazeel_cultist_ardougne_sewers]
 id = 894
+hitpoints = 250
+att = 10
+str = 10
+def = 4
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 50
 examine = "A member of the Hazeel cult."
 
 [elena_southern_ardougne_sewer]

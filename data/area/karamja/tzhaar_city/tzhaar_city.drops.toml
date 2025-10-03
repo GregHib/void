@@ -1,0 +1,48 @@
+[tz_haar_hur_drop_table]
+roll = 512
+drops = [
+    { id = "uncut_sapphire", chance = 2 },
+    { id = "uncut_emerald", chance = 2 },
+    { id = "uncut_ruby", chance = 2 },
+    { id = "uncut_diamond" },
+    { id = "tokkul", min = 1, max = 16, chance = 32 },
+    { id = "chisel", chance = 8 },
+    { id = "hammer", chance = 8 },
+    { id = "jug", chance = 8 },
+    { id = "knife", chance = 8 },
+    { id = "empty_pot", chance = 8 },
+    { id = "nothing", chance = 32 },
+]
+
+[tz_haar_mej_drop_table]
+roll = 4096
+drops = [
+    { id = "obsidian_cape" },
+    { id = "toktz_mej_tal" },
+    { id = "earth_rune", amount = 25, chance = 256 },
+    { id = "fire_rune", amount = 25, chance = 256 },
+    { id = "air_rune", amount = 25, chance = 64 },
+    { id = "chaos_rune", amount = 5, chance = 64 },
+    { id = "nature_rune", amount = 2, chance = 64 },
+    { id = "death_rune", amount = 2, chance = 16 },
+    { id = "tokkul", min = 1, max = 21, chance = 256 },
+    { id = "uncut_sapphire", chance = 16 },
+    { id = "uncut_emerald", chance = 16 },
+    { id = "uncut_ruby", chance = 16 },
+    { id = "uncut_diamond", chance = 8 },
+]
+
+[tz_haar_xil_drop_table]
+roll = 2048
+drops = [
+    { id = "toktz_xil_ul", min = 10, max = 29, chance = 4 },
+    { id = "toktz_xil_ak", chance = 3 },
+    { id = "toktz_xil_ek", chance = 3 },
+    { id = "obsidian_cape", chance = 6 },
+    { id = "tokkul", min = 1, max = 32, chance = 128 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "uncut_diamond", chance = 8 },
+    { id = "nothing", chance = 778 },
+]

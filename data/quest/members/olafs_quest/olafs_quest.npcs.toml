@@ -1,0 +1,14 @@
+[ulfric]
+id = 3706
+hitpoints = 600
+att = 100
+str = 82
+def = 100
+attack_speed = 6
+style = "slash"
+max_hit_melee = 110
+hunt_mode = "cowardly"
+slayer_xp = 60.0
+categories = ["skeletons"]
+drop_table = "bones"
+examine = "What could be worse than an angry, undead Fremennik?"

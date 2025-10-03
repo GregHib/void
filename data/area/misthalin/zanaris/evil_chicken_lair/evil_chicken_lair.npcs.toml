@@ -1,3 +1,19 @@
+[evil_chicken]
+id = 3375
+hitpoints = 1200
+def = 126
+mage = 200
+style = "magic"
+max_hit_melee = 210
+xp_bonus = -97.5
+slayer_xp = 3.0
+categories = ["birds"]
+respawn_delay = 50
+combat_anims = "evil_chicken"
+combat_sounds = "chicken"
+attack_sound = "evil_chicken_attack"
+examine = "A fowl beast."
+
 [black_dragon_evil_chicken_lair]
 id = 4674
 categories = ["black_dragons"]

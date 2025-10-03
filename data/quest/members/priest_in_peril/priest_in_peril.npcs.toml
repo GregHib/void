@@ -1,0 +1,12 @@
+[temple_guardian]
+id = 7711
+hitpoints = 450
+att = 20
+str = 20
+def = 20
+style = "stab"
+max_hit_melee = 30
+slayer_xp = 45.0
+categories = ["dogs"]
+immune_cannon = true
+examine = "Looks like a big ugly dog."

@@ -1,41 +1,137 @@
-[brutal_green_dragon_ancient_cavern]
+[brutal_green_dragon]
 id = 5362
+hitpoints = 1750
+att = 268
+str = 168
+def = 168
+mage = 168
+style = "stab"
+style = "magic"
+style = "dragonfire"
+max_hit_melee = 180
+max_hit_magic = 180
+max_hit_dragonfire = 500
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+slayer_xp = 183.0
 categories = ["green_dragons"]
+immune_poison = true
+respawn_delay = 30
+drop_table = "brutal_green_dragon"
 examine = "It appears intelligent and savage."
 
-[confused_barbarian_ancient_cavern]
+[confused_barbarian]
 id = 5364
+hitpoints = 1240
+att = 115
+str = 114
+def = 110
+style = "crush"
+max_hit_melee = 150
+attack_bonus = 9
+respawn_delay = 50
+drop_table = "mangled_bones"
 examine = "He looks about, blankly."
 
-[lost_barbarian_ancient_cavern]
+[lost_barbarian]
 id = 6102
+hitpoints = 1240
+att = 115
+str = 114
+def = 110
+style = "crush"
+max_hit_melee = 120
+respawn_delay = 50
+drop_table = "mangled_bones"
 examine = "His face is expressionless."
 
 [skeleton_brute_ancient_cavern]
 id = 6104
+hitpoints = 1240
+att = 115
+str = 114
+def = 110
+style = "crush"
+max_hit_melee = 150
+attack_bonus = 9
+hunt_mode = "cowardly"
+slayer_xp = 124.0
 categories = ["skeletons"]
+respawn_delay = 50
 examine = "An ex-barbarian, willing to make you ex too."
 
 [skeleton_warlord_ancient_cavern]
 id = 6105
+hitpoints = 1240
+att = 115
+str = 114
+def = 110
+style = "crush"
+max_hit_melee = 150
+attack_bonus = 9
+hunt_mode = "cowardly"
+slayer_xp = 124.0
 categories = ["skeletons"]
+respawn_delay = 50
+drop_table = "barbarian_spirit"
 examine = "He's heartless."
 
 [skeleton_thug_ancient_cavern]
 id = 6107
+hitpoints = 1240
+att = 115
+str = 114
+def = 110
+style = "crush"
+max_hit_melee = 150
+attack_bonus = 9
+hunt_mode = "cowardly"
+slayer_xp = 124.0
 categories = ["skeletons"]
+respawn_delay = 50
+drop_table = "barbarian_spirit"
 examine = "Floats like an anvil, hits like a hammer."
 
-[angry_barbarian_spirit_ancient_cavern]
+[angry_barbarian]
 id = 749
+hitpoints = 1900
+att = 150
+str = 140
+def = 100
+style = "crush"
+max_hit_melee = 180
+attack_bonus = 9
+hunt_mode = "cowardly"
+respawn_delay = 50
+drop_table = "barbarian_spirit"
 examine = "He looks a tad upset."
 
 [enraged_barbarian_spirit]
 id = 750
+hitpoints = 1900
+att = 150
+str = 140
+def = 100
+style = "crush"
+max_hit_melee = 180
+attack_bonus = 9
+hunt_mode = "cowardly"
+respawn_delay = 50
+drop_table = "barbarian_spirit"
 examine = "He looks a tad upset."
 
 [berserk_barbarian_spirit]
 id = 751
+hitpoints = 1900
+att = 150
+str = 140
+def = 100
+style = "crush"
+max_hit_melee = 180
+attack_bonus = 9
+hunt_mode = "cowardly"
+respawn_delay = 50
+drop_table = "barbarian_spirit"
 examine = "He looks a tad upset."
 
 [gargoyle_ancient_cavern]

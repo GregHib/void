@@ -5,6 +5,7 @@ att = 16
 str = 14
 def = 9
 style = "slash"
+attack_speed = 5
 max_hit_melee = 30
 wander_radius = 5
 attack_radius = 8

@@ -1,0 +1,26 @@
+[dust_devil_defend]
+id = 1555
+
+[dust_devil_attack]
+id = 1557
+
+[dust_devil_death]
+id = 1558
+
+[leech_attack]
+id = 2070
+
+[leech_defend]
+id = 2072
+
+[leech_death]
+id = 2073
+
+[giant_crypt_rat_attack]
+id = 4933
+
+[giant_crypt_rat_defend]
+id = 4934
+
+[giant_crypt_rat_death]
+id = 4935

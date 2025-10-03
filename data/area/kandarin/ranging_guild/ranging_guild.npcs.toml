@@ -95,3 +95,71 @@ id = 3677
 
 [sinister_stranger_3]
 id = 3678
+
+[tower_archer_north]
+id = 688
+hitpoints = 300
+att = 10
+str = 10
+def = 10
+range = 20
+attack_speed = 6
+style = "range"
+weapon_style = "bow"
+ammo = "bronze_arrow"
+attack_range = 8
+max_hit_range = 40
+ranged_strength = 16
+hunt_mode = "aggressive"
+examine = "Defender of the north tower."
+
+[tower_archer_east]
+id = 689
+hitpoints = 500
+att = 10
+str = 10
+def = 10
+range = 40
+attack_speed = 6
+style = "range"
+weapon_style = "bow"
+ammo = "bronze_arrow"
+attack_range = 8
+max_hit_range = 70
+ranged_strength = 22
+hunt_mode = "aggressive"
+examine = "Defender of the east tower."
+
+[tower_archer_south]
+id = 690
+hitpoints = 700
+att = 10
+str = 10
+def = 10
+range = 60
+attack_speed = 6
+style = "range"
+weapon_style = "bow"
+ammo = "bronze_arrow"
+attack_range = 8
+max_hit_range = 100
+ranged_strength = 31
+hunt_mode = "aggressive"
+examine = "Defender of the south tower."
+
+[tower_archer_west]
+id = 691
+hitpoints = 900
+att = 10
+str = 10
+def = 10
+range = 80
+attack_speed = 6
+style = "range"
+weapon_style = "bow"
+ammo = "bronze_arrow"
+attack_range = 8
+max_hit_range = 160
+ranged_strength = 49
+hunt_mode = "aggressive"
+examine = "Defender of the west tower."

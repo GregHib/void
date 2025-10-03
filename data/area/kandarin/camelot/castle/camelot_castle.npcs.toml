@@ -43,3 +43,127 @@ id = 3787
 id = 4686
 categories = ["ice_giants"]
 examine = "He's got icicles in his beard."
+
+[sir_bedivere]
+id = 6177
+hitpoints = 900
+att = 99
+str = 95
+def = 99
+attack_speed = 5
+style = "crush"
+max_hit_melee = 140
+attack_bonus = 20
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+examine = "One of the Knights of the Round Table."
+
+[sir_gawain]
+id = 6172
+hitpoints = 1100
+att = 110
+str = 105
+def = 100
+attack_speed = 5
+style = "slash"
+max_hit_melee = 190
+attack_bonus = 40
+xp_bonus = 1.0
+hunt_mode = "cowardly"
+examine = "One of the Knights of the Round Table."
+
+
+[sir_kay]
+id = 6171
+hitpoints = 1100
+att = 110
+str = 110
+def = 100
+attack_speed = 5
+style = "slash"
+max_hit_melee = 220
+attack_bonus = 55
+xp_bonus = 12.5
+hunt_mode = "cowardly"
+examine = "One of the Knights of the Round Table."
+
+[sir_lancelot]
+id = 6170
+hitpoints = 1150
+att = 110
+str = 110
+def = 110
+style = "crush"
+max_hit_melee = 230
+attack_bonus = 60
+xp_bonus = 17.5
+hunt_mode = "cowardly"
+examine = "One of the Knights of the Round Table."
+
+[sir_leye]
+id = 2285
+hitpoints = 200
+att = 18
+str = 18
+def = 15
+attack_speed = 5
+style = "crush"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+examine = "A warrior blessed by Saradomin."
+
+[sir_lucan]
+id = 6173
+hitpoints = 1050
+att = 105
+str = 110
+def = 99
+attack_speed = 5
+style = "stab"
+max_hit_melee = 190
+attack_bonus = 40
+xp_bonus = 1.0
+hunt_mode = "cowardly"
+examine = "One of the Knights of the Round Table."
+
+[sir_palomedes]
+id = 1883
+hitpoints = 1000
+att = 105
+str = 105
+def = 100
+attack_speed = 5
+style = "slash"
+max_hit_melee = 180
+attack_bonus = 35
+xp_bonus = 12.5
+hunt_mode = "cowardly"
+examine = "One of the Knights of the Round Table."
+
+[sir_pelleas]
+id = 6176
+hitpoints = 990
+att = 95
+str = 99
+def = 98
+attack_speed = 5
+style = "stab"
+max_hit_melee = 150
+attack_bonus = 22
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+examine = "One of the Knights of the Round Table."
+
+[sir_tristram]
+id = 6175
+hitpoints = 1050
+att = 99
+str = 99
+def = 99
+attack_speed = 5
+style = "crush"
+max_hit_melee = 150
+attack_bonus = 25
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+examine = "One of the Knights of the Round Table."

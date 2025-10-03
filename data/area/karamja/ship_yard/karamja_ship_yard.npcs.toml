@@ -4,11 +4,22 @@ examine = "An official looking Gnome with small beady eyes."
 
 [shipyard_worker_karamja_ship_yard]
 id = 38
+hitpoints = 100
+att = 10
+str = 10
+def = 10
+mage = 0
+range = 0
+style = "crush"
+max_hit_melee = 20
+attack_bonus = 6
+respawn_delay = 50
+drop_table = "bones"
 examine = "Builds ships for a living."
 
 [shipyard_worker_karamja_ship_yard_2]
 id = 39
-examine = "Builds ships for a living."
+clone = "shipyard_worker_karamja_ship_yard"
 
 [shark_karamja_ship_yard]
 id = 40
@@ -16,5 +27,13 @@ examine = "Let's not go skinny dipping eh?"
 
 [foreman_karamja_ship_yard]
 id = 674
+hitpoints = 200
+att = 20
+str = 20
+def = 20
+style = "crush"
+max_hit_melee = 30
+respawn_delay = 5
+drop_table = "bones"
 examine = "The boss!"
 

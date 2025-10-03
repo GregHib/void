@@ -48,3 +48,53 @@ drops = [
     { id = "rusty_sword", chance = 20 },
     { id = "uncut_jade", chance = 10 },
 ]
+
+[ham_guard_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "ham_guard_secondary" },
+    { table = "easy_clue_scroll", roll = 55 },
+]
+
+[ham_guard_secondary]
+roll = 110
+drops = [
+    { id = "bronze_hatchet", chance = 3 },
+    { id = "bronze_dagger", chance = 3 },
+    { id = "bronze_pickaxe", chance = 3 },
+    { id = "iron_hatchet", chance = 3 },
+    { id = "iron_pickaxe", chance = 3 },
+    { id = "iron_dagger", chance = 3 },
+    { id = "leather_body", chance = 3 },
+    { id = "ham_gloves", chance = 2 },
+    { id = "steel_dagger", chance = 2 },
+    { id = "steel_hatchet", chance = 2 },
+    { id = "steel_pickaxe", chance = 2 },
+    { id = "ham_boots", chance = 2 },
+    { id = "ham_shirt" },
+    { id = "ham_robe" },
+    { id = "ham_logo" },
+    { id = "ham_hood" },
+    { id = "ham_cloak" },
+    { id = "bronze_arrow", min = 1, max = 12, chance = 2 },
+    { id = "steel_arrow", min = 1, max = 10, chance = 2 },
+    { id = "grimy_guam" },
+    { id = "cowhide", min = 1, max = 3, chance = 3 },
+    { id = "logs", min = 1, max = 3, chance = 3 },
+    { id = "uncut_opal", chance = 2 },
+    { id = "uncut_jade", chance = 2 },
+    { id = "iron_ore", chance = 2 },
+    { id = "coal", chance = 2 },
+    { id = "raw_anchovies", min = 1, max = 3, chance = 2 },
+    { id = "raw_chicken", min = 1, max = 3, chance = 2 },
+    { id = "coins", min = 1, max = 20, chance = 13 },
+    { id = "buttons", chance = 4 },
+    { id = "damaged_armour", chance = 4 },
+    { id = "rusty_sword", chance = 4 },
+    { id = "feather", min = 1, max = 6, chance = 3 },
+    { id = "thread", min = 1, max = 10, chance = 2 },
+    { id = "knife", chance = 2 },
+    { id = "needle", chance = 2 },
+    { id = "tinderbox", chance = 2 },
+]

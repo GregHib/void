@@ -43,3 +43,12 @@ id = 5128
 
 [nickolaus_5]
 id = 5129
+
+[giant_kebbit]
+id = 5137
+hitpoints = 500
+style = "crush"
+max_hit_melee = 10
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "A little bigger than usual..."

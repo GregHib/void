@@ -1,0 +1,12 @@
+[vulture_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "vulture_tertiary" },
+]
+
+[vulture_tertiary]
+roll = 4
+drops = [
+    { id = "vulture_wing", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]

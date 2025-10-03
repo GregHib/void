@@ -1,0 +1,14 @@
+[locust_death]
+id = 2013
+
+[locust_defend]
+id = 2014
+
+[locust_attack]
+id = 2015
+
+[scarab_death]
+id = 1946
+
+[scarab_attack]
+id = 1948

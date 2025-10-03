@@ -1,0 +1,35 @@
+[tzhaar_defend]
+id = 2605
+
+[tzhaar_mej_defend]
+id = 2606
+
+[tzhaar_death]
+id = 2607
+
+[tzhaar_mej_death]
+id = 2608
+
+[tzhaar_punch]
+id = 2609
+
+[tzhaar_attack]
+id = 2610
+
+[tzhaar_ring_throw]
+id = 2611
+
+[tzhaar_mej_staff_attack]
+id = 2612
+
+[tzhaar_mej_magic_attack]
+id = 2613
+
+[firebat_death]
+id = 2620
+
+[firebat_attack]
+id = 2621
+
+[firebat_defend]
+id = 2622

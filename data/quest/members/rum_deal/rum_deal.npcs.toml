@@ -1,0 +1,11 @@
+[evil_spirit]
+id = 2849
+hitpoints = 900
+att = 170
+str = 146
+def = 100
+style = "crush"
+max_hit_melee = 280
+hunt_mode = "cowardly"
+drop_table = "ashes"
+examine = "The pun was intended."

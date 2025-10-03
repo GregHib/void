@@ -71,36 +71,46 @@ examine = "Should I pronounce it 'bucket'?"
 
 [suqah]
 id = 4527
+hitpoints = 1050
+att = 95
+str = 95
+def = 95
+attack_speed = 6
+style = "stab"
+style = "magic"
+spell = "water_wave"
+max_hit_melee = 100
+xp_bonus = 2.5
+hunt_mode = "cowardly"
+slayer_xp = 107.6
 categories = ["suqahs"]
+combat_anims = "suqah"
+drop_table = "suqah"
 examine = "A strange creature unique to Lunar Isle."
 
 [suqah_2]
 id = 4528
-categories = ["suqahs"]
-examine = "A strange creature unique to Lunar Isle."
+clone = "suqah"
 
 [suqah_3]
 id = 4529
+clone = "suqah"
 
 [suqah_4]
 id = 4530
-categories = ["suqahs"]
-examine = "A strange creature unique to Lunar Isle."
+clone = "suqah"
 
 [suqah_5]
 id = 4531
-categories = ["suqahs"]
-examine = "A strange creature unique to Lunar Isle."
+clone = "suqah"
 
 [suqah_6]
 id = 4532
-categories = ["suqahs"]
-examine = "A strange creature unique to Lunar Isle."
+clone = "suqah"
 
 [suqah_7]
 id = 4533
-categories = ["suqahs"]
-examine = "A strange creature unique to Lunar Isle."
+clone = "suqah"
 
 [cabin_boy]
 id = 4538

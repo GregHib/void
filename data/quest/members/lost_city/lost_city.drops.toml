@@ -1,0 +1,17 @@
+[tree_spirit_drop_table]
+roll = 128
+drops = [
+    { id = "steel_hatchet", chance = 10 },
+    { id = "mithril_hatchet", chance = 20 },
+    { id = "adamant_hatchet", chance = 8 },
+    { id = "rune_hatchet", chance = 4 },
+    { id = "nature_rune", amount = 22, chance = 31 },
+    { id = "nature_rune", amount = 10, chance = 2 },
+    { id = "nature_rune", amount = 5, chance = 2 },
+    { id = "nature_rune", amount = 2 },
+    { id = "grimy_snapdragon", chance = 6 },
+    { id = "grimy_toadflax", chance = 6 },
+    { table = "rare_seed_drop_table", chance = 14 },
+    { id = "knife" },
+    { table = "gem_drop_table", chance = 8 },
+]

@@ -1,0 +1,14 @@
+[possessed_priest]
+id = 1991
+hitpoints = 900
+att = 90
+str = 90
+def = 40
+mage = 60
+style = "magic"
+style = "crush"
+max_hit_melee = 60
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+drop_table = "possessed_priest"
+examine = "He has a dangerous glint in his eye."

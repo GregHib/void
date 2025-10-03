@@ -39,7 +39,7 @@ weight = 0.025
 examine = "Made from the finest snail slime."
 kept = "Reclaim"
 
-[entranan_firebird_feather]
+[fire_feather]
 id = 1583
 tradeable = false
 weight = 0.002

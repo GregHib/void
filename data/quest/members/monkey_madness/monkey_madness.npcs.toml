@@ -1,0 +1,15 @@
+[jungle_demon_normal]
+id = 1472
+hitpoints = 1700
+att = 170
+str = 170
+def = 170
+mage = 170
+attack_speed = 6
+style = "slash"
+max_hit_melee = 320
+max_hit_magic = 320
+attack_bonus = 50
+xp_bonus = 7.5
+hunt_mode = "cowardly"
+examine = "A Greater Jungle Demon. A magical aura emanates from its hide."

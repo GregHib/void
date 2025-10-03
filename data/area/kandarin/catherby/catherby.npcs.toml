@@ -58,7 +58,6 @@ def = 25
 mage = 25
 categories = ["human"]
 style = "slash"
-height = 1
 hunt_range = 2
 attack_range = 1
 attack_radius = 11
@@ -73,24 +72,24 @@ examine = "He isn't very friendly."
 
 [sir_mordred]
 id = 247
-hitpoints = 470
-att = 25
-str = 25
-def = 25
-mage = 25
+hitpoints = 380
+att = 33
+str = 33
+def = 33
+attack_bonus = 20
 categories = ["human"]
 style = "slash"
-height = 1
 hunt_range = 2
 attack_range = 1
 attack_radius = 11
 wander_radius = 5
-max_hit_melee = 75
+max_hit_melee = 50
 hunt_mode = "aggressive"
 drop_table = "human"
 combat_anims = "human"
-respawn_delay = 50
-examine = "He isn't very friendly."
+respawn_delay = 25
+drop_table = "bones"
+examine = "Leader of the Renegade Knights."
 
 [vestri]
 id = 3679

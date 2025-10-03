@@ -1,0 +1,8 @@
+[chompy_bird_attack]
+id = 6800
+
+[chompy_bird_defend]
+id = 6802
+
+[chompy_bird_death]
+id = 6823

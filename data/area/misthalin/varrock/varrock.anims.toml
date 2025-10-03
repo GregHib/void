@@ -1,3 +1,11 @@
 [cleaner_sweeping]
 id = 5799
 
+[varrock_guard_defend]
+id = 6488
+
+[varrock_guard_attack]
+id = 6489
+
+[varrock_guard_death]
+id = 6490

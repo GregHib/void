@@ -1,10 +1,24 @@
 [giant_frog]
 id = 1828
+hitpoints = 1000
+att = 100
+str = 80
+def = 65
+style = "crush"
+max_hit_melee = 90
+respawn_delay = 50
 categories = ["frogs"]
 examine = "It didn't get that big eating flies."
 
 [big_frog]
 id = 1829
+hitpoints = 250
+att = 25
+str = 20
+def = 15
+style = "crush"
+max_hit_melee = 30
+respawn_delay = 50
 categories = ["frogs"]
 examine = "It didn't get that big eating flies."
 

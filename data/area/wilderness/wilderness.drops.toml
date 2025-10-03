@@ -1,0 +1,36 @@
+[chaos_elemental_drop_table]
+type = "all"
+drops = [
+    { table = "chaos_elemental_secondary" },
+    { table = "elite_clue_scroll", roll = 300 },
+]
+
+[chaos_elemental_secondary]
+roll = 256
+drops = [
+    { id = "anchovy_pizza", amount = 3, chance = 25 },
+    { id = "babydragon_bones", amount = 2, chance = 25 },
+    { id = "bat_bones", amount = 5, chance = 25 },
+    { id = "big_bones", amount = 3, chance = 25 },
+    { id = "bones", amount = 4, chance = 25 },
+    { id = "dragon_bones", chance = 25 },
+    { id = "super_attack_4", chance = 25 },
+    { id = "super_defence_4", chance = 25 },
+    { id = "super_strength_4", chance = 25 },
+    { id = "tuna", amount = 5, chance = 25 },
+    { id = "dragon_pickaxe" },
+    { id = "dragon_dagger", chance = 22 },
+    { id = "dragon_2h_sword", chance = 2 },
+    { id = "air_rune", amount = 500, chance = 20 },
+    { id = "blood_rune", amount = 75, chance = 20 },
+    { id = "chaos_rune", amount = 250, chance = 20 },
+    { id = "death_rune", amount = 125, chance = 20 },
+    { id = "mithril_dart", amount = 300, chance = 20 },
+    { id = "rune_arrow", amount = 150, chance = 20 },
+    { table = "herb_drop_table", chance = 8 },
+    { id = "strange_fruit_noted", amount = 10, chance = 26 },
+    { id = "antipoison_4", chance = 20 },
+    { id = "weapon_poison++", chance = 20 },
+    { id = "coins", amount = 7500, chance = 16 },
+    { table = "rare_drop_table", chance = 6 },
+]

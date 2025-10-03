@@ -1,0 +1,38 @@
+[air_elemental_attack]
+id = 1527
+
+[air_elemental_death]
+id = 1528
+
+[air_elemental_defend]
+id = 1529
+
+[earth_elemental_attack]
+id = 1531
+
+[earth_elemental_death]
+id = 1532
+
+[earth_elemental_defend]
+id = 1533
+
+[fire_elemental_attack]
+id = 1534
+
+[fire_elemental_death]
+id = 1535
+
+[fire_elemental_defend]
+id = 1536
+
+[water_elemental_attack]
+id = 1543
+
+[water_elemental_death2]
+id = 1544
+
+[water_elemental_death3]
+id = 1545
+
+[water_elemental_defend]
+id = 1546

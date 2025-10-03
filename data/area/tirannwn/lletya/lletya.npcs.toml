@@ -23,15 +23,41 @@ examine = "Looks like he knows his way around a kitchen."
 
 [elf_warrior_lletya]
 id = 2359
+hitpoints = 1050
+att = 95
+str = 95
+def = 80
+range = 0
+style = "stab"
+max_hit_melee = 100
+xp_bonus = 2.5
+slayer_xp = 107.5
+categories = ["elves"]
+respawn_delay = 30
+examine = "I don't want to get on the wrong side of him."
 
 [elf_warrior_lletya_2]
 id = 2360
+clone = "elf_warrior_lletya"
 
 [elf_warrior_lletya_3]
 id = 2361
+hitpoints = 1050
+att = 10
+str = 10
+def = 80
+range = 90
+style = "range"
+max_hit_melee = 110
+ranged_strength = 8
+slayer_xp = 105.0
+categories = ["elves"]
+respawn_delay = 30
+examine = "She looks pretty handy with that bow."
 
 [elf_warrior_lletya_4]
 id = 2362
+clone = "elf_warrior_lletya_3"
 
 [goreu]
 id = 2363
@@ -70,6 +96,12 @@ examine = "Looks after your Farming tools."
 
 [ram_lletya]
 id = 3673
+hitpoints = 80
+style = "crush"
+max_hit_melee = 10
+attack_bonus = -15
+respawn_delay = 45
+drop_table = "ram"
 examine = "White and fluffy."
 
 [gwir]

@@ -11,6 +11,13 @@ examine = "Half horse, half woman."
 
 [stag_enchanted_valley]
 id = 4440
+hitpoints = 190
+att = 11
+str = 13
+def = 13
+style = "stab"
+max_hit_melee = 20
+respawn_delay = 90
 examine = "A noble creature!"
 
 [wood_dryad_enchanted_valley]
@@ -19,9 +26,16 @@ examine = "Twiggy."
 
 [rabbit_enchanted_valley]
 id = 4447
+hitpoints = 10
+style = "crush"
+max_hit_melee = 10
+attack_bonus = -47
+respawn_delay = 50
+examine = "Aww, how cute."
 
 [rabbit_enchanted_valley_2]
 id = 4448
+clone = "rabbit_enchanted_valley"
 
 [butterfly_enchanted_valley]
 id = 4449
@@ -34,3 +48,33 @@ id = 8647
 
 [general_gromblod_enchanted_valley_2]
 id = 11312
+
+[rock_golem]
+id = 8648
+hitpoints = 250
+att = 9
+str = 9
+def = 9
+range = 8
+style = "range"
+max_hit_range = 20
+xp_bonus = -97.5
+hunt_mode = "cowardly"
+drop_table = "rock_golem"
+examine = "Rock with attitude."
+
+[tree_spirit_level_14]
+id = 4470
+hitpoints = 250
+att = 9
+str = 9
+def = 9
+style = "crush"
+max_hit_melee = 20
+xp_bonus = -97.5
+hunt_mode = "cowardly"
+examine = "A very angry nymph."
+
+[tree_spirit_level_14_2]
+id = 4500
+clone = "tree_spirit_level_14"

@@ -47,14 +47,41 @@ examine = "The Mayor of Nardah."
 
 [tarik_nardah]
 id = 3041
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+style = "stab"
+max_hit_melee = 30
+attack_bonus = 4
+respawn_delay = 50
+drop_table = "bones"
 examine = "The mayor's guard."
 
 [poltenip]
 id = 3042
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+style = "stab"
+max_hit_melee = 30
+attack_bonus = 4
+respawn_delay = 50
+drop_table = "bones"
 examine = "The mayor's guard."
 
 [radat]
 id = 3043
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+style = "stab"
+max_hit_melee = 30
+attack_bonus = 4
+respawn_delay = 50
+drop_table = "bones"
 examine = "The mayor's guard."
 
 [shiratti_the_custodian]
@@ -67,6 +94,14 @@ examine = "A banker of Nardah."
 
 [billy_goat_nardah]
 id = 4932
+hitpoints = 280
+att = 31
+str = 29
+def = 29
+style = "crush"
+max_hit_melee = 60
+attack_bonus = 30
+respawn_delay = 50
 examine = "They'll eat anything!"
 
 [artimeus]

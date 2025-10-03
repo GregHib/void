@@ -1,0 +1,10 @@
+[sigmund_attackable]
+id = 1731
+hitpoints = 600
+att = 45
+str = 45
+def = 24
+style = "crush"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+examine = "Former advisor to the Duke of Lumbridge."

@@ -1,0 +1,11 @@
+[mercenary_captain_drop_table]
+type = "all"
+drops = [
+    { table = "mercenary_captain_primary" },
+]
+
+[mercenary_captain_primary]
+drops = [
+    { id = "bones" },
+    { id = "metal_key" },
+]

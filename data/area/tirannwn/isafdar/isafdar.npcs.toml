@@ -20,9 +20,16 @@ examine = "An elven bowyer."
 
 [rabbit_isafdar]
 id = 1193
+hitpoints = 50
+style = "crush"
+max_hit_melee = 10
+attack_bonus = -47
+respawn_delay = 25
+examine = "Aww, how cute."
 
 [rabbit_isafdar_2]
 id = 1194
+clone = "rabbit_isafdar"
 
 [grenwall]
 id = 7010

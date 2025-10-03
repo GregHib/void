@@ -3,10 +3,28 @@ id = 12311
 
 [dark_wizard_wilderness]
 id = 172
+hitpoints = 240
+att = 17
+str = 17
+def = 14
+mage = 22
+style = "magic"
+max_hit_magic = 60
+hunt_mode = "cowardly"
+respawn_delay = 50
 examine = "A practicer of dark arts."
 
 [dark_wizard_wilderness_2]
 id = 174
+hitpoints = 120
+att = 5
+str = 2
+def = 5
+mage = 6
+style = "magic"
+max_hit_magic = 60
+hunt_mode = "cowardly"
+respawn_delay = 50
 examine = "He works evil magic."
 
 [william]
@@ -60,8 +78,25 @@ id = 2390
 [mysterious_ghost_wilderness_5]
 id = 2394
 
-[chaos_elemental_wilderness]
+[chaos_elemental]
 id = 3200
+hitpoints = 2500
+att = 270
+str = 270
+def = 270
+mage = 270
+range = 270
+style = "crush"
+max_hit_melee = 280
+xp_bonus = 7.5
+hunt_mode = "cowardly"
+slayer_xp = 268.75
+categories = ["bosses"]
+respawn_delay = 100
+drop_table = "chaos_elemental"
+attack_anim = "chaos_elemental_attack"
+death_anim = "chaos_elemental_death"
+combat_sounds = "chaos_elemental"
 examine = "pUre A cHaOs of crEatuRe!"
 
 [fishing_spot_wilderness]
@@ -124,16 +159,37 @@ id = 8123
 [giant_rat_wilderness_2]
 id = 87
 
-[battle_mage_wilderness]
+[battle_mage_zamorak]
 id = 912
+hitpoints = 1200
+mage = 50
+style = "magic"
+max_hit_melee = 200
+immune_cannon = true
+respawn_delay = 150
+drop_table = "bones"
 examine = "He kills in the name of Zamorak."
 
-[battle_mage_wilderness_2]
+[battle_mage_saradomin]
 id = 913
+hitpoints = 1200
+mage = 50
+style = "magic"
+max_hit_melee = 200
+immune_cannon = true
+respawn_delay = 150
+drop_table = "bones"
 examine = "He kills in the name of Saradomin."
 
-[battle_mage_wilderness_3]
+[battle_mage_guthix]
 id = 914
+hitpoints = 1200
+mage = 50
+style = "magic"
+max_hit_melee = 200
+immune_cannon = true
+respawn_delay = 150
+drop_table = "bones"
 examine = "He kills in the name of Guthix."
 
 [mound_wilderness]
@@ -187,5 +243,15 @@ id = 12312
 
 [rogue_castle]
 id = 187
+hitpoints = 170
+att = 13
+str = 13
+def = 13
+style = "stab"
+max_hit_melee = 20
+attack_bonus = 5
+slayer_xp = 17.0
+categories = ["rogues"]
+respawn_delay = 50
 pickpocket = { level = 32, stun_ticks = 8, stun_hit = 20, xp = 36.5, chance_min = 75, chance_max = 240, table = "rouge" }
 examine = "Rogueish."

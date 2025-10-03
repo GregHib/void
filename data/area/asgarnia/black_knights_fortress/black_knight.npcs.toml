@@ -8,6 +8,13 @@ examine = "Wears a stylish suit of armour."
 
 [jailer_black_knights_base]
 id = 201
+hitpoints = 470
+att = 40
+str = 40
+def = 40
+style = "crush"
+max_hit_melee = 50
+respawn_delay = 50
 examine = "Guards prisoners for the black knights."
 
 [black_knight_void_stares_back]
@@ -22,3 +29,32 @@ examine = "One of the Black Knights."
 id = 12319
 examine = "One of the Black Knights."
 
+[fortress_guard]
+id = 609
+hitpoints = 220
+att = 18
+str = 18
+def = 15
+attack_speed = 6
+style = "stab"
+max_hit_melee = 30
+attack_bonus = 5
+respawn_delay = 25
+drop_table = "bones"
+examine = "A generic evil henchman."
+
+[fortress_guard_2]
+id = 4603
+clone = "fortress_guard"
+
+[fortress_guard_3]
+id = 4604
+clone = "fortress_guard"
+
+[fortress_guard_4]
+id = 4605
+clone = "fortress_guard"
+
+[fortress_guard_5]
+id = 4606
+clone = "fortress_guard"

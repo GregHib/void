@@ -4,15 +4,32 @@ examine = "Perhaps this gardener might look after your crops for you."
 
 [terrorbird]
 id = 138
+hitpoints = 340
+att = 23
+str = 23
+def = 19
+style = "stab"
+max_hit_melee = 30
+slayer_xp = 34.0
 categories = ["birds"]
+respawn_delay = 30
+combat_anims = "terrorbird"
+drop_table = "terrorbird"
 examine = "A giant raptor."
 
 [terrorbird_2]
 id = 139
+clone = "terrorbird"
 
 [gnome_child]
 id = 159
+hitpoints = 20
+style = "crush"
+max_hit_melee = 0
+attack_bonus = -42
+respawn_delay = 50
 pickpocket = { level = 75, stun_ticks = 8, stun_hit = 10, xp = 133.5, chance_min = 43, chance_max = 175, table = "gnome" }
+drop_table = "bones"
 examine = "Small, even by gnome standards."
 
 [gnome_child_2]
@@ -25,15 +42,40 @@ clone = "gnome_child"
 
 [gnome_guard]
 id = 163
+hitpoints = 310
+att = 17
+str = 17
+def = 17
+attack_speed = 6
+style = "slash"
+max_hit_melee = 30
+attack_bonus = 8
+respawn_delay = 30
+drop_table = "bones"
 examine = "A tree gnome guard."
 
-[gnome_guard_2]
+[gnome_guard_sword]
 id = 164
+hitpoints = 310
+att = 18
+str = 18
+def = 18
+style = "slash"
+max_hit_melee = 30
+attack_bonus = 6
+respawn_delay = 30
+drop_table = "bones"
 examine = "A tree gnome guard."
 
 [gnome_woman]
 id = 168
+hitpoints = 20
+style = "crush"
+max_hit_melee = 10
+attack_bonus = -42
+respawn_delay = 50
 pickpocket = { level = 75, stun_ticks = 8, stun_hit = 10, xp = 133.5, chance_min = 43, chance_max = 175, table = "gnome" }
+drop_table = "bones"
 examine = "A female gnome."
 
 [gnome_woman_2]
@@ -42,10 +84,19 @@ clone = "gnome_woman"
 
 [terrorbird_3]
 id = 1751
+clone = "terrorbird"
 
 [mounted_terrorbird]
 id = 1752
+hitpoints = 360
+att = 25
+str = 25
+def = 25
+style = "stab"
+max_hit_melee = 30
+slayer_xp = 36.0
 categories = ["birds"]
+respawn_delay = 30
 examine = "These gnomes know how to get around!"
 
 [bolongo_tree]
@@ -106,6 +157,15 @@ examine = "He looks like he needs something useful to do."
 
 [gnome_troop]
 id = 479
+hitpoints = 30
+style = "range"
+weapon_style = "bow"
+ammo = "bronze_arrow"
+attack_range = 8
+max_hit_range = 10
+attack_bonus = 2
+ranged_strength = 2
+respawn_delay = 30
 examine = "It's a tree gnome trooper."
 
 [gnome_troop_2]
@@ -147,6 +207,14 @@ examine = "The cruel tortoise trainer. Boo!"
 
 [tortoise_gnome_stronghold]
 id = 3819
+hitpoints = 1000
+att = 15
+str = 90
+def = 80
+style = "crush"
+max_hit_melee = 100
+respawn_delay = 50
+drop_table = "tortoise_riderless"
 examine = "A large tortoise."
 
 [terrorchick_gnome]

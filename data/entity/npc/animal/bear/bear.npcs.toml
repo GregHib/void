@@ -88,6 +88,7 @@ drop_table = "bear"
 combat_anims = "bear"
 combat_sounds = "bear"
 categories = ["bears"]
+drop_table = "bear"
 examine = "Eek! A bear!"
 
 [bear_cub]

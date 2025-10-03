@@ -224,6 +224,17 @@ id = 11268
 
 [farmer_lumbridge]
 id = 1757
+hitpoints = 120
+att = 3
+str = 4
+def = 8
+attack_speed = 6
+style = "stab"
+max_hit_melee = 10
+attack_bonus = 5
+respawn_delay = 25
+attack_anim = "farmer_attack"
+defend_anim = "farmer_defend"
 pickpocket = { level = 10, stun_hit = 10, stun_ticks = 8, xp = 14.5, chance_min = 150, chance_max = 240, table = "farmer" }
 examine = "He grows the crops in this area."
 

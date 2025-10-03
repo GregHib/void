@@ -39,3 +39,27 @@ drops = [
     { id = "tinderbox" },
     { id = "unlit_torch" },
 ]
+
+[molanisk_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "molanisk_secondary" },
+    { table = "easy_clue_scroll", roll = 128 },
+]
+
+[molanisk_secondary]
+roll = 128
+drops = [
+    { id = "water_rune", min = 1, max = 14, chance = 10 },
+    { id = "earth_rune", min = 1, max = 20, chance = 10 },
+    { id = "nature_rune", min = 1, max = 5, chance = 3 },
+    { id = "cosmic_rune", min = 1, max = 7, chance = 5 },
+    { id = "mud_rune", min = 1, max = 15, chance = 2 },
+    { table = "herb_drop_table", chance = 32 },
+    { id = "swamp_weed", min = 1, max = 4, chance = 37 },
+    { id = "swamp_weed", min = 5, max = 8, chance = 10 },
+    { id = "coins", min = 1, max = 75, chance = 10 },
+    { id = "mole_claw" },
+    { table = "gem_drop_table", chance = 7 },
+]

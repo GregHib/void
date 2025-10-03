@@ -1,0 +1,17 @@
+[crocodile_defend]
+id = 2035
+
+[crocodile_death]
+id = 2038
+
+[crocodile_attack]
+id = 2039
+
+[goat_death]
+id = 253
+
+[goat_defend]
+id = 3841
+
+[goat_attack]
+id = 4936

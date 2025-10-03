@@ -1,4 +1,9 @@
 [rabbit_air_rune_temple]
 id = 1192
+hitpoints = 50
+style = "crush"
+max_hit_melee = 10
+attack_bonus = -47
+respawn_delay = 25
 examine = "A cute bunny rabbit."
 

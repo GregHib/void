@@ -67,21 +67,47 @@ examine = "The guild engineer."
 
 [cyclopse_hammer]
 id = 6081
+hitpoints = 1000
+att = 65
+str = 65
+def = 35
+style = "crush"
+max_hit_melee = 70
+hunt_mode = "cowardly"
+slayer_xp = 100.0
+categories = ["hill_giants"]
+respawn_delay = 30
+examine = "A one-eyed woman eater."
 
 [cyclopse_hammer_steel]
 id = 6078
+hitpoints = 550
+att = 47
+str = 50
+def = 46
+style = "crush"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 55.0
+categories = ["hill_giants"]
+respawn_delay = 30
+examine = "A one-eyed man eater."
 
 [cyclopse_club_lepard]
 id = 4291
+clone = "cyclopse_hammer_steel"
 
 [cyclopse_club]
 id = 6080
+clone = "cyclopse_hammer"
 
 [cyclopse_club_mohawk]
 id = 6079
+clone = "cyclopse_hammer"
 
 [cyclopse_knife]
 id = 4292
+clone = "cyclopse_hammer"
 
 [harrallak_menarous_2]
 id = 8268
@@ -98,3 +124,93 @@ examine = "He looks like a strong warrior."
 [laidee_gnonock_2]
 id = 8484
 examine = "The small but tough doorman of the Warrior's Guild."
+
+[animated_bronze_armour]
+id = 4278
+hitpoints = 100
+att = 10
+str = 10
+def = 10
+style = "crush"
+max_hit_melee = 20
+attack_bonus = 4
+immune_poison = true
+drop_table = "animated_bronze_armour"
+examine = "Animated bronze armour."
+
+[animated_iron_armour]
+id = 4279
+hitpoints = 200
+att = 20
+str = 20
+def = 20
+style = "crush"
+max_hit_melee = 30
+attack_bonus = 4
+drop_table = "animated_iron_armour"
+examine = "Animated iron armour."
+
+[animated_steel_armour]
+id = 4280
+hitpoints = 400
+att = 40
+str = 40
+def = 40
+style = "stab"
+max_hit_melee = 50
+attack_bonus = 4
+immune_poison = true
+drop_table = "animated_steel_armour"
+examine = "Animated steel armour."
+
+[animated_black_armour]
+id = 4281
+hitpoints = 600
+att = 60
+str = 60
+def = 60
+style = "stab"
+max_hit_melee = 70
+attack_bonus = 4
+immune_poison = true
+drop_table = "animated_black_armour"
+examine = "Animated black armour."
+
+[animated_mithril_armour]
+id = 4282
+hitpoints = 800
+att = 80
+str = 80
+def = 80
+style = "stab"
+max_hit_melee = 100
+attack_bonus = 4
+immune_poison = true
+drop_table = "animated_mithril_armour"
+examine = "Animated mithril armour."
+
+[animated_adamant_armour]
+id = 4283
+hitpoints = 990
+att = 99
+str = 99
+def = 99
+style = "crush"
+max_hit_melee = 120
+attack_bonus = 4
+immune_poison = true
+drop_table = "animated_adamant_armour"
+examine = "Animated adamant armour."
+
+[animated_rune_armour]
+id = 4284
+hitpoints = 1200
+att = 120
+str = 120
+def = 120
+style = "stab"
+max_hit_melee = 140
+attack_bonus = 4
+immune_poison = true
+drop_table = "animated_rune_armour"
+examine = "Animated rune armour."

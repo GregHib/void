@@ -1,0 +1,12 @@
+[guardian_of_armadyl_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "guardian_of_armadyl_secondary" },
+]
+
+[guardian_of_armadyl_secondary]
+roll = 16
+drops = [
+    { id = "armadyl_pendant" },
+]

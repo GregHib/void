@@ -103,7 +103,16 @@ examine = "A camel whose love is unrequited."
 
 [al_kharid_warrior]
 id = 18
+hitpoints = 190
+att = 7
+str = 5
+def = 4
+style = "slash"
+max_hit_melee = 20
+attack_bonus = 10
+respawn_delay = 25
 wander_radius = 4
+drop_table = "citizen"
 pickpocket = { level = 25, stun_ticks = 8, stun_hit = 20, xp = 26.0, chance_min = 100, chance_max = 240, table = "warrior" }
 examine = "Part of Al Kharid's elite fighting force."
 

@@ -1,0 +1,30 @@
+[tyras_guard_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "tyras_guard_secondary" },
+]
+
+[tyras_guard_secondary]
+roll = 128
+drops = [
+    { id = "steel_2h_sword", chance = 4 },
+    { id = "steel_hatchet", chance = 3 },
+    { id = "steel_battleaxe", chance = 3 },
+    { id = "mithril_kiteshield" },
+    { id = "adamant_platelegs" },
+    { id = "rune_full_helm" },
+    { id = "fire_rune", amount = 75, chance = 8 },
+    { id = "chaos_rune", amount = 15, chance = 5 },
+    { id = "death_rune", amount = 5, chance = 3 },
+    { id = "fire_rune", amount = 37 },
+    { id = "coins", amount = 132, chance = 40 },
+    { id = "coins", amount = 44, chance = 29 },
+    { id = "coins", amount = 220, chance = 10 },
+    { id = "coins", amount = 11, chance = 7 },
+    { id = "coins", amount = 460 },
+    { id = "tuna", chance = 3 },
+    { id = "gold_bar", chance = 2 },
+    { id = "thread", amount = 10 },
+    { table = "gem_drop_table", chance = 5 },
+]

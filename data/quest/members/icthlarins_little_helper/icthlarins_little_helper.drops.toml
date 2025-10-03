@@ -1,0 +1,12 @@
+[possessed_priest_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "possessed_priest_secondary" },
+]
+
+[possessed_priest_secondary]
+roll = 64
+drops = [
+    { id = "coins", min = 1, max = 1260 },
+]

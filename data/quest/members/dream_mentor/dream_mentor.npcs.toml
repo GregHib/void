@@ -1,0 +1,45 @@
+[the_everlasting_normal]
+id = 5903
+hitpoints = 2300
+att = 187
+str = 231
+def = 120
+attack_speed = 6
+style = "crush"
+max_hit_melee = 240
+hunt_mode = "cowardly"
+examine = "Can you endure long enough?"
+
+[the_illusive]
+id = 5905
+hitpoints = 1400
+attack_speed = 6
+style = "melee"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "What if you don't know how to win?"
+
+[the_inadequacy_dream_world]
+id = 5902
+hitpoints = 1800
+att = 564
+str = 170
+def = 240
+range = 170
+style = "crush"
+max_hit_melee = 180
+max_hit_range = 20
+hunt_mode = "cowardly"
+examine = "Are you good enough to fight?"
+
+[the_untouchable_normal]
+id = 5904
+hitpoints = 900
+att = 187
+str = 255
+def = 434
+attack_speed = 6
+style = "crush"
+max_hit_melee = 260
+examine = "Can you bring yourself to hurt another?"

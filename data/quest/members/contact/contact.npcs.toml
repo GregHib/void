@@ -1,0 +1,23 @@
+[giant_scarab_normal]
+id = 5253
+hitpoints = 1300
+att = 169
+str = 190
+def = 169
+range = 190
+style = "stab"
+style = "range"
+max_hit_melee = 200
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+slayer_xp = 137.0
+categories = ["scabarites"]
+examine = "A huge scarab."
+
+[giant_scarab]
+id = 6770
+clone = "giant_scarab_normal"
+
+[giant_scarab_2]
+id = 6771
+clone = "giant_scarab"

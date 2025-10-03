@@ -1,0 +1,11 @@
+[slug_prince]
+id = 4890
+hitpoints = 700
+att = 50
+str = 50
+def = 50
+style = "crush"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "A child of aquatic evil."

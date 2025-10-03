@@ -20,4 +20,21 @@ id = 446
 [giant_rat_mudskipper_point_2]
 id = 4924
 
+[mogre]
+id = 114
+hitpoints = 480
+att = 58
+str = 55
+def = 48
+attack_speed = 6
+style = "crush"
+max_hit_melee = 80
+attack_bonus = 22
+hunt_mode = "cowardly"
+slayer_xp = 48.0
+categories = ["mogres"]
+categories = ["ogres"]
+drop_table = "mogre"
+examine = "An angry Ogre in a funny hat."
+
 

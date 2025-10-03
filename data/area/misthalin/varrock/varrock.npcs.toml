@@ -350,6 +350,14 @@ examine = "Trains the guards of the future."
 
 [thief_phoenix_gang]
 id = 5927
+hitpoints = 170
+att = 14
+str = 13
+def = 12
+style = "melee"
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
 examine = "Known for his light-fingered qualities."
 
 [art_critic_jacques]
@@ -494,6 +502,16 @@ examine = "An empowered woman."
 
 [weaponsmaster]
 id = 643
+hitpoints = 200
+att = 21
+str = 21
+def = 21
+attack_speed = 5
+style = "crush"
+max_hit_melee = 30
+attack_bonus = 8
+respawn_delay = 350
+drop_table = "bones"
 examine = "Looks kind of obsessive..."
 
 [straven]
@@ -641,6 +659,15 @@ examine = "A greasy, grimy gourmet."
 
 [guard_varrock]
 id = 5919
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+style = "stab"
+max_hit_melee = 30
+attack_bonus = 4
+respawn_delay = 50
+combat_anims = "varrock_guard"
 pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here. His bizarre uniform isn't helping."
 
@@ -658,15 +685,15 @@ examine = "Newspaper seller."
 
 [thief_black_arm_gang]
 id = 5926
-examine = "Known for his light-fingered qualities."
+clone = "thief_phoenix_gang"
 
 [thief_black_arm_gang_red]
 id = 5928
-examine = "Known for her light-fingered qualities."
+clone = "thief_phoenix_gang"
 
 [thief_black_arm_gang_blonde]
 id = 5929
-examine = "Known for her light-fingered qualities."
+clone = "thief_phoenix_gang"
 
 [apothecary]
 id = 638
@@ -678,6 +705,11 @@ examine = "Looks down on his luck."
 
 [jonny_the_beard]
 id = 645
+hitpoints = 80
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 37
+drop_table = "jonny_the_beard"
 examine = "Looks kind of shifty..."
 
 [dr_harlow]
@@ -712,6 +744,18 @@ examine = "He's studying to be a guard."
 [king_roald]
 id = 648
 examine = "Varrock's resident monarch."
+
+[king_roald_in_combat]
+id = 5838
+hitpoints = 750
+att = 35
+str = 30
+def = 30
+style = "crush"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+immune_poison = true
+examine = "Varrock's resident monarch. He looks strangely evil!"
 
 [tolna_2]
 id = 5462

@@ -1,9 +1,27 @@
 [holthion_ibans_lair]
 id = 1000
+hitpoints = 870
+att = 76
+str = 78
+def = 77
+style = "slash"
+max_hit_melee = 90
+xp_bonus = -7.5
+hunt_mode = "cowardly"
+immune_cannon = true
+respawn_delay = 30
 examine = "One of the guardians of Iban."
 
 [disciple_of_iban_ibans_lair]
 id = 1002
+hitpoints = 200
+att = 8
+str = 8
+def = 12
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 250
+drop_table = "disciple_of_iban"
 examine = "A dark magic user."
 
 [lord_iban_ibans_lair]
@@ -18,7 +36,16 @@ id = 1209
 
 [soulless_ibans_lair]
 id = 140
+hitpoints = 240
+att = 13
+str = 13
+def = 18
+style = "crush"
+max_hit_melee = 20
+hunt_mode = "cowardly"
+respawn_delay = 35
 categories = ["undead"]
+drop_table = "bones"
 examine = "A servant to Iban."
 
 [half_soulless_ibans_lair]
@@ -35,13 +62,42 @@ examine = "Curiosity is yet to kill this one..."
 
 [othainian_ibans_lair]
 id = 998
+hitpoints = 870
+att = 76
+str = 78
+def = 77
+style = "slash"
+max_hit_melee = 90
+xp_bonus = -7.5
+hunt_mode = "cowardly"
+respawn_delay = 30
+drop_table = "othainian"
 examine = "One of the guardians of Iban."
 
 [doomion_ibans_lair]
 id = 999
+hitpoints = 870
+att = 76
+str = 78
+def = 77
+style = "slash"
+max_hit_melee = 90
+xp_bonus = -7.5
+hunt_mode = "cowardly"
+respawn_delay = 30
+drop_table = "disciple_of_iban"
 examine = "One of the guardians of Iban."
 
-[wizard_ibans_lair]
+[wizard]
 id = 13
+hitpoints = 140
+att = 8
+str = 8
+def = 5
+mage = 10
+style = "magic"
+max_hit_melee = 40
+respawn_delay = 30
+drop_table = "wizard"
 examine = "Slightly magical."
 

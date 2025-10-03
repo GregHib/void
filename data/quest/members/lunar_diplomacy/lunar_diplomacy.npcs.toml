@@ -1,0 +1,21 @@
+[me_male]
+id = 4509
+hitpoints = 450
+att = 75
+str = 78
+def = 74
+style = "crush"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+examine = "It's like looking in the mirror."
+
+[me_female]
+id = 4510
+hitpoints = 450
+att = 75
+str = 78
+def = 74
+style = "crush"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+examine = "It's like looking in the mirror."

@@ -1,6 +1,36 @@
-[kalphite_queen_kalphite_hive]
+[kalphite_queen]
 id = 1158
-categories = ["kalphite"]
+hitpoints = 2550
+att = 300
+str = 300
+def = 300
+mage = 150
+style = "stab"
+max_hit_melee = 310
+xp_bonus = 0.5
+hunt_mode = "cowardly"
+slayer_xp = 535.5
+categories = ["kalphite", "bosses"]
+aka = ["kq"]
+respawn_delay = 50
+drop_table = "kalphite_queen"
+examine = "I don't think insect repellent will work..."
+
+[kalphite_queen_airborne]
+id = 1160
+hitpoints = 2550
+att = 300
+str = 300
+def = 300
+mage = 150
+style = "stab"
+max_hit_melee = 310
+xp_bonus = 12.5
+hunt_mode = "cowardly"
+slayer_xp = 535.5
+categories = ["kalphite", "bosses"]
+aka = ["kq"]
+drop_table = "kalphite_queen"
 examine = "I don't think insect repellent will work..."
 
 [weird_old_man]

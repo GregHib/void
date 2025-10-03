@@ -4,6 +4,18 @@ examine = "A roving banker."
 
 [giant_skeleton_lair_of_tarn_razorlor]
 id = 5384
+hitpoints = 700
+att = 70
+str = 70
+def = 70
+style = "crush"
+max_hit_melee = 80
+hunt_mode = "cowardly"
+slayer_xp = 70.0
+categories = ["skeletons"]
+respawn_delay = 15
+drop_table = "giant_skeleton_tarns_lair"
+examine = "A giant skeleton."
 
 [skeleton_lair_of_tarn_razorlor]
 id = 5385
@@ -37,9 +49,42 @@ examine = "He obviously hasn't realised he's dead."
 
 [terror_dog_lair_of_tarn_razorlor]
 id = 5417
+hitpoints = 870
+att = 110
+str = 104
+def = 78
+style = "crush"
+max_hit_melee = 150
+hunt_mode = "cowardly"
+slayer_xp = 87.0
 categories = ["terror_dogs"]
+respawn_delay = 50
+drop_table = "terror_dog"
 examine = "A terrifying dog beast."
 
 [terror_dog_lair_of_tarn_razorlor_2]
 id = 5418
+hitpoints = 820
+att = 100
+str = 90
+def = 74
+style = "crush"
+max_hit_melee = 110
+hunt_mode = "cowardly"
+slayer_xp = 82.0
+categories = ["terror_dogs"]
+respawn_delay = 50
+drop_table = "terror_dog_2"
+examine = "A terrifying dog beast."
 
+[mutant_tarn]
+id = 5421
+hitpoints = 800
+att = 40
+str = 80
+def = 40
+style = "crush"
+style = "magic"
+max_hit_melee = 90
+hunt_mode = "cowardly"
+examine = "I preferred him when he was human."

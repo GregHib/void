@@ -7,4 +7,12 @@ spawns = [
     { id = "chicken", x = 3109, y = 9569 },
     { id = "mysterious_ghost_wizards_tower", x = 3112, y = 3158, members = true },
     { id = "professor_onglewip", x = 3110, y = 3157 },
+    # Wizards' Tower
+    { id = "wizard", x = 3109, y = 9558 },
+    { id = "wizard", x = 3107, y = 3158 },
+    { id = "wizard", x = 3110, y = 3158 },
+    { id = "wizard", x = 3111, y = 3166 },
+    { id = "wizard", x = 3111, y = 3168 },
+    { id = "wizard", x = 3107, y = 3157, level = 1 },
+    { id = "wizard", x = 3112, y = 3157, level = 1 },
 ]

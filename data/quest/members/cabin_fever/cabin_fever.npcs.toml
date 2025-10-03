@@ -4,31 +4,49 @@ examine = "Bill Teach the pirate."
 
 [pirate_cabin_fever]
 id = 3188
+hitpoints = 520
+att = 49
+str = 50
+def = 50
+style = "slash"
+max_hit_melee = 60
+hunt_mode = "cowardly"
+slayer_xp = 20.0
+categories = ["pirates"]
+respawn_delay = 50
+examine = "An enemy pirate."
 
 [pirate_cabin_fever_2]
 id = 3189
+clone = "pirate_cabin_fever"
 
 [pirate_cabin_fever_3]
 id = 3190
+clone = "pirate_cabin_fever"
 
 [pirate_cabin_fever_4]
 id = 3191
+clone = "pirate_cabin_fever"
 
 [pirate_cabin_fever_5]
 id = 3192
+clone = "pirate_cabin_fever"
 
 [pirate_cabin_fever_6]
 id = 3193
+clone = "pirate_cabin_fever"
 
 [pirate_cabin_fever_7]
 id = 3194
+clone = "pirate_cabin_fever"
 
 [pirate_cabin_fever_8]
 id = 3195
+clone = "pirate_cabin_fever"
 
 [pirate_cabin_fever_9]
 id = 3196
-examine = "An enemy pirate."
+clone = "pirate_cabin_fever"
 
 [gull_cabin_fever]
 id = 3197

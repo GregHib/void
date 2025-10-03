@@ -1,14 +1,9 @@
 [rock_lobster_drop_table]
 type = "all"
 drops = [
-  { table = "rock_lobster_primary" },
+  { id = "raw_lobster" },
   { table = "rock_lobster_secondary" },
   { table = "medium_clue_scroll", roll = 128 },
-]
-
-[rock_lobster_primary]
-drops = [
-  { id = "raw_lobster" },
 ]
 
 [rock_lobster_secondary]

@@ -1,0 +1,32 @@
+[skeletal_miner_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "skeletal_miner_secondary" },
+    { table = "medium_clue_scroll", roll = 128 },
+]
+
+[skeletal_miner_secondary]
+roll = 128
+drops = [
+    { id = "iron_med_helm", chance = 6 },
+    { id = "iron_sword", chance = 4 },
+    { id = "iron_hatchet", chance = 2 },
+    { id = "iron_scimitar" },
+    { id = "air_rune", amount = 15, chance = 3 },
+    { id = "water_rune", amount = 9, chance = 3 },
+    { id = "chaos_rune", amount = 5, chance = 3 },
+    { id = "law_rune", amount = 2, chance = 2 },
+    { id = "iron_arrow", amount = 12, chance = 2 },
+    { id = "cosmic_rune", amount = 2 },
+    { table = "herb_drop_table", chance = 20 },
+    { id = "coins", amount = 5, chance = 25 },
+    { id = "coins", amount = 10, chance = 24 },
+    { id = "coins", amount = 25, chance = 8 },
+    { id = "coins", amount = 45, chance = 4 },
+    { id = "coins", amount = 65, chance = 3 },
+    { id = "coins", chance = 2 },
+    { id = "nothing", amount = 0, chance = 8 },
+    { id = "bronze_bar", chance = 5 },
+    { table = "gem_drop_table", chance = 2 },
+]

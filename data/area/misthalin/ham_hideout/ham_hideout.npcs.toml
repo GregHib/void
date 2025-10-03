@@ -4,14 +4,39 @@ examine = "The leader of the 'Humans Against Monsters' group."
 
 [ham_guard_ham_cave]
 id = 1710
+hitpoints = 150
+att = 8
+str = 12
+def = 8
+attack_speed = 7
+style = "crush"
+max_hit_melee = 20
+respawn_delay = 25
+drop_table = "ham_guard"
 examine = "A guard for the humans against monster group."
 
 [ham_guard_ham_cave_2]
 id = 1711
+hitpoints = 200
+att = 14
+str = 18
+def = 12
+attack_speed = 6
+style = "crush"
+max_hit_melee = 30
+respawn_delay = 25
 examine = "A guard for the humans against monster group."
 
 [ham_guard_ham_cave_3]
 id = 1712
+hitpoints = 300
+att = 16
+str = 20
+def = 12
+attack_speed = 5
+style = "crush"
+max_hit_melee = 30
+respawn_delay = 25
 examine = "A guard for the humans against monster group."
 
 [ham_deacon_ham_cave]
@@ -42,3 +67,31 @@ id = 2081
 
 [sigmund_ham_cave_2]
 id = 2083
+
+[ham_archer]
+id = 5859
+hitpoints = 350
+att = 0
+str = 0
+def = 30
+mage = 0
+range = 30
+attack_speed = 10
+style = "range"
+weapon_style = "bow"
+ammo = "bronze_arrow"
+attack_range = 8
+max_hit_range = 40
+hunt_mode = "cowardly"
+examine = "He looks pretty skilled with that bow."
+
+[ham_mage]
+id = 5860
+hitpoints = 350
+def = 30
+mage = 30
+attack_speed = 6
+style = "magic"
+max_hit_magic = 40
+hunt_mode = "cowardly"
+examine = "He bristles with arcane power."

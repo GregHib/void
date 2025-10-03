@@ -1,12 +1,21 @@
 [ogre_feldip_hills]
 id = 115
+hitpoints = 600
+att = 43
+str = 43
+def = 43
+attack_speed = 6
+style = "crush"
+max_hit_melee = 70
+attack_bonus = 22
+slayer_xp = 60.0
 categories = ["ogres"]
+respawn_delay = 30
 examine = "A large dim looking humanoid."
 
 [ogre_feldip_hills_2]
 id = 3451
-categories = ["ogres"]
-examine = "A large dim looking humanoid."
+clone = "ogre_feldip_hills"
 
 [ogre_boat_feldip_hills]
 id = 3469
@@ -16,6 +25,15 @@ id = 4471
 
 [carnivorous_chinchompa]
 id = 5080
+hitpoints = 10
+att = 2
+str = 2
+def = 2
+mage = 2
+range = 2
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 7
 examine = "It looks fluffy and cute; it's probably deadly."
 
 [black_warlock_feldip_hills]

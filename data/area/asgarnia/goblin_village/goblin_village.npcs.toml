@@ -1,5 +1,14 @@
 [monk_of_zamorak_goblin_village]
 id = 188
+hitpoints = 200
+att = 18
+str = 18
+def = 22
+mage = 25
+style = "crush"
+max_hit_melee = 30
+max_hit_magic = 80
+hunt_mode = "cowardly"
 examine = "A Zamorakian human cleric."
 
 [general_bentnoze_goblin_village]

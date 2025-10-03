@@ -1,0 +1,140 @@
+[barbarian_low_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "barbarian_low_secondary" },
+    { table = "easy_clue_scroll", roll = 128 },
+]
+
+[barbarian_low_secondary]
+roll = 128
+drops = [
+    { id = "bronze_hatchet", chance = 6 },
+    { id = "staff", chance = 4 },
+    { id = "iron_mace" },
+    { id = "chaos_rune", amount = 2, chance = 4 },
+    { id = "bronze_arrow", amount = 15, chance = 3 },
+    { id = "earth_rune", amount = 2, chance = 3 },
+    { id = "fire_rune", amount = 5, chance = 2 },
+    { id = "mind_rune", amount = 5, chance = 2 },
+    { id = "law_rune", amount = 2 },
+    { id = "coins", amount = 5, chance = 42 },
+    { id = "coins", amount = 8, chance = 9 },
+    { id = "coins", amount = 17, chance = 5 },
+    { id = "coins", amount = 27, chance = 3 },
+    { id = "nothing", amount = 0, chance = 36 },
+    { id = "tin_ore" },
+    { id = "bear_fur" },
+    { id = "beer" },
+    { id = "cooked_meat" },
+    { id = "ring_mould" },
+    { table = "gem_drop_table" },
+]
+
+[barbarian_high_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "barbarian_high_secondary" },
+    { table = "easy_clue_scroll", roll = 128 },
+]
+
+[barbarian_high_secondary]
+roll = 128
+drops = [
+    { id = "iron_hatchet", chance = 6 },
+    { id = "bronze_battleaxe", chance = 4 },
+    { id = "iron_mace" },
+    { id = "bronze_arrow", amount = 10, chance = 4 },
+    { id = "chaos_rune", amount = 3, chance = 4 },
+    { id = "iron_arrow", amount = 8, chance = 3 },
+    { id = "earth_rune", amount = 5, chance = 3 },
+    { id = "mind_rune", amount = 10, chance = 2 },
+    { id = "fire_rune", amount = 8, chance = 2 },
+    { id = "law_rune", amount = 2 },
+    { id = "coins", amount = 8, chance = 42 },
+    { id = "coins", amount = 12, chance = 9 },
+    { id = "coins", amount = 25, chance = 5 },
+    { id = "coins", amount = 32, chance = 3 },
+    { id = "nothing", amount = 0, chance = 32 },
+    { id = "cooked_meat" },
+    { id = "tin_ore" },
+    { id = "necklace_mould" },
+    { id = "beer" },
+    { id = "bear_fur" },
+    { table = "gem_drop_table" },
+]
+
+[ferocious_barbarian_spirit_drop_table]
+type = "all"
+drops = [
+    { table = "ferocious_barbarian_spirit_secondary" },
+]
+
+[ferocious_barbarian_spirit_secondary]
+roll = 128
+drops = [
+    { id = "mithril_mace", chance = 5 },
+    { id = "adamant_mace", chance = 4 },
+    { id = "rune_mace" },
+    { id = "mithril_hasta", chance = 2 },
+    { id = "adamant_knife", amount = 20, chance = 4 },
+    { id = "adamant_dart_p", amount = 20, chance = 4 },
+    { id = "rune_arrow", amount = 10, chance = 4 },
+    { id = "runite_bolts", amount = 10, chance = 4 },
+    { id = "death_rune", min = 5, max = 9, chance = 8 },
+    { id = "ranarr_seed", chance = 5 },
+    { id = "prayer_mix_1", chance = 16 },
+    { id = "prayer_mix_2", chance = 8 },
+    { id = "super_strength_mix_1", chance = 2 },
+    { id = "super_strength_mix_2", chance = 2 },
+    { id = "super_attack_mix_1", chance = 2 },
+    { id = "super_attack_mix_2", chance = 3 },
+    { id = "super_defence_mix_1", chance = 2 },
+    { id = "super_defence_mix_2", chance = 3 },
+    { id = "antifire_mix_1", chance = 4 },
+    { id = "antifire_mix_2", chance = 4 },
+    { id = "super_antipoison_mix_2" },
+    { id = "fishing_mix_2" },
+    { id = "yew_logs", amount = 3, chance = 2 },
+    { id = "steel_bar_noted", amount = 2, chance = 2 },
+    { id = "mithril_bar_noted", amount = 2, chance = 2 },
+    { id = "adamant_bar_noted" },
+    { id = "rune_bar_noted" },
+    { id = "big_bones_noted", amount = 10, chance = 7 },
+    { id = "shark", amount = 3, chance = 6 },
+    { table = "gem_drop_table", chance = 8 },
+]
+
+[penance_fighter_drop_table]
+type = "all"
+drops = [
+    { id = "blue_egg", amount = 2 },
+    { id = "green_egg", amount = 2 },
+    { id = "red_egg", amount = 2 },
+]
+
+[penance_healer_drop_table]
+type = "all"
+drops = [
+    { id = "blue_egg", amount = 2 },
+    { id = "green_egg", amount = 2 },
+    { id = "red_egg", amount = 2 },
+]
+
+[penance_ranger_drop_table]
+type = "all"
+drops = [
+    { id = "blue_egg", amount = 2 },
+    { id = "green_egg", amount = 2 },
+    { id = "red_egg", amount = 2 },
+]
+
+[penance_runner_drop_table]
+type = "all"
+drops = [
+    { id = "blue_egg", amount = 2 },
+    { id = "green_egg", amount = 2 },
+    { id = "red_egg", amount = 2 },
+]
+

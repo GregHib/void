@@ -8,7 +8,17 @@ examine = "Pretty shabbily dressed for a clothes shop owner."
 
 [rooster_rellekka]
 id = 1018
+hitpoints = 70
+att = 2
+str = 2
+style = "stab"
+max_hit_melee = 10
+attack_bonus = -20
+slayer_xp = 7.0
 categories = ["birds"]
+immune_poison = true
+respawn_delay = 25
+drop_table = "rooster"
 examine = "He rules the, er, roost."
 
 [lalli_rellekka]
@@ -137,11 +147,27 @@ clone = "agnar_rellekka"
 
 [lensa_rellekka]
 id = 1311
-clone = "agnar_rellekka"
+hitpoints = 500
+att = 40
+str = 40
+def = 40
+style = "crush"
+max_hit_melee = 60
+respawn_delay = 30
+drop_table = "rellekka_citizen"
+examine = "One of Rellekka's many citizens."
 
 [jennella_rellekka]
 id = 1312
-clone = "agnar_rellekka"
+hitpoints = 500
+att = 40
+str = 40
+def = 40
+style = "crush"
+max_hit_melee = 60
+respawn_delay = 30
+drop_table = "rellekka_citizen"
+examine = "One of Rellekka's many citizens."
 
 [sassilik_rellekka]
 id = 1313
@@ -155,6 +181,17 @@ examine = "I wonder what he does with all that fur?"
 [market_guard_rellekka]
 id = 1317
 hunt_mode = "guarding"
+hitpoints = 500
+att = 40
+str = 40
+def = 40
+attack_speed = 3
+style = "crush"
+max_hit_melee = 80
+attack_bonus = 40
+xp_bonus = 2.5
+respawn_delay = 30
+drop_table = "market_guard"
 examine = "Keeps the stalls secure."
 
 [peter_rellekka]
@@ -162,14 +199,31 @@ id = 13175
 
 [fox_rellekka]
 id = 1319
+hitpoints = 300
+str = 20
+def = 20
+style = "crush"
+max_hit_melee = 40
+attack_bonus = 30
+respawn_delay = 10
+drop_table = "bones"
+combat_anims = "fox"
 examine = "A cunning animal."
 
 [bunny_rellekka]
 id = 1320
+hitpoints = 50
+style = "crush"
+max_hit_melee = 0
+attack_bonus = -47
+respawn_delay = 25
+drop_table = "bunny"
+combat_anims = "bunny"
 examine = "Hoppity, hoppity."
 
 [bunny_rellekka_2]
 id = 1321
+clone = "bunny_rellekka"
 
 [gull_rellekka]
 id = 1322
@@ -182,6 +236,13 @@ id = 1324
 
 [unicorn_foal_rellekka]
 id = 1328
+hitpoints = 150
+att = 10
+str = 10
+def = 10
+style = "stab"
+max_hit_melee = 20
+respawn_delay = 90
 examine = "Horned Horsey."
 
 [fenris_wolf_rellekka]
@@ -269,15 +330,39 @@ examine = "A Fremennik bard."
 
 [freidir]
 id = 1306
+hitpoints = 500
+att = 40
+str = 40
+def = 40
+style = "crush"
+max_hit_melee = 60
+respawn_delay = 30
 clone = "agnar_rellekka"
+drop_table = "rellekka_citizen"
 
 [borrokar]
 id = 1307
 clone = "agnar_rellekka"
+hitpoints = 500
+att = 40
+str = 40
+def = 40
+style = "crush"
+max_hit_melee = 60
+respawn_delay = 30
+drop_table = "rellekka_citizen"
 
 [lanzig]
 id = 1308
-clone = "agnar_rellekka"
+hitpoints = 500
+att = 40
+str = 40
+def = 40
+style = "crush"
+max_hit_melee = 60
+respawn_delay = 30
+drop_table = "rellekka_citizen"
+examine = "One of Rellekka's many citizens."
 
 [inga]
 id = 1314
@@ -285,14 +370,41 @@ clone = "agnar_rellekka"
 
 [warrior_rellekka]
 id = 1318
+hitpoints = 500
+att = 40
+str = 40
+def = 40
+attack_speed = 3
+style = "crush"
+max_hit_melee = 80
+attack_bonus = 40
+xp_bonus = 2.5
+respawn_delay = 30
+drop_table = "market_guard"
 examine = "A hardened Fremennik warrior."
 
 [black_unicorn_foal]
 id = 1329
+hitpoints = 250
+att = 18
+str = 18
+def = 18
+style = "stab"
+max_hit_melee = 30
+respawn_delay = 20
+drop_table = "bones"
 examine = "Cute but evil."
 
 [black_unicorn]
 id = 133
+hitpoints = 290
+att = 21
+str = 23
+def = 23
+style = "stab"
+max_hit_melee = 30
+respawn_delay = 90
+drop_table = "unicorn"
 examine = "A unicorn with a blackened heart."
 
 [svidi]

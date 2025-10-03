@@ -1,0 +1,44 @@
+[locust_attack]
+id = 614
+
+[locust_mage_attack]
+id = 615
+
+[locust_death]
+id = 616
+
+[locust_hit]
+id = 617
+
+[locust_mage_death]
+id = 618
+
+[locust_mage_hit]
+id = 619
+
+[locust_rider_death]
+id = 620
+
+[locust_rider_hit]
+id = 621
+
+[locust_rider_rear]
+id = 622
+
+[scarabs_appear]
+id = 1478
+
+[scarabs2]
+id = 1479
+
+[scarabs_attack2]
+id = 1480
+
+[scarabs_attack]
+id = 1481
+
+[scarabs_death]
+id = 1482
+
+[scarabs_defend]
+id = 1483

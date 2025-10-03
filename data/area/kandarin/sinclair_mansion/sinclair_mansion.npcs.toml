@@ -5,6 +5,30 @@ examine = "She sells milk."
 
 [highwayman_sinclair_mansion]
 id = 180
+hitpoints = 130
+att = 2
+str = 2
+def = 2
+style = "stab"
+max_hit_melee = 10
+attack_bonus = 6
+hunt_mode = "cowardly"
+respawn_delay = 100
+drop_table = "highwayman"
+examine = "He holds up passers by."
+
+[highwayman_no_hood]
+id = 2677
+hitpoints = 130
+att = 2
+str = 2
+def = 4
+style = "stab"
+max_hit_melee = 10
+attack_bonus = 6
+hunt_mode = "cowardly"
+respawn_delay = 100
+drop_table = "highwayman"
 examine = "He holds up passers by."
 
 [fishing_spot_sinclair_mansion]

@@ -1,0 +1,28 @@
+[giant_lobster_drop_table]
+roll = 128
+drops = [
+    { id = "bronze_pickaxe", chance = 6 },
+    { id = "iron_pickaxe", chance = 5 },
+    { id = "seaweed", chance = 4 },
+    { id = "seaweed", amount = 2, chance = 4 },
+    { id = "seaweed", amount = 5, chance = 2 },
+    { id = "edible_seaweed", amount = 2, chance = 2 },
+    { id = "tin_ore", amount = 3, chance = 4 },
+    { id = "iron_ore", chance = 2 },
+    { id = "coal", amount = 2, chance = 2 },
+    { id = "copper_ore", amount = 3, chance = 2 },
+    { id = "oyster", amount = 2, chance = 12 },
+    { id = "oyster", chance = 9 },
+    { id = "empty_oyster", chance = 3 },
+    { id = "empty_oyster", amount = 3 },
+    { id = "oyster_pearl" },
+    { id = "coins", amount = 4, chance = 29 },
+    { id = "coins", amount = 8, chance = 6 },
+    { id = "coins", amount = 36, chance = 8 },
+    { id = "nothing", amount = 0, chance = 19 },
+    { id = "fishing_bait", amount = 10, chance = 2 },
+    { id = "opal_bolt_tips", amount = 5, chance = 2 },
+    { id = "dead_sea_slug" },
+    { id = "spinach_roll" },
+    { id = "casket" },
+]

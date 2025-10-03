@@ -1,0 +1,14 @@
+[gnome_bow_attack]
+id = 190
+
+[gnome_punch]
+id = 191
+
+[gnome_attack]
+id = 192
+
+[gnome_defend]
+id = 193
+
+[gnome_death]
+id = 196

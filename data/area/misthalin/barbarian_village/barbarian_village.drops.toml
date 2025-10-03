@@ -1,0 +1,13 @@
+[unicorn_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "unicorn_horn" },
+    { table = "unicorn_tertiary" },
+]
+
+[unicorn_tertiary]
+roll = 35
+drops = [
+    { id = "unicorn_bone", chance = 35, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]

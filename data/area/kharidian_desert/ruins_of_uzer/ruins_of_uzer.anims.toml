@@ -1,0 +1,8 @@
+[golem_attack]
+id = 153
+
+[golem_defend]
+id = 154
+
+[golem_death]
+id = 156

@@ -1,0 +1,18 @@
+[rockslug_drop_table]
+roll = 512
+drops = [
+    { id = "light_mystic_gloves" },
+    { id = "earth_rune", amount = 5, chance = 120 },
+    { id = "earth_rune", amount = 42, chance = 16 },
+    { id = "chaos_rune", amount = 2, chance = 16 },
+    { id = "coal", chance = 52 },
+    { id = "iron_ore", chance = 88 },
+    { id = "bronze_bar", chance = 8 },
+    { id = "iron_bar", chance = 12 },
+    { id = "copper_ore", chance = 12 },
+    { id = "tin_ore", chance = 32 },
+    { id = "mithril_ore", chance = 4 },
+    { id = "dwarven_stout", chance = 52 },
+    { id = "hammer", chance = 40 },
+    { table = "gem_drop_table", chance = 24 },
+]

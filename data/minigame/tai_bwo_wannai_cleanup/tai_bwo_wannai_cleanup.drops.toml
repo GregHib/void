@@ -1,0 +1,36 @@
+[broodoo_victim_green_drop_table]
+type = "all"
+drops = [
+    { id = "tribal_mask_green" },
+]
+
+[broodoo_victim_orange_drop_table]
+type = "all"
+drops = [
+    { id = "tribal_mask_orange" },
+]
+
+[broodoo_victim_blue_drop_table]
+type = "all"
+drops = [
+    { id = "tribal_mask_blue" },
+]
+
+[bush_snake_drop_table]
+type = "all"
+drops = [
+    { id = "snake_hide" },
+    { table = "bush_snake_tertiary" },
+]
+
+[bush_snake_tertiary]
+roll = 4
+drops = [
+    { id = "snake_spine", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]
+
+[mosquito_drop_table]
+type = "all"
+drops = [
+    { id = "proboscis" },
+]

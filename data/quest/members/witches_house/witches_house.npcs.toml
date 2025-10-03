@@ -1,0 +1,43 @@
+[witchs_experiment_skavid]
+id = 897
+hitpoints = 210
+att = 18
+str = 10
+def = 19
+style = "crush"
+max_hit_melee = 20
+hunt_mode = "cowardly"
+examine = "Looks unnatural."
+
+[witchs_experiment_second_form_spider]
+id = 898
+hitpoints = 310
+att = 28
+str = 20
+def = 29
+style = "crush"
+max_hit_melee = 30
+hunt_mode = "cowardly"
+examine = "Looks unnatural."
+
+[witchs_experiment_third_form_bear]
+id = 899
+hitpoints = 410
+att = 38
+str = 30
+def = 39
+style = "slash"
+max_hit_melee = 40
+hunt_mode = "cowardly"
+examine = "Looks unnatural."
+
+[witchs_experiment_fourth_form_wolf]
+id = 900
+hitpoints = 510
+att = 48
+str = 40
+def = 49
+style = "stab"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+examine = "Looks unnatural."

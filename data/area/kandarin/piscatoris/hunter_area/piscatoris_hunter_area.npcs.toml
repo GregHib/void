@@ -4,6 +4,10 @@ examine = "Carries supplies to the Piscatoris Fishing Colony."
 
 [chinchompa]
 id = 5079
+hitpoints = 10
+style = "crush"
+max_hit_melee = 10
+respawn_delay = 7
 examine = "It looks fluffy and cute; it's probably deadly."
 
 [ruby_harvest]

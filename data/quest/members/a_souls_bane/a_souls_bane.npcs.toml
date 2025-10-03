@@ -1,0 +1,21 @@
+[fear_reaper]
+id = 3649
+hitpoints = 250
+att = 39
+str = 41
+def = 40
+style = "slash"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+examine = "AHHHHH!"
+
+[hopeless_creature_level_40]
+id = 3655
+hitpoints = 250
+att = 38
+str = 36
+def = 39
+style = "stab"
+max_hit_melee = 50
+hunt_mode = "cowardly"
+examine = "A hopeless poor creature."

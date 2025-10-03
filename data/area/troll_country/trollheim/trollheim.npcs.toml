@@ -101,3 +101,45 @@ examine = "She looks rather kindly, for a troll."
 [egg_3]
 id = 8062
 examine = "She looks rather kindly, for a troll."
+
+[troll_spectator]
+id = 1118
+hitpoints = 900
+att = 40
+str = 90
+def = 25
+mage = 0
+range = 0
+attack_speed = 6
+style = "crush"
+max_hit_melee = 130
+attack_bonus = 20
+slayer_xp = 90.0
+categories = ["trolls"]
+respawn_delay = 50
+drop_table = "mountain_troll"
+examine = "He's watching the arena."
+
+[troll_spectator_2]
+id = 1119
+clone = "troll_spectator"
+
+[troll_spectator_3]
+id = 1120
+clone = "troll_spectator"
+
+[troll_spectator_4]
+id = 1121
+clone = "troll_spectator"
+
+[troll_spectator_5]
+id = 1122
+clone = "troll_spectator"
+
+[troll_spectator_6]
+id = 1123
+clone = "troll_spectator"
+
+[troll_spectator_7]
+id = 1124
+clone = "troll_spectator"

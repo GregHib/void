@@ -1,0 +1,12 @@
+[tree_spirit_lost_city]
+id = 655
+hitpoints = 850
+att = 90
+str = 95
+def = 80
+style = "crush"
+max_hit_melee = 70
+hunt_mode = "aggressive"
+categories = ["ghosts"]
+drop_table = "tree_spirit"
+examine = "Guardian of the dramen tree."

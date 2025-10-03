@@ -6,24 +6,61 @@ id = 4714
 
 [vyrewatch_darkmeyer]
 id = 4805
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+attack_speed = 8
+style = "crush"
+max_hit_melee = 110
+hunt_mode = "cowardly"
+slayer_xp = 90.0
+categories = ["vampyres"]
+immune_poison = true
+immune_cannon = true
+respawn_delay = 25
+examine = "An evil, bloodsucking vampyre."
 
 [vyrewatch_darkmeyer_2]
 id = 4807
+clone = "vyrewatch_darkmeyer"
 
 [vyrewatch_darkmeyer_3]
 id = 4819
+clone = "vyrewatch_darkmeyer"
 
 [vyrewatch_darkmeyer_4]
 id = 4832
+clone = "vyrewatch_darkmeyer"
 
 [vyrewatch_darkmeyer_5]
 id = 4834
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+attack_speed = 8
+style = "crush"
+max_hit_melee = 120
+hunt_mode = "cowardly"
+slayer_xp = 105.0
+categories = ["vampyres"]
+immune_poison = true
+immune_cannon = true
+respawn_delay = 25
+examine = "A thirsty-looking, airborne bloodsucker!"
 
 [vyrewatch_darkmeyer_6]
 id = 4835
+clone = "vyrewatch_darkmeyer"
 
 [vyrewatch_darkmeyer_7]
 id = 4836
+clone = "vyrewatch_darkmeyer"
 
 [safalaan_darkmeyer_2]
 id = 4713
