@@ -1,0 +1,12 @@
+Activate
+Destroy
+Examine
+Inspect
+Lay
+Light
+Observe
+Remove
+Reset
+Study
+Take
+Target

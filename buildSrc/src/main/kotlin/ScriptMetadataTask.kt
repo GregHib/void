@@ -15,15 +15,33 @@ import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.psiUtil.collectDescendantsOfType
-import org.jetbrains.kotlin.utils.addToStdlib.indexOfOrNull
-import java.io.BufferedInputStream
 import java.io.File
-import java.io.FileInputStream
 
 /**
  * Gradle task which incrementally collects annotation info about classes inside a given directory.
+ * Collects:
+ *  - @Script annotations for invocation
+ *  - Overridden methods
+ *  - Annotations on methods and it's data
+ *  - Processes annotation wildcards
  */
 abstract class ScriptMetadataTask : DefaultTask() {
+
+    private enum class WildcardType {
+        NpcId,
+        InterfaceId,
+        ComponentId,
+        ObjectId,
+        ItemId,
+        NpcOption,
+        InterfaceOption,
+        FloorItemOption,
+        ObjectOption,
+        ItemOption,
+    }
+
+    // List of annotation names and their parameters
+    private val annotations: Map<String, List<Pair<String, WildcardType>>> = mapOf()
 
     @get:Incremental
     @get:InputFiles
@@ -33,6 +51,9 @@ abstract class ScriptMetadataTask : DefaultTask() {
     @get:Internal
     abstract var dataDirectory: File
 
+    @get:Internal
+    abstract var resourceDirectory: File
+
     @get:OutputFile
     abstract var scriptsFile: File
 
@@ -41,20 +62,23 @@ abstract class ScriptMetadataTask : DefaultTask() {
         group = "metadata"
     }
 
-    private val annotations = mapOf(
-        "Id" to listOf("name" to "npc")
-    )
-
     @TaskAction
     fun execute(inputChanges: InputChanges) {
         val start = System.currentTimeMillis()
 
-        var npcIds = mutableSetOf<String>()
-        var itemIds = mutableSetOf<String>()
-        var objectIds = mutableSetOf<String>()
-        var interfaceIds = mutableSetOf<String>()
-        var componentIds = mutableSetOf<String>()
+        val npcIds = mutableSetOf<String>()
+        val itemIds = mutableSetOf<String>()
+        val objectIds = mutableSetOf<String>()
+        val interfaceIds = mutableSetOf<String>()
+        val componentIds = mutableSetOf<String>()
         collectIds(npcIds, itemIds, objectIds, interfaceIds, componentIds)
+        val options = System.currentTimeMillis()
+        val npcOptions = loadOptions("npc-options")
+        val itemOptions = loadOptions("item-options")
+        val floorItemOptions = loadOptions("floor-item-options")
+        val objectOptions = loadOptions("object-options")
+        val interfaceOptions = loadOptions("interface-options")
+        println("Loaded ${npcOptions.size} npc, ${itemOptions.size} item, ${floorItemOptions.size} floor item, ${objectOptions.size} object, ${interfaceOptions.size} interface options in ${System.currentTimeMillis() - options}ms")
 
         val lines: MutableList<String>
         if (!inputChanges.isIncremental) {
@@ -127,6 +151,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
                     val annotationName = annotation.shortName?.asString() ?: ""
                     val info = annotations.get(annotationName) ?: error("Annotation ${annotationName} metadata not found. Make sure your annotation is registered in ScriptMetadataTask.kt")
                     val params = Array<MutableList<String>>(info.size) { mutableListOf() }
+                    // Resolve annotation field names
                     var index = 0
                     for (arg in annotation.valueArguments) {
                         val name = arg.getArgumentName()?.asName?.asString()
@@ -135,17 +160,21 @@ abstract class ScriptMetadataTask : DefaultTask() {
                         params[idx].add(value)
                     }
                     for (i in info.indices) {
-                        val set = when (info[i].second) {
-                            "npc" -> npcIds
-                            "interface" -> interfaceIds
-                            "component" -> componentIds
-                            "object" -> objectIds
-                            "item" -> itemIds
-                            "" -> continue
-                            else -> error("Unknown wildcard type: ${info[i].second}")
-                        }
                         val value = params[i].first()
+                        // Expand wildcards into matches
                         if (value.contains("*") || value.contains("#")) {
+                            val set = when (info[i].second) {
+                                WildcardType.NpcId -> npcIds
+                                WildcardType.InterfaceId -> interfaceIds
+                                WildcardType.ComponentId -> componentIds
+                                WildcardType.ObjectId -> objectIds
+                                WildcardType.ItemId -> itemIds
+                                WildcardType.NpcOption -> npcOptions
+                                WildcardType.InterfaceOption -> interfaceOptions
+                                WildcardType.FloorItemOption -> floorItemOptions
+                                WildcardType.ObjectOption -> objectOptions
+                                WildcardType.ItemOption -> itemOptions
+                            }
                             val matches = set.filter { wildcardEquals(value, it) }
                             if (matches.isEmpty()) {
                                 error("No matches for wildcard '${value}' in ${packagePath} ${annotation.text}")
@@ -163,20 +192,24 @@ abstract class ScriptMetadataTask : DefaultTask() {
         }
         scriptsFile.writeText(lines.joinToString("\n"))
         disposable.dispose()
-        println("Metadata for $scripts scripts, $methodCount methods and ${annotationCount} annotations collected in ${System.currentTimeMillis() - start} ms")
+        println("Metadata for $scripts scripts, $methodCount methods and $annotationCount annotations collected in ${System.currentTimeMillis() - start} ms")
     }
 
     private fun generateCombinations(arrays: Array<MutableList<String>>, index: Int = 0, current: MutableList<String> = mutableListOf(), call: (List<String>) -> Unit) {
         if (index == arrays.size) {
             call.invoke(current)
-            return;
+            return
         }
-        val currentArray = arrays.get(index);
+        val currentArray = arrays[index]
         for (element in currentArray) {
-            current.add(element);
-            generateCombinations(arrays, index + 1, current, call);
-            current.removeAt(current.size - 1);
+            current.add(element)
+            generateCombinations(arrays, index + 1, current, call)
+            current.removeAt(current.size - 1)
         }
+    }
+
+    private fun loadOptions(type: String): Set<String> {
+        return ScriptMetadataTask::class.java.getResource("$type.txt")!!.readText().lines().toSet()
     }
 
     private fun collectIds(
@@ -222,7 +255,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
                 }
             }
         }
-        println("Collected ${npcIds.size} npcs, ${itemIds.size} items, ${objectIds.size} objects, ${interfaceIds.size} interfaces in ${System.currentTimeMillis() - start}ms")
+        println("Collected ${npcIds.size} npcs, ${itemIds.size} items, ${objectIds.size} objects, ${interfaceIds.size} interfaces, ${componentIds.size} components in ${System.currentTimeMillis() - start}ms")
     }
 
     private fun removeName(scriptsList: MutableList<String>, name: String?) {

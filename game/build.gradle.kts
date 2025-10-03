@@ -50,6 +50,7 @@ tasks {
         inputDirectory.set(layout.projectDirectory.dir("src/main/kotlin/content"))
         dataDirectory = parent!!.rootDir.resolve("data")
         scriptsFile = resources.resolve("scripts.txt")
+        resourceDirectory = resources
     }
 
     named<ShadowJar>("shadowJar") {
