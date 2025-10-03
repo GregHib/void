@@ -1,19 +1,18 @@
 [prayer_list]
 id = 271
 type = "prayer_list_tab"
-components = {
-  stat_adjustments = 12,
-  quick_prayers = {
-    id = 42,
-    options = {
-      Select = 0,
-    },
-  },
-  regular_prayers = {
-    id = 8,
-    options = {
-      Activate = 0,
-    },
-  },
-  confirm = 43,
-}
+
+[.stat_adjustments]
+id = 12
+
+[.quick_prayers]
+id = 42
+options = { Select = 0 }
+
+[.regular_prayers]
+id = 8
+options = { Activate = 0 }
+
+[.confirm]
+id = 43
+

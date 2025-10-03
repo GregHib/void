@@ -1,8 +1,14 @@
 [gravestone_shop]
 id = 652
-components = { button = { id = 34, options = { Confirm = 0, Sell = 1 } } }
+
+[.button]
+id = 34
+options = { Confirm = 0, Sell = 1 }
 
 [gravestone_plaque]
 id = 266
 type = "wide_screen"
-components = { text = 23 }
+
+[.text]
+id = 23
+

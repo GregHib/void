@@ -1,16 +1,37 @@
 [assist_xp]
 id = 301
 type = "main_screen"
-components = {
-  description = 10,
-  title = 73,
-  runecrafting = 74,
-  crafting = 75,
-  fletching = 76,
-  construction = 77,
-  farming = 78,
-  magic = 79,
-  smithing = 80,
-  cooking = 81,
-  herblore = 82,
-}
+
+[.description]
+id = 10
+
+[.title]
+id = 73
+
+[.runecrafting]
+id = 74
+
+[.crafting]
+id = 75
+
+[.fletching]
+id = 76
+
+[.construction]
+id = 77
+
+[.farming]
+id = 78
+
+[.magic]
+id = 79
+
+[.smithing]
+id = 80
+
+[.cooking]
+id = 81
+
+[.herblore]
+id = 82
+

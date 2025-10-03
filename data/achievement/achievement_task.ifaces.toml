@@ -4,60 +4,124 @@ id = 259
 [task_list]
 id = 917
 type = "main_screen"
-components = {
-  area_lumbridge_draynor = 119,
-  area_varrock = 121,
-  area_falador = 123,
-  area_seers_village = 125,
-  area_ardougne = 127,
-  area_karamja = 129,
-  area_fremennik = 131,
-  area_dnd_activities = 147,
-  filter_sets = 110,
-  filter_done = 102,
-  toggle_popups = 136,
-  pin = 40,
-  hint_1 = 2,
-  hint_2 = 4,
-  hint_3 = 6,
-  hint_4 = 8,
-  hint_5 = 10,
-  tasks = {
-    id = 94,
-    options = {
-      Summary = 0,
-      Pin = 1
-    }
-  }
-}
+
+[.area_lumbridge_draynor]
+id = 119
+
+[.area_varrock]
+id = 121
+
+[.area_falador]
+id = 123
+
+[.area_seers_village]
+id = 125
+
+[.area_ardougne]
+id = 127
+
+[.area_karamja]
+id = 129
+
+[.area_fremennik]
+id = 131
+
+[.area_dnd_activities]
+id = 147
+
+[.filter_sets]
+id = 110
+
+[.filter_done]
+id = 102
+
+[.toggle_popups]
+id = 136
+
+[.pin]
+id = 40
+
+[.hint_1]
+id = 2
+
+[.hint_2]
+id = 4
+
+[.hint_3]
+id = 6
+
+[.hint_4]
+id = 8
+
+[.hint_5]
+id = 10
+
+[.tasks]
+id = 94
+options = { Summary = 0, Pin = 1 }
 
 [task_popup]
 id = 1055
 type = "task_overlay"
-components = {
-  details = 2
-}
+
+[.details]
+id = 2
 
 [task_system]
 id = 1056
 type = "task_system_tab"
-components = {
-  back = 90,
-  task_1 = 99,
-  task_2 = 142,
-  task_3 = 147,
-  task_4 = 152,
-  task_5 = 157,
-  task_6 = 162,
-  task_list = 102,
-  dont_show = 173,
-  close_hint = 174,
-  hints = 36,
-  summary_overlay = 122,
-  message_overlay = 171,
-  ok = 130,
-  hint_1 = 77,
-  hint_2 = 79,
-  hint_3 = 81,
-  pin = 88,
-}
+
+[.back]
+id = 90
+
+[.task_1]
+id = 99
+
+[.task_2]
+id = 142
+
+[.task_3]
+id = 147
+
+[.task_4]
+id = 152
+
+[.task_5]
+id = 157
+
+[.task_6]
+id = 162
+
+[.task_list]
+id = 102
+
+[.dont_show]
+id = 173
+
+[.close_hint]
+id = 174
+
+[.hints]
+id = 36
+
+[.summary_overlay]
+id = 122
+
+[.message_overlay]
+id = 171
+
+[.ok]
+id = 130
+
+[.hint_1]
+id = 77
+
+[.hint_2]
+id = 79
+
+[.hint_3]
+id = 81
+
+[.pin]
+id = 88
+

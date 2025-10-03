@@ -1,5 +1,4 @@
 dependencyResolutionManagement {
-
     @Suppress("UnstableApiUsage")
     repositories {
         mavenCentral()
@@ -11,5 +10,3 @@ dependencyResolutionManagement {
         }
     }
 }
-
-rootProject.name = "buildSrc"

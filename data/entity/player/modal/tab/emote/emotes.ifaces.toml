@@ -1,80 +1,175 @@
 [morph]
 id = 375
 type = "overlay_tab"
-components = {
-  unmorph = 3,
-}
+
+[.unmorph]
+id = 3
 
 [emotes]
 id = 464
 type = "emotes_tab"
-components = {
-  emotes = {
-    id = 1,
-    options = {
-      Select = 0,
-      Option2 = 1,
-      Option3 = 4,
-      Option4 = 5,
-      Option6 = 10,
-    },
-  },
-  yes = 2,
-  no = 3,
-  bow = 4,
-  angry = 5,
-  think = 6,
-  wave = 7,
-  shrug = 8,
-  cheer = 9,
-  beckon = 10,
-  laugh = 11,
-  jump_for_joy = 12,
-  yawn = 13,
-  dance = 14,
-  jig = 15,
-  twirl = 16,
-  headbang = 17,
-  cry = 18,
-  blow_kiss = 19,
-  panic = 20,
-  raspberry = 21,
-  clap = 22,
-  salute = 23,
-  goblin_bow = 24,
-  goblin_salute = 25,
-  glass_box = 26,
-  climb_rope = 27,
-  lean = 28,
-  glass_wall = 29,
-  idea = 30,
-  stomp = 31,
-  flap = 32,
-  slap_head = 33,
-  zombie_walk = 34,
-  zombie_dance = 35,
-  zombie_hand = 36,
-  scared = 37,
-  bunny_hop = 38,
-  skillcape = 39,
-  snowman_dance = 40,
-  air_guitar = 41,
-  safety_first = 42,
-  explore = 43,
-  trick = 44,
-  freeze = 45,
-  give_thanks = 46,
-  around_the_world_in_eggty_days = 47,
-  dramatic_point = 48,
-  faint = 49,
-  puppet_master = 50,
-  taskmaster = 51,
-  seal_of_approval = 52,
-}
+
+[.emotes]
+id = 1
+options = { Select = 0, Option2 = 1, Option3 = 4, Option4 = 5, Option6 = 10 }
+
+[.yes]
+id = 2
+
+[.no]
+id = 3
+
+[.bow]
+id = 4
+
+[.angry]
+id = 5
+
+[.think]
+id = 6
+
+[.wave]
+id = 7
+
+[.shrug]
+id = 8
+
+[.cheer]
+id = 9
+
+[.beckon]
+id = 10
+
+[.laugh]
+id = 11
+
+[.jump_for_joy]
+id = 12
+
+[.yawn]
+id = 13
+
+[.dance]
+id = 14
+
+[.jig]
+id = 15
+
+[.twirl]
+id = 16
+
+[.headbang]
+id = 17
+
+[.cry]
+id = 18
+
+[.blow_kiss]
+id = 19
+
+[.panic]
+id = 20
+
+[.raspberry]
+id = 21
+
+[.clap]
+id = 22
+
+[.salute]
+id = 23
+
+[.goblin_bow]
+id = 24
+
+[.goblin_salute]
+id = 25
+
+[.glass_box]
+id = 26
+
+[.climb_rope]
+id = 27
+
+[.lean]
+id = 28
+
+[.glass_wall]
+id = 29
+
+[.idea]
+id = 30
+
+[.stomp]
+id = 31
+
+[.flap]
+id = 32
+
+[.slap_head]
+id = 33
+
+[.zombie_walk]
+id = 34
+
+[.zombie_dance]
+id = 35
+
+[.zombie_hand]
+id = 36
+
+[.scared]
+id = 37
+
+[.bunny_hop]
+id = 38
+
+[.skillcape]
+id = 39
+
+[.snowman_dance]
+id = 40
+
+[.air_guitar]
+id = 41
+
+[.safety_first]
+id = 42
+
+[.explore]
+id = 43
+
+[.trick]
+id = 44
+
+[.freeze]
+id = 45
+
+[.give_thanks]
+id = 46
+
+[.around_the_world_in_eggty_days]
+id = 47
+
+[.dramatic_point]
+id = 48
+
+[.faint]
+id = 49
+
+[.puppet_master]
+id = 50
+
+[.taskmaster]
+id = 51
+
+[.seal_of_approval]
+id = 52
 
 [snow_globe]
 id = 659
 type = "main_screen"
-components = {
-  continue = 2,
-}
+
+[.continue]
+id = 2
+

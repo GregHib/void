@@ -1,42 +1,89 @@
 [canoe]
 id = 52
 type = "main_screen"
-components = {
-  visible_stable_dugout = 2,
-  visible_dugout = 3,
-  visible_waka = 5,
-  invisible_waka = 8,
-  invisible_dugout = 9,
-  invisible_stable_dugout = 10,
-  a_log = 30,
-  a_dugout = 31,
-  a_stable_dugout = 32,
-  a_waka = 33,
-}
+
+[.visible_stable_dugout]
+id = 2
+
+[.visible_dugout]
+id = 3
+
+[.visible_waka]
+id = 5
+
+[.invisible_waka]
+id = 8
+
+[.invisible_dugout]
+id = 9
+
+[.invisible_stable_dugout]
+id = 10
+
+[.a_log]
+id = 30
+
+[.a_dugout]
+id = 31
+
+[.a_stable_dugout]
+id = 32
+
+[.a_waka]
+id = 33
 
 [canoe_stations_map]
 id = 53
 type = "main_screen"
-components = {
-  travel_edgeville = 6,
-  travel_barbarian_village = 3,
-  lumbridge_group = 10,
-  champions_guild_group = 11,
-  barbarian_village_group = 12,
-  you_are_here_edgeville = 19,
-  edgeville_group = 20,
-  wilderness_pond_group = 18,
-  wilderness_warning = 22,
-  you_are_here_barbarian_village = 23,
-  you_are_here_champions_guild = 24,
-  you_are_here_lumbridge = 25,
-  travel_lumbridge = 47,
-  travel_champions_guild = 48,
-  travel_wilderness_pond = 49,
-}
+
+[.travel_edgeville]
+id = 6
+
+[.travel_barbarian_village]
+id = 3
+
+[.lumbridge_group]
+id = 10
+
+[.champions_guild_group]
+id = 11
+
+[.barbarian_village_group]
+id = 12
+
+[.you_are_here_edgeville]
+id = 19
+
+[.edgeville_group]
+id = 20
+
+[.wilderness_pond_group]
+id = 18
+
+[.wilderness_warning]
+id = 22
+
+[.you_are_here_barbarian_village]
+id = 23
+
+[.you_are_here_champions_guild]
+id = 24
+
+[.you_are_here_lumbridge]
+id = 25
+
+[.travel_lumbridge]
+id = 47
+
+[.travel_champions_guild]
+id = 48
+
+[.travel_wilderness_pond]
+id = 49
 
 [canoe_travel]
 id = 758
-components = {
-  model = 3,
-}
+
+[.model]
+id = 3
+

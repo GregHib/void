@@ -1,20 +1,35 @@
 [clan_chat]
 id = 589
 type = "clan_chat_tab"
-components = {
-  toggle_chat = 15,
-  settings = 16,
-  loot_share = 0,
-}
+
+[.toggle_chat]
+id = 15
+
+[.settings]
+id = 16
+
+[.loot_share]
+id = 0
 
 [clan_chat_setup]
 id = 590
 type = "main_screen"
-components = {
-  name = 22,
-  enter = 23,
-  talk = 24,
-  kick = 25,
-  loot = 26,
-  coin_share = 33,
-}
+
+[.name]
+id = 22
+
+[.enter]
+id = 23
+
+[.talk]
+id = 24
+
+[.kick]
+id = 25
+
+[.loot]
+id = 26
+
+[.coin_share]
+id = 33
+

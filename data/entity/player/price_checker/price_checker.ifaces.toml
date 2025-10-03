@@ -1,38 +1,27 @@
 [price_checker]
 id = 206
 type = "main_screen"
-components = {
-  overall = 20,
-  total = 21,
-  limit = 22,
-  items = {
-    id = 18,
-    inventory = "trade_offer",
-    options = {
-      Remove-1 = 0,
-      Remove-5 = 1,
-      Remove-10 = 2,
-      Remove-All = 3,
-      Remove-X = 4,
-      Examine = 9,
-    }
-  }
-}
+
+[.overall]
+id = 20
+
+[.total]
+id = 21
+
+[.limit]
+id = 22
+
+[.items]
+id = 18
+inventory = "trade_offer"
+options = { Remove-1 = 0, Remove-5 = 1, Remove-10 = 2, Remove-All = 3, Remove-X = 4, Examine = 9 }
 
 [price_checker_side]
 id = 207
 type = "inventory_tab"
-components = {
-  items = {
-    id = 0,
-    inventory = "inventory",
-    options = {
-      Add = 0,
-      Add-5 = 1,
-      Add-10 = 2,
-      Add-All = 3,
-      Add-X = 4,
-      Examine = 9,
-    }
-  }
-}
+
+[.items]
+id = 0
+inventory = "inventory"
+options = { Add = 0, Add-5 = 1, Add-10 = 2, Add-All = 3, Add-X = 4, Examine = 9 }
+

@@ -1,10 +1,13 @@
 [wilderness_skull]
 id = 381
 type = "overlay"
-components = {
-  right_skull = 0,
-  center_skull = 4,
-}
+
+[.right_skull]
+id = 0
+
+[.center_skull]
+id = 4
 
 [warning_wilderness]
 id = 382
+

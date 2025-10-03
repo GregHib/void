@@ -1,38 +1,40 @@
 [summoning_trade_in]
 id = 78
-components = {
-    scroll_trade_in = {
-        id = 14,
-        options = {
-            Value = 0,
-            Trade = 1,
-            Trade-5 = 2,
-            Trade-10 = 3,
-            Trade-X = 4,
-            Trade-All = 6,
-        }
-    },
-    pouch_trade_in = {
-        id = 15,
-        options = {
-            Value = 0,
-            Trade = 1,
-            Trade-5 = 2,
-            Trade-10 = 3,
-            Trade-X = 4,
-            Trade-All = 6,
-        }
-    },
-    scroll_tab_scroll_bar = 16,
-    pouch_tab_scroll_bar = 17,
-    pouch_trade_in_text = 18,
-    scroll_trade_in_text = 19,
-    scroll_tab = 20,
-    pouch_tab_background = 24,
-    pouch_tab_sprite = 25,
-    scroll_tab_background = 26,
-    scroll_tab_sprite = 27
-}
+
+[.scroll_trade_in]
+id = 14
+options = { Value = 0, Trade = 1, Trade-5 = 2, Trade-10 = 3, Trade-X = 4, Trade-All = 6 }
+
+[.pouch_trade_in]
+id = 15
+options = { Value = 0, Trade = 1, Trade-5 = 2, Trade-10 = 3, Trade-X = 4, Trade-All = 6 }
+
+[.scroll_tab_scroll_bar]
+id = 16
+
+[.pouch_tab_scroll_bar]
+id = 17
+
+[.pouch_trade_in_text]
+id = 18
+
+[.scroll_trade_in_text]
+id = 19
+
+[.scroll_tab]
+id = 20
+
+[.pouch_tab_background]
+id = 24
+
+[.pouch_tab_sprite]
+id = 25
+
+[.scroll_tab_background]
+id = 26
+
+[.scroll_tab_sprite]
+id = 27
 
 [summoning_creation]
 id = 79
@@ -45,41 +47,26 @@ id = 663
 
 [summoning_scroll_creation]
 id = 666
-components = {
-    scrolls = {
-        id = 16,
-        options = {
-            Transform = 0,
-            Transform-5 = 1,
-            Transform-10 = 2,
-            Transform-X = 3,
-            Transform-All = 4,
-            Examine = 5
-        }
-    },
-    pouch_creation_tab = 18
-}
+
+[.scrolls]
+id = 16
+options = { Transform = 0, Transform-5 = 1, Transform-10 = 2, Transform-X = 3, Transform-All = 4, Examine = 5 }
+
+[.pouch_creation_tab]
+id = 18
 
 [beast_of_burden]
 id = 671
 
 [summoning_pouch_creation]
 id = 672
-components = {
-    pouches = {
-        id = 16,
-        options = {
-            Infuse = 0,
-            Infuse-5 = 1,
-            Infuse-10 = 2,
-            Infuse-X = 3,
-            Infuse-All = 4,
-            Examine = 5,
-            List = 6
-        }
-    },
-    scroll_creation_tab = 19
-}
+
+[.pouches]
+id = 16
+options = { Infuse = 0, Infuse-5 = 1, Infuse-10 = 2, Infuse-X = 3, Infuse-All = 4, Examine = 5, List = 6 }
+
+[.scroll_creation_tab]
+id = 19
 
 [dialogue_pick_a_puppy]
 id = 668
@@ -94,3 +81,4 @@ id = 880
 
 [summoning_side]
 id = 722
+

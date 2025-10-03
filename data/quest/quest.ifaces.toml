@@ -1,61 +1,105 @@
 [quest_intro]
 id = 178
 type = "main_screen"
-components = {
-  start_point_field = 52,
-  req_field = 55,
-  items_field = 59,
-  combat_field = 62,
-  rewards_field = 66,
-  start_choice_layer = 27,
-  progress_status_layer = 28,
-  status_field = 70,
-  quest_field = 14,
-  hidden_button_txt = 30,
-  hide_show_layer = 64,
-  text_details_layer = 65,
-  items_hidden_button_txt = 57,
-  items_hide_show_layer = 56,
-  items_text_details_layer = 58,
-  scroll_layer_rewards = 63,
-  scroll_layer_item = 4,
-  startyes_layer = 73,
-  startno_layer = 74,
-  objective_set = 75,
-  objective_text = 76,
-  quest_icon = 79,
-}
+
+[.start_point_field]
+id = 52
+
+[.req_field]
+id = 55
+
+[.items_field]
+id = 59
+
+[.combat_field]
+id = 62
+
+[.rewards_field]
+id = 66
+
+[.start_choice_layer]
+id = 27
+
+[.progress_status_layer]
+id = 28
+
+[.status_field]
+id = 70
+
+[.quest_field]
+id = 14
+
+[.hidden_button_txt]
+id = 30
+
+[.hide_show_layer]
+id = 64
+
+[.text_details_layer]
+id = 65
+
+[.items_hidden_button_txt]
+id = 57
+
+[.items_hide_show_layer]
+id = 56
+
+[.items_text_details_layer]
+id = 58
+
+[.scroll_layer_rewards]
+id = 63
+
+[.scroll_layer_item]
+id = 4
+
+[.startyes_layer]
+id = 73
+
+[.startno_layer]
+id = 74
+
+[.objective_set]
+id = 75
+
+[.objective_text]
+id = 76
+
+[.quest_icon]
+id = 79
 
 [quest_journals]
 id = 190
 type = "quest_journals_tab"
-components = {
-  journals = {
-    id = 18,
-    options = {
-      View = 0,
-      "View journal" = 1,
-      "Show on world map" = 2,
-    }
-  }
-}
+
+[.journals]
+id = 18
+options = { View = 0, "View journal" = 1, "Show on world map" = 2 }
 
 [quest_scroll]
 id = 275
 type = "wide_screen"
-components = {
-  quest_name = 2,
-  line0 = "16-315",
-}
+
+[.quest_name]
+id = 2
+
+[.line0]
+id = "16-315"
 
 [quest_complete]
 id = 277
-components = {
-  quest_name = 4,
-  item_slot = 5,
-  quest_points = 7,
-  line1 = "10-17",
-}
+
+[.quest_name]
+id = 4
+
+[.item_slot]
+id = 5
+
+[.quest_points]
+id = 7
+
+[.line1]
+id = "10-17"
 
 [quest_complete_wide]
 id = 380
@@ -65,3 +109,4 @@ id = 868
 
 [quest_scroll2]
 id = 877
+

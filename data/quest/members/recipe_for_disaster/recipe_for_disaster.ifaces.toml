@@ -1,3 +1,6 @@
 [free_lumbridge_guide_quiz]
 id = 2
-components = { inventory = 30 }
+
+[.inventory]
+id = 30
+

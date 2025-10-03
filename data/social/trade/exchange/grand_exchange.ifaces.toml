@@ -1,213 +1,325 @@
 [grand_exchange]
 id = 105
 type = "main_screen"
-components = {
-  view_offer_0 = 18,
-  buy_offer_0 = 30,
-  sell_offer_0 = 31,
-  view_offer_1 = 34,
-  buy_offer_1 = 46,
-  sell_offer_1 = 47,
-  view_offer_2 = 50,
-  buy_offer_2 = 62,
-  sell_offer_2 = 63,
-  view_offer_3 = 69,
-  buy_offer_3 = 81,
-  sell_offer_3 = 82,
-  view_offer_4 = 88,
-  buy_offer_4 = 100,
-  sell_offer_4 = 101,
-  view_offer_5 = 107,
-  buy_offer_5 = 119,
-  sell_offer_5 = 120,
-  back = 127,
-  examine = 142,
-  price_range_min = 143,
-  price_range_max = 144,
-  price_range = 145,
-  decrease_quantity = 157,
-  increase_quantity = 159,
-  add_1 = 162,
-  add_10 = 164,
-  add_100 = 166,
-  add_all = 168,
-  add_x = 170,
-  decrease_price = 171,
-  increase_price = 173,
-  offer_min_sprite = 176,
-  offer_min = 177,
-  offer_market = 180,
-  offer_max_sprite = 182,
-  offer_max = 183,
-  offer_x = 185,
-  confirm = 190,
-  offer_layer = 126,
-  new_offer_layer = 156,
-  buy_layer = 192,
-  choose_item = 194,
-  sell_layer = 197,
-  running_layer = 200,
-  process_text = 201,
-  process_bar = 202,
-  offer_abort = 203,
-  tooltip_layer = 212,
-  offer_tooltip = 213,
-  collect_slot_0 = {
-    id = 209,
-    options = {
-        Collect_notes = 0,
-        Collect = 1,
-    }
-  },
-  collect_slot_1 = {
-    id = 211,
-    options = {
-      Collect_notes = 0,
-      Collect = 1,
-    }
-  },
-}
+
+[.view_offer_0]
+id = 18
+
+[.buy_offer_0]
+id = 30
+
+[.sell_offer_0]
+id = 31
+
+[.view_offer_1]
+id = 34
+
+[.buy_offer_1]
+id = 46
+
+[.sell_offer_1]
+id = 47
+
+[.view_offer_2]
+id = 50
+
+[.buy_offer_2]
+id = 62
+
+[.sell_offer_2]
+id = 63
+
+[.view_offer_3]
+id = 69
+
+[.buy_offer_3]
+id = 81
+
+[.sell_offer_3]
+id = 82
+
+[.view_offer_4]
+id = 88
+
+[.buy_offer_4]
+id = 100
+
+[.sell_offer_4]
+id = 101
+
+[.view_offer_5]
+id = 107
+
+[.buy_offer_5]
+id = 119
+
+[.sell_offer_5]
+id = 120
+
+[.back]
+id = 127
+
+[.examine]
+id = 142
+
+[.price_range_min]
+id = 143
+
+[.price_range_max]
+id = 144
+
+[.price_range]
+id = 145
+
+[.decrease_quantity]
+id = 157
+
+[.increase_quantity]
+id = 159
+
+[.add_1]
+id = 162
+
+[.add_10]
+id = 164
+
+[.add_100]
+id = 166
+
+[.add_all]
+id = 168
+
+[.add_x]
+id = 170
+
+[.decrease_price]
+id = 171
+
+[.increase_price]
+id = 173
+
+[.offer_min_sprite]
+id = 176
+
+[.offer_min]
+id = 177
+
+[.offer_market]
+id = 180
+
+[.offer_max_sprite]
+id = 182
+
+[.offer_max]
+id = 183
+
+[.offer_x]
+id = 185
+
+[.confirm]
+id = 190
+
+[.offer_layer]
+id = 126
+
+[.new_offer_layer]
+id = 156
+
+[.buy_layer]
+id = 192
+
+[.choose_item]
+id = 194
+
+[.sell_layer]
+id = 197
+
+[.running_layer]
+id = 200
+
+[.process_text]
+id = 201
+
+[.process_bar]
+id = 202
+
+[.offer_abort]
+id = 203
+
+[.tooltip_layer]
+id = 212
+
+[.offer_tooltip]
+id = 213
+
+[.collect_slot_0]
+id = 209
+options = { Collect_notes = 0, Collect = 1 }
+
+[.collect_slot_1]
+id = 211
+options = { Collect_notes = 0, Collect = 1 }
 
 [exchange_offers_tutorial]
 id = 106
-components = {
-  summary_layer = 16,
-  summary = 124,
-  box_highlight = 140,
-  offer_highlight = 131,
-  continue_arrow = 125,
-  continue = 145,
-}
+
+[.summary_layer]
+id = 16
+
+[.summary]
+id = 124
+
+[.box_highlight]
+id = 140
+
+[.offer_highlight]
+id = 131
+
+[.continue_arrow]
+id = 125
+
+[.continue]
+id = 145
 
 [stock_side]
 id = 107
 type = "overlay_tab"
-components = {
-  items = {
-    id = 18,
-    inventory = "inventory",
-    options = {
-      Offer = 0,
-    }
-  }
-}
+
+[.items]
+id = 18
+inventory = "inventory"
+options = { Offer = 0 }
 
 [exchange_confirm_tutorial]
 id = 108
-components = {
-  summary = 94,
-  continue = 97,
-  continue_arrow = 95,
-}
+
+[.summary]
+id = 94
+
+[.continue]
+id = 97
+
+[.continue_arrow]
+id = 95
 
 [collection_box]
 id = 109
-components = {
-  collection_box_0 = {
-    id = 18,
-    options = {
-      Collect_notes = 0,
-      Collect = 1,
-    }
-  },
-  collection_box_1 = {
-    id = 23,
-    options = {
-      Collect_notes = 0,
-      Collect = 1,
-    }
-  },
-  collection_box_2 = {
-    id = 28,
-    options = {
-      Collect_notes = 0,
-      Collect = 1,
-    }
-  },
-  collection_box_3 = {
-    id = 36,
-    options = {
-      Collect_notes = 0,
-      Collect = 1,
-    }
-  },
-  collection_box_4 = {
-    id = 44,
-    options = {
-      Collect_notes = 0,
-      Collect = 1,
-    }
-  },
-  collection_box_5 = {
-    id = 52,
-    options = {
-      Collect_notes = 0,
-      Collect = 1,
-    }
-  }
-}
+
+[.collection_box_0]
+id = 18
+options = { Collect_notes = 0, Collect = 1 }
+
+[.collection_box_1]
+id = 23
+options = { Collect_notes = 0, Collect = 1 }
+
+[.collection_box_2]
+id = 28
+options = { Collect_notes = 0, Collect = 1 }
+
+[.collection_box_3]
+id = 36
+options = { Collect_notes = 0, Collect = 1 }
+
+[.collection_box_4]
+id = 44
+options = { Collect_notes = 0, Collect = 1 }
+
+[.collection_box_5]
+id = 52
+options = { Collect_notes = 0, Collect = 1 }
 
 [exchange_buy_tutorial]
 id = 110
 type = "main_screen"
-components = {
-  summary = 89,
-  continue_arrow = 90,
-  continue = 92,
-}
+
+[.summary]
+id = 89
+
+[.continue_arrow]
+id = 90
+
+[.continue]
+id = 92
 
 [exchange_history]
 id = 643
-components = {
-  type_0 = 25,
-  type_1 = 26,
-  type_2 = 27,
-  type_3 = 28,
-  type_4 = 29,
-  amount_0 = 30,
-  amount_1 = 31,
-  amount_2 = 32,
-  amount_3 = 33,
-  amount_4 = 34,
-  name_0 = 35,
-  name_1 = 36,
-  name_2 = 37,
-  name_3 = 38,
-  name_4 = 39,
-  price_0 = 40,
-  price_1 = 41,
-  price_2 = 42,
-  price_3 = 43,
-  price_4 = 44,
-}
+
+[.type_0]
+id = 25
+
+[.type_1]
+id = 26
+
+[.type_2]
+id = 27
+
+[.type_3]
+id = 28
+
+[.type_4]
+id = 29
+
+[.amount_0]
+id = 30
+
+[.amount_1]
+id = 31
+
+[.amount_2]
+id = 32
+
+[.amount_3]
+id = 33
+
+[.amount_4]
+id = 34
+
+[.name_0]
+id = 35
+
+[.name_1]
+id = 36
+
+[.name_2]
+id = 37
+
+[.name_3]
+id = 38
+
+[.name_4]
+id = 39
+
+[.price_0]
+id = 40
+
+[.price_1]
+id = 41
+
+[.price_2]
+id = 42
+
+[.price_3]
+id = 43
+
+[.price_4]
+id = 44
 
 [exchange_sets_side]
 id = 644
 type = "overlay_tab"
-components = {
-  items = {
-    id = 0,
-    inventory = "inventory",
-    options = {
-      Components = 0,
-      Exchange = 1,
-      Examine = 2,
-    }
-  }
-}
+
+[.items]
+id = 0
+inventory = "inventory"
+options = { Components = 0, Exchange = 1, Examine = 2 }
 
 [exchange_item_sets]
 id = 645
-components = {
-  sets = {
-    id = 16,
-    options = {
-      Components = 0,
-      Exchange = 1,
-      Examine = 2,
-    }
-  }
-}
+
+[.sets]
+id = 16
+options = { Components = 0, Exchange = 1, Examine = 2 }
 
 [grand_exchange_item_dialog]
 id = 389
@@ -215,18 +327,17 @@ type = "chat_foreground"
 
 [exchange_wait_tutorial]
 id = 646
-components = {
-  continue = 13,
-  continue_arrow = 12
-}
+
+[.continue]
+id = 13
+
+[.continue_arrow]
+id = 12
 
 [common_item_costs]
 id = 885
-components = {
-  items = {
-    id = 16,
-    options = {
-      Examine = 0,
-    }
-  }
-}
+
+[.items]
+id = 16
+options = { Examine = 0 }
+

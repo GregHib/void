@@ -1,6 +1,6 @@
 spawns = [
 # 10807
-  { id = "cow", x = 2733, y = 3561, members = true },
+  { id = "cow_default", x = 2733, y = 3561, members = true },
   { id = "rat", x = 2720, y = 3583, members = true },
   { id = "rat", x = 2728, y = 3580, members = true },
   { id = "rat", x = 2725, y = 3576, members = true },

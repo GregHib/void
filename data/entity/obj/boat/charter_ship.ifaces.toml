@@ -1,40 +1,57 @@
 [charter_ship_map]
 id = 95
-components = {
-    port_tyras = 23,
-    port_phasmatys = 24,
-    catherby = 25,
-    shipyard = 26,
-    musa_point = 27,
-    brimhaven = 28,
-    port_khazard = 29,
-    port_sarim = 30,
-    mos_le_harmless = 31,
-    crandor = 32,
-    oo_glog = 33,
-    close = 34,
-}
+
+[.port_tyras]
+id = 23
+
+[.port_phasmatys]
+id = 24
+
+[.catherby]
+id = 25
+
+[.shipyard]
+id = 26
+
+[.musa_point]
+id = 27
+
+[.brimhaven]
+id = 28
+
+[.port_khazard]
+id = 29
+
+[.port_sarim]
+id = 30
+
+[.mos_le_harmless]
+id = 31
+
+[.crandor]
+id = 32
+
+[.oo_glog]
+id = 33
+
+[.close]
+id = 34
 
 [waterbirth_island_map]
 id = 224
-# Rellekka, Neitiznot, Jatizo, Waterbirth Island, Miscellania, Etceteria
 
 [mithalin_asgarnia_map]
 id = 270
-# Edgeville, Falador, Varrock, Rimmington, Port Sarim, Draynor, Lumbridge, Al Kharid
 
 [journey_ship]
 id = 299
-# Feldip Hills, Ape Atoll, Port Khazard, Ardougne, Entrana, Brimhaven, Crandor, Karamja, Ship Yard, Port Sarim, Asgarnia
 
 [lunar_galleon_map]
 id = 431
-# Moonclan Island, Pirates' Cove
 
 [penguin_ship_map]
 id = 505
-# Keldagrim entrance, Rellekka, Neitiznot, Jatizo, Miscellania, Etceteria
 
 [trollweiss_map]
 id = 727
-# Trollweiss Mountain, Keldagrim entrance, Ice Path, God Wars Dungeon, Waterbirth Island, Miscellania, Etceteria
+

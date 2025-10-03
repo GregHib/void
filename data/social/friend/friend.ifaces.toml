@@ -1,7 +1,10 @@
 [friends_list]
 id = 550
 type = "friends_list_tab"
-components = {
-  add = 7,
-  delete = 8,
-}
+
+[.add]
+id = 7
+
+[.delete]
+id = 8
+

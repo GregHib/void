@@ -68,6 +68,6 @@ postgres = ["testcontainers", "testcontainers-junit", "testcontainers-postgresql
 database = ["exposed", "exposed-jdbc", "postgresql", "hikari"]
 
 [plugins]
-shadow = { id = "com.gradleup.shadow" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 jacoco-aggregation = { id = "jacoco-report-aggregation" }

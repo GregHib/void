@@ -23,7 +23,7 @@ import world.gregs.voidps.type.random
 class Cows : Api {
 
     override fun spawn(npc: NPC) {
-        if (npc.id.startsWith("cow")) {
+        if (npc.id.startsWith("cow_")) {
             npc.softTimers.start("eat_grass")
         }
     }

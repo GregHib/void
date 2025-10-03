@@ -1,7 +1,10 @@
 [logout]
 id = 182
 type = "logout_tab"
-components = {
-  lobby = 5,
-  login = 10,
-}
+
+[.lobby]
+id = 5
+
+[.login]
+id = 10
+

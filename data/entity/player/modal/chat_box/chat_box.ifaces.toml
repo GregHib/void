@@ -1,16 +1,30 @@
 [filter_buttons]
 id = 751
 type = "chat_settings"
-components = {
-  all = 30,
-  game = 27,
-  public = 24,
-  private = 21,
-  clan = 18,
-  trade = 15,
-  assist = 12,
-  report = 9,
-}
+
+[.all]
+id = 30
+
+[.game]
+id = 27
+
+[.public]
+id = 24
+
+[.private]
+id = 21
+
+[.clan]
+id = 18
+
+[.trade]
+id = 15
+
+[.assist]
+id = 12
+
+[.report]
+id = 9
 
 [chat_box]
 id = 752
@@ -19,3 +33,4 @@ type = "chat_box"
 [private_chat]
 id = 754
 type = "private_chat"
+
