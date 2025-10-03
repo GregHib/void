@@ -17,7 +17,5 @@ repositories {
 
 dependencies {
     implementation(libs.kotlin.gradle)
-    implementation(libs.shadow)
     implementation(libs.spotless)
-    implementation(libs.kotlin.embeddable)
 }
