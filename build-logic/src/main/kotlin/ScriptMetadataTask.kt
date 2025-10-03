@@ -149,14 +149,14 @@ abstract class ScriptMetadataTask : DefaultTask() {
                 }
                 for (annotation in entries) {
                     val annotationName = annotation.shortName?.asString() ?: ""
-                    val info = annotations.get(annotationName) ?: error("Annotation ${annotationName} metadata not found. Make sure your annotation is registered in ScriptMetadataTask.kt")
+                    val info = annotations[annotationName] ?: error("Annotation $annotationName metadata not found. Make sure your annotation is registered in ScriptMetadataTask.kt")
                     val params = Array<MutableList<String>>(info.size) { mutableListOf() }
                     // Resolve annotation field names
                     var index = 0
                     for (arg in annotation.valueArguments) {
                         val name = arg.getArgumentName()?.asName?.asString()
                         val value = arg.getArgumentExpression()?.text?.trim('"') ?: ""
-                        var idx = if (name != null) info.indexOfFirst { it.first == name } else index++
+                        val idx = if (name != null) info.indexOfFirst { it.first == name } else index++
                         params[idx].add(value)
                     }
                     for (i in info.indices) {
@@ -177,7 +177,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
                             }
                             val matches = set.filter { wildcardEquals(value, it) }
                             if (matches.isEmpty()) {
-                                error("No matches for wildcard '${value}' in ${packagePath} ${annotation.text}")
+                                error("No matches for wildcard '${value}' in $packagePath ${annotation.text}")
                             }
                             params[i].removeAt(0)
                             params[i].addAll(matches)

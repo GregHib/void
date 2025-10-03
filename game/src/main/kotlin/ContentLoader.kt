@@ -36,7 +36,7 @@ object ContentLoader {
     fun load() {
         val start = System.currentTimeMillis()
         val scripts = ContentLoader::class.java.getResourceAsStream("scripts.txt")?.bufferedReader() ?: error("No auto-generated script file found, make sure 'gradle scriptMetadata' is correctly running")
-        var scriptCount = 0
+        val scriptCount: Int
         var script = ""
         try {
             val instances = mutableMapOf<String, Any>()
