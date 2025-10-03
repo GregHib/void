@@ -191,3 +191,17 @@ drops = [
     { id = "feather", amount = 5, chance = 64 },
     { id = "feather", amount = 15, chance = 32 },
 ]
+
+[water_wizard_drop_table]
+type = "all"
+drops = [
+    { id = "ashes" },
+    { table = "water_wizard_secondary" },
+]
+
+[water_wizard_secondary]
+roll = 20
+drops = [
+    { id = "water_rune", min = 5, max = 10, chance = 19 },
+    { id = "water_talisman" },
+]

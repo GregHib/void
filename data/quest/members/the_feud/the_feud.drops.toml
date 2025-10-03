@@ -5,3 +5,10 @@ drops = [
     { id = "willow_blackjack" },
     { id = "adamant_scimitar" },
 ]
+
+[tough_guy_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "willow_blackjack" },
+]

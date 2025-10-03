@@ -186,6 +186,7 @@ attack_bonus = 20
 xp_bonus = 2.5
 immune_cannon = true
 respawn_delay = 100
+drop_table = "sir_jerro"
 examine = "A mighty-looking warrior."
 
 [sir_carl_underground_pass]
@@ -201,6 +202,7 @@ attack_bonus = 20
 xp_bonus = 2.5
 immune_cannon = true
 respawn_delay = 100
+drop_table = "sir_carl"
 examine = "A mighty-looking warrior."
 
 [sir_harry_underground_pass]
@@ -216,6 +218,7 @@ attack_bonus = 20
 xp_bonus = 2.5
 immune_cannon = true
 respawn_delay = 100
+drop_table = "sir_harry"
 examine = "A mighty-looking warrior."
 
 [niloof_underground_pass]

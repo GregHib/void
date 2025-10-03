@@ -84,6 +84,7 @@ attack_bonus = 9
 slayer_xp = 37.0
 categories = ["bandits"]
 respawn_delay = 50
+drop_table = "wilderness_bandit"
 examine = "Refuses to accept his hairstyle has gone out of fashion."
 
 [mysterious_ghost_wilderness_bandit_camp]

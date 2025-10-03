@@ -511,6 +511,7 @@ style = "crush"
 max_hit_melee = 30
 attack_bonus = 8
 respawn_delay = 350
+drop_table = "bones"
 examine = "Looks kind of obsessive..."
 
 [straven]

@@ -42,6 +42,7 @@ def = 36
 style = "slash"
 max_hit_melee = 50
 hunt_mode = "cowardly"
+drop_table = "spidine"
 examine = "It's a spider. No, a giant sardine..."
 
 [swordchick]
@@ -52,8 +53,8 @@ str = 42
 def = 45
 style = "stab"
 max_hit_melee = 50
-attack_bonus = +0
 hunt_mode = "cowardly"
+drop_table = "swordchick"
 examine = "Definitely not a chicken or a swordfish."
 
 [unicow]
@@ -64,6 +65,6 @@ str = 26
 def = 22
 style = "crush"
 max_hit_melee = 40
-attack_bonus = +0
 hunt_mode = "cowardly"
+drop_table = "unicow"
 examine = "Half unicorn, half cow."

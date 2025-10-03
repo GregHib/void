@@ -88,6 +88,7 @@ hunt_mode = "aggressive"
 drop_table = "human"
 combat_anims = "human"
 respawn_delay = 25
+drop_table = "bones"
 examine = "Leader of the Renegade Knights."
 
 [vestri]

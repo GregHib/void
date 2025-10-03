@@ -20,3 +20,41 @@ drops = [
     { id = "ashes" },
     { id = "amulet_of_othanian" },
 ]
+
+[wizard_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "wizard_secondary" },
+]
+
+[wizard_secondary]
+roll = 128
+drops = [
+    { id = "staff", chance = 8 },
+    { id = "wizard_robe_top", chance = 7 },
+    { id = "wizard_hat_blue", chance = 3 },
+    { id = "chaos_rune", amount = 2, chance = 8 },
+    { id = "nature_rune", amount = 2, chance = 8 },
+    { id = "air_rune", amount = 5, chance = 3 },
+    { id = "body_rune", amount = 5, chance = 3 },
+    { id = "earth_rune", amount = 5, chance = 3 },
+    { id = "fire_rune", amount = 5, chance = 3 },
+    { id = "mind_rune", amount = 5, chance = 3 },
+    { id = "water_rune", amount = 5, chance = 3 },
+    { id = "air_rune", amount = 12, chance = 2 },
+    { id = "body_rune", amount = 12, chance = 2 },
+    { id = "earth_rune", amount = 12, chance = 2 },
+    { id = "fire_rune", amount = 12, chance = 2 },
+    { id = "mind_rune", amount = 12, chance = 2 },
+    { id = "water_rune", amount = 12, chance = 2 },
+    { id = "blood_rune", amount = 2 },
+    { id = "law_rune", amount = 2 },
+    { id = "water_talisman", chance = 3 },
+    { id = "mind_talisman", chance = 4 },
+    { id = "coins", chance = 23 },
+    { id = "coins", amount = 2, chance = 9 },
+    { id = "coins", amount = 18, chance = 7 },
+    { id = "coins", amount = 30 },
+    { id = "nothing", amount = 0, chance = 16 },
+]

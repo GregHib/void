@@ -189,6 +189,7 @@ xp_bonus = -10.0
 hunt_mode = "cowardly"
 slayer_xp = 0.0
 categories = ["zombies"]
+drop_table = "undead_lumberjack"
 examine = "He is one, but he's not alright."
 
 [undead_lumberjack_level_30_2]
@@ -228,6 +229,7 @@ xp_bonus = -10.0
 hunt_mode = "cowardly"
 slayer_xp = 0.0
 categories = ["zombies"]
+drop_table = "undead_lumberjack"
 examine = "He is one, but he's not alright."
 
 [undead_lumberjack_level_35_2]
@@ -270,6 +272,7 @@ xp_bonus = -10.0
 hunt_mode = "cowardly"
 slayer_xp = 0.0
 categories = ["zombies"]
+drop_table = "undead_lumberjack"
 examine = "He is one, but he's not alright."
 
 [undead_lumberjack_level_40_2]
@@ -312,6 +315,7 @@ xp_bonus = -10.0
 hunt_mode = "cowardly"
 slayer_xp = 0.0
 categories = ["zombies"]
+drop_table = "undead_lumberjack"
 examine = "He is one, but he's not alright."
 
 [undead_lumberjack_level_45_2]
@@ -354,6 +358,7 @@ xp_bonus = -10.0
 hunt_mode = "cowardly"
 slayer_xp = 0.0
 categories = ["zombies"]
+drop_table = "undead_lumberjack"
 examine = "He is one, but he's not alright."
 
 [undead_lumberjack_level_50_2]
@@ -393,6 +398,7 @@ xp_bonus = -10.0
 hunt_mode = "cowardly"
 slayer_xp = 0.0
 categories = ["zombies"]
+drop_table = "undead_lumberjack"
 examine = "He is one, but he's not alright."
 
 [undead_lumberjack_level_55_2]
@@ -435,6 +441,7 @@ xp_bonus = -10.0
 hunt_mode = "cowardly"
 slayer_xp = 0.0
 categories = ["zombies"]
+drop_table = "undead_lumberjack"
 examine = "He is one, but he's not alright."
 
 [undead_lumberjack_level_60_2]
@@ -474,6 +481,7 @@ xp_bonus = -10.0
 hunt_mode = "cowardly"
 slayer_xp = 0.0
 categories = ["zombies"]
+drop_table = "undead_lumberjack"
 examine = "He is one, but he's not alright."
 
 [undead_lumberjack_level_64_2]
@@ -513,6 +521,7 @@ xp_bonus = -10.0
 hunt_mode = "cowardly"
 slayer_xp = 0.0
 categories = ["zombies"]
+drop_table = "undead_lumberjack"
 examine = "He is one, but he's not alright."
 
 [undead_lumberjack_level_70_2]

@@ -50,6 +50,7 @@ categories = ["wall_beasts"]
 immune_poison = true
 combat_anims = "wall_beast"
 combat_sounds = "wall_beast"
+drop_table = "wall_beast"
 examine = "A big, scary hand!"
 
 [fishing_spot_lumbridge_swamp_caves]

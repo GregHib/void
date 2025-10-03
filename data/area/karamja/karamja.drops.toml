@@ -33,3 +33,9 @@ type = "all"
 drops = [
     { id = "spider_carcass" },
 ]
+
+[the_shaikahan_drop_table]
+type = "all"
+drops = [
+    { id = "shaikahan_bones" },
+]

@@ -12,6 +12,7 @@ max_hit_melee = 90
 slayer_xp = 100.0
 categories = ["tz_haar"]
 respawn_delay = 50
+drop_table = "tz_haar_mej"
 examine = "Appears to be some kind of mystic."
 
 [tz_haar_mej_tzhaar_city_2]
@@ -47,6 +48,7 @@ max_hit_melee = 70
 slayer_xp = 80.0
 categories = ["tz_haar"]
 respawn_delay = 50
+drop_table = "tz_haar_hur"
 examine = "Looks like a craftsman of some kind."
 
 [tz_haar_hur_tzhaar_city_2]
@@ -74,6 +76,7 @@ max_hit_melee = 110
 slayer_xp = 120.0
 categories = ["tz_haar"]
 respawn_delay = 50
+drop_table = "tz_haar_xil"
 examine = "Doesn't look very social."
 
 [tz_haar_xil_tzhaar_city_2]

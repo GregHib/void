@@ -7,6 +7,7 @@ attack_bonus = -15
 slayer_xp = 8.0
 categories = ["cows", "zombies"]
 respawn_delay = 5
+drop_table = "undead_cow"
 examine = "It's an undead cow."
 
 [undead_chicken]
@@ -18,6 +19,7 @@ attack_bonus = -47
 slayer_xp = 3.0
 categories = ["birds", "zombies"]
 respawn_delay = 25
+drop_table = "undead_chicken"
 examine = "Yep, definitely a chicken... an undead chicken."
 
 [old_man_alices_farm]

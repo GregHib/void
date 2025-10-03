@@ -73,6 +73,7 @@ hunt_mode = "cowardly"
 slayer_xp = 124.0
 categories = ["skeletons"]
 respawn_delay = 50
+drop_table = "barbarian_spirit"
 examine = "He's heartless."
 
 [skeleton_thug_ancient_cavern]
@@ -88,6 +89,7 @@ hunt_mode = "cowardly"
 slayer_xp = 124.0
 categories = ["skeletons"]
 respawn_delay = 50
+drop_table = "barbarian_spirit"
 examine = "Floats like an anvil, hits like a hammer."
 
 [angry_barbarian]

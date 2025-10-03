@@ -1,0 +1,44 @@
+[sorebones_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "sorebones_secondary" },
+    { table = "sorebones_tertiary" },
+]
+
+[sorebones_secondary]
+roll = 128
+drops = [
+    { id = "steel_bolts", min = 2, max = 12, chance = 3 },
+    { id = "mithril_dagger", chance = 2 },
+    { id = "bandana_and_eyepatch_blue", chance = 3 },
+    { id = "bandana_and_eyepatch_red", chance = 5 },
+    { id = "eye_patch" },
+    { id = "mithril_scimitar", chance = 3 },
+    { id = "water_rune", amount = 23 },
+    { id = "body_rune", amount = 6, chance = 2 },
+    { id = "chaos_rune", amount = 7 },
+    { id = "cosmic_rune", amount = 5, chance = 3 },
+    { id = "law_rune", amount = 2, chance = 3 },
+    { table = "herb_drop_table", chance = 30 },
+    { id = "coins", amount = 30, chance = 10 },
+    { id = "coins", amount = 38, chance = 21 },
+    { id = "coins", amount = 46, chance = 8 },
+    { id = "coins", amount = 55, chance = 6 },
+    { id = "coins", amount = 60, chance = 2 },
+    { id = "fishing_bait", amount = 10, chance = 22 },
+    { id = "rusty_scimitar" },
+    { id = "braindeath_rum" },
+    { table = "gem_drop_table" },
+]
+
+[sorebones_tertiary]
+roll = 5000
+drops = [
+    { id = "brain_tongs", chance = 5000 },
+    { id = "cranial_clamp", chance = 5000 },
+    { id = "bell_jar", amount = 3, chance = 5000 },
+    { id = "skull_staple", amount = 30, chance = 5000 },
+    { id = "zombie_bone", chance = 1250, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { id = "zombie_champions_scroll", members = true, lacks = "zombie_champions_scroll" },
+]

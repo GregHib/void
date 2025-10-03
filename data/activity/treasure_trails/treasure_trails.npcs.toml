@@ -35,4 +35,5 @@ style = "magic"
 max_hit_melee = 200
 hunt_mode = "cowardly"
 immune_poison = true
+drop_table = "zamorak_wizard"
 examine = "A servant of Zamorak."

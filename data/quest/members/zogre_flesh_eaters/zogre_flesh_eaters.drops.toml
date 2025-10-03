@@ -1,0 +1,14 @@
+[slash_bash_drop_table]
+type = "all"
+drops = [
+    { id = "zogre_bones", amount = 2 },
+    { id = "ourg_bones", amount = 3 },
+    { id = "ogre_artefact" },
+    { table = "slash_bash_tertiary" },
+]
+
+[slash_bash_tertiary]
+roll = 5000
+drops = [
+    { id = "zombie_champions_scroll", members = true, lacks = "zombie_champions_scroll" },
+]

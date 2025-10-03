@@ -142,4 +142,5 @@ max_hit_melee = 110
 max_hit_magic = 110
 max_hit_range = 110
 respawn_delay = 50
+drop_table = "tortoise_rider"
 examine = "Massive beast of War with extra Gnome."

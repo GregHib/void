@@ -69,4 +69,5 @@ attack_bonus = 9
 hunt_mode = "cowardly"
 slayer_xp = 124.0
 categories = ["skeletons"]
+drop_table = "barbarian_spirit"
 examine = "An opponent from the grave. He seems unimpressed by your bone rummaging."

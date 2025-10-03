@@ -49,7 +49,21 @@ id = 1114
 
 [troll_general_troll_stronghold_tunnels]
 id = 1115
+hitpoints = 1400
+att = 70
+str = 140
+def = 40
+mage = 0
+range = 0
+style = "slash"
+max_hit_melee = 380
+attack_bonus = 60
+xp_bonus = 7.5
+hunt_mode = "cowardly"
+slayer_xp = 150.5
 categories = ["trolls"]
+respawn_delay = 50
+drop_table = "rock_troll"
 examine = "One of the troll generals."
 
 [troll_general_troll_stronghold_tunnels_2]
@@ -76,6 +90,7 @@ max_hit_melee = 130
 attack_bonus = 20
 slayer_xp = 90.0
 categories = ["trolls"]
+drop_table = "mountain_troll"
 examine = "He's guarding the cells."
 
 [berry_troll_awake]
@@ -94,7 +109,7 @@ attack_bonus = 20
 hunt_mode = "cowardly"
 slayer_xp = 90.0
 categories = ["trolls"]
-drop_table = "berry"
+drop_table = "mountain_troll"
 examine = "He's guarding the cells."
 
 [cook_troll_stronghold_tunnels]

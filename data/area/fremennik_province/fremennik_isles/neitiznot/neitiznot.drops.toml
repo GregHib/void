@@ -1,0 +1,8 @@
+[yak_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "yak_hide" },
+    { id = "yak_hair" },
+    { id = "raw_yak_meat" },
+]

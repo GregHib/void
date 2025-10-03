@@ -15,6 +15,7 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 attack_anim = "shaikahan_attack"
 defend_anim = "shaikahan_defend"
+drop_table = "the_shaikahan"
 examine = "A huge beast, resembling in some ways a lion, but mostly a twisted nightmare."
 
 [gull_karamja]

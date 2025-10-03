@@ -380,6 +380,7 @@ max_hit_melee = 80
 attack_bonus = 40
 xp_bonus = 2.5
 respawn_delay = 30
+drop_table = "market_guard"
 examine = "A hardened Fremennik warrior."
 
 [black_unicorn_foal]

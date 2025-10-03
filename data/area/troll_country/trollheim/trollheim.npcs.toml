@@ -117,6 +117,7 @@ attack_bonus = 20
 slayer_xp = 90.0
 categories = ["trolls"]
 respawn_delay = 50
+drop_table = "mountain_troll"
 examine = "He's watching the arena."
 
 [troll_spectator_2]

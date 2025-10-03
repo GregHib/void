@@ -115,6 +115,7 @@ immune_poison = true
 respawn_delay = 5
 combat_anims = "yak"
 combat_sounds = "yak"
+drop_table = "yak"
 examine = "A hairy, smelly, grazing animal."
 
 [mawnis_burowgar_neitiznot]

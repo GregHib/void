@@ -560,6 +560,7 @@ style = "magic"
 spell = "water_strike"
 max_hit_melee = 20
 respawn_delay = 50
+drop_table = "water_wizard"
 examine = "Hydro-power!"
 
 [earth_wizard]

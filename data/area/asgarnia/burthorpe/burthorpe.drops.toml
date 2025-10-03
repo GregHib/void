@@ -62,3 +62,30 @@ drops = [
     { id = "earth_talisman", chance = 2 },
     { id = "cabbage" },
 ]
+
+[soldier_burthorpe_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "soldier_burthorpe_secondary" },
+]
+
+[soldier_burthorpe_secondary]
+roll = 128
+drops = [
+    { id = "steel_full_helm" },
+    { id = "black_dart", amount = 6, chance = 9 },
+    { id = "black_knife", amount = 6, chance = 13 },
+    { id = "steel_claws", chance = 2 },
+    { id = "black_claws" },
+    { id = "steel_bar" },
+    { id = "mithril_bar" },
+    { table = "herb_drop_table", chance = 8 },
+    { id = "coins", amount = 3, chance = 17 },
+    { id = "coins", amount = 5, chance = 10 },
+    { id = "coins", amount = 18, chance = 20 },
+    { id = "coins", amount = 50, chance = 40 },
+    { id = "coins", amount = 115, chance = 2 },
+    { id = "blood_rune", amount = 2 },
+    { table = "gem_drop_table", chance = 2 },
+]

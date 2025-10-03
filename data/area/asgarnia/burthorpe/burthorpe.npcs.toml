@@ -201,6 +201,7 @@ style = "slash"
 max_hit_melee = 60
 attack_bonus = 11
 respawn_delay = 25
+drop_table = "soldier_burthorpe"
 examine = "A soldier of the Imperial Guard."
 
 [imperial_soldier_hair]

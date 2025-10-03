@@ -23,4 +23,5 @@ style = "crush"
 max_hit_melee = 70
 attack_bonus = 9
 hunt_mode = "cowardly"
+drop_table = "tough_guy"
 examine = "Tough looking Menaphite."

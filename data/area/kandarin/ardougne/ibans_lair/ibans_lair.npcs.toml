@@ -45,6 +45,7 @@ max_hit_melee = 20
 hunt_mode = "cowardly"
 respawn_delay = 35
 categories = ["undead"]
+drop_table = "bones"
 examine = "A servant to Iban."
 
 [half_soulless_ibans_lair]
@@ -97,5 +98,6 @@ mage = 10
 style = "magic"
 max_hit_melee = 40
 respawn_delay = 30
+drop_table = "wizard"
 examine = "Slightly magical."
 

@@ -1,0 +1,51 @@
+[tortured_soul_drop_table]
+roll = 128
+drops = [
+    { id = "body_rune", amount = 7, chance = 7 },
+    { id = "water_rune", amount = 6, chance = 6 },
+    { id = "law_rune", amount = 2, chance = 3 },
+    { id = "grimy_harralander", chance = 5 },
+    { id = "grimy_tarromin", chance = 3 },
+    { id = "grimy_marrentill", chance = 2 },
+    { id = "grimy_guam" },
+    { id = "grimy_ranarr" },
+    { id = "coins", amount = 12 },
+    { id = "coins", amount = 2, chance = 2 },
+    { id = "coins", amount = 6, chance = 3 },
+    { id = "coins", amount = 5, chance = 3 },
+    { id = "coins", amount = 3, chance = 30 },
+    { id = "coins", amount = 2, chance = 21 },
+    { id = "nothing", amount = 0, chance = 16 },
+    { id = "limpwurt_root", chance = 3 },
+    { id = "vial_of_water" },
+]
+
+[undead_chicken_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "raw_undead_chicken" },
+    { table = "undead_chicken_secondary" },
+]
+
+[undead_chicken_secondary]
+roll = 128
+drops = [
+    { id = "feather", amount = 5, chance = 64 },
+    { id = "feather", amount = 15, chance = 32 },
+]
+
+[undead_cow_drop_table]
+type = "all"
+drops = [
+    { id = "cowhide" },
+    { id = "raw_undead_beef" },
+    { id = "bones" },
+    { table = "undead_cow_tertiary" },
+]
+
+[undead_cow_tertiary]
+roll = 4
+drops = [
+    { id = "undead_cow_ribs", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]

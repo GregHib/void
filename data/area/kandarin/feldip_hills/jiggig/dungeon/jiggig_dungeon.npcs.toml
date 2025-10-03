@@ -12,6 +12,7 @@ slayer_xp = 71.0
 categories = ["ogres"]
 categories = ["zombies"]
 respawn_delay = 50
+drop_table = "zogre"
 examine = "A partially decomposing zombie ogre."
 
 [zogre_jiggig_dungeon_2]

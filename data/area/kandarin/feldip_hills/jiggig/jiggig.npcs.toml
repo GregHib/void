@@ -33,6 +33,7 @@ hunt_mode = "cowardly"
 slayer_xp = 71.0
 categories = ["ogres", "zombies"]
 respawn_delay = 50
+drop_table = "zogre"
 examine = "A partially decomposing zombie ogre."
 
 [zogre_jiggig_2]

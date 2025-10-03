@@ -27,6 +27,7 @@ max_hit_melee = 40
 hunt_mode = "cowardly"
 respawn_delay = 350
 combat_anims = "ugthanki"
+drop_table = "ugthanki"
 examine = "A vicious attacking camel."
 
 [shantay_guard]

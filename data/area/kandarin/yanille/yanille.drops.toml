@@ -5,14 +5,14 @@ drops = [
     { id = "coins", amount = 60 },
 ]
 
-[colonel_radick_drop_table]
+[soldier_yanille_drop_table]
 type = "all"
 drops = [
     { id = "bones" },
-    { table = "colonel_radick_secondary" },
+    { table = "soldier_yanille_secondary" },
 ]
 
-[colonel_radick_secondary]
+[soldier_yanille_secondary]
 roll = 128
 drops = [
     { id = "steel_longsword", chance = 6 },

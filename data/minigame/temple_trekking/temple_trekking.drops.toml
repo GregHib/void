@@ -25,3 +25,27 @@ drops = [
     { id = "long_bone", chance = 12 },
     { id = "curved_bone" },
 ]
+
+[undead_lumberjack_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "plank" },
+    { table = "undead_lumberjack_secondary" },
+    { table = "undead_lumberjack_tertiary" },
+]
+
+[undead_lumberjack_secondary]
+roll = 4
+drops = [
+    { id = "lumberjack_top" },
+    { id = "lumberjack_legs" },
+    { id = "lumberjack_hat" },
+    { id = "lumberjack_boots" },
+]
+
+[undead_lumberjack_tertiary]
+roll = 5000
+drops = [
+    { id = "zombie_champions_scroll", members = true, lacks = "zombie_champions_scroll" },
+]

@@ -15,6 +15,7 @@ hunt_mode = "cowardly"
 slayer_xp = 50.0
 categories = ["skeletons"]
 respawn_delay = 50
+drop_table = "undead_one"
 examine = "A minion of Rashiliyia."
 
 [undead_one_shilo_village_2]
@@ -32,6 +33,7 @@ hunt_mode = "cowardly"
 slayer_xp = 59.0
 categories = ["zombies"]
 respawn_delay = 50
+drop_table = "undead_one"
 examine = "The animated dead; one of Rashiliyia's minions."
 
 [vigroy_shilo_village]

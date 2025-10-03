@@ -12,4 +12,5 @@ attack_bonus = 22
 hunt_mode = "cowardly"
 slayer_xp = 100.0
 categories = ["zombies"]
+drop_table = "slash_bash"
 examine = "A powerful looking Zogre."

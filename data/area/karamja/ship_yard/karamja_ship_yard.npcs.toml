@@ -14,6 +14,7 @@ style = "crush"
 max_hit_melee = 20
 attack_bonus = 6
 respawn_delay = 50
+drop_table = "bones"
 examine = "Builds ships for a living."
 
 [shipyard_worker_karamja_ship_yard_2]

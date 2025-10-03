@@ -59,6 +59,7 @@ hunt_mode = "cowardly"
 slayer_xp = 87.0
 categories = ["terror_dogs"]
 respawn_delay = 50
+drop_table = "terror_dog"
 examine = "A terrifying dog beast."
 
 [terror_dog_lair_of_tarn_razorlor_2]
@@ -73,6 +74,7 @@ hunt_mode = "cowardly"
 slayer_xp = 82.0
 categories = ["terror_dogs"]
 respawn_delay = 50
+drop_table = "terror_dog_2"
 examine = "A terrifying dog beast."
 
 [mutant_tarn]

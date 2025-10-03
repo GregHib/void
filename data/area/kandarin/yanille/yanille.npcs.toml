@@ -43,6 +43,7 @@ style = "slash"
 max_hit_melee = 40
 attack_bonus = 8
 respawn_delay = 50
+drop_table = "soldier_yanille"
 examine = "A soldier of the town of Yanille."
 
 [professor_imblewyn]
@@ -117,6 +118,7 @@ style = "stab"
 max_hit_melee = 40
 attack_bonus = 8
 respawn_delay = 50
+drop_table = "soldier_yanille"
 examine = "Tries to keep the peace."
 
 [colonel_radick]
@@ -129,6 +131,6 @@ style = "slash"
 max_hit_melee = 40
 attack_bonus = 9
 respawn_delay = 50
-drop_table = "colonel_radick"
+drop_table = "soldier_yanille"
 examine = "A military man."
 

@@ -27,3 +27,48 @@ drops = [
     { id = "gold_satchel", chance = 3 },
     { id = "tea_flask", chance = 2 },
 ]
+
+[spidine_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "red_spiders_eggs", min = 3, max = 6 },
+    { table = "spidine_secondary" },
+]
+
+[spidine_secondary]
+roll = 20
+drops = [
+    { id = "red_satchel", chance = 3 },
+    { id = "tea_flask", chance = 2 },
+]
+
+[swordchick_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "feather", min = 10, max = 40 },
+    { table = "swordchick_secondary" },
+]
+
+[swordchick_secondary]
+roll = 20
+drops = [
+    { id = "tea_flask", chance = 2 },
+    { id = "black_satchel", chance = 3 },
+]
+
+[unicow_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "unicorn_horn", min = 2, max = 4 },
+    { table = "unicow_secondary" },
+]
+
+[unicow_secondary]
+roll = 20
+drops = [
+    { id = "green_satchel", chance = 3 },
+    { id = "tea_flask", chance = 2 },
+]

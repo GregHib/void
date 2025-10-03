@@ -35,6 +35,7 @@ max_hit_melee = 20
 hunt_mode = "cowardly"
 slayer_xp = 22.0
 categories = ["zombies"]
+drop_table = "bones"
 examine = "The living dead."
 
 [irwin_feaselbaum]

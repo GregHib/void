@@ -1,0 +1,26 @@
+[suqah_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { id = "suqah_hide" },
+    { table = "suqah_secondary" },
+    { table = "suqah_tertiary" },
+]
+
+[suqah_secondary]
+roll = 129
+drops = [
+    { id = "a_special_tiara", chance = 64 },
+    { id = "suqah_tooth", chance = 69 },
+    { id = "grimy_guam", chance = 30 },
+    { id = "grimy_marrentill", chance = 25 },
+    { table = "gem_drop_table", chance = 5 },
+]
+
+[suqah_tertiary]
+roll = 5012
+drops = [
+    { table = "hard_clue_scroll", chance = 38 },
+    { id = "long_bone", chance = 12 },
+    { id = "curved_bone" },
+]

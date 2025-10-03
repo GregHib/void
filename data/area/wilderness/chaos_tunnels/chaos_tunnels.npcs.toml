@@ -38,6 +38,7 @@ max_hit_melee = 100
 slayer_xp = 80.0
 categories = ["turoth"]
 immune_cannon = true
+drop_table = "turoth"
 examine = "He's one big leg short!"
 
 [bloodworm_chaos_tunnels]
@@ -163,6 +164,7 @@ slayer_xp = 81.0
 categories = ["turoth"]
 immune_cannon = true
 respawn_delay = 15
+drop_table = "turoth"
 examine = "He's one big leg short!"
 
 [turoth_level_87]
@@ -177,6 +179,7 @@ slayer_xp = 79.0
 categories = ["turoth"]
 immune_cannon = true
 respawn_delay = 15
+drop_table = "turoth"
 examine = "She's one leg short!"
 
 [turoth_level_85]
@@ -191,6 +194,7 @@ slayer_xp = 77.0
 categories = ["turoth"]
 immune_cannon = true
 respawn_delay = 15
+drop_table = "turoth"
 examine = "It's one leg short!"
 
 [turoth_level_83]
@@ -205,6 +209,7 @@ slayer_xp = 76.0
 categories = ["turoth"]
 immune_cannon = true
 respawn_delay = 15
+drop_table = "turoth"
 examine = "It's one small leg short!"
 
 [turoth_5]
@@ -218,6 +223,7 @@ max_hit_melee = 100
 slayer_xp = 80.0
 categories = ["turoth"]
 immune_cannon = true
+drop_table = "turoth"
 examine = "He's one big leg short!"
 
 [jelly]

@@ -37,6 +37,7 @@ max_hit_melee = 70
 slayer_xp = 51.0
 categories = ["ghosts"]
 respawn_delay = 50
+drop_table = "tortured_soul"
 examine = "This poor soul cannot understand why it has not passed to the next world."
 
 [ghost_shopkeeper_port_phasmatys]

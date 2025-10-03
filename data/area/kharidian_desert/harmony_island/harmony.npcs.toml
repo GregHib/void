@@ -25,6 +25,7 @@ max_hit_melee = 60
 slayer_xp = 22.0
 categories = ["zombies"]
 respawn_delay = 25
+drop_table = "sorebones"
 examine = "Bedside manner is a little lacking, I think."
 
 [sorebones_harmony_apron]

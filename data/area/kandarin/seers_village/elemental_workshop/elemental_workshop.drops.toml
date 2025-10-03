@@ -31,3 +31,27 @@ drops = [
     { id = "staff_of_earth", chance = 2 },
     { table = "gem_drop_table", chance = 2 },
 ]
+
+[water_elemental_drop_table]
+type = "all"
+drops = [
+    { id = "vial_of_water" },
+    { table = "water_elemental_secondary" },
+]
+
+[water_elemental_secondary]
+roll = 128
+drops = [
+    { id = "water_rune", amount = 15, chance = 13 },
+    { id = "nature_rune", amount = 2, chance = 9 },
+    { id = "chaos_rune", amount = 2, chance = 7 },
+    { id = "law_rune", chance = 6 },
+    { id = "death_rune", chance = 4 },
+    { id = "water_rune", amount = 20, chance = 3 },
+    { id = "blood_rune" },
+    { table = "herb_drop_table", chance = 14 },
+    { id = "coins", amount = 12, chance = 36 },
+    { id = "coins", amount = 42, chance = 3 },
+    { id = "staff_of_water", chance = 2 },
+    { table = "gem_drop_table", chance = 2 },
+]

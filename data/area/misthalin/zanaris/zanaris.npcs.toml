@@ -234,8 +234,10 @@ slayer_xp = 65.0
 categories = ["mutated_zygomites"]
 respawn_delay = 30
 combat_anims = "zygomite"
+drop_table = "zygomite_level_74"
 examine = "A bouncy fungus."
 
 [zygomite_2]
 id = 3347
 clone = "zygomite"
+drop_table = "zygomite_level_86"

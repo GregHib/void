@@ -44,6 +44,7 @@ max_hit_melee = 40
 respawn_delay = 50
 combat_anims = "water_elemental"
 combat_sounds = "water_elemental"
+drop_table = "water_elemental"
 examine = "A water elemental."
 
 [elemental_rock_elemental_workshop]

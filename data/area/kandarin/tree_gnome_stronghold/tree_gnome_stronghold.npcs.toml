@@ -14,6 +14,7 @@ slayer_xp = 34.0
 categories = ["birds"]
 respawn_delay = 30
 combat_anims = "terrorbird"
+drop_table = "terrorbird"
 examine = "A giant raptor."
 
 [terrorbird_2]
@@ -213,6 +214,7 @@ def = 80
 style = "crush"
 max_hit_melee = 100
 respawn_delay = 50
+drop_table = "tortoise_riderless"
 examine = "A large tortoise."
 
 [terrorchick_gnome]

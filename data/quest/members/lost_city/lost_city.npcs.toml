@@ -8,4 +8,5 @@ style = "crush"
 max_hit_melee = 70
 hunt_mode = "aggressive"
 categories = ["ghosts"]
+drop_table = "tree_spirit"
 examine = "Guardian of the dramen tree."
