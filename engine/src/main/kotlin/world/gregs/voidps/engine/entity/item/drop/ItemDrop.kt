@@ -18,7 +18,7 @@ data class ItemDrop(
 ) : Drop {
 
     init {
-        assert(chance > 0) { "Item must have a positive chance." }
+        assert(chance > 0) { "Item $id must have a positive chance." }
     }
 
     fun toItem(): Item {
