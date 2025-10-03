@@ -120,7 +120,6 @@ class RegionLoading : Api {
         if (!player.isBot) {
             viewport.loaded = false
         }
-        println("Update region $player")
         viewport.lastLoadZone = player.tile.zone
     }
 
