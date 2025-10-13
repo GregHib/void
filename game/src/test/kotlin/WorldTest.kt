@@ -264,6 +264,7 @@ abstract class WorldTest : KoinTest {
                 }
             }
             properties["storage.players.path"] = "../temp/data/test-saves/"
+            properties["storage.players.logs"] = "../temp/data/test-logs/"
             properties["storage.grand.exchange.offers.buy.path"] = "../temp/data/test-grand_exchange/buy_offers/"
             properties["storage.grand.exchange.offers.sell.path"] = "../temp/data/test-grand_exchange/sell_offers/"
             properties["storage.grand.exchange.offers.claim.path"] = "../temp/data/test-grand_exchange/claimable_offers.toml"

@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
 import world.gregs.voidps.engine.client.update.player.PlayerResetTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
 import world.gregs.voidps.engine.data.SaveQueue
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.AiTick
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -24,11 +25,13 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.event.Log
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.login.protocol.npcVisualEncoders
 import world.gregs.voidps.network.login.protocol.playerVisualEncoders
+import java.io.File
 
 fun getTickStages(
     players: Players = get(),
@@ -48,6 +51,9 @@ fun getTickStages(
     val sequentialNpc: TaskIterator<NPC> = SequentialIterator()
     val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
     val iterator: TaskIterator<Player> = if (sequential) SequentialIterator() else ParallelIterator()
+    val dir = File(Settings["storage.players.logs"])
+    dir.mkdirs()
+    val logs = LogTick(dir)
     return listOf(
         PlayerResetTask(sequentialPlayer, players, batches),
         NPCResetTask(sequentialNpc, npcs),
@@ -76,11 +82,19 @@ fun getTickStages(
         ),
         AiTick(),
         accountSave,
+        logs,
     )
 }
 
 private class AiTick : Runnable {
     override fun run() {
         World.emit(AiTick)
+    }
+}
+
+
+private class LogTick(private val directory: File) : Runnable {
+    override fun run() {
+        Log.save(directory)
     }
 }

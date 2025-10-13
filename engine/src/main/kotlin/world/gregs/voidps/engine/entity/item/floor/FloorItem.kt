@@ -58,5 +58,5 @@ class FloorItem(
      */
     fun remove(): Boolean = revealTicks <= 0 && (disappearTicks == 0 || disappearTicks > 0 && --disappearTicks == 0)
 
-    override fun toString(): String = "FloorItem(id='$id', tile=$tile, amount=$amount, disappear=$disappearTicks, reveal=$revealTicks, charges=$charges, owner=$owner)"
+    override fun toString(): String = "FloorItem(id=$id, tile=$tile, amount=$amount, disappear=$disappearTicks, reveal=$revealTicks, charges=$charges, owner=$owner)"
 }
