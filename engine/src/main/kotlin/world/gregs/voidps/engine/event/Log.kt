@@ -16,8 +16,8 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 /**
- * A logger for storing a record of game information
- * Note: not thread safe use only within game thread.
+ * A logger for storing a record of import game events needed for auditing and investigations
+ * Note: not thread safe; only use within game thread
  */
 object Log {
     private const val LOG_BUFFER_SIZE = 8192

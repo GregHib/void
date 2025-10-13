@@ -60,7 +60,6 @@ class NPCDeath {
             npc.dead = true
             npc.steps.clear()
             npc.strongQueue(name = "death", 1) {
-                Log.event(npc, "died", npc.tile)
                 val killer = npc.killer
                 val tile = npc.tile
                 npc["death_tile"] = tile
@@ -68,6 +67,7 @@ class NPCDeath {
                 (killer as? Player)?.sound(NPCAttack.sound(soundDefinitions, npc, "death"))
                 delay(if (ticks <= 0) 4 else ticks)
                 if (killer is Player) {
+                    Log.event(killer, "killed", npc, npc.tile)
                     slay(killer, npc)
                     dropLoot(npc, killer, tile)
                 }
@@ -87,7 +87,6 @@ class NPCDeath {
                     npc.dead = false
                     npc.mode = EmptyMode
                     Spawn.spawn(npc)
-                    Log.event(npc, "respawned", npc.tile)
                 } else {
                     World.queue("remove_npc") {
                         npcs.remove(npc)
