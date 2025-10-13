@@ -76,11 +76,11 @@ class TradeConfirm {
     }
 
     private fun log(requester: Player, acceptor: Player) {
-        Log.event(requester, "gave", acceptor, requester.offer.items.toList())
+        Log.event(requester, "gave", acceptor, *requester.offer.items)
         if (requester.loan[0].isNotEmpty()) {
             Log.event(requester, "lent", acceptor, requester.loan[0])
         }
-        Log.event(acceptor, "gave", requester, acceptor.offer.items.toList())
+        Log.event(acceptor, "gave", requester, *acceptor.offer.items)
         if (acceptor.loan[0].isNotEmpty()) {
             Log.event(acceptor, "lent", requester, acceptor.loan[0])
         }

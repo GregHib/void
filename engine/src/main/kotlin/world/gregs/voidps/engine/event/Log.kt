@@ -1,7 +1,15 @@
 package world.gregs.voidps.engine.event
 
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.type.Tile
 import java.io.File
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -12,21 +20,33 @@ import java.time.format.DateTimeFormatter
  */
 object Log {
     private const val LOG_BUFFER_SIZE = 8192
-    private val logs = ArrayList<String>(LOG_BUFFER_SIZE)
+    val logs = ArrayList<String>(LOG_BUFFER_SIZE)
+    val ISO_LOCAL_FORMAT: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss")
 
     fun event(source: Entity, action: String, vararg context: Any) {
         add {
-            append(source).append("\t")
-            append(action)
+            append(ref(source)).append("\t")
+            append(action.uppercase())
             for (info in context) {
-                append("\t").append(info)
+                append("\t").append(ref(info))
             }
         }
     }
 
+    private fun ref(source: Any) = when (source) {
+        is Player -> "PLAYER ${source.accountName}"
+        is NPC -> "NPC ${source.id}:${source.index}"
+        is FloorItem -> "FLOOR_ITEM ${source.id}:${source.amount}"
+        is Item -> "ITEM ${source.id}:${source.value}"
+        is GameObject -> "OBJECT ${source.id}"
+        is World -> "WORLD 1"
+        is Tile -> "TILE ${source.x},${source.y},${source.level}"
+        else -> source.toString()
+    }
+
     fun info(message: String) {
         add {
-            append("System").append("\t")
+            append("SYSTEM").append("\t")
             append(message)
         }
     }
@@ -39,17 +59,16 @@ object Log {
         })
     }
 
-    private val ISO_LOCAL_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss")
 
-    fun save(directory: File, now: LocalDateTime = LocalDateTime.now()) {
+    fun save(directory: File = File(Settings["storage.players.logs"]), now: LocalDateTime = LocalDateTime.now()) {
         if (logs.isEmpty()) {
             return
         }
         val hourTime = now.withMinute(0).withSecond(0).withNano(0)
-        val file = directory.resolve("${ISO_LOCAL_FORMAT.format(hourTime)}.txt")
+        val file = directory.resolve("${ISO_LOCAL_FORMAT.format(hourTime)}.tsv")
         file.appendText(buildString {
             for (log in logs) {
-                appendLine()
+                appendLine(log)
             }
         })
         logs.clear()

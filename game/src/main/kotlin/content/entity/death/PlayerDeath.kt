@@ -50,7 +50,7 @@ class PlayerDeath : Api {
 
     init {
         playerDeath { player ->
-            Log.event(player, "died")
+            Log.event(player, "died", player.tile)
             player.dead = true
             player.strongQueue("death") {
                 player.steps.clear()

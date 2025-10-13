@@ -28,8 +28,8 @@ class LogTest {
         assertEquals(4, parts.size)
         assertNotNull(parts[0].toLongOrNull())
         assertEquals(0, parts[1].toIntOrNull())
-        assertEquals("Player(test, tile=Tile(3200, 3232, 0))", parts[2])
-        assertEquals("login", parts[3])
+        assertEquals("PLAYER test", parts[2])
+        assertEquals("LOGIN", parts[3])
     }
 
     @Test
@@ -37,16 +37,16 @@ class LogTest {
         val source = NPC("source", index = 1, tile = Tile(1234, 4321))
         val target = NPC("target", index = 2, tile = Tile(4321, 1234))
         GameLoop.tick = 4
-        Log.event(source, "hugs", target)
+        Log.event(source, "HUGGED", target)
         val lines = lines()
         val line = lines.first()
         val parts = line.split("\t")
         assertEquals(5, parts.size)
         assertNotNull(parts[0].toLongOrNull())
         assertEquals(4, parts[1].toIntOrNull())
-        assertEquals("NPC(id=source, index=1, tile=Tile(1234, 4321, 0))", parts[2])
-        assertEquals("hugs", parts[3])
-        assertEquals("NPC(id=target, index=2, tile=Tile(4321, 1234, 0))", parts[4])
+        assertEquals("NPC source:1", parts[2])
+        assertEquals("HUGGED", parts[3])
+        assertEquals("NPC target:2", parts[4])
     }
 
     @Test
@@ -54,17 +54,17 @@ class LogTest {
         val source = Player(accountName = "source", tile = Tile(1234, 4321))
         val target = Player(accountName = "target", tile = Tile(4321, 1234))
         GameLoop.tick = 2_000
-        Log.event(source, "gives", target, Item("book", 2))
+        Log.event(source, "GAVE", target, Item("book", 2))
         val lines = lines()
         val line = lines.first()
         val parts = line.split("\t")
         assertEquals(6, parts.size)
         assertNotNull(parts[0].toLongOrNull())
         assertEquals(2_000, parts[1].toIntOrNull())
-        assertEquals("Player(source, tile=Tile(1234, 4321, 0))", parts[2])
-        assertEquals("gives", parts[3])
-        assertEquals("Player(target, tile=Tile(4321, 1234, 0))", parts[4])
-        assertEquals("Item(id=book, amount=2)", parts[5])
+        assertEquals("PLAYER source", parts[2])
+        assertEquals("GAVE", parts[3])
+        assertEquals("PLAYER target", parts[4])
+        assertEquals("ITEM book:2", parts[5])
     }
 
     @Test
@@ -77,7 +77,7 @@ class LogTest {
         assertEquals(4, parts.size)
         assertNotNull(parts[0].toLongOrNull())
         assertEquals(123, parts[1].toIntOrNull())
-        assertEquals("System", parts[2])
+        assertEquals("SYSTEM", parts[2])
         assertEquals("server shutdown initiated", parts[3])
     }
 
@@ -86,7 +86,7 @@ class LogTest {
         Log.info("test")
         Log.save(dir, LocalDateTime.of(2020, 10, 20, 17, 10, 5))
         val file = dir.listFiles()!!.first()
-        assertEquals("2020-10-20T17-00-00.txt", file.name)
+        assertEquals("2020-10-20T17-00-00.tsv", file.name)
     }
 
     private fun lines(): List<String> {

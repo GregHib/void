@@ -26,7 +26,7 @@ class ItemDropping {
             if (event.cancelled) {
                 return@inventoryOption
             }
-            Log.event(player, "dropped", item)
+            Log.event(player, "dropped", item, player.tile)
             if (player.inventory.remove(slot, item.id, item.amount)) {
                 if (item.tradeable) {
                     floorItems.add(player.tile, item.id, item.amount, revealTicks = 100, disappearTicks = 200, owner = player)

@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
 import world.gregs.voidps.network.login.protocol.decoders
+import java.io.File
 import java.util.*
 import kotlin.concurrent.thread
 
@@ -39,7 +40,7 @@ object Main {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        Log.info("Server startup")
+        Log.info("startup")
         val startTime = System.currentTimeMillis()
         val settings = settings()
 
@@ -47,7 +48,7 @@ object Main {
         val cache = timed("cache") { Cache.load(settings) }
         server = GameServer.load(cache, settings)
         val job = server.start(Settings["network.port"].toInt())
-        Log.info("Game server online")
+        Log.info("login online")
 
         // Content
         val configFiles = configFiles()
@@ -64,22 +65,20 @@ object Main {
         val loginServer = LoginServer.load(settings, decoders, accountLoader)
 
         // Game world
-        val saveLogs = SaveLogs()
-        val stages = getTickStages(saveLogs)
+        val stages = getTickStages()
         World.start(configFiles)
         val scope = CoroutineScope(Contexts.Game)
         val engine = GameLoop(stages).start(scope)
         server.loginServer = loginServer
         logger.info { "${Settings["server.name"]} loaded in ${System.currentTimeMillis() - startTime}ms" }
-        Log.info("Login server online")
+        Log.info("game online")
         runBlocking {
             try {
                 job.join()
             } finally {
                 engine.cancel()
                 server.stop()
-                Log.info("Game server offline")
-                saveLogs.run()
+                Log.info("game offline")
             }
         }
     }
@@ -103,6 +102,7 @@ object Main {
         Runtime.getRuntime().addShutdownHook(
             thread(start = false) {
                 World.emit(Despawn)
+                Log.save()
             },
         )
     }

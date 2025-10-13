@@ -1,3 +1,4 @@
+import com.github.michaelbull.logging.InlineLogger
 import content.social.trade.exchange.GrandExchange
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InstructionTask
@@ -28,13 +29,14 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.Log
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.zone.DynamicZones
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.login.protocol.npcVisualEncoders
 import world.gregs.voidps.network.login.protocol.playerVisualEncoders
 import java.io.File
+import java.util.concurrent.TimeUnit
 
 fun getTickStages(
-    saveLogs: SaveLogs,
     players: Players = get(),
     npcs: NPCs = get(),
     items: FloorItems = get(),
@@ -80,7 +82,7 @@ fun getTickStages(
         ),
         AiTick(),
         accountSave,
-        saveLogs,
+        SaveLogs(),
     )
 }
 
@@ -91,14 +93,22 @@ private class AiTick : Runnable {
 }
 
 
-class SaveLogs : Runnable {
+private class SaveLogs : Runnable {
     private val directory = File(Settings["storage.players.logs"])
+    private var ticks = TimeUnit.SECONDS.toTicks(Settings["storage.players.logs.seconds", 10])
+    private val logger = InlineLogger()
 
     init {
         directory.mkdirs()
     }
 
     override fun run() {
-        Log.save(directory)
+        if (ticks-- < 0) {
+            val count = Log.logs.size
+            val start = System.currentTimeMillis()
+            Log.save(directory)
+            logger.info { "Saved $count logs to disk in ${System.currentTimeMillis() - start}ms." }
+            ticks = TimeUnit.SECONDS.toTicks(Settings["storage.players.logs.seconds", 10])
+        }
     }
 }

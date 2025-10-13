@@ -30,7 +30,7 @@ class ExecuteCommandHandler : InstructionHandler<ExecuteCommand>() {
             return
         }
         Events.events.launch {
-            Log.event(player, "command", instruction.command, player.rights.name)
+            Log.event(player, "command", "\"${instruction.command}\"")
             Commands.call(player, instruction.command)
         }
     }

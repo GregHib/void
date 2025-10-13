@@ -48,7 +48,7 @@ class ItemTake {
             }
             when (player.inventory.transaction.error) {
                 TransactionError.None -> {
-                    Log.event(player, "took", item)
+                    Log.event(player, "took", target, target.tile)
                     if (player.tile != target.tile) {
                         player.face(target.tile.delta(player.tile))
                         player.anim("take")

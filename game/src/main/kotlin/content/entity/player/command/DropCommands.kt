@@ -12,6 +12,9 @@ import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.chat.toSIInt
 import world.gregs.voidps.engine.client.ui.chat.toSIPrefix
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -22,6 +25,7 @@ import world.gregs.voidps.engine.entity.item.drop.TableType
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
+import world.gregs.voidps.engine.timer.TICKS
 import java.util.concurrent.TimeUnit
 import kotlin.collections.iterator
 import kotlin.system.measureTimeMillis
@@ -61,6 +65,11 @@ class DropCommands {
             player.message("Simulation count has to be more than 0.")
             return
         }
+        if (player.hasClock("search_delay")) {
+            player.message("Requests too quick, try again in ${TICKS.toSeconds(player.remaining("search_delay"))} seconds.")
+            return
+        }
+        player.start("search_delay", 5)
         player.message("Simulating $title")
         if (count > 100_000) {
             player.message("Calculating...")
@@ -152,6 +161,10 @@ class DropCommands {
             player.message("No drop table found for '$content'")
             return
         }
+        if (player.hasClock("search_delay")) {
+            return
+        }
+        player.start("search_delay", 1)
         val chances = mutableMapOf<ItemDrop, Double>()
         collectChances(player, table, chances)
         for ((drop, chance) in chances) {

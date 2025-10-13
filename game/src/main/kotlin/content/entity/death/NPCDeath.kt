@@ -31,6 +31,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.event.Log
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.charges
@@ -59,6 +60,7 @@ class NPCDeath {
             npc.dead = true
             npc.steps.clear()
             npc.strongQueue(name = "death", 1) {
+                Log.event(npc, "died", npc.tile)
                 val killer = npc.killer
                 val tile = npc.tile
                 npc["death_tile"] = tile
@@ -85,6 +87,7 @@ class NPCDeath {
                     npc.dead = false
                     npc.mode = EmptyMode
                     Spawn.spawn(npc)
+                    Log.event(npc, "respawned", npc.tile)
                 } else {
                     World.queue("remove_npc") {
                         npcs.remove(npc)
@@ -108,6 +111,7 @@ class NPCDeath {
             .map { it.toItem() }
             .filter { World.members || !it.def.members }
             .toMutableList()
+        Log.event(npc, "dropped", *drops.toTypedArray())
         npc.emit(DropItems(killer, drops))
         if (npc.inMultiCombat && killer is Player && killer["loot_share", false]) {
             shareLoot(killer, npc, tile, drops)

@@ -166,25 +166,28 @@ class MetaCommands {
                 }
             }
         }
-        var longestArg = args.maxOf { if (it.second.isBlank()) 0 else font.width(it.first) }
+
+        var longestArg = if (args.isEmpty()) 0 else args.maxOf { if (it.second.isBlank()) 0 else font.width(it.first) }
         longestArg = longestArg - longestArg.rem(3) + 6
         val longestUsage = usages.maxOf { font.width(it.first) }
-        val longestKey = args.maxOf { if (it.second.isBlank()) 0 else font.width("${it.first}${" ".repeat((longestArg - font.width(it.first)) / 3)}${it.second}") }
+        val longestKey = if (args.isEmpty()) 0 else args.maxOf { if (it.second.isBlank()) 0 else font.width("${it.first}${" ".repeat((longestArg - font.width(it.first)) / 3)}${it.second}") }
         var longest = max(longestUsage, longestKey)
         longest = longest - longest.rem(3) + 15
         appendLine("Usage:")
         for ((usage, desc) in usages) {
             appendLine("  ${usage}${" ".repeat((longest - font.width(usage)) / 3)}$desc")
         }
-        appendLine(" ")
-        appendLine("Arguments:")
-        for ((arg, type, desc) in args) {
-            if (type.isBlank()) {
-                appendLine(arg)
-                continue
+        if (args.isNotEmpty()) {
+            appendLine(" ")
+            appendLine("Arguments:")
+            for ((arg, type, desc) in args) {
+                if (type.isBlank()) {
+                    appendLine(arg)
+                    continue
+                }
+                val key = "${arg}${" ".repeat((longestArg - font.width(arg)).coerceAtLeast(0) / 3)}$type"
+                appendLine("  $key${" ".repeat((longest - font.width(key)) / 3)}$desc")
             }
-            val key = "${arg}${" ".repeat((longestArg - font.width(arg)).coerceAtLeast(0) / 3)}$type"
-            appendLine("  $key${" ".repeat((longest - font.width(key)) / 3)}$desc")
         }
         appendLine("=============")
     }
@@ -204,17 +207,17 @@ class MetaCommands {
         val commands = Commands.commands.values
             .filter {
                 player.rights.ordinal >= it.rights.ordinal &&
-                    (
-                        filter == null ||
-                            it.name.contains(filter, ignoreCase = true) ||
-                            it.signatures.any { sig -> sig.description.contains(filter, ignoreCase = true) } ||
-                            it.signatures.any { sig -> sig.args.any { arg -> arg.key.contains(filter, ignoreCase = true) } }
-                        )
+                        (
+                                filter == null ||
+                                        it.name.contains(filter, ignoreCase = true) ||
+                                        it.signatures.any { sig -> sig.description.contains(filter, ignoreCase = true) } ||
+                                        it.signatures.any { sig -> sig.args.any { arg -> arg.key.contains(filter, ignoreCase = true) } }
+                                )
             }
             .sortedByDescending { it.name }
         for (command in commands) {
             for (signature in command.signatures) {
-                if (filter != null && !signature.description.contains(filter, ignoreCase = true) && signature.args.none { it.key.contains(filter, ignoreCase = true) }) {
+                if (filter != null && !command.name.contains(filter, ignoreCase = true) && !signature.description.contains(filter, ignoreCase = true) && signature.args.none { it.key.contains(filter, ignoreCase = true) }) {
                     continue
                 }
                 list.add("${Colours.BLUE.toTag()}${command.name} ${signature.usage()}</col>")

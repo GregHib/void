@@ -130,7 +130,7 @@ class AccountManager(
             player.softTimers.stopAll()
             player.timers.stopAll()
             saveQueue.save(player)
-            Log.event(player, "disconnected")
+            Log.event(player, "disconnected", player.tile)
         }
     }
 }
