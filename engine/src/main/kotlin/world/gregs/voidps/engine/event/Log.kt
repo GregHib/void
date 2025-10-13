@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.event
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.Entity
@@ -20,7 +21,7 @@ import java.time.format.DateTimeFormatter
  */
 object Log {
     private const val LOG_BUFFER_SIZE = 8192
-    val logs = ArrayList<String>(LOG_BUFFER_SIZE)
+    val logs = ObjectArrayList<String>(LOG_BUFFER_SIZE)
     val ISO_LOCAL_FORMAT: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss")
 
     fun event(source: Entity, action: String, vararg context: Any) {
