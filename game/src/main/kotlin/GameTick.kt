@@ -34,6 +34,7 @@ import world.gregs.voidps.network.login.protocol.playerVisualEncoders
 import java.io.File
 
 fun getTickStages(
+    saveLogs: SaveLogs,
     players: Players = get(),
     npcs: NPCs = get(),
     items: FloorItems = get(),
@@ -51,9 +52,6 @@ fun getTickStages(
     val sequentialNpc: TaskIterator<NPC> = SequentialIterator()
     val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
     val iterator: TaskIterator<Player> = if (sequential) SequentialIterator() else ParallelIterator()
-    val dir = File(Settings["storage.players.logs"])
-    dir.mkdirs()
-    val logs = LogTick(dir)
     return listOf(
         PlayerResetTask(sequentialPlayer, players, batches),
         NPCResetTask(sequentialNpc, npcs),
@@ -82,7 +80,7 @@ fun getTickStages(
         ),
         AiTick(),
         accountSave,
-        logs,
+        saveLogs,
     )
 }
 
@@ -93,7 +91,13 @@ private class AiTick : Runnable {
 }
 
 
-private class LogTick(private val directory: File) : Runnable {
+class SaveLogs : Runnable {
+    private val directory = File(Settings["storage.players.logs"])
+
+    init {
+        directory.mkdirs()
+    }
+
     override fun run() {
         Log.save(directory)
     }
