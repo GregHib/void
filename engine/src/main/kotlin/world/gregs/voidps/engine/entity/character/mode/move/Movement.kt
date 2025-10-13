@@ -239,12 +239,15 @@ open class Movement(
             val size = character.size
             for (x in 0 until size) {
                 for (y in 0 until size) {
-                    collisions.remove(from.x + x, from.y + y, from.level, mask)
-                }
-            }
-            for (x in 0 until size) {
-                for (y in 0 until size) {
-                    collisions.add(to.x + x, to.y + y, to.level, mask)
+                    val fromX = from.x + x
+                    val fromY = from.y + y
+                    val toX = to.x + x
+                    val toY = to.y + y
+
+                    if (fromX != toX || fromY != toY || from.level != to.level) {
+                        collisions.remove(fromX, fromY, from.level, mask)
+                        collisions.add(toX, toY, to.level, mask)
+                    }
                 }
             }
         }
