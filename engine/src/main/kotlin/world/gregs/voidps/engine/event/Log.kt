@@ -54,7 +54,7 @@ object Log {
 
     private fun add(block: StringBuilder.() -> Unit) {
         logs.add(buildString {
-            append(System.nanoTime()).append("\t")
+            append(System.currentTimeMillis()).append("\t")
             append(GameLoop.tick).append("\t")
             block()
         })
@@ -62,7 +62,7 @@ object Log {
 
 
     fun save(directory: File = File(Settings["storage.players.logs"]), now: LocalDateTime = LocalDateTime.now()) {
-        if (logs.isEmpty()) {
+        if (logs.isEmpty) {
             return
         }
         val hourTime = now.withMinute(0).withSecond(0).withNano(0)
