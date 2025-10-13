@@ -1,7 +1,7 @@
 <div align="center">
 <h1>Void</h1>
 <a href="https://github.com/GregHib/void">
-  <img src="https://i.imgur.com/X0OdMTf.png" alt="void">
+  <img src="https://github.com/user-attachments/assets/93ad1d53-ac07-4e57-82b4-94a3e38e39ad" alt="void">
 </a>
 
 [![Release](https://github.com/GregHib/void/actions/workflows/create_release.yml/badge.svg)](https://github.com/GregHib/void/actions/workflows/create_release.yml)
@@ -22,7 +22,7 @@
 <a href="https://github.com/GregHib/void/issues">Bugs</a> &nbsp;&bull;&nbsp;
 <a href="https://greghib.github.io/void-map/">World Map</a>
 
-![void in game picture](https://i.imgur.com/OZ317on.png)
+![void in game picture](https://github.com/user-attachments/assets/fe515ae5-3ae9-4251-a17c-064d7f514579)
 
 </div>
 
