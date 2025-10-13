@@ -92,7 +92,6 @@ private class AiTick : Runnable {
     }
 }
 
-
 private class SaveLogs : Runnable {
     private val directory = File(Settings["storage.players.logs"])
     private var ticks = TimeUnit.SECONDS.toTicks(Settings["storage.players.logs.seconds", 10])

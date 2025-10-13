@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
 import world.gregs.voidps.network.login.protocol.decoders
-import java.io.File
 import java.util.*
 import kotlin.concurrent.thread
 

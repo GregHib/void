@@ -53,7 +53,7 @@ class LogCommands {
                     val time = parts[0].toLong()
                     val format = if (hours > 12) DateTimeFormatter.ISO_LOCAL_DATE_TIME else DateTimeFormatter.ISO_LOCAL_TIME
                     val formatted = format.format(LocalDateTime.ofEpochSecond(TimeUnit.MILLISECONDS.toSeconds(time), 0, ZoneOffset.UTC))
-                    finds.add("[${formatted}] ${parts.drop(2).joinToString(" ")}")
+                    finds.add("[$formatted] ${parts.drop(2).joinToString(" ")}")
                 }
             }
             date.isBefore(after)

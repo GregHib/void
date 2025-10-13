@@ -207,12 +207,12 @@ class MetaCommands {
         val commands = Commands.commands.values
             .filter {
                 player.rights.ordinal >= it.rights.ordinal &&
-                        (
-                                filter == null ||
-                                        it.name.contains(filter, ignoreCase = true) ||
-                                        it.signatures.any { sig -> sig.description.contains(filter, ignoreCase = true) } ||
-                                        it.signatures.any { sig -> sig.args.any { arg -> arg.key.contains(filter, ignoreCase = true) } }
-                                )
+                    (
+                        filter == null ||
+                            it.name.contains(filter, ignoreCase = true) ||
+                            it.signatures.any { sig -> sig.description.contains(filter, ignoreCase = true) } ||
+                            it.signatures.any { sig -> sig.args.any { arg -> arg.key.contains(filter, ignoreCase = true) } }
+                        )
             }
             .sortedByDescending { it.name }
         for (command in commands) {
