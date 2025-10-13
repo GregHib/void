@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrides
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
+import world.gregs.voidps.engine.event.Log
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.inv.stack.ItemDependentStack
@@ -129,6 +130,7 @@ class AccountManager(
             player.softTimers.stopAll()
             player.timers.stopAll()
             saveQueue.save(player)
+            Log.event(player, "disconnected")
         }
     }
 }
