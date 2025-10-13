@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.friend.PrivateChat
 import world.gregs.voidps.engine.entity.character.player.chat.global.PublicChatMessage
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
+import world.gregs.voidps.engine.event.Log
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
@@ -44,6 +45,7 @@ class Chat {
                 player.message("Unable to send message - player unavailable.")
                 return@instruction
             }
+            Log.event(player, "told", target, message)
             val message = PrivateChatMessage(player, message, huffman)
             player.client?.privateChatTo(target.name, message.compressed)
             target.emit(message)
@@ -69,6 +71,7 @@ class Chat {
 
             when (player.chatType) {
                 "public" -> {
+                    Log.event(player, "said", text)
                     val message = PublicChatMessage(player, effects, text, huffman)
                     players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
                         it.emit(message)
@@ -84,6 +87,7 @@ class Chat {
                         player.message("You are not allowed to talk in this clan chat.", ChatType.ClanChat)
                         return@instruction
                     }
+                    Log.event(player, "clan_said", clan, text)
                     val message = ClanChatMessage(player, effects, text, huffman)
                     clan.members.filterNot { it.ignores(player) }.forEach {
                         it.emit(message)
