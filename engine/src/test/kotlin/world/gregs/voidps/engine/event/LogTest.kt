@@ -85,14 +85,12 @@ class LogTest {
     fun `Log saves to hour based file`() {
         Log.info("test")
         Log.save(dir, LocalDateTime.of(2020, 10, 20, 17, 10, 5))
-        Log.clear()
         val file = dir.listFiles()!!.first()
         assertEquals("2020-10-20T17-00-00.txt", file.name)
     }
 
     private fun lines(): List<String> {
         Log.save(dir)
-        Log.clear()
         val file = dir.listFiles()!!.first()
         val lines = file.readLines()
         assertEquals(1, lines.size)

@@ -12,18 +12,14 @@ import java.time.format.DateTimeFormatter
  */
 object Log {
     private const val LOG_BUFFER_SIZE = 8192
-    private val logs = arrayOfNulls<String>(LOG_BUFFER_SIZE)
-    private var index = 0
+    private val logs = ArrayList<String>(LOG_BUFFER_SIZE)
 
-    fun event(source: Entity, action: String, target: Entity? = null, uses: Any? = null) {
+    fun event(source: Entity, action: String, vararg context: Any) {
         add {
             append(source).append("\t")
             append(action)
-            if (target != null) {
-                append("\t").append(target)
-            }
-            if (uses != null) {
-                append("\t").append(uses)
+            for (info in context) {
+                append("\t").append(info)
             }
         }
     }
@@ -36,29 +32,27 @@ object Log {
     }
 
     private fun add(block: StringBuilder.() -> Unit) {
-        logs[index++] = buildString {
+        logs.add(buildString {
             append(System.nanoTime()).append("\t")
             append(GameLoop.tick).append("\t")
             block()
-        }
+        })
     }
 
     private val ISO_LOCAL_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss")
 
     fun save(directory: File, now: LocalDateTime = LocalDateTime.now()) {
-        if (index == 0) {
+        if (logs.isEmpty()) {
             return
         }
         val hourTime = now.withMinute(0).withSecond(0).withNano(0)
         val file = directory.resolve("${ISO_LOCAL_FORMAT.format(hourTime)}.txt")
         file.appendText(buildString {
-            for (line in 0 until index) {
-                appendLine(logs[line])
+            for (log in logs) {
+                appendLine()
             }
         })
+        logs.clear()
     }
 
-    fun clear() {
-        index = 0
-    }
 }
