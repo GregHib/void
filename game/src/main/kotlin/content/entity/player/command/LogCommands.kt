@@ -48,8 +48,8 @@ class LogCommands {
                     continue
                 }
                 val parts = line.split("\t")
-                val set = parts.map { it.lowercase() }.toSet()
-                if (terms == null || terms.all { set.contains(it) }) {
+                val test = line.replace("\t", " ")
+                if (terms == null || terms.all { test.contains(it, ignoreCase = true) }) {
                     val time = parts[0].toLong()
                     val format = if (hours > 12) DateTimeFormatter.ISO_LOCAL_DATE_TIME else DateTimeFormatter.ISO_LOCAL_TIME
                     val formatted = format.format(LocalDateTime.ofEpochSecond(TimeUnit.MILLISECONDS.toSeconds(time), 0, ZoneOffset.UTC))
