@@ -10,6 +10,8 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Log
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
@@ -59,9 +61,10 @@ class GrandExchangeCollection {
         if ((item.amount > 1 && option == "Collect_notes") || (item.amount == 1 && option == "Collect")) {
             noted = item.noted ?: item
         }
+        var added = 0
         player.inventory.transaction {
             val txn = link(collectionBox)
-            val added = addToLimit(noted.id, item.amount)
+            added = addToLimit(noted.id, item.amount)
             if (added < 1) {
                 error = TransactionError.Full()
             }
@@ -69,18 +72,22 @@ class GrandExchangeCollection {
         }
         when (player.inventory.transaction.error) {
             is TransactionError.Full -> player.inventoryFull()
-            TransactionError.None -> if (collectionBox.isEmpty()) {
-                if (offer.state.cancelled) {
-                    if (offer.completed > 0) {
-                        player.history.add(0, ExchangeHistory(offer))
+            TransactionError.None -> {
+                val actual = Item(item.id, added)
+                Log.event(player, "claimed", actual)
+                if (collectionBox.isEmpty()) {
+                    if (offer.state.cancelled) {
+                        if (offer.completed > 0) {
+                            player.history.add(0, ExchangeHistory(offer))
+                        }
+                        player.offers[box] = ExchangeOffer.EMPTY
+                        exchange.offers.remove(offer)
+                        GrandExchange.clearSelection(player)
                     }
-                    player.offers[box] = ExchangeOffer.EMPTY
-                    exchange.offers.remove(offer)
-                    GrandExchange.clearSelection(player)
+                    exchange.refresh(player, box)
+                } else if (collectionBox.contains(item.id)) {
+                    player.inventoryFull()
                 }
-                exchange.refresh(player, box)
-            } else if (collectionBox.contains(item.id)) {
-                player.inventoryFull()
             }
             else -> logger.warn { "Issue collecting items from grand exchange ${player.inventory.transaction.error} ${player.name} $item $index" }
         }

@@ -24,7 +24,7 @@ object Log {
     val logs = ObjectArrayList<String>(LOG_BUFFER_SIZE)
     val ISO_LOCAL_FORMAT: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss")
 
-    fun event(source: Entity, action: String, vararg context: Any) {
+    fun event(source: Entity, action: String, vararg context: Any?) {
         add {
             append(ref(source)).append("\t")
             append(action.uppercase())
@@ -34,7 +34,7 @@ object Log {
         }
     }
 
-    private fun ref(source: Any) = when (source) {
+    private fun ref(source: Any?) = when (source) {
         is Player -> "PLAYER ${source.accountName}"
         is NPC -> "NPC ${source.id}:${source.index}"
         is FloorItem -> "FLOOR_ITEM ${source.id}:${source.amount}"

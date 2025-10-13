@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.event.Log
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.timer.epochSeconds
@@ -49,6 +50,7 @@ object Loan {
         reset(player)
         logger.info { "$player discarded item $item" }
         val name: String? = player["borrowed_from"]
+        Log.event(player, "returned", item, name)
         if (name == null) {
             logger.error { "Unable to find borrowed item partner for $player" }
         } else {
