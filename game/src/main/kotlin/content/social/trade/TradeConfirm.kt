@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Log
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventory
@@ -42,6 +43,10 @@ class TradeConfirm {
             }
         }
 
+        /**
+         * Both players accepting the request moves onto the confirmation screen.
+         * Both players accepting the confirmation exchanges items and finishes the trade.
+         */
         interfaceOption("Accept", "accept", "trade_confirm") {
             val partner = getPartner(player) ?: return@interfaceOption
             player.interfaces.sendText("trade_confirm", "status", "Waiting for other player...")
@@ -65,14 +70,21 @@ class TradeConfirm {
                 loanItem(requester, acceptorLoan, acceptor)
                 loanItem(acceptor, requesterLoan, requester)
                 requester.closeMenu()
+                log(requester, acceptor)
             }
         }
     }
 
-    /**
-     * Both players accepting the request moves onto the confirmation screen.
-     * Both players accepting the confirmation exchanges items and finishes the trade.
-     */
+    private fun log(requester: Player, acceptor: Player) {
+        Log.event(requester, "gave", acceptor, requester.offer.items.toList())
+        if (requester.loan[0].isNotEmpty()) {
+            Log.event(requester, "lent", acceptor, requester.loan[0])
+        }
+        Log.event(acceptor, "gave", requester, acceptor.offer.items.toList())
+        if (acceptor.loan[0].isNotEmpty()) {
+            Log.event(acceptor, "lent", requester, acceptor.loan[0])
+        }
+    }
 
     fun confirm(player: Player) {
         player.interfaces.apply {

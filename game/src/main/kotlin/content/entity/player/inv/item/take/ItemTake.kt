@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
 import world.gregs.voidps.engine.entity.item.floor.npcOperateFloorItem
+import world.gregs.voidps.engine.event.Log
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
@@ -47,6 +48,7 @@ class ItemTake {
             }
             when (player.inventory.transaction.error) {
                 TransactionError.None -> {
+                    Log.event(player, "took", item)
                     if (player.tile != target.tile) {
                         player.face(target.tile.delta(player.tile))
                         player.anim("take")

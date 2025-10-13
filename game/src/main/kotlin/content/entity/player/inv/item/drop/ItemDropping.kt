@@ -5,6 +5,7 @@ import content.entity.player.inv.inventoryOption
 import content.entity.player.inv.item.tradeable
 import content.entity.sound.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.event.Log
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.charges
@@ -25,6 +26,7 @@ class ItemDropping {
             if (event.cancelled) {
                 return@inventoryOption
             }
+            Log.event(player, "dropped", item)
             if (player.inventory.remove(slot, item.id, item.amount)) {
                 if (item.tradeable) {
                     floorItems.add(player.tile, item.id, item.amount, revealTicks = 100, disappearTicks = 200, owner = player)
