@@ -13,7 +13,9 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.data.*
+import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
+import java.io.File
 
 fun gameModule(files: ConfigFiles) = module {
     single { ItemSpawns() }
@@ -53,5 +55,34 @@ fun gameModule(files: ConfigFiles) = module {
     }
     single(createdAtStart = true) {
         GrandExchange(get(), get(), get<Storage>().claims().toMutableMap(), get(), get(), get(), get())
+    }
+    single {
+        if (Settings["storage.type", "files"] == "database") {
+            val clazz: Class<*>
+            val companion: Class<*>
+            try {
+                clazz = Class.forName("world.gregs.voidps.storage.DatabaseStorage")
+                companion = Class.forName("${clazz.name}\$Companion")
+            } catch (e: ClassNotFoundException) {
+                throw IllegalStateException("Database class not found; are you compiling using `-PincludeDb`?")
+            }
+            val method = companion.declaredMethods.first { it.name == "connect" }
+            val instance = companion.constructors.first().newInstance(null)
+            method.invoke(
+                instance,
+                Settings["storage.database.username"],
+                Settings["storage.database.password"],
+                Settings["storage.database.driver"],
+                Settings["storage.database.jdbcUrl"],
+                Settings["storage.database.poolSize", 2],
+            )
+            clazz.constructors.first().newInstance() as Storage
+        } else {
+            val saves = File(Settings["storage.players.path"])
+            if (!saves.exists()) {
+                saves.mkdir()
+            }
+            FileStorage(saves)
+        }
     }
 }

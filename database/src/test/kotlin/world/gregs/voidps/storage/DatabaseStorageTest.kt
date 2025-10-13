@@ -1,16 +1,12 @@
-package world.gregs.voidps.engine.data.sql
+package world.gregs.voidps.storage
 
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import world.gregs.voidps.engine.data.DatabaseTest
-import world.gregs.voidps.engine.data.StorageTest
 
-class DatabaseStorageTest :
-    StorageTest(),
-    DatabaseTest {
+class DatabaseStorageTest : StorageTest(), DatabaseTest {
 
     override val storage = DatabaseStorage()
 

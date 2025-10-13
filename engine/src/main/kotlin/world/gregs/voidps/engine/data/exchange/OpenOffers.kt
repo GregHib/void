@@ -11,8 +11,8 @@ import kotlin.math.absoluteValue
  * @param counter accumulating id
  */
 class OpenOffers(
-    internal val sellByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf(),
-    internal val buyByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf(),
+    val sellByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf(),
+    val buyByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf(),
     private val activity: SortedSet<Activity> = TreeSet(Comparator { a1, a2 -> a1.lastActive.compareTo(a2.lastActive) }),
     var counter: Int = 0,
 ) {

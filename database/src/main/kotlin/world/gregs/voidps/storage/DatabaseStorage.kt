@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.data.sql
+package world.gregs.voidps.storage
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -254,7 +254,7 @@ class DatabaseStorage : Storage {
             this[InventoriesTable.playerId] = playerIds.getValue(id.lowercase())
             this[InventoriesTable.inventoryName] = inventory
             this[InventoriesTable.items] = items.map { it.id }
-            this[InventoriesTable.amounts] = items.map { it.value }
+            this[InventoriesTable.amounts] = items.map { it.rawValue() }
         }
     }
 

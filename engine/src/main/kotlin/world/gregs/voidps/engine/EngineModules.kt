@@ -8,8 +8,6 @@ import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
-import world.gregs.voidps.engine.data.file.FileStorage
-import world.gregs.voidps.engine.data.sql.DatabaseStorage
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -38,24 +36,6 @@ fun engineModule(files: ConfigFiles) = module {
     }
     single { AccountManager(get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), AppearanceOverrides(get(), get())) }
     // IO
-    single {
-        if (Settings["storage.type", "files"] == "database") {
-            DatabaseStorage.connect(
-                Settings["storage.database.username"],
-                Settings["storage.database.password"],
-                Settings["storage.database.driver"],
-                Settings["storage.database.jdbcUrl"],
-                Settings["storage.database.poolSize", 2],
-            )
-            DatabaseStorage()
-        } else {
-            val saves = File(Settings["storage.players.path"])
-            if (!saves.exists()) {
-                saves.mkdir()
-            }
-            FileStorage(saves)
-        }
-    }
     single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     // Map
     single { ZoneBatchUpdates() }

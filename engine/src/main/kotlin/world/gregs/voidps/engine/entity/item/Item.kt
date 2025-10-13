@@ -24,6 +24,8 @@ class Item(
 
     fun copy(id: String = this.id, amount: Int = this.value) = Item(id, amount)
 
+    fun rawValue() = value
+
     override fun toString(): String = "Item(id='$id', amount=$value)"
 
     override fun equals(other: Any?): Boolean {

@@ -65,6 +65,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run:
           gh release create -d ${{ github.ref_name }} ./game/build/distributions/void-${{ env.build_version }}.zip
+      - name: Run docker build assembly
+        run: ./gradlew assemble -PincludeDb
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
