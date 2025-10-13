@@ -13,7 +13,9 @@ dependencies {
     implementation(project(":network"))
     implementation(project(":types"))
     implementation(project(":config"))
-
+    if (findProperty("includeDb") != null) {
+        implementation(project(":database"))
+    }
     implementation(libs.fastutil)
     implementation(libs.kasechange)
     implementation(libs.rsmod.pathfinder)
@@ -57,13 +59,21 @@ tasks {
     named<ShadowJar>("shadowJar") {
         dependsOn("scriptMetadata")
         from(layout.buildDirectory.file("scripts.txt"))
+        val db = findProperty("includeDb") != null
         minimize {
+            if (db) {
+                exclude(project(":database"))
+                exclude(dependency("org.postgresql:postgresql:.*"))
+                exclude(dependency("org.jetbrains.exposed:exposed-jdbc:.*"))
+            }
             exclude("world/gregs/voidps/engine/log/**")
-            exclude(dependency("org.postgresql:postgresql:.*"))
-            exclude(dependency("org.jetbrains.exposed:exposed-jdbc:.*"))
             exclude(dependency("ch.qos.logback:logback-classic:.*"))
         }
-        archiveBaseName.set("void-server-$version")
+        if (db) {
+            archiveBaseName.set("void-server-db-$version")
+        } else {
+            archiveBaseName.set("void-server-$version")
+        }
         archiveClassifier.set("")
         archiveVersion.set("")
         // Replace logback file as the custom colour classes can't be individually excluded from minimization

@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.data.sql
+package world.gregs.voidps.storage
 
 import org.jetbrains.exposed.sql.Table
 

@@ -9,8 +9,6 @@ dependencies {
     implementation(project(":types"))
     implementation(project(":config"))
 
-    implementation(libs.bundles.database)
-
     implementation(libs.fastutil)
     implementation(libs.kasechange)
 
@@ -19,10 +17,7 @@ dependencies {
 
     implementation(libs.bundles.logging)
     implementation(libs.bundles.kotlinx)
-
     testImplementation(libs.bundles.testing)
-    testImplementation(libs.bundles.postgres)
-    testImplementation(enforcedPlatform(libs.embedded.postgres.binaries))
 }
 
 tasks.withType<Test> {
