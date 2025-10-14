@@ -138,7 +138,8 @@ abstract class ScriptMetadataTask : DefaultTask() {
                 methodCount++
                 val returnType = method.typeReference
                 val parameters = method.valueParameters.joinToString(",") { param -> param.typeReference!!.getTypeText() }
-                val signature = "${method.name}(${parameters})${if (returnType == null) "" else ":${returnType.getTypeText()}"}"
+                val extension = method.receiverTypeReference
+                val signature = "${if (extension != null) "${extension.text}." else ""}${method.name}(${parameters})${if (returnType == null) "" else ":${returnType.getTypeText()}"}"
                 val entries = method.annotationEntries
                 if (entries.isEmpty()) {
                     lines.add("${signature}|$packagePath")
