@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.core.component.KoinComponent
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.client.variable.Variable
+import world.gregs.voidps.engine.client.variable.VariableStore
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.list
@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap
 const val MAX_PLAYERS = 0x800 // 2048
 const val MAX_NPCS = 0x8000 // 32768
 
-object World : Entity, Variable, EventDispatcher, Runnable, KoinComponent {
+object World : Entity, VariableStore, EventDispatcher, Runnable, KoinComponent {
     override var tile = Tile.EMPTY
 
     override val variables = Variables(this)

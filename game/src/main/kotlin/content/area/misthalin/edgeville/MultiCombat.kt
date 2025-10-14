@@ -1,6 +1,7 @@
 package content.area.misthalin.edgeville
 
 import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -22,13 +23,12 @@ class MultiCombat : Api {
         }
     }
 
+    @Variable("in_multi_combat")
     override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        if (key == "in_multi_combat") {
-            if (to == true) {
-                player.interfaces.sendVisibility("area_status_icon", "multi_combat", true)
-            } else if (to == null) {
-                player.interfaces.sendVisibility("area_status_icon", "multi_combat", false)
-            }
+        if (to == true) {
+            player.interfaces.sendVisibility("area_status_icon", "multi_combat", true)
+        } else if (to == null) {
+            player.interfaces.sendVisibility("area_status_icon", "multi_combat", false)
         }
     }
 

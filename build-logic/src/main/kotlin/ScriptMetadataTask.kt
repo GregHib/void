@@ -47,6 +47,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
     private val annotations: Map<String, List<Pair<String, WildcardType>>> = mapOf(
         "Id" to listOf("id" to WildcardType.DynamicId),
         "SkillId" to listOf("skill" to WildcardType.None, "id" to WildcardType.DynamicId),
+        "Variable" to listOf("key" to WildcardType.None, "id" to WildcardType.DynamicId),
     )
 
     @get:Incremental

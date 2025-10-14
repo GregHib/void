@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -89,10 +90,9 @@ class TaskList : Api {
         }
     }
 
+    @Variable("task_pin_slot")
     override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        if (key == "task_pin_slot") {
-            player.close("task_list")
-        }
+        player.close("task_list")
     }
 
     fun indexOfSlot(player: Player, slot: Int): Int? {
