@@ -20,7 +20,7 @@ import kotlin.getValue
 class Elementals : Api {
     val patrols: PatrolDefinitions by inject()
 
-    @Id("autumn_elemental*,spring_elemental*,summer_elemental*,winter_elemental")
+    @Id("autumn_elemental*,spring_elemental*,summer_elemental*,winter_elemental*")
     override fun spawn(npc: NPC) {
         val patrol = patrols.get(npc.id)
         npc.mode = Patrol(npc, patrol.waypoints)
