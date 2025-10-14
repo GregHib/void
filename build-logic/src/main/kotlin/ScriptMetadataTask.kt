@@ -28,11 +28,13 @@ import java.io.File
 abstract class ScriptMetadataTask : DefaultTask() {
 
     private enum class WildcardType {
+        DynamicId,
         NpcId,
         InterfaceId,
         ComponentId,
         ObjectId,
         ItemId,
+        DynamicOption,
         NpcOption,
         InterfaceOption,
         FloorItemOption,
@@ -141,7 +143,8 @@ abstract class ScriptMetadataTask : DefaultTask() {
             for (method in methods) {
                 methodCount++
                 val returnType = method.typeReference
-                val signature = "${method.name}(${method.valueParameters.joinToString(",") { param -> param.typeReference!!.getTypeText() }})${if (returnType == null) "" else ":${returnType.getTypeText()}"}"
+                val parameters = method.valueParameters.joinToString(",") { param -> param.typeReference!!.getTypeText() }
+                val signature = "${method.name}(${parameters})${if (returnType == null) "" else ":${returnType.getTypeText()}"}"
                 val entries = method.annotationEntries
                 if (entries.isEmpty()) {
                     lines.add("${signature}|$packagePath")
@@ -160,27 +163,40 @@ abstract class ScriptMetadataTask : DefaultTask() {
                         params[idx].add(value)
                     }
                     for (i in info.indices) {
-                        val value = params[i].first()
-                        // Expand wildcards into matches
-                        if (value.contains("*") || value.contains("#")) {
-                            val set = when (info[i].second) {
-                                WildcardType.NpcId -> npcIds
-                                WildcardType.InterfaceId -> interfaceIds
-                                WildcardType.ComponentId -> componentIds
-                                WildcardType.ObjectId -> objectIds
-                                WildcardType.ItemId -> itemIds
-                                WildcardType.NpcOption -> npcOptions
-                                WildcardType.InterfaceOption -> interfaceOptions
-                                WildcardType.FloorItemOption -> floorItemOptions
-                                WildcardType.ObjectOption -> objectOptions
-                                WildcardType.ItemOption -> itemOptions
+                        for (value in params[i].first().split(",")) {
+                            // Expand wildcards into matches
+                            if (value.contains("*") || value.contains("#")) {
+                                val set = when (info[i].second) {
+                                    WildcardType.DynamicId -> when {
+                                        parameters.contains("NPC") -> npcIds
+                                        parameters.contains("GameObject") -> objectIds
+                                        parameters.contains("FloorItem") -> itemIds
+                                        else -> error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation.text}")
+                                    }
+                                    WildcardType.NpcId -> npcIds
+                                    WildcardType.InterfaceId -> interfaceIds
+                                    WildcardType.ComponentId -> componentIds
+                                    WildcardType.ObjectId -> objectIds
+                                    WildcardType.ItemId -> itemIds
+                                    WildcardType.DynamicOption -> when {
+                                        parameters.contains("NPC") -> npcOptions
+                                        parameters.contains("GameObject") -> objectOptions
+                                        parameters.contains("FloorItem") -> itemOptions
+                                        else -> error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation.text}")
+                                    }
+                                    WildcardType.NpcOption -> npcOptions
+                                    WildcardType.InterfaceOption -> interfaceOptions
+                                    WildcardType.FloorItemOption -> floorItemOptions
+                                    WildcardType.ObjectOption -> objectOptions
+                                    WildcardType.ItemOption -> itemOptions
+                                }
+                                val matches = set.filter { wildcardEquals(value, it) }
+                                if (matches.isEmpty()) {
+                                    error("No matches for wildcard '${value}' in $packagePath ${annotation.text}")
+                                }
+                                params[i].removeAt(0)
+                                params[i].addAll(matches)
                             }
-                            val matches = set.filter { wildcardEquals(value, it) }
-                            if (matches.isEmpty()) {
-                                error("No matches for wildcard '${value}' in $packagePath ${annotation.text}")
-                            }
-                            params[i].removeAt(0)
-                            params[i].addAll(matches)
                         }
                     }
                     generateCombinations(params) { args ->
