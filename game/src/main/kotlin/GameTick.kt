@@ -1,3 +1,4 @@
+import com.github.michaelbull.logging.InlineLogger
 import content.social.trade.exchange.GrandExchange
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InstructionTask
@@ -14,6 +15,7 @@ import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
 import world.gregs.voidps.engine.client.update.player.PlayerResetTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
 import world.gregs.voidps.engine.data.SaveQueue
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.AiTick
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -24,11 +26,15 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.zone.DynamicZones
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.login.protocol.npcVisualEncoders
 import world.gregs.voidps.network.login.protocol.playerVisualEncoders
+import java.io.File
+import java.util.concurrent.TimeUnit
 
 fun getTickStages(
     players: Players = get(),
@@ -76,11 +82,32 @@ fun getTickStages(
         ),
         AiTick(),
         accountSave,
+        SaveLogs(),
     )
 }
 
 private class AiTick : Runnable {
     override fun run() {
         World.emit(AiTick)
+    }
+}
+
+private class SaveLogs : Runnable {
+    private val directory = File(Settings["storage.players.logs"])
+    private var ticks = TimeUnit.SECONDS.toTicks(Settings["storage.players.logs.seconds", 10])
+    private val logger = InlineLogger()
+
+    init {
+        directory.mkdirs()
+    }
+
+    override fun run() {
+        if (ticks-- < 0) {
+            val count = AuditLog.logs.size
+            val start = System.currentTimeMillis()
+            AuditLog.save(directory)
+            logger.info { "Saved $count logs to disk in ${System.currentTimeMillis() - start}ms." }
+            ticks = TimeUnit.SECONDS.toTicks(Settings["storage.players.logs.seconds", 10])
+        }
     }
 }

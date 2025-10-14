@@ -31,6 +31,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.charges
@@ -66,6 +67,7 @@ class NPCDeath {
                 (killer as? Player)?.sound(NPCAttack.sound(soundDefinitions, npc, "death"))
                 delay(if (ticks <= 0) 4 else ticks)
                 if (killer is Player) {
+                    AuditLog.event(killer, "killed", npc, npc.tile)
                     slay(killer, npc)
                     dropLoot(npc, killer, tile)
                 }
@@ -108,6 +110,7 @@ class NPCDeath {
             .map { it.toItem() }
             .filter { World.members || !it.def.members }
             .toMutableList()
+        AuditLog.event(npc, "dropped", *drops.toTypedArray())
         npc.emit(DropItems(killer, drops))
         if (npc.inMultiCombat && killer is Player && killer["loot_share", false]) {
             shareLoot(killer, npc, tile, drops)

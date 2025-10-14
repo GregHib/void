@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
@@ -176,6 +177,7 @@ class Kaqemeex {
     }
 
     fun Context<Player>.questComplete() {
+        AuditLog.event(player, "quest_completed", "druidic_ritual")
         player["druidic_ritual"] = "completed"
         player.jingle("quest_complete_1")
         player.experience.add(Skill.Herblore, 250.0)

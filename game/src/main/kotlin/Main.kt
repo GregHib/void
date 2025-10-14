@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
@@ -38,6 +39,7 @@ object Main {
 
     @JvmStatic
     fun main(args: Array<String>) {
+        AuditLog.info("startup")
         val startTime = System.currentTimeMillis()
         val settings = settings()
 
@@ -45,6 +47,7 @@ object Main {
         val cache = timed("cache") { Cache.load(settings) }
         server = GameServer.load(cache, settings)
         val job = server.start(Settings["network.port"].toInt())
+        AuditLog.info("login online")
 
         // Content
         val configFiles = configFiles()
@@ -67,12 +70,14 @@ object Main {
         val engine = GameLoop(stages).start(scope)
         server.loginServer = loginServer
         logger.info { "${Settings["server.name"]} loaded in ${System.currentTimeMillis() - startTime}ms" }
+        AuditLog.info("game online")
         runBlocking {
             try {
                 job.join()
             } finally {
                 engine.cancel()
                 server.stop()
+                AuditLog.info("game offline")
             }
         }
     }
@@ -96,6 +101,7 @@ object Main {
         Runtime.getRuntime().addShutdownHook(
             thread(start = false) {
                 World.emit(Despawn)
+                AuditLog.save()
             },
         )
     }

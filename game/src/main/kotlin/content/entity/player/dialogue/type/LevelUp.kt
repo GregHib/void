@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.engine.suspend.SuspendableContext
@@ -55,6 +56,7 @@ class LevelUp {
             if (player["skip_level_up", false]) {
                 return@maxLevelChange
             }
+            AuditLog.event(player, "level_up", skill.name, to)
             val unlock = when (skill) {
                 Agility -> false
                 Construction -> to.rem(10) == 0

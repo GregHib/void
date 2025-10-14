@@ -13,6 +13,10 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.inv.transact.operation.SwapItem.swap
 
+/**
+ * Offering an item to lend for a duration
+ */
+
 @Script
 class TradeLending : Api {
 
@@ -42,12 +46,6 @@ class TradeLending : Api {
         }
     }
 
-    /**
-     * Offering an item to lend for a duration
-     */
-
-    // Item must have a lent version
-
     fun setLend(player: Player, time: Int) {
         player["lend_time"] = time
         val partner = getPartner(player) ?: return
@@ -68,6 +66,7 @@ class TradeLending : Api {
             return
         }
 
+        // Item must have a lent version
         if (player.loan.restricted(id)) {
             player.message("That item cannot be lent.")
             return

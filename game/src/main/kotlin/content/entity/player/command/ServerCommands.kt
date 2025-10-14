@@ -46,6 +46,7 @@ import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -149,7 +150,7 @@ class ServerCommands {
         val input = args[0].toIntOrNull()
         if (input == null) {
             if (content.isBlank()) {
-                shutdown(0)
+                shutdown(player, 0)
                 return
             }
             for (part in content.split(" ")) {
@@ -174,13 +175,14 @@ class ServerCommands {
             player.message("Update time must be positive.", ChatType.Console)
             return
         }
-        for (player in players) {
-            player.client?.systemUpdate(ticks)
+        for (p in players) {
+            p.client?.systemUpdate(ticks)
         }
-        shutdown((ticks - 2).coerceAtLeast(0))
+        shutdown(player, (ticks - 2).coerceAtLeast(0))
     }
 
-    fun shutdown(ticks: Int) {
+    fun shutdown(player: Player, ticks: Int) {
+        AuditLog.event(player, "started_shutdown", ticks)
         // Prevent players logging-in 1 minute before update
         World.queue("system_shutdown", (ticks - 100).coerceAtLeast(0)) {
             accountLoader.update = true

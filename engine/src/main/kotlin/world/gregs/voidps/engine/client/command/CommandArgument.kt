@@ -41,3 +41,8 @@ fun boolArg(key: String, desc: String = "", optional: Boolean = false, autofill:
 fun stringArg(key: String, desc: String = "", optional: Boolean = false, autofill: (() -> Set<String>)? = null) = CommandArgument(key, ArgType.String, optional = optional, autofill = autofill, description = desc,)
 
 fun stringArg(key: String, desc: String = "", optional: Boolean = false, autofill: Set<String>) = CommandArgument(key, ArgType.String, optional = optional, autofill = { autofill }, description = desc)
+
+fun varArgs(key: String, desc: String = ""): Array<CommandArgument> {
+    val arg = stringArg(key, desc, optional = true)
+    return Array(5) { arg }
+}

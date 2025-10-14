@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -58,13 +59,13 @@ class ShopSell {
         }
         val shop = player.shopInventory(false)
         var moved = 0
+        val price = item.sellPrice()
         player.inventory.transaction {
             moved = moveToLimit(item.id, amount, shop, notNoted.id)
             if (moved == 0) {
                 this.error = TransactionError.Full(amount)
                 return@transaction
             }
-            val price = item.sellPrice()
             if (price > 0) {
                 add(player.shopCurrency(), price * moved)
             }
@@ -80,7 +81,11 @@ class ShopSell {
                 }
             }
             TransactionError.Invalid -> player.message("You can't sell this item to this shop.")
-            else -> player.emit(SoldItem(Item(item.id, moved), shop.id))
+            else -> {
+                val actual = Item(item.id, moved)
+                AuditLog.event(player, "sold", actual, shop.id, price)
+                player.emit(SoldItem(actual, shop.id))
+            }
         }
     }
 }

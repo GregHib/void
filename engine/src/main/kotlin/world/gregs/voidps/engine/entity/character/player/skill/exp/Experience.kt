@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.EventDispatcher
 
 class Experience(
@@ -20,6 +21,9 @@ class Experience(
         if (experience in 0.0..maximum && !blocked.contains(skill)) {
             val previous = get(skill)
             this.experience[skill.ordinal] = experience
+            if (events is Player) {
+                AuditLog.event(events as Player, "exp", skill, experience)
+            }
             update(skill, previous)
         }
     }

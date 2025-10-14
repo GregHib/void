@@ -41,6 +41,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.playerDespawn
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.event.Script
@@ -299,6 +300,7 @@ class Delrith : Api {
     }
 
     fun Context<Player>.questComplete() {
+        AuditLog.event(player, "quest_completed", "demon_slayer")
         player.anim("silverlight_showoff")
         player.gfx("silverlight_sparkle")
         player.sound("equip_silverlight")

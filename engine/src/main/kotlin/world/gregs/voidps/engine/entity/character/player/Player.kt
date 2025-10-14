@@ -114,5 +114,5 @@ class Player(
 
     override fun hashCode(): Int = index
 
-    override fun toString(): String = "Player($accountName, index=$index, tile=$tile)"
+    override fun toString(): String = "Player($accountName, tile=$tile)"
 }

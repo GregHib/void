@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
@@ -256,6 +257,7 @@ class Sedridor {
     }
 
     fun Context<Player>.questComplete() {
+        AuditLog.event(player, "quest_completed", "rune_mysteries")
         player["rune_mysteries"] = "completed"
         player.jingle("quest_complete_1")
         if (player.inventory.isFull()) {

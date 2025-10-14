@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
@@ -210,6 +211,7 @@ class TaskSystem : Api {
 
     fun completeTask(player: Player, id: String) {
         val definition = structDefinitions.get(id)
+        AuditLog.event(player, "task_completed", id)
         val index = definition["task_index", -1]
         player["task_popup"] = index
         val difficulty = definition["task_difficulty", 0]

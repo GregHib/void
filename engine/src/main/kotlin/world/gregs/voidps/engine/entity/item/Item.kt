@@ -26,7 +26,7 @@ class Item(
 
     fun rawValue() = value
 
-    override fun toString(): String = "Item(id='$id', amount=$value)"
+    override fun toString(): String = "Item(id=$id, amount=$value)"
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

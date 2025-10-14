@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
@@ -119,6 +120,7 @@ class Cook {
     }
 
     fun Context<Player>.questComplete() {
+        AuditLog.event(player, "quest_completed", "cooks_assistant")
         player["cooks_assistant"] = "completed"
         player.jingle("quest_complete_1")
         player.inventory.add("sardine_noted", 20)
