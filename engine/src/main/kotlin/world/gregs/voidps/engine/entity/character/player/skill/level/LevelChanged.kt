@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player.skill.level
 
 import world.gregs.voidps.engine.dispatch.ListDispatcher
+import world.gregs.voidps.engine.dispatch.MapDispatcher
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -15,7 +16,7 @@ interface LevelChanged {
 
     companion object : LevelChanged {
         var playerDispatcher = ListDispatcher<LevelChanged>()
-        var npcDispatcher = ListDispatcher<LevelChanged>()
+        var npcDispatcher = MapDispatcher<LevelChanged>("Id")
 
         override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
             for (instance in playerDispatcher.instances) {
@@ -24,7 +25,7 @@ interface LevelChanged {
         }
 
         override fun levelChanged(npc: NPC, skill: Skill, from: Int, to: Int) {
-            for (instance in npcDispatcher.instances) {
+            npcDispatcher.forEach(npc.id) { instance ->
                 instance.levelChanged(npc, skill, from, to)
             }
         }

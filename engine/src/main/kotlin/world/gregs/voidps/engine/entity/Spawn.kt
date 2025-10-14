@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.dispatch.ListDispatcher
+import world.gregs.voidps.engine.dispatch.MapDispatcher
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 
 interface Spawn {
@@ -20,9 +21,9 @@ interface Spawn {
 
     companion object : Spawn {
         var playerDispatcher = ListDispatcher<Spawn>()
-        var npcDispatcher = ListDispatcher<Spawn>()
-        var objectDispatcher = ListDispatcher<Spawn>()
-        var floorItemDispatcher = ListDispatcher<Spawn>()
+        var npcDispatcher = MapDispatcher<Spawn>("Id")
+        var objectDispatcher = MapDispatcher<Spawn>("Id")
+        var floorItemDispatcher = MapDispatcher<Spawn>("Id")
         var worldDispatcher = ListDispatcher<Spawn>()
 
         override fun spawn(player: Player) {
@@ -32,19 +33,19 @@ interface Spawn {
         }
 
         override fun spawn(npc: NPC) {
-            for (instance in npcDispatcher.instances) {
+            npcDispatcher.forEach(npc.id) { instance ->
                 instance.spawn(npc)
             }
         }
 
         override fun spawn(obj: GameObject) {
-            for (instance in objectDispatcher.instances) {
+            objectDispatcher.forEach(obj.id) { instance ->
                 instance.spawn(obj)
             }
         }
 
         override fun spawn(floorItem: FloorItem) {
-            for (instance in floorItemDispatcher.instances) {
+            floorItemDispatcher.forEach(floorItem.id) { instance ->
                 instance.spawn(floorItem)
             }
         }

@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.mode.move
 
 import world.gregs.voidps.engine.dispatch.ListDispatcher
+import world.gregs.voidps.engine.dispatch.MapDispatcher
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
@@ -14,7 +15,7 @@ interface Moved {
 
     companion object : Moved {
         var playerDispatcher = ListDispatcher<Moved>()
-        var npcDispatcher = ListDispatcher<Moved>()
+        var npcDispatcher = MapDispatcher<Moved>("Id")
 
         override fun move(player: Player, from: Tile, to: Tile) {
             for (instance in playerDispatcher.instances) {
@@ -23,7 +24,7 @@ interface Moved {
         }
 
         override fun move(npc: NPC, from: Tile, to: Tile) {
-            for (instance in npcDispatcher.instances) {
+            npcDispatcher.forEach(npc.id) { instance ->
                 instance.move(npc, from, to)
             }
         }

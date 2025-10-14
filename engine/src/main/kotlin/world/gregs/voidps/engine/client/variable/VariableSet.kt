@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.variable
 
 import world.gregs.voidps.engine.dispatch.ListDispatcher
+import world.gregs.voidps.engine.dispatch.MapDispatcher
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Events
@@ -15,7 +16,7 @@ interface VariableSet {
 
     companion object : VariableSet {
         var playerDispatcher = ListDispatcher<VariableSet>()
-        var npcDispatcher = ListDispatcher<VariableSet>()
+        var npcDispatcher = MapDispatcher<VariableSet>("Id")
 
         override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
             for (instance in playerDispatcher.instances) {
@@ -24,7 +25,7 @@ interface VariableSet {
         }
 
         override fun variableSet(npc: NPC, key: String, from: Any?, to: Any?) {
-            for (instance in npcDispatcher.instances) {
+            npcDispatcher.forEach(npc.id) { instance ->
                 instance.variableSet(npc, key, from, to)
             }
         }
