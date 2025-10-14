@@ -17,8 +17,9 @@ class CharacterDeath : Api {
         }
     }
 
+    @SkillId(Skill.Constitution)
     override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
-        if (skill == Skill.Constitution && to <= 0 && !player.queue.contains("death")) {
+        if (to <= 0 && !player.queue.contains("death")) {
             player.emit(Death)
         }
     }
