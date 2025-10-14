@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.event
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertNotNull
 import org.junit.jupiter.api.io.TempDir
@@ -16,6 +17,11 @@ class AuditLogTest {
 
     @TempDir
     private lateinit var dir: File
+
+    @BeforeEach
+    fun setup() {
+        AuditLog.logs.clear()
+    }
 
     @Test
     fun `Log entity action`() {
