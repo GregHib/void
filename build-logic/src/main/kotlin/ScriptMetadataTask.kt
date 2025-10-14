@@ -28,28 +28,28 @@ import java.io.File
  */
 abstract class ScriptMetadataTask : DefaultTask() {
 
-    private enum class WildcardType {
-        None,
-        DynamicId,
-        NpcId,
-        InterfaceId,
-        ComponentId,
-        ObjectId,
-        ItemId,
-        VariableId,
-        DynamicOption,
-        NpcOption,
-        InterfaceOption,
-        FloorItemOption,
-        ObjectOption,
-        ItemOption,
+    private sealed class WildcardType {
+        data object None : WildcardType()
+        data class DynamicId(val index: Int) : WildcardType()
+        data object NpcId : WildcardType()
+        data object InterfaceId : WildcardType()
+        data object ComponentId : WildcardType()
+        data object ObjectId : WildcardType()
+        data object ItemId : WildcardType()
+        data object VariableId : WildcardType()
+        data class DynamicOption(val index: Int) : WildcardType()
+        data object NpcOption : WildcardType()
+        data object InterfaceOption : WildcardType()
+        data object FloorItemOption : WildcardType()
+        data object ObjectOption : WildcardType()
+        data object ItemOption : WildcardType()
     }
 
     // List of annotation names and their parameters
     private val annotations: Map<String, List<Pair<String, WildcardType>>> = mapOf(
-        "Id" to listOf("id" to WildcardType.DynamicId),
-        "SkillId" to listOf("skill" to WildcardType.None, "id" to WildcardType.DynamicId),
-        "Variable" to listOf("key" to WildcardType.VariableId, "id" to WildcardType.DynamicId),
+        "Id" to listOf("id" to WildcardType.DynamicId(0)),
+        "SkillId" to listOf("skill" to WildcardType.None, "id" to WildcardType.DynamicId(0)),
+        "Variable" to listOf("key" to WildcardType.VariableId, "id" to WildcardType.DynamicId(0)),
     )
 
     @get:Incremental
@@ -223,10 +223,10 @@ abstract class ScriptMetadataTask : DefaultTask() {
     ) {
         fun resolve(value: String, wildcard: WildcardType, parameters: String, packagePath: String, annotation: KtAnnotationEntry): List<String> {
             val set = when (wildcard) {
-                WildcardType.DynamicId -> when {
-                    parameters.contains("NPC") -> npcIds
-                    parameters.contains("GameObject") -> objectIds
-                    parameters.contains("FloorItem") -> itemIds
+                is WildcardType.DynamicId -> when (parameters.split(",")[wildcard.index]) {
+                    "NPC" -> npcIds
+                    "GameObject" -> objectIds
+                    "FloorItem" -> itemIds
                     else -> error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation.text}")
                 }
                 WildcardType.NpcId -> npcIds
@@ -235,10 +235,10 @@ abstract class ScriptMetadataTask : DefaultTask() {
                 WildcardType.ObjectId -> objectIds
                 WildcardType.ItemId -> itemIds
                 WildcardType.VariableId -> variableIds
-                WildcardType.DynamicOption -> when {
-                    parameters.contains("NPC") -> npcOptions
-                    parameters.contains("GameObject") -> objectOptions
-                    parameters.contains("FloorItem") -> itemOptions
+                is WildcardType.DynamicOption -> when (parameters.split(",")[wildcard.index]) {
+                    "NPC" -> npcOptions
+                    "GameObject" -> objectOptions
+                    "FloorItem" -> itemOptions
                     else -> error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation.text}")
                 }
                 WildcardType.NpcOption -> npcOptions
