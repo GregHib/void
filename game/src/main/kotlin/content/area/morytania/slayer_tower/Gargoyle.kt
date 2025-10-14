@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.SkillId
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 
@@ -54,14 +55,16 @@ class Gargoyle : Api {
         player.message("You smash the gargoyle with the rock hammer and it shatters into pieces.")
     }
 
+    @SkillId(Skill.Constitution, "gargoyle")
     override fun levelChanged(npc: NPC, skill: Skill, from: Int, to: Int) {
-        if (npc.id == "gargoyle" && skill == Skill.Constitution && to <= 90) {
-            for (attacker in npc.attackers) {
-                attacker.mode = EmptyMode
-                if (attacker is Player && attacker["killing_blow", false]) {
-                    smash(attacker, npc)
-                    break
-                }
+        if (to > 90) {
+            return
+        }
+        for (attacker in npc.attackers) {
+            attacker.mode = EmptyMode
+            if (attacker is Player && attacker["killing_blow", false]) {
+                smash(attacker, npc)
+                break
             }
         }
     }
