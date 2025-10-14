@@ -3,18 +3,23 @@ package world.gregs.voidps.engine.dispatch
 /**
  * A common [Dispatcher] which collects [instances] associated with annotation arguments for the parent class to use
  */
-class MapDispatcher<T : Any>(val id: String) : Dispatcher<T> {
+class MapDispatcher<T : Any>(val ids: Set<String>) : Dispatcher<T> {
+
+    constructor(vararg ids: String) : this(ids.toSet())
+
     val instances = mutableMapOf<String, MutableList<T>>()
 
     override fun process(instance: T, annotation: String, arguments: String) {
-        if (annotation == "" || annotation == id) {
+        if (annotation == "" || ids.contains(annotation)) {
             instances.getOrPut(arguments) { mutableListOf() }.add(instance)
         }
     }
 
-    fun forEach(key: String, block: (T) -> Unit) {
+    fun forEach(vararg keys: String, block: (T) -> Unit) {
         iterate("*", block)
-        iterate(key, block)
+        for (key in keys) {
+            iterate(key, block)
+        }
     }
 
     private fun iterate(key: String, block: (T) -> Unit) {
