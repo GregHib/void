@@ -6,6 +6,7 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
+import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -22,10 +23,9 @@ import world.gregs.voidps.type.random
 @Script
 class Cows : Api {
 
+    @Id("cow_*")
     override fun spawn(npc: NPC) {
-        if (npc.id.startsWith("cow_")) {
-            npc.softTimers.start("eat_grass")
-        }
+        npc.softTimers.start("eat_grass")
     }
 
     init {

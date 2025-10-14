@@ -8,6 +8,7 @@ import content.entity.sound.areaSound
 import content.entity.sound.sound
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -28,10 +29,8 @@ class CommanderZilyana : Api {
     var bree: NPC? = null
     var growler: NPC? = null
 
+    @Id("commander_zilyana")
     override fun spawn(npc: NPC) {
-        if (npc.id != "commander_zilyana") {
-            return
-        }
         if (starlight == null) {
             starlight = npcs.add("starlight", Tile(2903, 5260))
         }

@@ -9,6 +9,7 @@ import content.entity.sound.areaSound
 import content.entity.sound.sound
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -31,10 +32,8 @@ class KreeArra : Api {
     var skree: NPC? = null
     var geerin: NPC? = null
 
+    @Id("kree_arra")
     override fun spawn(npc: NPC) {
-        if (npc.id != "kree_arra") {
-            return
-        }
         if (kilisa == null) {
             kilisa = npcs.add("flight_kilisa", Tile(2833, 5297, 2))
         }

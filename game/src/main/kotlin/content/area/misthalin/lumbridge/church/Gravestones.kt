@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -47,13 +48,12 @@ class Gravestones : Api {
         }
     }
 
+    @Id("gravestone_*")
     override fun spawn(npc: NPC) {
-        if (npc.id.startsWith("gravestone_")) {
-            val minutes = Gravestone.times[npc.id.removePrefix("gravestone_")] ?: return
-            val seconds = TimeUnit.MINUTES.toSeconds(minutes.toLong()).toInt()
-            npc.start("grave_timer", seconds, epochSeconds())
-            npc.softTimers.start("grave_degrade")
-        }
+        val minutes = Gravestone.times[npc.id.removePrefix("gravestone_")] ?: return
+        val seconds = TimeUnit.MINUTES.toSeconds(minutes.toLong()).toInt()
+        npc.start("grave_timer", seconds, epochSeconds())
+        npc.softTimers.start("grave_degrade")
     }
 
     init {

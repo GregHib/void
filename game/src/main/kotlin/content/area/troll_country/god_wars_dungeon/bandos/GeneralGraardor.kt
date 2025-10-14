@@ -9,6 +9,7 @@ import content.entity.sound.areaSound
 import content.entity.sound.sound
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -29,10 +30,8 @@ class GeneralGraardor : Api {
     var steelwill: NPC? = null
     var grimspike: NPC? = null
 
+    @Id("general_graardor")
     override fun spawn(npc: NPC) {
-        if (npc.id != "general_graardor") {
-            return
-        }
         if (strongstack == null) {
             strongstack = npcs.add("sergeant_strongstack", Tile(2866, 5358, 2))
         }

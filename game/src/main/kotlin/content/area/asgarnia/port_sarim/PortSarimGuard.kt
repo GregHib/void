@@ -7,6 +7,7 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
+import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -62,10 +63,9 @@ class PortSarimGuard : Api {
         }
     }
 
+    @Id("port_sarim_guard_6")
     override fun spawn(npc: NPC) {
-        if (npc.id == "port_sarim_guard_6") {
-            val patrol = patrols.get("port_sarim_guard")
-            npc.mode = Patrol(npc, patrol.waypoints)
-        }
+        val patrol = patrols.get("port_sarim_guard")
+        npc.mode = Patrol(npc, patrol.waypoints)
     }
 }
