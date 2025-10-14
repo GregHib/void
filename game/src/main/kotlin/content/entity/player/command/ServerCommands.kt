@@ -46,7 +46,7 @@ import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
-import world.gregs.voidps.engine.event.Log
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -182,7 +182,7 @@ class ServerCommands {
     }
 
     fun shutdown(player: Player, ticks: Int) {
-        Log.event(player, "started_shutdown", ticks)
+        AuditLog.event(player, "started_shutdown", ticks)
         // Prevent players logging-in 1 minute before update
         World.queue("system_shutdown", (ticks - 100).coerceAtLeast(0)) {
             accountLoader.update = true

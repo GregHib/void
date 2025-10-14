@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.Log
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.timer.toTicks
@@ -103,9 +103,9 @@ private class SaveLogs : Runnable {
 
     override fun run() {
         if (ticks-- < 0) {
-            val count = Log.logs.size
+            val count = AuditLog.logs.size
             val start = System.currentTimeMillis()
-            Log.save(directory)
+            AuditLog.save(directory)
             logger.info { "Saved $count logs to disk in ${System.currentTimeMillis() - start}ms." }
             ticks = TimeUnit.SECONDS.toTicks(Settings["storage.players.logs.seconds", 10])
         }

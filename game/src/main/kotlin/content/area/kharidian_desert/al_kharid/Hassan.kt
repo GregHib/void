@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -38,6 +39,7 @@ class Hassan {
                     }
                     player.jingle("quest_complete_1")
                     player.refreshQuestJournal()
+                    AuditLog.event(player, "quest_completed", "prince_ali_rescue")
                     player["prince_ali_rescue"] = "completed"
                     player.inc("quest_points", 3)
                     player.message("Congratulations! Quest complete!")

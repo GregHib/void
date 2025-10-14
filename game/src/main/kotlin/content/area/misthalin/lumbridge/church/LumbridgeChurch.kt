@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -147,6 +148,7 @@ class LumbridgeChurch : Api {
     }
 
     fun Context<Player>.questComplete() {
+        AuditLog.event(player, "quest_completed", "the_restless_ghost")
         player["restless_ghost_coffin"] = "skull"
         player["the_restless_ghost"] = "completed"
         player.jingle("quest_complete_1")

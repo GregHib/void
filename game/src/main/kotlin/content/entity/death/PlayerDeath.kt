@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.event.Log
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
@@ -50,12 +50,12 @@ class PlayerDeath : Api {
 
     init {
         playerDeath { player ->
-            Log.event(player, "died", player.tile)
             player.dead = true
             player.strongQueue("death") {
                 player.steps.clear()
                 val dealer = player.damageDealers.maxByOrNull { it.value }
                 val killer = dealer?.key
+                AuditLog.event(player, "died", player.tile, killer)
                 while (true) {
                     player.instructions.tryReceive().getOrNull() ?: break
                 }
@@ -114,7 +114,7 @@ class PlayerDeath : Api {
 
         // Return kept items
         for (item in kept) {
-            Log.event(player, "kept", item)
+            AuditLog.event(player, "kept", item)
             player.inventory.add(item.id, item.amount)
         }
     }
@@ -136,7 +136,7 @@ class PlayerDeath : Api {
         killer: Character?,
         time: Int,
     ) {
-        Log.event(player, "lost", item)
+        AuditLog.event(player, "lost", item)
         if (inWilderness && killer is Player) {
             if (item.tradeable) {
                 floorItems.add(tile, item.id, item.amount, revealTicks = 180, disappearTicks = 240, owner = killer)

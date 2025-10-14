@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.isAdmin
-import world.gregs.voidps.engine.event.Log
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TICKS
@@ -53,6 +53,7 @@ class LogCommands {
                     val time = parts[0].toLong()
                     val format = if (hours > 12) DateTimeFormatter.ISO_LOCAL_DATE_TIME else DateTimeFormatter.ISO_LOCAL_TIME
                     val formatted = format.format(LocalDateTime.ofEpochSecond(TimeUnit.MILLISECONDS.toSeconds(time), 0, ZoneOffset.UTC))
+                    println("[$formatted] ${parts.drop(2).joinToString(" ")}")
                     finds.add("[$formatted] ${parts.drop(2).joinToString(" ")}")
                 }
             }
@@ -77,8 +78,9 @@ class LogCommands {
 
     private fun search(block: (LocalDateTime, List<String>) -> Boolean) {
         val directory = File(Settings["storage.players.logs"])
+        println("Sorted: ${directory.listFiles()!!.sortedBy { it.name }}")
         for (file in directory.listFiles()!!.sortedBy { it.name }) {
-            val dateTime = LocalDateTime.parse(file.nameWithoutExtension, Log.ISO_LOCAL_FORMAT)
+            val dateTime = LocalDateTime.parse(file.nameWithoutExtension, AuditLog.ISO_LOCAL_FORMAT)
             if (block.invoke(dateTime, file.readLines())) {
                 break
             }

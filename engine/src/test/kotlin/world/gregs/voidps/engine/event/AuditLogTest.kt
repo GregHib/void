@@ -12,7 +12,7 @@ import world.gregs.voidps.type.Tile
 import java.io.File
 import java.time.LocalDateTime
 
-class LogTest {
+class AuditLogTest {
 
     @TempDir
     private lateinit var dir: File
@@ -21,7 +21,7 @@ class LogTest {
     fun `Log entity action`() {
         val player = Player(accountName = "test", tile = Tile(3200, 3232))
         GameLoop.tick = 0
-        Log.event(player, "login")
+        AuditLog.event(player, "login")
         val lines = lines()
         val line = lines.first()
         val parts = line.split("\t")
@@ -37,7 +37,7 @@ class LogTest {
         val source = NPC("source", index = 1, tile = Tile(1234, 4321))
         val target = NPC("target", index = 2, tile = Tile(4321, 1234))
         GameLoop.tick = 4
-        Log.event(source, "HUGGED", target)
+        AuditLog.event(source, "HUGGED", target)
         val lines = lines()
         val line = lines.first()
         val parts = line.split("\t")
@@ -54,7 +54,7 @@ class LogTest {
         val source = Player(accountName = "source", tile = Tile(1234, 4321))
         val target = Player(accountName = "target", tile = Tile(4321, 1234))
         GameLoop.tick = 2_000
-        Log.event(source, "GAVE", target, Item("book", 2))
+        AuditLog.event(source, "GAVE", target, Item("book", 2))
         val lines = lines()
         val line = lines.first()
         val parts = line.split("\t")
@@ -70,7 +70,7 @@ class LogTest {
     @Test
     fun `Log system info`() {
         GameLoop.tick = 123
-        Log.info("server shutdown initiated")
+        AuditLog.info("server shutdown initiated")
         val lines = lines()
         val line = lines.first()
         val parts = line.split("\t")
@@ -83,14 +83,14 @@ class LogTest {
 
     @Test
     fun `Log saves to hour based file`() {
-        Log.info("test")
-        Log.save(dir, LocalDateTime.of(2020, 10, 20, 17, 10, 5))
+        AuditLog.info("test")
+        AuditLog.save(dir, LocalDateTime.of(2020, 10, 20, 17, 10, 5))
         val file = dir.listFiles()!!.first()
         assertEquals("2020-10-20T17-00-00.tsv", file.name)
     }
 
     private fun lines(): List<String> {
-        Log.save(dir)
+        AuditLog.save(dir)
         val file = dir.listFiles()!!.first()
         val lines = file.readLines()
         assertEquals(1, lines.size)

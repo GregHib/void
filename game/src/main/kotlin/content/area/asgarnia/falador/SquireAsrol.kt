@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.equipment
@@ -194,6 +195,7 @@ class SquireAsrol {
     }
 
     fun Context<Player>.questComplete() {
+        AuditLog.event(player, "quest_completed", "the_knights_sword")
         player["the_knights_sword"] = "completed"
         player.jingle("quest_complete_1")
         player.experience.add(Skill.Smithing, 12725.0)

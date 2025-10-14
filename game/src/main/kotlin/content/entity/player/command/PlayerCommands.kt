@@ -38,7 +38,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.Log
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -62,7 +62,7 @@ class PlayerCommands {
         modCommand("save", desc = "Save all players") { _, _ ->
             players.forEach(saveQueue::save)
             exchange.save()
-            Log.save()
+            AuditLog.save()
         }
 
         adminCommand("skull", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Apply a skull to the player", handler = ::skull)

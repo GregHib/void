@@ -16,10 +16,11 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 /**
- * A logger for storing a record of import game events needed for auditing and investigations
+ * Logger for storing a record of import game events
+ * Useful for auditing, investigations, and adventurer logs
  * Note: not thread safe; only use within game thread
  */
-object Log {
+object AuditLog {
     private const val LOG_BUFFER_SIZE = 8192
     val logs = ObjectArrayList<String>(LOG_BUFFER_SIZE)
     val ISO_LOCAL_FORMAT: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss")
@@ -59,7 +60,6 @@ object Log {
             block()
         })
     }
-
 
     fun save(directory: File = File(Settings["storage.players.logs"]), now: LocalDateTime = LocalDateTime.now()) {
         if (logs.isEmpty) {

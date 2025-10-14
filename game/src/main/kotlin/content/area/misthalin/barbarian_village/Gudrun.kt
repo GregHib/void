@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -501,6 +502,7 @@ class Gudrun {
     }
 
     fun Context<Player>.questComplete() {
+        AuditLog.event(player, "quest_completed", "gunnars_ground")
         player.jingle("quest_complete_3")
         player["gunnars_ground"] = "completed"
         player.inc("quest_points", 5)

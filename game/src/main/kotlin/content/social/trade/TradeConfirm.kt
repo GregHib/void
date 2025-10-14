@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Log
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventory
@@ -76,13 +76,13 @@ class TradeConfirm {
     }
 
     private fun log(requester: Player, acceptor: Player) {
-        Log.event(requester, "gave", acceptor, *requester.offer.items)
+        AuditLog.event(requester, "gave", acceptor, *requester.offer.items)
         if (requester.loan[0].isNotEmpty()) {
-            Log.event(requester, "lent", acceptor, requester.loan[0])
+            AuditLog.event(requester, "lent", acceptor, requester.loan[0])
         }
-        Log.event(acceptor, "gave", requester, *acceptor.offer.items)
+        AuditLog.event(acceptor, "gave", requester, *acceptor.offer.items)
         if (acceptor.loan[0].isNotEmpty()) {
-            Log.event(acceptor, "lent", requester, acceptor.loan[0])
+            AuditLog.event(acceptor, "lent", requester, acceptor.loan[0])
         }
     }
 

@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
@@ -216,6 +217,7 @@ class LumbridgeBeginnerTasks : Api {
         maxLevelChange { player ->
             if (!player["on_the_level_task", false] || !player["quarter_centurion_task", false]) {
                 val total = Skill.all.sumOf { (if (it == Skill.Constitution) player.levels.getMax(it) / 10 - 10 else player.levels.getMax(it) - 1) }
+                AuditLog.event(player, "total_level_up", total)
                 if (total == 10) {
                     player["on_the_level_task"] = true
                 } else if (total == 25) {

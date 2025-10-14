@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -148,6 +149,7 @@ class Doric {
     }
 
     fun Context<Player>.questComplete() {
+        AuditLog.event(player, "quest_completed", "dorics_quest")
         player["dorics_quest"] = "completed"
         player.jingle("quest_complete_1")
         player.experience.add(Skill.Mining, 1300.0)
