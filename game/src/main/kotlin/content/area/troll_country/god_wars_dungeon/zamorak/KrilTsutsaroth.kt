@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -30,10 +31,8 @@ class KrilTsutsaroth : Api {
     var karlak: NPC? = null
     var gritch: NPC? = null
 
+    @Id("kril_tsutsaroth")
     override fun spawn(npc: NPC) {
-        if (npc.id != "kril_tsutsaroth") {
-            return
-        }
         if (kreeyath == null) {
             kreeyath = npcs.add("balfrug_kreeyath", Tile(2921, 5319, 2))
         }

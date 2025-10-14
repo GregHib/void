@@ -20,6 +20,7 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -31,6 +32,7 @@ import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.SkillId
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -70,8 +72,9 @@ class CombatBot : Api {
     val tasks: TaskManager by inject()
     val floorItems: FloorItems by inject()
 
+    @SkillId(Skill.Constitution)
     override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
-        if (skill == Skill.Constitution && player.isBot && player.levels.getPercent(Skill.Constitution) < 50.0) {
+        if (player.isBot && player.levels.getPercent(Skill.Constitution) < 50.0) {
             val food = player.inventory.items.firstOrNull { it.def.contains("heals") } ?: return
             player.bot.inventoryOption(food.id, "Eat")
         }
@@ -103,8 +106,9 @@ class CombatBot : Api {
         }
     }
 
+    @Variable("in_combat")
     override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        if (key == "in_combat" && to == 1 && player.isBot) {
+        if (to == 1 && player.isBot) {
             player.bot.resume("combat")
         }
     }

@@ -4,13 +4,15 @@ import io.mockk.*
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.test.mock.declare
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.dispatch.ListDispatcher
+import world.gregs.voidps.engine.dispatch.MapDispatcher
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectRemoval
 import world.gregs.voidps.type.Tile
@@ -19,7 +21,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-class GameObjectsTest {
+class GameObjectsTest : KoinMock() {
 
     private lateinit var objects: GameObjects
     private lateinit var updates: ZoneBatchUpdates
@@ -30,18 +32,20 @@ class GameObjectsTest {
     fun setup() {
         // Using collision = false to avoid koin [GameObject#def]
         val definitions = mockk<ObjectDefinitions>(relaxed = true)
+        every { definitions.get(any<Int>()) } returns ObjectDefinition()
         every { definitions.get("test") } returns ObjectDefinition(123)
         every { definitions.get("test2") } returns ObjectDefinition(456)
+        declare { definitions }
         updates = mockk(relaxed = true)
         objects = GameObjects(mockk(relaxed = true), mockk(relaxed = true), updates, definitions, storeUnused = true)
         events = spyk(Events())
         Events.setEvents(events)
-        val dispatcher = ListDispatcher<Spawn>()
+        val dispatcher = MapDispatcher<Spawn>()
         spawn = spyk(object : Spawn {
             override fun spawn(obj: GameObject) {
             }
         })
-        dispatcher.instances.add(spawn)
+        dispatcher.instances["*"] = mutableListOf(spawn)
         Spawn.objectDispatcher = dispatcher
     }
 

@@ -6,9 +6,11 @@ import io.mockk.mockkStatic
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -53,6 +55,9 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
 
     @Test
     fun `Entering zone sends clear and initial updates`() {
+        declareMock<ObjectDefinitions> {
+            every { get(4321) } returns ObjectDefinition(1234)
+        }
         // Given
         val zone = Zone(2, 2)
         batches.add(zone, update)

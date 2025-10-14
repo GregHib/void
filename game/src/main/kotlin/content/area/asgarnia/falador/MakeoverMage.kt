@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -135,10 +136,9 @@ class MakeoverMage : Api {
         }
     }
 
+    @Id("makeover_mage*")
     override fun spawn(npc: NPC) {
-        if (npc.id.startsWith("makeover_mage")) {
-            npc.softTimers.start("makeover")
-        }
+        npc.softTimers.start("makeover")
     }
 
     suspend fun ChoiceBuilder<NPCOption<Player>>.more(): Unit = option<Quiz>("Tell me more about this 'makeover'.") {

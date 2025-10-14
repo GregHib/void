@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character
 
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
-import world.gregs.voidps.engine.client.variable.Variable
+import world.gregs.voidps.engine.client.variable.VariableStore
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
@@ -35,7 +35,7 @@ import kotlin.coroutines.Continuation
 
 interface Character :
     Entity,
-    Variable,
+    VariableStore,
     EventDispatcher,
     Comparable<Character> {
     val index: Int

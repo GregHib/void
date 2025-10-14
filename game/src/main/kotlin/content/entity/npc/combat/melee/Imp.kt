@@ -4,6 +4,7 @@ import content.entity.combat.hit.npcCombatDamage
 import content.entity.gfx.areaGfx
 import content.entity.sound.areaSound
 import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -19,10 +20,9 @@ import world.gregs.voidps.type.random
 @Script
 class Imp : Api {
 
+    @Id("imp")
     override fun spawn(npc: NPC) {
-        if (npc.id == "imp") {
-            npc.softTimers.start("teleport_timer")
-        }
+        npc.softTimers.start("teleport_timer")
     }
 
     init {

@@ -11,6 +11,7 @@ import org.jetbrains.kotlin.com.intellij.openapi.util.Disposer
 import org.jetbrains.kotlin.com.intellij.psi.PsiManager
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.lexer.KtTokens
+import org.jetbrains.kotlin.psi.KtAnnotationEntry
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtNamedFunction
@@ -28,11 +29,15 @@ import java.io.File
 abstract class ScriptMetadataTask : DefaultTask() {
 
     private enum class WildcardType {
+        None,
+        DynamicId,
         NpcId,
         InterfaceId,
         ComponentId,
         ObjectId,
         ItemId,
+        VariableId,
+        DynamicOption,
         NpcOption,
         InterfaceOption,
         FloorItemOption,
@@ -41,7 +46,11 @@ abstract class ScriptMetadataTask : DefaultTask() {
     }
 
     // List of annotation names and their parameters
-    private val annotations: Map<String, List<Pair<String, WildcardType>>> = mapOf()
+    private val annotations: Map<String, List<Pair<String, WildcardType>>> = mapOf(
+        "Id" to listOf("id" to WildcardType.DynamicId),
+        "SkillId" to listOf("skill" to WildcardType.None, "id" to WildcardType.DynamicId),
+        "Variable" to listOf("key" to WildcardType.VariableId, "id" to WildcardType.DynamicId),
+    )
 
     @get:Incremental
     @get:InputFiles
@@ -66,20 +75,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
     fun execute(inputChanges: InputChanges) {
         val start = System.currentTimeMillis()
 
-        val npcIds = mutableSetOf<String>()
-        val itemIds = mutableSetOf<String>()
-        val objectIds = mutableSetOf<String>()
-        val interfaceIds = mutableSetOf<String>()
-        val componentIds = mutableSetOf<String>()
-        collectIds(npcIds, itemIds, objectIds, interfaceIds, componentIds)
-        val options = System.currentTimeMillis()
-        val npcOptions = loadOptions("npc-options")
-        val itemOptions = loadOptions("item-options")
-        val floorItemOptions = loadOptions("floor-item-options")
-        val objectOptions = loadOptions("object-options")
-        val interfaceOptions = loadOptions("interface-options")
-        println("Loaded ${npcOptions.size} npc, ${itemOptions.size} item, ${floorItemOptions.size} floor item, ${objectOptions.size} object, ${interfaceOptions.size} interface options in ${System.currentTimeMillis() - options}ms")
-
+        val context = loadContext()
         val lines: MutableList<String>
         if (!inputChanges.isIncremental) {
             // Clean output for non-incremental runs
@@ -141,7 +137,8 @@ abstract class ScriptMetadataTask : DefaultTask() {
             for (method in methods) {
                 methodCount++
                 val returnType = method.typeReference
-                val signature = "${method.name}(${method.valueParameters.joinToString(",") { param -> param.typeReference!!.getTypeText() }})${if (returnType == null) "" else ":${returnType.getTypeText()}"}"
+                val parameters = method.valueParameters.joinToString(",") { param -> param.typeReference!!.getTypeText() }
+                val signature = "${method.name}(${parameters})${if (returnType == null) "" else ":${returnType.getTypeText()}"}"
                 val entries = method.annotationEntries
                 if (entries.isEmpty()) {
                     lines.add("${signature}|$packagePath")
@@ -157,30 +154,27 @@ abstract class ScriptMetadataTask : DefaultTask() {
                         val name = arg.getArgumentName()?.asName?.asString()
                         val value = arg.getArgumentExpression()?.text?.trim('"') ?: ""
                         val idx = if (name != null) info.indexOfFirst { it.first == name } else index++
-                        params[idx].add(value)
+                        for (part in value.split(",")) {
+                            if (value.contains("*") || value.contains("#")) {
+                                val type = info[idx].second
+                                val matches = context.resolve(part, type, parameters, packagePath, annotation)
+                                params[idx].addAll(matches)
+                            } else {
+                                params[idx].add(part)
+                            }
+                        }
                     }
                     for (i in info.indices) {
-                        val value = params[i].first()
-                        // Expand wildcards into matches
-                        if (value.contains("*") || value.contains("#")) {
-                            val set = when (info[i].second) {
-                                WildcardType.NpcId -> npcIds
-                                WildcardType.InterfaceId -> interfaceIds
-                                WildcardType.ComponentId -> componentIds
-                                WildcardType.ObjectId -> objectIds
-                                WildcardType.ItemId -> itemIds
-                                WildcardType.NpcOption -> npcOptions
-                                WildcardType.InterfaceOption -> interfaceOptions
-                                WildcardType.FloorItemOption -> floorItemOptions
-                                WildcardType.ObjectOption -> objectOptions
-                                WildcardType.ItemOption -> itemOptions
+                        val first = params[i].firstOrNull() ?: continue
+                        for (value in first.split(",")) {
+                            // Expand wildcards into matches
+                            if (value.contains("*") || value.contains("#")) {
+                                val matches = context.resolve(value, info[i].second, parameters, packagePath, annotation)
+                                if (params[i].first() == first) {
+                                    params[i].removeAt(0)
+                                }
+                                params[i].addAll(matches)
                             }
-                            val matches = set.filter { wildcardEquals(value, it) }
-                            if (matches.isEmpty()) {
-                                error("No matches for wildcard '${value}' in $packagePath ${annotation.text}")
-                            }
-                            params[i].removeAt(0)
-                            params[i].addAll(matches)
                         }
                     }
                     generateCombinations(params) { args ->
@@ -201,11 +195,125 @@ abstract class ScriptMetadataTask : DefaultTask() {
             return
         }
         val currentArray = arrays[index]
+        if (currentArray.isEmpty()) {
+            generateCombinations(arrays, index + 1, current, call)
+            return
+        }
         for (element in currentArray) {
             current.add(element)
             generateCombinations(arrays, index + 1, current, call)
             current.removeAt(current.size - 1)
         }
+    }
+
+
+
+    private data class Context(
+        val npcIds: Set<String>,
+        val itemIds: Set<String>,
+        val objectIds: Set<String>,
+        val interfaceIds: Set<String>,
+        val componentIds: Set<String>,
+        val variableIds: Set<String>,
+        val npcOptions: Set<String>,
+        val itemOptions: Set<String>,
+        val floorItemOptions: Set<String>,
+        val objectOptions: Set<String>,
+        val interfaceOptions: Set<String>,
+    ) {
+        fun resolve(value: String, wildcard: WildcardType, parameters: String, packagePath: String, annotation: KtAnnotationEntry): List<String> {
+            val set = when (wildcard) {
+                WildcardType.DynamicId -> when {
+                    parameters.contains("NPC") -> npcIds
+                    parameters.contains("GameObject") -> objectIds
+                    parameters.contains("FloorItem") -> itemIds
+                    else -> error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation.text}")
+                }
+                WildcardType.NpcId -> npcIds
+                WildcardType.InterfaceId -> interfaceIds
+                WildcardType.ComponentId -> componentIds
+                WildcardType.ObjectId -> objectIds
+                WildcardType.ItemId -> itemIds
+                WildcardType.VariableId -> variableIds
+                WildcardType.DynamicOption -> when {
+                    parameters.contains("NPC") -> npcOptions
+                    parameters.contains("GameObject") -> objectOptions
+                    parameters.contains("FloorItem") -> itemOptions
+                    else -> error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation.text}")
+                }
+                WildcardType.NpcOption -> npcOptions
+                WildcardType.InterfaceOption -> interfaceOptions
+                WildcardType.FloorItemOption -> floorItemOptions
+                WildcardType.ObjectOption -> objectOptions
+                WildcardType.ItemOption -> itemOptions
+                WildcardType.None -> error("Unexpected wildcard '$value' in $packagePath ${annotation.text}")
+            }
+            val matches = set.filter { wildcardEquals(value, it) }
+            if (matches.isEmpty()) {
+                error("No matches for wildcard '${value}' in $packagePath ${annotation.text}")
+            }
+            return matches
+        }
+
+
+        private fun wildcardEquals(wildcard: String, other: String): Boolean {
+            if (wildcard == "*") {
+                return true
+            }
+            var wildIndex = 0
+            var otherIndex = 0
+            var starIndex = -1
+            var matchIndex = -1
+
+            while (otherIndex < other.length) {
+                when {
+                    wildIndex < wildcard.length && (wildcard[wildIndex] == '#' && other[otherIndex].isDigit()) -> {
+                        wildIndex++
+                        otherIndex++
+                    }
+                    wildIndex < wildcard.length && wildcard[wildIndex] == '*' -> {
+                        starIndex = wildIndex
+                        matchIndex = otherIndex
+                        wildIndex++
+                    }
+                    wildIndex < wildcard.length && wildcard[wildIndex] == other[otherIndex] -> {
+                        wildIndex++
+                        otherIndex++
+                    }
+                    starIndex != -1 -> {
+                        wildIndex = starIndex + 1
+                        matchIndex++
+                        otherIndex = matchIndex
+                    }
+                    else -> return false
+                }
+            }
+
+            while (wildIndex < wildcard.length && wildcard[wildIndex] == '*') {
+                wildIndex++
+            }
+
+            return wildIndex == wildcard.length && otherIndex == other.length
+        }
+
+    }
+
+    private fun loadContext(): Context {
+        val npcIds = mutableSetOf<String>()
+        val itemIds = mutableSetOf<String>()
+        val objectIds = mutableSetOf<String>()
+        val interfaceIds = mutableSetOf<String>()
+        val componentIds = mutableSetOf<String>()
+        val variableIds = mutableSetOf<String>()
+        collectIds(npcIds, itemIds, objectIds, interfaceIds, componentIds, variableIds)
+        val options = System.currentTimeMillis()
+        val npcOptions = loadOptions("npc-options")
+        val itemOptions = loadOptions("item-options")
+        val floorItemOptions = loadOptions("floor-item-options")
+        val objectOptions = loadOptions("object-options")
+        val interfaceOptions = loadOptions("interface-options")
+        println("Loaded ${npcOptions.size} npc, ${itemOptions.size} item, ${floorItemOptions.size} floor item, ${objectOptions.size} object, ${interfaceOptions.size} interface options in ${System.currentTimeMillis() - options}ms")
+        return Context(npcIds, itemIds, objectIds, interfaceIds, componentIds, variableIds, npcOptions, itemOptions, floorItemOptions, objectOptions, interfaceOptions)
     }
 
     private fun loadOptions(type: String): Set<String> {
@@ -218,6 +326,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
         objectIds: MutableSet<String>,
         interfaceIds: MutableSet<String>,
         componentIds: MutableSet<String>,
+        variableIds: MutableSet<String>,
     ) {
         val start = System.currentTimeMillis()
         for (file in dataDirectory.walkTopDown()) {
@@ -253,9 +362,15 @@ abstract class ScriptMetadataTask : DefaultTask() {
                         }
                     }
                 }
+            } else if (file.name.endsWith(".vars.toml") || file.name.endsWith(".varps.toml") || file.name.endsWith(".varbits.toml") || file.name.endsWith(".varcs.toml") || file.name.endsWith(".strings.toml")) {
+                for (line in file.readLines()) {
+                    if (line.startsWith('[')) {
+                        variableIds.add(line.substringBefore(']').trim('['))
+                    }
+                }
             }
         }
-        println("Collected ${npcIds.size} npcs, ${itemIds.size} items, ${objectIds.size} objects, ${interfaceIds.size} interfaces, ${componentIds.size} components in ${System.currentTimeMillis() - start}ms")
+        println("Collected ${npcIds.size} npcs, ${itemIds.size} items, ${objectIds.size} objects, ${interfaceIds.size} interfaces, ${componentIds.size} components, ${variableIds.size} variables in ${System.currentTimeMillis() - start}ms")
     }
 
     private fun removeName(scriptsList: MutableList<String>, name: String?) {
@@ -271,45 +386,5 @@ abstract class ScriptMetadataTask : DefaultTask() {
         EnvironmentConfigFiles.JVM_CONFIG_FILES,
     )
 
-
-    private fun wildcardEquals(wildcard: String, other: String): Boolean {
-        if (wildcard == "*") {
-            return true
-        }
-        var wildIndex = 0
-        var otherIndex = 0
-        var starIndex = -1
-        var matchIndex = -1
-
-        while (otherIndex < other.length) {
-            when {
-                wildIndex < wildcard.length && (wildcard[wildIndex] == '#' && other[otherIndex].isDigit()) -> {
-                    wildIndex++
-                    otherIndex++
-                }
-                wildIndex < wildcard.length && wildcard[wildIndex] == '*' -> {
-                    starIndex = wildIndex
-                    matchIndex = otherIndex
-                    wildIndex++
-                }
-                wildIndex < wildcard.length && wildcard[wildIndex] == other[otherIndex] -> {
-                    wildIndex++
-                    otherIndex++
-                }
-                starIndex != -1 -> {
-                    wildIndex = starIndex + 1
-                    matchIndex++
-                    otherIndex = matchIndex
-                }
-                else -> return false
-            }
-        }
-
-        while (wildIndex < wildcard.length && wildcard[wildIndex] == '*') {
-            wildIndex++
-        }
-
-        return wildIndex == wildcard.length && otherIndex == other.length
-    }
 
 }

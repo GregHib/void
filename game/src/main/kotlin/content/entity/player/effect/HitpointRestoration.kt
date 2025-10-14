@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.SkillId
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.timerStart
 import world.gregs.voidps.engine.timer.timerTick
@@ -15,8 +16,9 @@ import java.util.concurrent.TimeUnit
 @Script
 class HitpointRestoration : Api {
 
+    @SkillId(Skill.Constitution)
     override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
-        if (skill != Skill.Constitution || to <= 0 || to >= player.levels.getMax(skill) || player.softTimers.contains("restore_hitpoints")) {
+        if (to <= 0 || to >= player.levels.getMax(skill) || player.softTimers.contains("restore_hitpoints")) {
             return
         }
         player.softTimers.start("restore_hitpoints")

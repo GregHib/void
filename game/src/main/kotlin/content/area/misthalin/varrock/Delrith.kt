@@ -38,6 +38,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.SkillId
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.playerDespawn
@@ -156,21 +157,20 @@ class Delrith : Api {
         }
     }
 
+    @SkillId(Skill.Constitution, "delrith")
     override fun levelChanged(npc: NPC, skill: Skill, from: Int, to: Int) {
-        if (npc.id == "delrith" && skill == Skill.Constitution) {
-            if (to > 0) {
-                return
-            }
-            if (npc.queue.contains("death")) {
-                npc.queue.clear("death")
-            }
-            npc.strongQueue("death", TimeUnit.MINUTES.toTicks(5)) {
-                npc.emit(Death)
-            }
-            //    player.playSound("demon_slayer_portal_open")
-            npc.transform("delrith_weakened")
-            npc.mode = PauseMode
+        if (to > 0) {
+            return
         }
+        if (npc.queue.contains("death")) {
+            npc.queue.clear("death")
+        }
+        npc.strongQueue("death", TimeUnit.MINUTES.toTicks(5)) {
+            npc.emit(Death)
+        }
+        //    player.playSound("demon_slayer_portal_open")
+        npc.transform("delrith_weakened")
+        npc.mode = PauseMode
     }
 
     fun exitArea(player: Player, to: Tile): Boolean {

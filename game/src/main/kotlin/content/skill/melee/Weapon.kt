@@ -3,6 +3,7 @@ package content.skill.melee
 import content.skill.melee.weapon.attackRange
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
@@ -17,6 +18,7 @@ class Weapon : Api {
         updateWeapon(player, player.equipped(EquipSlot.Weapon))
     }
 
+    @Variable("autocast,spell,attack_style")
     override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
         if (key == "autocast" && to == null) {
             updateWeapon(player, player.weapon)

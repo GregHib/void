@@ -8,13 +8,15 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.SkillId
 import world.gregs.voidps.engine.event.Script
 
 @Script
 class CombatDummy : Api {
 
+    @SkillId(Skill.Constitution, "melee_dummy,magic_dummy")
     override fun levelChanged(npc: NPC, skill: Skill, from: Int, to: Int) {
-        if (skill == Skill.Constitution && to <= 10 && (npc.id == "melee_dummy" || npc.id == "magic_dummy")) {
+        if (to <= 10) {
             npc.levels.clear()
             for (attacker in npc.attackers) {
                 attacker.mode = EmptyMode

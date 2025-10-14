@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
@@ -126,6 +127,7 @@ class TaskSystem : Api {
         }
     }
 
+    @Variable("task_pin_slot,task_area,*_task")
     override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
         if (key == "task_pin_slot" || key == "task_area") {
             refreshSlots(player)
@@ -208,7 +210,6 @@ class TaskSystem : Api {
     /*
         Task completion
      */
-
     fun completeTask(player: Player, id: String) {
         val definition = structDefinitions.get(id)
         AuditLog.event(player, "task_completed", id)

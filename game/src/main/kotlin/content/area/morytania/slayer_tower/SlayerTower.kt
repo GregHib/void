@@ -6,6 +6,7 @@ import content.entity.obj.objTeleportLand
 import content.entity.obj.objTeleportTakeOff
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -24,15 +25,14 @@ class SlayerTower : Api {
 
     val objects: GameObjects by inject()
 
+    @Id("slayer_tower_entrance_door_*_opened")
     override fun spawn(obj: GameObject) {
-        if (obj.id.startsWith("slayer_tower_entrance_door_") && obj.id.endsWith("_opened")) {
-            val statue = if (obj.id == "slayer_tower_entrance_door_west_opened") {
-                objects[obj.tile.add(-2, -2), "slayer_tower_statue"]
-            } else {
-                objects[obj.tile.add(1, -2), "slayer_tower_statue"]
-            } ?: return
-            statue.anim("slayer_tower_statue_stand")
-        }
+        val statue = if (obj.id == "slayer_tower_entrance_door_west_opened") {
+            objects[obj.tile.add(-2, -2), "slayer_tower_statue"]
+        } else {
+            objects[obj.tile.add(1, -2), "slayer_tower_statue"]
+        } ?: return
+        statue.anim("slayer_tower_statue_stand")
     }
 
     init {

@@ -10,6 +10,7 @@ import content.skill.melee.weapon.attackStyle
 import content.skill.prayer.prayerStart
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
@@ -42,6 +43,7 @@ class LumbridgeBeginnerTasks : Api {
         }
     }
 
+    @Variable("task_progress_overall,quest_points")
     override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
         if (key == "task_progress_overall" && (from == null || from is Int && from < 10) && to is Int && to >= 10) {
             player["on_your_way_task"] = true

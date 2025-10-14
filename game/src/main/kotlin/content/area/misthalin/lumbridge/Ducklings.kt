@@ -2,6 +2,7 @@ package content.area.misthalin.lumbridge
 
 import content.entity.death.npcDeath
 import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.Wander
@@ -20,10 +21,9 @@ class Ducklings : Api {
 
     val npcs: NPCs by inject()
 
+    @Id("ducklings")
     override fun spawn(npc: NPC) {
-        if (npc.id == "ducklings") {
-            followParent(npc)
-        }
+        followParent(npc)
     }
 
     init {

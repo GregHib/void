@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.dispatch.ListDispatcher
+import world.gregs.voidps.engine.dispatch.MapDispatcher
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.client.Client
 
@@ -42,12 +43,12 @@ internal class VariablesTest {
         every { definitions.get(KEY) } returns variable
         variables.definitions = definitions
         variables.client = client
-        val dispatcher = ListDispatcher<VariableSet>()
+        val dispatcher = MapDispatcher<VariableSet>()
         varSet = spyk(object : VariableSet {
             override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
             }
         })
-        dispatcher.instances.add(varSet)
+        dispatcher.instances["*"] = mutableListOf(varSet)
         VariableSet.playerDispatcher = dispatcher
     }
 

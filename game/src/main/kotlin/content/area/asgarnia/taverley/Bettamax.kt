@@ -1,6 +1,7 @@
 package content.area.asgarnia.taverley
 
 import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -12,11 +13,10 @@ class Bettamax : Api {
 
     val npcs: NPCs by inject()
 
+    @Id("wilbur")
     override fun spawn(npc: NPC) {
-        if (npc.id == "wilbur") {
-            val bettamax = npcs[npc.tile.zone].first { it.id == "bettamax" }
-            npc.mode = Follow(npc, bettamax)
-            npc.watch(bettamax)
-        }
+        val bettamax = npcs[npc.tile.zone].first { it.id == "bettamax" }
+        npc.mode = Follow(npc, bettamax)
+        npc.watch(bettamax)
     }
 }

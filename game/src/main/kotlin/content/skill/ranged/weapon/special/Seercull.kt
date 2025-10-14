@@ -9,6 +9,7 @@ import content.entity.sound.sound
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.SkillId
 import world.gregs.voidps.engine.event.Script
 
 @Script
@@ -35,8 +36,9 @@ class Seercull : Api {
         }
     }
 
+    @SkillId(Skill.Magic)
     override fun levelChanged(npc: NPC, skill: Skill, from: Int, to: Int) {
-        if (skill == Skill.Magic && npc["soulshot", false] && to >= npc.levels.getMax(skill)) {
+        if (npc["soulshot", false] && to >= npc.levels.getMax(skill)) {
             npc.clear("soulshot")
         }
     }

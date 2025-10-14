@@ -5,6 +5,7 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -12,7 +13,10 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.random
+import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.*
+import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -26,10 +30,14 @@ class FishingSpot : Api {
     val water = CollisionStrategies.Blocked
     val land = CollisionStrategies.Normal
 
+    private val minRespawnTick = 280
+    private val maxRespawnTick = 530
+
+    @Id("fishing_spot*")
     override fun spawn(npc: NPC) {
-        if (npc.id.startsWith("fishing_spot")) {
-            npc.softTimers.start("fishing_spot_respawn")
-        }
+        npc.softTimers.start("fishing_spot_respawn")
+        val area: Area = npc["area"] ?: return
+        move(npc, area)
     }
 
     init {
@@ -41,6 +49,15 @@ class FishingSpot : Api {
         npcTimerTick("fishing_spot_respawn") { npc ->
             nextInterval = random.nextInt(280, 530)
             move(npc)
+        }
+    }
+
+    fun move(npc: NPC, area: Area) {
+        npc.softQueue("spot_move", random.nextInt(minRespawnTick, maxRespawnTick)) {
+            area.random(npc)?.let { tile ->
+                npc.tele(tile)
+            }
+            move(npc, area)
         }
     }
 

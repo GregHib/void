@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.dispatch
 
 /**
- * A basic implementation of [Dispatcher] which collects [instances] for the parent class to use
+ * A basic [Dispatcher] which collects [instances] for the parent class to use
  */
-open class ListDispatcher<T : Any> : Dispatcher<T> {
+class ListDispatcher<T : Any> : Dispatcher<T> {
     val instances = mutableListOf<T>()
 
-    override fun process(instance: T) {
+    override fun process(instance: T, annotation: String, arguments: String) {
         instances.add(instance)
     }
 
