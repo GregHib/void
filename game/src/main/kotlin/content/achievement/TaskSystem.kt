@@ -210,7 +210,6 @@ class TaskSystem : Api {
     /*
         Task completion
      */
-
     fun completeTask(player: Player, id: String) {
         val definition = structDefinitions.get(id)
         AuditLog.event(player, "task_completed", id)

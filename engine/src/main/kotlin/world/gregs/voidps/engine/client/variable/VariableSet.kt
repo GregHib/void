@@ -23,7 +23,7 @@ interface VariableSet {
         }
 
         override fun variableSet(npc: NPC, key: String, from: Any?, to: Any?) {
-            npcDispatcher.forEach(npc.id) { instance ->
+            npcDispatcher.forEach("$key:${npc.id}", key) { instance ->
                 instance.variableSet(npc, key, from, to)
             }
         }
