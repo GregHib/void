@@ -43,7 +43,9 @@ abstract class ScriptMetadataTask : DefaultTask() {
     }
 
     // List of annotation names and their parameters
-    private val annotations: Map<String, List<Pair<String, WildcardType>>> = mapOf()
+    private val annotations: Map<String, List<Pair<String, WildcardType>>> = mapOf(
+        "Id" to listOf("id" to WildcardType.DynamicId),
+    )
 
     @get:Incremental
     @get:InputFiles

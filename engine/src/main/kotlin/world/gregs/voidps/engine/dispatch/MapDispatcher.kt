@@ -7,7 +7,7 @@ class MapDispatcher<T : Any>(val id: String) : Dispatcher<T> {
     val instances = mutableMapOf<String, MutableList<T>>()
 
     override fun process(instance: T, annotation: String, arguments: String) {
-        if (annotation == "" || arguments == id) {
+        if (annotation == "" || annotation == id) {
             instances.getOrPut(arguments) { mutableListOf() }.add(instance)
         }
     }

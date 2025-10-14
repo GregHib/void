@@ -16,7 +16,7 @@ interface VariableSet {
 
     companion object : VariableSet {
         var playerDispatcher = ListDispatcher<VariableSet>()
-        var npcDispatcher = MapDispatcher<VariableSet>("Id")
+        var npcDispatcher = MapDispatcher<VariableSet>("@Id")
 
         override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
             for (instance in playerDispatcher.instances) {

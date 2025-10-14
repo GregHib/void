@@ -21,9 +21,9 @@ interface Spawn {
 
     companion object : Spawn {
         var playerDispatcher = ListDispatcher<Spawn>()
-        var npcDispatcher = MapDispatcher<Spawn>("Id")
-        var objectDispatcher = MapDispatcher<Spawn>("Id")
-        var floorItemDispatcher = MapDispatcher<Spawn>("Id")
+        var npcDispatcher = MapDispatcher<Spawn>("@Id")
+        var objectDispatcher = MapDispatcher<Spawn>("@Id")
+        var floorItemDispatcher = MapDispatcher<Spawn>("@Id")
         var worldDispatcher = ListDispatcher<Spawn>()
 
         override fun spawn(player: Player) {

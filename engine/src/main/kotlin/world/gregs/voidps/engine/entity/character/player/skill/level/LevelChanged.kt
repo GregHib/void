@@ -16,7 +16,7 @@ interface LevelChanged {
 
     companion object : LevelChanged {
         var playerDispatcher = ListDispatcher<LevelChanged>()
-        var npcDispatcher = MapDispatcher<LevelChanged>("Id")
+        var npcDispatcher = MapDispatcher<LevelChanged>("@Id")
 
         override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
             for (instance in playerDispatcher.instances) {
