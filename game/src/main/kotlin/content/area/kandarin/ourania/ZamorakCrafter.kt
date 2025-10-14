@@ -24,10 +24,8 @@ class ZamorakCrafter : Api {
         npc.mode = Patrol(npc, patrol.waypoints)
     }
 
+    @Id("zamorak_crafter*")
     override fun move(npc: NPC, from: Tile, to: Tile) {
-        if (!npc.id.startsWith("zamorak_crafter")) {
-            return
-        }
         if (to.equals(3314, 4811)) {
             npc.strongQueue("craft_runes") {
                 val altar = objects[Tile(3315, 4810), "ourania_altar"]
