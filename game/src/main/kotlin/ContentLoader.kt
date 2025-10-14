@@ -3,6 +3,8 @@ import content.skill.thieving.Stole
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.dispatch.Dispatcher
+import world.gregs.voidps.engine.entity.Approachable
+import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.skill.level.LevelChanged
@@ -31,6 +33,23 @@ object ContentLoader {
         method("variableSet", "Player", "String", "Any?", "Any?") to VariableSet.playerDispatcher,
         method("variableSet", "NPC", "String", "Any?", "Any?") to VariableSet.npcDispatcher,
         method("stole", "Player", "GameObject", "Item") to Stole.dispatcher,
+        method("Dialogue.talk", "Player", "NPC") to Operation.talkDispatcher,
+        method("operate", "Player", "Player", "String") to Operation.playerPlayerDispatcher,
+        method("operate", "Player", "NPC", "String") to Operation.playerNpcDispatcher,
+        method("operate", "Player", "GameObject", "String") to Operation.playerObjectDispatcher,
+        method("operate", "Player", "FloorItem", "String") to Operation.playerFloorItemDispatcher,
+        method("operate", "NPC", "Player", "String") to Operation.npcPlayerDispatcher,
+        method("operate", "NPC", "NPC", "String") to Operation.npcNpcDispatcher,
+        method("operate", "NPC", "GameObject", "String") to Operation.npcObjectDispatcher,
+        method("operate", "NPC", "FloorItem", "String") to Operation.npcFloorItemDispatcher,
+        method("approach", "Player", "Player", "String") to Approachable.playerPlayerDispatcher,
+        method("approach", "Player", "NPC", "String") to Approachable.playerNpcDispatcher,
+        method("approach", "Player", "GameObject", "String") to Approachable.playerObjectDispatcher,
+        method("approach", "Player", "FloorItem", "String") to Approachable.playerFloorItemDispatcher,
+        method("approach", "NPC", "Player", "String") to Approachable.npcPlayerDispatcher,
+        method("approach", "NPC", "NPC", "String") to Approachable.npcNpcDispatcher,
+        method("approach", "NPC", "GameObject", "String") to Approachable.npcObjectDispatcher,
+        method("approach", "NPC", "FloorItem", "String") to Approachable.npcFloorItemDispatcher,
     )
 
     fun load() {

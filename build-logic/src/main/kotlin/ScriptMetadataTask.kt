@@ -50,6 +50,9 @@ abstract class ScriptMetadataTask : DefaultTask() {
         "Id" to listOf("id" to WildcardType.DynamicId(0)),
         "SkillId" to listOf("skill" to WildcardType.None, "id" to WildcardType.DynamicId(0)),
         "Variable" to listOf("key" to WildcardType.VariableId, "id" to WildcardType.DynamicId(0)),
+        "Operate" to listOf("option" to WildcardType.DynamicOption(0), "id" to WildcardType.DynamicId(1)),
+        "Approach" to listOf("option" to WildcardType.DynamicOption(0), "id" to WildcardType.DynamicId(1)),
+        "NoDelay" to emptyList(),
     )
 
     @get:Incremental

@@ -23,10 +23,26 @@ open class MapDispatcher<T : Any>(val ids: Set<String>) : Dispatcher<T> {
         }
     }
 
+    suspend fun onFirst(vararg keys: String, block: suspend (T) -> Unit) {
+        for (key in keys) {
+            if (first(key, block)) {
+                return
+            }
+        }
+    }
+
     private fun iterate(key: String, block: (T) -> Unit) {
         for (instance in instances[key] ?: return) {
             block.invoke(instance)
         }
+    }
+
+    private suspend fun first(key: String, block: suspend (T) -> Unit): Boolean {
+        for (instance in instances[key] ?: return false) {
+            block.invoke(instance)
+            return true
+        }
+        return false
     }
 
     override fun clear() {

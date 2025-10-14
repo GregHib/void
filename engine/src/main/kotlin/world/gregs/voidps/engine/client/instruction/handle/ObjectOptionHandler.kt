@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
+import world.gregs.voidps.engine.entity.CharacterInteraction
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -47,7 +48,7 @@ class ObjectOptionHandler(
             return
         }
         player.closeInterfaces()
-        player.mode = Interact(player, target, ObjectOption(player, target, definition, selectedOption))
+        player.mode = Interact(player, target, ObjectOption(player, target, definition, selectedOption), type = CharacterInteraction(definition, selectedOption))
     }
 
     private fun getObject(tile: Tile, objectId: Int): GameObject? {

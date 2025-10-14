@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
+import world.gregs.voidps.engine.entity.CharacterInteraction
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -39,6 +40,6 @@ class FloorItemOptionHandler(
             return
         }
         player.closeInterfaces()
-        player.mode = Interact(player, floorItem, FloorItemOption(player, floorItem, selectedOption), shape = -1)
+        player.mode = Interact(player, floorItem, FloorItemOption(player, floorItem, selectedOption), shape = -1, type = CharacterInteraction(floorItem.def, selectedOption))
     }
 }

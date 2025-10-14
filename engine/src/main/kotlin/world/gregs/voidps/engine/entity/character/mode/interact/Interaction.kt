@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
+import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.CancellableEvent
@@ -48,6 +49,46 @@ abstract class Interaction<C : Character> :
             while (!interact.arrived(range) && character.steps.isNotEmpty()) {
                 delay(1)
             }
+        }
+    }
+}
+
+
+
+/**
+ * Movement delay, typically operating/interacting with an object or floor item that performs an animation or exact movement
+ */
+suspend fun Character.arriveDelay() {
+    val delay = steps.last - GameLoop.tick
+    if (delay <= 0) {
+        return
+    }
+    delay(delay)
+}
+
+/**
+ * Prevents non-interface player input and most processing
+ * Cannot be cancelled.
+ */
+suspend fun Character.delay(ticks: Int = 1) {
+    if (ticks <= 0) {
+        return
+    }
+    this["delay"] = ticks
+    suspendCancellableCoroutine {
+        delay = it
+    }
+}
+
+/**
+ * Set the range a player can interact with their target from
+ */
+suspend fun Character.approachRange(range: Int?, update: Boolean = true) {
+    val interact = mode as? Interact ?: return
+    interact.updateRange(range, update)
+    if (range != null) {
+        while (!interact.arrived(range) && steps.isNotEmpty()) {
+            delay(1)
         }
     }
 }
