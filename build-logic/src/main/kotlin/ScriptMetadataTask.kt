@@ -28,6 +28,7 @@ import java.io.File
 abstract class ScriptMetadataTask : DefaultTask() {
 
     private enum class WildcardType {
+        None,
         DynamicId,
         NpcId,
         InterfaceId,
@@ -45,6 +46,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
     // List of annotation names and their parameters
     private val annotations: Map<String, List<Pair<String, WildcardType>>> = mapOf(
         "Id" to listOf("id" to WildcardType.DynamicId),
+        "SkillId" to listOf("skill" to WildcardType.None, "id" to WildcardType.DynamicId),
     )
 
     @get:Incremental
@@ -162,10 +164,13 @@ abstract class ScriptMetadataTask : DefaultTask() {
                         val name = arg.getArgumentName()?.asName?.asString()
                         val value = arg.getArgumentExpression()?.text?.trim('"') ?: ""
                         val idx = if (name != null) info.indexOfFirst { it.first == name } else index++
-                        params[idx].add(value)
+                        for (part in value.split(",")) {
+                            params[idx].add(part)
+                        }
                     }
                     for (i in info.indices) {
-                        for (value in params[i].first().split(",")) {
+                        val first = params[i].firstOrNull() ?: continue
+                        for (value in first.split(",")) {
                             // Expand wildcards into matches
                             if (value.contains("*") || value.contains("#")) {
                                 val set = when (info[i].second) {
@@ -191,6 +196,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
                                     WildcardType.FloorItemOption -> floorItemOptions
                                     WildcardType.ObjectOption -> objectOptions
                                     WildcardType.ItemOption -> itemOptions
+                                    WildcardType.None -> error("Unexpected wildcard '$value' in $packagePath ${annotation.text}")
                                 }
                                 val matches = set.filter { wildcardEquals(value, it) }
                                 if (matches.isEmpty()) {
