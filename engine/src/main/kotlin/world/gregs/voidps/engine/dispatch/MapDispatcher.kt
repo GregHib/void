@@ -23,17 +23,17 @@ open class MapDispatcher<T : Any>(val ids: Set<String>) : Dispatcher<T> {
         }
     }
 
+    private fun iterate(key: String, block: (T) -> Unit) {
+        for (instance in instances[key] ?: return) {
+            block.invoke(instance)
+        }
+    }
+
     suspend fun onFirst(vararg keys: String, block: suspend (T) -> Unit) {
         for (key in keys) {
             if (first(key, block)) {
                 return
             }
-        }
-    }
-
-    private fun iterate(key: String, block: (T) -> Unit) {
-        for (instance in instances[key] ?: return) {
-            block.invoke(instance)
         }
     }
 

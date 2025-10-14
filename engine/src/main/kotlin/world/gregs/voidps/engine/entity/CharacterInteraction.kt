@@ -12,6 +12,11 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.Events
 
+/**
+ * Interaction between two [Character]'s
+ * Provides a way to check if an interaction is available and a way of starting it
+ *  TODO rename to Interaction after current Interaction has been full migrated
+ */
 class CharacterInteraction(
     private val option: String,
     private val key: String,

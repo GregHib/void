@@ -8,6 +8,10 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 
+/**
+ * Target Entity interaction whilst approaching from any distance
+ * See `character.approachRange()` for setting the required distance
+ */
 interface Approachable {
 
     /**

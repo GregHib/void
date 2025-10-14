@@ -11,6 +11,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 
+/**
+ * Target Entity interaction within close-proximity
+ */
 interface Operation {
 
     /**
