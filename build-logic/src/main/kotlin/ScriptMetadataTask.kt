@@ -225,6 +225,10 @@ abstract class ScriptMetadataTask : DefaultTask() {
             return
         }
         val currentArray = arrays[index]
+        if (currentArray.isEmpty()) {
+            generateCombinations(arrays, index + 1, current, call)
+            return
+        }
         for (element in currentArray) {
             current.add(element)
             generateCombinations(arrays, index + 1, current, call)
