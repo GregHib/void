@@ -32,15 +32,43 @@ class Interact(
     private var approachRange: Int? = null,
     private val faceTarget: Boolean = true,
     shape: Int? = null,
+    private var type: InteractionType = OldInteractionType(interaction),
 ) : Movement(character, strategy, shape) {
 
-    private var approach: Interaction<*> = interaction.copy(true)
-    private var operate: Interaction<*> = interaction.copy(false)
+    class OldInteractionType(interaction: Interaction<*>) : InteractionType {
+        var operate: Interaction<*> = interaction.copy(false)
+        var approach: Interaction<*> = interaction.copy(true)
+
+        override fun hasOperate(character: Character) = Events.events.contains(character, operate)
+
+        override fun hasApproach(character: Character) = Events.events.contains(character, approach)
+
+        override fun operate(character: Character): Boolean {
+            if (!operate.launched && character.emit(operate)) {
+                operate.launched = true
+                return true
+            }
+            return false
+        }
+
+        override fun approach(character: Character): Boolean {
+            if (!approach.launched && character.emit(approach)) {
+                approach.launched = true
+                return true
+            }
+            return false
+        }
+    }
+
     private var clearInteracted = false
 
     fun updateInteraction(interaction: Interaction<*>) {
-        approach = interaction.copy(true)
-        operate = interaction.copy(false)
+        updateInteraction(OldInteractionType(interaction))
+        clearInteracted = true
+    }
+
+    fun updateInteraction(type: InteractionType) {
+        this.type = type
         clearInteracted = true
     }
 
@@ -137,8 +165,8 @@ class Interact(
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
-            withinMelee && Events.events.contains(character, operate) -> if (launch(operate) && afterMovement) updateRange = false
-            withinRange && Events.events.contains(character, approach) -> if (launch(approach) && afterMovement) updateRange = false
+            withinMelee && type.hasOperate(character) -> if ((character.resumeSuspension() || type.operate(character)) && afterMovement) updateRange = false
+            withinRange && type.hasApproach(character) -> if ((character.resumeSuspension() || type.approach(character)) && afterMovement) updateRange = false
             withinMelee -> {
                 character.noInterest()
                 clear()
@@ -146,20 +174,6 @@ class Interact(
             else -> return false
         }
         return true
-    }
-
-    /**
-     * Continue any suspended, clear any finished or start a new interaction
-     */
-    private fun launch(event: Interaction<*>): Boolean {
-        if (character.resumeSuspension()) {
-            return true
-        }
-        if (!event.launched && character.emit(event)) {
-            event.launched = true
-            return true
-        }
-        return false
     }
 
     private fun interactionFinished() = character.suspension == null && !character.contains("delay")
