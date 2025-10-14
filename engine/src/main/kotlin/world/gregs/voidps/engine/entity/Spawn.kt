@@ -21,9 +21,9 @@ interface Spawn {
 
     companion object : Spawn {
         var playerDispatcher = ListDispatcher<Spawn>()
-        var npcDispatcher = MapDispatcher<Spawn>("@Id")
-        var objectDispatcher = MapDispatcher<Spawn>("@Id")
-        var floorItemDispatcher = MapDispatcher<Spawn>("@Id")
+        var npcDispatcher = MapDispatcher<Spawn>("@Id", "")
+        var objectDispatcher = MapDispatcher<Spawn>("@Id", "")
+        var floorItemDispatcher = MapDispatcher<Spawn>("@Id", "")
         var worldDispatcher = ListDispatcher<Spawn>()
 
         override fun spawn(player: Player) {
@@ -33,19 +33,19 @@ interface Spawn {
         }
 
         override fun spawn(npc: NPC) {
-            npcDispatcher.forEach(npc.id) { instance ->
+            npcDispatcher.forEach(npc.id, "*") { instance ->
                 instance.spawn(npc)
             }
         }
 
         override fun spawn(obj: GameObject) {
-            objectDispatcher.forEach(obj.id) { instance ->
+            objectDispatcher.forEach(obj.id, "*") { instance ->
                 instance.spawn(obj)
             }
         }
 
         override fun spawn(floorItem: FloorItem) {
-            floorItemDispatcher.forEach(floorItem.id) { instance ->
+            floorItemDispatcher.forEach(floorItem.id, "*") { instance ->
                 instance.spawn(floorItem)
             }
         }

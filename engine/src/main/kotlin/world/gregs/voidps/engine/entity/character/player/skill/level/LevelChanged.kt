@@ -14,18 +14,18 @@ interface LevelChanged {
     fun levelChanged(npc: NPC, skill: Skill, from: Int, to: Int) {}
 
     companion object : LevelChanged {
-        var playerDispatcher = MapDispatcher<LevelChanged>("@SkillId")
-        var npcDispatcher = MapDispatcher<LevelChanged>("@SkillId", "@Id")
+        var playerDispatcher = MapDispatcher<LevelChanged>("@SkillId", "")
+        var npcDispatcher = MapDispatcher<LevelChanged>("@SkillId", "@Id", "")
 
         override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
-            playerDispatcher.forEach("Skill.${skill.name}") { instance ->
+            playerDispatcher.forEach("Skill.${skill.name}", "*") { instance ->
                 instance.levelChanged(player, skill, from, to)
             }
         }
 
         override fun levelChanged(npc: NPC, skill: Skill, from: Int, to: Int) {
             val name = "Skill.${skill.name}"
-            npcDispatcher.forEach("$name:${npc.id}", name) { instance ->
+            npcDispatcher.forEach("$name:${npc.id}", name, "*") { instance ->
                 instance.levelChanged(npc, skill, from, to)
             }
         }
