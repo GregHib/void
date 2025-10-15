@@ -62,7 +62,6 @@ class BartenderBlueMoonInn {
 
         itemOnNPCApproach("barcrawl_card", "bartender_blue_moon_inn") {
             if (player.containsVarbit("barcrawl_signatures", "uncle_humphreys_gutrot")) {
-                player.noInterest() // TODO proper message
                 return@itemOnNPCApproach
             }
             barCrawl()

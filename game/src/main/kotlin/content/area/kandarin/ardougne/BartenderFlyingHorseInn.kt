@@ -44,7 +44,6 @@ class BartenderFlyingHorseInn {
 
         itemOnNPCOperate("barcrawl_card", "bartender_flying_horse_inn") {
             if (player.containsVarbit("barcrawl_signatures", "heart_stopper")) {
-                player.noInterest() // TODO proper message
                 return@itemOnNPCOperate
             }
             barCrawl()

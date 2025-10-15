@@ -45,7 +45,6 @@ class BartenderRustyAnchor : Api {
 
         itemOnNPCOperate("barcrawl_card", "bartender_rusty_anchor_inn*") {
             if (player.containsVarbit("barcrawl_signatures", "black_skull_ale")) {
-                player.noInterest() // TODO proper message
                 return@itemOnNPCOperate
             }
             barCrawl()

@@ -52,7 +52,6 @@ class BartenderJollyBoarInn {
 
         itemOnNPCOperate("barcrawl_card", "bartender_jolly_boar_inn") {
             if (player.containsVarbit("barcrawl_signatures", "olde_suspiciouse")) {
-                player.noInterest() // TODO proper message
                 return@itemOnNPCOperate
             }
             barCrawl()

@@ -33,7 +33,6 @@ class BartenderZambo {
 
         itemOnNPCOperate("barcrawl_card", "bartender_zambo") {
             if (player.containsVarbit("barcrawl_signatures", "ape_bite_liqueur")) {
-                player.noInterest() // TODO proper message
                 return@itemOnNPCOperate
             }
             barCrawl()

@@ -39,14 +39,15 @@ class BarbarianGuard {
                 choice {
                     option<Talk>("Hmm, yep you've got me there.")
                     option<Talk>("Looks can be deceiving, I am in fact a barbarian.") iAm@{
+                        if (player.inventory.isFull()) {
+                            npc<Talk>("Are you, now? Free up some space so you can carry something, and we'll see how barbarian you really are.")
+                            return@iAm
+                        }
                         npc<Talk>("If you're a barbarian you need to be able to drink like one. We barbarians like a good drink.")
                         npc<Happy>("I have the perfect challenge for you... The Alfred Grimhand Barcrawl! First completed by Alfred Grimhand.")
                         if (player.inventory.add("barcrawl_card")) {
                             player["alfred_grimhands_barcrawl"] = "signatures"
                             item("barcrawl_card", 400, "The guard hands you a Barcrawl card.")
-                        } else {
-                            player.inventoryFull() // TODO proper message
-                            return@iAm
                         }
                         npc<Talk>("Take that card to each of the bars named on it. The bartenders will know what it means. We're kinda well known.")
                         npc<Talk>("They'll give you their strongest drink and sign your card. When you've done all that, we'll be happy to let you in.")
@@ -113,12 +114,14 @@ class BarbarianGuard {
             return
         }
         player<Sad>("I've lost my barcrawl card...")
+        if (player.inventory.isFull()) {
+            npc<Quiz>("What are you like? You're gonna have ot free up some space so I can give you another one.")
+            return
+        }
         npc<Quiz>("What are you like? You're gonna have to start all over now.")
         if (player.inventory.add("barcrawl_card")) {
             player.clear("barcrawl_signatures")
             item("barcrawl_card", 400, "The guard hands you a Barcrawl card.")
-        } else {
-            player.inventoryFull() // TODO proper message
         }
     }
 }

@@ -63,7 +63,6 @@ class BartenderForestersArms {
 
         itemOnNPCOperate("barcrawl_card", "bartender_foresters_arms") {
             if (player.containsVarbit("barcrawl_signatures", "liverbane_ale")) {
-                player.noInterest() // TODO proper message
                 return@itemOnNPCOperate
             }
             barCrawl()

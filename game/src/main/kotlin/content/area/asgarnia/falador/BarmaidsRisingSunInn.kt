@@ -35,9 +35,7 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeTo
 class BarmaidsRisingSunInn {
 
     val barCrawl: suspend ItemOnNPC.() -> Unit = {
-        if (player.containsVarbit("barcrawl_signatures", "hand_of_death_cocktail")) {
-            player.noInterest() // TODO proper message
-        } else {
+        if (!player.containsVarbit("barcrawl_signatures", "hand_of_death_cocktail")) {
             barCrawl()
         }
     }

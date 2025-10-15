@@ -33,7 +33,6 @@ class Blurberry {
 
         itemOnNPCOperate("barcrawl_card", "blurberry") {
             if (player.containsVarbit("barcrawl_signatures", "fire_toad_blast")) {
-                player.noInterest() // TODO proper message
                 return@itemOnNPCOperate
             }
             barCrawl()

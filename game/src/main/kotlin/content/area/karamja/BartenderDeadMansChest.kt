@@ -46,7 +46,6 @@ class BartenderDeadMansChest {
 
         itemOnNPCOperate("barcrawl_card", "bartender_dead_mans_chest") {
             if (player.containsVarbit("barcrawl_signatures", "supergrog")) {
-                player.noInterest() // TODO proper message
                 return@itemOnNPCOperate
             }
             barCrawl()
