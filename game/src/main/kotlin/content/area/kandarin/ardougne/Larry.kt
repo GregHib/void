@@ -59,7 +59,7 @@ class Larry {
         if (!player.ownsItem("spy_notebook")) {
             npc<Afraid>("Wait! Where is your notebook? Did it fall into enemy hands?")
             player<Talk>("I only turned around for a second...")
-            npc<Upset>("Be more careful next time, who knows what would have happened if it go into the wrong hands!") // TODO proper message
+            npc<Upset>("Be more careful next time, who knows what would have happened if it go into the wrong hands!") // TODO proper message (not in osrs)
             if (player.inventory.add("spy_notebook")) {
                 item("spy_notebook", 600, "Larry hands you a small notebook.")
             }

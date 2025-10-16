@@ -90,7 +90,7 @@ class BrimhavenShotcuts {
 
     suspend fun ObjectOption<Player>.walkAcross(level: Int, targetX: Int, exp: Double) {
         if (!player.has(Skill.Agility, level)) {
-            player.message("You need at least $level Agility to do that.") // TODO proper message
+            player.message("You need an Agility level of $level to cross the log.")
             return
         }
         player.message("You walk carefully across the slippery log...", ChatType.Filter)

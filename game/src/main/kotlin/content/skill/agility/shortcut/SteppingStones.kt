@@ -3,6 +3,7 @@ package content.skill.agility.shortcut
 import content.entity.combat.hit.damage
 import content.entity.gfx.areaGfx
 import content.entity.player.combat.special.specialAttackEnergy
+import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
 import content.skill.firemaking.Light
 import world.gregs.voidps.engine.client.message
@@ -19,6 +20,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
@@ -128,7 +130,9 @@ class SteppingStones {
 
     suspend fun ObjectOption<Player>.shiloCross() {
         if (!player.has(Skill.Agility, 30)) {
-            player.message("You need at least 30 Agility to do that.") // TODO proper message
+            player.queue("statement") {
+                statement("The stepping stone looks very small and slippery. You'd better have an Agility level of 32.")
+            }
             return
         }
         val direction = target.tile.delta(player.tile).toDirection()
