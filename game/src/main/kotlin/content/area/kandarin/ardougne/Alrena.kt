@@ -33,8 +33,7 @@ class Alrena {
                 "one_bucket_of_water", "two_bucket_of_water", "three_bucket_of_water" -> bucketOfWater()
                 "four_bucket_of_water" -> fourBucketOfWater()
                 "sewer" -> sewer()
-                "grill_rope" -> grillRope()
-                "grill_open", "spoken_to_jethick", "returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance", "talk_to_bravek", "has_cure_paper", "gave_cure" -> grillOpen()
+                "grill_rope", "grill_open", "spoken_to_jethick", "returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance", "talk_to_bravek", "has_cure_paper", "gave_cure" -> grillOpen()
                 else -> freedElena()
             }
         }
@@ -67,19 +66,21 @@ class Alrena {
         player<Happy>("Alright, I'll go and see him now.")
     }
     
-    suspend fun NPCOption<Player>.grillRope() {
-        //todo
-    }
-    
     suspend fun NPCOption<Player>.aboutDigging() {
-        //todo
+        //todo check
+        player<Happy>("Hello Alrena.")
+        npc<Happy>("Hello darling, how's that tunnel coming along?")
+        player<Neutral>("I just need to soften the soil a little more and then we'll start digging.")
     }
     
     suspend fun NPCOption<Player>.bucketOfWater() {
         player<Happy>("Hello Alrena.")
         npc<Happy>("Hello darling, how's that tunnel coming along?")
         player<Neutral>("I just need to soften the soil a little more and then we'll start digging.")
-       //todo check if you don't have a gas mask
+        if (!player.ownsItem("gas_mask")) {
+            npc<Talk>("Also, don't forget about that spare gas mask if you need it. It's hidden in the cupboard.")
+            player<Talk>("Great, thanks Alrena!")
+        }
     }
     
     suspend fun NPCOption<Player>.fourBucketOfWater() {
@@ -100,8 +101,12 @@ class Alrena {
         npc<Neutral>("Hi, have you managed to get through to West Ardougne?")
         player<Sad>("Not yet, but I should be going soon.")
         npc<Sad>("Make sure you wear your mask while you're over there! I can't think of a worse way to die.")
-        player<Neutral>("Okay, thanks for the warning.")
-        //todo check if you don't have mask in inv and bank
+        if (player.ownsItem("gas_mask")) {
+            player<Neutral>("Okay, thanks for the warning.")
+        } else {
+            npc<Neutral>("Don't forget, I've got a spare one hidden in the cupboard if you need it.")
+            player<Neutral>("Great, thanks Alrena!")
+        }
     }
     
     suspend fun NPCOption<Player>.grillOpen() {
@@ -109,8 +114,17 @@ class Alrena {
         npc<Uncertain>("Hello, any word on Elena?")
         player<Sad>("Not yet I'm afraid.")
         npc<Neutral>("Is there anything else I can do to help?")
-        player<Neutral>("It's alright, I'll get her back soon.")
-        npc<Neutral>("That's the spirit, dear.")
+        if(player.quest("plague_city") == "spoken_to_jethick") {
+            player<Quiz>("Do you have a picture of Elena?")
+            npc<Neutral>("Yes. There should be one in the house somewhere. Let me know if you need anything else.")
+        } else {
+            player<Neutral>("It's alright, I'll get her back soon.")
+            if (player.ownsItem("gas_mask")) {
+                npc<Neutral>("That's the spirit, dear.")
+            } else {
+                npc<Talk>("That's the spirit, dear. Don't forget that there's a spare gas mask in the cupboard if you need one.")
+            }
+        }
     }
     
     suspend fun NPCOption<Player>.freedElena() {

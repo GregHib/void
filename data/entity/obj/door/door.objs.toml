@@ -672,11 +672,11 @@ examine = "A door."
 id = 2528
 examine = "The door is closed."
 
-[door_59_opened]
+[door_rehnison_opened]
 id = 2538
 examine = "A door."
 
-[door_59_closed]
+[door_rehnison_closed]
 id = 2537
 examine = "The door is closed."
 
@@ -3274,11 +3274,11 @@ examine = "An open door."
 id = 35630
 examine = "A shut door."
 
-[door_597_opened]
+[door_plague_city_opened]
 id = 35992
 examine = "A door."
 
-[door_597_closed]
+[door_plague_city_closed]
 id = 35991
 examine = "The door is closed."
 

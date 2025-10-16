@@ -35,8 +35,7 @@ class Bravek {
                         option<Angry>("This is really important though!") {
                             npc<Uncertain>("I can't possibly speak to you with my head spinning like this... I went a bit heavy on the drink again last night. Curse my herbalist, she made the best hang over cures. Darn inconvenient of her catching the plague.")
                             choice {
-                                option<Neutral>("Okay, goodbye.") {
-                                }
+                                option<Neutral>("Okay, goodbye.")
                                 option<Angry>("You shouldn't drink so much then!") {
                                     shouldNotDrink()
                                 }
@@ -45,8 +44,7 @@ class Bravek {
                                 }
                             }
                         }
-                        option<Neutral>("Okay, goodbye.") {
-                        }
+                        option<Neutral>("Okay, goodbye.")
                     }
                 }
                 "has_cure_paper" -> hasCurePaper()
@@ -56,9 +54,8 @@ class Bravek {
         }
 
         itemOnNPCOperate("hangover_cure", "bravek") {
-            when (player.quest("plague_city")) {
-                "has_cure_paper" -> hasCurePaper()
-                else -> {} // TODO
+            if (player.quest("plague_city") == "has_cure_paper") {
+                hasCurePaper()
             }
         }
     }
@@ -66,8 +63,7 @@ class Bravek {
     suspend fun SuspendableContext<Player>.shouldNotDrink() {
         npc<Sad>("Well positions of responsibility are hard, I need something to take my mind off things... Especially with the problems this place has.")
         choice {
-            option<Neutral>("Okay, goodbye.") {
-            }
+            option<Neutral>("Okay, goodbye.")
             option<Quiz>("Do you know what's in the cure?") {
                 cure()
             }
@@ -79,9 +75,12 @@ class Bravek {
 
     suspend fun SuspendableContext<Player>.cure() {
         npc<Uncertain>("Hmmm let me think... Ouch! Thinking isn't clever. Ah here, she did scribble it down for me.")
-        player.inventory.add("a_scruffy_note") // todo check if inv is full
         player["plague_city"] = "has_cure_paper"
-        item("a_scruffy_note", 600, "Bravek hands you a tatty piece of paper.")
+        if (player.inventory.add("a_scruffy_note")) {
+            item("a_scruffy_note", 600, "Bravek hands you a tatty piece of paper.")
+        } else {
+            item("a_scruffy_note", 600, "Bravek waves a tatty piece of paper at you, but you don't have room to take it.")
+        }
     }
 
     suspend fun SuspendableContext<Player>.notTheSolution() {
@@ -90,14 +89,13 @@ class Bravek {
             option<Quiz>("Do you know what's in the cure?") {
                 cure()
             }
-            option<Neutral>("Okay, goodbye.") {
-            }
+            option<Neutral>("Okay, goodbye.")
         }
     }
 
     suspend fun TargetInteraction<Player, NPC>.hasCurePaper() {
+        npc<Uncertain>("Uurgh! My head still hurts too much to think straight. Oh for one of Trudi's hangover cures!")
         if (player.holdsItem("hangover_cure")) {
-            npc<Uncertain>("Uurgh! My head still hurts too much to think straight. Oh for one of Trudi's hangover cures!")
             player<Neutral>("Try this.")
             player.inventory.remove("hangover_cure")
             player["plague_city"] = "gave_cure"
@@ -109,9 +107,6 @@ class Bravek {
             item("hangover_cure", 600, "You give Bravek the hangover cure. Bravek gulps down the foul looking liquid.")
             npc<Happy>("Ooh that's much better! Thanks, that's the clearest my head has felt in a month. Ah now, what was it you wanted me to do for you?")
             gaveCureMenu()
-        } else {
-            // todo
-            player.message("need hangover_cure")
         }
     }
 
@@ -130,8 +125,7 @@ class Bravek {
         player<Neutral>("I need to rescue a kidnap victim called Elena. She's being held in a plague house, I need permission to enter.")
         npc<Neutral>("Well the mourners deal with that sort of thing...")
         choice {
-            option<Neutral>("Okay, I'll go speak to them.") {
-            }
+            option<Neutral>("Okay, I'll go speak to them.")
             option<Angry>("Is that all anyone says around here?") {
                 npc<Neutral>("Well, they know best about plague issues.")
                 choice {
@@ -142,8 +136,7 @@ class Bravek {
                                 npc<Neutral>("Bah, people always criticise their leaders but delegating is the only way to lead. I delegate all plague issues to the mourners.")
                                 player<Angry>("This whole city is a plague issue!")
                             }
-                            option<Neutral>("Okay, I'll talk to the mourners.") {
-                            }
+                            option<Neutral>("Okay, I'll talk to the mourners.")
                             option<Angry>("They won't listen to me!") {
                                 wontListen()
                             }
@@ -164,11 +157,10 @@ class Bravek {
         player<Angry>("They say I'm not properly equipped to go in the house, though I do have a very effective gas mask.")
         npc<Uncertain>("Hmmm, well I guess they're not taking the issue of a kidnapping seriously enough. They do go a bit far sometimes.")
         npc<Neutral>("I've heard of Elena, she has helped us a lot... Okay, I'll give you this warrant to enter the house.")
-        if (player.inventory.isFull()) {
-            item("warrant", 600, "Bravek waves a warrant at you, but you don't have room to take it.")
-        } else {
-            player.inventory.add("warrant")
+        if (player.inventory.add("warrant")) {
             item("warrant", 600, "Bravek hands you a warrant.")
+        } else {
+            item("warrant", 600, "Bravek waves a warrant at you, but you don't have room to take it.")
         }
     }
 

@@ -1,5 +1,6 @@
 package content.area.kandarin.ardougne
 
+import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -89,7 +90,8 @@ class Edmond {
                 "four_bucket_of_water" -> fourBucketOfWater()
                 "sewer" -> sewer()
                 "grill_rope" -> grillRope()
-                "grill_open", "spoken_to_jethick", "returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance", "talk_to_bravek", "has_cure_paper", "gave_cure" -> grillOpen()
+                "spoken_to_jethick" -> spoken()
+                "grill_open", "returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance", "talk_to_bravek", "has_cure_paper", "gave_cure" -> grillOpen()
                 "freed_elena" -> freedElena()
                 else -> completed()
             }
@@ -115,7 +117,8 @@ class Edmond {
     }
 
     suspend fun NPCOption<Player>.aboutDigging() {
-        // todo
+        npc<Quiz>("How's it going?")
+        player<Neutral>("I still need to pour four more buckets of water on the soil.")
     }
 
     suspend fun NPCOption<Player>.oneBucketOfWater() {
@@ -154,6 +157,18 @@ class Edmond {
         cutscene()
     }
 
+    suspend fun NPCOption<Player>.spoken() {
+        player<Neutral>("Hello.")
+        npc<Quiz>("Have you found Elena yet?")
+        if (player.holdsItem("picture_plague_city")) {
+            player<Sad>("Not yet, it's a big city over there.")
+            npc<Sad>("I hope it's not too late.")
+        } else {
+            player<Sad>("Not yet, it's a big city over there. Do you have a picture of Elena?")
+            npc<Sad>("There should be a picture of Elena in the house. Please find her quickly, I hope it's not too late.")
+        }
+    }
+
     suspend fun NPCOption<Player>.grillOpen() {
         player<Neutral>("Hello.")
         npc<Quiz>("Have you found Elena yet?")
@@ -173,17 +188,15 @@ class Edmond {
             player<Happy>("No problem.")
         } else {
             choice {
-                option<Quiz>("Do you have any more of those scrolls?") {
-                    // todo check if you have one in bank
-                    if (player.inventory.isFull()) {
-                        floorItems.add(player.tile, "a_magic_scroll", disappearTicks = 300, owner = player)
-                    } else {
-                        player.inventory.add("a_magic_scroll")
+                if (!player.ownsItem("a_magic_scroll")) {
+                    option<Quiz>("Do you have any more of those scrolls?") {
+                        if (!player.inventory.add("a_magic_scroll")) {
+                            floorItems.add(player.tile, "a_magic_scroll", disappearTicks = 300, owner = player)
+                        }
+                        npc<Happy>("Yes, here you go.")
                     }
-                    npc<Happy>("Yes, here you go.")
                 }
-                option<Happy>("No problem.") {
-                }
+                option<Happy>("No problem.")
             }
         }
     }
@@ -242,8 +255,6 @@ class Edmond {
         npcs.remove(edmond)
     }
 
-    // todo after you close the interface he says
-    //  npc<Happy>("Now I'd recommend you go and see Elena. She'll want to thank you herself. She lives in the house opposite ours.")
     fun Context<Player>.questComplete() {
         player["plague_city"] = "completed"
         player.jingle("quest_complete_2")
@@ -259,6 +270,7 @@ class Edmond {
                 "An Ardougne Teleport Scroll",
                 item = "gas_mask",
             )
+            npc<Happy>("Now I'd recommend you go and see Elena. She'll want to thank you herself. She lives in the house opposite ours.")
         }
     }
 }

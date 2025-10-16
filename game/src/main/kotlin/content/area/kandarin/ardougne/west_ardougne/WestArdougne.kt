@@ -1,6 +1,7 @@
 package content.area.kandarin.ardougne.west_ardougne
 
 import content.entity.obj.door.enterDoor
+import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
@@ -33,11 +34,12 @@ class WestArdougne {
 
     init {
         objectOperate("Search", "plaguekeybarrel") {
-            // todo can you get it before talking to Elena and after quest
-            if (player.inventory.isFull()) { // todo check if you have a key
+            if (player.quest("plague_city") != "freed_elena" || player.ownsItem("a_small_key")) {
+                player.message("The barrel is empty.")
+                return@objectOperate
+            }
+            if (!player.inventory.add("a_small_key")) {
                 floorItems.add(player.tile, "a_small_key", disappearTicks = 300, owner = player)
-            } else {
-                player.inventory.add("a_small_key")
             }
             item("a_small_key", 300, "You find a small key in the barrel.")
         }
@@ -84,14 +86,13 @@ class WestArdougne {
             statement("You climb down through the manhole.", clickToContinue = true)
         }
 
-        objectOperate("Open", "door_59_closed") {
+        objectOperate("Open", "door_rehnison_closed") {
             if (player.tile.y == 3329 || rehnisonStages.contains(player.quest("plague_city"))) {
                 enterDoor(target, delay = 2)
                 return@objectOperate
             }
-            if (!player.holdsItem("book_turnip_growing_for_beginners")) {
-                npc<Angry>("ted_rehnison", "Go away. We don't want any.")
-            } else {
+            npc<Angry>("ted_rehnison", "Go away. We don't want any.")
+            if (player.holdsItem("book_turnip_growing_for_beginners")) {
                 npc<Angry>("ted_rehnison", "Go away. We don't want any.")
                 player<Neutral>("I'm a friend of Jethick's, I have come to return a book he borrowed.")
                 npc<Neutral>("ted_rehnison", "Oh... Why didn't you say, come in then.")
@@ -114,7 +115,7 @@ class WestArdougne {
             }
         }
 
-        objectOperate("Open", "door_597_closed") {
+        objectOperate("Open", "door_plague_city_closed") {
             if (player.tile.y == 3272) {
                 enterDoor(target, delay = 2)
                 return@objectOperate
@@ -126,8 +127,7 @@ class WestArdougne {
                     option<Surprised>("But I think a kidnap victim is in here.") {
                         npc<Neutral>("mourner_elena_guard_vis", "Sounds unlikely, even kidnappers wouldn't go in there. Even if someone is in there, they're probably dead by now.")
                         choice {
-                            option<Neutral>("Good point.") {
-                            }
+                            option<Neutral>("Good point.")
                             option<Neutral>("I want to check anyway.") {
                                 npc<Neutral>("mourner_elena_guard_vis", "You don't have clearance to go in there.")
                                 player<Quiz>("How do I get clearance?")

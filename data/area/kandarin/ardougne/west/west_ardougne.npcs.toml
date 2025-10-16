@@ -1,17 +1,3 @@
-[ted_rehnison]
-id = 721
-
-[martha_rehnison]
-id = 722
-
-[billy_rehnison]
-id = 723
-examine = "The Rehnisons' eldest son."
-
-[milli_rehnison]
-id = 724
-examine = "She doesn't seem very happy."
-
 [kilron_west_ardougne]
 id = 349
 examine = "He looks shifty."

@@ -7,12 +7,17 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.quest
+import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
+import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.event.TargetContext
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
 class Jethick {
@@ -23,18 +28,24 @@ class Jethick {
                 "grill_open" -> grillOpen()
                 "spoken_to_jethick" -> {
                     npc<Neutral>("Hello. We don't get many newcomers around here.")
-                    player<Happy>("I'm looking for a woman from East Ardougne called Elena.")
-                    npc<Neutral>("Ah yes. She came over here to help the plague victims. I think she is staying over with the Rehnison family.")
-                    spokenToJethick()
+                    looking()
                 }
                 else -> npc<Neutral>("Hello. We don't get many newcomers around here.")
+            }
+        }
+
+        itemOnNPCOperate("*", "jethick") {
+            if (item.id == "picture_plague_city") {
+                player<Talk>("Hi, I'm looking for a woman from East Ardougne.")
+                showPicture()
+            } else {
+                npc<Quiz>("Thanks, but I don't accept gifts.")
             }
         }
     }
 
     suspend fun NPCOption<Player>.grillOpen() {
         if (player["plaguecity_picture_asked", false]) {
-            // todo atm it skips to get past the quest
             player["plague_city"] = "spoken_to_jethick"
             spokenToJethick()
         } else {
@@ -49,24 +60,32 @@ class Jethick {
             npc<Angry>("The plague first started when he came back from one of these expeditions. More than a few suspect that some of his men caught it out there and brought it back with them.")
             npc<Angry>("The king didn't care though. He just left on another expedition to the west. He hasn't been seen since. He left the city warder Bravek in charge but he's no better.")
             npc<Quiz>("Anyway, you clearly didn't come here to talk about kings. So tell me, what brings you to West Ardougne?")
-            player<Happy>("I'm looking for a woman from East Ardougne called Elena.")
-            npc<Uncertain>("East Ardougnian women are easier to find in East Ardougne. Not many would come to West Ardougne to find one. Although the name is familiar, what does she look like?")
-            if (player.inventory.contains("picture_plague_city")) {
-                item("picture_plague_city", 600, "You show Jethick the picture.")
-                npc<Neutral>("Ah yes. She came over here to help the plague victims. I think she is staying over with the Rehnison family.")
-                player["plague_city"] = "spoken_to_jethick"
-                spokenToJethick()
-            } else {
-                player<Uncertain>("Um... brown hair... in her twenties...")
-                if (!player["plaguecity_picture_asked", false]) {
-                    player["plaguecity_picture_asked"] = true
-                }
-                npc<Uncertain>("Hmmm, that doesn't narrow it down a huge amount... I'll need to know more than that, or see a picture?")
-            }
+            looking()
         }
     }
 
-    suspend fun NPCOption<Player>.spokenToJethick() {
+    private suspend fun NPCOption<Player>.looking() {
+        player<Happy>("I'm looking for a woman from East Ardougne called Elena.")
+        npc<Uncertain>("East Ardougnian women are easier to find in East Ardougne. Not many would come to West Ardougne to find one. Although the name is familiar, what does she look like?")
+        if (player.inventory.contains("picture_plague_city")) {
+            showPicture()
+        } else {
+            player<Uncertain>("Um... brown hair... in her twenties...")
+            if (!player["plaguecity_picture_asked", false]) {
+                player["plaguecity_picture_asked"] = true
+            }
+            npc<Uncertain>("Hmmm, that doesn't narrow it down a huge amount... I'll need to know more than that, or see a picture?")
+        }
+    }
+
+    private suspend fun SuspendableContext<Player>.showPicture() {
+        item("picture_plague_city", 600, "You show Jethick the picture.")
+        npc<Neutral>("Ah yes. She came over here to help the plague victims. I think she is staying over with the Rehnison family.")
+        player["plague_city"] = "spoken_to_jethick"
+        spokenToJethick()
+    }
+
+    suspend fun SuspendableContext<Player>.spokenToJethick() {
         npc<Neutral>("They live in the small timbered building at the far north side of town. I've not seen her around here in a while, mind.")
         if (!player.ownsItem("book_turnip_growing_for_beginners")) {
             npc<Neutral>("I don't suppose you could run me a little errand while you're over there? I borrowed this book from them, can you return it?")
@@ -79,8 +98,7 @@ class Jethick {
                         item("book_turnip_growing_for_beginners", 500, "Jethick gives you a book.")
                     }
                 }
-                option<Happy>("No, I don't have time for that.") {
-                }
+                option<Happy>("No, I don't have time for that.")
             }
         }
     }
