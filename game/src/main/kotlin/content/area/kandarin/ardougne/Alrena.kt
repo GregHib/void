@@ -1,19 +1,19 @@
 package content.area.kandarin.ardougne
 
+import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.statement
 import content.quest.quest
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import content.entity.player.dialogue.type.statement
+import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.holdsItem
-import content.entity.player.dialogue.type.item
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import content.entity.player.bank.ownsItem
-import world.gregs.voidps.engine.event.Script
 
 @Script
 class Alrena {
@@ -37,7 +37,6 @@ class Alrena {
                 else -> freedElena()
             }
         }
-
     }
 
     suspend fun NPCOption<Player>.started() {
@@ -45,34 +44,34 @@ class Alrena {
         npc<Neutral>("Yes he told me. I've begun making your special gas mask, but I need some dwellberries to finish it.")
         if (player.holdsItem("dwellberries")) {
             player<Happy>("Yes I've got some here.")
-            item("dwellberries",600, "You give the dwellberries to Alrena.")
+            item("dwellberries", 600, "You give the dwellberries to Alrena.")
             target.anim("human_herbing_grind")
             statement("Alrena crushes the berries into a smooth paste. She then smears the paste over a strange mask.")
             target.anim("gasmask_application")
             player.inventory.replace("dwellberries", "gas_mask")
             player["plague_city"] = "has_mask"
-            item("gas_mask",300, "Alrena gives you the mask.")
+            item("gas_mask", 300, "Alrena gives you the mask.")
             player.clearAnim()
             npc<Neutral>("There we go, all done. While in West Ardougne you must wear this at all times, or you could catch the plague.")
             npc<Neutral>("I'll make a spare mask. I'll hide it in the wardrobe in case the mourners come in.")
         } else {
-            //todo if you don't have dwellberries
+            // todo if you don't have dwellberries
         }
     }
-    
+
     suspend fun NPCOption<Player>.hasMask() {
         player<Happy>("Hello Alrena.")
         npc<Happy>("Hello darling, I think Edmond had a good idea of how to get into West Ardougne, you should hear his idea.")
         player<Happy>("Alright, I'll go and see him now.")
     }
-    
+
     suspend fun NPCOption<Player>.aboutDigging() {
-        //todo check
+        // todo check
         player<Happy>("Hello Alrena.")
         npc<Happy>("Hello darling, how's that tunnel coming along?")
         player<Neutral>("I just need to soften the soil a little more and then we'll start digging.")
     }
-    
+
     suspend fun NPCOption<Player>.bucketOfWater() {
         player<Happy>("Hello Alrena.")
         npc<Happy>("Hello darling, how's that tunnel coming along?")
@@ -82,7 +81,7 @@ class Alrena {
             player<Talk>("Great, thanks Alrena!")
         }
     }
-    
+
     suspend fun NPCOption<Player>.fourBucketOfWater() {
         player<Happy>("Hello again Alrena.")
         npc<Neutral>("How's the tunnel going?")
@@ -95,7 +94,7 @@ class Alrena {
             player<Neutral>("Great, thanks Alrena!")
         }
     }
-    
+
     suspend fun NPCOption<Player>.sewer() {
         player<Happy>("Hello Alrena.")
         npc<Neutral>("Hi, have you managed to get through to West Ardougne?")
@@ -108,13 +107,13 @@ class Alrena {
             player<Neutral>("Great, thanks Alrena!")
         }
     }
-    
+
     suspend fun NPCOption<Player>.grillOpen() {
         player<Neutral>("Hello Alrena.")
         npc<Uncertain>("Hello, any word on Elena?")
         player<Sad>("Not yet I'm afraid.")
         npc<Neutral>("Is there anything else I can do to help?")
-        if(player.quest("plague_city") == "spoken_to_jethick") {
+        if (player.quest("plague_city") == "spoken_to_jethick") {
             player<Quiz>("Do you have a picture of Elena?")
             npc<Neutral>("Yes. There should be one in the house somewhere. Let me know if you need anything else.")
         } else {
@@ -126,7 +125,7 @@ class Alrena {
             }
         }
     }
-    
+
     suspend fun NPCOption<Player>.freedElena() {
         npc<Happy>("Thank you for rescuing my daughter! Elena has told me of your bravery in entering a house that could have been plague infected. I can't thank you enough!")
     }

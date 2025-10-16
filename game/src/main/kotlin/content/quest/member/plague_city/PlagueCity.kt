@@ -434,7 +434,7 @@ class PlagueCity : Api {
                             list.add("<maroon>Elena.")
                         } else {
                             list.add("<navy>I need to get into the <maroon>Plague House <navy> in the south east")
-                            list.add("<navy> corner of the city and find <maroon>Elena")
+                            list.add("<navy> corner of the city and find <maroon>Elena<navy>.")
                         }
                     }
                     list.add("")
