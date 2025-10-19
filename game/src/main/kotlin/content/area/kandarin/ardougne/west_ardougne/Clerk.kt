@@ -16,7 +16,7 @@ class Clerk {
     val stages = setOf("has_cure_paper", "gave_cure", "freed_elena", "completed", "completed_with_spell")
 
     init {
-        npcOperate("Talk-to", "clerk") {
+        npcOperate("Talk-to", "clerk_west_ardougne") {
             when (player.quest("plague_city")) {
                 "talk_to_bravek" -> talkToBravek()
                 // todo find out about "has_cure_paper", "gave_cure", "freed_elena"

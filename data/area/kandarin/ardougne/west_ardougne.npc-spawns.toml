@@ -1,6 +1,6 @@
 spawns = [
- { id = "edmond_bottom", x = 2517, y = 9755, members = true },
-  { id = "clerk", x = 2526, y = 3319, direction = "EAST", members = true },
+  { id = "edmond_sewer", x = 2517, y = 9755, members = true },
+  { id = "clerk_west_ardougne", x = 2526, y = 3319, direction = "EAST", members = true },
   { id = "recruiter", x = 2542, y = 3306, members = true },
   { id = "w_ardougnecitizen3", x = 2540, y = 3308, members = true },
   { id = "w_ardougnecitizen4", x = 2536, y = 3308, members = true },

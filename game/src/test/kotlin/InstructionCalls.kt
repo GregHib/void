@@ -126,8 +126,9 @@ fun Player.interfaceSwitch(
 fun Player.equipItem(
     item: String,
     slot: Int = inventory.indexOf(item),
+    option: String = "Wield",
 ) {
-    interfaceOption("inventory", "inventory", "Wield", item = Item(item, 1), slot = slot, optionIndex = Item(item).def.options.indexOf("Wield"))
+    interfaceOption("inventory", "inventory", option, item = Item(item, 1), slot = slot, optionIndex = Item(item).def.options.indexOf(option))
 }
 
 fun Player.dialogueOption(

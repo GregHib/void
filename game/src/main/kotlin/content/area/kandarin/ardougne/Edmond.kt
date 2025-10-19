@@ -26,13 +26,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
@@ -105,7 +103,10 @@ class Edmond {
             player<Happy>("Yes I've got some here.")
             npc<Neutral>("Take them to my wife Alrena, she's inside.")
         } else {
-            // todo if you don't have dwellberries
+            player<Upset>("Sorry, I'm afraid not.")
+            npc<Talk>("You'll probably find them in McGrubor's Wood, just west of Seers' Village. The berries are bright blue so they're easy to spot.")
+            player<Talk>("Okay, I'll go and get some.")
+            npc<Talk>("The foresters keep a close eye on it, but there is a back way in.")
         }
     }
 
@@ -247,30 +248,23 @@ class Edmond {
         delay(4)
         player<Neutral>("Alright, thanks I will.", largeHead = true, clickToContinue = false)
         delay(2)
-        player.open("fade_out")
-        delay(2)
-        player.clearAnim()
-        player.clearCamera()
-        player.tele(2514, 9740)
-        npcs.remove(edmond)
+        cutscene.end()
     }
 
-    fun Context<Player>.questComplete() {
+    suspend fun SuspendableContext<Player>.questComplete() {
         player["plague_city"] = "completed"
         player.jingle("quest_complete_2")
         player.experience.add(Skill.Mining, 2425.0)
         player.inventory.add("a_magic_scroll")
         player.refreshQuestJournal()
         player.inc("quest_points")
-        player.softQueue("quest_complete", 1) {
-            player.questComplete(
-                "Plague City",
-                "1 Quest Point",
-                "2,425 Mining XP",
-                "An Ardougne Teleport Scroll",
-                item = "gas_mask",
-            )
-            npc<Happy>("Now I'd recommend you go and see Elena. She'll want to thank you herself. She lives in the house opposite ours.")
-        }
+        player.questComplete(
+            "Plague City",
+            "1 Quest Point",
+            "2,425 Mining XP",
+            "An Ardougne Teleport Scroll",
+            item = "gas_mask",
+        )
+        npc<Happy>("Now I'd recommend you go and see Elena. She'll want to thank you herself. She lives in the house opposite ours.")
     }
 }

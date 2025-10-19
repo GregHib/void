@@ -88,11 +88,10 @@ class Jethick {
             npc<Neutral>("I don't suppose you could run me a little errand while you're over there? I borrowed this book from them, can you return it?")
             choice {
                 option<Happy>("Yes, I'll return it for you.") {
-                    if (player.inventory.isFull()) {
-                        item("book_turnip_growing_for_beginners", 500, "Jethick shows you the book, but you don't have room to take it.")
-                    } else {
-                        player.inventory.add("book_turnip_growing_for_beginners")
+                    if (player.inventory.add("book_turnip_growing_for_beginners")) {
                         item("book_turnip_growing_for_beginners", 500, "Jethick gives you a book.")
+                    } else {
+                        item("book_turnip_growing_for_beginners", 500, "Jethick shows you the book, but you don't have room to take it.")
                     }
                 }
                 option<Happy>("No, I don't have time for that.")

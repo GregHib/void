@@ -30,27 +30,27 @@ class Ardougne {
     )
 
     init {
-        itemOnObjectOperate("bucket_of_water", "plaguemudpatch2") {
+        itemOnObjectOperate("bucket_of_water", "plague_mud_patch2") {
             if (player.quest("plague_city") == "about_digging") {
                 player.anim("farming_pour_water")
                 player["plague_city"] = "one_bucket_of_water"
                 player.inventory.replace("bucket_of_water", "bucket")
-                statement("You pour water onto the soil. <br> The soil softens slightly.")
+                statement("You pour water onto the soil.<br>The soil softens slightly.")
             } else if (player.quest("plague_city") == "one_bucket_of_water") {
                 player.anim("farming_pour_water")
                 player["plague_city"] = "two_bucket_of_water"
                 player.inventory.replace("bucket_of_water", "bucket")
-                statement("You pour water onto the soil. <br> The soil softens slightly.")
+                statement("You pour water onto the soil.<br>The soil softens slightly.")
             } else if (player.quest("plague_city") == "two_bucket_of_water") {
                 player.anim("farming_pour_water")
                 player["plague_city"] = "three_bucket_of_water"
                 player.inventory.replace("bucket_of_water", "bucket")
-                statement("You pour water onto the soil. <br> The soil softens slightly.")
+                statement("You pour water onto the soil.<br>The soil softens slightly.")
             } else if (player.quest("plague_city") == "three_bucket_of_water") {
                 player.anim("farming_pour_water")
                 player["plague_city"] = "four_bucket_of_water"
                 player.inventory.replace("bucket_of_water", "bucket")
-                statement("You pour water onto the soil. <br> The soil is now soft enough to dig into..")
+                statement("You pour water onto the soil.<br>The soil is now soft enough to dig into..")
             } else if (player.quest("plague_city") == "four_bucket_of_water") {
                 dig()
             } else {
@@ -58,7 +58,7 @@ class Ardougne {
             }
         }
 
-        itemOnObjectOperate("spade", "plaguemudpatch2") {
+        itemOnObjectOperate("spade", "plague_mud_patch2") {
             if (player.quest("plague_city") == "four_bucket_of_water") {
                 dig()
             } else {
@@ -78,14 +78,14 @@ class Ardougne {
             }
         }
 
-        objectOperate("Open", "alrenascupboardshut") {
+        objectOperate("Open", "alrenas_cupboard_shut") {
             player.message("You open the cupboard.")
             player.anim("human_pickupfloor")
             player.sound("cupboard_open")
-            target.replace("alrenascupboardopen", ticks = TimeUnit.MINUTES.toTicks(1))
+            target.replace("alrenas_cupboard_open", ticks = TimeUnit.MINUTES.toTicks(1))
         }
 
-        objectOperate("Search", "alrenascupboardopen") {
+        objectOperate("Search", "alrenas_cupboard_open") {
             if (player.quest("plague_city") != "unstarted" || player.quest("plague_city") != "started") {
                 player.message("You search the wardrobe but you find nothing.")
             } else {

@@ -1,39 +1,39 @@
-[alrenascupboardshut]
+[alrenas_cupboard_shut]
 id = 2524
 examine = "I wonder what's inside?"
 
-[alrenascupboardopen]
+[alrenas_cupboard_open]
 id = 2525
 examine = "It's open."
 
-[plaguekeybarrel]
+[plague_key_barrel]
 id = 2530
 examine = "Used for storage."
 
-[plaguemudpatch1]
+[plague_mud_patch1]
 id = 2531
 examine = "Looks like someone's tried digging here."
 
-[plaguemudpatch2]
+[plague_mud_patch2]
 id = 2532
 
 [plaguemudpile_up]
 id = 2533
 examine = "A pile of what is hopefully mud."
 
-[plaguesewerpipe_open]
+[plague_sewer_pipe_open]
 id = 2542
 examine = "An outlet to the sewer."
 
-[plaguemanholeclosed]
+[plague_manhole_closed]
 id = 2543
 examine = "There's a cover over this manhole."
 
-[plaguemanholeopen]
+[plague_manhole_open]
 id = 2544
 examine = "How dangerous, someone has left this manhole open."
 
-[plaguemanholecover]
+[plague_manhole_cover]
 id = 2545
 examine = "This is supposed to stop people falling down the manhole."
 
@@ -88,3 +88,27 @@ examine = "It's a grill."
 [plague_grill_vis]
 id = 11423
 examine = "It's a grill."
+
+[door_rehnison_opened]
+id = 2538
+examine = "A door."
+
+[door_rehnison_closed]
+id = 2537
+examine = "The door is closed."
+
+[door_civic_office_opened]
+id = 2529
+examine = "A door."
+
+[door_civic_office_closed]
+id = 2528
+examine = "The door is closed."
+
+[door_elena_prison_opened]
+id = 2527
+examine = "The door of a small prison."
+
+[door_elena_prison_closed]
+id = 2526
+examine = "The door of a small prison."

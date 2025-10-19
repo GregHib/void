@@ -55,7 +55,8 @@ class Alrena {
             npc<Neutral>("There we go, all done. While in West Ardougne you must wear this at all times, or you could catch the plague.")
             npc<Neutral>("I'll make a spare mask. I'll hide it in the wardrobe in case the mourners come in.")
         } else {
-            // todo if you don't have dwellberries
+            player<Talk>("I'll try to get some.")
+            npc<Talk>("The best place to look is in McGrubor's Wood, just west of Seers' Village.")
         }
     }
 

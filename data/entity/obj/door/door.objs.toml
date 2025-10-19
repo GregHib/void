@@ -656,30 +656,6 @@ examine = "A door."
 id = 2514
 examine = "The door to the Ranging Guild."
 
-[door_55_opened]
-id = 2527
-examine = "The door of a small prison."
-
-[door_55_closed]
-id = 2526
-examine = "The door of a small prison."
-
-[door_57_opened]
-id = 2529
-examine = "A door."
-
-[door_57_closed]
-id = 2528
-examine = "The door is closed."
-
-[door_rehnison_opened]
-id = 2538
-examine = "A door."
-
-[door_rehnison_closed]
-id = 2537
-examine = "The door is closed."
-
 [door_69_opened]
 id = 2538
 examine = "A door."

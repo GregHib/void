@@ -5,6 +5,7 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
+import content.quest.questCompleted
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -26,15 +27,11 @@ class WestArdougne {
 
     val floorItems: FloorItems by inject()
 
-    val visStages = setOf("freed_elena", "completed", "completed_with_spell")
-
-    val rehnisonStages = setOf("returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance", "talk_to_bravek", "has_cure_paper", "gave_cure", "freed_elena", "completed", "completed_with_spell")
-
-    val doorStages = setOf("talk_to_bravek", "has_cure_paper", "gave_cure", "freed_elena", "completed", "completed_with_spell")
+    val doorStages = setOf("returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance")
 
     init {
-        objectOperate("Search", "plaguekeybarrel") {
-            if (player.quest("plague_city") != "freed_elena" || player.ownsItem("a_small_key")) {
+        objectOperate("Search", "plague_key_barrel") {
+            if (player.quest("plague_city") == "freed_elena" || player.questCompleted("plague_city") || player.ownsItem("a_small_key")) {
                 player.message("The barrel is empty.")
                 return@objectOperate
             }
@@ -44,8 +41,8 @@ class WestArdougne {
             item("a_small_key", 300, "You find a small key in the barrel.")
         }
 
-        objectOperate("Open", "door_55_closed") {
-            if (player.tile.x == 2540 || player.inventory.contains("a_small_key") || visStages.contains(player.quest("plague_city"))) {
+        objectOperate("Open", "door_elena_prison_closed") {
+            if (player.tile.x == 2540 || player.inventory.contains("a_small_key")) {
                 enterDoor(target, delay = 2)
                 return@objectOperate
             }
@@ -66,17 +63,17 @@ class WestArdougne {
             }
         }
 
-        objectOperate("Open", "plaguemanholeclosed") {
-            target.replace("plaguemanholeopen")
-            target.replace("plaguemanholecover", tile = Tile(2529, 3302))
+        objectOperate("Open", "plague_manhole_closed") {
+            target.replace("plague_manhole_open")
+            target.replace("plague_manhole_cover", tile = Tile(2529, 3302))
         }
 
-        objectOperate("Close", "plaguemanholecover") {
-            target.replace("plaguemanholeclosed", tile = Tile(2529, 3303))
+        objectOperate("Close", "plague_manhole_cover") {
+            target.replace("plague_manhole_closed", tile = Tile(2529, 3303))
             target.remove()
         }
 
-        objectOperate("Climb-down", "plaguemanholeopen") {
+        objectOperate("Climb-down", "plague_manhole_open") {
             player.anim("human_pickupfloor")
             statement("You climb down through the manhole.", clickToContinue = false)
             player.open("fade_out")
@@ -87,13 +84,12 @@ class WestArdougne {
         }
 
         objectOperate("Open", "door_rehnison_closed") {
-            if (player.tile.y == 3329 || rehnisonStages.contains(player.quest("plague_city"))) {
+            if (player.tile.y == 3329 || player.quest("plague_city") != "spoken_to_jethick") {
                 enterDoor(target, delay = 2)
                 return@objectOperate
             }
             npc<Angry>("ted_rehnison", "Go away. We don't want any.")
             if (player.holdsItem("book_turnip_growing_for_beginners")) {
-                npc<Angry>("ted_rehnison", "Go away. We don't want any.")
                 player<Neutral>("I'm a friend of Jethick's, I have come to return a book he borrowed.")
                 npc<Neutral>("ted_rehnison", "Oh... Why didn't you say, come in then.")
                 enterDoor(target, delay = 2)
@@ -104,8 +100,8 @@ class WestArdougne {
             }
         }
 
-        objectOperate("Open", "door_57_closed") {
-            if (player.tile.x == 2533 || doorStages.contains(player.quest("plague_city"))) {
+        objectOperate("Open", "door_civic_office_closed") {
+            if (player.tile.x == 2533 || !doorStages.contains(player.quest("plague_city"))) {
                 enterDoor(target, delay = 2)
                 return@objectOperate
             }

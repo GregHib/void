@@ -24,7 +24,7 @@ id = 711
 categories = ["human"]
 examine = "The city warder of West Ardougne."
 
-[clerk]
+[clerk_west_ardougne]
 id = 713
 categories = ["human"]
 examine = "A bureaucratic administrator."
@@ -101,7 +101,7 @@ examine = "The city warder of West Ardougne."
 id = 3213
 wander_radius = 4
 
-[edmond_bottom]
+[edmond_sewer]
 id = 3214
 wander_radius = 4
 

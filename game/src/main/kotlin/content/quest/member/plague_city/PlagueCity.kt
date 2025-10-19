@@ -520,7 +520,7 @@ class PlagueCity : Api {
             player.questJournal("Plague City", lines)
         }
 
-        itemOnObjectOperate("rope", "plaguesewerpipe_open") {
+        itemOnObjectOperate("rope", "plague_sewer_pipe_open") {
             player<Talk>("Maybe I should try opening it first.")
         }
 
@@ -528,7 +528,7 @@ class PlagueCity : Api {
             ropeOnGrill()
         }
 
-        objectOperate("Climb-up", "plaguesewerpipe_open") {
+        objectOperate("Climb-up", "plague_sewer_pipe_open") {
             if (player["plaguecity_pipe", "grill"] == "grill_open" &&
                 stages.contains(player.quest("plague_city"))
             ) {

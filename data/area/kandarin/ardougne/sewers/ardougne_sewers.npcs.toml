@@ -39,9 +39,6 @@ max_hit_melee = 20
 respawn_delay = 50
 examine = "A member of the Hazeel cult."
 
-[elena_southern_ardougne_sewer]
-id = 715
-
 [elena_southern_ardougne_sewer_normal]
 id = 3215
 
