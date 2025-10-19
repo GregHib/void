@@ -7,7 +7,6 @@ style = "stab"
 respawn_delay = 60
 attack_speed = 4
 wander_radius = 25
-hunt_mode = "cowardly"
 drop_table = "imp"
 combat_anims = "imp"
 combat_sounds = "imp"

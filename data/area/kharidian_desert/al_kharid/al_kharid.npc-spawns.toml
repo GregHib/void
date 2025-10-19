@@ -19,6 +19,8 @@ spawns = [
     { id = "man_3", x = 3303, y = 3199 },
     { id = "ellis", x = 3276, y = 3193 },
     { id = "al_the_camel", x = 3274, y = 3168 },
+    { id = "fremennik_warrior", x = 3275, y = 3175,  direction = "EAST"},
+    { id = "man_al_kharid", x = 3277, y = 3187 },
     # 13106
     { id = "mubariz", x = 3314, y = 3240 },
     { id = "border_guard_al_kharid", x = 3266, y = 3229, direction = "SOUTH" },
@@ -30,7 +32,6 @@ spawns = [
     { id = "rat", x = 3319, y = 3250 },
     { id = "ali_morrisane", x = 3304, y = 3211 },
     { id = "captain_dalbur", x = 3279, y = 3212 },
-    { id = "fremennik_warrior", x = 3273, y = 3179 },
     { id = "faruq", x = 3301, y = 3208 },
     { id = "camel_ardougne", x = 3310, y = 3269 },
     { id = "tool_leprechaun_al_kharid", x = 3318, y = 3203, members = true },
@@ -50,7 +51,6 @@ spawns = [
     { id = "al_kharid_warrior", x = 3301, y = 3170 },
     { id = "al_kharid_warrior", x = 3301, y = 3174 },
     { id = "man_al_kharid", x = 3293, y = 3205 },
-    { id = "man_al_kharid", x = 3275, y = 3189 },
     { id = "apprentice", x = 3321, y = 3139 },
     { id = "sorceress", x = 3320, y = 3138, level = 1 },
 ]
