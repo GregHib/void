@@ -141,6 +141,7 @@ fun Player.dialogueOption(
 
 fun Player.dialogueContinue(repeat: Int = 1) {
     repeat(repeat) {
+        require(dialogue != null) { "No dialogue found for $this. step $it/$repeat" }
         dialogueOption("continue")
     }
 }
