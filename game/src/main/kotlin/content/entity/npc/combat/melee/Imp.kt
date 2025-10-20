@@ -6,6 +6,7 @@ import content.entity.sound.areaSound
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
+import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -35,8 +36,17 @@ class Imp : Api {
         }
 
         npcCombatDamage("imp") { npc ->
+            val player = source
             if (npc.levels.get(Skill.Constitution) - damage > 0) {
-                teleportImp(npc, teleportChanceHit)
+                if (random.nextDouble() < retreatChance) {
+                    if (npc.levels.get(Skill.Constitution) - damage < 10) {
+                        npc.softQueue("imp_retreat") {
+                            npc.mode = Retreat(npc, player)
+                        }
+                    } else if (npc.mode !is Retreat) {
+                        teleportImp(npc, teleportChanceHit)
+                    }
+                }
             }
         }
     }
@@ -46,6 +56,7 @@ class Imp : Api {
     private val teleportChance = 0.25
     private val teleportChanceHit = 0.10
     private val telePoofVfxRadius = 5
+    private val retreatChance = 0.50
 
     fun randomValidTile(npc: NPC): Tile {
         repeat(10) {
@@ -64,7 +75,6 @@ class Imp : Api {
         if (random.nextDouble() > chance) {
             return
         }
-
         npc.softTimers.restart("teleport_timer")
         val destination = randomValidTile(npc)
         if (destination == npc.tile) {
