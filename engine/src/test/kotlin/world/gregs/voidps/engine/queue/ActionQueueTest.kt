@@ -5,13 +5,17 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.test.mock.declare
+import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
+import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.script.KoinMock
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
-internal class ActionQueueTest {
+internal class ActionQueueTest : KoinMock() {
 
     private lateinit var player: Player
     private lateinit var queue: ActionQueue
@@ -23,6 +27,11 @@ internal class ActionQueueTest {
         player.queue = queue
         player.interfaces = mockk(relaxed = true)
         every { player.interfaces.get(any()) } returns null
+        val definitions = mockk<ClientScriptDefinitions>(relaxed = true)
+        every { definitions.get(any<String>()) } returns ClientScriptDefinition()
+        declare {
+            definitions
+        }
     }
 
     @Test

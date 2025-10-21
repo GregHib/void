@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
@@ -130,9 +129,7 @@ class SteppingStones {
 
     suspend fun ObjectOption<Player>.shiloCross() {
         if (!player.has(Skill.Agility, 30)) {
-            player.queue("statement") {
-                statement("The stepping stone looks very small and slippery. You'd better have an Agility level of 32.")
-            }
+            statement("The stepping stone looks very small and slippery. You'd better have an Agility level of 30.")
             return
         }
         val direction = target.tile.delta(player.tile).toDirection()

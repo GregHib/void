@@ -30,7 +30,7 @@ class AlKharidMineTest : WorldTest() {
         player.objectOption(rocks, "Climb")
         tick(2)
 
-        assertTrue(player.containsMessage("You must have an Agility level of at least 38"))
+        assertTrue(player.containsMessage("You need an Agility level of 38"))
     }
 
     @Test
@@ -52,6 +52,6 @@ class AlKharidMineTest : WorldTest() {
         player.objectOption(rocks, "Climb")
         tick(2)
 
-        assertTrue(player.containsMessage("You must have an Agility level of at least 38"))
+        assertTrue(player.containsMessage("You need an Agility level of 38"))
     }
 }

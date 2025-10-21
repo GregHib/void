@@ -96,7 +96,7 @@ class SteppingStonesTest : WorldTest() {
         player.objectOption(stones, "Cross")
         tick(2)
 
-        assertTrue(player.containsMessage("You need at least 30"))
+        assertEquals(Tile(2925, 2951), player.tile)
     }
 
     @Test

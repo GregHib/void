@@ -83,6 +83,6 @@ class BrimhavenShortcutsTest : WorldTest() {
         player.objectOption(log, "Walk-across")
         tick(2)
 
-        assertTrue(player.containsMessage("You need at least 30 Agility"))
+        assertTrue(player.containsMessage("You need an Agility level of 30"))
     }
 }
