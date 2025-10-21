@@ -313,9 +313,7 @@ class MageOfZamorak : Api {
                 npc<Talk>("I'll give you a scrying orb with a standard cypher spell cast upon it. The orb will absorb mystical energies that it is exposed to.")
                 npc<Talk>("If you teleport to the Rune Essence Mine from three different locations, the orb will absorb the energies of the spell and allow us to reverse-engineer the magic behind it.")
                 npc<Quiz>("Do you know of three different people who can teleport you there?")
-                // TODO If knows more than one
-//                player<Uncertain>("I think so?")
-                player<Uncertain>("Maybe?")
+                player<Uncertain>(if (player["last_npc_teleport_to_rune_essence_mine", "aubury"] != "aubury") "I think so?" else "Maybe?")
                 npc<Talk>("Well if not, I'm sure one of those fools in the Order of Wizards can tell you. Now, here's the orb.")
                 if (!player.inventory.add("scrying_orb")) {
                     item("scrying_orb", 400, "The Mage of Zamorak tries to hand you an orb, but you don't have enough room to take it.")
