@@ -15,7 +15,7 @@ interface Moved {
 
     companion object : Moved {
         var playerDispatcher = ListDispatcher<Moved>()
-        var npcDispatcher = MapDispatcher<Moved>("@Id")
+        var npcDispatcher = MapDispatcher<Moved>("@Id", "")
 
         override fun move(player: Player, from: Tile, to: Tile) {
             for (instance in playerDispatcher.instances) {
@@ -24,7 +24,7 @@ interface Moved {
         }
 
         override fun move(npc: NPC, from: Tile, to: Tile) {
-            npcDispatcher.forEach(npc.id) { instance ->
+            npcDispatcher.forEach(npc.id, "*") { instance ->
                 instance.move(npc, from, to)
             }
         }

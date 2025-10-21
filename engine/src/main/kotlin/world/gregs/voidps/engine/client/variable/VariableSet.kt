@@ -13,17 +13,17 @@ interface VariableSet {
     fun variableSet(npc: NPC, key: String, from: Any?, to: Any?) {}
 
     companion object : VariableSet {
-        var playerDispatcher = MapDispatcher<VariableSet>("@Variable")
-        var npcDispatcher = MapDispatcher<VariableSet>("@Variable")
+        var playerDispatcher = MapDispatcher<VariableSet>("@Variable", "")
+        var npcDispatcher = MapDispatcher<VariableSet>("@Variable", "")
 
         override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-            playerDispatcher.forEach(key) { instance ->
+            playerDispatcher.forEach(key, "*") { instance ->
                 instance.variableSet(player, key, from, to)
             }
         }
 
         override fun variableSet(npc: NPC, key: String, from: Any?, to: Any?) {
-            npcDispatcher.forEach("$key:${npc.id}", key) { instance ->
+            npcDispatcher.forEach("$key:${npc.id}", key, "*") { instance ->
                 instance.variableSet(npc, key, from, to)
             }
         }
