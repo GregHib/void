@@ -50,7 +50,7 @@ class ExplorerJack {
                 player<Happy>("Thank you. Is there a reward?")
                 npc<Talk>("Ah, yes indeed.")
                 if (!player.inventory.add("explorers_ring_1", "antique_lamp_beginner_lumbridge_tasks")) {
-                    npc<Talk>("You don't seem to have space, speak to me again when you have two free spaces in your inventory.") // TODO proper message
+                    npc<Talk>("You don't seem to have space, speak to me again when you have two free spaces in your inventory.") // TODO proper message (not in osrs)
                     return@npcOperate
                 }
                 player["unlocked_emote_explore"] = true

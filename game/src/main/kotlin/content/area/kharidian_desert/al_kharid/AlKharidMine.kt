@@ -16,7 +16,7 @@ class AlKharidMine {
     init {
         objectOperate("Climb", "al_kharid_mine_shortcut_bottom") {
             if (!player.has(Skill.Agility, 38)) {
-                player.message("You must have an Agility level of at least 38 to climb these rocks.") // TODO proper message
+                player.message("You need an Agility level of 38 to negotiate these rocks.")
                 return@objectOperate
             }
             player.face(Direction.EAST)
@@ -29,7 +29,7 @@ class AlKharidMine {
 
         objectOperate("Climb", "al_kharid_mine_shortcut_top") {
             if (!player.has(Skill.Agility, 38)) {
-                player.message("You must have an Agility level of at least 38 to climb these rocks.") // TODO proper message
+                player.message("You need an Agility level of 38 to negotiate these rocks.")
                 return@objectOperate
             }
             player.face(Direction.EAST)

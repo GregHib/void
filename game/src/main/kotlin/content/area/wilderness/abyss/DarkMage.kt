@@ -82,7 +82,7 @@ class DarkMage {
             choice {
                 option<Quiz>("Can I have another Abyssal book?") {
                     if (player.ownsItem("abyssal_book")) {
-                        npc<Talk>("You already have one, don't waste my time.") // TODO proper message
+                        npc<Talk>("You already have one, don't waste my time.") // TODO proper message (not in osrs)
                     } else if (player.inventory.isFull()) {
                         npc<Angry>("Don't waste my time if you don't have enough free space to take it.")
                     } else {

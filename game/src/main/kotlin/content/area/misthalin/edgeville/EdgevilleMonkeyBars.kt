@@ -18,7 +18,7 @@ class EdgevilleMonkeyBars {
     init {
         objectOperate("Swing across", "edgeville_monkey_bars") {
             if (!player.has(Skill.Agility, 15)) {
-                player.message("You need at least 15 Agility to do that.") // TODO proper message
+                player.message("You need an Agility level of 15 to swing across the bars.")
                 return@objectOperate
             }
             val north = player.tile.y > 9967

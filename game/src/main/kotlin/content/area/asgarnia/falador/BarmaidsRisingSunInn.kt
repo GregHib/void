@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -35,9 +34,7 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeTo
 class BarmaidsRisingSunInn {
 
     val barCrawl: suspend ItemOnNPC.() -> Unit = {
-        if (player.containsVarbit("barcrawl_signatures", "hand_of_death_cocktail")) {
-            player.noInterest() // TODO proper message
-        } else {
+        if (!player.containsVarbit("barcrawl_signatures", "hand_of_death_cocktail")) {
             barCrawl()
         }
     }

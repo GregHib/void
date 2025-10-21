@@ -3,6 +3,7 @@ package content.skill.agility.shortcut
 import content.entity.combat.hit.damage
 import content.entity.gfx.areaGfx
 import content.entity.player.combat.special.specialAttackEnergy
+import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
 import content.skill.firemaking.Light
 import world.gregs.voidps.engine.client.message
@@ -128,7 +129,7 @@ class SteppingStones {
 
     suspend fun ObjectOption<Player>.shiloCross() {
         if (!player.has(Skill.Agility, 30)) {
-            player.message("You need at least 30 Agility to do that.") // TODO proper message
+            statement("The stepping stone looks very small and slippery. You'd better have an Agility level of 30.")
             return
         }
         val direction = target.tile.delta(player.tile).toDirection()

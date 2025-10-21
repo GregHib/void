@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteractio
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
 
@@ -62,7 +61,6 @@ class BartenderBlueMoonInn {
 
         itemOnNPCApproach("barcrawl_card", "bartender_blue_moon_inn") {
             if (player.containsVarbit("barcrawl_signatures", "uncle_humphreys_gutrot")) {
-                player.noInterest() // TODO proper message
                 return@itemOnNPCApproach
             }
             barCrawl()

@@ -45,6 +45,6 @@ class EdgevilleMonkeyBarsTest : WorldTest() {
         player.objectOption(monkeyBars, "Swing across")
         tick(2)
 
-        assertTrue(player.containsMessage("You need at least 15 Agility"))
+        assertTrue(player.containsMessage("You need an Agility level of 15"))
     }
 }
