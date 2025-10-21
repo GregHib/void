@@ -1,6 +1,13 @@
 package content.area.asgarnia.burthorpe
 
+import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.Uncertain
 import content.entity.player.dialogue.type.item
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.statement
+import content.quest.questCompleted
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -21,7 +28,14 @@ class HeroesGuild {
         }
 
         npcOperate("Talk-to", "achietties") {
-
+            npc<Talk>("Greetings. Welcome to the Heroes' Guild.")
+            if (player.questCompleted("heroes_quest")) {
+                return@npcOperate
+            }
+            npc<Talk>("Only the greatest heroes of this land may gain entrance to this guild.")
+            player<Quiz>("I'm a hero. May I apply to join?")
+            npc<Uncertain>("You're a hero? I've never heard of you.")
+            statement("You do not meet all of the requirements to start the Heroes' Quest.")
         }
     }
 }
