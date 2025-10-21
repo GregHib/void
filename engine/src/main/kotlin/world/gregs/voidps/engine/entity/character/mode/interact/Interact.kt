@@ -100,6 +100,7 @@ class Interact(
     fun updateRange(approachRange: Int?, update: Boolean = true) {
         updateRange = update && approachRange != null
         this.approachRange = approachRange
+        launched = false
     }
 
     override fun start() {

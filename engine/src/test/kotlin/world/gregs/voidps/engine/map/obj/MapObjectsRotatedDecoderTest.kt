@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.map.obj
 
+import net.pearx.kasechange.toSentenceCase
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
@@ -135,8 +136,10 @@ class MapObjectsRotatedDecoderTest {
         Pair(Tile(0, 7), Tile(0, 7)),
         Pair(Tile(7, 0), Tile(7, 0))
     ).map { (tile, expected) ->
-        val result = rotate(tile.x, tile.y, 1, 1, 0, 0)
-        assertEquals(expected, result, "Failed for $tile")
+        dynamicTest("Rotate $tile") {
+            val result = rotate(tile.x, tile.y, 1, 1, 0, 0)
+            assertEquals(expected, result, "Failed for $tile")
+        }
     }
 
     @Test
