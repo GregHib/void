@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.queue
 
 import kotlinx.coroutines.*
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
@@ -85,7 +86,7 @@ class ActionQueue(
 
     private fun processed(action: Action<*>): Boolean {
         if (action.priority.closeInterfaces) {
-            (character as? Player)?.closeMenu()
+            (character as? Player)?.closeInterfaces()
         }
         if (canProcess(action) && action.process()) {
             scope.launch(action)

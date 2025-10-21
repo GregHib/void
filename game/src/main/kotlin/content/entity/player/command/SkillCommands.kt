@@ -64,7 +64,7 @@ class SkillCommands {
             target.experience.set(skill, 14000000.0)
             target.levels.restore(skill, 1000)
         }
-        target.softQueue("", 1) {
+        target.softQueue("clear_flash", 1) {
             player.clear("skill_stat_flash")
         }
     }
