@@ -10,13 +10,6 @@ format = "map"
 default = "total"
 values = { total = 17 }
 
-[plague_city]
-id = 165
-format = "map"
-persist = true
-default = "unstarted"
-values = { unstarted = 0, completed = 29 }
-
 [biohazard]
 id = 68
 format = "map"

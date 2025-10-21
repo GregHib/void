@@ -313,10 +313,6 @@ id = 6386
 id = 6891
 examine = "He looks like the type of guy who would keep penguins."
 
-[alrena]
-id = 710
-examine = "She looks concerned."
-
 [tool_leprechaun_ardougne]
 id = 7563
 examine = "Looks after your Farming tools."

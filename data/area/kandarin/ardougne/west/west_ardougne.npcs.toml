@@ -1,17 +1,3 @@
-[ted_rehnison]
-id = 721
-
-[martha_rehnison]
-id = 722
-
-[billy_rehnison]
-id = 723
-examine = "The Rehnisons' eldest son."
-
-[milli_rehnison]
-id = 724
-examine = "She doesn't seem very happy."
-
 [kilron_west_ardougne]
 id = 349
 examine = "He looks shifty."
@@ -30,23 +16,12 @@ id = 373
 [child_west_ardougne]
 id = 6345
 
-[bravek_west_ardougne]
-id = 711
-examine = "The city warder of West Ardougne."
-
-[clerk_west_ardougne]
-id = 713
-examine = "A bureaucratic administrator."
-
 [head_mourner_west_ardougne]
 id = 716
 
 [recruiter_west_ardougne]
 id = 720
 examine = "A member of the Ardougne Royal Army."
-
-[jethick_west_ardougne]
-id = 725
 
 [man_west_ardougne]
 id = 728
@@ -55,9 +30,6 @@ examine = "One of Gielinor's many citizens."
 [man_west_ardougne_2]
 id = 729
 examine = "One of Gielinor's many citizens."
-
-[edmond_western_ardougne_sewer]
-id = 3214
 
 [mourner_vial_1]
 id = 717
@@ -116,10 +88,6 @@ str = 10
 def = 10
 style = "crush"
 max_hit_melee = 20
-examine = "A mourner, or plague healer."
-
-[mourner_guard]
-id = 3216
 examine = "A mourner, or plague healer."
 
 [mourner]

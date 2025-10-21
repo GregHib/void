@@ -1,0 +1,23 @@
+[gasmask_application]
+id = 3185
+
+[hangover_drink]
+id = 3186
+
+[lift_and_pull]
+id = 3187
+
+[straight_rope_lift]
+id = 3188
+
+[hanging_rope_lift]
+id = 3189
+
+[pipe_grill]
+id = 3190
+
+[rope_tie]
+id = 3191
+
+[pull_on_pipe]
+id = 3192

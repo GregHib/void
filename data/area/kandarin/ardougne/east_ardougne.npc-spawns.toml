@@ -13,6 +13,8 @@ spawns = [
   { id = "banker_4", x = 2618, y = 3330, direction = "NORTH", members = true },
   { id = "banker_4", x = 2619, y = 3330, direction = "NORTH", members = true },
   { id = "musician_fishing_guild", x = 2605, y = 3385, direction = "SOUTH", members = true },
+  { id = "alrena", x = 2573, y = 3333, members = true },
+  { id = "elena2", x = 2592, y = 3336, members = true },
 # 10547
   { id = "banker_3", x = 2657, y = 3286, direction = "WEST", members = true },
   { id = "banker_3", x = 2657, y = 3283, direction = "WEST", members = true },
@@ -195,7 +197,6 @@ spawns = [
   { id = "penguin_keeper_ardougne", x = 2598, y = 3272 },
   { id = "farmer", x = 2645, y = 3367 },
   { id = "farmer", x = 2652, y = 3351 },
-  { id = "alrena", x = 2573, y = 3333, members = true },
   { id = "tool_leprechaun_ardougne", x = 2632, y = 3313, members = true },
   { id = "zookeeper_2", x = 2619, y = 3279 },
   { id = "zookeeper_3", x = 2603, y = 3284 },
