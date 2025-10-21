@@ -34,6 +34,7 @@ class PlagueCityTest : WorldTest() {
         player.inventory.add("picture_plague_city")
         player.inventory.add("hangover_cure")
         val edmond = createNPC("edmond_ardougne", Tile(2568, 3334))
+        tick(1)
         player.npcOption(edmond, "Talk-to")
         tick(2)
         player.dialogueContinue(4)
