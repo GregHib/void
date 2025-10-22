@@ -1,0 +1,86 @@
+[cactus_patch_weeded]
+id = 7743
+
+[cactus_patch_weeds_1]
+id = 7744
+
+[cactus_patch_weeds_2]
+id = 7745
+
+[cactus_patch_weeds_3]
+id = 7746
+
+[cactus_seedling]
+id = 7747
+
+[cactus_1]
+id = 7748
+
+[cactus_2]
+id = 7749
+
+[cactus_3]
+id = 7750
+
+[cactus_4]
+id = 7751
+
+[cactus_5]
+id = 7752
+
+[cactus_6]
+id = 7753
+
+[cactus_fullygrown]
+id = 7754
+
+[cactus_spines_1]
+id = 7755
+
+[cactus_spines_2]
+id = 7756
+
+[cactus_spines_3]
+id = 7757
+
+[cactus_claimxp]
+id = 7758
+
+[cactus_1_diseased]
+id = 7759
+
+[cactus_2_diseased]
+id = 7760
+
+[cactus_3_diseased]
+id = 7761
+
+[cactus_4_diseased]
+id = 7762
+
+[cactus_5_diseased]
+id = 7763
+
+[cactus_6_diseased]
+id = 7764
+
+[cactus_1_dead]
+id = 7765
+
+[cactus_2_dead]
+id = 7766
+
+[cactus_3_dead]
+id = 7767
+
+[cactus_4_dead]
+id = 7768
+
+[cactus_5_dead]
+id = 7769
+
+[cactus_6_dead]
+id = 7770
+
+[farming_cactus_patch]
+id = 7771

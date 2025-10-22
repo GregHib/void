@@ -1,0 +1,603 @@
+[apple_tree_seedling]
+id = 7935
+
+[apple_tree_1]
+id = 7936
+
+[apple_tree_2]
+id = 7937
+
+[apple_tree_3]
+id = 7938
+
+[apple_tree_4]
+id = 7939
+
+[apple_tree_5]
+id = 7940
+
+[apple_tree_fullygrown]
+id = 7941
+examine = "A fully grown apple tree."
+
+[apple_tree_fruit_1]
+id = 7942
+
+[apple_tree_fruit_2]
+id = 7943
+
+[apple_tree_fruit_3]
+id = 7944
+
+[apple_tree_fruit_4]
+id = 7945
+
+[apple_tree_fruit_5]
+id = 7946
+
+[apple_tree_fruit_6]
+id = 7947
+
+[apple_tree_claim_xp]
+id = 7948
+
+[apple_tree_1_diseased]
+id = 7949
+
+[apple_tree_2_diseased]
+id = 7950
+
+[apple_tree_3_diseased]
+id = 7951
+
+[apple_tree_4_diseased]
+id = 7952
+
+[apple_tree_5_diseased]
+id = 7953
+
+[apple_tree_fullygrown_diseased]
+id = 7954
+
+[apple_tree_1_dead]
+id = 7955
+
+[apple_tree_2_dead]
+id = 7956
+
+[apple_tree_3_dead]
+id = 7957
+
+[apple_tree_4_dead]
+id = 7958
+
+[apple_tree_5_dead]
+id = 7959
+
+[apple_tree_fullygrown_dead]
+id = 7960
+
+[apple_tree_stump]
+id = 7961
+examine = "This apple tree has been cut down."
+
+[farming_fruit_tree_patch_1]
+id = 7962
+
+[farming_fruit_tree_patch_2]
+id = 7963
+
+[farming_fruit_tree_patch_3]
+id = 7964
+
+[farming_fruit_tree_patch_4]
+id = 7965
+
+[pineapple_tree_seedling]
+id = 7966
+
+[pineapple_tree_1]
+id = 7967
+
+[pineapple_tree_2]
+id = 7968
+
+[pineapple_tree_3]
+id = 7969
+
+[pineapple_tree_4]
+id = 7970
+
+[pineapple_tree_5]
+id = 7971
+
+[pineapple_tree_fullygrown]
+id = 7972
+
+[pineapple_tree_fruit_1]
+id = 7973
+
+[pineapple_tree_fruit_2]
+id = 7974
+
+[pineapple_tree_fruit_3]
+id = 7975
+
+[pineapple_tree_fruit_4]
+id = 7976
+
+[pineapple_tree_fruit_5]
+id = 7977
+
+[pineapple_tree_fruit_6]
+id = 7978
+
+[pineapple_tree_claim_xp]
+id = 7979
+
+[pineapple_tree_1_diseased]
+id = 7980
+
+[pineapple_tree_2_diseased]
+id = 7981
+
+[pineapple_tree_3_diseased]
+id = 7982
+
+[pineapple_tree_4_diseased]
+id = 7983
+
+[pineapple_tree_5_diseased]
+id = 7984
+
+[pineapple_tree_fullygrown_diseased]
+id = 7985
+
+[pineapple_tree_1_dead]
+id = 7986
+
+[pineapple_tree_2_dead]
+id = 7987
+
+[pineapple_tree_3_dead]
+id = 7988
+
+[pineapple_tree_4_dead]
+id = 7989
+
+[pineapple_tree_5_dead]
+id = 7990
+
+[pineapple_tree_fullygrown_dead]
+id = 7991
+
+[pineapple_tree_stump]
+id = 7992
+
+[banana_tree_seedling]
+id = 7993
+
+[banana_tree_1]
+id = 7994
+
+[banana_tree_2]
+id = 7995
+
+[banana_tree_3]
+id = 7996
+
+[banana_tree_4]
+id = 7997
+
+[banana_tree_5]
+id = 7998
+
+[banana_tree_claim_xp]
+id = 7999
+
+[banana_tree_fullygrown]
+id = 8000
+examine = "A fully grown banana tree."
+
+[banana_tree_fruit_1]
+id = 8001
+
+[banana_tree_fruit_2]
+id = 8002
+
+[banana_tree_fruit_3]
+id = 8003
+
+[banana_tree_fruit_4]
+id = 8004
+
+[banana_tree_fruit_5]
+id = 8005
+
+[banana_tree_fruit_6]
+id = 8006
+
+[banana_tree_1_diseased]
+id = 8007
+
+[banana_tree_2_diseased]
+id = 8008
+
+[banana_tree_3_diseased]
+id = 8009
+
+[banana_tree_4_diseased]
+id = 8010
+
+[banana_tree_5_diseased]
+id = 8011
+
+[banana_tree_fullygrown_diseased]
+id = 8012
+
+[banana_tree_1_dead]
+id = 8013
+
+[banana_tree_2_dead]
+id = 8014
+
+[banana_tree_3_dead]
+id = 8015
+
+[banana_tree_4_dead]
+id = 8016
+
+[banana_tree_5_dead]
+id = 8017
+
+[banana_tree_fullygrown_dead]
+id = 8018
+
+[banana_tree_stump]
+id = 8019
+examine = "This banana tree has been cut down."
+
+[curry_tree_seedling]
+id = 8020
+
+[curry_tree_1]
+id = 8021
+
+[curry_tree_2]
+id = 8022
+
+[curry_tree_3]
+id = 8023
+
+[curry_tree_4]
+id = 8024
+
+[curry_tree_5]
+id = 8025
+
+[curry_tree_fullygrown]
+id = 8026
+examine = "A fully grown curry tree."
+
+[curry_tree_fruit_1]
+id = 8027
+
+[curry_tree_fruit_2]
+id = 8028
+
+[curry_tree_fruit_3]
+id = 8029
+
+[curry_tree_fruit_4]
+id = 8030
+
+[curry_tree_fruit_5]
+id = 8031
+
+[curry_tree_fruit_6]
+id = 8032
+
+[curry_tree_claim_xp]
+id = 8033
+
+[curry_tree_1_diseased]
+id = 8034
+
+[curry_tree_2_diseased]
+id = 8035
+
+[curry_tree_3_diseased]
+id = 8036
+
+[curry_tree_4_diseased]
+id = 8037
+
+[curry_tree_5_diseased]
+id = 8038
+
+[curry_tree_fullygrown_diseased]
+id = 8039
+
+[curry_tree_1_dead]
+id = 8040
+
+[curry_tree_2_dead]
+id = 8041
+
+[curry_tree_3_dead]
+id = 8042
+
+[curry_tree_4_dead]
+id = 8043
+
+[curry_tree_5_dead]
+id = 8044
+
+[curry_tree_fullygrown_dead]
+id = 8045
+
+[curry_tree_stump]
+id = 8046
+examine = "This curry tree has been cut down."
+
+[fruit_tree_patch_weeded]
+id = 8047
+
+[fruit_tree_patch_weeds_1]
+id = 8048
+
+[fruit_tree_patch_weeds_2]
+id = 8049
+
+[fruit_tree_patch_weeds_3]
+id = 8050
+
+[orange_tree_seedling]
+id = 8051
+
+[orange_tree_1]
+id = 8052
+
+[orange_tree_2]
+id = 8053
+
+[orange_tree_3]
+id = 8054
+
+[orange_tree_4]
+id = 8055
+
+[orange_tree_5]
+id = 8056
+
+[orange_tree_fullygrown]
+id = 8057
+examine = "A fully grown orange tree."
+
+[orange_tree_fruit_1]
+id = 8058
+
+[orange_tree_fruit_2]
+id = 8059
+
+[orange_tree_fruit_3]
+id = 8060
+
+[orange_tree_fruit_4]
+id = 8061
+
+[orange_tree_fruit_5]
+id = 8062
+
+[orange_tree_fruit_6]
+id = 8063
+
+[orange_tree_claim_xp]
+id = 8064
+
+[orange_tree_1_diseased]
+id = 8065
+
+[orange_tree_2_diseased]
+id = 8066
+
+[orange_tree_3_diseased]
+id = 8067
+
+[orange_tree_4_diseased]
+id = 8068
+
+[orange_tree_5_diseased]
+id = 8069
+
+[orange_tree_fullygrown_diseased]
+id = 8070
+examine = "This orange tree looks like it could do with pruning with secateurs."
+
+[orange_tree_1_dead]
+id = 8071
+
+[orange_tree_2_dead]
+id = 8072
+
+[orange_tree_3_dead]
+id = 8073
+
+[orange_tree_4_dead]
+id = 8074
+
+[orange_tree_5_dead]
+id = 8075
+
+[orange_tree_fullygrown_dead]
+id = 8076
+
+[orange_tree_stump]
+id = 8077
+examine = "This orange tree has been cut down."
+
+[palm_tree_seedling]
+id = 8078
+
+[palm_tree_1]
+id = 8079
+
+[palm_tree_2]
+id = 8080
+
+[palm_tree_3]
+id = 8081
+
+[palm_tree_4]
+id = 8082
+
+[palm_tree_5]
+id = 8083
+
+[palm_tree_fullygrown]
+id = 8084
+examine = "A fully grown palm tree."
+
+[palm_tree_fruit_1]
+id = 8085
+
+[palm_tree_fruit_2]
+id = 8086
+
+[palm_tree_fruit_3]
+id = 8087
+
+[palm_tree_fruit_4]
+id = 8088
+
+[palm_tree_fruit_5]
+id = 8089
+
+[palm_tree_fruit_6]
+id = 8090
+
+[palm_tree_claim_xp]
+id = 8091
+
+[palm_tree_1_diseased]
+id = 8092
+
+[palm_tree_2_diseased]
+id = 8093
+
+[palm_tree_3_diseased]
+id = 8094
+
+[palm_tree_4_diseased]
+id = 8095
+
+[palm_tree_5_diseased]
+id = 8096
+
+[palm_tree_fullygrown_diseased]
+id = 8097
+
+[palm_tree_1_dead]
+id = 8098
+
+[palm_tree_2_dead]
+id = 8099
+
+[palm_tree_3_dead]
+id = 8100
+
+[palm_tree_4_dead]
+id = 8101
+
+[palm_tree_5_dead]
+id = 8102
+
+[palm_tree_fullygrown_dead]
+id = 8103
+
+[palm_tree_stump]
+id = 8104
+examine = "This palm tree has been cut down."
+
+[papaya_tree_seedling]
+id = 8105
+
+[papaya_tree_1]
+id = 8106
+
+[papaya_tree_2]
+id = 8107
+
+[papaya_tree_3]
+id = 8108
+
+[papaya_tree_4]
+id = 8109
+
+[papaya_tree_5]
+id = 8110
+
+[papaya_tree_fullygrown]
+id = 8111
+examine = "A fully grown papaya tree."
+
+[papaya_tree_fruit_1]
+id = 8112
+
+[papaya_tree_fruit_2]
+id = 8113
+
+[papaya_tree_fruit_3]
+id = 8114
+
+[papaya_tree_fruit_4]
+id = 8115
+
+[papaya_tree_fruit_5]
+id = 8116
+
+[papaya_tree_fruit_6]
+id = 8117
+
+[papaya_tree_claim_xp]
+id = 8118
+
+[papaya_tree_1_diseased]
+id = 8119
+
+[papaya_tree_2_diseased]
+id = 8120
+
+[papaya_tree_3_diseased]
+id = 8121
+
+[papaya_tree_4_diseased]
+id = 8122
+
+[papaya_tree_5_diseased]
+id = 8123
+
+[papaya_tree_fullygrown_diseased]
+id = 8124
+
+[papaya_tree_1_dead]
+id = 8125
+
+[papaya_tree_2_dead]
+id = 8126
+
+[papaya_tree_3_dead]
+id = 8127
+
+[papaya_tree_4_dead]
+id = 8128
+
+[papaya_tree_5_dead]
+id = 8129
+
+[papaya_tree_fullygrown_dead]
+id = 8130
+
+[papaya_tree_stump]
+id = 8131
+examine = "This papaya tree has been cut down."

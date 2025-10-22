@@ -1,0 +1,29 @@
+[compost_bin_empty]
+id = 7808
+
+[compost_bin_full]
+id = 7810
+
+[compost_bin_closed]
+id = 7813
+
+[farming_compost_bin_1]
+id = 7836
+
+[farming_compost_bin_2]
+id = 7837
+
+[farming_compost_bin_3]
+id = 7838
+
+[farming_compost_bin_4]
+id = 7839
+
+[composit_bin_green_empty]
+id = 7818
+
+[composit_bin_green_full]
+id = 7820
+
+[composit_bin_green_closed]
+id = 7823

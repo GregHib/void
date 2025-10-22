@@ -1,0 +1,47 @@
+[belladonna_patch_weeded]
+id = 7557
+
+[belladonna_patch_weeds_1]
+id = 7558
+
+[belladonna_patch_weeds_2]
+id = 7559
+
+[belladonna_patch_weeds_3]
+id = 7560
+
+[belladonna_seedling]
+id = 7561
+
+[belladonna_1]
+id = 7562
+
+[belladonna_2]
+id = 7563
+
+[belladonna_3]
+id = 7564
+
+[belladonna_fullygrown]
+id = 7565
+
+[belladonna_1_diseased]
+id = 7566
+
+[belladonna_2_diseased]
+id = 7567
+
+[belladonna_3_diseased]
+id = 7568
+
+[belladonna_1_dead]
+id = 7569
+
+[belladonna_2_dead]
+id = 7570
+
+[belladonna_3_dead]
+id = 7571
+
+[farming_belladonna_patch]
+id = 7572
