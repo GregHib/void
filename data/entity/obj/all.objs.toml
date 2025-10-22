@@ -921,7 +921,7 @@ examine = "He looks very relaxed."
 id = 22300
 examine = "Baby bread."
 
-[cabbage_2]
+[cabbage_2_2]
 clone = "cabbage"
 id = 22301
 
