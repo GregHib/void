@@ -1,0 +1,600 @@
+[farming_spirit_tree_patch_1]
+id = 8338
+
+[spirit_tree_patch_weeded]
+id = 8339
+
+[spirit_tree_patch_weeds_1]
+id = 8340
+
+[spirit_tree_patch_weeds_2]
+id = 8341
+
+[spirit_tree_patch_weeds_3]
+id = 8342
+
+[spirit_tree_seedling]
+id = 8343
+
+[spirit_tree_1]
+id = 8344
+
+[spirit_tree_2]
+id = 8345
+
+[spirit_tree_3]
+id = 8346
+
+[spirit_tree_4]
+id = 8347
+
+[spirit_tree_5]
+id = 8348
+
+[spirit_tree_6]
+id = 8349
+
+[spirit_tree_7]
+id = 8350
+
+[spirit_tree_8]
+id = 8351
+
+[spirit_tree_9]
+id = 8352
+
+[spirit_tree_10]
+id = 8353
+
+[spirit_tree_11]
+id = 8354
+
+[spirit_tree_fullygrown]
+id = 8355
+
+[spirit_tree_claimxp]
+id = 8356
+
+[spirit_tree_stump]
+id = 8357
+
+[spirit_tree_diseased_1]
+id = 8358
+
+[spirit_tree_diseased_2]
+id = 8359
+
+[spirit_tree_diseased_3]
+id = 8360
+
+[spirit_tree_diseased_4]
+id = 8361
+
+[spirit_tree_diseased_5]
+id = 8362
+
+[spirit_tree_diseased_6]
+id = 8363
+
+[spirit_tree_diseased_7]
+id = 8364
+
+[spirit_tree_diseased_8]
+id = 8365
+
+[spirit_tree_diseased_9]
+id = 8366
+
+[spirit_tree_diseased_10]
+id = 8367
+
+[spirit_tree_diseased_11]
+id = 8368
+
+[spirit_tree_diseased_fullgrown]
+id = 8369
+
+[spirit_tree_dead_1]
+id = 8370
+
+[spirit_tree_dead_2]
+id = 8371
+
+[spirit_tree_dead_3]
+id = 8372
+
+[spirit_tree_dead_4]
+id = 8373
+
+[spirit_tree_dead_5]
+id = 8374
+
+[spirit_tree_dead_6]
+id = 8375
+
+[spirit_tree_dead_7]
+id = 8376
+
+[spirit_tree_dead_8]
+id = 8377
+
+[spirit_tree_dead_9]
+id = 8378
+
+[spirit_tree_dead_10]
+id = 8379
+
+[spirit_tree_dead_11]
+id = 8380
+
+[spirit_tree_dead_fullygrown]
+id = 8381
+
+[farming_spirit_tree_patch_2]
+id = 8382
+
+[farming_spirit_tree_patch_3]
+id = 8383
+
+[farming_tree_patch_1_canopy]
+id = 8384
+
+[farming_tree_patch_2_canopy]
+id = 8385
+
+[farming_tree_patch_3_canopy]
+id = 8386
+
+[farming_tree_patch_4_canopy]
+id = 8387
+
+[farming_tree_patch_1]
+id = 8388
+
+[farming_tree_patch_2]
+id = 8389
+
+[farming_tree_patch_3]
+id = 8390
+
+[farming_tree_patch_4]
+id = 8391
+
+[tree_patch_weeded]
+id = 8392
+
+[tree_patch_weeds_1]
+id = 8393
+
+[tree_patch_weeds_2]
+id = 8394
+
+[tree_patch_weeds_3]
+id = 8395
+
+[magic_tree_seedling]
+id = 8396
+
+[magic_tree_1]
+id = 8397
+
+[magic_tree_2]
+id = 8398
+
+[magic_tree_3]
+id = 8399
+
+[magic_tree_4]
+id = 8400
+
+[magic_tree_5]
+id = 8401
+
+[magic_tree_6]
+id = 8402
+
+[magic_tree_7]
+id = 8403
+
+[magic_tree_8]
+id = 8404
+
+[magic_tree_9]
+id = 8405
+
+[magic_tree_10]
+id = 8406
+
+[magic_tree_11]
+id = 8407
+
+[magic_tree_fullygrown_1]
+id = 8408
+
+[magic_tree_fullygrown_2]
+id = 8409
+examine = "A fully grown Magic Tree."
+
+[magic_tree_farming_stump]
+id = 8410
+examine = "You can uproot this stump with a spade."
+
+[magic_tree_diseased_1]
+id = 8411
+
+[magic_tree_diseased_2]
+id = 8412
+
+[magic_tree_diseased_3]
+id = 8413
+
+[magic_tree_diseased_4]
+id = 8414
+
+[magic_tree_diseased_5]
+id = 8415
+
+[magic_tree_diseased_6]
+id = 8416
+
+[magic_tree_diseased_7]
+id = 8417
+
+[magic_tree_diseased_8]
+id = 8418
+
+[magic_tree_diseased_9]
+id = 8419
+
+[magic_tree_diseased_10]
+id = 8420
+
+[magic_tree_diseased_11]
+id = 8421
+
+[magic_tree_diseased_fullygrown]
+id = 8422
+
+[magic_tree_dead_1]
+id = 8423
+
+[magic_tree_dead_2]
+id = 8424
+
+[magic_tree_dead_3]
+id = 8425
+
+[magic_tree_dead_4]
+id = 8426
+
+[magic_tree_dead_5]
+id = 8427
+
+[magic_tree_dead_6]
+id = 8428
+
+[magic_tree_dead_7]
+id = 8429
+
+[magic_tree_dead_8]
+id = 8430
+
+[magic_tree_dead_9]
+id = 8431
+
+[magic_tree_dead_10]
+id = 8432
+
+[magic_tree_dead_11]
+id = 8433
+
+[magic_tree_dead_fullygrown]
+id = 8434
+
+[maple_tree_seedling]
+id = 8435
+
+[maple_tree_1]
+id = 8436
+
+[maple_tree_2]
+id = 8437
+
+[maple_tree_3]
+id = 8438
+
+[maple_tree_4]
+id = 8439
+
+[maple_tree_5]
+id = 8440
+
+[maple_tree_6]
+id = 8441
+
+[maple_tree_7]
+id = 8442
+
+[maple_tree_fullygrown_1]
+id = 8443
+
+[maple_tree_fullygrown_2]
+id = 8444
+examine = "A fully grown Maple tree."
+
+[maple_tree_fstump]
+id = 8445
+examine = "You can uproot this stump with a spade."
+
+[maple_tree_diseased_1]
+id = 8446
+
+[maple_tree_diseased_2]
+id = 8447
+
+[maple_tree_diseased_3]
+id = 8448
+
+[maple_tree_diseased_4]
+id = 8449
+
+[maple_tree_diseased_5]
+id = 8450
+
+[maple_tree_diseased_6]
+id = 8451
+
+[maple_tree_diseased_7]
+id = 8452
+
+[maple_tree_diseased_fullygrown]
+id = 8453
+
+[maple_tree_dead_1]
+id = 8454
+
+[maple_tree_dead_2]
+id = 8455
+
+[maple_tree_dead_3]
+id = 8456
+
+[maple_tree_dead_4]
+id = 8457
+
+[maple_tree_dead_5]
+id = 8458
+
+[maple_tree_dead_6]
+id = 8459
+
+[maple_tree_dead_7]
+id = 8460
+
+[maple_tree_dead_fullygrown]
+id = 8461
+
+[oak_tree_seedling]
+id = 8462
+
+[oak_tree_1]
+id = 8463
+
+[oak_tree_2]
+id = 8464
+
+[oak_tree_3]
+id = 8465
+
+[oak_tree_fullygrown_1]
+id = 8466
+
+[oak_tree_fullygrown_2]
+id = 8467
+examine = "A fully grown Oak tree."
+
+[oak_tree_farming_stump]
+id = 8468
+examine = "You can uproot this stump with a spade."
+
+[oak_tree_3_top]
+id = 8469
+
+[oak_tree_fullygrown_top]
+id = 8470
+
+[oak_tree_3_top_diseased]
+id = 8471
+
+[oak_tree_fullygrown_top_diseased]
+id = 8472
+
+[oak_tree_diseased_1]
+id = 8473
+
+[oak_tree_diseased_2]
+id = 8474
+
+[oak_tree_diseased_3]
+id = 8475
+
+[oak_tree_diseased_fullygrown]
+id = 8476
+
+[oak_tree_dead_1]
+id = 8477
+
+[oak_tree_dead_2]
+id = 8478
+
+[oak_tree_dead_3]
+id = 8479
+
+[oak_tree_dead_fullygrown]
+id = 8480
+
+[willow_tree_seedling]
+id = 8481
+
+[willow_tree_1]
+id = 8482
+
+[willow_tree_2]
+id = 8483
+
+[willow_tree_3]
+id = 8484
+
+[willow_tree_4]
+id = 8485
+
+[willow_tree_5]
+id = 8486
+
+[willow_tree_fullygrown_1]
+id = 8487
+
+[willow_tree_fullygrown_2]
+id = 8488
+examine = "A fully grown Willow tree."
+
+[willow_tree_stump]
+id = 8489
+examine = "You can uproot this stump with a spade."
+
+[willow_tree_diseased_1]
+id = 8490
+
+[willow_tree_diseased_2]
+id = 8491
+
+[willow_tree_diseased_3]
+id = 8492
+
+[willow_tree_diseased_4]
+id = 8493
+
+[willow_tree_diseased_5]
+id = 8494
+
+[willow_tree_diseased_fullygrown]
+id = 8495
+
+[willow_tree_dead_1]
+id = 8496
+
+[willow_tree_dead_2]
+id = 8497
+
+[willow_tree_dead_3]
+id = 8498
+
+[willow_tree_dead_4]
+id = 8499
+
+[willow_tree_dead_5]
+id = 8500
+
+[willow_tree_dead_fullygrown]
+id = 8501
+
+[yew_tree_seedling]
+id = 8502
+
+[yew_tree_1]
+id = 8503
+
+[yew_tree_2]
+id = 8504
+
+[yew_tree_3]
+id = 8505
+
+[yew_tree_4]
+id = 8506
+
+[yew_tree_5]
+id = 8507
+
+[yew_tree_6]
+id = 8508
+
+[yew_tree_7]
+id = 8509
+
+[yew_tree_8]
+id = 8510
+
+[yew_tree_9]
+id = 8511
+
+[yew_tree_fullygrown_1]
+id = 8512
+
+[yew_tree_fullygrown_2]
+id = 8513
+examine = "A fully grown Yew tree."
+
+[yew_tree_stump]
+id = 8514
+
+[yew_tree_diseased_1]
+id = 8515
+
+[yew_tree_diseased_2]
+id = 8516
+
+[yew_tree_diseased_3]
+id = 8517
+
+[yew_tree_diseased_4]
+id = 8518
+
+[yew_tree_diseased_5]
+id = 8519
+
+[yew_tree_diseased_6]
+id = 8520
+
+[yew_tree_diseased_7]
+id = 8521
+
+[yew_tree_diseased_8]
+id = 8522
+
+[yew_tree_diseased_9]
+id = 8523
+
+[yew_tree_diseased_fullygrown]
+id = 8524
+
+[yew_tree_dead_1]
+id = 8525
+
+[yew_tree_dead_2]
+id = 8526
+
+[yew_tree_dead_3]
+id = 8527
+
+[yew_tree_dead_4]
+id = 8528
+
+[yew_tree_dead_5]
+id = 8529
+
+[yew_tree_dead_6]
+id = 8530
+
+[yew_tree_dead_7]
+id = 8531
+
+[yew_tree_dead_8]
+id = 8532
+
+[yew_tree_dead_9]
+id = 8533
+
+[yew_tree_dead_fullygrown]
+id = 8534
+
