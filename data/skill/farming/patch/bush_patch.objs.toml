@@ -1,0 +1,509 @@
+[bush_patch_weeded]
+id = 7573
+
+[bush_patch_weeds_1]
+id = 7574
+
+[bush_patch_weeds_2]
+id = 7575
+
+[bush_patch_weeds_3]
+id = 7576
+
+[redberry_bush_patch_1]
+id = 7577
+
+[redberry_bush_patch_2]
+id = 7578
+
+[redberry_bush_patch_3]
+id = 7579
+
+[redberry_bush_patch_4]
+id = 7580
+
+[cadavaberry_bush_seedling]
+id = 7581
+
+[cadavaberry_bush_1]
+id = 7582
+
+[cadavaberry_bush_2]
+id = 7583
+
+[cadavaberry_bush_3]
+id = 7584
+
+[cadavaberry_bush_4]
+id = 7585
+
+[cadavaberry_bush_5]
+id = 7586
+
+[cadavaberry_bush_fullygrown]
+id = 7587
+
+[cadavaberry_bush_berry_1]
+id = 7588
+
+[cadavaberry_bush_berry_2]
+id = 7589
+
+[cadavaberry_bush_berry_3]
+id = 7590
+
+[cadavaberry_bush_berry_4]
+id = 7591
+
+[cadavaberry_bush_claim_xp]
+id = 7592
+
+[cadavaberry_bush_1_diseased]
+id = 7593
+
+[cadavaberry_bush_2_diseased]
+id = 7594
+
+[cadavaberry_bush_3_diseased]
+id = 7595
+
+[cadavaberry_bush_4_diseased]
+id = 7596
+
+[cadavaberry_bush_5_diseased]
+id = 7597
+
+[cadavaberry_bush_fullygrown_diseased]
+id = 7598
+
+[cadavaberry_bush_1_dead]
+id = 7599
+
+[cadavaberry_bush_2_dead]
+id = 7600
+
+[cadavaberry_bush_3_dead]
+id = 7601
+
+[cadavaberry_bush_4_dead]
+id = 7602
+
+[cadavaberry_bush_5_dead]
+id = 7603
+
+[cadavaberry_bush_fullygrown_dead]
+id = 7604
+
+[dwellberry_bush_seedling]
+id = 7605
+
+[dwellberry_bush_1]
+id = 7606
+
+[dwellberry_bush_2]
+id = 7607
+
+[dwellberry_bush_3]
+id = 7608
+
+[dwellberry_bush_4]
+id = 7609
+
+[dwellberry_bush_5]
+id = 7610
+
+[dwellberry_bush_6]
+id = 7611
+
+[dwellberry_bush_fullygrown]
+id = 7612
+
+[dwellberry_bush_berry_1]
+id = 7613
+
+[dwellberry_bush_berry_2]
+id = 7614
+
+[dwellberry_bush_berry_3]
+id = 7615
+
+[dwellberry_bush_berry_4]
+id = 7616
+
+[dwellberry_bush_claim_xp]
+id = 7617
+
+[dwellberry_bush_1_diseased]
+id = 7618
+
+[dwellberry_bush_2_diseased]
+id = 7619
+
+[dwellberry_bush_3_diseased]
+id = 7620
+
+[dwellberry_bush_4_diseased]
+id = 7621
+
+[dwellberry_bush_5_diseased]
+id = 7622
+
+[dwellberry_bush_6_diseased]
+id = 7623
+
+[dwellberry_bush_fullygrown_diseased]
+id = 7624
+
+[dwellberry_bush_1_dead]
+id = 7625
+
+[dwellberry_bush_2_dead]
+id = 7626
+
+[dwellberry_bush_3_dead]
+id = 7627
+
+[dwellberry_bush_4_dead]
+id = 7628
+
+[dwellberry_bush_5_dead]
+id = 7629
+
+[dwellberry_bush_6_dead]
+id = 7630
+
+[dwellberry_bush_fullygrown_dead]
+id = 7631
+
+[jangerberry_bush_seedling]
+id = 7632
+
+[jangerberry_bush_1]
+id = 7633
+
+[jangerberry_bush_2]
+id = 7634
+
+[jangerberry_bush_3]
+id = 7635
+
+[jangerberry_bush_4]
+id = 7636
+
+[jangerberry_bush_5]
+id = 7637
+
+[jangerberry_bush_6]
+id = 7638
+
+[jangerberry_bush_7]
+id = 7639
+
+[jangerberry_bush_fullygrown]
+id = 7640
+
+[jangerberry_bush_berry_1]
+id = 7641
+
+[jangerberry_bush_berry_2]
+id = 7642
+
+[jangerberry_bush_berry_3]
+id = 7643
+
+[jangerberry_bush_berry_4]
+id = 7644
+
+[jangerberry_bush_claim_xp]
+id = 7645
+
+[jangerberry_bush_1_diseased]
+id = 7646
+
+[jangerberry_bush_2_diseased]
+id = 7647
+
+[jangerberry_bush_3_diseased]
+id = 7648
+
+[jangerberry_bush_4_diseased]
+id = 7649
+
+[jangerberry_bush_5_diseased]
+id = 7650
+
+[jangerberry_bush_6_diseased]
+id = 7651
+
+[jangerberry_bush_7_diseased]
+id = 7652
+
+[jangerberry_bush_fullygrown_diseased]
+id = 7653
+
+[jangerberry_bush_1_dead]
+id = 7654
+
+[jangerberry_bush_2_dead]
+id = 7655
+
+[jangerberry_bush_3_dead]
+id = 7656
+
+[jangerberry_bush_4_dead]
+id = 7657
+
+[jangerberry_bush_5_dead]
+id = 7658
+
+[jangerberry_bush_6_dead]
+id = 7659
+
+[jangerberry_bush_7_dead]
+id = 7660
+
+[jangerberry_bush_fullygrown_dead]
+id = 7661
+
+[poisonivy_bush_seedling]
+id = 7662
+
+[poisonivy_bush_1]
+id = 7663
+
+[poisonivy_bush_2]
+id = 7664
+
+[poisonivy_bush_3]
+id = 7665
+
+[poisonivy_bush_4]
+id = 7666
+
+[poisonivy_bush_5]
+id = 7667
+
+[poisonivy_bush_6]
+id = 7668
+
+[poisonivy_bush_7]
+id = 7669
+
+[poisonivy_bush_fullygrown]
+id = 7670
+
+[poisonivy_bush_berry_1]
+id = 7671
+
+[poisonivy_bush_berry_2]
+id = 7672
+
+[poisonivy_bush_berry_3]
+id = 7673
+
+[poisonivy_bush_berry_4]
+id = 7674
+
+[poisonivy_bush_claim_xp]
+id = 7675
+
+[poisonivy_bush_1_diseased]
+id = 7676
+
+[poisonivy_bush_2_diseased]
+id = 7677
+
+[poisonivy_bush_3_diseased]
+id = 7678
+
+[poisonivy_bush_4_diseased]
+id = 7679
+
+[poisonivy_bush_5_diseased]
+id = 7680
+
+[poisonivy_bush_6_diseased]
+id = 7681
+
+[poisonivy_bush_7_diseased]
+id = 7682
+
+[poisonivy_bush_fullygrown_diseased]
+id = 7683
+
+[poisonivy_bush_1_dead]
+id = 7684
+
+[poisonivy_bush_2_dead]
+id = 7685
+
+[poisonivy_bush_3_dead]
+id = 7686
+
+[poisonivy_bush_4_dead]
+id = 7687
+
+[poisonivy_bush_5_dead]
+id = 7688
+
+[poisonivy_bush_6_dead]
+id = 7689
+
+[poisonivy_bush_7_dead]
+id = 7690
+
+[poisonivy_bush_fullygrown_dead]
+id = 7691
+
+[redberry_bush_seedling]
+id = 7692
+
+[redberry_bush_1]
+id = 7693
+
+[redberry_bush_2]
+id = 7694
+
+[redberry_bush_3]
+id = 7695
+
+[redberry_bush_4]
+id = 7696
+
+[redberry_bush_fullygrown]
+id = 7697
+
+[redberry_bush_berry_1]
+id = 7698
+
+[redberry_bush_berry_2]
+id = 7699
+
+[redberry_bush_berry_3]
+id = 7700
+
+[redberry_bush_berry_4]
+id = 7701
+
+[redberry_bush_claim_xp]
+id = 7702
+
+[redberry_bush_1_diseased]
+id = 7703
+
+[redberry_bush_2_diseased]
+id = 7704
+
+[redberry_bush_3_diseased]
+id = 7705
+
+[redberry_bush_4_diseased]
+id = 7706
+
+[redberry_bush_fullygrown_diseased]
+id = 7707
+
+[redberry_bush_1_dead]
+id = 7708
+
+[redberry_bush_2_dead]
+id = 7709
+
+[redberry_bush_3_dead]
+id = 7710
+
+[redberry_bush_4_dead]
+id = 7711
+
+[redberry_bush_fullygrown_dead]
+id = 7712
+
+[whiteberry_bush_seedling]
+id = 7713
+
+[whiteberry_bush_1]
+id = 7714
+
+[whiteberry_bush_2]
+id = 7715
+
+[whiteberry_bush_3]
+id = 7716
+
+[whiteberry_bush_4]
+id = 7717
+
+[whiteberry_bush_5]
+id = 7718
+
+[whiteberry_bush_6]
+id = 7719
+
+[whiteberry_bush_7]
+id = 7720
+
+[whiteberry_bush_fullygrown]
+id = 7721
+
+[whiteberry_bush_berry_1]
+id = 7722
+
+[whiteberry_bush_berry_2]
+id = 7723
+
+[whiteberry_bush_berry_3]
+id = 7724
+
+[whiteberry_bush_berry_4]
+id = 7725
+
+[whiteberry_bush_claim_xp]
+id = 7726
+
+[whiteberry_bush_1_diseased]
+id = 7727
+
+[whiteberry_bush_2_diseased]
+id = 7728
+
+[whiteberry_bush_3_diseased]
+id = 7729
+
+[whiteberry_bush_4_diseased]
+id = 7730
+
+[whiteberry_bush_5_diseased]
+id = 7731
+
+[whiteberry_bush_6_diseased]
+id = 7732
+
+[whiteberry_bush_7_diseased]
+id = 7733
+
+[whiteberry_bush_fullygrown_diseased]
+id = 7734
+
+[whiteberry_bush_1_dead]
+id = 7735
+
+[whiteberry_bush_2_dead]
+id = 7736
+
+[whiteberry_bush_3_dead]
+id = 7737
+
+[whiteberry_bush_4_dead]
+id = 7738
+
+[whiteberry_bush_5_dead]
+id = 7739
+
+[whiteberry_bush_6_dead]
+id = 7740
+
+[whiteberry_bush_7_dead]
+id = 7741
+
+[whiteberry_bush_fullygrown_dead]
+id = 7742
