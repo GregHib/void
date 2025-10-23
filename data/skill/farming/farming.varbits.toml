@@ -1,0 +1,7 @@
+[allotment_falador_nw]
+id = 708
+format = "list"
+values = [ "weeds_super", "weeds_2", "weeds_1", "weeds_0", "weeds_compost", "weeds_none", "potato_0", "potato_1", "potato_2", "potato_3", "potato_none", "potato_compost", "potato_super" ]
+
+[allotment_falador_se]
+id = 709
