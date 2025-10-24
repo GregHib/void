@@ -1,7 +1,7 @@
 [farming_offset_mins]
 format = "int"
-persit = true
+persist = true
 
 [last_growth_cycle]
 format = "int"
-persit = true
+persist = true
