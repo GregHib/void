@@ -26,10 +26,10 @@ class QuestJournals : Api {
     }
 
     @Timer("refresh_quest_journal")
-    override fun start(player: Player, timer: String, restart: Boolean) = 1
+    override fun start(player: Player, timer: String, restart: Boolean): Int = 1
 
     @Timer("refresh_quest_journal")
-    override fun tick(player: Player, timer: String) = Timer.CANCEL
+    override fun tick(player: Player, timer: String): Int = Timer.CANCEL
 
     @Timer("refresh_quest_journal")
     override fun stop(player: Player, timer: String, logout: Boolean) {

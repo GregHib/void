@@ -29,7 +29,7 @@ class HitpointRestoration : Api {
     }
 
     @Timer("restore_hitpoints")
-    override fun start(player: Player, timer: String, restart: Boolean) = TimeUnit.SECONDS.toTicks(6)
+    override fun start(player: Player, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(6)
 
     @Timer("restore_hitpoints")
     override fun tick(player: Player, timer: String): Int {

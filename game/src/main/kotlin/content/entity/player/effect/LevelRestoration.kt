@@ -52,7 +52,7 @@ class LevelRestoration : Api {
     }
 
     @Timer("restore_stats")
-    override fun start(player: Player, timer: String, restart: Boolean) = TimeUnit.SECONDS.toTicks(60)
+    override fun start(player: Player, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(60)
 
     @Timer("restore_stats")
     override fun tick(player: Player, timer: String): Int {

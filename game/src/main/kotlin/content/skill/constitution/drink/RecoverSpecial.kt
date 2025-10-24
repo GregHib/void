@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.timer.*
 class RecoverSpecial : Api {
 
     @Timer("recover_special")
-    override fun start(player: Player, timer: String, restart: Boolean) = 10
+    override fun start(player: Player, timer: String, restart: Boolean): Int = 10
 
     @Timer("recover_special")
     override fun tick(player: Player, timer: String): Int {

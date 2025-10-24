@@ -76,7 +76,7 @@ class GypsyAris : Api {
     }
 
     @Timer("demon_slayer_crystal_ball")
-    override fun start(npc: NPC, timer: String, restart: Boolean) = 2
+    override fun start(npc: NPC, timer: String, restart: Boolean): Int = 2
 
     @Timer("demon_slayer_crystal_ball")
     override fun tick(npc: NPC, timer: String): Int {

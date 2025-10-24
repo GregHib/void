@@ -26,7 +26,7 @@ class Imp : Api {
     }
 
     @Timer("teleport_timer")
-    override fun start(npc: NPC, timer: String, restart: Boolean) = tick(npc, timer)
+    override fun start(npc: NPC, timer: String, restart: Boolean): Int = random.nextInt(50, 200)
 
     @Timer("teleport_timer")
     override fun tick(npc: NPC, timer: String): Int {

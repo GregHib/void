@@ -33,7 +33,7 @@ class DragonScimitar : Api {
     }
 
     @Timer("sever")
-    override fun tick(player: Player, timer: String) = Timer.CANCEL
+    override fun tick(player: Player, timer: String): Int = Timer.CANCEL
 
     init {
         specialAttackDamage("sever") {

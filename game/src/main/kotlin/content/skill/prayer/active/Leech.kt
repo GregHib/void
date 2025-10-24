@@ -35,7 +35,7 @@ class Leech : Api {
     )
 
     @Timer("prayer_bonus_drain")
-    override fun start(player: Player, timer: String, restart: Boolean) = 50
+    override fun start(player: Player, timer: String, restart: Boolean): Int = 50
 
     @Timer("prayer_bonus_drain")
     override fun tick(player: Player, timer: String): Int {

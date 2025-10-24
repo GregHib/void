@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.timer
 
+import world.gregs.voidps.engine.dispatch.CombinedDispatcher
 import world.gregs.voidps.engine.dispatch.MapDispatcher
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -97,6 +98,9 @@ interface TimerApi {
         var worldTickDispatcher = MapDispatcher<TimerApi>("@Timer")
         var worldStopDispatcher = MapDispatcher<TimerApi>("@Timer")
 
+        val characterStartDispatcher = CombinedDispatcher(playerStartDispatcher, npcStartDispatcher)
+        val characterTickDispatcher = CombinedDispatcher(playerTickDispatcher, npcTickDispatcher)
+        val characterStopDispatcher = CombinedDispatcher(playerStopDispatcher, npcStopDispatcher)
 
         override fun start(player: Player, timer: String, restart: Boolean): Int {
             for (instance in playerStartDispatcher.instances[timer] ?: return Timer.CANCEL) {

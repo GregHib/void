@@ -57,7 +57,10 @@ object ContentLoader {
         method("start", "NPC", "String", "Boolean", returnType = "Int") to TimerApi.npcStartDispatcher,
         method("tick", "NPC", "String", returnType = "Int") to TimerApi.npcTickDispatcher,
         method("stop", "NPC", "String", "Boolean") to TimerApi.npcStopDispatcher,
-        method("start", "String", "Boolean", returnType = "Int") to TimerApi.worldStartDispatcher,
+        method("start", "Character", "String", "Boolean", returnType = "Int") to TimerApi.characterStartDispatcher,
+        method("tick", "Character", "String", returnType = "Int") to TimerApi.characterTickDispatcher,
+        method("stop", "Character", "String", "Boolean") to TimerApi.characterStopDispatcher,
+        method("start", "String", returnType = "Int") to TimerApi.worldStartDispatcher,
         method("tick", "String", returnType = "Int") to TimerApi.worldTickDispatcher,
         method("stop", "String", "Boolean") to TimerApi.worldStopDispatcher,
     )
@@ -92,6 +95,7 @@ object ContentLoader {
             logger.error(e) { "Failed to load script: $script" }
             logger.error { "If the file exists make sure the scripts package is correct." }
             logger.error { "If the file has been deleted try running 'gradle cleanScriptMetadata'." }
+            logger.error { "Otherwise make sure the return type is written explicitly." }
             exitProcess(1)
         }
 

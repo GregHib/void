@@ -21,7 +21,7 @@ class CaveLizard : Api {
     }
 
     @Timer("aggressive_hunt_mode_switch")
-    override fun start(npc: NPC, timer: String, restart: Boolean) = random.nextInt(6, 12)
+    override fun start(npc: NPC, timer: String, restart: Boolean): Int = random.nextInt(6, 12)
 
     @Timer("aggressive_hunt_mode_switch")
     override fun tick(npc: NPC, timer: String): Int {

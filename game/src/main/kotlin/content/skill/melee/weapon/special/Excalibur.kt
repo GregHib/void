@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 class Excalibur : Api {
 
     @Timer("sanctuary")
-    override fun start(player: Player, timer: String, restart: Boolean) = 4
+    override fun start(player: Player, timer: String, restart: Boolean): Int = 4
 
     @Timer("sanctuary")
     override fun tick(player: Player, timer: String): Int {

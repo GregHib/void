@@ -41,7 +41,7 @@ class FishingSpot : Api {
     }
 
     @Timer("fishing_spot_respawn")
-    override fun start(npc: NPC, timer: String, restart: Boolean) = random.nextInt(280, 530)
+    override fun start(npc: NPC, timer: String, restart: Boolean): Int = random.nextInt(280, 530)
 
     @Timer("fishing_spot_respawn")
     override fun tick(npc: NPC, timer: String): Int {

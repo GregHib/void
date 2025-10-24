@@ -20,7 +20,7 @@ class SpecialAttackEnergy : Api {
     }
 
     @Timer("restore_special_energy")
-    override fun start(player: Player, timer: String, restart: Boolean) = 50
+    override fun start(player: Player, timer: String, restart: Boolean): Int = 50
 
     @Timer("restore_special_energy")
     override fun tick(player: Player, timer: String): Int {

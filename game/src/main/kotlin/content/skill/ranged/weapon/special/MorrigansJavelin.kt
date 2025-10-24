@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.timer.*
 class MorrigansJavelin : Api {
 
     @Timer("phantom_strike")
-    override fun start(character: Character, timer: String, restart: Boolean) = 3
+    override fun start(character: Character, timer: String, restart: Boolean): Int = 3
 
     @Timer("phantom_strike")
     override fun tick(character: Character, timer: String): Int {

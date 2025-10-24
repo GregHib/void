@@ -76,7 +76,7 @@ class AvasDevices : Api {
     }
 
     @Timer("junk_collection")
-    override fun start(player: Player, timer: String, restart: Boolean) = TimeUnit.SECONDS.toTicks(90)
+    override fun start(player: Player, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(90)
 
     @Timer("junk_collection")
     override fun tick(player: Player, timer: String): Int {

@@ -120,7 +120,7 @@ class MakeoverMage : Api {
     }
 
     @Timer("makeover")
-    override fun start(npc: NPC, timer: String, restart: Boolean) = TimeUnit.SECONDS.toTicks(250)
+    override fun start(npc: NPC, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(250)
 
     @Timer("makeover")
     override fun tick(npc: NPC, timer: String): Int {

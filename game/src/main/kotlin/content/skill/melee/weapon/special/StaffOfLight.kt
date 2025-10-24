@@ -22,7 +22,7 @@ class StaffOfLight : Api {
     }
 
     @Timer("power_of_light")
-    override fun start(player: Player, timer: String, restart: Boolean) = 1
+    override fun start(player: Player, timer: String, restart: Boolean): Int = 1
 
     @Timer("power_of_light")
     override fun tick(player: Player, timer: String): Int {

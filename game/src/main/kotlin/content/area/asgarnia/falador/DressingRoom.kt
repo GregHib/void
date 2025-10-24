@@ -23,7 +23,7 @@ internal suspend fun Interaction<Player>.openDressingRoom(id: String) {
 class DressingRoom : Api {
 
     @Timer("dressing_room")
-    override fun start(player: Player, timer: String, restart: Boolean) = 1
+    override fun start(player: Player, timer: String, restart: Boolean): Int = 1
 
     @Timer("dressing_room")
     override fun tick(player: Player, timer: String): Int {

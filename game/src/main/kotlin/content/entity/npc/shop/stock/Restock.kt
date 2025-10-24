@@ -33,7 +33,7 @@ class Restock : Api {
     }
 
     @Timer("shop_restock")
-    override fun start(player: Player, timer: String, restart: Boolean) = TimeUnit.SECONDS.toTicks(60)
+    override fun start(player: Player, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(60)
 
     @Timer("shop_restock")
     override fun tick(player: Player, timer: String): Int {
@@ -48,7 +48,7 @@ class Restock : Api {
     }
 
     @Timer("general_store_restock")
-    override fun start(timer: String) = TimeUnit.SECONDS.toTicks(60)
+    override fun start(timer: String): Int = TimeUnit.SECONDS.toTicks(60)
 
     /**
      * Every 60 seconds update stock of all players shops and [GeneralStores] by 10%

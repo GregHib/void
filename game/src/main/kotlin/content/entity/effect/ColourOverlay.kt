@@ -15,7 +15,7 @@ class ColourOverlay : Api {
     }
 
     @Timer("colour_overlay")
-    override fun tick(character: Character, timer: String) = Timer.CANCEL
+    override fun tick(character: Character, timer: String): Int = Timer.CANCEL
 
     @Timer("colour_overlay")
     override fun stop(character: Character, timer: String, logout: Boolean) {
