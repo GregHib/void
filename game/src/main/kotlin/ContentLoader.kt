@@ -91,14 +91,14 @@ object ContentLoader {
         logger.info { "Loaded $scriptCount ${"script".plural(scriptCount)} in ${System.currentTimeMillis() - start}ms" }
     }
 
-    private fun method(name: String, vararg argTypes: String, returnType: Any = Unit, annotation: String? = null) = buildString {
+    private fun method(name: String, vararg argTypes: String, returnType: String = "", annotation: String? = null) = buildString {
         if (annotation != null) {
             append(annotation).append("@")
         }
         append(name)
         append("(").append(argTypes.joinToString(",")).append(")")
-        if (returnType != Unit) {
-            append(":").append(returnType::class.simpleName)
+        if (returnType.isNotBlank()) {
+            append(":").append(returnType)
         }
     }
 
