@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.skill.level.LevelChanged
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.timer.TimerApi
 import java.nio.file.NoSuchFileException
 import kotlin.system.exitProcess
 
@@ -50,6 +51,15 @@ object ContentLoader {
         method("approach", "NPC", "NPC", "String") to Approachable.npcNpcDispatcher,
         method("approach", "NPC", "GameObject", "String") to Approachable.npcObjectDispatcher,
         method("approach", "NPC", "FloorItem", "String") to Approachable.npcFloorItemDispatcher,
+        method("start", "Player", "String", "Boolean", returnType = "Int") to TimerApi.playerDispatcher,
+        method("tick", "Player", "String", returnType = "Int") to TimerApi.playerDispatcher,
+        method("stop", "Player", "String", "Boolean") to TimerApi.playerDispatcher,
+        method("start", "NPC", "String", "Boolean", returnType = "Int") to TimerApi.npcDispatcher,
+        method("tick", "NPC", "String", returnType = "Int") to TimerApi.npcDispatcher,
+        method("stop", "NPC", "String", "Boolean") to TimerApi.npcDispatcher,
+        method("start", "String", "Boolean", returnType = "Int") to TimerApi.worldDispatcher,
+        method("tick", "String", returnType = "Int") to TimerApi.worldDispatcher,
+        method("stop", "String", "Boolean") to TimerApi.worldDispatcher,
     )
 
     fun load() {

@@ -1,23 +1,22 @@
 package world.gregs.voidps.engine.timer
 
-import world.gregs.voidps.engine.event.EventDispatcher
+import world.gregs.voidps.engine.entity.character.npc.NPC
 
 class TimerSlot(
-    private val events: EventDispatcher,
+    private val npc: NPC,
 ) : Timers {
 
     private var timer: Timer? = null
 
     override fun start(name: String, restart: Boolean): Boolean {
-        val start = TimerStart(name, restart)
-        events.emit(start)
-        if (start.cancelled) {
+        val interval = TimerApi.start(npc, name, restart)
+        if (interval == TimerApi.CANCEL || interval == TimerApi.REPEAT) {
             return false
         }
         if (timer != null) {
-            events.emit(TimerStop(timer!!.name, logout = false))
+            TimerApi.stop(npc, timer!!.name, death = false)
         }
-        this.timer = Timer(name, start.interval)
+        this.timer = Timer(name, interval)
         return true
     }
 
@@ -29,19 +28,18 @@ class TimerSlot(
             return
         }
         timer.reset()
-        val tick = TimerTick(timer.name)
-        events.emit(tick)
-        if (tick.cancelled) {
-            events.emit(TimerStop(timer.name, logout = false))
+        val interval = TimerApi.tick(npc, timer.name)
+        if (interval == TimerApi.CANCEL) {
+            TimerApi.stop(npc, timer.name, death = false)
             this.timer = null
-        } else if (tick.nextInterval != -1) {
-            timer.next(tick.nextInterval)
+        } else if (interval != TimerApi.REPEAT) {
+            timer.next(interval)
         }
     }
 
     override fun stop(name: String) {
         if (contains(name)) {
-            events.emit(TimerStop(timer!!.name, logout = false))
+            TimerApi.stop(npc, timer!!.name, death = false)
             timer = null
         }
     }
@@ -60,7 +58,7 @@ class TimerSlot(
 
     override fun stopAll() {
         if (timer != null) {
-            events.emit(TimerStop(timer!!.name, logout = true))
+            TimerApi.stop(npc, timer!!.name, death = true)
         }
         timer = null
     }

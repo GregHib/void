@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.timer
 
+import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventDispatcher
 import java.util.*
 
@@ -9,18 +11,20 @@ class TimerQueue(
 
     val queue = PriorityQueue<Timer>()
     val names = mutableSetOf<String>()
-    private val changes = mutableListOf<Timer>()
 
     override fun start(name: String, restart: Boolean): Boolean {
         if (names.contains(name)) {
             return false
         }
-        val start = TimerStart(name, restart)
-        events.emit(start)
-        if (start.cancelled) {
+        val interval = when (events) {
+            is Player -> TimerApi.start(events, name, restart)
+            is World -> TimerApi.start(name)
+            else -> return false
+        }
+        if (interval == TimerApi.CANCEL || interval == TimerApi.REPEAT) {
             return false
         }
-        val timer = Timer(name, start.interval)
+        val timer = Timer(name, interval)
         queue.add(timer)
         names.add(name)
         return true
@@ -36,29 +40,35 @@ class TimerQueue(
             if (!timer.ready()) {
                 break
             }
-            iterator.remove()
             timer.reset()
-            val tick = TimerTick(timer.name)
-            events.emit(tick)
-            if (tick.cancelled) {
-                names.remove(timer.name)
-                events.emit(TimerStop(timer.name, logout = false))
-            } else {
-                if (tick.nextInterval != -1) {
-                    timer.next(tick.nextInterval)
+            val interval = when (events) {
+                is Player -> TimerApi.tick(events, timer.name)
+                is World -> TimerApi.tick(timer.name)
+                else -> return
+            }
+            when (interval) {
+                TimerApi.CANCEL -> {
+                    iterator.remove()
+                    names.remove(timer.name)
+                    stop(timer.name, logout = false)
                 }
-                changes.add(timer)
+                TimerApi.REPEAT -> timer.next()
+                else -> timer.next(interval)
             }
         }
-        if (changes.isNotEmpty()) {
-            queue.addAll(changes)
-            changes.clear()
+    }
+
+    private fun stop(name: String, logout: Boolean) {
+        when (events) {
+            is Player -> TimerApi.stop(events, name, logout)
+            is World -> TimerApi.stop(name, logout)
+            else -> return
         }
     }
 
     override fun stop(name: String) {
         if (clear(name)) {
-            events.emit(TimerStop(name, logout = false))
+            stop(name, false)
         }
     }
 
@@ -73,7 +83,7 @@ class TimerQueue(
         val names = names.toList()
         clearAll()
         for (name in names) {
-            events.emit(TimerStop(name, logout = true))
+            stop(name, logout = true)
         }
     }
 }
