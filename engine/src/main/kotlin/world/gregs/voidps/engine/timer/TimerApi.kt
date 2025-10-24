@@ -87,15 +87,15 @@ interface TimerApi {
     fun stop(timer: String, shutdown: Boolean) {}
 
     companion object : TimerApi {
-        var playerStartDispatcher = MapDispatcher<TimerApi>("@Key")
-        var playerTickDispatcher = MapDispatcher<TimerApi>("@Key")
-        var playerStopDispatcher = MapDispatcher<TimerApi>("@Key")
-        var npcStartDispatcher = MapDispatcher<TimerApi>("@Key")
-        var npcTickDispatcher = MapDispatcher<TimerApi>("@Key")
-        var npcStopDispatcher = MapDispatcher<TimerApi>("@Key")
-        var worldStartDispatcher = MapDispatcher<TimerApi>("@Key")
-        var worldTickDispatcher = MapDispatcher<TimerApi>("@Key")
-        var worldStopDispatcher = MapDispatcher<TimerApi>("@Key")
+        var playerStartDispatcher = MapDispatcher<TimerApi>("@Timer")
+        var playerTickDispatcher = MapDispatcher<TimerApi>("@Timer")
+        var playerStopDispatcher = MapDispatcher<TimerApi>("@Timer")
+        var npcStartDispatcher = MapDispatcher<TimerApi>("@Timer")
+        var npcTickDispatcher = MapDispatcher<TimerApi>("@Timer")
+        var npcStopDispatcher = MapDispatcher<TimerApi>("@Timer")
+        var worldStartDispatcher = MapDispatcher<TimerApi>("@Timer")
+        var worldTickDispatcher = MapDispatcher<TimerApi>("@Timer")
+        var worldStopDispatcher = MapDispatcher<TimerApi>("@Timer")
 
 
         override fun start(player: Player, timer: String, restart: Boolean): Int {

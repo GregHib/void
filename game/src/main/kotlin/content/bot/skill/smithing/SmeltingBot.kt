@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.Key
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.network.client.instruction.InteractDialogue
 
 @Script
@@ -50,7 +50,7 @@ class SmeltingBot : Api {
         }
     }
 
-    @Key("smelting")
+    @Timer("smelting")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         if (player.isBot) {
             player.bot.resume(timer)

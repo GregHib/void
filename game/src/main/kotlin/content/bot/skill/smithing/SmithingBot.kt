@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.Key
+import world.gregs.voidps.engine.timer.Timer
 
 @Script
 class SmithingBot : Api {
@@ -54,7 +54,7 @@ class SmithingBot : Api {
         }
     }
 
-    @Key("smithing")
+    @Timer("smithing")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         if (player.isBot) {
             player.bot.resume(timer)

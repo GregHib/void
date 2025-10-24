@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.timer.Key
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
@@ -26,10 +25,10 @@ class Ducklings : Api {
         followParent(npc)
     }
 
-    @Key("follow_parent")
+    @Timer("follow_parent")
     override fun start(npc: NPC, timer: String, restart: Boolean) = 0
 
-    @Key("follow_parent")
+    @Timer("follow_parent")
     override fun tick(npc: NPC, timer: String): Int {
         if (npc.mode != EmptyMode && npc.mode !is Wander) {
             return Timer.CONTINUE

@@ -12,10 +12,10 @@ import world.gregs.voidps.engine.timer.*
 @Script
 class RecoverSpecial : Api {
 
-    @Key("recover_special")
+    @Timer("recover_special")
     override fun start(player: Player, timer: String, restart: Boolean) = 10
 
-    @Key("recover_special")
+    @Timer("recover_special")
     override fun tick(player: Player, timer: String): Int {
         if (player.dec("recover_special_delay") <= 0) {
             return Timer.CANCEL
@@ -23,7 +23,7 @@ class RecoverSpecial : Api {
         return Timer.CONTINUE
     }
 
-    @Key("recover_special")
+    @Timer("recover_special")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         player.clear("recover_special_delay")
     }

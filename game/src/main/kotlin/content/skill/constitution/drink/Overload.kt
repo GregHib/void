@@ -31,7 +31,7 @@ class Overload : Api {
         }
     }
 
-    @Key("overload")
+    @Timer("overload")
     override fun start(player: Player, timer: String, restart: Boolean): Int {
         if (restart) {
             return TimeUnit.SECONDS.toTicks(15)
@@ -48,7 +48,7 @@ class Overload : Api {
         return TimeUnit.SECONDS.toTicks(15)
     }
 
-    @Key("overload")
+    @Timer("overload")
     override fun tick(player: Player, timer: String): Int {
         if (player.dec("overload_refreshes_remaining") <= 0) {
             return Timer.CANCEL
@@ -59,7 +59,7 @@ class Overload : Api {
         return Timer.CONTINUE
     }
 
-    @Key("overload")
+    @Timer("overload")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         if (logout) {
             return

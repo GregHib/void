@@ -32,7 +32,6 @@ import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.timer.Key
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
@@ -76,10 +75,10 @@ class GypsyAris : Api {
         }
     }
 
-    @Key("demon_slayer_crystal_ball")
+    @Timer("demon_slayer_crystal_ball")
     override fun start(npc: NPC, timer: String, restart: Boolean) = 2
 
-    @Key("demon_slayer_crystal_ball")
+    @Timer("demon_slayer_crystal_ball")
     override fun tick(npc: NPC, timer: String): Int {
         if (npc.mode !is Face) {
             return Timer.CANCEL

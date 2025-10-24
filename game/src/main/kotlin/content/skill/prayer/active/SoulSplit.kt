@@ -15,12 +15,12 @@ import world.gregs.voidps.engine.timer.*
 @Script
 class SoulSplit : Api {
 
-    @Key("soul_split")
+    @Timer("soul_split")
     override fun start(character: Character, timer: String, restart: Boolean): Int {
         return character.remove("soul_split_delay") ?: return Timer.CANCEL
     }
 
-    @Key("soul_split")
+    @Timer("soul_split")
     override fun stop(character: Character, timer: String, logout: Boolean) {
         val player = character.remove<Character>("source_split_source") ?: return
         val damage = character.remove<Int>("source_split_damage") ?: return

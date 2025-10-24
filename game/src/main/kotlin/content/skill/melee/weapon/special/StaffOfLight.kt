@@ -21,10 +21,10 @@ class StaffOfLight : Api {
         }
     }
 
-    @Key("power_of_light")
+    @Timer("power_of_light")
     override fun start(player: Player, timer: String, restart: Boolean) = 1
 
-    @Key("power_of_light")
+    @Timer("power_of_light")
     override fun tick(player: Player, timer: String): Int {
         if (player.dec("power_of_light") <= 0) {
             return Timer.CANCEL
@@ -32,7 +32,7 @@ class StaffOfLight : Api {
         return Timer.CONTINUE
     }
 
-    @Key("power_of_light")
+    @Timer("power_of_light")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         player.message("<red>The power of the light fades. Your resistance to melee attacks returns to normal.")
         player.clear("power_of_light")

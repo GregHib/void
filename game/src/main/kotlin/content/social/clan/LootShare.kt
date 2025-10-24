@@ -17,13 +17,13 @@ class LootShare : Api {
         player.sendVariable("loot_share")
     }
 
-    @Key("clan_loot_update,clan_loot_rank_update,clan_coin_share_update")
+    @Timer("clan_loot_update,clan_loot_rank_update,clan_coin_share_update")
     override fun start(player: Player, timer: String, restart: Boolean) = when (timer) {
         "clan_loot_update" -> TimeUnit.MINUTES.toTicks(2)
         else -> TimeUnit.SECONDS.toTicks(30)
     }
 
-    @Key("clan_loot_update,clan_loot_rank_update,clan_coin_share_update")
+    @Timer("clan_loot_update,clan_loot_rank_update,clan_coin_share_update")
     override fun tick(player: Player, timer: String): Int {
         when (timer) {
             "clan_loot_update" -> {

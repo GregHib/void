@@ -22,16 +22,16 @@ internal suspend fun Interaction<Player>.openDressingRoom(id: String) {
 @Script
 class DressingRoom : Api {
 
-    @Key("dressing_room")
+    @Timer("dressing_room")
     override fun start(player: Player, timer: String, restart: Boolean) = 1
 
-    @Key("dressing_room")
+    @Timer("dressing_room")
     override fun tick(player: Player, timer: String): Int {
         player.gfx("dressing_room")
         return Timer.CONTINUE
     }
 
-    @Key("dressing_room")
+    @Timer("dressing_room")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         player.clearGfx()
         player["delay"] = 1

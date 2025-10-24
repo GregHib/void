@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.timer.Key
 import world.gregs.voidps.engine.timer.Timer
 import kotlin.math.sign
 
@@ -46,7 +45,7 @@ fun Character.unblockTeleport() {
 @Script
 class TeleportBlock : Api {
 
-    @Key("teleport_block")
+    @Timer("teleport_block")
     override fun start(player: Player, timer: String, restart: Boolean): Int {
         if (player.teleBlockImmune) {
             return Timer.CANCEL
@@ -60,7 +59,7 @@ class TeleportBlock : Api {
         return 50
     }
 
-    @Key("teleport_block")
+    @Timer("teleport_block")
     override fun tick(player: Player, timer: String): Int {
         val blocked = player.teleBlocked
         player.teleBlockCounter -= player.teleBlockCounter.sign

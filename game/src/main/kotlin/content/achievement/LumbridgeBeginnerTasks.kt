@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
-import world.gregs.voidps.engine.timer.Key
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
@@ -52,7 +52,7 @@ class LumbridgeBeginnerTasks : Api {
         }
     }
 
-    @Key("firemaking")
+    @Timer("firemaking")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         val regular: Boolean = player.remove("burnt_regular_log") ?: return
         val tile: Tile = player.remove("fire_tile") ?: return

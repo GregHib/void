@@ -32,10 +32,10 @@ class Restock : Api {
         World.timers.start("general_store_restock")
     }
 
-    @Key("shop_restock")
+    @Timer("shop_restock")
     override fun start(player: Player, timer: String, restart: Boolean) = TimeUnit.SECONDS.toTicks(60)
 
-    @Key("shop_restock")
+    @Timer("shop_restock")
     override fun tick(player: Player, timer: String): Int {
         for ((name, inventory) in player.inventories.instances) {
             val def = inventoryDefinitions.get(name)
@@ -47,13 +47,13 @@ class Restock : Api {
         return Timer.CONTINUE
     }
 
-    @Key("general_store_restock")
+    @Timer("general_store_restock")
     override fun start(timer: String) = TimeUnit.SECONDS.toTicks(60)
 
     /**
      * Every 60 seconds update stock of all players shops and [GeneralStores] by 10%
      */
-    @Key("general_store_restock")
+    @Timer("general_store_restock")
     override fun tick(timer: String): Int {
         logger.debug { "Restocking general stores." }
         for ((key, inventory) in GeneralStores.stores) {

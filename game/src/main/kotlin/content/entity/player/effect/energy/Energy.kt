@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.timer.Key
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Tile
 
@@ -46,7 +45,7 @@ class Energy : Api {
         }
     }
 
-    @Key("energy_restore")
+    @Timer("energy_restore")
     override fun tick(player: Player, timer: String): Int {
         if (player.runEnergy >= MAX_RUN_ENERGY) {
             return Timer.CANCEL

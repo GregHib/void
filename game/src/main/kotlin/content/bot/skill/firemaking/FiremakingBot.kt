@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.Key
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.network.client.instruction.InteractInterfaceItem
 
 @Script
@@ -51,7 +51,7 @@ class FiremakingBot : Api {
         }
     }
 
-    @Key("firemaking")
+    @Timer("firemaking")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         if (player.isBot) {
             player.bot.resume(timer)

@@ -14,10 +14,10 @@ import java.util.concurrent.TimeUnit
 @Script
 class Excalibur : Api {
 
-    @Key("sanctuary")
+    @Timer("sanctuary")
     override fun start(player: Player, timer: String, restart: Boolean) = 4
 
-    @Key("sanctuary")
+    @Timer("sanctuary")
     override fun tick(player: Player, timer: String): Int {
         val cycle = player["sanctuary", 1] - 1
         player["sanctuary"] = cycle
@@ -28,7 +28,7 @@ class Excalibur : Api {
         return Timer.CONTINUE
     }
 
-    @Key("sanctuary")
+    @Timer("sanctuary")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         player.clear("sanctuary")
     }

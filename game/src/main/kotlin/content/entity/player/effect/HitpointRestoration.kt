@@ -28,10 +28,10 @@ class HitpointRestoration : Api {
         }
     }
 
-    @Key("restore_hitpoints")
+    @Timer("restore_hitpoints")
     override fun start(player: Player, timer: String, restart: Boolean) = TimeUnit.SECONDS.toTicks(6)
 
-    @Key("restore_hitpoints")
+    @Timer("restore_hitpoints")
     override fun tick(player: Player, timer: String): Int {
         if (player.levels.get(Skill.Constitution) == 0) {
             return Timer.CANCEL

@@ -38,14 +38,14 @@ class Skull : Api {
         }
     }
 
-    @Key("skull")
+    @Timer("skull")
     override fun start(player: Player, timer: String, restart: Boolean): Int {
         player.appearance.skull = player["skull", 0]
         player.flagAppearance()
         return 50
     }
 
-    @Key("skull")
+    @Timer("skull")
     override fun tick(player: Player, timer: String): Int {
         if (--player.skullCounter <= 0) {
             return Timer.CANCEL
@@ -53,7 +53,7 @@ class Skull : Api {
         return Timer.CONTINUE
     }
 
-    @Key("skull")
+    @Timer("skull")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         player.clear("skull")
         player.clear("skull_duration")

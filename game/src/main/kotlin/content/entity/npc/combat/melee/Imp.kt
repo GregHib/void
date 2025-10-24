@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.timer.Key
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -25,10 +25,10 @@ class Imp : Api {
         npc.softTimers.start("teleport_timer")
     }
 
-    @Key("teleport_timer")
+    @Timer("teleport_timer")
     override fun start(npc: NPC, timer: String, restart: Boolean) = tick(npc, timer)
 
-    @Key("teleport_timer")
+    @Timer("teleport_timer")
     override fun tick(npc: NPC, timer: String): Int {
         teleportImp(npc, teleportChance)
         // https://x.com/JagexAsh/status/1711280844504007132

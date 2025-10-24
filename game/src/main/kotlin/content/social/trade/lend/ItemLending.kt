@@ -24,7 +24,7 @@ class ItemLending : Api {
         checkLoanComplete(player)
     }
 
-    @Key("loan_message,borrow_message")
+    @Timer("loan_message,borrow_message")
     override fun start(player: Player, timer: String, restart: Boolean): Int {
         if (timer == "borrow_message") {
             return TimeUnit.MINUTES.toTicks(1)
@@ -33,7 +33,7 @@ class ItemLending : Api {
         return TimeUnit.SECONDS.toTicks(remaining)
     }
 
-    @Key("borrow_message")
+    @Timer("borrow_message")
     override fun tick(player: Player, timer: String): Int {
         val remaining = player.remaining("borrow_timeout", epochSeconds())
         if (remaining <= 0) {
@@ -45,7 +45,7 @@ class ItemLending : Api {
         return Timer.CONTINUE
     }
 
-    @Key("loan_message,borrow_message")
+    @Timer("loan_message,borrow_message")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         if (!logout) {
             if (timer == "loan_message") {

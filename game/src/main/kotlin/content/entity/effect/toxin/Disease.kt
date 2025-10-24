@@ -67,7 +67,7 @@ class Disease : Api {
         }
     }
 
-    @Key("disease")
+    @Timer("disease")
     override fun start(character: Character, timer: String, restart: Boolean): Int {
         if (character.antiDisease || immune(character)) {
             return Timer.CANCEL
@@ -79,7 +79,7 @@ class Disease : Api {
         return 30
     }
 
-    @Key("disease")
+    @Timer("disease")
     override fun tick(character: Character, timer: String): Int {
         val diseased = character.diseased
         character.diseaseCounter -= character.diseaseCounter.sign
@@ -96,7 +96,7 @@ class Disease : Api {
         return Timer.CONTINUE
     }
 
-    @Key("disease")
+    @Timer("disease")
     override fun stop(character: Character, timer: String, logout: Boolean) {
         character.diseaseCounter = 0
         character.clear("disease_damage")

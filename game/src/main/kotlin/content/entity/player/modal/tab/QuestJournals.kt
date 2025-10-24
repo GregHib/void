@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.timer.Key
 import world.gregs.voidps.engine.timer.Timer
 
 @Script
@@ -26,13 +25,13 @@ class QuestJournals : Api {
         }
     }
 
-    @Key("refresh_quest_journal")
+    @Timer("refresh_quest_journal")
     override fun start(player: Player, timer: String, restart: Boolean) = 1
 
-    @Key("refresh_quest_journal")
+    @Timer("refresh_quest_journal")
     override fun tick(player: Player, timer: String) = Timer.CANCEL
 
-    @Key("refresh_quest_journal")
+    @Timer("refresh_quest_journal")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         player.refreshQuestJournal()
     }

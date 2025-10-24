@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.timer.Key
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
@@ -35,10 +34,10 @@ class Leech : Api {
         "leech_magic" to Skill.Magic,
     )
 
-    @Key("prayer_bonus_drain")
+    @Timer("prayer_bonus_drain")
     override fun start(player: Player, timer: String, restart: Boolean) = 50
 
-    @Key("prayer_bonus_drain")
+    @Timer("prayer_bonus_drain")
     override fun tick(player: Player, timer: String): Int {
         val attack = player.getLeech(Skill.Attack)
         val strength = player.getLeech(Skill.Strength)

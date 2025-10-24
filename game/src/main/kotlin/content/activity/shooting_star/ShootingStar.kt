@@ -63,7 +63,7 @@ class ShootingStar : Api {
         }
     }
 
-    @Key("shooting_star_bonus_ore_timer,mining")
+    @Timer("shooting_star_bonus_ore_timer,mining")
     override fun start(player: Player, timer: String, restart: Boolean): Int {
         if (timer == "mining") {
             val target = (player.mode as? Interact)?.target as GameObject
@@ -79,7 +79,7 @@ class ShootingStar : Api {
         }
     }
 
-    @Key("shooting_star_bonus_ore_timer")
+    @Timer("shooting_star_bonus_ore_timer")
     override fun tick(player: Player, timer: String): Int {
         if (player.dec("shooting_star_bonus_ore") <= 0) {
             return Timer.CANCEL
@@ -87,7 +87,7 @@ class ShootingStar : Api {
         return Timer.CONTINUE
     }
 
-    @Key("shooting_star_bonus_ore_timer")
+    @Timer("shooting_star_bonus_ore_timer")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         player.message("<dark_red>The ability to mine an extra ore has worn off.")
     }

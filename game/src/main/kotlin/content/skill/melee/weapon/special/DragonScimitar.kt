@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 @Script
 class DragonScimitar : Api {
 
-    @Key("sever")
+    @Timer("sever")
     override fun start(player: Player, timer: String, restart: Boolean): Int {
         val key = player.getActivePrayerVarKey()
         if (player.isCurses()) {
@@ -32,7 +32,7 @@ class DragonScimitar : Api {
         return TimeUnit.SECONDS.toTicks(5)
     }
 
-    @Key("sever")
+    @Timer("sever")
     override fun tick(player: Player, timer: String) = Timer.CANCEL
 
     init {

@@ -6,7 +6,7 @@ class TimerSlot(
     private val npc: NPC,
 ) : Timers {
 
-    private var timer: Timer? = null
+    private var timer: TimerTask? = null
 
     override fun start(name: String, restart: Boolean): Boolean {
         val interval = TimerApi.start(npc, name, restart)
@@ -16,7 +16,7 @@ class TimerSlot(
         if (timer != null) {
             TimerApi.stop(npc, timer!!.name, death = false)
         }
-        this.timer = Timer(name, interval)
+        this.timer = TimerTask(name, interval)
         return true
     }
 

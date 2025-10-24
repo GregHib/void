@@ -21,13 +21,13 @@ class WindChill : Api {
 
     val areas: AreaDefinitions by inject()
 
-    @Key("windchill")
+    @Timer("windchill")
     override fun start(player: Player, timer: String, restart: Boolean): Int {
         player.open("snow_flakes")
         return 10
     }
 
-    @Key("windchill")
+    @Timer("windchill")
     override fun tick(player: Player, timer: String): Int {
         if (player.tile !in areas["godwars_chill_area"]) {
             return Timer.CANCEL
@@ -46,7 +46,7 @@ class WindChill : Api {
         return Timer.CONTINUE
     }
 
-    @Key("windchill")
+    @Timer("windchill")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         player.close("snow_flakes")
     }

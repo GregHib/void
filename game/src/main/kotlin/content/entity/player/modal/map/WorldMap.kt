@@ -23,10 +23,10 @@ class WorldMap : Api {
 
     val definitions: InterfaceDefinitions by inject()
 
-    @Key("world_map_check")
+    @Timer("world_map_check")
     override fun start(player: Player, timer: String, restart: Boolean) = 5
 
-    @Key("world_map_check")
+    @Timer("world_map_check")
     override fun tick(player: Player, timer: String): Int {
         updateMap(player)
         if (player.steps.isEmpty() || !player.hasOpen("world_map")) {

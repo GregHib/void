@@ -9,7 +9,7 @@ class TimerQueue(
     private val events: EventDispatcher,
 ) : Timers {
 
-    val queue = PriorityQueue<Timer>()
+    val queue = PriorityQueue<TimerTask>()
     val names = mutableSetOf<String>()
 
     override fun start(name: String, restart: Boolean): Boolean {
@@ -24,7 +24,7 @@ class TimerQueue(
         if (interval == Timer.CANCEL || interval == Timer.CONTINUE) {
             return false
         }
-        val timer = Timer(name, interval)
+        val timer = TimerTask(name, interval)
         queue.add(timer)
         names.add(name)
         return true
@@ -34,7 +34,7 @@ class TimerQueue(
 
     override fun run() {
         val iterator = queue.iterator()
-        var timer: Timer
+        var timer: TimerTask
         while (iterator.hasNext()) {
             timer = iterator.next()
             if (!timer.ready()) {

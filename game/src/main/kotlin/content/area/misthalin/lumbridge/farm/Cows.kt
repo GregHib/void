@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.Key
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
@@ -28,13 +27,13 @@ class Cows : Api {
         npc.softTimers.start("eat_grass")
     }
 
-    @Key("eat_grass")
+    @Timer("eat_grass")
     override fun start(npc: NPC, timer: String, restart: Boolean): Int {
         npc.mode = EmptyMode
         return random.nextInt(50, 200)
     }
 
-    @Key("eat_grass")
+    @Timer("eat_grass")
     override fun tick(npc: NPC, timer: String): Int {
         if (npc.mode == EmptyMode) {
             npc.say("Moo")

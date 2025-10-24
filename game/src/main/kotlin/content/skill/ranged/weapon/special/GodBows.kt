@@ -44,10 +44,10 @@ class GodBows : Api {
         }
     }
 
-    @Key("restorative_shot,balanced_shot")
+    @Timer("restorative_shot,balanced_shot")
     override fun start(player: Player, timer: String, restart: Boolean) = TimeUnit.SECONDS.toTicks(6)
 
-    @Key("restorative_shot,balanced_shot")
+    @Timer("restorative_shot,balanced_shot")
     override fun tick(player: Player, timer: String): Int {
         val amount = player.restoration
         if (amount <= 0) {
@@ -60,7 +60,7 @@ class GodBows : Api {
         return Timer.CONTINUE
     }
 
-    @Key("restorative_shot,balanced_shot")
+    @Timer("restorative_shot,balanced_shot")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         player.clear("restoration")
         player.clear("restoration_amount")

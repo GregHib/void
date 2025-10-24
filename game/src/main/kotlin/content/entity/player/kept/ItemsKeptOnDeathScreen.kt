@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.timer.Key
 import world.gregs.voidps.engine.timer.Timer
 
 @Script
@@ -19,7 +18,7 @@ class ItemsKeptOnDeathScreen : Api {
 
     val enums: EnumDefinitions by inject()
 
-    @Key("skull")
+    @Timer("skull")
     override fun start(player: Player, timer: String, restart: Boolean): Int {
         if (player.interfaces.contains("items_kept_on_death")) {
             player.open("items_kept_on_death", close = true)
@@ -27,7 +26,7 @@ class ItemsKeptOnDeathScreen : Api {
         return Timer.CONTINUE
     }
 
-    @Key("skull")
+    @Timer("skull")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         if (player.interfaces.contains("items_kept_on_death")) {
             player.open("items_kept_on_death", close = true)

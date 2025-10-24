@@ -75,10 +75,10 @@ class AvasDevices : Api {
         update(player)
     }
 
-    @Key("junk_collection")
+    @Timer("junk_collection")
     override fun start(player: Player, timer: String, restart: Boolean) = TimeUnit.SECONDS.toTicks(90)
 
-    @Key("junk_collection")
+    @Timer("junk_collection")
     override fun tick(player: Player, timer: String): Int {
         val junk = if (player.equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
         val item = junk.random()

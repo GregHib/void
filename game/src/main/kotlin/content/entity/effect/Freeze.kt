@@ -50,13 +50,13 @@ fun Character.freezeImmune(ticks: Int) {
 @Script
 class Freeze : Api {
 
-    @Key("movement_delay")
+    @Timer("movement_delay")
     override fun start(character: Character, timer: String, restart: Boolean): Int {
         character.start("movement_delay", -1)
         return 1
     }
 
-    @Key("movement_delay")
+    @Timer("movement_delay")
     override fun tick(character: Character, timer: String): Int {
         val frozen = character.frozen
         character.movementDelay -= character.movementDelay.sign
@@ -70,7 +70,7 @@ class Freeze : Api {
         return Timer.CONTINUE
     }
 
-    @Key("movement_delay")
+    @Timer("movement_delay")
     override fun stop(character: Character, timer: String, logout: Boolean) {
         character.stop("movement_delay")
     }

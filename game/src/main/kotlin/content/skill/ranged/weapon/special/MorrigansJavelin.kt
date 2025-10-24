@@ -15,10 +15,10 @@ import world.gregs.voidps.engine.timer.*
 @Script
 class MorrigansJavelin : Api {
 
-    @Key("phantom_strike")
+    @Timer("phantom_strike")
     override fun start(character: Character, timer: String, restart: Boolean) = 3
 
-    @Key("phantom_strike")
+    @Timer("phantom_strike")
     override fun tick(character: Character, timer: String): Int {
         val remaining = character["phantom_damage", 0]
         val damage = remaining.coerceAtMost(50)
@@ -32,7 +32,7 @@ class MorrigansJavelin : Api {
         return Timer.CONTINUE
     }
 
-    @Key("phantom_strike")
+    @Timer("phantom_strike")
     override fun stop(character: Character, timer: String, logout: Boolean) {
         character.clear("phantom")
         character.clear("phantom_damage")

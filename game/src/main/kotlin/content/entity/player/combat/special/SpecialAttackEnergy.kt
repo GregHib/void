@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.timer.Key
 import world.gregs.voidps.engine.timer.Timer
 import kotlin.math.min
 
@@ -20,10 +19,10 @@ class SpecialAttackEnergy : Api {
         }
     }
 
-    @Key("restore_special_energy")
+    @Timer("restore_special_energy")
     override fun start(player: Player, timer: String, restart: Boolean) = 50
 
-    @Key("restore_special_energy")
+    @Timer("restore_special_energy")
     override fun tick(player: Player, timer: String): Int {
         val energy = player.specialAttackEnergy
         if (energy >= MAX_SPECIAL_ATTACK) {

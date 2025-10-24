@@ -60,10 +60,10 @@ class BotSpawns : Api {
         }
     }
 
-    @Key("bot_spawn")
+    @Timer("bot_spawn")
     override fun start(timer: String): Int = TimeUnit.SECONDS.toTicks(Settings["bots.spawnSeconds", 60])
 
-    @Key("bot_spawn")
+    @Timer("bot_spawn")
     override fun tick(timer: String): Int {
         if (counter > Settings["bots.count", 0]) {
             return Timer.CANCEL

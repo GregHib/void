@@ -119,9 +119,10 @@ class MakeoverMage : Api {
         }
     }
 
-    @Key("makeover")
+    @Timer("makeover")
     override fun start(npc: NPC, timer: String, restart: Boolean) = TimeUnit.SECONDS.toTicks(250)
 
+    @Timer("makeover")
     override fun tick(npc: NPC, timer: String): Int {
         val current: String = npc["transform_id", "makeover_mage_male"]
         val toFemale = current == "makeover_mage_male"

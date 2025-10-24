@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.timer.Key
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Tile
 import kotlin.getValue
@@ -154,7 +153,7 @@ class PathFindingCommands : Api {
         }
     }
 
-    @Key("show_path")
+    @Timer("show_path")
     override fun tick(player: Player, timer: String): Int {
         var tile = player.tile
         for (step in player.steps) {

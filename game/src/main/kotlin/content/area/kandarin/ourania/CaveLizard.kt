@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.npc.hunt.huntNPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.timer.Key
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
 @Script
@@ -20,10 +20,10 @@ class CaveLizard : Api {
         npc.softTimers.start("aggressive_hunt_mode_switch")
     }
 
-    @Key("aggressive_hunt_mode_switch")
+    @Timer("aggressive_hunt_mode_switch")
     override fun start(npc: NPC, timer: String, restart: Boolean) = random.nextInt(6, 12)
 
-    @Key("aggressive_hunt_mode_switch")
+    @Timer("aggressive_hunt_mode_switch")
     override fun tick(npc: NPC, timer: String): Int {
         npc.huntMode = if (random.nextBoolean()) "aggressive" else "aggressive_npcs"
         return super.tick(npc, timer)

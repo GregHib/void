@@ -51,10 +51,10 @@ class LevelRestoration : Api {
         }
     }
 
-    @Key("restore_stats")
+    @Timer("restore_stats")
     override fun start(player: Player, timer: String, restart: Boolean) = TimeUnit.SECONDS.toTicks(60)
 
-    @Key("restore_stats")
+    @Timer("restore_stats")
     override fun tick(player: Player, timer: String): Int {
         val berserker = player.praying("berserker") && player.hasClock("berserker_cooldown")
         val skip = player.praying("berserker") && !player.hasClock("berserker_cooldown")

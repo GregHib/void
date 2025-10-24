@@ -56,7 +56,7 @@ class Gravestones : Api {
         npc.softTimers.start("grave_degrade")
     }
 
-    @Key("grave_degrade")
+    @Timer("grave_degrade")
     override fun start(npc: NPC, timer: String, restart: Boolean): Int {
         val player = players.get(npc["player_name", ""])
         if (player != null) {
@@ -66,7 +66,7 @@ class Gravestones : Api {
         return 60
     }
 
-    @Key("grave_degrade")
+    @Timer("grave_degrade")
     override fun tick(npc: NPC, timer: String): Int {
         val remaining = npc.remaining("grave_timer", epochSeconds())
         if (remaining <= 120 && !npc.transform.endsWith("broken")) {
@@ -79,7 +79,7 @@ class Gravestones : Api {
         return Timer.CONTINUE
     }
 
-    @Key("grave_degrade")
+    @Timer("grave_degrade")
     override fun stop(npc: NPC, timer: String, death: Boolean) {
         val player = players.get(npc.remove("player_name") ?: "")
         if (player != null) {
