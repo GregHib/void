@@ -33,14 +33,13 @@ class TimerQueue(
     override fun contains(name: String): Boolean = names.contains(name)
 
     override fun run() {
-        val iterator = queue.iterator()
         var timer: TimerTask
-        while (iterator.hasNext()) {
-            timer = iterator.next()
+        while (queue.isNotEmpty()) {
+            timer = queue.peek()
             if (!timer.ready()) {
                 break
             }
-            timer.reset()
+            queue.poll()
             val interval = when (events) {
                 is Player -> TimerApi.tick(events, timer.name)
                 is World -> TimerApi.tick(timer.name)
@@ -48,13 +47,14 @@ class TimerQueue(
             }
             when (interval) {
                 Timer.CANCEL -> {
-                    iterator.remove()
                     names.remove(timer.name)
                     stop(timer.name, logout = false)
+                    continue
                 }
                 Timer.CONTINUE -> timer.next()
                 else -> timer.next(interval)
             }
+            queue.offer(timer)
         }
     }
 

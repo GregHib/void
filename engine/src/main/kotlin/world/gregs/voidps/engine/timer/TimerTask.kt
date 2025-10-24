@@ -20,7 +20,8 @@ data class TimerTask(
     }
 
     fun next(interval: Int = this.interval) {
-        nextTick = GameLoop.tick + interval
+        // Initial interval can be zero but subsequent calls must be at least 1 to avoid infinite loops
+        nextTick = GameLoop.tick + interval.coerceAtLeast(1)
     }
 
     override fun compareTo(other: TimerTask): Int = nextTick.compareTo(other.nextTick)
