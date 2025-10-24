@@ -10,7 +10,7 @@ class TimerSlot(
 
     override fun start(name: String, restart: Boolean): Boolean {
         val interval = TimerApi.start(npc, name, restart)
-        if (interval == TimerApi.CANCEL || interval == TimerApi.REPEAT) {
+        if (interval == Timer.CANCEL || interval == Timer.CONTINUE) {
             return false
         }
         if (timer != null) {
@@ -29,10 +29,10 @@ class TimerSlot(
         }
         timer.reset()
         val interval = TimerApi.tick(npc, timer.name)
-        if (interval == TimerApi.CANCEL) {
+        if (interval == Timer.CANCEL) {
             TimerApi.stop(npc, timer.name, death = false)
             this.timer = null
-        } else if (interval != TimerApi.REPEAT) {
+        } else if (interval != Timer.CONTINUE) {
             timer.next(interval)
         }
     }

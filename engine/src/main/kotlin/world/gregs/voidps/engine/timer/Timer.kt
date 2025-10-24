@@ -24,4 +24,9 @@ data class Timer(
     }
 
     override fun compareTo(other: Timer): Int = nextTick.compareTo(other.nextTick)
+
+    companion object {
+        const val CANCEL = -1
+        const val CONTINUE = -2
+    }
 }

@@ -21,7 +21,7 @@ class TimerQueue(
             is World -> TimerApi.start(name)
             else -> return false
         }
-        if (interval == TimerApi.CANCEL || interval == TimerApi.REPEAT) {
+        if (interval == Timer.CANCEL || interval == Timer.CONTINUE) {
             return false
         }
         val timer = Timer(name, interval)
@@ -47,12 +47,12 @@ class TimerQueue(
                 else -> return
             }
             when (interval) {
-                TimerApi.CANCEL -> {
+                Timer.CANCEL -> {
                     iterator.remove()
                     names.remove(timer.name)
                     stop(timer.name, logout = false)
                 }
-                TimerApi.REPEAT -> timer.next()
+                Timer.CONTINUE -> timer.next()
                 else -> timer.next(interval)
             }
         }

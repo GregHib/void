@@ -8,32 +8,32 @@ interface TimerApi {
     /**
      * [timer] started for [player]
      */
-    fun start(player: Player, timer: String, restart: Boolean): Int = REPEAT
+    fun start(player: Player, timer: String, restart: Boolean): Int = Timer.CONTINUE
 
     /**
      * [timer] started for [npc]
      */
-    fun start(npc: NPC, timer: String, restart: Boolean): Int = REPEAT
+    fun start(npc: NPC, timer: String, restart: Boolean): Int = Timer.CONTINUE
 
     /**
      * World [timer] started
      */
-    fun start(timer: String): Int = REPEAT
+    fun start(timer: String): Int = Timer.CONTINUE
 
     /**
      * [timer] ticked for [player]
      */
-    fun tick(player: Player, timer: String): Int = REPEAT
+    fun tick(player: Player, timer: String): Int = Timer.CONTINUE
 
     /**
      * [timer] ticked for [npc]
      */
-    fun tick(npc: NPC, timer: String): Int = REPEAT
+    fun tick(npc: NPC, timer: String): Int = Timer.CONTINUE
 
     /**
      * World [timer] ticked
      */
-    fun tick(timer: String): Int = REPEAT
+    fun tick(timer: String): Int = Timer.CONTINUE
 
     /**
      * [timer] stopped for [player]
@@ -51,86 +51,91 @@ interface TimerApi {
     fun stop(timer: String, shutdown: Boolean) {}
 
     companion object : TimerApi {
-        var playerDispatcher = MapDispatcher<TimerApi>("@Key")
-        var npcDispatcher = MapDispatcher<TimerApi>("@Key")
-        var worldDispatcher = MapDispatcher<TimerApi>("@Key")
-        const val CANCEL = -1
-        const val REPEAT = -2
+        var playerStartDispatcher = MapDispatcher<TimerApi>("@Key")
+        var playerTickDispatcher = MapDispatcher<TimerApi>("@Key")
+        var playerStopDispatcher = MapDispatcher<TimerApi>("@Key")
+        var npcStartDispatcher = MapDispatcher<TimerApi>("@Key")
+        var npcTickDispatcher = MapDispatcher<TimerApi>("@Key")
+        var npcStopDispatcher = MapDispatcher<TimerApi>("@Key")
+        var worldStartDispatcher = MapDispatcher<TimerApi>("@Key")
+        var worldTickDispatcher = MapDispatcher<TimerApi>("@Key")
+        var worldStopDispatcher = MapDispatcher<TimerApi>("@Key")
+
 
         override fun start(player: Player, timer: String, restart: Boolean): Int {
-            for (instance in playerDispatcher.instances[timer] ?: return CANCEL) {
+            for (instance in playerStartDispatcher.instances[timer] ?: return Timer.CANCEL) {
                 val result = instance.start(player, timer, restart)
-                if (result != REPEAT) {
+                if (result != Timer.CONTINUE) {
                     return result
                 }
             }
-            return CANCEL
+            return Timer.CANCEL
         }
 
         override fun start(npc: NPC, timer: String, restart: Boolean): Int {
-            for (instance in npcDispatcher.instances[timer] ?: return CANCEL) {
+            for (instance in npcStartDispatcher.instances[timer] ?: return Timer.CANCEL) {
                 val result = instance.start(npc, timer, restart)
-                if (result != REPEAT) {
+                if (result != Timer.CONTINUE) {
                     return result
                 }
             }
-            return CANCEL
+            return Timer.CANCEL
         }
 
         override fun start(timer: String): Int {
-            for (instance in worldDispatcher.instances[timer] ?: return CANCEL) {
+            for (instance in worldStartDispatcher.instances[timer] ?: return Timer.CANCEL) {
                 val result = instance.start(timer)
-                if (result != REPEAT) {
+                if (result != Timer.CONTINUE) {
                     return result
                 }
             }
-            return CANCEL
+            return Timer.CANCEL
         }
 
         override fun tick(player: Player, timer: String): Int {
-            for (instance in playerDispatcher.instances[timer] ?: return REPEAT) {
+            for (instance in playerTickDispatcher.instances[timer] ?: return Timer.CONTINUE) {
                 val result = instance.tick(player, timer)
-                if (result != REPEAT) {
+                if (result != Timer.CONTINUE) {
                     return result
                 }
             }
-            return REPEAT
+            return Timer.CONTINUE
         }
 
         override fun tick(npc: NPC, timer: String): Int {
-            for (instance in npcDispatcher.instances[timer] ?: return REPEAT) {
+            for (instance in npcTickDispatcher.instances[timer] ?: return Timer.CONTINUE) {
                 val result = instance.tick(npc, timer)
-                if (result != REPEAT) {
+                if (result != Timer.CONTINUE) {
                     return result
                 }
             }
-            return REPEAT
+            return Timer.CONTINUE
         }
 
         override fun tick(timer: String): Int {
-            for (instance in playerDispatcher.instances[timer] ?: return REPEAT) {
+            for (instance in worldTickDispatcher.instances[timer] ?: return Timer.CONTINUE) {
                 val result = instance.tick(timer)
-                if (result != REPEAT) {
+                if (result != Timer.CONTINUE) {
                     return result
                 }
             }
-            return REPEAT
+            return Timer.CONTINUE
         }
 
         override fun stop(player: Player, timer: String, logout: Boolean) {
-            for (instance in playerDispatcher.instances[timer] ?: return) {
+            for (instance in playerStopDispatcher.instances[timer] ?: return) {
                 instance.stop(player, timer, logout)
             }
         }
 
         override fun stop(npc: NPC, timer: String, death: Boolean) {
-            for (instance in npcDispatcher.instances[timer] ?: return) {
+            for (instance in npcStopDispatcher.instances[timer] ?: return) {
                 instance.stop(npc, timer, death)
             }
         }
 
         override fun stop(timer: String, shutdown: Boolean) {
-            for (instance in worldDispatcher.instances[timer] ?: return) {
+            for (instance in worldStopDispatcher.instances[timer] ?: return) {
                 instance.stop(timer, shutdown)
             }
         }
