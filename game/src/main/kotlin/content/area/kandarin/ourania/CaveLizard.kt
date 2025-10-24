@@ -9,8 +9,7 @@ import world.gregs.voidps.engine.entity.character.npc.hunt.huntNPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.timer.npcTimerTick
-import world.gregs.voidps.engine.timer.timerStart
+import world.gregs.voidps.engine.timer.Key
 import world.gregs.voidps.type.random
 
 @Script
@@ -21,6 +20,15 @@ class CaveLizard : Api {
         npc.softTimers.start("aggressive_hunt_mode_switch")
     }
 
+    @Key("aggressive_hunt_mode_switch")
+    override fun start(npc: NPC, timer: String, restart: Boolean) = random.nextInt(6, 12)
+
+    @Key("aggressive_hunt_mode_switch")
+    override fun tick(npc: NPC, timer: String): Int {
+        npc.huntMode = if (random.nextBoolean()) "aggressive" else "aggressive_npcs"
+        return super.tick(npc, timer)
+    }
+
     init {
         huntNPC("cave_lizard", "zamorak_*", "aggressive_npcs") { npc ->
             npc.mode = Interact(npc, target, NPCOption(npc, target, target.def, "Attack"))
@@ -28,14 +36,6 @@ class CaveLizard : Api {
 
         huntPlayer("cave_lizard", "aggressive") { npc ->
             npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
-        }
-
-        timerStart("aggressive_hunt_mode_switch") {
-            interval = random.nextInt(6, 12)
-        }
-
-        npcTimerTick("aggressive_hunt_mode_switch") { npc ->
-            npc.huntMode = if (random.nextBoolean()) "aggressive" else "aggressive_npcs"
         }
     }
 }

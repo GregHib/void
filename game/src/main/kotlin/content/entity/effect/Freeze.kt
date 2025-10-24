@@ -1,15 +1,14 @@
 package content.entity.effect
 
 import content.skill.prayer.praying
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.timer.characterTimerStart
-import world.gregs.voidps.engine.timer.characterTimerStop
-import world.gregs.voidps.engine.timer.characterTimerTick
+import world.gregs.voidps.engine.timer.*
 import kotlin.math.sign
 
 val Character.frozen: Boolean get() = movementDelay > 0
@@ -49,28 +48,30 @@ fun Character.freezeImmune(ticks: Int) {
 }
 
 @Script
-class Freeze {
+class Freeze : Api {
 
-    init {
-        characterTimerStart("movement_delay") { character ->
-            character.start("movement_delay", -1)
-            interval = 1
-        }
+    @Key("movement_delay")
+    override fun start(character: Character, timer: String, restart: Boolean): Int {
+        character.start("movement_delay", -1)
+        return 1
+    }
 
-        characterTimerTick("movement_delay") { character ->
-            val frozen = character.frozen
-            character.movementDelay -= character.movementDelay.sign
-            if (character.movementDelay == 0) {
-                if (frozen) {
-                    character.movementDelay = -5
-                } else {
-                    cancel()
-                }
+    @Key("movement_delay")
+    override fun tick(character: Character, timer: String): Int {
+        val frozen = character.frozen
+        character.movementDelay -= character.movementDelay.sign
+        if (character.movementDelay == 0) {
+            if (frozen) {
+                character.movementDelay = -5
+            } else {
+                return Timer.CANCEL
             }
         }
+        return Timer.CONTINUE
+    }
 
-        characterTimerStop("movement_delay") { character ->
-            character.stop("movement_delay")
-        }
+    @Key("movement_delay")
+    override fun stop(character: Character, timer: String, logout: Boolean) {
+        character.stop("movement_delay")
     }
 }

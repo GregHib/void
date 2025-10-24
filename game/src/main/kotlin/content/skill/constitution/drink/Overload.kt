@@ -11,10 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.timer.timerStart
-import world.gregs.voidps.engine.timer.timerStop
-import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
 @Script
@@ -32,6 +29,45 @@ class Overload : Api {
         if (player["overload_refreshes_remaining", 0] > 0) {
             player.timers.restart("overload")
         }
+    }
+
+    @Key("overload")
+    override fun start(player: Player, timer: String, restart: Boolean): Int {
+        if (restart) {
+            return TimeUnit.SECONDS.toTicks(15)
+        }
+        applyBoost(player)
+        player.queue(name = "overload_hits") {
+            repeat(5) {
+                player.directHit(100)
+                player.anim("overload")
+                player.gfx("overload")
+                pause(2)
+            }
+        }
+        return TimeUnit.SECONDS.toTicks(15)
+    }
+
+    @Key("overload")
+    override fun tick(player: Player, timer: String): Int {
+        if (player.dec("overload_refreshes_remaining") <= 0) {
+            return Timer.CANCEL
+        }
+        if (!player.inWilderness) {
+            applyBoost(player)
+        }
+        return Timer.CONTINUE
+    }
+
+    @Key("overload")
+    override fun stop(player: Player, timer: String, logout: Boolean) {
+        if (logout) {
+            return
+        }
+        removeBoost(player)
+        player.levels.restore(Skill.Constitution, 500)
+        player.message("<dark_red>The effects of overload have worn off and you feel normal again.")
+        player["overload_refreshes_remaining"] = 0
     }
 
     init {
@@ -60,42 +96,6 @@ class Overload : Api {
                     player.levels.drain(skill, offset - superBoost)
                 }
             }
-        }
-
-        timerStart("overload") { player ->
-            interval = TimeUnit.SECONDS.toTicks(15)
-            if (restart) {
-                return@timerStart
-            }
-            applyBoost(player)
-            player.queue(name = "overload_hits") {
-                repeat(5) {
-                    player.directHit(100)
-                    player.anim("overload")
-                    player.gfx("overload")
-                    pause(2)
-                }
-            }
-        }
-
-        timerTick("overload") { player ->
-            if (player.dec("overload_refreshes_remaining") <= 0) {
-                cancel()
-                return@timerTick
-            }
-            if (!player.inWilderness) {
-                applyBoost(player)
-            }
-        }
-
-        timerStop("overload") { player ->
-            if (logout) {
-                return@timerStop
-            }
-            removeBoost(player)
-            player.levels.restore(Skill.Constitution, 500)
-            player.message("<dark_red>The effects of overload have worn off and you feel normal again.")
-            player["overload_refreshes_remaining"] = 0
         }
     }
 

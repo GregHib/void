@@ -1,49 +1,85 @@
 package world.gregs.voidps.engine.timer
 
 import world.gregs.voidps.engine.dispatch.MapDispatcher
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
 interface TimerApi {
     /**
      * [timer] started for [player]
+     * @return ticks until start or [Timer.CANCEL]
      */
-    fun start(player: Player, timer: String, restart: Boolean): Int = Timer.CONTINUE
+    fun start(player: Player, timer: String, restart: Boolean): Int = start(player as Character, timer, restart)
 
     /**
      * [timer] started for [npc]
+     * @return ticks until start or [Timer.CANCEL]
      */
-    fun start(npc: NPC, timer: String, restart: Boolean): Int = Timer.CONTINUE
+    fun start(npc: NPC, timer: String, restart: Boolean): Int = start(npc as Character, timer, restart)
+
+    /**
+     * [timer] started for any [character]
+     * @return ticks until start or [Timer.CANCEL]
+     */
+    fun start(character: Character, timer: String, restart: Boolean): Int = Timer.CONTINUE
 
     /**
      * World [timer] started
+     * @return ticks until start or [Timer.CANCEL]
      */
     fun start(timer: String): Int = Timer.CONTINUE
 
     /**
      * [timer] ticked for [player]
+     * @return [Timer.CONTINUE] - to continue the timer with the same interval
+     * @return [Timer.CANCEL] - to cancel the timer
+     * @return interval - to change the timers interval until the next tick
      */
-    fun tick(player: Player, timer: String): Int = Timer.CONTINUE
+    fun tick(player: Player, timer: String): Int = tick(player as Character, timer)
 
     /**
      * [timer] ticked for [npc]
+     * @return [Timer.CONTINUE] - to continue the timer with the same interval
+     * @return [Timer.CANCEL] - to cancel the timer
+     * @return interval - to change the timers interval until the next tick
      */
-    fun tick(npc: NPC, timer: String): Int = Timer.CONTINUE
+    fun tick(npc: NPC, timer: String): Int = tick(npc as Character, timer)
+
+    /**
+     * [timer] ticked for any [character]
+     * @return [Timer.CONTINUE] - to continue the timer with the same interval
+     * @return [Timer.CANCEL] - to cancel the timer
+     * @return interval - to change the timers interval until the next tick
+     */
+    fun tick(character: Character, timer: String): Int = Timer.CONTINUE
 
     /**
      * World [timer] ticked
+     * @return [Timer.CONTINUE] - to continue the timer with the same interval
+     * @return [Timer.CANCEL] - to cancel the timer
+     * @return interval - to change the timers interval until the next tick
      */
     fun tick(timer: String): Int = Timer.CONTINUE
 
     /**
      * [timer] stopped for [player]
      */
-    fun stop(player: Player, timer: String, logout: Boolean) {}
+    fun stop(player: Player, timer: String, logout: Boolean) {
+        stop(player as Character, timer, logout)
+    }
 
     /**
      * [timer] stopped for [npc]
      */
-    fun stop(npc: NPC, timer: String, death: Boolean) {}
+    fun stop(npc: NPC, timer: String, death: Boolean) {
+        stop(npc as Character, timer, death)
+    }
+
+    /**
+     * [timer] stopped for any [character]
+     */
+    fun stop(character: Character, timer: String, logout: Boolean) {}
 
     /**
      * World [timer] stopped

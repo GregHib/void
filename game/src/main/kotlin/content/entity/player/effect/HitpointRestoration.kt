@@ -7,9 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.SkillId
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.timer.timerStart
-import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
 
@@ -30,21 +28,19 @@ class HitpointRestoration : Api {
         }
     }
 
-    init {
-        timerStart("restore_hitpoints") {
-            interval = TimeUnit.SECONDS.toTicks(6)
-        }
+    @Key("restore_hitpoints")
+    override fun start(player: Player, timer: String, restart: Boolean) = TimeUnit.SECONDS.toTicks(6)
 
-        timerTick("restore_hitpoints") { player ->
-            if (player.levels.get(Skill.Constitution) == 0) {
-                cancel()
-                return@timerTick
-            }
-            val total = player.levels.restore(Skill.Constitution, healAmount(player))
-            if (total == 0) {
-                cancel()
-            }
+    @Key("restore_hitpoints")
+    override fun tick(player: Player, timer: String): Int {
+        if (player.levels.get(Skill.Constitution) == 0) {
+            return Timer.CANCEL
         }
+        val total = player.levels.restore(Skill.Constitution, healAmount(player))
+        if (total == 0) {
+            return Timer.CANCEL
+        }
+        return Timer.CONTINUE
     }
 
     /**

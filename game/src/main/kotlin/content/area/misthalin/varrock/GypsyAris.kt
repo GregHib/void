@@ -12,6 +12,7 @@ import content.quest.free.demon_slayer.DemonSlayerSpell.getWord
 import content.quest.free.demon_slayer.DemonSlayerSpell.randomiseOrder
 import content.quest.quest
 import content.quest.startCutscene
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.shakeCamera
@@ -21,6 +22,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -30,13 +32,13 @@ import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.timer.npcTimerStart
-import world.gregs.voidps.engine.timer.npcTimerTick
+import world.gregs.voidps.engine.timer.Key
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 
 @Script
-class GypsyAris {
+class GypsyAris : Api {
 
     init {
         npcOperate("Talk-to", "gypsy_aris") {
@@ -72,18 +74,18 @@ class GypsyAris {
                 }
             }
         }
+    }
 
-        npcTimerStart("demon_slayer_crystal_ball", "gypsy_aris") {
-            interval = 2
-        }
+    @Key("demon_slayer_crystal_ball")
+    override fun start(npc: NPC, timer: String, restart: Boolean) = 2
 
-        npcTimerTick("demon_slayer_crystal_ball") { npc ->
-            if (npc.mode !is Face) {
-                cancel()
-                return@npcTimerTick
-            }
-            areaSound("demon_slayer_crystal_ball_anim", npc.tile)
+    @Key("demon_slayer_crystal_ball")
+    override fun tick(npc: NPC, timer: String): Int {
+        if (npc.mode !is Face) {
+            return Timer.CANCEL
         }
+        areaSound("demon_slayer_crystal_ball_anim", npc.tile)
+        return Timer.CONTINUE
     }
 
     suspend fun SuspendableContext<Player>.whatToDo() {

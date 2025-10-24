@@ -1,6 +1,7 @@
 package content.entity.player.kept
 
 import content.entity.player.effect.skulled
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
@@ -10,27 +11,30 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.timer.timerStart
-import world.gregs.voidps.engine.timer.timerStop
+import world.gregs.voidps.engine.timer.Key
+import world.gregs.voidps.engine.timer.Timer
 
 @Script
-class ItemsKeptOnDeathScreen {
+class ItemsKeptOnDeathScreen : Api {
 
     val enums: EnumDefinitions by inject()
 
+    @Key("skull")
+    override fun start(player: Player, timer: String, restart: Boolean): Int {
+        if (player.interfaces.contains("items_kept_on_death")) {
+            player.open("items_kept_on_death", close = true)
+        }
+        return Timer.CONTINUE
+    }
+
+    @Key("skull")
+    override fun stop(player: Player, timer: String, logout: Boolean) {
+        if (player.interfaces.contains("items_kept_on_death")) {
+            player.open("items_kept_on_death", close = true)
+        }
+    }
+
     init {
-        timerStart("skull") { player ->
-            if (player.interfaces.contains("items_kept_on_death")) {
-                player.open("items_kept_on_death", close = true)
-            }
-        }
-
-        timerStop("skull") { player ->
-            if (player.interfaces.contains("items_kept_on_death")) {
-                player.open("items_kept_on_death", close = true)
-            }
-        }
-
         interfaceRefresh("items_kept_on_death") { player ->
             val items = ItemsKeptOnDeath.getAllOrdered(player)
             val savedItems = ItemsKeptOnDeath.kept(player, items, enums)

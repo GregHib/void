@@ -8,10 +8,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.timer.characterTimerStart
-import world.gregs.voidps.engine.timer.characterTimerStop
-import world.gregs.voidps.engine.timer.characterTimerTick
-import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
 import kotlin.math.sign
@@ -70,40 +67,40 @@ class Disease : Api {
         }
     }
 
-    init {
-        characterTimerStart("disease") { character ->
-            if (character.antiDisease || immune(character)) {
-                cancel()
-                return@characterTimerStart
-            }
-            if (!restart && character.diseaseCounter == 0) {
-                (character as? Player)?.message("You have been diseased.")
-                damage(character)
-            }
-            interval = 30
+    @Key("disease")
+    override fun start(character: Character, timer: String, restart: Boolean): Int {
+        if (character.antiDisease || immune(character)) {
+            return Timer.CANCEL
         }
+        if (!restart && character.diseaseCounter == 0) {
+            (character as? Player)?.message("You have been diseased.")
+            damage(character)
+        }
+        return 30
+    }
 
-        characterTimerTick("disease") { character ->
-            val diseased = character.diseased
-            character.diseaseCounter -= character.diseaseCounter.sign
-            when {
-                character.diseaseCounter == 0 -> {
-                    if (!diseased) {
-                        (character as? Player)?.message("Your disease resistance has worn off.")
-                    }
-                    cancel()
-                    return@characterTimerTick
+    @Key("disease")
+    override fun tick(character: Character, timer: String): Int {
+        val diseased = character.diseased
+        character.diseaseCounter -= character.diseaseCounter.sign
+        when {
+            character.diseaseCounter == 0 -> {
+                if (!diseased) {
+                    (character as? Player)?.message("Your disease resistance has worn off.")
                 }
-                character.diseaseCounter == -1 -> (character as? Player)?.message("Your disease resistance is about to wear off.")
-                diseased -> damage(character)
+                return Timer.CANCEL
             }
+            character.diseaseCounter == -1 -> (character as? Player)?.message("Your disease resistance is about to wear off.")
+            diseased -> damage(character)
         }
+        return Timer.CONTINUE
+    }
 
-        characterTimerStop("disease") { character ->
-            character.diseaseCounter = 0
-            character.clear("disease_damage")
-            character.clear("disease_source")
-        }
+    @Key("disease")
+    override fun stop(character: Character, timer: String, logout: Boolean) {
+        character.diseaseCounter = 0
+        character.clear("disease_damage")
+        character.clear("disease_source")
     }
 
     fun immune(character: Character) = character is NPC &&

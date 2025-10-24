@@ -10,10 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.timer.characterTimerStart
-import world.gregs.voidps.engine.timer.characterTimerStop
-import world.gregs.voidps.engine.timer.characterTimerTick
-import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
@@ -73,41 +70,43 @@ class Poison : Api {
         }
     }
 
-    init {
-        characterTimerStart("poison") { character ->
-            if (character.antiPoison || immune(character)) {
-                cancel()
-                return@characterTimerStart
-            }
-            if (!restart && character.poisonCounter == 0) {
-                (character as? Player)?.message("<green>You have been poisoned.")
-                damage(character)
-            }
-            interval = 30
+    @Key("poison")
+    override fun start(character: Character, timer: String, restart: Boolean): Int {
+        if (character.antiPoison || immune(character)) {
+            return Timer.CANCEL
         }
+        if (!restart && character.poisonCounter == 0) {
+            (character as? Player)?.message("<green>You have been poisoned.")
+            damage(character)
+        }
+        return 30
+    }
 
-        characterTimerTick("poison") { character ->
-            val poisoned = character.poisoned
-            character.poisonCounter -= character.poisonCounter.sign
-            when {
-                character.poisonCounter == 0 -> {
-                    if (!poisoned) {
-                        (character as? Player)?.message("<purple>Your poison resistance has worn off.")
-                    }
-                    cancel()
-                    return@characterTimerTick
+    @Key("poison")
+    override fun tick(character: Character, timer: String): Int {
+        val poisoned = character.poisoned
+        character.poisonCounter -= character.poisonCounter.sign
+        when {
+            character.poisonCounter == 0 -> {
+                if (!poisoned) {
+                    (character as? Player)?.message("<purple>Your poison resistance has worn off.")
                 }
-                character.poisonCounter == -1 -> (character as? Player)?.message("<purple>Your poison resistance is about to wear off.")
-                poisoned -> damage(character)
+                return Timer.CANCEL
             }
+            character.poisonCounter == -1 -> (character as? Player)?.message("<purple>Your poison resistance is about to wear off.")
+            poisoned -> damage(character)
         }
+        return Timer.CONTINUE
+    }
 
-        characterTimerStop("poison") { character ->
-            character.poisonCounter = 0
-            character.clear("poison_damage")
-            character.clear("poison_source")
-        }
+    @Key("poison")
+    override fun stop(character: Character, timer: String, logout: Boolean) {
+        character.poisonCounter = 0
+        character.clear("poison_damage")
+        character.clear("poison_source")
+    }
 
+    init {
         characterCombatAttack { source ->
             if (damage <= 0 || !poisonous(source, weapon)) {
                 return@characterCombatAttack

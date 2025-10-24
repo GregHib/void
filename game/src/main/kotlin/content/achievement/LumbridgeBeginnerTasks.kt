@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
-import world.gregs.voidps.engine.timer.timerStop
+import world.gregs.voidps.engine.timer.Key
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
@@ -49,6 +49,18 @@ class LumbridgeBeginnerTasks : Api {
             player["on_your_way_task"] = true
         } else if (key == "quest_points" && (from == null || from is Int && from < 4) && to != null && to is Int && to >= 4) {
             player["fledgeling_adventurer_task"] = true
+        }
+    }
+
+    @Key("firemaking")
+    override fun stop(player: Player, timer: String, logout: Boolean) {
+        val regular: Boolean = player.remove("burnt_regular_log") ?: return
+        val tile: Tile = player.remove("fire_tile") ?: return
+        if (regular) {
+            val fire = objects.getShape(tile, ObjectShape.CENTRE_PIECE_STRAIGHT)
+            if (fire != null && fire.id.startsWith("fire_")) {
+                player["log_a_rhythm_task"] = true
+            }
         }
     }
 
@@ -79,17 +91,6 @@ class LumbridgeBeginnerTasks : Api {
             if (!player["log_a_rhythm_task", false]) {
                 player["burnt_regular_log"] = true
                 player["fire_tile"] = player.tile
-            }
-        }
-
-        timerStop("firemaking") { player ->
-            val regular: Boolean = player.remove("burnt_regular_log") ?: return@timerStop
-            val tile: Tile = player.remove("fire_tile") ?: return@timerStop
-            if (regular) {
-                val fire = objects.getShape(tile, ObjectShape.CENTRE_PIECE_STRAIGHT)
-                if (fire != null && fire.id.startsWith("fire_")) {
-                    player["log_a_rhythm_task"] = true
-                }
             }
         }
 

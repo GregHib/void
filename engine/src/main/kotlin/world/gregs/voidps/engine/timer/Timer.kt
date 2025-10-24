@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.GameLoop
 
 /**
  * Stores the [name] of a timer to call every [interval]
- * The [nextTick] to emit a [TimerTick]
+ * The [nextTick] to emit a [TimerApi.tick]
  */
 data class Timer(
     val name: String,

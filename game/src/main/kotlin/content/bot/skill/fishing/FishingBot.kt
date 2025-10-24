@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.data.definition.data.Catch
 import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.distanceTo
@@ -28,7 +29,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.timerStop
+import world.gregs.voidps.engine.timer.Key
 import world.gregs.voidps.network.client.instruction.InteractNPC
 
 @Script
@@ -65,11 +66,10 @@ class FishingBot : Api {
         }
     }
 
-    init {
-        timerStop("fishing") { player ->
-            if (player.isBot) {
-                player.bot.resume(timer)
-            }
+    @Key("fishing")
+    override fun stop(player: Player, timer: String, logout: Boolean) {
+        if (player.isBot) {
+            player.bot.resume(timer)
         }
     }
 

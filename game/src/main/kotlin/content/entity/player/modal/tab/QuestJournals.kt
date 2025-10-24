@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.timer.timerStart
-import world.gregs.voidps.engine.timer.timerStop
+import world.gregs.voidps.engine.timer.Key
+import world.gregs.voidps.engine.timer.Timer
 
 @Script
 class QuestJournals : Api {
@@ -24,6 +24,17 @@ class QuestJournals : Api {
         if (questDefinitions.ids.containsKey(key)) {
             player.softTimers.start("refresh_quest_journal")
         }
+    }
+
+    @Key("refresh_quest_journal")
+    override fun start(player: Player, timer: String, restart: Boolean) = 1
+
+    @Key("refresh_quest_journal")
+    override fun tick(player: Player, timer: String) = Timer.CANCEL
+
+    @Key("refresh_quest_journal")
+    override fun stop(player: Player, timer: String, logout: Boolean) {
+        player.refreshQuestJournal()
     }
 
     init {
@@ -44,14 +55,6 @@ class QuestJournals : Api {
                 return@interfaceOption
             }
             player.emit(OpenQuestJournal(player, quest.stringId))
-        }
-
-        timerStart("refresh_quest_journal") {
-            interval = 1
-        }
-
-        timerStop("refresh_quest_journal") { player ->
-            player.refreshQuestJournal()
         }
     }
 

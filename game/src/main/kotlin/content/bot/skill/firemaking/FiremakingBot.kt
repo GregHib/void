@@ -12,6 +12,7 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -19,7 +20,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.timerStop
+import world.gregs.voidps.engine.timer.Key
 import world.gregs.voidps.network.client.instruction.InteractInterfaceItem
 
 @Script
@@ -50,11 +51,10 @@ class FiremakingBot : Api {
         }
     }
 
-    init {
-        timerStop("firemaking") { player ->
-            if (player.isBot) {
-                player.bot.resume(timer)
-            }
+    @Key("firemaking")
+    override fun stop(player: Player, timer: String, logout: Boolean) {
+        if (player.isBot) {
+            player.bot.resume(timer)
         }
     }
 

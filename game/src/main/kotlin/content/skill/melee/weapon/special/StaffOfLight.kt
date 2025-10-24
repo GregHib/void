@@ -8,10 +8,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.itemRemoved
-import world.gregs.voidps.engine.timer.timerStart
-import world.gregs.voidps.engine.timer.timerStop
-import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
 
@@ -22,6 +19,23 @@ class StaffOfLight : Api {
         if (player.contains("power_of_light")) {
             player.softTimers.restart("power_of_light")
         }
+    }
+
+    @Key("power_of_light")
+    override fun start(player: Player, timer: String, restart: Boolean) = 1
+
+    @Key("power_of_light")
+    override fun tick(player: Player, timer: String): Int {
+        if (player.dec("power_of_light") <= 0) {
+            return Timer.CANCEL
+        }
+        return Timer.CONTINUE
+    }
+
+    @Key("power_of_light")
+    override fun stop(player: Player, timer: String, logout: Boolean) {
+        player.message("<red>The power of the light fades. Your resistance to melee attacks returns to normal.")
+        player.clear("power_of_light")
     }
 
     init {
@@ -44,21 +58,6 @@ class StaffOfLight : Api {
             player.gfx("${id}_special")
             player[id] = TimeUnit.MINUTES.toTicks(1)
             player.softTimers.start(id)
-        }
-
-        timerStart("power_of_light") {
-            interval = 1
-        }
-
-        timerTick("power_of_light") { player ->
-            if (player.dec("power_of_light") <= 0) {
-                cancel()
-            }
-        }
-
-        timerStop("power_of_light") { player ->
-            player.message("<red>The power of the light fades. Your resistance to melee attacks returns to normal.")
-            player.clear("power_of_light")
         }
     }
 }

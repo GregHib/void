@@ -10,7 +10,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.timer.timerTick
+import world.gregs.voidps.engine.timer.Key
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Tile
 
 const val MAX_RUN_ENERGY = 10000
@@ -45,14 +46,13 @@ class Energy : Api {
         }
     }
 
-    init {
-        timerTick("energy_restore") { player ->
-            if (player.runEnergy >= MAX_RUN_ENERGY) {
-                cancel()
-                return@timerTick
-            }
-            player.runEnergy += getRestoreAmount(player)
+    @Key("energy_restore")
+    override fun tick(player: Player, timer: String): Int {
+        if (player.runEnergy >= MAX_RUN_ENERGY) {
+            return Timer.CANCEL
         }
+        player.runEnergy += getRestoreAmount(player)
+        return Timer.CONTINUE
     }
 
     fun getRestoreAmount(player: Player): Int {

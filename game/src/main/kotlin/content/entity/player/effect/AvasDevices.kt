@@ -11,9 +11,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.engine.inv.itemAdded
-import world.gregs.voidps.engine.timer.timerStart
-import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
 
@@ -77,6 +75,19 @@ class AvasDevices : Api {
         update(player)
     }
 
+    @Key("junk_collection")
+    override fun start(player: Player, timer: String, restart: Boolean) = TimeUnit.SECONDS.toTicks(90)
+
+    @Key("junk_collection")
+    override fun tick(player: Player, timer: String): Int {
+        val junk = if (player.equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
+        val item = junk.random()
+        if (!player.inventory.add(item)) {
+            floorItems.add(player.tile, item, revealTicks = 100, disappearTicks = 200, owner = player)
+        }
+        return Timer.CONTINUE
+    }
+
     init {
         inventoryChanged("worn_equipment", EquipSlot.Chest) { player ->
             if (item.def["material", ""] == "metal" || fromItem.def["material", ""] == "metal") {
@@ -96,18 +107,6 @@ class AvasDevices : Api {
         inventoryItem("Toggle", "avas_*", "inventory") {
             player["collect_junk"] = !player["collect_junk", false]
             update(player)
-        }
-
-        timerStart("junk_collection") {
-            interval = TimeUnit.SECONDS.toTicks(90)
-        }
-
-        timerTick("junk_collection") { player ->
-            val junk = if (player.equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
-            val item = junk.random()
-            if (!player.inventory.add(item)) {
-                floorItems.add(player.tile, item, revealTicks = 100, disappearTicks = 200, owner = player)
-            }
         }
     }
 

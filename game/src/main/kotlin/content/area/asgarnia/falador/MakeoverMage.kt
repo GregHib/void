@@ -27,9 +27,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.timer.npcTimerStart
-import world.gregs.voidps.engine.timer.npcTimerTick
-import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.type.random
@@ -119,21 +117,21 @@ class MakeoverMage : Api {
             }
             player<Quiz>("Uh, thanks, I guess.")
         }
+    }
 
-        npcTimerStart("makeover") {
-            interval = TimeUnit.SECONDS.toTicks(250)
-        }
+    @Key("makeover")
+    override fun start(npc: NPC, timer: String, restart: Boolean) = TimeUnit.SECONDS.toTicks(250)
 
-        npcTimerTick("makeover") { npc ->
-            val current: String = npc["transform_id", "makeover_mage_male"]
-            val toFemale = current == "makeover_mage_male"
-            npc.transform(if (toFemale) "makeover_mage_female" else "makeover_mage_male")
-            npc.gfx("curse_impact", delay = 15)
-            npc.anim("bind_staff")
-            npc.softQueue("transform", 1) {
-                npc.say(if (toFemale) "Ooh!" else "Aha!")
-            }
+    override fun tick(npc: NPC, timer: String): Int {
+        val current: String = npc["transform_id", "makeover_mage_male"]
+        val toFemale = current == "makeover_mage_male"
+        npc.transform(if (toFemale) "makeover_mage_female" else "makeover_mage_male")
+        npc.gfx("curse_impact", delay = 15)
+        npc.anim("bind_staff")
+        npc.softQueue("transform", 1) {
+            npc.say(if (toFemale) "Ooh!" else "Aha!")
         }
+        return Timer.CONTINUE
     }
 
     @Id("makeover_mage*")

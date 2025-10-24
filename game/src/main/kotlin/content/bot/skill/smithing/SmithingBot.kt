@@ -17,13 +17,14 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smithing
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.timerStop
+import world.gregs.voidps.engine.timer.Key
 
 @Script
 class SmithingBot : Api {
@@ -53,11 +54,10 @@ class SmithingBot : Api {
         }
     }
 
-    init {
-        timerStop("smithing") { player ->
-            if (player.isBot) {
-                player.bot.resume(timer)
-            }
+    @Key("smithing")
+    override fun stop(player: Player, timer: String, logout: Boolean) {
+        if (player.isBot) {
+            player.bot.resume(timer)
         }
     }
 
