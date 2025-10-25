@@ -14,6 +14,10 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
+/**
+ * Reschedule timers on player login
+ * On logout return items borrowed or lent until logout
+ */
 @Script
 class ItemLending : Api {
 
@@ -30,6 +34,9 @@ class ItemLending : Api {
             return TimeUnit.MINUTES.toTicks(1)
         }
         val remaining = player.remaining("lend_timeout", epochSeconds())
+        if (remaining == -1) {
+            return 0
+        }
         return TimeUnit.SECONDS.toTicks(remaining)
     }
 
@@ -54,7 +61,6 @@ class ItemLending : Api {
                 returnLoan(player)
             }
         }
-        super.stop(player, timer, logout)
     }
 
     init {
@@ -63,11 +69,6 @@ class ItemLending : Api {
             checkLoanUntilLogout(player)
         }
     }
-
-    /**
-     * Reschedule timers on player login
-     * On logout return items borrowed or lent until logout
-     */
 
     fun checkBorrowComplete(player: Player) {
         if (!player.contains("borrowed_item")) {

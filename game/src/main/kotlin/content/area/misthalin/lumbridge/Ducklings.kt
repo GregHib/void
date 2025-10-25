@@ -26,9 +26,6 @@ class Ducklings : Api {
     }
 
     @Timer("follow_parent")
-    override fun start(npc: NPC, timer: String, restart: Boolean): Int = 0
-
-    @Timer("follow_parent")
     override fun tick(npc: NPC, timer: String): Int {
         if (npc.mode != EmptyMode && npc.mode !is Wander) {
             return Timer.CONTINUE

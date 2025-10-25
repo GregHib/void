@@ -23,13 +23,13 @@ interface TimerApi {
      * [timer] started for any [character]
      * @return ticks until start or [Timer.CANCEL]
      */
-    fun start(character: Character, timer: String, restart: Boolean): Int = Timer.CONTINUE
+    fun start(character: Character, timer: String, restart: Boolean): Int = 0
 
     /**
      * World [timer] started
      * @return ticks until start or [Timer.CANCEL]
      */
-    fun start(timer: String): Int = Timer.CONTINUE
+    fun start(timer: String): Int = 0
 
     /**
      * [timer] ticked for [player]
@@ -103,33 +103,45 @@ interface TimerApi {
         val characterStopDispatcher = CombinedDispatcher(playerStopDispatcher, npcStopDispatcher)
 
         override fun start(player: Player, timer: String, restart: Boolean): Int {
-            for (instance in playerStartDispatcher.instances[timer] ?: return Timer.CANCEL) {
+            var interval = 0
+            for (instance in playerStartDispatcher.instances[timer] ?: return 0) {
                 val result = instance.start(player, timer, restart)
-                if (result != Timer.CONTINUE) {
+                if (result == Timer.CANCEL) {
                     return result
                 }
+                if (result != Timer.CONTINUE) {
+                    interval = result
+                }
             }
-            return Timer.CANCEL
+            return interval
         }
 
         override fun start(npc: NPC, timer: String, restart: Boolean): Int {
-            for (instance in npcStartDispatcher.instances[timer] ?: return Timer.CANCEL) {
+            var interval = 0
+            for (instance in npcStartDispatcher.instances[timer] ?: return 0) {
                 val result = instance.start(npc, timer, restart)
-                if (result != Timer.CONTINUE) {
+                if (result == Timer.CANCEL) {
                     return result
                 }
+                if (result != Timer.CONTINUE) {
+                    interval = result
+                }
             }
-            return Timer.CANCEL
+            return interval
         }
 
         override fun start(timer: String): Int {
-            for (instance in worldStartDispatcher.instances[timer] ?: return Timer.CANCEL) {
+            var interval = 0
+            for (instance in worldStartDispatcher.instances[timer] ?: return 0) {
                 val result = instance.start(timer)
-                if (result != Timer.CONTINUE) {
+                if (result == Timer.CANCEL) {
                     return result
                 }
+                if (result != Timer.CONTINUE) {
+                    interval = result
+                }
             }
-            return Timer.CANCEL
+            return interval
         }
 
         override fun tick(player: Player, timer: String): Int {
