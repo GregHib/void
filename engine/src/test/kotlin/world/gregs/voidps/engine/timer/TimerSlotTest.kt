@@ -4,13 +4,38 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.entity.character.npc.NPC
 
 internal class TimerSlotTest : TimersTest() {
+
+    private var npc = NPC()
 
     @BeforeEach
     override fun setup() {
         super.setup()
-        timers = TimerSlot(events)
+        val list: MutableList<TimerApi> = mutableListOf(
+            object : TimerApi {
+                override fun start(npc: NPC, timer: String, restart: Boolean): Int {
+                    emitted.add("start_$timer" to restart)
+                    return startInterval
+                }
+
+                override fun tick(npc: NPC, timer: String): Int {
+                    emitted.add("tick_$timer" to false)
+                    return tickInterval
+                }
+
+                override fun stop(npc: NPC, timer: String, death: Boolean) {
+                    emitted.add("stop_$timer" to death)
+                }
+            }
+        )
+        for (dispatcher in listOf(TimerApi.npcStartDispatcher, TimerApi.npcTickDispatcher, TimerApi.npcStopDispatcher)) {
+            dispatcher.instances["timer"] = list
+            dispatcher.instances["1"] = list
+            dispatcher.instances["2"] = list
+        }
+        timers = TimerSlot(npc)
     }
 
     @Test
@@ -23,12 +48,12 @@ internal class TimerSlotTest : TimersTest() {
         }
         assertFalse(timers.contains("1"))
         assertTrue(timers.contains("2"))
-        assertEquals(TimerStart("1"), emitted.pop())
-        assertEquals(TimerStart("2"), emitted.pop())
-        assertEquals(TimerStop("1", logout = false), emitted.pop())
-        assertEquals(TimerTick("2"), emitted.pop())
-        assertEquals(TimerTick("2"), emitted.pop())
-        assertEquals(TimerTick("2"), emitted.pop())
+        assertEquals("start_1" to false, emitted.pop())
+        assertEquals("start_2" to false, emitted.pop())
+        assertEquals("stop_1" to false, emitted.pop())
+        assertEquals("tick_2" to false, emitted.pop())
+        assertEquals("tick_2" to false, emitted.pop())
+        assertEquals("tick_2" to false, emitted.pop())
         assertTrue(emitted.isEmpty())
     }
 }

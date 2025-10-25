@@ -11,8 +11,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.timer.npcTimerStart
-import world.gregs.voidps.engine.timer.npcTimerTick
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
 
@@ -26,31 +25,28 @@ class Ducklings : Api {
         followParent(npc)
     }
 
+    @Timer("follow_parent")
+    override fun tick(npc: NPC, timer: String): Int {
+        if (npc.mode != EmptyMode && npc.mode !is Wander) {
+            return Timer.CONTINUE
+        }
+        val parent = findParent(npc) ?: return Timer.CANCEL
+        npc.mode = Follow(npc, parent)
+        parent["ducklings"] = npc
+        if (random.nextInt(300) < 1) {
+            parent.say("Quack?")
+            npc.softQueue("quack", 1) {
+                npc.say(if (random.nextBoolean()) "Cheep Cheep!" else "Eep!")
+            }
+        }
+        return Timer.CANCEL
+    }
+
     init {
         npcDeath("duck*swim") { npc ->
             val ducklings: NPC = npc["ducklings"] ?: return@npcDeath
             ducklings.say("Eek!")
             followParent(ducklings)
-        }
-
-        npcTimerStart("follow_parent") {
-            interval = 0
-        }
-
-        npcTimerTick("follow_parent") { npc ->
-            if (npc.mode != EmptyMode && npc.mode !is Wander) {
-                return@npcTimerTick
-            }
-            val parent = findParent(npc) ?: return@npcTimerTick
-            npc.mode = Follow(npc, parent)
-            parent["ducklings"] = npc
-            if (random.nextInt(300) < 1) {
-                parent.say("Quack?")
-                npc.softQueue("quack", 1) {
-                    npc.say(if (random.nextBoolean()) "Cheep Cheep!" else "Eep!")
-                }
-            }
-            cancel()
         }
     }
 

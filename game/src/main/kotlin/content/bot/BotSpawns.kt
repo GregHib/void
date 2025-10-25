@@ -27,9 +27,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.engine.timer.worldTimerStart
-import world.gregs.voidps.engine.timer.worldTimerTick
+import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.client.DummyClient
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
@@ -62,23 +60,23 @@ class BotSpawns : Api {
         }
     }
 
+    @Timer("bot_spawn")
+    override fun start(timer: String): Int = TimeUnit.SECONDS.toTicks(Settings["bots.spawnSeconds", 60])
+
+    @Timer("bot_spawn")
+    override fun tick(timer: String): Int {
+        if (counter > Settings["bots.count", 0]) {
+            return Timer.CANCEL
+        }
+        spawn()
+        return Timer.CONTINUE
+    }
+
     init {
         settingsReload {
             if (Settings["bots.count", 0] > bots.size) {
                 World.timers.start("bot_spawn")
             }
-        }
-
-        worldTimerStart("bot_spawn") {
-            interval = TimeUnit.SECONDS.toTicks(Settings["bots.spawnSeconds", 60])
-        }
-
-        worldTimerTick("bot_spawn") {
-            if (counter > Settings["bots.count", 0]) {
-                cancel()
-                return@worldTimerTick
-            }
-            spawn()
         }
 
         adminCommand("bots", intArg("count", optional = true), desc = "Spawn (count) number of bots", handler = ::spawn)

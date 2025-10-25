@@ -1,25 +1,24 @@
 package content.entity.effect
 
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.timer.characterTimerStart
-import world.gregs.voidps.engine.timer.characterTimerStop
-import world.gregs.voidps.engine.timer.characterTimerTick
+import world.gregs.voidps.engine.timer.*
 
 @Script
-class ColourOverlay {
+class ColourOverlay : Api {
 
-    init {
-        characterTimerStart("colour_overlay") { character ->
-            val overlay = character.visuals.colourOverlay
-            interval = (overlay.delay + overlay.duration) / 30
-        }
+    @Timer("colour_overlay")
+    override fun start(character: Character, timer: String, restart: Boolean): Int {
+        val overlay = character.visuals.colourOverlay
+        return (overlay.delay + overlay.duration) / 30
+    }
 
-        characterTimerTick("colour_overlay") {
-            cancel()
-        }
+    @Timer("colour_overlay")
+    override fun tick(character: Character, timer: String): Int = Timer.CANCEL
 
-        characterTimerStop("colour_overlay") { character ->
-            character.visuals.colourOverlay.reset()
-        }
+    @Timer("colour_overlay")
+    override fun stop(character: Character, timer: String, logout: Boolean) {
+        character.visuals.colourOverlay.reset()
     }
 }

@@ -14,6 +14,10 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
+/**
+ * Reschedule timers on player login
+ * On logout return items borrowed or lent until logout
+ */
 @Script
 class ItemLending : Api {
 
@@ -24,48 +28,47 @@ class ItemLending : Api {
         checkLoanComplete(player)
     }
 
-    init {
-        playerDespawn { player ->
-            checkBorrowUntilLogout(player)
-            checkLoanUntilLogout(player)
+    @Timer("loan_message,borrow_message")
+    override fun start(player: Player, timer: String, restart: Boolean): Int {
+        if (timer == "borrow_message") {
+            return TimeUnit.MINUTES.toTicks(1)
         }
-
-        timerStart("loan_message") { player ->
-            val remaining = player.remaining("lend_timeout", epochSeconds())
-            interval = TimeUnit.SECONDS.toTicks(remaining)
+        val remaining = player.remaining("lend_timeout", epochSeconds())
+        if (remaining == -1) {
+            return 0
         }
+        return TimeUnit.SECONDS.toTicks(remaining)
+    }
 
-        timerStop("loan_message") { player ->
-            if (!logout) {
+    @Timer("borrow_message")
+    override fun tick(player: Player, timer: String): Int {
+        val remaining = player.remaining("borrow_timeout", epochSeconds())
+        if (remaining <= 0) {
+            player.message("Your loan has expired; the item you borrowed will now be returned to its owner.")
+            return Timer.CANCEL
+        } else if (remaining == 60) {
+            player.message("The item you borrowed will be returned to its owner in a minute.")
+        }
+        return Timer.CONTINUE
+    }
+
+    @Timer("loan_message,borrow_message")
+    override fun stop(player: Player, timer: String, logout: Boolean) {
+        if (!logout) {
+            if (timer == "loan_message") {
                 stopLending(player)
-            }
-        }
-
-        timerStart("borrow_message") {
-            interval = TimeUnit.MINUTES.toTicks(1)
-        }
-
-        timerTick("borrow_message") { player ->
-            val remaining = player.remaining("borrow_timeout", epochSeconds())
-            if (remaining <= 0) {
-                player.message("Your loan has expired; the item you borrowed will now be returned to its owner.")
-                cancel()
-            } else if (remaining == 60) {
-                player.message("The item you borrowed will be returned to its owner in a minute.")
-            }
-        }
-
-        timerStop("borrow_message") { player ->
-            if (!logout) {
+            } else {
                 returnLoan(player)
             }
         }
     }
 
-    /**
-     * Reschedule timers on player login
-     * On logout return items borrowed or lent until logout
-     */
+    init {
+        playerDespawn { player ->
+            checkBorrowUntilLogout(player)
+            checkLoanUntilLogout(player)
+        }
+    }
 
     fun checkBorrowComplete(player: Player) {
         if (!player.contains("borrowed_item")) {

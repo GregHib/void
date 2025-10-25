@@ -1,6 +1,7 @@
 package content.entity.player.modal.map
 
 import content.entity.effect.frozen
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
@@ -13,15 +14,26 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.timer.timerStart
-import world.gregs.voidps.engine.timer.timerTick
+import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.client.instruction.WorldMapClick
 import world.gregs.voidps.network.login.protocol.encode.updateInterface
 
 @Script
-class WorldMap {
+class WorldMap : Api {
 
     val definitions: InterfaceDefinitions by inject()
+
+    @Timer("world_map_check")
+    override fun start(player: Player, timer: String, restart: Boolean): Int = 5
+
+    @Timer("world_map_check")
+    override fun tick(player: Player, timer: String): Int {
+        updateMap(player)
+        if (player.steps.isEmpty() || !player.hasOpen("world_map")) {
+            return Timer.CANCEL
+        }
+        return Timer.CONTINUE
+    }
 
     init {
         interfaceOpen("world_map") { player ->
@@ -35,17 +47,6 @@ class WorldMap {
             player.sendVariable("world_map_hide_tooltips")
             player.sendVariable("world_map_marker_custom")
             player.interfaceOptions.unlockAll("world_map", "key_list", 0..182)
-        }
-
-        timerStart("world_map_check") {
-            interval = 5
-        }
-
-        timerTick("world_map_check") { player ->
-            updateMap(player)
-            if (player.steps.isEmpty() || !player.hasOpen("world_map")) {
-                cancel()
-            }
         }
 
         interfaceOption("Re-sort key", "order", "world_map") {

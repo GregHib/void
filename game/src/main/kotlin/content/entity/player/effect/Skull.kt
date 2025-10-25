@@ -8,10 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.timer.timerStart
-import world.gregs.voidps.engine.timer.timerStop
-import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
 val Player.skulled: Boolean get() = skullCounter > 0
@@ -41,31 +38,34 @@ class Skull : Api {
         }
     }
 
+    @Timer("skull")
+    override fun start(player: Player, timer: String, restart: Boolean): Int {
+        player.appearance.skull = player["skull", 0]
+        player.flagAppearance()
+        return 50
+    }
+
+    @Timer("skull")
+    override fun tick(player: Player, timer: String): Int {
+        if (--player.skullCounter <= 0) {
+            return Timer.CANCEL
+        }
+        return Timer.CONTINUE
+    }
+
+    @Timer("skull")
+    override fun stop(player: Player, timer: String, logout: Boolean) {
+        player.clear("skull")
+        player.clear("skull_duration")
+        player.appearance.skull = -1
+        player.flagAppearance()
+    }
+
     init {
         combatStart { player ->
             if (player.inWilderness && target is Player && !player.attackers.contains(target)) {
                 player.skull()
             }
-        }
-
-        timerStart("skull") { player ->
-            interval = 50
-            player.appearance.skull = player["skull", 0]
-            player.flagAppearance()
-        }
-
-        timerTick("skull") { player ->
-            if (--player.skullCounter <= 0) {
-                cancel()
-                return@timerTick
-            }
-        }
-
-        timerStop("skull") { player ->
-            player.clear("skull")
-            player.clear("skull_duration")
-            player.appearance.skull = -1
-            player.flagAppearance()
         }
     }
 }

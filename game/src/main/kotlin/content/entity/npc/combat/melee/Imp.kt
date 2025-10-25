@@ -13,8 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.timer.npcTimerStart
-import world.gregs.voidps.engine.timer.npcTimerTick
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -26,15 +25,17 @@ class Imp : Api {
         npc.softTimers.start("teleport_timer")
     }
 
+    @Timer("teleport_timer")
+    override fun start(npc: NPC, timer: String, restart: Boolean): Int = random.nextInt(50, 200)
+
+    @Timer("teleport_timer")
+    override fun tick(npc: NPC, timer: String): Int {
+        teleportImp(npc, teleportChance)
+        // https://x.com/JagexAsh/status/1711280844504007132
+        return random.nextInt(50, 200)
+    }
+
     init {
-        npcTimerStart("teleport_timer") {
-            interval = random.nextInt(50, 200)
-        }
-
-        npcTimerTick("teleport_timer") { npc ->
-            teleportImp(npc, teleportChance)
-        }
-
         npcCombatDamage("imp") { npc ->
             val player = source
             if (npc.levels.get(Skill.Constitution) - damage > 0) {

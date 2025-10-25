@@ -4,13 +4,38 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.entity.character.player.Player
 
 internal class TimerQueueTest : TimersTest() {
 
     @BeforeEach
     override fun setup() {
         super.setup()
-        timers = TimerQueue(events)
+        timers = TimerQueue(Player())
+        val list: MutableList<TimerApi> = mutableListOf(
+            object : TimerApi {
+                override fun start(player: Player, timer: String, restart: Boolean): Int {
+                    emitted.add("start_$timer" to restart)
+                    return startInterval
+                }
+
+                override fun tick(player: Player, timer: String): Int {
+                    emitted.add("tick_$timer" to false)
+                    return tickInterval
+                }
+
+                override fun stop(player: Player, timer: String, logout: Boolean) {
+                    emitted.add("stop_$timer" to logout)
+                }
+            }
+        )
+        for (dispatcher in listOf(TimerApi.playerStartDispatcher, TimerApi.playerTickDispatcher, TimerApi.playerStopDispatcher)) {
+            dispatcher.instances["timer"] = list
+            dispatcher.instances["1"] = list
+            dispatcher.instances["2"] = list
+            dispatcher.instances["mutable"] = list
+            dispatcher.instances["fixed"] = list
+        }
     }
 
     @Test
@@ -23,28 +48,20 @@ internal class TimerQueueTest : TimersTest() {
         }
         assertTrue(timers.contains("1"))
         assertTrue(timers.contains("2"))
-        assertEquals(TimerStart("1"), emitted.pop())
-        assertEquals(TimerStart("2"), emitted.pop())
+        assertEquals("start_1", emitted.pop().first)
+        assertEquals("start_2", emitted.pop().first)
         repeat(3) {
-            assertEquals(TimerTick("1"), emitted.pop())
-            assertEquals(TimerTick("2"), emitted.pop())
+            assertEquals("tick_1", emitted.pop().first)
+            assertEquals("tick_2", emitted.pop().first)
         }
         assertTrue(emitted.isEmpty())
     }
 
     @Test
     fun `Updating next timer tick changes order`() {
-        block = {
-            if (it is TimerStart) {
-                it.interval = 2
-            }
-        }
+        startInterval = 2
         timers.start("mutable")
-        block = {
-            if (it is TimerStart) {
-                it.interval = 3
-            }
-        }
+        startInterval = 3
         timers.start("fixed")
 
         repeat(3) {
@@ -52,9 +69,9 @@ internal class TimerQueueTest : TimersTest() {
             GameLoop.tick++
         }
         assertFalse(timers.contains("timer"))
-        assertEquals(TimerStart("mutable"), emitted.pop())
-        assertEquals(TimerStart("fixed"), emitted.pop())
-        assertEquals(TimerTick("mutable"), emitted.pop())
+        assertEquals("start_mutable", emitted.pop().first)
+        assertEquals("start_fixed", emitted.pop().first)
+        assertEquals("tick_mutable", emitted.pop().first)
         assertTrue(emitted.isEmpty())
     }
 

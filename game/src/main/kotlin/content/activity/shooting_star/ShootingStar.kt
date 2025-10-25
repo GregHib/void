@@ -35,10 +35,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.blocked
-import world.gregs.voidps.engine.timer.timerStart
-import world.gregs.voidps.engine.timer.timerStop
-import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
@@ -66,6 +63,35 @@ class ShootingStar : Api {
         }
     }
 
+    @Timer("shooting_star_bonus_ore_timer,mining")
+    override fun start(player: Player, timer: String, restart: Boolean): Int {
+        if (timer == "mining") {
+            val target = (player.mode as? Interact)?.target as GameObject
+            if (target.id.startsWith("crashed_star")) {
+                if (ShootingStarHandler.isEarlyBird()) {
+                    player.message("Congratulations! You were the first person to find this star!")
+                    player.experience.add(Skill.Mining, player.levels.get(Skill.Mining) * 75.0)
+                }
+            }
+            return Timer.CONTINUE
+        } else {
+            return TimeUnit.SECONDS.toTicks(1)
+        }
+    }
+
+    @Timer("shooting_star_bonus_ore_timer")
+    override fun tick(player: Player, timer: String): Int {
+        if (player.dec("shooting_star_bonus_ore") <= 0) {
+            return Timer.CANCEL
+        }
+        return Timer.CONTINUE
+    }
+
+    @Timer("shooting_star_bonus_ore_timer")
+    override fun stop(player: Player, timer: String, logout: Boolean) {
+        player.message("<dark_red>The ability to mine an extra ore has worn off.")
+    }
+
     init {
         settingsReload {
             if (Settings["events.shootingStars.enabled", false] && !World.contains("shooting_star_event_timer")) {
@@ -75,37 +101,9 @@ class ShootingStar : Api {
             }
         }
 
-        timerStart("shooting_star_bonus_ore_timer") {
-            interval = TimeUnit.SECONDS.toTicks(1)
-        }
-
-        timerTick("shooting_star_bonus_ore_timer") { player ->
-            if (player.dec("shooting_star_bonus_ore") <= 0) {
-                cancel()
-                return@timerTick
-            }
-        }
-
-        timerStop("shooting_star_bonus_ore_timer") { player ->
-            player.message("<dark_red>The ability to mine an extra ore has worn off.")
-        }
-
         objectDespawn("shooting_star_tier_1") {
             areaSound("star_meteor_despawn", it.tile, radius = 15)
             cleanseEvent(false)
-        }
-
-        timerStart("mining") { player ->
-            val target = (player.mode as? Interact)?.target as GameObject
-            val isStar = target.id.startsWith("crashed_star")
-            if (isStar) {
-                val isEarlyBird = ShootingStarHandler.isEarlyBird()
-                if (isEarlyBird) {
-                    player.message("Congratulations!, You were the first person to find this star!")
-                    val xpToAdd: Double = player.levels.get(Skill.Mining) * 75.0
-                    player.experience.add(Skill.Mining, xpToAdd)
-                }
-            }
         }
 
         objectApproach("Prospect", "crashed_star_tier_#") {
