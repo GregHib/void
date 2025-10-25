@@ -53,10 +53,10 @@ object Loan {
         AuditLog.event(player, "returned", item, name)
         if (name == null) {
             logger.error { "Unable to find borrowed item partner for $player" }
-        } else {
-            val lender = get<Players>().get(name) ?: return
-            lender.softTimers.stop("loan_message")
+            return
         }
+        val lender = get<Players>().get(name) ?: return
+        lender.softTimers.stop("loan_message")
     }
 
     private fun reset(player: Player) {

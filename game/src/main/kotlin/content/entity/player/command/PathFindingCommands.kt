@@ -8,24 +8,26 @@ import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.timer.timerTick
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Tile
 import kotlin.getValue
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
 @Script
-class PathFindingCommands {
+class PathFindingCommands : Api {
 
     val patrols: PatrolDefinitions by inject()
     val collisions: Collisions by inject()
@@ -99,14 +101,6 @@ class PathFindingCommands {
             player.softTimers.toggle("show_path")
         }
 
-        timerTick("show_path") { player ->
-            var tile = player.tile
-            for (step in player.steps) {
-                tile = tile.add(step)
-                areaGfx("2000", tile)
-            }
-        }
-
         adminCommand("col") { player, _ ->
             val collisions: Collisions = get()
             println("Can move north? ${collisions[player.tile.x, player.tile.y, player.tile.level] and (CollisionFlag.BLOCK_NORTH or CollisionFlag.BLOCK_NORTH_ROUTE_BLOCKER) == 0}")
@@ -157,5 +151,15 @@ class PathFindingCommands {
                 }
             }*/
         }
+    }
+
+    @Timer("show_path")
+    override fun tick(player: Player, timer: String): Int {
+        var tile = player.tile
+        for (step in player.steps) {
+            tile = tile.add(step)
+            areaGfx("2000", tile)
+        }
+        return Timer.CONTINUE
     }
 }

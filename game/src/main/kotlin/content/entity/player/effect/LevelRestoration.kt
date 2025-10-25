@@ -8,9 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.SkillId
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.timer.timerStart
-import world.gregs.voidps.engine.timer.timerTick
-import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
 @Script
@@ -53,34 +51,34 @@ class LevelRestoration : Api {
         }
     }
 
-    init {
-        timerStart("restore_stats") {
-            interval = TimeUnit.SECONDS.toTicks(60)
-        }
+    @Timer("restore_stats")
+    override fun start(player: Player, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(60)
 
-        timerTick("restore_stats") { player ->
-            val berserker = player.praying("berserker") && player.hasClock("berserker_cooldown")
-            val skip = player.praying("berserker") && !player.hasClock("berserker_cooldown")
-            if (skip) {
-                nextInterval = TimeUnit.SECONDS.toTicks(9)
-                player.start("berserker_cooldown", nextInterval + 1)
+    @Timer("restore_stats")
+    override fun tick(player: Player, timer: String): Int {
+        val berserker = player.praying("berserker") && player.hasClock("berserker_cooldown")
+        val skip = player.praying("berserker") && !player.hasClock("berserker_cooldown")
+        var nextInterval = Timer.CONTINUE
+        if (skip) {
+            nextInterval = TimeUnit.SECONDS.toTicks(9)
+            player.start("berserker_cooldown", nextInterval + 1)
+        }
+        var fullyRestored = true
+        for (skill in skills) {
+            val offset = player.levels.getOffset(skill)
+            if (offset != 0) {
+                fullyRestored = false
             }
-            var fullyRestored = true
-            for (skill in skills) {
-                val offset = player.levels.getOffset(skill)
-                if (offset != 0) {
-                    fullyRestored = false
-                }
-                if (offset > 0 && !skip) {
-                    player.levels.drain(skill, 1)
-                } else if (offset < 0 && !berserker) {
-                    val restore = if (player.praying("rapid_restore")) 2 else 1
-                    player.levels.restore(skill, restore)
-                }
-            }
-            if (fullyRestored) {
-                cancel()
+            if (offset > 0 && !skip) {
+                player.levels.drain(skill, 1)
+            } else if (offset < 0 && !berserker) {
+                val restore = if (player.praying("rapid_restore")) 2 else 1
+                player.levels.restore(skill, restore)
             }
         }
+        if (fullyRestored) {
+            return Timer.CANCEL
+        }
+        return nextInterval
     }
 }

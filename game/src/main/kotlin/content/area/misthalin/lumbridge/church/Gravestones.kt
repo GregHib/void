@@ -56,40 +56,44 @@ class Gravestones : Api {
         npc.softTimers.start("grave_degrade")
     }
 
-    init {
-        npcTimerStart("grave_degrade") { npc ->
-            this.interval = 60
-            val player = players.get(npc["player_name", ""])
-            if (player != null) {
-                val remaining = npc.remaining("grave_timer", epochSeconds())
-                player.sendScript("gravestone_set_timer", remaining / 60 * 100)
-            }
-        }
-
-        npcTimerTick("grave_degrade") { npc ->
+    @Timer("grave_degrade")
+    override fun start(npc: NPC, timer: String, restart: Boolean): Int {
+        val player = players.get(npc["player_name", ""])
+        if (player != null) {
             val remaining = npc.remaining("grave_timer", epochSeconds())
-            if (remaining <= 120 && !npc.transform.endsWith("broken")) {
-                npc.transform("${npc.id}_broken")
-            } else if (remaining <= 60 && !npc.transform.endsWith("collapse")) {
-                npc.transform("${npc.id}_collapse")
-                val player = players.get(npc["player_name", ""])
-                player?.message("Your gravestone has collapsed.")
+            player.sendScript("gravestone_set_timer", remaining / 60 * 100)
+        }
+        return 60
+    }
+
+    @Timer("grave_degrade")
+    override fun tick(npc: NPC, timer: String): Int {
+        val remaining = npc.remaining("grave_timer", epochSeconds())
+        if (remaining <= 120 && !npc.transform.endsWith("broken")) {
+            npc.transform("${npc.id}_broken")
+        } else if (remaining <= 60 && !npc.transform.endsWith("collapse")) {
+            npc.transform("${npc.id}_collapse")
+            val player = players.get(npc["player_name", ""])
+            player?.message("Your gravestone has collapsed.")
+        }
+        return Timer.CONTINUE
+    }
+
+    @Timer("grave_degrade")
+    override fun stop(npc: NPC, timer: String, death: Boolean) {
+        val player = players.get(npc.remove("player_name") ?: "")
+        if (player != null) {
+            player.clear("gravestone_time")
+            val tile: Tile? = player.remove("gravestone_tile")
+            if (tile != null) {
+                MapMarkers.remove(player, tile, "grave")
             }
         }
+        npc.stop("grave_timer")
+        npcs.remove(npc)
+    }
 
-        npcTimerStop("grave_degrade") { npc ->
-            val player = players.get(npc.remove("player_name") ?: "")
-            if (player != null) {
-                player.clear("gravestone_time")
-                val tile: Tile? = player.remove("gravestone_tile")
-                if (tile != null) {
-                    MapMarkers.remove(player, tile, "grave")
-                }
-            }
-            npc.stop("grave_timer")
-            npcs.remove(npc)
-        }
-
+    init {
         npcOperate("Read", "gravestone_*") {
             val remainder = target.remaining("grave_timer", epochSeconds())
             remainMessage(player, target)

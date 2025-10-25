@@ -6,7 +6,7 @@ interface Timers : Runnable {
     fun contains(name: String): Boolean
 
     /**
-     * Clears timer [name] and emits [TimerStop]
+     * Clears timer [name] and emits [TimerApi.stop]
      */
     fun stop(name: String)
 

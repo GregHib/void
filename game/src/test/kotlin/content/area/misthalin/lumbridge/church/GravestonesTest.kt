@@ -54,13 +54,13 @@ class GravestonesTest : WorldTest() {
         tick()
         val grave = npcs[tile].first { it.id.startsWith("gravestone") }
         grave["grave_timer"] = 119
-        grave.emit(TimerTick("grave_degrade"))
+        TimerApi.tick(grave, "grave_degrade")
         assertEquals("gravestone_memorial_plaque_broken", grave.transform)
         grave["grave_timer"] = 20
-        grave.emit(TimerTick("grave_degrade"))
+        TimerApi.tick(grave, "grave_degrade")
         assertEquals("gravestone_memorial_plaque_collapse", grave.transform)
         grave["grave_timer"] = 0
-        grave.emit(TimerStop("grave_degrade", false))
+        TimerApi.stop(grave, "grave_degrade", false)
         tick()
         assertNull(npcs[tile].firstOrNull { it.id.startsWith("gravestone") })
     }
@@ -86,7 +86,7 @@ class GravestonesTest : WorldTest() {
         tick()
         val grave = npcs[tile].first { it.id.startsWith("gravestone") }
         grave["grave_timer"] = 119
-        grave.emit(TimerTick("grave_degrade"))
+        TimerApi.tick(grave, "grave_degrade")
 
         val friend = createPlayer(tile.addY(1), name = "friend")
         friend.levels.set(Skill.Prayer, 5)
@@ -107,7 +107,7 @@ class GravestonesTest : WorldTest() {
         tick()
         val grave = npcs[tile].first { it.id.startsWith("gravestone") }
         grave["grave_timer"] = 119
-        grave.emit(TimerTick("grave_degrade"))
+        TimerApi.tick(grave, "grave_degrade")
 
         val friend = createPlayer(tile.addY(1), name = "friend")
         friend.levels.set(Skill.Prayer, 75)

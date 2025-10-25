@@ -16,7 +16,7 @@ internal class TimerTest {
 
     @Test
     fun `Reset tick to next interval`() {
-        val timer = Timer("", 2)
+        val timer = TimerTask("", 2)
         assertEquals(2, timer.nextTick)
         GameLoop.tick = 2
         timer.reset()
@@ -25,14 +25,14 @@ internal class TimerTest {
 
     @Test
     fun `Timer not ready if next tick less than current`() {
-        val timer = Timer("", 2)
+        val timer = TimerTask("", 2)
         GameLoop.tick++
         assertFalse(timer.ready())
     }
 
     @Test
     fun `Timer ready if next tick greater or equal to current`() {
-        val timer = Timer("", 2)
+        val timer = TimerTask("", 2)
         GameLoop.tick += 2
         assertTrue(timer.ready())
         GameLoop.tick++
