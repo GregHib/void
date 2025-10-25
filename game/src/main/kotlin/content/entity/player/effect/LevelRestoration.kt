@@ -58,10 +58,10 @@ class LevelRestoration : Api {
     override fun tick(player: Player, timer: String): Int {
         val berserker = player.praying("berserker") && player.hasClock("berserker_cooldown")
         val skip = player.praying("berserker") && !player.hasClock("berserker_cooldown")
+        var nextInterval = Timer.CONTINUE
         if (skip) {
-            val nextInterval = TimeUnit.SECONDS.toTicks(9)
+            nextInterval = TimeUnit.SECONDS.toTicks(9)
             player.start("berserker_cooldown", nextInterval + 1)
-            return nextInterval
         }
         var fullyRestored = true
         for (skill in skills) {
@@ -79,6 +79,6 @@ class LevelRestoration : Api {
         if (fullyRestored) {
             return Timer.CANCEL
         }
-        return Timer.CONTINUE
+        return nextInterval
     }
 }
