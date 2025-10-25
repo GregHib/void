@@ -14,10 +14,7 @@ import world.gregs.voidps.engine.client.variable.ListValues
 import world.gregs.voidps.engine.data.config.JingleDefinition
 import world.gregs.voidps.engine.data.config.SoundDefinition
 import world.gregs.voidps.engine.data.config.VariableDefinition
-import world.gregs.voidps.engine.data.definition.FontDefinitions
-import world.gregs.voidps.engine.data.definition.JingleDefinitions
-import world.gregs.voidps.engine.data.definition.SoundDefinitions
-import world.gregs.voidps.engine.data.definition.VariableDefinitions
+import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.resetCurrentTime
 import world.gregs.voidps.engine.timer.setCurrentTime

@@ -5,11 +5,13 @@ import content.entity.sound.sound
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.ListValues
-import world.gregs.voidps.engine.data.definition.ObjectDefinitions
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.timer.*
+import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.engine.timer.epochMinutes
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
@@ -32,7 +34,8 @@ class Farming(
 
     @Timer("farming_tick")
     override fun start(player: Player, timer: String, restart: Boolean): Int {
-        val remaining = 5 - (epochMinutes() - player["farming_offset_mins", 0]).rem(5)
+        val mins = Settings["farming.growth.mins", 5]
+        val remaining = mins - (epochMinutes() - player["farming_offset_mins", 0]).rem(mins)
         return TimeUnit.MINUTES.toTicks(remaining)
     }
 
@@ -45,7 +48,7 @@ class Farming(
             val minute = min - player["farming_offset_mins", 0]
             grow(player, minute)
         }
-        return 500
+        return TimeUnit.MINUTES.toTicks(Settings["farming.growth.mins", 5])
     }
 
     fun grow(player: Player, minute: Int) {
