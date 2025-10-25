@@ -1,0 +1,194 @@
+[grapes]
+disease_chance = 0
+
+[empty_grape_patch]
+disease_chance = 0
+
+[spirit_tree]
+disease_chance = 7
+
+[calquat]
+disease_chance = 14
+
+[belladonna]
+disease_chance = 25
+
+[bittercap_mushroom]
+disease_chance = 25
+
+[potato_cactus]
+disease_chance = 10
+
+[cactus]
+disease_chance = 10
+
+[mahogany_tree]
+disease_chance = 12
+
+[teak_tree]
+disease_chance = 14
+
+[magic_tree]
+disease_chance = 9
+
+[yew_tree]
+disease_chance = 11
+
+[maple_tree]
+disease_chance = 13
+
+[willow_tree]
+disease_chance = 15
+
+[oak_tree]
+disease_chance = 17
+
+[palm_tree]
+disease_chance = 18
+
+[papaya_tree]
+disease_chance = 18
+
+[pineapple_plant]
+disease_chance = 18
+
+[curry_tree]
+disease_chance = 18
+
+[orange_tree]
+disease_chance = 18
+
+[banana_tree]
+disease_chance = 18
+
+[apple_tree]
+disease_chance = 18
+
+[poison_ivy_berry]
+disease_chance = 0
+
+[whiteberry]
+disease_chance = 20
+
+[jangerberry]
+disease_chance = 20
+
+[dwellberry]
+disease_chance = 20
+
+[cadavaberry]
+disease_chance = 20
+
+[redberry]
+disease_chance = 20
+
+[wildblood]
+disease_chance = 30
+
+[krandorian]
+disease_chance = 30
+
+[yanillian]
+disease_chance = 30
+
+[jute]
+disease_chance = 30
+
+[asgarnian]
+disease_chance = 30
+
+[hammerstone]
+disease_chance = 30
+
+[barley]
+disease_chance = 30
+
+[white_lily]
+disease_chance = 30
+
+[limpwurt]
+disease_chance = 30
+
+[woad]
+disease_chance = 30
+
+[nasturtium]
+disease_chance = 30
+
+[rosemary]
+disease_chance = 30
+
+[marigold]
+disease_chance = 30
+
+[scarecrow]
+disease_chance = 0
+
+[torstol]
+disease_chance = 27
+
+[dwarf_weed]
+disease_chance = 27
+
+[lantadyme]
+disease_chance = 27
+
+[cadantine]
+disease_chance = 27
+
+[snapdragon]
+disease_chance = 27
+
+[kwuarm]
+disease_chance = 27
+
+[avantoe]
+disease_chance = 27
+
+[irit]
+disease_chance = 27
+
+[toadflax]
+disease_chance = 27
+
+[ranarr]
+disease_chance = 27
+
+[goutweed]
+disease_chance = 27
+
+[harralander]
+disease_chance = 27
+
+[tarromin]
+disease_chance = 27
+
+[marrentill]
+disease_chance = 27
+
+[guam]
+disease_chance = 27
+
+[snape_grass]
+disease_chance = 30
+
+[watermelon]
+disease_chance = 30
+
+[strawberry]
+disease_chance = 30
+
+[sweetcorn]
+disease_chance = 30
+
+[tomato]
+disease_chance = 30
+
+[cabbage]
+disease_chance = 30
+
+[onion]
+disease_chance = 30
+
+[potato]
+disease_chance = 30

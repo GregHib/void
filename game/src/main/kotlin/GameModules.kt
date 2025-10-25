@@ -6,6 +6,7 @@ import content.entity.obj.ship.CharterShips
 import content.entity.player.modal.book.Books
 import content.entity.world.music.MusicTracks
 import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
+import content.skill.farming.FarmingDefinitions
 import content.social.trade.exchange.GrandExchange
 import content.social.trade.exchange.history.ExchangeHistory
 import kotlinx.io.pool.DefaultPool
@@ -13,6 +14,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.data.*
+import world.gregs.voidps.engine.data.definition.RenderEmoteDefinitions
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import java.io.File
@@ -85,4 +87,5 @@ fun gameModule(files: ConfigFiles) = module {
             FileStorage(saves)
         }
     }
+    single(createdAtStart = true) { FarmingDefinitions().load(files.find(Settings["definitions.produce"])) }
 }
