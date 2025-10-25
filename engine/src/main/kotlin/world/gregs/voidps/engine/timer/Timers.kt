@@ -39,4 +39,9 @@ interface Timers : Runnable {
         }
         start(name)
     }
+
+    /**
+     * Minimum number of remaining ticks until a timer is activated
+     */
+    fun remaining(name: String): Int
 }
