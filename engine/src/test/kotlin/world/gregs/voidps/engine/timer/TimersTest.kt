@@ -23,6 +23,7 @@ abstract class TimersTest {
     fun `Restart a timer`() {
         startInterval = 2
         timers.restart("timer")
+        assertEquals(2, timers.remaining("timer"))
         assertTrue(timers.contains("timer"))
         assertEquals("start_timer" to true, emitted.pop())
         assertTrue(emitted.isEmpty())
@@ -111,6 +112,7 @@ abstract class TimersTest {
         assertEquals("start_timer" to false, emitted.pop())
         assertEquals("stop_timer" to false, emitted.pop())
         assertTrue(emitted.isEmpty())
+        assertEquals(-1, timers.remaining("timer"))
     }
 
     @Test
