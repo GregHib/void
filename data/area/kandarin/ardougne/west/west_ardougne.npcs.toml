@@ -19,18 +19,6 @@ id = 6345
 [head_mourner_west_ardougne]
 id = 716
 
-[recruiter_west_ardougne]
-id = 720
-examine = "A member of the Ardougne Royal Army."
-
-[man_west_ardougne]
-id = 728
-examine = "One of Gielinor's many citizens."
-
-[man_west_ardougne_2]
-id = 729
-examine = "One of Gielinor's many citizens."
-
 [mourner_vial_1]
 id = 717
 examine = "A mourner, or plague healer."

@@ -32,7 +32,7 @@ drop_table = "hobgoblin"
 combat_anims = "hobgoblin_armed"
 combat_sounds = "hobgoblin_armed"
 categories = ["hobgoblins"]
-slayer_xp = 49
+slayer_xp = 49.0
 respawn_delay = 30
 examine = "An ugly, smelly creature wielding a spear."
 
@@ -77,7 +77,7 @@ str = 39
 def = 35
 style = "crush"
 hunt_mode = "anti_zamorak_aggressive"
-slayer_xp = 52
+slayer_xp = 52.0
 attack_speed = 4
 respawn_delay = 30
 wander_radius = 4

@@ -9,7 +9,6 @@ style = "crush"
 style = "magic"
 max_hit_melee = 160
 max_hit_magic = 370
-max_hit_on_wise_old_man = 2540
 attack_bonus = 100
 xp_bonus = 7.5
 hunt_mode = "cowardly"
