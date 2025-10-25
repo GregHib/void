@@ -39,3 +39,7 @@ private var currentTime: () -> Long = { System.currentTimeMillis() }
 fun setCurrentTime(time: () -> Long) {
     currentTime = time
 }
+
+fun resetCurrentTime() {
+    currentTime = { System.currentTimeMillis() }
+}

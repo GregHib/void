@@ -5,6 +5,7 @@ import content.entity.sound.sound
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.ListValues
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
@@ -14,8 +15,11 @@ import java.util.concurrent.TimeUnit
 
 @Script
 class Farming(
-    val definitions: VariableDefinitions,
+    val variableDefinitions: VariableDefinitions,
+    val farmingDefinitions: FarmingDefinitions,
 ) : Api {
+
+    val patches = mutableMapOf(5 to listOf("allotment_falador_nw"))
 
     override fun spawn(player: Player) {
         if (!player.contains("farming_offset_mins")) {
@@ -43,8 +47,6 @@ class Farming(
         }
         return 500
     }
-
-    val patches = mapOf(5 to listOf("allotment_falador_nw"))
 
     fun grow(player: Player, minute: Int) {
         for ((cycle, varbits) in patches) {
@@ -79,28 +81,39 @@ class Farming(
                     }
                     continue
                 }
-                val definition = definitions.get(varbit) ?: continue
-                val int = definition.values.toInt(current)
-                val list = (definition.values as ListValues).values as List<String>
-                var next = list[int + 1]
-                if (next.endsWith("_none")) {
-                    // complete
-                    // TODO if compost or super otherwise keep same
+                var next: String
+                if (disease(player, varbit, produce, type)) {
+                    next = current.replace(produce, "${produce}_diseased")
                 } else {
-                    if (random.nextInt(5) == 0) { // TODO chances
-                        val value = list[int + 64] // diseased
-                        val produce = current.substringBeforeLast("_")
-                        if (value != current.replace(produce, "${produce}_diseased")) {
-                            // TODO check
-                            continue
-                        }
-                        next = value // diseased
+                    val list = varbitList(varbit) ?: continue
+                    val index = list.indexOf(current)
+                    next = list[index + 1].replace("_watered", "")
+                    if (next.endsWith("_none")) {
+                        next = next.replace("none", player["${varbit}_compost", "none"])
                     }
                 }
                 player[varbit] = next
                 amuletOfFarming(player, varbit)
             }
         }
+    }
+
+    fun disease(player: Player, spot: String, produce: String, type: String): Boolean {
+        // https://x.com/JagexKieren/status/905860041240137729
+        if (spot == "my_arms_spot" || type == "0" || produce.endsWith("_watered")) {
+            return false
+        }
+        var chance = farmingDefinitions.diseaseChances[produce] ?: return false
+        when (player["${spot}_compost", "none"]) {
+            "compost" -> chance /= 2
+            "super" -> chance /= 5
+        }
+        return random.nextInt(128) <= chance
+    }
+
+    private fun varbitList(varbit: String): List<String>? {
+        val definition = variableDefinitions.get(varbit) ?: return null
+        return (definition.values as ListValues).values as List<String>
     }
 
     private fun amuletOfFarming(player: Player, patch: String) {
