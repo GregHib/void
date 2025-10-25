@@ -21,7 +21,7 @@ class Farming(
     val farmingDefinitions: FarmingDefinitions,
 ) : Api {
 
-    val patches = mutableMapOf(5 to listOf("allotment_falador_nw"))
+    val patches = mutableMapOf(5 to listOf("allotment_falador_nw", "allotment_falador_se"))
 
     override fun spawn(player: Player) {
         if (!player.contains("farming_offset_mins")) {
