@@ -192,9 +192,6 @@ examine = "Keeps the peace... kind of."
 [edmond_ardougne]
 id = 3213
 
-[elena_ardougne]
-id = 335
-
 [jerico]
 id = 366
 examine = "He looks friendly enough."

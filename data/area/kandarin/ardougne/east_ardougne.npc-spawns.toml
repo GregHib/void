@@ -162,7 +162,6 @@ spawns = [
   { id = "guard_ardougne", x = 2663, y = 3301 },
   { id = "guard_ardougne", x = 2665, y = 3300 },
   { id = "edmond_ardougne", x = 2568, y = 3334, members = true },
-  { id = "elena_ardougne", x = 2592, y = 3336, members = true },
   { id = "jerico", x = 2612, y = 3324 },
   { id = "captain_barnaby", x = 2679, y = 3275, members = true },
   { id = "rick", x = 2663, y = 3334, members = true },

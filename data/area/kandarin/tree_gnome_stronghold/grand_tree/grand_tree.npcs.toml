@@ -73,10 +73,6 @@ examine = "Gnome customer."
 [assistant_le_smith_grand_tree]
 id = 5064
 
-[hudo_grand_tree]
-id = 600
-examine = "It's another jolly tree gnome."
-
 [rometti_grand_tree]
 id = 601
 examine = "It's a well-dressed tree gnome."
@@ -84,10 +80,6 @@ examine = "It's a well-dressed tree gnome."
 [gulluck_grand_tree]
 id = 602
 examine = "He sells weapons."
-
-[heckel_funch_grand_tree]
-id = 603
-examine = "It's another jolly tree gnome."
 
 [king_narnode_shareen]
 id = 670
