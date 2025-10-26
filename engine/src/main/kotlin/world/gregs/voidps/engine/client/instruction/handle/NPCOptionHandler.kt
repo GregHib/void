@@ -53,6 +53,6 @@ class NPCOptionHandler(
         }
         player.closeInterfaces()
         player.talkWith(npc, definition)
-        player.mode = Interact(player, npc, NPCOption(player, npc, definition, selectedOption), type = CharacterInteraction(definition, selectedOption))
+        player.mode = Interact(player, npc, NPCOption(player, npc, definition, selectedOption), type = CharacterInteraction(player, npc, definition, selectedOption))
     }
 }

@@ -33,7 +33,7 @@ class PlayerOptionHandler(
         if (option == "Follow") {
             player.mode = Follow(player, target)
         } else {
-            player.mode = Interact(player, target, PlayerOption(player, target, option), type = CharacterInteraction(option))
+            player.mode = Interact(player, target, PlayerOption(player, target, option), type = CharacterInteraction(player, target, option))
         }
     }
 }

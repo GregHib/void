@@ -40,6 +40,6 @@ class FloorItemOptionHandler(
             return
         }
         player.closeInterfaces()
-        player.mode = Interact(player, floorItem, FloorItemOption(player, floorItem, selectedOption), shape = -1, type = CharacterInteraction(floorItem.def, selectedOption))
+        player.mode = Interact(player, floorItem, FloorItemOption(player, floorItem, selectedOption), shape = -1, type = CharacterInteraction(player, floorItem, floorItem.def, selectedOption))
     }
 }

@@ -18,22 +18,24 @@ import world.gregs.voidps.engine.event.Events
  *  TODO rename to Interaction after current Interaction has been full migrated
  */
 class CharacterInteraction(
+    val character: Character,
+    val target: Entity,
     private val option: String,
     private val key: String,
     private val operateDispatcher: MapDispatcher<Operation>,
     private val approachDispatcher: MapDispatcher<Approachable>,
 ) : InteractionType {
 
-    constructor(option: String) : this(option, option, Operation.playerPlayerDispatcher, Approachable.playerPlayerDispatcher)
-    constructor(def: NPCDefinition, option: String) : this(option, "$option:${def.stringId}", Operation.playerNpcDispatcher, Approachable.playerNpcDispatcher)
-    constructor(def: ObjectDefinition, option: String) : this(option, "$option:${def.stringId}", Operation.playerObjectDispatcher, Approachable.playerObjectDispatcher)
-    constructor(def: ItemDefinition, option: String) : this(option, "$option:${def.stringId}", Operation.playerFloorItemDispatcher, Approachable.playerFloorItemDispatcher)
+    constructor(character: Character, target: Player, option: String) : this(character, target, option, option, Operation.playerPlayerDispatcher, Approachable.playerPlayerDispatcher)
+    constructor(character: Character, target: NPC, def: NPCDefinition, option: String) : this(character, target, option, "$option:${def.stringId}", Operation.playerNpcDispatcher, Approachable.playerNpcDispatcher)
+    constructor(character: Character, target: GameObject, def: ObjectDefinition, option: String) : this(character, target, option, "$option:${def.stringId}", Operation.playerObjectDispatcher, Approachable.playerObjectDispatcher)
+    constructor(character: Character, target: FloorItem, def: ItemDefinition, option: String) : this(character, target, option, "$option:${def.stringId}", Operation.playerFloorItemDispatcher, Approachable.playerFloorItemDispatcher)
 
-    override fun hasOperate(character: Character) = operateDispatcher.instances.containsKey(key) || operateDispatcher.instances.containsKey(option)
+    override fun hasOperate() = operateDispatcher.instances.containsKey(key) || operateDispatcher.instances.containsKey(option)
 
-    override fun hasApproach(character: Character) = approachDispatcher.instances.containsKey(key) || approachDispatcher.instances.containsKey(option)
+    override fun hasApproach() = approachDispatcher.instances.containsKey(key) || approachDispatcher.instances.containsKey(option)
 
-    override fun operate(character: Character, target: Entity) {
+    override fun operate() {
         Events.events.launch {
             if (character is NPC) {
                 when (target) {
@@ -53,7 +55,7 @@ class CharacterInteraction(
         }
     }
 
-    override fun approach(character: Character, target: Entity) {
+    override fun approach() {
         Events.events.launch {
             if (character is NPC) {
                 when (target) {

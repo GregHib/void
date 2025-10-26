@@ -48,7 +48,7 @@ class ObjectOptionHandler(
             return
         }
         player.closeInterfaces()
-        player.mode = Interact(player, target, ObjectOption(player, target, definition, selectedOption), type = CharacterInteraction(definition, selectedOption))
+        player.mode = Interact(player, target, ObjectOption(player, target, definition, selectedOption), type = CharacterInteraction(player, target, definition, selectedOption))
     }
 
     private fun getObject(tile: Tile, objectId: Int): GameObject? {
