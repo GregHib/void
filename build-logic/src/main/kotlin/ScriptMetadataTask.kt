@@ -30,14 +30,32 @@ abstract class ScriptMetadataTask : DefaultTask() {
 
     private sealed class WildcardType {
         data object None : WildcardType()
-        data class DynamicId(val index: Int) : WildcardType()
+        sealed class Dynamic : WildcardType() {
+            abstract fun type(context: Context, params: List<String>): Set<String>?
+        }
+        data class DynamicId(val paramIndex: Int) : Dynamic() {
+            override fun type(context: Context, params: List<String>) = when (params[paramIndex]) {
+                "NPC" -> context.npcIds
+                "GameObject" -> context.objectIds
+                "FloorItem" -> context.itemIds
+                else -> null
+            }
+        }
         data object NpcId : WildcardType()
         data object InterfaceId : WildcardType()
         data object ComponentId : WildcardType()
+        data object InterfaceComponentId : WildcardType()
         data object ObjectId : WildcardType()
         data object ItemId : WildcardType()
         data object VariableId : WildcardType()
-        data class DynamicOption(val index: Int) : WildcardType()
+        data class DynamicOption(val paramIndex: Int) : Dynamic() {
+            override fun type(context: Context, params: List<String>) = when (params[paramIndex]) {
+                "NPC" -> context.npcOptions
+                "GameObject" -> context.objectOptions
+                "FloorItem" -> context.itemOptions
+                else -> null
+            }
+        }
         data object NpcOption : WildcardType()
         data object InterfaceOption : WildcardType()
         data object FloorItemOption : WildcardType()
@@ -212,13 +230,13 @@ abstract class ScriptMetadataTask : DefaultTask() {
     }
 
 
-
     private data class Context(
         val npcIds: Set<String>,
         val itemIds: Set<String>,
         val objectIds: Set<String>,
         val interfaceIds: Set<String>,
         val componentIds: Set<String>,
+        val interfaceComponentIds: Set<String>,
         val variableIds: Set<String>,
         val npcOptions: Set<String>,
         val itemOptions: Set<String>,
@@ -228,24 +246,14 @@ abstract class ScriptMetadataTask : DefaultTask() {
     ) {
         fun resolve(value: String, wildcard: WildcardType, parameters: String, packagePath: String, annotation: KtAnnotationEntry): List<String> {
             val set = when (wildcard) {
-                is WildcardType.DynamicId -> when (parameters.split(",")[wildcard.index]) {
-                    "NPC" -> npcIds
-                    "GameObject" -> objectIds
-                    "FloorItem" -> itemIds
-                    else -> error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation.text}")
-                }
+                is WildcardType.Dynamic -> wildcard.type(this, parameters.split(",")) ?: error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation.text}")
                 WildcardType.NpcId -> npcIds
                 WildcardType.InterfaceId -> interfaceIds
                 WildcardType.ComponentId -> componentIds
+                WildcardType.InterfaceComponentId -> interfaceComponentIds
                 WildcardType.ObjectId -> objectIds
                 WildcardType.ItemId -> itemIds
                 WildcardType.VariableId -> variableIds
-                is WildcardType.DynamicOption -> when (parameters.split(",")[wildcard.index]) {
-                    "NPC" -> npcOptions
-                    "GameObject" -> objectOptions
-                    "FloorItem" -> itemOptions
-                    else -> error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation.text}")
-                }
                 WildcardType.NpcOption -> npcOptions
                 WildcardType.InterfaceOption -> interfaceOptions
                 WildcardType.FloorItemOption -> floorItemOptions
@@ -309,8 +317,9 @@ abstract class ScriptMetadataTask : DefaultTask() {
         val objectIds = mutableSetOf<String>()
         val interfaceIds = mutableSetOf<String>()
         val componentIds = mutableSetOf<String>()
+        val interfaceComponentIds = mutableSetOf<String>()
         val variableIds = mutableSetOf<String>()
-        collectIds(npcIds, itemIds, objectIds, interfaceIds, componentIds, variableIds)
+        collectIds(npcIds, itemIds, objectIds, interfaceIds, componentIds, interfaceComponentIds, variableIds)
         val options = System.currentTimeMillis()
         val npcOptions = loadOptions("npc-options")
         val itemOptions = loadOptions("item-options")
@@ -318,7 +327,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
         val objectOptions = loadOptions("object-options")
         val interfaceOptions = loadOptions("interface-options")
         println("Loaded ${npcOptions.size} npc, ${itemOptions.size} item, ${floorItemOptions.size} floor item, ${objectOptions.size} object, ${interfaceOptions.size} interface options in ${System.currentTimeMillis() - options}ms")
-        return Context(npcIds, itemIds, objectIds, interfaceIds, componentIds, variableIds, npcOptions, itemOptions, floorItemOptions, objectOptions, interfaceOptions)
+        return Context(npcIds, itemIds, objectIds, interfaceIds, componentIds, interfaceComponentIds, variableIds, npcOptions, itemOptions, floorItemOptions, objectOptions, interfaceOptions)
     }
 
     private fun loadOptions(type: String): Set<String> {
@@ -331,6 +340,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
         objectIds: MutableSet<String>,
         interfaceIds: MutableSet<String>,
         componentIds: MutableSet<String>,
+        interfaceComponentIds: MutableSet<String>,
         variableIds: MutableSet<String>,
     ) {
         val start = System.currentTimeMillis()
@@ -357,13 +367,17 @@ abstract class ScriptMetadataTask : DefaultTask() {
                     }
                 }
             } else if (file.name.endsWith(".ifaces.toml")) {
+                var interfaceId = ""
                 for (line in file.readLines()) {
                     if (line.startsWith('[')) {
                         val key = line.substringBefore(']').trim('[')
                         if (key.contains(".")) {
-                            componentIds.add(key.substringAfter('.'))
+                            val component = key.substringAfter('.')
+                            componentIds.add(component)
+                            interfaceComponentIds.add("$interfaceId:$component")
                         } else {
                             interfaceIds.add(key)
+                            interfaceId = key
                         }
                     }
                 }
