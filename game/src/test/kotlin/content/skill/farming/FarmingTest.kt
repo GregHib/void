@@ -84,12 +84,12 @@ class FarmingTest : KoinMock() {
 
     @Test
     fun `Weeds grow correctly through stages`() {
-        player["allotment_falador_nw"] = "weeds_0"
+        player["patch_falador_nw_allotment"] = "weeds_0"
         player["farming_offset_mins"] = 0
 
-        farming.grow(player, 5)
+        farming.grow(player, 10)
 
-        val next = player["allotment_falador_nw", ""]
+        val next = player["patch_falador_nw_allotment", ""]
         assertEquals("weeds_1", next)
     }
 
@@ -98,7 +98,7 @@ class FarmingTest : KoinMock() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int): Int = 0
         })
-        player["allotment_falador_nw"] = "weeds_3"
+        player["patch_falador_nw_allotment"] = "weeds_3"
         player["farming_offset_mins"] = 0
 
         // simulate several growth cycles
@@ -106,20 +106,20 @@ class FarmingTest : KoinMock() {
             farming.grow(player, it * 5)
         }
 
-        val next = player["allotment_falador_nw", ""]
+        val next = player["patch_falador_nw_allotment", ""]
         assertEquals("weeds_none", next)
     }
 
     @Test
     fun `Crop progresses through growth stages`() {
-        player["allotment_falador_nw"] = "potato_0"
+        player["patch_falador_nw_allotment"] = "potato_0"
         player["farming_offset_mins"] = 0
-        player["amulet_of_farming_patch"] = "allotment_falador_nw"
+        player["amulet_of_farming_patch"] = "patch_falador_nw_allotment"
         setDefinition(listOf("potato_0", "potato_1", "potato_2", "potato_3", "potato_none"))
 
         for (i in 0 until 3) {
-            farming.grow(player, i * 5)
-            assertEquals("potato_${i + 1}", player["allotment_falador_nw", ""])
+            farming.grow(player, i * 10)
+            assertEquals("potato_${i + 1}", player["patch_falador_nw_allotment", ""])
         }
 
         assertTrue(player.containsMessage("A low hum resonates"))
@@ -127,14 +127,14 @@ class FarmingTest : KoinMock() {
 
     @Test
     fun `Watered crop dries up after next growth stage`() {
-        player["allotment_falador_nw"] = "potato_watered_0"
+        player["patch_falador_nw_allotment"] = "potato_watered_0"
         player["farming_offset_mins"] = 0
-        player["amulet_of_farming_patch"] = "allotment_falador_nw"
+        player["amulet_of_farming_patch"] = "patch_falador_nw_allotment"
         setDefinition(listOf("potato_0", "potato_1", "potato_none", "potato_watered_0", "potato_watered_1"))
 
-        farming.grow(player, 5)
+        farming.grow(player, 10)
 
-        assertEquals("potato_1", player["allotment_falador_nw", ""])
+        assertEquals("potato_1", player["patch_falador_nw_allotment", ""])
         assertTrue(player.containsMessage("A low hum resonates"))
     }
 
@@ -143,9 +143,9 @@ class FarmingTest : KoinMock() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int): Int = 4
         })
-        player["allotment_falador_nw"] = "magic_tree_1"
+        player["patch_falador_nw_allotment"] = "magic_tree_1"
         player["farming_offset_mins"] = 0
-        player["amulet_of_farming_patch"] = "allotment_falador_nw"
+        player["amulet_of_farming_patch"] = "patch_falador_nw_allotment"
         farmingDefinitions.diseaseChances["magic_tree"] = 9
         val array = Array(70) { "" }
         array[0] = "magic_tree_0"
@@ -155,9 +155,9 @@ class FarmingTest : KoinMock() {
         array[65] = "magic_tree_diseased_1"
         setDefinition(array.toList())
 
-        farming.grow(player, 5)
+        farming.grow(player, 10)
 
-        assertEquals("magic_tree_diseased_1", player["allotment_falador_nw", ""])
+        assertEquals("magic_tree_diseased_1", player["patch_falador_nw_allotment", ""])
         assertTrue(player.containsMessage("A low hum resonates"))
     }
 
@@ -166,7 +166,7 @@ class FarmingTest : KoinMock() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int): Int = 0
         })
-        player["allotment_falador_nw"] = "potato_0"
+        player["patch_falador_nw_allotment"] = "potato_0"
         player["farming_offset_mins"] = 0
         val array = Array(70) { "" }
         array[0] = "potato_0"
@@ -174,38 +174,38 @@ class FarmingTest : KoinMock() {
         array[2] = "potato_none"
         setDefinition(array.toList())
 
-        farming.grow(player, 5)
+        farming.grow(player, 10)
 
-        val next = player["allotment_falador_nw", ""]
+        val next = player["patch_falador_nw_allotment", ""]
         assertEquals("potato_1", next)
     }
 
     @Test
     fun `Diseased crop becomes dead next farming tick`() {
-        player["allotment_falador_nw"] = "potato_diseased_2"
+        player["patch_falador_nw_allotment"] = "potato_diseased_2"
         player["farming_offset_mins"] = 0
-        player["amulet_of_farming_patch"] = "allotment_falador_nw"
+        player["amulet_of_farming_patch"] = "patch_falador_nw_allotment"
 
-        farming.grow(player, 5)
-        assertEquals("potato_dead_2", player["allotment_falador_nw"])
+        farming.grow(player, 10)
+        assertEquals("potato_dead_2", player["patch_falador_nw_allotment"])
         assertTrue(player.containsMessage("A low hum resonates"))
     }
 
     @Test
     fun `Completed crop uses compost state`() {
-        player["allotment_falador_nw"] = "potato_3"
-        player["allotment_falador_nw_compost"] = "super"
+        player["patch_falador_nw_allotment"] = "potato_3"
+        player["patch_falador_nw_allotment_compost"] = "super"
         player["farming_offset_mins"] = 0
         setDefinition(listOf("potato_3", "potato_none", "potato_compost", "potato_super"))
 
         farming.grow(player, 10)
 
-        val next = player["allotment_falador_nw", ""]
+        val next = player["patch_falador_nw_allotment", ""]
         assertEquals("potato_super", next)
     }
 
     private fun setDefinition(list: List<String>) {
-        definitions["allotment_falador_nw"] = VariableDefinition.VarbitDefinition(
+        definitions["patch_falador_nw_allotment"] = VariableDefinition.VarbitDefinition(
             id = -1,
             values = ListValues(list),
             default = null,
