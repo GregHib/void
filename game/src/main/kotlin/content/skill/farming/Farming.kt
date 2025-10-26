@@ -115,7 +115,6 @@ class Farming(
 
     private fun growSaplings(player: Player, inventory: Inventory) {
         for (item in inventory.items) {
-
         }
         // TODO ensure stack merges with existing grown saplings
     }

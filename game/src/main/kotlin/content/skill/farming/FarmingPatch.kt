@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.Script
@@ -44,7 +43,9 @@ class FarmingPatch(
 
     private fun guide(player: Player, variable: String) {
         Stats.openGuide(
-            player, Skill.Farming, when (variable.substringAfterLast("_")) {
+            player,
+            Skill.Farming,
+            when (variable.substringAfterLast("_")) {
                 "allotment" -> 0
                 "hops" -> 1
                 "tree" -> if (variable.endsWith("fruit_tree")) 3 else 2
@@ -52,7 +53,7 @@ class FarmingPatch(
                 "flower" -> 5
                 "herb" -> 6
                 else -> 7
-            }
+            },
         )
     }
 
@@ -93,7 +94,7 @@ class FarmingPatch(
     private fun clear(player: Player, variable: String) {
         player.message("You start digging the farming patch...", type = ChatType.Filter)
         player.queue("clear_patch") {
-            for(i in 0 until 3) {
+            for (i in 0 until 3) {
                 // todo success
                 player.anim("human_dig")
                 player.sound("dig_spade")
@@ -152,11 +153,11 @@ class FarmingPatch(
                 append("The patch is empty and weeding.")
             } else {
                 append("The patch has Dwarf weed growing in it and is at state 1/5.")
-
             }
         }
         Stats.openGuide(
-            player, Skill.Farming,
+            player,
+            Skill.Farming,
         )
     }
 
