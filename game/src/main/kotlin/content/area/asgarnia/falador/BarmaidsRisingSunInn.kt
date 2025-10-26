@@ -6,21 +6,25 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
+import content.quest.miniquest.alfred_grimhands_barcrawl.doingBarCrawl
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.Approach
+import world.gregs.voidps.engine.entity.CharacterInteraction
+import world.gregs.voidps.engine.entity.Id
+import world.gregs.voidps.engine.entity.ItemOn
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
+import world.gregs.voidps.engine.entity.character.mode.interact.approachRange
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
@@ -31,60 +35,41 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 
 @Script
-class BarmaidsRisingSunInn {
-
-    val barCrawl: suspend ItemOnNPC.() -> Unit = {
-        if (!player.containsVarbit("barcrawl_signatures", "hand_of_death_cocktail")) {
-            barCrawl()
-        }
-    }
-    val tip: suspend ItemOnNPC.() -> Unit = {
-        player.inventory.remove("coins", 1)
-        npc<Happy>("Thanks!")
-    }
-
-    val emptyGlass: suspend ItemOnNPC.() -> Unit = {
-        player.mode = Interact(player, target, NPCOption(player, target, target.def, "Talk-to"))
-    }
-
+class BarmaidsRisingSunInn : Api {
     val itemDefinitions: ItemDefinitions by inject()
 
-    init {
-        npcApproach("Talk-to", "barmaid_emily") {
-            approachRange(3)
-            menu()
+    @ItemOn("barcrawl_card,coins,beer_glass", "barmaid_emily,barmaid_kaylee,barmaid_tina")
+    override suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: NPC) {
+        when (item.id) {
+            "barcrawl_card" -> if (!player.containsVarbit("barcrawl_signatures", "hand_of_death_cocktail")) {
+                player.talkWith(target) {
+                    barCrawl()
+                }
+            }
+            "coins" -> {
+                player.inventory.remove("coins", 1)
+                player.talkWith(target) {
+                    npc<Happy>("Thanks!")
+                }
+            }
+            "beer_glass" -> player.interactNpc(target, "Talk-to")
         }
-
-        npcOperate("Talk-to", "barmaid_kaylee", "barmaid_tina") {
-            menu()
-        }
-
-        itemOnNPCApproach("barcrawl_card", "barmaid_emily", handler = barCrawl)
-
-        itemOnNPCOperate("barcrawl_card", "barmaid_kaylee", handler = barCrawl)
-
-        itemOnNPCOperate("barcrawl_card", "barmaid_tina", handler = barCrawl)
-
-        itemOnNPCApproach("coins", "barmaid_emily", handler = tip)
-
-        itemOnNPCApproach("coins", "barmaid_kaylee", handler = tip)
-
-        itemOnNPCApproach("coins", "barmaid_tina", handler = tip)
-
-        itemOnNPCApproach("beer_glass", "barmaid_emily", handler = emptyGlass)
-
-        itemOnNPCApproach("beer_glass", "barmaid_kaylee", handler = emptyGlass)
-
-        itemOnNPCApproach("beer_glass", "barmaid_tina", handler = emptyGlass)
     }
 
-    // Dialogue
+    @Id("barmaid_kaylee,barmaid_tina")
+    override suspend fun Dialogue.talk(player: Player, target: NPC) {
+        menu()
+    }
 
-    // Bar crawl
+    @Approach("Talk-to", "barmaid_emily")
+    override suspend fun approach(player: Player, target: NPC, option: String) {
+        player.approachRange(3)
+        player.talkWith(target) {
+            menu()
+        }
+    }
 
-    // Misc
-
-    suspend fun NPCOption<Player>.menu() {
+    suspend fun Dialogue.menu() {
         npc<Quiz>("Heya! What can I get you?")
         choice {
             option<Quiz>("What ales are you serving?") {
@@ -102,21 +87,26 @@ class BarmaidsRisingSunInn {
                     option<Talk>("I don't feel like any of those.")
                 }
             }
-            option("I'm doing Alfred Grimhand's barcrawl.", filter = barCrawlFilter) {
-                barCrawl()
+            if (doingBarCrawl()) {
+                option("I'm doing Alfred Grimhand's barcrawl.") {
+                    barCrawl()
+                }
             }
-            option<Talk>("I've got this beer glass...", filter = { player.inventory.contains("beer_glass", 1) }) {
-                npc<Quiz>("We'll buy it for a couple of coins if you're interested.")
-                buyEmptyGlasses()
-            }
-            option<Talk>("I've got these beer glasses...", filter = { player.inventory.count("beer_glass") > 1 }) {
-                npc<Quiz>("Ooh, we'll buy those off you if you're interested. 2 coins per glass.")
-                buyEmptyGlasses()
+            when (player.inventory.count("beer_glass")) {
+                0 -> {}
+                1 -> option<Talk>("I've got this beer glass...") {
+                    npc<Quiz>("We'll buy it for a couple of coins if you're interested.")
+                    buyEmptyGlasses()
+                }
+                else -> option<Talk>("I've got these beer glasses...") {
+                    npc<Quiz>("Ooh, we'll buy those off you if you're interested. 2 coins per glass.")
+                    buyEmptyGlasses()
+                }
             }
         }
     }
 
-    suspend fun NPCOption<Player>.buyBeer(beer: String) {
+    suspend fun Dialogue.buyBeer(beer: String) {
         player.inventory.transaction {
             remove("coin", 3)
             add(beer)
@@ -135,7 +125,7 @@ class BarmaidsRisingSunInn {
         }
     }
 
-    suspend fun NPCOption<Player>.buyEmptyGlasses() {
+    suspend fun Dialogue.buyEmptyGlasses() {
         choice {
             option<Talk>("Okay, sure.") {
                 player.inventory.transaction {
@@ -149,7 +139,7 @@ class BarmaidsRisingSunInn {
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
+    suspend fun Dialogue.barCrawl() = barCrawlDrink(
         start = {
             npc<Laugh>("Heehee, this'll be fun!")
             npc<Angry>("You'll be after our Hand of Death cocktail, then. Lots of expensive parts to the cocktail, though, so it will cost you 70 coins.")

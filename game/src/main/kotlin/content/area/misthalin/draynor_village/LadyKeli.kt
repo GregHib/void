@@ -3,6 +3,8 @@ package content.area.misthalin.draynor_village
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
+import world.gregs.voidps.engine.client.instruction.handle.interactNpc
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.data.Settings
@@ -50,7 +52,7 @@ class LadyKeli {
                     target.say("You tricked me, and tied me up, Guards kill this stranger!!")
                     player.message("Guards alerted to kill you!")
                     val guard = npcs[player.tile.regionLevel].sortedBy { it.tile.distanceTo(player.tile) }.firstOrNull { it.id.startsWith("draynor_jail_guard") } ?: return@npcOperate
-                    guard.mode = Interact(guard, player, PlayerOption(guard, player, "Attack"))
+                    guard.interactPlayer(player, "Attack")
                     guard.say("Yes M'lady")
                 }
                 else -> {

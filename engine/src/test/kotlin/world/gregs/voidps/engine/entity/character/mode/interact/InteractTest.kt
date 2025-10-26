@@ -16,6 +16,7 @@ import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -82,7 +83,7 @@ internal class InteractTest : KoinMock() {
     }
 
     private fun interact(operate: Boolean, approach: Boolean, suspend: Boolean) {
-        interaction = NPCOption(player, target, NPCDefinition.EMPTY, "interact")
+        interactNpc(player, target, "interact", NPCDefinition.EMPTY)
         interact = Interact(player, target, interaction)
         player.mode = interact
         Events.events.clear()

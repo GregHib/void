@@ -5,6 +5,7 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.destroy.destroyed
 import content.quest.quest
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -53,7 +54,7 @@ class LumbridgeSwamp {
             warlock.anim("restless_ghost_warlock_spawn")
             val player = player
             warlock.softQueue("delayed_attack", 4) {
-                warlock.mode = Interact(warlock, player, PlayerOption(warlock, player, "Attack"))
+                warlock.interactPlayer(player, "Attack")
             }
             World.queue("skeleton_warlock", TimeUnit.SECONDS.toTicks(60)) {
                 npcs.remove(warlock)

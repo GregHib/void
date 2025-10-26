@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.Transforms
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
@@ -48,7 +49,7 @@ class ObjectOptionHandler(
             return
         }
         player.closeInterfaces()
-        player.mode = Interact(player, target, ObjectOption(player, target, definition, selectedOption), type = CharacterInteraction(player, target, definition, selectedOption))
+        player.interactObject(target, selectedOption, definition)
     }
 
     private fun getObject(tile: Tile, objectId: Int): GameObject? {
@@ -99,4 +100,8 @@ class ObjectOptionHandler(
             return definition
         }
     }
+}
+
+fun Player.interactObject(target: GameObject, option: String, definition: ObjectDefinition = target.def(this), approachRange: Int? = null) {
+    mode = Interact(this, target, ObjectOption(this, target, definition, option), type = CharacterInteraction(this, target, definition, option), approachRange = approachRange)
 }

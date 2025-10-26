@@ -3,6 +3,7 @@ package content.area.fremennik_province.rellekka
 import content.entity.combat.inCombat
 import content.entity.combat.target
 import content.entity.effect.transform
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
@@ -19,7 +20,7 @@ class RockCrabs {
         huntPlayer("rock*", "aggressive") { npc ->
             // already a crab? just aggro the player
             if (npc.transform.startsWith("rock_crab")) {
-                npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
+                npc.interactPlayer(target, "Attack")
                 return@huntPlayer
             }
 
@@ -35,7 +36,7 @@ class RockCrabs {
 
             // short stand-up delay before attacking
             npc.softQueue("rock_stand_up", 2) {
-                npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
+                npc.interactPlayer(target, "Attack")
                 resetToRock(npc) // start inactivity timer for disguise reset
             }
         }

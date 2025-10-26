@@ -21,6 +21,7 @@ import content.quest.questCompleted
 import content.quest.startCutscene
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
@@ -100,7 +101,7 @@ class Delrith : Api {
             if (target is NPC && target.id == "delrith" && target.transform == "delrith_weakened") {
                 cancel()
                 player.strongQueue("banish_delrith", 1) {
-                    player.mode = Interact(player, target, NPCOption(player, target, target.def, "Banish"))
+                    player.interactNpc(target, "Banish")
                 }
             }
         }

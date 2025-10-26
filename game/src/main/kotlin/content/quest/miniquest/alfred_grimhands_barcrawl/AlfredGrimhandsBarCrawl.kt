@@ -10,6 +10,7 @@ import content.quest.quest
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -42,7 +43,36 @@ suspend fun <T : TargetInteraction<Player, NPC>> T.barCrawlDrink(
     effects()
 }
 
+suspend fun Dialogue.barCrawlDrink(
+    start: (suspend Dialogue.() -> Unit)? = null,
+    effects: suspend Dialogue.() -> Unit = {},
+) {
+    player<Talk>("I'm doing Alfred Grimhand's Barcrawl.")
+    val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return
+    start?.invoke(this) ?: npc<Talk>(info["start"] as String)
+    val id = info["id"] as String
+    if (!player.inventory.remove("coins", info["price"] as Int)) {
+        player<Sad>(info["insufficient"] as String)
+        return
+    }
+    player.message(info["give"] as String)
+    delay(4)
+    player.message(info["drink"] as String)
+    delay(4)
+    player.message(info["effect"] as String)
+    delay(4)
+    (info["sign"] as? String)?.let { player.message(it) }
+    player.addVarbit("barcrawl_signatures", id)
+    effects()
+}
+
 val barCrawlFilter: TargetContext<Player, NPC>.() -> Boolean = filter@{
+    val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return@filter false
+    val id = info["id"] as String
+    player.quest("alfred_grimhands_barcrawl") == "signatures" && !player.containsVarbit("barcrawl_signatures", id)
+}
+
+val doingBarCrawl: Dialogue.() -> Boolean = filter@{
     val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return@filter false
     val id = info["id"] as String
     player.quest("alfred_grimhands_barcrawl") == "signatures" && !player.containsVarbit("barcrawl_signatures", id)

@@ -1,11 +1,15 @@
 package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.entity.CharacterInteraction
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
@@ -33,7 +37,11 @@ class PlayerOptionHandler(
         if (option == "Follow") {
             player.mode = Follow(player, target)
         } else {
-            player.mode = Interact(player, target, PlayerOption(player, target, option), type = CharacterInteraction(player, target, option))
+            player.interactPlayer(target, option)
         }
     }
+}
+
+fun Character.interactPlayer(target: Player, option: String) {
+    mode = Interact(this, target, PlayerOption(this, target, option), type = CharacterInteraction(this, target, option))
 }

@@ -3,6 +3,8 @@ package content.area.troll_country.god_wars_dungeon
 import content.entity.combat.killer
 import content.entity.death.npcDeath
 import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.instruction.handle.interactNpc
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
@@ -73,15 +75,15 @@ class GodwarsAggression : Api {
         }
 
         huntPlayer(mode = "godwars_aggressive") { npc ->
-            npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
+            npc.interactPlayer(target, "Attack")
         }
 
         huntNPC(mode = "zamorak_aggressive") { npc ->
-            npc.mode = Interact(npc, target, NPCOption(npc, target, target.def, "Attack"))
+            npc.interactNpc(target, "Attack")
         }
 
         huntNPC(mode = "anti_zamorak_aggressive") { npc ->
-            npc.mode = Interact(npc, target, NPCOption(npc, target, target.def, "Attack"))
+            npc.interactNpc(target, "Attack")
         }
 
         npcDeath { npc ->

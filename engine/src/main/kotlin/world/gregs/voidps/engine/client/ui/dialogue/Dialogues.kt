@@ -13,7 +13,7 @@ fun Player.talkWith(npc: NPC, def: NPCDefinition = npc.def) {
 
 suspend fun Player.talkWith(npc: NPC, block: suspend Dialogue.() -> Unit) {
     set("dialogue_target", npc)
-    set("dialogue_def", npc.def) // TODO real def
+    set("dialogue_def", npc.def(this))
     block(Dialogue(this, npc))
 }
 

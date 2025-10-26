@@ -1,5 +1,7 @@
 package content.entity.npc.combat
 
+import world.gregs.voidps.engine.client.instruction.handle.interactNpc
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -27,11 +29,11 @@ class Aggression {
         if (Settings["world.npcs.safeZone", false] && npc.tile in areas["lumbridge"]) {
             return@huntPlayer
         }
-        npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
+        npc.interactPlayer(target, "Attack")
     }
     val npcHandler: suspend HuntNPC.(npc: NPC) -> Unit = { npc ->
         if (!attacking(npc, target)) {
-            npc.mode = Interact(npc, target, NPCOption(npc, target, target.def, "Attack"))
+            npc.interactNpc(target, "Attack")
         }
     }
 
@@ -47,7 +49,7 @@ class Aggression {
             if (Settings["world.npcs.safeZone", false] && npc.tile in areas["lumbridge"]) {
                 return@huntPlayer
             }
-            npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
+            npc.interactPlayer(target, "Attack")
         }
 
         huntNPC(mode = "aggressive", handler = npcHandler)
@@ -58,7 +60,7 @@ class Aggression {
             if (attacking(npc, target)) {
                 return@huntNPC
             }
-            npc.mode = Interact(npc, target, NPCOption(npc, target, target.def, "Attack"))
+            npc.interactNpc(target, "Attack")
         }
     }
 

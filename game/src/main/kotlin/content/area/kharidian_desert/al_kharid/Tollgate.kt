@@ -9,6 +9,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
+import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -100,7 +101,7 @@ class Tollgate {
 
     fun pass(player: Player) {
         val gate = getGate(player)
-        player.mode = Interact(player, gate, ObjectOption(player, gate, gate.def, "Pay-toll(10gp)"))
+        player.interactObject(gate, "Pay-toll(10gp)")
         player["passing_out_task"] = true
     }
 }

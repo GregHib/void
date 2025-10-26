@@ -7,6 +7,7 @@ import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -64,7 +65,7 @@ class MysteriousRuins : Api {
             player.message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
             player.anim("human_pickupfloor")
             delay(2)
-            player.mode = Interact(player, target, ObjectOption(player, target, definition, "Enter"), approachRange = -1)
+            player.interactObject(target, "Enter", definition, approachRange = -1)
         }
 
         objTeleportTakeOff("Enter", "*_altar_ruins_enter") {

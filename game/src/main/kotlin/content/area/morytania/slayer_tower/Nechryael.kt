@@ -2,6 +2,7 @@ package content.area.morytania.slayer_tower
 
 import content.entity.combat.hit.npcCombatAttack
 import content.entity.sound.sound
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -41,7 +42,7 @@ class Nechryael {
                     players.get(name)?.dec("death_spawns")
                 }
                 spawn.anim("death_spawn")
-                spawn.mode = Interact(spawn, target, PlayerOption(spawn, target, "Attack"))
+                spawn.interactPlayer(target, "Attack")
                 target.sound("death_spawn")
                 target.inc("death_spawns")
             }

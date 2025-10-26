@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler.Companion.getDefinition
 import world.gregs.voidps.engine.client.message
@@ -9,7 +10,9 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.CharacterInteraction
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -53,6 +56,10 @@ class NPCOptionHandler(
         }
         player.closeInterfaces()
         player.talkWith(npc, definition)
-        player.mode = Interact(player, npc, NPCOption(player, npc, definition, selectedOption), type = CharacterInteraction(player, npc, definition, selectedOption))
+        player.interactNpc(npc, selectedOption, definition)
     }
+}
+
+fun Character.interactNpc(npc: NPC, option: String, definition: NPCDefinition = if (this is Player) npc.def(this) else npc.def) {
+    mode = Interact(this, npc, NPCOption(this, npc, definition, option), type = CharacterInteraction(this, npc, definition, option))
 }

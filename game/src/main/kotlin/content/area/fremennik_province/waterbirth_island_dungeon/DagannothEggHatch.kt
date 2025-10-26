@@ -1,6 +1,7 @@
 package content.area.fremennik_province.waterbirth_island_dungeon
 
 import content.entity.effect.transform
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
@@ -31,7 +32,7 @@ class DagannothEggHatch {
             npc.softQueue("dagannoth_hatch_attack", 1) {
                 npc.transform("dagannoth_egg_opened")
                 val spawn = npcs.add("dagannoth_spawn", npc.tile)
-                spawn.mode = Interact(spawn, target, PlayerOption(spawn, target, "Attack"))
+                npc.interactPlayer(target, "Attack")
             }
             npc.softQueue("dagannoth_respawn", TimeUnit.MINUTES.toTicks(5)) {
                 npc.transform("dagannoth_egg")

@@ -3,6 +3,7 @@ package content.area.fremennik_province.waterbirth_island_dungeon
 import content.entity.combat.inCombat
 import content.entity.combat.target
 import content.entity.effect.transform
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
@@ -19,7 +20,7 @@ class RockLobster {
         huntPlayer("rock_hidden_lobster", "aggressive") { npc ->
             // already in combat form?
             if (npc.transform == "rock_lobster") {
-                npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
+                npc.interactPlayer(target, "Attack")
                 return@huntPlayer
             }
 
@@ -28,7 +29,7 @@ class RockLobster {
 
             // stand-up delay
             npc.softQueue("stand_up", 2) {
-                npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
+                npc.interactPlayer(target, "Attack")
                 resetToHidden(npc)
             }
         }
