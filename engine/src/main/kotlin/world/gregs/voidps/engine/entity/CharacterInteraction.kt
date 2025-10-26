@@ -26,10 +26,10 @@ class CharacterInteraction(
     private val approachDispatcher: MapDispatcher<Approachable>,
 ) : InteractionType {
 
-    constructor(character: Character, target: Player, option: String) : this(character, target, option, option, Operation.playerPlayerDispatcher, Approachable.playerPlayerDispatcher)
-    constructor(character: Character, target: NPC, def: NPCDefinition, option: String) : this(character, target, option, "$option:${def.stringId}", Operation.playerNpcDispatcher, Approachable.playerNpcDispatcher)
-    constructor(character: Character, target: GameObject, def: ObjectDefinition, option: String) : this(character, target, option, "$option:${def.stringId}", Operation.playerObjectDispatcher, Approachable.playerObjectDispatcher)
-    constructor(character: Character, target: FloorItem, def: ItemDefinition, option: String) : this(character, target, option, "$option:${def.stringId}", Operation.playerFloorItemDispatcher, Approachable.playerFloorItemDispatcher)
+    constructor(character: Character, target: Player, option: String) : this(character, target, option, option, if (character is Player) Operation.playerPlayerDispatcher else Operation.npcPlayerDispatcher, if (character is Player) Approachable.playerPlayerDispatcher else Approachable.npcPlayerDispatcher)
+    constructor(character: Character, target: NPC, def: NPCDefinition, option: String) : this(character, target, option, "$option:${def.stringId}", if (character is Player) Operation.playerNpcDispatcher else Operation.npcNpcDispatcher, if (character is Player) Approachable.playerNpcDispatcher else Approachable.npcNpcDispatcher)
+    constructor(character: Character, target: GameObject, def: ObjectDefinition, option: String) : this(character, target, option, "$option:${def.stringId}", if (character is Player) Operation.playerObjectDispatcher else Operation.npcObjectDispatcher, if (character is Player) Approachable.playerObjectDispatcher else Approachable.npcObjectDispatcher)
+    constructor(character: Character, target: FloorItem, def: ItemDefinition, option: String) : this(character, target, option, "$option:${def.stringId}", if (character is Player) Operation.playerFloorItemDispatcher else Operation.npcFloorItemDispatcher, if (character is Player) Approachable.playerFloorItemDispatcher else Approachable.npcFloorItemDispatcher)
 
     override fun hasOperate() = operateDispatcher.instances.containsKey(key) || operateDispatcher.instances.containsKey(option)
 
