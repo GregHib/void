@@ -20,14 +20,9 @@ interface Approachable {
     suspend fun approach(player: Player, target: Player, option: String) {}
 
     /**
-     * Interface on Player
+     * Interface/Item on Player
      */
-    suspend fun approach(player: Player, id: String, target: Player) {}
-
-    /**
-     * Item on Player
-     */
-    suspend fun approach(player: Player, id: String, item: Item, target: Player) {}
+    suspend fun approach(player: Player, id: String, item: Item, slot: Int, target: Player) {}
 
 
     /**
@@ -36,14 +31,9 @@ interface Approachable {
     suspend fun approach(player: Player, target: NPC, option: String) {}
 
     /**
-     * Interface on NPC
+     * Interface/Item on NPC
      */
-    suspend fun approach(player: Player, id: String, target: NPC) {}
-
-    /**
-     * Item on NPC
-     */
-    suspend fun approach(player: Player, id: String, item: Item, target: NPC) {}
+    suspend fun approach(player: Player, id: String, item: Item, slot: Int, target: NPC) {}
 
 
     /**
@@ -52,14 +42,9 @@ interface Approachable {
     suspend fun approach(player: Player, target: GameObject, option: String) {}
 
     /**
-     * Interface on GameObject
+     * Interface/Item on GameObject
      */
-    suspend fun approach(player: Player, id: String, target: GameObject) {}
-
-    /**
-     * Item on GameObject
-     */
-    suspend fun approach(player: Player, id: String, item: Item, target: GameObject) {}
+    suspend fun approach(player: Player, id: String, item: Item, slot: Int, target: GameObject) {}
 
 
     /**
@@ -68,14 +53,9 @@ interface Approachable {
     suspend fun approach(player: Player, target: FloorItem, option: String) {}
 
     /**
-     * Interface on FloorItem
+     * Interface/Item on FloorItem
      */
-    suspend fun approach(player: Player, id: String, target: FloorItem) {}
-
-    /**
-     * Item on FloorItem
-     */
-    suspend fun approach(player: Player, id: String, item: Item, target: FloorItem) {}
+    suspend fun approach(player: Player, id: String, item: Item, slot: Int, target: FloorItem) {}
 
 
     /**
@@ -108,6 +88,11 @@ interface Approachable {
         var npcNpcDispatcher = MapDispatcher<Approachable>("@Approach")
         var npcObjectDispatcher = MapDispatcher<Approachable>("@Approach")
         var npcFloorItemDispatcher = MapDispatcher<Approachable>("@Approach")
+
+        var onPlayerDispatcher = MapDispatcher<Approachable>("@ItemOn", "@UseOn")
+        var onNpcDispatcher = MapDispatcher<Approachable>("@ItemOn", "@UseOn")
+        var onObjectDispatcher = NoDelayDispatcher(noDelays, "@ItemOn", "@UseOn")
+        var onFloorItemDispatcher = NoDelayDispatcher(noDelays, "@ItemOn", "@UseOn")
 
         override suspend fun approach(player: Player, target: Player, option: String) = playerPlayerDispatcher.onFirst(option) { instance ->
             instance.approach(player, target, option)
@@ -145,6 +130,28 @@ interface Approachable {
 
         override suspend fun approach(npc: NPC, target: FloorItem, option: String) = npcFloorItemDispatcher.onFirst("$option:${target.id}", option) { instance ->
             instance.approach(npc, target, option)
+        }
+
+        override suspend fun approach(player: Player, id: String, item: Item, slot: Int, target: Player) = onPlayerDispatcher.onFirst(if (item.isEmpty()) id else item.id) { instance ->
+            instance.approach(player, id, item, slot, target)
+        }
+
+        override suspend fun approach(player: Player, id: String, item: Item, slot: Int, target: NPC) = if (item.isEmpty()) {
+            onNpcDispatcher.onFirst("$id:${target.def(player).stringId}", id) { instance ->
+                instance.approach(player, id, item, slot, target)
+            }
+        } else {
+            onNpcDispatcher.onFirst("${item.id}:${target.def(player).stringId}", item.id) { instance ->
+                instance.approach(player, id, item, slot, target)
+            }
+        }
+
+        override suspend fun approach(player: Player, id: String, item: Item, slot: Int, target: GameObject) = onObjectDispatcher.onFirst(if (item.isEmpty()) "$id:${target.def(player).stringId}" else "${item.id}:${target.def(player).stringId}") { instance ->
+            instance.approach(player, id, item, slot, target)
+        }
+
+        override suspend fun approach(player: Player, id: String, item: Item, slot: Int, target: FloorItem) = onFloorItemDispatcher.onFirst(if (item.isEmpty()) "$id:${target.id}" else "${item.id}:${target.id}") { instance ->
+            instance.approach(player, id, item, slot, target)
         }
     }
 }

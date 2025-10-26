@@ -72,6 +72,8 @@ abstract class ScriptMetadataTask : DefaultTask() {
         "Approach" to listOf("option" to WildcardType.DynamicOption(0), "id" to WildcardType.DynamicId(1)),
         "NoDelay" to emptyList(),
         "Timer" to listOf("id" to WildcardType.None),
+        "ItemOn" to listOf("item" to WildcardType.ItemId, "on" to WildcardType.DynamicId(4)),
+        "UseOn" to listOf("id" to WildcardType.InterfaceComponentId, "on" to WildcardType.DynamicId(4)),
     )
 
     @get:Incremental

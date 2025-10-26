@@ -35,22 +35,37 @@ object ContentLoader {
         method("variableSet", "NPC", "String", "Any?", "Any?") to VariableSet.npcDispatcher,
         method("stole", "Player", "GameObject", "Item") to Stole.dispatcher,
         method("Dialogue.talk", "Player", "NPC") to Operation.talkDispatcher,
+        // Player operate
         method("operate", "Player", "Player", "String") to Operation.playerPlayerDispatcher,
         method("operate", "Player", "NPC", "String") to Operation.playerNpcDispatcher,
         method("operate", "Player", "GameObject", "String") to Operation.playerObjectDispatcher,
         method("operate", "Player", "FloorItem", "String") to Operation.playerFloorItemDispatcher,
+        // Npc operate
         method("operate", "NPC", "Player", "String") to Operation.npcPlayerDispatcher,
         method("operate", "NPC", "NPC", "String") to Operation.npcNpcDispatcher,
         method("operate", "NPC", "GameObject", "String") to Operation.npcObjectDispatcher,
         method("operate", "NPC", "FloorItem", "String") to Operation.npcFloorItemDispatcher,
+        // Use on entity operate
+        method("operate", "Player", "String", "Item", "Int", "Player") to Operation.onPlayerDispatcher,
+        method("operate", "Player", "String", "Item", "Int", "NPC") to Operation.onNpcDispatcher,
+        method("operate", "Player", "String", "Item", "Int", "GameObject") to Operation.onObjectDispatcher,
+        method("operate", "Player", "String", "Item", "Int", "FloorItem") to Operation.onFloorItemDispatcher,
+        // Player approach
         method("approach", "Player", "Player", "String") to Approachable.playerPlayerDispatcher,
         method("approach", "Player", "NPC", "String") to Approachable.playerNpcDispatcher,
         method("approach", "Player", "GameObject", "String") to Approachable.playerObjectDispatcher,
         method("approach", "Player", "FloorItem", "String") to Approachable.playerFloorItemDispatcher,
+        // Npc approach
         method("approach", "NPC", "Player", "String") to Approachable.npcPlayerDispatcher,
         method("approach", "NPC", "NPC", "String") to Approachable.npcNpcDispatcher,
         method("approach", "NPC", "GameObject", "String") to Approachable.npcObjectDispatcher,
         method("approach", "NPC", "FloorItem", "String") to Approachable.npcFloorItemDispatcher,
+        // Use on entity approach
+        method("approach", "Player", "String", "Item", "Int", "Player") to Approachable.onPlayerDispatcher,
+        method("approach", "Player", "String", "Item", "Int", "NPC") to Approachable.onNpcDispatcher,
+        method("approach", "Player", "String", "Item", "Int", "GameObject") to Approachable.onObjectDispatcher,
+        method("approach", "Player", "String", "Item", "Int", "FloorItem") to Approachable.onFloorItemDispatcher,
+        // Timers
         method("start", "Player", "String", "Boolean", returnType = "Int") to TimerApi.playerStartDispatcher,
         method("tick", "Player", "String", returnType = "Int") to TimerApi.playerTickDispatcher,
         method("stop", "Player", "String", "Boolean") to TimerApi.playerStopDispatcher,

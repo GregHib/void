@@ -27,14 +27,9 @@ interface Operation {
     suspend fun operate(player: Player, target: Player, option: String) {}
 
     /**
-     * Interface on Player
+     * Interface/Item on Player
      */
-    suspend fun operate(player: Player, id: String, target: Player) {}
-
-    /**
-     * Item on Player
-     */
-    suspend fun operate(player: Player, id: String, item: Item, target: Player) {}
+    suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: Player) {}
 
 
     /**
@@ -43,14 +38,9 @@ interface Operation {
     suspend fun operate(player: Player, target: NPC, option: String) {}
 
     /**
-     * Interface on NPC
+     * Interface/Item on NPC
      */
-    suspend fun operate(player: Player, id: String, target: NPC) {}
-
-    /**
-     * Item on NPC
-     */
-    suspend fun operate(player: Player, id: String, item: Item, target: NPC) {}
+    suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: NPC) {}
 
     /**
      * GameObject option
@@ -58,14 +48,9 @@ interface Operation {
     suspend fun operate(player: Player, target: GameObject, option: String) {}
 
     /**
-     * Interface on GameObject
+     * Interface/Item on GameObject
      */
-    suspend fun operate(player: Player, id: String, target: GameObject) {}
-
-    /**
-     * Item on GameObject
-     */
-    suspend fun operate(player: Player, id: String, item: Item, target: GameObject) {}
+    suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: GameObject) {}
 
 
     /**
@@ -74,14 +59,9 @@ interface Operation {
     suspend fun operate(player: Player, target: FloorItem, option: String) {}
 
     /**
-     * Interface on FloorItem
+     * Interface/Item on FloorItem
      */
-    suspend fun operate(player: Player, id: String, target: FloorItem) {}
-
-    /**
-     * Item on FloorItem
-     */
-    suspend fun operate(player: Player, id: String, item: Item, target: FloorItem) {}
+    suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: FloorItem) {}
 
 
     /**
@@ -123,6 +103,10 @@ interface Operation {
         var npcObjectDispatcher = MapDispatcher<Operation>("@Operate")
         var npcFloorItemDispatcher = MapDispatcher<Operation>("@Operate")
 
+        var onPlayerDispatcher = MapDispatcher<Operation>("@ItemOn", "@UseOn")
+        var onNpcDispatcher = MapDispatcher<Operation>("@ItemOn", "@UseOn")
+        var onObjectDispatcher = NoDelayDispatcher(noDelays, "@ItemOn", "@UseOn")
+        var onFloorItemDispatcher = NoDelayDispatcher(noDelays, "@ItemOn", "@UseOn")
 
         override suspend fun operate(player: Player, target: Player, option: String) = playerPlayerDispatcher.onFirst(option) { instance ->
             instance.operate(player, target, option)
@@ -170,6 +154,22 @@ interface Operation {
 
         override suspend fun operate(npc: NPC, target: FloorItem, option: String) = npcFloorItemDispatcher.onFirst("$option:${target.id}") { instance ->
             instance.operate(npc, target, option)
+        }
+
+        override suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: Player) = onPlayerDispatcher.onFirst(if (item.isEmpty()) id else item.id) { instance ->
+            instance.operate(player, id, item, slot, target)
+        }
+
+        override suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: NPC) = onNpcDispatcher.onFirst(if (item.isEmpty()) "$id:${target.def(player).stringId}" else "${item.id}:${target.def(player).stringId}") { instance ->
+            instance.operate(player, id, item, slot, target)
+        }
+
+        override suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: GameObject) = onObjectDispatcher.onFirst(if (item.isEmpty()) "$id:${target.def(player).stringId}" else "${item.id}:${target.def(player).stringId}") { instance ->
+            instance.operate(player, id, item, slot, target)
+        }
+
+        override suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: FloorItem) = onFloorItemDispatcher.onFirst(if (item.isEmpty()) "$id:${target.id}" else "${item.id}:${target.id}") { instance ->
+            instance.operate(player, id, item, slot, target)
         }
     }
 }
