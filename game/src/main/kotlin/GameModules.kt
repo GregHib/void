@@ -14,7 +14,6 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.data.*
-import world.gregs.voidps.engine.data.definition.RenderEmoteDefinitions
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import java.io.File

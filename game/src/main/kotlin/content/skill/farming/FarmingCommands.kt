@@ -23,7 +23,6 @@ class FarmingCommands(
     }
 
     fun listPatches(player: Player, args: List<String>) {
-
     }
 
     fun growthInfo(player: Player, args: List<String>) {
