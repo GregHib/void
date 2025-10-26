@@ -7,6 +7,7 @@ import content.entity.player.inv.inventoryOptions
 import content.entity.sound.jingle
 import content.entity.sound.sound
 import content.skill.melee.weapon.weapon
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.closeDialogue
@@ -14,16 +15,29 @@ import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.player.playerOperate
+import world.gregs.voidps.engine.entity.Operate
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.suspend.animDelay
 import world.gregs.voidps.type.random
 
 @Script
-class ItemEmotes {
+class ItemEmotes : Api {
+
+    @Operate("Whack")
+    override suspend fun operate(player: Player, target: Player, option: String) {
+        if (player.weapon.id == "rubber_chicken") {
+            player.sound("rubber_chicken_whack")
+            player.animDelay("rubber_chicken_whack")
+        } else {
+            // todo player.playSound("")
+            player.animDelay("easter_carrot_whack")
+        }
+    }
 
     init {
         inventoryItem("Fly", "toy_kite") {
@@ -67,16 +81,6 @@ class ItemEmotes {
                 }
             }
             player.animDelay("emote_recite_prayer")
-        }
-
-        playerOperate("Whack") {
-            if (player.weapon.id == "rubber_chicken") {
-                player.sound("rubber_chicken_whack")
-                player.animDelay("rubber_chicken_whack")
-            } else {
-                // todo player.playSound("")
-                player.animDelay("easter_carrot_whack")
-            }
         }
 
         inventoryItem("Dance", "rubber_chicken") {

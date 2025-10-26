@@ -96,8 +96,8 @@ interface Operation {
             override fun clear() {}
         }
         private val noDelays = mutableSetOf<Operation>()
-        var playerObjectDispatcher = NoDelayDispatcher(noDelays)
-        var playerFloorItemDispatcher = NoDelayDispatcher(noDelays)
+        var playerObjectDispatcher = NoDelayDispatcher(noDelays, "@Operate")
+        var playerFloorItemDispatcher = NoDelayDispatcher(noDelays, "@Operate")
         var npcPlayerDispatcher = MapDispatcher<Operation>("@Operate")
         var npcNpcDispatcher = MapDispatcher<Operation>("@Operate")
         var npcObjectDispatcher = MapDispatcher<Operation>("@Operate")

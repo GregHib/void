@@ -54,6 +54,15 @@ abstract class Interaction<C : Character> :
 }
 
 
+/**
+ * Interrupt-able pausing
+ * Note: can't be used after a dialogue suspension in an interaction as the
+ * interaction will have finished and there will be nothing to resume the suspension
+ */
+suspend fun Character.pause(ticks: Int) {
+    Suspension.start(this, ticks)
+}
+
 
 /**
  * Movement delay, typically operating/interacting with an object or floor item that performs an animation or exact movement

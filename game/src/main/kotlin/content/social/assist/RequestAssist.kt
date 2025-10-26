@@ -10,6 +10,7 @@ import content.social.assist.Assistance.redirectSkillExperience
 import content.social.assist.Assistance.stopRedirectingSkillExp
 import content.social.assist.Assistance.toggleInventory
 import content.social.friend.friend
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
@@ -17,10 +18,10 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.Operate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.player.playerOperate
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -32,7 +33,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
 @Script
-class RequestAssist {
+class RequestAssist : Api {
 
     val skills = listOf(
         Skill.Runecrafting,
@@ -47,31 +48,32 @@ class RequestAssist {
     )
     val logger = InlineLogger()
 
-    init {
-        playerOperate("Req Assist") {
-            val filter = target["assist_filter", "on"]
-            if (filter == "off" || (filter == "friends" && !target.friend(player))) {
-                return@playerOperate
-            }
-            if (!player["accept_aid", true]) {
-                player.message("This player is not currently accepting aid.") // TODO proper message
-                return@playerOperate
-            }
-            if (target.hasRequest(player, "assist")) {
-                player.message("Sending assistance response.", ChatType.Assist)
-            } else {
-                if (requestingTooQuickly(player) || refuseRequest(target, player)) {
-                    return@playerOperate
-                }
-                player.message("Sending assistance request.", ChatType.Assist)
-                target.message("is requesting your assistance.", ChatType.AssistRequest, name = player.name)
-            }
-            player.request(target, "assist") { requester, acceptor ->
-                setupAssisted(requester, acceptor)
-                setupAssistant(acceptor, requester)
-            }
+    @Operate("Req Assist")
+    override suspend fun approach(player: Player, target: Player, option: String) {
+        val filter = target["assist_filter", "on"]
+        if (filter == "off" || (filter == "friends" && !target.friend(player))) {
+            return
         }
+        if (!player["accept_aid", true]) {
+            player.message("This player is not currently accepting aid.") // TODO proper message
+            return
+        }
+        if (target.hasRequest(player, "assist")) {
+            player.message("Sending assistance response.", ChatType.Assist)
+        } else {
+            if (requestingTooQuickly(player) || refuseRequest(target, player)) {
+                return
+            }
+            player.message("Sending assistance request.", ChatType.Assist)
+            target.message("is requesting your assistance.", ChatType.AssistRequest, name = player.name)
+        }
+        player.request(target, "assist") { requester, acceptor ->
+            setupAssisted(requester, acceptor)
+            setupAssistant(acceptor, requester)
+        }
+    }
 
+    init {
         interfaceClose("assist_xp") { player ->
             val assisted: Player = player["assisted"] ?: return@interfaceClose
             cancelAssist(player, assisted)

@@ -1,5 +1,6 @@
 package content.skill.firemaking
 
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.instruction.handle.interactFloorItem
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
@@ -8,8 +9,9 @@ import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.data.Fire
+import world.gregs.voidps.engine.entity.Operate
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.mode.interact.pause
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -19,7 +21,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.ObjectShape
@@ -32,7 +33,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 @Script
-class Firemaking {
+class Firemaking : Api {
 
     val floorItems: FloorItems by inject()
     val objects: GameObjects by inject()
@@ -59,13 +60,14 @@ class Firemaking {
                 lightFire(player, floorItem)
             }
         }
-
-        floorItemOperate("Light") {
-            lightFire(player, target)
-        }
     }
 
-    suspend fun Interaction<Player>.lightFire(
+    @Operate("Light")
+    override suspend fun operate(player: Player, target: FloorItem, option: String) {
+        lightFire(player, target)
+    }
+
+    suspend fun lightFire(
         player: Player,
         floorItem: FloorItem,
     ) {
@@ -76,7 +78,7 @@ class Firemaking {
         val log = Item(floorItem.id)
         val fire: Fire = log.def.getOrNull("firemaking") ?: return
         var first = true
-        while (awaitDialogues()) {
+        while (player.awaitDialogues()) {
             if (!player.canLight(log.id, fire, floorItem)) {
                 break
             }
@@ -88,9 +90,9 @@ class Firemaking {
                 }
                 player.anim("light_fire")
                 player.start("action_delay", 4)
-                pause(4)
+                player.pause(4)
             } else if (remaining > 0) {
-                pause(remaining)
+                player.pause(remaining)
             }
             if (Level.success(player.levels.get(Skill.Firemaking), fire.chance) && floorItems.remove(floorItem)) {
                 player.message("The fire catches and the logs begin to burn.", ChatType.Filter)

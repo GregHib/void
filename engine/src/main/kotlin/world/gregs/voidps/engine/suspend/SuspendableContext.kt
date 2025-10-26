@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.interact.delay
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
@@ -90,4 +91,13 @@ interface SuspendableContext<C : Character> : Context<C> {
     companion object {
         private val logger = InlineLogger()
     }
+}
+
+/**
+ * Delay until characters animation [id] is complete
+ * @param override the current animation
+ */
+suspend fun Character.animDelay(id: String, override: Boolean = false) {
+    val ticks = anim(id, override = override)
+    delay(ticks)
 }

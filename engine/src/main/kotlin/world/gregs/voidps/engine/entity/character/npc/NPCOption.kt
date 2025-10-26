@@ -33,24 +33,6 @@ fun npcApproach(option: String, vararg npcs: String = arrayOf("*"), handler: sus
     npcOption<Player, Player>("player_approach_npc", npcs, option, handler)
 }
 
-fun npcOperateNPC(option: String, vararg npcs: String = arrayOf("*"), handler: suspend NPCOption<NPC>.() -> Unit) {
-    npcOption<NPC, NPC>("npc_operate_npc", npcs, option, handler)
-}
-
-fun npcApproachNPC(option: String, vararg npcs: String = arrayOf("*"), handler: suspend NPCOption<NPC>.() -> Unit) {
-    npcOption<NPC, NPC>("npc_approach_npc", npcs, option, handler)
-}
-
-fun characterOperateNPC(option: String, vararg npcs: String = arrayOf("*"), handler: suspend NPCOption<Character>.() -> Unit) {
-    npcOption<Player, Character>("player_operate_npc", npcs, option, handler)
-    npcOption<NPC, Character>("npc_operate_npc", npcs, option, handler)
-}
-
-fun characterApproachNPC(option: String, vararg npcs: String = arrayOf("*"), handler: suspend NPCOption<Character>.() -> Unit) {
-    npcOption<Player, Character>("player_approach_npc", npcs, option, handler)
-    npcOption<NPC, Character>("npc_approach_npc", npcs, option, handler)
-}
-
 private fun <D : EventDispatcher, C : Character> npcOption(
     type: String,
     npcs: Array<out String>,

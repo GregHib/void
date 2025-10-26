@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.suspend.resumeSuspension
 class Interact(
     character: Character,
     val target: Entity,
-    interaction: Interaction<*>,
+    interaction: Interaction<*>?,
     strategy: TargetStrategy = TargetStrategy(target),
     private var approachRange: Int? = null,
     private val faceTarget: Boolean = true,
@@ -36,22 +36,22 @@ class Interact(
 ) : Movement(character, strategy, shape) {
     private var launched = false
 
-    private var type = Combined(type, OldInteractionType(character, interaction))
+    private var type = Combined(type, interaction?.let { OldInteractionType(character, interaction) })
 
-    class Combined(val type: InteractionType?, var old: InteractionType)  : InteractionType {
+    class Combined(val type: InteractionType?, var old: InteractionType?)  : InteractionType {
         override fun hasOperate(): Boolean {
-            return type?.hasOperate() == true || old.hasOperate()
+            return type?.hasOperate() == true || old?.hasOperate() == true
         }
 
         override fun hasApproach(): Boolean {
-            return type?.hasApproach() == true || old.hasApproach()
+            return type?.hasApproach() == true || old?.hasApproach() == true
         }
 
         override fun operate() {
             if (type != null && type.hasOperate()) {
                 type.operate()
             } else {
-                old.operate()
+                old?.operate()
             }
         }
 
@@ -59,7 +59,7 @@ class Interact(
             if (type != null && type.hasApproach()) {
                 type.approach()
             } else {
-                old.approach()
+                old?.approach()
             }
         }
     }
@@ -85,12 +85,6 @@ class Interact(
 
     fun updateInteraction(interaction: Interaction<*>) {
         type.old = OldInteractionType(character, interaction)
-        updateInteraction(type.old)
-        clearInteracted = true
-    }
-
-    fun updateInteraction(type: InteractionType) {
-//        this.type = type
         launched = false
         clearInteracted = true
     }

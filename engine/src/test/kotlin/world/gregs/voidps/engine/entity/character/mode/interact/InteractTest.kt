@@ -83,8 +83,7 @@ internal class InteractTest : KoinMock() {
     }
 
     private fun interact(operate: Boolean, approach: Boolean, suspend: Boolean) {
-        interactNpc(player, target, "interact", NPCDefinition.EMPTY)
-        interact = Interact(player, target, interaction)
+        interact = Interact(player, target, NPCOption(player, target, NPCDefinition.EMPTY, "interact"), type = CharacterInteraction(player, target, NPCDefinition.EMPTY, "interact"))
         player.mode = interact
         Events.events.clear()
         if (operate) {

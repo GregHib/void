@@ -12,5 +12,5 @@ interface Dispatcher<T : Any> {
         process(instance as T, annotation, arguments)
     }
 
-    fun clear()
+    fun clear() {}
 }
