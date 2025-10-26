@@ -35,8 +35,18 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeTo
 class BarmaidsRisingSunInn : Api {
     val itemDefinitions: ItemDefinitions by inject()
 
-    @ItemOn("barcrawl_card,coins,beer_glass", "barmaid_emily,barmaid_kaylee,barmaid_tina")
+    @ItemOn("barcrawl_card,coins,beer_glass", "barmaid_kaylee,barmaid_tina")
     override suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: NPC) {
+        handleItems(player, item, target)
+    }
+
+    @ItemOn("barcrawl_card,coins,beer_glass", "barmaid_emily")
+    override suspend fun approach(player: Player, id: String, item: Item, slot: Int, target: NPC) {
+        player.approachRange(3)
+        handleItems(player, item, target)
+    }
+
+    private suspend fun handleItems(player: Player, item: Item, target: NPC) {
         when (item.id) {
             "barcrawl_card" -> if (!player.containsVarbit("barcrawl_signatures", "hand_of_death_cocktail")) {
                 player.talkWith(target) {
