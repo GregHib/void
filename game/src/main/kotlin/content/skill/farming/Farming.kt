@@ -1,5 +1,6 @@
 package content.skill.farming
 
+import content.entity.player.bank.bank
 import content.entity.sound.jingle
 import content.entity.sound.sound
 import world.gregs.voidps.engine.Api
@@ -9,6 +10,9 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.beastOfBurden
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.epochMinutes
 import world.gregs.voidps.engine.timer.toTicks
@@ -20,8 +24,6 @@ class Farming(
     val variableDefinitions: VariableDefinitions,
     val farmingDefinitions: FarmingDefinitions,
 ) : Api {
-
-    val patches = mutableMapOf(5 to listOf("allotment_falador_nw", "allotment_falador_se"))
 
     override fun spawn(player: Player) {
         if (!player.contains("farming_offset_mins")) {
@@ -52,8 +54,12 @@ class Farming(
     }
 
     fun grow(player: Player, minute: Int) {
-        for ((cycle, varbits) in patches) {
-            if (minute.rem(cycle) != 0) {
+        val mins = Settings["farming.growth.mins", 5]
+        if (minute.rem(mins) == 0) {
+            growSaplings(player)
+        }
+        for ((multiplier, varbits) in FarmingPatch.patches) {
+            if (minute.rem(mins * multiplier) != 0) {
                 continue
             }
             for (varbit in varbits) {
@@ -68,7 +74,7 @@ class Farming(
                     amuletOfFarming(player, varbit)
                     continue
                 }
-                if (current.startsWith("weeds")) {
+                if (current.startsWith("weeds") && !player["disable_weeds", false]) {
                     val stage = type.toInt()
                     val next = (stage + 1).rem(4)
                     player[varbit] = when (next) {
@@ -101,9 +107,22 @@ class Farming(
         }
     }
 
+    private fun growSaplings(player: Player) {
+        growSaplings(player, player.inventory)
+        growSaplings(player, player.bank)
+        growSaplings(player, player.beastOfBurden)
+    }
+
+    private fun growSaplings(player: Player, inventory: Inventory) {
+        for (item in inventory.items) {
+
+        }
+        // TODO ensure stack merges with existing grown saplings
+    }
+
     fun disease(player: Player, spot: String, produce: String, type: String): Boolean {
         // https://x.com/JagexKieren/status/905860041240137729
-        if (spot == "my_arms_spot" || type == "0" || produce.endsWith("_watered")) {
+        if (spot == "patch_my_arm_herb" || type == "0" || produce.endsWith("_watered")) {
             return false
         }
         var chance = farmingDefinitions.diseaseChances[produce] ?: return false

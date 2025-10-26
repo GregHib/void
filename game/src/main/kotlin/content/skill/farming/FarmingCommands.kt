@@ -33,7 +33,6 @@ class FarmingCommands(
             player.message("Player has no patches active.", ChatType.Console)
             return
         }
-        println(ticks)
         player.message("Next growth tick for '${target.name}' in ${TICKS.toMinutes(ticks)}m${TICKS.toSeconds(ticks.rem(100))}s", ChatType.Console)
     }
 }
