@@ -4,10 +4,8 @@ import content.entity.combat.inCombat
 import content.entity.combat.target
 import content.entity.effect.transform
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
-import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks

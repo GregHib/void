@@ -4,8 +4,6 @@ import content.entity.obj.door.enterDoor
 import content.quest.questCompleted
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Script
