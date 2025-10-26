@@ -17,7 +17,7 @@ class BushPicking : Script {
                 return@objectOperate
             }
             sound("pick")
-            anim("pick_plant")
+            anim("picking_low")
             target.replace(if (target.id == "cadava_bush_full") "cadava_bush_half" else "cadava_bush_empty", ticks = Settings["world.objs.cadava.regrowTicks", 200])
         }
 
@@ -27,7 +27,7 @@ class BushPicking : Script {
                 return@objectOperate
             }
             sound("pick")
-            anim("pick_plant")
+            anim("picking_low")
             target.replace(if (target.id == "redberry_bush_full") "redberry_bush_half" else "redberry_bush_empty", ticks = Settings["world.objs.redberry.regrowTicks", 200])
         }
 

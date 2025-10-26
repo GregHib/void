@@ -43,7 +43,7 @@ id = 14737
 [pocket_item]
 id = 14738
 
-[dig_with_spade]
+[human_dig]
 id = 830
 
 [open_map]
@@ -51,9 +51,6 @@ id = 5354
 
 [shear_sheep]
 id = 893
-
-[pick_plant]
-id = 2282
 
 [human_walk_forward]
 id = 819

@@ -1,2 +1,74 @@
+[farming_slice_watermelon]
+id = 2269
+
+[farming_useloom]
+id = 2270
+
+[farming_trowel_dig]
+id = 2271
+
+[farming_trowel_digging]
+id = 2272
+
+[farming_raking]
+id = 2273
+
+[pruning_all]
+id = 2274
+
+[pruning_mid_high]
+id = 2275
+
+[pruning_mid_low]
+id = 2276
+
+[pruning_high]
+id = 2277
+
+[pruning_mid]
+id = 2278
+
+[pruning_low]
+id = 2279
+
+[picking_high]
+id = 2280
+
+[picking_mid]
+id = 2281
+
+[picking_low]
+id = 2282
+
 [farming_pour_water]
 id = 2283
+
+[farming_fill_keg]
+id = 2284
+
+[farming_fill_glass]
+id = 2285
+
+[farming_turn_valve]
+id = 2286
+
+[farming_plant_cure]
+id = 2288
+
+[farming_keg_drink]
+id = 2289
+
+[farming_keg_scoop]
+id = 2290
+
+[farming_seed_dibbing]
+id = 2291
+
+[farming_pick_mushroom]
+id = 2292
+
+[farming_watering]
+id = 2293
+
+[farming_ingredient_sprinkle]
+id = 2295
