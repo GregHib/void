@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.dispatch.Dispatcher
 import world.gregs.voidps.engine.entity.Approachable
-import world.gregs.voidps.engine.entity.Operate
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
