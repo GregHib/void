@@ -144,15 +144,15 @@ interface Operation {
             instance.operate(npc, target, option)
         }
 
-        override suspend fun operate(npc: NPC, target: NPC, option: String) = npcNpcDispatcher.onFirst("$option:${target.id}") { instance ->
+        override suspend fun operate(npc: NPC, target: NPC, option: String) = npcNpcDispatcher.onFirst("$option:${target.id}", option) { instance ->
             instance.operate(npc, target, option)
         }
 
-        override suspend fun operate(npc: NPC, target: GameObject, option: String) = npcObjectDispatcher.onFirst("$option:${target.id}") { instance ->
+        override suspend fun operate(npc: NPC, target: GameObject, option: String) = npcObjectDispatcher.onFirst("$option:${target.id}", option) { instance ->
             instance.operate(npc, target, option)
         }
 
-        override suspend fun operate(npc: NPC, target: FloorItem, option: String) = npcFloorItemDispatcher.onFirst("$option:${target.id}") { instance ->
+        override suspend fun operate(npc: NPC, target: FloorItem, option: String) = npcFloorItemDispatcher.onFirst("$option:${target.id}", option) { instance ->
             instance.operate(npc, target, option)
         }
 

@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.Operate
+import world.gregs.voidps.engine.entity.Approach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
@@ -48,7 +48,7 @@ class RequestAssist : Api {
     )
     val logger = InlineLogger()
 
-    @Operate("Req Assist")
+    @Approach("Req Assist")
     override suspend fun approach(player: Player, target: Player, option: String) {
         val filter = target["assist_filter", "on"]
         if (filter == "off" || (filter == "friends" && !target.friend(player))) {
