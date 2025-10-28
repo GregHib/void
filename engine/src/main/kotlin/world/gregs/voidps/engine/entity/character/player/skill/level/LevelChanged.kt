@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character.player.skill.level
 
-import world.gregs.voidps.engine.dispatch.MapDispatcher
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

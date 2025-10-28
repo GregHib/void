@@ -37,12 +37,6 @@ class LumbridgeBeginnerTasks : Api {
 
     val styleDefinitions: WeaponStyleDefinitions by inject()
 
-    override fun move(player: Player, from: Tile, to: Tile) {
-        if (player.running && !player["on_the_run_task", false]) {
-            player["on_the_run_task"] = true
-        }
-    }
-
     @Variable("task_progress_overall,quest_points")
     override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
         if (key == "task_progress_overall" && (from == null || from is Int && from < 10) && to is Int && to >= 10) {
@@ -65,6 +59,12 @@ class LumbridgeBeginnerTasks : Api {
     }
 
     init {
+        moved { player, _ ->
+            if (player.running && !player["on_the_run_task", false]) {
+                player["on_the_run_task"] = true
+            }
+        }
+
         objTeleportLand("Climb-up", "lumbridge_castle_ladder") {
             player["master_of_all_i_survey_task"] = true
         }

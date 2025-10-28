@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.timer.TICKS
-import world.gregs.voidps.type.Tile
 import kotlin.collections.set
 import kotlin.coroutines.resume
 import kotlin.reflect.KClass
@@ -71,13 +70,13 @@ fun Bot.cancel(cause: Throwable? = null) {
 @Script
 class Navigation : Api {
 
-    override fun move(player: Player, from: Tile, to: Tile) {
-        if (player.isBot && ((player.mode is Movement && player.steps.size <= 1) || player.mode == EmptyMode)) {
-            player.bot.resume("move")
-        }
-    }
-
     init {
+        moved { player, _ ->
+            if (player.isBot && ((player.mode is Movement && player.steps.size <= 1) || player.mode == EmptyMode)) {
+                player.bot.resume("move")
+            }
+        }
+
         onEvent<Player, DoorOpened> { player ->
             if (player.isBot) {
                 player.bot.resume("move")

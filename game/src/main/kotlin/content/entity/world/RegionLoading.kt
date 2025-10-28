@@ -20,7 +20,6 @@ import world.gregs.voidps.network.login.protocol.encode.dynamicMapRegion
 import world.gregs.voidps.network.login.protocol.encode.mapRegion
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Region
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
 /**
@@ -37,12 +36,6 @@ class RegionLoading : Api {
 
     private val blankXtea = IntArray(4)
 
-    override fun move(player: Player, from: Tile, to: Tile) {
-        if (from.regionLevel != to.regionLevel) {
-            playerRegions[player.index - 1] = to.regionLevel.id
-        }
-    }
-
     init {
 
         /*
@@ -51,6 +44,12 @@ class RegionLoading : Api {
 
         instruction<FinishRegionLoad> { player ->
             player.viewport?.loaded = true
+        }
+
+        moved { player, from ->
+            if (from.regionLevel != player.tile.regionLevel) {
+                playerRegions[player.index - 1] = player.tile.regionLevel.id
+            }
         }
 
         onEvent<Player, RegionLoad> { player ->

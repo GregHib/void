@@ -13,10 +13,14 @@ class AssistArea : Api {
 
     val maximumTileDistance = 20
 
+    init {
+        moved(::leavingArea)
+    }
+
     /**
      * Player leaving assistance range
      */
-    override fun move(player: Player, from: Tile, to: Tile) {
+    fun leavingArea(player: Player, from: Tile) {
         if (!player.contains("assistant")) {
             return
         }

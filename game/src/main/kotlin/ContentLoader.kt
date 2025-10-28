@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.dispatch.Dispatcher
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
-import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.TimerApi
@@ -21,8 +20,6 @@ object ContentLoader {
     private val logger = InlineLogger()
 
     private val dispatchers = mutableMapOf<String, Dispatcher<*>>(
-        method("move", "Player", "Tile", "Tile") to Moved.playerDispatcher,
-        method("move", "NPC", "Tile", "Tile") to Moved.npcDispatcher,
         method("variableSet", "Player", "String", "Any?", "Any?") to VariableSet.playerDispatcher,
         method("variableSet", "NPC", "String", "Any?", "Any?") to VariableSet.npcDispatcher,
         method("stole", "Player", "GameObject", "Item") to Stole.dispatcher,

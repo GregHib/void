@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Script
@@ -19,7 +18,6 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Distance.nearestTo
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Rectangle
 
@@ -31,10 +29,6 @@ class Movement : Api {
     val players: Players by inject()
     val borders = mutableMapOf<Zone, Rectangle>()
     val areas: AreaDefinitions by inject()
-
-    override fun move(npc: NPC, from: Tile, to: Tile) {
-        npcs.update(from, to, npc)
-    }
 
     init {
         playerSpawn { player ->
@@ -48,6 +42,8 @@ class Movement : Api {
                 add(npc)
             }
         }
+
+        npcMoved(block = npcs::update)
 
         worldSpawn {
             for (border in areas.getTagged("border")) {

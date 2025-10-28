@@ -216,7 +216,7 @@ open class Movement(
                 move(character, from, to)
             }
             if (character is Player) {
-                Moved.move(character, from, to)
+                Moved.player(character, from)
                 val areaDefinitions: AreaDefinitions = get()
                 for (def in areaDefinitions.get(from.zone)) {
                     if (from in def.area && to !in def.area) {
@@ -229,7 +229,7 @@ open class Movement(
                     }
                 }
             } else if (character is NPC) {
-                Moved.move(character, from, to)
+                Moved.npc(character, from)
             }
         }
 

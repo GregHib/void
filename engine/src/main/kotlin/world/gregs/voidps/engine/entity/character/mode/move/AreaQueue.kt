@@ -23,7 +23,7 @@ class AreaQueue(
         }
         val from = player.steps.movedFrom
         player.steps.movedFrom = Tile.EMPTY
-        Moved.move(player, from, player.tile)
+        Moved.player(player, from)
         val to = player.tile
         for (def in areaDefinitions.get(from.zone)) {
             if (from in def.area && to !in def.area) {

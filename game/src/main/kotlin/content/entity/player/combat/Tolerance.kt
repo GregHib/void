@@ -2,10 +2,8 @@ package content.entity.player.combat
 
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.epochSeconds
-import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
 /**
@@ -23,12 +21,11 @@ class Tolerance : Api {
             }
             player["tolerance_area"] = player.tile.toCuboid(10)
         }
-    }
-
-    override fun move(player: Player, from: Tile, to: Tile) {
-        if (to !in player.getOrPut("tolerance_area") { player.tile.toCuboid(10) }) {
-            player["tolerance_area"] = player.tile.toCuboid(10)
-            player.start("tolerance", toleranceTime.toInt(), epochSeconds())
+        moved { player, _ ->
+            if (player.tile !in player.getOrPut("tolerance_area") { player.tile.toCuboid(10) }) {
+                player["tolerance_area"] = player.tile.toCuboid(10)
+                player.start("tolerance", toleranceTime.toInt(), epochSeconds())
+            }
         }
     }
 }

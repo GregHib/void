@@ -74,16 +74,16 @@ class Delrith : Api {
 
     val words = listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo")
 
-    override fun move(player: Player, from: Tile, to: Tile) {
-        if (exitArea(player, to)) {
-            val cutscene: Cutscene = player.remove("demon_slayer_cutscene") ?: return
-            Events.events.launch {
-                cutscene.end()
+    init {
+        moved { player, _ ->
+            if (exitArea(player, player.tile)) {
+                val cutscene: Cutscene = player.remove("demon_slayer_cutscene") ?: return@moved
+                Events.events.launch {
+                    cutscene.end()
+                }
             }
         }
-    }
 
-    init {
         enterArea("demon_slayer_stone_circle") {
             if (!player.questCompleted("demon_slayer") && player["demon_slayer_silverlight", false] && !player.hasClock("demon_slayer_instance_exit")) {
                 cutscene()

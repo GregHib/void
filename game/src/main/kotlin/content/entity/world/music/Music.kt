@@ -12,24 +12,12 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.type.Tile
 
 @Script
 class Music : Api {
 
     val tracks: MusicTracks by inject()
     val enums: EnumDefinitions by inject()
-
-    override fun move(player: Player, from: Tile, to: Tile) {
-        if (!player.isBot) {
-            val tracks = tracks[player.tile.region]
-            for (track in tracks) {
-                if (!track.area.contains(from) && track.area.contains(to)) {
-                    autoPlay(player, track)
-                }
-            }
-        }
-    }
 
     init {
         playerSpawn { player ->
@@ -40,6 +28,17 @@ class Music : Api {
             playAreaTrack(player)
             sendUnlocks(player)
             sendPlaylist(player)
+        }
+
+        moved { player, from ->
+            if (!player.isBot) {
+                val tracks = tracks[player.tile.region]
+                for (track in tracks) {
+                    if (!track.area.contains(from) && track.area.contains(player.tile)) {
+                        autoPlay(player, track)
+                    }
+                }
+            }
         }
 
         interfaceOption("Play", "tracks", "music_player") {

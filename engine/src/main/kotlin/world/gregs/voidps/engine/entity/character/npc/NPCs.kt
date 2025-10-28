@@ -88,10 +88,10 @@ data class NPCs(
         return false
     }
 
-    fun update(from: Tile, to: Tile, npc: NPC) {
-        if (from.regionLevel != to.regionLevel) {
+    fun update(npc: NPC, from: Tile) {
+        if (from.regionLevel != npc.tile.regionLevel) {
             map.remove(from.regionLevel, npc)
-            map.add(to.regionLevel, npc)
+            map.add(npc.tile.regionLevel, npc)
         }
     }
 
