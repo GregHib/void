@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.data.Tree
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.distanceTo
@@ -21,7 +20,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.network.client.instruction.InteractObject
 
 @Script
@@ -53,12 +51,11 @@ class WoodcuttingBot : Api {
                 tasks.register(task)
             }
         }
-    }
 
-    @Timer("woodcutting")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        if (player.isBot) {
-            player.bot.resume(timer)
+        timerStop("woodcutting") {
+            if (isBot) {
+                bot.resume("woodcutting")
+            }
         }
     }
 

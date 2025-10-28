@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -21,37 +20,34 @@ class WindChill : Api {
 
     val areas: AreaDefinitions by inject()
 
-    @Timer("windchill")
-    override fun start(player: Player, timer: String, restart: Boolean): Int {
-        player.open("snow_flakes")
-        return 10
-    }
-
-    @Timer("windchill")
-    override fun tick(player: Player, timer: String): Int {
-        if (player.tile !in areas["godwars_chill_area"]) {
-            return Timer.CANCEL
-        }
-        player.sound("windy")
-        player.runEnergy = 0
-        for (skill in Skill.all) {
-            if (skill == Skill.Constitution) {
-                if (player.levels.get(Skill.Constitution) > 10) {
-                    player.directHit(10)
-                }
-                continue
-            }
-            player.levels.drain(skill, 1)
-        }
-        return Timer.CONTINUE
-    }
-
-    @Timer("windchill")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        player.close("snow_flakes")
-    }
-
     init {
+        timerStart("windchill") {
+            open("snow_flakes")
+            10
+        }
+
+        timerTick("windchill") {
+            if (tile !in areas["godwars_chill_area"]) {
+                return@timerTick Timer.CANCEL
+            }
+            sound("windy")
+            runEnergy = 0
+            for (skill in Skill.all) {
+                if (skill == Skill.Constitution) {
+                    if (levels.get(Skill.Constitution) > 10) {
+                        directHit(10)
+                    }
+                    continue
+                }
+                levels.drain(skill, 1)
+            }
+            return@timerTick Timer.CONTINUE
+        }
+
+        timerStop("windchill") {
+            close("snow_flakes")
+        }
+
         enterArea("godwars_chill_area") {
             player.sendVariable("godwars_knights_notes")
             player.timers.start("windchill")

@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -22,24 +21,22 @@ import world.gregs.voidps.type.random
 @Script
 class Cows : Api {
 
-    @Timer("eat_grass")
-    override fun start(npc: NPC, timer: String, restart: Boolean): Int {
-        npc.mode = EmptyMode
-        return random.nextInt(50, 200)
-    }
-
-    @Timer("eat_grass")
-    override fun tick(npc: NPC, timer: String): Int {
-        if (npc.mode == EmptyMode) {
-            npc.say("Moo")
-            npc.anim("cow_eat_grass")
-        }
-        return Timer.CONTINUE
-    }
-
     init {
         npcSpawn("cow_*") { npc ->
             npc.softTimers.start("eat_grass")
+        }
+
+        npcTimerStart("eat_grass") {
+            mode = EmptyMode
+            random.nextInt(50, 200)
+        }
+
+        npcTimerTick("eat_grass") {
+            if (mode == EmptyMode) {
+                say("Moo")
+                anim("cow_eat_grass")
+            }
+            Timer.CONTINUE
         }
 
         itemOnNPCOperate("*", "cow*") {

@@ -18,21 +18,6 @@ class ItemsKeptOnDeathScreen : Api {
 
     val enums: EnumDefinitions by inject()
 
-    @Timer("skull")
-    override fun start(player: Player, timer: String, restart: Boolean): Int {
-        if (player.interfaces.contains("items_kept_on_death")) {
-            player.open("items_kept_on_death", close = true)
-        }
-        return Timer.CONTINUE
-    }
-
-    @Timer("skull")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        if (player.interfaces.contains("items_kept_on_death")) {
-            player.open("items_kept_on_death", close = true)
-        }
-    }
-
     init {
         interfaceRefresh("items_kept_on_death") { player ->
             val items = ItemsKeptOnDeath.getAllOrdered(player)
@@ -45,6 +30,19 @@ class ItemsKeptOnDeathScreen : Api {
                 riskedWealth = carriedWealth - savedWealth,
                 skull = player.skulled,
             )
+        }
+
+        timerStart("skull") {
+            if (interfaces.contains("items_kept_on_death")) {
+                open("items_kept_on_death", close = true)
+            }
+            return@timerStart Timer.CONTINUE
+        }
+
+        timerStop("skull") {
+            if (interfaces.contains("items_kept_on_death")) {
+                open("items_kept_on_death", close = true)
+            }
         }
     }
 

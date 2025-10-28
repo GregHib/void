@@ -38,16 +38,14 @@ class FishingSpot : Api {
             val area: Area = npc["area"] ?: return@npcSpawn
             move(npc, area)
         }
-    }
 
-    @Timer("fishing_spot_respawn")
-    override fun start(npc: NPC, timer: String, restart: Boolean): Int = random.nextInt(280, 530)
+        npcTimerStart("fishing_spot_respawn") { random.nextInt(280, 530) }
 
-    @Timer("fishing_spot_respawn")
-    override fun tick(npc: NPC, timer: String): Int {
-        move(npc)
-        // https://x.com/JagexAsh/status/1604892218380021761
-        return random.nextInt(280, 530)
+        npcTimerTick("fishing_spot_respawn") {
+            move(this)
+            // https://x.com/JagexAsh/status/1604892218380021761
+            random.nextInt(280, 530)
+        }
     }
 
     fun move(npc: NPC, area: Area) {

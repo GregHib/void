@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.timer.TimerApi
 import java.nio.file.NoSuchFileException
 import kotlin.system.exitProcess
 
@@ -37,18 +36,6 @@ object ContentLoader {
         method("approach", "NPC", "NPC", "String") to Approachable.npcNpcDispatcher,
         method("approach", "NPC", "GameObject", "String") to Approachable.npcObjectDispatcher,
         method("approach", "NPC", "FloorItem", "String") to Approachable.npcFloorItemDispatcher,
-        method("start", "Player", "String", "Boolean", returnType = "Int") to TimerApi.playerStartDispatcher,
-        method("tick", "Player", "String", returnType = "Int") to TimerApi.playerTickDispatcher,
-        method("stop", "Player", "String", "Boolean") to TimerApi.playerStopDispatcher,
-        method("start", "NPC", "String", "Boolean", returnType = "Int") to TimerApi.npcStartDispatcher,
-        method("tick", "NPC", "String", returnType = "Int") to TimerApi.npcTickDispatcher,
-        method("stop", "NPC", "String", "Boolean") to TimerApi.npcStopDispatcher,
-        method("start", "Character", "String", "Boolean", returnType = "Int") to TimerApi.characterStartDispatcher,
-        method("tick", "Character", "String", returnType = "Int") to TimerApi.characterTickDispatcher,
-        method("stop", "Character", "String", "Boolean") to TimerApi.characterStopDispatcher,
-        method("start", "String", returnType = "Int") to TimerApi.worldStartDispatcher,
-        method("tick", "String", returnType = "Int") to TimerApi.worldTickDispatcher,
-        method("stop", "String", "Boolean") to TimerApi.worldStopDispatcher,
     )
 
     fun load() {

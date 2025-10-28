@@ -5,7 +5,6 @@ import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttackPrepare
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.engine.timer.*
@@ -14,29 +13,20 @@ import java.util.concurrent.TimeUnit
 
 @Script
 class StaffOfLight : Api {
-
-    @Timer("power_of_light")
-    override fun start(player: Player, timer: String, restart: Boolean): Int = 1
-
-    @Timer("power_of_light")
-    override fun tick(player: Player, timer: String): Int {
-        if (player.dec("power_of_light") <= 0) {
-            return Timer.CANCEL
-        }
-        return Timer.CONTINUE
-    }
-
-    @Timer("power_of_light")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        player.message("<red>The power of the light fades. Your resistance to melee attacks returns to normal.")
-        player.clear("power_of_light")
-    }
-
     init {
         playerSpawn { player ->
             if (player.contains("power_of_light")) {
                 player.softTimers.restart("power_of_light")
             }
+        }
+
+        timerStart("power_of_light") { 1 }
+
+        timerTick("power_of_light") { if (dec("power_of_light") <= 0) Timer.CANCEL else Timer.CONTINUE }
+
+        timerStop("power_of_light") {
+            message("<red>The power of the light fades. Your resistance to melee attacks returns to normal.")
+            clear("power_of_light")
         }
 
         itemRemoved("staff_of_light*", EquipSlot.Weapon, "worn_equipment") { player ->

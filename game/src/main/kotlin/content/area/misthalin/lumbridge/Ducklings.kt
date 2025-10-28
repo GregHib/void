@@ -19,8 +19,23 @@ class Ducklings : Api {
 
     val npcs: NPCs by inject()
 
-    @Timer("follow_parent")
-    override fun tick(npc: NPC, timer: String): Int {
+    init {
+        npcSpawn("ducklings", ::followParent)
+        npcTimerTick("follow_parent", ::follow)
+        npcDeath("duck*swim") { npc ->
+            val ducklings: NPC = npc["ducklings"] ?: return@npcDeath
+            ducklings.say("Eek!")
+            followParent(ducklings)
+        }
+    }
+
+    fun isDuck(it: NPC) = it.id.startsWith("duck") && it.id.endsWith("swim")
+
+    fun followParent(npc: NPC) {
+        npc.softTimers.start("follow_parent")
+    }
+
+    fun follow(npc: NPC): Int {
         if (npc.mode != EmptyMode && npc.mode !is Wander) {
             return Timer.CONTINUE
         }
@@ -34,21 +49,6 @@ class Ducklings : Api {
             }
         }
         return Timer.CANCEL
-    }
-
-    init {
-        npcSpawn("ducklings", ::followParent)
-        npcDeath("duck*swim") { npc ->
-            val ducklings: NPC = npc["ducklings"] ?: return@npcDeath
-            ducklings.say("Eek!")
-            followParent(ducklings)
-        }
-    }
-
-    fun isDuck(it: NPC) = it.id.startsWith("duck") && it.id.endsWith("swim")
-
-    fun followParent(npc: NPC) {
-        npc.softTimers.start("follow_parent")
     }
 
     fun findParent(npc: NPC): NPC? {

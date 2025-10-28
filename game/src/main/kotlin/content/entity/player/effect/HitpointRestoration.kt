@@ -26,13 +26,12 @@ class HitpointRestoration : Api {
             }
             player.softTimers.start("restore_hitpoints")
         }
+
+        timerStart("restore_hitpoints") { TimeUnit.SECONDS.toTicks(6) }
+        timerTick("restore_hitpoints", ::fullyRestored)
     }
 
-    @Timer("restore_hitpoints")
-    override fun start(player: Player, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(6)
-
-    @Timer("restore_hitpoints")
-    override fun tick(player: Player, timer: String): Int {
+    fun fullyRestored(player: Player): Int {
         if (player.levels.get(Skill.Constitution) == 0) {
             return Timer.CANCEL
         }

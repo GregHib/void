@@ -23,41 +23,6 @@ class ItemLending : Api {
 
     val players: Players by inject()
 
-    @Timer("loan_message,borrow_message")
-    override fun start(player: Player, timer: String, restart: Boolean): Int {
-        if (timer == "borrow_message") {
-            return TimeUnit.MINUTES.toTicks(1)
-        }
-        val remaining = player.remaining("lend_timeout", epochSeconds())
-        if (remaining == -1) {
-            return 0
-        }
-        return TimeUnit.SECONDS.toTicks(remaining)
-    }
-
-    @Timer("borrow_message")
-    override fun tick(player: Player, timer: String): Int {
-        val remaining = player.remaining("borrow_timeout", epochSeconds())
-        if (remaining <= 0) {
-            player.message("Your loan has expired; the item you borrowed will now be returned to its owner.")
-            return Timer.CANCEL
-        } else if (remaining == 60) {
-            player.message("The item you borrowed will be returned to its owner in a minute.")
-        }
-        return Timer.CONTINUE
-    }
-
-    @Timer("loan_message,borrow_message")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        if (!logout) {
-            if (timer == "loan_message") {
-                stopLending(player)
-            } else {
-                returnLoan(player)
-            }
-        }
-    }
-
     init {
         playerSpawn { player ->
             checkBorrowComplete(player)
@@ -68,6 +33,38 @@ class ItemLending : Api {
             checkBorrowUntilLogout(player)
             checkLoanUntilLogout(player)
         }
+
+        timerStart("borrow_message") { TimeUnit.MINUTES.toTicks(1) }
+
+        timerStart("loan_message") {
+            val remaining = remaining("lend_timeout", epochSeconds())
+            if (remaining == -1) 0 else TimeUnit.SECONDS.toTicks(remaining)
+        }
+
+        timerTick("borrow_message", ::checkExpiry)
+
+        timerStop("loan_message") { logout ->
+            if (!logout) {
+                stopLending(this)
+            }
+        }
+
+        timerStop("borrow_message") { logout ->
+            if (!logout) {
+                returnLoan(this)
+            }
+        }
+    }
+
+    fun checkExpiry(player: Player): Int {
+        val remaining = player.remaining("borrow_timeout", epochSeconds())
+        if (remaining <= 0) {
+            player.message("Your loan has expired; the item you borrowed will now be returned to its owner.")
+            return Timer.CANCEL
+        } else if (remaining == 60) {
+            player.message("The item you borrowed will be returned to its owner in a minute.")
+        }
+        return Timer.CONTINUE
     }
 
     fun checkBorrowComplete(player: Player) {

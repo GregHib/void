@@ -44,9 +44,19 @@ fun Character.unblockTeleport() {
 
 @Script
 class TeleportBlock : Api {
+    init {
+        combatPrepare("magic") { player ->
+            if (player.spell == "teleport_block" && target is NPC) {
+                player.message("You can't use that against an NPC.")
+                cancel()
+            }
+        }
 
-    @Timer("teleport_block")
-    override fun start(player: Player, timer: String, restart: Boolean): Int {
+        timerStart("teleport_block", ::block)
+        timerTick("teleport_block", ::tick)
+    }
+
+    fun block(player: Player, restart: Boolean): Int {
         if (player.teleBlockImmune) {
             return Timer.CANCEL
         }
@@ -59,8 +69,7 @@ class TeleportBlock : Api {
         return 50
     }
 
-    @Timer("teleport_block")
-    override fun tick(player: Player, timer: String): Int {
+    fun tick(player: Player): Int {
         val blocked = player.teleBlocked
         player.teleBlockCounter -= player.teleBlockCounter.sign
         when (player.teleBlockCounter) {
@@ -76,14 +85,5 @@ class TeleportBlock : Api {
             1 -> player.message("Your teleblock is about to wear off.")
         }
         return Timer.CONTINUE
-    }
-
-    init {
-        combatPrepare("magic") { player ->
-            if (player.spell == "teleport_block" && target is NPC) {
-                player.message("You can't use that against an NPC.")
-                cancel()
-            }
-        }
     }
 }

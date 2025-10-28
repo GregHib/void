@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -151,15 +150,14 @@ class PathFindingCommands : Api {
                 }
             }*/
         }
-    }
 
-    @Timer("show_path")
-    override fun tick(player: Player, timer: String): Int {
-        var tile = player.tile
-        for (step in player.steps) {
-            tile = tile.add(step)
-            areaGfx("2000", tile)
+        timerTick("show_path") {
+            var tile = tile
+            for (step in steps) {
+                tile = tile.add(step)
+                areaGfx("2000", tile)
+            }
+            return@timerTick Timer.CONTINUE
         }
-        return Timer.CONTINUE
     }
 }

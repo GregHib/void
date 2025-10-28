@@ -2,7 +2,6 @@ package content.area.kandarin.ourania
 
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntNPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
@@ -14,18 +13,16 @@ import world.gregs.voidps.type.random
 @Script
 class CaveLizard : Api {
 
-    @Timer("aggressive_hunt_mode_switch")
-    override fun start(npc: NPC, timer: String, restart: Boolean): Int = random.nextInt(6, 12)
-
-    @Timer("aggressive_hunt_mode_switch")
-    override fun tick(npc: NPC, timer: String): Int {
-        npc.huntMode = if (random.nextBoolean()) "aggressive" else "aggressive_npcs"
-        return super.tick(npc, timer)
-    }
-
     init {
         npcSpawn("cave_lizard") { npc ->
             npc.softTimers.start("aggressive_hunt_mode_switch")
+        }
+
+        npcTimerStart("aggressive_hunt_mode_switch") { random.nextInt(6, 12) }
+
+        npcTimerTick("aggressive_hunt_mode_switch") {
+            huntMode = if (random.nextBoolean()) "aggressive" else "aggressive_npcs"
+            Timer.CONTINUE
         }
 
         huntNPC("cave_lizard", "zamorak_*", "aggressive_npcs") { npc ->

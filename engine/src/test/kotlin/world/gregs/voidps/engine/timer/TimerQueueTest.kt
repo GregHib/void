@@ -12,29 +12,10 @@ internal class TimerQueueTest : TimersTest() {
     override fun setup() {
         super.setup()
         timers = TimerQueue(Player())
-        val list: MutableList<TimerApi> = mutableListOf(
-            object : TimerApi {
-                override fun start(player: Player, timer: String, restart: Boolean): Int {
-                    emitted.add("start_$timer" to restart)
-                    return startInterval
-                }
-
-                override fun tick(player: Player, timer: String): Int {
-                    emitted.add("tick_$timer" to false)
-                    return tickInterval
-                }
-
-                override fun stop(player: Player, timer: String, logout: Boolean) {
-                    emitted.add("stop_$timer" to logout)
-                }
-            }
-        )
-        for (dispatcher in listOf(TimerApi.playerStartDispatcher, TimerApi.playerTickDispatcher, TimerApi.playerStopDispatcher)) {
-            dispatcher.instances["timer"] = list
-            dispatcher.instances["1"] = list
-            dispatcher.instances["2"] = list
-            dispatcher.instances["mutable"] = list
-            dispatcher.instances["fixed"] = list
+        for (timer in listOf("timer", "1", "2", "mutable", "fixed")) {
+            TimerApi.playerStartBlocks[timer] = mutableListOf({ _, restart -> emitted.add("start_$timer" to restart); startInterval })
+            TimerApi.playerTickBlocks[timer] = mutableListOf({ _-> emitted.add("tick_$timer" to false); tickInterval })
+            TimerApi.playerStopBlocks[timer] = mutableListOf({ _, logout -> emitted.add("stop_$timer" to logout) })
         }
     }
 

@@ -33,29 +33,27 @@ class Leech : Api {
         "leech_magic" to Skill.Magic,
     )
 
-    @Timer("prayer_bonus_drain")
-    override fun start(player: Player, timer: String, restart: Boolean): Int = 50
-
-    @Timer("prayer_bonus_drain")
-    override fun tick(player: Player, timer: String): Int {
-        val attack = player.getLeech(Skill.Attack)
-        val strength = player.getLeech(Skill.Strength)
-        val defence = player.getLeech(Skill.Defence)
-        val ranged = player.getLeech(Skill.Ranged)
-        val magic = player.getLeech(Skill.Magic)
-        if (attack == 0 && strength == 0 && defence == 0 && ranged == 0 && magic == 0) {
-            return Timer.CANCEL
-        }
-        player.clear("stat_reduction_msg")
-        restore(player, Skill.Attack, attack)
-        restore(player, Skill.Strength, strength)
-        restore(player, Skill.Defence, defence)
-        restore(player, Skill.Ranged, ranged)
-        restore(player, Skill.Magic, magic)
-        return Timer.CONTINUE
-    }
-
     init {
+        timerStart("prayer_bonus_drain") { 50 }
+
+        timerTick("prayer_bonus_drain") {
+            val attack = getLeech(Skill.Attack)
+            val strength = getLeech(Skill.Strength)
+            val defence = getLeech(Skill.Defence)
+            val ranged = getLeech(Skill.Ranged)
+            val magic = getLeech(Skill.Magic)
+            if (attack == 0 && strength == 0 && defence == 0 && ranged == 0 && magic == 0) {
+                return@timerTick Timer.CANCEL
+            }
+            clear("stat_reduction_msg")
+            restore(this, Skill.Attack, attack)
+            restore(this, Skill.Strength, strength)
+            restore(this, Skill.Defence, defence)
+            restore(this, Skill.Ranged, ranged)
+            restore(this, Skill.Magic, magic)
+            return@timerTick Timer.CONTINUE
+        }
+
         combatDamage { target ->
             if (source !is Player || !source.praying("sap_spirit")) {
                 return@combatDamage

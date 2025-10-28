@@ -51,35 +51,6 @@ class ShootingStar : Api {
     val players: Players by inject()
     val logger = InlineLogger()
 
-    @Timer("shooting_star_bonus_ore_timer,mining")
-    override fun start(player: Player, timer: String, restart: Boolean): Int {
-        if (timer == "mining") {
-            val target = (player.mode as? Interact)?.target as GameObject
-            if (target.id.startsWith("crashed_star")) {
-                if (ShootingStarHandler.isEarlyBird()) {
-                    player.message("Congratulations! You were the first person to find this star!")
-                    player.experience.add(Skill.Mining, player.levels.get(Skill.Mining) * 75.0)
-                }
-            }
-            return Timer.CONTINUE
-        } else {
-            return TimeUnit.SECONDS.toTicks(1)
-        }
-    }
-
-    @Timer("shooting_star_bonus_ore_timer")
-    override fun tick(player: Player, timer: String): Int {
-        if (player.dec("shooting_star_bonus_ore") <= 0) {
-            return Timer.CANCEL
-        }
-        return Timer.CONTINUE
-    }
-
-    @Timer("shooting_star_bonus_ore_timer")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        player.message("<dark_red>The ability to mine an extra ore has worn off.")
-    }
-
     init {
         worldSpawn {
             if (Settings["events.shootingStars.enabled", false]) {
@@ -91,6 +62,27 @@ class ShootingStar : Api {
             if (player["shooting_star_bonus_ore", 0] > 0) {
                 player.timers.restart("shooting_star_bonus_ore_timer")
             }
+        }
+
+        timerStart("mining") {
+            val target = (mode as? Interact)?.target as GameObject
+            if (target.id.startsWith("crashed_star")) {
+                if (ShootingStarHandler.isEarlyBird()) {
+                    message("Congratulations! You were the first person to find this star!")
+                    experience.add(Skill.Mining, levels.get(Skill.Mining) * 75.0)
+                }
+            }
+            Timer.CONTINUE
+        }
+
+        timerStart("shooting_star_bonus_ore_timer") { TimeUnit.SECONDS.toTicks(1) }
+
+        timerTick("shooting_star_bonus_ore_timer") {
+            if (dec("shooting_star_bonus_ore") <= 0) Timer.CANCEL else Timer.CONTINUE
+        }
+
+        timerStop("shooting_star_bonus_ore_timer") {
+            message("<dark_red>The ability to mine an extra ore has worn off.")
         }
 
         settingsReload {

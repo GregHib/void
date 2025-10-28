@@ -44,15 +44,14 @@ class Energy : Api {
                 walkWhenOutOfEnergy(player)
             }
         }
-    }
 
-    @Timer("energy_restore")
-    override fun tick(player: Player, timer: String): Int {
-        if (player.runEnergy >= MAX_RUN_ENERGY) {
-            return Timer.CANCEL
+        timerTick("energy_restore") {
+            if (runEnergy >= MAX_RUN_ENERGY) {
+                return@timerTick Timer.CANCEL
+            }
+            runEnergy += getRestoreAmount(this)
+            return@timerTick Timer.CONTINUE
         }
-        player.runEnergy += getRestoreAmount(player)
-        return Timer.CONTINUE
     }
 
     fun getRestoreAmount(player: Player): Int {

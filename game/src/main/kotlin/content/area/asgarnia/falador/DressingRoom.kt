@@ -21,22 +21,20 @@ internal suspend fun Interaction<Player>.openDressingRoom(id: String) {
 
 @Script
 class DressingRoom : Api {
+    init {
+        timerStart("dressing_room") { 1 }
 
-    @Timer("dressing_room")
-    override fun start(player: Player, timer: String, restart: Boolean): Int = 1
+        timerTick("dressing_room") {
+            gfx("dressing_room")
+            Timer.CONTINUE
+        }
 
-    @Timer("dressing_room")
-    override fun tick(player: Player, timer: String): Int {
-        player.gfx("dressing_room")
-        return Timer.CONTINUE
-    }
-
-    @Timer("dressing_room")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        player.clearGfx()
-        player["delay"] = 1
-        player.closeMenu()
-        player.gfx("dressing_room_finish")
-        player.flagAppearance()
+        timerStop("dressing_room") {
+            clearGfx()
+            this["delay"] = 1
+            closeMenu()
+            gfx("dressing_room_finish")
+            flagAppearance()
+        }
     }
 }

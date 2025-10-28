@@ -19,6 +19,7 @@ interface Api : Spawn, LevelChanged, Moved, VariableSet, Approachable, Operation
             LevelChanged.clear()
             Moved.clear()
             VariableSet.clear()
+            TimerApi.clear()
         }
     }
 }

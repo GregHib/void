@@ -34,8 +34,7 @@ class Gravestones : Api {
     val npcs: NPCs by inject()
     val floorItems: FloorItems by inject()
 
-    @Timer("grave_degrade")
-    override fun start(npc: NPC, timer: String, restart: Boolean): Int {
+    fun start(npc: NPC, restart: Boolean): Int {
         val player = players.get(npc["player_name", ""])
         if (player != null) {
             val remaining = npc.remaining("grave_timer", epochSeconds())
@@ -44,8 +43,7 @@ class Gravestones : Api {
         return 60
     }
 
-    @Timer("grave_degrade")
-    override fun tick(npc: NPC, timer: String): Int {
+    fun tick(npc: NPC): Int {
         val remaining = npc.remaining("grave_timer", epochSeconds())
         if (remaining <= 120 && !npc.transform.endsWith("broken")) {
             npc.transform("${npc.id}_broken")
@@ -57,8 +55,7 @@ class Gravestones : Api {
         return Timer.CONTINUE
     }
 
-    @Timer("grave_degrade")
-    override fun stop(npc: NPC, timer: String, death: Boolean) {
+    fun stop(npc: NPC, death: Boolean) {
         val player = players.get(npc.remove("player_name") ?: "")
         if (player != null) {
             player.clear("gravestone_time")
@@ -84,6 +81,10 @@ class Gravestones : Api {
                 player.clear("gravestone_time")
             }
         }
+
+        npcTimerStart("grave_degrade", ::start)
+        npcTimerTick("grave_degrade", ::tick)
+        npcTimerStop("grave_degrade", ::stop)
 
         npcSpawn("gravestone_*") { npc ->
             val minutes = Gravestone.times[npc.id.removePrefix("gravestone_")] ?: return@npcSpawn

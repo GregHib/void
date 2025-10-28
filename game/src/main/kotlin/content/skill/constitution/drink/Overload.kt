@@ -25,51 +25,16 @@ class Overload : Api {
         Skill.Ranged,
     )
 
-    @Timer("overload")
-    override fun start(player: Player, timer: String, restart: Boolean): Int {
-        if (restart) {
-            return TimeUnit.SECONDS.toTicks(15)
-        }
-        applyBoost(player)
-        player.queue(name = "overload_hits") {
-            repeat(5) {
-                player.directHit(100)
-                player.anim("overload")
-                player.gfx("overload")
-                pause(2)
-            }
-        }
-        return TimeUnit.SECONDS.toTicks(15)
-    }
-
-    @Timer("overload")
-    override fun tick(player: Player, timer: String): Int {
-        if (player.dec("overload_refreshes_remaining") <= 0) {
-            return Timer.CANCEL
-        }
-        if (!player.inWilderness) {
-            applyBoost(player)
-        }
-        return Timer.CONTINUE
-    }
-
-    @Timer("overload")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        if (logout) {
-            return
-        }
-        removeBoost(player)
-        player.levels.restore(Skill.Constitution, 500)
-        player.message("<dark_red>The effects of overload have worn off and you feel normal again.")
-        player["overload_refreshes_remaining"] = 0
-    }
-
     init {
         playerSpawn { player ->
             if (player["overload_refreshes_remaining", 0] > 0) {
                 player.timers.restart("overload")
             }
         }
+
+        timerStart("overload", ::start)
+        timerTick("overload", ::tick)
+        timerStop("overload", ::stop)
 
         canConsume("overload*") { player ->
             if (player.inWilderness) {
@@ -97,6 +62,42 @@ class Overload : Api {
                 }
             }
         }
+    }
+
+    fun start(player: Player, restart: Boolean): Int {
+        if (restart) {
+            return TimeUnit.SECONDS.toTicks(15)
+        }
+        applyBoost(player)
+        player.queue(name = "overload_hits") {
+            repeat(5) {
+                player.directHit(100)
+                player.anim("overload")
+                player.gfx("overload")
+                pause(2)
+            }
+        }
+        return TimeUnit.SECONDS.toTicks(15)
+    }
+
+    fun tick(player: Player): Int {
+        if (player.dec("overload_refreshes_remaining") <= 0) {
+            return Timer.CANCEL
+        }
+        if (!player.inWilderness) {
+            applyBoost(player)
+        }
+        return Timer.CONTINUE
+    }
+
+    fun stop(player: Player, logout: Boolean) {
+        if (logout) {
+            return
+        }
+        removeBoost(player)
+        player.levels.restore(Skill.Constitution, 500)
+        player.message("<dark_red>The effects of overload have worn off and you feel normal again.")
+        player["overload_refreshes_remaining"] = 0
     }
 
     fun applyBoost(player: Player) {

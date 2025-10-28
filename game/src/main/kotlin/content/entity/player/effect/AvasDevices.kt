@@ -71,21 +71,19 @@ class AvasDevices : Api {
 
     val floorItems: FloorItems by inject()
 
-    @Timer("junk_collection")
-    override fun start(player: Player, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(90)
-
-    @Timer("junk_collection")
-    override fun tick(player: Player, timer: String): Int {
-        val junk = if (player.equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
-        val item = junk.random()
-        if (!player.inventory.add(item)) {
-            floorItems.add(player.tile, item, revealTicks = 100, disappearTicks = 200, owner = player)
-        }
-        return Timer.CONTINUE
-    }
-
     init {
         playerSpawn(::update)
+
+        timerStart("junk_collection") { TimeUnit.SECONDS.toTicks(90) }
+
+        timerTick("junk_collection") {
+            val junk = if (equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
+            val item = junk.random()
+            if (!inventory.add(item)) {
+                floorItems.add(tile, item, revealTicks = 100, disappearTicks = 200, owner = this)
+            }
+            return@timerTick Timer.CONTINUE
+        }
 
         inventoryChanged("worn_equipment", EquipSlot.Chest) { player ->
             if (item.def["material", ""] == "metal" || fromItem.def["material", ""] == "metal") {

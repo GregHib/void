@@ -25,6 +25,9 @@ class LevelRestoration : Api {
         for (skill in skills) {
             levelChanged(skill, ::startRestore)
         }
+
+        timerStart("restore_stats") { TimeUnit.SECONDS.toTicks(60) }
+        timerTick("restore_stats", ::restore)
     }
 
     fun startRestore(player: Player, skill: Skill, from: Int, to: Int) {
@@ -34,11 +37,7 @@ class LevelRestoration : Api {
         player.softTimers.start("restore_stats")
     }
 
-    @Timer("restore_stats")
-    override fun start(player: Player, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(60)
-
-    @Timer("restore_stats")
-    override fun tick(player: Player, timer: String): Int {
+    fun restore(player: Player): Int {
         val berserker = player.praying("berserker") && player.hasClock("berserker_cooldown")
         val skip = player.praying("berserker") && !player.hasClock("berserker_cooldown")
         var nextInterval = Timer.CONTINUE

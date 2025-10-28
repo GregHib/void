@@ -51,19 +51,17 @@ class BotSpawns : Api {
 
     var counter = 0
 
-    @Timer("bot_spawn")
-    override fun start(timer: String): Int = TimeUnit.SECONDS.toTicks(Settings["bots.spawnSeconds", 60])
-
-    @Timer("bot_spawn")
-    override fun tick(timer: String): Int {
-        if (counter > Settings["bots.count", 0]) {
-            return Timer.CANCEL
-        }
-        spawn()
-        return Timer.CONTINUE
-    }
-
     init {
+        timerStart("bot_spawn") { TimeUnit.SECONDS.toTicks(Settings["bots.spawnSeconds", 60]) }
+
+        timerTick("bot_spawn") {
+            if (counter > Settings["bots.count", 0]) {
+                return@timerTick Timer.CANCEL
+            }
+            spawn()
+            return@timerTick Timer.CONTINUE
+        }
+
         worldSpawn {
             if (Settings["bots.count", 0] > 0) {
                 World.timers.start("bot_spawn")
