@@ -32,7 +32,6 @@ import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.SkillId
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -72,14 +71,6 @@ class CombatBot : Api {
     val tasks: TaskManager by inject()
     val floorItems: FloorItems by inject()
 
-    @SkillId(Skill.Constitution)
-    override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
-        if (player.isBot && player.levels.getPercent(Skill.Constitution) < 50.0) {
-            val food = player.inventory.items.firstOrNull { it.def.contains("heals") } ?: return
-            player.bot.inventoryOption(food.id, "Eat")
-        }
-    }
-
     @Variable("in_combat")
     override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
         if (to == 1 && player.isBot) {
@@ -113,11 +104,21 @@ class CombatBot : Api {
                 }
             }
         }
+
+        levelChanged(Skill.Constitution, ::eat)
+
         playerDeath { player ->
             if (player.isBot) {
                 player.clear("area")
                 player.bot.cancel()
             }
+        }
+    }
+
+    fun eat(player: Player, skill: Skill, from: Int, to: Int) {
+        if (player.isBot && player.levels.getPercent(Skill.Constitution) < 50.0) {
+            val food = player.inventory.items.firstOrNull { it.def.contains("heals") } ?: return
+            player.bot.inventoryOption(food.id, "Eat")
         }
     }
 

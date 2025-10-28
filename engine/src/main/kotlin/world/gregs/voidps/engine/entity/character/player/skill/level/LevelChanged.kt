@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.dispatch.MapDispatcher
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Wildcards
 
 /**
  * Notification when current skill level has changed.
@@ -11,23 +12,49 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
  */
 interface LevelChanged {
     fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {}
-    fun levelChanged(npc: NPC, skill: Skill, from: Int, to: Int) {}
+
+    fun levelChanged(skill: Skill? = null, block: (player: Player, skill: Skill, from: Int, to: Int) -> Unit) {
+        playerChanged.getOrPut(skill) { mutableListOf() }.add(block)
+    }
+
+    fun npcLevelChanged(skill: Skill, id: String = "*", block: (npc: NPC, skill: Skill, from: Int, to: Int) -> Unit) {
+        if (id == "*") {
+            npcChanged.getOrPut(skill.name) { mutableListOf() }.add(block)
+            return
+        }
+        for (match in Wildcards.find(id)) {
+            npcChanged.getOrPut("$match:${skill.name}") { mutableListOf() }.add(block)
+        }
+    }
 
     companion object : LevelChanged {
-        var playerDispatcher = MapDispatcher<LevelChanged>("@SkillId", "")
-        var npcDispatcher = MapDispatcher<LevelChanged>("@SkillId", "@Id", "")
+        val playerChanged = mutableMapOf<Skill?, MutableList<(Player, Skill, from: Int, to: Int) -> Unit>>()
+        val npcChanged = mutableMapOf<String, MutableList<(NPC, Skill, from: Int, to: Int) -> Unit>>()
 
-        override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
-            playerDispatcher.forEach("Skill.${skill.name}", "*") { instance ->
-                instance.levelChanged(player, skill, from, to)
+        fun changed(player: Player, skill: Skill, from: Int, to: Int) {
+            for (block in playerChanged[skill] ?: emptyList()) {
+                block(player, skill, from, to)
+            }
+            for (block in playerChanged[null] ?: emptyList()) {
+                block(player, skill, from, to)
             }
         }
 
-        override fun levelChanged(npc: NPC, skill: Skill, from: Int, to: Int) {
-            val name = "Skill.${skill.name}"
-            npcDispatcher.forEach("$name:${npc.id}", name, "*") { instance ->
-                instance.levelChanged(npc, skill, from, to)
+        fun changed(npc: NPC, skill: Skill, from: Int, to: Int) {
+            for (block in npcChanged["${npc.id}:${skill.name}"] ?: emptyList()) {
+                block(npc, skill, from, to)
             }
+            for (block in npcChanged[skill.name] ?: emptyList()) {
+                block(npc, skill, from, to)
+            }
+            for (block in npcChanged["*"] ?: emptyList()) {
+                block(npc, skill, from, to)
+            }
+        }
+
+        fun clear() {
+            playerChanged.clear()
+            npcChanged.clear()
         }
     }
 }

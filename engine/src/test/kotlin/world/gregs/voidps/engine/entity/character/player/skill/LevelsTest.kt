@@ -28,13 +28,9 @@ internal class LevelsTest {
         levels = Levels()
         exp.events = player
         levels.link(player, PlayerLevels(exp))
-        val levelChanged = spyk(MapDispatcher<LevelChanged>())
-        levelChanged.instances["*"] = mutableListOf(object : LevelChanged {
-            override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
-                calls.add(Triple(skill, from, to))
-            }
+        LevelChanged.playerChanged[null] = mutableListOf({ player, skill, from, to ->
+            calls.add(Triple(skill, from, to))
         })
-        LevelChanged.playerDispatcher = levelChanged
     }
 
     @Test

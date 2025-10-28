@@ -118,9 +118,9 @@ class Levels(
     private fun notify(skill: Skill, previous: Int) {
         val level = get(skill)
         if (events is Player) {
-            LevelChanged.levelChanged(events as Player, skill, previous, level)
+            LevelChanged.changed(events as Player, skill, previous, level)
         } else if (events is NPC) {
-            LevelChanged.levelChanged(events as NPC, skill, previous, level)
+            LevelChanged.changed(events as NPC, skill, previous, level)
         }
     }
 

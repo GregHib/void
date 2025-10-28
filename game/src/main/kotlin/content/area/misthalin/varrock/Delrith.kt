@@ -38,7 +38,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.SkillId
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.playerDespawn
@@ -155,10 +154,11 @@ class Delrith : Api {
                 cancel()
             }
         }
+
+        npcLevelChanged(Skill.Constitution, "delrith", ::weaken)
     }
 
-    @SkillId(Skill.Constitution, "delrith")
-    override fun levelChanged(npc: NPC, skill: Skill, from: Int, to: Int) {
+    fun weaken(npc: NPC, skill: Skill, from: Int, to: Int) {
         if (to > 0) {
             return
         }

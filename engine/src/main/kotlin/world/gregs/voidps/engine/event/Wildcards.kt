@@ -17,7 +17,7 @@ object Wildcards {
         }
     }
 
-    fun find(key: String): List<String> = map[key] ?: emptyList()
+    fun find(key: String): List<String> = map[key] ?: listOf(key)
 
     fun clear() {
         map.clear()

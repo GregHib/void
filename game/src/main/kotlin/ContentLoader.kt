@@ -1,13 +1,12 @@
 import com.github.michaelbull.logging.InlineLogger
 import content.skill.thieving.Stole
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.dispatch.Dispatcher
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
-import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
-import world.gregs.voidps.engine.entity.character.player.skill.level.LevelChanged
 import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.TimerApi
@@ -22,8 +21,6 @@ object ContentLoader {
     private val logger = InlineLogger()
 
     private val dispatchers = mutableMapOf<String, Dispatcher<*>>(
-        method("levelChanged", "NPC", "Skill", "Int", "Int") to LevelChanged.npcDispatcher,
-        method("levelChanged", "Player", "Skill", "Int", "Int") to LevelChanged.playerDispatcher,
         method("move", "Player", "Tile", "Tile") to Moved.playerDispatcher,
         method("move", "NPC", "Tile", "Tile") to Moved.npcDispatcher,
         method("variableSet", "Player", "String", "Any?", "Any?") to VariableSet.playerDispatcher,
@@ -116,7 +113,7 @@ object ContentLoader {
     }
 
     fun clear() {
-        Spawn.clear()
+        Api.clear()
         for (dispatcher in dispatchers.values) {
             dispatcher.clear()
         }
