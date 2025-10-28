@@ -32,12 +32,6 @@ fun Player.unskull() {
 @Script
 class Skull : Api {
 
-    override fun spawn(player: Player) {
-        if (player.skulled) {
-            player.softTimers.restart("skull")
-        }
-    }
-
     @Timer("skull")
     override fun start(player: Player, timer: String, restart: Boolean): Int {
         player.appearance.skull = player["skull", 0]
@@ -62,6 +56,12 @@ class Skull : Api {
     }
 
     init {
+        playerSpawn { player ->
+            if (player.skulled) {
+                player.softTimers.restart("skull")
+            }
+        }
+
         combatStart { player ->
             if (player.inWilderness && target is Player && !player.attackers.contains(target)) {
                 player.skull()

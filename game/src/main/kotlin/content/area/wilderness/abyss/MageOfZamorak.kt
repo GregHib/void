@@ -36,11 +36,11 @@ class MageOfZamorak : Api {
     val abyss = areas["abyss_multi_area"]
     val abyssCenter = areas["abyss_center"]
 
-    override fun spawn(player: Player) {
-        player.sendVariable("enter_the_abyss")
-    }
-
     init {
+        playerSpawn { player ->
+            player.sendVariable("enter_the_abyss")
+        }
+
         npcOperate("Teleport", "mage_of_zamorak_wilderness_*") {
             teleport(player, target)
         }

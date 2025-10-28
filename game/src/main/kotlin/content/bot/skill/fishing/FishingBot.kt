@@ -39,29 +39,31 @@ class FishingBot : Api {
     val tasks: TaskManager by inject()
     val gear: GearDefinitions by inject()
 
-    override fun worldSpawn() {
-        for (area in areas.getTagged("fish")) {
-            val spaces: Int = area["spaces", 1]
-            val type: String = area.getOrNull("type") ?: continue
-            val sets = gear.get("fishing").filter { it["spot", ""] == type }
-            for (set in sets) {
-                val option = set["action", ""]
-                val bait = set.inventory.firstOrNull { it.first().amount > 1 }?.first()?.id ?: "none"
-                val task = Task(
-                    name = "fish ${type.plural(2)} at ${area.name}".toLowerSpaceCase(),
-                    block = {
-                        while (levels.getMax(Skill.Fishing) < set.levels.last + 1) {
-                            bot.fish(area, option, bait, set)
-                        }
-                    },
-                    area = area.area,
-                    spaces = spaces,
-                    requirements = listOf(
-                        { levels.getMax(Skill.Fishing) in set.levels },
-                        { bot.hasExactGear(set) || bot.hasCoins(2000) },
-                    ),
-                )
-                tasks.register(task)
+    init {
+        worldSpawn {
+            for (area in areas.getTagged("fish")) {
+                val spaces: Int = area["spaces", 1]
+                val type: String = area.getOrNull("type") ?: continue
+                val sets = gear.get("fishing").filter { it["spot", ""] == type }
+                for (set in sets) {
+                    val option = set["action", ""]
+                    val bait = set.inventory.firstOrNull { it.first().amount > 1 }?.first()?.id ?: "none"
+                    val task = Task(
+                        name = "fish ${type.plural(2)} at ${area.name}".toLowerSpaceCase(),
+                        block = {
+                            while (levels.getMax(Skill.Fishing) < set.levels.last + 1) {
+                                bot.fish(area, option, bait, set)
+                            }
+                        },
+                        area = area.area,
+                        spaces = spaces,
+                        requirements = listOf(
+                            { levels.getMax(Skill.Fishing) in set.levels },
+                            { bot.hasExactGear(set) || bot.hasCoins(2000) },
+                        ),
+                    )
+                    tasks.register(task)
+                }
             }
         }
     }

@@ -22,11 +22,11 @@ class Experience : Api {
         }
     }
 
-    override fun spawn(player: Player) {
-        player.sendVariable("xp_counter")
-    }
-
     init {
+        playerSpawn { player ->
+            player.sendVariable("xp_counter")
+        }
+
         interfaceOption("Reset XP Total", "xp_orb", "toplevel*") {
             player["xp_counter"] = 0.0
         }

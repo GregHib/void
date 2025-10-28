@@ -12,13 +12,13 @@ import world.gregs.voidps.type.random
 @Script
 class GuthansSet : Api {
 
-    override fun spawn(player: Player) {
-        if (player.hasFullSet()) {
-            player["guthans_set_effect"] = true
-        }
-    }
-
     init {
+        playerSpawn { player ->
+            if (player.hasFullSet()) {
+                player["guthans_set_effect"] = true
+            }
+        }
+
         itemRemoved("guthans_*", BarrowsArmour.slots, "worn_equipment") { player ->
             player.clear("guthans_set_effect")
         }

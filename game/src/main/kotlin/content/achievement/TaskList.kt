@@ -20,26 +20,26 @@ class TaskList : Api {
 
     val enumDefinitions: EnumDefinitions by inject()
 
-    override fun spawn(player: Player) {
-        player.sendVariable("task_disable_popups")
-        player["task_popup"] = 0
-        player["task_previous_popup"] = 0
-        var total = 0
-        for (area in 0 until 8) {
-            Tasks.forEach(area) {
-                if (Tasks.isCompleted(player, definition.stringId)) {
-                    player.sendVariable(definition.stringId)
-                    total++
-                }
-                null
-            }
-        }
-        player["task_progress_overall"] = total
-        player.sendVariable("task_hide_completed")
-        player.sendVariable("task_filter_sets")
-    }
-
     init {
+        playerSpawn { player ->
+            player.sendVariable("task_disable_popups")
+            player["task_popup"] = 0
+            player["task_previous_popup"] = 0
+            var total = 0
+            for (area in 0 until 8) {
+                Tasks.forEach(area) {
+                    if (Tasks.isCompleted(player, definition.stringId)) {
+                        player.sendVariable(definition.stringId)
+                        total++
+                    }
+                    null
+                }
+            }
+            player["task_progress_overall"] = total
+            player.sendVariable("task_hide_completed")
+            player.sendVariable("task_filter_sets")
+        }
+
         interfaceOpen("task_list") { player ->
             player.interfaceOptions.unlockAll("task_list", "tasks", 0..492)
             refresh(player)

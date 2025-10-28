@@ -29,11 +29,9 @@ class GodwarsAggression : Api {
     val areas: AreaDefinitions by inject()
     val dungeon = areas["godwars_dungeon_multi_area"]
 
-    override fun spawn(npc: NPC) {
-        randomHuntMode(npc)
-    }
-
     init {
+        npcSpawn(block = ::randomHuntMode)
+
         enterArea("godwars_dungeon_multi_area") {
             player.open("godwars_overlay")
             player["gods"] = player.equipment.items.mapNotNull { it.def.getOrNull<String>("god") }.toMutableSet()

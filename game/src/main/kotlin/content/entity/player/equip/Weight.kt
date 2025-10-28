@@ -12,11 +12,9 @@ import world.gregs.voidps.network.login.protocol.encode.weight
 @Script
 class Weight : Api {
 
-    override fun spawn(player: Player) {
-        updateWeight(player)
-    }
-
     init {
+        playerSpawn(::updateWeight)
+
         inventoryUpdate("worn_equipment") { player ->
             updateWeight(player)
         }

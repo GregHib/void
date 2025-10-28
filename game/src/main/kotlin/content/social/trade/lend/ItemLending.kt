@@ -23,11 +23,6 @@ class ItemLending : Api {
 
     val players: Players by inject()
 
-    override fun spawn(player: Player) {
-        checkBorrowComplete(player)
-        checkLoanComplete(player)
-    }
-
     @Timer("loan_message,borrow_message")
     override fun start(player: Player, timer: String, restart: Boolean): Int {
         if (timer == "borrow_message") {
@@ -64,6 +59,11 @@ class ItemLending : Api {
     }
 
     init {
+        playerSpawn { player ->
+            checkBorrowComplete(player)
+            checkLoanComplete(player)
+        }
+
         playerDespawn { player ->
             checkBorrowUntilLogout(player)
             checkLoanUntilLogout(player)

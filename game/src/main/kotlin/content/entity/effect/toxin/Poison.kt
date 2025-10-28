@@ -58,15 +58,17 @@ fun Player.antiPoison(duration: Int, timeUnit: TimeUnit) {
 @Script
 class Poison : Api {
 
-    override fun spawn(player: Player) {
-        if (player.poisonCounter != 0) {
-            player.timers.restart("poison")
+    init {
+        playerSpawn { player ->
+            if (player.poisonCounter != 0) {
+                player.timers.restart("poison")
+            }
         }
-    }
 
-    override fun spawn(npc: NPC) {
-        if (npc.poisonCounter != 0) {
-            npc.softTimers.restart("poison")
+        npcSpawn { npc ->
+            if (npc.poisonCounter != 0) {
+                npc.softTimers.restart("poison")
+            }
         }
     }
 

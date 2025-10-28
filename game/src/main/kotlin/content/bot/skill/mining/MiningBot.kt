@@ -31,26 +31,28 @@ class MiningBot : Api {
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()
 
-    override fun worldSpawn() {
-        for (area in areas.getTagged("mine")) {
-            val spaces: Int = area["spaces", 1]
-            val type = area["rocks", emptyList<String>()].firstOrNull() ?: continue
-            val range: IntRange = area["levels", "1-5"].toIntRange()
-            val task = Task(
-                name = "mine ${type.plural(2)} at ${area.name}".toLowerSpaceCase(),
-                block = {
-                    while (levels.getMax(Skill.Mining) < range.last + 1) {
-                        bot.mineRocks(area, type)
-                    }
-                },
-                area = area.area,
-                spaces = spaces,
-                requirements = listOf(
-                    { levels.getMax(Skill.Mining) in range },
-                    { bot.hasExactGear(Skill.Woodcutting) || bot.hasCoins(1000) },
-                ),
-            )
-            tasks.register(task)
+    init {
+        worldSpawn {
+            for (area in areas.getTagged("mine")) {
+                val spaces: Int = area["spaces", 1]
+                val type = area["rocks", emptyList<String>()].firstOrNull() ?: continue
+                val range: IntRange = area["levels", "1-5"].toIntRange()
+                val task = Task(
+                    name = "mine ${type.plural(2)} at ${area.name}".toLowerSpaceCase(),
+                    block = {
+                        while (levels.getMax(Skill.Mining) < range.last + 1) {
+                            bot.mineRocks(area, type)
+                        }
+                    },
+                    area = area.area,
+                    spaces = spaces,
+                    requirements = listOf(
+                        { levels.getMax(Skill.Mining) in range },
+                        { bot.hasExactGear(Skill.Woodcutting) || bot.hasCoins(1000) },
+                    ),
+                )
+                tasks.register(task)
+            }
         }
     }
 

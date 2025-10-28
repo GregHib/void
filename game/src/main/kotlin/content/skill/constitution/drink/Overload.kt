@@ -25,12 +25,6 @@ class Overload : Api {
         Skill.Ranged,
     )
 
-    override fun spawn(player: Player) {
-        if (player["overload_refreshes_remaining", 0] > 0) {
-            player.timers.restart("overload")
-        }
-    }
-
     @Timer("overload")
     override fun start(player: Player, timer: String, restart: Boolean): Int {
         if (restart) {
@@ -71,6 +65,12 @@ class Overload : Api {
     }
 
     init {
+        playerSpawn { player ->
+            if (player["overload_refreshes_remaining", 0] > 0) {
+                player.timers.restart("overload")
+            }
+        }
+
         canConsume("overload*") { player ->
             if (player.inWilderness) {
                 player.message("You cannot drink an overload potion while you're in the wilderness.", ChatType.Game)

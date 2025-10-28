@@ -37,6 +37,10 @@ class QuestJournals : Api {
     }
 
     init {
+        playerSpawn { player ->
+            player.clearCamera()
+        }
+
         interfaceOpen("quest_journals") { player ->
             player.interfaceOptions.unlock(id, "journals", 0 until 201, "View")
             player.sendVariable("quest_points")
@@ -55,9 +59,5 @@ class QuestJournals : Api {
             }
             player.emit(OpenQuestJournal(player, quest.stringId))
         }
-    }
-
-    override fun spawn(player: Player) {
-        player.clearCamera()
     }
 }

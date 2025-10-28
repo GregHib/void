@@ -32,13 +32,13 @@ class MysteriousRuins : Api {
 
     val omni = listOf("air", "mind", "water", "earth", "fire", "body", "cosmic", "law", "nature", "chaos", "death", "blood")
 
-    override fun spawn(player: Player) {
-        if (player.equipped(EquipSlot.Hat).id.endsWith("_tiara") || player.equipped(EquipSlot.Weapon).id == "omni_talisman_staff") {
-            updateAltarVars(player)
-        }
-    }
-
     init {
+        playerSpawn { player ->
+            if (player.equipped(EquipSlot.Hat).id.endsWith("_tiara") || player.equipped(EquipSlot.Weapon).id == "omni_talisman_staff") {
+                updateAltarVars(player)
+            }
+        }
+
         itemAdded("*_tiara", EquipSlot.Hat, "worn_equipment") { player ->
             updateAltarVars(player)
         }

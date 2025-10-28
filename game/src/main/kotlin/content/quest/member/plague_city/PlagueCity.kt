@@ -36,25 +36,25 @@ class PlagueCity : Api {
 
     val stages = setOf("grill_open", "spoken_to_jethick", "returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance", "talk_to_bravek", "has_cure_paper", "gave_cure", "freed_elena", "completed", "completed_with_spell")
 
-    override fun spawn(player: Player) {
-        if (player["plaguecity_can_see_edmond_up_top", false]) {
-            player.sendVariable("plaguecity_can_see_edmond_up_top")
-        }
-        if (player["plaguecity_dug_mud_pile", false]) {
-            player.sendVariable("plaguecity_dug_mud_pile")
-        }
-        if (player["plaguecity_checked_grill", false]) {
-            player.sendVariable("plaguecity_checked_grill")
-        }
-        if (player["plaguecity_key_asked", false]) {
-            player.sendVariable("plaguecity_key_asked")
-        }
-        player.sendVariable("plaguecity_pipe")
-        player.sendVariable("plaguecity_elena_at_home")
-        player.sendVariable("plague_city")
-    }
-
     init {
+        playerSpawn { player ->
+            if (player["plaguecity_can_see_edmond_up_top", false]) {
+                player.sendVariable("plaguecity_can_see_edmond_up_top")
+            }
+            if (player["plaguecity_dug_mud_pile", false]) {
+                player.sendVariable("plaguecity_dug_mud_pile")
+            }
+            if (player["plaguecity_checked_grill", false]) {
+                player.sendVariable("plaguecity_checked_grill")
+            }
+            if (player["plaguecity_key_asked", false]) {
+                player.sendVariable("plaguecity_key_asked")
+            }
+            player.sendVariable("plaguecity_pipe")
+            player.sendVariable("plaguecity_elena_at_home")
+            player.sendVariable("plague_city")
+        }
+
         questJournalOpen("plague_city") {
             val lines = when (player.quest("plague_city")) {
                 "started" -> {

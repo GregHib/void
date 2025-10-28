@@ -20,16 +20,6 @@ class Music : Api {
     val tracks: MusicTracks by inject()
     val enums: EnumDefinitions by inject()
 
-    override fun spawn(player: Player) {
-        if (player.isBot) {
-            return
-        }
-        unlockDefaultTracks(player)
-        playAreaTrack(player)
-        sendUnlocks(player)
-        sendPlaylist(player)
-    }
-
     override fun move(player: Player, from: Tile, to: Tile) {
         if (!player.isBot) {
             val tracks = tracks[player.tile.region]
@@ -42,6 +32,16 @@ class Music : Api {
     }
 
     init {
+        playerSpawn { player ->
+            if (player.isBot) {
+                return@playerSpawn
+            }
+            unlockDefaultTracks(player)
+            playAreaTrack(player)
+            sendUnlocks(player)
+            sendPlaylist(player)
+        }
+
         interfaceOption("Play", "tracks", "music_player") {
             val index = itemSlot / 2
             if (player.hasUnlocked(index)) {

@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.event.Script
@@ -19,11 +18,11 @@ class CombatStyles : Api {
 
     val styles: WeaponStyleDefinitions by inject()
 
-    override fun spawn(npc: NPC) {
-        npc["combat_style"] = npc.def.getOrNull("style") ?: return
-    }
-
     init {
+        npcSpawn { npc ->
+            npc["combat_style"] = npc.def.getOrNull("style") ?: return@npcSpawn
+        }
+
         interfaceOpen("combat_styles") { player ->
             player.sendVariable("attack_style_index")
             player.sendVariable("special_attack_energy")

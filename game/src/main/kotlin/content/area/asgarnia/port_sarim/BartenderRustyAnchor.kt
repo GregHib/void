@@ -20,11 +20,11 @@ import world.gregs.voidps.engine.event.Script
 @Script
 class BartenderRustyAnchor : Api {
 
-    override fun spawn(player: Player) {
-        player["void_dance_bartender"] = 19
-    }
-
     init {
+        playerSpawn { player ->
+            player["void_dance_bartender"] = 19
+        }
+
         npcOperate("Talk-to", "bartender_rusty_anchor_inn*") {
             choice {
                 option<Quiz>("Could I buy a beer please?") {

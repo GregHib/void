@@ -51,15 +51,6 @@ class BotSpawns : Api {
 
     var counter = 0
 
-    override fun worldSpawn() {
-        if (Settings["bots.count", 0] > 0) {
-            World.timers.start("bot_spawn")
-        }
-        Events.events.all = { player, event ->
-            handleSuspensions(player, event)
-        }
-    }
-
     @Timer("bot_spawn")
     override fun start(timer: String): Int = TimeUnit.SECONDS.toTicks(Settings["bots.spawnSeconds", 60])
 
@@ -73,6 +64,14 @@ class BotSpawns : Api {
     }
 
     init {
+        worldSpawn {
+            if (Settings["bots.count", 0] > 0) {
+                World.timers.start("bot_spawn")
+            }
+            Events.events.all = { player, event ->
+                handleSuspensions(player, event)
+            }
+        }
         settingsReload {
             if (Settings["bots.count", 0] > bots.size) {
                 World.timers.start("bot_spawn")

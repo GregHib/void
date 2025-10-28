@@ -22,12 +22,6 @@ object ContentLoader {
     private val logger = InlineLogger()
 
     private val dispatchers = mutableMapOf<String, Dispatcher<*>>(
-        method("spawn", "Player") to Spawn.playerDispatcher,
-        method("spawn", "NPC") to Spawn.npcDispatcher,
-        method("spawn", "FloorItem") to Spawn.floorItemDispatcher,
-        method("spawn", "GameObject") to Spawn.objectDispatcher,
-        method("worldSpawn") to Spawn.worldDispatcher,
-        method("worldSpawn", "ConfigFiles") to Spawn.worldDispatcher,
         method("levelChanged", "NPC", "Skill", "Int", "Int") to LevelChanged.npcDispatcher,
         method("levelChanged", "Player", "Skill", "Int", "Int") to LevelChanged.playerDispatcher,
         method("move", "Player", "Tile", "Tile") to Moved.playerDispatcher,
@@ -122,6 +116,7 @@ object ContentLoader {
     }
 
     fun clear() {
+        Spawn.clear()
         for (dispatcher in dispatchers.values) {
             dispatcher.clear()
         }

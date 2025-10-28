@@ -213,7 +213,7 @@ class PenguinHideAndSeekTest : WorldTest() {
         player["hunt_for_red_rektuber"] = "completed"
         Settings.load(mapOf("events.penguinHideAndSeek.enabled" to "true"))
         val instance = instance()
-        instance.worldSpawn(configFiles)
+        instance.load(configFiles)
         tick()
         for (penguin in instance.penguins) {
             assertNotNull(penguin)

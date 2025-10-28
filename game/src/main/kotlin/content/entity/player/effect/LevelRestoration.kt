@@ -45,9 +45,11 @@ class LevelRestoration : Api {
         player.softTimers.start("restore_stats")
     }
 
-    override fun spawn(player: Player) {
-        if (skills.any { player.levels.getOffset(it) != 0 }) {
-            player.softTimers.start("restore_stats")
+    init {
+        playerSpawn { player ->
+            if (skills.any { player.levels.getOffset(it) != 0 }) {
+                player.softTimers.start("restore_stats")
+            }
         }
     }
 

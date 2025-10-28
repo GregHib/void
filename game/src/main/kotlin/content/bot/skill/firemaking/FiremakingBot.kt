@@ -30,24 +30,26 @@ class FiremakingBot : Api {
     val tasks: TaskManager by inject()
     val objects: GameObjects by inject()
 
-    override fun worldSpawn() {
-        for (area in areas.getTagged("fire_making")) {
-            val spaces: Int = area["spaces", 1]
-            val task = Task(
-                name = "make fires at ${area.name}".toLowerSpaceCase(),
-                block = {
-                    val gear = bot.getGear(Skill.Firemaking) ?: return@Task
-                    val lighter = bot.getSuitableItem(gear.inventory.first())
-                    val logs = bot.getSuitableItem(gear.inventory.last())
-                    while (levels.getMax(Skill.Firemaking) < gear.levels.last + 1) {
-                        bot.light(area, lighter, logs)
-                    }
-                },
-                area = area.area,
-                spaces = spaces,
-                requirements = listOf { bot.hasExactGear(Skill.Firemaking) },
-            )
-            tasks.register(task)
+    init {
+        worldSpawn {
+            for (area in areas.getTagged("fire_making")) {
+                val spaces: Int = area["spaces", 1]
+                val task = Task(
+                    name = "make fires at ${area.name}".toLowerSpaceCase(),
+                    block = {
+                        val gear = bot.getGear(Skill.Firemaking) ?: return@Task
+                        val lighter = bot.getSuitableItem(gear.inventory.first())
+                        val logs = bot.getSuitableItem(gear.inventory.last())
+                        while (levels.getMax(Skill.Firemaking) < gear.levels.last + 1) {
+                            bot.light(area, lighter, logs)
+                        }
+                    },
+                    area = area.area,
+                    spaces = spaces,
+                    requirements = listOf { bot.hasExactGear(Skill.Firemaking) },
+                )
+                tasks.register(task)
+            }
         }
     }
 

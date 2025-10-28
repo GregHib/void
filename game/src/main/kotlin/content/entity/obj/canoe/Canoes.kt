@@ -33,15 +33,15 @@ class Canoes : Api {
 
     val stations: CanoeDefinitions by inject()
 
-    override fun spawn(player: Player) {
-        player.sendVariable("canoe_state_lumbridge")
-        player.sendVariable("canoe_state_champions_guild")
-        player.sendVariable("canoe_state_barbarian_village")
-        player.sendVariable("canoe_state_edgeville")
-        player.sendVariable("canoe_state_wilderness_pond")
-    }
-
     init {
+        playerSpawn { player ->
+            player.sendVariable("canoe_state_lumbridge")
+            player.sendVariable("canoe_state_champions_guild")
+            player.sendVariable("canoe_state_barbarian_village")
+            player.sendVariable("canoe_state_edgeville")
+            player.sendVariable("canoe_state_wilderness_pond")
+        }
+
         objectOperate("Chop-down", "canoe_station") {
             if (!player.has(Skill.Woodcutting, 12, false)) {
                 statement("You must have at least level 12 woodcutting to start making canoes.")

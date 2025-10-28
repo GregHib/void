@@ -5,10 +5,8 @@ import content.entity.sound.sound
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
-import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -20,13 +18,12 @@ import kotlin.getValue
 class Elementals : Api {
     val patrols: PatrolDefinitions by inject()
 
-    @Id("autumn_elemental*,spring_elemental*,summer_elemental*,winter_elemental*")
-    override fun spawn(npc: NPC) {
-        val patrol = patrols.get(npc.id)
-        npc.mode = Patrol(npc, patrol.waypoints)
-    }
-
     init {
+        npcSpawn("autumn_elemental*,spring_elemental*,summer_elemental*,winter_elemental*") { npc ->
+            val patrol = patrols.get(npc.id)
+            npc.mode = Patrol(npc, patrol.waypoints)
+        }
+
         huntPlayer("*_elemental*", "spotted") { npc ->
             val direction = npc.direction
             for (player in targets) {

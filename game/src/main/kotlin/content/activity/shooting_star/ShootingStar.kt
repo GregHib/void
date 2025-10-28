@@ -51,18 +51,6 @@ class ShootingStar : Api {
     val players: Players by inject()
     val logger = InlineLogger()
 
-    override fun spawn(player: Player) {
-        if (player["shooting_star_bonus_ore", 0] > 0) {
-            player.timers.restart("shooting_star_bonus_ore_timer")
-        }
-    }
-
-    override fun worldSpawn() {
-        if (Settings["events.shootingStars.enabled", false]) {
-            eventUpdate()
-        }
-    }
-
     @Timer("shooting_star_bonus_ore_timer,mining")
     override fun start(player: Player, timer: String, restart: Boolean): Int {
         if (timer == "mining") {
@@ -93,6 +81,18 @@ class ShootingStar : Api {
     }
 
     init {
+        worldSpawn {
+            if (Settings["events.shootingStars.enabled", false]) {
+                eventUpdate()
+            }
+        }
+
+        playerSpawn { player ->
+            if (player["shooting_star_bonus_ore", 0] > 0) {
+                player.timers.restart("shooting_star_bonus_ore_timer")
+            }
+        }
+
         settingsReload {
             if (Settings["events.shootingStars.enabled", false] && !World.contains("shooting_star_event_timer")) {
                 eventUpdate()

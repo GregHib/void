@@ -162,7 +162,7 @@ data class NPCs(
             npc["respawn_delay"] = respawnDelay
             npc["respawn_direction"] = npc.direction
         }
-        Spawn.spawn(npc)
+        Spawn.npc(npc)
         return true
     }
 

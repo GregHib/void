@@ -2,7 +2,6 @@ package content.area.misthalin.lumbridge
 
 import content.entity.death.npcDeath
 import world.gregs.voidps.engine.Api
-import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.Wander
@@ -19,11 +18,6 @@ import world.gregs.voidps.type.random
 class Ducklings : Api {
 
     val npcs: NPCs by inject()
-
-    @Id("ducklings")
-    override fun spawn(npc: NPC) {
-        followParent(npc)
-    }
 
     @Timer("follow_parent")
     override fun tick(npc: NPC, timer: String): Int {
@@ -43,6 +37,7 @@ class Ducklings : Api {
     }
 
     init {
+        npcSpawn("ducklings", ::followParent)
         npcDeath("duck*swim") { npc ->
             val ducklings: NPC = npc["ducklings"] ?: return@npcDeath
             ducklings.say("Eek!")

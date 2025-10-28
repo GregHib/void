@@ -15,9 +15,11 @@ class Wilderness : Api {
     val wilderness = areas["wilderness"]
     val safeZones = areas.getTagged("safe_zone")
 
-    override fun spawn(player: Player) {
-        if (inWilderness(player.tile)) {
-            player["in_wilderness"] = true
+    init {
+        playerSpawn { player ->
+            if (inWilderness(player.tile)) {
+                player["in_wilderness"] = true
+            }
         }
     }
 

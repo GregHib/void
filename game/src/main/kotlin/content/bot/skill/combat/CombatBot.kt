@@ -80,32 +80,6 @@ class CombatBot : Api {
         }
     }
 
-    override fun worldSpawn() {
-        for (area in areas.getTagged("combat_training")) {
-            val spaces: Int = area["spaces", 1]
-            val types = area["npcs", emptyList<String>()].toSet()
-            val range = area["levels", "1-5"].toIntRange()
-            val skills = listOf(Skill.Attack, Skill.Strength, Skill.Defence, Skill.Ranged, Skill.Magic).shuffled().take(spaces)
-            for (skill in skills) {
-                val task = Task(
-                    name = "train ${skill.name} killing ${types.joinToString(", ")} at ${area.name}".toLowerSpaceCase(),
-                    block = {
-                        while (levels.getMax(skill) < range.last + 1) {
-                            bot.fight(area, skill, types)
-                        }
-                    },
-                    area = area.area,
-                    spaces = 1,
-                    requirements = listOf(
-                        { levels.getMax(skill) in range },
-                        { bot.hasExactGear(skill) || bot.hasCoins(2000) },
-                    ),
-                )
-                tasks.register(task)
-            }
-        }
-    }
-
     @Variable("in_combat")
     override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
         if (to == 1 && player.isBot) {
@@ -114,6 +88,31 @@ class CombatBot : Api {
     }
 
     init {
+        worldSpawn {
+            for (area in areas.getTagged("combat_training")) {
+                val spaces: Int = area["spaces", 1]
+                val types = area["npcs", emptyList<String>()].toSet()
+                val range = area["levels", "1-5"].toIntRange()
+                val skills = listOf(Skill.Attack, Skill.Strength, Skill.Defence, Skill.Ranged, Skill.Magic).shuffled().take(spaces)
+                for (skill in skills) {
+                    val task = Task(
+                        name = "train ${skill.name} killing ${types.joinToString(", ")} at ${area.name}".toLowerSpaceCase(),
+                        block = {
+                            while (levels.getMax(skill) < range.last + 1) {
+                                bot.fight(area, skill, types)
+                            }
+                        },
+                        area = area.area,
+                        spaces = 1,
+                        requirements = listOf(
+                            { levels.getMax(skill) in range },
+                            { bot.hasExactGear(skill) || bot.hasCoins(2000) },
+                        ),
+                    )
+                    tasks.register(task)
+                }
+            }
+        }
         playerDeath { player ->
             if (player.isBot) {
                 player.clear("area")

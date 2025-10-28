@@ -16,11 +16,13 @@ class Tolerance : Api {
 
     val toleranceTime = TimeUnit.MINUTES.toSeconds(10)
 
-    override fun spawn(player: Player) {
-        if (!player.contains("tolerance")) {
-            player.start("tolerance", toleranceTime.toInt(), epochSeconds())
+    init {
+        playerSpawn { player ->
+            if (!player.contains("tolerance")) {
+                player.start("tolerance", toleranceTime.toInt(), epochSeconds())
+            }
+            player["tolerance_area"] = player.tile.toCuboid(10)
         }
-        player["tolerance_area"] = player.tile.toCuboid(10)
     }
 
     override fun move(player: Player, from: Tile, to: Tile) {

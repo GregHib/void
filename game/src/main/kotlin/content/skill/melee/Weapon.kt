@@ -14,10 +14,6 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 @Script
 class Weapon : Api {
 
-    override fun spawn(player: Player) {
-        updateWeapon(player, player.equipped(EquipSlot.Weapon))
-    }
-
     @Variable("autocast,spell,attack_style")
     override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
         if (key == "autocast" && to == null) {
@@ -34,6 +30,10 @@ class Weapon : Api {
     }
 
     init {
+        playerSpawn { player ->
+            updateWeapon(player, player.equipped(EquipSlot.Weapon))
+        }
+
         inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
             updateWeapon(player, item)
         }

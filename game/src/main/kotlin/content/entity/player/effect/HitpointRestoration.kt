@@ -14,18 +14,20 @@ import java.util.concurrent.TimeUnit
 @Script
 class HitpointRestoration : Api {
 
+    init {
+        playerSpawn { player ->
+            if (player.levels.getOffset(Skill.Constitution) < 0) {
+                player.softTimers.start("restore_hitpoints")
+            }
+        }
+    }
+
     @SkillId(Skill.Constitution)
     override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
         if (to <= 0 || to >= player.levels.getMax(skill) || player.softTimers.contains("restore_hitpoints")) {
             return
         }
         player.softTimers.start("restore_hitpoints")
-    }
-
-    override fun spawn(player: Player) {
-        if (player.levels.getOffset(Skill.Constitution) < 0) {
-            player.softTimers.start("restore_hitpoints")
-        }
     }
 
     @Timer("restore_hitpoints")

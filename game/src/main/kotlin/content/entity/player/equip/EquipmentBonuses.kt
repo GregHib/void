@@ -34,12 +34,12 @@ class EquipmentBonuses : Api {
         roundingMode = RoundingMode.FLOOR
     }
 
-    override fun spawn(player: Player) {
-        updateStats(player)
-        player["bank_hidden"] = true
-    }
-
     init {
+        playerSpawn { player ->
+            updateStats(player)
+            player["bank_hidden"] = true
+        }
+
         inventoryChanged("worn_equipment") { player ->
             updateStats(player, fromItem, false)
             updateStats(player, item, true)

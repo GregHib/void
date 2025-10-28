@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -31,20 +30,19 @@ class KrilTsutsaroth : Api {
     var karlak: NPC? = null
     var gritch: NPC? = null
 
-    @Id("kril_tsutsaroth")
-    override fun spawn(npc: NPC) {
-        if (kreeyath == null) {
-            kreeyath = npcs.add("balfrug_kreeyath", Tile(2921, 5319, 2))
-        }
-        if (karlak == null) {
-            karlak = npcs.add("tstanon_karlak", Tile(2932, 5328, 2))
-        }
-        if (gritch == null) {
-            gritch = npcs.add("zakln_gritch", Tile(2919, 5327, 2))
-        }
-    }
-
     init {
+        npcSpawn("kril_tsutsaroth") {
+            if (kreeyath == null) {
+                kreeyath = npcs.add("balfrug_kreeyath", Tile(2921, 5319, 2))
+            }
+            if (karlak == null) {
+                karlak = npcs.add("tstanon_karlak", Tile(2932, 5328, 2))
+            }
+            if (gritch == null) {
+                gritch = npcs.add("zakln_gritch", Tile(2919, 5327, 2))
+            }
+        }
+
         npcCombatSwing("kril_tsutsaroth") { npc ->
             when (random.nextInt(3)) {
                 0 -> { // Magic

@@ -24,14 +24,6 @@ class Restock : Api {
     val inventoryDefinitions: InventoryDefinitions by inject()
     val logger = InlineLogger()
 
-    override fun spawn(player: Player) {
-        player.softTimers.restart("shop_restock")
-    }
-
-    override fun worldSpawn() {
-        World.timers.start("general_store_restock")
-    }
-
     @Timer("shop_restock")
     override fun start(player: Player, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(60)
 
@@ -64,6 +56,14 @@ class Restock : Api {
     }
 
     init {
+        playerSpawn { player ->
+            player.softTimers.restart("shop_restock")
+        }
+
+        worldSpawn {
+            World.timers.start("general_store_restock")
+        }
+
         playerDespawn { player ->
             val removal = mutableListOf<String>()
             for ((name, inventory) in player.inventories.instances) {

@@ -11,12 +11,14 @@ import world.gregs.voidps.engine.timer.*
 @Script
 class Antifire : Api {
 
-    override fun spawn(player: Player) {
-        if (player.antifire) {
-            player.timers.restart("fire_resistance")
-        }
-        if (player.superAntifire) {
-            player.timers.restart("fire_immunity")
+    init {
+        playerSpawn { player ->
+            if (player.antifire) {
+                player.timers.restart("fire_resistance")
+            }
+            if (player.superAntifire) {
+                player.timers.restart("fire_immunity")
+            }
         }
     }
 

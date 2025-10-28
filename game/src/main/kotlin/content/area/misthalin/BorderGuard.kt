@@ -23,19 +23,19 @@ class BorderGuard : Api {
 
     val raised = mutableMapOf<GameObject, Boolean>()
 
-    override fun worldSpawn() {
-        for (border in areas.getTagged("border")) {
-            val passage = border.area as Rectangle
-            for (zone in passage.toZones()) {
-                guards[passage] = zone.toRectangle().mapNotNull {
-                    val obj = objects.getLayer(it, ObjectLayer.GROUND)
-                    if (obj != null && obj.id.startsWith("border_guard")) obj else null
+    init {
+        worldSpawn {
+            for (border in areas.getTagged("border")) {
+                val passage = border.area as Rectangle
+                for (zone in passage.toZones()) {
+                    guards[passage] = zone.toRectangle().mapNotNull {
+                        val obj = objects.getLayer(it, ObjectLayer.GROUND)
+                        if (obj != null && obj.id.startsWith("border_guard")) obj else null
+                    }
                 }
             }
         }
-    }
 
-    init {
         enterArea("border_guard*") {
             val border = area as Rectangle
             if (player.steps.destination in border || player.steps.isEmpty()) {

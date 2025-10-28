@@ -6,16 +6,13 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
 @Script
 class LootShare : Api {
-
-    override fun spawn(player: Player) {
-        player.sendVariable("loot_share")
-    }
 
     @Timer("clan_loot_update,clan_loot_rank_update,clan_coin_share_update")
     override fun start(player: Player, timer: String, restart: Boolean): Int = when (timer) {
@@ -55,6 +52,10 @@ class LootShare : Api {
     }
 
     init {
+        playerSpawn { player ->
+            player.sendVariable("loot_share")
+        }
+
         interfaceOption(component = "loot_share", id = "clan_chat") {
             val clan = player.clan ?: return@interfaceOption
             if (clan.lootRank == ClanRank.None) {

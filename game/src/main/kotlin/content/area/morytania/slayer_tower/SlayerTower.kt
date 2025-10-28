@@ -6,14 +6,12 @@ import content.entity.obj.objTeleportLand
 import content.entity.obj.objTeleportTakeOff
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.objectDespawn
@@ -25,17 +23,16 @@ class SlayerTower : Api {
 
     val objects: GameObjects by inject()
 
-    @Id("slayer_tower_entrance_door_*_opened")
-    override fun spawn(obj: GameObject) {
-        val statue = if (obj.id == "slayer_tower_entrance_door_west_opened") {
-            objects[obj.tile.add(-2, -2), "slayer_tower_statue"]
-        } else {
-            objects[obj.tile.add(1, -2), "slayer_tower_statue"]
-        } ?: return
-        statue.anim("slayer_tower_statue_stand")
-    }
-
     init {
+        objectSpawn("slayer_tower_entrance_door_*_opened") { obj ->
+            val statue = if (obj.id == "slayer_tower_entrance_door_west_opened") {
+                objects[obj.tile.add(-2, -2), "slayer_tower_statue"]
+            } else {
+                objects[obj.tile.add(1, -2), "slayer_tower_statue"]
+            } ?: return@objectSpawn
+            statue.anim("slayer_tower_statue_stand")
+        }
+
         objectDespawn("slayer_tower_entrance_door_*_opened") { obj ->
             val statue = if (obj.id == "slayer_tower_entrance_door_west_opened") {
                 objects[obj.tile.add(-2, -2), "slayer_tower_statue"]

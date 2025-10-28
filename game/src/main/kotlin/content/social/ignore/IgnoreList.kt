@@ -27,11 +27,11 @@ class IgnoreList : Api {
 
     val maxIgnores = 100
 
-    override fun spawn(player: Player) {
-        player.sendIgnores()
-    }
-
     init {
+        playerSpawn { player ->
+            player.sendIgnores()
+        }
+
         instruction<IgnoreAdd> { player ->
             val account = accounts.get(name)
             if (account == null) {

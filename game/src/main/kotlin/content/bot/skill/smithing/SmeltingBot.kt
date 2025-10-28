@@ -31,22 +31,24 @@ class SmeltingBot : Api {
     val tasks: TaskManager by inject()
     val itemDefinitions: ItemDefinitions by inject()
 
-    override fun worldSpawn() {
-        for (area in areas.getTagged("smelting")) {
-            val spaces: Int = area["spaces", 1]
-            val task = Task(
-                name = "smelt bars at ${area.name}".toLowerSpaceCase(),
-                block = {
-                    val gear = bot.getGear("smelting", Skill.Smithing) ?: return@Task
-                    while (levels.getMax(Skill.Smithing) < gear.levels.last + 1) {
-                        bot.smelt(area, gear)
-                    }
-                },
-                area = area.area,
-                spaces = spaces,
-                requirements = listOf { bot.hasExactGear("smelting", Skill.Smithing) },
-            )
-            tasks.register(task)
+    init {
+        worldSpawn {
+            for (area in areas.getTagged("smelting")) {
+                val spaces: Int = area["spaces", 1]
+                val task = Task(
+                    name = "smelt bars at ${area.name}".toLowerSpaceCase(),
+                    block = {
+                        val gear = bot.getGear("smelting", Skill.Smithing) ?: return@Task
+                        while (levels.getMax(Skill.Smithing) < gear.levels.last + 1) {
+                            bot.smelt(area, gear)
+                        }
+                    },
+                    area = area.area,
+                    spaces = spaces,
+                    requirements = listOf { bot.hasExactGear("smelting", Skill.Smithing) },
+                )
+                tasks.register(task)
+            }
         }
     }
 

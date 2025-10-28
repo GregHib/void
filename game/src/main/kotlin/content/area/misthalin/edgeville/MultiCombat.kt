@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.*
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -13,15 +12,6 @@ import world.gregs.voidps.engine.inject
 class MultiCombat : Api {
 
     val areaDefinitions: AreaDefinitions by inject()
-
-    override fun spawn(npc: NPC) {
-        for (def in areaDefinitions.get(npc.tile.zone)) {
-            if (def.tags.contains("multi_combat")) {
-                npc["in_multi_combat"] = true
-                break
-            }
-        }
-    }
 
     @Variable("in_multi_combat")
     override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
@@ -33,6 +23,15 @@ class MultiCombat : Api {
     }
 
     init {
+        npcSpawn { npc ->
+            for (def in areaDefinitions.get(npc.tile.zone)) {
+                if (def.tags.contains("multi_combat")) {
+                    npc["in_multi_combat"] = true
+                    break
+                }
+            }
+        }
+
         enterArea(tag = "multi_combat") {
             player["in_multi_combat"] = true
         }

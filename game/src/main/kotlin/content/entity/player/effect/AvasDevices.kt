@@ -71,10 +71,6 @@ class AvasDevices : Api {
 
     val floorItems: FloorItems by inject()
 
-    override fun spawn(player: Player) {
-        update(player)
-    }
-
     @Timer("junk_collection")
     override fun start(player: Player, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(90)
 
@@ -89,6 +85,8 @@ class AvasDevices : Api {
     }
 
     init {
+        playerSpawn(::update)
+
         inventoryChanged("worn_equipment", EquipSlot.Chest) { player ->
             if (item.def["material", ""] == "metal" || fromItem.def["material", ""] == "metal") {
                 update(player)

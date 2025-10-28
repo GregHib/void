@@ -31,24 +31,26 @@ class CookingBot : Api {
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()
 
-    override fun worldSpawn() {
-        for (area in areas.getTagged("cooking")) {
-            val spaces: Int = area["spaces", 1]
-            val type: String = area.getOrNull("type") ?: ""
-            val task = Task(
-                name = "cook on ${type.plural(2)} at ${area.name}".toLowerSpaceCase(),
-                block = {
-                    val gear = bot.getGear(Skill.Cooking) ?: return@Task
-                    val item = bot.getSuitableItem(gear.inventory.first())
-                    while (levels.getMax(Skill.Cooking) < gear.levels.last + 1) {
-                        bot.cook(area, item, gear)
-                    }
-                },
-                area = area.area,
-                spaces = spaces,
-                requirements = listOf { bot.hasExactGear(Skill.Cooking) },
-            )
-            tasks.register(task)
+    init {
+        worldSpawn {
+            for (area in areas.getTagged("cooking")) {
+                val spaces: Int = area["spaces", 1]
+                val type: String = area.getOrNull("type") ?: ""
+                val task = Task(
+                    name = "cook on ${type.plural(2)} at ${area.name}".toLowerSpaceCase(),
+                    block = {
+                        val gear = bot.getGear(Skill.Cooking) ?: return@Task
+                        val item = bot.getSuitableItem(gear.inventory.first())
+                        while (levels.getMax(Skill.Cooking) < gear.levels.last + 1) {
+                            bot.cook(area, item, gear)
+                        }
+                    },
+                    area = area.area,
+                    spaces = spaces,
+                    requirements = listOf { bot.hasExactGear(Skill.Cooking) },
+                )
+                tasks.register(task)
+            }
         }
     }
 

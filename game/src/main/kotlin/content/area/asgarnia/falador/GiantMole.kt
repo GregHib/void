@@ -53,15 +53,15 @@ class GiantMole : Api {
     val gianMoleSpawns = areas["giant_mole_spawn_area"]
     val initialCaveTile: Tile = Tile(1752, 5237, 0)
 
-    override fun spawn(player: Player) {
-        if (giantMoleLair.contains(player.tile)) {
-            if (!hasLightSource(player)) {
-                player.open("level_three_darkness")
+    init {
+        playerSpawn { player ->
+            if (giantMoleLair.contains(player.tile)) {
+                if (!hasLightSource(player)) {
+                    player.open("level_three_darkness")
+                }
             }
         }
-    }
 
-    init {
         inventoryItem("Dig", "spade") {
             val playerTile: Tile = player.tile
             player.anim("dig_with_spade")

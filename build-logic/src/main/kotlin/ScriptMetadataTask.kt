@@ -76,7 +76,9 @@ abstract class ScriptMetadataTask : DefaultTask() {
     }
 
     private val methods = mapOf(
-        "npcSpawn" to listOf("id" to WildcardType.NpcId)
+        "npcSpawn" to listOf("id" to WildcardType.NpcId),
+        "objectSpawn" to listOf("id" to WildcardType.ObjectId),
+        "floorItemSpawn" to listOf("id" to WildcardType.ItemId),
     )
 
     @TaskAction

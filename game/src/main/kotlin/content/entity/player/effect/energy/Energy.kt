@@ -28,9 +28,11 @@ var Player.runEnergy: Int
 @Script
 class Energy : Api {
 
-    override fun spawn(player: Player) {
-        if (player.runEnergy < MAX_RUN_ENERGY) {
-            player.softTimers.start("energy_restore")
+    init {
+        playerSpawn { player ->
+            if (player.runEnergy < MAX_RUN_ENERGY) {
+                player.softTimers.start("energy_restore")
+            }
         }
     }
 

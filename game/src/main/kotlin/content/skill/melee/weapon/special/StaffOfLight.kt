@@ -15,12 +15,6 @@ import java.util.concurrent.TimeUnit
 @Script
 class StaffOfLight : Api {
 
-    override fun spawn(player: Player) {
-        if (player.contains("power_of_light")) {
-            player.softTimers.restart("power_of_light")
-        }
-    }
-
     @Timer("power_of_light")
     override fun start(player: Player, timer: String, restart: Boolean): Int = 1
 
@@ -39,6 +33,12 @@ class StaffOfLight : Api {
     }
 
     init {
+        playerSpawn { player ->
+            if (player.contains("power_of_light")) {
+                player.softTimers.restart("power_of_light")
+            }
+        }
+
         itemRemoved("staff_of_light*", EquipSlot.Weapon, "worn_equipment") { player ->
             player.softTimers.stop("power_of_light")
         }

@@ -18,10 +18,11 @@ class ZamorakCrafter : Api {
     val objects: GameObjects by inject()
     val patrols: PatrolDefinitions by inject()
 
-    @Id("zamorak_crafter*")
-    override fun spawn(npc: NPC) {
-        val patrol = patrols.get(if (npc.id == "zamorak_crafter_start") "zamorak_crafter_to_altar" else "zamorak_crafter_to_bank")
-        npc.mode = Patrol(npc, patrol.waypoints)
+    init {
+        npcSpawn("zamorak_crafter*") { npc ->
+            val patrol = patrols.get(if (npc.id == "zamorak_crafter_start") "zamorak_crafter_to_altar" else "zamorak_crafter_to_bank")
+            npc.mode = Patrol(npc, patrol.waypoints)
+        }
     }
 
     @Id("zamorak_crafter*")

@@ -24,16 +24,16 @@ import kotlin.math.min
 @Script
 class MagicalBlastBox : Api {
 
-    override fun spawn(player: Player) {
-        val box = player.equipped(EquipSlot.Shield).id
-        if (box.startsWith("magical_blastbox")) {
-            updateCharges(player, EquipSlot.Shield.index, box != "magical_blastbox")
-        } else {
-            setCharges(player, 0, box != "magical_blastbox")
-        }
-    }
-
     init {
+        playerSpawn { player ->
+            val box = player.equipped(EquipSlot.Shield).id
+            if (box.startsWith("magical_blastbox")) {
+                updateCharges(player, EquipSlot.Shield.index, box != "magical_blastbox")
+            } else {
+                setCharges(player, 0, box != "magical_blastbox")
+            }
+        }
+
         inventoryItem("Check*", "magical_blastbox*", "inventory") {
             val charges = player.inventory.charges(player, slot)
             val dungeoneering = if (item.id == "magical_blastbox") "" else "_dungeoneering"

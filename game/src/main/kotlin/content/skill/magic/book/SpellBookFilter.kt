@@ -5,18 +5,17 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 
 @Script
 class SpellBookFilter : Api {
 
-    override fun spawn(player: Player) {
-        player.sendVariable("spellbook_sort")
-        player.sendVariable("spellbook_config")
-    }
-
     init {
+        playerSpawn { player ->
+            player.sendVariable("spellbook_sort")
+            player.sendVariable("spellbook_config")
+        }
+
         interfaceOpen("*_spellbook") { player ->
             val id = when (id) {
                 "ancient_spellbook" -> 1

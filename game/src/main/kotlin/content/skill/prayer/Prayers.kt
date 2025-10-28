@@ -12,15 +12,15 @@ import world.gregs.voidps.engine.event.Script
 @Script
 class Prayers : Api {
 
-    override fun spawn(player: Player) {
-        player.sendVariable("attack_bonus")
-        player.sendVariable("strength_bonus")
-        player.sendVariable("defence_bonus")
-        player.sendVariable("ranged_bonus")
-        player.sendVariable("magic_bonus")
-    }
-
     init {
+        playerSpawn { player ->
+            player.sendVariable("attack_bonus")
+            player.sendVariable("strength_bonus")
+            player.sendVariable("defence_bonus")
+            player.sendVariable("ranged_bonus")
+            player.sendVariable("magic_bonus")
+        }
+
         prayerStart { player ->
             if (!restart) {
                 val curses = player.isCurses()

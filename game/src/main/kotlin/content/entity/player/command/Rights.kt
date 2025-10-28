@@ -23,14 +23,14 @@ class Rights : Api {
 
     val accounts: AccountDefinitions by inject()
 
-    override fun spawn(player: Player) {
-        if (player.name == Settings.getOrNull("development.admin.name") && player.rights != PlayerRights.Admin) {
-            player.rights = PlayerRights.Admin
-            player.message("Rights set to Admin. Please re-log to activate.")
-        }
-    }
-
     init {
+        playerSpawn { player ->
+            if (player.name == Settings.getOrNull("development.admin.name") && player.rights != PlayerRights.Admin) {
+                player.rights = PlayerRights.Admin
+                player.message("Rights set to Admin. Please re-log to activate.")
+            }
+        }
+
         val rights = PlayerRights.entries.map { it.name }.toSet()
         adminCommand("rights", stringArg("player-name", autofill = accounts.displayNames.keys), stringArg("rights-name", autofill = rights), desc = "Set the rights for another player", handler = ::grant)
         commandSuggestion("rights", "promote")

@@ -1,7 +1,6 @@
 package content.area.kandarin.ourania
 
 import world.gregs.voidps.engine.Api
-import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -15,11 +14,6 @@ import world.gregs.voidps.type.random
 @Script
 class CaveLizard : Api {
 
-    @Id("cave_lizard")
-    override fun spawn(npc: NPC) {
-        npc.softTimers.start("aggressive_hunt_mode_switch")
-    }
-
     @Timer("aggressive_hunt_mode_switch")
     override fun start(npc: NPC, timer: String, restart: Boolean): Int = random.nextInt(6, 12)
 
@@ -30,6 +24,10 @@ class CaveLizard : Api {
     }
 
     init {
+        npcSpawn("cave_lizard") { npc ->
+            npc.softTimers.start("aggressive_hunt_mode_switch")
+        }
+
         huntNPC("cave_lizard", "zamorak_*", "aggressive_npcs") { npc ->
             npc.mode = Interact(npc, target, NPCOption(npc, target, target.def, "Attack"))
         }

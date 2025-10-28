@@ -20,11 +20,11 @@ class AutoSave : Api {
     val saveQueue: SaveQueue by inject()
     val exchange: GrandExchange by inject()
 
-    override fun worldSpawn() {
-        autoSave()
-    }
-
     init {
+        worldSpawn {
+            autoSave()
+        }
+
         worldDespawn {
             saveQueue.direct(players).join()
             exchange.save()

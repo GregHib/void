@@ -31,15 +31,15 @@ var Player.tradeStatus: String
 @Script
 class ChatFilters : Api {
 
-    override fun spawn(player: Player) {
-        player.privateStatus(player.privateStatus)
-        player.publicStatus(player.publicStatus, player.tradeStatus)
-        player.sendVariable("game_status")
-        player.sendVariable("assist_status")
-        player.sendVariable("clan_status")
-    }
-
     init {
+        playerSpawn { player ->
+            player.privateStatus(player.privateStatus)
+            player.publicStatus(player.publicStatus, player.tradeStatus)
+            player.sendVariable("game_status")
+            player.sendVariable("assist_status")
+            player.sendVariable("clan_status")
+        }
+
         interfaceOption("View", id = "filter_buttons") {
             when (component) {
                 "game", "clan" -> player["${component}_status"] = option.lowercase()

@@ -6,7 +6,7 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.Id
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -21,11 +21,6 @@ import world.gregs.voidps.type.random
 
 @Script
 class Cows : Api {
-
-    @Id("cow_*")
-    override fun spawn(npc: NPC) {
-        npc.softTimers.start("eat_grass")
-    }
 
     @Timer("eat_grass")
     override fun start(npc: NPC, timer: String, restart: Boolean): Int {
@@ -43,6 +38,10 @@ class Cows : Api {
     }
 
     init {
+        npcSpawn("cow_*") { npc ->
+            npc.softTimers.start("eat_grass")
+        }
+
         itemOnNPCOperate("*", "cow*") {
             player.message("The cow doesn't want that.")
         }

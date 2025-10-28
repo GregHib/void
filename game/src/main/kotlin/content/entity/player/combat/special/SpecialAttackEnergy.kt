@@ -13,9 +13,11 @@ class SpecialAttackEnergy : Api {
     val half = MAX_SPECIAL_ATTACK / 2
     val tenth = MAX_SPECIAL_ATTACK / 10
 
-    override fun spawn(player: Player) {
-        if (player.specialAttackEnergy < MAX_SPECIAL_ATTACK) {
-            player.softTimers.start("restore_special_energy")
+    init {
+        playerSpawn { player ->
+            if (player.specialAttackEnergy < MAX_SPECIAL_ATTACK) {
+                player.softTimers.start("restore_special_energy")
+            }
         }
     }
 
