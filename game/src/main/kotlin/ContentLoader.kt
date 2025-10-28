@@ -2,7 +2,6 @@ import com.github.michaelbull.logging.InlineLogger
 import content.skill.thieving.Stole
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.variable.VariableSet
 import world.gregs.voidps.engine.dispatch.Dispatcher
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
@@ -20,8 +19,6 @@ object ContentLoader {
     private val logger = InlineLogger()
 
     private val dispatchers = mutableMapOf<String, Dispatcher<*>>(
-        method("variableSet", "Player", "String", "Any?", "Any?") to VariableSet.playerDispatcher,
-        method("variableSet", "NPC", "String", "Any?", "Any?") to VariableSet.npcDispatcher,
         method("stole", "Player", "GameObject", "Item") to Stole.dispatcher,
         method("Dialogue.talk", "Player", "NPC") to Operation.talkDispatcher,
         method("operate", "Player", "Player", "String") to Operation.playerPlayerDispatcher,

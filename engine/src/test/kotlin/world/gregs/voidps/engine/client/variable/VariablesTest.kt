@@ -6,8 +6,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
-import world.gregs.voidps.engine.dispatch.ListDispatcher
-import world.gregs.voidps.engine.dispatch.MapDispatcher
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.client.Client
 
@@ -19,7 +17,7 @@ internal class VariablesTest {
     private lateinit var player: Player
     private lateinit var client: Client
     private lateinit var map: MutableMap<String, Any>
-    private lateinit var varSet: VariableSet
+    private lateinit var varSet: (Player, String, Any?, Any?) -> Unit
 
     private val id = 0
     private val default = "First"
@@ -43,13 +41,8 @@ internal class VariablesTest {
         every { definitions.get(KEY) } returns variable
         variables.definitions = definitions
         variables.client = client
-        val dispatcher = MapDispatcher<VariableSet>()
-        varSet = spyk(object : VariableSet {
-            override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-            }
-        })
-        dispatcher.instances["*"] = mutableListOf(varSet)
-        VariableSet.playerDispatcher = dispatcher
+        varSet = spyk({ _, _, _, _ -> })
+        VariableSet.playerBlocks["*"] = mutableListOf(varSet)
     }
 
     @Test
@@ -63,7 +56,7 @@ internal class VariablesTest {
         assertEquals(42, map[KEY])
         verify {
             variables.send(any())
-            varSet.variableSet(player, KEY, 1, 42)
+            varSet(player, KEY, 1, 42)
         }
     }
 
@@ -234,7 +227,7 @@ internal class VariablesTest {
         assertNull(map[KEY])
         verifyOrder {
             variables.send(KEY)
-            varSet.variableSet(player, KEY, arrayListOf("Third"), null)
+            varSet(player, KEY, arrayListOf("Third"), null)
         }
     }
 

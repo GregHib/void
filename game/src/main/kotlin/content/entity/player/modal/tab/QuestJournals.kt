@@ -19,12 +19,6 @@ class QuestJournals : Api {
 
     val questDefinitions: QuestDefinitions by inject()
 
-    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        if (questDefinitions.ids.containsKey(key)) {
-            player.softTimers.start("refresh_quest_journal")
-        }
-    }
-
     @Timer("refresh_quest_journal")
     override fun start(player: Player, timer: String, restart: Boolean): Int = 1
 
@@ -39,6 +33,12 @@ class QuestJournals : Api {
     init {
         playerSpawn { player ->
             player.clearCamera()
+        }
+
+        variableSet { player, key, _, _ ->
+            if (questDefinitions.ids.containsKey(key)) {
+                player.softTimers.start("refresh_quest_journal")
+            }
         }
 
         interfaceOpen("quest_journals") { player ->

@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -43,6 +42,10 @@ class TaskList : Api {
         interfaceOpen("task_list") { player ->
             player.interfaceOptions.unlockAll("task_list", "tasks", 0..492)
             refresh(player)
+        }
+
+        variableSet("task_pin_slot") { player, _, _, _ ->
+            player.close("task_list")
         }
 
         interfaceOption("Select", "area_*", "task_list") {
@@ -88,11 +91,6 @@ class TaskList : Api {
             player["world_map_marker_text_1"] = ""
             player.open("world_map")
         }
-    }
-
-    @Variable("task_pin_slot")
-    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        player.close("task_list")
     }
 
     fun indexOfSlot(player: Player, slot: Int): Int? {

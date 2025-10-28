@@ -81,6 +81,8 @@ abstract class ScriptMetadataTask : DefaultTask() {
         "floorItemSpawn" to listOf("id" to WildcardType.ItemId),
         "npcLevelChanged" to listOf("id" to WildcardType.NpcId),
         "npcMoved" to listOf("id" to WildcardType.NpcId),
+        "variableSet" to listOf("key" to WildcardType.VariableId),
+        "npcVariableSet" to listOf("key" to WildcardType.VariableId),
     )
 
     @TaskAction

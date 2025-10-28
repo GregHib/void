@@ -20,7 +20,6 @@ import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -71,13 +70,6 @@ class CombatBot : Api {
     val tasks: TaskManager by inject()
     val floorItems: FloorItems by inject()
 
-    @Variable("in_combat")
-    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        if (to == 1 && player.isBot) {
-            player.bot.resume("combat")
-        }
-    }
-
     init {
         worldSpawn {
             for (area in areas.getTagged("combat_training")) {
@@ -106,6 +98,12 @@ class CombatBot : Api {
         }
 
         levelChanged(Skill.Constitution, ::eat)
+
+        variableSet("in_combat") { player, _, _, to ->
+            if (to == 1 && player.isBot) {
+                player.bot.resume("combat")
+            }
+        }
 
         playerDeath { player ->
             if (player.isBot) {

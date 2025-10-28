@@ -9,29 +9,26 @@ import content.skill.prayer.PrayerStop
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.variableBitAdd
 import world.gregs.voidps.engine.client.variable.variableBitRemove
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 
 @Script
 class PrayerToggle : Api {
 
-    @Variable("activated_*")
-    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        player.closeInterfaces()
-        val from = (from as? List<String>)?.toSet() ?: emptySet()
-        val to = (to as? List<String>)?.toSet() ?: emptySet()
-        for (prayer in from.subtract(to)) {
-            player.emit(PrayerStop(prayer))
-        }
-        for (prayer in to.subtract(from)) {
-            player.emit(PrayerStart(prayer))
-        }
-    }
-
     init {
+        variableSet("activated_*") { player, _, from, to ->
+            player.closeInterfaces()
+            val from = (from as? List<String>)?.toSet() ?: emptySet()
+            val to = (to as? List<String>)?.toSet() ?: emptySet()
+            for (prayer in from.subtract(to)) {
+                player.emit(PrayerStop(prayer))
+            }
+            for (prayer in to.subtract(from)) {
+                player.emit(PrayerStart(prayer))
+            }
+        }
+
         variableBitAdd(ACTIVE_PRAYERS, ACTIVE_CURSES) { player ->
             player.closeInterfaces()
             player.emit(PrayerStart((value as String).toSnakeCase()))

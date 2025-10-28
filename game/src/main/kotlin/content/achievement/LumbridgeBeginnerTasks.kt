@@ -10,7 +10,6 @@ import content.skill.melee.weapon.attackStyle
 import content.skill.prayer.prayerStart
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Api
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
@@ -37,15 +36,6 @@ class LumbridgeBeginnerTasks : Api {
 
     val styleDefinitions: WeaponStyleDefinitions by inject()
 
-    @Variable("task_progress_overall,quest_points")
-    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        if (key == "task_progress_overall" && (from == null || from is Int && from < 10) && to is Int && to >= 10) {
-            player["on_your_way_task"] = true
-        } else if (key == "quest_points" && (from == null || from is Int && from < 4) && to != null && to is Int && to >= 4) {
-            player["fledgeling_adventurer_task"] = true
-        }
-    }
-
     @Timer("firemaking")
     override fun stop(player: Player, timer: String, logout: Boolean) {
         val regular: Boolean = player.remove("burnt_regular_log") ?: return
@@ -59,6 +49,13 @@ class LumbridgeBeginnerTasks : Api {
     }
 
     init {
+        variableSet("task_progress_overall,quest_points") { player, key, from, to ->
+            if (key == "task_progress_overall" && (from == null || from is Int && from < 10) && to is Int && to >= 10) {
+                player["on_your_way_task"] = true
+            } else if (key == "quest_points" && (from == null || from is Int && from < 4) && to != null && to is Int && to >= 4) {
+                player["fledgeling_adventurer_task"] = true
+            }
+        }
         moved { player, _ ->
             if (player.running && !player["on_the_run_task", false]) {
                 player["on_the_run_task"] = true
