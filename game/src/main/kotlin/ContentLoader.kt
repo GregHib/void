@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.skill.level.LevelChanged
+import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.TimerApi
 import java.nio.file.NoSuchFileException
@@ -66,7 +67,11 @@ object ContentLoader {
     )
 
     fun load() {
-        val start = System.currentTimeMillis()
+        var start = System.currentTimeMillis()
+        val matches = ContentLoader::class.java.getResourceAsStream("matches.txt")?.bufferedReader() ?: error("No auto-generated matches file found, make sure 'gradle scriptMetadata' is correctly running")
+        Wildcards.load(matches)
+        logger.info { "Loaded ${Wildcards.size} ${"wildcard".plural(Wildcards.size)} in ${System.currentTimeMillis() - start}ms" }
+        start = System.currentTimeMillis()
         val scripts = ContentLoader::class.java.getResourceAsStream("scripts.txt")?.bufferedReader() ?: error("No auto-generated script file found, make sure 'gradle scriptMetadata' is correctly running")
         val scriptCount: Int
         var script = ""

@@ -11,10 +11,7 @@ import org.jetbrains.kotlin.com.intellij.openapi.util.Disposer
 import org.jetbrains.kotlin.com.intellij.psi.PsiManager
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.lexer.KtTokens
-import org.jetbrains.kotlin.psi.KtAnnotationEntry
-import org.jetbrains.kotlin.psi.KtClass
-import org.jetbrains.kotlin.psi.KtFile
-import org.jetbrains.kotlin.psi.KtNamedFunction
+import org.jetbrains.kotlin.psi.*
 import org.jetbrains.kotlin.psi.psiUtil.collectDescendantsOfType
 import java.io.File
 
@@ -70,10 +67,17 @@ abstract class ScriptMetadataTask : DefaultTask() {
     @get:OutputFile
     abstract var scriptsFile: File
 
+    @get:OutputFile
+    abstract var wildcardsFile: File
+
     init {
         description = "Analyzes Kotlin files and extracts annotation information"
         group = "metadata"
     }
+
+    private val methods = mapOf(
+        "npcSpawn" to listOf("id" to WildcardType.NpcId)
+    )
 
     @TaskAction
     fun execute(inputChanges: InputChanges) {
@@ -81,13 +85,16 @@ abstract class ScriptMetadataTask : DefaultTask() {
 
         val context = loadContext()
         val lines: MutableList<String>
+        val wildcards: MutableList<String>
         if (!inputChanges.isIncremental) {
             // Clean output for non-incremental runs
             scriptsFile.delete()
             logger.info("Non-incremental run: analyzing all files")
             lines = mutableListOf()
+            wildcards = mutableListOf()
         } else {
             lines = if (scriptsFile.exists()) scriptsFile.readLines().toMutableList() else mutableListOf()
+            wildcards = if (wildcardsFile.exists()) wildcardsFile.readLines().toMutableList() else mutableListOf()
         }
         val disposable = Disposer.newDisposable()
         val environment = createKotlinEnvironment(disposable)
@@ -100,6 +107,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
             val file = change.file
             if (change.changeType == ChangeType.REMOVED) {
                 removeName(lines, file.nameWithoutExtension)
+                removeName(wildcards, file.nameWithoutExtension)
                 continue
             }
             if (!file.isFile || !file.name.endsWith(".kt")) {
@@ -119,6 +127,9 @@ abstract class ScriptMetadataTask : DefaultTask() {
                     if (!lines.removeIf { it.endsWith("$packageName.$name") }) {
                         removeName(lines, name)
                     }
+                    if (!wildcards.removeIf { it.endsWith("$packageName.$name") }) {
+                        removeName(wildcards, name)
+                    }
                 }
             }
             if (change.changeType == ChangeType.MODIFIED || change.changeType == ChangeType.ADDED) {
@@ -132,6 +143,49 @@ abstract class ScriptMetadataTask : DefaultTask() {
         }
 
         for ((ktClass, packagePath) in scriptClasses) {
+            for (declaration in ktClass.declarations) {
+                if (declaration !is KtClassInitializer) {
+                    continue
+                }
+                for (child in declaration.children) {
+                    if (child !is KtBlockExpression) {
+                        continue
+                    }
+                    for (expression in child.children) {
+                        if (expression !is KtCallExpression) continue
+                        val methodName = expression.calleeExpression?.text ?: return
+                        val info = methods[methodName] ?: continue
+                        var index = 0
+                        for (arg in expression.valueArguments) {
+                            if (arg is KtLambdaArgument) {
+                                continue
+                            }
+                            val name = arg.getArgumentName()?.asName?.asString()
+                            val value = arg.getArgumentExpression()?.text?.trim('"') ?: ""
+                            if (value.none { it == '*' || it == '#' || it == ',' }) {
+                                continue
+                            }
+                            if (value == "*") { // Match all can be handled separately
+                                continue
+                            }
+                            // Resolve field names
+                            val idx = if (name != null) info.indexOfFirst { it.first == name } else index++
+                            val combined = mutableListOf<String>()
+                            for (part in value.split(",")) {
+                                // Expand wildcards into matches
+                                if (value.contains("*") || value.contains("#")) {
+                                    val type = info[idx].second
+                                    val matches = context.resolve(part, type, "", packagePath, null)
+                                    combined.addAll(matches)
+                                } else {
+                                    combined.add(part)
+                                }
+                            }
+                            wildcards.add("${value}|${combined.joinToString(":")}|$packagePath")
+                        }
+                    }
+                }
+            }
             val methods = ktClass.declarations.filterIsInstance<KtNamedFunction>().filter { it.hasModifier(KtTokens.OVERRIDE_KEYWORD) }
             scripts++
             if (methods.isEmpty()) {
@@ -190,6 +244,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
             }
         }
         scriptsFile.writeText(lines.joinToString("\n"))
+        wildcardsFile.writeText(wildcards.joinToString("\n"))
         disposable.dispose()
         println("Metadata for $scripts scripts, $methodCount methods and $annotationCount annotations collected in ${System.currentTimeMillis() - start} ms")
     }
@@ -212,7 +267,6 @@ abstract class ScriptMetadataTask : DefaultTask() {
     }
 
 
-
     private data class Context(
         val npcIds: Set<String>,
         val itemIds: Set<String>,
@@ -226,13 +280,13 @@ abstract class ScriptMetadataTask : DefaultTask() {
         val objectOptions: Set<String>,
         val interfaceOptions: Set<String>,
     ) {
-        fun resolve(value: String, wildcard: WildcardType, parameters: String, packagePath: String, annotation: KtAnnotationEntry): List<String> {
+        fun resolve(value: String, wildcard: WildcardType, parameters: String, packagePath: String, annotation: KtAnnotationEntry?): List<String> {
             val set = when (wildcard) {
                 is WildcardType.DynamicId -> when (parameters.split(",")[wildcard.index]) {
                     "NPC" -> npcIds
                     "GameObject" -> objectIds
                     "FloorItem" -> itemIds
-                    else -> error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation.text}")
+                    else -> error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation?.text}")
                 }
                 WildcardType.NpcId -> npcIds
                 WildcardType.InterfaceId -> interfaceIds
@@ -244,18 +298,18 @@ abstract class ScriptMetadataTask : DefaultTask() {
                     "NPC" -> npcOptions
                     "GameObject" -> objectOptions
                     "FloorItem" -> itemOptions
-                    else -> error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation.text}")
+                    else -> error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation?.text}")
                 }
                 WildcardType.NpcOption -> npcOptions
                 WildcardType.InterfaceOption -> interfaceOptions
                 WildcardType.FloorItemOption -> floorItemOptions
                 WildcardType.ObjectOption -> objectOptions
                 WildcardType.ItemOption -> itemOptions
-                WildcardType.None -> error("Unexpected wildcard '$value' in $packagePath ${annotation.text}")
+                WildcardType.None -> error("Unexpected wildcard '$value' in $packagePath ${annotation?.text}")
             }
             val matches = set.filter { wildcardEquals(value, it) }
             if (matches.isEmpty()) {
-                error("No matches for wildcard '${value}' in $packagePath ${annotation.text}")
+                error("No matches for wildcard '${value}' in $packagePath ${annotation?.text}")
             }
             return matches
         }
