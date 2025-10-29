@@ -98,6 +98,8 @@ abstract class ScriptMetadataTask : DefaultTask() {
         "npcOperateNpc" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
         "npcOperateObject" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
         "npcOperateFloorItem" to listOf("option" to WildcardType.FloorItemOption, "item" to WildcardType.ItemId),
+        "npcOperateDialogue" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
+        "objectOperateDialogue" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
     )
 
     @TaskAction
