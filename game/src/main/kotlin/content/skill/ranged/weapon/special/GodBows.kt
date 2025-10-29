@@ -37,33 +37,12 @@ class GodBows : Api {
             }
         }
     }
+
     val hitHandler: suspend CombatDamage.(Character) -> Unit = { character ->
         if (special) {
             character.gfx("${weapon.id}_special_impact")
             source.sound("god_bow_special_impact")
         }
-    }
-
-    @Timer("restorative_shot,balanced_shot")
-    override fun start(player: Player, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(6)
-
-    @Timer("restorative_shot,balanced_shot")
-    override fun tick(player: Player, timer: String): Int {
-        val amount = player.restoration
-        if (amount <= 0) {
-            return Timer.CANCEL
-        }
-        val restore = player["restoration_amount", 0]
-        player.restoration -= restore
-        player.levels.restore(Skill.Constitution, restore)
-        player.gfx("saradomin_bow_restoration")
-        return Timer.CONTINUE
-    }
-
-    @Timer("restorative_shot,balanced_shot")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        player.clear("restoration")
-        player.clear("restoration_amount")
     }
 
     init {
@@ -78,5 +57,33 @@ class GodBows : Api {
         combatDamage("guthix_bow", handler = hitHandler)
 
         combatDamage("zamorak_bow", handler = hitHandler)
+
+        timerStart("restorative_shot") { TimeUnit.SECONDS.toTicks(6) }
+        timerStart("balanced_shot") { TimeUnit.SECONDS.toTicks(6) }
+
+        timerTick("restorative_shot", ::restore)
+        timerTick("balanced_shot", ::restore)
+
+        timerStop("restorative_shot") {
+            clear("restoration")
+            clear("restoration_amount")
+        }
+
+        timerStop("balanced_shot") {
+            clear("restoration")
+            clear("restoration_amount")
+        }
+    }
+
+    fun restore(player: Player): Int {
+        val amount = player.restoration
+        if (amount <= 0) {
+            return Timer.CANCEL
+        }
+        val restore = player["restoration_amount", 0]
+        player.restoration -= restore
+        player.levels.restore(Skill.Constitution, restore)
+        player.gfx("saradomin_bow_restoration")
+        return Timer.CONTINUE
     }
 }

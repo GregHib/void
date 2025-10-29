@@ -11,16 +11,13 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Distance.nearestTo
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Rectangle
 
@@ -33,32 +30,30 @@ class Movement : Api {
     val borders = mutableMapOf<Zone, Rectangle>()
     val areas: AreaDefinitions by inject()
 
-    override fun spawn(npc: NPC) {
-        if (Settings["world.npcs.collision", false]) {
-            add(npc)
-        }
-    }
-
-    override fun spawn(player: Player) {
-        if (players.add(player) && Settings["world.players.collision", false]) {
-            add(player)
-        }
-    }
-
-    override fun worldSpawn() {
-        for (border in areas.getTagged("border")) {
-            val passage = border.area as Rectangle
-            for (zone in passage.toZones()) {
-                borders[zone] = passage
+    init {
+        playerSpawn { player ->
+            if (players.add(player) && Settings["world.players.collision", false]) {
+                add(player)
             }
         }
-    }
 
-    override fun move(npc: NPC, from: Tile, to: Tile) {
-        npcs.update(from, to, npc)
-    }
+        npcSpawn { npc ->
+            if (Settings["world.npcs.collision", false]) {
+                add(npc)
+            }
+        }
 
-    init {
+        npcMoved(block = npcs::update)
+
+        worldSpawn {
+            for (border in areas.getTagged("border")) {
+                val passage = border.area as Rectangle
+                for (zone in passage.toZones()) {
+                    borders[zone] = passage
+                }
+            }
+        }
+
         instruction<Walk> { player ->
             if (player.contains("delay")) {
                 return@instruction

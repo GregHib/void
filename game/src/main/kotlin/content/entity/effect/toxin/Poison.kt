@@ -58,20 +58,28 @@ fun Player.antiPoison(duration: Int, timeUnit: TimeUnit) {
 @Script
 class Poison : Api {
 
-    override fun spawn(player: Player) {
-        if (player.poisonCounter != 0) {
-            player.timers.restart("poison")
+    init {
+        playerSpawn { player ->
+            if (player.poisonCounter != 0) {
+                player.timers.restart("poison")
+            }
         }
+
+        npcSpawn { npc ->
+            if (npc.poisonCounter != 0) {
+                npc.softTimers.restart("poison")
+            }
+        }
+
+        timerStart("poison", ::start)
+        npcTimerStart("poison", ::start)
+        timerTick("poison", ::tick)
+        npcTimerTick("poison", ::tick)
+        timerStop("poison", ::stop)
+        npcTimerStop("poison", ::stop)
     }
 
-    override fun spawn(npc: NPC) {
-        if (npc.poisonCounter != 0) {
-            npc.softTimers.restart("poison")
-        }
-    }
-
-    @Timer("poison")
-    override fun start(character: Character, timer: String, restart: Boolean): Int {
+    fun start(character: Character, restart: Boolean): Int {
         if (character.antiPoison || immune(character)) {
             return Timer.CANCEL
         }
@@ -82,8 +90,7 @@ class Poison : Api {
         return 30
     }
 
-    @Timer("poison")
-    override fun tick(character: Character, timer: String): Int {
+    fun tick(character: Character): Int {
         val poisoned = character.poisoned
         character.poisonCounter -= character.poisonCounter.sign
         when {
@@ -99,8 +106,7 @@ class Poison : Api {
         return Timer.CONTINUE
     }
 
-    @Timer("poison")
-    override fun stop(character: Character, timer: String, logout: Boolean) {
+    fun stop(character: Character, logout: Boolean) {
         character.poisonCounter = 0
         character.clear("poison_damage")
         character.clear("poison_source")

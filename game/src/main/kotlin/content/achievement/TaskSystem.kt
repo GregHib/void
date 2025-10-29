@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
@@ -125,14 +124,13 @@ class TaskSystem : Api {
             player["world_map_marker_text_1"] = ""
             player.open("world_map")
         }
-    }
 
-    @Variable("task_pin_slot,task_area,*_task")
-    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        if (key == "task_pin_slot" || key == "task_area") {
-            refreshSlots(player)
-        } else if (key.endsWith("_task") && (to == true || to == "completed")) {
-            completeTask(player, key)
+        variableSet("task_pin_slot,task_area,*_task") { player, key, _, to ->
+            if (key == "task_pin_slot" || key == "task_area") {
+                refreshSlots(player)
+            } else if (key.endsWith("_task") && (to == true || to == "completed")) {
+                completeTask(player, key)
+            }
         }
     }
 

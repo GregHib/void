@@ -229,7 +229,7 @@ internal class LendTest : WorldTest() {
 
     private fun login(lender: Player) {
         players.add(lender)
-        Spawn.spawn(lender)
+        Spawn.player(lender)
     }
 
     private fun logout(borrower: Player) {

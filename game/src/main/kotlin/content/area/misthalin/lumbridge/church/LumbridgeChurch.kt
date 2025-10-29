@@ -42,6 +42,11 @@ class LumbridgeChurch : Api {
     val ghostSpawn = Tile(3250, 3195)
 
     init {
+        playerSpawn { player ->
+            player.sendVariable("rocks_restless_ghost")
+            player.sendVariable("restless_ghost_coffin")
+        }
+
         objectOperate("Play", "lumbridge_organ") {
             player.anim("play_organ")
             player.midi("church_organ")
@@ -105,11 +110,6 @@ class LumbridgeChurch : Api {
                 spawnGhost()
             }
         }
-    }
-
-    override fun spawn(player: Player) {
-        player.sendVariable("rocks_restless_ghost")
-        player.sendVariable("restless_ghost_coffin")
     }
 
     suspend fun Interaction<Player>.returnSkull() {

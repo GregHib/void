@@ -27,9 +27,9 @@ open class Variables(
         // Don't check if default or not as values must be set.
         data(key)[key] = value
         if (events is Player) {
-            VariableSet.variableSet(events as Player, key, null, value)
+            VariableSet.set(events as Player, key, null, value)
         } else if (events is NPC) {
-            VariableSet.variableSet(events as NPC, key, null, value)
+            VariableSet.set(events as NPC, key, null, value)
         }
         return value
     }
@@ -49,9 +49,9 @@ open class Variables(
             send(key)
         }
         if (events is Player) {
-            VariableSet.variableSet(events as Player, key, previous, value)
+            VariableSet.set(events as Player, key, previous, value)
         } else if (events is NPC) {
-            VariableSet.variableSet(events as NPC, key, previous, value)
+            VariableSet.set(events as NPC, key, previous, value)
         }
     }
 
@@ -62,9 +62,9 @@ open class Variables(
         }
         val previous = removed ?: return null
         if (events is Player) {
-            VariableSet.variableSet(events as Player, key, previous, null)
+            VariableSet.set(events as Player, key, previous, null)
         } else if (events is NPC) {
-            VariableSet.variableSet(events as NPC, key, previous, null)
+            VariableSet.set(events as NPC, key, previous, null)
         }
         return removed
     }

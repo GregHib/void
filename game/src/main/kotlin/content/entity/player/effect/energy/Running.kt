@@ -15,11 +15,11 @@ import world.gregs.voidps.engine.event.Script
 @Script
 class Running : Api {
 
-    override fun spawn(player: Player) {
-        player.sendVariable("movement")
-    }
-
     init {
+        playerSpawn { player ->
+            player.sendVariable("movement")
+        }
+
         interfaceOpen("energy_orb") { player ->
             player.sendRunEnergy(player.energyPercent())
         }

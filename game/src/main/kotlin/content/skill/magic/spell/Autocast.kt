@@ -4,9 +4,7 @@ import content.skill.melee.weapon.attackRange
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventoryChanged
@@ -17,14 +15,13 @@ class Autocast : Api {
 
     val interfaceDefinitions: InterfaceDefinitions by inject()
 
-    @Variable("autocast")
-    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        if (to == null) {
-            player.clear("autocast_spell")
-        }
-    }
-
     init {
+        variableSet("autocast") { player, _, _, to ->
+            if (to == null) {
+                player.clear("autocast_spell")
+            }
+        }
+
         interfaceOption("Autocast", id = "*_spellbook") {
             toggle()
         }

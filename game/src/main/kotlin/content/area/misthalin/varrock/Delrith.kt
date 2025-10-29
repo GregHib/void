@@ -21,6 +21,7 @@ import content.quest.questCompleted
 import content.quest.startCutscene
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
@@ -29,16 +30,13 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.SkillId
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.playerDespawn
@@ -75,16 +73,16 @@ class Delrith : Api {
 
     val words = listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo")
 
-    override fun move(player: Player, from: Tile, to: Tile) {
-        if (exitArea(player, to)) {
-            val cutscene: Cutscene = player.remove("demon_slayer_cutscene") ?: return
-            Events.events.launch {
-                cutscene.end()
+    init {
+        moved { player, _ ->
+            if (exitArea(player, player.tile)) {
+                val cutscene: Cutscene = player.remove("demon_slayer_cutscene") ?: return@moved
+                Events.events.launch {
+                    cutscene.end()
+                }
             }
         }
-    }
 
-    init {
         enterArea("demon_slayer_stone_circle") {
             if (!player.questCompleted("demon_slayer") && player["demon_slayer_silverlight", false] && !player.hasClock("demon_slayer_instance_exit")) {
                 cutscene()
@@ -100,7 +98,7 @@ class Delrith : Api {
             if (target is NPC && target.id == "delrith" && target.transform == "delrith_weakened") {
                 cancel()
                 player.strongQueue("banish_delrith", 1) {
-                    player.mode = Interact(player, target, NPCOption(player, target, target.def, "Banish"))
+                    player.interactNpc(target, "Banish")
                 }
             }
         }
@@ -155,10 +153,11 @@ class Delrith : Api {
                 cancel()
             }
         }
+
+        npcLevelChanged(Skill.Constitution, "delrith", ::weaken)
     }
 
-    @SkillId(Skill.Constitution, "delrith")
-    override fun levelChanged(npc: NPC, skill: Skill, from: Int, to: Int) {
+    fun weaken(npc: NPC, skill: Skill, from: Int, to: Int) {
         if (to > 0) {
             return
         }

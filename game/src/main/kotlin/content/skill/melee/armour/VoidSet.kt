@@ -19,15 +19,15 @@ class VoidSet : Api {
         EquipSlot.Hands.index,
     )
 
-    override fun spawn(player: Player) {
-        if (player.hasFullSet("")) {
-            player["void_set_effect"] = true
-        } else if (player.hasFullSet("elite_")) {
-            player["elite_void_set_effect"] = true
-        }
-    }
-
     init {
+        playerSpawn { player ->
+            if (player.hasFullSet("")) {
+                player["void_set_effect"] = true
+            } else if (player.hasFullSet("elite_")) {
+                player["elite_void_set_effect"] = true
+            }
+        }
+
         itemRemoved("void_*", slots, "worn_equipment") { player ->
             player.clear("void_set_effect")
             player.clear("elite_void_set_effect")

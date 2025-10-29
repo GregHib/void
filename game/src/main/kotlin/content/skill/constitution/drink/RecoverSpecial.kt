@@ -5,28 +5,11 @@ import content.entity.player.combat.special.specialAttackEnergy
 import content.skill.constitution.canConsume
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 
 @Script
 class RecoverSpecial : Api {
-
-    @Timer("recover_special")
-    override fun start(player: Player, timer: String, restart: Boolean): Int = 10
-
-    @Timer("recover_special")
-    override fun tick(player: Player, timer: String): Int {
-        if (player.dec("recover_special_delay") <= 0) {
-            return Timer.CANCEL
-        }
-        return Timer.CONTINUE
-    }
-
-    @Timer("recover_special")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        player.clear("recover_special_delay")
-    }
 
     init {
         canConsume("recover_special*") { player ->
@@ -38,5 +21,9 @@ class RecoverSpecial : Api {
                 cancel()
             }
         }
+
+        timerStart("recover_special") { 10 }
+        timerTick("recover_special") { if (dec("recover_special_delay") <= 0) Timer.CANCEL else Timer.CONTINUE }
+        timerStop("recover_special") { clear("recover_special_delay") }
     }
 }

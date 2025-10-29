@@ -35,19 +35,19 @@ class ClanChat : Api {
 
     val accountDefinitions: AccountDefinitions by inject()
 
-    override fun spawn(player: Player) {
-        val current = player["clan_chat", ""]
-        if (current.isNotEmpty()) {
-            val account = accountDefinitions.getByAccount(current)
-            joinClan(player, account?.displayName ?: "")
-        }
-        val ownClan = accounts.clan(player.name.lowercase()) ?: return
-        player.ownClan = ownClan
-        ownClan.friends = player.friends
-        ownClan.ignores = player.ignores
-    }
-
     init {
+        playerSpawn { player ->
+            val current = player["clan_chat", ""]
+            if (current.isNotEmpty()) {
+                val account = accountDefinitions.getByAccount(current)
+                joinClan(player, account?.displayName ?: "")
+            }
+            val ownClan = accounts.clan(player.name.lowercase()) ?: return@playerSpawn
+            player.ownClan = ownClan
+            ownClan.friends = player.friends
+            ownClan.ignores = player.ignores
+        }
+
         playerDespawn { player ->
             val clan = player.clan ?: return@playerDespawn
             clan.members.remove(player)

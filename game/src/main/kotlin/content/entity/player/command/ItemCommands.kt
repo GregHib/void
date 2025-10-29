@@ -35,17 +35,17 @@ class ItemCommands : Api {
 
     val alternativeNames = Object2ObjectOpenHashMap<String, String>()
 
-    override fun worldSpawn() {
-        for (id in 0 until definitions.size) {
-            val definition = definitions.get(id)
-            val list = (definition.extras as? MutableMap<String, Any>)?.remove("aka") as? List<String> ?: continue
-            for (name in list) {
-                alternativeNames[name] = definition.stringId
+    init {
+        worldSpawn {
+            for (id in 0 until definitions.size) {
+                val definition = definitions.get(id)
+                val list = (definition.extras as? MutableMap<String, Any>)?.remove("aka") as? List<String> ?: continue
+                for (name in list) {
+                    alternativeNames[name] = definition.stringId
+                }
             }
         }
-    }
 
-    init {
         adminCommand(
             "item",
             stringArg("item-id", autofill = itemDefinitions.ids.keys),

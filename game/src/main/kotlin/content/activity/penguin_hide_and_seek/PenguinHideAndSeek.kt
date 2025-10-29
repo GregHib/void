@@ -117,11 +117,13 @@ class PenguinHideAndSeek : Api {
 
         adminCommand("respawn_penguins", desc = "Respawn hide and seek penguins") { player, _ ->
             clear()
-            worldSpawn(configFiles())
+            load(configFiles())
             sendBear()
         }
         adminCommand("clear_penguins", desc = "Remove all hide and seek penguins") { player, _ -> clear() }
         modCommand("penguins", stringArg("player-name", autofill = accounts.displayNames.keys, optional = true), desc = "Get info about a hide and seek penguin", handler = ::listPenguins)
+        worldSpawn(::load)
+        playerSpawn(::sendBear)
     }
 
     private fun updateWeek(player: Player) {
@@ -133,7 +135,7 @@ class PenguinHideAndSeek : Api {
         player["penguin_week"] = week
     }
 
-    override fun worldSpawn(files: ConfigFiles) {
+    fun load(files: ConfigFiles) {
         if (!Settings["events.penguinHideAndSeek.enabled", false]) {
             return
         }
@@ -162,18 +164,18 @@ class PenguinHideAndSeek : Api {
         World.clearQueue("penguins_event_timer")
         World.queue("penguins_event_timer", ticksUntil(day)) {
             clear()
-            worldSpawn(files)
+            load(files)
             sendBear()
         }
     }
 
-    override fun spawn(player: Player) {
+    fun sendBear(player: Player) {
         player["polar_bear_well"] = if (Settings["quests.requirements.skipMissing", false] || player.questCompleted("hunt_for_red_rektuber")) bear else "hidden"
     }
 
     fun sendBear() {
         for (player in players) {
-            spawn(player)
+            sendBear(player)
         }
     }
 

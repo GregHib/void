@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.SkillId
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -28,10 +27,11 @@ class Lizard : Api {
         itemOnNPCOperate("ice_cooler", "small_lizard*", iceCooler)
 
         itemOnNPCOperate("ice_cooler", "desert_lizard*", iceCooler)
+
+        npcLevelChanged(Skill.Constitution, "*lizard", ::killingBlow)
     }
 
-    @SkillId(Skill.Constitution, "*lizard")
-    override fun levelChanged(npc: NPC, skill: Skill, from: Int, to: Int) {
+    fun killingBlow(npc: NPC, skill: Skill, from: Int, to: Int) {
         if (to > 10) {
             return
         }

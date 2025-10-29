@@ -8,7 +8,6 @@ import content.entity.sound.areaSound
 import content.entity.sound.sound
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -29,20 +28,19 @@ class CommanderZilyana : Api {
     var bree: NPC? = null
     var growler: NPC? = null
 
-    @Id("commander_zilyana")
-    override fun spawn(npc: NPC) {
-        if (starlight == null) {
-            starlight = npcs.add("starlight", Tile(2903, 5260))
-        }
-        if (bree == null) {
-            bree = npcs.add("bree", Tile(2902, 5270))
-        }
-        if (growler == null) {
-            growler = npcs.add("growler", Tile(2898, 5262))
-        }
-    }
-
     init {
+        npcSpawn("commander_zilyana") {
+            if (starlight == null) {
+                starlight = npcs.add("starlight", Tile(2903, 5260))
+            }
+            if (bree == null) {
+                bree = npcs.add("bree", Tile(2902, 5270))
+            }
+            if (growler == null) {
+                growler = npcs.add("growler", Tile(2898, 5262))
+            }
+        }
+
         npcCombatSwing("commander_zilyana") { npc ->
             when (random.nextInt(2)) {
                 0 -> { // Magic

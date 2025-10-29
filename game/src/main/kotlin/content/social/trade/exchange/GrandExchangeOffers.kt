@@ -39,11 +39,9 @@ class GrandExchangeOffers : Api {
     val accountDefinitions: AccountDefinitions by inject()
     val logger = InlineLogger()
 
-    override fun spawn(player: Player) {
-        exchange.login(player)
-    }
-
     init {
+        playerSpawn(exchange::login)
+
         interfaceOpen("grand_exchange") { player ->
             player.sendVariable("grand_exchange_ranges")
             player["grand_exchange_page"] = "offers"

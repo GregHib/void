@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.Timer
-import world.gregs.voidps.type.Tile
 
 const val MAX_RUN_ENERGY = 10000
 
@@ -28,30 +27,31 @@ var Player.runEnergy: Int
 @Script
 class Energy : Api {
 
-    override fun spawn(player: Player) {
-        if (player.runEnergy < MAX_RUN_ENERGY) {
-            player.softTimers.start("energy_restore")
+    init {
+        playerSpawn { player ->
+            if (player.runEnergy < MAX_RUN_ENERGY) {
+                player.softTimers.start("energy_restore")
+            }
         }
-    }
 
-    override fun move(player: Player, from: Tile, to: Tile) {
-        if (player.visuals.runStep == -1 || player["last_energy_drain", -1] == GameLoop.tick || !Settings["players.energy.drain", true]) {
-            return
+        moved { player, _ ->
+            if (player.visuals.runStep == -1 || player["last_energy_drain", -1] == GameLoop.tick || !Settings["players.energy.drain", true]) {
+                return@moved
+            }
+            player["last_energy_drain"] = GameLoop.tick
+            if (player.visuals.runStep != -1) {
+                player.runEnergy -= getDrainAmount(player)
+                walkWhenOutOfEnergy(player)
+            }
         }
-        player["last_energy_drain"] = GameLoop.tick
-        if (player.visuals.runStep != -1) {
-            player.runEnergy -= getDrainAmount(player)
-            walkWhenOutOfEnergy(player)
-        }
-    }
 
-    @Timer("energy_restore")
-    override fun tick(player: Player, timer: String): Int {
-        if (player.runEnergy >= MAX_RUN_ENERGY) {
-            return Timer.CANCEL
+        timerTick("energy_restore") {
+            if (runEnergy >= MAX_RUN_ENERGY) {
+                return@timerTick Timer.CANCEL
+            }
+            runEnergy += getRestoreAmount(this)
+            return@timerTick Timer.CONTINUE
         }
-        player.runEnergy += getRestoreAmount(player)
-        return Timer.CONTINUE
     }
 
     fun getRestoreAmount(player: Player): Int {

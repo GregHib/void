@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -40,6 +39,10 @@ class MakeoverMage : Api {
     val npcs: NPCs by inject()
 
     init {
+        npcSpawn("makeover_mage*") { npc ->
+            npc.softTimers.start("makeover")
+        }
+
         npcOperate("Talk-to", "makeover_mage*") {
             npc<Pleased>("Hello there! I am known as the Makeover Mage! I have spent many years researching magicks that can change your physical appearance.")
             npc<Pleased>("I call it a 'makeover'. Would you like me to perform my magicks on you?")
@@ -117,13 +120,12 @@ class MakeoverMage : Api {
             }
             player<Quiz>("Uh, thanks, I guess.")
         }
+
+        npcTimerStart("makeover") { TimeUnit.SECONDS.toTicks(250) }
+        npcTimerTick("makeover", ::makeover)
     }
 
-    @Timer("makeover")
-    override fun start(npc: NPC, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(250)
-
-    @Timer("makeover")
-    override fun tick(npc: NPC, timer: String): Int {
+    fun makeover(npc: NPC): Int {
         val current: String = npc["transform_id", "makeover_mage_male"]
         val toFemale = current == "makeover_mage_male"
         npc.transform(if (toFemale) "makeover_mage_female" else "makeover_mage_male")
@@ -133,11 +135,6 @@ class MakeoverMage : Api {
             npc.say(if (toFemale) "Ooh!" else "Aha!")
         }
         return Timer.CONTINUE
-    }
-
-    @Id("makeover_mage*")
-    override fun spawn(npc: NPC) {
-        npc.softTimers.start("makeover")
     }
 
     suspend fun ChoiceBuilder<NPCOption<Player>>.more(): Unit = option<Quiz>("Tell me more about this 'makeover'.") {

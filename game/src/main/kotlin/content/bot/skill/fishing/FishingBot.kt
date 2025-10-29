@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.data.definition.data.Catch
 import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.distanceTo
@@ -29,7 +28,6 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.network.client.instruction.InteractNPC
 
 @Script
@@ -39,37 +37,38 @@ class FishingBot : Api {
     val tasks: TaskManager by inject()
     val gear: GearDefinitions by inject()
 
-    override fun worldSpawn() {
-        for (area in areas.getTagged("fish")) {
-            val spaces: Int = area["spaces", 1]
-            val type: String = area.getOrNull("type") ?: continue
-            val sets = gear.get("fishing").filter { it["spot", ""] == type }
-            for (set in sets) {
-                val option = set["action", ""]
-                val bait = set.inventory.firstOrNull { it.first().amount > 1 }?.first()?.id ?: "none"
-                val task = Task(
-                    name = "fish ${type.plural(2)} at ${area.name}".toLowerSpaceCase(),
-                    block = {
-                        while (levels.getMax(Skill.Fishing) < set.levels.last + 1) {
-                            bot.fish(area, option, bait, set)
-                        }
-                    },
-                    area = area.area,
-                    spaces = spaces,
-                    requirements = listOf(
-                        { levels.getMax(Skill.Fishing) in set.levels },
-                        { bot.hasExactGear(set) || bot.hasCoins(2000) },
-                    ),
-                )
-                tasks.register(task)
+    init {
+        worldSpawn {
+            for (area in areas.getTagged("fish")) {
+                val spaces: Int = area["spaces", 1]
+                val type: String = area.getOrNull("type") ?: continue
+                val sets = gear.get("fishing").filter { it["spot", ""] == type }
+                for (set in sets) {
+                    val option = set["action", ""]
+                    val bait = set.inventory.firstOrNull { it.first().amount > 1 }?.first()?.id ?: "none"
+                    val task = Task(
+                        name = "fish ${type.plural(2)} at ${area.name}".toLowerSpaceCase(),
+                        block = {
+                            while (levels.getMax(Skill.Fishing) < set.levels.last + 1) {
+                                bot.fish(area, option, bait, set)
+                            }
+                        },
+                        area = area.area,
+                        spaces = spaces,
+                        requirements = listOf(
+                            { levels.getMax(Skill.Fishing) in set.levels },
+                            { bot.hasExactGear(set) || bot.hasCoins(2000) },
+                        ),
+                    )
+                    tasks.register(task)
+                }
             }
         }
-    }
 
-    @Timer("fishing")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        if (player.isBot) {
-            player.bot.resume(timer)
+        timerStop("fishing") {
+            if (isBot) {
+                bot.resume("fishing")
+            }
         }
     }
 

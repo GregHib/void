@@ -4,11 +4,10 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.quest
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.event.Script
 
 @Script
@@ -54,6 +53,6 @@ class Haakon {
 
     suspend fun NPCOption<Player>.attack() {
         npc<Mad>("Make peace with your god, outerlander!")
-        target.mode = Interact(target, player, PlayerOption(target, player, "Attack"))
+        target.interactPlayer(player, "Attack")
     }
 }

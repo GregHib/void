@@ -9,7 +9,6 @@ import content.entity.sound.areaSound
 import content.entity.sound.sound
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -30,20 +29,19 @@ class GeneralGraardor : Api {
     var steelwill: NPC? = null
     var grimspike: NPC? = null
 
-    @Id("general_graardor")
-    override fun spawn(npc: NPC) {
-        if (strongstack == null) {
-            strongstack = npcs.add("sergeant_strongstack", Tile(2866, 5358, 2))
-        }
-        if (steelwill == null) {
-            steelwill = npcs.add("sergeant_steelwill", Tile(2872, 5352, 2))
-        }
-        if (grimspike == null) {
-            grimspike = npcs.add("sergeant_grimspike", Tile(2868, 5362, 2))
-        }
-    }
-
     init {
+        npcSpawn("general_graardor") {
+            if (strongstack == null) {
+                strongstack = npcs.add("sergeant_strongstack", Tile(2866, 5358, 2))
+            }
+            if (steelwill == null) {
+                steelwill = npcs.add("sergeant_steelwill", Tile(2872, 5352, 2))
+            }
+            if (grimspike == null) {
+                grimspike = npcs.add("sergeant_grimspike", Tile(2868, 5362, 2))
+            }
+        }
+
         npcCombatSwing("general_graardor") { npc ->
             when (random.nextInt(2)) {
                 0 -> { // Range

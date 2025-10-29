@@ -1,32 +1,47 @@
 package world.gregs.voidps.engine.entity.character.mode.move
 
-import world.gregs.voidps.engine.dispatch.ListDispatcher
-import world.gregs.voidps.engine.dispatch.MapDispatcher
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.type.Tile
 
 /**
- * Entity moved between [from] and [to] tiles
+ * Entity moved between [from] and their current tile
  */
 interface Moved {
-    fun move(player: Player, from: Tile, to: Tile) {}
-    fun move(npc: NPC, from: Tile, to: Tile) {}
+    fun moved(block: (player: Player, from: Tile) -> Unit) {
+        playerMoved.add(block)
+    }
 
-    companion object : Moved {
-        var playerDispatcher = ListDispatcher<Moved>()
-        var npcDispatcher = MapDispatcher<Moved>("@Id", "")
+    fun npcMoved(id: String = "*", block: (npc: NPC, from: Tile) -> Unit) {
+        for (match in Wildcards.find(id)) {
+            npcMoved.getOrPut(match) { mutableListOf() }.add(block)
+        }
+    }
 
-        override fun move(player: Player, from: Tile, to: Tile) {
-            for (instance in playerDispatcher.instances) {
-                instance.move(player, from, to)
+    companion object {
+        val playerMoved = mutableListOf<(Player, Tile) -> Unit>()
+        val npcMoved = mutableMapOf<String, MutableList<(NPC, Tile) -> Unit>>()
+
+        fun player(player: Player, from: Tile) {
+            for (block in playerMoved) {
+                block(player, from)
             }
         }
 
-        override fun move(npc: NPC, from: Tile, to: Tile) {
-            npcDispatcher.forEach(npc.id, "*") { instance ->
-                instance.move(npc, from, to)
+        fun npc(npc: NPC, from: Tile) {
+            for (block in npcMoved[npc.id] ?: emptyList()) {
+                block(npc, from)
+            }
+            for (block in npcMoved["*"] ?: return) {
+                block(npc, from)
             }
         }
+
+        fun clear() {
+            playerMoved.clear()
+            npcMoved.clear()
+        }
+
     }
 }

@@ -14,26 +14,10 @@ import java.util.concurrent.TimeUnit
 @Script
 class Excalibur : Api {
 
-    @Timer("sanctuary")
-    override fun start(player: Player, timer: String, restart: Boolean): Int = 4
-
-    @Timer("sanctuary")
-    override fun tick(player: Player, timer: String): Int {
-        val cycle = player["sanctuary", 1] - 1
-        player["sanctuary"] = cycle
-        if (cycle <= 0) {
-            return Timer.CANCEL
-        }
-        player.levels.restore(Skill.Constitution, 40)
-        return Timer.CONTINUE
-    }
-
-    @Timer("sanctuary")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        player.clear("sanctuary")
-    }
-
     init {
+        timerStart("sanctuary") { 4 }
+        timerTick("sanctuary", ::tick)
+        timerStop("sanctuary") { clear("sanctuary") }
         specialAttackPrepare("sanctuary") { player ->
             cancel()
             if (!SpecialAttack.drain(player)) {
@@ -51,6 +35,16 @@ class Excalibur : Api {
                 player.levels.boost(Skill.Defence, amount = 8)
             }
         }
+    }
+
+    fun tick(player: Player): Int {
+        val cycle = player["sanctuary", 1] - 1
+        player["sanctuary"] = cycle
+        if (cycle <= 0) {
+            return Timer.CANCEL
+        }
+        player.levels.restore(Skill.Constitution, 40)
+        return Timer.CONTINUE
     }
 
     fun seersVillageEliteTasks(player: Player) = false

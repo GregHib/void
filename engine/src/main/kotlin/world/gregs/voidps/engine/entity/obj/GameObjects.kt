@@ -88,7 +88,7 @@ class GameObjects(
                 collisionAdd.modify(obj)
             }
             size++
-            Spawn.spawn(obj)
+            Spawn.gameObject(obj)
         }
     }
 

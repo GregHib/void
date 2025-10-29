@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.SkillId
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -14,25 +13,25 @@ import java.util.concurrent.TimeUnit
 @Script
 class HitpointRestoration : Api {
 
-    @SkillId(Skill.Constitution)
-    override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
-        if (to <= 0 || to >= player.levels.getMax(skill) || player.softTimers.contains("restore_hitpoints")) {
-            return
+    init {
+        playerSpawn { player ->
+            if (player.levels.getOffset(Skill.Constitution) < 0) {
+                player.softTimers.start("restore_hitpoints")
+            }
         }
-        player.softTimers.start("restore_hitpoints")
-    }
 
-    override fun spawn(player: Player) {
-        if (player.levels.getOffset(Skill.Constitution) < 0) {
+        levelChanged(Skill.Constitution) { player, skill, from, to ->
+            if (to <= 0 || to >= player.levels.getMax(skill) || player.softTimers.contains("restore_hitpoints")) {
+                return@levelChanged
+            }
             player.softTimers.start("restore_hitpoints")
         }
+
+        timerStart("restore_hitpoints") { TimeUnit.SECONDS.toTicks(6) }
+        timerTick("restore_hitpoints", ::fullyRestored)
     }
 
-    @Timer("restore_hitpoints")
-    override fun start(player: Player, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(6)
-
-    @Timer("restore_hitpoints")
-    override fun tick(player: Player, timer: String): Int {
+    fun fullyRestored(player: Player): Int {
         if (player.levels.get(Skill.Constitution) == 0) {
             return Timer.CANCEL
         }

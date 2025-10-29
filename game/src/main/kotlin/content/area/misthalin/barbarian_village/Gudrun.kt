@@ -8,13 +8,12 @@ import content.quest.quest
 import content.quest.questComplete
 import content.quest.startCutscene
 import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -246,7 +245,7 @@ class Gudrun {
         player["gudrun_after_cutscene"] = "shown"
         val gudrunAfter = npcs[Tile(3082, 3417)].firstOrNull { it.id == "gudrun_after_cutscene" }
         if (gudrunAfter != null) {
-            player.mode = Interact(player, gudrunAfter, NPCOption(player, gudrunAfter, gudrunAfter.def, "Talk-to"))
+            player.interactNpc(gudrunAfter, "Talk-to")
         } else {
             gunnarsGround()
         }

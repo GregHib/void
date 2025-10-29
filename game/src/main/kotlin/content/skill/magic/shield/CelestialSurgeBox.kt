@@ -24,16 +24,16 @@ import kotlin.math.min
 @Script
 class CelestialSurgeBox : Api {
 
-    override fun spawn(player: Player) {
-        val box = player.equipped(EquipSlot.Shield).id
-        if (box.startsWith("celestial_surgebox")) {
-            updateCharges(player, EquipSlot.Shield.index, box != "celestial_surgebox")
-        } else {
-            setCharges(player, 0, box != "celestial_surgebox")
-        }
-    }
-
     init {
+        playerSpawn { player ->
+            val box = player.equipped(EquipSlot.Shield).id
+            if (box.startsWith("celestial_surgebox")) {
+                updateCharges(player, EquipSlot.Shield.index, box != "celestial_surgebox")
+            } else {
+                setCharges(player, 0, box != "celestial_surgebox")
+            }
+        }
+
         inventoryItem("Check*", "celestial_surgebox*", "inventory") {
             val charges = player.inventory.charges(player, slot)
             val dungeoneering = if (item.id == "celestial_surgebox") "" else "_dungeoneering"

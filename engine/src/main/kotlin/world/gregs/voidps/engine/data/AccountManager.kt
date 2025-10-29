@@ -92,7 +92,7 @@ class AccountManager(
         }
         player.emit(RegionLoad)
         player.open(player.interfaces.gameFrame)
-        Spawn.spawn(player)
+        Spawn.player(player)
         for (def in areaDefinitions.get(player.tile.zone)) {
             if (player.tile in def.area) {
                 player.emit(AreaEntered(player, def.name, def.tags, def.area))

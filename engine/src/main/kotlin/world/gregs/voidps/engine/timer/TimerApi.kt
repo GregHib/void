@@ -1,59 +1,68 @@
 package world.gregs.voidps.engine.timer
 
-import world.gregs.voidps.engine.dispatch.CombinedDispatcher
-import world.gregs.voidps.engine.dispatch.MapDispatcher
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
 interface TimerApi {
     /**
-     * [timer] started for [player]
+     * [timer] started for a player
      * @return ticks until start or [Timer.CANCEL]
      */
-    fun start(player: Player, timer: String, restart: Boolean): Int = start(player as Character, timer, restart)
+    fun timerStart(timer: String, block: Player.(restart: Boolean) -> Int) {
+        playerStartBlocks.getOrPut(timer) { mutableListOf() }.add(block)
+    }
 
     /**
-     * [timer] started for [npc]
-     * @return ticks until start or [Timer.CANCEL]
+     * [timer] ticked for a player
+     * @return [Timer.CONTINUE] - to continue the timer with the same interval
+     * @return [Timer.CANCEL] - to cancel the timer
+     * @return interval - to change the timers interval until the next tick
      */
-    fun start(npc: NPC, timer: String, restart: Boolean): Int = start(npc as Character, timer, restart)
+    fun timerTick(timer: String, block: Player.() -> Int) {
+        playerTickBlocks.getOrPut(timer) { mutableListOf() }.add(block)
+    }
 
     /**
-     * [timer] started for any [character]
+     * [timer] stopped for a player
+     */
+    fun timerStop(timer: String, block: Player.(logout: Boolean) -> Unit) {
+        playerStopBlocks.getOrPut(timer) { mutableListOf() }.add(block)
+    }
+
+
+    /**
+     * [timer] started for an npc
      * @return ticks until start or [Timer.CANCEL]
      */
-    fun start(character: Character, timer: String, restart: Boolean): Int = 0
+    fun npcTimerStart(timer: String, block: NPC.(restart: Boolean) -> Int) {
+        npcStartBlocks.getOrPut(timer) { mutableListOf() }.add(block)
+    }
+
+    /**
+     * [timer] ticked for an npc
+     * @return [Timer.CONTINUE] - to continue the timer with the same interval
+     * @return [Timer.CANCEL] - to cancel the timer
+     * @return interval - to change the timers interval until the next tick
+     */
+    fun npcTimerTick(timer: String, block: NPC.() -> Int) {
+        npcTickBlocks.getOrPut(timer) { mutableListOf() }.add(block)
+    }
+
+    /**
+     * [timer] stopped for an npc
+     */
+    fun npcTimerStop(timer: String, block: NPC.(death: Boolean) -> Unit) {
+        npcStopBlocks.getOrPut(timer) { mutableListOf() }.add(block)
+    }
+
 
     /**
      * World [timer] started
      * @return ticks until start or [Timer.CANCEL]
      */
-    fun start(timer: String): Int = 0
-
-    /**
-     * [timer] ticked for [player]
-     * @return [Timer.CONTINUE] - to continue the timer with the same interval
-     * @return [Timer.CANCEL] - to cancel the timer
-     * @return interval - to change the timers interval until the next tick
-     */
-    fun tick(player: Player, timer: String): Int = tick(player as Character, timer)
-
-    /**
-     * [timer] ticked for [npc]
-     * @return [Timer.CONTINUE] - to continue the timer with the same interval
-     * @return [Timer.CANCEL] - to cancel the timer
-     * @return interval - to change the timers interval until the next tick
-     */
-    fun tick(npc: NPC, timer: String): Int = tick(npc as Character, timer)
-
-    /**
-     * [timer] ticked for any [character]
-     * @return [Timer.CONTINUE] - to continue the timer with the same interval
-     * @return [Timer.CANCEL] - to cancel the timer
-     * @return interval - to change the timers interval until the next tick
-     */
-    fun tick(character: Character, timer: String): Int = Timer.CONTINUE
+    fun worldTimerStart(timer: String, block: () -> Int) {
+        worldStartBlocks.getOrPut(timer) { mutableListOf() }.add(block)
+    }
 
     /**
      * World [timer] ticked
@@ -61,51 +70,32 @@ interface TimerApi {
      * @return [Timer.CANCEL] - to cancel the timer
      * @return interval - to change the timers interval until the next tick
      */
-    fun tick(timer: String): Int = Timer.CONTINUE
-
-    /**
-     * [timer] stopped for [player]
-     */
-    fun stop(player: Player, timer: String, logout: Boolean) {
-        stop(player as Character, timer, logout)
+    fun worldTimerTick(timer: String, block: () -> Int) {
+        worldTickBlocks.getOrPut(timer) { mutableListOf() }.add(block)
     }
-
-    /**
-     * [timer] stopped for [npc]
-     */
-    fun stop(npc: NPC, timer: String, death: Boolean) {
-        stop(npc as Character, timer, death)
-    }
-
-    /**
-     * [timer] stopped for any [character]
-     */
-    fun stop(character: Character, timer: String, logout: Boolean) {}
 
     /**
      * World [timer] stopped
      */
-    fun stop(timer: String, shutdown: Boolean) {}
+    fun worldTimerStop(timer: String, block: (shutdown: Boolean) -> Unit) {
+        worldStopBlocks.getOrPut(timer) { mutableListOf() }.add(block)
+    }
 
-    companion object : TimerApi {
-        var playerStartDispatcher = MapDispatcher<TimerApi>("@Timer")
-        var playerTickDispatcher = MapDispatcher<TimerApi>("@Timer")
-        var playerStopDispatcher = MapDispatcher<TimerApi>("@Timer")
-        var npcStartDispatcher = MapDispatcher<TimerApi>("@Timer")
-        var npcTickDispatcher = MapDispatcher<TimerApi>("@Timer")
-        var npcStopDispatcher = MapDispatcher<TimerApi>("@Timer")
-        var worldStartDispatcher = MapDispatcher<TimerApi>("@Timer")
-        var worldTickDispatcher = MapDispatcher<TimerApi>("@Timer")
-        var worldStopDispatcher = MapDispatcher<TimerApi>("@Timer")
+    companion object {
+        val playerStartBlocks = mutableMapOf<String, MutableList<(Player, Boolean) -> Int>>()
+        val playerTickBlocks = mutableMapOf<String, MutableList<(Player) -> Int>>()
+        val playerStopBlocks = mutableMapOf<String, MutableList<(Player, Boolean) -> Unit>>()
+        val npcStartBlocks = mutableMapOf<String, MutableList<(NPC, Boolean) -> Int>>()
+        val npcTickBlocks = mutableMapOf<String, MutableList<(NPC) -> Int>>()
+        val npcStopBlocks = mutableMapOf<String, MutableList<(NPC, Boolean) -> Unit>>()
+        val worldStartBlocks = mutableMapOf<String, MutableList<() -> Int>>()
+        val worldTickBlocks = mutableMapOf<String, MutableList<() -> Int>>()
+        val worldStopBlocks = mutableMapOf<String, MutableList<(Boolean) -> Unit>>()
 
-        val characterStartDispatcher = CombinedDispatcher(playerStartDispatcher, npcStartDispatcher)
-        val characterTickDispatcher = CombinedDispatcher(playerTickDispatcher, npcTickDispatcher)
-        val characterStopDispatcher = CombinedDispatcher(playerStopDispatcher, npcStopDispatcher)
-
-        override fun start(player: Player, timer: String, restart: Boolean): Int {
+        fun start(player: Player, timer: String, restart: Boolean): Int {
             var interval = 0
-            for (instance in playerStartDispatcher.instances[timer] ?: return 0) {
-                val result = instance.start(player, timer, restart)
+            for (instance in playerStartBlocks[timer] ?: return 0) {
+                val result = instance(player, restart)
                 if (result == Timer.CANCEL) {
                     return result
                 }
@@ -116,10 +106,10 @@ interface TimerApi {
             return interval
         }
 
-        override fun start(npc: NPC, timer: String, restart: Boolean): Int {
+        fun start(npc: NPC, timer: String, restart: Boolean): Int {
             var interval = 0
-            for (instance in npcStartDispatcher.instances[timer] ?: return 0) {
-                val result = instance.start(npc, timer, restart)
+            for (instance in npcStartBlocks[timer] ?: return 0) {
+                val result = instance(npc, restart)
                 if (result == Timer.CANCEL) {
                     return result
                 }
@@ -130,10 +120,10 @@ interface TimerApi {
             return interval
         }
 
-        override fun start(timer: String): Int {
+        fun start(timer: String): Int {
             var interval = 0
-            for (instance in worldStartDispatcher.instances[timer] ?: return 0) {
-                val result = instance.start(timer)
+            for (instance in worldStartBlocks[timer] ?: return 0) {
+                val result = instance()
                 if (result == Timer.CANCEL) {
                     return result
                 }
@@ -144,9 +134,9 @@ interface TimerApi {
             return interval
         }
 
-        override fun tick(player: Player, timer: String): Int {
-            for (instance in playerTickDispatcher.instances[timer] ?: return Timer.CONTINUE) {
-                val result = instance.tick(player, timer)
+        fun tick(player: Player, timer: String): Int {
+            for (instance in playerTickBlocks[timer] ?: return Timer.CONTINUE) {
+                val result = instance(player)
                 if (result != Timer.CONTINUE) {
                     return result
                 }
@@ -154,9 +144,9 @@ interface TimerApi {
             return Timer.CONTINUE
         }
 
-        override fun tick(npc: NPC, timer: String): Int {
-            for (instance in npcTickDispatcher.instances[timer] ?: return Timer.CONTINUE) {
-                val result = instance.tick(npc, timer)
+        fun tick(npc: NPC, timer: String): Int {
+            for (instance in npcTickBlocks[timer] ?: return Timer.CONTINUE) {
+                val result = instance(npc)
                 if (result != Timer.CONTINUE) {
                     return result
                 }
@@ -164,9 +154,9 @@ interface TimerApi {
             return Timer.CONTINUE
         }
 
-        override fun tick(timer: String): Int {
-            for (instance in worldTickDispatcher.instances[timer] ?: return Timer.CONTINUE) {
-                val result = instance.tick(timer)
+        fun tick(timer: String): Int {
+            for (instance in worldTickBlocks[timer] ?: return Timer.CONTINUE) {
+                val result = instance()
                 if (result != Timer.CONTINUE) {
                     return result
                 }
@@ -174,22 +164,34 @@ interface TimerApi {
             return Timer.CONTINUE
         }
 
-        override fun stop(player: Player, timer: String, logout: Boolean) {
-            for (instance in playerStopDispatcher.instances[timer] ?: return) {
-                instance.stop(player, timer, logout)
+        fun stop(player: Player, timer: String, logout: Boolean) {
+            for (instance in playerStopBlocks[timer] ?: return) {
+                instance(player, logout)
             }
         }
 
-        override fun stop(npc: NPC, timer: String, death: Boolean) {
-            for (instance in npcStopDispatcher.instances[timer] ?: return) {
-                instance.stop(npc, timer, death)
+        fun stop(npc: NPC, timer: String, death: Boolean) {
+            for (instance in npcStopBlocks[timer] ?: return) {
+                instance(npc, death)
             }
         }
 
-        override fun stop(timer: String, shutdown: Boolean) {
-            for (instance in worldStopDispatcher.instances[timer] ?: return) {
-                instance.stop(timer, shutdown)
+        fun stop(timer: String, shutdown: Boolean) {
+            for (instance in worldStopBlocks[timer] ?: return) {
+                instance(shutdown)
             }
+        }
+
+        fun clear() {
+            playerStartBlocks.clear()
+            playerTickBlocks.clear()
+            playerStopBlocks.clear()
+            npcStartBlocks.clear()
+            npcTickBlocks.clear()
+            npcStopBlocks.clear()
+            worldStartBlocks.clear()
+            worldTickBlocks.clear()
+            worldStopBlocks.clear()
         }
     }
 }

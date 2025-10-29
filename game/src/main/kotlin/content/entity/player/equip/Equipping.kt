@@ -30,11 +30,9 @@ class Equipping : Api {
     val areas: AreaDefinitions by inject()
     val logger = InlineLogger()
 
-    override fun spawn(player: Player) {
-        updateWeaponEmote(player)
-    }
-
     init {
+        playerSpawn(::updateWeaponEmote)
+
         inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
             val def = item.def
             if (!player.hasRequirements(item, true)) {

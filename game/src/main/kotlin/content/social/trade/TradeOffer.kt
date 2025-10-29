@@ -27,11 +27,11 @@ class TradeOffer : Api {
         }
     }
 
-    override fun spawn(player: Player) {
-        player.offer.itemRule = tradeRestriction
-    }
-
     init {
+        playerSpawn { player ->
+            player.offer.itemRule = tradeRestriction
+        }
+
         interfaceOption(component = "offer", id = "trade_side") {
             val amount = when (option) {
                 "Offer" -> 1

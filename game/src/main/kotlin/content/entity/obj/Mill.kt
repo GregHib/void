@@ -8,7 +8,6 @@ import content.quest.quest
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.Script
@@ -17,11 +16,11 @@ import world.gregs.voidps.engine.inv.*
 @Script
 class Mill : Api {
 
-    override fun spawn(player: Player) {
-        player.sendVariable("flour_bin")
-    }
-
     init {
+        playerSpawn { player ->
+            player.sendVariable("flour_bin")
+        }
+
         objectOperate("Operate", "hopper_controls") {
             if (player["flour_bin", 0] == 30) {
                 player.message("The flour bin downstairs is full, I should empty it first.")

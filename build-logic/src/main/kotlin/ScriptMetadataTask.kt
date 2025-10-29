@@ -10,51 +10,33 @@ import org.jetbrains.kotlin.com.intellij.openapi.Disposable
 import org.jetbrains.kotlin.com.intellij.openapi.util.Disposer
 import org.jetbrains.kotlin.com.intellij.psi.PsiManager
 import org.jetbrains.kotlin.config.CompilerConfiguration
-import org.jetbrains.kotlin.lexer.KtTokens
-import org.jetbrains.kotlin.psi.KtAnnotationEntry
-import org.jetbrains.kotlin.psi.KtClass
-import org.jetbrains.kotlin.psi.KtFile
-import org.jetbrains.kotlin.psi.KtNamedFunction
+import org.jetbrains.kotlin.psi.*
 import org.jetbrains.kotlin.psi.psiUtil.collectDescendantsOfType
 import java.io.File
 
 /**
- * Gradle task which incrementally collects annotation info about classes inside a given directory.
+ * Gradle task which incrementally collects method info about script classes inside a given directory.
  * Collects:
  *  - @Script annotations for invocation
- *  - Overridden methods
- *  - Annotations on methods and it's data
- *  - Processes annotation wildcards
+ *  - Parameters of called methods in init {} and their resolved wildcards
  */
 abstract class ScriptMetadataTask : DefaultTask() {
 
     private sealed class WildcardType {
         data object None : WildcardType()
-        data class DynamicId(val index: Int) : WildcardType()
         data object NpcId : WildcardType()
         data object InterfaceId : WildcardType()
         data object ComponentId : WildcardType()
+        data object InterfaceComponentId : WildcardType()
         data object ObjectId : WildcardType()
         data object ItemId : WildcardType()
         data object VariableId : WildcardType()
-        data class DynamicOption(val index: Int) : WildcardType()
         data object NpcOption : WildcardType()
         data object InterfaceOption : WildcardType()
         data object FloorItemOption : WildcardType()
         data object ObjectOption : WildcardType()
         data object ItemOption : WildcardType()
     }
-
-    // List of annotation names and their parameters
-    private val annotations: Map<String, List<Pair<String, WildcardType>>> = mapOf(
-        "Id" to listOf("id" to WildcardType.DynamicId(0)),
-        "SkillId" to listOf("skill" to WildcardType.None, "id" to WildcardType.DynamicId(0)),
-        "Variable" to listOf("key" to WildcardType.VariableId, "id" to WildcardType.DynamicId(0)),
-        "Operate" to listOf("option" to WildcardType.DynamicOption(0), "id" to WildcardType.DynamicId(1)),
-        "Approach" to listOf("option" to WildcardType.DynamicOption(0), "id" to WildcardType.DynamicId(1)),
-        "NoDelay" to emptyList(),
-        "Timer" to listOf("id" to WildcardType.None),
-    )
 
     @get:Incremental
     @get:InputFiles
@@ -70,10 +52,53 @@ abstract class ScriptMetadataTask : DefaultTask() {
     @get:OutputFile
     abstract var scriptsFile: File
 
+    @get:OutputFile
+    abstract var wildcardsFile: File
+
     init {
         description = "Analyzes Kotlin files and extracts annotation information"
         group = "metadata"
     }
+
+    private val methods = mapOf(
+        "npcSpawn" to listOf("id" to WildcardType.NpcId),
+        "objectSpawn" to listOf("id" to WildcardType.ObjectId),
+        "floorItemSpawn" to listOf("id" to WildcardType.ItemId),
+        "npcLevelChanged" to listOf("id" to WildcardType.NpcId),
+        "npcMoved" to listOf("id" to WildcardType.NpcId),
+        "variableSet" to listOf("key" to WildcardType.VariableId),
+        "npcVariableSet" to listOf("key" to WildcardType.VariableId),
+        "talkWithApproach" to listOf("npc" to WildcardType.NpcId),
+        "interfaceOnPlayerApproach" to listOf("id" to WildcardType.InterfaceComponentId),
+        "itemOnPlayerApproach" to listOf("item" to WildcardType.ItemId),
+        "npcApproach" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
+        "interfaceOnNpcApproach" to listOf("id" to WildcardType.InterfaceComponentId, "npc" to WildcardType.NpcId),
+        "itemOnNpcApproach" to listOf("item" to WildcardType.ItemId, "npc" to WildcardType.NpcId),
+        "objectApproach" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
+        "interfaceOnObjectApproach" to listOf("id" to WildcardType.InterfaceComponentId, "obj" to WildcardType.ObjectId),
+        "itemOnObjectApproach" to listOf("item" to WildcardType.ItemId, "obj" to WildcardType.ObjectId),
+        "floorItemApproach" to listOf("option" to WildcardType.FloorItemOption, "obj" to WildcardType.ItemId),
+        "interfaceOnFloorItemApproach" to listOf("id" to WildcardType.InterfaceComponentId, "item" to WildcardType.ItemId),
+        "itemOnFloorItemApproach" to listOf("item" to WildcardType.ItemId, "floorItem" to WildcardType.ItemId),
+        "npcApproachNpc" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
+        "npcApproachObject" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
+        "npcApproachFloorItem" to listOf("option" to WildcardType.FloorItemOption, "item" to WildcardType.ItemId),
+        "talkWith" to listOf("npc" to WildcardType.NpcId),
+        "interfaceOnPlayerOperate" to listOf("id" to WildcardType.InterfaceComponentId),
+        "itemOnPlayerOperate" to listOf("item" to WildcardType.ItemId),
+        "npcOperate" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
+        "interfaceOnNpcOperate" to listOf("id" to WildcardType.InterfaceComponentId, "npc" to WildcardType.NpcId),
+        "itemOnNpcOperate" to listOf("item" to WildcardType.ItemId, "npc" to WildcardType.NpcId),
+        "objectOperate" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
+        "interfaceOnObjectOperate" to listOf("id" to WildcardType.InterfaceComponentId, "obj" to WildcardType.ObjectId),
+        "itemOnObjectOperate" to listOf("item" to WildcardType.ItemId, "obj" to WildcardType.ObjectId),
+        "floorItemOperate" to listOf("option" to WildcardType.FloorItemOption, "obj" to WildcardType.ItemId),
+        "interfaceOnFloorItemOperate" to listOf("id" to WildcardType.InterfaceComponentId, "item" to WildcardType.ItemId),
+        "itemOnFloorItemOperate" to listOf("item" to WildcardType.ItemId, "floorItem" to WildcardType.ItemId),
+        "npcOperateNpc" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
+        "npcOperateObject" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
+        "npcOperateFloorItem" to listOf("option" to WildcardType.FloorItemOption, "item" to WildcardType.ItemId),
+    )
 
     @TaskAction
     fun execute(inputChanges: InputChanges) {
@@ -81,25 +106,27 @@ abstract class ScriptMetadataTask : DefaultTask() {
 
         val context = loadContext()
         val lines: MutableList<String>
+        val wildcards: MutableList<String>
         if (!inputChanges.isIncremental) {
             // Clean output for non-incremental runs
             scriptsFile.delete()
             logger.info("Non-incremental run: analyzing all files")
             lines = mutableListOf()
+            wildcards = mutableListOf()
         } else {
             lines = if (scriptsFile.exists()) scriptsFile.readLines().toMutableList() else mutableListOf()
+            wildcards = if (wildcardsFile.exists()) wildcardsFile.readLines().toMutableList() else mutableListOf()
         }
         val disposable = Disposer.newDisposable()
         val environment = createKotlinEnvironment(disposable)
         var scripts = 0
-        var methodCount = 0
-        var annotationCount = 0
         val instance = PsiManager.getInstance(environment.project)
         val scriptClasses = mutableListOf<Pair<KtClass, String>>()
         for (change in inputChanges.getFileChanges(inputDirectory)) {
             val file = change.file
             if (change.changeType == ChangeType.REMOVED) {
                 removeName(lines, file.nameWithoutExtension)
+                removeName(wildcards, file.nameWithoutExtension)
                 continue
             }
             if (!file.isFile || !file.name.endsWith(".kt")) {
@@ -119,6 +146,9 @@ abstract class ScriptMetadataTask : DefaultTask() {
                     if (!lines.removeIf { it.endsWith("$packageName.$name") }) {
                         removeName(lines, name)
                     }
+                    if (!wildcards.removeIf { it.endsWith("$packageName.$name") }) {
+                        removeName(wildcards, name)
+                    }
                 }
             }
             if (change.changeType == ChangeType.MODIFIED || change.changeType == ChangeType.ADDED) {
@@ -132,86 +162,59 @@ abstract class ScriptMetadataTask : DefaultTask() {
         }
 
         for ((ktClass, packagePath) in scriptClasses) {
-            val methods = ktClass.declarations.filterIsInstance<KtNamedFunction>().filter { it.hasModifier(KtTokens.OVERRIDE_KEYWORD) }
-            scripts++
-            if (methods.isEmpty()) {
-                lines.add(packagePath)
-                continue
-            }
-            for (method in methods) {
-                methodCount++
-                val returnType = method.typeReference
-                val parameters = method.valueParameters.joinToString(",") { param -> param.typeReference!!.getTypeText() }
-                val extension = method.receiverTypeReference
-                val signature = "${if (extension != null) "${extension.text}." else ""}${method.name}(${parameters})${if (returnType == null) "" else ":${returnType.getTypeText()}"}"
-                val entries = method.annotationEntries
-                if (entries.isEmpty()) {
-                    lines.add("${signature}|$packagePath")
+            for (declaration in ktClass.declarations) {
+                if (declaration !is KtClassInitializer) {
                     continue
                 }
-                for (annotation in entries) {
-                    val annotationName = annotation.shortName?.asString() ?: ""
-                    val info = annotations[annotationName] ?: error("Annotation $annotationName metadata not found. Make sure your annotation is registered in ScriptMetadataTask.kt")
-                    val params = Array<MutableList<String>>(info.size) { mutableListOf() }
-                    // Resolve annotation field names
-                    var index = 0
-                    for (arg in annotation.valueArguments) {
-                        val name = arg.getArgumentName()?.asName?.asString()
-                        val value = arg.getArgumentExpression()?.text?.trim('"') ?: ""
-                        val idx = if (name != null) info.indexOfFirst { it.first == name } else index++
-                        for (part in value.split(",")) {
-                            if (value.contains("*") || value.contains("#")) {
-                                val type = info[idx].second
-                                val matches = context.resolve(part, type, parameters, packagePath, annotation)
-                                params[idx].addAll(matches)
-                            } else {
-                                params[idx].add(part)
-                            }
-                        }
+                for (child in declaration.children) {
+                    if (child !is KtBlockExpression) {
+                        continue
                     }
-                    for (i in info.indices) {
-                        val first = params[i].firstOrNull() ?: continue
-                        for (value in first.split(",")) {
-                            // Expand wildcards into matches
-                            if (value.contains("*") || value.contains("#")) {
-                                val matches = context.resolve(value, info[i].second, parameters, packagePath, annotation)
-                                if (params[i].first() == first) {
-                                    params[i].removeAt(0)
+                    for (expression in child.children) {
+                        if (expression !is KtCallExpression) continue
+                        val methodName = expression.calleeExpression?.text ?: return
+                        val info = methods[methodName] ?: continue
+                        var index = 0
+                        for (arg in expression.valueArguments) {
+                            if (arg is KtLambdaArgument) {
+                                continue
+                            }
+                            val name = arg.getArgumentName()?.asName?.asString()
+                            val value = arg.getArgumentExpression()?.text?.trim('"') ?: ""
+                            if (value.none { it == '*' || it == '#' || it == ',' }) {
+                                index++
+                                continue
+                            }
+                            if (value == "*") { // Match all can be handled separately
+                                index++
+                                continue
+                            }
+                            // Resolve field names
+                            val idx = if (name != null) info.indexOfFirst { it.first == name } else index++
+                            val combined = mutableListOf<String>()
+                            for (part in value.split(",")) {
+                                // Expand wildcards into matches
+                                if (value.contains("*") || value.contains("#")) {
+                                    val type = info.getOrNull(idx)?.second ?: continue
+                                    val matches = context.resolve(part, type, packagePath)
+                                    combined.addAll(matches)
+                                } else {
+                                    combined.add(part)
                                 }
-                                params[i].addAll(matches)
                             }
+                            wildcards.add("${value}|${combined.joinToString(":")}|$packagePath")
                         }
-                    }
-                    generateCombinations(params) { args ->
-                        annotationCount++
-                        lines.add("@${annotation.shortName}|${args.joinToString(":")}|$signature|$packagePath")
                     }
                 }
             }
+            lines.add(packagePath)
+            scripts++
         }
         scriptsFile.writeText(lines.joinToString("\n"))
+        wildcardsFile.writeText(wildcards.joinToString("\n"))
         disposable.dispose()
-        println("Metadata for $scripts scripts, $methodCount methods and $annotationCount annotations collected in ${System.currentTimeMillis() - start} ms")
+        println("Metadata for $scripts scripts collected in ${System.currentTimeMillis() - start} ms")
     }
-
-    private fun generateCombinations(arrays: Array<MutableList<String>>, index: Int = 0, current: MutableList<String> = mutableListOf(), call: (List<String>) -> Unit) {
-        if (index == arrays.size) {
-            call.invoke(current)
-            return
-        }
-        val currentArray = arrays[index]
-        if (currentArray.isEmpty()) {
-            generateCombinations(arrays, index + 1, current, call)
-            return
-        }
-        for (element in currentArray) {
-            current.add(element)
-            generateCombinations(arrays, index + 1, current, call)
-            current.removeAt(current.size - 1)
-        }
-    }
-
-
 
     private data class Context(
         val npcIds: Set<String>,
@@ -219,6 +222,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
         val objectIds: Set<String>,
         val interfaceIds: Set<String>,
         val componentIds: Set<String>,
+        val interfaceComponentIds: Set<String>,
         val variableIds: Set<String>,
         val npcOptions: Set<String>,
         val itemOptions: Set<String>,
@@ -226,36 +230,25 @@ abstract class ScriptMetadataTask : DefaultTask() {
         val objectOptions: Set<String>,
         val interfaceOptions: Set<String>,
     ) {
-        fun resolve(value: String, wildcard: WildcardType, parameters: String, packagePath: String, annotation: KtAnnotationEntry): List<String> {
+        fun resolve(value: String, wildcard: WildcardType, packagePath: String): List<String> {
             val set = when (wildcard) {
-                is WildcardType.DynamicId -> when (parameters.split(",")[wildcard.index]) {
-                    "NPC" -> npcIds
-                    "GameObject" -> objectIds
-                    "FloorItem" -> itemIds
-                    else -> error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation.text}")
-                }
                 WildcardType.NpcId -> npcIds
                 WildcardType.InterfaceId -> interfaceIds
                 WildcardType.ComponentId -> componentIds
+                WildcardType.InterfaceComponentId -> interfaceComponentIds
                 WildcardType.ObjectId -> objectIds
                 WildcardType.ItemId -> itemIds
                 WildcardType.VariableId -> variableIds
-                is WildcardType.DynamicOption -> when (parameters.split(",")[wildcard.index]) {
-                    "NPC" -> npcOptions
-                    "GameObject" -> objectOptions
-                    "FloorItem" -> itemOptions
-                    else -> error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation.text}")
-                }
                 WildcardType.NpcOption -> npcOptions
                 WildcardType.InterfaceOption -> interfaceOptions
                 WildcardType.FloorItemOption -> floorItemOptions
                 WildcardType.ObjectOption -> objectOptions
                 WildcardType.ItemOption -> itemOptions
-                WildcardType.None -> error("Unexpected wildcard '$value' in $packagePath ${annotation.text}")
+                WildcardType.None -> error("Unexpected wildcard '$value' in $packagePath")
             }
             val matches = set.filter { wildcardEquals(value, it) }
             if (matches.isEmpty()) {
-                error("No matches for wildcard '${value}' in $packagePath ${annotation.text}")
+                error("No matches for '${value}' $wildcard in $packagePath")
             }
             return matches
         }
@@ -309,8 +302,9 @@ abstract class ScriptMetadataTask : DefaultTask() {
         val objectIds = mutableSetOf<String>()
         val interfaceIds = mutableSetOf<String>()
         val componentIds = mutableSetOf<String>()
+        val interfaceComponentIds = mutableSetOf<String>()
         val variableIds = mutableSetOf<String>()
-        collectIds(npcIds, itemIds, objectIds, interfaceIds, componentIds, variableIds)
+        collectIds(npcIds, itemIds, objectIds, interfaceIds, componentIds, interfaceComponentIds, variableIds)
         val options = System.currentTimeMillis()
         val npcOptions = loadOptions("npc-options")
         val itemOptions = loadOptions("item-options")
@@ -318,7 +312,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
         val objectOptions = loadOptions("object-options")
         val interfaceOptions = loadOptions("interface-options")
         println("Loaded ${npcOptions.size} npc, ${itemOptions.size} item, ${floorItemOptions.size} floor item, ${objectOptions.size} object, ${interfaceOptions.size} interface options in ${System.currentTimeMillis() - options}ms")
-        return Context(npcIds, itemIds, objectIds, interfaceIds, componentIds, variableIds, npcOptions, itemOptions, floorItemOptions, objectOptions, interfaceOptions)
+        return Context(npcIds, itemIds, objectIds, interfaceIds, componentIds, interfaceComponentIds, variableIds, npcOptions, itemOptions, floorItemOptions, objectOptions, interfaceOptions)
     }
 
     private fun loadOptions(type: String): Set<String> {
@@ -331,6 +325,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
         objectIds: MutableSet<String>,
         interfaceIds: MutableSet<String>,
         componentIds: MutableSet<String>,
+        interfaceComponentIds: MutableSet<String>,
         variableIds: MutableSet<String>,
     ) {
         val start = System.currentTimeMillis()
@@ -357,13 +352,17 @@ abstract class ScriptMetadataTask : DefaultTask() {
                     }
                 }
             } else if (file.name.endsWith(".ifaces.toml")) {
+                var interfaceId = ""
                 for (line in file.readLines()) {
                     if (line.startsWith('[')) {
                         val key = line.substringBefore(']').trim('[')
                         if (key.contains(".")) {
-                            componentIds.add(key.substringAfter('.'))
+                            val component = key.substringAfter('.')
+                            componentIds.add(component)
+                            interfaceComponentIds.add("$interfaceId:$component")
                         } else {
                             interfaceIds.add(key)
+                            interfaceId = key
                         }
                     }
                 }

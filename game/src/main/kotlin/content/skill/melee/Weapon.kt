@@ -3,7 +3,6 @@ package content.skill.melee
 import content.skill.melee.weapon.attackRange
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Api
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
@@ -14,26 +13,20 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 @Script
 class Weapon : Api {
 
-    override fun spawn(player: Player) {
-        updateWeapon(player, player.equipped(EquipSlot.Weapon))
-    }
+    init {
+        playerSpawn { player ->
+            updateWeapon(player, player.equipped(EquipSlot.Weapon))
+        }
 
-    @Variable("autocast,spell,attack_style")
-    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        if (key == "autocast" && to == null) {
-            updateWeapon(player, player.weapon)
-        } else if (key == "spell" && to == null) {
-            updateWeapon(player, player.weapon)
-        } else if (key == "attack_style") {
+        variableSet("autocast,spell") { player, _, _, _ -> updateWeapon(player, player.weapon) }
+        variableSet("attack_style") { player, _, from, to ->
             if (to == "long_range") {
                 updateWeapon(player, player.weapon, 2)
             } else if (from == "long_range") {
                 updateWeapon(player, player.weapon)
             }
         }
-    }
 
-    init {
         inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
             updateWeapon(player, item)
         }

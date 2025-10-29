@@ -25,19 +25,19 @@ class Greegrees : Api {
     val items: FloorItems by inject()
     val areas: AreaDefinitions by inject()
 
-    override fun spawn(player: Player) {
-        val item = player.equipped(EquipSlot.Weapon).id
-        if (item.endsWith("_greegree")) {
-            if (player.tile in areas["ape_atoll"] || player.tile in areas["ape_atoll_agility_dungeon"]) {
-                player.transform(item.replace("_greegree", ""))
-                player.closeType("spellbook_tab")
-            } else {
-                forceRemove(player)
+    init {
+        playerSpawn { player ->
+            val item = player.equipped(EquipSlot.Weapon).id
+            if (item.endsWith("_greegree")) {
+                if (player.tile in areas["ape_atoll"] || player.tile in areas["ape_atoll_agility_dungeon"]) {
+                    player.transform(item.replace("_greegree", ""))
+                    player.closeType("spellbook_tab")
+                } else {
+                    forceRemove(player)
+                }
             }
         }
-    }
 
-    init {
         itemAdded("*_greegree", EquipSlot.Weapon, "worn_equipment") { player ->
             val sound = when {
                 item.id.endsWith("gorilla_greegree") -> "human_into_gorilla"

@@ -24,46 +24,20 @@ class Restock : Api {
     val inventoryDefinitions: InventoryDefinitions by inject()
     val logger = InlineLogger()
 
-    override fun spawn(player: Player) {
-        player.softTimers.restart("shop_restock")
-    }
-
-    override fun worldSpawn() {
-        World.timers.start("general_store_restock")
-    }
-
-    @Timer("shop_restock")
-    override fun start(player: Player, timer: String, restart: Boolean): Int = TimeUnit.SECONDS.toTicks(60)
-
-    @Timer("shop_restock")
-    override fun tick(player: Player, timer: String): Int {
-        for ((name, inventory) in player.inventories.instances) {
-            val def = inventoryDefinitions.get(name)
-            if (!def["shop", false]) {
-                continue
-            }
-            restock(def, inventory)
-        }
-        return Timer.CONTINUE
-    }
-
-    @Timer("general_store_restock")
-    override fun start(timer: String): Int = TimeUnit.SECONDS.toTicks(60)
-
-    /**
-     * Every 60 seconds update stock of all players shops and [GeneralStores] by 10%
-     */
-    @Timer("general_store_restock")
-    override fun tick(timer: String): Int {
-        logger.debug { "Restocking general stores." }
-        for ((key, inventory) in GeneralStores.stores) {
-            val def = inventoryDefinitions.get(key)
-            restock(def, inventory)
-        }
-        return Timer.CONTINUE
-    }
-
     init {
+        playerSpawn { player ->
+            player.softTimers.restart("shop_restock")
+        }
+
+        worldSpawn {
+            World.timers.start("general_store_restock")
+        }
+
+        timerStart("shop_restock") { TimeUnit.SECONDS.toTicks(60) }
+        timerTick("shop_restock", ::restockShops)
+        worldTimerStart("general_store_restock") { TimeUnit.SECONDS.toTicks(60) }
+        worldTimerTick("general_store_restock", ::restockGeneralStores)
+
         playerDespawn { player ->
             val removal = mutableListOf<String>()
             for ((name, inventory) in player.inventories.instances) {
@@ -80,6 +54,29 @@ class Restock : Api {
                 player.inventories.instances.remove(name)
             }
         }
+    }
+
+    fun restockShops(player: Player): Int {
+        for ((name, inventory) in player.inventories.instances) {
+            val def = inventoryDefinitions.get(name)
+            if (!def["shop", false]) {
+                continue
+            }
+            restock(def, inventory)
+        }
+        return Timer.CONTINUE
+    }
+
+    /**
+     * Every 60 seconds update stock of all players shops and [GeneralStores] by 10%
+     */
+    fun restockGeneralStores(): Int {
+        logger.debug { "Restocking general stores." }
+        for ((key, inventory) in GeneralStores.stores) {
+            val def = inventoryDefinitions.get(key)
+            restock(def, inventory)
+        }
+        return Timer.CONTINUE
     }
 
     // Remove restocked shops to save space

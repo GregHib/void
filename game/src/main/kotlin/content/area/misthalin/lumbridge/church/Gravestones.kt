@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
-import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
@@ -35,29 +34,7 @@ class Gravestones : Api {
     val npcs: NPCs by inject()
     val floorItems: FloorItems by inject()
 
-    override fun spawn(player: Player) {
-        val tile: Tile = player["gravestone_tile"] ?: return
-        val time: Long = player["gravestone_time"] ?: return
-        val remaining = time - epochSeconds()
-        if (remaining > 0) {
-            MapMarkers.add(player, tile, "grave")
-            player.sendScript("gravestone_set_timer", remaining / 60 * 100)
-        } else {
-            player.clear("gravestone_tile")
-            player.clear("gravestone_time")
-        }
-    }
-
-    @Id("gravestone_*")
-    override fun spawn(npc: NPC) {
-        val minutes = Gravestone.times[npc.id.removePrefix("gravestone_")] ?: return
-        val seconds = TimeUnit.MINUTES.toSeconds(minutes.toLong()).toInt()
-        npc.start("grave_timer", seconds, epochSeconds())
-        npc.softTimers.start("grave_degrade")
-    }
-
-    @Timer("grave_degrade")
-    override fun start(npc: NPC, timer: String, restart: Boolean): Int {
+    fun start(npc: NPC, restart: Boolean): Int {
         val player = players.get(npc["player_name", ""])
         if (player != null) {
             val remaining = npc.remaining("grave_timer", epochSeconds())
@@ -66,8 +43,7 @@ class Gravestones : Api {
         return 60
     }
 
-    @Timer("grave_degrade")
-    override fun tick(npc: NPC, timer: String): Int {
+    fun tick(npc: NPC): Int {
         val remaining = npc.remaining("grave_timer", epochSeconds())
         if (remaining <= 120 && !npc.transform.endsWith("broken")) {
             npc.transform("${npc.id}_broken")
@@ -79,8 +55,7 @@ class Gravestones : Api {
         return Timer.CONTINUE
     }
 
-    @Timer("grave_degrade")
-    override fun stop(npc: NPC, timer: String, death: Boolean) {
+    fun stop(npc: NPC, death: Boolean) {
         val player = players.get(npc.remove("player_name") ?: "")
         if (player != null) {
             player.clear("gravestone_time")
@@ -94,6 +69,30 @@ class Gravestones : Api {
     }
 
     init {
+        playerSpawn { player ->
+            val tile: Tile = player["gravestone_tile"] ?: return@playerSpawn
+            val time: Long = player["gravestone_time"] ?: return@playerSpawn
+            val remaining = time - epochSeconds()
+            if (remaining > 0) {
+                MapMarkers.add(player, tile, "grave")
+                player.sendScript("gravestone_set_timer", remaining / 60 * 100)
+            } else {
+                player.clear("gravestone_tile")
+                player.clear("gravestone_time")
+            }
+        }
+
+        npcTimerStart("grave_degrade", ::start)
+        npcTimerTick("grave_degrade", ::tick)
+        npcTimerStop("grave_degrade", ::stop)
+
+        npcSpawn("gravestone_*") { npc ->
+            val minutes = Gravestone.times[npc.id.removePrefix("gravestone_")] ?: return@npcSpawn
+            val seconds = TimeUnit.MINUTES.toSeconds(minutes.toLong()).toInt()
+            npc.start("grave_timer", seconds, epochSeconds())
+            npc.softTimers.start("grave_degrade")
+        }
+
         npcOperate("Read", "gravestone_*") {
             val remainder = target.remaining("grave_timer", epochSeconds())
             remainMessage(player, target)

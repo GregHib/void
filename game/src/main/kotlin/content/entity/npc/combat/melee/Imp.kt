@@ -4,7 +4,6 @@ import content.entity.combat.hit.npcCombatDamage
 import content.entity.gfx.areaGfx
 import content.entity.sound.areaSound
 import world.gregs.voidps.engine.Api
-import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -13,29 +12,25 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 @Script
 class Imp : Api {
 
-    @Id("imp")
-    override fun spawn(npc: NPC) {
-        npc.softTimers.start("teleport_timer")
-    }
-
-    @Timer("teleport_timer")
-    override fun start(npc: NPC, timer: String, restart: Boolean): Int = random.nextInt(50, 200)
-
-    @Timer("teleport_timer")
-    override fun tick(npc: NPC, timer: String): Int {
-        teleportImp(npc, teleportChance)
-        // https://x.com/JagexAsh/status/1711280844504007132
-        return random.nextInt(50, 200)
-    }
-
     init {
+        npcSpawn("imp") { npc ->
+            npc.softTimers.start("teleport_timer")
+        }
+
+        npcTimerStart("teleport_timer") { random.nextInt(50, 200) }
+
+        npcTimerTick("teleport_timer") {
+            teleportImp(this, teleportChance)
+            // https://x.com/JagexAsh/status/1711280844504007132
+            random.nextInt(50, 200)
+        }
+
         npcCombatDamage("imp") { npc ->
             val player = source
             if (npc.levels.get(Skill.Constitution) - damage > 0) {

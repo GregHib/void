@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.type.Tile
 
 @Script
 class Music : Api {
@@ -20,28 +19,28 @@ class Music : Api {
     val tracks: MusicTracks by inject()
     val enums: EnumDefinitions by inject()
 
-    override fun spawn(player: Player) {
-        if (player.isBot) {
-            return
+    init {
+        playerSpawn { player ->
+            if (player.isBot) {
+                return@playerSpawn
+            }
+            unlockDefaultTracks(player)
+            playAreaTrack(player)
+            sendUnlocks(player)
+            sendPlaylist(player)
         }
-        unlockDefaultTracks(player)
-        playAreaTrack(player)
-        sendUnlocks(player)
-        sendPlaylist(player)
-    }
 
-    override fun move(player: Player, from: Tile, to: Tile) {
-        if (!player.isBot) {
-            val tracks = tracks[player.tile.region]
-            for (track in tracks) {
-                if (!track.area.contains(from) && track.area.contains(to)) {
-                    autoPlay(player, track)
+        moved { player, from ->
+            if (!player.isBot) {
+                val tracks = tracks[player.tile.region]
+                for (track in tracks) {
+                    if (!track.area.contains(from) && track.area.contains(player.tile)) {
+                        autoPlay(player, track)
+                    }
                 }
             }
         }
-    }
 
-    init {
         interfaceOption("Play", "tracks", "music_player") {
             val index = itemSlot / 2
             if (player.hasUnlocked(index)) {

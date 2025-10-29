@@ -2,7 +2,6 @@ package content.entity.player.combat
 
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
@@ -16,12 +15,12 @@ class CombatLevel : Api {
 
     val combatSkills = Skill.entries.filter { it.ordinal <= 6 || it.ordinal == 23 }.toTypedArray()
 
-    override fun spawn(player: Player) {
-        player.combatLevel = calculateCombatLevel(player.levels)
-        player.summoningCombatLevel = calculateCombatLevel(player.levels, true)
-    }
-
     init {
+        playerSpawn { player ->
+            player.combatLevel = calculateCombatLevel(player.levels)
+            player.summoningCombatLevel = calculateCombatLevel(player.levels, true)
+        }
+
         maxLevelChange(skills = combatSkills) { player ->
             player.combatLevel = calculateCombatLevel(player.levels)
             player.summoningCombatLevel = calculateCombatLevel(player.levels, true)

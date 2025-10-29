@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.queue.queue
 @Script
 class Introduction : Api {
 
-    override fun spawn(player: Player) {
+    fun welcome(player: Player) {
         player.message("Welcome to ${Settings["server.name"]}.", ChatType.Welcome)
         if (player.contains("creation")) {
             return
@@ -39,6 +39,8 @@ class Introduction : Api {
     }
 
     init {
+        playerSpawn(::welcome)
+
         interfaceClose("character_creation") { player ->
             player.flagAppearance()
             setup(player)

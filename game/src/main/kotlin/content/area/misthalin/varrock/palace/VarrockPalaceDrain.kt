@@ -12,7 +12,6 @@ import content.quest.quest
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
@@ -24,13 +23,13 @@ class VarrockPalaceDrain : Api {
 
     val logger = InlineLogger()
 
-    override fun spawn(player: Player) {
-        if (player["demon_slayer_drain_dislodged", false]) {
-            player.sendVariable("demon_slayer_drain_dislodged")
-        }
-    }
-
     init {
+        playerSpawn { player ->
+            if (player["demon_slayer_drain_dislodged", false]) {
+                player.sendVariable("demon_slayer_drain_dislodged")
+            }
+        }
+
         objectOperate("Search", "varrock_palace_drain") {
             player.anim("climb_down")
             if (player["demon_slayer_drain_dislodged", false] || player.ownsItem("silverlight_key_sir_prysin")) {

@@ -9,7 +9,6 @@ import content.entity.sound.areaSound
 import content.entity.sound.sound
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.Id
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -32,20 +31,19 @@ class KreeArra : Api {
     var skree: NPC? = null
     var geerin: NPC? = null
 
-    @Id("kree_arra")
-    override fun spawn(npc: NPC) {
-        if (kilisa == null) {
-            kilisa = npcs.add("flight_kilisa", Tile(2833, 5297, 2))
-        }
-        if (skree == null) {
-            skree = npcs.add("wingman_skree", Tile(2840, 5303, 2))
-        }
-        if (geerin == null) {
-            geerin = npcs.add("flockleader_geerin", Tile(2828, 5299, 2))
-        }
-    }
-
     init {
+        npcSpawn("kree_arra") {
+            if (kilisa == null) {
+                kilisa = npcs.add("flight_kilisa", Tile(2833, 5297, 2))
+            }
+            if (skree == null) {
+                skree = npcs.add("wingman_skree", Tile(2840, 5303, 2))
+            }
+            if (geerin == null) {
+                geerin = npcs.add("flockleader_geerin", Tile(2828, 5299, 2))
+            }
+        }
+
         npcCombatSwing("kree_arra") { npc ->
             if (npc.attackers.isEmpty() && random.nextInt(2) == 0) { // Enrage
                 val targets = players.filter { it.tile in areas["armadyl_chamber"] }

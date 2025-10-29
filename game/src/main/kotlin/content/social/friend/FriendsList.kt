@@ -34,12 +34,12 @@ class FriendsList : Api {
 
     val maxFriends = 200
 
-    override fun spawn(player: Player) {
-        player.sendFriends()
-        notifyBefriends(player, online = true)
-    }
-
     init {
+        playerSpawn { player ->
+            player.sendFriends()
+            notifyBefriends(player, online = true)
+        }
+
         playerDespawn { player ->
             notifyBefriends(player, online = false)
         }

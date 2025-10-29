@@ -53,12 +53,14 @@ tasks {
         inputDirectory.set(layout.projectDirectory.dir("src/main/kotlin/content"))
         dataDirectory = parent!!.rootDir.resolve("data")
         scriptsFile = resources.resolve("scripts.txt")
+        wildcardsFile = resources.resolve("matches.txt")
         resourceDirectory = resources
     }
 
     named<ShadowJar>("shadowJar") {
         dependsOn("scriptMetadata")
         from(layout.buildDirectory.file("scripts.txt"))
+        from(layout.buildDirectory.file("matches.txt"))
         val db = findProperty("includeDb") != null
         minimize {
             if (db) {

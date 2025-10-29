@@ -32,40 +32,34 @@ fun Player.unskull() {
 @Script
 class Skull : Api {
 
-    override fun spawn(player: Player) {
-        if (player.skulled) {
-            player.softTimers.restart("skull")
-        }
-    }
-
-    @Timer("skull")
-    override fun start(player: Player, timer: String, restart: Boolean): Int {
-        player.appearance.skull = player["skull", 0]
-        player.flagAppearance()
-        return 50
-    }
-
-    @Timer("skull")
-    override fun tick(player: Player, timer: String): Int {
-        if (--player.skullCounter <= 0) {
-            return Timer.CANCEL
-        }
-        return Timer.CONTINUE
-    }
-
-    @Timer("skull")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        player.clear("skull")
-        player.clear("skull_duration")
-        player.appearance.skull = -1
-        player.flagAppearance()
-    }
-
     init {
+        playerSpawn { player ->
+            if (player.skulled) {
+                player.softTimers.restart("skull")
+            }
+        }
+
         combatStart { player ->
             if (player.inWilderness && target is Player && !player.attackers.contains(target)) {
                 player.skull()
             }
+        }
+
+        timerStart("skull") {
+            appearance.skull = this["skull", 0]
+            flagAppearance()
+            50
+        }
+
+        timerTick("skull") {
+            if (--skullCounter <= 0) Timer.CANCEL else Timer.CONTINUE
+        }
+
+        timerStop("skull") {
+            clear("skull")
+            clear("skull_duration")
+            appearance.skull = -1
+            flagAppearance()
         }
     }
 }

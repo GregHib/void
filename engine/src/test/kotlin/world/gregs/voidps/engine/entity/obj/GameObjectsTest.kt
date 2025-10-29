@@ -2,13 +2,13 @@ package world.gregs.voidps.engine.entity.obj
 
 import io.mockk.*
 import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declare
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.dispatch.MapDispatcher
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.event.Events
@@ -26,7 +26,7 @@ class GameObjectsTest : KoinMock() {
     private lateinit var objects: GameObjects
     private lateinit var updates: ZoneBatchUpdates
     private lateinit var events: Events
-    private lateinit var spawn: Spawn
+    private lateinit var calls: MutableList<GameObject>
 
     @BeforeEach
     fun setup() {
@@ -40,13 +40,16 @@ class GameObjectsTest : KoinMock() {
         objects = GameObjects(mockk(relaxed = true), mockk(relaxed = true), updates, definitions, storeUnused = true)
         events = spyk(Events())
         Events.setEvents(events)
-        val dispatcher = MapDispatcher<Spawn>()
-        spawn = spyk(object : Spawn {
-            override fun spawn(obj: GameObject) {
-            }
-        })
-        dispatcher.instances["*"] = mutableListOf(spawn)
-        Spawn.objectDispatcher = dispatcher
+        calls = mockk(relaxed = true)
+        val spawn: (GameObject) -> Unit = {
+            calls.add(it)
+        }
+        Spawn.objectSpawns["*"] = mutableListOf(spawn)
+    }
+
+    @AfterEach
+    fun teardown() {
+        Spawn.objectSpawns.clear()
     }
 
     @Test
@@ -61,7 +64,7 @@ class GameObjectsTest : KoinMock() {
         objects.clear()
         assertNull(objects.getLayer(obj.tile, ObjectLayer.GROUND))
         verify(exactly = 0) {
-            spawn.spawn(obj)
+            calls.add(obj)
             events.emit(obj, any())
         }
     }
@@ -80,7 +83,7 @@ class GameObjectsTest : KoinMock() {
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
         }
         verify(exactly = 0) {
-            spawn.spawn(obj)
+            calls.add(obj)
             events.emit(obj, any())
         }
     }
@@ -98,7 +101,7 @@ class GameObjectsTest : KoinMock() {
         assertFalse(objects.contains(obj))
         verifyOrder {
             updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
-            spawn.spawn(obj)
+            calls.add(obj)
             events.emit(obj, Despawn)
         }
     }
@@ -123,9 +126,9 @@ class GameObjectsTest : KoinMock() {
         assertFalse(objects.contains(override))
         verifyOrder {
             updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
-            spawn.spawn(obj)
+            calls.add(obj)
             updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 4321, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            spawn.spawn(override)
+            calls.add(override)
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
             events.emit(override, Despawn)
         }
@@ -146,7 +149,7 @@ class GameObjectsTest : KoinMock() {
         verifyOrder {
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
             updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            spawn.spawn(obj)
+            calls.add(obj)
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
             events.emit(obj, Despawn)
             updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 123, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
@@ -173,12 +176,12 @@ class GameObjectsTest : KoinMock() {
             // Add 1234
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
             updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            spawn.spawn(obj)
+            calls.add(obj)
             // Add 4321
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
             events.emit(obj, Despawn)
             updates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 4321, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            spawn.spawn(override)
+            calls.add(override)
             // Remove 4321
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
             events.emit(override, Despawn)
@@ -195,7 +198,7 @@ class GameObjectsTest : KoinMock() {
         }
         assertFalse(objects.contains(obj))
         verifyOrder {
-            spawn.spawn(obj)
+            calls.add(obj)
             events.emit(obj, Despawn)
         }
     }
@@ -211,9 +214,9 @@ class GameObjectsTest : KoinMock() {
         }
         assertTrue(objects.contains(obj))
         verifyOrder {
-            spawn.spawn(obj)
+            calls.add(obj)
             events.emit(obj, Despawn)
-            spawn.spawn(obj)
+            calls.add(obj)
         }
     }
 
@@ -230,10 +233,10 @@ class GameObjectsTest : KoinMock() {
         assertTrue(objects.contains(obj))
         assertFalse(objects.contains(replacement))
         verifyOrder {
-            spawn.spawn(obj)
+            calls.add(obj)
             events.emit(obj, Despawn)
-            spawn.spawn(replacement)
-            spawn.spawn(obj)
+            calls.add(replacement)
+            calls.add(obj)
         }
     }
 
@@ -250,7 +253,7 @@ class GameObjectsTest : KoinMock() {
         assertTrue(objects.contains(original))
         assertFalse(objects.contains(replacement))
         verifyOrder {
-            spawn.spawn(replacement)
+            calls.add(replacement)
             events.emit(replacement, Despawn)
         }
     }

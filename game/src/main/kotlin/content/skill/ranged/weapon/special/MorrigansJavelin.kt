@@ -15,30 +15,6 @@ import world.gregs.voidps.engine.timer.*
 @Script
 class MorrigansJavelin : Api {
 
-    @Timer("phantom_strike")
-    override fun start(character: Character, timer: String, restart: Boolean): Int = 3
-
-    @Timer("phantom_strike")
-    override fun tick(character: Character, timer: String): Int {
-        val remaining = character["phantom_damage", 0]
-        val damage = remaining.coerceAtMost(50)
-        if (remaining - damage <= 0) {
-            return Timer.CANCEL
-        }
-        character["phantom_damage"] = remaining - damage
-        val source = character["phantom", character]
-        character.directHit(source, damage, "effect")
-        (character as? Player)?.message("You ${character.remove("phantom_first") ?: "continue"} to bleed as a result of the javelin strike.")
-        return Timer.CONTINUE
-    }
-
-    @Timer("phantom_strike")
-    override fun stop(character: Character, timer: String, logout: Boolean) {
-        character.clear("phantom")
-        character.clear("phantom_damage")
-        character.clear("phantom_first")
-    }
-
     init {
         specialAttack("phantom_strike") { player ->
             val ammo = player.ammo
@@ -53,5 +29,32 @@ class MorrigansJavelin : Api {
                 target.softTimers.start(id)
             }
         }
+        timerStart("phantom_strike", ::start)
+        npcTimerStart("phantom_strike", ::start)
+        timerTick("phantom_strike", ::tick)
+        npcTimerTick("phantom_strike", ::tick)
+        timerStop("phantom_strike", ::stop)
+        npcTimerStop("phantom_strike", ::stop)
+    }
+
+    fun start(character: Character, restart: Boolean): Int = 3
+
+    fun tick(character: Character): Int {
+        val remaining = character["phantom_damage", 0]
+        val damage = remaining.coerceAtMost(50)
+        if (remaining - damage <= 0) {
+            return Timer.CANCEL
+        }
+        character["phantom_damage"] = remaining - damage
+        val source = character["phantom", character]
+        character.directHit(source, damage, "effect")
+        (character as? Player)?.message("You ${character.remove("phantom_first") ?: "continue"} to bleed as a result of the javelin strike.")
+        return Timer.CONTINUE
+    }
+
+    fun stop(character: Character, logout: Boolean) {
+        character.clear("phantom")
+        character.clear("phantom_damage")
+        character.clear("phantom_first")
     }
 }

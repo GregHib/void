@@ -7,32 +7,30 @@ import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 
 @Script
 class WildernessIcons : Api {
 
-    @Variable("in_wilderness")
-    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        if (to == true) {
-            player.options.set(1, "Attack")
-            player.open("wilderness_skull")
-            //    player.setVar("no_pvp_zone", false)
-            resetIcons(player)
-            updateIcon(player)
-        } else if (to == null) {
-            player.options.remove("Attack")
-            player.close("wilderness_skull")
-            //    player.setVar("no_pvp_zone", true)
-            resetIcons(player)
-        }
-    }
-
     init {
         interfaceOpen("wilderness_skull") { player ->
             player.interfaces.sendSprite(id, "right_skull", 439)
+        }
+
+        variableSet("in_wilderness") { player, key, from, to ->
+            if (to == true) {
+                player.options.set(1, "Attack")
+                player.open("wilderness_skull")
+                //    player.setVar("no_pvp_zone", false)
+                resetIcons(player)
+                updateIcon(player)
+            } else if (to == null) {
+                player.options.remove("Attack")
+                player.close("wilderness_skull")
+                //    player.setVar("no_pvp_zone", true)
+                resetIcons(player)
+            }
         }
 
         prayerStart("protect_item") { player ->

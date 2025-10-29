@@ -2,7 +2,6 @@ package content.entity.player.stat
 
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
 import world.gregs.voidps.engine.event.Script
@@ -11,22 +10,22 @@ import world.gregs.voidps.network.login.protocol.encode.skillLevel
 @Script
 class Experience : Api {
 
-    override fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {
-        if (skill == Skill.Constitution) {
-            val exp = player.experience.get(skill)
-            player.client?.skillLevel(skill.ordinal, to / 10, exp.toInt())
-            player["life_points"] = player.levels.get(Skill.Constitution)
-        } else {
-            val exp = player.experience.get(skill)
-            player.client?.skillLevel(skill.ordinal, to, exp.toInt())
-        }
-    }
-
-    override fun spawn(player: Player) {
-        player.sendVariable("xp_counter")
-    }
-
     init {
+        playerSpawn { player ->
+            player.sendVariable("xp_counter")
+        }
+
+        levelChanged { player, skill, from, to ->
+            if (skill == Skill.Constitution) {
+                val exp = player.experience.get(skill)
+                player.client?.skillLevel(skill.ordinal, to / 10, exp.toInt())
+                player["life_points"] = player.levels.get(Skill.Constitution)
+            } else {
+                val exp = player.experience.get(skill)
+                player.client?.skillLevel(skill.ordinal, to, exp.toInt())
+            }
+        }
+
         interfaceOption("Reset XP Total", "xp_orb", "toplevel*") {
             player["xp_counter"] = 0.0
         }

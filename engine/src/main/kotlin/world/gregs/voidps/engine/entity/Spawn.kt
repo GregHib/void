@@ -4,56 +4,88 @@ import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.dispatch.ListDispatcher
-import world.gregs.voidps.engine.dispatch.MapDispatcher
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.event.Wildcards
 
 interface Spawn {
-    fun spawn(player: Player) {}
-    fun spawn(npc: NPC) {}
-    fun spawn(obj: GameObject) {}
-    fun spawn(floorItem: FloorItem) {}
-    fun worldSpawn(files: ConfigFiles) {
-        worldSpawn()
+    fun playerSpawn(block: (Player) -> Unit) {
+        playerSpawns.add(block)
     }
 
-    fun worldSpawn() {}
+    fun npcSpawn(id: String = "*", block: (NPC) -> Unit) {
+        for (key in Wildcards.find(id)) {
+            npcSpawns.getOrPut(key) { mutableListOf() }.add(block)
+        }
+    }
 
-    companion object : Spawn {
-        var playerDispatcher = ListDispatcher<Spawn>()
-        var npcDispatcher = MapDispatcher<Spawn>("@Id", "")
-        var objectDispatcher = MapDispatcher<Spawn>("@Id", "")
-        var floorItemDispatcher = MapDispatcher<Spawn>("@Id", "")
-        var worldDispatcher = ListDispatcher<Spawn>()
+    fun objectSpawn(id: String = "*", block: (GameObject) -> Unit) {
+        for (key in Wildcards.find(id)) {
+            objectSpawns.getOrPut(key) { mutableListOf() }.add(block)
+        }
+    }
 
-        override fun spawn(player: Player) {
-            for (instance in playerDispatcher.instances) {
-                instance.spawn(player)
+    fun floorItemSpawn(id: String = "*", block: (FloorItem) -> Unit) {
+        for (key in Wildcards.find(id)) {
+            floorItemSpawns.getOrPut(key) { mutableListOf() }.add(block)
+        }
+    }
+
+    fun worldSpawn(block: (ConfigFiles) -> Unit) {
+        worldSpawns.add(block)
+    }
+
+    companion object {
+        val playerSpawns = mutableListOf<(Player) -> Unit>()
+        val npcSpawns = mutableMapOf<String, MutableList<(NPC) -> Unit>>()
+        val objectSpawns = mutableMapOf<String, MutableList<(GameObject) -> Unit>>()
+        val floorItemSpawns = mutableMapOf<String, MutableList<(FloorItem) -> Unit>>()
+        val worldSpawns = mutableListOf<(ConfigFiles) -> Unit>()
+
+        fun player(player: Player) {
+            for (block in playerSpawns) {
+                block(player)
             }
         }
 
-        override fun spawn(npc: NPC) {
-            npcDispatcher.forEach(npc.id, "*") { instance ->
-                instance.spawn(npc)
+        fun npc(npc: NPC) {
+            for (block in npcSpawns["*"] ?: emptyList()) {
+                block(npc)
+            }
+            for (block in npcSpawns[npc.id] ?: return) {
+                block(npc)
             }
         }
 
-        override fun spawn(obj: GameObject) {
-            objectDispatcher.forEach(obj.id, "*") { instance ->
-                instance.spawn(obj)
+        fun gameObject(gameObject: GameObject) {
+            for (block in objectSpawns["*"] ?: emptyList()) {
+                block(gameObject)
+            }
+            for (block in objectSpawns[gameObject.id] ?: return) {
+                block(gameObject)
             }
         }
 
-        override fun spawn(floorItem: FloorItem) {
-            floorItemDispatcher.forEach(floorItem.id, "*") { instance ->
-                instance.spawn(floorItem)
+        fun floorItem(floorItem: FloorItem) {
+            for (block in floorItemSpawns["*"] ?: emptyList()) {
+                block(floorItem)
+            }
+            for (block in floorItemSpawns[floorItem.id] ?: return) {
+                block(floorItem)
             }
         }
 
-        override fun worldSpawn(files: ConfigFiles) {
-            for (spawner in worldDispatcher.instances) {
-                spawner.worldSpawn(files)
+        fun world(configFiles: ConfigFiles) {
+            for (block in worldSpawns) {
+                block(configFiles)
             }
+        }
+
+        fun clear() {
+            playerSpawns.clear()
+            npcSpawns.clear()
+            objectSpawns.clear()
+            floorItemSpawns.clear()
+            worldSpawns
         }
     }
 }

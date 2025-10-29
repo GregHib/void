@@ -12,22 +12,24 @@ class WalkingBot : Api {
 
     val tasks: TaskManager by inject()
 
-    override fun worldSpawn() {
-        val task = Task(
-            name = "walk randomly",
-            block = {
-                while (true) {
-                    val tile = tile.toCuboid(10).random()
-                    instructions.send(Walk(tile.x, tile.y))
-                    bot.await("tick")
-                }
-            },
-            area = null,
-            spaces = Int.MAX_VALUE,
-            requirements = emptyList(),
-        )
-        if (Settings["bots.idle", "nothing"] == "randomWalk") {
-            tasks.idle(task)
+    init {
+        worldSpawn {
+            val task = Task(
+                name = "walk randomly",
+                block = {
+                    while (true) {
+                        val tile = tile.toCuboid(10).random()
+                        instructions.send(Walk(tile.x, tile.y))
+                        bot.await("tick")
+                    }
+                },
+                area = null,
+                spaces = Int.MAX_VALUE,
+                requirements = emptyList(),
+            )
+            if (Settings["bots.idle", "nothing"] == "randomWalk") {
+                tasks.idle(task)
+            }
         }
     }
 }

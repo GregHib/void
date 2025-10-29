@@ -10,7 +10,6 @@ import content.skill.melee.weapon.attackStyle
 import content.skill.prayer.prayerStart
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Api
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
@@ -24,7 +23,6 @@ import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
-import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
@@ -37,34 +35,32 @@ class LumbridgeBeginnerTasks : Api {
 
     val styleDefinitions: WeaponStyleDefinitions by inject()
 
-    override fun move(player: Player, from: Tile, to: Tile) {
-        if (player.running && !player["on_the_run_task", false]) {
-            player["on_the_run_task"] = true
-        }
-    }
-
-    @Variable("task_progress_overall,quest_points")
-    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        if (key == "task_progress_overall" && (from == null || from is Int && from < 10) && to is Int && to >= 10) {
-            player["on_your_way_task"] = true
-        } else if (key == "quest_points" && (from == null || from is Int && from < 4) && to != null && to is Int && to >= 4) {
-            player["fledgeling_adventurer_task"] = true
-        }
-    }
-
-    @Timer("firemaking")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        val regular: Boolean = player.remove("burnt_regular_log") ?: return
-        val tile: Tile = player.remove("fire_tile") ?: return
-        if (regular) {
-            val fire = objects.getShape(tile, ObjectShape.CENTRE_PIECE_STRAIGHT)
-            if (fire != null && fire.id.startsWith("fire_")) {
-                player["log_a_rhythm_task"] = true
+    init {
+        timerStop("firemaking") {
+            val regular: Boolean = remove("burnt_regular_log") ?: return@timerStop
+            val tile: Tile = remove("fire_tile") ?: return@timerStop
+            if (regular) {
+                val fire = objects.getShape(tile, ObjectShape.CENTRE_PIECE_STRAIGHT)
+                if (fire != null && fire.id.startsWith("fire_")) {
+                    this["log_a_rhythm_task"] = true
+                }
             }
         }
-    }
 
-    init {
+        variableSet("task_progress_overall,quest_points") { player, key, from, to ->
+            if (key == "task_progress_overall" && (from == null || from is Int && from < 10) && to is Int && to >= 10) {
+                player["on_your_way_task"] = true
+            } else if (key == "quest_points" && (from == null || from is Int && from < 4) && to != null && to is Int && to >= 4) {
+                player["fledgeling_adventurer_task"] = true
+            }
+        }
+
+        moved { player, _ ->
+            if (player.running && !player["on_the_run_task", false]) {
+                player["on_the_run_task"] = true
+            }
+        }
+
         objTeleportLand("Climb-up", "lumbridge_castle_ladder") {
             player["master_of_all_i_survey_task"] = true
         }

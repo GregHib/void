@@ -20,11 +20,16 @@ class PrayerDrain : Api {
     val definitions: PrayerDefinitions by inject()
     val variableDefinitions: VariableDefinitions by inject()
 
-    @Timer("prayer_drain")
-    override fun start(player: Player, timer: String, restart: Boolean): Int = 1
+    init {
+        timerStart("prayer_drain") { 1 }
+        timerTick("prayer_drain", ::drain)
+        timerStop("prayer_drain") {
+            clear(getActivePrayerVarKey())
+            this[PrayerConfigs.USING_QUICK_PRAYERS] = false
+        }
+    }
 
-    @Timer("prayer_drain")
-    override fun tick(player: Player, timer: String): Int {
+    fun drain(player: Player): Int {
         val equipmentBonus = player["prayer", 0]
         var prayerDrainCounter = player["prayer_drain_counter", 0]
 
@@ -42,12 +47,6 @@ class PrayerDrain : Api {
         }
         player["prayer_drain_counter"] = prayerDrainCounter
         return Timer.CONTINUE
-    }
-
-    @Timer("prayer_drain")
-    override fun stop(player: Player, timer: String, logout: Boolean) {
-        player.clear(player.getActivePrayerVarKey())
-        player[PrayerConfigs.USING_QUICK_PRAYERS] = false
     }
 
     fun getTotalDrainEffect(player: Player): Int {

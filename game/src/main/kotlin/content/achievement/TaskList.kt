@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -20,29 +19,33 @@ class TaskList : Api {
 
     val enumDefinitions: EnumDefinitions by inject()
 
-    override fun spawn(player: Player) {
-        player.sendVariable("task_disable_popups")
-        player["task_popup"] = 0
-        player["task_previous_popup"] = 0
-        var total = 0
-        for (area in 0 until 8) {
-            Tasks.forEach(area) {
-                if (Tasks.isCompleted(player, definition.stringId)) {
-                    player.sendVariable(definition.stringId)
-                    total++
-                }
-                null
-            }
-        }
-        player["task_progress_overall"] = total
-        player.sendVariable("task_hide_completed")
-        player.sendVariable("task_filter_sets")
-    }
-
     init {
+        playerSpawn { player ->
+            player.sendVariable("task_disable_popups")
+            player["task_popup"] = 0
+            player["task_previous_popup"] = 0
+            var total = 0
+            for (area in 0 until 8) {
+                Tasks.forEach(area) {
+                    if (Tasks.isCompleted(player, definition.stringId)) {
+                        player.sendVariable(definition.stringId)
+                        total++
+                    }
+                    null
+                }
+            }
+            player["task_progress_overall"] = total
+            player.sendVariable("task_hide_completed")
+            player.sendVariable("task_filter_sets")
+        }
+
         interfaceOpen("task_list") { player ->
             player.interfaceOptions.unlockAll("task_list", "tasks", 0..492)
             refresh(player)
+        }
+
+        variableSet("task_pin_slot") { player, _, _, _ ->
+            player.close("task_list")
         }
 
         interfaceOption("Select", "area_*", "task_list") {
@@ -88,11 +91,6 @@ class TaskList : Api {
             player["world_map_marker_text_1"] = ""
             player.open("world_map")
         }
-    }
-
-    @Variable("task_pin_slot")
-    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        player.close("task_list")
     }
 
     fun indexOfSlot(player: Player, slot: Int): Int? {

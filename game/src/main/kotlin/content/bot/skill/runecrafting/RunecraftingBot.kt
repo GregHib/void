@@ -22,26 +22,28 @@ class RunecraftingBot : Api {
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()
 
-    override fun worldSpawn() {
-        for (area in areas.getTagged("altar")) {
-            val type: String = area["type"]
-            val spaces: Int = area["spaces", 1]
-            val range: IntRange = area["levels", "1-5"].toIntRange()
-            val task = Task(
-                name = "craft $type runes at ${area.name}",
-                block = {
-                    while (levels.getMax(Skill.Runecrafting) < range.last + 1) {
-                        bot.craftRunes(area)
-                    }
-                },
-                area = area.area,
-                spaces = spaces,
-                requirements = listOf(
-                    { levels.getMax(Skill.Runecrafting) in range },
-                    { bot.hasExactGear(Skill.Runecrafting) },
-                ),
-            )
-            tasks.register(task)
+    init {
+        worldSpawn {
+            for (area in areas.getTagged("altar")) {
+                val type: String = area["type"]
+                val spaces: Int = area["spaces", 1]
+                val range: IntRange = area["levels", "1-5"].toIntRange()
+                val task = Task(
+                    name = "craft $type runes at ${area.name}",
+                    block = {
+                        while (levels.getMax(Skill.Runecrafting) < range.last + 1) {
+                            bot.craftRunes(area)
+                        }
+                    },
+                    area = area.area,
+                    spaces = spaces,
+                    requirements = listOf(
+                        { levels.getMax(Skill.Runecrafting) in range },
+                        { bot.hasExactGear(Skill.Runecrafting) },
+                    ),
+                )
+                tasks.register(task)
+            }
         }
     }
 

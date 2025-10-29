@@ -1,6 +1,7 @@
 [root]
 id = -1
 type = "full_screen"
+
 [toplevel]
 id = 548
 type = "full_screen"

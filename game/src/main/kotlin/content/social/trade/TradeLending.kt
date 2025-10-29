@@ -26,11 +26,11 @@ class TradeLending : Api {
         override fun restricted(id: String) = definitions.get(id).lendId == -1
     }
 
-    override fun spawn(player: Player) {
-        player.loan.itemRule = lendRestriction
-    }
-
     init {
+        playerSpawn { player ->
+            player.loan.itemRule = lendRestriction
+        }
+
         interfaceOption("Specify", "loan_time", "trade_main") {
             val hours = intEntry("Set the loan duration in hours: (1 - 72)<br>(Enter <col=7f0000>0</col> for 'Just until logout'.)").coerceIn(0, 72)
             setLend(player, hours)

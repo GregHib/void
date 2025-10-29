@@ -86,7 +86,7 @@ class NPCDeath {
                     npc.hide = false
                     npc.dead = false
                     npc.mode = EmptyMode
-                    Spawn.spawn(npc)
+                    Spawn.npc(npc)
                 } else {
                     World.queue("remove_npc") {
                         npcs.remove(npc)

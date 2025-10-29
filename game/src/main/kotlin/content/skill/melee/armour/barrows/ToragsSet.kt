@@ -12,13 +12,13 @@ import world.gregs.voidps.type.random
 @Script
 class ToragsSet : Api {
 
-    override fun spawn(player: Player) {
-        if (player.hasFullSet()) {
-            player["torags_set_effect"] = true
-        }
-    }
-
     init {
+        playerSpawn { player ->
+            if (player.hasFullSet()) {
+                player["torags_set_effect"] = true
+            }
+        }
+
         itemRemoved("torags_*", BarrowsArmour.slots, "worn_equipment") { player ->
             player.clear("torags_set_effect")
         }

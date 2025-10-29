@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -73,18 +72,14 @@ class GypsyAris : Api {
                 }
             }
         }
-    }
-
-    @Timer("demon_slayer_crystal_ball")
-    override fun start(npc: NPC, timer: String, restart: Boolean): Int = 2
-
-    @Timer("demon_slayer_crystal_ball")
-    override fun tick(npc: NPC, timer: String): Int {
-        if (npc.mode !is Face) {
-            return Timer.CANCEL
+        npcTimerStart("demon_slayer_crystal_ball") { 2 }
+        npcTimerTick("demon_slayer_crystal_ball") {
+            if (mode !is Face) {
+                return@npcTimerTick Timer.CANCEL
+            }
+            areaSound("demon_slayer_crystal_ball_anim", tile)
+            return@npcTimerTick Timer.CONTINUE
         }
-        areaSound("demon_slayer_crystal_ball_anim", npc.tile)
-        return Timer.CONTINUE
     }
 
     suspend fun SuspendableContext<Player>.whatToDo() {

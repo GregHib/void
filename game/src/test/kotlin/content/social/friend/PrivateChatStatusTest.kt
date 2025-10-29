@@ -47,7 +47,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         player["private_status"] = "off"
 
         runBlocking(Dispatchers.Default) {
-            Spawn.spawn(player)
+            Spawn.player(player)
         }
 
         verify {
@@ -66,7 +66,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         player["private_status"] = "friends"
 
         runBlocking(Dispatchers.Default) {
-            Spawn.spawn(player)
+            Spawn.player(player)
         }
 
         verify {
@@ -85,7 +85,7 @@ internal class PrivateChatStatusTest : WorldTest() {
         player["private_status"] = "on"
 
         runBlocking(Dispatchers.Default) {
-            Spawn.spawn(player)
+            Spawn.player(player)
         }
 
         verify {

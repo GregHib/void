@@ -38,27 +38,29 @@ class TrainingBot : Api {
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()
 
-    override fun worldSpawn() {
-        val area = areas.getOrNull("lumbridge_combat_tutors") ?: return@worldSpawn
-        val range = 1..5
-        val skills = listOf(Skill.Attack, Skill.Magic, Skill.Ranged)
-        val melees = listOf(Skill.Attack, Skill.Strength, Skill.Defence)
-        for (skill in skills) {
-            val melee = skill == Skill.Attack
-            val task = Task(
-                name = "train ${if (melee) "melee" else skill.name} at ${area.name}".toLowerSpaceCase(),
-                block = {
-                    val actualSkill = if (melee) melees.filter { levels.getMax(it) in range }.random() else skill
-                    bot.train(area, actualSkill, range)
-                },
-                area = area.area,
-                spaces = if (melee) 3 else 2,
-                requirements = listOf(
-                    { if (melee) melees.any { levels.getMax(it) in range } else levels.getMax(skill) in range },
-                    { bot.canGetGearAndAmmo(skill) },
-                ),
-            )
-            tasks.register(task)
+    init {
+        worldSpawn {
+            val area = areas.getOrNull("lumbridge_combat_tutors") ?: return@worldSpawn
+            val range = 1..5
+            val skills = listOf(Skill.Attack, Skill.Magic, Skill.Ranged)
+            val melees = listOf(Skill.Attack, Skill.Strength, Skill.Defence)
+            for (skill in skills) {
+                val melee = skill == Skill.Attack
+                val task = Task(
+                    name = "train ${if (melee) "melee" else skill.name} at ${area.name}".toLowerSpaceCase(),
+                    block = {
+                        val actualSkill = if (melee) melees.filter { levels.getMax(it) in range }.random() else skill
+                        bot.train(area, actualSkill, range)
+                    },
+                    area = area.area,
+                    spaces = if (melee) 3 else 2,
+                    requirements = listOf(
+                        { if (melee) melees.any { levels.getMax(it) in range } else levels.getMax(skill) in range },
+                        { bot.canGetGearAndAmmo(skill) },
+                    ),
+                )
+                tasks.register(task)
+            }
         }
     }
 

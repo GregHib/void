@@ -24,12 +24,12 @@ class EnchantedGem : Api {
 
     val slayerDefinitions: SlayerTaskDefinitions by inject()
 
-    override fun spawn(player: Player) {
-        player.sendVariable("slayer_count")
-        player.sendVariable("slayer_target")
-    }
-
     init {
+        playerSpawn { player ->
+            player.sendVariable("slayer_count")
+            player.sendVariable("slayer_target")
+        }
+
         inventoryItem("Activate", "enchanted_gem") {
             player.strongQueue("enchanted_gem_activate") {
                 val master = player.slayerMaster

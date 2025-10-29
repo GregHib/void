@@ -9,13 +9,13 @@ import world.gregs.voidps.engine.inv.itemRemoved
 @Script
 class VeracsSet : Api {
 
-    override fun spawn(player: Player) {
-        if (player.hasFullSet()) {
-            player["veracs_set_effect"] = true
-        }
-    }
-
     init {
+        playerSpawn { player ->
+            if (player.hasFullSet()) {
+                player["veracs_set_effect"] = true
+            }
+        }
+
         itemRemoved("veracs_*", BarrowsArmour.slots, "worn_equipment") { player ->
             player.clear("veracs_set_effect")
         }

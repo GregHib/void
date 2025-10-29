@@ -11,7 +11,6 @@ import content.skill.prayer.*
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -34,29 +33,27 @@ class Leech : Api {
         "leech_magic" to Skill.Magic,
     )
 
-    @Timer("prayer_bonus_drain")
-    override fun start(player: Player, timer: String, restart: Boolean): Int = 50
-
-    @Timer("prayer_bonus_drain")
-    override fun tick(player: Player, timer: String): Int {
-        val attack = player.getLeech(Skill.Attack)
-        val strength = player.getLeech(Skill.Strength)
-        val defence = player.getLeech(Skill.Defence)
-        val ranged = player.getLeech(Skill.Ranged)
-        val magic = player.getLeech(Skill.Magic)
-        if (attack == 0 && strength == 0 && defence == 0 && ranged == 0 && magic == 0) {
-            return Timer.CANCEL
-        }
-        player.clear("stat_reduction_msg")
-        restore(player, Skill.Attack, attack)
-        restore(player, Skill.Strength, strength)
-        restore(player, Skill.Defence, defence)
-        restore(player, Skill.Ranged, ranged)
-        restore(player, Skill.Magic, magic)
-        return Timer.CONTINUE
-    }
-
     init {
+        timerStart("prayer_bonus_drain") { 50 }
+
+        timerTick("prayer_bonus_drain") {
+            val attack = getLeech(Skill.Attack)
+            val strength = getLeech(Skill.Strength)
+            val defence = getLeech(Skill.Defence)
+            val ranged = getLeech(Skill.Ranged)
+            val magic = getLeech(Skill.Magic)
+            if (attack == 0 && strength == 0 && defence == 0 && ranged == 0 && magic == 0) {
+                return@timerTick Timer.CANCEL
+            }
+            clear("stat_reduction_msg")
+            restore(this, Skill.Attack, attack)
+            restore(this, Skill.Strength, strength)
+            restore(this, Skill.Defence, defence)
+            restore(this, Skill.Ranged, ranged)
+            restore(this, Skill.Magic, magic)
+            return@timerTick Timer.CONTINUE
+        }
+
         combatDamage { target ->
             if (source !is Player || !source.praying("sap_spirit")) {
                 return@combatDamage
@@ -170,14 +167,13 @@ class Leech : Api {
                 }
             }
         }
-    }
 
-    @Variable("in_combat")
-    override fun variableSet(player: Player, key: String, from: Any?, to: Any?) {
-        if (to == 0) {
-            for ((_, skill) in map) {
-                player.clear("${skill.name.lowercase()}_drain_msg")
-                player.clear("${skill.name.lowercase()}_leech_msg")
+        variableSet("in_combat") { player, _, _, to ->
+            if (to == 0) {
+                for ((_, skill) in map) {
+                    player.clear("${skill.name.lowercase()}_drain_msg")
+                    player.clear("${skill.name.lowercase()}_leech_msg")
+                }
             }
         }
     }
