@@ -7,17 +7,17 @@ import content.skill.magic.spell.spell
 import content.skill.melee.weapon.attackRange
 import content.skill.melee.weapon.fightStyle
 import net.pearx.kasechange.toTitleCase
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.interfaceOnNPCApproach
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
+import world.gregs.voidps.engine.entity.character.mode.interact.approachRange
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
-import world.gregs.voidps.engine.entity.character.npc.npcApproachNPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.characterApproachPlayer
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -25,7 +25,7 @@ import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 @Script
-class Attack {
+class Attack : Api {
 
     init {
         npcApproach("Attack") {
@@ -50,31 +50,41 @@ class Attack {
             combatInteraction(character, target)
         }
 
-        npcApproach("Destroy", "door_support*") {
-            if (character.attackRange != 1) {
-                approachRange(character.attackRange, update = false)
+
+        npcApproach("Destroy", "door_support*") { player, target ->
+            if (player.attackRange != 1) {
+                player.approachRange(player.attackRange, update = false)
             } else {
-                approachRange(null, update = true)
+                player.approachRange(null, update = true)
             }
-            combatInteraction(character, target)
+            combatInteraction(player, target)
         }
 
-        npcApproachNPC("Attack") {
-            if (character.attackRange != 1) {
-                approachRange(character.attackRange, update = false)
+        npcApproachNpc("Attack") { npc, target ->
+            if (npc.attackRange != 1) {
+                npc.approachRange(npc.attackRange, update = false)
             } else {
-                approachRange(null, update = true)
+                npc.approachRange(null, update = true)
             }
-            combatInteraction(character, target)
+            combatInteraction(npc, target)
         }
 
-        characterApproachPlayer("Attack") {
-            if (character.attackRange != 1) {
-                approachRange(character.attackRange, update = false)
+        playerApproach("Attack") { player, target ->
+            if (player.attackRange != 1) {
+                player.approachRange(player.attackRange, update = false)
             } else {
-                approachRange(null, update = true)
+                player.approachRange(null, update = true)
             }
-            combatInteraction(character, target)
+            combatInteraction(player, target)
+        }
+
+        npcApproachPlayer("Attack") { npc, target ->
+            if (npc.attackRange != 1) {
+                npc.approachRange(npc.attackRange, update = false)
+            } else {
+                npc.approachRange(null, update = true)
+            }
+            combatInteraction(npc, target)
         }
 
         interfaceOnNPCApproach(id = "*_spellbook") {

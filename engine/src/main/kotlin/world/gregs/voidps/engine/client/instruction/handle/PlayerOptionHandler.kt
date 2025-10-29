@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.network.client.instruction.InteractPlayer
@@ -40,5 +39,5 @@ class PlayerOptionHandler(
 }
 
 fun Character.interactPlayer(target: Player, option: String) {
-    mode = Interact(this, target, PlayerOption(this, target, option), type = CharacterInteraction(option))
+    mode = Interact(this, target, null, type = CharacterInteraction(option))
 }

@@ -4,6 +4,7 @@ import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.social.friend.friend
 import content.social.trade.Trade.getPartner
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeType
@@ -11,7 +12,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.player.playerOperate
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
@@ -21,10 +21,10 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.moveAll
 
 @Script
-class TradeRequest {
+class TradeRequest : Api {
 
     init {
-        playerOperate("Trade with") {
+        playerOperate("Trade with") { player, target ->
             val filter = target["trade_filter", "on"]
             if (filter == "off" || (filter == "friends" && !target.friend(player))) {
                 return@playerOperate
