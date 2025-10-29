@@ -58,7 +58,7 @@ interface Operation {
     /**
      * Npc option
      */
-    fun npcOperate(option: String, npc: String, block: suspend (player: Player, target: NPC) -> Unit) {
+    fun npcOperate(option: String, npc: String = "*", block: suspend (player: Player, target: NPC) -> Unit) {
         for (id in Wildcards.find(npc)) {
             playerNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
@@ -92,7 +92,7 @@ interface Operation {
     /**
      * GameObject option
      */
-    fun objectOperate(option: String, obj: String, arriveDelay: Boolean = true, block: suspend (Player, GameObject) -> Unit) {
+    fun objectOperate(option: String, obj: String = "*", arriveDelay: Boolean = true, block: suspend (Player, GameObject) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(obj))
         }
@@ -255,7 +255,7 @@ interface Operation {
             for (block in playerNpcBlocks["$option:${target.def(player).stringId}"] ?: emptyList()) {
                 block(player, target)
             }
-            for (block in playerNpcBlocks[option] ?: return) {
+            for (block in playerNpcBlocks["$option:*"] ?: return) {
                 block(player, target)
             }
         }
@@ -267,7 +267,7 @@ interface Operation {
             for (block in playerObjectBlocks["$option:${target.def(player).stringId}"] ?: emptyList()) {
                 block(player, target)
             }
-            for (block in playerObjectBlocks[option] ?: return) {
+            for (block in playerObjectBlocks["$option:*"] ?: return) {
                 block(player, target)
             }
         }
@@ -279,7 +279,7 @@ interface Operation {
             for (block in playerFloorItemBlocks["$option:${target.id}"] ?: emptyList()) {
                 block(player, target)
             }
-            for (block in playerFloorItemBlocks[option] ?: return) {
+            for (block in playerFloorItemBlocks["$option:*"] ?: return) {
                 block(player, target)
             }
         }

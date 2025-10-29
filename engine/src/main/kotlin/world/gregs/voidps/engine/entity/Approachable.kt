@@ -19,10 +19,10 @@ interface Approachable {
     /**
      * NPC Dialogue helper
      */
-    fun talkToApproach(npc: String, block: suspend Dialogue.() -> Unit) {
-        for (id in Wildcards.find(npc)) {
-            playerNpcBlocks.getOrPut("Talk-to:$id") { mutableListOf() }.add { player, target ->
-                player.talkWith(target) { block(this) }
+    fun npcApproachDialogue(option: String, npc: String, block: suspend Dialogue.() -> Unit) {
+        npcApproach(option, npc) { player, target ->
+            player.talkWith(target) {
+                block(this)
             }
         }
     }
@@ -58,7 +58,7 @@ interface Approachable {
     /**
      * Npc option
      */
-    fun npcApproach(option: String, npc: String, block: suspend (Player, NPC) -> Unit) {
+    fun npcApproach(option: String, npc: String = "*", block: suspend (Player, NPC) -> Unit) {
         for (id in Wildcards.find(npc)) {
             playerNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
@@ -92,7 +92,7 @@ interface Approachable {
     /**
      * GameObject option
      */
-    fun objectApproach(option: String, obj: String, arriveDelay: Boolean = true, block: suspend (Player, GameObject) -> Unit) {
+    fun objectApproach(option: String, obj: String = "*", arriveDelay: Boolean = true, block: suspend (Player, GameObject) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(obj))
         }
@@ -247,7 +247,7 @@ interface Approachable {
             for (block in playerNpcBlocks["$option:${target.def(player).stringId}"] ?: emptyList()) {
                 block(player, target)
             }
-            for (block in playerNpcBlocks[option] ?: return) {
+            for (block in playerNpcBlocks["$option:*"] ?: return) {
                 block(player, target)
             }
         }
@@ -259,7 +259,7 @@ interface Approachable {
             for (block in playerObjectBlocks["$option:${target.def(player).stringId}"] ?: emptyList()) {
                 block(player, target)
             }
-            for (block in playerObjectBlocks[option] ?: return) {
+            for (block in playerObjectBlocks["$option:*"] ?: return) {
                 block(player, target)
             }
         }
@@ -271,7 +271,7 @@ interface Approachable {
             for (block in playerFloorItemBlocks["$option:${target.id}"] ?: emptyList()) {
                 block(player, target)
             }
-            for (block in playerFloorItemBlocks[option] ?: return) {
+            for (block in playerFloorItemBlocks["$option:*"] ?: return) {
                 block(player, target)
             }
         }
