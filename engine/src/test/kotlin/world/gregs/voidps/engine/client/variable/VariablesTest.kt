@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.variable
 
 import io.mockk.*
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -48,6 +49,11 @@ internal class VariablesTest {
             calls.add(from to to)
         }
         VariableSet.playerBlocks["*"] = mutableListOf(varSet)
+    }
+
+    @AfterEach
+    fun teardown() {
+        VariableSet.playerBlocks.clear()
     }
 
     @Test

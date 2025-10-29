@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.obj
 
 import io.mockk.*
 import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declare
@@ -15,7 +16,6 @@ import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectRemoval
 import world.gregs.voidps.type.Tile
-import java.util.LinkedList
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
@@ -26,7 +26,7 @@ class GameObjectsTest : KoinMock() {
     private lateinit var objects: GameObjects
     private lateinit var updates: ZoneBatchUpdates
     private lateinit var events: Events
-    private lateinit var calls: LinkedList<GameObject>
+    private lateinit var calls: MutableList<GameObject>
 
     @BeforeEach
     fun setup() {
@@ -40,11 +40,16 @@ class GameObjectsTest : KoinMock() {
         objects = GameObjects(mockk(relaxed = true), mockk(relaxed = true), updates, definitions, storeUnused = true)
         events = spyk(Events())
         Events.setEvents(events)
-        calls = spyk(LinkedList())
+        calls = mockk(relaxed = true)
         val spawn: (GameObject) -> Unit = {
             calls.add(it)
         }
         Spawn.objectSpawns["*"] = mutableListOf(spawn)
+    }
+
+    @AfterEach
+    fun teardown() {
+        Spawn.objectSpawns.clear()
     }
 
     @Test
@@ -58,8 +63,8 @@ class GameObjectsTest : KoinMock() {
         assertNull(objects.getLayer(Tile(10, 10, 1), ObjectLayer.GROUND))
         objects.clear()
         assertNull(objects.getLayer(obj.tile, ObjectLayer.GROUND))
-        assertEquals(obj, calls.pop())
         verify(exactly = 0) {
+            calls.add(obj)
             events.emit(obj, any())
         }
     }
@@ -77,8 +82,8 @@ class GameObjectsTest : KoinMock() {
         verify {
             updates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
         }
-        assertEquals(obj, calls.pop())
         verify(exactly = 0) {
+            calls.add(obj)
             events.emit(obj, any())
         }
     }
