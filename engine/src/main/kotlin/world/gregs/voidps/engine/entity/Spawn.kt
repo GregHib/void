@@ -36,9 +36,9 @@ interface Spawn {
 
     companion object {
         val playerSpawns = mutableListOf<(Player) -> Unit>()
-        val npcSpawns = mutableMapOf<String, MutableList<(NPC) -> Unit>>("*" to mutableListOf())
-        val objectSpawns = mutableMapOf<String, MutableList<(GameObject) -> Unit>>("*" to mutableListOf())
-        val floorItemSpawns = mutableMapOf<String, MutableList<(FloorItem) -> Unit>>("*" to mutableListOf())
+        val npcSpawns = mutableMapOf<String, MutableList<(NPC) -> Unit>>()
+        val objectSpawns = mutableMapOf<String, MutableList<(GameObject) -> Unit>>()
+        val floorItemSpawns = mutableMapOf<String, MutableList<(FloorItem) -> Unit>>()
         val worldSpawns = mutableListOf<(ConfigFiles) -> Unit>()
 
         fun player(player: Player) {
@@ -48,7 +48,7 @@ interface Spawn {
         }
 
         fun npc(npc: NPC) {
-            for (block in npcSpawns["*"]!!) {
+            for (block in npcSpawns["*"] ?: emptyList()) {
                 block(npc)
             }
             for (block in npcSpawns[npc.id] ?: return) {
@@ -57,7 +57,7 @@ interface Spawn {
         }
 
         fun gameObject(gameObject: GameObject) {
-            for (block in objectSpawns["*"]!!) {
+            for (block in objectSpawns["*"] ?: emptyList()) {
                 block(gameObject)
             }
             for (block in objectSpawns[gameObject.id] ?: return) {
@@ -66,7 +66,7 @@ interface Spawn {
         }
 
         fun floorItem(floorItem: FloorItem) {
-            for (block in floorItemSpawns["*"]!!) {
+            for (block in floorItemSpawns["*"] ?: emptyList()) {
                 block(floorItem)
             }
             for (block in floorItemSpawns[floorItem.id] ?: return) {
@@ -83,11 +83,8 @@ interface Spawn {
         fun clear() {
             playerSpawns.clear()
             npcSpawns.clear()
-            npcSpawns["*"] = mutableListOf()
             objectSpawns.clear()
-            objectSpawns["*"] = mutableListOf()
             floorItemSpawns.clear()
-            floorItemSpawns["*"] = mutableListOf()
             worldSpawns
         }
     }
