@@ -67,8 +67,9 @@ interface Operation {
 
     /**
      * Interface on NPC
+     * Any [npc] is allowed but [id] is required
      */
-    fun interfaceOnNpcOperate(id: String, npc: String, block: suspend (player: Player, id: String, slot: Int, item: Item, target: NPC) -> Unit) {
+    fun interfaceOnNpcOperate(id: String, npc: String = "*", block: suspend (player: Player, id: String, slot: Int, item: Item, target: NPC) -> Unit) {
         for (itf in Wildcards.find(id)) {
             for (i in Wildcards.find(npc)) {
                 onNpcBlocks.getOrPut("$itf:$i") { mutableListOf() }.add(block)
@@ -78,9 +79,9 @@ interface Operation {
 
     /**
      * Item on NPC
+     * Any item is allowed, [npc] is required
      */
-    fun itemOnNpcOperate(item: String, npc: String, block: suspend (player: Player, id: String, slot: Int, item: Item, target: NPC) -> Unit) {
-        // TODO is this correct do we need target w wildcards?
+    fun itemOnNpcOperate(item: String = "*", npc: String, block: suspend (player: Player, id: String, slot: Int, item: Item, target: NPC) -> Unit) {
         for (itm in Wildcards.find(item)) {
             for (i in Wildcards.find(npc)) {
                 onNpcBlocks.getOrPut("$itm:$i") { mutableListOf() }.add(block)
@@ -103,8 +104,9 @@ interface Operation {
 
     /**
      * Interface on GameObject
+     * Any [obj] is allowed but [id] is required
      */
-    fun interfaceOnObjectOperate(id: String, obj: String, arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: GameObject) -> Unit) {
+    fun interfaceOnObjectOperate(id: String, obj: String = "*", arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: GameObject) -> Unit) {
         if (!arriveDelay) {
             noDelaysSet.addAll(Wildcards.find(obj))
         }
@@ -117,8 +119,9 @@ interface Operation {
 
     /**
      * Item on GameObject
+     * Any item is allowed, [obj] is required
      */
-    fun itemOnObjectOperate(item: String, obj: String, arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: GameObject) -> Unit) {
+    fun itemOnObjectOperate(item: String = "*", obj: String, arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: GameObject) -> Unit) {
         if (!arriveDelay) {
             noDelaysSet.addAll(Wildcards.find(obj))
         }
@@ -144,8 +147,9 @@ interface Operation {
 
     /**
      * Interface on FloorItem
+     * Any [item] is allowed but [id] is required
      */
-    fun interfaceOnFloorItemOperate(id: String, item: String, arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: FloorItem) -> Unit) {
+    fun interfaceOnFloorItemOperate(id: String, item: String = "*", arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: FloorItem) -> Unit) {
         if (!arriveDelay) {
             noDelaysSet.addAll(Wildcards.find(item))
         }
@@ -158,8 +162,9 @@ interface Operation {
 
     /**
      * Item on FloorItem
+     * Any item is allowed, [floorItem] is required
      */
-    fun itemOnFloorItemOperate(item: String, floorItem: String, arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: FloorItem) -> Unit) {
+    fun itemOnFloorItemOperate(item: String = "*", floorItem: String, arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: FloorItem) -> Unit) {
         if (!arriveDelay) {
             noDelaysSet.addAll(Wildcards.find(item))
         }
@@ -190,7 +195,10 @@ interface Operation {
     /**
      * Npc game object option
      */
-    suspend fun npcOperateObject(option: String, obj: String, block: suspend (npc: NPC, target: GameObject) -> Unit) {
+    suspend fun npcOperateObject(option: String, obj: String, arriveDelay: Boolean = true, block: suspend (npc: NPC, target: GameObject) -> Unit) {
+        if (!arriveDelay) {
+            noDelaysSet.addAll(Wildcards.find(obj))
+        }
         for (id in Wildcards.find(obj)) {
             npcObjectBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
@@ -199,7 +207,10 @@ interface Operation {
     /**
      * Npc floor item option
      */
-    suspend fun npcOperateFloorItem(option: String, item: String, block: suspend (npc: NPC, target: FloorItem) -> Unit) {
+    suspend fun npcOperateFloorItem(option: String, item: String, arriveDelay: Boolean = true, block: suspend (npc: NPC, target: FloorItem) -> Unit) {
+        if (!arriveDelay) {
+            noDelaysSet.addAll(Wildcards.find(item))
+        }
         for (id in Wildcards.find(item)) {
             npcFloorItemBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
@@ -291,20 +302,62 @@ interface Operation {
         }
 
         suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: NPC) {
-            for (block in onNpcBlocks[if (item.isEmpty()) "$id:${target.def(player).stringId}" else "${item.id}:${target.def(player).stringId}"] ?: return) {
-                block(player, id, slot, item, target)
+            if (item.isEmpty()) {
+                for (block in onNpcBlocks["$id:${target.def(player).stringId}"] ?: emptyList()) {
+                    block(player, id, slot, item, target)
+                }
+                for (block in onNpcBlocks["$id:*"] ?: return) {
+                    block(player, id, slot, item, target)
+                }
+            } else {
+                for (block in onNpcBlocks["${item.id}:${target.def(player).stringId}"] ?: emptyList()) {
+                    block(player, id, slot, item, target)
+                }
+                for (block in onNpcBlocks["${item.id}:*"] ?: return) {
+                    block(player, id, slot, item, target)
+                }
             }
         }
 
         suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: GameObject) {
-            for (block in onObjectBlocks[if (item.isEmpty()) "$id:${target.def(player).stringId}" else "${item.id}:${target.def(player).stringId}"] ?: return) {
-                block(player, id, slot, item, target)
+            if (!noDelaysSet.contains(target.id)) {
+                player.arriveDelay()
+            }
+            if (item.isEmpty()) {
+                for (block in onObjectBlocks["$id:${target.def(player).stringId}"] ?: emptyList()) {
+                    block(player, id, slot, item, target)
+                }
+                for (block in onObjectBlocks["$id:*"] ?: return) {
+                    block(player, id, slot, item, target)
+                }
+            } else {
+                for (block in onObjectBlocks["${item.id}:${target.def(player).stringId}"] ?: emptyList()) {
+                    block(player, id, slot, item, target)
+                }
+                for (block in onObjectBlocks["${item.id}:*"] ?: return) {
+                    block(player, id, slot, item, target)
+                }
             }
         }
 
         suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: FloorItem) {
-            for (block in onFloorItemBlocks[if (item.isEmpty()) "$id:${target.id}" else "${item.id}:${target.id}"] ?: return) {
-                block(player, id, slot, item, target)
+            if (!noDelaysSet.contains(target.id)) {
+                player.arriveDelay()
+            }
+            if (item.isEmpty()) {
+                for (block in onFloorItemBlocks["$id:${target.id}"] ?: emptyList()) {
+                    block(player, id, slot, item, target)
+                }
+                for (block in onFloorItemBlocks["$id:*"] ?: return) {
+                    block(player, id, slot, item, target)
+                }
+            } else {
+                for (block in onFloorItemBlocks["${item.id}:${target.id}"] ?: emptyList()) {
+                    block(player, id, slot, item, target)
+                }
+                for (block in onFloorItemBlocks["${item.id}:*"] ?: return) {
+                    block(player, id, slot, item, target)
+                }
             }
         }
 
@@ -321,12 +374,18 @@ interface Operation {
         }
 
         suspend fun operate(npc: NPC, target: GameObject, option: String) {
+            if (!noDelaysSet.contains(target.id)) {
+                npc.arriveDelay()
+            }
             for (block in npcObjectBlocks["$option:${target.id}"] ?: return) {
                 block(npc, target)
             }
         }
 
         suspend fun operate(npc: NPC, target: FloorItem, option: String) {
+            if (!noDelaysSet.contains(target.id)) {
+                npc.arriveDelay()
+            }
             for (block in npcFloorItemBlocks["$option:${target.id}"] ?: return) {
                 block(npc, target)
             }
