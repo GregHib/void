@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.dispatch.MapDispatcher
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.InteractionType
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -20,18 +19,18 @@ import world.gregs.voidps.engine.event.Events
 class CharacterInteraction(
     private val option: String,
     private val key: String,
-    private val operateDispatcher: MapDispatcher<Operation>,
-    private val approachDispatcher: MapDispatcher<Approachable>,
+    private val operateKeys: Set<String>,
+    private val approachKeys: Set<String>,
 ) : InteractionType {
 
-    constructor(option: String) : this(option, option, Operation.playerPlayerDispatcher, Approachable.playerPlayerDispatcher)
-    constructor(def: NPCDefinition, option: String) : this(option, "$option:${def.stringId}", Operation.playerNpcDispatcher, Approachable.playerNpcDispatcher)
-    constructor(def: ObjectDefinition, option: String) : this(option, "$option:${def.stringId}", Operation.playerObjectDispatcher, Approachable.playerObjectDispatcher)
-    constructor(def: ItemDefinition, option: String) : this(option, "$option:${def.stringId}", Operation.playerFloorItemDispatcher, Approachable.playerFloorItemDispatcher)
+    constructor(option: String) : this(option, option, Operation.playerPlayerBlocks.keys, Approachable.playerPlayerBlocks.keys)
+    constructor(def: NPCDefinition, option: String) : this(option, "$option:${def.stringId}", Operation.playerNpcBlocks.keys, Approachable.playerNpcBlocks.keys)
+    constructor(def: ObjectDefinition, option: String) : this(option, "$option:${def.stringId}", Operation.playerObjectBlocks.keys, Approachable.playerObjectBlocks.keys)
+    constructor(def: ItemDefinition, option: String) : this(option, "$option:${def.stringId}", Operation.playerFloorItemBlocks.keys, Approachable.playerFloorItemBlocks.keys)
 
-    override fun hasOperate(character: Character) = operateDispatcher.instances.containsKey(key) || operateDispatcher.instances.containsKey(option)
+    override fun hasOperate(character: Character) = operateKeys.contains(key) || operateKeys.contains(option)
 
-    override fun hasApproach(character: Character) = approachDispatcher.instances.containsKey(key) || approachDispatcher.instances.containsKey(option)
+    override fun hasApproach(character: Character) = approachKeys.contains(key) || approachKeys.contains(option)
 
     override fun operate(character: Character, target: Entity) {
         Events.events.launch {
