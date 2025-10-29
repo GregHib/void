@@ -3,21 +3,20 @@ package content.area.misthalin.varrock.grand_exchange
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.suspend.ContinueSuspension
 
 @Script
-class BrugsenBurson {
+class BrugsenBurson : Api {
 
     init {
-        npcOperate("Talk-to", "brugsen_bursen") {
+        npcOperateDialogue("Talk-to", "brugsen_bursen") {
             if (!player.questCompleted("grand_exchange_tutorial")) {
                 player<Quiz>("What is this place?")
                 npc<Laugh>("Well, this is the fantastic Grand Exchange!")
@@ -35,7 +34,7 @@ class BrugsenBurson {
                         npc<Talk>("Well...I shall be waiting for you if you change your mind.")
                     }
                 }
-                return@npcOperate
+                return@npcOperateDialogue
             }
             npc<Happy>("It's the young entrepreneur! How can I help?")
             choice {
@@ -66,7 +65,7 @@ class BrugsenBurson {
 
     // https://www.youtube.com/watch?v=2gpKlHgdQ30
 
-    suspend fun NPCOption<Player>.tutorial() {
+    suspend fun Dialogue.tutorial() {
         // TODO camera
         statement("~ The Grand Exchange ~")
         // TODO camera
@@ -112,7 +111,7 @@ class BrugsenBurson {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.whereDidItComeFrom() {
+    fun ChoiceBuilder<Dialogue>.whereDidItComeFrom() {
         option<Quiz>("Where did the Grand Exchange come from?") {
             npc<Happy>("I'm glad you ask! I like telling this story. Are you sitting comfortably?")
             player<Talk>("Erm, I'll stand if that's okay.")
@@ -132,7 +131,7 @@ class BrugsenBurson {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.commonPrices() {
+    fun ChoiceBuilder<Dialogue>.commonPrices() {
         option<Talk>("Can you tell me prices for common items, like...") {
             //            https://youtu.be/K1vo3SY7Z_g?si=Hgole9yhfo2ORjwK&t=98
             choice {
@@ -165,7 +164,7 @@ class BrugsenBurson {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.systemDetails() {
+    fun ChoiceBuilder<Dialogue>.systemDetails() {
         option<Talk>("Can you tell me more about how the system works?") {
             npc<Happy>("Oh, I simply love passing on knowledge. Okay, let me hit you with some facts...")
             npc<Talk>("The Grand Exchange calculates a guide price for each item that can be traded through it, based on the price people paid for that item over the previous days.")
@@ -189,7 +188,7 @@ class BrugsenBurson {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.teachMeAgain() {
+    fun ChoiceBuilder<Dialogue>.teachMeAgain() {
         option<Quiz>("Can you teach me about the Grand Exchange again?") {
             npc<Laugh>("Hahaha. It would be my absolute pleasure!")
             tutorial()

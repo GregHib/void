@@ -4,24 +4,23 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.quest
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Haakon {
+class Haakon : Api {
 
     val validStages = setOf("tell_gudrun", "write_poem", "more_poem", "one_more_poem", "poem_done", "poem", "recital", "gunnars_ground")
 
     init {
-        npcOperate("Talk-to", "haakon_the_champion") {
+        npcOperateDialogue("Talk-to", "haakon_the_champion") {
             menu()
         }
     }
 
-    suspend fun NPCOption<Player>.menu() {
+    suspend fun Dialogue.menu() {
         npc<Angry>("I am Haakon, champion of this village. Do you seek to challenge me?")
         choice {
             option<Neutral>("I challenge you!") {
@@ -51,7 +50,7 @@ class Haakon {
         }
     }
 
-    suspend fun NPCOption<Player>.attack() {
+    suspend fun Dialogue.attack() {
         npc<Mad>("Make peace with your god, outerlander!")
         target.interactPlayer(player, "Attack")
     }

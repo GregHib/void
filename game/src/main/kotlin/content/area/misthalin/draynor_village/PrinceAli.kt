@@ -7,11 +7,10 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.quest.quest
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.contains
@@ -22,7 +21,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 @Script
-class PrinceAli {
+class PrinceAli : Api {
 
     val disguise = listOf(
         Item("pink_skirt"),
@@ -31,7 +30,7 @@ class PrinceAli {
     )
 
     init {
-        npcOperate("Talk-to", "prince_ali") {
+        npcOperateDialogue("Talk-to", "prince_ali") {
             when (player.quest("prince_ali_rescue")) {
                 "completed" -> npc<Talk>("I owe you my life for that escape. You cannot help me this time, they know who you are. Go in peace, friend of Al-Kharid.")
                 "keli_tied_up" -> escape()
@@ -40,15 +39,19 @@ class PrinceAli {
         }
 
         itemOnNPCOperate("wig_blonde", "prince_ali") {
-            escape()
+            player.talkWith(target) {
+                escape()
+            }
         }
 
         itemOnNPCOperate("pink_skirt", "prince_ali") {
-            escape()
+            player.talkWith(target) {
+                escape()
+            }
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.leave() {
+    suspend fun Dialogue.leave() {
         npc<Happy>("Thank you, my friend. I must leave you now, but my father will pay you well for this.")
         player<Happy>("Go to Leela, she is close to here.")
         target.hide = true
@@ -58,7 +61,7 @@ class PrinceAli {
         statement("The prince has escaped, well done! You are now a friend of Al-Kharid and may pass through the Al-Kharid toll gate for free.")
     }
 
-    suspend fun TargetInteraction<Player, NPC>.escape() {
+    suspend fun Dialogue.escape() {
         player<Happy>("Prince, I've come to rescue you.")
         npc<Talk>("That is very very kind of you, how do I get out?")
         if (!player.inventory.contains(disguise)) {

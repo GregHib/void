@@ -9,21 +9,20 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
+import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class BartenderFlyingHorseInn {
+class BartenderFlyingHorseInn : Api {
 
     init {
-        npcOperate("Talk-to", "bartender_flying_horse_inn") {
+        npcOperateDialogue("Talk-to", "bartender_flying_horse_inn") {
             npc<Quiz>("Would you like to buy a drink?")
             player<Quiz>("What do you serve?")
             npc<Happy>("Beer!")
@@ -35,8 +34,10 @@ class BartenderFlyingHorseInn {
                     }
                 }
                 option<Talk>("I'll not have anything then.")
-                option("I'm doing Alfred Grimhand's barcrawl.", filter = barCrawlFilter) {
-                    barCrawl()
+                if (onBarCrawl()) {
+                    option("I'm doing Alfred Grimhand's barcrawl.") {
+                        barCrawl()
+                    }
                 }
             }
         }
@@ -45,11 +46,13 @@ class BartenderFlyingHorseInn {
             if (player.containsVarbit("barcrawl_signatures", "heart_stopper")) {
                 return@itemOnNPCOperate
             }
-            barCrawl()
+            player.talkWith(target) {
+                barCrawl()
+            }
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
+    suspend fun Dialogue.barCrawl() = barCrawlDrink(
         effects = {
             player.message("signing your barcrawl card")
             player.damage(player.levels.get(Skill.Constitution) / 4)

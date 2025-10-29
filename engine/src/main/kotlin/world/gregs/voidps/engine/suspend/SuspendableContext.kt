@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.interact.delay
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
@@ -89,5 +90,57 @@ interface SuspendableContext<C : Character> : Context<C> {
 
     companion object {
         private val logger = InlineLogger()
+    }
+}
+
+
+/**
+ * Delay until the appeared location of the character has moved [delta] in [delay] time
+ */
+suspend fun Character.exactMoveDelay(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE) {
+    exactMove(delta, delay, direction)
+    delay(round(delay / 30.0).toInt())
+}
+
+/**
+ * Delay until the appeared location of the character has moved to [target] in [delay] time
+ */
+suspend fun Character.exactMoveDelay(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
+    exactMove(target, delay, direction, startDelay)
+    delay(round(delay / 30.0).toInt())
+}
+
+/**
+ * Delay until characters animation [id] is complete
+ * @param override the current animation
+ */
+suspend fun Character.animDelay(id: String, override: Boolean = false) {
+    val ticks = anim(id, override = override)
+    delay(ticks)
+}
+
+/**
+ * Forces the character to walk to a tile
+ */
+suspend fun Character.walkToDelay(tile: Tile, forceWalk: Boolean = false) {
+    walkTo(tile, noCollision = false, forceWalk = forceWalk)
+    delayTarget(tile)
+}
+
+/**
+ * Force a character to walk to tile ignoring collisions
+ */
+suspend fun Character.walkOverDelay(tile: Tile, forceWalk: Boolean = true) {
+    walkTo(tile, noCollision = true, forceWalk = forceWalk)
+    delayTarget(tile)
+}
+
+private suspend fun Character.delayTarget(target: Tile) {
+    var count = 0
+    if (tile.distanceTo(target) >= 50) {
+        return
+    }
+    while (tile != target && count++ < 50 && mode != EmptyMode) {
+        delay()
     }
 }

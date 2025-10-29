@@ -5,17 +5,17 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Hari {
+class Hari : Api {
 
     init {
-        npcOperate("Talk-To", "hari") {
+        npcOperateDialogue("Talk-to", "hari") {
             player<Neutral>("Hello there.")
             npc<Neutral>("Hello.")
             choice {

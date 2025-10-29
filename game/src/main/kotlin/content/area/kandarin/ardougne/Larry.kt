@@ -17,13 +17,12 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.skillLamp
 import content.entity.player.dialogue.type.statement
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.event.Script
@@ -32,13 +31,13 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
 @Script
-class Larry {
+class Larry : Api {
 
     val npcs: NPCs by inject()
     val areas: AreaDefinitions by inject()
 
     init {
-        npcOperate("Talk-to", "larry_ardougne_normal") {
+        npcOperateDialogue("Talk-to", "larry_ardougne_normal") {
             choice("I want to speak to Larry about:") {
 //                option("Cold War") {}
                 option("Penguin Hide and Seek") {
@@ -46,12 +45,12 @@ class Larry {
                 }
             }
         }
-        npcOperate("Hide-n-Seek", "larry_ardougne_normal") {
+        npcOperateDialogue("Hide-n-Seek", "larry_ardougne_normal") {
             reward()
         }
     }
 
-    private suspend fun NPCOption<Player>.hideAndSeek() {
+    private suspend fun Dialogue.hideAndSeek() {
         if (!player["penguin_hide_and_seek_explained", false]) {
             explain()
             return
@@ -91,13 +90,13 @@ class Larry {
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.claimReward(chuck: Boolean = false) {
+    private fun ChoiceBuilder<Dialogue>.claimReward(chuck: Boolean = false) {
         option("I want to claim my reward.") {
             reward(chuck)
         }
     }
 
-    private suspend fun NPCOption<Player>.reward(chuck: Boolean = false) {
+    private suspend fun Dialogue.reward(chuck: Boolean = false) {
         val points = player["penguin_points", 0]
         if (points <= 0) {
             npc<Talk>("You've found a lot of spies. But, you have no penguin points saved up. Keep looking!")
@@ -133,7 +132,7 @@ class Larry {
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.havingTrouble() {
+    private fun ChoiceBuilder<Dialogue>.havingTrouble() {
         option<Talk>("I'm having trouble finding the penguins; can I have a hint?") {
             for (i in 0 until 10) {
                 if (!player.containsVarbit("penguins_found", "penguin_$i")) {
@@ -148,7 +147,7 @@ class Larry {
         }
     }
 
-    private suspend fun NPCOption<Player>.explain() {
+    private suspend fun Dialogue.explain() {
         // https://youtu.be/ZZRctKBpy3o?si=Iw5wOLTaHVt-EABp&t=108
         npc<Afraid>("What do you want?")
         player<Uncertain>("Uh, I just wanted to as-")
@@ -177,7 +176,7 @@ class Larry {
         }
     }
 
-    private suspend fun NPCOption<Player>.info() {
+    private suspend fun Dialogue.info() {
         npc<Happy>("Whenever you spot a penguin, spy on it. They're well trained and will change their positions every week, so keep your eyes peeled.")
         player<Uncertain>("What should I do after I've spied on them?")
         npc<Shifty>("I'll give you a notebook to record any penguins you've spotted. Each penguin is worth 1 Penguin Point.")

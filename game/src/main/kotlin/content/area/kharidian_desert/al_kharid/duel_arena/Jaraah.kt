@@ -4,14 +4,14 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Jaraah {
+class Jaraah : Api {
 
     init {
-        npcOperate("Talk-to", "jaraah") {
+        npcOperateDialogue("Talk-to", "jaraah") {
             player<Happy>("Hi!")
             npc<Frustrated>("What? Can't you see I'm busy?!")
             choice {
@@ -32,7 +32,7 @@ class Jaraah {
             }
         }
 
-        npcOperate("Heal", "jaraah") {
+        npcOperateDialogue("Heal", "jaraah") {
             heal()
         }
     }

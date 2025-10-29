@@ -8,21 +8,20 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
+import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class BartenderDragonInn {
+class BartenderDragonInn : Api {
 
     init {
-        npcOperate("Talk-to", "bartender_dragon_inn") {
+        npcOperateDialogue("Talk-to", "bartender_dragon_inn") {
             npc<Quiz>("What can I get you?")
             player<Quiz>("What's on the menu?")
             npc<Talk>("Dragon Bitter and Greenman's Ale, oh and some cheap beer.")
@@ -50,8 +49,10 @@ class BartenderDragonInn {
                 option<Talk>("I'll give it a miss I think.") {
                     npc<Talk>("Come back when you're a little thirstier.")
                 }
-                option("I'm doing Alfred Grimhand's barcrawl.", filter = barCrawlFilter) {
-                    barCrawl()
+                if (onBarCrawl()) {
+                    option("I'm doing Alfred Grimhand's barcrawl.") {
+                        barCrawl()
+                    }
                 }
             }
         }
@@ -60,11 +61,13 @@ class BartenderDragonInn {
             if (player.containsVarbit("barcrawl_signatures", "fire_brandy")) {
                 return@itemOnNPCOperate
             }
-            barCrawl()
+            player.talkWith(target) {
+                barCrawl()
+            }
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
+    suspend fun Dialogue.barCrawl() = barCrawlDrink(
         effects = {
             player.levels.drain(Skill.Attack, 6)
             player.levels.drain(Skill.Defence, 6)

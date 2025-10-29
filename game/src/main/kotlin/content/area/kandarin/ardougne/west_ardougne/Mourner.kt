@@ -6,8 +6,8 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -17,13 +17,13 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 
 @Script
-class Mourner {
+class Mourner : Api {
 
     val npcs: NPCs by inject()
     val objects: GameObjects by inject()
 
     init {
-        npcOperate("Talk-to", "mourner_elena_guard_vis") {
+        npcOperateDialogue("Talk-to", "mourner_elena_guard_vis") {
             if (player.holdsItem("warrant")) {
                 player<Neutral>("I have a warrant from Bravek to enter here.")
                 npc<Uncertain>("This is highly irregular. Please wait...")
@@ -39,9 +39,9 @@ class Mourner {
                 delay(1)
                 val doorTile = if (target.tile.equals(2539, 3273)) Tile(2540, 3273) else Tile(2533, 3273)
                 val door = objects[doorTile, "door_plague_city_closed"]!!
-                enterDoor(door, delay = 2)
+                player.enterDoor(door, delay = 2)
                 statement("You wait until the mourner's back is turned and sneak into the building.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             npc<Uncertain>("Hmmm, how did you get over here? You're not one of this rabble. Ah well, you'll have to stay. Can't risk you going back now.")
             choice {

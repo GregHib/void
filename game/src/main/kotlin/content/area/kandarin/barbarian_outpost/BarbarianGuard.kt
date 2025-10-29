@@ -4,20 +4,19 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
 @Script
-class BarbarianGuard {
+class BarbarianGuard : Api {
 
     init {
-        npcOperate("Talk-to", "barbarian_guard") {
+        npcOperateDialogue("Talk-to", "barbarian_guard") {
             when (player.quest("alfred_grimhands_barcrawl")) {
                 "unstarted" -> startBarCrawl()
                 "completed" -> toggleVialSmashing()
@@ -30,7 +29,7 @@ class BarbarianGuard {
         }
     }
 
-    suspend fun NPCOption<Player>.startBarCrawl() {
+    suspend fun Dialogue.startBarCrawl() {
         npc<Quiz>("Oi, whaddya want?")
         choice {
             option<Talk>("I want to come through this gate.") {
@@ -59,7 +58,7 @@ class BarbarianGuard {
         }
     }
 
-    suspend fun NPCOption<Player>.toggleVialSmashing() {
+    suspend fun Dialogue.toggleVialSmashing() {
         if (player["vial_smashing", false]) {
             npc<Quiz>("'Ello friend. I see you're drinking like a barbarian - do you want to stop smashing your vials when you finish them?")
             choice {
@@ -86,7 +85,7 @@ class BarbarianGuard {
         }
     }
 
-    suspend fun NPCOption<Player>.questComplete() {
+    suspend fun Dialogue.questComplete() {
         npc<Quiz>("So, how's the Barcrawl coming along?")
         player<Drunk>("I tink I jusht 'bout done dem all... but I losht count...")
         if (player.inventory.remove("barcrawl_card")) {
@@ -105,7 +104,7 @@ class BarbarianGuard {
         }
     }
 
-    suspend fun NPCOption<Player>.checkProcess() {
+    suspend fun Dialogue.checkProcess() {
         npc<Quiz>("So, how's the Barcrawl coming along?")
         if (player.ownsItem("barcrawl_card")) {
             player<Sad>("I haven't finished it yet.")

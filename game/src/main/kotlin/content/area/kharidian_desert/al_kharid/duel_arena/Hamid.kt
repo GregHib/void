@@ -4,14 +4,14 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Hamid {
+class Hamid : Api {
 
     init {
-        npcOperate("Talk-to", "hamid") {
+        npcOperateDialogue("Talk-to", "hamid") {
             player<Happy>("Hi!")
             npc<Neutral>("Hello traveller. How can I be of assistance?")
             choice {

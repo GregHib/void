@@ -3,7 +3,7 @@ package content.area.kandarin.catherby
 import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -11,10 +11,10 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
 @Script
-class Harry {
+class Harry : Api {
 
     init {
-        npcOperate("Talk-to", "harry") {
+        npcOperateDialogue("Talk-to", "harry") {
             npc<Talk>("Welcome! You can buy Fishing equipment at my store. We'll also give you a good price for any fish that you catch.")
 
             choice {

@@ -4,7 +4,7 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
@@ -13,10 +13,10 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class CaptainRovin {
+class CaptainRovin : Api {
 
     init {
-        npcOperate("Talk-to", "captain_rovin") {
+        npcOperateDialogue("Talk-to", "captain_rovin") {
             npc<Angry>("What are you doing up here? Only the palace guards are allowed up here.")
             choice {
                 palaceGuard()

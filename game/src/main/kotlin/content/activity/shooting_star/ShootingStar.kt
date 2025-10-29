@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.data.settingsReload
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -116,7 +115,7 @@ class ShootingStar : Api {
             }
         }
 
-        npcOperate("Talk-to", "star_sprite") {
+        npcOperateDialogue("Talk-to", "star_sprite") {
             npc<Happy>("Thank you for helping me out of here")
             val starDustCount = player.inventory.count("stardust")
             if (player.inventory.isFull()) {

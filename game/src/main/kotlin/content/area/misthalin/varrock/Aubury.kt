@@ -7,6 +7,7 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
 import content.skill.runecrafting.EssenceMine
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -17,13 +18,13 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Aubury {
+class Aubury : Api {
 
     init {
-        npcOperate("Talk-to", "aubury") {
+        npcOperateDialogue("Talk-to", "aubury") {
             if (player.quest("rune_mysteries") == "research_notes") {
                 checkNotes()
-                return@npcOperate
+                return@npcOperateDialogue
             }
             npc<Happy>("Do you want to buy some runes?")
             choice {
@@ -42,7 +43,7 @@ class Aubury {
             }
         }
 
-        npcOperate("Teleport", "aubury") {
+        npcOperate("Teleport", "aubury") { player, target ->
             EssenceMine.teleport(target, player)
         }
     }

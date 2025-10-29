@@ -8,11 +8,11 @@ import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
 import content.skill.slayer.*
 import net.pearx.kasechange.toSentenceCase
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.config.SlayerTaskDefinition
 import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.event.Script
@@ -21,12 +21,12 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
 @Script
-class Turael {
+class Turael : Api {
 
     val slayerDefinitions: SlayerTaskDefinitions by inject()
 
     init {
-        npcOperate("Talk-to", "turael") {
+        npcOperateDialogue("Talk-to", "turael") {
             if (player.slayerTasks == 0) {
                 player<Quiz>("Who are you?")
                 npc<Talk>("I'm one of the elite Slayer Masters.")
@@ -42,7 +42,7 @@ class Turael {
                         teachMe()
                     }
                 }
-                return@npcOperate
+                return@npcOperateDialogue
             }
             npc<Talk>("'Ello, and what are you after then?")
             choice {
@@ -66,11 +66,11 @@ class Turael {
             }
         }
 
-        npcOperate("Get-task", "turael") {
+        npcOperateDialogue("Get-task", "turael") {
             assignTask()
         }
 
-        npcOperate("Trade", "turael") {
+        npcOperate("Trade", "turael") { player, _ ->
             if (player.contains("broader_fletching")) {
                 player.openShop("slayer_equipment_broads")
             } else {
@@ -78,12 +78,12 @@ class Turael {
             }
         }
 
-        npcOperate("Rewards", "turael") {
+        npcOperate("Rewards", "turael") { player, _ ->
             player.open("slayer_rewards_learn")
         }
     }
 
-    suspend fun NPCOption<Player>.assignTask() {
+    suspend fun Dialogue.assignTask() {
         if (player.slayerTask == "nothing") {
             roll()
             return
@@ -103,7 +103,7 @@ class Turael {
         }
     }
 
-    suspend fun NPCOption<Player>.roll() {
+    suspend fun Dialogue.roll() {
         val (definition, amount) = assign(player)
         npc<Happy>("Excellent, you're doing great. Your new task is to kill $amount ${definition.type.toSentenceCase()}.")
         choice {
@@ -114,7 +114,7 @@ class Turael {
         }
     }
 
-    suspend fun NPCOption<Player>.teachMe() {
+    suspend fun Dialogue.teachMe() {
         choice {
             option<Talk>("Wow, can you teach me?") {
                 npc<Uncertain>("Hmmm well I'm not so sure...")

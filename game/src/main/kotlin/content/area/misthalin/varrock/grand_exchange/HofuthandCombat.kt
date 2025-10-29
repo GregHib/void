@@ -6,23 +6,22 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class HofuthandCombat {
+class HofuthandCombat : Api {
 
     init {
-        npcOperate("Talk-to", "hofuthand") {
+        npcOperateDialogue("Talk-to", "hofuthand") {
             if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
                 player<Talk>("Hello.")
                 npc<Talk>("Hello? Ah you're new here, aren't you?")
                 npc<Talk>("I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting, deeper lesson on the Grand Exchange and the Tutor will give a briefer, plain lesson.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             player<Happy>("Hello!")
             npc<Uncertain>("What? Oh, hello. I was deep in thought. Did you want me to show you the prices of weapons and armour?")
@@ -33,31 +32,31 @@ class HofuthandCombat {
             }
         }
 
-        npcOperate("Info-combat", "hofuthand") {
+        npcOperateDialogue("Info-combat", "hofuthand") {
             if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
                 npc<Talk>("Huh? Oh, not till you've had training.")
                 npc<Talk>("I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting, deeper lesson on the Grand Exchange and the Tutor will give a briefer, plain lesson.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             player["common_item_costs"] = "combat"
             player.open("common_item_costs")
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.showPrices() {
+    fun ChoiceBuilder<Dialogue>.showPrices() {
         option<Happy>("Yes, show me the prices of weapons and armour.") {
             player["common_item_costs"] = "combat"
             player.open("common_item_costs")
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.bye() {
+    fun ChoiceBuilder<Dialogue>.bye() {
         option<Shifty>("I'll leave you alone.") {
             npc<Talk>("Thank you, I have much on my mind.")
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.flustered() {
+    fun ChoiceBuilder<Dialogue>.flustered() {
         option<Happy>("You seem a bit flustered.") {
             npc<Uncertain>("Sorry, I'm just deep in thought. I'm waiting for many deals to complete today.")
             player<Talk>("What sort of things are you selling?")

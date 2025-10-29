@@ -4,8 +4,8 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -14,12 +14,12 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.random
 
 @Script
-class Men {
+class Men : Api {
 
     val floorItems: FloorItems by inject()
 
     init {
-        npcOperate("Talk-to", "man", "woman") {
+        npcOperateDialogue("Talk-to", "man,woman") {
             player<Happy>("Hello, how's it going?")
             when (random.nextInt(0, 23)) {
                 0 -> {

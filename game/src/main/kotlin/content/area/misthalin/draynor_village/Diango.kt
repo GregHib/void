@@ -8,10 +8,10 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.stringEntry
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.DiangoCodeDefinitions
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -19,12 +19,12 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 
 @Script
-class Diango {
+class Diango : Api {
 
     val codeDefinitions: DiangoCodeDefinitions by inject()
 
     init {
-        npcOperate("Talk-to", "diango") {
+        npcOperateDialogue("Talk-to", "diango") {
             npc<Happy>("Howdy there partner! Want to see my spinning plates? Or did ya want a holiday item back?")
             choice {
                 option<Quiz>("Spinning plates?") {
@@ -42,21 +42,21 @@ class Diango {
             }
         }
 
-        npcOperate("Holiday-items", "diango") {
+        npcOperateDialogue("Holiday-items", "diango") {
             player.open("diangos_item_retrieval")
         }
 
-        npcOperate("Redeem-code", "diango") {
+        npcOperateDialogue("Redeem-code", "diango") {
             val code = stringEntry("Please enter your code.").lowercase()
             val definition = codeDefinitions.getOrNull(code)
             if (definition == null) {
                 player.message("Your code was not valid. Please check it and try again.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             for (item in definition.add) {
                 if (player[definition.variable, false]) {
                     player.message("You have already claimed this code.")
-                    return@npcOperate
+                    return@npcOperateDialogue
                 }
             }
             val success = player.inventory.transaction {

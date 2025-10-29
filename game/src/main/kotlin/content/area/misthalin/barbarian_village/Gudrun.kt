@@ -7,6 +7,7 @@ import content.quest.Cutscene
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.startCutscene
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.message
@@ -15,7 +16,6 @@ import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -35,7 +35,7 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
 @Script
-class Gudrun {
+class Gudrun : Api {
 
     val objects: GameObjects by inject()
 
@@ -43,7 +43,7 @@ class Gudrun {
     val region = Region(12341)
 
     init {
-        npcOperate("Talk-to", "gudrun*") {
+        npcOperateDialogue("Talk-to", "gudrun*") {
             when (player.quest("gunnars_ground")) {
                 "gunnars_ground" -> gunnarsGround()
                 "recital" -> recital()
@@ -61,7 +61,7 @@ class Gudrun {
             }
         }
 
-        npcOperate("Talk-to", "gudrun_after_quest") {
+        npcOperateDialogue("Talk-to", "gudrun_after_quest") {
             when (player.quest("gunnars_ground")) {
                 "completed" -> {
                     npc<Happy>("Hello!")

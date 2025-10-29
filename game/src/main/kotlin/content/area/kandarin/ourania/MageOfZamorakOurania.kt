@@ -3,14 +3,14 @@ package content.area.kandarin.ourania
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class MageOfZamorakOurania {
+class MageOfZamorakOurania : Api {
 
     init {
-        npcOperate("Talk-to", "mage_of_zamorak_ourania") {
+        npcOperateDialogue("Talk-to", "mage_of_zamorak_ourania") {
             player<Quiz>("What's that ladder next to the altar for?")
             npc<Shifty>("An...archeological dig. Yeah, a dig.")
             npc<Angry>("Why?")

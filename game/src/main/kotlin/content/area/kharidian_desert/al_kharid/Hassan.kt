@@ -6,10 +6,9 @@ import content.entity.sound.jingle
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
@@ -17,10 +16,10 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.softQueue
 
 @Script
-class Hassan {
+class Hassan : Api {
 
     init {
-        npcOperate("Talk-to", "hassan") {
+        npcOperateDialogue("Talk-to", "hassan") {
             when (player.quest("prince_ali_rescue")) {
                 "unstarted" -> {
                     npc<Talk>("Greetings! I am Hassan, Chancellor to the Emir of Al Kharid.")
@@ -35,7 +34,7 @@ class Hassan {
                     npc<Talk>("You have the eternal gratitude for the Emir for rescuing his son. I am authorised to pay you 700 coins.")
                     if (!player.inventory.add("coins")) {
                         statement("Leela tries to give you a reward, but you don't have enough room for it.") // TODO proper message
-                        return@npcOperate
+                        return@npcOperateDialogue
                     }
                     player.jingle("quest_complete_1")
                     player.refreshQuestJournal()
@@ -61,7 +60,7 @@ class Hassan {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.killWarriors() {
+    fun ChoiceBuilder<Dialogue>.killWarriors() {
         option<Quiz>("Do you mind if I just kill your warriors?") {
             npc<Uncertain>("Kill our warriors? I assume this is some sort of joke?")
             player<Quiz>("I'll take that as a no. Forget I asked.")
@@ -73,14 +72,14 @@ class Hassan {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.anyHelp() {
+    fun ChoiceBuilder<Dialogue>.anyHelp() {
         option<Happy>("Can I help you? You must need some help here in the desert.") {
             player["prince_ali_rescue"] = "osman"
             npc<Uncertain>("I need the services of someone, yes. If you are interested, see the spymaster, Osman. I manage the finances here. Come to me when you need payment.")
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.tooHot() {
+    fun ChoiceBuilder<Dialogue>.tooHot() {
         option<Upset>("It's just too hot here. How can you stand it?") {
             npc<Talk>("We manage, in our humble way. We are a wealthy town and we have water. It cures many thirsts.")
             player.inventory.add("jug_of_water")

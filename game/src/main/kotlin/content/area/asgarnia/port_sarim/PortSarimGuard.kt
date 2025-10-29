@@ -8,7 +8,6 @@ import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -25,7 +24,7 @@ class PortSarimGuard : Api {
             npc.mode = Patrol(npc, patrol.waypoints)
         }
 
-        npcOperate("Talk-to", "port_sarim_guard_sleeping") {
+        npcOperateDialogue("Talk-to", "port_sarim_guard_sleeping") {
             npc<Asleep>(
                 "port_sarim_guard_6",
                 when (random.nextInt(4)) {
@@ -38,7 +37,7 @@ class PortSarimGuard : Api {
             player<Neutral>("Maybe I should let him sleep.")
         }
 
-        npcOperate("Talk-to", "port_sarim_guard_6") {
+        npcOperateDialogue("Talk-to", "port_sarim_guard_6") {
             npc<Angry>("HALT! Who goes there?")
             choice {
                 option<Happy>("Don't worry, I'm not going to cause trouble.") {

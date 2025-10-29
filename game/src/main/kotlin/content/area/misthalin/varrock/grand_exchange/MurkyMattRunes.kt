@@ -5,11 +5,10 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
@@ -18,7 +17,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 
 @Script
-class MurkyMattRunes {
+class MurkyMattRunes : Api {
 
     val jewellery = mapOf(
         "games_necklace" to 8,
@@ -29,11 +28,11 @@ class MurkyMattRunes {
     )
 
     init {
-        npcOperate("Talk-to", "murky_matt") {
+        npcOperateDialogue("Talk-to", "murky_matt") {
             if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
                 player<Talk>("Hello.")
                 npc<Talk>("Arrrr, ${if (player.male) "me-lad" else "me-lady"}, I would speak with ye, but may I ask ye to speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance. Brugsen will give ye a great and plunderous lesson on the Grand Exchange and the Tutor a much shorter and simpler explanation.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             player<Happy>("A pirate!")
             npc<Talk>("Arrrr, How'd ye be guessing that, ${if (player.male) "me-lad" else "me-lady"}?")
@@ -42,27 +41,27 @@ class MurkyMattRunes {
             menu()
         }
 
-        npcOperate("Info-runes", "murky_matt") {
+        npcOperateDialogue("Info-runes", "murky_matt") {
             if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
                 player<Talk>("Hello.")
                 npc<Talk>("Arrrr, ${if (player.male) "me-lad" else "me-lady"}, I would speak with ye, but may I ask ye to speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance. Brugsen will give ye a great and plunderous lesson on the Grand Exchange and the Tutor a much shorter and simpler explanation.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             player["common_item_costs"] = "runes"
             player.open("common_item_costs")
         }
 
-        npcOperate("Combine", "murky_matt") {
+        npcOperateDialogue("Combine", "murky_matt") {
             if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
                 player<Talk>("Hello.")
                 npc<Talk>("Arrrr, ${if (player.male) "me-lad" else "me-lady"}, I must ask ye to get yerself some learnin' about the Grand Exchange first. Brugsen will give ye a great and plunderous lesson, or the Tutor can offer ye a much shorter and simpler explanation.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             combineJewellery()
         }
     }
 
-    suspend fun NPCOption<Player>.menu() {
+    suspend fun Dialogue.menu() {
         choice {
             option<Quiz>("What's a pirate doing here?") {
                 npc<Talk>("By my sea-blistered skin, I could ask the same of you!")
@@ -95,7 +94,7 @@ class MurkyMattRunes {
         }
     }
 
-    suspend fun NPCOption<Player>.combineJewellery() {
+    suspend fun Dialogue.combineJewellery() {
         player.inventory.transaction {
             val chargeMap = mutableMapOf<String, Int>()
             for (index in inventory.items.indices) {

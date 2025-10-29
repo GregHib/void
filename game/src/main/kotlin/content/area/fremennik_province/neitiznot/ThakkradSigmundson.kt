@@ -6,8 +6,8 @@ import content.entity.player.dialogue.Uncertain
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
@@ -18,16 +18,16 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeTo
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class ThakkradSigmundson {
+class ThakkradSigmundson : Api {
 
     init {
-        npcOperate("Talk-to", "thakkrad_sigmundson") {
+        npcOperateDialogue("Talk-to", "thakkrad_sigmundson") {
             npc<Talk>("Thank you for leading the Burgher's militia against the Troll King. Now that the trolls are leaderless I have repaired the bridge to the central isle for you as best I can.")
             player<Quiz>("Thanks Thakkrad. Does that mean I have access to the runite ores on that island?")
             npc<Talk>("Yes, you should be able to mine runite there if you wish.")
         }
 
-        npcOperate("Craft-goods", "thakkrad_sigmundson") {
+        npcOperateDialogue("Craft-goods", "thakkrad_sigmundson") {
             choice("What can I help you with?") {
                 option("Cure my yak hide, please.") {
                     cureHide()

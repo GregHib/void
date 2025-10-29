@@ -14,23 +14,23 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.proj.shoot
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Apprentice {
+class Apprentice : Api {
     init {
-        npcOperate("Talk-to", "apprentice") {
+        npcOperateDialogue("Talk-to", "apprentice") {
             if (player["sorceress_garden_unlocked", false]) {
                 player<Happy>("Hey apprentice, do you want to try out your teleport skills again?")
                 npc<Talk>("Okay, here goes - and remember, to return just drink from the fountain.")
                 teleportToGarden()
-                return@npcOperate
+                return@npcOperateDialogue
             }
             player<Talk>("Hello. What are you doing?")
             npc<Sad>("Cleaning, cleaning, always cleaning. This apprenticeship isn't all that it was cracked up to be.")
@@ -61,7 +61,7 @@ class Apprentice {
             }
         }
 
-        npcOperate("Teleport", "apprentice") {
+        npcOperateDialogue("Teleport", "apprentice") {
             if (!player["spoken_to_osman", false]) {
                 npc<Talk>("I can't do that now, I'm far too busy sweeping.")
             } else {
@@ -70,7 +70,7 @@ class Apprentice {
         }
     }
 
-    suspend fun NPCOption<Player>.talkToMe() {
+    suspend fun Dialogue.talkToMe() {
         npc<Sad>("You know you're right. Nobody listens to me.")
         choice {
             option<EvilLaugh>("I can't blame them, all you do is whine.") {
@@ -108,7 +108,7 @@ class Apprentice {
         }
     }
 
-    suspend fun NPCOption<Player>.castTheSpell() {
+    suspend fun Dialogue.castTheSpell() {
         if (!player["spoken_to_osman", false]) {
             npc<Talk>("I can't do that now, I'm far too busy sweeping.")
         } else {
@@ -123,7 +123,7 @@ class Apprentice {
     private val Player.hasFollower: Boolean
         get() = false
 
-    suspend fun NPCOption<Player>.teleportToGarden() {
+    suspend fun Dialogue.teleportToGarden() {
         if (player.hasFollower) {
             npc<Upset>("Oh, I'm sorry, could you pick up your follower first? I'm really not sure that I could teleport the both of you.")
             return

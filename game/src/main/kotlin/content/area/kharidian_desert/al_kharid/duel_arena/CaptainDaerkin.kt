@@ -4,14 +4,14 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class CaptainDaerkin {
+class CaptainDaerkin : Api {
 
     init {
-        npcOperate("Talk-to", "captain_daerkin") {
+        npcOperateDialogue("Talk-to", "captain_daerkin") {
             npc<Happy>("Hello old chap.")
             player<Neutral>("What are you doing here? Shouldn't you be looking after your glider?")
             npc<Happy>("I'm pretty much retired these days old fellow. My test piloting days are over. I'm just relaxing here and enjoying the primal clash between man and man.")

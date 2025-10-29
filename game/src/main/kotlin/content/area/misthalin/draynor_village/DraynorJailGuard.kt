@@ -7,14 +7,14 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class DraynorJailGuard {
+class DraynorJailGuard : Api {
 
     init {
-        npcOperate("Talk-to", "draynor_jail_guard*") {
+        npcOperateDialogue("Talk-to", "draynor_jail_guard*") {
             player<Quiz>("Hi. Who are you guarding here?")
             npc<Angry>("Can't say. It's all very secret. You should get out of here. I am not supposed to talk while I guard.")
             choice {

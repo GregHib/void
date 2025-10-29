@@ -4,8 +4,8 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -15,10 +15,10 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.random
 
 @Script
-class GnomeTrainer {
+class GnomeTrainer : Api {
 
     init {
-        npcOperate("Talk-to", "gnome_trainer") {
+        npcOperateDialogue("Talk-to", "gnome_trainer") {
             when (random.nextInt(2)) {
                 0 -> npc<Neutral>("This is training, soldier. Little time for chat! What do you want?")
                 1 -> npc<Neutral>("This is a serious training area. What do you want?")

@@ -9,16 +9,15 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.proj.shoot
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Sorceress {
+class Sorceress : Api {
     init {
-        npcOperate("Talk-to", "sorceress") {
+        npcOperateDialogue("Talk-to", "sorceress") {
             npc<Quiz>("Who are you and what do you want?")
             choice {
                 option<Angry>("None of your business!") {
@@ -42,7 +41,7 @@ class Sorceress {
         }
     }
 
-    private suspend fun NPCOption<Player>.curse() {
+    private suspend fun Dialogue.curse() {
         target.say("Be gone, intruder!")
         player.sound("curse_cast")
         player.sound("curse_impact", delay = 100)

@@ -12,10 +12,9 @@ import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.inventoryItem
 import content.quest.messageScroll
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -23,13 +22,13 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
 
 @Script
-class SirGerry {
+class SirGerry : Api {
 
     init {
-        npcOperate("Talk-to", "sir_gerry_*") {
+        npcOperateDialogue("Talk-to", "sir_gerry_*") {
             if (player.ownsItem("knights_notes") || player["godwars_knights_notes", false]) {
                 player.message("He's still alive, but in no condition to talk. He appears to be almost unconscious.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             player<Quiz>("Who are you? What are you doing here in the snow?")
             npc<Scared>("My name is...Sir Gerry. I am...a member of a secret...society of knights. My time is short and I need...your help.")
@@ -44,10 +43,10 @@ class SirGerry {
             player.inventory.add("knights_notes")
         }
 
-        objectOperate("Search", "godwars_knight*") {
+        objectOperateDialogue("Search", "godwars_knight*") {
             if (player.ownsItem("knights_notes") || player.ownsItem("knights_notes_opened")) {
                 player.message("You find nothing of value on the knight.")
-                return@objectOperate
+                return@objectOperateDialogue
             }
             player.message("You find some handwritten notes on the knight.")
             player.inventory.add("knights_notes")
@@ -65,9 +64,9 @@ class SirGerry {
             }
         }
 
-        objectOperate("Tie-rope", "godwars_hole") {
+        objectOperateDialogue("Tie-rope", "godwars_hole") {
             if (!player.inventory.contains("rope")) {
-                return@objectOperate
+                return@objectOperateDialogue
             }
             if (player["godwars_knights_notes", false] || player.ownsItem("knights_notes") || player.ownsItem("knights_notes_opened")) {
                 player.inventory.remove("rope")

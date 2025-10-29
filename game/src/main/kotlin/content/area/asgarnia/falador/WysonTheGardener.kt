@@ -5,9 +5,8 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -16,12 +15,12 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
 @Script
-class WysonTheGardener {
+class WysonTheGardener : Api {
 
     val floorItems: FloorItems by inject()
 
     init {
-        npcOperate("Talk-to", "wyson_the_gardener") {
+        npcOperateDialogue("Talk-to", "wyson_the_gardener") {
             npc<Neutral>("I'm the head gardener around here. If you're looking for woad leaves, or if you need help with owt, I'm yer man.")
             choice {
                 option<Neutral>("Yes please, I need woad leaves.") {
@@ -63,7 +62,7 @@ class WysonTheGardener {
 
     // TODO add selling mole parts
 
-    suspend fun NPCOption<Player>.howAboutTen() {
+    suspend fun Dialogue.howAboutTen() {
         npc<Angry>("No no, that's far too little. Woad leaves are hard to get. I used to have plenty but someone kept stealing them off me!")
         choice {
             option<Neutral>("How about 15 coins?") {
@@ -76,7 +75,7 @@ class WysonTheGardener {
         }
     }
 
-    suspend fun NPCOption<Player>.buyWoadLeaf() {
+    suspend fun Dialogue.buyWoadLeaf() {
         npc<Neutral>("Mmmm... okay, that sounds fair.")
         if (player.inventory.remove("coins", 15)) {
             if (!player.inventory.add("woad_leaf")) {
@@ -90,7 +89,7 @@ class WysonTheGardener {
         }
     }
 
-    suspend fun NPCOption<Player>.buyWoadLeaves() {
+    suspend fun Dialogue.buyWoadLeaves() {
         npc<Happy>("Okay, that's more than fair.")
         if (player.inventory.remove("coins", 20)) {
             if (!player.inventory.add("woad_leaf", 2)) {

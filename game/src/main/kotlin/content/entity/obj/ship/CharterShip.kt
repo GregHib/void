@@ -7,14 +7,15 @@ import content.entity.player.dialogue.type.*
 import content.entity.sound.jingle
 import content.quest.questCompleted
 import net.pearx.kasechange.toTitleCase
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -26,7 +27,7 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Tile
 
 @Script
-class CharterShip {
+class CharterShip : Api {
 
     val locations = listOf(
         "catherby",
@@ -55,7 +56,7 @@ class CharterShip {
             }
         }
 
-        npcOperate("Talk-To", "trader_stan", "trader_crewmember*") {
+        npcOperateDialogue("Talk-to", "trader_stan,trader_crewmember*") {
             npc<Quiz>("Can I help you?")
             choice {
                 option("Yes, who are you?") {
@@ -146,13 +147,13 @@ class CharterShip {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.trading() {
+    fun ChoiceBuilder<Dialogue>.trading() {
         option<Talk>("Yes, let's see what you're trading.") {
             player.openShop("trader_stans_trading_post")
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.charter() {
+    fun ChoiceBuilder<Dialogue>.charter() {
         option<Talk>("Yes, I would like to charter a ship.") {
             npc<Talk>("Certainly sir. Where would you like to go?")
             player["charter_ship"] = location(target)

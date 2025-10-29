@@ -4,10 +4,10 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
 import content.quest.refreshQuestJournal
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.holdsItem
@@ -16,10 +16,10 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class FatherAereck {
+class FatherAereck : Api {
 
     init {
-        npcOperate("Talk-to", "father_aereck") {
+        npcOperateDialogue("Talk-to", "father_aereck") {
             when (player.quest("the_restless_ghost")) {
                 "unstarted" -> {
                     npc<Happy>("Welcome to the church of holy Saradomin.")
@@ -91,7 +91,7 @@ class FatherAereck {
         }
     }
 
-    suspend fun NPCOption<Player>.completed() {
+    suspend fun Dialogue.completed() {
         npc<Happy>("Thank you for getting rid of that awful ghost for me! May Saradomin always smile upon you!")
         choice {
             if (Settings["combat.gravestones", true]) {
@@ -116,7 +116,7 @@ class FatherAereck {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.whosSaradomin() {
+    fun ChoiceBuilder<Dialogue>.whosSaradomin() {
         option<Quiz>("Who's Saradomin?") {
             npc<Surprised>("Surely you have heard of the god, Saradomin?")
             npc<Neutral>("He who creates the forces of goodness and purity in this world? I cannot believe your ignorance!")
@@ -146,7 +146,7 @@ class FatherAereck {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.nicePlace() {
+    fun ChoiceBuilder<Dialogue>.nicePlace() {
         option<Happy>("Nice place you've got here.") {
             npc<Happy>("It is, isn't it? It was built over 230 years ago.")
         }

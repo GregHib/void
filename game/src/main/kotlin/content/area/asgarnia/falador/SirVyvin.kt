@@ -12,10 +12,10 @@ import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
 import content.quest.quest
 import org.rsmod.game.pathfinder.LineValidator
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
@@ -28,7 +28,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 @Script
-class SirVyvin {
+class SirVyvin : Api {
 
     val floorItems: FloorItems by inject()
     val npcs: NPCs by inject()
@@ -69,7 +69,7 @@ class SirVyvin {
             }
         }
 
-        npcOperate("Talk-to", "sir_vyvin") {
+        npcOperateDialogue("Talk-to", "sir_vyvin") {
             player<Neutral>("Hello.")
             npc<Neutral>("Greetings traveller.")
             choice {

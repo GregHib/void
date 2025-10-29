@@ -5,6 +5,7 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
@@ -12,10 +13,10 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Fadli {
+class Fadli : Api {
 
     init {
-        npcOperate("Talk-to", "fadli") {
+        npcOperateDialogue("Talk-to", "fadli") {
             player<Happy>("Hi.")
             npc<RollEyes>("What?")
             choice {
@@ -52,18 +53,18 @@ class Fadli {
             }
         }
 
-        npcOperate("Bank", "fadli") {
+        npcOperate("Bank", "fadli") { player, _ ->
             player.open("bank")
         }
 
-        npcOperate("Collect", "fadli") {
+        npcOperate("Collect", "fadli") { player, _ ->
             player.open("collection_box")
         }
 
-        npcOperate("Buy", "fadli") {
+        npcOperateDialogue("Buy", "fadli") {
             if (World.members) {
                 player.openShop("shop_of_distaste")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             npc<RollEyes>("Sorry, I'm not interested.")
             player.message("You need to be on a members world to use this feature.")

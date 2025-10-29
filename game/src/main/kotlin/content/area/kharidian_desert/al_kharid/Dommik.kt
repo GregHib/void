@@ -4,14 +4,14 @@ import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Dommik {
+class Dommik : Api {
 
     init {
-        npcOperate("Talk-to", "dommik") {
+        npcOperateDialogue("Talk-to", "dommik") {
             npc<Happy>("Would you like to buy some crafting equipment?")
             choice {
                 option<Neutral>("No thanks; I've got all the Crafting equipment I need.") {
@@ -23,7 +23,7 @@ class Dommik {
             }
         }
 
-        npcOperate("Trade", "dommik") {
+        npcOperateDialogue("Trade", "dommik") {
             player.openShop("dommiks_crafting_store")
         }
     }

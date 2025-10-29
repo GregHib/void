@@ -6,17 +6,17 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.quest
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Zeke {
+class Zeke : Api {
 
     init {
-        npcOperate("Talk-to", "zeke") {
+        npcOperateDialogue("Talk-to", "zeke") {
             npc<Talk>("A thousand greetings, ${if (player.male) "sir" else "madam"}.")
             choice {
                 option("Do you want to trade?") {

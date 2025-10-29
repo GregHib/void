@@ -12,15 +12,15 @@ import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
 import content.quest.startCutscene
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -36,7 +36,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 
 @Script
-class Edmond {
+class Edmond : Api {
 
     val floorItems: FloorItems by inject()
 
@@ -45,7 +45,7 @@ class Edmond {
     val objects: GameObjects by inject()
 
     init {
-        npcOperate("Talk-to", "edmond") {
+        npcOperateDialogue("Talk-to", "edmond") {
             when (player.quest("plague_city")) {
                 "unstarted" -> {
                     player<Happy>("Hello old man.")
@@ -96,7 +96,7 @@ class Edmond {
         }
     }
 
-    suspend fun NPCOption<Player>.started() {
+    suspend fun Dialogue.started() {
         player<Happy>("Hello Edmond.")
         npc<Quiz>("Have you got the dwellberries yet?")
         if (player.holdsItem("dwellberries")) {
@@ -110,39 +110,39 @@ class Edmond {
         }
     }
 
-    suspend fun NPCOption<Player>.hasMask() {
+    suspend fun Dialogue.hasMask() {
         player<Happy>("Hi Edmond, I've got the gas mask now.")
         npc<Neutral>("Good stuff, now for the digging. Beneath us are the Ardougne sewers. I've done some research, and I reckon you can use them to access to West Ardougne.")
         player["plague_city"] = "about_digging"
         npc<Neutral>("I've already tried digging down to them but the soil is rock hard. You'll need to pour on several buckets of water to soften it up. I reckon four buckets should do it.")
     }
 
-    suspend fun NPCOption<Player>.aboutDigging() {
+    suspend fun Dialogue.aboutDigging() {
         npc<Quiz>("How's it going?")
         player<Neutral>("I still need to pour four more buckets of water on the soil.")
     }
 
-    suspend fun NPCOption<Player>.oneBucketOfWater() {
+    suspend fun Dialogue.oneBucketOfWater() {
         npc<Quiz>("How's it going?")
         player<Neutral>("I still need to pour three more buckets of water on the soil.")
     }
 
-    suspend fun NPCOption<Player>.twoBucketOfWater() {
+    suspend fun Dialogue.twoBucketOfWater() {
         npc<Quiz>("How's it going?")
         player<Neutral>("I still need to pour two more buckets of water on the soil.")
     }
 
-    suspend fun NPCOption<Player>.threeBucketOfWater() {
+    suspend fun Dialogue.threeBucketOfWater() {
         npc<Quiz>("How's it going?")
         player<Neutral>("I still need to pour one more bucket of water on the soil.")
     }
 
-    suspend fun NPCOption<Player>.fourBucketOfWater() {
+    suspend fun Dialogue.fourBucketOfWater() {
         player<Happy>("I've soaked the soil with water.")
         npc<Happy>("That's great, it should be soft enough to dig through now. There should be a spade nearby that you can use.")
     }
 
-    suspend fun NPCOption<Player>.sewer() {
+    suspend fun Dialogue.sewer() {
         if (player["plaguecity_checked_grill", false]) {
             player<Uncertain>("Edmond, I can't get through to West Ardougne! There's an iron grill blocking my way, I can't pull it off alone.")
             npc<Neutral>("If you get some rope you could tie to the grill, then we could both pull it at the same time.")
@@ -152,13 +152,13 @@ class Edmond {
         }
     }
 
-    suspend fun NPCOption<Player>.grillRope() {
+    suspend fun Dialogue.grillRope() {
         player<Neutral>("I've tied a rope to the grill over there, will you help me pull it off?")
         npc<Neutral>("Alright, let's get to it...")
         cutscene()
     }
 
-    suspend fun NPCOption<Player>.spoken() {
+    suspend fun Dialogue.spoken() {
         player<Neutral>("Hello.")
         npc<Quiz>("Have you found Elena yet?")
         if (player.holdsItem("picture_plague_city")) {
@@ -170,19 +170,19 @@ class Edmond {
         }
     }
 
-    suspend fun NPCOption<Player>.grillOpen() {
+    suspend fun Dialogue.grillOpen() {
         player<Neutral>("Hello.")
         npc<Quiz>("Have you found Elena yet?")
         player<Sad>("Not yet, it's a big city over there.")
         npc<Sad>("I hope it's not too late.")
     }
 
-    suspend fun NPCOption<Player>.freedElena() {
+    suspend fun Dialogue.freedElena() {
         npc<Happy>("Thank you, thank you! Elena beat you back by minutes. Now I said I'd give you a reward. What can I give you as a reward I wonder? Here take this magic scroll, I have little use for it but it may help you.")
         questComplete() // todo what if inv is full
     }
 
-    suspend fun NPCOption<Player>.completed() {
+    suspend fun Dialogue.completed() {
         player<Happy>("Hello there.")
         npc<Happy>("Ah hello. Thank you again for rescuing my daughter.")
         if (player.quest("plague_city") == "completed_with_spell") {

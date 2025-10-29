@@ -6,7 +6,7 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.quest.quest
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Script
@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Sanfew {
+class Sanfew : Api {
 
     val enchantedMeat = listOf(
         Item("enchanted_beef"),
@@ -26,7 +26,7 @@ class Sanfew {
     )
 
     init {
-        npcOperate("Talk-to", "sanfew") {
+        npcOperateDialogue("Talk-to", "sanfew") {
             when (player.quest("druidic_ritual")) {
                 "unstarted" -> {
                     npc<Quiz>("What can I do for you young 'un?")

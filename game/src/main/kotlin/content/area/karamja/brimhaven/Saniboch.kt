@@ -6,19 +6,19 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
 
 @Script
-class Saniboch {
+class Saniboch : Api {
 
     val dungeonEntryFee = 875
 
     init {
-        npcOperate("Talk-to", "saniboch") {
+        npcOperateDialogue("Talk-to", "saniboch") {
             npc<Talk>("Good day to you, Bwana.")
 
             choice {
@@ -70,10 +70,10 @@ class Saniboch {
             }
         }
 
-        npcOperate("Pay", "saniboch") {
+        npcOperateDialogue("Pay", "saniboch") {
             if (player["can_enter_brimhaven_dungeon", false]) {
                 npc<Talk>("You have already given me lots of nice coins, you may go in.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
 
             val coins = player.inventory.count("coins")

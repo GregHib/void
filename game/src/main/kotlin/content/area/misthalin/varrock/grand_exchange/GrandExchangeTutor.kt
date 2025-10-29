@@ -3,15 +3,15 @@ package content.area.misthalin.varrock.grand_exchange
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class GrandExchangeTutor {
+class GrandExchangeTutor : Api {
 
     init {
-        npcOperate("Talk-to", "grand_exchange_tutor") {
+        npcOperateDialogue("Talk-to", "grand_exchange_tutor") {
             npc<Talk>("How can I help?")
             choice {
                 option<Talk>("Can you teach me about the Grand Exchange again?") {

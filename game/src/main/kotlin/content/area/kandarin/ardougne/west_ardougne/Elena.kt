@@ -5,17 +5,16 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.startQuest
 import content.quest.quest
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Elena {
+class Elena : Api {
 
     init {
-        npcOperate("Talk-to", "elenap_vis") {
+        npcOperateDialogue("Talk-to", "elenap_vis") {
             player<Happy>("Hi, you're free to go! Your kidnappers don't seem to be about right now.")
             npc<Neutral>("Thank you, being kidnapped was so inconvenient. I was on my way back to East Ardougne with some samples, I want to see if I can diagnose a cure for this plague.")
             player<Neutral>("Well you can leave via the manhole in the middle of the city.")
@@ -29,7 +28,7 @@ class Elena {
             player.open("fade_in")
         }
 
-        npcOperate("Talk-to", "elena2_vis") {
+        npcOperateDialogue("Talk-to", "elena2_vis") {
             when (player.quest("biohazard")) {
                 "unstarted" -> {
                     player<Happy>("Good day to you, Elena.")
@@ -51,9 +50,9 @@ class Elena {
         }
     }
 
-    suspend fun NPCOption<Player>.started() {
+    suspend fun Dialogue.started() {
     }
 
-    suspend fun NPCOption<Player>.completed() {
+    suspend fun Dialogue.completed() {
     }
 }

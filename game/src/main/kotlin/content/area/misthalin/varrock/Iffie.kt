@@ -4,15 +4,16 @@ import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Iffie {
+class Iffie : Api {
 
     init {
-        npcOperate("Talk-to", "iffie") {
+        npcOperateDialogue("Talk-to", "iffie") {
             npc<Happy>("Hello, dearie! Were you wanting to collect a random event costume, or is there something else I can do for you today?")
             choice {
                 option("I've come for a random event costume.") {
@@ -29,7 +30,7 @@ class Iffie {
             }
         }
 
-        npcOperate("Claim-costume", "iffie") {
+        npcOperate("Claim-costume", "iffie") { player, _ ->
             player.openShop("iffies_random_costume_shop")
         }
     }

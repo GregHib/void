@@ -4,16 +4,16 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.random
 
 @Script
-class ShipyardWorker {
+class ShipyardWorker : Api {
 
     init {
-        npcOperate("Talk-to", "shipyard_guard") {
+        npcOperateDialogue("Talk-to", "shipyard_guard") {
             when (random.nextInt(12)) {
                 0 -> {
                     player<Talk>("Hello.")

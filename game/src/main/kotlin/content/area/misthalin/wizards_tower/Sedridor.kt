@@ -10,8 +10,9 @@ import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
 import content.skill.runecrafting.EssenceMine
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
@@ -26,10 +27,10 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Sedridor {
+class Sedridor : Api {
 
     init {
-        npcOperate("Talk-to", "sedridor") {
+        npcOperateDialogue("Talk-to", "sedridor") {
             when (player.quest("rune_mysteries")) {
                 "unstarted" -> {
                     npc<Happy>("Welcome adventurer, to the world renowned Wizards' Tower, home to the Order of Wizards. How may I help you?")
@@ -44,7 +45,7 @@ class Sedridor {
             }
         }
 
-        npcOperate("Teleport", "sedridor") {
+        npcOperate("Teleport", "sedridor") { player, target ->
             player["what_is_this_place_task"] = true
             EssenceMine.teleport(target, player)
         }
@@ -209,7 +210,7 @@ class Sedridor {
         npc<Happy>("Best of luck, ${player.name}.")
     }
 
-    suspend fun NPCOption<Player>.completed() {
+    suspend fun Dialogue.completed() {
         player<Neutral>("Hello there.")
         npc<Happy>("Hello again, ${player.name}. What can I do for you?")
         choice {
@@ -222,12 +223,12 @@ class Sedridor {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.teleportEssenceMine(): Unit = option<Quiz>("Can you teleport me to the Rune Essence Mine?") {
+    fun ChoiceBuilder<Dialogue>.teleportEssenceMine(): Unit = option<Quiz>("Can you teleport me to the Rune Essence Mine?") {
         player["what_is_this_place_task"] = true
         EssenceMine.teleport(target, player)
     }
 
-    suspend fun ChoiceBuilder<NPCOption<Player>>.whoElseKnows(): Unit = option<Quiz>("Who else knows the teleport to the Rune Essence Mine?") {
+    suspend fun ChoiceBuilder<Dialogue>.whoElseKnows(): Unit = option<Quiz>("Who else knows the teleport to the Rune Essence Mine?") {
         npc<Happy>("Apart from myself, there's also Aubury in Varrock, Wizard Cromperty in East Ardougne, Brimstail in the Tree Gnome Stronghold and Wizard Distentor in Yanille's Wizards' Guild.")
         player["enter_abyss_knows_mages"] = true
         choice {
@@ -237,7 +238,7 @@ class Sedridor {
         }
     }
 
-    suspend fun ChoiceBuilder<NPCOption<Player>>.oldWizardsTower(): Unit = option<Quiz>("Could you tell me about the old Wizards' Tower?") {
+    suspend fun ChoiceBuilder<Dialogue>.oldWizardsTower(): Unit = option<Quiz>("Could you tell me about the old Wizards' Tower?") {
         npc<Happy>("Of course. The first Wizards' Tower was built at the same time the Order of Wizards was founded. It was at the dawn of the Fifth Age, when the secrets of runecrafting were rediscovered.")
         npc<Happy>("For years, the tower was a hub of magical research. Wizards of all races and religions were welcomed into our order.")
         npc<Sad>("Alas, that openness is what ultimately led to disaster. The wizards who served Zamorak, the evil god of chaos, tried to claim our magical discoveries in his name.")

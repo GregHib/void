@@ -9,15 +9,16 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
 import content.skill.runecrafting.EssenceMine
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Brimstail {
+class Brimstail : Api {
 
     init {
-        npcOperate("Talk-to", "brimstail") {
+        npcOperateDialogue("Talk-to", "brimstail") {
             if (!player.questCompleted("rune_mysteries")) {
                 npc<Happy>("Hello adventurer, what can I do for you?")
                 player<Quiz>("What's that cute creature wandering around?")
@@ -27,7 +28,7 @@ class Brimstail {
                 player<Happy>("So, what do you do down here anyway?")
                 npc<Talk>("Isn't that obvious? I investigate Thaumaturgy, I research the Arcane, I attempt to explain the inexplicable.")
                 npc<Talk>("Anyway, on that note, it's time for me to get back to work.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             npc<Happy>("Hello adventurer, Sedridor has told me all about you! What can I do for you?")
             choice {
@@ -41,7 +42,7 @@ class Brimstail {
             }
         }
 
-        npcOperate("Teleport", "brimstail") {
+        npcOperate("Teleport", "brimstail") { player, target ->
             if (player.questCompleted("rune_mysteries")) {
                 EssenceMine.teleport(target, player)
             } else {

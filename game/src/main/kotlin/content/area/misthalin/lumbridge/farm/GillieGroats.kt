@@ -7,17 +7,17 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.quest
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class GillieGroats {
+class GillieGroats : Api {
 
     init {
-        npcOperate("Talk-to", "gillie_groats") {
+        npcOperateDialogue("Talk-to", "gillie_groats") {
             npc<Happy>("Hello, I'm Gillie the Milkmaid. What can I do for you?")
             choice {
                 option("I'm after some Top-quality milk.", { player.quest("cooks_assistant") == "started" && !player.holdsItem("top_quality_milk") }) {

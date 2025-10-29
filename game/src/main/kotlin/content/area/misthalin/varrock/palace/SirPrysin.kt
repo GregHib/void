@@ -5,10 +5,10 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.sound.sound
 import content.quest.quest
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.Script
@@ -22,24 +22,24 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 @Script
-class SirPrysin {
+class SirPrysin : Api {
 
     val objects: GameObjects by inject()
     val cupboardTile = Tile(3204, 3469)
 
     init {
-        npcOperate("Talk-to", "sir_prysin_*") {
+        npcOperateDialogue("Talk-to", "sir_prysin_*") {
             when (player.quest("demon_slayer")) {
                 "key_hunt" -> {
                     if (!player["demon_slayer_silverlight", false]) {
                         keyProgressCheck()
-                        return@npcOperate
+                        return@npcOperateDialogue
                     }
                     npc<Talk>("Have you sorted that demon out yet?")
                     if (player.ownsItem("silverlight")) {
                         player<Upset>("No, not yet.")
                         npc<Talk>("Well get on with it. He'll be pretty powerful when he gets to full strength.")
-                        return@npcOperate
+                        return@npcOperateDialogue
                     }
                     player<Upset>("Not yet. And I, um, lost Silverlight.")
                     if (player.inventory.add("silverlight")) {
@@ -153,7 +153,7 @@ class SirPrysin {
         }
     }
 
-    suspend fun NPCOption<Player>.keyProgressCheck() {
+    suspend fun Dialogue.keyProgressCheck() {
         npc<Talk>("So how are you doing with getting the keys?")
         val rovin = player.holdsItem("silverlight_key_captain_rovin")
         val prysin = player.holdsItem("silverlight_key_sir_prysin")
@@ -225,7 +225,7 @@ class SirPrysin {
         npc<Talk>("Ok, tell me when you've got them all.")
     }
 
-    suspend fun NPCOption<Player>.giveSilverlight() {
+    suspend fun Dialogue.giveSilverlight() {
         player<Neutral>("I've got all three keys!")
         npc<Neutral>("Excellent! Now I can give you Silverlight.")
         player.inventory.remove("silverlight_key_wizard_traiborn", "silverlight_key_captain_rovin", "silverlight_key_sir_prysin")

@@ -5,7 +5,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
@@ -15,10 +15,10 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Baraek {
+class Baraek : Api {
 
     init {
-        npcOperate("Talk-to", "baraek") {
+        npcOperateDialogue("Talk-to", "baraek") {
             if (player.holdsItem("bear_fur")) {
                 choice {
                     option<Quiz>("Can you sell me some furs?") {

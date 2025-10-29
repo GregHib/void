@@ -73,7 +73,7 @@ class GiantMole : Api {
             }
         }
 
-        objectOperate("Climb", "giant_mole_lair_escape_rope") {
+        objectOperate("Climb", "giant_mole_lair_escape_rope") { player, target ->
             player.anim("climb_up")
             player.tele(acceptedTiles.random())
         }

@@ -3,15 +3,15 @@ package content.area.kharidian_desert.al_kharid.duel_arena
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.random
 
 @Script
-class Zahwa {
+class Zahwa : Api {
 
     init {
-        npcOperate("Talk-to", "zahwa") {
+        npcOperateDialogue("Talk-to", "zahwa") {
             when (random.nextInt(0, 6)) {
                 0 -> {
                     player<Happy>("Hi!")

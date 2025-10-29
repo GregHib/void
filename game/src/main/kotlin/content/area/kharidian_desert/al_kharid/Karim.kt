@@ -4,18 +4,18 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
 @Script
-class Karim {
+class Karim : Api {
 
     init {
-        npcOperate("Talk-to", "karim") {
+        npcOperateDialogue("Talk-to", "karim") {
             npc<Quiz>("Would you like to buy a nice kebab? Only one gold.")
             choice {
                 option<Uncertain>("I think I'll give it a miss.")

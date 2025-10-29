@@ -5,27 +5,28 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
+import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class BartenderZambo {
+class BartenderZambo : Api {
 
     init {
-        npcOperate("Talk-to", "bartender_zambo") {
+        npcOperateDialogue("Talk-to", "bartender_zambo") {
             npc<Talk>("Hey, are you wanting to try some of my fine wines and spirits? All brewed locally on Karamja.")
             choice {
                 option("Yes, please.") {
                     player.openShop("karamja_wines_spirits_and_beers")
                 }
                 option<Talk>("No, thank you.")
-                option("I'm doing Alfred Grimhand's barcrawl.", filter = barCrawlFilter) {
-                    barCrawl()
+                if (onBarCrawl()) {
+                    option("I'm doing Alfred Grimhand's barcrawl.") {
+                        barCrawl()
+                    }
                 }
             }
         }
@@ -34,11 +35,13 @@ class BartenderZambo {
             if (player.containsVarbit("barcrawl_signatures", "ape_bite_liqueur")) {
                 return@itemOnNPCOperate
             }
-            barCrawl()
+            player.talkWith(target) {
+                barCrawl()
+            }
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
+    suspend fun Dialogue.barCrawl() = barCrawlDrink(
         effects = {
             player.say("Mmmmm, dat was luverly...")
         },

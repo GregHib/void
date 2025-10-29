@@ -19,7 +19,7 @@ interface Approachable {
     /**
      * NPC Dialogue helper
      */
-    fun talkWithApproach(npc: String, block: suspend Dialogue.() -> Unit) {
+    fun talkToApproach(npc: String, block: suspend Dialogue.() -> Unit) {
         for (id in Wildcards.find(npc)) {
             playerNpcBlocks.getOrPut("Talk-to:$id") { mutableListOf() }.add { player, target ->
                 player.talkWith(target) { block(this) }

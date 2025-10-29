@@ -9,11 +9,10 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -41,14 +40,14 @@ class MageOfZamorak : Api {
             player.sendVariable("enter_the_abyss")
         }
 
-        npcOperate("Teleport", "mage_of_zamorak_wilderness_*") {
+        npcOperate("Teleport", "mage_of_zamorak_wilderness_*") { player, target ->
             teleport(player, target)
         }
 
-        npcOperate("Talk-to", "mage_of_zamorak_wilderness_*") {
+        npcOperateDialogue("Talk-to", "mage_of_zamorak_wilderness_*") {
             if (player.equipment.items.any { it.id.contains("saradomin", ignoreCase = true) }) {
                 npc<Angry>("I don't speak to Saradominist filth.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
 
             if (player.questCompleted("rune_mysteries")) {
@@ -75,10 +74,10 @@ class MageOfZamorak : Api {
             }
         }
 
-        npcOperate("Talk-to", "mage_of_zamorak_varrock", "mage_of_zamorak_normal") {
+        npcOperateDialogue("Talk-to", "mage_of_zamorak_varrock,mage_of_zamorak_normal") {
             if (player.equipment.items.any { it.id.contains("saradomin", ignoreCase = true) }) {
                 npc<Angry>("How dare you wear such disrespectful attire in this holy place? Remove those immediately if you wish to speak to me.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             if (player.questCompleted("enter_the_abyss")) {
                 npc<Talk>("Ah, you again. What do you want?")
@@ -89,7 +88,7 @@ class MageOfZamorak : Api {
                         npc<Talk>("Very well.")
                     }
                 }
-                return@npcOperate
+                return@npcOperateDialogue
             }
             if (!player["enter_abyss_where_runes", false]) {
                 npc<Talk>("Ah, you again. The Wilderness is hardly the appropriate place for a conversation now, is it? What was it you wanted?")
@@ -109,7 +108,7 @@ class MageOfZamorak : Api {
                 } else if (player.ownsItem("scrying_orb_full")) {
                     player<Talk>("Here you go.")
                     if (!player.inventory.remove("scrying_orb_full")) {
-                        return@npcOperate
+                        return@npcOperateDialogue
                     }
                     player["enter_the_abyss"] = "orb_inspect"
                     player.message("You hand the orb to the Mage of Zamorak.")
@@ -140,7 +139,7 @@ class MageOfZamorak : Api {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.aboutGroup() {
+    fun ChoiceBuilder<Dialogue>.aboutGroup() {
         option<Quiz>("Can you tell me more about your group?") {
             npc<Neutral>("I suppose you have proven yourself trustworthy. We are a group of mages in service to Zamorak. Our group is called the Zamorak Magical Institute, or Z.M.I. for short.")
             npc<Angry>("Few actually know of us. Saradominist groups like the Order of Wizards hold sway over these lands, so we are forced to work in the shadows. However, make no mistake, our power far exceeds theirs.")
@@ -163,7 +162,7 @@ class MageOfZamorak : Api {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.aboutAbyss() {
+    fun ChoiceBuilder<Dialogue>.aboutAbyss() {
         option<Quiz>("Can you tell me more about the Abyss?") {
             npc<Talk>("It is a hard place to describe. We often refer to it as another plane, but that isn't quite accurate. If anything, it is more like a plane that sits between all other planes.")
             player<Quiz>("Right... And what does it have to do with runecrafting?")
@@ -187,7 +186,7 @@ class MageOfZamorak : Api {
         }
     }
 
-    suspend fun NPCOption<Player>.takenOrb() {
+    suspend fun Dialogue.takenOrb() {
         npc<Happy>("You have done well. Now, time for us to uphold our end of the bargin.")
         npc<Neutral>("The reason we are able to craft so many runes is because we do not visit the runic altars in the traditional way. Instead, we have found a way to teleport to them directly.")
         player<Quiz>("How?")
@@ -209,7 +208,7 @@ class MageOfZamorak : Api {
         player.exp(Skill.Runecrafting, 1000.0)
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.whereRunes() {
+    fun ChoiceBuilder<Dialogue>.whereRunes() {
         option<Quiz>("Where do you get your runes from?") {
             npc<Uncertain>("Well we craft them of course.")
             player<Uncertain>("We?")
@@ -237,7 +236,7 @@ class MageOfZamorak : Api {
         }
     }
 
-    suspend fun NPCOption<Player>.accessLostMine() {
+    suspend fun Dialogue.accessLostMine() {
         npc<Angry>("Until recently, our runecrafting secrets allowed us to produce runes at a far superior rate compared to the inept Order of Wizards, but something has changed.")
         npc<Angry>("From what we can gather, they've somehow rediscovered how to access the lost Rune Essence Mine.")
         player<Happy>("Ah, well I know all about that. I was actually the one to help them do it!")
@@ -267,7 +266,7 @@ class MageOfZamorak : Api {
         }
     }
 
-    suspend fun NPCOption<Player>.deal() {
+    suspend fun Dialogue.deal() {
         npc<Uncertain>("Alright, if you help us access the Rune Essence Mine, we will share our runecrafting secrets with you in return.")
         player["enter_abyss_offer"] = true
         offer()
@@ -301,7 +300,7 @@ class MageOfZamorak : Api {
         }
     }
 
-    suspend fun NPCOption<Player>.offer() {
+    suspend fun Dialogue.offer() {
         choice {
             option<Talk>("Deal.") {
                 npc<Talk>("Good. Now, all I need from you is the spell that will teleport me to the Rune Essence Mine.")

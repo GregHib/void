@@ -4,15 +4,15 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.random
 
 @Script
-class Goblins {
+class Goblins : Api {
 
     init {
-        npcOperate("Talk-to", "goblin_*_red") {
+        npcOperateDialogue("Talk-to", "goblin_*_red") {
             when (random.nextInt(0, 2)) {
                 0 -> {
                     npc<Neutral>("Red armour best!")
@@ -31,7 +31,7 @@ class Goblins {
             }
         }
 
-        npcOperate("Talk-to", "goblin_*_green") {
+        npcOperateDialogue("Talk-to", "goblin_*_green") {
             when (random.nextInt(0, 2)) {
                 0 -> {
                     npc<Neutral>("green armour best!")
@@ -51,7 +51,7 @@ class Goblins {
             }
         }
 
-        npcOperate("Talk-to", "grubfoot*") {
+        npcOperateDialogue("Talk-to", "grubfoot*") {
             npc<Sad>("Grubfoot wear red armour! Grubfoot wear green armour!")
             npc<Quiz>("Why they not make up their minds?")
             npc<Frustrated>(npcId = "general_bentnoze_rfd", "Shut up Grubfoot!")

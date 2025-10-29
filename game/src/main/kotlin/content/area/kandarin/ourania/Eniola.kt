@@ -6,13 +6,13 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.social.trade.lend.Loan.getSecondsRemaining
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Eniola {
+class Eniola : Api {
 
     val runes = listOf(
         "air_rune",
@@ -42,7 +42,7 @@ class Eniola {
     )
 
     init {
-        npcOperate("Talk-to", "eniola") {
+        npcOperateDialogue("Talk-to", "eniola") {
             npc<Quiz>("Well met, fellow adventurer! How can I help you?")
             val loanReturned = getSecondsRemaining(player, "lend_timeout") < 0
             val collection = false
@@ -92,11 +92,11 @@ class Eniola {
             }
         }
 
-        npcOperate("Bank", "eniola") {
+        npcOperateDialogue("Bank", "eniola") {
             openBank()
         }
 
-        npcOperate("Collect", "eniola") {
+        npcOperateDialogue("Collect", "eniola") {
             openCollection()
         }
 
@@ -123,30 +123,30 @@ class Eniola {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.accessBank() {
+    fun ChoiceBuilder<Dialogue>.accessBank() {
         option("I'd like to access my bank account, please.") {
             openBank()
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.collectionBox() {
+    fun ChoiceBuilder<Dialogue>.collectionBox() {
         option("I'd like to see my collection box.") {
             openCollection()
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.pinSettings() {
+    fun ChoiceBuilder<Dialogue>.pinSettings() {
         option("I'd like to check my PIN settings.") {
         }
     }
 
-    suspend fun NPCOption<Player>.openCollection() {
+    suspend fun Dialogue.openCollection() {
         if (runePayment()) {
             player.open("collection_box")
         }
     }
 
-    suspend fun NPCOption<Player>.openBank() {
+    suspend fun Dialogue.openBank() {
         if (runePayment()) {
             player.open("bank")
         }

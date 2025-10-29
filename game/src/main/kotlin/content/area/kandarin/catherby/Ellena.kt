@@ -3,14 +3,14 @@ package content.area.kandarin.catherby
 import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.*
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Ellena {
+class Ellena : Api {
 
     init {
-        npcOperate("Talk-to", "ellena") {
+        npcOperateDialogue("Talk-to", "ellena") {
             suspend fun showMainOptions() {
                 choice {
                     option("Would you look after my crops for me?") {

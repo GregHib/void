@@ -7,8 +7,8 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.Upset
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
@@ -19,10 +19,10 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 
 @Script
-class Bob {
+class Bob : Api {
 
     init {
-        npcOperate("Talk-to", "bob") {
+        npcOperateDialogue("Talk-to", "bob") {
             choice {
                 option("Give me a quest!") {
                     npc<Talk>("Sorry I don't have any quests for you at the moment.")

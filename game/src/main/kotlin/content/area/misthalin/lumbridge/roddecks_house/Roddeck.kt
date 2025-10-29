@@ -8,14 +8,14 @@ import content.entity.player.dialogue.RollEyes
 import content.entity.player.dialogue.type.PlayerChoice
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Roddeck {
+class Roddeck : Api {
 
     init {
-        npcOperate("Talk-to", "roddeck") {
+        npcOperateDialogue("Talk-to", "roddeck") {
             npc<Happy>("Greetings! I am Roddeck. What can i do for you today?")
             choice("What would you like to say?") {
                 option<Quiz>("Who are you?") {

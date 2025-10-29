@@ -5,15 +5,16 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Sigmund {
+class Sigmund : Api {
 
     init {
-        npcOperate("Talk-to", "sigmund") {
+        npcOperateDialogue("Talk-to", "sigmund") {
             npc<Neutral>("Can I help you?")
             choice {
                 option<Quiz>("Do you have any quests for me?") {
@@ -28,7 +29,7 @@ class Sigmund {
             }
         }
 
-        npcOperate("Pickpocket", "sigmund") {
+        npcOperate("Pickpocket", "sigmund") { player, _ ->
             player.message("Sigmund doesn't seem to have anything of value.")
         }
     }

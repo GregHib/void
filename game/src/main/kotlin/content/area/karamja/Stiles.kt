@@ -4,20 +4,19 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 
 @Script
-class Stiles {
+class Stiles : Api {
 
     val fishes = setOf("raw_swordfish", "swordfish", "raw_lobster", "lobster", "raw_tuna", "tuna")
 
     init {
-        npcOperate("Talk-to", "stiles") {
+        npcOperateDialogue("Talk-to", "stiles") {
             npc<Happy>("Ay-uh, 'tis a grand day for the fishin'. Will ye be wantin' to exchange yer fish for banknotes?")
             choice {
                 option<Happy>("Okay, exchange all my fish for banknotes.") {
@@ -34,12 +33,12 @@ class Stiles {
             }
         }
 
-        npcOperate("Exchange", "stiles") {
+        npcOperateDialogue("Exchange", "stiles") {
             exchange()
         }
     }
 
-    suspend fun NPCOption<Player>.whoAreYou() {
+    suspend fun Dialogue.whoAreYou() {
         npc<Shifty>("Ahhh, when I were a young'un my name were Nigel but, these days, folks mostly call me Stiles.")
         npc<Happy>("Long time ago, in Draynor Village, there were three brothers who'd exchange yer stuff for bitty bits o' paper, like these new-fangled banknotes we've got today. Niles, Miles an' Giles they called themselves.")
         npc<Upset>("They be long gone, like the golden days, but they were an inspiration to me, so I took this trade myself, an' I changed my name to Stiles.")
@@ -59,7 +58,7 @@ class Stiles {
         }
     }
 
-    suspend fun NPCOption<Player>.witchFish() {
+    suspend fun Dialogue.witchFish() {
         npc<Happy>("Ahhh, ol' Stiles has banknotes for yer lobbies, yer swordies and yer tuna. 'Tis a grand service I be offerin' here, and nary a penny do I ask in return.")
         choice {
             option<Quiz>("Why don't you exchange other fish?") {
@@ -86,7 +85,7 @@ class Stiles {
         }
     }
 
-    suspend fun NPCOption<Player>.exchange() {
+    suspend fun Dialogue.exchange() {
         var total = 0
         player.inventory.transaction {
             for (fish in fishes) {

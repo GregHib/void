@@ -9,17 +9,18 @@ import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import net.pearx.kasechange.toLowerSpaceCase
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toTag
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Tanning
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
@@ -31,16 +32,16 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 
 @Script
-class Ellis {
+class Ellis : Api {
 
     val itemDefs: ItemDefinitions by inject()
 
     init {
-        npcOperate("Talk-to", "ellis", "tanner") {
+        npcOperateDialogue("Talk-to", "ellis,tanner") {
             npc<Talk>("Greetings friend. I am a manufacturer of leather.")
             if (player.inventory.items.none { it.id == "cowhide" || it.id.startsWith("snake_hide") || it.id.endsWith("dragonhide") }) {
                 leather()
-                return@npcOperate
+                return@npcOperateDialogue
             }
             npc<Talk>("I see you have bought me some hides. Would you like me to tan them for you?")
             choice {
@@ -78,7 +79,7 @@ class Ellis {
         }
     }
 
-    suspend fun NPCOption<Player>.leather() {
+    suspend fun Dialogue.leather() {
         choice("What would you like to say?") {
             option<Quiz>("Can I buy some leather then?") {
                 npc<Talk>("I make leather from animal hides. Bring me some cowhides and one gold coin per hide, and I'll tan them into soft leather for you.")

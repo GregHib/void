@@ -5,8 +5,11 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.isAdmin
@@ -15,14 +18,13 @@ import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Tile
 
 @Script
-class MonkOfEntrana {
+class MonkOfEntrana : Api {
 
     init {
-        npcOperate("Talk-to", "monk_of_entrana_port_sarim*") {
+        npcOperateDialogue("Talk-to", "monk_of_entrana_port_sarim*") {
             npc<Quiz>("Do you seek passage to holy Entrana? If so, you must leave your weaponry and armour behind. This is Saradomin's will.")
             choice("What would you like to say?") {
                 option<Talk>("No, not right now.") {
@@ -33,7 +35,7 @@ class MonkOfEntrana {
                     player.message("The monk quickly searches you.")
                     statement("", clickToContinue = false)
                     delay(3)
-                    if (passedCheck()) {
+                    if (passedCheck(player, target)) {
                         npc<Talk>("All is satisfactory. You may board the boat now.")
                         travel()
                     }
@@ -41,14 +43,16 @@ class MonkOfEntrana {
             }
         }
 
-        npcOperate("Take-boat", "monk_of_entrana_port_sarim*") {
-            if (passedCheck()) {
+        npcOperate("Take-boat", "monk_of_entrana_port_sarim*") { player, target ->
+            if (passedCheck(player, target)) {
                 player.message("After a quick, search, the monk smiles at you and allows you to board.")
-                travel()
+                player.talkWith(target) {
+                    travel()
+                }
             }
         }
 
-        npcOperate("Talk-to", "entrana_monk*") {
+        npcOperateDialogue("Talk-to", "entrana_monk*") {
             npc<Happy>("Do you wish to leave holy Entrana?")
             choice {
                 option<Talk>("Yes, I'm ready to go.") {
@@ -59,9 +63,11 @@ class MonkOfEntrana {
             }
         }
 
-        npcOperate("Take-boat", "entrana_monk*") {
+        npcOperate("Take-boat", "entrana_monk*") { player, target ->
             player.message("The ship takes you to Port Sarim.")
-            portSarim()
+            player.talkWith(target) {
+                portSarim()
+            }
         }
     }
 
@@ -83,7 +89,7 @@ class MonkOfEntrana {
         "range_weapon",
     )
 
-    private suspend fun NPCOption<Player>.passedCheck(): Boolean {
+    private suspend fun passedCheck(player: Player, target: NPC): Boolean {
         if (player.isAdmin()) {
             return true
         }
@@ -92,11 +98,13 @@ class MonkOfEntrana {
             forbidden = itemCheck(player.equipment)
         }
         if (forbidden.isNotEmpty()) {
-            npc<Angry>("NO WEAPONS OR ARMOUR are permitted on holy Entrana AT ALL. We will not allow you to travel there in breach of mighty Saradomin's edict.")
-            if (forbidden.def.getOrNull<String>("god") == "saradomin") {
-                npc<Talk>("I'm sorry, sir, but no weapons or armour may be worn on Entrana. This rule even forbids items dedicated to Saradomin.")
-            } else {
-                npc<Talk>("Do not try and deceive us again. Come back when you have laid down your Zamorakian instruments of death.")
+            player.talkWith(target) {
+                npc<Angry>("NO WEAPONS OR ARMOUR are permitted on holy Entrana AT ALL. We will not allow you to travel there in breach of mighty Saradomin's edict.")
+                if (forbidden.def.getOrNull<String>("god") == "saradomin") {
+                    npc<Talk>("I'm sorry, sir, but no weapons or armour may be worn on Entrana. This rule even forbids items dedicated to Saradomin.")
+                } else {
+                    npc<Talk>("Do not try and deceive us again. Come back when you have laid down your Zamorakian instruments of death.")
+                }
             }
             return false
         }
@@ -116,12 +124,12 @@ class MonkOfEntrana {
         return Item.EMPTY
     }
 
-    private suspend fun SuspendableContext<Player>.travel() {
+    private suspend fun Dialogue.travel() {
         boatTravel("port_sarim_to_entrana", 14, Tile(2834, 3331, 1))
         statement("The ship arrives at Entrana.")
     }
 
-    private suspend fun SuspendableContext<Player>.portSarim() {
+    private suspend fun Dialogue.portSarim() {
         boatTravel("entrana_to_port_sarim", 14, Tile(3048, 3231, 1))
         statement("The ship arrives at Port Sarim.")
     }

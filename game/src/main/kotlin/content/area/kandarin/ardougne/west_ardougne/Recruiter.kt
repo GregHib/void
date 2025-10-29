@@ -4,18 +4,18 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
 @Script
-class Recruiter {
+class Recruiter : Api {
 
     val floorItems: FloorItems by inject()
 
     init {
-        npcOperate("Talk-to", "recruiter") {
+        npcOperateDialogue("Talk-to", "recruiter") {
             npc<Neutral>("Citizens of West Ardougne! King Tyras needs you for his Royal Army! Who will join this noble cause?")
             npc<Angry>("w_ardougnecitizen3", "Plague bringer!")
             npc<Angry>("w_ardougnecitizen3", "King Tyras is scum!")

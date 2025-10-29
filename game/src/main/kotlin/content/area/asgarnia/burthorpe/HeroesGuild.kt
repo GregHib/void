@@ -8,29 +8,32 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
 @Script
-class HeroesGuild {
+class HeroesGuild : Api {
 
     init {
-        itemOnObjectOperate("amulet_of_glory", "fountain_of_heroes") {
-            if (player.inventory.replace(itemSlot, item.id, "amulet_of_glory_4")) {
-                player.message("You dip the amulet in the fountain...")
-                player.anim("human_pickupfloor")
-                item("amulet_of_glory", 300, "You feel a power emanating from the fountain as it recharges your amulet. You can now rub the amulet to teleport and wear it to get more gems whilst mining.")
+        itemOnObjectOperate("amulet_of_glory", "fountain_of_heroes") { player, id, slot, item, target ->
+            player.dialogue {
+                if (player.inventory.replace(slot, item.id, "amulet_of_glory_4")) {
+                    player.message("You dip the amulet in the fountain...")
+                    player.anim("human_pickupfloor")
+                    item("amulet_of_glory", 300, "You feel a power emanating from the fountain as it recharges your amulet. You can now rub the amulet to teleport and wear it to get more gems whilst mining.")
+                }
             }
         }
 
-        npcOperate("Talk-to", "achietties") {
+        npcOperateDialogue("Talk-to", "achietties") {
             npc<Talk>("Greetings. Welcome to the Heroes' Guild.")
             if (player.questCompleted("heroes_quest")) {
-                return@npcOperate
+                return@npcOperateDialogue
             }
             npc<Talk>("Only the greatest heroes of this land may gain entrance to this guild.")
             player<Quiz>("I'm a hero. May I apply to join?")

@@ -17,6 +17,10 @@ suspend fun Player.talkWith(npc: NPC, block: suspend Dialogue.() -> Unit) {
     block(Dialogue(this, npc))
 }
 
+suspend fun Player.dialogue(block: suspend Dialogue.() -> Unit) {
+    block(Dialogue(this, NPC())) // FIXME
+}
+
 class Dialogue(
     override val character: Player,
     val target: NPC,

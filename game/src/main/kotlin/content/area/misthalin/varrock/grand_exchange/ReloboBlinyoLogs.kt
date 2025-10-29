@@ -8,39 +8,38 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class ReloboBlinyoLogs {
+class ReloboBlinyoLogs : Api {
 
     init {
-        npcOperate("Talk-to", "relobo_blinyo") {
+        npcOperateDialogue("Talk-to", "relobo_blinyo") {
             if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
                 player<Talk>("You look rather out of place...")
                 npc<Talk>("That I may do, but so do you! I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a smaller, plain lesson.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             player<Talk>("Hey there.")
             npc<Talk>("Why, hell to you too, my friend.")
             menu()
         }
 
-        npcOperate("Info-logs", "relobo_blinyo") {
+        npcOperateDialogue("Info-logs", "relobo_blinyo") {
             if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
                 npc<Talk>("Not so fast! I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a smaller, plain lesson.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             player["common_item_costs"] = "logs"
             player.open("common_item_costs")
         }
     }
 
-    suspend fun NPCOption<Player>.menu() {
+    suspend fun Dialogue.menu() {
         choice {
             option<Talk>("You look like you've travelled a fair distance.") {
                 npc<Quiz>("What gave me away?")

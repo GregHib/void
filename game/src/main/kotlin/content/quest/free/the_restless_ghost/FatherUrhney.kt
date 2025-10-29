@@ -4,8 +4,8 @@ import content.entity.player.bank.bank
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.Script
@@ -16,12 +16,12 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class FatherUrhney {
+class FatherUrhney : Api {
 
     val floorItems: FloorItems by inject()
 
     init {
-        npcOperate("Talk-to", "father_urhney") {
+        npcOperateDialogue("Talk-to", "father_urhney") {
             npc<Frustrated>("Go away! I'm meditating!")
             choice {
                 option<Neutral>("Well, that's friendly.") {
@@ -84,7 +84,7 @@ class FatherUrhney {
             }
         }
 
-        npcOperate("Pickpocket", "father_urhney") {
+        npcOperate("Pickpocket", "father_urhney") { player, _ ->
             player.message("<red>You don't want to dip into those pockets without good reason.")
             player.message("<red>They're holy ...and filthy.")
         }

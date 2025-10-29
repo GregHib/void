@@ -7,11 +7,13 @@ import content.entity.sound.sound
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
+import world.gregs.voidps.engine.entity.character.mode.interact.delay
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.suspend.walkOverDelay
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -199,5 +201,24 @@ suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinitio
     player.walkOverDelay(doorStart(player, door) ?: return)
     val tile = player.enter(door, def, ticks) ?: return
     player.walkTo(tile, noCollision = true, forceWalk = true)
+    delay(delay)
+}
+
+/**
+ * Enter through a doorway
+ */
+suspend fun Player.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3) {
+    walkOverDelay(doorStart(this, door) ?: return)
+    val tile = enter(door, def, ticks) ?: return
+    walkOverDelay(tile)
+}
+
+/**
+ * Enter through a door with fixed [delay]
+ */
+suspend fun Player.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3, delay: Int) {
+    walkOverDelay(doorStart(this, door) ?: return)
+    val tile = enter(door, def, ticks) ?: return
+    walkTo(tile, noCollision = true, forceWalk = true)
     delay(delay)
 }

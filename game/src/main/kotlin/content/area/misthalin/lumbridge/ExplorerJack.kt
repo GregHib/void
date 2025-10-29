@@ -11,18 +11,17 @@ import content.entity.player.dialogue.Uncertain
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.BitwiseValues
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -31,14 +30,14 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 
 @Script
-class ExplorerJack {
+class ExplorerJack : Api {
 
     val npcs: NPCs by inject()
 
     val variables: VariableDefinitions by inject()
 
     init {
-        npcOperate("Talk-to", "explorer_jack") {
+        npcOperateDialogue("Talk-to", "explorer_jack") {
             if (player["introducing_explorer_jack_task", "uncompleted"] == "uncompleted") {
                 npc<Talk>("Ah! Welcome to ${Settings["server.name"]}, lad. My name's Explorer jack. I'm an explorer by trade, and I'm one of the Taskmasters around these parts")
                 player<Quiz>("Taskmaster? What Tasks are you Master of?")
@@ -51,7 +50,7 @@ class ExplorerJack {
                 npc<Talk>("Ah, yes indeed.")
                 if (!player.inventory.add("explorers_ring_1", "antique_lamp_beginner_lumbridge_tasks")) {
                     npc<Talk>("You don't seem to have space, speak to me again when you have two free spaces in your inventory.") // TODO proper message (not in osrs)
-                    return@npcOperate
+                    return@npcOperateDialogue
                 }
                 player["unlocked_emote_explore"] = true
                 npc<Talk>("Having completed the beginner tasks, you have been granted the ability to use the Explorer emote to show your friends.")
@@ -96,7 +95,7 @@ class ExplorerJack {
              */
         }
 
-        objectOperate("Open", "explorer_jack_trapdoor") {
+        objectOperateDialogue("Open", "explorer_jack_trapdoor") {
             val explorerJack = npcs[player.tile.regionLevel].first { it.id.startsWith("explorer_jack") }
             player.talkWith(explorerJack)
             npc<Uncertain>("I say, there's nothing interesting in my cellar! Better go exploring elsewhere, eh?")
@@ -105,7 +104,7 @@ class ExplorerJack {
         }
     }
 
-    suspend fun NPCOption<Player>.whatIsTaskSystem() {
+    suspend fun Dialogue.whatIsTaskSystem() {
         npc<Neutral>("Well, the Task System is a potent method of guiding yourself to useful things to do around the world.")
         npc<Talk>("You'll see up to six Tasks in your side bar if you click on the glowing Task List icon. You can click on one for more information about it, hints, waypoint arrows, that sort of thing.")
         npc<Talk>("Every Task you do will earn you something of value which you can claim from me. It'll be money, mostly, but the Rewards tab for a Task will tell you more.<br>Good luck!")
@@ -115,7 +114,7 @@ class ExplorerJack {
         player.interfaces.sendVisibility("task_system", "ok", true)
     }
 
-    suspend fun NPCOption<Player>.claim(inventoryId: String) {
+    suspend fun Dialogue.claim(inventoryId: String) {
         npc<Neutral>("I'll just fill your $inventoryId with what you need, then.")
         val inventory = player.inventories.inventory(inventoryId)
         val progress = player["task_progress_overall", 0]

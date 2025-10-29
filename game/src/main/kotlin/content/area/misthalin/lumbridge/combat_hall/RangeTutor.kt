@@ -4,9 +4,9 @@ import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.event.Script
@@ -18,10 +18,10 @@ import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
 
 @Script
-class RangeTutor {
+class RangeTutor : Api {
 
     init {
-        npcOperate("Talk-to", "nemarti") {
+        npcOperateDialogue("Talk-to", "nemarti") {
             npc<Quiz>("Hey there adventurer, I am the Ranged combat tutor. Is there anything you would like to know?")
             menu()
         }

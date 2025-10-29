@@ -5,15 +5,14 @@ import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.sex
@@ -24,12 +23,12 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 @Script
-class Yrsa {
+class Yrsa : Api {
 
     val enums: EnumDefinitions by inject()
 
     init {
-        npcOperate("Talk-to", "yrsa") {
+        npcOperateDialogue("Talk-to", "yrsa") {
             npc<Pleased>("Hi. You wanted to buy some clothes? Or did you want to makeover your shoes?")
             choice {
                 option<Pleased>("I'd like to buy some clothes.") {
@@ -44,7 +43,7 @@ class Yrsa {
             }
         }
 
-        npcOperate("Change-shoes", "yrsa") {
+        npcOperateDialogue("Change-shoes", "yrsa") {
             startShoeShopping()
         }
 
@@ -79,7 +78,7 @@ class Yrsa {
         }
     }
 
-    suspend fun Interaction<Player>.startShoeShopping() {
+    suspend fun Dialogue.startShoeShopping() {
         player.closeDialogue()
         if (player.equipped(EquipSlot.Weapon).isNotEmpty() || player.equipped(EquipSlot.Shield).isNotEmpty()) {
             npc<Afraid>("I don't feel comfortable showing you shoes when you are wielding something. Please remove what you are holding first.")

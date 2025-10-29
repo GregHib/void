@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -42,18 +41,18 @@ class Cows : Api {
             player.message("The cow doesn't want that.")
         }
 
-        objectOperate("Steal-cowbell", "dairy_cow") {
+        objectOperateDialogue("Steal-cowbell", "dairy_cow") {
             if (!player.has(Skill.Thieving, 15)) {
-                return@objectOperate
+                return@objectOperateDialogue
             }
             if (!player.questCompleted("cold_war")) {
                 statement("You need to have started the Cold War quest to attempt this.")
-                return@objectOperate
+                return@objectOperateDialogue
             }
             if (!Level.success(player.levels.get(Skill.Thieving), 128, 200)) {
                 player.message("The cow kicks you and stuns you.")
                 player.stun(player, 8, 10)
-                return@objectOperate
+                return@objectOperateDialogue
             }
             player.inventory.add("cowbells")
         }

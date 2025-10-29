@@ -7,14 +7,12 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
+import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 
 @Script
@@ -25,7 +23,7 @@ class BartenderRustyAnchor : Api {
             player["void_dance_bartender"] = 19
         }
 
-        npcOperate("Talk-to", "bartender_rusty_anchor_inn*") {
+        npcOperateDialogue("Talk-to", "bartender_rusty_anchor_inn*") {
             choice {
                 option<Quiz>("Could I buy a beer please?") {
                     npc<Talk>("Sure, that will be 2 gold coins please.")
@@ -36,8 +34,10 @@ class BartenderRustyAnchor : Api {
                 option<Talk>("Have you heard any rumours here?") {
                     npc<Talk>("Well, there was a guy in here earlier saying the goblins up by the mountain are arguing again, about the colour of their armour of all things.")
                 }
-                option("I'm doing Alfred Grimhand's barcrawl.", filter = barCrawlFilter) {
-                    barCrawl()
+                if (onBarCrawl()) {
+                    option("I'm doing Alfred Grimhand's barcrawl.") {
+                        barCrawl()
+                    }
                 }
             }
         }
@@ -46,11 +46,13 @@ class BartenderRustyAnchor : Api {
             if (player.containsVarbit("barcrawl_signatures", "black_skull_ale")) {
                 return@itemOnNPCOperate
             }
-            barCrawl()
+            player.talkWith(target) {
+                barCrawl()
+            }
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
+    suspend fun Dialogue.barCrawl() = barCrawlDrink(
         start = {
             npc<Quiz>("Are you sure? You look a bit skinny for that.")
             player<Talk>("Just give me whatever I need to drink here.")

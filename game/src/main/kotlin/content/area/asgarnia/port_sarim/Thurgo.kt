@@ -3,9 +3,10 @@ package content.area.asgarnia.port_sarim
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Script
@@ -18,7 +19,7 @@ import world.gregs.voidps.engine.inv.transact.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Thurgo {
+class Thurgo : Api {
 
     val items = listOf(
         Item("blurite_ore"),
@@ -26,7 +27,7 @@ class Thurgo {
     )
 
     init {
-        npcOperate("Talk-to", "thurgo") {
+        npcOperateDialogue("Talk-to", "thurgo") {
             when (player.quest("the_knights_sword")) {
                 "started", "find_thurgo" -> menu()
                 "happy_thurgo" -> menuSword()
@@ -37,15 +38,17 @@ class Thurgo {
         }
 
         itemOnNPCOperate("redberry_pie", "thurgo") {
-            when (player.quest("the_knights_sword")) {
-                "find_thurgo" -> menu()
-                "happy_thurgo" -> menuSword()
-                else -> player<Uncertain>("Why would I give him my pie?")
+            player.talkWith(target) {
+                when (player.quest("the_knights_sword")) {
+                    "find_thurgo" -> menu()
+                    "happy_thurgo" -> menuSword()
+                    else -> player<Uncertain>("Why would I give him my pie?")
+                }
             }
         }
     }
 
-    suspend fun Interaction<Player>.menuReplacementSword() {
+    suspend fun Dialogue.menuReplacementSword() {
         choice {
             madeSword()
             replacementSword()
@@ -91,7 +94,7 @@ class Thurgo {
         npc<Happy>("Well, I need a blurite ore and two iron bars. The only place I know to get blurite is under this cliff here, but it is guarded by a very powerful ice giant.")
     }
 
-    suspend fun Interaction<Player>.menuAboutSword() {
+    suspend fun Dialogue.menuAboutSword() {
         choice {
             aboutSword()
             redberryPie()
@@ -99,7 +102,7 @@ class Thurgo {
         }
     }
 
-    suspend fun Interaction<Player>.menuSword() {
+    suspend fun Dialogue.menuSword() {
         choice {
             specialSword()
             redberryPie()
@@ -107,7 +110,7 @@ class Thurgo {
         }
     }
 
-    suspend fun Interaction<Player>.menu() {
+    suspend fun Dialogue.menu() {
         choice {
             imcandoDwarf()
             redberryPie()

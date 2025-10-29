@@ -6,7 +6,7 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 @Script
-class CraftingGuild {
+class CraftingGuild : Api {
 
     val logger = InlineLogger()
 
@@ -41,7 +41,7 @@ class CraftingGuild {
             npc<Happy>("master_crafter", "Welcome to the Guild of Master Craftsmen.")
         }
 
-        npcOperate("Talk-to", "master_crafter") {
+        npcOperateDialogue("Talk-to", "master_crafter") {
             npc<Happy>("Hello, and welcome to the Crafting Guild. Accomplished crafters from all over the land come here to use our top notch workshops.")
             if (player.hasMax(Skill.Crafting, 99)) {
                 player<Quiz>("Are you the person I need to talk to about buying a Skillcape of Crafting")
@@ -73,11 +73,11 @@ class CraftingGuild {
             }
         }
 
-        npcOperate("Talk-to", "master_crafter_2") {
+        npcOperateDialogue("Talk-to", "master_crafter_2") {
             npc<Happy>("Hello, and welcome to the Crafting Guild. Accomplished crafters from all over the land come here to use our top notch workshops.")
         }
 
-        npcOperate("Talk-to", "master_crafter_3") {
+        npcOperateDialogue("Talk-to", "master_crafter_3") {
             npc<Uncertain>("Yeah?")
             player<Happy>("Hello.")
             npc<Uncertain>("Whassup?")

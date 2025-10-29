@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity
 
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
+import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.mode.interact.arriveDelay
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -18,10 +19,10 @@ interface Operation {
     /**
      * NPC Dialogue helper
      */
-    fun talkWith(npc: String, block: suspend Dialogue.() -> Unit) {
-        for (id in Wildcards.find(npc)) {
-            playerNpcBlocks.getOrPut("Talk-to:$id") { mutableListOf() }.add { player, target ->
-                player.talkWith(target) { block(this) }
+    fun npcOperateDialogue(option: String, npc: String, block: suspend Dialogue.() -> Unit) {
+        npcOperate(option, npc) { player, target ->
+            player.talkWith(target) {
+                block(this)
             }
         }
     }
@@ -97,6 +98,14 @@ interface Operation {
         }
         for (id in Wildcards.find(obj)) {
             playerObjectBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
+        }
+    }
+
+    fun objectOperateDialogue(option: String, obj: String, arriveDelay: Boolean = true, block: suspend Dialogue.(GameObject) -> Unit) {
+        objectOperate(option, obj, arriveDelay) { player, target ->
+            player.dialogue {
+                block(target)
+            }
         }
     }
 

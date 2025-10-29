@@ -7,8 +7,8 @@ import content.entity.sound.jingle
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -23,10 +23,10 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class SquireAsrol {
+class SquireAsrol : Api {
 
     init {
-        npcOperate("Talk-to", "squire_asrol") {
+        npcOperateDialogue("Talk-to", "squire_asrol") {
             when (player.quest("the_knights_sword")) {
                 "unstarted" -> {
                     npc<Neutral>("Hello. I am the squire to Sir Vyvin.")

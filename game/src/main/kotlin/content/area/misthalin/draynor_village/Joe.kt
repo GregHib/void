@@ -4,21 +4,19 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.sound.sound
 import content.quest.quest
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
 @Script
-class Joe {
+class Joe : Api {
 
     init {
-        npcOperate("Talk-to", "jail_guard_joe") {
+        npcOperateDialogue("Talk-to", "jail_guard_joe") {
             when (player.quest("prince_ali_rescue")) {
                 "guard" -> {
                     choice {
@@ -55,24 +53,26 @@ class Joe {
         }
 
         itemOnNPCOperate("beer", "jail_guard_joe") {
-            when (player.quest("prince_ali_rescue")) {
-                "guard" -> {
-                    player<Happy>("I have some beer here. Fancy one?")
-                    beer()
+            player.talkWith(target) {
+                when (player.quest("prince_ali_rescue")) {
+                    "guard" -> {
+                        player<Happy>("I have some beer here. Fancy one?")
+                        beer()
+                    }
+                    "joe_beer" -> anotherBeer()
+                    else -> player<Talk>("I don't see any need to give the guard my beer. I'll keep it for myself.")
                 }
-                "joe_beer" -> anotherBeer()
-                else -> player<Talk>("I don't see any need to give the guard my beer. I'll keep it for myself.")
             }
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.fancyABeer() {
+    fun ChoiceBuilder<Dialogue>.fancyABeer() {
         option<Happy>("I have some beer here, fancy one?") {
             beer()
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.beer() {
+    suspend fun Dialogue.beer() {
         npc<Happy>("Ah, that would be lovely. Only one though, just to wet my throat.")
         player<Talk>("Of course. It must be tough being here without a drink.")
         player["prince_ali_rescue"] = "joe_beer"
@@ -83,7 +83,7 @@ class Joe {
         anotherBeer()
     }
 
-    suspend fun TargetInteraction<Player, NPC>.anotherBeer() {
+    suspend fun Dialogue.anotherBeer() {
         player<Quiz>("How are you? Still ok? Not too drunk?")
         if (!player.inventory.contains("beer", 2)) {
             npc<Talk>("No, I don't get drunk from only one drink. I reckon I'd need at least two more for that. Still, thanks for the beer.")
@@ -99,7 +99,7 @@ class Joe {
         npc<Drunk>("Franksh! That wash jusht what I need to shtay on guard. No more beersh, I don't want to get drunk.")
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.guardLife() {
+    fun ChoiceBuilder<Dialogue>.guardLife() {
         option<Talk>("Tell me about the life of a guard.") {
             npc<RollEyes>("Well, the hours are good, but most of those hours are a drag.")
             npc<Upset>("Sometimes I wonder if I should have spent more time learning when I was a young boy. Maybe I wouldn't be here now, scared of Keli.")
@@ -110,7 +110,7 @@ class Joe {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.guardDreams() {
+    fun ChoiceBuilder<Dialogue>.guardDreams() {
         option<Talk>("What did you want to be when you were a boy?") {
             npc<RollEyes>("Well, I loved to sit by the lake, with my toes in the water. I'd shoot the fish with my bow and arrow.")
             player<Uncertain>("That's a strange hobby for a boy.")
@@ -155,7 +155,7 @@ class Joe {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.betterGo() {
+    fun ChoiceBuilder<Dialogue>.betterGo() {
         option<Talk>("I'd better go.") {
             npc<Talk>("Thanks, I appreciate that. Talking on duty can be punished by having your mouth stitched up. These are tough people, make no mistake.")
         }

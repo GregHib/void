@@ -3,15 +3,16 @@ package content.area.asgarnia.falador
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
@@ -23,12 +24,12 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 @Script
-class Hairdresser {
+class Hairdresser : Api {
 
     val enums: EnumDefinitions by inject()
 
     init {
-        npcOperate("Talk-to", "hairdresser") {
+        npcOperateDialogue("Talk-to", "hairdresser") {
             npc<Pleased>("Good afternoon ${if (player.male) "sir" else "madam"}. In need of a haircut${if (player.male) " or shave" else ""} are we?")
             choice {
                 option<Talk>("Yes, please.") {
@@ -41,8 +42,10 @@ class Hairdresser {
             }
         }
 
-        npcOperate("Hair-cut", "hairdresser") {
-            startHairdressing()
+        npcOperate("Hair-cut", "hairdresser") { player, target ->
+            player.talkWith(target) {
+                startHairdressing()
+            }
         }
 
         interfaceOpen("hairdressers_salon") { player ->
@@ -97,7 +100,7 @@ class Hairdresser {
         }
     }
 
-    suspend fun NPCOption<Player>.startHairdressing() {
+    suspend fun Dialogue.startHairdressing() {
         player.closeDialogue()
         if (player.equipped(EquipSlot.Weapon).isNotEmpty() || player.equipped(EquipSlot.Shield).isNotEmpty()) {
             npc<Afraid>("I don't feel comfortable cutting hair when you are wielding something. Please remove what you are holding first.")

@@ -6,11 +6,10 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -18,7 +17,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 
 @Script
-class BobBarterHerbs {
+class BobBarterHerbs : Api {
 
     val potions = setOf(
         "attack_potion",
@@ -66,11 +65,11 @@ class BobBarterHerbs {
     )
 
     init {
-        npcOperate("Talk-to", "bob_barter") {
+        npcOperateDialogue("Talk-to", "bob_barter") {
             if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
                 player<Talk>("Hello.")
                 npc<Talk>("Mate, I haven't got time for you yet. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a simpler, plain lesson.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             npc<Happy>("Hello, chum, fancy buyin' some designer jewellery? They've come all the way from Ardougne! Most pukka!")
             player<Shifty>("Erm, no. I'm all set, thanks.")
@@ -94,33 +93,33 @@ class BobBarterHerbs {
             }
         }
 
-        npcOperate("Info-herbs", "bob_barter") {
+        npcOperateDialogue("Info-herbs", "bob_barter") {
             if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
                 npc<Talk>("You'll need a tiny bit of training first, chum. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a smaller, plain lesson.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             player["common_item_costs"] = "herbs"
             player.open("common_item_costs")
         }
 
-        npcOperate("Decant", "bob_barter") {
+        npcOperateDialogue("Decant", "bob_barter") {
             if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
                 player<Talk>("Hello.")
                 npc<Talk>("Mate, I haven't got time for you yet. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a simpler, plain lesson.")
-                return@npcOperate
+                return@npcOperateDialogue
             }
             decantPotions()
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.showPrices() {
+    fun ChoiceBuilder<Dialogue>.showPrices() {
         option<Talk>("Can you show me the prices for herbs?") {
             player["common_item_costs"] = "herbs"
             player.open("common_item_costs")
         }
     }
 
-    suspend fun NPCOption<Player>.decantPotions() {
+    suspend fun Dialogue.decantPotions() {
         // Check if the player has any potions to decant
         player.inventory.transaction {
             val potionMap = mutableMapOf<String, Int>()

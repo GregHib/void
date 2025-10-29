@@ -4,13 +4,11 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.sound.sound
 import content.quest.quest
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -25,7 +23,7 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 
 @Script
-class Traiborn {
+class Traiborn : Api {
 
     val floorItems: FloorItems by inject()
     val objects: GameObjects by inject()
@@ -35,7 +33,7 @@ class Traiborn {
         set(value) = set("demon_slayer_bones", value)
 
     init {
-        npcOperate("Talk-to", "traiborn") {
+        npcOperateDialogue("Talk-to", "traiborn") {
             npc<Uncertain>("Ello young thingummywut.")
             if (player.quest("demon_slayer") == "key_hunt") {
                 if (player.inventory.contains("silverlight_key_wizard_traiborn")) {
@@ -56,8 +54,9 @@ class Traiborn {
 
         itemOnNPCOperate("bones", "traiborn") {
             if (player.bonesRequired > 0) {
-                player.talkWith(target)
-                giveBones()
+                player.talkWith(target) {
+                    giveBones()
+                }
             }
         }
     }
@@ -188,7 +187,7 @@ class Traiborn {
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.startSpell() {
+    suspend fun Dialogue.startSpell() {
         npc<Neutral>("Hurrah! That's all 25 sets of bones.")
         target.anim("traiborn_bone_spell")
         target.gfx("traiborn_bone_spell")
@@ -218,7 +217,7 @@ class Traiborn {
         player<Talk>("You're right. I've got a demon to slay.")
     }
 
-    suspend fun NPCOption<Player>.bonesCheck() {
+    suspend fun Dialogue.bonesCheck() {
         when (player.bonesRequired) {
             0 -> lostKey()
             -1 -> choice {
@@ -247,7 +246,7 @@ class Traiborn {
         player.bonesRequired = 25
     }
 
-    suspend fun TargetInteraction<Player, NPC>.giveBones() {
+    suspend fun Dialogue.giveBones() {
         val removed = player.inventory.removeToLimit("bones", player.bonesRequired)
         statement("You give Traiborn $removed ${"set".plural(removed)} of bones.")
         player.bonesRequired -= removed

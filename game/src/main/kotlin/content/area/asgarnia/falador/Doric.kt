@@ -6,7 +6,7 @@ import content.entity.sound.jingle
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Doric {
+class Doric : Api {
 
     val floorItems: FloorItems by inject()
 
@@ -34,13 +34,13 @@ class Doric {
     )
 
     init {
-        npcOperate("Talk-to", "doric") {
+        npcOperateDialogue("Talk-to", "doric") {
             when (player.quest("dorics_quest")) {
                 "started" -> {
                     npc<Quiz>("Have you got my materials yet, traveller?")
                     if (!player.inventory.contains(ores)) {
                         noOre()
-                        return@npcOperate
+                        return@npcOperateDialogue
                     }
                     player<Happy>("I have everything you need!")
                     npc<Happy>("Many thanks! Pass them here, please. I can spare you some coins for your trouble, and please use my anvils any time you want.")

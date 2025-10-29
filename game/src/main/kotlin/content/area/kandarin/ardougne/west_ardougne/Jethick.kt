@@ -7,9 +7,9 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.quest
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
@@ -17,10 +17,10 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Jethick {
+class Jethick : Api {
 
     init {
-        npcOperate("Talk-to", "jethick") {
+        npcOperateDialogue("Talk-to", "jethick") {
             when (player.quest("plague_city")) {
                 "grill_open" -> grillOpen()
                 "spoken_to_jethick" -> {
@@ -41,7 +41,7 @@ class Jethick {
         }
     }
 
-    suspend fun NPCOption<Player>.grillOpen() {
+    suspend fun Dialogue.grillOpen() {
         if (player["plaguecity_picture_asked", false]) {
             player["plague_city"] = "spoken_to_jethick"
             spokenToJethick()
@@ -61,7 +61,7 @@ class Jethick {
         }
     }
 
-    private suspend fun NPCOption<Player>.looking() {
+    private suspend fun Dialogue.looking() {
         player<Happy>("I'm looking for a woman from East Ardougne called Elena.")
         npc<Uncertain>("East Ardougnian women are easier to find in East Ardougne. Not many would come to West Ardougne to find one. Although the name is familiar, what does she look like?")
         if (player.inventory.contains("picture_plague_city")) {

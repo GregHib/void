@@ -5,18 +5,18 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.quest
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Clerk {
+class Clerk : Api {
 
     val stages = setOf("has_cure_paper", "gave_cure", "freed_elena", "completed", "completed_with_spell")
 
     init {
-        npcOperate("Talk-to", "clerk_west_ardougne") {
+        npcOperateDialogue("Talk-to", "clerk_west_ardougne") {
             when (player.quest("plague_city")) {
                 "talk_to_bravek" -> talkToBravek()
                 // todo find out about "has_cure_paper", "gave_cure", "freed_elena"

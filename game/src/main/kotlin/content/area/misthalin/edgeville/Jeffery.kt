@@ -7,9 +7,8 @@ import content.entity.player.dialogue.type.items
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.quest
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.holdsItem
@@ -17,10 +16,10 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
 @Script
-class Jeffery {
+class Jeffery : Api {
 
     init {
-        npcOperate("Talk-to", "jeffery_*") {
+        npcOperateDialogue("Talk-to", "jeffery_*") {
             npc<Quiz>("Keep it quick. What do you want?")
             choice {
                 if (player.quest("gunnars_ground") != "unstarted" && player.quest("gunnars_ground") != "started" && player.quest("gunnars_ground") != "love_poem") {
@@ -96,7 +95,7 @@ class Jeffery {
         }
     }
 
-    suspend fun NPCOption<Player>.lovePoem() {
+    suspend fun Dialogue.lovePoem() {
         npc<Surprised>("A love poem? What?")
         npc<Quiz>("Wait...that dwarf put you up to this, didn't he?")
         choice {
@@ -110,7 +109,7 @@ class Jeffery {
         }
     }
 
-    suspend fun NPCOption<Player>.cheekyLittle() {
+    suspend fun Dialogue.cheekyLittle() {
         npc<Frustrated>("That cheeky little...")
         npc<Frustrated>("He just can't leave it alone, can he? Fine! I'll trade you for the poem. What is it you want?")
         choice {
@@ -125,7 +124,7 @@ class Jeffery {
         }
     }
 
-    suspend fun NPCOption<Player>.goldRing() {
+    suspend fun Dialogue.goldRing() {
         player.inventory.replace("love_poem", "ring_from_jeffery")
         player["gunnars_ground"] = "jeffery_ring"
         player.anim("hand_over_item")

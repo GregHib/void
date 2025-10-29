@@ -5,15 +5,14 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.obj.objectOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Arheins {
+class Arheins : Api {
 
     init {
-        npcOperate("Talk-to", "arhein") {
+        npcOperateDialogue("Talk-to", "arhein") {
             npc<Talk>("Hello! Would you like to trade?")
 
             choice {
@@ -59,7 +58,7 @@ class Arheins {
             }
         }
 
-        objectOperate("Cross", "arhein_ship_gangplank") {
+        objectOperateDialogue("Cross", "arhein_ship_gangplank") {
             npc("arhein", "Hey buddy! Get away from my ship alright?")
             player<Talk>("Yeah... uh... sorry...")
         }

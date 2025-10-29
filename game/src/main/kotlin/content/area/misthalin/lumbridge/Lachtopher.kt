@@ -6,14 +6,14 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.RollEyes
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Lachtopher {
+class Lachtopher : Api {
 
     init {
-        npcOperate("Talk-to", "lachtopher") {
+        npcOperateDialogue("Talk-to", "lachtopher") {
             player<Happy>("Hello there.")
             npc<RollEyes>("Hello, I suppose. I'm Lachtopher. Could you lend me some money?")
             player<Quiz>("Lend you money? I really don't think so. Don't you have any of your own?")

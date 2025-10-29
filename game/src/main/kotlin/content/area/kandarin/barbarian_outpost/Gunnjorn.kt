@@ -6,17 +6,17 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
 @Script
-class Gunnjorn {
+class Gunnjorn : Api {
 
     init {
-        npcOperate("Talk-to", "gunnjorn") {
+        npcOperateDialogue("Talk-to", "gunnjorn") {
             choice("What do you want to say?") {
                 option<Quiz>("Hey there. What is this place?") {
                     npc<Happy>("Aha! Welcome to my obstacle course. Have fun, but remember this isn't a children's playground. People have died here.")

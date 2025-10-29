@@ -5,14 +5,15 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Vanessas {
+class Vanessas : Api {
 
     init {
-        npcOperate("Talk-to", "vanessa") {
+        npcOperateDialogue("Talk-to", "vanessa") {
             npc<Talk>("Hello. How can I help you?")
 
             choice {
@@ -31,7 +32,7 @@ class Vanessas {
             }
         }
 
-        npcOperate("Trade", "vanessa") {
+        npcOperate("Trade", "vanessa") { player, _ ->
             player.openShop("vanessas_farming_shop")
         }
     }

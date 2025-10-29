@@ -6,6 +6,7 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -15,14 +16,14 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
 @Script
-class Hickton {
+class Hickton : Api {
 
     init {
-        npcOperate("Trade", "hickton") {
+        npcOperate("Trade", "hickton") { player, target ->
             openHicktonShop(player)
         }
 
-        npcOperate("Talk-to", "hickton") {
+        npcOperateDialogue("Talk-to", "hickton") {
             npc<Talk>("Welcome to Hickton's Archery Store. Do you want to see my wares?")
 
             choice {

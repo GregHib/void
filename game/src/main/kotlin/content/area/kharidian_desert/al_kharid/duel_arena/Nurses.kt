@@ -9,11 +9,9 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
 
@@ -23,7 +21,7 @@ internal suspend fun PlayerChoice.fighters(): Unit = option<Uncertain>("Do you s
     player<Uncertain>("That's reassuring.")
 }
 
-internal suspend fun TargetInteraction<Player, NPC>.heal() {
+internal suspend fun Dialogue.heal() {
     target.face(player)
     val heal = player.levels.getMax(Skill.Constitution)
     if (player.levels.get(Skill.Constitution) < heal) {
@@ -42,10 +40,10 @@ internal suspend fun PlayerChoice.often(): Unit = option<Uncertain>("Do you come
 }
 
 @Script
-class Nurses {
+class Nurses : Api {
 
     init {
-        npcOperate("Talk-to", "sabreen", "a_abla") {
+        npcOperateDialogue("Talk-to", "sabreen,a_abla") {
             player<Happy>("Hi!")
             npc<Happy>("Hi. How can I help?")
             choice {
@@ -57,7 +55,7 @@ class Nurses {
             }
         }
 
-        npcOperate("Heal", "sabreen", "a_abla") {
+        npcOperateDialogue("Heal", "sabreen,a_abla") {
             heal()
         }
     }

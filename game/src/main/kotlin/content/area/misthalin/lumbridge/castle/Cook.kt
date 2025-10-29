@@ -6,9 +6,9 @@ import content.entity.sound.jingle
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.AuditLog
@@ -21,10 +21,10 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Cook {
+class Cook : Api {
 
     init {
-        npcOperate("Talk-to", "cook_lumbridge") {
+        npcOperateDialogue("Talk-to", "cook_lumbridge") {
             when (player.quest("cooks_assistant")) {
                 "unstarted" -> {
                     npc<Sad>("What am I to do?")
@@ -202,7 +202,7 @@ class Cook {
         player<Talk>("Thanks!")
     }
 
-    suspend fun NPCOption<Player>.dontLookHappy() {
+    suspend fun Dialogue.dontLookHappy() {
         npc<Sad>("No, I'm not. The world is caving in around me - I am overcome by dark feelings of impending doom.")
         choice {
             option("What's wrong?") {

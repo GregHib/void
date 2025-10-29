@@ -8,9 +8,9 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.Inventory
@@ -23,22 +23,22 @@ import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class GuardianMummy {
+class GuardianMummy : Api {
 
     val ivory = listOf("ivory_comb", "pottery_scarab", "pottery_statuette")
     val stone = listOf("stone_seal", "stone_scarab", "stone_statuette")
     val gold = listOf("gold_seal", "gold_scarab", "gold_statuette")
 
     init {
-        npcOperate("Talk-to", "guardian_mummy") {
+        npcOperateDialogue("Talk-to", "guardian_mummy") {
             if (player.holdsItem("pharaohs_sceptre")) {
                 sceptreRecharging()
-                return@npcOperate
+                return@npcOperateDialogue
             }
             notAnother()
         }
 
-        npcOperate("Start-activity", "guardian_mummy") {
+        npcOperateDialogue("Start-activity", "guardian_mummy") {
             player<Pleased>("I know what I'm doing - let's get on with it.")
             iKnowWhatImDoing()
         }

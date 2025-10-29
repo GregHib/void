@@ -7,7 +7,7 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -16,9 +16,9 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
 @Script
-class PenguinKeeper {
+class PenguinKeeper : Api {
     init {
-        npcOperate("Talk-to", "penguin_keeper_ardougne") {
+        npcOperateDialogue("Talk-to", "penguin_keeper_ardougne") {
             player<Talk>("Hello there. how are the penguins doing today?")
             npc<Happy>("They are doing fine, thanks.")
             if (player.has(Skill.Summoning, 30) && !player.ownsItem("penguin_egg")) {
@@ -47,7 +47,7 @@ class PenguinKeeper {
                         npc<Talk>("Well, we are now taking care of an incomprehensible amount of penguins!")
                         npc<Talk>("It would be great if you could take care of just one more - would you like to raise a final penguin for us?")
                     }
-                    else -> return@npcOperate
+                    else -> return@npcOperateDialogue
                 }
                 choice {
                     option<Talk>("Yes, of course.") {

@@ -8,11 +8,10 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.quest
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
@@ -23,10 +22,10 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Bravek {
+class Bravek : Api {
 
     init {
-        npcOperate("Talk-to", "bravek") {
+        npcOperateDialogue("Talk-to", "bravek") {
             when (player.quest("plague_city")) {
                 "talk_to_bravek" -> {
                     npc<Uncertain>("My head hurts! I'll speak to you another day...")
@@ -54,7 +53,9 @@ class Bravek {
 
         itemOnNPCOperate("hangover_cure", "bravek") {
             if (player.quest("plague_city") == "has_cure_paper") {
-                hasCurePaper()
+                player.talkWith(target) {
+                    hasCurePaper()
+                }
             }
         }
     }
@@ -92,7 +93,7 @@ class Bravek {
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.hasCurePaper() {
+    suspend fun Dialogue.hasCurePaper() {
         npc<Uncertain>("Uurgh! My head still hurts too much to think straight. Oh for one of Trudi's hangover cures!")
         if (player.holdsItem("hangover_cure")) {
             player<Neutral>("Try this.")
@@ -163,7 +164,7 @@ class Bravek {
         }
     }
 
-    suspend fun NPCOption<Player>.completed() {
+    suspend fun Dialogue.completed() {
         npc<Happy>("Thanks again for the hangover cure.")
         player<Happy>("Not a problem, happy to help out.")
         npc<Happy>("I'm just having a little drop of whisky, then I'll feel really good.")

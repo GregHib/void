@@ -6,9 +6,9 @@ import content.entity.player.dialogue.type.*
 import content.quest.quest
 import content.quest.questCompleted
 import content.quest.refreshQuestJournal
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Dororan {
+class Dororan : Api {
 
     init {
         itemOnItem("chisel", "ring_from_jeffery") { player: Player ->
@@ -38,7 +38,7 @@ class Dororan {
             }
         }
 
-        npcOperate("Talk-to", "dororan_*") {
+        npcOperateDialogue("Talk-to", "dororan_*") {
             when (player.quest("gunnars_ground")) {
                 "started" -> started()
                 "love_poem", "jeffery_ring" -> lovePoem()
@@ -61,9 +61,9 @@ class Dororan {
             }
         }
 
-        npcOperate("Talk-to", "dororan_after_quest") {
+        npcOperateDialogue("Talk-to", "dororan_after_quest") {
             if (!player.questCompleted("gunnars_ground")) {
-                return@npcOperate
+                return@npcOperateDialogue
             }
             if (player["dororan_ruby_bracelet", 0] != 1) {
                 npc<Happy>("Come in, my friend, come in! There is another matter I could use your assistance with.")

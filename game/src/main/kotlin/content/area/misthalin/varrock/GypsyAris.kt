@@ -18,12 +18,11 @@ import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.event.Context
@@ -39,14 +38,14 @@ import world.gregs.voidps.type.Region
 class GypsyAris : Api {
 
     init {
-        npcOperate("Talk-to", "gypsy_aris") {
+        npcOperateDialogue("Talk-to", "gypsy_aris") {
             when (player.quest("demon_slayer")) {
                 "unstarted" -> {
                     npc<Talk>("Hello, young one.")
                     npc<Talk>("Cross my palm with silver and the future will be revealed to you.")
                     if (!player.inventory.contains("coins")) {
                         player<Upset>("Oh dear. I don't have any money.")
-                        return@npcOperate
+                        return@npcOperateDialogue
                     }
                     if (player.combatLevel < 15) {
                         statement("Before starting this quest, be aware that your combat level is lower than the recommended level of 15.")
@@ -168,7 +167,7 @@ class GypsyAris : Api {
         npc<Upset>("Ok suit yourself.")
     }
 
-    suspend fun ChoiceBuilder<NPCOption<Player>>.hereYouGo(): Unit = option<Talk>("Okay, here you go.") {
+    suspend fun ChoiceBuilder<Dialogue>.hereYouGo(): Unit = option<Talk>("Okay, here you go.") {
         player.inventory.remove("coins", 1)
         npc<Happy>("Come closer and listen carefully to what the future holds, as I peer into the swirling mists o the crystal ball.")
         player.sound("demon_slayer_crystal_ball_start")
@@ -191,7 +190,7 @@ class GypsyAris : Api {
         whatToDo()
     }
 
-    suspend fun ChoiceBuilder<NPCOption<Player>>.whoYouCallingYoung(): Unit = option<Frustrated>("Who are you called 'young one'?") {
+    suspend fun ChoiceBuilder<Dialogue>.whoYouCallingYoung(): Unit = option<Frustrated>("Who are you called 'young one'?") {
         npc<Talk>("You have been on this world a relatively short time. At least compared to me.")
         npc<Talk>("So, do you want your fortune told or not?")
         choice {
@@ -282,7 +281,7 @@ class GypsyAris : Api {
         delrithWillCome()
     }
 
-    suspend fun ChoiceBuilder<NPCOption<Player>>.withSilver(): Unit = option<Quiz>("With silver?") {
+    suspend fun ChoiceBuilder<Dialogue>.withSilver(): Unit = option<Quiz>("With silver?") {
         npc<Neutral>("Oh, sorry, I forgot. With gold, I mean. They haven't used silver coins since before you were born! So, do you want your fortune told?")
         choice {
             hereYouGo()
@@ -315,7 +314,7 @@ class GypsyAris : Api {
         npc<Pleased>("He shouldn't be too hard to find. He lives in the royal palace in this city. Tell him Gypsy Aris sent you.")
     }
 
-    suspend fun NPCOption<Player>.howGoesQuest() {
+    suspend fun Dialogue.howGoesQuest() {
         npc<Happy>("Greetings. How goes thy quest?")
         player<Talk>("I'm still working on it.")
         npc<Talk>("Well if you need any advice I'm always here, young one.")

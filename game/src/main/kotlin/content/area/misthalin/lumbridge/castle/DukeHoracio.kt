@@ -5,7 +5,7 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
 import content.quest.refreshQuestJournal
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
@@ -13,10 +13,10 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class DukeHoracio {
+class DukeHoracio : Api {
 
     init {
-        npcOperate("Talk-to", "duke_horacio") {
+        npcOperateDialogue("Talk-to", "duke_horacio") {
             player["hail_to_the_duke_baby_task"] = true
             npc<Neutral>("Greetings. Welcome to my castle.")
             when (player.quest("rune_mysteries")) {

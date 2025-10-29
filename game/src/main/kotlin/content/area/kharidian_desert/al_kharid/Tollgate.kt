@@ -9,17 +9,16 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
@@ -31,32 +30,32 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
 
 @Script
-class Tollgate {
+class Tollgate : Api {
 
     val objects: GameObjects by inject()
 
     val gates = Rectangle(Tile(3268, 3227), 1, 2)
 
     init {
-        objectOperate("Pay-toll(10gp)", "toll_gate_al_kharid*") {
+        objectOperateDialogue("Pay-toll(10gp)", "toll_gate_al_kharid*") { target ->
             if (!player.inventory.remove("coins", 10)) {
                 player.notEnough("coins")
                 dialogue(player)
-                return@objectOperate
+                return@objectOperateDialogue
             }
             player.message("You pay the guard.")
-            enterDoor(target, delay = 2)
+            player.enterDoor(target, delay = 2)
         }
 
-        objectOperate("Open", "toll_gate_al_kharid*") {
+        objectOperateDialogue("Open", "toll_gate_al_kharid*") { target ->
             if (player.questCompleted("prince_ali_rescue")) {
-                enterDoor(target, delay = 2)
-                return@objectOperate
+                player.enterDoor(target, delay = 2)
+                return@objectOperateDialogue
             }
             dialogue(player)
         }
 
-        npcOperate("Talk-to", "border_guard_al_kharid*") {
+        npcOperateDialogue("Talk-to", "border_guard_al_kharid*") {
             dialogue(player, target)
         }
     }

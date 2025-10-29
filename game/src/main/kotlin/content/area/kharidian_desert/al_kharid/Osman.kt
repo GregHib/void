@@ -5,16 +5,14 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -23,15 +21,15 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 
 @Script
-class Osman {
+class Osman : Api {
 
     init {
-        npcOperate("Talk-to", "osman_*") {
+        npcOperateDialogue("Talk-to", "osman_*") {
             when (player.quest("prince_ali_rescue")) {
                 "completed" -> {
                     if (!Settings["quests.requirements.skipMissing", false] && !player.questCompleted("contact")) {
                         npc<Talk>("Well done. A great rescue. I will remember you if I have anything dangerous to do.")
-                        return@npcOperate
+                        return@npcOperateDialogue
                     }
                     choice {
                         option("I'd like to talk about sq'irks.") {
@@ -49,7 +47,7 @@ class Osman {
                             npc<Shifty>("That bothers me not. The secrets of Al Kharid protect themselves.")
                         }
                     }
-                    return@npcOperate
+                    return@npcOperateDialogue
                 }
                 "osman" -> {
                     player<Talk>("The chancellor trusts me. I have come for instructions.")
@@ -81,7 +79,7 @@ class Osman {
                         } else {
                             player<Sad>("I haven't got 15 coins with me.")
                             npc<Talk>("Then come back to me when you do.")
-                            return@npcOperate
+                            return@npcOperateDialogue
                         }
                         player.inventory.transaction {
                             remove("coins", 15)
@@ -108,7 +106,7 @@ class Osman {
         }
     }
 
-    private suspend fun NPCOption<Player>.sqirks() {
+    private suspend fun Dialogue.sqirks() {
         if (player.inventory.contains("winter_sqirkjuice") || player.inventory.contains("spring_sqirkjuice") || player.inventory.contains("autumn_sqirkjuice") || player.inventory.contains("summer_sqirkjuice")) {
             player<Talk>("I have some sq'irk juice for you.")
             var experience = 0.0
@@ -133,7 +131,7 @@ class Osman {
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.whatSqirks() {
+    private fun ChoiceBuilder<Dialogue>.whatSqirks() {
         option<Quiz>("What's so good about sq'irk juice?") {
             npc<Talk>("It is a sweet nectar for a thief or spy. It makes light fingers lighter, fleet feet flightier and comes in four different colours for those who are easily amused.")
             statement("Osman starts salivating at the thought of sq'irk juice.")
@@ -149,7 +147,7 @@ class Osman {
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.whySqirks() {
+    private fun ChoiceBuilder<Dialogue>.whySqirks() {
         option<Quiz>("Is there a reward for getting these sq'irks?") {
             npc<Talk>("Of course. I'll train you in the art of Thieving for your troubles.")
             player<Quiz>("How much training will you give?")
@@ -164,7 +162,7 @@ class Osman {
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.howSqirks() {
+    private fun ChoiceBuilder<Dialogue>.howSqirks() {
         option<Quiz>("How should I squeeze the fruit?") {
             npc<Talk>("Use a pestle and mortar. Make sure you have an empty glass with you to collect the juice.")
             choice {
@@ -176,7 +174,7 @@ class Osman {
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.whereSqirks() {
+    private fun ChoiceBuilder<Dialogue>.whereSqirks() {
         option<Quiz>("Where do I get sq'irks?") {
             npc<Talk>("There is a sorceress near the south eastern edge of Al Kharid who grows them. She used to be friends with Osman, but they fell out.")
             player<Quiz>("What happened?")
@@ -197,13 +195,13 @@ class Osman {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.findThings() {
+    fun ChoiceBuilder<Dialogue>.findThings() {
         option<Talk>("Okay, I better go find some things.") {
             npc<Shifty>("May good luck travel with you. Don't forget to find Leela. It can't be done without her help.")
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.firstThing() {
+    fun ChoiceBuilder<Dialogue>.firstThing() {
         option<Talk>("What is the first thing I must do?") {
             npc<Shifty>("The prince is guarded by some stupid guards and a clever woman. The woman is our only way to get the prince out. Only she can walk freely about the area.")
             npc<Shifty>("I think you will need to tie her up. One coil of rope should do for that. Then, disguise the prince as her to get him out without suspicion.")
@@ -220,7 +218,7 @@ class Osman {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.secondThing(text: String = "What is the second thing you need?") {
+    fun ChoiceBuilder<Dialogue>.secondThing(text: String = "What is the second thing you need?") {
         option<Quiz>(text) {
             npc<Shifty>("We need the key, or we need a copy made. If you can get some soft clay then you can copy the key...")
             npc<Shifty>("...If you can convince Lady Keli to show it to you for a moment. She is very boastful. I should not be too hard.")
@@ -233,7 +231,7 @@ class Osman {
         }
     }
 
-    suspend fun NPCOption<Player>.remainingItems() {
+    suspend fun Dialogue.remainingItems() {
         if (player.inventory.contains("bronze_key_prince_ali_rescue")) {
             npc<Shifty>("The key you already have. Good.")
         } else if (player["prince_ali_rescue_key_made", false] && !player["prince_ali_rescue_key_given", false]) {

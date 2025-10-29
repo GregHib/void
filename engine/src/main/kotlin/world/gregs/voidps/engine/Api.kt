@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.timer.TimerApi
 /**
  * A helper interface made up of all callable methods for easier [world.gregs.voidps.engine.event.Script] usage.
  */
-interface Api : Spawn, LevelChanged, Moved, VariableSet, TimerApi {
+interface Api : Spawn, LevelChanged, Moved, VariableSet, TimerApi, Operation, Approachable {
     companion object {
         fun clear() {
             Spawn.clear()

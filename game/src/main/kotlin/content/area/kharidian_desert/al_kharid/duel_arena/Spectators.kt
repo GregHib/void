@@ -3,15 +3,15 @@ package content.area.kharidian_desert.al_kharid.duel_arena
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.random
 
 @Script
-class Spectators {
+class Spectators : Api {
 
     init {
-        npcOperate("Talk-to", "afrah", "dalal", "jadid", "jeed", "ima", "sabeil") {
+        npcOperateDialogue("Talk-to", "afrah,dalal,jadid,jeed,ima,sabeil") {
             player<Happy>("Hi!")
             when (random.nextInt(0, 14)) {
                 0 -> {

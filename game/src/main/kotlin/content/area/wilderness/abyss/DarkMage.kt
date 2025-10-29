@@ -3,19 +3,18 @@ package content.area.wilderness.abyss
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 
 @Script
-class DarkMage {
+class DarkMage : Api {
 
     init {
-        npcOperate("Talk-to", "dark_mage") {
+        npcOperateDialogue("Talk-to", "dark_mage") {
             player<Talk>("Hello there.")
             npc<Angry>("Quiet! You must not break my concentration!")
             choice {
@@ -26,7 +25,7 @@ class DarkMage {
             }
         }
 
-        npcOperate("Repair-pouches", "dark_mage") {
+        npcOperateDialogue("Repair-pouches", "dark_mage") {
             var repaired = false
             val success = player.inventory.transaction {
                 for (index in inventory.indices) {
@@ -45,7 +44,7 @@ class DarkMage {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.whyNot() {
+    fun ChoiceBuilder<Dialogue>.whyNot() {
         option<Quiz>("Why not?") {
             npc<Talk>("Well, if my concentration is broken while keeping this rift open, the results won't be pretty.")
             player<Quiz>("In what way?")
@@ -61,7 +60,7 @@ class DarkMage {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.whyAreYouHere() {
+    fun ChoiceBuilder<Dialogue>.whyAreYouHere() {
         option<Quiz>("What are you doing here?") {
             npc<Talk>("Do you mean what am I doing here in the Abyss? Or are you asking me what I consider my ultimate role to be in this voyage that we call life?")
             player<Uncertain>("Err... The first one.")
@@ -76,7 +75,7 @@ class DarkMage {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.needHelp() {
+    fun ChoiceBuilder<Dialogue>.needHelp() {
         option<Talk>("I need your help with something.") {
             npc<Angry>("What? Oh... very well. What did you want?")
             choice {
@@ -108,13 +107,13 @@ class DarkMage {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.illGo() {
+    fun ChoiceBuilder<Dialogue>.illGo() {
         option<Upset>("Sorry, I'll go.") {
             npc<Angry>("Good. I'm attempting to subdue the elemental mechanisms of the universe to my will. Inane chatter from random idiots is not helping me achieve this!")
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.askForPouch() {
+    fun ChoiceBuilder<Dialogue>.askForPouch() {
         option<Quiz>("Can I have a new essence pouch?") {
             if (player.ownsItem("small_pouch")) {
                 npc<Angry>("You already have a Pouch. Are you aware of the dimensional turmoil you can cause by using too many pouches at the same time?")

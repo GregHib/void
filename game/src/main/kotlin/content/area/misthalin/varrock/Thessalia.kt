@@ -9,14 +9,14 @@ import content.entity.player.dialogue.type.PlayerChoice
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.modal.CharacterStyle.onStyle
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
@@ -29,12 +29,12 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 
 @Script
-class Thessalia {
+class Thessalia : Api {
 
     val enums: EnumDefinitions by inject()
 
     init {
-        npcOperate("Talk-to", "thessalia") {
+        npcOperateDialogue("Talk-to", "thessalia") {
             npc<Happy>("Would you like to buy any fine clothes?")
             npc<Happy>("Or if you're more after fancy dress costumes or commemorative capes, talk to granny Iffie.")
             choice {
@@ -57,7 +57,7 @@ class Thessalia {
             }
         }
 
-        npcOperate("Change-clothes", "thessalia") {
+        npcOperateDialogue("Change-clothes", "thessalia") {
             startMakeover()
         }
 
@@ -129,7 +129,7 @@ class Thessalia {
         player.openShop("thessalias_fine_clothes")
     }
 
-    suspend fun Interaction<Player>.startMakeover() {
+    suspend fun Dialogue.startMakeover() {
         player.closeDialogue()
         if (!player.equipment.isEmpty()) {
             npc<Talk>("You're not able to try on my clothes with all that armour. Take it off and then speak to me again.")

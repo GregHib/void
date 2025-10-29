@@ -7,19 +7,18 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.quest.quest
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
 @Script
-class Alrena {
+class Alrena : Api {
 
     init {
-        npcOperate("Talk-to", "alrena") {
+        npcOperateDialogue("Talk-to", "alrena") {
             when (player.quest("plague_city")) {
                 "unstarted" -> {
                     player<Neutral>("Hello Madam.")
@@ -39,7 +38,7 @@ class Alrena {
         }
     }
 
-    suspend fun NPCOption<Player>.started() {
+    suspend fun Dialogue.started() {
         player<Neutral>("Hello, Edmond has asked me to help find your daughter.")
         npc<Neutral>("Yes he told me. I've begun making your special gas mask, but I need some dwellberries to finish it.")
         if (player.holdsItem("dwellberries")) {
@@ -60,20 +59,20 @@ class Alrena {
         }
     }
 
-    suspend fun NPCOption<Player>.hasMask() {
+    suspend fun Dialogue.hasMask() {
         player<Happy>("Hello Alrena.")
         npc<Happy>("Hello darling, I think Edmond had a good idea of how to get into West Ardougne, you should hear his idea.")
         player<Happy>("Alright, I'll go and see him now.")
     }
 
-    suspend fun NPCOption<Player>.aboutDigging() {
+    suspend fun Dialogue.aboutDigging() {
         // todo check
         player<Happy>("Hello Alrena.")
         npc<Happy>("Hello darling, how's that tunnel coming along?")
         player<Neutral>("I just need to soften the soil a little more and then we'll start digging.")
     }
 
-    suspend fun NPCOption<Player>.bucketOfWater() {
+    suspend fun Dialogue.bucketOfWater() {
         player<Happy>("Hello Alrena.")
         npc<Happy>("Hello darling, how's that tunnel coming along?")
         player<Neutral>("I just need to soften the soil a little more and then we'll start digging.")
@@ -83,7 +82,7 @@ class Alrena {
         }
     }
 
-    suspend fun NPCOption<Player>.fourBucketOfWater() {
+    suspend fun Dialogue.fourBucketOfWater() {
         player<Happy>("Hello again Alrena.")
         npc<Neutral>("How's the tunnel going?")
         player<Neutral>("I'm getting there.")
@@ -96,7 +95,7 @@ class Alrena {
         }
     }
 
-    suspend fun NPCOption<Player>.sewer() {
+    suspend fun Dialogue.sewer() {
         player<Happy>("Hello Alrena.")
         npc<Neutral>("Hi, have you managed to get through to West Ardougne?")
         player<Sad>("Not yet, but I should be going soon.")
@@ -109,7 +108,7 @@ class Alrena {
         }
     }
 
-    suspend fun NPCOption<Player>.grillOpen() {
+    suspend fun Dialogue.grillOpen() {
         player<Neutral>("Hello Alrena.")
         npc<Uncertain>("Hello, any word on Elena?")
         player<Sad>("Not yet I'm afraid.")
@@ -127,7 +126,7 @@ class Alrena {
         }
     }
 
-    suspend fun NPCOption<Player>.freedElena() {
+    suspend fun Dialogue.freedElena() {
         npc<Happy>("Thank you for rescuing my daughter! Elena has told me of your bravery in entering a house that could have been plague infected. I can't thank you enough!")
     }
 }

@@ -5,9 +5,8 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.sound.sound
 import content.quest.quest
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -20,12 +19,12 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.type.Tile
 
 @Script
-class Aggie {
+class Aggie : Api {
 
     val floorItems: FloorItems by inject()
 
     init {
-        npcOperate("Talk-to", "aggie") {
+        npcOperateDialogue("Talk-to", "aggie") {
             npc<Happy>("What can I help you with?")
             choice {
                 option<Quiz>("What could you make for me?") {
@@ -94,7 +93,7 @@ class Aggie {
             }
         }
 
-        npcOperate("Make-dyes", "aggie") {
+        npcOperateDialogue("Make-dyes", "aggie") {
             choice("What dye do you want Aggie to make for you?") {
                 option("Red dye (requires 5 coins and 3 lots of redberries).") {
                     player<Talk>("Could you make me some red dye, please?")
@@ -112,7 +111,7 @@ class Aggie {
         }
     }
 
-    suspend fun NPCOption<Player>.menu() {
+    suspend fun Dialogue.menu() {
         choice {
             option<Quiz>("What do you need to make red dye?") {
                 npc<Talk>("Three lots of redberries and five coins to you.")
@@ -132,7 +131,7 @@ class Aggie {
         }
     }
 
-    suspend fun NPCOption<Player>.yellowDye() {
+    suspend fun Dialogue.yellowDye() {
         choice {
             option<Quiz>("Okay, make me some yellow dye please.") {
                 makeYellow()
@@ -154,7 +153,7 @@ class Aggie {
         }
     }
 
-    suspend fun NPCOption<Player>.redDye() {
+    suspend fun Dialogue.redDye() {
         choice {
             option<Quiz>("Okay, make me some red dye please.") {
                 makeRed()
@@ -176,7 +175,7 @@ class Aggie {
         }
     }
 
-    suspend fun NPCOption<Player>.blueDye() {
+    suspend fun Dialogue.blueDye() {
         choice {
             option<Quiz>("Okay, make me some blue dye please.") {
                 makeBlue()
@@ -198,7 +197,7 @@ class Aggie {
         }
     }
 
-    suspend fun NPCOption<Player>.otherColours() {
+    suspend fun Dialogue.otherColours() {
         choice {
             option<Quiz>("What other colours can you make?") {
                 npc<Talk>("Red, yellow and blue. Which one would you like?")
@@ -210,7 +209,7 @@ class Aggie {
         }
     }
 
-    suspend fun NPCOption<Player>.makeYellow() {
+    suspend fun Dialogue.makeYellow() {
         if (!player.inventory.contains("coins", 5)) {
             statement("You don't have enough coins to pay for the dye.")
         } else if (!player.inventory.contains("onion", 2)) {
@@ -230,7 +229,7 @@ class Aggie {
         }
     }
 
-    suspend fun NPCOption<Player>.makeRed() {
+    suspend fun Dialogue.makeRed() {
         if (!player.inventory.contains("coins", 5)) {
             statement("You don't have enough coins to pay for the dye.")
         } else if (!player.inventory.contains("redberries", 3)) {
@@ -250,7 +249,7 @@ class Aggie {
         }
     }
 
-    suspend fun NPCOption<Player>.makeBlue() {
+    suspend fun Dialogue.makeBlue() {
         if (!player.inventory.contains("coins", 5)) {
             statement("You don't have enough coins to pay for the dye.")
         } else if (!player.inventory.contains("woad_leaf", 2)) {

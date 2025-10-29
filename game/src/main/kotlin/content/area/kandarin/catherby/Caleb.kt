@@ -4,14 +4,14 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Caleb {
+class Caleb : Api {
 
     init {
-        npcOperate("Talk-to", "caleb") {
+        npcOperateDialogue("Talk-to", "caleb") {
             npc<Talk>("Who are you? What are you after?")
 
             choice {

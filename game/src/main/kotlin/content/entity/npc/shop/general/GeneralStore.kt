@@ -7,18 +7,19 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class GeneralStore {
+class GeneralStore : Api {
 
     init {
         npcOperate("Trade", "shopkeeper*", "shop_assistant*") {
             player.openShop(target.def.getOrNull<String>("shop") ?: return@npcOperate)
         }
 
-        npcOperate("Talk-to", "shopkeeper*") {
+        npcOperateDialogue("Talk-to", "shopkeeper*") {
             npc<Neutral>("Can I help you at all?")
             choice {
                 option("Yes please. What are you selling?") {
@@ -40,7 +41,7 @@ class GeneralStore {
             }
         }
 
-        npcOperate("Talk-to", "shop_assistant*") {
+        npcOperateDialogue("Talk-to", "shop_assistant*") {
             if (target.id.endsWith("musa_point")) {
                 npc<Happy>("It's a beautiful day today, no? Can I do anything for you?")
             } else {
