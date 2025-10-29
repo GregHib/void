@@ -178,14 +178,14 @@ interface Approachable {
     /**
      * Npc player option
      */
-    suspend fun npcApproachPlayer(option: String, block: suspend (npc: NPC, target: Player) -> Unit) {
+    fun npcApproachPlayer(option: String, block: suspend (npc: NPC, target: Player) -> Unit) {
         npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
 
     /**
      * Npc npc option
      */
-    suspend fun npcApproachNpc(option: String, npc: String, block: suspend (npc: NPC, target: NPC) -> Unit) {
+    fun npcApproachNpc(option: String, npc: String = "*", block: suspend (npc: NPC, target: NPC) -> Unit) {
         for (id in Wildcards.find(npc)) {
             npcNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
@@ -194,7 +194,7 @@ interface Approachable {
     /**
      * Npc game object option
      */
-    suspend fun npcApproachObject(option: String, obj: String, arriveDelay: Boolean = true, block: suspend (npc: NPC, target: GameObject) -> Unit) {
+    fun npcApproachObject(option: String, obj: String = "*", arriveDelay: Boolean = true, block: suspend (npc: NPC, target: GameObject) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(obj))
         }
@@ -206,7 +206,7 @@ interface Approachable {
     /**
      * Npc floor item option
      */
-    suspend fun npcApproachFloorItem(option: String, item: String, arriveDelay: Boolean = true, block: suspend (npc: NPC, target: FloorItem) -> Unit) {
+    fun npcApproachFloorItem(option: String, item: String = "*", arriveDelay: Boolean = true, block: suspend (npc: NPC, target: FloorItem) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(item))
         }
@@ -349,7 +349,10 @@ interface Approachable {
         }
 
         suspend fun approach(npc: NPC, target: NPC, option: String) {
-            for (block in npcNpcBlocks["$option:${target.id}"] ?: return) {
+            for (block in npcNpcBlocks["$option:${target.id}"] ?: emptyList()) {
+                block(npc, target)
+            }
+            for (block in npcNpcBlocks["$option:*"] ?: return) {
                 block(npc, target)
             }
         }
@@ -358,7 +361,10 @@ interface Approachable {
             if (!noDelays.contains(target.id)) {
                 npc.arriveDelay()
             }
-            for (block in npcObjectBlocks["$option:${target.id}"] ?: return) {
+            for (block in npcObjectBlocks["$option:${target.id}"] ?: emptyList()) {
+                block(npc, target)
+            }
+            for (block in npcObjectBlocks["$option:*"] ?: return) {
                 block(npc, target)
             }
         }
@@ -367,7 +373,10 @@ interface Approachable {
             if (!noDelays.contains(target.id)) {
                 npc.arriveDelay()
             }
-            for (block in npcFloorItemBlocks["$option:${target.id}"] ?: return) {
+            for (block in npcFloorItemBlocks["$option:${target.id}"] ?: emptyList()) {
+                block(npc, target)
+            }
+            for (block in npcFloorItemBlocks["$option:*"] ?: return) {
                 block(npc, target)
             }
         }

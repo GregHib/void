@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.suspend.resumeSuspension
 class Interact(
     character: Character,
     val target: Entity,
-    interaction: Interaction<*>,
+    interaction: Interaction<*>?,
     strategy: TargetStrategy = TargetStrategy(target),
     private var approachRange: Int? = null,
     private val faceTarget: Boolean = true,
@@ -36,22 +36,22 @@ class Interact(
 ) : Movement(character, strategy, shape) {
     private var launched = false
 
-    private var type = Combined(type, OldInteractionType(interaction))
+    private var type = Combined(type, interaction?.let { OldInteractionType(it) })
 
-    class Combined(val type: InteractionType?, var old: InteractionType)  : InteractionType {
+    class Combined(val type: InteractionType?, var old: InteractionType?)  : InteractionType {
         override fun hasOperate(character: Character): Boolean {
-            return type?.hasOperate(character) == true || old.hasOperate(character)
+            return type?.hasOperate(character) == true || old?.hasOperate(character) == true
         }
 
         override fun hasApproach(character: Character): Boolean {
-            return type?.hasApproach(character) == true || old.hasApproach(character)
+            return type?.hasApproach(character) == true || old?.hasApproach(character) == true
         }
 
         override fun operate(character: Character, target: Entity) {
             if (type != null && type.hasOperate(character)) {
                 type.operate(character, target)
             } else {
-                old.operate(character, target)
+                old?.operate(character, target)
             }
         }
 
@@ -59,7 +59,7 @@ class Interact(
             if (type != null && type.hasApproach(character)) {
                 type.approach(character, target)
             } else {
-                old.approach(character, target)
+                old?.approach(character, target)
             }
         }
     }

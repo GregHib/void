@@ -186,14 +186,14 @@ interface Operation {
     /**
      * Npc player option
      */
-    suspend fun npcOperatePlayer(option: String, block: suspend (npc: NPC, target: Player) -> Unit) {
+    fun npcOperatePlayer(option: String, block: suspend (npc: NPC, target: Player) -> Unit) {
         npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
 
     /**
      * Npc npc option
      */
-    suspend fun npcOperateNpc(option: String, npc: String, block: suspend (npc: NPC, target: NPC) -> Unit) {
+    fun npcOperateNpc(option: String, npc: String ="*", block: suspend (npc: NPC, target: NPC) -> Unit) {
         for (id in Wildcards.find(npc)) {
             npcNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
@@ -202,7 +202,7 @@ interface Operation {
     /**
      * Npc game object option
      */
-    suspend fun npcOperateObject(option: String, obj: String, arriveDelay: Boolean = true, block: suspend (npc: NPC, target: GameObject) -> Unit) {
+    fun npcOperateObject(option: String, obj: String ="*", arriveDelay: Boolean = true, block: suspend (npc: NPC, target: GameObject) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(obj))
         }
@@ -214,7 +214,7 @@ interface Operation {
     /**
      * Npc floor item option
      */
-    suspend fun npcOperateFloorItem(option: String, item: String, arriveDelay: Boolean = true, block: suspend (npc: NPC, target: FloorItem) -> Unit) {
+    fun npcOperateFloorItem(option: String, item: String ="*", arriveDelay: Boolean = true, block: suspend (npc: NPC, target: FloorItem) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(item))
         }
@@ -357,7 +357,10 @@ interface Operation {
         }
 
         suspend fun operate(npc: NPC, target: NPC, option: String) {
-            for (block in npcNpcBlocks["$option:${target.id}"] ?: return) {
+            for (block in npcNpcBlocks["$option:${target.id}"] ?: emptyList()) {
+                block(npc, target)
+            }
+            for (block in npcNpcBlocks["$option:*"] ?: return) {
                 block(npc, target)
             }
         }
@@ -366,7 +369,10 @@ interface Operation {
             if (!noDelays.contains(target.id)) {
                 npc.arriveDelay()
             }
-            for (block in npcObjectBlocks["$option:${target.id}"] ?: return) {
+            for (block in npcObjectBlocks["$option:${target.id}"] ?: emptyList()) {
+                block(npc, target)
+            }
+            for (block in npcObjectBlocks["$option:*"] ?: return) {
                 block(npc, target)
             }
         }
@@ -375,7 +381,10 @@ interface Operation {
             if (!noDelays.contains(target.id)) {
                 npc.arriveDelay()
             }
-            for (block in npcFloorItemBlocks["$option:${target.id}"] ?: return) {
+            for (block in npcFloorItemBlocks["$option:${target.id}"] ?: emptyList()) {
+                block(npc, target)
+            }
+            for (block in npcFloorItemBlocks["$option:*"] ?: return) {
                 block(npc, target)
             }
         }
