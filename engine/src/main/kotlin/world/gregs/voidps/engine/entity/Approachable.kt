@@ -2,8 +2,6 @@ package world.gregs.voidps.engine.entity
 
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.dispatch.MapDispatcher
-import world.gregs.voidps.engine.entity.Operation.Companion
 import world.gregs.voidps.engine.entity.character.mode.interact.arriveDelay
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player

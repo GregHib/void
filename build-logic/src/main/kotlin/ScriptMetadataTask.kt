@@ -10,34 +10,20 @@ import org.jetbrains.kotlin.com.intellij.openapi.Disposable
 import org.jetbrains.kotlin.com.intellij.openapi.util.Disposer
 import org.jetbrains.kotlin.com.intellij.psi.PsiManager
 import org.jetbrains.kotlin.config.CompilerConfiguration
-import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.psi.*
 import org.jetbrains.kotlin.psi.psiUtil.collectDescendantsOfType
 import java.io.File
 
 /**
- * Gradle task which incrementally collects annotation info about classes inside a given directory.
+ * Gradle task which incrementally collects method info about script classes inside a given directory.
  * Collects:
  *  - @Script annotations for invocation
- *  - Overridden methods
- *  - Annotations on methods and it's data
- *  - Processes annotation wildcards
+ *  - Parameters of called methods in init {} and their resolved wildcards
  */
 abstract class ScriptMetadataTask : DefaultTask() {
 
     private sealed class WildcardType {
         data object None : WildcardType()
-        sealed class Dynamic : WildcardType() {
-            abstract fun type(context: Context, params: List<String>): Set<String>?
-        }
-        data class DynamicId(val paramIndex: Int) : Dynamic() {
-            override fun type(context: Context, params: List<String>) = when (params[paramIndex]) {
-                "NPC" -> context.npcIds
-                "GameObject" -> context.objectIds
-                "FloorItem" -> context.itemIds
-                else -> null
-            }
-        }
         data object NpcId : WildcardType()
         data object InterfaceId : WildcardType()
         data object ComponentId : WildcardType()
@@ -45,31 +31,12 @@ abstract class ScriptMetadataTask : DefaultTask() {
         data object ObjectId : WildcardType()
         data object ItemId : WildcardType()
         data object VariableId : WildcardType()
-        data class DynamicOption(val paramIndex: Int) : Dynamic() {
-            override fun type(context: Context, params: List<String>) = when (params[paramIndex]) {
-                "NPC" -> context.npcOptions
-                "GameObject" -> context.objectOptions
-                "FloorItem" -> context.itemOptions
-                else -> null
-            }
-        }
         data object NpcOption : WildcardType()
         data object InterfaceOption : WildcardType()
         data object FloorItemOption : WildcardType()
         data object ObjectOption : WildcardType()
         data object ItemOption : WildcardType()
     }
-
-    // List of annotation names and their parameters
-    private val annotations: Map<String, List<Pair<String, WildcardType>>> = mapOf(
-        "Id" to listOf("id" to WildcardType.DynamicId(0)),
-        "SkillId" to listOf("skill" to WildcardType.None, "id" to WildcardType.DynamicId(0)),
-        "Variable" to listOf("key" to WildcardType.VariableId, "id" to WildcardType.DynamicId(0)),
-        "Operate" to listOf("option" to WildcardType.DynamicOption(0), "id" to WildcardType.DynamicId(1)),
-        "Approach" to listOf("option" to WildcardType.DynamicOption(0), "id" to WildcardType.DynamicId(1)),
-        "NoDelay" to emptyList(),
-        "Timer" to listOf("id" to WildcardType.None),
-    )
 
     @get:Incremental
     @get:InputFiles
@@ -123,8 +90,6 @@ abstract class ScriptMetadataTask : DefaultTask() {
         val disposable = Disposer.newDisposable()
         val environment = createKotlinEnvironment(disposable)
         var scripts = 0
-        var methodCount = 0
-        var annotationCount = 0
         val instance = PsiManager.getInstance(environment.project)
         val scriptClasses = mutableListOf<Pair<KtClass, String>>()
         for (change in inputChanges.getFileChanges(inputDirectory)) {
@@ -199,7 +164,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
                                 // Expand wildcards into matches
                                 if (value.contains("*") || value.contains("#")) {
                                     val type = info[idx].second
-                                    val matches = context.resolve(part, type, "", packagePath, null)
+                                    val matches = context.resolve(part, type, packagePath)
                                     combined.addAll(matches)
                                 } else {
                                     combined.add(part)
@@ -210,86 +175,14 @@ abstract class ScriptMetadataTask : DefaultTask() {
                     }
                 }
             }
-            val methods = ktClass.declarations.filterIsInstance<KtNamedFunction>().filter { it.hasModifier(KtTokens.OVERRIDE_KEYWORD) }
+            lines.add(packagePath)
             scripts++
-            if (methods.isEmpty()) {
-                lines.add(packagePath)
-                continue
-            }
-            for (method in methods) {
-                methodCount++
-                val returnType = method.typeReference
-                val parameters = method.valueParameters.joinToString(",") { param -> param.typeReference!!.getTypeText() }
-                val extension = method.receiverTypeReference
-                val signature = "${if (extension != null) "${extension.text}." else ""}${method.name}(${parameters})${if (returnType == null) "" else ":${returnType.getTypeText()}"}"
-                val entries = method.annotationEntries
-                if (entries.isEmpty()) {
-                    lines.add("${signature}|$packagePath")
-                    continue
-                }
-                for (annotation in entries) {
-                    val annotationName = annotation.shortName?.asString() ?: ""
-                    val info = annotations[annotationName] ?: error("Annotation $annotationName metadata not found. Make sure your annotation is registered in ScriptMetadataTask.kt")
-                    val params = Array<MutableList<String>>(info.size) { mutableListOf() }
-                    // Resolve annotation field names
-                    var index = 0
-                    for (arg in annotation.valueArguments) {
-                        val name = arg.getArgumentName()?.asName?.asString()
-                        val value = arg.getArgumentExpression()?.text?.trim('"') ?: ""
-                        val idx = if (name != null) info.indexOfFirst { it.first == name } else index++
-                        for (part in value.split(",")) {
-                            if (value.contains("*") || value.contains("#")) {
-                                val type = info[idx].second
-                                val matches = context.resolve(part, type, parameters, packagePath, annotation)
-                                params[idx].addAll(matches)
-                            } else {
-                                params[idx].add(part)
-                            }
-                        }
-                    }
-                    for (i in info.indices) {
-                        val first = params[i].firstOrNull() ?: continue
-                        for (value in first.split(",")) {
-                            // Expand wildcards into matches
-                            if (value.contains("*") || value.contains("#")) {
-                                val matches = context.resolve(value, info[i].second, parameters, packagePath, annotation)
-                                if (params[i].first() == first) {
-                                    params[i].removeAt(0)
-                                }
-                                params[i].addAll(matches)
-                            }
-                        }
-                    }
-                    generateCombinations(params) { args ->
-                        annotationCount++
-                        lines.add("@${annotation.shortName}|${args.joinToString(":")}|$signature|$packagePath")
-                    }
-                }
-            }
         }
         scriptsFile.writeText(lines.joinToString("\n"))
         wildcardsFile.writeText(wildcards.joinToString("\n"))
         disposable.dispose()
-        println("Metadata for $scripts scripts, $methodCount methods and $annotationCount annotations collected in ${System.currentTimeMillis() - start} ms")
+        println("Metadata for $scripts scripts collected in ${System.currentTimeMillis() - start} ms")
     }
-
-    private fun generateCombinations(arrays: Array<MutableList<String>>, index: Int = 0, current: MutableList<String> = mutableListOf(), call: (List<String>) -> Unit) {
-        if (index == arrays.size) {
-            call.invoke(current)
-            return
-        }
-        val currentArray = arrays[index]
-        if (currentArray.isEmpty()) {
-            generateCombinations(arrays, index + 1, current, call)
-            return
-        }
-        for (element in currentArray) {
-            current.add(element)
-            generateCombinations(arrays, index + 1, current, call)
-            current.removeAt(current.size - 1)
-        }
-    }
-
 
     private data class Context(
         val npcIds: Set<String>,
@@ -305,9 +198,8 @@ abstract class ScriptMetadataTask : DefaultTask() {
         val objectOptions: Set<String>,
         val interfaceOptions: Set<String>,
     ) {
-        fun resolve(value: String, wildcard: WildcardType, parameters: String, packagePath: String, annotation: KtAnnotationEntry?): List<String> {
+        fun resolve(value: String, wildcard: WildcardType, packagePath: String): List<String> {
             val set = when (wildcard) {
-                is WildcardType.Dynamic -> wildcard.type(this, parameters.split(",")) ?: error("Unknown wildcard type '${parameters}' for '$value' in $packagePath ${annotation?.text}")
                 WildcardType.NpcId -> npcIds
                 WildcardType.InterfaceId -> interfaceIds
                 WildcardType.ComponentId -> componentIds
@@ -320,11 +212,11 @@ abstract class ScriptMetadataTask : DefaultTask() {
                 WildcardType.FloorItemOption -> floorItemOptions
                 WildcardType.ObjectOption -> objectOptions
                 WildcardType.ItemOption -> itemOptions
-                WildcardType.None -> error("Unexpected wildcard '$value' in $packagePath ${annotation?.text}")
+                WildcardType.None -> error("Unexpected wildcard '$value' in $packagePath")
             }
             val matches = set.filter { wildcardEquals(value, it) }
             if (matches.isEmpty()) {
-                error("No matches for wildcard '${value}' in $packagePath ${annotation?.text}")
+                error("No matches for wildcard '${value}' in $packagePath")
             }
             return matches
         }
