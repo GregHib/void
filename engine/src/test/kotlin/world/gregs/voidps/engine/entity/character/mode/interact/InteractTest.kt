@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
 import io.mockk.*
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
@@ -21,7 +22,10 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.Approachable
+import world.gregs.voidps.engine.entity.CharacterInteraction
+import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Operation
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -81,29 +85,42 @@ internal class InteractTest : KoinMock() {
         }
     }
 
+    @AfterEach
+    fun teardown() {
+        Operation.playerNpcBlocks.clear()
+        Approachable.playerNpcBlocks.clear()
+    }
+
     private fun interact(operate: Boolean, approach: Boolean, suspend: Boolean) {
-        player.interactNpc(target, "interact", NPCDefinition.EMPTY)
-        interact = player.mode as Interact
+        val type = object : InteractionType {
+            override fun hasOperate(character: Character) = operate
+
+            override fun hasApproach(character: Character) = approach
+
+            override fun operate(character: Character, target: Entity) {
+                if (operate) {
+                    Events.events.launch {
+                        if (suspend) {
+                            Suspension.start(player, 2)
+                        }
+                        operated = true
+                    }
+                }
+            }
+
+            override fun approach(character: Character, target: Entity) {
+                if (approach) {
+                    Events.events.launch {
+                        if (suspend) {
+                            Suspension.start(player, 2)
+                        }
+                        approached = true
+                    }
+                }
+            }
+        }
+        interact = Interact(player, target, null, type = type)
         player.mode = interact
-        Events.events.clear()
-        if (operate) {
-            val block: suspend (Player, NPC) -> Unit = { player, _ ->
-                if (suspend) {
-                    Suspension.start(player, 2)
-                }
-                operated = true
-            }
-            Operation.playerNpcBlocks["*"] = mutableListOf(block)
-        }
-        if (approach) {
-            val block: suspend (Player, NPC) -> Unit = { player, _ ->
-                if (suspend) {
-                    Suspension.start(player, 2)
-                }
-                approached = true
-            }
-            Approachable.playerNpcBlocks["*"] = mutableListOf(block)
-        }
     }
 
     @ParameterizedTest

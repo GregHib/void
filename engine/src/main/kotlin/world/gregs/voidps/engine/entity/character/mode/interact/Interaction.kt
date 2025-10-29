@@ -81,6 +81,15 @@ suspend fun Character.delay(ticks: Int = 1) {
 }
 
 /**
+ * Interrupt-able pausing
+ * Note: can't be used after a dialogue suspension in an interaction as the
+ * interaction will have finished and there will be nothing to resume the suspension
+ */
+suspend fun Character.pause(ticks: Int) {
+    Suspension.start(this, ticks)
+}
+
+/**
  * Set the range a player can interact with their target from
  */
 suspend fun Character.approachRange(range: Int?, update: Boolean = true) {
