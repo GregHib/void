@@ -58,11 +58,18 @@ class GodBows : Api {
 
         combatDamage("zamorak_bow", handler = hitHandler)
 
-        timerStart("restorative_shot,balanced_shot") { TimeUnit.SECONDS.toTicks(6) }
+        timerStart("restorative_shot") { TimeUnit.SECONDS.toTicks(6) }
+        timerStart("balanced_shot") { TimeUnit.SECONDS.toTicks(6) }
 
-        timerTick("restorative_shot,balanced_shot", ::restore)
+        timerTick("restorative_shot", ::restore)
+        timerTick("balanced_shot", ::restore)
 
-        timerStop("restorative_shot,balanced_shot") {
+        timerStop("restorative_shot") {
+            clear("restoration")
+            clear("restoration_amount")
+        }
+
+        timerStop("balanced_shot") {
             clear("restoration")
             clear("restoration_amount")
         }

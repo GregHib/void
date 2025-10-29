@@ -68,6 +68,36 @@ abstract class ScriptMetadataTask : DefaultTask() {
         "npcMoved" to listOf("id" to WildcardType.NpcId),
         "variableSet" to listOf("key" to WildcardType.VariableId),
         "npcVariableSet" to listOf("key" to WildcardType.VariableId),
+        "talkWithApproach" to listOf("npc" to WildcardType.NpcId),
+        "interfaceOnPlayerApproach" to listOf("id" to WildcardType.InterfaceComponentId),
+        "itemOnPlayerApproach" to listOf("item" to WildcardType.ItemId),
+        "npcApproach" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
+        "interfaceOnNpcApproach" to listOf("id" to WildcardType.InterfaceComponentId, "npc" to WildcardType.NpcId),
+        "itemOnNpcApproach" to listOf("item" to WildcardType.ItemId, "npc" to WildcardType.NpcId),
+        "objectApproach" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
+        "interfaceOnObjectApproach" to listOf("id" to WildcardType.InterfaceComponentId, "obj" to WildcardType.ObjectId),
+        "itemOnObjectApproach" to listOf("item" to WildcardType.ItemId, "obj" to WildcardType.ObjectId),
+        "floorItemApproach" to listOf("option" to WildcardType.FloorItemOption, "obj" to WildcardType.ItemId),
+        "interfaceOnFloorItemApproach" to listOf("id" to WildcardType.InterfaceComponentId, "item" to WildcardType.ItemId),
+        "itemOnFloorItemApproach" to listOf("item" to WildcardType.ItemId, "floorItem" to WildcardType.ItemId),
+        "npcApproachNpc" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
+        "npcApproachObject" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
+        "npcApproachFloorItem" to listOf("option" to WildcardType.FloorItemOption, "item" to WildcardType.ItemId),
+        "talkWith" to listOf("npc" to WildcardType.NpcId),
+        "interfaceOnPlayerOperate" to listOf("id" to WildcardType.InterfaceComponentId),
+        "itemOnPlayerOperate" to listOf("item" to WildcardType.ItemId),
+        "npcOperate" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
+        "interfaceOnNpcOperate" to listOf("id" to WildcardType.InterfaceComponentId, "npc" to WildcardType.NpcId),
+        "itemOnNpcOperate" to listOf("item" to WildcardType.ItemId, "npc" to WildcardType.NpcId),
+        "objectOperate" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
+        "interfaceOnObjectOperate" to listOf("id" to WildcardType.InterfaceComponentId, "obj" to WildcardType.ObjectId),
+        "itemOnObjectOperate" to listOf("item" to WildcardType.ItemId, "obj" to WildcardType.ObjectId),
+        "floorItemOperate" to listOf("option" to WildcardType.FloorItemOption, "obj" to WildcardType.ItemId),
+        "interfaceOnFloorItemOperate" to listOf("id" to WildcardType.InterfaceComponentId, "item" to WildcardType.ItemId),
+        "itemOnFloorItemOperate" to listOf("item" to WildcardType.ItemId, "floorItem" to WildcardType.ItemId),
+        "npcOperateNpc" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
+        "npcOperateObject" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
+        "npcOperateFloorItem" to listOf("option" to WildcardType.FloorItemOption, "item" to WildcardType.ItemId),
     )
 
     @TaskAction
@@ -152,9 +182,11 @@ abstract class ScriptMetadataTask : DefaultTask() {
                             val name = arg.getArgumentName()?.asName?.asString()
                             val value = arg.getArgumentExpression()?.text?.trim('"') ?: ""
                             if (value.none { it == '*' || it == '#' || it == ',' }) {
+                                index++
                                 continue
                             }
                             if (value == "*") { // Match all can be handled separately
+                                index++
                                 continue
                             }
                             // Resolve field names
@@ -163,7 +195,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
                             for (part in value.split(",")) {
                                 // Expand wildcards into matches
                                 if (value.contains("*") || value.contains("#")) {
-                                    val type = info[idx].second
+                                    val type = info.getOrNull(idx)?.second ?: continue
                                     val matches = context.resolve(part, type, packagePath)
                                     combined.addAll(matches)
                                 } else {
@@ -216,7 +248,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
             }
             val matches = set.filter { wildcardEquals(value, it) }
             if (matches.isEmpty()) {
-                error("No matches for wildcard '${value}' in $packagePath")
+                error("No matches for '${value}' $wildcard in $packagePath")
             }
             return matches
         }

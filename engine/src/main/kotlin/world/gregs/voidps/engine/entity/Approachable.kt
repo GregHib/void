@@ -135,7 +135,7 @@ interface Approachable {
     /**
      * FloorItem option
      */
-    fun floorItemApproach(option: String, item: String, arriveDelay: Boolean = true, block: suspend (Player, FloorItem) -> Unit) {
+    fun floorItemApproach(option: String, item: String = "*", arriveDelay: Boolean = true, block: suspend (Player, FloorItem) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(item))
         }
@@ -244,7 +244,7 @@ interface Approachable {
         }
 
         suspend fun approach(player: Player, target: NPC, option: String) {
-            for (block in playerNpcBlocks["$option:${target.def(player).id}"] ?: emptyList()) {
+            for (block in playerNpcBlocks["$option:${target.def(player).stringId}"] ?: emptyList()) {
                 block(player, target)
             }
             for (block in playerNpcBlocks[option] ?: return) {
@@ -256,7 +256,7 @@ interface Approachable {
             if (!noDelays.contains(target.id)) {
                 player.arriveDelay()
             }
-            for (block in playerObjectBlocks["$option:${target.def(player).id}"] ?: emptyList()) {
+            for (block in playerObjectBlocks["$option:${target.def(player).stringId}"] ?: emptyList()) {
                 block(player, target)
             }
             for (block in playerObjectBlocks[option] ?: return) {

@@ -57,7 +57,7 @@ interface Operation {
     /**
      * Npc option
      */
-    fun npcOperate(option: String, npc: String, block: suspend (Player, NPC) -> Unit) {
+    fun npcOperate(option: String, npc: String, block: suspend (player: Player, target: NPC) -> Unit) {
         for (id in Wildcards.find(npc)) {
             playerNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
@@ -243,7 +243,7 @@ interface Operation {
         }
 
         suspend fun operate(player: Player, target: NPC, option: String) {
-            for (block in playerNpcBlocks["$option:${target.def(player).id}"] ?: emptyList()) {
+            for (block in playerNpcBlocks["$option:${target.def(player).stringId}"] ?: emptyList()) {
                 block(player, target)
             }
             for (block in playerNpcBlocks[option] ?: return) {
@@ -255,7 +255,7 @@ interface Operation {
             if (!noDelays.contains(target.id)) {
                 player.arriveDelay()
             }
-            for (block in playerObjectBlocks["$option:${target.def(player).id}"] ?: emptyList()) {
+            for (block in playerObjectBlocks["$option:${target.def(player).stringId}"] ?: emptyList()) {
                 block(player, target)
             }
             for (block in playerObjectBlocks[option] ?: return) {

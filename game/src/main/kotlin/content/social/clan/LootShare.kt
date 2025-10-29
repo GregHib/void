@@ -44,7 +44,7 @@ class LootShare : Api {
             return@timerTick Timer.CANCEL
         }
 
-        timerStart("clan_loot_rank_update,clan_coin_share_update") { TimeUnit.SECONDS.toTicks(30) }
+        timerStart("clan_loot_rank_update") { TimeUnit.SECONDS.toTicks(30) }
 
         timerTick("clan_loot_rank_update") {
             val clan = clan ?: ownClan ?: return@timerTick Timer.CANCEL
@@ -57,6 +57,8 @@ class LootShare : Api {
             }
             return@timerTick Timer.CANCEL
         }
+
+        timerStart("clan_coin_share_update") { TimeUnit.SECONDS.toTicks(30) }
 
         timerTick("clan_coin_share_update") {
             val clan = clan ?: ownClan ?: return@timerTick Timer.CANCEL
