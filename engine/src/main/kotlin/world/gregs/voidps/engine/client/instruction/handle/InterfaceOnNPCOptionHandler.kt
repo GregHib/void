@@ -6,6 +6,8 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
 import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
+import world.gregs.voidps.engine.entity.InteractInterfaceOnNPC
+import world.gregs.voidps.engine.entity.InteractItemOnNPC
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -41,6 +43,7 @@ class InterfaceOnNPCOptionHandler(
                 inventory,
             )
         }
-        player.mode = Interact(player, npc, interaction)
+        val type = if (item.isEmpty()) InteractInterfaceOnNPC(player, npc, "$id:$component", itemSlot, npc.def(player)) else InteractItemOnNPC(player, npc, "$id:$component", item, itemSlot, npc.def(player))
+        player.mode = Interact(player, npc, interaction, type = type)
     }
 }

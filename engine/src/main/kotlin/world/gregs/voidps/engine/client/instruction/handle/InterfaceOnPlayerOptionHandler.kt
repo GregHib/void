@@ -5,6 +5,8 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnPlayer
 import world.gregs.voidps.engine.client.ui.interact.ItemOnPlayer
+import world.gregs.voidps.engine.entity.InteractInterfaceOnPlayer
+import world.gregs.voidps.engine.entity.InteractItemOnPlayer
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -39,6 +41,7 @@ class InterfaceOnPlayerOptionHandler(
             )
         }
         player.closeInterfaces()
-        player.mode = Interact(player, target, interaction)
+        val type = if (item.isEmpty()) InteractInterfaceOnPlayer(player, target, "$id:$component", itemSlot) else InteractItemOnPlayer(player, target, "$id:$component", item, itemSlot)
+        player.mode = Interact(player, target, interaction, type = type)
     }
 }

@@ -65,7 +65,12 @@ data class NPC(
     var huntMode: String? = null
     var huntCounter = 0
 
-    fun def(player: Player, definitions: NPCDefinitions = get()): NPCDefinition = definitions.resolve(def, player)
+    fun def(player: Player, definitions: NPCDefinitions = get()): NPCDefinition {
+        if (contains("transform_id")) {
+            return definitions.get(this["transform_id", ""])
+        }
+        return definitions.resolve(def, player)
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

@@ -60,5 +60,5 @@ class NPCOptionHandler(
 }
 
 fun Character.interactNpc(npc: NPC, option: String, definition: NPCDefinition = if (this is Player) npc.def(this) else npc.def) {
-    mode = Interact(this, npc, null, type = CharacterInteraction(definition, option))
+    mode = Interact(this, npc, null, type = CharacterInteraction(this, npc, definition, option))
 }

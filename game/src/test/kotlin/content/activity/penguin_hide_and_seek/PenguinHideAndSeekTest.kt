@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertNotNull
 import org.junit.jupiter.api.assertNull
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -231,10 +231,11 @@ class PenguinHideAndSeekTest : WorldTest() {
     }
 
     private fun instance(): PenguinHideAndSeek {
-        val backup = Events.events
-        Events.setEvents(Events())
+        val backup = Approachable.playerNpcBlocks.toList()
+        Approachable.playerNpcBlocks.clear()
         val instance = PenguinHideAndSeek()
-        Events.setEvents(backup)
+        Approachable.playerNpcBlocks.clear()
+        Approachable.playerNpcBlocks.putAll(backup)
         return instance
     }
 }

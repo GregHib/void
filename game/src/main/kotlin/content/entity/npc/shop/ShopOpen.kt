@@ -27,7 +27,7 @@ class ShopOpen : Api {
 
     init {
         npcOperate("Trade") { player, target ->
-            val def = target.def(player)
+            val def = target.def
             if (def.contains("shop")) {
                 target.face(player)
                 player.openShop(def["shop"])

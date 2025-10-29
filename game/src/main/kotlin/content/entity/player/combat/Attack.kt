@@ -1,6 +1,7 @@
 package content.entity.player.combat
 
-import content.entity.combat.CombatInteraction
+import content.entity.combat.Combat
+import content.entity.combat.Combat.Companion.combat
 import content.entity.combat.combatPrepare
 import content.entity.player.dialogue.type.statement
 import content.skill.magic.spell.spell
@@ -13,7 +14,9 @@ import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.interact.interfaceOnNPCApproach
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.InteractionType
 import world.gregs.voidps.engine.entity.character.mode.interact.approachRange
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -114,11 +117,25 @@ class Attack : Api {
     }
 
     /**
-     * Switch out the current Interaction with [CombatInteraction] to allow hits this tick
+     * When triggered via [Interact] replace the Interaction with [Combat.callback]
+     * to allow movement & [Interact] to complete and start [combat] on the same tick
+     * After [Interact] is complete switch to using [CombatMovement]
      */
     fun combatInteraction(character: Character, target: Character) {
         val interact = character.mode as? Interact ?: return
-        interact.updateInteraction(CombatInteraction(character, target))
+        interact.updateInteraction(object : InteractionType {
+            override fun hasOperate() = true
+
+            override fun hasApproach() = true
+
+            override fun operate() {
+                Combat.callback.invoke(character, target)
+            }
+
+            override fun approach() {
+                Combat.callback.invoke(character, target)
+            }
+        })
     }
 
     suspend fun handleCombatDummies(player: Player, target: NPC): Boolean {

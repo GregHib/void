@@ -63,6 +63,7 @@ class PenguinHideAndSeek : Api {
 
     init {
         npcApproach("Spy-on", "*_penguin,*_turkey") { player, target ->
+            println("Spy on $player $target")
             player.approachRange(5)
             updateWeek(player)
             if (!player.addVarbit("penguins_found", target.id.removePrefix("hidden_"))) {

@@ -46,19 +46,19 @@ class Fishing : Api {
 
     init {
         npcOperate("Bait", "fishing_spot_*") { player, target ->
-            fish(player, target, "Cage")
+            fish(player, target, "Bait")
         }
         npcOperate("Cage", "fishing_spot_*") { player, target ->
             fish(player, target, "Cage")
         }
         npcOperate("Net", "fishing_spot_*") { player, target ->
-            fish(player, target, "Cage")
+            fish(player, target, "Net")
         }
         npcOperate("Lure", "fishing_spot_*") { player, target ->
-            fish(player, target, "Cage")
+            fish(player, target, "Lure")
         }
         npcOperate("Harpoon", "fishing_spot_*") { player, target ->
-            fish(player, target, "Cage")
+            fish(player, target, "Harpoon")
         }
     }
 

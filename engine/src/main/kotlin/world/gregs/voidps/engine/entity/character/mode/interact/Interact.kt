@@ -36,61 +36,55 @@ class Interact(
 ) : Movement(character, strategy, shape) {
     private var launched = false
 
-    private var type = Combined(type, interaction?.let { OldInteractionType(it) })
+    private var type: InteractionType = Combined(type, interaction?.let { OldInteractionType(character, it) })
 
     class Combined(val type: InteractionType?, var old: InteractionType?)  : InteractionType {
-        override fun hasOperate(character: Character): Boolean {
-            return type?.hasOperate(character) == true || old?.hasOperate(character) == true
+        override fun hasOperate(): Boolean {
+            return type?.hasOperate() == true || old?.hasOperate() == true
         }
 
-        override fun hasApproach(character: Character): Boolean {
-            return type?.hasApproach(character) == true || old?.hasApproach(character) == true
+        override fun hasApproach(): Boolean {
+            return type?.hasApproach() == true || old?.hasApproach() == true
         }
 
-        override fun operate(character: Character, target: Entity) {
-            if (type != null && type.hasOperate(character)) {
-                type.operate(character, target)
+        override fun operate() {
+            if (type != null && type.hasOperate()) {
+                type.operate()
             } else {
-                old?.operate(character, target)
+                old?.operate()
             }
         }
 
-        override fun approach(character: Character, target: Entity) {
-            if (type != null && type.hasApproach(character)) {
-                type.approach(character, target)
+        override fun approach() {
+            if (type != null && type.hasApproach()) {
+                type.approach()
             } else {
-                old?.approach(character, target)
+                old?.approach()
             }
         }
     }
 
-    class OldInteractionType(interaction: Interaction<*>) : InteractionType {
+    class OldInteractionType(private val character: Character, interaction: Interaction<*>) : InteractionType {
         var operate: Interaction<*> = interaction.copy(false)
         var approach: Interaction<*> = interaction.copy(true)
 
-        override fun hasOperate(character: Character) = Events.events.contains(character, operate)
+        override fun hasOperate() = Events.events.contains(character, operate)
 
-        override fun hasApproach(character: Character) = Events.events.contains(character, approach)
+        override fun hasApproach() = Events.events.contains(character, approach)
 
-        override fun operate(character: Character, target: Entity) {
+        override fun operate() {
            character.emit(operate)
         }
 
-        override fun approach(character: Character, target: Entity) {
+        override fun approach() {
             character.emit(approach)
         }
     }
 
     private var clearInteracted = false
 
-    fun updateInteraction(interaction: Interaction<*>) {
-        type.old = OldInteractionType(interaction)
-        updateInteraction(OldInteractionType(interaction))
-        clearInteracted = true
-    }
-
     fun updateInteraction(type: InteractionType) {
-//        this.type = type
+        this.type = type
         launched = false
         clearInteracted = true
     }
@@ -189,8 +183,8 @@ class Interact(
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
-            withinMelee && type.hasOperate(character) -> if (launch(true) && afterMovement) updateRange = false
-            withinRange && type.hasApproach(character) -> if (launch(false) && afterMovement) updateRange = false
+            withinMelee && type.hasOperate() -> if (launch(true) && afterMovement) updateRange = false
+            withinRange && type.hasApproach() -> if (launch(false) && afterMovement) updateRange = false
             withinMelee -> {
                 character.noInterest()
                 clear()
@@ -210,9 +204,9 @@ class Interact(
         if (!launched) {
             launched = true
             if (operate) {
-                type.operate(character, target)
+                type.operate()
             } else {
-                type.approach(character, target)
+                type.approach()
             }
             return true
         }

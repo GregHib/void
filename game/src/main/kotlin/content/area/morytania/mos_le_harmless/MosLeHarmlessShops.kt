@@ -11,7 +11,7 @@ class MosLeHarmlessShops : Api {
         npcApproach("Trade", "mike,charley,joe,smith") { player, target ->
             player.approachRange(2)
             target.face(player)
-            player.openShop(target.def(player)["shop"])
+            player.openShop(target.def["shop"])
         }
     }
 }

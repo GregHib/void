@@ -93,11 +93,11 @@ internal class InteractTest : KoinMock() {
 
     private fun interact(operate: Boolean, approach: Boolean, suspend: Boolean) {
         val type = object : InteractionType {
-            override fun hasOperate(character: Character) = operate
+            override fun hasOperate() = operate
 
-            override fun hasApproach(character: Character) = approach
+            override fun hasApproach() = approach
 
-            override fun operate(character: Character, target: Entity) {
+            override fun operate() {
                 if (operate) {
                     Events.events.launch {
                         if (suspend) {
@@ -108,7 +108,7 @@ internal class InteractTest : KoinMock() {
                 }
             }
 
-            override fun approach(character: Character, target: Entity) {
+            override fun approach() {
                 if (approach) {
                     Events.events.launch {
                         if (suspend) {
