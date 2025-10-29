@@ -94,7 +94,7 @@ interface Operation {
      */
     fun objectOperate(option: String, obj: String, arriveDelay: Boolean = true, block: suspend (Player, GameObject) -> Unit) {
         if (!arriveDelay) {
-            noDelays.addAll(Wildcards.find(obj))
+            noDelaysSet.addAll(Wildcards.find(obj))
         }
         for (id in Wildcards.find(obj)) {
             playerObjectBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
@@ -106,7 +106,7 @@ interface Operation {
      */
     fun interfaceOnObjectOperate(id: String, obj: String, arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: GameObject) -> Unit) {
         if (!arriveDelay) {
-            noDelays.addAll(Wildcards.find(obj))
+            noDelaysSet.addAll(Wildcards.find(obj))
         }
         for (itf in Wildcards.find(id)) {
             for (i in Wildcards.find(obj)) {
@@ -120,7 +120,7 @@ interface Operation {
      */
     fun itemOnObjectOperate(item: String, obj: String, arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: GameObject) -> Unit) {
         if (!arriveDelay) {
-            noDelays.addAll(Wildcards.find(obj))
+            noDelaysSet.addAll(Wildcards.find(obj))
         }
         for (itm in Wildcards.find(item)) {
             for (i in Wildcards.find(obj)) {
@@ -135,7 +135,7 @@ interface Operation {
      */
     fun floorItemOperate(option: String, item: String, arriveDelay: Boolean = true, block: suspend (Player, FloorItem) -> Unit) {
         if (!arriveDelay) {
-            noDelays.addAll(Wildcards.find(item))
+            noDelaysSet.addAll(Wildcards.find(item))
         }
         for (id in Wildcards.find(item)) {
             playerFloorItemBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
@@ -147,7 +147,7 @@ interface Operation {
      */
     fun interfaceOnFloorItemOperate(id: String, item: String, arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: FloorItem) -> Unit) {
         if (!arriveDelay) {
-            noDelays.addAll(Wildcards.find(item))
+            noDelaysSet.addAll(Wildcards.find(item))
         }
         for (itf in Wildcards.find(id)) {
             for (i in Wildcards.find(item)) {
@@ -161,7 +161,7 @@ interface Operation {
      */
     fun itemOnFloorItemOperate(item: String, floorItem: String, arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: FloorItem) -> Unit) {
         if (!arriveDelay) {
-            noDelays.addAll(Wildcards.find(item))
+            noDelaysSet.addAll(Wildcards.find(item))
         }
         for (itm in Wildcards.find(item)) {
             for (i in Wildcards.find(floorItem)) {
@@ -235,7 +235,8 @@ interface Operation {
 
             override fun clear() {}
         }
-        private val noDelays = mutableSetOf<String>()
+        private val noDelays = mutableSetOf<Operation>()
+        private val noDelaysSet = mutableSetOf<String>()
         var playerObjectDispatcher = NoDelayDispatcher(noDelays)
         var playerFloorItemDispatcher = NoDelayDispatcher(noDelays)
         var npcPlayerDispatcher = MapDispatcher<Operation>("@Operate")
@@ -260,7 +261,7 @@ interface Operation {
         }
 
         suspend fun operate(player: Player, target: GameObject, option: String) {
-            if (!noDelays.contains(target.id)) {
+            if (!noDelaysSet.contains(target.id)) {
                 player.arriveDelay()
             }
             for (block in playerObjectBlocks["$option:${target.def(player).id}"] ?: emptyList()) {
@@ -272,7 +273,7 @@ interface Operation {
         }
 
         suspend fun operate(player: Player, target: FloorItem, option: String) {
-            if (!noDelays.contains(target.id)) {
+            if (!noDelaysSet.contains(target.id)) {
                 player.arriveDelay()
             }
             for (block in playerFloorItemBlocks["$option:${target.id}"] ?: emptyList()) {
