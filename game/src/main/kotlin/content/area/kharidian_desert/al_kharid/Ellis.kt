@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Tanning
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.event.Script
@@ -56,7 +55,7 @@ class Ellis : Api {
             }
         }
 
-        npcOperate("Trade", "ellis", "tanner") {
+        npcOperate("Trade", "ellis,tanner") { player, _ ->
             player.open("tanner")
         }
 

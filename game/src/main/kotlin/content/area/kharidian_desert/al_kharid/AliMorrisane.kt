@@ -8,8 +8,7 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Api
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.Script
 
@@ -28,7 +27,7 @@ class AliMorrisane : Api {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.whatsInIt() {
+    fun ChoiceBuilder<Dialogue>.whatsInIt() {
         option("So what's in this for me?") {
             player<Talk>("What's in this for me?")
             npc<Uncertain>("I thought you wanted to help.")
@@ -54,7 +53,7 @@ class AliMorrisane : Api {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.okayIllSee() {
+    fun ChoiceBuilder<Dialogue>.okayIllSee() {
         option<Talk>("Ok I'll see what I can do.") {
             npc<Talk>("I think I need just one more product type, something magical ... now what could I stock that's magical, has large demand and a pretty good profit margin...")
             player<Talk>("How about runes?")
@@ -73,7 +72,7 @@ class AliMorrisane : Api {
         }
     }
 
-    suspend fun NPCOption<Player>.fued() {
+    suspend fun Dialogue.fued() {
         player<Talk>("Hi Ali. Not bad. How are you?")
         npc<Talk>("Still selling.")
         npc<Talk>("Hello ${player.name}. How's the adventuring going?")

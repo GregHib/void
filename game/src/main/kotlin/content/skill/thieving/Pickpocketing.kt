@@ -4,13 +4,14 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.effect.stun
 import content.entity.npc.combat.NPCAttack
 import content.skill.slayer.categories
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.data.Pocket
+import world.gregs.voidps.engine.entity.character.mode.interact.approachRange
+import world.gregs.voidps.engine.entity.character.mode.interact.delay
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -33,24 +34,19 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 
 @Script
-class Pickpocketing {
+class Pickpocketing : Api {
 
     val animationDefinitions: AnimationDefinitions by inject()
     val dropTables: DropTables by inject()
     val logger = InlineLogger()
 
     init {
-        npcApproach("Pickpocket") {
-            approach()
-        }
-
-        npcApproach("Steal-from") {
-            approach()
-        }
+        npcApproach("Pickpocket", block = ::approach)
+        npcApproach("Steal-from", block = ::approach)
     }
 
-    private suspend fun NPCOption<Player>.approach() {
-        approachRange(2)
+    private suspend fun approach(player: Player, target: NPC) {
+        player.approachRange(2)
         if (player.hasClock("food_delay") || player.hasClock("action_delay")) { // Should action_delay and food_delay be the same??
             return
         }
@@ -74,7 +70,7 @@ class Pickpocketing {
         val name = target.def.name
         player.message("You attempt to pick the $name's pocket.", ChatType.Filter)
         player.anim("pick_pocket")
-        delay(2)
+        player.delay(2)
         if (success) {
             player.inventory.transaction {
                 addLoot(drops)
@@ -87,7 +83,7 @@ class Pickpocketing {
             target.anim(NPCAttack.anim(animationDefinitions, target, "defend"))
             player.message("You fail to pick the $name's pocket.", ChatType.Filter)
             target.stun(player, pocket.stunTicks, pocket.stunHit.random(random))
-            delay(2)
+            player.delay(2)
         }
     }
 

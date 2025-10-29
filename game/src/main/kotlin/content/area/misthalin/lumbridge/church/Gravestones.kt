@@ -12,9 +12,9 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.entity.character.mode.interact.delay
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
@@ -93,7 +93,7 @@ class Gravestones : Api {
             npc.softTimers.start("grave_degrade")
         }
 
-        npcOperate("Read", "gravestone_*") {
+        npcOperate("Read", "gravestone_*") { player, target ->
             val remainder = target.remaining("grave_timer", epochSeconds())
             remainMessage(player, target)
             when {
@@ -116,7 +116,7 @@ class Gravestones : Api {
             }
         }
 
-        npcOperate("Repair", "gravestone_*") {
+        npcOperate("Repair", "gravestone_*") { player, target ->
             val name = target["player_name", ""]
             if (name == player.name) {
                 player.message("The gods don't seem to approve of people attempting to repair their own gravestones.")
@@ -133,14 +133,14 @@ class Gravestones : Api {
             val seconds = 300 // 5 minutes
             target.start("grave_timer", seconds, epochSeconds())
             updateItems(target.tile, name, seconds)
-            delay(2)
+            player.delay(2)
             val deceased = players.get(name)
             val remainder = target.remaining("grave_timer", epochSeconds())
             val minutes = TimeUnit.SECONDS.toMinutes(remainder.toLong())
             deceased?.message("${player.name} has repaired your gravestone. It should survive another $minutes ${"minute".plural(minutes)}.")
         }
 
-        npcOperate("Bless", "gravestone_*") {
+        npcOperate("Bless", "gravestone_*") { player, target ->
             val name = target["player_name", ""]
             if (name == player.name) {
                 player.message("The gods don't seem to approve of people attempting to bless their own gravestones.")
@@ -164,7 +164,7 @@ class Gravestones : Api {
             player.anim("altar_pray")
             player.gfx("bless_grave")
             player.sound("self_heal")
-            delay(2)
+            player.delay(2)
             player.message("The gods hear your prayers; the gravestone will remain for a little longer.")
             target["blessed"] = true
             val deceased = players.get(name)
@@ -173,7 +173,7 @@ class Gravestones : Api {
             deceased?.message("${player.name} has blessed your gravestone. It should survive another $minutes ${"minute".plural(minutes)}.")
         }
 
-        npcOperate("Demolish", "gravestone_*") {
+        npcOperate("Demolish", "gravestone_*") { player, target ->
             if (player.name != target["player_name", ""]) {
                 player.message("It would be impolite to demolish someone else's gravestone.")
                 return@npcOperate

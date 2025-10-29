@@ -1,15 +1,15 @@
 package content.area.kandarin.seers_village
 
 import content.entity.npc.shop.openShop
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class Ignatius {
+class Ignatius : Api {
     init {
-        npcOperate("Trade", "armour_salesman") {
+        npcOperate("Trade", "armour_salesman") { player, _ ->
             player.openShop(
                 "ignatiuss_hot_deals${
                     when {

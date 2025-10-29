@@ -22,23 +22,19 @@ import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.find
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.mode.interact.approachRange
+import world.gregs.voidps.engine.entity.character.mode.interact.delay
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
-import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
-import java.time.DayOfWeek
-import java.time.LocalDate
-import java.time.Month
-import java.time.ZoneOffset
-import java.time.ZonedDateTime
+import java.time.*
 import java.time.temporal.ChronoUnit
 import java.time.temporal.TemporalAdjusters
 import java.util.concurrent.TimeUnit
@@ -66,8 +62,8 @@ class PenguinHideAndSeek : Api {
     )
 
     init {
-        npcApproach("Spy-on", "*_penguin", "*_turkey") {
-            approachRange(5)
+        npcApproach("Spy-on", "*_penguin,*_turkey") { player, target ->
+            player.approachRange(5)
             updateWeek(player)
             if (!player.addVarbit("penguins_found", target.id.removePrefix("hidden_"))) {
                 // https://youtu.be/E1roiyC8QD4?si=10fPzRMq_UMZ9nkb&t=83
@@ -81,12 +77,12 @@ class PenguinHideAndSeek : Api {
             val doublePoints = (Settings["quests.requirements.skipMissing", false] || player.questCompleted("cold_war")) && target.id.removePrefix("hidden_penguin_").toInt() > 4
             player.inc("penguin_points", if (doublePoints) 2 else 1)
             player.inc("penguins_found_weekly")
-            delay(2)
+            player.delay(2)
             player.clearWatch()
         }
 
-        objectApproach("Inspect", "polar_bear_well*") {
-            approachRange(5)
+        objectApproach("Inspect", "polar_bear_well*") { player, target ->
+            player.approachRange(5)
             updateWeek(player)
             if (!player.addVarbit("penguins_found", "polar_bear")) {
                 player.message("You've already spotted this polar bear agent.")
@@ -98,7 +94,7 @@ class PenguinHideAndSeek : Api {
             player.message("You found the polar bear agent.")
             player.inc("penguin_points")
             player.inc("penguins_found_weekly")
-            delay(2)
+            player.delay(2)
         }
 
         inventoryItem("Read", "spy_notebook") {

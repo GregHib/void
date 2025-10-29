@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.event.Script
@@ -99,7 +98,7 @@ class CharterShip : Api {
             }
         }
 
-        npcOperate("Charter", "trader_stan", "trader_crewmember*") {
+        npcOperate("Charter", "trader_stan,trader_crewmember*") { player, target ->
             player["charter_ship"] = location(target)
             player.open("charter_ship_map")
         }

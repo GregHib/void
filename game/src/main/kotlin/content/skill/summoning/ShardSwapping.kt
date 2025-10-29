@@ -3,13 +3,13 @@ package content.skill.summoning
 import content.entity.player.bank.noted
 import content.entity.player.dialogue.type.intEntry
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Script
@@ -20,13 +20,13 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.min
 
 @Script
-class ShardSwapping {
+class ShardSwapping : Api {
 
     val enums: EnumDefinitions by inject()
     val itemDefinitions: ItemDefinitions by inject()
 
     init {
-        npcOperate("Swap", "bogrog") {
+        npcOperate("Swap", "bogrog") { player, _ ->
             openTradeInInterface(player, true)
         }
 

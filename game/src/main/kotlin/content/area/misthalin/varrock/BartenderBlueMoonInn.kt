@@ -10,23 +10,23 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
+import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.mode.interact.approachRange
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
 
 @Script
-class BartenderBlueMoonInn {
+class BartenderBlueMoonInn : Api {
 
     init {
-        npcApproach("Talk-to", "bartender_blue_moon_inn") {
-            approachRange(4)
+        npcApproachDialogue("Talk-to", "bartender_blue_moon_inn") {
+            player.approachRange(4)
             npc<Quiz>("What can I do yer for?")
             choice {
                 option<Talk>("A glass of your finest ale please.") {
@@ -53,8 +53,10 @@ class BartenderBlueMoonInn {
                         }
                     }
                 }
-                option("I'm doing Alfred Grimhand's barcrawl.", filter = barCrawlFilter) {
-                    barCrawl()
+                if (onBarCrawl()) {
+                    option("I'm doing Alfred Grimhand's barcrawl.") {
+                        barCrawl()
+                    }
                 }
             }
         }
@@ -63,11 +65,13 @@ class BartenderBlueMoonInn {
             if (player.containsVarbit("barcrawl_signatures", "uncle_humphreys_gutrot")) {
                 return@itemOnNPCApproach
             }
-            barCrawl()
+            player.talkWith(target) {
+                barCrawl()
+            }
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
+    suspend fun Dialogue.barCrawl() = barCrawlDrink(
         start = {
             npc<Sad>("Oh no not another of you guys. These barbarian barcrawls cause too much damage to my bar.")
             npc<Talk>("You're going to have to pay 50 gold for the Uncle Humphrey's Gutrot.")

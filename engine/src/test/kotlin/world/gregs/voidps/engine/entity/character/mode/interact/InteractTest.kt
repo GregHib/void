@@ -20,10 +20,11 @@ import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.Approachable
+import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -86,20 +87,22 @@ internal class InteractTest : KoinMock() {
         player.mode = interact
         Events.events.clear()
         if (operate) {
-            Events.handle<Player, NPCOption<Player>>("player_operate_npc", "*", "*") {
+            val block: suspend (Player, NPC) -> Unit = { player, _ ->
                 if (suspend) {
-                    Suspension.start(character, 2)
+                    Suspension.start(player, 2)
                 }
                 operated = true
             }
+            Operation.playerNpcBlocks["*"] = mutableListOf(block)
         }
         if (approach) {
-            Events.handle<Player, NPCOption<Player>>("player_approach_npc", "*", "*") {
+            val block: suspend (Player, NPC) -> Unit = { player, _ ->
                 if (suspend) {
-                    Suspension.start(character, 2)
+                    Suspension.start(player, 2)
                 }
                 approached = true
             }
+            Approachable.playerNpcBlocks["*"] = mutableListOf(block)
         }
     }
 

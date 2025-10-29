@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.CharacterInteraction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -61,5 +60,5 @@ class NPCOptionHandler(
 }
 
 fun Character.interactNpc(npc: NPC, option: String, definition: NPCDefinition = if (this is Player) npc.def(this) else npc.def) {
-    mode = Interact(this, npc, NPCOption(this, npc, definition, option), type = CharacterInteraction(definition, option))
+    mode = Interact(this, npc, null, type = CharacterInteraction(definition, option))
 }

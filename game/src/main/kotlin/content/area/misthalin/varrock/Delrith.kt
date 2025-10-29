@@ -34,7 +34,6 @@ import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -103,7 +102,7 @@ class Delrith : Api {
             }
         }
 
-        npcOperate("Banish", "delrith") {
+        npcOperate("Banish", "delrith") { player, target ->
             if (target.transform != "delrith_weakened") {
                 return@npcOperate
             }

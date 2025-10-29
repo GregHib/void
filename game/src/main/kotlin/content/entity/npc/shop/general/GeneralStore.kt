@@ -8,14 +8,13 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Api
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.event.Script
 
 @Script
 class GeneralStore : Api {
 
     init {
-        npcOperate("Trade", "shopkeeper*", "shop_assistant*") {
+        npcOperate("Trade", "shopkeeper*,shop_assistant*") { player, target ->
             player.openShop(target.def.getOrNull<String>("shop") ?: return@npcOperate)
         }
 

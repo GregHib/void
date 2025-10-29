@@ -5,11 +5,12 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.social.trade.lend.Loan.getSecondsRemaining
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.character.mode.interact.approachRange
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Context
@@ -18,13 +19,13 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
 @Script
-class Banker {
+class Banker : Api {
 
     val npcs: NPCs by inject()
 
     init {
-        npcApproach("Talk-to", "banker*") {
-            approachRange(2)
+        npcApproachDialogue("Talk-to", "banker*") {
+            player.approachRange(2)
             npc<Quiz>("Good day. How may I help you?")
             val loanReturned = getSecondsRemaining(player, "lend_timeout") < 0
             val collection = false
@@ -43,13 +44,13 @@ class Banker {
             menu()
         }
 
-        npcApproach("Bank", "banker*") {
-            approachRange(2)
+        npcApproach("Bank", "banker*") { player, _ ->
+            player.approachRange(2)
             player.open("bank")
         }
 
-        npcApproach("Collect", "banker*") {
-            approachRange(2)
+        npcApproach("Collect", "banker*") { player, _ ->
+            player.approachRange(2)
             player.open("collection_box")
         }
     }

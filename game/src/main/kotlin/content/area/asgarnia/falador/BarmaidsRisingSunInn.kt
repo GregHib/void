@@ -8,6 +8,7 @@ import content.entity.player.dialogue.type.player
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
 import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
 import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
@@ -15,9 +16,7 @@ import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.interact.approachRange
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Script
@@ -45,13 +44,13 @@ class BarmaidsRisingSunInn : Api {
     }
 
     val emptyGlass: suspend ItemOnNPC.() -> Unit = {
-        player.mode = Interact(player, target, NPCOption(player, target, target.def, "Talk-to"))
+        player.interactNpc(target, "Talk-to")
     }
 
     val itemDefinitions: ItemDefinitions by inject()
 
     init {
-        talkToApproach("barmaid_emily") {
+        npcApproachDialogue("Talk-to", "barmaid_emily") {
             player.approachRange(3)
             menu()
         }

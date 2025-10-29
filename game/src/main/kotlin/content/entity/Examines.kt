@@ -1,15 +1,14 @@
 package content.entity
 
 import content.entity.player.inv.inventoryOption
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.ExamineItem
@@ -17,7 +16,7 @@ import world.gregs.voidps.network.client.instruction.ExamineNpc
 import world.gregs.voidps.network.client.instruction.ExamineObject
 
 @Script
-class Examines {
+class Examines : Api {
 
     val itemDefinitions: ItemDefinitions by inject()
     val npcDefinitions: NPCDefinitions by inject()
@@ -32,12 +31,12 @@ class Examines {
             player.message(item.def.getOrNull("examine") ?: return@inventoryOption, ChatType.ItemExamine)
         }
 
-        objectApproach("Examine") {
-            player.message(def.getOrNull("examine") ?: return@objectApproach, ChatType.ObjectExamine)
+        objectApproach("Examine") { player, target ->
+            player.message(target.def(player).getOrNull("examine") ?: return@objectApproach, ChatType.ObjectExamine)
         }
 
-        npcApproach("Examine") {
-            player.message(def.getOrNull("examine") ?: return@npcApproach, ChatType.NPCExamine)
+        npcApproach("Examine") { player, target ->
+            player.message(target.def(player).getOrNull("examine") ?: return@npcApproach, ChatType.NPCExamine)
         }
 
         instruction<ExamineItem> { player ->

@@ -9,14 +9,13 @@ import content.skill.melee.weapon.fightStyle
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.interact.interfaceOnNPCApproach
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.mode.interact.approachRange
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -28,28 +27,27 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 class Attack : Api {
 
     init {
-        npcApproach("Attack") {
+        npcApproach("Attack") { player, target ->
             if (!player.has(Skill.Slayer, target.def["slayer_level", 0])) {
                 player.message("You need a higher slayer level to know how to wound this monster.")
-                cancel()
+//                cancel()
                 return@npcApproach
             }
             if (player.equipped(EquipSlot.Weapon).id.endsWith("_greegree")) {
-                statement("You cannot attack as a monkey.")
-                cancel()
+                player.dialogue { statement("You cannot attack as a monkey.") }
+//                cancel()
                 return@npcApproach
             }
-            if (target.id.endsWith("_dummy") && !handleCombatDummies()) {
+            if (target.id.endsWith("_dummy") && !handleCombatDummies(player, target)) {
                 return@npcApproach
             }
-            if (character.attackRange != 1) {
-                approachRange(character.attackRange, update = false)
+            if (player.attackRange != 1) {
+                player.approachRange(player.attackRange, update = false)
             } else {
-                approachRange(null, update = true)
+                player.approachRange(null, update = true)
             }
-            combatInteraction(character, target)
+            combatInteraction(player, target)
         }
-
 
         npcApproach("Destroy", "door_support*") { player, target ->
             if (player.attackRange != 1) {
@@ -95,7 +93,7 @@ class Attack : Api {
             }
             approachRange(8, update = false)
             player.spell = component
-            if (target.id.endsWith("_dummy") && !handleCombatDummies()) {
+            if (target.id.endsWith("_dummy") && !handleCombatDummies(player, target)) {
                 player.clear("spell")
                 return@interfaceOnNPCApproach
             }
@@ -123,15 +121,15 @@ class Attack : Api {
         interact.updateInteraction(CombatInteraction(character, target))
     }
 
-    suspend fun TargetInteraction<Player, NPC>.handleCombatDummies(): Boolean {
+    suspend fun handleCombatDummies(player: Player, target: NPC): Boolean {
         val type = target.id.removeSuffix("_dummy")
         if (player.fightStyle == type) {
             return true
         }
         player.message("You can only use ${type.toTitleCase()} against this dummy.")
-        approachRange(10, false)
+        player.approachRange(10, false)
         player.mode = EmptyMode
-        cancel()
+//        cancel()
         return false
     }
 }

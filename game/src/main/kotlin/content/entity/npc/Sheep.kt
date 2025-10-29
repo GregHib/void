@@ -2,10 +2,11 @@ package content.entity.npc
 
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
+import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.mode.Retreat
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.mode.interact.arriveDelay
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -15,13 +16,13 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.softQueue
 
 @Script
-class Sheep {
+class Sheep : Api {
 
     val items: FloorItems by inject()
 
     init {
-        npcOperate("Shear", "sheep*") {
-            arriveDelay()
+        npcOperate("Shear", "sheep*") { player, target ->
+            player.arriveDelay()
             if (!player.holdsItem("shears")) {
                 player.message("You need a set of shears to do this.")
                 return@npcOperate
