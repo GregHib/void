@@ -17,7 +17,7 @@ internal class VariablesTest {
     private lateinit var player: Player
     private lateinit var client: Client
     private lateinit var map: MutableMap<String, Any>
-    private lateinit var varSet: (Player, String, Any?, Any?) -> Unit
+    private lateinit var calls: MutableList<Pair<Any?, Any?>>
 
     private val id = 0
     private val default = "First"
@@ -41,7 +41,12 @@ internal class VariablesTest {
         every { definitions.get(KEY) } returns variable
         variables.definitions = definitions
         variables.client = client
-        varSet = spyk({ _, _, _, _ -> })
+        calls = mutableListOf()
+        val varSet: (Player, String, Any?, Any?) -> Unit = { player, id, from, to ->
+            assertEquals(this.player, player)
+            assertEquals(KEY, id)
+            calls.add(from to to)
+        }
         VariableSet.playerBlocks["*"] = mutableListOf(varSet)
     }
 
@@ -56,8 +61,8 @@ internal class VariablesTest {
         assertEquals(42, map[KEY])
         verify {
             variables.send(any())
-            varSet(player, KEY, 1, 42)
         }
+        assertEquals(1 to 42, calls.first())
     }
 
     @Test
@@ -227,8 +232,8 @@ internal class VariablesTest {
         assertNull(map[KEY])
         verifyOrder {
             variables.send(KEY)
-            varSet(player, KEY, arrayListOf("Third"), null)
         }
+        assertEquals(arrayListOf("Third") to null, calls.first())
     }
 
     companion object {
