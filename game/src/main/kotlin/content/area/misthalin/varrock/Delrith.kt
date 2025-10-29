@@ -21,6 +21,7 @@ import content.quest.questCompleted
 import content.quest.startCutscene
 import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
@@ -29,11 +30,9 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -99,7 +98,7 @@ class Delrith : Api {
             if (target is NPC && target.id == "delrith" && target.transform == "delrith_weakened") {
                 cancel()
                 player.strongQueue("banish_delrith", 1) {
-                    player.mode = Interact(player, target, NPCOption(player, target, target.def, "Banish"))
+                    player.interactNpc(target, "Banish")
                 }
             }
         }

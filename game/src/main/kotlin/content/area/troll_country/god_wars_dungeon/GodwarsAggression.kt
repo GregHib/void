@@ -3,19 +3,18 @@ package content.area.troll_country.god_wars_dungeon
 import content.entity.combat.killer
 import content.entity.death.npcDeath
 import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.client.instruction.handle.interactNpc
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntNPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
@@ -71,15 +70,15 @@ class GodwarsAggression : Api {
         }
 
         huntPlayer(mode = "godwars_aggressive") { npc ->
-            npc.mode = Interact(npc, target, PlayerOption(npc, target, "Attack"))
+            npc.interactPlayer(target, "Attack")
         }
 
         huntNPC(mode = "zamorak_aggressive") { npc ->
-            npc.mode = Interact(npc, target, NPCOption(npc, target, target.def, "Attack"))
+            npc.interactNpc(target, "Attack")
         }
 
         huntNPC(mode = "anti_zamorak_aggressive") { npc ->
-            npc.mode = Interact(npc, target, NPCOption(npc, target, target.def, "Attack"))
+            npc.interactNpc(target, "Attack")
         }
 
         npcDeath { npc ->

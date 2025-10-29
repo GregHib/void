@@ -4,9 +4,8 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
@@ -58,7 +57,7 @@ class Men {
                 9 -> npc<Happy>("Not too bad thanks.")
                 10 -> {
                     npc<Angry>("Are you asking for a fight?")
-                    target.mode = Interact(target, player, PlayerOption(target, player, "Attack"))
+                    target.interactPlayer(player, "Attack")
                 }
                 11 -> npc<Neutral>("I'm busy right now.")
                 12 -> npc<Happy>("Hello.")

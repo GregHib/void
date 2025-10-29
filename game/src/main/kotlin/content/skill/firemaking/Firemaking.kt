@@ -1,5 +1,6 @@
 package content.skill.firemaking
 
+import world.gregs.voidps.engine.client.instruction.handle.interactFloorItem
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.interact.itemOnFloorItemOperate
@@ -17,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.entity.item.floor.FloorItemOption
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -50,7 +50,7 @@ class Firemaking {
             player.queue.clearWeak()
             if (player.inventory.remove(logSlot, log.id)) {
                 val floorItem = floorItems.add(player.tile, log.id, disappearTicks = 300, owner = player)
-                player.mode = Interact(player, floorItem, FloorItemOption(player, floorItem, "Light"))
+                player.interactFloorItem(floorItem, "Light")
             }
         }
 
