@@ -40,7 +40,7 @@ class GameObjectsTest : KoinMock() {
         events = spyk(Events())
         Events.setEvents(events)
         spawn = spyk({})
-        Spawn.objectSpawns.getValue("*").add(spawn)
+        Spawn.objectSpawns["*"] = mutableListOf(spawn)
     }
 
     @Test
