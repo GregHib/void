@@ -1,11 +1,13 @@
 package world.gregs.voidps.engine.entity.character
 
+import kotlinx.coroutines.suspendCancellableCoroutine
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import world.gregs.voidps.engine.client.variable.VariableStore
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
@@ -32,6 +34,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 import kotlin.coroutines.Continuation
+import kotlin.math.round
 
 interface Character :
     Entity,
@@ -274,5 +277,71 @@ interface Character :
     fun clearWatch() {
         visuals.watch.index = -1
         flagWatch()
+    }
+
+
+    /**
+     * Prevents non-interface player input and most processing
+     * Cannot be cancelled.
+     */
+    suspend fun delay(ticks: Int = 1) {
+        if (ticks <= 0) {
+            return
+        }
+        this["delay"] = ticks
+        suspendCancellableCoroutine {
+            delay = it
+        }
+    }
+
+    /**
+     * Delay until the appeared location of the character has moved [delta] in [delay] time
+     */
+    suspend fun exactMoveDelay(delta: Delta, delay: Int = tile.distanceTo(tile.add(delta)) * 30, direction: Direction = Direction.NONE) {
+        exactMove(delta, delay, direction)
+        delay(round(delay / 30.0).toInt())
+    }
+
+    /**
+     * Delay until the appeared location of the character has moved to [target] in [delay] time
+     */
+    suspend fun exactMoveDelay(target: Tile, delay: Int = tile.distanceTo(target) * 30, direction: Direction = Direction.NONE, startDelay: Int = 0) {
+        exactMove(target, delay, direction, startDelay)
+        delay(round(delay / 30.0).toInt())
+    }
+
+    /**
+     * Delay until characters animation [id] is complete
+     * @param override the current animation
+     */
+    suspend fun animDelay(id: String, override: Boolean = false) {
+        val ticks = anim(id, override = override)
+        delay(ticks)
+    }
+
+    /**
+     * Forces the character to walk to a tile
+     */
+    suspend fun walkToDelay(tile: Tile, forceWalk: Boolean = false) {
+        walkTo(tile, noCollision = false, forceWalk = forceWalk)
+        delayTarget(tile)
+    }
+
+    /**
+     * Force a character to walk to tile ignoring collisions
+     */
+    suspend fun walkOverDelay(tile: Tile, forceWalk: Boolean = true) {
+        walkTo(tile, noCollision = true, forceWalk = forceWalk)
+        delayTarget(tile)
+    }
+
+    private suspend fun delayTarget(target: Tile) {
+        var count = 0
+        if (tile.distanceTo(target) >= 50) {
+            return
+        }
+        while (tile != target && count++ < 50 && mode != EmptyMode) {
+            delay()
+        }
     }
 }
