@@ -15,16 +15,16 @@ data class PlayerPlayerInteract(
     override fun hasApproach() = Approachable.playerPlayerBlocks.containsKey(option)
 
     override fun operate() {
-        Events.events.launch {
-            for (block in Operation.playerPlayerBlocks[option] ?: return@launch) {
-                block(player, this@PlayerPlayerInteract)
-            }
-        }
+        invoke(Operation.playerPlayerBlocks)
     }
 
     override fun approach() {
+        invoke(Approachable.playerPlayerBlocks)
+    }
+
+    private fun invoke(map: Map<String, List<suspend Player.(PlayerPlayerInteract) -> Unit>>) {
         Events.events.launch {
-            for (block in Approachable.playerPlayerBlocks[option] ?: return@launch) {
+            for (block in map[option] ?: return@launch) {
                 block(player, this@PlayerPlayerInteract)
             }
         }

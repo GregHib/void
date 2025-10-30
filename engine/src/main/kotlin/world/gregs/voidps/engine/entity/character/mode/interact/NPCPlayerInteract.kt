@@ -16,16 +16,16 @@ data class NPCPlayerInteract(
     override fun hasApproach() = Approachable.playerPlayerBlocks.containsKey(option)
 
     override fun operate() {
-        Events.events.launch {
-            for (block in Operation.npcPlayerBlocks[option] ?: return@launch) {
-                block(npc, this@NPCPlayerInteract)
-            }
-        }
+        invoke(Operation.npcPlayerBlocks)
     }
 
     override fun approach() {
+        invoke(Approachable.npcPlayerBlocks)
+    }
+
+    private fun invoke(map: Map<String, List<suspend NPC.(NPCPlayerInteract) -> Unit>>) {
         Events.events.launch {
-            for (block in Approachable.npcPlayerBlocks[option] ?: return@launch) {
+            for (block in map[option] ?: return@launch) {
                 block(npc, this@NPCPlayerInteract)
             }
         }

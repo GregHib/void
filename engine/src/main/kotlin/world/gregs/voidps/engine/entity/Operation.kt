@@ -1,8 +1,9 @@
 package world.gregs.voidps.engine.entity
 
+import world.gregs.voidps.engine.entity.character.mode.interact.NPCFloorItemInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.NPCPlayerInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerFloorItemInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerPlayerInteract
-import world.gregs.voidps.engine.entity.character.mode.interact.arriveDelay
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -23,6 +24,20 @@ interface Operation {
 
     fun npcOperatePlayer(option: String, block: suspend NPC.(NPCPlayerInteract) -> Unit) {
         npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
+    }
+
+    fun floorItemOperate(option: String, arriveDelay: Boolean = true, block: suspend Player.(PlayerFloorItemInteract) -> Unit) {
+        if (!arriveDelay) {
+            noDelays.add(option)
+        }
+        playerFloorItemBlocks.getOrPut(option) { mutableListOf() }.add(block)
+    }
+
+    fun npcOperateFloorItem(option: String, arriveDelay: Boolean = true, block: suspend NPC.(NPCFloorItemInteract) -> Unit) {
+        if (!arriveDelay) {
+            noDelays.add(option)
+        }
+        npcFloorItemBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
 
 /*
@@ -200,15 +215,7 @@ interface Operation {
 
     *//**
      * Npc floor item option
-     *//*
-    suspend fun npcOperateFloorItem(option: String, item: String, arriveDelay: Boolean = true, block: suspend (npc: NPC, target: FloorItem) -> Unit) {
-        if (!arriveDelay) {
-            noDelays.addAll(Wildcards.find(item))
-        }
-        for (id in Wildcards.find(item)) {
-            npcFloorItemBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
-        }
-    }*/
+     *//**/
 
     companion object {
         val playerPlayerBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerPlayerInteract) -> Unit>>()
@@ -220,139 +227,16 @@ interface Operation {
         val playerObjectBlocks = mutableMapOf<String, MutableList<suspend (Player, GameObject) -> Unit>>()
         val onObjectBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, GameObject) -> Unit>>()
 
-        val playerFloorItemBlocks = mutableMapOf<String, MutableList<suspend (Player, FloorItem) -> Unit>>()
+        val playerFloorItemBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerFloorItemInteract) -> Unit>>()
         val onFloorItemBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, FloorItem) -> Unit>>()
 
         val npcPlayerBlocks = mutableMapOf<String, MutableList<suspend NPC.(NPCPlayerInteract) -> Unit>>()
         val npcNpcBlocks = mutableMapOf<String, MutableList<suspend (NPC, NPC) -> Unit>>()
         val npcObjectBlocks = mutableMapOf<String, MutableList<suspend (NPC, GameObject) -> Unit>>()
-        val npcFloorItemBlocks = mutableMapOf<String, MutableList<suspend (NPC, FloorItem) -> Unit>>()
+        val npcFloorItemBlocks = mutableMapOf<String, MutableList<suspend NPC.(NPCFloorItemInteract) -> Unit>>()
 
         // Don't call arriveDelay before an object or floor item interaction
-        private val noDelays = mutableSetOf<String>()
-
-        suspend fun operate(player: Player, target: NPC, option: String) {
-            for (block in playerNpcBlocks["$option:${target.def(player).stringId}"] ?: emptyList()) {
-                block(player, target)
-            }
-            for (block in playerNpcBlocks[option] ?: return) {
-                block(player, target)
-            }
-        }
-
-        suspend fun operate(player: Player, target: GameObject, option: String) {
-            if (!noDelays.contains(target.id)) {
-                player.arriveDelay()
-            }
-            for (block in playerObjectBlocks["$option:${target.def(player).stringId}"] ?: emptyList()) {
-                block(player, target)
-            }
-            for (block in playerObjectBlocks[option] ?: return) {
-                block(player, target)
-            }
-        }
-
-        suspend fun operate(player: Player, target: FloorItem, option: String) {
-            if (!noDelays.contains(target.id)) {
-                player.arriveDelay()
-            }
-            for (block in playerFloorItemBlocks["$option:${target.id}"] ?: emptyList()) {
-                block(player, target)
-            }
-            for (block in playerFloorItemBlocks[option] ?: return) {
-                block(player, target)
-            }
-        }
-
-        suspend fun operate(player: Player, id: String, slot: Int, item: Item, target: Player) {
-            for (block in onPlayerBlocks[if (item.isEmpty()) id else item.id] ?: return) {
-                block(player, id, slot, item, target)
-            }
-        }
-
-        suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: NPC) {
-            if (item.isEmpty()) {
-                for (block in onNpcBlocks["$id:${target.def(player).stringId}"] ?: emptyList()) {
-                    block(player, id, slot, item, target)
-                }
-                for (block in onNpcBlocks["$id:*"] ?: return) {
-                    block(player, id, slot, item, target)
-                }
-            } else {
-                for (block in onNpcBlocks["${item.id}:${target.def(player).stringId}"] ?: emptyList()) {
-                    block(player, id, slot, item, target)
-                }
-                for (block in onNpcBlocks["${item.id}:*"] ?: return) {
-                    block(player, id, slot, item, target)
-                }
-            }
-        }
-
-        suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: GameObject) {
-            if (!noDelays.contains(target.id)) {
-                player.arriveDelay()
-            }
-            if (item.isEmpty()) {
-                for (block in onObjectBlocks["$id:${target.def(player).stringId}"] ?: emptyList()) {
-                    block(player, id, slot, item, target)
-                }
-                for (block in onObjectBlocks["$id:*"] ?: return) {
-                    block(player, id, slot, item, target)
-                }
-            } else {
-                for (block in onObjectBlocks["${item.id}:${target.def(player).stringId}"] ?: emptyList()) {
-                    block(player, id, slot, item, target)
-                }
-                for (block in onObjectBlocks["${item.id}:*"] ?: return) {
-                    block(player, id, slot, item, target)
-                }
-            }
-        }
-
-        suspend fun operate(player: Player, id: String, item: Item, slot: Int, target: FloorItem) {
-            if (!noDelays.contains(target.id)) {
-                player.arriveDelay()
-            }
-            if (item.isEmpty()) {
-                for (block in onFloorItemBlocks["$id:${target.id}"] ?: emptyList()) {
-                    block(player, id, slot, item, target)
-                }
-                for (block in onFloorItemBlocks["$id:*"] ?: return) {
-                    block(player, id, slot, item, target)
-                }
-            } else {
-                for (block in onFloorItemBlocks["${item.id}:${target.id}"] ?: emptyList()) {
-                    block(player, id, slot, item, target)
-                }
-                for (block in onFloorItemBlocks["${item.id}:*"] ?: return) {
-                    block(player, id, slot, item, target)
-                }
-            }
-        }
-
-        suspend fun operate(npc: NPC, target: NPC, option: String) {
-            for (block in npcNpcBlocks["$option:${target.id}"] ?: return) {
-                block(npc, target)
-            }
-        }
-
-        suspend fun operate(npc: NPC, target: GameObject, option: String) {
-            if (!noDelays.contains(target.id)) {
-                npc.arriveDelay()
-            }
-            for (block in npcObjectBlocks["$option:${target.id}"] ?: return) {
-                block(npc, target)
-            }
-        }
-
-        suspend fun operate(npc: NPC, target: FloorItem, option: String) {
-            if (!noDelays.contains(target.id)) {
-                npc.arriveDelay()
-            }
-            for (block in npcFloorItemBlocks["$option:${target.id}"] ?: return) {
-                block(npc, target)
-            }
-        }
+        val noDelays = mutableSetOf<String>()
 
         fun clear() {
             playerPlayerBlocks.clear()
