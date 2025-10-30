@@ -28,7 +28,7 @@ import world.gregs.voidps.engine.suspend.resumeSuspension
 open class Interact(
     character: Character,
     open val target: Entity,
-    interaction: Interaction<*>,
+    interaction: Interaction<*>?,
     strategy: TargetStrategy = TargetStrategy(target),
     private var approachRange: Int? = null,
     private val faceTarget: Boolean = true,
@@ -36,19 +36,19 @@ open class Interact(
 ) : Movement(character, strategy, shape), InteractionType {
     private var launched = false
 
-    override fun hasOperate(): Boolean = type.hasOperate()
+    override fun hasOperate(): Boolean = type?.hasOperate() == true
 
-    override fun hasApproach(): Boolean = type.hasApproach()
+    override fun hasApproach(): Boolean = type?.hasApproach() == true
 
     override fun operate() {
-        type.operate()
+        type?.operate()
     }
 
     override fun approach() {
-        type.approach()
+        type?.approach()
     }
 
-    private var type = OldInteractionType(character, interaction)
+    private var type: InteractionType? = interaction?.let { OldInteractionType(character, it) }
 
     class OldInteractionType(private val character: Character, interaction: Interaction<*>) : InteractionType {
         var operate: Interaction<*> = interaction.copy(false)
@@ -171,8 +171,8 @@ open class Interact(
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
-            withinMelee && type.hasOperate() -> if (launch(true) && afterMovement) updateRange = false
-            withinRange && type.hasApproach() -> if (launch(false) && afterMovement) updateRange = false
+            withinMelee && hasOperate() -> if (launch(true) && afterMovement) updateRange = false
+            withinRange && hasApproach() -> if (launch(false) && afterMovement) updateRange = false
             withinMelee -> {
                 character.noInterest()
                 clear()
@@ -192,9 +192,9 @@ open class Interact(
         if (!launched) {
             launched = true
             if (operate) {
-                type.operate()
+                operate()
             } else {
-                type.approach()
+                approach()
             }
             return true
         }
