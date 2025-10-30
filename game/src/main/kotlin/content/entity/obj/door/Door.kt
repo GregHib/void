@@ -201,3 +201,22 @@ suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinitio
     player.walkTo(tile, noCollision = true, forceWalk = true)
     delay(delay)
 }
+
+/**
+ * Enter through a doorway
+ */
+suspend fun Player.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3) {
+    walkOverDelay(doorStart(this, door) ?: return)
+    val tile = enter(door, def, ticks) ?: return
+    walkOverDelay(tile)
+}
+
+/**
+ * Enter through a door with fixed [delay]
+ */
+suspend fun Player.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3, delay: Int) {
+    walkOverDelay(doorStart(this, door) ?: return)
+    val tile = enter(door, def, ticks) ?: return
+    walkTo(tile, noCollision = true, forceWalk = true)
+    delay(delay)
+}
