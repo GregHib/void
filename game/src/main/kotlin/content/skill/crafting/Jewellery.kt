@@ -3,6 +3,7 @@ package content.skill.crafting
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.type.intEntry
 import net.pearx.kasechange.toLowerSpaceCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
@@ -21,15 +22,13 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Context
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.queue.weakQueue
 
-@Script
-class Jewellery {
+class Jewellery : Script {
 
     val moulds = listOf("ring", "necklace", "amulet_unstrung", "bracelet")
     val gems = listOf("gold", "sapphire", "emerald", "ruby", "diamond", "dragonstone", "onyx", "enchanted_gem")

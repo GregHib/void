@@ -1,13 +1,12 @@
 package content.area.morytania.port_phasmatys
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Tile
 
-@Script
-class PortPhasmatysBarrier {
+class PortPhasmatysBarrier : Script {
     init {
         objectOperate("Pass", "phasmatys_barrier") {
 //            https://youtu.be/PrkWAZmuEnw?si=T86lk1tMR91q2fjv&t=150

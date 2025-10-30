@@ -2,12 +2,12 @@ package content.area.morytania.slayer_tower
 
 import content.entity.combat.hit.npcCombatAttack
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.softQueue
@@ -15,8 +15,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
-@Script
-class Nechryael {
+class Nechryael : Script {
 
     val npcs: NPCs by inject()
     val players: Players by inject()

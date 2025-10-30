@@ -8,7 +8,7 @@ import content.bot.skill.combat.hasExactGear
 import content.bot.skill.combat.setupGear
 import content.entity.death.weightedSample
 import net.pearx.kasechange.toLowerSpaceCase
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.config.GearDefinition
@@ -23,15 +23,13 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractNPC
 
-@Script
-class FishingBot : Api {
+class FishingBot : Script {
 
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()

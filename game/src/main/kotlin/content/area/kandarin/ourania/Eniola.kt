@@ -6,6 +6,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.social.trade.lend.Loan.getSecondsRemaining
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
@@ -14,15 +15,13 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
-@Script
-class Eniola {
+class Eniola : Script {
 
     val runes = listOf(
         "air_rune",

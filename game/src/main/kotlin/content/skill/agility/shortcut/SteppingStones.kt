@@ -6,6 +6,7 @@ import content.entity.player.combat.special.specialAttackEnergy
 import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
 import content.skill.firemaking.Light
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -19,14 +20,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import kotlin.math.round
 
-@Script
-class SteppingStones {
+class SteppingStones : Script {
 
     init {
         objectApproach("Jump-across", "lumbridge_swamp_stepping_stone") {

@@ -3,6 +3,7 @@ package content.social.trade.exchange
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
@@ -15,7 +16,6 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.sendInventory
@@ -23,8 +23,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
-@Script
-class GrandExchangeItemSets {
+class GrandExchangeItemSets : Script {
 
     val enumDefinitions: EnumDefinitions by inject()
     val logger = InlineLogger()

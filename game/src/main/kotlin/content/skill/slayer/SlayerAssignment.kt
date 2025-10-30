@@ -1,6 +1,7 @@
 package content.skill.slayer
 
 import net.pearx.kasechange.toSentenceCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -8,10 +9,8 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class SlayerAssignment {
+class SlayerAssignment : Script {
 
     init {
         interfaceOption("Learn", "learn", "slayer_rewards_assignment") {

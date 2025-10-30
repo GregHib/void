@@ -1,16 +1,15 @@
 package content.area.kandarin.tree_gnome_stronghold
 
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Tile
 
-@Script
-class GliderMap {
+class GliderMap : Script {
 
     init {
         interfaceOption("Travel", id = "glider_map") {

@@ -3,6 +3,7 @@ package content.skill.fishing
 import com.github.michaelbull.logging.InlineLogger
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toTitleCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeDialogue
@@ -21,7 +22,6 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -30,8 +30,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.type.random
 
-@Script
-class Fishing {
+class Fishing : Script {
 
     val logger = InlineLogger()
     val itemDefinitions: ItemDefinitions by inject()

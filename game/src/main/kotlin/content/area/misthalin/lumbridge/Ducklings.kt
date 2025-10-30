@@ -1,21 +1,19 @@
 package content.area.misthalin.lumbridge
 
 import content.entity.death.npcDeath
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
 
-@Script
-class Ducklings : Api {
+class Ducklings : Script {
 
     val npcs: NPCs by inject()
 

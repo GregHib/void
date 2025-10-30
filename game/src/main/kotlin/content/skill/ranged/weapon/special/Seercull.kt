@@ -6,12 +6,10 @@ import content.entity.combat.hit.hit
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.entity.sound.sound
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class Seercull : Api {
+class Seercull : Script {
     init {
         specialAttack("soulshot") { player ->
             player.anim("bow_accurate")

@@ -1,18 +1,17 @@
 package content.skill.firemaking
 
 import content.entity.player.inv.inventoryItem
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnItems
 import world.gregs.voidps.engine.data.definition.data.LightSources
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 
-@Script
-class LightSource {
+class LightSource : Script {
 
     val acceptedUnlitSource = arrayOf(
         "oil_lamp_oil",

@@ -3,6 +3,7 @@ package content.skill.agility.course
 import content.entity.combat.hit.damage
 import content.entity.obj.door.enterDoor
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -16,15 +17,13 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 
-@Script
-class WildernessCourse {
+class WildernessCourse : Script {
 
     val objects: GameObjects by inject()
 

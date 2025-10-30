@@ -6,13 +6,12 @@ import content.entity.player.dialogue.Uncertain
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class DelMonty {
+class DelMonty : Script {
     init {
         npcOperate("Talk-to", "del_monty") {
             npc<Talk>("Hello, no-fur. What are you doing in my mistress's garden?")

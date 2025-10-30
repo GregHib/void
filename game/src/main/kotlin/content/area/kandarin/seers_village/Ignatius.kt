@@ -1,13 +1,12 @@
 package content.area.kandarin.seers_village
 
 import content.entity.npc.shop.openShop
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class Ignatius {
+class Ignatius : Script {
     init {
         npcOperate("Trade", "armour_salesman") {
             player.openShop(

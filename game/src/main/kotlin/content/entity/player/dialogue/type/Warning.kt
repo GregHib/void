@@ -1,11 +1,11 @@
 package content.entity.player.dialogue.type
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Context
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.suspend.StringSuspension
 
 suspend fun Context<Player>.warning(id: String): Boolean {
@@ -20,8 +20,7 @@ suspend fun Context<Player>.warning(id: String): Boolean {
     return result
 }
 
-@Script
-class Warning {
+class Warning : Script {
 
     init {
         interfaceOption("Yes", "yes", "warning_*") {

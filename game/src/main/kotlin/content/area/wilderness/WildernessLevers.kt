@@ -7,19 +7,18 @@ import content.entity.obj.objTeleportTakeOff
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
-@Script
-class WildernessLevers {
+class WildernessLevers : Script {
 
     val teleports: ObjectTeleports by inject()
 

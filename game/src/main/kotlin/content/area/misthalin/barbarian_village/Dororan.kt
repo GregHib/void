@@ -6,13 +6,13 @@ import content.entity.player.dialogue.type.*
 import content.quest.quest
 import content.quest.questCompleted
 import content.quest.refreshQuestJournal
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -20,8 +20,7 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
-@Script
-class Dororan {
+class Dororan : Script {
 
     init {
         itemOnItem("chisel", "ring_from_jeffery") { player: Player ->

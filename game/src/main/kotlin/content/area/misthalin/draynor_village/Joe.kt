@@ -4,18 +4,17 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.sound.sound
 import content.quest.quest
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
-@Script
-class Joe {
+class Joe : Script {
 
     init {
         npcOperate("Talk-to", "jail_guard_joe") {

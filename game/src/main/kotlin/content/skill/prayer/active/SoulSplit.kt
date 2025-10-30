@@ -5,15 +5,13 @@ import content.entity.combat.hit.combatAttack
 import content.entity.proj.shoot
 import content.skill.prayer.praying
 import content.skill.summoning.isFamiliar
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 
-@Script
-class SoulSplit : Api {
+class SoulSplit : Script {
 
     init {
         combatAttack { player ->

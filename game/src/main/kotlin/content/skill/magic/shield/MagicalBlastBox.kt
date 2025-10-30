@@ -3,7 +3,7 @@ package content.skill.magic.shield
 import content.entity.combat.hit.combatAttack
 import content.entity.player.dialogue.type.choice
 import content.entity.player.inv.inventoryItem
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.charge
@@ -21,8 +20,7 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import kotlin.math.min
 
-@Script
-class MagicalBlastBox : Api {
+class MagicalBlastBox : Script {
 
     init {
         playerSpawn { player ->

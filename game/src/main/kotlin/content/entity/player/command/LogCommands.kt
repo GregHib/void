@@ -1,5 +1,6 @@
 package content.entity.player.command
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.*
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -12,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TICKS
 import java.io.File
@@ -21,8 +21,7 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.concurrent.TimeUnit
 
-@Script
-class LogCommands {
+class LogCommands : Script {
     val accounts: AccountDefinitions by inject()
 
     init {

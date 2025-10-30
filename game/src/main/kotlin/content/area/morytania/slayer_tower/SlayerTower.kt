@@ -4,7 +4,7 @@ import content.entity.combat.hit.hit
 import content.entity.obj.door.enterDoor
 import content.entity.obj.objTeleportLand
 import content.entity.obj.objTeleportTakeOff
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -15,11 +15,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.objectDespawn
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class SlayerTower : Api {
+class SlayerTower : Script {
 
     val objects: GameObjects by inject()
 

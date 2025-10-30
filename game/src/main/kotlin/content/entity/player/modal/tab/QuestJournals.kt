@@ -2,17 +2,15 @@ package content.entity.player.modal.tab
 
 import com.github.michaelbull.logging.InlineLogger
 import content.quest.refreshQuestJournal
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.Timer
 
-@Script
-class QuestJournals : Api {
+class QuestJournals : Script {
 
     val logger = InlineLogger()
 

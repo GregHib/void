@@ -1,5 +1,6 @@
 package content.skill.agility.course
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -9,14 +10,12 @@ import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-@Script
-class GnomeStronghold {
+class GnomeStronghold : Script {
 
     val npcs: NPCs by inject()
 

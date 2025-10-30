@@ -1,12 +1,10 @@
 package content.entity.effect
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 
-@Script
-class ColourOverlay : Api {
+class ColourOverlay : Script {
 
     init {
         timerStart("colour_overlay", ::start)

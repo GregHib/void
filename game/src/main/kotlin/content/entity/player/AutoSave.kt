@@ -1,20 +1,18 @@
 package content.entity.player
 
 import content.social.trade.exchange.GrandExchange
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.settingsReload
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.worldDespawn
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-@Script
-class AutoSave : Api {
+class AutoSave : Script {
 
     val players: Players by inject()
     val saveQueue: SaveQueue by inject()

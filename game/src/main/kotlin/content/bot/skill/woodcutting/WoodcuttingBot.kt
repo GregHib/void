@@ -7,7 +7,7 @@ import content.bot.interact.navigation.resume
 import content.bot.skill.combat.hasExactGear
 import content.bot.skill.combat.setupGear
 import content.entity.death.weightedSample
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.AreaDefinition
@@ -17,13 +17,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractObject
 
-@Script
-class WoodcuttingBot : Api {
+class WoodcuttingBot : Script {
 
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()

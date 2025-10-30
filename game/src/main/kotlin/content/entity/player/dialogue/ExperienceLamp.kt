@@ -1,11 +1,10 @@
 package content.entity.player.dialogue
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.suspend.StringSuspension
 
-@Script
-class ExperienceLamp {
+class ExperienceLamp : Script {
 
     init {
         interfaceOption("Select", id = "skill_stat_advance") {

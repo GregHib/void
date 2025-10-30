@@ -1,15 +1,14 @@
 package content.skill.herblore
 
 import content.entity.player.inv.inventoryOption
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.data.Cleaning
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
-@Script
-class HerbCleaning {
+class HerbCleaning : Script {
 
     init {
         inventoryOption("Clean", "inventory") {

@@ -1,18 +1,17 @@
 package content.entity.player.effect
 
 import content.entity.player.inv.inventoryOption
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
 
-@Script
-class SkillcapeBoost {
+class SkillcapeBoost : Script {
 
     init {
         inventoryOption("Boost", "worn_equipment") {

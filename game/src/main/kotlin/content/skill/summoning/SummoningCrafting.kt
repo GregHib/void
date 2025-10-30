@@ -3,6 +3,7 @@ package content.skill.summoning
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.type.intEntry
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
@@ -14,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -22,8 +22,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.min
 
-@Script
-class SummoningCrafting {
+class SummoningCrafting : Script {
 
     val enums: EnumDefinitions by inject()
     val itemDefinitions: ItemDefinitions by inject()

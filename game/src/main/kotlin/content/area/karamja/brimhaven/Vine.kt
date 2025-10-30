@@ -1,19 +1,18 @@
 package content.area.karamja.brimhaven
 
 import content.skill.woodcutting.Hatchet
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
-@Script
-class Vine {
+class Vine : Script {
 
     init {
         objectOperate("Chop-down", "brimhaven_vine_*") {

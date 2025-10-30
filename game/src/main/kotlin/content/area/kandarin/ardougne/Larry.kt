@@ -17,6 +17,7 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.skillLamp
 import content.entity.player.dialogue.type.statement
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -26,13 +27,11 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
-@Script
-class Larry {
+class Larry : Script {
 
     val npcs: NPCs by inject()
     val areas: AreaDefinitions by inject()

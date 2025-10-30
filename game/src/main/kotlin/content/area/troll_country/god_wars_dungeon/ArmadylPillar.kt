@@ -4,6 +4,7 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
 import content.skill.melee.weapon.Weapon
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -11,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -20,8 +20,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-@Script
-class ArmadylPillar {
+class ArmadylPillar : Script {
 
     val objects: GameObjects by inject()
 

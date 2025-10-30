@@ -12,17 +12,16 @@ import content.entity.sound.sound
 import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
 import content.skill.slayer.categories
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class Ranged {
+class Ranged : Script {
 
     val weaponStyles: WeaponStyleDefinitions by inject()
     val weaponDefinitions: WeaponAnimationDefinitions by inject()

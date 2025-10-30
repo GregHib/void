@@ -2,15 +2,14 @@ package content.quest.member.ghosts_ahoy
 
 import content.entity.obj.objTeleportLand
 import content.entity.obj.objTeleportTakeOff
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Direction
 
-@Script
-class Ectopool {
+class Ectopool : Script {
 
     init {
         objTeleportTakeOff("Jump-down", "ectopool_shortcut_rail") {

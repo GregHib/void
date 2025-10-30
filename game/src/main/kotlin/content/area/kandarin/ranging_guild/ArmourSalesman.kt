@@ -1,13 +1,12 @@
 package content.area.kandarin.ranging_guild
 
 import content.entity.npc.shop.openShop
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class ArmourSalesman {
+class ArmourSalesman : Script {
     init {
         npcOperate("Trade", "armour_salesman") {
             when {

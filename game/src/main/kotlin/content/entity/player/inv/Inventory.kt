@@ -1,19 +1,18 @@
 package content.entity.player.inv
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceSwap
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.swap
 
-@Script
-class Inventory {
+class Inventory : Script {
 
     val logger = InlineLogger()
 

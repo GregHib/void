@@ -2,7 +2,7 @@ package content.entity
 
 import content.area.misthalin.Border
 import content.entity.death.npcDeath
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.Settings
@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.client.instruction.Walk
@@ -21,8 +20,7 @@ import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Rectangle
 
-@Script
-class Movement : Api {
+class Movement : Script {
 
     val collisions: Collisions by inject()
     val npcs: NPCs by inject()

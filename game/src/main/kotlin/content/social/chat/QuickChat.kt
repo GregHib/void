@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import content.social.clan.clan
 import content.social.ignore.ignores
 import world.gregs.voidps.cache.definition.data.QuickChatType
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
@@ -18,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanQuickChat
 import world.gregs.voidps.engine.entity.character.player.chat.friend.PrivateQuickChatMessage
 import world.gregs.voidps.engine.entity.character.player.chat.global.PublicQuickChatMessage
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.QuickChatPrivate
@@ -28,8 +28,7 @@ import world.gregs.voidps.network.login.protocol.encode.privateQuickChatFrom
 import world.gregs.voidps.network.login.protocol.encode.privateQuickChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicQuickChat
 
-@Script
-class QuickChat {
+class QuickChat : Script {
 
     val players: Players by inject()
     val phrases: QuickChatPhraseDefinitions by inject()

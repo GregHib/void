@@ -3,20 +3,18 @@ package content.entity.npc.combat.melee
 import content.entity.combat.hit.npcCombatDamage
 import content.entity.gfx.areaGfx
 import content.entity.sound.areaSound
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-@Script
-class Imp : Api {
+class Imp : Script {
 
     init {
         npcSpawn("imp") { npc ->

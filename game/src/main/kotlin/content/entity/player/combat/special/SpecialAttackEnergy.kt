@@ -1,13 +1,11 @@
 package content.entity.player.combat.special
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.Timer
 import kotlin.math.min
 
-@Script
-class SpecialAttackEnergy : Api {
+class SpecialAttackEnergy : Script {
 
     val half = MAX_SPECIAL_ATTACK / 2
     val tenth = MAX_SPECIAL_ATTACK / 10

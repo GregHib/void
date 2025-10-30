@@ -5,6 +5,7 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -13,8 +14,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.event.Script
-import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -22,8 +21,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 
-@Script
-class Osman {
+class Osman : Script {
 
     init {
         npcOperate("Talk-to", "osman_*") {

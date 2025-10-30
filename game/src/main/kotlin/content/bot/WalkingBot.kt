@@ -1,14 +1,12 @@
 package content.bot
 
 import content.bot.interact.navigation.await
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.Walk
 
-@Script
-class WalkingBot : Api {
+class WalkingBot : Script {
 
     val tasks: TaskManager by inject()
 

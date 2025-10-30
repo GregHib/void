@@ -9,7 +9,7 @@ import content.bot.skill.combat.hasExactGear
 import content.bot.skill.combat.setupGear
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -20,12 +20,10 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 
-@Script
-class SmithingBot : Api {
+class SmithingBot : Script {
 
     val interfaceDefinitions: InterfaceDefinitions by inject()
     val itemDefinitions: ItemDefinitions by inject()

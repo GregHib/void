@@ -7,6 +7,7 @@ import content.entity.player.dialogue.type.*
 import content.entity.sound.jingle
 import content.quest.questCompleted
 import net.pearx.kasechange.toTitleCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
@@ -18,15 +19,13 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Tile
 
-@Script
-class CharterShip {
+class CharterShip : Script {
 
     val locations = listOf(
         "catherby",

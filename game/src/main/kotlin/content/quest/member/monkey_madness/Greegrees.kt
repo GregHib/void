@@ -4,7 +4,7 @@ import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -13,14 +13,12 @@ import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-@Script
-class Greegrees : Api {
+class Greegrees : Script {
 
     val items: FloorItems by inject()
     val areas: AreaDefinitions by inject()

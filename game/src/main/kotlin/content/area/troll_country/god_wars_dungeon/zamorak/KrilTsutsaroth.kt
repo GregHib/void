@@ -7,7 +7,7 @@ import content.entity.effect.toxin.poison
 import content.entity.sound.areaSound
 import content.entity.sound.sound
 import content.skill.prayer.protectMelee
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
@@ -16,13 +16,11 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.npcDespawn
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-@Script
-class KrilTsutsaroth : Api {
+class KrilTsutsaroth : Script {
 
     val npcs: NPCs by inject()
 

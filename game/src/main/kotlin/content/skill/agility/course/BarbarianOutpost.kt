@@ -1,6 +1,7 @@
 package content.skill.agility.course
 
 import content.entity.combat.hit.damage
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -12,14 +13,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.type.random
 
-@Script
-class BarbarianOutpost {
+class BarbarianOutpost : Script {
 
     init {
         objectOperate("Squeeze-through", "barbarian_outpost_entrance") {

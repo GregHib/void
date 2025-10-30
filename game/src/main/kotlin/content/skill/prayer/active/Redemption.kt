@@ -1,12 +1,10 @@
 package content.skill.prayer.active
 
 import content.skill.prayer.praying
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class Redemption : Api {
+class Redemption : Script {
     init {
         levelChanged(Skill.Constitution) { player, skill, from, to ->
             if (to <= 0 || to >= player.levels.getMax(skill) / 10 || !player.praying("redemption")) {

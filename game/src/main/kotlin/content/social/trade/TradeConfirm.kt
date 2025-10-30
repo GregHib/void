@@ -3,6 +3,7 @@ package content.social.trade
 import com.github.michaelbull.logging.InlineLogger
 import content.social.trade.Trade.getPartner
 import content.social.trade.lend.Loan
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
@@ -14,13 +15,11 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.MoveItem.moveAll
 
-@Script
-class TradeConfirm {
+class TradeConfirm : Script {
 
     val logger = InlineLogger()
 

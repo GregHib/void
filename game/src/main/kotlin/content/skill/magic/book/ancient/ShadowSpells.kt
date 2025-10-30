@@ -2,10 +2,9 @@ package content.skill.magic.book.ancient
 
 import content.entity.combat.hit.characterCombatAttack
 import content.skill.magic.spell.Spell
-import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.Script
 
-@Script
-class ShadowSpells {
+class ShadowSpells : Script {
 
     init {
         characterCombatAttack(spell = "shadow_*", type = "magic") { source ->

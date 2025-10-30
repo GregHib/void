@@ -1,16 +1,15 @@
 package content.entity.obj
 
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
-@Script
-class BushPicking {
+class BushPicking : Script {
 
     init {
         objectOperate("Pick-from", "cadava_bush_full", "cadava_bush_half") {

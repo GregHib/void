@@ -6,6 +6,7 @@ import content.entity.player.dialogue.type.intEntry
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.social.trade.offer
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
@@ -14,7 +15,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.inventoryUpdate
 import world.gregs.voidps.engine.inv.moveAll
@@ -22,8 +22,7 @@ import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
 
-@Script
-class PriceChecker {
+class PriceChecker : Script {
 
     init {
         interfaceOpen("price_checker") { player ->

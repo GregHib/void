@@ -1,14 +1,13 @@
 package content.entity.player.command
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.type.Zone
 
-@Script
-class ZoneCommands {
+class ZoneCommands : Script {
 
     private val zones: DynamicZones by inject()
 

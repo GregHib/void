@@ -1,6 +1,7 @@
 package content.entity.player.command
 
 import content.entity.effect.transform
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
@@ -13,13 +14,11 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setTimeBar
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import world.gregs.voidps.type.Delta
 
-@Script
-class NPCUpdatingCommands {
+class NPCUpdatingCommands : Script {
 
     val npcs: NPCs by inject()
     val definitions: NPCDefinitions by inject()

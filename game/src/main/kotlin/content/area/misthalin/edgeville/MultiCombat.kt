@@ -1,13 +1,11 @@
 package content.area.misthalin.edgeville
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.*
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class MultiCombat : Api {
+class MultiCombat : Script {
 
     val areaDefinitions: AreaDefinitions by inject()
 

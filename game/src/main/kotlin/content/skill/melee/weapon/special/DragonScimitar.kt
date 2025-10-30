@@ -5,15 +5,13 @@ import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.isCurses
 import content.skill.prayer.prayerStart
 import net.pearx.kasechange.toTitleCase
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
-@Script
-class DragonScimitar : Api {
+class DragonScimitar : Script {
 
     init {
         specialAttackDamage("sever") {

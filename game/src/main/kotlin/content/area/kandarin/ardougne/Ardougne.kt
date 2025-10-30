@@ -6,6 +6,7 @@ import content.entity.player.dialogue.type.*
 import content.entity.player.inv.inventoryItem
 import content.entity.sound.sound
 import content.quest.quest
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.open
@@ -13,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -22,8 +22,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-@Script
-class Ardougne {
+class Ardougne : Script {
 
     val mudpatch = listOf(
         Tile(2566, 3332, 0),

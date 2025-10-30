@@ -10,6 +10,7 @@ import content.social.assist.Assistance.redirectSkillExperience
 import content.social.assist.Assistance.stopRedirectingSkillExp
 import content.social.assist.Assistance.toggleInventory
 import content.social.friend.friend
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
@@ -25,14 +26,12 @@ import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperience
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.timer.TICKS
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
-@Script
-class RequestAssist {
+class RequestAssist : Script {
 
     val skills = listOf(
         Skill.Runecrafting,

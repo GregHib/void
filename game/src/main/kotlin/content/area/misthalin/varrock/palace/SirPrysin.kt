@@ -5,13 +5,13 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.sound.sound
 import content.quest.quest
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -21,8 +21,7 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-@Script
-class SirPrysin {
+class SirPrysin : Script {
 
     val objects: GameObjects by inject()
     val cupboardTile = Tile(3204, 3469)

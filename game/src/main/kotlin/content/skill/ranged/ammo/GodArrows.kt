@@ -4,12 +4,11 @@ import content.entity.combat.hit.Damage
 import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.hit
 import content.skill.ranged.ammo
-import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 
-@Script
-class GodArrows {
+class GodArrows : Script {
 
     init {
         combatAttack(type = "range") { source ->

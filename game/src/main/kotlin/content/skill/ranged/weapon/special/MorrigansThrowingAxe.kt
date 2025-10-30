@@ -4,11 +4,10 @@ import content.entity.combat.hit.hit
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.skill.ranged.ammo
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class MorrigansThrowingAxe {
+class MorrigansThrowingAxe : Script {
 
     init {
         specialAttack("hamstring") { player ->

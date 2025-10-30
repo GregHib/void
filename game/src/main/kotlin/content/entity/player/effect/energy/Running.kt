@@ -1,6 +1,6 @@
 package content.entity.player.effect.energy
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendRunEnergy
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
@@ -10,10 +10,8 @@ import world.gregs.voidps.engine.entity.character.mode.Rest
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class Running : Api {
+class Running : Script {
 
     init {
         playerSpawn { player ->

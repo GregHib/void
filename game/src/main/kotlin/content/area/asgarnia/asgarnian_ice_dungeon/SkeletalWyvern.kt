@@ -8,19 +8,18 @@ import content.entity.effect.freeze
 import content.entity.effect.frozen
 import content.entity.proj.shoot
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-@Script
-class SkeletalWyvern {
+class SkeletalWyvern : Script {
 
     val specials = listOf("ice")
 

@@ -7,21 +7,19 @@ import content.entity.combat.npcCombatSwing
 import content.entity.proj.shoot
 import content.entity.sound.areaSound
 import content.entity.sound.sound
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.npcDespawn
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-@Script
-class KreeArra : Api {
+class KreeArra : Script {
 
     val players: Players by inject()
     val areas: AreaDefinitions by inject()

@@ -2,18 +2,17 @@ package content.area.fremennik_province.waterbirth_island_dungeon
 
 import content.entity.combat.attackers
 import content.entity.death.npcDeath
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.remove
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-@Script
-class DoorSupport {
+class DoorSupport : Script {
 
     val objects: GameObjects by inject()
 

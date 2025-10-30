@@ -7,7 +7,7 @@ import content.quest.questCompleted
 import content.quest.questJournal
 import net.pearx.kasechange.toTitleCase
 import world.gregs.config.Config
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.modCommand
 import world.gregs.voidps.engine.client.command.stringArg
@@ -29,7 +29,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.obj.objectApproach
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.timer.toTicks
@@ -44,8 +43,7 @@ import java.time.temporal.TemporalAdjusters
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
-@Script
-class PenguinHideAndSeek : Api {
+class PenguinHideAndSeek : Script {
 
     val npcs: NPCs by inject()
     val areas: AreaDefinitions by inject()

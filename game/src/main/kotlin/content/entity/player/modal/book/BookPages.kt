@@ -1,6 +1,7 @@
 package content.entity.player.modal.book
 
 import content.entity.player.inv.inventoryOption
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
@@ -9,11 +10,9 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class BookPages {
+class BookPages : Script {
 
     val books: Books by inject()
 

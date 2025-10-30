@@ -2,20 +2,18 @@ package content.minigame.sorceress_garden
 
 import content.entity.proj.shoot
 import content.entity.sound.sound
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import kotlin.getValue
 
-@Script
-class Elementals : Api {
+class Elementals : Script {
     val patrols: PatrolDefinitions by inject()
 
     init {

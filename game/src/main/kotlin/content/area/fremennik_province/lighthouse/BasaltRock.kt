@@ -3,6 +3,7 @@ package content.area.fremennik_province.lighthouse
 import content.entity.combat.hit.damage
 import content.entity.gfx.areaGfx
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
@@ -13,14 +14,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.type.random
 
-@Script
-class BasaltRock {
+class BasaltRock : Script {
 
     init {
         obstacle("Jump-to", "beach", Tile(2522, 3595), Direction.NORTH, exp = false)

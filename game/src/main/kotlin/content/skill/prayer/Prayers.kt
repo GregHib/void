@@ -3,14 +3,12 @@ package content.skill.prayer
 import content.entity.sound.sound
 import content.skill.prayer.PrayerConfigs.ACTIVE_CURSES
 import content.skill.prayer.PrayerConfigs.ACTIVE_PRAYERS
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.headIcon
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class Prayers : Api {
+class Prayers : Script {
 
     init {
         playerSpawn { player ->

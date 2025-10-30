@@ -6,6 +6,7 @@ import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.statement
 import content.entity.sound.jingle
 import net.pearx.kasechange.toSnakeCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
@@ -15,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.engine.map.collision.blocked
@@ -25,8 +25,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
 
-@Script
-class Emotes {
+class Emotes : Script {
 
     val definitions: InterfaceDefinitions by inject()
 

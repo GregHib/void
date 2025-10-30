@@ -1,7 +1,7 @@
 package content.social.clan
 
 import content.social.friend.*
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.*
 import world.gregs.voidps.engine.entity.playerDespawn
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
@@ -23,8 +22,7 @@ import world.gregs.voidps.network.login.protocol.encode.appendClanChat
 import world.gregs.voidps.network.login.protocol.encode.updateClanChat
 import java.util.concurrent.TimeUnit
 
-@Script
-class ClanChat : Api {
+class ClanChat : Script {
 
     val accounts: AccountDefinitions by inject()
     val maxMembers = 100

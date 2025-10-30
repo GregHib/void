@@ -2,13 +2,12 @@ package content.skill.magic.book.ancient
 
 import content.entity.combat.hit.characterCombatAttack
 import content.entity.effect.toxin.poison
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
 
-@Script
-class SmokeSpells {
+class SmokeSpells : Script {
 
     val definitions: SpellDefinitions by inject()
 

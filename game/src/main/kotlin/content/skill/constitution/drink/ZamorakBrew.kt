@@ -1,12 +1,11 @@
 package content.skill.constitution.drink
 
 import content.skill.constitution.canConsume
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class ZamorakBrew {
+class ZamorakBrew : Script {
 
     init {
         canConsume("zamorak_brew*", "zamorak_mix*") { player ->

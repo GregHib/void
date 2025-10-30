@@ -1,7 +1,7 @@
 package content.entity.player.kept
 
 import content.entity.player.effect.skulled
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
@@ -9,12 +9,10 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.Timer
 
-@Script
-class ItemsKeptOnDeathScreen : Api {
+class ItemsKeptOnDeathScreen : Script {
 
     val enums: EnumDefinitions by inject()
 

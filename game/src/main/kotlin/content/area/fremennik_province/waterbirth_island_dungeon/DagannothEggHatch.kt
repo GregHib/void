@@ -1,17 +1,16 @@
 package content.area.fremennik_province.waterbirth_island_dungeon
 
 import content.entity.effect.transform
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-@Script
-class DagannothEggHatch {
+class DagannothEggHatch : Script {
 
     val npcs: NPCs by inject()
 

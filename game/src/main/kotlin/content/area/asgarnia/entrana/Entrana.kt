@@ -2,6 +2,7 @@ package content.area.asgarnia.entrana
 
 import content.entity.effect.stun
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -10,14 +11,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-@Script
-class Entrana {
+class Entrana : Script {
     init {
         objectOperate("Cross", "entrana_gangplank_exit") {
             player.walkOverDelay(Tile(2834, 3333, 1))

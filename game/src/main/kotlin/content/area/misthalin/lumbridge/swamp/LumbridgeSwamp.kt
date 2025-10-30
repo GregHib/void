@@ -5,12 +5,12 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.destroy.destroyed
 import content.quest.quest
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -20,8 +20,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-@Script
-class LumbridgeSwamp {
+class LumbridgeSwamp : Script {
 
     val npcs: NPCs by inject()
 

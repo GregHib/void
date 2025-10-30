@@ -2,17 +2,16 @@ package content.area.kandarin.ardougne
 
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
-@Script
-class LegendsGuild {
+class LegendsGuild : Script {
 
     init {
         objectOperate("Look", "legends_guild_totem_pole") {

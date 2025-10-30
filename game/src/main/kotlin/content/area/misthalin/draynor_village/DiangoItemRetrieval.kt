@@ -2,6 +2,7 @@ package content.area.misthalin.draynor_village
 
 import content.entity.player.bank.ownsItem
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
@@ -11,7 +12,6 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.playerDespawn
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -19,8 +19,7 @@ import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 
-@Script
-class DiangoItemRetrieval {
+class DiangoItemRetrieval : Script {
 
     val itemLimit = 48
     val container = InterfaceDefinition.pack(468, 2)

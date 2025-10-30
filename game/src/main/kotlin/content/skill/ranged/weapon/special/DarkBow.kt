@@ -7,13 +7,12 @@ import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.entity.sound.sound
 import content.skill.ranged.ammo
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class DarkBow {
+class DarkBow : Script {
 
     init {
         specialAttack("descent_of_darkness") { player ->

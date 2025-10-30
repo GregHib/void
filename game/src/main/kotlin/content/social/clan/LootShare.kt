@@ -1,16 +1,14 @@
 package content.social.clan
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
-@Script
-class LootShare : Api {
+class LootShare : Script {
 
     init {
         playerSpawn { player ->

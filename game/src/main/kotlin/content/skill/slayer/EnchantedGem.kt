@@ -9,18 +9,16 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.inv.inventoryItem
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.Action
 import world.gregs.voidps.engine.queue.strongQueue
 
-@Script
-class EnchantedGem : Api {
+class EnchantedGem : Script {
 
     val slayerDefinitions: SlayerTaskDefinitions by inject()
 

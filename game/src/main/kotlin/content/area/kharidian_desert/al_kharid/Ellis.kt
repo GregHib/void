@@ -9,6 +9,7 @@ import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import net.pearx.kasechange.toLowerSpaceCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colours
@@ -23,15 +24,13 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 
-@Script
-class Ellis {
+class Ellis : Script {
 
     val itemDefs: ItemDefinitions by inject()
 

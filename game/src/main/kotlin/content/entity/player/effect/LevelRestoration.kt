@@ -1,17 +1,15 @@
 package content.entity.player.effect
 
 import content.skill.prayer.praying
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
-@Script
-class LevelRestoration : Api {
+class LevelRestoration : Script {
 
     val skills = Skill.all.filterNot { it == Skill.Prayer || it == Skill.Summoning || it == Skill.Constitution }
 

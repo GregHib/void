@@ -6,6 +6,7 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -13,7 +14,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -22,8 +22,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.type.Tile
 
-@Script
-class WestArdougne {
+class WestArdougne : Script {
 
     val floorItems: FloorItems by inject()
 

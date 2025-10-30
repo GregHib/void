@@ -4,6 +4,7 @@ import content.entity.npc.shop.OpenShop
 import content.entity.player.dialogue.sendLines
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.adminCommands
 import world.gregs.voidps.engine.client.command.boolArg
@@ -23,14 +24,12 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.encode.*
 import kotlin.collections.iterator
 
-@Script
-class InterfaceCommands {
+class InterfaceCommands : Script {
 
     val definitions: InterfaceDefinitions by inject()
     val animationDefinitions: AnimationDefinitions by inject()

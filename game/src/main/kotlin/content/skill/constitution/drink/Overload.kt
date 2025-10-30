@@ -3,19 +3,17 @@ package content.skill.constitution.drink
 import content.area.wilderness.inWilderness
 import content.entity.combat.hit.directHit
 import content.skill.constitution.canConsume
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
-@Script
-class Overload : Api {
+class Overload : Script {
 
     val skills = listOf(
         Skill.Attack,

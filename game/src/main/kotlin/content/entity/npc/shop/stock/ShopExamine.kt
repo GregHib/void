@@ -1,12 +1,11 @@
 package content.entity.npc.shop.stock
 
 import content.entity.npc.shop.shopInventory
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class ShopExamine {
+class ShopExamine : Script {
 
     init {
         interfaceOption("Examine", "inventory", "shop_side") {

@@ -12,6 +12,7 @@ import content.entity.player.dialogue.type.statement
 import content.entity.sound.sound
 import content.quest.quest
 import org.rsmod.game.pathfinder.LineValidator
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -19,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
@@ -27,8 +27,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-@Script
-class SirVyvin {
+class SirVyvin : Script {
 
     val floorItems: FloorItems by inject()
     val npcs: NPCs by inject()

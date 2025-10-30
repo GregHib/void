@@ -9,7 +9,7 @@ import content.entity.obj.objTeleportLand
 import content.skill.melee.weapon.attackStyle
 import content.skill.prayer.prayerStart
 import content.skill.ranged.ammo
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
@@ -20,14 +20,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelCha
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
-@Script
-class LumbridgeBeginnerTasks : Api {
+class LumbridgeBeginnerTasks : Script {
 
     val areas: AreaDefinitions by inject()
 

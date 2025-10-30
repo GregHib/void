@@ -3,12 +3,11 @@ package content.entity.npc.shop.stock
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.npc.shop.general.GeneralStores
 import world.gregs.voidps.cache.config.data.InventoryDefinition
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.playerDespawn
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.add
@@ -18,8 +17,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 import kotlin.math.max
 
-@Script
-class Restock : Api {
+class Restock : Script {
 
     val inventoryDefinitions: InventoryDefinitions by inject()
     val logger = InlineLogger()

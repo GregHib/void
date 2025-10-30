@@ -3,6 +3,7 @@ package content.skill.crafting
 import content.entity.player.dialogue.type.intEntry
 import content.quest.quest
 import net.pearx.kasechange.toTitleCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
@@ -18,13 +19,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.weakQueue
 
-@Script
-class SilverCasting {
+class SilverCasting : Script {
 
     val itemDefinitions: ItemDefinitions by inject()
 

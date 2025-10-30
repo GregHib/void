@@ -1,14 +1,13 @@
 package content.area.troll_country.god_wars_dungeon
 
 import content.entity.obj.door.enterDoor
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class GodwarsDoors {
+class GodwarsDoors : Script {
 
     val areas: AreaDefinitions by inject()
 

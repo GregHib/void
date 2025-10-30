@@ -8,13 +8,12 @@ import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.flag.CollisionFlag
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.CollisionFlags
@@ -25,8 +24,7 @@ import kotlin.getValue
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
-@Script
-class PathFindingCommands : Api {
+class PathFindingCommands : Script {
 
     val patrols: PatrolDefinitions by inject()
     val collisions: Collisions by inject()

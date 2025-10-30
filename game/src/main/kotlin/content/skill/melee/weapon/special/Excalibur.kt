@@ -4,15 +4,13 @@ import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttackPrepare
 import content.entity.sound.sound
 import content.skill.melee.weapon.weapon
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
-@Script
-class Excalibur : Api {
+class Excalibur : Script {
 
     init {
         timerStart("sanctuary") { 4 }

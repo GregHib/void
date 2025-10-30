@@ -3,7 +3,7 @@ package content.area.misthalin.lumbridge.farm
 import content.entity.effect.stun
 import content.entity.player.dialogue.type.statement
 import content.quest.questCompleted
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -11,14 +11,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
-@Script
-class Cows : Api {
+class Cows : Script {
 
     init {
         npcSpawn("cow_*") { npc ->

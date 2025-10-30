@@ -2,19 +2,18 @@ package content.skill.prayer.bone
 
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.makeAmount
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
 
-@Script
-class BoneOffering {
+class BoneOffering : Script {
 
     init {
         itemOnObjectOperate(obj = "altar*") {

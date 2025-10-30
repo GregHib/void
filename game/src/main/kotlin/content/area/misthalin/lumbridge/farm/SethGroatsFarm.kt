@@ -3,18 +3,17 @@ package content.area.misthalin.lumbridge.farm
 import content.entity.player.bank.ownsItem
 import content.entity.player.inv.item.take.canTake
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-@Script
-class SethGroatsFarm {
+class SethGroatsFarm : Script {
 
     init {
         objectOperate("Take-hatchet", "hatchet_logs") {

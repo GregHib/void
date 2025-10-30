@@ -3,6 +3,7 @@ package content.area.misthalin.varrock.grand_exchange
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
@@ -10,11 +11,9 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.suspend.ContinueSuspension
 
-@Script
-class BrugsenBurson {
+class BrugsenBurson : Script {
 
     init {
         npcOperate("Talk-to", "brugsen_bursen") {

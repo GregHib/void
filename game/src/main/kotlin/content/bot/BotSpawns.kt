@@ -1,8 +1,8 @@
 package content.bot
 
 import kotlinx.coroutines.*
-import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.Contexts
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -37,8 +36,7 @@ import kotlin.coroutines.resume
 import kotlin.reflect.KClass
 import kotlin.text.toIntOrNull
 
-@Script
-class BotSpawns : Api {
+class BotSpawns : Script {
 
     val areas: AreaDefinitions by inject()
     val bots = mutableListOf<Player>()

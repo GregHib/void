@@ -1,12 +1,10 @@
 package content.social.chat
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class ChatSetup : Api {
+class ChatSetup : Script {
 
     init {
         playerSpawn { player ->

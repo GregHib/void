@@ -5,12 +5,11 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.Uncertain
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class Hans {
+class Hans : Script {
 
     init {
         npcOperate("Talk-to", "hans") {

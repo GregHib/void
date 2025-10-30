@@ -1,7 +1,7 @@
 package content.entity.world
 
 import content.bot.isBot
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.mode.move.ReloadRegion
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.playerDespawn
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.zone.DynamicZones
@@ -26,8 +25,8 @@ import world.gregs.voidps.type.Zone
  * Keeps track of when players enter and move between regions
  * Loads maps when they are accessed
  */
-@Script
-class RegionLoading : Api {
+
+class RegionLoading : Script {
 
     val players: Players by inject()
     val dynamicZones: DynamicZones by inject()

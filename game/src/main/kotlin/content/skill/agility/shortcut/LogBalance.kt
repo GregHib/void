@@ -3,6 +3,7 @@ package content.skill.agility.shortcut
 import content.entity.combat.hit.damage
 import content.entity.gfx.areaGfx
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
@@ -12,13 +13,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.type.random
 
-@Script
-class LogBalance {
+class LogBalance : Script {
 
     init {
         objectOperate("Walk-across", "coal_truck_log_balance") {

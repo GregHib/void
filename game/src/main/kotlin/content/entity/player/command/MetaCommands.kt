@@ -4,6 +4,7 @@ import content.quest.questJournal
 import content.social.trade.exchange.GrandExchange
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.Commands
 import world.gregs.voidps.engine.client.command.commandAlias
 import world.gregs.voidps.engine.client.command.modCommand
@@ -19,12 +20,10 @@ import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.rights
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import kotlin.math.max
 
-@Script
-class MetaCommands {
+class MetaCommands : Script {
 
     val fontDefinitions: FontDefinitions by inject()
     val itemDefinitions: ItemDefinitions by inject()

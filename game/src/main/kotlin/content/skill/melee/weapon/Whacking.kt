@@ -1,13 +1,11 @@
 package content.skill.melee.weapon
 
-import world.gregs.voidps.engine.Api
-import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-@Script
-class Whacking : Api {
+class Whacking : Script {
 
     init {
         playerSpawn { player ->

@@ -3,15 +3,13 @@ package content.area.misthalin.edgeville
 import content.area.wilderness.inWilderness
 import content.skill.prayer.prayerStart
 import content.skill.prayer.prayerStop
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class WildernessIcons : Api {
+class WildernessIcons : Script {
 
     init {
         interfaceOpen("wilderness_skull") { player ->

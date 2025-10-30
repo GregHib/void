@@ -4,6 +4,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.makeAmount
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
@@ -20,7 +21,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -28,8 +28,7 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-@Script
-class Cooking {
+class Cooking : Script {
 
     val definitions: ItemDefinitions by inject()
     val objects: GameObjects by inject()

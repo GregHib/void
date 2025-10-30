@@ -4,11 +4,10 @@ import content.entity.effect.toxin.antiPoison
 import content.entity.player.effect.antifire
 import content.entity.player.effect.superAntifire
 import content.skill.constitution.consume
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class DungeoneeringPotions {
+class DungeoneeringPotions : Script {
 
     init {
         consume("weak_melee_potion") { player ->

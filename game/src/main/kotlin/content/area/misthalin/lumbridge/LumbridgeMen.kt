@@ -5,12 +5,11 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.random
 
-@Script
-class LumbridgeMen {
+class LumbridgeMen : Script {
 
     init {
         npcOperate("Talk-to", "lumbridge_man*", "lumbridge_woman*") {

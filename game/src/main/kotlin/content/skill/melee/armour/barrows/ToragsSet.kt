@@ -2,15 +2,13 @@ package content.skill.melee.armour.barrows
 
 import content.entity.combat.hit.characterCombatAttack
 import content.entity.player.effect.energy.runEnergy
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.type.random
 
-@Script
-class ToragsSet : Api {
+class ToragsSet : Script {
 
     init {
         playerSpawn { player ->

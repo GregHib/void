@@ -9,6 +9,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
@@ -20,7 +21,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
@@ -30,8 +30,7 @@ import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
 
-@Script
-class Tollgate {
+class Tollgate : Script {
 
     val objects: GameObjects by inject()
 

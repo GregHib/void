@@ -1,13 +1,12 @@
 package content.area.asgarnia.falador
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 
 internal suspend fun Interaction<Player>.openDressingRoom(id: String) {
@@ -19,8 +18,7 @@ internal suspend fun Interaction<Player>.openDressingRoom(id: String) {
     player.softTimers.start("dressing_room")
 }
 
-@Script
-class DressingRoom : Api {
+class DressingRoom : Script {
     init {
         timerStart("dressing_room") { 1 }
 

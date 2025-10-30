@@ -1,17 +1,16 @@
 package content.social.trade
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 
-@Script
-class TradeSync {
+class TradeSync : Script {
 
     val interfaceDefinitions: InterfaceDefinitions by inject()
     val inventoryDefinitions: InventoryDefinitions by inject()

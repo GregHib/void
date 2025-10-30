@@ -3,13 +3,12 @@ package content.skill.fishing
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import org.rsmod.game.pathfinder.flag.CollisionFlag
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.random
@@ -18,8 +17,7 @@ import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-@Script
-class FishingSpot : Api {
+class FishingSpot : Script {
 
     val areas: AreaDefinitions by inject()
     val players: Players by inject()

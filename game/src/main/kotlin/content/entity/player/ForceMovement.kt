@@ -1,10 +1,8 @@
 package content.entity.player
 
-import world.gregs.voidps.engine.Api
-import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.Script
 
-@Script
-class ForceMovement : Api {
+class ForceMovement : Script {
     init {
         moved { player, _ ->
             val block: () -> Unit = player.remove("force_walk") ?: return@moved

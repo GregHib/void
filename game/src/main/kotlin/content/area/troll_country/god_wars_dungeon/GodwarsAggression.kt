@@ -2,7 +2,7 @@ package content.area.troll_country.god_wars_dungeon
 
 import content.entity.combat.killer
 import content.entity.death.npcDeath
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.ui.close
@@ -15,15 +15,13 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntNPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.type.random
 
-@Script
-class GodwarsAggression : Api {
+class GodwarsAggression : Script {
 
     val areas: AreaDefinitions by inject()
     val dungeon = areas["godwars_dungeon_multi_area"]

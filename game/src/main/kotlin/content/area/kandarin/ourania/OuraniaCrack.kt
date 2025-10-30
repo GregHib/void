@@ -1,12 +1,11 @@
 package content.area.kandarin.ourania
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class OuraniaCrack {
+class OuraniaCrack : Script {
 
     init {
         objectOperate("Squeeze-through", "ourania_crack_enter") {

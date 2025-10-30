@@ -2,20 +2,19 @@ package content.entity.combat.hit
 
 import content.entity.combat.damageDealers
 import content.skill.melee.weapon.Weapon
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.flagHits
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import kotlin.collections.set
 import kotlin.math.floor
 
-@Script
-class CombatHitsplats {
+class CombatHitsplats : Script {
 
     val definitions: SpellDefinitions by inject()
 

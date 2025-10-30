@@ -1,13 +1,11 @@
 package content.skill.melee.armour.barrows
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.itemAdded
 import world.gregs.voidps.engine.inv.itemRemoved
 
-@Script
-class VeracsSet : Api {
+class VeracsSet : Script {
 
     init {
         playerSpawn { player ->

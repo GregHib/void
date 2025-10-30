@@ -6,21 +6,20 @@ import content.entity.sound.jingle
 import content.entity.sound.midi
 import content.entity.sound.sound
 import net.pearx.kasechange.toSnakeCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.commandAlias
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.encode.playJingle
 import world.gregs.voidps.network.login.protocol.encode.playMIDI
 import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
 import kotlin.collections.iterator
 
-@Script
-class SoundCommands {
+class SoundCommands : Script {
 
     val enums: EnumDefinitions by inject()
 

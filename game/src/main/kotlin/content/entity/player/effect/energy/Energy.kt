@@ -1,7 +1,7 @@
 package content.entity.player.effect.energy
 
-import world.gregs.voidps.engine.Api
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendRunEnergy
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.Settings
@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.Timer
 
 const val MAX_RUN_ENERGY = 10000
@@ -24,8 +23,7 @@ var Player.runEnergy: Int
         sendRunEnergy(energyPercent())
     }
 
-@Script
-class Energy : Api {
+class Energy : Script {
 
     init {
         playerSpawn { player ->
