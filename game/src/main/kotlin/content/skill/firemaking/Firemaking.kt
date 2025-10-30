@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.data.Fire
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -20,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.item.floor.floorItemOperate
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.ObjectShape
@@ -59,12 +57,12 @@ class Firemaking : Script {
             }
         }
 
-        floorItemOperate("Light") {
-            lightFire(player, target)
+        floorItemOperate("Light") { (target) ->
+            lightFire(this, target)
         }
     }
 
-    suspend fun Interaction<Player>.lightFire(
+    suspend fun lightFire(
         player: Player,
         floorItem: FloorItem,
     ) {
@@ -75,7 +73,7 @@ class Firemaking : Script {
         val log = Item(floorItem.id)
         val fire: Fire = log.def.getOrNull("firemaking") ?: return
         var first = true
-        while (awaitDialogues()) {
+        while (player.awaitDialogues()) {
             if (!player.canLight(log.id, fire, floorItem)) {
                 break
             }
@@ -87,9 +85,9 @@ class Firemaking : Script {
                 }
                 player.anim("light_fire")
                 player.start("action_delay", 4)
-                pause(4)
+                player.pause(4)
             } else if (remaining > 0) {
-                pause(remaining)
+                player.pause(remaining)
             }
             if (Level.success(player.levels.get(Skill.Firemaking), fire.chance) && floorItems.remove(floorItem)) {
                 player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
