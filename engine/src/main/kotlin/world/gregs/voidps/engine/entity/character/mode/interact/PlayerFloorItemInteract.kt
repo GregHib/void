@@ -21,7 +21,7 @@ data class PlayerFloorItemInteract(
     }
 
     override fun approach() {
-        invoke(Approachable.noDelays, Approachable.playerFloorItemBlocks)
+        invoke(emptySet(), Approachable.playerFloorItemBlocks)
     }
 
     private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend Player.(PlayerFloorItemInteract) -> Unit>>) {

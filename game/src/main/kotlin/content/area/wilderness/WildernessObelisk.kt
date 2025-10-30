@@ -24,7 +24,7 @@ class WildernessObelisk : Script {
     val obelisks = areas.getTagged("obelisk")
 
     init {
-        objectOperate("Activate", "wilderness_obelisk_*") {
+        objectOperate("Activate", "wilderness_obelisk_*") { (target) ->
             if (World.containsQueue(target.id)) {
                 return@objectOperate
             }

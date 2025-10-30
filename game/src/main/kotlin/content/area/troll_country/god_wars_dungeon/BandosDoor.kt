@@ -12,20 +12,20 @@ import world.gregs.voidps.engine.inv.inventory
 class BandosDoor : Script {
 
     init {
-        objectOperate("Bang", "godwars_bandos_big_door") {
-            if (player.tile.x >= target.tile.x) {
-                if (!player.has(Skill.Strength, 70, message = true)) {
+        objectOperate("Bang", "godwars_bandos_big_door") { (target) ->
+            if (tile.x >= target.tile.x) {
+                if (!has(Skill.Strength, 70, message = true)) {
                     return@objectOperate
                 }
-                if (!player.inventory.contains("hammer")) {
-                    player.message("You need a suitable hammer to ring the gong.")
+                if (!inventory.contains("hammer")) {
+                    message("You need a suitable hammer to ring the gong.")
                     return@objectOperate
                 }
-                player.anim("godwars_hammer_bang")
+                anim("godwars_hammer_bang")
                 delay(3)
             }
             target.remove(ticks = 2, collision = false)
-            player.walkOverDelay(doorTarget(player, target) ?: return@objectOperate)
+            walkOverDelay(doorTarget(this, target) ?: return@objectOperate)
         }
     }
 }

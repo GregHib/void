@@ -27,10 +27,10 @@ import world.gregs.voidps.type.random
 class ArcheryTarget : Script {
 
     init {
-        objectOperate("Shoot-at", "archery_target") {
-            player.closeDialogue()
-            player.face(target)
-            swing(player, target, 0)
+        objectOperate("Shoot-at", "archery_target") { (target) ->
+            closeDialogue()
+            face(target)
+            swing(this, target, 0)
         }
     }
 

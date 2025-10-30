@@ -77,24 +77,24 @@ class Ardougne : Script {
             }
         }
 
-        objectOperate("Open", "alrenas_cupboard_shut") {
-            player.message("You open the cupboard.")
-            player.anim("human_pickupfloor")
-            player.sound("cupboard_open")
+        objectOperate("Open", "alrenas_cupboard_shut") { (target) ->
+            message("You open the cupboard.")
+            anim("human_pickupfloor")
+            sound("cupboard_open")
             target.replace("alrenas_cupboard_open", ticks = TimeUnit.MINUTES.toTicks(1))
         }
 
         objectOperate("Search", "alrenas_cupboard_open") {
-            if (player.quest("plague_city") != "unstarted" || player.quest("plague_city") != "started") {
-                player.message("You search the wardrobe but you find nothing.")
+            if (quest("plague_city") != "unstarted" || quest("plague_city") != "started") {
+                message("You search the wardrobe but you find nothing.")
             } else {
-                if (player.inventory.contains("gas_mask")) {
-                    player.message("You search the wardrobe but you find nothing.")
-                } else if (player.bank.contains("gas_mask")) {
+                if (inventory.contains("gas_mask")) {
+                    message("You search the wardrobe but you find nothing.")
+                } else if (bank.contains("gas_mask")) {
                     statement("The wardrobe is empty.")
                     player<Neutral>("I think I've still got one of Alrena's gas masks in my bank.")
                 } else {
-                    if (!player.inventory.add("gas_mask")) {
+                    if (!inventory.add("gas_mask")) {
                         item("gas_mask", 300, "You find a protective mask but you don't have enough room to take it.")
                         return@objectOperate
                     }

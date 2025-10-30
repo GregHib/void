@@ -27,11 +27,11 @@ class OuraniaAltar : Script {
 
     init {
         objectOperate("Craft-rune", "ourania_altar") {
-            val level = player.levels.get(Skill.Runecrafting)
+            val level = levels.get(Skill.Runecrafting)
             val table = drops.get("ourania_rune_table_level_${if (level >= 99) 10 else level / 10}") ?: return@objectOperate
             var experience = 0.0
             var usedArdougneCloak = false
-            player.inventory.transaction {
+            inventory.transaction {
                 val essence = removeToLimit("pure_essence", 28)
                 if (essence == 0) {
                     error = TransactionError.Deficient()
@@ -44,28 +44,28 @@ class OuraniaAltar : Script {
                 for (drop in runes) {
                     val item = drop.toItem()
                     val rune: Rune = item.def["runecrafting"]
-                    val amount = if (player["ardougne_medium_diary_complete", false] && random.nextDouble(100.0) <= rune.doubleChance) 2 else 1
+                    val amount = if (get("ardougne_medium_diary_complete", false) && random.nextDouble(100.0) <= rune.doubleChance) 2 else 1
                     usedArdougneCloak = usedArdougneCloak || amount == 2
                     add(item.id, amount)
                     experience += rune.xp * 2.0
                 }
             }
-            player.start("movement_delay", 3)
-            when (player.inventory.transaction.error) {
+            start("movement_delay", 3)
+            when (inventory.transaction.error) {
                 is TransactionError.Deficient, is TransactionError.Invalid -> {
-                    player.message("You don't have any pure essences to bind.")
+                    message("You don't have any pure essences to bind.")
                 }
                 TransactionError.None -> {
-                    player.exp(Skill.Runecrafting, experience)
-                    player.anim("bind_runes")
-                    player.gfx("bind_runes")
-                    player.sound("bind_runes")
-                    player.message("You bind the temple's power into runes.", ChatType.Filter)
+                    exp(Skill.Runecrafting, experience)
+                    anim("bind_runes")
+                    gfx("bind_runes")
+                    sound("bind_runes")
+                    message("You bind the temple's power into runes.", ChatType.Filter)
                     if (usedArdougneCloak) {
-                        player.message("Your Ardougne cloak seems to shimmer with power.", ChatType.Filter)
+                        message("Your Ardougne cloak seems to shimmer with power.", ChatType.Filter)
                     }
                 }
-                else -> logger.warn { "Error binding runes $player ${player.levels.get(Skill.Runecrafting)} $experience" }
+                else -> logger.warn { "Error binding runes $this ${levels.get(Skill.Runecrafting)} $experience" }
             }
         }
 

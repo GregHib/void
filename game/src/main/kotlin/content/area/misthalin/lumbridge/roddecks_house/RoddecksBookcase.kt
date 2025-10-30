@@ -10,14 +10,14 @@ class RoddecksBookcase : Script {
 
     init {
         objectOperate("Search", "roddecks_bookcase") {
-            if (player.inventory.contains("roddecks_diary") && player.inventory.contains("manual_unstable_foundations")) {
-                player.message("There's nothing particularly interesting here.")
+            if (inventory.contains("roddecks_diary") && inventory.contains("manual_unstable_foundations")) {
+                message("There's nothing particularly interesting here.")
             } else {
-                if (!player.inventory.contains("roddecks_diary")) {
-                    player.inventory.add("roddecks_diary")
+                if (!inventory.contains("roddecks_diary")) {
+                    inventory.add("roddecks_diary")
                 }
-                if (!player.inventory.contains("manual_unstable_foundations")) {
-                    player.inventory.add("manual_unstable_foundations")
+                if (!inventory.contains("manual_unstable_foundations")) {
+                    inventory.add("manual_unstable_foundations")
                 }
             }
         }

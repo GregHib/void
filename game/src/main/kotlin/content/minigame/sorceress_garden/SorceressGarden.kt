@@ -28,36 +28,36 @@ class SorceressGarden : Script {
 
     init {
         objectOperate("Drink-from", "sorceress_garden_fountain") {
-            player.anim("osman_fountain_drink")
+            anim("osman_fountain_drink")
             delay(6)
-            player.teleport(Tile(3321, 3141), "modern")
+            teleport(Tile(3321, 3141), "modern")
         }
 
-        objectOperate("Open", "sorceress_gate_winter") {
-            enterGarden(target, player)
+        objectOperate("Open", "sorceress_gate_winter") { (target) ->
+            enterGarden(target, this)
         }
 
-        objectOperate("Open", "sorceress_gate_spring") {
-            if (player.levels.get(Skill.Thieving) < 25) {
+        objectOperate("Open", "sorceress_gate_spring") { (target) ->
+            if (levels.get(Skill.Thieving) < 25) {
                 item("highwayman_mask", 145, "You need a Thieving level of 25 to pick the lock of this gate.")
             } else {
-                enterGarden(target, player)
+                enterGarden(target, this)
             }
         }
 
-        objectOperate("Open", "sorceress_gate_autumn") {
-            if (player.levels.get(Skill.Thieving) < 45) {
+        objectOperate("Open", "sorceress_gate_autumn") { (target) ->
+            if (levels.get(Skill.Thieving) < 45) {
                 item("highwayman_mask", 145, "You need a Thieving level of 45 to pick the lock of this gate.")
             } else {
-                enterGarden(target, player)
+                enterGarden(target, this)
             }
         }
 
-        objectOperate("Open", "sorceress_gate_summer") {
-            if (player.levels.get(Skill.Thieving) < 65) {
+        objectOperate("Open", "sorceress_gate_summer") { (target) ->
+            if (levels.get(Skill.Thieving) < 65) {
                 item("highwayman_mask", 145, "You need a Thieving level of 65 to pick the lock of this gate.")
             } else {
-                enterGarden(target, player)
+                enterGarden(target, this)
             }
         }
 

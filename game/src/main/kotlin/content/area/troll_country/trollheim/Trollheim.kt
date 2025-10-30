@@ -15,149 +15,149 @@ import world.gregs.voidps.type.equals
 class Trollheim : Script {
 
     init {
-        objectOperate("Climb", "trollheim_rocks") {
-            player.face(target)
+        objectOperate("Climb", "trollheim_rocks") { (target) ->
+            face(target)
             if (target.tile.equals(2901, 3680)) {
-                player.anim("human_climbing_down")
+                anim("human_climbing_down")
                 val target = Tile(2903, 3680)
-                player.exactMoveDelay(target, 120, direction = Direction.WEST)
-                player.exp(Skill.Agility, 1.0)
+                exactMoveDelay(target, 120, direction = Direction.WEST)
+                exp(Skill.Agility, 1.0)
             } else if (target.tile.equals(2902, 3680)) {
                 val target = Tile(2900, 3680)
-                player.renderEmote("climbing")
-                player.walkOverDelay(target)
-                player.clearRenderEmote()
-                player.exp(Skill.Agility, 8.0)
+                renderEmote("climbing")
+                walkOverDelay(target)
+                clearRenderEmote()
+                exp(Skill.Agility, 8.0)
             }
         }
 
-        objectOperate("Climb", "trollheim_rocks_4") {
-            player.face(target)
+        objectOperate("Climb", "trollheim_rocks_4") { (target) ->
+            face(target)
             if (target.tile.equals(2885, 3684)) {
-                if (player.tile.x >= target.tile.x) {
-                    player.anim("rocks_climb_down")
-                    player.exactMoveDelay(target.tile.copy(x = 2884), 50, direction = Direction.EAST)
-                    player.exp(Skill.Agility, 1.0)
-                    player.clearAnim()
+                if (tile.x >= target.tile.x) {
+                    anim("rocks_climb_down")
+                    exactMoveDelay(target.tile.copy(x = 2884), 50, direction = Direction.EAST)
+                    exp(Skill.Agility, 1.0)
+                    clearAnim()
                 } else {
-                    player.renderEmote("climbing")
-                    player.walkOverDelay(target.tile.copy(x = 2886))
-                    player.exp(Skill.Agility, 8.0)
-                    player.clearRenderEmote()
+                    renderEmote("climbing")
+                    walkOverDelay(target.tile.copy(x = 2886))
+                    exp(Skill.Agility, 8.0)
+                    clearRenderEmote()
                 }
             } else if (target.tile.equals(2887, 3661)) {
-                if (player.tile.y >= target.tile.y) {
-                    player.anim("rocks_climb_down", delay = 15)
-                    player.exactMoveDelay(target.tile.addY(-1), 50, direction = Direction.NORTH)
-                    player.exp(Skill.Agility, 1.0)
-                    player.clearAnim()
+                if (tile.y >= target.tile.y) {
+                    anim("rocks_climb_down", delay = 15)
+                    exactMoveDelay(target.tile.addY(-1), 50, direction = Direction.NORTH)
+                    exp(Skill.Agility, 1.0)
+                    clearAnim()
                 } else {
-                    player.renderEmote("climbing")
-                    player.walkOverDelay(target.tile.addY(1))
-                    player.exp(Skill.Agility, 1.0)
-                    player.clearRenderEmote()
+                    renderEmote("climbing")
+                    walkOverDelay(target.tile.addY(1))
+                    exp(Skill.Agility, 1.0)
+                    clearRenderEmote()
                 }
             }
         }
 
-        objectOperate("Climb", "trollheim_rocks_5") {
-            player.face(target)
+        objectOperate("Climb", "trollheim_rocks_5") { (target) ->
+            face(target)
             if (target.tile.equals(2885, 3683)) {
-                if (player.tile.x >= target.tile.x) {
-                    player.anim("rocks_climb_down")
-                    player.exactMoveDelay(target.tile.addX(-1), 50, direction = Direction.EAST)
-                    player.exp(Skill.Agility, 1.0)
-                    player.clearAnim()
+                if (tile.x >= target.tile.x) {
+                    anim("rocks_climb_down")
+                    exactMoveDelay(target.tile.addX(-1), 50, direction = Direction.EAST)
+                    exp(Skill.Agility, 1.0)
+                    clearAnim()
                 } else {
-                    player.renderEmote("climbing")
-                    player.walkOverDelay(target.tile.addX(1))
-                    player.exp(Skill.Agility, 8.0)
-                    player.clearRenderEmote()
+                    renderEmote("climbing")
+                    walkOverDelay(target.tile.addX(1))
+                    exp(Skill.Agility, 8.0)
+                    clearRenderEmote()
                 }
             } else if (target.tile.equals(2888, 3661)) {
-                if (player.tile.y >= target.tile.y) {
-                    player.anim("rocks_climb_down", delay = 15)
-                    player.exactMoveDelay(target.tile.addY(-1), 50, direction = Direction.NORTH)
-                    player.exp(Skill.Agility, 1.0)
-                    player.clearAnim()
+                if (tile.y >= target.tile.y) {
+                    anim("rocks_climb_down", delay = 15)
+                    exactMoveDelay(target.tile.addY(-1), 50, direction = Direction.NORTH)
+                    exp(Skill.Agility, 1.0)
+                    clearAnim()
                 } else {
-                    player.renderEmote("climbing")
-                    player.walkOverDelay(target.tile.addY(1))
-                    player.exp(Skill.Agility, 1.0)
-                    player.clearRenderEmote()
+                    renderEmote("climbing")
+                    walkOverDelay(target.tile.addY(1))
+                    exp(Skill.Agility, 1.0)
+                    clearRenderEmote()
                 }
             }
         }
 
-        objectOperate("Climb", "trollheim_rocks_hard") {
-            player.face(target)
+        objectOperate("Climb", "trollheim_rocks_hard") { (target) ->
+            face(target)
             if (target.tile.equals(2908, 3682)) {
-                player.anim("human_climbing_down", delay = 10)
-                player.exactMoveDelay(target.tile, 40, direction = Direction.WEST)
-                player.anim("human_climbing_down", delay = 10)
-                player.exactMoveDelay(Tile(2909, 3684), 120, direction = Direction.SOUTH)
-                player.exp(Skill.Agility, 8.0)
-                player.face(Direction.SOUTH)
-                player.clearAnim()
+                anim("human_climbing_down", delay = 10)
+                exactMoveDelay(target.tile, 40, direction = Direction.WEST)
+                anim("human_climbing_down", delay = 10)
+                exactMoveDelay(Tile(2909, 3684), 120, direction = Direction.SOUTH)
+                exp(Skill.Agility, 8.0)
+                face(Direction.SOUTH)
+                clearAnim()
             } else if (target.tile.equals(2909, 3683)) {
-                player.renderEmote("climbing")
-                player.walkOverDelay(Tile(2909, 3682))
-                player.clearRenderEmote()
+                renderEmote("climbing")
+                walkOverDelay(Tile(2909, 3682))
+                clearRenderEmote()
                 delay()
-                player.renderEmote("climbing")
-                player.walkOverDelay(Tile(2907, 3682))
-                player.exp(Skill.Agility, 8.0)
-                player.clearRenderEmote()
+                renderEmote("climbing")
+                walkOverDelay(Tile(2907, 3682))
+                exp(Skill.Agility, 8.0)
+                clearRenderEmote()
             }
         }
 
-        objectOperate("Climb", "trollheim_rocks_advanced") {
-            if (!player.has(Skill.Agility, 44)) {
+        objectOperate("Climb", "trollheim_rocks_advanced") { (target) ->
+            if (!has(Skill.Agility, 44)) {
                 return@objectOperate
             }
-            player.face(target)
-            player.message("You climb onto the rock...")
-            player.anim("rocks_pile_climb", delay = 30)
-            val direction = if (player.tile.x >= target.tile.x) Direction.WEST else Direction.EAST
-            player.exactMoveDelay(target.tile.add(direction), startDelay = 30, delay = 94, direction = direction)
-            player.message("...and step down the other side.")
-            player.clearAnim()
+            face(target)
+            message("You climb onto the rock...")
+            anim("rocks_pile_climb", delay = 30)
+            val direction = if (tile.x >= target.tile.x) Direction.WEST else Direction.EAST
+            exactMoveDelay(target.tile.add(direction), startDelay = 30, delay = 94, direction = direction)
+            message("...and step down the other side.")
+            clearAnim()
         }
 
-        objectOperate("Climb", "trollheim_rocks_medium") {
-            if (!player.has(Skill.Agility, 43)) {
-                return@objectOperate
-            }
-            // TODO 1-4 damage on failure
-            player.face(Direction.NORTH)
-            if (player.tile.y >= target.tile.y) {
-                player.anim("human_climbing_down", delay = 10)
-                player.exactMoveDelay(target.tile.addY(-2), 120, direction = Direction.NORTH)
-                player.clearAnim()
-            } else {
-                player.renderEmote("climbing")
-                player.walkOverDelay(target.tile.addY(2))
-                player.clearRenderEmote()
-            }
-            player.exp(Skill.Agility, 8.0)
-        }
-
-        objectOperate("Climb", "trollheim_rocks_easy") {
-            if (!player.has(Skill.Agility, 41)) {
+        objectOperate("Climb", "trollheim_rocks_medium") { (target) ->
+            if (!has(Skill.Agility, 43)) {
                 return@objectOperate
             }
             // TODO 1-4 damage on failure
-            player.face(Direction.NORTH)
-            if (player.tile.x >= target.tile.x) {
-                player.anim("human_climbing_down", delay = 10)
-                player.exactMoveDelay(target.tile.addX(-2), 120, direction = Direction.EAST)
-                player.clearAnim()
+            face(Direction.NORTH)
+            if (tile.y >= target.tile.y) {
+                anim("human_climbing_down", delay = 10)
+                exactMoveDelay(target.tile.addY(-2), 120, direction = Direction.NORTH)
+                clearAnim()
             } else {
-                player.renderEmote("climbing")
-                player.walkOverDelay(target.tile.addX(2))
-                player.clearRenderEmote()
+                renderEmote("climbing")
+                walkOverDelay(target.tile.addY(2))
+                clearRenderEmote()
             }
-            player.exp(Skill.Agility, 8.0)
+            exp(Skill.Agility, 8.0)
+        }
+
+        objectOperate("Climb", "trollheim_rocks_easy") { (target) ->
+            if (!has(Skill.Agility, 41)) {
+                return@objectOperate
+            }
+            // TODO 1-4 damage on failure
+            face(Direction.NORTH)
+            if (tile.x >= target.tile.x) {
+                anim("human_climbing_down", delay = 10)
+                exactMoveDelay(target.tile.addX(-2), 120, direction = Direction.EAST)
+                clearAnim()
+            } else {
+                renderEmote("climbing")
+                walkOverDelay(target.tile.addX(2))
+                clearRenderEmote()
+            }
+            exp(Skill.Agility, 8.0)
         }
     }
 

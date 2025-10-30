@@ -58,7 +58,7 @@ class SlayerTower : Script {
             player.exp(Skill.Agility, if (player["slayer_chain_success", true]) 3.0 else 6.0)
         }
 
-        objectOperate("Open", "slayer_tower_door*_closed") {
+        objectOperate("Open", "slayer_tower_door*_closed") { (target) ->
             enterDoor(target)
         }
     }

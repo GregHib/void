@@ -15,33 +15,33 @@ import kotlin.random.Random
 class Vine : Script {
 
     init {
-        objectOperate("Chop-down", "brimhaven_vine_*") {
-            val hatchet = Hatchet.best(player)
-            if (hatchet == null || !Hatchet.hasRequirements(player, hatchet, true)) {
-                player.message("You need a hatchet to cut through these vines.")
+        objectOperate("Chop-down", "brimhaven_vine_*") { (target) ->
+            val hatchet = Hatchet.best(this)
+            if (hatchet == null || !Hatchet.hasRequirements(this, hatchet, true)) {
+                message("You need a hatchet to cut through these vines.")
                 return@objectOperate
             }
 
-            if (!player.has(Skill.Woodcutting, 10, true)) {
-                player.message("You need a Woodcutting level of at least 10 to chop through the vines.")
+            if (!has(Skill.Woodcutting, 10, true)) {
+                message("You need a Woodcutting level of at least 10 to chop through the vines.")
                 return@objectOperate
             }
 
-            player.queue("cutting_vine") {
-                player.message("You swing your hatchet at the vines...")
-                player.anim("${hatchet.id}_chop")
+            queue("cutting_vine") {
+                message("You swing your hatchet at the vines...")
+                anim("${hatchet.id}_chop")
                 delay(3)
 
                 if (Random.nextInt(6) == 0) {
-                    player.message("You fail to cut the vines.")
+                    message("You fail to cut the vines.")
                     return@queue
                 }
 
-                player.message("You hack your way through the vines.")
+                message("You hack your way through the vines.")
                 target.replace("${target.id}_cut", ticks = TimeUnit.SECONDS.toTicks(2))
 
-                val direction = target.tile.delta(player.tile)
-                player.walkOverDelay(target.tile.add(direction))
+                val direction = target.tile.delta(tile)
+                walkOverDelay(target.tile.add(direction))
             }
         }
     }

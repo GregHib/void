@@ -39,8 +39,8 @@ class ApeAtollDungeon : Script {
         }
 
         objectOperate("Pick", "ape_atoll_monkey_nut_bush") {
-            if (player.questCompleted("recipe_for_disaster")) {
-                player.message("You have already made the King's meal, you don't need any more of these.")
+            if (questCompleted("recipe_for_disaster")) {
+                message("You have already made the King's meal, you don't need any more of these.")
             }
         }
 

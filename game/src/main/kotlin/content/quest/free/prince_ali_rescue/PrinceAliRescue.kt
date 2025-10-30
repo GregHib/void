@@ -25,19 +25,19 @@ class PrinceAliRescue : Script {
     )
 
     init {
-        objectOperate("Open", "draynor_prison_door_closed") {
-            if (player.inventory.contains("bronze_key_prince_ali_rescue") || player.quest("prince_ali_rescue") == "prince_ali_disguise") {
-                when (player.quest("prince_ali_rescue")) {
+        objectOperate("Open", "draynor_prison_door_closed") { (target) ->
+            if (inventory.contains("bronze_key_prince_ali_rescue") || quest("prince_ali_rescue") == "prince_ali_disguise") {
+                when (quest("prince_ali_rescue")) {
                     "keli_tied_up", "prince_ali_disguise" -> {
-                        player.sound("unlock")
+                        sound("unlock")
                         enterDoor(target)
                     }
                     "joe_beers" -> statement("You'll need to deal with Lady Keli before freeing the Prince.")
                     else -> statement("You'll need to deal with Lady Keli and the guard before freeing the Prince.")
                 }
             } else {
-                player.sound("locked")
-                player.message("The gate is locked.")
+                sound("locked")
+                message("The gate is locked.")
             }
         }
 

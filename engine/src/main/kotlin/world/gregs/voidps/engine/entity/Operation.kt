@@ -1,14 +1,12 @@
 package world.gregs.voidps.engine.entity
 
-import world.gregs.voidps.engine.entity.character.mode.interact.NPCFloorItemInteract
-import world.gregs.voidps.engine.entity.character.mode.interact.NPCPlayerInteract
-import world.gregs.voidps.engine.entity.character.mode.interact.PlayerFloorItemInteract
-import world.gregs.voidps.engine.entity.character.mode.interact.PlayerPlayerInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.event.Wildcards
 
 /**
  * Target Entity interaction within close-proximity
@@ -26,6 +24,15 @@ interface Operation {
         npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
 
+    fun objectOperate(option: String, obj: String = "*", arriveDelay: Boolean = true, block: suspend Player.(PlayerObjectInteract) -> Unit) {
+        for (id in Wildcards.find(obj)) {
+            if (!arriveDelay) {
+                noDelays.add("$option:$id")
+            }
+            playerObjectBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
+        }
+    }
+
     fun floorItemOperate(option: String, arriveDelay: Boolean = true, block: suspend Player.(PlayerFloorItemInteract) -> Unit) {
         if (!arriveDelay) {
             noDelays.add(option)
@@ -40,8 +47,9 @@ interface Operation {
         npcFloorItemBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
 
-/*
-    *//**
+    /*
+        */
+    /**
      * NPC Dialogue helper
      *//*
     fun talkWith(npc: String, block: suspend Dialogue.() -> Unit) {
@@ -52,7 +60,8 @@ interface Operation {
         }
     }
 
-    *//**
+    */
+    /**
      * Interface on Player
      *//*
     fun interfaceOnPlayerOperate(id: String, block: suspend (player: Player, id: String, slot: Int, item: Item, target: Player) -> Unit) {
@@ -61,7 +70,8 @@ interface Operation {
         }
     }
 
-    *//**
+    */
+    /**
      * Item on Player
      *//*
     fun itemOnPlayerOperate(item: String, block: suspend (player: Player, id: String, slot: Int, item: Item, target: Player) -> Unit) {
@@ -71,7 +81,8 @@ interface Operation {
     }
 
 
-    *//**
+    */
+    /**
      * Npc option
      *//*
     fun npcOperate(option: String, npc: String, block: suspend (player: Player, target: NPC) -> Unit) {
@@ -80,7 +91,8 @@ interface Operation {
         }
     }
 
-    *//**
+    */
+    /**
      * Interface on NPC
      * Any [npc] is allowed but [id] is required
      *//*
@@ -92,7 +104,8 @@ interface Operation {
         }
     }
 
-    *//**
+    */
+    /**
      * Item on NPC
      * Any item is allowed, [npc] is required
      *//*
@@ -105,7 +118,8 @@ interface Operation {
     }
 
 
-    *//**
+    */
+    /**
      * GameObject option
      *//*
     fun objectOperate(option: String, obj: String, arriveDelay: Boolean = true, block: suspend (Player, GameObject) -> Unit) {
@@ -117,7 +131,8 @@ interface Operation {
         }
     }
 
-    *//**
+    */
+    /**
      * Interface on GameObject
      * Any [obj] is allowed but [id] is required
      *//*
@@ -132,7 +147,8 @@ interface Operation {
         }
     }
 
-    *//**
+    */
+    /**
      * Item on GameObject
      * Any item is allowed, [obj] is required
      *//*
@@ -148,7 +164,8 @@ interface Operation {
     }
 
 
-    *//**
+    */
+    /**
      * FloorItem option
      *//*
     fun floorItemOperate(option: String, item: String, arriveDelay: Boolean = true, block: suspend (Player, FloorItem) -> Unit) {
@@ -160,7 +177,8 @@ interface Operation {
         }
     }
 
-    *//**
+    */
+    /**
      * Interface on FloorItem
      * Any [item] is allowed but [id] is required
      *//*
@@ -175,7 +193,8 @@ interface Operation {
         }
     }
 
-    *//**
+    */
+    /**
      * Item on FloorItem
      * Any item is allowed, [floorItem] is required
      *//*
@@ -192,7 +211,8 @@ interface Operation {
 
 
 
-    *//**
+    */
+    /**
      * Npc npc option
      *//*
     suspend fun npcOperateNpc(option: String, npc: String, block: suspend (npc: NPC, target: NPC) -> Unit) {
@@ -201,7 +221,8 @@ interface Operation {
         }
     }
 
-    *//**
+    */
+    /**
      * Npc game object option
      *//*
     suspend fun npcOperateObject(option: String, obj: String, arriveDelay: Boolean = true, block: suspend (npc: NPC, target: GameObject) -> Unit) {
@@ -213,7 +234,8 @@ interface Operation {
         }
     }
 
-    *//**
+    */
+    /**
      * Npc floor item option
      *//**/
 
@@ -224,7 +246,7 @@ interface Operation {
         val playerNpcBlocks = mutableMapOf<String, MutableList<suspend (Player, NPC) -> Unit>>()
         val onNpcBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, NPC) -> Unit>>()
 
-        val playerObjectBlocks = mutableMapOf<String, MutableList<suspend (Player, GameObject) -> Unit>>()
+        val playerObjectBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerObjectInteract) -> Unit>>()
         val onObjectBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, GameObject) -> Unit>>()
 
         val playerFloorItemBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerFloorItemInteract) -> Unit>>()
@@ -232,7 +254,7 @@ interface Operation {
 
         val npcPlayerBlocks = mutableMapOf<String, MutableList<suspend NPC.(NPCPlayerInteract) -> Unit>>()
         val npcNpcBlocks = mutableMapOf<String, MutableList<suspend (NPC, NPC) -> Unit>>()
-        val npcObjectBlocks = mutableMapOf<String, MutableList<suspend (NPC, GameObject) -> Unit>>()
+        val npcObjectBlocks = mutableMapOf<String, MutableList<suspend NPC.(NPCObjectInteract) -> Unit>>()
         val npcFloorItemBlocks = mutableMapOf<String, MutableList<suspend NPC.(NPCFloorItemInteract) -> Unit>>()
 
         // Don't call arriveDelay before an object or floor item interaction

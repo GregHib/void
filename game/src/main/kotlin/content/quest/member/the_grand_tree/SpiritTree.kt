@@ -25,17 +25,17 @@ class SpiritTree : Script {
 
     init {
         objectOperate("Talk-to", "spirit_tree") {
-            if (!player.questCompleted("the_grand_tree")) {
+            if (!questCompleted("the_grand_tree")) {
                 statement("The tree doesn't feel like talking.")
                 return@objectOperate
             }
             npc<Talk>("spirit_tree", "Hello gnome friend. Where would you like to go?")
-            updatePosition(player)
-            player.open("spirit_tree")
+            updatePosition(this)
+            open("spirit_tree")
         }
 
-        objectOperate("Talk-to", "spirit_tree_gnome", "spirit_tree_stronghold") {
-            if (!player.questCompleted("the_grand_tree")) {
+        objectOperate("Talk-to", "spirit_tree_gnome,spirit_tree_stronghold") {
+            if (!questCompleted("the_grand_tree")) {
                 statement("The tree doesn't feel like talking.")
                 return@objectOperate
             }
@@ -44,18 +44,18 @@ class SpiritTree : Script {
                 option<Talk>("No thanks, old tree.")
                 option<Quiz>("Where can I go?") {
                     npc<Talk>("spirit_tree_gnome", "You can travel to the trees which are related to me.")
-                    updatePosition(player)
-                    player.open("spirit_tree")
+                    updatePosition(this)
+                    open("spirit_tree")
                 }
             }
         }
 
         objectOperate("Teleport", "spirit_tree*") {
-            if (!player.questCompleted("the_grand_tree")) {
+            if (!questCompleted("the_grand_tree")) {
                 return@objectOperate
             }
-            updatePosition(player)
-            player.open("spirit_tree")
+            updatePosition(this)
+            open("spirit_tree")
         }
 
         interfaceOpen("spirit_tree") { player ->

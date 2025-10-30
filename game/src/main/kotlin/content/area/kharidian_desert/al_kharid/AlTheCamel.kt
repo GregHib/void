@@ -59,7 +59,7 @@ class AlTheCamel : Script {
         }
 
         objectOperate("Pick-up", "dung") {
-            if (!player.inventory.contains("bucket")) {
+            if (!inventory.contains("bucket")) {
                 player<Talk>("I'm not picking that up. I'll need a container...")
                 return@objectOperate
             }
@@ -71,7 +71,7 @@ class AlTheCamel : Script {
                 player<Quiz>("Surely there's something better I could use to pick up the dung.")
                 return@itemOnObjectOperate
             }
-            scoopPoop()
+            player.scoopPoop()
         }
     }
 
@@ -205,13 +205,13 @@ class AlTheCamel : Script {
         )
     }
 
-    suspend fun SuspendableContext<Player>.scoopPoop() {
-        if (!player.inventory.replace("bucket", "ugthanki_dung")) {
+    suspend fun Player.scoopPoop() {
+        if (!inventory.replace("bucket", "ugthanki_dung")) {
             return
         }
-        player.anim("fill_bucket")
-        player.message("You scoop up some camel dung into the bucket.")
-        if (player.inventory.contains("ugthanki_dung", 28)) {
+        anim("fill_bucket")
+        message("You scoop up some camel dung into the bucket.")
+        if (inventory.contains("ugthanki_dung", 28)) {
             player<Talk>("Phew - that's enough dung.")
         }
     }

@@ -23,16 +23,16 @@ class CraftingGuild : Script {
     val logger = InlineLogger()
 
     init {
-        objectOperate("Open", "guild_door_2_closed") {
-            if (player.tile.y == 3288) {
+        objectOperate("Open", "guild_door_2_closed") { (target) ->
+            if (tile.y == 3288) {
                 enterDoor(target, delay = 2)
                 return@objectOperate
             }
-            if (!player.has(Skill.Crafting, 40)) {
+            if (!has(Skill.Crafting, 40)) {
                 npc<Neutral>("master_crafter", "Sorry, only experienced crafters are allowed in here. You must be level 40 or above to enter.")
                 return@objectOperate
             }
-            if (!player.equipment.contains("brown_apron")) {
+            if (!equipment.contains("brown_apron")) {
                 npc<Neutral>("master_crafter", "Where's your brown apron? You can't come in here unless you're wearing one.")
                 return@objectOperate
             }

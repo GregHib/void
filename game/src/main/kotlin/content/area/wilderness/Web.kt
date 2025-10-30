@@ -14,13 +14,13 @@ import java.util.concurrent.TimeUnit
 class Web : Script {
 
     init {
-        objectOperate("Slash", "web*") {
-            if (player.weapon.def["slash_attack", 0] <= 0) {
-                player.message("Only a sharp blade can cut through this sticky web.")
-                cancel()
+        objectOperate("Slash", "web*") { (target) ->
+            if (weapon.def["slash_attack", 0] <= 0) {
+                message("Only a sharp blade can cut through this sticky web.")
+//                cancel() FIXME
                 return@objectOperate
             }
-            slash(player, target)
+            slash(this, target)
         }
 
         itemOnObjectOperate(obj = "web*") {

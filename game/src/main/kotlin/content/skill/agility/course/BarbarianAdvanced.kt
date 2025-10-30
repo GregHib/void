@@ -15,91 +15,91 @@ class BarbarianAdvanced : Script {
 
     init {
         objectOperate("Run-up", "barbarian_outpost_run_wall") {
-            if (!player.has(Skill.Agility, 90, message = true)) {
+            if (!has(Skill.Agility, 90, message = true)) {
                 return@objectOperate
             }
-            player.clear("face_entity")
+            clear("face_entity")
             delay()
-            player.face(Direction.NORTH)
-            player.anim("barbarian_wall_jump_climb")
+            face(Direction.NORTH)
+            anim("barbarian_wall_jump_climb")
             delay(7)
-            player.anim("barbarian_wall_jump")
-            player.exactMoveDelay(Tile(2538, 3545, 2), 30, Direction.NORTH)
+            anim("barbarian_wall_jump")
+            exactMoveDelay(Tile(2538, 3545, 2), 30, Direction.NORTH)
             delay(1)
-            player.exp(Skill.Agility, 15.0)
-            player.agilityStage(3)
+            exp(Skill.Agility, 15.0)
+            agilityStage(3)
         }
 
         objectOperate("Climb-up", "barbarian_outpost_climb_wall") {
-            player.clear("face_entity")
-            player.walkToDelay(Tile(2537, 3546, 2))
-            player.face(Direction.WEST)
+            clear("face_entity")
+            walkToDelay(Tile(2537, 3546, 2))
+            face(Direction.WEST)
             delay()
-            player.anim("barbarian_wall_climb")
+            anim("barbarian_wall_climb")
             delay()
-            player.tele(2536, 3546, 3)
-            player.anim("barbarian_wall_stand_up")
+            tele(2536, 3546, 3)
+            anim("barbarian_wall_stand_up")
             delay()
-            player.exp(Skill.Agility, 15.0)
-            player.agilityStage(4)
+            exp(Skill.Agility, 15.0)
+            agilityStage(4)
         }
 
-        objectOperate("Fire", "barbarian_outpost_spring") {
-            player.clear("face_entity")
-            player.face(Direction.NORTH)
+        objectOperate("Fire", "barbarian_outpost_spring") { (target) ->
+            clear("face_entity")
+            face(Direction.NORTH)
             delay(1)
             target.anim("barbarian_spring_fire")
             delay(1)
-            player.tele(2533, 3547, 3)
-            player.anim("barbarian_spring_shoot")
-            player.exactMoveDelay(Tile(2532, 3553, 3), 60, Direction.NORTH)
+            tele(2533, 3547, 3)
+            anim("barbarian_spring_shoot")
+            exactMoveDelay(Tile(2532, 3553, 3), 60, Direction.NORTH)
             target.anim("barbarian_spring_reset")
             delay(2)
-            player.exp(Skill.Agility, 15.0)
-            player.agilityStage(5)
+            exp(Skill.Agility, 15.0)
+            agilityStage(5)
         }
 
         objectOperate("Cross", "barbarian_outpost_balance_beam") {
-            player.face(Direction.EAST)
+            face(Direction.EAST)
             delay()
-            player.anim("circus_cartwheel")
+            anim("circus_cartwheel")
             delay()
-            player.exactMoveDelay(Tile(2536, 3553, 3), 45, Direction.EAST)
-            player.renderEmote("beam_balance")
+            exactMoveDelay(Tile(2536, 3553, 3), 45, Direction.EAST)
+            renderEmote("beam_balance")
             delay()
-            player.exp(Skill.Agility, 15.0)
-            player.agilityStage(6)
+            exp(Skill.Agility, 15.0)
+            agilityStage(6)
         }
 
         objectOperate("Jump-over", "barbarian_outpost_gap") {
-            player.clearRenderEmote()
-            player.anim("jump_down")
+            clearRenderEmote()
+            anim("jump_down")
             delay()
-            player.tele(2539, 3553, 2)
-            player.anim("jump_land")
+            tele(2539, 3553, 2)
+            anim("jump_land")
             delay()
-            player.exp(Skill.Agility, 15.0)
-            player.agilityStage(7)
+            exp(Skill.Agility, 15.0)
+            agilityStage(7)
         }
 
         objectOperate("Slide-down", "barbarian_outpost_roof") {
-            player.anim("barbarian_slide_start")
-            player.exactMoveDelay(player.tile.copy(x = 2540), 30, Direction.EAST)
-            player.anim("barbarian_slide")
-            player.exactMove(player.tile.copy(x = 2543, level = 1), 90, Direction.EAST)
+            anim("barbarian_slide_start")
+            exactMoveDelay(tile.copy(x = 2540), 30, Direction.EAST)
+            anim("barbarian_slide")
+            exactMove(tile.copy(x = 2543, level = 1), 90, Direction.EAST)
             delay()
-            player.anim("barbarian_slide")
+            anim("barbarian_slide")
             delay()
-            player.anim("barbarian_slide_jump")
+            anim("barbarian_slide_jump")
             delay()
-            player.tele(2544, player.tile.y, 0)
-            player.anim("jump_land")
+            tele(2544, tile.y, 0)
+            anim("jump_land")
             delay()
-            player.exp(Skill.Agility, 15.0)
-            if (player.agilityStage == 7) {
-                player.agilityStage = 0
-                player.inc("barbarian_course_advanced_laps")
-                player.exp(Skill.Agility, 615.0)
+            exp(Skill.Agility, 15.0)
+            if (agilityStage == 7) {
+                agilityStage = 0
+                inc("barbarian_course_advanced_laps")
+                exp(Skill.Agility, 615.0)
             }
         }
     }

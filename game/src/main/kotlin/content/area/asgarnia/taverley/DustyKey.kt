@@ -10,13 +10,13 @@ import world.gregs.voidps.engine.inv.inventory
 class DustyKey : Script {
 
     init {
-        objectOperate("Open", "gate_63_closed") {
-            if (player.inventory.contains("dusty_key")) {
-                player.sound("unlock")
+        objectOperate("Open", "gate_63_closed") { (target) ->
+            if (inventory.contains("dusty_key")) {
+                sound("unlock")
                 enterDoor(target)
             } else {
-                player.sound("locked")
-                player.message("The gate is locked.")
+                sound("locked")
+                message("The gate is locked.")
             }
         }
     }

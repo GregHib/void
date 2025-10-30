@@ -22,7 +22,7 @@ data class NPCFloorItemInteract(
     }
 
     override fun approach() {
-        invoke(Approachable.noDelays, Approachable.npcFloorItemBlocks)
+        invoke(emptySet(), Approachable.npcFloorItemBlocks)
     }
 
     private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend NPC.(NPCFloorItemInteract) -> Unit>>) {

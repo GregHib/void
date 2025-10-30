@@ -31,8 +31,8 @@ class TaverleyDungeon : Script {
     val rightSpawn = Tile(2887, 9829)
 
     init {
-        objectOperate("Open", "door_taverley_1_closed", "door_taverley_2_closed") {
-            if (player.tile.x >= 2889 || !spawn(player, leftSpawn) && !spawn(player, rightSpawn)) {
+        objectOperate("Open", "door_taverley_1_closed,door_taverley_2_closed") { (target) ->
+            if (tile.x >= 2889 || !spawn(this, leftSpawn) && !spawn(this, rightSpawn)) {
                 enterDoor(target)
             }
         }

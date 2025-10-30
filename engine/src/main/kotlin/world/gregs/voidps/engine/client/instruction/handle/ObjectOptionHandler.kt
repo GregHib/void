@@ -9,6 +9,9 @@ import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.NPCObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerObjectInteract
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -48,7 +51,7 @@ class ObjectOptionHandler(
             return
         }
         player.closeInterfaces()
-        player.interactObject(target, selectedOption, definition)
+        player.interactObject(target, selectedOption)
     }
 
     private fun getObject(tile: Tile, objectId: Int): GameObject? {
@@ -101,6 +104,10 @@ class ObjectOptionHandler(
     }
 }
 
-fun Player.interactObject(target: GameObject, option: String, definition: ObjectDefinition = target.def(this), approachRange: Int? = null) {
-    mode = Interact(this, target, ObjectOption(this, target, definition, option), approachRange = approachRange)
+fun Player.interactObject(target: GameObject, option: String, approachRange: Int? = null) {
+    mode = PlayerObjectInteract(target, option, this, approachRange)
+}
+
+fun NPC.interactObject(target: GameObject, option: String, approachRange: Int? = null) {
+    mode = NPCObjectInteract(target, option, this, approachRange)
 }

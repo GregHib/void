@@ -13,7 +13,7 @@ class WyvernCave : Script {
 
     init {
         objectOperate("Exit", "ice_dungeon_wyvern_cave_exit") {
-            val slayerLevel = player.levels.get(Skill.Slayer)
+            val slayerLevel = levels.get(Skill.Slayer)
             if (slayerLevel < 72) {
                 statement("You need a Slayer level of 72 to enter this cave.")
                 return@objectOperate
@@ -21,11 +21,11 @@ class WyvernCave : Script {
             statement("It's very cold in there... Are you sure you want to enter?")
             choice {
                 option("Yes, I'll brave the cold.") {
-                    player.message("You squeeze through the icy gap...")
-                    player.tele(Tile(3056, 9555, 0)) // Location inside Ice Dungeon for Wyverns
+                    message("You squeeze through the icy gap...")
+                    tele(Tile(3056, 9555, 0)) // Location inside Ice Dungeon for Wyverns
                 }
                 option("No, it's too cold for me.") {
-                    player.message("You decide to stay where it's warmer.")
+                    message("You decide to stay where it's warmer.")
                 }
             }
         }
@@ -34,17 +34,14 @@ class WyvernCave : Script {
             statement("This passage seems to lead back into the main Ice Dungeon.")
             choice {
                 option("Leave the cave.") {
-                    player.message("You crawl back through the gap.")
-                    player.tele(Tile(3056, 9562, 0)) // Just outside the entrance
+                    message("You crawl back through the gap.")
+                    tele(Tile(3056, 9562, 0)) // Just outside the entrance
                 }
                 option("Stay in the cave.") {
-                    player.message("You decide to stay here a while longer.")
+                    message("You decide to stay here a while longer.")
                 }
             }
         }
     }
 
-    // Wyvern cave entrance (Ice Dungeon)
-
-    // Exit back to Ice Dungeon
 }

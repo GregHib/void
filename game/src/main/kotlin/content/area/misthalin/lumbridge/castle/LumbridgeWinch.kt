@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.obj.objectOperate
 class LumbridgeWinch : Script {
 
     init {
-        objectOperate("Operate", "lumbridge_winch") {
-            player.message("It seems the winch is jammed. You can't move it.")
+        objectOperate("Operate", "lumbridge_winch") { (target) ->
+            message("It seems the winch is jammed. You can't move it.")
             areaSound("lever", target.tile)
         }
     }

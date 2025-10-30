@@ -72,8 +72,8 @@ class GiantMole : Script {
         }
 
         objectOperate("Climb", "giant_mole_lair_escape_rope") {
-            player.anim("climb_up")
-            player.tele(acceptedTiles.random())
+            anim("climb_up")
+            tele(acceptedTiles.random())
         }
 
         npcCombatDamage("giant_mole") {

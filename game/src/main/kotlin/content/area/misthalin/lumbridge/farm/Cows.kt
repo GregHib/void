@@ -41,19 +41,19 @@ class Cows : Script {
         }
 
         objectOperate("Steal-cowbell", "dairy_cow") {
-            if (!player.has(Skill.Thieving, 15)) {
+            if (!has(Skill.Thieving, 15)) {
                 return@objectOperate
             }
-            if (!player.questCompleted("cold_war")) {
+            if (!questCompleted("cold_war")) {
                 statement("You need to have started the Cold War quest to attempt this.")
                 return@objectOperate
             }
-            if (!Level.success(player.levels.get(Skill.Thieving), 128, 200)) {
-                player.message("The cow kicks you and stuns you.")
-                player.stun(player, 8, 10)
+            if (!Level.success(levels.get(Skill.Thieving), 128, 200)) {
+                message("The cow kicks you and stuns you.")
+                stun(this, 8, 10)
                 return@objectOperate
             }
-            player.inventory.add("cowbells")
+            inventory.add("cowbells")
         }
     }
 }

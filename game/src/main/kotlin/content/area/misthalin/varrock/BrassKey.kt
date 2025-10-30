@@ -10,13 +10,13 @@ import world.gregs.voidps.engine.inv.inventory
 class BrassKey : Script {
 
     init {
-        objectOperate("Open", "edgeville_dungeon_door_closed") {
-            if (player.inventory.contains("brass_key")) {
-                player.sound("unlock")
+        objectOperate("Open", "edgeville_dungeon_door_closed") { (target) ->
+            if (inventory.contains("brass_key")) {
+                sound("unlock")
                 enterDoor(target)
             } else {
-                player.sound("locked")
-                player.message("The door is locked. You need a brass key to open it.")
+                sound("locked")
+                message("The door is locked. You need a brass key to open it.")
             }
         }
     }

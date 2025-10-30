@@ -44,12 +44,12 @@ class SirGerry : Script {
         }
 
         objectOperate("Search", "godwars_knight*") {
-            if (player.ownsItem("knights_notes") || player.ownsItem("knights_notes_opened")) {
-                player.message("You find nothing of value on the knight.")
+            if (ownsItem("knights_notes") || ownsItem("knights_notes_opened")) {
+                message("You find nothing of value on the knight.")
                 return@objectOperate
             }
-            player.message("You find some handwritten notes on the knight.")
-            player.inventory.add("knights_notes")
+            message("You find some handwritten notes on the knight.")
+            inventory.add("knights_notes")
         }
 
         inventoryItem("Read", "knights_notes") {
@@ -65,12 +65,12 @@ class SirGerry : Script {
         }
 
         objectOperate("Tie-rope", "godwars_hole") {
-            if (!player.inventory.contains("rope")) {
+            if (!inventory.contains("rope")) {
                 return@objectOperate
             }
-            if (player["godwars_knights_notes", false] || player.ownsItem("knights_notes") || player.ownsItem("knights_notes_opened")) {
-                player.inventory.remove("rope")
-                player["godwars_entrance_rope"] = true
+            if (get("godwars_knights_notes", false) || ownsItem("knights_notes") || ownsItem("knights_notes_opened")) {
+                inventory.remove("rope")
+                set("godwars_entrance_rope", true)
             } else {
                 npc<Scared>("sir_gerry_normal", "Cough... Hey, over here.")
             }

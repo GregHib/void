@@ -1,9 +1,8 @@
 package world.gregs.voidps.engine.entity
 
-import world.gregs.voidps.engine.entity.character.mode.interact.NPCFloorItemInteract
-import world.gregs.voidps.engine.entity.character.mode.interact.NPCPlayerInteract
-import world.gregs.voidps.engine.entity.character.mode.interact.PlayerFloorItemInteract
-import world.gregs.voidps.engine.entity.character.mode.interact.PlayerPlayerInteract
+import world.gregs.voidps.engine.entity.Operation.Companion
+import world.gregs.voidps.engine.entity.Operation.Companion.noDelays
+import world.gregs.voidps.engine.entity.character.mode.interact.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -28,19 +27,19 @@ interface Approachable {
         npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
 
-    fun floorItemApproach(option: String, item: String, arriveDelay: Boolean = true, block: suspend Player.(PlayerFloorItemInteract) -> Unit) {
-        if (!arriveDelay) {
-            noDelays.addAll(Wildcards.find(item))
+    fun objectOperate(option: String, obj: String = "*", block: suspend Player.(PlayerObjectInteract) -> Unit) {
+        for (id in Wildcards.find(obj)) {
+            playerObjectBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
+    }
+
+    fun floorItemApproach(option: String, item: String, block: suspend Player.(PlayerFloorItemInteract) -> Unit) {
         for (id in Wildcards.find(item)) {
             playerFloorItemBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
     }
 
-    fun npcApproachFloorItem(option: String, item: String, arriveDelay: Boolean = true, block: suspend NPC.(NPCFloorItemInteract) -> Unit) {
-        if (!arriveDelay) {
-            noDelays.addAll(Wildcards.find(item))
-        }
+    fun npcApproachFloorItem(option: String, item: String, block: suspend NPC.(NPCFloorItemInteract) -> Unit) {
         for (id in Wildcards.find(item)) {
             npcFloorItemBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
@@ -244,7 +243,7 @@ interface Approachable {
         val playerNpcBlocks = mutableMapOf<String, MutableList<suspend (Player, NPC) -> Unit>>()
         val onNpcBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, NPC) -> Unit>>()
 
-        val playerObjectBlocks = mutableMapOf<String, MutableList<suspend (Player, GameObject) -> Unit>>()
+        val playerObjectBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerObjectInteract) -> Unit>>()
         val onObjectBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, GameObject) -> Unit>>()
 
         val playerFloorItemBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerFloorItemInteract) -> Unit>>()
@@ -252,11 +251,8 @@ interface Approachable {
 
         val npcPlayerBlocks = mutableMapOf<String, MutableList<suspend NPC.(NPCPlayerInteract) -> Unit>>()
         val npcNpcBlocks = mutableMapOf<String, MutableList<suspend (NPC, NPC) -> Unit>>()
-        val npcObjectBlocks = mutableMapOf<String, MutableList<suspend (NPC, GameObject) -> Unit>>()
+        val npcObjectBlocks = mutableMapOf<String, MutableList<suspend NPC.(NPCObjectInteract) -> Unit>>()
         val npcFloorItemBlocks = mutableMapOf<String, MutableList<suspend NPC.(NPCFloorItemInteract) -> Unit>>()
-
-        // Don't call arriveDelay before an object or floor item interaction
-        val noDelays = mutableSetOf<String>()
 
         fun clear() {
             playerPlayerBlocks.clear()
@@ -271,7 +267,6 @@ interface Approachable {
             npcNpcBlocks.clear()
             npcObjectBlocks.clear()
             npcFloorItemBlocks.clear()
-            noDelays.clear()
         }
     }
 }

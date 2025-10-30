@@ -25,8 +25,8 @@ class SaradominRock : Script {
             player.sendVariable("godwars_saradomin_rope_bottom")
         }
 
-        objectOperate("Tie-rope", "godwars_saradomin_rock_top", "godwars_saradomin_rock_bottom") {
-            tieRope(player, def.stringId)
+        objectOperate("Tie-rope", "godwars_saradomin_rock_top,godwars_saradomin_rock_bottom") { (target) ->
+            tieRope(this, target.def(this).stringId)
         }
 
         itemOnObjectOperate("rope", "godwars_saradomin_rock_top", handler = handler)

@@ -53,24 +53,24 @@ class ArmadylPillar : Script {
         }
 
         objectOperate("Search", "godwars_armadyl_crate") {
-            val hasCrossbow = player.inventory.items.any { Weapon.crossbows.contains(it.id) } || player.equipment.items.any { Weapon.crossbows.contains(it.id) }
-            val hasGrapple = player.holdsItem("mithril_grapple")
+            val hasCrossbow = inventory.items.any { Weapon.crossbows.contains(it.id) } || equipment.items.any { Weapon.crossbows.contains(it.id) }
+            val hasGrapple = holdsItem("mithril_grapple")
             if (!hasCrossbow || !hasGrapple) {
-                if (player.inventory.add("bronze_crossbow", "mithril_grapple")) {
+                if (inventory.add("bronze_crossbow", "mithril_grapple")) {
                     item("bronze_crossbow", 400, "Inside the crate you find a bronze crossbow and a grappling hook.")
-                } else if (player.inventory.add("bronze_crossbow")) {
+                } else if (inventory.add("bronze_crossbow")) {
                     item("bronze_crossbow", 400, "Inside the crate is a crossbow and grappling hook; unfortunately, you are already carrying too much to pick them up.")
                 } else {
                     statement("Inside the crate you find a bronze crossbow; there is also a grappling hook, but you don't have room to carry it.")
                 }
             } else if (!hasCrossbow) {
-                if (player.inventory.add("bronze_crossbow")) {
+                if (inventory.add("bronze_crossbow")) {
                     item("bronze_crossbow", 400, "You notice a bronze crossbow in the crate, which you add to the stuff in your backpack.")
                 } else {
                     statement("Inside the crate is a bronze crossbow; unfortunately you have no room to carry it.")
                 }
             } else if (!hasGrapple) {
-                if (player.inventory.add("mithril_grapple")) {
+                if (inventory.add("mithril_grapple")) {
                     item("mithril_grapple", 400, "You notice a grappling hook in the crate, which you add to the stuff in your backpack.")
                 } else {
                     statement("Inside the crate is a grappling hook; unfortunately you have no room to carry it.")

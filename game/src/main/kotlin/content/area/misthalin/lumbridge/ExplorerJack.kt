@@ -96,8 +96,8 @@ class ExplorerJack : Script {
         }
 
         objectOperate("Open", "explorer_jack_trapdoor") {
-            val explorerJack = npcs[player.tile.regionLevel].first { it.id.startsWith("explorer_jack") }
-            player.talkWith(explorerJack)
+            val explorerJack = npcs[tile.regionLevel].first { it.id.startsWith("explorer_jack") }
+            talkWith(explorerJack)
             npc<Uncertain>("I say, there's nothing interesting in my cellar! Better go exploring elsewhere, eh?")
             player<Quiz>("What's down there?")
             npc<RollEyes>("Crates, boxes, shelves - nothing you won't see in dozens of houses across Runescape. Go on, explore somewhere else!")

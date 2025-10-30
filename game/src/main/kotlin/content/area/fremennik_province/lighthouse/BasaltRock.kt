@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.entity.obj.objectOperate
@@ -43,9 +44,9 @@ class BasaltRock : Script {
         obstacle("Jump-to", "rocky_shore", Tile(2514, 3619), Direction.SOUTH, exp = false)
     }
 
-    suspend fun ObjectOption<Player>.jump(opposite: Tile, direction: Direction, exp: Boolean) {
+    suspend fun jump(player: Player, target: GameObject, opposite: Tile, direction: Direction, exp: Boolean) {
         player.walkToDelay(target.tile)
-        character.clear("face_entity")
+        player.clear("face_entity")
         // Fail on jump
         val fail = when {
             player.tile.equals(2522, 3600) -> Tile(2521, 3596)
@@ -79,8 +80,8 @@ class BasaltRock : Script {
     }
 
     fun obstacle(option: String, rock: String, tile: Tile, direction: Direction, exp: Boolean) {
-        objectOperate(option, rock) {
-            jump(tile.add(direction).add(direction), direction, exp)
+        objectOperate(option, rock) { (target) ->
+            jump(this, target, tile.add(direction).add(direction), direction, exp)
         }
 
         objectApproach(option, rock) {
@@ -92,9 +93,9 @@ class BasaltRock : Script {
                 else -> false
             }
             if (sameSide) {
-                jump(tile.add(direction).add(direction), direction, exp)
+                jump(player, target, tile.add(direction).add(direction), direction, exp)
             } else {
-                jump(target.tile, direction.inverse(), exp)
+                jump(player, target, target.tile, direction.inverse(), exp)
             }
         }
     }

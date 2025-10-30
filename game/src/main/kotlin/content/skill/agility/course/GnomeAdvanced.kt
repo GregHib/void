@@ -26,18 +26,18 @@ class GnomeAdvanced : Script {
 
     init {
         objectOperate("Climb-up", "gnome_tree_branch_advanced") {
-            if (!player.has(Skill.Agility, 85, message = true)) {
+            if (!has(Skill.Agility, 85, message = true)) {
                 npc<Happy>("gnome_trainer", "Sorry mate, you're not experienced enough to try that route. I suggest you carry on over the balancing rope instead.")
                 return@objectOperate
             }
             npcs.gnomeTrainer("Terrorbirds could climb faster than that!", Zone(9263413))
-            player.message("You climb the tree...", ChatType.Filter)
-            player.anim("climb_up")
+            message("You climb the tree...", ChatType.Filter)
+            anim("climb_up")
             delay(2)
-            player.message("... to an even higher platform.", ChatType.Filter)
-            player.agilityStage(4)
-            player.tele(player.tile.add(y = -1, level = 1))
-            player.exp(Skill.Agility, 25.0)
+            message("... to an even higher platform.", ChatType.Filter)
+            agilityStage(4)
+            tele(tile.add(y = -1, level = 1))
+            exp(Skill.Agility, 25.0)
         }
 
         objectApproach("Run-across", "gnome_sign_post_advanced") {
@@ -92,18 +92,18 @@ class GnomeAdvanced : Script {
         }
 
         objectOperate("Jump-over", "gnome_barrier_advanced") {
-            player.anim("gnome_jump_barrier")
+            anim("gnome_jump_barrier")
             delay()
-            player.exactMoveDelay(Tile(2485, 3434, 3), 30, Direction.NORTH)
+            exactMoveDelay(Tile(2485, 3434, 3), 30, Direction.NORTH)
             delay(1)
-            player.tele(2485, 3436, 0)
-            player.anim("gnome_pipe_land")
-            if (player.agilityStage == 6) {
-                player.agilityStage = 0
-                player.inc("gnome_course_advanced_laps")
-                player.exp(Skill.Agility, 605.0)
+            tele(2485, 3436, 0)
+            anim("gnome_pipe_land")
+            if (agilityStage == 6) {
+                agilityStage = 0
+                inc("gnome_course_advanced_laps")
+                exp(Skill.Agility, 605.0)
             }
-            player.exp(Skill.Agility, 25.0)
+            exp(Skill.Agility, 25.0)
         }
     }
 }

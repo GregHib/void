@@ -27,7 +27,7 @@ class Grapple : Script {
 
     init {
         objectApproach("Grapple", "lumbridge_broken_raft") {
-            if (!hasRequirements(ranged = 37, agility = 8, strength = 17)) {
+            if (!player.hasRequirements(ranged = 37, agility = 8, strength = 17)) {
                 return@objectApproach
             }
             player.steps.clear()
@@ -86,63 +86,63 @@ class Grapple : Script {
         }
 
         objectOperate("Grapple", "falador_wall_north") {
-            player.walkToDelay(Tile(3006, 3395))
-            player.face(Direction.SOUTH)
+            walkToDelay(Tile(3006, 3395))
+            face(Direction.SOUTH)
             delay()
             if (!hasRequirements(ranged = 19, agility = 11, strength = 37)) {
                 return@objectOperate
             }
-            player.anim("grapple_wall_climb")
-            player.gfx("grapple_wall_climb")
-            player.sound("grapple_shoot", delay = 45)
+            anim("grapple_wall_climb")
+            gfx("grapple_wall_climb")
+            sound("grapple_shoot", delay = 45)
             delay(11)
-            player.clearGfx()
-            player.clearAnim()
-            player.tele(3006, 3394, 1)
+            clearGfx()
+            clearAnim()
+            tele(3006, 3394, 1)
         }
 
         objectOperate("Grapple", "falador_wall_south") {
-            player.walkToDelay(Tile(3005, 3393))
-            player.face(Direction.NORTH)
+            walkToDelay(Tile(3005, 3393))
+            face(Direction.NORTH)
             delay()
             if (!hasRequirements(ranged = 19, agility = 11, strength = 37)) {
                 return@objectOperate
             }
-            player.anim("grapple_wall_climb")
-            player.gfx("grapple_wall_climb")
-            player.sound("grapple_shoot", delay = 45)
+            anim("grapple_wall_climb")
+            gfx("grapple_wall_climb")
+            sound("grapple_shoot", delay = 45)
             delay(11)
-            player.clearGfx()
-            player.clearAnim()
-            player.tele(3005, 3394, 1)
+            clearGfx()
+            clearAnim()
+            tele(3005, 3394, 1)
         }
 
         objectOperate("Jump", "falador_wall_jump_north") {
-            player.walkToDelay(Tile(3006, 3394, 1))
-            if (!player.has(Skill.Agility, 4)) {
-                player.message("You need an agility level of at least 4 to climb down this wall.")
+            walkToDelay(Tile(3006, 3394, 1))
+            if (!has(Skill.Agility, 4)) {
+                message("You need an agility level of at least 4 to climb down this wall.")
                 return@objectOperate
             }
-            player.anim("jump_down")
+            anim("jump_down")
             delay(1)
-            player.anim("jump_land")
-            player.tele(3006, 3395, 0)
+            anim("jump_land")
+            tele(3006, 3395, 0)
         }
 
         objectOperate("Jump", "falador_wall_jump_south") {
-            player.walkToDelay(Tile(3005, 3394, 1))
-            if (!player.has(Skill.Agility, 4)) {
-                player.message("You need an agility level of at least 4 to climb down this wall.")
+            walkToDelay(Tile(3005, 3394, 1))
+            if (!has(Skill.Agility, 4)) {
+                message("You need an agility level of at least 4 to climb down this wall.")
                 return@objectOperate
             }
-            player.anim("jump_down")
+            anim("jump_down")
             delay(1)
-            player.anim("jump_land")
-            player.tele(3005, 3393, 0)
+            anim("jump_land")
+            tele(3005, 3393, 0)
         }
 
         objectApproach("Grapple", "catherby_crossbow_tree") {
-            if (!hasRequirements(ranged = 39, agility = 36, strength = 22)) {
+            if (!player.hasRequirements(ranged = 39, agility = 36, strength = 22)) {
                 return@objectApproach
             }
             player.steps.clear()
@@ -172,7 +172,7 @@ class Grapple : Script {
         }
 
         objectApproach("Grapple", "catherby_rocks") {
-            if (!hasRequirements(ranged = 35, agility = 32, strength = 35)) {
+            if (!player.hasRequirements(ranged = 35, agility = 32, strength = 35)) {
                 return@objectApproach
             }
             player.steps.clear()
@@ -197,42 +197,42 @@ class Grapple : Script {
             player.walkOverDelay(Tile(2869, 3430))
         }
 
-        objectOperate("Grapple", "yanille_grapple_wall") {
-            val direction = if (player.tile.y >= target.tile.y) Direction.SOUTH else Direction.NORTH
-            player.walkToDelay(target.tile)
-            player.face(direction)
+        objectOperate("Grapple", "yanille_grapple_wall") { (target) ->
+            val direction = if (tile.y >= target.tile.y) Direction.SOUTH else Direction.NORTH
+            walkToDelay(target.tile)
+            face(direction)
             delay()
             if (!hasRequirements(ranged = 21, agility = 39, strength = 38)) {
                 return@objectOperate
             }
-            player.anim("grapple_wall_climb")
-            player.gfx("grapple_wall_climb")
-            player.sound("grapple_shoot", delay = 45)
+            anim("grapple_wall_climb")
+            gfx("grapple_wall_climb")
+            sound("grapple_shoot", delay = 45)
             delay(11)
-            player.clearGfx()
-            player.clearAnim()
+            clearGfx()
+            clearAnim()
             var dest = target.tile
             if (direction != Direction.NORTH) {
                 dest = target.tile.add(direction)
             }
-            player.tele(dest.copy(level = 1))
+            tele(dest.copy(level = 1))
         }
 
-        objectOperate("Jump", "yanille_grapple_wall_jump") {
-            val direction = if (player.tile.y == target.tile.y) Direction.SOUTH else Direction.NORTH
-            player.walkToDelay(target.tile)
-            if (!player.has(Skill.Agility, 4)) {
-                player.message("You need an agility level of at least 4 to climb down this wall.")
+        objectOperate("Jump", "yanille_grapple_wall_jump") { (target) ->
+            val direction = if (tile.y == target.tile.y) Direction.SOUTH else Direction.NORTH
+            walkToDelay(target.tile)
+            if (!has(Skill.Agility, 4)) {
+                message("You need an agility level of at least 4 to climb down this wall.")
                 return@objectOperate
             }
-            player.anim("jump_down")
+            anim("jump_down")
             delay(1)
-            player.anim("jump_land")
+            anim("jump_land")
             var dest = target.tile
             if (direction == Direction.SOUTH) {
                 dest = target.tile.add(direction)
             }
-            player.tele(dest.copy(level = 0))
+            tele(dest.copy(level = 0))
         }
     }
 
@@ -252,11 +252,11 @@ class Grapple : Script {
         }
     }
 
-    suspend fun ObjectOption<Player>.hasRequirements(ranged: Int, agility: Int, strength: Int): Boolean {
-        if (!player.has(Skill.Ranged, ranged) || !player.has(Skill.Agility, agility) || !player.has(Skill.Strength, strength)) {
+    suspend fun Player.hasRequirements(ranged: Int, agility: Int, strength: Int): Boolean {
+        if (!has(Skill.Ranged, ranged) || !has(Skill.Agility, agility) || !has(Skill.Strength, strength)) {
             statement("You need at least $ranged Ranged, $agility Agility and $strength Strength to do that.")
             return false
         }
-        return Weapon.hasGrapple(player)
+        return Weapon.hasGrapple(this)
     }
 }
