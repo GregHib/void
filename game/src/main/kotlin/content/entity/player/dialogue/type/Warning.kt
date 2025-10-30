@@ -20,6 +20,18 @@ suspend fun Context<Player>.warning(id: String): Boolean {
     return result
 }
 
+suspend fun Player.warning(id: String): Boolean {
+    val count = get("warning_$id", 0)
+    if (count == 7) {
+        return true
+    }
+    check(open("warning_$id")) { "Unable to open warning dialogue warning_$id for $this" }
+    interfaces.sendVisibility("warning_$id", "ask_again", count == 6)
+    val result = StringSuspension.get(this) == "yes"
+    close("warning_$id")
+    return result
+}
+
 class Warning : Script {
 
     init {

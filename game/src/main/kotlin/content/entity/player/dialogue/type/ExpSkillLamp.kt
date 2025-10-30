@@ -16,3 +16,10 @@ suspend fun Context<Player>.skillLamp(): Skill {
     player.close(EXPERIENCE_SKILL_LAMP)
     return Skill.valueOf(result.toPascalCase())
 }
+
+suspend fun Player.skillLamp(): Skill {
+    check(open(EXPERIENCE_SKILL_LAMP)) { "Unable to open skill lamp dialogue for $this" }
+    val result = StringSuspension.get(this)
+    close(EXPERIENCE_SKILL_LAMP)
+    return Skill.valueOf(result.toPascalCase())
+}

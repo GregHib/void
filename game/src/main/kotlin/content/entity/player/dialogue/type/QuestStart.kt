@@ -90,6 +90,77 @@ suspend fun SuspendableContext<Player>.startQuest(questId: String): Boolean {
     return result
 }
 
+suspend fun Player.startQuest(questId: String): Boolean {
+    check(open(QUEST_START_ID)) { "Unable to open destroy dialogue for $questId $this" }
+    val questDefinitions: QuestDefinitions = get()
+    val quest = questDefinitions.getOrNull(questId)
+    check(quest != null) { "Unable to find quest with id $questId $this" }
+    val completed = questCompleted(questId)
+    interfaces.sendVisibility("quest_intro", "start_choice_layer", !completed)
+    interfaces.sendVisibility("quest_intro", "progress_status_layer", completed)
+    val status = when (quest(questId)) {
+        "completed" -> "Quest Complete!"
+        "unstarted" -> "Not started"
+        else -> "Started"
+    }
+    interfaces.sendText("quest_intro", "status_field", status)
+    sendVariable("quest_intro_mark_map")
+    interfaces.sendText("quest_intro", "quest_field", quest["name", ""])
+    var requirements = buildString {
+        for (q in quest["req_quests", emptyList<String>()]) {
+            append(questDefinitions.get(q).name)
+            append("<br>")
+        }
+        for ((skill, level) in quest["req_skills", emptyMap<String, Int>()]) {
+            val s = Skill.valueOf(skill)
+            if (hasMax(s, level)) {
+                append("<str>Level $level $skill<br>")
+            } else {
+                append("Level $level $skill<br>")
+            }
+        }
+    }.removeSuffix("<br>")
+    if (requirements.isBlank()) {
+        requirements = "None."
+    }
+    interfaces.sendText("quest_intro", "req_field", requirements)
+    sendScript("quest_intro_req_text", requirements)
+
+    val items = quest["req_items", "None."]
+    if (items.startsWith("None")) {
+        interfaces.sendVisibility("quest_intro", "items_hide_show_layer", false)
+        interfaces.sendVisibility("quest_intro", "items_text_details_layer", true)
+        interfaces.sendVisibility("quest_intro", "scroll_layer_item", true)
+    }
+    interfaces.sendText("quest_intro", "items_field", items)
+    sendScript("quest_intro_req_items_text", items)
+    val rewards = buildString {
+        if (quest.contains("points")) {
+            val points = quest["points", -1]
+            append("$points Quest ${"Point".plural(points)}<br>")
+        }
+        if (quest.contains("xp")) {
+            append((quest["xp", ""]))
+            append("<br>")
+        }
+        if (quest.contains("reward")) {
+            append(quest["reward", ""])
+            append("<br>")
+        }
+    }.removeSuffix("<br>")
+    interfaces.sendText("quest_intro", "rewards_field", rewards)
+    sendScript("quest_intro_rewards_text", rewards)
+
+    interfaces.sendText("quest_intro", "start_point_field", quest["start_point", ""])
+    interfaces.sendText("quest_intro", "combat_field", quest["req_combat", "None."])
+    if (quest.contains("sprite")) {
+        interfaces.sendSprite("quest_intro", "quest_icon", quest["sprite", -1])
+    }
+    val result = StringSuspension.get(this) == "yes"
+    close(QUEST_START_ID)
+    return result
+}
+
 class QuestStart : Script {
 
     init {

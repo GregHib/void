@@ -26,6 +26,12 @@ suspend fun SuspendableContext<Player>.levelUp(skill: Skill, text: String) {
     player.close(LEVEL_UP_INTERFACE_ID)
 }
 
+suspend fun Player.levelUp(skill: Skill, text: String) {
+    levelUp(this, skill, text)
+    ContinueSuspension.get(this)
+    close(LEVEL_UP_INTERFACE_ID)
+}
+
 fun levelUp(player: Player, skill: Skill, text: String) {
     val lines = text.trimIndent().lines()
     player["level_up_icon"] = skill.name
