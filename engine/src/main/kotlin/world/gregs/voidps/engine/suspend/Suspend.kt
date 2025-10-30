@@ -17,3 +17,8 @@ suspend fun SuspendableContext<Player>.awaitDialogues(): Boolean {
     Suspension.start(character) { player.dialogue == null }
     return true
 }
+
+suspend fun Player.awaitDialogues(): Boolean {
+    Suspension.start(this) { dialogue == null }
+    return true
+}

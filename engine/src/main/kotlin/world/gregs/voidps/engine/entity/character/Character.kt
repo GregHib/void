@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character
 
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.VariableStore
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
@@ -9,6 +10,7 @@ import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
 import world.gregs.voidps.engine.entity.character.mode.move.target.TileTargetStrategy
@@ -344,4 +346,37 @@ interface Character :
             delay()
         }
     }
+    /**
+     * Interrupt-able pausing of scripts
+     * Note: can't be used after a dialogue suspension in an interaction as the
+     * interaction will have finished and there will be nothing to resume the suspension
+     */
+    suspend fun pause(ticks: Int) {
+        Suspension.start(this, ticks)
+    }
+
+    /**
+     * Movement delay, typically operating/interacting with an object or floor item that performs an animation or exact movement
+     */
+    suspend fun arriveDelay() {
+        val delay = steps.last - GameLoop.tick
+        if (delay <= 0) {
+            return
+        }
+        delay(delay)
+    }
+
+    /**
+     * Set the range a player can interact with their target from
+     */
+    suspend fun approachRange(range: Int?, update: Boolean = true) {
+        val interact = mode as? Interact ?: return
+        interact.updateRange(range, update)
+        if (range != null) {
+            while (!interact.arrived(range) && steps.isNotEmpty()) {
+                delay(1)
+            }
+        }
+    }
+
 }
