@@ -14,11 +14,11 @@ class Tolerance : Script {
     val toleranceTime = TimeUnit.MINUTES.toSeconds(10)
 
     init {
-        playerSpawn { player ->
-            if (!player.contains("tolerance")) {
-                player.start("tolerance", toleranceTime.toInt(), epochSeconds())
+        playerSpawn {
+            if (!contains("tolerance")) {
+                start("tolerance", toleranceTime.toInt(), epochSeconds())
             }
-            player["tolerance_area"] = player.tile.toCuboid(10)
+            set("tolerance_area", tile.toCuboid(10))
         }
         moved { player, _ ->
             if (player.tile !in player.getOrPut("tolerance_area") { player.tile.toCuboid(10) }) {

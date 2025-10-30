@@ -10,10 +10,10 @@ class MultiCombat : Script {
     val areaDefinitions: AreaDefinitions by inject()
 
     init {
-        npcSpawn { npc ->
-            for (def in areaDefinitions.get(npc.tile.zone)) {
+        npcSpawn {
+            for (def in areaDefinitions.get(tile.zone)) {
                 if (def.tags.contains("multi_combat")) {
-                    npc["in_multi_combat"] = true
+                    this["in_multi_combat"] = true
                     break
                 }
             }

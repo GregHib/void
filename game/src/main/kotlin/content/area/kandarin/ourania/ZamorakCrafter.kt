@@ -16,9 +16,9 @@ class ZamorakCrafter : Script {
     val patrols: PatrolDefinitions by inject()
 
     init {
-        npcSpawn("zamorak_crafter*") { npc ->
-            val patrol = patrols.get(if (npc.id == "zamorak_crafter_start") "zamorak_crafter_to_altar" else "zamorak_crafter_to_bank")
-            npc.mode = Patrol(npc, patrol.waypoints)
+        npcSpawn("zamorak_crafter*") {
+            val patrol = patrols.get(if (id == "zamorak_crafter_start") "zamorak_crafter_to_altar" else "zamorak_crafter_to_bank")
+            mode = Patrol(this, patrol.waypoints)
         }
 
         npcMoved("zamorak_crafter*", ::checkRoute)

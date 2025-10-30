@@ -14,9 +14,9 @@ class LevelRestoration : Script {
     val skills = Skill.all.filterNot { it == Skill.Prayer || it == Skill.Summoning || it == Skill.Constitution }
 
     init {
-        playerSpawn { player ->
-            if (skills.any { player.levels.getOffset(it) != 0 }) {
-                player.softTimers.start("restore_stats")
+        playerSpawn {
+            if (skills.any { levels.getOffset(it) != 0 }) {
+                softTimers.start("restore_stats")
             }
         }
 

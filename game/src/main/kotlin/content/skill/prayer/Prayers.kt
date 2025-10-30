@@ -11,12 +11,12 @@ import world.gregs.voidps.engine.entity.character.player.headIcon
 class Prayers : Script {
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("attack_bonus")
-            player.sendVariable("strength_bonus")
-            player.sendVariable("defence_bonus")
-            player.sendVariable("ranged_bonus")
-            player.sendVariable("magic_bonus")
+        playerSpawn {
+            sendVariable("attack_bonus")
+            sendVariable("strength_bonus")
+            sendVariable("defence_bonus")
+            sendVariable("ranged_bonus")
+            sendVariable("magic_bonus")
         }
 
         prayerStart { player ->

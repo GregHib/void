@@ -10,10 +10,10 @@ class Bettamax : Script {
     val npcs: NPCs by inject()
 
     init {
-        npcSpawn("wilbur") { npc ->
-            val bettamax = npcs[npc.tile.zone].first { it.id == "bettamax" }
-            npc.mode = Follow(npc, bettamax)
-            npc.watch(bettamax)
+        npcSpawn("wilbur") {
+            val bettamax = npcs[tile.zone].first { it.id == "bettamax" }
+            mode = Follow(this, bettamax)
+            watch(bettamax)
         }
     }
 }

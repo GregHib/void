@@ -18,14 +18,14 @@ class Music : Script {
     val enums: EnumDefinitions by inject()
 
     init {
-        playerSpawn { player ->
-            if (player.isBot) {
+        playerSpawn {
+            if (isBot) {
                 return@playerSpawn
             }
-            unlockDefaultTracks(player)
-            playAreaTrack(player)
-            sendUnlocks(player)
-            sendPlaylist(player)
+            unlockDefaultTracks(this)
+            playAreaTrack(this)
+            sendUnlocks(this)
+            sendPlaylist(this)
         }
 
         moved { player, from ->

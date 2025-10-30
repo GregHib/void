@@ -11,8 +11,8 @@ import java.util.concurrent.TimeUnit
 class LootShare : Script {
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("loot_share")
+        playerSpawn {
+            sendVariable("loot_share")
         }
 
         interfaceOption(component = "loot_share", id = "clan_chat") {

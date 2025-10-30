@@ -11,8 +11,8 @@ import world.gregs.voidps.type.random
 class CaveLizard : Script {
 
     init {
-        npcSpawn("cave_lizard") { npc ->
-            npc.softTimers.start("aggressive_hunt_mode_switch")
+        npcSpawn("cave_lizard") {
+            softTimers.start("aggressive_hunt_mode_switch")
         }
 
         npcTimerStart("aggressive_hunt_mode_switch") { random.nextInt(6, 12) }

@@ -23,9 +23,9 @@ class ItemLending : Script {
     val players: Players by inject()
 
     init {
-        playerSpawn { player ->
-            checkBorrowComplete(player)
-            checkLoanComplete(player)
+        playerSpawn {
+            checkBorrowComplete(this)
+            checkLoanComplete(this)
         }
 
         playerDespawn { player ->

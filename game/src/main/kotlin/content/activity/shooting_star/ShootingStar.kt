@@ -56,9 +56,9 @@ class ShootingStar : Script {
             }
         }
 
-        playerSpawn { player ->
-            if (player["shooting_star_bonus_ore", 0] > 0) {
-                player.timers.restart("shooting_star_bonus_ore_timer")
+        playerSpawn {
+            if (get("shooting_star_bonus_ore", 0) > 0) {
+                timers.restart("shooting_star_bonus_ore_timer")
             }
         }
 

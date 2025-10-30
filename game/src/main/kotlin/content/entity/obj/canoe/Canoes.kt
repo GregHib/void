@@ -32,12 +32,12 @@ class Canoes : Script {
     val stations: CanoeDefinitions by inject()
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("canoe_state_lumbridge")
-            player.sendVariable("canoe_state_champions_guild")
-            player.sendVariable("canoe_state_barbarian_village")
-            player.sendVariable("canoe_state_edgeville")
-            player.sendVariable("canoe_state_wilderness_pond")
+        playerSpawn {
+            sendVariable("canoe_state_lumbridge")
+            sendVariable("canoe_state_champions_guild")
+            sendVariable("canoe_state_barbarian_village")
+            sendVariable("canoe_state_edgeville")
+            sendVariable("canoe_state_wilderness_pond")
         }
 
         objectOperate("Chop-down", "canoe_station") {

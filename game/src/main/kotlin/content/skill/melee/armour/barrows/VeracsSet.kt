@@ -8,9 +8,9 @@ import world.gregs.voidps.engine.inv.itemRemoved
 class VeracsSet : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.hasFullSet()) {
-                player["veracs_set_effect"] = true
+        playerSpawn {
+            if (hasFullSet()) {
+                set("veracs_set_effect", true)
             }
         }
 

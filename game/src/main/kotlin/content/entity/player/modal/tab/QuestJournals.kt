@@ -17,8 +17,8 @@ class QuestJournals : Script {
     val questDefinitions: QuestDefinitions by inject()
 
     init {
-        playerSpawn { player ->
-            player.clearCamera()
+        playerSpawn {
+            clearCamera()
         }
 
         timerStart("refresh_quest_journal") { 1 }

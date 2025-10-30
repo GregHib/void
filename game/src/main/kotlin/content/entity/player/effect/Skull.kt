@@ -31,9 +31,9 @@ fun Player.unskull() {
 class Skull : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.skulled) {
-                player.softTimers.restart("skull")
+        playerSpawn {
+            if (skulled) {
+                softTimers.restart("skull")
             }
         }
 

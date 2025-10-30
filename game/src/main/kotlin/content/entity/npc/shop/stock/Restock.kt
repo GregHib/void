@@ -23,8 +23,8 @@ class Restock : Script {
     val logger = InlineLogger()
 
     init {
-        playerSpawn { player ->
-            player.softTimers.restart("shop_restock")
+        playerSpawn {
+            softTimers.restart("shop_restock")
         }
 
         worldSpawn {

@@ -37,8 +37,8 @@ class MakeoverMage : Script {
     val npcs: NPCs by inject()
 
     init {
-        npcSpawn("makeover_mage*") { npc ->
-            npc.softTimers.start("makeover")
+        npcSpawn("makeover_mage*") {
+            softTimers.start("makeover")
         }
 
         npcOperate("Talk-to", "makeover_mage*") {

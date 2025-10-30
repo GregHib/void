@@ -23,12 +23,12 @@ import kotlin.math.min
 class MagicalBlastBox : Script {
 
     init {
-        playerSpawn { player ->
-            val box = player.equipped(EquipSlot.Shield).id
+        playerSpawn {
+            val box = equipped(EquipSlot.Shield).id
             if (box.startsWith("magical_blastbox")) {
-                updateCharges(player, EquipSlot.Shield.index, box != "magical_blastbox")
+                updateCharges(this, EquipSlot.Shield.index, box != "magical_blastbox")
             } else {
-                setCharges(player, 0, box != "magical_blastbox")
+                setCharges(this, 0, box != "magical_blastbox")
             }
         }
 

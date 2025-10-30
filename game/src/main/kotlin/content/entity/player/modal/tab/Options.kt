@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.client.ui.open
 class Options : Script {
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("accept_aid")
+        playerSpawn {
+            sendVariable("accept_aid")
         }
 
         interfaceOption("Graphics Settings", "graphics", "options") {

@@ -10,9 +10,9 @@ class WitchesHouse : Script {
     val patrols: PatrolDefinitions by inject()
 
     init {
-        npcSpawn("nora_t_hagg") { npc ->
+        npcSpawn("nora_t_hagg") {
             val patrol = patrols.get("nora_t_hagg")
-            npc.mode = Patrol(npc, patrol.waypoints)
+            mode = Patrol(this, patrol.waypoints)
         }
     }
 }

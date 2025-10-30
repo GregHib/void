@@ -34,16 +34,16 @@ class ClanChat : Script {
     val accountDefinitions: AccountDefinitions by inject()
 
     init {
-        playerSpawn { player ->
-            val current = player["clan_chat", ""]
+        playerSpawn {
+            val current = get("clan_chat", "")
             if (current.isNotEmpty()) {
                 val account = accountDefinitions.getByAccount(current)
-                joinClan(player, account?.displayName ?: "")
+                joinClan(this, account?.displayName ?: "")
             }
-            val ownClan = accounts.clan(player.name.lowercase()) ?: return@playerSpawn
-            player.ownClan = ownClan
-            ownClan.friends = player.friends
-            ownClan.ignores = player.ignores
+            val ownClan = accounts.clan(name.lowercase()) ?: return@playerSpawn
+            this.ownClan = ownClan
+            ownClan.friends = friends
+            ownClan.ignores = ignores
         }
 
         playerDespawn { player ->

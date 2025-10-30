@@ -25,8 +25,8 @@ class TradeLending : Script {
     }
 
     init {
-        playerSpawn { player ->
-            player.loan.itemRule = lendRestriction
+        playerSpawn {
+            loan.itemRule = lendRestriction
         }
 
         interfaceOption("Specify", "loan_time", "trade_main") {

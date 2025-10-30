@@ -26,8 +26,8 @@ class IgnoreList : Script {
     val maxIgnores = 100
 
     init {
-        playerSpawn { player ->
-            player.sendIgnores()
+        playerSpawn {
+            sendIgnores()
         }
 
         instruction<IgnoreAdd> { player ->

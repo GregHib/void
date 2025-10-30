@@ -12,9 +12,9 @@ import java.util.concurrent.TimeUnit
 class HitpointRestoration : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.levels.getOffset(Skill.Constitution) < 0) {
-                player.softTimers.start("restore_hitpoints")
+        playerSpawn {
+            if (levels.getOffset(Skill.Constitution) < 0) {
+                softTimers.start("restore_hitpoints")
             }
         }
 

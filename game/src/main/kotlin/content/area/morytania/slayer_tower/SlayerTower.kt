@@ -22,11 +22,11 @@ class SlayerTower : Script {
     val objects: GameObjects by inject()
 
     init {
-        objectSpawn("slayer_tower_entrance_door_*_opened") { obj ->
-            val statue = if (obj.id == "slayer_tower_entrance_door_west_opened") {
-                objects[obj.tile.add(-2, -2), "slayer_tower_statue"]
+        objectSpawn("slayer_tower_entrance_door_*_opened") {
+            val statue = if (id == "slayer_tower_entrance_door_west_opened") {
+                objects[tile.add(-2, -2), "slayer_tower_statue"]
             } else {
-                objects[obj.tile.add(1, -2), "slayer_tower_statue"]
+                objects[tile.add(1, -2), "slayer_tower_statue"]
             } ?: return@objectSpawn
             statue.anim("slayer_tower_statue_stand")
         }

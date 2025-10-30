@@ -26,8 +26,8 @@ class TradeOffer : Script {
     }
 
     init {
-        playerSpawn { player ->
-            player.offer.itemRule = tradeRestriction
+        playerSpawn {
+            offer.itemRule = tradeRestriction
         }
 
         interfaceOption(component = "offer", id = "trade_side") {

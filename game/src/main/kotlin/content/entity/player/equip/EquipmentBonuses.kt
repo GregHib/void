@@ -33,9 +33,9 @@ class EquipmentBonuses : Script {
     }
 
     init {
-        playerSpawn { player ->
-            updateStats(player)
-            player["bank_hidden"] = true
+        playerSpawn {
+            updateStats(this)
+            set("bank_hidden", true)
         }
 
         inventoryChanged("worn_equipment") { player ->

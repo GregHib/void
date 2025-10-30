@@ -24,14 +24,14 @@ class Greegrees : Script {
     val areas: AreaDefinitions by inject()
 
     init {
-        playerSpawn { player ->
-            val item = player.equipped(EquipSlot.Weapon).id
+        playerSpawn {
+            val item = equipped(EquipSlot.Weapon).id
             if (item.endsWith("_greegree")) {
-                if (player.tile in areas["ape_atoll"] || player.tile in areas["ape_atoll_agility_dungeon"]) {
-                    player.transform(item.replace("_greegree", ""))
-                    player.closeType("spellbook_tab")
+                if (tile in areas["ape_atoll"] || tile in areas["ape_atoll_agility_dungeon"]) {
+                    transform(item.replace("_greegree", ""))
+                    closeType("spellbook_tab")
                 } else {
-                    forceRemove(player)
+                    forceRemove(this)
                 }
             }
         }

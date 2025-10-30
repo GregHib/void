@@ -33,9 +33,9 @@ class FriendsList : Script {
     val maxFriends = 200
 
     init {
-        playerSpawn { player ->
-            player.sendFriends()
-            notifyBefriends(player, online = true)
+        playerSpawn {
+            sendFriends()
+            notifyBefriends(this, online = true)
         }
 
         playerDespawn { player ->

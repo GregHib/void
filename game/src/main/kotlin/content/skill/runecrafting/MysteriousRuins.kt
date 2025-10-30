@@ -30,9 +30,9 @@ class MysteriousRuins : Script {
     val omni = listOf("air", "mind", "water", "earth", "fire", "body", "cosmic", "law", "nature", "chaos", "death", "blood")
 
     init {
-        playerSpawn { player ->
-            if (player.equipped(EquipSlot.Hat).id.endsWith("_tiara") || player.equipped(EquipSlot.Weapon).id == "omni_talisman_staff") {
-                updateAltarVars(player)
+        playerSpawn {
+            if (equipped(EquipSlot.Hat).id.endsWith("_tiara") || equipped(EquipSlot.Weapon).id == "omni_talisman_staff") {
+                updateAltarVars(this)
             }
         }
 

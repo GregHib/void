@@ -9,8 +9,8 @@ import world.gregs.voidps.network.login.protocol.encode.skillLevel
 class Experience : Script {
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("xp_counter")
+        playerSpawn {
+            sendVariable("xp_counter")
         }
 
         levelChanged { player, skill, from, to ->

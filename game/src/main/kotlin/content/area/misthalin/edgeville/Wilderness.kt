@@ -13,9 +13,9 @@ class Wilderness : Script {
     val safeZones = areas.getTagged("safe_zone")
 
     init {
-        playerSpawn { player ->
-            if (inWilderness(player.tile)) {
-                player["in_wilderness"] = true
+        playerSpawn {
+            if (inWilderness(tile)) {
+                set("in_wilderness", true)
             }
         }
 

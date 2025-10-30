@@ -54,15 +54,15 @@ fun Player.antiDisease(duration: Int, timeUnit: TimeUnit) {
 class Disease : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.diseaseCounter != 0) {
-                player.timers.restart("disease")
+        playerSpawn {
+            if (diseaseCounter != 0) {
+                timers.restart("disease")
             }
         }
 
-        npcSpawn { npc ->
-            if (npc.diseaseCounter != 0) {
-                npc.softTimers.restart("disease")
+        npcSpawn {
+            if (diseaseCounter != 0) {
+                softTimers.restart("disease")
             }
         }
 

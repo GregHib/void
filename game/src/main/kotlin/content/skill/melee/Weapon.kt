@@ -12,8 +12,8 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 class Weapon : Script {
 
     init {
-        playerSpawn { player ->
-            updateWeapon(player, player.equipped(EquipSlot.Weapon))
+        playerSpawn {
+            updateWeapon(this, equipped(EquipSlot.Weapon))
         }
 
         variableSet("autocast,spell") { player, _, _, _ -> updateWeapon(player, player.weapon) }

@@ -11,9 +11,9 @@ import world.gregs.voidps.type.random
 class ToragsSet : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.hasFullSet()) {
-                player["torags_set_effect"] = true
+        playerSpawn {
+            if (hasFullSet()) {
+                set("torags_set_effect", true)
             }
         }
 

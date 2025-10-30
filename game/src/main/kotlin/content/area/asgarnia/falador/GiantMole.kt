@@ -52,10 +52,10 @@ class GiantMole : Script {
     val initialCaveTile: Tile = Tile(1752, 5237, 0)
 
     init {
-        playerSpawn { player ->
-            if (giantMoleLair.contains(player.tile)) {
-                if (!hasLightSource(player)) {
-                    player.open("level_three_darkness")
+        playerSpawn {
+            if (giantMoleLair.contains(tile)) {
+                if (!hasLightSource(this)) {
+                    open("level_three_darkness")
                 }
             }
         }

@@ -9,17 +9,17 @@ import world.gregs.voidps.engine.entity.character.player.flagTemporaryMoveType
 class Login : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.isBot) {
+        playerSpawn {
+            if (isBot) {
                 return@playerSpawn
             }
-            player.options.send(2)
-            player.options.send(4)
-            player.options.send(7)
-            player.flagTemporaryMoveType()
-            player.flagMovementType()
-            player.flagAppearance()
-            player.clearFace()
+            options.send(2)
+            options.send(4)
+            options.send(7)
+            flagTemporaryMoveType()
+            flagMovementType()
+            flagAppearance()
+            clearFace()
         }
     }
 }

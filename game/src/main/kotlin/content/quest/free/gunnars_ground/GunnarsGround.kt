@@ -11,17 +11,17 @@ import world.gregs.voidps.engine.inv.holdsItem
 class GunnarsGround : Script {
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("gudrun_after_quest")
-            player.sendVariable("dororan_after_quest")
-            player.sendVariable("kjell")
-            player.sendVariable("dororan")
-            player.sendVariable("dororan_after_cutscene")
-            player.sendVariable("gudrun")
-            player.sendVariable("gudrun_after_cutscene")
-            player.sendVariable("dororan_ruby_bracelet")
-            player.sendVariable("dororan_dragonstone_necklace")
-            player.sendVariable("dororan_onyx_amulet")
+        playerSpawn {
+            sendVariable("gudrun_after_quest")
+            sendVariable("dororan_after_quest")
+            sendVariable("kjell")
+            sendVariable("dororan")
+            sendVariable("dororan_after_cutscene")
+            sendVariable("gudrun")
+            sendVariable("gudrun_after_cutscene")
+            sendVariable("dororan_ruby_bracelet")
+            sendVariable("dororan_dragonstone_necklace")
+            sendVariable("dororan_onyx_amulet")
         }
 
         inventoryItem("Read", "gunnars_ground", "inventory") {

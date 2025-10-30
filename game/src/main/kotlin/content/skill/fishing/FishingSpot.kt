@@ -30,10 +30,10 @@ class FishingSpot : Script {
     private val maxRespawnTick = 530
 
     init {
-        npcSpawn("fishing_spot*") { npc ->
-            npc.softTimers.start("fishing_spot_respawn")
-            val area: Area = npc["area"] ?: return@npcSpawn
-            move(npc, area)
+        npcSpawn("fishing_spot*") {
+            softTimers.start("fishing_spot_respawn")
+            val area: Area = this["area"] ?: return@npcSpawn
+            move(this, area)
         }
 
         npcTimerStart("fishing_spot_respawn") { random.nextInt(280, 530) }

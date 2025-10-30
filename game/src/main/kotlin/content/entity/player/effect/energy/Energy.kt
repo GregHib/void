@@ -26,9 +26,9 @@ var Player.runEnergy: Int
 class Energy : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.runEnergy < MAX_RUN_ENERGY) {
-                player.softTimers.start("energy_restore")
+        playerSpawn {
+            if (runEnergy < MAX_RUN_ENERGY) {
+                softTimers.start("energy_restore")
             }
         }
 

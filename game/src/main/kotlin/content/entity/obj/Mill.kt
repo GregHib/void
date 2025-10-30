@@ -15,8 +15,8 @@ import world.gregs.voidps.engine.inv.*
 class Mill : Script {
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("flour_bin")
+        playerSpawn {
+            sendVariable("flour_bin")
         }
 
         objectOperate("Operate", "hopper_controls") {

@@ -29,15 +29,15 @@ class Movement : Script {
     val areas: AreaDefinitions by inject()
 
     init {
-        playerSpawn { player ->
-            if (players.add(player) && Settings["world.players.collision", false]) {
-                add(player)
+        playerSpawn {
+            if (players.add(this) && Settings["world.players.collision", false]) {
+                add(this)
             }
         }
 
-        npcSpawn { npc ->
+        npcSpawn {
             if (Settings["world.npcs.collision", false]) {
-                add(npc)
+                add(this)
             }
         }
 

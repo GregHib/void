@@ -19,8 +19,8 @@ import world.gregs.voidps.type.random
 class Cows : Script {
 
     init {
-        npcSpawn("cow_*") { npc ->
-            npc.softTimers.start("eat_grass")
+        npcSpawn("cow_*") {
+            softTimers.start("eat_grass")
         }
 
         npcTimerStart("eat_grass") {

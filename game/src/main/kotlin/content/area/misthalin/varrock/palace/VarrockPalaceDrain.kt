@@ -22,9 +22,9 @@ class VarrockPalaceDrain : Script {
     val logger = InlineLogger()
 
     init {
-        playerSpawn { player ->
-            if (player["demon_slayer_drain_dislodged", false]) {
-                player.sendVariable("demon_slayer_drain_dislodged")
+        playerSpawn {
+            if (get("demon_slayer_drain_dislodged", false)) {
+                sendVariable("demon_slayer_drain_dislodged")
             }
         }
 

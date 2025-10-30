@@ -35,8 +35,8 @@ class MageOfZamorak : Script {
     val abyssCenter = areas["abyss_center"]
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("enter_the_abyss")
+        playerSpawn {
+            sendVariable("enter_the_abyss")
         }
 
         npcOperate("Teleport", "mage_of_zamorak_wilderness_*") {

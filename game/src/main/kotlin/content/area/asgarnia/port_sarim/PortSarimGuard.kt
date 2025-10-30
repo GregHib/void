@@ -18,9 +18,9 @@ class PortSarimGuard : Script {
     val patrols: PatrolDefinitions by inject()
 
     init {
-        npcSpawn("port_sarim_guard_6") { npc ->
+        npcSpawn("port_sarim_guard_6") {
             val patrol = patrols.get("port_sarim_guard")
-            npc.mode = Patrol(npc, patrol.waypoints)
+            mode = Patrol(this, patrol.waypoints)
         }
 
         npcOperate("Talk-to", "port_sarim_guard_sleeping") {

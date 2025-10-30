@@ -8,9 +8,9 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 class Whacking : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.weapon.id == "rubber_chicken" || player.weapon.id == "easter_carrot") {
-                player.options.set(5, "Whack")
+        playerSpawn {
+            if (weapon.id == "rubber_chicken" || weapon.id == "easter_carrot") {
+                options.set(5, "Whack")
             }
         }
 

@@ -18,23 +18,23 @@ class TaskList : Script {
     val enumDefinitions: EnumDefinitions by inject()
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("task_disable_popups")
-            player["task_popup"] = 0
-            player["task_previous_popup"] = 0
+        playerSpawn {
+            sendVariable("task_disable_popups")
+            set("task_popup", 0)
+            set("task_previous_popup", 0)
             var total = 0
             for (area in 0 until 8) {
                 Tasks.forEach(area) {
-                    if (Tasks.isCompleted(player, definition.stringId)) {
-                        player.sendVariable(definition.stringId)
+                    if (Tasks.isCompleted(this@playerSpawn, definition.stringId)) {
+                        sendVariable(definition.stringId)
                         total++
                     }
                     null
                 }
             }
-            player["task_progress_overall"] = total
-            player.sendVariable("task_hide_completed")
-            player.sendVariable("task_filter_sets")
+            set("task_progress_overall", total)
+            sendVariable("task_hide_completed")
+            sendVariable("task_filter_sets")
         }
 
         interfaceOpen("task_list") { player ->
