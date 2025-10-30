@@ -97,9 +97,9 @@ class CombatBot : Script {
 
         levelChanged(Skill.Constitution, ::eat)
 
-        variableSet("in_combat") { player, _, _, to ->
-            if (to == 1 && player.isBot) {
-                player.bot.resume("combat")
+        variableSet("in_combat") { _, _, to ->
+            if (to == 1 && isBot) {
+                bot.resume("combat")
             }
         }
 

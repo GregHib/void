@@ -42,8 +42,8 @@ class TaskList : Script {
             refresh(player)
         }
 
-        variableSet("task_pin_slot") { player, _, _, _ ->
-            player.close("task_list")
+        variableSet("task_pin_slot") { _, _, _ ->
+            close("task_list")
         }
 
         interfaceOption("Select", "area_*", "task_list") {

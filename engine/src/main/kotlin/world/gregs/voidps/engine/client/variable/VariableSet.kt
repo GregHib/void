@@ -9,15 +9,13 @@ import world.gregs.voidps.engine.event.Wildcards
  * @param from previous value
  */
 interface VariableSet {
-    fun variableSet(player: Player, key: String, from: Any?, to: Any?) {}
-
-    fun variableSet(key: String = "*", block: (player: Player, key: String, from: Any?, to: Any?) -> Unit) {
+    fun variableSet(key: String = "*", block: Player.(key: String, from: Any?, to: Any?) -> Unit) {
         for (match in Wildcards.find(key)) {
             playerBlocks.getOrPut(match) { mutableListOf() }.add(block)
         }
     }
 
-    fun npcVariableSet(key: String = "*", id: String = "*", block: (npc: NPC, key: String, from: Any?, to: Any?) -> Unit) {
+    fun npcVariableSet(key: String = "*", id: String = "*", block: NPC.(key: String, from: Any?, to: Any?) -> Unit) {
         for (keyMatch in Wildcards.find(key)) {
             for (idMatch in Wildcards.find(id)) {
                 npcBlocks.getOrPut("$keyMatch:$idMatch") { mutableListOf() }.add(block)

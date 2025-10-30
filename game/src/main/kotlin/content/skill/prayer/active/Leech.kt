@@ -166,11 +166,11 @@ class Leech : Script {
             }
         }
 
-        variableSet("in_combat") { player, _, _, to ->
+        variableSet("in_combat") { _, _, to ->
             if (to == 0) {
                 for ((_, skill) in map) {
-                    player.clear("${skill.name.lowercase()}_drain_msg")
-                    player.clear("${skill.name.lowercase()}_leech_msg")
+                    clear("${skill.name.lowercase()}_drain_msg")
+                    clear("${skill.name.lowercase()}_leech_msg")
                 }
             }
         }

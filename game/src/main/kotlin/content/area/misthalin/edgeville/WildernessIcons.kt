@@ -16,18 +16,18 @@ class WildernessIcons : Script {
             player.interfaces.sendSprite(id, "right_skull", 439)
         }
 
-        variableSet("in_wilderness") { player, key, from, to ->
+        variableSet("in_wilderness") { _, _, to ->
             if (to == true) {
-                player.options.set(1, "Attack")
-                player.open("wilderness_skull")
-                //    player.setVar("no_pvp_zone", false)
-                resetIcons(player)
-                updateIcon(player)
+                options.set(1, "Attack")
+                open("wilderness_skull")
+                //    setVar("no_pvp_zone", false)
+                resetIcons(this)
+                updateIcon(this)
             } else if (to == null) {
-                player.options.remove("Attack")
-                player.close("wilderness_skull")
-                //    player.setVar("no_pvp_zone", true)
-                resetIcons(player)
+                options.remove("Attack")
+                close("wilderness_skull")
+                //    setVar("no_pvp_zone", true)
+                resetIcons(this)
             }
         }
 

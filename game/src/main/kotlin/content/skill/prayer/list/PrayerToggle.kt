@@ -15,15 +15,15 @@ import world.gregs.voidps.engine.client.variable.variableBitRemove
 class PrayerToggle : Script {
 
     init {
-        variableSet("activated_*") { player, _, from, to ->
-            player.closeInterfaces()
+        variableSet("activated_*") { _, from, to ->
+            closeInterfaces()
             val from = (from as? List<String>)?.toSet() ?: emptySet()
             val to = (to as? List<String>)?.toSet() ?: emptySet()
             for (prayer in from.subtract(to)) {
-                player.emit(PrayerStop(prayer))
+                emit(PrayerStop(prayer))
             }
             for (prayer in to.subtract(from)) {
-                player.emit(PrayerStart(prayer))
+                emit(PrayerStart(prayer))
             }
         }
 

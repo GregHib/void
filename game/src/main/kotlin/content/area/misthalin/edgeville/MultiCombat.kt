@@ -19,11 +19,11 @@ class MultiCombat : Script {
             }
         }
 
-        variableSet("in_multi_combat") { player, _, _, to ->
+        variableSet("in_multi_combat") { _, _, to ->
             if (to == true) {
-                player.interfaces.sendVisibility("area_status_icon", "multi_combat", true)
+                interfaces.sendVisibility("area_status_icon", "multi_combat", true)
             } else if (to == null) {
-                player.interfaces.sendVisibility("area_status_icon", "multi_combat", false)
+                interfaces.sendVisibility("area_status_icon", "multi_combat", false)
             }
         }
 
