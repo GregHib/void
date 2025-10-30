@@ -1,17 +1,15 @@
 package content.skill.magic.spell
 
 import content.skill.melee.weapon.attackRange
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-@Script
-class Autocast : Api {
+class Autocast : Script {
 
     val interfaceDefinitions: InterfaceDefinitions by inject()
 

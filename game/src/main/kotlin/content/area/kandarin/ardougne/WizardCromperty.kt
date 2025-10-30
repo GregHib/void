@@ -8,16 +8,15 @@ import content.entity.player.dialogue.type.player
 import content.entity.proj.shoot
 import content.quest.questCompleted
 import content.skill.runecrafting.EssenceMine
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.softQueue
 
-@Script
-class WizardCromperty {
+class WizardCromperty : Script {
 
     init {
         npcOperate("Talk-to", "wizard_cromperty_*") {

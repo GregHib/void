@@ -2,15 +2,14 @@ package content.area.asgarnia.asgarnian_ice_dungeon
 
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Tile
 
-@Script
-class WyvernCave {
+class WyvernCave : Script {
 
     init {
         objectOperate("Exit", "ice_dungeon_wyvern_cave_exit") {

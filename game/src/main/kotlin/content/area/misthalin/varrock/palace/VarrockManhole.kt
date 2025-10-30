@@ -1,13 +1,12 @@
 package content.area.misthalin.varrock.palace
 
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class VarrockManhole {
+class VarrockManhole : Script {
 
     init {
         objectOperate("Open", "varrock_manhole") {

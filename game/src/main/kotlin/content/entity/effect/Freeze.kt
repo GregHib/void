@@ -1,13 +1,12 @@
 package content.entity.effect
 
 import content.skill.prayer.praying
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 import kotlin.math.sign
 
@@ -47,8 +46,7 @@ fun Character.freezeImmune(ticks: Int) {
     softTimers.start("movement_delay")
 }
 
-@Script
-class Freeze : Api {
+class Freeze : Script {
 
     init {
         timerStart("movement_delay", ::start)

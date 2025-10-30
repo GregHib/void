@@ -6,6 +6,7 @@ import content.entity.obj.ship.CharterShips
 import content.entity.player.modal.book.Books
 import content.entity.world.music.MusicTracks
 import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.stringArg
@@ -47,7 +48,6 @@ import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.toTicks
@@ -58,8 +58,7 @@ import kotlin.text.isBlank
 import kotlin.text.split
 import kotlin.text.toIntOrNull
 
-@Script
-class ServerCommands {
+class ServerCommands : Script {
 
     val players: Players by inject()
     val accountLoader: PlayerAccountLoader by inject()

@@ -6,7 +6,7 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.player
 import content.entity.sound.sound
 import content.skill.magic.jewellery.teleport
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -24,8 +23,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Tile
 
-@Script
-class SorceressGarden : Api {
+class SorceressGarden : Script {
     val dropTables: DropTables by inject()
 
     init {

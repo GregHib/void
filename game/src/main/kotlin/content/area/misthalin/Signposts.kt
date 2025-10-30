@@ -2,13 +2,12 @@ package content.area.misthalin
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Tile
 
-@Script
-class Signposts {
+class Signposts : Script {
 
     init {
         @Suppress("UNCHECKED_CAST")

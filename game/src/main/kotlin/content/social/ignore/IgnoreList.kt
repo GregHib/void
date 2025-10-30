@@ -5,22 +5,20 @@ import content.social.friend.friend
 import content.social.friend.updateFriend
 import content.social.friend.world
 import content.social.friend.worldName
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.*
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.IgnoreAdd
 import world.gregs.voidps.network.client.instruction.IgnoreDelete
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import world.gregs.voidps.network.login.protocol.encode.sendIgnoreList
 
-@Script
-class IgnoreList : Api {
+class IgnoreList : Script {
 
     val accounts: AccountDefinitions by inject()
     val players: Players by inject()

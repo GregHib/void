@@ -8,6 +8,7 @@ import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
 import content.skill.slayer.*
 import net.pearx.kasechange.toSentenceCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.config.SlayerTaskDefinition
 import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
@@ -15,13 +16,11 @@ import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
-@Script
-class Turael {
+class Turael : Script {
 
     val slayerDefinitions: SlayerTaskDefinitions by inject()
 

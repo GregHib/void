@@ -4,21 +4,20 @@ import com.github.michaelbull.logging.InlineLogger
 import content.social.trade.lend.Loan.getExpiry
 import content.social.trade.lend.Loan.returnLoan
 import content.social.trade.returnedItems
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.MoveItem.moveAll
 
-@Script
-class ItemReturning {
+class ItemReturning : Script {
 
     val logger = InlineLogger()
     val players: Players by inject()

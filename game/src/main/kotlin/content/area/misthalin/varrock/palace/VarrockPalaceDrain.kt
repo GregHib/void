@@ -9,17 +9,15 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.player
 import content.entity.sound.sound
 import content.quest.quest
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
-@Script
-class VarrockPalaceDrain : Api {
+class VarrockPalaceDrain : Script {
 
     val logger = InlineLogger()
 

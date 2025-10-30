@@ -1,13 +1,12 @@
 package content.social.report
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class ReportAbuse {
+class ReportAbuse : Script {
 
     init {
         interfaceOption("Report Abuse", "report", "filter_buttons") {

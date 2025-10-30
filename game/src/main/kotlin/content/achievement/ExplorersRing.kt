@@ -3,15 +3,13 @@ package content.achievement
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
 import content.entity.player.inv.inventoryOption
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.inventory
 import java.util.concurrent.TimeUnit
 
-@Script
-class ExplorersRing : Api {
+class ExplorersRing : Script {
 
     init {
         playerSpawn { player ->

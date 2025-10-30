@@ -1,17 +1,16 @@
 package content.entity.player.command
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.modCommand
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.network.login.protocol.encode.clearCamera
 import world.gregs.voidps.type.Tile
 
-@Script
-class CameraCommands {
+class CameraCommands : Script {
 
     init {
         modCommand("camera_reset", desc = "Reset camera to normal") { player, _ ->

@@ -1,14 +1,12 @@
 package content.skill.magic.book
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class SpellBookFilter : Api {
+class SpellBookFilter : Script {
 
     init {
         playerSpawn { player ->

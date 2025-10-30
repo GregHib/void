@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.npc.shop.hasShopSample
 import content.entity.npc.shop.shopInventory
 import content.entity.npc.shop.stock.Price
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -11,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventory
@@ -21,8 +21,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.min
 
-@Script
-class ShopBuy {
+class ShopBuy : Script {
 
     val itemDefs: ItemDefinitions by inject()
     val logger = InlineLogger()

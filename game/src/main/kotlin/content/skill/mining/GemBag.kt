@@ -2,16 +2,15 @@ package content.skill.mining
 
 import content.entity.player.inv.inventoryItem
 import content.entity.player.inv.item.destroy.canDestroy
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interact.itemOnItems
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 
-@Script
-class GemBag {
+class GemBag : Script {
 
     val bagCapacity = 100
 

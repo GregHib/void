@@ -2,14 +2,13 @@ package content.bot.interact.item
 
 import content.bot.isBot
 import kotlinx.coroutines.CancellableContinuation
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.floorItemDespawn
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import kotlin.coroutines.resume
 
-@Script
-class PickupBot {
+class PickupBot : Script {
 
     val players: Players by inject()
 

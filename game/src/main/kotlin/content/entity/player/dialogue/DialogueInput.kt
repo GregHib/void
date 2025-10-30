@@ -1,9 +1,9 @@
 package content.entity.player.dialogue
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.suspend.IntSuspension
 import world.gregs.voidps.engine.suspend.NameSuspension
 import world.gregs.voidps.engine.suspend.StringSuspension
@@ -11,8 +11,7 @@ import world.gregs.voidps.network.client.instruction.EnterInt
 import world.gregs.voidps.network.client.instruction.EnterName
 import world.gregs.voidps.network.client.instruction.EnterString
 
-@Script
-class DialogueInput {
+class DialogueInput : Script {
 
     init {
         continueDialogue("dialogue_npc_chat*", "continue") { player ->

@@ -3,6 +3,7 @@
 package content.entity.player.command
 
 import content.social.trade.exchange.GrandExchange
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.adminCommands
 import world.gregs.voidps.engine.client.command.command
@@ -19,13 +20,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
-@Script
-class TeleportCommands {
+class TeleportCommands : Script {
 
     val areas: AreaDefinitions by inject()
     val players: Players by inject()

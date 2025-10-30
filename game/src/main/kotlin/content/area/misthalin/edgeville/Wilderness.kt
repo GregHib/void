@@ -1,13 +1,11 @@
 package content.area.misthalin.edgeville
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 
-@Script
-class Wilderness : Api {
+class Wilderness : Script {
 
     val areas: AreaDefinitions by inject()
 

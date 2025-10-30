@@ -2,6 +2,7 @@ package content.entity.player.dialogue.type
 
 import content.quest.quest
 import content.quest.questCompleted
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
@@ -12,7 +13,6 @@ import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.engine.suspend.SuspendableContext
@@ -90,8 +90,7 @@ suspend fun SuspendableContext<Player>.startQuest(questId: String): Boolean {
     return result
 }
 
-@Script
-class QuestStart {
+class QuestStart : Script {
 
     init {
         interfaceOption("Show required items", "items_hidden_button_txt", "quest_intro") {

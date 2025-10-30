@@ -2,12 +2,11 @@ package content.area.asgarnia.port_sarim
 
 import content.entity.player.inv.item.take.canTake
 import content.entity.player.inv.item.take.taken
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.holdsItem
 
-@Script
-class PortSarim {
+class PortSarim : Script {
 
     init {
         canTake("white_apron_port_sarim") { player ->

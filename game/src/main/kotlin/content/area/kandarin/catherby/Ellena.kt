@@ -3,11 +3,10 @@ package content.area.kandarin.catherby
 import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.*
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class Ellena {
+class Ellena : Script {
 
     init {
         npcOperate("Talk-to", "ellena") {

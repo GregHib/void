@@ -2,6 +2,7 @@ package content.skill.magic.book.modern
 
 import content.entity.sound.sound
 import content.skill.magic.spell.removeSpellItems
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.interfaceOption
@@ -10,12 +11,10 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TICKS
 
-@Script
-class Charge {
+class Charge : Script {
 
     val definitions: SpellDefinitions by inject()
 

@@ -2,6 +2,7 @@ package content.entity.player.dialogue.type
 
 import content.entity.combat.hit.combatDamage
 import content.entity.sound.jingle
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.close
@@ -14,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
 import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
@@ -36,8 +36,7 @@ fun levelUp(player: Player, skill: Skill, text: String) {
     }
 }
 
-@Script
-class LevelUp {
+class LevelUp : Script {
 
     init {
         experience { player ->

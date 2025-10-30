@@ -2,16 +2,15 @@ package content.social.assist
 
 import content.social.assist.Assistance.getHoursRemaining
 import content.social.assist.Assistance.hasEarnedMaximumExperience
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class AssistFilter {
+class AssistFilter : Script {
 
     init {
         interfaceOption("XP Earned/Time", "assist", "filter_buttons") {

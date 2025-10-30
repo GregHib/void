@@ -7,14 +7,13 @@ import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.dialogue.type.warning
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.equals
 
-@Script
-class StrongholdOfSecurityLadders {
+class StrongholdOfSecurityLadders : Script {
 
     val teleports: ObjectTeleports by inject()
 

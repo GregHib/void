@@ -9,13 +9,13 @@ import content.bot.interact.navigation.goToNearest
 import content.bot.interact.navigation.resume
 import content.bot.isBot
 import content.entity.npc.shop.shopInventory
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.network.client.instruction.InteractNPC
@@ -70,8 +70,7 @@ suspend fun Bot.buy(item: String, amount: Int = 1) {
     await("tick")
 }
 
-@Script
-class ShopBot {
+class ShopBot : Script {
 
     init {
         interfaceOpen("shop") { player ->

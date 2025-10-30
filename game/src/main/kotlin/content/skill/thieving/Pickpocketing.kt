@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.effect.stun
 import content.entity.npc.combat.NPCAttack
 import content.skill.slayer.categories
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
@@ -21,7 +22,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.equipment
@@ -32,8 +32,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 
-@Script
-class Pickpocketing {
+class Pickpocketing : Script {
 
     val animationDefinitions: AnimationDefinitions by inject()
     val dropTables: DropTables by inject()

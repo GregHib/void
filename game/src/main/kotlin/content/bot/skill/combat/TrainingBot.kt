@@ -11,7 +11,7 @@ import content.entity.player.bank.ownsItem
 import content.skill.magic.spell.spellBook
 import content.skill.melee.weapon.attackRange
 import net.pearx.kasechange.toLowerSpaceCase
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.remaining
@@ -25,15 +25,13 @@ import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-@Script
-class TrainingBot : Api {
+class TrainingBot : Script {
 
     val areas: AreaDefinitions by inject()
     val tasks: TaskManager by inject()

@@ -1,16 +1,15 @@
 package content.entity.player.combat
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
 
 /**
  * Certain NPCs stop being aggressive towards the player if they stay inside their tolerance area for [toleranceTime]
  */
-@Script
-class Tolerance : Api {
+
+class Tolerance : Script {
 
     val toleranceTime = TimeUnit.MINUTES.toSeconds(10)
 

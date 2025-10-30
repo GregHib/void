@@ -1,13 +1,12 @@
 package content.area.misthalin.barbarian_village.stronghold_of_security
 
 import content.entity.obj.objTeleportTakeOff
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.combatLevel
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class StrongholdOfSecurityPortals {
+class StrongholdOfSecurityPortals : Script {
 
     init {
         objTeleportTakeOff("Enter", "stronghold_war_portal") {

@@ -3,12 +3,11 @@ package content.skill.magic.book.modern
 import content.entity.combat.characterCombatPrepare
 import content.skill.magic.spell.Spell
 import content.skill.magic.spell.spell
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class DrainSpells {
+class DrainSpells : Script {
 
     val spellDefinitions: SpellDefinitions by inject()
 

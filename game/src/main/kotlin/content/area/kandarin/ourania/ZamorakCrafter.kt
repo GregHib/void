@@ -1,18 +1,16 @@
 package content.area.kandarin.ourania
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 
-@Script
-class ZamorakCrafter : Api {
+class ZamorakCrafter : Script {
 
     val objects: GameObjects by inject()
     val patrols: PatrolDefinitions by inject()

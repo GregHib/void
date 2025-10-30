@@ -2,6 +2,7 @@ package content.skill.woodcutting
 
 import content.entity.sound.areaSound
 import net.pearx.kasechange.toLowerSpaceCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.remaining
@@ -22,7 +23,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -31,8 +31,7 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.random
 
-@Script
-class Woodcutting {
+class Woodcutting : Script {
 
     val players: Players by inject()
     val definitions: ObjectDefinitions by inject()

@@ -3,17 +3,16 @@ package content.skill.magic.book.lunar
 import content.entity.combat.hit.damage
 import content.entity.sound.sound
 import content.skill.magic.spell.removeSpellItems
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class HealGroup {
+class HealGroup : Script {
 
     val definitions: SpellDefinitions by inject()
     val players: Players by inject()

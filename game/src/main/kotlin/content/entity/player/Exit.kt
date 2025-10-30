@@ -1,15 +1,14 @@
 package content.entity.player
 
 import content.entity.combat.inCombat
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.AccountManager
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class Exit {
+class Exit : Script {
 
     val accounts: AccountManager by inject()
 

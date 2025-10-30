@@ -3,6 +3,7 @@ package content.skill.crafting
 import content.entity.player.dialogue.type.makeAmount
 import content.entity.sound.sound
 import net.pearx.kasechange.toLowerSpaceCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.data.definition.data.Pottery
@@ -14,13 +15,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 
-@Script
-class Pottery {
+class Pottery : Script {
 
     init {
         itemOnObjectOperate("soft_clay", "potters_wheel*", arrive = false) {

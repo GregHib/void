@@ -13,6 +13,7 @@ import content.quest.refreshQuestJournal
 import content.skill.prayer.PrayerConfigs.PRAYERS
 import content.social.trade.exchange.GrandExchange
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.commandAlias
 import world.gregs.voidps.engine.client.command.intArg
@@ -39,7 +40,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -47,8 +47,7 @@ import world.gregs.voidps.engine.timer.TimerQueue
 import kotlin.collections.iterator
 import kotlin.getValue
 
-@Script
-class PlayerCommands {
+class PlayerCommands : Script {
 
     val players: Players by inject()
     val accounts: AccountDefinitions by inject()

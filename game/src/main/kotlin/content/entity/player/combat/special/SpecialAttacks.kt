@@ -3,11 +3,9 @@ package content.entity.player.combat.special
 import content.entity.combat.hit.hit
 import content.entity.sound.sound
 import content.skill.melee.weapon.weapon
-import world.gregs.voidps.engine.Api
-import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.Script
 
-@Script
-class SpecialAttacks : Api {
+class SpecialAttacks : Script {
 
     init {
         variableSet("special_attack") { player, _, from, to ->

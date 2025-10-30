@@ -4,15 +4,14 @@ import content.social.assist.Assistance.canAssist
 import content.social.assist.Assistance.redirectSkillExperience
 import content.social.assist.Assistance.stopRedirectingSkillExp
 import net.pearx.kasechange.toSentenceCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class AssistDisplay {
+class AssistDisplay : Script {
 
     init {
         interfaceOption(option = "Toggle Skill On / Off", id = "assist_xp") {

@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.LevelChange
 import world.gregs.voidps.engine.timer.TimerApi
 
 /**
- * A helper interface made up of all callable methods for easier [world.gregs.voidps.engine.event.Script] usage.
+ * A helper interface made up of all callable methods for easier scripting.
  */
-interface Api : Spawn, LevelChanged, Moved, VariableSet, TimerApi {
+interface Script : Spawn, LevelChanged, Moved, VariableSet, TimerApi {
     companion object {
         fun clear() {
             Spawn.clear()

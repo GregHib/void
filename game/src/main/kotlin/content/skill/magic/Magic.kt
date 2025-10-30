@@ -12,17 +12,16 @@ import content.skill.magic.spell.removeSpellItems
 import content.skill.magic.spell.spell
 import content.skill.melee.weapon.weapon
 import content.skill.slayer.categories
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.config.SpellDefinition
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class Magic {
+class Magic : Script {
 
     val spellDefinitions: SpellDefinitions by inject()
 

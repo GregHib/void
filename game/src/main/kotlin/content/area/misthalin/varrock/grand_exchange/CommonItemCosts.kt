@@ -1,6 +1,7 @@
 package content.area.misthalin.varrock.grand_exchange
 
 import content.social.trade.exchange.GrandExchange
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
@@ -8,11 +9,9 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class CommonItemCosts {
+class CommonItemCosts : Script {
 
     val enums: EnumDefinitions by inject()
     val exchange: GrandExchange by inject()

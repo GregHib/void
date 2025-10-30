@@ -6,13 +6,12 @@ import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.directHit
 import content.entity.sound.sound
 import content.skill.melee.weapon.multiTargets
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.random
 import kotlin.random.nextInt
 
-@Script
-class Chinchompa {
+class Chinchompa : Script {
 
     init {
         characterCombatDamage("*chinchompa", "range") { character ->

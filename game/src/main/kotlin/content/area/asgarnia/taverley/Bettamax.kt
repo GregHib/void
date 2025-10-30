@@ -1,13 +1,11 @@
 package content.area.asgarnia.taverley
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class Bettamax : Api {
+class Bettamax : Script {
 
     val npcs: NPCs by inject()
 

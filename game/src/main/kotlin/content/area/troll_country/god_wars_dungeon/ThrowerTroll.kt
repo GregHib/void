@@ -6,11 +6,10 @@ import content.entity.combat.npcCombatSwing
 import content.entity.proj.shoot
 import content.entity.sound.areaSound
 import content.entity.sound.sound
-import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.type.random
 
-@Script
-class ThrowerTroll {
+class ThrowerTroll : Script {
 
     init {
         characterCombatDamage("troll_rock", "range") { character ->

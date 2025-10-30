@@ -1,17 +1,15 @@
 package content.entity.player.effect
 
 import content.skill.prayer.praying
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
 
-@Script
-class HitpointRestoration : Api {
+class HitpointRestoration : Script {
 
     init {
         playerSpawn { player ->

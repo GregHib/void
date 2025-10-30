@@ -1,12 +1,11 @@
 package content.area.misthalin.lumbridge
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.random
 
-@Script
-class LumbridgeBookcase {
+class LumbridgeBookcase : Script {
 
     init {
         objectOperate("Search", "lumbridge_bookcase") {

@@ -1,13 +1,12 @@
 package content.area.banks
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
-@Script
-class Leaflets {
+class Leaflets : Script {
 
     init {
         objectOperate("Take", "*_bank_leaflet") {

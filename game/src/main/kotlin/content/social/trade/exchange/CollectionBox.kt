@@ -1,12 +1,11 @@
 package content.social.trade.exchange
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.sendInventory
 
-@Script
-class CollectionBox {
+class CollectionBox : Script {
 
     val exchange: GrandExchange by inject()
 

@@ -1,14 +1,13 @@
 package content.skill.magic.book.ancient
 
 import content.entity.combat.hit.characterCombatAttack
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 
-@Script
-class MiasmicSpells {
+class MiasmicSpells : Script {
 
     val definitions: SpellDefinitions by inject()
 

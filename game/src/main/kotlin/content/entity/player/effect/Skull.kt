@@ -2,12 +2,11 @@ package content.entity.player.effect
 
 import content.area.wilderness.inWilderness
 import content.entity.combat.attackers
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.combat.combatStart
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
@@ -29,8 +28,7 @@ fun Player.unskull() {
     softTimers.stop("skull")
 }
 
-@Script
-class Skull : Api {
+class Skull : Script {
 
     init {
         playerSpawn { player ->

@@ -2,6 +2,7 @@ package content.social.friend
 
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.nameEntry
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.modCommand
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -12,15 +13,13 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import java.util.concurrent.TimeUnit
 
-@Script
-class NameChange {
+class NameChange : Script {
 
     val players: Players by inject()
 

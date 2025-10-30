@@ -3,7 +3,7 @@ package content.achievement
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.quest.questCompleted
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
@@ -17,11 +17,9 @@ import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class TaskSystem : Api {
+class TaskSystem : Script {
 
     val variables: VariableDefinitions by inject()
     val enumDefinitions: EnumDefinitions by inject()

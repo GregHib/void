@@ -7,14 +7,12 @@ import content.skill.prayer.PrayerConfigs.ACTIVE_PRAYERS
 import content.skill.prayer.PrayerStart
 import content.skill.prayer.PrayerStop
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.variableBitAdd
 import world.gregs.voidps.engine.client.variable.variableBitRemove
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class PrayerToggle : Api {
+class PrayerToggle : Script {
 
     init {
         variableSet("activated_*") { player, _, from, to ->

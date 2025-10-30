@@ -3,13 +3,12 @@ package content.skill.magic.book.modern
 import content.entity.combat.hit.CombatAttack
 import content.entity.combat.hit.characterCombatAttack
 import content.entity.effect.freeze
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class BindSpells {
+class BindSpells : Script {
 
     val definitions: SpellDefinitions by inject()
 

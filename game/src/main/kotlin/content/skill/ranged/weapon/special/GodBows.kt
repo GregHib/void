@@ -2,16 +2,14 @@ package content.skill.ranged.weapon.special
 
 import content.entity.combat.hit.*
 import content.entity.sound.sound
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
-@Script
-class GodBows : Api {
+class GodBows : Script {
 
     var Player.restoration: Int
         get() = this["restoration", 0]

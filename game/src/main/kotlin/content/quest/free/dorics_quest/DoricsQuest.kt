@@ -4,12 +4,11 @@ import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
 import net.pearx.kasechange.toTitleCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 
-@Script
-class DoricsQuest {
+class DoricsQuest : Script {
 
     init {
         questJournalOpen("dorics_quest") {

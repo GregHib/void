@@ -1,12 +1,12 @@
 package content.entity.player.dialogue.type
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Context
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.IntSuspension
 
@@ -76,8 +76,7 @@ private fun setMax(player: Player, maximum: Int) {
     }
 }
 
-@Script
-class MakeAmount {
+class MakeAmount : Script {
 
     init {
         interfaceOption("1", "create1", "skill_creation_amount") {

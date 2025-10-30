@@ -4,15 +4,14 @@ import content.entity.effect.toxin.curePoison
 import content.entity.effect.toxin.poisoned
 import content.entity.sound.sound
 import content.skill.magic.spell.removeSpellItems
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class CureMe {
+class CureMe : Script {
 
     val definitions: SpellDefinitions by inject()
 

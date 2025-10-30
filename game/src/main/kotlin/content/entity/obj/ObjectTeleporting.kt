@@ -1,12 +1,11 @@
 package content.entity.obj
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class ObjectTeleporting {
+class ObjectTeleporting : Script {
 
     val teleports: ObjectTeleports by inject()
 

@@ -4,6 +4,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.modCommand
 import world.gregs.voidps.engine.client.command.stringArg
@@ -22,7 +23,6 @@ import world.gregs.voidps.engine.entity.item.drop.DropTable
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.item.drop.TableType
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.timer.TICKS
@@ -30,8 +30,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.collections.iterator
 import kotlin.system.measureTimeMillis
 
-@Script
-class DropCommands {
+class DropCommands : Script {
 
     val tables: DropTables by inject()
 

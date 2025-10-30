@@ -3,11 +3,10 @@ package content.area.kandarin.ardougne.west_ardougne
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class Man {
+class Man : Script {
 
     init {
         npcOperate("Talk-to", "w_ardougnecitizen3") {

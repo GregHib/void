@@ -2,14 +2,13 @@ package content.entity.effect.toxin
 
 import content.entity.combat.hit.characterCombatAttack
 import content.entity.combat.hit.directHit
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
@@ -55,8 +54,7 @@ fun Player.antiPoison(duration: Int, timeUnit: TimeUnit) {
     timers.startIfAbsent("poison")
 }
 
-@Script
-class Poison : Api {
+class Poison : Script {
 
     init {
         playerSpawn { player ->

@@ -9,12 +9,11 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
 import content.skill.runecrafting.EssenceMine
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class Brimstail {
+class Brimstail : Script {
 
     init {
         npcOperate("Talk-to", "brimstail") {

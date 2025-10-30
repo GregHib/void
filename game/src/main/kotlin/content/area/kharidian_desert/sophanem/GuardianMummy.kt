@@ -8,11 +8,11 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -22,8 +22,7 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeTo
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
-@Script
-class GuardianMummy {
+class GuardianMummy : Script {
 
     val ivory = listOf("ivory_comb", "pottery_scarab", "pottery_statuette")
     val stone = listOf("stone_seal", "stone_scarab", "stone_statuette")

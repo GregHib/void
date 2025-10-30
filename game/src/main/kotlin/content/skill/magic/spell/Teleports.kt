@@ -5,6 +5,7 @@ import content.entity.sound.sound
 import content.quest.quest
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -18,7 +19,6 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -28,8 +28,7 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
 
-@Script
-class Teleports {
+class Teleports : Script {
 
     val areas: AreaDefinitions by inject()
     val definitions: SpellDefinitions by inject()

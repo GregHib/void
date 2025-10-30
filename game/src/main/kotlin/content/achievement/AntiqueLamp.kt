@@ -3,13 +3,12 @@ package content.achievement
 import content.entity.player.dialogue.type.skillLamp
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.inventoryItem
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
-@Script
-class AntiqueLamp {
+class AntiqueLamp : Script {
 
     init {
         inventoryItem("Rub", "antique_lamp_easy_lumbridge_tasks", "inventory") {

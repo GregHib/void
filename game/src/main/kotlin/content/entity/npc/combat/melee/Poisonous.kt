@@ -2,11 +2,10 @@ package content.entity.npc.combat.melee
 
 import content.entity.combat.npcCombatPrepare
 import content.entity.effect.toxin.poison
-import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.type.random
 
-@Script
-class Poisonous {
+class Poisonous : Script {
 
     init {
         npcCombatPrepare { npc ->

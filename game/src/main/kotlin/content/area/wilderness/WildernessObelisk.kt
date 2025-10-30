@@ -2,6 +2,7 @@ package content.area.wilderness
 
 import content.skill.magic.book.modern.teleBlocked
 import content.skill.magic.spell.Teleport
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.World
@@ -9,14 +10,12 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.type.random
 
-@Script
-class WildernessObelisk {
+class WildernessObelisk : Script {
 
     val areas: AreaDefinitions by inject()
     val objects: GameObjects by inject()

@@ -1,13 +1,12 @@
 package content.entity.effect.toxin
 
 import content.entity.combat.hit.directHit
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
@@ -52,8 +51,7 @@ fun Player.antiDisease(duration: Int, timeUnit: TimeUnit) {
     timers.startIfAbsent("disease")
 }
 
-@Script
-class Disease : Api {
+class Disease : Script {
 
     init {
         playerSpawn { player ->

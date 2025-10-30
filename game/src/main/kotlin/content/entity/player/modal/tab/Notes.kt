@@ -1,10 +1,9 @@
 package content.entity.player.modal.tab
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.event.Script
 
-@Script
-class Notes {
+class Notes : Script {
 
     init {
         interfaceOpen("notes") { player ->

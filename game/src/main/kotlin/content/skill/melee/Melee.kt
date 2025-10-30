@@ -7,13 +7,12 @@ import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class Melee {
+class Melee : Script {
 
     val styleDefinitions: WeaponStyleDefinitions by inject()
     val animationDefinitions: WeaponAnimationDefinitions by inject()

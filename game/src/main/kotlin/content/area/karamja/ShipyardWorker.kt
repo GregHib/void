@@ -4,13 +4,12 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.random
 
-@Script
-class ShipyardWorker {
+class ShipyardWorker : Script {
 
     init {
         npcOperate("Talk-to", "shipyard_guard") {

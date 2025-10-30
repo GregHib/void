@@ -4,10 +4,9 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
-import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.Script
 
-@Script
-class TheRestlessGhost {
+class TheRestlessGhost : Script {
 
     init {
         questJournalOpen("the_restless_ghost") {

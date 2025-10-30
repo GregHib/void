@@ -1,5 +1,6 @@
 package content.entity.npc.combat
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.data.Settings
@@ -12,11 +13,9 @@ import world.gregs.voidps.engine.entity.character.npc.hunt.HuntNPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.HuntPlayer
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntNPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class Aggression {
+class Aggression : Script {
 
     val areas: AreaDefinitions by inject()
 

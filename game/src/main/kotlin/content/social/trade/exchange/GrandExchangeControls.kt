@@ -2,6 +2,7 @@ package content.social.trade.exchange
 
 import content.entity.player.bank.noted
 import content.entity.player.dialogue.type.intEntry
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeDialogue
@@ -12,12 +13,10 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.inventory
 import kotlin.math.ceil
 
-@Script
-class GrandExchangeControls {
+class GrandExchangeControls : Script {
 
     init {
         interfaceOpen("grand_exchange") { player ->

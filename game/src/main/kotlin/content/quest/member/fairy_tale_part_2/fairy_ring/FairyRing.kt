@@ -6,6 +6,7 @@ import content.quest.quest
 import content.quest.questCompleted
 import content.skill.magic.spell.Teleport
 import content.skill.melee.weapon.weapon
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
@@ -16,13 +17,11 @@ import world.gregs.voidps.engine.client.variable.ListValues
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.type.Tile
 
-@Script
-class FairyRing {
+class FairyRing : Script {
 
     val fairyRing: FairyRingCodes by inject()
 

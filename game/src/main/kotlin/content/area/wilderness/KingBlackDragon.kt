@@ -7,16 +7,15 @@ import content.entity.effect.freeze
 import content.entity.effect.toxin.poison
 import content.entity.proj.shoot
 import content.entity.sound.sound
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-@Script
-class KingBlackDragon {
+class KingBlackDragon : Script {
 
     val specials = listOf("toxic", "ice", "shock")
 

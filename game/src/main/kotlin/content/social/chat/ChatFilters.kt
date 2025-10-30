@@ -1,11 +1,10 @@
 package content.social.chat
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.privateStatus
 import world.gregs.voidps.engine.client.publicStatus
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
 
 var Player.publicStatus: String
     get() = get("public_status", "on")
@@ -28,8 +27,7 @@ var Player.tradeStatus: String
         publicStatus(publicStatus, value)
     }
 
-@Script
-class ChatFilters : Api {
+class ChatFilters : Script {
 
     init {
         playerSpawn { player ->

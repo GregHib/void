@@ -5,11 +5,10 @@ import content.entity.combat.hit.npcCombatDamage
 import content.entity.combat.npcCombatPrepare
 import content.skill.magic.spell.Spell
 import content.skill.magic.spell.spell
-import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.type.random
 
-@Script
-class Wizards {
+class Wizards : Script {
 
     init {
         npcCombatPrepare { npc ->

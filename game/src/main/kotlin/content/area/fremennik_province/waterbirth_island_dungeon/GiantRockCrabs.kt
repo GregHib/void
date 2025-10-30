@@ -3,16 +3,15 @@ package content.area.fremennik_province.waterbirth_island_dungeon
 import content.entity.combat.inCombat
 import content.entity.combat.target
 import content.entity.effect.transform
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-@Script
-class GiantRockCrabs {
+class GiantRockCrabs : Script {
 
     init {
         huntPlayer("boulder*", "aggressive") { npc ->

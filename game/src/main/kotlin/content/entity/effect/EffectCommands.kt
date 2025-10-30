@@ -2,6 +2,7 @@ package content.entity.effect
 
 import content.entity.effect.toxin.*
 import content.entity.player.command.find
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.commandAlias
 import world.gregs.voidps.engine.client.command.commandSuggestion
@@ -11,11 +12,9 @@ import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 
-@Script
-class EffectCommands {
+class EffectCommands : Script {
 
     val accounts: AccountDefinitions by inject()
     val players: Players by inject()

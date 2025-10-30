@@ -12,12 +12,13 @@ import org.jetbrains.kotlin.com.intellij.psi.PsiManager
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.psi.*
 import org.jetbrains.kotlin.psi.psiUtil.collectDescendantsOfType
+import org.jetbrains.kotlin.psi.psiUtil.parents
 import java.io.File
 
 /**
  * Gradle task which incrementally collects method info about script classes inside a given directory.
  * Collects:
- *  - @Script annotations for invocation
+ *  -  annotations for invocation
  *  - Parameters of called methods in init {} and their resolved wildcards
  */
 abstract class ScriptMetadataTask : DefaultTask() {
@@ -154,7 +155,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
             if (change.changeType == ChangeType.MODIFIED || change.changeType == ChangeType.ADDED) {
                 for (ktClass in classes) {
                     val className = ktClass.name ?: "Anonymous"
-                    if (ktClass.annotationEntries.any { anno -> anno.shortName!!.asString() == "Script" }) {
+                    if (ktClass.superTypeListEntries.any { it.text == "Script" }) {
                         scriptClasses.add(ktClass to "$packageName.$className")
                     }
                 }

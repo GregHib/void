@@ -3,13 +3,11 @@ package content.skill.constitution.drink
 import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import content.entity.player.combat.special.specialAttackEnergy
 import content.skill.constitution.canConsume
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.*
 
-@Script
-class RecoverSpecial : Api {
+class RecoverSpecial : Script {
 
     init {
         canConsume("recover_special*") { player ->

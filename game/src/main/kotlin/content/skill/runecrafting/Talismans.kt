@@ -4,14 +4,13 @@ import content.entity.obj.ObjectTeleports
 import content.entity.player.inv.inventoryItem
 import net.pearx.kasechange.toKebabCase
 import net.pearx.kasechange.toSentenceCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.area.Rectangle
 
-@Script
-class Talismans {
+class Talismans : Script {
 
     val overworld = Rectangle(2048, 2496, 3903, 4159)
 

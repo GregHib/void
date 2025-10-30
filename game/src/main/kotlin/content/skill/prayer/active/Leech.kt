@@ -9,19 +9,17 @@ import content.entity.player.effect.energy.runEnergy
 import content.entity.proj.shoot
 import content.skill.prayer.*
 import net.pearx.kasechange.toTitleCase
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
-@Script
-class Leech : Api {
+class Leech : Script {
 
     val map = mapOf(
         "sap_warrior" to Skill.Attack,

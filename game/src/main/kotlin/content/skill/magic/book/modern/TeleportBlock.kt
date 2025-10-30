@@ -3,13 +3,12 @@ package content.skill.magic.book.modern
 import content.entity.combat.combatPrepare
 import content.skill.magic.spell.spell
 import content.skill.prayer.protectMagic
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.Timer
 import kotlin.math.sign
 
@@ -42,8 +41,7 @@ fun Character.unblockTeleport() {
     softTimers.stop("teleport_block")
 }
 
-@Script
-class TeleportBlock : Api {
+class TeleportBlock : Script {
     init {
         combatPrepare("magic") { player ->
             if (player.spell == "teleport_block" && target is NPC) {

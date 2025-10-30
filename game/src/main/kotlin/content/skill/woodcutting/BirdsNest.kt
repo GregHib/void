@@ -1,18 +1,17 @@
 package content.skill.woodcutting
 
 import content.entity.player.inv.inventoryOptions
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
-@Script
-class BirdsNest {
+class BirdsNest : Script {
 
     val drops: DropTables by inject()
     val itemDefinitions: ItemDefinitions by inject()

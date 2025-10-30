@@ -3,6 +3,7 @@ package content.entity.player.command
 import content.skill.prayer.PrayerConfigs
 import content.skill.prayer.isCurses
 import net.pearx.kasechange.toSentenceCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.adminCommands
@@ -16,13 +17,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import kotlin.getValue
 
-@Script
-class SkillCommands {
+class SkillCommands : Script {
 
     val players: Players by inject()
     val accounts: AccountDefinitions by inject()

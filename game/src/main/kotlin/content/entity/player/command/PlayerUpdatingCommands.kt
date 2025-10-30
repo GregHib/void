@@ -3,6 +3,7 @@ package content.entity.player.command
 import content.bot.isBot
 import content.entity.proj.shoot
 import net.pearx.kasechange.toScreamingSnakeCase
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.commandAlias
 import world.gregs.voidps.engine.client.command.intArg
@@ -15,13 +16,11 @@ import world.gregs.voidps.engine.entity.character.colourOverlay
 import world.gregs.voidps.engine.entity.character.flagExactMovement
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.setTimeBar
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 
-@Script
-class PlayerUpdatingCommands {
+class PlayerUpdatingCommands : Script {
 
     val players: Players by inject()
     val animationDefinitions: AnimationDefinitions by inject()

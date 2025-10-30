@@ -19,7 +19,7 @@ import content.quest.free.demon_slayer.DemonSlayerSpell
 import content.quest.questComplete
 import content.quest.questCompleted
 import content.quest.startCutscene
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.moveCamera
@@ -43,7 +43,6 @@ import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.event.Events
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
@@ -55,8 +54,7 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-@Script
-class Delrith : Api {
+class Delrith : Script {
 
     val objects: GameObjects by inject()
     val npcs: NPCs by inject()

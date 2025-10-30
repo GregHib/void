@@ -1,14 +1,12 @@
 package content.entity.player.stat
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.network.login.protocol.encode.skillLevel
 
-@Script
-class Experience : Api {
+class Experience : Script {
 
     init {
         playerSpawn { player ->

@@ -1,16 +1,14 @@
 package content.area.kandarin.ourania
 
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntNPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
-@Script
-class CaveLizard : Api {
+class CaveLizard : Script {
 
     init {
         npcSpawn("cave_lizard") { npc ->
