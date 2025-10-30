@@ -47,5 +47,5 @@ class FloorItemOptionHandler(
 }
 
 fun Character.interactFloorItem(target: FloorItem, option: String, shape: Int? = null) {
-    mode = Interact(this, target, FloorItemOption(this, target, option), shape =shape, type = CharacterInteraction(target.def, option))
+    mode = Interact(this, target, FloorItemOption(this, target, option), shape = shape, type = CharacterInteraction(this, target, target.def, option))
 }

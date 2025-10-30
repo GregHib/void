@@ -17,22 +17,24 @@ import world.gregs.voidps.engine.event.Events
  *  TODO rename to Interaction after current Interaction has been full migrated
  */
 class CharacterInteraction(
+    private val character: Character,
+    private val target: Entity,
     private val option: String,
     private val key: String,
     private val operateKeys: Set<String>,
     private val approachKeys: Set<String>,
 ) : InteractionType {
 
-    constructor(option: String) : this(option, option, Operation.playerPlayerBlocks.keys, Approachable.playerPlayerBlocks.keys)
-    constructor(def: NPCDefinition, option: String) : this(option, "$option:${def.stringId}", Operation.playerNpcBlocks.keys, Approachable.playerNpcBlocks.keys)
-    constructor(def: ObjectDefinition, option: String) : this(option, "$option:${def.stringId}", Operation.playerObjectBlocks.keys, Approachable.playerObjectBlocks.keys)
-    constructor(def: ItemDefinition, option: String) : this(option, "$option:${def.stringId}", Operation.playerFloorItemBlocks.keys, Approachable.playerFloorItemBlocks.keys)
+    constructor(character: Character, target: Entity, option: String) : this(character, target, option, option, Operation.playerPlayerBlocks.keys, Approachable.playerPlayerBlocks.keys)
+    constructor(character: Character, target: Entity, def: NPCDefinition, option: String) : this(character, target, option, "$option:${def.stringId}", Operation.playerNpcBlocks.keys, Approachable.playerNpcBlocks.keys)
+    constructor(character: Character, target: Entity, def: ObjectDefinition, option: String) : this(character, target, option, "$option:${def.stringId}", Operation.playerObjectBlocks.keys, Approachable.playerObjectBlocks.keys)
+    constructor(character: Character, target: Entity, def: ItemDefinition, option: String) : this(character, target, option, "$option:${def.stringId}", Operation.playerFloorItemBlocks.keys, Approachable.playerFloorItemBlocks.keys)
 
-    override fun hasOperate(character: Character) = operateKeys.contains(key) || operateKeys.contains(option)
+    override fun hasOperate() = operateKeys.contains(key) || operateKeys.contains(option)
 
-    override fun hasApproach(character: Character) = approachKeys.contains(key) || approachKeys.contains(option)
+    override fun hasApproach() = approachKeys.contains(key) || approachKeys.contains(option)
 
-    override fun operate(character: Character, target: Entity) {
+    override fun operate() {
         Events.events.launch {
             if (character is NPC) {
                 when (target) {
@@ -52,7 +54,7 @@ class CharacterInteraction(
         }
     }
 
-    override fun approach(character: Character, target: Entity) {
+    override fun approach() {
         Events.events.launch {
             if (character is NPC) {
                 when (target) {

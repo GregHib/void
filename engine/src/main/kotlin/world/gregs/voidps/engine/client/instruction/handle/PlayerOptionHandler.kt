@@ -40,5 +40,5 @@ class PlayerOptionHandler(
 }
 
 fun Character.interactPlayer(target: Player, option: String) {
-    mode = Interact(this, target, PlayerOption(this, target, option), type = CharacterInteraction(option))
+    mode = Interact(this, target, PlayerOption(this, target, option), type = CharacterInteraction(this, target, option))
 }
