@@ -10,20 +10,20 @@ class MultiCombat : Script {
     val areaDefinitions: AreaDefinitions by inject()
 
     init {
-        npcSpawn { npc ->
-            for (def in areaDefinitions.get(npc.tile.zone)) {
+        npcSpawn {
+            for (def in areaDefinitions.get(tile.zone)) {
                 if (def.tags.contains("multi_combat")) {
-                    npc["in_multi_combat"] = true
+                    this["in_multi_combat"] = true
                     break
                 }
             }
         }
 
-        variableSet("in_multi_combat") { player, _, _, to ->
+        variableSet("in_multi_combat") { _, _, to ->
             if (to == true) {
-                player.interfaces.sendVisibility("area_status_icon", "multi_combat", true)
+                interfaces.sendVisibility("area_status_icon", "multi_combat", true)
             } else if (to == null) {
-                player.interfaces.sendVisibility("area_status_icon", "multi_combat", false)
+                interfaces.sendVisibility("area_status_icon", "multi_combat", false)
             }
         }
 

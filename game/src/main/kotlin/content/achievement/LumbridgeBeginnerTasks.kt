@@ -45,17 +45,17 @@ class LumbridgeBeginnerTasks : Script {
             }
         }
 
-        variableSet("task_progress_overall,quest_points") { player, key, from, to ->
+        variableSet("task_progress_overall,quest_points") { key, from, to ->
             if (key == "task_progress_overall" && (from == null || from is Int && from < 10) && to is Int && to >= 10) {
-                player["on_your_way_task"] = true
+                set("on_your_way_task", true)
             } else if (key == "quest_points" && (from == null || from is Int && from < 4) && to != null && to is Int && to >= 4) {
-                player["fledgeling_adventurer_task"] = true
+                set("fledgeling_adventurer_task", true)
             }
         }
 
-        moved { player, _ ->
-            if (player.running && !player["on_the_run_task", false]) {
-                player["on_the_run_task"] = true
+        moved { _ ->
+            if (running && !get("on_the_run_task", false)) {
+                set("on_the_run_task", true)
             }
         }
 

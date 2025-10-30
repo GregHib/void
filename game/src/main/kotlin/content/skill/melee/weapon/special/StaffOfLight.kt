@@ -12,9 +12,9 @@ import java.util.concurrent.TimeUnit
 
 class StaffOfLight : Script {
     init {
-        playerSpawn { player ->
-            if (player.contains("power_of_light")) {
-                player.softTimers.restart("power_of_light")
+        playerSpawn {
+            if (contains("power_of_light")) {
+                softTimers.restart("power_of_light")
             }
         }
 

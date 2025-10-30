@@ -73,7 +73,7 @@ internal class LendTest : WorldTest() {
         acceptTrade(lender, borrower)
 
         assertTrue(borrower.inventory.contains("abyssal_whip_lent"))
-        lender.emit(Despawn)
+        Despawn.player(lender)
         assertFalse(lender.softTimers.contains("loan_message"))
         assertFalse(borrower.inventory.contains("abyssal_whip_lent"))
     }
@@ -85,7 +85,7 @@ internal class LendTest : WorldTest() {
         acceptTrade(lender, borrower)
 
         assertTrue(borrower.inventory.contains("abyssal_whip_lent"))
-        borrower.emit(Despawn)
+        Despawn.player(borrower)
         assertFalse(lender.softTimers.contains("loan_message"))
         assertFalse(borrower.inventory.contains("abyssal_whip_lent"))
     }
@@ -233,7 +233,7 @@ internal class LendTest : WorldTest() {
     }
 
     private fun logout(borrower: Player) {
-        borrower.emit(Despawn)
+        Despawn.player(borrower)
         players.remove(borrower)
     }
 

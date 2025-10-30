@@ -11,9 +11,9 @@ class SpecialAttackEnergy : Script {
     val tenth = MAX_SPECIAL_ATTACK / 10
 
     init {
-        playerSpawn { player ->
-            if (player.specialAttackEnergy < MAX_SPECIAL_ATTACK) {
-                player.softTimers.start("restore_special_energy")
+        playerSpawn {
+            if (specialAttackEnergy < MAX_SPECIAL_ATTACK) {
+                softTimers.start("restore_special_energy")
             }
         }
         timerStart("restore_special_energy") { 50 }

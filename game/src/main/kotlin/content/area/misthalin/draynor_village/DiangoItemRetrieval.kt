@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -47,9 +46,9 @@ class DiangoItemRetrieval : Script {
             refreshItems(player)
         }
 
-        playerDespawn { player ->
+        playerDespawn {
             // Don't want to store in account save
-            player.inventories.clear("diangos_item_retrieval")
+            inventories.clear("diangos_item_retrieval")
         }
 
         interfaceClose("diangos_item_retrieval") { player ->

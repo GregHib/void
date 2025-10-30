@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.characterDespawn
 import world.gregs.voidps.engine.event.onEvent
 
 class Combat : Script {
@@ -36,8 +35,14 @@ class Combat : Script {
             combat(character, target)
         }
 
-        characterDespawn { character ->
-            for (attacker in character.attackers) {
+        playerDespawn {
+            for (attacker in attackers) {
+                attacker.mode = EmptyMode
+            }
+        }
+
+        npcDespawn {
+            for (attacker in attackers) {
                 attacker.mode = EmptyMode
             }
         }

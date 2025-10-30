@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
@@ -23,14 +22,14 @@ class ItemLending : Script {
     val players: Players by inject()
 
     init {
-        playerSpawn { player ->
-            checkBorrowComplete(player)
-            checkLoanComplete(player)
+        playerSpawn {
+            checkBorrowComplete(this)
+            checkLoanComplete(this)
         }
 
-        playerDespawn { player ->
-            checkBorrowUntilLogout(player)
-            checkLoanUntilLogout(player)
+        playerDespawn {
+            checkBorrowUntilLogout(this)
+            checkLoanUntilLogout(this)
         }
 
         timerStart("borrow_message") { TimeUnit.MINUTES.toTicks(1) }

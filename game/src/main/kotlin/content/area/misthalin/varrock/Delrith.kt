@@ -39,7 +39,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.event.Events
@@ -72,9 +71,9 @@ class Delrith : Script {
     val words = listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo")
 
     init {
-        moved { player, _ ->
-            if (exitArea(player, player.tile)) {
-                val cutscene: Cutscene = player.remove("demon_slayer_cutscene") ?: return@moved
+        moved {
+            if (exitArea(this, tile)) {
+                val cutscene: Cutscene = remove("demon_slayer_cutscene") ?: return@moved
                 Events.events.launch {
                     cutscene.end()
                 }
@@ -87,8 +86,8 @@ class Delrith : Script {
             }
         }
 
-        playerDespawn { player ->
-            val cutscene: Cutscene = player.remove("demon_slayer_cutscene") ?: return@playerDespawn
+        playerDespawn {
+            val cutscene: Cutscene = remove("demon_slayer_cutscene") ?: return@playerDespawn
             cutscene.destroy()
         }
 

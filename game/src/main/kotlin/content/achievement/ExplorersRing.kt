@@ -12,10 +12,10 @@ import java.util.concurrent.TimeUnit
 class ExplorersRing : Script {
 
     init {
-        playerSpawn { player ->
-            val lastUse: Long = player["explorers_ring_last_use"] ?: return@playerSpawn
+        playerSpawn {
+            val lastUse: Long = this["explorers_ring_last_use"] ?: return@playerSpawn
             if (lastUse != -1L && lastUse != TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis())) {
-                player["explorers_ring_charges"] = 1
+                this["explorers_ring_charges"] = 1
             }
         }
 

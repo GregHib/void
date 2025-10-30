@@ -17,8 +17,8 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 class NatureStaff : Script {
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("nature_staff_charges")
+        playerSpawn {
+            sendVariable("nature_staff_charges")
         }
 
         inventoryItem("Inspect", "nature_staff", "inventory") {

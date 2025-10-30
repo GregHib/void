@@ -12,16 +12,16 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 class Weapon : Script {
 
     init {
-        playerSpawn { player ->
-            updateWeapon(player, player.equipped(EquipSlot.Weapon))
+        playerSpawn {
+            updateWeapon(this, equipped(EquipSlot.Weapon))
         }
 
-        variableSet("autocast,spell") { player, _, _, _ -> updateWeapon(player, player.weapon) }
-        variableSet("attack_style") { player, _, from, to ->
+        variableSet("autocast,spell") { _, _, _ -> updateWeapon(this, weapon) }
+        variableSet("attack_style") { _, from, to ->
             if (to == "long_range") {
-                updateWeapon(player, player.weapon, 2)
+                updateWeapon(this, weapon, 2)
             } else if (from == "long_range") {
-                updateWeapon(player, player.weapon)
+                updateWeapon(this, weapon)
             }
         }
 

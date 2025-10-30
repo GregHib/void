@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 class SpellBookFilter : Script {
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("spellbook_sort")
-            player.sendVariable("spellbook_config")
+        playerSpawn {
+            sendVariable("spellbook_sort")
+            sendVariable("spellbook_config")
         }
 
         interfaceOpen("*_spellbook") { player ->

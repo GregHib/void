@@ -125,7 +125,7 @@ class AccountManager(
                     player.emit(AreaExited(player, def.name, def.tags, def.area, logout = true))
                 }
             }
-            player.emit(Despawn)
+            Despawn.player(player)
             player.queue.logout()
             player.softTimers.stopAll()
             player.timers.stopAll()

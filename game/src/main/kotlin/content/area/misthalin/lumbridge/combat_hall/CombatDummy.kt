@@ -12,10 +12,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 class CombatDummy : Script {
 
     init {
-        npcLevelChanged(Skill.Constitution, "melee_dummy,magic_dummy") { npc, _, _, to ->
+        npcLevelChanged(Skill.Constitution, "melee_dummy,magic_dummy") { _, _, to ->
             if (to <= 10) {
-                npc.levels.clear()
-                for (attacker in npc.attackers) {
+                levels.clear()
+                for (attacker in attackers) {
                     attacker.mode = EmptyMode
                 }
             }

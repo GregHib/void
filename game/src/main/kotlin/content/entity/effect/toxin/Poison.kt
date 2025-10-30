@@ -57,15 +57,15 @@ fun Player.antiPoison(duration: Int, timeUnit: TimeUnit) {
 class Poison : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.poisonCounter != 0) {
-                player.timers.restart("poison")
+        playerSpawn {
+            if (poisonCounter != 0) {
+                timers.restart("poison")
             }
         }
 
-        npcSpawn { npc ->
-            if (npc.poisonCounter != 0) {
-                npc.softTimers.restart("poison")
+        npcSpawn {
+            if (poisonCounter != 0) {
+                softTimers.restart("poison")
             }
         }
 

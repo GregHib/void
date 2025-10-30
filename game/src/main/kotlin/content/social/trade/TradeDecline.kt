@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.playerDespawn
 
 class TradeDecline : Script {
 
@@ -30,10 +29,10 @@ class TradeDecline : Script {
             decline()
         }
 
-        playerDespawn { player ->
-            if (isTradeInterface(player.menu)) {
-                val other = getPartner(player)
-                player.closeMenu()
+        playerDespawn {
+            if (isTradeInterface(menu)) {
+                val other = getPartner(this)
+                closeMenu()
                 other?.message("Other player declined trade.", ChatType.Trade)
                 other?.closeMenu()
             }

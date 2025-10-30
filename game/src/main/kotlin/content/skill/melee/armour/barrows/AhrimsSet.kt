@@ -11,9 +11,9 @@ import world.gregs.voidps.type.random
 class AhrimsSet : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.hasFullSet()) {
-                player["ahrims_set_effect"] = true
+        playerSpawn {
+            if (hasFullSet()) {
+                set("ahrims_set_effect", true)
             }
         }
 

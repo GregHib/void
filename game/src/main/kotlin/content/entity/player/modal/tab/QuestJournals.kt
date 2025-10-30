@@ -17,17 +17,17 @@ class QuestJournals : Script {
     val questDefinitions: QuestDefinitions by inject()
 
     init {
-        playerSpawn { player ->
-            player.clearCamera()
+        playerSpawn {
+            clearCamera()
         }
 
         timerStart("refresh_quest_journal") { 1 }
         timerTick("refresh_quest_journal") { Timer.CANCEL }
         timerStop("refresh_quest_journal") { refreshQuestJournal() }
 
-        variableSet { player, key, _, _ ->
+        variableSet { key, _, _ ->
             if (questDefinitions.ids.containsKey(key)) {
-                player.softTimers.start("refresh_quest_journal")
+                softTimers.start("refresh_quest_journal")
             }
         }
 

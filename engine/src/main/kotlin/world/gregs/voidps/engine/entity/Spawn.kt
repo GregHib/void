@@ -8,23 +8,23 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.event.Wildcards
 
 interface Spawn {
-    fun playerSpawn(block: (Player) -> Unit) {
+    fun playerSpawn(block: Player.() -> Unit) {
         playerSpawns.add(block)
     }
 
-    fun npcSpawn(id: String = "*", block: (NPC) -> Unit) {
+    fun npcSpawn(id: String = "*", block: NPC.() -> Unit) {
         for (key in Wildcards.find(id)) {
             npcSpawns.getOrPut(key) { mutableListOf() }.add(block)
         }
     }
 
-    fun objectSpawn(id: String = "*", block: (GameObject) -> Unit) {
+    fun objectSpawn(id: String = "*", block: GameObject.() -> Unit) {
         for (key in Wildcards.find(id)) {
             objectSpawns.getOrPut(key) { mutableListOf() }.add(block)
         }
     }
 
-    fun floorItemSpawn(id: String = "*", block: (FloorItem) -> Unit) {
+    fun floorItemSpawn(id: String = "*", block: FloorItem.() -> Unit) {
         for (key in Wildcards.find(id)) {
             floorItemSpawns.getOrPut(key) { mutableListOf() }.add(block)
         }
@@ -85,7 +85,7 @@ interface Spawn {
             npcSpawns.clear()
             objectSpawns.clear()
             floorItemSpawns.clear()
-            worldSpawns
+            worldSpawns.clear()
         }
     }
 }

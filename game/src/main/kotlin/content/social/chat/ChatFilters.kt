@@ -30,12 +30,12 @@ var Player.tradeStatus: String
 class ChatFilters : Script {
 
     init {
-        playerSpawn { player ->
-            player.privateStatus(player.privateStatus)
-            player.publicStatus(player.publicStatus, player.tradeStatus)
-            player.sendVariable("game_status")
-            player.sendVariable("assist_status")
-            player.sendVariable("clan_status")
+        playerSpawn {
+            privateStatus(privateStatus)
+            publicStatus(publicStatus, tradeStatus)
+            sendVariable("game_status")
+            sendVariable("assist_status")
+            sendVariable("clan_status")
         }
 
         interfaceOption("View", id = "filter_buttons") {

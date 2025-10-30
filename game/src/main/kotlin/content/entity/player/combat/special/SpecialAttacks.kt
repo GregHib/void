@@ -8,13 +8,13 @@ import world.gregs.voidps.engine.Script
 class SpecialAttacks : Script {
 
     init {
-        variableSet("special_attack") { player, _, from, to ->
+        variableSet("special_attack") { _, from, to ->
             if (to == true && from != true) {
-                val id: String = player.weapon.def.getOrNull("special") ?: return@variableSet
+                val id: String = weapon.def.getOrNull("special") ?: return@variableSet
                 val prepare = SpecialAttackPrepare(id)
-                player.emit(prepare)
+                emit(prepare)
                 if (prepare.cancelled) {
-                    player.specialAttack = false
+                    specialAttack = false
                 }
             }
         }

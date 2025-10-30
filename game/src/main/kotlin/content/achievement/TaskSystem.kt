@@ -123,11 +123,11 @@ class TaskSystem : Script {
             player.open("world_map")
         }
 
-        variableSet("task_pin_slot,task_area,*_task") { player, key, _, to ->
+        variableSet("task_pin_slot,task_area,*_task") { key, _, to ->
             if (key == "task_pin_slot" || key == "task_area") {
-                refreshSlots(player)
+                refreshSlots(this)
             } else if (key.endsWith("_task") && (to == true || to == "completed")) {
-                completeTask(player, key)
+                completeTask(this, key)
             }
         }
     }

@@ -23,9 +23,9 @@ class EnchantedGem : Script {
     val slayerDefinitions: SlayerTaskDefinitions by inject()
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("slayer_count")
-            player.sendVariable("slayer_target")
+        playerSpawn {
+            sendVariable("slayer_count")
+            sendVariable("slayer_target")
         }
 
         inventoryItem("Activate", "enchanted_gem") {

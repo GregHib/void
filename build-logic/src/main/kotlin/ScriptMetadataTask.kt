@@ -12,7 +12,6 @@ import org.jetbrains.kotlin.com.intellij.psi.PsiManager
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.psi.*
 import org.jetbrains.kotlin.psi.psiUtil.collectDescendantsOfType
-import org.jetbrains.kotlin.psi.psiUtil.parents
 import java.io.File
 
 /**
@@ -65,6 +64,9 @@ abstract class ScriptMetadataTask : DefaultTask() {
         "npcSpawn" to listOf("id" to WildcardType.NpcId),
         "objectSpawn" to listOf("id" to WildcardType.ObjectId),
         "floorItemSpawn" to listOf("id" to WildcardType.ItemId),
+        "npcDespawn" to listOf("id" to WildcardType.NpcId),
+        "objectDespawn" to listOf("id" to WildcardType.ObjectId),
+        "floorItemDespawn" to listOf("id" to WildcardType.ItemId),
         "npcLevelChanged" to listOf("id" to WildcardType.NpcId),
         "npcMoved" to listOf("id" to WildcardType.NpcId),
         "variableSet" to listOf("key" to WildcardType.VariableId),

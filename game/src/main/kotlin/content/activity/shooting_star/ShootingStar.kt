@@ -28,7 +28,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.*
-import world.gregs.voidps.engine.entity.objectDespawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -56,9 +55,9 @@ class ShootingStar : Script {
             }
         }
 
-        playerSpawn { player ->
-            if (player["shooting_star_bonus_ore", 0] > 0) {
-                player.timers.restart("shooting_star_bonus_ore_timer")
+        playerSpawn {
+            if (get("shooting_star_bonus_ore", 0) > 0) {
+                timers.restart("shooting_star_bonus_ore_timer")
             }
         }
 
@@ -92,7 +91,7 @@ class ShootingStar : Script {
         }
 
         objectDespawn("shooting_star_tier_1") {
-            areaSound("star_meteor_despawn", it.tile, radius = 15)
+            areaSound("star_meteor_despawn", tile, radius = 15)
             cleanseEvent(false)
         }
 

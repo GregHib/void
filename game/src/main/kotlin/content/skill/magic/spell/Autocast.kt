@@ -14,9 +14,9 @@ class Autocast : Script {
     val interfaceDefinitions: InterfaceDefinitions by inject()
 
     init {
-        variableSet("autocast") { player, _, _, to ->
+        variableSet("autocast") { _, _, to ->
             if (to == null) {
-                player.clear("autocast_spell")
+                clear("autocast_spell")
             }
         }
 

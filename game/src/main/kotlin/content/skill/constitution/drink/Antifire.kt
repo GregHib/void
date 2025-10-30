@@ -10,12 +10,12 @@ import world.gregs.voidps.engine.timer.*
 class Antifire : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.antifire) {
-                player.timers.restart("fire_resistance")
+        playerSpawn {
+            if (antifire) {
+                timers.restart("fire_resistance")
             }
-            if (player.superAntifire) {
-                player.timers.restart("fire_immunity")
+            if (superAntifire) {
+                timers.restart("fire_immunity")
             }
         }
 

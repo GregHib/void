@@ -11,9 +11,9 @@ import world.gregs.voidps.type.random
 class KarilsSet : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.hasFullSet()) {
-                player["karils_set_effect"] = true
+        playerSpawn {
+            if (hasFullSet()) {
+                set("karils_set_effect", true)
             }
         }
 

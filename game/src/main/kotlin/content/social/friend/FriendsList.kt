@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
 import world.gregs.voidps.engine.entity.character.player.chat.clan.clanChatLeave
-import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.FriendAdd
 import world.gregs.voidps.network.client.instruction.FriendDelete
@@ -33,13 +32,13 @@ class FriendsList : Script {
     val maxFriends = 200
 
     init {
-        playerSpawn { player ->
-            player.sendFriends()
-            notifyBefriends(player, online = true)
+        playerSpawn {
+            sendFriends()
+            notifyBefriends(this, online = true)
         }
 
-        playerDespawn { player ->
-            notifyBefriends(player, online = false)
+        playerDespawn {
+            notifyBefriends(this, online = false)
         }
 
         instruction<FriendAdd> { player ->

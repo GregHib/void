@@ -67,16 +67,16 @@ class Gravestones : Script {
     }
 
     init {
-        playerSpawn { player ->
-            val tile: Tile = player["gravestone_tile"] ?: return@playerSpawn
-            val time: Long = player["gravestone_time"] ?: return@playerSpawn
+        playerSpawn {
+            val tile: Tile = get("gravestone_tile") ?: return@playerSpawn
+            val time: Long = get("gravestone_time") ?: return@playerSpawn
             val remaining = time - epochSeconds()
             if (remaining > 0) {
-                MapMarkers.add(player, tile, "grave")
-                player.sendScript("gravestone_set_timer", remaining / 60 * 100)
+                MapMarkers.add(this, tile, "grave")
+                sendScript("gravestone_set_timer", remaining / 60 * 100)
             } else {
-                player.clear("gravestone_tile")
-                player.clear("gravestone_time")
+                clear("gravestone_tile")
+                clear("gravestone_time")
             }
         }
 
@@ -84,11 +84,11 @@ class Gravestones : Script {
         npcTimerTick("grave_degrade", ::tick)
         npcTimerStop("grave_degrade", ::stop)
 
-        npcSpawn("gravestone_*") { npc ->
-            val minutes = Gravestone.times[npc.id.removePrefix("gravestone_")] ?: return@npcSpawn
+        npcSpawn("gravestone_*") {
+            val minutes = Gravestone.times[id.removePrefix("gravestone_")] ?: return@npcSpawn
             val seconds = TimeUnit.MINUTES.toSeconds(minutes.toLong()).toInt()
-            npc.start("grave_timer", seconds, epochSeconds())
-            npc.softTimers.start("grave_degrade")
+            start("grave_timer", seconds, epochSeconds())
+            softTimers.start("grave_degrade")
         }
 
         npcOperate("Read", "gravestone_*") {

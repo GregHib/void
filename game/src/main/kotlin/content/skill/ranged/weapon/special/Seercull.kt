@@ -31,9 +31,9 @@ class Seercull : Script {
             target.levels.drain(Skill.Magic, damage / 10)
         }
 
-        npcLevelChanged(Skill.Magic) { npc, skill, _, to ->
-            if (npc["soulshot", false] && to >= npc.levels.getMax(skill)) {
-                npc.clear("soulshot")
+        npcLevelChanged(Skill.Magic) { skill, _, to ->
+            if (get("soulshot", false) && to >= levels.getMax(skill)) {
+                clear("soulshot")
             }
         }
     }

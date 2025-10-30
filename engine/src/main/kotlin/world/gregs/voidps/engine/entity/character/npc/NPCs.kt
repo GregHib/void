@@ -176,7 +176,7 @@ data class NPCs(
 
     fun clear() {
         for (npc in this) {
-            npc.emit(Despawn)
+            Despawn.npc(npc)
             npc.softTimers.stopAll()
         }
         indexArray.fill(null)

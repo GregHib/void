@@ -17,8 +17,8 @@ import world.gregs.voidps.type.random
 class Imp : Script {
 
     init {
-        npcSpawn("imp") { npc ->
-            npc.softTimers.start("teleport_timer")
+        npcSpawn("imp") {
+            softTimers.start("teleport_timer")
         }
 
         npcTimerStart("teleport_timer") { random.nextInt(50, 200) }

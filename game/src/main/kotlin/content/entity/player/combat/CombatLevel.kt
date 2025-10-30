@@ -14,9 +14,9 @@ class CombatLevel : Script {
     val combatSkills = Skill.entries.filter { it.ordinal <= 6 || it.ordinal == 23 }.toTypedArray()
 
     init {
-        playerSpawn { player ->
-            player.combatLevel = calculateCombatLevel(player.levels)
-            player.summoningCombatLevel = calculateCombatLevel(player.levels, true)
+        playerSpawn {
+            combatLevel = calculateCombatLevel(levels)
+            summoningCombatLevel = calculateCombatLevel(levels, true)
         }
 
         maxLevelChange(skills = combatSkills) { player ->

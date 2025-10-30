@@ -40,9 +40,9 @@ class LumbridgeChurch : Script {
     val ghostSpawn = Tile(3250, 3195)
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("rocks_restless_ghost")
-            player.sendVariable("restless_ghost_coffin")
+        playerSpawn {
+            sendVariable("rocks_restless_ghost")
+            sendVariable("restless_ghost_coffin")
         }
 
         objectOperate("Play", "lumbridge_organ") {

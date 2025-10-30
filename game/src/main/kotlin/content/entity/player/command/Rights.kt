@@ -22,10 +22,10 @@ class Rights : Script {
     val accounts: AccountDefinitions by inject()
 
     init {
-        playerSpawn { player ->
-            if (player.name == Settings.getOrNull("development.admin.name") && player.rights != PlayerRights.Admin) {
-                player.rights = PlayerRights.Admin
-                player.message("Rights set to Admin. Please re-log to activate.")
+        playerSpawn {
+            if (name == Settings.getOrNull("development.admin.name") && rights != PlayerRights.Admin) {
+                rights = PlayerRights.Admin
+                message("Rights set to Admin. Please re-log to activate.")
             }
         }
 

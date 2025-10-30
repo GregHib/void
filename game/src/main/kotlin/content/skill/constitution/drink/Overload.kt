@@ -24,9 +24,9 @@ class Overload : Script {
     )
 
     init {
-        playerSpawn { player ->
-            if (player["overload_refreshes_remaining", 0] > 0) {
-                player.timers.restart("overload")
+        playerSpawn {
+            if (get("overload_refreshes_remaining", 0) > 0) {
+                timers.restart("overload")
             }
         }
 

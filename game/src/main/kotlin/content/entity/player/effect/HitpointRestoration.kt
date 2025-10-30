@@ -12,17 +12,17 @@ import java.util.concurrent.TimeUnit
 class HitpointRestoration : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.levels.getOffset(Skill.Constitution) < 0) {
-                player.softTimers.start("restore_hitpoints")
+        playerSpawn {
+            if (levels.getOffset(Skill.Constitution) < 0) {
+                softTimers.start("restore_hitpoints")
             }
         }
 
-        levelChanged(Skill.Constitution) { player, skill, from, to ->
-            if (to <= 0 || to >= player.levels.getMax(skill) || player.softTimers.contains("restore_hitpoints")) {
+        levelChanged(Skill.Constitution) { skill, from, to ->
+            if (to <= 0 || to >= levels.getMax(skill) || softTimers.contains("restore_hitpoints")) {
                 return@levelChanged
             }
-            player.softTimers.start("restore_hitpoints")
+            softTimers.start("restore_hitpoints")
         }
 
         timerStart("restore_hitpoints") { TimeUnit.SECONDS.toTicks(6) }

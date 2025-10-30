@@ -74,7 +74,7 @@ class GameObjects(
                 val current = replacements[obj.index]
                 if (current != null) {
                     val currentObj = remove(current, obj, collision)
-                    currentObj.emit(Despawn)
+                    Despawn.gameObject(currentObj)
                 }
             } else if (original > 0) {
                 // Remove original (if exists)
@@ -148,7 +148,7 @@ class GameObjects(
                 collisionRemove.modify(obj)
             }
             size--
-            obj.emit(Despawn)
+            Despawn.gameObject(obj)
             // Re-add original (if exists)
             map.remove(obj, REPLACED)
             if (original > 1) {

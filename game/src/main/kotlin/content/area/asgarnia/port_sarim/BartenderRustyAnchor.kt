@@ -19,8 +19,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 class BartenderRustyAnchor : Script {
 
     init {
-        playerSpawn { player ->
-            player["void_dance_bartender"] = 19
+        playerSpawn {
+            set("void_dance_bartender", 19)
         }
 
         npcOperate("Talk-to", "bartender_rusty_anchor_inn*") {

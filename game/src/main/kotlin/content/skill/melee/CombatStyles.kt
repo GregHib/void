@@ -17,8 +17,8 @@ class CombatStyles : Script {
     val styles: WeaponStyleDefinitions by inject()
 
     init {
-        npcSpawn { npc ->
-            npc["combat_style"] = npc.def.getOrNull("style") ?: return@npcSpawn
+        npcSpawn {
+            this["combat_style"] = def.getOrNull("style") ?: return@npcSpawn
         }
 
         interfaceOpen("combat_styles") { player ->

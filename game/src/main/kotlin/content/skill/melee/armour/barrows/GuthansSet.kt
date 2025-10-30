@@ -11,9 +11,9 @@ import world.gregs.voidps.type.random
 class GuthansSet : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.hasFullSet()) {
-                player["guthans_set_effect"] = true
+        playerSpawn {
+            if (hasFullSet()) {
+                set("guthans_set_effect", true)
             }
         }
 

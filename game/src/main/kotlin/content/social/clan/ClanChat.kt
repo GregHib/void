@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.*
-import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
@@ -34,22 +33,22 @@ class ClanChat : Script {
     val accountDefinitions: AccountDefinitions by inject()
 
     init {
-        playerSpawn { player ->
-            val current = player["clan_chat", ""]
+        playerSpawn {
+            val current = get("clan_chat", "")
             if (current.isNotEmpty()) {
                 val account = accountDefinitions.getByAccount(current)
-                joinClan(player, account?.displayName ?: "")
+                joinClan(this, account?.displayName ?: "")
             }
-            val ownClan = accounts.clan(player.name.lowercase()) ?: return@playerSpawn
-            player.ownClan = ownClan
-            ownClan.friends = player.friends
-            ownClan.ignores = player.ignores
+            val ownClan = accounts.clan(name.lowercase()) ?: return@playerSpawn
+            this.ownClan = ownClan
+            ownClan.friends = friends
+            ownClan.ignores = ignores
         }
 
-        playerDespawn { player ->
-            val clan = player.clan ?: return@playerDespawn
-            clan.members.remove(player)
-            updateMembers(player, clan, ClanRank.Anyone)
+        playerDespawn {
+            val clan = clan ?: return@playerDespawn
+            clan.members.remove(this)
+            updateMembers(this, clan, ClanRank.Anyone)
         }
 
         instruction<ClanChatKick> { player ->

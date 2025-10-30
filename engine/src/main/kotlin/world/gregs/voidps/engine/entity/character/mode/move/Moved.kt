@@ -9,11 +9,11 @@ import world.gregs.voidps.type.Tile
  * Entity moved between [from] and their current tile
  */
 interface Moved {
-    fun moved(block: (player: Player, from: Tile) -> Unit) {
+    fun moved(block: Player.(from: Tile) -> Unit) {
         playerMoved.add(block)
     }
 
-    fun npcMoved(id: String = "*", block: (npc: NPC, from: Tile) -> Unit) {
+    fun npcMoved(id: String = "*", block: NPC.(from: Tile) -> Unit) {
         for (match in Wildcards.find(id)) {
             npcMoved.getOrPut(match) { mutableListOf() }.add(block)
         }

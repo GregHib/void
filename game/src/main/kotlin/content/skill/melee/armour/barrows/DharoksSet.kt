@@ -8,9 +8,9 @@ import world.gregs.voidps.engine.inv.itemRemoved
 class DharoksSet : Script {
 
     init {
-        playerSpawn { player ->
-            if (player.hasFullSet()) {
-                player["dharoks_set_effect"] = true
+        playerSpawn {
+            if (hasFullSet()) {
+                set("dharoks_set_effect", true)
             }
         }
 

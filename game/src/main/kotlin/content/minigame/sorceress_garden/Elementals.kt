@@ -17,9 +17,9 @@ class Elementals : Script {
     val patrols: PatrolDefinitions by inject()
 
     init {
-        npcSpawn("autumn_elemental*,spring_elemental*,summer_elemental*,winter_elemental*") { npc ->
-            val patrol = patrols.get(npc.id)
-            npc.mode = Patrol(npc, patrol.waypoints)
+        npcSpawn("autumn_elemental*,spring_elemental*,summer_elemental*,winter_elemental*") {
+            val patrol = patrols.get(id)
+            mode = Patrol(this, patrol.waypoints)
         }
 
         huntPlayer("*_elemental*", "spotted") { npc ->

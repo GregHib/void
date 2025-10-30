@@ -50,7 +50,7 @@ class Players :
 
     fun clear() {
         for (player in this) {
-            player.emit(Despawn)
+            Despawn.player(player)
         }
         indexArray.fill(null)
         players.clear()

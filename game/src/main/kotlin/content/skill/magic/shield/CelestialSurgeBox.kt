@@ -23,12 +23,12 @@ import kotlin.math.min
 class CelestialSurgeBox : Script {
 
     init {
-        playerSpawn { player ->
-            val box = player.equipped(EquipSlot.Shield).id
+        playerSpawn {
+            val box = equipped(EquipSlot.Shield).id
             if (box.startsWith("celestial_surgebox")) {
-                updateCharges(player, EquipSlot.Shield.index, box != "celestial_surgebox")
+                updateCharges(this, EquipSlot.Shield.index, box != "celestial_surgebox")
             } else {
-                setCharges(player, 0, box != "celestial_surgebox")
+                setCharges(this, 0, box != "celestial_surgebox")
             }
         }
 

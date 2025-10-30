@@ -17,8 +17,8 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 class LawStaff : Script {
 
     init {
-        playerSpawn { player ->
-            player.sendVariable("law_staff_charges")
+        playerSpawn {
+            sendVariable("law_staff_charges")
         }
 
         inventoryItem("Inspect", "law_staff", "inventory") {
