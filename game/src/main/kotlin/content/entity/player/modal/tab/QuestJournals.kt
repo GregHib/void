@@ -25,9 +25,9 @@ class QuestJournals : Script {
         timerTick("refresh_quest_journal") { Timer.CANCEL }
         timerStop("refresh_quest_journal") { refreshQuestJournal() }
 
-        variableSet { player, key, _, _ ->
+        variableSet { key, _, _ ->
             if (questDefinitions.ids.containsKey(key)) {
-                player.softTimers.start("refresh_quest_journal")
+                softTimers.start("refresh_quest_journal")
             }
         }
 
