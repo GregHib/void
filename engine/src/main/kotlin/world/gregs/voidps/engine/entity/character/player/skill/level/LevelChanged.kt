@@ -10,13 +10,12 @@ import world.gregs.voidps.engine.event.Wildcards
  * @see [MaxLevelChanged]
  */
 interface LevelChanged {
-    fun levelChanged(player: Player, skill: Skill, from: Int, to: Int) {}
 
-    fun levelChanged(skill: Skill? = null, block: (player: Player, skill: Skill, from: Int, to: Int) -> Unit) {
+    fun levelChanged(skill: Skill? = null, block: Player.(skill: Skill, from: Int, to: Int) -> Unit) {
         playerChanged.getOrPut(skill) { mutableListOf() }.add(block)
     }
 
-    fun npcLevelChanged(skill: Skill, id: String = "*", block: (npc: NPC, skill: Skill, from: Int, to: Int) -> Unit) {
+    fun npcLevelChanged(skill: Skill, id: String = "*", block: NPC.(skill: Skill, from: Int, to: Int) -> Unit) {
         if (id == "*") {
             npcChanged.getOrPut(skill.name) { mutableListOf() }.add(block)
             return

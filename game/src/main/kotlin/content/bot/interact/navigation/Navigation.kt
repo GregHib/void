@@ -69,9 +69,9 @@ fun Bot.cancel(cause: Throwable? = null) {
 class Navigation : Script {
 
     init {
-        moved { player, _ ->
-            if (player.isBot && ((player.mode is Movement && player.steps.size <= 1) || player.mode == EmptyMode)) {
-                player.bot.resume("move")
+        moved {
+            if (isBot && ((mode is Movement && steps.size <= 1) || mode == EmptyMode)) {
+                bot.resume("move")
             }
         }
 

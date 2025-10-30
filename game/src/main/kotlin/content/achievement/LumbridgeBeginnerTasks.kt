@@ -53,9 +53,9 @@ class LumbridgeBeginnerTasks : Script {
             }
         }
 
-        moved { player, _ ->
-            if (player.running && !player["on_the_run_task", false]) {
-                player["on_the_run_task"] = true
+        moved { _ ->
+            if (running && !get("on_the_run_task", false)) {
+                set("on_the_run_task", true)
             }
         }
 

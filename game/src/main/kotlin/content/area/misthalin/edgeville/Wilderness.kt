@@ -19,13 +19,13 @@ class Wilderness : Script {
             }
         }
 
-        moved { player, from ->
+        moved { from ->
             val was = inWilderness(from)
-            val now = inWilderness(player.tile)
+            val now = inWilderness(tile)
             if (!was && now) {
-                player["in_wilderness"] = true
+                set("in_wilderness", true)
             } else if (was && !now) {
-                player.clear("in_wilderness")
+                clear("in_wilderness")
             }
         }
     }

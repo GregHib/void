@@ -18,11 +18,11 @@ class HitpointRestoration : Script {
             }
         }
 
-        levelChanged(Skill.Constitution) { player, skill, from, to ->
-            if (to <= 0 || to >= player.levels.getMax(skill) || player.softTimers.contains("restore_hitpoints")) {
+        levelChanged(Skill.Constitution) { skill, from, to ->
+            if (to <= 0 || to >= levels.getMax(skill) || softTimers.contains("restore_hitpoints")) {
                 return@levelChanged
             }
-            player.softTimers.start("restore_hitpoints")
+            softTimers.start("restore_hitpoints")
         }
 
         timerStart("restore_hitpoints") { TimeUnit.SECONDS.toTicks(6) }

@@ -72,9 +72,9 @@ class Delrith : Script {
     val words = listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo")
 
     init {
-        moved { player, _ ->
-            if (exitArea(player, player.tile)) {
-                val cutscene: Cutscene = player.remove("demon_slayer_cutscene") ?: return@moved
+        moved {
+            if (exitArea(this, tile)) {
+                val cutscene: Cutscene = remove("demon_slayer_cutscene") ?: return@moved
                 Events.events.launch {
                     cutscene.end()
                 }

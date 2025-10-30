@@ -28,12 +28,12 @@ class Music : Script {
             sendPlaylist(this)
         }
 
-        moved { player, from ->
-            if (!player.isBot) {
-                val tracks = tracks[player.tile.region]
+        moved { from ->
+            if (!isBot) {
+                val tracks = tracks[tile.region]
                 for (track in tracks) {
-                    if (!track.area.contains(from) && track.area.contains(player.tile)) {
-                        autoPlay(player, track)
+                    if (!track.area.contains(from) && track.area.contains(tile)) {
+                        autoPlay(this, track)
                     }
                 }
             }

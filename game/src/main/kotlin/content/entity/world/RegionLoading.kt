@@ -45,9 +45,9 @@ class RegionLoading : Script {
             player.viewport?.loaded = true
         }
 
-        moved { player, from ->
-            if (from.regionLevel != player.tile.regionLevel) {
-                playerRegions[player.index - 1] = player.tile.regionLevel.id
+        moved { from ->
+            if (from.regionLevel != tile.regionLevel) {
+                playerRegions[index - 1] = tile.regionLevel.id
             }
         }
 

@@ -32,14 +32,14 @@ class Energy : Script {
             }
         }
 
-        moved { player, _ ->
-            if (player.visuals.runStep == -1 || player["last_energy_drain", -1] == GameLoop.tick || !Settings["players.energy.drain", true]) {
+        moved {
+            if (visuals.runStep == -1 || get("last_energy_drain", -1) == GameLoop.tick || !Settings["players.energy.drain", true]) {
                 return@moved
             }
-            player["last_energy_drain"] = GameLoop.tick
-            if (player.visuals.runStep != -1) {
-                player.runEnergy -= getDrainAmount(player)
-                walkWhenOutOfEnergy(player)
+            set("last_energy_drain", GameLoop.tick)
+            if (visuals.runStep != -1) {
+                runEnergy -= getDrainAmount(this)
+                walkWhenOutOfEnergy(this)
             }
         }
 

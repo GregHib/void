@@ -20,10 +20,10 @@ class Tolerance : Script {
             }
             set("tolerance_area", tile.toCuboid(10))
         }
-        moved { player, _ ->
-            if (player.tile !in player.getOrPut("tolerance_area") { player.tile.toCuboid(10) }) {
-                player["tolerance_area"] = player.tile.toCuboid(10)
-                player.start("tolerance", toleranceTime.toInt(), epochSeconds())
+        moved {
+            if (tile !in getOrPut("tolerance_area") { tile.toCuboid(10) }) {
+                set("tolerance_area", tile.toCuboid(10))
+                start("tolerance", toleranceTime.toInt(), epochSeconds())
             }
         }
     }

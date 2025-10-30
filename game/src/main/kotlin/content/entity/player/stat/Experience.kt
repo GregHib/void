@@ -13,14 +13,14 @@ class Experience : Script {
             sendVariable("xp_counter")
         }
 
-        levelChanged { player, skill, from, to ->
+        levelChanged { skill, from, to ->
             if (skill == Skill.Constitution) {
-                val exp = player.experience.get(skill)
-                player.client?.skillLevel(skill.ordinal, to / 10, exp.toInt())
-                player["life_points"] = player.levels.get(Skill.Constitution)
+                val exp = experience.get(skill)
+                client?.skillLevel(skill.ordinal, to / 10, exp.toInt())
+                set("life_points", levels.get(Skill.Constitution))
             } else {
-                val exp = player.experience.get(skill)
-                player.client?.skillLevel(skill.ordinal, to, exp.toInt())
+                val exp = experience.get(skill)
+                client?.skillLevel(skill.ordinal, to, exp.toInt())
             }
         }
 
