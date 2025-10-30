@@ -103,5 +103,5 @@ class ObjectOptionHandler(
 }
 
 fun Player.interactObject(target: GameObject, option: String, definition: ObjectDefinition = target.def(this), approachRange: Int? = null) {
-    mode = Interact(this, target, ObjectOption(this, target, definition, option), type = CharacterInteraction(this, target, definition, option), approachRange = approachRange)
+    mode = Interact(this, target, ObjectOption(this, target, definition, option), approachRange = approachRange)
 }

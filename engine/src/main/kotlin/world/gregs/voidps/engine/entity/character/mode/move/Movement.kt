@@ -28,7 +28,7 @@ import world.gregs.voidps.type.equals
 import kotlin.math.sign
 
 open class Movement(
-    internal val character: Character,
+    open val character: Character,
     private val strategy: TargetStrategy? = null,
     private val shape: Int? = null,
 ) : Mode {
@@ -52,6 +52,7 @@ open class Movement(
     }
 
     override fun tick() {
+        val character = character
         if (character is Player && character.viewport?.loaded == false) {
             return
         }
@@ -116,6 +117,7 @@ open class Movement(
     }
 
     private fun setMovementType(run: Boolean, end: Boolean) {
+        val character = character
         if (character is Player) {
             character.steps.last = GameLoop.tick + 1 // faster than character.start("last_movement", 1)
             character.temporaryMoveType = if (run) MoveType.Run else MoveType.Walk
@@ -185,6 +187,7 @@ open class Movement(
         if (distance == -1) {
             return strategy.reached(character)
         }
+        val character = character
         if ((character !is NPC || !character.def["allowed_under", false]) && Overlap.isUnder(character.tile, character.size, character.size, strategy.tile, strategy.width, strategy.height)) {
             return false
         }
