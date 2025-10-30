@@ -14,11 +14,11 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
+import world.gregs.voidps.engine.entity.character.mode.interact.approachRange
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.npc.npcApproachNPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.characterApproachPlayer
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -67,13 +67,22 @@ class Attack : Script {
             combatInteraction(character, target)
         }
 
-        characterApproachPlayer("Attack") {
-            if (character.attackRange != 1) {
-                approachRange(character.attackRange, update = false)
+        playerApproach("Attack") { (target) ->
+            if (attackRange != 1) {
+                approachRange(attackRange, update = false)
             } else {
                 approachRange(null, update = true)
             }
-            combatInteraction(character, target)
+            combatInteraction(this, target)
+        }
+
+        npcApproachPlayer("Attack") { (target) ->
+            if (attackRange != 1) {
+                approachRange(attackRange, update = false)
+            } else {
+                approachRange(null, update = true)
+            }
+            combatInteraction(this, target)
         }
 
         interfaceOnNPCApproach(id = "*_spellbook") {

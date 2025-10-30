@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.timer.TimerApi
 /**
  * A helper interface made up of all callable methods for easier scripting.
  */
-interface Script : Spawn, Despawn, LevelChanged, Moved, VariableSet, TimerApi {
+interface Script : Spawn, Despawn, LevelChanged, Moved, VariableSet, TimerApi, Operation, Approachable {
     companion object {
         fun clear() {
             Spawn.clear()

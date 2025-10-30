@@ -28,7 +28,7 @@ import world.gregs.voidps.engine.suspend.resumeSuspension
 open class Interact(
     character: Character,
     open val target: Entity,
-    interaction: Interaction<*>?,
+    interaction: Interaction<*>? = null,
     strategy: TargetStrategy = TargetStrategy(target),
     private var approachRange: Int? = null,
     private val faceTarget: Boolean = true,

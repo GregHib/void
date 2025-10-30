@@ -1,14 +1,13 @@
 package world.gregs.voidps.engine.entity
 
-import world.gregs.voidps.engine.client.ui.dialogue.Dialogue
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.entity.character.mode.interact.NPCPlayerInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerPlayerInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.arriveDelay
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.Wildcards
 
 /**
  * Target Entity interaction within close-proximity
@@ -16,8 +15,20 @@ import world.gregs.voidps.engine.event.Wildcards
 interface Operation {
 
     /**
-     * NPC Dialogue helper
+     * Player option
      */
+    fun playerOperate(option: String, block: suspend Player.(PlayerPlayerInteract) -> Unit) {
+        playerPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
+    }
+
+    fun npcOperatePlayer(option: String, block: suspend NPC.(NPCPlayerInteract) -> Unit) {
+        npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
+    }
+
+/*
+    *//**
+     * NPC Dialogue helper
+     *//*
     fun talkWith(npc: String, block: suspend Dialogue.() -> Unit) {
         for (id in Wildcards.find(npc)) {
             playerNpcBlocks.getOrPut("Talk-to:$id") { mutableListOf() }.add { player, target ->
@@ -26,27 +37,18 @@ interface Operation {
         }
     }
 
-    /**
-     * Player option
-     */
-    fun playerOperate(option: String, block: suspend (player: Player, target: Player) -> Unit) {
-        for (opt in Wildcards.find(option)) {
-            playerPlayerBlocks.getOrPut(opt) { mutableListOf() }.add(block)
-        }
-    }
-
-    /**
+    *//**
      * Interface on Player
-     */
+     *//*
     fun interfaceOnPlayerOperate(id: String, block: suspend (player: Player, id: String, slot: Int, item: Item, target: Player) -> Unit) {
         for (i in Wildcards.find(id)) {
             onPlayerBlocks.getOrPut(i) { mutableListOf() }.add(block)
         }
     }
 
-    /**
+    *//**
      * Item on Player
-     */
+     *//*
     fun itemOnPlayerOperate(item: String, block: suspend (player: Player, id: String, slot: Int, item: Item, target: Player) -> Unit) {
         for (i in Wildcards.find(item)) {
             onPlayerBlocks.getOrPut(i) { mutableListOf() }.add(block)
@@ -54,19 +56,19 @@ interface Operation {
     }
 
 
-    /**
+    *//**
      * Npc option
-     */
+     *//*
     fun npcOperate(option: String, npc: String, block: suspend (player: Player, target: NPC) -> Unit) {
         for (id in Wildcards.find(npc)) {
             playerNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
     }
 
-    /**
+    *//**
      * Interface on NPC
      * Any [npc] is allowed but [id] is required
-     */
+     *//*
     fun interfaceOnNpcOperate(id: String, npc: String = "*", block: suspend (player: Player, id: String, slot: Int, item: Item, target: NPC) -> Unit) {
         for (itf in Wildcards.find(id)) {
             for (i in Wildcards.find(npc)) {
@@ -75,10 +77,10 @@ interface Operation {
         }
     }
 
-    /**
+    *//**
      * Item on NPC
      * Any item is allowed, [npc] is required
-     */
+     *//*
     fun itemOnNpcOperate(item: String = "*", npc: String, block: suspend (player: Player, id: String, slot: Int, item: Item, target: NPC) -> Unit) {
         for (itm in Wildcards.find(item)) {
             for (i in Wildcards.find(npc)) {
@@ -88,9 +90,9 @@ interface Operation {
     }
 
 
-    /**
+    *//**
      * GameObject option
-     */
+     *//*
     fun objectOperate(option: String, obj: String, arriveDelay: Boolean = true, block: suspend (Player, GameObject) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(obj))
@@ -100,10 +102,10 @@ interface Operation {
         }
     }
 
-    /**
+    *//**
      * Interface on GameObject
      * Any [obj] is allowed but [id] is required
-     */
+     *//*
     fun interfaceOnObjectOperate(id: String, obj: String = "*", arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: GameObject) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(obj))
@@ -115,10 +117,10 @@ interface Operation {
         }
     }
 
-    /**
+    *//**
      * Item on GameObject
      * Any item is allowed, [obj] is required
-     */
+     *//*
     fun itemOnObjectOperate(item: String = "*", obj: String, arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: GameObject) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(obj))
@@ -131,9 +133,9 @@ interface Operation {
     }
 
 
-    /**
+    *//**
      * FloorItem option
-     */
+     *//*
     fun floorItemOperate(option: String, item: String, arriveDelay: Boolean = true, block: suspend (Player, FloorItem) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(item))
@@ -143,10 +145,10 @@ interface Operation {
         }
     }
 
-    /**
+    *//**
      * Interface on FloorItem
      * Any [item] is allowed but [id] is required
-     */
+     *//*
     fun interfaceOnFloorItemOperate(id: String, item: String = "*", arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: FloorItem) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(item))
@@ -158,10 +160,10 @@ interface Operation {
         }
     }
 
-    /**
+    *//**
      * Item on FloorItem
      * Any item is allowed, [floorItem] is required
-     */
+     *//*
     fun itemOnFloorItemOperate(item: String = "*", floorItem: String, arriveDelay: Boolean = true, block: suspend (player: Player, id: String, slot: Int, item: Item, target: FloorItem) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(item))
@@ -174,25 +176,19 @@ interface Operation {
     }
 
 
-    /**
-     * Npc player option
-     */
-    suspend fun npcOperatePlayer(option: String, block: suspend (npc: NPC, target: Player) -> Unit) {
-        npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
-    }
 
-    /**
+    *//**
      * Npc npc option
-     */
+     *//*
     suspend fun npcOperateNpc(option: String, npc: String, block: suspend (npc: NPC, target: NPC) -> Unit) {
         for (id in Wildcards.find(npc)) {
             npcNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
     }
 
-    /**
+    *//**
      * Npc game object option
-     */
+     *//*
     suspend fun npcOperateObject(option: String, obj: String, arriveDelay: Boolean = true, block: suspend (npc: NPC, target: GameObject) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(obj))
@@ -202,9 +198,9 @@ interface Operation {
         }
     }
 
-    /**
+    *//**
      * Npc floor item option
-     */
+     *//*
     suspend fun npcOperateFloorItem(option: String, item: String, arriveDelay: Boolean = true, block: suspend (npc: NPC, target: FloorItem) -> Unit) {
         if (!arriveDelay) {
             noDelays.addAll(Wildcards.find(item))
@@ -212,10 +208,10 @@ interface Operation {
         for (id in Wildcards.find(item)) {
             npcFloorItemBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
-    }
+    }*/
 
     companion object {
-        val playerPlayerBlocks = mutableMapOf<String, MutableList<suspend (Player, Player) -> Unit>>()
+        val playerPlayerBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerPlayerInteract) -> Unit>>()
         val onPlayerBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, Player) -> Unit>>()
 
         val playerNpcBlocks = mutableMapOf<String, MutableList<suspend (Player, NPC) -> Unit>>()
@@ -227,20 +223,13 @@ interface Operation {
         val playerFloorItemBlocks = mutableMapOf<String, MutableList<suspend (Player, FloorItem) -> Unit>>()
         val onFloorItemBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, FloorItem) -> Unit>>()
 
-        val npcPlayerBlocks = mutableMapOf<String, MutableList<suspend (NPC, Player) -> Unit>>()
+        val npcPlayerBlocks = mutableMapOf<String, MutableList<suspend NPC.(NPCPlayerInteract) -> Unit>>()
         val npcNpcBlocks = mutableMapOf<String, MutableList<suspend (NPC, NPC) -> Unit>>()
         val npcObjectBlocks = mutableMapOf<String, MutableList<suspend (NPC, GameObject) -> Unit>>()
         val npcFloorItemBlocks = mutableMapOf<String, MutableList<suspend (NPC, FloorItem) -> Unit>>()
 
         // Don't call arriveDelay before an object or floor item interaction
         private val noDelays = mutableSetOf<String>()
-
-
-        suspend fun operate(player: Player, target: Player, option: String) {
-            for (block in playerPlayerBlocks[option] ?: return) {
-                block(player, target)
-            }
-        }
 
         suspend fun operate(player: Player, target: NPC, option: String) {
             for (block in playerNpcBlocks["$option:${target.def(player).stringId}"] ?: emptyList()) {
@@ -338,12 +327,6 @@ interface Operation {
                 for (block in onFloorItemBlocks["${item.id}:*"] ?: return) {
                     block(player, id, slot, item, target)
                 }
-            }
-        }
-
-        suspend fun operate(npc: NPC, target: Player, option: String) {
-            for (block in npcPlayerBlocks[option] ?: return) {
-                block(npc, target)
             }
         }
 
