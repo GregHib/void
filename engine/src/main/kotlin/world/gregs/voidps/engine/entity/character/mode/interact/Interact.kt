@@ -36,16 +36,14 @@ open class Interact(
 ) : Movement(character, strategy, shape), InteractionType {
     private var launched = false
 
-    override fun hasOperate(): Boolean = type?.hasOperate() == true
+    override fun hasOperate(): Boolean = false
 
-    override fun hasApproach(): Boolean = type?.hasApproach() == true
+    override fun hasApproach(): Boolean = false
 
     override fun operate() {
-        type?.operate()
     }
 
     override fun approach() {
-        type?.approach()
     }
 
     private var type: InteractionType? = interaction?.let { OldInteractionType(character, it) }
@@ -171,8 +169,8 @@ open class Interact(
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
-            withinMelee && hasOperate() -> if (launch(true) && afterMovement) updateRange = false
-            withinRange && hasApproach() -> if (launch(false) && afterMovement) updateRange = false
+            withinMelee && (hasOperate() || type?.hasOperate() == true) -> if (launch(true) && afterMovement) updateRange = false
+            withinRange && (hasApproach() || type?.hasApproach() == true) -> if (launch(false) && afterMovement) updateRange = false
             withinMelee -> {
                 character.noInterest()
                 clear()
@@ -192,9 +190,17 @@ open class Interact(
         if (!launched) {
             launched = true
             if (operate) {
-                operate()
+                if (hasOperate()) {
+                    operate()
+                } else {
+                    type?.operate()
+                }
             } else {
-                approach()
+                if (hasApproach()) {
+                    approach()
+                } else {
+                    type?.approach()
+                }
             }
             return true
         }

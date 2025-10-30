@@ -115,6 +115,7 @@ class Attack : Script {
 
     /**
      * Switch out the current Interaction with [CombatInteraction] to allow hits this tick
+     * TODO can be replaced with direct interact calls
      */
     fun combatInteraction(character: Character, target: Character) {
         val interact = character.mode as? Interact ?: return
