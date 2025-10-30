@@ -92,7 +92,7 @@ class ShootingStar : Script {
         }
 
         objectDespawn("shooting_star_tier_1") {
-            areaSound("star_meteor_despawn", it.tile, radius = 15)
+            areaSound("star_meteor_despawn", tile, radius = 15)
             cleanseEvent(false)
         }
 

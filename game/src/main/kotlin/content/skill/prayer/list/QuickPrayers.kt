@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
-import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.inject
 
 class QuickPrayers : Script {
@@ -81,9 +80,9 @@ class QuickPrayers : Script {
             player.saveQuickPrayers()
         }
 
-        playerDespawn { player ->
-            if (player.contains(TEMP_QUICK_PRAYERS)) {
-                player.cancelQuickPrayers()
+        playerDespawn {
+            if (contains(TEMP_QUICK_PRAYERS)) {
+                cancelQuickPrayers()
             }
         }
 

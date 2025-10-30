@@ -90,7 +90,7 @@ class NPCDeath : Script {
                     World.queue("remove_npc") {
                         npcs.remove(npc)
                     }
-                    npc.emit(Despawn)
+                    Despawn.npc(npc)
                 }
             }
         }

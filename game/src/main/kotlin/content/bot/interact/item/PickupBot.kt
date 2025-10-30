@@ -13,8 +13,8 @@ class PickupBot : Script {
     val players: Players by inject()
 
     init {
-        floorItemDespawn { floorItem ->
-            val hash = floorItem.hashCode()
+        floorItemDespawn {
+            val hash = hashCode()
             players.forEach { bot ->
                 if (bot.isBot && bot.contains("floor_item_job") && bot["floor_item_hash", -1] == hash) {
                     val job: CancellableContinuation<Unit> = bot.remove("floor_item_job") ?: return@floorItemDespawn

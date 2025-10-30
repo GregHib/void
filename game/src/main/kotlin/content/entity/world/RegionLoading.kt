@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.character.mode.move.ReloadRegion
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.zone.DynamicZones
@@ -62,8 +61,8 @@ class RegionLoading : Script {
             viewport.players.addSelf(player)
         }
 
-        playerDespawn { player ->
-            playerRegions[player.index - 1] = 0
+        playerDespawn {
+            playerRegions[index - 1] = 0
         }
 
         onEvent<Player, ReloadRegion> { player ->

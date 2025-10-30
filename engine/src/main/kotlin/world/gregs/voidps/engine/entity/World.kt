@@ -81,6 +81,6 @@ object World : Entity, VariableStore, EventDispatcher, Runnable, KoinComponent {
     }
 
     fun shutdown() {
-        emit(Despawn)
+        Despawn.world()
     }
 }

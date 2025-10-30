@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.*
-import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
@@ -46,10 +45,10 @@ class ClanChat : Script {
             ownClan.ignores = ignores
         }
 
-        playerDespawn { player ->
-            val clan = player.clan ?: return@playerDespawn
-            clan.members.remove(player)
-            updateMembers(player, clan, ClanRank.Anyone)
+        playerDespawn {
+            val clan = clan ?: return@playerDespawn
+            clan.members.remove(this)
+            updateMembers(this, clan, ClanRank.Anyone)
         }
 
         instruction<ClanChatKick> { player ->

@@ -13,10 +13,10 @@ class FloorItemRespawn : Script {
     val spawns: ItemSpawns by inject()
 
     init {
-        floorItemDespawn { floorItem ->
-            if (isSpawnItem(floorItem)) {
-                val spawn = spawns.get(floorItem.tile) ?: return@floorItemDespawn
-                items.add(floorItem.tile, spawn.id, spawn.amount, revealTicks = spawn.delay, owner = "")
+        floorItemDespawn {
+            if (isSpawnItem(this)) {
+                val spawn = spawns.get(tile) ?: return@floorItemDespawn
+                items.add(tile, spawn.id, spawn.amount, revealTicks = spawn.delay, owner = "")
             }
         }
     }

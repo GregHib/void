@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.playerDespawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.add
@@ -36,9 +35,9 @@ class Restock : Script {
         worldTimerStart("general_store_restock") { TimeUnit.SECONDS.toTicks(60) }
         worldTimerTick("general_store_restock", ::restockGeneralStores)
 
-        playerDespawn { player ->
+        playerDespawn {
             val removal = mutableListOf<String>()
-            for ((name, inventory) in player.inventories.instances) {
+            for ((name, inventory) in inventories.instances) {
                 val def = inventoryDefinitions.get(name)
                 if (!def["shop", false]) {
                     continue
@@ -49,7 +48,7 @@ class Restock : Script {
                 }
             }
             for (name in removal) {
-                player.inventories.instances.remove(name)
+                inventories.instances.remove(name)
             }
         }
     }

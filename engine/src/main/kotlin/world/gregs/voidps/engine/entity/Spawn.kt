@@ -85,7 +85,7 @@ interface Spawn {
             npcSpawns.clear()
             objectSpawns.clear()
             floorItemSpawns.clear()
-            worldSpawns
+            worldSpawns.clear()
         }
     }
 }

@@ -1,13 +1,13 @@
 package content.entity.player
 
 import content.social.trade.exchange.GrandExchange
+import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.settingsReload
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.worldDespawn
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
@@ -24,8 +24,10 @@ class AutoSave : Script {
         }
 
         worldDespawn {
-            saveQueue.direct(players).join()
-            exchange.save()
+            runBlocking {
+                saveQueue.direct(players).join()
+                exchange.save()
+            }
         }
 
         settingsReload {

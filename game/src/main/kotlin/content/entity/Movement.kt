@@ -78,9 +78,9 @@ class Movement : Script {
             }
         }
 
-        playerDespawn { player ->
+        playerDespawn {
             if (Settings["world.players.collision", false]) {
-                remove(player)
+                remove(this)
             }
         }
 
@@ -88,9 +88,9 @@ class Movement : Script {
             remove(npc)
         }
 
-        npcDespawn { npc ->
+        npcDespawn {
             if (Settings["world.npcs.collision", false]) {
-                remove(npc)
+                remove(this)
             }
         }
     }

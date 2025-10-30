@@ -100,7 +100,7 @@ object Main {
         ContentLoader.load()
         Runtime.getRuntime().addShutdownHook(
             thread(start = false) {
-                World.emit(Despawn)
+                Despawn.world()
                 AuditLog.save()
             },
         )
