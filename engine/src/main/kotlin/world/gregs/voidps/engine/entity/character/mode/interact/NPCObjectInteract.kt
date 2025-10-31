@@ -29,13 +29,10 @@ data class NPCObjectInteract(
     private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend NPC.(NPCObjectInteract) -> Unit>>) {
         Events.events.launch {
             val id = target.id
-            if (!noDelays.contains("$option:$id") && !noDelays.contains("$option:*")) {
+            if (!noDelays.contains("$option:$id") && (!noDelays.contains("$option:*") && !map.containsKey("$option:$id"))) {
                 npc.arriveDelay()
             }
-            for (block in map["$option:$id"] ?: return@launch) {
-                block(npc, this@NPCObjectInteract)
-            }
-            for (block in map["$option:*"] ?: return@launch) {
+            for (block in map["$option:$id"] ?: map["$option:*"] ?: return@launch) {
                 block(npc, this@NPCObjectInteract)
             }
         }
