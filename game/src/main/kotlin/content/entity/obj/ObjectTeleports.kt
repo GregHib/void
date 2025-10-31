@@ -5,11 +5,11 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerObjectInteract
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Distance
@@ -22,9 +22,11 @@ class ObjectTeleports {
 
     private lateinit var teleports: Map<String, Map<Int, TeleportDefinition>>
 
-    suspend fun teleport(objectOption: ObjectOption<Player>, option: String = objectOption.option): Boolean = teleport(objectOption, objectOption.character, objectOption.target, objectOption.def, option)
+    suspend fun teleport(objectOption: ObjectOption<Player>, option: String = objectOption.option): Boolean = teleport(objectOption.character, objectOption.target, option, objectOption.def)
 
-    suspend fun teleport(context: SuspendableContext<Player>, player: Player, target: GameObject, def: ObjectDefinition, option: String): Boolean {
+    suspend fun teleport(objectOption: PlayerObjectInteract, option: String = objectOption.option): Boolean = teleport(objectOption.player, objectOption.target, option, objectOption.target.def(objectOption.player))
+
+    suspend fun teleport(player: Player, target: GameObject, option: String, def: ObjectDefinition = target.def(player)): Boolean {
         val definition = teleports[option]?.get(target.tile.id) ?: return false
         val id = def.stringId.ifEmpty { def.id.toString() }
         if (definition.id != id) {
@@ -36,15 +38,13 @@ class ObjectTeleports {
             return false
         }
         if (target.id.contains("gangplank")) {
-            with(context) {
-                player.walkOverDelay(target.tile)
-            }
+            player.walkOverDelay(target.tile)
         }
-        teleportContinue(context, player, definition, teleport)
+        teleportContinue(player, definition, teleport)
         return true
     }
 
-    suspend fun teleportContinue(context: SuspendableContext<Player>, player: Player, definition: TeleportDefinition, teleport: ObjectTeleport) {
+    suspend fun teleportContinue(player: Player, definition: TeleportDefinition, teleport: ObjectTeleport) {
         val tile = when {
             definition.delta != Delta.EMPTY && definition.to != Tile.EMPTY ->
                 Distance.getNearest(definition.to, definition.delta.x, definition.delta.y, player.tile)
@@ -53,11 +53,11 @@ class ObjectTeleports {
             else -> player.tile
         }
         if (teleport.move != null) {
-            teleport.move!!.invoke(context, tile)
+            teleport.move!!.invoke(player, tile)
         } else {
             val delay = teleport.delay
             if (delay != null) {
-                context.delay(delay)
+                player.delay(delay)
             }
             player.tele(tile)
         }

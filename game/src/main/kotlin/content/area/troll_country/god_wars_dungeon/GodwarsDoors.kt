@@ -4,7 +4,6 @@ import content.entity.obj.door.enterDoor
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 
 class GodwarsDoors : Script {

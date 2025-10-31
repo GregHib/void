@@ -78,6 +78,6 @@ class WildernessLevers : Script {
         teleport.delay = 3
         teleport.cancelled = false
         val definition = teleports.get("Pull")[target.tile.id]!!
-        teleports.teleportContinue(this, player, definition, teleport)
+        teleports.teleportContinue(player, definition, teleport)
     }
 }

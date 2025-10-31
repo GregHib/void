@@ -17,9 +17,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.obj.ObjectOption
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.objectApproach
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
@@ -65,9 +64,9 @@ class SteppingStones : Script {
             }
         }
 
-        objectOperate("Cross", "shilo_village_waterfall_stepping_stone_*") {
-            if (player.tile.equals(2925, 2947) || player.tile.equals(2925, 2951)) {
-                shiloCross()
+        objectOperate("Cross", "shilo_village_waterfall_stepping_stone_*") { (target) ->
+            if (tile.equals(2925, 2947) || tile.equals(2925, 2951)) {
+                shiloCross(target)
             }
         }
 
@@ -80,7 +79,7 @@ class SteppingStones : Script {
                 player.cantReach()
                 return@objectApproach
             }
-            shiloCross()
+            player.shiloCross(target)
         }
 
         objectApproach("Jump-onto", "draynor_stepping_stone") {
@@ -93,16 +92,16 @@ class SteppingStones : Script {
                 player.cantReach()
                 return@objectApproach
             }
-            draynorCross()
+            player.draynorCross(target)
         }
 
-        objectOperate("Jump-onto", "draynor_stepping_stone") {
-            if (player.tile == target.tile) {
+        objectOperate("Jump-onto", "draynor_stepping_stone") { (target) ->
+            if (tile == target.tile) {
                 // Approach incorrectly calls this after moving causing it to fire every time
                 //        player.message("You're already standing there.")
                 return@objectOperate
             }
-            draynorCross()
+            draynorCross(target)
         }
 
         objectApproach("Jump-to", "shilo_river_stepping_stone") {
@@ -126,81 +125,81 @@ class SteppingStones : Script {
         }
     }
 
-    suspend fun ObjectOption<Player>.shiloCross() {
-        if (!player.has(Skill.Agility, 30)) {
+    suspend fun Player.shiloCross(target: GameObject) {
+        if (!has(Skill.Agility, 30)) {
             statement("The stepping stone looks very small and slippery. You'd better have an Agility level of 30.")
             return
         }
-        val direction = target.tile.delta(player.tile).toDirection()
-        player.message("You attempt to balance on the stepping stone.", ChatType.Filter)
-        player.anim("stepping_stone_step", delay = 20)
-        player.exactMoveDelay(target.tile, startDelay = 48, delay = 60, direction = direction)
-        player.sound("jump", delay = 30)
-        if (Level.success(player.levels.get(Skill.Agility), 51..252)) { // Unknown rate
+        val direction = target.tile.delta(tile).toDirection()
+        message("You attempt to balance on the stepping stone.", ChatType.Filter)
+        anim("stepping_stone_step", delay = 20)
+        exactMoveDelay(target.tile, startDelay = 48, delay = 60, direction = direction)
+        sound("jump", delay = 30)
+        if (Level.success(levels.get(Skill.Agility), 51..252)) { // Unknown rate
             delay()
-            player.message("You manage to make the jump.", ChatType.Filter)
-            player.exp(Skill.Agility, 3.0)
+            message("You manage to make the jump.", ChatType.Filter)
+            exp(Skill.Agility, 3.0)
         } else {
-            player.message("You slip and fall...", ChatType.Filter)
-            player.anim("rope_walk_fall_${if (direction == Direction.SOUTH) "left" else "right"}")
-            player.renderEmote("drowning")
-            player.exactMoveDelay(Tile(2928, 2949), startDelay = 52, delay = 100, direction = direction)
+            message("You slip and fall...", ChatType.Filter)
+            anim("rope_walk_fall_${if (direction == Direction.SOUTH) "left" else "right"}")
+            renderEmote("drowning")
+            exactMoveDelay(Tile(2928, 2949), startDelay = 52, delay = 100, direction = direction)
             areaGfx("big_splash", Tile(2928, 2949), delay = 1)
-            player.sound("pool_plop")
-            player.levels.drain(Skill.Prayer, multiplier = 0.5)
-            player.walkOverDelay(Tile(2930, 2949))
+            sound("pool_plop")
+            levels.drain(Skill.Prayer, multiplier = 0.5)
+            walkOverDelay(Tile(2930, 2949))
             delay()
-            player.renderEmote("swim")
-            player.walkOverDelay(Tile(2931, if (direction == Direction.SOUTH) 2947 else 2951))
+            renderEmote("swim")
+            walkOverDelay(Tile(2931, if (direction == Direction.SOUTH) 2947 else 2951))
 
-            player.clearRenderEmote()
-            player.walkOverDelay(Tile(2931, if (direction == Direction.SOUTH) 2945 else 2953))
+            clearRenderEmote()
+            walkOverDelay(Tile(2931, if (direction == Direction.SOUTH) 2945 else 2953))
 
-            player.message("You get washed up on the side of the river, after being nearly half drowned.", ChatType.Filter)
-            player.specialAttackEnergy = (player.specialAttackEnergy - 100).coerceAtLeast(0)
-            player.damage(round(player.levels.get(Skill.Constitution) / 5.5).toInt())
-            player.exp(Skill.Agility, 1.0)
+            message("You get washed up on the side of the river, after being nearly half drowned.", ChatType.Filter)
+            specialAttackEnergy = (specialAttackEnergy - 100).coerceAtLeast(0)
+            damage(round(levels.get(Skill.Constitution) / 5.5).toInt())
+            exp(Skill.Agility, 1.0)
         }
     }
 
-    suspend fun ObjectOption<Player>.draynorCross() {
-        if (!player.has(Skill.Agility, 31)) {
-            player.message("You need level 31 Agility to tackle this obstacle.")
+    suspend fun Player.draynorCross(target: GameObject) {
+        if (!has(Skill.Agility, 31)) {
+            message("You need level 31 Agility to tackle this obstacle.")
             return
         }
         delay()
-        val direction = target.tile.delta(player.tile).toDirection()
-        player.message("You attempt to balance on the stepping stone.", ChatType.Filter)
-        player.anim("stepping_stone_step", delay = 30)
-        if (Level.success(player.levels.get(Skill.Agility), 51..252)) { // Unknown rate
-            player.exactMoveDelay(target.tile, startDelay = 58, delay = 70, direction = direction)
-            player.message("You manage to make the jump.", ChatType.Filter)
-            player.exp(Skill.Agility, 3.0)
+        val direction = target.tile.delta(tile).toDirection()
+        message("You attempt to balance on the stepping stone.", ChatType.Filter)
+        anim("stepping_stone_step", delay = 30)
+        if (Level.success(levels.get(Skill.Agility), 51..252)) { // Unknown rate
+            exactMoveDelay(target.tile, startDelay = 58, delay = 70, direction = direction)
+            message("You manage to make the jump.", ChatType.Filter)
+            exp(Skill.Agility, 3.0)
         } else {
-            player.exactMoveDelay(target.tile, startDelay = 58, delay = 70, direction = direction)
+            exactMoveDelay(target.tile, startDelay = 58, delay = 70, direction = direction)
             delay()
-            player.anim("fall_off_log_${if (direction == Direction.EAST) "right" else "left"}")
-            player.message("You slip and fall...", ChatType.Filter)
+            anim("fall_off_log_${if (direction == Direction.EAST) "right" else "left"}")
+            message("You slip and fall...", ChatType.Filter)
             areaGfx("big_splash", target.tile.copy(y = 3362), 25)
-            player.sound("pool_plop", delay = 25)
-            player.exactMoveDelay(target.tile.copy(y = 3362), startDelay = 22, delay = 35, direction = direction)
-            player.renderEmote("drowning")
+            sound("pool_plop", delay = 25)
+            exactMoveDelay(target.tile.copy(y = 3362), startDelay = 22, delay = 35, direction = direction)
+            renderEmote("drowning")
             delay(2)
-            player.renderEmote("swim")
+            renderEmote("swim")
             delay()
             if (direction == Direction.EAST) {
-                player.walkOverDelay(target.tile.copy(y = 3362))
-                player.walkOverDelay(Tile(3154, 3362))
-                player.clearRenderEmote()
-                player.walkOverDelay(Tile(3155, 3363))
+                walkOverDelay(target.tile.copy(y = 3362))
+                walkOverDelay(Tile(3154, 3362))
+                clearRenderEmote()
+                walkOverDelay(Tile(3155, 3363))
             } else {
-                player.walkOverDelay(Tile(3150, 3362))
-                player.clearRenderEmote()
-                player.walkOverDelay(Tile(3149, 3362))
+                walkOverDelay(Tile(3150, 3362))
+                clearRenderEmote()
+                walkOverDelay(Tile(3149, 3362))
             }
-            player.message("You get washed up on the side of the river, after being nearly half drowned", ChatType.Filter)
-            player.damage(20)
-            player.exp(Skill.Agility, 1.0)
+            message("You get washed up on the side of the river, after being nearly half drowned", ChatType.Filter)
+            damage(20)
+            exp(Skill.Agility, 1.0)
         }
     }
 }

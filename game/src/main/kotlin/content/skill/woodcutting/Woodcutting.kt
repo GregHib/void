@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -43,39 +42,39 @@ class Woodcutting : Script {
     val maxPlayers = 2000
 
     init {
-        objectOperate("Chop*") {
-            val tree: Tree = def.getOrNull("woodcutting") ?: return@objectOperate
-            val hatchet = Hatchet.best(player)
+        objectOperate("Chop*") { (target) ->
+            val tree: Tree = target.def.getOrNull("woodcutting") ?: return@objectOperate
+            val hatchet = Hatchet.best(this)
             if (hatchet == null) {
-                player.message("You need a hatchet to chop down this tree.")
-                player.message("You do not have a hatchet which you have the woodcutting level to use.")
+                message("You need a hatchet to chop down this tree.")
+                message("You do not have a hatchet which you have the woodcutting level to use.")
                 return@objectOperate
             }
-            player.closeDialogue()
-            player.softTimers.start("woodcutting")
+            closeDialogue()
+            softTimers.start("woodcutting")
             val ivy = tree.log.isEmpty()
             var first = true
             while (awaitDialogues()) {
-                if (!objects.contains(target) || !player.has(Skill.Woodcutting, tree.level, true)) {
+                if (!objects.contains(target) || !has(Skill.Woodcutting, tree.level, true)) {
                     break
                 }
 
-                if (!ivy && player.inventory.isFull()) {
-                    player.message("Your inventory is too full to hold any more logs.")
+                if (!ivy && inventory.isFull()) {
+                    message("Your inventory is too full to hold any more logs.")
                     break
                 }
 
-                if (!Hatchet.hasRequirements(player, hatchet, true)) {
+                if (!Hatchet.hasRequirements(this, hatchet, true)) {
                     break
                 }
                 if (first) {
-                    player.message("You swing your hatchet at the ${if (ivy) "ivy" else "tree"}.")
+                    message("You swing your hatchet at the ${if (ivy) "ivy" else "tree"}.")
                     first = false
                 }
-                val remaining = player.remaining("action_delay")
+                val remaining = remaining("action_delay")
                 if (remaining < 0) {
-                    player.anim("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
-                    player.start("action_delay", 3)
+                    anim("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
+                    start("action_delay", 3)
                     pause(3)
                 } else if (remaining > 0) {
                     pause(remaining)
@@ -83,19 +82,19 @@ class Woodcutting : Script {
                 if (!objects.contains(target)) {
                     break
                 }
-                if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
-                    player.experience.add(Skill.Woodcutting, tree.xp)
-                    tryDropNest(player, ivy)
-                    if (!addLog(player, tree) || deplete(tree, target)) {
+                if (success(levels.get(Skill.Woodcutting), hatchet, tree)) {
+                    experience.add(Skill.Woodcutting, tree.xp)
+                    tryDropNest(this, ivy)
+                    if (!addLog(this, tree) || deplete(tree, target)) {
                         break
                     }
                     if (ivy) {
-                        player.message("You successfully chop away some ivy.")
+                        message("You successfully chop away some ivy.")
                     }
                 }
-                player.stop("action_delay")
+                stop("action_delay")
             }
-            player.softTimers.stop("woodcutting")
+            softTimers.stop("woodcutting")
         }
     }
 

@@ -2,7 +2,6 @@ package content.area.misthalin.lumbridge.roddecks_house
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 

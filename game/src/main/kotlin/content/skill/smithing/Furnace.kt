@@ -15,8 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.objectOperate
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
@@ -45,8 +43,8 @@ class Furnace : Script {
     val itemDefinitions: ItemDefinitions by inject()
 
     init {
-        objectOperate("Smelt", "furnace*", arrive = false) {
-            smeltingOptions(player, target, bars)
+        objectOperate("Smelt", "furnace*", arrive = false) { (target) ->
+            smeltingOptions(target, bars)
         }
 
         itemOnObjectOperate("*_ore", "furnace*", arrive = false) {
@@ -55,21 +53,20 @@ class Furnace : Script {
             if (item.id == "iron_ore" && player.inventory.contains("coal")) {
                 list.add("steel_bar")
             }
-            smeltingOptions(player, target, list)
+            player.smeltingOptions(target, list)
         }
     }
 
-    suspend fun Context<Player>.smeltingOptions(
-        player: Player,
+    suspend fun Player.smeltingOptions(
         gameObject: GameObject,
         bars: List<String>,
     ) {
-        player["face_entity"] = furnaceSide(player, gameObject)
+        set("face_entity", furnaceSide(this, gameObject))
         val available = mutableListOf<String>()
         var max = 0
         for (bar in bars) {
             val smelt: Smelting = itemDefinitions.getOrNull(bar)?.get("smelting") ?: continue
-            val min = smelt.items.minOf { item -> player.inventory.count(item.id, item.amount) }
+            val min = smelt.items.minOf { item -> inventory.count(item.id, item.amount) }
             if (min <= 0) {
                 continue
             }
@@ -78,14 +75,14 @@ class Furnace : Script {
                 max = min
             }
         }
-        player.softTimers.start("smelting")
+        softTimers.start("smelting")
         if (available.isEmpty()) {
-            player.softTimers.stop("smelting")
-            player.message("You don't have any ores to smelt.")
+            softTimers.stop("smelting")
+            message("You don't have any ores to smelt.")
             return
         }
         val (item, amount) = makeAmount(available, "Make", max)
-        smelt(player, gameObject, item, amount)
+        smelt(this, gameObject, item, amount)
     }
 
     fun smelt(player: Player, target: GameObject, id: String, amount: Int) {

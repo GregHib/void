@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add

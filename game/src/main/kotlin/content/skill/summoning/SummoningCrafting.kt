@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -44,7 +43,7 @@ class SummoningCrafting : Script {
 
     init {
         objectOperate("Infuse-pouch") {
-            openPouchCraftingInterface(player)
+            openPouchCraftingInterface(this)
         }
 
         interfaceOption("Transform Scrolls", "scroll_creation_tab", "summoning_pouch_creation") {

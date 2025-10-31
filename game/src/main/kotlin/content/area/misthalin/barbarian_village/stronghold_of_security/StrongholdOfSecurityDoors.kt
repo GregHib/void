@@ -11,8 +11,6 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.type.random
 
 class StrongholdOfSecurityDoors : Script {
@@ -48,7 +46,7 @@ class StrongholdOfSecurityDoors : Script {
         if (get("stronghold_safe_space", false) && Settings["strongholdOfSecurity.quiz", false]) {
             // And they haven't completed the level (and questions on completion is active)
             if (Settings["strongholdOfSecurity.quiz.complete", false] || !get(variable, false)) {
-                randomQuestion(target.id.removeSuffix("_mirrored"))
+                randomQuestion(target, target.id.removeSuffix("_mirrored"))
                 return
             }
         }

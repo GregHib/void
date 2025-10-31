@@ -27,18 +27,6 @@ data class ObjectOption<C : Character>(
     }
 }
 
-fun objectOperate(option: String, vararg objects: String = arrayOf("*"), arrive: Boolean = true, block: suspend ObjectOption<Player>.() -> Unit) {
-    val handler: suspend ObjectOption<Player>.(Player) -> Unit = {
-        if (arrive) {
-            arriveDelay()
-        }
-        block.invoke(this)
-    }
-    for (id in objects) {
-        Events.handle("player_operate_object", option, id, "player", handler = handler)
-    }
-}
-
 fun objectApproach(option: String, vararg objects: String = arrayOf("*"), block: suspend ObjectOption<Player>.() -> Unit) {
     val handler: suspend ObjectOption<Player>.(Player) -> Unit = {
         block.invoke(this)

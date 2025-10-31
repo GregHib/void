@@ -3,7 +3,6 @@ package content.area.morytania.port_phasmatys
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.type.Tile
 
 class PortPhasmatysBarrier : Script {

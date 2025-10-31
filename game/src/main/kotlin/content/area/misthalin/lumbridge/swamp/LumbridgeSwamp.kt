@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory

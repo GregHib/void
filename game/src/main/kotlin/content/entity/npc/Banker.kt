@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.SuspendableContext
@@ -33,12 +32,12 @@ class Banker : Script {
             } else if (collection) {
                 npc<Talk>("Before we go any further, I should inform you that you have items ready for collection from the Grand Exchange.")
             }
-            menu()
+            player.menu()
         }
 
         objectOperate("Use", "bank_*", arrive = false) {
             val banker = npcs.first { it.def.name == "Banker" }
-            player.talkWith(banker)
+            talkWith(banker)
             menu()
         }
 
@@ -53,12 +52,12 @@ class Banker : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.menu() {
+    suspend fun Player.menu() {
         choice {
-            option("I'd like to access my bank account, please.", block = { player.open("bank") })
-            option("I'd like to check my PIN settings.", block = { player.open("bank_pin") })
-            option("I'd like to see my collection box.", block = { player.open("collection_box") })
-            option("I'd like to see my Returned Items box.", block = { player.open("returned_items") })
+            option("I'd like to access my bank account, please.", block = { open("bank") })
+            option("I'd like to check my PIN settings.", block = { open("bank_pin") })
+            option("I'd like to see my collection box.", block = { open("collection_box") })
+            option("I'd like to see my Returned Items box.", block = { open("returned_items") })
             option("What is this place?") {
                 npc<Talk>("This is a branch of the Bank of ${Settings["server.name"]}. We have branches in many towns.")
                 choice {
@@ -75,10 +74,10 @@ class Banker : Script {
         }
     }
 
-    fun Context<Player>.achievement() {
-        if (!player["you_can_bank_on_us_task", false]) {
-            player["you_can_bank_on_us_task"] = true
-            player.addVarbit("task_reward_items", "red_dye")
+    fun Player.achievement() {
+        if (!get("you_can_bank_on_us_task", false)) {
+            set("you_can_bank_on_us_task", true)
+            addVarbit("task_reward_items", "red_dye")
         }
     }
 }

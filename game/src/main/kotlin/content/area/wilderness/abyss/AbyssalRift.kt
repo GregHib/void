@@ -4,7 +4,6 @@ import content.entity.obj.objTeleportTakeOff
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.obj.objectOperate
 
 class AbyssalRift : Script {
 

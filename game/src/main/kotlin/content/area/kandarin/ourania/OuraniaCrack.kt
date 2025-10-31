@@ -3,7 +3,6 @@ package content.area.kandarin.ourania
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.obj.objectOperate
 
 class OuraniaCrack : Script {
 

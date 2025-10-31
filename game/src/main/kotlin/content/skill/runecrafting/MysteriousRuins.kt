@@ -24,7 +24,6 @@ import world.gregs.voidps.type.equals
 
 class MysteriousRuins : Script {
 
-    val objectDefinitions: ObjectDefinitions by inject()
     val teleports: ObjectTeleports by inject()
 
     val omni = listOf("air", "mind", "water", "earth", "fire", "body", "cosmic", "law", "nature", "chaos", "death", "blood")
@@ -56,12 +55,10 @@ class MysteriousRuins : Script {
             if (target.id != "${item.id.removeSuffix("_talisman")}_altar_ruins") {
                 return@itemOnObjectOperate
             }
-            val id = target.def.transforms?.getOrNull(1) ?: return@itemOnObjectOperate
-            val definition = objectDefinitions.get(id)
             player.message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
             player.anim("human_pickupfloor")
             delay(2)
-            player.interactObject(target, "Enter", definition, approachRange = -1)
+            player.interactObject(target, "Enter", approachRange = -1)
         }
 
         objTeleportTakeOff("Enter", "*_altar_ruins_enter") {
@@ -77,7 +74,7 @@ class MysteriousRuins : Script {
                     choice("Are you sure you wish to use this portal?") {
                         option("Yes, I'm brave.") {
                             player.start("chaos_altar_skip", 1)
-                            teleports.teleport(this, player, target, obj, option)
+                            teleports.teleport(player, target, option, obj)
                         }
                         option("Eeep! The Wilderness... No thank you.") {
                             player.message("You decide not to use this portal.")

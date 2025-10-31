@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -42,9 +41,9 @@ class Runecrafting : Script {
             bindRunes(player, id, itemDefinitions.get(id))
         }
 
-        objectOperate("Craft-rune", "*_altar") {
+        objectOperate("Craft-rune", "*_altar") { (target) ->
             val id = target.id.replace("_altar", "_rune")
-            bindRunes(player, id, itemDefinitions.get(id))
+            bindRunes(this, id, itemDefinitions.get(id))
         }
 
         itemOnObjectOperate("*_rune", "*_altar") {

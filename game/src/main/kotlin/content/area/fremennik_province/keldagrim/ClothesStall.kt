@@ -2,7 +2,6 @@ package content.area.fremennik_province.keldagrim
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.obj.objectOperate
 
 class ClothesStall : Script {
     init {

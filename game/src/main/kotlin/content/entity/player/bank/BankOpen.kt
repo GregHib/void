@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.sendInventory
 
@@ -32,11 +31,11 @@ class BankOpen : Script {
         adminCommand("bank", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Open the players bank", handler = ::bank)
 
         objectOperate("Use-quickly") {
-            player.open("bank")
+            open("bank")
         }
 
         objectOperate("Collect") {
-            player.open("collection_box")
+            open("collection_box")
         }
 
         interfaceClose("bank") { player ->
@@ -90,7 +89,7 @@ class BankOpen : Script {
         }
 
         objectOperate("Deposit", "bank_deposit_box") {
-            player.open("bank_deposit_box")
+            open("bank_deposit_box")
         }
     }
 

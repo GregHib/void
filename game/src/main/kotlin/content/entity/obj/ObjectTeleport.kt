@@ -19,7 +19,7 @@ data class ObjectTeleport(
     Context<Player> {
     var delay: Int? = null
     var land: Boolean = false
-    var move: (suspend SuspendableContext<Player>.(Tile) -> Unit)? = null
+    var move: (suspend Player.(Tile) -> Unit)? = null
 
     override val size = 5
 

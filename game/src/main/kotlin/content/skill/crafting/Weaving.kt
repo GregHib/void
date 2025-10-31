@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -36,7 +35,7 @@ class Weaving : Script {
         get() = def["weaving"]
 
     init {
-        objectOperate("Weave", "loom_*", arrive = false) {
+        objectOperate("Weave", "loom_*", arrive = false) { (target) ->
             val strings = materials.map { it.weaving.to }
             val (index, amount) = makeAmountIndex(
                 items = strings,

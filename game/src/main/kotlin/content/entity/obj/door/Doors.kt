@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.timer.epochSeconds
 
 class Doors : Script {
@@ -17,24 +16,26 @@ class Doors : Script {
     val doorStuckCount = 5
 
     init {
-        objectOperate("Close") {
+        objectOperate("Close") { (target) ->
+            val def = target.def(this)
             if (!def.isDoor()) {
                 return@objectOperate
             }
             // Prevent players from trapping one another
-            if (stuck(player)) {
+            if (stuck(this)) {
                 return@objectOperate
             }
-            closeDoor(player, target, def)
+            closeDoor(this, target, def)
         }
 
-        objectOperate("Open") {
+        objectOperate("Open") { (target) ->
+            val def = target.def(this)
             if (!def.isDoor()) {
                 return@objectOperate
             }
-            if (openDoor(player, target, def)) {
+            if (openDoor(this, target, def)) {
                 delay(0)
-                player.emit(DoorOpened)
+                emit(DoorOpened)
             }
         }
     }

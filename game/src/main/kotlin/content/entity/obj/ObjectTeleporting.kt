@@ -2,7 +2,6 @@ package content.entity.obj
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 
 class ObjectTeleporting : Script {
@@ -11,9 +10,9 @@ class ObjectTeleporting : Script {
 
     init {
         for (option in teleports.options()) {
-            objectOperate(option) {
+            objectOperate(option) { (target, option) ->
                 delay()
-                teleports.teleport(this)
+                teleports.teleport(this, target, option)
             }
         }
 

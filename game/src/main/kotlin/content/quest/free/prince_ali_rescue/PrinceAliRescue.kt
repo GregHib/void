@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory

@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem

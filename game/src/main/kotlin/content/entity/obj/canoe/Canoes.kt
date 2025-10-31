@@ -18,9 +18,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.type.Direction
@@ -40,33 +40,33 @@ class Canoes : Script {
             sendVariable("canoe_state_wilderness_pond")
         }
 
-        objectOperate("Chop-down", "canoe_station") {
-            if (!player.has(Skill.Woodcutting, 12, false)) {
+        objectOperate("Chop-down", "canoe_station") { (target) ->
+            if (!has(Skill.Woodcutting, 12, false)) {
                 statement("You must have at least level 12 woodcutting to start making canoes.")
                 return@objectOperate
             }
-            val hatchet = Hatchet.best(player)
+            val hatchet = Hatchet.best(this)
             if (hatchet == null) {
-                player.message("You need a hatchet to chop down this tree.")
-                player.message("You do not have a hatchet which you have the woodcutting level to use.")
+                message("You need a hatchet to chop down this tree.")
+                message("You do not have a hatchet which you have the woodcutting level to use.")
                 return@objectOperate
             }
             val location = target.id.removePrefix("canoe_station_")
             when (target.rotation) {
-                1 -> player.walkToDelay(target.tile.add(-1, 4))
-                2 -> player.walkToDelay(target.tile.add(3, 2))
-                3 -> player.walkToDelay(target.tile.add(2))
+                1 -> walkToDelay(target.tile.add(-1, 4))
+                2 -> walkToDelay(target.tile.add(3, 2))
+                3 -> walkToDelay(target.tile.add(2))
             }
-            player.face(Direction.cardinal[target.rotation])
+            face(Direction.cardinal[target.rotation])
             delay()
-            player.anim("${hatchet.id}_shape_canoe")
+            anim("${hatchet.id}_shape_canoe")
             delay()
             target.anim("canoe_fall")
-            player.clearAnim()
-            player.sound("fell_tree")
-            player["canoe_state_$location"] = "falling"
+            clearAnim()
+            sound("fell_tree")
+            set("canoe_state_$location", "falling")
             delay()
-            player["canoe_state_$location"] = "fallen"
+            set("canoe_state_$location", "fallen")
         }
 
         interfaceOpen("canoe") { player ->
@@ -88,24 +88,24 @@ class Canoes : Script {
             (player.dialogueSuspension as? StringSuspension)?.resume(type)
         }
 
-        objectOperate("Shape-canoe", "canoe_station_fallen") {
-            val hatchet = Hatchet.best(player)
+        objectOperate("Shape-canoe", "canoe_station_fallen") { (target) ->
+            val hatchet = Hatchet.best(this)
             if (hatchet == null) {
-                player.message("You need a hatchet to shape a canoe.")
-                player.message("You do not have a hatchet which you have the woodcutting level to use.")
+                message("You need a hatchet to shape a canoe.")
+                message("You do not have a hatchet which you have the woodcutting level to use.")
                 return@objectOperate
             }
             when (target.rotation) {
-                1 -> player.walkToDelay(target.tile.add(-1, 2))
-                2 -> player.walkToDelay(target.tile.add(2, 2))
-                3 -> player.walkToDelay(target.tile.add(2, 2))
+                1 -> walkToDelay(target.tile.add(-1, 2))
+                2 -> walkToDelay(target.tile.add(2, 2))
+                3 -> walkToDelay(target.tile.add(2, 2))
             }
             arriveDelay()
             val location = target.id.removePrefix("canoe_station_")
-            player.face(Direction.cardinal[target.rotation])
-            player.open("canoe")
-            val canoe = StringSuspension.get(player)
-            player.closeMenu()
+            face(Direction.cardinal[target.rotation])
+            open("canoe")
+            val canoe = StringSuspension.get(this)
+            closeMenu()
             val required = when (canoe) {
                 "log" -> 12
                 "dugout" -> 26
@@ -113,24 +113,24 @@ class Canoes : Script {
                 "waka" -> 56
                 else -> return@objectOperate
             }
-            if (!player.has(Skill.Woodcutting, required, message = true)) {
+            if (!has(Skill.Woodcutting, required, message = true)) {
                 return@objectOperate
             }
-            val level = player.levels.get(Skill.Woodcutting)
+            val level = levels.get(Skill.Woodcutting)
             val min = hatchet.def.getOrNull<Int>("canoe_chance_min") ?: return@objectOperate
             val max = hatchet.def.getOrNull<Int>("canoe_chance_max") ?: return@objectOperate
             val chance: IntRange = min until max
             var count = 0
             while (count++ < 50) {
-                player.anim("${hatchet.id}_shape_canoe")
+                anim("${hatchet.id}_shape_canoe")
                 delay(3)
                 if (Level.success(level, chance)) {
                     break
                 }
             }
-            player["canoe_state_$location"] = canoe
-            player.clearAnim()
-            player.exp(
+            set("canoe_state_$location", canoe)
+            clearAnim()
+            exp(
                 Skill.Woodcutting,
                 when (canoe) {
                     "log" -> 30.0
@@ -142,23 +142,23 @@ class Canoes : Script {
             )
         }
 
-        objectOperate("Float Log", "canoe_station_log") {
-            float()
+        objectOperate("Float Log", "canoe_station_log") { (target) ->
+            float(target)
         }
 
-        objectOperate("Float Canoe", "canoe_station_*") {
-            float()
+        objectOperate("Float Canoe", "canoe_station_*") { (target) ->
+            float(target)
         }
 
-        objectOperate("Paddle Canoe", "canoe_station_water_*") {
-            player.face(Direction.cardinal[target.rotation])
+        objectOperate("Paddle Canoe", "canoe_station_water_*") { (target) ->
+            face(Direction.cardinal[target.rotation])
             val station = target.id.removePrefix("canoe_station_")
-            val canoe = def.stringId.removePrefix("canoe_station_water_")
+            val canoe = target.def.stringId.removePrefix("canoe_station_water_")
             val destination = canoeStationMap(canoe, station)
             if (destination == null || destination == station) {
                 return@objectOperate
             }
-            if (destination == "wilderness_pond" && player["wilderness_canoe_warning", true]) {
+            if (destination == "wilderness_pond" && get("wilderness_canoe_warning", true)) {
                 statement("<red>Warning</col> This canoe will take you deep into the <red>Wilderness</col>. There are no trees suitable to make a canoe there. You will have to walk back.")
                 choice("Are you sure you wish to travel") {
                     option("Yes, I'm brave.")
@@ -166,35 +166,35 @@ class Canoes : Script {
                         return@option
                     }
                     option("Yes, and don't show this warning again.") {
-                        player["wilderness_canoe_warning"] = false
+                        set("wilderness_canoe_warning", false)
                     }
                 }
             }
             canoeTravel(canoe, station, destination)
             val definition = stations.get(destination)
-            player.tele(definition.destination)
-            player["canoe_state_$station"] = "tree"
-            player["canoe_state_$destination"] = "tree"
+            tele(definition.destination)
+            set("canoe_state_$station", "tree")
+            set("canoe_state_$destination", "tree")
             objects.add("a_sinking_canoe_$canoe", tile = definition.sink, rotation = 1, ticks = 3)
-            player.sound("canoe_sink")
-            player.message(definition.message, type = ChatType.Filter)
+            sound("canoe_sink")
+            message(definition.message, type = ChatType.Filter)
         }
     }
 
-    suspend fun ObjectOption<Player>.float() {
+    suspend fun Player.float(target: GameObject) {
         when (target.rotation) {
-            1 -> player.walkToDelay(target.tile.add(-1, 2))
-            2 -> player.walkToDelay(target.tile.add(2, 2))
-            3 -> player.walkToDelay(target.tile.add(2, 2))
+            1 -> walkToDelay(target.tile.add(-1, 2))
+            2 -> walkToDelay(target.tile.add(2, 2))
+            3 -> walkToDelay(target.tile.add(2, 2))
         }
         val location = target.id.removePrefix("canoe_station_")
-        val canoe = def.stringId.removePrefix("canoe_station_")
-        player["canoe_state_$location"] = "float_$canoe"
-        player.anim("canoe_push")
-        player.face(Direction.cardinal[target.rotation])
+        val canoe = target.def.stringId.removePrefix("canoe_station_")
+        set("canoe_state_$location", "float_$canoe")
+        anim("canoe_push")
+        face(Direction.cardinal[target.rotation])
         target.anim("canoe_fall")
-        player.sound("canoe_roll")
+        sound("canoe_roll")
         delay(2)
-        player["canoe_state_$location"] = "water_$canoe"
+        set("canoe_state_$location", "water_$canoe")
     }
 }
