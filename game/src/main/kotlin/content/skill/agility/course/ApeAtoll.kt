@@ -25,6 +25,7 @@ class ApeAtoll : Script {
 
     init {
         objectOperate("Jump-to", "ape_atoll_stepping_stones") { (target) ->
+            arriveDelay()
             face(target)
             delay()
             val weapon = equipped(EquipSlot.Weapon).id

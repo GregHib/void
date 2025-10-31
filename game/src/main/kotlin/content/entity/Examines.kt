@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.ExamineItem
 import world.gregs.voidps.network.client.instruction.ExamineNpc
@@ -31,8 +30,8 @@ class Examines : Script {
             player.message(item.def.getOrNull("examine") ?: return@inventoryOption, ChatType.ItemExamine)
         }
 
-        objectApproach("Examine") {
-            player.message(def.getOrNull("examine") ?: return@objectApproach, ChatType.ObjectExamine)
+        objectApproach("Examine") { (target) ->
+            message(target.def.getOrNull("examine") ?: return@objectApproach, ChatType.ObjectExamine)
         }
 
         npcApproach("Examine") {

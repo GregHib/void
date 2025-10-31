@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
@@ -27,40 +26,40 @@ import kotlin.math.round
 class SteppingStones : Script {
 
     init {
-        objectApproach("Jump-across", "lumbridge_swamp_stepping_stone") {
-            val direction = if (player.tile.x > target.tile.x) Direction.WEST else Direction.EAST
+        objectApproach("Jump-across", "lumbridge_swamp_stepping_stone") { (target) ->
+            val direction = if (tile.x > target.tile.x) Direction.WEST else Direction.EAST
             val start = if (direction == Direction.WEST) Tile(3208, 9572) else Tile(3204, 9572)
             val end = if (direction == Direction.WEST) Tile(3204, 9572) else Tile(3208, 9572)
-            if (player.tile != start) {
-                player.walkToDelay(start)
+            if (tile != start) {
+                walkToDelay(start)
                 delay()
             }
-            player.anim("stepping_stone_step", delay = 30)
-            player.message(text = "You leap across with a mighty leap!", ChatType.Filter)
-            player.sound("jump", delay = 35)
-            player.exactMoveDelay(target.tile, startDelay = 58, delay = 70, direction = direction)
-            if (Level.success(player.levels.get(Skill.Agility), 51..252)) {
-                player.anim("stepping_stone_step", delay = 30)
-                player.sound("jump", delay = 35)
-                player.exactMoveDelay(end, startDelay = 58, delay = 70, direction = direction)
-                player.exp(Skill.Agility, 3.0)
+            anim("stepping_stone_step", delay = 30)
+            message(text = "You leap across with a mighty leap!", ChatType.Filter)
+            sound("jump", delay = 35)
+            exactMoveDelay(target.tile, startDelay = 58, delay = 70, direction = direction)
+            if (Level.success(levels.get(Skill.Agility), 51..252)) {
+                anim("stepping_stone_step", delay = 30)
+                sound("jump", delay = 35)
+                exactMoveDelay(end, startDelay = 58, delay = 70, direction = direction)
+                exp(Skill.Agility, 3.0)
             } else {
-                player.message("You slip over on the slimy stone.", ChatType.Filter)
-                player.anim("rope_walk_fall_down")
+                message("You slip over on the slimy stone.", ChatType.Filter)
+                anim("rope_walk_fall_down")
                 areaGfx("big_splash", target.tile.addY(direction.delta.x), delay = 6)
-                player.sound("grapple_splash", 3)
-                player.exactMoveDelay(target.tile.addY(direction.delta.x), startDelay = 12, delay = 40, direction = direction)
-                val hasLightSource = Light.hasLightSource(player)
+                sound("grapple_splash", 3)
+                exactMoveDelay(target.tile.addY(direction.delta.x), startDelay = 12, delay = 40, direction = direction)
+                val hasLightSource = Light.hasLightSource(this)
                 if (hasLightSource) {
-                    Light.extinguish(player)
+                    Light.extinguish(this)
                 }
-                player.renderEmote("drowning")
+                renderEmote("drowning")
                 delay(2)
-                player.exactMoveDelay(end, direction = direction)
+                exactMoveDelay(end, direction = direction)
                 if (hasLightSource) {
-                    player.message("You scramble out of the muddy water.", ChatType.Filter)
+                    message("You scramble out of the muddy water.", ChatType.Filter)
                 }
-                player.clearRenderEmote()
+                clearRenderEmote()
             }
         }
 
@@ -70,58 +69,58 @@ class SteppingStones : Script {
             }
         }
 
-        objectApproach("Cross", "shilo_village_waterfall_stepping_stone_*") {
+        objectApproach("Cross", "shilo_village_waterfall_stepping_stone_*") { (target) ->
             approachRange(1)
-            if (player.tile == target.tile) {
+            if (tile == target.tile) {
                 return@objectApproach
             }
-            if (!player.tile.within(target.tile, 1)) {
-                player.cantReach()
+            if (!tile.within(target.tile, 1)) {
+                cantReach()
                 return@objectApproach
             }
-            player.shiloCross(target)
+            shiloCross(target)
         }
 
-        objectApproach("Jump-onto", "draynor_stepping_stone") {
+        objectApproach("Jump-onto", "draynor_stepping_stone") { (target) ->
             approachRange(1)
-            if (player.tile == target.tile) {
-                player.message("You're already standing there.")
+            if (tile == target.tile) {
+                message("You're already standing there.")
                 return@objectApproach
             }
-            if (!player.tile.within(target.tile, 1)) {
-                player.cantReach()
+            if (!tile.within(target.tile, 1)) {
+                cantReach()
                 return@objectApproach
             }
-            player.draynorCross(target)
+            draynorCross(target)
         }
 
         objectOperate("Jump-onto", "draynor_stepping_stone") { (target) ->
             if (tile == target.tile) {
                 // Approach incorrectly calls this after moving causing it to fire every time
-                //        player.message("You're already standing there.")
+                //        message("You're already standing there.")
                 return@objectOperate
             }
             draynorCross(target)
         }
 
-        objectApproach("Jump-to", "shilo_river_stepping_stone") {
-            val direction = target.tile.delta(player.tile).toDirection().vertical()
-            player.walkToDelay(target.tile.addY(-(direction.delta.y * 3)))
-            player.face(direction)
+        objectApproach("Jump-to", "shilo_river_stepping_stone") { (target) ->
+            val direction = target.tile.delta(tile).toDirection().vertical()
+            walkToDelay(target.tile.addY(-(direction.delta.y * 3)))
+            face(direction)
             delay()
-            if (!player.has(Skill.Agility, 74)) {
-                player.message("You need level 74 Agility to tackle this obstacle.")
+            if (!has(Skill.Agility, 74)) {
+                message("You need level 74 Agility to tackle this obstacle.")
                 return@objectApproach
             }
-            player.anim("stepping_stone_jump", delay = 15)
-            player.face(direction)
-            player.sound("jump", delay = 15)
-            player.exactMoveDelay(target.tile, startDelay = 30, delay = 45, direction = direction)
+            anim("stepping_stone_jump", delay = 15)
+            face(direction)
+            sound("jump", delay = 15)
+            exactMoveDelay(target.tile, startDelay = 30, delay = 45, direction = direction)
             delay()
-            player.anim("stepping_stone_jump", delay = 15)
-            player.face(direction)
-            player.sound("jump", delay = 15)
-            player.exactMoveDelay(target.tile.addY(direction.delta.y * 3), startDelay = 30, delay = 45, direction = direction) // startDelta = Delta(0, -2), endDelta = Delta(0, 0)
+            anim("stepping_stone_jump", delay = 15)
+            face(direction)
+            sound("jump", delay = 15)
+            exactMoveDelay(target.tile.addY(direction.delta.y * 3), startDelay = 30, delay = 45, direction = direction) // startDelta = Delta(0, -2), endDelta = Delta(0, 0)
         }
     }
 

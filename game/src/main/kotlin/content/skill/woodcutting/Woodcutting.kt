@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.data.Tree
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -42,60 +43,65 @@ class Woodcutting : Script {
     val maxPlayers = 2000
 
     init {
-        objectOperate("Chop*") { (target) ->
-            val tree: Tree = target.def.getOrNull("woodcutting") ?: return@objectOperate
-            val hatchet = Hatchet.best(this)
-            if (hatchet == null) {
-                message("You need a hatchet to chop down this tree.")
-                message("You do not have a hatchet which you have the woodcutting level to use.")
-                return@objectOperate
-            }
-            closeDialogue()
-            softTimers.start("woodcutting")
-            val ivy = tree.log.isEmpty()
-            var first = true
-            while (awaitDialogues()) {
-                if (!objects.contains(target) || !has(Skill.Woodcutting, tree.level, true)) {
-                    break
-                }
+        objectOperate("Chop", block = ::chopDown)
+        objectOperate("Chop down", block = ::chopDown)
+        objectOperate("Chop-down", block = ::chopDown)
+    }
 
-                if (!ivy && inventory.isFull()) {
-                    message("Your inventory is too full to hold any more logs.")
-                    break
-                }
-
-                if (!Hatchet.hasRequirements(this, hatchet, true)) {
-                    break
-                }
-                if (first) {
-                    message("You swing your hatchet at the ${if (ivy) "ivy" else "tree"}.")
-                    first = false
-                }
-                val remaining = remaining("action_delay")
-                if (remaining < 0) {
-                    anim("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
-                    start("action_delay", 3)
-                    pause(3)
-                } else if (remaining > 0) {
-                    pause(remaining)
-                }
-                if (!objects.contains(target)) {
-                    break
-                }
-                if (success(levels.get(Skill.Woodcutting), hatchet, tree)) {
-                    experience.add(Skill.Woodcutting, tree.xp)
-                    tryDropNest(this, ivy)
-                    if (!addLog(this, tree) || deplete(tree, target)) {
-                        break
-                    }
-                    if (ivy) {
-                        message("You successfully chop away some ivy.")
-                    }
-                }
-                stop("action_delay")
-            }
-            softTimers.stop("woodcutting")
+    suspend fun chopDown(player: Player, interact: PlayerObjectInteract) {
+        val target = interact.target
+        val tree: Tree = target.def.getOrNull("woodcutting") ?: return
+        val hatchet = Hatchet.best(player)
+        if (hatchet == null) {
+            player.message("You need a hatchet to chop down this tree.")
+            player.message("You do not have a hatchet which you have the woodcutting level to use.")
+            return
         }
+        player.closeDialogue()
+        player.softTimers.start("woodcutting")
+        val ivy = tree.log.isEmpty()
+        var first = true
+        while (player.awaitDialogues()) {
+            if (!objects.contains(target) || !player.has(Skill.Woodcutting, tree.level, true)) {
+                break
+            }
+
+            if (!ivy && player.inventory.isFull()) {
+                player.message("Your inventory is too full to hold any more logs.")
+                break
+            }
+
+            if (!Hatchet.hasRequirements(player, hatchet, true)) {
+                break
+            }
+            if (first) {
+                player.message("You swing your hatchet at the ${if (ivy) "ivy" else "tree"}.")
+                first = false
+            }
+            val remaining = player.remaining("action_delay")
+            if (remaining < 0) {
+                player.anim("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
+                player.start("action_delay", 3)
+                player.pause(3)
+            } else if (remaining > 0) {
+                player.pause(remaining)
+            }
+            if (!objects.contains(target)) {
+                break
+            }
+            if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
+                player.experience.add(Skill.Woodcutting, tree.xp)
+                tryDropNest(player, ivy)
+                if (!addLog(player, tree) || deplete(tree, target)) {
+                    break
+                }
+                if (ivy) {
+                    player.message("You successfully chop away some ivy.")
+                }
+            }
+            player.stop("action_delay")
+        }
+        player.softTimers.stop("woodcutting")
     }
 
     fun tryDropNest(player: Player, ivy: Boolean) {

@@ -1,6 +1,7 @@
 package content.skill.runecrafting
 
 import content.entity.obj.ObjectTeleports
+import content.entity.obj.objTeleportLand
 import content.entity.obj.objTeleportTakeOff
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
@@ -58,7 +59,11 @@ class MysteriousRuins : Script {
             player.message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
             player.anim("human_pickupfloor")
             delay(2)
+            player.set("${item.id.removeSuffix("_talisman")}_altar_ruins", refresh = false, value = true)
             player.interactObject(target, "Enter", approachRange = -1)
+            player.softQueue("clear_alter_varbit", 5) {
+                player.set("${item.id.removeSuffix("_talisman")}_altar_ruins", refresh = false, value = false)
+            }
         }
 
         objTeleportTakeOff("Enter", "*_altar_ruins_enter") {

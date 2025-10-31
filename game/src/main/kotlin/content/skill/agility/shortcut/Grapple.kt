@@ -26,63 +26,62 @@ class Grapple : Script {
     val areas: AreaDefinitions by inject()
 
     init {
-        objectApproach("Grapple", "lumbridge_broken_raft") {
-            if (!player.hasRequirements(ranged = 37, agility = 8, strength = 17)) {
+        objectApproach("Grapple", "lumbridge_broken_raft") { (target) ->
+            if (!hasRequirements(ranged = 37, agility = 8, strength = 17)) {
                 return@objectApproach
             }
-            player.steps.clear()
-            val direction = if (player.tile.x < 3253) Direction.EAST else Direction.WEST
+            steps.clear()
+            val direction = if (tile.x < 3253) Direction.EAST else Direction.WEST
             // Skip first half if player is stuck on raft somehow
-            if (player.tile.distanceTo(target.tile) > 2) {
+            if (tile.distanceTo(target.tile) > 2) {
                 val start = if (direction == Direction.EAST) Tile(3246, 3179) else Tile(3259, 3180)
-                if (player.tile.distanceTo(start) > 1) {
-                    player.message("I can't do that from here, get closer.")
-                    cancel()
+                if (tile.distanceTo(start) > 1) {
+                    message("I can't do that from here, get closer.")
                     return@objectApproach
                 }
-                player.face(target)
+                face(target)
                 delay(2)
-                player.anim("crossbow_accurate")
-                player.sound("grapple_shoot")
+                anim("crossbow_accurate")
+                sound("grapple_shoot")
                 delay(3)
-                player.message("You successfully grapple the raft and tie the rope to a tree.", ChatType.Filter)
+                message("You successfully grapple the raft and tie the rope to a tree.", ChatType.Filter)
                 if (direction == Direction.EAST) {
                     lumbridgeTree(grapple = false)
                 } else {
                     alKharidTree(grapple = false)
                 }
-                player.walkOverDelay(start.add(direction))
-                player.anim("grapple_enter_water")
+                walkOverDelay(start.add(direction))
+                anim("grapple_enter_water")
                 areaGfx("big_splash", start.addX(direction.delta.x * 2), delay = 6)
-                player.sound("grapple_splash", 3)
-                player.exactMoveDelay(start.addX(direction.delta.x * 6), 120, direction)
+                sound("grapple_splash", 3)
+                exactMoveDelay(start.addX(direction.delta.x * 6), 120, direction)
             }
             if (direction == Direction.EAST) {
-                player.walkToDelay(Tile(3252, 3180))
-                player.walkToDelay(Tile(3253, 3180))
-                player.face(Tile(3260, 3180))
+                walkToDelay(Tile(3252, 3180))
+                walkToDelay(Tile(3253, 3180))
+                face(Tile(3260, 3180))
             } else {
-                player.walkToDelay(Tile(3252, 3180))
-                player.face(Tile(3244, 3179))
+                walkToDelay(Tile(3252, 3180))
+                face(Tile(3244, 3179))
             }
             delay(2)
-            player.anim("crossbow_accurate")
-            player.sound("grapple_shoot")
+            anim("crossbow_accurate")
+            sound("grapple_shoot")
             delay(3)
-            player.message("You successfully grapple the tree on the opposite bank.", ChatType.Filter)
+            message("You successfully grapple the tree on the opposite bank.", ChatType.Filter)
             if (direction == Direction.EAST) {
                 alKharidTree(grapple = true)
             } else {
                 lumbridgeTree(grapple = true)
             }
             delay()
-            player.anim("grapple_exit_water")
-            areaGfx("big_splash", player.tile.add(direction), delay = 6)
-            player.sound("grapple_splash", 3)
+            anim("grapple_exit_water")
+            areaGfx("big_splash", tile.add(direction), delay = 6)
+            sound("grapple_splash", 3)
             val shore = if (direction == Direction.EAST) Tile(3258, 3180) else Tile(3248, 3179)
-            player.exactMoveDelay(shore, 160, direction)
+            exactMoveDelay(shore, 160, direction)
             val end = if (direction == Direction.EAST) Tile(3259, 3180) else Tile(3246, 3179)
-            player.walkOverDelay(end)
+            walkOverDelay(end)
         }
 
         objectOperate("Grapple", "falador_wall_north") {
@@ -141,23 +140,23 @@ class Grapple : Script {
             tele(3005, 3393, 0)
         }
 
-        objectApproach("Grapple", "catherby_crossbow_tree") {
-            if (!player.hasRequirements(ranged = 39, agility = 36, strength = 22)) {
+        objectApproach("Grapple", "catherby_crossbow_tree") { (target) ->
+            if (!hasRequirements(ranged = 39, agility = 36, strength = 22)) {
                 return@objectApproach
             }
-            player.steps.clear()
+            steps.clear()
             val start = Tile(2841, 3425)
-            if (player.tile !in areas["water_obselisk_island"]) {
-                player.message("I can't do that from here.")
+            if (tile !in areas["water_obselisk_island"]) {
+                message("I can't do that from here.")
                 return@objectApproach
             }
-            player.walkToDelay(start)
-            player.face(Direction.NORTH)
+            walkToDelay(start)
+            face(Direction.NORTH)
             delay()
-            player.anim("grapple_aim_fire")
+            anim("grapple_aim_fire")
             delay(2)
-            player.anim("crossbow_accurate")
-            player.sound("grapple_shoot")
+            anim("crossbow_accurate")
+            sound("grapple_shoot")
             delay(3)
             for (y in 3427..3433) {
                 objects.add("grapple_rope", Tile(2841, y), rotation = 1, shape = ObjectShape.GROUND_DECOR, ticks = 14)
@@ -165,36 +164,36 @@ class Grapple : Script {
             objects.add("catherby_rocks_rope", Tile(2841, 3426), rotation = 1, shape = ObjectShape.GROUND_DECOR, ticks = 14)
             target.replace("catherby_crossbow_tree_grapple", ticks = 14)
             delay(4)
-            player.anim("water_obelisk_swim")
+            anim("water_obelisk_swim")
             areaGfx("big_splash", Tile(2841, 3428), 6)
-            player.sound("grapple_splash", delay = 6)
-            player.exactMoveDelay(Tile(2841, 3432), delay = 160, direction = Direction.NORTH)
+            sound("grapple_splash", delay = 6)
+            exactMoveDelay(Tile(2841, 3432), delay = 160, direction = Direction.NORTH)
         }
 
         objectApproach("Grapple", "catherby_rocks") {
-            if (!player.hasRequirements(ranged = 35, agility = 32, strength = 35)) {
+            if (!hasRequirements(ranged = 35, agility = 32, strength = 35)) {
                 return@objectApproach
             }
-            player.steps.clear()
-            if (player.tile !in areas["mountain_shortcut_grapple_area"]) {
-                player.message("I can't do that from here.")
+            steps.clear()
+            if (tile !in areas["mountain_shortcut_grapple_area"]) {
+                message("I can't do that from here.")
                 return@objectApproach
             }
-            player.walkToDelay(Tile(2866, 3429))
-            player.face(Direction.EAST)
+            walkToDelay(Tile(2866, 3429))
+            face(Direction.EAST)
             delay()
-            player.anim("grapple_aim_fire")
-            player.sound("grapple_shoot", delay = 55)
+            anim("grapple_aim_fire")
+            sound("grapple_shoot", delay = 55)
             delay(2)
-            player.renderEmote("climbing")
+            renderEmote("climbing")
             for (x in 2867..2869) {
                 objects.add("catherby_grapple_rope", Tile(x, 3429), shape = ObjectShape.GROUND_DECOR, ticks = 14)
             }
             objects.add("catherby_rocks_grapple", Tile(2869, 3429), shape = ObjectShape.GROUND_DECOR, ticks = 14)
             delay()
-            player.walkOverDelay(Tile(2868, 3429))
-            player.clearRenderEmote()
-            player.walkOverDelay(Tile(2869, 3430))
+            walkOverDelay(Tile(2868, 3429))
+            clearRenderEmote()
+            walkOverDelay(Tile(2869, 3430))
         }
 
         objectOperate("Grapple", "yanille_grapple_wall") { (target) ->

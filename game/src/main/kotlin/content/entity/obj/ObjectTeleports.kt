@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.mode.interact.PlayerObjectInte
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Distance
@@ -21,10 +20,6 @@ import world.gregs.voidps.type.Tile
 class ObjectTeleports {
 
     private lateinit var teleports: Map<String, Map<Int, TeleportDefinition>>
-
-    suspend fun teleport(objectOption: ObjectOption<Player>, option: String = objectOption.option): Boolean = teleport(objectOption.character, objectOption.target, option, objectOption.def)
-
-    suspend fun teleport(objectOption: PlayerObjectInteract, option: String = objectOption.option): Boolean = teleport(objectOption.player, objectOption.target, option, objectOption.target.def(objectOption.player))
 
     suspend fun teleport(player: Player, target: GameObject, option: String, def: ObjectDefinition = target.def(player)): Boolean {
         val definition = teleports[option]?.get(target.tile.id) ?: return false

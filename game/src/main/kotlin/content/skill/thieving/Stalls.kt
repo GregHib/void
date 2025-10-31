@@ -37,7 +37,8 @@ class Stalls : Script {
                 message("You wouldn’t like to blow your cover by getting caught stealing.")
                 return@objectOperate
             }
-            val level: Int = target.def.getOrNull("level") ?: return@objectOperate
+            val def = target.def(this)
+            val level: Int = def.getOrNull("level") ?: return@objectOperate
             if (!has(Skill.Thieving, level, " to steal from this stall")) {
                 return@objectOperate
             }
@@ -49,7 +50,7 @@ class Stalls : Script {
             set("stall_level", level)
             anim("take")
             delay(2)
-            val chance: String? = target.def.getOrNull("chance")
+            val chance: String? = def.getOrNull("chance")
             if (chance != null) {
                 val range = chance.toIntRange(inclusive = true)
                 if (!Level.success(levels.get(Skill.Thieving), range)) {
@@ -79,9 +80,9 @@ class Stalls : Script {
                     else -> {}
                 }
             }
-            val exp: Double = target.def.getOrNull("exp") ?: return@objectOperate
+            val exp: Double = def.getOrNull("exp") ?: return@objectOperate
             exp(Skill.Thieving, exp)
-            val restock: Int = target.def.getOrNull("restock") ?: return@objectOperate
+            val restock: Int = def.getOrNull("restock") ?: return@objectOperate
             target.replace("${target.id}_empty", ticks = restock)
         }
     }

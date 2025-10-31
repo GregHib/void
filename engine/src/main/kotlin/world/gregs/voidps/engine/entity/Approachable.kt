@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.entity
 
-import world.gregs.voidps.engine.entity.Operation.Companion
-import world.gregs.voidps.engine.entity.Operation.Companion.noDelays
 import world.gregs.voidps.engine.entity.character.mode.interact.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -27,11 +25,11 @@ interface Approachable {
         npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
 
-//    fun objectApproach(option: String, obj: String = "*", block: suspend Player.(PlayerObjectInteract) -> Unit) {
-//        for (id in Wildcards.find(obj)) {
-//            playerObjectBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
-//        }
-//    }
+    fun objectApproach(option: String, obj: String = "*", block: suspend Player.(PlayerObjectInteract) -> Unit) {
+        for (id in Wildcards.find(obj)) {
+            playerObjectBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
+        }
+    }
 
     fun floorItemApproach(option: String, item: String, block: suspend Player.(PlayerFloorItemInteract) -> Unit) {
         for (id in Wildcards.find(item)) {

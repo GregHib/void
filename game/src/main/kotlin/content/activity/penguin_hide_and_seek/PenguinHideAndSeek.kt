@@ -28,7 +28,6 @@ import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
-import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.timer.toTicks
@@ -83,19 +82,19 @@ class PenguinHideAndSeek : Script {
             player.clearWatch()
         }
 
-        objectApproach("Inspect", "polar_bear_well*") {
+        objectApproach("Inspect", "polar_bear_well*") { (target) ->
             approachRange(5)
-            updateWeek(player)
-            if (!player.addVarbit("penguins_found", "polar_bear")) {
-                player.message("You've already spotted this polar bear agent.")
+            updateWeek(this)
+            if (!addVarbit("penguins_found", "polar_bear")) {
+                message("You've already spotted this polar bear agent.")
                 return@objectApproach
             }
-            player.face(target.tile)
-            player.anim("spot_penguin")
+            face(target.tile)
+            anim("spot_penguin")
             // https://youtu.be/PrkWAZmuEnw?si=qTL9V6MqLc3EUmSF&t=100
-            player.message("You found the polar bear agent.")
-            player.inc("penguin_points")
-            player.inc("penguins_found_weekly")
+            message("You found the polar bear agent.")
+            inc("penguin_points")
+            inc("penguins_found_weekly")
             delay(2)
         }
 

@@ -37,6 +37,7 @@ suspend fun Bot.await(type: Any, timeout: Int = -1) {
         }
     }
 }
+
 suspend fun Bot.awaitInteract(timeout: Int = -1) {
     await("tick", timeout)
     while (player.mode is Interact || player.hasClock("movement_delay")) {
@@ -49,6 +50,15 @@ suspend inline fun <reified T : Entity, reified E : Event> Bot.await(
 ) {
     suspendCancellableCoroutine { cont ->
         player.getOrPut("bot_suspensions") { mutableMapOf<KClass<E>, Pair<E.(T) -> Boolean, CancellableContinuation<Unit>>>() }[E::class] = condition to cont
+    }
+}
+
+
+suspend inline fun Bot.await(
+    noinline condition: Player.() -> Boolean = { true },
+) {
+    suspendCancellableCoroutine { cont ->
+        player.getOrPut("bot_new_suspensions") { mutableListOf<Pair<Player.() -> Boolean, CancellableContinuation<Unit>>>() }.add(condition to cont)
     }
 }
 

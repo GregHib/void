@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.succe
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -115,23 +114,23 @@ class Mining : Script {
             softTimers.stop("mining")
         }
 
-        objectApproach("Prospect") {
+        objectApproach("Prospect") { (target) ->
             approachRange(1)
             arriveDelay()
             if (target.id.startsWith("depleted")) {
-                player.message("There is currently no ore available in this rock.")
+                message("There is currently no ore available in this rock.")
                 return@objectApproach
             }
-            if (player.queue.contains("prospect")) {
+            if (queue.contains("prospect")) {
                 return@objectApproach
             }
-            player.message("You examine the rock for ores...")
+            message("You examine the rock for ores...")
             delay(4)
-            val ore = def.getOrNull<Rock>("mining")?.ores?.firstOrNull()
+            val ore = target.def(this).getOrNull<Rock>("mining")?.ores?.firstOrNull()
             if (ore == null) {
-                player.message("This rock contains no ore.")
+                message("This rock contains no ore.")
             } else {
-                player.message("This rock contains ${ore.toLowerSpaceCase()}.")
+                message("This rock contains ${ore.toLowerSpaceCase()}.")
             }
         }
     }

@@ -2,6 +2,7 @@ package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.interact.navigation.resume
+import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.Contexts
@@ -12,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
+import kotlin.coroutines.resume
 
 class DecisionMaking : Script {
 
@@ -44,8 +46,18 @@ class DecisionMaking : Script {
                         assign(player, tasks.assign(bot, lastTask))
                     }
                     player.bot.resume("tick")
+                    handleNewSuspensions(player)
                 }
             }
+        }
+    }
+
+    fun handleNewSuspensions(player: Player) {
+        val suspensions: MutableList<Pair<Player.() -> Boolean, CancellableContinuation<Unit>>> = player["bot_new_suspensions"] ?: return
+        suspensions.removeIf {
+            val success = it.first(player)
+            if (success) it.second.resume(Unit)
+            success
         }
     }
 

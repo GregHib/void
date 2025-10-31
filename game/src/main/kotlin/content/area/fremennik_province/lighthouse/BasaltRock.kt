@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.objectApproach
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
@@ -82,18 +81,18 @@ class BasaltRock : Script {
             jump(this, target, tile.add(direction).add(direction), direction, exp)
         }
 
-        objectApproach(option, rock) {
+        objectApproach(option, rock) { (target) ->
             val sameSide = when (direction) {
-                Direction.NORTH -> player.tile.y <= target.tile.y
-                Direction.EAST -> player.tile.x <= target.tile.x
-                Direction.SOUTH -> player.tile.y >= target.tile.y
-                Direction.WEST -> player.tile.x >= target.tile.x
+                Direction.NORTH -> this.tile.y <= target.tile.y
+                Direction.EAST -> this.tile.x <= target.tile.x
+                Direction.SOUTH -> this.tile.y >= target.tile.y
+                Direction.WEST -> this.tile.x >= target.tile.x
                 else -> false
             }
             if (sameSide) {
-                jump(player, target, tile.add(direction).add(direction), direction, exp)
+                jump(this, target, tile.add(direction).add(direction), direction, exp)
             } else {
-                jump(player, target, target.tile, direction.inverse(), exp)
+                jump(this, target, target.tile, direction.inverse(), exp)
             }
         }
     }

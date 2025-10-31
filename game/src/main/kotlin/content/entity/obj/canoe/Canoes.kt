@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.type.Direction
@@ -153,7 +152,7 @@ class Canoes : Script {
         objectOperate("Paddle Canoe", "canoe_station_water_*") { (target) ->
             face(Direction.cardinal[target.rotation])
             val station = target.id.removePrefix("canoe_station_")
-            val canoe = target.def.stringId.removePrefix("canoe_station_water_")
+            val canoe = target.def(this).stringId.removePrefix("canoe_station_water_")
             val destination = canoeStationMap(canoe, station)
             if (destination == null || destination == station) {
                 return@objectOperate
@@ -188,7 +187,7 @@ class Canoes : Script {
             3 -> walkToDelay(target.tile.add(2, 2))
         }
         val location = target.id.removePrefix("canoe_station_")
-        val canoe = target.def.stringId.removePrefix("canoe_station_")
+        val canoe = target.def(this).stringId.removePrefix("canoe_station_")
         set("canoe_state_$location", "float_$canoe")
         anim("canoe_push")
         face(Direction.cardinal[target.rotation])

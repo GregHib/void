@@ -95,21 +95,21 @@ class ShootingStar : Script {
             cleanseEvent(false)
         }
 
-        objectApproach("Prospect", "crashed_star_tier_#") {
-            if (player.queue.contains("prospect")) {
+        objectApproach("Prospect", "crashed_star_tier_#") { (target) ->
+            if (queue.contains("prospect")) {
                 return@objectApproach
             }
             approachRange(1)
             arriveDelay()
             val starPayout = target.def["collect_for_next_layer", -1]
-            player.message("You examine the crashed star...")
+            message("You examine the crashed star...")
             delay(4)
-            val star = def.getOrNull<Rock>("mining")?.ores?.firstOrNull()
+            val star = target.def(this).getOrNull<Rock>("mining")?.ores?.firstOrNull()
             if (star == null) {
-                player.message("Star has been mined...")
+                message("Star has been mined...")
             } else if (starPayout != -1) {
                 val percentageCollected = getLayerPercentage(totalCollected, starPayout)
-                player.message("There is $percentageCollected% left of this layer.")
+                message("There is $percentageCollected% left of this layer.")
             }
         }
 
