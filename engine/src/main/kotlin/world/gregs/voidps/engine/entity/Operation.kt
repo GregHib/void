@@ -24,24 +24,24 @@ interface Operation {
         npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
 
-    fun objectOperate(option: String, obj: String = "*", arriveDelay: Boolean = true, block: suspend Player.(PlayerObjectInteract) -> Unit) {
+    fun objectOperate(option: String, obj: String = "*", arrive: Boolean = true, block: suspend Player.(PlayerObjectInteract) -> Unit) {
         for (id in Wildcards.find(obj)) {
-            if (!arriveDelay) {
+            if (!arrive) {
                 noDelays.add("$option:$id")
             }
             playerObjectBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
     }
 
-    fun floorItemOperate(option: String, arriveDelay: Boolean = true, block: suspend Player.(PlayerFloorItemInteract) -> Unit) {
-        if (!arriveDelay) {
+    fun floorItemOperate(option: String, arrive: Boolean = true, block: suspend Player.(PlayerFloorItemInteract) -> Unit) {
+        if (!arrive) {
             noDelays.add(option)
         }
         playerFloorItemBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
 
-    fun npcOperateFloorItem(option: String, arriveDelay: Boolean = true, block: suspend NPC.(NPCFloorItemInteract) -> Unit) {
-        if (!arriveDelay) {
+    fun npcOperateFloorItem(option: String, arrive: Boolean = true, block: suspend NPC.(NPCFloorItemInteract) -> Unit) {
+        if (!arrive) {
             noDelays.add(option)
         }
         npcFloorItemBlocks.getOrPut(option) { mutableListOf() }.add(block)

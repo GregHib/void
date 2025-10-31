@@ -14,9 +14,9 @@ data class NPCObjectInteract(
     val npc: NPC,
     var approachRange: Int? = null
 ) : Interact(npc, target, approachRange = approachRange) {
-    override fun hasOperate() = Operation.npcObjectBlocks.containsKey(option)
+    override fun hasOperate() = Operation.npcObjectBlocks.containsKey("$option:${npc.id}") || Operation.npcObjectBlocks.containsKey("$option:*")
 
-    override fun hasApproach() = Approachable.npcObjectBlocks.containsKey(option)
+    override fun hasApproach() = Approachable.npcObjectBlocks.containsKey("$option:${npc.id}") || Approachable.npcObjectBlocks.containsKey("$option:*")
 
     override fun operate() {
         invoke(Operation.noDelays, Operation.npcObjectBlocks)
@@ -29,8 +29,11 @@ data class NPCObjectInteract(
     private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend NPC.(NPCObjectInteract) -> Unit>>) {
         Events.events.launch {
             val id = target.id
-            if (!noDelays.contains("$option:$id")) {
+            if (!noDelays.contains("$option:$id") && !noDelays.contains("$option:*")) {
                 npc.arriveDelay()
+            }
+            for (block in map["$option:$id"] ?: return@launch) {
+                block(npc, this@NPCObjectInteract)
             }
             for (block in map["$option:*"] ?: return@launch) {
                 block(npc, this@NPCObjectInteract)

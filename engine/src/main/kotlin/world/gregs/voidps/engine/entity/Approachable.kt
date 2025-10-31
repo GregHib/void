@@ -27,11 +27,11 @@ interface Approachable {
         npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
 
-    fun objectOperate(option: String, obj: String = "*", block: suspend Player.(PlayerObjectInteract) -> Unit) {
-        for (id in Wildcards.find(obj)) {
-            playerObjectBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
-        }
-    }
+//    fun objectApproach(option: String, obj: String = "*", block: suspend Player.(PlayerObjectInteract) -> Unit) {
+//        for (id in Wildcards.find(obj)) {
+//            playerObjectBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
+//        }
+//    }
 
     fun floorItemApproach(option: String, item: String, block: suspend Player.(PlayerFloorItemInteract) -> Unit) {
         for (id in Wildcards.find(item)) {
