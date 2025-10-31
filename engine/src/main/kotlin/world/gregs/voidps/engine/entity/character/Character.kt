@@ -376,6 +376,7 @@ interface Character :
             while (!interact.arrived(range) && steps.isNotEmpty()) {
                 delay(1)
             }
+            interact.launched = true
         }
     }
 

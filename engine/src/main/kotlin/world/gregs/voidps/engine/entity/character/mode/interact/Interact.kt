@@ -34,7 +34,7 @@ open class Interact(
     private val faceTarget: Boolean = true,
     shape: Int? = null,
 ) : Movement(character, strategy, shape), InteractionType {
-    private var launched = false
+    var launched = false
 
     override fun hasOperate(): Boolean = false
 
