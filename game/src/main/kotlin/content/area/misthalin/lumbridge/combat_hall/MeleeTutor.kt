@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.*
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
@@ -15,7 +14,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class MeleeTutor : Script {
 
@@ -26,7 +24,7 @@ class MeleeTutor : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.menu(followUp: String = "") {
+    suspend fun Player.menu(followUp: String = "") {
         if (followUp.isNotEmpty()) {
             npc<Quiz>(followUp)
         }
@@ -39,12 +37,12 @@ class MeleeTutor : Script {
         }
     }
 
-    suspend fun PlayerChoice.meleeCombat(): Unit = option<Quiz>("Tell me about melee combat.") {
+    fun ChoiceOption.meleeCombat(): Unit = option<Quiz>("Tell me about melee combat.") {
         npc<Neutral>("Well adventurer, the first thing you will need is a sword and a shield appropriate for your level.")
         // look down talking, look up eyebrow raised then quiet
-        player.tab(Tab.WornEquipment)
+        tab(Tab.WornEquipment)
         npc<Neutral>("Make sure to equip your sword and shield. Click on them in your inventory, they will disappear from your inventory and move to your worn items. You can see your worn items in the worn items tab here.")
-        player.tab(Tab.CombatStyles)
+        tab(Tab.CombatStyles)
         npc<Neutral>("When you are wielding your sword you will then be able to see the correct options in the combat interface.")
         npc<Neutral>("There are four different melee styles. Accurate, aggressive, defensive and controlled. Not all weapons will have all four styles though.")
         player<Quiz>("Interesting, what does each style do?")
@@ -78,7 +76,7 @@ class MeleeTutor : Script {
         }
     }
 
-    suspend fun PlayerChoice.weaponTypes(): Unit = option<Neutral>("Tell me about different weapon types I can use.") {
+    fun ChoiceOption.weaponTypes(): Unit = option<Neutral>("Tell me about different weapon types I can use.") {
         npc<Happy>("Well let me see now...There are stabbing type weapons such as daggers, then you have swords which are slashing, maces that have great crushing abilities, battle axes which are powerful.")
         npc<Happy>("There are also spears. Spears can be good for Defence and many forms of Attack.")
         npc<Neutral>("It depends a lot on how you want to fight. Experiment and find out what is best for you. Never be scared to try out a new weapon; you never know, you might like it!")
@@ -87,8 +85,8 @@ class MeleeTutor : Script {
         menu("Is there anything else you would like to know?")
     }
 
-    suspend fun PlayerChoice.skillcapes(): Unit = option<Neutral>("Tell me about skillcapes.") {
-        if (player.levels.getMax(Skill.Defence) < Level.MAX_LEVEL) {
+    fun ChoiceOption.skillcapes(): Unit = option<Neutral>("Tell me about skillcapes.") {
+        if (levels.getMax(Skill.Defence) < Level.MAX_LEVEL) {
             npc<Neutral>("Of course. Skillcapes are a symbol of achievement. Only people who have mastered a skill and reached level 99 can get their hands on them and gain the benefits they carry.")
             npc<Neutral>("The Cape of Defence will act as ring of life, saving you from combat if your hitpoints become low.")
             menu("Is there anything else you would like to know?")
@@ -109,14 +107,14 @@ class MeleeTutor : Script {
                         player<Quiz>("May I have another hood for my cape, please?")
                         npc<Neutral>("Most certainly, and free of charge!")
                         item("defence_hood", 400, "The tutor hands you another hood for your skillcape.")
-                        player.inventory.add("defence_hood")
+                        inventory.add("defence_hood")
                     }
                 }
             }
         }
     }
 
-    suspend fun SuspendableContext<Player>.buySkillcape() {
+    suspend fun Player.buySkillcape() {
         player<Quiz>("May I buy a Skillcape of Defence, please?")
         npc<Neutral>("You wish to join the elite defenders of this world? I'm afraid such things do not come cheaply - in fact they cost 99000 coins, to be precise!")
         choice {
@@ -125,13 +123,13 @@ class MeleeTutor : Script {
             }
             option("I think I have the money right here, actually.") {
                 player<Happy>("I think I have the money right here, actually.")
-                player.inventory.transaction {
+                inventory.transaction {
                     remove("coins", 99000)
                     add("defence_hood")
-                    val trimmed = Skill.entries.any { it != Skill.Defence && player.levels.getMax(it) >= Level.MAX_LEVEL }
+                    val trimmed = Skill.entries.any { it != Skill.Defence && levels.getMax(it) >= Level.MAX_LEVEL }
                     add("defence_skillcape${if (trimmed) "_t" else ""}")
                 }
-                when (player.inventory.transaction.error) {
+                when (inventory.transaction.error) {
                     TransactionError.None -> npc<Happy>("Excellent! Wear that cape with pride my friend.")
                     is TransactionError.Deficient -> {
                         player<Upset>("But, unfortunately, I was mistaken.")
@@ -145,23 +143,23 @@ class MeleeTutor : Script {
         }
     }
 
-    suspend fun PlayerChoice.training(): Unit = option<Neutral>("I'd like a training sword and shield.") {
-        if (player.ownsItem("training_sword") || player.ownsItem("training_shield")) {
+    fun ChoiceOption.training(): Unit = option<Neutral>("I'd like a training sword and shield.") {
+        if (ownsItem("training_sword") || ownsItem("training_shield")) {
             npc<Quiz>("You already have a training sword and shield. Save some for the other adventurers.")
             menu("Is there anything else I can help you with?")
             return@option
         }
 
-        if (player.inventory.spaces < 2) {
+        if (inventory.spaces < 2) {
             npc<Upset>("You don't have enough space for me to give you a training sword, nor a shield.")
             menu("Is there anything else I can help you with?")
             return@option
         }
 
         item("training_sword", 800, "Harlan gives you a Training sword.")
-        player.inventory.add("training_sword")
+        inventory.add("training_sword")
         item("training_shield", 800, "Harlan gives you a Training shield.")
-        player.inventory.add("training_shield")
+        inventory.add("training_shield")
         npc<Neutral>("There you go, use it well.")
         menu("Is there anything else I can help you with?")
     }

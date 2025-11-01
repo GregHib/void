@@ -8,20 +8,19 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 class GeneralStore : Script {
 
     init {
-        npcOperate("Trade", "shopkeeper*", "shop_assistant*") {
-            player.openShop(target.def.getOrNull<String>("shop") ?: return@npcOperate)
+        npcOperate("Trade", "shopkeeper*,shop_assistant*") { (target) ->
+            openShop(target.def.getOrNull<String>("shop") ?: return@npcOperate)
         }
 
-        npcOperate("Talk-to", "shopkeeper*") {
+        npcOperate("Talk-to", "shopkeeper*") { (target) ->
             npc<Neutral>("Can I help you at all?")
             choice {
                 option("Yes please. What are you selling?") {
-                    player.openShop(target.def.getOrNull<String>("shop") ?: return@option)
+                    openShop(target.def.getOrNull<String>("shop") ?: return@option)
                 }
                 option("How should I use your shop?") {
                     if (target.id.endsWith("lumbridge")) {
@@ -39,7 +38,7 @@ class GeneralStore : Script {
             }
         }
 
-        npcOperate("Talk-to", "shop_assistant*") {
+        npcOperate("Talk-to", "shop_assistant*") { (target) ->
             if (target.id.endsWith("musa_point")) {
                 npc<Happy>("It's a beautiful day today, no? Can I do anything for you?")
             } else {
@@ -47,7 +46,7 @@ class GeneralStore : Script {
             }
             choice {
                 option("Yes please. What are you selling?") {
-                    player.openShop(target.def.getOrNull<String>("shop") ?: return@option)
+                    openShop(target.def.getOrNull<String>("shop") ?: return@option)
                 }
                 option("How should I use your shop?") {
                     npc<Talk>("I'm glad you ask! You can buy as many of the items stocked as you wish. You can also sell most items to the shop.")

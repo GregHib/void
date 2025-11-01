@@ -4,7 +4,6 @@ import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 class Ellena : Script {
 
@@ -45,7 +44,7 @@ class Ellena : Script {
                     option("Can you sell me something?") {
                         player<Talk>("Can you sell me something?")
                         npc<Talk>("That depends on whether I have it to sell. What is it that you're looking for?")
-                        player.openShop("ellena_farming_supplies")
+                        openShop("ellena_farming_supplies")
                     }
 
                     option("I'll come back another time.") {

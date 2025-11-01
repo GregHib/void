@@ -6,10 +6,8 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class Tarquin : Script {
 
@@ -45,7 +43,7 @@ class Tarquin : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.canoeing() {
+    suspend fun Player.canoeing() {
         if (minimumCanoeLevel()) {
             return
         }
@@ -54,7 +52,7 @@ class Tarquin : Script {
         npc<Happy>("My personal favourite is the Stable Dugout canoe. A finer craft you'll never see old bean!")
         npc<Happy>("A Stable Dugout canoe will take you pretty much the length of the Lum river.")
         npc<RollEyes>("Of course there are other canoes.")
-        when (player.levels.get(Skill.Woodcutting)) {
+        when (levels.get(Skill.Woodcutting)) {
             in 12..26 -> {
                 npc<Surprised>("Further up river, near the Barbarian Village, I saw some darned fool 'canoeing' on a log!")
                 npc<RollEyes>("Unfortunately, you don't have the skill to create anything more than one of those logs. I dare say it will only get 1 stop down the river!")

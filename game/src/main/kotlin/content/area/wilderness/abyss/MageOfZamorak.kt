@@ -12,8 +12,6 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -39,21 +37,21 @@ class MageOfZamorak : Script {
             sendVariable("enter_the_abyss")
         }
 
-        npcOperate("Teleport", "mage_of_zamorak_wilderness_*") {
-            teleport(player, target)
+        npcOperate("Teleport", "mage_of_zamorak_wilderness_*") { (target) ->
+            teleport(this, target)
         }
 
-        npcOperate("Talk-to", "mage_of_zamorak_wilderness_*") {
-            if (player.equipment.items.any { it.id.contains("saradomin", ignoreCase = true) }) {
+        npcOperate("Talk-to", "mage_of_zamorak_wilderness_*") { (target) ->
+            if (equipment.items.any { it.id.contains("saradomin", ignoreCase = true) }) {
                 npc<Angry>("I don't speak to Saradominist filth.")
                 return@npcOperate
             }
 
-            if (player.questCompleted("rune_mysteries")) {
-                when (player["enter_the_abyss", "unstarted"]) {
+            if (questCompleted("rune_mysteries")) {
+                when (get("enter_the_abyss", "unstarted")) {
                     "unstarted" -> {
                         npc<Talk>("If you want to talk, this isn't the place for it. Meet me in Varrock's Chaos Temple, by the rune shop. Unless you're here to buy something?")
-                        player["enter_the_abyss"] = "started"
+                        set("enter_the_abyss", "started")
                     }
                     "started" -> npc<Talk>("I already told you to meet me in Varrock's Chaos Temple, by the rune shop. Unless you're here to buy something?")
                     else -> npc<Talk>("This isn't the place to talk. Visit me in Varrock's Chaos Temple if you have something to discuss. Unless you're here to buy something?")
@@ -64,21 +62,21 @@ class MageOfZamorak : Script {
 
             choice {
                 option("Let's see what you're selling.") {
-                    player.openShop("mage_of_zamorak")
+                    openShop("mage_of_zamorak")
                 }
-                option<Quiz>("Could you teleport me to the Abyss?", filter = { player.questCompleted("enter_the_abyss") }) {
-                    teleport(player, target)
+                option<Quiz>("Could you teleport me to the Abyss?", filter = { questCompleted("enter_the_abyss") }) {
+                    teleport(this, target)
                 }
                 option<Uncertain>("Alright, I'll go.")
             }
         }
 
-        npcOperate("Talk-to", "mage_of_zamorak_varrock", "mage_of_zamorak_normal") {
-            if (player.equipment.items.any { it.id.contains("saradomin", ignoreCase = true) }) {
+        npcOperate("Talk-to", "mage_of_zamorak_varrock,mage_of_zamorak_normal") {
+            if (equipment.items.any { it.id.contains("saradomin", ignoreCase = true) }) {
                 npc<Angry>("How dare you wear such disrespectful attire in this holy place? Remove those immediately if you wish to speak to me.")
                 return@npcOperate
             }
-            if (player.questCompleted("enter_the_abyss")) {
+            if (questCompleted("enter_the_abyss")) {
                 npc<Talk>("Ah, you again. What do you want?")
                 choice {
                     aboutAbyss()
@@ -89,46 +87,46 @@ class MageOfZamorak : Script {
                 }
                 return@npcOperate
             }
-            if (!player["enter_abyss_where_runes", false]) {
+            if (!get("enter_abyss_where_runes", false)) {
                 npc<Talk>("Ah, you again. The Wilderness is hardly the appropriate place for a conversation now, is it? What was it you wanted?")
                 player<Uncertain>("Err... I didn't really want anything.")
                 npc<Uncertain>("So why did you approach me?")
                 player<Uncertain>("I was just wondering why you sell runes in the Wilderness?")
                 npc<Angry>("Well I can't go doing it in the middle of Varrock, can I? In case you hadn't noticed, I'm a servant of Zamorak. The Saradominists have made sure that people like me are not welcome in these parts.")
-                player["enter_abyss_where_runes"] = true
+                set("enter_abyss_where_runes", true)
                 choice {
                     whereRunes()
                     option<Talk>("Interesting. Thanks for the information.")
                 }
-            } else if (player["enter_abyss_has_orb", false]) {
+            } else if (get("enter_abyss_has_orb", false)) {
                 npc<Quiz>("You again. Have you managed to use that scrying orb to obtain the information I need?")
-                if (player["enter_abyss_taken_orb", false]) {
+                if (get("enter_abyss_taken_orb", false)) {
                     takenOrb()
-                } else if (player.ownsItem("scrying_orb_full")) {
+                } else if (ownsItem("scrying_orb_full")) {
                     player<Talk>("Here you go.")
-                    if (!player.inventory.remove("scrying_orb_full")) {
+                    if (!inventory.remove("scrying_orb_full")) {
                         return@npcOperate
                     }
-                    player["enter_the_abyss"] = "orb_inspect"
-                    player.message("You hand the orb to the Mage of Zamorak.")
+                    set("enter_the_abyss", "orb_inspect")
+                    message("You hand the orb to the Mage of Zamorak.")
                     item("scrying_orb", 400, "You hand the orb to the Mage of Zamorak.")
                     npc<Talk>("Right, let's take a look at this orb...")
                     npc<Happy>("Yes, this will do nicely. Once again, the Zamorak Magical Institute has overcome the Order of Wizards!")
-                    player["enter_abyss_taken_orb"] = true
+                    set("enter_abyss_taken_orb", true)
                     takenOrb()
-                } else if (!player.ownsItem("scrying_orb")) {
+                } else if (!ownsItem("scrying_orb")) {
                     player<Upset>("I lost it. Could I have another?")
                     npc<Angry>("Fool! Take this, and don't lose it this time!")
                     item("scrying_orb", 400, "The Mage of Zamorak hands you an orb.")
-                    player.inventory.add("scrying_orb")
+                    inventory.add("scrying_orb")
                 } else {
                     player<Talk>("Not yet.")
                     npc<Talk>("You must carry it with you and teleport to the Rune Essence Mine from three different locations. Return to me once you have done so.")
                 }
-            } else if (player["enter_abyss_offer", false]) {
+            } else if (get("enter_abyss_offer", false)) {
                 npc<Quiz>("You again. Have you considered my offer? If you help us access the Rune Essence Mine, we will share our runecrafting secrets with you in return.")
                 offer()
-            } else if (player["enter_abyss_where_runes", false]) {
+            } else if (get("enter_abyss_where_runes", false)) {
                 npc<Talk>("Ah, you again. Do you need something?")
                 choice {
                     whereRunes()
@@ -138,7 +136,7 @@ class MageOfZamorak : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.aboutGroup() {
+    fun ChoiceOption.aboutGroup() {
         option<Quiz>("Can you tell me more about your group?") {
             npc<Neutral>("I suppose you have proven yourself trustworthy. We are a group of mages in service to Zamorak. Our group is called the Zamorak Magical Institute, or Z.M.I. for short.")
             npc<Angry>("Few actually know of us. Saradominist groups like the Order of Wizards hold sway over these lands, so we are forced to work in the shadows. However, make no mistake, our power far exceeds theirs.")
@@ -161,7 +159,7 @@ class MageOfZamorak : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.aboutAbyss() {
+    fun ChoiceOption.aboutAbyss() {
         option<Quiz>("Can you tell me more about the Abyss?") {
             npc<Talk>("It is a hard place to describe. We often refer to it as another plane, but that isn't quite accurate. If anything, it is more like a plane that sits between all other planes.")
             player<Quiz>("Right... And what does it have to do with runecrafting?")
@@ -185,7 +183,7 @@ class MageOfZamorak : Script {
         }
     }
 
-    suspend fun NPCOption<Player>.takenOrb() {
+    suspend fun Player.takenOrb() {
         npc<Happy>("You have done well. Now, time for us to uphold our end of the bargin.")
         npc<Neutral>("The reason we are able to craft so many runes is because we do not visit the runic altars in the traditional way. Instead, we have found a way to teleport to them directly.")
         player<Quiz>("How?")
@@ -196,18 +194,18 @@ class MageOfZamorak : Script {
         player<Quiz>("What do you mean?")
         npc<Shifty>("Just don't expect to be using any prayers in there.")
         npc<Talk>("Anyway, you may also have this pouch as well. I'm sure you will find it useful. Now, we're done here.")
-        if (!player.inventory.add("abyssal_book", "small_pouch")) {
+        if (!inventory.add("abyssal_book", "small_pouch")) {
             // TODO proper message
             items("abyssal_book", "small_pouch", "The Mage of Zamorak tries to hand you a book and a pouch, but you don't have enough room to take it.")
             return
         }
         items("abyssal_book", "small_pouch", "The Mage of Zamorak hands you a book and a pouch.")
-        player.message("The Mage of Zamorak hands you a book and a pouch.")
-        player["enter_the_abyss"] = "completed"
-        player.exp(Skill.Runecrafting, 1000.0)
+        message("The Mage of Zamorak hands you a book and a pouch.")
+        set("enter_the_abyss", "completed")
+        exp(Skill.Runecrafting, 1000.0)
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.whereRunes() {
+    fun ChoiceOption.whereRunes() {
         option<Quiz>("Where do you get your runes from?") {
             npc<Uncertain>("Well we craft them of course.")
             player<Uncertain>("We?")
@@ -235,7 +233,7 @@ class MageOfZamorak : Script {
         }
     }
 
-    suspend fun NPCOption<Player>.accessLostMine() {
+    suspend fun Player.accessLostMine() {
         npc<Angry>("Until recently, our runecrafting secrets allowed us to produce runes at a far superior rate compared to the inept Order of Wizards, but something has changed.")
         npc<Angry>("From what we can gather, they've somehow rediscovered how to access the lost Rune Essence Mine.")
         player<Happy>("Ah, well I know all about that. I was actually the one to help them do it!")
@@ -265,9 +263,9 @@ class MageOfZamorak : Script {
         }
     }
 
-    suspend fun NPCOption<Player>.deal() {
+    suspend fun Player.deal() {
         npc<Uncertain>("Alright, if you help us access the Rune Essence Mine, we will share our runecrafting secrets with you in return.")
-        player["enter_abyss_offer"] = true
+        set("enter_abyss_offer", true)
         offer()
     }
 
@@ -299,7 +297,7 @@ class MageOfZamorak : Script {
         }
     }
 
-    suspend fun NPCOption<Player>.offer() {
+    suspend fun Player.offer() {
         choice {
             option<Talk>("Deal.") {
                 npc<Talk>("Good. Now, all I need from you is the spell that will teleport me to the Rune Essence Mine.")
@@ -311,14 +309,14 @@ class MageOfZamorak : Script {
                 npc<Talk>("I'll give you a scrying orb with a standard cypher spell cast upon it. The orb will absorb mystical energies that it is exposed to.")
                 npc<Talk>("If you teleport to the Rune Essence Mine from three different locations, the orb will absorb the energies of the spell and allow us to reverse-engineer the magic behind it.")
                 npc<Quiz>("Do you know of three different people who can teleport you there?")
-                player<Uncertain>(if (player["last_npc_teleport_to_rune_essence_mine", "aubury"] != "aubury") "I think so?" else "Maybe?")
+                player<Uncertain>(if (get("last_npc_teleport_to_rune_essence_mine", "aubury") != "aubury") "I think so?" else "Maybe?")
                 npc<Talk>("Well if not, I'm sure one of those fools in the Order of Wizards can tell you. Now, here's the orb.")
-                if (!player.inventory.add("scrying_orb")) {
+                if (!inventory.add("scrying_orb")) {
                     item("scrying_orb", 400, "The Mage of Zamorak tries to hand you an orb, but you don't have enough room to take it.")
                 } else {
                     item("scrying_orb", 400, "The Mage of Zamorak hands you an orb.")
-                    player["enter_the_abyss"] = "scrying"
-                    player["enter_abyss_has_orb"] = true
+                    set("enter_the_abyss", "scrying")
+                    set("enter_abyss_has_orb", true)
                 }
             }
             option<Talk>("No deal.") {

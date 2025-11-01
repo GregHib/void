@@ -7,7 +7,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
@@ -22,17 +21,17 @@ class Saniboch : Script {
 
             choice {
                 option<Quiz>("Can I go through that door please?") {
-                    if (player["can_enter_brimhaven_dungeon", false]) {
+                    if (get("can_enter_brimhaven_dungeon", false)) {
                         npc<Talk>("Most certainly, you have already given me lots of nice coins.")
                         return@option
                     }
 
                     npc<Talk>("Most certainly, but I must charge you the sum of 875 coins first.")
-                    if (player.inventory.contains("coins", dungeonEntryFee)) {
+                    if (inventory.contains("coins", dungeonEntryFee)) {
                         choice {
                             option("Okay, here's 875 coins.") {
-                                player.inventory.remove("coins", dungeonEntryFee)
-                                player["can_enter_brimhaven_dungeon"] = true
+                                inventory.remove("coins", dungeonEntryFee)
+                                set("can_enter_brimhaven_dungeon", true)
                                 statement("You pay Saniboch 875 coins.")
                                 npc<Talk>("Many thanks. You may now pass the door. May your death be a glorious one!")
                             }
@@ -70,15 +69,15 @@ class Saniboch : Script {
         }
 
         npcOperate("Pay", "saniboch") {
-            if (player["can_enter_brimhaven_dungeon", false]) {
+            if (get("can_enter_brimhaven_dungeon", false)) {
                 npc<Talk>("You have already given me lots of nice coins, you may go in.")
                 return@npcOperate
             }
 
-            val coins = player.inventory.count("coins")
+            val coins = inventory.count("coins")
             if (coins >= dungeonEntryFee) {
-                player.inventory.remove("coins", dungeonEntryFee)
-                player["can_enter_brimhaven_dungeon"] = true
+                inventory.remove("coins", dungeonEntryFee)
+                set("can_enter_brimhaven_dungeon", true)
                 statement("You pay Saniboch 875 coins.")
                 npc<Talk>("Many thanks. You may now pass the door. May your death be a glorious one!")
             } else {
@@ -100,10 +99,4 @@ class Saniboch : Script {
             player["can_enter_brimhaven_dungeon"] = false
         }
     }
-
-    // Saniboch "Talk-to" dialogue
-
-    // Saniboch "Pay" right-click option
-
-    // Door object to enter dungeon
 }

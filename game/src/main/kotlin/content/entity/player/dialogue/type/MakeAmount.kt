@@ -53,6 +53,45 @@ suspend fun Context<Player>.makeAmountIndex(
     return choice to amount
 }
 
+suspend fun Player.makeAmount(
+    items: List<String>,
+    type: String,
+    maximum: Int,
+    text: String = DEFAULT_TEXT,
+    allowAll: Boolean = true,
+    names: List<String>? = null,
+): Pair<String, Int> {
+    val (index, amount) = makeAmountIndex(items, type, maximum, text, allowAll, names)
+    val id = items.getOrNull(index) ?: ""
+    return id to amount
+}
+
+suspend fun Player.makeAmountIndex(
+    items: List<String>,
+    type: String,
+    maximum: Int,
+    text: String = DEFAULT_TEXT,
+    allowAll: Boolean = true,
+    names: List<String>? = null,
+): Pair<Int, Int> {
+    check(open(INTERFACE_ID) && open(INTERFACE_AMOUNT_ID)) { "Unable to open make amount dialogue for $this" }
+    if (allowAll) {
+        interfaceOptions.unlockAll(INTERFACE_AMOUNT_ID, "all")
+    }
+    interfaces.sendVisibility(INTERFACE_ID, "all", allowAll)
+    interfaces.sendVisibility(INTERFACE_ID, "custom", false)
+    interfaces.sendText(INTERFACE_AMOUNT_ID, "line1", text)
+    set("skill_creation_type", type)
+
+    setItemOptions(this, items, names)
+    setMax(this, maximum.coerceAtLeast(1))
+    val choice: Int = IntSuspension.get(this)
+    close(INTERFACE_ID)
+    close(INTERFACE_AMOUNT_ID)
+    val amount = get("skill_creation_amount", 1)
+    return choice to amount
+}
+
 private fun setItemOptions(player: Player, items: List<String>, names: List<String>?) {
     val definitions: ItemDefinitions = get()
     for (index in 0 until 10) {

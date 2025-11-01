@@ -5,7 +5,6 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 class Dommik : Script {
 
@@ -17,13 +16,13 @@ class Dommik : Script {
                     npc<Happy>("Okay. Fare well on your travels.")
                 }
                 option<Neutral>("Let's see what you've got, then.") {
-                    player.openShop("dommiks_crafting_store")
+                    openShop("dommiks_crafting_store")
                 }
             }
         }
 
         npcOperate("Trade", "dommik") {
-            player.openShop("dommiks_crafting_store")
+            openShop("dommiks_crafting_store")
         }
     }
 }

@@ -7,14 +7,8 @@ import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.Upset
-import content.entity.player.dialogue.type.ChoiceBuilder
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
-import content.entity.player.dialogue.type.statement
+import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
 
@@ -52,19 +46,19 @@ class SquirePortSarim : Script {
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.outpost() {
+    private fun ChoiceOption.outpost() {
         option<Talk>("I'd like to go to your outpost.") {
             npc<Talk>("Certainly, right this way.")
             travel()
         }
     }
 
-    private suspend fun NPCOption<Player>.travel() {
+    private suspend fun Player.travel() {
         boatTravel("port_sarim_to_ape_atoll", 10, Tile(2663, 2676, 1))
         statement("The ship arrives at the Void Knight outpost.")
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.join() {
+    private fun ChoiceOption.join() {
         option<Quiz>("Wow, can I join?") {
             npc<Upset>("Entry is strictly invite only, however we do need help continuing Guthix's work.")
             choice {
@@ -74,7 +68,7 @@ class SquirePortSarim : Script {
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.whatWork() {
+    private fun ChoiceOption.whatWork() {
         option<Quiz>("What kind of work?") {
             npc<Talk>("Ah well you see we try to keep Gielinor as Guthix intended, it's very challenging. Actually we've been having some problems recently, maybe you could help us?")
             choice {
@@ -94,7 +88,7 @@ class SquirePortSarim : Script {
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.gielinor() {
+    private fun ChoiceOption.gielinor() {
         option<Quiz>("What's 'Gielinor'?") {
             npc<Talk>("It is the name that Guthix gave to this world, so we honour him with its use.")
         }

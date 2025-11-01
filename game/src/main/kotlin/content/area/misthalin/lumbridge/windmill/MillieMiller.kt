@@ -3,16 +3,11 @@ package content.area.misthalin.lumbridge.windmill
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.type.PlayerChoice
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.*
 import content.quest.quest
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.holdsItem
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class MillieMiller : Script {
 
@@ -23,13 +18,13 @@ class MillieMiller : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.menu() {
+    suspend fun Player.menu() {
         choice {
-            option("I'm looking for extra fine flour.", { player.quest("cooks_assistant") == "started" && !player.holdsItem("extra_fine_flour") }) {
+            option("I'm looking for extra fine flour.", { quest("cooks_assistant") == "started" && !holdsItem("extra_fine_flour") }) {
                 npc<Quiz>("What's wrong with ordinary flour?")
                 player<Talk>("Well, I'm no expert chef, but apparently it makes better cakes. This cake, you see, is for Duke Horacio.")
                 npc<Happy>("Really? How marvellous! Well, I can sure help you out there. Go ahead and use the mill and I'll realign the millstones to produce extra fine flour. Anything else?")
-                player["cooks_assistant_talked_to_millie"] = 1
+                set("cooks_assistant_talked_to_millie", 1)
                 choice {
                     millFlour()
                     option<Happy>("I'm fine, thanks.")
@@ -42,20 +37,20 @@ class MillieMiller : Script {
         }
     }
 
-    suspend fun PlayerChoice.whoAreYou(): Unit = option<Quiz>("Who are you?") {
+    fun ChoiceOption.whoAreYou(): Unit = option<Quiz>("Who are you?") {
         npc<Happy>("I'm Miss Millicent Miller the Miller of Mill Lane Mill.Our family have been milling flour for generations.")
         player<Quiz>("Don't you ever get fed up with flour?")
         npc<Talk>("It's a good business to be in. People will always need flour.")
         menu()
     }
 
-    suspend fun PlayerChoice.whatIsThisPlace(): Unit = option<Quiz>("What is this place?") {
+    fun ChoiceOption.whatIsThisPlace(): Unit = option<Quiz>("What is this place?") {
         npc<Happy>("This is Mill Lane Mill. source of the finest flour in Gielinor, and home to the Miller family for many generations")
         npc<Happy>("We take wheat from the field nearby and mill into flour.")
         menu()
     }
 
-    suspend fun PlayerChoice.millFlour(): Unit = option<Quiz>("How do I mill flour?") {
+    fun ChoiceOption.millFlour(): Unit = option<Quiz>("How do I mill flour?") {
         npc<Happy>("Making flour is pretty easy. First of all you need to get some wheat. You can pick some from wheat fields. There is one just outside the Mill, but there are many others scattered across the world.")
         npc<Happy>("feel free to pick from our field! There always seems to be plenty of wheat there.")
         player<Quiz>("Then I bring my wheat here?")

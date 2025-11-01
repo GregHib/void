@@ -7,9 +7,6 @@ import content.entity.player.dialogue.type.startQuest
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
-import world.gregs.voidps.engine.entity.character.player.Player
 
 class Elena : Script {
 
@@ -19,17 +16,17 @@ class Elena : Script {
             npc<Neutral>("Thank you, being kidnapped was so inconvenient. I was on my way back to East Ardougne with some samples, I want to see if I can diagnose a cure for this plague.")
             player<Neutral>("Well you can leave via the manhole in the middle of the city.")
             npc<Neutral>("Go and see my father, I'll make sure he adequately rewards you. Now I'd better leave while I still can.")
-            player.open("fade_out")
+            open("fade_out")
             delay(4)
-            player["plaguecity_can_see_edmond_up_top"] = false
-            player["plaguecity_elena_at_home"] = true
-            player["plague_city"] = "freed_elena"
+            set("plaguecity_can_see_edmond_up_top", false)
+            set("plaguecity_elena_at_home", true)
+            set("plague_city", "freed_elena")
             delay(3)
-            player.open("fade_in")
+            open("fade_in")
         }
 
         npcOperate("Talk-to", "elena2_vis") {
-            when (player.quest("biohazard")) {
+            when (quest("biohazard")) {
                 "unstarted" -> {
                     player<Happy>("Good day to you, Elena.")
                     npc<Happy>("You too, thanks for freeing me.")
@@ -50,9 +47,9 @@ class Elena : Script {
         }
     }
 
-    suspend fun NPCOption<Player>.started() {
+    fun started() {
     }
 
-    suspend fun NPCOption<Player>.completed() {
+    fun completed() {
     }
 }

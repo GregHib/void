@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 class Fadli : Script {
 
@@ -30,11 +29,11 @@ class Fadli : Script {
                 }
                 option<Neutral>("I'd like to access my bank, please.") {
                     npc<RollEyes>("Sure.")
-                    player.open("bank")
+                    open("bank")
                 }
                 option<Happy>("I'd like to collect items.") {
                     npc<RollEyes>("Yeah, okay.")
-                    player.open("collection_box")
+                    open("collection_box")
                 }
                 option<Neutral>("Do you watch any matches?") {
                     npc<Neutral>("When I can.")
@@ -42,30 +41,30 @@ class Fadli : Script {
                     player<Happy>("Heh. Can I buy some?")
                     if (World.members) {
                         npc<Chuckle>("Sure.")
-                        player.openShop("shop_of_distaste")
+                        openShop("shop_of_distaste")
                         return@option
                     }
                     npc<RollEyes>("Nope.")
-                    player.message("You need to be on a members world to use this feature.")
+                    message("You need to be on a members world to use this feature.")
                 }
             }
         }
 
         npcOperate("Bank", "fadli") {
-            player.open("bank")
+            open("bank")
         }
 
         npcOperate("Collect", "fadli") {
-            player.open("collection_box")
+            open("collection_box")
         }
 
         npcOperate("Buy", "fadli") {
             if (World.members) {
-                player.openShop("shop_of_distaste")
+                openShop("shop_of_distaste")
                 return@npcOperate
             }
             npc<RollEyes>("Sorry, I'm not interested.")
-            player.message("You need to be on a members world to use this feature.")
+            message("You need to be on a members world to use this feature.")
         }
     }
 }

@@ -1,16 +1,13 @@
 package content.area.misthalin.varrock.grand_exchange
 
 import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.ChoiceBuilder
+import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 
 class GrandExchangeClerk : Script {
@@ -18,8 +15,8 @@ class GrandExchangeClerk : Script {
     init {
         npcApproach("Talk-to", "grand_exchange_clerk*") {
             approachRange(2)
-            if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
-                npc<Talk>("Excuse me, ${if (player.male) "sir" else "madam"}, but may I ask you to speak with Brugsen Bursen or the Gand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting, complete lesson on the Grand Exchange and the Tutor will give a smaller, plain lesson.")
+            if (Settings["grandExchange.tutorial.required", false] && !questCompleted("grand_exchange_tutorial")) {
+                npc<Talk>("Excuse me, ${if (male) "sir" else "madam"}, but may I ask you to speak with Brugsen Bursen or the Gand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting, complete lesson on the Grand Exchange and the Tutor will give a smaller, plain lesson.")
                 return@npcApproach
             }
             npc<Happy>("Welcome to the Grand Exchange. Would you like to trade now, or exchange item sets?")
@@ -48,40 +45,40 @@ class GrandExchangeClerk : Script {
 
         npcApproach("Exchange", "grand_exchange_clerk*") {
             approachRange(2)
-            player.open("grand_exchange")
+            open("grand_exchange")
         }
 
         npcApproach("History", "grand_exchange_clerk*") {
             approachRange(2)
-            player.open("exchange_history")
+            open("exchange_history")
         }
 
         npcApproach("Sets", "grand_exchange_clerk*") {
             approachRange(2)
-            player.open("exchange_item_sets")
+            open("exchange_item_sets")
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.tradeOffers() {
+    fun ChoiceOption.tradeOffers() {
         option<Happy>("I'd like to set up trade offers please.") {
-            player.open("grand_exchange")
+            open("grand_exchange")
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.history() {
+    fun ChoiceOption.history() {
         option<Quiz>("Can I see a history of my offers?") {
             npc<Talk>("If that is your wish.")
-            player.open("exchange_history")
+            open("exchange_history")
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.itemSets() {
+    fun ChoiceOption.itemSets() {
         option<Quiz>("Can you help me with item sets?") {
-            player.open("exchange_item_sets")
+            open("exchange_item_sets")
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.bye() {
+    fun ChoiceOption.bye() {
         option<Upset>("I'm fine, thanks.")
     }
 }

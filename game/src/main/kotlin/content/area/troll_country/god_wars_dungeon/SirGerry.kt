@@ -14,9 +14,7 @@ import content.quest.messageScroll
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -26,13 +24,13 @@ class SirGerry : Script {
 
     init {
         npcOperate("Talk-to", "sir_gerry_*") {
-            if (player.ownsItem("knights_notes") || player["godwars_knights_notes", false]) {
-                player.message("He's still alive, but in no condition to talk. He appears to be almost unconscious.")
+            if (ownsItem("knights_notes") || get("godwars_knights_notes", false)) {
+                message("He's still alive, but in no condition to talk. He appears to be almost unconscious.")
                 return@npcOperate
             }
             player<Quiz>("Who are you? What are you doing here in the snow?")
             npc<Scared>("My name is...Sir Gerry. I am...a member of a secret...society of knights. My time is short and I need...your help.")
-            if (player.questCompleted("recruitment_drive")) {
+            if (questCompleted("recruitment_drive")) {
                 player<Quiz>("A secret society of knights? You don't mean the Temple Knights, do you?")
                 npc<Happy>("Yes! Praise Saradomin! You...have been sent in...my hour of need. Please, take...this scroll to Sir Tiffy in Falador park... You should not...read it.")
             } else {
@@ -40,16 +38,16 @@ class SirGerry : Script {
                 npc<Upset>("I'm sorry, my friend... I do not understand your meaning. Please, time is short... Take this scroll to Sir Tiffy. You will find him in Falador park... You should not...read it... It contains information for his eyes only.")
             }
             statement("The knight hands you a scroll.")
-            player.inventory.add("knights_notes")
+            inventory.add("knights_notes")
         }
 
         objectOperate("Search", "godwars_knight*") {
-            if (player.ownsItem("knights_notes") || player.ownsItem("knights_notes_opened")) {
-                player.message("You find nothing of value on the knight.")
+            if (ownsItem("knights_notes") || ownsItem("knights_notes_opened")) {
+                message("You find nothing of value on the knight.")
                 return@objectOperate
             }
-            player.message("You find some handwritten notes on the knight.")
-            player.inventory.add("knights_notes")
+            message("You find some handwritten notes on the knight.")
+            inventory.add("knights_notes")
         }
 
         inventoryItem("Read", "knights_notes") {
@@ -65,12 +63,12 @@ class SirGerry : Script {
         }
 
         objectOperate("Tie-rope", "godwars_hole") {
-            if (!player.inventory.contains("rope")) {
+            if (!inventory.contains("rope")) {
                 return@objectOperate
             }
-            if (player["godwars_knights_notes", false] || player.ownsItem("knights_notes") || player.ownsItem("knights_notes_opened")) {
-                player.inventory.remove("rope")
-                player["godwars_entrance_rope"] = true
+            if (get("godwars_knights_notes", false) || ownsItem("knights_notes") || ownsItem("knights_notes_opened")) {
+                inventory.remove("rope")
+                set("godwars_entrance_rope", true)
             } else {
                 npc<Scared>("sir_gerry_normal", "Cough... Hey, over here.")
             }

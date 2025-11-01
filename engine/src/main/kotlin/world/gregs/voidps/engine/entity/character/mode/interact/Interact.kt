@@ -24,59 +24,43 @@ import world.gregs.voidps.engine.suspend.resumeSuspension
  * resume [Character.suspension] every subsequent tick until the interaction is completed.
  * Interactions are only processed while the [character] isn't delayed or has menu interface open.
  */
-class Interact(
+
+open class Interact(
     character: Character,
-    val target: Entity,
-    interaction: Interaction<*>,
+    open val target: Entity,
+    interaction: Interaction<*>? = null,
     strategy: TargetStrategy = TargetStrategy(target),
     private var approachRange: Int? = null,
     private val faceTarget: Boolean = true,
     shape: Int? = null,
-    type: InteractionType? = null,
-) : Movement(character, strategy, shape) {
-    private var launched = false
+) : Movement(character, strategy, shape), InteractionType {
+    var launched = false
 
-    private var type = Combined(type, OldInteractionType(interaction))
+    override fun hasOperate(): Boolean = false
 
-    class Combined(val type: InteractionType?, var old: InteractionType)  : InteractionType {
-        override fun hasOperate(character: Character): Boolean {
-            return type?.hasOperate(character) == true || old.hasOperate(character)
-        }
+    override fun hasApproach(): Boolean = false
 
-        override fun hasApproach(character: Character): Boolean {
-            return type?.hasApproach(character) == true || old.hasApproach(character)
-        }
-
-        override fun operate(character: Character, target: Entity) {
-            if (type != null && type.hasOperate(character)) {
-                type.operate(character, target)
-            } else {
-                old.operate(character, target)
-            }
-        }
-
-        override fun approach(character: Character, target: Entity) {
-            if (type != null && type.hasApproach(character)) {
-                type.approach(character, target)
-            } else {
-                old.approach(character, target)
-            }
-        }
+    override fun operate() {
     }
 
-    class OldInteractionType(interaction: Interaction<*>) : InteractionType {
+    override fun approach() {
+    }
+
+    private var type: InteractionType? = interaction?.let { OldInteractionType(character, it) }
+
+    class OldInteractionType(private val character: Character, interaction: Interaction<*>) : InteractionType {
         var operate: Interaction<*> = interaction.copy(false)
         var approach: Interaction<*> = interaction.copy(true)
 
-        override fun hasOperate(character: Character) = Events.events.contains(character, operate)
+        override fun hasOperate() = Events.events.contains(character, operate)
 
-        override fun hasApproach(character: Character) = Events.events.contains(character, approach)
+        override fun hasApproach() = Events.events.contains(character, approach)
 
-        override fun operate(character: Character, target: Entity) {
+        override fun operate() {
            character.emit(operate)
         }
 
-        override fun approach(character: Character, target: Entity) {
+        override fun approach() {
             character.emit(approach)
         }
     }
@@ -84,13 +68,7 @@ class Interact(
     private var clearInteracted = false
 
     fun updateInteraction(interaction: Interaction<*>) {
-        type.old = OldInteractionType(interaction)
-        updateInteraction(OldInteractionType(interaction))
-        clearInteracted = true
-    }
-
-    fun updateInteraction(type: InteractionType) {
-//        this.type = type
+        type = OldInteractionType(character, interaction)
         launched = false
         clearInteracted = true
     }
@@ -106,6 +84,7 @@ class Interact(
     override fun start() {
         super.start()
         if (faceTarget) {
+            val target = target
             if (target is Character) {
                 character.watch(target)
             }
@@ -146,6 +125,7 @@ class Interact(
      * Target exists and is interact-able.
      */
     private fun validTarget(): Boolean {
+        val target = target
         if (target is Character && target["dead", false]) {
             clear()
             return false
@@ -189,8 +169,8 @@ class Interact(
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
-            withinMelee && type.hasOperate(character) -> if (launch(true) && afterMovement) updateRange = false
-            withinRange && type.hasApproach(character) -> if (launch(false) && afterMovement) updateRange = false
+            withinMelee && (hasOperate() || type?.hasOperate() == true) -> if (launch(true) && afterMovement) updateRange = false
+            withinRange && (hasApproach() || type?.hasApproach() == true) -> if (launch(false) && afterMovement) updateRange = false
             withinMelee -> {
                 character.noInterest()
                 clear()
@@ -210,9 +190,17 @@ class Interact(
         if (!launched) {
             launched = true
             if (operate) {
-                type.operate(character, target)
+                if (type?.hasOperate() == true) {
+                    type?.operate()
+                } else {
+                    operate()
+                }
             } else {
-                type.approach(character, target)
+                if (type?.hasApproach() == true) {
+                    type?.approach()
+                } else {
+                    approach()
+                }
             }
             return true
         }

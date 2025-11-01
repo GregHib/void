@@ -10,8 +10,6 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -27,7 +25,7 @@ class CustomsOfficer : Script {
                     npc<Talk>("I don't think you'll try smuggling anything, you just need to pay a boarding charge of 30 coins.")
                     choice {
                         option("Ok.") {
-                            if (!player.inventory.remove("coins", 30)) {
+                            if (!inventory.remove("coins", 30)) {
                                 player<Upset>("Oh dear, I don't seem to have enough money.")
                                 return@option
                             }
@@ -44,16 +42,16 @@ class CustomsOfficer : Script {
         }
 
         npcOperate("Pay-Fare", "customs_officer_brimhaven") {
-            if (!player.inventory.remove("coins", 30)) {
-                player.message("You do not have enough money for that.")
+            if (!inventory.remove("coins", 30)) {
+                message("You do not have enough money for that.")
                 return@npcOperate
             }
             travel()
         }
     }
 
-    private suspend fun NPCOption<Player>.travel() {
-        player.message("You pay 30 coins and board the ship.")
+    private suspend fun Player.travel() {
+        message("You pay 30 coins and board the ship.")
         boatTravel("karamja_to_port_sarim", 7, Tile(3032, 3217, 1))
         statement("The ship arrives at Port Sarim.")
     }

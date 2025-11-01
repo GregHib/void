@@ -7,30 +7,28 @@ import content.entity.player.dialogue.type.player
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class RestlessGhost : Script {
 
     init {
         npcOperate("Talk-to", "restless_ghost") {
-            when (player.quest("the_restless_ghost")) {
+            when (quest("the_restless_ghost")) {
                 "unstarted" -> {
                     npc<Neutral>("Wooooo! Ooooooh!")
                     player<Uncertain>("I can't understand a word you are saying. Maybe Father Aereck will be able to help.")
                 }
                 "started", "ghost" -> ghost()
                 "mining_spot", "found_skull" -> miningSpot()
-                else -> player.message("The ghost doesn't appear to be interested in talking.")
+                else -> message("The ghost doesn't appear to be interested in talking.")
             }
         }
     }
 
-    suspend fun SuspendableContext<Player>.ghost() {
-        if (player.equipment.contains("ghostspeak_amulet")) {
+    suspend fun Player.ghost() {
+        if (equipment.contains("ghostspeak_amulet")) {
             player<Neutral>("Hello ghost, how are you?")
             npc<Neutral>("Not very good actually.")
             player<Quiz>("What's the problem then?")
@@ -64,7 +62,7 @@ class RestlessGhost : Script {
                     helpMe()
                 }
             }
-        } else if (player.inventory.contains("ghostspeak_amulet")) {
+        } else if (inventory.contains("ghostspeak_amulet")) {
             npc<Neutral>("Wooo wooo wooooo!")
             player<Neutral>("Why can't I understand you? Oh, yeah, it might help if I wear this amulet!")
         } else {
@@ -72,7 +70,7 @@ class RestlessGhost : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.noGhostAmulet() {
+    suspend fun Player.noGhostAmulet() {
         player<Neutral>("Hello ghost, how are you?")
         npc<Neutral>("Wooo wooo wooooo!")
         choice {
@@ -137,14 +135,14 @@ class RestlessGhost : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.dontSpeakGhost() {
+    suspend fun Player.dontSpeakGhost() {
         npc<Neutral>("Woo woo?")
         player<Neutral>("Nope, still don't understand you.")
         npc<Neutral>("WOOOOOOOOO!")
         player<Neutral>("Never mind.")
     }
 
-    suspend fun SuspendableContext<Player>.notSoSure() {
+    suspend fun Player.notSoSure() {
         npc<Neutral>("Wooo woo?")
         player<Angry>("Well, if you INSIST.")
         npc<Neutral>("Wooooooooo!")
@@ -153,16 +151,16 @@ class RestlessGhost : Script {
         player<Neutral>("Bye.")
     }
 
-    suspend fun SuspendableContext<Player>.task() {
+    suspend fun Player.task() {
         npc<Neutral>("I should think it's because I've lost my head.")
         player<Neutral>("What? I can see your head perfectly fine well, see through it at least.")
         npc<Neutral>("No, no, I mean from my REAL body. If you look in my coffin you'll see my corpse is without its skull. Last thing I remember was being attacked by a warlock while I was mining. It was at the mine just south of this")
         npc<Neutral>("graveyard.")
         player<Neutral>("Okay. I'll try to get your skull back for you so you can rest in peace.")
-        player["the_restless_ghost"] = "mining_spot"
+        set("the_restless_ghost", "mining_spot")
     }
 
-    suspend fun SuspendableContext<Player>.helpMe() {
+    suspend fun Player.helpMe() {
         choice {
             option<Happy>("Yes, ok. Do you know WHY you're a ghost?") {
                 task()
@@ -175,9 +173,9 @@ class RestlessGhost : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.miningSpot() {
-        if (player.equipment.contains("ghostspeak_amulet")) {
-            if (player.inventory.contains("muddy_skull")) {
+    suspend fun Player.miningSpot() {
+        if (equipment.contains("ghostspeak_amulet")) {
+            if (inventory.contains("muddy_skull")) {
                 player<Neutral>("Hello ghost, how are you?")
                 npc<Neutral>("How are you doing finding my skull?")
                 player<Happy>("I have found it!")
@@ -189,7 +187,7 @@ class RestlessGhost : Script {
                 npc<Neutral>("Ah well. Keep on looking.")
                 npc<Neutral>("I'm pretty sure it's somewhere near the mining spot south of here. I really hope it's still there somewhere.")
             }
-        } else if (player.inventory.contains("ghostspeak_amulet")) {
+        } else if (inventory.contains("ghostspeak_amulet")) {
             npc<Neutral>("Wooo wooo wooooo!")
             player<Neutral>("Why can't I understand you? Oh, yeah, it might help if I wear this amulet!")
         } else {

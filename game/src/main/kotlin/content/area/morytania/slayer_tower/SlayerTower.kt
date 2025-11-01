@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 
 class SlayerTower : Script {
@@ -58,7 +57,7 @@ class SlayerTower : Script {
             player.exp(Skill.Agility, if (player["slayer_chain_success", true]) 3.0 else 6.0)
         }
 
-        objectOperate("Open", "slayer_tower_door*_closed") {
+        objectOperate("Open", "slayer_tower_door*_closed") { (target) ->
             enterDoor(target)
         }
     }

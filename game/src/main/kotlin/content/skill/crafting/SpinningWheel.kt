@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
@@ -43,7 +42,7 @@ class SpinningWheel : Script {
         get() = def["spinning"]
 
     init {
-        objectOperate("Spin", "spinning_wheel*", arrive = false) {
+        objectOperate("Spin", "spinning_wheel*", arrive = false) { (target) ->
             val strings = fibres.map { if (it.id == "tree_roots") "crossbow_string" else it.spinning.to }
             val (index, amount) = makeAmountIndex(
                 items = strings,
@@ -58,14 +57,14 @@ class SpinningWheel : Script {
             delay()
             var fibre = fibres[index]
             if (fibre.id == "tree_roots") {
-                val root = treeRoots.firstOrNull { player.inventory.contains(it.id) }
+                val root = treeRoots.firstOrNull { inventory.contains(it.id) }
                 if (root == null) {
-                    player.message("You need some tree roots in order to make a crossbow string.")
+                    message("You need some tree roots in order to make a crossbow string.")
                     return@objectOperate
                 }
                 fibre = root
             }
-            start(player, target, fibre, amount)
+            start(this, target, fibre, amount)
         }
 
         itemOnObjectOperate(obj = "spinning_wheel*", arrive = false) {

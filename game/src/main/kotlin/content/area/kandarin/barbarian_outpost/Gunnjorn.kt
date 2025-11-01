@@ -7,7 +7,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -32,27 +31,29 @@ class Gunnjorn : Script {
                     npc<Talk>("Nothing, really. Just make sure you complete the other obstacles before ya do. If you finish a full lap, you'll get an increased bonus for doing the tougher route.")
                     npc<Talk>("If you manage to do 250 laps of this advanced route without a single mistake, I'll let you have a special item. I'll keep track of your lap tallies, so you can check how you're getting on with me any time.")
                 }
-                option<Quiz>("Can I talk about rewards?", filter = { player["barbarian_course_advanced_laps", 0] > 0 }) {
-                    if (player.containsVarbit("agility_course_rewards_claimed", "agile_top")) {
-                        npc<Talk>("Of course. How can I help?")
-                        player<Quiz>("Any chance of another Agile top?")
-                        if (player.inventory.add("agile_top")) {
-                            npc<Talk>("Here you go.")
+                if (get("barbarian_course_advanced_laps", 0) > 0) {
+                    option<Quiz>("Can I talk about rewards?") {
+                        if (containsVarbit("agility_course_rewards_claimed", "agile_top")) {
+                            npc<Talk>("Of course. How can I help?")
+                            player<Quiz>("Any chance of another Agile top?")
+                            if (inventory.add("agile_top")) {
+                                npc<Talk>("Here you go.")
+                            } else {
+                                inventoryFull() // TODO correct message
+                            }
+                        } else if (get("gnome_course_advanced_laps", 0) >= 250) {
+                            npc<Happy>("Sure, and congratulations, Player! That took dedication and great dexterity to complete that many laps.")
+                            npc<Talk>("As promised, I'll give you an item you may find useful - an Agile top. You'll find yourself lighter than usual while wearing it.")
+                            npc<Talk>("We barbarians are tough folks, as you know, so it'll even keep you safe if you get drawn into combat.")
+                            if (inventory.add("agile_top")) {
+                                addVarbit("agility_course_rewards_claimed", "agile_top")
+                                npc<Happy>("There you go. Enjoy!")
+                            } else {
+                                inventoryFull() // TODO correct message
+                            }
                         } else {
-                            player.inventoryFull() // TODO correct message
+                            npc<Talk>("There's no reward for you just yet. Your lap count is only ${get("barbarian_course_advanced_laps", 0)}. It's 250 successful laps or no reward.")
                         }
-                    } else if (player["gnome_course_advanced_laps", 0] >= 250) {
-                        npc<Happy>("Sure, and congratulations, Player! That took dedication and great dexterity to complete that many laps.")
-                        npc<Talk>("As promised, I'll give you an item you may find useful - an Agile top. You'll find yourself lighter than usual while wearing it.")
-                        npc<Talk>("We barbarians are tough folks, as you know, so it'll even keep you safe if you get drawn into combat.")
-                        if (player.inventory.add("agile_top")) {
-                            player.addVarbit("agility_course_rewards_claimed", "agile_top")
-                            npc<Happy>("There you go. Enjoy!")
-                        } else {
-                            player.inventoryFull() // TODO correct message
-                        }
-                    } else {
-                        npc<Talk>("There's no reward for you just yet. Your lap count is only ${player["barbarian_course_advanced_laps", 0]}. It's 250 successful laps or no reward.")
                     }
                 }
                 option<Talk>("That's all I need for now. Bye.") {

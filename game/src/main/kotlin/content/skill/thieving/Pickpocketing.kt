@@ -10,8 +10,6 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.data.Pocket
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -39,70 +37,70 @@ class Pickpocketing : Script {
     val logger = InlineLogger()
 
     init {
-        npcApproach("Pickpocket") {
-            approach()
+        npcApproach("Pickpocket") { (target) ->
+            approach(target)
         }
 
-        npcApproach("Steal-from") {
-            approach()
+        npcApproach("Steal-from") { (target) ->
+            approach(target)
         }
     }
 
-    private suspend fun NPCOption<Player>.approach() {
+    private suspend fun Player.approach(target: NPC) {
         approachRange(2)
-        if (player.hasClock("food_delay") || player.hasClock("action_delay")) { // Should action_delay and food_delay be the same??
+        if (hasClock("food_delay") || hasClock("action_delay")) { // Should action_delay and food_delay be the same??
             return
         }
-        if (player.hasClock("in_combat")) {
-            player.message("You can't pickpocket during combat.")
+        if (hasClock("in_combat")) {
+            message("You can't pickpocket during combat.")
             return
         }
         val pocket: Pocket = target.def.getOrNull("pickpocket") ?: return
-        if (!player.has(Skill.Thieving, pocket.level)) {
+        if (!has(Skill.Thieving, pocket.level)) {
             return
         }
         var chances = pocket.chance
-        if (player.equipped(EquipSlot.Hands).id == "gloves_of_silence" && player.equipment.discharge(player, EquipSlot.Hands.index)) {
+        if (equipped(EquipSlot.Hands).id == "gloves_of_silence" && equipment.discharge(this, EquipSlot.Hands.index)) {
             chances = (chances.first + (chances.first / 20)).coerceAtMost(255)..(chances.last + (chances.last / 20)).coerceAtMost(255)
         }
-        val success = success(player.levels.get(Skill.Thieving), chances)
+        val success = success(levels.get(Skill.Thieving), chances)
         val drops = getLoot(target, pocket.table) ?: emptyList()
-        if (success && !canLoot(player, drops)) {
+        if (success && !canLoot(this, drops)) {
             return
         }
         val name = target.def.name
-        player.message("You attempt to pick the $name's pocket.", ChatType.Filter)
-        player.anim("pick_pocket")
+        message("You attempt to pick the $name's pocket.", ChatType.Filter)
+        anim("pick_pocket")
         delay(2)
         if (success) {
-            player.inventory.transaction {
+            inventory.transaction {
                 addLoot(drops)
             }
-            player.message("You pick the $name's pocket.", ChatType.Filter)
-            player.exp(Skill.Thieving, pocket.xp)
+            message("You pick the $name's pocket.", ChatType.Filter)
+            exp(Skill.Thieving, pocket.xp)
         } else {
-            target.face(player)
+            target.face(this)
             target.say(pocket.caughtMessage)
             target.anim(NPCAttack.anim(animationDefinitions, target, "defend"))
-            player.message("You fail to pick the $name's pocket.", ChatType.Filter)
-            target.stun(player, pocket.stunTicks, pocket.stunHit.random(random))
+            message("You fail to pick the $name's pocket.", ChatType.Filter)
+            target.stun(this, pocket.stunTicks, pocket.stunHit.random(random))
             delay(2)
         }
     }
 
     fun getLoot(target: NPC, table: String?): List<ItemDrop>? {
-        var table = dropTables.get("${table}_pickpocket")
-        if (table != null) {
-            return table.role()
+        var id = dropTables.get("${table}_pickpocket")
+        if (id != null) {
+            return id.role()
         }
-        table = dropTables.get("${target.id}_pickpocket")
-        if (table != null) {
-            return table.role()
+        id = dropTables.get("${target.id}_pickpocket")
+        if (id != null) {
+            return id.role()
         }
         for (category in target.categories) {
-            table = dropTables.get("${category}_pickpocket")
-            if (table != null) {
-                return table.role()
+            id = dropTables.get("${category}_pickpocket")
+            if (id != null) {
+                return id.role()
             }
         }
         return null

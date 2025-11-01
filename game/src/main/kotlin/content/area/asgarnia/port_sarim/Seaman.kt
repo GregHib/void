@@ -11,8 +11,6 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -20,12 +18,12 @@ import world.gregs.voidps.type.Tile
 
 class Seaman : Script {
     init {
-        npcOperate("Talk-to", "seaman_lorris*", "captain_tobias*", "seaman_thresnor*") {
+        npcOperate("Talk-to", "seaman_lorris*,captain_tobias*,seaman_thresnor*") {
             npc<Quiz>("Do you want to go on a trip to Karamja?")
             npc<Talk>("The trip will cost you 30 coins.")
             choice {
                 option<Happy>("Yes please.") {
-                    if (!player.inventory.remove("coins", 30)) {
+                    if (!inventory.remove("coins", 30)) {
                         player<Upset>("Oh dear, I don't seem to have enough money.")
                         return@option
                     }
@@ -35,17 +33,17 @@ class Seaman : Script {
             }
         }
 
-        npcOperate("Pay-fare", "seaman_lorris*", "captain_tobias*", "seaman_thresnor*") {
-            if (!player.inventory.remove("coins", 30)) {
-                player.message("You do not have enough money for that.")
+        npcOperate("Pay-fare", "seaman_lorris*,captain_tobias*,seaman_thresnor*") {
+            if (!inventory.remove("coins", 30)) {
+                message("You do not have enough money for that.")
                 return@npcOperate
             }
             travel()
         }
     }
 
-    private suspend fun NPCOption<Player>.travel() {
-        player.message("You pay 30 coins and board the ship.")
+    private suspend fun Player.travel() {
+        message("You pay 30 coins and board the ship.")
         boatTravel("port_sarim_to_karamja", 7, Tile(2956, 3143, 1))
         statement("The ship arrives at Karamja.")
     }

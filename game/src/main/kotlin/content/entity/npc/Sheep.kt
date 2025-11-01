@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.mode.Retreat
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -19,26 +18,26 @@ class Sheep : Script {
     val items: FloorItems by inject()
 
     init {
-        npcOperate("Shear", "sheep*") {
+        npcOperate("Shear", "sheep*") { (target) ->
             arriveDelay()
-            if (!player.holdsItem("shears")) {
-                player.message("You need a set of shears to do this.")
+            if (!holdsItem("shears")) {
+                message("You need a set of shears to do this.")
                 return@npcOperate
             }
             if (target.transform.endsWith("_shorn")) {
                 return@npcOperate
             }
-            player.anim("shear_sheep")
+            anim("shear_sheep")
             if (target.id == "sheep_penguin") {
-                player.message("The... whatever it is... manages to get away from you!")
-                target.mode = Retreat(target, player)
+                message("The... whatever it is... manages to get away from you!")
+                target.mode = Retreat(target, this)
                 return@npcOperate
             }
-            player.message("You get some wool.")
-            if (!player.inventory.add("wool")) {
-                items.add(player.tile, "wool", revealTicks = 100, disappearTicks = 200, owner = player)
+            message("You get some wool.")
+            if (!inventory.add("wool")) {
+                items.add(tile, "wool", revealTicks = 100, disappearTicks = 200, owner = this)
             }
-            target.face(player)
+            target.face(this)
             target.say("Baa!")
             target.transform("${target.id}_shorn")
             target.softQueue("regrow_wool", Settings["world.npcs.sheep.regrowTicks", 50]) {

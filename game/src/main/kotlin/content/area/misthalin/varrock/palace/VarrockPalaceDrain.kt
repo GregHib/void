@@ -12,7 +12,6 @@ import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -29,10 +28,10 @@ class VarrockPalaceDrain : Script {
         }
 
         objectOperate("Search", "varrock_palace_drain") {
-            player.anim("climb_down")
-            if (player["demon_slayer_drain_dislodged", false] || player.ownsItem("silverlight_key_sir_prysin")) {
-                player.message("Nothing interesting seems to have been dropped down here today.")
-            } else if (player.quest("demon_slayer") == "unstarted") {
+            anim("climb_down")
+            if (get("demon_slayer_drain_dislodged", false) || ownsItem("silverlight_key_sir_prysin")) {
+                message("Nothing interesting seems to have been dropped down here today.")
+            } else if (quest("demon_slayer") == "unstarted") {
                 player<Shifty>("This is the drainpipe running from the kitchen sink to the sewer. I can see a key just inside the drain.")
             } else {
                 player<Neutral>("That must be the key Sir Prysin dropped.")
@@ -66,8 +65,8 @@ class VarrockPalaceDrain : Script {
         }
 
         objectOperate("Take", "demon_slayer_rusty_key") {
-            if (player.inventory.add("silverlight_key_sir_prysin")) {
-                player["demon_slayer_drain_dislodged"] = false
+            if (inventory.add("silverlight_key_sir_prysin")) {
+                set("demon_slayer_drain_dislodged", false)
                 item("silverlight_key_sir_prysin", 400, "You pick up an old rusty key.")
             }
         }

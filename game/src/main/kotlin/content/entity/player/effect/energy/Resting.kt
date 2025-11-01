@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.mode.Rest
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 class Resting : Script {
 
@@ -17,10 +16,11 @@ class Resting : Script {
             }
         }
 
-        npcOperate("Listen-to") {
+        npcOperate("Listen-to") { (target) ->
             arriveDelay()
+            val def = target.def(this)
             if (def["song", -1] != -1) {
-                player.mode = Rest(player, def["song"])
+                mode = Rest(this, def["song"])
             }
         }
     }

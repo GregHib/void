@@ -4,7 +4,6 @@ import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 class HeckelFunch : Script {
 
@@ -18,7 +17,7 @@ class HeckelFunch : Script {
                 }
                 option<Neutral>("I'll have a look.") {
                     npc<Happy>("There's a good human.")
-                    player.openShop("funchs_fine_groceries")
+                    openShop("funchs_fine_groceries")
                 }
             }
         }

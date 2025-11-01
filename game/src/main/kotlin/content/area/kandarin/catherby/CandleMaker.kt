@@ -4,7 +4,6 @@ import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 class CandleMaker : Script {
 
@@ -15,7 +14,7 @@ class CandleMaker : Script {
             choice {
                 option("Yes please.") {
                     player<Talk>("Yes please.")
-                    player.openShop("candle_shop")
+                    openShop("candle_shop")
                 }
 
                 option("No thank you.") {

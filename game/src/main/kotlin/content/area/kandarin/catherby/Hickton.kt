@@ -7,7 +7,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
@@ -18,7 +17,7 @@ class Hickton : Script {
 
     init {
         npcOperate("Trade", "hickton") {
-            openHicktonShop(player)
+            openHicktonShop(this)
         }
 
         npcOperate("Talk-to", "hickton") {
@@ -32,7 +31,7 @@ class Hickton : Script {
 
                     choice {
                         option("I'd like to view your store, please.") {
-                            openHicktonShop(player)
+                            openHicktonShop(this)
                         }
                         option("No thank you.") {
                             player<Talk>("No thank you.")
@@ -41,7 +40,7 @@ class Hickton : Script {
                 }
 
                 option("Yes, please.") {
-                    openHicktonShop(player)
+                    openHicktonShop(this)
                 }
 
                 option("No, I prefer to bash things close up.") {

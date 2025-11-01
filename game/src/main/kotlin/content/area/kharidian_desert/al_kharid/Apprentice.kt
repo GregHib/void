@@ -18,17 +18,16 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
 class Apprentice : Script {
     init {
-        npcOperate("Talk-to", "apprentice") {
-            if (player["sorceress_garden_unlocked", false]) {
+        npcOperate("Talk-to", "apprentice") { (target) ->
+            if (get("sorceress_garden_unlocked", false)) {
                 player<Happy>("Hey apprentice, do you want to try out your teleport skills again?")
                 npc<Talk>("Okay, here goes - and remember, to return just drink from the fountain.")
-                teleportToGarden()
+                teleportToGarden(target)
                 return@npcOperate
             }
             player<Talk>("Hello. What are you doing?")
@@ -53,23 +52,23 @@ class Apprentice : Script {
                             player<Talk>("Don't let me keep you.")
                         }
                         option<Talk>("Oh, you can talk to me. I can see you're having a bad day.") {
-                            talkToMe()
+                            talkToMe(target)
                         }
                     }
                 }
             }
         }
 
-        npcOperate("Teleport", "apprentice") {
-            if (!player["spoken_to_osman", false]) {
+        npcOperate("Teleport", "apprentice") { (target) ->
+            if (!get("spoken_to_osman", false)) {
                 npc<Talk>("I can't do that now, I'm far too busy sweeping.")
             } else {
-                teleportToGarden()
+                teleportToGarden(target)
             }
         }
     }
 
-    suspend fun NPCOption<Player>.talkToMe() {
+    suspend fun Player.talkToMe(target: NPC) {
         npc<Sad>("You know you're right. Nobody listens to me.")
         choice {
             option<EvilLaugh>("I can't blame them, all you do is whine.") {
@@ -97,7 +96,7 @@ class Apprentice : Script {
                         npc<Talk>("By magic! The sorceress did teach me one spell.")
                         choice {
                             option<Happy>("Wow, cast the spell on me. It will be good Magic training for you.") {
-                                castTheSpell()
+                                castTheSpell(target)
                             }
                             option<Talk>("Oh, that's nice. Well it's been great talking to you.")
                         }
@@ -107,40 +106,40 @@ class Apprentice : Script {
         }
     }
 
-    suspend fun NPCOption<Player>.castTheSpell() {
-        if (!player["spoken_to_osman", false]) {
+    suspend fun Player.castTheSpell(target: NPC) {
+        if (!get("spoken_to_osman", false)) {
             npc<Talk>("I can't do that now, I'm far too busy sweeping.")
         } else {
             npc<Quiz>("You wouldn't mind?")
             player<Talk>("Of course not. I'd be glad to help.")
             npc<Talk>("Okay, here goes! Remember, to return, just drink from the fountain.")
-            player["sorceress_garden_unlocked"] = true
-            teleportToGarden()
+            set("sorceress_garden_unlocked", true)
+            teleportToGarden(target)
         }
     }
 
     private val Player.hasFollower: Boolean
         get() = false
 
-    suspend fun NPCOption<Player>.teleportToGarden() {
-        if (player.hasFollower) {
+    suspend fun Player.teleportToGarden(target: NPC) {
+        if (hasFollower) {
             npc<Upset>("Oh, I'm sorry, could you pick up your follower first? I'm really not sure that I could teleport the both of you.")
             return
         }
         if (!World.members) {
-            player.message("You need to be on a members world to use this feature.")
+            message("You need to be on a members world to use this feature.")
             return
         }
-        target.face(player)
+        target.face(this)
         target.say("Seventior Disthinte Molesko!")
         target.gfx("curse_cast")
-        player.sound("curse_cast")
+        sound("curse_cast")
         target.anim("curse")
-        target.shoot("curse", player.tile)
+        target.shoot("curse", tile)
         delay(3)
-        player.sound("curse_impact", delay = 100)
-        player.gfx("curse_impact", delay = 100)
+        sound("curse_impact", delay = 100)
+        gfx("curse_impact", delay = 100)
         delay(1)
-        player.tele(2912, 5474)
+        tele(2912, 5474)
     }
 }

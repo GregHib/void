@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
@@ -527,16 +526,16 @@ class PlagueCity : Script {
         }
 
         objectOperate("Climb-up", "plague_sewer_pipe_open") {
-            if (player["plaguecity_pipe", "grill"] == "grill_open" &&
-                stages.contains(player.quest("plague_city"))
+            if (get("plaguecity_pipe", "grill") == "grill_open" &&
+                stages.contains(quest("plague_city"))
             ) {
-                if (player.equipped(EquipSlot.Hat).id == "gas_mask") {
-                    player.anim("4855", delay = 10)
+                if (equipped(EquipSlot.Hat).id == "gas_mask") {
+                    anim("4855", delay = 10)
                     statement("You climb up through the sewer pipe.", clickToContinue = false)
-                    player.open("fade_out")
+                    open("fade_out")
                     delay(3)
-                    player.tele(2529, 3304)
-                    player.open("fade_in")
+                    tele(2529, 3304)
+                    open("fade_in")
                     statement("You climb up through the sewer pipe.", clickToContinue = true)
                 } else {
                     npc<Neutral>("edmond", "I can't let you enter the city without your gas mask on.")
@@ -547,10 +546,10 @@ class PlagueCity : Script {
         }
 
         objectOperate("Open", "plague_grill_vis") {
-            player.animDelay("pull_on_pipe")
-            player.sound("irondoor_locked")
-            if (!player["plaguecity_checked_grill", false]) {
-                player["plaguecity_checked_grill"] = true
+            animDelay("pull_on_pipe")
+            sound("irondoor_locked")
+            if (!get("plaguecity_checked_grill", false)) {
+                set("plaguecity_checked_grill", true)
             }
             statement("The grill is too secure. <br> You can't pull it off alone.")
         }

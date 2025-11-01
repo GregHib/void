@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.weakQueue
@@ -27,10 +26,10 @@ import world.gregs.voidps.type.random
 class ArcheryTarget : Script {
 
     init {
-        objectOperate("Shoot-at", "archery_target") {
-            player.closeDialogue()
-            player.face(target)
-            swing(player, target, 0)
+        objectOperate("Shoot-at", "archery_target") { (target) ->
+            closeDialogue()
+            face(target)
+            swing(this, target, 0)
         }
     }
 

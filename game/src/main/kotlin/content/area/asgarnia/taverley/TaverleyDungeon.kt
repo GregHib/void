@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
@@ -31,8 +30,8 @@ class TaverleyDungeon : Script {
     val rightSpawn = Tile(2887, 9829)
 
     init {
-        objectOperate("Open", "door_taverley_1_closed", "door_taverley_2_closed") {
-            if (player.tile.x >= 2889 || !spawn(player, leftSpawn) && !spawn(player, rightSpawn)) {
+        objectOperate("Open", "door_taverley_1_closed,door_taverley_2_closed") { (target) ->
+            if (tile.x >= 2889 || !spawn(this, leftSpawn) && !spawn(this, rightSpawn)) {
                 enterDoor(target)
             }
         }

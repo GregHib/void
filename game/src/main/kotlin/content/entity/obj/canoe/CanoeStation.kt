@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.StringSuspension
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import kotlin.math.abs
 
 private val stations = listOf(
@@ -26,8 +25,8 @@ private val distance = mapOf(
 
 private const val INTERFACE_ID = "canoe_stations_map"
 
-internal suspend fun SuspendableContext<Player>.canoeStationMap(canoe: String, station: String): String? {
-    check(player.open(INTERFACE_ID)) { "Unable to open canoe station map for $player" }
+internal suspend fun Player.canoeStationMap(canoe: String, station: String): String? {
+    check(open(INTERFACE_ID)) { "Unable to open canoe station map for $this" }
     val index = stations.indexOf(station)
     val distance = distance[canoe]!!
 
@@ -35,11 +34,11 @@ internal suspend fun SuspendableContext<Player>.canoeStationMap(canoe: String, s
         val reachable = i in index - distance..index + distance
         val name = stations[i]
         val here = i == index
-        player.interfaces.sendVisibility(INTERFACE_ID, "you_are_here_$name", here)
-        player.interfaces.sendVisibility(INTERFACE_ID, "${name}_group", !here && reachable)
+        interfaces.sendVisibility(INTERFACE_ID, "you_are_here_$name", here)
+        interfaces.sendVisibility(INTERFACE_ID, "${name}_group", !here && reachable)
     }
-    val selection = StringSuspension.get(player)
-    player.close(INTERFACE_ID)
+    val selection = StringSuspension.get(this)
+    close(INTERFACE_ID)
     if (selection == station) {
         return null
     }
@@ -50,9 +49,9 @@ internal suspend fun SuspendableContext<Player>.canoeStationMap(canoe: String, s
     return selection
 }
 
-internal suspend fun SuspendableContext<Player>.canoeTravel(canoe: String, station: String, destination: String) {
-    check(player.open("canoe_travel")) { "Unable to open canoe travel map for $player" }
-    player.sendScript(
+internal suspend fun Player.canoeTravel(canoe: String, station: String, destination: String) {
+    check(open("canoe_travel")) { "Unable to open canoe travel map for $this" }
+    sendScript(
         "model_swapper",
         InterfaceDefinition.pack(758, 3),
         when (canoe) {
@@ -64,7 +63,7 @@ internal suspend fun SuspendableContext<Player>.canoeTravel(canoe: String, stati
         },
     )
     val distance = abs(stations.indexOf(destination) - stations.indexOf(station))
-    player.interfaces.sendAnimation("canoe_travel", "model", "${station}_to_$destination")
+    interfaces.sendAnimation("canoe_travel", "model", "${station}_to_$destination")
     delay(distance + 2)
-    player.close("canoe_travel")
+    close("canoe_travel")
 }

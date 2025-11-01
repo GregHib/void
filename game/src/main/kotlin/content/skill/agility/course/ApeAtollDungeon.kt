@@ -7,7 +7,6 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 
@@ -39,8 +38,8 @@ class ApeAtollDungeon : Script {
         }
 
         objectOperate("Pick", "ape_atoll_monkey_nut_bush") {
-            if (player.questCompleted("recipe_for_disaster")) {
-                player.message("You have already made the King's meal, you don't need any more of these.")
+            if (questCompleted("recipe_for_disaster")) {
+                message("You have already made the King's meal, you don't need any more of these.")
             }
         }
 

@@ -4,7 +4,6 @@ import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 class Hudo : Script {
 
@@ -18,7 +17,7 @@ class Hudo : Script {
                 }
                 option<Neutral>("I'll have a look.") {
                     npc<Happy>("Great stuff.")
-                    player.openShop("grand_tree_groceries")
+                    openShop("grand_tree_groceries")
                 }
             }
         }

@@ -21,3 +21,15 @@ suspend fun Context<Player>.destroy(item: String, text: String): Boolean {
     player.close(DESTROY_INTERFACE_ID)
     return result
 }
+
+suspend fun Player.destroy(item: String, text: String): Boolean {
+    val itemDecoder: ItemDefinitions = get()
+    check(open(DESTROY_INTERFACE_ID)) { "Unable to open destroy dialogue for $item $this" }
+    interfaces.sendText(DESTROY_INTERFACE_ID, "line1", text.trimIndent().replace("\n", "<br>"))
+    val def = itemDecoder.get(item)
+    interfaces.sendText(DESTROY_INTERFACE_ID, "item_name", def.name)
+    interfaces.sendItem(DESTROY_INTERFACE_ID, "item_slot", def.id, 1)
+    val result = StringSuspension.get(this) == "confirm"
+    close(DESTROY_INTERFACE_ID)
+    return result
+}

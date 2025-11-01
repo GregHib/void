@@ -8,7 +8,6 @@ import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.*
 
@@ -19,25 +18,25 @@ class Mill : Script {
             sendVariable("flour_bin")
         }
 
-        objectOperate("Operate", "hopper_controls") {
-            if (player["flour_bin", 0] == 30) {
-                player.message("The flour bin downstairs is full, I should empty it first.")
+        objectOperate("Operate", "hopper_controls") { (target) ->
+            if (get("flour_bin", 0) == 30) {
+                message("The flour bin downstairs is full, I should empty it first.")
                 return@objectOperate
             }
-            player.anim("pull_hopper_controls")
-            player.sound("lever")
+            anim("pull_hopper_controls")
+            sound("lever")
             delay()
             target.replace("hopper_controls_pulled", ticks = 2)
-            if (player["hopper_bin", 0] != 1) {
-                player.message("You operate the empty hopper. Nothing interesting happens.")
+            if (get("hopper_bin", 0) != 1) {
+                message("You operate the empty hopper. Nothing interesting happens.")
                 return@objectOperate
             }
-            player["hopper_bin"] = 0
-            player.inc("flour_bin")
-            if (player["flour_bin", 0] == 30) {
-                player.message("The flour bin downstairs is now full.")
+            set("hopper_bin", 0)
+            inc("flour_bin")
+            if (get("flour_bin", 0) == 30) {
+                message("The flour bin downstairs is now full.")
             } else {
-                player.message("You operate the hopper. The grain slides down the chute.")
+                message("You operate the hopper. The grain slides down the chute.")
             }
         }
 
@@ -72,24 +71,24 @@ class Mill : Script {
         }
 
         objectOperate("Take-flour", "flour_bin") {
-            if (!player.holdsItem("empty_pot")) {
-                player.message("You need an empty pot to hold the flour in.")
+            if (!holdsItem("empty_pot")) {
+                message("You need an empty pot to hold the flour in.")
                 return@objectOperate
             }
-            if (player.quest("cooks_assistant") == "started" && player["cooks_assistant_talked_to_millie", 0] == 1) {
-                player.inventory.remove("empty_pot")
-                if (player.holdsItem("extra_fine_flour") || player.bank.contains("extra_fine_flour")) {
-                    player.inventory.add("pot_of_flour")
-                    player.message("You fill a pot with flour from the bin.")
+            if (quest("cooks_assistant") == "started" && get("cooks_assistant_talked_to_millie", 0) == 1) {
+                inventory.remove("empty_pot")
+                if (holdsItem("extra_fine_flour") || bank.contains("extra_fine_flour")) {
+                    inventory.add("pot_of_flour")
+                    message("You fill a pot with flour from the bin.")
                 } else {
-                    player.inventory.add("extra_fine_flour")
-                    player.message("You fill a pot with the extra fine flour from the bin.")
+                    inventory.add("extra_fine_flour")
+                    message("You fill a pot with the extra fine flour from the bin.")
                 }
-                player.dec("flour_bin")
+                dec("flour_bin")
             } else {
-                player.inventory.replace("empty_pot", "pot_of_flour")
-                player.dec("flour_bin")
-                player.message("You fill a pot with flour from the bin.")
+                inventory.replace("empty_pot", "pot_of_flour")
+                dec("flour_bin")
+                message("You fill a pot with flour from the bin.")
             }
         }
     }

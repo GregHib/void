@@ -9,7 +9,6 @@ import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -18,7 +17,6 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class Dororan : Script {
 
@@ -38,7 +36,7 @@ class Dororan : Script {
         }
 
         npcOperate("Talk-to", "dororan_*") {
-            when (player.quest("gunnars_ground")) {
+            when (quest("gunnars_ground")) {
                 "started" -> started()
                 "love_poem", "jeffery_ring" -> lovePoem()
                 "engrave" -> {
@@ -61,22 +59,22 @@ class Dororan : Script {
         }
 
         npcOperate("Talk-to", "dororan_after_quest") {
-            if (!player.questCompleted("gunnars_ground")) {
+            if (!questCompleted("gunnars_ground")) {
                 return@npcOperate
             }
-            if (player["dororan_ruby_bracelet", 0] != 1) {
+            if (get("dororan_ruby_bracelet", 0) != 1) {
                 npc<Happy>("Come in, my friend, come in! There is another matter I could use your assistance with.")
-            } else if (player["dororan_dragonstone_necklace", 0] != 1) {
+            } else if (get("dororan_dragonstone_necklace", 0) != 1) {
                 npc<Pleased>("I have another piece of jewellery to engrave.")
-            } else if (player["dororan_onyx_amulet", 0] != 1) {
+            } else if (get("dororan_onyx_amulet", 0) != 1) {
                 npc<Pleased>("I have one last piece of jewellery to engrave.")
             } else {
                 npc<Pleased>("Thanks so much for everything you've done for us!")
                 npc<Pleased>("What can I do for you?")
             }
-            if (player["dororan_ruby_bracelet", 0] != 1 || player["dororan_dragonstone_necklace", 0] != 1 || player["dororan_onyx_amulet", 0] != 1) {
+            if (get("dororan_ruby_bracelet", 0) != 1 || get("dororan_dragonstone_necklace", 0) != 1 || get("dororan_onyx_amulet", 0) != 1) {
                 choice {
-                    if (player["dororan_ruby_bracelet", 0] != 1) {
+                    if (get("dororan_ruby_bracelet", 0) != 1) {
                         option<Neutral>("What is it?") {
                             npc<Pleased>("I have some more jewellery for Gudrun and I need your help to engrave them.")
                             choice {
@@ -85,14 +83,14 @@ class Dororan : Script {
                                     npc<Happy>("'With beauty blessed.'")
                                     choice {
                                         option("Engrave the bracelet.") {
-                                            if (player.levels.get(Skill.Crafting) < 72) {
+                                            if (levels.get(Skill.Crafting) < 72) {
                                                 item("ruby_bracelet", 400, "you need a Crafting level of at least 42 to engrave the ruby bracelet.")
                                                 npc<Sad>("That's a shame. Maybe you can try again another time.")
                                                 return@option
                                             }
-                                            player.anim("engrave")
-                                            player.experience.add(Skill.Crafting, 2000.0)
-                                            player["dororan_ruby_bracelet"] = 1
+                                            anim("engrave")
+                                            experience.add(Skill.Crafting, 2000.0)
+                                            set("dororan_ruby_bracelet", 1)
                                             items("chisel", "ruby_bracelet", "You carefully engrave 'With beauty blessed' onto the ruby bracelet.")
                                             npc<Happy>("Magnificent! Outstanding! I will give this to her immediately. Please, come back when you have time")
                                         }
@@ -109,20 +107,20 @@ class Dororan : Script {
                                 }
                             }
                         }
-                    } else if (player["dororan_dragonstone_necklace", 0] != 1) {
+                    } else if (get("dororan_dragonstone_necklace", 0) != 1) {
                         option<Neutral>("What's this one?") {
                             npc<Pleased>("A fine dragonstone necklace.")
                             npc<Happy>("There's not much room...how about just 'Gudrun'?")
                             choice {
                                 option("Engrave the necklace.") {
-                                    if (player.levels.get(Skill.Crafting) < 42) {
+                                    if (levels.get(Skill.Crafting) < 42) {
                                         item("dragonstone_necklace", 400, "you need a Crafting level of at least 72 to engrave the dragonstone necklace.")
                                         npc<Sad>("That's a shame. Maybe you can try again another time.")
                                         return@option
                                     }
-                                    player.anim("engrave")
-                                    player.experience.add(Skill.Crafting, 10000.0)
-                                    player["dororan_dragonstone_necklace"] = 1
+                                    anim("engrave")
+                                    experience.add(Skill.Crafting, 10000.0)
+                                    set("dororan_dragonstone_necklace", 1)
                                     items("chisel", "dragonstone_necklace", "You skillfully engrave 'Gudrun' onto the dragonstone necklace.")
                                     npc<Happy>("Another astonishing piece of work! Please, come back later to see if I have other crafting tasks.")
                                 }
@@ -131,20 +129,20 @@ class Dororan : Script {
                                 }
                             }
                         }
-                    } else if (player["dororan_onyx_amulet", 0] != 1) {
+                    } else if (get("dororan_onyx_amulet", 0) != 1) {
                         option<Neutral>("What is it?") {
                             npc<Pleased>("An onyx amulet!")
                             npc<Happy>("'The most beautiful girl in the room.'")
                             choice {
                                 option("Engrave the amulet.") {
-                                    if (player.levels.get(Skill.Crafting) < 90) {
+                                    if (levels.get(Skill.Crafting) < 90) {
                                         item("onyx_amulet", 400, "you need a Crafting level of at least 90 to engrave the onyx amulet.")
                                         npc<Sad>("That's a shame. Maybe you can try again another time.")
                                         return@option
                                     }
-                                    player.anim("engrave")
-                                    player.experience.add(Skill.Crafting, 20000.0)
-                                    player["dororan_onyx_amulet"] = 1
+                                    anim("engrave")
+                                    experience.add(Skill.Crafting, 20000.0)
+                                    set("dororan_onyx_amulet", 1)
                                     items("chisel", "onyx_amulet", "You expertly engrave 'The most beautiful girl in the room' onto the onyx amulet.")
                                     npc<Happy>("That's fantastic! Excellent work.")
                                 }
@@ -167,16 +165,16 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.poem() {
-        if (!player.ownsItem("gunnars_ground")) {
+    suspend fun Player.poem() {
+        if (!ownsItem("gunnars_ground")) {
             player<Sad>("Er, I lost the poem.")
             npc<Talk>("Luckily for you, I wrote a second draft.")
-            if (player.inventory.isFull()) {
+            if (inventory.isFull()) {
                 statement("You don't have room for the poem. Speak to Dororan again when you have room.")
                 return
             }
-            player.inventory.add("gunnars_ground")
-            player.anim("pocket_item")
+            inventory.add("gunnars_ground")
+            anim("pocket_item")
             item("gunnars_ground", 600, "Dororan gives you another poem.")
             npc<Talk>("Try not to lose this one.")
             return
@@ -188,18 +186,18 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.poemDone() {
+    suspend fun Player.poemDone() {
         npc<Laugh>("At last! It's done! It's finished! My finest work! Thank you so much for your help!")
         player<Pleased>("Are you ready to present it to Chieftain?!")
         npc<Surprised>("What? No! I'm a writer, not a performer.")
         npc<Talk>("I think the Chieftain would respond best to one of his people. Perhaps you could ask Gudrun to recite it to hew father?")
-        if (player.inventory.isFull()) {
+        if (inventory.isFull()) {
             statement("You don't have room for the poem. Speak to Dororan again when you have room.")
             return
         }
-        player["gunnars_ground"] = "poem"
-        player.inventory.add("gunnars_ground")
-        player.anim("pocket_item")
+        set("gunnars_ground", "poem")
+        inventory.add("gunnars_ground")
+        anim("pocket_item")
         item("gunnars_ground", 400, "Dororan hands you the poem.")
         choice {
             option<Talk>("I'll get right on it.")
@@ -207,20 +205,20 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.sweptToWar() {
+    suspend fun Player.sweptToWar() {
         npc<Pleased>("'Who then, in face of madness, <blue>swept to war.</col>'")
         npc<Happy>("That's it! That's brilliant!")
-        player["gunnars_ground"] = "poem_done"
+        set("gunnars_ground", "poem_done")
         poemDone()
     }
 
-    suspend fun SuspendableContext<Player>.oneMore() {
+    suspend fun Player.oneMore() {
         npc<Pleased>("It's coming together. We're nearly done! One more to go!")
         npc<Quiz>("This one is tricky, though. It's a phrase I need. Someone did something.")
         phraseMenu()
     }
 
-    suspend fun SuspendableContext<Player>.phraseMenu() {
+    suspend fun Player.phraseMenu() {
         choice {
             option<Talk>("Threw the ball.") {
                 npc<Talk>("That doesn't really fit. It needs tp rhyme with the word 'lore'.")
@@ -241,7 +239,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.threeSyllablesMenu() {
+    suspend fun Player.threeSyllablesMenu() {
         choice {
             option<Talk>("Picked a rose.") {
                 npc<Talk>("That doesn't really fit. It needs tp rhyme with the word 'lore'.")
@@ -265,7 +263,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.threeSyllablesMenu2() {
+    suspend fun Player.threeSyllablesMenu2() {
         choice {
             option<Talk>("Heard a song.") {
                 npc<Talk>("that doesn't really fit. It needs to imply some aggressive action, like 'started a fight'.")
@@ -288,7 +286,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.fightMenu() {
+    suspend fun Player.fightMenu() {
         choice {
             option<Talk>("Picked a fight.") {
                 npc<Talk>("That doesn't really fit. It needs tp rhyme with the word 'lore'.")
@@ -312,7 +310,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.fightMenu2() {
+    suspend fun Player.fightMenu2() {
         choice {
             option<Talk>("Swept to war.") {
                 sweptToWar()
@@ -335,7 +333,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.loreMenu() {
+    suspend fun Player.loreMenu() {
         choice {
             option<Talk>("Started a war.") {
                 npc<Pleased>("that doesn't really fit. It needs to be three syllables long.")
@@ -359,7 +357,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.loreMenu2() {
+    suspend fun Player.loreMenu2() {
         choice {
             option<Talk>("Learned to soar") {
                 npc<Talk>("that doesn't really fit. It needs to imply some aggressive action, like 'started a fight'.")
@@ -382,14 +380,14 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.threat() {
+    suspend fun Player.threat() {
         npc<Pleased>("'But long is gone the author of that <blue>threat.</col>'")
         npc<Happy>("Perfect! Yes!")
-        player["gunnars_ground"] = "one_more_poem"
+        set("gunnars_ground", "one_more_poem")
         oneMore()
     }
 
-    suspend fun SuspendableContext<Player>.morePoem() {
+    suspend fun Player.morePoem() {
         npc<Sad>("The poem still isn't finished, though. I have another missing word. Give me another one; anything, to get me started.")
         choice {
             option<Talk>("Stockade.") {
@@ -411,7 +409,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.syllablePoemMenu() {
+    suspend fun Player.syllablePoemMenu() {
         choice {
             option<Talk>("Storm.") {
                 npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'yet'.")
@@ -435,7 +433,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.syllablePoemMenu2() {
+    suspend fun Player.syllablePoemMenu2() {
         choice {
             option<Talk>("Debt.") {
                 npc<Talk>("That doesn't really fit. It needs to mean something like 'danger'.")
@@ -458,7 +456,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.rhymePoemMenu() {
+    suspend fun Player.rhymePoemMenu() {
         choice {
             option<Talk>("Debt.") {
                 npc<Talk>("That doesn't really fit. It needs to mean something like 'danger'.")
@@ -482,7 +480,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.rhymePoemMenu2() {
+    suspend fun Player.rhymePoemMenu2() {
         choice {
             option<Talk>("Threat.") {
                 threat()
@@ -505,7 +503,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.dangerPoemMenu() {
+    suspend fun Player.dangerPoemMenu() {
         choice {
             option<Talk>("Risk.") {
                 npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'yet'.")
@@ -529,7 +527,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.dangerPoemMenu2() {
+    suspend fun Player.dangerPoemMenu2() {
         choice {
             option<Talk>("Upset.") {
                 npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
@@ -552,7 +550,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.aboutRing() {
+    suspend fun Player.aboutRing() {
         npc<Quiz>("Did you give Gudrun the ring? What did she think? Did it capture her heart?")
         player<Talk>("There's a problem.")
         npc<Cry>("It's because I'm a dwarf, isn't it? Or because I'm a poet? I knew it! I'm completely worthless!")
@@ -568,7 +566,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.mostCruel() {
+    suspend fun Player.mostCruel() {
         player<Talk>("Gudrun's father won't let her be with someone from outside the village.")
         npc<Amazed>("Most cruel is fate! Most cruel! Why not?")
         player<Talk>("He's obsessed with the stories of his ancestors. He says his people are still at war.")
@@ -586,21 +584,21 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.anyIdea() {
+    suspend fun Player.anyIdea() {
         npc<Amazed>("An idea occurs to me, but it is hubris of the greatest magnitude.")
         player<Quiz>("What is it?")
         npc<Talk>("What if I wrote a poem? Forged a sweeping, historical epic? Crafted a tale to touch the chieftain's soul?")
         player<Quiz>("Will that work?")
         npc<Pleased>("To win the heart of my beloved from her father's iron grasp? It is worth it just to try!")
-        player.open("fade_out")
+        open("fade_out")
         delay(5)
-        player.open("fade_in")
+        open("fade_in")
         delay(1)
-        player["gunnars_ground"] = "write_poem"
+        set("gunnars_ground", "write_poem")
         writePoem()
     }
 
-    suspend fun SuspendableContext<Player>.writePoem() {
+    suspend fun Player.writePoem() {
         npc<Talk>("'Even the bloodiest rose must settle.' Mixed metaphor. Whats settles? Detritus. That's hardly flattering.")
         npc<Talk>("'Even the rolliest boulder...'")
         player<Talk>("How is the poem going?")
@@ -615,7 +613,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.stuckOnWord() {
+    suspend fun Player.stuckOnWord() {
         npc<Cry>("I'm stuck on a word. By the colossus of King Alvis! I can't find the words!")
         player<Talk>("Maybe I can help. What sort of word?")
         npc<Upset>("I don't know! I'm not some kind of word scientist. I just feel it out as I go.")
@@ -624,7 +622,7 @@ class Dororan : Script {
         poemMenu()
     }
 
-    suspend fun SuspendableContext<Player>.poemMenu() {
+    suspend fun Player.poemMenu() {
         choice {
             option<Happy>("Cucumber.") {
                 npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
@@ -645,7 +643,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.syllableMenu() {
+    suspend fun Player.syllableMenu() {
         choice {
             option<Happy>("Ham.") {
                 npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'day'.")
@@ -669,7 +667,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.syllableMenu2() {
+    suspend fun Player.syllableMenu2() {
         choice {
             option<Happy>("Roam.") {
                 npc<Talk>("That doesn't really fit. It needs to rhyme with the word 'day'.")
@@ -692,7 +690,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.wordsMenu() {
+    suspend fun Player.wordsMenu() {
         choice {
             option<Happy>("Deviate.") {
                 npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
@@ -716,7 +714,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.wordsMenu2() {
+    suspend fun Player.wordsMenu2() {
         choice {
             option<Happy>("Meander.") {
                 npc<Talk>("That doesn't really fit. It needs to be one syllable long.")
@@ -739,7 +737,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.rhymeMenu() {
+    suspend fun Player.rhymeMenu() {
         choice {
             option<Happy>("Lay.") {
                 npc<Talk>("That doesn't really fit. It needs to mean something like 'wandering aimlessly'.")
@@ -763,7 +761,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.rhymeMenu2() {
+    suspend fun Player.rhymeMenu2() {
         choice {
             option<Happy>("Stray.") {
                 stray()
@@ -786,21 +784,21 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.stray() {
+    suspend fun Player.stray() {
         npc<Talk>("'And from his righteous purpose never <blue>stray.</col>'")
         npc<Pleased>("That fits! It fits perfectly. Right meaning, right length, right rhyme. Well done!")
-        player["gunnars_ground"] = "more_poem"
+        set("gunnars_ground", "more_poem")
         morePoem()
     }
 
-    suspend fun SuspendableContext<Player>.meetChieftain() {
+    suspend fun Player.meetChieftain() {
         npc<Quiz>("Did you give Gudrun the ring? What did she think?")
         player<Talk>("She liked it, but there's a problem. I'm dealing with it.")
         npc<Amazed>("Oh no!")
     }
 
-    suspend fun SuspendableContext<Player>.showGudrun() {
-        if (!player.ownsItem("dororans_engraved_ring")) {
+    suspend fun Player.showGudrun() {
+        if (!ownsItem("dororans_engraved_ring")) {
             npc<Surprised>("I know. I found it on the ground.")
             if (!giveRing()) {
                 return
@@ -817,9 +815,9 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.engravedRing() {
+    suspend fun Player.engravedRing() {
         npc<Neutral>("Is it done? Have you created a work of magnificent beauty?")
-        if (!player.ownsItem("dororans_engraved_ring")) {
+        if (!ownsItem("dororans_engraved_ring")) {
             player<Sad>("I did engrave it. but I seem to have lost it.")
             npc<Happy>("Is this it? I found it on the ground. You've done a great job on it.")
             if (!giveRing()) {
@@ -851,7 +849,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.oneMoreThing() {
+    suspend fun Player.oneMoreThing() {
         choice {
             option<Talk>("Of course.") {
                 veryWell()
@@ -862,7 +860,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.veryWell() {
+    suspend fun Player.veryWell() {
         npc<Sad>("I fear she will only judge this poor book by its cover. Would you take the ring to Gudrun for me?")
         choice {
             option<Talk>("Very well.") {
@@ -874,9 +872,9 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.whereIsShe() {
+    suspend fun Player.whereIsShe() {
         npc<Talk>("Please don't tell her I'm a dwarf just yet.")
-        player["gunnars_ground"] = "show_gudrun"
+        set("gunnars_ground", "show_gudrun")
         choice {
             option<Talk>("Where is she?") {
                 npc<Talk>("Inside the barbarian village.")
@@ -885,7 +883,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.unstarted() {
+    suspend fun Player.unstarted() {
         npc<Upset>("'My heart with burdens heavy does it lie.'")
         npc<Upset>("'For never did I...'")
         npc<Upset>("Um...")
@@ -902,19 +900,19 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.started() {
+    suspend fun Player.started() {
         npc<Talk>("I need a ring of purest gold. Then we can engrave it with the words of my heart.")
-        player.refreshQuestJournal()
+        refreshQuestJournal()
         npc<Pleased>("Oh! I know the perfect place to get a gold ring.")
         npc<Quiz>("Edgeville's metalsmith, jeffery, labours like myself under the weight of unrequited love.")
         npc<Pleased>("Perhaps, if you took one of my love poems to jeffery, he would trade it for a gold ring.")
-        if (player.inventory.isFull()) {
+        if (inventory.isFull()) {
             statement("You don't have room for the poem. Speak to Dororan again when you have room.")
             return
         }
-        player["gunnars_ground"] = "love_poem"
-        player.inventory.add("love_poem")
-        player.anim("pocket_item")
+        set("gunnars_ground", "love_poem")
+        inventory.add("love_poem")
+        anim("pocket_item")
         item("love_poem", 600, "Dororan gives you a poem.")
         choice {
             option<Neutral>("I have some questions.") {
@@ -925,7 +923,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.somethingElse() {
+    suspend fun Player.somethingElse() {
         choice {
             option<Neutral>("I want to ask about something else.") {
                 npc<Pleased>("By all means.")
@@ -935,7 +933,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.lovePoemMenu() {
+    suspend fun Player.lovePoemMenu() {
         choice {
             option<Neutral>("Does it have to be a ring from Jeffery?") {
                 npc<Talk>("Yes! Jeffery's rings are timeless works of incomparable romantic splendour.")
@@ -961,24 +959,24 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.lovePoem() {
+    suspend fun Player.lovePoem() {
         npc<Neutral>("'I await in eagerness for a loop of lustrous grandeur.' No, that just sounds ridiculous. Have you brought me a ring from Jeffery?'")
-        if (!player.ownsItem("ring_from_jeffery") && player.quest("gunnars_ground") == "jeffery_ring") {
+        if (!ownsItem("ring_from_jeffery") && quest("gunnars_ground") == "jeffery_ring") {
             player<Happy>("I did get a ring from jeffery, but I seem to have lost it.")
             npc<Surprised>("How careless!")
             npc<Quiz>("Is it this one? I found it on the ground.")
-            if (player.inventory.isFull()) {
+            if (inventory.isFull()) {
                 statement("You don't have room for the ring. Speak to Dororan again when you have room.")
                 return
             }
-            player.inventory.add("ring_from_jeffery")
-            player.anim("pocket_item")
-            // player.playSound("") // TODO
+            inventory.add("ring_from_jeffery")
+            anim("pocket_item")
+            // playSound("") // TODO
             item("ring_from_jeffery", 600, "Dororan gives you back the ring.")
             engrave()
             return
         }
-        if (player.holdsItem("ring_from_jeffery")) {
+        if (holdsItem("ring_from_jeffery")) {
             player<Happy>("I have one right here.")
             item("ring_from_jeffery", 600, "You show Dororan the ring from Jeffery.")
             npc<Happy>("Thank you! That's exactly what I need!")
@@ -986,15 +984,15 @@ class Dororan : Script {
             return
         }
         choice {
-            if (!player.ownsItem("love_poem") && player.quest("gunnars_ground") == "love_poem") {
+            if (!ownsItem("love_poem") && quest("gunnars_ground") == "love_poem") {
                 option<Neutral>("I lost the poem I was supposed to take to Jeffer.") {
                     npc<Upset>("I'll give you another one.")
-                    if (player.inventory.isFull()) {
+                    if (inventory.isFull()) {
                         statement("You don't have room for the poem. Speak to Dororan again when you have room.")
                         return@option
                     }
-                    player.inventory.add("love_poem")
-                    player.anim("pocket_item")
+                    inventory.add("love_poem")
+                    anim("pocket_item")
                     item("love_poem", 600, "Dororan gives you another poem.")
                     npc<Talk>("Try to be more careful with this one.")
                     return@option
@@ -1015,7 +1013,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.engrave() {
+    suspend fun Player.engrave() {
         npc<Talk>("Now, would you engrave something on it for me?")
         choice {
             option<Neutral>("What do you want me to engrave?") {
@@ -1027,24 +1025,24 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.engraveSomething() {
+    suspend fun Player.engraveSomething() {
         npc<Pleased>("I've given this some thought.")
         npc<Happy>("'Gudrun the Fair, Gudrun the Fiery.'")
         choice {
             option<Neutral>("How do I engrave that?") {
                 npc<Talk>("Just use a chisel on the gold ring.")
-                player["gunnars_ground"] = "engrave"
+                set("gunnars_ground", "engrave")
                 engraveMenu()
             }
             option<Neutral>("That sounds simple enough.") {
                 npc<Talk>("Just use a chisel on the gold ring.")
-                player["gunnars_ground"] = "engrave"
+                set("gunnars_ground", "engrave")
                 engraveMenu()
             }
         }
     }
 
-    suspend fun SuspendableContext<Player>.engraveMenu() {
+    suspend fun Player.engraveMenu() {
         choice {
             option<Neutral>("Do you have a chisel I can use?") {
                 haveChisel()
@@ -1056,13 +1054,13 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.haveChisel() {
+    suspend fun Player.haveChisel() {
         npc<Happy>("Yes, here you go.")
-        if (player.inventory.isFull()) {
+        if (inventory.isFull()) {
             statement("You don't have room for the chisel. Speak to Dororan again when you have room.")
         } else {
-            player.inventory.add("chisel")
-            player.anim("pocket_item")
+            inventory.add("chisel")
+            anim("pocket_item")
             item("chisel", 600, "Dororan gives you a chisel.")
         }
         choice {
@@ -1073,7 +1071,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.chiselBitClumsy() {
+    suspend fun Player.chiselBitClumsy() {
         npc<Happy>("I've seen jewelcrafters use them for all sorts of precise work.")
         choice {
             option<Neutral>("Do you have a chisel I can use?") {
@@ -1083,7 +1081,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.poet() {
+    suspend fun Player.poet() {
         npc<Happy>("You're a poet too?")
         choice {
             option<Happy>("Yes.") {
@@ -1101,7 +1099,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.identify() {
+    suspend fun Player.identify() {
         npc<Cry>("My heart is stricken with that most audacious of maladies!")
         choice {
             option<Neutral>("Angina?") {
@@ -1116,7 +1114,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.love() {
+    suspend fun Player.love() {
         npc<Amazed>("Love!")
         npc<Upset>("The walls of my heart are besieged by love's armies, and those walls begin to tumble!")
         npc<Upset>("In the barbarian village lives the fairest maiden I have witnessed in all my life.")
@@ -1138,7 +1136,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.getToThePoint() {
+    suspend fun Player.getToThePoint() {
         npc<Sad>("The people of this village value strength, stature and riches. I have none of these things.")
         npc<Upset>("My people are indomitable warriors, dripping with gold and precious gems, but not I.")
         npc<Sad>("I am not built for combat, and poetry has proven a life of poverty!")
@@ -1153,15 +1151,15 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.helpMe() {
+    suspend fun Player.helpMe() {
         npc<Quiz>("If Gudrun could ever love a dwarf, surely she would need to see my artisanry.")
         npc<Talk>("Will you help me? I am no crafter of metal.")
-        if (player.levels.get(Skill.Crafting) < 5) {
+        if (levels.get(Skill.Crafting) < 5) {
             statement("You need a Crafting level of at least 5 to start this quest.")
         } else {
             choice("Start Gunnar's Ground quest?") {
                 option("Yes.") {
-                    player["gunnars_ground"] = "started"
+                    set("gunnars_ground", "started")
                     started()
                 }
                 option("No.") {
@@ -1170,7 +1168,7 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.someThingElse() {
+    suspend fun Player.someThingElse() {
         choice {
             option<Neutral>("How are things?") {
                 npc<Pleased>("Every morning I wake to sunshine and birdsong! Life is marvellous!")
@@ -1181,24 +1179,24 @@ class Dororan : Script {
                 elseGoodbye()
             }
             option<Neutral>("I'd like to see the poem you wrote for Gunthor.") {
-                if (player.inventory.isFull()) {
+                if (inventory.isFull()) {
                     statement("You don't have room for the poem. Speak to Dororan again when you have room.")
                     return@option
                 }
-                player.inventory.add("gunnars_ground")
-                player.anim("pocket_item")
+                inventory.add("gunnars_ground")
+                anim("pocket_item")
                 item("gunnars_ground", 600, "Dororan gives you a copy of the poem.")
                 npc<Pleased>("There you go!")
             }
-            if (!player.ownsItem("swanky_boots")) {
+            if (!ownsItem("swanky_boots")) {
                 option<Surprised>("I seem to have mislaid my swanky boots.") {
                     npc<Happy>("Not to worry! There are some left. Here you go.")
-                    if (player.inventory.isFull()) {
+                    if (inventory.isFull()) {
                         statement("you don't have room for the boots.")
                         return@option
                     }
-                    player.anim("pocket_item")
-                    player.inventory.add("swanky_boots")
+                    anim("pocket_item")
+                    inventory.add("swanky_boots")
                     item("swanky_boots", 600, "Dororan gives you some more boots.")
                     npc<Happy>("Be more careful with these ones! I don't have an infinite supply.")
                 }
@@ -1209,18 +1207,18 @@ class Dororan : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.giveRing(): Boolean {
-        if (player.inventory.isFull()) {
+    suspend fun Player.giveRing(): Boolean {
+        if (inventory.isFull()) {
             statement("You don't have room for the ring. Speak to Dororan again when you have room.")
             return false
         }
-        player.inventory.add("dororans_engraved_ring")
-        player.anim("pocket_item")
+        inventory.add("dororans_engraved_ring")
+        anim("pocket_item")
         item("dororans_engraved_ring", 400, "Dororan hands you back the engraved ring.")
         return true
     }
 
-    suspend fun SuspendableContext<Player>.elseGoodbye() {
+    suspend fun Player.elseGoodbye() {
         choice {
             option<Neutral>("I want to talk about something else.") {
                 npc<Pleased>("What can I do for you?")

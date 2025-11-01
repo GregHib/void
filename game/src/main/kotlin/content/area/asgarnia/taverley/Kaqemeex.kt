@@ -9,25 +9,22 @@ import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class Kaqemeex : Script {
 
     init {
         npcOperate("Talk-to", "kaqemeex") {
-            when (player.quest("druidic_ritual")) {
+            when (quest("druidic_ritual")) {
                 "unstarted" -> {
                     player<Neutral>("Hello there.")
                     npc<Quiz>("What brings you to our holy monument?")
@@ -78,16 +75,16 @@ class Kaqemeex : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.startedQuest() {
+    suspend fun Player.startedQuest() {
         npc<Neutral>("That used to be OUR stone circle. Unfortunately, many many years ago, dark wizards cast a wicked spell upon it so that they could corrupt its power for their own evil ends.")
         npc<Neutral>("When they cursed the rocks for their rituals they made them useless to us and our magics. We require a brave adventurer to go on a quest for us to help purify the circle of Varrock.")
         choice("Start the Druidic Ritual quest?") {
             option("Yes.") {
                 player<Neutral>("Okay, I will try and help.")
-                player["druidic_ritual"] = "started"
-                player.refreshQuestJournal()
+                set("druidic_ritual", "started")
+                refreshQuestJournal()
                 npc<Neutral>("Excellent. Go to the village south of this place and speak to my fellow druid, Sanfew, who is working on the purification ritual. He knows what is required to complete it.")
-                player.refreshQuestJournal()
+                refreshQuestJournal()
                 player<Neutral>("Will do.")
             }
             option("No.") {
@@ -97,19 +94,19 @@ class Kaqemeex : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.started() {
+    suspend fun Player.started() {
         player<Neutral>("Hello there.")
         npc<Neutral>("Hello again, adventurer. You will need to speak to my fellow druid Sanfew in the village south of here to continue in your quest.")
         player<Happy>("Okay, thanks.")
     }
 
-    suspend fun SuspendableContext<Player>.kaqemeex() {
+    suspend fun Player.kaqemeex() {
         player<Neutral>("Hello there.")
         npc<Neutral>("I have word from Sanfew that you have been very helpful in assisting him with his preparations for the purification ritual. As promised I will now teach you the ancient arts of Herblore.")
         questComplete()
     }
 
-    suspend fun SuspendableContext<Player>.completed() {
+    suspend fun Player.completed() {
         player<Neutral>("Hello there.")
         npc<Neutral>("Hello again. How is the Herblore going?")
         choice {
@@ -134,12 +131,12 @@ class Kaqemeex : Script {
                 npc<Happy>("Good luck with your Herblore practices, and a good day to you.")
                 player<Happy>("Thanks for your help.")
             }
-            option<Quiz>("May I buy a Herblore skillcape, please?", filter = { player.hasMax(Skill.Herblore, 99) }) {
-                if (player.inventory.spaces < 2) {
+            option<Quiz>("May I buy a Herblore skillcape, please?", filter = { hasMax(Skill.Herblore, 99) }) {
+                if (inventory.spaces < 2) {
                     npc<Sad>("Unfortunately all Skillcapes are only available with a free hood; it's part of a skill promotion deal - buy one get one free, you know. So you'll need to free up some inventory space before I can sell you one.")
                     return@option
                 }
-                if (!player.inventory.contains("coins", 99000)) {
+                if (!inventory.contains("coins", 99000)) {
                     npc<Sad>("Most certainly, but I must ask for a donation of 99,000 coins to cover the expense of the cape.")
                     return@option
                 }
@@ -150,13 +147,13 @@ class Kaqemeex : Script {
                         npc<Neutral>("Not at all; there are many other adventurers who would love the opportunity to purchase such a prestigious item. You can find me here if you change your mind.")
                     }
                     option<Happy>("Okay, here's 99,000 coins.") {
-                        player.inventory.transaction {
+                        inventory.transaction {
                             add("herblore_cape")
                             add("herblore_hood")
                             remove("coins", 99000)
                         }
-                        when (player.inventory.transaction.error) {
-                            TransactionError.None -> npc<Happy>("Good luck to you, ${player.name}.")
+                        when (inventory.transaction.error) {
+                            TransactionError.None -> npc<Happy>("Good luck to you, $name.")
                             is TransactionError.Deficient -> {
                                 player<Upset>("But, unfortunately, I was mistaken.")
                                 npc<Neutral>("Well, come back and see me when you do.")
@@ -168,22 +165,22 @@ class Kaqemeex : Script {
                     }
                 }
             }
-            option<Quiz>("What must I do to wear a Herblore skillcape?", filter = { !player.hasMax(Skill.Herblore, 99) }) {
+            option<Quiz>("What must I do to wear a Herblore skillcape?", filter = { !hasMax(Skill.Herblore, 99) }) {
                 npc<Neutral>("To earn the right to wear any skillcape you need to have mastered that skill to the highest level possible and it is no different for Herblore.")
                 npc<Neutral>("With the cape equipped the Nardah Herbalist will create unfinished potions for you and you may search the cape for a pestle and mortar. When you have achieved a level of 99, come back and talk to me again.")
             }
         }
     }
 
-    fun Context<Player>.questComplete() {
-        AuditLog.event(player, "quest_completed", "druidic_ritual")
-        player["druidic_ritual"] = "completed"
-        player.jingle("quest_complete_1")
-        player.experience.add(Skill.Herblore, 250.0)
-        player.refreshQuestJournal()
-        player.inc("quest_points", 4)
-        player.softQueue("quest_complete", 1) {
-            player.questComplete(
+    fun Player.questComplete() {
+        AuditLog.event(this, "quest_completed", "druidic_ritual")
+        set("druidic_ritual", "completed")
+        jingle("quest_complete_1")
+        experience.add(Skill.Herblore, 250.0)
+        refreshQuestJournal()
+        inc("quest_points", 4)
+        softQueue("quest_complete", 1) {
+            questComplete(
                 "Druidic Ritual",
                 "4 Quest Points",
                 "Access to the Herblore Skill",

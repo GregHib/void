@@ -9,3 +9,8 @@ suspend fun Context<Player>.nameEntry(text: String): String {
     player.sendScript("name_entry", text)
     return NameSuspension.get(player)
 }
+
+suspend fun Player.nameEntry(text: String): String {
+    sendScript("name_entry", text)
+    return NameSuspension.get(this)
+}

@@ -111,3 +111,5 @@ class Cutscene(
 }
 
 fun Context<Player>.startCutscene(name: String, region: Region = Region.EMPTY): Cutscene = Cutscene(player, name, region)
+
+fun Player.startCutscene(name: String, region: Region = Region.EMPTY): Cutscene = Cutscene(this, name, region)

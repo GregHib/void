@@ -39,3 +39,16 @@ suspend fun TargetInteraction<Player, NPC>.buy(item: String, cost: Int, message:
     }
     return false
 }
+
+suspend fun Player.buy(item: String, cost: Int, message: String = "Oh dear. I don't seem to have enough money."): Boolean {
+    inventory.transaction {
+        remove("coins", cost)
+        add(item)
+    }
+    when (inventory.transaction.error) {
+        is TransactionError.Full -> inventoryFull()
+        TransactionError.None -> return true
+        else -> player<Sad>(message)
+    }
+    return false
+}

@@ -5,11 +5,10 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.RollEyes
-import content.entity.player.dialogue.type.PlayerChoice
+import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 class Roddeck : Script {
 
@@ -32,10 +31,10 @@ class Roddeck : Script {
         }
     }
 
-    suspend fun PlayerChoice.anyAdvice(): Unit = option<Quiz>("Can you offer me any advice?") {
+    fun ChoiceOption.anyAdvice(): Unit = option<Quiz>("Can you offer me any advice?") {
         npc<Chuckle>("Advice? Certainly, certainly! Click my Advisor button whenever you have a question.")
     }
 
-    suspend fun PlayerChoice.noThanks(): Unit = option<RollEyes>("Nothing, thanks.") {
+    fun ChoiceOption.noThanks(): Unit = option<RollEyes>("Nothing, thanks.") {
     }
 }

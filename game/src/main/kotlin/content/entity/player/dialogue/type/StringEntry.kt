@@ -9,3 +9,8 @@ suspend fun Context<Player>.stringEntry(text: String): String {
     player.sendScript("string_entry", text)
     return StringSuspension.get(player)
 }
+
+suspend fun Player.stringEntry(text: String): String {
+    sendScript("string_entry", text)
+    return StringSuspension.get(this)
+}

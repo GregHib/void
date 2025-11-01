@@ -9,3 +9,8 @@ suspend fun Context<Player>.intEntry(text: String): Int {
     player.sendScript("int_entry", text)
     return IntSuspension.get(player)
 }
+
+suspend fun Player.intEntry(text: String): Int {
+    sendScript("int_entry", text)
+    return IntSuspension.get(this)
+}

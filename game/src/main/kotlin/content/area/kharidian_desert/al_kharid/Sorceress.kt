@@ -11,23 +11,22 @@ import content.entity.proj.shoot
 import content.entity.sound.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
 class Sorceress : Script {
     init {
-        npcOperate("Talk-to", "sorceress") {
+        npcOperate("Talk-to", "sorceress") { (target) ->
             npc<Quiz>("Who are you and what do you want?")
             choice {
                 option<Angry>("None of your business!") {
                     player<Talk>("I go where I like and do what I like.")
                     npc<Angry>("Not in my house. Be gone!")
-                    curse()
+                    curse(target)
                 }
                 option<EvilLaugh>("I'm here to kill you!") {
                     npc<Angry>("I think not!")
-                    curse()
+                    curse(target)
                 }
                 option<Talk>("Can I have some sq'irks please?") {
                     npc<Talk>("What do you want them for?")
@@ -41,17 +40,17 @@ class Sorceress : Script {
         }
     }
 
-    private suspend fun NPCOption<Player>.curse() {
+    private suspend fun Player.curse(target: NPC) {
         target.say("Be gone, intruder!")
-        player.sound("curse_cast")
-        player.sound("curse_impact", delay = 100)
+        sound("curse_cast")
+        sound("curse_impact", delay = 100)
         target.gfx("curse_cast")
-        player.gfx("curse_impact", delay = 100)
-        target.shoot("curse", player)
+        gfx("curse_impact", delay = 100)
+        target.shoot("curse", this)
         delay(3)
-        player.gfx("puff", delay = 10)
-        player.sound("smoke_puff", delay = 10)
+        gfx("puff", delay = 10)
+        sound("smoke_puff", delay = 10)
         delay(1)
-        player.tele(3321, 3143, 0)
+        tele(3321, 3143, 0)
     }
 }

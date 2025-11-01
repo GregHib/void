@@ -11,7 +11,6 @@ import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.holdsItem
@@ -20,7 +19,6 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class GuardianMummy : Script {
 
@@ -30,7 +28,7 @@ class GuardianMummy : Script {
 
     init {
         npcOperate("Talk-to", "guardian_mummy") {
-            if (player.holdsItem("pharaohs_sceptre")) {
+            if (holdsItem("pharaohs_sceptre")) {
                 sceptreRecharging()
                 return@npcOperate
             }
@@ -43,11 +41,11 @@ class GuardianMummy : Script {
         }
 
         itemOnNPCOperate("pharaohs_sceptre_*", "guardian_mummy") {
-            discharge(itemSlot)
+            player.discharge(itemSlot)
         }
 
         itemOnNPCOperate("pharaohs_sceptre", "guardian_mummy") {
-            sceptreRecharging()
+            player.sceptreRecharging()
         }
 
         itemOnNPCOperate("*", "guardian_mummy") {
@@ -55,7 +53,7 @@ class GuardianMummy : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.notAnother() {
+    suspend fun Player.notAnother() {
         npc<Talk>("*sigh* Not another one.")
         player<Quiz>("Another what?")
         npc<Talk>("Another 'archaeologist'.")
@@ -66,7 +64,7 @@ class GuardianMummy : Script {
         playPyramidPlunder()
     }
 
-    suspend fun SuspendableContext<Player>.playPyramidPlunder() {
+    suspend fun Player.playPyramidPlunder() {
         choice("Play the 'Pyramid Plunder' minigame?") {
             option<Talk>("That sounds like fun, what do I do?") {
                 soundsLikeFun()
@@ -78,7 +76,7 @@ class GuardianMummy : Script {
                 iKnowWhatImDoing()
             }
             option("I want to charge or remove charges from my sceptre.") {
-                if (player.holdsItem("pharaohs_sceptre")) {
+                if (holdsItem("pharaohs_sceptre")) {
                     sceptreRecharging()
                 } else {
                     sceptreDischarging()
@@ -87,33 +85,33 @@ class GuardianMummy : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.itIsDone() {
+    suspend fun Player.itIsDone() {
         npc<Talk>("It is done.")
         playPyramidPlunder()
     }
 
-    suspend fun SuspendableContext<Player>.sceptreRecharging() {
+    suspend fun Player.sceptreRecharging() {
         player<Talk>("This sceptre seems to have run out of charges.")
         npc<Talk>("You shouldn't have that thing in the first place, thief!")
         player<Talk>("If I gave you back some of the artefacts I've taken from the tomb, would you recharge the sceptre for me.")
         npc<Talk>("*sigh* Oh alright. But only if the sceptre is fully empty, I'm not wasting the King's magic...")
         choice("Recharge the sceptre with...") {
             option("Gold artefacts?") {
-                if (player.inventory.chargeSceptre(6, gold)) {
+                if (inventory.chargeSceptre(6, gold)) {
                     statement("You recharge your sceptre with gold artefacts.")
                 } else {
                     npc<Talk>("You need to have 6 gold artefacts to recharge your sceptre.")
                 }
             }
             option("Stone artefacts?") {
-                if (player.inventory.chargeSceptre(12, stone)) {
+                if (inventory.chargeSceptre(12, stone)) {
                     statement("You recharge your sceptre with stone artefacts.")
                 } else {
                     npc<Talk>("You need to have 12 stone artefacts to recharge your sceptre.")
                 }
             }
             option("Pottery and Ivory artefacts?") {
-                if (player.inventory.chargeSceptre(24, ivory)) {
+                if (inventory.chargeSceptre(24, ivory)) {
                     statement("You recharge your sceptre with stone artefacts.")
                 } else {
                     npc<Talk>("You need to have 24 pottery or ivory artefacts to recharge your sceptre.")
@@ -125,8 +123,8 @@ class GuardianMummy : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.sceptreDischarging() {
-        val count = player.inventory.items.count { it.id.startsWith("pharaohs_sceptre_") }
+    suspend fun Player.sceptreDischarging() {
+        val count = inventory.items.count { it.id.startsWith("pharaohs_sceptre_") }
         if (count < 0) {
             player<Talk>("I want to charge my sceptre.")
             npc<Uncertain>("What sceptre?")
@@ -135,14 +133,14 @@ class GuardianMummy : Script {
             return
         }
         if (count == 1) {
-            val index = player.inventory.items.indexOfFirst { it.id.startsWith("pharaohs_sceptre_") }
+            val index = inventory.items.indexOfFirst { it.id.startsWith("pharaohs_sceptre_") }
             discharge(index)
             return
         }
         npc<Talk>("If I must. You have $count sceptres with charges. Do you want them all emptied?")
         choice {
             option("Yes, uncharge all my sceptres.") {
-                val success = player.inventory.transaction {
+                val success = inventory.transaction {
                     for (i in 0 until count) {
                         val index = inventory.items.indexOfFirst { it.id.startsWith("pharaohs_sceptre_") }
                         replace(index, inventory[index].id, "pharaohs_sceptre")
@@ -170,7 +168,7 @@ class GuardianMummy : Script {
         replace("pharaohs_sceptre", "pharaohs_sceptre_3")
     }
 
-    suspend fun SuspendableContext<Player>.soundsLikeFun() {
+    suspend fun Player.soundsLikeFun() {
         npc<Talk>("You have five minutes to explore the treasure rooms and collect as many artefacts as you can.")
         npc<Talk>("The artefacts are in the urns, chests and sarcophagi found in each room.")
         npc<Talk>("There are eight treasure rooms, each subsequent room requires higher thieving skills to both enter the room and thieve from the urns and other containers.")
@@ -182,7 +180,7 @@ class GuardianMummy : Script {
         anymoreQuestions("How do I get the artefacts?")
     }
 
-    suspend fun SuspendableContext<Player>.anymoreQuestions(option: String) {
+    suspend fun Player.anymoreQuestions(option: String) {
         choice("Do you have any more questions?") {
             option<Talk>("How do I leave the game?") {
                 howDoILeave()
@@ -199,18 +197,18 @@ class GuardianMummy : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.iKnowWhatImDoing() {
+    suspend fun Player.iKnowWhatImDoing() {
         statement("Pyramid Plunder is not currently implemented.")
         //    npc<Talk>("Fine, I'll take you to the first room now...")
     }
 
-    suspend fun SuspendableContext<Player>.howDoILeave() {
+    suspend fun Player.howDoILeave() {
         npc<Talk>("If at any point you decide you need to leave just use a glowing door.")
         npc<Talk>("The game will end and you will be taken out of the pyramid.")
         anymoreQuestions("What about the chests and sarcophagi?")
     }
 
-    suspend fun SuspendableContext<Player>.howToGetArtefacts() {
+    suspend fun Player.howToGetArtefacts() {
         npc<Talk>("The artefacts are in the urns, chests and sarcophagi.")
         npc<Talk>("Urns contain snakes that guard them.")
         npc<Talk>("The sarcophagi take some strength to open. They take a while to open.")
@@ -219,7 +217,7 @@ class GuardianMummy : Script {
         anymoreQuestions("What about the chests and sarcophagi?")
     }
 
-    suspend fun SuspendableContext<Player>.whatToDoWithArtefacts() {
+    suspend fun Player.whatToDoWithArtefacts() {
         npc<Talk>("There are a number of different artefacts, of three main types. The least valuable are the pottery statuettes and scarabs, and the ivory combs.")
         npc<Talk>("Next are the stone scarabs, statuettes and seals, and finally the gold versions of those artefacts.")
         npc<Talk>("They are not old, but are well made.")
@@ -231,7 +229,7 @@ class GuardianMummy : Script {
         anymoreQuestionsSceptre()
     }
 
-    suspend fun SuspendableContext<Player>.anymoreQuestionsSceptre() {
+    suspend fun Player.anymoreQuestionsSceptre() {
         choice("Do you have any more questions?") {
             option<Talk>("How do I leave the game?") {
                 howDoILeave()
@@ -248,14 +246,14 @@ class GuardianMummy : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.leaveTheTomb() {
+    suspend fun Player.leaveTheTomb() {
         choice("Leave the Tomb?") {
             option("Yes, I'm out of here.")
             option("Ah, I think I'll stay a little longer.")
         }
     }
 
-    suspend fun SuspendableContext<Player>.whereDidYouHearAboutThat() {
+    suspend fun Player.whereDidYouHearAboutThat() {
         npc<Talk>("Where did you hear about that?")
         player<Talk>("I couldn't possibly say.")
         npc<Talk>("It's the only genuinely valuable artefact in this place.")
@@ -265,8 +263,8 @@ class GuardianMummy : Script {
         anymoreQuestions("What about the chests and sarcophagi?")
     }
 
-    suspend fun SuspendableContext<Player>.discharge(index: Int) {
-        if (player.inventory.replace(index, player.inventory[index].id, "pharaohs_sceptre")) {
+    suspend fun Player.discharge(index: Int) {
+        if (inventory.replace(index, inventory[index].id, "pharaohs_sceptre")) {
             itIsDone()
         }
     }

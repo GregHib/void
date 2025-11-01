@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 class Doomsayer : Script {
 
@@ -29,8 +28,8 @@ class Doomsayer : Script {
             npc<Talk>("If you see the signs often enough, then you can turn them off; by that time you likely know what the area has in store for you.")
             player<Quiz>("But what if I want to see the warnings again?")
             npc<Happy>("That's why I'm waiting here!")
-            player["doom_task"] = true
-            if (player.variables.data.keys.none { it.startsWith("warning_") }) {
+            set("doom_task", true)
+            if (variables.data.keys.none { it.startsWith("warning_") }) {
                 npc<Talk>("If you want to see the warning messages again, I can turn them back on for you.")
                 player<Happy>("Thanks, I'll remember that if I see any warning messages.")
                 npc<Happy>("You're welcome!")
@@ -39,7 +38,7 @@ class Doomsayer : Script {
             npc<Quiz>("Do you need to turn on any warnings right now?")
             choice {
                 option<Talk>("Yes, I do.") {
-                    player.open("doomsayer_warning_messages")
+                    open("doomsayer_warning_messages")
                 }
                 option<Talk>("Not right now.") {
                     npc<Happy>("Ok, keep an eye out for the messages though!")
@@ -49,7 +48,7 @@ class Doomsayer : Script {
         }
 
         npcOperate("Toggle-warnings", "doomsayer") {
-            player.open("doomsayer_warning_messages")
+            open("doomsayer_warning_messages")
         }
 
         interfaceOption("Toggle", "*", "doomsayer_warning_messages") {

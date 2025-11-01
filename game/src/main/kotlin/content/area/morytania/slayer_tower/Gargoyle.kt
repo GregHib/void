@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.inventory
@@ -18,12 +17,12 @@ import world.gregs.voidps.engine.inv.inventory
 class Gargoyle : Script {
 
     init {
-        npcOperate("Smash", "gargoyle") {
-            if (target.inCombat && target.attacker != player) {
-                player.message("Someone else is fighting that.")
+        npcOperate("Smash", "gargoyle") { (target) ->
+            if (target.inCombat && target.attacker != this) {
+                message("Someone else is fighting that.")
                 return@npcOperate
             }
-            smash(player, target)
+            smash(this, target)
         }
 
         itemOnNPCOperate("rock_hammer", "gargoyle") {

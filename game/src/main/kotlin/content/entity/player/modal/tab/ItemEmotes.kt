@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.player.playerOperate
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -69,12 +68,12 @@ class ItemEmotes : Script {
         }
 
         playerOperate("Whack") {
-            if (player.weapon.id == "rubber_chicken") {
-                player.sound("rubber_chicken_whack")
-                player.animDelay("rubber_chicken_whack")
+            if (weapon.id == "rubber_chicken") {
+                sound("rubber_chicken_whack")
+                animDelay("rubber_chicken_whack")
             } else {
                 // todo player.playSound("")
-                player.animDelay("easter_carrot_whack")
+                animDelay("easter_carrot_whack")
             }
         }
 

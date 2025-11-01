@@ -8,7 +8,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -20,17 +19,17 @@ class PenguinKeeper : Script {
         npcOperate("Talk-to", "penguin_keeper_ardougne") {
             player<Talk>("Hello there. how are the penguins doing today?")
             npc<Happy>("They are doing fine, thanks.")
-            if (player.has(Skill.Summoning, 30) && !player.ownsItem("penguin_egg")) {
+            if (has(Skill.Summoning, 30) && !ownsItem("penguin_egg")) {
                 npc<Quiz>("Actually, you might be able to help me with something - if you are interested.")
                 player<Quiz>("What do you mean?")
                 var penguinCount = 0
-                if (player.ownsItem("penguin_grey")) {
+                if (ownsItem("penguin_grey")) {
                     penguinCount++
                 }
-                if (player.ownsItem("penguin_brown")) {
+                if (ownsItem("penguin_brown")) {
                     penguinCount++
                 }
-                if (player.ownsItem("penguin_blue")) {
+                if (ownsItem("penguin_blue")) {
                     penguinCount++
                 }
                 when (penguinCount) {
@@ -51,8 +50,8 @@ class PenguinKeeper : Script {
                 choice {
                     option<Talk>("Yes, of course.") {
                         npc<Happy>("Wonderful!")
-                        if (!player.inventory.add("penguin_egg")) {
-                            player.inventoryFull()
+                        if (!inventory.add("penguin_egg")) {
+                            inventoryFull()
                             return@option
                         }
                         npc<Happy>("Here you go - this egg will hatch into a baby penguin.")

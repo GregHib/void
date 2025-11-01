@@ -9,27 +9,27 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
 class LumbridgeCatacombs : Script {
 
     init {
-        objectOperate("Take", "*_demon_statuette") {
-            if (player[def.stringId, "take"] != "take") {
-                player.message("You've already taken this statuette.")
+        objectOperate("Take", "*_demon_statuette") { (target) ->
+            val def = target.def(this)
+            if (get(def.stringId, "take") != "take") {
+                message("You've already taken this statuette.")
                 return@objectOperate
             }
             statement("The air grows tense as you approach the statuette. You sense a hostile presence nearby...")
 
             choice {
                 option("Take the statuette.") {
-                    if (player.inventory.add(def.stringId)) {
-                        player[def.stringId] = "plinth"
-                        player.message("You carefully take the ${def.stringId}")
+                    if (inventory.add(def.stringId)) {
+                        set(def.stringId, "plinth")
+                        message("You carefully take the ${def.stringId}")
                     } else {
-                        player.inventoryFull()
+                        inventoryFull()
                     }
                 }
                 option("Leave it alone.")
@@ -37,11 +37,11 @@ class LumbridgeCatacombs : Script {
         }
 
         objectOperate("Take", "diamond_demon_statuette") {
-            if (player["diamond_demon_statuette", "take_shield"] != "take") {
+            if (get("diamond_demon_statuette", "take_shield") != "take") {
                 return@objectOperate
             }
-            if (player.inventory.add("diamond_demon_statuette")) {
-                player["diamond_demon_statuette"] = "touch"
+            if (inventory.add("diamond_demon_statuette")) {
+                set("diamond_demon_statuette", "touch")
             }
         }
 

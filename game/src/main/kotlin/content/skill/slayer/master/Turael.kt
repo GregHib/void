@@ -12,8 +12,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.config.SlayerTaskDefinition
 import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.inject
@@ -26,7 +24,7 @@ class Turael : Script {
 
     init {
         npcOperate("Talk-to", "turael") {
-            if (player.slayerTasks == 0) {
+            if (slayerTasks == 0) {
                 player<Quiz>("Who are you?")
                 npc<Talk>("I'm one of the elite Slayer Masters.")
                 choice {
@@ -46,7 +44,7 @@ class Turael : Script {
             npc<Talk>("'Ello, and what are you after then?")
             choice {
                 option<Talk>("I need another assignment.") {
-                    if (player.combatLevel <= 70) {
+                    if (combatLevel <= 70) {
                         assignTask()
                         return@option
                     }
@@ -59,9 +57,9 @@ class Turael : Script {
                     }
                 }
                 option<Quiz>("Have you any rewards for me, or anything to trade?") {
-                    player.open("slayer_rewards_learn")
+                    open("slayer_rewards_learn")
                 }
-                option<Talk>("I'm here about blessed axes again.", filter = { player.questCompleted("animal_magnetism") })
+                option<Talk>("I'm here about blessed axes again.", filter = { questCompleted("animal_magnetism") })
             }
         }
 
@@ -70,27 +68,27 @@ class Turael : Script {
         }
 
         npcOperate("Trade", "turael") {
-            if (player.contains("broader_fletching")) {
-                player.openShop("slayer_equipment_broads")
+            if (contains("broader_fletching")) {
+                openShop("slayer_equipment_broads")
             } else {
-                player.openShop("slayer_equipment")
+                openShop("slayer_equipment")
             }
         }
 
         npcOperate("Rewards", "turael") {
-            player.open("slayer_rewards_learn")
+            open("slayer_rewards_learn")
         }
     }
 
-    suspend fun NPCOption<Player>.assignTask() {
-        if (player.slayerTask == "nothing") {
+    suspend fun Player.assignTask() {
+        if (slayerTask == "nothing") {
             roll()
             return
         }
-        npc<Talk>("You're still hunting ${player.slayerTask.toSentenceCase()}, you have ${player.slayerTaskRemaining} to go.")
-        if (player.slayerMaster != "turael") {
+        npc<Talk>("You're still hunting ${slayerTask.toSentenceCase()}, you have $slayerTaskRemaining to go.")
+        if (slayerMaster != "turael") {
             npc<Talk>("Although, it's not an assignment that I'd normally give... I guess I could give you a new assignment, if you'd like.")
-            npc<Talk>("If you do get a new one, you will reset your task streak of ${player.slayerStreak}. Is that okay?")
+            npc<Talk>("If you do get a new one, you will reset your task streak of $slayerStreak. Is that okay?")
         } else {
             npc<Quiz>("Although, it's a tougher assignment that I'd normally give... I guess I could give you a new assignment, id you'd like.")
         }
@@ -102,8 +100,8 @@ class Turael : Script {
         }
     }
 
-    suspend fun NPCOption<Player>.roll() {
-        val (definition, amount) = assign(player)
+    suspend fun Player.roll() {
+        val (definition, amount) = assign(this)
         npc<Happy>("Excellent, you're doing great. Your new task is to kill $amount ${definition.type.toSentenceCase()}.")
         choice {
             option<Quiz>("Got any tips for me?") {
@@ -113,17 +111,17 @@ class Turael : Script {
         }
     }
 
-    suspend fun NPCOption<Player>.teachMe() {
+    suspend fun Player.teachMe() {
         choice {
             option<Talk>("Wow, can you teach me?") {
                 npc<Uncertain>("Hmmm well I'm not so sure...")
                 player<Talk>("Pleeeaasssse!")
                 npc<Talk>("Oh okay then, you twisted my arm. You'll have to train against specific groups of creatures.")
                 player<Quiz>("Okay, what's first?")
-                val (definition, amount) = assign(player)
+                val (definition, amount) = assign(this)
                 npc<Talk>("We'll start you off hunting ${definition.type.toSentenceCase()}, you'll need to kill $amount of them.")
                 npc<Talk>("You'll also need this enchanted gem, it allows Slayer Masters like myself to contact you and update you on your progress. Don't worry if you lose it, you can buy another from any Slayer Master.")
-                player.inventory.add("enchanted_gem")
+                inventory.add("enchanted_gem")
                 choice {
                     option("Got any tips for me?") {
                         npc<Talk>(definition.tip)

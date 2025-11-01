@@ -1,16 +1,11 @@
 package content.area.misthalin.varrock.grand_exchange
 
 import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.ChoiceBuilder
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.*
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -66,7 +61,7 @@ class BobBarterHerbs : Script {
 
     init {
         npcOperate("Talk-to", "bob_barter") {
-            if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
+            if (Settings["grandExchange.tutorial.required", false] && !questCompleted("grand_exchange_tutorial")) {
                 player<Talk>("Hello.")
                 npc<Talk>("Mate, I haven't got time for you yet. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a simpler, plain lesson.")
                 return@npcOperate
@@ -94,16 +89,16 @@ class BobBarterHerbs : Script {
         }
 
         npcOperate("Info-herbs", "bob_barter") {
-            if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
+            if (Settings["grandExchange.tutorial.required", false] && !questCompleted("grand_exchange_tutorial")) {
                 npc<Talk>("You'll need a tiny bit of training first, chum. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a smaller, plain lesson.")
                 return@npcOperate
             }
-            player["common_item_costs"] = "herbs"
-            player.open("common_item_costs")
+            set("common_item_costs", "herbs")
+            open("common_item_costs")
         }
 
         npcOperate("Decant", "bob_barter") {
-            if (Settings["grandExchange.tutorial.required", false] && !player.questCompleted("grand_exchange_tutorial")) {
+            if (Settings["grandExchange.tutorial.required", false] && !questCompleted("grand_exchange_tutorial")) {
                 player<Talk>("Hello.")
                 npc<Talk>("Mate, I haven't got time for you yet. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a simpler, plain lesson.")
                 return@npcOperate
@@ -112,16 +107,16 @@ class BobBarterHerbs : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.showPrices() {
+    fun ChoiceOption.showPrices() {
         option<Talk>("Can you show me the prices for herbs?") {
-            player["common_item_costs"] = "herbs"
-            player.open("common_item_costs")
+            set("common_item_costs", "herbs")
+            open("common_item_costs")
         }
     }
 
-    suspend fun NPCOption<Player>.decantPotions() {
+    suspend fun Player.decantPotions() {
         // Check if the player has any potions to decant
-        player.inventory.transaction {
+        inventory.transaction {
             val potionMap = mutableMapOf<String, Int>()
             for (index in inventory.items.indices) {
                 val item = inventory.items[index]
@@ -142,7 +137,7 @@ class BobBarterHerbs : Script {
                 }
             }
         }
-        when (player.inventory.transaction.error) {
+        when (inventory.transaction.error) {
             TransactionError.Invalid -> npc<Sad>("I wasn't able to decant your potions.")
             TransactionError.None -> npc<Happy>("There you go, chum.")
             else -> npc<Uncertain>("Sorry, I can't do anything with those potions.")

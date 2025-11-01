@@ -9,7 +9,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
@@ -28,7 +27,7 @@ class Bob : Script {
                 }
                 option<Quiz>("I'd like to trade.") {
                     npc<Happy>("Great! I buy and sell pickaxes and hatchets. There are plenty to choose from, and I've some free samples too. Take your pick... or hatchet.")
-                    player.openShop("bobs_brilliant_axes")
+                    openShop("bobs_brilliant_axes")
                 }
                 option<Upset>("Can you repair my items for me?") {
                     npc<Quiz>("Of course I can, though the material may cost you. Just hand me the item and I'll have a look.")

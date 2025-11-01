@@ -6,27 +6,25 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class GhostlyPiper : Script {
 
     init {
         npcOperate("Talk-to", "ghostly_piper") {
-            if (player.equipped(EquipSlot.Amulet).id != "ghostspeak_amulet") {
+            if (equipped(EquipSlot.Amulet).id != "ghostspeak_amulet") {
                 npc<Pleased>("Woo, wooo. Woooo.")
-                player.message("The ghost seems barely aware of your existence,")
-                player.message("but you sense that resting here might recharge you for battle!")
+                message("The ghost seems barely aware of your existence,")
+                message("but you sense that resting here might recharge you for battle!")
                 return@npcOperate
             }
             choice()
         }
     }
 
-    suspend fun SuspendableContext<Player>.choice() {
+    suspend fun Player.choice() {
         choice {
             option<Quiz>("Who are you?") {
                 npc<Happy>("I play the pipes, to rouse the brave warriors of Saradomin for the fight!")

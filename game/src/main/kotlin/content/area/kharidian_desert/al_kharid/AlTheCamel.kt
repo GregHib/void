@@ -9,16 +9,12 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
@@ -31,14 +27,14 @@ class AlTheCamel : Script {
 
     init {
         npcOperate("Talk-to", "*camel") {
-            if (player.equipped(EquipSlot.Amulet).id == "camulet") {
+            if (equipped(EquipSlot.Amulet).id == "camulet") {
                 choice("What would you like to do?") {
                     option("Ask the camel about its dung.") {
                         dung()
                     }
                     option("Say something unpleasant.") {
                         insult()
-                        if (player["al_the_camel", false]) {
+                        if (get("al_the_camel", false)) {
                             listenTo()
                         } else {
                             talkingToMe()
@@ -48,7 +44,7 @@ class AlTheCamel : Script {
                 }
             } else {
                 insult()
-                player.message(
+                message(
                     when (random.nextInt(3)) {
                         0 -> "The camel turns its head and glares at you."
                         1 -> "The camel spits at you, and you jump back hurriedly.."
@@ -59,7 +55,7 @@ class AlTheCamel : Script {
         }
 
         objectOperate("Pick-up", "dung") {
-            if (!player.inventory.contains("bucket")) {
+            if (!inventory.contains("bucket")) {
                 player<Talk>("I'm not picking that up. I'll need a container...")
                 return@objectOperate
             }
@@ -71,27 +67,27 @@ class AlTheCamel : Script {
                 player<Quiz>("Surely there's something better I could use to pick up the dung.")
                 return@itemOnObjectOperate
             }
-            scoopPoop()
+            player.scoopPoop()
         }
     }
 
-    suspend fun SuspendableContext<Player>.bestOfLuck() {
+    suspend fun Player.bestOfLuck() {
         player<Talk>("Well, best of luck with that.")
         npc<Talk>("If you want to hear my poems once more, please come back again.")
     }
 
-    suspend fun SuspendableContext<Player>.noThankYou() {
+    suspend fun Player.noThankYou() {
         npc<Talk>("Ah, well. I shall return to writing poems to Elly's beauty.")
         whatDoesSheThink()
     }
 
-    suspend fun SuspendableContext<Player>.idLoveTo() {
+    suspend fun Player.idLoveTo() {
         npc<Talk>("That's so kind of you. Which one would you like to hear?")
         npc<Talk>("'Shall I compare thee to a desert's day' is my finest yet, but I've also composed others.")
         poems()
     }
 
-    suspend fun SuspendableContext<Player>.poems() {
+    suspend fun Player.poems() {
         choice("Select an Option") {
             option("Listen to 'Shall I compare thee to a desert's day'.") {
                 desertsDay(interrupt = false)
@@ -102,7 +98,7 @@ class AlTheCamel : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.justToSay() {
+    suspend fun Player.justToSay() {
         npc<Upset>("I wrote this poem when I went to the oasis to nibble at a tree, then discovered I'd left nothing for Elly to nibble. I was distraught.")
         npc<Neutral>("This Is Just To Say")
         npc<Neutral>("I have nibbled the cacti that were by the oasis,")
@@ -112,7 +108,7 @@ class AlTheCamel : Script {
         whatDoesSheThink()
     }
 
-    suspend fun SuspendableContext<Player>.desertsDay(interrupt: Boolean) {
+    suspend fun Player.desertsDay(interrupt: Boolean) {
         if (!interrupt) {
             npc<Talk>("That's my favourite poem. Ahem...")
         }
@@ -128,7 +124,7 @@ class AlTheCamel : Script {
             npc<Talk>("But I've only got six lines left!")
             player<Talk>("That's six too many. If I really want to hear your poetry, I'll tell you, okay?")
             npc<Talk>("Very well. Come back and talk to me if you want to hear more.")
-            player["al_the_camel"] = true
+            set("al_the_camel", true)
         } else {
             npc<Talk>("But thine eternal desert shall not fade Nor lose possession of that sand thou owest;")
             npc<Talk>("Nor Zamorak brag thou art in his shades, When in eternal lines to sand thou growest,")
@@ -138,7 +134,7 @@ class AlTheCamel : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.whatDoesSheThink() {
+    suspend fun Player.whatDoesSheThink() {
         player<Quiz>("What does she think of your poems?")
         npc<Talk>("She's never heard them.")
         player<Talk>("Why not?")
@@ -155,23 +151,23 @@ class AlTheCamel : Script {
         }
     }
 
-    suspend fun NPCOption<Player>.dung() {
+    suspend fun Player.dung() {
         player<Pleased>("I'm sorry to bother you, but could you spare me a little dung?")
         npc<Talk>("Are you serious?")
         player<Neutral>("Oh yes. If you'd be so kind...")
         npc<Talk>("Well, just you close your eyes first. I'm not doing it while you're watching me!")
-        player.open("fade_out")
-        player.interfaces.sendText("fade_out", "text", "<red>You close your eyes...")
+        open("fade_out")
+        interfaces.sendText("fade_out", "text", "<red>You close your eyes...")
         delay(2)
-        val tile = player.get<NPC>("dialogue_target")?.tile ?: player.tile.add(Direction.all.random())
+        val tile = get<NPC>("dialogue_target")?.tile ?: tile.add(Direction.all.random())
         objects.add("dung", tile, ticks = TimeUnit.SECONDS.toTicks(30))
         delay(2)
-        player.open("fade_in")
+        open("fade_in")
         npc<Talk>("I hope that's what you wanted!")
         player<Talk>("Ohhh yes. Lovely.")
     }
 
-    suspend fun NPCOption<Player>.listenTo() {
+    suspend fun Player.listenTo() {
         npc<Neutral>("Oh, it's you again. Have you come back to listen to my poems?")
         choice {
             option<Pleased>("I'd love to!") {
@@ -183,7 +179,7 @@ class AlTheCamel : Script {
         }
     }
 
-    suspend fun NPCOption<Player>.talkingToMe() {
+    suspend fun Player.talkingToMe() {
         npc<Talk>("Sorry, were you saying something to me?")
         player<Talk>("No, er, nothing important.")
         npc<Sad>("Never mind, it is unimportant when I have such important matters weighing on my soul.")
@@ -195,7 +191,7 @@ class AlTheCamel : Script {
         desertsDay(interrupt = true)
     }
 
-    suspend fun NPCOption<Player>.insult() {
+    suspend fun Player.insult() {
         player<Talk>(
             when (random.nextInt(3)) {
                 0 -> "Mmm... looks like that camel would make a nice kebab."
@@ -205,13 +201,13 @@ class AlTheCamel : Script {
         )
     }
 
-    suspend fun SuspendableContext<Player>.scoopPoop() {
-        if (!player.inventory.replace("bucket", "ugthanki_dung")) {
+    suspend fun Player.scoopPoop() {
+        if (!inventory.replace("bucket", "ugthanki_dung")) {
             return
         }
-        player.anim("fill_bucket")
-        player.message("You scoop up some camel dung into the bucket.")
-        if (player.inventory.contains("ugthanki_dung", 28)) {
+        anim("fill_bucket")
+        message("You scoop up some camel dung into the bucket.")
+        if (inventory.contains("ugthanki_dung", 28)) {
             player<Talk>("Phew - that's enough dung.")
         }
     }

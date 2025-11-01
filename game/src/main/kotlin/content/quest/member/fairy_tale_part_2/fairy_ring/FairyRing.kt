@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.ListValues
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.type.Tile
@@ -31,28 +30,28 @@ class FairyRing : Script {
         get() = "${get("fairy_ring_code_1", "a")}${get("fairy_ring_code_2", "j")}${get("fairy_ring_code_3", "r")}"
 
     init {
-        objectOperate("Use", "fairy_ring_*") {
-            if (player.quest("fairy_tale_ii") == "unstarted") {
-                player.message("You don't have permission to use that fairy ring.")
+        objectOperate("Use", "fairy_ring_*") { (target) ->
+            if (quest("fairy_tale_ii") == "unstarted") {
+                message("You don't have permission to use that fairy ring.")
                 return@objectOperate
             }
-            if (!player.questCompleted("fairy_tale_iii") && player.weapon.id != "dramen_staff") {
-                player.message("The fairy ring only works for those who wield fairy magic.")
+            if (!questCompleted("fairy_tale_iii") && weapon.id != "dramen_staff") {
+                message("The fairy ring only works for those who wield fairy magic.")
                 return@objectOperate
             }
-            player.open("fairy_ring")
-            player.open("travel_log")
-            val code = StringSuspension.get(player)
+            open("fairy_ring")
+            open("travel_log")
+            val code = StringSuspension.get(this)
             val fairyRing = fairyRing.codes[code] ?: return@objectOperate
             if (fairyRing.tile == Tile.EMPTY) {
                 return@objectOperate
             }
-            player.closeMenu()
+            closeMenu()
             delay()
-            player.walkOverDelay(target.tile)
+            walkOverDelay(target.tile)
             delay()
-            Teleport.teleport(player, fairyRing.tile, "fairy_ring")
-            val list: MutableList<String> = player.getOrPut("travel_log_locations") { mutableListOf() }
+            Teleport.teleport(this, fairyRing.tile, "fairy_ring")
+            val list: MutableList<String> = getOrPut("travel_log_locations") { mutableListOf() }
             list.add(code)
         }
 

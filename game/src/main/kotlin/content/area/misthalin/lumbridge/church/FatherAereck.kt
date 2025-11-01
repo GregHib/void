@@ -7,19 +7,16 @@ import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class FatherAereck : Script {
 
     init {
         npcOperate("Talk-to", "father_aereck") {
-            when (player.quest("the_restless_ghost")) {
+            when (quest("the_restless_ghost")) {
                 "unstarted" -> {
                     npc<Happy>("Welcome to the church of holy Saradomin.")
                     choice {
@@ -28,8 +25,8 @@ class FatherAereck : Script {
                         option<Happy>("I'm looking for a quest.") {
                             npc<Happy>("That's lucky, I need someone to do a quest for me.")
                             if (startQuest("the_restless_ghost")) {
-                                player["the_restless_ghost"] = "started"
-                                player.refreshQuestJournal()
+                                set("the_restless_ghost", "started")
+                                refreshQuestJournal()
                                 player<Happy>("Okay, let me help then.")
                                 npc<Happy>("Thank you. The problem is, there is a ghost in the church graveyard. I would like you to get rid of it.")
                                 npc<Happy>("If you need any help, my friend Father Urhney is an expert on ghosts.")
@@ -55,20 +52,20 @@ class FatherAereck : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.started() {
+    suspend fun Player.started() {
         npc<Neutral>("Have you got rid of the ghost yet?")
         player<Sad>("I can't find Father Urhney at the moment.")
         npc<Happy>("Well, you can get to the swamp he lives in by going south through the cemetery.")
         npc<Happy>("You'll have to go right into the far western depths of the swamp, near the coastline. That is where his house is.")
     }
 
-    suspend fun SuspendableContext<Player>.ghost() {
+    suspend fun Player.ghost() {
         npc<Neutral>("Have you got rid of the ghost yet?")
         player<Neutral>("I had a talk with Father Urhney. He has given me this funny amulet to talk to the ghost with.")
         npc<Uncertain>("I always wondered what that amulet was... Well, I hope it's useful. Tell me when you get rid of the ghost!")
     }
 
-    suspend fun SuspendableContext<Player>.miningSpot() {
+    suspend fun Player.miningSpot() {
         npc<Neutral>("Have you got rid of the ghost yet?")
         player<Neutral>("I've found out that the ghost's corpse has lost its skull. If I can find the skull, the ghost should leave.")
         npc<Neutral>("That WOULD explain it.")
@@ -78,8 +75,8 @@ class FatherAereck : Script {
         npc<Happy>("Ah well, good luck!")
     }
 
-    suspend fun SuspendableContext<Player>.foundSkull() {
-        if (player.holdsItem("ghostspeak_amulet")) {
+    suspend fun Player.foundSkull() {
+        if (holdsItem("ghostspeak_amulet")) {
             npc<Neutral>("Have you got rid of the ghost yet?")
             player<Happy>("I've finally found the ghost's skull!")
             npc<Happy>("Great! Put it in the ghost's coffin and see what happens!")
@@ -90,13 +87,13 @@ class FatherAereck : Script {
         }
     }
 
-    suspend fun NPCOption<Player>.completed() {
+    suspend fun Player.completed() {
         npc<Happy>("Thank you for getting rid of that awful ghost for me! May Saradomin always smile upon you!")
         choice {
             if (Settings["combat.gravestones", true]) {
                 option<Quiz>("Can you change my gravestone now?") {
                     npc<Happy>("Certainly! All proceeds will be donated to the Varrockian Guards' Widows & Orphans Fund.")
-                    player.open("gravestone_shop")
+                    open("gravestone_shop")
                 }
             }
             option<Happy>("I'm looking for a new quest.") {
@@ -104,18 +101,18 @@ class FatherAereck : Script {
             }
             whosSaradomin()
             nicePlace()
-            if (player.inventory.contains("clay_ring")) {
+            if (inventory.contains("clay_ring")) {
                 option<Quiz>("Can you bless my ring?") {
                     npc<Happy>("Ah, you wish to show your devotion to Saradomin by dedicating a ring to him? Very well, it would be my pleasure to assist.")
-                    player.inventory.replace("clay_ring", "ring_of_devotion")
-                    player["bless_is_more_task"] = true
+                    inventory.replace("clay_ring", "ring_of_devotion")
+                    set("bless_is_more_task", true)
                     statement("Father Aereck inscribes the symbol of Saradomin on your ring's signet face, and offers a brief benediction over it.")
                 }
             }
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.whosSaradomin() {
+    fun ChoiceOption.whosSaradomin() {
         option<Quiz>("Who's Saradomin?") {
             npc<Surprised>("Surely you have heard of the god, Saradomin?")
             npc<Neutral>("He who creates the forces of goodness and purity in this world? I cannot believe your ignorance!")
@@ -145,7 +142,7 @@ class FatherAereck : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.nicePlace() {
+    fun ChoiceOption.nicePlace() {
         option<Happy>("Nice place you've got here.") {
             npc<Happy>("It is, isn't it? It was built over 230 years ago.")
         }

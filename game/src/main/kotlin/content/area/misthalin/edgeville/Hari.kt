@@ -6,10 +6,8 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class Hari : Script {
 
@@ -42,13 +40,13 @@ class Hari : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.canoeing() {
+    suspend fun Player.canoeing() {
         if (minimumCanoeLevel()) {
             return
         }
         npc<Neutral>("It's really quite simple to make. Just walk down to that tree on the bank and chop it down.")
         npc<Neutral>("When you have done that you can shape the log further with your axe to make a canoe.")
-        when (player.levels.get(Skill.Woodcutting)) {
+        when (levels.get(Skill.Woodcutting)) {
             in 12..26 -> {
                 npc<Neutral>("I can sense you're still a novice woodcutter, you will only be able to make a log canoe at present.")
                 player<Quiz>("Is that good?")

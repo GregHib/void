@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.player.playerOperate
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -47,25 +46,25 @@ class RequestAssist : Script {
     val logger = InlineLogger()
 
     init {
-        playerOperate("Req Assist") {
+        playerOperate("Req Assist") { (target) ->
             val filter = target["assist_filter", "on"]
-            if (filter == "off" || (filter == "friends" && !target.friend(player))) {
+            if (filter == "off" || (filter == "friends" && !target.friend(this))) {
                 return@playerOperate
             }
-            if (!player["accept_aid", true]) {
-                player.message("This player is not currently accepting aid.") // TODO proper message
+            if (!get("accept_aid", true)) {
+                message("This player is not currently accepting aid.") // TODO proper message
                 return@playerOperate
             }
-            if (target.hasRequest(player, "assist")) {
-                player.message("Sending assistance response.", ChatType.Assist)
+            if (target.hasRequest(this, "assist")) {
+                message("Sending assistance response.", ChatType.Assist)
             } else {
-                if (requestingTooQuickly(player) || refuseRequest(target, player)) {
+                if (requestingTooQuickly(this) || refuseRequest(target, this)) {
                     return@playerOperate
                 }
-                player.message("Sending assistance request.", ChatType.Assist)
-                target.message("is requesting your assistance.", ChatType.AssistRequest, name = player.name)
+                message("Sending assistance request.", ChatType.Assist)
+                target.message("is requesting your assistance.", ChatType.AssistRequest, name = name)
             }
-            player.request(target, "assist") { requester, acceptor ->
+            request(target, "assist") { requester, acceptor ->
                 setupAssisted(requester, acceptor)
                 setupAssistant(acceptor, requester)
             }

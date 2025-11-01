@@ -6,7 +6,6 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -16,11 +15,11 @@ import java.util.concurrent.TimeUnit
 class SethGroatsFarm : Script {
 
     init {
-        objectOperate("Take-hatchet", "hatchet_logs") {
-            if (player.inventory.add("bronze_hatchet")) {
+        objectOperate("Take-hatchet", "hatchet_logs") { (target) ->
+            if (inventory.add("bronze_hatchet")) {
                 target.replace("logs", ticks = TimeUnit.MINUTES.toTicks(3))
             } else {
-                player.inventoryFull()
+                inventoryFull()
             }
         }
 

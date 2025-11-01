@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
@@ -14,13 +13,13 @@ import java.util.concurrent.TimeUnit
 class Web : Script {
 
     init {
-        objectOperate("Slash", "web*") {
-            if (player.weapon.def["slash_attack", 0] <= 0) {
-                player.message("Only a sharp blade can cut through this sticky web.")
-                cancel()
+        objectOperate("Slash", "web*") { (target) ->
+            if (weapon.def["slash_attack", 0] <= 0) {
+                message("Only a sharp blade can cut through this sticky web.")
+//                cancel() FIXME
                 return@objectOperate
             }
-            slash(player, target)
+            slash(this, target)
         }
 
         itemOnObjectOperate(obj = "web*") {

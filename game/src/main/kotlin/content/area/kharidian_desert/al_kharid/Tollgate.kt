@@ -15,17 +15,14 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
@@ -37,49 +34,49 @@ class Tollgate : Script {
     val gates = Rectangle(Tile(3268, 3227), 1, 2)
 
     init {
-        objectOperate("Pay-toll(10gp)", "toll_gate_al_kharid*") {
-            if (!player.inventory.remove("coins", 10)) {
-                player.notEnough("coins")
-                dialogue(player)
+        objectOperate("Pay-toll(10gp)", "toll_gate_al_kharid*") { (target) ->
+            if (!inventory.remove("coins", 10)) {
+                notEnough("coins")
+                dialogue()
                 return@objectOperate
             }
-            player.message("You pay the guard.")
+            message("You pay the guard.")
             enterDoor(target, delay = 2)
         }
 
-        objectOperate("Open", "toll_gate_al_kharid*") {
-            if (player.questCompleted("prince_ali_rescue")) {
+        objectOperate("Open", "toll_gate_al_kharid*") { (target) ->
+            if (questCompleted("prince_ali_rescue")) {
                 enterDoor(target, delay = 2)
                 return@objectOperate
             }
-            dialogue(player)
+            dialogue()
         }
 
-        npcOperate("Talk-to", "border_guard_al_kharid*") {
-            dialogue(player, target)
+        npcOperate("Talk-to", "border_guard_al_kharid*") { (target) ->
+            dialogue(target)
         }
     }
 
     fun getGuard(player: Player) = get<NPCs>()[player.tile.regionLevel].firstOrNull { it.id.startsWith("border_guard_al_kharid") }
 
-    suspend fun SuspendableContext<Player>.dialogue(player: Player, npc: NPC? = getGuard(player)) {
+    suspend fun Player.dialogue(npc: NPC? = getGuard(this)) {
         if (npc == null) {
             return
         }
-        player.talkWith(npc)
+        talkWith(npc)
         player<Quiz>("Can I come through this gate?")
-        if (player.questCompleted("prince_ali_rescue")) {
+        if (questCompleted("prince_ali_rescue")) {
             npc<Talk>("You may pass for free! You are a friend of Al Kharid.")
-            pass(player)
+            pass(this)
             return
         }
         npc<Talk>("You must pay a toll of 10 gold coins to pass.")
         choice {
             option<Quiz>("Okay, I'll pay.") {
-                if (!player.inventory.contains("coins", 10)) {
+                if (!inventory.contains("coins", 10)) {
                     player<Upset>("Oh dear I don't actually seem to have enough money.")
                 } else {
-                    pass(player)
+                    pass(this)
                 }
             }
             option<Uncertain>("Who does my money go to?") {

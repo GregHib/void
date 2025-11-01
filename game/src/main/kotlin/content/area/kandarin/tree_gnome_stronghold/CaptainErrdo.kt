@@ -1,36 +1,30 @@
 package content.area.kandarin.tree_gnome_stronghold
 
 import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.ChoiceBuilder
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.*
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class CaptainErrdo : Script {
 
     init {
-        npcOperate("Talk-to", "captain_errdo", "captain_bleemadge", "captain_dalbur", "captain_klemfoodle") {
-            if (!player.questCompleted("the_grand_tree")) {
+        npcOperate("Talk-to", "captain_errdo,captain_bleemadge,captain_dalbur,captain_klemfoodle") { (target) ->
+            if (!questCompleted("the_grand_tree")) {
                 npc<Talk>("Welcome to Gnome Air!")
                 choice {
-                    whatsGnomeAir()
-                    whereCanYouTakeMe()
-                    oneWayToVarrock()
+                    whatsGnomeAir(target)
+                    whereCanYouTakeMe(target)
+                    oneWayToVarrock(target)
                     leaveYouToIt()
                 }
                 return@npcOperate
             }
             choice {
-                takeMe()
-                whyAreGlidersBetter()
+                takeMe(target)
+                whyAreGlidersBetter(target)
                 if (target.id == "captain_dalbur") {
                     option<Talk>("What do you think of Ali Morrisane?") {
                         npc<Talk>("Oh, he's always up to something. Like that magic carpet business.")
@@ -38,8 +32,8 @@ class CaptainErrdo : Script {
                         npc<Angry>("Like I said, we'll not be happy if it starts up.")
                         npc<Happy>("Of course, it's likely to flop and not get off the ground, if you see what I mean.")
                         choice {
-                            takeMe()
-                            whyAreGlidersBetter()
+                            takeMe(target)
+                            whyAreGlidersBetter(target)
                             nothing()
                         }
                     }
@@ -48,17 +42,17 @@ class CaptainErrdo : Script {
             }
         }
 
-        npcOperate("Glider", "captain_errdo", "captain_bleemadge", "captain_dalbur", "captain_klemfoodle") {
-            if (!player.questCompleted("the_grand_tree")) {
-                takeMe()
+        npcOperate("Glider,captain_errdo,captain_bleemadge,captain_dalbur,captain_klemfoodle") { (target) ->
+            if (!questCompleted("the_grand_tree")) {
+                takeMe(target)
                 return@npcOperate
             }
-            location(player, target)
-            player.open("glider_map")
+            location(this, target)
+            open("glider_map")
         }
 
         npcOperate("Talk-to", "captain_errdo_crashed") {
-            if (player.questCompleted("the_grand_tree")) {
+            if (questCompleted("the_grand_tree")) {
                 embarrassing()
             } else {
                 player<Quiz>("What happened here?")
@@ -67,11 +61,11 @@ class CaptainErrdo : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.takeMe() {
+    fun ChoiceOption.takeMe(target: NPC) {
         option<Quiz>("Can you take me on the glider?") {
             npc<Happy>("Of course!")
-            location(player, target)
-            player.open("glider_map")
+            location(this, target)
+            open("glider_map")
         }
     }
 
@@ -85,30 +79,30 @@ class CaptainErrdo : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.nothing() {
+    fun ChoiceOption.nothing() {
         option<Uncertain>("Sorry, I don't want anything now.")
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.whyAreGlidersBetter() {
+    fun ChoiceOption.whyAreGlidersBetter(target: NPC) {
         option<Talk>("Why are gliders better than other transport?") {
             npc<Happy>("Oh we have a whole network! It's wonderful for getting to hard to reach places.")
             npc<Happy>("There are so many places where your teleports cannot reach!")
             player<Happy>("How did you all manage to build such an established network?")
             npc<Talk>("I think you'll find that is a gnome trade secret!")
             choice {
-                takeMe()
+                takeMe(target)
                 nothing()
             }
         }
     }
 
-    suspend fun SuspendableContext<Player>.embarrassing() {
+    suspend fun Player.embarrassing() {
         npc<Uncertain>("Ah, how embarrassing.")
         player<Quiz>("What happened?")
         npc<Talk>("A bit of a technical hitch with the landing gear. I won't be able to fly you anywhere, sorry.")
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.whatsGnomeAir() {
+    fun ChoiceOption.whatsGnomeAir(target: NPC) {
         option<Quiz>("What's Gnome Air?") {
             npc<Happy>("Gnome Air is the finest airline in Gielinor!")
             npc<Uncertain>("Well...it's the only real airline in Gielinor.")
@@ -122,42 +116,42 @@ class CaptainErrdo : Script {
                 npc<Angry>("If he ever gets it set up, us gnomes won't be happy with him. Especially not King Narnode!")
             }
             choice {
-                whereCanYouTakeMe()
-                oneWayToVarrock()
+                whereCanYouTakeMe(target)
+                oneWayToVarrock(target)
                 leaveYouToIt()
             }
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.whereCanYouTakeMe() {
+    fun ChoiceOption.whereCanYouTakeMe(target: NPC) {
         option("Where can you take me?") {
-            takeMe()
+            takeMe(target)
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.oneWayToVarrock() {
+    fun ChoiceOption.oneWayToVarrock(target: NPC) {
         option<Quiz>("How much for one-way to Varrock?") {
             npc<Upset>("I can't take you anywhere.")
             player<Upset>("How come?")
             npc<Upset>("I would, but Glough has told me not to take humans on Gnome Air.")
             choice {
-                whatsGnomeAir()
-                whereCanYouTakeMe()
+                whatsGnomeAir(target)
+                whereCanYouTakeMe(target)
                 leaveYouToIt()
             }
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.leaveYouToIt() {
+    fun ChoiceOption.leaveYouToIt() {
         option<Uncertain>("I'll leave you to it.")
     }
 
-    suspend fun NPCOption<Player>.takeMe() {
+    suspend fun Player.takeMe(target: NPC) {
         player<Quiz>("Where can you take me?")
         npc<Upset>("Glough has ordered that I only take gnomes on Gnome Air.")
         choice {
-            whatsGnomeAir()
-            oneWayToVarrock()
+            whatsGnomeAir(target)
+            oneWayToVarrock(target)
             leaveYouToIt()
         }
     }

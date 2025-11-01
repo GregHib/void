@@ -9,21 +9,13 @@ import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.Uncertain
 import content.entity.player.dialogue.Upset
-import content.entity.player.dialogue.type.ChoiceBuilder
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.item
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
-import content.entity.player.dialogue.type.skillLamp
-import content.entity.player.dialogue.type.statement
+import content.entity.player.dialogue.type.*
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -50,16 +42,16 @@ class Larry : Script {
         }
     }
 
-    private suspend fun NPCOption<Player>.hideAndSeek() {
-        if (!player["penguin_hide_and_seek_explained", false]) {
+    private suspend fun Player.hideAndSeek() {
+        if (!get("penguin_hide_and_seek_explained", false)) {
             explain()
             return
         }
-        if (!player.ownsItem("spy_notebook")) {
+        if (!ownsItem("spy_notebook")) {
             npc<Afraid>("Wait! Where is your notebook? Did it fall into enemy hands?")
             player<Talk>("I only turned around for a second...")
             npc<Upset>("Be more careful next time, who knows what would have happened if it go into the wrong hands!") // TODO proper message (not in osrs)
-            if (player.inventory.add("spy_notebook")) {
+            if (inventory.add("spy_notebook")) {
                 item("spy_notebook", 600, "Larry hands you a small notebook.")
             }
         }
@@ -68,7 +60,7 @@ class Larry : Script {
         choice("Choose an option:") {
             option<Talk>("I've found more penguins.") {
                 npc<Afraid>("More? They're spreading so quickly.")
-                player<Happy>("I've found ${player["penguins_found_weekly", 0]} penguins this week.")
+                player<Happy>("I've found ${get("penguins_found_weekly", 0)} penguins this week.")
                 choice("Choose an option:") {
                     havingTrouble()
                     claimReward()
@@ -76,7 +68,7 @@ class Larry : Script {
                         npc<Talk>("Weren't you listening the first time? Fine, I'll explain it again, but pay attention this time.")
                         npc<Shifty>("There are spies everywhere. I'm recruiting brave adventurers to find these penguins and tell me of their locations.")
                         info()
-                        if (!player.questCompleted("lunar_diplomacy")) {
+                        if (!questCompleted("lunar_diplomacy")) {
                             npc<Talk>("One last thing. If you ever discover a place called Lunar Isle, you might gain access to a spell that will help you get in touch with me from anywhere in the world. I can't say any more that that, there may be spies nearby.")
                         }
                     }
@@ -90,14 +82,14 @@ class Larry : Script {
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.claimReward(chuck: Boolean = false) {
+    private fun ChoiceOption.claimReward(chuck: Boolean = false) {
         option("I want to claim my reward.") {
             reward(chuck)
         }
     }
 
-    private suspend fun NPCOption<Player>.reward(chuck: Boolean = false) {
-        val points = player["penguin_points", 0]
+    private suspend fun Player.reward(chuck: Boolean = false) {
+        val points = get("penguin_points", 0)
         if (points <= 0) {
             npc<Talk>("You've found a lot of spies. But, you have no penguin points saved up. Keep looking!")
             return
@@ -112,30 +104,30 @@ class Larry : Script {
             option("Show me the money!") {
                 player<Happy>("I want the cash reward.")
                 val amount = points * 6500
-                if (!player.inventory.add("coins", amount)) {
-                    player.inventoryFull()
+                if (!inventory.add("coins", amount)) {
+                    inventoryFull()
                     return@option
                 }
-                player["penguin_points"] = 0
+                set("penguin_points", 0)
                 statement("You have been awarded ${amount.toDigitGroupString()} coins!")
                 npc<Happy>("Well done finding those penguins. Keep up the hard work, they'll keep moving around.")
             }
             option("Experience, all the way!") {
                 player<Happy>("I want the experience reward.")
                 val skill = skillLamp()
-                val amount = player.levels.get(skill) * 25 * points
-                player.exp(skill, amount.toDouble())
-                player["penguin_points"] = 0
+                val amount = levels.get(skill) * 25 * points
+                exp(skill, amount.toDouble())
+                set("penguin_points", 0)
                 statement("You have been awarded ${amount.toDigitGroupString()} ${skill.name} experience!")
                 npc<Happy>("Well done finding those penguins. Keep up the hard work, they'll keep moving around.")
             }
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.havingTrouble() {
+    private fun ChoiceOption.havingTrouble() {
         option<Talk>("I'm having trouble finding the penguins; can I have a hint?") {
             for (i in 0 until 10) {
-                if (!player.containsVarbit("penguins_found", "penguin_$i")) {
+                if (!containsVarbit("penguins_found", "penguin_$i")) {
                     val penguin = npcs.firstOrNull { it.id == "hidden_penguin_$i" } ?: continue
                     val area = areas.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") } ?: continue
                     val hint: String = area.getOrNull("hint") ?: continue
@@ -147,7 +139,7 @@ class Larry : Script {
         }
     }
 
-    private suspend fun NPCOption<Player>.explain() {
+    private suspend fun Player.explain() {
         // https://youtu.be/ZZRctKBpy3o?si=Iw5wOLTaHVt-EABp&t=108
         npc<Afraid>("What do you want?")
         player<Uncertain>("Uh, I just wanted to as-")
@@ -169,14 +161,14 @@ class Larry : Script {
         npc<Talk>("The more penguins you find, the more experience. Are you in?")
         player<Happy>("Great, I'll get started right away.")
         statement("To get 2 Penguin Points for deep cover penguins, you must complete the Cold War quest.")
-        player["penguin_hide_and_seek_explained"] = true
+        set("penguin_hide_and_seek_explained", true)
         npc<Happy>("Hold on, there. Take this notebook to record how many penguins you've found.")
-        if (player.inventory.add("spy_notebook")) {
+        if (inventory.add("spy_notebook")) {
             item("spy_notebook", 600, "Larry hands you a small notebook.")
         }
     }
 
-    private suspend fun NPCOption<Player>.info() {
+    private suspend fun Player.info() {
         npc<Happy>("Whenever you spot a penguin, spy on it. They're well trained and will change their positions every week, so keep your eyes peeled.")
         player<Uncertain>("What should I do after I've spied on them?")
         npc<Shifty>("I'll give you a notebook to record any penguins you've spotted. Each penguin is worth 1 Penguin Point.")

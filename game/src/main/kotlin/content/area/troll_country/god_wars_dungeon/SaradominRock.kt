@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
@@ -25,8 +24,8 @@ class SaradominRock : Script {
             player.sendVariable("godwars_saradomin_rope_bottom")
         }
 
-        objectOperate("Tie-rope", "godwars_saradomin_rock_top", "godwars_saradomin_rock_bottom") {
-            tieRope(player, def.stringId)
+        objectOperate("Tie-rope", "godwars_saradomin_rock_top,godwars_saradomin_rock_bottom") { (target) ->
+            tieRope(this, target.def(this).stringId)
         }
 
         itemOnObjectOperate("rope", "godwars_saradomin_rock_top", handler = handler)

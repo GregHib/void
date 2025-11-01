@@ -4,7 +4,6 @@ import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inject
 
 class Stairs : Script {
@@ -12,13 +11,13 @@ class Stairs : Script {
     val teleports: ObjectTeleports by inject()
 
     init {
-        objectOperate("Climb", arrive = false) {
-            if (def.options?.filterNotNull()?.any { it.startsWith("Climb-") } != true) {
+        objectOperate("Climb", arrive = false) { (target) ->
+            if (target.def(this).options?.filterNotNull()?.any { it.startsWith("Climb-") } != true) {
                 return@objectOperate
             }
             choice("What would you like to do?") {
-                option("Go up the stairs.", block = { teleports.teleport(this, "Climb-up") })
-                option("Go down the stairs.", block = { teleports.teleport(this, "Climb-down") })
+                option("Go up the stairs.", block = { teleports.teleport(this, target, "Climb-up") })
+                option("Go down the stairs.", block = { teleports.teleport(this, target, "Climb-down") })
                 option("Never mind.")
             }
         }

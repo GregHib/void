@@ -33,6 +33,25 @@ suspend fun SuspendableContext<Player>.player(expression: String, text: String, 
     }
 }
 
+suspend inline fun <reified E : Expression> Player.player(text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+    val expression = E::class.simpleName!!.toSnakeCase()
+    player(expression, text, largeHead, clickToContinue, title)
+}
+
+suspend fun Player.player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+    val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("q8_full").splitLines(text, 380)
+    check(lines.size <= 4) { "Maximum player chat lines exceeded ${lines.size} for $this" }
+    val id = getInterfaceId(lines.size, clickToContinue)
+    check(open(id)) { "Unable to open player dialogue for $this" }
+    val head = getChatHeadComponentName(largeHead)
+    sendPlayerHead(this, id, head)
+    interfaces.sendChat(id, head, expression, title ?: name, lines)
+    if (clickToContinue) {
+        ContinueSuspension.get(this)
+        close(id)
+    }
+}
+
 private fun getChatHeadComponentName(large: Boolean): String = "head${if (large) "_large" else ""}"
 
 private fun getInterfaceId(lines: Int, prompt: Boolean): String = "dialogue_chat${if (!prompt) "_np" else ""}$lines"

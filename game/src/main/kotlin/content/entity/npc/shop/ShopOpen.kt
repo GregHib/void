@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
@@ -25,10 +24,11 @@ class ShopOpen : Script {
     val logger = InlineLogger()
 
     init {
-        npcOperate("Trade") {
+        npcOperate("Trade") { (target) ->
+            val def = target.def(this)
             if (def.contains("shop")) {
-                target.face(player)
-                player.openShop(def["shop"])
+                target.face(this)
+                openShop(def["shop"])
             }
         }
 

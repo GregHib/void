@@ -5,7 +5,7 @@ import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.type.PlayerChoice
+import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.modal.CharacterStyle.onStyle
@@ -16,8 +16,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
@@ -124,13 +122,13 @@ class Thessalia : Script {
         }
     }
 
-    fun PlayerChoice.openShop(): Unit = option("I'd just like to buy some clothes.") {
-        player.openShop("thessalias_fine_clothes")
+    fun ChoiceOption.openShop(): Unit = option("I'd just like to buy some clothes.") {
+        openShop("thessalias_fine_clothes")
     }
 
-    suspend fun Interaction<Player>.startMakeover() {
-        player.closeDialogue()
-        if (!player.equipment.isEmpty()) {
+    suspend fun Player.startMakeover() {
+        closeDialogue()
+        if (!equipment.isEmpty()) {
             npc<Talk>("You're not able to try on my clothes with all that armour. Take it off and then speak to me again.")
             return
         }

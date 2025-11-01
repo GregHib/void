@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
@@ -91,18 +90,18 @@ class Gravestones : Script {
             softTimers.start("grave_degrade")
         }
 
-        npcOperate("Read", "gravestone_*") {
+        npcOperate("Read", "gravestone_*") { (target) ->
             val remainder = target.remaining("grave_timer", epochSeconds())
-            remainMessage(player, target)
+            remainMessage(this, target)
             when {
-                player.name == target["player_name", ""] -> player.message("Isn't there something a bit odd about reading your own gravestone?")
-                remainder < 60 -> player.message("The inscription is too unclear to read.")
+                name == target["player_name", ""] -> message("Isn't there something a bit odd about reading your own gravestone?")
+                remainder < 60 -> message("The inscription is too unclear to read.")
                 else -> {
-                    player.open("gravestone_plaque")
+                    open("gravestone_plaque")
                     val gravestone = target.id.removePrefix("gravestone_").removeSuffix("_broken")
                     val message = Gravestone.messages[gravestone] ?: return@npcOperate
                     val name = target["player_name", ""]
-                    player.interfaces.sendText(
+                    interfaces.sendText(
                         "gravestone_plaque",
                         "text",
                         message
@@ -114,18 +113,18 @@ class Gravestones : Script {
             }
         }
 
-        npcOperate("Repair", "gravestone_*") {
+        npcOperate("Repair", "gravestone_*") { (target) ->
             val name = target["player_name", ""]
-            if (name == player.name) {
-                player.message("The gods don't seem to approve of people attempting to repair their own gravestones.")
+            if (name == this.name) {
+                message("The gods don't seem to approve of people attempting to repair their own gravestones.")
                 return@npcOperate
             }
             if (target["blessed", false]) {
-                player.message("This gravestone can no longer be repaired.")
+                message("This gravestone can no longer be repaired.")
                 return@npcOperate
             }
-            if (!player.has(Skill.Prayer, 2)) {
-                player.message("You need a Prayer level of 2 to repair a gravestone.")
+            if (!has(Skill.Prayer, 2)) {
+                message("You need a Prayer level of 2 to repair a gravestone.")
                 return@npcOperate
             }
             val seconds = 300 // 5 minutes
@@ -135,52 +134,52 @@ class Gravestones : Script {
             val deceased = players.get(name)
             val remainder = target.remaining("grave_timer", epochSeconds())
             val minutes = TimeUnit.SECONDS.toMinutes(remainder.toLong())
-            deceased?.message("${player.name} has repaired your gravestone. It should survive another $minutes ${"minute".plural(minutes)}.")
+            deceased?.message("$name has repaired your gravestone. It should survive another $minutes ${"minute".plural(minutes)}.")
         }
 
-        npcOperate("Bless", "gravestone_*") {
+        npcOperate("Bless", "gravestone_*") { (target) ->
             val name = target["player_name", ""]
-            if (name == player.name) {
-                player.message("The gods don't seem to approve of people attempting to bless their own gravestones.")
+            if (name == this.name) {
+                message("The gods don't seem to approve of people attempting to bless their own gravestones.")
                 return@npcOperate
             }
-            if (!player.has(Skill.Prayer, 70)) {
-                player.message("You need a prayer level of 70 to bless a gravestone.")
+            if (!has(Skill.Prayer, 70)) {
+                message("You need a prayer level of 70 to bless a gravestone.")
                 return@npcOperate
             }
-            if (player.levels.get(Skill.Prayer) == 0) {
-                player.message("You don't have enough prayer points to bless the gravestone.")
+            if (levels.get(Skill.Prayer) == 0) {
+                message("You don't have enough prayer points to bless the gravestone.")
                 return@npcOperate
             }
             if (target["blessed", false]) {
-                player.message("This gravestone has already been blessed.")
+                message("This gravestone has already been blessed.")
                 return@npcOperate
             }
             val seconds = 3600 // 1 hour
             target.start("grave_timer", seconds, epochSeconds())
             updateItems(target.tile, name, seconds)
-            player.anim("altar_pray")
-            player.gfx("bless_grave")
-            player.sound("self_heal")
+            anim("altar_pray")
+            gfx("bless_grave")
+            sound("self_heal")
             delay(2)
-            player.message("The gods hear your prayers; the gravestone will remain for a little longer.")
+            message("The gods hear your prayers; the gravestone will remain for a little longer.")
             target["blessed"] = true
             val deceased = players.get(name)
             val remainder = target.remaining("grave_timer", epochSeconds())
             val minutes = TimeUnit.SECONDS.toMinutes(remainder.toLong())
-            deceased?.message("${player.name} has blessed your gravestone. It should survive another $minutes ${"minute".plural(minutes)}.")
+            deceased?.message("$name has blessed your gravestone. It should survive another $minutes ${"minute".plural(minutes)}.")
         }
 
-        npcOperate("Demolish", "gravestone_*") {
-            if (player.name != target["player_name", ""]) {
-                player.message("It would be impolite to demolish someone else's gravestone.")
+        npcOperate("Demolish", "gravestone_*") { (target) ->
+            if (this.name != target["player_name", ""]) {
+                message("It would be impolite to demolish someone else's gravestone.")
                 return@npcOperate
             }
             val remainder = target.remaining("grave_timer", epochSeconds())
             val minutes = TimeUnit.SECONDS.toMinutes(remainder.toLong())
             target.softTimers.stop("grave_degrade")
             npcs.remove(target)
-            player.message("It looks like it'll survive another $minutes ${"minute".plural(minutes)}. You demolish it anyway.")
+            message("It looks like it'll survive another $minutes ${"minute".plural(minutes)}. You demolish it anyway.")
         }
 
         canDrop { player ->

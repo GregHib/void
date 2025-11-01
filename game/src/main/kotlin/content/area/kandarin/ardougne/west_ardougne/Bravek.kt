@@ -10,23 +10,19 @@ import content.entity.player.dialogue.type.player
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class Bravek : Script {
 
     init {
-        npcOperate("Talk-to", "bravek") {
-            when (player.quest("plague_city")) {
+        npcOperate("Talk-to", "bravek") { (target) ->
+            when (quest("plague_city")) {
                 "talk_to_bravek" -> {
                     npc<Uncertain>("My head hurts! I'll speak to you another day...")
                     choice {
@@ -45,7 +41,7 @@ class Bravek : Script {
                         option<Neutral>("Okay, goodbye.")
                     }
                 }
-                "has_cure_paper" -> hasCurePaper()
+                "has_cure_paper" -> hasCurePaper(target)
                 "gave_cure" -> gaveCure()
                 else -> completed()
             }
@@ -53,12 +49,12 @@ class Bravek : Script {
 
         itemOnNPCOperate("hangover_cure", "bravek") {
             if (player.quest("plague_city") == "has_cure_paper") {
-                hasCurePaper()
+                player.hasCurePaper(target)
             }
         }
     }
 
-    suspend fun SuspendableContext<Player>.shouldNotDrink() {
+    suspend fun Player.shouldNotDrink() {
         npc<Sad>("Well positions of responsibility are hard, I need something to take my mind off things... Especially with the problems this place has.")
         choice {
             option<Neutral>("Okay, goodbye.")
@@ -71,17 +67,17 @@ class Bravek : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.cure() {
+    suspend fun Player.cure() {
         npc<Uncertain>("Hmmm let me think... Ouch! Thinking isn't clever. Ah here, she did scribble it down for me.")
-        player["plague_city"] = "has_cure_paper"
-        if (player.inventory.add("a_scruffy_note")) {
+        set("plague_city", "has_cure_paper")
+        if (inventory.add("a_scruffy_note")) {
             item("a_scruffy_note", 600, "Bravek hands you a tatty piece of paper.")
         } else {
             item("a_scruffy_note", 600, "Bravek waves a tatty piece of paper at you, but you don't have room to take it.")
         }
     }
 
-    suspend fun SuspendableContext<Player>.notTheSolution() {
+    suspend fun Player.notTheSolution() {
         npc<Sad>("I don't feel well enough to have a philosophical discussion about it right now. My head hurts.")
         choice {
             option<Quiz>("Do you know what's in the cure?") {
@@ -91,12 +87,12 @@ class Bravek : Script {
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.hasCurePaper() {
+    suspend fun Player.hasCurePaper(target: NPC) {
         npc<Uncertain>("Uurgh! My head still hurts too much to think straight. Oh for one of Trudi's hangover cures!")
-        if (player.holdsItem("hangover_cure")) {
+        if (holdsItem("hangover_cure")) {
             player<Neutral>("Try this.")
-            player.inventory.remove("hangover_cure")
-            player["plague_city"] = "gave_cure"
+            inventory.remove("hangover_cure")
+            set("plague_city", "gave_cure")
             target.say("Grruurgh!")
             target.transform("bravek_hangover_cure_anim")
             target.softQueue("bravek_transform", 5) {
@@ -108,9 +104,9 @@ class Bravek : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.gaveCure() {
+    suspend fun Player.gaveCure() {
         npc<Happy>("Thanks again for the hangover cure.")
-        if (player.holdsItem("warrant")) {
+        if (holdsItem("warrant")) {
             player<Happy>("Not a problem, happy to help out.")
             npc<Happy>("I'm just having a little drop of whisky, then I'll feel really good.")
         } else {
@@ -119,7 +115,7 @@ class Bravek : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.gaveCureMenu() {
+    suspend fun Player.gaveCureMenu() {
         player<Neutral>("I need to rescue a kidnap victim called Elena. She's being held in a plague house, I need permission to enter.")
         npc<Neutral>("Well the mourners deal with that sort of thing...")
         choice {
@@ -151,18 +147,18 @@ class Bravek : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.wontListen() {
+    suspend fun Player.wontListen() {
         player<Angry>("They say I'm not properly equipped to go in the house, though I do have a very effective gas mask.")
         npc<Uncertain>("Hmmm, well I guess they're not taking the issue of a kidnapping seriously enough. They do go a bit far sometimes.")
         npc<Neutral>("I've heard of Elena, she has helped us a lot... Okay, I'll give you this warrant to enter the house.")
-        if (player.inventory.add("warrant")) {
+        if (inventory.add("warrant")) {
             item("warrant", 600, "Bravek hands you a warrant.")
         } else {
             item("warrant", 600, "Bravek waves a warrant at you, but you don't have room to take it.")
         }
     }
 
-    suspend fun NPCOption<Player>.completed() {
+    suspend fun Player.completed() {
         npc<Happy>("Thanks again for the hangover cure.")
         player<Happy>("Not a problem, happy to help out.")
         npc<Happy>("I'm just having a little drop of whisky, then I'll feel really good.")

@@ -4,8 +4,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.objectOperate
 
 class PrayerAltars : Script {
 
@@ -19,18 +17,18 @@ class PrayerAltars : Script {
         }
 
         objectOperate("Check", "prayer_altar_chaos_varrock") {
-            player.message("An altar to the evil god Zamorak.")
+            message("An altar to the evil god Zamorak.")
         }
     }
 
-    fun ObjectOption<Player>.pray() {
-        if (player.levels.getOffset(Skill.Prayer) >= 0) {
-            player.message("You already have full Prayer points.")
+    fun Player.pray() {
+        if (levels.getOffset(Skill.Prayer) >= 0) {
+            message("You already have full Prayer points.")
         } else {
-            player.levels.set(Skill.Prayer, player.levels.getMax(Skill.Prayer))
-            player.anim("altar_pray")
-            player.message("You recharge your Prayer points.")
-            player["prayer_point_power_task"] = true
+            levels.set(Skill.Prayer, levels.getMax(Skill.Prayer))
+            anim("altar_pray")
+            message("You recharge your Prayer points.")
+            set("prayer_point_power_task", true)
         }
     }
 }

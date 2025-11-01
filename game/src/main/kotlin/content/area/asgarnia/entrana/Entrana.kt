@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
-import world.gregs.voidps.engine.entity.obj.objectOperate
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
@@ -19,30 +18,30 @@ import world.gregs.voidps.type.Tile
 class Entrana : Script {
     init {
         objectOperate("Cross", "entrana_gangplank_exit") {
-            player.walkOverDelay(Tile(2834, 3333, 1))
-            player.tele(2834, 3335, 0)
+            walkOverDelay(Tile(2834, 3333, 1))
+            tele(2834, 3335, 0)
         }
 
         objectOperate("Cross", "gangplank_entrana_enter") {
-            player.walkOverDelay(Tile(2834, 3334))
-            player.tele(2834, 3332, 1)
+            walkOverDelay(Tile(2834, 3334))
+            tele(2834, 3332, 1)
         }
 
         objectOperate("Steal", "candles_entrana") {
-            if (!Level.success(player.levels.get(Skill.Thieving), 25..160)) { // Unknown rate
-                player.stun(player, 8, 100)
-                player.message("A higher power smites you.")
-                player.walkTo(player.tile.add(Direction.SOUTH_WEST))
+            if (!Level.success(levels.get(Skill.Thieving), 25..160)) { // Unknown rate
+                stun(this, 8, 100)
+                message("A higher power smites you.")
+                walkTo(tile.add(Direction.SOUTH_WEST))
                 return@objectOperate
             }
-            if (!player.inventory.add("white_candle")) {
-                player.inventoryFull()
+            if (!inventory.add("white_candle")) {
+                inventoryFull()
                 return@objectOperate
             }
-            player.exp(Skill.Thieving, 20.0)
-            player.sound("pick")
-            player.anim("take")
-            player.message("You steal a candle.", ChatType.Filter)
+            exp(Skill.Thieving, 20.0)
+            sound("pick")
+            anim("take")
+            message("You steal a candle.", ChatType.Filter)
         }
     }
 }
