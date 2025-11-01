@@ -13,9 +13,11 @@ import world.gregs.voidps.engine.event.Wildcards
  */
 interface Operation {
 
-    /**
-     * Player option
+
+    /*
+        Player operations
      */
+
     fun playerOperate(option: String, block: suspend Player.(PlayerPlayerInteract) -> Unit) {
         playerPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
@@ -24,10 +26,6 @@ interface Operation {
         for (id in Wildcards.find(npc)) {
             playerNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
-    }
-
-    fun npcOperatePlayer(option: String, block: suspend NPC.(NPCPlayerInteract) -> Unit) {
-        npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
 
     fun objectOperate(option: String, obj: String = "*", arrive: Boolean = true, block: suspend Player.(PlayerObjectInteract) -> Unit) {
@@ -44,6 +42,29 @@ interface Operation {
             noDelays.add(option)
         }
         playerFloorItemBlocks.getOrPut(option) { mutableListOf() }.add(block)
+    }
+
+    /*
+        NPC operations
+     */
+
+    fun npcOperatePlayer(option: String, block: suspend NPC.(NPCPlayerInteract) -> Unit) {
+        npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
+    }
+
+    fun npcOperateNPC(option: String, npc: String = "*", block: suspend NPC.(NPCNPCInteract) -> Unit) {
+        for (id in Wildcards.find(npc)) {
+            npcNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
+        }
+    }
+
+    fun npcOperateObject(option: String, obj: String = "*", arrive: Boolean = true, block: suspend NPC.(NPCObjectInteract) -> Unit) {
+        for (id in Wildcards.find(obj)) {
+            if (!arrive) {
+                noDelays.add("$option:$id")
+            }
+            npcObjectBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
+        }
     }
 
     fun npcOperateFloorItem(option: String, arrive: Boolean = true, block: suspend NPC.(NPCFloorItemInteract) -> Unit) {
@@ -215,35 +236,7 @@ interface Operation {
         }
     }
 
-
-
-    */
-    /**
-     * Npc npc option
-     *//*
-    suspend fun npcOperateNpc(option: String, npc: String, block: suspend (npc: NPC, target: NPC) -> Unit) {
-        for (id in Wildcards.find(npc)) {
-            npcNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
-        }
-    }
-
-    */
-    /**
-     * Npc game object option
-     *//*
-    suspend fun npcOperateObject(option: String, obj: String, arriveDelay: Boolean = true, block: suspend (npc: NPC, target: GameObject) -> Unit) {
-        if (!arriveDelay) {
-            noDelays.addAll(Wildcards.find(obj))
-        }
-        for (id in Wildcards.find(obj)) {
-            npcObjectBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
-        }
-    }
-
-    */
-    /**
-     * Npc floor item option
-     *//**/
+*/
 
     companion object {
         val playerPlayerBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerPlayerInteract) -> Unit>>()

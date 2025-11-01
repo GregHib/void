@@ -15,25 +15,19 @@ import world.gregs.voidps.engine.event.Wildcards
  */
 interface Approachable {
 
-    /**
-     * Player option
+
+    /*
+        Player approaches
      */
+
     fun playerApproach(option: String, block: suspend Player.(PlayerPlayerInteract) -> Unit) {
         playerPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
-    }
-
-    fun npcApproachPlayer(option: String, block: suspend NPC.(NPCPlayerInteract) -> Unit) {
-        npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
 
     fun npcApproach(option: String, npc: String = "*", block: suspend Player.(PlayerNPCInteract) -> Unit) {
         for (id in Wildcards.find(npc)) {
             playerNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
-    }
-
-    fun npcApproachNPC(option: String, block: suspend NPC.(NPCPlayerInteract) -> Unit) {
-        npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
 
     fun objectApproach(option: String, obj: String = "*", block: suspend Player.(PlayerObjectInteract) -> Unit) {
@@ -45,6 +39,27 @@ interface Approachable {
     fun floorItemApproach(option: String, item: String, block: suspend Player.(PlayerFloorItemInteract) -> Unit) {
         for (id in Wildcards.find(item)) {
             playerFloorItemBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
+        }
+    }
+
+
+    /*
+        NPC approaches
+     */
+
+    fun npcApproachPlayer(option: String, block: suspend NPC.(NPCPlayerInteract) -> Unit) {
+        npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
+    }
+
+    fun npcApproachNPC(option: String, npc: String = "*", block: suspend NPC.(NPCNPCInteract) -> Unit) {
+        for (id in Wildcards.find(npc)) {
+            npcNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
+        }
+    }
+
+    fun npcApproachObject(option: String, obj: String = "*", block: suspend NPC.(NPCObjectInteract) -> Unit) {
+        for (id in Wildcards.find(obj)) {
+            npcObjectBlocks.getOrPut(option) { mutableListOf() }.add(block)
         }
     }
 
@@ -204,46 +219,7 @@ interface Approachable {
         }
     }
 
-
-    *//**
-     * Npc player option
-     *//*
-    suspend fun npcApproachPlayer(option: String, block: suspend (npc: NPC, target: Player) -> Unit) {
-        npcPlayerBlocks.getOrPut(option) { mutableListOf() }.add(block)
-    }
-
-    *//**
-     * Npc npc option
-     *//*
-    suspend fun npcApproachNpc(option: String, npc: String, block: suspend (npc: NPC, target: NPC) -> Unit) {
-        for (id in Wildcards.find(npc)) {
-            npcNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
-        }
-    }
-
-    *//**
-     * Npc game object option
-     *//*
-    suspend fun npcApproachObject(option: String, obj: String, arriveDelay: Boolean = true, block: suspend (npc: NPC, target: GameObject) -> Unit) {
-        if (!arriveDelay) {
-            noDelays.addAll(Wildcards.find(obj))
-        }
-        for (id in Wildcards.find(obj)) {
-            npcObjectBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
-        }
-    }
-
-    *//**
-     * Npc floor item option
-     *//*
-    suspend fun npcApproachFloorItem(option: String, item: String, arriveDelay: Boolean = true, block: suspend (npc: NPC, target: FloorItem) -> Unit) {
-        if (!arriveDelay) {
-            noDelays.addAll(Wildcards.find(item))
-        }
-        for (id in Wildcards.find(item)) {
-            npcFloorItemBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
-        }
-    }*/
+    */
 
     companion object {
         val playerPlayerBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerPlayerInteract) -> Unit>>()
