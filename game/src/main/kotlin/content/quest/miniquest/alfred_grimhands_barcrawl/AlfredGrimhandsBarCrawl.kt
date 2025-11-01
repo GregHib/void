@@ -11,36 +11,11 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Context
-import world.gregs.voidps.engine.event.TargetContext
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-
-suspend fun <T : TargetInteraction<Player, NPC>> T.barCrawlDrink(
-    start: (suspend T.() -> Unit)? = null,
-    effects: suspend T.() -> Unit = {},
-) {
-    player<Talk>("I'm doing Alfred Grimhand's Barcrawl.")
-    val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return
-    start?.invoke(this) ?: npc<Talk>(info["start"] as String)
-    val id = info["id"] as String
-    if (!player.inventory.remove("coins", info["price"] as Int)) {
-        player<Sad>(info["insufficient"] as String)
-        return
-    }
-    player.message(info["give"] as String)
-    delay(4)
-    player.message(info["drink"] as String)
-    delay(4)
-    player.message(info["effect"] as String)
-    delay(4)
-    (info["sign"] as? String)?.let { player.message(it) }
-    player.addVarbit("barcrawl_signatures", id)
-    effects()
-}
 
 suspend fun Player.barCrawlDrink(
     target: NPC,
