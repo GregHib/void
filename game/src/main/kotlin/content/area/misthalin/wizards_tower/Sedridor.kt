@@ -12,8 +12,7 @@ import content.quest.refreshQuestJournal
 import content.skill.runecrafting.EssenceMine
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.AuditLog
@@ -28,8 +27,8 @@ import world.gregs.voidps.engine.suspend.SuspendableContext
 class Sedridor : Script {
 
     init {
-        npcOperate("Talk-to", "sedridor") {
-            when (player.quest("rune_mysteries")) {
+        npcOperate("Talk-to", "sedridor") { (target) ->
+            when (quest("rune_mysteries")) {
                 "unstarted" -> {
                     npc<Happy>("Welcome adventurer, to the world renowned Wizards' Tower, home to the Order of Wizards. How may I help you?")
                     player<Neutral>("I'm just looking around.")
@@ -39,17 +38,17 @@ class Sedridor : Script {
                 "talisman_delivered" -> visitAubury()
                 "research_package" -> checkPackageDelivered()
                 "research_notes" -> checkResearchDelivered()
-                else -> completed()
+                else -> completed(target)
             }
         }
 
-        npcOperate("Teleport", "sedridor") {
-            player["what_is_this_place_task"] = true
-            EssenceMine.teleport(target, player)
+        npcOperate("Teleport", "sedridor") { (target) ->
+            set("what_is_this_place_task", true)
+            EssenceMine.teleport(target, this)
         }
     }
 
-    suspend fun SuspendableContext<Player>.started() {
+    suspend fun Player.started() {
         npc<Happy>("Welcome adventurer, to the world renowned Wizards' Tower, home to the Order of Wizards. We are the oldest and most prestigious group of wizards around. Now, how may I help you?")
         player<Quiz>("Are you Sedridor?")
         npc<Quiz>("Sedridor? What is it you want with him?")
@@ -67,7 +66,7 @@ class Sedridor : Script {
                     }
                     option<Uncertain>("No, I don't think you are Sedridor.") {
                         npc<Happy>("Hmm... Well, I admire your caution adventurer. Perhaps I can prove myself? I will use my mental powers to discover...")
-                        npc<Happy>("Your name is... ${player.name}!")
+                        npc<Happy>("Your name is... ${name}!")
                         player<Surprised>("You're right! How did you know that?")
                         npc<Happy>("Well I am the Archmage you know! You don't get to my position without learning a few tricks along the way!")
                         npc<Quiz>("So now that I have proved myself to you, why don't you hand over that talisman, hmm?")
@@ -78,14 +77,14 @@ class Sedridor : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.okHere() {
+    suspend fun Player.okHere() {
         player<Neutral>("Okay, here you are.")
-        if (player.inventory.contains("air_talisman")) {
-            player["rune_mysteries"] = "talisman_delivered"
+        if (inventory.contains("air_talisman")) {
+            set("rune_mysteries", "talisman_delivered")
             item("air_talisman", 600, "You hand the talisman to Sedridor.")
-            player.inventory.remove("air_talisman")
+            inventory.remove("air_talisman")
             npc<Uncertain>("Hmm... Doesn't seem to be anything too special. Just a normal air talisman by the looks of things. Still, looks can be deceiving. Let me take a closer look...")
-            player.sound("enchant_emerald_ring")
+            sound("enchant_emerald_ring")
             item("air_talisman", 600, "Sedridor murmurs some sort of incantation and the talisman glows slightly.")
             npc<Uncertain>("How interesting... It would appear I spoke too soon. There's more to this talisman than meets the eye. In fact, it may well be the last piece of the puzzle.")
             player<Quiz>("Puzzle?")
@@ -127,7 +126,7 @@ class Sedridor : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.discovery() {
+    suspend fun Player.discovery() {
         npc<Happy>("It is critical I share this discovery with my associate, Aubury, as soon as possible. He's not much of a wizard, but he's an expert on runecrafting, and his insight will be essential.")
         npc<Quiz>("Would you be willing to visit him for me? I would go myself, but I wish to study this talisman some more.")
         choice {
@@ -136,7 +135,7 @@ class Sedridor : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.visitAubury() {
+    suspend fun Player.visitAubury() {
         npc<Quiz>("Hello again, adventurer. You have already done so much, but I would really appreciate it if you were to visit my associate, Aubury. Would you be willing to?")
         choice {
             yesCertainly()
@@ -144,32 +143,32 @@ class Sedridor : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.checkPackageDelivered() {
+    suspend fun Player.checkPackageDelivered() {
         npc<Quiz>("Hello again, adventurer. Did you take that package to Aubury?")
-        if (player.ownsItem("research_package_rune_mysteries")) {
+        if (ownsItem("research_package_rune_mysteries")) {
             player<Neutral>("Not yet.")
             npc<Neutral>("He runs a rune shop in the south east of Varrock. Please deliver it to him soon.")
         } else {
             player<Sad>("I lost it. Could I have another?")
             npc<Neutral>("Well it's a good job I have copies of everything.")
-            if (player.inventory.isFull()) {
+            if (inventory.isFull()) {
                 item("research_package_rune_mysteries", 600, "Sedridor tries to hand you a package, but you don't have enough room to take it.")
                 return
             }
-            if (player.bank.contains("research_package_rune_mysteries")) {
-                player.bank.remove("research_package_rune_mysteries")
+            if (bank.contains("research_package_rune_mysteries")) {
+                bank.remove("research_package_rune_mysteries")
             }
-            player.inventory.add("research_package_rune_mysteries")
+            inventory.add("research_package_rune_mysteries")
             item("research_package_rune_mysteries", 600, "Sedridor hands you a package.")
-            npc<Happy>("Best of luck, ${player.name}.")
+            npc<Happy>("Best of luck, ${name}.")
         }
     }
 
-    suspend fun SuspendableContext<Player>.checkResearchDelivered() {
-        npc<Neutral>("Ah, ${player.name}. How goes your quest? Have you delivered my research to Aubury yet?")
+    suspend fun Player.checkResearchDelivered() {
+        npc<Neutral>("Ah, ${name}. How goes your quest? Have you delivered my research to Aubury yet?")
         player<Neutral>("Yes, I have. He gave me some notes to give to you.")
         npc<Happy>("Wonderful! Let's have a look then.")
-        if (player.holdsItem("research_notes_rune_mysteries")) {
+        if (holdsItem("research_notes_rune_mysteries")) {
             item("research_notes_rune_mysteries", 600, "You hand the notes to Sedridor.")
             npc<Happy>("Alright, let's see what Aubury has for us...")
             npc<Surprised>("Yes, this is it! The lost incantation!")
@@ -182,7 +181,7 @@ class Sedridor : Script {
             npc<Happy>("Don't worry if you can't find the altar. The talisman can guide you there. You may find talismans for other altars as well while adventuring. They'll let you craft other types of rune.")
             player<Happy>("Great! Thanks!")
             npc<Happy>("My pleasure!")
-            player.inventory.remove("research_notes_rune_mysteries")
+            inventory.remove("research_notes_rune_mysteries")
             questComplete()
         } else {
             player<Uncertain>("Err, you're not going to believe this...")
@@ -192,51 +191,51 @@ class Sedridor : Script {
         }
     }
 
-    suspend fun PlayerChoice.imBusy(): Unit = option<Neutral>("No, I'm busy.") {
+    suspend fun ChoiceBuilder2.imBusy(): Unit = option<Neutral>("No, I'm busy.") {
         npc<Neutral>("As you wish adventurer. I will continue to study this talisman you have brought me. Return here if you find yourself with some spare time to help me.")
     }
 
-    suspend fun PlayerChoice.yesCertainly(): Unit = option<Neutral>("Yes, certainly.") {
-        player["rune_mysteries"] = "research_package"
+    suspend fun ChoiceBuilder2.yesCertainly(): Unit = option<Neutral>("Yes, certainly.") {
+        set("rune_mysteries", "research_package")
         npc<Happy>("He runs a rune shop in the south east of Varrock. Please, take this package of research notes to him. If all goes well, the secrets of the essence mine may soon be ours once more!")
-        if (player.inventory.isFull()) {
+        if (inventory.isFull()) {
             item("research_package_rune_mysteries", 600, "Sedridor tries to hand you a package, but you don't have enough room to take it.")
             return@option
         }
-        player.inventory.add("research_package_rune_mysteries")
+        inventory.add("research_package_rune_mysteries")
         item("research_package_rune_mysteries", 600, "Sedridor hands you a package.")
-        npc<Happy>("Best of luck, ${player.name}.")
+        npc<Happy>("Best of luck, ${name}.")
     }
 
-    suspend fun NPCOption<Player>.completed() {
+    suspend fun Player.completed(target: NPC) {
         player<Neutral>("Hello there.")
-        npc<Happy>("Hello again, ${player.name}. What can I do for you?")
+        npc<Happy>("Hello again, ${name}. What can I do for you?")
         choice {
-            teleportEssenceMine()
-            whoElseKnows()
-            oldWizardsTower()
+            teleportEssenceMine(target)
+            whoElseKnows(target)
+            oldWizardsTower(target)
             option<Neutral>("Nothing thanks, I'm just looking around.") {
                 npc<Happy>("Well, take care. You stand on the ruins of the old destroyed Wizards' Tower. Strange and powerful magicks lurk here.")
             }
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.teleportEssenceMine(): Unit = option<Quiz>("Can you teleport me to the Rune Essence Mine?") {
-        player["what_is_this_place_task"] = true
-        EssenceMine.teleport(target, player)
+    fun ChoiceBuilder2.teleportEssenceMine(target: NPC): Unit = option<Quiz>("Can you teleport me to the Rune Essence Mine?") {
+        set("what_is_this_place_task", true)
+        EssenceMine.teleport(target, this)
     }
 
-    suspend fun ChoiceBuilder<NPCOption<Player>>.whoElseKnows(): Unit = option<Quiz>("Who else knows the teleport to the Rune Essence Mine?") {
+    suspend fun ChoiceBuilder2.whoElseKnows(target: NPC): Unit = option<Quiz>("Who else knows the teleport to the Rune Essence Mine?") {
         npc<Happy>("Apart from myself, there's also Aubury in Varrock, Wizard Cromperty in East Ardougne, Brimstail in the Tree Gnome Stronghold and Wizard Distentor in Yanille's Wizards' Guild.")
-        player["enter_abyss_knows_mages"] = true
+        set("enter_abyss_knows_mages", true)
         choice {
-            teleportEssenceMine()
-            oldWizardsTower()
+            teleportEssenceMine(target)
+            oldWizardsTower(target)
             thanksForInformation()
         }
     }
 
-    suspend fun ChoiceBuilder<NPCOption<Player>>.oldWizardsTower(): Unit = option<Quiz>("Could you tell me about the old Wizards' Tower?") {
+    suspend fun ChoiceBuilder2.oldWizardsTower(target: NPC): Unit = option<Quiz>("Could you tell me about the old Wizards' Tower?") {
         npc<Happy>("Of course. The first Wizards' Tower was built at the same time the Order of Wizards was founded. It was at the dawn of the Fifth Age, when the secrets of runecrafting were rediscovered.")
         npc<Happy>("For years, the tower was a hub of magical research. Wizards of all races and religions were welcomed into our order.")
         npc<Sad>("Alas, that openness is what ultimately led to disaster. The wizards who served Zamorak, the evil god of chaos, tried to claim our magical discoveries in his name.")
@@ -245,31 +244,31 @@ class Sedridor : Script {
         npc<Neutral>("That's why I spend my time down here, in fact. This basement is all that is left of the old tower, and I believe there are still some secrets to discover here.")
         npc<Happy>("Of course, one secret I am no longer looking for is the teleportation incantation to the Rune Essence Mine. We have you to thank for that.")
         choice {
-            teleportEssenceMine()
-            whoElseKnows()
+            teleportEssenceMine(target)
+            whoElseKnows(target)
             thanksForInformation()
         }
     }
 
-    suspend fun PlayerChoice.thanksForInformation(): Unit = option<Happy>("Thanks for the information.") {
+    suspend fun ChoiceBuilder2.thanksForInformation(): Unit = option<Happy>("Thanks for the information.") {
         npc<Happy>("My pleasure.")
     }
 
-    fun Context<Player>.questComplete() {
-        AuditLog.event(player, "quest_completed", "rune_mysteries")
-        player["rune_mysteries"] = "completed"
-        player.jingle("quest_complete_1")
-        if (player.inventory.isFull()) {
-            player.bank.add("air_talisman")
-            player.message("The air talisman has been sent to your bank.")
+    fun Player.questComplete() {
+        AuditLog.event(this, "quest_completed", "rune_mysteries")
+        set("rune_mysteries", "completed")
+        jingle("quest_complete_1")
+        if (inventory.isFull()) {
+            bank.add("air_talisman")
+            message("The air talisman has been sent to your bank.")
         } else {
-            player.inventory.add("air_talisman")
+            inventory.add("air_talisman")
         }
-        player.inc("quest_points")
-        player.message("Congratulations, you've completed a quest: <col=081190>Rune Mysteries</col>")
-        player.refreshQuestJournal()
-        player.softQueue("quest_complete", 1) {
-            player.questComplete(
+        inc("quest_points")
+        message("Congratulations, you've completed a quest: <col=081190>Rune Mysteries</col>")
+        refreshQuestJournal()
+        softQueue("quest_complete", 1) {
+            questComplete(
                 "Rune Mysteries",
                 "1 Quest Point",
                 "An Air Talisman",

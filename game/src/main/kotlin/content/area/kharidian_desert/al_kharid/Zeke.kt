@@ -7,7 +7,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.quest
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.suspend.SuspendableContext
@@ -16,11 +15,11 @@ class Zeke : Script {
 
     init {
         npcOperate("Talk-to", "zeke") {
-            npc<Talk>("A thousand greetings, ${if (player.male) "sir" else "madam"}.")
+            npc<Talk>("A thousand greetings, ${if (male) "sir" else "madam"}.")
             choice {
                 option("Do you want to trade?") {
                     npc<Happy>("Yes, certainly. I deal in scimitars.")
-                    player.openShop("zekes_superior_scimitars")
+                    openShop("zekes_superior_scimitars")
                 }
                 option<Quiz>("Nice cloak.") {
                     npc<Quiz>("Thank you.")
@@ -30,7 +29,7 @@ class Zeke : Script {
                     npc<Frustrated>("No way, man!")
                     npc<Angry>("The banana-brained nitwits who make them would never dream of selling any to me.")
                     npc<Sad>("Seriously, you'll be a monkey's uncle before you'll ever hold a dragon scimitar.")
-                    if (player.quest("monkey_madness") == "completed") {
+                    if (quest("monkey_madness") == "completed") {
                         player<Uncertain>("Hmmm, funny you should say that...")
                     } else {
                         player<Quiz>("Oh well, thanks anyway.")
@@ -50,9 +49,9 @@ class Zeke : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.takeALook() {
+    suspend fun Player.takeALook() {
         choice {
-            option("Yes please, Zeke.", block = { player.openShop("zekes_superior_scimitars") })
+            option("Yes please, Zeke.", block = { openShop("zekes_superior_scimitars") })
             option<Quiz>("Not today, thank you.")
         }
     }

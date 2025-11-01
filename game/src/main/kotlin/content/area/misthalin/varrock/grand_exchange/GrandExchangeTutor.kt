@@ -5,7 +5,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 class GrandExchangeTutor : Script {
 
@@ -23,7 +22,7 @@ class GrandExchangeTutor : Script {
                     npc<Talk>("<maroon>Step 3</maroon>: The clerks will take the items or money off you and look for someone to complete the trade.")
                     npc<Talk>("<maroon>Step 4</maroon>: You then need to wait perhaps a matter of moments or maybe days until someone is looking for what you have offered.")
                     npc<Talk>("<maroon>Step 5</maroon>: When the trade is complete, we will let you know with a message and you can pick up your winnings by talking to the clerks or by visiting any banker in ${Settings["server.name"]}.")
-                    player["grand_exchange_tutorial"] = "completed"
+                    set("grand_exchange_tutorial", "completed")
                     npc<Talk>("There's a lot more information about the Grand Exchange, all of which you can find out from Brugsen Bursen, the guy with the megaphone. I would suggest you speak to him to fully get to grips with the Grand Exchange. Good luck!")
                 }
                 option<Talk>("Where can I find out more info?") {

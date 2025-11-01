@@ -6,25 +6,27 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
+import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 
 class BartenderZambo : Script {
 
     init {
-        npcOperate("Talk-to", "bartender_zambo") {
+        npcOperate("Talk-to", "bartender_zambo") { (target) ->
             npc<Talk>("Hey, are you wanting to try some of my fine wines and spirits? All brewed locally on Karamja.")
             choice {
                 option("Yes, please.") {
-                    player.openShop("karamja_wines_spirits_and_beers")
+                    openShop("karamja_wines_spirits_and_beers")
                 }
                 option<Talk>("No, thank you.")
-                option("I'm doing Alfred Grimhand's barcrawl.", filter = barCrawlFilter) {
-                    barCrawl()
+                if (onBarCrawl(target)) {
+                    option("I'm doing Alfred Grimhand's barcrawl.") {
+                        barCrawl(target)
+                    }
                 }
             }
         }
@@ -33,13 +35,14 @@ class BartenderZambo : Script {
             if (player.containsVarbit("barcrawl_signatures", "ape_bite_liqueur")) {
                 return@itemOnNPCOperate
             }
-            barCrawl()
+            player.barCrawl(target)
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
+    suspend fun Player.barCrawl(target: NPC) = barCrawlDrink(
+        target,
         effects = {
-            player.say("Mmmmm, dat was luverly...")
+            say("Mmmmm, dat was luverly...")
         },
     )
 }

@@ -190,16 +190,16 @@ open class Interact(
         if (!launched) {
             launched = true
             if (operate) {
-                if (hasOperate()) {
-                    operate()
-                } else {
+                if (type?.hasOperate() == true) {
                     type?.operate()
+                } else {
+                    operate()
                 }
             } else {
-                if (hasApproach()) {
-                    approach()
-                } else {
+                if (type?.hasApproach() == true) {
                     type?.approach()
+                } else {
+                    approach()
                 }
             }
             return true

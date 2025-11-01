@@ -1,6 +1,7 @@
 package content.area.kandarin.ardougne
 
 import content.entity.combat.hit.damage
+import content.entity.combat.target
 import content.entity.npc.shop.buy
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Quiz
@@ -10,19 +11,20 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
+import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import kotlin.math.tan
 
 class BartenderFlyingHorseInn : Script {
 
     init {
-        npcOperate("Talk-to", "bartender_flying_horse_inn") {
+        npcOperate("Talk-to", "bartender_flying_horse_inn") { (target) ->
             npc<Quiz>("Would you like to buy a drink?")
             player<Quiz>("What do you serve?")
             npc<Happy>("Beer!")
@@ -30,12 +32,14 @@ class BartenderFlyingHorseInn : Script {
                 option<Talk>("I'll have a beer then.") {
                     npc<Talk>("Ok, that'll be two coins.")
                     if (buy("beer", 2)) {
-                        player.message("You buy a pint of beer.")
+                        message("You buy a pint of beer.")
                     }
                 }
                 option<Talk>("I'll not have anything then.")
-                option("I'm doing Alfred Grimhand's barcrawl.", filter = barCrawlFilter) {
-                    barCrawl()
+                if (onBarCrawl(target)) {
+                    option("I'm doing Alfred Grimhand's barcrawl.") {
+                        barCrawl(target)
+                    }
                 }
             }
         }
@@ -44,14 +48,15 @@ class BartenderFlyingHorseInn : Script {
             if (player.containsVarbit("barcrawl_signatures", "heart_stopper")) {
                 return@itemOnNPCOperate
             }
-            barCrawl()
+            player.barCrawl(target)
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
+    suspend fun Player.barCrawl(target: NPC) = barCrawlDrink(
+        target,
         effects = {
-            player.message("signing your barcrawl card")
-            player.damage(player.levels.get(Skill.Constitution) / 4)
+            message("signing your barcrawl card")
+            damage(levels.get(Skill.Constitution) / 4)
         },
     )
 }

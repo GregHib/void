@@ -10,8 +10,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
@@ -28,7 +26,7 @@ class Hairdresser : Script {
 
     init {
         npcOperate("Talk-to", "hairdresser") {
-            npc<Pleased>("Good afternoon ${if (player.male) "sir" else "madam"}. In need of a haircut${if (player.male) " or shave" else ""} are we?")
+            npc<Pleased>("Good afternoon ${if (male) "sir" else "madam"}. In need of a haircut${if (male) " or shave" else ""} are we?")
             choice {
                 option<Talk>("Yes, please.") {
                     npc<Pleased>("Please select the hairstyle you would like from this brochure. I'll even throw in a free recolour.")
@@ -96,13 +94,13 @@ class Hairdresser : Script {
         }
     }
 
-    suspend fun NPCOption<Player>.startHairdressing() {
-        player.closeDialogue()
-        if (player.equipped(EquipSlot.Weapon).isNotEmpty() || player.equipped(EquipSlot.Shield).isNotEmpty()) {
+    suspend fun Player.startHairdressing() {
+        closeDialogue()
+        if (equipped(EquipSlot.Weapon).isNotEmpty() || equipped(EquipSlot.Shield).isNotEmpty()) {
             npc<Afraid>("I don't feel comfortable cutting hair when you are wielding something. Please remove what you are holding first.")
             return
         }
-        if (player.equipped(EquipSlot.Hat).isNotEmpty()) {
+        if (equipped(EquipSlot.Hat).isNotEmpty()) {
             npc<Upset>("I can't cut your hair with that on your head.")
             return
         }

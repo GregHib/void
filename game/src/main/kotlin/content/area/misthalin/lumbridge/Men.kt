@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -18,7 +17,7 @@ class Men : Script {
     val floorItems: FloorItems by inject()
 
     init {
-        npcOperate("Talk-to", "man", "woman") {
+        npcOperate("Talk-to", "man,woman") { (target) ->
             player<Happy>("Hello, how's it going?")
             when (random.nextInt(0, 23)) {
                 0 -> {
@@ -56,7 +55,7 @@ class Men : Script {
                 9 -> npc<Happy>("Not too bad thanks.")
                 10 -> {
                     npc<Angry>("Are you asking for a fight?")
-                    target.interactPlayer(player, "Attack")
+                    target.interactPlayer(this, "Attack")
                 }
                 11 -> npc<Neutral>("I'm busy right now.")
                 12 -> npc<Happy>("Hello.")
@@ -79,10 +78,10 @@ class Men : Script {
                 20 -> npc<Neutral>("That is classified information.")
                 21 -> {
                     npc<Happy>("Have this flyer...")
-                    if (player.inventory.isFull()) {
-                        floorItems.add(player.tile, "flier", disappearTicks = 300, owner = player)
+                    if (inventory.isFull()) {
+                        floorItems.add(tile, "flier", disappearTicks = 300, owner = this)
                     } else {
-                        player.inventory.add("flier")
+                        inventory.add("flier")
                     }
                 }
                 22 -> npc<Happy>("Yo, wassup!")

@@ -7,7 +7,6 @@ import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -34,10 +33,10 @@ class Doric : Script {
 
     init {
         npcOperate("Talk-to", "doric") {
-            when (player.quest("dorics_quest")) {
+            when (quest("dorics_quest")) {
                 "started" -> {
                     npc<Quiz>("Have you got my materials yet, traveller?")
-                    if (!player.inventory.contains(ores)) {
+                    if (!inventory.contains(ores)) {
                         noOre()
                         return@npcOperate
                     }
@@ -55,13 +54,13 @@ class Doric : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.noOre() {
+    suspend fun Player.noOre() {
         player<Sad>("Sorry, I don't have them all yet.")
         npc<Neutral>("Not to worry, stick at it. Remember, I need 6 clay, 4 copper ore, and 2 iron ore.")
         choice {
             option<Quiz>("Where can I find those?") {
                 npc<Happy>("You'll be able to find all those ores in the rocks just inside the Dwarven Mine. Head east from here and you'll find the entrance in the side of Ice Mountain.")
-                if (player.levels.get(Skill.Mining) < 15) {
+                if (levels.get(Skill.Mining) < 15) {
                     player<Sad>("But I'm not a good enough miner to get iron ore.")
                     npc<Neutral>("Oh well, you could practice mining until you can. Can't beat a bit of mining - it's a useful skill. Failing that, you might be able to find a more experienced adventurer to buy the iron ore off.")
                 }
@@ -70,7 +69,7 @@ class Doric : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.unstarted() {
+    suspend fun Player.unstarted() {
         npc<Quiz>("Hello traveller, what brings you to my humble smithy?")
         choice {
             option<Neutral>("I wanted to use your anvils.") {
@@ -109,22 +108,22 @@ class Doric : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.startQuest() {
-        if (player.levels.get(Skill.Mining) < 15) {
+    suspend fun Player.startQuest() {
+        if (levels.get(Skill.Mining) < 15) {
             statement("Before starting this quest, be aware that one or more of your skill levels are lower than recommended.")
         }
         choice("Start Doric's Quest?") {
             option("Yes, I will get you the materials.") {
                 player<Happy>("Yes, I will get you the materials.")
-                player["dorics_quest"] = "started"
-                if (player.inventory.isFull()) {
-                    floorItems.add(player.tile, "bronze_pickaxe", disappearTicks = 300, owner = player)
+                set("dorics_quest", "started")
+                if (inventory.isFull()) {
+                    floorItems.add(tile, "bronze_pickaxe", disappearTicks = 300, owner = this)
                 } else {
-                    player.inventory.add("bronze_pickaxe")
+                    inventory.add("bronze_pickaxe")
                 }
                 npc<Neutral>("Clay is what I use more than anything, to make casts. Could you get me 6 clay, 4 copper ore, and 2 iron ore, please? I could pay a little, and let you use my anvils. Take this pickaxe with you just in case you need it.")
-                player.refreshQuestJournal()
-                if (player.inventory.contains(ores)) {
+                refreshQuestJournal()
+                if (inventory.contains(ores)) {
                     player<Happy>("You know, it's funny you should require those exact things!")
                     npc<Quiz>("What do you mean?")
                     player<Happy>("I can usually fit 28 things in my backpack and in a world full of quite literally limitless possibilities, a complete coincidence has occurred!")
@@ -141,22 +140,22 @@ class Doric : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.takeOre() {
+    suspend fun Player.takeOre() {
         item("copper_ore", 600, "You hand the clay, copper, and iron to Doric.")
-        player.inventory.remove(ores)
+        inventory.remove(ores)
         questComplete()
     }
 
-    fun Context<Player>.questComplete() {
-        AuditLog.event(player, "quest_completed", "dorics_quest")
-        player["dorics_quest"] = "completed"
-        player.jingle("quest_complete_1")
-        player.experience.add(Skill.Mining, 1300.0)
-        player.inventory.add("coins", 180)
-        player.refreshQuestJournal()
-        player.inc("quest_points")
-        player.softQueue("quest_complete", 1) {
-            player.questComplete(
+    fun Player.questComplete() {
+        AuditLog.event(this, "quest_completed", "dorics_quest")
+        set("dorics_quest", "completed")
+        jingle("quest_complete_1")
+        experience.add(Skill.Mining, 1300.0)
+        inventory.add("coins", 180)
+        refreshQuestJournal()
+        inc("quest_points")
+        softQueue("quest_complete", 1) {
+            questComplete(
                 "Doric's Quest",
                 "1 Quest Point",
                 "1300 Mining XP",

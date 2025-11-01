@@ -8,7 +8,6 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
@@ -22,8 +21,8 @@ class Mourner : Script {
     val objects: GameObjects by inject()
 
     init {
-        npcOperate("Talk-to", "mourner_elena_guard_vis") {
-            if (player.holdsItem("warrant")) {
+        npcOperate("Talk-to", "mourner_elena_guard_vis") { (target) ->
+            if (holdsItem("warrant")) {
                 player<Neutral>("I have a warrant from Bravek to enter here.")
                 npc<Uncertain>("This is highly irregular. Please wait...")
                 val otherGuard = npcs[if (target.tile.equals(2539, 3273)) Tile(2534, 3273) else Tile(2539, 3273)].first { it.id == "mourner_elena_guard_vis" }

@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
@@ -32,7 +31,7 @@ class Yrsa : Script {
             npc<Pleased>("Hi. You wanted to buy some clothes? Or did you want to makeover your shoes?")
             choice {
                 option<Pleased>("I'd like to buy some clothes.") {
-                    player.openShop("yrsas_shoe_store")
+                    openShop("yrsas_shoe_store")
                 }
                 option<Pleased>("I'd like to change my shoes.") {
                     startShoeShopping()
@@ -78,13 +77,13 @@ class Yrsa : Script {
         }
     }
 
-    suspend fun Interaction<Player>.startShoeShopping() {
-        player.closeDialogue()
-        if (player.equipped(EquipSlot.Weapon).isNotEmpty() || player.equipped(EquipSlot.Shield).isNotEmpty()) {
+    suspend fun Player.startShoeShopping() {
+        closeDialogue()
+        if (equipped(EquipSlot.Weapon).isNotEmpty() || equipped(EquipSlot.Shield).isNotEmpty()) {
             npc<Afraid>("I don't feel comfortable showing you shoes when you are wielding something. Please remove what you are holding first.")
             return
         }
-        if (player.equipped(EquipSlot.Feet).isNotEmpty()) {
+        if (equipped(EquipSlot.Feet).isNotEmpty()) {
             npc<Quiz>("You can't try on shoes with those on your feet.")
             return
         }

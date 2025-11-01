@@ -11,13 +11,12 @@ import content.quest.questCompleted
 import content.skill.runecrafting.EssenceMine
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 class Brimstail : Script {
 
     init {
-        npcOperate("Talk-to", "brimstail") {
-            if (!player.questCompleted("rune_mysteries")) {
+        npcOperate("Talk-to", "brimstail") { (target) ->
+            if (!questCompleted("rune_mysteries")) {
                 npc<Happy>("Hello adventurer, what can I do for you?")
                 player<Quiz>("What's that cute creature wandering around?")
                 npc<Talk>("Oh Izzie? He's my pet.")
@@ -32,7 +31,7 @@ class Brimstail : Script {
             choice {
                 option<Quiz>("Can you teleport me to the Rune Essence Mine?") {
                     npc<Happy>("Okay. Hold onto your hat!")
-                    EssenceMine.teleport(target, player)
+                    EssenceMine.teleport(target, this)
                 }
                 option<Happy>("Nothing for now, thanks!") {
                     npc<Happy>("Okay. Just remember that a friend of a wizard is a friend of mine!")
@@ -40,11 +39,11 @@ class Brimstail : Script {
             }
         }
 
-        npcOperate("Teleport", "brimstail") {
-            if (player.questCompleted("rune_mysteries")) {
-                EssenceMine.teleport(target, player)
+        npcOperate("Teleport", "brimstail") { (target) ->
+            if (questCompleted("rune_mysteries")) {
+                EssenceMine.teleport(target, this)
             } else {
-                player.message("You need to have completed the Rune Mysteries Quest to use this feature.")
+                message("You need to have completed the Rune Mysteries Quest to use this feature.")
             }
         }
 

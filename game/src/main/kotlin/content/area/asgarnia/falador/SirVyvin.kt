@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inject
@@ -72,14 +71,14 @@ class SirVyvin : Script {
             npc<Neutral>("Greetings traveller.")
             choice {
                 option<Quiz>("Do you have anything to trade?") {
-                    val kills = player["black_knight_kills", 0]
+                    val kills = get("black_knight_kills", 0)
                     when {
-                        kills >= 1300 -> player.openShop("white_knight_master_armoury")
-                        kills >= 800 -> player.openShop("white_knight_adept_armoury")
-                        kills >= 500 -> player.openShop("white_knight_noble_armoury")
-                        kills >= 300 -> player.openShop("white_knight_page_armoury")
-                        kills >= 200 -> player.openShop("white_knight_peon_armoury")
-                        kills >= 100 -> player.openShop("white_knight_novice_armoury")
+                        kills >= 1300 -> openShop("white_knight_master_armoury")
+                        kills >= 800 -> openShop("white_knight_adept_armoury")
+                        kills >= 500 -> openShop("white_knight_noble_armoury")
+                        kills >= 300 -> openShop("white_knight_page_armoury")
+                        kills >= 200 -> openShop("white_knight_peon_armoury")
+                        kills >= 100 -> openShop("white_knight_novice_armoury")
                         else -> npc<Neutral>("No, I'm sorry.")
                     }
                 }

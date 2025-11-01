@@ -8,7 +8,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.quest
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.random
@@ -17,7 +16,7 @@ class Kjell : Script {
 
     init {
         npcOperate("Talk-to", "kjell_*") {
-            when (player.quest("gunnars_ground")) {
+            when (quest("gunnars_ground")) {
                 "gunnars_ground", "completed" -> completed()
                 "started" -> {
                 }
@@ -26,7 +25,7 @@ class Kjell : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.completed() {
+    suspend fun Player.completed() {
         npc<Talk>(
             when (random.nextInt(0, 9)) {
                 0 -> "...there's a place for us..."
@@ -51,7 +50,7 @@ class Kjell : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.advice() {
+    suspend fun Player.advice() {
         choice {
             option<Neutral>("This music isn't very restful.") {
                 npc<Angry>("Get out of here!")
@@ -65,7 +64,7 @@ class Kjell : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.unstarted() {
+    suspend fun Player.unstarted() {
         npc<Frustrated>("Get out of here, outerlander!")
         choice {
             option<Neutral>("What is this place?") {

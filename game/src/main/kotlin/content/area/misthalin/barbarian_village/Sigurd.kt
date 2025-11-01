@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.suspend.SuspendableContext
@@ -47,13 +46,13 @@ class Sigurd : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.canoeing() {
+    suspend fun Player.canoeing() {
         if (minimumCanoeLevel()) {
             return
         }
         npc<Drunk>("It's really quite simple to make. Just walk down to that tree on the bank and chop it down.")
         npc<Drunk>("Then take your axe to it and shape it how you like!")
-        when (player.levels.get(Skill.Woodcutting)) {
+        when (levels.get(Skill.Woodcutting)) {
             in 12..26 -> {
                 npc<Drunk>("You can make a log canoe like mine! It'll get you 1 stop down the river.")
                 npc<Drunk>("There's some snooty fella down near the Champions Guild who reckons his canoes are better than mine. He's never said it to my face though.")

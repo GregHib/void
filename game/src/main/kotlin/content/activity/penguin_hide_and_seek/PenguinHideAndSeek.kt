@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.data.find
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
@@ -63,23 +62,23 @@ class PenguinHideAndSeek : Script {
     )
 
     init {
-        npcApproach("Spy-on", "*_penguin", "*_turkey") {
+        npcApproach("Spy-on", "*_penguin,*_turkey") { (target) ->
             approachRange(5)
-            updateWeek(player)
-            if (!player.addVarbit("penguins_found", target.id.removePrefix("hidden_"))) {
+            updateWeek(this)
+            if (!addVarbit("penguins_found", target.id.removePrefix("hidden_"))) {
                 // https://youtu.be/E1roiyC8QD4?si=10fPzRMq_UMZ9nkb&t=83
-                player.message("You've already spotted this penguin spy.")
+                message("You've already spotted this penguin spy.")
                 return@npcApproach
             }
-            player.watch(target)
-            player.anim("spot_penguin")
+            watch(target)
+            anim("spot_penguin")
             // https://youtu.be/E1roiyC8QD4?si=C4nJB4swiJzlTtTQ&t=50
-            player.message("You spy on the penguin.")
-            val doublePoints = (Settings["quests.requirements.skipMissing", false] || player.questCompleted("cold_war")) && target.id.removePrefix("hidden_penguin_").toInt() > 4
-            player.inc("penguin_points", if (doublePoints) 2 else 1)
-            player.inc("penguins_found_weekly")
+            message("You spy on the penguin.")
+            val doublePoints = (Settings["quests.requirements.skipMissing", false] || questCompleted("cold_war")) && target.id.removePrefix("hidden_penguin_").toInt() > 4
+            inc("penguin_points", if (doublePoints) 2 else 1)
+            inc("penguins_found_weekly")
             delay(2)
-            player.clearWatch()
+            clearWatch()
         }
 
         objectApproach("Inspect", "polar_bear_well*") { (target) ->

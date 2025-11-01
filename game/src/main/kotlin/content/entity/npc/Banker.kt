@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inject
@@ -24,7 +23,7 @@ class Banker : Script {
         npcApproach("Talk-to", "banker*") {
             approachRange(2)
             npc<Quiz>("Good day. How may I help you?")
-            val loanReturned = getSecondsRemaining(player, "lend_timeout") < 0
+            val loanReturned = getSecondsRemaining(this, "lend_timeout") < 0
             val collection = false
 
             if (loanReturned) {
@@ -32,7 +31,7 @@ class Banker : Script {
             } else if (collection) {
                 npc<Talk>("Before we go any further, I should inform you that you have items ready for collection from the Grand Exchange.")
             }
-            player.menu()
+            menu()
         }
 
         objectOperate("Use", "bank_*", arrive = false) {
@@ -43,12 +42,12 @@ class Banker : Script {
 
         npcApproach("Bank", "banker*") {
             approachRange(2)
-            player.open("bank")
+            open("bank")
         }
 
         npcApproach("Collect", "banker*") {
             approachRange(2)
-            player.open("collection_box")
+            open("collection_box")
         }
     }
 

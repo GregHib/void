@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 
 class Vanessas : Script {
 
@@ -16,7 +15,7 @@ class Vanessas : Script {
 
             choice {
                 option("What are you selling?") {
-                    player.openShop("vanessas_farming_shop")
+                    openShop("vanessas_farming_shop")
                 }
 
                 option("Can you give me any Farming advice?") {
@@ -31,7 +30,7 @@ class Vanessas : Script {
         }
 
         npcOperate("Trade", "vanessa") {
-            player.openShop("vanessas_farming_shop")
+            openShop("vanessas_farming_shop")
         }
     }
 }

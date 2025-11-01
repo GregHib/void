@@ -7,7 +7,6 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.quest.quest
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.contains
@@ -26,7 +25,7 @@ class Sanfew : Script {
 
     init {
         npcOperate("Talk-to", "sanfew") {
-            when (player.quest("druidic_ritual")) {
+            when (quest("druidic_ritual")) {
                 "unstarted" -> {
                     npc<Quiz>("What can I do for you young 'un?")
                     choice {
@@ -47,14 +46,14 @@ class Sanfew : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.started() {
+    suspend fun Player.started() {
         npc<Quiz>("What can I do for you young 'un?")
         choice {
             option("I've been sent to help purify the Varrock stone circle.") {
                 player<Neutral>("I've been sent to assist you with the ritual to purify the Varrockian stone circle.")
                 npc<Neutral>("Well, what I'm struggling with right now is the meats needed for the potion to honour Guthix. I need the raw meat of four different animals for it, but not just any old meats will do.")
                 npc<Neutral>("Each meat has to be dipped individually into the Cauldron of Thunder for it to work correctly.")
-                player["druidic_ritual"] = "cauldron"
+                set("druidic_ritual", "cauldron")
                 choice {
                     option<Quiz>("Where can I find this cauldron?") {
                         npc<Neutral>("It is located somewhere in the mysterious underground halls which are located somewhere in the woods just South of here. They are too dangerous for me to go myself however.")
@@ -70,21 +69,21 @@ class Sanfew : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.cauldron() {
+    suspend fun Player.cauldron() {
         npc<Quiz>("Did you bring me the required ingredients for the potion?")
-        if (!player.inventory.contains(enchantedMeat)) {
+        if (!inventory.contains(enchantedMeat)) {
             noMeat()
             return
         }
         player<Happy>("Yes, I have all four now!")
         npc<Happy>("Well hand 'em over then lad!")
         npc<Happy>("Thank you so much adventurer! These meats will allow our potion to honour Guthix to be completed, and bring one step closer to reclaiming our stone circle!")
-        player.inventory.remove(enchantedMeat)
-        player["druidic_ritual"] = "kaqemeex"
+        inventory.remove(enchantedMeat)
+        set("druidic_ritual", "kaqemeex")
         npc<Neutral>("Now go and talk to Kaqemeex and he will introduce you to the wonderful world of herblore and potion making!")
     }
 
-    suspend fun SuspendableContext<Player>.noMeat() {
+    suspend fun Player.noMeat() {
         player<Sad>("No, not yet...")
         npc<Neutral>("Well let me know when you do young 'un.")
         choice {
@@ -106,7 +105,7 @@ class Sanfew : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.eadgarsRuse() {
+    suspend fun Player.eadgarsRuse() {
         npc<Quiz>("What can I do for you young 'un?")
         choice {
             option<Neutral>("Have you any more work for me, to help reclaim the circle?") {

@@ -9,13 +9,13 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.timer.*
 
-internal suspend fun Interaction<Player>.openDressingRoom(id: String) {
-    player.closeDialogue()
+internal suspend fun Player.openDressingRoom(id: String) {
+    closeDialogue()
     delay(1)
-    player.gfx("dressing_room_start")
+    gfx("dressing_room_start")
     delay(1)
-    player.open(id)
-    player.softTimers.start("dressing_room")
+    open(id)
+    softTimers.start("dressing_room")
 }
 
 class DressingRoom : Script {

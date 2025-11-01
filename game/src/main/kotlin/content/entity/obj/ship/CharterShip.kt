@@ -15,8 +15,6 @@ import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.inject
@@ -54,7 +52,7 @@ class CharterShip : Script {
             }
         }
 
-        npcOperate("Talk-To", "trader_stan", "trader_crewmember*") {
+        npcOperate("Talk-To", "trader_stan,trader_crewmember*") { (target) ->
             npc<Quiz>("Can I help you?")
             choice {
                 option("Yes, who are you?") {
@@ -70,7 +68,7 @@ class CharterShip : Script {
                     npc<Happy>("We certainly do! ${if (target.id == "trader_stan") "I and my crewmen" else "We"} have access to items bought and sold from around the world. Would you like to take a look? Or would you like to charter a ship?")
                     choice {
                         trading()
-                        charter()
+                        charter(target)
                         if (target.id != "trader_stan") {
                             option("Isn't it tricky to sail about in those clothes?") {
                                 player<Quiz>("Isn't it tricky to sail about in those clothes?")
@@ -81,7 +79,7 @@ class CharterShip : Script {
                                 npc<Upset>("Anyway, would you like to take a look at our exotic wares from around the world? Or would you like to charter a ship?")
                                 choice {
                                     trading()
-                                    charter()
+                                    charter(target)
                                     option<Upset>("No thanks.")
                                 }
                             }
@@ -97,9 +95,9 @@ class CharterShip : Script {
             }
         }
 
-        npcOperate("Charter", "trader_stan", "trader_crewmember*") {
-            player["charter_ship"] = location(target)
-            player.open("charter_ship_map")
+        npcOperate("Charter", "trader_stan,trader_crewmember*") { (target) ->
+            set("charter_ship", location(target))
+            open("charter_ship_map")
         }
 
         interfaceOption("Ok", "*", "charter_ship_map") {
@@ -145,17 +143,17 @@ class CharterShip : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.trading() {
+    fun ChoiceBuilder2.trading() {
         option<Talk>("Yes, let's see what you're trading.") {
-            player.openShop("trader_stans_trading_post")
+            openShop("trader_stans_trading_post")
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.charter() {
+    fun ChoiceBuilder2.charter(target: NPC) {
         option<Talk>("Yes, I would like to charter a ship.") {
             npc<Talk>("Certainly sir. Where would you like to go?")
-            player["charter_ship"] = location(target)
-            player.open("charter_ship_map")
+            set("charter_ship", location(target))
+            open("charter_ship_map")
         }
     }
 

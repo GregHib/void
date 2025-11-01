@@ -7,8 +7,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.item.Item
@@ -29,7 +27,7 @@ class MonkOfEntrana : Script {
                 }
                 option<Happy>("Yes, okay, I'm ready to go.") {
                     npc<Talk>("Very well. One moment please.")
-                    player.message("The monk quickly searches you.")
+                    message("The monk quickly searches you.")
                     statement("", clickToContinue = false)
                     delay(3)
                     if (passedCheck()) {
@@ -42,7 +40,7 @@ class MonkOfEntrana : Script {
 
         npcOperate("Take-boat", "monk_of_entrana_port_sarim*") {
             if (passedCheck()) {
-                player.message("After a quick, search, the monk smiles at you and allows you to board.")
+                message("After a quick, search, the monk smiles at you and allows you to board.")
                 travel()
             }
         }
@@ -59,7 +57,7 @@ class MonkOfEntrana : Script {
         }
 
         npcOperate("Take-boat", "entrana_monk*") {
-            player.message("The ship takes you to Port Sarim.")
+            message("The ship takes you to Port Sarim.")
             portSarim()
         }
     }
@@ -82,13 +80,13 @@ class MonkOfEntrana : Script {
         "range_weapon",
     )
 
-    private suspend fun NPCOption<Player>.passedCheck(): Boolean {
-        if (player.isAdmin()) {
+    private suspend fun Player.passedCheck(): Boolean {
+        if (isAdmin()) {
             return true
         }
-        var forbidden = itemCheck(player.inventory)
+        var forbidden = itemCheck(inventory)
         if (forbidden.isEmpty()) {
-            forbidden = itemCheck(player.equipment)
+            forbidden = itemCheck(equipment)
         }
         if (forbidden.isNotEmpty()) {
             npc<Angry>("NO WEAPONS OR ARMOUR are permitted on holy Entrana AT ALL. We will not allow you to travel there in breach of mighty Saradomin's edict.")
@@ -115,12 +113,12 @@ class MonkOfEntrana : Script {
         return Item.EMPTY
     }
 
-    private suspend fun SuspendableContext<Player>.travel() {
+    private suspend fun Player.travel() {
         boatTravel("port_sarim_to_entrana", 14, Tile(2834, 3331, 1))
         statement("The ship arrives at Entrana.")
     }
 
-    private suspend fun SuspendableContext<Player>.portSarim() {
+    private suspend fun Player.portSarim() {
         boatTravel("entrana_to_port_sarim", 14, Tile(3048, 3231, 1))
         statement("The ship arrives at Port Sarim.")
     }

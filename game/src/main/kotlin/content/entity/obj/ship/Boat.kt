@@ -9,16 +9,16 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Tile
 
-suspend fun SuspendableContext<Player>.boatTravel(journey: String, delay: Int, destination: Tile) {
+suspend fun Player.boatTravel(journey: String, delay: Int, destination: Tile) {
     val cutscene = startCutscene("ship_travel")
     cutscene.onEnd {
-        player.tele(destination)
+        tele(destination)
     }
-    player.tele(cutscene.instance.tile, clearInterfaces = false)
-    player.sendScript("clear_ships")
-    player.jingle("sailing_journey")
-    player.open("journey_ship")
-    player["ships_set_destination"] = journey
+    tele(cutscene.instance.tile, clearInterfaces = false)
+    sendScript("clear_ships")
+    jingle("sailing_journey")
+    open("journey_ship")
+    set("ships_set_destination", journey)
     delay(delay)
     cutscene.end()
 }

@@ -11,8 +11,9 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.NPCNPCInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerNPCInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -55,10 +56,14 @@ class NPCOptionHandler(
         }
         player.closeInterfaces()
         player.talkWith(npc, definition)
-        player.interactNpc(npc, selectedOption, definition)
+        player.interactNpc(npc, selectedOption)
     }
 }
 
-fun Character.interactNpc(target: NPC, option: String, definition: NPCDefinition = if (this is Player) target.def(this) else target.def) {
-    mode = Interact(this, target, NPCOption(this, target, definition, option))
+fun Player.interactNpc(target: NPC, option: String) {
+    mode = PlayerNPCInteract(target, option, this)
+}
+
+fun NPC.interactNpc(target: NPC, option: String) {
+    mode = NPCNPCInteract(target, option, this)
 }

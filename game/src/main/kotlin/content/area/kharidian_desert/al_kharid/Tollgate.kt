@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -53,8 +52,8 @@ class Tollgate : Script {
             dialogue()
         }
 
-        npcOperate("Talk-to", "border_guard_al_kharid*") {
-            player.dialogue(target)
+        npcOperate("Talk-to", "border_guard_al_kharid*") { (target) ->
+            dialogue(target)
         }
     }
 

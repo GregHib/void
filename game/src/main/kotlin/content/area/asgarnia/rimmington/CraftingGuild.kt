@@ -7,7 +7,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
@@ -41,7 +40,7 @@ class CraftingGuild : Script {
 
         npcOperate("Talk-to", "master_crafter") {
             npc<Happy>("Hello, and welcome to the Crafting Guild. Accomplished crafters from all over the land come here to use our top notch workshops.")
-            if (player.hasMax(Skill.Crafting, 99)) {
+            if (hasMax(Skill.Crafting, 99)) {
                 player<Quiz>("Are you the person I need to talk to about buying a Skillcape of Crafting")
                 npc<Happy>("I certainly am, and I can see that you are definitely talented enough to own one! Unfortunately, being such a prestigious item, they are appropriately expensive. I'm afraid I must ask you for 99000 gold.")
                 choice {
@@ -49,12 +48,12 @@ class CraftingGuild : Script {
                         npc<Neutral>("Not at all; there are many other adventurers who would love the opportunity to purchase such a prestigious item! You can find me here if you change your mind.")
                     }
                     option<Neutral>("That's fine.") {
-                        player.inventory.transaction {
+                        inventory.transaction {
                             remove("coins", 99000)
                             add("crafting_cape")
                             add("crafting_hood")
                         }
-                        when (player.inventory.transaction.error) {
+                        when (inventory.transaction.error) {
                             is TransactionError.Deficient -> {
                                 player<Upset>("But, unfortunately, I don't have enough money with me.")
                                 npc<Neutral>("Well, come back and see me when you do.")

@@ -8,7 +8,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 
 class DelMonty : Script {
@@ -48,7 +47,7 @@ class DelMonty : Script {
         }
     }
 
-    suspend fun Interaction<Player>.questions() {
+    suspend fun Player.questions() {
         choice {
             option<Talk>("What are the creatures inside the gardens?") {
                 npc<Talk>("Oh, you mean the gardeners?")
@@ -74,7 +73,7 @@ class DelMonty : Script {
         }
     }
 
-    suspend fun Interaction<Player>.moreQuestions() {
+    suspend fun Player.moreQuestions() {
         choice {
             option<Talk>("Thanks, I have another question though.") {
                 questions()
@@ -83,14 +82,14 @@ class DelMonty : Script {
         }
     }
 
-    suspend fun Interaction<Player>.getHere() {
+    suspend fun Player.getHere() {
         npc<Talk>("Every time I play with spiders in the Sorceress's house, her silly apprentice completely freaks out and teleports me here!")
         player<Talk>("So you've been stuck here since?")
         npc<Talk>("No, silly! I drink from the fountain whenever I want to leave.")
         anotherQuestion()
     }
 
-    suspend fun Interaction<Player>.doingHere() {
+    suspend fun Player.doingHere() {
         npc<Talk>("I get this strange urge for sq'irks. It's quite peculiar. I think I may be addicted.")
         player<Talk>("I think I know someone else who may be in a similar position.")
         npc<Talk>("Don't tell me. Osman, right?")
@@ -99,7 +98,7 @@ class DelMonty : Script {
         anotherQuestion()
     }
 
-    suspend fun Interaction<Player>.whoAreYou() {
+    suspend fun Player.whoAreYou() {
         npc<Talk>("Del-Monty the cat, at your service.")
         player<Talk>("Are you a famous adventurer who was turned into a cat by a vindictive mage?")
         npc<Talk>("No; as I said, I'm Del-Monty the cat, connoisseur of exotic fruits.")
@@ -108,7 +107,7 @@ class DelMonty : Script {
         anotherQuestion()
     }
 
-    suspend fun Interaction<Player>.anotherQuestion() {
+    suspend fun Player.anotherQuestion() {
         choice {
             option<Talk>("Thanks, I have another question though.") {
                 choice {

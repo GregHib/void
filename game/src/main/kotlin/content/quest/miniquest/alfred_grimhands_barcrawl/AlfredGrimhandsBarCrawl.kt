@@ -42,10 +42,40 @@ suspend fun <T : TargetInteraction<Player, NPC>> T.barCrawlDrink(
     effects()
 }
 
+suspend fun Player.barCrawlDrink(
+    target: NPC,
+    start: (suspend Player.() -> Unit)? = null,
+    effects: suspend Player.() -> Unit = {},
+) {
+    player<Talk>("I'm doing Alfred Grimhand's Barcrawl.")
+    val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return
+    start?.invoke(this) ?: npc<Talk>(info["start"] as String)
+    val id = info["id"] as String
+    if (!inventory.remove("coins", info["price"] as Int)) {
+        player<Sad>(info["insufficient"] as String)
+        return
+    }
+    message(info["give"] as String)
+    delay(4)
+    message(info["drink"] as String)
+    delay(4)
+    message(info["effect"] as String)
+    delay(4)
+    (info["sign"] as? String)?.let { message(it) }
+    addVarbit("barcrawl_signatures", id)
+    effects()
+}
+
 val barCrawlFilter: TargetContext<Player, NPC>.() -> Boolean = filter@{
     val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return@filter false
     val id = info["id"] as String
     player.quest("alfred_grimhands_barcrawl") == "signatures" && !player.containsVarbit("barcrawl_signatures", id)
+}
+
+val onBarCrawl: Player.(NPC) -> Boolean = filter@{ target ->
+    val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return@filter false
+    val id = info["id"] as String
+    quest("alfred_grimhands_barcrawl") == "signatures" && !containsVarbit("barcrawl_signatures", id)
 }
 
 class AlfredGrimhandsBarCrawl : Script {

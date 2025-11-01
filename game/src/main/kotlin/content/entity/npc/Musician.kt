@@ -4,12 +4,8 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Pleased
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.type.PlayerChoice
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
@@ -21,7 +17,7 @@ class Musician : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.choice() {
+    suspend fun Player.choice() {
         choice {
             option<Quiz>("Who are you?") {
                 npc<Happy>("Me? I'm a musician Let me help you relax: sit down, rest your weary limbs and allow me to wash away the troubles of the day.")
@@ -35,7 +31,7 @@ class Musician : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.resting() {
+    suspend fun Player.resting() {
         choice("Can I ask you some questions about resting?") {
             option("How does resting work?") {
                 player<Quiz>("So how does resting work?")
@@ -63,7 +59,7 @@ class Musician : Script {
         }
     }
 
-    suspend fun PlayerChoice.exit(): Unit = option<Quiz>("That's all for now.") {
+    suspend fun ChoiceBuilder2.exit(): Unit = option<Quiz>("That's all for now.") {
         npc<Happy>("Well, don't forget to have a rest every now and again.")
     }
 }

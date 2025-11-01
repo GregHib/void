@@ -4,8 +4,6 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -27,7 +25,7 @@ class DarkMage : Script {
 
         npcOperate("Repair-pouches", "dark_mage") {
             var repaired = false
-            val success = player.inventory.transaction {
+            val success = inventory.transaction {
                 for (index in inventory.indices) {
                     val item = inventory[index]
                     if (item.id.endsWith("_pouch_damaged")) {
@@ -44,7 +42,7 @@ class DarkMage : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.whyNot() {
+    fun ChoiceBuilder2.whyNot() {
         option<Quiz>("Why not?") {
             npc<Talk>("Well, if my concentration is broken while keeping this rift open, the results won't be pretty.")
             player<Quiz>("In what way?")
@@ -60,7 +58,7 @@ class DarkMage : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.whyAreYouHere() {
+    fun ChoiceBuilder2.whyAreYouHere() {
         option<Quiz>("What are you doing here?") {
             npc<Talk>("Do you mean what am I doing here in the Abyss? Or are you asking me what I consider my ultimate role to be in this voyage that we call life?")
             player<Uncertain>("Err... The first one.")
@@ -75,18 +73,18 @@ class DarkMage : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.needHelp() {
+    fun ChoiceBuilder2.needHelp() {
         option<Talk>("I need your help with something.") {
             npc<Angry>("What? Oh... very well. What did you want?")
             choice {
                 option<Quiz>("Can I have another Abyssal book?") {
-                    if (player.ownsItem("abyssal_book")) {
+                    if (ownsItem("abyssal_book")) {
                         npc<Talk>("You already have one, don't waste my time.") // TODO proper message (not in osrs)
-                    } else if (player.inventory.isFull()) {
+                    } else if (inventory.isFull()) {
                         npc<Angry>("Don't waste my time if you don't have enough free space to take it.")
                     } else {
                         npc<Talk>("Here, take it. It is important to pool our research.")
-                        if (player.inventory.add("abyssal_book")) {
+                        if (inventory.add("abyssal_book")) {
                             item("abyssal_book", 400, "You have been given a book.")
                         } else {
                             item("abyssal_book", 400, "The mage tries to hand you a book, but you don't have enough room to take it.") // TODO proper message
@@ -107,15 +105,15 @@ class DarkMage : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.illGo() {
+    fun ChoiceBuilder2.illGo() {
         option<Upset>("Sorry, I'll go.") {
             npc<Angry>("Good. I'm attempting to subdue the elemental mechanisms of the universe to my will. Inane chatter from random idiots is not helping me achieve this!")
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.askForPouch() {
+    fun ChoiceBuilder2.askForPouch() {
         option<Quiz>("Can I have a new essence pouch?") {
-            if (player.ownsItem("small_pouch")) {
+            if (ownsItem("small_pouch")) {
                 npc<Angry>("You already have a Pouch. Are you aware of the dimensional turmoil you can cause by using too many pouches at the same time?")
             } else {
                 npc<Talk>("Here. Be more careful with your belongings in future.")

@@ -8,8 +8,6 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -25,9 +23,9 @@ class Osman : Script {
 
     init {
         npcOperate("Talk-to", "osman_*") {
-            when (player.quest("prince_ali_rescue")) {
+            when (quest("prince_ali_rescue")) {
                 "completed" -> {
-                    if (!Settings["quests.requirements.skipMissing", false] && !player.questCompleted("contact")) {
+                    if (!Settings["quests.requirements.skipMissing", false] && !questCompleted("contact")) {
                         npc<Talk>("Well done. A great rescue. I will remember you if I have anything dangerous to do.")
                         return@npcOperate
                     }
@@ -52,7 +50,7 @@ class Osman : Script {
                 "osman" -> {
                     player<Talk>("The chancellor trusts me. I have come for instructions.")
                     npc<Shifty>("Our prince is captive by the Lady Keli. We just need to make the rescue. There are two things we need you to do.")
-                    player["prince_ali_rescue"] = "leela"
+                    set("prince_ali_rescue", "leela")
                     choice {
                         firstThing()
                         secondThing()
@@ -60,32 +58,32 @@ class Osman : Script {
                     }
                 }
                 "leela" -> {
-                    if (player.inventory.contains("key_print")) {
-                        if (!player.inventory.contains("bronze_bar")) {
+                    if (inventory.contains("key_print")) {
+                        if (!inventory.contains("bronze_bar")) {
                             player<Talk>("I have an imprint of the key.")
                             npc<Shifty>("Good. Bring me a bronze bar, and I'll get a copy made.")
                         } else {
                             npc<Shifty>("Well done; we can make the key now.")
-                            player.inventory.remove("key_print", "bronze_bar")
-                            player["prince_ali_rescue_key_made"] = true
+                            inventory.remove("key_print", "bronze_bar")
+                            set("prince_ali_rescue_key_made", true)
                             statement("Osman takes the key imprint and the bronze bar.")
                             npc<Shifty>("Pick the key up from Leela.")
                         }
-                    } else if (player["prince_ali_rescue_key_given", false] && !player.ownsItem("bronze_key_prince_ali_rescue")) {
+                    } else if (get("prince_ali_rescue_key_given", false) && !ownsItem("bronze_key_prince_ali_rescue")) {
                         player<Talk>("I'm afraid I lost that key you gave me.")
                         npc<Uncertain>("Well that was foolish. I can sort you out with another, but it will cost you 15 coins.")
-                        if (player.inventory.contains("coins", 15)) {
+                        if (inventory.contains("coins", 15)) {
                             player<Talk>("Here, I have 15 coins.")
                         } else {
                             player<Sad>("I haven't got 15 coins with me.")
                             npc<Talk>("Then come back to me when you do.")
                             return@npcOperate
                         }
-                        player.inventory.transaction {
+                        inventory.transaction {
                             remove("coins", 15)
                             add("bronze_key_prince_ali_rescue")
                         }
-                        when (player.inventory.transaction.error) {
+                        when (inventory.transaction.error) {
                             TransactionError.None -> item("bronze_key_prince_ali_rescue", 400, "Osman gives you a key.")
                             else -> statement("Osman tries to give you a key, but you don't have enough room for it.")
                         }
@@ -106,22 +104,22 @@ class Osman : Script {
         }
     }
 
-    private suspend fun NPCOption<Player>.sqirks() {
-        if (player.inventory.contains("winter_sqirkjuice") || player.inventory.contains("spring_sqirkjuice") || player.inventory.contains("autumn_sqirkjuice") || player.inventory.contains("summer_sqirkjuice")) {
+    private suspend fun Player.sqirks() {
+        if (inventory.contains("winter_sqirkjuice") || inventory.contains("spring_sqirkjuice") || inventory.contains("autumn_sqirkjuice") || inventory.contains("summer_sqirkjuice")) {
             player<Talk>("I have some sq'irk juice for you.")
             var experience = 0.0
-            player.inventory.transaction {
+            inventory.transaction {
                 experience += removeToLimit("winter_sqirkjuice", 28) * 350.0
                 experience += removeToLimit("spring_sqirkjuice", 28) * 1350.0
                 experience += removeToLimit("autumn_sqirkjuice", 28) * 2350.0
                 experience += removeToLimit("summer_sqirkjuice", 28) * 3000.0
             }
-            player.exp(Skill.Thieving, experience)
+            exp(Skill.Thieving, experience)
             statement("Osman imparts some Thieving advice to you (${experience.toDigitGroupString()} Thieving experience points) as a reward for the sq'irk juice.")
-            npc<Happy>("Thank you very much ${player.name}. If you get some more sq'irks be sure to come back.")
+            npc<Happy>("Thank you very much ${name}. If you get some more sq'irks be sure to come back.")
             player<Happy>("I will. It's been a pleasure doing business with you.")
         }
-        player["spoken_to_osman"] = true
+        set("spoken_to_osman", true)
         choice {
             whereSqirks()
             howSqirks()
@@ -131,7 +129,7 @@ class Osman : Script {
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.whatSqirks() {
+    private fun ChoiceBuilder2.whatSqirks() {
         option<Quiz>("What's so good about sq'irk juice?") {
             npc<Talk>("It is a sweet nectar for a thief or spy. It makes light fingers lighter, fleet feet flightier and comes in four different colours for those who are easily amused.")
             statement("Osman starts salivating at the thought of sq'irk juice.")
@@ -147,7 +145,7 @@ class Osman : Script {
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.whySqirks() {
+    private fun ChoiceBuilder2.whySqirks() {
         option<Quiz>("Is there a reward for getting these sq'irks?") {
             npc<Talk>("Of course. I'll train you in the art of Thieving for your troubles.")
             player<Quiz>("How much training will you give?")
@@ -162,7 +160,7 @@ class Osman : Script {
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.howSqirks() {
+    private fun ChoiceBuilder2.howSqirks() {
         option<Quiz>("How should I squeeze the fruit?") {
             npc<Talk>("Use a pestle and mortar. Make sure you have an empty glass with you to collect the juice.")
             choice {
@@ -174,7 +172,7 @@ class Osman : Script {
         }
     }
 
-    private fun ChoiceBuilder<NPCOption<Player>>.whereSqirks() {
+    private fun ChoiceBuilder2.whereSqirks() {
         option<Quiz>("Where do I get sq'irks?") {
             npc<Talk>("There is a sorceress near the south eastern edge of Al Kharid who grows them. She used to be friends with Osman, but they fell out.")
             player<Quiz>("What happened?")
@@ -195,13 +193,13 @@ class Osman : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.findThings() {
+    fun ChoiceBuilder2.findThings() {
         option<Talk>("Okay, I better go find some things.") {
             npc<Shifty>("May good luck travel with you. Don't forget to find Leela. It can't be done without her help.")
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.firstThing() {
+    fun ChoiceBuilder2.firstThing() {
         option<Talk>("What is the first thing I must do?") {
             npc<Shifty>("The prince is guarded by some stupid guards and a clever woman. The woman is our only way to get the prince out. Only she can walk freely about the area.")
             npc<Shifty>("I think you will need to tie her up. One coil of rope should do for that. Then, disguise the prince as her to get him out without suspicion.")
@@ -218,7 +216,7 @@ class Osman : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.secondThing(text: String = "What is the second thing you need?") {
+    fun ChoiceBuilder2.secondThing(text: String = "What is the second thing you need?") {
         option<Quiz>(text) {
             npc<Shifty>("We need the key, or we need a copy made. If you can get some soft clay then you can copy the key...")
             npc<Shifty>("...If you can convince Lady Keli to show it to you for a moment. She is very boastful. I should not be too hard.")
@@ -231,30 +229,30 @@ class Osman : Script {
         }
     }
 
-    suspend fun NPCOption<Player>.remainingItems() {
-        if (player.inventory.contains("bronze_key_prince_ali_rescue")) {
+    suspend fun Player.remainingItems() {
+        if (inventory.contains("bronze_key_prince_ali_rescue")) {
             npc<Shifty>("The key you already have. Good.")
-        } else if (player["prince_ali_rescue_key_made", false] && !player["prince_ali_rescue_key_given", false]) {
+        } else if (get("prince_ali_rescue_key_made", false) && !get("prince_ali_rescue_key_given", false)) {
             npc<Shifty>("You can collect the key from Leela.")
         } else {
             npc<Shifty>("A print of the key in soft clay and a bronze bar. Then, collect the key from Leela.")
         }
-        if (player.inventory.contains("wig_blonde")) {
+        if (inventory.contains("wig_blonde")) {
             npc<Shifty>("The wig you have got; well done.")
         } else {
             npc<Shifty>("You need to make a blonde wig somehow. Leela may help.")
         }
-        if (player.inventory.contains("pink_skirt")) {
+        if (inventory.contains("pink_skirt")) {
             npc<Shifty>("You have the skirt. Good.")
         } else {
             npc<Shifty>("You will need a skirt that looks the same as Keli's.")
         }
-        if (player.inventory.contains("skin_paint")) {
+        if (inventory.contains("skin_paint")) {
             npc<Shifty>("You have the skin paint; well done. I thought you would struggle to make that.")
         } else {
             npc<Shifty>("Something to make the prince's skin appear lighter.")
         }
-        if (player.inventory.contains("rope")) {
+        if (inventory.contains("rope")) {
             npc<Shifty>("Yes, you have the rope.")
         } else {
             npc<Shifty>("A rope with which to tie Keli up.")

@@ -7,7 +7,6 @@ import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.add
@@ -26,7 +25,7 @@ class RangeTutor : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.menu(followUp: String = "") {
+    suspend fun Player.menu(followUp: String = "") {
         if (followUp.isNotEmpty()) {
             npc<Quiz>(followUp)
         }
@@ -40,7 +39,7 @@ class RangeTutor : Script {
         }
     }
 
-    suspend fun PlayerChoice.rangedTraining(): Unit = option<Neutral>("How can I train my Ranged?") {
+    suspend fun ChoiceBuilder2.rangedTraining(): Unit = option<Neutral>("How can I train my Ranged?") {
         npc<Happy>("To start with you'll need a bow and arrows, you were given a Shortbow and some arrows when you arrived here from Tutorial island.")
         npc<Happy>("Alternatively, you can claim a training bow and some arrows from me.")
         npc<Happy>("Mikasi, the Magic Combat tutor and I both give out items every 30 minutes, however you must choose whether you want runes or ranged equipment.")
@@ -58,7 +57,7 @@ class RangeTutor : Script {
         menu("Is there anything else you want to know?")
     }
 
-    suspend fun PlayerChoice.arrowMaking(): Unit = option<Quiz>("How do I create a bow and arrows?") {
+    suspend fun ChoiceBuilder2.arrowMaking(): Unit = option<Quiz>("How do I create a bow and arrows?") {
         npc<Happy>("Ahh the art of fletching. Fletching is used to create your own bow and arrows.")
         npc<Amazed>("It's quite simple really. You'll need an axe to cut some logs from trees and a knife. Knives can be found in and around the Lumbridge castle and in the Varrock General store upstairs.")
         npc<Happy>("Use your knife on the logs. This will bring up a menu listing items you can fletch.")
@@ -72,46 +71,46 @@ class RangeTutor : Script {
         menu("Is there anything else you want to know?")
     }
 
-    suspend fun SuspendableContext<Player>.claimBow() {
-        if (player.remaining("claimed_tutor_consumables", epochSeconds()) > 0) {
+    suspend fun Player.claimBow() {
+        if (remaining("claimed_tutor_consumables", epochSeconds()) > 0) {
             npc<Amazed>("I work with the Magic tutor to give out consumable items that you may need for combat such as arrows and runes. However we have had some cheeky people try to take both!")
             npc<Happy>("So, every half an hour, you may come back and claim either arrows OR runes, but not both. Come back in a while for arrows, or simply make your own.")
             return
         }
-        if (player.ownsItem("training_bow") || player.ownsItem("training_arrows")) {
+        if (ownsItem("training_bow") || ownsItem("training_arrows")) {
             hasEquipment()
-            if (player.ownsItem("training_arrows")) {
+            if (ownsItem("training_arrows")) {
                 return
             }
         }
-        if (!player.ownsItem("training_bow")) {
-            if (player.inventory.isFull()) {
+        if (!ownsItem("training_bow")) {
+            if (inventory.isFull()) {
                 npc<Upset>("If you had enough space in your inventory I'd give you a training bow, come back when you do.")
-                player.inventoryFull()
+                inventoryFull()
                 return
             }
         }
-        if (player.inventory.spaces < 2) {
+        if (inventory.spaces < 2) {
             npc<Upset>("If you had enough space in your inventory I'd give you some arrows, come back when you do.")
-            player.inventoryFull()
+            inventoryFull()
             return
         }
-        if (!player.ownsItem("training_bow")) {
+        if (!ownsItem("training_bow")) {
             item("training_bow", 400, "Nemarti gives you a Training shortbow.")
-            player.inventory.add("training_bow")
+            inventory.add("training_bow")
         }
         item("training_arrows", 400, "Mikasi gives you 25 arrows. They can only be used with the Training shortbow.")
-        player.inventory.add("training_arrows", 25)
-        player.start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
+        inventory.add("training_arrows", 25)
+        start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
     }
 
-    suspend fun SuspendableContext<Player>.hasEquipment() {
+    suspend fun Player.hasEquipment() {
         var banked = false
-        if (player.bank.contains("training_arrows")) {
+        if (bank.contains("training_arrows")) {
             npc<Happy>("You have some training arrows in your bank.")
             banked = true
         }
-        if (player.bank.contains("training_bow")) {
+        if (bank.contains("training_bow")) {
             npc<Happy>("You have a training bow in your bank.")
             banked = true
         }
@@ -119,10 +118,10 @@ class RangeTutor : Script {
             item("bank_icon", 1200, "You have some arrows in your bank. Climb the stairs in Lumbridge Castle until you see this icon on your minimap. There you will find a bank.")
             return
         }
-        if (player.inventory.contains("training_arrows") || player.equipment.contains("training_arrows")) {
+        if (inventory.contains("training_arrows") || equipment.contains("training_arrows")) {
             npc<Happy>("You already have some training arrows.")
         }
-        if (player.inventory.contains("training_bow") || player.equipment.contains("training_bow")) {
+        if (inventory.contains("training_bow") || equipment.contains("training_bow")) {
             npc<Happy>("You already have a training bow.")
         }
     }

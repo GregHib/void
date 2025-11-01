@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.quest
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
@@ -16,7 +15,7 @@ class Clerk : Script {
 
     init {
         npcOperate("Talk-to", "clerk_west_ardougne") {
-            when (player.quest("plague_city")) {
+            when (quest("plague_city")) {
                 "talk_to_bravek" -> talkToBravek()
                 // todo find out about "has_cure_paper", "gave_cure", "freed_elena"
                 else -> menu()
@@ -24,10 +23,10 @@ class Clerk : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.menu() {
+    suspend fun Player.menu() {
         npc<Neutral>("Hello, welcome to the Civic Office of West Ardougne. How can I help you?")
         choice {
-            if (player.quest("plague_city") == "need_clearance") {
+            if (quest("plague_city") == "need_clearance") {
                 option<Neutral>("I need permission to enter a plague house.") {
                     permission()
                 }
@@ -40,14 +39,14 @@ class Clerk : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.throughThatDoor() {
+    suspend fun Player.throughThatDoor() {
         npc<Neutral>("The city warder Bravek is in there.")
         player<Quiz>("Can I go in?")
-        if (stages.contains(player.quest("plague_city"))) {
+        if (stages.contains(quest("plague_city"))) {
             npc<Neutral>("I suppose so.")
         } else {
             npc<Neutral>("He has asked not to be disturbed.")
-            if (player.quest("plague_city") == "need_clearance") {
+            if (quest("plague_city") == "need_clearance") {
                 choice {
                     option<Angry>("This is urgent though! Someone's been kidnapped!") {
                         urgent()
@@ -62,7 +61,7 @@ class Clerk : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.permission() {
+    suspend fun Player.permission() {
         npc<Neutral>("Rather you than me! The mourners normally deal with that stuff, you should speak to them. Their headquarters are right near the city gate.")
         choice {
             option<Neutral>("I'll try asking them then.") {
@@ -93,14 +92,14 @@ class Clerk : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.urgent() {
+    suspend fun Player.urgent() {
         npc<Neutral>("I'll see what I can do I suppose.")
         npc<Neutral>("Mr Bravek, there's a man here who really needs to speak to you.")
-        player["plague_city"] = "talk_to_bravek"
+        set("plague_city", "talk_to_bravek")
         npc<Uncertain>("bravek", "I suppose they can come in then. If they keep it short.")
     }
 
-    suspend fun SuspendableContext<Player>.talkToBravek() {
+    suspend fun Player.talkToBravek() {
         npc<Neutral>("Bravek will see you now but keep it short!")
         player<Happy>("Thanks, I won't take much of his time.")
     }

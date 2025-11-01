@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.quest
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
@@ -14,7 +13,7 @@ class ChieftainGunthor : Script {
 
     init {
         npcOperate("Talk-to", "chieftain_gunthor_*") {
-            when (player.quest("gunnars_ground")) {
+            when (quest("gunnars_ground")) {
                 "completed" -> {
                 }
                 "tell_gudrun", "tell_dororan", "write_poem", "more_poem", "one_more_poem", "poem_done", "poem", "recital", "gunnars_ground" -> {
@@ -28,7 +27,7 @@ class ChieftainGunthor : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.meetChieftain() {
+    suspend fun Player.meetChieftain() {
         npc<Angry>("Begone, outerlander! Your kind are not welcome here!")
         choice {
             option<Neutral>("I need to speak with you, chieftain.") {
@@ -40,7 +39,7 @@ class ChieftainGunthor : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.makeItShort() {
+    suspend fun Player.makeItShort() {
         npc<Frustrated>("Make it short.")
         player<Talk>("Your daughter seeks permission to court an outerlander.")
         npc<Mad>("WHAT??")
@@ -54,7 +53,7 @@ class ChieftainGunthor : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.barbarians() {
+    suspend fun Player.barbarians() {
         npc<Frustrated>("Do you have ANY idea who we are?")
         choice {
             option<Neutral>("You're barbarians.") {
@@ -66,7 +65,7 @@ class ChieftainGunthor : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.waitAMoment() {
+    suspend fun Player.waitAMoment() {
         npc<Angry>("We are storm that sweeps from the mountains! We are the scourge of these soft lands!")
         choice {
             option<Neutral>("Please wait a moment.") {
@@ -78,7 +77,7 @@ class ChieftainGunthor : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.campOfWar() {
+    suspend fun Player.campOfWar() {
         npc<Frustrated>("We are the freemen of the ice. You think this a settlement, but it is a camp of war!")
         npc<Frustrated>("haakon_the_champion", "Chieftain! May I interrupt?")
         npc<Frustrated>("What is it, Haakon?")
@@ -94,12 +93,12 @@ class ChieftainGunthor : Script {
         player<Quiz>("What?")
         npc<Mad>("We are not friends, you and I! We are not allies!")
         npc<Frustrated>("Run back to Gudrun and tell her to remember her forefathers!")
-        player["gunnars_ground"] = "tell_gudrun"
+        set("gunnars_ground", "tell_gudrun")
         npc<Frustrated>("Tell her to think of Gunnar and what he would think of this insult! Now go before I have Haakon dismember you.")
         seeHimTry()
     }
 
-    suspend fun SuspendableContext<Player>.seeHimTry() {
+    suspend fun Player.seeHimTry() {
         choice {
             option<Talk>("I'm going!") {
             }
@@ -112,7 +111,7 @@ class ChieftainGunthor : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.unstarted() {
+    suspend fun Player.unstarted() {
         npc<Frustrated>("Begone, outerlander! Your kind are not welcome here!")
     }
 }

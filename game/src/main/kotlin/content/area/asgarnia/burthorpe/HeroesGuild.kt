@@ -11,7 +11,6 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
@@ -28,7 +27,7 @@ class HeroesGuild : Script {
 
         npcOperate("Talk-to", "achietties") {
             npc<Talk>("Greetings. Welcome to the Heroes' Guild.")
-            if (player.questCompleted("heroes_quest")) {
+            if (questCompleted("heroes_quest")) {
                 return@npcOperate
             }
             npc<Talk>("Only the greatest heroes of this land may gain entrance to this guild.")

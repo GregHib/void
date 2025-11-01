@@ -5,7 +5,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
@@ -39,7 +38,7 @@ class Victoria : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.timesChange() {
+    suspend fun Player.timesChange() {
         player<Quiz>("Oh dear. Has he always been this way?")
         npc<Sad>("Yes, but it never used to be this bad. You see...")
         npc<Happy>("Lachtopher used to live on the east side of the river, before it was overrun with goblins. Although he didn't have a steady job, he used to help out around farms when he needed cash.")

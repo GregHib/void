@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.*
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inject
@@ -27,7 +26,7 @@ class FatherUrhney : Script {
                     npc<Frustrated>("I SAID go AWAY.")
                     player<Neutral>("Okay, okay... sheesh, what a grouch.")
                 }
-                option<Happy>("Father Aereck sent me to talk to you.", filter = { player.quest("the_restless_ghost") == "started" }) {
+                option<Happy>("Father Aereck sent me to talk to you.", filter = { quest("the_restless_ghost") == "started" }) {
                     npc<Angry>("I suppose I'd better talk to you then. What problems has he got himself into this time?")
                     choice {
                         option<Neutral>("He's got a ghost haunting his graveyard.") {
@@ -42,25 +41,25 @@ class FatherUrhney : Script {
                     }
                 }
                 option<Happy>("I've lost the Amulet of Ghostspeak.", filter = {
-                    val stage = player.quest("the_restless_ghost")
+                    val stage = quest("the_restless_ghost")
                     stage == "ghost" || stage == "mining_spot" || stage == "found_skull" || stage == "completed"
                 }) {
                     statement("Father Urhney sighs.")
-                    if (player.holdsItem("ghostspeak_amulet")) {
+                    if (holdsItem("ghostspeak_amulet")) {
                         npc<Angry>("What are you talking about? I can see you've got it with you!")
                         return@option
                     }
-                    if (player.bank.contains("ghostspeak_amulet")) {
+                    if (bank.contains("ghostspeak_amulet")) {
                         npc<Angry>("You come here wasting my time... Has it even occurred to you that you've got it stored somewhere? Now GO AWAY!")
                         return@option
                     }
-                    if (player.inventory.isFull()) {
+                    if (inventory.isFull()) {
                         npc<Angry>("How careless can you get? Those things aren't easy to come by you know! Now clear some space in your inventory and I'll give you another one.")
                     } else {
                         npc<Angry>("How careless can you get? Those things aren't easy to come by you know! It's a good job I've got a spare.")
-                        player.inventory.add("ghostspeak_amulet")
+                        inventory.add("ghostspeak_amulet")
                         item("ghostspeak_amulet", 200, "Father Urhney hands you an amulet.")
-                        player["i_cant_hear_dead_people_task"] = true
+                        set("i_cant_hear_dead_people_task", true)
                         npc<Angry>("Be more careful this time.")
                         player<Neutral>("Okay, I'll try to be.")
                     }
@@ -84,22 +83,22 @@ class FatherUrhney : Script {
         }
 
         npcOperate("Pickpocket", "father_urhney") {
-            player.message("<red>You don't want to dip into those pockets without good reason.")
-            player.message("<red>They're holy ...and filthy.")
+            message("<red>You don't want to dip into those pockets without good reason.")
+            message("<red>They're holy ...and filthy.")
         }
     }
 
-    suspend fun SuspendableContext<Player>.ghost() {
+    suspend fun Player.ghost() {
         npc<Angry>("Oh, the silly fool.")
         npc<Angry>("I leave town for just five months, and ALREADY he can't manage.")
         npc<Sad>("(sigh)")
         npc<Angry>("Well, I can't go back and exorcise it. I vowed not to leave this place. Until I had done a full two years of prayer and meditation.")
         npc<Neutral>("Tell you what I can do though; take this amulet.")
-        player["the_restless_ghost"] = "ghost"
-        if (player.inventory.isFull()) {
-            floorItems.add(player.tile, "ghostspeak_amulet", disappearTicks = 300, owner = player)
+        set("the_restless_ghost", "ghost")
+        if (inventory.isFull()) {
+            floorItems.add(tile, "ghostspeak_amulet", disappearTicks = 300, owner = this)
         } else {
-            player.inventory.add("ghostspeak_amulet")
+            inventory.add("ghostspeak_amulet")
         }
         item("ghostspeak_amulet", 200, "Father Urhney hands you an amulet.")
         npc<Neutral>("It is an Amulet of Ghostspeak.")

@@ -8,36 +8,38 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
+import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 class BartenderDeadMansChest : Script {
 
     init {
-        npcOperate("Talk-to", "bartender_dead_mans_chest") {
+        npcOperate("Talk-to", "bartender_dead_mans_chest") { (target) ->
             npc<Chuckle>("Yohoho me hearty what would you like to drink?")
             choice {
                 option<Talk>("Nothing, thank you.")
                 option<Talk>("A pint of Grog please.") {
                     npc<Talk>("One grog coming right up, that'll be three coins.")
                     if (buy("grog", 3, "Oh dear. I don't seem to have enough money.")) {
-                        player.message("You buy a pint of grog.")
+                        message("You buy a pint of grog.")
                     }
                 }
                 option<Talk>("A bottle of rum please.") {
                     npc<Talk>("That'll be 27 coins.")
                     if (buy("bottle_of_rum", 27, "Oh dear. I don't seem to have enough money.")) {
-                        player.message("You buy a bottle of rum.")
+                        message("You buy a bottle of rum.")
                     }
                 }
-                option("I'm doing Alfred Grimhand's barcrawl.", filter = barCrawlFilter) {
-                    barCrawl()
+                if (onBarCrawl(target)) {
+                    option("I'm doing Alfred Grimhand's barcrawl.") {
+                        barCrawl(target)
+                    }
                 }
             }
         }
@@ -46,18 +48,19 @@ class BartenderDeadMansChest : Script {
             if (player.containsVarbit("barcrawl_signatures", "supergrog")) {
                 return@itemOnNPCOperate
             }
-            barCrawl()
+            player.barCrawl(target)
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
+    suspend fun Player.barCrawl(target: NPC) = barCrawlDrink(
+        target,
         start = { npc<Happy>("Haha time to be breaking out the old Supergrog. That'll be 15 coins please.") },
         effects = {
-            player.levels.drain(Skill.Attack, 7)
-            player.levels.drain(Skill.Defence, 6)
-            player.levels.drain(Skill.Herblore, 5)
-            player.levels.drain(Skill.Cooking, 6)
-            player.levels.drain(Skill.Prayer, 5)
+            levels.drain(Skill.Attack, 7)
+            levels.drain(Skill.Defence, 6)
+            levels.drain(Skill.Herblore, 5)
+            levels.drain(Skill.Cooking, 6)
+            levels.drain(Skill.Prayer, 5)
         },
     )
 }

@@ -18,9 +18,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.BitwiseValues
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inject
@@ -33,25 +31,25 @@ class ExplorerJack : Script {
 
     val npcs: NPCs by inject()
 
-    val variables: VariableDefinitions by inject()
+    val variableDefinitions: VariableDefinitions by inject()
 
     init {
         npcOperate("Talk-to", "explorer_jack") {
-            if (player["introducing_explorer_jack_task", "uncompleted"] == "uncompleted") {
+            if (get("introducing_explorer_jack_task", "uncompleted") == "uncompleted") {
                 npc<Talk>("Ah! Welcome to ${Settings["server.name"]}, lad. My name's Explorer jack. I'm an explorer by trade, and I'm one of the Taskmasters around these parts")
                 player<Quiz>("Taskmaster? What Tasks are you Master of?")
                 whatIsTaskSystem()
             }
-            if (!player["unlocked_emote_explore", false] && completedAllBeginner(player)) {
+            if (!get("unlocked_emote_explore", false) && completedAllBeginner(this)) {
                 player<Happy>("I think I've finished all of the Beginner Tasks in the Lumbridge set.")
                 npc<Happy>("You have? Oh, well done! We'll make an explorer of you yet.")
                 player<Happy>("Thank you. Is there a reward?")
                 npc<Talk>("Ah, yes indeed.")
-                if (!player.inventory.add("explorers_ring_1", "antique_lamp_beginner_lumbridge_tasks")) {
+                if (!inventory.add("explorers_ring_1", "antique_lamp_beginner_lumbridge_tasks")) {
                     npc<Talk>("You don't seem to have space, speak to me again when you have two free spaces in your inventory.") // TODO proper message (not in osrs)
                     return@npcOperate
                 }
-                player["unlocked_emote_explore"] = true
+                set("unlocked_emote_explore", true)
                 npc<Talk>("Having completed the beginner tasks, you have been granted the ability to use the Explorer emote to show your friends.")
                 npc<Happy>("I have also given you an explorer's ring. Now, this is more than just any old ring. Aside from looking good, it also has magical properties giving you a small but useful boost to your Magic and Prayer.")
                 npc<Talk>("Your ring has the ability to restore some of your run energy to you.")
@@ -103,21 +101,21 @@ class ExplorerJack : Script {
         }
     }
 
-    suspend fun NPCOption<Player>.whatIsTaskSystem() {
+    suspend fun Player.whatIsTaskSystem() {
         npc<Neutral>("Well, the Task System is a potent method of guiding yourself to useful things to do around the world.")
         npc<Talk>("You'll see up to six Tasks in your side bar if you click on the glowing Task List icon. You can click on one for more information about it, hints, waypoint arrows, that sort of thing.")
         npc<Talk>("Every Task you do will earn you something of value which you can claim from me. It'll be money, mostly, but the Rewards tab for a Task will tell you more.<br>Good luck!")
-        player["introducing_explorer_jack_task"] = "completed"
-        player["unstable_foundations"] = "completed"
-        player.sendScript("task_list_button_hide", 0)
-        player.interfaces.sendVisibility("task_system", "ok", true)
+        set("introducing_explorer_jack_task", "completed")
+        set("unstable_foundations", "completed")
+        sendScript("task_list_button_hide", 0)
+        interfaces.sendVisibility("task_system", "ok", true)
     }
 
-    suspend fun NPCOption<Player>.claim(inventoryId: String) {
+    suspend fun Player.claim(inventoryId: String) {
         npc<Neutral>("I'll just fill your $inventoryId with what you need, then.")
-        val inventory = player.inventories.inventory(inventoryId)
-        val progress = player["task_progress_overall", 0]
-        val rewards = progress - player["task_progress_rewarded", 0]
+        val inventory = inventories.inventory(inventoryId)
+        val progress = get("task_progress_overall", 0)
+        val rewards = progress - get("task_progress_rewarded", 0)
         var coins = 0
         for (i in 0 until rewards) {
             coins += when {
@@ -128,26 +126,26 @@ class ExplorerJack : Script {
                 else -> 2560
             }
         }
-        val values = (variables.get("task_reward_items")!!.values as BitwiseValues).values
+        val values = (variableDefinitions.get("task_reward_items")!!.values as BitwiseValues).values
         inventory.transaction {
             add("coins", coins)
-            if (player.contains("task_reward_items")) {
+            if (contains("task_reward_items")) {
                 for (value in values) {
-                    if (player.containsVarbit("task_reward_items", value)) {
+                    if (containsVarbit("task_reward_items", value)) {
                         add(value as String)
                     }
                 }
             }
         }
         when (inventory.transaction.error) {
-            is TransactionError.Full -> player.inventoryFull()
+            is TransactionError.Full -> inventoryFull()
             TransactionError.None -> {
-                player.message("You receive $coins coins.")
+                message("You receive $coins coins.")
                 npc<Happy>("There you go.")
-                player["task_progress_rewarded"] = player["task_progress_overall", 0]
-                player.clear("task_reward_items")
+                set("task_progress_rewarded", get("task_progress_overall", 0))
+                clear("task_reward_items")
                 if (coins > 100) {
-                    player["must_be_funny_in_a_rich_mans_world_task"] = true
+                    set("must_be_funny_in_a_rich_mans_world_task", true)
                 }
             }
             else -> {

@@ -11,27 +11,27 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
+import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.npcApproach
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 class BartenderBlueMoonInn : Script {
 
     init {
-        npcApproach("Talk-to", "bartender_blue_moon_inn") {
+        npcApproach("Talk-to", "bartender_blue_moon_inn") { (target) ->
             approachRange(4)
             npc<Quiz>("What can I do yer for?")
             choice {
                 option<Talk>("A glass of your finest ale please.") {
                     npc<Talk>("No problemo. That'll be 2 coins.")
                     if (buy("beer", 2)) {
-                        player.message("You buy a pint of beer.")
+                        message("You buy a pint of beer.")
                     }
                 }
                 option<Quiz>("Can you recommend where an adventurer might make his fortune?") {
@@ -52,8 +52,10 @@ class BartenderBlueMoonInn : Script {
                         }
                     }
                 }
-                option("I'm doing Alfred Grimhand's barcrawl.", filter = barCrawlFilter) {
-                    barCrawl()
+                if (onBarCrawl(target)) {
+                    option("I'm doing Alfred Grimhand's barcrawl.") {
+                        barCrawl(target)
+                    }
                 }
             }
         }
@@ -62,22 +64,23 @@ class BartenderBlueMoonInn : Script {
             if (player.containsVarbit("barcrawl_signatures", "uncle_humphreys_gutrot")) {
                 return@itemOnNPCApproach
             }
-            barCrawl()
+            player.barCrawl(target)
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.barCrawl() = barCrawlDrink(
+    suspend fun Player.barCrawl(target: NPC) = barCrawlDrink(
+        target,
         start = {
             npc<Sad>("Oh no not another of you guys. These barbarian barcrawls cause too much damage to my bar.")
             npc<Talk>("You're going to have to pay 50 gold for the Uncle Humphrey's Gutrot.")
         },
         effects = {
-            player.levels.drain(Skill.Attack, 6)
-            player.levels.drain(Skill.Defence, 6)
-            player.levels.drain(Skill.Strength, 6)
-            player.levels.drain(Skill.Smithing, 6)
-            player.damage(0)
-            player.say("Blearrgh!")
+            levels.drain(Skill.Attack, 6)
+            levels.drain(Skill.Defence, 6)
+            levels.drain(Skill.Strength, 6)
+            levels.drain(Skill.Smithing, 6)
+            damage(0)
+            say("Blearrgh!")
         },
     )
 }

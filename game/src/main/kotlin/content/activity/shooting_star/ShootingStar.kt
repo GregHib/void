@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.data.settingsReload
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -115,26 +114,26 @@ class ShootingStar : Script {
 
         npcOperate("Talk-to", "star_sprite") {
             npc<Happy>("Thank you for helping me out of here")
-            val starDustCount = player.inventory.count("stardust")
-            if (player.inventory.isFull()) {
-                player.message("Inventory full. To make more room, sell, drop or bank something.", ChatType.Game)
+            val starDustCount = inventory.count("stardust")
+            if (inventory.isFull()) {
+                message("Inventory full. To make more room, sell, drop or bank something.", ChatType.Game)
             } else if (starDustCount == 0) {
                 npc<Sad>("You don't seem to have any stardust that I can exchange for a reward")
             } else if (starDustCount > 0) {
                 val rewards = calculateRewards(starDustCount)
-                player.inventory.remove("stardust", starDustCount)
+                inventory.remove("stardust", starDustCount)
                 val messageBuilder = StringBuilder("Also, ")
                 rewards.entries.forEachIndexed { index, (reward, amount) ->
-                    player.inventory.add(reward, amount)
+                    inventory.add(reward, amount)
                     if (index == 0) {
                         messageBuilder.append("have $amount $reward")
                     } else {
                         messageBuilder.append(", $amount ${reward.replace("_", " ").replace("noted", "").plural(amount)}")
                     }
                 }
-                if (!ShootingStarHandler.rewardPlayerBonusOre(player)) {
+                if (!ShootingStarHandler.rewardPlayerBonusOre(this)) {
                     npc<Happy>("I have rewarded you by making it so you can mine extra ore for the next 15 minutes, $messageBuilder.")
-                    givePlayerBonusOreReward(player)
+                    givePlayerBonusOreReward(this)
                 } else {
                     npc<Happy>("You already have the ability to mine an extra ore, ${messageBuilder.replace(0, 4, "However")}.")
                 }

@@ -8,8 +8,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCOption
-import world.gregs.voidps.engine.entity.character.npc.npcOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -18,10 +16,10 @@ class Joe : Script {
 
     init {
         npcOperate("Talk-to", "jail_guard_joe") {
-            when (player.quest("prince_ali_rescue")) {
+            when (quest("prince_ali_rescue")) {
                 "guard" -> {
                     choice {
-                        if (player.inventory.contains("beer")) {
+                        if (inventory.contains("beer")) {
                             fancyABeer()
                         }
                         guardLife()
@@ -57,48 +55,48 @@ class Joe : Script {
             when (player.quest("prince_ali_rescue")) {
                 "guard" -> {
                     player<Happy>("I have some beer here. Fancy one?")
-                    beer()
+                    player.beer()
                 }
-                "joe_beer" -> anotherBeer()
+                "joe_beer" -> player.anotherBeer()
                 else -> player<Talk>("I don't see any need to give the guard my beer. I'll keep it for myself.")
             }
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.fancyABeer() {
+    fun ChoiceBuilder2.fancyABeer() {
         option<Happy>("I have some beer here, fancy one?") {
             beer()
         }
     }
 
-    suspend fun TargetInteraction<Player, NPC>.beer() {
+    suspend fun Player.beer() {
         npc<Happy>("Ah, that would be lovely. Only one though, just to wet my throat.")
         player<Talk>("Of course. It must be tough being here without a drink.")
-        player["prince_ali_rescue"] = "joe_beer"
-        player.inventory.remove("beer")
-        player.sound("drink")
+        set("prince_ali_rescue", "joe_beer")
+        inventory.remove("beer")
+        sound("drink")
         statement("You hand a beer to the guard. He drinks it in seconds.")
         npc<Happy>("That was perfect! I can't thank you enough.")
         anotherBeer()
     }
 
-    suspend fun TargetInteraction<Player, NPC>.anotherBeer() {
+    suspend fun Player.anotherBeer() {
         player<Quiz>("How are you? Still ok? Not too drunk?")
-        if (!player.inventory.contains("beer", 2)) {
+        if (!inventory.contains("beer", 2)) {
             npc<Talk>("No, I don't get drunk from only one drink. I reckon I'd need at least two more for that. Still, thanks for the beer.")
             return
         }
         player<Happy>("Would you care for another beer, my friend?")
         npc<RollEyes>("I'd better not. I don't want to be drunk on duty.")
         player<Happy>("Here, just keep these for later. I hate to see a thirsty guard.")
-        player["prince_ali_rescue"] = "joe_beers"
-        player.inventory.remove("beer", 2)
-        player.sound("drink")
+        set("prince_ali_rescue", "joe_beers")
+        inventory.remove("beer", 2)
+        sound("drink")
         items("beer", "beer", "You hand two more beers to the guard. He takes a sip of one, and then he quickly drinks them both.")
         npc<Drunk>("Franksh! That wash jusht what I need to shtay on guard. No more beersh, I don't want to get drunk.")
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.guardLife() {
+    fun ChoiceBuilder2.guardLife() {
         option<Talk>("Tell me about the life of a guard.") {
             npc<RollEyes>("Well, the hours are good, but most of those hours are a drag.")
             npc<Upset>("Sometimes I wonder if I should have spent more time learning when I was a young boy. Maybe I wouldn't be here now, scared of Keli.")
@@ -109,7 +107,7 @@ class Joe : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.guardDreams() {
+    fun ChoiceBuilder2.guardDreams() {
         option<Talk>("What did you want to be when you were a boy?") {
             npc<RollEyes>("Well, I loved to sit by the lake, with my toes in the water. I'd shoot the fish with my bow and arrow.")
             player<Uncertain>("That's a strange hobby for a boy.")
@@ -126,7 +124,7 @@ class Joe : Script {
                             npc<RollEyes>("Really, after working here, there's only time for a drink or three. All us guards go to the same pub and drink ourselves stupid.")
                             npc<Happy>("It's what I enjoy these days. I can't resist the sight of a really cold beer.")
                             choice {
-                                if (player.inventory.contains("beer")) {
+                                if (inventory.contains("beer")) {
                                     fancyABeer()
                                 }
                                 guardLife()
@@ -154,7 +152,7 @@ class Joe : Script {
         }
     }
 
-    fun ChoiceBuilder<NPCOption<Player>>.betterGo() {
+    fun ChoiceBuilder2.betterGo() {
         option<Talk>("I'd better go.") {
             npc<Talk>("Thanks, I appreciate that. Talking on duty can be punished by having your mouth stitched up. These are tough people, make no mistake.")
         }
