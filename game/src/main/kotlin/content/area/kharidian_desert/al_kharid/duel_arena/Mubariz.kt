@@ -32,7 +32,7 @@ class Mubariz : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.place(): Unit = option<Uncertain>("What is this place?") {
+    fun ChoiceBuilder2.place(): Unit = option<Uncertain>("What is this place?") {
         npc<Neutral>("The Duel Arena has six arenas where you can fight other players in a controlled environment. We have our own dedicated hospital where we guarantee to put you back together, even if you lose.")
         npc<Neutral>("The Duel Arena has six arenas where you can fight other players in a controlled environment. We have our own dedicated hospital where we guarantee to put you back together, even if you lose.")
         npc<Neutral>("In between the arenas are walkways where you can watch the fights and challenge other players.")
@@ -76,7 +76,7 @@ class Mubariz : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.options(): Unit = option<Uncertain>("What kind of options are there?") {
+    fun ChoiceBuilder2.options(): Unit = option<Uncertain>("What kind of options are there?") {
         npc<Neutral>("You and your opponent can offer coins or platinum as a stake. If you win, you receive what your opponent staked minus some tax, but if you lose, your opponent will get whatever items you staked.")
         npc<Neutral>("You can choose to use rules to spice things up a bit. For instance if you both agree to use the 'No Magic' rule then neither player can use magic to attack the other player. The fight will be restricted to ranging and")
         npc<Neutral>("melee only.")
@@ -89,11 +89,11 @@ class Mubariz : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.advice(): Unit = option<Quiz>("Do you have any advice for me?") {
+    fun ChoiceBuilder2.advice(): Unit = option<Quiz>("Do you have any advice for me?") {
         npc<Chuckle>("Win. And if you ever stop having fun, stop dueling.")
     }
 
-    suspend fun ChoiceBuilder2.exit(): Unit = option<RollEyes>("I'll be off.") {
+    fun ChoiceBuilder2.exit(): Unit = option<RollEyes>("I'll be off.") {
         npc<Shifty>("See you in the arenas!")
     }
 }

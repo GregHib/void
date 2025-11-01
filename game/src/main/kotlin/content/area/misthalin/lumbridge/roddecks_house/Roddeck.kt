@@ -31,10 +31,10 @@ class Roddeck : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.anyAdvice(): Unit = option<Quiz>("Can you offer me any advice?") {
+    fun ChoiceBuilder2.anyAdvice(): Unit = option<Quiz>("Can you offer me any advice?") {
         npc<Chuckle>("Advice? Certainly, certainly! Click my Advisor button whenever you have a question.")
     }
 
-    suspend fun ChoiceBuilder2.noThanks(): Unit = option<RollEyes>("Nothing, thanks.") {
+    fun ChoiceBuilder2.noThanks(): Unit = option<RollEyes>("Nothing, thanks.") {
     }
 }

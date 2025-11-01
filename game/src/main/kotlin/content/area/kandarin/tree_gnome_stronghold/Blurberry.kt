@@ -1,7 +1,6 @@
 package content.area.kandarin.tree_gnome_stronghold
 
 import content.entity.combat.hit.damage
-import content.entity.combat.target
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc

@@ -46,7 +46,7 @@ class GoblinMusician : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.exit(): Unit = option<Quiz>("That's all for now.") {
+    fun ChoiceBuilder2.exit(): Unit = option<Quiz>("That's all for now.") {
         npc<Happy>("You listen to boom boom. Good!")
     }
 }

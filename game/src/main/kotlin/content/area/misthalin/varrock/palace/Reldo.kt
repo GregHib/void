@@ -21,21 +21,21 @@ class Reldo : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.anythingToTrade() = option<Quiz>("Do you have anything to trade?") {
+    fun ChoiceBuilder2.anythingToTrade() = option<Quiz>("Do you have anything to trade?") {
         npc<Neutral>("Only knowledge.")
         player<Quiz>("How much do you want for that then?")
         npc<Chuckle>("No, sorry, that was just my little joke. I'm not the trading type.")
         player<Neutral>("Ah well.")
     }
 
-    suspend fun ChoiceBuilder2.whatDoYouDo() = option<Quiz>("What do you do?") {
+    fun ChoiceBuilder2.whatDoYouDo() = option<Quiz>("What do you do?") {
         npc<Neutral>("I am the palace librarian.")
         player<Neutral>("Ah. That's why you're in the library then.")
         npc<Neutral>("Yes.")
         npc<Neutral>("Although I would probably be in here even if I didn't work here. I like reading. Someday I hope to catalogue all of the information stored in these books so all may read it.")
     }
 
-    suspend fun ChoiceBuilder2.aboutImcandoDwarves() = option<Quiz>(
+    fun ChoiceBuilder2.aboutImcandoDwarves() = option<Quiz>(
         "What do you know about the Imcando dwarves?",
         {
             val stage = quest("the_knights_sword")

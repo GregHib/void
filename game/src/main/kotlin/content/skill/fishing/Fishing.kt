@@ -97,9 +97,7 @@ class Fishing : Script {
             }
             if (first) {
                 player.message(itemDefinitions.get(tackle)["cast", ""], ChatType.Filter)
-                first = false
             }
-
             val remaining = player.remaining("action_delay")
             if (remaining < 0) {
                 player.face(target)
@@ -108,6 +106,9 @@ class Fishing : Script {
                 player.pause(5)
             } else if (remaining > 0) {
                 return
+            }
+            if (first) {
+                first = false
             }
             for (item in catches) {
                 val catch = itemDefinitions.get(item)["fishing", Catch.EMPTY]

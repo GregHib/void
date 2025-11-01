@@ -133,7 +133,7 @@ class MakeoverMage : Script {
         return Timer.CONTINUE
     }
 
-    suspend fun ChoiceBuilder2.more(): Unit = option<Quiz>("Tell me more about this 'makeover'.") {
+    fun ChoiceBuilder2.more(): Unit = option<Quiz>("Tell me more about this 'makeover'.") {
         npc<Happy>("Why, of course! Basically, and I will explain this so that you understand it correctly,")
         npc<Happy>("I use my secret magical technique to melt your body down into a puddle of its elements.")
         npc<Happy>("When I have broken down all components of your body, I then rebuild it into the form I am thinking of.")
@@ -151,17 +151,17 @@ class MakeoverMage : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.start(): Unit = option<Talk>("Sure, do it.") {
+    fun ChoiceBuilder2.start(): Unit = option<Talk>("Sure, do it.") {
         npc<Happy>("You, of course, agree that if by some accident you are turned into a frog you have no rights for compensation or refund.")
         openDressingRoom("skin_colour")
     }
 
-    suspend fun ChoiceBuilder2.exit(): Unit = option("No, thanks.") {
+    fun ChoiceBuilder2.exit(): Unit = option("No, thanks.") {
         player<Frustrated>("No, thanks. I'm happy as I am.")
         npc<Sad>("Ehhh..suit yourself.")
     }
 
-    suspend fun ChoiceBuilder2.amulet(): Unit = option<Pleased>("Cool amulet! Can I have one?") {
+    fun ChoiceBuilder2.amulet(): Unit = option<Pleased>("Cool amulet! Can I have one?") {
         val cost = 100
         npc<Talk>("No problem, but please remember that the amulet I will sell you is only a copy of my own. It contains no magical powers and, as such, will only cost you $cost coins.")
         if (!holdsItem("coins", cost)) {
@@ -200,7 +200,7 @@ class MakeoverMage : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.colour(): Unit = option<Pleased>("Can you make me a different colour?") {
+    fun ChoiceBuilder2.colour(): Unit = option<Pleased>("Can you make me a different colour?") {
         npc<Happy>("Why, of course! I have a wide array of colours for you to choose from.")
         whatDoYouSay()
     }

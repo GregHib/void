@@ -21,7 +21,7 @@ class LumbridgeSage : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.whoSage(): Unit = option<Quiz> ("Who are you?") {
+    fun ChoiceBuilder2.whoSage(): Unit = option<Quiz> ("Who are you?") {
         npc<Neutral>("I am Phileas, the Lumbridge Sage. In times past, people came from all around to ask me for advice. My renown seems to have diminished somewhat in recent years, though. Can I help you with anything?")
         set("sage_advice_task", true)
         choice {
@@ -30,7 +30,7 @@ class LumbridgeSage : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.castleLum(): Unit = option<Quiz>("Tell me about the town of Lumbridge.") {
+    fun ChoiceBuilder2.castleLum(): Unit = option<Quiz>("Tell me about the town of Lumbridge.") {
         npc<Neutral>("Lumbridge is one of the older towns in the human-controlled kingdoms. It was founded over two hundred years ago towards the end of the Fourth Age. It's called Lumbridge because of this bridge built over the")
         npc<Neutral>("River Lum. The town is governed by Duke Horacio, who is a good friend of our monarch, King Roald of Misthalin.")
         set("sage_advice_task", true)
@@ -40,7 +40,7 @@ class LumbridgeSage : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.goodBye(): Unit = option<Happy>("Goodbye.") {
+    fun ChoiceBuilder2.goodBye(): Unit = option<Happy>("Goodbye.") {
         npc<Happy>("Good adventuring, traveller.")
     }
 }

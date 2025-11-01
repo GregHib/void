@@ -97,7 +97,7 @@ class GypsyAris : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.howWallyWon(): Unit = option<Quiz>("So, how did Wally kill Delrith?") {
+    fun ChoiceBuilder2.howWallyWon(): Unit = option<Quiz>("So, how did Wally kill Delrith?") {
         playTrack("wally_the_hero")
         cutscene()
     }
@@ -133,19 +133,19 @@ class GypsyAris : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.cityDestroyer(end: suspend Player.() -> Unit): Unit = option<Afraid>("How am I meant to fight a demon who can destroy cities?") {
+    fun ChoiceBuilder2.cityDestroyer(end: suspend Player.() -> Unit): Unit = option<Afraid>("How am I meant to fight a demon who can destroy cities?") {
         npc<Talk>("If you face Delrith while he is still weak from being summoned, and use the correct weapon, you will not find the task too arduous.")
         npc<Talk>("Do not fear. If you follow the path of the great hero Wally, then you are sure to defeat the demon.")
         end.invoke(this)
     }
 
-    suspend fun ChoiceBuilder2.whereIsHe(): Unit = option<Happy>("Okay, where is he? I'll kill him for you.") {
+    fun ChoiceBuilder2.whereIsHe(): Unit = option<Happy>("Okay, where is he? I'll kill him for you.") {
         npc<Chuckle>("Ah, the overconfidence of the young!")
         npc<Talk>("Delrith can't be harmed by ordinary weapons. You must face him using the same weapon that Wally used.")
         howToDo()
     }
 
-    suspend fun ChoiceBuilder2.notVeryHeroicName(): Unit = option<Happy>("Wally doesn't sound like a very heroic name.") {
+    fun ChoiceBuilder2.notVeryHeroicName(): Unit = option<Happy>("Wally doesn't sound like a very heroic name.") {
         npc<Talk>("Yes, I know. Maybe that is why history doesn't remember him. However, he was a great hero.")
         npc<Talk>("Who knows how much pain and suffering Delrith would have brought forth without Wally to stop him!")
         npc<Talk>("It looks like you are needed to perform similar heroics.")
@@ -163,7 +163,7 @@ class GypsyAris : Script {
         npc<Upset>("Ok suit yourself.")
     }
 
-    suspend fun ChoiceBuilder2.hereYouGo(target: NPC): Unit = option<Talk>("Okay, here you go.") {
+    fun ChoiceBuilder2.hereYouGo(target: NPC): Unit = option<Talk>("Okay, here you go.") {
         inventory.remove("coins", 1)
         npc<Happy>("Come closer and listen carefully to what the future holds, as I peer into the swirling mists o the crystal ball.")
         sound("demon_slayer_crystal_ball_start")
@@ -186,7 +186,7 @@ class GypsyAris : Script {
         whatToDo()
     }
 
-    suspend fun ChoiceBuilder2.whoYouCallingYoung(target: NPC): Unit = option<Frustrated>("Who are you called 'young one'?") {
+    fun ChoiceBuilder2.whoYouCallingYoung(target: NPC): Unit = option<Frustrated>("Who are you called 'young one'?") {
         npc<Talk>("You have been on this world a relatively short time. At least compared to me.")
         npc<Talk>("So, do you want your fortune told or not?")
         choice {
@@ -277,7 +277,7 @@ class GypsyAris : Script {
         delrithWillCome()
     }
 
-    suspend fun ChoiceBuilder2.withSilver(target: NPC): Unit = option<Quiz>("With silver?") {
+    fun ChoiceBuilder2.withSilver(target: NPC): Unit = option<Quiz>("With silver?") {
         npc<Neutral>("Oh, sorry, I forgot. With gold, I mean. They haven't used silver coins since before you were born! So, do you want your fortune told?")
         choice {
             hereYouGo(target)
@@ -324,11 +324,11 @@ class GypsyAris : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.okThanks(): Unit = option<Talk>("Ok thanks. I'll do my best to stop the demon.") {
+    fun ChoiceBuilder2.okThanks(): Unit = option<Talk>("Ok thanks. I'll do my best to stop the demon.") {
         npc<Happy>("Good luck, and may Guthix be with you!")
     }
 
-    suspend fun ChoiceBuilder2.silverlightReminder(): Unit = option("Where can I find Silverlight?") {
+    fun ChoiceBuilder2.silverlightReminder(): Unit = option("Where can I find Silverlight?") {
         whereSilverlight()
         choice {
             okThanks()
@@ -336,7 +336,7 @@ class GypsyAris : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.incantationReminder(): Unit = option("What is the magical incantation?") {
+    fun ChoiceBuilder2.incantationReminder(): Unit = option("What is the magical incantation?") {
         incantation()
         choice {
             okThanks()
@@ -344,7 +344,7 @@ class GypsyAris : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.stopCallingMeThat(): Unit = option<Angry>("Stop calling me that!") {
+    fun ChoiceBuilder2.stopCallingMeThat(): Unit = option<Angry>("Stop calling me that!") {
         npc<Talk>("In the scheme of things you are very young.")
         choice {
             option<Talk>("Ok but how old are you?") {

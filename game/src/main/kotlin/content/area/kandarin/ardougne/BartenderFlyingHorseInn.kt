@@ -1,7 +1,6 @@
 package content.area.kandarin.ardougne
 
 import content.entity.combat.hit.damage
-import content.entity.combat.target
 import content.entity.npc.shop.buy
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Quiz

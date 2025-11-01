@@ -47,9 +47,9 @@ class Elena : Script {
         }
     }
 
-    suspend fun started() {
+    fun started() {
     }
 
-    suspend fun completed() {
+    fun completed() {
     }
 }

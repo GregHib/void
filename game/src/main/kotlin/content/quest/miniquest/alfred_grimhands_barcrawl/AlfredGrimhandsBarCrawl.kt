@@ -66,12 +66,6 @@ suspend fun Player.barCrawlDrink(
     effects()
 }
 
-val barCrawlFilter: TargetContext<Player, NPC>.() -> Boolean = filter@{
-    val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return@filter false
-    val id = info["id"] as String
-    player.quest("alfred_grimhands_barcrawl") == "signatures" && !player.containsVarbit("barcrawl_signatures", id)
-}
-
 val onBarCrawl: Player.(NPC) -> Boolean = filter@{ target ->
     val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return@filter false
     val id = info["id"] as String

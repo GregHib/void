@@ -71,7 +71,7 @@ class DukeHoracio : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.findMoney(): Unit = option<Quiz>("Where can I find money?") {
+    fun ChoiceBuilder2.findMoney(): Unit = option<Quiz>("Where can I find money?") {
         npc<Neutral>("I've heard that the blacksmiths are prosperous amongst the peasantry. Maybe you could try your hand at that?")
     }
 

@@ -42,7 +42,7 @@ class SirVyvin : Script {
             target.replace("cupboard_the_knights_sword_closed")
         }
 
-        objectOperate("Search", "cupboard_the_knights_sword_opened") { (target) ->
+        objectOperate("Search", "cupboard_the_knights_sword_opened") {
             when (quest("the_knights_sword")) {
                 "cupboard", "blurite_sword" -> {
                     val sirVyvin = npcs[tile.regionLevel].firstOrNull { it.id == "sir_vyvin" }

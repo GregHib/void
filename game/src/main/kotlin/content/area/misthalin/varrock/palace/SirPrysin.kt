@@ -63,7 +63,7 @@ class SirPrysin : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.arisWantsToTalk(): Unit = option(
+    fun ChoiceBuilder2.arisWantsToTalk(): Unit = option(
         "Aris said I should come and talk to you.",
         { quest("demon_slayer") == "sir_prysin" },
     ) {
@@ -130,7 +130,7 @@ class SirPrysin : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.wheresWizard(): Unit = option("Where does the wizard live?") {
+    fun ChoiceBuilder2.wheresWizard(): Unit = option("Where does the wizard live?") {
         player<Talk>("Where does the wizard live?")
         npc<Talk>("He is one of the wizards who lives in the tower on the little island just off the south coast. I believe his quarters are on the first floor of the tower.")
         choice {
@@ -140,7 +140,7 @@ class SirPrysin : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.wheresCaptainRovin(): Unit = option("Where can I find Captain Rovin?") {
+    fun ChoiceBuilder2.wheresCaptainRovin(): Unit = option("Where can I find Captain Rovin?") {
         player<Talk>("Where can I find Captain Rovin?")
         npc<Talk>("Captain Rovin lives at the top of the guards' quarters in the north-west wing of this palace.")
         choice {
@@ -175,7 +175,7 @@ class SirPrysin : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.giveYourKey(): Unit = option("Can you give me your key?") {
+    fun ChoiceBuilder2.giveYourKey(): Unit = option("Can you give me your key?") {
         player<Talk>("Can you give me your key?")
         npc<Upset>("Um.... ah....")
         npc<Upset>("Well there's a problem there as well.")
@@ -187,7 +187,7 @@ class SirPrysin : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.drain(): Unit = option("So what does the drain lead to?") {
+    fun ChoiceBuilder2.drain(): Unit = option("So what does the drain lead to?") {
         player<Talk>("So what does the drain connect to?")
         npc<Talk>("It is the drain for the drainpipe running from the sink in the kitchen down to the palace sewers.")
         choice {
@@ -197,27 +197,27 @@ class SirPrysin : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.huntingTime(): Unit = option("Well I'd better go key hunting.") {
+    fun ChoiceBuilder2.huntingTime(): Unit = option("Well I'd better go key hunting.") {
         player<Talk>("Well I'd better go key hunting.")
         npc<Talk>("Ok, goodbye.")
     }
 
-    suspend fun ChoiceBuilder2.mightyAdventurer(): Unit = option("I am a mighty adventurer. Who are you?") {
+    fun ChoiceBuilder2.mightyAdventurer(): Unit = option("I am a mighty adventurer. Who are you?") {
         player<Talk>("I am a mighty adventurer, who are you?")
         npc<Talk>("I am Sir Prysin. A bold and famous knight of the realm.")
     }
 
-    suspend fun ChoiceBuilder2.youTellMe(): Unit = option("I'm not sure, I was hoping you could tell me.") {
+    fun ChoiceBuilder2.youTellMe(): Unit = option("I'm not sure, I was hoping you could tell me.") {
         player<Uncertain>("I was hoping you could tell me.")
         npc<Talk>("Well I've never met you before.")
     }
 
-    suspend fun ChoiceBuilder2.remindMe(): Unit = option("Can you remind me where all the keys were again?") {
+    fun ChoiceBuilder2.remindMe(): Unit = option("Can you remind me where all the keys were again?") {
         player<Talk>("Can you remind me where all the keys were again?")
         theKeys()
     }
 
-    suspend fun ChoiceBuilder2.stillLooking(): Unit = option("I'm still looking.") {
+    fun ChoiceBuilder2.stillLooking(): Unit = option("I'm still looking.") {
         player<Talk>("I'm still looking.")
         npc<Talk>("Ok, tell me when you've got them all.")
     }

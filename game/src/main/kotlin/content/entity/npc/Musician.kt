@@ -58,7 +58,7 @@ class Musician : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.exit(): Unit = option<Quiz>("That's all for now.") {
+    fun ChoiceBuilder2.exit(): Unit = option<Quiz>("That's all for now.") {
         npc<Happy>("Well, don't forget to have a rest every now and again.")
     }
 }

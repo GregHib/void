@@ -57,7 +57,7 @@ class Traiborn : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.thingummywut(): Unit = option<Uncertain>("What's a thingummywut?") {
+    fun ChoiceBuilder2.thingummywut(): Unit = option<Uncertain>("What's a thingummywut?") {
         npc<Uncertain>("A thingummywut? Where? Where?")
         npc<Uncertain>("Those pesky thingummywuts. They get everywhere. They leave a terrible mess too.")
         choice {
@@ -73,11 +73,11 @@ class Traiborn : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.betterBeOff(): Unit = option<Talk>("Err I'd better be off really.") {
+    fun ChoiceBuilder2.betterBeOff(): Unit = option<Talk>("Err I'd better be off really.") {
         npc<Uncertain>("Oh ok, have a good time, and watch out for sheep! They're more cunning than they look.")
     }
 
-    suspend fun ChoiceBuilder2.teachMe(): Unit = option<Talk>("Teach me to be a mighty and powerful wizard.") {
+    fun ChoiceBuilder2.teachMe(): Unit = option<Talk>("Teach me to be a mighty and powerful wizard.") {
         npc<Uncertain>("Wizard eh? You don't want any truck with that sort. They're not to be trusted. That's what I've heard anyways.")
         choice {
             option<Quiz>("So aren't you a wizard?") {
@@ -89,7 +89,7 @@ class Traiborn : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.youLookedAfterIt(): Unit = option<Talk>("He told me you were looking after it for him.") {
+    fun ChoiceBuilder2.youLookedAfterIt(): Unit = option<Talk>("He told me you were looking after it for him.") {
         npc<Uncertain>("That wasn't very clever of him. I'd lose my head if it wasn't screwed on. Go and tell him to find someone else to look after his valuables in future.")
         choice {
             option<Neutral>("Okay, I'll go and tell him that.") {
@@ -103,7 +103,7 @@ class Traiborn : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.needAKey(): Unit = option<Talk>("I need to get a key given to you by Sir Prysin.") {
+    fun ChoiceBuilder2.needAKey(): Unit = option<Talk>("I need to get a key given to you by Sir Prysin.") {
         npc<Uncertain>("Sir Prysin? Who's that? What would I want his key for?")
         choice {
             youLookedAfterIt()
@@ -121,7 +121,7 @@ class Traiborn : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.kingsKnight(): Unit = option<Talk>("He's one of the King's knights.") {
+    fun ChoiceBuilder2.kingsKnight(): Unit = option<Talk>("He's one of the King's knights.") {
         npc<Happy>("Say, I remember one of the King's knights. He had nice shoes...")
         npc<Upset>("...and didn't like my homemade spinach rolls. Would you like a spinach roll?")
         choice {
@@ -142,7 +142,7 @@ class Traiborn : Script {
         betterBeOffChoice()
     }
 
-    suspend fun ChoiceBuilder2.anyKeys(): Unit = option<Talk>("Well, have you got any keys knocking around?") {
+    fun ChoiceBuilder2.anyKeys(): Unit = option<Talk>("Well, have you got any keys knocking around?") {
         npc<Uncertain>("Now you come to mention it, yes I do have a key. It's in my special closet of valuable stuff. Now how do I get into that?")
         npc<Uncertain>("I sealed it using one of my magic rituals. So it would make sense that another ritual would open it again.")
         player<Talk>("So do you know what ritual to use?")
@@ -160,7 +160,7 @@ class Traiborn : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.keyForSilverlight(): Unit = option<Talk>("It's the key to get a sword called Silverlight.") {
+    fun ChoiceBuilder2.keyForSilverlight(): Unit = option<Talk>("It's the key to get a sword called Silverlight.") {
         npc<Uncertain>("Silverlight? Never heard of that. Sounds a good name for a ship. Are you sure it's not the name of a ship rather than a sword?")
         choice {
             option<Talk>("Yeah, pretty sure.") {
@@ -171,7 +171,7 @@ class Traiborn : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.justTellMe(): Unit = option<Talk>("Just tell me if you have the key.") {
+    fun ChoiceBuilder2.justTellMe(): Unit = option<Talk>("Just tell me if you have the key.") {
         npc<Uncertain>("The key? The key to what?")
         npc<Uncertain>("There's more than one key in the world don't you know? Would be a bit odd if there was only the one.")
         choice {

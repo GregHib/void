@@ -1,6 +1,5 @@
 package content.entity.player.effect.energy
 
-import content.entity.combat.target
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption

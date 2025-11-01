@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
-internal suspend fun ChoiceBuilder2.fighters(): Unit = option<Uncertain>("Do you see a lot of injured fighters?") {
+internal fun ChoiceBuilder2.fighters(): Unit = option<Uncertain>("Do you see a lot of injured fighters?") {
     npc<Neutral>("Yes I do. Thankfully we can cope with almost anything. Jaraah really is a wonderful surgeon, his methods are a little unorthodox but he gets the job done.")
     npc<Neutral>("I shouldn't tell you this but his nickname is 'The Butcher'.")
     player<Uncertain>("That's reassuring.")
@@ -31,7 +31,7 @@ internal suspend fun Player.heal(target: NPC) {
     npc<Happy>("You look healthy to me!")
 }
 
-internal suspend fun ChoiceBuilder2.often(): Unit = option<Uncertain>("Do you come here often?") {
+internal fun ChoiceBuilder2.often(): Unit = option<Uncertain>("Do you come here often?") {
     npc<Happy>("I work here, so yes!")
     npc<Chuckle>("You're silly!")
 }

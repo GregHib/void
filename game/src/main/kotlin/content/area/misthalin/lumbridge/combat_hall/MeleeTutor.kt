@@ -37,7 +37,7 @@ class MeleeTutor : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.meleeCombat(): Unit = option<Quiz>("Tell me about melee combat.") {
+    fun ChoiceBuilder2.meleeCombat(): Unit = option<Quiz>("Tell me about melee combat.") {
         npc<Neutral>("Well adventurer, the first thing you will need is a sword and a shield appropriate for your level.")
         // look down talking, look up eyebrow raised then quiet
         tab(Tab.WornEquipment)
@@ -76,7 +76,7 @@ class MeleeTutor : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.weaponTypes(): Unit = option<Neutral>("Tell me about different weapon types I can use.") {
+    fun ChoiceBuilder2.weaponTypes(): Unit = option<Neutral>("Tell me about different weapon types I can use.") {
         npc<Happy>("Well let me see now...There are stabbing type weapons such as daggers, then you have swords which are slashing, maces that have great crushing abilities, battle axes which are powerful.")
         npc<Happy>("There are also spears. Spears can be good for Defence and many forms of Attack.")
         npc<Neutral>("It depends a lot on how you want to fight. Experiment and find out what is best for you. Never be scared to try out a new weapon; you never know, you might like it!")
@@ -85,7 +85,7 @@ class MeleeTutor : Script {
         menu("Is there anything else you would like to know?")
     }
 
-    suspend fun ChoiceBuilder2.skillcapes(): Unit = option<Neutral>("Tell me about skillcapes.") {
+    fun ChoiceBuilder2.skillcapes(): Unit = option<Neutral>("Tell me about skillcapes.") {
         if (levels.getMax(Skill.Defence) < Level.MAX_LEVEL) {
             npc<Neutral>("Of course. Skillcapes are a symbol of achievement. Only people who have mastered a skill and reached level 99 can get their hands on them and gain the benefits they carry.")
             npc<Neutral>("The Cape of Defence will act as ring of life, saving you from combat if your hitpoints become low.")
@@ -143,7 +143,7 @@ class MeleeTutor : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.training(): Unit = option<Neutral>("I'd like a training sword and shield.") {
+    fun ChoiceBuilder2.training(): Unit = option<Neutral>("I'd like a training sword and shield.") {
         if (ownsItem("training_sword") || ownsItem("training_shield")) {
             npc<Quiz>("You already have a training sword and shield. Save some for the other adventurers.")
             menu("Is there anything else I can help you with?")

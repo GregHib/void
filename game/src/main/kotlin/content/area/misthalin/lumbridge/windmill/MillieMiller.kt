@@ -37,20 +37,20 @@ class MillieMiller : Script {
         }
     }
 
-    suspend fun ChoiceBuilder2.whoAreYou(): Unit = option<Quiz>("Who are you?") {
+    fun ChoiceBuilder2.whoAreYou(): Unit = option<Quiz>("Who are you?") {
         npc<Happy>("I'm Miss Millicent Miller the Miller of Mill Lane Mill.Our family have been milling flour for generations.")
         player<Quiz>("Don't you ever get fed up with flour?")
         npc<Talk>("It's a good business to be in. People will always need flour.")
         menu()
     }
 
-    suspend fun ChoiceBuilder2.whatIsThisPlace(): Unit = option<Quiz>("What is this place?") {
+    fun ChoiceBuilder2.whatIsThisPlace(): Unit = option<Quiz>("What is this place?") {
         npc<Happy>("This is Mill Lane Mill. source of the finest flour in Gielinor, and home to the Miller family for many generations")
         npc<Happy>("We take wheat from the field nearby and mill into flour.")
         menu()
     }
 
-    suspend fun ChoiceBuilder2.millFlour(): Unit = option<Quiz>("How do I mill flour?") {
+    fun ChoiceBuilder2.millFlour(): Unit = option<Quiz>("How do I mill flour?") {
         npc<Happy>("Making flour is pretty easy. First of all you need to get some wheat. You can pick some from wheat fields. There is one just outside the Mill, but there are many others scattered across the world.")
         npc<Happy>("feel free to pick from our field! There always seems to be plenty of wheat there.")
         player<Quiz>("Then I bring my wheat here?")

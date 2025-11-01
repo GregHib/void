@@ -89,18 +89,18 @@ class Pickpocketing : Script {
     }
 
     fun getLoot(target: NPC, table: String?): List<ItemDrop>? {
-        var table = dropTables.get("${table}_pickpocket")
-        if (table != null) {
-            return table.role()
+        var id = dropTables.get("${table}_pickpocket")
+        if (id != null) {
+            return id.role()
         }
-        table = dropTables.get("${target.id}_pickpocket")
-        if (table != null) {
-            return table.role()
+        id = dropTables.get("${target.id}_pickpocket")
+        if (id != null) {
+            return id.role()
         }
         for (category in target.categories) {
-            table = dropTables.get("${category}_pickpocket")
-            if (table != null) {
-                return table.role()
+            id = dropTables.get("${category}_pickpocket")
+            if (id != null) {
+                return id.role()
             }
         }
         return null
