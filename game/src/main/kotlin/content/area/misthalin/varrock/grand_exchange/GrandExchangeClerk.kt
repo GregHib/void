@@ -1,7 +1,7 @@
 package content.area.misthalin.varrock.grand_exchange
 
 import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.ChoiceBuilder2
+import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.questCompleted
@@ -59,26 +59,26 @@ class GrandExchangeClerk : Script {
         }
     }
 
-    fun ChoiceBuilder2.tradeOffers() {
+    fun ChoiceOption.tradeOffers() {
         option<Happy>("I'd like to set up trade offers please.") {
             open("grand_exchange")
         }
     }
 
-    fun ChoiceBuilder2.history() {
+    fun ChoiceOption.history() {
         option<Quiz>("Can I see a history of my offers?") {
             npc<Talk>("If that is your wish.")
             open("exchange_history")
         }
     }
 
-    fun ChoiceBuilder2.itemSets() {
+    fun ChoiceOption.itemSets() {
         option<Quiz>("Can you help me with item sets?") {
             open("exchange_item_sets")
         }
     }
 
-    fun ChoiceBuilder2.bye() {
+    fun ChoiceOption.bye() {
         option<Upset>("I'm fine, thanks.")
     }
 }

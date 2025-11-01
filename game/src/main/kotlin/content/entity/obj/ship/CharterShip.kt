@@ -143,13 +143,13 @@ class CharterShip : Script {
         }
     }
 
-    fun ChoiceBuilder2.trading() {
+    fun ChoiceOption.trading() {
         option<Talk>("Yes, let's see what you're trading.") {
             openShop("trader_stans_trading_post")
         }
     }
 
-    fun ChoiceBuilder2.charter(target: NPC) {
+    fun ChoiceOption.charter(target: NPC) {
         option<Talk>("Yes, I would like to charter a ship.") {
             npc<Talk>("Certainly sir. Where would you like to go?")
             set("charter_ship", location(target))

@@ -37,20 +37,20 @@ class FaridMorrisaneOres : Script {
         }
     }
 
-    fun ChoiceBuilder2.oresAndBars() {
+    fun ChoiceOption.oresAndBars() {
         option<Quiz>("Can you show me the prices of ores and bars?") {
             set("common_item_costs", "ores")
             open("common_item_costs")
         }
     }
 
-    fun ChoiceBuilder2.bye() {
+    fun ChoiceOption.bye() {
         option<Talk>("I best go and speak with someone more my height.") {
             npc<Talk>("Then I shall not stop you. I've too much work to do.")
         }
     }
 
-    fun ChoiceBuilder2.calmDown() {
+    fun ChoiceOption.calmDown() {
         option<Talk>("Calm down, junior.") {
             npc<Talk>("Don't tell me to calm down! And don't call me 'junior'.")
             npc<Talk>("I'll have you know I am Farid Morrisane, son of Ali Morrisane, the world's greatest merchant!")

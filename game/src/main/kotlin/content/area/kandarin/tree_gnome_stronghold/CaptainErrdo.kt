@@ -61,7 +61,7 @@ class CaptainErrdo : Script {
         }
     }
 
-    fun ChoiceBuilder2.takeMe(target: NPC) {
+    fun ChoiceOption.takeMe(target: NPC) {
         option<Quiz>("Can you take me on the glider?") {
             npc<Happy>("Of course!")
             location(this, target)
@@ -79,11 +79,11 @@ class CaptainErrdo : Script {
         }
     }
 
-    fun ChoiceBuilder2.nothing() {
+    fun ChoiceOption.nothing() {
         option<Uncertain>("Sorry, I don't want anything now.")
     }
 
-    fun ChoiceBuilder2.whyAreGlidersBetter(target: NPC) {
+    fun ChoiceOption.whyAreGlidersBetter(target: NPC) {
         option<Talk>("Why are gliders better than other transport?") {
             npc<Happy>("Oh we have a whole network! It's wonderful for getting to hard to reach places.")
             npc<Happy>("There are so many places where your teleports cannot reach!")
@@ -102,7 +102,7 @@ class CaptainErrdo : Script {
         npc<Talk>("A bit of a technical hitch with the landing gear. I won't be able to fly you anywhere, sorry.")
     }
 
-    fun ChoiceBuilder2.whatsGnomeAir(target: NPC) {
+    fun ChoiceOption.whatsGnomeAir(target: NPC) {
         option<Quiz>("What's Gnome Air?") {
             npc<Happy>("Gnome Air is the finest airline in Gielinor!")
             npc<Uncertain>("Well...it's the only real airline in Gielinor.")
@@ -123,13 +123,13 @@ class CaptainErrdo : Script {
         }
     }
 
-    fun ChoiceBuilder2.whereCanYouTakeMe(target: NPC) {
+    fun ChoiceOption.whereCanYouTakeMe(target: NPC) {
         option("Where can you take me?") {
             takeMe(target)
         }
     }
 
-    fun ChoiceBuilder2.oneWayToVarrock(target: NPC) {
+    fun ChoiceOption.oneWayToVarrock(target: NPC) {
         option<Quiz>("How much for one-way to Varrock?") {
             npc<Upset>("I can't take you anywhere.")
             player<Upset>("How come?")
@@ -142,7 +142,7 @@ class CaptainErrdo : Script {
         }
     }
 
-    fun ChoiceBuilder2.leaveYouToIt() {
+    fun ChoiceOption.leaveYouToIt() {
         option<Uncertain>("I'll leave you to it.")
     }
 

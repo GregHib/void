@@ -116,19 +116,19 @@ class Eniola : Script {
         }
     }
 
-    fun ChoiceBuilder2.accessBank() {
+    fun ChoiceOption.accessBank() {
         option("I'd like to access my bank account, please.") {
             openBank()
         }
     }
 
-    fun ChoiceBuilder2.collectionBox() {
+    fun ChoiceOption.collectionBox() {
         option("I'd like to see my collection box.") {
             openCollection()
         }
     }
 
-    fun ChoiceBuilder2.pinSettings() {
+    fun ChoiceOption.pinSettings() {
         option("I'd like to check my PIN settings.") {
         }
     }

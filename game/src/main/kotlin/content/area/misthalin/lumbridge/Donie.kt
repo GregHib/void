@@ -45,7 +45,7 @@ class Donie : Script {
         }
     }
 
-    fun ChoiceBuilder2.whereAmI(): Unit = option<Quiz>("Where am I") {
+    fun ChoiceOption.whereAmI(): Unit = option<Quiz>("Where am I") {
         npc<Chuckle>("This is the town of Lumbridge my friend.")
         choice {
             howToday()
@@ -54,7 +54,7 @@ class Donie : Script {
         }
     }
 
-    fun ChoiceBuilder2.howToday(): Unit = option<Quiz>("How are you today?") {
+    fun ChoiceOption.howToday(): Unit = option<Quiz>("How are you today?") {
         npc<Happy>("Aye, not too bad thank you. Lovely weather in Gielinor this fine day.")
         player<Chuckle>("Weather?")
         npc<Chuckle>("Yes weather, you know.")
@@ -63,7 +63,7 @@ class Donie : Script {
         npc<Chuckle>("Not just a pretty face eh? Ha ha ha.")
     }
 
-    fun ChoiceBuilder2.anyQuests(): Unit = option<Quiz>("Are there any quests I can do here?") {
+    fun ChoiceOption.anyQuests(): Unit = option<Quiz>("Are there any quests I can do here?") {
         npc<Quiz>("What kind of quest are you looking for?")
         choice {
             option<Happy>("I fancy a bit of fight, anything dangerous?") {
@@ -219,13 +219,13 @@ class Donie : Script {
         }
     }
 
-    fun ChoiceBuilder2.shoeLace(): Unit = option<Chuckle>("Your shoe lace is untied.") {
+    fun ChoiceOption.shoeLace(): Unit = option<Chuckle>("Your shoe lace is untied.") {
         npc<Angry>("No it's not!")
         player<Chuckle>("No you're right. I have nothing to back that up.")
         npc<Angry>("Fool! Leave me alone!")
     }
 
-    fun ChoiceBuilder2.buyStick(): Unit = option<Quiz>("Can i buy your stick?") {
+    fun ChoiceOption.buyStick(): Unit = option<Quiz>("Can i buy your stick?") {
         npc<Angry>("It's not a stick! I'll have you know it's a very powerful staff!")
         player<Quiz>("Really? Show me what it can do!")
         npc<Sad>("Um..It's a bit low on power at the moment..")
@@ -234,13 +234,13 @@ class Donie : Script {
         player<Chuckle>("Well good luck with that.")
     }
 
-    fun ChoiceBuilder2.freeStuff(): Unit = option<Quiz>("Do you have anything of value which I can have?") {
+    fun ChoiceOption.freeStuff(): Unit = option<Quiz>("Do you have anything of value which I can have?") {
         npc<Quiz>("Are you asking for free stuff?")
         player<Quiz>("Well... er... yes.")
         npc<Angry>("No I do not have anything I can give you. If I did have anything of value I wouldn't want to give it away.")
     }
 
-    fun ChoiceBuilder2.hairCut(): Unit = option<Quiz>("Where can I get a haircut like yours?") {
+    fun ChoiceOption.hairCut(): Unit = option<Quiz>("Where can I get a haircut like yours?") {
         npc<Happy>("Yes, it does look like you need a hairdresser.")
         player<Angry>("Oh thanks!")
         npc<Chuckle>("No problem. The hairdresser in Falador will probably be able to sort you out.")

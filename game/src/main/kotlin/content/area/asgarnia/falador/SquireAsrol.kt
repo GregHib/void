@@ -93,7 +93,7 @@ class SquireAsrol : Script {
         npc<Uncertain>("Please hurry!")
     }
 
-    fun ChoiceBuilder2.lifeAsASquire() = option<Quiz>("And how is life as a squire?") {
+    fun ChoiceOption.lifeAsASquire() = option<Quiz>("And how is life as a squire?") {
         npc<Sad>("Well, Sir Vyvin is a good guy to work for, however, I'm in a spot of trouble today. I've gone and lost Sir Vyvin's sword!")
         choice {
             whereYouLostIt()
@@ -102,7 +102,7 @@ class SquireAsrol : Script {
         }
     }
 
-    fun ChoiceBuilder2.whereYouLostIt() = option<Quiz>("Do you know where you lost it?") {
+    fun ChoiceOption.whereYouLostIt() = option<Quiz>("Do you know where you lost it?") {
         npc<Uncertain>("Well now, if I knew THAT it wouldn't be lost, now would it?")
         choice {
             vagueArea()
@@ -112,7 +112,7 @@ class SquireAsrol : Script {
         }
     }
 
-    fun ChoiceBuilder2.vagueArea() = option<Quiz>("Well, do you know the VAGUE AREA you lost it in?") {
+    fun ChoiceOption.vagueArea() = option<Quiz>("Well, do you know the VAGUE AREA you lost it in?") {
         npc<Sad>("No. I was carrying it for him all the way from where he had it stored in Lumbridge. It must have slipped from my pack during the trip, and you know what people are like these days...")
         npc<Sad>("Someone will have just picked it up and kept it for themselves.")
         choice {
@@ -122,7 +122,7 @@ class SquireAsrol : Script {
         }
     }
 
-    fun ChoiceBuilder2.abundantWithSwords() = option<Neutral>("Well the kingdom is fairly abundant with swords...") {
+    fun ChoiceOption.abundantWithSwords() = option<Neutral>("Well the kingdom is fairly abundant with swords...") {
         npc<Sad>("Yes. You can get bronze swords anywhere. But THIS isn't any old sword.")
         heirloom()
     }
@@ -136,22 +136,22 @@ class SquireAsrol : Script {
         }
     }
 
-    fun ChoiceBuilder2.anotherSword() = option<Quiz>("So would these dwarves make another one?") {
+    fun ChoiceOption.anotherSword() = option<Quiz>("So would these dwarves make another one?") {
         npc<Sad>("I'm not a hundred percent sure the Imcando tribe exists anymore. I should think Reldo, the palace librarian in Varrock, will know; he has done a lot of research on the races of Gielinor.")
         npc<Quiz>("I don't suppose you could try and track down the Imcando dwarves for me? I've got so much work to do...")
         startQuest()
     }
 
-    fun ChoiceBuilder2.hopeYouFind() = option<Neutral>("Well, I hope you find it soon.") {
+    fun ChoiceOption.hopeYouFind() = option<Neutral>("Well, I hope you find it soon.") {
         npc<Sad>("Yes, me too. I'm not looking forward to telling Vyvin I've lost it. He's going to want it for the parade next week as well.")
     }
 
-    fun ChoiceBuilder2.newSword() = option<Neutral>("I can make a new sword if you like...") {
+    fun ChoiceOption.newSword() = option<Neutral>("I can make a new sword if you like...") {
         npc<Sad>("Thanks for the offer. I'd be surprised if you could though.")
         heirloom()
     }
 
-    fun ChoiceBuilder2.heAngry() = option<Quiz>("Is he angry?") {
+    fun ChoiceOption.heAngry() = option<Quiz>("Is he angry?") {
         npc<Sad>("He doesn't know yet. I was hoping I could think of something to do before he does find out, But I find myself at a loss.")
         choice {
             vagueArea()
@@ -161,7 +161,7 @@ class SquireAsrol : Script {
         }
     }
 
-    fun ChoiceBuilder2.squireForMe() = option<Quiz>("Wouldn't you prefer to be a squire for me?") {
+    fun ChoiceOption.squireForMe() = option<Quiz>("Wouldn't you prefer to be a squire for me?") {
         npc<Neutral>("No, sorry, I'm loyal to Sir Vyvin.")
     }
 

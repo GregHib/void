@@ -189,11 +189,11 @@ class Sedridor : Script {
         }
     }
 
-    fun ChoiceBuilder2.imBusy(): Unit = option<Neutral>("No, I'm busy.") {
+    fun ChoiceOption.imBusy(): Unit = option<Neutral>("No, I'm busy.") {
         npc<Neutral>("As you wish adventurer. I will continue to study this talisman you have brought me. Return here if you find yourself with some spare time to help me.")
     }
 
-    fun ChoiceBuilder2.yesCertainly(): Unit = option<Neutral>("Yes, certainly.") {
+    fun ChoiceOption.yesCertainly(): Unit = option<Neutral>("Yes, certainly.") {
         set("rune_mysteries", "research_package")
         npc<Happy>("He runs a rune shop in the south east of Varrock. Please, take this package of research notes to him. If all goes well, the secrets of the essence mine may soon be ours once more!")
         if (inventory.isFull()) {
@@ -218,12 +218,12 @@ class Sedridor : Script {
         }
     }
 
-    fun ChoiceBuilder2.teleportEssenceMine(target: NPC): Unit = option<Quiz>("Can you teleport me to the Rune Essence Mine?") {
+    fun ChoiceOption.teleportEssenceMine(target: NPC): Unit = option<Quiz>("Can you teleport me to the Rune Essence Mine?") {
         set("what_is_this_place_task", true)
         EssenceMine.teleport(target, this)
     }
 
-    fun ChoiceBuilder2.whoElseKnows(target: NPC): Unit = option<Quiz>("Who else knows the teleport to the Rune Essence Mine?") {
+    fun ChoiceOption.whoElseKnows(target: NPC): Unit = option<Quiz>("Who else knows the teleport to the Rune Essence Mine?") {
         npc<Happy>("Apart from myself, there's also Aubury in Varrock, Wizard Cromperty in East Ardougne, Brimstail in the Tree Gnome Stronghold and Wizard Distentor in Yanille's Wizards' Guild.")
         set("enter_abyss_knows_mages", true)
         choice {
@@ -233,7 +233,7 @@ class Sedridor : Script {
         }
     }
 
-    fun ChoiceBuilder2.oldWizardsTower(target: NPC): Unit = option<Quiz>("Could you tell me about the old Wizards' Tower?") {
+    fun ChoiceOption.oldWizardsTower(target: NPC): Unit = option<Quiz>("Could you tell me about the old Wizards' Tower?") {
         npc<Happy>("Of course. The first Wizards' Tower was built at the same time the Order of Wizards was founded. It was at the dawn of the Fifth Age, when the secrets of runecrafting were rediscovered.")
         npc<Happy>("For years, the tower was a hub of magical research. Wizards of all races and religions were welcomed into our order.")
         npc<Sad>("Alas, that openness is what ultimately led to disaster. The wizards who served Zamorak, the evil god of chaos, tried to claim our magical discoveries in his name.")
@@ -248,7 +248,7 @@ class Sedridor : Script {
         }
     }
 
-    fun ChoiceBuilder2.thanksForInformation(): Unit = option<Happy>("Thanks for the information.") {
+    fun ChoiceOption.thanksForInformation(): Unit = option<Happy>("Thanks for the information.") {
         npc<Happy>("My pleasure.")
     }
 

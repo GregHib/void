@@ -41,7 +41,7 @@ class DarkMage : Script {
         }
     }
 
-    fun ChoiceBuilder2.whyNot() {
+    fun ChoiceOption.whyNot() {
         option<Quiz>("Why not?") {
             npc<Talk>("Well, if my concentration is broken while keeping this rift open, the results won't be pretty.")
             player<Quiz>("In what way?")
@@ -57,7 +57,7 @@ class DarkMage : Script {
         }
     }
 
-    fun ChoiceBuilder2.whyAreYouHere() {
+    fun ChoiceOption.whyAreYouHere() {
         option<Quiz>("What are you doing here?") {
             npc<Talk>("Do you mean what am I doing here in the Abyss? Or are you asking me what I consider my ultimate role to be in this voyage that we call life?")
             player<Uncertain>("Err... The first one.")
@@ -72,7 +72,7 @@ class DarkMage : Script {
         }
     }
 
-    fun ChoiceBuilder2.needHelp() {
+    fun ChoiceOption.needHelp() {
         option<Talk>("I need your help with something.") {
             npc<Angry>("What? Oh... very well. What did you want?")
             choice {
@@ -104,13 +104,13 @@ class DarkMage : Script {
         }
     }
 
-    fun ChoiceBuilder2.illGo() {
+    fun ChoiceOption.illGo() {
         option<Upset>("Sorry, I'll go.") {
             npc<Angry>("Good. I'm attempting to subdue the elemental mechanisms of the universe to my will. Inane chatter from random idiots is not helping me achieve this!")
         }
     }
 
-    fun ChoiceBuilder2.askForPouch() {
+    fun ChoiceOption.askForPouch() {
         option<Quiz>("Can I have a new essence pouch?") {
             if (ownsItem("small_pouch")) {
                 npc<Angry>("You already have a Pouch. Are you aware of the dimensional turmoil you can cause by using too many pouches at the same time?")

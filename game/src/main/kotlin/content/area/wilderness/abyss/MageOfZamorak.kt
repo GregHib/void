@@ -136,7 +136,7 @@ class MageOfZamorak : Script {
         }
     }
 
-    fun ChoiceBuilder2.aboutGroup() {
+    fun ChoiceOption.aboutGroup() {
         option<Quiz>("Can you tell me more about your group?") {
             npc<Neutral>("I suppose you have proven yourself trustworthy. We are a group of mages in service to Zamorak. Our group is called the Zamorak Magical Institute, or Z.M.I. for short.")
             npc<Angry>("Few actually know of us. Saradominist groups like the Order of Wizards hold sway over these lands, so we are forced to work in the shadows. However, make no mistake, our power far exceeds theirs.")
@@ -159,7 +159,7 @@ class MageOfZamorak : Script {
         }
     }
 
-    fun ChoiceBuilder2.aboutAbyss() {
+    fun ChoiceOption.aboutAbyss() {
         option<Quiz>("Can you tell me more about the Abyss?") {
             npc<Talk>("It is a hard place to describe. We often refer to it as another plane, but that isn't quite accurate. If anything, it is more like a plane that sits between all other planes.")
             player<Quiz>("Right... And what does it have to do with runecrafting?")
@@ -205,7 +205,7 @@ class MageOfZamorak : Script {
         exp(Skill.Runecrafting, 1000.0)
     }
 
-    fun ChoiceBuilder2.whereRunes() {
+    fun ChoiceOption.whereRunes() {
         option<Quiz>("Where do you get your runes from?") {
             npc<Uncertain>("Well we craft them of course.")
             player<Uncertain>("We?")

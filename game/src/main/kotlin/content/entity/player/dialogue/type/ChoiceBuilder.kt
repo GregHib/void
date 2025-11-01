@@ -47,7 +47,7 @@ class ChoiceBuilder<Context : SuspendableContext<Player>> {
     }
 }
 
-class ChoiceBuilder2 {
+class ChoiceOption {
 
     val values = mutableListOf<Option>()
 

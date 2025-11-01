@@ -129,7 +129,7 @@ class Osman : Script {
         }
     }
 
-    private fun ChoiceBuilder2.whatSqirks() {
+    private fun ChoiceOption.whatSqirks() {
         option<Quiz>("What's so good about sq'irk juice?") {
             npc<Talk>("It is a sweet nectar for a thief or spy. It makes light fingers lighter, fleet feet flightier and comes in four different colours for those who are easily amused.")
             statement("Osman starts salivating at the thought of sq'irk juice.")
@@ -145,7 +145,7 @@ class Osman : Script {
         }
     }
 
-    private fun ChoiceBuilder2.whySqirks() {
+    private fun ChoiceOption.whySqirks() {
         option<Quiz>("Is there a reward for getting these sq'irks?") {
             npc<Talk>("Of course. I'll train you in the art of Thieving for your troubles.")
             player<Quiz>("How much training will you give?")
@@ -160,7 +160,7 @@ class Osman : Script {
         }
     }
 
-    private fun ChoiceBuilder2.howSqirks() {
+    private fun ChoiceOption.howSqirks() {
         option<Quiz>("How should I squeeze the fruit?") {
             npc<Talk>("Use a pestle and mortar. Make sure you have an empty glass with you to collect the juice.")
             choice {
@@ -172,7 +172,7 @@ class Osman : Script {
         }
     }
 
-    private fun ChoiceBuilder2.whereSqirks() {
+    private fun ChoiceOption.whereSqirks() {
         option<Quiz>("Where do I get sq'irks?") {
             npc<Talk>("There is a sorceress near the south eastern edge of Al Kharid who grows them. She used to be friends with Osman, but they fell out.")
             player<Quiz>("What happened?")
@@ -193,13 +193,13 @@ class Osman : Script {
         }
     }
 
-    fun ChoiceBuilder2.findThings() {
+    fun ChoiceOption.findThings() {
         option<Talk>("Okay, I better go find some things.") {
             npc<Shifty>("May good luck travel with you. Don't forget to find Leela. It can't be done without her help.")
         }
     }
 
-    fun ChoiceBuilder2.firstThing() {
+    fun ChoiceOption.firstThing() {
         option<Talk>("What is the first thing I must do?") {
             npc<Shifty>("The prince is guarded by some stupid guards and a clever woman. The woman is our only way to get the prince out. Only she can walk freely about the area.")
             npc<Shifty>("I think you will need to tie her up. One coil of rope should do for that. Then, disguise the prince as her to get him out without suspicion.")
@@ -216,7 +216,7 @@ class Osman : Script {
         }
     }
 
-    fun ChoiceBuilder2.secondThing(text: String = "What is the second thing you need?") {
+    fun ChoiceOption.secondThing(text: String = "What is the second thing you need?") {
         option<Quiz>(text) {
             npc<Shifty>("We need the key, or we need a copy made. If you can get some soft clay then you can copy the key...")
             npc<Shifty>("...If you can convince Lady Keli to show it to you for a moment. She is very boastful. I should not be too hard.")

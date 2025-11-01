@@ -86,7 +86,7 @@ class Leela : Script {
         }
     }
 
-    fun ChoiceBuilder2.key() {
+    fun ChoiceOption.key() {
         option<Talk>("I need to get the key made.") {
             npc<Talk>("Yes, that is most important. There is no way you can get the real key. It is on a chain around Keli's neck. Almost impossible to steal.")
             npc<Talk>("Get some soft clay and get her to show you the key somehow. Then take the print, with bronze, to my father.")
@@ -98,7 +98,7 @@ class Leela : Script {
         }
     }
 
-    fun ChoiceBuilder2.guards() {
+    fun ChoiceOption.guards() {
         option<Talk>("What can I do with the guards?") {
             npc<Talk>("Most of the guards will be easy. The disguise will get past them. The only guard who will be a problem will be the one at the door.")
             npc<Talk>("We can discuss this more when you have the rest of the escape kit.")
@@ -110,13 +110,13 @@ class Leela : Script {
         }
     }
 
-    fun ChoiceBuilder2.equipment() {
+    fun ChoiceOption.equipment() {
         option<Talk>("I will go and get the rest of the escape equipment.") {
             npc<Shifty>("Good, I shall await your return with everything.")
         }
     }
 
-    fun ChoiceBuilder2.disguise() {
+    fun ChoiceOption.disguise() {
         option<Quiz>("I must make a disguise. What do you suggest?") {
             npc<Talk>("Only the lady Keli can wander about outside the jail. The guards will shoot to kill if they see the prince out, so we need a disguise good enough to fool them at a distance.")
             if (inventory.contains("wig_blonde")) {

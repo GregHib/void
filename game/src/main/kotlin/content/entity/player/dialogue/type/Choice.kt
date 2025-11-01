@@ -73,8 +73,8 @@ suspend fun SuspendableContext<Player>.choice(lines: List<String>, title: String
  *      }
  *  }
  */
-suspend fun Player.choice(title: String? = null, block: suspend ChoiceBuilder2.() -> Unit) {
-    val builder = ChoiceBuilder2()
+suspend fun Player.choice(title: String? = null, block: suspend ChoiceOption.() -> Unit) {
+    val builder = ChoiceOption()
     block.invoke(builder)
     val lines = builder.build(this)
     if (lines.size == 1) {

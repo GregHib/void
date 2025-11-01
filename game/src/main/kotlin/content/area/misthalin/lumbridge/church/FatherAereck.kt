@@ -112,7 +112,7 @@ class FatherAereck : Script {
         }
     }
 
-    fun ChoiceBuilder2.whosSaradomin() {
+    fun ChoiceOption.whosSaradomin() {
         option<Quiz>("Who's Saradomin?") {
             npc<Surprised>("Surely you have heard of the god, Saradomin?")
             npc<Neutral>("He who creates the forces of goodness and purity in this world? I cannot believe your ignorance!")
@@ -142,7 +142,7 @@ class FatherAereck : Script {
         }
     }
 
-    fun ChoiceBuilder2.nicePlace() {
+    fun ChoiceOption.nicePlace() {
         option<Happy>("Nice place you've got here.") {
             npc<Happy>("It is, isn't it? It was built over 230 years ago.")
         }

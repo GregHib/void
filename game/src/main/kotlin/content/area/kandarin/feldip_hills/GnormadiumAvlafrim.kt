@@ -2,7 +2,7 @@ package content.area.kandarin.feldip_hills
 
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.type.ChoiceBuilder2
+import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.questCompleted
@@ -37,7 +37,7 @@ class GnormadiumAvlafrim : Script {
         }
     }
 
-    fun ChoiceBuilder2.howsWork() {
+    fun ChoiceOption.howsWork() {
         option<Talk>("Hello, how's the work going?") {
             npc<Talk>("Getting there now, thanks to your help!")
             choice {
@@ -47,7 +47,7 @@ class GnormadiumAvlafrim : Script {
         }
     }
 
-    fun ChoiceBuilder2.canIFly() {
+    fun ChoiceOption.canIFly() {
         option<Talk>("Can I take a flight in the glider?") {
             npc<Happy>("Sure, go ahead.")
             set("glider_location", "gandius")
@@ -55,13 +55,13 @@ class GnormadiumAvlafrim : Script {
         }
     }
 
-    fun ChoiceBuilder2.bye() {
+    fun ChoiceOption.bye() {
         option<Happy>("Have a nice day.") {
             npc<Happy>("You too, human.")
         }
     }
 
-    fun ChoiceBuilder2.helloThere() {
+    fun ChoiceOption.helloThere() {
         option<Talk>("Hello there, what are you working on?") {
             npc<Talk>("Well, it's quite exciting... we're extending the glider network to include the Feldip Hills so that people can come and look at these curious ogres.")
             npc<Talk>("They are impressive creatures aren't they - quite mystified they are by the technology we gnomes have invented.")
@@ -69,21 +69,21 @@ class GnormadiumAvlafrim : Script {
         }
     }
 
-    fun ChoiceBuilder2.whatAreYouWorkingOn() {
+    fun ChoiceOption.whatAreYouWorkingOn() {
         option<Talk>("What are you working on?") {
             npc<Talk>("Well, people will be able to visit this area, once construction has finished, by using the most advanced network of glider routes in the whole of Gielinor... in fact, the only network of glider routes!")
             menu()
         }
     }
 
-    fun ChoiceBuilder2.anythingICanDo() {
+    fun ChoiceOption.anythingICanDo() {
         option<Talk>("Is there anything I can do?") {
             npc<Talk>("Not really, I'm afraid, it's probably all far too technical for someone like you.")
             menu()
         }
     }
 
-    fun ChoiceBuilder2.thanks() {
+    fun ChoiceOption.thanks() {
         option<Talk>("Okay, thanks.")
     }
 

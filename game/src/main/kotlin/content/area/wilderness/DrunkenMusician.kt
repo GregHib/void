@@ -55,7 +55,7 @@ class DrunkenMusician : Script {
         }
     }
 
-    fun ChoiceBuilder2.exit(): Unit = option<Quiz>("That's all for now") {
+    fun ChoiceOption.exit(): Unit = option<Quiz>("That's all for now") {
         npc<Drunk>("Fanks. Sshtay relaxshed!")
     }
 }

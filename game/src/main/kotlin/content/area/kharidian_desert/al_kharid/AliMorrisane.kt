@@ -22,7 +22,7 @@ class AliMorrisane : Script {
         }
     }
 
-    fun ChoiceBuilder2.whatsInIt() {
+    fun ChoiceOption.whatsInIt() {
         option("So what's in this for me?") {
             player<Talk>("What's in this for me?")
             npc<Uncertain>("I thought you wanted to help.")
@@ -48,7 +48,7 @@ class AliMorrisane : Script {
         }
     }
 
-    fun ChoiceBuilder2.okayIllSee() {
+    fun ChoiceOption.okayIllSee() {
         option<Talk>("Ok I'll see what I can do.") {
             npc<Talk>("I think I need just one more product type, something magical ... now what could I stock that's magical, has large demand and a pretty good profit margin...")
             player<Talk>("How about runes?")

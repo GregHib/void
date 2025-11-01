@@ -107,7 +107,7 @@ class BobBarterHerbs : Script {
         }
     }
 
-    fun ChoiceBuilder2.showPrices() {
+    fun ChoiceOption.showPrices() {
         option<Talk>("Can you show me the prices for herbs?") {
             set("common_item_costs", "herbs")
             open("common_item_costs")

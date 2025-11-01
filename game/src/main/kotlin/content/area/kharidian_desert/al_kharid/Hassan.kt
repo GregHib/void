@@ -57,7 +57,7 @@ class Hassan : Script {
         }
     }
 
-    fun ChoiceBuilder2.killWarriors() {
+    fun ChoiceOption.killWarriors() {
         option<Quiz>("Do you mind if I just kill your warriors?") {
             npc<Uncertain>("Kill our warriors? I assume this is some sort of joke?")
             player<Quiz>("I'll take that as a no. Forget I asked.")
@@ -69,14 +69,14 @@ class Hassan : Script {
         }
     }
 
-    fun ChoiceBuilder2.anyHelp() {
+    fun ChoiceOption.anyHelp() {
         option<Happy>("Can I help you? You must need some help here in the desert.") {
             set("prince_ali_rescue", "osman")
             npc<Uncertain>("I need the services of someone, yes. If you are interested, see the spymaster, Osman. I manage the finances here. Come to me when you need payment.")
         }
     }
 
-    fun ChoiceBuilder2.tooHot() {
+    fun ChoiceOption.tooHot() {
         option<Upset>("It's just too hot here. How can you stand it?") {
             npc<Talk>("We manage, in our humble way. We are a wealthy town and we have water. It cures many thirsts.")
             inventory.add("jug_of_water")

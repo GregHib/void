@@ -46,7 +46,7 @@ class SquirePortSarim : Script {
         }
     }
 
-    private fun ChoiceBuilder2.outpost() {
+    private fun ChoiceOption.outpost() {
         option<Talk>("I'd like to go to your outpost.") {
             npc<Talk>("Certainly, right this way.")
             travel()
@@ -58,7 +58,7 @@ class SquirePortSarim : Script {
         statement("The ship arrives at the Void Knight outpost.")
     }
 
-    private fun ChoiceBuilder2.join() {
+    private fun ChoiceOption.join() {
         option<Quiz>("Wow, can I join?") {
             npc<Upset>("Entry is strictly invite only, however we do need help continuing Guthix's work.")
             choice {
@@ -68,7 +68,7 @@ class SquirePortSarim : Script {
         }
     }
 
-    private fun ChoiceBuilder2.whatWork() {
+    private fun ChoiceOption.whatWork() {
         option<Quiz>("What kind of work?") {
             npc<Talk>("Ah well you see we try to keep Gielinor as Guthix intended, it's very challenging. Actually we've been having some problems recently, maybe you could help us?")
             choice {
@@ -88,7 +88,7 @@ class SquirePortSarim : Script {
         }
     }
 
-    private fun ChoiceBuilder2.gielinor() {
+    private fun ChoiceOption.gielinor() {
         option<Quiz>("What's 'Gielinor'?") {
             npc<Talk>("It is the name that Guthix gave to this world, so we honour him with its use.")
         }

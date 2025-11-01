@@ -99,7 +99,7 @@ class LadyKeli : Script {
         }
     }
 
-    fun ChoiceBuilder2.escape() {
+    fun ChoiceOption.escape() {
         option<Talk>("Can you be sure they will not try to get him out?") {
             npc<Shifty>("There is no way to release him. The only key to the door is on a chain around my neck and the locksmith who made the lock died suddenly when he had finished.")
             npc<Talk>("There is not another key like this in the world.")
@@ -131,13 +131,13 @@ class LadyKeli : Script {
         }
     }
 
-    fun ChoiceBuilder2.disturb() {
+    fun ChoiceOption.disturb() {
         option<Happy>("I should not disturb someone as tough as you.") {
             npc<Talk>("Yes, I am very busy. Goodbye.")
         }
     }
 
-    fun ChoiceBuilder2.areYouSure(text: String = "That's great, are you sure they will pay?") {
+    fun ChoiceOption.areYouSure(text: String = "That's great, are you sure they will pay?") {
         option(text) {
             player<Quiz>("Are you sure they will pay?")
             npc<Talk>("They will pay, or we will cut his hair off and send it to them.")
@@ -151,7 +151,7 @@ class LadyKeli : Script {
         }
     }
 
-    fun ChoiceBuilder2.skillful() {
+    fun ChoiceOption.skillful() {
         option<Talk>("Ah I see. You must have been very skillful.") {
             npc<Talk>("Yes, I did most of the work. We had to grab the Pr...")
             npc<Talk>("Er, we had to grab him without his ten bodyguards noticing. It was a stroke of genius.")
@@ -163,7 +163,7 @@ class LadyKeli : Script {
         }
     }
 
-    fun ChoiceBuilder2.latestPlan() {
+    fun ChoiceOption.latestPlan() {
         option("What is your latest plan then?") {
             player<Quiz>("What is your latest plan then? Of course, you need not go into specific details.")
             npc<Talk>("Well, I can tell you I have a valuable prisoner here in my cells.")
@@ -177,7 +177,7 @@ class LadyKeli : Script {
         }
     }
 
-    fun ChoiceBuilder2.trained() {
+    fun ChoiceOption.trained() {
         option<Happy>("You must have trained a lot for this work.") {
             npc<Angry>("I have used a sword since I was a girl. My first kill was before I was even six years old.")
         }
@@ -193,7 +193,7 @@ class LadyKeli : Script {
         }
     }
 
-    fun ChoiceBuilder2.katrine(text: String = "I think Katrine is tougher.") {
+    fun ChoiceOption.katrine(text: String = "I think Katrine is tougher.") {
         option<Talk>(text) {
             npc<Angry>("Well you can think that all you like. I know those blackarm cowards dare not leave the city. Out here, I am toughest. You can tell them that! Now get out of my sight, before I call my guards.")
         }

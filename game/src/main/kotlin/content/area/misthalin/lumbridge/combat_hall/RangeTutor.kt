@@ -38,7 +38,7 @@ class RangeTutor : Script {
         }
     }
 
-    fun ChoiceBuilder2.rangedTraining(): Unit = option<Neutral>("How can I train my Ranged?") {
+    fun ChoiceOption.rangedTraining(): Unit = option<Neutral>("How can I train my Ranged?") {
         npc<Happy>("To start with you'll need a bow and arrows, you were given a Shortbow and some arrows when you arrived here from Tutorial island.")
         npc<Happy>("Alternatively, you can claim a training bow and some arrows from me.")
         npc<Happy>("Mikasi, the Magic Combat tutor and I both give out items every 30 minutes, however you must choose whether you want runes or ranged equipment.")
@@ -56,7 +56,7 @@ class RangeTutor : Script {
         menu("Is there anything else you want to know?")
     }
 
-    fun ChoiceBuilder2.arrowMaking(): Unit = option<Quiz>("How do I create a bow and arrows?") {
+    fun ChoiceOption.arrowMaking(): Unit = option<Quiz>("How do I create a bow and arrows?") {
         npc<Happy>("Ahh the art of fletching. Fletching is used to create your own bow and arrows.")
         npc<Amazed>("It's quite simple really. You'll need an axe to cut some logs from trees and a knife. Knives can be found in and around the Lumbridge castle and in the Varrock General store upstairs.")
         npc<Happy>("Use your knife on the logs. This will bring up a menu listing items you can fletch.")

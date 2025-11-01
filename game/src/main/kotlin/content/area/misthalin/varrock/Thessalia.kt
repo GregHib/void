@@ -5,7 +5,7 @@ import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.type.ChoiceBuilder2
+import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.modal.CharacterStyle.onStyle
@@ -122,7 +122,7 @@ class Thessalia : Script {
         }
     }
 
-    fun ChoiceBuilder2.openShop(): Unit = option("I'd just like to buy some clothes.") {
+    fun ChoiceOption.openShop(): Unit = option("I'd just like to buy some clothes.") {
         openShop("thessalias_fine_clothes")
     }
 

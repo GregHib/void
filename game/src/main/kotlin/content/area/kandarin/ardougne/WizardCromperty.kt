@@ -46,7 +46,7 @@ class WizardCromperty : Script {
         }
     }
 
-    fun ChoiceBuilder2.whatHaveYouInvented(target: NPC) {
+    fun ChoiceOption.whatHaveYouInvented(target: NPC) {
         option<Quiz>("So what have you invented?") {
             npc<Happy>("Ah! My latest invention is my patent pending teleportation block! It emits a low level magical signal, that will allow me to locate it anywhere in the world, and teleport anything")
             npc<Happy>("directly to it! I hope to revolutionise the entire teleportation system! Don't you think I'm great? Uh, I mean it's great?")
@@ -69,7 +69,7 @@ class WizardCromperty : Script {
         }
     }
 
-    fun ChoiceBuilder2.teleportMe(target: NPC) {
+    fun ChoiceOption.teleportMe(target: NPC) {
         option<Quiz>("Can I be teleported please?") {
             npc<Happy>("By all means! I'm afraid I can't give you any specifics as to where you will come out however. Presumably wherever the other block is located.")
             choice {

@@ -50,14 +50,14 @@ class Thurgo : Script {
         }
     }
 
-    fun ChoiceBuilder2.madeSword() = option<Happy>(
+    fun ChoiceOption.madeSword() = option<Happy>(
         "Thanks for making that sword for me!",
         { holdsItem("blurite_sword") },
     ) {
         npc<Happy>("You're welcome - thanks for the pie!")
     }
 
-    fun ChoiceBuilder2.replacementSword() = option<Happy>(
+    fun ChoiceOption.replacementSword() = option<Happy>(
         "Can you make that replacement sword now?",
         { !holdsItem("blurite_sword") },
     ) {
@@ -111,7 +111,7 @@ class Thurgo : Script {
         }
     }
 
-    fun ChoiceBuilder2.specialSword() = option<Happy>("Can you make a special sword for me?") {
+    fun ChoiceOption.specialSword() = option<Happy>("Can you make a special sword for me?") {
         npc<Neutral>("Well, after bringing me my favorite food I guess I should give it a go. What sort of sword is it?")
         player<Neutral>("I need you to make a sword for one of Falador's knights. He had one which was passed down through five generations, but his squire has lost it.")
         player<Quiz>("So we need an identical one to replace it.")
@@ -121,7 +121,7 @@ class Thurgo : Script {
         player<Neutral>("I'll go and ask his squire and see if I can find one.")
     }
 
-    fun ChoiceBuilder2.aboutSword() = option<Happy>("About that sword...") {
+    fun ChoiceOption.aboutSword() = option<Happy>("About that sword...") {
         npc<Quiz>("Have you got a picture of the sword for me yet?")
         if (!holdsItem("portrait")) {
             player<Sad>("Sorry, not yet.")
@@ -140,7 +140,7 @@ class Thurgo : Script {
         player<Neutral>("Okay. I'll go and find them then.")
     }
 
-    fun ChoiceBuilder2.imcandoDwarf() = option<Happy>("Are you an Imcando dwarf? I need a special sword.") {
+    fun ChoiceOption.imcandoDwarf() = option<Happy>("Are you an Imcando dwarf? I need a special sword.") {
         npc<Angry>("I don't talk about that sort of thing anymore. I'm getting old.")
         choice {
             redberryPie()
@@ -148,7 +148,7 @@ class Thurgo : Script {
         }
     }
 
-    fun ChoiceBuilder2.redberryPie(): Unit = option<Quiz>(
+    fun ChoiceOption.redberryPie(): Unit = option<Quiz>(
         "Would you like a redberry pie?",
         { holdsItem("redberry_pie") },
     ) {
@@ -162,7 +162,7 @@ class Thurgo : Script {
         npc<Happy>("By Guthix! THAT was good pie! Anyone who makes pie like THAT has got to be alright!")
     }
 
-    fun ChoiceBuilder2.whatCape() = option("What is that cape you're wearing?") {
+    fun ChoiceOption.whatCape() = option("What is that cape you're wearing?") {
         thatCape()
     }
 

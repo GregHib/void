@@ -61,7 +61,7 @@ class Joe : Script {
         }
     }
 
-    fun ChoiceBuilder2.fancyABeer() {
+    fun ChoiceOption.fancyABeer() {
         option<Happy>("I have some beer here, fancy one?") {
             beer()
         }
@@ -94,7 +94,7 @@ class Joe : Script {
         npc<Drunk>("Franksh! That wash jusht what I need to shtay on guard. No more beersh, I don't want to get drunk.")
     }
 
-    fun ChoiceBuilder2.guardLife() {
+    fun ChoiceOption.guardLife() {
         option<Talk>("Tell me about the life of a guard.") {
             npc<RollEyes>("Well, the hours are good, but most of those hours are a drag.")
             npc<Upset>("Sometimes I wonder if I should have spent more time learning when I was a young boy. Maybe I wouldn't be here now, scared of Keli.")
@@ -105,7 +105,7 @@ class Joe : Script {
         }
     }
 
-    fun ChoiceBuilder2.guardDreams() {
+    fun ChoiceOption.guardDreams() {
         option<Talk>("What did you want to be when you were a boy?") {
             npc<RollEyes>("Well, I loved to sit by the lake, with my toes in the water. I'd shoot the fish with my bow and arrow.")
             player<Uncertain>("That's a strange hobby for a boy.")
@@ -150,7 +150,7 @@ class Joe : Script {
         }
     }
 
-    fun ChoiceBuilder2.betterGo() {
+    fun ChoiceOption.betterGo() {
         option<Talk>("I'd better go.") {
             npc<Talk>("Thanks, I appreciate that. Talking on duty can be punished by having your mouth stitched up. These are tough people, make no mistake.")
         }

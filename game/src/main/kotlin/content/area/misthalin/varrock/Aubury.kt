@@ -44,15 +44,15 @@ class Aubury : Script {
         }
     }
 
-    fun ChoiceBuilder2.openShop(): Unit = option<Happy>("Yes please!") {
+    fun ChoiceOption.openShop(): Unit = option<Happy>("Yes please!") {
         emit(OpenShop("auburys_rune_shop"))
     }
 
-    fun ChoiceBuilder2.noThanks(message: String = "Oh, it's a rune shop. No thank you, then."): Unit = option<Neutral>(message) {
+    fun ChoiceOption.noThanks(message: String = "Oh, it's a rune shop. No thank you, then."): Unit = option<Neutral>(message) {
         npc<Happy>("Well, if you find someone who does want runes, please send them my way.")
     }
 
-    fun ChoiceBuilder2.teleport(npc: NPC): Unit = option(
+    fun ChoiceOption.teleport(npc: NPC): Unit = option(
         "Can you teleport me to the Rune Essence?",
         { quest("rune_mysteries") == "completed" },
     ) {
@@ -60,7 +60,7 @@ class Aubury : Script {
         EssenceMine.teleport(npc, this)
     }
 
-    fun ChoiceBuilder2.packageForYou(): Unit = option<Neutral>(
+    fun ChoiceOption.packageForYou(): Unit = option<Neutral>(
         "I've been sent here with a package for you.",
         { quest("rune_mysteries") == "research_package" },
     ) {
@@ -122,7 +122,7 @@ class Aubury : Script {
         }
     }
 
-    fun ChoiceBuilder2.skillcapes(): Unit = option("Can you tell me about your cape?") {
+    fun ChoiceOption.skillcapes(): Unit = option("Can you tell me about your cape?") {
         npc<Happy>("Certainly! Skillcapes are a symbol of achievement. Only people who have mastered a skill and reached level 99 can get their hands on them and gain the benefits they carry.")
         npc<Neutral>("The Cape of Runecrafting has been upgraded with each talisman, allowing you to access all Runecrafting altars. Is there anything else I can help you with?")
         choice {

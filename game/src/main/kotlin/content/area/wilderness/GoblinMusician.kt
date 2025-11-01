@@ -1,7 +1,7 @@
 package content.area.wilderness
 
 import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.ChoiceBuilder2
+import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
@@ -46,7 +46,7 @@ class GoblinMusician : Script {
         }
     }
 
-    fun ChoiceBuilder2.exit(): Unit = option<Quiz>("That's all for now.") {
+    fun ChoiceOption.exit(): Unit = option<Quiz>("That's all for now.") {
         npc<Happy>("You listen to boom boom. Good!")
     }
 }

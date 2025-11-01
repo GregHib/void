@@ -82,7 +82,7 @@ class Larry : Script {
         }
     }
 
-    private fun ChoiceBuilder2.claimReward(chuck: Boolean = false) {
+    private fun ChoiceOption.claimReward(chuck: Boolean = false) {
         option("I want to claim my reward.") {
             reward(chuck)
         }
@@ -124,7 +124,7 @@ class Larry : Script {
         }
     }
 
-    private fun ChoiceBuilder2.havingTrouble() {
+    private fun ChoiceOption.havingTrouble() {
         option<Talk>("I'm having trouble finding the penguins; can I have a hint?") {
             for (i in 0 until 10) {
                 if (!containsVarbit("penguins_found", "penguin_$i")) {

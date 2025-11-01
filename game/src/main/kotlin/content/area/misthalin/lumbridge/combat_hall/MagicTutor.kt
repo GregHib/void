@@ -39,7 +39,7 @@ class MagicTutor : Script {
         }
     }
 
-    fun ChoiceBuilder2.magicCombat(): Unit = option<Neutral>("Tell me about magic combat please.") {
+    fun ChoiceOption.magicCombat(): Unit = option<Neutral>("Tell me about magic combat please.") {
         npc<Happy>("Of course $name! As a rule of thumb, if you cast the highest spell of which you're capable, you'll get the best experience possible.")
         npc<Happy>("Wearing metal armour and ranged armour can seriously impair your magical abilities. Make sure you wear some robes to maximise your capabilities.")
         npc<Happy>("Superheat Item and the Alchemy spells are good ways to level magic if you are not interested in the combat aspect of magic.")
@@ -48,7 +48,7 @@ class MagicTutor : Script {
         menu("Is there anything else you would like to know?")
     }
 
-    fun ChoiceBuilder2.runeMaking(): Unit = option<Quiz>("How do I make runes?") {
+    fun ChoiceOption.runeMaking(): Unit = option<Quiz>("How do I make runes?") {
         npc<Happy>("There are a couple of things you will need to make runes, rune essence and a talisman to enter the temple ruins.")
         if (experience.get(Skill.Runecrafting) > 0.0) {
             npc<Amazed>("To get rune essence you will need to gather them in the essence mine. You can get to the mine by talking to Aubury who owns the runes shop in south east Varrock.")
@@ -67,7 +67,7 @@ class MagicTutor : Script {
         menu("Is there anything else you would like to know?")
     }
 
-    fun ChoiceBuilder2.claimRunes(): Unit = option("I'd like some air and mind runes.") {
+    fun ChoiceOption.claimRunes(): Unit = option("I'd like some air and mind runes.") {
         if (remaining("claimed_tutor_consumables", epochSeconds()) > 0) {
             npc<Amazed>("I work with the Ranged Combat tutor to give out consumable items that you may need for combat such as arrows and runes. However we have had some cheeky people try to take both!")
             npc<Happy>("So, every half an hour, you may come back and claim either arrows OR runes, but not both. Come back in a while for runes, or simply make your own.")

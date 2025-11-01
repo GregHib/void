@@ -109,7 +109,7 @@ class BrugsenBurson : Script {
         }
     }
 
-    fun ChoiceBuilder2.whereDidItComeFrom() {
+    fun ChoiceOption.whereDidItComeFrom() {
         option<Quiz>("Where did the Grand Exchange come from?") {
             npc<Happy>("I'm glad you ask! I like telling this story. Are you sitting comfortably?")
             player<Talk>("Erm, I'll stand if that's okay.")
@@ -129,7 +129,7 @@ class BrugsenBurson : Script {
         }
     }
 
-    fun ChoiceBuilder2.commonPrices() {
+    fun ChoiceOption.commonPrices() {
         option<Talk>("Can you tell me prices for common items, like...") {
             //            https://youtu.be/K1vo3SY7Z_g?si=Hgole9yhfo2ORjwK&t=98
             choice {
@@ -162,7 +162,7 @@ class BrugsenBurson : Script {
         }
     }
 
-    fun ChoiceBuilder2.systemDetails() {
+    fun ChoiceOption.systemDetails() {
         option<Talk>("Can you tell me more about how the system works?") {
             npc<Happy>("Oh, I simply love passing on knowledge. Okay, let me hit you with some facts...")
             npc<Talk>("The Grand Exchange calculates a guide price for each item that can be traded through it, based on the price people paid for that item over the previous days.")
@@ -186,7 +186,7 @@ class BrugsenBurson : Script {
         }
     }
 
-    fun ChoiceBuilder2.teachMeAgain() {
+    fun ChoiceOption.teachMeAgain() {
         option<Quiz>("Can you teach me about the Grand Exchange again?") {
             npc<Laugh>("Hahaha. It would be my absolute pleasure!")
             tutorial()

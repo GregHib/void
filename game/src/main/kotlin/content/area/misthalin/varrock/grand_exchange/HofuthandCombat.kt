@@ -37,20 +37,20 @@ class HofuthandCombat : Script {
         }
     }
 
-    fun ChoiceBuilder2.showPrices() {
+    fun ChoiceOption.showPrices() {
         option<Happy>("Yes, show me the prices of weapons and armour.") {
             set("common_item_costs", "combat")
             open("common_item_costs")
         }
     }
 
-    fun ChoiceBuilder2.bye() {
+    fun ChoiceOption.bye() {
         option<Shifty>("I'll leave you alone.") {
             npc<Talk>("Thank you, I have much on my mind.")
         }
     }
 
-    fun ChoiceBuilder2.flustered() {
+    fun ChoiceOption.flustered() {
         option<Happy>("You seem a bit flustered.") {
             npc<Uncertain>("Sorry, I'm just deep in thought. I'm waiting for many deals to complete today.")
             player<Talk>("What sort of things are you selling?")

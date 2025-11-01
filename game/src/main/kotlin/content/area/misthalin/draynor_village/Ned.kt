@@ -34,7 +34,7 @@ class Ned : Script {
 
     // TODO add achievement dialogue
 
-    fun ChoiceBuilder2.wig() {
+    fun ChoiceOption.wig() {
         option<Quiz>("How about some sort of wig?") {
             npc<Talk>("Well... that's an interesting thought. Yes, I think I could do something. Give me three balls of wool and I might be able to do it.")
             if (!holdsItem("ball_of_wool", 3)) {
@@ -59,7 +59,7 @@ class Ned : Script {
         }
     }
 
-    fun ChoiceBuilder2.otherThings(player: Player) {
+    fun ChoiceOption.otherThings(player: Player) {
         when (player.quest("prince_ali_rescue")) {
             "leela", "equipment", "joe_one_beer", "joe_two_beers", "joe_three_beers", "tie_up_lady_keli" -> {
                 option<Quiz>("Could you make other things apart from rope?") {
@@ -83,7 +83,7 @@ class Ned : Script {
         }
     }
 
-    fun ChoiceBuilder2.rope() {
+    fun ChoiceOption.rope() {
         option<Talk>("Yes, I would like some rope.") {
             npc<Happy>("Well, I can sell you some rope for 15 coins. Or I can be making you some if you gets me four balls of wool. I strands them together I does, makes em strong.")
             player<Quiz>("You make rope from wool?")
