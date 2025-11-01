@@ -176,7 +176,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
                     for (expression in child.children) {
                         if (expression !is KtCallExpression) continue
                         val methodName = expression.calleeExpression?.text ?: return
-                        val info = methods[methodName] ?: continue
+                        val info = methods[methodName]
                         var index = 0
                         for (arg in expression.valueArguments) {
                             if (arg is KtLambdaArgument) {
@@ -186,6 +186,10 @@ abstract class ScriptMetadataTask : DefaultTask() {
                             val value = arg.getArgumentExpression()?.text?.trim('"') ?: ""
                             if (value.none { it == '*' || it == '#' || it == ',' }) {
                                 index++
+                                continue
+                            }
+                            if (info == null) {
+                                println("No handling found for method $methodName with wildcard $name=$value in ${ktClass.name}")
                                 continue
                             }
                             if (value == "*") { // Match all can be handled separately
