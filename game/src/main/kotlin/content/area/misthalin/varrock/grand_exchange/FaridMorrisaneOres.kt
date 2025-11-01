@@ -8,7 +8,6 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.player.Player
 
 class FaridMorrisaneOres : Script {
 

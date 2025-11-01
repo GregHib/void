@@ -116,7 +116,7 @@ class Osman : Script {
             }
             exp(Skill.Thieving, experience)
             statement("Osman imparts some Thieving advice to you (${experience.toDigitGroupString()} Thieving experience points) as a reward for the sq'irk juice.")
-            npc<Happy>("Thank you very much ${name}. If you get some more sq'irks be sure to come back.")
+            npc<Happy>("Thank you very much $name. If you get some more sq'irks be sure to come back.")
             player<Happy>("I will. It's been a pleasure doing business with you.")
         }
         set("spoken_to_osman", true)

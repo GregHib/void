@@ -2,7 +2,6 @@ package content.area.kandarin.feldip_hills
 
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.type.ChoiceBuilder
 import content.entity.player.dialogue.type.ChoiceBuilder2
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc

@@ -85,10 +85,10 @@ class Turael : Script {
             roll()
             return
         }
-        npc<Talk>("You're still hunting ${slayerTask.toSentenceCase()}, you have ${slayerTaskRemaining} to go.")
+        npc<Talk>("You're still hunting ${slayerTask.toSentenceCase()}, you have $slayerTaskRemaining to go.")
         if (slayerMaster != "turael") {
             npc<Talk>("Although, it's not an assignment that I'd normally give... I guess I could give you a new assignment, if you'd like.")
-            npc<Talk>("If you do get a new one, you will reset your task streak of ${slayerStreak}. Is that okay?")
+            npc<Talk>("If you do get a new one, you will reset your task streak of $slayerStreak. Is that okay?")
         } else {
             npc<Quiz>("Although, it's a tougher assignment that I'd normally give... I guess I could give you a new assignment, id you'd like.")
         }

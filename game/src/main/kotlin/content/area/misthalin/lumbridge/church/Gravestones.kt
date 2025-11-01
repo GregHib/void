@@ -134,7 +134,7 @@ class Gravestones : Script {
             val deceased = players.get(name)
             val remainder = target.remaining("grave_timer", epochSeconds())
             val minutes = TimeUnit.SECONDS.toMinutes(remainder.toLong())
-            deceased?.message("${name} has repaired your gravestone. It should survive another $minutes ${"minute".plural(minutes)}.")
+            deceased?.message("$name has repaired your gravestone. It should survive another $minutes ${"minute".plural(minutes)}.")
         }
 
         npcOperate("Bless", "gravestone_*") { (target) ->
@@ -167,7 +167,7 @@ class Gravestones : Script {
             val deceased = players.get(name)
             val remainder = target.remaining("grave_timer", epochSeconds())
             val minutes = TimeUnit.SECONDS.toMinutes(remainder.toLong())
-            deceased?.message("${name} has blessed your gravestone. It should survive another $minutes ${"minute".plural(minutes)}.")
+            deceased?.message("$name has blessed your gravestone. It should survive another $minutes ${"minute".plural(minutes)}.")
         }
 
         npcOperate("Demolish", "gravestone_*") { (target) ->

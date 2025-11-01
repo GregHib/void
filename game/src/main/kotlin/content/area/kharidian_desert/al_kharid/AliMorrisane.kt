@@ -70,7 +70,7 @@ class AliMorrisane : Script {
     suspend fun Player.fued() {
         player<Talk>("Hi Ali. Not bad. How are you?")
         npc<Talk>("Still selling.")
-        npc<Talk>("Hello ${name}. How's the adventuring going?")
+        npc<Talk>("Hello $name. How's the adventuring going?")
         player<Talk>("Hi Ali. Not bad. How are you?")
         npc<Talk>("Still selling.")
         choice {

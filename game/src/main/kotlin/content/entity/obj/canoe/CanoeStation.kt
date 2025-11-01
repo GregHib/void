@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.StringSuspension
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import kotlin.math.abs
 
 private val stations = listOf(

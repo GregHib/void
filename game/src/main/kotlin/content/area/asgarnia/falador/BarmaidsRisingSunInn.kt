@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
-import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlFilter
 import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
@@ -15,13 +14,10 @@ import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -101,15 +97,15 @@ class BarmaidsRisingSunInn : Script {
                 }
             }
             when (inventory.count("beer_glass")) {
-                 0 -> {}
-                 1 -> option<Talk>("I've got this beer glass...") {
-                     npc<Quiz>("We'll buy it for a couple of coins if you're interested.")
-                     buyEmptyGlasses()
-                 }
-                 else -> option<Talk>("I've got these beer glasses...") {
-                     npc<Quiz>("Ooh, we'll buy those off you if you're interested. 2 coins per glass.")
-                     buyEmptyGlasses()
-                 }
+                0 -> {}
+                1 -> option<Talk>("I've got this beer glass...") {
+                    npc<Quiz>("We'll buy it for a couple of coins if you're interested.")
+                    buyEmptyGlasses()
+                }
+                else -> option<Talk>("I've got these beer glasses...") {
+                    npc<Quiz>("Ooh, we'll buy those off you if you're interested. 2 coins per glass.")
+                    buyEmptyGlasses()
+                }
             }
         }
     }

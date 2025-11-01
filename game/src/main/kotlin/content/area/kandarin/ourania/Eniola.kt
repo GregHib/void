@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.StringSuspension
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class Eniola : Script {
 

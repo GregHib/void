@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -19,7 +18,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.map.collision.blocked
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.type.Direction
 
 class Traiborn : Script {
@@ -253,7 +251,7 @@ class Traiborn : Script {
             startSpell(target)
         } else {
             player<Talk>("That's all of them.")
-            npc<Uncertain>("I still need ${bonesRequired} more.")
+            npc<Uncertain>("I still need $bonesRequired more.")
             player<Talk>("Ok, I'll keep looking.")
         }
     }

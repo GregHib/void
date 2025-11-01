@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.softQueue
 
 class WizardCromperty : Script {

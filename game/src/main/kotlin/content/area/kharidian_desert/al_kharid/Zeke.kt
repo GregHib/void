@@ -9,7 +9,6 @@ import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class Zeke : Script {
 

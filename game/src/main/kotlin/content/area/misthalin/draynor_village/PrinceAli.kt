@@ -9,7 +9,6 @@ import content.entity.player.dialogue.type.statement
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item

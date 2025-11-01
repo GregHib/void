@@ -53,7 +53,6 @@ suspend inline fun <reified T : Entity, reified E : Event> Bot.await(
     }
 }
 
-
 suspend inline fun Bot.await(
     noinline condition: Player.() -> Boolean = { true },
 ) {

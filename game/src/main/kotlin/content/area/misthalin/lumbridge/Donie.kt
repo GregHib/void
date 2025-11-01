@@ -158,7 +158,7 @@ class Donie : Script {
                         npc<Happy>("Doric the dwarf is located north of Falador. He might be able to help you with smithing. You should speak to him. He may let you use his anvils.")
                         if (questCompleted("dorics_quest")) {
                             player<Happy>("Yes, I've been to see Doric already. He was happy to let me use his anvils after I ran a small errand for him.")
-                            npc<Happy>("Oh, good. Thank you ${name}!")
+                            npc<Happy>("Oh, good. Thank you $name!")
                         } else {
                             player<Happy>("Thanks for the tip.")
                         }

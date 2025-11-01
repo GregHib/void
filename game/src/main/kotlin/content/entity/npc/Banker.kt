@@ -11,9 +11,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class Banker : Script {
 

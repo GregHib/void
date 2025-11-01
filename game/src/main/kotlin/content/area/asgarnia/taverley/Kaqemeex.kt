@@ -14,13 +14,11 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class Kaqemeex : Script {
 
@@ -155,7 +153,7 @@ class Kaqemeex : Script {
                             remove("coins", 99000)
                         }
                         when (inventory.transaction.error) {
-                            TransactionError.None -> npc<Happy>("Good luck to you, ${name}.")
+                            TransactionError.None -> npc<Happy>("Good luck to you, $name.")
                             is TransactionError.Deficient -> {
                                 player<Upset>("But, unfortunately, I was mistaken.")
                                 npc<Neutral>("Well, come back and see me when you do.")

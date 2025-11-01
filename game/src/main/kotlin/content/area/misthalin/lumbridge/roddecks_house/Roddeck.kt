@@ -6,7 +6,6 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.RollEyes
 import content.entity.player.dialogue.type.ChoiceBuilder2
-import content.entity.player.dialogue.type.PlayerChoice
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script

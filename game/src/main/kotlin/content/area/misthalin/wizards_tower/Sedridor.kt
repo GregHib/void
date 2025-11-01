@@ -16,13 +16,11 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class Sedridor : Script {
 
@@ -66,7 +64,7 @@ class Sedridor : Script {
                     }
                     option<Uncertain>("No, I don't think you are Sedridor.") {
                         npc<Happy>("Hmm... Well, I admire your caution adventurer. Perhaps I can prove myself? I will use my mental powers to discover...")
-                        npc<Happy>("Your name is... ${name}!")
+                        npc<Happy>("Your name is... $name!")
                         player<Surprised>("You're right! How did you know that?")
                         npc<Happy>("Well I am the Archmage you know! You don't get to my position without learning a few tricks along the way!")
                         npc<Quiz>("So now that I have proved myself to you, why don't you hand over that talisman, hmm?")
@@ -160,12 +158,12 @@ class Sedridor : Script {
             }
             inventory.add("research_package_rune_mysteries")
             item("research_package_rune_mysteries", 600, "Sedridor hands you a package.")
-            npc<Happy>("Best of luck, ${name}.")
+            npc<Happy>("Best of luck, $name.")
         }
     }
 
     suspend fun Player.checkResearchDelivered() {
-        npc<Neutral>("Ah, ${name}. How goes your quest? Have you delivered my research to Aubury yet?")
+        npc<Neutral>("Ah, $name. How goes your quest? Have you delivered my research to Aubury yet?")
         player<Neutral>("Yes, I have. He gave me some notes to give to you.")
         npc<Happy>("Wonderful! Let's have a look then.")
         if (holdsItem("research_notes_rune_mysteries")) {
@@ -204,12 +202,12 @@ class Sedridor : Script {
         }
         inventory.add("research_package_rune_mysteries")
         item("research_package_rune_mysteries", 600, "Sedridor hands you a package.")
-        npc<Happy>("Best of luck, ${name}.")
+        npc<Happy>("Best of luck, $name.")
     }
 
     suspend fun Player.completed(target: NPC) {
         player<Neutral>("Hello there.")
-        npc<Happy>("Hello again, ${name}. What can I do for you?")
+        npc<Happy>("Hello again, $name. What can I do for you?")
         choice {
             teleportEssenceMine(target)
             whoElseKnows(target)
