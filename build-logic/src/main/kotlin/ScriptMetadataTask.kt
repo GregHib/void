@@ -71,36 +71,36 @@ abstract class ScriptMetadataTask : DefaultTask() {
         "npcMoved" to listOf("id" to WildcardType.NpcId),
         "variableSet" to listOf("key" to WildcardType.VariableId),
         "npcVariableSet" to listOf("key" to WildcardType.VariableId),
+        // Approach interactions
         "talkWithApproach" to listOf("npc" to WildcardType.NpcId),
-        "interfaceOnPlayerApproach" to listOf("id" to WildcardType.InterfaceComponentId),
-        "itemOnPlayerApproach" to listOf("item" to WildcardType.ItemId),
         "npcApproach" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
-        "interfaceOnNpcApproach" to listOf("id" to WildcardType.InterfaceComponentId, "npc" to WildcardType.NpcId),
-        "itemOnNpcApproach" to listOf("item" to WildcardType.ItemId, "npc" to WildcardType.NpcId),
         "objectApproach" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
-        "interfaceOnObjectApproach" to listOf("id" to WildcardType.InterfaceComponentId, "obj" to WildcardType.ObjectId),
-        "itemOnObjectApproach" to listOf("item" to WildcardType.ItemId, "obj" to WildcardType.ObjectId),
         "floorItemApproach" to listOf("option" to WildcardType.FloorItemOption, "obj" to WildcardType.ItemId),
-        "interfaceOnFloorItemApproach" to listOf("id" to WildcardType.InterfaceComponentId, "item" to WildcardType.ItemId),
-        "itemOnFloorItemApproach" to listOf("item" to WildcardType.ItemId, "floorItem" to WildcardType.ItemId),
         "npcApproachNPC" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
         "npcApproachObject" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
         "npcApproachFloorItem" to listOf("option" to WildcardType.FloorItemOption, "item" to WildcardType.ItemId),
         "talkWith" to listOf("npc" to WildcardType.NpcId),
-        "interfaceOnPlayerOperate" to listOf("id" to WildcardType.InterfaceComponentId),
-        "itemOnPlayerOperate" to listOf("item" to WildcardType.ItemId),
+        // Operate interactions
         "npcOperate" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
-        "interfaceOnNPCOperate" to listOf("id" to WildcardType.InterfaceComponentId, "npc" to WildcardType.NpcId),
-        "itemOnNPCOperate" to listOf("item" to WildcardType.ItemId, "npc" to WildcardType.NpcId),
         "objectOperate" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
-        "interfaceOnObjectOperate" to listOf("id" to WildcardType.InterfaceComponentId, "obj" to WildcardType.ObjectId),
-        "itemOnObjectOperate" to listOf("item" to WildcardType.ItemId, "obj" to WildcardType.ObjectId),
         "floorItemOperate" to listOf("option" to WildcardType.FloorItemOption, "obj" to WildcardType.ItemId),
-        "interfaceOnFloorItemOperate" to listOf("id" to WildcardType.InterfaceComponentId, "item" to WildcardType.ItemId),
-        "itemOnFloorItemOperate" to listOf("item" to WildcardType.ItemId, "floorItem" to WildcardType.ItemId),
         "npcOperateNPC" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
         "npcOperateObject" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
         "npcOperateFloorItem" to listOf("option" to WildcardType.FloorItemOption, "item" to WildcardType.ItemId),
+        // Interface on operate interactions
+        "onPlayerOperate" to listOf("id" to WildcardType.InterfaceComponentId),
+        "onNPCOperate" to listOf("id" to WildcardType.InterfaceComponentId, "npc" to WildcardType.NpcId),
+        "onObjectOperate" to listOf("id" to WildcardType.InterfaceComponentId, "obj" to WildcardType.ObjectId),
+        "itemOnPlayerOperate" to listOf("item" to WildcardType.ItemId),
+        "itemOnNPCOperate" to listOf("item" to WildcardType.ItemId, "npc" to WildcardType.NpcId),
+        "itemOnObjectOperate" to listOf("item" to WildcardType.ItemId, "obj" to WildcardType.ObjectId),
+        // Interface on approach interactions
+        "onPlayerApproach" to listOf("id" to WildcardType.InterfaceComponentId),
+        "onNPCApproach" to listOf("id" to WildcardType.InterfaceComponentId, "npc" to WildcardType.NpcId),
+        "onObjectApproach" to listOf("id" to WildcardType.InterfaceComponentId, "obj" to WildcardType.ObjectId),
+        "itemOnPlayerApproach" to listOf("item" to WildcardType.ItemId),
+        "itemOnNPCApproach" to listOf("item" to WildcardType.ItemId, "npc" to WildcardType.NpcId),
+        "itemOnObjectApproach" to listOf("item" to WildcardType.ItemId, "obj" to WildcardType.ObjectId),
     )
 
     @TaskAction
@@ -209,7 +209,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
                                     combined.add(part)
                                 }
                             }
-                            wildcards.add("${value}|${combined.joinToString(":")}|$packagePath")
+                            wildcards.add("${value}|${combined.joinToString(",")}|$packagePath")
                         }
                     }
                 }
