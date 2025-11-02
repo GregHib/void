@@ -5,7 +5,6 @@ import content.entity.sound.sound
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.data.definition.data.Pottery
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -20,16 +19,16 @@ import world.gregs.voidps.engine.queue.weakQueue
 class Pottery : Script {
 
     init {
-        itemOnObjectOperate("soft_clay", "potters_wheel*", arrive = false) {
-            player.make(target, "spinning", item)
+        itemOnObjectOperate("soft_clay", "potters_wheel*", arrive = false) { (target, item) ->
+            make(target, "spinning", item)
         }
 
-        itemOnObjectOperate(obj = "pottery_oven*", arrive = false) {
+        itemOnObjectOperate(obj = "pottery_oven*", arrive = false) { (target, item) ->
             if (!item.def.contains("pottery")) {
                 return@itemOnObjectOperate
             }
             if (item.id != "soft_clay") {
-                player.make(target, "cook_range", item)
+                make(target, "cook_range", item)
             }
         }
 

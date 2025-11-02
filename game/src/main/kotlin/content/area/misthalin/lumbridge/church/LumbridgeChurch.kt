@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -79,7 +78,7 @@ class LumbridgeChurch : Script {
         }
 
         itemOnObjectOperate("muddy_skull", "coffin_restless_ghost_2") {
-            player.returnSkull()
+            returnSkull()
         }
 
         itemOnObjectOperate("muddy_skull", "restless_ghost_coffin_closed") {

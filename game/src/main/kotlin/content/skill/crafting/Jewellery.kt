@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.data.Jewellery
@@ -40,7 +39,7 @@ class Jewellery : Script {
 
     init {
         itemOnObjectOperate("*_mould", "furnace*", arrive = false) {
-            player.open("make_mould${if (World.members) "_slayer" else ""}")
+            open("make_mould${if (World.members) "_slayer" else ""}")
         }
 
         interfaceRefresh("make_mould*") { player ->

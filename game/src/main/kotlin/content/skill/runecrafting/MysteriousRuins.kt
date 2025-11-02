@@ -9,7 +9,6 @@ import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -50,17 +49,17 @@ class MysteriousRuins : Script {
             updateAltarVars(player)
         }
 
-        itemOnObjectOperate("*_talisman", "*_altar_ruins") {
+        itemOnObjectOperate("*_talisman", "*_altar_ruins") { (target, item) ->
             if (target.id != "${item.id.removeSuffix("_talisman")}_altar_ruins") {
                 return@itemOnObjectOperate
             }
-            player.message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
-            player.anim("human_pickupfloor")
+            message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
+            anim("human_pickupfloor")
             delay(2)
-            player.set("${item.id.removeSuffix("_talisman")}_altar_ruins", refresh = false, value = true)
-            player.interactObject(target, "Enter", approachRange = -1)
-            player.softQueue("clear_alter_varbit", 5) {
-                player.set("${item.id.removeSuffix("_talisman")}_altar_ruins", refresh = false, value = false)
+            set("${item.id.removeSuffix("_talisman")}_altar_ruins", refresh = false, value = true)
+            interactObject(target, "Enter", approachRange = -1)
+            softQueue("clear_alter_varbit", 5) {
+                set("${item.id.removeSuffix("_talisman")}_altar_ruins", refresh = false, value = false)
             }
         }
 

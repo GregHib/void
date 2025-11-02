@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -86,42 +85,42 @@ class Anvil : Script {
         }
 
         itemOnObjectOperate("*_bar", "anvil*") {
-            if (!player.inventory.contains("hammer")) {
+            if (!inventory.contains("hammer")) {
                 statement("You need a hammer to work the metal with.")
                 return@itemOnObjectOperate
             }
-            player.open("smithing")
-            val bars = player.inventory.count(item.id)
-            val metal = item.id.removeSuffix("_bar")
-            player["smithing_metal"] = metal
-            player.interfaces.sendText("smithing", "title", "${metal.toSentenceCase()} Smithing")
+            open("smithing")
+            val bars = inventory.count(it.item.id)
+            val metal = it.item.id.removeSuffix("_bar")
+            set("smithing_metal", metal)
+            interfaces.sendText("smithing", "title", "${metal.toSentenceCase()} Smithing")
             for (type in types) {
                 val componentDefinition = interfaceDefinitions.getComponent("smithing", type)
                 val itemDefinition = itemDefinitions.get("${metal}_$type")
                 val id = itemDefinition.id
                 if (id != -1) {
                     val amount = componentDefinition?.getOrNull("amount") ?: 1
-                    player.interfaces.sendItem("smithing", type, id, amount)
+                    interfaces.sendItem("smithing", type, id, amount)
                     val smithing: Smithing = itemDefinition["smithing"]
-                    player.interfaces.sendColour("smithing", "${type}_name", if (player.has(Skill.Smithing, smithing.level)) Colours.WHITE else Colours.BLACK)
+                    interfaces.sendColour("smithing", "${type}_name", if (has(Skill.Smithing, smithing.level)) Colours.WHITE else Colours.BLACK)
                 }
                 val required = componentDefinition?.getOrNull("bars") ?: 1
-                player.interfaces.sendColour("smithing", "${type}_bar", if (bars < required) Colours.ORANGE else Colours.GREEN)
+                interfaces.sendColour("smithing", "${type}_bar", if (bars < required) Colours.ORANGE else Colours.GREEN)
             }
 
-            player.interfaces.sendVisibility("smithing", "wire_bronze", metal == "bronze")
-            player.interfaces.sendVisibility("smithing", "spit_iron", metal == "iron")
-            player.interfaces.sendVisibility("smithing", "studs_steel", metal == "steel")
-            player.interfaces.sendVisibility("smithing", "bullseye_lantern", metal == "steel")
-            player.interfaces.sendItem("smithing", "lantern", itemDefinitions.get("bullseye_lantern_frame").id, 1)
-            player.interfaces.sendVisibility("smithing", "grapple", metal == "mithril")
-            player.interfaces.sendVisibility("smithing", "darts", player.quest("tourist_trap") == "completed")
-            player.interfaces.sendVisibility("smithing", "claw", player.quest("death_plateau") == "completed")
-            player.interfaces.sendVisibility("smithing", "pickaxes", player.quest("perils_of_ice_mountain") == "completed")
+            interfaces.sendVisibility("smithing", "wire_bronze", metal == "bronze")
+            interfaces.sendVisibility("smithing", "spit_iron", metal == "iron")
+            interfaces.sendVisibility("smithing", "studs_steel", metal == "steel")
+            interfaces.sendVisibility("smithing", "bullseye_lantern", metal == "steel")
+            interfaces.sendItem("smithing", "lantern", itemDefinitions.get("bullseye_lantern_frame").id, 1)
+            interfaces.sendVisibility("smithing", "grapple", metal == "mithril")
+            interfaces.sendVisibility("smithing", "darts", quest("tourist_trap") == "completed")
+            interfaces.sendVisibility("smithing", "claw", quest("death_plateau") == "completed")
+            interfaces.sendVisibility("smithing", "pickaxes", quest("perils_of_ice_mountain") == "completed")
         }
 
         itemOnObjectOperate("hammer", "anvil*", arrive = false) {
-            player.message("To smith metal equipment, you must use the metal bar on the anvil.")
+            message("To smith metal equipment, you must use the metal bar on the anvil.")
         }
 
         interfaceClose("smithing") { player ->

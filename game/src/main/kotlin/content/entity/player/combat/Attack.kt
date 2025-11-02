@@ -80,17 +80,17 @@ class Attack : Script {
             combatInteraction(this, target)
         }
 
-        onNPCOperate("*_spellbook:*") { (target, id) ->
+        onNPCApproach("*_spellbook:*") { (target, id) ->
             if (!has(Skill.Slayer, target.def["slayer_level", 0])) {
                 message("You need a higher slayer level to know how to wound this monster.")
 //                cancel() FIXME
-                return@onNPCOperate
+                return@onNPCApproach
             }
             approachRange(8, update = false)
             spell = id.substringAfter(":")
             if (target.id.endsWith("_dummy") && !handleCombatDummies(target)) {
                 clear("spell")
-                return@onNPCOperate
+                return@onNPCApproach
             }
             set("attack_speed", 5)
             set("one_time", true)

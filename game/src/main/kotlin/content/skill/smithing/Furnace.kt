@@ -5,7 +5,6 @@ import content.entity.player.dialogue.type.makeAmount
 import content.entity.sound.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smelting
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -47,13 +46,13 @@ class Furnace : Script {
             smeltingOptions(target, bars)
         }
 
-        itemOnObjectOperate("*_ore", "furnace*", arrive = false) {
+        itemOnObjectOperate("*_ore", "furnace*", arrive = false) { (target, item) ->
             val list = mutableListOf<String>()
             list.add(oreToBar(item.id))
-            if (item.id == "iron_ore" && player.inventory.contains("coal")) {
+            if (item.id == "iron_ore" && inventory.contains("coal")) {
                 list.add("steel_bar")
             }
-            player.smeltingOptions(target, list)
+            smeltingOptions(target, list)
         }
     }
 

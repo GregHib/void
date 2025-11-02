@@ -49,7 +49,7 @@ class Alrena : Script {
             inventory.replace("dwellberries", "gas_mask")
             set("plague_city", "has_mask")
             item("gas_mask", 300, "Alrena gives you the mask.")
-            clearAnim()
+            target.clearAnim()
             npc<Neutral>("There we go, all done. While in West Ardougne you must wear this at all times, or you could catch the plague.")
             npc<Neutral>("I'll make a spare mask. I'll hide it in the wardrobe in case the mourners come in.")
         } else {

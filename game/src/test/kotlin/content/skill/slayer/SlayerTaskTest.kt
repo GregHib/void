@@ -133,7 +133,7 @@ class SlayerTaskTest : WorldTest() {
         tickIf { lizard.levels.get(Skill.Constitution) > 10 }
         tick(1)
         player.itemOnNpc(lizard, 0)
-        tick(6) // Npc death
+        tick(7) // Npc death
 
         assertEquals("mazchna", player.slayerMaster)
         assertEquals("nothing", player.slayerTask)

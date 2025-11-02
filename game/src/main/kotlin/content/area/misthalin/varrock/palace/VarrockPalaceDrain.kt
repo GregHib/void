@@ -11,7 +11,6 @@ import content.entity.sound.sound
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -39,7 +38,7 @@ class VarrockPalaceDrain : Script {
             }
         }
 
-        itemOnObjectOperate("*of_water", "varrock_palace_drain") {
+        itemOnObjectOperate("*of_water", "varrock_palace_drain") { (_, item, slot) ->
             val replacement = when {
                 item.id.startsWith("bucket_of") -> "bucket"
                 item.id.startsWith("jug_of") -> "jug"
@@ -47,17 +46,17 @@ class VarrockPalaceDrain : Script {
                 item.id.startsWith("bowl_of") -> "bowl"
                 else -> return@itemOnObjectOperate
             }
-            if (!player.inventory.replace(itemSlot, item.id, replacement)) {
+            if (!inventory.replace(slot, item.id, replacement)) {
                 logger.warn { "Issue emptying ${item.id} -> $replacement" }
                 return@itemOnObjectOperate
             }
-            player["demon_slayer_drain_dislodged"] = true
-            player.message("You pour the liquid down the drain.")
-            player.anim("toss_water")
-            player.gfx("toss_water")
-            player.sound("demon_slayer_drain")
-            player.sound("demon_slayer_key_fall")
-            if (player.quest("demon_slayer") == "key_hunt") {
+            set("demon_slayer_drain_dislodged", true)
+            message("You pour the liquid down the drain.")
+            anim("toss_water")
+            gfx("toss_water")
+            sound("demon_slayer_drain")
+            sound("demon_slayer_key_fall")
+            if (quest("demon_slayer") == "key_hunt") {
                 player<Happy>("OK, I think I've washed the key down into the sewer. I'd better go down and get it!")
             } else {
                 player<Shifty>("I think that dislodged something from the drain. It's probably gone down to the sewers below.")

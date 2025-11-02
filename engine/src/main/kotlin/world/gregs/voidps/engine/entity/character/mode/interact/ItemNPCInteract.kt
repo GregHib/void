@@ -9,26 +9,26 @@ import world.gregs.voidps.engine.event.Events
 
 data class ItemNPCInteract(
     override val target: NPC,
-    val id: String,
     val item: Item,
     val slot: Int,
+    val id: String,
     val player: Player,
 ) : Interact(player, target) {
-    override fun hasOperate() = Operation.onNpcBlocks.containsKey(id) || Operation.onNpcBlocks.containsKey(item.id)
+    override fun hasOperate() = Operation.itemOnNpcBlocks.containsKey("${item.id}:*") || Operation.itemOnNpcBlocks.containsKey("${item.id}:${target.def(player).stringId}") || Operation.itemOnNpcBlocks.containsKey("*:${target.def(player).stringId}")
 
-    override fun hasApproach() = Approachable.onNpcBlocks.containsKey(id) || Approachable.onNpcBlocks.containsKey(item.id)
+    override fun hasApproach() = Approachable.itemOnNpcBlocks.containsKey("${item.id}:*") || Approachable.itemOnNpcBlocks.containsKey("${item.id}:${target.def(player).stringId}") || Approachable.itemOnNpcBlocks.containsKey("*:${target.def(player).stringId}")
 
     override fun operate() {
-        invoke(Operation.onNpcBlocks)
+        invoke(Operation.itemOnNpcBlocks)
     }
 
     override fun approach() {
-        invoke(Approachable.onNpcBlocks)
+        invoke(Approachable.itemOnNpcBlocks)
     }
 
     private fun invoke(map: Map<String, List<suspend Player.(ItemNPCInteract) -> Unit>>) {
         Events.events.launch {
-            for (block in map[id] ?: map[item.id] ?: return@launch) {
+            for (block in map["${item.id}:${target.def(player).stringId}"] ?: map["*:${target.def(player).stringId}"] ?: map["${item.id}:*"] ?: return@launch) { // Hack for spells
                 block(player, this@ItemNPCInteract)
             }
         }

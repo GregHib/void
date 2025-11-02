@@ -63,19 +63,20 @@ class PlagueCityTest : WorldTest() {
         val soil = objects[Tile(2566, 3332), "plague_mud_patch2"]!!
         repeat(4) {
             player.itemOnObject(soil, player.inventory.indexOf("bucket_of_water"))
+            tick()
             player.dialogueContinue()
         }
         assertEquals(0, player.inventory.count("bucket_of_water"))
         assertEquals(4, player.inventory.count("bucket"))
         player.itemOnObject(soil, player.inventory.indexOf("spade"))
-        tick(5)
+        tick(6)
         player.dialogueContinue()
         assertEquals(Tile(2518, 9760), player.tile)
 
         player.tele(2514, 9739)
         val grill = objects[Tile(2514, 9739), "plague_grill"]!!
         player.itemOnObject(grill, player.inventory.indexOf("rope"))
-        tick(2)
+        tick(3)
         player.dialogueContinue()
         assertNull(player.dialogue)
 

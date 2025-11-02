@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.Wildcards
 
 /**
@@ -60,15 +59,38 @@ interface Operation {
         }
     }
 
-    fun onNPCOperate(id: String = "*", npc: String, block: suspend Player.(ItemNPCInteract) -> Unit) {
+    fun onNPCOperate(id: String = "*", npc: String = "*", block: suspend Player.(InterfaceNPCInteract) -> Unit) {
         for (i in Wildcards.find(id)) {
-            onNpcBlocks.getOrPut("$i:$npc") { mutableListOf() }.add(block)
+            for (n in Wildcards.find(npc)) {
+                onNpcBlocks.getOrPut("$i:$n") { mutableListOf() }.add(block)
+            }
         }
     }
 
-    fun itemOnNPCOperate(item: String = "*", npc: String, block: suspend Player.(ItemNPCInteract) -> Unit) {
-        for (id in Wildcards.find(item)) {
-            onNpcBlocks.getOrPut("$id:$npc") { mutableListOf() }.add(block)
+    fun itemOnNPCOperate(item: String = "*", npc: String = "*", block: suspend Player.(ItemNPCInteract) -> Unit) {
+        for (itm in Wildcards.find(item)) {
+            for (id in Wildcards.find(npc)) {
+                itemOnNpcBlocks.getOrPut("$itm:$id") { mutableListOf() }.add(block)
+            }
+        }
+    }
+
+    fun onObjectOperate(id: String = "*", obj: String = "*", block: suspend Player.(InterfaceObjectInteract) -> Unit) {
+        for (i in Wildcards.find(id)) {
+            for (o in Wildcards.find(obj)) {
+                onObjectBlocks.getOrPut("$i:$o") { mutableListOf() }.add(block)
+            }
+        }
+    }
+
+    fun itemOnObjectOperate(item: String = "*", obj: String = "*", arrive: Boolean = true, block: suspend Player.(ItemObjectInteract) -> Unit) {
+        for (itm in Wildcards.find(item)) {
+            for (id in Wildcards.find(obj)) {
+                if (!arrive) {
+                    noDelays.add("$itm:$id")
+                }
+                itemOnObjectBlocks.getOrPut("$itm:$id") { mutableListOf() }.add(block)
+            }
         }
     }
 
@@ -271,10 +293,12 @@ interface Operation {
         val onPlayerBlocks = mutableMapOf<String, MutableList<suspend Player.(ItemPlayerInteract) -> Unit>>()
 
         val playerNpcBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerNPCInteract) -> Unit>>()
-        val onNpcBlocks = mutableMapOf<String, MutableList<suspend Player.(ItemNPCInteract) -> Unit>>()
+        val onNpcBlocks = mutableMapOf<String, MutableList<suspend Player.(InterfaceNPCInteract) -> Unit>>()
+        val itemOnNpcBlocks = mutableMapOf<String, MutableList<suspend Player.(ItemNPCInteract) -> Unit>>()
 
         val playerObjectBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerObjectInteract) -> Unit>>()
-        val onObjectBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, GameObject) -> Unit>>()
+        val onObjectBlocks = mutableMapOf<String, MutableList<suspend Player.(InterfaceObjectInteract) -> Unit>>()
+        val itemOnObjectBlocks = mutableMapOf<String, MutableList<suspend Player.(ItemObjectInteract) -> Unit>>()
 
         val playerFloorItemBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerFloorItemInteract) -> Unit>>()
         val onFloorItemBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, FloorItem) -> Unit>>()
@@ -292,8 +316,9 @@ interface Operation {
             onPlayerBlocks.clear()
             playerNpcBlocks.clear()
             onNpcBlocks.clear()
+            itemOnNpcBlocks.clear()
             playerObjectBlocks.clear()
-            onObjectBlocks.clear()
+            itemOnObjectBlocks.clear()
             playerFloorItemBlocks.clear()
             onFloorItemBlocks.clear()
             npcPlayerBlocks.clear()

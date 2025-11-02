@@ -34,7 +34,7 @@ class Bob : Script {
             }
         }
 
-        itemOnNPCOperate("*", "bob") { (_, _, item) ->
+        itemOnNPCOperate("*", "bob") { (_, item) ->
             if (!repairable(item.id)) {
                 npc<Quiz>("Sorry friend, but I can't do anything with that.")
                 return@itemOnNPCOperate

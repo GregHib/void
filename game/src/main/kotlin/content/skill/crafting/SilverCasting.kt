@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -66,14 +65,14 @@ class SilverCasting : Script {
         }
 
         itemOnObjectOperate("silver_bar", "furnace*", arrive = false) {
-            player.open("silver_mould")
+            open("silver_mould")
         }
 
         itemOnObjectOperate(obj = "furnace*") {
-            if (!item.def.contains("silver_jewellery")) {
+            if (!it.item.def.contains("silver_jewellery")) {
                 return@itemOnObjectOperate
             }
-            player.make(item, 1)
+            make(it.item, 1)
         }
 
         interfaceOption(component = "*_button", id = "silver_mould") {

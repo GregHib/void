@@ -1,12 +1,10 @@
 package world.gregs.voidps.engine.entity
 
-import world.gregs.voidps.engine.entity.Operation.Companion
 import world.gregs.voidps.engine.entity.character.mode.interact.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.Wildcards
 
 /**
@@ -58,15 +56,35 @@ interface Approachable {
         }
     }
 
-    fun onNPCApproach(id: String = "*", npc: String, block: suspend Player.(ItemNPCInteract) -> Unit) {
+    fun onNPCApproach(id: String = "*", npc: String = "*", block: suspend Player.(InterfaceNPCInteract) -> Unit) {
         for (i in Wildcards.find(id)) {
-            onNpcBlocks.getOrPut("$i:$npc") { mutableListOf() }.add(block)
+            for (n in Wildcards.find(npc)) {
+                onNpcBlocks.getOrPut("$i:$n") { mutableListOf() }.add(block)
+            }
         }
     }
 
-    fun itemOnNPCApproach(item: String = "*", npc: String, block: suspend Player.(ItemNPCInteract) -> Unit) {
-        for (id in Wildcards.find(item)) {
-            onNpcBlocks.getOrPut("$id:$npc") { mutableListOf() }.add(block)
+    fun itemOnNPCApproach(item: String = "*", npc: String = "*", block: suspend Player.(ItemNPCInteract) -> Unit) {
+        for (itm in Wildcards.find(item)) {
+            for (id in Wildcards.find(npc)) {
+                Operation.itemOnNpcBlocks.getOrPut("$itm:$id") { mutableListOf() }.add(block)
+            }
+        }
+    }
+
+    fun onObjectApproach(id: String = "*", obj: String = "*", block: suspend Player.(InterfaceObjectInteract) -> Unit) {
+        for (i in Wildcards.find(id)) {
+            for (o in Wildcards.find(obj)) {
+                Operation.onObjectBlocks.getOrPut("$i:$o") { mutableListOf() }.add(block)
+            }
+        }
+    }
+
+    fun itemOnObjectApproach(item: String = "*", obj: String = "*", arrive: Boolean = true, block: suspend Player.(ItemObjectInteract) -> Unit) {
+        for (itm in Wildcards.find(item)) {
+            for (id in Wildcards.find(obj)) {
+                Operation.itemOnObjectBlocks.getOrPut("$itm:$id") { mutableListOf() }.add(block)
+            }
         }
     }
 
@@ -97,8 +115,9 @@ interface Approachable {
         }
     }
 
-/*
-    *//**
+    /*
+        */
+    /**
      * NPC Dialogue helper
      *//*
     fun talkWithApproach(npc: String, block: suspend Dialogue.() -> Unit) {
@@ -109,7 +128,8 @@ interface Approachable {
         }
     }
 
-    *//**
+    */
+    /**
      * Interface on Player
      *//*
     fun interfaceOnPlayerApproach(id: String, block: suspend (player: Player, id: String, slot: Int, item: Item, target: Player) -> Unit) {
@@ -118,7 +138,8 @@ interface Approachable {
         }
     }
 
-    *//**
+    */
+    /**
      * Item on Player
      *//*
     fun itemOnPlayerApproach(item: String, block: suspend (player: Player, id: String, slot: Int, item: Item, target: Player) -> Unit) {
@@ -128,7 +149,8 @@ interface Approachable {
     }
 
 
-    *//**
+    */
+    /**
      * Npc option
      *//*
     fun npcApproach(option: String, npc: String, block: suspend (Player, NPC) -> Unit) {
@@ -137,7 +159,8 @@ interface Approachable {
         }
     }
 
-    *//**
+    */
+    /**
      * Interface on NPC
      * Any [npc] is allowed but [id] is required
      *//*
@@ -149,7 +172,8 @@ interface Approachable {
         }
     }
 
-    *//**
+    */
+    /**
      * Item on NPC
      * Any item is allowed, [npc] is required
      *//*
@@ -162,7 +186,8 @@ interface Approachable {
     }
 
 
-    *//**
+    */
+    /**
      * GameObject option
      *//*
     fun objectApproach(option: String, obj: String, arriveDelay: Boolean = true, block: suspend (Player, GameObject) -> Unit) {
@@ -174,7 +199,8 @@ interface Approachable {
         }
     }
 
-    *//**
+    */
+    /**
      * Interface on GameObject
      * Any [obj] is allowed but [id] is required
      *//*
@@ -189,7 +215,8 @@ interface Approachable {
         }
     }
 
-    *//**
+    */
+    /**
      * Item on GameObject
      * Any item is allowed, [obj] is required
      *//*
@@ -205,7 +232,8 @@ interface Approachable {
     }
 
 
-    *//**
+    */
+    /**
      * FloorItem option
      *//*
     fun floorItemApproach(option: String, item: String = "*", arriveDelay: Boolean = true, block: suspend (Player, FloorItem) -> Unit) {
@@ -217,7 +245,8 @@ interface Approachable {
         }
     }
 
-    *//**
+    */
+    /**
      * Interface on FloorItem
      * Any [item] is allowed but [id] is required
      *//*
@@ -232,7 +261,8 @@ interface Approachable {
         }
     }
 
-    *//**
+    */
+    /**
      * Item on FloorItem
      * Any item is allowed, [floorItem] is required
      *//*
@@ -254,10 +284,12 @@ interface Approachable {
         val onPlayerBlocks = mutableMapOf<String, MutableList<suspend Player.(ItemPlayerInteract) -> Unit>>()
 
         val playerNpcBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerNPCInteract) -> Unit>>()
-        val onNpcBlocks = mutableMapOf<String, MutableList<suspend Player.(ItemNPCInteract) -> Unit>>()
+        val onNpcBlocks = mutableMapOf<String, MutableList<suspend Player.(InterfaceNPCInteract) -> Unit>>()
+        val itemOnNpcBlocks = mutableMapOf<String, MutableList<suspend Player.(ItemNPCInteract) -> Unit>>()
 
         val playerObjectBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerObjectInteract) -> Unit>>()
-        val onObjectBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, GameObject) -> Unit>>()
+        val onObjectBlocks = mutableMapOf<String, MutableList<suspend Player.(InterfaceObjectInteract) -> Unit>>()
+        val itemOnObjectBlocks = mutableMapOf<String, MutableList<suspend Player.(ItemObjectInteract) -> Unit>>()
 
         val playerFloorItemBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerFloorItemInteract) -> Unit>>()
         val onFloorItemBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, FloorItem) -> Unit>>()
@@ -272,8 +304,10 @@ interface Approachable {
             onPlayerBlocks.clear()
             playerNpcBlocks.clear()
             onNpcBlocks.clear()
+            itemOnNpcBlocks.clear()
             playerObjectBlocks.clear()
             onObjectBlocks.clear()
+            itemOnObjectBlocks.clear()
             playerFloorItemBlocks.clear()
             onFloorItemBlocks.clear()
             npcPlayerBlocks.clear()
