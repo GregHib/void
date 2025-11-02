@@ -51,9 +51,10 @@ tasks {
         val main = sourceSets.getByName("main")
         val resources = main.resources.srcDirs.first { it.name == "resources" }
         inputDirectory.set(layout.projectDirectory.dir("src/main/kotlin/content"))
-        dataDirectory = fileTree(parent!!.rootDir.resolve("data")) {
-            exclude("saves/**", "cache/**")
-        }
+        dataDirectory =
+            fileTree(parent!!.rootDir.resolve("data")) {
+                exclude("saves/**", "cache/**")
+            }
         scriptsFile = resources.resolve("scripts.txt")
         wildcardsFile = resources.resolve("matches.txt")
         resourceDirectory = resources
