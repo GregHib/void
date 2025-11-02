@@ -42,6 +42,22 @@ interface Approachable {
         }
     }
 
+    /*
+        Interface on
+     */
+
+    fun onPlayerApproach(id: String = "*", block: suspend Player.(ItemPlayerInteract) -> Unit) {
+        for (i in Wildcards.find(id)) {
+            onPlayerBlocks.getOrPut(i) { mutableListOf() }.add(block)
+        }
+    }
+
+    fun itemOnPlayerApproach(item: String = "*", block: suspend Player.(ItemPlayerInteract) -> Unit) {
+        for (id in Wildcards.find(item)) {
+            onPlayerBlocks.getOrPut(id) { mutableListOf() }.add(block)
+        }
+    }
+
 
     /*
         NPC approaches
@@ -223,7 +239,7 @@ interface Approachable {
 
     companion object {
         val playerPlayerBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerPlayerInteract) -> Unit>>()
-        val onPlayerBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, Player) -> Unit>>()
+        val onPlayerBlocks = mutableMapOf<String, MutableList<suspend Player.(ItemPlayerInteract) -> Unit>>()
 
         val playerNpcBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerNPCInteract) -> Unit>>()
         val onNpcBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, NPC) -> Unit>>()

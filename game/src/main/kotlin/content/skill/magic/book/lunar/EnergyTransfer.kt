@@ -10,7 +10,6 @@ import content.entity.sound.sound
 import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.interfaceOnPlayerApproach
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -22,40 +21,39 @@ class EnergyTransfer : Script {
     val definitions: SpellDefinitions by inject()
 
     init {
-        interfaceOnPlayerApproach(id = "lunar_spellbook", component = "energy_transfer") {
+        onPlayerApproach("lunar_spellbook:energy_transfer") { (target) ->
             approachRange(2)
-            val spell = component
             if (target.specialAttackEnergy == MAX_SPECIAL_ATTACK) {
-                player.message("This player has full special attack.")
-                return@interfaceOnPlayerApproach
+                message("This player has full special attack.")
+                return@onPlayerApproach
             }
-            if (player.specialAttackEnergy != MAX_SPECIAL_ATTACK) {
-                player.message("You must have 100% special attack energy to transfer.")
-                return@interfaceOnPlayerApproach
+            if (specialAttackEnergy != MAX_SPECIAL_ATTACK) {
+                message("You must have 100% special attack energy to transfer.")
+                return@onPlayerApproach
             }
-            if (player.levels.get(Skill.Constitution) < 100) {
-                player.message("You need more hitpoints to cast this spell.")
-                return@interfaceOnPlayerApproach
+            if (levels.get(Skill.Constitution) < 100) {
+                message("You need more hitpoints to cast this spell.")
+                return@onPlayerApproach
             }
             if (!target.inMultiCombat) {
-                player.message("This player is not in a multi-combat zone.")
-                return@interfaceOnPlayerApproach
+                message("This player is not in a multi-combat zone.")
+                return@onPlayerApproach
             }
-            if (!player["accept_aid", true]) {
-                player.message("This player is not currently accepting aid.") // TODO proper message
-                return@interfaceOnPlayerApproach
+            if (!get("accept_aid", true)) {
+                message("This player is not currently accepting aid.") // TODO proper message
+                return@onPlayerApproach
             }
-            if (!player.removeSpellItems(spell)) {
-                return@interfaceOnPlayerApproach
+            if (!removeSpellItems("energy_transfer")) {
+                return@onPlayerApproach
             }
-            val definition = definitions.get(spell)
-            player.start("movement_delay", 2)
-            player.anim("lunar_cast")
-            target.gfx(spell)
-            player.sound(spell)
-            player.experience.add(Skill.Magic, definition.experience)
-            player.damage(random.nextInt(95, 100))
-            player.specialAttackEnergy = 0
+            val definition = definitions.get("energy_transfer")
+            start("movement_delay", 2)
+            anim("lunar_cast")
+            target.gfx("energy_transfer")
+            sound("energy_transfer")
+            experience.add(Skill.Magic, definition.experience)
+            damage(random.nextInt(95, 100))
+            specialAttackEnergy = 0
             target.specialAttackEnergy = MAX_SPECIAL_ATTACK
             target.runEnergy = MAX_RUN_ENERGY
         }

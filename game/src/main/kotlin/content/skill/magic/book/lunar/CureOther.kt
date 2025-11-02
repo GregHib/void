@@ -6,7 +6,6 @@ import content.entity.sound.sound
 import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.interfaceOnPlayerApproach
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.name
@@ -18,29 +17,28 @@ class CureOther : Script {
     val definitions: SpellDefinitions by inject()
 
     init {
-        interfaceOnPlayerApproach(id = "lunar_spellbook", component = "cure_other") {
+        onPlayerApproach("lunar_spellbook:cure_other") { (target) ->
             approachRange(2)
-            val spell = component
             if (!target.poisoned) {
-                player.message("This player is not poisoned.")
-                return@interfaceOnPlayerApproach
+                message("This player is not poisoned.")
+                return@onPlayerApproach
             }
-            if (!player["accept_aid", true]) {
-                player.message("This player is not currently accepting aid.") // TODO proper message
-                return@interfaceOnPlayerApproach
+            if (!get("accept_aid", true)) {
+                message("This player is not currently accepting aid.") // TODO proper message
+                return@onPlayerApproach
             }
-            if (!player.removeSpellItems(spell)) {
-                return@interfaceOnPlayerApproach
+            if (!removeSpellItems("cure_other")) {
+                return@onPlayerApproach
             }
-            val definition = definitions.get(spell)
-            player.start("movement_delay", 2)
-            player.anim("lunar_cast")
-            target.gfx(spell)
-            player.sound(spell)
-            player.experience.add(Skill.Magic, definition.experience)
+            val definition = definitions.get("cure_other")
+            start("movement_delay", 2)
+            anim("lunar_cast")
+            target.gfx("cure_other")
+            sound("cure_other")
+            experience.add(Skill.Magic, definition.experience)
             target.curePoison()
             target.sound("cure_other_impact")
-            target.message("You have been cured by ${player.name}.")
+            target.message("You have been cured by $name.")
         }
     }
 }

@@ -45,6 +45,22 @@ interface Operation {
     }
 
     /*
+        Interface on
+     */
+
+    fun onPlayerOperate(id: String = "*", block: suspend Player.(ItemPlayerInteract) -> Unit) {
+        for (i in Wildcards.find(id)) {
+            onPlayerBlocks.getOrPut(i) { mutableListOf() }.add(block)
+        }
+    }
+
+    fun itemOnPlayerOperate(item: String = "*", block: suspend Player.(ItemPlayerInteract) -> Unit) {
+        for (id in Wildcards.find(item)) {
+            onPlayerBlocks.getOrPut(id) { mutableListOf() }.add(block)
+        }
+    }
+
+    /*
         NPC operations
      */
 
@@ -240,7 +256,7 @@ interface Operation {
 
     companion object {
         val playerPlayerBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerPlayerInteract) -> Unit>>()
-        val onPlayerBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, Player) -> Unit>>()
+        val onPlayerBlocks = mutableMapOf<String, MutableList<suspend Player.(ItemPlayerInteract) -> Unit>>()
 
         val playerNpcBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerNPCInteract) -> Unit>>()
         val onNpcBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, NPC) -> Unit>>()
