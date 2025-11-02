@@ -1,4 +1,5 @@
 import org.gradle.api.DefaultTask
+import org.gradle.api.file.ConfigurableFileTree
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.tasks.*
 import org.gradle.work.ChangeType
@@ -43,8 +44,8 @@ abstract class ScriptMetadataTask : DefaultTask() {
     @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val inputDirectory: DirectoryProperty
 
-    @get:Internal
-    abstract var dataDirectory: File
+    @get:InputFiles
+    abstract var dataDirectory: ConfigurableFileTree
 
     @get:Internal
     abstract var resourceDirectory: File
@@ -336,7 +337,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
         variableIds: MutableSet<String>,
     ) {
         val start = System.currentTimeMillis()
-        for (file in dataDirectory.walkTopDown()) {
+        for (file in dataDirectory) {
             if (!file.isFile) {
                 continue
             }
