@@ -5,7 +5,6 @@ import content.entity.player.dialogue.type.statement
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
@@ -36,7 +35,7 @@ class Cows : Script {
         }
 
         itemOnNPCOperate("*", "cow*") {
-            player.message("The cow doesn't want that.")
+            message("The cow doesn't want that.")
         }
 
         objectOperate("Steal-cowbell", "dairy_cow") {

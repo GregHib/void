@@ -60,6 +60,18 @@ interface Operation {
         }
     }
 
+    fun onNPCOperate(id: String = "*", npc: String, block: suspend Player.(ItemNPCInteract) -> Unit) {
+        for (i in Wildcards.find(id)) {
+            onNpcBlocks.getOrPut("$i:$npc") { mutableListOf() }.add(block)
+        }
+    }
+
+    fun itemOnNPCOperate(item: String = "*", npc: String, block: suspend Player.(ItemNPCInteract) -> Unit) {
+        for (id in Wildcards.find(item)) {
+            onNpcBlocks.getOrPut("$id:$npc") { mutableListOf() }.add(block)
+        }
+    }
+
     /*
         NPC operations
      */
@@ -259,7 +271,7 @@ interface Operation {
         val onPlayerBlocks = mutableMapOf<String, MutableList<suspend Player.(ItemPlayerInteract) -> Unit>>()
 
         val playerNpcBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerNPCInteract) -> Unit>>()
-        val onNpcBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, NPC) -> Unit>>()
+        val onNpcBlocks = mutableMapOf<String, MutableList<suspend Player.(ItemNPCInteract) -> Unit>>()
 
         val playerObjectBlocks = mutableMapOf<String, MutableList<suspend Player.(PlayerObjectInteract) -> Unit>>()
         val onObjectBlocks = mutableMapOf<String, MutableList<suspend (Player, String, Int, Item, GameObject) -> Unit>>()

@@ -10,10 +10,8 @@ import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.character.mode.interact.ItemNPCInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -27,21 +25,6 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 
 class BarmaidsRisingSunInn : Script {
-
-    val barCrawl: suspend ItemOnNPC.() -> Unit = {
-        if (!player.containsVarbit("barcrawl_signatures", "hand_of_death_cocktail")) {
-            player.barCrawl(target)
-        }
-    }
-    val tip: suspend ItemOnNPC.() -> Unit = {
-        player.inventory.remove("coins", 1)
-        npc<Happy>("Thanks!")
-    }
-
-    val emptyGlass: suspend ItemOnNPC.() -> Unit = {
-        player.interactNpc(target, "Talk-to")
-    }
-
     val itemDefinitions: ItemDefinitions by inject()
 
     init {
@@ -54,23 +37,32 @@ class BarmaidsRisingSunInn : Script {
             menu(target)
         }
 
-        itemOnNPCApproach("barcrawl_card", "barmaid_emily", handler = barCrawl)
+        itemOnNPCApproach("barcrawl_card", "barmaid_emily", ::barCrawl)
+        itemOnNPCOperate("barcrawl_card", "barmaid_kaylee", ::barCrawl)
+        itemOnNPCOperate("barcrawl_card", "barmaid_tina", ::barCrawl)
 
-        itemOnNPCOperate("barcrawl_card", "barmaid_kaylee", handler = barCrawl)
+        itemOnNPCApproach("coins", "barmaid_emily", ::tipBarmaid)
+        itemOnNPCApproach("coins", "barmaid_kaylee", ::tipBarmaid)
+        itemOnNPCApproach("coins", "barmaid_tina", ::tipBarmaid)
 
-        itemOnNPCOperate("barcrawl_card", "barmaid_tina", handler = barCrawl)
+        itemOnNPCApproach("beer_glass", "barmaid_emily", ::emptyGlass)
+        itemOnNPCApproach("beer_glass", "barmaid_kaylee", ::emptyGlass)
+        itemOnNPCApproach("beer_glass", "barmaid_tina", ::emptyGlass)
+    }
 
-        itemOnNPCApproach("coins", "barmaid_emily", handler = tip)
+    suspend fun barCrawl(player: Player, interact: ItemNPCInteract) {
+        if (!player.containsVarbit("barcrawl_signatures", "hand_of_death_cocktail")) {
+            player.barCrawl(interact.target)
+        }
+    }
 
-        itemOnNPCApproach("coins", "barmaid_kaylee", handler = tip)
+    suspend fun tipBarmaid(player: Player, interact: ItemNPCInteract) = with(player) {
+        inventory.remove("coins", 1)
+        npc<Happy>("Thanks!")
+    }
 
-        itemOnNPCApproach("coins", "barmaid_tina", handler = tip)
-
-        itemOnNPCApproach("beer_glass", "barmaid_emily", handler = emptyGlass)
-
-        itemOnNPCApproach("beer_glass", "barmaid_kaylee", handler = emptyGlass)
-
-        itemOnNPCApproach("beer_glass", "barmaid_tina", handler = emptyGlass)
+    fun emptyGlass(player: Player, interact: ItemNPCInteract) {
+        player.interactNpc(interact.target, "Talk-to")
     }
 
     suspend fun Player.menu(target: NPC) {

@@ -6,7 +6,6 @@ import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -91,10 +90,10 @@ class LadyKeli : Script {
             }
         }
 
-        itemOnNPCOperate("rope", "lady_keli") {
-            when (player.quest("prince_ali_rescue")) {
-                "joe_beers" -> player.tieUp(target)
-                else -> player.noInterest()
+        itemOnNPCOperate("rope", "lady_keli") { (target) ->
+            when (quest("prince_ali_rescue")) {
+                "joe_beers" -> tieUp(target)
+                else -> noInterest()
             }
         }
     }

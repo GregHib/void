@@ -8,7 +8,6 @@ import content.entity.player.dialogue.type.player
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
 import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
@@ -29,11 +28,11 @@ class Blurberry : Script {
             }
         }
 
-        itemOnNPCOperate("barcrawl_card", "blurberry") {
-            if (player.containsVarbit("barcrawl_signatures", "fire_toad_blast")) {
+        itemOnNPCOperate("barcrawl_card", "blurberry") { (target) ->
+            if (containsVarbit("barcrawl_signatures", "fire_toad_blast")) {
                 return@itemOnNPCOperate
             }
-            player.barCrawl(target)
+            barCrawl(target)
         }
     }
 

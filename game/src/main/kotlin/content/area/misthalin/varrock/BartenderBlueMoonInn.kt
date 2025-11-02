@@ -13,7 +13,6 @@ import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
 import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -58,11 +57,11 @@ class BartenderBlueMoonInn : Script {
             }
         }
 
-        itemOnNPCApproach("barcrawl_card", "bartender_blue_moon_inn") {
-            if (player.containsVarbit("barcrawl_signatures", "uncle_humphreys_gutrot")) {
+        itemOnNPCApproach("barcrawl_card", "bartender_blue_moon_inn") { (target) ->
+            if (containsVarbit("barcrawl_signatures", "uncle_humphreys_gutrot")) {
                 return@itemOnNPCApproach
             }
-            player.barCrawl(target)
+            barCrawl(target)
         }
     }
 

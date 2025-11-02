@@ -8,7 +8,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.quest
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -28,9 +27,9 @@ class Jethick : Script {
         }
 
         itemOnNPCOperate("*", "jethick") {
-            if (item.id == "picture_plague_city") {
+            if (it.item.id == "picture_plague_city") {
                 player<Talk>("Hi, I'm looking for a woman from East Ardougne.")
-                player.showPicture()
+                showPicture()
             } else {
                 npc<Quiz>("Thanks, but I don't accept gifts.")
             }

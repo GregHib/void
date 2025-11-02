@@ -4,7 +4,6 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.contains
@@ -33,9 +32,9 @@ class Thurgo : Script {
         }
 
         itemOnNPCOperate("redberry_pie", "thurgo") {
-            when (player.quest("the_knights_sword")) {
-                "find_thurgo" -> player.menu()
-                "happy_thurgo" -> player.menuSword()
+            when (quest("the_knights_sword")) {
+                "find_thurgo" -> menu()
+                "happy_thurgo" -> menuSword()
                 else -> player<Uncertain>("Why would I give him my pie?")
             }
         }

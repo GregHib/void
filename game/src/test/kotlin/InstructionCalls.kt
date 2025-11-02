@@ -9,12 +9,12 @@ import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
-import world.gregs.voidps.engine.client.ui.interact.ItemOnNPC
 import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
+import world.gregs.voidps.engine.entity.character.mode.interact.ItemNPCInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -185,7 +185,7 @@ fun Player.itemOnObject(obj: GameObject, itemSlot: Int, inventory: String = "inv
 
 fun Player.itemOnNpc(npc: NPC, itemSlot: Int, inventory: String = "inventory") {
     val item = inventories.inventory(inventory)[itemSlot]
-    emit(ItemOnNPC(this, npc, item, itemSlot, inventory))
+    mode = ItemNPCInteract(npc, "", item, itemSlot, this)
 }
 
 fun Player.itemOnItem(

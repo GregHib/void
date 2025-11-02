@@ -8,7 +8,6 @@ import content.entity.player.dialogue.Upset
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
@@ -35,16 +34,16 @@ class Bob : Script {
             }
         }
 
-        itemOnNPCOperate("*", "bob") {
+        itemOnNPCOperate("*", "bob") { (_, _, item) ->
             if (!repairable(item.id)) {
                 npc<Quiz>("Sorry friend, but I can't do anything with that.")
                 return@itemOnNPCOperate
             }
-            val cost = repairCost(player, item)
+            val cost = repairCost(this, item)
             npc<Talk>("That'll cost you $cost gold coins to fix, are you sure?")
             choice {
                 option("Yes I'm sure!") {
-                    val repaired = player.inventory.transaction {
+                    val repaired = inventory.transaction {
                         remove("coins", cost)
                         replace(item.id, repaired(item.id))
                     }

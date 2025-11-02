@@ -1,5 +1,6 @@
 package content.area.asgarnia.port_sarim
 
+import content.entity.combat.target
 import content.entity.npc.shop.buy
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
@@ -10,7 +11,6 @@ import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
 import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
@@ -40,11 +40,11 @@ class BartenderRustyAnchor : Script {
             }
         }
 
-        itemOnNPCOperate("barcrawl_card", "bartender_rusty_anchor_inn*") {
-            if (player.containsVarbit("barcrawl_signatures", "black_skull_ale")) {
+        itemOnNPCOperate("barcrawl_card", "bartender_rusty_anchor_inn*") { (target) ->
+            if (containsVarbit("barcrawl_signatures", "black_skull_ale")) {
                 return@itemOnNPCOperate
             }
-            player.barCrawl(target)
+            barCrawl(target)
         }
     }
 

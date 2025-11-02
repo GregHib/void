@@ -9,7 +9,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.quest
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
@@ -47,9 +46,9 @@ class Bravek : Script {
             }
         }
 
-        itemOnNPCOperate("hangover_cure", "bravek") {
-            if (player.quest("plague_city") == "has_cure_paper") {
-                player.hasCurePaper(target)
+        itemOnNPCOperate("hangover_cure", "bravek") { (target) ->
+            if (quest("plague_city") == "has_cure_paper") {
+                hasCurePaper(target)
             }
         }
     }
