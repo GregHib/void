@@ -64,6 +64,14 @@ interface InterfaceInteraction {
         }
     }
 
+    fun interfaceSwap(fromId: String = "*", toId: String = "*", block: Player.(fromId: String, toId: String, fromSlot: Int, toSlot: Int) -> Unit) {
+        Wildcards.find(fromId, Wildcard.Component) { from ->
+            Wildcards.find(toId, Wildcard.Component) { to ->
+                swapped.getOrPut("$from:$to") { mutableListOf() }.add(block)
+            }
+        }
+    }
+
     private fun append(
         fromItem: String,
         toItem: String,
@@ -85,6 +93,7 @@ interface InterfaceInteraction {
         val opened = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(150)
         val closed = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(75)
         val refreshed = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(25)
+        val swapped = Object2ObjectOpenHashMap<String, MutableList<Player.(String, String, Int, Int) -> Unit>>(10)
         val onItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, String) -> Unit>>(2)
         val itemOnItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, Item, Int, Int) -> Unit>>(800)
 
@@ -103,6 +112,12 @@ interface InterfaceInteraction {
         fun refresh(player: Player, id: String) {
             for (block in refreshed[id]  ?: return) {
                 block(player, id)
+            }
+        }
+
+        fun swap(player: Player, fromId: String, toId: String, fromSlot: Int, toSlot: Int) {
+            for (block in swapped["$fromId:$toId"] ?: swapped["$fromId:*"] ?: swapped["*:$toId"] ?: return) {
+                block(player, fromId, toId, fromSlot, toSlot)
             }
         }
 

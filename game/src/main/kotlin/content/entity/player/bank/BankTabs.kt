@@ -2,7 +2,6 @@ package content.entity.player.bank
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.client.ui.interfaceSwap
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventoryUpdate
@@ -17,13 +16,13 @@ class BankTabs : Script {
             player["bank_spaces_used_member"] = player.bank.count
         }
 
-        interfaceSwap("bank", "inventory") { player ->
-            when (player["bank_item_mode", "swap"]) {
-                "swap" -> player.bank.swap(fromSlot, toSlot)
+        interfaceSwap("bank", "inventory") { _, _, fromSlot, toSlot ->
+            when (get("bank_item_mode", "swap")) {
+                "swap" -> bank.swap(fromSlot, toSlot)
                 "insert" -> {
-                    val fromTab = Bank.getTab(player, fromSlot)
-                    val toTab = Bank.getTab(player, toSlot)
-                    shiftTab(player, fromSlot, toSlot, fromTab, toTab)
+                    val fromTab = Bank.getTab(this, fromSlot)
+                    val toTab = Bank.getTab(this, toSlot)
+                    shiftTab(this, fromSlot, toSlot, fromTab, toTab)
                 }
             }
         }
@@ -41,11 +40,11 @@ class BankTabs : Script {
             player["bank_item_mode"] = if (value == "insert") "swap" else "insert"
         }
 
-        interfaceSwap("bank", "inventory", toComponent = "tab_#") { player ->
-            val fromTab = Bank.getTab(player, fromSlot)
-            val toTab = toComponent.removePrefix("tab_").toInt() - 1
-            val toIndex = if (toTab == Bank.MAIN_TAB) player.bank.freeIndex() else Bank.tabIndex(player, toTab + 1)
-            shiftTab(player, fromSlot, toIndex, fromTab, toTab)
+        interfaceSwap("bank:tab_#") { _, toId, fromSlot, _ ->
+            val fromTab = Bank.getTab(this, fromSlot)
+            val toTab = toId.substringAfter(":").removePrefix("tab_").toInt() - 1
+            val toIndex = if (toTab == Bank.MAIN_TAB) bank.freeIndex() else Bank.tabIndex(this, toTab + 1)
+            shiftTab(this, fromSlot, toIndex, fromTab, toTab)
         }
     }
 

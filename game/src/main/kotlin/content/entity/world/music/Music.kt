@@ -4,7 +4,6 @@ import content.bot.isBot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.client.ui.interfaceSwap
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.ui.songEnd
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
@@ -73,12 +72,12 @@ class Music : Script {
             player.togglePlaylistShuffle()
         }
 
-        interfaceSwap(fromId = "music_player", fromComponent = "playlist") { player ->
-            val fromSong = player["playlist_slot_${fromSlot + 1}", 32767]
-            val toSong = player["playlist_slot_${toSlot + 1}", 32767]
+        interfaceSwap(fromId = "music_player:playlist") { _, _, fromSlot, toSlot ->
+            val fromSong = get("playlist_slot_${fromSlot + 1}", 32767)
+            val toSong = get("playlist_slot_${toSlot + 1}", 32767)
 
-            player["playlist_slot_${fromSlot + 1}"] = toSong
-            player["playlist_slot_${toSlot + 1}"] = fromSong
+            set("playlist_slot_${fromSlot + 1}", toSong)
+            set("playlist_slot_${toSlot + 1}", fromSong)
         }
 
         songEnd { player ->

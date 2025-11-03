@@ -5,7 +5,6 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler
 import world.gregs.voidps.engine.client.instruction.handle.interactItemOn
-import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
@@ -96,20 +95,7 @@ fun Player.interfaceSwitch(
     toSlot: Int = -1,
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    emit(
-        InterfaceSwitch(
-            id = id,
-            component = component,
-            fromItem = fromItem,
-            fromSlot = fromSlot,
-            fromInventory = inventory,
-            toId = id,
-            toComponent = component,
-            toItem = toItem,
-            toSlot = toSlot,
-            toInventory = inventory,
-        ),
-    )
+    InterfaceInteraction.swap(player, "$id:$component", "$id:$component", fromSlot, toSlot)
 }
 
 fun Player.equipItem(

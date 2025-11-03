@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.client.ui.interfaceSwap
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.inv.inventory
@@ -22,16 +21,16 @@ class Inventory : Script {
             sendInventory(id)
         }
 
-        interfaceSwap { player ->
-            player.queue.clearWeak()
+        interfaceSwap { _, _, _, _ ->
+            queue.clearWeak()
         }
 
-        interfaceSwap("inventory") { player ->
-            player.closeInterfaces()
-            if (player.mode is CombatMovement) {
-                player.mode = EmptyMode
+        interfaceSwap("inventory") { _, _, fromSlot, toSlot ->
+            closeInterfaces()
+            if (mode is CombatMovement) {
+                mode = EmptyMode
             }
-            if (!player.inventory.swap(fromSlot, toSlot)) {
+            if (!inventory.swap(fromSlot, toSlot)) {
                 logger.info { "Failed switching interface items $this" }
             }
         }
