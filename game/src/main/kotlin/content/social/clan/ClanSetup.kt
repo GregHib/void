@@ -4,7 +4,6 @@ import content.entity.player.dialogue.type.stringEntry
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
@@ -138,8 +137,8 @@ class ClanSetup : Script {
             updateUI(clan)
         }
 
-        interfaceClose("clan_chat_setup") { player ->
-            player.sendScript("clear_dialogues")
+        interfaceClose("clan_chat_setup") {
+            sendScript("clear_dialogues")
         }
 
         interfaceOption("Disable", "name", "clan_chat_setup") {

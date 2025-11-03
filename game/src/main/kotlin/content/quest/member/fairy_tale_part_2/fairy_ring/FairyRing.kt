@@ -9,7 +9,6 @@ import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.ListValues
@@ -54,8 +53,8 @@ class FairyRing : Script {
             list.add(code)
         }
 
-        interfaceClose("fairy_ring") { player ->
-            player.open("inventory")
+        interfaceClose("fairy_ring") {
+            open("inventory")
         }
 
         interfaceOption("Teleport", "teleport", "fairy_ring") {

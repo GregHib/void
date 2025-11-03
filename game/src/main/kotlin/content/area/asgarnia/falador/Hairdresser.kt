@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -72,8 +71,8 @@ class Hairdresser : Script {
             player["makeover_colour_hair"] = enums.get("colour_hair").getInt(itemSlot / 2)
         }
 
-        interfaceClose("hairdressers_salon") { player ->
-            player.softTimers.stop("dressing_room")
+        interfaceClose("hairdressers_salon") {
+            softTimers.stop("dressing_room")
         }
 
         interfaceOption("Confirm", "confirm", "hairdressers_salon") {

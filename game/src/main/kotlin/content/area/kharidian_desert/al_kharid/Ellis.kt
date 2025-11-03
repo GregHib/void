@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toTag
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -70,8 +69,8 @@ class Ellis : Script {
             tan(player, component, amount)
         }
 
-        interfaceClose("tanner") { player ->
-            player.sendScript("clear_dialogues")
+        interfaceClose("tanner") {
+            sendScript("clear_dialogues")
         }
     }
 

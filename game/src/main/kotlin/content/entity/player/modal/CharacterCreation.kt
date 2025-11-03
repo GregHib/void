@@ -3,7 +3,6 @@ package content.entity.player.modal
 import content.entity.player.modal.CharacterStyle.onStyle
 import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -35,9 +34,9 @@ class CharacterCreation : Script {
             }
         }
 
-        interfaceClose("character_creation") { player ->
+        interfaceClose("character_creation") {
             for (i in 1 until 20) {
-                player.inventories.clear("character_creation_$i")
+                inventories.clear("character_creation_$i")
             }
         }
 

@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -49,10 +48,10 @@ class PriceChecker : Script {
             }
         }
 
-        interfaceClose("price_checker") { player ->
-            player.close("price_checker_side")
-            player.sendScript("clear_dialogues")
-            player.offer.moveAll(player.inventory)
+        interfaceClose("price_checker") {
+            close("price_checker_side")
+            sendScript("clear_dialogues")
+            offer.moveAll(inventory)
         }
 
         interfaceOpen("price_checker_side") { id ->
@@ -80,8 +79,8 @@ class PriceChecker : Script {
             }
         }
 
-        interfaceClose("price_checker_side") { player ->
-            player.open("inventory")
+        interfaceClose("price_checker_side") {
+            open("inventory")
         }
 
         inventoryUpdate("trade_offer") { player ->

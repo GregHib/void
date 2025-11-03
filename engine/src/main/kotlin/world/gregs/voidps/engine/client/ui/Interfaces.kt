@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colour
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.event.CloseInterface
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -67,7 +66,7 @@ class Interfaces(
     fun remove(id: String): Boolean {
         if (interfaces.remove(getType(id), id)) {
             sendClose(id)
-            player.emit(InterfaceClosed(id))
+            InterfaceInteraction.close(player, id)
             (player as? Player)?.queue?.clearWeak()
             return true
         }
@@ -111,7 +110,7 @@ class Interfaces(
             if (getParent(id) == parent) {
                 it.remove()
                 sendClose(id)
-                player.emit(InterfaceClosed(id))
+                InterfaceInteraction.close(player, id)
                 (player as? Player)?.queue?.clearWeak()
                 children.add(id)
             }

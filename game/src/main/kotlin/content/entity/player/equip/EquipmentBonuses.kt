@@ -7,7 +7,6 @@ import content.entity.player.modal.tab
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
@@ -53,8 +52,8 @@ class EquipmentBonuses : Script {
             tab(Tab.Inventory)
         }
 
-        interfaceClose("equipment_bonuses") { player ->
-            player.open("inventory")
+        interfaceClose("equipment_bonuses") {
+            open("inventory")
         }
 
         interfaceRefresh("equipment_side") { player ->

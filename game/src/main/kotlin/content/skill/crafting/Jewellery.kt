@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
@@ -57,8 +56,8 @@ class Jewellery : Script {
             make(component, amount)
         }
 
-        interfaceClose("make_mould*") { player ->
-            player.sendScript("clear_dialogues")
+        interfaceClose("make_mould*") {
+            sendScript("clear_dialogues")
         }
     }
 

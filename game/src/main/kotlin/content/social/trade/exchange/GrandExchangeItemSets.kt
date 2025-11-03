@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -33,8 +32,8 @@ class GrandExchangeItemSets : Script {
             interfaceOptions.unlockAll(id, "sets", 0..113)
         }
 
-        interfaceClose("exchange_item_sets") { player ->
-            player.close("exchange_sets_side")
+        interfaceClose("exchange_item_sets") {
+            close("exchange_sets_side")
         }
 
         interfaceOption("Components", "sets", "exchange_item_sets") {

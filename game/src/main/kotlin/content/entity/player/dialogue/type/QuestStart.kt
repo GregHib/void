@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
@@ -192,8 +191,8 @@ class QuestStart : Script {
             (player.dialogueSuspension as? StringSuspension)?.resume("yes")
         }
 
-        interfaceClose("quest_intro") { player ->
-            (player.dialogueSuspension as? StringSuspension)?.resume("no")
+        interfaceClose("quest_intro") {
+            (dialogueSuspension as? StringSuspension)?.resume("no")
         }
     }
 }

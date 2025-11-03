@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -66,8 +65,8 @@ class BookPages : Script {
             player.open(id)
         }
 
-        interfaceClose("book") { player ->
-            player.clearAnim()
+        interfaceClose("book") {
+            clearAnim()
         }
     }
 

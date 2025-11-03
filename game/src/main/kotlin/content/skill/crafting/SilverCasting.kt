@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -85,8 +84,8 @@ class SilverCasting : Script {
             player.make(Item(component.removeSuffix("_button")), amount)
         }
 
-        interfaceClose("silver_mould") { player ->
-            player.sendScript("clear_dialogues")
+        interfaceClose("silver_mould") {
+            sendScript("clear_dialogues")
         }
     }
 

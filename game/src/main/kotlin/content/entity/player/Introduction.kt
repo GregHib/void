@@ -5,7 +5,6 @@ import content.entity.player.bank.bank
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.Settings
@@ -39,9 +38,9 @@ class Introduction : Script {
     init {
         playerSpawn(::welcome)
 
-        interfaceClose("character_creation") { player ->
-            player.flagAppearance()
-            setup(player)
+        interfaceClose("character_creation") {
+            flagAppearance()
+            setup(this)
         }
     }
 

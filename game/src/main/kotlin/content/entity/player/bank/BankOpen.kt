@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
@@ -37,10 +36,10 @@ class BankOpen : Script {
             open("collection_box")
         }
 
-        interfaceClose("bank") { player ->
-            player["bank_hidden"] = true
-            player.close("bank_side")
-            player.sendScript("clear_dialogues")
+        interfaceClose("bank") {
+            set("bank_hidden", true)
+            close("bank_side")
+            sendScript("clear_dialogues")
         }
 
         interfaceOpen("bank_deposit_box") {
@@ -51,9 +50,9 @@ class BankOpen : Script {
             interfaceOptions.unlockAll("bank_side", "inventory", 0 until 28)
         }
 
-        interfaceClose("bank_deposit_box") { player ->
-            player.close("bank_side")
-            player.sendScript("clear_dialogues")
+        interfaceClose("bank_deposit_box") {
+            close("bank_side")
+            sendScript("clear_dialogues")
         }
 
         interfaceOpen("bank") {

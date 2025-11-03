@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.event.EventDispatcher
 
 /**
  * Attempt to close any interface
- * Successfully closed interfaces will also emit [InterfaceClosed]
+ * Successfully closed interfaces will also emit [InterfaceInteraction.close]
  */
 object CloseInterface : Event {
 

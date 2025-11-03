@@ -12,7 +12,6 @@ import content.entity.player.modal.CharacterStyle.onStyle
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -69,8 +68,8 @@ class Thessalia : Script {
             set("makeover_colour_legs", body.getColour(BodyColour.Legs))
         }
 
-        interfaceClose("thessalias_makeovers") { player ->
-            player.softTimers.stop("dressing_room")
+        interfaceClose("thessalias_makeovers") {
+            softTimers.stop("dressing_room")
         }
 
         interfaceOption(component = "part_*", id = "thessalias_makeovers") {

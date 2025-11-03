@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -54,8 +53,8 @@ class MakeoverMage : Script {
             openDressingRoom("skin_colour")
         }
 
-        interfaceClose("skin_colour") { player ->
-            player.softTimers.stop("dressing_room")
+        interfaceClose("skin_colour") {
+            softTimers.stop("dressing_room")
         }
 
         interfaceOpen("skin_colour") { id ->

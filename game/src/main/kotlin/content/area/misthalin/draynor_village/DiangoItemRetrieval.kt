@@ -4,7 +4,6 @@ import content.entity.player.bank.ownsItem
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -50,8 +49,8 @@ class DiangoItemRetrieval : Script {
             inventories.clear("diangos_item_retrieval")
         }
 
-        interfaceClose("diangos_item_retrieval") { player ->
-            player.inventories.clear(id)
+        interfaceClose("diangos_item_retrieval") { id ->
+            inventories.clear(id)
         }
     }
 

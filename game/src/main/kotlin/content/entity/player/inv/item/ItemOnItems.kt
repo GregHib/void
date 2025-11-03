@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemOnItemDefinitions
 import world.gregs.voidps.engine.entity.World
@@ -64,8 +63,8 @@ class ItemOnItems : Script {
             }
         }
 
-        interfaceClose("dialogue_skill_creation") { player ->
-            player.clear("selecting_amount")
+        interfaceClose("dialogue_skill_creation") {
+            clear("selecting_amount")
         }
 
         interfaceOpen("dialogue_skill_creation") {

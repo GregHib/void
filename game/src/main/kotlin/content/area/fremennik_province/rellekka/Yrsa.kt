@@ -8,7 +8,6 @@ import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -44,8 +43,8 @@ class Yrsa : Script {
             startShoeShopping()
         }
 
-        interfaceClose("yrsas_shoe_store") { player ->
-            player.softTimers.stop("dressing_room")
+        interfaceClose("yrsas_shoe_store") {
+            softTimers.stop("dressing_room")
         }
 
         interfaceOpen("yrsas_shoe_store") { id ->

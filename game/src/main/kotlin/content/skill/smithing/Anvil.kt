@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -123,8 +122,8 @@ class Anvil : Script {
             message("To smith metal equipment, you must use the metal bar on the anvil.")
         }
 
-        interfaceClose("smithing") { player ->
-            player.sendScript("clear_dialogues")
+        interfaceClose("smithing") {
+            sendScript("clear_dialogues")
         }
     }
 

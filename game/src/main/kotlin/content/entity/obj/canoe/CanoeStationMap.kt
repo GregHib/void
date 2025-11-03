@@ -1,15 +1,14 @@
 package content.entity.obj.canoe
 
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.suspend.StringSuspension
 
 class CanoeStationMap : Script {
 
     init {
-        interfaceClose("canoe_stations_map") { player ->
-            player.dialogueSuspension = null
+        interfaceClose("canoe_stations_map") {
+            dialogueSuspension = null
         }
 
         interfaceOption("Select", "travel_*", "canoe_stations_map") {
