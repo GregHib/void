@@ -2,13 +2,14 @@ package world.gregs.voidps.engine.entity
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 
 interface InterfaceInteraction {
 
     fun onItem(id: String, item: String = "*", block: Player.(Item, String) -> Unit) {
-        for (i in Wildcards.find(id)) {
-            for (itm in Wildcards.find(item)) {
+        Wildcards.find(id, Wildcard.Component) { i ->
+            Wildcards.find(item, Wildcard.Item) { itm ->
                 onItem.getOrPut("$i:$itm") { mutableListOf() }.add(block)
             }
         }
@@ -38,8 +39,8 @@ interface InterfaceInteraction {
         biHandler: Player.(Item, Item, Int, Int) -> Unit,
         handler: Player.(from: Item, to: Item, fromSlot: Int, toSlot: Int) -> Unit,
     ) {
-        for (from in Wildcards.find(fromItem)) {
-            for (to in Wildcards.find(toItem)) {
+        Wildcards.find(fromItem, Wildcard.Item) { from ->
+            Wildcards.find(toItem, Wildcard.Item) { to ->
                 if (bidirectional) {
                     itemOnItem.getOrPut("$to:$from") { mutableListOf() }.add(biHandler)
                 }

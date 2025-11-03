@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.variable
 
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 
 /**
@@ -10,14 +11,14 @@ import world.gregs.voidps.engine.event.Wildcards
  */
 interface VariableSet {
     fun variableSet(key: String = "*", block: Player.(key: String, from: Any?, to: Any?) -> Unit) {
-        for (match in Wildcards.find(key)) {
+        Wildcards.find(key, Wildcard.Variables) { match ->
             playerBlocks.getOrPut(match) { mutableListOf() }.add(block)
         }
     }
 
     fun npcVariableSet(key: String = "*", id: String = "*", block: NPC.(key: String, from: Any?, to: Any?) -> Unit) {
-        for (keyMatch in Wildcards.find(key)) {
-            for (idMatch in Wildcards.find(id)) {
+        Wildcards.find(key, Wildcard.Variables) { keyMatch ->
+            Wildcards.find(id, Wildcard.Npc) { idMatch ->
                 npcBlocks.getOrPut("$keyMatch:$idMatch") { mutableListOf() }.add(block)
             }
         }

@@ -39,6 +39,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
@@ -191,6 +192,7 @@ abstract class WorldTest : KoinTest {
                 },
             )
         }
+        Wildcards.load(Settings["storage.wildcards"])
         ContentLoader.load()
         MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache()
         saves = File(Settings["storage.players.path"])

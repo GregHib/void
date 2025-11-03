@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 
 /**
@@ -25,19 +26,19 @@ interface Approachable {
     }
 
     fun npcApproach(option: String, npc: String = "*", block: suspend Player.(PlayerNPCInteract) -> Unit) {
-        for (id in Wildcards.find(npc)) {
+        Wildcards.find(npc, Wildcard.Npc) { id ->
             playerNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
     }
 
     fun objectApproach(option: String, obj: String = "*", block: suspend Player.(PlayerObjectInteract) -> Unit) {
-        for (id in Wildcards.find(obj)) {
+        Wildcards.find(obj, Wildcard.Object) { id ->
             playerObjectBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
     }
 
     fun floorItemApproach(option: String, item: String, block: suspend Player.(PlayerFloorItemInteract) -> Unit) {
-        for (id in Wildcards.find(item)) {
+        Wildcards.find(item, Wildcard.Item) { id ->
             playerFloorItemBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
     }
@@ -47,60 +48,60 @@ interface Approachable {
      */
 
     fun onPlayerApproach(id: String = "*", block: suspend Player.(ItemPlayerInteract) -> Unit) {
-        for (i in Wildcards.find(id)) {
+        Wildcards.find(id, Wildcard.Component) { i ->
             onPlayerBlocks.getOrPut(i) { mutableListOf() }.add(block)
         }
     }
 
     fun itemOnPlayerApproach(item: String = "*", block: suspend Player.(ItemPlayerInteract) -> Unit) {
-        for (id in Wildcards.find(item)) {
+        Wildcards.find(item, Wildcard.Item) { id ->
             onPlayerBlocks.getOrPut(id) { mutableListOf() }.add(block)
         }
     }
 
     fun onNPCApproach(id: String = "*", npc: String = "*", block: suspend Player.(InterfaceNPCInteract) -> Unit) {
-        for (i in Wildcards.find(id)) {
-            for (n in Wildcards.find(npc)) {
+        Wildcards.find(id, Wildcard.Component) { i ->
+            Wildcards.find(npc, Wildcard.Npc) { n ->
                 onNpcBlocks.getOrPut("$i:$n") { mutableListOf() }.add(block)
             }
         }
     }
 
     fun itemOnNPCApproach(item: String = "*", npc: String = "*", block: suspend Player.(ItemNPCInteract) -> Unit) {
-        for (itm in Wildcards.find(item)) {
-            for (id in Wildcards.find(npc)) {
+        Wildcards.find(item, Wildcard.Item) { itm ->
+            Wildcards.find(npc, Wildcard.Npc) { id ->
                 itemOnNpcBlocks.getOrPut("$itm:$id") { mutableListOf() }.add(block)
             }
         }
     }
 
     fun onObjectApproach(id: String = "*", obj: String = "*", block: suspend Player.(InterfaceObjectInteract) -> Unit) {
-        for (i in Wildcards.find(id)) {
-            for (o in Wildcards.find(obj)) {
+        Wildcards.find(id, Wildcard.Component) { i ->
+            Wildcards.find(obj, Wildcard.Object) { o ->
                 onObjectBlocks.getOrPut("$i:$o") { mutableListOf() }.add(block)
             }
         }
     }
 
     fun itemOnObjectApproach(item: String = "*", obj: String = "*", arrive: Boolean = true, block: suspend Player.(ItemObjectInteract) -> Unit) {
-        for (itm in Wildcards.find(item)) {
-            for (id in Wildcards.find(obj)) {
+        Wildcards.find(item, Wildcard.Item) { itm ->
+            Wildcards.find(obj, Wildcard.Object) { id ->
                 itemOnObjectBlocks.getOrPut("$itm:$id") { mutableListOf() }.add(block)
             }
         }
     }
 
     fun onFloorItemApproach(id: String = "*", floorItem: String = "*", block: suspend Player.(InterfaceFloorItemInteract) -> Unit) {
-        for (i in Wildcards.find(id)) {
-            for (floor in Wildcards.find(floorItem)) {
+        Wildcards.find(id, Wildcard.Component) { i ->
+            Wildcards.find(floorItem, Wildcard.Item) { floor ->
                 onFloorItemBlocks.getOrPut("$i:$floor") { mutableListOf() }.add(block)
             }
         }
     }
 
     fun itemOnFloorItemApproach(item: String = "*", floorItem: String = "*", arrive: Boolean = true, block: suspend Player.(ItemFloorItemInteract) -> Unit) {
-        for (itm in Wildcards.find(item)) {
-            for (id in Wildcards.find(floorItem)) {
+        Wildcards.find(item, Wildcard.Item) { itm ->
+            Wildcards.find(floorItem, Wildcard.Item) { id ->
                 if (!arrive) {
                     noDelays.add("$itm:$id")
                 }
@@ -119,19 +120,19 @@ interface Approachable {
     }
 
     fun npcApproachNPC(option: String, npc: String = "*", block: suspend NPC.(NPCNPCInteract) -> Unit) {
-        for (id in Wildcards.find(npc)) {
+        Wildcards.find(npc, Wildcard.Npc) { id ->
             npcNpcBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
     }
 
     fun npcApproachObject(option: String, obj: String = "*", block: suspend NPC.(NPCObjectInteract) -> Unit) {
-        for (id in Wildcards.find(obj)) {
+        Wildcards.find(obj, Wildcard.Object) { id ->
             npcObjectBlocks.getOrPut(option) { mutableListOf() }.add(block)
         }
     }
 
     fun npcApproachFloorItem(option: String, item: String, block: suspend NPC.(NPCFloorItemInteract) -> Unit) {
-        for (id in Wildcards.find(item)) {
+        Wildcards.find(item, Wildcard.Item) { id ->
             npcFloorItemBlocks.getOrPut("$option:$id") { mutableListOf() }.add(block)
         }
     }

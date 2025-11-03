@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.discharge
@@ -94,7 +95,7 @@ class EssencePouch : Script {
             player["${id}_essence"] = essence - added
         }
 
-        Wildcards.register("@pouches", *pouches)
+        Wildcards.register(Wildcard.Item, "@pouches", *pouches)
         itemOnItem("pure_essence", "@pouches") { fromItem, toItem, fromSlot, toSlot ->
             addSingle(fromSlot, fromItem, toSlot, toItem)
         }

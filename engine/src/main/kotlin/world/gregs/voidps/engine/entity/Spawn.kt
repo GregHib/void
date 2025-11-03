@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 
 interface Spawn {
@@ -13,19 +14,19 @@ interface Spawn {
     }
 
     fun npcSpawn(id: String = "*", block: NPC.() -> Unit) {
-        for (key in Wildcards.find(id)) {
+        Wildcards.find(id, Wildcard.Npc) { key ->
             npcSpawns.getOrPut(key) { mutableListOf() }.add(block)
         }
     }
 
     fun objectSpawn(id: String = "*", block: GameObject.() -> Unit) {
-        for (key in Wildcards.find(id)) {
+        Wildcards.find(id, Wildcard.Object) { key ->
             objectSpawns.getOrPut(key) { mutableListOf() }.add(block)
         }
     }
 
     fun floorItemSpawn(id: String = "*", block: FloorItem.() -> Unit) {
-        for (key in Wildcards.find(id)) {
+        Wildcards.find(id, Wildcard.Item) { key ->
             floorItemSpawns.getOrPut(key) { mutableListOf() }.add(block)
         }
     }

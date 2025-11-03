@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 
 interface Despawn {
@@ -13,19 +14,19 @@ interface Despawn {
     }
 
     fun npcDespawn(id: String = "*", block: NPC.() -> Unit) {
-        for (key in Wildcards.find(id)) {
+        Wildcards.find(id, Wildcard.Npc) { key ->
             npcDespawns.getOrPut(key) { mutableListOf() }.add(block)
         }
     }
 
     fun objectDespawn(id: String = "*", block: GameObject.() -> Unit) {
-        for (key in Wildcards.find(id)) {
+        Wildcards.find(id, Wildcard.Object) { key ->
             objectDespawns.getOrPut(key) { mutableListOf() }.add(block)
         }
     }
 
     fun floorItemDespawn(id: String = "*", block: FloorItem.() -> Unit) {
-        for (key in Wildcards.find(id)) {
+        Wildcards.find(id, Wildcard.Item) { key ->
             floorItemDespawns.getOrPut(key) { mutableListOf() }.add(block)
         }
     }

@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.data.definition.data.LightSources
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
@@ -14,7 +15,7 @@ import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 class LightSource : Script {
 
     init {
-        Wildcards.register("@unlit_sources",
+        Wildcards.register(Wildcard.Item, "@unlit_sources",
             "oil_lamp_oil",
             "candle_lantern_white",
             "candle_lantern_black",

@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character.player.skill.level
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 
 /**
@@ -20,7 +21,7 @@ interface LevelChanged {
             npcChanged.getOrPut(skill.name) { mutableListOf() }.add(block)
             return
         }
-        for (match in Wildcards.find(id)) {
+        Wildcards.find(id, Wildcard.Npc) { match ->
             npcChanged.getOrPut("$match:${skill.name}") { mutableListOf() }.add(block)
         }
     }
