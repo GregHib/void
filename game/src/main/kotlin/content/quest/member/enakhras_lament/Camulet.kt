@@ -6,7 +6,6 @@ import content.skill.magic.jewellery.jewelleryTeleport
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.charges
@@ -34,16 +33,16 @@ class Camulet : Script {
             }
         }
 
-        itemOnItem("ugthanki_dung", "camulet") { player ->
+        itemOnItem("ugthanki_dung", "camulet") { fromItem, _, fromSlot, toSlot ->
             val slot = if (fromItem.id == "camulet") fromSlot else toSlot
-            val charges = player.inventory.charges(player, slot)
+            val charges = inventory.charges(this, slot)
             if (charges == 4) {
-                player.message("Your Camulet already has 4 charges.")
+                message("Your Camulet already has 4 charges.")
                 return@itemOnItem
             }
-            if (player.inventory.replace("ugthanki_dung", "bucket")) {
-                player.message("You recharge the Camulet using camel dung. Yuck!")
-                player["camulet_charges"] = 4
+            if (inventory.replace("ugthanki_dung", "bucket")) {
+                message("You recharge the Camulet using camel dung. Yuck!")
+                set("camulet_charges", 4)
             }
         }
     }

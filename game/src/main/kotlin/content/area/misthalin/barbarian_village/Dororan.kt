@@ -7,7 +7,6 @@ import content.quest.quest
 import content.quest.questCompleted
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
@@ -21,16 +20,16 @@ import world.gregs.voidps.engine.queue.softQueue
 class Dororan : Script {
 
     init {
-        itemOnItem("chisel", "ring_from_jeffery") { player: Player ->
-            if (player.quest("gunnars_ground") == "jeffery_ring") {
-                player.noInterest()
+        itemOnItem("chisel", "ring_from_jeffery") { _, _ ->
+            if (quest("gunnars_ground") == "jeffery_ring") {
+                noInterest()
             } else {
-                player.softQueue("engraving") {
+                softQueue("engraving") {
                     item("dororans_engraved_ring", 400, "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
-                    player.anim("engrave")
-                    player.experience.add(Skill.Crafting, 125.0)
-                    player.inventory.replace("ring_from_jeffery", "dororans_engraved_ring")
-                    player["gunnars_ground"] = "engraved_ring"
+                    anim("engrave")
+                    experience.add(Skill.Crafting, 125.0)
+                    inventory.replace("ring_from_jeffery", "dororans_engraved_ring")
+                    set("gunnars_ground", "engraved_ring")
                 }
             }
         }

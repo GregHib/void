@@ -3,7 +3,6 @@ package content.skill.fletching
 import content.entity.player.dialogue.type.makeAmount
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -15,20 +14,20 @@ import world.gregs.voidps.engine.queue.weakQueue
 class HeadlessArrows : Script {
 
     init {
-        itemOnItem("feather", "arrow_shaft") {
+        itemOnItem("feather", "arrow_shaft") { fromItem, toItem ->
             if (fromItem.amount <= 15 || toItem.amount <= 15) {
                 val amountToMake = minOf(fromItem.amount, toItem.amount)
-                makeImmediately(it, "headless_arrow", amountToMake)
+                makeImmediately(this, "headless_arrow", amountToMake)
                 return@itemOnItem
             }
-            it.weakQueue("feather_to_shaft_dialog") {
+            weakQueue("feather_to_shaft_dialog") {
                 val (selected, amount) = makeAmount(
                     listOf("headless_arrow"),
                     type = "Make sets: ",
                     maximum = 10,
                     text = "How many sets of 15 do you wish to feather?",
                 )
-                makeHeadlessArrows(player, selected, amount)
+                makeHeadlessArrows(this@itemOnItem, selected, amount)
             }
         }
     }

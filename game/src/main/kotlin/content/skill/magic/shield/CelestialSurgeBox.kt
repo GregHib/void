@@ -6,7 +6,6 @@ import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -89,16 +88,16 @@ class CelestialSurgeBox : Script {
             charge(player, item, slot)
         }
 
-        itemOnItem("air_rune", "celestial_surgebox*") {
-            charge(it, toItem, toSlot)
+        itemOnItem("air_rune", "celestial_surgebox*") { _, toItem, _, toSlot ->
+            charge(this, toItem, toSlot)
         }
 
-        itemOnItem("blood_rune", "celestial_surgebox*") {
-            charge(it, toItem, toSlot)
+        itemOnItem("blood_rune", "celestial_surgebox*") { _, toItem, _, toSlot ->
+            charge(this, toItem, toSlot)
         }
 
-        itemOnItem("death_rune", "celestial_surgebox*") {
-            charge(it, toItem, toSlot)
+        itemOnItem("death_rune", "celestial_surgebox*") { _, toItem, _, toSlot ->
+            charge(this, toItem, toSlot)
         }
     }
 

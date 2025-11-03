@@ -9,11 +9,11 @@ import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
-import world.gregs.voidps.engine.client.ui.interact.ItemOnItem
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
+import world.gregs.voidps.engine.entity.InterfaceInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -77,23 +77,13 @@ fun Player.skillCreation(
 
 fun Player.interfaceUse(
     id: String,
-    inventory: String = "",
     fromItem: Item = Item("", -1),
     toItem: Item = Item("", -1),
     fromSlot: Int = -1,
     toSlot: Int = -1,
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    emit(
-        ItemOnItem(
-            fromItem = fromItem,
-            toItem = toItem,
-            fromSlot = fromSlot,
-            toSlot = toSlot,
-            fromInventory = inventory,
-            toInventory = inventory,
-        ),
-    )
+    InterfaceInteraction.itemOnItem(this, fromItem, toItem, fromSlot, toSlot)
 }
 
 fun Player.interfaceSwitch(
@@ -190,21 +180,9 @@ fun Player.itemOnNpc(npc: NPC, itemSlot: Int, inventory: String = "inventory") {
 fun Player.itemOnItem(
     firstSlot: Int,
     secondSlot: Int,
-    firstInventory: String = "inventory",
-    secondInventory: String = firstInventory,
 ) {
-    val one = inventories.inventory(firstInventory)
-    val two = inventories.inventory(secondInventory)
-    emit(
-        ItemOnItem(
-            one[firstSlot],
-            two[secondSlot],
-            firstSlot,
-            secondSlot,
-            firstInventory,
-            secondInventory,
-        ),
-    )
+    val inv = inventories.inventory("inventory")
+    InterfaceInteraction.itemOnItem(this, inv[firstSlot], inv[secondSlot], firstSlot, secondSlot)
 }
 
 fun Player.npcOption(npc: NPC, option: String) {

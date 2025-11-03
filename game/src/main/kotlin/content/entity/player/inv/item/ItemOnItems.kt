@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemOnItemDefinitions
 import world.gregs.voidps.engine.entity.World
@@ -38,18 +37,18 @@ class ItemOnItems : Script {
     val itemOnItemDefs: ItemOnItemDefinitions by inject()
 
     init {
-        itemOnItem(bidirectional = false) { player ->
+        itemOnItem(bidirectional = false) { fromItem, toItem ->
             val overlaps = itemOnItemDefs.getOrNull(fromItem, toItem)?.filter { !it.members || World.members }
             if (overlaps.isNullOrEmpty()) {
-                player.noInterest()
+                noInterest()
                 return@itemOnItem
             }
-            player.closeInterfaces()
-            player.weakQueue("item_on_item") {
-                player.softTimers.start("item_on_item")
-                val maximum = getMaximum(overlaps, player)
-                val (def, amount) = if (makeImmediately(player, overlaps, maximum, player.inventory)) {
-                    player.closeDialogue()
+            closeInterfaces()
+            weakQueue("item_on_item") {
+                softTimers.start("item_on_item")
+                val maximum = getMaximum(overlaps, this@itemOnItem)
+                val (def, amount) = if (makeImmediately(this@itemOnItem, overlaps, maximum, inventory)) {
+                    closeDialogue()
                     overlaps.first() to 1
                 } else {
                     val definition = overlaps.first()
@@ -165,7 +164,6 @@ class ItemOnItems : Script {
             val min = overlap.remove.distinct().minOf { item ->
                 val count = player.inventory.count(item.id)
                 val required = overlap.remove.filter { it.id == item.id }.sumOf { it.amount }
-                println("Required $item $required")
                 if (required == 0) 0 else count / required
             }
             if (min > max) {

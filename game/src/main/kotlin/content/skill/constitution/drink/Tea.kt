@@ -8,7 +8,6 @@ import content.entity.player.inv.inventoryItem
 import content.skill.constitution.consume
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.discharge
@@ -67,27 +66,27 @@ class Tea : Script {
             player.message("You take a drink from the flask...")
         }
 
-        itemOnItem("tea_flask", "empty_cup") { player ->
-            val success = player.inventory.transaction {
+        itemOnItem("tea_flask", "empty_cup") { _, toItem, fromSlot, toSlot ->
+            val success = inventory.transaction {
                 discharge(fromSlot, 1)
                 replace(toSlot, toItem.id, "cup_of_tea")
             }
             if (success) {
-                player.message("You fill the cup with tea.")
+                message("You fill the cup with tea.")
             } else {
-                player.message("There's nothing left in the flask.")
+                message("There's nothing left in the flask.")
             }
         }
 
-        itemOnItem("cup_of_tea", "tea_flask") { player ->
-            val success = player.inventory.transaction {
+        itemOnItem("cup_of_tea", "tea_flask") { fromItem, _, fromSlot, toSlot ->
+            val success = inventory.transaction {
                 replace(fromSlot, fromItem.id, "empty_cup")
                 charge(toSlot, 1)
             }
             if (success) {
-                player.message("You add the tea to the flask.")
+                message("You add the tea to the flask.")
             } else {
-                player.message("The flask is full!")
+                message("The flask is full!")
             }
         }
     }

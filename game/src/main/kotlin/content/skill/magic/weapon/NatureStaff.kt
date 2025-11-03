@@ -4,7 +4,6 @@ import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
@@ -47,20 +46,20 @@ class NatureStaff : Script {
             }
         }
 
-        itemOnItem("nature_rune", "nature_staff") { player ->
+        itemOnItem("nature_rune", "nature_staff") { fromItem, toItem, fromSlot, toSlot ->
             val maximum = toItem.def.getOrNull<Int>("charges_max") ?: return@itemOnItem
-            val spaces = maximum - player.inventory.charges(player, toSlot)
-            val count = player.inventory.count(fromItem.id).coerceAtMost(spaces)
+            val spaces = maximum - inventory.charges(this, toSlot)
+            val count = inventory.count(fromItem.id).coerceAtMost(spaces)
             if (count <= 0) {
-                player.message("The staff already has the maximum amount of charges.")
+                message("The staff already has the maximum amount of charges.")
                 return@itemOnItem
             }
-            val success = player.inventory.transaction {
+            val success = inventory.transaction {
                 remove(fromItem.id, count)
-                charge(player, toSlot, count)
+                charge(this@itemOnItem, toSlot, count)
             }
             if (success) {
-                player.message("You charge the staff with nature runes.")
+                message("You charge the staff with nature runes.")
             }
         }
     }

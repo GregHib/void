@@ -8,6 +8,10 @@ object Wildcards {
     val size: Int
         get() = map.size
 
+    fun register(key: String, vararg values: String) {
+        map[key] = values.toList()
+    }
+
     fun load(reader: BufferedReader) {
         map["*"] = listOf("*")
         while (reader.ready()) {

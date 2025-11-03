@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -83,8 +82,8 @@ class Baskets : Script {
                 player.message("The ${fruit.name} basket is already full.")
             }
 
-            itemOnItem(id, "${fruit.plural}_5") { player ->
-                player.message("The ${fruit.name} basket is already full.")
+            itemOnItem(id, "${fruit.plural}_5") { _, _ ->
+                message("The ${fruit.name} basket is already full.")
             }
 
             inventoryItem("Remove-one", "${fruit.plural}_#") {

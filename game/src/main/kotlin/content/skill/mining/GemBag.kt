@@ -5,7 +5,6 @@ import content.entity.player.inv.item.destroy.canDestroy
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.interact.itemOnItems
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
@@ -13,8 +12,6 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 class GemBag : Script {
 
     val bagCapacity = 100
-
-    val gems = setOf("uncut_sapphire", "uncut_emerald", "uncut_ruby", "uncut_diamond")
 
     init {
         inventoryItem("Inspect", "gem_bag") {
@@ -60,26 +57,26 @@ class GemBag : Script {
             player.message("You withdraw some gems.")
         }
 
-        itemOnItems(gems.toTypedArray(), arrayOf("gem_bag")) { player ->
-            val sapphires = player["gem_bag_sapphire", 0]
-            val emeralds = player["gem_bag_emerald", 0]
-            val rubies = player["gem_bag_ruby", 0]
-            val diamonds = player["gem_bag_diamond", 0]
+        itemOnItem("uncut_sapphire,uncut_emerald,uncut_ruby,uncut_diamond", "gem_bag") { fromItem, _ ->
+            val sapphires = get("gem_bag_sapphire", 0)
+            val emeralds = get("gem_bag_emerald", 0)
+            val rubies = get("gem_bag_ruby", 0)
+            val diamonds = get("gem_bag_diamond", 0)
             val total = sapphires + emeralds + rubies + diamonds
             if (total == bagCapacity) {
-                player.message("Your gem bag is already full.")
-                return@itemOnItems
+                message("Your gem bag is already full.")
+                return@itemOnItem
             }
             val type = fromItem.id.removePrefix("uncut_")
             val limit = bagCapacity - total
-            val removed = player.inventory.removeToLimit(fromItem.id, limit)
+            val removed = inventory.removeToLimit(fromItem.id, limit)
             if (removed == 0) {
-                return@itemOnItems
+                return@itemOnItem
             }
-            player["gem_bag_$type"] = player["gem_bag_$type", 0] + removed
-            player.message("You add the gems to your bag.")
+            set("gem_bag_$type", get("gem_bag_$type", 0) + removed)
+            message("You add the gems to your bag.")
             if (total + removed == bagCapacity) {
-                player.message("Your gem bag is now full.")
+                message("Your gem bag is now full.")
             }
         }
 

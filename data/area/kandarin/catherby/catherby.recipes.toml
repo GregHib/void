@@ -1,0 +1,4 @@
+[fishbowl_seaweed]
+remove = [{ id = "fishbowl_water" }, { id = "seaweed" }]
+add = ["fishbowl_seaweed"]
+message = "You carefully place the seaweed into the fishbowl."

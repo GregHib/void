@@ -5,7 +5,6 @@ import content.entity.player.inv.item.destroy.canDestroy
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.addToLimit
@@ -53,19 +52,19 @@ class CoalBag : Script {
             player.message("You withdraw some coal.")
         }
 
-        itemOnItem("coal", "coal_bag") { player ->
-            val coal = player["coal_bag_coal", 0]
+        itemOnItem("coal", "coal_bag") { _, _ ->
+            val coal = get("coal_bag_coal", 0)
             if (coal == bagCapacity) {
-                player.message("The coal bag is already full.")
+                message("The coal bag is already full.")
                 return@itemOnItem
             }
             val limit = bagCapacity - coal
-            val removed = player.inventory.removeToLimit("coal", limit)
+            val removed = inventory.removeToLimit("coal", limit)
             if (removed == 0) {
                 return@itemOnItem
             }
-            player["coal_bag_coal"] = (coal + removed).coerceAtMost(bagCapacity)
-            player.message("You add the coal to your bag.")
+            set("coal_bag_coal", (coal + removed).coerceAtMost(bagCapacity))
+            message("You add the coal to your bag.")
         }
 
         canDestroy("coal_bag") { player ->

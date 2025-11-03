@@ -2,7 +2,6 @@ package content.skill.fletching
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.data.definition.data.FletchDarts
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -14,25 +13,25 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 class Darts : Script {
 
     init {
-        itemOnItem("feather", "*_dart_tip") {
+        itemOnItem("feather", "*_dart_tip") { _, toItem ->
             val darts: FletchDarts = toItem.def.getOrNull("fletch_dart") ?: return@itemOnItem
 
-            if (!it.has(Skill.Fletching, darts.level, true)) {
+            if (!has(Skill.Fletching, darts.level, true)) {
                 return@itemOnItem
             }
 
-            val currentFeathers = it.inventory.count("feather")
-            val currentDartTips = it.inventory.count(toItem.id)
+            val currentFeathers = inventory.count("feather")
+            val currentDartTips = inventory.count(toItem.id)
 
             val actualAmount = minOf(currentFeathers, currentDartTips, 10)
 
             if (actualAmount < 1) {
-                it.message("You don't have enough materials to fletch bolts.", ChatType.Game)
+                message("You don't have enough materials to fletch bolts.", ChatType.Game)
                 return@itemOnItem
             }
 
             val createdDart: String = toItem.id.replace("_tip", "")
-            val success = it.inventory.transaction {
+            val success = inventory.transaction {
                 remove(toItem.id, actualAmount)
                 remove("feather", actualAmount)
                 add(createdDart, actualAmount)
@@ -43,8 +42,8 @@ class Darts : Script {
             }
 
             val totalExperience = darts.xp * actualAmount
-            it.experience.add(Skill.Fletching, totalExperience)
-            it.message("You finish making $actualAmount darts.", ChatType.Game)
+            experience.add(Skill.Fletching, totalExperience)
+            message("You finish making $actualAmount darts.", ChatType.Game)
         }
     }
 }

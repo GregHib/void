@@ -102,6 +102,9 @@ abstract class ScriptMetadataTask : DefaultTask() {
         "itemOnPlayerApproach" to listOf("item" to WildcardType.ItemId),
         "itemOnNPCApproach" to listOf("item" to WildcardType.ItemId, "npc" to WildcardType.NpcId),
         "itemOnObjectApproach" to listOf("item" to WildcardType.ItemId, "obj" to WildcardType.ObjectId),
+        // Interface interactions
+        "onItem" to listOf("id" to WildcardType.InterfaceComponentId, "item" to WildcardType.ItemId),
+        "itemOnItem" to listOf("fromItem" to WildcardType.ItemId, "toItem" to WildcardType.ItemId),
     )
 
     @TaskAction

@@ -5,11 +5,11 @@ import content.entity.player.inv.item.drop.dropped
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.interact.itemOnItems
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.inventory
@@ -19,9 +19,10 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeTo
 
 class EssencePouch : Script {
 
-    val pouches = arrayOf("small_pouch", "medium_pouch", "medium_pouch_damaged", "large_pouch", "large_pouch_damaged", "giant_pouch", "giant_pouch_damaged")
 
     init {
+        val pouches = arrayOf("small_pouch", "medium_pouch", "medium_pouch_damaged", "large_pouch", "large_pouch_damaged", "giant_pouch", "giant_pouch_damaged")
+
         inventoryItem("Check", *pouches) {
             val essence = player["${item.id.removeSuffix("_damaged")}_essence", 0]
             if (essence == 0) {
@@ -93,12 +94,13 @@ class EssencePouch : Script {
             player["${id}_essence"] = essence - added
         }
 
-        itemOnItems(arrayOf("pure_essence"), pouches) { player ->
-            addSingle(player, fromSlot, fromItem, toSlot, toItem)
+        Wildcards.register("@pouches", *pouches)
+        itemOnItem("pure_essence", "@pouches") { fromItem, toItem, fromSlot, toSlot ->
+            addSingle(fromSlot, fromItem, toSlot, toItem)
         }
 
-        itemOnItems(arrayOf("rune_essence"), pouches) { player ->
-            addSingle(player, fromSlot, fromItem, toSlot, toItem)
+        itemOnItem("rune_essence", "@pouches") { fromItem, toItem, fromSlot, toSlot ->
+            addSingle(fromSlot, fromItem, toSlot, toItem)
         }
 
         dropped(*pouches) { player ->
@@ -109,8 +111,7 @@ class EssencePouch : Script {
         }
     }
 
-    fun addSingle(
-        player: Player,
+    fun Player.addSingle(
         fromSlot: Int,
         fromItem: Item,
         toSlot: Int,
@@ -118,28 +119,28 @@ class EssencePouch : Script {
     ) {
         val id = toItem.id.removeSuffix("_damaged")
         val desired = fromItem.id.startsWith("pure")
-        val pure = player["${id}_pure", false]
+        val pure = get("${id}_pure", false)
         if (pure != desired) {
             val name = if (pure) "pure" else "normal"
-            player.message("This pouch contains $name essence, so you can only fill it with more $name essence.")
+            message("This pouch contains $name essence, so you can only fill it with more $name essence.")
             return
         }
-        val maximum = capacity(toItem.id, player.inventory.charges(player, toSlot))
-        val essence = player["${id}_essence", 0]
+        val maximum = capacity(toItem.id, inventory.charges(this, toSlot))
+        val essence = get("${id}_essence", 0)
         if (essence >= maximum) {
-            player.message("You cannot add any more essence to the pouch.")
+            message("You cannot add any more essence to the pouch.")
             return
         }
-        val success = player.inventory.transaction {
+        val success = inventory.transaction {
             remove(fromSlot, fromItem.id)
         }
         if (!success) {
             return
         }
         if (essence == 0) {
-            player["${id}_pure"] = desired
+            set("${id}_pure", desired)
         }
-        player["${id}_essence"] = essence + 1
+        set("${id}_essence", essence + 1)
     }
 
     private fun capacity(id: String, charges: Int) = when (id) {
