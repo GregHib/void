@@ -15,7 +15,8 @@ import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 class LightSource : Script {
 
     init {
-        Wildcards.register(Wildcard.Item, "@unlit_sources",
+        Wildcards.register(
+            Wildcard.Item, "@unlit_sources",
             "oil_lamp_oil",
             "candle_lantern_white",
             "candle_lantern_black",
@@ -26,7 +27,7 @@ class LightSource : Script {
             "emerald_lantern",
             "white_candle",
             "black_candle",
-            "unlit_torch"
+            "unlit_torch",
         )
         itemOnItem("tinderbox*", "@unlit_sources") { _, toItem ->
             val needsFlame: LightSources = toItem.def.getOrNull("light_source") ?: return@itemOnItem

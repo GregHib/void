@@ -1,7 +1,6 @@
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.get
 import java.nio.file.NoSuchFileException
 import kotlin.system.exitProcess

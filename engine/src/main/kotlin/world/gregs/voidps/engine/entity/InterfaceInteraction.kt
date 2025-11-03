@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Wildcard
@@ -50,8 +51,8 @@ interface InterfaceInteraction {
     }
 
     companion object {
-        val onItem = mutableMapOf<String, MutableList<Player.(Item, String) -> Unit>>()
-        val itemOnItem = mutableMapOf<String, MutableList<Player.(Item, Item, Int, Int) -> Unit>>()
+        val onItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, String) -> Unit>>(2)
+        val itemOnItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, Item, Int, Int) -> Unit>>(800)
 
         fun onItem(player: Player, id: String, item: Item) {
             for (block in onItem["$id:${item.id}"] ?: onItem["*:${item.id}"] ?: onItem["$id:*"] ?: onItem["*:*"] ?: return) {

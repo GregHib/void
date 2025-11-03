@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.variable
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Wildcard
@@ -25,8 +26,8 @@ interface VariableSet {
     }
 
     companion object : VariableSet {
-        val playerBlocks = mutableMapOf<String, MutableList<(Player, String, Any?, Any?) -> Unit>>()
-        val npcBlocks = mutableMapOf<String, MutableList<(NPC, String, Any?, Any?) -> Unit>>()
+        val playerBlocks = Object2ObjectOpenHashMap<String, MutableList<(Player, String, Any?, Any?) -> Unit>>(500)
+        val npcBlocks = Object2ObjectOpenHashMap<String, MutableList<(NPC, String, Any?, Any?) -> Unit>>(2)
 
         fun set(player: Player, key: String, from: Any?, to: Any?) {
             for (block in playerBlocks[key] ?: emptyList()) {

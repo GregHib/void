@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.entity
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -36,11 +38,11 @@ interface Spawn {
     }
 
     companion object {
-        val playerSpawns = mutableListOf<(Player) -> Unit>()
-        val npcSpawns = mutableMapOf<String, MutableList<(NPC) -> Unit>>()
-        val objectSpawns = mutableMapOf<String, MutableList<(GameObject) -> Unit>>()
-        val floorItemSpawns = mutableMapOf<String, MutableList<(FloorItem) -> Unit>>()
-        val worldSpawns = mutableListOf<(ConfigFiles) -> Unit>()
+        val playerSpawns = ObjectArrayList<(Player) -> Unit>(100)
+        val npcSpawns = Object2ObjectOpenHashMap<String, MutableList<(NPC) -> Unit>>(250)
+        val objectSpawns = Object2ObjectOpenHashMap<String, MutableList<(GameObject) -> Unit>>(2)
+        val floorItemSpawns = Object2ObjectOpenHashMap<String, MutableList<(FloorItem) -> Unit>>(2)
+        val worldSpawns = ObjectArrayList<(ConfigFiles) -> Unit>(25)
 
         fun player(player: Player) {
             for (block in playerSpawns) {

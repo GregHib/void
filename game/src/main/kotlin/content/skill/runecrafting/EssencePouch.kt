@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeTo
 
 class EssencePouch : Script {
 
-
     init {
         val pouches = arrayOf("small_pouch", "medium_pouch", "medium_pouch_damaged", "large_pouch", "large_pouch_damaged", "giant_pouch", "giant_pouch_damaged")
 

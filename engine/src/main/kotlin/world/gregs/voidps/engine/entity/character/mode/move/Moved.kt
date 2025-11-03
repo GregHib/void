@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.entity.character.mode.move
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Wildcard
@@ -21,8 +23,8 @@ interface Moved {
     }
 
     companion object {
-        val playerMoved = mutableListOf<(Player, Tile) -> Unit>()
-        val npcMoved = mutableMapOf<String, MutableList<(NPC, Tile) -> Unit>>()
+        val playerMoved = ObjectArrayList<(Player, Tile) -> Unit>(15)
+        val npcMoved = Object2ObjectOpenHashMap<String, MutableList<(NPC, Tile) -> Unit>>(10)
 
         fun player(player: Player, from: Tile) {
             for (block in playerMoved) {
