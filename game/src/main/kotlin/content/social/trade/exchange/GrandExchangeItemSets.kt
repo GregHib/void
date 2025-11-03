@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -36,35 +35,35 @@ class GrandExchangeItemSets : Script {
             close("exchange_sets_side")
         }
 
-        interfaceOption("Components", "sets", "exchange_item_sets") {
+        interfaceOption("Components", "exchange_item_sets:sets") { (item) ->
             val descriptions = enumDefinitions.get("exchange_set_descriptions")
-            player.message(descriptions.getString(item.def.id))
+            message(descriptions.getString(item.def.id))
         }
 
-        interfaceOption("Exchange", "sets", "exchange_item_sets") {
+        interfaceOption("Exchange", "exchange_item_sets:sets") { (item) ->
             val components: List<String> = item.def.getOrNull("items") ?: return@interfaceOption
-            player.inventory.transaction {
+            inventory.transaction {
                 for (item in components) {
                     remove(item)
                 }
                 add(item.id)
             }
-            when (player.inventory.transaction.error) {
+            when (inventory.transaction.error) {
                 is TransactionError.Deficient -> {
                     //             https://youtu.be/Tz2jgdj1bWg?si=PQz8E4H2bPoBlAfA&t=94
-                    player.message("You don't have the parts that make up this set.")
+                    message("You don't have the parts that make up this set.")
                 }
-                is TransactionError.Full -> player.inventoryFull()
+                is TransactionError.Full -> inventoryFull()
                 TransactionError.None -> {
                     //            https://youtu.be/FfVilurxzj0?si=wnz1ujXs_Xomfzmu&t=39
-                    player.message("You successfully traded your item components for a set!")
+                    message("You successfully traded your item components for a set!")
                 }
                 TransactionError.Invalid -> logger.warn { "Invalid set exchange for item ${item.id} $components" }
             }
         }
 
-        interfaceOption("Examine", "items", "exchange_item_sets") {
-            player.message(item.def.getOrNull("examine") ?: return@interfaceOption)
+        interfaceOption("Examine", "exchange_item_sets:items") { (item) ->
+            message(item.def.getOrNull("examine") ?: return@interfaceOption)
         }
 
         interfaceOpen("exchange_sets_side") { id ->
@@ -74,22 +73,22 @@ class GrandExchangeItemSets : Script {
             sendInventory(inventory)
         }
 
-        interfaceOption("Components", "items", "exchange_sets_side") {
+        interfaceOption("Components", "exchange_sets_side:items") { (item) ->
             val descriptions = enumDefinitions.get("exchange_set_descriptions")
             val text = descriptions.getString(item.def.id)
             if (text != "shop_dummy") {
-                player.message(text)
+                message(text)
             } else {
-                player.message("That isn't a set item.")
+                message("That isn't a set item.")
             }
         }
 
-        interfaceOption("Exchange", "items", "exchange_sets_side") {
-            exchangeSet(player, item, itemSlot)
+        interfaceOption("Exchange", "exchange_sets_side:items") { (item, itemSlot) ->
+            exchangeSet(this, item, itemSlot)
         }
 
-        interfaceOption("Examine", "items", "exchange_sets_side") {
-            player.message(item.def.getOrNull("examine") ?: return@interfaceOption)
+        interfaceOption("Examine", "exchange_sets_side:items") { (item) ->
+            message(item.def.getOrNull("examine") ?: return@interfaceOption)
         }
 
         itemOnNPCApproach(npc = "grand_exchange_clerk*") {

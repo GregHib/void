@@ -2,17 +2,16 @@ package content.entity.player.effect.energy
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.mode.Rest
 
 class Resting : Script {
 
     init {
-        interfaceOption("Rest", id = "energy_orb") {
-            if (player["movement", "walk"] == "rest") {
-                player.message("You are already resting.")
+        interfaceOption("Rest", id = "energy_orb:*") {
+            if (get("movement", "walk") == "rest") {
+                message("You are already resting.")
             } else {
-                player.mode = Rest(player, -1)
+                mode = Rest(this, -1)
             }
         }
 

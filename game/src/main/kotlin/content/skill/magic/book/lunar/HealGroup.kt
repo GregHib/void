@@ -5,7 +5,6 @@ import content.entity.sound.sound
 import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
@@ -18,32 +17,32 @@ class HealGroup : Script {
     val players: Players by inject()
 
     init {
-        interfaceOption("Cast", "heal_group", "lunar_spellbook") {
-            val spell = component
-            if (player.levels.get(Skill.Constitution) < player.levels.getMax(Skill.Constitution) * 0.11) {
-                player.message("You don't have enough life points.")
+        interfaceOption("Cast", "lunar_spellbook:heal_group") {
+            val spell = it.component
+            if (levels.get(Skill.Constitution) < levels.getMax(Skill.Constitution) * 0.11) {
+                message("You don't have enough life points.")
                 return@interfaceOption
             }
-            if (!player.removeSpellItems(spell)) {
+            if (!removeSpellItems(spell)) {
                 return@interfaceOption
             }
             val definition = definitions.get(spell)
             var healed = 0
-            val amount = (player.levels.get(Skill.Constitution) * 0.75).toInt() + 5
-            player.anim("lunar_cast")
-            player.sound(spell)
+            val amount = (levels.get(Skill.Constitution) * 0.75).toInt() + 5
+            anim("lunar_cast")
+            sound(spell)
             val group = players
-                .filter { other -> other != player && other.tile.within(player.tile, 1) && other.levels.getOffset(Skill.Constitution) < 0 && player["accept_aid", true] }
+                .filter { other -> other != this && other.tile.within(tile, 1) && other.levels.getOffset(Skill.Constitution) < 0 && get("accept_aid", true) }
                 .take(5)
             group.forEach { target ->
                 target.gfx(spell)
                 target.sound("heal_other_impact")
-                player.experience.add(Skill.Magic, definition.experience)
+                experience.add(Skill.Magic, definition.experience)
                 healed += target.levels.restore(Skill.Constitution, amount / group.size)
-                target.message("You have been healed by ${player.name}.")
+                target.message("You have been healed by $name.")
             }
             if (healed > 0) {
-                player.damage(healed, delay = 2)
+                damage(healed, delay = 2)
             }
         }
     }

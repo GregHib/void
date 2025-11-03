@@ -1,7 +1,6 @@
 package content.entity.obj.canoe
 
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.suspend.StringSuspension
 
 class CanoeStationMap : Script {
@@ -11,9 +10,9 @@ class CanoeStationMap : Script {
             dialogueSuspension = null
         }
 
-        interfaceOption("Select", "travel_*", "canoe_stations_map") {
-            val destination = component.removePrefix("travel_")
-            (player.dialogueSuspension as? StringSuspension)?.resume(destination)
+        interfaceOption("Select", "canoe_stations_map:travel_*") {
+            val destination = it.component.removePrefix("travel_")
+            (dialogueSuspension as? StringSuspension)?.resume(destination)
         }
     }
 }

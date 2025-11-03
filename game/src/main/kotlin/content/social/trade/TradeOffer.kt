@@ -4,7 +4,6 @@ import content.entity.player.dialogue.type.intEntry
 import content.social.trade.Trade.isTrading
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -30,7 +29,7 @@ class TradeOffer : Script {
             offer.itemRule = tradeRestriction
         }
 
-        interfaceOption(component = "offer", id = "trade_side") {
+        interfaceOption(id = "trade_side:offer") { (item, _, option) ->
             val amount = when (option) {
                 "Offer" -> 1
                 "Offer-5" -> 5
@@ -39,11 +38,11 @@ class TradeOffer : Script {
                 "Offer-X" -> intEntry("Enter amount:")
                 else -> return@interfaceOption
             }
-            offer(player, item.id, amount)
+            offer(this, item.id, amount)
         }
 
-        interfaceOption("Value", "offer", "trade_side") {
-            player.message("${item.def.name} is priceless!", ChatType.Trade)
+        interfaceOption("Value", "trade_side:offer") { (item) ->
+            message("${item.def.name} is priceless!", ChatType.Trade)
         }
     }
 

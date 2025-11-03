@@ -6,7 +6,6 @@ import content.entity.sound.sound
 import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
@@ -20,26 +19,26 @@ class Vengeance : Script {
     val definitions: SpellDefinitions by inject()
 
     init {
-        interfaceOption("Cast", "vengeance", "lunar_spellbook") {
-            val spell = component
-            if (player.contains("vengeance")) {
-                player.message("You already have vengeance cast.")
+        interfaceOption("Cast", "lunar_spellbook:vengeance") {
+            val spell = it.component
+            if (contains("vengeance")) {
+                message("You already have vengeance cast.")
                 return@interfaceOption
             }
-            if (player.remaining("vengeance_delay", epochSeconds()) > 0) {
-                player.message("You can only cast vengeance spells once every 30 seconds.")
+            if (remaining("vengeance_delay", epochSeconds()) > 0) {
+                message("You can only cast vengeance spells once every 30 seconds.")
                 return@interfaceOption
             }
-            if (!player.removeSpellItems(spell)) {
+            if (!removeSpellItems(spell)) {
                 return@interfaceOption
             }
             val definition = definitions.get(spell)
-            player.anim(spell)
-            player.gfx(spell)
-            player.sound(spell)
-            player.experience.add(Skill.Magic, definition.experience)
-            player["vengeance"] = true
-            player.start("vengeance_delay", definition["delay_seconds"], epochSeconds())
+            anim(spell)
+            gfx(spell)
+            sound(spell)
+            experience.add(Skill.Magic, definition.experience)
+            set("vengeance", true)
+            start("vengeance_delay", definition["delay_seconds"], epochSeconds())
         }
 
         combatDamage { player ->

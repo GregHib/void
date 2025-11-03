@@ -7,7 +7,6 @@ import content.entity.player.modal.tab
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -60,32 +59,32 @@ class EquipmentBonuses : Script {
             interfaceOptions.unlockAll("equipment_side", "inventory", 0 until 28)
         }
 
-        interfaceOption("Stats", "inventory", "equipment_bonuses") {
-            if (player.equipping()) {
-                showStats(player, definitions.get(item.id))
+        interfaceOption("Stats", "equipment_bonuses:inventory") { (item) ->
+            if (equipping()) {
+                showStats(this, definitions.get(item.id))
             }
         }
 
-        interfaceOption("Done", "stats_done", "equipment_bonuses") {
-            if (player.equipping()) {
-                player.clear("equipment_titles")
-                player.clear("equipment_names")
-                player.clear("equipment_stats")
-                player.clear("equipment_name")
+        interfaceOption("Done", "equipment_bonuses:stats_done") {
+            if (equipping()) {
+                clear("equipment_titles")
+                clear("equipment_names")
+                clear("equipment_stats")
+                clear("equipment_name")
             }
         }
 
-        interfaceOption("Equip", "inventory", "equipment_side") {
-            if (player.equipping()) {
-                player.emit(InventoryOption(player, "inventory", item, itemSlot, "Wield"))
-                checkEmoteUpdate(player)
+        interfaceOption("Equip", "equipment_side:inventory") { (item, itemSlot) ->
+            if (equipping()) {
+                emit(InventoryOption(this, "inventory", item, itemSlot, "Wield"))
+                checkEmoteUpdate(this)
             }
         }
 
-        interfaceOption("Remove", "inventory", "equipment_bonuses") {
-            if (player.equipping()) {
-                player.emit(InventoryOption(player, "worn_equipment", item, itemSlot, "Remove"))
-                checkEmoteUpdate(player)
+        interfaceOption("Remove", "equipment_bonuses:inventory") { (item, itemSlot) ->
+            if (equipping()) {
+                emit(InventoryOption(this, "worn_equipment", item, itemSlot, "Remove"))
+                checkEmoteUpdate(this)
             }
         }
     }

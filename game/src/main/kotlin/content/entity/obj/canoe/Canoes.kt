@@ -7,7 +7,6 @@ import content.skill.woodcutting.Hatchet
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.CanoeDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -81,9 +80,9 @@ class Canoes : Script {
             interfaces.sendVisibility(id, "invisible_waka", !waka)
         }
 
-        interfaceOption("Select", "a_*", "canoe") {
-            val type = component.removePrefix("a_")
-            (player.dialogueSuspension as? StringSuspension)?.resume(type)
+        interfaceOption("Select", "canoe:a_*") {
+            val type = it.component.removePrefix("a_")
+            (dialogueSuspension as? StringSuspension)?.resume(type)
         }
 
         objectOperate("Shape-canoe", "canoe_station_fallen") { (target) ->

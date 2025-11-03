@@ -6,7 +6,6 @@ import content.social.trade.lend.Loan.returnLoan
 import content.social.trade.returnedItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -26,35 +25,35 @@ class ItemReturning : Script {
             sendInventory(returnedItems)
         }
 
-        interfaceOption("Reclaim", "item", "returned_items") {
-            if (!player.contains("lent_item_id")) {
-                returnItem(player)
+        interfaceOption("Reclaim", "returned_items:item") {
+            if (!contains("lent_item_id")) {
+                returnItem(this)
                 return@interfaceOption
             }
-            if (player.contains("lend_timeout")) {
-                player.message("Your item will be returned to you ${getExpiry(player, "lend_timeout")}.") // TODO real message
+            if (contains("lend_timeout")) {
+                message("Your item will be returned to you ${getExpiry(this, "lend_timeout")}.") // TODO real message
                 return@interfaceOption
             }
-            if (!player.contains("lent_to")) {
+            if (!contains("lent_to")) {
                 logger.warn { "Invalid item lending state; can't force claim an item when target has already logged out." }
                 return@interfaceOption
             }
 
-            player.message("Demanding return of item.")
-            val name: String? = player["lent_to"]
+            message("Demanding return of item.")
+            val name: String? = get("lent_to")
             val borrower = if (name == null) null else players.get(name)
             if (borrower == null) {
-                player.message("There was an issue returning your item.")
+                message("There was an issue returning your item.")
                 logger.warn { "Unable to find lent item borrower '$name'." }
                 return@interfaceOption
             }
 
-            player.softTimers.clear("loan_message")
-            player.clear("lent_item_id")
-            player.clear("lent_item_amount")
+            softTimers.clear("loan_message")
+            clear("lent_item_id")
+            clear("lent_item_amount")
             returnLoan(borrower)
-            returnItem(player)
-            player.message("Your item has been returned.")
+            returnItem(this)
+            message("Your item has been returned.")
         }
     }
 

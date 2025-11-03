@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Silver
@@ -73,15 +72,15 @@ class SilverCasting : Script {
             make(it.item, 1)
         }
 
-        interfaceOption(component = "*_button", id = "silver_mould") {
-            val amount = when (option) {
+        interfaceOption(id = "silver_mould:*_button") {
+            val amount = when (it.option) {
                 "Make 1" -> 1
                 "Make 5" -> 5
                 "Make All" -> 28
                 "Make X" -> intEntry("Enter amount:")
                 else -> return@interfaceOption
             }
-            player.make(Item(component.removeSuffix("_button")), amount)
+            make(Item(it.component.removeSuffix("_button")), amount)
         }
 
         interfaceClose("silver_mould") {

@@ -2,7 +2,6 @@ package content.area.misthalin.lumbridge.church
 
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.inject
@@ -44,18 +43,18 @@ class GravestoneShop : Script {
             interfaceOptions.unlockAll(id, "button", 0 until 13)
         }
 
-        interfaceOption("*", "button", "gravestone_shop") {
+        interfaceOption(id = "gravestone_shop:button") { (_, itemSlot) ->
             val name = enums.get("gravestone_names").getString(itemSlot)
             val id = name.replace(" ", "_").lowercase()
-            if (player["gravestone_current", "memorial_plaque"] == id) {
+            if (get("gravestone_current", "memorial_plaque") == id) {
                 return@interfaceOption
             }
             val cost = enums.get("gravestone_price").getInt(itemSlot)
-            if (cost > 0 && !player.inventory.remove("coins", cost)) {
-                player.notEnough("coins")
+            if (cost > 0 && !inventory.remove("coins", cost)) {
+                notEnough("coins")
                 return@interfaceOption
             }
-            player["gravestone_current"] = id
+            set("gravestone_current", id)
         }
     }
 }

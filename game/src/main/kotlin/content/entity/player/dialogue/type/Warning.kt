@@ -2,7 +2,6 @@ package content.entity.player.dialogue.type
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Context
@@ -35,20 +34,21 @@ suspend fun Player.warning(id: String): Boolean {
 class Warning : Script {
 
     init {
-        interfaceOption("Yes", "yes", "warning_*") {
-            (player.dialogueSuspension as StringSuspension).resume("yes")
+        interfaceOption("Yes", "warning_*:yes") {
+            (dialogueSuspension as StringSuspension).resume("yes")
         }
 
-        interfaceOption("No", "no", "warning_*") {
-            (player.dialogueSuspension as StringSuspension).resume("no")
+        interfaceOption("No", "warning_*:no") {
+            (dialogueSuspension as StringSuspension).resume("no")
         }
 
-        interfaceOption("Off/On", "dont_ask", "warning_*") {
-            val count = player[id, 0]
+        interfaceOption("Off/On", "warning_*:dont_ask") {
+            val id = it.id.substringBefore(":")
+            val count = get(id, 0)
             if (count == 6) {
-                player[id] = 7
+                set(id, 7)
             } else {
-                player[id] = 6
+                set(id, 6)
             }
         }
     }

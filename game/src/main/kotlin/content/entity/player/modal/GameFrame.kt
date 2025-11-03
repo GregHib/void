@@ -5,7 +5,6 @@ import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.ui.hasOpen
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.weakQueue
@@ -44,8 +43,8 @@ class GameFrame : Script {
     init {
         Tab.entries.forEach { tab ->
             val name = tab.name.toSnakeCase()
-            interfaceOption(name.toTitleCase(), name, "toplevel*") {
-                player["tab", false] = tab.name
+            interfaceOption(name.toTitleCase(), "toplevel*:$name") {
+                set("tab", false, tab.name)
             }
         }
 

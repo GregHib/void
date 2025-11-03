@@ -88,14 +88,11 @@ fun Player.interfaceUse(
 fun Player.interfaceSwitch(
     id: String,
     component: String,
-    inventory: String = "",
-    fromItem: Item = Item("", -1),
-    toItem: Item = Item("", -1),
     fromSlot: Int = -1,
     toSlot: Int = -1,
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    InterfaceInteraction.swap(player, "$id:$component", "$id:$component", fromSlot, toSlot)
+    InterfaceInteraction.swap(this, "$id:$component", "$id:$component", fromSlot, toSlot)
 }
 
 fun Player.equipItem(

@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -73,16 +72,16 @@ class BankOpen : Script {
             tab(Tab.Inventory)
         }
 
-        interfaceOption("Show Equipment Stats", "equipment", "bank") {
-            player["equipment_bank_button"] = true
-            player["bank_hidden"] = true
-            player.open("equipment_bonuses")
+        interfaceOption("Show Equipment Stats", "bank:equipment") {
+            set("equipment_bank_button", true)
+            set("bank_hidden", true)
+            open("equipment_bonuses")
         }
 
-        interfaceOption("Show bank", "bank", "equipment_bonuses") {
-            if (player["equipment_bank_button", false]) {
-                player["bank_hidden"] = false
-                player.open("bank")
+        interfaceOption("Show bank", "equipment_bonuses:bank") {
+            if (get("equipment_bank_button", false)) {
+                set("bank_hidden", false)
+                open("bank")
             }
         }
 

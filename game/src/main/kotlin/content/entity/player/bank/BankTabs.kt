@@ -1,7 +1,6 @@
 package content.entity.player.bank
 
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventoryUpdate
@@ -16,7 +15,7 @@ class BankTabs : Script {
             player["bank_spaces_used_member"] = player.bank.count
         }
 
-        interfaceSwap("bank", "inventory") { _, _, fromSlot, toSlot ->
+        interfaceSwap("bank:inventory") { _, _, fromSlot, toSlot ->
             when (get("bank_item_mode", "swap")) {
                 "swap" -> bank.swap(fromSlot, toSlot)
                 "insert" -> {
@@ -27,17 +26,17 @@ class BankTabs : Script {
             }
         }
 
-        interfaceOption("View all", "tab_1", "bank") {
-            player["open_bank_tab"] = 1
+        interfaceOption("View all", "bank:tab_1") {
+            set("open_bank_tab", 1)
         }
 
-        interfaceOption("View Tab", "tab_#", "bank") {
-            player["open_bank_tab"] = component.removePrefix("tab_").toInt()
+        interfaceOption("View Tab", "bank:tab_#") {
+            set("open_bank_tab", it.component.removePrefix("tab_").toInt())
         }
 
-        interfaceOption("Toggle swap/insert", "item_mode", "bank") {
-            val value: String = player["bank_item_mode", "swap"]
-            player["bank_item_mode"] = if (value == "insert") "swap" else "insert"
+        interfaceOption("Toggle swap/insert", "bank:item_mode") {
+            val value: String = get("bank_item_mode", "swap")
+            set("bank_item_mode", if (value == "insert") "swap" else "insert")
         }
 
         interfaceSwap("bank:tab_#") { _, toId, fromSlot, _ ->

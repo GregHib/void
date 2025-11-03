@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -27,7 +26,6 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.engine.suspend.SuspendableContext
 
 class Anvil : Script {
 
@@ -70,8 +68,9 @@ class Anvil : Script {
     val logger = InlineLogger()
 
     init {
-        interfaceOption(id = "smithing") {
-            val metal: String = player["smithing_metal"] ?: return@interfaceOption
+        interfaceOption(id = "smithing:*") {
+            val metal: String = get("smithing_metal") ?: return@interfaceOption
+            val component = it.component
             val type = component.substringBeforeLast('_')
             val amount = when {
                 component.endsWith("_1") -> 1
@@ -80,7 +79,7 @@ class Anvil : Script {
                 component.endsWith("_all") -> Int.MAX_VALUE
                 else -> return@interfaceOption
             }
-            smith(player, metal, type, amount)
+            smith(metal, type, amount)
         }
 
         itemOnObjectOperate("*_bar", "anvil*") {
@@ -127,7 +126,7 @@ class Anvil : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.smith(player: Player, metal: String, type: String, amount: Int) {
+    suspend fun Player.smith(metal: String, type: String, amount: Int) {
         val item = if (metal == "steel" && type == "lantern") {
             "bullseye_lantern_frame"
         } else if (metal == "mithril" && type == "grapple") {
@@ -141,18 +140,18 @@ class Anvil : Script {
         val quantity = component?.getOrNull("amount") ?: 1
         val bars = component?.getOrNull("bars") ?: 1
         val bar = "${metal}_bar"
-        val actualAmount = amount.coerceAtMost(player.inventory.count(bar) / bars)
-        player.closeMenu()
-        player.softTimers.start("smithing")
+        val actualAmount = amount.coerceAtMost(inventory.count(bar) / bars)
+        closeMenu()
+        softTimers.start("smithing")
         if (actualAmount <= 0) {
             statement("You don't have enough $metal bars to make a $type.")
-            player.softTimers.stop("smithing")
+            softTimers.stop("smithing")
             return
         }
         smith(smithing, metal, bars, quantity, type, item, actualAmount, true)
     }
 
-    suspend fun SuspendableContext<Player>.smith(
+    suspend fun Player.smith(
         smithing: Smithing,
         metal: String,
         bars: Int,
@@ -163,38 +162,38 @@ class Anvil : Script {
         first: Boolean,
     ) {
         if (count <= 0) {
-            player.softTimers.stop("smithing")
+            softTimers.stop("smithing")
             return
         }
-        if (!player.inventory.contains("hammer")) {
-            player.message("You need a Hammer to smith items.")
-            player.softTimers.stop("smithing")
+        if (!inventory.contains("hammer")) {
+            message("You need a Hammer to smith items.")
+            softTimers.stop("smithing")
             return
         }
 
-        if (!player.has(Skill.Smithing, smithing.level, message = false)) {
+        if (!has(Skill.Smithing, smithing.level, message = false)) {
             val name = item.removeSuffix("_unf")
             statement("You need a Smithing level of ${smithing.level} to make${name.an()} ${name.toTitleCase()}.")
-            player.softTimers.stop("smithing")
+            softTimers.stop("smithing")
             return
         }
 
         val bar = "${metal}_bar"
-        player.anim("smith_item")
-        player.weakQueue("smithing", if (first) 0 else 5) {
-            player.inventory.transaction {
+        anim("smith_item")
+        weakQueue("smithing", if (first) 0 else 5) {
+            inventory.transaction {
                 remove(bar, bars)
                 add(item, quantity)
             }
-            when (player.inventory.transaction.error) {
-                is TransactionError.Deficient -> player.message("You do not have enough bars to smith this item.")
+            when (inventory.transaction.error) {
+                is TransactionError.Deficient -> message("You do not have enough bars to smith this item.")
                 TransactionError.None -> {
-                    player.exp(Skill.Smithing, smithing.xp)
+                    exp(Skill.Smithing, smithing.xp)
                     smith(smithing, metal, bars, quantity, type, item, count - 1, false)
                     val name = type.removeSuffix("_unf").replace("_", " ")
-                    player.message("You hammer the $metal and make${name.an()} $name.")
+                    message("You hammer the $metal and make${name.an()} $name.")
                 }
-                else -> logger.warn { "Error smithing ${this@smith} $item ${player.inventory.transaction.error} ${player.inventory.items.contentToString()}" }
+                else -> logger.warn { "Error smithing ${this@smith} $item ${inventory.transaction.error} ${inventory.items.contentToString()}" }
             }
         }
     }

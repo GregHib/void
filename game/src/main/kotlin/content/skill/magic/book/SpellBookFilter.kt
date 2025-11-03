@@ -1,9 +1,8 @@
 package content.skill.magic.book
 
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.toInt
-import world.gregs.voidps.engine.client.ui.interfaceOption
+import world.gregs.voidps.engine.entity.character.player.Player
 
 class SpellBookFilter : Script {
 
@@ -23,38 +22,37 @@ class SpellBookFilter : Script {
             set("spellbook_config", id or (get("defensive_cast", false).toInt() shl 8))
         }
 
-        interfaceOption(component = "filter_*", id = "*_spellbook") {
-            filter()
+        interfaceOption(id = "*_spellbook:filter_*") {
+            filter(it.id)
         }
 
-        interfaceOption(component = "sort_*", id = "*_spellbook") {
-            sort()
+        interfaceOption(id = "*_spellbook:sort_*") {
+            sort(it.id, it.component)
         }
 
-        interfaceOption("Defensive Casting", "defensive_cast", "*_spellbook") {
-            player.toggle(component)
+        interfaceOption("Defensive Casting", "*_spellbook:defensive_cast") {
+            toggle(it.component)
         }
     }
 
-    fun InterfaceOption.filter() {
+    fun Player.filter(id: String) {
         val key = "spellbook_sort"
-        val id = "$id:$component"
-        if (player.containsVarbit(key, id)) {
-            player.removeVarbit(key, id)
+        if (containsVarbit(key, id)) {
+            removeVarbit(key, id)
         } else {
-            player.addVarbit(key, id)
+            addVarbit(key, id)
         }
     }
 
-    fun InterfaceOption.sort() {
+    fun Player.sort(id: String, component: String) {
         val key = "spellbook_sort"
         if (component.startsWith("sort_")) {
             // Make sure don't sort by multiple at once
-            player.removeVarbit(key, "${id}_sort_combat", refresh = false)
-            player.removeVarbit(key, "${id}_sort_teleport", refresh = false)
+            removeVarbit(key, "${id}_sort_combat", refresh = false)
+            removeVarbit(key, "${id}_sort_teleport", refresh = false)
         }
         if (component != "sort_level") {
-            player.addVarbit(key, "$id:$component", refresh = false)
+            addVarbit(key, "$id:$component", refresh = false)
         }
     }
 }

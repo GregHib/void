@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -46,54 +45,54 @@ class SummoningCrafting : Script {
             openPouchCraftingInterface(this)
         }
 
-        interfaceOption("Transform Scrolls", "scroll_creation_tab", "summoning_pouch_creation") {
-            openScrollCraftingInterface(player)
+        interfaceOption("Transform Scrolls", "summoning_pouch_creation:scroll_creation_tab") {
+            openScrollCraftingInterface(this)
         }
 
-        interfaceOption("Infuse Pouches", "pouch_creation_tab", "summoning_scroll_creation") {
-            openPouchCraftingInterface(player)
+        interfaceOption("Infuse Pouches", "summoning_scroll_creation:pouch_creation_tab") {
+            openPouchCraftingInterface(this)
         }
 
-        interfaceOption("Infuse*", "pouches", "summoning_pouch_creation") {
+        interfaceOption(id = "summoning_pouch_creation:pouches") { (item, itemSlot, option) ->
             // TODO: When dungeoneering support is implemented, this will need to change
             val enumIndex = (itemSlot + 3) / 5
 
             if (item.id.endsWith("_u")) {
-                sendIngredientMessage(player, enumIndex)
+                sendIngredientMessage(this, enumIndex)
                 return@interfaceOption
             }
 
             when (option) {
-                "Infuse" -> infusePouches(player, enumIndex, 1)
-                "Infuse-5" -> infusePouches(player, enumIndex, 5)
-                "Infuse-10" -> infusePouches(player, enumIndex, 10)
+                "Infuse" -> infusePouches(this, enumIndex, 1)
+                "Infuse-5" -> infusePouches(this, enumIndex, 5)
+                "Infuse-10" -> infusePouches(this, enumIndex, 10)
                 "Infuse-X" -> {
                     val total = intEntry("Enter amount:")
-                    infusePouches(player, enumIndex, total)
+                    infusePouches(this, enumIndex, total)
                 }
-                "Infuse-All" -> infusePouches(player, enumIndex, Int.MAX_VALUE)
+                "Infuse-All" -> infusePouches(this, enumIndex, Int.MAX_VALUE)
             }
         }
 
-        interfaceOption("List", "pouches", "summoning_pouch_creation") {
+        interfaceOption("List", ":summoning_pouch_creationpouches") { (_, itemSlot) ->
             // TODO: When dungeoneering support is implemented, this will need to change
             val enumIndex = (itemSlot + 3) / 5
-            sendIngredientMessage(player, enumIndex)
+            sendIngredientMessage(this, enumIndex)
         }
 
-        interfaceOption("Transform*", "scrolls", "summoning_scroll_creation") {
+        interfaceOption(id = "summoning_scroll_creation:scrolls") { (_, itemSlot, option) ->
             // TODO: When dungeoneering support is implemented, this will need to change
             val enumIndex = (itemSlot + 3) / 5
 
             when (option) {
-                "Transform" -> transformScrolls(player, enumIndex, 1)
-                "Transform-5" -> transformScrolls(player, enumIndex, 5)
-                "Transform-10" -> transformScrolls(player, enumIndex, 10)
+                "Transform" -> transformScrolls(this, enumIndex, 1)
+                "Transform-5" -> transformScrolls(this, enumIndex, 5)
+                "Transform-10" -> transformScrolls(this, enumIndex, 10)
                 "Transform-X" -> {
                     val total = intEntry("Enter amount:")
-                    transformScrolls(player, enumIndex, total)
+                    transformScrolls(this, enumIndex, total)
                 }
-                "Transform-All" -> transformScrolls(player, enumIndex, Int.MAX_VALUE)
+                "Transform-All" -> transformScrolls(this, enumIndex, Int.MAX_VALUE)
             }
         }
     }

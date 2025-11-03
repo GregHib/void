@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.dialogue.continueItemDialogue
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
@@ -57,33 +56,33 @@ class GrandExchangeOffers : Script {
             Offers
          */
 
-        interfaceOption("Make Offer", "view_offer_*", "grand_exchange") {
-            val slot = component.removePrefix("view_offer_").toInt()
+        interfaceOption("Make Offer", "grand_exchange:view_offer_*") {
+            val slot = it.component.removePrefix("view_offer_").toInt()
             if (slot > 1 && !World.members) {
                 return@interfaceOption
             }
-            val offer = player.offers.getOrNull(slot) ?: return@interfaceOption
-            player["grand_exchange_box"] = slot
-            selectItem(player, offer.item)
+            val offer = offers.getOrNull(slot) ?: return@interfaceOption
+            set("grand_exchange_box", slot)
+            selectItem(this, offer.item)
         }
 
         /*
             Buy Offer
          */
 
-        interfaceOption("Make Buy Offer", "buy_offer_*", "grand_exchange") {
-            val slot = component.removePrefix("buy_offer_").toInt()
+        interfaceOption("Make Buy Offer", "grand_exchange:buy_offer_*") {
+            val slot = it.component.removePrefix("buy_offer_").toInt()
             if (slot > 1 && !World.members) {
                 return@interfaceOption
             }
-            player["grand_exchange_box"] = slot
-            player["grand_exchange_page"] = "buy"
-            player["grand_exchange_item_id"] = -1
-            openItemSearch(player)
+            set("grand_exchange_box", slot)
+            set("grand_exchange_page", "buy")
+            set("grand_exchange_item_id", -1)
+            openItemSearch(this)
         }
 
-        interfaceOption("Choose Item", "choose_item", "grand_exchange") {
-            openItemSearch(player)
+        interfaceOption("Choose Item", "grand_exchange:choose_item") {
+            openItemSearch(this)
         }
 
         continueItemDialogue { player ->
@@ -101,15 +100,15 @@ class GrandExchangeOffers : Script {
             Sell Offer
          */
 
-        interfaceOption("Make Sell Offer", "sell_offer_*", "grand_exchange") {
-            val slot = component.removePrefix("sell_offer_").toInt()
+        interfaceOption("Make Sell Offer", "grand_exchange:sell_offer_*") {
+            val slot = it.component.removePrefix("sell_offer_").toInt()
             if (slot > 1 && !World.members) {
                 return@interfaceOption
             }
-            player["grand_exchange_box"] = slot
-            player["grand_exchange_page"] = "sell"
-            player.open("stock_side")
-            player["grand_exchange_item_id"] = -1
+            set("grand_exchange_box", slot)
+            set("grand_exchange_page", "sell")
+            open("stock_side")
+            set("grand_exchange_item_id", -1)
         }
 
         interfaceOpen("stock_side") { id ->
@@ -120,20 +119,20 @@ class GrandExchangeOffers : Script {
             sendScript("grand_exchange_hide_all")
         }
 
-        interfaceOption("Offer", "items", "stock_side") {
-            val item = if (item.isNote) item.noted else item
+        interfaceOption("Offer", "stock_side:items") {
+            val item = if (it.item.isNote) it.item.noted else it.item
             if (item == null) {
-                logger.warn { "Issue selling noted item on GE: ${this.item}" }
+                logger.warn { "Issue selling noted item on GE: ${it.item}" }
                 return@interfaceOption
             }
             val def = item.def
             if (!def.exchangeable || def.noted || def.lent || def.dummyItem != 0) {
-                player.message("You can't trade that item on the Grand Exchange.")
+                message("You can't trade that item on the Grand Exchange.")
                 return@interfaceOption
             }
-            selectItem(player, item.id)
-            player["grand_exchange_quantity"] = item.amount
-            player["grand_exchange_price"] = player["grand_exchange_market_price", 0]
+            selectItem(this, item.id)
+            set("grand_exchange_quantity", item.amount)
+            set("grand_exchange_price", get("grand_exchange_market_price", 0))
         }
 
         val grandExchangeItems = itemDefinitions.definitions.filter { def -> def.exchangeable && !def.noted && !def.lent && def.dummyItem == 0 }.map { it.stringId }.toSet()

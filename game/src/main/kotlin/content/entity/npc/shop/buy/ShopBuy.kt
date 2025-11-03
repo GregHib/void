@@ -6,7 +6,6 @@ import content.entity.npc.shop.shopInventory
 import content.entity.npc.shop.stock.Price
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -27,26 +26,26 @@ class ShopBuy : Script {
     val logger = InlineLogger()
 
     init {
-        interfaceOption("Buy *", "button", "item_info") {
-            val amount = when (option) {
+        interfaceOption(id = "item_info:button") {
+            val amount = when (it.option) {
                 "Buy 1" -> 1
                 "Buy 5" -> 5
                 "Buy 10" -> 10
                 "Buy 50" -> 50
                 else -> return@interfaceOption
             }
-            val id: Int = player["info_item"] ?: return@interfaceOption
+            val id: Int = get("info_item") ?: return@interfaceOption
             val item = itemDefs.get(id).stringId
-            val inventory = player.shopInventory()
+            val inventory = shopInventory()
             val index = inventory.indexOf(item)
-            if (player.hasShopSample()) {
-                take(player, inventory, index, amount)
+            if (hasShopSample()) {
+                take(this, inventory, index, amount)
             } else {
-                buy(player, inventory, index, amount)
+                buy(this, inventory, index, amount)
             }
         }
 
-        interfaceOption("Take-*", "sample", "shop") {
+        interfaceOption(id = "shop:sample") { (_, itemSlot, option) ->
             val amount = when (option) {
                 "Take-1" -> 1
                 "Take-5" -> 5
@@ -54,10 +53,10 @@ class ShopBuy : Script {
                 "Take-50" -> 50
                 else -> return@interfaceOption
             }
-            take(player, player.shopInventory(true), itemSlot / 4, amount)
+            take(this, shopInventory(true), itemSlot / 4, amount)
         }
 
-        interfaceOption("Buy-*", "stock", "shop") {
+        interfaceOption(id = "shop:stock") { (_, itemSlot, option) ->
             val amount = when (option) {
                 "Buy-1" -> 1
                 "Buy-5" -> 5
@@ -66,7 +65,7 @@ class ShopBuy : Script {
                 "Buy-500" -> 500
                 else -> return@interfaceOption
             }
-            buy(player, player.shopInventory(false), itemSlot / 6, amount)
+            buy(this, shopInventory(false), itemSlot / 6, amount)
         }
     }
 

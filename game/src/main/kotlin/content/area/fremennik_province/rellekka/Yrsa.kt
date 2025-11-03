@@ -8,7 +8,6 @@ import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -56,20 +55,20 @@ class Yrsa : Script {
             set("makeover_colour_shoes", body.getColour(BodyColour.Feet))
         }
 
-        interfaceOption(component = "styles", id = "yrsas_shoe_store") {
-            val value = enums.get("look_shoes_${player.sex}").getInt(itemSlot / 2)
-            player["makeover_shoes"] = value
+        interfaceOption(id = "yrsas_shoe_store:styles") { (_, itemSlot) ->
+            val value = enums.get("look_shoes_$sex").getInt(itemSlot / 2)
+            set("makeover_shoes", value)
         }
 
-        interfaceOption(component = "colours", id = "yrsas_shoe_store") {
-            player["makeover_colour_shoes"] = enums.get("colour_shoes").getInt(itemSlot / 2)
+        interfaceOption(id = "yrsas_shoe_store:colours") { (_, itemSlot) ->
+            set("makeover_colour_shoes", enums.get("colour_shoes").getInt(itemSlot / 2))
         }
 
-        interfaceOption("Confirm", "confirm", "yrsas_shoe_store") {
-            player.body.setLook(BodyPart.Feet, player["makeover_shoes", 0])
-            player.body.setColour(BodyColour.Feet, player["makeover_colour_shoes", 0])
-            player.flagAppearance()
-            player.closeMenu()
+        interfaceOption("Confirm", "yrsas_shoe_store:confirm") {
+            body.setLook(BodyPart.Feet, get("makeover_shoes", 0))
+            body.setColour(BodyColour.Feet, get("makeover_colour_shoes", 0))
+            flagAppearance()
+            closeMenu()
             npc<Happy>("yrsa", "Hey, They look great!")
         }
     }

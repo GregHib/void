@@ -9,7 +9,6 @@ import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.ListValues
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
@@ -57,23 +56,23 @@ class FairyRing : Script {
             open("inventory")
         }
 
-        interfaceOption("Teleport", "teleport", "fairy_ring") {
-            val code = player.code
-            (player.dialogueSuspension as? StringSuspension)?.resume(code)
+        interfaceOption("Teleport", "fairy_ring:teleport") {
+            val code = code
+            (dialogueSuspension as? StringSuspension)?.resume(code)
         }
 
         interfaceOpen("fairy_ring") {
             tab(Tab.Inventory)
         }
 
-        interfaceOption("Rotate clockwise", "clockwise_*", "fairy_ring") {
-            val codeIndex = component.removePrefix("clockwise_").toInt()
-            rotate(player, codeIndex, 1)
+        interfaceOption("Rotate clockwise", "fairy_ring:clockwise_*") {
+            val codeIndex = it.component.removePrefix("clockwise_").toInt()
+            rotate(this, codeIndex, 1)
         }
 
-        interfaceOption("Rotate anticlockwise", "anticlockwise_*", "fairy_ring") {
-            val codeIndex = component.removePrefix("anticlockwise_").toInt()
-            rotate(player, codeIndex, -1)
+        interfaceOption("Rotate anticlockwise", "fairy_ring:anticlockwise_*") {
+            val codeIndex = it.component.removePrefix("anticlockwise_").toInt()
+            rotate(this, codeIndex, -1)
         }
     }
 

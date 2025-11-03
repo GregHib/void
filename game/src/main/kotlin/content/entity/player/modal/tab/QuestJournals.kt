@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.Timer
@@ -40,13 +39,13 @@ class QuestJournals : Script {
             }
         }
 
-        interfaceOption(component = "journals", id = "quest_journals") {
+        interfaceOption(id = "quest_journals:journals") { (_, itemSlot) ->
             val quest = questDefinitions.getOrNull(itemSlot)
             if (quest == null) {
                 logger.warn { "Unknown quest $itemSlot" }
                 return@interfaceOption
             }
-            player.emit(OpenQuestJournal(player, quest.stringId))
+            emit(OpenQuestJournal(this, quest.stringId))
         }
     }
 }

@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.inject
@@ -31,8 +30,8 @@ class CommonItemCosts : Script {
             interfaceOptions.unlockAll(id, "items", 0..enum.length * 2)
         }
 
-        interfaceOption("Examine", "items", "common_item_costs") {
-            player.message(item.def.getOrNull("examine") ?: return@interfaceOption)
+        interfaceOption("Examine", "common_item_costs:items") { (item) ->
+            message(item.def.getOrNull("examine") ?: return@interfaceOption)
         }
     }
 }

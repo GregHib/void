@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.CloseInterface
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -72,6 +73,13 @@ interface InterfaceInteraction {
         }
     }
 
+
+    fun interfaceOption(option: String = "*", id: String = "*", block: suspend Player.(InterfaceOption) -> Unit) {
+        Wildcards.find(id, Wildcard.Component) { i ->
+            options.getOrPut("$option:$i") { mutableListOf() }.add(block)
+        }
+    }
+
     private fun append(
         fromItem: String,
         toItem: String,
@@ -90,12 +98,19 @@ interface InterfaceInteraction {
     }
 
     companion object {
-        val opened = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(150)
-        val closed = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(75)
-        val refreshed = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(25)
-        val swapped = Object2ObjectOpenHashMap<String, MutableList<Player.(String, String, Int, Int) -> Unit>>(10)
-        val onItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, String) -> Unit>>(2)
-        val itemOnItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, Item, Int, Int) -> Unit>>(800)
+        private val opened = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(150)
+        private val closed = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(75)
+        private val refreshed = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(25)
+        private val swapped = Object2ObjectOpenHashMap<String, MutableList<Player.(String, String, Int, Int) -> Unit>>(10)
+        private val onItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, String) -> Unit>>(2)
+        private val itemOnItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, Item, Int, Int) -> Unit>>(800)
+        private val options = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(InterfaceOption) -> Unit>>(50)
+
+        suspend fun option(player: Player, click: InterfaceOption) {
+            for (block in options["${click.option}:${click.interfaceComponent}"] ?: options["*:${click.interfaceComponent}"] ?: options["${click.option}:*"]  ?: return) {
+                block(player, click)
+            }
+        }
 
         fun open(player: Player, id: String) {
             for (block in opened[id]  ?: return) {
@@ -136,8 +151,11 @@ interface InterfaceInteraction {
         fun clear() {
             opened.clear()
             closed.clear()
+            refreshed.clear()
+            swapped.clear()
             onItem.clear()
             itemOnItem.clear()
+            options.clear()
         }
     }
 }

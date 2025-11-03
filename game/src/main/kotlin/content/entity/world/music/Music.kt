@@ -3,7 +3,6 @@ package content.entity.world.music
 import content.bot.isBot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.client.ui.songEnd
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
@@ -38,38 +37,38 @@ class Music : Script {
             }
         }
 
-        interfaceOption("Play", "tracks", "music_player") {
+        interfaceOption("Play", "music_player:tracks") { (_, itemSlot) ->
             val index = itemSlot / 2
-            if (player.hasUnlocked(index)) {
-                player.playTrack(index)
+            if (hasUnlocked(index)) {
+                playTrack(index)
             }
         }
 
-        interfaceOption("Play", "playlist", "music_player") {
-            val index = player["playlist_slot_${itemSlot + 1}", 32767]
-            if (player.hasUnlocked(index)) {
-                player.playTrack(index)
+        interfaceOption("Play", "music_player:playlist") { (_, itemSlot) ->
+            val index = get("playlist_slot_${itemSlot + 1}", 32767)
+            if (hasUnlocked(index)) {
+                playTrack(index)
             }
         }
 
-        interfaceOption("Add to playlist", "tracks", "music_player") {
-            player.addToPlaylist(itemSlot)
+        interfaceOption("Add to playlist", "music_player:tracks") { (_, itemSlot) ->
+            addToPlaylist(itemSlot)
         }
 
-        interfaceOption("Remove from playlist", id = "music_player") {
-            player.removeSongFromPlaylist(itemSlot, component == "tracks")
+        interfaceOption("Remove from playlist", id = "music_player:*") {
+            removeSongFromPlaylist(it.itemSlot, it.component == "tracks")
         }
 
-        interfaceOption("Playlist on/off", "playlist_toggle", "music_player") {
-            player.togglePlaylist()
+        interfaceOption("Playlist on/off", "music_player:playlist_toggle") {
+            togglePlaylist()
         }
 
-        interfaceOption("Clear Playlist", "clear_playlist", "music_player") {
-            player.clearPlaylist()
+        interfaceOption("Clear Playlist", "music_player:clear_playlist") {
+            clearPlaylist()
         }
 
-        interfaceOption("Shuffle on/off", "shuffle_playlist", "music_player") {
-            player.togglePlaylistShuffle()
+        interfaceOption("Shuffle on/off", "music_player:shuffle_playlist") {
+            togglePlaylistShuffle()
         }
 
         interfaceSwap(fromId = "music_player:playlist") { _, _, fromSlot, toSlot ->

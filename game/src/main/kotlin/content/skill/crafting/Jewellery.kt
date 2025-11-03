@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.data.Jewellery
 import world.gregs.voidps.engine.entity.World
@@ -17,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
@@ -43,15 +41,15 @@ class Jewellery : Script {
             makeMould(it)
         }
 
-        interfaceOption("Make *", "make*", "make_mould*") {
-            val amount = when (option) {
+        interfaceOption(id = "make_mould*:make*") {
+            val amount = when (it.option) {
                 "Make 1" -> 1
                 "Make 5" -> 5
                 "Make All" -> Int.MAX_VALUE
                 "Make X" -> intEntry("Enter amount:")
                 else -> return@interfaceOption
             }
-            make(component, amount)
+            make(it.component, amount)
         }
 
         interfaceClose("make_mould*") {
@@ -82,13 +80,13 @@ class Jewellery : Script {
         }
     }
 
-    fun Context<Player>.make(component: String, amount: Int) {
+    fun Player.make(component: String, amount: Int) {
         val split = component.removePrefix("make_").split("_option_")
         val type = split.first()
         val gem = split.last()
         val item = Item(if (gem == "enchanted_gem" && type == "ring") "ring_of_slaying_8" else "${gem}_$type")
-        player.closeMenu()
-        player.make(item, gem, amount)
+        closeMenu()
+        make(item, gem, amount)
     }
 
     fun Player.make(item: Item, gem: String, amount: Int) {

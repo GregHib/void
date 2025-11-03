@@ -6,7 +6,6 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
@@ -57,69 +56,69 @@ class TaskSystem : Script {
             player["task_area"] = "dnd_activities"
         }
 
-        interfaceOption("Close", "close_hint", "task_system") {
-            player.interfaces.sendVisibility(id, "message_overlay", false)
+        interfaceOption("Close", "task_system:close_hint") {
+            interfaces.sendVisibility("task_system", "message_overlay", false)
         }
 
-        interfaceOption("Select Task", "task_*", "task_system") {
-            val slot = component.removePrefix("task_").toInt()
-            player["task_slot_selected"] = slot
+        interfaceOption("Select Task", "task_system:task_*") {
+            val slot = it.component.removePrefix("task_").toInt()
+            set("task_slot_selected", slot)
         }
 
-        interfaceOption("Toggle", "dont_show", "task_system") {
-            player["task_dont_show_again"] = !player["task_dont_show_again", false]
+        interfaceOption("Toggle", "task_system:dont_show") {
+            set("task_dont_show_again", !get("task_dont_show_again", false))
         }
 
-        interfaceOption("Open", "task_list", "task_system") {
-            player.open("task_list")
+        interfaceOption("Open", "task_system:task_list") {
+            open("task_list")
         }
 
-        interfaceOption("OK", "ok", "task_system") {
-            player.interfaces.sendVisibility("task_system", "summary_overlay", false)
-            val slot = player["task_slot_selected", 0]
-            val selected = indexOfSlot(player, slot) ?: return@interfaceOption
-            if (selected == player["task_pinned", -1]) {
-                player.clear("task_pinned")
-                player.clear("task_pin_slot")
+        interfaceOption("OK", "task_system:ok") {
+            interfaces.sendVisibility("task_system", "summary_overlay", false)
+            val slot = get("task_slot_selected", 0)
+            val selected = indexOfSlot(this, slot) ?: return@interfaceOption
+            if (selected == get("task_pinned", -1)) {
+                clear("task_pinned")
+                clear("task_pin_slot")
             }
-            player.interfaces.sendVisibility("task_system", "ok", false)
-            refreshSlots(player)
+            interfaces.sendVisibility("task_system", "ok", false)
+            refreshSlots(this)
         }
 
-        interfaceOption("Pin/Unpin Task", "task_*", "task_system") {
-            val index = component.removePrefix("task_").toInt()
-            pin(player, index)
+        interfaceOption("Pin/Unpin Task", "task_system:task_*") {
+            val index = it.component.removePrefix("task_").toInt()
+            pin(this, index)
         }
 
-        interfaceOption("Set", "pin", "task_system") {
-            val slot = player.get<Int>("task_slot_selected") ?: return@interfaceOption
-            pin(player, slot)
-            player.interfaces.sendVisibility("task_system", "summary_overlay", false)
+        interfaceOption("Set", "task_system:pin") {
+            val slot = get<Int>("task_slot_selected") ?: return@interfaceOption
+            pin(this, slot)
+            interfaces.sendVisibility("task_system", "summary_overlay", false)
         }
 
-        interfaceOption("Details", "details", "task_popup") {
-            if (player.questCompleted("unstable_foundations")) {
-                player["task_popup_summary"] = true
-                player.interfaces.sendVisibility("task_system", "ok", true)
-                val index = player["task_popup", -1]
+        interfaceOption("Details", "task_popup:details") {
+            if (questCompleted("unstable_foundations")) {
+                set("task_popup_summary", true)
+                interfaces.sendVisibility("task_system", "ok", true)
+                val index = get("task_popup", -1)
                 for (slot in 0 until 6) {
-                    if (player["task_slot_$slot", -1] == index) {
-                        player["task_slot_selected"] = slot
+                    if (get("task_slot_$slot", -1) == index) {
+                        set("task_slot_selected", slot)
                         break
                     }
                 }
             }
-            player.tab(Tab.TaskSystem)
+            tab(Tab.TaskSystem)
         }
 
-        interfaceOption("Hint", "hint_*", "task_system") {
-            val selected = player["task_slot_selected", 0]
-            val index = indexOfSlot(player, selected) ?: return@interfaceOption
-            val tile: Int = enumDefinitions.getStructOrNull("task_structs", index, component.replace("hint_", "task_hint_tile_")) ?: return@interfaceOption
+        interfaceOption("Hint", "task_system:hint_*") {
+            val selected = get("task_slot_selected", 0)
+            val index = indexOfSlot(this, selected) ?: return@interfaceOption
+            val tile: Int = enumDefinitions.getStructOrNull("task_structs", index, it.component.replace("hint_", "task_hint_tile_")) ?: return@interfaceOption
             // TODO I expect the functionality is actually minimap highlights not world map
-            player["world_map_marker_1"] = tile
-            player["world_map_marker_text_1"] = ""
-            player.open("world_map")
+            set("world_map_marker_1", tile)
+            set("world_map_marker_text_1", "")
+            open("world_map")
         }
 
         variableSet("task_pin_slot,task_area,*_task") { key, _, to ->

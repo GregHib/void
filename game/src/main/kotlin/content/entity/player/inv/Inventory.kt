@@ -3,7 +3,6 @@ package content.entity.player.inv
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.inv.inventory
@@ -25,7 +24,7 @@ class Inventory : Script {
             queue.clearWeak()
         }
 
-        interfaceSwap("inventory") { _, _, fromSlot, toSlot ->
+        interfaceSwap("inventory:*") { _, _, fromSlot, toSlot ->
             closeInterfaces()
             if (mode is CombatMovement) {
                 mode = EmptyMode
@@ -35,7 +34,7 @@ class Inventory : Script {
             }
         }
 
-        interfaceOption(component = "inventory", id = "inventory") {
+        interfaceOption(id = "inventory:inventory") { (item, itemSlot, _, optionIndex, id) ->
             val itemDef = item.def
             val equipOption = when (optionIndex) {
                 6 -> itemDef.options.getOrNull(3)
@@ -47,14 +46,14 @@ class Inventory : Script {
                 logger.info { "Unknown item option $item $optionIndex" }
                 return@interfaceOption
             }
-            player.closeInterfaces()
-            if (player.mode is CombatMovement) {
-                player.mode = EmptyMode
+            closeInterfaces()
+            if (mode is CombatMovement) {
+                mode = EmptyMode
             }
-            player.emit(
+            emit(
                 InventoryOption(
-                    player,
-                    id,
+                    this,
+                    id.substringBefore(":"),
                     item,
                     itemSlot,
                     equipOption,

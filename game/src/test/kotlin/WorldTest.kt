@@ -194,6 +194,7 @@ abstract class WorldTest : KoinTest {
         }
         Wildcards.load(Settings["storage.wildcards"])
         ContentLoader.load()
+        Wildcards.clear()
         MapDefinitions(CollisionDecoder(get()), get(), get(), cache).loadCache()
         saves = File(Settings["storage.players.path"])
         saves?.mkdirs()

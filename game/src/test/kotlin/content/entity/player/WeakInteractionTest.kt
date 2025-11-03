@@ -47,8 +47,7 @@ internal class WeakInteractionTest : WorldTest() {
 
             when (it) {
                 "Interface switch" -> {
-                    val wool = Item("ball_of_wool")
-                    player.interfaceSwitch("inventory", "inventory", "inventory", wool, wool, 0, 1)
+                    player.interfaceSwitch("inventory", "inventory", 0, 1)
                 }
                 "Remove equipment" -> player.interfaceOption("worn_equipment", "weapon_slot", "*", 0, Item("bronze_sword"))
                 "Activate prayer" -> player.interfaceOption("prayer_list", "regular_prayers", "Activate", slot = 0)

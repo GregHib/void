@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -63,31 +62,31 @@ class MakeoverMage : Script {
             interfaces.sendText(id, "confirm", "CONFIRM")
         }
 
-        interfaceOption("Select Female", "female", "skin_colour") {
-            player["makeover_female"] = true
-            player.sendVariable("makeover_colour_skin")
+        interfaceOption("Select Female", "skin_colour:female") {
+            set("makeover_female", true)
+            sendVariable("makeover_colour_skin")
         }
 
-        interfaceOption("Select Male", "male", "skin_colour") {
-            player["makeover_female"] = false
-            player.sendVariable("makeover_colour_skin")
+        interfaceOption("Select Male", "skin_colour:male") {
+            set("makeover_female", false)
+            sendVariable("makeover_colour_skin")
         }
 
-        interfaceOption(component = "colour_*", id = "skin_colour") {
-            player["makeover_colour_skin"] = enums.get("character_skin").getInt(component.removePrefix("colour_").toInt())
+        interfaceOption(id = "skin_colour:colour_*") {
+            set("makeover_colour_skin", enums.get("character_skin").getInt(it.component.removePrefix("colour_").toInt()))
         }
 
-        interfaceOption("Confirm", "confirm", "skin_colour") {
-            val male = !player["makeover_female", false]
-            val changed = player.body.getColour(BodyColour.Skin) != player["makeover_colour_skin", 0] || player.body.male != male
-            player.body.setColour(BodyColour.Skin, player["makeover_colour_skin", 0])
-            if (player.body.male != male) {
-                swapSex(player, male)
+        interfaceOption("Confirm", "skin_colour:confirm") {
+            val male = !get("makeover_female", false)
+            val changed = body.getColour(BodyColour.Skin) != get("makeover_colour_skin", 0) || body.male != male
+            body.setColour(BodyColour.Skin, get("makeover_colour_skin", 0))
+            if (body.male != male) {
+                swapSex(this, male)
             }
-            player.flagAppearance()
-            player.closeMenu()
-            val mage = npcs[player.tile.regionLevel].first { it.id.startsWith("makeover_mage") }
-            player.talkWith(mage)
+            flagAppearance()
+            closeMenu()
+            val mage = npcs[tile.regionLevel].first { it.id.startsWith("makeover_mage") }
+            talkWith(mage)
             if (!changed) {
                 npc<Quiz>("That is no different from what you already have. I guess I shouldn't charge you if I'm not changing anything.")
                 return@interfaceOption

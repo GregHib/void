@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -163,32 +162,32 @@ suspend fun Player.startQuest(questId: String): Boolean {
 class QuestStart : Script {
 
     init {
-        interfaceOption("Show required items", "items_hidden_button_txt", "quest_intro") {
-            player.interfaces.sendVisibility(id, "items_hide_show_layer", false)
-            player.interfaces.sendVisibility(id, "items_text_details_layer", true)
-            player.interfaces.sendVisibility(id, "scroll_layer_item", true)
+        interfaceOption("Show required items", "quest_intro:items_hidden_button_txt") {
+            interfaces.sendVisibility("quest_intro", "items_hide_show_layer", false)
+            interfaces.sendVisibility("quest_intro", "items_text_details_layer", true)
+            interfaces.sendVisibility("quest_intro", "scroll_layer_item", true)
         }
 
-        interfaceOption("Show rewards", "hidden_button_txt", "quest_intro") {
-            player.interfaces.sendVisibility(id, "hide_show_layer", false)
-            player.interfaces.sendVisibility(id, "text_details_layer", true)
-            player.interfaces.sendVisibility(id, "scroll_layer_rewards", true)
+        interfaceOption("Show rewards", "quest_intro:hidden_button_txt") {
+            interfaces.sendVisibility("quest_intro", "hide_show_layer", false)
+            interfaces.sendVisibility("quest_intro", "text_details_layer", true)
+            interfaces.sendVisibility("quest_intro", "scroll_layer_rewards", true)
         }
 
-        interfaceOption("Mark", "objective_set", "quest_intro") {
-            player["quest_intro_unmark_map"] = !player["quest_intro_unmark_map", false]
+        interfaceOption("Mark", "quest_intro:objective_set") {
+            set("quest_intro_unmark_map", !get("quest_intro_unmark_map", false))
         }
 
-        interfaceOption("Mark", "objective_text", "quest_intro") {
-            player["quest_intro_unmark_map"] = !player["quest_intro_unmark_map", false]
+        interfaceOption("Mark", "quest_intro:objective_text") {
+            set("quest_intro_unmark_map", !get("quest_intro_unmark_map", false))
         }
 
-        interfaceOption("No", "startno_layer", "quest_intro") {
-            (player.dialogueSuspension as? StringSuspension)?.resume("no")
+        interfaceOption("No", "quest_intro:startno_layer") {
+            (dialogueSuspension as? StringSuspension)?.resume("no")
         }
 
-        interfaceOption("Yes", "startyes_layer", "quest_intro") {
-            (player.dialogueSuspension as? StringSuspension)?.resume("yes")
+        interfaceOption("Yes", "quest_intro:startyes_layer") {
+            (dialogueSuspension as? StringSuspension)?.resume("yes")
         }
 
         interfaceClose("quest_intro") {

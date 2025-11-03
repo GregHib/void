@@ -1,7 +1,6 @@
 package content.entity.player.stat
 
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
 import world.gregs.voidps.network.login.protocol.encode.skillLevel
@@ -24,8 +23,8 @@ class Experience : Script {
             }
         }
 
-        interfaceOption("Reset XP Total", "xp_orb", "toplevel*") {
-            player["xp_counter"] = 0.0
+        interfaceOption("Reset XP Total", "toplevel*:xp_orb") {
+            set("xp_counter", 0.0)
         }
 
         experience { player ->

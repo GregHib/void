@@ -9,7 +9,6 @@ import content.social.ignore.ignores
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.*
@@ -113,29 +112,30 @@ class FriendsList : Script {
             }
         }
 
-        interfaceOption(component = "private", id = "filter_buttons") {
-            if (player.privateStatus != "on" && option != "Off") {
+        interfaceOption(id = "filter_buttons:private") {
+            val option = it.option
+            if (privateStatus != "on" && option != "Off") {
                 val next = option.lowercase()
-                notifyBefriends(player, online = true) { it, current ->
+                notifyBefriends(this, online = true) { p, current ->
                     when {
-                        current == "off" && next == "on" -> !player.ignores(it)
-                        current == "off" && next == "friends" -> !it.isAdmin() && friends(player, it)
-                        current == "friends" && next == "on" -> !friends(player, it) && !player.ignores(it)
+                        current == "off" && next == "on" -> !ignores(p)
+                        current == "off" && next == "friends" -> !p.isAdmin() && friends(this, p)
+                        current == "friends" && next == "on" -> !friends(this, p) && !ignores(p)
                         else -> false
                     }
                 }
-            } else if (player.privateStatus != "off" && option != "On") {
+            } else if (privateStatus != "off" && option != "On") {
                 val next = option.lowercase()
-                notifyBefriends(player, online = false) { it, current ->
+                notifyBefriends(this, online = false) { p, current ->
                     when {
-                        current == "friends" && next == "off" -> player.friend(it) && !it.isAdmin()
-                        current == "on" && next == "friends" -> !friends(player, it)
-                        current == "on" && next == "off" -> !it.isAdmin()
+                        current == "friends" && next == "off" -> friend(p) && !p.isAdmin()
+                        current == "on" && next == "friends" -> !friends(this, p)
+                        current == "on" && next == "off" -> !p.isAdmin()
                         else -> false
                     }
                 }
             }
-            player.privateStatus = option.lowercase()
+            privateStatus = option.lowercase()
         }
 
         clanChatLeave { player ->

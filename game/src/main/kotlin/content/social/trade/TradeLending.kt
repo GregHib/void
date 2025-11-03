@@ -4,7 +4,6 @@ import content.entity.player.dialogue.type.intEntry
 import content.social.trade.Trade.getPartner
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
@@ -29,18 +28,18 @@ class TradeLending : Script {
             loan.itemRule = lendRestriction
         }
 
-        interfaceOption("Specify", "loan_time", "trade_main") {
+        interfaceOption("Specify", "trade_main:loan_time") {
             val hours = intEntry("Set the loan duration in hours: (1 - 72)<br>(Enter <col=7f0000>0</col> for 'Just until logout'.)").coerceIn(0, 72)
-            setLend(player, hours)
+            setLend(this, hours)
         }
 
-        interfaceOption("‘Until Logout‘", "loan_time", "trade_main") {
-            setLend(player, 0)
+        interfaceOption("‘Until Logout‘", "trade_main:loan_time") {
+            setLend(this, 0)
         }
 
-        interfaceOption("Lend", "offer", "trade_side") {
-            val partner = getPartner(player) ?: return@interfaceOption
-            lend(player, partner, item.id, itemSlot)
+        interfaceOption("Lend", "trade_side:offer") { (item, itemSlot) ->
+            val partner = getPartner(this) ?: return@interfaceOption
+            lend(this, partner, item.id, itemSlot)
         }
     }
 

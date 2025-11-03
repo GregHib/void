@@ -6,7 +6,6 @@ import content.entity.effect.transform
 import content.entity.player.inv.inventoryOptions
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.queue
@@ -23,8 +22,8 @@ class Morphing : Script {
             morph(player, item.id)
         }
 
-        interfaceOption("Ok", "unmorph", "morph") {
-            unmorph(player)
+        interfaceOption("Ok", "morph:unmorph") {
+            unmorph(this)
         }
     }
 

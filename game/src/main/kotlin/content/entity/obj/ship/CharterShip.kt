@@ -10,7 +10,6 @@ import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -98,21 +97,22 @@ class CharterShip : Script {
             open("charter_ship_map")
         }
 
-        interfaceOption("Ok", "*", "charter_ship_map") {
-            val currentLocation = player["charter_ship", ""]
+        interfaceOption("Ok", "charter_ship_map:*") {
+            val currentLocation = get("charter_ship", "")
+            val component = it.component
             if (component == currentLocation) {
                 return@interfaceOption
             }
             val price = ships.get(currentLocation, component) ?: return@interfaceOption
-            if (!player.hasQuestRequirements(component)) {
+            if (!hasQuestRequirements(component)) {
                 return@interfaceOption
             }
             val readablePrice = price.toDigitGroupString()
-            player.strongQueue("charter_ship") {
-                if (!player.inventory.contains("coins", price)) {
+            strongQueue("charter_ship") {
+                if (!inventory.contains("coins", price)) {
                     choice("Sailing to ${component.toTitleCase()} costs $readablePrice coins.") {
                         option("Choose again") {
-                            player.open("charter_ship_map")
+                            open("charter_ship_map")
                         }
                         option("No")
                     }
@@ -121,19 +121,19 @@ class CharterShip : Script {
                 statement("To sail to ${component.toTitleCase()} from here will cost you $readablePrice gold. Are you sure you want to pay that?")
                 choice {
                     option("Ok") {
-                        if (player.inventory.remove("coins", price)) {
-                            player.jingle("sailing_theme_short")
-                            player.open("fade_out")
+                        if (inventory.remove("coins", price)) {
+                            jingle("sailing_theme_short")
+                            open("fade_out")
                             delay(4)
                             val teleport = teles.get("${component}_gangplank_enter", "Cross").first()
-                            player.tele(teleport.to)
-                            player.open("fade_in")
+                            tele(teleport.to)
+                            open("fade_in")
                             delay(3)
-                            player.message("You pay the fare and sail to ${component.toTitleCase()}.", ChatType.Filter)
+                            message("You pay the fare and sail to ${component.toTitleCase()}.", ChatType.Filter)
                         }
                     }
                     option("Choose again") {
-                        player.open("charter_ship_map")
+                        open("charter_ship_map")
                     }
                     option("No")
                 }
