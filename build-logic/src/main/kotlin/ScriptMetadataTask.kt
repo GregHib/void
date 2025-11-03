@@ -222,7 +222,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
             scripts++
         }
         scriptsFile.writeText(lines.joinToString("\n"))
-        wildcardsFile.writeText(wildcards.joinToString("\n"))
+        wildcardsFile.writeText(wildcards.distinct().joinToString("\n"))
         disposable.dispose()
         println("Metadata for $scripts scripts collected in ${System.currentTimeMillis() - start} ms")
     }
