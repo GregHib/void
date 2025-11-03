@@ -13,6 +13,7 @@ import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
 import walk
+import world.gregs.voidps.engine.client.instruction.handle.interactOn
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -22,7 +23,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.network.client.instruction.InteractInterfaceNPC
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
@@ -137,7 +137,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val fire = objects[Tile(3079, 3445), "fire_orange"]!!
 
         player.itemOnObject(fire, 0)
-        tick(4)
+        tick(5)
 
         assertTrue(player["shellfish_roasting_on_an_open_fire_task", false])
     }
@@ -344,8 +344,8 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
         val npc = npcs[player.tile.zone].first { it.id == "magic_dummy" }
 
-        player.instructions.send(InteractInterfaceNPC(npc.index, 192, 25, -1, -1))
-        tick(1)
+        player.interactOn(npc, "modern_spellbook", "wind_strike")
+        tick(2)
 
         assertTrue(player["death_from_above_task", false])
     }
@@ -621,7 +621,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val fire = objects[Tile(3079, 3445), "fire_orange"]!!
 
         player.itemOnObject(fire, 0)
-        tick(4)
+        tick(5)
 
         assertTrue(player["its_not_a_red_one_task", false])
     }
@@ -636,8 +636,8 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
         val npc = npcs[player.tile.zone].first { it.id == "magic_dummy" }
 
-        player.instructions.send(InteractInterfaceNPC(npc.index, 192, 26, -1, -1))
-        tick(1)
+        player.interactOn(npc, "modern_spellbook", "confuse")
+        tick(2)
 
         assertTrue(player["not_so_confusing_after_all_task", false])
     }
@@ -681,7 +681,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
 
         val oven = objects[Tile(3230, 3196), "cooking_range_lumbridge"]!!
         player.itemOnObject(oven, 0)
-        tick(4)
+        tick(5)
 
         assertTrue(player["berry_tasty_task", false])
     }

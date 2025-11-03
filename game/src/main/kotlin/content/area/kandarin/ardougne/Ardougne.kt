@@ -8,7 +8,6 @@ import content.entity.sound.sound
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -16,7 +15,6 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
@@ -28,36 +26,36 @@ class Ardougne : Script {
     )
 
     init {
-        itemOnObjectOperate("bucket_of_water", "plague_mud_patch2") {
-            if (player.quest("plague_city") == "about_digging") {
-                player.anim("farming_pour_water")
-                player["plague_city"] = "one_bucket_of_water"
-                player.inventory.replace("bucket_of_water", "bucket")
+        itemOnObjectOperate("bucket_of_water", "plague_mud") {
+            if (quest("plague_city") == "about_digging") {
+                anim("farming_pour_water")
+                set("plague_city", "one_bucket_of_water")
+                inventory.replace("bucket_of_water", "bucket")
                 statement("You pour water onto the soil.<br>The soil softens slightly.")
-            } else if (player.quest("plague_city") == "one_bucket_of_water") {
-                player.anim("farming_pour_water")
-                player["plague_city"] = "two_bucket_of_water"
-                player.inventory.replace("bucket_of_water", "bucket")
+            } else if (quest("plague_city") == "one_bucket_of_water") {
+                anim("farming_pour_water")
+                set("plague_city", "two_bucket_of_water")
+                inventory.replace("bucket_of_water", "bucket")
                 statement("You pour water onto the soil.<br>The soil softens slightly.")
-            } else if (player.quest("plague_city") == "two_bucket_of_water") {
-                player.anim("farming_pour_water")
-                player["plague_city"] = "three_bucket_of_water"
-                player.inventory.replace("bucket_of_water", "bucket")
+            } else if (quest("plague_city") == "two_bucket_of_water") {
+                anim("farming_pour_water")
+                set("plague_city", "three_bucket_of_water")
+                inventory.replace("bucket_of_water", "bucket")
                 statement("You pour water onto the soil.<br>The soil softens slightly.")
-            } else if (player.quest("plague_city") == "three_bucket_of_water") {
-                player.anim("farming_pour_water")
-                player["plague_city"] = "four_bucket_of_water"
-                player.inventory.replace("bucket_of_water", "bucket")
+            } else if (quest("plague_city") == "three_bucket_of_water") {
+                anim("farming_pour_water")
+                set("plague_city", "four_bucket_of_water")
+                inventory.replace("bucket_of_water", "bucket")
                 statement("You pour water onto the soil.<br>The soil is now soft enough to dig into..")
-            } else if (player.quest("plague_city") == "four_bucket_of_water") {
+            } else if (quest("plague_city") == "four_bucket_of_water") {
                 dig()
             } else {
                 statement("You see no reason to do that at the moment.")
             }
         }
 
-        itemOnObjectOperate("spade", "plague_mud_patch2") {
-            if (player.quest("plague_city") == "four_bucket_of_water") {
+        itemOnObjectOperate("spade", "plague_mud") {
+            if (quest("plague_city") == "four_bucket_of_water") {
                 dig()
             } else {
                 statement("You see no reason to do that at the moment.")
@@ -69,7 +67,7 @@ class Ardougne : Script {
             player.anim("dig_with_spade")
             if (mudpatch.contains(playerTile)) {
                 if (player.quest("plague_city") == "four_bucket_of_water") {
-                    dig()
+                    player.dig()
                 } else {
                     item("spade", 800, "You dig the soil... <br> The ground is rather hard.")
                 }
@@ -103,15 +101,15 @@ class Ardougne : Script {
         }
     }
 
-    private suspend fun SuspendableContext<Player>.dig() {
-        player.open("fade_out")
+    private suspend fun Player.dig() {
+        open("fade_out")
         statement("You dig deep into the soft soil... Suddenly it crumbles away! You fall through into the sewer. Edmond follows you down the hole.", clickToContinue = false)
         delay(5)
-        player.tele(Tile(2518, 9760, 0))
-        player["plague_city"] = "sewer"
-        player["plaguecity_dug_mud_pile"] = true
-        player["plaguecity_can_see_edmond_up_top"] = true
-        player.open("fade_in")
+        tele(Tile(2518, 9760, 0))
+        set("plague_city", "sewer")
+        set("plaguecity_dug_mud_pile", true)
+        set("plaguecity_can_see_edmond_up_top", true)
+        open("fade_in")
         statement("You dig deep into the soft soil... Suddenly it crumbles away! You fall through into the sewer. Edmond follows you down the hole.")
     }
 }

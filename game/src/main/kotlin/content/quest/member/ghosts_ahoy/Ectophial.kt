@@ -5,10 +5,8 @@ import content.skill.magic.spell.Teleport.Companion.teleport
 import content.skill.magic.spell.teleportLand
 import content.skill.magic.spell.teleportTakeOff
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.instruction.handle.interactItemOn
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.ItemOnObject
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -30,9 +28,9 @@ class Ectophial : Script {
         }
 
         itemOnObjectOperate("ectophial_empty", "ectofuntus") {
-            if (player.inventory.replace(itemSlot, item.id, "ectophial")) {
-                player.anim("take")
-                player.message("You refill the ectophial from the Ectofuntus.")
+            if (inventory.replace(it.slot, it.item.id, "ectophial")) {
+                anim("take")
+                message("You refill the ectophial from the Ectofuntus.")
             }
         }
 
@@ -46,7 +44,7 @@ class Ectophial : Script {
             player.message("... and the world changes around you.", ChatType.Filter)
             val ectofuntus = objects[Tile(3658, 3518), "ectofuntus"] ?: return@teleportLand
             val slot = player.inventory.indexOf("ectophial")
-            player.mode = Interact(player, ectofuntus, ItemOnObject(player, ectofuntus, Item("ectophial_empty"), slot, "inventory"))
+            player.interactItemOn(ectofuntus, "inventory", "inventory", Item("empty_ectophial"), slot)
         }
     }
 }

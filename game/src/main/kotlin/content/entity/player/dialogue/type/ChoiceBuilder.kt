@@ -4,8 +4,6 @@ import content.entity.player.dialogue.Expression
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.SuspendableContext
 
-typealias PlayerChoice = ChoiceBuilder<out SuspendableContext<Player>>
-
 class ChoiceBuilder<Context : SuspendableContext<Player>> {
 
     val values = mutableListOf<Option<Context>>()

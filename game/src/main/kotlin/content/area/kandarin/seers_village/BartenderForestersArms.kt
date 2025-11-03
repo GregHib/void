@@ -9,7 +9,6 @@ import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
 import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -59,11 +58,11 @@ class BartenderForestersArms : Script {
             }
         }
 
-        itemOnNPCOperate("barcrawl_card", "bartender_foresters_arms") {
-            if (player.containsVarbit("barcrawl_signatures", "liverbane_ale")) {
+        itemOnNPCOperate("barcrawl_card", "bartender_foresters_arms") { (target) ->
+            if (containsVarbit("barcrawl_signatures", "liverbane_ale")) {
                 return@itemOnNPCOperate
             }
-            player.barCrawl(target)
+            barCrawl(target)
         }
     }
 

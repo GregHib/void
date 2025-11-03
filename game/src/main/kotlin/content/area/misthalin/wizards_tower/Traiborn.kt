@@ -7,7 +7,6 @@ import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -49,10 +48,10 @@ class Traiborn : Script {
             }
         }
 
-        itemOnNPCOperate("bones", "traiborn") {
-            if (player.bonesRequired > 0) {
-                player.talkWith(target)
-                player.giveBones(target)
+        itemOnNPCOperate("bones", "traiborn") { (target) ->
+            if (bonesRequired > 0) {
+                talkWith(target)
+                giveBones(target)
             }
         }
     }

@@ -1,3 +1,7 @@
+[blank_air_altar_ruins]
+id = 7103
+examine = "There is a powerful presence about these ruins..."
+
 [air_altar_ruins]
 id = 2452
 examine = "There is a powerful presence about these ruins..."
@@ -6,44 +10,88 @@ examine = "There is a powerful presence about these ruins..."
 id = 2453
 examine = "There is a powerful presence about these ruins..."
 
+[blank_mind_altar_ruins]
+id = 7105
+examine = "There is a powerful presence about these ruins..."
+
 [water_altar_ruins]
 id = 2454
+examine = "There is a powerful presence about these ruins..."
+
+[blank_water_altar_ruins]
+id = 7107
 examine = "There is a powerful presence about these ruins..."
 
 [earth_altar_ruins]
 id = 2455
 examine = "There is a powerful presence about these ruins..."
 
+[blank_earth_altar_ruins]
+id = 7109
+examine = "There is a powerful presence about these ruins..."
+
 [fire_altar_ruins]
 id = 2456
+examine = "There is a powerful presence about these ruins..."
+
+[blank_fire_altar_ruins]
+id = 7111
 examine = "There is a powerful presence about these ruins..."
 
 [body_altar_ruins]
 id = 2457
 examine = "There is a powerful presence about these ruins..."
 
+[blank_body_altar_ruins]
+id = 7113
+examine = "There is a powerful presence about these ruins..."
+
 [cosmic_altar_ruins]
 id = 2458
+examine = "There is a powerful presence about these ruins..."
+
+[blank_cosmic_altar_ruins]
+id = 7115
 examine = "There is a powerful presence about these ruins..."
 
 [law_altar_ruins]
 id = 2459
 examine = "There is a powerful presence about these ruins..."
 
+[blank_law_altar_ruins]
+id = 7117
+examine = "There is a powerful presence about these ruins..."
+
 [nature_altar_ruins]
 id = 2460
+examine = "There is a powerful presence about these ruins..."
+
+[blank_nature_altar_ruins]
+id = 7119
 examine = "There is a powerful presence about these ruins..."
 
 [chaos_altar_ruins]
 id = 2461
 examine = "There is a powerful presence about these ruins..."
 
+[blank_chaos_altar_ruins]
+id = 7121
+examine = "There is a powerful presence about these ruins..."
+
 [death_altar_ruins]
 id = 2462
 examine = "There is a powerful presence about these ruins..."
 
+[blank_death_altar_ruins]
+id = 7123
+examine = "There is a powerful presence about these ruins..."
+
 [blood_altar_ruins]
 id = 2464
+examine = "A pile of stones crafted into skulls, it seems to emanate magical energy."
+
+[blank_blood_altar_ruins]
+id = 30529
 examine = "A pile of stones crafted into skulls, it seems to emanate magical energy."
 
 [air_altar_ruins_enter]

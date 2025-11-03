@@ -10,7 +10,6 @@ import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
 import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -42,11 +41,11 @@ class BartenderDeadMansChest : Script {
             }
         }
 
-        itemOnNPCOperate("barcrawl_card", "bartender_dead_mans_chest") {
-            if (player.containsVarbit("barcrawl_signatures", "supergrog")) {
+        itemOnNPCOperate("barcrawl_card", "bartender_dead_mans_chest") { (target) ->
+            if (containsVarbit("barcrawl_signatures", "supergrog")) {
                 return@itemOnNPCOperate
             }
-            player.barCrawl(target)
+            barCrawl(target)
         }
     }
 

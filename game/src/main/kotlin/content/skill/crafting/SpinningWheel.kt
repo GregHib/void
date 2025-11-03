@@ -7,7 +7,6 @@ import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.data.definition.data.Spinning
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -67,17 +66,17 @@ class SpinningWheel : Script {
             start(this, target, fibre, amount)
         }
 
-        itemOnObjectOperate(obj = "spinning_wheel*", arrive = false) {
+        itemOnObjectOperate(obj = "spinning_wheel*", arrive = false) { (target, item) ->
             if (!item.def.contains("spinning")) {
                 return@itemOnObjectOperate
             }
             val (_, amount) = makeAmount(
                 items = listOf(item.spinning.to),
                 type = "Make",
-                maximum = player.inventory.count(item.id),
+                maximum = inventory.count(item.id),
                 text = "How many would you like to make?",
             )
-            start(player, target, item, amount)
+            start(this, target, item, amount)
         }
     }
 

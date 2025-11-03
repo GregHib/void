@@ -5,7 +5,6 @@ import content.entity.player.dialogue.type.*
 import content.entity.sound.sound
 import content.quest.quest
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -50,12 +49,12 @@ class Joe : Script {
         }
 
         itemOnNPCOperate("beer", "jail_guard_joe") {
-            when (player.quest("prince_ali_rescue")) {
+            when (quest("prince_ali_rescue")) {
                 "guard" -> {
                     player<Happy>("I have some beer here. Fancy one?")
-                    player.beer()
+                    beer()
                 }
-                "joe_beer" -> player.anotherBeer()
+                "joe_beer" -> anotherBeer()
                 else -> player<Talk>("I don't see any need to give the guard my beer. I'll keep it for myself.")
             }
         }

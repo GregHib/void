@@ -9,7 +9,6 @@ import content.skill.melee.weapon.fightStyle
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.interfaceOnNPCApproach
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -81,24 +80,24 @@ class Attack : Script {
             combatInteraction(this, target)
         }
 
-        interfaceOnNPCApproach(id = "*_spellbook") {
-            if (!player.has(Skill.Slayer, target.def["slayer_level", 0])) {
-                player.message("You need a higher slayer level to know how to wound this monster.")
-                cancel()
-                return@interfaceOnNPCApproach
+        onNPCApproach("*_spellbook:*") { (target, id) ->
+            if (!has(Skill.Slayer, target.def["slayer_level", 0])) {
+                message("You need a higher slayer level to know how to wound this monster.")
+//                cancel() FIXME
+                return@onNPCApproach
             }
             approachRange(8, update = false)
-            player.spell = component
-            if (target.id.endsWith("_dummy") && !player.handleCombatDummies(target)) {
-                player.clear("spell")
-                return@interfaceOnNPCApproach
+            spell = id.substringAfter(":")
+            if (target.id.endsWith("_dummy") && !handleCombatDummies(target)) {
+                clear("spell")
+                return@onNPCApproach
             }
-            player["attack_speed"] = 5
-            player["one_time"] = true
-            player.attackRange = 8
-            player.face(target)
-            combatInteraction(player, target)
-            cancel()
+            set("attack_speed", 5)
+            set("one_time", true)
+            attackRange = 8
+            face(target)
+            combatInteraction(this, target)
+//            cancel() FIXME
         }
 
         combatPrepare { player ->

@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCApproach
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -97,7 +96,7 @@ class GrandExchangeItemSets : Script {
 
         itemOnNPCApproach(npc = "grand_exchange_clerk*") {
             approachRange(2)
-            exchangeSet(player, item, itemSlot)
+            exchangeSet(this, it.item, it.slot)
         }
     }
 

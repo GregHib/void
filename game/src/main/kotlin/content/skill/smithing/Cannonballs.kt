@@ -7,8 +7,6 @@ import content.entity.sound.sound
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
@@ -27,22 +25,22 @@ class Cannonballs : Script {
     val logger = InlineLogger()
 
     init {
-        itemOnObjectOperate("steel_bar", "furnace*") {
-            if (player.quest("dwarf_cannon") != "completed") {
-                player.noInterest()
+        itemOnObjectOperate("steel_bar", "furnace*") { (target) ->
+            if (quest("dwarf_cannon") != "completed") {
+                noInterest()
                 return@itemOnObjectOperate
             }
-            if (!player.inventory.contains("ammo_mould")) {
+            if (!inventory.contains("ammo_mould")) {
                 statement("You need a mould to make cannonballs with.")
                 return@itemOnObjectOperate
             }
-            val max = player.inventory.count("steel_bar")
+            val max = inventory.count("steel_bar")
             val (item, amount) = makeAmount(listOf("cannonball"), "Make", max, names = listOf("Cannonball<br>(set of 4)"))
-            smelt(player, target, item, amount)
+            smelt(this, target, item, amount)
         }
     }
 
-    suspend fun Interaction<Player>.smelt(player: Player, target: GameObject, id: String, amount: Int) {
+    suspend fun smelt(player: Player, target: GameObject, id: String, amount: Int) {
         if (amount <= 0) {
             return
         }
@@ -53,12 +51,12 @@ class Cannonballs : Script {
         player.anim("furnace_smelt")
         player.sound("smelt_bar")
         player.message("You heat the steel bar into a liquid state.", ChatType.Filter)
-        delay(3)
+        player.delay(3)
         player.message("You poor the molten metal into your cannonball mould.", ChatType.Filter)
         player.anim("climb_down")
-        delay(1)
+        player.delay(1)
         player.message("The molten metal cools slowly to form 4 cannonballs.", ChatType.Filter)
-        delay(3)
+        player.delay(3)
         player.anim("climb_down")
         player.message("You remove the cannonballs from the mould.", ChatType.Filter)
         player.inventory.transaction {

@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.data.definition.data.Weaving
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -47,14 +46,14 @@ class Weaving : Script {
             weave(target, item, amount)
         }
 
-        itemOnObjectOperate(obj = "loom_*", arrive = false) {
+        itemOnObjectOperate(obj = "loom_*", arrive = false) { (target, item) ->
             if (!item.def.contains("weaving")) {
                 return@itemOnObjectOperate
             }
             val (_, amount) = makeAmount(
                 items = listOf(item.weaving.to),
                 type = "Make",
-                maximum = player.inventory.count(item.id) / item.weaving.amount,
+                maximum = inventory.count(item.id) / item.weaving.amount,
                 text = "How many would you like to make?",
             )
             weave(target, item, amount)

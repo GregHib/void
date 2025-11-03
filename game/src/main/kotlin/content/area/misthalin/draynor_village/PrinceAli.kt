@@ -8,7 +8,6 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.quest.quest
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -36,12 +35,12 @@ class PrinceAli : Script {
             }
         }
 
-        itemOnNPCOperate("wig_blonde", "prince_ali") {
-            player.escape(target)
+        itemOnNPCOperate("wig_blonde", "prince_ali") { (target) ->
+            escape(target)
         }
 
-        itemOnNPCOperate("pink_skirt", "prince_ali") {
-            player.escape(target)
+        itemOnNPCOperate("pink_skirt", "prince_ali") { (target) ->
+            escape(target)
         }
     }
 

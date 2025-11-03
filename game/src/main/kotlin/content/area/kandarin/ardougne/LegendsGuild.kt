@@ -4,7 +4,6 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -24,14 +23,14 @@ class LegendsGuild : Script {
         }
 
         itemOnObjectOperate("combat_bracelet", "legends_guild_totem_pole") {
-            if (player.inventory.replace(itemSlot, item.id, "combat_bracelet_4")) {
-                player.combatBracelet()
+            if (inventory.replace(it.slot, it.item.id, "combat_bracelet_4")) {
+                combatBracelet()
             }
         }
 
         itemOnObjectOperate("skills_necklace", "legends_guild_totem_pole") {
-            if (player.inventory.replace(itemSlot, item.id, "skills_necklace_4")) {
-                player.skillsNecklace()
+            if (inventory.replace(it.slot, it.item.id, "skills_necklace_4")) {
+                skillsNecklace()
             }
         }
     }

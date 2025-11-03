@@ -11,7 +11,6 @@ import content.quest.messageScroll
 import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -24,7 +23,6 @@ import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class PlagueCity : Script {
@@ -521,7 +519,7 @@ class PlagueCity : Script {
             player<Talk>("Maybe I should try opening it first.")
         }
 
-        itemOnObjectOperate("rope", "plague_grill") {
+        itemOnObjectOperate("rope", "plague_grill_vis") {
             ropeOnGrill()
         }
 
@@ -598,16 +596,16 @@ class PlagueCity : Script {
         }
     }
 
-    suspend fun SuspendableContext<Player>.ropeOnGrill() {
-        if (player["plaguecity_pipe", "grill"] != "grill") {
-            player.noInterest()
+    suspend fun Player.ropeOnGrill() {
+        if (get("plaguecity_pipe", "grill") != "grill") {
+            noInterest()
             return
         }
-        player.sound("plague_attach")
-        player.animDelay("rope_tie")
-        player["plaguecity_pipe"] = "grill_rope"
-        player["plague_city"] = "grill_rope"
-        player.inventory.remove("rope", 1)
+        sound("plague_attach")
+        animDelay("rope_tie")
+        set("plaguecity_pipe", "grill_rope")
+        set("plague_city", "grill_rope")
+        inventory.remove("rope", 1)
         item("rope", 600, "You tie the end of the rope to the sewer pipe's grill.")
     }
 }

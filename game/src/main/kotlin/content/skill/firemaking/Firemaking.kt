@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactFloorItem
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.interact.itemOnFloorItemOperate
 import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
@@ -51,9 +50,9 @@ class Firemaking : Script {
             }
         }
 
-        itemOnFloorItemOperate("tinderbox*", "*log*") {
-            if (floorItem.def.contains("firemaking")) {
-                lightFire(player, floorItem)
+        itemOnFloorItemOperate("tinderbox*", "*log*") { (target) ->
+            if (target.def.contains("firemaking")) {
+                lightFire(this, target)
             }
         }
 

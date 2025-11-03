@@ -1,4 +1,5 @@
 import org.gradle.api.DefaultTask
+import org.gradle.api.file.ConfigurableFileTree
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.tasks.*
 import org.gradle.work.ChangeType
@@ -43,8 +44,8 @@ abstract class ScriptMetadataTask : DefaultTask() {
     @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val inputDirectory: DirectoryProperty
 
-    @get:Internal
-    abstract var dataDirectory: File
+    @get:InputFiles
+    abstract var dataDirectory: ConfigurableFileTree
 
     @get:Internal
     abstract var resourceDirectory: File
@@ -71,36 +72,36 @@ abstract class ScriptMetadataTask : DefaultTask() {
         "npcMoved" to listOf("id" to WildcardType.NpcId),
         "variableSet" to listOf("key" to WildcardType.VariableId),
         "npcVariableSet" to listOf("key" to WildcardType.VariableId),
+        // Approach interactions
         "talkWithApproach" to listOf("npc" to WildcardType.NpcId),
-        "interfaceOnPlayerApproach" to listOf("id" to WildcardType.InterfaceComponentId),
-        "itemOnPlayerApproach" to listOf("item" to WildcardType.ItemId),
         "npcApproach" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
-        "interfaceOnNpcApproach" to listOf("id" to WildcardType.InterfaceComponentId, "npc" to WildcardType.NpcId),
-        "itemOnNpcApproach" to listOf("item" to WildcardType.ItemId, "npc" to WildcardType.NpcId),
         "objectApproach" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
-        "interfaceOnObjectApproach" to listOf("id" to WildcardType.InterfaceComponentId, "obj" to WildcardType.ObjectId),
-        "itemOnObjectApproach" to listOf("item" to WildcardType.ItemId, "obj" to WildcardType.ObjectId),
         "floorItemApproach" to listOf("option" to WildcardType.FloorItemOption, "obj" to WildcardType.ItemId),
-        "interfaceOnFloorItemApproach" to listOf("id" to WildcardType.InterfaceComponentId, "item" to WildcardType.ItemId),
-        "itemOnFloorItemApproach" to listOf("item" to WildcardType.ItemId, "floorItem" to WildcardType.ItemId),
-        "npcApproachNpc" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
+        "npcApproachNPC" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
         "npcApproachObject" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
         "npcApproachFloorItem" to listOf("option" to WildcardType.FloorItemOption, "item" to WildcardType.ItemId),
         "talkWith" to listOf("npc" to WildcardType.NpcId),
-        "interfaceOnPlayerOperate" to listOf("id" to WildcardType.InterfaceComponentId),
-        "itemOnPlayerOperate" to listOf("item" to WildcardType.ItemId),
+        // Operate interactions
         "npcOperate" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
-        "interfaceOnNpcOperate" to listOf("id" to WildcardType.InterfaceComponentId, "npc" to WildcardType.NpcId),
-        "itemOnNpcOperate" to listOf("item" to WildcardType.ItemId, "npc" to WildcardType.NpcId),
         "objectOperate" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
-        "interfaceOnObjectOperate" to listOf("id" to WildcardType.InterfaceComponentId, "obj" to WildcardType.ObjectId),
-        "itemOnObjectOperate" to listOf("item" to WildcardType.ItemId, "obj" to WildcardType.ObjectId),
         "floorItemOperate" to listOf("option" to WildcardType.FloorItemOption, "obj" to WildcardType.ItemId),
-        "interfaceOnFloorItemOperate" to listOf("id" to WildcardType.InterfaceComponentId, "item" to WildcardType.ItemId),
-        "itemOnFloorItemOperate" to listOf("item" to WildcardType.ItemId, "floorItem" to WildcardType.ItemId),
-        "npcOperateNpc" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
+        "npcOperateNPC" to listOf("option" to WildcardType.NpcOption, "npc" to WildcardType.NpcId),
         "npcOperateObject" to listOf("option" to WildcardType.ObjectOption, "obj" to WildcardType.ObjectId),
         "npcOperateFloorItem" to listOf("option" to WildcardType.FloorItemOption, "item" to WildcardType.ItemId),
+        // Interface on operate interactions
+        "onPlayerOperate" to listOf("id" to WildcardType.InterfaceComponentId),
+        "onNPCOperate" to listOf("id" to WildcardType.InterfaceComponentId, "npc" to WildcardType.NpcId),
+        "onObjectOperate" to listOf("id" to WildcardType.InterfaceComponentId, "obj" to WildcardType.ObjectId),
+        "itemOnPlayerOperate" to listOf("item" to WildcardType.ItemId),
+        "itemOnNPCOperate" to listOf("item" to WildcardType.ItemId, "npc" to WildcardType.NpcId),
+        "itemOnObjectOperate" to listOf("item" to WildcardType.ItemId, "obj" to WildcardType.ObjectId),
+        // Interface on approach interactions
+        "onPlayerApproach" to listOf("id" to WildcardType.InterfaceComponentId),
+        "onNPCApproach" to listOf("id" to WildcardType.InterfaceComponentId, "npc" to WildcardType.NpcId),
+        "onObjectApproach" to listOf("id" to WildcardType.InterfaceComponentId, "obj" to WildcardType.ObjectId),
+        "itemOnPlayerApproach" to listOf("item" to WildcardType.ItemId),
+        "itemOnNPCApproach" to listOf("item" to WildcardType.ItemId, "npc" to WildcardType.NpcId),
+        "itemOnObjectApproach" to listOf("item" to WildcardType.ItemId, "obj" to WildcardType.ObjectId),
     )
 
     @TaskAction
@@ -176,7 +177,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
                     for (expression in child.children) {
                         if (expression !is KtCallExpression) continue
                         val methodName = expression.calleeExpression?.text ?: return
-                        val info = methods[methodName] ?: continue
+                        val info = methods[methodName]
                         var index = 0
                         for (arg in expression.valueArguments) {
                             if (arg is KtLambdaArgument) {
@@ -186,6 +187,10 @@ abstract class ScriptMetadataTask : DefaultTask() {
                             val value = arg.getArgumentExpression()?.text?.trim('"') ?: ""
                             if (value.none { it == '*' || it == '#' || it == ',' }) {
                                 index++
+                                continue
+                            }
+                            if (info == null) {
+                                println("No handling found for method $methodName with wildcard $name=$value in ${ktClass.name}")
                                 continue
                             }
                             if (value == "*") { // Match all can be handled separately
@@ -205,7 +210,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
                                     combined.add(part)
                                 }
                             }
-                            wildcards.add("${value}|${combined.joinToString(":")}|$packagePath")
+                            wildcards.add("${value}|${combined.joinToString(",")}|$packagePath")
                         }
                     }
                 }
@@ -332,7 +337,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
         variableIds: MutableSet<String>,
     ) {
         val start = System.currentTimeMillis()
-        for (file in dataDirectory.walkTopDown()) {
+        for (file in dataDirectory) {
             if (!file.isFile) {
                 continue
             }

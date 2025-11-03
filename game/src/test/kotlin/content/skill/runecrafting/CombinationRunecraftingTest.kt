@@ -52,7 +52,7 @@ internal class CombinationRunecraftingTest : WorldTest() {
             player.levels.set(Skill.Runecrafting, 99)
             player.equipment.set(EquipSlot.Amulet.index, "binding_necklace")
             player["binding_necklace_charges"] = 10
-            player.start("magic_imbue", 10)
+            player.start("magic_imbue", 12)
             player.inventory.add("${element}_rune")
             player.inventory.add("pure_essence")
             player.inventory.add("${element}_talisman")

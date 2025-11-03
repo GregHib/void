@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -63,11 +62,11 @@ class AlTheCamel : Script {
         }
 
         itemOnObjectOperate(obj = "dung") {
-            if (item.id != "bucket") {
+            if (it.item.id != "bucket") {
                 player<Quiz>("Surely there's something better I could use to pick up the dung.")
                 return@itemOnObjectOperate
             }
-            player.scoopPoop()
+            scoopPoop()
         }
     }
 

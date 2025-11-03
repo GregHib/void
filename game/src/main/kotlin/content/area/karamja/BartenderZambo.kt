@@ -7,7 +7,6 @@ import content.entity.player.dialogue.type.npc
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
 import content.quest.miniquest.alfred_grimhands_barcrawl.onBarCrawl
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
@@ -29,11 +28,11 @@ class BartenderZambo : Script {
             }
         }
 
-        itemOnNPCOperate("barcrawl_card", "bartender_zambo") {
-            if (player.containsVarbit("barcrawl_signatures", "ape_bite_liqueur")) {
+        itemOnNPCOperate("barcrawl_card", "bartender_zambo") { (target) ->
+            if (containsVarbit("barcrawl_signatures", "ape_bite_liqueur")) {
                 return@itemOnNPCOperate
             }
-            player.barCrawl(target)
+            barCrawl(target)
         }
     }
 

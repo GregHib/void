@@ -3,7 +3,6 @@ package content.area.wilderness
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.replace
@@ -22,13 +21,13 @@ class Web : Script {
             slash(this, target)
         }
 
-        itemOnObjectOperate(obj = "web*") {
+        itemOnObjectOperate(obj = "web*") { (target, item) ->
             if (item.id == "knife" || item.def["slash_attack", 0] > 0) {
-                player.message("Only a sharp blade can cut through this sticky web.")
-                cancel()
+                message("Only a sharp blade can cut through this sticky web.")
+//                cancel() FIXME
                 return@itemOnObjectOperate
             }
-            slash(player, target)
+            slash(this, target)
         }
     }
 

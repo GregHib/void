@@ -7,7 +7,6 @@ import content.entity.sound.sound
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.*
 
@@ -41,32 +40,32 @@ class Mill : Script {
         }
 
         itemOnObjectOperate("grain", "hopper") {
-            if (player.quest("cooks_assistant") != "started") {
-                player.anim("fill_hopper")
-                player.inventory.remove("grain")
-                player["hopper_bin"] = 1
-                player.message("You put the grain in the hopper. You should now pull the lever nearby to operate the hopper.")
+            if (quest("cooks_assistant") != "started") {
+                anim("fill_hopper")
+                inventory.remove("grain")
+                set("hopper_bin", 1)
+                message("You put the grain in the hopper. You should now pull the lever nearby to operate the hopper.")
                 return@itemOnObjectOperate
             }
-            if (player["cooks_assistant_talked_to_millie", 0] == 0) {
+            if (get("cooks_assistant_talked_to_millie", 0) == 0) {
                 player<Talk>("Hmm. I should probably ask that lady downstairs how I can make extra fine flour.")
                 return@itemOnObjectOperate
             }
-            if (player.holdsItem("extra_fine_flour")) {
-                player.message("It'd be best to take the extra fine flour you already have to the cook first.")
+            if (holdsItem("extra_fine_flour")) {
+                message("It'd be best to take the extra fine flour you already have to the cook first.")
                 return@itemOnObjectOperate
             }
-            if (player.bank.contains("extra_fine_flour")) {
-                player.message("It'd be best to take the extra fine flour you already have in your bank to the cook first.")
+            if (bank.contains("extra_fine_flour")) {
+                message("It'd be best to take the extra fine flour you already have in your bank to the cook first.")
                 return@itemOnObjectOperate
             }
-            if (player["hopper_bin", 0] == 1) {
-                player.message("There is already grain in the hopper.")
+            if (get("hopper_bin", 0) == 1) {
+                message("There is already grain in the hopper.")
             } else {
-                player.anim("fill_hopper")
-                player.inventory.remove("grain")
-                player["hopper_bin"] = 1
-                player.message("You put the grain in the hopper. You should now pull the lever nearby to operate the hopper.")
+                anim("fill_hopper")
+                inventory.remove("grain")
+                set("hopper_bin", 1)
+                message("You put the grain in the hopper. You should now pull the lever nearby to operate the hopper.")
             }
         }
 

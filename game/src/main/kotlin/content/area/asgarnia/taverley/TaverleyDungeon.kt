@@ -5,8 +5,8 @@ import content.quest.quest
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.mode.interact.ItemObjectInteract
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
@@ -36,21 +36,10 @@ class TaverleyDungeon : Script {
             }
         }
 
-        itemOnObjectOperate("raw_beef", "cauldron_of_thunder") {
-            dip(player, item.id)
-        }
-
-        itemOnObjectOperate("raw_rat_meat", "cauldron_of_thunder") {
-            dip(player, item.id)
-        }
-
-        itemOnObjectOperate("raw_bear_meat", "cauldron_of_thunder") {
-            dip(player, item.id)
-        }
-
-        itemOnObjectOperate("raw_chicken", "cauldron_of_thunder") {
-            dip(player, item.id)
-        }
+        itemOnObjectOperate("raw_beef", "cauldron_of_thunder", block = ::dip)
+        itemOnObjectOperate("raw_rat_meat", "cauldron_of_thunder", block = ::dip)
+        itemOnObjectOperate("raw_bear_meat", "cauldron_of_thunder", block = ::dip)
+        itemOnObjectOperate("raw_chicken", "cauldron_of_thunder", block = ::dip)
     }
 
     fun spawn(player: Player, tile: Tile): Boolean {
@@ -67,7 +56,8 @@ class TaverleyDungeon : Script {
         return true
     }
 
-    fun dip(player: Player, required: String) {
+    fun dip(player: Player, interact: ItemObjectInteract) {
+        val required = interact.item.id
         if (player.quest("druidic_ritual") == "cauldron") {
             if (player.inventory.replace(required, required.replace("raw_", "enchanted_"))) {
                 player.message("You dip the ${required.toLowerSpaceCase()} in the cauldron.")

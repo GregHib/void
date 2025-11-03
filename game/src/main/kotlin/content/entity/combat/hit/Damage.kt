@@ -167,9 +167,7 @@ object Damage {
  * Damages player closing any interfaces they have open
  */
 fun Character.damage(damage: Int, delay: Int = 0, type: String = "damage", source: Character = this) {
-    println("Damage hit ${this@damage} $damage $type")
     strongQueue("hit", delay) {
-        println("Direct hit ${this@damage} $damage $type")
         directHit(damage, type, source = source)
     }
 }

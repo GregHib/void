@@ -13,7 +13,7 @@ object Wildcards {
         while (reader.ready()) {
             val line = reader.readLine() ?: continue
             val (key, values) = line.split("|")
-            map[key] = values.split(":")
+            map[key] = values.split(",")
         }
     }
 

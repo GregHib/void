@@ -7,7 +7,6 @@ import content.entity.combat.inCombat
 import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -25,12 +24,12 @@ class Gargoyle : Script {
             smash(this, target)
         }
 
-        itemOnNPCOperate("rock_hammer", "gargoyle") {
-            if (target.inCombat && target.attacker != player) {
-                player.message("Someone else is fighting that.")
+        itemOnNPCOperate("rock_hammer", "gargoyle") { (target) ->
+            if (target.inCombat && target.attacker != this) {
+                message("Someone else is fighting that.")
                 return@itemOnNPCOperate
             }
-            smash(player, target)
+            smash(this, target)
         }
 
         npcLevelChanged(Skill.Constitution, "gargoyle", ::killingBlow)

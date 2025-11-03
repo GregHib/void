@@ -16,6 +16,7 @@ object ContentLoader {
         var start = System.currentTimeMillis()
         val matches = ContentLoader::class.java.getResourceAsStream("matches.txt")?.bufferedReader() ?: error("No auto-generated matches file found, make sure 'gradle scriptMetadata' is correctly running")
         Wildcards.load(matches)
+        matches.close()
         logger.info { "Loaded ${Wildcards.size} ${"wildcard".plural(Wildcards.size)} in ${System.currentTimeMillis() - start}ms" }
         start = System.currentTimeMillis()
         val scripts = ContentLoader::class.java.getResourceAsStream("scripts.txt")?.bufferedReader() ?: error("No auto-generated script file found, make sure 'gradle scriptMetadata' is correctly running")

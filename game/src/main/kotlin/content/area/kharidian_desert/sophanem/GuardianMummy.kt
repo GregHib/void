@@ -10,7 +10,6 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnNPCOperate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.holdsItem
@@ -41,15 +40,15 @@ class GuardianMummy : Script {
         }
 
         itemOnNPCOperate("pharaohs_sceptre_*", "guardian_mummy") {
-            player.discharge(itemSlot)
+            discharge(it.slot)
         }
 
         itemOnNPCOperate("pharaohs_sceptre", "guardian_mummy") {
-            player.sceptreRecharging()
+            sceptreRecharging()
         }
 
         itemOnNPCOperate("*", "guardian_mummy") {
-            player.message("The Mummy is not interested in this")
+            message("The Mummy is not interested in this")
         }
     }
 
