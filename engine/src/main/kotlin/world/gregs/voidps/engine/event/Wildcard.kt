@@ -1,5 +1,14 @@
 package world.gregs.voidps.engine.event
 
+enum class Wildcard {
+    Npc,
+    Object,
+    Interface,
+    Component,
+    Item,
+    Variables,
+}
+
 /**
  * Compares [other] against [wildcard] which can contain '*' to match against anything of any length
  * or '#' to match against any single digit.

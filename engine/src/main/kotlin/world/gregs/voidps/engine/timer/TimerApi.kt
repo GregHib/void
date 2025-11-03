@@ -184,15 +184,6 @@ interface TimerApi {
         }
 
         fun clear() {
-            println("Timer.playerStartBlocks ${playerStartBlocks.size}")
-            println("Timer.playerTickBlocks ${playerTickBlocks.size}")
-            println("Timer.playerStopBlocks ${playerStopBlocks.size}")
-            println("Timer.npcStartBlocks ${npcStartBlocks.size}")
-            println("Timer.npcTickBlocks ${npcTickBlocks.size}")
-            println("Timer.npcStopBlocks ${npcStopBlocks.size}")
-            println("Timer.worldStartBlocks ${worldStartBlocks.size}")
-            println("Timer.worldTickBlocks ${worldTickBlocks.size}")
-            println("Timer.worldStopBlocks ${worldStopBlocks.size}")
             playerStartBlocks.clear()
             playerTickBlocks.clear()
             playerStopBlocks.clear()

@@ -94,12 +94,11 @@ class EssencePouch : Script {
             player["${id}_essence"] = essence - added
         }
 
-        Wildcards.register(Wildcard.Item, "@pouches", *pouches)
-        itemOnItem("pure_essence", "@pouches") { fromItem, toItem, fromSlot, toSlot ->
+        itemOnItem("pure_essence", pouches.joinToString(",")) { fromItem, toItem, fromSlot, toSlot ->
             addSingle(fromSlot, fromItem, toSlot, toItem)
         }
 
-        itemOnItem("rune_essence", "@pouches") { fromItem, toItem, fromSlot, toSlot ->
+        itemOnItem("rune_essence", pouches.joinToString(",")) { fromItem, toItem, fromSlot, toSlot ->
             addSingle(fromSlot, fromItem, toSlot, toItem)
         }
 

@@ -8,15 +8,6 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
 import java.io.File
 
-enum class Wildcard {
-    Npc,
-    Object,
-    Interface,
-    Component,
-    Item,
-    Variables,
-}
-
 object Wildcards {
     private val npcs = Object2ObjectOpenHashMap<String, List<String>>(128)
     private val objects = Object2ObjectOpenHashMap<String, List<String>>(64)
@@ -27,13 +18,6 @@ object Wildcards {
     private val logger = InlineLogger("Wildcards")
 
     private var changes = false
-
-    val size: Int
-        get() = npcs.size + objects.size + interfaces.size + components.size + items.size + variables.size
-
-    fun register(type: Wildcard, key: String, vararg values: String) {
-        map(type)[key] = values.toList()
-    }
 
     fun load(path: String) {
         timedLoad("wildcard") {
@@ -66,7 +50,7 @@ object Wildcards {
                 }
                 insert(line, type)
             }
-            size
+            npcs.size + objects.size + interfaces.size + components.size + items.size + variables.size
         }
     }
 
@@ -86,7 +70,7 @@ object Wildcards {
         }
     }
 
-    inline fun find(key: String, type: Wildcard, block: (String) -> Unit) {
+    fun find(key: String, type: Wildcard, block: (String) -> Unit) {
         if (key == "*") {
             block(key)
             return
@@ -123,7 +107,7 @@ object Wildcards {
         }
     }
 
-    fun map(type: Wildcard): MutableMap<String, List<String>> = when (type) {
+    private fun map(type: Wildcard): MutableMap<String, List<String>> = when (type) {
         Wildcard.Npc -> npcs
         Wildcard.Object -> objects
         Wildcard.Interface -> interfaces
@@ -141,7 +125,7 @@ object Wildcards {
         Wildcard.Variables -> get<VariableDefinitions>().definitions.keys
     }
 
-    fun resolve(wildcard: String, type: Wildcard): List<String> {
+    private fun resolve(wildcard: String, type: Wildcard): List<String> {
         val list = set(type).filter { wildcardEquals(wildcard, it) }
         require(list.isNotEmpty()) { "No matches found for ${type.name} wildcard '$wildcard'" }
         changes = true
