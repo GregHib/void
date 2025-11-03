@@ -2,7 +2,6 @@ package content.skill.melee
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -27,11 +26,11 @@ class CombatStyles : Script {
             refreshStyle(this)
         }
 
-        interfaceRefresh("combat_styles") { player ->
-            player.interfaceOptions.unlockAll(id, "style1")
-            player.interfaceOptions.unlockAll(id, "style2")
-            player.interfaceOptions.unlockAll(id, "style3")
-            player.interfaceOptions.unlockAll(id, "style4")
+        interfaceRefresh("combat_styles") { id ->
+            interfaceOptions.unlockAll(id, "style1")
+            interfaceOptions.unlockAll(id, "style2")
+            interfaceOptions.unlockAll(id, "style3")
+            interfaceOptions.unlockAll(id, "style4")
         }
 
         inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->

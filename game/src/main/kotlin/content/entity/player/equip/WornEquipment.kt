@@ -5,7 +5,6 @@ import content.entity.player.inv.InventoryOption
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.inv.sendInventory
@@ -16,8 +15,8 @@ class WornEquipment : Script {
     val logger = InlineLogger()
 
     init {
-        interfaceRefresh("worn_equipment") { player ->
-            player.sendInventory(id)
+        interfaceRefresh("worn_equipment") { id ->
+            sendInventory(id)
         }
 
         interfaceOption("Show Equipment Stats", "bonuses", "worn_equipment") {

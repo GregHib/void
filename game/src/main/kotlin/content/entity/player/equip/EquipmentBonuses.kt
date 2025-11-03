@@ -7,7 +7,6 @@ import content.entity.player.modal.tab
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
@@ -57,8 +56,8 @@ class EquipmentBonuses : Script {
         }
 
         interfaceRefresh("equipment_side") { player ->
-            player.interfaceOptions.send("equipment_side", "inventory")
-            player.interfaceOptions.unlockAll("equipment_side", "inventory", 0 until 28)
+            interfaceOptions.send("equipment_side", "inventory")
+            interfaceOptions.unlockAll("equipment_side", "inventory", 0 until 28)
         }
 
         interfaceOption("Stats", "inventory", "equipment_bonuses") {

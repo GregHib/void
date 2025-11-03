@@ -10,7 +10,6 @@ import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
-import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -36,19 +35,18 @@ class CharterShip : Script {
     val teles: ObjectTeleports by inject()
 
     init {
-        interfaceRefresh("charter_ship_map") { player ->
-            val currentLocation = player["charter_ship", ""]
+        interfaceRefresh("charter_ship_map") { id ->
+            val currentLocation = get("charter_ship", "")
             val prices = ships.get(currentLocation)
-            player.interfaces.sendVisibility(id, "mos_le_harmless", hasQuestRequirements(player, "mos_le_harmless") && prices.containsKey("mos_le_harmless"))
-            player.interfaces.sendVisibility(id, "shipyard", hasQuestRequirements(player, "shipyard") && prices.containsKey("shipyard"))
-            player.interfaces.sendVisibility(id, "port_tyras", hasQuestRequirements(player, "port_tyras") && prices.containsKey("port_tyras"))
-            player.interfaces.sendVisibility(id, "port_phasmatys", hasQuestRequirements(player, "port_phasmatys") && prices.containsKey("port_phasmatys"))
-            player.interfaces.sendVisibility(id, "oo_glog", hasQuestRequirements(player, "oo_glog") && prices.containsKey("oo_glog"))
-            player.interfaces.sendVisibility(id, "crandor", false)
-            player.interfaces.sendVisibility(id, "musa_point", false)
-
+            interfaces.sendVisibility(id, "mos_le_harmless", hasQuestRequirements("mos_le_harmless") && prices.containsKey("mos_le_harmless"))
+            interfaces.sendVisibility(id, "shipyard", hasQuestRequirements("shipyard") && prices.containsKey("shipyard"))
+            interfaces.sendVisibility(id, "port_tyras", hasQuestRequirements("port_tyras") && prices.containsKey("port_tyras"))
+            interfaces.sendVisibility(id, "port_phasmatys", hasQuestRequirements("port_phasmatys") && prices.containsKey("port_phasmatys"))
+            interfaces.sendVisibility(id, "oo_glog", hasQuestRequirements("oo_glog") && prices.containsKey("oo_glog"))
+            interfaces.sendVisibility(id, "crandor", false)
+            interfaces.sendVisibility(id, "musa_point", false)
             for (location in locations) {
-                player.interfaces.sendVisibility(id, location, location != currentLocation && prices.containsKey(location))
+                interfaces.sendVisibility(id, location, location != currentLocation && prices.containsKey(location))
             }
         }
 
@@ -106,7 +104,7 @@ class CharterShip : Script {
                 return@interfaceOption
             }
             val price = ships.get(currentLocation, component) ?: return@interfaceOption
-            if (!hasQuestRequirements(player, component)) {
+            if (!player.hasQuestRequirements(component)) {
                 return@interfaceOption
             }
             val readablePrice = price.toDigitGroupString()
@@ -157,8 +155,8 @@ class CharterShip : Script {
         }
     }
 
-    fun hasQuestRequirements(player: Player, location: String): Boolean {
-        return player.questCompleted(
+    fun Player.hasQuestRequirements(location: String): Boolean {
+        return questCompleted(
             when (location) {
                 "mos_le_harmless" -> "mos_le_harmless"
                 "shipyard" -> "the_grand_tree"

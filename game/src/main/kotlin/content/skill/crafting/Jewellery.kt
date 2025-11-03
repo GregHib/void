@@ -7,8 +7,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.data.Jewellery
@@ -41,8 +39,8 @@ class Jewellery : Script {
             open("make_mould${if (World.members) "_slayer" else ""}")
         }
 
-        interfaceRefresh("make_mould*") { player ->
-            makeMould(player)
+        interfaceRefresh("make_mould*") {
+            makeMould(it)
         }
 
         interfaceOption("Make *", "make*", "make_mould*") {
@@ -61,24 +59,24 @@ class Jewellery : Script {
         }
     }
 
-    fun InterfaceRefreshed.makeMould(player: Player) {
+    fun Player.makeMould(id: String) {
         for (type in moulds) {
-            val showText = !player.inventory.contains("${type}_mould")
-            player.interfaces.sendVisibility(id, "${type}_text", showText)
+            val showText = !inventory.contains("${type}_mould")
+            interfaces.sendVisibility(id, "${type}_text", showText)
             for (gem in gems) {
                 if (showText) {
-                    player.interfaces.sendVisibility(id, "make_${type}_option_$gem", false)
+                    interfaces.sendVisibility(id, "make_${type}_option_$gem", false)
                 } else {
-                    var item = Item("${if (player.inventory.contains("gold_bar") && (gem == "gold" || player.inventory.contains(gem))) gem else "blank"}_$type")
-                    if (item.id == "enchanted_gem_ring" && player.contains("ring_bling")) {
+                    var item = Item("${if (inventory.contains("gold_bar") && (gem == "gold" || inventory.contains(gem))) gem else "blank"}_$type")
+                    if (item.id == "enchanted_gem_ring" && contains("ring_bling")) {
                         item = Item("ring_of_slaying_8")
                     }
                     val jewellery = item.jewellery
-                    if (jewellery == null || !player.has(Skill.Crafting, jewellery.level)) {
+                    if (jewellery == null || !has(Skill.Crafting, jewellery.level)) {
                         item = Item("blank_$type")
                     }
-                    player.interfaces.sendVisibility(id, "make_${type}_option_$gem", !item.id.startsWith("blank"))
-                    player.interfaces.sendItem(id, "make_${type}_$gem", item)
+                    interfaces.sendVisibility(id, "make_${type}_option_$gem", !item.id.startsWith("blank"))
+                    interfaces.sendItem(id, "make_${type}_$gem", item)
                 }
             }
         }

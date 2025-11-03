@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colour
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.event.CloseInterface
-import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -153,7 +152,7 @@ class Interfaces(
     }
 
     private fun notifyRefresh(id: String) {
-        player.emit(InterfaceRefreshed(id))
+        InterfaceInteraction.refresh(player, id)
     }
 
     fun sendAnimation(id: String, component: String, animation: Int): Boolean {

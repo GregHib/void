@@ -4,7 +4,6 @@ import content.entity.player.effect.skulled
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toInt
-import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -17,16 +16,16 @@ class ItemsKeptOnDeathScreen : Script {
     val enums: EnumDefinitions by inject()
 
     init {
-        interfaceRefresh("items_kept_on_death") { player ->
-            val items = ItemsKeptOnDeath.getAllOrdered(player)
-            val savedItems = ItemsKeptOnDeath.kept(player, items, enums)
+        interfaceRefresh("items_kept_on_death") {
+            val items = ItemsKeptOnDeath.getAllOrdered(this)
+            val savedItems = ItemsKeptOnDeath.kept(this, items, enums)
             val carriedWealth = items.sumOf { it.def.cost * it.amount }
             val savedWealth = savedItems.sumOf { it.def.cost * it.amount }
-            player.updateItemsOnDeath(
+            updateItemsOnDeath(
                 savedItems,
                 carriedWealth = carriedWealth,
                 riskedWealth = carriedWealth - savedWealth,
-                skull = player.skulled,
+                skull = skulled,
             )
         }
 

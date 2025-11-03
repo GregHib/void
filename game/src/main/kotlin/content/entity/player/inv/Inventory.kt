@@ -3,7 +3,6 @@ package content.entity.player.inv
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.interfaceSwap
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -17,10 +16,10 @@ class Inventory : Script {
     val logger = InlineLogger()
 
     init {
-        interfaceRefresh("inventory") { player ->
-            player.interfaceOptions.unlockAll(id, "inventory", 0 until 28)
-            player.interfaceOptions.unlock(id, "inventory", 28 until 56, "Drag")
-            player.sendInventory(id)
+        interfaceRefresh("inventory") { id ->
+            interfaceOptions.unlockAll(id, "inventory", 0 until 28)
+            interfaceOptions.unlock(id, "inventory", 28 until 56, "Drag")
+            sendInventory(id)
         }
 
         interfaceSwap { player ->

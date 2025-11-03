@@ -8,7 +8,6 @@ import content.entity.sound.jingle
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
@@ -45,8 +44,8 @@ class Emotes : Script {
             sendVariable("unlocked_emote_lost_tribe")
         }
 
-        interfaceRefresh("emotes") { player ->
-            player.interfaceOptions.unlockAll("emotes", "emotes", 0..190)
+        interfaceRefresh("emotes") {
+            interfaceOptions.unlockAll("emotes", "emotes", 0..190)
         }
 
         interfaceOption(id = "emotes") {

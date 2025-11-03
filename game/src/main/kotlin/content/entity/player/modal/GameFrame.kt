@@ -4,7 +4,6 @@ import net.pearx.kasechange.toSnakeCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
-import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
@@ -61,10 +60,10 @@ class GameFrame : Script {
             openGamframe(this)
         }
 
-        interfaceRefresh("toplevel*", "dialogue_npc*") { player ->
-            player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)
-            player.weakQueue("wild_level", 1, onCancel = null) {
-                player.interfaces.sendVisibility(player.interfaces.gameFrame, "wilderness_level", false)
+        interfaceRefresh("toplevel*,dialogue_npc*") {
+            interfaces.sendVisibility(interfaces.gameFrame, "wilderness_level", false)
+            weakQueue("wild_level", 1, onCancel = null) {
+                interfaces.sendVisibility(interfaces.gameFrame, "wilderness_level", false)
             }
         }
     }

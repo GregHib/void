@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
-import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
@@ -31,8 +30,8 @@ class BookPages : Script {
             player.openBook(item.def.getOrNull("book") ?: return@inventoryOption)
         }
 
-        interfaceRefresh("book", "book_long", "book_indexed") { player ->
-            refreshBook(player, id)
+        interfaceRefresh("book,book_long,book_indexed") { id ->
+            refreshBook(this, id)
         }
 
         continueDialogue("book", "turn_page_right", handler = turnRight)
