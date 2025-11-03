@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.ListValues
@@ -64,8 +63,8 @@ class FairyRing : Script {
             (player.dialogueSuspension as? StringSuspension)?.resume(code)
         }
 
-        interfaceOpen("fairy_ring") { player ->
-            player.tab(Tab.Inventory)
+        interfaceOpen("fairy_ring") {
+            tab(Tab.Inventory)
         }
 
         interfaceOption("Rotate clockwise", "clockwise_*", "fairy_ring") {

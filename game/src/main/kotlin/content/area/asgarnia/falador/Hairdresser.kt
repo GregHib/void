@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -42,15 +41,15 @@ class Hairdresser : Script {
             startHairdressing()
         }
 
-        interfaceOpen("hairdressers_salon") { player ->
-            player.interfaces.sendText(id, "confirm_text", "Change")
-            val styles = enums.get("style_hair_${player.sex}")
+        interfaceOpen("hairdressers_salon") { id ->
+            interfaces.sendText(id, "confirm_text", "Change")
+            val styles = enums.get("style_hair_$sex")
             val colours = enums.get("colour_hair")
-            player.interfaceOptions.unlockAll(id, "styles", 0 until styles.length * 2)
-            player.interfaceOptions.unlockAll(id, "colours", 0 until colours.length * 2)
-            player["makeover_hair"] = player.body.getLook(BodyPart.Hair)
-            player["makeover_beard"] = player.body.getLook(BodyPart.Beard)
-            player["makeover_colour_hair"] = player.body.getColour(BodyColour.Hair)
+            interfaceOptions.unlockAll(id, "styles", 0 until styles.length * 2)
+            interfaceOptions.unlockAll(id, "colours", 0 until colours.length * 2)
+            set("makeover_hair", body.getLook(BodyPart.Hair))
+            set("makeover_beard", body.getLook(BodyPart.Beard))
+            set("makeover_colour_hair", body.getColour(BodyColour.Hair))
         }
 
         interfaceOption(component = "style_*", id = "hairdressers_salon") {

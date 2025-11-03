@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -58,16 +57,16 @@ class Thessalia : Script {
             startMakeover()
         }
 
-        interfaceOpen("thessalias_makeovers") { player ->
-            player.interfaces.sendText(id, "confirm_text", "Change")
-            player.interfaceOptions.unlockAll(id, "styles", 0 until 100)
-            player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get("colour_top").length * 2)
-            player["makeover_top"] = player.body.getLook(BodyPart.Chest)
-            player["makeover_arms"] = player.body.getLook(BodyPart.Arms)
-            player["makeover_wrists"] = player.body.getLook(BodyPart.Hands)
-            player["makeover_legs"] = player.body.getLook(BodyPart.Legs)
-            player["makeover_colour_top"] = player.body.getColour(BodyColour.Top)
-            player["makeover_colour_legs"] = player.body.getColour(BodyColour.Legs)
+        interfaceOpen("thessalias_makeovers") { id ->
+            interfaces.sendText(id, "confirm_text", "Change")
+            interfaceOptions.unlockAll(id, "styles", 0 until 100)
+            interfaceOptions.unlockAll(id, "colours", 0 until enums.get("colour_top").length * 2)
+            set("makeover_top", body.getLook(BodyPart.Chest))
+            set("makeover_arms", body.getLook(BodyPart.Arms))
+            set("makeover_wrists", body.getLook(BodyPart.Hands))
+            set("makeover_legs", body.getLook(BodyPart.Legs))
+            set("makeover_colour_top", body.getColour(BodyColour.Top))
+            set("makeover_colour_legs", body.getColour(BodyColour.Legs))
         }
 
         interfaceClose("thessalias_makeovers") { player ->

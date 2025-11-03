@@ -4,7 +4,6 @@ import content.entity.effect.frozen
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
@@ -29,17 +28,17 @@ class WorldMap : Script {
             if (steps.isEmpty() || !hasOpen("world_map")) Timer.CANCEL else Timer.CONTINUE
         }
 
-        interfaceOpen("world_map") { player ->
-            updateMap(player)
-            if (player.steps.isNotEmpty()) {
-                player.softTimers.start("world_map_check")
+        interfaceOpen("world_map") {
+            updateMap(this)
+            if (steps.isNotEmpty()) {
+                softTimers.start("world_map_check")
             }
-            player.sendVariable("world_map_hide_player_location")
-            player.sendVariable("world_map_hide_links")
-            player.sendVariable("world_map_hide_labels")
-            player.sendVariable("world_map_hide_tooltips")
-            player.sendVariable("world_map_marker_custom")
-            player.interfaceOptions.unlockAll("world_map", "key_list", 0..182)
+            sendVariable("world_map_hide_player_location")
+            sendVariable("world_map_hide_links")
+            sendVariable("world_map_hide_labels")
+            sendVariable("world_map_hide_tooltips")
+            sendVariable("world_map_marker_custom")
+            interfaceOptions.unlockAll("world_map", "key_list", 0..182)
         }
 
         interfaceOption("Re-sort key", "order", "world_map") {

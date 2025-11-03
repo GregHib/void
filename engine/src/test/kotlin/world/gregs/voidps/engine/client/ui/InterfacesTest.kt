@@ -8,7 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.entity.InterfaceInteraction
 import world.gregs.voidps.network.login.protocol.encode.closeInterface
 import world.gregs.voidps.network.login.protocol.encode.openInterface
 
@@ -26,7 +26,7 @@ internal class InterfacesTest : InterfaceTest() {
             client.closeInterface(any())
             events.emit(ofType<InterfaceClosed>())
             client.openInterface(any(), any(), any())
-            events.emit(ofType<InterfaceOpened>())
+            InterfaceInteraction.open(any(), any())
         }
     }
 

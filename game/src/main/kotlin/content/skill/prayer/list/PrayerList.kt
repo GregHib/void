@@ -4,19 +4,18 @@ import content.skill.prayer.PrayerConfigs.PRAYERS
 import content.skill.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
 import content.skill.prayer.PrayerConfigs.USING_QUICK_PRAYERS
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 
 class PrayerList : Script {
 
     init {
-        interfaceOpen("prayer_orb") { player ->
-            player.sendVariable(SELECTING_QUICK_PRAYERS)
-            player.sendVariable(USING_QUICK_PRAYERS)
+        interfaceOpen("prayer_orb") {
+            sendVariable(SELECTING_QUICK_PRAYERS)
+            sendVariable(USING_QUICK_PRAYERS)
         }
 
-        interfaceOpen("prayer_list") { player ->
-            player.sendVariable(PRAYERS)
+        interfaceOpen("prayer_list") {
+            sendVariable(PRAYERS)
         }
 
         interfaceRefresh("prayer_list") { player ->

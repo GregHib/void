@@ -5,7 +5,6 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -28,8 +27,8 @@ class DiangoItemRetrieval : Script {
     val itemDefinitions: ItemDefinitions by inject()
 
     init {
-        interfaceOpen("diangos_item_retrieval") { player ->
-            refreshItems(player)
+        interfaceOpen("diangos_item_retrieval") {
+            refreshItems(this)
         }
 
         interfaceOption("Claim", "items", "diangos_item_retrieval") {

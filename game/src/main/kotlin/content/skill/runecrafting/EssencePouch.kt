@@ -9,8 +9,6 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Wildcard
-import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.inventory

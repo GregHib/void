@@ -6,7 +6,6 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -26,19 +25,19 @@ class TaskSystem : Script {
     val structDefinitions: StructDefinitions by inject()
 
     init {
-        interfaceOpen("task_system") { player ->
-            player.sendVariable("task_pin_slot")
-            player.sendVariable("task_pinned")
-            player.sendVariable("introducing_explorer_jack_task")
-            refreshSlots(player)
-            if (player.contains("task_dont_show_again")) {
-                player.sendVariable("task_dont_show_again")
+        interfaceOpen("task_system") {
+            sendVariable("task_pin_slot")
+            sendVariable("task_pinned")
+            sendVariable("introducing_explorer_jack_task")
+            refreshSlots(this)
+            if (contains("task_dont_show_again")) {
+                sendVariable("task_dont_show_again")
             }
-            if (!player.questCompleted("unstable_foundations")) {
-                player["task_pinned"] = 3520 // Talk to explorer jack
-                player["task_pin_slot"] = 1
-                player["task_slot_selected"] = 1
-                player["unstable_foundations"] = "incomplete"
+            if (!questCompleted("unstable_foundations")) {
+                set("task_pinned", 3520) // Talk to explorer jack
+                set("task_pin_slot", 1)
+                set("task_slot_selected", 1)
+                set("unstable_foundations", "incomplete")
             }
         }
 

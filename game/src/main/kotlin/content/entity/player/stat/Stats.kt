@@ -3,7 +3,6 @@ package content.entity.player.stat
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -21,10 +20,10 @@ class Stats : Script {
     )
 
     init {
-        interfaceOpen("stats") { player ->
-            player.sendVariable("skill_stat_flash")
+        interfaceOpen("stats") {
+            sendVariable("skill_stat_flash")
             Skill.entries.forEach {
-                player.experience.update(it)
+                experience.update(it)
             }
         }
 

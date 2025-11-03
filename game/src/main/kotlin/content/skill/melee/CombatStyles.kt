@@ -2,7 +2,6 @@ package content.skill.melee
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
@@ -21,11 +20,11 @@ class CombatStyles : Script {
             this["combat_style"] = def.getOrNull("style") ?: return@npcSpawn
         }
 
-        interfaceOpen("combat_styles") { player ->
-            player.sendVariable("attack_style_index")
-            player.sendVariable("special_attack_energy")
-            player.sendVariable("auto_retaliate")
-            refreshStyle(player)
+        interfaceOpen("combat_styles") {
+            sendVariable("attack_style_index")
+            sendVariable("special_attack_energy")
+            sendVariable("auto_retaliate")
+            refreshStyle(this)
         }
 
         interfaceRefresh("combat_styles") { player ->

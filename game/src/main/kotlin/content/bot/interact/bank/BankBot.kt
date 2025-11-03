@@ -9,7 +9,6 @@ import content.bot.interact.navigation.resume
 import content.bot.isBot
 import content.entity.player.bank.bank
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.get
@@ -135,9 +134,9 @@ suspend fun Bot.withdrawCoins() {
 class BankBot : Script {
 
     init {
-        interfaceOpen("bank") { player ->
-            if (player.isBot) {
-                player.bot.resume("bank")
+        interfaceOpen("bank") {
+            if (isBot) {
+                bot.resume("bank")
             }
         }
     }

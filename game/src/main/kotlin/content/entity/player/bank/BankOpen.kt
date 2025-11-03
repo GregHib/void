@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
@@ -44,12 +43,12 @@ class BankOpen : Script {
             player.sendScript("clear_dialogues")
         }
 
-        interfaceOpen("bank_deposit_box") { player ->
-            player.tab(Tab.Inventory)
-            player.open("bank_side")
-            player.interfaceOptions.send("bank_deposit_box", "inventory")
-            player.interfaceOptions.unlockAll("bank_deposit_box", "inventory", 0 until 28)
-            player.interfaceOptions.unlockAll("bank_side", "inventory", 0 until 28)
+        interfaceOpen("bank_deposit_box") {
+            tab(Tab.Inventory)
+            open("bank_side")
+            interfaceOptions.send("bank_deposit_box", "inventory")
+            interfaceOptions.unlockAll("bank_deposit_box", "inventory", 0 until 28)
+            interfaceOptions.unlockAll("bank_side", "inventory", 0 until 28)
         }
 
         interfaceClose("bank_deposit_box") { player ->
@@ -57,22 +56,22 @@ class BankOpen : Script {
             player.sendScript("clear_dialogues")
         }
 
-        interfaceOpen("bank") { player ->
-            player["bank_hidden"] = false
-            player.sendInventory("bank")
-            player.open("bank_side")
-            player.sendVariable("open_bank_tab")
-            player.sendVariable("bank_item_mode")
-            player.sendVariable("bank_notes")
+        interfaceOpen("bank") {
+            set("bank_hidden", false)
+            sendInventory("bank")
+            open("bank_side")
+            sendVariable("open_bank_tab")
+            sendVariable("bank_item_mode")
+            sendVariable("bank_notes")
             for (tab in tabs) {
-                player.sendVariable("bank_tab_$tab")
+                sendVariable("bank_tab_$tab")
             }
-            player.sendVariable("last_bank_amount")
-            player.sendScript("update_bank_slots")
-            player["bank_search_reset"] = true
-            player.interfaceOptions.unlockAll("bank", "inventory", 0 until 516)
-            player.interfaceOptions.unlockAll("bank_side", "inventory", 0 until 28)
-            player.tab(Tab.Inventory)
+            sendVariable("last_bank_amount")
+            sendScript("update_bank_slots")
+            set("bank_search_reset", true)
+            interfaceOptions.unlockAll("bank", "inventory", 0 until 516)
+            interfaceOptions.unlockAll("bank_side", "inventory", 0 until 28)
+            tab(Tab.Inventory)
         }
 
         interfaceOption("Show Equipment Stats", "equipment", "bank") {

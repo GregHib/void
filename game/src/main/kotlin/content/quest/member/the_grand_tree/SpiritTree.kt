@@ -10,7 +10,6 @@ import content.quest.questCompleted
 import content.skill.magic.spell.Teleport
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -57,8 +56,8 @@ class SpiritTree : Script {
             open("spirit_tree")
         }
 
-        interfaceOpen("spirit_tree") { player ->
-            player.interfaceOptions.unlockAll(id, "text", 0 until 9)
+        interfaceOpen("spirit_tree") { id ->
+            interfaceOptions.unlockAll(id, "text", 0 until 9)
         }
 
         interfaceOption("*", "text", "spirit_tree") {

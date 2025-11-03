@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
@@ -27,16 +26,16 @@ class ClanSetup : Script {
             player.open("clan_chat_setup")
         }
 
-        interfaceOpen("clan_chat_setup") { player ->
-            val clan = player.clan ?: player.ownClan ?: return@interfaceOpen
-            player.interfaces.apply {
+        interfaceOpen("clan_chat_setup") { id ->
+            val clan = clan ?: ownClan ?: return@interfaceOpen
+            interfaces.apply {
                 sendText(id, "name", clan.name.ifBlank { "Chat disabled" })
                 sendText(id, "enter", clan.joinRank.string)
                 sendText(id, "talk", clan.talkRank.string)
                 sendText(id, "kick", clan.kickRank.string)
                 sendText(id, "loot", clan.lootRank.string)
             }
-            player.sendVariable("coin_share_setting")
+            sendVariable("coin_share_setting")
         }
 
         interfaceOption(component = "enter", id = "clan_chat_setup") {

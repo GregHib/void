@@ -10,7 +10,6 @@ import content.bot.interact.navigation.resume
 import content.bot.isBot
 import content.entity.npc.shop.shopInventory
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -73,9 +72,9 @@ suspend fun Bot.buy(item: String, amount: Int = 1) {
 class ShopBot : Script {
 
     init {
-        interfaceOpen("shop") { player ->
-            if (player.isBot) {
-                player.bot.resume("shop")
+        interfaceOpen("shop") {
+            if (isBot) {
+                bot.resume("shop")
             }
         }
     }

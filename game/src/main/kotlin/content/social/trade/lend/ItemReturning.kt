@@ -6,7 +6,6 @@ import content.social.trade.lend.Loan.returnLoan
 import content.social.trade.returnedItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -23,8 +22,8 @@ class ItemReturning : Script {
     val players: Players by inject()
 
     init {
-        interfaceOpen("returned_items") { player ->
-            player.sendInventory(player.returnedItems)
+        interfaceOpen("returned_items") {
+            sendInventory(returnedItems)
         }
 
         interfaceOption("Reclaim", "item", "returned_items") {

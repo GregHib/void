@@ -56,7 +56,7 @@ class AccountManager(
     fun setup(player: Player, client: Client?, displayMode: Int): Boolean {
         player.index = players.index() ?: return false
         player.visuals.hits.self = player.index
-        player.interfaces = Interfaces(player, player.client, interfaceDefinitions)
+        player.interfaces = Interfaces(player, interfaceDefinitions)
         player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)
         (player.variables as PlayerVariables).definitions = variableDefinitions
         player.area.areaDefinitions = areaDefinitions
@@ -79,7 +79,6 @@ class AccountManager(
         if (client != null) {
             player.viewport = Viewport()
             player.client = client
-            player.interfaces.client = client
             (player.variables as PlayerVariables).client = client
         }
         player.collision = collisionStrategyProvider.get(character = player)

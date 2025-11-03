@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -20,8 +19,8 @@ class SlayerSkills : Script {
             player.open("slayer_rewards")
         }
 
-        interfaceOpen("slayer_rewards_learn") { player ->
-            refreshText(player, id)
+        interfaceOpen("slayer_rewards_learn") { id ->
+            refreshText(this, id)
         }
 
         interfaceOption("Buy", "broader_fletching", "slayer_rewards_learn") {

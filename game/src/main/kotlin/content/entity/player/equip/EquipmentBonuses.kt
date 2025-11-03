@@ -8,7 +8,6 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
@@ -43,15 +42,15 @@ class EquipmentBonuses : Script {
             updateStats(player, item, true)
         }
 
-        interfaceOpen("equipment_bonuses") { player ->
-            player.interfaces.sendVisibility("equipment_bonuses", "close", !player["equipment_bank_button", false])
-            updateEmote(player)
-            player.open("equipment_side")
-            player.interfaceOptions.unlockAll("equipment_bonuses", "inventory", 0 until 16)
-            updateStats(player)
-            player["bank_hidden"] = true
-            player.sendScript("bank_show_equip_screen")
-            player.tab(Tab.Inventory)
+        interfaceOpen("equipment_bonuses") {
+            interfaces.sendVisibility("equipment_bonuses", "close", !get("equipment_bank_button", false))
+            updateEmote(this)
+            open("equipment_side")
+            interfaceOptions.unlockAll("equipment_bonuses", "inventory", 0 until 16)
+            updateStats(this)
+            set("bank_hidden", true)
+            sendScript("bank_show_equip_screen")
+            tab(Tab.Inventory)
         }
 
         interfaceClose("equipment_bonuses") { player ->

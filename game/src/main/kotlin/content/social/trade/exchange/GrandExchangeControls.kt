@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
@@ -19,20 +18,20 @@ import kotlin.math.ceil
 class GrandExchangeControls : Script {
 
     init {
-        interfaceOpen("grand_exchange") { player ->
+        interfaceOpen("grand_exchange") { id ->
             /*
                 This is a hacky way of converting between original and newer ui (limited price range vs unlimited with +/-5%)
                 It doesn't account for hover and tooltip changes or location of buttons and isn't the most responsive as
                 it's limited by the speed variables change by the existing (old) cs2.
              */
             val limit = Settings["grandExchange.priceLimit", true]
-            player.interfaces.sendVisibility("grand_exchange", "price_range_min", limit)
-            player.interfaces.sendVisibility("grand_exchange", "price_range_max", limit)
-            player.interfaces.sendVisibility("grand_exchange", "price_range", limit)
-            player.interfaces.sendVisibility("grand_exchange", "offer_min_sprite", limit)
-            player.interfaces.sendVisibility("grand_exchange", "offer_max_sprite", limit)
-            player.interfaces.sendText("grand_exchange", "offer_min", if (limit) "" else "-5%")
-            player.interfaces.sendText("grand_exchange", "offer_max", if (limit) "" else "+5%")
+            interfaces.sendVisibility(id, "price_range_min", limit)
+            interfaces.sendVisibility(id, "price_range_max", limit)
+            interfaces.sendVisibility(id, "price_range", limit)
+            interfaces.sendVisibility(id, "offer_min_sprite", limit)
+            interfaces.sendVisibility(id, "offer_max_sprite", limit)
+            interfaces.sendText(id, "offer_min", if (limit) "" else "-5%")
+            interfaces.sendText(id, "offer_max", if (limit) "" else "+5%")
         }
 
         interfaceOption("Add *", "add_*", "grand_exchange") {

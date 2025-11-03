@@ -2,7 +2,6 @@ package content.area.misthalin.lumbridge.church
 
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
@@ -15,34 +14,34 @@ class GravestoneShop : Script {
     val enums: EnumDefinitions by inject()
 
     init {
-        interfaceOpen("gravestone_shop") { player ->
-            player.sendVariable("gravestone_current")
-            if (player.questCompleted("the_restless_ghost")) {
-                player.addVarbit("unlocked_gravestones", "flag")
-                player.addVarbit("unlocked_gravestones", "small_gravestone")
-                player.addVarbit("unlocked_gravestones", "ornate_gravestone")
+        interfaceOpen("gravestone_shop") { id ->
+            sendVariable("gravestone_current")
+            if (questCompleted("the_restless_ghost")) {
+                addVarbit("unlocked_gravestones", "flag")
+                addVarbit("unlocked_gravestones", "small_gravestone")
+                addVarbit("unlocked_gravestones", "ornate_gravestone")
             }
-            if (player.questCompleted("the_giant_dwarf")) {
-                player.addVarbit("unlocked_gravestones", "font_of_life")
-                player.addVarbit("unlocked_gravestones", "stele")
-                player.addVarbit("unlocked_gravestones", "symbol_of_saradomin")
-                player.addVarbit("unlocked_gravestones", "symbol_of_zamorak")
-                player.addVarbit("unlocked_gravestones", "symbol_of_guthix")
-                player.addVarbit("unlocked_gravestones", "angel_of_death")
-                if (player.questCompleted("land_of_the_goblins")) {
-                    player.addVarbit("unlocked_gravestones", "symbol_of_bandos")
+            if (questCompleted("the_giant_dwarf")) {
+                addVarbit("unlocked_gravestones", "font_of_life")
+                addVarbit("unlocked_gravestones", "stele")
+                addVarbit("unlocked_gravestones", "symbol_of_saradomin")
+                addVarbit("unlocked_gravestones", "symbol_of_zamorak")
+                addVarbit("unlocked_gravestones", "symbol_of_guthix")
+                addVarbit("unlocked_gravestones", "angel_of_death")
+                if (questCompleted("land_of_the_goblins")) {
+                    addVarbit("unlocked_gravestones", "symbol_of_bandos")
                 }
-                if (player.questCompleted("temple_of_ikov")) {
-                    player.addVarbit("unlocked_gravestones", "symbol_of_armadyl")
+                if (questCompleted("temple_of_ikov")) {
+                    addVarbit("unlocked_gravestones", "symbol_of_armadyl")
                 }
-                if (player.questCompleted("desert_treasure")) {
-                    player.addVarbit("unlocked_gravestones", "ancient_symbol")
+                if (questCompleted("desert_treasure")) {
+                    addVarbit("unlocked_gravestones", "ancient_symbol")
                 }
             }
-            if (player.questCompleted("king_of_the_dwarves")) {
-                player.addVarbit("unlocked_gravestones", "royal_dwarven_gravestone")
+            if (questCompleted("king_of_the_dwarves")) {
+                addVarbit("unlocked_gravestones", "royal_dwarven_gravestone")
             }
-            player.interfaceOptions.unlockAll(id, "button", 0 until 13)
+            interfaceOptions.unlockAll(id, "button", 0 until 13)
         }
 
         interfaceOption("*", "button", "gravestone_shop") {

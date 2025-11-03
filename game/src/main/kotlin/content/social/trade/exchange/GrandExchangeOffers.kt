@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.dialogue.continueItemDialogue
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -40,14 +39,14 @@ class GrandExchangeOffers : Script {
     init {
         playerSpawn(exchange::login)
 
-        interfaceOpen("grand_exchange") { player ->
-            player.sendVariable("grand_exchange_ranges")
-            player["grand_exchange_page"] = "offers"
-            player["grand_exchange_box"] = -1
-            player.interfaceOptions.unlockAll(id, "collect_slot_0")
-            player.interfaceOptions.unlockAll(id, "collect_slot_1")
+        interfaceOpen("grand_exchange") { id ->
+            sendVariable("grand_exchange_ranges")
+            set("grand_exchange_page", "offers")
+            set("grand_exchange_box", -1)
+            interfaceOptions.unlockAll(id, "collect_slot_0")
+            interfaceOptions.unlockAll(id, "collect_slot_1")
             for (i in 0 until 6) {
-                exchange.refresh(player, i)
+                exchange.refresh(this, i)
             }
         }
 
@@ -114,12 +113,12 @@ class GrandExchangeOffers : Script {
             player["grand_exchange_item_id"] = -1
         }
 
-        interfaceOpen("stock_side") { player ->
-            player.tab(Tab.Inventory)
-            player.interfaceOptions.send(id, "items")
-            player.interfaceOptions.unlockAll(id, "items", 0 until 28)
-            player.sendInventory(player.inventory)
-            player.sendScript("grand_exchange_hide_all")
+        interfaceOpen("stock_side") { id ->
+            tab(Tab.Inventory)
+            interfaceOptions.send(id, "items")
+            interfaceOptions.unlockAll(id, "items", 0 until 28)
+            sendInventory(inventory)
+            sendScript("grand_exchange_hide_all")
         }
 
         interfaceOption("Offer", "items", "stock_side") {

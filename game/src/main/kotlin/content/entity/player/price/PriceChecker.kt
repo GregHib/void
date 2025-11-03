@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -25,11 +24,11 @@ import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimi
 class PriceChecker : Script {
 
     init {
-        interfaceOpen("price_checker") { player ->
-            player.interfaceOptions.unlockAll(id, "items", 0 until 28)
-            player["price_checker_total"] = 0
-            player["price_checker_limit"] = Int.MAX_VALUE
-            player.open("price_checker_side")
+        interfaceOpen("price_checker") { id ->
+            interfaceOptions.unlockAll(id, "items", 0 until 28)
+            set("price_checker_total", 0)
+            set("price_checker_limit", Int.MAX_VALUE)
+            open("price_checker_side")
         }
 
         interfaceOption("Remove-*", "items", "price_checker") {
@@ -56,11 +55,11 @@ class PriceChecker : Script {
             player.offer.moveAll(player.inventory)
         }
 
-        interfaceOpen("price_checker_side") { player ->
-            player.tab(Tab.Inventory)
-            player.interfaceOptions.send(id, "items")
-            player.interfaceOptions.unlockAll(id, "items", 0 until 28)
-            player.sendInventory(player.inventory)
+        interfaceOpen("price_checker_side") { id ->
+            tab(Tab.Inventory)
+            interfaceOptions.send(id, "items")
+            interfaceOptions.unlockAll(id, "items", 0 until 28)
+            sendInventory(inventory)
         }
 
         interfaceOption("Add*", "items", "price_checker_side") {

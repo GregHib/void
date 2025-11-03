@@ -4,7 +4,6 @@ import content.entity.player.modal.CharacterStyle.onStyle
 import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -22,17 +21,17 @@ class CharacterCreation : Script {
     val structs: StructDefinitions by inject()
 
     init {
-        interfaceOpen("character_creation") { player ->
-            player.interfaceOptions.unlockAll(id, "skin_colour", 0 until enums.get("character_skin_interfaces").length)
-            player.interfaceOptions.unlockAll(id, "colours", 0 until enums.get("character_top_interfaces").length)
-            player.interfaceOptions.unlockAll(id, "styles", 0 until enums.get("character_top_styles_female").length)
-            player["character_creation_female"] = !player.body.male
-            player.sendVariable("character_creation_style")
-            player.sendVariable("character_creation_sub_style")
-            player.sendVariable("character_creation_hair_style")
-            player.sendVariable("character_creation_colour_offset")
+        interfaceOpen("character_creation") { id ->
+            interfaceOptions.unlockAll(id, "skin_colour", 0 until enums.get("character_skin_interfaces").length)
+            interfaceOptions.unlockAll(id, "colours", 0 until enums.get("character_top_interfaces").length)
+            interfaceOptions.unlockAll(id, "styles", 0 until enums.get("character_top_styles_female").length)
+            set("character_creation_female", !body.male)
+            sendVariable("character_creation_style")
+            sendVariable("character_creation_sub_style")
+            sendVariable("character_creation_hair_style")
+            sendVariable("character_creation_colour_offset")
             for (i in 1 until 20) {
-                player.sendInventory("character_creation_$i")
+                sendInventory("character_creation_$i")
             }
         }
 
@@ -104,20 +103,20 @@ class CharacterCreation : Script {
             player["makeover_$part"] = value
         }
 
-        interfaceOpen("character_creation") { player ->
-            player["makeover_female"] = !player.body.male
-            player["makeover_hair"] = player.body.getLook(BodyPart.Hair)
-            player["makeover_beard"] = player.body.getLook(BodyPart.Beard)
-            player["makeover_top"] = player.body.getLook(BodyPart.Chest)
-            player["makeover_arms"] = player.body.getLook(BodyPart.Arms)
-            player["makeover_wrists"] = player.body.getLook(BodyPart.Hands)
-            player["makeover_legs"] = player.body.getLook(BodyPart.Legs)
-            player["makeover_shoes"] = player.body.getLook(BodyPart.Feet)
-            player["makeover_colour_hair"] = player.body.getColour(BodyColour.Hair)
-            player["makeover_colour_top"] = player.body.getColour(BodyColour.Top)
-            player["makeover_colour_legs"] = player.body.getColour(BodyColour.Legs)
-            player["makeover_colour_shoes"] = player.body.getColour(BodyColour.Feet)
-            player["makeover_colour_skin"] = player.body.getColour(BodyColour.Skin)
+        interfaceOpen("character_creation") {
+            set("makeover_female", !body.male)
+            set("makeover_hair", body.getLook(BodyPart.Hair))
+            set("makeover_beard", body.getLook(BodyPart.Beard))
+            set("makeover_top", body.getLook(BodyPart.Chest))
+            set("makeover_arms", body.getLook(BodyPart.Arms))
+            set("makeover_wrists", body.getLook(BodyPart.Hands))
+            set("makeover_legs", body.getLook(BodyPart.Legs))
+            set("makeover_shoes", body.getLook(BodyPart.Feet))
+            set("makeover_colour_hair", body.getColour(BodyColour.Hair))
+            set("makeover_colour_top", body.getColour(BodyColour.Top))
+            set("makeover_colour_legs", body.getColour(BodyColour.Legs))
+            set("makeover_colour_shoes", body.getColour(BodyColour.Feet))
+            set("makeover_colour_skin", body.getColour(BodyColour.Skin))
         }
 
         interfaceOption(component = "confirm", id = "character_creation") {

@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -43,24 +42,24 @@ class SilverCasting : Script {
         get() = def.getOrNull("silver_jewellery")
 
     init {
-        interfaceOpen("silver_mould") { player ->
+        interfaceOpen("silver_mould") { id ->
             for (mould in moulds) {
                 val silver = mould.silver ?: continue
                 val item = silver.item
                 val quest = silver.quest
-                player.interfaces.sendVisibility(id, mould.id, quest == null || player.quest(quest) != "unstarted")
-                val has = player.holdsItem(mould.id)
-                player.interfaces.sendText(
+                interfaces.sendVisibility(id, mould.id, quest == null || quest(quest) != "unstarted")
+                val has = holdsItem(mould.id)
+                interfaces.sendText(
                     id,
                     "${mould.id}_text",
                     if (has) {
-                        val colour = if (has && player.holdsItem("silver_bar")) "green" else "orange"
+                        val colour = if (holdsItem("silver_bar")) "green" else "orange"
                         "<$colour>Make ${itemDefinitions.get(item).name.toTitleCase()}"
                     } else {
                         "<orange>You need a ${silver.name ?: mould.def.name.lowercase()} to make this item."
                     },
                 )
-                player.interfaces.sendItem(id, "${mould.id}_model", if (has) itemDefinitions.get(item).id else mould.def.id)
+                interfaces.sendItem(id, "${mould.id}_model", if (has) itemDefinitions.get(item).id else mould.def.id)
             }
         }
 

@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -49,13 +48,13 @@ class Yrsa : Script {
             player.softTimers.stop("dressing_room")
         }
 
-        interfaceOpen("yrsas_shoe_store") { player ->
-            player.interfaces.sendText(id, "confirm_text", "Change")
-            player.interfaceOptions.unlockAll(id, "styles", 0 until 40)
+        interfaceOpen("yrsas_shoe_store") { id ->
+            interfaces.sendText(id, "confirm_text", "Change")
+            interfaceOptions.unlockAll(id, "styles", 0 until 40)
             val colours = enums.get("colour_shoes")
-            player.interfaceOptions.unlockAll(id, "colours", 0 until colours.length * 2)
-            player["makeover_shoes"] = player.body.getLook(BodyPart.Feet)
-            player["makeover_colour_shoes"] = player.body.getColour(BodyColour.Feet)
+            interfaceOptions.unlockAll(id, "colours", 0 until colours.length * 2)
+            set("makeover_shoes", body.getLook(BodyPart.Feet))
+            set("makeover_colour_shoes", body.getColour(BodyColour.Feet))
         }
 
         interfaceOption(component = "styles", id = "yrsas_shoe_store") {

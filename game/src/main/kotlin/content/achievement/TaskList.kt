@@ -3,7 +3,6 @@ package content.achievement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -37,9 +36,9 @@ class TaskList : Script {
             sendVariable("task_filter_sets")
         }
 
-        interfaceOpen("task_list") { player ->
-            player.interfaceOptions.unlockAll("task_list", "tasks", 0..492)
-            refresh(player)
+        interfaceOpen("task_list") {
+            interfaceOptions.unlockAll("task_list", "tasks", 0..492)
+            refresh(this)
         }
 
         variableSet("task_pin_slot") { _, _, _ ->

@@ -3,7 +3,6 @@ package content.skill.magic.book
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.chat.toInt
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 
 class SpellBookFilter : Script {
@@ -14,14 +13,14 @@ class SpellBookFilter : Script {
             sendVariable("spellbook_config")
         }
 
-        interfaceOpen("*_spellbook") { player ->
+        interfaceOpen("*_spellbook") { id ->
             val id = when (id) {
                 "ancient_spellbook" -> 1
                 "lunar_spellbook" -> 2
                 "dungeoneering_spellbook" -> 3
                 else -> 0
             }
-            player["spellbook_config"] = id or (player["defensive_cast", false].toInt() shl 8)
+            set("spellbook_config", id or (get("defensive_cast", false).toInt() shl 8))
         }
 
         interfaceOption(component = "filter_*", id = "*_spellbook") {

@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Wildcard
@@ -33,6 +34,16 @@ interface InterfaceInteraction {
         append(fromItem, toItem, bidirectional, biHandler, handler)
     }
 
+    /**
+     * Notification that an interface was opened.
+     * @see [InterfaceRefreshed] for re-opened interfaces
+     */
+    fun interfaceOpen(id: String, block: Player.(id: String) -> Unit) {
+        Wildcards.find(id, Wildcard.Interface) { i ->
+            opened.getOrPut(i) { mutableListOf() }.add(block)
+        }
+    }
+
     private fun append(
         fromItem: String,
         toItem: String,
@@ -51,8 +62,15 @@ interface InterfaceInteraction {
     }
 
     companion object {
+        val opened = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(150)
         val onItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, String) -> Unit>>(2)
         val itemOnItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, Item, Int, Int) -> Unit>>(800)
+
+        fun open(player: Player, id: String) {
+            for (block in opened[id]  ?: return) {
+                block(player, id)
+            }
+        }
 
         fun onItem(player: Player, id: String, item: Item) {
             for (block in onItem["$id:${item.id}"] ?: onItem["*:${item.id}"] ?: onItem["$id:*"] ?: onItem["*:*"] ?: return) {
@@ -67,6 +85,7 @@ interface InterfaceInteraction {
         }
 
         fun clear() {
+            opened.clear()
             onItem.clear()
             itemOnItem.clear()
         }

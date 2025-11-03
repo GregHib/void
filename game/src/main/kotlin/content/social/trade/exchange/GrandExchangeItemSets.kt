@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -28,10 +27,10 @@ class GrandExchangeItemSets : Script {
     val logger = InlineLogger()
 
     init {
-        interfaceOpen("exchange_item_sets") { player ->
-            player.open("exchange_sets_side")
-            player.sendScript("grand_exchange_sets")
-            player.interfaceOptions.unlockAll(id, "sets", 0..113)
+        interfaceOpen("exchange_item_sets") { id ->
+            open("exchange_sets_side")
+            sendScript("grand_exchange_sets")
+            interfaceOptions.unlockAll(id, "sets", 0..113)
         }
 
         interfaceClose("exchange_item_sets") { player ->
@@ -69,11 +68,11 @@ class GrandExchangeItemSets : Script {
             player.message(item.def.getOrNull("examine") ?: return@interfaceOption)
         }
 
-        interfaceOpen("exchange_sets_side") { player ->
-            player.tab(Tab.Inventory)
-            player.interfaceOptions.send(id, "items")
-            player.interfaceOptions.unlockAll(id, "items", 0 until 28)
-            player.sendInventory(player.inventory)
+        interfaceOpen("exchange_sets_side") { id ->
+            tab(Tab.Inventory)
+            interfaceOptions.send(id, "items")
+            interfaceOptions.unlockAll(id, "items", 0 until 28)
+            sendInventory(inventory)
         }
 
         interfaceOption("Components", "items", "exchange_sets_side") {

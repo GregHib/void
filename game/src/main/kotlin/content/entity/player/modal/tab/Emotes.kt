@@ -8,7 +8,6 @@ import content.entity.sound.jingle
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -38,12 +37,12 @@ class Emotes : Script {
     }
 
     init {
-        interfaceOpen("emotes") { player ->
+        interfaceOpen("emotes") { id ->
             for (compId in unlockableEmotes) {
                 val component = definitions.getComponent(id, compId) ?: continue
-                player.sendVariable("unlocked_emote_${component.stringId}")
+                sendVariable("unlocked_emote_${component.stringId}")
             }
-            player.sendVariable("unlocked_emote_lost_tribe")
+            sendVariable("unlocked_emote_lost_tribe")
         }
 
         interfaceRefresh("emotes") { player ->
