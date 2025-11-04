@@ -1,6 +1,7 @@
 package content.entity.player.combat
 
-import content.entity.combat.CombatInteraction
+import content.entity.combat.Combat
+import content.entity.combat.CombatSwing
 import content.entity.combat.combatPrepare
 import content.entity.player.dialogue.type.statement
 import content.skill.magic.spell.spell
@@ -11,6 +12,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -22,7 +24,8 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 class Attack : Script {
 
     init {
-        npcApproach("Attack") { (target) ->
+        npcApproach("Attack") {
+            val target = it.target
             if (!has(Skill.Slayer, target.def["slayer_level", 0])) {
                 message("You need a higher slayer level to know how to wound this monster.")
                 return@npcApproach
@@ -39,46 +42,47 @@ class Attack : Script {
             } else {
                 approachRange(null, update = true)
             }
-            combatInteraction(this, target)
+            it.combatInteraction(target)
         }
 
-        npcApproach("Destroy", "door_support*") { (target) ->
+        npcApproach("Destroy", "door_support*") {
             if (attackRange != 1) {
                 approachRange(attackRange, update = false)
             } else {
                 approachRange(null, update = true)
             }
-            combatInteraction(this, target)
+            it.combatInteraction(it.target)
         }
 
-        npcApproachNPC("Attack") { (target) ->
+        npcApproachNPC("Attack") {
             if (attackRange != 1) {
                 approachRange(attackRange, update = false)
             } else {
                 approachRange(null, update = true)
             }
-            combatInteraction(this, target)
+            it.combatInteraction(it.target)
         }
 
-        playerApproach("Attack") { (target) ->
+        playerApproach("Attack") {
             if (attackRange != 1) {
                 approachRange(attackRange, update = false)
             } else {
                 approachRange(null, update = true)
             }
-            combatInteraction(this, target)
+            it.combatInteraction(it.target)
         }
 
-        npcApproachPlayer("Attack") { (target) ->
+        npcApproachPlayer("Attack") {
             if (attackRange != 1) {
                 approachRange(attackRange, update = false)
             } else {
                 approachRange(null, update = true)
             }
-            combatInteraction(this, target)
+            it.combatInteraction(it.target)
         }
 
-        onNPCApproach("*_spellbook:*") { (target, id) ->
+        onNPCApproach("*_spellbook:*") {
+            val (target, id) = it
             if (!has(Skill.Slayer, target.def["slayer_level", 0])) {
                 message("You need a higher slayer level to know how to wound this monster.")
                 return@onNPCApproach
@@ -93,7 +97,7 @@ class Attack : Script {
             set("one_time", true)
             attackRange = 8
             face(target)
-            combatInteraction(this, target)
+            it.combatInteraction(target)
         }
 
         combatPrepare { player ->
@@ -105,12 +109,14 @@ class Attack : Script {
     }
 
     /**
-     * Switch out the current Interaction with [CombatInteraction] to allow hits this tick
-     * TODO can be replaced with direct interact calls
+     * Replaces the current [Interact.override] when combat is triggered via [Interact] to
+     * allow the first [CombatSwing] to occur on the same tick.
+     * After [Interact] is complete it is switched to [CombatMovement]
      */
-    fun combatInteraction(character: Character, target: Character) {
-        val interact = character.mode as? Interact ?: return
-        interact.updateInteraction(CombatInteraction(character, target))
+    fun Interact.combatInteraction(target: Character) {
+        updateInteraction {
+            Combat.combat(character, target)
+        }
     }
 
     suspend fun Player.handleCombatDummies(target: NPC): Boolean {
@@ -122,5 +128,8 @@ class Attack : Script {
         approachRange(10, false)
         mode = EmptyMode
         return false
+    }
+
+    companion object {
     }
 }

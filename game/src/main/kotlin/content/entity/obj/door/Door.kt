@@ -6,7 +6,6 @@ import content.entity.obj.door.Gate.isGate
 import content.entity.sound.sound
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.mode.interact.Interaction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -181,25 +180,6 @@ private fun doorStart(player: Player, door: GameObject): Tile? {
         return player.tile
     }
     return door.tile
-}
-
-/**
- * Enter through a doorway
- */
-suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3) {
-    player.walkOverDelay(doorStart(player, door) ?: return)
-    val tile = player.enter(door, def, ticks) ?: return
-    player.walkOverDelay(tile)
-}
-
-/**
- * Enter through a door with fixed [delay]
- */
-suspend fun Interaction<Player>.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3, delay: Int) {
-    player.walkOverDelay(doorStart(player, door) ?: return)
-    val tile = player.enter(door, def, ticks) ?: return
-    player.walkTo(tile, noCollision = true, forceWalk = true)
-    delay(delay)
 }
 
 /**
