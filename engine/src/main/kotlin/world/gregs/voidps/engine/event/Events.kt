@@ -78,18 +78,6 @@ class Events(
         scope.launch(errorHandler, block = block)
     }
 
-    /**
-     * Executes all handlers in a coroutine with [dispatcher] and [event] as arguments
-     * @return any handlers were found and executed
-     */
-    fun emit(dispatcher: EventDispatcher, event: SuspendableEvent): Boolean {
-        val handlers = search(dispatcher, event) ?: return false
-        launch {
-            handleEvent(handlers, event, dispatcher)
-        }
-        return true
-    }
-
     private suspend fun handleEvent(handlers: Set<suspend Event.(EventDispatcher) -> Unit>, event: Event, dispatcher: EventDispatcher) {
         for (handler in handlers) {
             if (event is CancellableEvent && event.cancelled) {

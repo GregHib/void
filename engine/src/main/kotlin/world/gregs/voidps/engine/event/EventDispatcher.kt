@@ -13,11 +13,6 @@ interface EventDispatcher {
         return Events.events.emit(this, event)
     }
 
-    fun <E : SuspendableEvent> emit(event: E): Boolean {
-        debug(this, event)
-        return Events.events.emit(this, event)
-    }
-
     val key: String
         get() = when (this) {
             is NPC -> "npc"
