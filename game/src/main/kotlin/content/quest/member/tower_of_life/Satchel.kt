@@ -1,7 +1,6 @@
 package content.quest.member.tower_of_life
 
 import content.entity.player.dialogue.type.item
-import content.entity.player.inv.inventoryItem
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -19,19 +18,21 @@ class Satchel : Script {
     val sandwich = 0x4
 
     init {
-        inventoryItem("Inspect", "*_satchel") {
-            val charges = player.inventory.charges(player, slot)
+        itemOption("Inspect", "*_satchel") {
+            val inventory = inventories.inventory(it.inventory)
+            val charges = inventory.charges(this, it.slot)
             val cake = if (charges and cake != 0) "one" else "no"
             val banana = if (charges and banana != 0) "one" else "no"
             val sandwich = if (charges and sandwich != 0) "one" else "no"
-            item(item.id, 400, "The ${item.id.toLowerSpaceCase()}!<br>(Containing: $sandwich sandwich, $cake cake, and $banana banana)")
+            item(it.item.id, 400, "The ${it.item.id.toLowerSpaceCase()}!<br>(Containing: $sandwich sandwich, $cake cake, and $banana banana)")
         }
 
-        inventoryItem("Empty", "*_satchel") {
-            var charges = player.inventory.charges(player, slot)
-            charges = withdraw(player, slot, charges, "banana", banana)
-            charges = withdraw(player, slot, charges, "cake", cake)
-            withdraw(player, slot, charges, "triangle_sandwich", sandwich)
+        itemOption("Empty", "*_satchel") {
+            val inventory = inventories.inventory(it.inventory)
+            var charges = inventory.charges(this, it.slot)
+            charges = withdraw(this, it.slot, charges, "banana", banana)
+            charges = withdraw(this, it.slot, charges, "cake", cake)
+            withdraw(this, it.slot, charges, "triangle_sandwich", sandwich)
         }
 
         itemOnItem("cake", "*_satchel") { _, _, fromSlot, toSlot ->

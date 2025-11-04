@@ -1,11 +1,12 @@
 package content.entity.player.equip
 
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.player.inv.InventoryOption
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.InterfaceInteraction
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
@@ -39,7 +40,7 @@ class WornEquipment : Script {
             }
             val slot = EquipSlot.by(it.component.removeSuffix("_slot"))
             closeInterfaces()
-            emit(InventoryOption(this, it.id, it.item, slot.index, equipOption))
+            InterfaceInteraction.itemOption(this, ItemOption(it.item, slot.index, "worn_equipment", equipOption))
         }
     }
 

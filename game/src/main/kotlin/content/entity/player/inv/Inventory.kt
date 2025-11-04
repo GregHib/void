@@ -2,7 +2,9 @@ package content.entity.player.inv
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.client.ui.closeInterfaces
+import world.gregs.voidps.engine.entity.InterfaceInteraction
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.inv.inventory
@@ -50,15 +52,7 @@ class Inventory : Script {
             if (mode is CombatMovement) {
                 mode = EmptyMode
             }
-            emit(
-                InventoryOption(
-                    this,
-                    id.substringBefore(":"),
-                    item,
-                    itemSlot,
-                    equipOption,
-                ),
-            )
+            InterfaceInteraction.itemOption(this, ItemOption(item, itemSlot, id.substringBefore(":"), equipOption))
         }
     }
 }

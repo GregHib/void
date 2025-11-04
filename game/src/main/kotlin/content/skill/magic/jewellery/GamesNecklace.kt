@@ -2,7 +2,6 @@ package content.skill.magic.jewellery
 
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.inventoryItem
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -19,49 +18,49 @@ class GamesNecklace : Script {
     val burghDeRott = areas["burgh_de_rott_teleport"]
 
     init {
-        inventoryItem("Rub", "games_necklace_#", "inventory") {
-            if (player.contains("delay")) {
-                return@inventoryItem
+        itemOption("Rub", "games_necklace_#") {
+            if (contains("delay")) {
+                return@itemOption
             }
             choice("Where would you like to teleport to?") {
                 option("Burthorpe Games Rooms.") {
-                    jewelleryTeleport(player, inventory, slot, burthorpe)
+                    jewelleryTeleport(this, it.inventory, it.slot, burthorpe)
                 }
                 option("Barbarian Outpost.") {
-                    jewelleryTeleport(player, inventory, slot, barbarianOutput)
+                    jewelleryTeleport(this, it.inventory, it.slot, barbarianOutput)
                 }
                 option("Clan Wars.") {
-                    jewelleryTeleport(player, inventory, slot, clanWars)
+                    jewelleryTeleport(this, it.inventory, it.slot, clanWars)
                 }
                 option("Wilderness Volcano.") {
-                    jewelleryTeleport(player, inventory, slot, wildernessVolcano)
+                    jewelleryTeleport(this, it.inventory, it.slot, wildernessVolcano)
                 }
-                option("Burgh De Rott.", { player.questCompleted("darkness_of_hallowvale") }) {
-                    jewelleryTeleport(player, inventory, slot, burghDeRott)
+                option("Burgh De Rott.", { questCompleted("darkness_of_hallowvale") }) {
+                    jewelleryTeleport(this, it.inventory, it.slot, burghDeRott)
                 }
-                option("Nowhere.", { !player.questCompleted("darkness_of_hallowvale") })
+                option("Nowhere.", { !questCompleted("darkness_of_hallowvale") })
             }
         }
 
-        inventoryItem("*", "games_necklace_#", "worn_equipment") {
-            if (player.contains("delay")) {
-                return@inventoryItem
+        itemOption("*", "games_necklace_#", "worn_equipment") {
+            if (contains("delay")) {
+                return@itemOption
             }
-            val area = when (option) {
+            val area = when (it.option) {
                 "Burthorpe" -> burthorpe
                 "Barbarian Outpost" -> barbarianOutput
                 "Clan Wars" -> clanWars
                 "Wilderness Volcano" -> wildernessVolcano
                 "Burgh De Rott" -> {
-                    if (!player.questCompleted("darkness_of_hallowvale")) {
+                    if (!questCompleted("darkness_of_hallowvale")) {
                         statement("You need to have completed The Darkness of Hallowvale quest to teleport to this location.")
-                        return@inventoryItem
+                        return@itemOption
                     }
                     burghDeRott
                 }
-                else -> return@inventoryItem
+                else -> return@itemOption
             }
-            jewelleryTeleport(player, inventory, slot, area)
+            jewelleryTeleport(this, it.inventory, it.slot, area)
         }
     }
 }

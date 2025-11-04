@@ -2,9 +2,11 @@ package world.gregs.voidps.engine.entity
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.client.ui.event.CloseInterface
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 
@@ -73,10 +75,15 @@ interface InterfaceInteraction {
         }
     }
 
-
     fun interfaceOption(option: String = "*", id: String = "*", block: suspend Player.(InterfaceOption) -> Unit) {
         Wildcards.find(id, Wildcard.Component) { i ->
             options.getOrPut("$option:$i") { mutableListOf() }.add(block)
+        }
+    }
+
+    fun itemOption(option: String, item: String = "*", inventory: String = "inventory", block: suspend Player.(ItemOption) -> Unit) {
+        Wildcards.find(item, Wildcard.Item) { i ->
+            itemOption.getOrPut("$option:$i:$inventory") { mutableListOf() }.add(block)
         }
     }
 
@@ -105,9 +112,23 @@ interface InterfaceInteraction {
         private val onItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, String) -> Unit>>(2)
         private val itemOnItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, Item, Int, Int) -> Unit>>(800)
         private val options = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(InterfaceOption) -> Unit>>(50)
+        private val itemOption = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOption) -> Unit>>(50)
+        private val invOption = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(Item, Int, String) -> Unit>>(50)
 
         suspend fun option(player: Player, click: InterfaceOption) {
             for (block in options["${click.option}:${click.interfaceComponent}"] ?: options["*:${click.interfaceComponent}"] ?: options["${click.option}:*"]  ?: return) {
+                block(player, click)
+            }
+        }
+
+        fun itemOption(player: Player, option: String, item: Item = Item.EMPTY, slot: Int = 0, inventory: String = "inventory") {
+            Events.events.launch {
+                itemOption(player, ItemOption(item, slot, inventory, option))
+            }
+        }
+
+        suspend fun itemOption(player: Player, click: ItemOption) {
+            for (block in itemOption["${click.option}:${click.item.id}:${click.inventory}"] ?: itemOption["${click.option}:*:${click.inventory}"] ?: itemOption["${click.option}:${click.item.id}:*"] ?: itemOption["${click.option}:*:*"] ?: return) {
                 block(player, click)
             }
         }
@@ -156,6 +177,8 @@ interface InterfaceInteraction {
             onItem.clear()
             itemOnItem.clear()
             options.clear()
+            itemOption.clear()
+            invOption.clear()
         }
     }
 }

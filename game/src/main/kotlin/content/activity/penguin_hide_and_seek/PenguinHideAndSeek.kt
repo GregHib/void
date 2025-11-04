@@ -2,7 +2,6 @@ package content.activity.penguin_hide_and_seek
 
 import content.entity.effect.transform
 import content.entity.player.command.find
-import content.entity.player.inv.inventoryItem
 import content.quest.questCompleted
 import content.quest.questJournal
 import net.pearx.kasechange.toTitleCase
@@ -97,26 +96,26 @@ class PenguinHideAndSeek : Script {
             delay(2)
         }
 
-        inventoryItem("Read", "spy_notebook") {
-            updateWeek(player)
-            val bear = player.containsVarbit("penguins_found", "polar_bear")
-            var found = player["penguins_found_weekly", 0]
+        itemOption("Read", "spy_notebook") {
+            updateWeek(this)
+            val bear = containsVarbit("penguins_found", "polar_bear")
+            var found = get("penguins_found_weekly", 0)
             if (bear) {
                 found--
             }
-            player.message("You have recently spotted $found ${"penguin".plural(found)}.")
+            message("You have recently spotted $found ${"penguin".plural(found)}.")
             if (bear) {
-                player.message("You have recently spotted the polar bear agent.")
+                message("You have recently spotted the polar bear agent.")
             }
-            player.message("You have ${player["penguin_points", 0]} Penguin Points to spend with Larry.")
+            message("You have ${get("penguin_points", 0)} Penguin Points to spend with Larry.")
         }
 
-        adminCommand("respawn_penguins", desc = "Respawn hide and seek penguins") { player, _ ->
+        adminCommand("respawn_penguins", desc = "Respawn hide and seek penguins") { _, _ ->
             clear()
             load(configFiles())
             sendBear()
         }
-        adminCommand("clear_penguins", desc = "Remove all hide and seek penguins") { player, _ -> clear() }
+        adminCommand("clear_penguins", desc = "Remove all hide and seek penguins") { _, _ -> clear() }
         modCommand("penguins", stringArg("player-name", autofill = accounts.displayNames.keys, optional = true), desc = "Get info about a hide and seek penguin", handler = ::listPenguins)
         worldSpawn(::load)
         playerSpawn(::sendBear)

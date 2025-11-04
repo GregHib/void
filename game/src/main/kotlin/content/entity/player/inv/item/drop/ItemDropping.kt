@@ -1,7 +1,6 @@
 package content.entity.player.inv.item.drop
 
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.player.inv.inventoryOption
 import content.entity.player.inv.item.tradeable
 import content.entity.sound.sound
 import world.gregs.voidps.engine.Script
@@ -18,24 +17,24 @@ class ItemDropping : Script {
     val logger = InlineLogger()
 
     init {
-        inventoryOption("Drop", "inventory") {
-            player.queue.clearWeak()
-            val event = Droppable(item, player.tile)
-            player.emit(event)
+        itemOption("Drop") { (item, slot) ->
+            queue.clearWeak()
+            val event = Droppable(item, tile)
+            emit(event)
             if (event.cancelled) {
-                return@inventoryOption
+                return@itemOption
             }
-            AuditLog.event(player, "dropped", item, player.tile)
-            if (player.inventory.remove(slot, item.id, item.amount)) {
+            AuditLog.event(this, "dropped", item, tile)
+            if (inventory.remove(slot, item.id, item.amount)) {
                 if (item.tradeable) {
-                    floorItems.add(player.tile, item.id, item.amount, revealTicks = 100, disappearTicks = 200, owner = player)
+                    floorItems.add(tile, item.id, item.amount, revealTicks = 100, disappearTicks = 200, owner = this)
                 } else {
-                    floorItems.add(player.tile, item.id, item.amount, charges = item.charges(), revealTicks = FloorItems.NEVER, disappearTicks = 300, owner = player)
+                    floorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = FloorItems.NEVER, disappearTicks = 300, owner = this)
                 }
-                player.emit(Dropped(item))
-                player.sound("drop_item")
+                emit(Dropped(item))
+                sound("drop_item")
             } else {
-                logger.info { "Error dropping item $item for $player" }
+                logger.info { "Error dropping item $item for $this" }
             }
         }
     }

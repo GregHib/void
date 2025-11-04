@@ -1,7 +1,6 @@
 package content.skill.magic.jewellery
 
 import content.entity.player.dialogue.type.choice
-import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -18,44 +17,44 @@ class SkillsNecklace : Script {
     val cooking = areas["cooking_guild_teleport"]
 
     init {
-        inventoryItem("Rub", "skills_necklace_#", "inventory") {
-            if (player.contains("delay")) {
-                return@inventoryItem
+        itemOption("Rub", "skills_necklace_#") {
+            if (contains("delay")) {
+                return@itemOption
             }
             choice("Where would you like to teleport to?") {
                 option("Fishing Guild.") {
-                    player.message("You rub the necklace...", ChatType.Filter)
-                    jewelleryTeleport(player, inventory, slot, fishing)
+                    message("You rub the necklace...", ChatType.Filter)
+                    jewelleryTeleport(this, it.inventory, it.slot, fishing)
                 }
                 option("Mining Guild.") {
-                    player.message("You rub the necklace...", ChatType.Filter)
-                    jewelleryTeleport(player, inventory, slot, mining)
+                    message("You rub the necklace...", ChatType.Filter)
+                    jewelleryTeleport(this, it.inventory, it.slot, mining)
                 }
                 option("Crafting Guild.") {
-                    player.message("You rub the necklace...", ChatType.Filter)
-                    jewelleryTeleport(player, inventory, slot, crafting)
+                    message("You rub the necklace...", ChatType.Filter)
+                    jewelleryTeleport(this, it.inventory, it.slot, crafting)
                 }
                 option("Cooking Guild.") {
-                    player.message("You rub the necklace...", ChatType.Filter)
-                    jewelleryTeleport(player, inventory, slot, cooking)
+                    message("You rub the necklace...", ChatType.Filter)
+                    jewelleryTeleport(this, it.inventory, it.slot, cooking)
                 }
                 option("Nowhere.")
             }
         }
 
-        inventoryItem("*", "skills_necklace_#", "worn_equipment") {
-            if (player.contains("delay")) {
-                return@inventoryItem
+        itemOption("*", "skills_necklace_#", "worn_equipment") {
+            if (contains("delay")) {
+                return@itemOption
             }
-            val area = when (option) {
+            val area = when (it.option) {
                 "Fishing Guild" -> fishing
                 "Mining Guild" -> mining
                 "Crafting Guild" -> crafting
                 "Cooking Guild" -> cooking
-                else -> return@inventoryItem
+                else -> return@itemOption
             }
-            player.message("You rub the necklace...", ChatType.Filter)
-            jewelleryTeleport(player, inventory, slot, area)
+            message("You rub the necklace...", ChatType.Filter)
+            jewelleryTeleport(this, it.inventory, it.slot, area)
         }
     }
 }

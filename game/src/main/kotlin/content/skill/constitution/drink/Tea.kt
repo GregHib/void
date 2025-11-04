@@ -4,7 +4,6 @@ import content.entity.effect.toxin.poisoned
 import content.entity.player.dialogue.type.item
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
-import content.entity.player.inv.inventoryItem
 import content.skill.constitution.consume
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -41,8 +40,8 @@ class Tea : Script {
             player.levels.restore(Skill.Constitution, 30)
         }
 
-        inventoryItem("Look-in", "tea_flask") {
-            val charges = player.inventory.charges(player, slot)
+        itemOption("Look-in", "tea_flask") {
+            val charges = it.item.charges(this)
             item(
                 "tea_flask",
                 400,
@@ -54,16 +53,16 @@ class Tea : Script {
             )
         }
 
-        inventoryItem("Drink", "tea_flask") {
-            if (!player.inventory.discharge(player, slot)) {
-                player.message("There's nothing left in the flask.")
-                return@inventoryItem
+        itemOption("Drink", "tea_flask") {
+            if (!inventory.discharge(this, it.slot)) {
+                message("There's nothing left in the flask.")
+                return@itemOption
             }
 
-            player.say("Ahhh, tea is so refreshing!")
-            player.levels.boost(Skill.Attack, 3)
-            player.levels.restore(Skill.Constitution, 30)
-            player.message("You take a drink from the flask...")
+            say("Ahhh, tea is so refreshing!")
+            levels.boost(Skill.Attack, 3)
+            levels.restore(Skill.Constitution, 30)
+            message("You take a drink from the flask...")
         }
 
         itemOnItem("tea_flask", "empty_cup") { _, toItem, fromSlot, toSlot ->

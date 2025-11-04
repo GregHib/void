@@ -1,7 +1,6 @@
 package content.area.misthalin.barbarian_village.stronghold_of_security
 
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.player.inv.inventoryItem
 import content.skill.magic.spell.Teleport
 import content.skill.magic.spell.teleportTakeOff
 import world.gregs.voidps.engine.Script
@@ -20,8 +19,8 @@ class SkullSceptre : Script {
     val logger = InlineLogger()
 
     init {
-        inventoryItem("Invoke", "skull_sceptre") {
-            Teleport.teleport(player, Tile(3081, 3421), "skull_sceptre")
+        itemOption("Invoke", "skull_sceptre") {
+            Teleport.teleport(this, Tile(3081, 3421), "skull_sceptre")
         }
 
         teleportTakeOff("skull_sceptre") {
@@ -44,10 +43,10 @@ class SkullSceptre : Script {
             }
         }
 
-        inventoryItem("Divine", "skull_sceptre") {
+        itemOption("Divine", "skull_sceptre") { (item) ->
             val charges = item.charges()
             // TODO proper message
-            player.message("The sceptre has $charges ${"charge".plural(charges)} remaining.")
+            message("The sceptre has $charges ${"charge".plural(charges)} remaining.")
         }
     }
 }

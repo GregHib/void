@@ -1,15 +1,16 @@
 package content.entity.player.equip
 
 import content.entity.player.equip.EquipBonuses.names
-import content.entity.player.inv.InventoryOption
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.InterfaceInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
@@ -76,14 +77,14 @@ class EquipmentBonuses : Script {
 
         interfaceOption("Equip", "equipment_side:inventory") { (item, itemSlot) ->
             if (equipping()) {
-                emit(InventoryOption(this, "inventory", item, itemSlot, "Wield"))
+                InterfaceInteraction.itemOption(this, ItemOption(item, itemSlot, "inventory", "Wield"))
                 checkEmoteUpdate(this)
             }
         }
 
         interfaceOption("Remove", "equipment_bonuses:inventory") { (item, itemSlot) ->
             if (equipping()) {
-                emit(InventoryOption(this, "worn_equipment", item, itemSlot, "Remove"))
+                InterfaceInteraction.itemOption(this, ItemOption(item, itemSlot, "inventory", "Remove"))
                 checkEmoteUpdate(this)
             }
         }

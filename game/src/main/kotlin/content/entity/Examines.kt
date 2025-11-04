@@ -1,6 +1,5 @@
 package content.entity
 
-import content.entity.player.inv.inventoryOption
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
@@ -24,8 +23,8 @@ class Examines : Script {
             message(item.def.getOrNull("examine") ?: return@interfaceOption, ChatType.ItemExamine)
         }
 
-        inventoryOption("Examine") {
-            player.message(item.def.getOrNull("examine") ?: return@inventoryOption, ChatType.ItemExamine)
+        itemOption("Examine", inventory = "*") { (item) ->
+            message(item.def.getOrNull("examine") ?: return@itemOption, ChatType.ItemExamine)
         }
 
         objectApproach("Examine") { (target) ->

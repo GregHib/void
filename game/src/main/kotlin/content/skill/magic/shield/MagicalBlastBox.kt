@@ -2,9 +2,9 @@ package content.skill.magic.shield
 
 import content.entity.combat.hit.combatAttack
 import content.entity.player.dialogue.type.choice
-import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -31,35 +31,13 @@ class MagicalBlastBox : Script {
             }
         }
 
-        inventoryItem("Check*", "magical_blastbox*", "inventory") {
-            val charges = player.inventory.charges(player, slot)
-            val dungeoneering = if (item.id == "magical_blastbox") "" else "_dungeoneering"
-            val blast = player["magical_blastbox_mode$dungeoneering", false]
-            choice("The box is currently charged with $charges ${if (blast) "Blast" else "Bolt"} ${"spell".plural(charges)}.") {
-                option("I want to empty the ${if (blast) "Blast" else "Bolt"} spells.", filter = { charges > 0 }) {
-                    // TODO proper message
-                    if (emptyRunes(player, blast, dungeoneering, slot, charges)) {
-                        player.message("You empty the box of ${if (blast) "Blast" else "Bolt"} spells.") // TODO proper message
-                    } else {
-                        player.inventoryFull()
-                    }
-                }
-                option("I do not wish to change the box settings.", filter = { charges == 0 })
-                option("Switch to ${if (blast) "Bolt" else "Blast"}.") {
-                    if (charges == 0 || emptyRunes(player, blast, dungeoneering, slot, charges)) {
-                        val blastMode = player.toggle("magical_blastbox_mode$dungeoneering")
-                        player.message("This box is set to be charged with ${if (blastMode) "Blast" else "Bolt"} spells.")
-                    } else {
-                        player.inventoryFull()
-                    }
-                }
-            }
-        }
+        itemOption("Check", "magical_blastbox*", block = ::check)
+        itemOption("Check/Empty", "magical_blastbox*", block = ::check)
 
-        inventoryItem("Check-charges", "magical_blastbox*", "worn_equipment") {
-            val blast = player["magical_blastbox_mode", false]
-            val charges = player.equipment.charges(player, EquipSlot.Shield.index)
-            player.message("The box is currently charged with $charges ${if (blast) "Blast" else "Bolt"} ${"spell".plural(charges)}.") // TODO proper message
+        itemOption("Check-charges", "magical_blastbox*", "worn_equipment") {
+            val blast = get("magical_blastbox_mode", false)
+            val charges = equipment.charges(this, EquipSlot.Shield.index)
+            message("The box is currently charged with $charges ${if (blast) "Blast" else "Bolt"} ${"spell".plural(charges)}.") // TODO proper message
         }
 
         itemAdded("magical_blastbox*", EquipSlot.Shield, "worn_equipment") { player ->
@@ -84,8 +62,8 @@ class MagicalBlastBox : Script {
             setCharges(player, 0, item.id != "magical_blastbox")
         }
 
-        inventoryItem("Charge", "magical_blastbox*", "inventory") {
-            charge(player, item, slot)
+        itemOption("Charge", "magical_blastbox*") { (item, slot) ->
+            charge(this, item, slot)
         }
 
         itemOnItem("air_rune", "magical_blastbox*") { _, toItem, _, toSlot ->
@@ -98,6 +76,32 @@ class MagicalBlastBox : Script {
 
         itemOnItem("death_rune", "magical_blastbox*") { _, toItem, _, toSlot ->
             charge(this, toItem, toSlot)
+        }
+    }
+
+    suspend fun check(player: Player, it: ItemOption) = with(player) {
+        val (item, slot) = it
+        val charges = inventory.charges(this, slot)
+        val dungeoneering = if (item.id == "magical_blastbox") "" else "_dungeoneering"
+        val blast = get("magical_blastbox_mode$dungeoneering", false)
+        choice("The box is currently charged with $charges ${if (blast) "Blast" else "Bolt"} ${"spell".plural(charges)}.") {
+            option("I want to empty the ${if (blast) "Blast" else "Bolt"} spells.", filter = { charges > 0 }) {
+                // TODO proper message
+                if (emptyRunes(this, blast, dungeoneering, slot, charges)) {
+                    message("You empty the box of ${if (blast) "Blast" else "Bolt"} spells.") // TODO proper message
+                } else {
+                    inventoryFull()
+                }
+            }
+            option("I do not wish to change the box settings.", filter = { charges == 0 })
+            option("Switch to ${if (blast) "Bolt" else "Blast"}.") {
+                if (charges == 0 || emptyRunes(this, blast, dungeoneering, slot, charges)) {
+                    val blastMode = toggle("magical_blastbox_mode$dungeoneering")
+                    message("This box is set to be charged with ${if (blastMode) "Blast" else "Bolt"} spells.")
+                } else {
+                    inventoryFull()
+                }
+            }
         }
     }
 

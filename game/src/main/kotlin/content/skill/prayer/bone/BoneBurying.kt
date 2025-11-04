@@ -1,7 +1,6 @@
 package content.skill.prayer.bone
 
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.player.inv.inventoryOption
 import content.entity.sound.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -19,29 +18,29 @@ class BoneBurying : Script {
     val logger = InlineLogger()
 
     init {
-        inventoryOption("Bury", "inventory") {
+        itemOption("Bury") { (item, slot) ->
             if (!item.def.contains("prayer_xp")) {
-                return@inventoryOption
+                return@itemOption
             }
-            if (player.hasClock("bone_delay")) {
-                return@inventoryOption
+            if (hasClock("bone_delay")) {
+                return@itemOption
             }
             val xp = item.def["prayer_xp", 0.0]
             if (xp <= 0.0) {
                 logger.warn { "Missing bone xp: ${item.id}" }
-                return@inventoryOption
+                return@itemOption
             }
-            player.message("You dig a hole in the ground.", ChatType.Filter)
-            if (!player.inventory.remove(slot, item.id)) {
-                return@inventoryOption
+            message("You dig a hole in the ground.", ChatType.Filter)
+            if (!inventory.remove(slot, item.id)) {
+                return@itemOption
             }
-            player.start("bone_delay", 1)
-            player.anim("human_pickupfloor")
-            player.exp(Skill.Prayer, xp)
-            player.sound("bury_bones")
-            player["i_wonder_if_itll_sprout_task"] = true
-            player.weakQueue("bury", 1, onCancel = null) {
-                player.message("You bury the ${item.def.name.lowercase()}.", ChatType.Filter)
+            start("bone_delay", 1)
+            anim("human_pickupfloor")
+            exp(Skill.Prayer, xp)
+            sound("bury_bones")
+            set("i_wonder_if_itll_sprout_task", true)
+            weakQueue("bury", 1, onCancel = null) {
+                message("You bury the ${item.def.name.lowercase()}.", ChatType.Filter)
             }
         }
     }

@@ -1,7 +1,6 @@
 package content.quest.member.enakhras_lament
 
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.inventoryItem
 import content.skill.magic.jewellery.jewelleryTeleport
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -17,19 +16,22 @@ class Camulet : Script {
     val areas: AreaDefinitions by inject()
 
     init {
-        inventoryItem("Rub", "camulet") {
-            if (jewelleryTeleport(player, inventory, slot, areas["camulet_teleport"])) {
-                player.message("You rub the amulet...")
+        itemOption("Rub", "camulet") {
+            if (jewelleryTeleport(this, it.inventory, it.slot, areas["camulet_teleport"])) {
+                message("You rub the amulet...")
             } else {
                 statement("Your Camulet has run out of teleport charges. You can renew them by applying camel dung.")
             }
         }
 
-        inventoryItem("Check-charge", "camulet", "inventory") {
-            val charges = player.inventory.charges(player, slot)
-            player.message("Your Camulet has $charges ${"charge".plural(charges)} left.")
+        itemOption("Check-charge", "camulet") {
+            if (it.inventory != "inventory") {
+                return@itemOption
+            }
+            val charges = inventory.charges(this, it.slot)
+            message("Your Camulet has $charges ${"charge".plural(charges)} left.")
             if (charges == 0) {
-                player.message("You can recharge it by applying camel dung.")
+                message("You can recharge it by applying camel dung.")
             }
         }
 

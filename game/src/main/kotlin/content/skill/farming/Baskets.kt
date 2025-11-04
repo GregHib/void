@@ -1,7 +1,6 @@
 package content.skill.farming
 
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -27,43 +26,43 @@ class Baskets : Script {
     )
 
     init {
-        inventoryItem("Fill", "basket") {
+        itemOption("Fill", "basket") {
             var index = -1
             for (id in fruit.keys) {
-                index = player.inventory.indexOf(id)
+                index = inventory.indexOf(id)
                 if (index != -1) {
                     break
                 }
             }
 
             if (index == -1) {
-                player.message("You don't have any fruit with which to fill the basket.")
-                return@inventoryItem
+                message("You don't have any fruit with which to fill the basket.")
+                return@itemOption
             }
-            val item = player.inventory[index]
+            val item = inventory[index]
             val veg = fruit[item.id]
             if (veg == null) {
-                player.message("You don't have any fruit with which to fill the basket.")
-                return@inventoryItem
+                message("You don't have any fruit with which to fill the basket.")
+                return@itemOption
             }
-            player.inventory.transaction {
+            inventory.transaction {
                 val removed = removeToLimit(item.id, 5)
                 if (removed == 0) {
                     error = TransactionError.Deficient(0)
                 }
-                replace(slot, "basket", "${veg.plural}_$removed")
+                replace(it.slot, "basket", "${veg.plural}_$removed")
             }
-            when (player.inventory.transaction.error) {
-                is TransactionError.Deficient -> player.message("You don't have any fruit with which to fill the basket.")
+            when (inventory.transaction.error) {
+                is TransactionError.Deficient -> message("You don't have any fruit with which to fill the basket.")
                 TransactionError.None -> {}
                 else -> logger.warn { "Error filling fruit basket." }
             }
         }
 
         for ((id, fruit) in fruit) {
-            inventoryItem("Fill", "${fruit.plural}_#") {
+            itemOption("Fill", "${fruit.plural}_#") { (item, slot) ->
                 val current = item.id.removePrefix("${fruit.plural}_").toInt()
-                player.inventory.transaction {
+                inventory.transaction {
                     val removed = removeToLimit(id, 5 - current)
                     if (removed == 0) {
                         error = TransactionError.Deficient(0)
@@ -71,40 +70,40 @@ class Baskets : Script {
                     replace(slot, item.id, "${fruit.plural}_${current + removed}")
                 }
 
-                when (player.inventory.transaction.error) {
+                when (inventory.transaction.error) {
                     is TransactionError.Deficient -> {}
                     TransactionError.None -> {}
                     else -> logger.warn { "Error filling ${fruit.plural}." }
                 }
             }
 
-            inventoryItem("Fill", "${fruit.plural}_5") {
-                player.message("The ${fruit.name} basket is already full.")
+            itemOption("Fill", "${fruit.plural}_5") {
+                message("The ${fruit.name} basket is already full.")
             }
 
             itemOnItem(id, "${fruit.plural}_5") { _, _ ->
                 message("The ${fruit.name} basket is already full.")
             }
 
-            inventoryItem("Remove-one", "${fruit.plural}_#") {
+            itemOption("Remove-one", "${fruit.plural}_#") { (item, slot) ->
                 val current = item.id.removePrefix("${fruit.plural}_").toInt()
 
-                player.inventory.transaction {
+                inventory.transaction {
                     add(id)
                     replace(slot, item.id, if (current == 1) "basket" else "${fruit.plural}_${current - 1}")
                 }
 
-                when (player.inventory.transaction.error) {
-                    is TransactionError.Full -> player.inventoryFull()
-                    TransactionError.None -> player.message("You take ${fruit.description} out of the ${fruit.name} basket.")
+                when (inventory.transaction.error) {
+                    is TransactionError.Full -> inventoryFull()
+                    TransactionError.None -> message("You take ${fruit.description} out of the ${fruit.name} basket.")
                     else -> logger.warn { "Error emptying ${fruit.description}." }
                 }
             }
 
-            inventoryItem("Empty", "${fruit.plural}_#") {
+            itemOption("Empty", "${fruit.plural}_#") { (item, slot) ->
                 val current = item.id.removePrefix("${fruit.plural}_").toInt()
 
-                player.inventory.transaction {
+                inventory.transaction {
                     val added = addToLimit(id, current)
                     if (added == 0) {
                         error = TransactionError.Full(0)
@@ -112,8 +111,8 @@ class Baskets : Script {
                     replace(slot, item.id, if (added == current) "basket" else "${fruit.plural}_${current - added}")
                 }
 
-                when (player.inventory.transaction.error) {
-                    is TransactionError.Full -> player.inventoryFull()
+                when (inventory.transaction.error) {
+                    is TransactionError.Full -> inventoryFull()
                     TransactionError.None -> {}
                     else -> logger.warn { "Error emptying ${fruit.plural}." }
                 }

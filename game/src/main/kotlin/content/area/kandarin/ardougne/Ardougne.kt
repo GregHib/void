@@ -3,7 +3,6 @@ package content.area.kandarin.ardougne
 import content.entity.player.bank.bank
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.player.inv.inventoryItem
 import content.entity.sound.sound
 import content.quest.quest
 import world.gregs.voidps.engine.Script
@@ -62,12 +61,12 @@ class Ardougne : Script {
             }
         }
 
-        inventoryItem("Dig", "spade") {
-            val playerTile: Tile = player.tile
-            player.anim("dig_with_spade")
+        itemOption("Dig", "spade") {
+            val playerTile: Tile = tile
+            anim("dig_with_spade")
             if (mudpatch.contains(playerTile)) {
-                if (player.quest("plague_city") == "four_bucket_of_water") {
-                    player.dig()
+                if (quest("plague_city") == "four_bucket_of_water") {
+                    dig()
                 } else {
                     item("spade", 800, "You dig the soil... <br> The ground is rather hard.")
                 }

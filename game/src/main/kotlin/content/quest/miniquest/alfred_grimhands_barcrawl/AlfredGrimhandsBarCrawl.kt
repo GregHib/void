@@ -4,7 +4,6 @@ import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.player.inv.inventoryItem
 import content.quest.messageScroll
 import content.quest.quest
 import world.gregs.voidps.engine.Script
@@ -13,7 +12,6 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
@@ -50,13 +48,13 @@ val onBarCrawl: Player.(NPC) -> Boolean = filter@{ target ->
 class AlfredGrimhandsBarCrawl : Script {
 
     init {
-        inventoryItem("Read", "barcrawl_card") {
-            val signatures: List<String> = player["barcrawl_signatures", emptyList()]
+        itemOption("Read", "barcrawl_card") {
+            val signatures: List<String> = get("barcrawl_signatures", emptyList())
             if (signatures.size == 10) {
-                player.message("You are too drunk to be able to read the barcrawl card.")
-                return@inventoryItem
+                message("You are too drunk to be able to read the barcrawl card.")
+                return@itemOption
             }
-            player.messageScroll(
+            messageScroll(
                 listOf(
                     "${Colours.BLUE.toTag()}The Official Alfred Grimhand Barcrawl!",
                     "",
@@ -75,8 +73,8 @@ class AlfredGrimhandsBarCrawl : Script {
         }
     }
 
-    fun Context<Player>.line(name: String, id: String): String {
-        val complete = player.containsVarbit("barcrawl_signatures", id)
+    fun Player.line(name: String, id: String): String {
+        val complete = containsVarbit("barcrawl_signatures", id)
         return "<${Colours.bool(complete)}>$name - ${if (complete) "Completed!" else "Not Completed"}"
     }
 }

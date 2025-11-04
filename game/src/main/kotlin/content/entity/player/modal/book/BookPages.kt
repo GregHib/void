@@ -1,6 +1,5 @@
 package content.entity.player.modal.book
 
-import content.entity.player.inv.inventoryOption
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.close
@@ -26,8 +25,8 @@ class BookPages : Script {
     }
 
     init {
-        inventoryOption("Read") {
-            player.openBook(item.def.getOrNull("book") ?: return@inventoryOption)
+        itemOption("Read") { (item) ->
+            openBook(item.def.getOrNull("book") ?: return@itemOption)
         }
 
         interfaceRefresh("book,book_long,book_indexed") { id ->

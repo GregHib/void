@@ -1,6 +1,5 @@
 package content.skill.magic.weapon
 
-import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -20,30 +19,30 @@ class LawStaff : Script {
             sendVariable("law_staff_charges")
         }
 
-        inventoryItem("Inspect", "law_staff", "inventory") {
-            val charges = player.inventory.charges(player, slot)
-            player.message("The staff has ${if (charges == 0) "no" else charges} ${"charge".plural(charges)}.")
+        itemOption("Inspect", "law_staff") {
+            val charges = inventory.charges(this, it.slot)
+            message("The staff has ${if (charges == 0) "no" else charges} ${"charge".plural(charges)}.")
         }
 
-        inventoryItem("Empty", "law_staff", "inventory") {
-            val charges = player.inventory.charges(player, slot)
+        itemOption("Empty", "law_staff") {
+            val charges = inventory.charges(this, it.slot)
             if (charges == 0) {
-                player.message("The staff has no charges for your to remove.")
-                return@inventoryItem
+                message("The staff has no charges for your to remove.")
+                return@itemOption
             }
-            val success = player.inventory.transaction {
+            val success = inventory.transaction {
                 val added = addToLimit("law_rune", charges)
                 if (added <= 0) {
                     error = TransactionError.Deficient(charges)
                 } else {
-                    discharge(player, slot, added)
+                    discharge(this@itemOption, it.slot, added)
                 }
             }
-            println(player.inventory.charges(player, slot))
+            println(inventory.charges(this, it.slot))
             if (success) {
-                player.message("You remove charges from the staff and retrieve some law runes.")
+                message("You remove charges from the staff and retrieve some law runes.")
             } else {
-                player.inventoryFull()
+                inventoryFull()
             }
         }
 

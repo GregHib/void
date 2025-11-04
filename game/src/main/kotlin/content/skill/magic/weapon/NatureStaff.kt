@@ -1,6 +1,5 @@
 package content.skill.magic.weapon
 
-import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -20,29 +19,29 @@ class NatureStaff : Script {
             sendVariable("nature_staff_charges")
         }
 
-        inventoryItem("Inspect", "nature_staff", "inventory") {
-            val charges = player.inventory.charges(player, slot)
-            player.message("The staff has ${if (charges == 0) "no" else charges} ${"charge".plural(charges)}.")
+        itemOption("Inspect", "nature_staff") {
+            val charges = inventory.charges(this, it.slot)
+            message("The staff has ${if (charges == 0) "no" else charges} ${"charge".plural(charges)}.")
         }
 
-        inventoryItem("Empty", "nature_staff", "inventory") {
-            val charges = player.inventory.charges(player, slot)
+        itemOption("Empty", "nature_staff") {
+            val charges = inventory.charges(this, it.slot)
             if (charges == 0) {
-                player.message("The staff has no charges for your to remove.")
-                return@inventoryItem
+                message("The staff has no charges for your to remove.")
+                return@itemOption
             }
-            val success = player.inventory.transaction {
+            val success = inventory.transaction {
                 val added = addToLimit("nature_rune", charges)
                 if (added <= 0) {
                     error = TransactionError.Deficient(charges)
                 } else {
-                    discharge(player, slot, amount = added)
+                    discharge(this@itemOption, it.slot, amount = added)
                 }
             }
             if (success) {
-                player.message("You remove charges from the staff and retrieve some nature runes.")
+                message("You remove charges from the staff and retrieve some nature runes.")
             } else {
-                player.inventoryFull()
+                inventoryFull()
             }
         }
 

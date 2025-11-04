@@ -6,7 +6,6 @@ import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.ChoiceBuilder
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import content.entity.player.inv.inventoryItem
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
@@ -28,10 +27,10 @@ class EnchantedGem : Script {
             sendVariable("slayer_target")
         }
 
-        inventoryItem("Activate", "enchanted_gem") {
-            player.strongQueue("enchanted_gem_activate") {
-                val master = player.slayerMaster
-                npc<Happy>(master, "Hello there ${player.name}, what can I help you with?")
+        itemOption("Activate", "enchanted_gem") {
+            strongQueue("enchanted_gem_activate") {
+                val master = slayerMaster
+                npc<Happy>(master, "Hello there $name, what can I help you with?")
                 choice {
                     howAmIDoing()
                     whoAreYou()
@@ -42,11 +41,11 @@ class EnchantedGem : Script {
             }
         }
 
-        inventoryItem("Kills-left", "enchanted_gem") {
-            if (player.slayerTask == "nothing") {
-                player.message("") // TODO
+        itemOption("Kills-left", "enchanted_gem") {
+            if (slayerTask == "nothing") {
+                message("") // TODO
             } else {
-                player.message("Your current assignment is: ${player.slayerTask.lowercase()}; only ${player.slayerTaskRemaining} more to go.")
+                message("Your current assignment is: ${slayerTask.lowercase()}; only $slayerTaskRemaining more to go.")
             }
         }
     }

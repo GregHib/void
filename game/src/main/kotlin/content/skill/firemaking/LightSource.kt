@@ -1,6 +1,5 @@
 package content.skill.firemaking
 
-import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.data.LightSources
@@ -41,14 +40,14 @@ class LightSource : Script {
             message("You light the $litItem", ChatType.Game)
         }
 
-        inventoryItem("Extinguish") {
-            val source: LightSources = item.def.getOrNull("light_source") ?: return@inventoryItem
+        itemOption("Extinguish") { (item) ->
+            val source: LightSources = item.def.getOrNull("light_source") ?: return@itemOption
 
-            player.inventory.transaction {
+            inventory.transaction {
                 replace(item.id, source.onceExtinguish)
             }
 
-            player.message("You extinguish the flame.", ChatType.Game)
+            message("You extinguish the flame.", ChatType.Game)
         }
     }
 

@@ -3,7 +3,6 @@ package content.quest.member.plague_city
 import content.entity.combat.hit.directHit
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.player.inv.inventoryItem
 import content.entity.player.inv.item.ItemUsedOnItem
 import content.entity.player.modal.tab.questJournalOpen
 import content.entity.sound.sound
@@ -552,20 +551,20 @@ class PlagueCity : Script {
             statement("The grill is too secure. <br> You can't pull it off alone.")
         }
 
-        inventoryItem("Read", "a_magic_scroll") {
-            if (player.quest("plague_city") == "completed_with_spell") {
-                player.directHit(0)
-//                player.gfx("explosion")
+        itemOption("Read", "a_magic_scroll") {
+            if (quest("plague_city") == "completed_with_spell") {
+                directHit(0)
+                //                gfx("explosion")
             } else {
-                player["plague_city"] = "completed_with_spell"
-                player.sound("wom_bless")
-                player.inventory.remove("a_magic_scroll")
+                set("plague_city", "completed_with_spell")
+                sound("wom_bless")
+                inventory.remove("a_magic_scroll")
                 item("a_magic_scroll", 600, "You memorise what is written on the scroll. You can now use the Ardougne Teleport Spell.")
             }
         }
 
-        inventoryItem("Read", "a_scruffy_note") {
-            player.messageScroll(
+        itemOption("Read", "a_scruffy_note") {
+            messageScroll(
                 listOf(
                     "",
                     "",

@@ -1,6 +1,5 @@
 package content.entity.player.effect
 
-import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -93,14 +92,9 @@ class AvasDevices : Script {
             update(player)
         }
 
-        inventoryItem("Toggle", "avas_*", "worn_equipment") {
-            player["collect_junk"] = !player["collect_junk", false]
-            update(player)
-        }
-
-        inventoryItem("Toggle", "avas_*", "inventory") {
-            player["collect_junk"] = !player["collect_junk", false]
-            update(player)
+        itemOption("Toggle", "avas_*", "*") {
+            set("collect_junk", !get("collect_junk", false))
+            update(this)
         }
     }
 

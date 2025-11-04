@@ -1,12 +1,12 @@
 package content.skill.magic.spell
 
-import content.entity.player.inv.inventoryItem
 import content.entity.sound.sound
 import content.quest.quest
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -79,24 +80,28 @@ class Teleports : Script {
             }
         }
 
-        inventoryItem("*", "*_teleport") {
-            if (player.contains("delay") || player.queue.contains("teleport")) {
-                return@inventoryItem
-            }
-            player.closeInterfaces()
-            val definition = areas.getOrNull(item.id) ?: return@inventoryItem
-            val scrolls = areas.getTagged("scroll")
-            val type = if (scrolls.contains(definition)) "scroll" else "tablet"
-            val map = definition.area
-            player.queue("teleport", onCancel = null) {
-                if (player.inventory.remove(item.id)) {
-                    player.sound("teleport_$type")
-                    player.gfx("teleport_$type")
-                    player.anim("teleport_$type")
-                    delay(3)
-                    player.tele(map.random(player)!!)
-                    player.animDelay("teleport_land")
-                }
+        itemOption("Read", "*_teleport", block = ::teleport)
+        itemOption("Break", "*_teleport", block = ::teleport)
+    }
+
+    fun teleport(player: Player, it: ItemOption) {
+        if (player.contains("delay") || player.queue.contains("teleport")) {
+            return
+        }
+        val (item) = it
+        player.closeInterfaces()
+        val definition = areas.getOrNull(item.id) ?: return
+        val scrolls = areas.getTagged("scroll")
+        val type = if (scrolls.contains(definition)) "scroll" else "tablet"
+        val map = definition.area
+        player.queue("teleport", onCancel = null) {
+            if (player.inventory.remove(item.id)) {
+                player.sound("teleport_$type")
+                player.gfx("teleport_$type")
+                player.anim("teleport_$type")
+                delay(3)
+                player.tele(map.random(player)!!)
+                player.animDelay("teleport_land")
             }
         }
     }

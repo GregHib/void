@@ -1,6 +1,5 @@
 package content.skill.mining
 
-import content.entity.player.inv.inventoryItem
 import content.entity.player.inv.item.destroy.canDestroy
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -16,40 +15,40 @@ class CoalBag : Script {
     val bagCapacity = 81
 
     init {
-        inventoryItem("Inspect", "coal_bag") {
-            val coal = player["coal_bag_coal", 0]
+        itemOption("Inspect", "coal_bag") {
+            val coal = get("coal_bag_coal", 0)
             if (coal == 0) {
-                player.message("Your coal bag is empty.")
+                message("Your coal bag is empty.")
             } else {
-                player.message("Your coal bag has $coal ${"piece".plural(coal)} of coal in it.")
+                message("Your coal bag has $coal ${"piece".plural(coal)} of coal in it.")
             }
         }
 
-        inventoryItem("Withdraw-one", "coal_bag") {
-            val coal = player["coal_bag_coal", 0]
+        itemOption("Withdraw-one", "coal_bag") {
+            val coal = get("coal_bag_coal", 0)
             if (coal == 0) {
-                player.message("There is no coal in your bag to withdraw.")
-                return@inventoryItem
+                message("There is no coal in your bag to withdraw.")
+                return@itemOption
             }
-            if (player.inventory.add("coal")) {
-                player["coal_bag_coal"] = (coal - 1).coerceAtLeast(0)
+            if (inventory.add("coal")) {
+                set("coal_bag_coal", (coal - 1).coerceAtLeast(0))
             } else {
-                player.inventoryFull()
+                inventoryFull()
             }
         }
 
-        inventoryItem("Withdraw-many", "coal_bag") {
-            val count = player["coal_bag_coal", 0]
+        itemOption("Withdraw-many", "coal_bag") {
+            val count = get("coal_bag_coal", 0)
             if (count == 0) {
-                player.message("There is no coal in your bag to withdraw.")
-                return@inventoryItem
+                message("There is no coal in your bag to withdraw.")
+                return@itemOption
             }
-            val added = player.inventory.addToLimit("coal", count)
+            val added = inventory.addToLimit("coal", count)
             if (added == 0) {
-                return@inventoryItem
+                return@itemOption
             }
-            player["coal_bag_coal"] = (count - added).coerceAtLeast(0)
-            player.message("You withdraw some coal.")
+            set("coal_bag_coal", (count - added).coerceAtLeast(0))
+            message("You withdraw some coal.")
         }
 
         itemOnItem("coal", "coal_bag") { _, _ ->
