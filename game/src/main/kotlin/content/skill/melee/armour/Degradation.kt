@@ -29,20 +29,20 @@ class Degradation : Script {
             degrade(player)
         }
 
-        inventoryChanged { player ->
-            val inventory = player.inventories.inventory(inventory)
-            val degrade: String = fromItem.def.getOrNull("degrade") ?: return@inventoryChanged
-            if (degrade == "destroy" && item.isNotEmpty()) {
-                return@inventoryChanged
+        slotChanged {
+            val inventory = inventories.inventory(it.inventory)
+            val degrade: String = it.fromItem.def.getOrNull("degrade") ?: return@slotChanged
+            if (degrade == "destroy" && it.item.isNotEmpty()) {
+                return@slotChanged
             }
-            if (item.id != degrade) {
-                return@inventoryChanged
+            if (it.item.id != degrade) {
+                return@slotChanged
             }
-            if (inventory.charges(player, fromIndex) != 0) {
-                return@inventoryChanged
+            if (inventory.charges(this, it.fromIndex) != 0) {
+                return@slotChanged
             }
-            val message: String = fromItem.def.getOrNull("degrade_message") ?: return@inventoryChanged
-            player.message(message)
+            val message: String = it.fromItem.def.getOrNull("degrade_message") ?: return@slotChanged
+            message(message)
         }
     }
 

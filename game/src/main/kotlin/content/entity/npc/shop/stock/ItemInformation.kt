@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.inv.inventoryChanged
 
 class ItemInformation : Script {
 
@@ -36,17 +35,17 @@ class ItemInformation : Script {
             }
         }
 
-        inventoryChanged { player ->
-            if (player.interfaces.contains("item_info")) {
-                player.sendScript("refresh_item_info")
+        slotChanged { (inventory, idx, item) ->
+            if (interfaces.contains("item_info")) {
+                sendScript("refresh_item_info")
             }
-            if (!player.contains("info_sample")) {
-                return@inventoryChanged
+            if (!contains("info_sample")) {
+                return@slotChanged
             }
-            val shop: String = player["shop"] ?: return@inventoryChanged
-            val index: Int = player["info_index"] ?: return@inventoryChanged
-            if (inventory == shop && this.index == index) {
-                player["item_info_price"] = if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount)
+            val shop: String = get("shop") ?: return@slotChanged
+            val index: Int = get("info_index") ?: return@slotChanged
+            if (inventory == shop && idx == index) {
+                set("item_info_price", if (item.amount == 0) 0 else Price.getPrice(this, item.id, index, item.amount))
             }
         }
     }

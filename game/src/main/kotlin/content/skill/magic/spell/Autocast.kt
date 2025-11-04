@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class Autocast : Script {
@@ -23,8 +22,8 @@ class Autocast : Script {
             toggle(it.id, it.component)
         }
 
-        inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
-            player.clear("autocast")
+        slotChanged("worn_equipment", EquipSlot.Weapon) {
+            clear("autocast")
         }
     }
 

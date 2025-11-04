@@ -51,8 +51,8 @@ class Equipping : Script {
             }
         }
 
-        inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
-            updateWeaponEmote(player)
+        slotChanged("worn_equipment", EquipSlot.Weapon) {
+            updateWeaponEmote(this)
         }
     }
 

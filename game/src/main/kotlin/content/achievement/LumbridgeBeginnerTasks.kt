@@ -110,61 +110,56 @@ class LumbridgeBeginnerTasks :
             }
         }
 
-        inventoryChanged("worn_equipment") { player ->
+        slotChanged("worn_equipment") {
+            val (_, index, item) = it
             when (index) {
                 EquipSlot.Feet.index, EquipSlot.Shield.index, EquipSlot.Legs.index, EquipSlot.Chest.index -> {
                     if (item.id.contains("iron")) {
-                        player["alls_ferrous_in_love_and_war_task"] = true
+                        set("alls_ferrous_in_love_and_war_task", true)
                     } else if (item.id.contains("steel")) {
-                        player["steel_yourself_for_combat_task"] = true
+                        set("steel_yourself_for_combat_task", true)
                     }
                 }
                 EquipSlot.Weapon.index -> {
                     if (item.id.contains("iron")) {
-                        player["not_what_we_mean_by_irony_task"] = true
+                        set("not_what_we_mean_by_irony_task", true)
                     } else if (item.id.contains("steel")) {
-                        player["temper_temper_task"] = true
+                        set("temper_temper_task", true)
                     }
                     val id = item.def["weapon_style", -1]
                     when (val style = styleDefinitions.get(id).stringId) {
-                        "staff" -> player["just_cant_get_the_staff_task"] = true
+                        "staff" -> set("just_cant_get_the_staff_task", true)
                         "axe", "pickaxe", "dagger", "sword", "2h", "mace", "claws", "hammer", "whip", "spear", "halberd", "ivandis_flail", "salamander" -> {
-                            player["armed_and_dangerous_task"] = true
+                            set("armed_and_dangerous_task", true)
                         }
                         "bow", "crossbow", "thrown", "chinchompa", "sling" -> {
-                            player["reach_out_and_touch_someone_task"] = true
-                            if (!player["take_a_bow_task", false]) {
+                            set("reach_out_and_touch_someone_task", true)
+                            if (!get("take_a_bow_task", false)) {
                                 if (style == "bow") {
                                     if (item.id.contains("longbow")) {
-                                        player["equip_longbow"] = true
+                                        set("equip_longbow", true)
                                     } else {
-                                        player["equip_shortbow"] = true
+                                        set("equip_shortbow", true)
                                     }
                                 } else if (style == "crossbow") {
-                                    player["equip_crossbow"] = true
+                                    set("equip_crossbow", true)
                                 }
-                                if (player["equip_shortbow", false] || player["equip_longbow", false] || player["equip_crossbow", false]) {
-                                    player["take_a_bow_task"] = true
-                                    player.clear("equip_shortbow")
-                                    player.clear("equip_longbow")
-                                    player.clear("equip_crossbow")
+                                if (get("equip_shortbow", false) || get("equip_longbow", false) || get("equip_crossbow", false)) {
+                                    set("take_a_bow_task", true)
+                                    clear("equip_shortbow")
+                                    clear("equip_longbow")
+                                    clear("equip_crossbow")
                                 }
                             }
                             if (item.id == "oak_shortbow" || item.id == "oak_longbow") {
-                                player["heart_of_oak_task"] = true
+                                set("heart_of_oak_task", true)
                             }
                         }
                     }
                 }
                 EquipSlot.Ammo.index -> if (item.id == "iron_arrow") {
-                    player["ammo_ammo_ammo_task"] = true
+                    set("ammo_ammo_ammo_task", true)
                 }
-            }
-        }
-
-        inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
-            if (player["armed_and_dangerous_task", false] && player["just_cant_get_the_staff_task", false] && player["reach_out_and_touch_someone_task", false]) {
-                return@inventoryChanged
             }
         }
 

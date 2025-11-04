@@ -3,16 +3,15 @@ package content.entity.player.bank
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.inv.inventoryUpdate
 import world.gregs.voidps.engine.inv.shift
 import world.gregs.voidps.engine.inv.swap
 
 class BankTabs : Script {
 
     init {
-        inventoryUpdate("bank") { player ->
-            player["bank_spaces_used_free"] = player.bank.countFreeToPlayItems()
-            player["bank_spaces_used_member"] = player.bank.count
+        inventoryUpdated("bank") { _, _ ->
+            set("bank_spaces_used_free", bank.countFreeToPlayItems())
+            set("bank_spaces_used_member", bank.count)
         }
 
         interfaceSwap("bank:inventory") { _, _, fromSlot, toSlot ->

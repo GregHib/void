@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.engine.inv.sendInventory
 
 class ShopOpen : Script {
@@ -67,9 +66,9 @@ class ShopOpen : Script {
             interfaceOptions.unlockAll("shop_side", "inventory", 0 until 28)
         }
 
-        inventoryChanged { player ->
-            if (player.contains("shop") && player["shop", ""] == inventory) {
-                player["amount_$index"] = item.amount
+        slotChanged { (inventory, index, item) ->
+            if (contains("shop") && get("shop", "") == inventory) {
+                set("amount_$index", item.amount)
             }
         }
     }

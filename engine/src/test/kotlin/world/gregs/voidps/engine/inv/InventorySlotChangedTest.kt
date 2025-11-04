@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.inv
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
@@ -22,8 +23,12 @@ class InventorySlotChangedTest {
     @Test
     fun `Track changes`() {
         var changes = 0
-        inventoryUpdate {
-            changes++
+        object : Script {
+            init {
+                inventoryUpdated { _, _ ->
+                    changes++
+                }
+            }
         }
         val manager = inventory.transaction.changes
         manager.track("inventory", 1, Item.EMPTY, 1, Item("item", 1))

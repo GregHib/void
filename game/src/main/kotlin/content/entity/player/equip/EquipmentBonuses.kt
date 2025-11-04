@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.network.login.protocol.visual.VisualMask.APPEARANCE_MASK
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -35,9 +34,9 @@ class EquipmentBonuses : Script {
             set("bank_hidden", true)
         }
 
-        inventoryChanged("worn_equipment") { player ->
-            updateStats(player, fromItem, false)
-            updateStats(player, item, true)
+        slotChanged("worn_equipment") {
+            updateStats(this, it.fromItem, false)
+            updateStats(this, it.item, true)
         }
 
         interfaceOpen("equipment_bonuses") {
