@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.AuditLog
+import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -82,7 +83,7 @@ class ShopSell : Script {
             else -> {
                 val actual = Item(item.id, moved)
                 AuditLog.event(player, "sold", actual, shop.id, price)
-                player.emit(SoldItem(actual, shop.id))
+                Items.sold(player, actual)
             }
         }
     }

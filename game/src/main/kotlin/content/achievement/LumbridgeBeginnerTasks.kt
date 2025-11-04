@@ -2,8 +2,7 @@ package content.achievement
 
 import content.entity.combat.hit.combatAttack
 import content.entity.combat.killer
-import content.entity.npc.shop.sell.itemSold
-import content.entity.npc.shop.shopOpen
+import content.entity.npc.shop.shop
 import content.entity.obj.objTeleportLand
 import content.skill.melee.weapon.attackStyle
 import content.skill.prayer.PrayerApi
@@ -240,8 +239,8 @@ class LumbridgeBeginnerTasks :
             }
         }
 
-        itemSold { player ->
-            player["greasing_the_wheels_of_commerce_task"] = true
+        sold {
+            set("greasing_the_wheels_of_commerce_task", true)
         }
 
         prayerStart {
@@ -308,8 +307,10 @@ class LumbridgeBeginnerTasks :
             }
         }
 
-        itemSold("raw_shrimps", "lumbridge_fishing_supplies") { player ->
-            player["the_fruit_of_the_sea_task"] = true
+        sold("raw_shrimps") {
+            if (shop() == "lumbridge_fishing_supplies") {
+                set("the_fruit_of_the_sea_task", true)
+            }
         }
 
         itemAdded("leather_boots", inventory = "inventory") { player ->
@@ -346,8 +347,8 @@ class LumbridgeBeginnerTasks :
             }
         }
 
-        shopOpen("lumbridge_general_store") { player ->
-            player["window_shopping_task"] = true
+        shopOpen("lumbridge_general_store") {
+            set("window_shopping_task", true)
         }
 
         entered("freds_farmhouse") {

@@ -39,27 +39,27 @@ class ShopOpen : Script {
             }
         }
 
-        shopOpen { player ->
+        shopOpen { id ->
             val definition = inventoryDefinitions.getOrNull(id) ?: return@shopOpen
             val currency: String = definition["currency", "coins"]
-            player["shop_currency"] = currency
-            player["item_info_currency"] = currency
-            player["shop"] = id
-            player.interfaces.open("shop")
-            player.open("shop_side")
+            set("shop_currency", currency)
+            set("item_info_currency", currency)
+            set("shop", id)
+            interfaces.open("shop")
+            open("shop_side")
             val inventorySample = "${id}_sample"
 
-            player["free_inventory"] = inventoryDefinitions.get(inventorySample).id
-            val sample = openShopInventory(player, inventorySample)
-            player.interfaceOptions.unlockAll("shop", "sample", 0 until sample.size * 5)
+            set("free_inventory", inventoryDefinitions.get(inventorySample).id)
+            val sample = openShopInventory(this, inventorySample)
+            interfaceOptions.unlockAll("shop", "sample", 0 until sample.size * 5)
 
-            player["main_inventory"] = definition.id
-            val main = openShopInventory(player, id)
-            sendAmounts(player, main)
-            player.interfaceOptions.unlockAll("shop", "stock", 0 until main.size * 6)
+            set("main_inventory", definition.id)
+            val main = openShopInventory(this, id)
+            sendAmounts(this, main)
+            interfaceOptions.unlockAll("shop", "stock", 0 until main.size * 6)
 
-            player.interfaces.sendVisibility("shop", "store", id.endsWith("general_store"))
-            player.interfaces.sendText("shop", "title", definition["title", definition.stringId.toTitleCase()])
+            interfaces.sendVisibility("shop", "store", id.endsWith("general_store"))
+            interfaces.sendText("shop", "title", definition["title", definition.stringId.toTitleCase()])
         }
 
         interfaceRefresh("shop_side") {

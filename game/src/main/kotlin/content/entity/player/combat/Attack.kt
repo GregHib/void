@@ -129,7 +129,4 @@ class Attack : Script {
         mode = EmptyMode
         return false
     }
-
-    companion object {
-    }
 }

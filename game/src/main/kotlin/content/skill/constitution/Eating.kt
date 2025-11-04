@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
@@ -19,16 +20,6 @@ class Eating : Script {
         itemOption("Eat", block = ::consume)
         itemOption("Drink", block = ::consume)
         itemOption("Heal", block = ::consume)
-
-        consume { player ->
-            val range: IntRange = item.def.getOrNull("heals") ?: return@consume
-            val amount = range.random()
-            if (amount > 0) {
-                if (player.levels.restore(Skill.Constitution, amount) > 0) {
-                    player["om_nom_nom_nom_task"] = true
-                }
-            }
-        }
     }
 
     fun consume(player: Player, it: ItemOption) {
@@ -52,9 +43,7 @@ class Eating : Script {
             return
         }
         player.start(delay, ticks)
-        val consumable = Consumable(item)
-        player.emit(consumable)
-        if (consumable.cancelled) {
+        if (Items.consumable(player, item)) {
             return
         }
         val replacement = item.def["excess", ""]
@@ -72,9 +61,14 @@ class Eating : Script {
             player.message("You ${if (drink) "drink" else "eat"} the ${item.def.name.lowercase()}.", ChatType.Filter)
         }
         player.sound(if (drink) "drink" else "eat")
-        player.emit(Consume(item, slot))
+        Items.consume(player, item, slot)
         if (smash) {
             player.message("You quickly smash the empty vial using the trick a Barbarian taught you.", ChatType.Filter)
+        }
+        val range: IntRange = item.def.getOrNull("heals") ?: return
+        val amount = range.random()
+        if (amount > 0 && player.levels.restore(Skill.Constitution, amount) > 0) {
+            player["om_nom_nom_nom_task"] = true
         }
     }
 }

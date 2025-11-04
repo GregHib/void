@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -21,12 +22,7 @@ class ItemTake : Script {
     init {
         floorItemOperate("Take") { (target) ->
             approachRange(-1)
-            val takeable = Takeable(target.id)
-            emit(takeable)
-            if (takeable.cancelled) {
-                return@floorItemOperate
-            }
-            val item = takeable.item
+            val item = Items.takeable(this, target.id) ?: return@floorItemOperate
             if (inventory.isFull() && (!inventory.stackable(item) || !inventory.contains(item))) {
                 inventoryFull()
                 return@floorItemOperate
@@ -51,7 +47,7 @@ class ItemTake : Script {
                         anim("take")
                     }
                     sound("take_item")
-                    emit(Taken(target, item))
+                    Items.take(this, target)
                 }
                 is TransactionError.Full -> inventoryFull()
                 else -> logger.warn { "Error taking item $target ${inventory.transaction.error}" }

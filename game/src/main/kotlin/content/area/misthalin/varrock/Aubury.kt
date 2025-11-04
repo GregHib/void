@@ -1,6 +1,6 @@
 package content.area.misthalin.varrock
 
-import content.entity.npc.shop.OpenShop
+import content.entity.npc.shop.openShop
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
@@ -45,7 +45,7 @@ class Aubury : Script {
     }
 
     fun ChoiceOption.openShop(): Unit = option<Happy>("Yes please!") {
-        emit(OpenShop("auburys_rune_shop"))
+        openShop("auburys_rune_shop")
     }
 
     fun ChoiceOption.noThanks(message: String = "Oh, it's a rune shop. No thank you, then."): Unit = option<Neutral>(message) {
@@ -127,7 +127,7 @@ class Aubury : Script {
         npc<Neutral>("The Cape of Runecrafting has been upgraded with each talisman, allowing you to access all Runecrafting altars. Is there anything else I can help you with?")
         choice {
             option<Happy>("I'd like to view your store please.") {
-                emit(OpenShop("runecrafting_skillcape"))
+                openShop("runecrafting_skillcape")
             }
             noThanks("No thank you.")
         }

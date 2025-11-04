@@ -1,7 +1,6 @@
 package content.area.misthalin.lumbridge.church
 
 import content.entity.effect.transform
-import content.entity.player.inv.item.drop.canDrop
 import content.entity.player.modal.map.MapMarkers
 import content.entity.sound.sound
 import world.gregs.voidps.engine.Script
@@ -182,15 +181,16 @@ class Gravestones : Script {
             message("It looks like it'll survive another $minutes ${"minute".plural(minutes)}. You demolish it anyway.")
         }
 
-        canDrop { player ->
-            val list = npcs[tile].filter { it.id.startsWith("gravestone_") }
-            for (grave in list) {
-                if (grave["player_name", ""] == player.name) {
-                    player.message("Surely you aren't going to drop litter on your own grave!")
-                    cancel()
-                    return@canDrop
+        droppable {
+            var droppable = true
+            // TODO can you drop items on someone else's grave?
+            for (grave in npcs[tile].filter { it.id.startsWith("gravestone_") }) {
+                if (grave["player_name", ""] == name) {
+                    message("Surely you aren't going to drop litter on your own grave!")
+                    droppable = false
                 }
             }
+            droppable
         }
     }
 

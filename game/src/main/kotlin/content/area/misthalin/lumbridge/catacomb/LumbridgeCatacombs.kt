@@ -3,7 +3,6 @@ package content.area.misthalin.lumbridge.catacomb
 import content.entity.combat.killer
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.item.destroy.destroyed
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -52,8 +51,8 @@ class LumbridgeCatacombs : Script {
             }
         }
 
-        destroyed("*_demon_statuette") { player ->
-            player[item.id] = "take"
+        destroyed("*_demon_statuette") { item ->
+            set(item.id, "take")
         }
     }
 }

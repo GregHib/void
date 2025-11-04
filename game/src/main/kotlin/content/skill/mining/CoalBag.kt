@@ -1,6 +1,5 @@
 package content.skill.mining
 
-import content.entity.player.inv.item.destroy.canDestroy
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -66,11 +65,13 @@ class CoalBag : Script {
             message("You add the coal to your bag.")
         }
 
-        canDestroy("coal_bag") { player ->
-            val coal = player["coal_bag_coal", 0]
+        destructible("coal_bag") {
+            val coal = get("coal_bag_coal", 0)
             if (coal > 0) {
-                player.message("You can't destroy this item with coal in it.")
-                cancel()
+                message("You can't destroy this item with coal in it.")
+                false
+            } else {
+                true
             }
         }
     }

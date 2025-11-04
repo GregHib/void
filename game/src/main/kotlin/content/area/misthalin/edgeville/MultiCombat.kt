@@ -3,7 +3,6 @@ package content.area.misthalin.edgeville
 import content.area.wilderness.inMultiCombat
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.mode.move.*
 import world.gregs.voidps.engine.inject
 
 class MultiCombat : Script {

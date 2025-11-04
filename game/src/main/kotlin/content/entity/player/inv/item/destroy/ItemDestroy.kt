@@ -6,6 +6,7 @@ import content.entity.sound.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
@@ -35,14 +36,12 @@ class ItemDestroy : Script {
         if (!destroy) {
             return
         }
-        val event = Destructible(item)
-        player.emit(event)
-        if (event.cancelled) {
+        if (!Items.destructible(player, item)) {
             return
         }
         if (player.inventory.remove(slot, item.id, item.amount)) {
             player.sound("destroy_object")
-            player.emit(Destroyed(item))
+            Items.destroyed(player, item)
             logger.info { "$player destroyed item $item" }
         } else {
             logger.info { "Error destroying item $item for $player" }
