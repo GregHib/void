@@ -3,7 +3,6 @@ package content.social.chat
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.privateStatus
 import world.gregs.voidps.engine.client.publicStatus
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 
 var Player.publicStatus: String
@@ -38,12 +37,12 @@ class ChatFilters : Script {
             sendVariable("clan_status")
         }
 
-        interfaceOption("View", id = "filter_buttons") {
-            when (component) {
-                "game", "clan" -> player["${component}_status"] = option.lowercase()
-                "public" -> player.publicStatus = option.lowercase()
-                "private" -> player.privateStatus = option.lowercase()
-                "trade" -> player.tradeStatus = option.lowercase()
+        interfaceOption("View", id = "filter_buttons:*") {
+            when (it.component) {
+                "game", "clan" -> set("${it.component}_status", it.option.lowercase())
+                "public" -> publicStatus = it.option.lowercase()
+                "private" -> privateStatus = it.option.lowercase()
+                "trade" -> tradeStatus = it.option.lowercase()
             }
         }
     }

@@ -7,10 +7,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.data.Jewellery
 import world.gregs.voidps.engine.entity.World
@@ -20,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
@@ -42,56 +37,56 @@ class Jewellery : Script {
             open("make_mould${if (World.members) "_slayer" else ""}")
         }
 
-        interfaceRefresh("make_mould*") { player ->
-            makeMould(player)
+        interfaceRefresh("make_mould*") {
+            makeMould(it)
         }
 
-        interfaceOption("Make *", "make*", "make_mould*") {
-            val amount = when (option) {
+        interfaceOption(id = "make_mould*:make*") {
+            val amount = when (it.option) {
                 "Make 1" -> 1
                 "Make 5" -> 5
                 "Make All" -> Int.MAX_VALUE
                 "Make X" -> intEntry("Enter amount:")
                 else -> return@interfaceOption
             }
-            make(component, amount)
+            make(it.component, amount)
         }
 
-        interfaceClose("make_mould*") { player ->
-            player.sendScript("clear_dialogues")
+        interfaceClose("make_mould*") {
+            sendScript("clear_dialogues")
         }
     }
 
-    fun InterfaceRefreshed.makeMould(player: Player) {
+    fun Player.makeMould(id: String) {
         for (type in moulds) {
-            val showText = !player.inventory.contains("${type}_mould")
-            player.interfaces.sendVisibility(id, "${type}_text", showText)
+            val showText = !inventory.contains("${type}_mould")
+            interfaces.sendVisibility(id, "${type}_text", showText)
             for (gem in gems) {
                 if (showText) {
-                    player.interfaces.sendVisibility(id, "make_${type}_option_$gem", false)
+                    interfaces.sendVisibility(id, "make_${type}_option_$gem", false)
                 } else {
-                    var item = Item("${if (player.inventory.contains("gold_bar") && (gem == "gold" || player.inventory.contains(gem))) gem else "blank"}_$type")
-                    if (item.id == "enchanted_gem_ring" && player.contains("ring_bling")) {
+                    var item = Item("${if (inventory.contains("gold_bar") && (gem == "gold" || inventory.contains(gem))) gem else "blank"}_$type")
+                    if (item.id == "enchanted_gem_ring" && contains("ring_bling")) {
                         item = Item("ring_of_slaying_8")
                     }
                     val jewellery = item.jewellery
-                    if (jewellery == null || !player.has(Skill.Crafting, jewellery.level)) {
+                    if (jewellery == null || !has(Skill.Crafting, jewellery.level)) {
                         item = Item("blank_$type")
                     }
-                    player.interfaces.sendVisibility(id, "make_${type}_option_$gem", !item.id.startsWith("blank"))
-                    player.interfaces.sendItem(id, "make_${type}_$gem", item)
+                    interfaces.sendVisibility(id, "make_${type}_option_$gem", !item.id.startsWith("blank"))
+                    interfaces.sendItem(id, "make_${type}_$gem", item)
                 }
             }
         }
     }
 
-    fun Context<Player>.make(component: String, amount: Int) {
+    fun Player.make(component: String, amount: Int) {
         val split = component.removePrefix("make_").split("_option_")
         val type = split.first()
         val gem = split.last()
         val item = Item(if (gem == "enchanted_gem" && type == "ring") "ring_of_slaying_8" else "${gem}_$type")
-        player.closeMenu()
-        player.make(item, gem, amount)
+        closeMenu()
+        make(item, gem, amount)
     }
 
     fun Player.make(item: Item, gem: String, amount: Int) {

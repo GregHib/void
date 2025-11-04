@@ -1,11 +1,9 @@
 package content.skill.runecrafting
 
-import content.entity.player.inv.inventoryItem
 import content.entity.player.inv.item.drop.dropped
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.interact.itemOnItems
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -19,43 +17,43 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeTo
 
 class EssencePouch : Script {
 
-    val pouches = arrayOf("small_pouch", "medium_pouch", "medium_pouch_damaged", "large_pouch", "large_pouch_damaged", "giant_pouch", "giant_pouch_damaged")
-
     init {
-        inventoryItem("Check", *pouches) {
-            val essence = player["${item.id.removeSuffix("_damaged")}_essence", 0]
+        val pouches = setOf("small_pouch", "medium_pouch", "medium_pouch_damaged", "large_pouch", "large_pouch_damaged", "giant_pouch", "giant_pouch_damaged")
+
+        itemOption("Check", pouches.joinToString(",")) { (item) ->
+            val essence = get("${item.id.removeSuffix("_damaged")}_essence", 0)
             if (essence == 0) {
-                player.message("There is no essence in this pouch.")
-                return@inventoryItem
+                message("There is no essence in this pouch.")
+                return@itemOption
             }
             val number = numberString(essence)
-            val pure = player["${item.id.removeSuffix("_damaged")}_pure", false]
-            player.message("There are $number ${if (pure) "pure" else "rune"} ${"essence".plural(essence)} in this pouch.")
+            val pure = get("${item.id.removeSuffix("_damaged")}_pure", false)
+            message("There are $number ${if (pure) "pure" else "rune"} ${"essence".plural(essence)} in this pouch.")
         }
 
-        inventoryItem("Fill", *pouches) {
+        itemOption("Fill", pouches.joinToString(",")) { (item, slot) ->
             val id = item.id.removeSuffix("_damaged")
-            val maximum = capacity(item.id, player.inventory.charges(player, slot))
-            val essence = player["${id}_essence", 0]
+            val maximum = capacity(item.id, inventory.charges(this, slot))
+            val essence = get("${id}_essence", 0)
             if (essence >= maximum) {
-                player.message("You cannot add any more essence to the pouch.")
-                return@inventoryItem
+                message("You cannot add any more essence to the pouch.")
+                return@itemOption
             }
             var removed = 0
             var pure = true
             if (essence != 0) {
-                pure = player["${id}_pure", false]
+                pure = get("${id}_pure", false)
                 val limit = maximum - essence
-                val success = player.inventory.transaction {
+                val success = inventory.transaction {
                     removed = removeToLimit("${if (pure) "pure" else "rune"}_essence", limit)
                 }
                 if (!success) {
-                    return@inventoryItem
+                    return@itemOption
                 }
-                player["${id}_essence"] = essence + removed
-                return@inventoryItem
+                set("${id}_essence", essence + removed)
+                return@itemOption
             }
-            val success = player.inventory.transaction {
+            val success = inventory.transaction {
                 removed = removeToLimit("pure_essence", maximum)
                 if (removed == 0) {
                     removed = removeToLimit("rune_essence", maximum)
@@ -63,45 +61,45 @@ class EssencePouch : Script {
                 }
             }
             if (!success || removed == 0) {
-                player.message("You do not have any essence to fill your pouch with.")
-                return@inventoryItem
+                message("You do not have any essence to fill your pouch with.")
+                return@itemOption
             }
-            player["${id}_essence"] = removed
-            player["${id}_pure"] = pure
+            set("${id}_essence", removed)
+            set("${id}_pure", pure)
         }
 
-        inventoryItem("Empty", *pouches) {
+        itemOption("Empty", pouches.joinToString(",")) { (item, slot) ->
             val id = item.id.removeSuffix("_damaged")
-            val essence = player["${id}_essence", 0]
-            val pure = player["${id}_pure", false]
+            val essence = get("${id}_essence", 0)
+            val pure = get("${id}_pure", false)
             if (essence == 0) {
-                player.message("There is no essence in this pouch.")
-                return@inventoryItem
+                message("There is no essence in this pouch.")
+                return@itemOption
             }
 
             var added = 0
-            val success = player.inventory.transaction {
+            val success = inventory.transaction {
                 added = addToLimit("${if (pure) "pure" else "rune"}_essence", essence)
             }
             if (!success || added == 0) {
-                player.inventoryFull()
-                return@inventoryItem
+                inventoryFull()
+                return@itemOption
             }
             if (Settings["runecrafting.pouch.degrade", true]) {
-                player.inventory.discharge(player, slot)
+                inventory.discharge(this, slot)
             }
-            player["${id}_essence"] = essence - added
+            set("${id}_essence", essence - added)
         }
 
-        itemOnItems(arrayOf("pure_essence"), pouches) { player ->
-            addSingle(player, fromSlot, fromItem, toSlot, toItem)
+        itemOnItem("pure_essence", pouches.joinToString(",")) { fromItem, toItem, fromSlot, toSlot ->
+            addSingle(fromSlot, fromItem, toSlot, toItem)
         }
 
-        itemOnItems(arrayOf("rune_essence"), pouches) { player ->
-            addSingle(player, fromSlot, fromItem, toSlot, toItem)
+        itemOnItem("rune_essence", pouches.joinToString(",")) { fromItem, toItem, fromSlot, toSlot ->
+            addSingle(fromSlot, fromItem, toSlot, toItem)
         }
 
-        dropped(*pouches) { player ->
+        dropped(*pouches.toTypedArray()) { player ->
             val id = item.id.removeSuffix("_damaged")
             if (player.clear("${id}_essence") != null) {
                 player.message("The contents of the pouch fell out as you dropped it!")
@@ -109,8 +107,7 @@ class EssencePouch : Script {
         }
     }
 
-    fun addSingle(
-        player: Player,
+    fun Player.addSingle(
         fromSlot: Int,
         fromItem: Item,
         toSlot: Int,
@@ -118,28 +115,28 @@ class EssencePouch : Script {
     ) {
         val id = toItem.id.removeSuffix("_damaged")
         val desired = fromItem.id.startsWith("pure")
-        val pure = player["${id}_pure", false]
+        val pure = get("${id}_pure", false)
         if (pure != desired) {
             val name = if (pure) "pure" else "normal"
-            player.message("This pouch contains $name essence, so you can only fill it with more $name essence.")
+            message("This pouch contains $name essence, so you can only fill it with more $name essence.")
             return
         }
-        val maximum = capacity(toItem.id, player.inventory.charges(player, toSlot))
-        val essence = player["${id}_essence", 0]
+        val maximum = capacity(toItem.id, inventory.charges(this, toSlot))
+        val essence = get("${id}_essence", 0)
         if (essence >= maximum) {
-            player.message("You cannot add any more essence to the pouch.")
+            message("You cannot add any more essence to the pouch.")
             return
         }
-        val success = player.inventory.transaction {
+        val success = inventory.transaction {
             remove(fromSlot, fromItem.id)
         }
         if (!success) {
             return
         }
         if (essence == 0) {
-            player["${id}_pure"] = desired
+            set("${id}_pure", desired)
         }
-        player["${id}_essence"] = essence + 1
+        set("${id}_essence", essence + 1)
     }
 
     private fun capacity(id: String, charges: Int) = when (id) {

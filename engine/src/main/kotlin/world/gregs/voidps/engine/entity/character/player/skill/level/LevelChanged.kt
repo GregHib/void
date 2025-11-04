@@ -1,8 +1,10 @@
 package world.gregs.voidps.engine.entity.character.player.skill.level
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 
 /**
@@ -20,14 +22,14 @@ interface LevelChanged {
             npcChanged.getOrPut(skill.name) { mutableListOf() }.add(block)
             return
         }
-        for (match in Wildcards.find(id)) {
+        Wildcards.find(id, Wildcard.Npc) { match ->
             npcChanged.getOrPut("$match:${skill.name}") { mutableListOf() }.add(block)
         }
     }
 
     companion object : LevelChanged {
-        val playerChanged = mutableMapOf<Skill?, MutableList<(Player, Skill, from: Int, to: Int) -> Unit>>()
-        val npcChanged = mutableMapOf<String, MutableList<(NPC, Skill, from: Int, to: Int) -> Unit>>()
+        val playerChanged = Object2ObjectOpenHashMap<Skill?, MutableList<(Player, Skill, from: Int, to: Int) -> Unit>>(30)
+        val npcChanged = Object2ObjectOpenHashMap<String, MutableList<(NPC, Skill, from: Int, to: Int) -> Unit>>(15)
 
         fun changed(player: Player, skill: Skill, from: Int, to: Int) {
             for (block in playerChanged[skill] ?: emptyList()) {

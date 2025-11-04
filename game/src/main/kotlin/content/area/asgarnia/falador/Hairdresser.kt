@@ -6,9 +6,6 @@ import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -42,50 +39,50 @@ class Hairdresser : Script {
             startHairdressing()
         }
 
-        interfaceOpen("hairdressers_salon") { player ->
-            player.interfaces.sendText(id, "confirm_text", "Change")
-            val styles = enums.get("style_hair_${player.sex}")
+        interfaceOpen("hairdressers_salon") { id ->
+            interfaces.sendText(id, "confirm_text", "Change")
+            val styles = enums.get("style_hair_$sex")
             val colours = enums.get("colour_hair")
-            player.interfaceOptions.unlockAll(id, "styles", 0 until styles.length * 2)
-            player.interfaceOptions.unlockAll(id, "colours", 0 until colours.length * 2)
-            player["makeover_hair"] = player.body.getLook(BodyPart.Hair)
-            player["makeover_beard"] = player.body.getLook(BodyPart.Beard)
-            player["makeover_colour_hair"] = player.body.getColour(BodyColour.Hair)
+            interfaceOptions.unlockAll(id, "styles", 0 until styles.length * 2)
+            interfaceOptions.unlockAll(id, "colours", 0 until colours.length * 2)
+            set("makeover_hair", body.getLook(BodyPart.Hair))
+            set("makeover_beard", body.getLook(BodyPart.Beard))
+            set("makeover_colour_hair", body.getColour(BodyColour.Hair))
         }
 
-        interfaceOption(component = "style_*", id = "hairdressers_salon") {
-            player["makeover_facial_hair"] = component == "style_beard"
+        interfaceOption(id = "hairdressers_salon:style_*") {
+            set("makeover_facial_hair", it.component == "style_beard")
         }
 
-        interfaceOption(component = "styles", id = "hairdressers_salon") {
-            val beard = player["makeover_facial_hair", false]
+        interfaceOption(id = "hairdressers_salon:styles") { (_, itemSlot) ->
+            val beard = get("makeover_facial_hair", false)
             val type = if (beard) "beard" else "hair"
-            val key = "look_${type}_${player.sex}"
+            val key = "look_${type}_$sex"
             val value = if (beard) {
                 enums.get(key).getInt(itemSlot / 2)
             } else {
                 enums.getStruct(key, itemSlot / 2, "body_look_id")
             }
-            player["makeover_$type"] = value
+            set("makeover_$type", value)
         }
 
-        interfaceOption(component = "colours", id = "hairdressers_salon") {
-            player["makeover_colour_hair"] = enums.get("colour_hair").getInt(itemSlot / 2)
+        interfaceOption(id = "hairdressers_salon:colours") { (_, itemSlot) ->
+            set("makeover_colour_hair", enums.get("colour_hair").getInt(itemSlot / 2))
         }
 
-        interfaceClose("hairdressers_salon") { player ->
-            player.softTimers.stop("dressing_room")
+        interfaceClose("hairdressers_salon") {
+            softTimers.stop("dressing_room")
         }
 
-        interfaceOption("Confirm", "confirm", "hairdressers_salon") {
-            player.body.setLook(BodyPart.Hair, player["makeover_hair", 0])
-            player.body.setLook(BodyPart.Beard, player["makeover_beard", 0])
-            player.body.setColour(BodyColour.Hair, player["makeover_colour_hair", 0])
-            player.flagAppearance()
-            player.closeMenu()
+        interfaceOption("Confirm", "hairdressers_salon:confirm") {
+            body.setLook(BodyPart.Hair, get("makeover_hair", 0))
+            body.setLook(BodyPart.Beard, get("makeover_beard", 0))
+            body.setColour(BodyColour.Hair, get("makeover_colour_hair", 0))
+            flagAppearance()
+            closeMenu()
             npc<Happy>(
                 "hairdresser",
-                if (player.male) {
+                if (male) {
                     listOf("An excellent choice, sir.", "Mmm... very distinguished!")
                 } else {
                     listOf("A marvellous choice. You look splendid!", "It really suits you!")

@@ -1,6 +1,5 @@
 package content.quest.free.gunnars_ground
 
-import content.entity.player.inv.inventoryItem
 import content.entity.player.modal.tab.questJournalOpen
 import content.quest.letterScroll
 import content.quest.quest
@@ -24,8 +23,8 @@ class GunnarsGround : Script {
             sendVariable("dororan_onyx_amulet")
         }
 
-        inventoryItem("Read", "gunnars_ground", "inventory") {
-            player.letterScroll(
+        itemOption("Read", "gunnars_ground") {
+            letterScroll(
                 "Gunnar's Ground",
                 listOf(
                     "",

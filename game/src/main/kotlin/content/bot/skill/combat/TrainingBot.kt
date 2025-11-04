@@ -12,7 +12,7 @@ import content.skill.magic.spell.spellBook
 import content.skill.melee.weapon.attackRange
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.data.definition.AreaDefinition
@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerObjectInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -131,7 +130,7 @@ class TrainingBot : Script {
                 if (!player.inventory.contains("training_sword")) {
                     val tutor = get<NPCs>().first { it.tile.within(player.tile, Viewport.VIEW_RADIUS) && it.id == "harlan" }
                     npcOption(tutor, "Talk-to")
-                    await<Player, InterfaceOpened> { id.startsWith("dialogue_") }
+                    await { dialogue != null }
                     await("tick")
                     dialogueOption("continue")
                     dialogueOption("line4")
@@ -148,7 +147,7 @@ class TrainingBot : Script {
     suspend fun Bot.claim(npc: String) {
         val tutor = get<NPCs>().first { it.tile.within(player.tile, Viewport.VIEW_RADIUS) && it.id == npc }
         npcOption(tutor, "Talk-to")
-        await<Player, InterfaceOpened> { id.startsWith("dialogue_") }
+        await { dialogue != null }
         await("tick")
         dialogueOption("continue")
         dialogueOption("line3")

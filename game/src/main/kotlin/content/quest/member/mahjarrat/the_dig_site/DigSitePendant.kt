@@ -1,6 +1,5 @@
 package content.quest.member.mahjarrat.the_dig_site
 
-import content.entity.player.inv.inventoryItem
 import content.skill.magic.jewellery.jewelleryTeleport
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -15,12 +14,12 @@ class DigSitePendant : Script {
     val digSite = areas["dig_site_teleport"]
 
     init {
-        inventoryItem("Rub", "dig_site_pendant_#") {
-            if (player.contains("delay")) {
-                return@inventoryItem
+        itemOption("Rub", "dig_site_pendant_#") {
+            if (contains("delay")) {
+                return@itemOption
             }
-            player.message("You rub the pendant...", ChatType.Filter)
-            jewelleryTeleport(player, inventory, slot, digSite)
+            message("You rub the pendant...", ChatType.Filter)
+            jewelleryTeleport(this, it.inventory, it.slot, digSite)
         }
     }
 }

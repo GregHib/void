@@ -5,7 +5,9 @@ import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.InterfaceInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.client.instruction.InteractInterface
 
 class InterfaceOptionHandler(
@@ -18,7 +20,7 @@ class InterfaceOptionHandler(
     override fun validate(player: Player, instruction: InteractInterface) {
         val (interfaceId, componentId, itemId, itemSlot, option) = instruction
 
-        var (id, component, item, inventory, options) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        var (id, component, item, _, options) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 
         if (options == null) {
             options = interfaceDefinitions.getComponent(id, component)?.get("options") ?: emptyArray()
@@ -31,15 +33,14 @@ class InterfaceOptionHandler(
 
         val selectedOption = options.getOrNull(option) ?: ""
         val event = InterfaceOption(
-            character = player,
-            id = id,
-            component = component,
+            interfaceComponent = "$id:$component",
             optionIndex = option,
             option = selectedOption,
             item = item,
             itemSlot = itemSlot,
-            inventory = inventory,
         )
-        player.emit(event)
+        Events.events.launch {
+            InterfaceInteraction.option(player, event)
+        }
     }
 }

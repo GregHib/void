@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.bank.noted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.exchange.ExchangeHistory
 import world.gregs.voidps.engine.data.exchange.ExchangeOffer
 import world.gregs.voidps.engine.entity.World
@@ -25,35 +24,41 @@ class GrandExchangeCollection : Script {
     val logger = InlineLogger()
 
     init {
-        interfaceOption("Collect*", "collect_slot_*", "grand_exchange") {
-            val index = component.removePrefix("collect_slot_").toInt()
-            val box: Int = player["grand_exchange_box"] ?: return@interfaceOption
-            collect(player, option, box, index)
+        interfaceOption(id = "grand_exchange:collect_slot_*") {
+            if (!it.option.startsWith("Collect")) {
+                return@interfaceOption
+            }
+            val index = it.component.removePrefix("collect_slot_").toInt()
+            val box: Int = get("grand_exchange_box") ?: return@interfaceOption
+            collect(it.option, box, index)
         }
 
-        interfaceOption("Collect*", "collection_box_*", "collection_box") {
-            val box = component.removePrefix("collection_box_").toInt()
-            val index = if (itemSlot == 2) 1 else 0
-            collect(player, option, box, index)
+        interfaceOption(id = "collection_box:collection_box_*") {
+            if (!it.option.startsWith("Collect")) {
+                return@interfaceOption
+            }
+            val box = it.component.removePrefix("collection_box_").toInt()
+            val index = if (it.itemSlot == 2) 1 else 0
+            collect(it.option, box, index)
         }
 
-        interfaceOption("Abort Offer", "offer_abort", "grand_exchange") {
-            val slot: Int = player["grand_exchange_box"] ?: return@interfaceOption
-            abort(player, slot)
+        interfaceOption("Abort Offer", "grand_exchange:offer_abort") {
+            val slot: Int = get("grand_exchange_box") ?: return@interfaceOption
+            abort(slot)
         }
 
-        interfaceOption("Abort Offer", "view_offer_*", "grand_exchange") {
-            val slot = component.removePrefix("view_offer_").toInt()
+        interfaceOption("Abort Offer", "grand_exchange:view_offer_*") {
+            val slot = it.component.removePrefix("view_offer_").toInt()
             if (slot > 1 && !World.members) {
                 return@interfaceOption
             }
-            abort(player, slot)
+            abort(slot)
         }
     }
 
-    fun collect(player: Player, option: String, box: Int, index: Int) {
-        val offer = player.offers.getOrNull(box) ?: return
-        val collectionBox = player.inventories.inventory("collection_box_$box")
+    fun Player.collect(option: String, box: Int, index: Int) {
+        val offer = offers.getOrNull(box) ?: return
+        val collectionBox = inventories.inventory("collection_box_$box")
         val item = collectionBox[index]
         var noted = item
         // Option 1 is to collect noted if amount > 1 otherwise options flip
@@ -61,7 +66,7 @@ class GrandExchangeCollection : Script {
             noted = item.noted ?: item
         }
         var added = 0
-        player.inventory.transaction {
+        inventory.transaction {
             val txn = link(collectionBox)
             added = addToLimit(noted.id, item.amount)
             if (added < 1) {
@@ -69,32 +74,32 @@ class GrandExchangeCollection : Script {
             }
             txn.remove(item.id, added)
         }
-        when (player.inventory.transaction.error) {
-            is TransactionError.Full -> player.inventoryFull()
+        when (inventory.transaction.error) {
+            is TransactionError.Full -> inventoryFull()
             TransactionError.None -> {
                 val actual = Item(item.id, added)
-                AuditLog.event(player, "claimed", actual)
+                AuditLog.event(this, "claimed", actual)
                 if (collectionBox.isEmpty()) {
                     if (offer.state.cancelled) {
                         if (offer.completed > 0) {
-                            player.history.add(0, ExchangeHistory(offer))
+                            history.add(0, ExchangeHistory(offer))
                         }
-                        player.offers[box] = ExchangeOffer.EMPTY
+                        offers[box] = ExchangeOffer.EMPTY
                         exchange.offers.remove(offer)
-                        GrandExchange.clearSelection(player)
+                        GrandExchange.clearSelection(this)
                     }
-                    exchange.refresh(player, box)
+                    exchange.refresh(this, box)
                 } else if (collectionBox.contains(item.id)) {
-                    player.inventoryFull()
+                    inventoryFull()
                 }
             }
-            else -> logger.warn { "Issue collecting items from grand exchange ${player.inventory.transaction.error} ${player.name} $item $index" }
+            else -> logger.warn { "Issue collecting items from grand exchange ${inventory.transaction.error} $name $item $index" }
         }
     }
 
-    fun abort(player: Player, slot: Int) {
-        exchange.cancel(player, slot)
+    fun Player.abort(slot: Int) {
+        exchange.cancel(this, slot)
         // https://youtu.be/3ussM7P1j00?si=IHR8ZXl2kN0bjIfx&t=398
-        player.message("Abort request acknowledged. Please be aware that your offer may have already been completed.")
+        message("Abort request acknowledged. Please be aware that your offer may have already been completed.")
     }
 }

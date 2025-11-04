@@ -5,15 +5,14 @@ import content.skill.prayer.prayerStart
 import content.skill.prayer.prayerStop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 
 class WildernessIcons : Script {
 
     init {
-        interfaceOpen("wilderness_skull") { player ->
-            player.interfaces.sendSprite(id, "right_skull", 439)
+        interfaceOpen("wilderness_skull") { id ->
+            interfaces.sendSprite(id, "right_skull", 439)
         }
 
         variableSet("in_wilderness") { _, _, to ->

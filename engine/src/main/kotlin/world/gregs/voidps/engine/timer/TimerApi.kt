@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.timer
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
@@ -82,15 +83,15 @@ interface TimerApi {
     }
 
     companion object {
-        val playerStartBlocks = mutableMapOf<String, MutableList<(Player, Boolean) -> Int>>()
-        val playerTickBlocks = mutableMapOf<String, MutableList<(Player) -> Int>>()
-        val playerStopBlocks = mutableMapOf<String, MutableList<(Player, Boolean) -> Unit>>()
-        val npcStartBlocks = mutableMapOf<String, MutableList<(NPC, Boolean) -> Int>>()
-        val npcTickBlocks = mutableMapOf<String, MutableList<(NPC) -> Int>>()
-        val npcStopBlocks = mutableMapOf<String, MutableList<(NPC, Boolean) -> Unit>>()
-        val worldStartBlocks = mutableMapOf<String, MutableList<() -> Int>>()
-        val worldTickBlocks = mutableMapOf<String, MutableList<() -> Int>>()
-        val worldStopBlocks = mutableMapOf<String, MutableList<(Boolean) -> Unit>>()
+        val playerStartBlocks = Object2ObjectOpenHashMap<String, MutableList<(Player, Boolean) -> Int>>(50)
+        val playerTickBlocks = Object2ObjectOpenHashMap<String, MutableList<(Player) -> Int>>(50)
+        val playerStopBlocks = Object2ObjectOpenHashMap<String, MutableList<(Player, Boolean) -> Unit>>(50)
+        val npcStartBlocks = Object2ObjectOpenHashMap<String, MutableList<(NPC, Boolean) -> Int>>(25)
+        val npcTickBlocks = Object2ObjectOpenHashMap<String, MutableList<(NPC) -> Int>>(25)
+        val npcStopBlocks = Object2ObjectOpenHashMap<String, MutableList<(NPC, Boolean) -> Unit>>(25)
+        val worldStartBlocks = Object2ObjectOpenHashMap<String, MutableList<() -> Int>>(2)
+        val worldTickBlocks = Object2ObjectOpenHashMap<String, MutableList<() -> Int>>(2)
+        val worldStopBlocks = Object2ObjectOpenHashMap<String, MutableList<(Boolean) -> Unit>>(2)
 
         fun start(player: Player, timer: String, restart: Boolean): Int {
             var interval = 0

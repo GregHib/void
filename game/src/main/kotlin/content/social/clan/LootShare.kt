@@ -2,7 +2,6 @@ package content.social.clan
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.timer.*
@@ -15,20 +14,20 @@ class LootShare : Script {
             sendVariable("loot_share")
         }
 
-        interfaceOption(component = "loot_share", id = "clan_chat") {
-            val clan = player.clan ?: return@interfaceOption
+        interfaceOption(id = "clan_chat:loot_share") {
+            val clan = clan ?: return@interfaceOption
             if (clan.lootRank == ClanRank.None) {
-                player.message("LootShare is disabled by the clan owner.", ChatType.ClanChat)
+                message("LootShare is disabled by the clan owner.", ChatType.ClanChat)
                 return@interfaceOption
             }
-            if (!clan.hasRank(player, clan.lootRank)) {
-                player.message("Only ${clan.lootRank.name.lowercase()}s can share loot.", ChatType.ClanChat)
+            if (!clan.hasRank(this, clan.lootRank)) {
+                message("Only ${clan.lootRank.name.lowercase()}s can share loot.", ChatType.ClanChat)
                 return@interfaceOption
             }
-            player["loading_loot_share"] = true
-            player.softTimers.start("clan_loot_update")
-            val lootShare = player["loot_share", false]
-            player.message("You will ${if (lootShare) "stop sharing" else "be able to share"} loot in 2 minutes.", ChatType.ClanChat)
+            set("loading_loot_share", true)
+            softTimers.start("clan_loot_update")
+            val lootShare = get("loot_share", false)
+            message("You will ${if (lootShare) "stop sharing" else "be able to share"} loot in 2 minutes.", ChatType.ClanChat)
         }
 
         timerStart("clan_loot_update") { TimeUnit.MINUTES.toTicks(2) }

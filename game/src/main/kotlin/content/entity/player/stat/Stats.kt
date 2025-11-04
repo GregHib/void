@@ -3,8 +3,6 @@ package content.entity.player.stat
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -21,33 +19,33 @@ class Stats : Script {
     )
 
     init {
-        interfaceOpen("stats") { player ->
-            player.sendVariable("skill_stat_flash")
+        interfaceOpen("stats") {
+            sendVariable("skill_stat_flash")
             Skill.entries.forEach {
-                player.experience.update(it)
+                experience.update(it)
             }
         }
 
-        interfaceOption("View", id = "stats") {
-            val skill = valueOf(component.toSentenceCase())
+        interfaceOption("View", id = "stats:*") {
+            val skill = valueOf(it.component.toSentenceCase())
             val menuIndex = menu.indexOf(skill) + 1
-            player.closeInterfaces()
-            if (player.containsVarbit("skill_stat_flash", skill.name.lowercase())) {
+            closeInterfaces()
+            if (containsVarbit("skill_stat_flash", skill.name.lowercase())) {
                 val extra = 0 // 0 - normal, 2 - combat milestone, 4 - total milestone
-                player["level_up_details"] = menuIndex * 8 + extra
-                player.open("skill_level_details")
-                player.removeVarbit("skill_stat_flash", skill.name.lowercase())
+                set("level_up_details", menuIndex * 8 + extra)
+                open("skill_level_details")
+                removeVarbit("skill_stat_flash", skill.name.lowercase())
             } else {
-                player["skill_guide"] = menuIndex
-                player["active_skill_guide"] = menuIndex
-                player.open("skill_guide")
+                set("skill_guide", menuIndex)
+                set("active_skill_guide", menuIndex)
+                open("skill_guide")
             }
         }
 
-        interfaceOption("Open subsection", id = "skill_guide") {
-            val index = (definitions.getComponent(id, component)?.index ?: 0) - 10
-            val menuIndex = player["active_skill_guide", 1]
-            player["skill_guide"] = menuIndex + index * 1024
+        interfaceOption("Open subsection", id = "skill_guide:*") {
+            val index = (definitions.getComponent(it.id, it.component)?.index ?: 0) - 10
+            val menuIndex = get("active_skill_guide", 1)
+            set("skill_guide", menuIndex + index * 1024)
         }
     }
 }

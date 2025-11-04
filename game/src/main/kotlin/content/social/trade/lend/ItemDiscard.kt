@@ -3,7 +3,6 @@ package content.social.trade.lend
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
-import content.entity.player.inv.inventoryOption
 import content.social.trade.lend.Loan.getExpiry
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -21,19 +20,19 @@ class ItemDiscard : Script {
     val itemDefinitions: ItemDefinitions by inject()
 
     init {
-        inventoryOption("Discard", "inventory") {
-            if (!player.contains("borrowed_item")) {
-                if (player.inventory.remove(slot, item.id)) {
-                    logger.info { "$player discarded un-borrowed item $item" }
+        itemOption("Discard", "inventory") { (item, slot) ->
+            if (!contains("borrowed_item")) {
+                if (inventory.remove(slot, item.id)) {
+                    logger.info { "$this discarded un-borrowed item $item" }
                 }
-                return@inventoryOption
+                return@itemOption
             }
             val loan = itemDefinitions.get(item.def.lendId).stringId
             item(
                 loan,
                 900,
                 """
-                <col=00007f>~ Loan expires ${getExpiryMessage(player)} ~</col>
+                <col=00007f>~ Loan expires ${getExpiryMessage(this)} ~</col>
                 If you discard this item, it will disappear.
                 You won't be able to pick it up again.
             """,
@@ -41,12 +40,12 @@ class ItemDiscard : Script {
 
             choice("Really discard item?") {
                 option("Yes, discard it. I won't need it again.") {
-                    player.message("The item has been returned to it's owner.")
-                    player.inventory.remove(slot, item.id)
-                    player.clear("borrowed_item")
-                    player.clear("borrow_timeout")
-                    player.softTimers.clear("borrow_message")
-                    val name: String? = player.clear("borrowed_from") as? String
+                    message("The item has been returned to it's owner.")
+                    inventory.remove(slot, item.id)
+                    clear("borrowed_item")
+                    clear("borrow_timeout")
+                    softTimers.clear("borrow_message")
+                    val name: String? = clear("borrowed_from") as? String
                     if (name != null) {
                         val lender = players.get(name) ?: return@option
                         lender.softTimers.stop("loan_message")

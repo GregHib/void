@@ -1,10 +1,8 @@
 package content.entity
 
-import content.entity.player.inv.inventoryOption
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
@@ -21,12 +19,12 @@ class Examines : Script {
     val objectDefinitions: ObjectDefinitions by inject()
 
     init {
-        interfaceOption("Examine", id = "*") {
-            player.message(item.def.getOrNull("examine") ?: return@interfaceOption, ChatType.ItemExamine)
+        interfaceOption("Examine") { (item) ->
+            message(item.def.getOrNull("examine") ?: return@interfaceOption, ChatType.ItemExamine)
         }
 
-        inventoryOption("Examine") {
-            player.message(item.def.getOrNull("examine") ?: return@inventoryOption, ChatType.ItemExamine)
+        itemOption("Examine", inventory = "*") { (item) ->
+            message(item.def.getOrNull("examine") ?: return@itemOption, ChatType.ItemExamine)
         }
 
         objectApproach("Examine") { (target) ->

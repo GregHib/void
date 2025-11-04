@@ -4,8 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.Timer
@@ -31,23 +29,23 @@ class QuestJournals : Script {
             }
         }
 
-        interfaceOpen("quest_journals") { player ->
-            player.interfaceOptions.unlock(id, "journals", 0 until 201, "View")
-            player.sendVariable("quest_points")
-            player.sendVariable("quest_points_total") // set total quest points available in variables-player.yml
-            player.sendVariable("unstable_foundations")
+        interfaceOpen("quest_journals") { id ->
+            interfaceOptions.unlock(id, "journals", 0 until 201, "View")
+            sendVariable("quest_points")
+            sendVariable("quest_points_total") // set total quest points available in variables-player.yml
+            sendVariable("unstable_foundations")
             for (quest in questDefinitions.ids.keys) {
-                player.sendVariable(quest)
+                sendVariable(quest)
             }
         }
 
-        interfaceOption(component = "journals", id = "quest_journals") {
+        interfaceOption(id = "quest_journals:journals") { (_, itemSlot) ->
             val quest = questDefinitions.getOrNull(itemSlot)
             if (quest == null) {
                 logger.warn { "Unknown quest $itemSlot" }
                 return@interfaceOption
             }
-            player.emit(OpenQuestJournal(player, quest.stringId))
+            emit(OpenQuestJournal(this, quest.stringId))
         }
     }
 }

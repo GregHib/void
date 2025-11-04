@@ -14,7 +14,7 @@ typealias ConfigFiles = Map<String, List<String>>
 
 fun ConfigFiles.list(path: String): List<String> = getOrDefault(path, emptyList())
 
-fun ConfigFiles.find(path: String): String = getOrDefault("toml", emptyList()).firstOrNull { it.endsWith(path) } ?: throw NoSuchFileException("Unable to find config file '$path' in /data/ directory.")
+fun ConfigFiles.find(path: String, type: String = "toml"): String = getOrDefault(type, emptyList()).firstOrNull { it.endsWith(path) } ?: throw NoSuchFileException("Unable to find config file '$path' in /data/ directory.")
 
 fun configFiles(): ConfigFiles {
     val map = Object2ObjectOpenHashMap<String, MutableList<String>>()

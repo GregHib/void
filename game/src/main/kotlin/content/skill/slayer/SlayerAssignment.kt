@@ -5,62 +5,66 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 
 class SlayerAssignment : Script {
 
     init {
-        interfaceOption("Learn", "learn", "slayer_rewards_assignment") {
-            player.open("slayer_rewards_learn")
+        interfaceOption("Learn", "slayer_rewards_assignment:learn") {
+            open("slayer_rewards_learn")
         }
 
-        interfaceOption("Buy", "buy", "slayer_rewards_assignment") {
-            player.open("slayer_rewards")
+        interfaceOption("Buy", "slayer_rewards_assignment:buy") {
+            open("slayer_rewards")
         }
 
-        interfaceOpen("slayer_rewards_assignment") { player ->
-            refresh(player, id)
+        interfaceOpen("slayer_rewards_assignment") { id ->
+            refresh(this, id)
         }
 
-        interfaceOption("Reassign *", "reassign_*", "slayer_rewards_assignment") {
-            if (player.slayerPoints < 30) {
-                player.message("Sorry. That would cost 30 and you only have ${player.slayerPoints} Slayer ${"Point".plural(player.slayerPoints)}.")
+        interfaceOption(id = "slayer_rewards_assignment:reassign_*") {
+            if (!it.option.startsWith("Reassign")) {
                 return@interfaceOption
             }
-            if (player.slayerTask == "nothing") {
-                player.message("You need a task in order to skip it.") // TODO proper message
+            if (slayerPoints < 30) {
+                message("Sorry. That would cost 30 and you only have $slayerPoints Slayer ${"Point".plural(slayerPoints)}.")
                 return@interfaceOption
             }
-            player.slayerPoints -= 30
-            player.slayerTask = "nothing"
+            if (slayerTask == "nothing") {
+                message("You need a task in order to skip it.") // TODO proper message
+                return@interfaceOption
+            }
+            slayerPoints -= 30
+            slayerTask = "nothing"
             //    npc<Happy>(player["slayer_npc", ""], "") TODO proper message and save npc id on interface open
         }
 
-        interfaceOption("Permanently *", "block_*", "slayer_rewards_assignment") {
-            if (player.slayerPoints < 100) {
-                player.message("Sorry. That would cost 100 and you only have ${player.slayerPoints} Slayer ${"Point".plural(player.slayerPoints)}.")
+        interfaceOption(id = "slayer_rewards_assignment:block_*") {
+            if (!it.option.startsWith("Permanently")) {
                 return@interfaceOption
             }
-            if (player.slayerTask == "nothing") {
-                player.message("You need a task in order to block it.") // TODO proper message
+            if (slayerPoints < 100) {
+                message("Sorry. That would cost 100 and you only have $slayerPoints Slayer ${"Point".plural(slayerPoints)}.")
+                return@interfaceOption
+            }
+            if (slayerTask == "nothing") {
+                message("You need a task in order to block it.") // TODO proper message
                 return@interfaceOption
             }
             var blocked = false
             for (i in 0 until 5) {
-                if (!player.contains("blocked_task_$i")) {
-                    player["blocked_task_$i"] = player.slayerTask
-                    player.slayerTask = "nothing"
-                    player.slayerPoints -= 100
+                if (!contains("blocked_task_$i")) {
+                    set("blocked_task_$i", slayerTask)
+                    slayerTask = "nothing"
+                    slayerPoints -= 100
                     blocked = true
                     break
                 }
             }
 
             if (!blocked) {
-                player.message("You don't have any free block slots.") // TODO proper message
+                message("You don't have any free block slots.") // TODO proper message
             }
         }
     }

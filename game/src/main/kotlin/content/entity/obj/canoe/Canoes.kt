@@ -7,8 +7,6 @@ import content.skill.woodcutting.Hatchet
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.CanoeDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -68,23 +66,23 @@ class Canoes : Script {
             set("canoe_state_$location", "fallen")
         }
 
-        interfaceOpen("canoe") { player ->
-            val dugout = player.levels.get(Skill.Woodcutting) > 26
-            player.interfaces.sendVisibility(id, "visible_dugout", dugout)
-            player.interfaces.sendVisibility(id, "invisible_dugout", !dugout)
+        interfaceOpen("canoe") { id ->
+            val dugout = levels.get(Skill.Woodcutting) > 26
+            interfaces.sendVisibility(id, "visible_dugout", dugout)
+            interfaces.sendVisibility(id, "invisible_dugout", !dugout)
 
-            val stable = player.levels.get(Skill.Woodcutting) > 41
-            player.interfaces.sendVisibility(id, "visible_stable_dugout", stable)
-            player.interfaces.sendVisibility(id, "invisible_stable_dugout", !stable)
+            val stable = levels.get(Skill.Woodcutting) > 41
+            interfaces.sendVisibility(id, "visible_stable_dugout", stable)
+            interfaces.sendVisibility(id, "invisible_stable_dugout", !stable)
 
-            val waka = player.levels.get(Skill.Woodcutting) > 56
-            player.interfaces.sendVisibility(id, "visible_waka", waka)
-            player.interfaces.sendVisibility(id, "invisible_waka", !waka)
+            val waka = levels.get(Skill.Woodcutting) > 56
+            interfaces.sendVisibility(id, "visible_waka", waka)
+            interfaces.sendVisibility(id, "invisible_waka", !waka)
         }
 
-        interfaceOption("Select", "a_*", "canoe") {
-            val type = component.removePrefix("a_")
-            (player.dialogueSuspension as? StringSuspension)?.resume(type)
+        interfaceOption("Select", "canoe:a_*") {
+            val type = it.component.removePrefix("a_")
+            (dialogueSuspension as? StringSuspension)?.resume(type)
         }
 
         objectOperate("Shape-canoe", "canoe_station_fallen") { (target) ->

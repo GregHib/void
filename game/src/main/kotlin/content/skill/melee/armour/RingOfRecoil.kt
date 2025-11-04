@@ -2,7 +2,6 @@ package content.skill.melee.armour
 
 import content.entity.combat.hit.combatDamage
 import content.entity.combat.hit.directHit
-import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -32,9 +31,9 @@ class RingOfRecoil : Script {
             }
         }
 
-        inventoryItem("Check", "ring_of_recoil", "worn_equipment") {
-            val charges = player.equipment.charges(player, EquipSlot.Ring.index)
-            player.message("You can inflict $charges more points of damage before a ring will shatter.")
+        itemOption("Check", "ring_of_recoil", "worn_equipment") {
+            val charges = equipment.charges(this, EquipSlot.Ring.index)
+            message("You can inflict $charges more points of damage before a ring will shatter.")
         }
     }
 }

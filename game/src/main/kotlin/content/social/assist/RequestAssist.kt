@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
@@ -70,9 +69,9 @@ class RequestAssist : Script {
             }
         }
 
-        interfaceClose("assist_xp") { player ->
-            val assisted: Player = player["assisted"] ?: return@interfaceClose
-            cancelAssist(player, assisted)
+        interfaceClose("assist_xp") {
+            val assisted: Player = get("assisted") ?: return@interfaceClose
+            cancelAssist(this, assisted)
         }
 
         onEvent<Player, BlockedExperience> { assisted ->

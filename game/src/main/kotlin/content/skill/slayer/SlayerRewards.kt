@@ -4,8 +4,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -18,51 +16,51 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 class SlayerRewards : Script {
 
     init {
-        interfaceOption("Learn", "learn", "slayer_rewards") {
-            player.open("slayer_rewards_learn")
+        interfaceOption("Learn", "slayer_rewards:learn") {
+            open("slayer_rewards_learn")
         }
 
-        interfaceOption("Assignments", "assignment", "slayer_rewards") {
-            player.open("slayer_rewards_assignment")
+        interfaceOption("Assignments", "slayer_rewards:assignment") {
+            open("slayer_rewards_assignment")
         }
 
-        interfaceOpen("slayer_rewards") { player ->
-            refreshText(player, id)
+        interfaceOpen("slayer_rewards") { id ->
+            refreshText(this, id)
         }
 
-        interfaceOption("Buy XP", "buy_xp_*", "slayer_rewards") {
-            if (player.slayerPoints < 400) {
-                player.message("Sorry. That would cost 400 and you only have ${player.slayerPoints} Slayer ${"Point".plural(player.slayerPoints)}.")
-            } else if (player.inventory.add("ring_of_slaying_8")) {
-                player.slayerPoints -= 400
-                player.exp(Skill.Slayer, 10_000.0)
+        interfaceOption("Buy XP", "slayer_rewards:buy_xp_*") {
+            if (slayerPoints < 400) {
+                message("Sorry. That would cost 400 and you only have $slayerPoints Slayer ${"Point".plural(slayerPoints)}.")
+            } else if (inventory.add("ring_of_slaying_8")) {
+                slayerPoints -= 400
+                exp(Skill.Slayer, 10_000.0)
                 // TODO message
             }
         }
 
-        interfaceOption("Buy Ring", "buy_ring_*", "slayer_rewards") {
-            buy(player, 75, "Here are your ring. Use it wisely.") {
+        interfaceOption("Buy Ring", "slayer_rewards:buy_ring_*") {
+            buy(this, 75, "Here are your ring. Use it wisely.") {
                 // TODO proper message
                 add("ring_of_slaying_8")
             }
         }
 
-        interfaceOption("Buy Runes", "buy_runes_*", "slayer_rewards") {
-            buy(player, 35, "Here are your runes. Use them wisely.") {
+        interfaceOption("Buy Runes", "slayer_rewards:buy_runes_*") {
+            buy(this, 35, "Here are your runes. Use them wisely.") {
                 add("death_rune", 250)
                 add("mind_rune", 1000)
             }
         }
 
-        interfaceOption("Buy Bolts", "buy_bolts_*", "slayer_rewards") {
-            buy(player, 35, "Here are your bolts. Use them wisely.") {
+        interfaceOption("Buy Bolts", "slayer_rewards:buy_bolts_*") {
+            buy(this, 35, "Here are your bolts. Use them wisely.") {
                 // TODO proper message
                 add("broad_tipped_bolts", 250)
             }
         }
 
-        interfaceOption("Buy Arrows", "buy_arrows_*", "slayer_rewards") {
-            buy(player, 35, "Here are your arrows. Use them wisely.") {
+        interfaceOption("Buy Arrows", "slayer_rewards:buy_arrows_*") {
+            buy(this, 35, "Here are your arrows. Use them wisely.") {
                 // TODO proper message
                 add("broad_arrow", 250)
             }

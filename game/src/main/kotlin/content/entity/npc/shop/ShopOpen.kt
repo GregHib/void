@@ -5,8 +5,6 @@ import content.entity.npc.shop.general.GeneralStores
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -32,12 +30,12 @@ class ShopOpen : Script {
             }
         }
 
-        interfaceClose("shop") { player ->
-            player.close("item_info")
-            player.close("shop_side")
-            val shop = player.shop()
+        interfaceClose("shop") {
+            close("item_info")
+            close("shop_side")
+            val shop = shop()
             if (shop.endsWith("general_store")) {
-                GeneralStores.unbind(player, shop)
+                GeneralStores.unbind(this, shop)
             }
         }
 
@@ -64,9 +62,9 @@ class ShopOpen : Script {
             player.interfaces.sendText("shop", "title", definition["title", definition.stringId.toTitleCase()])
         }
 
-        interfaceRefresh("shop_side") { player ->
-            player.interfaceOptions.send("shop_side", "inventory")
-            player.interfaceOptions.unlockAll("shop_side", "inventory", 0 until 28)
+        interfaceRefresh("shop_side") {
+            interfaceOptions.send("shop_side", "inventory")
+            interfaceOptions.unlockAll("shop_side", "inventory", 0 until 28)
         }
 
         inventoryChanged { player ->

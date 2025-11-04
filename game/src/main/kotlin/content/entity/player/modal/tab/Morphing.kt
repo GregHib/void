@@ -3,10 +3,8 @@ package content.entity.player.modal.tab
 import content.entity.effect.clearTransform
 import content.entity.effect.movementDelay
 import content.entity.effect.transform
-import content.entity.player.inv.inventoryOptions
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.queue
@@ -15,16 +13,16 @@ import kotlin.random.Random
 class Morphing : Script {
 
     init {
-        inventoryOptions("Wear", item = "easter_ring") {
-            morph(player, "easter_egg_${Random.nextInt(0, 6)}")
+        itemOption("Wear", "easter_ring") {
+            morph(this, "easter_egg_${Random.nextInt(0, 6)}")
         }
 
-        inventoryOptions("Wear", item = "ring_of_stone") {
-            morph(player, item.id)
+        itemOption("Wear", "ring_of_stone") { (item) ->
+            morph(this, item.id)
         }
 
-        interfaceOption("Ok", "unmorph", "morph") {
-            unmorph(player)
+        interfaceOption("Ok", "morph:unmorph") {
+            unmorph(this)
         }
     }
 

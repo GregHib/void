@@ -3,8 +3,6 @@ package content.entity.player.effect.energy
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendRunEnergy
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Rest
 import world.gregs.voidps.engine.entity.character.move.running
@@ -18,19 +16,19 @@ class Running : Script {
             sendVariable("movement")
         }
 
-        interfaceOpen("energy_orb") { player ->
-            player.sendRunEnergy(player.energyPercent())
+        interfaceOpen("energy_orb") {
+            sendRunEnergy(energyPercent())
         }
 
-        interfaceOption(option = "Turn Run mode on", id = "energy_orb") {
-            if (player.mode is Rest) {
-                val walking = player["movement", "walk"] == "walk"
-                toggleRun(player, !walking)
-                player["movement_temp"] = if (walking) "run" else "walk"
-                player.mode = EmptyMode
+        interfaceOption(option = "Turn Run mode on", id = "energy_orb:*") {
+            if (mode is Rest) {
+                val walking = get("movement", "walk") == "walk"
+                toggleRun(this, !walking)
+                set("movement_temp", if (walking) "run" else "walk")
+                mode = EmptyMode
                 return@interfaceOption
             }
-            toggleRun(player, player.running)
+            toggleRun(this, running)
         }
     }
 

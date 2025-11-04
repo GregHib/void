@@ -9,8 +9,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 
 class Doomsayer : Script {
@@ -51,24 +49,25 @@ class Doomsayer : Script {
             open("doomsayer_warning_messages")
         }
 
-        interfaceOption("Toggle", "*", "doomsayer_warning_messages") {
-            val count = player["warning_$component", 0]
+        interfaceOption("Toggle", "doomsayer_warning_messages:*") {
+            val component = it.component
+            val count = get("warning_$component", 0)
             if (count < 6) {
-                player.message("You cannot toggle this warning screen on or off.")
-                player.message("You need to go to the area it is linked to enough times to have the option to do so.")
+                message("You cannot toggle this warning screen on or off.")
+                message("You need to go to the area it is linked to enough times to have the option to do so.")
                 return@interfaceOption
             }
             if (count == 6) {
-                player["warning_$component"] = 7
+                set("warning_$component", 7)
             } else {
-                player["warning_$component"] = 6
+                set("warning_$component", 6)
             }
         }
 
-        interfaceOpen("warning_*") { player ->
-            val count = player[id, 0]
+        interfaceOpen("warning_*") { id ->
+            val count = get(id, 0)
             if (count < 6) {
-                player[id] = count + 1
+                set(id, count + 1)
             }
         }
     }

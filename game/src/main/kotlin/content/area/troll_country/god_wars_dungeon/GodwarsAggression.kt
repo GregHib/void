@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.enterArea
@@ -34,12 +33,12 @@ class GodwarsAggression : Script {
             player["gods"] = player.equipment.items.mapNotNull { it.def.getOrNull<String>("god") }.toMutableSet()
         }
 
-        interfaceOpen("godwars_overlay") { player ->
-            player.sendVariable("armadyl_killcount")
-            player.sendVariable("bandos_killcount")
-            player.sendVariable("saradomin_killcount")
-            player.sendVariable("zamorak_killcount")
-            player.sendVariable("godwars_darkness")
+        interfaceOpen("godwars_overlay") {
+            sendVariable("armadyl_killcount")
+            sendVariable("bandos_killcount")
+            sendVariable("saradomin_killcount")
+            sendVariable("zamorak_killcount")
+            sendVariable("godwars_darkness")
         }
 
         exitArea("godwars_dungeon_multi_area") {

@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.req.request
@@ -24,19 +23,19 @@ class TradeConfirm : Script {
     val logger = InlineLogger()
 
     init {
-        interfaceOption("Accept", "accept", "trade_main") {
-            val partner = getPartner(player) ?: return@interfaceOption
-            if (player.offer.count + player.loan.count > partner.inventory.spaces) {
-                player.message("Other player doesn't have enough inventory space to accept this trade.")
+        interfaceOption("Accept", "trade_main:accept") {
+            val partner = getPartner(this) ?: return@interfaceOption
+            if (offer.count + loan.count > partner.inventory.spaces) {
+                message("Other player doesn't have enough inventory space to accept this trade.")
                 return@interfaceOption
             }
-            if (partner.offer.count + partner.loan.count > player.inventory.spaces) {
-                player.message("You don't have enough inventory space to accept this trade.")
+            if (partner.offer.count + partner.loan.count > inventory.spaces) {
+                message("You don't have enough inventory space to accept this trade.")
                 return@interfaceOption
             }
-            player.interfaces.sendText("trade_main", "status", "Waiting for other player...")
+            interfaces.sendText("trade_main", "status", "Waiting for other ..")
             partner.interfaces.sendText("trade_main", "status", "Other player has accepted.")
-            player.request(partner, "accept_trade") { requester, acceptor ->
+            request(partner, "accept_trade") { requester, acceptor ->
                 confirm(requester)
                 confirm(acceptor)
             }
@@ -46,11 +45,11 @@ class TradeConfirm : Script {
          * Both players accepting the request moves onto the confirmation screen.
          * Both players accepting the confirmation exchanges items and finishes the trade.
          */
-        interfaceOption("Accept", "accept", "trade_confirm") {
-            val partner = getPartner(player) ?: return@interfaceOption
-            player.interfaces.sendText("trade_confirm", "status", "Waiting for other player...")
+        interfaceOption("Accept", "trade_confirm:accept") {
+            val partner = getPartner(this) ?: return@interfaceOption
+            interfaces.sendText("trade_confirm", "status", "Waiting for other ..")
             partner.interfaces.sendText("trade_confirm", "status", "Other player has accepted.")
-            player.request(partner, "confirm_trade") { requester, acceptor ->
+            request(partner, "confirm_trade") { requester, acceptor ->
                 val requesterLoan = requester.loan[0]
                 val acceptorLoan = acceptor.loan[0]
                 val success = acceptor.offer.transaction {
@@ -60,7 +59,7 @@ class TradeConfirm : Script {
                     link(acceptor.loan).moveAll(acceptor.returnedItems)
                 }
                 if (!success) {
-                    logger.info { "Issue exchanging items $player ${player.offer} ${player.otherOffer} ${player.loan} ${player.otherLoan} ${player.inventory}" }
+                    logger.info { "Issue exchanging items $this $offer $otherOffer $loan $otherLoan $inventory" }
                     requester.closeMenu()
                     return@request
                 }

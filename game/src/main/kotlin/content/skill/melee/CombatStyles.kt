@@ -2,9 +2,6 @@ package content.skill.melee
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
-import world.gregs.voidps.engine.client.ui.event.interfaceRefresh
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -21,44 +18,44 @@ class CombatStyles : Script {
             this["combat_style"] = def.getOrNull("style") ?: return@npcSpawn
         }
 
-        interfaceOpen("combat_styles") { player ->
-            player.sendVariable("attack_style_index")
-            player.sendVariable("special_attack_energy")
-            player.sendVariable("auto_retaliate")
-            refreshStyle(player)
+        interfaceOpen("combat_styles") {
+            sendVariable("attack_style_index")
+            sendVariable("special_attack_energy")
+            sendVariable("auto_retaliate")
+            refreshStyle(this)
         }
 
-        interfaceRefresh("combat_styles") { player ->
-            player.interfaceOptions.unlockAll(id, "style1")
-            player.interfaceOptions.unlockAll(id, "style2")
-            player.interfaceOptions.unlockAll(id, "style3")
-            player.interfaceOptions.unlockAll(id, "style4")
+        interfaceRefresh("combat_styles") { id ->
+            interfaceOptions.unlockAll(id, "style1")
+            interfaceOptions.unlockAll(id, "style2")
+            interfaceOptions.unlockAll(id, "style3")
+            interfaceOptions.unlockAll(id, "style4")
         }
 
         inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
             refreshStyle(player)
         }
 
-        interfaceOption(component = "style*", id = "combat_styles") {
-            val index = component.removePrefix("style").toIntOrNull() ?: return@interfaceOption
-            player.closeInterfaces()
-            val type = getWeaponStyleType(player)
+        interfaceOption(id = "combat_styles:style*") {
+            val index = it.component.removePrefix("style").toIntOrNull() ?: return@interfaceOption
+            closeInterfaces()
+            val type = getWeaponStyleType(this)
             val style = styles.get(type)
             if (index == 1) {
-                player.clear("attack_style_${style.stringId}")
+                clear("attack_style_${style.stringId}")
             } else {
-                player["attack_style_${style.stringId}"] = index - 1
+                set("attack_style_${style.stringId}", index - 1)
             }
-            refreshStyle(player)
+            refreshStyle(this)
         }
 
-        interfaceOption("Auto Retaliate", "retaliate", "combat_styles") {
-            player.closeInterfaces()
-            player.toggle("auto_retaliate")
+        interfaceOption("Auto Retaliate", "combat_styles:retaliate") {
+            closeInterfaces()
+            toggle("auto_retaliate")
         }
 
-        interfaceOption("Use", "special_attack_bar", "combat_styles") {
-            player.toggle("special_attack")
+        interfaceOption("Use", "combat_styles:special_attack_bar") {
+            toggle("special_attack")
         }
     }
 

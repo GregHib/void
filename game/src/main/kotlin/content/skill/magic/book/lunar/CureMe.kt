@@ -6,7 +6,6 @@ import content.entity.sound.sound
 import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
@@ -16,21 +15,21 @@ class CureMe : Script {
     val definitions: SpellDefinitions by inject()
 
     init {
-        interfaceOption("Cast", "cure_me", "lunar_spellbook") {
-            val spell = component
-            if (!player.poisoned) {
-                player.message("You are not poisoned.")
+        interfaceOption("Cast", "lunar_spellbook:cure_me") {
+            val spell = it.component
+            if (!poisoned) {
+                message("You are not poisoned.")
                 return@interfaceOption
             }
-            if (!player.removeSpellItems(spell)) {
+            if (!removeSpellItems(spell)) {
                 return@interfaceOption
             }
             val definition = definitions.get(spell)
-            player.anim("lunar_cast")
-            player.gfx(spell)
-            player.sound(spell)
-            player.experience.add(Skill.Magic, definition.experience)
-            player.curePoison()
+            anim("lunar_cast")
+            gfx(spell)
+            sound(spell)
+            experience.add(Skill.Magic, definition.experience)
+            curePoison()
         }
     }
 }

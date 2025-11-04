@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeType
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
@@ -39,13 +38,13 @@ class TradeRequest : Script {
             }
         }
 
-        interfaceClose("trade_main", "trade_confirm") { player ->
-            val other: Player = getPartner(player) ?: return@interfaceClose
-            if (player.hasRequest(other, "accept_trade")) {
+        interfaceClose("trade_main,trade_confirm") {
+            val other: Player = getPartner(this) ?: return@interfaceClose
+            if (hasRequest(other, "accept_trade")) {
                 return@interfaceClose
             }
-            reset(player, other)
-            reset(other, player)
+            reset(this, other)
+            reset(other, this)
         }
     }
 

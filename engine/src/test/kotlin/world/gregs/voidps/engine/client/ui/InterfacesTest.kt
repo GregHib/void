@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.entity.InterfaceInteraction
 import world.gregs.voidps.network.login.protocol.encode.closeInterface
 import world.gregs.voidps.network.login.protocol.encode.openInterface
 
@@ -24,9 +23,9 @@ internal class InterfacesTest : InterfaceTest() {
         assertFalse(interfaces.open(name))
         verify(exactly = 0) {
             client.closeInterface(any())
-            events.emit(ofType<InterfaceClosed>())
+            InterfaceInteraction.close(any(), any())
             client.openInterface(any(), any(), any())
-            events.emit(ofType<InterfaceOpened>())
+            InterfaceInteraction.open(any(), any())
         }
     }
 
@@ -41,7 +40,7 @@ internal class InterfacesTest : InterfaceTest() {
         assertNull(interfaces.get("type"))
         verify(exactly = 0) {
             client.closeInterface(any())
-            events.emit(ofType<InterfaceClosed>())
+            InterfaceInteraction.close(any(), any())
         }
     }
 

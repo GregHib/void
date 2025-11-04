@@ -15,8 +15,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toTag
-import world.gregs.voidps.engine.client.ui.event.interfaceClose
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Tanning
@@ -56,22 +54,22 @@ class Ellis : Script {
             open("tanner")
         }
 
-        interfaceOption(option = "Tan *", id = "tanner") {
-            val amount = when (option.lowercase()) {
+        interfaceOption(id = "tanner:*") {
+            val amount = when (it.option.lowercase()) {
                 "tan ${Colours.ORANGE.toTag()}1" -> 1
                 "tan ${Colours.ORANGE.toTag()}5" -> 5
                 "tan ${Colours.ORANGE.toTag()}10" -> 10
-                "tan ${Colours.ORANGE.toTag()}all" -> player.inventory.count(component.removeSuffix("_1"))
-                "tan ${Colours.ORANGE.toTag()}X" -> intEntry("Enter amount:").also {
-                    player["last_bank_amount"] = it
+                "tan ${Colours.ORANGE.toTag()}all" -> inventory.count(it.component.removeSuffix("_1"))
+                "tan ${Colours.ORANGE.toTag()}X" -> intEntry("Enter amount:").also { int ->
+                    set("last_bank_amount", int)
                 }
                 else -> return@interfaceOption
             }
-            tan(player, component, amount)
+            tan(this, it.component, amount)
         }
 
-        interfaceClose("tanner") { player ->
-            player.sendScript("clear_dialogues")
+        interfaceClose("tanner") {
+            sendScript("clear_dialogues")
         }
     }
 

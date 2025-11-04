@@ -1,6 +1,5 @@
 package content.area.asgarnia.port_sarim
 
-import content.entity.combat.target
 import content.entity.npc.shop.buy
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk

@@ -9,7 +9,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.inventoryItem
 import content.quest.messageScroll
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
@@ -50,12 +49,12 @@ class SirGerry : Script {
             inventory.add("knights_notes")
         }
 
-        inventoryItem("Read", "knights_notes") {
+        itemOption("Read", "knights_notes") { (item) ->
             choice("The scroll is sealed. Do you still want to open it?") {
                 option("Yes") {
-                    if (player.inventory.replace(item.id, "knights_notes_opened")) {
-                        player.message("You break the wax seal and open the scroll.")
-                        open(player)
+                    if (inventory.replace(item.id, "knights_notes_opened")) {
+                        message("You break the wax seal and open the scroll.")
+                        open(this)
                     }
                 }
                 option("No")
@@ -74,8 +73,8 @@ class SirGerry : Script {
             }
         }
 
-        inventoryItem("Read", "knights_notes_opened") {
-            open(player)
+        itemOption("Read", "knights_notes_opened") {
+            open(this)
         }
     }
 

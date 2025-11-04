@@ -3,7 +3,6 @@ package content.skill.fletching
 import content.entity.player.dialogue.type.makeAmount
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Fletching
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -21,9 +20,10 @@ class FletchUnfinished : Script {
     val itemDefinitions: ItemDefinitions by inject()
 
     init {
-        itemOnItem("knife", "*logs*") {
+        @Suppress("UNCHECKED_CAST")
+        itemOnItem("knife", "*logs*") { _, toItem ->
             val displayItems = toItem.def.extras?.get("fletchables") as? List<String> ?: return@itemOnItem
-            it.weakQueue("fletching_make_dialog") {
+            weakQueue("fletching_make_dialog") {
                 val (selected, amount) = makeAmount(
                     displayItems,
                     type = "Make",
@@ -31,28 +31,27 @@ class FletchUnfinished : Script {
                     text = "What would you like to fletch?",
                 )
                 val itemToFletch: Fletching = itemDefinitions.get(selected).getOrNull("fletching_unf") ?: return@weakQueue
-                if (!it.has(Skill.Fletching, itemToFletch.level, true)) {
+                if (!has(Skill.Fletching, itemToFletch.level, true)) {
                     return@weakQueue
                 }
-                fletch(it, selected, itemToFletch, toItem.id, amount)
+                fletch(selected, itemToFletch, toItem.id, amount)
             }
         }
     }
 
-    @Suppress("UNCHECKED_CAST")
-    fun fletch(player: Player, addItem: String, addItemDef: Fletching, removeItem: String, amount: Int) {
+    fun Player.fletch(addItem: String, addItemDef: Fletching, removeItem: String, amount: Int) {
         if (amount <= 0) {
-            player.softTimers.stop("fletching")
+            softTimers.stop("fletching")
             return
         }
 
-        if (!player.inventory.contains("knife") || !player.inventory.contains(removeItem)) {
-            player.softTimers.stop("fletching")
+        if (!inventory.contains("knife") || !inventory.contains(removeItem)) {
+            softTimers.stop("fletching")
             return
         }
 
-        player.weakQueue("fletching", addItemDef.tick) {
-            val success = player.inventory.transaction {
+        weakQueue("fletching", addItemDef.tick) {
+            val success = inventory.transaction {
                 remove(removeItem)
                 add(addItem, addItemDef.makeAmount)
             }
@@ -62,10 +61,10 @@ class FletchUnfinished : Script {
             }
 
             val itemCreated = getFletched(addItem)
-            player.message("You carefully cut the wood into $itemCreated.", ChatType.Game)
-            player.experience.add(Skill.Fletching, addItemDef.xp)
-            player.anim(addItemDef.animation)
-            fletch(player, addItem, addItemDef, removeItem, amount - 1)
+            message("You carefully cut the wood into $itemCreated.", ChatType.Game)
+            experience.add(Skill.Fletching, addItemDef.xp)
+            anim(addItemDef.animation)
+            fletch(addItem, addItemDef, removeItem, amount - 1)
         }
     }
 

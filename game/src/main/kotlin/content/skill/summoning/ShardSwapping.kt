@@ -6,7 +6,6 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -28,48 +27,48 @@ class ShardSwapping : Script {
             openTradeInInterface(this, true)
         }
 
-        interfaceOption("Trade Scrolls", id = "summoning_trade_in") {
-            openTradeInInterface(player, false)
+        interfaceOption("Trade Scrolls", id = "summoning_trade_in:*") {
+            openTradeInInterface(this, false)
         }
 
-        interfaceOption("Trade Pouches", id = "summoning_trade_in") {
-            openTradeInInterface(player, true)
+        interfaceOption("Trade Pouches", id = "summoning_trade_in:*") {
+            openTradeInInterface(this, true)
         }
 
-        interfaceOption("Value", "*_trade_in", "summoning_trade_in") {
+        interfaceOption("Value", "summoning_trade_in:*_trade_in") { (item, itemSlot, _, _, id) ->
             val enumIndex = (itemSlot + 3) / 5
             var actualItem = item
-            val itemType = component.removeSuffix("_trade_in")
+            val itemType = id.substringAfter(":").removeSuffix("_trade_in")
 
             if (item.id.endsWith("_u")) {
                 val actualItemId = enums.get("summoning_${itemType}_ids_1").getInt(enumIndex)
                 actualItem = Item(itemDefinitions.get(actualItemId).stringId)
             }
 
-            sendValueMessage(player, actualItem, itemType)
+            sendValueMessage(this, actualItem, itemType)
         }
 
-        interfaceOption("Trade*", "*_trade_in", "summoning_trade_in") {
+        interfaceOption(id = "summoning_trade_in:*_trade_in") { (item, itemSlot, option, _, id) ->
             val enumIndex = (itemSlot + 3) / 5
             var actualItem = item
-            val itemType = component.removeSuffix("_trade_in")
+            val itemType = id.substringAfter(":").removeSuffix("_trade_in")
 
             if (item.id.endsWith("_u")) {
                 val actualItemId = enums.get("summoning_${itemType}_ids_1").getInt(enumIndex)
                 actualItem = Item(itemDefinitions.get(actualItemId).stringId)
-                sendValueMessage(player, actualItem, itemType)
+                sendValueMessage(this, actualItem, itemType)
                 return@interfaceOption
             }
 
             when (option) {
-                "Trade" -> swapForShards(player, actualItem, 1)
-                "Trade-5" -> swapForShards(player, actualItem, 5)
-                "Trade-10" -> swapForShards(player, actualItem, 10)
+                "Trade" -> swapForShards(this, actualItem, 1)
+                "Trade-5" -> swapForShards(this, actualItem, 5)
+                "Trade-10" -> swapForShards(this, actualItem, 10)
                 "Trade-X" -> {
                     val total = intEntry("Enter amount:")
-                    swapForShards(player, actualItem, total)
+                    swapForShards(this, actualItem, total)
                 }
-                "Trade-All" -> swapForShards(player, actualItem, Int.MAX_VALUE)
+                "Trade-All" -> swapForShards(this, actualItem, Int.MAX_VALUE)
             }
         }
     }

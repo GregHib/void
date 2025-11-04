@@ -5,7 +5,6 @@ import content.entity.player.bank.Bank.tabIndex
 import content.entity.player.dialogue.type.intEntry
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -22,82 +21,82 @@ class BankDeposit : Script {
     val logger = InlineLogger()
 
     init {
-        interfaceOption("Deposit-*", "inventory", "bank_side") {
+        interfaceOption(id = "bank_side:inventory") { (item, _, option) ->
             val amount = when (option) {
                 "Deposit-1" -> 1
                 "Deposit-5" -> 5
                 "Deposit-10" -> 10
-                "Deposit-*" -> player["last_bank_amount", 0]
+                "Deposit-*" -> get("last_bank_amount", 0)
                 "Deposit-All" -> Int.MAX_VALUE
                 "Deposit-X" -> intEntry("Enter amount:").also {
-                    player["last_bank_amount"] = it
+                    set("last_bank_amount", it)
                 }
                 else -> return@interfaceOption
             }
-            deposit(player, player.inventory, item, amount)
+            deposit(this, inventory, item, amount)
         }
 
-        interfaceOption("Deposit-*", "inventory", "bank_deposit_box") {
+        interfaceOption(id = "bank_deposit_box:inventory") { (item, _, option) ->
             val amount = when (option) {
                 "Deposit-1" -> 1
                 "Deposit-5" -> 5
                 "Deposit-10" -> 10
                 "Deposit-All" -> Int.MAX_VALUE
                 "Deposit-X" -> intEntry("Enter amount:").also {
-                    player["last_bank_amount"] = it
+                    set("last_bank_amount", it)
                 }
                 else -> return@interfaceOption
             }
-            deposit(player, player.inventory, item, amount)
+            deposit(this, inventory, item, amount)
         }
 
-        interfaceOption("Deposit carried items", "carried", "bank") {
-            if (player.inventory.isEmpty()) {
-                player.message("You have no items in your inventory to deposit.")
+        interfaceOption("Deposit carried items", "bank:carried") {
+            if (inventory.isEmpty()) {
+                message("You have no items in your inventory to deposit.")
             } else {
-                bankAll(player, player.inventory)
+                bankAll(this, inventory)
             }
         }
 
-        interfaceOption("Deposit carried items", "carried", "bank_deposit_box") {
-            if (player.inventory.isEmpty()) {
-                player.message("You have no items in your inventory to deposit.")
+        interfaceOption("Deposit carried items", "bank_deposit_box:carried") {
+            if (inventory.isEmpty()) {
+                message("You have no items in your inventory to deposit.")
             } else {
-                bankAll(player, player.inventory)
+                bankAll(this, inventory)
             }
         }
 
-        interfaceOption("Deposit worn items", "worn", "bank") {
-            if (player.equipment.isEmpty()) {
-                player.message("You have no equipped items to deposit.")
+        interfaceOption("Deposit worn items", "bank:worn") {
+            if (equipment.isEmpty()) {
+                message("You have no equipped items to deposit.")
             } else {
-                bankAll(player, player.equipment)
+                bankAll(this, equipment)
             }
         }
 
-        interfaceOption("Deposit worn items", "worn", "bank_deposit_box") {
-            if (player.equipment.isEmpty()) {
-                player.message("You have no equipped items to deposit.")
+        interfaceOption("Deposit worn items", "bank_deposit_box:worn") {
+            if (equipment.isEmpty()) {
+                message("You have no equipped items to deposit.")
             } else {
-                bankAll(player, player.equipment)
+                bankAll(this, equipment)
             }
         }
 
-        interfaceOption("Deposit beast of burden inventory", "burden", "bank") {
+        interfaceOption("Deposit beast of burden inventory", "bank:burden") {
             // TODO no familiar & no bob familiar messages
-            if (player.beastOfBurden.isEmpty()) {
-                player.message("Your familiar has no items to deposit.")
+            if (beastOfBurden.isEmpty()) {
+                message("Your familiar has no items to deposit.")
             } else {
-                bankAll(player, player.beastOfBurden)
+                bankAll(this, beastOfBurden)
             }
         }
 
-        interfaceOption("Deposit beast of burden inventory", "burden", "bank_deposit_box") {
+        interfaceOption("Deposit beast of burden inventory", "bank_deposit_box:burden") {
             // TODO no familiar & no bob familiar messages
-            if (player.beastOfBurden.isEmpty()) {
-                player.message("Your familiar has no items to deposit.")
+            if (beastOfBurden.isEmpty()) {
+                message("Your familiar has no items to deposit.")
             } else {
-                bankAll(player, player.beastOfBurden)
+                bankAll(this, beastOfBurden)
             }
         }
     }

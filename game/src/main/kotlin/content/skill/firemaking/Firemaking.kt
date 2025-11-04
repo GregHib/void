@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactFloorItem
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.interact.itemOnItem
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.data.Fire
@@ -39,14 +38,14 @@ class Firemaking : Script {
         get() = def.contains("firemaking")
 
     init {
-        itemOnItem("tinderbox*", "*logs*") { player ->
+        itemOnItem("tinderbox*", "*logs*") { fromItem, toItem, fromSlot, toSlot ->
             val log = if (toItem.burnable) toItem else fromItem
             val logSlot = if (toItem.burnable) toSlot else fromSlot
-            player.closeDialogue()
-            player.queue.clearWeak()
-            if (player.inventory.remove(logSlot, log.id)) {
-                val floorItem = floorItems.add(player.tile, log.id, disappearTicks = 300, owner = player)
-                player.interactFloorItem(floorItem, "Light")
+            closeDialogue()
+            queue.clearWeak()
+            if (inventory.remove(logSlot, log.id)) {
+                val floorItem = floorItems.add(tile, log.id, disappearTicks = 300, owner = this)
+                interactFloorItem(floorItem, "Light")
             }
         }
 

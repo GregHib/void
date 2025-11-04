@@ -1,6 +1,5 @@
 package content.entity.player.effect
 
-import content.entity.player.inv.inventoryOption
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -14,22 +13,22 @@ import java.util.concurrent.TimeUnit
 class SkillcapeBoost : Script {
 
     init {
-        inventoryOption("Boost", "worn_equipment") {
+        itemOption("Boost", inventory = "worn_equipment") { (item, slot) ->
             if (slot != EquipSlot.Cape.index || !isSkillcape(item)) {
-                return@inventoryOption
+                return@itemOption
             }
-            if (player.hasClock("skillcape_boost_cooldown")) {
-                player.message("You've already boosted in the last 60 seconds.") // Custom message
-                return@inventoryOption
+            if (hasClock("skillcape_boost_cooldown")) {
+                message("You've already boosted in the last 60 seconds.") // Custom message
+                return@itemOption
             }
 
             val skill: Skill = item.def["skillcape_skill"]
-            if (player.levels.getOffset(skill) > 0) {
-                player.message("You already have a boost active.") // Custom message
-                return@inventoryOption
+            if (levels.getOffset(skill) > 0) {
+                message("You already have a boost active.") // Custom message
+                return@itemOption
             }
-            player.levels.boost(skill, if (skill == Skill.Constitution) 10 else 1)
-            player.start("skillcape_boost_cooldown", TimeUnit.MINUTES.toTicks(1))
+            levels.boost(skill, if (skill == Skill.Constitution) 10 else 1)
+            start("skillcape_boost_cooldown", TimeUnit.MINUTES.toTicks(1))
         }
     }
 

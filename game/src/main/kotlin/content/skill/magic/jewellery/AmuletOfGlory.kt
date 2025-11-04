@@ -1,7 +1,6 @@
 package content.skill.magic.jewellery
 
 import content.entity.player.dialogue.type.choice
-import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -18,44 +17,44 @@ class AmuletOfGlory : Script {
     val alKharid = areas["al_kharid_teleport"]
 
     init {
-        inventoryItem("Rub", "amulet_of_glory_#", "inventory") {
-            if (player.contains("delay")) {
-                return@inventoryItem
+        itemOption("Rub", "amulet_of_glory_#") {
+            if (contains("delay")) {
+                return@itemOption
             }
             choice("Where would you like to teleport to?") {
                 option("Edgeville") {
-                    player.message("You rub the amulet...", ChatType.Filter)
-                    jewelleryTeleport(player, inventory, slot, edgeville)
+                    message("You rub the amulet...", ChatType.Filter)
+                    jewelleryTeleport(this, it.inventory, it.slot, edgeville)
                 }
                 option("Karamja") {
-                    player.message("You rub the amulet...", ChatType.Filter)
-                    jewelleryTeleport(player, inventory, slot, karamja)
+                    message("You rub the amulet...", ChatType.Filter)
+                    jewelleryTeleport(this, it.inventory, it.slot, karamja)
                 }
                 option("Draynor Village") {
-                    player.message("You rub the amulet...", ChatType.Filter)
-                    jewelleryTeleport(player, inventory, slot, draynorVillage)
+                    message("You rub the amulet...", ChatType.Filter)
+                    jewelleryTeleport(this, it.inventory, it.slot, draynorVillage)
                 }
                 option("Al Kharid") {
-                    player.message("You rub the amulet...", ChatType.Filter)
-                    jewelleryTeleport(player, inventory, slot, alKharid)
+                    message("You rub the amulet...", ChatType.Filter)
+                    jewelleryTeleport(this, it.inventory, it.slot, alKharid)
                 }
                 option("Nowhere")
             }
         }
 
-        inventoryItem("*", "amulet_of_glory_#", "worn_equipment") {
-            if (player.contains("delay")) {
-                return@inventoryItem
+        itemOption("*", "amulet_of_glory_#", "worn_equipment") {
+            if (contains("delay")) {
+                return@itemOption
             }
-            val area = when (option) {
+            val area = when (it.option) {
                 "Edgeville" -> edgeville
                 "Karamja" -> karamja
                 "Draynor Village" -> draynorVillage
                 "Al Kharid" -> alKharid
-                else -> return@inventoryItem
+                else -> return@itemOption
             }
-            player.message("You rub the amulet...", ChatType.Filter)
-            jewelleryTeleport(player, inventory, slot, area)
+            message("You rub the amulet...", ChatType.Filter)
+            jewelleryTeleport(this, it.inventory, it.slot, area)
         }
     }
 }

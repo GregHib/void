@@ -5,7 +5,6 @@ import content.entity.combat.attackers
 import content.entity.combat.hit.npcCombatDamage
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.warning
-import content.entity.player.inv.inventoryItem
 import content.entity.sound.areaSound
 import content.skill.firemaking.Light
 import content.skill.firemaking.Light.hasLightSource
@@ -59,14 +58,14 @@ class GiantMole : Script {
             }
         }
 
-        inventoryItem("Dig", "spade") {
-            val playerTile: Tile = player.tile
-            player.anim("dig_with_spade")
+        itemOption("Dig", "spade") {
+            val playerTile: Tile = tile
+            anim("dig_with_spade")
             if (!acceptedTiles.contains(playerTile)) {
-                return@inventoryItem
+                return@itemOption
             }
             if (warning("mole_lair")) {
-                player.tele(initialCaveTile)
+                tele(initialCaveTile)
             }
         }
 

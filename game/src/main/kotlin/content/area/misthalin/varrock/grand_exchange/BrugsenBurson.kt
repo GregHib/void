@@ -5,7 +5,6 @@ import content.entity.player.dialogue.type.*
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeMenu
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -44,20 +43,20 @@ class BrugsenBurson : Script {
             }
         }
 
-        interfaceOption("Continue", "continue*", "exchange_offers_tutorial") {
-            (player.dialogueSuspension as? ContinueSuspension)?.resume(Unit)
+        interfaceOption("Continue", "exchange_offers_tutorial:continue*") {
+            (dialogueSuspension as? ContinueSuspension)?.resume(Unit)
         }
 
-        interfaceOption("Continue", "continue*", "exchange_buy_tutorial") {
-            (player.dialogueSuspension as? ContinueSuspension)?.resume(Unit)
+        interfaceOption("Continue", "exchange_buy_tutorial:continue*") {
+            (dialogueSuspension as? ContinueSuspension)?.resume(Unit)
         }
 
-        interfaceOption("Continue", "continue*", "exchange_confirm_tutorial") {
-            (player.dialogueSuspension as? ContinueSuspension)?.resume(Unit)
+        interfaceOption("Continue", "exchange_confirm_tutorial:continue*") {
+            (dialogueSuspension as? ContinueSuspension)?.resume(Unit)
         }
 
-        interfaceOption("Continue", "continue*", "exchange_wait_tutorial") {
-            (player.dialogueSuspension as? ContinueSuspension)?.resume(Unit)
+        interfaceOption("Continue", "exchange_wait_tutorial:continue*") {
+            (dialogueSuspension as? ContinueSuspension)?.resume(Unit)
         }
     }
 

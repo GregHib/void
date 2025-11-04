@@ -4,7 +4,6 @@ import content.entity.sound.sound
 import content.skill.magic.spell.SpellRunes.removeItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.interfaceOnItem
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smelting
@@ -22,36 +21,36 @@ class SuperheatItem : Script {
     val itemDefinitions: ItemDefinitions by inject()
 
     init {
-        interfaceOnItem("modern_spellbook", "superheat_item") { player ->
+        onItem("modern_spellbook:superheat_item") { item, _ ->
             if (!item.id.endsWith("_ore")) {
-                player.message("You need to cast superheat item on ore.")
-                player.sound("superheat_fail")
-                return@interfaceOnItem
+                message("You need to cast superheat item on ore.")
+                sound("superheat_fail")
+                return@onItem
             }
             var bar = item.id.replace("_ore", "_bar")
-            if (bar == "iron_bar" && player.inventory.count("coal") >= 2) {
+            if (bar == "iron_bar" && inventory.count("coal") >= 2) {
                 bar = "steel_bar"
             }
             val smelting: Smelting = itemDefinitions.get(bar)["smelting"]
-            if (!player.has(Skill.Smithing, smelting.level, message = true)) {
-                player.sound("superheat_fail")
-                return@interfaceOnItem
+            if (!has(Skill.Smithing, smelting.level, message = true)) {
+                sound("superheat_fail")
+                return@onItem
             }
-            val spell = component
-            player.inventory.transaction {
-                removeItems(player, spell)
+            val spell = "superheat_item"
+            inventory.transaction {
+                removeItems(this@onItem, spell)
                 remove(smelting.items)
                 add(bar)
             }
-            if (player.inventory.transaction.error == TransactionError.None) {
-                player.sound("superheat_all")
-                player.anim(spell)
-                player.gfx(spell)
+            if (inventory.transaction.error == TransactionError.None) {
+                sound("superheat_all")
+                anim(spell)
+                gfx(spell)
                 val definition = spellDefinitions.get(spell)
-                player.experience.add(Skill.Magic, definition.experience)
-                player.experience.add(Skill.Smithing, smelting.exp(player, bar))
+                experience.add(Skill.Magic, definition.experience)
+                experience.add(Skill.Smithing, smelting.exp(this, bar))
             } else {
-                player.sound("superheat_fail")
+                sound("superheat_fail")
             }
         }
     }

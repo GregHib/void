@@ -1,12 +1,11 @@
 package content.entity.player.equip
 
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.player.inv.inventoryOption
-import content.entity.player.inv.inventoryOptions
 import content.entity.sound.sound
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
@@ -31,65 +30,71 @@ class Equipping : Script {
     init {
         playerSpawn(::updateWeaponEmote)
 
-        inventoryOptions("Wield", "Wear", "Hold", "Equip", inventory = "inventory") {
-            val def = item.def
-            if (!player.hasRequirements(item, true)) {
-                return@inventoryOptions
-            }
-            if (item.id.contains("greegree") && player.tile !in areas["ape_atoll"] && player.tile !in areas["ape_atoll_agility_dungeon"]) {
-                player.message("You attempt to use the Monkey Greegree but nothing happens.")
-                return@inventoryOptions
-            }
-            if (item.slot == EquipSlot.Hat && player.tile in areas["west_ardougne"]) {
-                player.message("You should leave your gas mask on while you're in West Ardougne.")
-                return@inventoryOptions
-            }
-            if (item.id.endsWith("goblin_mail")) {
-                player.message("That armour is too small for a human.")
-                return@inventoryOptions
-            }
-            if (replaceWeaponShieldWith2h(player, def) && !player.equipment.move(EquipSlot.Shield.index, player.inventory)) {
-                player.inventoryFull()
-                return@inventoryOptions
-            }
-            if (replace2hWithShield(player, def) || replaceShieldWith2h(player, def)) {
-                player.inventory.move(slot, player.equipment, item.slot.index)
-                player.equipment.move(getOtherHandSlot(item.slot).index, player.inventory)
-            } else {
-                val target = player.equipment[item.slot.index]
-                if (item.id == target.id && player.equipment.stackable(target.id)) {
-                    player.inventory.move(slot, player.equipment, item.slot.index)
-                } else {
-                    player.inventory.swap(slot, player.equipment, item.slot.index)
-                }
-            }
-            when (player.inventory.transaction.error) {
-                TransactionError.None -> {
-                    player.flagAppearance()
-                    playEquipSound(player, def)
-                }
-                else -> logger.warn { "Failed to equip item $player $item ${item.slot.index}" }
-            }
-        }
+        itemOption("Wield", block = ::equip)
+        itemOption("Wear", block = ::equip)
+        itemOption("Hold", block = ::equip)
+        itemOption("Equip", block = ::equip)
 
-        inventoryOption("Remove", "worn_equipment") {
-            if (item.id == "gas_mask" && player.tile in areas["west_ardougne"]) {
-                player.message("You should leave your gas mask on while you're in West Ardougne.")
-                return@inventoryOption
+        itemOption("Remove", inventory = "worn_equipment") { (item, slot) ->
+            if (item.id == "gas_mask" && tile in areas["west_ardougne"]) {
+                message("You should leave your gas mask on while you're in West Ardougne.")
+                return@itemOption
             }
             if (item.id == "rubber_chicken" || item.id == "easter_carrot") {
-                player.options.remove("Whack")
+                options.remove("Whack")
             }
-            player.equipment.move(slot, player.inventory)
-            when (player.equipment.transaction.error) {
-                TransactionError.None -> playEquipSound(player, item.def)
-                is TransactionError.Full -> player.inventoryFull()
+            equipment.move(slot, inventory)
+            when (equipment.transaction.error) {
+                TransactionError.None -> playEquipSound(this, item.def)
+                is TransactionError.Full -> inventoryFull()
                 else -> {}
             }
         }
 
         inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
             updateWeaponEmote(player)
+        }
+    }
+
+    fun equip(player: Player, it: ItemOption) {
+        val (item, slot) = it
+        val def = item.def
+        if (!player.hasRequirements(item, true)) {
+            return
+        }
+        if (item.id.contains("greegree") && player.tile !in areas["ape_atoll"] && player.tile !in areas["ape_atoll_agility_dungeon"]) {
+            player.message("You attempt to use the Monkey Greegree but nothing happens.")
+            return
+        }
+        if (item.slot == EquipSlot.Hat && player.tile in areas["west_ardougne"]) {
+            player.message("You should leave your gas mask on while you're in West Ardougne.")
+            return
+        }
+        if (item.id.endsWith("goblin_mail")) {
+            player.message("That armour is too small for a human.")
+            return
+        }
+        if (replaceWeaponShieldWith2h(player, def) && !player.equipment.move(EquipSlot.Shield.index, player.inventory)) {
+            player.inventoryFull()
+            return
+        }
+        if (replace2hWithShield(player, def) || replaceShieldWith2h(player, def)) {
+            player.inventory.move(slot, player.equipment, item.slot.index)
+            player.equipment.move(getOtherHandSlot(item.slot).index, player.inventory)
+        } else {
+            val target = player.equipment[item.slot.index]
+            if (item.id == target.id && player.equipment.stackable(target.id)) {
+                player.inventory.move(slot, player.equipment, item.slot.index)
+            } else {
+                player.inventory.swap(slot, player.equipment, item.slot.index)
+            }
+        }
+        when (player.inventory.transaction.error) {
+            TransactionError.None -> {
+                player.flagAppearance()
+                playEquipSound(player, def)
+            }
+            else -> logger.warn { "Failed to equip item $player $item ${item.slot.index}" }
         }
     }
 

@@ -1,7 +1,6 @@
 package content.skill.magic.jewellery
 
 import content.entity.player.dialogue.type.choice
-import content.entity.player.inv.inventoryItem
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.inject
@@ -16,39 +15,39 @@ class RingOfDuelling : Script {
     val fistOfGuthix = areas["fist_of_guthix_teleport"]
 
     init {
-        inventoryItem("Rub", "ring_of_duelling_#", "inventory") {
-            if (player.contains("delay")) {
-                return@inventoryItem
+        itemOption("Rub", "ring_of_duelling_#") {
+            if (contains("delay")) {
+                return@itemOption
             }
             choice("Where would you like to teleport to?") {
                 option("Al Kharid Duel Arena.") {
-                    jewelleryTeleport(player, inventory, slot, duelArena)
+                    jewelleryTeleport(this, it.inventory, it.slot, duelArena)
                 }
                 option("Castle Wars Arena.") {
-                    jewelleryTeleport(player, inventory, slot, castleWars)
+                    jewelleryTeleport(this, it.inventory, it.slot, castleWars)
                 }
                 option("Mobilising Armies Command Centre.") {
-                    jewelleryTeleport(player, inventory, slot, mobilisingArmies)
+                    jewelleryTeleport(this, it.inventory, it.slot, mobilisingArmies)
                 }
                 option("Fist of Guthix.") {
-                    jewelleryTeleport(player, inventory, slot, fistOfGuthix)
+                    jewelleryTeleport(this, it.inventory, it.slot, fistOfGuthix)
                 }
                 option("Nowhere.")
             }
         }
 
-        inventoryItem("*", "ring_of_duelling_#", "worn_equipment") {
-            if (player.contains("delay")) {
-                return@inventoryItem
+        itemOption("*", "ring_of_duelling_#", "worn_equipment") {
+            if (contains("delay")) {
+                return@itemOption
             }
-            val area = when (option) {
+            val area = when (it.option) {
                 "Duel Arena" -> duelArena
                 "Castle Wars" -> castleWars
                 "Mobilising Armies" -> mobilisingArmies
                 "Fist of Guthix" -> fistOfGuthix
-                else -> return@inventoryItem
+                else -> return@itemOption
             }
-            jewelleryTeleport(player, inventory, slot, area)
+            jewelleryTeleport(this, it.inventory, it.slot, area)
         }
     }
 }

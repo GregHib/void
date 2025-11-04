@@ -4,9 +4,7 @@ import content.entity.effect.frozen
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.event.interfaceOpen
 import world.gregs.voidps.engine.client.ui.hasOpen
-import world.gregs.voidps.engine.client.ui.interfaceOption
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
@@ -29,54 +27,57 @@ class WorldMap : Script {
             if (steps.isEmpty() || !hasOpen("world_map")) Timer.CANCEL else Timer.CONTINUE
         }
 
-        interfaceOpen("world_map") { player ->
-            updateMap(player)
-            if (player.steps.isNotEmpty()) {
-                player.softTimers.start("world_map_check")
+        interfaceOpen("world_map") {
+            updateMap(this)
+            if (steps.isNotEmpty()) {
+                softTimers.start("world_map_check")
             }
-            player.sendVariable("world_map_hide_player_location")
-            player.sendVariable("world_map_hide_links")
-            player.sendVariable("world_map_hide_labels")
-            player.sendVariable("world_map_hide_tooltips")
-            player.sendVariable("world_map_marker_custom")
-            player.interfaceOptions.unlockAll("world_map", "key_list", 0..182)
+            sendVariable("world_map_hide_player_location")
+            sendVariable("world_map_hide_links")
+            sendVariable("world_map_hide_labels")
+            sendVariable("world_map_hide_tooltips")
+            sendVariable("world_map_marker_custom")
+            interfaceOptions.unlockAll("world_map", "key_list", 0..182)
         }
 
-        interfaceOption("Re-sort key", "order", "world_map") {
-            player["world_map_list_order"] = when (player["world_map_list_order", "categorised"]) {
-                "categorised" -> "traditional"
-                "traditional" -> "alphabetical"
-                "alphabetical" -> "categorised"
-                else -> "categorised"
-            }
+        interfaceOption("Re-sort key", "world_map:order") {
+            set(
+                "world_map_list_order",
+                when (get("world_map_list_order", "categorised")) {
+                    "categorised" -> "traditional"
+                    "traditional" -> "alphabetical"
+                    "alphabetical" -> "categorised"
+                    else -> "categorised"
+                },
+            )
         }
 
-        interfaceOption(id = "world_map", component = "key_list") {
+        interfaceOption(id = "world_map:key_list") { (_, itemSlot) ->
             when (itemSlot) {
-                1 -> player.toggle("world_map_hide_player_location")
-                4 -> player.toggle("world_map_hide_links")
-                12 -> player.toggle("world_map_hide_labels")
-                16 -> player.toggle("world_map_hide_tooltips")
-                19 -> player["world_map_marker_custom"] = 0
+                1 -> toggle("world_map_hide_player_location")
+                4 -> toggle("world_map_hide_links")
+                12 -> toggle("world_map_hide_labels")
+                16 -> toggle("world_map_hide_tooltips")
+                19 -> set("world_map_marker_custom", 0)
             }
         }
 
-        interfaceOption("Clear marker", "marker", "world_map") {
-            player["world_map_marker_custom"] = 0
+        interfaceOption("Clear marker", "world_map:marker") {
+            set("world_map_marker_custom", 0)
         }
 
-        interfaceOption(component = "world_map", id = "toplevel*") {
-            if (player.frozen) {
-                player.message("You cannot do this at the moment.") // TODO proper message
+        interfaceOption(id = "toplevel*:world_map") {
+            if (frozen) {
+                message("You cannot do this at the moment.") // TODO proper message
             } else {
-                player.open("world_map")
+                open("world_map")
             }
         }
 
-        interfaceOption(component = "close", id = "world_map") {
+        interfaceOption(id = "world_map:close") {
             // Mechanics are unknown, would need tracking last interface to handle inside Interfaces.kt
-            player.client?.updateInterface(definitions.get(player.interfaces.gameFrame).id, 2)
-            player.open(player.interfaces.gameFrame, close = false)
+            client?.updateInterface(definitions.get(interfaces.gameFrame).id, 2)
+            open(interfaces.gameFrame, close = false)
         }
 
         instruction<WorldMapClick> { player ->

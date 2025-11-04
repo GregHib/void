@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
-import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
-import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
+import world.gregs.voidps.engine.entity.InterfaceInteraction
 import world.gregs.voidps.network.login.protocol.encode.closeInterface
 
 internal class InterfacesSingleTest : InterfaceTest() {
@@ -42,7 +41,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
         assertFalse(interfaces.open(name))
 
         verify {
-            events.emit(InterfaceRefreshed(name))
+            InterfaceInteraction.refresh(events, name)
         }
     }
 
@@ -56,7 +55,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
 
         verifyOrder {
             client.closeInterface(2)
-            events.emit(InterfaceClosed(name))
+            InterfaceInteraction.close(events, name)
         }
     }
 }

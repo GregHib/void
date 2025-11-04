@@ -1,6 +1,5 @@
 package content.quest.member.ghosts_ahoy
 
-import content.entity.player.inv.inventoryItem
 import content.skill.magic.spell.Teleport.Companion.teleport
 import content.skill.magic.spell.teleportLand
 import content.skill.magic.spell.teleportTakeOff
@@ -20,11 +19,11 @@ class Ectophial : Script {
     val objects: GameObjects by inject()
 
     init {
-        inventoryItem("Empty", "ectophial", "inventory") {
-            player.gfx("empty_ectophial")
-            player.animDelay("empty_ectophial")
+        itemOption("Empty", "ectophial") {
+            gfx("empty_ectophial")
+            animDelay("empty_ectophial")
             delay(2)
-            teleport(player, "ectophial_teleport", "ectophial")
+            teleport(this, "ectophial_teleport", "ectophial")
         }
 
         itemOnObjectOperate("ectophial_empty", "ectofuntus") {
