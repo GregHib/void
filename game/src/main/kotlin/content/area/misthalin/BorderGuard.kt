@@ -2,8 +2,6 @@ package content.area.misthalin
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.mode.move.enterArea
-import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
@@ -34,23 +32,23 @@ class BorderGuard : Script {
             }
         }
 
-        enterArea("border_guard*") {
+        entered("border_guard*") { area ->
             val border = area as Rectangle
-            if (player.steps.destination in border || player.steps.isEmpty()) {
-                val tile = border.nearestTo(player.tile)
+            if (steps.destination in border || steps.isEmpty()) {
+                val tile = border.nearestTo(tile)
                 val endSide = Border.getOppositeSide(border, tile)
-                player.walkTo(endSide, noCollision = true, forceWalk = true)
+                walkTo(endSide, noCollision = true, forceWalk = true)
             } else {
-                player.steps.update(noCollision = true, noRun = true)
+                steps.update(noCollision = true, noRun = true)
             }
-            val guards = guards[border] ?: return@enterArea
+            val guards = guards[border] ?: return@entered
             changeGuardState(guards, true)
         }
 
-        exitArea("border_guard*") {
+        exited("border_guard*") { area ->
             val border = area as Rectangle
-            val guards = guards[border] ?: return@exitArea
-            player.steps.update(noCollision = false, noRun = false)
+            val guards = guards[border] ?: return@exited
+            steps.update(noCollision = false, noRun = false)
             changeGuardState(guards, false)
         }
     }

@@ -25,12 +25,10 @@ class Attack : Script {
         npcApproach("Attack") { (target) ->
             if (!has(Skill.Slayer, target.def["slayer_level", 0])) {
                 message("You need a higher slayer level to know how to wound this monster.")
-//                cancel() FIXME
                 return@npcApproach
             }
             if (equipped(EquipSlot.Weapon).id.endsWith("_greegree")) {
                 statement("You cannot attack as a monkey.")
-//                cancel() FIXME
                 return@npcApproach
             }
             if (target.id.endsWith("_dummy") && !handleCombatDummies(target)) {
@@ -83,7 +81,6 @@ class Attack : Script {
         onNPCApproach("*_spellbook:*") { (target, id) ->
             if (!has(Skill.Slayer, target.def["slayer_level", 0])) {
                 message("You need a higher slayer level to know how to wound this monster.")
-//                cancel() FIXME
                 return@onNPCApproach
             }
             approachRange(8, update = false)
@@ -97,7 +94,6 @@ class Attack : Script {
             attackRange = 8
             face(target)
             combatInteraction(this, target)
-//            cancel() FIXME
         }
 
         combatPrepare { player ->
@@ -125,7 +121,6 @@ class Attack : Script {
         message("You can only use ${type.toTitleCase()} against this dummy.")
         approachRange(10, false)
         mode = EmptyMode
-//        cancel() FIXME
         return false
     }
 }

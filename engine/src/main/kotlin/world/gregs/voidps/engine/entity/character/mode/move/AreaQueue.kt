@@ -27,12 +27,12 @@ class AreaQueue(
         val to = player.tile
         for (def in areaDefinitions.get(from.zone)) {
             if (from in def.area && to !in def.area) {
-                player.emit(AreaExited(player, def.name, def.tags, def.area))
+                Moved.exit(player, def.name, def.area)
             }
         }
         for (def in areaDefinitions.get(to.zone)) {
             if (to in def.area && from !in def.area) {
-                player.emit(AreaEntered(player, def.name, def.tags, def.area))
+                Moved.enter(player, def.name, def.area)
             }
         }
     }

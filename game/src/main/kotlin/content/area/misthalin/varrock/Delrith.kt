@@ -30,7 +30,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
-import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -79,9 +78,11 @@ class Delrith : Script {
             }
         }
 
-        enterArea("demon_slayer_stone_circle") {
-            if (!player.questCompleted("demon_slayer") && player["demon_slayer_silverlight", false] && !player.hasClock("demon_slayer_instance_exit")) {
-                cutscene()
+        entered("demon_slayer_stone_circle") {
+            if (!questCompleted("demon_slayer") && get("demon_slayer_silverlight", false) && !hasClock("demon_slayer_instance_exit")) {
+                Events.events.launch {
+                    cutscene()
+                }
             }
         }
 
@@ -174,12 +175,12 @@ class Delrith : Script {
         return !area.contains(actual) && !player.hasClock("demon_slayer_instance_exit")
     }
 
-    suspend fun SuspendableContext<Player>.cutscene() {
+    suspend fun Player.cutscene() {
         val region = Region(12852)
         val cutscene = startCutscene("demon_slayer_delrith", region)
-        player["demon_slayer_cutscene"] = cutscene
-        player.steps.clear()
-        player.mode = EmptyMode
+        set("demon_slayer_cutscene", cutscene)
+        steps.clear()
+        mode = EmptyMode
         val wizard1 = npcs.add("dark_wizard_water", cutscene.tile(3226, 3371), Direction.SOUTH_EAST)
         val wizard2 = npcs.add("dark_wizard_water_2", cutscene.tile(3229, 3371), Direction.SOUTH_WEST)
         val wizard3 = npcs.add("dark_wizard_earth", cutscene.tile(3226, 3368), Direction.NORTH_EAST)
@@ -194,35 +195,35 @@ class Delrith : Script {
         spawnEnergyBarrier(cutscene)
         delay(1)
         cutscene.onEnd {
-            player.start("demon_slayer_instance_exit", 2)
-            if (player.tile.region == cutscene.instance) {
-                player.tele(cutscene.original(player.tile))
+            start("demon_slayer_instance_exit", 2)
+            if (tile.region == cutscene.instance) {
+                tele(cutscene.original(tile))
             } else {
-                player.tele(defaultTile)
+                tele(defaultTile)
             }
-            player.clearCamera()
+            clearCamera()
         }
-        player.face(Direction.NORTH_EAST)
-        player.playTrack("delrith")
-        if (player["demon_slayer_summoned", false]) {
-            player.queue.clear("demon_slayer_delrith_cutscene_end")
+        face(Direction.NORTH_EAST)
+        playTrack("delrith")
+        if (get("demon_slayer_summoned", false)) {
+            queue.clear("demon_slayer_delrith_cutscene_end")
             delrith.tele(cutscene.tile(3227, 3367))
             denath.tele(cutscene.tile(3236, 3368))
-            player.tele(cutscene.convert(player.tile)) // TODO could be improved by getting nearest tile in inner circle area
+            tele(cutscene.convert(tile)) // TODO could be improved by getting nearest tile in inner circle area
             delrith.hide = false
             cutscene.showTabs()
             return
         }
-        player.tele(cutscene.tile(3222, 3367))
+        tele(cutscene.tile(3222, 3367))
         delay(1)
         for (wizard in wizards) {
             wizard.anim("summon_demon")
         }
 
-        player.clearCamera()
-        player.moveCamera(cutscene.tile(3224, 3376), 475, 232, 232)
-        player.turnCamera(cutscene.tile(3227, 3369), 300, 232, 232)
-        player.moveCamera(cutscene.tile(3231, 3376), 475, 1, 1)
+        clearCamera()
+        moveCamera(cutscene.tile(3224, 3376), 475, 232, 232)
+        turnCamera(cutscene.tile(3227, 3369), 300, 232, 232)
+        moveCamera(cutscene.tile(3231, 3376), 475, 1, 1)
         npc<Happy>("denath", "Arise, O mighty Delrith! Bring destruction to this soft, weak city!")
         for (wizard in wizards) {
             wizard.say("Arise, Delrith!")
@@ -232,20 +233,20 @@ class Delrith : Script {
         statement("The wizards cast an evil spell", clickToContinue = false)
         val regular = objects[cutscene.tile(3227, 3369), "demon_slayer_stone_table"]!!
         val table = objects.replace(regular, "demon_slayer_stone_table_summoning", ticks = 8)
-        player.clearCamera()
-        player.turnCamera(cutscene.tile(3227, 3369), 100, 232, 232)
-        player.moveCamera(cutscene.tile(3227, 3365), 500, 232, 232)
-        player.sound("summon_npc")
-        player.sound("demon_slayer_table_explosion")
+        clearCamera()
+        turnCamera(cutscene.tile(3227, 3369), 100, 232, 232)
+        moveCamera(cutscene.tile(3227, 3365), 500, 232, 232)
+        sound("summon_npc")
+        sound("demon_slayer_table_explosion")
         delay(1)
         table.anim("demon_slayer_table_light")
         delay(1)
-        player.shakeCamera(15, 0, 0, 0, 0)
+        shakeCamera(15, 0, 0, 0, 0)
         for ((source, target) in targets) {
             cutscene.convert(source).shoot("demon_slayer_spell", cutscene.convert(target))
         }
         delay(1)
-        player.shakeCamera(0, 0, 0, 0, 0)
+        shakeCamera(0, 0, 0, 0, 0)
         for ((_, target) in targets) {
             areaGfx("demon_slayer_spell_impact", cutscene.convert(target))
         }
@@ -253,16 +254,16 @@ class Delrith : Script {
         delrith.hide = false
         delrith.anim("delrith_appear")
         delay(2)
-        player.sound("demon_slayer_break_table", delay = 10)
-        player.sound("demon_slayer_delrith_appear")
-        player.turnCamera(cutscene.tile(3227, 3369), 400, 1, 1)
-        player["demon_slayer_summoned"] = true
+        sound("demon_slayer_break_table", delay = 10)
+        sound("demon_slayer_delrith_appear")
+        turnCamera(cutscene.tile(3227, 3369), 400, 1, 1)
+        set("demon_slayer_summoned", true)
         delay(5)
         delrith.walkOverDelay(cutscene.tile(3227, 3367))
         delay(2)
-        player.clearCamera()
-        player.moveCamera(cutscene.tile(3226, 3375), 500, 232, 232)
-        player.turnCamera(cutscene.tile(3227, 3367), 300, 232, 232)
+        clearCamera()
+        moveCamera(cutscene.tile(3226, 3375), 500, 232, 232)
+        turnCamera(cutscene.tile(3227, 3367), 300, 232, 232)
         delay(1)
         delrith.face(denath)
         for (wizard in wizards) {
@@ -278,16 +279,16 @@ class Delrith : Script {
         """,
         )
         for (wizard in wizards) {
-            wizard.face(player)
+            wizard.face(this)
         }
-        delrith.face(player)
+        delrith.face(this)
         npc<Surprised>("dark_wizard_earth", "Who's that?")
         npc<Afraid>("denath", "Noo! Not Silverlight! Delrith is not ready yet!")
         denath.walkToDelay(cutscene.tile(3236, 3368))
-        player.clearCamera()
-        player.moveCamera(cutscene.tile(3226, 3383), 1000, 1, 1)
+        clearCamera()
+        moveCamera(cutscene.tile(3226, 3383), 1000, 1, 1)
         npc<Shifty>("denath", "I've got to get out of here...")
-        player.queue.clear("demon_slayer_delrith_cutscene_end")
+        queue.clear("demon_slayer_delrith_cutscene_end")
         cutscene.end()
         for (wizard in wizards) {
             wizard.mode = EmptyMode

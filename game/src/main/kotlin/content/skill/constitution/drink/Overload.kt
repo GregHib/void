@@ -5,7 +5,6 @@ import content.entity.combat.hit.directHit
 import content.skill.constitution.canConsume
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -47,16 +46,16 @@ class Overload : Script {
             }
         }
 
-        enterArea("wilderness") {
-            if (!player.timers.contains("overload")) {
-                return@enterArea
+        entered("wilderness") {
+            if (!timers.contains("overload")) {
+                return@entered
             }
             for (skill in skills) {
-                val max = player.levels.get(skill)
-                val offset = player.levels.getOffset(skill)
+                val max = levels.get(skill)
+                val offset = levels.getOffset(skill)
                 val superBoost = (max * if (skill == Skill.Ranged) 0.1 else 0.15).toInt() + (if (skill == Skill.Ranged) 4 else 5)
                 if (offset > superBoost) {
-                    player.levels.drain(skill, offset - superBoost)
+                    levels.drain(skill, offset - superBoost)
                 }
             }
         }

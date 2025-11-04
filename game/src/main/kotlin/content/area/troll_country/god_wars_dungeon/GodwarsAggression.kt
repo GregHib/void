@@ -8,8 +8,6 @@ import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.mode.move.enterArea
-import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntNPC
 import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
@@ -28,9 +26,9 @@ class GodwarsAggression : Script {
     init {
         npcSpawn(block = ::randomHuntMode)
 
-        enterArea("godwars_dungeon_multi_area") {
-            player.open("godwars_overlay")
-            player["gods"] = player.equipment.items.mapNotNull { it.def.getOrNull<String>("god") }.toMutableSet()
+        entered("godwars_dungeon_multi_area") {
+            open("godwars_overlay")
+            set("gods", equipment.items.mapNotNull { it.def.getOrNull<String>("god") }.toMutableSet())
         }
 
         interfaceOpen("godwars_overlay") {
@@ -41,16 +39,16 @@ class GodwarsAggression : Script {
             sendVariable("godwars_darkness")
         }
 
-        exitArea("godwars_dungeon_multi_area") {
-            player.close("godwars_overlay")
-            if (logout) {
-                return@exitArea
+        exited("godwars_dungeon_multi_area") {
+            close("godwars_overlay")
+            if (get("logged_out", false)) {
+                return@exited
             }
-            player["godwars_darkness"] = false
-            player.clear("armadyl_killcount")
-            player.clear("bandos_killcount")
-            player.clear("saradomin_killcount")
-            player.clear("zamorak_killcount")
+            set("godwars_darkness", false)
+            clear("armadyl_killcount")
+            clear("bandos_killcount")
+            clear("saradomin_killcount")
+            clear("zamorak_killcount")
         }
 
         itemAdded(inventory = "worn_equipment") { player ->

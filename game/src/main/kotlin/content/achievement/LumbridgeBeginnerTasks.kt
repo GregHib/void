@@ -12,7 +12,6 @@ import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
-import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -354,20 +353,20 @@ class LumbridgeBeginnerTasks : Script {
             player["window_shopping_task"] = true
         }
 
-        enterArea("freds_farmhouse") {
-            player["wait_thats_not_a_sheep_task"] = true
+        entered("freds_farmhouse") {
+            set("wait_thats_not_a_sheep_task", true)
         }
 
-        enterArea("draynor_manor_courtyard") {
-            player["in_the_countyard_task"] = true
+        entered("draynor_manor_courtyard") {
+            set("in_the_countyard_task", true)
         }
 
-        enterArea("draynor_village_market") {
-            player["beware_of_pigzilla_task"] = true
+        entered("draynor_village_market") {
+            set("beware_of_pigzilla_task", true)
         }
 
-        enterArea("wizards_tower_top_floor") {
-            player["tower_power_task"] = true
+        entered("wizards_tower_top_floor") {
+            set("tower_power_task", true)
         }
     }
 }

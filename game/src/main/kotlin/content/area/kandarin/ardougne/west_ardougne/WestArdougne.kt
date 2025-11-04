@@ -147,7 +147,6 @@ class WestArdougne : Script {
             softQueue("ardougne_wall_door", 2) {
                 message("...But they will not open.")
             }
-//            cancel() FIXME
         }
     }
 }

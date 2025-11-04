@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.ItemObjectInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
-import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -19,9 +18,9 @@ class SaradominRock : Script {
     }
 
     init {
-        enterArea("godwars_dungeon_multi_area") {
-            player.sendVariable("godwars_saradomin_rope_top")
-            player.sendVariable("godwars_saradomin_rope_bottom")
+        entered("godwars_dungeon_multi_area") {
+            sendVariable("godwars_saradomin_rope_top")
+            sendVariable("godwars_saradomin_rope_bottom")
         }
 
         objectOperate("Tie-rope", "godwars_saradomin_rock_top,godwars_saradomin_rock_bottom") { (target) ->
