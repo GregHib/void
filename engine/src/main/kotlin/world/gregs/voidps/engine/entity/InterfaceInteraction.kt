@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.ItemOption
-import world.gregs.voidps.engine.client.ui.event.CloseInterface
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
@@ -49,7 +48,6 @@ interface InterfaceInteraction {
 
     /**
      * An interface was open and has now been closed
-     * For close attempts see [CloseInterface]
      */
     fun interfaceClose(id: String, block: Player.(id: String) -> Unit) {
         Wildcards.find(id, Wildcard.Interface) { i ->
