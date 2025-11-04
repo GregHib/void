@@ -1,14 +1,15 @@
 package content.area.misthalin.edgeville
 
 import content.area.wilderness.inWilderness
-import content.skill.prayer.prayerStart
-import content.skill.prayer.prayerStop
+import content.skill.prayer.PrayerApi
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 
-class WildernessIcons : Script {
+class WildernessIcons :
+    Script,
+    PrayerApi {
 
     init {
         interfaceOpen("wilderness_skull") { id ->
@@ -20,44 +21,44 @@ class WildernessIcons : Script {
                 options.set(1, "Attack")
                 open("wilderness_skull")
                 //    setVar("no_pvp_zone", false)
-                resetIcons(this)
-                updateIcon(this)
+                resetIcons()
+                updateIcon()
             } else if (to == null) {
                 options.remove("Attack")
                 close("wilderness_skull")
                 //    setVar("no_pvp_zone", true)
-                resetIcons(this)
+                resetIcons()
             }
         }
 
-        prayerStart("protect_item") { player ->
-            if (player.inWilderness) {
-                resetIcons(player)
-                updateIcon(player)
+        prayerStart("protect_item") {
+            if (inWilderness) {
+                resetIcons()
+                updateIcon()
             }
         }
 
-        prayerStop("protect_item") { player ->
-            if (player.inWilderness) {
-                resetIcons(player)
-                updateIcon(player)
+        prayerStop("protect_item") {
+            if (inWilderness) {
+                resetIcons()
+                updateIcon()
             }
         }
     }
 
-    fun resetIcons(player: Player) = player.interfaces.apply {
+    fun Player.resetIcons() = interfaces.apply {
         sendVisibility("area_status_icon", "protect_disabled", false)
         sendVisibility("area_status_icon", "no_protection", false)
         sendVisibility("area_status_icon", "protection_active", false)
     }
 
-    fun updateIcon(player: Player) {
+    fun Player.updateIcon() {
         //    val component = when {
         //        player["prayer_protect_item", false] -> "protection_active"
-        //        player.has(Skill.Prayer, if (player.isCurses()) 50 else 25) -> "protect_disabled"
+        //        has(Skill.Prayer, if (isCurses()) 50 else 25) -> "protect_disabled"
         //        else -> "no_protection"
         //    }
         // These icons aren't displayed in this revision.
-        //    player.interfaces.sendVisibility("area_status_icon", component, true)
+        //    interfaces.sendVisibility("area_status_icon", component, true)
     }
 }

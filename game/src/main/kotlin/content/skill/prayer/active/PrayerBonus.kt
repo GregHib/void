@@ -3,29 +3,30 @@ package content.skill.prayer.active
 import content.entity.combat.hit.characterCombatAttack
 import content.entity.combat.hit.hit
 import content.skill.prayer.Prayer
-import content.skill.prayer.prayerStart
-import content.skill.prayer.prayerStop
+import content.skill.prayer.PrayerApi
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.PrayerDefinitions
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
 
-class PrayerBonus : Script {
+class PrayerBonus :
+    Script,
+    PrayerApi {
 
     val definitions: PrayerDefinitions by inject()
 
     init {
-        prayerStart { player ->
+        prayerStart { prayer ->
             val definition = definitions.getOrNull(prayer) ?: return@prayerStart
             for ((bonus, value) in definition.bonuses) {
-                player["base_${bonus}_bonus"] = player["base_${bonus}_bonus", 1.0] + value / 100.0
+                set("base_${bonus}_bonus", get("base_${bonus}_bonus", 1.0) + value / 100.0)
             }
         }
 
-        prayerStop { player ->
+        prayerStop { prayer ->
             val definition = definitions.getOrNull(prayer) ?: return@prayerStop
             for ((bonus, value) in definition.bonuses) {
-                player["base_${bonus}_bonus"] = player["base_${bonus}_bonus", 1.0] - value / 100.0
+                set("base_${bonus}_bonus", get("base_${bonus}_bonus", 1.0) - value / 100.0)
             }
         }
 

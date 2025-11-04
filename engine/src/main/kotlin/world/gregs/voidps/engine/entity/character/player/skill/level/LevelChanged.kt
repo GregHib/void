@@ -27,7 +27,7 @@ interface LevelChanged {
         }
     }
 
-    companion object : LevelChanged {
+    companion object : AutoCloseable {
         val playerChanged = Object2ObjectOpenHashMap<Skill?, MutableList<(Player, Skill, from: Int, to: Int) -> Unit>>(30)
         val npcChanged = Object2ObjectOpenHashMap<String, MutableList<(NPC, Skill, from: Int, to: Int) -> Unit>>(15)
 
@@ -52,7 +52,7 @@ interface LevelChanged {
             }
         }
 
-        fun clear() {
+        override fun close() {
             playerChanged.clear()
             npcChanged.clear()
         }

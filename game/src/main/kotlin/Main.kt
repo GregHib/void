@@ -100,7 +100,7 @@ object Main {
         }
         Wildcards.load(Settings["storage.wildcards"])
         ContentLoader.load()
-//        Script.clear()
+        Script.clear()
         Wildcards.update(Settings["storage.wildcards"])
         Runtime.getRuntime().addShutdownHook(
             thread(start = false) {

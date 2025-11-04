@@ -112,11 +112,11 @@ class BotSpawns : Script {
             player.clear("bot")
             player.message("Bot disabled.")
         } else {
-            val bot = player.initBot()
+            player.initBot()
             if (args[0].isNotBlank()) {
                 player["task_bot"] = args[0]
             }
-            bot.emit(StartBot)
+            Bots.start(player)
             player.message("Bot enabled.")
         }
     }
@@ -131,7 +131,7 @@ class BotSpawns : Script {
             if (bot.inventory.isEmpty()) {
                 bot.inventory.add("coins", 10000)
             }
-            bot.emit(StartBot)
+            Bots.start(bot)
             bot.viewport?.loaded = true
             delay(3)
             bots.add(bot)

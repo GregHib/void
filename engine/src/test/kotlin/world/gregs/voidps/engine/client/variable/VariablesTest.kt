@@ -48,12 +48,14 @@ internal class VariablesTest {
             assertEquals(KEY, id)
             calls.add(from to to)
         }
-        VariableSet.playerBlocks["*"] = mutableListOf(varSet)
+        VariableApi.playerBlocks["*"] = mutableListOf(varSet)
+        mockkObject(VariableApi)
     }
 
     @AfterEach
     fun teardown() {
-        VariableSet.playerBlocks.clear()
+        VariableApi.playerBlocks.clear()
+        unmockkObject(VariableApi)
     }
 
     @Test
@@ -138,7 +140,7 @@ internal class VariablesTest {
         assertEquals(arrayListOf("First"), map[KEY])
         verify {
             variables.send(KEY)
-            player.emit(VariableBitAdded(KEY, "First"))
+            VariableApi.add(player, KEY, "First")
         }
     }
 
@@ -154,7 +156,7 @@ internal class VariablesTest {
         assertEquals(arrayListOf("First", "Second"), map[KEY])
         verify {
             variables.send(KEY)
-            player.emit(VariableBitAdded(KEY, "Second"))
+            VariableApi.add(player, KEY, "Second")
         }
     }
 
@@ -196,7 +198,7 @@ internal class VariablesTest {
         assertEquals(emptyList<Any>(), map[KEY])
         verify {
             variables.send(KEY)
-            player.emit(VariableBitRemoved(KEY, "First"))
+            VariableApi.remove(player, KEY, "First")
         }
     }
 

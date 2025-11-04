@@ -31,7 +31,7 @@ interface Moved {
         }
     }
 
-    companion object {
+    companion object : AutoCloseable {
         val entered = Object2ObjectOpenHashMap<String, MutableList<Player.(Area) -> Unit>>(25)
         val exited = Object2ObjectOpenHashMap<String, MutableList<Player.(Area) -> Unit>>(25)
         val playerMoved = ObjectArrayList<(Player, Tile) -> Unit>(15)
@@ -70,7 +70,7 @@ interface Moved {
             }
         }
 
-        fun clear() {
+        override fun close() {
             entered.clear()
             exited.clear()
             playerMoved.clear()

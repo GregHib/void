@@ -37,7 +37,7 @@ interface Spawn {
         worldSpawns.add(block)
     }
 
-    companion object {
+    companion object : AutoCloseable {
         val playerSpawns = ObjectArrayList<(Player) -> Unit>(100)
         val npcSpawns = Object2ObjectOpenHashMap<String, MutableList<(NPC) -> Unit>>(250)
         val objectSpawns = Object2ObjectOpenHashMap<String, MutableList<(GameObject) -> Unit>>(2)
@@ -83,7 +83,7 @@ interface Spawn {
             }
         }
 
-        fun clear() {
+        override fun close() {
             playerSpawns.clear()
             npcSpawns.clear()
             objectSpawns.clear()

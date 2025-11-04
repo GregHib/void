@@ -106,7 +106,7 @@ interface InterfaceInteraction {
         quests[quest] = block
     }
 
-    companion object {
+    companion object : AutoCloseable {
         private val quests = Object2ObjectOpenHashMap<String, Player.() -> Unit>(20)
         private val opened = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(150)
         private val closed = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(75)
@@ -175,7 +175,7 @@ interface InterfaceInteraction {
             }
         }
 
-        fun clear() {
+        override fun close() {
             opened.clear()
             closed.clear()
             refreshed.clear()

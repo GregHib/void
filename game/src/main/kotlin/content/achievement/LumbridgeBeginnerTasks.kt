@@ -6,7 +6,7 @@ import content.entity.npc.shop.sell.itemSold
 import content.entity.npc.shop.shopOpen
 import content.entity.obj.objTeleportLand
 import content.skill.melee.weapon.attackStyle
-import content.skill.prayer.prayerStart
+import content.skill.prayer.PrayerApi
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -23,7 +23,9 @@ import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
-class LumbridgeBeginnerTasks : Script {
+class LumbridgeBeginnerTasks :
+    Script,
+    PrayerApi {
 
     val areas: AreaDefinitions by inject()
 
@@ -243,8 +245,8 @@ class LumbridgeBeginnerTasks : Script {
             player["greasing_the_wheels_of_commerce_task"] = true
         }
 
-        prayerStart { player ->
-            player["put_your_hands_together_for_task"] = true
+        prayerStart {
+            set("put_your_hands_together_for_task", true)
         }
 
         npcDeath("giant_rat*") {
