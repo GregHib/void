@@ -112,8 +112,7 @@ interface InterfaceInteraction {
         private val onItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, String) -> Unit>>(2)
         private val itemOnItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, Item, Int, Int) -> Unit>>(800)
         private val options = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(InterfaceOption) -> Unit>>(50)
-        private val itemOption = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOption) -> Unit>>(50)
-        private val invOption = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(Item, Int, String) -> Unit>>(50)
+        private val itemOption = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOption) -> Unit>>(600)
 
         suspend fun option(player: Player, click: InterfaceOption) {
             for (block in options["${click.option}:${click.interfaceComponent}"] ?: options["*:${click.interfaceComponent}"] ?: options["${click.option}:*"]  ?: return) {
@@ -178,7 +177,6 @@ interface InterfaceInteraction {
             itemOnItem.clear()
             options.clear()
             itemOption.clear()
-            invOption.clear()
         }
     }
 }
