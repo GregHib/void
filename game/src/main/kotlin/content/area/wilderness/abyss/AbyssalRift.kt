@@ -40,7 +40,6 @@ class AbyssalRift : Script {
 
         objectOperate("Exit-through", "soul_rift") {
             message("You have not yet unlocked this rift.")
-//            cancel() FIXME
         }
     }
 }

@@ -2,8 +2,6 @@ package content.skill.melee.armour
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.mode.move.enterArea
-import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.itemAdded
@@ -16,15 +14,15 @@ class CastleWarsBrace : Script {
     val area = areas["castle_wars"]
 
     init {
-        enterArea("castle_wars") {
-            if (player.equipped(EquipSlot.Hands).id.startsWith("castle_wars_brace")) {
-                player["castle_wars_brace"] = true
+        entered("castle_wars") {
+            if (equipped(EquipSlot.Hands).id.startsWith("castle_wars_brace")) {
+                set("castle_wars_brace", true)
             }
         }
 
-        exitArea("castle_wars") {
-            if (player.equipped(EquipSlot.Hands).id.startsWith("castle_wars_brace")) {
-                player.clear("castle_wars_brace")
+        exited("castle_wars") {
+            if (equipped(EquipSlot.Hands).id.startsWith("castle_wars_brace")) {
+                clear("castle_wars_brace")
             }
         }
 

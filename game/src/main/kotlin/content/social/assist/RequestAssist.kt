@@ -23,8 +23,6 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperience
-import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.timer.TICKS
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
@@ -74,8 +72,8 @@ class RequestAssist : Script {
             cancelAssist(this, assisted)
         }
 
-        onEvent<Player, BlockedExperience> { assisted ->
-            val player: Player = assisted["assistant"] ?: return@onEvent
+        blockedExperience { skill, experience ->
+            val player: Player = get("assistant") ?: return@blockedExperience
             val active = player["assist_toggle_${skill.name.lowercase()}", false]
             var gained = player["total_xp_earned", 0].toDouble()
             if (active && !exceededMaximum(gained)) {
@@ -94,7 +92,7 @@ class RequestAssist : Script {
                         """,
                     )
                     player.start("assist_timeout", TimeUnit.HOURS.toSeconds(24).toInt())
-                    stopRedirectingAllExp(assisted)
+                    stopRedirectingAllExp(this)
                 }
             }
         }

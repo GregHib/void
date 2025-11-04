@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.entity
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.ItemOption
-import world.gregs.voidps.engine.client.ui.event.CloseInterface
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
@@ -49,7 +48,6 @@ interface InterfaceInteraction {
 
     /**
      * An interface was open and has now been closed
-     * For close attempts see [CloseInterface]
      */
     fun interfaceClose(id: String, block: Player.(id: String) -> Unit) {
         Wildcards.find(id, Wildcard.Interface) { i ->
@@ -104,7 +102,12 @@ interface InterfaceInteraction {
         }
     }
 
-    companion object {
+    fun questJournalOpen(quest: String, block: Player.() -> Unit) {
+        quests[quest] = block
+    }
+
+    companion object : AutoCloseable {
+        private val quests = Object2ObjectOpenHashMap<String, Player.() -> Unit>(20)
         private val opened = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(150)
         private val closed = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(75)
         private val refreshed = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(25)
@@ -115,7 +118,7 @@ interface InterfaceInteraction {
         private val itemOption = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOption) -> Unit>>(600)
 
         suspend fun option(player: Player, click: InterfaceOption) {
-            for (block in options["${click.option}:${click.interfaceComponent}"] ?: options["*:${click.interfaceComponent}"] ?: options["${click.option}:*"]  ?: return) {
+            for (block in options["${click.option}:${click.interfaceComponent}"] ?: options["*:${click.interfaceComponent}"] ?: options["${click.option}:*"] ?: return) {
                 block(player, click)
             }
         }
@@ -132,20 +135,24 @@ interface InterfaceInteraction {
             }
         }
 
+        fun openQuestJournal(player: Player, quest: String) {
+            quests[quest]?.invoke(player)
+        }
+
         fun open(player: Player, id: String) {
-            for (block in opened[id]  ?: return) {
+            for (block in opened[id] ?: return) {
                 block(player, id)
             }
         }
 
         fun close(player: Player, id: String) {
-            for (block in closed[id]  ?: return) {
+            for (block in closed[id] ?: return) {
                 block(player, id)
             }
         }
 
         fun refresh(player: Player, id: String) {
-            for (block in refreshed[id]  ?: return) {
+            for (block in refreshed[id] ?: return) {
                 block(player, id)
             }
         }
@@ -163,12 +170,12 @@ interface InterfaceInteraction {
         }
 
         fun itemOnItem(player: Player, from: Item, to: Item, fromSlot: Int, toSlot: Int) {
-            for (block in itemOnItem["${from.id}:${to.id}"] ?: itemOnItem["*:${to.id}"] ?:  itemOnItem["${from.id}:*"] ?:  itemOnItem["*:*"] ?: return) {
+            for (block in itemOnItem["${from.id}:${to.id}"] ?: itemOnItem["*:${to.id}"] ?: itemOnItem["${from.id}:*"] ?: itemOnItem["*:*"] ?: return) {
                 block(player, from, to, fromSlot, toSlot)
             }
         }
 
-        fun clear() {
+        override fun close() {
             opened.clear()
             closed.clear()
             refreshed.clear()

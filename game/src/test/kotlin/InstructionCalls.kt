@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler
 import world.gregs.voidps.engine.client.instruction.handle.interactItemOn
 import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
+import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -107,8 +107,8 @@ fun Player.dialogueOption(
     component: String,
     option: Int = -1,
     id: String = dialogue!!,
-) = runTest {
-    emit(ContinueDialogue(id, component, option))
+) {
+    Dialogues.continueDialogue(this, "$id:$component")
 }
 
 fun Player.dialogueContinue(repeat: Int = 1) {

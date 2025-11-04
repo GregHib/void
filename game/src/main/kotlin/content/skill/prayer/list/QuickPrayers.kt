@@ -1,6 +1,5 @@
 package content.skill.prayer.list
 
-import content.entity.death.playerDeath
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.entity.sound.sound
@@ -85,8 +84,8 @@ class QuickPrayers : Script {
             }
         }
 
-        playerDeath { player ->
-            player[USING_QUICK_PRAYERS] = false
+        playerDeath {
+            set(USING_QUICK_PRAYERS, false)
         }
     }
 

@@ -89,7 +89,6 @@ class ShipyardWorker : Script {
 
         objectOperate("Open", "gate_shipyard_north_closed,gate_shipyard_south_closed") {
             statement("The gate is locked.")
-//            cancel() FIXME
         }
     }
 }

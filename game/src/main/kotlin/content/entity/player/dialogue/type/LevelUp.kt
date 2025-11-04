@@ -10,10 +10,8 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
+import world.gregs.voidps.engine.entity.character.player.skill.Skills
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
-import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
-import world.gregs.voidps.engine.entity.character.player.skill.level.MaxLevelChanged
-import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.engine.suspend.SuspendableContext
@@ -45,23 +43,23 @@ fun levelUp(player: Player, skill: Skill, text: String) {
 class LevelUp : Script {
 
     init {
-        experience { player ->
+        experience { skill, from, to ->
             val previousLevel = Experience.level(skill, from)
             val currentLevel = Experience.level(skill, to)
             if (currentLevel != previousLevel) {
-                player.levels.restore(skill, currentLevel - previousLevel)
-                player.emit(MaxLevelChanged(skill, previousLevel, currentLevel))
+                levels.restore(skill, currentLevel - previousLevel)
+                Skills.maxChanged(this, skill, previousLevel, currentLevel)
             }
         }
 
-        maxLevelChange { player ->
+        maxLevelChanged { skill, from, to ->
             if (from >= to) {
-                return@maxLevelChange
+                return@maxLevelChanged
             }
-            if (player["skip_level_up", false]) {
-                return@maxLevelChange
+            if (get("skip_level_up", false)) {
+                return@maxLevelChanged
             }
-            AuditLog.event(player, "level_up", skill.name, to)
+            AuditLog.event(this, "level_up", skill.name, to)
             val unlock = when (skill) {
                 Agility -> false
                 Construction -> to.rem(10) == 0
@@ -69,11 +67,11 @@ class LevelUp : Script {
                 Hunter -> to.rem(2) == 0
                 else -> true // TODO has unlocked something
             }
-            player.jingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
-            player.addVarbit("skill_stat_flash", skill.name.lowercase())
+            jingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
+            addVarbit("skill_stat_flash", skill.name.lowercase())
             val level = if (skill == Constitution) to / 10 else to
             levelUp(
-                player,
+                this,
                 skill,
                 """
                 Congratulations! You've just advanced${skill.name.an()} ${skill.name} level!

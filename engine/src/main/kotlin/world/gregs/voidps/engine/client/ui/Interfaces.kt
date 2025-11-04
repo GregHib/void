@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.playMusicTrack
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.Colour
 import world.gregs.voidps.engine.client.ui.chat.Colours
-import world.gregs.voidps.engine.client.ui.event.CloseInterface
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -44,9 +43,6 @@ class Interfaces(
     }
 
     fun close(id: String?): Boolean {
-        if (id != null && !getType(id).startsWith("dialogue_box")) {
-            player.emit(CloseInterface)
-        }
         if (id != null && remove(id)) {
             closeChildrenOf(id)
             return true

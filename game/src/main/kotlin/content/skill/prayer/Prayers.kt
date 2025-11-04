@@ -8,7 +8,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.headIcon
 
-class Prayers : Script {
+class Prayers :
+    Script,
+    PrayerApi {
 
     init {
         playerSpawn {
@@ -19,25 +21,23 @@ class Prayers : Script {
             sendVariable("magic_bonus")
         }
 
-        prayerStart { player ->
-            if (!restart) {
-                val curses = player.isCurses()
-                if (curses) {
-                    player.anim("activate_$prayer")
-                    player.gfx("activate_$prayer")
-                } else {
-                    player.sound("activate_$prayer")
-                }
-                updateOverheadIcon(player, curses)
+        prayerStart { prayer ->
+            val curses = isCurses()
+            if (curses) {
+                anim("activate_$prayer")
+                gfx("activate_$prayer")
+            } else {
+                sound("activate_$prayer")
             }
-            player.softTimers.startIfAbsent("prayer_drain")
+            updateOverheadIcon(curses)
+            softTimers.startIfAbsent("prayer_drain")
         }
 
-        prayerStop { player ->
-            player.sound("deactivate_prayer")
-            val curses = player.isCurses()
-            stopPrayerDrain(player, curses)
-            updateOverheadIcon(player, curses)
+        prayerStop {
+            sound("deactivate_prayer")
+            val curses = isCurses()
+            stopPrayerDrain(this, curses)
+            updateOverheadIcon(curses)
         }
     }
 
@@ -53,14 +53,14 @@ class Prayers : Script {
         }
     }
 
-    fun updateOverheadIcon(player: Player, curses: Boolean) {
+    fun Player.updateOverheadIcon(curses: Boolean) {
         val changed = if (curses) {
-            player.changedCurseIcon()
+            changedCurseIcon()
         } else {
-            player.changedPrayerIcon()
+            changedPrayerIcon()
         }
         if (changed) {
-            player.flagAppearance()
+            flagAppearance()
         }
     }
 

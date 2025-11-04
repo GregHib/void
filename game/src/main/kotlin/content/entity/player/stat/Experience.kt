@@ -2,7 +2,6 @@ package content.entity.player.stat
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp.experience
 import world.gregs.voidps.network.login.protocol.encode.skillLevel
 
 class Experience : Script {
@@ -12,7 +11,7 @@ class Experience : Script {
             sendVariable("xp_counter")
         }
 
-        levelChanged { skill, from, to ->
+        levelChanged { skill, _, to ->
             if (skill == Skill.Constitution) {
                 val exp = experience.get(skill)
                 client?.skillLevel(skill.ordinal, to / 10, exp.toInt())
@@ -27,16 +26,16 @@ class Experience : Script {
             set("xp_counter", 0.0)
         }
 
-        experience { player ->
-            val current = player["xp_counter", 0.0]
+        experience { _, from, to ->
+            val current = get("xp_counter", 0.0)
             val increase = to - from
-            player["xp_counter"] = current + increase
-            player["lifetime_xp"] = player["lifetime_xp", 0.0] + increase
+            set("xp_counter", current + increase)
+            set("lifetime_xp", get("lifetime_xp", 0.0) + increase)
         }
 
-        experience { player ->
-            val level = player.levels.get(skill)
-            player.client?.skillLevel(skill.ordinal, if (skill == Skill.Constitution) level / 10 else level, to.toInt())
+        experience { skill, _, to ->
+            val level = levels.get(skill)
+            client?.skillLevel(skill.ordinal, if (skill == Skill.Constitution) level / 10 else level, to.toInt())
         }
     }
 }

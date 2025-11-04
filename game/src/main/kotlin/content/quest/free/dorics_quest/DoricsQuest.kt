@@ -1,6 +1,5 @@
 package content.quest.free.dorics_quest
 
-import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
 import net.pearx.kasechange.toTitleCase
@@ -12,7 +11,7 @@ class DoricsQuest : Script {
 
     init {
         questJournalOpen("dorics_quest") {
-            val lines = when (player.quest("dorics_quest")) {
+            val lines = when (quest("dorics_quest")) {
                 "completed" -> listOf(
                     "<str>I have spoken to Doric.",
                     "",
@@ -26,9 +25,9 @@ class DoricsQuest : Script {
                     "<str>I have spoken to Doric.",
                     "",
                     "<navy>I need to collect some items and bring them to <maroon>Doric.",
-                    requiredItem(player, "clay", 6),
-                    requiredItem(player, "copper_ore", 4),
-                    requiredItem(player, "iron_ore", 2),
+                    requiredItem("clay", 6),
+                    requiredItem("copper_ore", 4),
+                    requiredItem("iron_ore", 2),
                 )
                 else -> listOf(
                     "<navy>I can start this quest by speaking to <maroon>Doric<navy> who is <maroon>North of",
@@ -37,12 +36,12 @@ class DoricsQuest : Script {
                     "<navy>There aren't any requirements but <maroon>Level 15 Mining<navy> will help.",
                 )
             }
-            player.questJournal("Doric's Quest", lines)
+            questJournal("Doric's Quest", lines)
         }
     }
 
-    fun requiredItem(player: Player, item: String, required: Int): String {
-        val count = player.inventory.count(item)
+    fun Player.requiredItem(item: String, required: Int): String {
+        val count = inventory.count(item)
         return buildString {
             if (count >= required) {
                 append("<str>")

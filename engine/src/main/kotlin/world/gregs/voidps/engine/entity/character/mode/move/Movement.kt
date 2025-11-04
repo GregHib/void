@@ -212,9 +212,6 @@ open class Movement(
             character.tile = character.tile.add(delta)
             val to = character.tile
             character.visuals.moved = true
-            if (character is Player && character.networked) {
-                character.emit(ReloadRegion)
-            }
             if (Settings["world.players.collision", false] && !character.contains("dead")) {
                 move(character, from, to)
             }
@@ -223,12 +220,12 @@ open class Movement(
                 val areaDefinitions: AreaDefinitions = get()
                 for (def in areaDefinitions.get(from.zone)) {
                     if (from in def.area && to !in def.area) {
-                        character.emit(AreaExited(character, def.name, def.tags, def.area))
+                        Moved.exit(character, def.name, def.area)
                     }
                 }
                 for (def in areaDefinitions.get(to.zone)) {
                     if (to in def.area && from !in def.area) {
-                        character.emit(AreaEntered(character, def.name, def.tags, def.area))
+                        Moved.enter(character, def.name, def.area)
                     }
                 }
             } else if (character is NPC) {

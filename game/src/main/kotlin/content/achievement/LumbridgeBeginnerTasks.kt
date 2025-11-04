@@ -2,21 +2,18 @@ package content.achievement
 
 import content.entity.combat.hit.combatAttack
 import content.entity.combat.killer
-import content.entity.death.npcDeath
 import content.entity.npc.shop.sell.itemSold
 import content.entity.npc.shop.shopOpen
 import content.entity.obj.objTeleportLand
 import content.skill.melee.weapon.attackStyle
-import content.skill.prayer.prayerStart
+import content.skill.prayer.PrayerApi
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
-import world.gregs.voidps.engine.entity.character.mode.move.enterArea
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.AuditLog
@@ -25,7 +22,9 @@ import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
-class LumbridgeBeginnerTasks : Script {
+class LumbridgeBeginnerTasks :
+    Script,
+    PrayerApi {
 
     val areas: AreaDefinitions by inject()
 
@@ -178,8 +177,8 @@ class LumbridgeBeginnerTasks : Script {
             }
         }
 
-        npcDeath("cow*") { cow ->
-            val killer = cow.killer
+        npcDeath("cow*") {
+            val killer = killer
             if (killer is Player) {
                 killer["bovine_intervention_task"] = true
             }
@@ -211,14 +210,14 @@ class LumbridgeBeginnerTasks : Script {
             }
         }
 
-        maxLevelChange { player ->
-            if (!player["on_the_level_task", false] || !player["quarter_centurion_task", false]) {
-                val total = Skill.all.sumOf { (if (it == Skill.Constitution) player.levels.getMax(it) / 10 - 10 else player.levels.getMax(it) - 1) }
-                AuditLog.event(player, "total_level_up", total)
+        maxLevelChanged { _, _, _ ->
+            if (!get("on_the_level_task", false) || !get("quarter_centurion_task", false)) {
+                val total = Skill.all.sumOf { (if (it == Skill.Constitution) levels.getMax(it) / 10 - 10 else levels.getMax(it) - 1) }
+                AuditLog.event(this, "total_level_up", total)
                 if (total == 10) {
-                    player["on_the_level_task"] = true
+                    set("on_the_level_task", true)
                 } else if (total == 25) {
-                    player["quarter_centurion_task"] = true
+                    set("quarter_centurion_task", true)
                 }
             }
         }
@@ -245,12 +244,12 @@ class LumbridgeBeginnerTasks : Script {
             player["greasing_the_wheels_of_commerce_task"] = true
         }
 
-        prayerStart { player ->
-            player["put_your_hands_together_for_task"] = true
+        prayerStart {
+            set("put_your_hands_together_for_task", true)
         }
 
-        npcDeath("giant_rat*") { npc ->
-            val killer = npc.killer
+        npcDeath("giant_rat*") {
+            val killer = killer
             if (killer is Player && !killer["am_i_a_blademaster_yet_task", false]) {
                 when (val style = killer.attackStyle) {
                     "aggressive" -> killer["giant_rat_$style"] = true
@@ -266,11 +265,8 @@ class LumbridgeBeginnerTasks : Script {
             }
         }
 
-        maxLevelChange(Skill.Attack, Skill.Defence) { player ->
-            if (from < 5 && to >= 5 && player.levels.getMax(Skill.Attack) >= 5 && player.levels.getMax(Skill.Defence) >= 5) {
-                player["first_blood_task"] = true
-            }
-        }
+        maxLevelChanged(Skill.Attack, ::firstBlood)
+        maxLevelChanged(Skill.Defence, ::firstBlood)
 
         itemAdded("iron_hatchet", inventory = "inventory") { player ->
             player["dont_bury_this_one_task"] = true
@@ -300,9 +296,9 @@ class LumbridgeBeginnerTasks : Script {
             }
         }
 
-        maxLevelChange(Skill.Mining) { player ->
+        maxLevelChanged(Skill.Mining) { _, from, to ->
             if (from < 5 && to >= 5) {
-                player["hack_and_smash_task"] = true
+                set("hack_and_smash_task", true)
             }
         }
 
@@ -354,20 +350,26 @@ class LumbridgeBeginnerTasks : Script {
             player["window_shopping_task"] = true
         }
 
-        enterArea("freds_farmhouse") {
-            player["wait_thats_not_a_sheep_task"] = true
+        entered("freds_farmhouse") {
+            set("wait_thats_not_a_sheep_task", true)
         }
 
-        enterArea("draynor_manor_courtyard") {
-            player["in_the_countyard_task"] = true
+        entered("draynor_manor_courtyard") {
+            set("in_the_countyard_task", true)
         }
 
-        enterArea("draynor_village_market") {
-            player["beware_of_pigzilla_task"] = true
+        entered("draynor_village_market") {
+            set("beware_of_pigzilla_task", true)
         }
 
-        enterArea("wizards_tower_top_floor") {
-            player["tower_power_task"] = true
+        entered("wizards_tower_top_floor") {
+            set("tower_power_task", true)
+        }
+    }
+
+    fun firstBlood(player: Player, skill: Skill, from: Int, to: Int) {
+        if (from < 5 && to >= 5 && player.levels.getMax(Skill.Attack) >= 5 && player.levels.getMax(Skill.Defence) >= 5) {
+            player["first_blood_task"] = true
         }
     }
 }

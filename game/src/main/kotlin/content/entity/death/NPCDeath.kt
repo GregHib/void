@@ -54,37 +54,38 @@ class NPCDeath : Script {
     val logger = InlineLogger()
 
     init {
-        npcDeath { npc ->
-            npc.mode = PauseMode
-            npc.dead = true
-            npc.steps.clear()
-            npc.strongQueue(name = "death", 1) {
-                val killer = npc.killer
-                val tile = npc.tile
+        npcDeath {
+            mode = PauseMode
+            dead = true
+            steps.clear()
+            val npc = this
+            strongQueue(name = "death", 1) {
+                val killer = killer
+                val tile = tile
                 npc["death_tile"] = tile
-                val ticks = npc.anim(NPCAttack.anim(animationDefinitions, npc, "death"))
+                val ticks = anim(NPCAttack.anim(animationDefinitions, npc, "death"))
                 (killer as? Player)?.sound(NPCAttack.sound(soundDefinitions, npc, "death"))
                 delay(if (ticks <= 0) 4 else ticks)
                 if (killer is Player) {
-                    AuditLog.event(killer, "killed", npc, npc.tile)
+                    AuditLog.event(killer, "killed", npc, tile)
                     slay(killer, npc)
                     dropLoot(npc, killer, tile)
                 }
-                npc.attackers.clear()
-                npc.softTimers.stopAll()
-                npc.hide = true
-                val respawn = npc.get<Tile>("respawn_tile")
+                attackers.clear()
+                softTimers.stopAll()
+                hide = true
+                val respawn = get<Tile>("respawn_tile")
                 if (respawn != null) {
-                    npc.tele(respawn)
+                    tele(respawn)
                     delay(npc["respawn_delay", 60])
-                    npc.clearAnim()
-                    npc.clearTransform()
-                    npc.damageDealers.clear()
-                    npc.levels.clear()
-                    npc.face(npc["respawn_direction", Direction.NORTH], update = false)
-                    npc.hide = false
-                    npc.dead = false
-                    npc.mode = EmptyMode
+                    clearAnim()
+                    clearTransform()
+                    damageDealers.clear()
+                    levels.clear()
+                    face(npc["respawn_direction", Direction.NORTH], update = false)
+                    hide = false
+                    dead = false
+                    mode = EmptyMode
                     Spawn.npc(npc)
                 } else {
                     World.queue("remove_npc") {

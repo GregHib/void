@@ -143,7 +143,7 @@ interface Operation {
         npcFloorItemBlocks.getOrPut(option) { mutableListOf() }.add(block)
     }
 
-    companion object {
+    companion object : AutoCloseable {
         val playerPlayerBlocks = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(PlayerPlayerInteract) -> Unit>>(10)
         val onPlayerBlocks = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemPlayerInteract) -> Unit>>(2)
 
@@ -167,7 +167,7 @@ interface Operation {
         // Don't call arriveDelay before an object or floor item interaction
         val noDelays = mutableSetOf<String>()
 
-        fun clear() {
+        override fun close() {
             playerPlayerBlocks.clear()
             onPlayerBlocks.clear()
             playerNpcBlocks.clear()

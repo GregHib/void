@@ -2,15 +2,13 @@
 
 package content.skill.prayer.list
 
+import content.skill.prayer.PrayerApi
 import content.skill.prayer.PrayerConfigs.ACTIVE_CURSES
 import content.skill.prayer.PrayerConfigs.ACTIVE_PRAYERS
-import content.skill.prayer.PrayerStart
-import content.skill.prayer.PrayerStop
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.client.variable.variableBitAdd
-import world.gregs.voidps.engine.client.variable.variableBitRemove
+import world.gregs.voidps.engine.entity.character.player.Player
 
 class PrayerToggle : Script {
 
@@ -20,21 +18,27 @@ class PrayerToggle : Script {
             val from = (from as? List<String>)?.toSet() ?: emptySet()
             val to = (to as? List<String>)?.toSet() ?: emptySet()
             for (prayer in from.subtract(to)) {
-                emit(PrayerStop(prayer))
+                PrayerApi.stop(this, prayer)
             }
             for (prayer in to.subtract(from)) {
-                emit(PrayerStart(prayer))
+                PrayerApi.start(this, prayer)
             }
         }
 
-        variableBitAdd(ACTIVE_PRAYERS, ACTIVE_CURSES) { player ->
-            player.closeInterfaces()
-            player.emit(PrayerStart((value as String).toSnakeCase()))
-        }
+        variableBitAdded(ACTIVE_PRAYERS, ::added)
+        variableBitAdded(ACTIVE_CURSES, ::added)
 
-        variableBitRemove(ACTIVE_PRAYERS, ACTIVE_CURSES) { player ->
-            player.closeInterfaces()
-            player.emit(PrayerStop((value as String).toSnakeCase()))
-        }
+        variableBitRemoved(ACTIVE_PRAYERS, ::removed)
+        variableBitRemoved(ACTIVE_CURSES, ::removed)
+    }
+
+    fun added(player: Player, value: Any) {
+        player.closeInterfaces()
+        PrayerApi.start(player, (value as String).toSnakeCase())
+    }
+
+    fun removed(player: Player, value: Any) {
+        player.closeInterfaces()
+        PrayerApi.stop(player, (value as String).toSnakeCase())
     }
 }

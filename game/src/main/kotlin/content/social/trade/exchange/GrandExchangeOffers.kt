@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
-import world.gregs.voidps.engine.client.ui.dialogue.continueItemDialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
@@ -85,15 +84,15 @@ class GrandExchangeOffers : Script {
             openItemSearch(this)
         }
 
-        continueItemDialogue { player ->
+        continueItemDialogue { item ->
             val def = itemDefinitions.getOrNull(item)
             if (def == null || !def.exchangeable || def.noted || def.lent || def.dummyItem != 0) {
-                player.message("You can't trade that item on the Grand Exchange.")
+                message("You can't trade that item on the Grand Exchange.")
                 return@continueItemDialogue
             }
-            selectItem(player, item)
-            player["grand_exchange_price"] = player["grand_exchange_market_price", 0]
-            ItemInfo.showInfo(player, Item(item))
+            selectItem(this, item)
+            set("grand_exchange_price", get("grand_exchange_market_price", 0))
+            ItemInfo.showInfo(this, Item(item))
         }
 
         /*

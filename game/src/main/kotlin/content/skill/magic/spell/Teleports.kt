@@ -111,7 +111,6 @@ class Teleports : Script {
         closeInterfaces()
         queue("teleport", onCancel = null) {
             if (!removeSpellItems(component)) {
-//                cancel() FIXME
                 return@queue
             }
             val definition = definitions.get(component)

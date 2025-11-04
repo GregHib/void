@@ -1,4 +1,6 @@
 import com.github.michaelbull.logging.InlineLogger
+import content.bot.Bots
+import content.skill.prayer.PrayerApi
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.get
@@ -14,6 +16,7 @@ object ContentLoader {
     fun load() {
         val start = System.currentTimeMillis()
         val scripts = ContentLoader::class.java.getResourceAsStream("scripts.txt")?.bufferedReader() ?: error("No auto-generated script file found, make sure 'gradle scriptMetadata' is correctly running")
+        loadContentApis()
         var scriptCount = 0
         var script = ""
         try {
@@ -36,6 +39,11 @@ object ContentLoader {
             throw NoSuchFileException("No content scripts found.")
         }
         logger.info { "Loaded $scriptCount ${"script".plural(scriptCount)} in ${System.currentTimeMillis() - start}ms" }
+    }
+
+    private fun loadContentApis() {
+        Script.interfaces.add(PrayerApi)
+        Script.interfaces.add(Bots)
     }
 
     fun clear() {

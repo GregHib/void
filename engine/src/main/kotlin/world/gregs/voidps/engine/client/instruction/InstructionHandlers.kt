@@ -43,7 +43,7 @@ class InstructionHandlers(
     private val interactInterfaceItem = InterfaceOnInterfaceOptionHandler(handler)
     private val interactInterfaceFloorItem = InterfaceOnFloorItemOptionHandler(items, handler)
     private val executeCommand = ExecuteCommandHandler()
-    private val songEndHandler = SongEndHandler()
+    var songEndHandler: SongEnd.(Player) -> Unit = empty()
     var finishRegionLoad: FinishRegionLoad.(Player) -> Unit = empty()
     var changeDisplayMode: ChangeDisplayMode.(Player) -> Unit = empty()
     var walk: Walk.(Player) -> Unit = empty()
@@ -115,7 +115,7 @@ class InstructionHandlers(
             is ChatTypeChange -> chatTypeChangeHandler.invoke(instruction, player)
             is ClanChatKick -> clanChatKickHandler.invoke(instruction, player)
             is ClanChatRank -> clanChatRankHandler.invoke(instruction, player)
-            is SongEnd -> songEndHandler.validate(player, instruction)
+            is SongEnd -> songEndHandler.invoke(instruction, player)
         }
     }
 }
@@ -124,6 +124,7 @@ class InstructionHandlers(
 @JvmName("onEventDispatcher")
 inline fun <reified I : Instruction> instruction(noinline handler: I.(Player) -> Unit) {
     when (I::class) {
+        SongEnd::class -> get<InstructionHandlers>().songEndHandler = handler as SongEnd.(Player) -> Unit
         FinishRegionLoad::class -> get<InstructionHandlers>().finishRegionLoad = handler as FinishRegionLoad.(Player) -> Unit
         ChangeDisplayMode::class -> get<InstructionHandlers>().changeDisplayMode = handler as ChangeDisplayMode.(Player) -> Unit
         Walk::class -> get<InstructionHandlers>().walk = handler as Walk.(Player) -> Unit

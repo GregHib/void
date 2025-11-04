@@ -38,7 +38,7 @@ interface Despawn {
         worldDespawns.add(block)
     }
 
-    companion object {
+    companion object : AutoCloseable {
         val playerDespawns = ObjectArrayList<(Player) -> Unit>(20)
         val npcDespawns = Object2ObjectOpenHashMap<String, MutableList<(NPC) -> Unit>>(30)
         val objectDespawns = Object2ObjectOpenHashMap<String, MutableList<(GameObject) -> Unit>>(10)
@@ -84,7 +84,7 @@ interface Despawn {
             }
         }
 
-        fun clear() {
+        override fun close() {
             playerDespawns.clear()
             npcDespawns.clear()
             objectDespawns.clear()

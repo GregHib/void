@@ -11,8 +11,6 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.mode.move.enterArea
-import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inject
@@ -40,20 +38,20 @@ class TaskSystem : Script {
             }
         }
 
-        enterArea("lumbridge") {
-            player["task_area"] = "lumbridge_draynor"
+        entered("lumbridge") {
+            set("task_area", "lumbridge_draynor")
         }
 
-        exitArea("lumbridge") {
-            player["task_area"] = "dnd_activities"
+        exited("lumbridge") {
+            set("task_area", "dnd_activities")
         }
 
-        enterArea("draynor") {
-            player["task_area"] = "lumbridge_draynor"
+        entered("draynor") {
+            set("task_area", "lumbridge_draynor")
         }
 
-        exitArea("draynor") {
-            player["task_area"] = "dnd_activities"
+        exited("draynor") {
+            set("task_area", "dnd_activities")
         }
 
         interfaceOption("Close", "task_system:close_hint") {

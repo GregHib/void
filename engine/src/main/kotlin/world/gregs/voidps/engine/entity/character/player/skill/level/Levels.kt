@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character.player.skill.level
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.Skills
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.event.EventDispatcher
 import kotlin.math.max
@@ -118,9 +119,9 @@ class Levels(
     private fun notify(skill: Skill, previous: Int) {
         val level = get(skill)
         if (events is Player) {
-            LevelChanged.changed(events as Player, skill, previous, level)
+            Skills.changed(events as Player, skill, previous, level)
         } else if (events is NPC) {
-            LevelChanged.changed(events as NPC, skill, previous, level)
+            Skills.changed(events as NPC, skill, previous, level)
         }
     }
 

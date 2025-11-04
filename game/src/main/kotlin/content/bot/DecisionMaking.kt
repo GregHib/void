@@ -7,11 +7,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.AiTick
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
 import kotlin.coroutines.resume
 
@@ -24,9 +21,9 @@ class DecisionMaking : Script {
     val logger = InlineLogger("Bot")
 
     init {
-        onEvent<Player, StartBot> { bot ->
+        Bots.start = start@{ bot ->
             if (!bot.contains("task_bot") || bot.contains("task_started")) {
-                return@onEvent
+                return@start
             }
             val name: String = bot["task_bot"]!!
             val task = tasks.get(name)
@@ -37,7 +34,7 @@ class DecisionMaking : Script {
             }
         }
 
-        onEvent<World, AiTick> {
+        AiTick.method = {
             players.forEach { player ->
                 if (player.isBot) {
                     val bot: Bot = player["bot"]!!

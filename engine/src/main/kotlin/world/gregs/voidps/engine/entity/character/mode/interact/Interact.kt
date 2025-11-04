@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.suspend.resumeSuspension
  * Operate interactions require the [character] to be standing next-to but not under [target]
  * Approach interactions require the [character] within [approachRange] and line of sight of [target]
  *
- * [Interaction] event is emitted when within range and will continue to
+ * [operate] or [approach] is called when within range and will continue to
  * resume [Character.suspension] every subsequent tick until the interaction is completed.
  * Interactions are only processed while the [character] isn't delayed or has menu interface open.
  */
@@ -28,47 +28,26 @@ import world.gregs.voidps.engine.suspend.resumeSuspension
 open class Interact(
     character: Character,
     open val target: Entity,
-    interaction: Interaction<*>? = null,
     strategy: TargetStrategy = TargetStrategy(target),
     private var approachRange: Int? = null,
     private val faceTarget: Boolean = true,
     shape: Int? = null,
-) : Movement(character, strategy, shape), InteractionType {
+) : Movement(character, strategy, shape) {
     var launched = false
 
-    override fun hasOperate(): Boolean = false
+    open fun hasOperate(): Boolean = false
 
-    override fun hasApproach(): Boolean = false
+    open fun hasApproach(): Boolean = false
 
-    override fun operate() {
-    }
+    open fun operate() {}
 
-    override fun approach() {
-    }
+    open fun approach() {}
 
-    private var type: InteractionType? = interaction?.let { OldInteractionType(character, it) }
-
-    class OldInteractionType(private val character: Character, interaction: Interaction<*>) : InteractionType {
-        var operate: Interaction<*> = interaction.copy(false)
-        var approach: Interaction<*> = interaction.copy(true)
-
-        override fun hasOperate() = Events.events.contains(character, operate)
-
-        override fun hasApproach() = Events.events.contains(character, approach)
-
-        override fun operate() {
-           character.emit(operate)
-        }
-
-        override fun approach() {
-            character.emit(approach)
-        }
-    }
-
+    private var override: (() -> Unit)? = null
     private var clearInteracted = false
 
-    fun updateInteraction(interaction: Interaction<*>) {
-        type = OldInteractionType(character, interaction)
+    fun updateInteraction(override: (() -> Unit)) {
+        this.override = override
         launched = false
         clearInteracted = true
     }
@@ -169,8 +148,8 @@ open class Interact(
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
-            withinMelee && (hasOperate() || type?.hasOperate() == true) -> if (launch(true) && afterMovement) updateRange = false
-            withinRange && (hasApproach() || type?.hasApproach() == true) -> if (launch(false) && afterMovement) updateRange = false
+            withinMelee && (hasOperate() || override != null) -> if (launch(true) && afterMovement) updateRange = false
+            withinRange && (hasApproach() || override != null) -> if (launch(false) && afterMovement) updateRange = false
             withinMelee -> {
                 character.noInterest()
                 clear()
@@ -189,18 +168,12 @@ open class Interact(
         }
         if (!launched) {
             launched = true
-            if (operate) {
-                if (type?.hasOperate() == true) {
-                    type?.operate()
-                } else {
-                    operate()
-                }
+            if (override != null) {
+                override!!.invoke()
+            } else if (operate) {
+                operate()
             } else {
-                if (type?.hasApproach() == true) {
-                    type?.approach()
-                } else {
-                    approach()
-                }
+                approach()
             }
             return true
         }

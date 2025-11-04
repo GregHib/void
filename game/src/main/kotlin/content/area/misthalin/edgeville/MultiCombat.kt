@@ -1,5 +1,6 @@
 package content.area.misthalin.edgeville
 
+import content.area.wilderness.inMultiCombat
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.move.*
@@ -27,12 +28,16 @@ class MultiCombat : Script {
             }
         }
 
-        enterArea(tag = "multi_combat") {
-            player["in_multi_combat"] = true
+        entered("*") {
+            if (areaDefinitions.get(tile.zone).any { it.tags.contains("multi_combat") }) {
+                set("in_multi_combat", true)
+            }
         }
 
-        exitArea(tag = "multi_combat") {
-            player.clear("in_multi_combat")
+        exited("*") {
+            if (inMultiCombat && areaDefinitions.get(tile.zone).none { it.tags.contains("multi_combat") }) {
+                clear("in_multi_combat")
+            }
         }
     }
 }

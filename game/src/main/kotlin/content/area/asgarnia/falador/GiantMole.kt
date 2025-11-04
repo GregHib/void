@@ -17,8 +17,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
-import world.gregs.voidps.engine.entity.character.mode.move.enterArea
-import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -88,15 +86,15 @@ class GiantMole : Script {
             }
         }
 
-        enterArea("giant_mole_lair") {
-            if (!hasLightSource(player)) {
-                player.open("level_three_darkness")
+        entered("giant_mole_lair") {
+            if (!hasLightSource(this)) {
+                open("level_three_darkness")
             }
         }
 
-        exitArea("giant_mole_lair") {
-            if (player.interfaces.contains("level_three_darkness")) {
-                player.close("level_three_darkness")
+        exited("giant_mole_lair") {
+            if (interfaces.contains("level_three_darkness")) {
+                close("level_three_darkness")
             }
         }
 

@@ -1,7 +1,6 @@
 package content.area.misthalin.lumbridge.catacomb
 
 import content.entity.combat.killer
-import content.entity.death.npcDeath
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.destroy.destroyed
@@ -45,8 +44,8 @@ class LumbridgeCatacombs : Script {
             }
         }
 
-        npcDeath("dragith_nurn") { npc ->
-            val killer = npc.killer
+        npcDeath("dragith_nurn") {
+            val killer = killer
             if (killer is Player) {
                 killer.message("With Dragith Nurn defeated, the diamond statuette is now within your grasp.")
                 killer["diamond_demon_statuette"] = "take"

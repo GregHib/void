@@ -82,7 +82,7 @@ interface TimerApi {
         worldStopBlocks.getOrPut(timer) { mutableListOf() }.add(block)
     }
 
-    companion object {
+    companion object : AutoCloseable {
         val playerStartBlocks = Object2ObjectOpenHashMap<String, MutableList<(Player, Boolean) -> Int>>(50)
         val playerTickBlocks = Object2ObjectOpenHashMap<String, MutableList<(Player) -> Int>>(50)
         val playerStopBlocks = Object2ObjectOpenHashMap<String, MutableList<(Player, Boolean) -> Unit>>(50)
@@ -183,7 +183,7 @@ interface TimerApi {
             }
         }
 
-        fun clear() {
+        override fun close() {
             playerStartBlocks.clear()
             playerTickBlocks.clear()
             playerStopBlocks.clear()

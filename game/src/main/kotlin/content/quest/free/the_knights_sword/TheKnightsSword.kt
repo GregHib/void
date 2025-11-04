@@ -1,7 +1,6 @@
 package content.quest.free.the_knights_sword
 
 import content.entity.player.bank.ownsItem
-import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.Script
@@ -11,7 +10,7 @@ class TheKnightsSword : Script {
 
     init {
         questJournalOpen("the_knights_sword") {
-            val lines = when (player.quest("the_knights_sword")) {
+            val lines = when (quest("the_knights_sword")) {
                 "completed" -> listOf(
                     "<str>Thurgo needed a picture of the sword before he could",
                     "<str>start work on a replacement. I took him a portrait of it.",
@@ -60,7 +59,7 @@ class TheKnightsSword : Script {
                         "<str>until I gave him a Redberry pie, which he gobbled up.",
                         "<str>Thurgo needed a picture of the sword to replace.",
                     )
-                    if (player.holdsItem("portrait") || player.ownsItem("portrait")) {
+                    if (holdsItem("portrait") || ownsItem("portrait")) {
                         list.add("<navy>I now have a picture of the <maroon>Knight's Sword <navy>- I should take it")
                         list.add("<navy>to <maroon>Thurgo <navy>so that he can duplicate it.")
                     } else {
@@ -80,7 +79,7 @@ class TheKnightsSword : Script {
                         "<str>start work on a replacement. I took him a portrait of it.",
 
                     )
-                    if (player.holdsItem("blurite_sword") || player.ownsItem("blurite_sword")) {
+                    if (holdsItem("blurite_sword") || ownsItem("blurite_sword")) {
                         list.add("<str>Thurgo has now smithed me a replica of Sir Vyvin's sword.")
                         list.add("")
                         list.add("<navy>I should return it to the <maroon>Squire <navy>for my <maroon>reward.")
@@ -100,7 +99,7 @@ class TheKnightsSword : Script {
                     "<navy>and to be unafraid of <maroon>Level 57 Ice Warriors.",
                 )
             }
-            player.questJournal("The Knight's Sword", lines)
+            questJournal("The Knight's Sword", lines)
         }
     }
 }

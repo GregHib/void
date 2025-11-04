@@ -26,6 +26,18 @@ import world.gregs.voidps.network.client.instruction.InteractNPC
 import world.gregs.voidps.network.client.instruction.InteractObject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
+object Bots : AutoCloseable {
+    fun start(bot: Player) {
+        start?.invoke(bot)
+    }
+
+    var start: ((Player) -> Unit)? = null
+
+    override fun close() {
+        start = null
+    }
+}
+
 val Player.isBot: Boolean
     get() = contains("bot")
 

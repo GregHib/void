@@ -138,7 +138,7 @@ interface Approachable {
         }
     }
 
-    companion object {
+    companion object : AutoCloseable {
         val playerPlayerBlocks = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(PlayerPlayerInteract) -> Unit>>(2)
         val onPlayerBlocks = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemPlayerInteract) -> Unit>>(10)
 
@@ -159,7 +159,7 @@ interface Approachable {
         val npcObjectBlocks = Object2ObjectOpenHashMap<String, MutableList<suspend NPC.(NPCObjectInteract) -> Unit>>(2)
         val npcFloorItemBlocks = Object2ObjectOpenHashMap<String, MutableList<suspend NPC.(NPCFloorItemInteract) -> Unit>>(2)
 
-        fun clear() {
+        override fun close() {
             playerPlayerBlocks.clear()
             onPlayerBlocks.clear()
             playerNpcBlocks.clear()

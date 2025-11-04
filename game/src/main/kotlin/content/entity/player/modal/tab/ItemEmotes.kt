@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.closeDialogue
-import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -96,8 +95,8 @@ class ItemEmotes : Script {
             animDelay("emote_${if (drop) "cry" else "cheer"}")
         }
 
-        continueDialogue("snow_globe", "continue") { player ->
-            player.close("snow_globe")
+        continueDialogue("snow_globe:continue") {
+            close("snow_globe")
         }
 
         interfaceClose("snow_globe") {

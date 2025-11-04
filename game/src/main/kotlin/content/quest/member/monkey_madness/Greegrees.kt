@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -31,7 +30,7 @@ class Greegrees : Script {
                     transform(item.replace("_greegree", ""))
                     closeType("spellbook_tab")
                 } else {
-                    forceRemove(this)
+                    forceRemove()
                 }
             }
         }
@@ -72,32 +71,32 @@ class Greegrees : Script {
             }
         }
 
-        exitArea("ape_atoll") {
-            forceRemove(player)
+        exited("ape_atoll") {
+            forceRemove()
         }
 
-        exitArea("ape_atoll_agility_dungeon") {
-            forceRemove(player)
+        exited("ape_atoll_agility_dungeon") {
+            forceRemove()
         }
     }
 
-    fun forceRemove(player: Player) {
-        if (player["logged_out", false]) {
+    fun Player.forceRemove() {
+        if (get("logged_out", false)) {
             return // TODO check if removed on logout or not
         }
-        if (player.tile in areas["ape_atoll"] || player.tile in areas["ape_atoll_agility_dungeon"]) {
+        if (tile in areas["ape_atoll"] || tile in areas["ape_atoll_agility_dungeon"]) {
             return
         }
-        val item = player.equipped(EquipSlot.Weapon).id
+        val item = equipped(EquipSlot.Weapon).id
         if (item.endsWith("_greegree")) {
-            player.softQueue("remove_greegree") {
+            softQueue("remove_greegree") {
                 statement("The Monkey Greegree wrenches itself from your hand as its power begins to fade...")
             }
-            if (!player.equipment.move(EquipSlot.Weapon.index, player.inventory)) {
-                if (player.equipment.remove(EquipSlot.Weapon.index, item)) {
+            if (!equipment.move(EquipSlot.Weapon.index, inventory)) {
+                if (equipment.remove(EquipSlot.Weapon.index, item)) {
                     // FIXME issue with item spawning displaying twice if spawned on the same tick. #614
                     World.queue("greegree_spawn", 1) {
-                        items.add(player.tile, item, disappearTicks = 300, owner = player)
+                        items.add(tile, item, disappearTicks = 300, owner = this)
                     }
                 }
             }

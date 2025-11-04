@@ -1,6 +1,5 @@
 package content.quest.free.rune_mysteries
 
-import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.Script
@@ -10,7 +9,7 @@ class RuneMysteries : Script {
 
     init {
         questJournalOpen("rune_mysteries") {
-            val lines = when (player.quest("rune_mysteries")) {
+            val lines = when (quest("rune_mysteries")) {
                 "completed" -> listOf(
                     "<str>I spoke to Duke Horacio in Lumbridge Castle. He told me",
                     "<str>that he'd found a Strange Talisman in the Castle which",
@@ -42,7 +41,7 @@ class RuneMysteries : Script {
                         "<maroon>Lumbridge, across the bridge from <maroon>Draynor Village.",
                     )
 
-                    if (!player.holdsItem("air_talisman")) {
+                    if (!holdsItem("air_talisman")) {
                         list.add("<navy>If I lose the <maroon>Strange Talisman<navy> , I'll need to ask <maroon>Duke Horacio<navy> for")
                         list.add("<navy>another.")
                     }
@@ -73,7 +72,7 @@ class RuneMysteries : Script {
                         "<maroon>Runecrafting.<navy> I can find him in his <maroon>Rune Shop<navy> in south east",
                         "<maroon>Varrock.",
                     )
-                    if (!player.holdsItem("research_package_rune_mysteries")) {
+                    if (!holdsItem("research_package_rune_mysteries")) {
                         list.add("<navy>If I lose the <maroon>Package<navy> , I'll need to ask <maroon>Sedridor<navy> for")
                         list.add("<navy>another.")
                     }
@@ -111,7 +110,7 @@ class RuneMysteries : Script {
                         "<navy>and asked me to take some <maroon>Research Notes<navy> . back to him. I",
                         "<navy>can find <maroon>Sedridor<navy> in the basement of the <maroon>Wizards' Tower<navy>.",
                     )
-                    if (!player.holdsItem("research_notes_rune_mysteries")) {
+                    if (!holdsItem("research_notes_rune_mysteries")) {
                         list.add("<navy>If I lose the <maroon>Research Notes<navy> I'll need to ask <maroon>Aubury<navy> for")
                         list.add("<navy>some more.")
                     }
@@ -122,7 +121,7 @@ class RuneMysteries : Script {
                     "<maroon>Lumbridge<navy>upstairs in <maroon>Lumbridge Castle.",
                 )
             }
-            player.questJournal("Rune Mysteries", lines)
+            questJournal("Rune Mysteries", lines)
         }
     }
 }

@@ -7,8 +7,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.mode.move.enterArea
-import world.gregs.voidps.engine.entity.character.mode.move.exitArea
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
@@ -46,16 +44,16 @@ class WindChill : Script {
             close("snow_flakes")
         }
 
-        enterArea("godwars_chill_area") {
-            player.sendVariable("godwars_knights_notes")
-            player.timers.start("windchill")
+        entered("godwars_chill_area") {
+            sendVariable("godwars_knights_notes")
+            timers.start("windchill")
         }
 
-        exitArea("godwars_chill_area") {
-            if (player.inventory.contains("knights_notes") || player.inventory.contains("knights_notes_opened")) {
-                player["godwars_knights_notes"] = true
+        exited("godwars_chill_area") {
+            if (inventory.contains("knights_notes") || inventory.contains("knights_notes_opened")) {
+                set("godwars_knights_notes", true)
             }
-            player.timers.stop("windchill")
+            timers.stop("windchill")
         }
     }
 }

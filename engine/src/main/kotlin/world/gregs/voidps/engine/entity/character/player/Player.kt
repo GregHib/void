@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.data.exchange.ExchangeOffer
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
-import world.gregs.voidps.engine.entity.character.mode.move.AreaQueue
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
@@ -78,7 +77,7 @@ class Player(
     lateinit var interfaces: Interfaces
     lateinit var interfaceOptions: InterfaceOptions
     override lateinit var collision: CollisionStrategy
-    val area: AreaQueue = AreaQueue(this)
+//    val area: AreaQueue = AreaQueue(this)
 
     val networked: Boolean
         get() = client != null && viewport != null

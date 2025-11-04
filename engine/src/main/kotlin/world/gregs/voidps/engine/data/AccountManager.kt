@@ -10,8 +10,7 @@ import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.mode.move.AreaEntered
-import world.gregs.voidps.engine.entity.character.mode.move.AreaExited
+import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.appearance
@@ -23,7 +22,6 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
-import world.gregs.voidps.engine.map.zone.RegionLoad
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
@@ -59,7 +57,7 @@ class AccountManager(
         player.interfaces = Interfaces(player, interfaceDefinitions)
         player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)
         (player.variables as PlayerVariables).definitions = variableDefinitions
-        player.area.areaDefinitions = areaDefinitions
+//        player.area.areaDefinitions = areaDefinitions
         player.inventories.definitions = inventoryDefinitions
         player.inventories.itemDefinitions = itemDefinitions
         player.inventories.validItemRule = validItems
@@ -84,17 +82,21 @@ class AccountManager(
         player.collision = collisionStrategyProvider.get(character = player)
         return true
     }
+    /**
+     * Send region load to a player
+     */
+    var loadCallback: (Player) -> Unit = {}
 
     fun spawn(player: Player, client: Client?) {
         client?.onDisconnecting {
             logout(player, false)
         }
-        player.emit(RegionLoad)
+        loadCallback.invoke(player)
         player.open(player.interfaces.gameFrame)
         Spawn.player(player)
         for (def in areaDefinitions.get(player.tile.zone)) {
             if (player.tile in def.area) {
-                player.emit(AreaEntered(player, def.name, def.tags, def.area))
+                Moved.enter(player, def.name, def.area)
             }
         }
     }
@@ -121,7 +123,7 @@ class AccountManager(
             }
             for (def in areaDefinitions.get(player.tile.zone)) {
                 if (player.tile in def.area) {
-                    player.emit(AreaExited(player, def.name, def.tags, def.area, logout = true))
+                    Moved.exit(player, def.name, def.area)
                 }
             }
             Despawn.player(player)
