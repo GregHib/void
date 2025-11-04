@@ -5,7 +5,6 @@ import content.entity.player.dialogue.type.*
 import content.social.trade.lend.Loan.getSecondsRemaining
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.dialogue.continueDialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
@@ -98,8 +97,8 @@ class Eniola : Script {
             interfaces.sendText("ourania_bank_charge", "text", "Choose a highlighted rune to make your payment.")
         }
 
-        continueDialogue("ourania_bank_charge", "*_rune") { player ->
-            (player.dialogueSuspension as? StringSuspension)?.resume(component)
+        continueDialogue("ourania_bank_charge:*_rune") {
+            (dialogueSuspension as? StringSuspension)?.resume(it.substringAfter(":"))
         }
 
         interfaceOption(id = "ourania_bank_charge:*_rune") {
