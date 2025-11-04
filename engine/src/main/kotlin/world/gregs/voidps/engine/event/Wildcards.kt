@@ -146,7 +146,7 @@ object Wildcards {
                 }
                 appendLine("# ${type.name.uppercase()}=${fingerprint(type)}")
                 sizes.add("${map.size} ${type.name.lowercase().plural(map.size)}")
-                for ((key, list) in map) {
+                for ((key, list) in map.toList().sortedBy { it.first }) {
                     appendLine("$key|${list.joinToString(",")}")
                 }
             }
