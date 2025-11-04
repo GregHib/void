@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.inv.transact
 
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
@@ -12,8 +13,8 @@ import java.util.*
 class ChangeManager(
     private val inventory: Inventory,
 ) {
-    private val changes: Stack<Event> = Stack()
-    private val events = mutableSetOf<EventDispatcher>()
+    private val changes: Stack<Any> = Stack()
+    private val events = mutableSetOf<Player>()
 
     /**
      * Track a change of an item in the inventory.
@@ -28,7 +29,7 @@ class ChangeManager(
             changes.add(ItemRemoved(inventory.id, index, previous))
         }
         if (item.isNotEmpty()) {
-            changes.add(ItemAdded(inventory.id, index, item))
+            changes.add(ItemAdded(item, inventory.id, index))
         }
         changes.add(InventorySlotChanged(inventory.id, index, item, from, fromIndex, previous))
     }
@@ -36,14 +37,14 @@ class ChangeManager(
     /**
      * Adds [events] to the list of recipients of [InventorySlotChanged] updates in this inventory.
      */
-    fun bind(events: EventDispatcher) {
+    fun bind(events: Player) {
         this.events.add(events)
     }
 
     /**
      * Removes [events] to the list of recipients of [InventorySlotChanged] updates in this inventory.
      */
-    fun unbind(events: EventDispatcher) {
+    fun unbind(events: Player) {
         this.events.remove(events)
     }
 
@@ -54,11 +55,15 @@ class ChangeManager(
         if (changes.isEmpty()) {
             return
         }
-        val update = InventoryUpdate(inventory.id, changes.filterIsInstance<InventorySlotChanged>())
+        val changeList = changes.filterIsInstance<InventorySlotChanged>()
         for (events in events) {
-            events.emit(update)
+            InventoryApi.update(events, inventory.id, changeList)
             for (change in changes) {
-                events.emit(change)
+                when (change) {
+                    is InventorySlotChanged -> InventoryApi.changed(events, change)
+                    is ItemAdded -> InventoryApi.add(events, change)
+                    is ItemRemoved -> InventoryApi.remove(events, change)
+                }
             }
         }
     }

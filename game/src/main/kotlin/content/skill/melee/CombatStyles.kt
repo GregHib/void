@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.inventoryChanged
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class CombatStyles : Script {
@@ -32,8 +31,8 @@ class CombatStyles : Script {
             interfaceOptions.unlockAll(id, "style4")
         }
 
-        inventoryChanged("worn_equipment", EquipSlot.Weapon) { player ->
-            refreshStyle(player)
+        slotChanged("worn_equipment", EquipSlot.Weapon) {
+            refreshStyle(this)
         }
 
         interfaceOption(id = "combat_styles:style*") {

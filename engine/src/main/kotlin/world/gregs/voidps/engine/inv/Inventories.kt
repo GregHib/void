@@ -27,7 +27,7 @@ class Inventories(
     lateinit var definitions: InventoryDefinitions
     lateinit var itemDefinitions: ItemDefinitions
     lateinit var validItemRule: ItemRestrictionRule
-    lateinit var events: EventDispatcher
+    lateinit var events: Player
     lateinit var normalStack: ItemStackingRule
 
     fun start() {

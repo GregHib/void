@@ -1,6 +1,5 @@
 package content.skill.mining
 
-import content.entity.player.inv.item.destroy.canDestroy
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -79,15 +78,17 @@ class GemBag : Script {
             }
         }
 
-        canDestroy("gem_bag") { player ->
-            val sapphires = player["gem_bag_sapphire", 0]
-            val emeralds = player["gem_bag_emerald", 0]
-            val rubies = player["gem_bag_ruby", 0]
-            val diamonds = player["gem_bag_diamond", 0]
+        destructible("gem_bag") {
+            val sapphires = get("gem_bag_sapphire", 0)
+            val emeralds = get("gem_bag_emerald", 0)
+            val rubies = get("gem_bag_ruby", 0)
+            val diamonds = get("gem_bag_diamond", 0)
             val total = sapphires + emeralds + rubies + diamonds
             if (total > 0) {
-                player.message("You can't destroy this item with gems in it.")
-                cancel()
+                message("You can't destroy this item with gems in it.")
+                false
+            } else {
+                true
             }
         }
     }

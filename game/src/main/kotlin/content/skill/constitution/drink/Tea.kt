@@ -4,7 +4,6 @@ import content.entity.effect.toxin.poisoned
 import content.entity.player.dialogue.type.item
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
-import content.skill.constitution.consume
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -14,30 +13,24 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddCharge.charge
 import world.gregs.voidps.engine.inv.transact.operation.RemoveCharge.discharge
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
-import world.gregs.voidps.type.random
 
 class Tea : Script {
 
     init {
-        consume("cup_of_tea") { player ->
-            player.levels.boost(Skill.Attack, 3)
-            player.levels.restore(Skill.Constitution, 30)
+        consumed("cup_of_tea") { _, _ ->
+            levels.boost(Skill.Attack, 3)
         }
 
-        consume("guthix_rest_4", "guthix_rest_3", "guthix_rest_2", "guthix_rest_1") { player ->
-            if (player.poisoned) {
-                player["poison_damage"] = player["poison_damage", 0] - 10
+        consumed("guthix_rest_4,guthix_rest_3,guthix_rest_2,guthix_rest_1") { _, _ ->
+            if (poisoned) {
+                set("poison_damage", get("poison_damage", 0) - 10)
             }
-            player.runEnergy += (MAX_RUN_ENERGY / 100) * 5
-            val range: IntRange = item.def.getOrNull("heals") ?: return@consume
-            val amount = range.random(random)
-            player.levels.boost(Skill.Constitution, amount, maximum = 50)
-            cancel()
+            runEnergy += (MAX_RUN_ENERGY / 100) * 5
+            levels.boost(Skill.Constitution, 50, maximum = 50)
         }
 
-        consume("nettle_tea") { player ->
-            player.runEnergy = (MAX_RUN_ENERGY / 100) * 5
-            player.levels.restore(Skill.Constitution, 30)
+        consumed("nettle_tea") { _, _ ->
+            runEnergy = (MAX_RUN_ENERGY / 100) * 5
         }
 
         itemOption("Look-in", "tea_flask") {

@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.moveToLimit
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -120,7 +121,7 @@ class ShopBuy : Script {
                 if (added < actualAmount) player.inventoryFull()
                 val actual = Item(item.id, added)
                 AuditLog.event(player, "bought", actual, shop.id, price)
-                player.emit(BoughtItem(actual, shop.id))
+                Items.bought(player, actual)
             }
             is TransactionError.Full -> player.inventoryFull()
             TransactionError.Invalid -> logger.warn { "Error buying from shop ${shop.id} $item ${shop.transaction.error}" }

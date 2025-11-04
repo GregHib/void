@@ -2,7 +2,6 @@ package content.skill.constitution.drink
 
 import content.area.wilderness.inWilderness
 import content.entity.combat.hit.directHit
-import content.skill.constitution.canConsume
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -33,16 +32,18 @@ class Overload : Script {
         timerTick("overload", ::tick)
         timerStop("overload", ::stop)
 
-        canConsume("overload*") { player ->
-            if (player.inWilderness) {
-                player.message("You cannot drink an overload potion while you're in the wilderness.", ChatType.Game)
-                cancel()
-            } else if (player.timers.contains("overload")) {
-                player.message("You may only use this potion every five minutes.")
-                cancel()
-            } else if (player.levels.get(Skill.Constitution) < 500) {
-                player.message("You need more than 500 life points to survive the power of overload.")
-                cancel()
+        consumable("overload*") {
+            if (inWilderness) {
+                message("You cannot drink an overload potion while you're in the wilderness.", ChatType.Game)
+                false
+            } else if (timers.contains("overload")) {
+                message("You may only use this potion every five minutes.")
+                false
+            } else if (levels.get(Skill.Constitution) < 500) {
+                message("You need more than 500 life points to survive the power of overload.")
+                false
+            } else {
+                true
             }
         }
 

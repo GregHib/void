@@ -4,8 +4,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.itemAdded
-import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class CastleWarsBrace : Script {
@@ -26,15 +24,15 @@ class CastleWarsBrace : Script {
             }
         }
 
-        itemAdded("castle_wars_brace*", EquipSlot.Hands, "worn_equipment") { player ->
-            if (player.tile in area) {
-                player["castle_wars_brace"] = true
+        itemAdded("castle_wars_brace*", "worn_equipment", EquipSlot.Hands) {
+            if (tile in area) {
+                set("castle_wars_brace", true)
             }
         }
 
-        itemRemoved("castle_wars_brace*", EquipSlot.Hands, "worn_equipment") { player ->
-            if (player.tile in area) {
-                player.clear("castle_wars_brace")
+        itemRemoved("castle_wars_brace*", "worn_equipment", EquipSlot.Hands) {
+            if (tile in area) {
+                clear("castle_wars_brace")
             }
         }
     }

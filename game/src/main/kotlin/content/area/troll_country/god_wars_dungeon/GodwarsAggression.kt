@@ -13,8 +13,6 @@ import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.inv.itemAdded
-import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.type.random
 
 class GodwarsAggression : Script {
@@ -50,16 +48,16 @@ class GodwarsAggression : Script {
             clear("zamorak_killcount")
         }
 
-        itemAdded(inventory = "worn_equipment") { player ->
+        itemAdded(inventory = "worn_equipment") { (item) ->
             val god = item.def.getOrNull<String>("god") ?: return@itemAdded
-            if (player.tile in dungeon) {
-                player.get<MutableSet<String>>("gods")!!.add(god)
+            if (tile in dungeon) {
+                get<MutableSet<String>>("gods")!!.add(god)
             }
         }
 
-        itemRemoved(inventory = "worn_equipment") { player ->
-            if (player.tile in dungeon) {
-                player["gods"] = player.equipment.items.mapNotNull { it.def.getOrNull<String>("god") }.toMutableSet()
+        itemRemoved(inventory = "worn_equipment") {
+            if (tile in dungeon) {
+                set("gods", equipment.items.mapNotNull { it.def.getOrNull<String>("god") }.toMutableSet())
             }
         }
 

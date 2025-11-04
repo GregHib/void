@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -19,9 +20,7 @@ class ItemDropping : Script {
     init {
         itemOption("Drop") { (item, slot) ->
             queue.clearWeak()
-            val event = Droppable(item, tile)
-            emit(event)
-            if (event.cancelled) {
+            if (!Items.droppable(this, item)) {
                 return@itemOption
             }
             AuditLog.event(this, "dropped", item, tile)
@@ -31,7 +30,7 @@ class ItemDropping : Script {
                 } else {
                     floorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = FloorItems.NEVER, disappearTicks = 300, owner = this)
                 }
-                emit(Dropped(item))
+                Items.drop(this, item)
                 sound("drop_item")
             } else {
                 logger.info { "Error dropping item $item for $this" }

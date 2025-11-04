@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.inventoryUpdate
 import world.gregs.voidps.engine.inv.moveAll
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -91,19 +90,19 @@ class PriceChecker : Script {
             open("inventory")
         }
 
-        inventoryUpdate("trade_offer") { player ->
+        inventoryUpdated("trade_offer") { _, _ ->
             var total = 0L
-            for (index in player.offer.indices) {
-                val item = player.offer[index]
+            for (index in offer.indices) {
+                val item = offer[index]
                 if (item.isEmpty()) {
                     continue
                 }
                 val notNoted = if (item.isNote) item.noted ?: item else item
                 val price = notNoted.def["price", notNoted.def.cost]
-                player["value_$index"] = price
+                set("value_$index", price)
                 total += price * item.amount
             }
-            player["price_checker_total"] = total.toInt()
+            set("price_checker_total", total.toInt())
         }
     }
 }

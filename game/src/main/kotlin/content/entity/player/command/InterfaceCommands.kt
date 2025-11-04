@@ -1,6 +1,6 @@
 package content.entity.player.command
 
-import content.entity.npc.shop.OpenShop
+import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.sendLines
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
@@ -84,7 +84,7 @@ class InterfaceCommands : Script {
         )
 
         adminCommand("shop", stringArg("shop-id", autofill = { inventoryDefinitions.definitions.filter { it["shop", false] }.map { it.stringId }.toSet() }), desc = "Open a shop by id") { player, args ->
-            player.emit(OpenShop(args[0]))
+            player.openShop(args[0])
         }
     }
 

@@ -111,7 +111,6 @@ class NPCDeath : Script {
             .filter { World.members || !it.def.members }
             .toMutableList()
         AuditLog.event(npc, "dropped", *drops.toTypedArray())
-        npc.emit(DropItems(killer, drops))
         if (npc.inMultiCombat && killer is Player && killer["loot_share", false]) {
             shareLoot(killer, npc, tile, drops)
         } else {

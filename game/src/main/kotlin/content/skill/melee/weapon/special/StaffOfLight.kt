@@ -5,7 +5,6 @@ import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttackPrepare
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
@@ -27,8 +26,8 @@ class StaffOfLight : Script {
             clear("power_of_light")
         }
 
-        itemRemoved("staff_of_light*", EquipSlot.Weapon, "worn_equipment") { player ->
-            player.softTimers.stop("power_of_light")
+        itemRemoved("staff_of_light*", "worn_equipment", EquipSlot.Weapon) {
+            softTimers.stop("power_of_light")
         }
 
         combatDamage { player ->

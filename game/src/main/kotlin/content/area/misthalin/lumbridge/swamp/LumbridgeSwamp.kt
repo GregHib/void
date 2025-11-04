@@ -2,7 +2,6 @@ package content.area.misthalin.lumbridge.swamp
 
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.item.destroy.destroyed
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
@@ -71,8 +70,8 @@ class LumbridgeSwamp : Script {
             }
         }
 
-        destroyed("muddy_skull") { player ->
-            player["rocks_restless_ghost"] = "skull"
+        destroyed("muddy_skull") {
+            set("rocks_restless_ghost", "skull")
         }
     }
 }

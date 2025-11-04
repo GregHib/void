@@ -106,6 +106,10 @@ interface InterfaceInteraction {
         quests[quest] = block
     }
 
+    fun shopOpen(shop: String = "*", block: Player.(String) -> Unit) {
+        shops[shop] = block
+    }
+
     companion object : AutoCloseable {
         private val quests = Object2ObjectOpenHashMap<String, Player.() -> Unit>(20)
         private val opened = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(150)
@@ -116,6 +120,7 @@ interface InterfaceInteraction {
         private val itemOnItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, Item, Int, Int) -> Unit>>(800)
         private val options = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(InterfaceOption) -> Unit>>(50)
         private val itemOption = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOption) -> Unit>>(600)
+        private val shops = Object2ObjectOpenHashMap<String, (Player, String) -> Unit>(5)
 
         suspend fun option(player: Player, click: InterfaceOption) {
             for (block in options["${click.option}:${click.interfaceComponent}"] ?: options["*:${click.interfaceComponent}"] ?: options["${click.option}:*"] ?: return) {
@@ -137,6 +142,11 @@ interface InterfaceInteraction {
 
         fun openQuestJournal(player: Player, quest: String) {
             quests[quest]?.invoke(player)
+        }
+
+        fun openShop(player: Player, id: String) {
+            shops[id]?.invoke(player, id)
+            shops["*"]?.invoke(player, id)
         }
 
         fun open(player: Player, id: String) {

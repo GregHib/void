@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.inventoryUpdate
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
@@ -98,13 +97,13 @@ class GiantMole : Script {
             }
         }
 
-        inventoryUpdate("inventory") { player: Player ->
-            if (giantMoleLair.contains(player.tile)) {
-                val hasLightSource = hasLightSource(player)
-                if (!hasLightSource && !player.interfaces.contains("level_three_darkness")) {
-                    player.open("level_three_darkness")
-                } else if (hasLightSource && player.interfaces.contains("level_three_darkness")) {
-                    player.close("level_three_darkness")
+        inventoryUpdated("inventory") { _, _ ->
+            if (giantMoleLair.contains(tile)) {
+                val hasLightSource = hasLightSource(this)
+                if (!hasLightSource && !interfaces.contains("level_three_darkness")) {
+                    open("level_three_darkness")
+                } else if (hasLightSource && interfaces.contains("level_three_darkness")) {
+                    close("level_three_darkness")
                 }
             }
         }

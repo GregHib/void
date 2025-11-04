@@ -111,7 +111,7 @@ kept = "Wilderness"
 id = 4608
 price = 334
 limit = 1000
-heals = 30
+heals = 0
 weight = 0.25
 examine = "A meaty and very hot kebab."
 

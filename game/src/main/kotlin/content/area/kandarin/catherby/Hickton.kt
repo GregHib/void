@@ -1,6 +1,5 @@
 package content.area.kandarin.catherby
 
-import content.entity.npc.shop.buy.itemBought
 import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
@@ -49,12 +48,12 @@ class Hickton : Script {
             }
         }
 
-        itemBought("fletching_cape") { player ->
-            player.inventory.add("fletching_hood")
+        bought("fletching_cape") {
+            inventory.add("fletching_hood")
         }
 
-        itemBought("fletching_cape_(t)") { player ->
-            player.inventory.add("fletching_hood")
+        bought("fletching_cape_(t)") {
+            inventory.add("fletching_hood")
         }
     }
 

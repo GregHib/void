@@ -35,32 +35,33 @@ class Greegrees : Script {
             }
         }
 
-        itemAdded("*_greegree", EquipSlot.Weapon, "worn_equipment") { player ->
+        itemAdded("*_greegree", "worn_equipment", EquipSlot.Weapon) { (item) ->
             val sound = when {
                 item.id.endsWith("gorilla_greegree") -> "human_into_gorilla"
                 item.id.endsWith("zombie_monkey_greegree") -> "human_into_zombie_monkey"
                 item.id.startsWith("small") -> "human_into_small_monkey"
                 else -> "human_into_monkey"
             }
-            player.sound(sound)
-            player.gfx("monkey_transform")
-            player.transform(item.id.replace("_greegree", ""))
-            player.closeType("spellbook_tab")
+            sound(sound)
+            gfx("monkey_transform")
+            transform(item.id.replace("_greegree", ""))
+            closeType("spellbook_tab")
         }
 
-        itemRemoved("*_greegree", EquipSlot.Weapon, "worn_equipment") { player ->
-            if (!player.equipment[index].id.endsWith("_greegree")) {
+        itemRemoved("*_greegree", "worn_equipment", EquipSlot.Weapon) {
+            if (!equipment[it.index].id.endsWith("_greegree")) {
+                val item = it.item
                 val sound = when {
                     item.id.endsWith("gorilla_greegree") -> "gorilla_into_human"
                     item.id.endsWith("zombie_monkey_greegree") -> "zombie_monkey_into_human"
                     item.id.startsWith("small") -> "small_monkey_into_human"
                     else -> "monkey_into_human"
                 }
-                player.sound(sound)
-                player.gfx("monkey_transform")
-                player.clearTransform()
-                val book = player["spellbook_config", 0] and 0x3
-                player.open(
+                sound(sound)
+                gfx("monkey_transform")
+                clearTransform()
+                val book = get("spellbook_config", 0) and 0x3
+                open(
                     when (book) {
                         1 -> "ancient_spellbook"
                         2 -> "lunar_spellbook"

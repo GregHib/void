@@ -1,6 +1,5 @@
 package content.skill.runecrafting
 
-import content.entity.player.inv.item.drop.dropped
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -99,11 +98,15 @@ class EssencePouch : Script {
             addSingle(fromSlot, fromItem, toSlot, toItem)
         }
 
-        dropped(*pouches.toTypedArray()) { player ->
-            val id = item.id.removeSuffix("_damaged")
-            if (player.clear("${id}_essence") != null) {
-                player.message("The contents of the pouch fell out as you dropped it!")
-            }
+        for (pouch in pouches) {
+            dropped(pouch, ::pouchDropped)
+        }
+    }
+
+    fun pouchDropped(player: Player, item: Item) {
+        val id = item.id.removeSuffix("_damaged")
+        if (player.clear("${id}_essence") != null) {
+            player.message("The contents of the pouch fell out as you dropped it!")
         }
     }
 

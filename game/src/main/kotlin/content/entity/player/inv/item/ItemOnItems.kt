@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.Transaction
@@ -138,7 +139,7 @@ class ItemOnItems : Script {
             if (skill != null) {
                 player.exp(skill, def.xp)
             }
-            player.emit(ItemUsedOnItem(def))
+            Items.craft(player, def)
         } else {
             if (def.failure.isNotEmpty()) {
                 player.message(def.failure, ChatType.Filter)

@@ -3,7 +3,6 @@ package content.quest.member.plague_city
 import content.entity.combat.hit.directHit
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.player.inv.item.ItemUsedOnItem
 import content.entity.sound.sound
 import content.quest.messageScroll
 import content.quest.quest
@@ -15,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -577,17 +575,17 @@ class PlagueCity : Script {
             )
         }
 
-        onEvent<Player, ItemUsedOnItem>("item_used_on_item", "*") { player ->
+        crafted { def ->
             if (def.add.any { it.id == "chocolatey_milk" }) {
-                player.queue("milk") {
+                queue("milk") {
                     item("chocolatey_milk", 400, "You mix the chocolate into the bucket.")
                 }
             }
         }
 
-        onEvent<Player, ItemUsedOnItem>("item_used_on_item", "*") { player ->
+        crafted { def ->
             if (def.add.any { it.id == "hangover_cure" }) {
-                player.queue("cure") {
+                queue("cure") {
                     item("hangover_cure", 400, "You mix the snape grass into the bucket.")
                 }
             }

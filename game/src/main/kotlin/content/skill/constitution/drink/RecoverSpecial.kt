@@ -2,7 +2,6 @@ package content.skill.constitution.drink
 
 import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
 import content.entity.player.combat.special.specialAttackEnergy
-import content.skill.constitution.canConsume
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.timer.*
@@ -10,13 +9,15 @@ import world.gregs.voidps.engine.timer.*
 class RecoverSpecial : Script {
 
     init {
-        canConsume("recover_special*") { player ->
-            if (player.specialAttackEnergy == MAX_SPECIAL_ATTACK) {
-                player.message("Drinking this would have no effect.")
-                cancel()
-            } else if (player.softTimers.contains("recover_special")) {
-                player.message("You may only use this pot once every 30 seconds.")
-                cancel()
+        consumable("recover_special*") {
+            if (specialAttackEnergy == MAX_SPECIAL_ATTACK) {
+                message("Drinking this would have no effect.")
+                false
+            } else if (softTimers.contains("recover_special")) {
+                message("You may only use this pot once every 30 seconds.")
+                false
+            } else {
+                true
             }
         }
 

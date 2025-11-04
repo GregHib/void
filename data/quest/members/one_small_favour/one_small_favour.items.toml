@@ -15,7 +15,7 @@ kept = "Wilderness"
 [guthix_rest_4]
 id = 4417
 price = 195
-heals = 50
+heals = 0
 excess = "guthix_rest_3"
 empty = "vial"
 eat_message = "You drink some of your guthix rest."
@@ -28,7 +28,7 @@ id = 4418
 [guthix_rest_3]
 id = 4419
 price = 129
-heals = 50
+heals = 0
 excess = "guthix_rest_2"
 empty = "vial"
 eat_message = "You drink some of your guthix rest."
@@ -41,7 +41,7 @@ id = 4420
 [guthix_rest_2]
 id = 4421
 price = 83
-heals = 50
+heals = 0
 excess = "guthix_rest_1"
 empty = "vial"
 eat_message = "You drink some of your guthix rest."
@@ -54,7 +54,7 @@ id = 4422
 [guthix_rest_1]
 id = 4423
 price = 44
-heals = 50
+heals = 0
 excess = "empty_cup"
 empty = "vial"
 eat_message = "You drink some of your guthix rest."

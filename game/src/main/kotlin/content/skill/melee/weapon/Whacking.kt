@@ -1,8 +1,6 @@
 package content.skill.melee.weapon
 
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.inv.itemAdded
-import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class Whacking : Script {
@@ -14,20 +12,20 @@ class Whacking : Script {
             }
         }
 
-        itemAdded("rubber_chicken", EquipSlot.Weapon, "worn_equipment") { player ->
-            player.options.set(5, "Whack")
+        itemAdded("rubber_chicken", "worn_equipment", EquipSlot.Weapon) {
+            options.set(5, "Whack")
         }
 
-        itemRemoved("rubber_chicken", EquipSlot.Weapon, "worn_equipment") { player ->
-            player.options.remove("Whack")
+        itemRemoved("rubber_chicken", "worn_equipment", EquipSlot.Weapon) {
+            options.remove("Whack")
         }
 
-        itemAdded("easter_carrot", EquipSlot.Weapon, "worn_equipment") { player ->
-            player.options.set(5, "Whack")
+        itemAdded("easter_carrot", "worn_equipment", EquipSlot.Weapon) {
+            options.set(5, "Whack")
         }
 
-        itemRemoved("easter_carrot", EquipSlot.Weapon, "worn_equipment") { player ->
-            player.options.remove("Whack")
+        itemRemoved("easter_carrot", "worn_equipment", EquipSlot.Weapon) {
+            options.remove("Whack")
         }
     }
 }

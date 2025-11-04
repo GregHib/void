@@ -47,7 +47,7 @@ internal class TeaTest : WorldTest() {
         player.itemOption("Drink", "guthix_rest_3")
 
         assertTrue(player.inventory.contains("guthix_rest_2"))
-        assertEquals(125, player.levels.get(Skill.Constitution))
+        assertEquals(150, player.levels.get(Skill.Constitution))
         assertEquals(40, player["poison_damage", 0])
         assertEquals(500, player.runEnergy)
     }
