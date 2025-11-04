@@ -60,8 +60,8 @@ class Ellis : Script {
                 "tan ${Colours.ORANGE.toTag()}5" -> 5
                 "tan ${Colours.ORANGE.toTag()}10" -> 10
                 "tan ${Colours.ORANGE.toTag()}all" -> inventory.count(it.component.removeSuffix("_1"))
-                "tan ${Colours.ORANGE.toTag()}X" -> intEntry("Enter amount:").also {
-                    set("last_bank_amount", it)
+                "tan ${Colours.ORANGE.toTag()}X" -> intEntry("Enter amount:").also { int ->
+                    set("last_bank_amount", int)
                 }
                 else -> return@interfaceOption
             }

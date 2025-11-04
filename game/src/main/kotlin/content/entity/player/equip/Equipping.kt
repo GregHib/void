@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.engine.inject
