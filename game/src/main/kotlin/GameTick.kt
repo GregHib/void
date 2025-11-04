@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.client.update.player.PlayerResetTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
 import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.AiTick
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -80,15 +79,16 @@ fun getTickStages(
             NPCUpdateTask(npcs, npcVisualEncoders()),
             batches,
         ),
-        AiTick(),
+        AiTick,
         accountSave,
         SaveLogs(),
     )
 }
 
-private class AiTick : Runnable {
+object AiTick : Runnable {
+    var method: (() -> Unit)? = null
     override fun run() {
-        World.emit(AiTick)
+        method?.invoke()
     }
 }
 

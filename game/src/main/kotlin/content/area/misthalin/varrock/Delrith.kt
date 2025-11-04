@@ -2,7 +2,6 @@ package content.area.misthalin.varrock
 
 import content.entity.combat.combatPrepare
 import content.entity.combat.npcCombatPrepare
-import content.entity.death.Death
 import content.entity.effect.transform
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.*
@@ -28,6 +27,7 @@ import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -161,7 +161,7 @@ class Delrith : Script {
             npc.queue.clear("death")
         }
         npc.strongQueue("death", TimeUnit.MINUTES.toTicks(5)) {
-            npc.emit(Death)
+            Death.killed(npc)
         }
         //    player.playSound("demon_slayer_portal_open")
         npc.transform("delrith_weakened")

@@ -1,7 +1,6 @@
 package content.area.troll_country.god_wars_dungeon
 
 import content.entity.combat.killer
-import content.entity.death.npcDeath
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
@@ -76,12 +75,12 @@ class GodwarsAggression : Script {
             npc.interactNpc(target, "Attack")
         }
 
-        npcDeath { npc ->
-            val killer = npc.killer
+        npcDeath {
+            val killer = killer
             if (killer is NPC) {
-                randomHuntMode(npc)
+                randomHuntMode(this)
             } else if (killer is Player) {
-                val god = npc.def["god", ""]
+                val god = def["god", ""]
                 if (god != "") {
                     killer.inc("${god}_killcount")
                 }

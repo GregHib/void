@@ -9,7 +9,6 @@ import content.bot.interact.navigation.goToArea
 import content.bot.interact.navigation.resume
 import content.entity.combat.attackers
 import content.entity.combat.inCombat
-import content.entity.death.playerDeath
 import content.entity.death.weightedSample
 import content.skill.magic.spell.removeSpellItems
 import content.skill.magic.spell.spell
@@ -103,10 +102,10 @@ class CombatBot : Script {
             }
         }
 
-        playerDeath { player ->
-            if (player.isBot) {
-                player.clear("area")
-                player.bot.cancel()
+        playerDeath {
+            if (isBot) {
+                clear("area")
+                bot.cancel()
             }
         }
     }

@@ -1,6 +1,5 @@
 package content.area.misthalin.lumbridge.swamp
 
-import content.entity.death.playerDeath
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.destroy.destroyed
@@ -66,9 +65,9 @@ class LumbridgeSwamp : Script {
             }
         }
 
-        playerDeath { player ->
-            if (!player.ownsItem("muddy_skull")) {
-                player["rocks_restless_ghost"] = "skull"
+        playerDeath {
+            if (!ownsItem("muddy_skull")) {
+                set("rocks_restless_ghost", "skull")
             }
         }
 

@@ -1,7 +1,6 @@
 package content.entity
 
 import content.area.misthalin.Border
-import content.entity.death.npcDeath
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.ui.closeInterfaces
@@ -83,8 +82,8 @@ class Movement : Script {
             }
         }
 
-        npcDeath { npc ->
-            remove(npc)
+        npcDeath {
+            remove(this)
         }
 
         npcDespawn {

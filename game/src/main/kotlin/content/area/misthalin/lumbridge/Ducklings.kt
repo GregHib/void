@@ -1,6 +1,5 @@
 package content.area.misthalin.lumbridge
 
-import content.entity.death.npcDeath
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
@@ -20,8 +19,8 @@ class Ducklings : Script {
     init {
         npcSpawn("ducklings", ::followParent)
         npcTimerTick("follow_parent", ::follow)
-        npcDeath("duck*swim") { npc ->
-            val ducklings: NPC = npc["ducklings"] ?: return@npcDeath
+        npcDeath("duck*swim") {
+            val ducklings: NPC = get("ducklings") ?: return@npcDeath
             ducklings.say("Eek!")
             followParent(ducklings)
         }

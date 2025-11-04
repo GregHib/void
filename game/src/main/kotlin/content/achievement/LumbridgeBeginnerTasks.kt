@@ -2,7 +2,6 @@ package content.achievement
 
 import content.entity.combat.hit.combatAttack
 import content.entity.combat.killer
-import content.entity.death.npcDeath
 import content.entity.npc.shop.sell.itemSold
 import content.entity.npc.shop.shopOpen
 import content.entity.obj.objTeleportLand
@@ -177,8 +176,8 @@ class LumbridgeBeginnerTasks : Script {
             }
         }
 
-        npcDeath("cow*") { cow ->
-            val killer = cow.killer
+        npcDeath("cow*") {
+            val killer = killer
             if (killer is Player) {
                 killer["bovine_intervention_task"] = true
             }
@@ -248,8 +247,8 @@ class LumbridgeBeginnerTasks : Script {
             player["put_your_hands_together_for_task"] = true
         }
 
-        npcDeath("giant_rat*") { npc ->
-            val killer = npc.killer
+        npcDeath("giant_rat*") {
+            val killer = killer
             if (killer is Player && !killer["am_i_a_blademaster_yet_task", false]) {
                 when (val style = killer.attackStyle) {
                     "aggressive" -> killer["giant_rat_$style"] = true

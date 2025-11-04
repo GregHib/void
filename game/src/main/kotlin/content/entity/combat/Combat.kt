@@ -2,7 +2,6 @@ package content.entity.combat
 
 import content.area.wilderness.inSingleCombat
 import content.entity.combat.hit.characterCombatDamage
-import content.entity.death.characterDeath
 import content.entity.player.combat.special.specialAttack
 import content.skill.melee.weapon.attackRange
 import content.skill.melee.weapon.attackSpeed
@@ -61,14 +60,11 @@ class Combat : Script {
             character.target = null
         }
 
-        characterDeath { character ->
-            character.stop("in_combat")
-            for (attacker in character.attackers) {
-                if (attacker.target == character) {
-                    attacker.stop("in_combat")
-                }
-            }
+        playerDeath {
+            stop(this)
         }
+
+        npcDeath(handler = ::stop)
 
         characterCombatDamage { character ->
             if (source == character || type == "poison" || type == "disease" || type == "healed") {
@@ -76,6 +72,15 @@ class Combat : Script {
             }
             if (character.mode !is CombatMovement && character.mode !is PauseMode) {
                 retaliate(character, source)
+            }
+        }
+    }
+
+    fun stop(character: Character) {
+        character.stop("in_combat")
+        for (attacker in character.attackers) {
+            if (attacker.target == character) {
+                attacker.stop("in_combat")
             }
         }
     }

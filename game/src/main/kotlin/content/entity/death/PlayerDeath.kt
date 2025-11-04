@@ -47,41 +47,39 @@ class PlayerDeath : Script {
     val npcs: NPCs by inject()
 
     init {
-        playerDeath { player ->
-            player.dead = true
-            player.strongQueue("death") {
-                player.steps.clear()
-                val dealer = player.damageDealers.maxByOrNull { it.value }
+        playerDeath { onDeath ->
+            dead = true
+            strongQueue("death") {
+                steps.clear()
+                val dealer = damageDealers.maxByOrNull { it.value }
                 val killer = dealer?.key
-                AuditLog.event(player, "died", player.tile, killer)
+                AuditLog.event(player, "died", tile, killer)
                 while (true) {
-                    player.instructions.tryReceive().getOrNull() ?: break
+                    instructions.tryReceive().getOrNull() ?: break
                 }
-                val tile = player.tile.copy()
-                val wilderness = player.inWilderness
+                val tile = tile.copy()
+                val wilderness = inWilderness
                 retribution(player)
                 wrath(player)
-                player.message("Oh dear, you are dead!")
-                player.anim("human_death")
+                message("Oh dear, you are dead!")
+                anim("human_death")
                 delay(5)
-                val after = AfterDeath()
-                player.emit(after)
-                player.clearAnim()
-                player.attackers.clear()
-                player.damageDealers.clear()
-                player.jingle("death")
-                player.timers.stopAll()
-                player.softTimers.stopAll()
-                player.clear(player.getActivePrayerVarKey())
-                if (after.dropItems) {
+                clearAnim()
+                attackers.clear()
+                damageDealers.clear()
+                jingle("death")
+                timers.stopAll()
+                softTimers.stopAll()
+                clear(getActivePrayerVarKey())
+                if (onDeath.dropItems) {
                     dropItems(player, killer, tile, wilderness)
                 }
-                player.levels.clear()
-                if (after.teleport) {
-                    player.tele(respawnTile)
+                levels.clear()
+                if (onDeath.teleport) {
+                    tele(respawnTile)
                 }
-                player.face(Direction.SOUTH, update = false)
-                player.dead = false
+                face(Direction.SOUTH, update = false)
+                dead = false
             }
         }
     }
