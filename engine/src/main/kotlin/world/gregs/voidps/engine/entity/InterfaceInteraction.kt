@@ -63,7 +63,7 @@ interface InterfaceInteraction {
      */
     fun interfaceRefresh(id: String, block: Player.(id: String) -> Unit) {
         Wildcards.find(id, Wildcard.Interface) { i ->
-            closed.getOrPut(i) { mutableListOf() }.add(block)
+            refreshed.getOrPut(i) { mutableListOf() }.add(block)
         }
     }
 

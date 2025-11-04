@@ -23,7 +23,7 @@ import world.gregs.voidps.type.random
 class ItemEmotes : Script {
 
     init {
-        itemOption("Fly", "toy_kite") {
+        itemOption("Fly", "toy_kite", "*") {
             if (contains("delay")) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
@@ -31,7 +31,7 @@ class ItemEmotes : Script {
             animDelay("emote_fly_kite")
         }
 
-        itemOption("Emote", "reindeer_hat") {
+        itemOption("Emote", "reindeer_hat", "worn_equipment") {
             if (contains("delay")) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
@@ -76,7 +76,7 @@ class ItemEmotes : Script {
             }
         }
 
-        itemOption("Dance", "rubber_chicken") {
+        itemOption("Dance", "rubber_chicken", "*") {
             if (contains("delay")) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
@@ -131,7 +131,7 @@ class ItemEmotes : Script {
             }
         }
 
-        itemOption("Spin", "candy_cane") {
+        itemOption("Spin", "candy_cane", "worn_equipment") {
             if (contains("delay")) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
@@ -139,7 +139,7 @@ class ItemEmotes : Script {
             animDelay("emote_candy_cane_spin")
         }
 
-        itemOption("Dance", "salty_claws_hat") {
+        itemOption("Dance", "salty_claws_hat", "worn_equipment") {
             if (contains("delay")) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
@@ -156,7 +156,7 @@ class ItemEmotes : Script {
             animDelay("emote_10th_anniversary_cake")
         }
 
-        itemOption("Brandish (2009)", "golden_hammer") {
+        itemOption("Brandish (2009)", "golden_hammer", "worn_equipment") {
             if (contains("delay")) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
@@ -164,7 +164,7 @@ class ItemEmotes : Script {
             animDelay("emote_golden_hammer_brandish")
         }
 
-        itemOption("Spin (2010)", "golden_hammer") {
+        itemOption("Spin (2010)", "golden_hammer", "worn_equipment") {
             if (contains("delay")) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
@@ -179,7 +179,7 @@ class ItemEmotes : Script {
             }
         }
 
-        itemOption("Sleuth", "magnifying_glass") {
+        itemOption("Sleuth", "magnifying_glass", "worn_equipment") {
             if (contains("delay")) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
@@ -187,7 +187,7 @@ class ItemEmotes : Script {
             animDelay("emote_magnifying_glass_sleuth")
         }
 
-        itemOption("Emote", "chocatrice_cape") {
+        itemOption("Emote", "chocatrice_cape", "worn_equipment") {
             if (contains("delay")) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
@@ -196,13 +196,17 @@ class ItemEmotes : Script {
             animDelay("emote_chocatrice_cape")
         }
 
-        itemOption("Juggle", "squirrel_ears") {
+        itemOption("Juggle", "squirrel_ears", "worn_equipment") {
             if (contains("delay")) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
             gfx("emote_squirrel_ears")
             animDelay("emote_squirrel_ears")
+        }
+
+        itemOption("Summon Minion", "squirrel_ears") {
+            // todo summon npc 9682 and 9681 if dismiss have to wait 30mins before able to summon again
         }
 
         itemOption("Play-with", "toy_horsey_*") { (item) ->
@@ -221,17 +225,13 @@ class ItemEmotes : Script {
             animDelay("emote_${item.id}")
         }
 
-        itemOption("Play-with", "eek") {
+        itemOption("Play-with", "eek", "*") {
             if (contains("delay")) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
             gfx("play_with_eek")
             animDelay("play_with_eek")
-        }
-
-        itemOption("Summon Minion", "squirrel_ears") {
-            // todo summon npc 9682 and 9681 if dismiss have to wait 30mins before able to summon again
         }
     }
 

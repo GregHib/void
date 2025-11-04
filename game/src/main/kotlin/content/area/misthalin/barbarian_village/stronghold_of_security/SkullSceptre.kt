@@ -19,7 +19,7 @@ class SkullSceptre : Script {
     val logger = InlineLogger()
 
     init {
-        itemOption("Invoke", "skull_sceptre") {
+        itemOption("Invoke", "skull_sceptre", "*") {
             Teleport.teleport(this, Tile(3081, 3421), "skull_sceptre")
         }
 
