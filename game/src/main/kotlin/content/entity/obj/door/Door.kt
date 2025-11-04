@@ -16,7 +16,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-object Door {
+object Door : AutoCloseable {
 
     // Delay in ticks before a door closes itself
     private val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
@@ -141,6 +141,12 @@ object Door {
             return false
         }
         return (name.contains("door", true) && !name.contains("trap", true)) || name.contains("gate", true) || this["door", false]
+    }
+
+    var opened: (Player.() -> Unit)? = null
+
+    override fun close() {
+        opened = null
     }
 }
 

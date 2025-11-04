@@ -35,7 +35,7 @@ class Doors : Script {
             }
             if (openDoor(this, target, def)) {
                 delay(0)
-                emit(DoorOpened)
+                Door.opened?.invoke(this)
             }
         }
     }

@@ -3,7 +3,7 @@ package content.bot.interact.navigation
 import content.bot.Bot
 import content.bot.bot
 import content.bot.isBot
-import content.entity.obj.door.DoorOpened
+import content.entity.obj.door.Door
 import content.entity.obj.objTeleport
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.timer.TICKS
 import kotlin.collections.set
 import kotlin.coroutines.resume
@@ -84,9 +83,9 @@ class Navigation : Script {
             }
         }
 
-        onEvent<Player, DoorOpened> { player ->
-            if (player.isBot) {
-                player.bot.resume("move")
+        Door.opened = {
+            if (isBot) {
+                bot.resume("move")
             }
         }
 

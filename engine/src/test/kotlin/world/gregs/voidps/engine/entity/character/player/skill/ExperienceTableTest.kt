@@ -1,24 +1,18 @@
 package world.gregs.voidps.engine.entity.character.player.skill
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.mockkStatic
-import io.mockk.verify
+import io.mockk.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.exp.BlockedExperience
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
-import world.gregs.voidps.engine.entity.character.player.skill.exp.GrantExp
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.event.EventDispatcher
 
 internal class ExperienceTableTest {
 
     private lateinit var experience: Experience
-    private lateinit var events: EventDispatcher
+    private lateinit var events: Player
 
     @BeforeEach
     fun setup() {
@@ -87,11 +81,15 @@ internal class ExperienceTableTest {
 
     @Test
     fun `Experience for blocked skills aren't changed`() {
+        mockkObject(Skills)
         experience.set(Skill.Defence, 100.0)
         experience.addBlock(Skill.Defence)
         experience.add(Skill.Defence, 100.0)
         assertEquals(100.0, experience.get(Skill.Defence))
-        verify { events.emit(GrantExp(Skill.Defence, 0.0, 100.0)) }
+        verify {
+            Skills.exp(events, Skill.Defence, 0.0, 100.0)
+        }
+        unmockkObject(Skills)
     }
 
     @Test
@@ -104,17 +102,21 @@ internal class ExperienceTableTest {
 
     @Test
     fun `Notified of change`() {
+        mockkObject(Skills)
         experience.set(Skill.Attack, 100.0)
         experience.add(Skill.Attack, 10.0)
-        verify { events.emit(GrantExp(Skill.Attack, 100.0, 110.0)) }
+        verify { Skills.exp(events, Skill.Attack, 100.0, 110.0) }
+        unmockkObject(Skills)
     }
 
     @Test
     fun `Listen for blocked exp`() {
+        mockkObject(Skills)
         experience.set(Skill.Attack, 100.0)
         experience.addBlock(Skill.Attack)
         experience.add(Skill.Attack, 10.0)
-        verify { events.emit(BlockedExperience(Skill.Attack, 10.0)) }
+        verify { Skills.blocked(events, Skill.Attack, 10.0) }
+        unmockkObject(Skills)
     }
 
     @Test

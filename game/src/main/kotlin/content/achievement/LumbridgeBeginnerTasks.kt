@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.maxLevelChange
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.AuditLog
@@ -211,14 +210,14 @@ class LumbridgeBeginnerTasks :
             }
         }
 
-        maxLevelChange { player ->
-            if (!player["on_the_level_task", false] || !player["quarter_centurion_task", false]) {
-                val total = Skill.all.sumOf { (if (it == Skill.Constitution) player.levels.getMax(it) / 10 - 10 else player.levels.getMax(it) - 1) }
-                AuditLog.event(player, "total_level_up", total)
+        maxLevelChanged { _, _, _ ->
+            if (!get("on_the_level_task", false) || !get("quarter_centurion_task", false)) {
+                val total = Skill.all.sumOf { (if (it == Skill.Constitution) levels.getMax(it) / 10 - 10 else levels.getMax(it) - 1) }
+                AuditLog.event(this, "total_level_up", total)
                 if (total == 10) {
-                    player["on_the_level_task"] = true
+                    set("on_the_level_task", true)
                 } else if (total == 25) {
-                    player["quarter_centurion_task"] = true
+                    set("quarter_centurion_task", true)
                 }
             }
         }
@@ -266,11 +265,8 @@ class LumbridgeBeginnerTasks :
             }
         }
 
-        maxLevelChange(Skill.Attack, Skill.Defence) { player ->
-            if (from < 5 && to >= 5 && player.levels.getMax(Skill.Attack) >= 5 && player.levels.getMax(Skill.Defence) >= 5) {
-                player["first_blood_task"] = true
-            }
-        }
+        maxLevelChanged(Skill.Attack, ::firstBlood)
+        maxLevelChanged(Skill.Defence, ::firstBlood)
 
         itemAdded("iron_hatchet", inventory = "inventory") { player ->
             player["dont_bury_this_one_task"] = true
@@ -300,9 +296,9 @@ class LumbridgeBeginnerTasks :
             }
         }
 
-        maxLevelChange(Skill.Mining) { player ->
+        maxLevelChanged(Skill.Mining) { _, from, to ->
             if (from < 5 && to >= 5) {
-                player["hack_and_smash_task"] = true
+                set("hack_and_smash_task", true)
             }
         }
 
@@ -368,6 +364,12 @@ class LumbridgeBeginnerTasks :
 
         entered("wizards_tower_top_floor") {
             set("tower_power_task", true)
+        }
+    }
+
+    fun firstBlood(player: Player, skill: Skill, from: Int, to: Int) {
+        if (from < 5 && to >= 5 && player.levels.getMax(Skill.Attack) >= 5 && player.levels.getMax(Skill.Defence) >= 5) {
+            player["first_blood_task"] = true
         }
     }
 }
