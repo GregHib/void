@@ -4,8 +4,8 @@ import content.entity.combat.hit.characterCombatAttack
 import content.entity.player.effect.energy.runEnergy
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.itemAdded
-import world.gregs.voidps.engine.inv.itemRemoved
+import world.gregs.voidps.engine.inv.ItemAdded
+import world.gregs.voidps.engine.inv.ItemRemoved
 import world.gregs.voidps.type.random
 
 class ToragsSet : Script {
@@ -17,14 +17,9 @@ class ToragsSet : Script {
             }
         }
 
-        itemRemoved("torags_*", BarrowsArmour.slots, "worn_equipment") { player ->
-            player.clear("torags_set_effect")
-        }
-
-        itemAdded("torags_*", BarrowsArmour.slots, "worn_equipment") { player ->
-            if (player.hasFullSet()) {
-                player["torags_set_effect"] = true
-            }
+        for (slot in BarrowsArmour.slots) {
+            itemAdded("torags_*", "worn_equipment", slot, ::added)
+            itemRemoved("torags_*", "worn_equipment", slot, ::removed)
         }
 
         characterCombatAttack("torags_hammers*", "melee") { character ->
@@ -36,6 +31,16 @@ class ToragsSet : Script {
                 target.gfx("torags_effect")
             }
         }
+    }
+
+    fun added(player: Player, update: ItemAdded) {
+        if (player.hasFullSet()) {
+            player["torags_set_effect"] = true
+        }
+    }
+
+    fun removed(player: Player, update: ItemRemoved) {
+        player.clear("torags_set_effect")
     }
 
     fun Player.hasFullSet() = BarrowsArmour.hasSet(

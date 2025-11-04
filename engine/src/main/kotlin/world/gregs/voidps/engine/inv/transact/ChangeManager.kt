@@ -29,7 +29,7 @@ class ChangeManager(
             changes.add(ItemRemoved(inventory.id, index, previous))
         }
         if (item.isNotEmpty()) {
-            changes.add(ItemAdded(inventory.id, index, item))
+            changes.add(ItemAdded(item, inventory.id, index))
         }
         changes.add(InventorySlotChanged(inventory.id, index, item, from, fromIndex, previous))
     }
@@ -59,10 +59,10 @@ class ChangeManager(
         for (events in events) {
             InventoryApi.update(events, inventory.id, changeList)
             for (change in changes) {
-                if (change is InventorySlotChanged) {
-                    InventoryApi.changed(events, change)
-                } else if (change is Event) {
-                    events.emit(change)
+                when (change) {
+                    is InventorySlotChanged -> InventoryApi.changed(events, change)
+                    is ItemAdded -> InventoryApi.add(events, change)
+                    is ItemRemoved -> InventoryApi.remove(events, change)
                 }
             }
         }

@@ -14,8 +14,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.itemAdded
-import world.gregs.voidps.engine.inv.itemRemoved
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.equals
@@ -33,20 +31,20 @@ class MysteriousRuins : Script {
             }
         }
 
-        itemAdded("*_tiara", EquipSlot.Hat, "worn_equipment") { player ->
-            updateAltarVars(player)
+        itemAdded("*_tiara", "worn_equipment", EquipSlot.Hat) {
+            updateAltarVars(this)
         }
 
-        itemRemoved("*_tiara", EquipSlot.Hat, "worn_equipment") { player ->
-            updateAltarVars(player)
+        itemRemoved("*_tiara", "worn_equipment", EquipSlot.Hat) {
+            updateAltarVars(this)
         }
 
-        itemAdded("omni_talisman_staff", EquipSlot.Weapon, "worn_equipment") { player ->
-            updateAltarVars(player)
+        itemAdded("omni_talisman_staff", "worn_equipment", EquipSlot.Weapon) {
+            updateAltarVars(this)
         }
 
-        itemRemoved("omni_talisman_staff", EquipSlot.Weapon, "worn_equipment") { player ->
-            updateAltarVars(player)
+        itemRemoved("omni_talisman_staff", "worn_equipment", EquipSlot.Weapon) {
+            updateAltarVars(this)
         }
 
         itemOnObjectOperate("*_talisman", "*_altar_ruins") { (target, item) ->

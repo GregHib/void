@@ -40,8 +40,8 @@ class CelestialSurgeBox : Script {
             message("The box is currently charged with $charges ${if (surge) "Surge" else "Wave"} ${"spell".plural(charges)}.") // TODO proper message
         }
 
-        itemAdded("celestial_surgebox*", EquipSlot.Shield, "worn_equipment") { player ->
-            updateCharges(player, index, item.id != "celestial_surgebox")
+        itemAdded("celestial_surgebox*", "worn_equipment", EquipSlot.Shield) { (item) ->
+            updateCharges(this, index, item.id != "celestial_surgebox")
         }
 
         combatAttack(spell = "*_wave") { player ->
@@ -58,8 +58,8 @@ class CelestialSurgeBox : Script {
             }
         }
 
-        itemRemoved("celestial_surgebox*", EquipSlot.Shield, "worn_equipment") { player ->
-            setCharges(player, 0, item.id != "celestial_surgebox")
+        itemRemoved("celestial_surgebox*", "worn_equipment", EquipSlot.Shield) {
+            setCharges(this, 0, it.item.id != "celestial_surgebox")
         }
 
         itemOption("Charge", "celestial_surgebox*") { (item, slot) ->

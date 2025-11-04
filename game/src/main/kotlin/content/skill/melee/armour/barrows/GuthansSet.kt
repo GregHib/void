@@ -4,8 +4,8 @@ import content.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inv.itemAdded
-import world.gregs.voidps.engine.inv.itemRemoved
+import world.gregs.voidps.engine.inv.ItemAdded
+import world.gregs.voidps.engine.inv.ItemRemoved
 import world.gregs.voidps.type.random
 
 class GuthansSet : Script {
@@ -17,14 +17,9 @@ class GuthansSet : Script {
             }
         }
 
-        itemRemoved("guthans_*", BarrowsArmour.slots, "worn_equipment") { player ->
-            player.clear("guthans_set_effect")
-        }
-
-        itemAdded("guthans_*", BarrowsArmour.slots, "worn_equipment") { player ->
-            if (player.hasFullSet()) {
-                player["guthans_set_effect"] = true
-            }
+        for (slot in BarrowsArmour.slots) {
+            itemAdded("guthans_*", "worn_equipment", slot, ::added)
+            itemRemoved("guthans_*", "worn_equipment", slot, ::removed)
         }
 
         characterCombatAttack(type = "melee") { character ->
@@ -33,6 +28,16 @@ class GuthansSet : Script {
                 target.gfx("guthans_effect")
             }
         }
+    }
+
+    fun added(player: Player, update: ItemAdded) {
+        if (player.hasFullSet()) {
+            player["guthans_set_effect"] = true
+        }
+    }
+
+    fun removed(player: Player, update: ItemRemoved) {
+        player.clear("guthans_set_effect")
     }
 
     fun Player.hasFullSet() = BarrowsArmour.hasSet(

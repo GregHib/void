@@ -40,8 +40,8 @@ class MagicalBlastBox : Script {
             message("The box is currently charged with $charges ${if (blast) "Blast" else "Bolt"} ${"spell".plural(charges)}.") // TODO proper message
         }
 
-        itemAdded("magical_blastbox*", EquipSlot.Shield, "worn_equipment") { player ->
-            updateCharges(player, index, item.id != "magical_blastbox")
+        itemAdded("magical_blastbox*", "worn_equipment", EquipSlot.Shield) { (item) ->
+            updateCharges(this, index, item.id != "magical_blastbox")
         }
 
         combatAttack(spell = "*_bolt") { player ->
@@ -58,8 +58,8 @@ class MagicalBlastBox : Script {
             }
         }
 
-        itemRemoved("magical_blastbox*", EquipSlot.Shield, "worn_equipment") { player ->
-            setCharges(player, 0, item.id != "magical_blastbox")
+        itemRemoved("magical_blastbox*", "worn_equipment", EquipSlot.Shield) {
+            setCharges(this, 0, it.item.id != "magical_blastbox")
         }
 
         itemOption("Charge", "magical_blastbox*") { (item, slot) ->
