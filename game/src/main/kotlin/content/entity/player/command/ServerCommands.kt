@@ -138,7 +138,7 @@ class ServerCommands : Script {
             "cs2", "cs2s", "client_scripts" -> get<ClientScriptDefinitions>().load(files.list(Settings["definitions.clientScripts"]))
             "settings", "setting", "game_setting", "game_settings", "games_settings", "properties", "props" -> {
                 Settings.load()
-                World.emit(SettingsReload)
+                SettingsReload.now()
             }
         }
     }
