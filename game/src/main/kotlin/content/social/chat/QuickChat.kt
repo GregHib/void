@@ -15,10 +15,8 @@ import world.gregs.voidps.engine.data.definition.QuickChatPhraseDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanQuickChatMessage
-import world.gregs.voidps.engine.entity.character.player.chat.friend.PrivateQuickChatMessage
-import world.gregs.voidps.engine.entity.character.player.chat.global.PublicQuickChatMessage
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.onEvent
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.QuickChatPrivate
@@ -47,14 +45,9 @@ class QuickChat : Script {
             val definition = phrases.get(file)
             val data = generateData(player, file, data)
             player.client?.privateQuickChatTo(target.name, file, data)
-
             val text = definition.buildString(enums.definitions, items.definitions, data)
-            val message = PrivateQuickChatMessage(player, file, text, data)
-            target.emit(message)
-        }
-
-        onEvent<Player, PrivateQuickChatMessage> { player ->
-            player.client?.privateQuickChatFrom(source.name, source.rights.ordinal, file, data)
+            AuditLog.event(player, "told_qc", target, text)
+            target.client?.privateQuickChatFrom(player.name, player.rights.ordinal, file, data)
         }
 
         instruction<QuickChatPublic> { player ->
@@ -63,9 +56,9 @@ class QuickChat : Script {
                     val definition = phrases.get(file)
                     val data = generateData(player, file, data)
                     val text = definition.buildString(enums.definitions, items.definitions, data)
-                    val message = PublicQuickChatMessage(player, chatType, file, text, data)
+                    AuditLog.event(player, "said_qc", text)
                     players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
-                        it.emit(message)
+                        it.client?.publicQuickChat(player.index, 0x8000, player.rights.ordinal, file, data)
                     }
                 }
                 1 -> {
@@ -81,20 +74,12 @@ class QuickChat : Script {
                     val definition = phrases.get(file)
                     val data = generateData(player, file, data)
                     val text = definition.buildString(enums.definitions, items.definitions, data)
-                    val message = ClanQuickChatMessage(player, chatType, file, text, data)
-                    clan.members.filterNot { it.ignores(player) }.forEach {
-                        it.emit(message)
+                    AuditLog.event(player, "clan_said_qc", clan, text)
+                    clan.members.filterNot { it.ignores(player) }.forEach { member ->
+                        member.client?.clanQuickChat(player.name, member.clan!!.name, player.rights.ordinal, file, data)
                     }
                 }
             }
-        }
-
-        onEvent<Player, PublicQuickChatMessage> { player ->
-            player.client?.publicQuickChat(source.index, 0x8000, source.rights.ordinal, file, data)
-        }
-
-        onEvent<Player, ClanQuickChatMessage> { player ->
-            player.client?.clanQuickChat(source.name, player.clan!!.name, source.rights.ordinal, file, data)
         }
     }
 
