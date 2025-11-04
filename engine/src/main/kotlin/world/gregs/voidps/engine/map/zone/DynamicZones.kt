@@ -101,13 +101,15 @@ class DynamicZones(
             return
         }
         for (region in updated.iterator()) {
-            World.emit(RegionReload(Region(region)))
+            reloadCallback.invoke()
         }
         updated.clear()
         refresh.clear()
     }
 
     companion object {
+
+        var reloadCallback: () -> Unit = {}
 
         fun Zone.dynamicId() = toZonePosition(x, y, level)
 

@@ -1,22 +1,28 @@
 package world.gregs.voidps.engine.data
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.event.Events
 
-object SettingsReload : Event {
+interface SettingsReload {
 
-    override val notification: Boolean = true
-
-    override val size = 1
-
-    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "settings_reload"
-        else -> null
+    fun settingsReload(handler: () -> Unit) {
+        handlers.add(handler)
     }
-}
 
-fun settingsReload(handler: suspend SettingsReload.(Player) -> Unit) {
-    Events.handle("settings_reload", handler = handler)
+    companion object : AutoCloseable {
+        private val handlers = ObjectArrayList<() -> Unit>(5)
+
+        fun now() {
+            for (handler in handlers) {
+                handler()
+            }
+        }
+
+        override fun close() {
+            handlers.clear()
+        }
+    }
 }

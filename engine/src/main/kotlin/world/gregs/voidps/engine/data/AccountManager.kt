@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
-import world.gregs.voidps.engine.map.zone.RegionLoad
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
@@ -83,12 +82,16 @@ class AccountManager(
         player.collision = collisionStrategyProvider.get(character = player)
         return true
     }
+    /**
+     * Send region load to a player
+     */
+    var loadCallback: (Player) -> Unit = {}
 
     fun spawn(player: Player, client: Client?) {
         client?.onDisconnecting {
             logout(player, false)
         }
-        player.emit(RegionLoad)
+        loadCallback.invoke(player)
         player.open(player.interfaces.gameFrame)
         Spawn.player(player)
         for (def in areaDefinitions.get(player.tile.zone)) {
