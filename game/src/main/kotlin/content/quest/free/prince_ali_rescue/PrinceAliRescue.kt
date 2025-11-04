@@ -2,7 +2,6 @@ package content.quest.free.prince_ali_rescue
 
 import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.type.statement
-import content.entity.player.modal.tab.questJournalOpen
 import content.entity.sound.sound
 import content.quest.quest
 import content.quest.questJournal
@@ -41,7 +40,7 @@ class PrinceAliRescue : Script {
         }
 
         questJournalOpen("prince_ali_rescue") {
-            val lines = when (player.quest("prince_ali_rescue")) {
+            val lines = when (quest("prince_ali_rescue")) {
                 "osman" -> listOf(
                     "<navy>I spoke to <maroon>Chancellor Hassan<navy>, the <maroon>Chancellor<navy> to the <maroon>Emir of Al",
                     "<maroon>Kharid<navy>, in the <maroon>Al Kharid Palace<navy>. He asked for my help with an",
@@ -49,7 +48,7 @@ class PrinceAliRescue : Script {
                     "<maroon>Kharid's Spymaster<navy>, just outside the <maroon>Palace<navy>.",
                 )
                 "leela" -> {
-                    if (!player["prince_ali_rescue_leela", false]) {
+                    if (!get("prince_ali_rescue_leela", false)) {
                         listOf(
                             "<str>I spoke to Hassan, the Chancellor to the Emir of Al Kharid, in",
                             "<str>the Al Kharid Palace. He asked for my help with an urgent",
@@ -75,8 +74,8 @@ class PrinceAliRescue : Script {
                             "<str>Village. Osman asked for my help in rescuing Prince Ali, and",
                             "<str>suggested I speak with Leela in Draynor Village.",
                         )
-                        val disguise = player.inventory.contains(disguise)
-                        val key = player["prince_ali_rescue_key_given", false]
+                        val disguise = inventory.contains(disguise)
+                        val key = get("prince_ali_rescue_key_given", false)
                         val string = buildString {
                             append("To free <maroon>Prince Ali<navy>, ")
                             append(if (disguise) "I have created" else "I need to create")
@@ -102,11 +101,11 @@ class PrinceAliRescue : Script {
                             list.add("<navy>make me some.")
                         }
                         list.add("")
-                        if (player.inventory.contains("key_print")) {
+                        if (inventory.contains("key_print")) {
                             list.add("<navy>I took an <maroon>Imprint<navy> of the <maroon>Cell Key<navy> using some <maroon>Soft Clay<navy>. I should")
                             list.add("<navy>take it to <maroon>Osman<navy> along with a <maroon>Bronze Bar<navy> so that he can make")
                             list.add("<navy>us a copy.")
-                        } else if (player["prince_ali_rescue_key_made", false] && !player["prince_ali_rescue_key_given", false]) {
+                        } else if (get("prince_ali_rescue_key_made", false) && !get("prince_ali_rescue_key_given", false)) {
                             list.add("<navy>I took an <maroon>Imprint<navy> of the <maroon>Cell Key<navy> and gave it to <maroon>Osman<navy>. He will")
                             list.add("<navy>use it to make a copy, which he will send over once it is ready.")
                         }
@@ -229,7 +228,7 @@ class PrinceAliRescue : Script {
                 )
                 else -> listOf("<navy>I can start his quest by talking to <maroon>Chancellor Hassan<navy> in <maroon>Al Kharid Palace<navy>.")
             }
-            player.questJournal("Prince Ali Rescue", lines)
+            questJournal("Prince Ali Rescue", lines)
         }
     }
 }

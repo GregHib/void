@@ -3,8 +3,6 @@ package content.entity.npc.shop
 import content.entity.npc.shop.general.GeneralStores
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.Inventory
@@ -25,19 +23,6 @@ fun Player.shopInventory(sample: Boolean = hasShopSample()): Inventory {
     } else {
         inventories.inventory(name)
     }
-}
-
-suspend fun TargetInteraction<Player, NPC>.buy(item: String, cost: Int, message: String = "Oh dear. I don't seem to have enough money."): Boolean {
-    player.inventory.transaction {
-        remove("coins", cost)
-        add(item)
-    }
-    when (player.inventory.transaction.error) {
-        is TransactionError.Full -> player.inventoryFull()
-        TransactionError.None -> return true
-        else -> player<Sad>(message)
-    }
-    return false
 }
 
 suspend fun Player.buy(item: String, cost: Int, message: String = "Oh dear. I don't seem to have enough money."): Boolean {

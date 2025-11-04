@@ -1,7 +1,6 @@
 package content.quest.free.the_restless_ghost
 
 import content.entity.player.bank.ownsItem
-import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.Script
@@ -10,7 +9,7 @@ class TheRestlessGhost : Script {
 
     init {
         questJournalOpen("the_restless_ghost") {
-            val lines = when (player.quest("the_restless_ghost")) {
+            val lines = when (quest("the_restless_ghost")) {
                 "completed" -> listOf(
                     "<str>I've not started this quest yet.",
                     "<str>I can start this quest by speaking to Father Aereck in the",
@@ -55,7 +54,7 @@ class TheRestlessGhost : Script {
                         "<navy>make sure to wear my ghostspeak amulet when doing so.",
                         "",
                     )
-                    if (!player.ownsItem("ghostspeak_amulet")) {
+                    if (!ownsItem("ghostspeak_amulet")) {
                         list.add("<navy>I seem to have loast my <maroon>Amulet of Ghost speak. <navy>I should talk to")
                         list.add("<maroon>Father Urhney <navy>and see if he has a replacement.")
                         list.add("")
@@ -77,7 +76,7 @@ class TheRestlessGhost : Script {
                         "<str>amulet when doing so.",
                         "",
                     )
-                    if (!player.ownsItem("muddy_skull")) {
+                    if (!ownsItem("muddy_skull")) {
                         list.add("<navy>I should go and search the <maroon>Mining spot <navy>on the coast <maroon>south")
                         list.add("<maroon>of Lumbridge <navy>for the <maroon>ghost's skull.")
                         list.add("")
@@ -93,7 +92,7 @@ class TheRestlessGhost : Script {
                     "<maroon>church <navy>next to <maroon>Lumbridge Castle.",
                 )
             }
-            player.questJournal("The Restless Ghost", lines)
+            questJournal("The Restless Ghost", lines)
         }
     }
 }

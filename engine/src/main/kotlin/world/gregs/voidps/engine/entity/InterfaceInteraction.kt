@@ -104,7 +104,12 @@ interface InterfaceInteraction {
         }
     }
 
+    fun questJournalOpen(quest: String, block: Player.() -> Unit) {
+        quests[quest] = block
+    }
+
     companion object {
+        private val quests = Object2ObjectOpenHashMap<String, Player.() -> Unit>(20)
         private val opened = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(150)
         private val closed = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(75)
         private val refreshed = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(25)
@@ -115,7 +120,7 @@ interface InterfaceInteraction {
         private val itemOption = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOption) -> Unit>>(600)
 
         suspend fun option(player: Player, click: InterfaceOption) {
-            for (block in options["${click.option}:${click.interfaceComponent}"] ?: options["*:${click.interfaceComponent}"] ?: options["${click.option}:*"]  ?: return) {
+            for (block in options["${click.option}:${click.interfaceComponent}"] ?: options["*:${click.interfaceComponent}"] ?: options["${click.option}:*"] ?: return) {
                 block(player, click)
             }
         }
@@ -132,20 +137,24 @@ interface InterfaceInteraction {
             }
         }
 
+        fun openQuestJournal(player: Player, quest: String) {
+            quests[quest]?.invoke(player)
+        }
+
         fun open(player: Player, id: String) {
-            for (block in opened[id]  ?: return) {
+            for (block in opened[id] ?: return) {
                 block(player, id)
             }
         }
 
         fun close(player: Player, id: String) {
-            for (block in closed[id]  ?: return) {
+            for (block in closed[id] ?: return) {
                 block(player, id)
             }
         }
 
         fun refresh(player: Player, id: String) {
-            for (block in refreshed[id]  ?: return) {
+            for (block in refreshed[id] ?: return) {
                 block(player, id)
             }
         }
@@ -163,7 +172,7 @@ interface InterfaceInteraction {
         }
 
         fun itemOnItem(player: Player, from: Item, to: Item, fromSlot: Int, toSlot: Int) {
-            for (block in itemOnItem["${from.id}:${to.id}"] ?: itemOnItem["*:${to.id}"] ?:  itemOnItem["${from.id}:*"] ?:  itemOnItem["*:*"] ?: return) {
+            for (block in itemOnItem["${from.id}:${to.id}"] ?: itemOnItem["*:${to.id}"] ?: itemOnItem["${from.id}:*"] ?: itemOnItem["*:*"] ?: return) {
                 block(player, from, to, fromSlot, toSlot)
             }
         }

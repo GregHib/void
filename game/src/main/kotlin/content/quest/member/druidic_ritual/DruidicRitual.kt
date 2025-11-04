@@ -1,6 +1,5 @@
 package content.quest.member.druidic_ritual
 
-import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.Script
@@ -9,7 +8,7 @@ class DruidicRitual : Script {
 
     init {
         questJournalOpen("druidic_ritual") {
-            val lines = when (player.quest("druidic_ritual")) {
+            val lines = when (quest("druidic_ritual")) {
                 "completed" -> listOf(
                     "<str>I told Kaqemeex I would help them prepare their ceremony",
                     "<str>The ceremony required various meats being placed in the",
@@ -40,7 +39,7 @@ class DruidicRitual : Script {
                     "<navy>I can start this quest by talking to <maroon>Kaqemeex <navy>at the<maroon> Taverley Stone Circle.",
                 )
             }
-            player.questJournal("Druidic Ritual", lines)
+            questJournal("Druidic Ritual", lines)
         }
     }
 }

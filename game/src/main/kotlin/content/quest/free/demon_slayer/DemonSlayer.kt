@@ -1,6 +1,5 @@
 package content.quest.free.demon_slayer
 
-import content.entity.player.modal.tab.questJournalOpen
 import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.Script
@@ -11,7 +10,7 @@ class DemonSlayer : Script {
 
     init {
         questJournalOpen("demon_slayer") {
-            val lines = when (player.quest("demon_slayer")) {
+            val lines = when (quest("demon_slayer")) {
                 "unstarted" -> listOf(
                     "<navy>I can start this quest by speaking to the <maroon>Gypsy<navy> in the <maroon>tent",
                     "<navy>in <maroon>Varrock's main square.",
@@ -24,7 +23,7 @@ class DemonSlayer : Script {
                         "<str>Unfortunately it involved killing a demon who nearly",
                         "<str>destroyed Varrock over 150 years ago.",
                     )
-                    if (player["demon_slayer_silverlight", false]) {
+                    if (get("demon_slayer_silverlight", false)) {
                         list.add("<str>I reclaimed the magical sword Silverlight from Sir Prysin.")
                         list.add("")
                         list.add("<navy>Now I should go to the stone circle south of the city and")
@@ -32,19 +31,19 @@ class DemonSlayer : Script {
                     } else {
                         list.add("")
                         list.add("<navy>To defeat the <maroon>demon<navy> I need the magical sword <maroon>Silverlight<navy>.")
-                        if (player.quest("demon_slayer") == "sir_prysin") {
+                        if (quest("demon_slayer") == "sir_prysin") {
                             list.add("<navy>I should ask <maroon>Sir Prysin<navy> in <maroon>Varrock Palace<navy> where it is.")
                         } else {
-                            val prysin = player.inventory.contains("silverlight_key_sir_prysin")
-                            val rovin = player.inventory.contains("silverlight_key_captain_rovin")
-                            val traiborn = player.inventory.contains("silverlight_key_wizard_traiborn")
+                            val prysin = inventory.contains("silverlight_key_sir_prysin")
+                            val rovin = inventory.contains("silverlight_key_captain_rovin")
+                            val traiborn = inventory.contains("silverlight_key_wizard_traiborn")
                             if (prysin && rovin && traiborn) {
                                 list.add("<navy>Now I have all <maroon>3 keys<navy> I should go and speak to <maroon>Sir Prysin")
                                 list.add("<navy>and collect the magical sword <maroon>Silverlight<navy> from him.")
                             } else {
                                 list.add("<maroon>Sir Prysin<navy> needs <maroon>3 keys<navy> before he can give me <maroon>Silverlight<navy>.")
                                 list.add("")
-                                listKeys(player, list, prysin, rovin, traiborn)
+                                listKeys(this, list, prysin, rovin, traiborn)
                             }
                         }
                     }
@@ -61,7 +60,7 @@ class DemonSlayer : Script {
                 )
                 else -> listOf()
             }
-            player.questJournal("Demon Slayer", lines)
+            questJournal("Demon Slayer", lines)
         }
     }
 

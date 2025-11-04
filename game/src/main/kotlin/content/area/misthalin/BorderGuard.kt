@@ -2,10 +2,12 @@ package content.area.misthalin
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.inject
+import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.area.Rectangle
 import kotlin.collections.set
@@ -32,25 +34,41 @@ class BorderGuard : Script {
             }
         }
 
-        entered("border_guard*") { area ->
-            val border = area as Rectangle
-            if (steps.destination in border || steps.isEmpty()) {
-                val tile = border.nearestTo(tile)
-                val endSide = Border.getOppositeSide(border, tile)
-                walkTo(endSide, noCollision = true, forceWalk = true)
-            } else {
-                steps.update(noCollision = true, noRun = true)
-            }
-            val guards = guards[border] ?: return@entered
-            changeGuardState(guards, true)
-        }
+        entered("border_guard_edgeville_varrock", ::enter)
+        entered("border_guard_al_kharid_varrock", ::enter)
+        entered("border_guard_port_sarim_draynor", ::enter)
+        entered("border_guard_barbarian_village_varrock", ::enter)
+        entered("border_guard_varrock_south", ::enter)
+        entered("border_guard_draynor_barbarian_village", ::enter)
+        entered("border_guard_draynor_falador", ::enter)
 
-        exited("border_guard*") { area ->
-            val border = area as Rectangle
-            val guards = guards[border] ?: return@exited
-            steps.update(noCollision = false, noRun = false)
-            changeGuardState(guards, false)
+        exited("border_guard_edgeville_varrock", ::exit)
+        exited("border_guard_al_kharid_varrock", ::exit)
+        exited("border_guard_port_sarim_draynor", ::exit)
+        exited("border_guard_barbarian_village_varrock", ::exit)
+        exited("border_guard_varrock_south", ::exit)
+        exited("border_guard_draynor_barbarian_village", ::exit)
+        exited("border_guard_draynor_falador", ::exit)
+    }
+
+    fun enter(player: Player, area: Area) {
+        val border = area as Rectangle
+        if (player.steps.destination in border || player.steps.isEmpty()) {
+            val tile = border.nearestTo(player.tile)
+            val endSide = Border.getOppositeSide(border, tile)
+            player.walkTo(endSide, noCollision = true, forceWalk = true)
+        } else {
+            player.steps.update(noCollision = true, noRun = true)
         }
+        val guards = guards[border] ?: return
+        changeGuardState(guards, true)
+    }
+
+    fun exit(player: Player, area: Area) {
+        val border = area as Rectangle
+        val guards = guards[border] ?: return
+        player.steps.update(noCollision = false, noRun = false)
+        changeGuardState(guards, false)
     }
 
     fun changeGuardState(guards: List<GameObject>, raise: Boolean) {

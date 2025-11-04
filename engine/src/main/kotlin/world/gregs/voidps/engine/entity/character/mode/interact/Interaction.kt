@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
-import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.CancellableEvent

@@ -3,19 +3,13 @@ package content.area.troll_country.god_wars_dungeon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.ItemObjectInteract
-import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
 class SaradominRock : Script {
-
-    val handler: suspend TargetInteraction<Player, GameObject>.() -> Unit = objectOperate@{
-        tieRope(player, target.def.stringId)
-    }
 
     init {
         entered("godwars_dungeon_multi_area") {

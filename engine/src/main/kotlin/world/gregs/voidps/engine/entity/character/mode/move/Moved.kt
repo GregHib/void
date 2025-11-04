@@ -71,6 +71,8 @@ interface Moved {
         }
 
         fun clear() {
+            entered.clear()
+            exited.clear()
             playerMoved.clear()
             npcMoved.clear()
         }

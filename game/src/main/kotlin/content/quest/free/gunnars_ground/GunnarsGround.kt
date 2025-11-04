@@ -1,6 +1,5 @@
 package content.quest.free.gunnars_ground
 
-import content.entity.player.modal.tab.questJournalOpen
 import content.quest.letterScroll
 import content.quest.quest
 import content.quest.questJournal
@@ -50,7 +49,7 @@ class GunnarsGround : Script {
         }
 
         questJournalOpen("gunnars_ground") {
-            val lines = when (player.quest("gunnars_ground")) {
+            val lines = when (quest("gunnars_ground")) {
                 "completed" -> listOf(
                     "<str>I met an unhappy dwarf named Dororan just outside the",
                     "<str>barbarian village.",
@@ -286,7 +285,7 @@ class GunnarsGround : Script {
                         "<maroon>Gold ring <navy>he Specifically wants a ring from <maroon>Jeffery <navy>in <maroon>Edgeville.",
                         "<navy>Items I need:",
                     )
-                    if (player.holdsItem("ring_from_jeffery")) {
+                    if (holdsItem("ring_from_jeffery")) {
                         list.add("<str>Ring from Jeffery")
                     } else {
                         list.add("<maroon>Ring from Jeffery")
@@ -302,7 +301,7 @@ class GunnarsGround : Script {
                     "<navy>just outside the <maroon>barbarian village.",
                 )
             }
-            player.questJournal("Gunnar's Ground", lines)
+            questJournal("Gunnar's Ground", lines)
         }
     }
 }

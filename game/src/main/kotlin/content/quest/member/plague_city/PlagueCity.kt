@@ -4,7 +4,6 @@ import content.entity.combat.hit.directHit
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.player.inv.item.ItemUsedOnItem
-import content.entity.player.modal.tab.questJournalOpen
 import content.entity.sound.sound
 import content.quest.messageScroll
 import content.quest.quest
@@ -50,7 +49,7 @@ class PlagueCity : Script {
         }
 
         questJournalOpen("plague_city") {
-            val lines = when (player.quest("plague_city")) {
+            val lines = when (quest("plague_city")) {
                 "started" -> {
                     val list = mutableListOf(
                         "<str>I've spoken to Edmond in East Ardougne. He's asked to",
@@ -59,7 +58,7 @@ class PlagueCity : Script {
                         "<maroon>Edmond <navy>told me that his wife, <maroon>Alrena, <navy>can make me a <maroon>gas",
                         "<maroon>Mask <navy>to protect myself from the <maroon>plague.",
                     )
-                    if (player.holdsItem("dwellberries")) {
+                    if (holdsItem("dwellberries")) {
                         list.add("<navy>I need to get some <maroon>Dwellberries<navy> for <maroon>Alrena<navy> so she can make")
                         list.add("<navy>me a <maroon>Gas Mask<navy> to protect myself from the <maroon>Plague<navy>. According")
                         list.add("<navy>to <maroon>Edmond<navy>, I can find some in <maroon>McGrubor's Wood<navy>, west of")
@@ -108,13 +107,13 @@ class PlagueCity : Script {
                         "<maroon>Bucket of Water <navy>to soften the ground.<maroon>Edmond <navy>reckons",
                         "<navy>four <maroon>Bucket of Water <navy>should be enough.",
                     )
-                    if (player.quest("plague_city") == "one_bucket_of_water") {
+                    if (quest("plague_city") == "one_bucket_of_water") {
                         list.add("<navy>I've used one <maroon>Bucket of Water <navy>so far.")
                     }
-                    if (player.quest("plague_city") == "two_bucket_of_water") {
+                    if (quest("plague_city") == "two_bucket_of_water") {
                         list.add("<navy>I've used two <maroon>Bucket of Water <navy>so far.")
                     }
-                    if (player.quest("plague_city") == "three_bucket_of_water") {
+                    if (quest("plague_city") == "three_bucket_of_water") {
                         list.add("<navy>I've used three <maroon>Bucket of Water <navy>so far.")
                     }
                     list.add("")
@@ -153,7 +152,7 @@ class PlagueCity : Script {
                         "<str>down into the Sewers.",
                         "<str>I've dug a tunnel into the Ardougne sewers from Edmond's garden",
                     )
-                    if (player["plaguecity_checked_grill", false]) {
+                    if (get("plaguecity_checked_grill", false)) {
                         list.add("<navy>I've found a pipe that leads out of the <maroon>Ardougne Sewers")
                         list.add("<navy>and into <maroon>West Ardougne. <navy>However, there's a <maroon>Grill <navy>blocking")
                         list.add("<navy>my way. I might be able to use some <maroon>Rope <navy>to pull it off.")
@@ -202,11 +201,11 @@ class PlagueCity : Script {
                         "<str>I've found a pipe that leads out of the Ardougne Sewers",
                         "<str>and into West Ardougne.",
                     )
-                    if (player["plaguecity_picture_asked", false]) {
+                    if (get("plaguecity_picture_asked", false)) {
                         list.add("<navy>I entered <maroon>West Ardougne <navy>and found <maroon>Jethick<navy>, an old friend")
                         list.add("<navy>of <maroon>Edmond. <navy>He seemed willing to help me find <maroon>Elena <navy>but")
                         list.add("<navy>didn't know what she looked like.")
-                        if (player.holdsItem("picture_plague_city")) {
+                        if (holdsItem("picture_plague_city")) {
                             list.add("<navy>I have a picture of her which might help. I should show it to <maroon>Jethick.")
                         }
                     } else {
@@ -236,18 +235,18 @@ class PlagueCity : Script {
                         "<str>I've found a pipe that leads out of the Ardougne Sewers",
                         "<str>and into West Ardougne.",
                     )
-                    if (player["plaguecity_picture_asked", false]) {
+                    if (get("plaguecity_picture_asked", false)) {
                         list.add("<navy>of <maroon>Edmond. <navy>He thinks that <maroon>Elena <navy>was staying with the")
                         list.add("<maroon>Rehnison Family. <navy>According to him, they live in a timber")
                         list.add("<navy>house in the north of the city. He asked me to return a")
                         list.add("<navy>book to them while I was there.")
-                        if (!player.holdsItem("book_turnip_growing_for_beginners")) {
+                        if (!holdsItem("book_turnip_growing_for_beginners")) {
                             list.add("<navy>but I don't have it with me.")
                         }
                     } else {
                         list.add("<navy>I entered <maroon>West Ardougne<navy> and found <maroon>Jethick<navy>, an old friend of")
                         list.add("<navy><maroon>Edmond<navy>. He seemed willing to help me find <maroon>Elena<navy> but didn't")
-                        if (player.holdsItem("picture_plague_city")) {
+                        if (holdsItem("picture_plague_city")) {
                             list.add("<navy>know what she looked like. I have a picture of her which might")
                             list.add("<navy>help. I should show it to <maroon>Jethick<navy>.")
                         } else {
@@ -418,12 +417,12 @@ class PlagueCity : Script {
                         "<str>Plague House in return for a Hangover Cure",
                     )
 
-                    if (!player["plaguecity_key_asked", false]) {
+                    if (!get("plaguecity_key_asked", false)) {
                         list.add("<navy>I entered the <maroon>Plague House <navy>and found <maroon>Elena. <navy>Now I just")
                         list.add("<navy>need to free her. She thinks the key to her cell is hidden")
                         list.add("<navy>somewhere in the house.")
                     } else {
-                        if (player.tile in areas["plague_house"] || player.tile in areas["plague_house_basement"]) {
+                        if (tile in areas["plague_house"] || tile in areas["plague_house_basement"]) {
                             list.add("<navy>I've managed to enter the <maroon>Plague House. <navy>Now I need to find")
                             list.add("<maroon>Elena.")
                         } else {
@@ -511,7 +510,7 @@ class PlagueCity : Script {
                     "",
                 )
             }
-            player.questJournal("Plague City", lines)
+            questJournal("Plague City", lines)
         }
 
         itemOnObjectOperate("rope", "plague_sewer_pipe_open") {
