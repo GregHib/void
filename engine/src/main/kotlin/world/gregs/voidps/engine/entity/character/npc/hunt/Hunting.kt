@@ -65,22 +65,22 @@ class Hunting(
                 "player" -> {
                     val targets = getCharacters(npc, players, range, definition)
                     val target = targets.randomOrNull(seed) ?: continue
-                    npc.emit(HuntPlayer(mode, targets, target))
+                    Hunt.hunt(npc, target, mode)
                 }
                 "npc" -> {
                     val targets = getCharacters(npc, npcs, range, definition)
                     val target = targets.randomOrNull(seed) ?: continue
-                    npc.emit(HuntNPC(mode, targets, target))
+                    Hunt.hunt(npc, target, mode)
                 }
                 "object" -> {
                     val targets = getObjects(npc, definition)
                     val target = targets.randomOrNull(seed) ?: continue
-                    npc.emit(HuntObject(mode, targets, target))
+                    Hunt.hunt(npc, target, mode)
                 }
                 "floor_item" -> {
                     val targets = getItems(npc, range, definition)
                     val target = targets.randomOrNull(seed) ?: continue
-                    npc.emit(HuntFloorItem(mode, targets, target))
+                    Hunt.hunt(npc, target, mode)
                 }
             }
         }
@@ -169,7 +169,7 @@ class Hunting(
     /**
      * Finds the first [TARGET_CAP] possible [Character] targets
      */
-    private fun <T : Character> getCharacters(
+    fun <T : Character> getCharacters(
         npc: NPC,
         characterList: CharacterSearch<T>,
         range: Int,

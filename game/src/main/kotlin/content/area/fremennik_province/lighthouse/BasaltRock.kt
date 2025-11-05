@@ -2,7 +2,6 @@ package content.area.fremennik_province.lighthouse
 
 import content.entity.combat.hit.damage
 import content.entity.gfx.areaGfx
-import content.entity.sound.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -11,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile

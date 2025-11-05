@@ -1,6 +1,5 @@
 package content.area.kandarin.tree_gnome_stronghold
 
-import content.entity.obj.objTeleportTakeOff
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
@@ -11,6 +10,7 @@ import content.quest.questCompleted
 import content.skill.runecrafting.EssenceMine
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.Teleport
 
 class Brimstail : Script {
 
@@ -47,12 +47,14 @@ class Brimstail : Script {
             }
         }
 
-        objTeleportTakeOff("Enter", "brimstails_cave_entrance") {
-            player.message("You duck down as you enter this small door.")
+        objTeleportTakeOff("Enter", "brimstails_cave_entrance") { _, _ ->
+            message("You duck down as you enter this small door.")
+            Teleport.CONTINUE
         }
 
-        objTeleportTakeOff("Exit", "brimstails_cave_exit_*") {
-            player.message("You crouch your way through a cramped tunnel.")
+        objTeleportTakeOff("Exit", "brimstails_cave_exit_*") { _, _ ->
+            message("You crouch your way through a cramped tunnel.")
+            Teleport.CONTINUE
         }
     }
 }

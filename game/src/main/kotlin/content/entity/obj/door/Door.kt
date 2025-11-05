@@ -3,10 +3,10 @@ package content.entity.obj.door
 import content.entity.obj.door.Door.openDoor
 import content.entity.obj.door.Door.tile
 import content.entity.obj.door.Gate.isGate
-import content.entity.sound.sound
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace

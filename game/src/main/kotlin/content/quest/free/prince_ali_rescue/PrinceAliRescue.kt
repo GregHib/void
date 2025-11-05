@@ -2,12 +2,12 @@ package content.quest.free.prince_ali_rescue
 
 import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.type.statement
-import content.entity.sound.sound
 import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.FontDefinitions
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.contains

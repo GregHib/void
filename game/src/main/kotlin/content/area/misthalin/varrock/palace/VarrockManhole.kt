@@ -1,8 +1,8 @@
 package content.area.misthalin.varrock.palace
 
-import content.entity.sound.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.replace
 
 class VarrockManhole : Script {

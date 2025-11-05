@@ -75,14 +75,14 @@ class ClanChat : Script {
             }
 
             if (clan.members.contains(target)) {
-                target.emit(LeaveClanChat(forced = true))
+                FriendsList.leaveClan(target, true)
             }
             player.message("Your request to kick/ban this user was successful.", ChatType.ClanChat)
         }
 
         instruction<ClanChatJoin> { player ->
             if (name.isBlank()) {
-                player.emit(LeaveClanChat(forced = false))
+                FriendsList.leaveClan(player, false)
                 return@instruction
             }
             joinClan(player, name)
@@ -128,7 +128,7 @@ class ClanChat : Script {
             if (clan.hasRank(player, ClanRank.Recruit)) {
                 val victim = clan.members.minByOrNull { clan.getRank(it).value }
                 if (victim != null) {
-                    victim.emit(LeaveClanChat(forced = true))
+                    FriendsList.leaveClan(victim, true)
                     space = true
                 }
             }

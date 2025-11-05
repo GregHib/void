@@ -4,6 +4,7 @@ import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.inject
 
 class Stairs : Script {
@@ -22,18 +23,20 @@ class Stairs : Script {
             }
         }
 
-        objTeleportTakeOff {
+        objTeleportTakeOff { target, option ->
+            val obj = target.def(this)
             if (!obj.name.isLadder()) {
-                return@objTeleportTakeOff
+                return@objTeleportTakeOff Teleport.CONTINUE
             }
-            val remaining = player.remaining("teleport_delay")
+            val remaining = remaining("teleport_delay")
             if (remaining > 0) {
-                delay = remaining
+                return@objTeleportTakeOff remaining
             } else if (remaining < 0) {
-                player.anim(if (option == "Climb-down" || obj.stringId.endsWith("_down")) "climb_down" else "climb_up")
-                player.start("teleport_delay", 2)
-                delay = 2
+                anim(if (option == "Climb-down" || obj.stringId.endsWith("_down")) "climb_down" else "climb_up")
+                start("teleport_delay", 2)
+                return@objTeleportTakeOff 2
             }
+            return@objTeleportTakeOff Teleport.CONTINUE
         }
     }
 

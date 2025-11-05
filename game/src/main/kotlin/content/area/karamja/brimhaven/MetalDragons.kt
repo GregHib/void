@@ -4,11 +4,11 @@ import content.entity.combat.CombatSwing
 import content.entity.combat.hit.hit
 import content.entity.combat.npcCombatSwing
 import content.entity.proj.shoot
-import content.entity.sound.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 

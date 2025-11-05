@@ -1,6 +1,5 @@
 package content.skill.magic.spell
 
-import content.entity.sound.sound
 import content.quest.quest
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
@@ -18,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove

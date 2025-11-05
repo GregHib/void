@@ -1,11 +1,10 @@
 package content.area.misthalin.barbarian_village.stronghold_of_security
 
 import com.github.michaelbull.logging.InlineLogger
-import content.skill.magic.spell.Teleport
-import content.skill.magic.spell.teleportTakeOff
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.discharge
@@ -24,23 +23,23 @@ class SkullSceptre : Script {
         }
 
         teleportTakeOff("skull_sceptre") {
-            if (player.equipped(EquipSlot.Weapon).id == "skull_sceptre") {
-                if (!player.equipment.discharge(player, EquipSlot.Weapon.index, 1)) {
-                    logger.warn { "Failed to discharge skull sceptre for $player" }
-                    cancel()
+            if (equipped(EquipSlot.Weapon).id == "skull_sceptre") {
+                if (!equipment.discharge(this, EquipSlot.Weapon.index, 1)) {
+                    logger.warn { "Failed to discharge skull sceptre for $this" }
+                    return@teleportTakeOff false
                 }
-                return@teleportTakeOff
+                return@teleportTakeOff true
             }
-            val index = player.inventory.indexOf("skull_sceptre")
+            val index = inventory.indexOf("skull_sceptre")
             if (index == -1) {
-                logger.warn { "Failed to find skull sceptre for $player" }
-                cancel()
-                return@teleportTakeOff
+                logger.warn { "Failed to find skull sceptre for $this" }
+                return@teleportTakeOff false
             }
-            if (!player.inventory.discharge(player, index, 1)) {
-                logger.warn { "Failed to discharge skull sceptre for $player" }
-                cancel()
+            if (!inventory.discharge(this, index, 1)) {
+                logger.warn { "Failed to discharge skull sceptre for $this" }
+                return@teleportTakeOff false
             }
+            return@teleportTakeOff true
         }
 
         itemOption("Divine", "skull_sceptre") { (item) ->

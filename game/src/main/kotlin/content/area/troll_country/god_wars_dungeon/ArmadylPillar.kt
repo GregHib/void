@@ -2,13 +2,13 @@ package content.area.troll_country.god_wars_dungeon
 
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
-import content.entity.sound.sound
 import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add

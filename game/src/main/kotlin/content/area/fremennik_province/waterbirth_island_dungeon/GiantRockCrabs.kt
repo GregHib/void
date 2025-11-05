@@ -6,7 +6,6 @@ import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
@@ -14,17 +13,17 @@ import java.util.concurrent.TimeUnit
 class GiantRockCrabs : Script {
 
     init {
-        huntPlayer("boulder*", "aggressive") { npc ->
-            if (npc.transform.startsWith("giant_rock_crab")) {
+        huntPlayer("boulder*", "aggressive") { target ->
+            if (transform.startsWith("giant_rock_crab")) {
                 return@huntPlayer
             }
 
-            npc.transform(npc.id.replace("boulder", "giant_rock_crab"))
+            transform(id.replace("boulder", "giant_rock_crab"))
 
             // Give a short delay before attacking (they "stand up")
-            npc.softQueue("stand_up", 2) {
-                npc.interactPlayer(target, "Attack")
-                scheduleReset(npc) // start reset countdown
+            softQueue("stand_up", 2) {
+                interactPlayer(target, "Attack")
+                scheduleReset(this@huntPlayer) // start reset countdown
             }
         }
     }

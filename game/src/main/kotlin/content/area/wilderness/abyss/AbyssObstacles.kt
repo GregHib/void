@@ -1,7 +1,6 @@
 package content.area.wilderness.abyss
 
 import content.entity.gfx.areaGfx
-import content.entity.sound.sound
 import content.skill.mining.Pickaxe
 import content.skill.woodcutting.Hatchet
 import world.gregs.voidps.engine.Script
@@ -14,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile

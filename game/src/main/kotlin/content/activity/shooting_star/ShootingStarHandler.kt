@@ -1,7 +1,7 @@
 package content.activity.shooting_star
 
-import content.entity.sound.areaSound
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject

@@ -3,8 +3,6 @@ package content.area.kandarin.ourania
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
-import world.gregs.voidps.engine.entity.character.npc.hunt.huntNPC
-import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
@@ -22,12 +20,14 @@ class CaveLizard : Script {
             Timer.CONTINUE
         }
 
-        huntNPC("cave_lizard", "zamorak_*", "aggressive_npcs") { npc ->
-            npc.interactNpc(target, "Attack")
+        huntNPC("aggressive_npcs") { target ->
+            if (id == "cave_lizard" && target.id.startsWith("zamorak_")) {
+                interactNpc(target, "Attack")
+            }
         }
 
-        huntPlayer("cave_lizard", "aggressive") { npc ->
-            npc.interactPlayer(target, "Attack")
+        huntPlayer("aggressive", "cave_lizard") { target ->
+            interactPlayer(target, "Attack")
         }
     }
 }

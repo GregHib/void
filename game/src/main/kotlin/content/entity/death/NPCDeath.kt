@@ -6,7 +6,6 @@ import content.entity.combat.*
 import content.entity.effect.clearTransform
 import content.entity.npc.combat.NPCAttack
 import content.entity.player.inv.item.tradeable
-import content.entity.sound.sound
 import content.skill.slayer.*
 import content.social.clan.clan
 import world.gregs.voidps.engine.Script
@@ -29,6 +28,7 @@ import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems

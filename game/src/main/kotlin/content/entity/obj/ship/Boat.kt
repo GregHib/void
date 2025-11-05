@@ -1,9 +1,9 @@
 package content.entity.obj.ship
 
-import content.entity.sound.jingle
 import content.quest.startCutscene
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile

@@ -10,7 +10,6 @@ import content.entity.gfx.areaGfx
 import content.entity.player.inv.item.tradeable
 import content.entity.player.kept.ItemsKeptOnDeath
 import content.entity.proj.shoot
-import content.entity.sound.jingle
 import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.praying
 import world.gregs.voidps.engine.Script
@@ -18,6 +17,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player

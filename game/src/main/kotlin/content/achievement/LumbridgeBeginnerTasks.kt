@@ -3,7 +3,6 @@ package content.achievement
 import content.entity.combat.hit.combatAttack
 import content.entity.combat.killer
 import content.entity.npc.shop.shop
-import content.entity.obj.objTeleportLand
 import content.skill.melee.weapon.attackStyle
 import content.skill.prayer.PrayerApi
 import content.skill.ranged.ammo
@@ -57,8 +56,8 @@ class LumbridgeBeginnerTasks :
             }
         }
 
-        objTeleportLand("Climb-up", "lumbridge_castle_ladder") {
-            player["master_of_all_i_survey_task"] = true
+        objTeleportLand("Climb-up", "lumbridge_castle_ladder") { _, _ ->
+            set("master_of_all_i_survey_task", true)
         }
 
         itemAdded("copper_ore", inventory = "inventory") {

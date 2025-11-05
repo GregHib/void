@@ -1,10 +1,9 @@
-package content.entity.sound
+package world.gregs.voidps.engine.entity.character
 
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.JingleDefinitions
 import world.gregs.voidps.engine.data.definition.MidiDefinitions
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.encode.playJingle
