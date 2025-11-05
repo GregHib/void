@@ -5,6 +5,7 @@ import content.entity.combat.Target
 import content.entity.combat.hit.Damage
 import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.hit
+import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.skill.melee.weapon.weapon
 import org.rsmod.game.pathfinder.LineValidator
@@ -18,22 +19,22 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
 
-class KorasiSword : Script {
+class KorasiSword : Script, SpecialAttack {
 
     val players: Players by inject()
     val npcs: NPCs by inject()
     val lineOfSight: LineValidator by inject()
 
     init {
-        specialAttack("disrupt") { player ->
-            player["korasi_chain"] = mutableSetOf(target.index)
-            player.anim("${id}_special")
-            player.gfx("${id}_special")
-            areaSound("godwars_saradomin_magic_impact", player.tile, 10)
-            areaSound("godwars_godsword_special_attack", player.tile, 5)
-            val maxHit = Damage.maximum(player, target, "melee", player.weapon)
+        specialAttack("disrupt") { target, id ->
+            set("korasi_chain", mutableSetOf(target.index))
+            anim("${id}_special")
+            gfx("${id}_special")
+            areaSound("godwars_saradomin_magic_impact", tile, 10)
+            areaSound("godwars_godsword_special_attack", tile, 5)
+            val maxHit = Damage.maximum(this, target, "melee", weapon)
             val hit = random.nextInt(maxHit / 2, (maxHit * 1.5).toInt())
-            player.hit(target, damage = hit, offensiveType = "magic", delay = 0)
+            hit(target, damage = hit, offensiveType = "magic", delay = 0)
         }
 
         characterCombatDamage("korasis_sword") { target ->

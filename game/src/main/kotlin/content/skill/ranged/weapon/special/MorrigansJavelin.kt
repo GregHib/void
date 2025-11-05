@@ -2,6 +2,7 @@ package content.skill.ranged.weapon.special
 
 import content.entity.combat.hit.directHit
 import content.entity.combat.hit.hit
+import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.skill.ranged.ammo
@@ -11,18 +12,18 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.*
 
-class MorrigansJavelin : Script {
+class MorrigansJavelin : Script, SpecialAttack {
 
     init {
-        specialAttack("phantom_strike") { player ->
-            val ammo = player.ammo
-            player.anim("throw_javelin")
-            player.gfx("${ammo}_special")
-            val time = player.shoot(id = ammo, target = target)
-            val damage = player.hit(target, delay = time)
+        specialAttack("phantom_strike") { target, id ->
+            val ammo = ammo
+            anim("throw_javelin")
+            gfx("${ammo}_special")
+            val time = shoot(id = ammo, target = target)
+            val damage = hit(target, delay = time)
             if (damage != -1) {
                 target["phantom_damage"] = damage
-                target["phantom"] = player
+                target["phantom"] = this
                 target["phantom_first"] = "start"
                 target.softTimers.start(id)
             }

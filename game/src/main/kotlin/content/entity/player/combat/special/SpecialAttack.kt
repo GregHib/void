@@ -1,6 +1,7 @@
 package content.entity.player.combat.special
 
 import content.skill.melee.weapon.weapon
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -13,16 +14,19 @@ import kotlin.math.floor
 
 const val MAX_SPECIAL_ATTACK = 1000
 
-data class SpecialAttack(val id: String, val target: Character) : Event {
-    override val size = 2
+interface SpecialAttack {
 
-    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "special_attack"
-        1 -> id
-        else -> null
+    fun specialAttack(id: String = "*", block: Player.(target: Character, id: String) -> Unit) {
+        specials[id] = block
     }
 
     companion object {
+        val specials = Object2ObjectOpenHashMap<String, Player.(Character, String) -> Unit>()
+
+        fun special(player: Player, target: Character, id: String) {
+            (specials[id] ?: specials["*"])?.invoke(player, target, id)
+        }
+
         fun hasEnergy(player: Player) = drain(player, drain = false)
 
         fun drain(player: Player, drain: Boolean = true): Boolean {
@@ -47,10 +51,6 @@ data class SpecialAttack(val id: String, val target: Character) : Event {
             return true
         }
     }
-}
-
-fun specialAttack(id: String = "*", handler: suspend SpecialAttack.(Player) -> Unit) {
-    Events.handle("special_attack", id, handler = handler)
 }
 
 var Player.specialAttack: Boolean

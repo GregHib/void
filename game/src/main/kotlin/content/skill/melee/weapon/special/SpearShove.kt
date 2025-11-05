@@ -3,6 +3,7 @@ package content.skill.melee.weapon.special
 import content.entity.combat.combatPrepare
 import content.entity.combat.hit.hit
 import content.entity.effect.freeze
+import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
@@ -13,7 +14,7 @@ import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-class SpearShove : Script {
+class SpearShove : Script, SpecialAttack {
 
     init {
         combatPrepare("melee") { player ->
@@ -29,15 +30,15 @@ class SpearShove : Script {
             }
         }
 
-        specialAttack("shove") { player ->
-            player.anim("${id}_special")
-            player.gfx("${id}_special")
+        specialAttack("shove") { target, id ->
+            anim("${id}_special")
+            gfx("${id}_special")
             val duration = TimeUnit.SECONDS.toTicks(3)
             target.gfx("dragon_spear_stun")
             target.freeze(duration)
-            player["delay"] = duration
-            player.hit(target, damage = -1) // Hit with no damage so target can auto-retaliate
-            val actual = player.tile
+            set("delay", duration)
+            hit(target, damage = -1) // Hit with no damage so target can auto-retaliate
+            val actual = tile
             val direction = target.tile.delta(actual).toDirection()
             val delta = direction.delta
             if (!target.blocked(direction)) {

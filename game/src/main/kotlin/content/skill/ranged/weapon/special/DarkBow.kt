@@ -3,6 +3,7 @@ package content.skill.ranged.weapon.special
 import content.entity.combat.combatSwing
 import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.hit
+import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.skill.ranged.ammo
@@ -12,29 +13,29 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.distanceTo
 
-class DarkBow : Script {
+class DarkBow : Script, SpecialAttack {
 
     init {
-        specialAttack("descent_of_darkness") { player ->
-            val dragon = player.ammo == "dragon_arrow"
-            player.anim("bow_accurate")
-            player.gfx("${player.ammo}_double_shot")
-            player.sound("dark_bow_special")
-            player.sound("descent_of_${if (dragon) "dragons" else "darkness"}")
+        specialAttack("descent_of_darkness") { target, _ ->
+            val dragon = ammo == "dragon_arrow"
+            anim("bow_accurate")
+            gfx("${ammo}_double_shot")
+            sound("dark_bow_special")
+            sound("descent_of_${if (dragon) "dragons" else "darkness"}")
 
-            val time1 = player.shoot("descent_of_arrow", target, true)
-            player.shoot("arrow_smoke", target, true)
+            val time1 = shoot("descent_of_arrow", target, true)
+            shoot("arrow_smoke", target, true)
             if (dragon) {
-                player.shoot("descent_of_dragons_head", target, true)
+                shoot("descent_of_dragons_head", target, true)
             }
 
-            val time2 = player.shoot("descent_of_arrow", target, false)
-            player.shoot("arrow_smoke_2", target, false)
+            val time2 = shoot("descent_of_arrow", target, false)
+            shoot("arrow_smoke_2", target, false)
             if (dragon) {
-                player.shoot("descent_of_dragons_head", target, false)
+                shoot("descent_of_dragons_head", target, false)
             }
-            player.hit(target, delay = time1)
-            player.hit(target, delay = time2)
+            hit(target, delay = time1)
+            hit(target, delay = time2)
         }
 
         characterCombatDamage("dark_bow*", "range") { character ->

@@ -51,7 +51,7 @@ class Ranged : Script {
             val required = Ammo.requiredAmount(character.weapon, character.specialAttack)
             if (character.specialAttack && SpecialAttack.drain(character)) {
                 val id: String = character.weapon.def.getOrNull("special") ?: return
-                character.emit(SpecialAttack(id, target))
+                SpecialAttack.special(character, target, id)
                 return
             }
             if (style.stringId != "sling") {

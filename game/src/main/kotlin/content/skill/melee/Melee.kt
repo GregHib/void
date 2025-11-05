@@ -27,7 +27,7 @@ class Melee : Script {
         combatSwing(style = "melee") { player ->
             if (player.specialAttack && SpecialAttack.drain(player)) {
                 val id: String = player.weapon.def["special"]
-                player.emit(SpecialAttack(id, target))
+                SpecialAttack.special(player, target, id)
                 return@combatSwing
             }
             val type: String? = player.weapon.def.getOrNull("weapon_type")

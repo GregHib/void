@@ -17,20 +17,20 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 
-class RuneThrowingAxe : Script {
+class RuneThrowingAxe : Script, SpecialAttack {
 
     val players: Players by inject()
     val npcs: NPCs by inject()
     val lineOfSight: LineValidator by inject()
 
     init {
-        specialAttack("chainhit") { player ->
-            val ammo = player.ammo
-            player["chain_hits"] = mutableSetOf(target.index)
-            player.anim("rune_throwing_axe_special")
-            player.gfx("${ammo}_special_throw")
-            val time = player.shoot(id = "${ammo}_special", target = target)
-            player.hit(target, delay = time)
+        specialAttack("chainhit") { target, _ ->
+            val ammo = ammo
+            set("chain_hits", mutableSetOf(target.index))
+            anim("rune_throwing_axe_special")
+            gfx("${ammo}_special_throw")
+            val time = shoot(id = "${ammo}_special", target = target)
+            hit(target, delay = time)
         }
 
         characterCombatDamage("rune_throwing_axe", "range") { target ->

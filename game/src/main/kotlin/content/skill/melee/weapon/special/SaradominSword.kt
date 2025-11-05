@@ -2,24 +2,25 @@ package content.skill.melee.weapon.special
 
 import content.entity.combat.hit.Damage
 import content.entity.combat.hit.hit
+import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.areaSound
 
-class SaradominSword : Script {
+class SaradominSword : Script, SpecialAttack {
 
     init {
-        specialAttack("saradomins_lightning") { player ->
-            player.anim("${id}_special")
-            areaSound("godwars_godsword_special_attack", player.tile)
-            val weapon = player.weapon
-            val damage = Damage.roll(player, target, "melee", weapon)
-            player.hit(target, damage = damage)
+        specialAttack("saradomins_lightning") { target, id ->
+            anim("${id}_special")
+            areaSound("godwars_godsword_special_attack", tile)
+            val weapon = weapon
+            val damage = Damage.roll(this, target, "melee", weapon)
+            hit(target, damage = damage)
             if (damage > 0) {
                 target.gfx("saradomins_lightning_impact")
                 areaSound("godwars_saradomin_magic_impact", target.tile, 10)
-                player.hit(target, offensiveType = "magic")
+                hit(target, offensiveType = "magic")
             }
         }
     }
