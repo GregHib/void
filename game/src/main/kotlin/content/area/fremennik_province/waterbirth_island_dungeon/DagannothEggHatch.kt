@@ -4,7 +4,6 @@ import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
@@ -18,21 +17,21 @@ class DagannothEggHatch : Script {
         /**
          * When a player enters hunt radius, egg transforms to spawn and attacks.
          */
-        huntPlayer("dagannoth_egg", "aggressive") { npc ->
+        huntPlayer("dagannoth_egg", "aggressive") { target ->
             // Ignore if already transformed
-            if (npc.transform == "dagannoth_spawn") {
+            if (transform == "dagannoth_spawn") {
                 return@huntPlayer
             }
-            npc.transform("dagannoth_egg_open")
+            transform("dagannoth_egg_open")
 
             // Small stand-up delay before attacking
-            npc.softQueue("dagannoth_hatch_attack", 1) {
-                npc.transform("dagannoth_egg_opened")
-                val spawn = npcs.add("dagannoth_spawn", npc.tile)
-                npc.interactPlayer(target, "Attack")
+            softQueue("dagannoth_hatch_attack", 1) {
+                transform("dagannoth_egg_opened")
+                npcs.add("dagannoth_spawn", tile)
+                interactPlayer(target, "Attack")
             }
-            npc.softQueue("dagannoth_respawn", TimeUnit.MINUTES.toTicks(5)) {
-                npc.transform("dagannoth_egg")
+            softQueue("dagannoth_respawn", TimeUnit.MINUTES.toTicks(5)) {
+                transform("dagannoth_egg")
             }
         }
     }

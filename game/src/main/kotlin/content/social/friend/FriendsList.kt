@@ -15,8 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
-import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
-import world.gregs.voidps.engine.entity.character.player.chat.clan.clanChatLeave
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.FriendAdd
 import world.gregs.voidps.network.client.instruction.FriendDelete
@@ -107,7 +106,7 @@ class FriendsList : Script {
                     member.client?.appendClanChat(ClanMember.of(target, ClanRank.None))
                 }
                 if (!clan.hasRank(target, clan.joinRank)) {
-                    target.emit(LeaveClanChat(forced = true))
+                    leaveClan(target, true)
                 }
             }
         }
@@ -137,8 +136,10 @@ class FriendsList : Script {
             }
             privateStatus = option.lowercase()
         }
+    }
 
-        clanChatLeave { player ->
+    companion object {
+        val leaveClan: (Player, Boolean) -> Unit = { player, forced ->
             val clan: Clan? = player.remove("clan")
             player.clear("clan_chat")
             player.message("You have ${if (forced) "been kicked from" else "left"} the channel.", ChatType.ClanChat)
@@ -156,6 +157,10 @@ class FriendsList : Script {
                 ClanLootShare.update(player, clan, lootShare = false)
             }
         }
+
+        private fun Player.sendFriends() {
+            client?.sendFriendsList(friends.mapNotNull { toFriend(this, get<AccountDefinitions>().getByAccount(it.key) ?: return@mapNotNull null) })
+        }
     }
 
     fun friends(player: Player) = { other: Player, status: String ->
@@ -169,9 +174,6 @@ class FriendsList : Script {
 
     fun friends(player: Player, it: Player) = player.friend(it) || it.isAdmin()
 
-    fun Player.sendFriends() {
-        client?.sendFriendsList(friends.mapNotNull { toFriend(this, accounts.getByAccount(it.key) ?: return@mapNotNull null) })
-    }
 
     fun notifyBefriends(player: Player, online: Boolean, notify: (Player, String) -> Boolean = friends(player)) {
         players

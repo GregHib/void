@@ -8,8 +8,6 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.hunt.huntNPC
-import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
@@ -61,16 +59,16 @@ class GodwarsAggression : Script {
             }
         }
 
-        huntPlayer(mode = "godwars_aggressive") { npc ->
-            npc.interactPlayer(target, "Attack")
+        huntPlayer(mode = "godwars_aggressive") { target ->
+            interactPlayer(target, "Attack")
         }
 
-        huntNPC(mode = "zamorak_aggressive") { npc ->
-            npc.interactNpc(target, "Attack")
+        huntNPC(mode = "zamorak_aggressive") { target ->
+            interactNpc(target, "Attack")
         }
 
-        huntNPC(mode = "anti_zamorak_aggressive") { npc ->
-            npc.interactNpc(target, "Attack")
+        huntNPC(mode = "anti_zamorak_aggressive") { target ->
+            interactNpc(target, "Attack")
         }
 
         npcDeath {

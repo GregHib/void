@@ -1,6 +1,7 @@
 package content.social.clan
 
 import content.entity.player.dialogue.type.stringEntry
+import content.social.friend.FriendsList
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
@@ -9,7 +10,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
-import world.gregs.voidps.engine.entity.character.player.chat.clan.LeaveClanChat
 import world.gregs.voidps.network.login.protocol.encode.leaveClanChat
 import world.gregs.voidps.network.login.protocol.encode.updateClanChat
 
@@ -51,7 +51,7 @@ class ClanSetup : Script {
             interfaces.sendText(it.id, it.component, it.option)
             for (member in clan.members) {
                 if (!clan.hasRank(member, rank)) {
-                    member.emit(LeaveClanChat(forced = true))
+                    FriendsList.leaveClan(member, true)
                 }
             }
         }

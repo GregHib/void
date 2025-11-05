@@ -6,7 +6,6 @@ import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.hunt.huntPlayer
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
@@ -14,27 +13,27 @@ import java.util.concurrent.TimeUnit
 class RockCrabs : Script {
 
     init {
-        huntPlayer("rock*", "aggressive") { npc ->
+        huntPlayer("rock*", "aggressive") { target ->
             // already a crab? just aggro the player
-            if (npc.transform.startsWith("rock_crab")) {
-                npc.interactPlayer(target, "Attack")
+            if (transform.startsWith("rock_crab")) {
+                interactPlayer(target, "Attack")
                 return@huntPlayer
             }
 
             // pick correct crab form based on rock variant
-            val combatForm = when (npc.id) {
+            val combatForm = when (id) {
                 "rock" -> "rock_crab"
                 "rock_1" -> "rock_crab_1"
                 else -> return@huntPlayer
             }
 
             // transform into crab
-            npc.transform(combatForm)
+            transform(combatForm)
 
             // short stand-up delay before attacking
-            npc.softQueue("rock_stand_up", 2) {
-                npc.interactPlayer(target, "Attack")
-                resetToRock(npc) // start inactivity timer for disguise reset
+            softQueue("rock_stand_up", 2) {
+                interactPlayer(target, "Attack")
+                resetToRock(this@huntPlayer) // start inactivity timer for disguise reset
             }
         }
     }
