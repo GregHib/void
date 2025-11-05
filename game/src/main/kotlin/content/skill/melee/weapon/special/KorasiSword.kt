@@ -6,10 +6,10 @@ import content.entity.combat.hit.Damage
 import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.specialAttack
-import world.gregs.voidps.engine.entity.character.areaSound
 import content.skill.melee.weapon.weapon
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player

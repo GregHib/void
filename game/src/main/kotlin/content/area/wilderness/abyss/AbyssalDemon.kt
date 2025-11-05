@@ -1,9 +1,9 @@
 package content.area.wilderness.abyss
 
 import content.entity.combat.hit.npcCombatDamage
-import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.type.random
 

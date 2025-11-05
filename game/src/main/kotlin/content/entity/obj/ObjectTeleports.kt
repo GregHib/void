@@ -47,14 +47,12 @@ class ObjectTeleports {
         Teleport.land(player, target, definition.option)
     }
 
-    fun teleportTile(player: Player, definition: TeleportDefinition): Tile {
-        return when {
-            definition.delta != Delta.EMPTY && definition.to != Tile.EMPTY ->
-                Distance.getNearest(definition.to, definition.delta.x, definition.delta.y, player.tile)
-            definition.delta != Delta.EMPTY -> player.tile.add(definition.delta)
-            definition.to != Tile.EMPTY -> definition.to
-            else -> player.tile
-        }
+    fun teleportTile(player: Player, definition: TeleportDefinition): Tile = when {
+        definition.delta != Delta.EMPTY && definition.to != Tile.EMPTY ->
+            Distance.getNearest(definition.to, definition.delta.x, definition.delta.y, player.tile)
+        definition.delta != Delta.EMPTY -> player.tile.add(definition.delta)
+        definition.to != Tile.EMPTY -> definition.to
+        else -> player.tile
     }
 
     fun contains(id: String, tile: Tile, option: String): Boolean {

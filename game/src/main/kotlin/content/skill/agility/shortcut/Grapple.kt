@@ -2,7 +2,6 @@ package content.skill.agility.shortcut
 
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.statement
-import world.gregs.voidps.engine.entity.character.sound
 import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -14,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction

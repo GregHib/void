@@ -1,6 +1,5 @@
 package content.skill.woodcutting
 
-import world.gregs.voidps.engine.entity.character.areaSound
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -10,6 +9,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.data.Tree
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players

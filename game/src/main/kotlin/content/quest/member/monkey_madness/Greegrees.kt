@@ -3,7 +3,6 @@ package content.quest.member.monkey_madness
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.player.dialogue.type.statement
-import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.open
@@ -11,6 +10,7 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*

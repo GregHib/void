@@ -1,12 +1,12 @@
 package content.entity.player.dialogue.type
 
 import content.entity.combat.hit.combatDamage
-import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*

@@ -5,7 +5,6 @@ import content.entity.combat.attackers
 import content.entity.combat.hit.npcCombatDamage
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.warning
-import world.gregs.voidps.engine.entity.character.areaSound
 import content.skill.firemaking.Light
 import content.skill.firemaking.Light.hasLightSource
 import content.skill.melee.weapon.fightStyle
@@ -16,6 +15,7 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC

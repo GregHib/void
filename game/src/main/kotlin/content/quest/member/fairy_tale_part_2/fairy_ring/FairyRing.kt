@@ -4,7 +4,6 @@ import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.quest.quest
 import content.quest.questCompleted
-import world.gregs.voidps.engine.entity.character.player.Teleport
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -13,6 +12,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.ListValues
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.type.Tile

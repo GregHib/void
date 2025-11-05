@@ -4,11 +4,11 @@ import content.entity.combat.hit.hit
 import content.entity.combat.npcCombatSwing
 import content.entity.player.equip.Equipment
 import content.entity.proj.shoot
-import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class Banshee : Script {

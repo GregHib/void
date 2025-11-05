@@ -1,10 +1,10 @@
 package content.area.misthalin.barbarian_village.stronghold_of_security
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.discharge

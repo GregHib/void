@@ -4,9 +4,9 @@ import content.area.wilderness.inMultiCombat
 import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.directHit
-import world.gregs.voidps.engine.entity.character.sound
 import content.skill.melee.weapon.multiTargets
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.type.random
 import kotlin.random.nextInt
 

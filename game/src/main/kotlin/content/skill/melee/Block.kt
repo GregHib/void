@@ -2,7 +2,6 @@ package content.skill.melee
 
 import content.entity.combat.hit.characterCombatAttack
 import content.entity.npc.combat.NPCAttack
-import world.gregs.voidps.engine.entity.character.sound
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
@@ -14,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.male
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random

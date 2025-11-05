@@ -174,7 +174,6 @@ class FriendsList : Script {
 
     fun friends(player: Player, it: Player) = player.friend(it) || it.isAdmin()
 
-
     fun notifyBefriends(player: Player, online: Boolean, notify: (Player, String) -> Boolean = friends(player)) {
         players
             .filter { it.friend(player) && notify(it, player.privateStatus) }

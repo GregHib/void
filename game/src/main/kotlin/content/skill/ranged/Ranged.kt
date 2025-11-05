@@ -8,7 +8,6 @@ import content.entity.npc.combat.NPCAttack
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
-import world.gregs.voidps.engine.entity.character.sound
 import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
 import content.skill.slayer.categories
@@ -19,6 +18,7 @@ import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inject
 
 class Ranged : Script {

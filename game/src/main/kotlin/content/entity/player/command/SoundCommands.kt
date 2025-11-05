@@ -2,9 +2,6 @@
 
 package content.entity.player.command
 
-import world.gregs.voidps.engine.entity.character.jingle
-import world.gregs.voidps.engine.entity.character.midi
-import world.gregs.voidps.engine.entity.character.sound
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
@@ -13,6 +10,9 @@ import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.entity.character.jingle
+import world.gregs.voidps.engine.entity.character.midi
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.encode.playJingle
 import world.gregs.voidps.network.login.protocol.encode.playMIDI

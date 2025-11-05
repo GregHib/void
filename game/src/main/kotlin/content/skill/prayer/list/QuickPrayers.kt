@@ -2,7 +2,6 @@ package content.skill.prayer.list
 
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
-import world.gregs.voidps.engine.entity.character.sound
 import content.skill.prayer.PrayerConfigs.QUICK_CURSES
 import content.skill.prayer.PrayerConfigs.QUICK_PRAYERS
 import content.skill.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
@@ -18,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inject
 
 class QuickPrayers : Script {
