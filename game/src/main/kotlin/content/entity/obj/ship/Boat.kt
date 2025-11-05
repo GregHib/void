@@ -1,6 +1,6 @@
 package content.entity.obj.ship
 
-import content.entity.sound.jingle
+import world.gregs.voidps.engine.entity.character.jingle
 import content.quest.startCutscene
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open

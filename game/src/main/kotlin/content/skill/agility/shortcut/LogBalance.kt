@@ -2,7 +2,7 @@ package content.skill.agility.shortcut
 
 import content.entity.combat.hit.damage
 import content.entity.gfx.areaGfx
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType

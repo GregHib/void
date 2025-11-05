@@ -1,6 +1,6 @@
 package content.area.misthalin.lumbridge.roddecks_house
 
-import content.entity.sound.areaSound
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.obj.replace

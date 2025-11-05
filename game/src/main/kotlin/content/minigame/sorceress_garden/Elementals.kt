@@ -1,7 +1,7 @@
 package content.minigame.sorceress_garden
 
 import content.entity.proj.shoot
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.HuntModeDefinitions

@@ -4,7 +4,7 @@ import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.quest.quest
 import content.quest.questCompleted
-import content.skill.magic.spell.Teleport
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message

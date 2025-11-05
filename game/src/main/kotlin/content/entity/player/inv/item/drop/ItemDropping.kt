@@ -2,7 +2,7 @@ package content.entity.player.inv.item.drop
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.inv.item.tradeable
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog

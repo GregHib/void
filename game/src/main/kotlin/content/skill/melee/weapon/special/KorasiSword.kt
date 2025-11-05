@@ -6,7 +6,7 @@ import content.entity.combat.hit.Damage
 import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.specialAttack
-import content.entity.sound.areaSound
+import world.gregs.voidps.engine.entity.character.areaSound
 import content.skill.melee.weapon.weapon
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.Script

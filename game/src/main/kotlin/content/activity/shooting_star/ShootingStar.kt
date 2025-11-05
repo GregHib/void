@@ -8,7 +8,6 @@ import content.entity.combat.hit.damage
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.npc
-import content.entity.sound.areaSound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.stringArg
@@ -19,6 +18,7 @@ import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player

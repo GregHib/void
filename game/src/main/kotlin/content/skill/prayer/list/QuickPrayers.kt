@@ -2,7 +2,7 @@ package content.skill.prayer.list
 
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.prayer.PrayerConfigs.QUICK_CURSES
 import content.skill.prayer.PrayerConfigs.QUICK_PRAYERS
 import content.skill.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS

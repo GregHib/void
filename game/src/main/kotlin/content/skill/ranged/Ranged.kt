@@ -8,7 +8,7 @@ import content.entity.npc.combat.NPCAttack
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
 import content.skill.slayer.categories

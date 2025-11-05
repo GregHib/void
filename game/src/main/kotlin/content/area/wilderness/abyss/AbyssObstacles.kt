@@ -1,7 +1,7 @@
 package content.area.wilderness.abyss
 
 import content.entity.gfx.areaGfx
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.mining.Pickaxe
 import content.skill.woodcutting.Hatchet
 import world.gregs.voidps.engine.Script

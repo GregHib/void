@@ -5,8 +5,8 @@ import content.entity.combat.hit.hit
 import content.entity.combat.hit.npcCombatAttack
 import content.entity.combat.npcCombatSwing
 import content.entity.proj.shoot
-import content.entity.sound.areaSound
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.areaSound
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele

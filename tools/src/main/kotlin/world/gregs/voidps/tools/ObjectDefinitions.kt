@@ -17,7 +17,9 @@ object ObjectDefinitions {
         val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache))
             .load(configFiles().getValue(Settings["definitions.objects"]))
         for (def in definitions.definitions) {
-            println("${def.id} ${def.name}")
+            if(def.stringId.startsWith("slayer_tower_chain")) {
+                println("${def.id} ${def.name} ${def.options?.toList()}")
+            }
         }
     }
 

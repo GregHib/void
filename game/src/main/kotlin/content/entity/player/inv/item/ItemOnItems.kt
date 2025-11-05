@@ -2,7 +2,7 @@ package content.entity.player.inv.item
 
 import content.entity.combat.inCombat
 import content.entity.player.dialogue.type.makeAmount
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message

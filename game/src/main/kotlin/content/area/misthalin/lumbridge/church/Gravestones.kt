@@ -2,7 +2,7 @@ package content.area.misthalin.lumbridge.church
 
 import content.entity.effect.transform
 import content.entity.player.modal.map.MapMarkers
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript

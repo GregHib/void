@@ -2,9 +2,9 @@
 
 package content.entity.player.command
 
-import content.entity.sound.jingle
-import content.entity.sound.midi
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.jingle
+import world.gregs.voidps.engine.entity.character.midi
+import world.gregs.voidps.engine.entity.character.sound
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand

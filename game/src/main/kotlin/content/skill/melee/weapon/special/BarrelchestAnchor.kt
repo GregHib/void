@@ -2,7 +2,7 @@ package content.skill.melee.weapon.special
 
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.specialAttack
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.melee.weapon.drainByDamage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

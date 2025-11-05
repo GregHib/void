@@ -2,7 +2,7 @@ package content.entity.npc.combat.melee
 
 import content.entity.combat.hit.npcCombatDamage
 import content.entity.gfx.areaGfx
-import content.entity.sound.areaSound
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.Retreat

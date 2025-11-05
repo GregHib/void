@@ -1,7 +1,7 @@
 package content.entity.player.inv.item.take
 
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull

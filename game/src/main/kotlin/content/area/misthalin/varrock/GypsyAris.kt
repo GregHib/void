@@ -4,9 +4,9 @@ import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.sound.areaSound
-import content.entity.sound.jingle
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.areaSound
+import world.gregs.voidps.engine.entity.character.jingle
+import world.gregs.voidps.engine.entity.character.sound
 import content.entity.world.music.playTrack
 import content.quest.free.demon_slayer.DemonSlayerSpell.getWord
 import content.quest.free.demon_slayer.DemonSlayerSpell.randomiseOrder

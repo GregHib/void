@@ -2,7 +2,7 @@ package content.area.misthalin.draynor_village
 
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player

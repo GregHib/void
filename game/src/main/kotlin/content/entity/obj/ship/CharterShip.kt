@@ -4,7 +4,7 @@ import content.entity.npc.shop.openShop
 import content.entity.obj.ObjectTeleports
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.sound.jingle
+import world.gregs.voidps.engine.entity.character.jingle
 import content.quest.questCompleted
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script

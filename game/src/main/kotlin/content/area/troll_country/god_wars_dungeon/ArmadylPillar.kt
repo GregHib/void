@@ -2,7 +2,7 @@ package content.area.troll_country.god_wars_dungeon
 
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message

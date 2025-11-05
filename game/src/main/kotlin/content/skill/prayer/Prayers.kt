@@ -1,6 +1,6 @@
 package content.skill.prayer
 
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.prayer.PrayerConfigs.ACTIVE_CURSES
 import content.skill.prayer.PrayerConfigs.ACTIVE_PRAYERS
 import world.gregs.voidps.engine.Script

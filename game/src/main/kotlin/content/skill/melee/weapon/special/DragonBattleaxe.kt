@@ -2,7 +2,7 @@ package content.skill.melee.weapon.special
 
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttackPrepare
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 

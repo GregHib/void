@@ -2,8 +2,8 @@ package content.entity.player.modal.tab
 
 import content.entity.effect.toxin.curePoison
 import content.entity.effect.toxin.poisoned
-import content.entity.sound.jingle
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.jingle
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message

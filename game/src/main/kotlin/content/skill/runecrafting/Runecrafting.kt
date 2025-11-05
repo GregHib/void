@@ -1,7 +1,7 @@
 package content.skill.runecrafting
 
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.Script

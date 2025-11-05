@@ -1,11 +1,9 @@
 package content.quest.member.ghosts_ahoy
 
-import content.skill.magic.spell.Teleport.Companion.teleport
-import content.skill.magic.spell.teleportLand
-import content.skill.magic.spell.teleportTakeOff
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactItemOn
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -23,7 +21,7 @@ class Ectophial : Script {
             gfx("empty_ectophial")
             animDelay("empty_ectophial")
             delay(2)
-            teleport(this, "ectophial_teleport", "ectophial")
+            Teleport.teleport(this, "ectophial_teleport", "ectophial")
         }
 
         itemOnObjectOperate("ectophial_empty", "ectofuntus") {
@@ -34,16 +32,17 @@ class Ectophial : Script {
         }
 
         teleportTakeOff("ectophial") {
-            player.anim("empty_ectophial")
-            player.gfx("empty_ectophial")
-            player.message("You empty the ectoplasm onto the ground around your feet...", ChatType.Filter)
+            anim("empty_ectophial")
+            gfx("empty_ectophial")
+            message("You empty the ectoplasm onto the ground around your feet...", ChatType.Filter)
+            return@teleportTakeOff true
         }
 
         teleportLand("ectophial") {
-            player.message("... and the world changes around you.", ChatType.Filter)
+            message("... and the world changes around you.", ChatType.Filter)
             val ectofuntus = objects[Tile(3658, 3518), "ectofuntus"] ?: return@teleportLand
-            val slot = player.inventory.indexOf("ectophial")
-            player.interactItemOn(ectofuntus, "inventory", "inventory", Item("empty_ectophial"), slot)
+            val slot = inventory.indexOf("ectophial")
+            interactItemOn(ectofuntus, "inventory", "inventory", Item("empty_ectophial"), slot)
         }
     }
 }

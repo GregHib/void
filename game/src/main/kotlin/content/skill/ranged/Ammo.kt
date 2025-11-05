@@ -5,7 +5,7 @@ import content.entity.combat.hit.directHit
 import content.entity.effect.freeze
 import content.entity.effect.toxin.poison
 import content.entity.player.equip.Equipment
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.slayer.undead
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.message

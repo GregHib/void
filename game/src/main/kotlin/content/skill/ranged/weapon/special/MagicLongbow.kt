@@ -3,7 +3,7 @@ package content.skill.ranged.weapon.special
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 
 class MagicLongbow : Script {

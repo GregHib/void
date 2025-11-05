@@ -3,7 +3,7 @@ package content.skill.ranged.ammo
 import content.entity.combat.combatPrepare
 import content.entity.combat.combatSwing
 import content.entity.player.combat.special.specialAttack
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.melee.weapon.fightStyle
 import content.skill.melee.weapon.weapon
 import content.skill.ranged.Ammo

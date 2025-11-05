@@ -2,7 +2,7 @@ package content.area.troll_country.god_wars_dungeon
 
 import content.entity.combat.hit.directHit
 import content.entity.player.effect.energy.runEnergy
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open

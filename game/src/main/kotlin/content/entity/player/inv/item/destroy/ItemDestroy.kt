@@ -2,7 +2,7 @@ package content.entity.player.inv.item.destroy
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.type.destroy
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.entity.character.player.Player

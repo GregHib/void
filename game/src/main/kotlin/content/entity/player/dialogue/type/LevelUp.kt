@@ -1,7 +1,7 @@
 package content.entity.player.dialogue.type
 
 import content.entity.combat.hit.combatDamage
-import content.entity.sound.jingle
+import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.an

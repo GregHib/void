@@ -2,7 +2,7 @@ package content.entity.npc.combat
 
 import content.entity.combat.hit.hit
 import content.entity.combat.npcCombatSwing
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.slayer.categories
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions

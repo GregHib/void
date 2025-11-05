@@ -3,7 +3,7 @@ package content.quest.member.plague_city
 import content.entity.combat.hit.directHit
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.quest.messageScroll
 import content.quest.quest
 import content.quest.questJournal

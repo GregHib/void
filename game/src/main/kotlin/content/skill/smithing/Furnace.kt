@@ -2,7 +2,7 @@ package content.skill.smithing
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.type.makeAmount
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.ItemDefinitions

@@ -1,7 +1,7 @@
 package content.area.wilderness
 
 import content.skill.magic.book.modern.teleBlocked
-import content.skill.magic.spell.Teleport
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions

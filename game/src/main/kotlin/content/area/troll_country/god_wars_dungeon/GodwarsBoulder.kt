@@ -1,6 +1,6 @@
 package content.area.troll_country.god_wars_dungeon
 
-import content.entity.sound.areaSound
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele

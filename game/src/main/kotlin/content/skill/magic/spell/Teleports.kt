@@ -1,6 +1,6 @@
 package content.skill.magic.spell
 
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.quest.quest
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext

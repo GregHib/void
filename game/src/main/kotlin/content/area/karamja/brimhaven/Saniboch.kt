@@ -1,12 +1,12 @@
 package content.area.karamja.brimhaven
 
-import content.entity.obj.objTeleportTakeOff
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
@@ -86,17 +86,17 @@ class Saniboch : Script {
             }
         }
 
-        objTeleportTakeOff("Enter", "brimhaven_dungeon_entrance") {
-            if (!player["can_enter_brimhaven_dungeon", false]) {
-                cancel()
-                player.queue("saniboch_door_access_check") {
+        objTeleportTakeOff("Enter", "brimhaven_dungeon_entrance") { _, _ ->
+            if (!get("can_enter_brimhaven_dungeon", false)) {
+                queue("saniboch_door_access_check") {
                     statement("You can't go in there without paying!")
                 }
-                return@objTeleportTakeOff
+                return@objTeleportTakeOff Teleport.CONTINUE
             }
 
             // Reset access after one-time use
-            player["can_enter_brimhaven_dungeon"] = false
+            set("can_enter_brimhaven_dungeon", false)
+            Teleport.CANCEL
         }
     }
 }

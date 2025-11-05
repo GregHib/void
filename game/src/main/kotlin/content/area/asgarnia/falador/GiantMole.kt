@@ -5,7 +5,7 @@ import content.entity.combat.attackers
 import content.entity.combat.hit.npcCombatDamage
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.warning
-import content.entity.sound.areaSound
+import world.gregs.voidps.engine.entity.character.areaSound
 import content.skill.firemaking.Light
 import content.skill.firemaking.Light.hasLightSource
 import content.skill.melee.weapon.fightStyle

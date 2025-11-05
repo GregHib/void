@@ -2,7 +2,7 @@ package content.area.misthalin.wizards_tower
 
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural

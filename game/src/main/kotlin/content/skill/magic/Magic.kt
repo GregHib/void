@@ -5,7 +5,7 @@ import content.entity.combat.combatSwing
 import content.entity.combat.hit.hit
 import content.entity.npc.combat.NPCAttack
 import content.entity.proj.shoot
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.magic.book.modern.teleBlock
 import content.skill.magic.spell.Spell
 import content.skill.magic.spell.removeSpellItems

@@ -7,7 +7,7 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.player
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message

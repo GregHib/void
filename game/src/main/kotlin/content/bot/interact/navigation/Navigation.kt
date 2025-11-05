@@ -4,7 +4,6 @@ import content.bot.Bot
 import content.bot.bot
 import content.bot.isBot
 import content.entity.obj.door.Door
-import content.entity.obj.objTeleport
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull
@@ -89,9 +88,9 @@ class Navigation : Script {
             }
         }
 
-        objTeleport {
-            if (player.isBot) {
-                player.bot.resume("move")
+        objTeleportLand { _, _ ->
+            if (isBot) {
+                bot.resume("move")
             }
         }
     }

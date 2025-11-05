@@ -1,6 +1,6 @@
 package content.skill.smithing
 
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.magic.spell.SpellRunes.removeItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message

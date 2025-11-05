@@ -3,7 +3,7 @@ package content.quest.member.monkey_madness
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.player.dialogue.type.statement
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.open

@@ -2,7 +2,7 @@ package content.skill.melee
 
 import content.entity.combat.hit.characterCombatAttack
 import content.entity.npc.combat.NPCAttack
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions

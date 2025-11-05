@@ -1,6 +1,6 @@
 package content.skill.magic.book.modern
 
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message

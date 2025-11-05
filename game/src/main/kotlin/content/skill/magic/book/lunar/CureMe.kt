@@ -2,7 +2,7 @@ package content.skill.magic.book.lunar
 
 import content.entity.effect.toxin.curePoison
 import content.entity.effect.toxin.poisoned
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message

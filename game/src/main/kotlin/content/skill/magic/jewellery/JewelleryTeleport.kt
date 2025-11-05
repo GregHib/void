@@ -1,6 +1,6 @@
 package content.skill.magic.jewellery
 
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player

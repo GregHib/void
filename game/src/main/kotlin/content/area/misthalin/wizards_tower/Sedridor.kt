@@ -4,8 +4,8 @@ import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.sound.jingle
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.jingle
+import world.gregs.voidps.engine.entity.character.sound
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal

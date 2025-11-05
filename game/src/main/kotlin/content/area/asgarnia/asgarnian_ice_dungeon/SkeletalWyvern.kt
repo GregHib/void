@@ -7,7 +7,7 @@ import content.entity.combat.npcCombatSwing
 import content.entity.effect.freeze
 import content.entity.effect.frozen
 import content.entity.proj.shoot
-import content.entity.sound.sound
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
