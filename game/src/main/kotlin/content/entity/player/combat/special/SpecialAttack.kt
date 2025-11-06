@@ -20,11 +20,35 @@ interface SpecialAttack {
         specials[id] = block
     }
 
-    companion object {
+    fun specialAttackPrepare(id: String = "*", block: Player.(id: String) -> Boolean) {
+        prepare[id] = block
+    }
+
+    fun specialAttackDamage(id: String = "*", block: Player.(target: Character, damage: Int) -> Unit) {
+        damaging[id] = block
+    }
+
+    companion object : AutoCloseable {
         val specials = Object2ObjectOpenHashMap<String, Player.(Character, String) -> Unit>()
+        val prepare = Object2ObjectOpenHashMap<String, Player.(String) -> Boolean>()
+        val damaging = Object2ObjectOpenHashMap<String, Player.(Character, Int) -> Unit>()
 
         fun special(player: Player, target: Character, id: String) {
             (specials[id] ?: specials["*"])?.invoke(player, target, id)
+        }
+
+        fun prepare(player: Player, id: String): Boolean {
+            return (prepare[id] ?: prepare["*"])?.invoke(player, id) ?: true
+        }
+
+        fun damage(player: Player, target: Character, mode: String, damage: Int) {
+            (damaging[mode] ?: damaging["*"])?.invoke(player, target, damage)
+        }
+
+        override fun close() {
+            specials.clear()
+            prepare.clear()
+            damaging.clear()
         }
 
         fun hasEnergy(player: Player) = drain(player, drain = false)
