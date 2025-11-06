@@ -1,7 +1,5 @@
 package content.area.misthalin.varrock
 
-import content.entity.combat.combatPrepare
-import content.entity.combat.npcCombatPrepare
 import content.entity.effect.transform
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.*
@@ -90,12 +88,14 @@ class Delrith : Script {
             cutscene.destroy()
         }
 
-        combatPrepare("melee") { player ->
+        combatPrepare("melee") { target ->
             if (target is NPC && target.id == "delrith" && target.transform == "delrith_weakened") {
-                cancel()
-                player.strongQueue("banish_delrith", 1) {
-                    player.interactNpc(target, "Banish")
+                strongQueue("banish_delrith", 1) {
+                    interactNpc(target, "Banish")
                 }
+                false
+            } else {
+                true
             }
         }
 
@@ -145,9 +145,7 @@ class Delrith : Script {
         }
 
         npcCombatPrepare("delrith") {
-            if (it.levels.get(Skill.Constitution) <= 0) {
-                cancel()
-            }
+            levels.get(Skill.Constitution) > 0
         }
 
         npcLevelChanged(Skill.Constitution, "delrith", ::weaken)

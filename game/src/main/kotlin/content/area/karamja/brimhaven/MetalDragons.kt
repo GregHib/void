@@ -1,8 +1,6 @@
 package content.area.karamja.brimhaven
 
-import content.entity.combat.CombatSwing
 import content.entity.combat.hit.hit
-import content.entity.combat.npcCombatSwing
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.Character
@@ -14,7 +12,13 @@ import world.gregs.voidps.type.random
 
 class MetalDragons : Script {
 
-    val handler: suspend CombatSwing.(NPC) -> Unit = { npc ->
+    init {
+        npcCombatSwing("bronze_dragon", handler = ::swing)
+        npcCombatSwing("iron_dragon", handler = ::swing)
+        npcCombatSwing("steel_dragon", handler = ::swing)
+    }
+
+    fun swing(npc: NPC, target: Character) {
         val withinMelee = CharacterTargetStrategy(npc).reached(target)
         if (withinMelee && random.nextBoolean()) {
             // Melee attack
@@ -34,14 +38,6 @@ class MetalDragons : Script {
             nearestTile(npc, target).shoot("dragon_breath", target)
             npc.hit(target, offensiveType = "dragonfire")
         }
-    }
-
-    init {
-        npcCombatSwing("bronze_dragon", handler = handler)
-
-        npcCombatSwing("iron_dragon", handler = handler)
-
-        npcCombatSwing("steel_dragon", handler = handler)
     }
 
     /**

@@ -2,7 +2,6 @@ package content.area.troll_country.god_wars_dungeon
 
 import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.hit
-import content.entity.combat.npcCombatSwing
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.areaSound
@@ -19,14 +18,14 @@ class ThrowerTroll : Script {
             character.sound("troll_rock_defend")
         }
 
-        npcCombatSwing("thrower_troll_trollheim*") { npc ->
+        npcCombatSwing("thrower_troll_trollheim*") { target ->
             if (random.nextInt(10) == 0) {
-                npc.say("Urg!")
+                say("Urg!")
             }
-            areaSound("thrower_troll_attack", npc.tile, radius = 10)
-            npc.anim("thrower_troll_attack")
-            npc.shoot("troll_rock", target)
-            npc.hit(target, offensiveType = "range")
+            areaSound("thrower_troll_attack", tile, radius = 10)
+            anim("thrower_troll_attack")
+            shoot("troll_rock", target)
+            hit(target, offensiveType = "range")
         }
     }
 }

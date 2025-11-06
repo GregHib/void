@@ -1,6 +1,5 @@
 package content.skill.magic.book.modern
 
-import content.entity.combat.combatPrepare
 import content.skill.magic.spell.spell
 import content.skill.prayer.protectMagic
 import world.gregs.voidps.engine.Script
@@ -43,10 +42,12 @@ fun Character.unblockTeleport() {
 
 class TeleportBlock : Script {
     init {
-        combatPrepare("magic") { player ->
-            if (player.spell == "teleport_block" && target is NPC) {
-                player.message("You can't use that against an NPC.")
-                cancel()
+        combatPrepare("magic") { target ->
+            if (spell == "teleport_block" && target is NPC) {
+                message("You can't use that against an NPC.")
+                false
+            } else {
+                true
             }
         }
 

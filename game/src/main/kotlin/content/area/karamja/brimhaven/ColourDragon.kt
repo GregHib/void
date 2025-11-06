@@ -1,22 +1,21 @@
 package content.area.karamja.brimhaven
 
-import content.entity.combat.CombatSwing
 import content.entity.combat.hit.hit
-import content.entity.combat.npcCombatSwing
-import kotlinx.coroutines.delay
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.type.random
 
 class ColourDragon : Script {
+    init {
+        npcCombatSwing("blue_dragon", handler = ::swing)
+        npcCombatSwing("black_dragon", handler = ::swing)
+        npcCombatSwing("green_dragon", handler = ::swing)
+        npcCombatSwing("red_dragon", handler = ::swing)
+    }
 
-    val handler: suspend CombatSwing.(NPC) -> Unit = { npc ->
-        val withinMelee = CharacterTargetStrategy(npc).reached(target)
-        if (!withinMelee) {
-            delay(1)
-        }
+    fun swing(npc: NPC, target: Character) {
         val useFire = random.nextInt(4) == 0 // 1 in 4 chance to breathe fire
         if (useFire) {
             npc.anim("colour_dragon_breath")
@@ -28,15 +27,5 @@ class ColourDragon : Script {
             npc.hit(target, offensiveType = "melee")
             target.sound("dragon_attack")
         }
-    }
-
-    init {
-        npcCombatSwing("blue_dragon", handler = handler)
-
-        npcCombatSwing("black_dragon", handler = handler)
-
-        npcCombatSwing("green_dragon", handler = handler)
-
-        npcCombatSwing("red_dragon", handler = handler)
     }
 }

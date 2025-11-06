@@ -3,14 +3,14 @@ package content.entity.combat
 import content.area.wilderness.inSingleCombat
 import content.entity.combat.hit.characterCombatDamage
 import content.entity.player.combat.special.specialAttack
-import content.skill.melee.weapon.attackRange
-import content.skill.melee.weapon.attackSpeed
-import content.skill.melee.weapon.fightStyle
-import content.skill.melee.weapon.weapon
+import content.skill.magic.Magic
+import content.skill.melee.weapon.*
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
@@ -140,9 +140,12 @@ class Combat : Script, CombatApi {
             if (character.hasClock("action_delay")) {
                 return
             }
-            val prepare = CombatPrepare(target)
-            character.emit(prepare)
-            if (prepare.cancelled) {
+            val prepared = when (character) {
+                is Player -> CombatApi.prepare(character, target, character.fightStyle)
+                is NPC -> CombatApi.prepare(character, target)
+                else -> return
+            }
+            if (!prepared) {
                 character.mode = EmptyMode
                 return
             }
@@ -158,8 +161,17 @@ class Combat : Script, CombatApi {
                 }
             }
             target.start("in_combat", 8)
-            val swing = CombatSwing(target)
-            character.emit(swing)
+            if (character is NPC) {
+                CombatApi.swing(character, target, target.fightStyle)
+            } else if (character is Player) {
+                if (character.fightStyle == "magic" || character.fightStyle == "blaze") {
+                    if (Magic.castSpell(character, target)) {
+                        CombatApi.swing(character, target, character.weapon.id, character.fightStyle)
+                    }
+                } else {
+                    CombatApi.swing(character, target, character.weapon.id, character.fightStyle)
+                }
+            }
             (character as? Player)?.specialAttack = false
             var nextDelay = character.attackSpeed
             if (character.hasClock("miasmic") && (character.fightStyle == "range" || character.fightStyle == "melee")) {

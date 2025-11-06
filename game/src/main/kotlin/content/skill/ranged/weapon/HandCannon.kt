@@ -1,6 +1,5 @@
 package content.skill.ranged.weapon
 
-import content.entity.combat.combatSwing
 import content.entity.combat.hit.damage
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.specialAttack
@@ -23,23 +22,23 @@ import kotlin.random.nextInt
 class HandCannon : Script {
 
     init {
-        combatSwing("hand_cannon", "range") { player ->
-            val ammo = player.equipped(EquipSlot.Ammo)
-            player.ammo = ammo.id
-            player.anim("hand_cannon_shoot")
-            player.gfx("hand_cannon_shoot")
-            val time = player.shoot(id = player.ammo, target = target)
-            player.hit(target, delay = time)
-            if (player.specialAttack) {
-                val rapid = player.attackType == "rapid"
-                player.strongQueue("hit", 2) {
-                    player.anim("hand_cannon_special")
-                    player.gfx("hand_cannon_special")
-                    player.shoot(id = player.ammo, target = target)
-                    player.hit(target, delay = if (rapid) 30 else 60)
+        combatSwing("hand_cannon", "range") { target ->
+            val ammo = equipped(EquipSlot.Ammo)
+            this.ammo = ammo.id
+            anim("hand_cannon_shoot")
+            gfx("hand_cannon_shoot")
+            val time = shoot(id = this.ammo, target = target)
+            hit(target, delay = time)
+            if (specialAttack) {
+                val rapid = attackType == "rapid"
+                strongQueue("hit", 2) {
+                    anim("hand_cannon_special")
+                    gfx("hand_cannon_special")
+                    shoot(id = this@combatSwing.ammo, target = target)
+                    hit(target, delay = if (rapid) 30 else 60)
                 }
             }
-            explode(player, if (player.specialAttack) 0.05 else 0.005)
+            explode(this, if (specialAttack) 0.05 else 0.005)
         }
     }
 

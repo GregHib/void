@@ -1,6 +1,5 @@
 package content.skill.melee.weapon.special
 
-import content.entity.combat.combatPrepare
 import content.entity.combat.hit.hit
 import content.entity.effect.freeze
 import content.entity.player.combat.special.SpecialAttack
@@ -17,16 +16,18 @@ import java.util.concurrent.TimeUnit
 class SpearShove : Script, SpecialAttack {
 
     init {
-        combatPrepare("melee") { player ->
-            if (!player.specialAttack || player.weapon.def["special", ""] != "shove") {
-                return@combatPrepare
+        combatPrepare("melee") { target ->
+            if (!specialAttack || weapon.def["special", ""] != "shove") {
+                return@combatPrepare true
             }
             if (target.size > 1) {
-                player.message("That creature is too large to knock back!")
-                cancel()
+                message("That creature is too large to knock back!")
+                false
             } else if (target.hasClock("movement_delay")) {
-                player.message("That ${if (target is Player) "player" else "creature"} is already stunned!")
-                cancel()
+                message("That ${if (target is Player) "player" else "creature"} is already stunned!")
+                false
+            } else {
+                true
             }
         }
 

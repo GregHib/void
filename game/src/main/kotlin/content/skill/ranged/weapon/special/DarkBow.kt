@@ -1,10 +1,8 @@
 package content.skill.ranged.weapon.special
 
-import content.entity.combat.combatSwing
 import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.SpecialAttack
-import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Script
@@ -44,14 +42,14 @@ class DarkBow : Script, SpecialAttack {
             character.gfx("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_impact")
         }
 
-        combatSwing("dark_bow*", "range") { player ->
-            player.anim("bow_accurate")
-            val ammo = player.ammo
-            player.gfx("${ammo}_double_shot")
-            val time1 = player.shoot(ammo, target, true)
-            val time2 = player.shoot(ammo, target, false)
-            player.hit(target, delay = time1)
-            player.hit(target, delay = time2)
+        combatSwing("dark_bow*", "range") { target ->
+            anim("bow_accurate")
+            val ammo = ammo
+            gfx("${ammo}_double_shot")
+            val time1 = shoot(ammo, target, true)
+            val time2 = shoot(ammo, target, false)
+            hit(target, delay = time1)
+            hit(target, delay = time2)
         }
     }
 

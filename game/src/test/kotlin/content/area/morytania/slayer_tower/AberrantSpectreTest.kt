@@ -28,7 +28,7 @@ class AberrantSpectreTest : WorldTest() {
 
         player.npcOption(spectre, "Attack")
 
-        tick(3)
+        tick(2)
 
         assertEquals(10, player.levels.get(Skill.Attack))
         assertEquals(10, player.levels.get(Skill.Strength))
