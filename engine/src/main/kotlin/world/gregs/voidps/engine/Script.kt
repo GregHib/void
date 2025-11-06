@@ -5,6 +5,8 @@ import world.gregs.voidps.engine.client.variable.VariableApi
 import world.gregs.voidps.engine.data.SettingsReload
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Death
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunt
 import world.gregs.voidps.engine.entity.character.player.Teleport
@@ -16,7 +18,7 @@ import world.gregs.voidps.engine.timer.TimerApi
 /**
  * A helper interface made up of all callable methods for easier scripting.
  */
-interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operation, Approachable, InterfaceInteraction, Death, SettingsReload, Dialogues, Items, InventoryApi, Hunt, Teleport {
+interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operation, Approachable, InterfaceInteraction, Death, SettingsReload, Dialogues, Items, InventoryApi, Hunt, Teleport, CombatApi {
     companion object {
         val interfaces: MutableList<AutoCloseable> = mutableListOf(
             Spawn,
@@ -35,6 +37,8 @@ interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operati
             InventoryApi,
             Hunt,
             Teleport,
+            CombatApi,
+            CombatMovement,
         )
 
         fun clear() {

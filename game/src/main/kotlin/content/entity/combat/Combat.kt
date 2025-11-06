@@ -20,13 +20,12 @@ import world.gregs.voidps.engine.entity.character.mode.combat.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.onEvent
 
-class Combat : Script {
+class Combat : Script, CombatApi {
 
     init {
-        onEvent<Character, CombatReached> { character ->
-            combat(character, target)
+        CombatMovement.combatReached = { target ->
+            combat(this, target)
         }
 
         playerDespawn {
@@ -41,23 +40,32 @@ class Combat : Script {
             }
         }
 
-        characterCombatStart { character ->
+        combatStart { target ->
             if (target.inSingleCombat) {
                 target.attackers.clear()
-                target.attacker = character
+                target.attacker = this
             }
-            target.attackers.add(character)
-            retaliate(target, character)
+            target.attackers.add(this)
+            retaliate(target, this)
         }
 
-        characterCombatStop { character ->
-            if (target.dead) {
-                character["face_entity"] = target
-            } else {
-                character.clearWatch()
+        npcCombatStart { target ->
+            if (target.inSingleCombat) {
+                target.attackers.clear()
+                target.attacker = this
             }
-            character.target?.attackers?.remove(character)
-            character.target = null
+            target.attackers.add(this)
+            retaliate(target, this)
+        }
+
+        combatStop { target ->
+            if (target.dead) {
+                set("face_entity", target)
+            } else {
+                clearWatch()
+            }
+            this.target?.attackers?.remove(this)
+            this.target = null
         }
 
         playerDeath {
@@ -86,7 +94,7 @@ class Combat : Script {
     }
 
     /**
-     * [CombatReached] is emitted by [CombatMovement] every tick the [Character] is within range of the target
+     * [CombatMovement.combatReached] is emitted by [CombatMovement] every tick the [Character] is within range of the target
      */
     fun retaliates(character: Character) = if (character is NPC) {
         character.def["retaliates", true]
@@ -143,7 +151,11 @@ class Combat : Script {
                 player.message("---- Swing (${character.identifier}) -> (${target.identifier}) -----")
             }
             if (!target.hasClock("in_combat")) {
-                character.emit(CombatStart(target))
+                if (character is Player) {
+                    CombatApi.start(character, target)
+                } else if (character is NPC) {
+                    CombatApi.start(character, target)
+                }
             }
             target.start("in_combat", 8)
             val swing = CombatSwing(target)

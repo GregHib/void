@@ -1,9 +1,9 @@
 package content.entity.player.effect
 
 import content.area.wilderness.inWilderness
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import content.entity.combat.attackers
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.mode.combat.combatStart
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
@@ -37,9 +37,9 @@ class Skull : Script {
             }
         }
 
-        combatStart { player ->
-            if (player.inWilderness && target is Player && !player.attackers.contains(target)) {
-                player.skull()
+        combatStart { target ->
+            if (inWilderness && target is Player && !attackers.contains(target)) {
+                skull()
             }
         }
 
