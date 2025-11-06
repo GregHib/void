@@ -80,9 +80,6 @@ class Events(
 
     private suspend fun handleEvent(handlers: Set<suspend Event.(EventDispatcher) -> Unit>, event: Event, dispatcher: EventDispatcher) {
         for (handler in handlers) {
-            if (event is CancellableEvent && event.cancelled) {
-                break
-            }
             try {
                 handler.invoke(event, dispatcher)
             } catch (e: Exception) {
