@@ -18,14 +18,14 @@ class Levels(
     }
 
     private lateinit var level: Level
-    private lateinit var events: Entity
+    private lateinit var entity: Entity
     private var npc: NPC? = null
 
-    fun link(events: Entity, level: Level) {
-        this.events = events
+    fun link(entity: Entity, level: Level) {
+        this.entity = entity
         this.level = level
-        if (events is NPC) {
-            npc = events
+        if (entity is NPC) {
+            npc = entity
         }
     }
 
@@ -118,10 +118,10 @@ class Levels(
 
     private fun notify(skill: Skill, previous: Int) {
         val level = get(skill)
-        if (events is Player) {
-            Skills.changed(events as Player, skill, previous, level)
-        } else if (events is NPC) {
-            Skills.changed(events as NPC, skill, previous, level)
+        if (entity is Player) {
+            Skills.changed(entity as Player, skill, previous, level)
+        } else if (entity is NPC) {
+            Skills.changed(entity as NPC, skill, previous, level)
         }
     }
 

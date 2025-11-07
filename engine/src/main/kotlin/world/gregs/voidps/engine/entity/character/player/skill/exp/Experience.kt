@@ -13,7 +13,7 @@ class Experience(
     private val maximum: Double = MAXIMUM_EXPERIENCE,
 ) {
 
-    lateinit var events: Player
+    lateinit var player: Player
 
     fun get(skill: Skill): Double = experience[skill.ordinal]
 
@@ -21,14 +21,14 @@ class Experience(
         if (experience in 0.0..maximum && !blocked.contains(skill)) {
             val previous = get(skill)
             this.experience[skill.ordinal] = experience
-            AuditLog.event(events, "exp", skill, experience)
+            AuditLog.event(player, "exp", skill, experience)
             update(skill, previous)
         }
     }
 
     fun update(skill: Skill, previous: Double = get(skill)) {
         val experience = get(skill)
-        Skills.exp(events, skill, previous, experience)
+        Skills.exp(player, skill, previous, experience)
     }
 
     fun add(skill: Skill, experience: Double) {
@@ -36,7 +36,7 @@ class Experience(
             return
         }
         if (blocked.contains(skill)) {
-            Skills.blocked(events, skill, experience * Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE])
+            Skills.blocked(player, skill, experience * Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE])
         } else {
             val current = get(skill)
             set(skill, current + experience * Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE])

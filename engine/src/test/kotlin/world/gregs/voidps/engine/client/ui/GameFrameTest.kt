@@ -11,7 +11,7 @@ internal class GameFrameTest : InterfaceTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        interfaces = Interfaces(events, definitions, open)
+        interfaces = Interfaces(player, definitions, open)
         every { definitions.getOrNull("") } returns InterfaceDefinition()
         every { definitions.getOrNull("toplevel_full") } returns InterfaceDefinition(id = -1, type = "root")
         every { definitions.getOrNull("toplevel") } returns InterfaceDefinition(type = "root")

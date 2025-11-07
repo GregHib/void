@@ -20,12 +20,12 @@ class TransactionTest : TransactionOperationTest() {
     fun `Set tracks changes`() {
         mockkObject(InventoryApi)
         val inventory = Inventory.debug(1)
-        val events: Player = mockk(relaxed = true)
+        val player: Player = mockk(relaxed = true)
         val transaction = inventory.transaction
-        transaction.changes.bind(events)
+        transaction.changes.bind(player)
         transaction.set(0, Item("item", 1))
         transaction.changes.send()
-        verify { InventoryApi.changed(events, any()) }
+        verify { InventoryApi.changed(player, any()) }
         unmockkObject(InventoryApi)
     }
 

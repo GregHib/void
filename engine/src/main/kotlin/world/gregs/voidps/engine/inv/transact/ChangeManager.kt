@@ -12,7 +12,7 @@ class ChangeManager(
     private val inventory: Inventory,
 ) {
     private val changes: Stack<Any> = Stack()
-    private val events = mutableSetOf<Player>()
+    private val listeners = mutableSetOf<Player>()
 
     /**
      * Track a change of an item in the inventory.
@@ -33,17 +33,17 @@ class ChangeManager(
     }
 
     /**
-     * Adds [events] to the list of recipients of [InventorySlotChanged] updates in this inventory.
+     * Adds [player] to the list of recipients of [InventorySlotChanged] updates in this inventory.
      */
-    fun bind(events: Player) {
-        this.events.add(events)
+    fun bind(player: Player) {
+        this.listeners.add(player)
     }
 
     /**
-     * Removes [events] to the list of recipients of [InventorySlotChanged] updates in this inventory.
+     * Removes [player] to the list of recipients of [InventorySlotChanged] updates in this inventory.
      */
-    fun unbind(events: Player) {
-        this.events.remove(events)
+    fun unbind(player: Player) {
+        this.listeners.remove(player)
     }
 
     /**
@@ -54,13 +54,13 @@ class ChangeManager(
             return
         }
         val changeList = changes.filterIsInstance<InventorySlotChanged>()
-        for (events in events) {
-            InventoryApi.update(events, inventory.id, changeList)
+        for (listener in listeners) {
+            InventoryApi.update(listener, inventory.id, changeList)
             for (change in changes) {
                 when (change) {
-                    is InventorySlotChanged -> InventoryApi.changed(events, change)
-                    is ItemAdded -> InventoryApi.add(events, change)
-                    is ItemRemoved -> InventoryApi.remove(events, change)
+                    is InventorySlotChanged -> InventoryApi.changed(listener, change)
+                    is ItemAdded -> InventoryApi.add(listener, change)
+                    is ItemRemoved -> InventoryApi.remove(listener, change)
                 }
             }
         }

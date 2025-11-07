@@ -74,13 +74,13 @@ internal class InterfacesMultipleTest : InterfaceTest() {
         assertTrue(interfaces.contains(zeroId))
 
         verifyOrder {
-            InterfaceInteraction.close(events, twoId)
+            InterfaceInteraction.close(player, twoId)
         }
         verify(exactly = 0) {
             client.closeInterface(InterfaceDefinition.pack(2, 0))
-            InterfaceInteraction.close(events, oneId)
+            InterfaceInteraction.close(player, oneId)
             client.closeInterface(InterfaceDefinition.pack(1, 0))
-            InterfaceInteraction.close(events, zeroId)
+            InterfaceInteraction.close(player, zeroId)
         }
     }
 
@@ -97,13 +97,13 @@ internal class InterfacesMultipleTest : InterfaceTest() {
         assertFalse(interfaces.contains(zeroId))
         verifyOrder {
             client.closeInterface(InterfaceDefinition.pack(2, 0))
-            InterfaceInteraction.close(events, oneId)
+            InterfaceInteraction.close(player, oneId)
             client.closeInterface(InterfaceDefinition.pack(1, 0))
-            InterfaceInteraction.close(events, zeroId)
+            InterfaceInteraction.close(player, zeroId)
         }
         verify(exactly = 0) {
             client.closeInterface(InterfaceDefinition.pack(0, 0))
-            InterfaceInteraction.close(events, twoId)
+            InterfaceInteraction.close(player, twoId)
         }
     }
 
@@ -120,11 +120,11 @@ internal class InterfacesMultipleTest : InterfaceTest() {
         assertFalse(interfaces.contains(oneId))
         assertFalse(interfaces.contains(zeroId))
         verifyOrder {
-            InterfaceInteraction.close(events, twoId)
+            InterfaceInteraction.close(player, twoId)
             client.closeInterface(InterfaceDefinition.pack(2, 0))
-            InterfaceInteraction.close(events, oneId)
+            InterfaceInteraction.close(player, oneId)
             client.closeInterface(InterfaceDefinition.pack(1, 0))
-            InterfaceInteraction.close(events, zeroId)
+            InterfaceInteraction.close(player, zeroId)
         }
     }
 }

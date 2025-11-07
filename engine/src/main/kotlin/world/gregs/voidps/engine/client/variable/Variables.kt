@@ -6,12 +6,12 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
 open class Variables(
-    private var events: Entity,
+    private var entity: Entity,
     val data: MutableMap<String, Any> = Object2ObjectOpenHashMap(2),
 ) {
 
     @Suppress("LeakingThis")
-    var bits = VariableBits(this, events)
+    var bits = VariableBits(this, entity)
 
     @Suppress("UNCHECKED_CAST")
     open fun <T : Any> get(key: String): T? = data(key)[key] as? T
@@ -26,10 +26,10 @@ open class Variables(
         value = block.invoke()
         // Don't check if default or not as values must be set.
         data(key)[key] = value
-        if (events is Player) {
-            VariableApi.set(events as Player, key, null, value)
-        } else if (events is NPC) {
-            VariableApi.set(events as NPC, key, null, value)
+        if (entity is Player) {
+            VariableApi.set(entity as Player, key, null, value)
+        } else if (entity is NPC) {
+            VariableApi.set(entity as NPC, key, null, value)
         }
         return value
     }
@@ -48,10 +48,10 @@ open class Variables(
         if (refresh) {
             send(key)
         }
-        if (events is Player) {
-            VariableApi.set(events as Player, key, previous, value)
-        } else if (events is NPC) {
-            VariableApi.set(events as NPC, key, previous, value)
+        if (entity is Player) {
+            VariableApi.set(entity as Player, key, previous, value)
+        } else if (entity is NPC) {
+            VariableApi.set(entity as NPC, key, previous, value)
         }
     }
 
@@ -61,10 +61,10 @@ open class Variables(
             send(key)
         }
         val previous = removed ?: return null
-        if (events is Player) {
-            VariableApi.set(events as Player, key, previous, null)
-        } else if (events is NPC) {
-            VariableApi.set(events as NPC, key, previous, null)
+        if (entity is Player) {
+            VariableApi.set(entity as Player, key, previous, null)
+        } else if (entity is NPC) {
+            VariableApi.set(entity as NPC, key, previous, null)
         }
         return removed
     }

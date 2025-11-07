@@ -26,7 +26,7 @@ class Inventories(
     lateinit var definitions: InventoryDefinitions
     lateinit var itemDefinitions: ItemDefinitions
     lateinit var validItemRule: ItemRestrictionRule
-    lateinit var events: Player
+    lateinit var player: Player
     lateinit var normalStack: ItemStackingRule
 
     fun start() {
@@ -86,7 +86,7 @@ class Inventories(
             stackRule = stackRule,
             amountBounds = amountBounds,
         ).apply {
-            transaction.changes.bind(events)
+            transaction.changes.bind(player)
         }
     }
 

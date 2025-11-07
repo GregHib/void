@@ -6,11 +6,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.client.Client
 
 class PlayerVariables(
-    events: Player,
+    player: Player,
     data: MutableMap<String, Any>,
     var definitions: VariableDefinitions = VariableDefinitions(),
     val temp: MutableMap<String, Any> = mutableMapOf(),
-) : Variables(events, data) {
+) : Variables(player, data) {
 
     var client: Client? = null
 

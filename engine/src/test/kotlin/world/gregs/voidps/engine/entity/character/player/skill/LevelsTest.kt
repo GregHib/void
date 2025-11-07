@@ -21,7 +21,7 @@ internal class LevelsTest {
         exp = Experience(maximum = 10000.0)
         player = mockk(relaxed = true)
         levels = Levels()
-        exp.events = player
+        exp.player = player
         levels.link(player, PlayerLevels(exp))
         object : Skills {
             init {
@@ -135,7 +135,7 @@ internal class LevelsTest {
     @Test
     fun `Boosting with stack has arbitrary limit`() {
         exp = Experience()
-        exp.events = player
+        exp.player = player
         levels.link(player, PlayerLevels(exp))
 
         exp.set(Skill.Strength, 14000000.0)

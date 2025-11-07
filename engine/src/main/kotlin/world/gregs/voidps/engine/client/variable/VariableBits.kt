@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 class VariableBits(
     private val variables: Variables,
-    private val events: Entity,
+    private val entity: Entity,
 ) {
 
     fun contains(key: String, id: Any): Boolean {
@@ -20,8 +20,8 @@ class VariableBits(
             if (refresh) {
                 variables.send(key)
             }
-            if (events is Player) {
-                VariableApi.add(events, key, value)
+            if (entity is Player) {
+                VariableApi.add(entity, key, value)
             }
             return true
         }
@@ -34,8 +34,8 @@ class VariableBits(
             if (refresh) {
                 variables.send(key)
             }
-            if (events is Player) {
-                VariableApi.remove(events, key, value)
+            if (entity is Player) {
+                VariableApi.remove(entity, key, value)
             }
             return true
         }
@@ -48,9 +48,9 @@ class VariableBits(
         if (refresh) {
             variables.send(key)
         }
-        if (events is Player) {
+        if (entity is Player) {
             for (value in values) {
-                VariableApi.remove(events, key, value)
+                VariableApi.remove(entity, key, value)
             }
         }
     }

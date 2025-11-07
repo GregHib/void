@@ -130,7 +130,7 @@ class DropTablesTest {
         val itemDefinitions = ItemDefinitions(emptyArray()).apply { ids = mapOf("test" to 0) }
         player.inventories.normalStack = ItemDependentStack(itemDefinitions)
         player.inventories.validItemRule = NoRestrictions
-        player.inventories.events = player
+        player.inventories.player = player
         val drop = ItemDrop(
             id = "item",
             amount = 10..10,
@@ -153,7 +153,7 @@ class DropTablesTest {
         val itemDefinitions = ItemDefinitions(emptyArray()).apply { ids = mapOf("test" to 0) }
         player.inventories.normalStack = ItemDependentStack(itemDefinitions)
         player.inventories.validItemRule = NoRestrictions
-        player.inventories.events = player
+        player.inventories.player = player
         val drop = ItemDrop(
             id = "item",
             amount = 10..10,
@@ -175,7 +175,7 @@ class DropTablesTest {
         val itemDefinitions = ItemDefinitions(emptyArray()).apply { ids = mapOf("test" to 0, "unknown" to 1) }
         player.inventories.normalStack = ItemDependentStack(itemDefinitions)
         player.inventories.validItemRule = NoRestrictions
-        player.inventories.events = player
+        player.inventories.player = player
         val drop = ItemDrop(
             id = "item",
             amount = 10..10,

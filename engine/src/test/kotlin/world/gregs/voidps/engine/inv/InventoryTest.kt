@@ -22,11 +22,11 @@ internal class InventoryTest {
     private lateinit var inventory: Inventory
     private lateinit var items: Array<Item>
     private lateinit var minimumAmounts: IntArray
-    private lateinit var events: Player
+    private lateinit var player: Player
 
     @BeforeEach
     fun setup() {
-        events = mockk(relaxed = true)
+        player = mockk(relaxed = true)
         items = Array(10) { Item("", 0) }
         minimumAmounts = IntArray(10)
         inventory = inventory()
@@ -44,7 +44,7 @@ internal class InventoryTest {
             stackRule = stackRule,
             amountBounds = amountBounds,
         ).apply {
-            transaction.changes.bind(events)
+            transaction.changes.bind(player)
         },
     )
 
