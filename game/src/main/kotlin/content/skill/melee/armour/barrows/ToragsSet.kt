@@ -1,8 +1,8 @@
 package content.skill.melee.armour.barrows
 
-import content.entity.combat.hit.characterCombatAttack
 import content.entity.player.effect.energy.runEnergy
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.ItemAdded
 import world.gregs.voidps.engine.inv.ItemRemoved
@@ -22,14 +22,18 @@ class ToragsSet : Script {
             itemRemoved("torags_*", "worn_equipment", slot, ::removed)
         }
 
-        characterCombatAttack("torags_hammers*", "melee") { character ->
-            if (damage <= 0 || target !is Player || !character.contains("torags_set_effect") || random.nextInt(4) != 0) {
-                return@characterCombatAttack
-            }
-            if (target.runEnergy > 0) {
-                target.runEnergy -= target.runEnergy / 5
-                target.gfx("torags_effect")
-            }
+        combatAttack("melee", handler = ::attack)
+        npcCombatAttack(style = "melee", handler = ::attack)
+    }
+
+    fun attack(source: Character, attack: world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack) {
+        val (target, damage, _, weapon) = attack
+        if (damage <= 0 || target !is Player || !weapon.id.startsWith("torags_hammers") || !source.contains("torags_set_effect") || random.nextInt(4) != 0) {
+            return
+        }
+        if (target.runEnergy > 0) {
+            target.runEnergy -= target.runEnergy / 5
+            target.gfx("torags_effect")
         }
     }
 

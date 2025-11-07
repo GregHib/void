@@ -84,7 +84,7 @@ class CombatMovement(
         val melee = attackRange == 1 && character["weapon", Item.EMPTY].def["weapon_type", ""] != "salamander"
         if (arrived(if (melee) -1 else attackRange)) {
             clearSteps()
-            character.emit(CombatReached(target))
+            combatReached?.invoke(character, target)
             return true
         }
         return false
@@ -113,7 +113,22 @@ class CombatMovement(
 
     override fun stop(replacement: Mode) {
         if (replacement !is CombatMovement || replacement.target != target) {
-            character.emit(CombatStop(target))
+            if (character is Player) {
+                CombatApi.stop(character, target)
+            } else  if (character is NPC) {
+                CombatApi.stop(character, target)
+            }
+        }
+    }
+
+    companion object : AutoCloseable {
+        /**
+         * Emitted when within attack range of combat target.
+         */
+        var combatReached: (Character.(Character) -> Unit)? = null
+
+        override fun close() {
+            combatReached = null
         }
     }
 }

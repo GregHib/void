@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
-import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
@@ -24,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap
 const val MAX_PLAYERS = 0x800 // 2048
 const val MAX_NPCS = 0x8000 // 32768
 
-object World : Entity, VariableStore, EventDispatcher, Runnable, KoinComponent {
+object World : Entity, VariableStore, Runnable, KoinComponent {
     override var tile = Tile.EMPTY
 
     override val variables = Variables(this)

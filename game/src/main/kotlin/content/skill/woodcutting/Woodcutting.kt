@@ -43,9 +43,9 @@ class Woodcutting : Script {
     val maxPlayers = 2000
 
     init {
-        objectOperate("Chop", block = ::chopDown)
-        objectOperate("Chop down", block = ::chopDown)
-        objectOperate("Chop-down", block = ::chopDown)
+        objectOperate("Chop", handler = ::chopDown)
+        objectOperate("Chop down", handler = ::chopDown)
+        objectOperate("Chop-down", handler = ::chopDown)
     }
 
     suspend fun chopDown(player: Player, interact: PlayerObjectInteract) {

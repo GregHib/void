@@ -31,16 +31,16 @@ class ZamorakCrafter : Script {
                 if (altar != null) {
                     npc.face(altar)
                 }
-                delay(4)
+                npc.delay(4)
                 npc.anim("bind_runes")
                 npc.gfx("bind_runes")
-                delay(4)
+                npc.delay(4)
                 val patrol = patrols.get("zamorak_crafter_to_bank")
                 npc.mode = Patrol(npc, patrol.waypoints)
             }
         } else if (npc.tile.equals(3270, 4856)) {
             npc.strongQueue("return_home") {
-                delay(5)
+                npc.delay(5)
                 val patrol = patrols.get("zamorak_crafter_to_altar")
                 npc.mode = Patrol(npc, patrol.waypoints)
             }

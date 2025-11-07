@@ -1,7 +1,5 @@
 package content.area.troll_country.god_wars_dungeon.zamorak
 
-import content.entity.combat.hit.combatDamage
-import content.entity.combat.hit.npcCombatAttack
 import content.skill.prayer.protectMelee
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -17,15 +15,15 @@ class Gorak : Script {
     }
 
     init {
-        npcCombatAttack("gorak*") {
+        npcCombatAttack("gorak*") { (target, damage) ->
             if (target is Player && damage > 0) {
                 target.levels.drain(skills.random(random), random.nextInt(1, 4))
             }
         }
 
-        combatDamage { player ->
-            if (source is NPC && source.id.startsWith("gorak") && player.protectMelee()) {
-                player.message("Your protective prayer doesn't seem to work!")
+        combatDamage { (source) ->
+            if (source is NPC && source.id.startsWith("gorak") && protectMelee()) {
+                message("Your protective prayer doesn't seem to work!")
             }
         }
     }

@@ -43,18 +43,21 @@ internal class VariablesTest {
         variables.definitions = definitions
         variables.client = client
         calls = mutableListOf()
-        val varSet: (Player, String, Any?, Any?) -> Unit = { player, id, from, to ->
-            assertEquals(this.player, player)
-            assertEquals(KEY, id)
-            calls.add(from to to)
+        object : VariableApi {
+            init {
+                variableSet { id, from, to ->
+                    assertEquals(player, player)
+                    assertEquals(KEY, id)
+                    calls.add(from to to)
+                }
+            }
         }
-        VariableApi.playerBlocks["*"] = mutableListOf(varSet)
         mockkObject(VariableApi)
     }
 
     @AfterEach
     fun teardown() {
-        VariableApi.playerBlocks.clear()
+        VariableApi.close()
         unmockkObject(VariableApi)
     }
 

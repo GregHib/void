@@ -146,7 +146,7 @@ class InterfaceCommands : Script {
             }
         } else {
             player.queue("dialogue_command") {
-                npc("1902", content, content)
+                player.npc("1902", content, content)
             }
         }
     }

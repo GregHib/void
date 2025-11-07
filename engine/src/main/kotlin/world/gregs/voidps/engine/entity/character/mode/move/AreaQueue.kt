@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.mode.move
 
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.type.Tile
 
 /**

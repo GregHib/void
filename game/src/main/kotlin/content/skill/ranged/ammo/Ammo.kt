@@ -1,7 +1,5 @@
 package content.skill.ranged.ammo
 
-import content.entity.combat.combatPrepare
-import content.entity.combat.combatSwing
 import content.entity.player.combat.special.specialAttack
 import content.skill.melee.weapon.fightStyle
 import content.skill.melee.weapon.weapon
@@ -26,28 +24,28 @@ class Ammo : Script {
     val weaponStyles: WeaponStyleDefinitions by inject()
 
     init {
-        combatPrepare { player ->
-            if (player.fightStyle != "range" && player.weapon.def["weapon_style", 0] == 21 && !checkAmmo(player)) { // Salamanders
-                cancel()
+        combatPrepare {
+            !(fightStyle != "range" && weapon.def["weapon_style", 0] == 21 && !checkAmmo(this)) // Salamanders
+        }
+
+        combatSwing(style = "blaze") { target ->
+            if (weapon.def["weapon_style", 0] == 21) { // Salamanders
+                Ammo.remove(this, target, ammo, Ammo.requiredAmount(weapon, false))
             }
         }
 
-        combatSwing(style = "blaze") { player ->
-            if (player.weapon.def["weapon_style", 0] == 21) { // Salamanders
-                Ammo.remove(player, target, player.ammo, Ammo.requiredAmount(player.weapon, false))
+        combatSwing(style = "melee") { target ->
+            if (weapon.def["weapon_style", 0] == 21) { // Salamanders
+                Ammo.remove(this, target, ammo, Ammo.requiredAmount(weapon, false))
             }
         }
 
-        combatSwing(style = "melee") { player ->
-            if (player.weapon.def["weapon_style", 0] == 21) { // Salamanders
-                Ammo.remove(player, target, player.ammo, Ammo.requiredAmount(player.weapon, false))
-            }
-        }
-
-        combatPrepare("range") { player ->
-            if (!checkAmmo(player)) {
-                player.sound("out_of_ammo")
-                cancel()
+        combatPrepare("range") {
+            if (!checkAmmo(this)) {
+                sound("out_of_ammo")
+                false
+            } else {
+                true
             }
         }
     }

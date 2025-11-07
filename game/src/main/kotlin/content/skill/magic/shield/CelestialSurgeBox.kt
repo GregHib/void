@@ -1,6 +1,5 @@
 package content.skill.magic.shield
 
-import content.entity.combat.hit.combatAttack
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -31,8 +30,8 @@ class CelestialSurgeBox : Script {
             }
         }
 
-        itemOption("Check", "celestial_surgebox*", block = ::check)
-        itemOption("Check/Empty", "celestial_surgebox*", block = ::check)
+        itemOption("Check", "celestial_surgebox*", handler = ::check)
+        itemOption("Check/Empty", "celestial_surgebox*", handler = ::check)
 
         itemOption("Check-charges", "celestial_surgebox*", "worn_equipment") {
             val surge = get("celestial_surgebox_mode", false)
@@ -44,17 +43,23 @@ class CelestialSurgeBox : Script {
             updateCharges(this, index, item.id != "celestial_surgebox")
         }
 
-        combatAttack(spell = "*_wave") { player ->
-            val box = player.equipped(EquipSlot.Shield).id
+        combatAttack("magic") {
+            if (!it.spell.endsWith("_wave")) {
+                return@combatAttack
+            }
+            val box = equipped(EquipSlot.Shield).id
             if (box.startsWith("celestial_surgebox")) {
-                updateCharges(player, EquipSlot.Shield.index, box != "celestial_surgebox")
+                updateCharges(this, EquipSlot.Shield.index, box != "celestial_surgebox")
             }
         }
 
-        combatAttack(spell = "*_surge") { player ->
-            val box = player.equipped(EquipSlot.Shield).id
+        combatAttack("magic") {
+            if (!it.spell.endsWith("_surge")) {
+                return@combatAttack
+            }
+            val box = equipped(EquipSlot.Shield).id
             if (box.startsWith("celestial_surgebox")) {
-                updateCharges(player, EquipSlot.Shield.index, box != "celestial_surgebox")
+                updateCharges(this, EquipSlot.Shield.index, box != "celestial_surgebox")
             }
         }
 

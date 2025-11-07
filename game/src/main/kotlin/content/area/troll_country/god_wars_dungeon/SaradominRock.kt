@@ -21,8 +21,8 @@ class SaradominRock : Script {
             tieRope(this, target.def(this).stringId)
         }
 
-        itemOnObjectOperate("rope", "godwars_saradomin_rock_top", block = ::tieRope)
-        itemOnObjectOperate("rope", "godwars_saradomin_rock_bottom", block = ::tieRope)
+        itemOnObjectOperate("rope", "godwars_saradomin_rock_top", handler = ::tieRope)
+        itemOnObjectOperate("rope", "godwars_saradomin_rock_bottom", handler = ::tieRope)
     }
 
     fun tieRope(player: Player, interact: ItemObjectInteract) {

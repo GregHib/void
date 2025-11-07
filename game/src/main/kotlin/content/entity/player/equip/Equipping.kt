@@ -30,10 +30,10 @@ class Equipping : Script {
     init {
         playerSpawn(::updateWeaponEmote)
 
-        itemOption("Wield", block = ::equip)
-        itemOption("Wear", block = ::equip)
-        itemOption("Hold", block = ::equip)
-        itemOption("Equip", block = ::equip)
+        itemOption("Wield", handler = ::equip)
+        itemOption("Wear", handler = ::equip)
+        itemOption("Hold", handler = ::equip)
+        itemOption("Equip", handler = ::equip)
 
         itemOption("Remove", inventory = "worn_equipment") { (item, slot) ->
             if (item.id == "gas_mask" && tile in areas["west_ardougne"]) {

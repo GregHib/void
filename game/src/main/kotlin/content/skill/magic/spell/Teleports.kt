@@ -79,8 +79,8 @@ class Teleports : Script {
             }
         }
 
-        itemOption("Read", "*_teleport", block = ::teleport)
-        itemOption("Break", "*_teleport", block = ::teleport)
+        itemOption("Read", "*_teleport", handler = ::teleport)
+        itemOption("Break", "*_teleport", handler = ::teleport)
     }
 
     fun teleport(player: Player, option: ItemOption) {
@@ -97,7 +97,7 @@ class Teleports : Script {
                 player.sound("teleport_$type")
                 player.gfx("teleport_$type")
                 player.anim("teleport_$type")
-                delay(3)
+                player.delay(3)
                 player.tele(map.random(player)!!)
                 player.animDelay("teleport_land")
             }

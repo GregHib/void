@@ -37,12 +37,12 @@ class NameChange : Script {
             return
         }
         player.strongQueue("rename") {
-            val toName = nameEntry("Enter a new name")
+            val toName = player.nameEntry("Enter a new name")
             if (toName.length !in 1..12) {
                 player.message("Name too long, a username must be less than 12 characters.")
                 return@strongQueue
             }
-            choice("Change your name to '$toName'?") {
+            player.choice("Change your name to '$toName'?") {
                 option("Yes, call me $toName") {
                     val previous = player.name
                     player.name = toName

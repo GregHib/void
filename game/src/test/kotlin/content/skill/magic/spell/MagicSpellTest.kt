@@ -106,7 +106,7 @@ abstract class MagicSpellTest : KoinTest {
         player.inventories.definitions = inventoryDefinitions
         player.inventories.itemDefinitions = itemDefinitions
         player.inventories.validItemRule = NoRestrictions
-        player.inventories.events = player
+        player.inventories.player = player
         player.inventories.normalStack = normalStackRule
         player.inventories.start()
         player.levels.link(player, PlayerLevels(player.experience))

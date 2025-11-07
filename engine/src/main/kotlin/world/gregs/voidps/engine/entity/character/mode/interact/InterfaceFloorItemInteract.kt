@@ -1,12 +1,10 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.Events
 
 data class InterfaceFloorItemInteract(
     override val target: FloorItem,
@@ -15,20 +13,20 @@ data class InterfaceFloorItemInteract(
     val player: Player,
     val approachRange: Int?
 ) : Interact(player, target, approachRange = approachRange) {
-    override fun hasOperate() = Operation.onObjectBlocks.containsKey("$id:*") || Operation.onObjectBlocks.containsKey("$id:${target.id}") || Operation.onObjectBlocks.containsKey("*:${target.id}")
+    override fun hasOperate() = Operation.onObject.containsKey("$id:*") || Operation.onObject.containsKey("$id:${target.id}") || Operation.onObject.containsKey("*:${target.id}")
 
-    override fun hasApproach() = Approachable.onObjectBlocks.containsKey("$id:*") || Approachable.onObjectBlocks.containsKey("$id:${target.id}") || Approachable.onObjectBlocks.containsKey("*:${target.id}")
+    override fun hasApproach() = Approachable.onObject.containsKey("$id:*") || Approachable.onObject.containsKey("$id:${target.id}") || Approachable.onObject.containsKey("*:${target.id}")
 
     override fun operate() {
-        invoke(Operation.onFloorItemBlocks)
+        invoke(Operation.onFloorItem)
     }
 
     override fun approach() {
-        invoke(Approachable.onFloorItemBlocks)
+        invoke(Approachable.onFloorItem)
     }
 
     private fun invoke(map: Map<String, List<suspend Player.(InterfaceFloorItemInteract) -> Unit>>) {
-        Events.events.launch {
+        Script.launch {
             for (block in map["$id:${target.id}"] ?: map["$id:*"] ?: map["*:${target.id}"] ?: return@launch) {
                 block(player, this@InterfaceFloorItemInteract)
             }

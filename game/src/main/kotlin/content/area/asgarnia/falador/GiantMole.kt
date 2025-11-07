@@ -2,7 +2,6 @@ package content.area.asgarnia.falador
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.combat.attackers
-import content.entity.combat.hit.npcCombatDamage
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.warning
 import content.skill.firemaking.Light
@@ -71,17 +70,17 @@ class GiantMole : Script {
             tele(acceptedTiles.random())
         }
 
-        npcCombatDamage("giant_mole") {
-            val currentHealth = it.levels.get(Skill.Constitution)
+        npcCombatDamage("giant_mole") { (_, _, damage) ->
+            val currentHealth = levels.get(Skill.Constitution)
             var shouldBurrow = false
-            if (it.fightStyle == "magic" && damage != 0) {
+            if (fightStyle == "magic" && damage != 0) {
                 shouldBurrow = shouldBurrowAway(currentHealth)
-            } else if (it.fightStyle != "magic") {
+            } else if (fightStyle != "magic") {
                 shouldBurrow = shouldBurrowAway(currentHealth)
             }
-            if (shouldBurrow && !it.hasClock("awaiting_mole_burrow_complete")) {
-                it.start("awaiting_mole_burrow_complete", 4)
-                giantMoleBurrow(it)
+            if (shouldBurrow && !hasClock("awaiting_mole_burrow_complete")) {
+                start("awaiting_mole_burrow_complete", 4)
+                giantMoleBurrow(this)
             }
         }
 

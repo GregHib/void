@@ -1,6 +1,6 @@
 package content.skill.melee.weapon.special
 
-import content.entity.player.combat.special.specialAttackDamage
+import content.entity.player.combat.special.SpecialAttack
 import content.skill.prayer.PrayerApi
 import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.isCurses
@@ -13,11 +13,14 @@ import java.util.concurrent.TimeUnit
 
 class DragonScimitar :
     Script,
-    PrayerApi {
+    PrayerApi,
+    SpecialAttack {
 
     init {
-        specialAttackDamage("sever") {
-            target.softTimers.start(id)
+        specialAttackDamage("sever") { target, damage ->
+            if (damage >= 0) {
+                target.softTimers.start("sever")
+            }
         }
 
         prayerStart("protect_from_summoning", ::activate)

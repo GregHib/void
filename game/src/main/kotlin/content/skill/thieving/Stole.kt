@@ -6,20 +6,20 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 
 interface Stole {
     fun stole(block: (player: Player, target: GameObject, item: Item) -> Unit) {
-        blocks.add(block)
+        handlers.add(block)
     }
 
     companion object {
-        val blocks = mutableListOf<(Player, GameObject, Item) -> Unit>()
+        private val handlers = mutableListOf<(Player, GameObject, Item) -> Unit>()
 
         fun stole(player: Player, target: GameObject, item: Item) {
-            for (instance in blocks) {
-                instance(player, target, item)
+            for (handler in handlers) {
+                handler(player, target, item)
             }
         }
 
         fun clear() {
-            blocks.clear()
+            handlers.clear()
         }
     }
 }

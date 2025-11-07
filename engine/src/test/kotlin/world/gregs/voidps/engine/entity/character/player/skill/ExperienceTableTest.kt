@@ -12,13 +12,13 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 internal class ExperienceTableTest {
 
     private lateinit var experience: Experience
-    private lateinit var events: Player
+    private lateinit var player: Player
 
     @BeforeEach
     fun setup() {
-        events = mockk(relaxed = true)
+        player = mockk(relaxed = true)
         experience = Experience(maximum = 200.0)
-        experience.events = events
+        experience.player = player
     }
 
     @Test
@@ -45,7 +45,7 @@ internal class ExperienceTableTest {
     fun `Add experience with 10x rate`() {
         Settings.load(mapOf("world.experienceRate" to "10.0"))
         experience = Experience(maximum = 500.0)
-        experience.events = events
+        experience.player = player
         experience.add(Skill.Attack, 10.0)
         experience.add(Skill.Attack, 10.0)
         assertEquals(200.0, experience.get(Skill.Attack))
@@ -87,7 +87,7 @@ internal class ExperienceTableTest {
         experience.add(Skill.Defence, 100.0)
         assertEquals(100.0, experience.get(Skill.Defence))
         verify {
-            Skills.exp(events, Skill.Defence, 0.0, 100.0)
+            Skills.exp(player, Skill.Defence, 0.0, 100.0)
         }
         unmockkObject(Skills)
     }
@@ -105,7 +105,7 @@ internal class ExperienceTableTest {
         mockkObject(Skills)
         experience.set(Skill.Attack, 100.0)
         experience.add(Skill.Attack, 10.0)
-        verify { Skills.exp(events, Skill.Attack, 100.0, 110.0) }
+        verify { Skills.exp(player, Skill.Attack, 100.0, 110.0) }
         unmockkObject(Skills)
     }
 
@@ -115,7 +115,7 @@ internal class ExperienceTableTest {
         experience.set(Skill.Attack, 100.0)
         experience.addBlock(Skill.Attack)
         experience.add(Skill.Attack, 10.0)
-        verify { Skills.blocked(events, Skill.Attack, 10.0) }
+        verify { Skills.blocked(player, Skill.Attack, 10.0) }
         unmockkObject(Skills)
     }
 

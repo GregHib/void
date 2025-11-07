@@ -1,6 +1,5 @@
 package content.area.morytania.slayer_tower
 
-import content.entity.combat.hit.npcCombatAttack
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -21,7 +20,7 @@ class Nechryael : Script {
     val players: Players by inject()
 
     init {
-        npcCombatAttack("nechryael") { npc ->
+        npcCombatAttack("nechryael") { (target) ->
             if (target !is Player) {
                 return@npcCombatAttack
             }
@@ -30,7 +29,7 @@ class Nechryael : Script {
                 return@npcCombatAttack
             }
             if (random.nextInt(5) == 0) { // Unknown rate
-                val tile = npc.tile.toCuboid(1).random(npc) ?: return@npcCombatAttack
+                val tile = tile.toCuboid(1).random(this) ?: return@npcCombatAttack
                 // TODO gfx
                 val spawn = npcs.add("death_spawn", tile)
                 val name = target.name

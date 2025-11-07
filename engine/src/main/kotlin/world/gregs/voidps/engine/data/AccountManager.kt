@@ -62,10 +62,10 @@ class AccountManager(
         player.inventories.itemDefinitions = itemDefinitions
         player.inventories.validItemRule = validItems
         player.inventories.normalStack = ItemDependentStack(itemDefinitions)
-        player.inventories.events = player
+        player.inventories.player = player
         player.inventories.start()
         player.steps.previous = player.tile.add(Direction.WEST.delta)
-        player.experience.events = player
+        player.experience.player = player
         player.levels.link(player, PlayerLevels(player.experience))
         player.body.link(player.equipment, overrides)
         player.body.updateAll()

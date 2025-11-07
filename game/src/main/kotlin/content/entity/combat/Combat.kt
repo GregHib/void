@@ -1,12 +1,9 @@
 package content.entity.combat
 
 import content.area.wilderness.inSingleCombat
-import content.entity.combat.hit.characterCombatDamage
 import content.entity.player.combat.special.specialAttack
-import content.skill.melee.weapon.attackRange
-import content.skill.melee.weapon.attackSpeed
-import content.skill.melee.weapon.fightStyle
-import content.skill.melee.weapon.weapon
+import content.skill.magic.Magic
+import content.skill.melee.weapon.*
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue
@@ -19,14 +16,16 @@ import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.combat.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.onEvent
 
-class Combat : Script {
+class Combat :
+    Script,
+    CombatApi {
 
     init {
-        onEvent<Character, CombatReached> { character ->
-            combat(character, target)
+        CombatMovement.combatReached = { target ->
+            combat(this, target)
         }
 
         playerDespawn {
@@ -41,23 +40,32 @@ class Combat : Script {
             }
         }
 
-        characterCombatStart { character ->
+        combatStart { target ->
             if (target.inSingleCombat) {
                 target.attackers.clear()
-                target.attacker = character
+                target.attacker = this
             }
-            target.attackers.add(character)
-            retaliate(target, character)
+            target.attackers.add(this)
+            retaliate(target, this)
         }
 
-        characterCombatStop { character ->
-            if (target.dead) {
-                character["face_entity"] = target
-            } else {
-                character.clearWatch()
+        npcCombatStart { target ->
+            if (target.inSingleCombat) {
+                target.attackers.clear()
+                target.attacker = this
             }
-            character.target?.attackers?.remove(character)
-            character.target = null
+            target.attackers.add(this)
+            retaliate(target, this)
+        }
+
+        combatStop { target ->
+            if (target.dead) {
+                set("face_entity", target)
+            } else {
+                clearWatch()
+            }
+            this.target?.attackers?.remove(this)
+            this.target = null
         }
 
         playerDeath {
@@ -66,13 +74,17 @@ class Combat : Script {
 
         npcDeath(handler = ::stop)
 
-        characterCombatDamage { character ->
-            if (source == character || type == "poison" || type == "disease" || type == "healed") {
-                return@characterCombatDamage
-            }
-            if (character.mode !is CombatMovement && character.mode !is PauseMode) {
-                retaliate(character, source)
-            }
+        combatDamage(handler = ::damage)
+        npcCombatDamage(handler = ::damage)
+    }
+
+    fun damage(character: Character, it: CombatDamage) {
+        val (source, type) = it
+        if (source == character || type == "poison" || type == "disease" || type == "healed") {
+            return
+        }
+        if (character.mode !is CombatMovement && character.mode !is PauseMode) {
+            retaliate(character, source)
         }
     }
 
@@ -86,7 +98,7 @@ class Combat : Script {
     }
 
     /**
-     * [CombatReached] is emitted by [CombatMovement] every tick the [Character] is within range of the target
+     * [CombatMovement.combatReached] is emitted by [CombatMovement] every tick the [Character] is within range of the target
      */
     fun retaliates(character: Character) = if (character is NPC) {
         character.def["retaliates", true]
@@ -132,22 +144,48 @@ class Combat : Script {
             if (character.hasClock("action_delay")) {
                 return
             }
-            val prepare = CombatPrepare(target)
-            character.emit(prepare)
-            if (prepare.cancelled) {
+            val prepared = when (character) {
+                is Player -> CombatApi.prepare(character, target, character.fightStyle)
+                is NPC -> CombatApi.prepare(character, target)
+                else -> return
+            }
+            if (!prepared) {
                 character.mode = EmptyMode
                 return
             }
             if (character["debug", false] || target["debug", false]) {
                 val player = if (character["debug", false] && character is Player) character else target as Player
-                player.message("---- Swing (${character.identifier}) -> (${target.identifier}) -----")
+                val id = when (character) {
+                    is NPC -> character.id
+                    is Player -> character.name
+                    else -> ""
+                }
+                val targetId = when (target) {
+                    is NPC -> target.id
+                    is Player -> target.name
+                    else -> ""
+                }
+                player.message("---- Swing ($id) -> ($targetId) -----")
             }
             if (!target.hasClock("in_combat")) {
-                character.emit(CombatStart(target))
+                if (character is Player) {
+                    CombatApi.start(character, target)
+                } else if (character is NPC) {
+                    CombatApi.start(character, target)
+                }
             }
             target.start("in_combat", 8)
-            val swing = CombatSwing(target)
-            character.emit(swing)
+            if (character is NPC) {
+                CombatApi.swing(character, target, target.fightStyle)
+            } else if (character is Player) {
+                if (character.fightStyle == "magic" || character.fightStyle == "blaze") {
+                    if (Magic.castSpell(character, target)) {
+                        CombatApi.swing(character, target, character.weapon.id, character.fightStyle)
+                    }
+                } else {
+                    CombatApi.swing(character, target, character.weapon.id, character.fightStyle)
+                }
+            }
             (character as? Player)?.specialAttack = false
             var nextDelay = character.attackSpeed
             if (character.hasClock("miasmic") && (character.fightStyle == "range" || character.fightStyle == "melee")) {

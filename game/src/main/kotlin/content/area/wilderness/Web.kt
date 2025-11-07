@@ -13,8 +13,8 @@ import java.util.concurrent.TimeUnit
 class Web : Script {
 
     init {
-        objectOperate("Pass", "web_spider", block = ::slash)
-        objectOperate("Slash", "web", block = ::slash)
+        objectOperate("Pass", "web_spider", handler = ::slash)
+        objectOperate("Slash", "web", handler = ::slash)
         itemOnObjectOperate(obj = "web*") { (target, item) ->
             if (item.id == "knife" || item.def["slash_attack", 0] > 0) {
                 message("Only a sharp blade can cut through this sticky web.")

@@ -4,17 +4,18 @@ import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.suspend.SuspendableContext
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
 
 class Action<C : Character>(
-    override val character: C,
+    val character: C,
     val name: String,
     val priority: ActionPriority,
     delay: Int = 0,
     val behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
     var onCancel: (() -> Unit)? = { character.clearAnim() },
     var action: suspend Action<*>.() -> Unit = {},
-) : SuspendableContext<C> {
+) {
     var suspension: CancellableContinuation<Unit>? = null
     var remaining: Int = delay
         private set
@@ -25,13 +26,19 @@ class Action<C : Character>(
     var removed = false
         private set
 
+    val player: Player
+        get() = character as Player
+
+    val npc: NPC
+        get() = character as NPC
+
     /**
      * Executes action once delay has reached zero
      * @return if action was executed this call
      */
     fun process(): Boolean = !removed && this.remaining != -1 && --this.remaining <= 0
 
-    override suspend fun pause(ticks: Int) {
+    suspend fun pause(ticks: Int) {
         suspendCancellableCoroutine {
             remaining = ticks
             removed = false

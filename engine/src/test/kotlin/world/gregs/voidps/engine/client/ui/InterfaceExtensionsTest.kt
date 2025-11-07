@@ -14,14 +14,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 internal class InterfaceExtensionsTest : InterfaceTest() {
 
-    private lateinit var player: Player
-
     val name = "interface_name"
 
     @BeforeEach
     override fun setup() {
         super.setup()
-        player = mockk(relaxed = true)
         every { player.interfaces } returns interfaces
         every { definitions.getOrNull(name) } returns InterfaceDefinition(id = 0)
     }

@@ -7,10 +7,8 @@ import io.mockk.verify
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.InventoryApi
-import world.gregs.voidps.engine.inv.InventorySlotChanged
 import world.gregs.voidps.engine.inv.transact.operation.TransactionOperationTest
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -22,12 +20,12 @@ class TransactionTest : TransactionOperationTest() {
     fun `Set tracks changes`() {
         mockkObject(InventoryApi)
         val inventory = Inventory.debug(1)
-        val events: Player = mockk(relaxed = true)
+        val player: Player = mockk(relaxed = true)
         val transaction = inventory.transaction
-        transaction.changes.bind(events)
+        transaction.changes.bind(player)
         transaction.set(0, Item("item", 1))
         transaction.changes.send()
-        verify { InventoryApi.changed(events, any()) }
+        verify { InventoryApi.changed(player, any()) }
         unmockkObject(InventoryApi)
     }
 

@@ -19,8 +19,6 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.sex
-import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -32,7 +30,6 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
-import kotlin.reflect.KClass
 import kotlin.text.toIntOrNull
 
 class BotSpawns : Script {
@@ -63,10 +60,8 @@ class BotSpawns : Script {
             if (Settings["bots.count", 0] > 0) {
                 World.timers.start("bot_spawn")
             }
-            Events.events.all = { player, event ->
-                handleSuspensions(player, event)
-            }
         }
+
         settingsReload {
             if (Settings["bots.count", 0] > bots.size) {
                 World.timers.start("bot_spawn")
@@ -142,16 +137,6 @@ class BotSpawns : Script {
         val bot = Bot(this)
         this["bot"] = bot
         return bot
-    }
-
-    fun handleSuspensions(player: Player, event: Event) {
-        val suspensions: MutableMap<KClass<*>, Pair<Event.(Player) -> Boolean, CancellableContinuation<Unit>>> = player["bot_suspensions"] ?: return
-        val pair = suspensions[event::class] ?: return
-        val (condition, continuation) = pair
-        if (condition(event, player)) {
-            suspensions.remove(event::class)
-            continuation.resume(Unit)
-        }
     }
 
     fun setAppearance(player: Player): Player {

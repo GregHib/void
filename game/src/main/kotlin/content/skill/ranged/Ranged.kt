@@ -1,8 +1,5 @@
 package content.skill.ranged
 
-import content.entity.combat.characterCombatSwing
-import content.entity.combat.combatPrepare
-import content.entity.combat.combatSwing
 import content.entity.combat.hit.hit
 import content.entity.npc.combat.NPCAttack
 import content.entity.player.combat.special.SpecialAttack
@@ -28,18 +25,20 @@ class Ranged : Script {
     val animationDefinitions: AnimationDefinitions by inject()
 
     init {
-        combatPrepare("range") { player ->
-            if (player.specialAttack && !SpecialAttack.hasEnergy(player)) {
-                cancel()
-            }
+        combatPrepare("range") {
+            !(specialAttack && !SpecialAttack.hasEnergy(this))
         }
 
-        combatSwing(style = "scorch") { player ->
-            swing(player, target)
+        combatSwing(style = "scorch") { target ->
+            swing(this, target)
         }
 
-        characterCombatSwing(style = "range") { character ->
-            swing(character, target)
+        combatSwing(style = "range") { target ->
+            swing(this, target)
+        }
+
+        npcCombatSwing(style = "range") { target ->
+            swing(this, target)
         }
     }
 
@@ -51,7 +50,7 @@ class Ranged : Script {
             val required = Ammo.requiredAmount(character.weapon, character.specialAttack)
             if (character.specialAttack && SpecialAttack.drain(character)) {
                 val id: String = character.weapon.def.getOrNull("special") ?: return
-                character.emit(SpecialAttack(id, target))
+                SpecialAttack.special(character, target, id)
                 return
             }
             if (style.stringId != "sling") {

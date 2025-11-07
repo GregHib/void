@@ -1,7 +1,5 @@
 package content.area.misthalin.varrock
 
-import content.entity.combat.combatPrepare
-import content.entity.combat.npcCombatPrepare
 import content.entity.effect.transform
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.*
@@ -38,8 +36,6 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.event.Context
-import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
@@ -71,7 +67,7 @@ class Delrith : Script {
         moved {
             if (exitArea(this, tile)) {
                 val cutscene: Cutscene = remove("demon_slayer_cutscene") ?: return@moved
-                Events.events.launch {
+                Script.launch {
                     cutscene.end()
                 }
             }
@@ -79,7 +75,7 @@ class Delrith : Script {
 
         entered("demon_slayer_stone_circle") {
             if (!questCompleted("demon_slayer") && get("demon_slayer_silverlight", false) && !hasClock("demon_slayer_instance_exit")) {
-                Events.events.launch {
+                Script.launch {
                     cutscene()
                 }
             }
@@ -90,12 +86,14 @@ class Delrith : Script {
             cutscene.destroy()
         }
 
-        combatPrepare("melee") { player ->
+        combatPrepare("melee") { target ->
             if (target is NPC && target.id == "delrith" && target.transform == "delrith_weakened") {
-                cancel()
-                player.strongQueue("banish_delrith", 1) {
-                    player.interactNpc(target, "Banish")
+                strongQueue("banish_delrith", 1) {
+                    interactNpc(target, "Banish")
                 }
+                false
+            } else {
+                true
             }
         }
 
@@ -145,9 +143,7 @@ class Delrith : Script {
         }
 
         npcCombatPrepare("delrith") {
-            if (it.levels.get(Skill.Constitution) <= 0) {
-                cancel()
-            }
+            levels.get(Skill.Constitution) > 0
         }
 
         npcLevelChanged(Skill.Constitution, "delrith", ::weaken)
@@ -294,16 +290,16 @@ class Delrith : Script {
         }
     }
 
-    fun Context<Player>.questComplete() {
-        AuditLog.event(player, "quest_completed", "demon_slayer")
-        player.anim("silverlight_showoff")
-        player.gfx("silverlight_sparkle")
-        player.sound("equip_silverlight")
-        player.jingle("quest_complete_1")
-        player["demon_slayer"] = "completed"
-        player.inc("quest_points", 3)
-        DemonSlayerSpell.clear(player)
-        player.softQueue("quest_complete", 1) {
+    fun Player.questComplete() {
+        AuditLog.event(this, "quest_completed", "demon_slayer")
+        anim("silverlight_showoff")
+        gfx("silverlight_sparkle")
+        sound("equip_silverlight")
+        jingle("quest_complete_1")
+        set("demon_slayer", "completed")
+        inc("quest_points", 3)
+        DemonSlayerSpell.clear(this)
+        softQueue("quest_complete", 1) {
             player.questComplete(
                 "Demon Slayer",
                 "3 Quest Points",

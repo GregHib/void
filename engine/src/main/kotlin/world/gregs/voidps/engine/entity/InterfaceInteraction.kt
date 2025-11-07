@@ -1,57 +1,57 @@
 package world.gregs.voidps.engine.entity
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 
 interface InterfaceInteraction {
 
-    fun onItem(id: String, item: String = "*", block: Player.(Item, String) -> Unit) {
+    fun onItem(id: String, item: String = "*", handler: Player.(Item, String) -> Unit) {
         Wildcards.find(id, Wildcard.Component) { i ->
             Wildcards.find(item, Wildcard.Item) { itm ->
-                onItem.getOrPut("$i:$itm") { mutableListOf() }.add(block)
+                onItem.getOrPut("$i:$itm") { mutableListOf() }.add(handler)
             }
         }
     }
 
-    fun itemOnItem(fromItem: String = "*", toItem: String = "*", bidirectional: Boolean = true, block: Player.(fromItem: Item, toItem: Item, fromSlot: Int, toSlot: Int) -> Unit) {
+    fun itemOnItem(fromItem: String = "*", toItem: String = "*", bidirectional: Boolean = true, handler: Player.(fromItem: Item, toItem: Item, fromSlot: Int, toSlot: Int) -> Unit) {
         val biHandler: Player.(Item, Item, Int, Int) -> Unit = { from, to, fromSlot, toSlot ->
-            block(this, to, from, toSlot, fromSlot)
-        }
-        append(fromItem, toItem, bidirectional, biHandler, block)
-    }
-
-    fun itemOnItem(fromItem: String = "*", toItem: String = "*", bidirectional: Boolean = true, block: Player.(fromItem: Item, toItem: Item) -> Unit) {
-        val handler: Player.(Item, Item, Int, Int) -> Unit = { from, to, _, _ ->
-            block(this, from, to)
-        }
-        val biHandler: Player.(Item, Item, Int, Int) -> Unit = { from, to, _, _ ->
-            block(this, to, from)
+            handler(this, to, from, toSlot, fromSlot)
         }
         append(fromItem, toItem, bidirectional, biHandler, handler)
+    }
+
+    fun itemOnItem(fromItem: String = "*", toItem: String = "*", bidirectional: Boolean = true, handler: Player.(fromItem: Item, toItem: Item) -> Unit) {
+        val single: Player.(Item, Item, Int, Int) -> Unit = { from, to, _, _ ->
+            handler(this, from, to)
+        }
+        val biHandler: Player.(Item, Item, Int, Int) -> Unit = { from, to, _, _ ->
+            handler(this, to, from)
+        }
+        append(fromItem, toItem, bidirectional, biHandler, single)
     }
 
     /**
      * Notification that an interface was opened.
      * @see [interfaceRefresh] for re-opened interfaces
      */
-    fun interfaceOpen(id: String, block: Player.(id: String) -> Unit) {
+    fun interfaceOpen(id: String, handler: Player.(id: String) -> Unit) {
         Wildcards.find(id, Wildcard.Interface) { i ->
-            opened.getOrPut(i) { mutableListOf() }.add(block)
+            opened.getOrPut(i) { mutableListOf() }.add(handler)
         }
     }
 
     /**
      * An interface was open and has now been closed
      */
-    fun interfaceClose(id: String, block: Player.(id: String) -> Unit) {
+    fun interfaceClose(id: String, handler: Player.(id: String) -> Unit) {
         Wildcards.find(id, Wildcard.Interface) { i ->
-            closed.getOrPut(i) { mutableListOf() }.add(block)
+            closed.getOrPut(i) { mutableListOf() }.add(handler)
         }
     }
 
@@ -59,29 +59,29 @@ interface InterfaceInteraction {
      * When an interface is initially opened or opened again
      * Primarily for interface changes like unlocking.
      */
-    fun interfaceRefresh(id: String, block: Player.(id: String) -> Unit) {
+    fun interfaceRefresh(id: String, handler: Player.(id: String) -> Unit) {
         Wildcards.find(id, Wildcard.Interface) { i ->
-            refreshed.getOrPut(i) { mutableListOf() }.add(block)
+            refreshed.getOrPut(i) { mutableListOf() }.add(handler)
         }
     }
 
-    fun interfaceSwap(fromId: String = "*", toId: String = "*", block: Player.(fromId: String, toId: String, fromSlot: Int, toSlot: Int) -> Unit) {
+    fun interfaceSwap(fromId: String = "*", toId: String = "*", handler: Player.(fromId: String, toId: String, fromSlot: Int, toSlot: Int) -> Unit) {
         Wildcards.find(fromId, Wildcard.Component) { from ->
             Wildcards.find(toId, Wildcard.Component) { to ->
-                swapped.getOrPut("$from:$to") { mutableListOf() }.add(block)
+                swapped.getOrPut("$from:$to") { mutableListOf() }.add(handler)
             }
         }
     }
 
-    fun interfaceOption(option: String = "*", id: String = "*", block: suspend Player.(InterfaceOption) -> Unit) {
+    fun interfaceOption(option: String = "*", id: String = "*", handler: suspend Player.(InterfaceOption) -> Unit) {
         Wildcards.find(id, Wildcard.Component) { i ->
-            options.getOrPut("$option:$i") { mutableListOf() }.add(block)
+            options.getOrPut("$option:$i") { mutableListOf() }.add(handler)
         }
     }
 
-    fun itemOption(option: String, item: String = "*", inventory: String = "inventory", block: suspend Player.(ItemOption) -> Unit) {
+    fun itemOption(option: String, item: String = "*", inventory: String = "inventory", handler: suspend Player.(ItemOption) -> Unit) {
         Wildcards.find(item, Wildcard.Item) { i ->
-            itemOption.getOrPut("$option:$i:$inventory") { mutableListOf() }.add(block)
+            itemOption.getOrPut("$option:$i:$inventory") { mutableListOf() }.add(handler)
         }
     }
 
@@ -102,12 +102,12 @@ interface InterfaceInteraction {
         }
     }
 
-    fun questJournalOpen(quest: String, block: Player.() -> Unit) {
-        quests[quest] = block
+    fun questJournalOpen(quest: String, handler: Player.() -> Unit) {
+        quests[quest] = handler
     }
 
-    fun shopOpen(shop: String = "*", block: Player.(String) -> Unit) {
-        shops[shop] = block
+    fun shopOpen(shop: String = "*", handler: Player.(String) -> Unit) {
+        shops[shop] = handler
     }
 
     companion object : AutoCloseable {
@@ -129,7 +129,7 @@ interface InterfaceInteraction {
         }
 
         fun itemOption(player: Player, option: String, item: Item = Item.EMPTY, slot: Int = 0, inventory: String = "inventory") {
-            Events.events.launch {
+            Script.launch {
                 itemOption(player, ItemOption(item, slot, inventory, option))
             }
         }

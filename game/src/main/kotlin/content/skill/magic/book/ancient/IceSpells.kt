@@ -1,9 +1,10 @@
 package content.skill.magic.book.ancient
 
-import content.entity.combat.hit.characterCombatAttack
 import content.entity.effect.freeze
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
 import world.gregs.voidps.engine.inject
 
 class IceSpells : Script {
@@ -11,12 +12,16 @@ class IceSpells : Script {
     val definitions: SpellDefinitions by inject()
 
     init {
-        characterCombatAttack(spell = "ice_*", type = "magic") { source ->
-            if (damage <= 0) {
-                return@characterCombatAttack
-            }
-            val ticks: Int = definitions.get(spell)["freeze_ticks"]
-            source.freeze(target, ticks)
+        combatAttack("magic", handler = ::attack)
+        npcCombatAttack(style = "magic", handler = ::attack)
+    }
+
+    fun attack(source: Character, attack: CombatAttack) {
+        val (target, damage, _, _, spell) = attack
+        if (damage <= 0 || !spell.startsWith("ice_")) {
+            return
         }
+        val ticks: Int = definitions.get(spell)["freeze_ticks"]
+        source.freeze(target, ticks)
     }
 }

@@ -1,6 +1,5 @@
 package content.skill.melee.armour
 
-import content.entity.combat.hit.combatDamage
 import content.entity.combat.hit.directHit
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -14,20 +13,20 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 class RingOfRecoil : Script {
 
     init {
-        combatDamage { player ->
-            if (source == player || type == "deflect" || type == "poison" || type == "disease" || type == "healed" || damage < 1) {
+        combatDamage { (source, type, damage) ->
+            if (source == this || type == "deflect" || type == "poison" || type == "disease" || type == "healed" || damage < 1) {
                 return@combatDamage
             }
-            if (player.equipped(EquipSlot.Ring).id != "ring_of_recoil") {
+            if (equipped(EquipSlot.Ring).id != "ring_of_recoil") {
                 return@combatDamage
             }
             if (source is NPC && source.def["immune_deflect", false]) {
                 return@combatDamage
             }
-            val charges = player.equipment.charges(player, EquipSlot.Ring.index)
+            val charges = equipment.charges(this, EquipSlot.Ring.index)
             val deflect = (10 + (damage / 10)).coerceAtMost(charges)
-            if (player.equipment.discharge(player, EquipSlot.Ring.index, deflect)) {
-                source.directHit(deflect, "deflect", source = player)
+            if (equipment.discharge(this, EquipSlot.Ring.index, deflect)) {
+                source.directHit(deflect, "deflect", source = this)
             }
         }
 

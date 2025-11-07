@@ -1,7 +1,6 @@
 package content.entity.npc.combat
 
 import content.entity.combat.hit.hit
-import content.entity.combat.npcCombatSwing
 import content.skill.slayer.categories
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
@@ -21,15 +20,14 @@ class Attack : Script {
     val soundDefinitions: SoundDefinitions by inject()
 
     init {
-        npcCombatSwing { npc ->
-            if (npc.tile.distanceTo(target) > npc.def["attack_radius", 8]) {
-                cancel()
-                npc.mode = Retreat(npc, target)
+        npcCombatSwing { target ->
+            if (tile.distanceTo(target) > def["attack_radius", 8]) {
+                mode = Retreat(this, target)
                 return@npcCombatSwing
             }
-            npc.anim(attackAnimation(npc))
-            (target as? Player)?.sound(NPCAttack.sound(soundDefinitions, npc, "attack"))
-            npc.hit(target)
+            anim(attackAnimation(this))
+            (target as? Player)?.sound(NPCAttack.sound(soundDefinitions, this, "attack"))
+            hit(target)
         }
     }
 

@@ -1,8 +1,6 @@
 package content.area.troll_country.god_wars_dungeon.saradomin
 
 import content.entity.combat.hit.hit
-import content.entity.combat.hit.npcCombatAttack
-import content.entity.combat.npcCombatSwing
 import content.entity.gfx.areaGfx
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -38,22 +36,22 @@ class CommanderZilyana : Script {
             }
         }
 
-        npcCombatSwing("commander_zilyana") { npc ->
+        npcCombatSwing("commander_zilyana") { target ->
             when (random.nextInt(2)) {
                 0 -> { // Magic
-                    npc.anim("commander_zilyana_magic")
+                    anim("commander_zilyana_magic")
                     areaSound("commander_zilyana_magic", target.tile, delay = 1)
                     val targets = players.filter { it.tile in areas["saradomin_chamber"] }
-                    for (target in targets) {
-                        val hit = npc.hit(target, offensiveType = "magic")
+                    for (t in targets) {
+                        val hit = hit(t, offensiveType = "magic")
                         if (hit > 0) {
-                            target.gfx("commander_zilyana_magic_strike")
+                            t.gfx("commander_zilyana_magic_strike")
                         }
                     }
                 }
                 else -> { // Melee
                     target.sound("commander_zilyana_attack")
-                    npc.hit(target, offensiveType = "melee")
+                    hit(target, offensiveType = "melee")
                 }
             }
         }
@@ -70,7 +68,7 @@ class CommanderZilyana : Script {
             growler = null
         }
 
-        npcCombatAttack("commander_zilyana") {
+        npcCombatAttack("commander_zilyana") { (target, damage, type) ->
             if (type == "magic") {
                 if (damage > 0) {
                     areaSound("commander_zilyana_magic_impact", target.tile)

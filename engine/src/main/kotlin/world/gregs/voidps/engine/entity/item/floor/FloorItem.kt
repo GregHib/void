@@ -4,7 +4,6 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Tile
 
@@ -22,8 +21,7 @@ class FloorItem(
     var disappearTicks: Int = -1,
     val charges: Int = 0,
     var owner: String? = null,
-) : Entity,
-    EventDispatcher {
+) : Entity {
 
     val def: ItemDefinition
         get() = get<ItemDefinitions>().get(id)

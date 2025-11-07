@@ -1,10 +1,10 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Events
 
 data class ItemPlayerInteract(
     override val target: Player,
@@ -13,20 +13,20 @@ data class ItemPlayerInteract(
     val slot: Int,
     val player: Player,
 ) : Interact(player, target) {
-    override fun hasOperate() = Operation.onPlayerBlocks.containsKey(id) || Operation.onPlayerBlocks.containsKey(item.id)
+    override fun hasOperate() = Operation.onPlayer.containsKey(id) || Operation.onPlayer.containsKey(item.id)
 
-    override fun hasApproach() = Approachable.onPlayerBlocks.containsKey(id) || Approachable.onPlayerBlocks.containsKey(item.id)
+    override fun hasApproach() = Approachable.onPlayer.containsKey(id) || Approachable.onPlayer.containsKey(item.id)
 
     override fun operate() {
-        invoke(Operation.onPlayerBlocks)
+        invoke(Operation.onPlayer)
     }
 
     override fun approach() {
-        invoke(Approachable.onPlayerBlocks)
+        invoke(Approachable.onPlayer)
     }
 
     private fun invoke(map: Map<String, List<suspend Player.(ItemPlayerInteract) -> Unit>>) {
-        Events.events.launch {
+        Script.launch {
             for (block in map[id] ?: map[item.id] ?: return@launch) {
                 block(player, this@ItemPlayerInteract)
             }

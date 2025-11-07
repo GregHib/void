@@ -1,15 +1,15 @@
 package content.skill.melee.weapon.special
 
-import content.entity.combat.hit.combatDamage
 import content.entity.player.combat.special.SpecialAttack
-import content.entity.player.combat.special.specialAttackPrepare
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
 
-class StaffOfLight : Script {
+class StaffOfLight :
+    Script,
+    SpecialAttack {
     init {
         playerSpawn {
             if (contains("power_of_light")) {
@@ -30,21 +30,21 @@ class StaffOfLight : Script {
             softTimers.stop("power_of_light")
         }
 
-        combatDamage { player ->
-            if (player.softTimers.contains("power_of_light")) {
-                player.gfx("power_of_light_impact")
+        combatDamage {
+            if (softTimers.contains("power_of_light")) {
+                gfx("power_of_light_impact")
             }
         }
 
-        specialAttackPrepare("power_of_light") { player ->
-            cancel()
-            if (!SpecialAttack.drain(player)) {
-                return@specialAttackPrepare
+        specialAttackPrepare("power_of_light") { id ->
+            if (!SpecialAttack.drain(this)) {
+                return@specialAttackPrepare false
             }
-            player.anim("${id}_special")
-            player.gfx("${id}_special")
-            player[id] = TimeUnit.MINUTES.toTicks(1)
-            player.softTimers.start(id)
+            anim("${id}_special")
+            gfx("${id}_special")
+            set(id, TimeUnit.MINUTES.toTicks(1))
+            softTimers.start(id)
+            return@specialAttackPrepare false
         }
     }
 }

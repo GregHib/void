@@ -2,8 +2,6 @@ package content.area.troll_country.god_wars_dungeon.armadyl
 
 import content.entity.combat.attackers
 import content.entity.combat.hit.hit
-import content.entity.combat.hit.npcCombatAttack
-import content.entity.combat.npcCombatSwing
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -41,39 +39,39 @@ class KreeArra : Script {
             }
         }
 
-        npcCombatSwing("kree_arra") { npc ->
-            if (npc.attackers.isEmpty() && random.nextInt(2) == 0) { // Enrage
+        npcCombatSwing("kree_arra") { target ->
+            if (attackers.isEmpty() && random.nextInt(2) == 0) { // Enrage
                 val targets = players.filter { it.tile in areas["armadyl_chamber"] }
-                for (target in targets) {
+                for (t in targets) {
                     if (random.nextBoolean()) {
-                        npc.hit(target, offensiveType = "magic", defensiveType = "range")
+                        hit(t, offensiveType = "magic", defensiveType = "range")
                     } else {
-                        npc.hit(target, offensiveType = "range")
+                        hit(t, offensiveType = "range")
                     }
                     // Teleport
                     if (random.nextInt(5) == 0) {
                         var attempts = 0
                         while (attempts++ < 20) {
-                            val tile = target.tile.toCuboid(2).random(target) ?: continue
-                            if (tile in npc.tile.toCuboid(npc.size, npc.size)) {
+                            val tile = t.tile.toCuboid(2).random(t) ?: continue
+                            if (tile in tile.toCuboid(size, size)) {
                                 continue
                             }
-                            target.tele(tile)
-                            target.gfx("kree_arra_stun", delay = 100)
-                            target.anim("kree_arra_stun")
-                            target.sound("kree_arra_stun")
+                            t.tele(tile)
+                            t.gfx("kree_arra_stun", delay = 100)
+                            t.anim("kree_arra_stun")
+                            t.sound("kree_arra_stun")
                             break
                         }
                     }
-                    npc.shoot("kree_arra_tornado_blue", target.tile)
-                    npc.anim("kree_arra_attack")
-                    areaSound("kree_arra_attack", npc.tile, delay = 1)
+                    shoot("kree_arra_tornado_blue", t.tile)
+                    anim("kree_arra_attack")
+                    areaSound("kree_arra_attack", tile, delay = 1)
                 }
             } else { // Melee
-                npc.anim("kree_arra_melee")
+                anim("kree_arra_melee")
                 target.sound("kree_arra_melee")
-                npc.shoot("kree_arra_tornado_white", target.tile)
-                npc.hit(target, offensiveType = "melee", defensiveType = "magic")
+                shoot("kree_arra_tornado_white", target.tile)
+                hit(target, offensiveType = "melee", defensiveType = "magic")
             }
         }
 
@@ -89,7 +87,7 @@ class KreeArra : Script {
             geerin = null
         }
 
-        npcCombatAttack("kree_arra") {
+        npcCombatAttack("kree_arra") { (target, _, type) ->
             if (type != "melee") {
                 areaSound("kree_arra_impact", target.tile)
             }

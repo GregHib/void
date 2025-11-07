@@ -1,6 +1,5 @@
 package content.entity.player.combat
 
-import content.entity.combat.hit.combatAttack
 import content.skill.melee.weapon.attackStyle
 import content.skill.melee.weapon.attackType
 import content.skill.slayer.isTask
@@ -20,41 +19,41 @@ class CombatExperience : Script {
     val definitions: SpellDefinitions by inject()
 
     init {
-        combatAttack { player ->
+        combatAttack { (target, damage, type, _, spell, _) ->
             if (damage <= 0) {
                 return@combatAttack
             }
             if (type == "magic" || type == "blaze") {
                 val base = definitions.get(spell).experience
-                if (player["defensive_cast", false]) {
-                    grant(player, target, Skill.Magic, base + damage / 7.5)
-                    grant(player, target, Skill.Defence, damage / 10.0)
+                if (get("defensive_cast", false)) {
+                    grant(this, target, Skill.Magic, base + damage / 7.5)
+                    grant(this, target, Skill.Defence, damage / 10.0)
                 } else {
-                    grant(player, target, Skill.Magic, base + damage / 5.0)
+                    grant(this, target, Skill.Magic, base + damage / 5.0)
                 }
             } else if (type == "melee" || type == "scorch") {
-                when (player.attackStyle) {
-                    "accurate" -> grant(player, target, Skill.Attack, damage / 2.5)
-                    "aggressive" -> grant(player, target, Skill.Strength, damage / 2.5)
+                when (attackStyle) {
+                    "accurate" -> grant(this, target, Skill.Attack, damage / 2.5)
+                    "aggressive" -> grant(this, target, Skill.Strength, damage / 2.5)
                     "controlled" -> {
-                        grant(player, target, Skill.Attack, damage / 7.5)
-                        grant(player, target, Skill.Strength, damage / 7.5)
-                        grant(player, target, Skill.Defence, damage / 7.5)
+                        grant(this, target, Skill.Attack, damage / 7.5)
+                        grant(this, target, Skill.Strength, damage / 7.5)
+                        grant(this, target, Skill.Defence, damage / 7.5)
                     }
-                    "defensive" -> grant(player, target, Skill.Defence, damage / 2.5)
+                    "defensive" -> grant(this, target, Skill.Defence, damage / 2.5)
                 }
             } else if (type == "range") {
-                if (player.attackType == "long_range") {
-                    grant(player, target, Skill.Ranged, damage / 5.0)
-                    grant(player, target, Skill.Defence, damage / 5.0)
+                if (attackType == "long_range") {
+                    grant(this, target, Skill.Ranged, damage / 5.0)
+                    grant(this, target, Skill.Defence, damage / 5.0)
                 } else {
-                    grant(player, target, Skill.Ranged, damage / 2.5)
+                    grant(this, target, Skill.Ranged, damage / 2.5)
                 }
             }
-            if (target is NPC && player.isTask(target)) {
-                grant(player, target, Skill.Slayer, target.def["slayer_xp", 0.0])
+            if (target is NPC && isTask(target)) {
+                grant(this, target, Skill.Slayer, target.def["slayer_xp", 0.0])
             }
-            grant(player, target, Skill.Constitution, damage / 7.5)
+            grant(this, target, Skill.Constitution, damage / 7.5)
         }
     }
 

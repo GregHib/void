@@ -1,8 +1,6 @@
 package content.area.wilderness
 
 import content.entity.combat.hit.hit
-import content.entity.combat.hit.npcCombatAttack
-import content.entity.combat.npcCombatSwing
 import content.entity.effect.freeze
 import content.entity.effect.toxin.poison
 import content.entity.proj.shoot
@@ -20,34 +18,34 @@ class KingBlackDragon : Script {
     val specials = listOf("toxic", "ice", "shock")
 
     init {
-        npcCombatSwing("king_black_dragon") { npc ->
-            val canMelee = CharacterTargetStrategy(npc).reached(target)
+        npcCombatSwing("king_black_dragon") { target ->
+            val canMelee = CharacterTargetStrategy(this).reached(target)
             when (random.nextInt(if (canMelee) 3 else 2)) {
                 0 -> {
-                    npc.anim("king_black_dragon_breath")
+                    anim("king_black_dragon_breath")
                     target.sound("dragon_breath")
-                    nearestTile(npc, target).shoot("dragon_breath", target)
-                    npc.hit(target, offensiveType = "dragonfire")
+                    nearestTile(this, target).shoot("dragon_breath", target)
+                    hit(target, offensiveType = "dragonfire")
                 }
                 1 -> {
                     val type = specials.random()
-                    npc.anim("king_black_dragon_breath")
+                    anim("king_black_dragon_breath")
                     target.sound("dragon_breath_$type")
-                    nearestTile(npc, target).shoot("dragon_breath_$type", target)
-                    npc.hit(target, offensiveType = "dragonfire", spell = type, special = true)
+                    nearestTile(this, target).shoot("dragon_breath_$type", target)
+                    hit(target, offensiveType = "dragonfire", spell = type, special = true)
                 }
                 else -> {
-                    npc.anim("king_black_dragon_attack")
+                    anim("king_black_dragon_attack")
                     target.sound("dragon_attack")
-                    npc.hit(target, offensiveType = "melee")
+                    hit(target, offensiveType = "melee")
                 }
             }
         }
 
-        npcCombatAttack("king_black_dragon") { npc ->
+        npcCombatAttack("king_black_dragon") { (target, _, _, _, spell) ->
             when (spell) {
-                "toxic" -> npc.poison(target, 80)
-                "ice" -> npc.freeze(target, 10)
+                "toxic" -> poison(target, 80)
+                "ice" -> freeze(target, 10)
                 "shock" -> {
                     target.message("You're shocked and weakened!")
                     for (skill in Skill.all) {

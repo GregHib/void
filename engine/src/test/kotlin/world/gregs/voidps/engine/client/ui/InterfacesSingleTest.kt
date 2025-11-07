@@ -41,7 +41,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
         assertFalse(interfaces.open(name))
 
         verify {
-            InterfaceInteraction.refresh(events, name)
+            InterfaceInteraction.refresh(player, name)
         }
     }
 
@@ -55,7 +55,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
 
         verifyOrder {
             client.closeInterface(2)
-            InterfaceInteraction.close(events, name)
+            InterfaceInteraction.close(player, name)
         }
     }
 }

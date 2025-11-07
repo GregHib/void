@@ -1,11 +1,11 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Events
 
 data class ItemNPCInteract(
     override val target: NPC,
@@ -14,20 +14,20 @@ data class ItemNPCInteract(
     val id: String,
     val player: Player,
 ) : Interact(player, target) {
-    override fun hasOperate() = Operation.itemOnNpcBlocks.containsKey("${item.id}:*") || Operation.itemOnNpcBlocks.containsKey("${item.id}:${target.def(player).stringId}") || Operation.itemOnNpcBlocks.containsKey("*:${target.def(player).stringId}")
+    override fun hasOperate() = Operation.itemOnNpc.containsKey("${item.id}:*") || Operation.itemOnNpc.containsKey("${item.id}:${target.def(player).stringId}") || Operation.itemOnNpc.containsKey("*:${target.def(player).stringId}")
 
-    override fun hasApproach() = Approachable.itemOnNpcBlocks.containsKey("${item.id}:*") || Approachable.itemOnNpcBlocks.containsKey("${item.id}:${target.def(player).stringId}") || Approachable.itemOnNpcBlocks.containsKey("*:${target.def(player).stringId}")
+    override fun hasApproach() = Approachable.itemOnNpc.containsKey("${item.id}:*") || Approachable.itemOnNpc.containsKey("${item.id}:${target.def(player).stringId}") || Approachable.itemOnNpc.containsKey("*:${target.def(player).stringId}")
 
     override fun operate() {
-        invoke(Operation.itemOnNpcBlocks)
+        invoke(Operation.itemOnNpc)
     }
 
     override fun approach() {
-        invoke(Approachable.itemOnNpcBlocks)
+        invoke(Approachable.itemOnNpc)
     }
 
     private fun invoke(map: Map<String, List<suspend Player.(ItemNPCInteract) -> Unit>>) {
-        Events.events.launch {
+        Script.launch {
             for (block in map["${item.id}:${target.def(player).stringId}"] ?: map["*:${target.def(player).stringId}"] ?: map["${item.id}:*"] ?: return@launch) { // Hack for spells
                 block(player, this@ItemNPCInteract)
             }

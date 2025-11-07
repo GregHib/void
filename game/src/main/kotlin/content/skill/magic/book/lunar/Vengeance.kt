@@ -1,6 +1,5 @@
 package content.skill.magic.book.lunar
 
-import content.entity.combat.hit.combatDamage
 import content.entity.combat.hit.hit
 import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
@@ -41,13 +40,13 @@ class Vengeance : Script {
             start("vengeance_delay", definition["delay_seconds"], epochSeconds())
         }
 
-        combatDamage { player ->
-            if (!player.contains("vengeance") || type == "damage" || damage < 4) {
+        combatDamage { (source, type, damage) ->
+            if (!contains("vengeance") || type == "damage" || damage < 4) {
                 return@combatDamage
             }
-            player.say("Taste vengeance!")
-            player.hit(target = source, offensiveType = "damage", delay = 0, damage = (damage * 0.75).toInt())
-            player.stop("vengeance")
+            say("Taste vengeance!")
+            hit(target = source, offensiveType = "damage", delay = 0, damage = (damage * 0.75).toInt())
+            stop("vengeance")
         }
     }
 }

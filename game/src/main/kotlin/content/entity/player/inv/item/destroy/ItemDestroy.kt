@@ -15,9 +15,9 @@ class ItemDestroy : Script {
     val logger = InlineLogger()
 
     init {
-        itemOption("Destroy", block = ::destroy)
-        itemOption("Dismiss", block = ::destroy)
-        itemOption("Release", block = ::destroy)
+        itemOption("Destroy", handler = ::destroy)
+        itemOption("Dismiss", handler = ::destroy)
+        itemOption("Release", handler = ::destroy)
     }
 
     suspend fun destroy(player: Player, it: ItemOption) {

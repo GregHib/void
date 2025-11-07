@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAnimation
 import world.gregs.voidps.type.Distance
@@ -17,9 +16,7 @@ import world.gregs.voidps.type.Tile
  * Interactive Object
  */
 @JvmInline
-value class GameObject(internal val packed: Long) :
-    Entity,
-    EventDispatcher {
+value class GameObject(internal val packed: Long) : Entity {
 
     constructor(id: Int, x: Int, y: Int, level: Int, shape: Int, rotation: Int) : this(pack(id, x, y, level, shape, rotation))
 

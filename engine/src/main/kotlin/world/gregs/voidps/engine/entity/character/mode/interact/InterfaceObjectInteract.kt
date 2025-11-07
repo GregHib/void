@@ -1,11 +1,10 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.Events
 
 data class InterfaceObjectInteract(
     override val target: GameObject,
@@ -13,20 +12,20 @@ data class InterfaceObjectInteract(
     val index: Int,
     val player: Player,
 ) : Interact(player, target) {
-    override fun hasOperate() = Operation.onObjectBlocks.containsKey("$id:*") || Operation.onObjectBlocks.containsKey("$id:${target.def(player).stringId}") || Operation.onObjectBlocks.containsKey("*:${target.def(player).stringId}")
+    override fun hasOperate() = Operation.onObject.containsKey("$id:*") || Operation.onObject.containsKey("$id:${target.def(player).stringId}") || Operation.onObject.containsKey("*:${target.def(player).stringId}")
 
-    override fun hasApproach() = Approachable.onObjectBlocks.containsKey("$id:*") || Approachable.onObjectBlocks.containsKey("$id:${target.def(player).stringId}") || Approachable.onObjectBlocks.containsKey("*:${target.def(player).stringId}")
+    override fun hasApproach() = Approachable.onObject.containsKey("$id:*") || Approachable.onObject.containsKey("$id:${target.def(player).stringId}") || Approachable.onObject.containsKey("*:${target.def(player).stringId}")
 
     override fun operate() {
-        invoke(Operation.onObjectBlocks)
+        invoke(Operation.onObject)
     }
 
     override fun approach() {
-        invoke(Approachable.onObjectBlocks)
+        invoke(Approachable.onObject)
     }
 
     private fun invoke(map: Map<String, List<suspend Player.(InterfaceObjectInteract) -> Unit>>) {
-        Events.events.launch {
+        Script.launch {
             for (block in map["$id:${target.def(player).stringId}"] ?: map["$id:*"] ?: map["*:${target.def(player).stringId}"] ?: return@launch) {
                 block(player, this@InterfaceObjectInteract)
             }

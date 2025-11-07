@@ -1,7 +1,5 @@
 package content.skill.melee
 
-import content.entity.combat.combatPrepare
-import content.entity.combat.combatSwing
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
@@ -18,28 +16,26 @@ class Melee : Script {
     val animationDefinitions: WeaponAnimationDefinitions by inject()
 
     init {
-        combatPrepare("melee") { player ->
-            if (player.specialAttack && !SpecialAttack.hasEnergy(player)) {
-                cancel()
-            }
+        combatPrepare("melee") {
+            !(specialAttack && !SpecialAttack.hasEnergy(this))
         }
 
-        combatSwing(style = "melee") { player ->
-            if (player.specialAttack && SpecialAttack.drain(player)) {
-                val id: String = player.weapon.def["special"]
-                player.emit(SpecialAttack(id, target))
+        combatSwing(style = "melee") { target ->
+            if (specialAttack && SpecialAttack.drain(this)) {
+                val id: String = weapon.def["special"]
+                SpecialAttack.special(this, target, id)
                 return@combatSwing
             }
-            val type: String? = player.weapon.def.getOrNull("weapon_type")
+            val type: String? = weapon.def.getOrNull("weapon_type")
             val definition = if (type != null) animationDefinitions.get(type) else null
-            var animation = definition?.attackTypes?.getOrDefault(player.attackType, definition.attackTypes["default"])
+            var animation = definition?.attackTypes?.getOrDefault(attackType, definition.attackTypes["default"])
             if (animation == null) {
-                val id = player.weapon.def["weapon_style", 0]
+                val id = weapon.def["weapon_style", 0]
                 val style = styleDefinitions.get(id)
-                animation = "${style.stringId}_${player.attackType}"
+                animation = "${style.stringId}_$attackType"
             }
-            player.anim(animation)
-            player.hit(target)
+            anim(animation)
+            hit(target)
         }
     }
 }

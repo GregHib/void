@@ -9,7 +9,6 @@ import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.IntSuspension
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import kotlin.test.assertEquals
 
 internal class ChoiceTest : DialogueTest() {
@@ -18,7 +17,7 @@ internal class ChoiceTest : DialogueTest() {
     override fun setup() {
         super.setup()
         mockkStatic("content.entity.player.dialogue.type.PlayerDialogueKt")
-        coEvery { context.player(any(), any()) } just Runs
+        coEvery { player.player(any(), any()) } just Runs
     }
 
     @TestFactory
@@ -186,7 +185,7 @@ internal class ChoiceTest : DialogueTest() {
         }
     }
 
-    private suspend fun SuspendableContext<Player>.choice(text: String, title: String? = null): Int {
+    private suspend fun Player.choice(text: String, title: String? = null): Int {
         val lines = text.trimIndent().lines()
         return choice(lines, title)
     }

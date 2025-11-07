@@ -21,22 +21,26 @@ internal class LevelsTest {
         exp = Experience(maximum = 10000.0)
         player = mockk(relaxed = true)
         levels = Levels()
-        exp.events = player
+        exp.player = player
         levels.link(player, PlayerLevels(exp))
-        Skills.experience.add { player, skill, from, to ->
-            val previousLevel = Experience.level(skill, from)
-            val currentLevel = Experience.level(skill, to)
-            if (currentLevel != previousLevel) {
-                levels.restore(skill, currentLevel - previousLevel)
-                Skills.maxChanged(player, skill, previousLevel, currentLevel)
+        object : Skills {
+            init {
+                experience { skill, from, to ->
+                    val previousLevel = Experience.level(skill, from)
+                    val currentLevel = Experience.level(skill, to)
+                    if (currentLevel != previousLevel) {
+                        levels.restore(skill, currentLevel - previousLevel)
+                        Skills.maxChanged(player, skill, previousLevel, currentLevel)
+                    }
+                }
+                levelChanged { skill, from, to ->
+                    calls.add(Triple(skill, from, to))
+                }
+                maxLevelChanged { skill, from, to ->
+                    calls.add(Triple(skill, from, to))
+                }
             }
         }
-        Skills.playerChanged[null] = mutableListOf({ _, skill, from, to ->
-            calls.add(Triple(skill, from, to))
-        })
-        Skills.playerMaxChanged[Skill.Magic] = mutableListOf({ _, skill, from, to ->
-            calls.add(Triple(skill, from, to))
-        })
     }
 
     @Test
@@ -66,7 +70,7 @@ internal class LevelsTest {
 
     @Test
     fun `Get drained offset`() {
-        Skills.experience.clear()
+        Skills.close()
         exp.set(Skill.Attack, 1154.0)
         assertEquals(-9, levels.getOffset(Skill.Attack))
     }
@@ -131,7 +135,7 @@ internal class LevelsTest {
     @Test
     fun `Boosting with stack has arbitrary limit`() {
         exp = Experience()
-        exp.events = player
+        exp.player = player
         levels.link(player, PlayerLevels(exp))
 
         exp.set(Skill.Strength, 14000000.0)

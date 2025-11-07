@@ -12,18 +12,18 @@ import world.gregs.voidps.engine.event.Wildcards
  */
 interface Skills {
 
-    fun levelChanged(skill: Skill? = null, block: Player.(skill: Skill, from: Int, to: Int) -> Unit) {
-        playerChanged.getOrPut(skill) { mutableListOf() }.add(block)
+    fun levelChanged(skill: Skill? = null, handler: Player.(skill: Skill, from: Int, to: Int) -> Unit) {
+        playerChanged.getOrPut(skill) { mutableListOf() }.add(handler)
     }
 
-    fun npcLevelChanged(skill: Skill, id: String = "*", block: NPC.(skill: Skill, from: Int, to: Int) -> Unit) {
+    fun npcLevelChanged(skill: Skill, id: String = "*", handler: NPC.(skill: Skill, from: Int, to: Int) -> Unit) {
         Wildcards.find(id, Wildcard.Npc) { match ->
-            npcChanged.getOrPut("$match:${skill.name}") { mutableListOf() }.add(block)
+            npcChanged.getOrPut("$match:${skill.name}") { mutableListOf() }.add(handler)
         }
     }
 
-    fun maxLevelChanged(skill: Skill? = null, block: Player.(skill: Skill, from: Int, to: Int) -> Unit) {
-        playerMaxChanged.getOrPut(skill) { mutableListOf() }.add(block)
+    fun maxLevelChanged(skill: Skill? = null, handler: Player.(skill: Skill, from: Int, to: Int) -> Unit) {
+        playerMaxChanged.getOrPut(skill) { mutableListOf() }.add(handler)
     }
 
     fun experience(handler: Player.(skill: Skill, from: Double, to: Double) -> Unit) {
@@ -35,13 +35,13 @@ interface Skills {
     }
 
     companion object : AutoCloseable {
-        val playerChanged = Object2ObjectOpenHashMap<Skill?, MutableList<(Player, Skill, from: Int, to: Int) -> Unit>>(30)
-        val npcChanged = Object2ObjectOpenHashMap<String, MutableList<(NPC, Skill, from: Int, to: Int) -> Unit>>(15)
+        private val playerChanged = Object2ObjectOpenHashMap<Skill?, MutableList<(Player, Skill, from: Int, to: Int) -> Unit>>(30)
+        private val npcChanged = Object2ObjectOpenHashMap<String, MutableList<(NPC, Skill, from: Int, to: Int) -> Unit>>(15)
 
-        val playerMaxChanged = Object2ObjectOpenHashMap<Skill?, MutableList<(Player, Skill, from: Int, to: Int) -> Unit>>(15)
+        private val playerMaxChanged = Object2ObjectOpenHashMap<Skill?, MutableList<(Player, Skill, from: Int, to: Int) -> Unit>>(15)
 
-        val experience = ObjectArrayList<(Player, Skill, Double, Double) -> Unit>(5)
-        var blockedExperience: (Player.(Skill, Double) -> Unit)? = null
+        private val experience = ObjectArrayList<(Player, Skill, Double, Double) -> Unit>(5)
+        private var blockedExperience: (Player.(Skill, Double) -> Unit)? = null
 
         fun exp(player: Player, skill: Skill, from: Double, to: Double) {
             for (handler in experience) {
@@ -54,29 +54,29 @@ interface Skills {
         }
 
         fun changed(player: Player, skill: Skill, from: Int, to: Int) {
-            for (block in playerChanged[skill] ?: emptyList()) {
-                block(player, skill, from, to)
+            for (handler in playerChanged[skill] ?: emptyList()) {
+                handler(player, skill, from, to)
             }
-            for (block in playerChanged[null] ?: return) {
-                block(player, skill, from, to)
+            for (handler in playerChanged[null] ?: return) {
+                handler(player, skill, from, to)
             }
         }
 
         fun changed(npc: NPC, skill: Skill, from: Int, to: Int) {
-            for (block in npcChanged["${npc.id}:${skill.name}"] ?: emptyList()) {
-                block(npc, skill, from, to)
+            for (handler in npcChanged["${npc.id}:${skill.name}"] ?: emptyList()) {
+                handler(npc, skill, from, to)
             }
-            for (block in npcChanged["*:${skill.name}"] ?: emptyList()) {
-                block(npc, skill, from, to)
+            for (handler in npcChanged["*:${skill.name}"] ?: emptyList()) {
+                handler(npc, skill, from, to)
             }
         }
 
         fun maxChanged(player: Player, skill: Skill, from: Int, to: Int) {
-            for (block in playerMaxChanged[skill] ?: emptyList()) {
-                block(player, skill, from, to)
+            for (handler in playerMaxChanged[skill] ?: emptyList()) {
+                handler(player, skill, from, to)
             }
-            for (block in playerMaxChanged[null] ?: return) {
-                block(player, skill, from, to)
+            for (handler in playerMaxChanged[null] ?: return) {
+                handler(player, skill, from, to)
             }
         }
 

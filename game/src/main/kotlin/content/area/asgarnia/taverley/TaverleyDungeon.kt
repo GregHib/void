@@ -36,10 +36,10 @@ class TaverleyDungeon : Script {
             }
         }
 
-        itemOnObjectOperate("raw_beef", "cauldron_of_thunder", block = ::dip)
-        itemOnObjectOperate("raw_rat_meat", "cauldron_of_thunder", block = ::dip)
-        itemOnObjectOperate("raw_bear_meat", "cauldron_of_thunder", block = ::dip)
-        itemOnObjectOperate("raw_chicken", "cauldron_of_thunder", block = ::dip)
+        itemOnObjectOperate("raw_beef", "cauldron_of_thunder", handler = ::dip)
+        itemOnObjectOperate("raw_rat_meat", "cauldron_of_thunder", handler = ::dip)
+        itemOnObjectOperate("raw_bear_meat", "cauldron_of_thunder", handler = ::dip)
+        itemOnObjectOperate("raw_chicken", "cauldron_of_thunder", handler = ::dip)
     }
 
     fun spawn(player: Player, tile: Tile): Boolean {

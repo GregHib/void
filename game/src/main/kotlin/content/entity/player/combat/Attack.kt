@@ -1,8 +1,6 @@
 package content.entity.player.combat
 
 import content.entity.combat.Combat
-import content.entity.combat.CombatSwing
-import content.entity.combat.combatPrepare
 import content.entity.player.dialogue.type.statement
 import content.skill.magic.spell.spell
 import content.skill.melee.weapon.attackRange
@@ -100,17 +98,18 @@ class Attack : Script {
             it.combatInteraction(target)
         }
 
-        combatPrepare { player ->
-            if (player.contains("one_time")) {
-                player.mode = EmptyMode
-                player.clear("one_time")
+        combatPrepare {
+            if (contains("one_time")) {
+                mode = EmptyMode
+                clear("one_time")
             }
+            true
         }
     }
 
     /**
      * Replaces the current [Interact.override] when combat is triggered via [Interact] to
-     * allow the first [CombatSwing] to occur on the same tick.
+     * allow the first [CombatApi.combatSwing] to occur on the same tick.
      * After [Interact] is complete it is switched to [CombatMovement]
      */
     fun Interact.combatInteraction(target: Character) {

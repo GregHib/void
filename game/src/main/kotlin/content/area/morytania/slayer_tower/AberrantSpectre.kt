@@ -1,6 +1,5 @@
 package content.area.morytania.slayer_tower
 
-import content.entity.combat.hit.npcCombatAttack
 import content.entity.player.equip.Equipment
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -11,7 +10,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 class AberrantSpectre : Script {
 
     init {
-        npcCombatAttack("aberrant_spectre") {
+        npcCombatAttack("aberrant_spectre") { (target) ->
             if (target !is Player) {
                 return@npcCombatAttack
             }

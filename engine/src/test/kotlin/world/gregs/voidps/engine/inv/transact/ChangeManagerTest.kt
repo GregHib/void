@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.InventoryApi
 
@@ -32,23 +31,23 @@ internal class ChangeManagerTest {
 
     @Test
     fun `Track and send changes`() {
-        val events = mockk<Player>(relaxed = true)
-        change.bind(events)
+        val player = mockk<Player>(relaxed = true)
+        change.bind(player)
         change.track(from = "inventory", index = 1, previous = Item.EMPTY, fromIndex = 1, item = Item("item", 1))
         change.send()
         verify {
-            InventoryApi.changed(events, any())
-            InventoryApi.update(events, any(), any())
+            InventoryApi.changed(player, any())
+            InventoryApi.update(player, any(), any())
         }
     }
 
     @Test
     fun `Clear tracked changes`() {
-        val events = mockk<Player>(relaxed = true)
-        change.bind(events)
+        val player = mockk<Player>(relaxed = true)
+        change.bind(player)
         change.track("inventory", 1, Item.EMPTY, 1, Item("item", 1))
         change.clear()
         change.send()
-        verify(exactly = 0) { InventoryApi.changed(events, any()) }
+        verify(exactly = 0) { InventoryApi.changed(player, any()) }
     }
 }

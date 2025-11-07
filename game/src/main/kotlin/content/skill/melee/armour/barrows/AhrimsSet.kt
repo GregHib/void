@@ -1,7 +1,7 @@
 package content.skill.melee.armour.barrows
 
-import content.entity.combat.hit.characterCombatAttack
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.ItemAdded
@@ -22,17 +22,21 @@ class AhrimsSet : Script {
             itemRemoved("ahrims_*", "worn_equipment", slot, ::removed)
         }
 
-        characterCombatAttack(type = "magic") { character ->
-            if (damage <= 0) {
-                return@characterCombatAttack
-            }
-            if (!character.contains("ahrims_set_effect") || random.nextInt(4) != 0) {
-                return@characterCombatAttack
-            }
-            val drain = target.levels.drain(Skill.Strength, 5)
-            if (drain < 0) {
-                target.gfx("ahrims_effect")
-            }
+        combatAttack("magic", handler = ::attack)
+        npcCombatAttack(style = "magic", handler = ::attack)
+    }
+
+    fun attack(source: Character, attack: world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack) {
+        val (target, damage) = attack
+        if (damage <= 0) {
+            return
+        }
+        if (!source.contains("ahrims_set_effect") || random.nextInt(4) != 0) {
+            return
+        }
+        val drain = target.levels.drain(Skill.Strength, 5)
+        if (drain < 0) {
+            target.gfx("ahrims_effect")
         }
     }
 

@@ -1,8 +1,6 @@
 package content.area.troll_country.god_wars_dungeon.bandos
 
 import content.entity.combat.hit.hit
-import content.entity.combat.hit.npcCombatAttack
-import content.entity.combat.npcCombatSwing
 import content.entity.gfx.areaGfx
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
@@ -39,23 +37,23 @@ class GeneralGraardor : Script {
             }
         }
 
-        npcCombatSwing("general_graardor") { npc ->
+        npcCombatSwing("general_graardor") { target ->
             when (random.nextInt(2)) {
                 0 -> { // Range
-                    npc.anim("general_graardor_slam")
-                    npc.gfx("general_graardor_slam")
+                    anim("general_graardor_slam")
+                    gfx("general_graardor_slam")
                     areaSound("general_graardor_slam", target.tile, delay = 20, radius = 7)
                     val targets = players.filter { it.tile in areas["bandos_chamber"] }
-                    for (target in targets) {
-                        val delay = npc.shoot("general_graardor_projectile", target, curve = random.nextInt(9, 24))
-                        npc.hit(target, offensiveType = "range", delay = delay)
+                    for (t in targets) {
+                        val delay = shoot("general_graardor_projectile", t, curve = random.nextInt(9, 24))
+                        hit(t, offensiveType = "range", delay = delay)
                     }
                 }
                 else -> { // Melee
                     target.sound("general_graardor_attack")
                     target.sound("general_graardor_attack", delay = 20)
-                    npc.anim("general_graardor_attack")
-                    npc.hit(target, offensiveType = "melee")
+                    anim("general_graardor_attack")
+                    hit(target, offensiveType = "melee")
                 }
             }
         }
@@ -68,7 +66,7 @@ class GeneralGraardor : Script {
             }
         }
 
-        npcCombatAttack("general_graardor") {
+        npcCombatAttack("general_graardor") { (target, damage, type) ->
             if (type == "range") {
                 if (damage > 0) {
                     target.gfx("general_graardor_smash_impact")
@@ -79,7 +77,7 @@ class GeneralGraardor : Script {
             }
         }
 
-        npcCombatAttack("sergeant_steelwill") {
+        npcCombatAttack("sergeant_steelwill") { (target, damage, type) ->
             if (type == "magic" && damage > 0) {
                 areaGfx("sergeant_steelwill_impact", target.tile)
                 target.sound("sergeant_steelwill_impact")

@@ -1,6 +1,5 @@
 package content.achievement
 
-import content.entity.combat.hit.combatAttack
 import content.entity.combat.killer
 import content.entity.npc.shop.shop
 import content.skill.melee.weapon.attackStyle
@@ -193,8 +192,10 @@ class LumbridgeBeginnerTasks :
             set("handy_dandy_task", true)
         }
 
-        combatAttack(spell = "wind_strike") { player ->
-            player["death_from_above_task"] = true
+        combatAttack("magic") {
+            if (it.spell == "wind_strike") {
+                set("death_from_above_task", true)
+            }
         }
 
         itemAdded("bread", inventory = "inventory") {
@@ -331,13 +332,15 @@ class LumbridgeBeginnerTasks :
             }
         }
 
-        combatAttack(spell = "confuse") { player ->
-            player["not_so_confusing_after_all_task"] = true
+        combatAttack("magic") {
+            if (it.spell == "confuse") {
+                set("not_so_confusing_after_all_task", true)
+            }
         }
 
-        combatAttack(type = "range") { player ->
-            if (player.ammo == "steel_arrow") {
-                player["get_the_point_task"] = true
+        combatAttack("range") {
+            if (ammo == "steel_arrow") {
+                set("get_the_point_task", true)
             }
         }
 

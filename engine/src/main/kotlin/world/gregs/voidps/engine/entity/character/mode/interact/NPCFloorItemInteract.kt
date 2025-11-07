@@ -1,10 +1,10 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.event.Events
 
 data class NPCFloorItemInteract(
     override val target: FloorItem,
@@ -12,20 +12,20 @@ data class NPCFloorItemInteract(
     val npc: NPC,
     val shape: Int?
 ) : Interact(npc, target, shape = shape) {
-    override fun hasOperate() = Operation.npcFloorItemBlocks.containsKey(option)
+    override fun hasOperate() = Operation.npcFloorItem.containsKey(option)
 
-    override fun hasApproach() = Approachable.npcFloorItemBlocks.containsKey(option)
+    override fun hasApproach() = Approachable.npcFloorItem.containsKey(option)
 
     override fun operate() {
-        invoke(Operation.noDelays, Operation.npcFloorItemBlocks)
+        invoke(Operation.noDelays, Operation.npcFloorItem)
     }
 
     override fun approach() {
-        invoke(emptySet(), Approachable.npcFloorItemBlocks)
+        invoke(emptySet(), Approachable.npcFloorItem)
     }
 
     private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend NPC.(NPCFloorItemInteract) -> Unit>>) {
-        Events.events.launch {
+        Script.launch {
             if (!noDelays.contains(option)) {
                 npc.arriveDelay()
             }

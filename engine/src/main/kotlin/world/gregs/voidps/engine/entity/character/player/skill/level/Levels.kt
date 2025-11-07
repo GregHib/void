@@ -1,11 +1,11 @@
 package world.gregs.voidps.engine.entity.character.player.skill.level
 
+import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.Skills
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
-import world.gregs.voidps.engine.event.EventDispatcher
 import kotlin.math.max
 import kotlin.math.min
 
@@ -18,14 +18,14 @@ class Levels(
     }
 
     private lateinit var level: Level
-    private lateinit var events: EventDispatcher
+    private lateinit var entity: Entity
     private var npc: NPC? = null
 
-    fun link(events: EventDispatcher, level: Level) {
-        this.events = events
+    fun link(entity: Entity, level: Level) {
+        this.entity = entity
         this.level = level
-        if (events is NPC) {
-            npc = events
+        if (entity is NPC) {
+            npc = entity
         }
     }
 
@@ -118,10 +118,10 @@ class Levels(
 
     private fun notify(skill: Skill, previous: Int) {
         val level = get(skill)
-        if (events is Player) {
-            Skills.changed(events as Player, skill, previous, level)
-        } else if (events is NPC) {
-            Skills.changed(events as NPC, skill, previous, level)
+        if (entity is Player) {
+            Skills.changed(entity as Player, skill, previous, level)
+        } else if (entity is NPC) {
+            Skills.changed(entity as NPC, skill, previous, level)
         }
     }
 

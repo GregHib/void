@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.obj
 
 import io.mockk.*
-import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -11,7 +10,6 @@ import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
-import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectRemoval
@@ -25,7 +23,6 @@ class GameObjectsTest : KoinMock() {
 
     private lateinit var objects: GameObjects
     private lateinit var updates: ZoneBatchUpdates
-    private lateinit var events: Events
     private lateinit var spawns: MutableList<GameObject>
     private lateinit var despawns: MutableList<GameObject>
 
@@ -39,23 +36,24 @@ class GameObjectsTest : KoinMock() {
         declare { definitions }
         updates = mockk(relaxed = true)
         objects = GameObjects(mockk(relaxed = true), mockk(relaxed = true), updates, definitions, storeUnused = true)
-        events = spyk(Events())
-        Events.setEvents(events)
         spawns = mockk(relaxed = true)
-        val spawn: (GameObject) -> Unit = {
-            spawns.add(it)
-        }
-        Spawn.objectSpawns["*"] = mutableListOf(spawn)
         despawns = mockk(relaxed = true)
-        val despawn: (GameObject) -> Unit = {
-            despawns.add(it)
+        object : Spawn, Despawn {
+            init {
+                objectSpawn {
+                    spawns.add(this)
+                }
+                objectDespawn {
+                    despawns.add(this)
+                }
+            }
         }
-        Despawn.objectDespawns["*"] = mutableListOf(despawn)
     }
 
     @AfterEach
     fun teardown() {
-        Spawn.objectSpawns.clear()
+        Spawn.close()
+        Despawn.close()
     }
 
     @Test
@@ -261,14 +259,6 @@ class GameObjectsTest : KoinMock() {
         verifyOrder {
             spawns.add(replacement)
             despawns.add(replacement)
-        }
-    }
-
-    companion object {
-        @JvmStatic
-        @AfterAll
-        fun tearDown() {
-            Events.setEvents(Events())
         }
     }
 }

@@ -1,28 +1,51 @@
 package content.entity.player.combat.special
 
 import content.skill.melee.weapon.weapon
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.EventDispatcher
-import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import kotlin.math.floor
 
 const val MAX_SPECIAL_ATTACK = 1000
 
-data class SpecialAttack(val id: String, val target: Character) : Event {
-    override val size = 2
+interface SpecialAttack {
 
-    override fun parameter(dispatcher: EventDispatcher, index: Int) = when (index) {
-        0 -> "special_attack"
-        1 -> id
-        else -> null
+    fun specialAttack(id: String = "*", block: Player.(target: Character, id: String) -> Unit) {
+        specials[id] = block
     }
 
-    companion object {
+    fun specialAttackPrepare(id: String = "*", block: Player.(id: String) -> Boolean) {
+        prepare[id] = block
+    }
+
+    fun specialAttackDamage(id: String = "*", block: Player.(target: Character, damage: Int) -> Unit) {
+        damaging[id] = block
+    }
+
+    companion object : AutoCloseable {
+        val specials = Object2ObjectOpenHashMap<String, Player.(Character, String) -> Unit>()
+        val prepare = Object2ObjectOpenHashMap<String, Player.(String) -> Boolean>()
+        val damaging = Object2ObjectOpenHashMap<String, Player.(Character, Int) -> Unit>()
+
+        fun special(player: Player, target: Character, id: String) {
+            (specials[id] ?: specials["*"])?.invoke(player, target, id)
+        }
+
+        fun prepare(player: Player, id: String): Boolean = (prepare[id] ?: prepare["*"])?.invoke(player, id) ?: true
+
+        fun damage(player: Player, target: Character, mode: String, damage: Int) {
+            (damaging[mode] ?: damaging["*"])?.invoke(player, target, damage)
+        }
+
+        override fun close() {
+            specials.clear()
+            prepare.clear()
+            damaging.clear()
+        }
+
         fun hasEnergy(player: Player) = drain(player, drain = false)
 
         fun drain(player: Player, drain: Boolean = true): Boolean {
@@ -47,10 +70,6 @@ data class SpecialAttack(val id: String, val target: Character) : Event {
             return true
         }
     }
-}
-
-fun specialAttack(id: String = "*", handler: suspend SpecialAttack.(Player) -> Unit) {
-    Events.handle("special_attack", id, handler = handler)
 }
 
 var Player.specialAttack: Boolean
