@@ -97,7 +97,7 @@ class Teleports : Script {
                 player.sound("teleport_$type")
                 player.gfx("teleport_$type")
                 player.anim("teleport_$type")
-                delay(3)
+                player.delay(3)
                 player.tele(map.random(player)!!)
                 player.animDelay("teleport_land")
             }

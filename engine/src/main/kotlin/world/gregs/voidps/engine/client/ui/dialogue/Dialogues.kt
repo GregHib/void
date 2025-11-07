@@ -6,8 +6,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
-import world.gregs.voidps.engine.suspend.SuspendableContext
-import world.gregs.voidps.engine.suspend.Suspension
 
 interface Dialogues {
     fun continueDialogue(id: String = "*", handler: Player.(id: String) -> Unit) {
@@ -50,10 +48,6 @@ suspend fun Player.talkWith(npc: NPC, block: suspend Dialogue.() -> Unit) {
 }
 
 class Dialogue(
-    override val character: Player,
+    val character: Player,
     val target: NPC,
-) : SuspendableContext<Player> {
-    override suspend fun pause(ticks: Int) {
-        Suspension.start(character, ticks)
-    }
-}
+)

@@ -39,7 +39,7 @@ internal class WeakInteractionTest : WorldTest() {
             player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
             var cancelled = false
             player.weakQueue("dialogue", onCancel = { cancelled = true }) {
-                npc<Pleased>("Bob", "Hello")
+                player.npc<Pleased>("Bob", "Hello")
             }
             tick()
             assertNotNull(player.dialogue)
@@ -70,7 +70,7 @@ internal class WeakInteractionTest : WorldTest() {
             val player = createPlayer()
             var cancelled = false
             player.weakQueue("dialogue", onCancel = { cancelled = true }) {
-                npc<Pleased>("Bob", "Hello")
+                player.npc<Pleased>("Bob", "Hello")
             }
             tick()
             assertNotNull(player.dialogue)

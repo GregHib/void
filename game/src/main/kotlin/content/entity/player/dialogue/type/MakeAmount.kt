@@ -5,52 +5,12 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.IntSuspension
 
 private const val INTERFACE_ID = "dialogue_skill_creation"
 private const val INTERFACE_AMOUNT_ID = "skill_creation_amount"
 private const val DEFAULT_TEXT = "Choose how many you wish to make, then<br>click on the chosen item to begin."
-
-suspend fun Context<Player>.makeAmount(
-    items: List<String>,
-    type: String,
-    maximum: Int,
-    text: String = DEFAULT_TEXT,
-    allowAll: Boolean = true,
-    names: List<String>? = null,
-): Pair<String, Int> {
-    val (index, amount) = makeAmountIndex(items, type, maximum, text, allowAll, names)
-    val id = items.getOrNull(index) ?: ""
-    return id to amount
-}
-
-suspend fun Context<Player>.makeAmountIndex(
-    items: List<String>,
-    type: String,
-    maximum: Int,
-    text: String = DEFAULT_TEXT,
-    allowAll: Boolean = true,
-    names: List<String>? = null,
-): Pair<Int, Int> {
-    check(player.open(INTERFACE_ID) && player.open(INTERFACE_AMOUNT_ID)) { "Unable to open make amount dialogue for $player" }
-    if (allowAll) {
-        player.interfaceOptions.unlockAll(INTERFACE_AMOUNT_ID, "all")
-    }
-    player.interfaces.sendVisibility(INTERFACE_ID, "all", allowAll)
-    player.interfaces.sendVisibility(INTERFACE_ID, "custom", false)
-    player.interfaces.sendText(INTERFACE_AMOUNT_ID, "line1", text)
-    player["skill_creation_type"] = type
-
-    setItemOptions(player, items, names)
-    setMax(player, maximum.coerceAtLeast(1))
-    val choice: Int = IntSuspension.get(player)
-    player.close(INTERFACE_ID)
-    player.close(INTERFACE_AMOUNT_ID)
-    val amount = player["skill_creation_amount", 1]
-    return choice to amount
-}
 
 suspend fun Player.makeAmount(
     items: List<String>,

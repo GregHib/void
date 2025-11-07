@@ -87,14 +87,14 @@ interface Teleport {
                 player.gfx("teleport_$type")
                 player.animDelay("teleport_$type")
                 player.tele(tile)
-                delay(1)
+                player.delay(1)
                 if (sound) {
                     player.sound("teleport_land")
                 }
                 player.gfx("teleport_land_$type")
                 player.animDelay("teleport_land_$type")
                 if (type == "ancient" || type == "ectophial") {
-                    delay(1)
+                    player.delay(1)
                     player.clearAnim()
                 }
                 land(player, type)

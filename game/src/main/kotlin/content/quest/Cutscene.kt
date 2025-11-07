@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.clear
@@ -109,7 +108,5 @@ class Cutscene(
         )
     }
 }
-
-fun Context<Player>.startCutscene(name: String, region: Region = Region.EMPTY): Cutscene = Cutscene(player, name, region)
 
 fun Player.startCutscene(name: String, region: Region = Region.EMPTY): Cutscene = Cutscene(this, name, region)

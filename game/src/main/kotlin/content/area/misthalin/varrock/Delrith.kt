@@ -36,7 +36,6 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
@@ -291,16 +290,16 @@ class Delrith : Script {
         }
     }
 
-    fun Context<Player>.questComplete() {
-        AuditLog.event(player, "quest_completed", "demon_slayer")
-        player.anim("silverlight_showoff")
-        player.gfx("silverlight_sparkle")
-        player.sound("equip_silverlight")
-        player.jingle("quest_complete_1")
-        player["demon_slayer"] = "completed"
-        player.inc("quest_points", 3)
-        DemonSlayerSpell.clear(player)
-        player.softQueue("quest_complete", 1) {
+    fun Player.questComplete() {
+        AuditLog.event(this, "quest_completed", "demon_slayer")
+        anim("silverlight_showoff")
+        gfx("silverlight_sparkle")
+        sound("equip_silverlight")
+        jingle("quest_complete_1")
+        set("demon_slayer", "completed")
+        inc("quest_points", 3)
+        DemonSlayerSpell.clear(this)
+        softQueue("quest_complete", 1) {
             player.questComplete(
                 "Demon Slayer",
                 "3 Quest Points",

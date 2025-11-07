@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.SuspendableContext
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.CoroutineContext
 
@@ -31,21 +30,20 @@ abstract class DialogueTest : KoinMock() {
 
     lateinit var interfaces: Interfaces
     lateinit var player: Player
-    lateinit var context: SuspendableContext<Player>
     lateinit var continuation: Continuation<Any>
     lateinit var interfaceDefinitions: InterfaceDefinitions
     lateinit var fontDefinitions: FontDefinitions
     lateinit var clientScriptDefinitions: ClientScriptDefinitions
 
-    fun dialogueBlocking(block: suspend SuspendableContext<Player>.() -> Unit) {
+    fun dialogueBlocking(block: suspend Player.() -> Unit) {
         runTest {
-            block.invoke(context)
+            block.invoke(player)
         }
     }
 
-    fun dialogue(block: suspend SuspendableContext<Player>.() -> Unit) {
+    fun dialogue(block: suspend Player.() -> Unit) {
         GlobalScope.launch(Dispatchers.Unconfined) {
-            block.invoke(context)
+            block.invoke(player)
         }
     }
 
@@ -72,11 +70,6 @@ abstract class DialogueTest : KoinMock() {
             override fun resumeWith(result: Result<Any>) {
             }
         }
-        context = spyk(object : SuspendableContext<Player> {
-            override val character = this@DialogueTest.player
-            override suspend fun pause(ticks: Int) {
-            }
-        })
         every { clientScriptDefinitions.get("string_entry") } returns ClientScriptDefinition(id = 109)
         every { player.open(any()) } returns true
 

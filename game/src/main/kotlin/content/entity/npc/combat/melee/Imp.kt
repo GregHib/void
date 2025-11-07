@@ -78,7 +78,7 @@ class Imp : Script {
             val mode = npc.mode
             npc.mode = PauseMode
             npc.tele(destination)
-            delay(1)
+            npc.delay(1)
             npc.gfx("imp_puff")
             npc.mode = mode
         }

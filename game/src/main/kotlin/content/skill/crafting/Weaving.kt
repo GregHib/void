@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.Context
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -58,18 +57,6 @@ class Weaving : Script {
             )
             weave(target, item, amount)
         }
-    }
-
-    fun Context<Player>.weave(obj: GameObject, item: Item, amount: Int) {
-        val data = item.weaving
-        val current = player.inventory.count(item.id)
-        if (current < data.amount) {
-            val name = data.to.toLowerSpaceCase()
-            player.message("You need ${data.amount} ${plural(item)} in order to make${name.an()} $name.")
-            return
-        }
-        val actualAmount = if (current < amount * data.amount) current / data.amount else amount
-        player.weave(obj, item, actualAmount)
     }
 
     fun Player.weave(obj: GameObject, item: Item, amount: Int) {

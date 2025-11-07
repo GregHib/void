@@ -280,11 +280,11 @@ class MageOfZamorak : Script {
             target.anim("tele_other")
             player.sound("tele_other_cast")
             target.say("Veniens! Sallakar! Rinnesset!")
-            delay(2)
+            player.delay(2)
             player.anim("lunar_teleport")
             player.gfx("tele_other_receive")
             player.sound("teleport_all")
-            delay(2)
+            player.delay(2)
             player["abyss_obstacles"] = random.nextInt(0, 12)
             var tile = abyss.random(player)
             var count = 0
