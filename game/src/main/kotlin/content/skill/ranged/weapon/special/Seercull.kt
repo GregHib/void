@@ -1,10 +1,11 @@
 package content.skill.ranged.weapon.special
 
-import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatDamage
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 
@@ -18,9 +19,7 @@ class Seercull : Script, SpecialAttack {
             hit(target, delay = time)
         }
 
-        characterCombatDamage("seercull", "range") { character ->
-            character.gfx("seercull_special_impact")
-        }
+        combatDamage("range", ::damage)
 
         combatAttack("range") { (target, damage, _, weapon, _, special) ->
             if (weapon.id.startsWith("seercull")) {
@@ -38,5 +37,12 @@ class Seercull : Script, SpecialAttack {
                 clear("soulshot")
             }
         }
+    }
+
+    fun damage(character: Character, it: CombatDamage) {
+        if (it.weapon.id != "seercull") {
+            return
+        }
+        character.gfx("seercull_special_impact")
     }
 }

@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatDamage
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -179,7 +180,11 @@ fun Character.directHit(source: Character, damage: Int, type: String = "damage",
     if (source.dead) {
         return
     }
-    emit(CombatDamage(source, type, damage, weapon, spell, special))
+    if (this is Player) {
+        CombatApi.damage(this, CombatDamage(source, type, damage, weapon, spell, special))
+    } else if (this is NPC) {
+        CombatApi.damage(this, CombatDamage(source, type, damage, weapon, spell, special))
+    }
     if (source["debug", false] || this["debug", false]) {
         val player = if (this["debug", false] && this is Player) this else source as Player
         val message = "Damage: $damage ($type, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"

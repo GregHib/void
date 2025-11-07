@@ -1,16 +1,13 @@
 package content.entity.combat
 
 import content.area.wilderness.inSingleCombat
-import content.entity.combat.hit.characterCombatDamage
 import content.entity.player.combat.special.specialAttack
 import content.skill.magic.Magic
 import content.skill.melee.weapon.*
-import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.Character
@@ -19,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.combat.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 class Combat : Script, CombatApi {
@@ -74,13 +72,17 @@ class Combat : Script, CombatApi {
 
         npcDeath(handler = ::stop)
 
-        characterCombatDamage { character ->
-            if (source == character || type == "poison" || type == "disease" || type == "healed") {
-                return@characterCombatDamage
-            }
-            if (character.mode !is CombatMovement && character.mode !is PauseMode) {
-                retaliate(character, source)
-            }
+        combatDamage(handler = ::damage)
+        npcCombatDamage(handler = ::damage)
+    }
+
+    fun damage(character: Character, it: CombatDamage) {
+        val (source, type) = it
+        if (source == character || type == "poison" || type == "disease" || type == "healed") {
+            return
+        }
+        if (character.mode !is CombatMovement && character.mode !is PauseMode) {
+            retaliate(character, source)
         }
     }
 
@@ -151,7 +153,9 @@ class Combat : Script, CombatApi {
             }
             if (character["debug", false] || target["debug", false]) {
                 val player = if (character["debug", false] && character is Player) character else target as Player
-                player.message("---- Swing (${character.identifier}) -> (${target.identifier}) -----")
+                val id = if (character is NPC) character.id else if (character is Player) character.name else ""
+                val targetId = if (target is NPC) target.id else if (target is Player) target.name else ""
+                player.message("---- Swing (${id}) -> (${targetId}) -----")
             }
             if (!target.hasClock("in_combat")) {
                 if (character is Player) {

@@ -74,6 +74,25 @@ interface CombatApi {
         }
     }
 
+    /**
+     * Damage done by [source] to the emitter
+     * Used for defend graphics, for effects use [CombatAttack]
+     * @param type the combat type, typically: melee, range or magic
+     * @param damage the damage inflicted by the [source]
+     * @param weapon weapon used
+     * @param spell magic spell used
+     * @param special whether weapon special attack was used
+     */
+    fun combatDamage(style: String = "*", handler: Player.(CombatDamage) -> Unit) {
+        damages.getOrPut(style) { mutableListOf() }.add(handler)
+    }
+
+    fun npcCombatDamage(npc: String = "*", style: String = "*", handler: NPC.(CombatDamage) -> Unit) {
+        Wildcards.find(npc, Wildcard.Npc) { id ->
+            damageNpc.getOrPut("$id:$style") { mutableListOf() }.add(handler)
+        }
+    }
+
     companion object : AutoCloseable {
         private val start = ObjectArrayList<Player.(Character) -> Unit>(5)
         private val startNpc = ObjectArrayList<NPC.(Character) -> Unit>(5)
@@ -85,6 +104,8 @@ interface CombatApi {
         private val swingNpc = Object2ObjectOpenHashMap<String, MutableList<NPC.(Character) -> Unit>>(30)
         private val attacks = Object2ObjectOpenHashMap<String, MutableList<Player.(CombatAttack) -> Unit>>(40)
         private val attackNpc = Object2ObjectOpenHashMap<String, MutableList<NPC.(CombatAttack) -> Unit>>(30)
+        private val damages = Object2ObjectOpenHashMap<String, MutableList<Player.(CombatDamage) -> Unit>>(40)
+        private val damageNpc = Object2ObjectOpenHashMap<String, MutableList<NPC.(CombatDamage) -> Unit>>(30)
 
         fun attack(player: Player, attack: CombatAttack) {
             for (handler in attacks[attack.type] ?: emptyList()) {
@@ -107,6 +128,30 @@ interface CombatApi {
             }
             for (handler in attackNpc["*:*"] ?: return) {
                 handler(npc, attack)
+            }
+        }
+
+        fun damage(player: Player, damage: CombatDamage) {
+            for (handler in damages[damage.type] ?: emptyList()) {
+                handler(player, damage)
+            }
+            for (handler in damages["*"] ?: return) {
+                handler(player, damage)
+            }
+        }
+
+        fun damage(npc: NPC, damage: CombatDamage) {
+            for (handler in damageNpc["${npc.id}:${damage.type}"] ?: emptyList()) {
+                handler(npc, damage)
+            }
+            for (handler in damageNpc["*:${damage.type}"] ?: emptyList()) {
+                handler(npc, damage)
+            }
+            for (handler in damageNpc["${npc.id}:*"] ?: emptyList()) {
+                handler(npc, damage)
+            }
+            for (handler in damageNpc["*:*"] ?: return) {
+                handler(npc, damage)
             }
         }
 
@@ -185,6 +230,8 @@ interface CombatApi {
             swingNpc.clear()
             attacks.clear()
             attackNpc.clear()
+            damages.clear()
+            damageNpc.clear()
         }
     }
 }

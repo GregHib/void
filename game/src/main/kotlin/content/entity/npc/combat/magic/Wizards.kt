@@ -1,7 +1,6 @@
 package content.entity.npc.combat.magic
 
 import content.entity.combat.hit.directHit
-import content.entity.combat.hit.npcCombatDamage
 import content.skill.magic.spell.Spell
 import content.skill.magic.spell.spell
 import world.gregs.voidps.engine.Script
@@ -43,20 +42,28 @@ class Wizards : Script {
             true
         }
 
-        npcCombatDamage("air_wizard", spell = "air_*") { npc ->
-            npc.directHit(damage, "healed")
+        npcCombatDamage("air_wizard") {
+            if (it.spell.startsWith("air_")) {
+                directHit(it.damage, "healed")
+            }
         }
 
-        npcCombatDamage("water_wizard", spell = "water_*") { npc ->
-            npc.directHit(damage, "healed")
+        npcCombatDamage("water_wizard") {
+            if (it.spell.startsWith("water_")) {
+                directHit(it.damage, "healed")
+            }
         }
 
-        npcCombatDamage("earth_wizard", spell = "earth_*") { npc ->
-            npc.directHit(damage, "healed")
+        npcCombatDamage("earth_wizard") {
+            if (it.spell.startsWith("earth_")) {
+                directHit(it.damage, "healed")
+            }
         }
 
-        npcCombatDamage("fire_wizard", spell = "fire_*") { npc ->
-            npc.directHit(damage, "healed")
+        npcCombatDamage("fire_wizard") {
+            if (it.spell.startsWith("fire_")) {
+                directHit(it.damage, "healed")
+            }
         }
     }
 }

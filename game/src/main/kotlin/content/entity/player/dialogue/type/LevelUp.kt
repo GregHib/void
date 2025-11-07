@@ -1,6 +1,5 @@
 package content.entity.player.dialogue.type
 
-import content.entity.combat.hit.combatDamage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.an
@@ -80,9 +79,9 @@ class LevelUp : Script {
             )
         }
 
-        combatDamage { player ->
-            if (!(player.menu ?: player.dialogue).isNullOrBlank()) {
-                player.closeInterfaces()
+        combatDamage {
+            if (!(menu ?: dialogue).isNullOrBlank()) {
+                closeInterfaces()
             }
         }
     }

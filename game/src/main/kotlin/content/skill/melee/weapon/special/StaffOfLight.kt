@@ -1,6 +1,5 @@
 package content.skill.melee.weapon.special
 
-import content.entity.combat.hit.combatDamage
 import content.entity.player.combat.special.SpecialAttack
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -29,9 +28,9 @@ class StaffOfLight : Script, SpecialAttack {
             softTimers.stop("power_of_light")
         }
 
-        combatDamage { player ->
-            if (player.softTimers.contains("power_of_light")) {
-                player.gfx("power_of_light_impact")
+        combatDamage {
+            if (softTimers.contains("power_of_light")) {
+                gfx("power_of_light_impact")
             }
         }
 

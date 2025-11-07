@@ -1,6 +1,5 @@
 package content.skill.melee.armour
 
-import content.entity.combat.hit.combatDamage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -20,8 +19,8 @@ class Degradation : Script {
     )
 
     init {
-        combatDamage { player ->
-            degrade(player)
+        combatDamage {
+            degrade(this)
         }
 
         combatAttack {

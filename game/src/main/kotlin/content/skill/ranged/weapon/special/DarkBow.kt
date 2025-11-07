@@ -1,12 +1,12 @@
 package content.skill.ranged.weapon.special
 
-import content.entity.combat.hit.characterCombatDamage
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.proj.shoot
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatDamage
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.distanceTo
@@ -36,11 +36,8 @@ class DarkBow : Script, SpecialAttack {
             hit(target, delay = time2)
         }
 
-        characterCombatDamage("dark_bow*", "range") { character ->
-            source.sound("descent_of_darkness")
-            source.sound("descent_of_darkness", delay = 20)
-            character.gfx("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_impact")
-        }
+        combatDamage("range", handler = ::damage)
+        npcCombatDamage(style = "range", handler = ::damage)
 
         combatSwing("dark_bow*", "range") { target ->
             anim("bow_accurate")
@@ -51,6 +48,16 @@ class DarkBow : Script, SpecialAttack {
             hit(target, delay = time1)
             hit(target, delay = time2)
         }
+    }
+
+    fun damage(character: Character, it: CombatDamage) {
+        if (!it.weapon.id.startsWith("dark_bow")) {
+            return
+        }
+        val (source) = it
+        source.sound("descent_of_darkness")
+        source.sound("descent_of_darkness", delay = 20)
+        character.gfx("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_impact")
     }
 
     fun Player.shoot(id: String, target: Character, high: Boolean): Int {

@@ -1,6 +1,7 @@
 package content.skill.ranged.weapon.special
 
 import content.entity.combat.hit.*
+import content.social.trade.returnedItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -16,13 +17,6 @@ class GodBows : Script {
         set(value) {
             this["restoration"] = value
         }
-
-    val hitHandler: suspend CombatDamage.(Character) -> Unit = { character ->
-        if (special) {
-            character.gfx("${weapon.id}_special_impact")
-            source.sound("god_bow_special_impact")
-        }
-    }
 
     init {
         combatAttack("range") { (target, damage, type, weapon, spell, special, delay) ->
@@ -44,11 +38,15 @@ class GodBows : Script {
             }
         }
 
-        combatDamage("saradomin_bow", handler = hitHandler)
-
-        combatDamage("guthix_bow", handler = hitHandler)
-
-        combatDamage("zamorak_bow", handler = hitHandler)
+        combatDamage("range") { (source, _, _, weapon, _, special) ->
+            if (weapon.id != "guthix_bow" && weapon.id != "saradomin_bow" && weapon.id != "zamorak_bow") {
+                returnedItems
+            }
+            if (special) {
+                gfx("${weapon.id}_special_impact")
+                source.sound("god_bow_special_impact")
+            }
+        }
 
         timerStart("restorative_shot") { TimeUnit.SECONDS.toTicks(6) }
         timerStart("balanced_shot") { TimeUnit.SECONDS.toTicks(6) }

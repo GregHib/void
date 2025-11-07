@@ -1,6 +1,5 @@
 package content.entity.npc.combat.melee
 
-import content.entity.combat.hit.npcCombatDamage
 import content.entity.gfx.areaGfx
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.areaSound
@@ -29,17 +28,14 @@ class Imp : Script {
             random.nextInt(50, 200)
         }
 
-        npcCombatDamage("imp") { npc ->
-            val player = source
-            if (npc.levels.get(Skill.Constitution) - damage > 0) {
-                if (random.nextDouble() < retreatChance) {
-                    if (npc.levels.get(Skill.Constitution) - damage < 10) {
-                        npc.softQueue("imp_retreat") {
-                            npc.mode = Retreat(npc, player)
-                        }
-                    } else if (npc.mode !is Retreat) {
-                        teleportImp(npc, teleportChanceHit)
+        npcCombatDamage("imp") { (source, _, damage) ->
+            if (levels.get(Skill.Constitution) - damage > 0 && random.nextDouble() < retreatChance) {
+                if (levels.get(Skill.Constitution) - damage < 10) {
+                    softQueue("imp_retreat") {
+                        mode = Retreat(npc, source)
                     }
+                } else if (mode !is Retreat) {
+                    teleportImp(this, teleportChanceHit)
                 }
             }
         }
