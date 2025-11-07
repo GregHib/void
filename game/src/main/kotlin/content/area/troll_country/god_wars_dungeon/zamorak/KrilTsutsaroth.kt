@@ -1,7 +1,6 @@
 package content.area.troll_country.god_wars_dungeon.zamorak
 
 import content.entity.combat.hit.hit
-import content.entity.combat.hit.npcCombatAttack
 import content.entity.effect.toxin.poison
 import content.skill.prayer.protectMelee
 import world.gregs.voidps.engine.Script
@@ -81,7 +80,7 @@ class KrilTsutsaroth : Script {
             gritch = null
         }
 
-        npcCombatAttack("kril_tsutsaroth") {
+        npcCombatAttack("kril_tsutsaroth") { (target, damage, type) ->
             if (type == "magic") {
                 if (damage > 0) {
                     areaSound("kril_tsutsaroth_magic_impact", target.tile, radius = 15)

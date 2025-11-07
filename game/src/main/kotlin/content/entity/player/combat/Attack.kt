@@ -102,10 +102,8 @@ class Attack : Script {
             if (contains("one_time")) {
                 mode = EmptyMode
                 clear("one_time")
-                false
-            } else {
-                true
             }
+            true
         }
     }
 

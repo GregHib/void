@@ -1,7 +1,6 @@
 package content.area.wilderness
 
 import content.entity.combat.hit.hit
-import content.entity.combat.hit.npcCombatAttack
 import content.entity.effect.freeze
 import content.entity.effect.toxin.poison
 import content.entity.proj.shoot
@@ -43,10 +42,10 @@ class KingBlackDragon : Script {
             }
         }
 
-        npcCombatAttack("king_black_dragon") { npc ->
+        npcCombatAttack("king_black_dragon") { (target, _, _, _, spell) ->
             when (spell) {
-                "toxic" -> npc.poison(target, 80)
-                "ice" -> npc.freeze(target, 10)
+                "toxic" -> poison(target, 80)
+                "ice" -> freeze(target, 10)
                 "shock" -> {
                     target.message("You're shocked and weakened!")
                     for (skill in Skill.all) {

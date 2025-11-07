@@ -1,6 +1,5 @@
 package content.skill.magic.shield
 
-import content.entity.combat.hit.combatAttack
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -44,17 +43,23 @@ class MagicalBlastBox : Script {
             updateCharges(this, index, item.id != "magical_blastbox")
         }
 
-        combatAttack(spell = "*_bolt") { player ->
-            val box = player.equipped(EquipSlot.Shield).id
+        combatAttack("magic") {
+            if (!it.spell.endsWith("_bolt")) {
+                return@combatAttack
+            }
+            val box = equipped(EquipSlot.Shield).id
             if (box.startsWith("magical_blastbox")) {
-                updateCharges(player, EquipSlot.Shield.index, box != "magical_blastbox")
+                updateCharges(this, EquipSlot.Shield.index, box != "magical_blastbox")
             }
         }
 
-        combatAttack(spell = "*_blast") { player ->
-            val box = player.equipped(EquipSlot.Shield).id
+        combatAttack("magic") {
+            if (!it.spell.endsWith("_blast")) {
+                return@combatAttack
+            }
+            val box = equipped(EquipSlot.Shield).id
             if (box.startsWith("magical_blastbox")) {
-                updateCharges(player, EquipSlot.Shield.index, box != "magical_blastbox")
+                updateCharges(this, EquipSlot.Shield.index, box != "magical_blastbox")
             }
         }
 

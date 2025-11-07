@@ -1,10 +1,8 @@
 package content.skill.ranged.weapon.special
 
 import content.entity.combat.hit.characterCombatDamage
-import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.SpecialAttack
-import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -24,7 +22,10 @@ class Seercull : Script, SpecialAttack {
             character.gfx("seercull_special_impact")
         }
 
-        combatAttack("seercull*") {
+        combatAttack("range") { (target, damage, _, weapon, _, special) ->
+            if (weapon.id.startsWith("seercull")) {
+                return@combatAttack
+            }
             if (target["soulshot", false] || !special) {
                 return@combatAttack
             }

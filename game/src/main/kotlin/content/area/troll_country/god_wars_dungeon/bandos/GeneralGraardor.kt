@@ -1,7 +1,6 @@
 package content.area.troll_country.god_wars_dungeon.bandos
 
 import content.entity.combat.hit.hit
-import content.entity.combat.hit.npcCombatAttack
 import content.entity.gfx.areaGfx
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
@@ -67,7 +66,7 @@ class GeneralGraardor : Script {
             }
         }
 
-        npcCombatAttack("general_graardor") {
+        npcCombatAttack("general_graardor") { (target, damage, type) ->
             if (type == "range") {
                 if (damage > 0) {
                     target.gfx("general_graardor_smash_impact")
@@ -78,7 +77,7 @@ class GeneralGraardor : Script {
             }
         }
 
-        npcCombatAttack("sergeant_steelwill") {
+        npcCombatAttack("sergeant_steelwill") { (target, damage, type) ->
             if (type == "magic" && damage > 0) {
                 areaGfx("sergeant_steelwill_impact", target.tile)
                 target.sound("sergeant_steelwill_impact")

@@ -57,6 +57,23 @@ interface CombatApi {
         }
     }
 
+    /**
+     * Damage done to a target
+     * Emitted on swing, where [combatDamage] is after the attack delay
+     * @param type the combat type, typically: melee, range or magic
+     * @param damage the damage inflicted upon the [target]
+     * @param delay until hit in client ticks
+     */
+    fun combatAttack(style: String = "*", handler: Player.(CombatAttack) -> Unit) {
+        attacks.getOrPut(style) { mutableListOf() }.add(handler)
+    }
+
+    fun npcCombatAttack(npc: String = "*", style: String = "*", handler: NPC.(CombatAttack) -> Unit) {
+        Wildcards.find(npc, Wildcard.Npc) { id ->
+            attackNpc.getOrPut("$id:$style") { mutableListOf() }.add(handler)
+        }
+    }
+
     companion object : AutoCloseable {
         private val start = ObjectArrayList<Player.(Character) -> Unit>(5)
         private val startNpc = ObjectArrayList<NPC.(Character) -> Unit>(5)
@@ -66,6 +83,32 @@ interface CombatApi {
         private val prepareNpc = Object2ObjectOpenHashMap<String, MutableList<NPC.(Character) -> Boolean>>(5)
         private val swing = Object2ObjectOpenHashMap<String, MutableList<Player.(Character) -> Unit>>(25)
         private val swingNpc = Object2ObjectOpenHashMap<String, MutableList<NPC.(Character) -> Unit>>(30)
+        private val attacks = Object2ObjectOpenHashMap<String, MutableList<Player.(CombatAttack) -> Unit>>(40)
+        private val attackNpc = Object2ObjectOpenHashMap<String, MutableList<NPC.(CombatAttack) -> Unit>>(30)
+
+        fun attack(player: Player, attack: CombatAttack) {
+            for (handler in attacks[attack.type] ?: emptyList()) {
+                handler(player, attack)
+            }
+            for (handler in attacks["*"] ?: return) {
+                handler(player, attack)
+            }
+        }
+
+        fun attack(npc: NPC, attack: CombatAttack) {
+            for (handler in attackNpc["${npc.id}:${attack.type}"] ?: emptyList()) {
+                handler(npc, attack)
+            }
+            for (handler in attackNpc["*:${attack.type}"] ?: emptyList()) {
+                handler(npc, attack)
+            }
+            for (handler in attackNpc["${npc.id}:*"] ?: emptyList()) {
+                handler(npc, attack)
+            }
+            for (handler in attackNpc["*:*"] ?: return) {
+                handler(npc, attack)
+            }
+        }
 
         fun start(player: Player, target: Character) {
             for (handler in start) {
@@ -140,6 +183,8 @@ interface CombatApi {
             prepareNpc.clear()
             swing.clear()
             swingNpc.clear()
+            attacks.clear()
+            attackNpc.clear()
         }
     }
 }

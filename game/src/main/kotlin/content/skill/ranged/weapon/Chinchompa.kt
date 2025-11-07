@@ -2,7 +2,6 @@ package content.skill.ranged.weapon
 
 import content.area.wilderness.inMultiCombat
 import content.entity.combat.hit.characterCombatDamage
-import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.directHit
 import content.skill.melee.weapon.multiTargets
 import world.gregs.voidps.engine.Script
@@ -20,11 +19,11 @@ class Chinchompa : Script {
             character.gfx("chinchompa_impact")
         }
 
-        combatAttack(type = "range") { source ->
+        combatAttack("range") { (target, damage, type, weapon, spell) ->
             if (weapon.id.endsWith("chinchompa") && target.inMultiCombat) {
                 val targets = multiTargets(target, if (target is Player) 9 else 11)
-                for (target in targets) {
-                    target.directHit(source, random.nextInt(0..damage), type, weapon, spell)
+                for (targ in targets) {
+                    targ.directHit(this, random.nextInt(0..damage), type, weapon, spell)
                 }
             }
         }

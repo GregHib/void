@@ -1,6 +1,5 @@
 package content.skill.magic.shield
 
-import content.entity.combat.hit.combatAttack
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -44,17 +43,23 @@ class CelestialSurgeBox : Script {
             updateCharges(this, index, item.id != "celestial_surgebox")
         }
 
-        combatAttack(spell = "*_wave") { player ->
-            val box = player.equipped(EquipSlot.Shield).id
+        combatAttack("magic") {
+            if (!it.spell.endsWith("_wave")) {
+                return@combatAttack
+            }
+            val box = equipped(EquipSlot.Shield).id
             if (box.startsWith("celestial_surgebox")) {
-                updateCharges(player, EquipSlot.Shield.index, box != "celestial_surgebox")
+                updateCharges(this, EquipSlot.Shield.index, box != "celestial_surgebox")
             }
         }
 
-        combatAttack(spell = "*_surge") { player ->
-            val box = player.equipped(EquipSlot.Shield).id
+        combatAttack("magic") {
+            if (!it.spell.endsWith("_surge")) {
+                return@combatAttack
+            }
+            val box = equipped(EquipSlot.Shield).id
             if (box.startsWith("celestial_surgebox")) {
-                updateCharges(player, EquipSlot.Shield.index, box != "celestial_surgebox")
+                updateCharges(this, EquipSlot.Shield.index, box != "celestial_surgebox")
             }
         }
 
@@ -131,12 +136,12 @@ class CelestialSurgeBox : Script {
         val charges = player.inventory.charges(player, slot)
         player.inventory.transaction {
             val actual = (
-                if (surge) {
-                    minOf(inventory.count("air_rune$dungeoneering") / 7, inventory.count("blood_rune$dungeoneering"), inventory.count("death_rune$dungeoneering"))
-                } else {
-                    min(inventory.count("air_rune$dungeoneering") / 5, inventory.count("blood_rune$dungeoneering"))
-                }
-                ).coerceAtMost(maximum - charges)
+                    if (surge) {
+                        minOf(inventory.count("air_rune$dungeoneering") / 7, inventory.count("blood_rune$dungeoneering"), inventory.count("death_rune$dungeoneering"))
+                    } else {
+                        min(inventory.count("air_rune$dungeoneering") / 5, inventory.count("blood_rune$dungeoneering"))
+                    }
+                    ).coerceAtMost(maximum - charges)
 
             remove("air_rune$dungeoneering", actual * if (surge) 7 else 5)
             remove("blood_rune$dungeoneering", actual)

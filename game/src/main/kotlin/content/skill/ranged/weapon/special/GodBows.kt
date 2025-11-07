@@ -17,25 +17,6 @@ class GodBows : Script {
             this["restoration"] = value
         }
 
-    val specialHandler: suspend CombatAttack.(Player) -> Unit = combatAttack@{ source ->
-        if (!special) {
-            return@combatAttack
-        }
-        when (weapon.id) {
-            "zamorak_bow" -> target.hit(source, weapon, type, CLIENT_TICKS.toTicks(delay), spell, special, type, damage)
-            "saradomin_bow" -> {
-                source.restoration += damage * 2
-                source["restoration_amount"] = source.restoration / 10
-                source.softTimers.start("restorative_shot")
-            }
-            "guthix_bow" -> {
-                source.restoration += (damage * 1.5).toInt()
-                source["restoration_amount"] = source.restoration / 10
-                source.softTimers.start("balanced_shot")
-            }
-        }
-    }
-
     val hitHandler: suspend CombatDamage.(Character) -> Unit = { character ->
         if (special) {
             character.gfx("${weapon.id}_special_impact")
@@ -44,11 +25,24 @@ class GodBows : Script {
     }
 
     init {
-        combatAttack("saradomin_bow", handler = specialHandler)
-
-        combatAttack("guthix_bow", handler = specialHandler)
-
-        combatAttack("zamorak_bow", handler = specialHandler)
+        combatAttack("range") { (target, damage, type, weapon, spell, special, delay) ->
+            if (!special || (weapon.id != "guthix_bow" && weapon.id != "saradomin_bow" && weapon.id != "zamorak_bow")) {
+                return@combatAttack
+            }
+            when (weapon.id) {
+                "zamorak_bow" -> target.hit(this, weapon, type, CLIENT_TICKS.toTicks(delay), spell, special, type, damage)
+                "saradomin_bow" -> {
+                    restoration += damage * 2
+                    set("restoration_amount", restoration / 10)
+                    softTimers.start("restorative_shot")
+                }
+                "guthix_bow" -> {
+                    restoration += (damage * 1.5).toInt()
+                    set("restoration_amount", restoration / 10)
+                    softTimers.start("balanced_shot")
+                }
+            }
+        }
 
         combatDamage("saradomin_bow", handler = hitHandler)
 

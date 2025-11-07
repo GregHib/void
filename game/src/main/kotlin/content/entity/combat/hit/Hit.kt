@@ -11,6 +11,8 @@ import content.skill.melee.weapon.weapon
 import content.skill.prayer.Prayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -154,7 +156,11 @@ fun Character.hit(
 ): Int {
     val actualDamage = Damage.modify(this, target, offensiveType, damage, weapon, spell, special)
         .coerceAtMost(target.levels.get(Skill.Constitution))
-    emit(CombatAttack(target, offensiveType, actualDamage, weapon, spell, special, delay))
+    if (this is Player) {
+        CombatApi.attack(this, CombatAttack(target, actualDamage, offensiveType, weapon, spell, special, delay))
+    } else if (this is NPC) {
+        CombatApi.attack(this, CombatAttack(target, actualDamage, offensiveType, weapon, spell, special, delay))
+    }
     target.strongQueue("hit", if (delay == 0) 0 else CLIENT_TICKS.toTicks(delay) + 1) {
         target.directHit(this@hit, actualDamage, offensiveType, weapon, spell, special)
     }

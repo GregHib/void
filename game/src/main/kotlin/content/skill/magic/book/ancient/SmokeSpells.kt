@@ -1,9 +1,10 @@
 package content.skill.magic.book.ancient
 
-import content.entity.combat.hit.characterCombatAttack
 import content.entity.effect.toxin.poison
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
 
@@ -12,14 +13,17 @@ class SmokeSpells : Script {
     val definitions: SpellDefinitions by inject()
 
     init {
-        characterCombatAttack(spell = "smoke_*", type = "magic") { source ->
-            if (damage <= 0) {
-                return@characterCombatAttack
-            }
-            if (random.nextDouble() <= 0.2) {
-                val damage: Int = definitions.get(spell)["poison_damage"]
-                source.poison(target, damage)
-            }
+        combatAttack("magic", handler = ::attack)
+        npcCombatAttack(style = "magic", handler = ::attack)
+    }
+
+    fun attack(source: Character, attack: CombatAttack) {
+        val (target, damage, _, _, spell) = attack
+        if (damage <= 0 || !spell.startsWith("smoke_")) {
+            return
+        }
+        if (random.nextDouble() <= 0.2) {
+            source.poison(target, definitions.get(spell)["poison_damage"])
         }
     }
 }

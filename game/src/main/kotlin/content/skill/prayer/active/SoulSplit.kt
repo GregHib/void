@@ -1,7 +1,6 @@
 package content.skill.prayer.active
 
 import content.entity.combat.dead
-import content.entity.combat.hit.combatAttack
 import content.entity.proj.shoot
 import content.skill.prayer.praying
 import content.skill.summoning.isFamiliar
@@ -14,13 +13,13 @@ import world.gregs.voidps.engine.timer.*
 class SoulSplit : Script {
 
     init {
-        combatAttack { player ->
-            if (!usingSoulSplit(player) || damage < 5 || type == "deflect" || type == "cannon" || target.isFamiliar) {
+        combatAttack { (target, damage, type) ->
+            if (!usingSoulSplit(this) || damage < 5 || type == "deflect" || type == "cannon" || target.isFamiliar) {
                 return@combatAttack
             }
-            val time = player.shoot("soul_split", target, height = 10, endHeight = 10)
+            val time = shoot("soul_split", target, height = 10, endHeight = 10)
             target["soul_split_delay"] = CLIENT_TICKS.toTicks(time)
-            target["soul_split_source"] = player
+            target["soul_split_source"] = this
             target["soul_split_damage"] = damage
             target.gfx("soul_split_impact", time)
             target.softTimers.start("soul_split")

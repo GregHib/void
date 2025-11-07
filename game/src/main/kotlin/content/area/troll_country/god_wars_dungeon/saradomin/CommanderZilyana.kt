@@ -1,7 +1,6 @@
 package content.area.troll_country.god_wars_dungeon.saradomin
 
 import content.entity.combat.hit.hit
-import content.entity.combat.hit.npcCombatAttack
 import content.entity.gfx.areaGfx
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -69,7 +68,7 @@ class CommanderZilyana : Script {
             growler = null
         }
 
-        npcCombatAttack("commander_zilyana") {
+        npcCombatAttack("commander_zilyana") { (target, damage, type) ->
             if (type == "magic") {
                 if (damage > 0) {
                     areaSound("commander_zilyana_magic_impact", target.tile)

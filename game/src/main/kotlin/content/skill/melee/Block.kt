@@ -1,6 +1,5 @@
 package content.skill.melee
 
-import content.entity.combat.hit.characterCombatAttack
 import content.entity.npc.combat.NPCAttack
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
@@ -26,32 +25,37 @@ class Block : Script {
     val soundDefinitions: SoundDefinitions by inject()
 
     init {
-        characterCombatAttack { character ->
-            character.sound(calculateHitSound(target), delay)
-            if (target is Player) {
-                target.sound(calculateHitSound(target), delay)
-                val shield = target.equipped(EquipSlot.Shield).id
-                if (shield.endsWith("shield")) {
-                    target.anim("shield_block", delay)
-                } else if (shield.endsWith("defender")) {
-                    target.anim("defender_block", delay)
-                } else if (shield.endsWith("book")) {
-                    target.anim("book_block", delay)
-                } else {
-                    val type: String? = target.weapon.def.getOrNull("weapon_type")
-                    val definition = if (type != null) weaponDefinitions.get(type) else null
-                    var animation = definition?.attackTypes?.get("defend")
-                    if (animation == null) {
-                        val id = target.weapon.def["weapon_style", -1]
-                        val style = styleDefinitions.get(id)
-                        animation = if (id != -1 && animationDefinitions.contains("${style.stringId}_defend")) "${style.stringId}_defend" else "human_defend"
-                    }
-                    target.anim(animation, delay)
+        combatAttack(handler = ::attack)
+        npcCombatAttack(handler = ::attack)
+    }
+
+    fun attack(source: Character, attack: world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack) {
+        val target = attack.target
+        val delay = attack.delay
+        source.sound(calculateHitSound(target), delay)
+        if (target is Player) {
+            target.sound(calculateHitSound(target), delay)
+            val shield = target.equipped(EquipSlot.Shield).id
+            if (shield.endsWith("shield")) {
+                target.anim("shield_block", delay)
+            } else if (shield.endsWith("defender")) {
+                target.anim("defender_block", delay)
+            } else if (shield.endsWith("book")) {
+                target.anim("book_block", delay)
+            } else {
+                val type: String? = target.weapon.def.getOrNull("weapon_type")
+                val definition = if (type != null) weaponDefinitions.get(type) else null
+                var animation = definition?.attackTypes?.get("defend")
+                if (animation == null) {
+                    val id = target.weapon.def["weapon_style", -1]
+                    val style = styleDefinitions.get(id)
+                    animation = if (id != -1 && animationDefinitions.contains("${style.stringId}_defend")) "${style.stringId}_defend" else "human_defend"
                 }
-            } else if (target is NPC) {
-                val animation = NPCAttack.anim(animationDefinitions, target, "defend")
                 target.anim(animation, delay)
             }
+        } else if (target is NPC) {
+            val animation = NPCAttack.anim(animationDefinitions, target, "defend")
+            target.anim(animation, delay)
         }
     }
 

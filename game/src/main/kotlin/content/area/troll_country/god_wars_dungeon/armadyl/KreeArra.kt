@@ -2,7 +2,6 @@ package content.area.troll_country.god_wars_dungeon.armadyl
 
 import content.entity.combat.attackers
 import content.entity.combat.hit.hit
-import content.entity.combat.hit.npcCombatAttack
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -88,7 +87,7 @@ class KreeArra : Script {
             geerin = null
         }
 
-        npcCombatAttack("kree_arra") {
+        npcCombatAttack("kree_arra") { (target, _, type) ->
             if (type != "melee") {
                 areaSound("kree_arra_impact", target.tile)
             }

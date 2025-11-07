@@ -1,6 +1,5 @@
 package content.skill.melee.armour
 
-import content.entity.combat.hit.combatAttack
 import content.entity.combat.hit.combatDamage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -25,8 +24,8 @@ class Degradation : Script {
             degrade(player)
         }
 
-        combatAttack { player ->
-            degrade(player)
+        combatAttack {
+            degrade(this)
         }
 
         slotChanged {

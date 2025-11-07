@@ -2,7 +2,6 @@ package content.area.asgarnia.asgarnian_ice_dungeon
 
 import content.entity.combat.hit.Hit
 import content.entity.combat.hit.hit
-import content.entity.combat.hit.npcCombatAttack
 import content.entity.effect.freeze
 import content.entity.effect.frozen
 import content.entity.proj.shoot
@@ -61,13 +60,13 @@ class SkeletalWyvern : Script {
             }
         }
 
-        npcCombatAttack("skeletal_wyvern") { npc ->
+        npcCombatAttack("skeletal_wyvern") { (target, _, _, _, spell, special) ->
             if (spell == "ice" && special) {
                 val hasShield = hasSpecificWyvernShield(target)
                 val shouldFreeze = if (hasShield) {
                     random.nextInt(7) == 0 // 1/7 chance with proper shield
                 } else {
-                    Hit.success(npc, target, "magic", Item.EMPTY, false)
+                    Hit.success(this, target, "magic", Item.EMPTY, false)
                 }
 
                 if (shouldFreeze && !target.frozen) {
