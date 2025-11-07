@@ -14,16 +14,16 @@ data class ItemNPCInteract(
     val id: String,
     val player: Player,
 ) : Interact(player, target) {
-    override fun hasOperate() = Operation.itemOnNpcBlocks.containsKey("${item.id}:*") || Operation.itemOnNpcBlocks.containsKey("${item.id}:${target.def(player).stringId}") || Operation.itemOnNpcBlocks.containsKey("*:${target.def(player).stringId}")
+    override fun hasOperate() = Operation.itemOnNpc.containsKey("${item.id}:*") || Operation.itemOnNpc.containsKey("${item.id}:${target.def(player).stringId}") || Operation.itemOnNpc.containsKey("*:${target.def(player).stringId}")
 
-    override fun hasApproach() = Approachable.itemOnNpcBlocks.containsKey("${item.id}:*") || Approachable.itemOnNpcBlocks.containsKey("${item.id}:${target.def(player).stringId}") || Approachable.itemOnNpcBlocks.containsKey("*:${target.def(player).stringId}")
+    override fun hasApproach() = Approachable.itemOnNpc.containsKey("${item.id}:*") || Approachable.itemOnNpc.containsKey("${item.id}:${target.def(player).stringId}") || Approachable.itemOnNpc.containsKey("*:${target.def(player).stringId}")
 
     override fun operate() {
-        invoke(Operation.itemOnNpcBlocks)
+        invoke(Operation.itemOnNpc)
     }
 
     override fun approach() {
-        invoke(Approachable.itemOnNpcBlocks)
+        invoke(Approachable.itemOnNpc)
     }
 
     private fun invoke(map: Map<String, List<suspend Player.(ItemNPCInteract) -> Unit>>) {

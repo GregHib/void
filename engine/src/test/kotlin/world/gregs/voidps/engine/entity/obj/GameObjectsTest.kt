@@ -37,20 +37,23 @@ class GameObjectsTest : KoinMock() {
         updates = mockk(relaxed = true)
         objects = GameObjects(mockk(relaxed = true), mockk(relaxed = true), updates, definitions, storeUnused = true)
         spawns = mockk(relaxed = true)
-        val spawn: (GameObject) -> Unit = {
-            spawns.add(it)
-        }
-        Spawn.objectSpawns["*"] = mutableListOf(spawn)
         despawns = mockk(relaxed = true)
-        val despawn: (GameObject) -> Unit = {
-            despawns.add(it)
+        object : Spawn, Despawn {
+            init {
+                objectSpawn {
+                    spawns.add(this)
+                }
+                objectDespawn {
+                    despawns.add(this)
+                }
+            }
         }
-        Despawn.objectDespawns["*"] = mutableListOf(despawn)
     }
 
     @AfterEach
     fun teardown() {
-        Spawn.objectSpawns.clear()
+        Spawn.close()
+        Despawn.close()
     }
 
     @Test

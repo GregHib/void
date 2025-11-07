@@ -10,16 +10,16 @@ data class PlayerPlayerInteract(
     val option: String,
     val player: Player,
 ) : Interact(player, target) {
-    override fun hasOperate() = Operation.playerPlayerBlocks.containsKey(option)
+    override fun hasOperate() = Operation.playerPlayer.containsKey(option)
 
-    override fun hasApproach() = Approachable.playerPlayerBlocks.containsKey(option)
+    override fun hasApproach() = Approachable.playerPlayer.containsKey(option)
 
     override fun operate() {
-        invoke(Operation.playerPlayerBlocks)
+        invoke(Operation.playerPlayer)
     }
 
     override fun approach() {
-        invoke(Approachable.playerPlayerBlocks)
+        invoke(Approachable.playerPlayer)
     }
 
     private fun invoke(map: Map<String, List<suspend Player.(PlayerPlayerInteract) -> Unit>>) {

@@ -5,7 +5,9 @@ import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.sound
 
-class SpecialAttacks : Script, SpecialAttack {
+class SpecialAttacks :
+    Script,
+    SpecialAttack {
     init {
         variableSet("special_attack") { _, from, to ->
             if (to == true && from != true) {

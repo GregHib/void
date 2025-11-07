@@ -7,7 +7,9 @@ import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
-class ZaniksCrossbow : Script, SpecialAttack {
+class ZaniksCrossbow :
+    Script,
+    SpecialAttack {
 
     init {
         specialAttack("defiance") { target, _ ->

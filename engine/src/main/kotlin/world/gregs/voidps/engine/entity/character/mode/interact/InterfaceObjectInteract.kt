@@ -12,16 +12,16 @@ data class InterfaceObjectInteract(
     val index: Int,
     val player: Player,
 ) : Interact(player, target) {
-    override fun hasOperate() = Operation.onObjectBlocks.containsKey("$id:*") || Operation.onObjectBlocks.containsKey("$id:${target.def(player).stringId}") || Operation.onObjectBlocks.containsKey("*:${target.def(player).stringId}")
+    override fun hasOperate() = Operation.onObject.containsKey("$id:*") || Operation.onObject.containsKey("$id:${target.def(player).stringId}") || Operation.onObject.containsKey("*:${target.def(player).stringId}")
 
-    override fun hasApproach() = Approachable.onObjectBlocks.containsKey("$id:*") || Approachable.onObjectBlocks.containsKey("$id:${target.def(player).stringId}") || Approachable.onObjectBlocks.containsKey("*:${target.def(player).stringId}")
+    override fun hasApproach() = Approachable.onObject.containsKey("$id:*") || Approachable.onObject.containsKey("$id:${target.def(player).stringId}") || Approachable.onObject.containsKey("*:${target.def(player).stringId}")
 
     override fun operate() {
-        invoke(Operation.onObjectBlocks)
+        invoke(Operation.onObject)
     }
 
     override fun approach() {
-        invoke(Approachable.onObjectBlocks)
+        invoke(Approachable.onObject)
     }
 
     private fun invoke(map: Map<String, List<suspend Player.(InterfaceObjectInteract) -> Unit>>) {

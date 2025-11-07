@@ -52,7 +52,7 @@ class EnchantedGem : Script {
             if (slayerTask == "nothing") {
                 // TODO
             } else {
-                npc<Happy>(slayerMaster, "You're currently assigned to kill ${slayerTask.toLowerSpaceCase()}; only ${slayerTaskRemaining} more to go. Your reward point tally is ${slayerPoints}.")
+                npc<Happy>(slayerMaster, "You're currently assigned to kill ${slayerTask.toLowerSpaceCase()}; only $slayerTaskRemaining more to go. Your reward point tally is $slayerPoints.")
             }
             choice {
                 whoAreYou()

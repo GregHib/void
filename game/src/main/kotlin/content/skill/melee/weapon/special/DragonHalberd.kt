@@ -12,7 +12,9 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inject
 
-class DragonHalberd : Script, SpecialAttack {
+class DragonHalberd :
+    Script,
+    SpecialAttack {
 
     val players: Players by inject()
     val npcs: NPCs by inject()

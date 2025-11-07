@@ -12,16 +12,16 @@ data class NPCObjectInteract(
     val npc: NPC,
     var approachRange: Int? = null
 ) : Interact(npc, target, approachRange = approachRange) {
-    override fun hasOperate() = Operation.npcObjectBlocks.containsKey("$option:${npc.id}") || Operation.npcObjectBlocks.containsKey("$option:*")
+    override fun hasOperate() = Operation.npcObject.containsKey("$option:${npc.id}") || Operation.npcObject.containsKey("$option:*")
 
-    override fun hasApproach() = Approachable.npcObjectBlocks.containsKey("$option:${npc.id}") || Approachable.npcObjectBlocks.containsKey("$option:*")
+    override fun hasApproach() = Approachable.npcObject.containsKey("$option:${npc.id}") || Approachable.npcObject.containsKey("$option:*")
 
     override fun operate() {
-        invoke(Operation.noDelays, Operation.npcObjectBlocks)
+        invoke(Operation.noDelays, Operation.npcObject)
     }
 
     override fun approach() {
-        invoke(emptySet(), Approachable.npcObjectBlocks)
+        invoke(emptySet(), Approachable.npcObject)
     }
 
     private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend NPC.(NPCObjectInteract) -> Unit>>) {

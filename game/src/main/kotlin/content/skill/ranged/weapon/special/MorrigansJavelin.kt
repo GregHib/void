@@ -12,7 +12,9 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.*
 
-class MorrigansJavelin : Script, SpecialAttack {
+class MorrigansJavelin :
+    Script,
+    SpecialAttack {
 
     init {
         specialAttack("phantom_strike") { target, id ->

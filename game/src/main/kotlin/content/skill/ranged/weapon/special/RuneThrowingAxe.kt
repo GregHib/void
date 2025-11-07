@@ -17,7 +17,9 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 
-class RuneThrowingAxe : Script, SpecialAttack {
+class RuneThrowingAxe :
+    Script,
+    SpecialAttack {
 
     val players: Players by inject()
     val npcs: NPCs by inject()

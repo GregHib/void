@@ -12,16 +12,16 @@ data class NPCFloorItemInteract(
     val npc: NPC,
     val shape: Int?
 ) : Interact(npc, target, shape = shape) {
-    override fun hasOperate() = Operation.npcFloorItemBlocks.containsKey(option)
+    override fun hasOperate() = Operation.npcFloorItem.containsKey(option)
 
-    override fun hasApproach() = Approachable.npcFloorItemBlocks.containsKey(option)
+    override fun hasApproach() = Approachable.npcFloorItem.containsKey(option)
 
     override fun operate() {
-        invoke(Operation.noDelays, Operation.npcFloorItemBlocks)
+        invoke(Operation.noDelays, Operation.npcFloorItem)
     }
 
     override fun approach() {
-        invoke(emptySet(), Approachable.npcFloorItemBlocks)
+        invoke(emptySet(), Approachable.npcFloorItem)
     }
 
     private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend NPC.(NPCFloorItemInteract) -> Unit>>) {

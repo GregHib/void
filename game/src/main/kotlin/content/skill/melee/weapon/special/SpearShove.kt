@@ -13,7 +13,9 @@ import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-class SpearShove : Script, SpecialAttack {
+class SpearShove :
+    Script,
+    SpecialAttack {
 
     init {
         combatPrepare("melee") { target ->

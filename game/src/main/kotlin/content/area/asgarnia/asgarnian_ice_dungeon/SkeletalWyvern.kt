@@ -91,8 +91,8 @@ class SkeletalWyvern : Script {
         if (target !is Player) return false
         val shieldId = target.equipped(EquipSlot.Shield).id
         return shieldId == "elemental_shield" ||
-                shieldId == "mind_shield" ||
-                shieldId == "body_shield" ||
-                shieldId.startsWith("dragonfire_shield")
+            shieldId == "mind_shield" ||
+            shieldId == "body_shield" ||
+            shieldId.startsWith("dragonfire_shield")
     }
 }

@@ -13,16 +13,16 @@ data class InterfaceFloorItemInteract(
     val player: Player,
     val approachRange: Int?
 ) : Interact(player, target, approachRange = approachRange) {
-    override fun hasOperate() = Operation.onObjectBlocks.containsKey("$id:*") || Operation.onObjectBlocks.containsKey("$id:${target.id}") || Operation.onObjectBlocks.containsKey("*:${target.id}")
+    override fun hasOperate() = Operation.onObject.containsKey("$id:*") || Operation.onObject.containsKey("$id:${target.id}") || Operation.onObject.containsKey("*:${target.id}")
 
-    override fun hasApproach() = Approachable.onObjectBlocks.containsKey("$id:*") || Approachable.onObjectBlocks.containsKey("$id:${target.id}") || Approachable.onObjectBlocks.containsKey("*:${target.id}")
+    override fun hasApproach() = Approachable.onObject.containsKey("$id:*") || Approachable.onObject.containsKey("$id:${target.id}") || Approachable.onObject.containsKey("*:${target.id}")
 
     override fun operate() {
-        invoke(Operation.onFloorItemBlocks)
+        invoke(Operation.onFloorItem)
     }
 
     override fun approach() {
-        invoke(Approachable.onFloorItemBlocks)
+        invoke(Approachable.onFloorItem)
     }
 
     private fun invoke(map: Map<String, List<suspend Player.(InterfaceFloorItemInteract) -> Unit>>) {

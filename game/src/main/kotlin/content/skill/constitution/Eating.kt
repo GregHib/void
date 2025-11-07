@@ -17,9 +17,9 @@ import world.gregs.voidps.engine.inv.replace
 class Eating : Script {
 
     init {
-        itemOption("Eat", block = ::consume)
-        itemOption("Drink", block = ::consume)
-        itemOption("Heal", block = ::consume)
+        itemOption("Eat", handler = ::consume)
+        itemOption("Drink", handler = ::consume)
+        itemOption("Heal", handler = ::consume)
     }
 
     fun consume(player: Player, it: ItemOption) {

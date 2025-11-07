@@ -4,7 +4,9 @@ import content.entity.player.combat.special.SpecialAttack
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 
-class BrineSabre : Script, SpecialAttack {
+class BrineSabre :
+    Script,
+    SpecialAttack {
 
     init {
         specialAttackPrepare("brine_sabre") {

@@ -12,16 +12,16 @@ data class PlayerObjectInteract(
     val player: Player,
     var approachRange: Int? = null,
 ) : Interact(player, target, approachRange = approachRange) {
-    override fun hasOperate() = Operation.playerObjectBlocks.containsKey("$option:${target.def(player).stringId}") || Operation.playerObjectBlocks.containsKey("$option:*")
+    override fun hasOperate() = Operation.playerObject.containsKey("$option:${target.def(player).stringId}") || Operation.playerObject.containsKey("$option:*")
 
-    override fun hasApproach() = Approachable.playerObjectBlocks.containsKey("$option:${target.def(player).stringId}") || Approachable.playerObjectBlocks.containsKey("$option:*")
+    override fun hasApproach() = Approachable.playerObject.containsKey("$option:${target.def(player).stringId}") || Approachable.playerObject.containsKey("$option:*")
 
     override fun operate() {
-        invoke(Operation.noDelays, Operation.playerObjectBlocks)
+        invoke(Operation.noDelays, Operation.playerObject)
     }
 
     override fun approach() {
-        invoke(emptySet(), Approachable.playerObjectBlocks)
+        invoke(emptySet(), Approachable.playerObject)
     }
 
     private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend Player.(PlayerObjectInteract) -> Unit>>) {

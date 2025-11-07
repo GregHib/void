@@ -8,7 +8,9 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.distanceTo
 
-class MagicShortbow : Script, SpecialAttack {
+class MagicShortbow :
+    Script,
+    SpecialAttack {
 
     init {
         specialAttack("snapshot") { target, id ->

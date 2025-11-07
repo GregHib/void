@@ -79,8 +79,8 @@ class Teleports : Script {
             }
         }
 
-        itemOption("Read", "*_teleport", block = ::teleport)
-        itemOption("Break", "*_teleport", block = ::teleport)
+        itemOption("Read", "*_teleport", handler = ::teleport)
+        itemOption("Break", "*_teleport", handler = ::teleport)
     }
 
     fun teleport(player: Player, option: ItemOption) {

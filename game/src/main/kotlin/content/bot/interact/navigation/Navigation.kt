@@ -9,7 +9,6 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
@@ -17,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.TICKS
 import kotlin.collections.set
 import kotlin.coroutines.resume
-import kotlin.reflect.KClass
 
 suspend fun Bot.await(type: Any, timeout: Int = -1) {
     if (timeout > 0) {

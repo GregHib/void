@@ -15,16 +15,16 @@ data class ItemFloorItemInteract(
     val player: Player,
     val approachRange: Int?
 ) : Interact(player, target, approachRange = approachRange) {
-    override fun hasOperate() = Operation.itemOnFloorItemBlocks.containsKey("${item.id}:*") || Operation.itemOnFloorItemBlocks.containsKey("${item.id}:${target.id}") || Operation.itemOnFloorItemBlocks.containsKey("*:${target.id}")
+    override fun hasOperate() = Operation.itemOnFloorItem.containsKey("${item.id}:*") || Operation.itemOnFloorItem.containsKey("${item.id}:${target.id}") || Operation.itemOnFloorItem.containsKey("*:${target.id}")
 
-    override fun hasApproach() = Approachable.itemOnFloorItemBlocks.containsKey("${item.id}:*") || Approachable.itemOnFloorItemBlocks.containsKey("${item.id}:${target.id}") || Approachable.itemOnFloorItemBlocks.containsKey("*:${target.id}")
+    override fun hasApproach() = Approachable.itemOnFloorItem.containsKey("${item.id}:*") || Approachable.itemOnFloorItem.containsKey("${item.id}:${target.id}") || Approachable.itemOnFloorItem.containsKey("*:${target.id}")
 
     override fun operate() {
-        invoke(Operation.noDelays, Operation.itemOnFloorItemBlocks)
+        invoke(Operation.noDelays, Operation.itemOnFloorItem)
     }
 
     override fun approach() {
-        invoke(emptySet(), Approachable.itemOnFloorItemBlocks)
+        invoke(emptySet(), Approachable.itemOnFloorItem)
     }
 
     private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend Player.(ItemFloorItemInteract) -> Unit>>) {

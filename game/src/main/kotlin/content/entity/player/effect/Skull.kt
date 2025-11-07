@@ -1,7 +1,6 @@
 package content.entity.player.effect
 
 import content.area.wilderness.inWilderness
-import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import content.entity.combat.attackers
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player

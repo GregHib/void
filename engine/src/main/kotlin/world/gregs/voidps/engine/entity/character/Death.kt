@@ -24,8 +24,8 @@ interface Death {
     }
 
     companion object : AutoCloseable {
-        val playerHandlers = ObjectArrayList<Player.(OnDeath) -> Unit>(20)
-        val npcHandlers = Object2ObjectOpenHashMap<String, MutableList<NPC.() -> Unit>>(20)
+        private val playerHandlers = ObjectArrayList<Player.(OnDeath) -> Unit>(20)
+        private val npcHandlers = Object2ObjectOpenHashMap<String, MutableList<NPC.() -> Unit>>(20)
 
         fun killed(player: Player): OnDeath {
             val onDeath = OnDeath()

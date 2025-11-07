@@ -9,7 +9,9 @@ import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.type.random
 
-class DragonClaws : Script, SpecialAttack {
+class DragonClaws :
+    Script,
+    SpecialAttack {
 
     init {
         specialAttack("slice_and_dice") { target, id ->

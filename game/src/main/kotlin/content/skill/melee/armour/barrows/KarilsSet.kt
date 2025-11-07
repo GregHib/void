@@ -28,7 +28,7 @@ class KarilsSet : Script {
 
     fun attack(source: Character, attack: world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack) {
         val (target, damage, _, weapon) = attack
-        if (damage <= 0 || !weapon.id.startsWith("karils_crossbow") ||target !is Player || !source.contains("karils_set_effect") || random.nextInt(4) != 0) {
+        if (damage <= 0 || !weapon.id.startsWith("karils_crossbow") || target !is Player || !source.contains("karils_set_effect") || random.nextInt(4) != 0) {
             return
         }
         if (target.levels.drain(Skill.Agility, multiplier = 0.20) < 0) {

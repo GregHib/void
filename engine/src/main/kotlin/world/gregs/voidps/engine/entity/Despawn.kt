@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -12,75 +11,75 @@ import world.gregs.voidps.engine.event.Wildcards
 
 interface Despawn {
 
-    fun playerDespawn(block: Player.() -> Unit) {
-        playerDespawns.add(block)
+    fun playerDespawn(handler: Player.() -> Unit) {
+        playerDespawns.add(handler)
     }
 
-    fun npcDespawn(id: String = "*", block: NPC.() -> Unit) {
+    fun npcDespawn(id: String = "*", handler: NPC.() -> Unit) {
         Wildcards.find(id, Wildcard.Npc) { key ->
-            npcDespawns.getOrPut(key) { mutableListOf() }.add(block)
+            npcDespawns.getOrPut(key) { mutableListOf() }.add(handler)
         }
     }
 
-    fun objectDespawn(id: String = "*", block: GameObject.() -> Unit) {
+    fun objectDespawn(id: String = "*", handler: GameObject.() -> Unit) {
         Wildcards.find(id, Wildcard.Object) { key ->
-            objectDespawns.getOrPut(key) { mutableListOf() }.add(block)
+            objectDespawns.getOrPut(key) { mutableListOf() }.add(handler)
         }
     }
 
-    fun floorItemDespawn(id: String = "*", block: FloorItem.() -> Unit) {
+    fun floorItemDespawn(id: String = "*", handler: FloorItem.() -> Unit) {
         Wildcards.find(id, Wildcard.Item) { key ->
-            floorItemDespawns.getOrPut(key) { mutableListOf() }.add(block)
+            floorItemDespawns.getOrPut(key) { mutableListOf() }.add(handler)
         }
     }
 
-    fun worldDespawn(block: () -> Unit) {
-        worldDespawns.add(block)
+    fun worldDespawn(handler: () -> Unit) {
+        worldDespawns.add(handler)
     }
 
     companion object : AutoCloseable {
-        val playerDespawns = ObjectArrayList<(Player) -> Unit>(20)
-        val npcDespawns = Object2ObjectOpenHashMap<String, MutableList<(NPC) -> Unit>>(30)
-        val objectDespawns = Object2ObjectOpenHashMap<String, MutableList<(GameObject) -> Unit>>(10)
-        val floorItemDespawns = Object2ObjectOpenHashMap<String, MutableList<(FloorItem) -> Unit>>(2)
-        val worldDespawns = ObjectArrayList<() -> Unit>(2)
+        private val playerDespawns = ObjectArrayList<(Player) -> Unit>(20)
+        private val npcDespawns = Object2ObjectOpenHashMap<String, MutableList<(NPC) -> Unit>>(30)
+        private val objectDespawns = Object2ObjectOpenHashMap<String, MutableList<(GameObject) -> Unit>>(10)
+        private val floorItemDespawns = Object2ObjectOpenHashMap<String, MutableList<(FloorItem) -> Unit>>(2)
+        private val worldDespawns = ObjectArrayList<() -> Unit>(2)
 
         fun player(player: Player) {
-            for (block in playerDespawns) {
-                block(player)
+            for (handler in playerDespawns) {
+                handler(player)
             }
         }
 
         fun npc(npc: NPC) {
-            for (block in npcDespawns["*"] ?: emptyList()) {
-                block(npc)
+            for (handler in npcDespawns["*"] ?: emptyList()) {
+                handler(npc)
             }
-            for (block in npcDespawns[npc.id] ?: return) {
-                block(npc)
+            for (handler in npcDespawns[npc.id] ?: return) {
+                handler(npc)
             }
         }
 
         fun gameObject(gameObject: GameObject) {
-            for (block in objectDespawns["*"] ?: emptyList()) {
-                block(gameObject)
+            for (handler in objectDespawns["*"] ?: emptyList()) {
+                handler(gameObject)
             }
-            for (block in objectDespawns[gameObject.id] ?: return) {
-                block(gameObject)
+            for (handler in objectDespawns[gameObject.id] ?: return) {
+                handler(gameObject)
             }
         }
 
         fun floorItem(floorItem: FloorItem) {
-            for (block in floorItemDespawns["*"] ?: emptyList()) {
-                block(floorItem)
+            for (handler in floorItemDespawns["*"] ?: emptyList()) {
+                handler(floorItem)
             }
-            for (block in floorItemDespawns[floorItem.id] ?: return) {
-                block(floorItem)
+            for (handler in floorItemDespawns[floorItem.id] ?: return) {
+                handler(floorItem)
             }
         }
 
         fun world() {
-            for (block in worldDespawns) {
-                block()
+            for (handler in worldDespawns) {
+                handler()
             }
         }
 

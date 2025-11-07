@@ -13,16 +13,16 @@ data class ItemPlayerInteract(
     val slot: Int,
     val player: Player,
 ) : Interact(player, target) {
-    override fun hasOperate() = Operation.onPlayerBlocks.containsKey(id) || Operation.onPlayerBlocks.containsKey(item.id)
+    override fun hasOperate() = Operation.onPlayer.containsKey(id) || Operation.onPlayer.containsKey(item.id)
 
-    override fun hasApproach() = Approachable.onPlayerBlocks.containsKey(id) || Approachable.onPlayerBlocks.containsKey(item.id)
+    override fun hasApproach() = Approachable.onPlayer.containsKey(id) || Approachable.onPlayer.containsKey(item.id)
 
     override fun operate() {
-        invoke(Operation.onPlayerBlocks)
+        invoke(Operation.onPlayer)
     }
 
     override fun approach() {
-        invoke(Approachable.onPlayerBlocks)
+        invoke(Approachable.onPlayer)
     }
 
     private fun invoke(map: Map<String, List<suspend Player.(ItemPlayerInteract) -> Unit>>) {

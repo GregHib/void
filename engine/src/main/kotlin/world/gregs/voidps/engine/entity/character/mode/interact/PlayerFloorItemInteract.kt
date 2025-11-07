@@ -12,16 +12,16 @@ data class PlayerFloorItemInteract(
     val player: Player,
     val shape: Int?
 ) : Interact(player, target, shape = shape) {
-    override fun hasOperate() = Operation.playerFloorItemBlocks.containsKey(option)
+    override fun hasOperate() = Operation.playerFloorItem.containsKey(option)
 
-    override fun hasApproach() = Approachable.playerFloorItemBlocks.containsKey(option)
+    override fun hasApproach() = Approachable.playerFloorItem.containsKey(option)
 
     override fun operate() {
-        invoke(Operation.noDelays, Operation.playerFloorItemBlocks)
+        invoke(Operation.noDelays, Operation.playerFloorItem)
     }
 
     override fun approach() {
-        invoke(emptySet(), Approachable.playerFloorItemBlocks)
+        invoke(emptySet(), Approachable.playerFloorItem)
     }
 
     private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend Player.(PlayerFloorItemInteract) -> Unit>>) {

@@ -3,7 +3,6 @@ package content.skill.ranged.weapon.special
 import content.entity.combat.hit.*
 import content.social.trade.returnedItems
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound

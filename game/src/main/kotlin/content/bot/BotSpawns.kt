@@ -30,7 +30,6 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
-import kotlin.reflect.KClass
 import kotlin.text.toIntOrNull
 
 class BotSpawns : Script {

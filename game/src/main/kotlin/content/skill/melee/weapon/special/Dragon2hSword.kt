@@ -12,7 +12,9 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 
-class Dragon2hSword : Script, SpecialAttack {
+class Dragon2hSword :
+    Script,
+    SpecialAttack {
 
     val players: Players by inject()
     val npcs: NPCs by inject()

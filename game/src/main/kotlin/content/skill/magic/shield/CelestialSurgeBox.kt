@@ -30,8 +30,8 @@ class CelestialSurgeBox : Script {
             }
         }
 
-        itemOption("Check", "celestial_surgebox*", block = ::check)
-        itemOption("Check/Empty", "celestial_surgebox*", block = ::check)
+        itemOption("Check", "celestial_surgebox*", handler = ::check)
+        itemOption("Check/Empty", "celestial_surgebox*", handler = ::check)
 
         itemOption("Check-charges", "celestial_surgebox*", "worn_equipment") {
             val surge = get("celestial_surgebox_mode", false)
@@ -136,12 +136,12 @@ class CelestialSurgeBox : Script {
         val charges = player.inventory.charges(player, slot)
         player.inventory.transaction {
             val actual = (
-                    if (surge) {
-                        minOf(inventory.count("air_rune$dungeoneering") / 7, inventory.count("blood_rune$dungeoneering"), inventory.count("death_rune$dungeoneering"))
-                    } else {
-                        min(inventory.count("air_rune$dungeoneering") / 5, inventory.count("blood_rune$dungeoneering"))
-                    }
-                    ).coerceAtMost(maximum - charges)
+                if (surge) {
+                    minOf(inventory.count("air_rune$dungeoneering") / 7, inventory.count("blood_rune$dungeoneering"), inventory.count("death_rune$dungeoneering"))
+                } else {
+                    min(inventory.count("air_rune$dungeoneering") / 5, inventory.count("blood_rune$dungeoneering"))
+                }
+                ).coerceAtMost(maximum - charges)
 
             remove("air_rune$dungeoneering", actual * if (surge) 7 else 5)
             remove("blood_rune$dungeoneering", actual)

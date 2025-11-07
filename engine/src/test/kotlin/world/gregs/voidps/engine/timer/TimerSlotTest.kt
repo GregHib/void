@@ -14,9 +14,21 @@ internal class TimerSlotTest : TimersTest() {
     override fun setup() {
         super.setup()
         for (timer in listOf("timer", "1", "2")) {
-            TimerApi.npcStartBlocks[timer] = mutableListOf({ _, restart -> emitted.add("start_$timer" to restart); startInterval })
-            TimerApi.npcTickBlocks[timer] = mutableListOf({ _-> emitted.add("tick_$timer" to false); tickInterval })
-            TimerApi.npcStopBlocks[timer] = mutableListOf({ _, logout -> emitted.add("stop_$timer" to logout) })
+            object : TimerApi {
+                init {
+                    npcTimerStart(timer) { restart ->
+                        emitted.add("start_$timer" to restart)
+                        startInterval
+                    }
+                    npcTimerTick(timer) {
+                        emitted.add("tick_$timer" to false)
+                        tickInterval
+                    }
+                    npcTimerStop(timer) { logout ->
+                        emitted.add("stop_$timer" to logout)
+                    }
+                }
+            }
         }
         timers = TimerSlot(npc)
     }

@@ -34,9 +34,7 @@ interface SpecialAttack {
             (specials[id] ?: specials["*"])?.invoke(player, target, id)
         }
 
-        fun prepare(player: Player, id: String): Boolean {
-            return (prepare[id] ?: prepare["*"])?.invoke(player, id) ?: true
-        }
+        fun prepare(player: Player, id: String): Boolean = (prepare[id] ?: prepare["*"])?.invoke(player, id) ?: true
 
         fun damage(player: Player, target: Character, mode: String, damage: Int) {
             (damaging[mode] ?: damaging["*"])?.invoke(player, target, damage)

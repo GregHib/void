@@ -32,7 +32,7 @@ class Melee : Script {
             if (animation == null) {
                 val id = weapon.def["weapon_style", 0]
                 val style = styleDefinitions.get(id)
-                animation = "${style.stringId}_${attackType}"
+                animation = "${style.stringId}_$attackType"
             }
             anim(animation)
             hit(target)

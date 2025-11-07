@@ -9,7 +9,9 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
-class Excalibur : Script, SpecialAttack {
+class Excalibur :
+    Script,
+    SpecialAttack {
 
     init {
         timerStart("sanctuary") { 4 }

@@ -19,7 +19,7 @@ class GodwarsAggression : Script {
     val dungeon = areas["godwars_dungeon_multi_area"]
 
     init {
-        npcSpawn(block = ::randomHuntMode)
+        npcSpawn(handler = ::randomHuntMode)
 
         entered("godwars_dungeon_multi_area") {
             open("godwars_overlay")

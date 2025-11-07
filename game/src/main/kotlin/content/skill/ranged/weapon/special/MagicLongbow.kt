@@ -7,7 +7,9 @@ import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.sound
 
-class MagicLongbow : Script, SpecialAttack {
+class MagicLongbow :
+    Script,
+    SpecialAttack {
 
     init {
         specialAttack("powershot") { target, id ->

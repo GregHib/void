@@ -19,7 +19,9 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
 
-class KorasiSword : Script, SpecialAttack {
+class KorasiSword :
+    Script,
+    SpecialAttack {
 
     val players: Players by inject()
     val npcs: NPCs by inject()

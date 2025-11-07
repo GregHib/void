@@ -30,8 +30,8 @@ class MagicalBlastBox : Script {
             }
         }
 
-        itemOption("Check", "magical_blastbox*", block = ::check)
-        itemOption("Check/Empty", "magical_blastbox*", block = ::check)
+        itemOption("Check", "magical_blastbox*", handler = ::check)
+        itemOption("Check/Empty", "magical_blastbox*", handler = ::check)
 
         itemOption("Check-charges", "magical_blastbox*", "worn_equipment") {
             val blast = get("magical_blastbox_mode", false)

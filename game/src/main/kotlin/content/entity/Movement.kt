@@ -39,7 +39,7 @@ class Movement : Script {
             }
         }
 
-        npcMoved(block = npcs::update)
+        npcMoved(handler = npcs::update)
 
         worldSpawn {
             for (border in areas.getTagged("border")) {

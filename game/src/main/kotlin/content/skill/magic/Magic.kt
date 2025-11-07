@@ -48,7 +48,6 @@ object Magic {
         return true
     }
 
-
     fun animation(source: Character, definition: SpellDefinition): String {
         if (source.weapon.def["weapon_type", ""] == "salamander" && source.spell.isBlank()) {
             return "salamander_scorch"

@@ -5,7 +5,9 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 
-class DragonBattleaxe : Script, SpecialAttack {
+class DragonBattleaxe :
+    Script,
+    SpecialAttack {
 
     init {
         specialAttackPrepare("rampage") { id ->

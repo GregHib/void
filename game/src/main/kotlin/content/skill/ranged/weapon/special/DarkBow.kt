@@ -11,7 +11,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.distanceTo
 
-class DarkBow : Script, SpecialAttack {
+class DarkBow :
+    Script,
+    SpecialAttack {
 
     init {
         specialAttack("descent_of_darkness") { target, _ ->

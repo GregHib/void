@@ -13,7 +13,8 @@ import java.util.concurrent.TimeUnit
 
 class DragonScimitar :
     Script,
-    PrayerApi, SpecialAttack {
+    PrayerApi,
+    SpecialAttack {
 
     init {
         specialAttackDamage("sever") { target, damage ->

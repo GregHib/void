@@ -8,7 +8,9 @@ import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.variable.start
 
-class MorrigansThrowingAxe : Script, SpecialAttack {
+class MorrigansThrowingAxe :
+    Script,
+    SpecialAttack {
 
     init {
         specialAttack("hamstring") { target, id ->

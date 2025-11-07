@@ -8,7 +8,9 @@ import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.areaSound
 
-class SaradominSword : Script, SpecialAttack {
+class SaradominSword :
+    Script,
+    SpecialAttack {
 
     init {
         specialAttack("saradomins_lightning") { target, id ->

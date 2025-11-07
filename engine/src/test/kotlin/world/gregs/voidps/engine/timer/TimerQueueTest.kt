@@ -13,9 +13,21 @@ internal class TimerQueueTest : TimersTest() {
         super.setup()
         timers = TimerQueue(Player())
         for (timer in listOf("timer", "1", "2", "mutable", "fixed")) {
-            TimerApi.playerStartBlocks[timer] = mutableListOf({ _, restart -> emitted.add("start_$timer" to restart); startInterval })
-            TimerApi.playerTickBlocks[timer] = mutableListOf({ _-> emitted.add("tick_$timer" to false); tickInterval })
-            TimerApi.playerStopBlocks[timer] = mutableListOf({ _, logout -> emitted.add("stop_$timer" to logout) })
+            object : TimerApi {
+                init {
+                    timerStart(timer) { restart ->
+                        emitted.add("start_$timer" to restart)
+                        startInterval
+                    }
+                    timerTick(timer) {
+                        emitted.add("tick_$timer" to false)
+                        tickInterval
+                    }
+                    timerStop(timer) { logout ->
+                        emitted.add("stop_$timer" to logout)
+                    }
+                }
+            }
         }
     }
 

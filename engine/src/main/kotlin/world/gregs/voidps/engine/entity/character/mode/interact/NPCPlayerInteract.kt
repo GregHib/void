@@ -11,16 +11,16 @@ data class NPCPlayerInteract(
     val option: String,
     val npc: NPC,
 ) : Interact(npc, target) {
-    override fun hasOperate() = Operation.playerPlayerBlocks.containsKey(option)
+    override fun hasOperate() = Operation.playerPlayer.containsKey(option)
 
-    override fun hasApproach() = Approachable.playerPlayerBlocks.containsKey(option)
+    override fun hasApproach() = Approachable.playerPlayer.containsKey(option)
 
     override fun operate() {
-        invoke(Operation.npcPlayerBlocks)
+        invoke(Operation.npcPlayer)
     }
 
     override fun approach() {
-        invoke(Approachable.npcPlayerBlocks)
+        invoke(Approachable.npcPlayer)
     }
 
     private fun invoke(map: Map<String, List<suspend NPC.(NPCPlayerInteract) -> Unit>>) {

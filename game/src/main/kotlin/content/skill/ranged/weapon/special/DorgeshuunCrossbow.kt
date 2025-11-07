@@ -7,7 +7,9 @@ import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.sound
 
-class DorgeshuunCrossbow : Script, SpecialAttack {
+class DorgeshuunCrossbow :
+    Script,
+    SpecialAttack {
 
     init {
         specialAttack("snipe") { target, id ->

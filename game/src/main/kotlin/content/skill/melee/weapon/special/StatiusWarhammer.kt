@@ -4,7 +4,9 @@ import content.entity.player.combat.special.SpecialAttack
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
-class StatiusWarhammer : Script, SpecialAttack {
+class StatiusWarhammer :
+    Script,
+    SpecialAttack {
     init {
         specialAttackDamage("smash") { target, damage ->
             if (damage >= 0) {
