@@ -2,7 +2,6 @@ package content.skill.ranged.weapon.special
 
 import content.entity.combat.hit.hit
 import content.entity.player.combat.special.SpecialAttack
-import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

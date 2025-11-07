@@ -22,7 +22,7 @@ class GodArrows : Script {
             }
         }
 
-        combatAttack("range") { (target, delay, type, weapon) ->
+        combatAttack("range") { (target, _, type, weapon, _, _, delay) ->
             if (ammo != "guthix_arrows") {
                 return@combatAttack
             }
@@ -34,7 +34,7 @@ class GodArrows : Script {
             }
         }
 
-        combatAttack("range") { (target, delay, type, weapon) ->
+        combatAttack("range") { (target, _, type, weapon, _, _, delay) ->
             if (ammo != "zamorak_arrows") {
                 return@combatAttack
             }

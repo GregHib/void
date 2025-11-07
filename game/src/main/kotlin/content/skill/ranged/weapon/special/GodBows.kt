@@ -23,7 +23,7 @@ class GodBows : Script {
                 return@combatAttack
             }
             when (weapon.id) {
-                "zamorak_bow" -> target.hit(this, weapon, type, CLIENT_TICKS.toTicks(delay), spell, special, type, damage)
+                "zamorak_bow" -> target.hit(this, weapon, type, CLIENT_TICKS.toTicks(delay), spell, true, type, damage)
                 "saradomin_bow" -> {
                     restoration += damage * 2
                     set("restoration_amount", restoration / 10)

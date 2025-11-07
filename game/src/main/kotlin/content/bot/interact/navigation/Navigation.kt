@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.TICKS
-import kotlin.collections.set
 import kotlin.coroutines.resume
 
 suspend fun Bot.await(type: Any, timeout: Int = -1) {

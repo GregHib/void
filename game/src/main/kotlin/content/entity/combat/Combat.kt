@@ -155,19 +155,15 @@ class Combat :
             }
             if (character["debug", false] || target["debug", false]) {
                 val player = if (character["debug", false] && character is Player) character else target as Player
-                val id = if (character is NPC) {
-                    character.id
-                } else if (character is Player) {
-                    character.name
-                } else {
-                    ""
+                val id = when (character) {
+                    is NPC -> character.id
+                    is Player -> character.name
+                    else -> ""
                 }
-                val targetId = if (target is NPC) {
-                    target.id
-                } else if (target is Player) {
-                    target.name
-                } else {
-                    ""
+                val targetId = when (target) {
+                    is NPC -> target.id
+                    is Player -> target.name
+                    else -> ""
                 }
                 player.message("---- Swing ($id) -> ($targetId) -----")
             }
