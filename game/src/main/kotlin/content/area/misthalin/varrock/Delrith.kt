@@ -37,7 +37,6 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.event.Context
-import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
@@ -69,7 +68,7 @@ class Delrith : Script {
         moved {
             if (exitArea(this, tile)) {
                 val cutscene: Cutscene = remove("demon_slayer_cutscene") ?: return@moved
-                Events.events.launch {
+                Script.launch {
                     cutscene.end()
                 }
             }
@@ -77,7 +76,7 @@ class Delrith : Script {
 
         entered("demon_slayer_stone_circle") {
             if (!questCompleted("demon_slayer") && get("demon_slayer_silverlight", false) && !hasClock("demon_slayer_instance_exit")) {
-                Events.events.launch {
+                Script.launch {
                     cutscene()
                 }
             }

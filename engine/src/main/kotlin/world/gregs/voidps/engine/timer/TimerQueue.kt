@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.timer
 
+import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.EventDispatcher
 import java.util.*
 
 class TimerQueue(
-    private val events: EventDispatcher,
+    private val events: Entity,
 ) : Timers {
 
     val queue = PriorityQueue<TimerTask>()

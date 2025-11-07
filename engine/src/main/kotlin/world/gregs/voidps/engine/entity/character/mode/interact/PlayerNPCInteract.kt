@@ -1,10 +1,10 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Events
 
 data class PlayerNPCInteract(
     override val target: NPC,
@@ -24,7 +24,7 @@ data class PlayerNPCInteract(
     }
 
     private fun invoke(map: Map<String, List<suspend Player.(PlayerNPCInteract) -> Unit>>) {
-        Events.events.launch {
+        Script.launch {
             for (block in map["$option:${target.def(player).stringId}"] ?: map["$option:*"] ?: return@launch) {
                 block(player, this@PlayerNPCInteract)
             }

@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.client.variable
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.EventDispatcher
 
 open class Variables(
-    private var events: EventDispatcher,
+    private var events: Entity,
     val data: MutableMap<String, Any> = Object2ObjectOpenHashMap(2),
 ) {
 

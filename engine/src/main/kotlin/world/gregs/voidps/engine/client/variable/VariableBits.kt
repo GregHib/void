@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.client.variable
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.EventDispatcher
 
 class VariableBits(
     private val variables: Variables,
-    private val events: EventDispatcher,
+    private val events: Entity,
 ) {
 
     fun contains(key: String, id: Any): Boolean {

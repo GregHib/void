@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
@@ -41,7 +40,6 @@ import kotlin.math.round
 interface Character :
     Entity,
     VariableStore,
-    EventDispatcher,
     Comparable<Character> {
     val index: Int
     val visuals: Visuals

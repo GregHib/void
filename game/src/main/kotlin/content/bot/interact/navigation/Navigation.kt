@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.timer.TICKS
 import kotlin.collections.set
 import kotlin.coroutines.resume
@@ -40,14 +39,6 @@ suspend fun Bot.awaitInteract(timeout: Int = -1) {
     await("tick", timeout)
     while (player.mode is Interact || player.hasClock("movement_delay")) {
         await("tick", timeout)
-    }
-}
-
-suspend inline fun <reified T : Entity, reified E : Event> Bot.await(
-    noinline condition: E.(T) -> Boolean = { true },
-) {
-    suspendCancellableCoroutine { cont ->
-        player.getOrPut("bot_suspensions") { mutableMapOf<KClass<E>, Pair<E.(T) -> Boolean, CancellableContinuation<Unit>>>() }[E::class] = condition to cont
     }
 }
 

@@ -7,7 +7,6 @@ import org.koin.test.mock.declare
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.InterfaceInteraction
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.client.Client
 

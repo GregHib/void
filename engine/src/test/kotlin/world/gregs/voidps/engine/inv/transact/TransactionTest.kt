@@ -7,10 +7,8 @@ import io.mockk.verify
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.event.EventDispatcher
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.InventoryApi
-import world.gregs.voidps.engine.inv.InventorySlotChanged
 import world.gregs.voidps.engine.inv.transact.operation.TransactionOperationTest
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse

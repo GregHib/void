@@ -1,12 +1,10 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.Events
 
 data class NPCObjectInteract(
     override val target: GameObject,
@@ -27,7 +25,7 @@ data class NPCObjectInteract(
     }
 
     private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend NPC.(NPCObjectInteract) -> Unit>>) {
-        Events.events.launch {
+        Script.launch {
             val id = target.id
             if (!noDelays.contains("$option:$id") && (!noDelays.contains("$option:*") && !map.containsKey("$option:$id"))) {
                 npc.arriveDelay()

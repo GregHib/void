@@ -15,6 +15,7 @@ import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
@@ -22,7 +23,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.suspend.Suspension
@@ -59,7 +59,6 @@ internal class InteractTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        Events.setEvents(Events())
         mockkStatic("world.gregs.voidps.engine.client.ui.InterfacesKt")
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         approached = false
@@ -85,7 +84,7 @@ internal class InteractTest : KoinMock() {
 
             override fun operate() {
                 if (operate) {
-                    Events.events.launch {
+                    Script.launch {
                         if (suspend) {
                             Suspension.start(player, 2)
                         }
@@ -96,7 +95,7 @@ internal class InteractTest : KoinMock() {
 
             override fun approach() {
                 if (approach) {
-                    Events.events.launch {
+                    Script.launch {
                         if (suspend) {
                             Suspension.start(player, 2)
                         }
