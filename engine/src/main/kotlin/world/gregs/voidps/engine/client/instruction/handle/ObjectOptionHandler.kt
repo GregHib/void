@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
-import world.gregs.voidps.engine.entity.character.mode.interact.NPCObjectInteract
-import world.gregs.voidps.engine.entity.character.mode.interact.PlayerObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.NPCOnObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -102,9 +102,9 @@ class ObjectOptionHandler(
 }
 
 fun Player.interactObject(target: GameObject, option: String, approachRange: Int? = null) {
-    mode = PlayerObjectInteract(target, option, this, approachRange)
+    mode = PlayerOnObjectInteract(target, option, this, approachRange)
 }
 
 fun NPC.interactObject(target: GameObject, option: String, approachRange: Int? = null) {
-    mode = NPCObjectInteract(target, option, this, approachRange)
+    mode = NPCOnObjectInteract(target, option, this, approachRange)
 }

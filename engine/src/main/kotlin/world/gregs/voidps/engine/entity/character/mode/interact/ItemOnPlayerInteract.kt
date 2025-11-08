@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 
-data class ItemPlayerInteract(
+data class ItemOnPlayerInteract(
     override val target: Player,
     val id: String,
     val item: Item,
@@ -25,10 +25,10 @@ data class ItemPlayerInteract(
         invoke(Approachable.onPlayer)
     }
 
-    private fun invoke(map: Map<String, List<suspend Player.(ItemPlayerInteract) -> Unit>>) {
+    private fun invoke(map: Map<String, List<suspend Player.(ItemOnPlayerInteract) -> Unit>>) {
         Script.launch {
             for (block in map[id] ?: map[item.id] ?: return@launch) {
-                block(player, this@ItemPlayerInteract)
+                block(player, this@ItemOnPlayerInteract)
             }
         }
     }

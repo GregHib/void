@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 
-data class NPCFloorItemInteract(
+data class NPCOnFloorItemInteract(
     override val target: FloorItem,
     val option: String,
     val npc: NPC,
@@ -24,10 +24,10 @@ data class NPCFloorItemInteract(
         invoke(Approachable.npcFloorItem)
     }
 
-    private fun invoke(map: Map<String, List<suspend NPC.(NPCFloorItemInteract) -> Unit>>) {
+    private fun invoke(map: Map<String, List<suspend NPC.(NPCOnFloorItemInteract) -> Unit>>) {
         Script.launch {
             for (block in map[option] ?: return@launch) {
-                block(npc, this@NPCFloorItemInteract)
+                block(npc, this@NPCOnFloorItemInteract)
             }
         }
     }

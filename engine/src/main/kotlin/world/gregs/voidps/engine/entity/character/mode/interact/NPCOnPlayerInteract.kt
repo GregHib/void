@@ -4,28 +4,29 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
 
-data class NPCNPCInteract(
-    override val target: NPC,
+data class NPCOnPlayerInteract(
+    override val target: Player,
     val option: String,
     val npc: NPC,
 ) : Interact(npc, target) {
-    override fun hasOperate() = Operation.npcNpc.containsKey(option)
+    override fun hasOperate() = Operation.playerPlayer.containsKey(option)
 
-    override fun hasApproach() = Approachable.npcNpc.containsKey(option)
+    override fun hasApproach() = Approachable.playerPlayer.containsKey(option)
 
     override fun operate() {
-        invoke(Operation.npcNpc)
+        invoke(Operation.npcPlayer)
     }
 
     override fun approach() {
-        invoke(Approachable.npcNpc)
+        invoke(Approachable.npcPlayer)
     }
 
-    private fun invoke(map: Map<String, List<suspend NPC.(NPCNPCInteract) -> Unit>>) {
+    private fun invoke(map: Map<String, List<suspend NPC.(NPCOnPlayerInteract) -> Unit>>) {
         Script.launch {
             for (block in map[option] ?: return@launch) {
-                block(npc, this@NPCNPCInteract)
+                block(npc, this@NPCOnPlayerInteract)
             }
         }
     }

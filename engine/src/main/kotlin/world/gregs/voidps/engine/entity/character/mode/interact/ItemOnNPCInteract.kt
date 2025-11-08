@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 
-data class ItemNPCInteract(
+data class ItemOnNPCInteract(
     override val target: NPC,
     val item: Item,
     val slot: Int,
@@ -26,10 +26,10 @@ data class ItemNPCInteract(
         invoke(Approachable.itemOnNpc)
     }
 
-    private fun invoke(map: Map<String, List<suspend Player.(ItemNPCInteract) -> Unit>>) {
+    private fun invoke(map: Map<String, List<suspend Player.(ItemOnNPCInteract) -> Unit>>) {
         Script.launch {
             for (block in map["${item.id}:${target.def(player).stringId}"] ?: map["*:${target.def(player).stringId}"] ?: map["${item.id}:*"] ?: return@launch) { // Hack for spells
-                block(player, this@ItemNPCInteract)
+                block(player, this@ItemOnNPCInteract)
             }
         }
     }

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 
-data class InterfaceFloorItemInteract(
+data class InterfaceOnFloorItemInteract(
     override val target: FloorItem,
     val id: String,
     val index: Int,
@@ -25,10 +25,10 @@ data class InterfaceFloorItemInteract(
         invoke(Approachable.onFloorItem)
     }
 
-    private fun invoke(map: Map<String, List<suspend Player.(InterfaceFloorItemInteract) -> Unit>>) {
+    private fun invoke(map: Map<String, List<suspend Player.(InterfaceOnFloorItemInteract) -> Unit>>) {
         Script.launch {
             for (block in map["$id:${target.id}"] ?: map["$id:*"] ?: map["*:${target.id}"] ?: return@launch) {
-                block(player, this@InterfaceFloorItemInteract)
+                block(player, this@InterfaceOnFloorItemInteract)
             }
         }
     }

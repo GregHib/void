@@ -3,8 +3,8 @@ package world.gregs.voidps.engine.client.instruction.handle
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.entity.character.mode.interact.InterfaceObjectInteract
-import world.gregs.voidps.engine.entity.character.mode.interact.ItemObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.InterfaceOnObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.item.Item
@@ -38,9 +38,9 @@ class InterfaceOnObjectOptionHandler(
 }
 
 fun Player.interactItemOn(target: GameObject, id: String, component: String, item: Item = Item.EMPTY, itemSlot: Int = -1) {
-    mode = ItemObjectInteract(target, item, itemSlot, "$id:$component", this)
+    mode = ItemOnObjectInteract(target, item, itemSlot, "$id:$component", this)
 }
 
 fun Player.interactOn(target: GameObject, id: String, component: String, index: Int = -1) {
-    mode = InterfaceObjectInteract(target, "$id:$component", index, this)
+    mode = InterfaceOnObjectInteract(target, "$id:$component", index, this)
 }

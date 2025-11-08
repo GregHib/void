@@ -6,7 +6,7 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.mode.interact.ItemObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInteract
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
@@ -56,7 +56,7 @@ class TaverleyDungeon : Script {
         return true
     }
 
-    fun dip(player: Player, interact: ItemObjectInteract) {
+    fun dip(player: Player, interact: ItemOnObjectInteract) {
         val required = interact.item.id
         if (player.quest("druidic_ritual") == "cauldron") {
             if (player.inventory.replace(required, required.replace("raw_", "enchanted_"))) {

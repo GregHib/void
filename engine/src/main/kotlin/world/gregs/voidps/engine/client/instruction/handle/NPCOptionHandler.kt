@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.entity.character.mode.interact.NPCNPCInteract
-import world.gregs.voidps.engine.entity.character.mode.interact.PlayerNPCInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.NPCOnNPCInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -58,9 +58,9 @@ class NPCOptionHandler(
 }
 
 fun Player.interactNpc(target: NPC, option: String) {
-    mode = PlayerNPCInteract(target, option, this)
+    mode = PlayerOnNPCInteract(target, option, this)
 }
 
 fun NPC.interactNpc(target: NPC, option: String) {
-    mode = NPCNPCInteract(target, option, this)
+    mode = NPCOnNPCInteract(target, option, this)
 }
