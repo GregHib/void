@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 
-interface InterfaceInteraction {
+interface InterfaceApi {
 
     fun onItem(id: String, item: String = "*", handler: Player.(Item, String) -> Unit) {
         Wildcards.find(id, Wildcard.Component) { i ->
@@ -40,7 +40,7 @@ interface InterfaceInteraction {
      * Notification that an interface was opened.
      * @see [interfaceRefresh] for re-opened interfaces
      */
-    fun interfaceOpen(id: String, handler: Player.(id: String) -> Unit) {
+    fun interfaceOpened(id: String, handler: Player.(id: String) -> Unit) {
         Wildcards.find(id, Wildcard.Interface) { i ->
             opened.getOrPut(i) { mutableListOf() }.add(handler)
         }
@@ -49,7 +49,7 @@ interface InterfaceInteraction {
     /**
      * An interface was open and has now been closed
      */
-    fun interfaceClose(id: String, handler: Player.(id: String) -> Unit) {
+    fun interfaceClosed(id: String, handler: Player.(id: String) -> Unit) {
         Wildcards.find(id, Wildcard.Interface) { i ->
             closed.getOrPut(i) { mutableListOf() }.add(handler)
         }

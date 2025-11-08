@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.Script
 class Notes : Script {
 
     init {
-        interfaceOpen("notes") { id ->
+        interfaceOpened("notes") { id ->
             interfaceOptions.unlockAll(id, "notes", 0..30)
         }
     }

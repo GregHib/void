@@ -52,11 +52,11 @@ class MakeoverMage : Script {
             openDressingRoom("skin_colour")
         }
 
-        interfaceClose("skin_colour") {
+        interfaceClosed("skin_colour") {
             softTimers.stop("dressing_room")
         }
 
-        interfaceOpen("skin_colour") { id ->
+        interfaceOpened("skin_colour") { id ->
             set("makeover_female", !male)
             set("makeover_colour_skin", body.getColour(BodyColour.Skin))
             interfaces.sendText(id, "confirm", "CONFIRM")

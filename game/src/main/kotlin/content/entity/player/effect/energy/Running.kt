@@ -16,7 +16,7 @@ class Running : Script {
             sendVariable("movement")
         }
 
-        interfaceOpen("energy_orb") {
+        interfaceOpened("energy_orb") {
             sendRunEnergy(energyPercent())
         }
 

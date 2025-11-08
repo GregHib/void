@@ -35,7 +35,7 @@ class TaskList : Script {
             sendVariable("task_filter_sets")
         }
 
-        interfaceOpen("task_list") {
+        interfaceOpened("task_list") {
             interfaceOptions.unlockAll("task_list", "tasks", 0..492)
             refresh(this)
         }

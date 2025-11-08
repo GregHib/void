@@ -5,7 +5,7 @@ import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
-import world.gregs.voidps.engine.entity.InterfaceInteraction
+import world.gregs.voidps.engine.entity.InterfaceApi
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.Timer
 
@@ -30,7 +30,7 @@ class QuestJournals : Script {
             }
         }
 
-        interfaceOpen("quest_journals") { id ->
+        interfaceOpened("quest_journals") { id ->
             interfaceOptions.unlock(id, "journals", 0 until 201, "View")
             sendVariable("quest_points")
             sendVariable("quest_points_total") // set total quest points available in variables-player.yml
@@ -46,7 +46,7 @@ class QuestJournals : Script {
                 logger.warn { "Unknown quest $itemSlot" }
                 return@interfaceOption
             }
-            InterfaceInteraction.openQuestJournal(this, quest.stringId)
+            InterfaceApi.openQuestJournal(this, quest.stringId)
         }
     }
 }

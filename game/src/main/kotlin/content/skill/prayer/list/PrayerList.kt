@@ -8,12 +8,12 @@ import world.gregs.voidps.engine.Script
 class PrayerList : Script {
 
     init {
-        interfaceOpen("prayer_orb") {
+        interfaceOpened("prayer_orb") {
             sendVariable(SELECTING_QUICK_PRAYERS)
             sendVariable(USING_QUICK_PRAYERS)
         }
 
-        interfaceOpen("prayer_list") {
+        interfaceOpened("prayer_list") {
             sendVariable(PRAYERS)
         }
 

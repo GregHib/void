@@ -12,7 +12,7 @@ class SpellBookFilter : Script {
             sendVariable("spellbook_config")
         }
 
-        interfaceOpen("*_spellbook") { id ->
+        interfaceOpened("*_spellbook") { id ->
             val id = when (id) {
                 "ancient_spellbook" -> 1
                 "lunar_spellbook" -> 2

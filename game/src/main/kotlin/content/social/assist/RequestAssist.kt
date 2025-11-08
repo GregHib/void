@@ -67,8 +67,8 @@ class RequestAssist : Script {
             }
         }
 
-        interfaceClose("assist_xp") {
-            val assisted: Player = get("assisted") ?: return@interfaceClose
+        interfaceClosed("assist_xp") {
+            val assisted: Player = get("assisted") ?: return@interfaceClosed
             cancelAssist(this, assisted)
         }
 

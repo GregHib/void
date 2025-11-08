@@ -21,7 +21,7 @@ class ItemReturning : Script {
     val players: Players by inject()
 
     init {
-        interfaceOpen("returned_items") {
+        interfaceOpened("returned_items") {
             sendInventory(returnedItems)
         }
 

@@ -40,7 +40,7 @@ class SilverCasting : Script {
         get() = def.getOrNull("silver_jewellery")
 
     init {
-        interfaceOpen("silver_mould") { id ->
+        interfaceOpened("silver_mould") { id ->
             for (mould in moulds) {
                 val silver = mould.silver ?: continue
                 val item = silver.item
@@ -83,7 +83,7 @@ class SilverCasting : Script {
             make(Item(it.component.removeSuffix("_button")), amount)
         }
 
-        interfaceClose("silver_mould") {
+        interfaceClosed("silver_mould") {
             sendScript("clear_dialogues")
         }
     }

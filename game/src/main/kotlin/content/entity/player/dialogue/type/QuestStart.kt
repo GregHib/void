@@ -118,7 +118,7 @@ class QuestStart : Script {
             (dialogueSuspension as? StringSuspension)?.resume("yes")
         }
 
-        interfaceClose("quest_intro") {
+        interfaceClosed("quest_intro") {
             (dialogueSuspension as? StringSuspension)?.resume("no")
         }
     }

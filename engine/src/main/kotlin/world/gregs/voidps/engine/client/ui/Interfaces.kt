@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.InterfaceInteraction
+import world.gregs.voidps.engine.entity.InterfaceApi
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -61,7 +61,7 @@ class Interfaces(
     fun remove(id: String): Boolean {
         if (interfaces.remove(getType(id), id)) {
             sendClose(id)
-            InterfaceInteraction.close(player, id)
+            InterfaceApi.close(player, id)
             (player as? Player)?.queue?.clearWeak()
             return true
         }
@@ -89,7 +89,7 @@ class Interfaces(
         if (interfaces[type] != id) {
             interfaces[type] = id
             sendOpen(id)
-            InterfaceInteraction.open(player, id)
+            InterfaceApi.open(player, id)
             notifyRefresh(id)
             return true
         }
@@ -105,7 +105,7 @@ class Interfaces(
             if (getParent(id) == parent) {
                 it.remove()
                 sendClose(id)
-                InterfaceInteraction.close(player, id)
+                InterfaceApi.close(player, id)
                 (player as? Player)?.queue?.clearWeak()
                 children.add(id)
             }
@@ -148,7 +148,7 @@ class Interfaces(
     }
 
     private fun notifyRefresh(id: String) {
-        InterfaceInteraction.refresh(player, id)
+        InterfaceApi.refresh(player, id)
     }
 
     fun sendAnimation(id: String, component: String, animation: Int): Boolean {

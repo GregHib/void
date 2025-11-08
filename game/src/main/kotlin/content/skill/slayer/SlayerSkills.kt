@@ -18,7 +18,7 @@ class SlayerSkills : Script {
             open("slayer_rewards")
         }
 
-        interfaceOpen("slayer_rewards_learn") { id ->
+        interfaceOpened("slayer_rewards_learn") { id ->
             refreshText(this, id)
         }
 

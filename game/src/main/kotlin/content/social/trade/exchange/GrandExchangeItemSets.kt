@@ -25,13 +25,13 @@ class GrandExchangeItemSets : Script {
     val logger = InlineLogger()
 
     init {
-        interfaceOpen("exchange_item_sets") { id ->
+        interfaceOpened("exchange_item_sets") { id ->
             open("exchange_sets_side")
             sendScript("grand_exchange_sets")
             interfaceOptions.unlockAll(id, "sets", 0..113)
         }
 
-        interfaceClose("exchange_item_sets") {
+        interfaceClosed("exchange_item_sets") {
             close("exchange_sets_side")
         }
 
@@ -66,7 +66,7 @@ class GrandExchangeItemSets : Script {
             message(item.def.getOrNull("examine") ?: return@interfaceOption)
         }
 
-        interfaceOpen("exchange_sets_side") { id ->
+        interfaceOpened("exchange_sets_side") { id ->
             tab(Tab.Inventory)
             interfaceOptions.send(id, "items")
             interfaceOptions.unlockAll(id, "items", 0 until 28)

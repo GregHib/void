@@ -26,7 +26,7 @@ class PriceChecker : Script {
             Price checker interface
          */
 
-        interfaceOpen("price_checker") { id ->
+        interfaceOpened("price_checker") { id ->
             interfaceOptions.unlockAll(id, "items", 0 until 28)
             set("price_checker_total", 0)
             set("price_checker_limit", Int.MAX_VALUE)
@@ -51,7 +51,7 @@ class PriceChecker : Script {
             }
         }
 
-        interfaceClose("price_checker") {
+        interfaceClosed("price_checker") {
             close("price_checker_side")
             sendScript("clear_dialogues")
             offer.moveAll(inventory)
@@ -61,7 +61,7 @@ class PriceChecker : Script {
             Price checker inventory interface
          */
 
-        interfaceOpen("price_checker_side") { id ->
+        interfaceOpened("price_checker_side") { id ->
             tab(Tab.Inventory)
             interfaceOptions.send(id, "items")
             interfaceOptions.unlockAll(id, "items", 0 until 28)
@@ -86,7 +86,7 @@ class PriceChecker : Script {
             }
         }
 
-        interfaceClose("price_checker_side") {
+        interfaceClosed("price_checker_side") {
             open("inventory")
         }
 

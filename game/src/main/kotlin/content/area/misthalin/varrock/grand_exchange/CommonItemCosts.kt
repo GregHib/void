@@ -16,7 +16,7 @@ class CommonItemCosts : Script {
     val itemDefinitions: ItemDefinitions by inject()
 
     init {
-        interfaceOpen("common_item_costs") { id ->
+        interfaceOpened("common_item_costs") { id ->
             val type = get("common_item_costs", "ores")
             val enum = enums.get("exchange_items_$type")
             var index = 1

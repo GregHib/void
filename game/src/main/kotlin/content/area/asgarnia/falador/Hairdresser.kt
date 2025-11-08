@@ -39,7 +39,7 @@ class Hairdresser : Script {
             startHairdressing()
         }
 
-        interfaceOpen("hairdressers_salon") { id ->
+        interfaceOpened("hairdressers_salon") { id ->
             interfaces.sendText(id, "confirm_text", "Change")
             val styles = enums.get("style_hair_$sex")
             val colours = enums.get("colour_hair")
@@ -70,7 +70,7 @@ class Hairdresser : Script {
             set("makeover_colour_hair", enums.get("colour_hair").getInt(itemSlot / 2))
         }
 
-        interfaceClose("hairdressers_salon") {
+        interfaceClosed("hairdressers_salon") {
             softTimers.stop("dressing_room")
         }
 

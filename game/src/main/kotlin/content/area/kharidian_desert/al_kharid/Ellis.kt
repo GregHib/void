@@ -68,7 +68,7 @@ class Ellis : Script {
             tan(this, it.component, amount)
         }
 
-        interfaceClose("tanner") {
+        interfaceClosed("tanner") {
             sendScript("clear_dialogues")
         }
     }

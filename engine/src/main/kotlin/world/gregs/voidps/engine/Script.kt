@@ -24,7 +24,7 @@ import kotlin.coroutines.cancellation.CancellationException
 /**
  * A helper interface made up of all callable methods for easier scripting.
  */
-interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operation, Approachable, InterfaceInteraction, Death, SettingsReload, Dialogues, Items, InventoryApi, Hunt, Teleport, CombatApi {
+interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operation, Approachable, InterfaceApi, Death, SettingsReload, Dialogues, Items, InventoryApi, Hunt, Teleport, CombatApi {
     companion object {
 
         private val logger = InlineLogger()
@@ -48,7 +48,7 @@ interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operati
             TimerApi,
             Operation,
             Approachable,
-            InterfaceInteraction,
+            InterfaceApi,
             Death,
             SettingsReload,
             Dialogues,

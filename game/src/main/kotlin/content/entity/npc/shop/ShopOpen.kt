@@ -29,7 +29,7 @@ class ShopOpen : Script {
             }
         }
 
-        interfaceClose("shop") {
+        interfaceClosed("shop") {
             close("item_info")
             close("shop_side")
             val shop = shop()

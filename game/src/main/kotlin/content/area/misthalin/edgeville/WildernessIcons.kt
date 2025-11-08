@@ -12,7 +12,7 @@ class WildernessIcons :
     PrayerApi {
 
     init {
-        interfaceOpen("wilderness_skull") { id ->
+        interfaceOpened("wilderness_skull") { id ->
             interfaces.sendSprite(id, "right_skull", 439)
         }
 

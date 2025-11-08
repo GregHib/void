@@ -55,7 +55,7 @@ class GameFrame : Script {
             player.interfaces.setDisplayMode(displayMode)
         }
 
-        interfaceOpen("toplevel*") {
+        interfaceOpened("toplevel*") {
             openGamframe(this)
         }
 

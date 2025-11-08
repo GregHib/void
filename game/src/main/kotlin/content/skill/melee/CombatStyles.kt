@@ -17,7 +17,7 @@ class CombatStyles : Script {
             this["combat_style"] = def.getOrNull("style") ?: return@npcSpawn
         }
 
-        interfaceOpen("combat_styles") {
+        interfaceOpened("combat_styles") {
             sendVariable("attack_style_index")
             sendVariable("special_attack_energy")
             sendVariable("auto_retaliate")

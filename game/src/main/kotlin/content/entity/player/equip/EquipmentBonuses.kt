@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.InterfaceInteraction
+import world.gregs.voidps.engine.entity.InterfaceApi
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
@@ -39,7 +39,7 @@ class EquipmentBonuses : Script {
             updateStats(this, it.item, true)
         }
 
-        interfaceOpen("equipment_bonuses") {
+        interfaceOpened("equipment_bonuses") {
             interfaces.sendVisibility("equipment_bonuses", "close", !get("equipment_bank_button", false))
             updateEmote(this)
             open("equipment_side")
@@ -50,7 +50,7 @@ class EquipmentBonuses : Script {
             tab(Tab.Inventory)
         }
 
-        interfaceClose("equipment_bonuses") {
+        interfaceClosed("equipment_bonuses") {
             open("inventory")
         }
 
@@ -76,14 +76,14 @@ class EquipmentBonuses : Script {
 
         interfaceOption("Equip", "equipment_side:inventory") { (item, itemSlot) ->
             if (equipping()) {
-                InterfaceInteraction.itemOption(this, ItemOption(item, itemSlot, "inventory", "Wield"))
+                InterfaceApi.itemOption(this, ItemOption(item, itemSlot, "inventory", "Wield"))
                 checkEmoteUpdate(this)
             }
         }
 
         interfaceOption("Remove", "equipment_bonuses:inventory") { (item, itemSlot) ->
             if (equipping()) {
-                InterfaceInteraction.itemOption(this, ItemOption(item, itemSlot, "inventory", "Remove"))
+                InterfaceApi.itemOption(this, ItemOption(item, itemSlot, "inventory", "Remove"))
                 checkEmoteUpdate(this)
             }
         }

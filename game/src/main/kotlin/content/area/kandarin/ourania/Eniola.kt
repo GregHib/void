@@ -90,7 +90,7 @@ class Eniola : Script {
             openCollection()
         }
 
-        interfaceOpen("ourania_bank_charge") { id ->
+        interfaceOpened("ourania_bank_charge") { id ->
             for (rune in runes) {
                 interfaces.sendVisibility(id, "${rune}_hide", !inventory.contains(rune, 20))
             }

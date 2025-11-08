@@ -99,7 +99,7 @@ class ItemEmotes : Script {
             close("snow_globe")
         }
 
-        interfaceClose("snow_globe") {
+        interfaceClosed("snow_globe") {
             queue("snow_globe_close") {
                 gfx("emote_snow_globe_flurry")
                 val ticks = anim("emote_trample_snow")

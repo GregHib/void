@@ -25,7 +25,7 @@ class DiangoItemRetrieval : Script {
     val itemDefinitions: ItemDefinitions by inject()
 
     init {
-        interfaceOpen("diangos_item_retrieval") {
+        interfaceOpened("diangos_item_retrieval") {
             refreshItems(this)
         }
 
@@ -48,7 +48,7 @@ class DiangoItemRetrieval : Script {
             inventories.clear("diangos_item_retrieval")
         }
 
-        interfaceClose("diangos_item_retrieval") { id ->
+        interfaceClosed("diangos_item_retrieval") { id ->
             inventories.clear(id)
         }
     }

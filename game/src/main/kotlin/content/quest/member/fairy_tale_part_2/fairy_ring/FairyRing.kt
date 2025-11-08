@@ -52,7 +52,7 @@ class FairyRing : Script {
             list.add(code)
         }
 
-        interfaceClose("fairy_ring") {
+        interfaceClosed("fairy_ring") {
             open("inventory")
         }
 
@@ -61,7 +61,7 @@ class FairyRing : Script {
             (dialogueSuspension as? StringSuspension)?.resume(code)
         }
 
-        interfaceOpen("fairy_ring") {
+        interfaceOpened("fairy_ring") {
             tab(Tab.Inventory)
         }
 

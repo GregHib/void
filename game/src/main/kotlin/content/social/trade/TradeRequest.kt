@@ -38,10 +38,10 @@ class TradeRequest : Script {
             }
         }
 
-        interfaceClose("trade_main,trade_confirm") {
-            val other: Player = getPartner(this) ?: return@interfaceClose
+        interfaceClosed("trade_main,trade_confirm") {
+            val other: Player = getPartner(this) ?: return@interfaceClosed
             if (hasRequest(other, "accept_trade")) {
-                return@interfaceClose
+                return@interfaceClosed
             }
             reset(this, other)
             reset(other, this)

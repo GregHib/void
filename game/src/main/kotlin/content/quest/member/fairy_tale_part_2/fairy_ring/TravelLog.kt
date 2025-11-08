@@ -18,9 +18,9 @@ class TravelLog : Script {
             setCode(component[0].toString(), component[1].toString(), component[2].toString())
         }
 
-        interfaceOpen("travel_log") { id ->
+        interfaceOpened("travel_log") { id ->
             sendVariable("travel_log_re_sort")
-            val list: List<String> = get("travel_log_locations") ?: return@interfaceOpen
+            val list: List<String> = get("travel_log_locations") ?: return@interfaceOpened
             for ((code, def) in fairyRing.codes) {
                 if (list.contains(code)) {
                     interfaces.sendText(id, def.id.lowercase(), "<br>${def.name}")

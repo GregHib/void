@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
-import world.gregs.voidps.engine.entity.InterfaceInteraction
+import world.gregs.voidps.engine.entity.InterfaceApi
 import world.gregs.voidps.network.login.protocol.encode.closeInterface
 import world.gregs.voidps.network.login.protocol.encode.openInterface
 import world.gregs.voidps.network.login.protocol.encode.updateInterface
@@ -40,7 +40,7 @@ internal class InterfacesMultipleTest : InterfaceTest() {
 
         verify(exactly = 0) {
             client.openInterface(any(), any(), any())
-            InterfaceInteraction.open(any(), oneId)
+            InterfaceApi.open(any(), oneId)
         }
     }
 
@@ -52,11 +52,11 @@ internal class InterfacesMultipleTest : InterfaceTest() {
 
         verifyOrder {
             client.updateInterface(2, 0)
-            InterfaceInteraction.open(any(), twoId)
+            InterfaceApi.open(any(), twoId)
             client.openInterface(false, InterfaceDefinition.pack(2, 0), 1)
-            InterfaceInteraction.open(any(), oneId)
+            InterfaceApi.open(any(), oneId)
             client.openInterface(false, InterfaceDefinition.pack(1, 0), 0)
-            InterfaceInteraction.open(any(), zeroId)
+            InterfaceApi.open(any(), zeroId)
         }
     }
 
@@ -74,13 +74,13 @@ internal class InterfacesMultipleTest : InterfaceTest() {
         assertTrue(interfaces.contains(zeroId))
 
         verifyOrder {
-            InterfaceInteraction.close(player, twoId)
+            InterfaceApi.close(player, twoId)
         }
         verify(exactly = 0) {
             client.closeInterface(InterfaceDefinition.pack(2, 0))
-            InterfaceInteraction.close(player, oneId)
+            InterfaceApi.close(player, oneId)
             client.closeInterface(InterfaceDefinition.pack(1, 0))
-            InterfaceInteraction.close(player, zeroId)
+            InterfaceApi.close(player, zeroId)
         }
     }
 
@@ -97,13 +97,13 @@ internal class InterfacesMultipleTest : InterfaceTest() {
         assertFalse(interfaces.contains(zeroId))
         verifyOrder {
             client.closeInterface(InterfaceDefinition.pack(2, 0))
-            InterfaceInteraction.close(player, oneId)
+            InterfaceApi.close(player, oneId)
             client.closeInterface(InterfaceDefinition.pack(1, 0))
-            InterfaceInteraction.close(player, zeroId)
+            InterfaceApi.close(player, zeroId)
         }
         verify(exactly = 0) {
             client.closeInterface(InterfaceDefinition.pack(0, 0))
-            InterfaceInteraction.close(player, twoId)
+            InterfaceApi.close(player, twoId)
         }
     }
 
@@ -120,11 +120,11 @@ internal class InterfacesMultipleTest : InterfaceTest() {
         assertFalse(interfaces.contains(oneId))
         assertFalse(interfaces.contains(zeroId))
         verifyOrder {
-            InterfaceInteraction.close(player, twoId)
+            InterfaceApi.close(player, twoId)
             client.closeInterface(InterfaceDefinition.pack(2, 0))
-            InterfaceInteraction.close(player, oneId)
+            InterfaceApi.close(player, oneId)
             client.closeInterface(InterfaceDefinition.pack(1, 0))
-            InterfaceInteraction.close(player, zeroId)
+            InterfaceApi.close(player, zeroId)
         }
     }
 }
