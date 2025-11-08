@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
+import world.gregs.voidps.engine.Caller
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
@@ -12,7 +13,7 @@ class InterfaceOnFloorItemInteractTest : OnInteractTest() {
         listOf("*", "floor_item"),
         listOf("id", "*"),
     )
-    
+
     override val operate: Script.(args: List<String>, caller: Caller) -> Unit = { args, caller ->
         onFloorItemOperate(args[0], args[1]) {
             caller.call()

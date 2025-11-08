@@ -15,6 +15,7 @@ import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.engine.Caller
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
@@ -40,12 +41,6 @@ abstract class OnInteractTest : KoinMock() {
             every { def.resolve(any(), any()) } returns ObjectDefinition(0, stringId = "obj")
             every { def.get(any<Int>()) } returns ObjectDefinition(0, stringId = "obj")
             def
-        }
-    }
-
-    class Caller(var called: Boolean = false) {
-        fun call() {
-            called = true
         }
     }
 
