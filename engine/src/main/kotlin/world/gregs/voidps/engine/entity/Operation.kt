@@ -36,10 +36,7 @@ interface Operation {
         }
     }
 
-    fun floorItemOperate(option: String, arrive: Boolean = true, handler: suspend Player.(PlayerFloorItemInteract) -> Unit) {
-        if (!arrive) {
-            noDelays.add(option)
-        }
+    fun floorItemOperate(option: String, handler: suspend Player.(PlayerFloorItemInteract) -> Unit) {
         playerFloorItem.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
@@ -102,12 +99,9 @@ interface Operation {
         }
     }
 
-    fun itemOnFloorItemOperate(item: String = "*", floorItem: String = "*", arrive: Boolean = true, handler: suspend Player.(ItemFloorItemInteract) -> Unit) {
+    fun itemOnFloorItemOperate(item: String = "*", floorItem: String = "*", handler: suspend Player.(ItemFloorItemInteract) -> Unit) {
         Wildcards.find(item, Wildcard.Item) { itm ->
             Wildcards.find(floorItem, Wildcard.Item) { id ->
-                if (!arrive) {
-                    noDelays.add("$itm:$id")
-                }
                 itemOnFloorItem.getOrPut("$itm:$id") { mutableListOf() }.add(handler)
             }
         }
@@ -136,10 +130,7 @@ interface Operation {
         }
     }
 
-    fun npcOperateFloorItem(option: String, arrive: Boolean = true, handler: suspend NPC.(NPCFloorItemInteract) -> Unit) {
-        if (!arrive) {
-            noDelays.add(option)
-        }
+    fun npcOperateFloorItem(option: String, handler: suspend NPC.(NPCFloorItemInteract) -> Unit) {
         npcFloorItem.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
@@ -164,7 +155,7 @@ interface Operation {
         val npcObject = Object2ObjectOpenHashMap<String, MutableList<suspend NPC.(NPCObjectInteract) -> Unit>>(2)
         val npcFloorItem = Object2ObjectOpenHashMap<String, MutableList<suspend NPC.(NPCFloorItemInteract) -> Unit>>(2)
 
-        // Don't call arriveDelay before an object or floor item interaction
+        // Don't call arriveDelay before an object interaction
         val noDelays = mutableSetOf<String>()
 
         override fun close() {

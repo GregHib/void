@@ -17,18 +17,15 @@ data class PlayerFloorItemInteract(
     override fun hasApproach() = Approachable.playerFloorItem.containsKey(option)
 
     override fun operate() {
-        invoke(Operation.noDelays, Operation.playerFloorItem)
+        invoke(Operation.playerFloorItem)
     }
 
     override fun approach() {
-        invoke(emptySet(), Approachable.playerFloorItem)
+        invoke(Approachable.playerFloorItem)
     }
 
-    private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend Player.(PlayerFloorItemInteract) -> Unit>>) {
+    private fun invoke(map: Map<String, List<suspend Player.(PlayerFloorItemInteract) -> Unit>>) {
         Script.launch {
-            if (!noDelays.contains(option)) {
-                player.arriveDelay()
-            }
             for (block in map[option] ?: return@launch) {
                 block(player, this@PlayerFloorItemInteract)
             }

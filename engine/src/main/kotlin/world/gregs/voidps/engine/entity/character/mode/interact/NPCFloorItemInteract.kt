@@ -17,18 +17,15 @@ data class NPCFloorItemInteract(
     override fun hasApproach() = Approachable.npcFloorItem.containsKey(option)
 
     override fun operate() {
-        invoke(Operation.noDelays, Operation.npcFloorItem)
+        invoke(Operation.npcFloorItem)
     }
 
     override fun approach() {
-        invoke(emptySet(), Approachable.npcFloorItem)
+        invoke(Approachable.npcFloorItem)
     }
 
-    private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend NPC.(NPCFloorItemInteract) -> Unit>>) {
+    private fun invoke(map: Map<String, List<suspend NPC.(NPCFloorItemInteract) -> Unit>>) {
         Script.launch {
-            if (!noDelays.contains(option)) {
-                npc.arriveDelay()
-            }
             for (block in map[option] ?: return@launch) {
                 block(npc, this@NPCFloorItemInteract)
             }

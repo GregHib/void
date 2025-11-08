@@ -51,11 +51,13 @@ class Firemaking : Script {
 
         itemOnFloorItemOperate("tinderbox*", "*log*") { (target) ->
             if (target.def.contains("firemaking")) {
+                arriveDelay()
                 lightFire(this, target)
             }
         }
 
         floorItemOperate("Light") { (target) ->
+            arriveDelay()
             lightFire(this, target)
         }
     }

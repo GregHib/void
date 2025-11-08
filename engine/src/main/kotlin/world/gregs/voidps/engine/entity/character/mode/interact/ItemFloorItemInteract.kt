@@ -20,18 +20,15 @@ data class ItemFloorItemInteract(
     override fun hasApproach() = Approachable.itemOnFloorItem.containsKey("${item.id}:*") || Approachable.itemOnFloorItem.containsKey("${item.id}:${target.id}") || Approachable.itemOnFloorItem.containsKey("*:${target.id}")
 
     override fun operate() {
-        invoke(Operation.noDelays, Operation.itemOnFloorItem)
+        invoke(Operation.itemOnFloorItem)
     }
 
     override fun approach() {
-        invoke(emptySet(), Approachable.itemOnFloorItem)
+        invoke(Approachable.itemOnFloorItem)
     }
 
-    private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend Player.(ItemFloorItemInteract) -> Unit>>) {
+    private fun invoke(map: Map<String, List<suspend Player.(ItemFloorItemInteract) -> Unit>>) {
         Script.launch {
-            if (!noDelays.contains("${item.id}:${target.id}")) {
-                player.arriveDelay()
-            }
             for (block in map["${item.id}:${target.id}"] ?: map["${item.id}:*"]  ?: map["*:${target.id}"] ?: return@launch) {
                 block(player, this@ItemFloorItemInteract)
             }
