@@ -76,6 +76,7 @@ interface Operation {
         Wildcards.find(id, Wildcard.Component) { i ->
             Wildcards.find(obj, Wildcard.Object) { o ->
                 onObject.getOrPut("$i:$o") { mutableListOf() }.add(handler)
+                println("Set $i $o ${onObject.keys}")
             }
         }
     }
@@ -115,10 +116,8 @@ interface Operation {
         npcPlayer.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
-    fun npcOperateNPC(option: String, npc: String = "*", handler: suspend NPC.(NPCOnNPCInteract) -> Unit) {
-        Wildcards.find(npc, Wildcard.Npc) { id ->
-            npcNpc.getOrPut("$option:$id") { mutableListOf() }.add(handler)
-        }
+    fun npcOperateNPC(option: String, handler: suspend NPC.(NPCOnNPCInteract) -> Unit) {
+        npcNpc.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
     fun npcOperateObject(option: String, obj: String = "*", arrive: Boolean = true, handler: suspend NPC.(NPCOnObjectInteract) -> Unit) {
@@ -165,6 +164,7 @@ interface Operation {
             onNpc.clear()
             itemOnNpc.clear()
             playerObject.clear()
+            onObject.clear()
             itemOnObject.clear()
             playerFloorItem.clear()
             onFloorItem.clear()

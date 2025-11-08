@@ -34,10 +34,8 @@ interface Approachable {
         }
     }
 
-    fun floorItemApproach(option: String, item: String, handler: suspend Player.(PlayerOnFloorItemInteract) -> Unit) {
-        Wildcards.find(item, Wildcard.Item) { id ->
-            playerFloorItem.getOrPut("$option:$id") { mutableListOf() }.add(handler)
-        }
+    fun floorItemApproach(option: String, handler: suspend Player.(PlayerOnFloorItemInteract) -> Unit) {
+        playerFloorItem.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
     /*
@@ -113,10 +111,8 @@ interface Approachable {
         npcPlayer.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
-    fun npcApproachNPC(option: String, npc: String = "*", handler: suspend NPC.(NPCOnNPCInteract) -> Unit) {
-        Wildcards.find(npc, Wildcard.Npc) { id ->
-            npcNpc.getOrPut("$option:$id") { mutableListOf() }.add(handler)
-        }
+    fun npcApproachNPC(option: String, handler: suspend NPC.(NPCOnNPCInteract) -> Unit) {
+        npcNpc.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
     fun npcApproachObject(option: String, obj: String = "*", block: suspend NPC.(NPCOnObjectInteract) -> Unit) {
@@ -125,10 +121,8 @@ interface Approachable {
         }
     }
 
-    fun npcApproachFloorItem(option: String, item: String, block: suspend NPC.(NPCOnFloorItemInteract) -> Unit) {
-        Wildcards.find(item, Wildcard.Item) { id ->
-            npcFloorItem.getOrPut("$option:$id") { mutableListOf() }.add(block)
-        }
+    fun npcApproachFloorItem(option: String, block: suspend NPC.(NPCOnFloorItemInteract) -> Unit) {
+        npcFloorItem.getOrPut(option) { mutableListOf() }.add(block)
     }
 
     companion object : AutoCloseable {

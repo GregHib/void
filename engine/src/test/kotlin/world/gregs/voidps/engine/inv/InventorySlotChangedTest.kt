@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.script
 import kotlin.test.assertEquals
 
 class InventorySlotChangedTest {
@@ -21,11 +22,9 @@ class InventorySlotChangedTest {
     @Test
     fun `Track changes`() {
         var changes = 0
-        object : Script {
-            init {
-                inventoryUpdated { _, _ ->
-                    changes++
-                }
+        script {
+            inventoryUpdated { _, _ ->
+                changes++
             }
         }
         val manager = inventory.transaction.changes
@@ -39,11 +38,9 @@ class InventorySlotChangedTest {
     @Test
     fun `Track additions`() {
         var additions = 0
-        object : Script {
-            init {
-                itemAdded("coins", inventory = "inventory") {
-                    additions++
-                }
+        script {
+            itemAdded("coins", inventory = "inventory") {
+                additions++
             }
         }
         val manager = inventory.transaction.changes
@@ -57,11 +54,9 @@ class InventorySlotChangedTest {
     @Test
     fun `Track removals`() {
         var removals = 0
-        object : Script {
-            init {
-                itemRemoved("coins", inventory = "inventory") {
-                    removals++
-                }
+        script {
+            itemRemoved("coins", inventory = "inventory") {
+                removals++
             }
         }
         val manager = inventory.transaction.changes
@@ -76,14 +71,12 @@ class InventorySlotChangedTest {
     fun `Replacing identical items counts as both additions and removals`() {
         var additions = 0
         var removals = 0
-        object : Script {
-            init {
-                itemAdded("coins", inventory = "inventory") {
-                    additions++
-                }
-                itemRemoved("coins", inventory = "inventory") {
-                    removals++
-                }
+        script {
+            itemAdded("coins", inventory = "inventory") {
+                additions++
+            }
+            itemRemoved("coins", inventory = "inventory") {
+                removals++
             }
         }
         val manager = inventory.transaction.changes

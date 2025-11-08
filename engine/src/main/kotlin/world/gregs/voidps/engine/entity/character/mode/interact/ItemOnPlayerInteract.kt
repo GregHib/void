@@ -13,9 +13,9 @@ data class ItemOnPlayerInteract(
     val slot: Int,
     val player: Player,
 ) : Interact(player, target) {
-    override fun hasOperate() = Operation.onPlayer.containsKey(id) || Operation.onPlayer.containsKey(item.id)
+    override fun hasOperate() = Operation.onPlayer.containsKey(id) || Operation.onPlayer.containsKey(item.id) || Operation.onPlayer.containsKey("*")
 
-    override fun hasApproach() = Approachable.onPlayer.containsKey(id) || Approachable.onPlayer.containsKey(item.id)
+    override fun hasApproach() = Approachable.onPlayer.containsKey(id) || Approachable.onPlayer.containsKey(item.id) || Approachable.onPlayer.containsKey("*")
 
     override fun operate() {
         invoke(Operation.onPlayer)
@@ -27,7 +27,7 @@ data class ItemOnPlayerInteract(
 
     private fun invoke(map: Map<String, List<suspend Player.(ItemOnPlayerInteract) -> Unit>>) {
         Script.launch {
-            for (block in map[id] ?: map[item.id] ?: return@launch) {
+            for (block in map[id] ?: map[item.id] ?: map["*"] ?: return@launch) {
                 block(player, this@ItemOnPlayerInteract)
             }
         }

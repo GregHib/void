@@ -11,9 +11,9 @@ data class NPCOnPlayerInteract(
     val option: String,
     val npc: NPC,
 ) : Interact(npc, target) {
-    override fun hasOperate() = Operation.playerPlayer.containsKey(option)
+    override fun hasOperate() = Operation.npcPlayer.containsKey(option)
 
-    override fun hasApproach() = Approachable.playerPlayer.containsKey(option)
+    override fun hasApproach() = Approachable.npcPlayer.containsKey(option)
 
     override fun operate() {
         invoke(Operation.npcPlayer)
