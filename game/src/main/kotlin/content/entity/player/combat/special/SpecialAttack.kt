@@ -1,9 +1,7 @@
 package content.entity.player.combat.special
 
 import content.skill.melee.weapon.weapon
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -11,64 +9,30 @@ import kotlin.math.floor
 
 const val MAX_SPECIAL_ATTACK = 1000
 
-interface SpecialAttack {
+object SpecialAttack {
 
-    fun specialAttack(id: String = "*", block: Player.(target: Character, id: String) -> Unit) {
-        specials[id] = block
-    }
+    fun hasEnergy(player: Player) = drain(player, drain = false)
 
-    fun specialAttackPrepare(id: String = "*", block: Player.(id: String) -> Boolean) {
-        prepare[id] = block
-    }
-
-    fun specialAttackDamage(id: String = "*", block: Player.(target: Character, damage: Int) -> Unit) {
-        damaging[id] = block
-    }
-
-    companion object : AutoCloseable {
-        val specials = Object2ObjectOpenHashMap<String, Player.(Character, String) -> Unit>()
-        val prepare = Object2ObjectOpenHashMap<String, Player.(String) -> Boolean>()
-        val damaging = Object2ObjectOpenHashMap<String, Player.(Character, Int) -> Unit>()
-
-        fun special(player: Player, target: Character, id: String) {
-            (specials[id] ?: specials["*"])?.invoke(player, target, id)
+    fun drain(player: Player, drain: Boolean = true): Boolean {
+        val amount: Int? = player.weapon.def.getOrNull("special_energy")
+        if (amount == null) {
+            player.message("This weapon does not have a special attack.")
+            player.specialAttack = false
+            return false
         }
-
-        fun prepare(player: Player, id: String): Boolean = (prepare[id] ?: prepare["*"])?.invoke(player, id) ?: true
-
-        fun damage(player: Player, target: Character, mode: String, damage: Int) {
-            (damaging[mode] ?: damaging["*"])?.invoke(player, target, damage)
+        var energy = amount
+        if (player.equipped(EquipSlot.Ring).id == "ring_of_vigour") {
+            energy = floor(energy * 0.9).toInt()
         }
-
-        override fun close() {
-            specials.clear()
-            prepare.clear()
-            damaging.clear()
+        if (player.specialAttackEnergy < energy) {
+            player.message("You don't have enough power left.")
+            player.specialAttack = false
+            return false
         }
-
-        fun hasEnergy(player: Player) = drain(player, drain = false)
-
-        fun drain(player: Player, drain: Boolean = true): Boolean {
-            val amount: Int? = player.weapon.def.getOrNull("special_energy")
-            if (amount == null) {
-                player.message("This weapon does not have a special attack.")
-                player.specialAttack = false
-                return false
-            }
-            var energy = amount
-            if (player.equipped(EquipSlot.Ring).id == "ring_of_vigour") {
-                energy = floor(energy * 0.9).toInt()
-            }
-            if (player.specialAttackEnergy < energy) {
-                player.message("You don't have enough power left.")
-                player.specialAttack = false
-                return false
-            }
-            if (drain) {
-                player.specialAttackEnergy -= energy
-            }
-            return true
+        if (drain) {
+            player.specialAttackEnergy -= energy
         }
+        return true
     }
 }
 

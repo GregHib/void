@@ -4,7 +4,6 @@ import content.area.wilderness.inMultiCombat
 import content.entity.combat.Target
 import content.entity.combat.hit.Damage
 import content.entity.combat.hit.hit
-import content.entity.player.combat.special.SpecialAttack
 import content.skill.melee.weapon.weapon
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.Script
@@ -19,9 +18,7 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
 
-class KorasiSword :
-    Script,
-    SpecialAttack {
+class KorasiSword : Script {
 
     val players: Players by inject()
     val npcs: NPCs by inject()

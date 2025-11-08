@@ -1,6 +1,5 @@
 package content.skill.melee.weapon.special
 
-import content.entity.player.combat.special.SpecialAttack
 import content.skill.prayer.PrayerApi
 import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.isCurses
@@ -13,8 +12,7 @@ import java.util.concurrent.TimeUnit
 
 class DragonScimitar :
     Script,
-    PrayerApi,
-    SpecialAttack {
+    PrayerApi {
 
     init {
         specialAttackDamage("sever") { target, damage ->

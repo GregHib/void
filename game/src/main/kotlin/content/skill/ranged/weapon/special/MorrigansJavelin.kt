@@ -2,7 +2,6 @@ package content.skill.ranged.weapon.special
 
 import content.entity.combat.hit.directHit
 import content.entity.combat.hit.hit
-import content.entity.player.combat.special.SpecialAttack
 import content.entity.proj.shoot
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Script
@@ -11,9 +10,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.*
 
-class MorrigansJavelin :
-    Script,
-    SpecialAttack {
+class MorrigansJavelin : Script {
 
     init {
         specialAttack("phantom_strike") { target, id ->

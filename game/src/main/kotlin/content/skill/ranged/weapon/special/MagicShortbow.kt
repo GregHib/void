@@ -1,15 +1,12 @@
 package content.skill.ranged.weapon.special
 
 import content.entity.combat.hit.hit
-import content.entity.player.combat.special.SpecialAttack
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.distanceTo
 
-class MagicShortbow :
-    Script,
-    SpecialAttack {
+class MagicShortbow : Script {
 
     init {
         specialAttack("snapshot") { target, id ->

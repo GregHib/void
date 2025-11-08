@@ -3,16 +3,15 @@ package content.entity.player.combat.special
 import content.entity.combat.hit.hit
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.sound
 
-class SpecialAttacks :
-    Script,
-    SpecialAttack {
+class SpecialAttacks : Script {
     init {
         variableSet("special_attack") { _, from, to ->
             if (to == true && from != true) {
                 val id: String = weapon.def.getOrNull("special") ?: return@variableSet
-                if (!SpecialAttack.prepare(this, id)) {
+                if (!CombatApi.prepareSpec(this, id)) {
                     specialAttack = false
                 }
             }
@@ -30,7 +29,7 @@ class SpecialAttacks :
             if (damage >= 0) {
                 target.gfx("${id}_impact")
             }
-            SpecialAttack.damage(this, target, id, damage)
+            CombatApi.damageSpec(this, target, id, damage)
         }
     }
 }
