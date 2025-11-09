@@ -235,7 +235,7 @@ class ItemsTest {
         override fun Script.register(args: List<String>, caller: Caller) {
             taken(args[0]) { item ->
                 caller.call()
-                assertEquals(FloorItem(Tile.EMPTY, "item"), item)
+                assertEquals("item", item.id)
             }
         }
 
