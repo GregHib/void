@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.character.mode.interact.ItemNPCInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnNPCInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -50,18 +50,18 @@ class BarmaidsRisingSunInn : Script {
         itemOnNPCApproach("beer_glass", "barmaid_tina", ::emptyGlass)
     }
 
-    suspend fun barCrawl(player: Player, interact: ItemNPCInteract) {
+    suspend fun barCrawl(player: Player, interact: ItemOnNPCInteract) {
         if (!player.containsVarbit("barcrawl_signatures", "hand_of_death_cocktail")) {
             player.barCrawl(interact.target)
         }
     }
 
-    suspend fun tipBarmaid(player: Player, interact: ItemNPCInteract) = with(player) {
+    suspend fun tipBarmaid(player: Player, interact: ItemOnNPCInteract) = with(player) {
         inventory.remove("coins", 1)
         npc<Happy>("Thanks!")
     }
 
-    fun emptyGlass(player: Player, interact: ItemNPCInteract) {
+    fun emptyGlass(player: Player, interact: ItemOnNPCInteract) {
         player.interactNpc(interact.target, "Talk-to")
     }
 

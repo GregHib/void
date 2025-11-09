@@ -5,9 +5,7 @@ import content.entity.combat.target
 import content.entity.player.combat.special.SpecialAttack
 import world.gregs.voidps.engine.Script
 
-class GraniteMaul :
-    Script,
-    SpecialAttack {
+class GraniteMaul : Script {
 
     init {
         specialAttackPrepare("quick_smash") { id ->

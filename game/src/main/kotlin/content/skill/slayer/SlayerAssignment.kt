@@ -19,7 +19,7 @@ class SlayerAssignment : Script {
             open("slayer_rewards")
         }
 
-        interfaceOpen("slayer_rewards_assignment") { id ->
+        interfaceOpened("slayer_rewards_assignment") { id ->
             refresh(this, id)
         }
 

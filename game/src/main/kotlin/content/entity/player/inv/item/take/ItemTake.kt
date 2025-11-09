@@ -21,6 +21,7 @@ class ItemTake : Script {
 
     init {
         floorItemOperate("Take") { (target) ->
+            arriveDelay()
             approachRange(-1)
             val item = Items.takeable(this, target.id) ?: return@floorItemOperate
             if (inventory.isFull() && (!inventory.stackable(item) || !inventory.contains(item))) {
@@ -55,6 +56,7 @@ class ItemTake : Script {
         }
 
         npcOperateFloorItem("Take") { (target) ->
+            arriveDelay()
             if (!floorItems.remove(target)) {
                 logger.warn { "$this unable to take $target." }
             }

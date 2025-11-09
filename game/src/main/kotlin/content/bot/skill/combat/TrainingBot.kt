@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
-import world.gregs.voidps.engine.entity.character.mode.interact.PlayerObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.equip.has
@@ -90,7 +90,7 @@ class TrainingBot : Script {
         while (player.levels.getMax(skill) < range.last + 1 && hasAmmo(skill)) {
             if (target is GameObject) {
                 objectOption(target, "Shoot-at")
-                await { mode is PlayerObjectInteract }
+                await { mode is PlayerOnObjectInteract }
                 await("tick")
             } else if (target is NPC) {
                 npcOption(target, "Attack")

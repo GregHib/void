@@ -8,6 +8,7 @@ import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.inject
 
 class Melee : Script {
@@ -23,7 +24,7 @@ class Melee : Script {
         combatSwing(style = "melee") { target ->
             if (specialAttack && SpecialAttack.drain(this)) {
                 val id: String = weapon.def["special"]
-                SpecialAttack.special(this, target, id)
+                CombatApi.special(this, target, id)
                 return@combatSwing
             }
             val type: String? = weapon.def.getOrNull("weapon_type")

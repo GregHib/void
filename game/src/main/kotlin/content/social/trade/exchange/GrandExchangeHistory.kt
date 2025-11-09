@@ -11,7 +11,7 @@ class GrandExchangeHistory : Script {
     val definitions: ItemDefinitions by inject()
 
     init {
-        interfaceOpen("exchange_history") { id ->
+        interfaceOpened("exchange_history") { id ->
             for (i in 0 until 5) {
                 val history = history.getOrNull(i)
                 if (history == null) {

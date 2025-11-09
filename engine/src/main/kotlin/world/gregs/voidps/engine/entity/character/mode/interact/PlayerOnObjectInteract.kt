@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 
-data class PlayerObjectInteract(
+data class PlayerOnObjectInteract(
     override val target: GameObject,
     val option: String,
     val player: Player,
@@ -24,14 +24,14 @@ data class PlayerObjectInteract(
         invoke(emptySet(), Approachable.playerObject)
     }
 
-    private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend Player.(PlayerObjectInteract) -> Unit>>) {
+    private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend Player.(PlayerOnObjectInteract) -> Unit>>) {
         Script.launch {
             val id = target.def(player).stringId
             if (!noDelays.contains("$option:$id") && (!noDelays.contains("$option:*") && !map.containsKey("$option:$id"))) {
                 player.arriveDelay()
             }
             for (block in map["$option:$id"] ?: map["$option:*"] ?: return@launch) {
-                block(player, this@PlayerObjectInteract)
+                block(player, this@PlayerOnObjectInteract)
             }
         }
     }

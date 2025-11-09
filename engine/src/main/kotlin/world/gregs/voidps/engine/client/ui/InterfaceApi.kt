@@ -1,17 +1,15 @@
-package world.gregs.voidps.engine.entity
+package world.gregs.voidps.engine.client.ui
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 
-interface InterfaceInteraction {
+interface InterfaceApi {
 
-    fun onItem(id: String, item: String = "*", handler: Player.(Item, String) -> Unit) {
+    fun onItem(id: String, item: String = "*", handler: Player.(item: Item, id: String) -> Unit) {
         Wildcards.find(id, Wildcard.Component) { i ->
             Wildcards.find(item, Wildcard.Item) { itm ->
                 onItem.getOrPut("$i:$itm") { mutableListOf() }.add(handler)
@@ -36,11 +34,28 @@ interface InterfaceInteraction {
         append(fromItem, toItem, bidirectional, biHandler, single)
     }
 
+    private fun append(
+        fromItem: String,
+        toItem: String,
+        bidirectional: Boolean,
+        biHandler: Player.(Item, Item, Int, Int) -> Unit,
+        handler: Player.(from: Item, to: Item, fromSlot: Int, toSlot: Int) -> Unit,
+    ) {
+        Wildcards.find(fromItem, Wildcard.Item) { from ->
+            Wildcards.find(toItem, Wildcard.Item) { to ->
+                if (bidirectional) {
+                    itemOnItem.getOrPut("$to:$from") { mutableListOf() }.add(biHandler)
+                }
+                itemOnItem.getOrPut("$from:$to") { mutableListOf() }.add(handler)
+            }
+        }
+    }
+
     /**
      * Notification that an interface was opened.
      * @see [interfaceRefresh] for re-opened interfaces
      */
-    fun interfaceOpen(id: String, handler: Player.(id: String) -> Unit) {
+    fun interfaceOpened(id: String, handler: Player.(id: String) -> Unit) {
         Wildcards.find(id, Wildcard.Interface) { i ->
             opened.getOrPut(i) { mutableListOf() }.add(handler)
         }
@@ -49,7 +64,7 @@ interface InterfaceInteraction {
     /**
      * An interface was open and has now been closed
      */
-    fun interfaceClose(id: String, handler: Player.(id: String) -> Unit) {
+    fun interfaceClosed(id: String, handler: Player.(id: String) -> Unit) {
         Wildcards.find(id, Wildcard.Interface) { i ->
             closed.getOrPut(i) { mutableListOf() }.add(handler)
         }
@@ -82,23 +97,6 @@ interface InterfaceInteraction {
     fun itemOption(option: String, item: String = "*", inventory: String = "inventory", handler: suspend Player.(ItemOption) -> Unit) {
         Wildcards.find(item, Wildcard.Item) { i ->
             itemOption.getOrPut("$option:$i:$inventory") { mutableListOf() }.add(handler)
-        }
-    }
-
-    private fun append(
-        fromItem: String,
-        toItem: String,
-        bidirectional: Boolean,
-        biHandler: Player.(Item, Item, Int, Int) -> Unit,
-        handler: Player.(from: Item, to: Item, fromSlot: Int, toSlot: Int) -> Unit,
-    ) {
-        Wildcards.find(fromItem, Wildcard.Item) { from ->
-            Wildcards.find(toItem, Wildcard.Item) { to ->
-                if (bidirectional) {
-                    itemOnItem.getOrPut("$to:$from") { mutableListOf() }.add(biHandler)
-                }
-                itemOnItem.getOrPut("$from:$to") { mutableListOf() }.add(handler)
-            }
         }
     }
 
@@ -186,6 +184,7 @@ interface InterfaceInteraction {
         }
 
         override fun close() {
+            quests.clear()
             opened.clear()
             closed.clear()
             refreshed.clear()
@@ -194,6 +193,7 @@ interface InterfaceInteraction {
             itemOnItem.clear()
             options.clear()
             itemOption.clear()
+            shops.clear()
         }
     }
 }

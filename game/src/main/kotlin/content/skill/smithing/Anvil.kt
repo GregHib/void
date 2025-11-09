@@ -121,7 +121,7 @@ class Anvil : Script {
             message("To smith metal equipment, you must use the metal bar on the anvil.")
         }
 
-        interfaceClose("smithing") {
+        interfaceClosed("smithing") {
             sendScript("clear_dialogues")
         }
     }

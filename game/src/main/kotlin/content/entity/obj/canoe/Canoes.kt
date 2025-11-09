@@ -66,7 +66,7 @@ class Canoes : Script {
             set("canoe_state_$location", "fallen")
         }
 
-        interfaceOpen("canoe") { id ->
+        interfaceOpened("canoe") { id ->
             val dugout = levels.get(Skill.Woodcutting) > 26
             interfaces.sendVisibility(id, "visible_dugout", dugout)
             interfaces.sendVisibility(id, "invisible_dugout", !dugout)

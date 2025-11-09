@@ -1,12 +1,9 @@
 package content.skill.melee.weapon.special
 
-import content.entity.player.combat.special.SpecialAttack
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 
-class BrineSabre :
-    Script,
-    SpecialAttack {
+class BrineSabre : Script {
 
     init {
         specialAttackPrepare("brine_sabre") {

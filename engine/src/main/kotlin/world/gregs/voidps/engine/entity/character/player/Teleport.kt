@@ -22,13 +22,13 @@ interface Teleport {
         land[type] = block
     }
 
-    fun objTeleportTakeOff(option: String = "*", obj: String = "*", block: Player.(GameObject, String) -> Int) {
+    fun objTeleportTakeOff(option: String = "*", obj: String = "*", block: Player.(obj: GameObject, option: String) -> Int) {
         Wildcards.find(obj, Wildcard.Object) { id ->
             objectTakeOff["$option:$id"] = block
         }
     }
 
-    fun objTeleportLand(option: String = "*", obj: String = "*", block: Player.(GameObject, String) -> Unit) {
+    fun objTeleportLand(option: String = "*", obj: String = "*", block: Player.(obj: GameObject, option: String) -> Unit) {
         Wildcards.find(obj, Wildcard.Object) { id ->
             objectLand["$option:$id"] = block
         }
@@ -53,18 +53,20 @@ interface Teleport {
         }
 
         fun takeOff(player: Player, target: GameObject, option: String): Int {
-            val handler = objectTakeOff["$option:${target.id}"] ?: objectTakeOff["$option:*"] ?: objectTakeOff["*:*"] ?: return CONTINUE
+            val handler = objectTakeOff["$option:${target.id}"] ?: objectTakeOff["*:${target.id}"] ?: objectTakeOff["$option:*"] ?: objectTakeOff["*:*"] ?: return CONTINUE
             return handler.invoke(player, target, option)
         }
 
         fun land(player: Player, target: GameObject, option: String) {
-            val handler = objectLand["$option:${target.id}"] ?: objectLand["$option:*"] ?: objectLand["*:*"] ?: return
+            val handler = objectLand["$option:${target.id}"] ?: objectLand["*:${target.id}"] ?: objectLand["$option:*"] ?: objectLand["*:*"] ?: return
             handler.invoke(player, target, option)
         }
 
         override fun close() {
             takeOff.clear()
             land.clear()
+            objectTakeOff.clear()
+            objectLand.clear()
         }
 
         fun teleport(player: Player, area: String, type: String) {

@@ -49,7 +49,7 @@ class BookPages : Script {
             open(id)
         }
 
-        interfaceClose("book") {
+        interfaceClosed("book") {
             clearAnim()
         }
     }

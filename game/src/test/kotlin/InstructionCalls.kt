@@ -5,6 +5,7 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler
 import world.gregs.voidps.engine.client.instruction.handle.interactItemOn
+import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.client.ui.hasOpen
@@ -12,7 +13,6 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.entity.InterfaceInteraction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -82,7 +82,7 @@ fun Player.interfaceUse(
     toSlot: Int = -1,
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    InterfaceInteraction.itemOnItem(this, fromItem, toItem, fromSlot, toSlot)
+    InterfaceApi.itemOnItem(this, fromItem, toItem, fromSlot, toSlot)
 }
 
 fun Player.interfaceSwitch(
@@ -92,7 +92,7 @@ fun Player.interfaceSwitch(
     toSlot: Int = -1,
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    InterfaceInteraction.swap(this, "$id:$component", "$id:$component", fromSlot, toSlot)
+    InterfaceApi.swap(this, "$id:$component", "$id:$component", fromSlot, toSlot)
 }
 
 fun Player.equipItem(
@@ -165,7 +165,7 @@ fun Player.itemOnItem(
     secondSlot: Int,
 ) {
     val inv = inventories.inventory("inventory")
-    InterfaceInteraction.itemOnItem(this, inv[firstSlot], inv[secondSlot], firstSlot, secondSlot)
+    InterfaceApi.itemOnItem(this, inv[firstSlot], inv[secondSlot], firstSlot, secondSlot)
 }
 
 fun Player.npcOption(npc: NPC, option: String) {

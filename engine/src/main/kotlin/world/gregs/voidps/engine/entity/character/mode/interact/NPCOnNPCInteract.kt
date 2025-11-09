@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.npc.NPC
 
-data class NPCNPCInteract(
+data class NPCOnNPCInteract(
     override val target: NPC,
     val option: String,
     val npc: NPC,
@@ -22,10 +22,10 @@ data class NPCNPCInteract(
         invoke(Approachable.npcNpc)
     }
 
-    private fun invoke(map: Map<String, List<suspend NPC.(NPCNPCInteract) -> Unit>>) {
+    private fun invoke(map: Map<String, List<suspend NPC.(NPCOnNPCInteract) -> Unit>>) {
         Script.launch {
             for (block in map[option] ?: return@launch) {
-                block(npc, this@NPCNPCInteract)
+                block(npc, this@NPCOnNPCInteract)
             }
         }
     }

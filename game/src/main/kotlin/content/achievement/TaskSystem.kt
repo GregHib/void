@@ -22,7 +22,7 @@ class TaskSystem : Script {
     val structDefinitions: StructDefinitions by inject()
 
     init {
-        interfaceOpen("task_system") {
+        interfaceOpened("task_system") {
             sendVariable("task_pin_slot")
             sendVariable("task_pinned")
             sendVariable("introducing_explorer_jack_task")

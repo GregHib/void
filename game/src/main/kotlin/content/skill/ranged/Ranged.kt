@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
@@ -50,7 +51,7 @@ class Ranged : Script {
             val required = Ammo.requiredAmount(character.weapon, character.specialAttack)
             if (character.specialAttack && SpecialAttack.drain(character)) {
                 val id: String = character.weapon.def.getOrNull("special") ?: return
-                SpecialAttack.special(character, target, id)
+                CombatApi.special(character, target, id)
                 return
             }
             if (style.stringId != "sling") {

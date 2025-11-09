@@ -1,6 +1,5 @@
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.Bots
-import content.entity.player.combat.special.SpecialAttack
 import content.skill.prayer.PrayerApi
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -45,7 +44,6 @@ object ContentLoader {
     private fun loadContentApis() {
         Script.interfaces.add(PrayerApi)
         Script.interfaces.add(Bots)
-        Script.interfaces.add(SpecialAttack)
     }
 
     fun clear() {

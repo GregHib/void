@@ -4,8 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.entity.character.mode.interact.InterfaceFloorItemInteract
-import world.gregs.voidps.engine.entity.character.mode.interact.ItemFloorItemInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.InterfaceOnFloorItemInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnFloorItemInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
@@ -39,9 +39,9 @@ class InterfaceOnFloorItemOptionHandler(
 
 
 fun Player.interactItemOn(target: FloorItem, id: String, component: String, item: Item = Item.EMPTY, itemSlot: Int = -1, approachRange: Int? = null) {
-    mode = ItemFloorItemInteract(target, item, itemSlot, "$id:$component", this, approachRange)
+    mode = ItemOnFloorItemInteract(target, item, itemSlot, "$id:$component", this, approachRange)
 }
 
 fun Player.interactOn(target: FloorItem, id: String, component: String, index: Int = -1, approachRange: Int? = null) {
-    mode = InterfaceFloorItemInteract(target, "$id:$component", index, this, approachRange)
+    mode = InterfaceOnFloorItemInteract(target, "$id:$component", index, this, approachRange)
 }

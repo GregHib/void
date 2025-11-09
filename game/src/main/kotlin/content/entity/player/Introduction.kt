@@ -38,7 +38,7 @@ class Introduction : Script {
     init {
         playerSpawn(::welcome)
 
-        interfaceClose("character_creation") {
+        interfaceClosed("character_creation") {
             flagAppearance()
             setup(this)
         }

@@ -9,7 +9,7 @@ class CollectionBox : Script {
     val exchange: GrandExchange by inject()
 
     init {
-        interfaceOpen("collection_box") { id ->
+        interfaceOpened("collection_box") { id ->
             for (slot in 0 until 6) {
                 exchange.refresh(this, slot)
                 interfaceOptions.unlockAll(id, "collection_box_$slot", 0..4)

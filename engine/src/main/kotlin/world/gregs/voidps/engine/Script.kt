@@ -5,6 +5,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.client.variable.VariableApi
 import world.gregs.voidps.engine.data.SettingsReload
@@ -24,7 +25,7 @@ import kotlin.coroutines.cancellation.CancellationException
 /**
  * A helper interface made up of all callable methods for easier scripting.
  */
-interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operation, Approachable, InterfaceInteraction, Death, SettingsReload, Dialogues, Items, InventoryApi, Hunt, Teleport, CombatApi {
+interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operation, Approachable, InterfaceApi, Death, SettingsReload, Dialogues, Items, InventoryApi, Hunt, Teleport, CombatApi {
     companion object {
 
         private val logger = InlineLogger()
@@ -48,7 +49,7 @@ interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operati
             TimerApi,
             Operation,
             Approachable,
-            InterfaceInteraction,
+            InterfaceApi,
             Death,
             SettingsReload,
             Dialogues,

@@ -55,7 +55,7 @@ class SpiritTree : Script {
             open("spirit_tree")
         }
 
-        interfaceOpen("spirit_tree") { id ->
+        interfaceOpened("spirit_tree") { id ->
             interfaceOptions.unlockAll(id, "text", 0 until 9)
         }
 

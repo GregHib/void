@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 
-data class NPCFloorItemInteract(
+data class NPCOnFloorItemInteract(
     override val target: FloorItem,
     val option: String,
     val npc: NPC,
@@ -17,20 +17,17 @@ data class NPCFloorItemInteract(
     override fun hasApproach() = Approachable.npcFloorItem.containsKey(option)
 
     override fun operate() {
-        invoke(Operation.noDelays, Operation.npcFloorItem)
+        invoke(Operation.npcFloorItem)
     }
 
     override fun approach() {
-        invoke(emptySet(), Approachable.npcFloorItem)
+        invoke(Approachable.npcFloorItem)
     }
 
-    private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend NPC.(NPCFloorItemInteract) -> Unit>>) {
+    private fun invoke(map: Map<String, List<suspend NPC.(NPCOnFloorItemInteract) -> Unit>>) {
         Script.launch {
-            if (!noDelays.contains(option)) {
-                npc.arriveDelay()
-            }
             for (block in map[option] ?: return@launch) {
-                block(npc, this@NPCFloorItemInteract)
+                block(npc, this@NPCOnFloorItemInteract)
             }
         }
     }

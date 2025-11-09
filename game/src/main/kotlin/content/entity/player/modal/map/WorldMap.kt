@@ -27,7 +27,7 @@ class WorldMap : Script {
             if (steps.isEmpty() || !hasOpen("world_map")) Timer.CANCEL else Timer.CONTINUE
         }
 
-        interfaceOpen("world_map") {
+        interfaceOpened("world_map") {
             updateMap(this)
             if (steps.isNotEmpty()) {
                 softTimers.start("world_map_check")

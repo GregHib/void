@@ -93,6 +93,18 @@ interface CombatApi {
         }
     }
 
+    fun specialAttack(id: String = "*", block: Player.(target: Character, id: String) -> Unit) {
+        specials[id] = block
+    }
+
+    fun specialAttackPrepare(id: String = "*", block: Player.(id: String) -> Boolean) {
+        prepareSpecial[id] = block
+    }
+
+    fun specialAttackDamage(id: String = "*", block: Player.(target: Character, damage: Int) -> Unit) {
+        damageSpecial[id] = block
+    }
+
     companion object : AutoCloseable {
         private val start = ObjectArrayList<Player.(Character) -> Unit>(5)
         private val startNpc = ObjectArrayList<NPC.(Character) -> Unit>(5)
@@ -106,6 +118,10 @@ interface CombatApi {
         private val attackNpc = Object2ObjectOpenHashMap<String, MutableList<NPC.(CombatAttack) -> Unit>>(30)
         private val damages = Object2ObjectOpenHashMap<String, MutableList<Player.(CombatDamage) -> Unit>>(40)
         private val damageNpc = Object2ObjectOpenHashMap<String, MutableList<NPC.(CombatDamage) -> Unit>>(30)
+
+        private val specials = Object2ObjectOpenHashMap<String, Player.(Character, String) -> Unit>()
+        private val prepareSpecial = Object2ObjectOpenHashMap<String, Player.(String) -> Boolean>()
+        private val damageSpecial = Object2ObjectOpenHashMap<String, Player.(Character, Int) -> Unit>()
 
         fun attack(player: Player, attack: CombatAttack) {
             for (handler in attacks[attack.type] ?: emptyList()) {
@@ -219,6 +235,16 @@ interface CombatApi {
             return true
         }
 
+        fun special(player: Player, target: Character, id: String) {
+            (specials[id] ?: specials["*"])?.invoke(player, target, id)
+        }
+
+        fun prepareSpec(player: Player, id: String): Boolean = (prepareSpecial[id] ?: prepareSpecial["*"])?.invoke(player, id) ?: true
+
+        fun damageSpec(player: Player, target: Character, mode: String, damage: Int) {
+            (damageSpecial[mode] ?: damageSpecial["*"])?.invoke(player, target, damage)
+        }
+
         override fun close() {
             start.clear()
             startNpc.clear()
@@ -232,6 +258,9 @@ interface CombatApi {
             attackNpc.clear()
             damages.clear()
             damageNpc.clear()
+            specials.clear()
+            prepareSpecial.clear()
+            damageSpecial.clear()
         }
     }
 }

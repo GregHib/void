@@ -134,7 +134,7 @@ suspend fun Bot.withdrawCoins() {
 class BankBot : Script {
 
     init {
-        interfaceOpen("bank") {
+        interfaceOpened("bank") {
             if (isBot) {
                 bot.resume("bank")
             }

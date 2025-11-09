@@ -55,7 +55,7 @@ class Thessalia : Script {
             startMakeover()
         }
 
-        interfaceOpen("thessalias_makeovers") { id ->
+        interfaceOpened("thessalias_makeovers") { id ->
             interfaces.sendText(id, "confirm_text", "Change")
             interfaceOptions.unlockAll(id, "styles", 0 until 100)
             interfaceOptions.unlockAll(id, "colours", 0 until enums.get("colour_top").length * 2)
@@ -67,7 +67,7 @@ class Thessalia : Script {
             set("makeover_colour_legs", body.getColour(BodyColour.Legs))
         }
 
-        interfaceClose("thessalias_makeovers") {
+        interfaceClosed("thessalias_makeovers") {
             softTimers.stop("dressing_room")
         }
 

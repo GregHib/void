@@ -7,7 +7,7 @@ import world.gregs.voidps.network.client.instruction.InteractDialogue
 class SkillBot : Script {
 
     init {
-        interfaceOpen("dialogue_level_up") {
+        interfaceOpened("dialogue_level_up") {
             if (isBot) {
                 instructions.trySend(InteractDialogue(interfaceId = 740, componentId = 3, option = -1))
             }

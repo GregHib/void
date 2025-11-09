@@ -64,7 +64,7 @@ class Doomsayer : Script {
             }
         }
 
-        interfaceOpen("warning_*") { id ->
+        interfaceOpened("warning_*") { id ->
             val count = get(id, 0)
             if (count < 6) {
                 set(id, count + 1)

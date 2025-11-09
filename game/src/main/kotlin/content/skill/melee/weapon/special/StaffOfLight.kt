@@ -7,9 +7,7 @@ import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
 
-class StaffOfLight :
-    Script,
-    SpecialAttack {
+class StaffOfLight : Script {
     init {
         playerSpawn {
             if (contains("power_of_light")) {

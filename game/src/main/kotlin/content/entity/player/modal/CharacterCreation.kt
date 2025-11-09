@@ -19,7 +19,7 @@ class CharacterCreation : Script {
     val structs: StructDefinitions by inject()
 
     init {
-        interfaceOpen("character_creation") { id ->
+        interfaceOpened("character_creation") { id ->
             interfaceOptions.unlockAll(id, "skin_colour", 0 until enums.get("character_skin_interfaces").length)
             interfaceOptions.unlockAll(id, "colours", 0 until enums.get("character_top_interfaces").length)
             interfaceOptions.unlockAll(id, "styles", 0 until enums.get("character_top_styles_female").length)
@@ -33,7 +33,7 @@ class CharacterCreation : Script {
             }
         }
 
-        interfaceClose("character_creation") {
+        interfaceClosed("character_creation") {
             for (i in 1 until 20) {
                 inventories.clear("character_creation_$i")
             }
@@ -101,7 +101,7 @@ class CharacterCreation : Script {
             set("makeover_$part", value)
         }
 
-        interfaceOpen("character_creation") {
+        interfaceOpened("character_creation") {
             set("makeover_female", !body.male)
             set("makeover_hair", body.getLook(BodyPart.Hair))
             set("makeover_beard", body.getLook(BodyPart.Beard))

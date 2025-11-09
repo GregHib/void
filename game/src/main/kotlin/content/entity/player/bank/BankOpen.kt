@@ -35,13 +35,13 @@ class BankOpen : Script {
             open("collection_box")
         }
 
-        interfaceClose("bank") {
+        interfaceClosed("bank") {
             set("bank_hidden", true)
             close("bank_side")
             sendScript("clear_dialogues")
         }
 
-        interfaceOpen("bank_deposit_box") {
+        interfaceOpened("bank_deposit_box") {
             tab(Tab.Inventory)
             open("bank_side")
             interfaceOptions.send("bank_deposit_box", "inventory")
@@ -49,12 +49,12 @@ class BankOpen : Script {
             interfaceOptions.unlockAll("bank_side", "inventory", 0 until 28)
         }
 
-        interfaceClose("bank_deposit_box") {
+        interfaceClosed("bank_deposit_box") {
             close("bank_side")
             sendScript("clear_dialogues")
         }
 
-        interfaceOpen("bank") {
+        interfaceOpened("bank") {
             set("bank_hidden", false)
             sendInventory("bank")
             open("bank_side")

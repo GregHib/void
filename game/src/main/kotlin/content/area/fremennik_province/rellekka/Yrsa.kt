@@ -42,11 +42,11 @@ class Yrsa : Script {
             startShoeShopping()
         }
 
-        interfaceClose("yrsas_shoe_store") {
+        interfaceClosed("yrsas_shoe_store") {
             softTimers.stop("dressing_room")
         }
 
-        interfaceOpen("yrsas_shoe_store") { id ->
+        interfaceOpened("yrsas_shoe_store") { id ->
             interfaces.sendText(id, "confirm_text", "Change")
             interfaceOptions.unlockAll(id, "styles", 0 until 40)
             val colours = enums.get("colour_shoes")

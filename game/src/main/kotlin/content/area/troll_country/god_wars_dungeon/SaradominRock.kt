@@ -2,7 +2,7 @@ package content.area.troll_country.god_wars_dungeon
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.mode.interact.ItemObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -25,7 +25,7 @@ class SaradominRock : Script {
         itemOnObjectOperate("rope", "godwars_saradomin_rock_bottom", handler = ::tieRope)
     }
 
-    fun tieRope(player: Player, interact: ItemObjectInteract) {
+    fun tieRope(player: Player, interact: ItemOnObjectInteract) {
         tieRope(player, interact.target.def.stringId)
     }
 

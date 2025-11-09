@@ -52,7 +52,7 @@ class Jewellery : Script {
             make(it.component, amount)
         }
 
-        interfaceClose("make_mould*") {
+        interfaceClosed("make_mould*") {
             sendScript("clear_dialogues")
         }
     }

@@ -32,7 +32,7 @@ class Emotes : Script {
     }
 
     init {
-        interfaceOpen("emotes") { id ->
+        interfaceOpened("emotes") { id ->
             for (compId in unlockableEmotes) {
                 val component = definitions.getComponent(id, compId) ?: continue
                 sendVariable("unlocked_emote_${component.stringId}")

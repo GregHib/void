@@ -2,7 +2,7 @@ package content.skill.melee
 
 import content.skill.prayer.PrayerConfigs
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.InterfaceInteraction
+import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
@@ -79,9 +79,9 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
         player.inventory.add(attackPotion.id)
         player.inventory.add(strengthPotion.id)
 
-        InterfaceInteraction.itemOption(player, "Drink", attackPotion, 0)
+        InterfaceApi.itemOption(player, "Drink", attackPotion, 0)
         tick(2)
-        InterfaceInteraction.itemOption(player, "Drink", strengthPotion, 1)
+        InterfaceApi.itemOption(player, "Drink", strengthPotion, 1)
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)

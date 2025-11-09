@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.suspend.StringSuspension
 class CanoeStationMap : Script {
 
     init {
-        interfaceClose("canoe_stations_map") {
+        interfaceClosed("canoe_stations_map") {
             dialogueSuspension = null
         }
 

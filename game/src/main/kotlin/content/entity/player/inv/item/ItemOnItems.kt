@@ -64,11 +64,11 @@ class ItemOnItems : Script {
             }
         }
 
-        interfaceClose("dialogue_skill_creation") {
+        interfaceClosed("dialogue_skill_creation") {
             clear("selecting_amount")
         }
 
-        interfaceOpen("dialogue_skill_creation") {
+        interfaceOpened("dialogue_skill_creation") {
             set("selecting_amount", true)
         }
     }

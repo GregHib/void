@@ -72,7 +72,7 @@ suspend fun Bot.buy(item: String, amount: Int = 1) {
 class ShopBot : Script {
 
     init {
-        interfaceOpen("shop") {
+        interfaceOpened("shop") {
             if (isBot) {
                 bot.resume("shop")
             }

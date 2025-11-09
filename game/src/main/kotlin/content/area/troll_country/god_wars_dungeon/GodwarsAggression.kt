@@ -26,7 +26,7 @@ class GodwarsAggression : Script {
             set("gods", equipment.items.mapNotNull { it.def.getOrNull<String>("god") }.toMutableSet())
         }
 
-        interfaceOpen("godwars_overlay") {
+        interfaceOpened("godwars_overlay") {
             sendVariable("armadyl_killcount")
             sendVariable("bandos_killcount")
             sendVariable("saradomin_killcount")

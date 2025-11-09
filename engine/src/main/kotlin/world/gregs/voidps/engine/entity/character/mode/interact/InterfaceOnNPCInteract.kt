@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
-data class InterfaceNPCInteract(
+data class InterfaceOnNPCInteract(
     override val target: NPC,
     val id: String,
     val index: Int,
@@ -24,10 +24,10 @@ data class InterfaceNPCInteract(
         invoke(Approachable.onNpc)
     }
 
-    private fun invoke(map: Map<String, List<suspend Player.(InterfaceNPCInteract) -> Unit>>) {
+    private fun invoke(map: Map<String, List<suspend Player.(InterfaceOnNPCInteract) -> Unit>>) {
         Script.launch {
             for (block in map["$id:${target.def(player).stringId}"] ?: map["$id:*"] ?: map["*:${target.def(player).stringId}"] ?: return@launch) {
-                block(player, this@InterfaceNPCInteract)
+                block(player, this@InterfaceOnNPCInteract)
             }
         }
     }

@@ -13,7 +13,7 @@ class GravestoneShop : Script {
     val enums: EnumDefinitions by inject()
 
     init {
-        interfaceOpen("gravestone_shop") { id ->
+        interfaceOpened("gravestone_shop") { id ->
             sendVariable("gravestone_current")
             if (questCompleted("the_restless_ghost")) {
                 addVarbit("unlocked_gravestones", "flag")

@@ -36,7 +36,7 @@ class GrandExchangeOffers : Script {
     init {
         playerSpawn(exchange::login)
 
-        interfaceOpen("grand_exchange") { id ->
+        interfaceOpened("grand_exchange") { id ->
             sendVariable("grand_exchange_ranges")
             set("grand_exchange_page", "offers")
             set("grand_exchange_box", -1)
@@ -47,7 +47,7 @@ class GrandExchangeOffers : Script {
             }
         }
 
-        interfaceClose("grand_exchange") {
+        interfaceClosed("grand_exchange") {
             GrandExchange.clearSelection(this)
         }
 
@@ -110,7 +110,7 @@ class GrandExchangeOffers : Script {
             set("grand_exchange_item_id", -1)
         }
 
-        interfaceOpen("stock_side") { id ->
+        interfaceOpened("stock_side") { id ->
             tab(Tab.Inventory)
             interfaceOptions.send(id, "items")
             interfaceOptions.unlockAll(id, "items", 0 until 28)

@@ -26,7 +26,7 @@ class CaveLizard : Script {
             }
         }
 
-        huntPlayer("aggressive", "cave_lizard") { target ->
+        huntPlayer("cave_lizard", "aggressive") { target ->
             interactPlayer(target, "Attack")
         }
     }

@@ -3,7 +3,7 @@ package content.skill.ranged
 import content.skill.melee.CombatFormulaTest
 import content.skill.prayer.PrayerConfigs
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.entity.InterfaceInteraction
+import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
@@ -71,7 +71,7 @@ internal class RangedCombatFormulaTest : CombatFormulaTest() {
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow")
         val potion = Item("super_ranging_potion_4")
         player.inventory.add(potion.id)
-        InterfaceInteraction.itemOption(player, "Drink", potion)
+        InterfaceApi.itemOption(player, "Drink", potion)
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "range", weapon)
@@ -108,7 +108,7 @@ internal class RangedCombatFormulaTest : CombatFormulaTest() {
         player.ammo = "dragon_arrow"
         val potion = Item("super_ranging_potion_4")
         player.inventory.add(potion.id)
-        InterfaceInteraction.itemOption(player, "Drink", potion)
+        InterfaceApi.itemOption(player, "Drink", potion)
         val npc = createNPC("giant_rat")
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "range", weapon)

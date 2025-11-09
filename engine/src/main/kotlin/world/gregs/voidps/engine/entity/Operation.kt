@@ -17,17 +17,17 @@ interface Operation {
         Player operations
      */
 
-    fun playerOperate(option: String, handler: suspend Player.(PlayerPlayerInteract) -> Unit) {
+    fun playerOperate(option: String, handler: suspend Player.(PlayerOnPlayerInteract) -> Unit) {
         playerPlayer.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
-    fun npcOperate(option: String, npc: String = "*", handler: suspend Player.(PlayerNPCInteract) -> Unit) {
+    fun npcOperate(option: String, npc: String = "*", handler: suspend Player.(PlayerOnNPCInteract) -> Unit) {
         Wildcards.find(npc, Wildcard.Npc) { id ->
             playerNpc.getOrPut("$option:$id") { mutableListOf() }.add(handler)
         }
     }
 
-    fun objectOperate(option: String, obj: String = "*", arrive: Boolean = true, handler: suspend Player.(PlayerObjectInteract) -> Unit) {
+    fun objectOperate(option: String, obj: String = "*", arrive: Boolean = true, handler: suspend Player.(PlayerOnObjectInteract) -> Unit) {
         Wildcards.find(obj, Wildcard.Object) { id ->
             if (!arrive) {
                 noDelays.add("$option:$id")
@@ -36,10 +36,7 @@ interface Operation {
         }
     }
 
-    fun floorItemOperate(option: String, arrive: Boolean = true, handler: suspend Player.(PlayerFloorItemInteract) -> Unit) {
-        if (!arrive) {
-            noDelays.add(option)
-        }
+    fun floorItemOperate(option: String, handler: suspend Player.(PlayerOnFloorItemInteract) -> Unit) {
         playerFloorItem.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
@@ -47,19 +44,19 @@ interface Operation {
         Interface on
      */
 
-    fun onPlayerOperate(id: String = "*", handler: suspend Player.(ItemPlayerInteract) -> Unit) {
+    fun onPlayerOperate(id: String = "*", handler: suspend Player.(ItemOnPlayerInteract) -> Unit) {
         Wildcards.find(id, Wildcard.Component) { i ->
             onPlayer.getOrPut(i) { mutableListOf() }.add(handler)
         }
     }
 
-    fun itemOnPlayerOperate(item: String = "*", handler: suspend Player.(ItemPlayerInteract) -> Unit) {
+    fun itemOnPlayerOperate(item: String = "*", handler: suspend Player.(ItemOnPlayerInteract) -> Unit) {
         Wildcards.find(item, Wildcard.Item) { id ->
             onPlayer.getOrPut(id) { mutableListOf() }.add(handler)
         }
     }
 
-    fun onNPCOperate(id: String = "*", npc: String = "*", handler: suspend Player.(InterfaceNPCInteract) -> Unit) {
+    fun onNPCOperate(id: String = "*", npc: String = "*", handler: suspend Player.(InterfaceOnNPCInteract) -> Unit) {
         Wildcards.find(id, Wildcard.Component) { i ->
             Wildcards.find(npc, Wildcard.Npc) { n ->
                 onNpc.getOrPut("$i:$n") { mutableListOf() }.add(handler)
@@ -67,7 +64,7 @@ interface Operation {
         }
     }
 
-    fun itemOnNPCOperate(item: String = "*", npc: String = "*", handler: suspend Player.(ItemNPCInteract) -> Unit) {
+    fun itemOnNPCOperate(item: String = "*", npc: String = "*", handler: suspend Player.(ItemOnNPCInteract) -> Unit) {
         Wildcards.find(item, Wildcard.Item) { itm ->
             Wildcards.find(npc, Wildcard.Npc) { id ->
                 itemOnNpc.getOrPut("$itm:$id") { mutableListOf() }.add(handler)
@@ -75,15 +72,16 @@ interface Operation {
         }
     }
 
-    fun onObjectOperate(id: String = "*", obj: String = "*", handler: suspend Player.(InterfaceObjectInteract) -> Unit) {
+    fun onObjectOperate(id: String = "*", obj: String = "*", handler: suspend Player.(InterfaceOnObjectInteract) -> Unit) {
         Wildcards.find(id, Wildcard.Component) { i ->
             Wildcards.find(obj, Wildcard.Object) { o ->
                 onObject.getOrPut("$i:$o") { mutableListOf() }.add(handler)
+                println("Set $i $o ${onObject.keys}")
             }
         }
     }
 
-    fun itemOnObjectOperate(item: String = "*", obj: String = "*", arrive: Boolean = true, handler: suspend Player.(ItemObjectInteract) -> Unit) {
+    fun itemOnObjectOperate(item: String = "*", obj: String = "*", arrive: Boolean = true, handler: suspend Player.(ItemOnObjectInteract) -> Unit) {
         Wildcards.find(item, Wildcard.Item) { itm ->
             Wildcards.find(obj, Wildcard.Object) { id ->
                 if (!arrive) {
@@ -94,7 +92,7 @@ interface Operation {
         }
     }
 
-    fun onFloorItemOperate(id: String = "*", floorItem: String = "*", handler: suspend Player.(InterfaceFloorItemInteract) -> Unit) {
+    fun onFloorItemOperate(id: String = "*", floorItem: String = "*", handler: suspend Player.(InterfaceOnFloorItemInteract) -> Unit) {
         Wildcards.find(id, Wildcard.Component) { i ->
             Wildcards.find(floorItem, Wildcard.Item) { floor ->
                 onFloorItem.getOrPut("$i:$floor") { mutableListOf() }.add(handler)
@@ -102,12 +100,9 @@ interface Operation {
         }
     }
 
-    fun itemOnFloorItemOperate(item: String = "*", floorItem: String = "*", arrive: Boolean = true, handler: suspend Player.(ItemFloorItemInteract) -> Unit) {
+    fun itemOnFloorItemOperate(item: String = "*", floorItem: String = "*", handler: suspend Player.(ItemOnFloorItemInteract) -> Unit) {
         Wildcards.find(item, Wildcard.Item) { itm ->
             Wildcards.find(floorItem, Wildcard.Item) { id ->
-                if (!arrive) {
-                    noDelays.add("$itm:$id")
-                }
                 itemOnFloorItem.getOrPut("$itm:$id") { mutableListOf() }.add(handler)
             }
         }
@@ -117,17 +112,15 @@ interface Operation {
         NPC operations
      */
 
-    fun npcOperatePlayer(option: String, handler: suspend NPC.(NPCPlayerInteract) -> Unit) {
+    fun npcOperatePlayer(option: String, handler: suspend NPC.(NPCOnPlayerInteract) -> Unit) {
         npcPlayer.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
-    fun npcOperateNPC(option: String, npc: String = "*", handler: suspend NPC.(NPCNPCInteract) -> Unit) {
-        Wildcards.find(npc, Wildcard.Npc) { id ->
-            npcNpc.getOrPut("$option:$id") { mutableListOf() }.add(handler)
-        }
+    fun npcOperateNPC(option: String, handler: suspend NPC.(NPCOnNPCInteract) -> Unit) {
+        npcNpc.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
-    fun npcOperateObject(option: String, obj: String = "*", arrive: Boolean = true, handler: suspend NPC.(NPCObjectInteract) -> Unit) {
+    fun npcOperateObject(option: String, obj: String = "*", arrive: Boolean = true, handler: suspend NPC.(NPCOnObjectInteract) -> Unit) {
         Wildcards.find(obj, Wildcard.Object) { id ->
             if (!arrive) {
                 noDelays.add("$option:$id")
@@ -136,35 +129,32 @@ interface Operation {
         }
     }
 
-    fun npcOperateFloorItem(option: String, arrive: Boolean = true, handler: suspend NPC.(NPCFloorItemInteract) -> Unit) {
-        if (!arrive) {
-            noDelays.add(option)
-        }
+    fun npcOperateFloorItem(option: String, handler: suspend NPC.(NPCOnFloorItemInteract) -> Unit) {
         npcFloorItem.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
     companion object : AutoCloseable {
-        val playerPlayer = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(PlayerPlayerInteract) -> Unit>>(10)
-        val onPlayer = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemPlayerInteract) -> Unit>>(2)
+        val playerPlayer = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(PlayerOnPlayerInteract) -> Unit>>(10)
+        val onPlayer = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOnPlayerInteract) -> Unit>>(2)
 
-        val playerNpc = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(PlayerNPCInteract) -> Unit>>(1100)
-        val onNpc = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(InterfaceNPCInteract) -> Unit>>(2)
-        val itemOnNpc = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemNPCInteract) -> Unit>>(50)
+        val playerNpc = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(PlayerOnNPCInteract) -> Unit>>(1100)
+        val onNpc = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(InterfaceOnNPCInteract) -> Unit>>(2)
+        val itemOnNpc = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOnNPCInteract) -> Unit>>(50)
 
-        val playerObject = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(PlayerObjectInteract) -> Unit>>(750)
-        val onObject = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(InterfaceObjectInteract) -> Unit>>(2)
-        val itemOnObject = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemObjectInteract) -> Unit>>(1400)
+        val playerObject = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(PlayerOnObjectInteract) -> Unit>>(750)
+        val onObject = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(InterfaceOnObjectInteract) -> Unit>>(2)
+        val itemOnObject = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOnObjectInteract) -> Unit>>(1400)
 
-        val playerFloorItem = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(PlayerFloorItemInteract) -> Unit>>(2)
-        val onFloorItem = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(InterfaceFloorItemInteract) -> Unit>>(2)
-        val itemOnFloorItem = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemFloorItemInteract) -> Unit>>(2)
+        val playerFloorItem = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(PlayerOnFloorItemInteract) -> Unit>>(2)
+        val onFloorItem = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(InterfaceOnFloorItemInteract) -> Unit>>(2)
+        val itemOnFloorItem = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOnFloorItemInteract) -> Unit>>(2)
 
-        val npcPlayer = Object2ObjectOpenHashMap<String, MutableList<suspend NPC.(NPCPlayerInteract) -> Unit>>(2)
-        val npcNpc = Object2ObjectOpenHashMap<String, MutableList<suspend NPC.(NPCNPCInteract) -> Unit>>(2)
-        val npcObject = Object2ObjectOpenHashMap<String, MutableList<suspend NPC.(NPCObjectInteract) -> Unit>>(2)
-        val npcFloorItem = Object2ObjectOpenHashMap<String, MutableList<suspend NPC.(NPCFloorItemInteract) -> Unit>>(2)
+        val npcPlayer = Object2ObjectOpenHashMap<String, MutableList<suspend NPC.(NPCOnPlayerInteract) -> Unit>>(2)
+        val npcNpc = Object2ObjectOpenHashMap<String, MutableList<suspend NPC.(NPCOnNPCInteract) -> Unit>>(2)
+        val npcObject = Object2ObjectOpenHashMap<String, MutableList<suspend NPC.(NPCOnObjectInteract) -> Unit>>(2)
+        val npcFloorItem = Object2ObjectOpenHashMap<String, MutableList<suspend NPC.(NPCOnFloorItemInteract) -> Unit>>(2)
 
-        // Don't call arriveDelay before an object or floor item interaction
+        // Don't call arriveDelay before an object interaction
         val noDelays = mutableSetOf<String>()
 
         override fun close() {
@@ -174,6 +164,7 @@ interface Operation {
             onNpc.clear()
             itemOnNpc.clear()
             playerObject.clear()
+            onObject.clear()
             itemOnObject.clear()
             playerFloorItem.clear()
             onFloorItem.clear()

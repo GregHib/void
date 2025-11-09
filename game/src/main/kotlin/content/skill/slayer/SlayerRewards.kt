@@ -24,7 +24,7 @@ class SlayerRewards : Script {
             open("slayer_rewards_assignment")
         }
 
-        interfaceOpen("slayer_rewards") { id ->
+        interfaceOpened("slayer_rewards") { id ->
             refreshText(this, id)
         }
 

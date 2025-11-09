@@ -24,8 +24,8 @@ class ClanSetup : Script {
             open("clan_chat_setup")
         }
 
-        interfaceOpen("clan_chat_setup") { id ->
-            val clan = clan ?: ownClan ?: return@interfaceOpen
+        interfaceOpened("clan_chat_setup") { id ->
+            val clan = clan ?: ownClan ?: return@interfaceOpened
             interfaces.apply {
                 sendText(id, "name", clan.name.ifBlank { "Chat disabled" })
                 sendText(id, "enter", clan.joinRank.string)
@@ -136,7 +136,7 @@ class ClanSetup : Script {
             updateUI(clan)
         }
 
-        interfaceClose("clan_chat_setup") {
+        interfaceClosed("clan_chat_setup") {
             sendScript("clear_dialogues")
         }
 

@@ -16,7 +16,7 @@ import kotlin.math.ceil
 class GrandExchangeControls : Script {
 
     init {
-        interfaceOpen("grand_exchange") { id ->
+        interfaceOpened("grand_exchange") { id ->
             /*
                 This is a hacky way of converting between original and newer ui (limited price range vs unlimited with +/-5%)
                 It doesn't account for hover and tooltip changes or location of buttons and isn't the most responsive as
