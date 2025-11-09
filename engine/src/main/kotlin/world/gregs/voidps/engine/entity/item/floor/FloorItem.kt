@@ -13,7 +13,7 @@ import world.gregs.voidps.type.Tile
  * @param revealTicks number of ticks until the item will be revealed to all players
  * @param disappearTicks number of ticks after [revealTicks] when the item will be removed
  */
-class FloorItem(
+data class FloorItem(
     override var tile: Tile,
     val id: String,
     var amount: Int = 1,

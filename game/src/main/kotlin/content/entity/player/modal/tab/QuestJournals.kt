@@ -4,8 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
-import world.gregs.voidps.engine.entity.InterfaceApi
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.Timer
 

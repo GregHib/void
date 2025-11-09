@@ -3,7 +3,7 @@ package content.entity.npc.shop
 import content.entity.npc.shop.general.GeneralStores
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.player
-import world.gregs.voidps.engine.entity.InterfaceApi
+import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.Inventory

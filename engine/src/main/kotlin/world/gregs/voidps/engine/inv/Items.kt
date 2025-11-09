@@ -76,7 +76,7 @@ interface Items {
     /**
      * Apply effects after an item has been eaten or drank
      */
-    fun consumed(item: String = "*", handler: Player.(Item, Int) -> Unit) {
+    fun consumed(item: String = "*", handler: Player.(Item, slot: Int) -> Unit) {
         Wildcards.find(item, Wildcard.Item) { i ->
             consumed[i] = handler
         }

@@ -16,8 +16,8 @@ interface Hunt {
         npcs[mode] = handler
     }
 
-    fun huntPlayer(mode: String, npc: String = "*", handler: NPC.(Player) -> Unit) {
-        players.getOrPut(mode) { mutableListOf() }.add(handler)
+    fun huntPlayer(npc: String = "*", mode: String, handler: NPC.(Player) -> Unit) {
+        players.getOrPut("$mode:$npc") { mutableListOf() }.add(handler)
     }
 
     fun huntObject(mode: String, handler: NPC.(GameObject) -> Unit) {
@@ -39,7 +39,10 @@ interface Hunt {
         }
 
         fun hunt(npc: NPC, target: Player, mode: String) {
-            for (handler in players[mode] ?: return) {
+            for (handler in players["$mode:${npc.id}"] ?: emptyList()) {
+                handler(npc, target)
+            }
+            for (handler in players["$mode:*"] ?: return) {
                 handler(npc, target)
             }
         }

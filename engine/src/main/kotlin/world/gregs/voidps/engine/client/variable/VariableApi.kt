@@ -81,6 +81,8 @@ interface VariableApi {
         override fun close() {
             setVar.clear()
             setVarNpc.clear()
+            varbitsAdded.clear()
+            varbitsRemoved.clear()
         }
     }
 }
