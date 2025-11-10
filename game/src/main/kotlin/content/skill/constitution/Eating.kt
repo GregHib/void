@@ -43,7 +43,7 @@ class Eating : Script {
             return
         }
         player.start(delay, ticks)
-        if (Items.consumable(player, item)) {
+        if (!Items.consumable(player, item)) {
             return
         }
         val replacement = item.def["excess", ""]

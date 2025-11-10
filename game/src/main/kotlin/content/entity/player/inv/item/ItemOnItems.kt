@@ -117,7 +117,7 @@ class ItemOnItems : Script {
         }
     }
 
-    fun replaceItems(
+    suspend fun replaceItems(
         def: ItemOnItemDefinition,
         player: Player,
         skill: Skill?,

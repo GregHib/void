@@ -103,7 +103,7 @@ interface Items {
     /**
      * Do something after items are crafted together
      */
-    fun crafted(skill: Skill? = null, handler: Player.(ItemOnItemDefinition) -> Unit) {
+    fun crafted(skill: Skill? = null, handler: suspend Player.(ItemOnItemDefinition) -> Unit) {
         crafted.getOrPut(skill) { mutableListOf() }.add(handler)
     }
 
@@ -118,7 +118,7 @@ interface Items {
         private val destroyable = Object2ObjectOpenHashMap<String, (Player, Item) -> Boolean>(2)
         private val consumed = Object2ObjectOpenHashMap<String, (Player, Item, Int) -> Unit>(5)
         private val consumable = Object2ObjectOpenHashMap<String, (Player, Item) -> Boolean>(125)
-        private val crafted = Object2ObjectOpenHashMap<Skill?, MutableList<(Player, ItemOnItemDefinition) -> Unit>>(5)
+        private val crafted = Object2ObjectOpenHashMap<Skill?, MutableList<suspend (Player, ItemOnItemDefinition) -> Unit>>(5)
 
         fun takeable(player: Player, item: String): String? {
             val handler = takeable[item] ?: return item
@@ -129,7 +129,7 @@ interface Items {
             taken[floorItem.id]?.invoke(player, floorItem)
         }
 
-        fun craft(player: Player, def: ItemOnItemDefinition) {
+        suspend fun craft(player: Player, def: ItemOnItemDefinition) {
             for (handler in crafted[def.skill] ?: return) {
                 handler(player, def)
             }
@@ -150,7 +150,7 @@ interface Items {
         }
 
         fun destructible(player: Player, item: Item): Boolean {
-            return destroyable[item.id]?.invoke(player, item) ?: false
+            return destroyable[item.id]?.invoke(player, item) ?: true
         }
 
         fun destroyed(player: Player, item: Item) {
@@ -158,7 +158,7 @@ interface Items {
         }
 
         fun consumable(player: Player, item: Item): Boolean {
-            return consumable[item.id]?.invoke(player, item) ?: false
+            return consumable[item.id]?.invoke(player, item) ?: true
         }
 
         fun consume(player: Player, item: Item, slot: Int) {

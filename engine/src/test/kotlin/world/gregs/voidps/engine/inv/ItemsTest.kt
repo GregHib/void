@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.inv
 
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Nested
 import world.gregs.voidps.engine.Caller
@@ -120,12 +121,12 @@ class ItemsTest {
             destructible(args[0]) { item ->
                 caller.call()
                 assertEquals(Item("item"), item)
-                false
+                true
             }
         }
 
         override fun invoke(args: List<String>) {
-            assertFalse(Items.destructible(Player(), Item("item")))
+            assertTrue(Items.destructible(Player(), Item("item")))
         }
 
         override val apis = listOf(Items)
@@ -165,12 +166,12 @@ class ItemsTest {
             consumable(args[0]) { item ->
                 caller.call()
                 assertEquals(Item("item"), item)
-                false
+                true
             }
         }
 
         override fun invoke(args: List<String>) {
-            assertFalse(Items.consumable(Player(), Item("item")))
+            assertTrue(Items.consumable(Player(), Item("item")))
         }
 
         override val apis = listOf(Items)
@@ -263,7 +264,9 @@ class ItemsTest {
         }
 
         override fun invoke(args: List<String>) {
-            Items.craft(Player(), ItemOnItemDefinition(Skill.Attack))
+            runTest {
+                Items.craft(Player(), ItemOnItemDefinition(Skill.Attack))
+            }
         }
 
         override val apis = listOf(Items)
