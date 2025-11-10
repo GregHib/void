@@ -1,13 +1,11 @@
 package content.area.troll_country.god_wars_dungeon
 
 import WorldTest
-import containsMessage
 import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class GodwarsBoulderTest : WorldTest() {
 
