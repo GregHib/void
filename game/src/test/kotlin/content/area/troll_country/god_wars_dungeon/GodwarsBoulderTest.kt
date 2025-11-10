@@ -68,7 +68,7 @@ class GodwarsBoulderTest : WorldTest() {
 
         player.objectOption(hole, optionIndex = 0) // Move
         tick(2)
-        assertTrue(player.containsMessage("You need to have a Strength level of 60"))
+        assertEquals(Tile(2898, 3715), player.tile)
     }
 
     @Test
@@ -80,6 +80,6 @@ class GodwarsBoulderTest : WorldTest() {
 
         player.objectOption(hole, "Crawl-through")
         tick()
-        assertTrue(player.containsMessage("You need to have an Agility level of 60"))
+        assertEquals(Tile(2899, 3713), player.tile)
     }
 }
