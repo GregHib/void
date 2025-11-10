@@ -2,6 +2,7 @@ package content.skill.agility.course
 
 import content.entity.combat.hit.damage
 import content.entity.obj.door.enterDoor
+import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
@@ -28,7 +29,7 @@ class WildernessCourse : Script {
     init {
         objectOperate("Open", "wilderness_agility_door_closed") { (target) ->
             if (!has(Skill.Agility, 52, message = true)) {
-                // TODO proper message
+                statement("You need an Agility level of 52 to attempt balancing on the ridge.")
                 return@objectOperate
             }
             if (tile.y > 3916) {

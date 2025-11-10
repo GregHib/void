@@ -18,7 +18,6 @@ class GliderMap : Script {
                 return@interfaceOption
             }
             if (it.component == "lemantolly_undri" && !questCompleted("one_small_favour")) {
-                message("You need to have completed One Small Favour quest to travel to here.") // TODO proper message
                 return@interfaceOption
             }
             set("gnome_glider_journey", "${current}_to_${it.component}")
@@ -37,6 +36,10 @@ class GliderMap : Script {
                 open("fade_in")
                 clear("gnome_glider_journey")
             }
+        }
+
+        interfaceOpened("glider_map") {
+            interfaces.sendVisibility("glider_map", "lemantolly_undri", questCompleted("one_small_favour"))
         }
     }
 }

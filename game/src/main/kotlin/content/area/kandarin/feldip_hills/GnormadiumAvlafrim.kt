@@ -29,7 +29,8 @@ class GnormadiumAvlafrim : Script {
 
         npcOperate("Glider", "gnormadium_avlafrim") {
             if (!questCompleted("one_small_favour")) {
-                message("You need to have completed One Small Favour quest to travel with the glider from here.") // TODO proper message
+                npc<Talk>("Hello! Don't get in the way around here, we've got a lot of work to do!")
+                menu()
                 return@npcOperate
             }
             set("glider_location", "lemantolly_undri")

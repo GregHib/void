@@ -15,8 +15,7 @@ class AbyssalRift : Script {
                     return@objTeleportTakeOff Teleport.CANCEL
                 }
                 obj.def(this).stringId == "law_rift" -> {
-                    // TODO proper message
-                    message("You cannot carry any weapons or armour through this rift.")
+                    message("The power of Saradomin prevents you taking armour or weaponry to Entrana.")
                     return@objTeleportTakeOff Teleport.CANCEL
                 }
                 obj.def(this).stringId == "death_rift" && !questCompleted("mournings_end_part_2") -> {
