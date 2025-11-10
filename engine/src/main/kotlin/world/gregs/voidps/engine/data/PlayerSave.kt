@@ -90,10 +90,10 @@ data class PlayerSave(
                         write("\"")
                         write(item.id)
                         write("\"")
-                        if (item.amount > 1) {
+                        if (item.value > 1) {
                             write(",")
                             writeKey("amount")
-                            write(item.amount.toString())
+                            write(item.value.toString())
                         }
                         write("}")
                     }
