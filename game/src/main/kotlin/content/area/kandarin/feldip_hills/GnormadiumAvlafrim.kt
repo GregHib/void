@@ -7,7 +7,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 
@@ -29,7 +28,8 @@ class GnormadiumAvlafrim : Script {
 
         npcOperate("Glider", "gnormadium_avlafrim") {
             if (!questCompleted("one_small_favour")) {
-                message("You need to have completed One Small Favour quest to travel with the glider from here.") // TODO proper message
+                npc<Talk>("Hello! Don't get in the way around here, we've got a lot of work to do!")
+                menu()
                 return@npcOperate
             }
             set("glider_location", "lemantolly_undri")

@@ -53,6 +53,8 @@ class BarmaidsRisingSunInn : Script {
     suspend fun barCrawl(player: Player, interact: ItemOnNPCInteract) {
         if (!player.containsVarbit("barcrawl_signatures", "hand_of_death_cocktail")) {
             player.barCrawl(interact.target)
+        } else {
+            player.menu(interact.target)
         }
     }
 

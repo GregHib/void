@@ -1,6 +1,7 @@
 package content.area.troll_country.god_wars_dungeon
 
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -13,7 +14,8 @@ class GodwarsBoulder : Script {
 
     init {
         objectOperate("Move", "godwars_boulder") { (target) ->
-            if (!has(Skill.Strength, 60, message = true)) { // TODO proper message
+            if (!has(Skill.Strength, 60, message = false)) {
+                message("You need a Strength level of 60 to negotiate these rocks.")
                 return@objectOperate
             }
             val direction = if (tile.y < target.tile.y) Direction.NORTH else Direction.SOUTH
@@ -32,7 +34,8 @@ class GodwarsBoulder : Script {
         }
 
         objectOperate("Crawl-through", "godwars_little_hole") { (target) ->
-            if (!has(Skill.Agility, 60, message = true)) { // TODO proper message
+            if (!has(Skill.Agility, 60, message = false)) {
+                message("You need an Agility level of 60 to squeeze through the crack.")
                 return@objectOperate
             }
             open("fade_out")
