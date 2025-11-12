@@ -1032,6 +1032,10 @@ limit = 5000
 weight = 0.006
 aka = ["rol"]
 slot = "Ring"
+charges = 1
+degrade = "destroy"
+# https://youtu.be/B3nJ5XtwScA?si=8_JBM-Xmld_2iVN7&t=8
+degrade_message = "Your ring of life saves you and is destroyed in the process."
 examine = "An enchanted ring."
 
 [ring_of_life_noted]
