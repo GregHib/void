@@ -12,7 +12,7 @@ format = "string"
 persist = true
 
 [lifetime_xp]
-format = "double"
+format = "long"
 persist = true
 
 [debug]

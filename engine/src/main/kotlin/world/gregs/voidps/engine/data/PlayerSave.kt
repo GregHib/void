@@ -21,7 +21,7 @@ data class PlayerSave(
     val name: String,
     val password: String,
     val tile: Tile,
-    val experience: DoubleArray,
+    val experience: IntArray,
     val blocked: List<Skill>,
     val levels: IntArray,
     val male: Boolean,
@@ -211,7 +211,7 @@ data class PlayerSave(
             var name = ""
             var password = ""
             var tile = Tile.EMPTY
-            val experience = DoubleArray(25)
+            val experience = IntArray(25)
             val blocked = ObjectArrayList<Skill>(0)
             val levels = IntArray(25)
             var male = true
@@ -231,7 +231,11 @@ data class PlayerSave(
                         "experience" -> {
                             var index = 0
                             while (nextElement()) {
-                                experience[index++] = double()
+                                var int = int()
+                                if (peek == '.') {
+                                    int = ((int + double()) * 10.0).toInt()
+                                }
+                                experience[index++] = int
                             }
                         }
                         "blocked_skills" -> while (nextElement()) {
@@ -278,7 +282,12 @@ data class PlayerSave(
                         }
                         "variables" -> {
                             while (nextPair()) {
-                                variables[key()] = value()
+                                val key = key()
+                                var value = value()
+                                if (value is Double) {
+                                    value = (value * 10.0).toInt().coerceAtLeast(0)
+                                }
+                                variables[key] = value
                             }
                         }
                         "inventories" -> {

@@ -1,7 +1,7 @@
 [xp_counter]
 id = 1801
 persist = true
-format = "double"
+format = "int"
 
 [movement]
 id = 173

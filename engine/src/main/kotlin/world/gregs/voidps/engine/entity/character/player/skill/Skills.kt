@@ -26,7 +26,7 @@ interface Skills {
         playerMaxChanged.getOrPut(skill) { mutableListOf() }.add(handler)
     }
 
-    fun experience(handler: Player.(skill: Skill, from: Double, to: Double) -> Unit) {
+    fun experience(handler: Player.(skill: Skill, from: Int, to: Int) -> Unit) {
         experience.add(handler)
     }
 
@@ -40,10 +40,10 @@ interface Skills {
 
         private val playerMaxChanged = Object2ObjectOpenHashMap<Skill?, MutableList<(Player, Skill, from: Int, to: Int) -> Unit>>(15)
 
-        private val experience = ObjectArrayList<(Player, Skill, Double, Double) -> Unit>(5)
+        private val experience = ObjectArrayList<(Player, Skill, Int, Int) -> Unit>(5)
         private var blockedExperience: (Player.(Skill, Double) -> Unit)? = null
 
-        fun exp(player: Player, skill: Skill, from: Double, to: Double) {
+        fun exp(player: Player, skill: Skill, from: Int, to: Int) {
             for (handler in experience) {
                 handler.invoke(player, skill, from, to)
             }

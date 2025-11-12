@@ -26,8 +26,8 @@ internal class LevelsTest {
         object : Skills {
             init {
                 experience { skill, from, to ->
-                    val previousLevel = Experience.level(skill, from)
-                    val currentLevel = Experience.level(skill, to)
+                    val previousLevel = Experience.level(skill, from / 10.0)
+                    val currentLevel = Experience.level(skill, to / 10.0)
                     if (currentLevel != previousLevel) {
                         levels.restore(skill, currentLevel - previousLevel)
                         Skills.maxChanged(player, skill, previousLevel, currentLevel)
