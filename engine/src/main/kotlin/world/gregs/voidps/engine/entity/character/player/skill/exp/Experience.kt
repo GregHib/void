@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.event.AuditLog
 class Experience(
     val experience: IntArray = defaultExperience.clone(),
     val blocked: MutableSet<Skill> = mutableSetOf(),
-    private val maximum: Double = MAXIMUM_EXPERIENCE,
 ) {
 
     lateinit var player: Player
@@ -20,11 +19,15 @@ class Experience(
     fun get(skill: Skill): Double = experience[skill.ordinal] / 10.0
 
     fun set(skill: Skill, experience: Double) {
-        if (experience in 0.0..maximum && !blocked.contains(skill)) {
+        set(skill, (experience * 10.0).toInt())
+    }
+
+    fun set(skill: Skill, experience: Int) {
+        if (experience in 0..MAXIMUM_EXPERIENCE && !blocked.contains(skill)) {
             val previous = direct(skill)
-            this.experience[skill.ordinal] = (experience * 10.0).toInt()
-            AuditLog.event(player, "exp", skill, experience)
+            this.experience[skill.ordinal] = experience
             update(skill, previous)
+            AuditLog.event(player, "set_exp", skill, experience)
         }
     }
 
@@ -37,11 +40,13 @@ class Experience(
         if (experience <= 0.0) {
             return
         }
+        val actual = experience * 10 * Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE]
         if (blocked.contains(skill)) {
-            Skills.blocked(player, skill, experience * Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE])
+            Skills.blocked(player, skill, actual.toInt())
         } else {
-            val current = get(skill)
-            set(skill, current + experience * Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE])
+            val current = direct(skill)
+            AuditLog.event(player, "exp", skill, experience)
+            set(skill, current + actual.toInt())
         }
     }
 
@@ -57,7 +62,7 @@ class Experience(
 
     companion object {
         const val DEFAULT_EXPERIENCE_RATE = 1.0
-        const val MAXIMUM_EXPERIENCE = 200000000.0
+        const val MAXIMUM_EXPERIENCE = 2_000_000_000
         val defaultExperience = IntArray(Skill.count) {
             if (it == Skill.Constitution.ordinal) 11540 else 0
         }

@@ -18,7 +18,7 @@ internal class LevelsTest {
 
     @BeforeEach
     fun setup() {
-        exp = Experience(maximum = 10000.0)
+        exp = Experience()
         player = mockk(relaxed = true)
         levels = Levels()
         exp.player = player

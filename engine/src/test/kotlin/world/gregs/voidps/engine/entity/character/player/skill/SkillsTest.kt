@@ -125,12 +125,12 @@ class SkillsTest {
             blockedExperience { skill, exp ->
                 caller.call()
                 assertEquals(Skill.Attack, skill)
-                assertEquals(3.0, exp)
+                assertEquals(30, exp)
             }
         }
 
         override fun invoke(args: List<String>) {
-            Skills.blocked(Player(), Skill.Attack, 3.0)
+            Skills.blocked(Player(), Skill.Attack, 30)
         }
 
         override val apis = listOf(Skills)

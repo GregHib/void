@@ -77,7 +77,7 @@ class RequestAssist : Script {
             val active = player["assist_toggle_${skill.name.lowercase()}", false]
             var gained = player["total_xp_earned", 0].toDouble()
             if (active && !exceededMaximum(gained)) {
-                val exp = min(experience, (MAX_EXPERIENCE - gained) / 10)
+                val exp = min(experience / 10.0, (MAX_EXPERIENCE - gained) / 10)
                 gained += exp * 10.0
                 val maxed = exceededMaximum(gained)
                 player.experience.add(skill, exp)

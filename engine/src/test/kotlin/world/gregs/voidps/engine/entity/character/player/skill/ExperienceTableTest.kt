@@ -17,7 +17,7 @@ internal class ExperienceTableTest {
     @BeforeEach
     fun setup() {
         player = mockk(relaxed = true)
-        experience = Experience(maximum = 200.0)
+        experience = Experience()
         experience.player = player
     }
 
@@ -44,7 +44,7 @@ internal class ExperienceTableTest {
     @Test
     fun `Add experience with 10x rate`() {
         Settings.load(mapOf("world.experienceRate" to "10.0"))
-        experience = Experience(maximum = 500.0)
+        experience = Experience()
         experience.player = player
         experience.add(Skill.Attack, 10.0)
         experience.add(Skill.Attack, 10.0)
@@ -67,9 +67,9 @@ internal class ExperienceTableTest {
 
     @Test
     fun `Experience can't exceed maximum`() {
-        experience.set(Skill.Attack, 10.0)
-        experience.set(Skill.Attack, 210.0)
-        experience.add(Skill.Attack, 200.0)
+        experience.set(Skill.Attack, 100)
+        experience.set(Skill.Attack, 2_100_000_000)
+        experience.add(Skill.Attack, 200_000_000.0)
         assertEquals(10.0, experience.get(Skill.Attack))
     }
 
@@ -87,7 +87,7 @@ internal class ExperienceTableTest {
         experience.add(Skill.Defence, 100.0)
         assertEquals(100.0, experience.get(Skill.Defence))
         verify {
-            Skills.exp(player, Skill.Defence, 0.0, 100.0)
+            Skills.exp(player, Skill.Defence, 0, 1000)
         }
         unmockkObject(Skills)
     }
@@ -105,7 +105,7 @@ internal class ExperienceTableTest {
         mockkObject(Skills)
         experience.set(Skill.Attack, 100.0)
         experience.add(Skill.Attack, 10.0)
-        verify { Skills.exp(player, Skill.Attack, 100.0, 110.0) }
+        verify { Skills.exp(player, Skill.Attack, 1000, 1100) }
         unmockkObject(Skills)
     }
 
@@ -115,7 +115,7 @@ internal class ExperienceTableTest {
         experience.set(Skill.Attack, 100.0)
         experience.addBlock(Skill.Attack)
         experience.add(Skill.Attack, 10.0)
-        verify { Skills.blocked(player, Skill.Attack, 10.0) }
+        verify { Skills.blocked(player, Skill.Attack, 100) }
         unmockkObject(Skills)
     }
 
