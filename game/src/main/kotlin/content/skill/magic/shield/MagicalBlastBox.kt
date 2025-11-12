@@ -39,7 +39,7 @@ class MagicalBlastBox : Script {
             message("The box is currently charged with $charges ${if (blast) "Blast" else "Bolt"} ${"spell".plural(charges)}.") // TODO proper message
         }
 
-        itemAdded("magical_blastbox*", "worn_equipment", EquipSlot.Shield) { (item) ->
+        itemAdded("magical_blastbox*", "worn_equipment", EquipSlot.Shield) { (item, _, index) ->
             updateCharges(this, index, item.id != "magical_blastbox")
         }
 
