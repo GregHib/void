@@ -2,38 +2,43 @@ package content.skill.farming
 
 import content.entity.player.inv.item.addOrDrop
 import content.entity.player.stat.Stats
-import content.entity.sound.sound
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interact.itemOnObjectOperate
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
-import world.gregs.voidps.engine.entity.Operate
-import world.gregs.voidps.engine.entity.character.mode.interact.delay
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
 
-@Script
 class FarmingPatch(
     val floorItems: FloorItems,
     val variableDefinitions: VariableDefinitions,
-) : Api {
+) : Script {
 
-    @Operate("Guide")
-    @Operate("Inspect")
-    @Operate("Harvest")
-    @Operate("Rake", "*_patch_weeds_#")
-    override suspend fun operate(player: Player, target: GameObject, option: String) {
-        val variable = variableDefinitions.getVarbit(target.def.varbit) ?: return
-        when (option) {
+    init {
+        objectOperate("Guide", "*_patch_weeds_#", handler = ::operate)
+        objectOperate("Inspect", "*_patch_weeds_#", handler = ::operate)
+        objectOperate("Harvest", "*_patch_weeds_#", handler = ::operate)
+        objectOperate("Rake", "*_patch_weeds_#", handler = ::operate)
+
+        itemOnObjectOperate("compost", "*_patch*") {
+            sound("farming_compost")
+            delay(2)
+            message("You treat the herb patch with compost.")
+            exp(Skill.Farming, 36.0)
+        }
+    }
+
+    fun operate(player: Player, interact: PlayerOnObjectInteract) {
+        val variable = variableDefinitions.getVarbit(interact.target.def.varbit) ?: return
+        when (interact.option) {
             "Guide" -> guide(player, variable)
             "Harvest" -> harvest(player, variable)
             "Inspect" -> inspect(player, variable)
@@ -62,7 +67,7 @@ class FarmingPatch(
         player.queue("farming_harvest") {
             for (i in 0 until 2) {
                 player.anim("picking_low")
-                delay(1)
+                player.delay(1)
                 if (player[variable, "weeds_3"] == "weeds_0") {
                     player.message("The herb patch is now empty.")
                     player.exp(Skill.Farming, 192.0)
@@ -71,7 +76,7 @@ class FarmingPatch(
                 }
                 player.sound("pick")
                 player.exp(Skill.Farming, 192.0)
-                delay(2)
+                player.delay(2)
             }
         }
         player.message("You plant a dwarf weed seed in the herb patch.", ChatType.Filter)
@@ -116,16 +121,6 @@ class FarmingPatch(
             player.delay(2)
         }
         player.message("This compost bin contains compostable items (3/15).")
-    }
-
-    init {
-        itemOnObjectOperate("compost", "*_patch*") {
-
-            player.sound("farming_compost")
-            delay(2)
-            player.message("You treat the herb patch with compost.")
-            player.exp(Skill.Farming, 36.0)
-        }
     }
 
     private fun inspect(player: Player, variable: String) {
