@@ -39,7 +39,7 @@ class CelestialSurgeBox : Script {
             message("The box is currently charged with $charges ${if (surge) "Surge" else "Wave"} ${"spell".plural(charges)}.") // TODO proper message
         }
 
-        itemAdded("celestial_surgebox*", "worn_equipment", EquipSlot.Shield) { (item) ->
+        itemAdded("celestial_surgebox*", "worn_equipment", EquipSlot.Shield) { (item, _, index) ->
             updateCharges(this, index, item.id != "celestial_surgebox")
         }
 

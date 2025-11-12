@@ -10,7 +10,7 @@ class Appearance : Script {
 
     init {
         slotChanged {
-            if (needsUpdate(index, body)) {
+            if (needsUpdate(it.index, body)) {
                 flagAppearance()
             }
         }
