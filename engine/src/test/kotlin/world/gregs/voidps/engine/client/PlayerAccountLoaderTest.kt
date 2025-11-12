@@ -82,7 +82,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     @Test
     fun `Successful login`() = runTest {
         val client: Client = mockk(relaxed = true)
-        playerSave = PlayerSave("name", "hash", Tile.EMPTY, doubleArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), emptyMap(), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList())
+        playerSave = PlayerSave("name", "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), emptyMap(), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList())
         coEvery { queue.await() } just Runs
 
         val instructions = loader.load(client, "name", "pass", 2)

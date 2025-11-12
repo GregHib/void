@@ -8,26 +8,31 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skills
 import world.gregs.voidps.engine.event.AuditLog
 
 class Experience(
-    val experience: DoubleArray = defaultExperience.clone(),
+    val experience: IntArray = defaultExperience.clone(),
     val blocked: MutableSet<Skill> = mutableSetOf(),
-    private val maximum: Double = MAXIMUM_EXPERIENCE,
 ) {
 
     lateinit var player: Player
 
-    fun get(skill: Skill): Double = experience[skill.ordinal]
+    fun direct(skill: Skill): Int = experience[skill.ordinal]
+
+    fun get(skill: Skill): Double = experience[skill.ordinal] / 10.0
 
     fun set(skill: Skill, experience: Double) {
-        if (experience in 0.0..maximum && !blocked.contains(skill)) {
-            val previous = get(skill)
+        set(skill, (experience * 10.0).toInt())
+    }
+
+    fun set(skill: Skill, experience: Int) {
+        if (experience in 0..MAXIMUM_EXPERIENCE && !blocked.contains(skill)) {
+            val previous = direct(skill)
             this.experience[skill.ordinal] = experience
-            AuditLog.event(player, "exp", skill, experience)
             update(skill, previous)
+            AuditLog.event(player, "set_exp", skill, experience)
         }
     }
 
-    fun update(skill: Skill, previous: Double = get(skill)) {
-        val experience = get(skill)
+    fun update(skill: Skill, previous: Int = direct(skill)) {
+        val experience = direct(skill)
         Skills.exp(player, skill, previous, experience)
     }
 
@@ -35,11 +40,13 @@ class Experience(
         if (experience <= 0.0) {
             return
         }
+        val actual = experience * 10 * Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE]
         if (blocked.contains(skill)) {
-            Skills.blocked(player, skill, experience * Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE])
+            Skills.blocked(player, skill, actual.toInt())
         } else {
-            val current = get(skill)
-            set(skill, current + experience * Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE])
+            val current = direct(skill)
+            AuditLog.event(player, "exp", skill, experience)
+            set(skill, current + actual.toInt())
         }
     }
 
@@ -55,9 +62,9 @@ class Experience(
 
     companion object {
         const val DEFAULT_EXPERIENCE_RATE = 1.0
-        const val MAXIMUM_EXPERIENCE = 200000000.0
-        val defaultExperience = DoubleArray(Skill.count) {
-            if (it == Skill.Constitution.ordinal) 1154.0 else 0.0
+        const val MAXIMUM_EXPERIENCE = 2_000_000_000
+        val defaultExperience = IntArray(Skill.count) {
+            if (it == Skill.Constitution.ordinal) 11540 else 0
         }
 
         fun level(skill: Skill, experience: Double): Int {

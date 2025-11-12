@@ -51,7 +51,7 @@ abstract class StorageTest {
 
         val override = save.copy(
             tile = Tile(1234, 5432, 1),
-            experience = save.experience.clone().apply { this[0] = 10.0 },
+            experience = save.experience.clone().apply { this[0] = 100 },
             levels = save.levels.clone().apply { this[0] = 10 },
             blocked = save.blocked.toMutableList().apply {
                 add(Skill.Attack)
@@ -219,13 +219,13 @@ abstract class StorageTest {
             name = "durial_321",
             password = "abcdefghijklmnopqrstuvwxyz0123456789",
             tile = Tile(2967, 3383, 0),
-            experience = DoubleArray(25) { 14000000.0 }.apply {
-                this[0] = 8771558.75
-                this[1] = 4385776.5
-                this[2] = 11805606.5
-                this[3] = 8771558.75
-                this[4] = 1986068.0
-                this[6] = 7944614.25
+            experience = IntArray(25) { 140000000 }.apply {
+                this[0] = 87715587
+                this[1] = 43857765
+                this[2] = 118056065
+                this[3] = 87715587
+                this[4] = 19860680
+                this[6] = 79446142
             },
             blocked = listOf(Skill.Prayer),
             levels = IntArray(25) { 99 }.apply {
@@ -245,7 +245,7 @@ abstract class StorageTest {
                 "in_wilderness" to true,
                 "unlocked_music_0" to listOf("scape_summon", "scape_theme"),
                 "unlocked_music_1" to listOf("harmony", "fanfare"),
-                "xp_counter" to 309664028.75,
+                "xp_counter" to 3096640287,
                 "name_history" to emptyList<String>(),
                 "clan_name" to "falador fun",
                 "clan_talk_rank" to "Friend",

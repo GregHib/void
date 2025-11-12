@@ -127,7 +127,7 @@ internal class EquipTest : WorldTest() {
     @Test
     fun `Stack equipped items`() {
         val player = createPlayer()
-        player.experience.add(Skill.Ranged, Experience.MAXIMUM_EXPERIENCE)
+        player.experience.add(Skill.Ranged, Experience.MAXIMUM_EXPERIENCE / 10.0)
         player.levels.set(Skill.Ranged, 99)
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 10)
         player.inventory.add("rune_arrow", 40)

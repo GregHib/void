@@ -437,9 +437,9 @@ class DatabaseStorage : Storage {
         }
     }
 
-    private fun loadExperience(playerId: Int): DoubleArray {
+    private fun loadExperience(playerId: Int): IntArray {
         val it = ExperienceTable.selectAll().where { ExperienceTable.playerId eq playerId }.first()
-        return doubleArrayOf(
+        return intArrayOf(
             it[ExperienceTable.attack],
             it[ExperienceTable.defence],
             it[ExperienceTable.strength],

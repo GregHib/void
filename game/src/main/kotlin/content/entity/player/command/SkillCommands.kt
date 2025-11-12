@@ -71,11 +71,11 @@ class SkillCommands : Script {
     fun reset(player: Player, args: List<String>) {
         val target = players.find(player, args.getOrNull(0)) ?: return
         for ((index, skill) in Skill.all.withIndex()) {
-            target.experience.set(skill, Experience.defaultExperience[index])
+            target.experience.set(skill, Experience.defaultExperience[index] / 10.0)
             target.levels.set(skill, Levels.defaultLevels[index])
         }
         target[if (target.isCurses()) PrayerConfigs.QUICK_CURSES else PrayerConfigs.QUICK_PRAYERS] = emptyList<Any>()
-        target["xp_counter"] = 0.0
+        target["xp_counter"] = 0
         target.clearCamera()
     }
 }

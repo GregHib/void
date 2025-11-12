@@ -1,6 +1,6 @@
 accountName = "durial_321"
 passwordHash = "abcdefghijklmnopqrstuvwxyz0123456789"
-experience = [ 8771558.75, 4385776.5, 1.18056065E7, 8771558.75, 1986068.0, 1.4E7, 7944614.25, 1.4E7, 1.4E7, 1.4E7, 1.4E7, 1.4E7, 1.4E7, 1.4E7, 1.4E7, 1.4E7, 1.4E7, 1.4E7, 1.4E7, 1.4E7, 1.4E7, 1.4E7, 1.4E7, 1.4E7, 1.4E7 ]
+experience = [ 87715587, 43857765, 118056065, 87715587, 19860680, 140000000, 79446142, 140000000, 140000000, 140000000, 140000000, 140000000, 140000000, 140000000, 140000000, 140000000, 140000000, 140000000, 140000000, 140000000, 140000000, 140000000, 140000000, 140000000, 140000000 ]
 blocked_skills = [ "Prayer" ]
 levels = [ 95, 88, 98, 950, 80, 99, 94, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99 ]
 male = true
@@ -18,7 +18,7 @@ in_pvp = true
 in_wilderness = true
 unlocked_music_0 = ["scape_summon", "scape_theme"]
 unlocked_music_1 = ["harmony", "fanfare"]
-xp_counter = 3.0966402875E8
+xp_counter = 3096640287
 name_history = []
 clan_name = "falador fun"
 clan_talk_rank = "Friend"
