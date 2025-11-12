@@ -245,6 +245,10 @@ class ConfigReader(
                 require(byte == DOT) { "Expecting decimal point. ${exception()}" }
                 readDecimal(value)
             }
+            DOT -> {
+                require(byte == DOT) { "Expecting decimal point. ${exception()}" }
+                readDecimal(0)
+            }
             else -> {
                 val value = readLong(byte - ZERO.toLong())
                 require(byte == DOT) { "Expecting decimal point. ${exception()}" }

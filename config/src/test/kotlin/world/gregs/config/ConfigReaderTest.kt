@@ -185,6 +185,9 @@ internal class ConfigReaderTest {
         Config.stringReader("+12.34") {
             assertEquals(12.34, double())
         }
+        Config.stringReader(".34") {
+            assertEquals(0.34, double())
+        }
 //        Config.stringReader("1.4E7") {
 //            assertEquals(14_000_000.0, double())
 //        }
