@@ -16,13 +16,8 @@ import kotlin.test.assertNotEquals
 
 class RingOfLifeTest : WorldTest() {
 
-    private fun Player.setLevel(skill: Skill, level: Int) {
-        levels.set(skill, level)
-        experience.set(skill, Level.experience(skill, level))
-    }
-
     @Test
-    fun `Hit under 10 percent remaining won't trigger rol`() {
+    fun `Not triggered when hit doesn't reduce hp under 10 percent`() {
         val player = createPlayer()
         player.equipment.set(EquipSlot.Ring.index, "ring_of_life")
         player.setLevel(Skill.Constitution, 500)
@@ -35,7 +30,7 @@ class RingOfLifeTest : WorldTest() {
     }
 
     @Test
-    fun `Hit with exactly 10 percent remaining will trigger rol`() {
+    fun `Triggered when hit reduced hp to exactly 10 percent`() {
         val player = createPlayer(Tile(3000, 3400))
         player.equipment.set(EquipSlot.Ring.index, "ring_of_life")
         player.setLevel(Skill.Constitution, 250)
@@ -50,7 +45,7 @@ class RingOfLifeTest : WorldTest() {
     }
 
     @Test
-    fun `Hit for over 10 percent of life will kill player`() {
+    fun `Hit remaining hp over 10 percent kills player`() {
         val player = createPlayer(Tile(3000, 3400))
         player.equipment.set(EquipSlot.Ring.index, "ring_of_life")
         player.setLevel(Skill.Constitution, 250)
@@ -62,5 +57,10 @@ class RingOfLifeTest : WorldTest() {
         assertNotEquals("ring_of_life", player.equipped(EquipSlot.Ring).id)
         assertEquals(250, player.levels.get(Skill.Constitution))
         assertEquals(Tile(3221, 3219), player.tile)
+    }
+
+    private fun Player.setLevel(skill: Skill, level: Int) {
+        levels.set(skill, level)
+        experience.set(skill, Level.experience(skill, level))
     }
 }

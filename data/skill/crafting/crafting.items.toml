@@ -1358,6 +1358,11 @@ price = 7798
 limit = 5000
 weight = 0.01
 slot = "Amulet"
+charges = 1
+degrade = "destroy"
+aka = ["p_neck", "pneck"]
+# https://youtu.be/IcDO3RQG6J8?si=9bLd98BTuNLdqka7&t=18
+degrade_message = "Your phoenix necklace heals you, but is destroyed in the process."
 examine = "In case of emergency, wear necklace."
 
 [phoenix_necklace_noted]
