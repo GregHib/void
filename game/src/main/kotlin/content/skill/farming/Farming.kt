@@ -1,56 +1,53 @@
 package content.skill.farming
 
 import content.entity.player.bank.bank
-import content.entity.sound.jingle
-import content.entity.sound.sound
-import world.gregs.voidps.engine.Api
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.ListValues
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
+import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.Script
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.epochMinutes
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
-@Script
 class Farming(
     val variableDefinitions: VariableDefinitions,
     val farmingDefinitions: FarmingDefinitions,
-) : Api {
+) : Script {
 
-    override fun spawn(player: Player) {
-        if (!player.contains("farming_offset_mins")) {
-            player["farming_offset_mins"] = random.nextInt(0, 30)
+    init {
+        playerSpawn {
+            if (!contains("farming_offset_mins")) {
+                set("farming_offset_mins", random.nextInt(0, 30))
+            }
+            if (contains("last_growth_cycle")) {
+                timers.start("farming_tick", true)
+            }
         }
-        if (player.contains("last_growth_cycle")) {
-            player.timers.start("farming_tick", true)
-        }
-    }
 
-    @Timer("farming_tick")
-    override fun start(player: Player, timer: String, restart: Boolean): Int {
-        val mins = Settings["farming.growth.mins", 5]
-        val remaining = mins - (epochMinutes() - player["farming_offset_mins", 0]).rem(mins)
-        return TimeUnit.MINUTES.toTicks(remaining)
-    }
-
-    @Timer("farming_tick")
-    override fun tick(player: Player, timer: String): Int {
-        val epoch = epochMinutes()
-        val lastCycle = player["last_growth_cycle", epoch - 1] + 1
-        player["last_growth_cycle"] = epoch
-        for (min in lastCycle..epoch) {
-            val minute = min - player["farming_offset_mins", 0]
-            grow(player, minute)
+        timerStart("farming_tick") {
+            val mins = Settings["farming.growth.mins", 5]
+            val remaining = mins - (epochMinutes() - get("farming_offset_mins", 0)).rem(mins)
+            TimeUnit.MINUTES.toTicks(remaining)
         }
-        return TimeUnit.MINUTES.toTicks(Settings["farming.growth.mins", 5])
+
+        timerTick("farming_tick") {
+            val epoch = epochMinutes()
+            val lastCycle = get("last_growth_cycle", epoch - 1) + 1
+            set("last_growth_cycle", epoch)
+            for (min in lastCycle..epoch) {
+                val minute = min - get("farming_offset_mins", 0)
+                grow(this, minute)
+            }
+            TimeUnit.MINUTES.toTicks(Settings["farming.growth.mins", 5])
+        }
     }
 
     fun grow(player: Player, minute: Int) {

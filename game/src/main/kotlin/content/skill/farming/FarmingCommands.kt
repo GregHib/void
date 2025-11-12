@@ -1,6 +1,7 @@
 package content.skill.farming
 
 import content.entity.player.command.find
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.modCommand
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
@@ -9,14 +10,12 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.event.Script
 import world.gregs.voidps.engine.timer.TICKS
 
-@Script
 class FarmingCommands(
     val accounts: AccountDefinitions,
     val players: Players,
-) {
+) : Script {
     init {
         modCommand("patches", handler = ::listPatches)
         modCommand("growth", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Check the next farming growth tick for the given player", handler = ::growthInfo)
