@@ -3,8 +3,9 @@ id = 6883
 heals = 80
 tradeable = false
 weight = 0.01
-examine = "A tasty fruit."
+compostable = true
 kept = "Reclaim"
+examine = "A tasty fruit."
 
 [progress_hat]
 id = 6885

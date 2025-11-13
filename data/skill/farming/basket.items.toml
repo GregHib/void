@@ -452,6 +452,7 @@ price = 12
 limit = 10000
 heals = 60
 weight = 0.028
+compostable = true
 examine = "A freshly picked strawberry."
 
 [strawberry_noted]
