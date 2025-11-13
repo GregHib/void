@@ -1,7 +1,7 @@
 package content.skill.ranged.weapon.special
 
 import content.entity.combat.hit.*
-import content.social.trade.returnedItems
+import content.social.trade.loanReturnedItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -39,7 +39,7 @@ class GodBows : Script {
 
         combatDamage("range") { (source, _, _, weapon, _, special) ->
             if (weapon.id != "guthix_bow" && weapon.id != "saradomin_bow" && weapon.id != "zamorak_bow") {
-                returnedItems
+                loanReturnedItems
             }
             if (special) {
                 gfx("${weapon.id}_special_impact")

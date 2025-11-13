@@ -1,16 +1,12 @@
 package content.skill.farming
 
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.effect.transform
-import content.entity.player.bank.isNote
 import content.entity.player.bank.noted
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.social.trade.returnedItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit

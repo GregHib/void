@@ -1,7 +1,7 @@
 package content.social.trade.lend
 
 import content.social.trade.lend.Loan.returnLoan
-import content.social.trade.returnedItems
+import content.social.trade.loanReturnedItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.remaining
@@ -79,7 +79,7 @@ class ItemLending : Script {
     }
 
     fun checkLoanComplete(player: Player) {
-        if (!player.returnedItems.isFull()) {
+        if (!player.loanReturnedItems.isFull()) {
             return
         }
         val remaining = player.remaining("lend_timeout", epochSeconds())
@@ -97,7 +97,7 @@ class ItemLending : Script {
     }
 
     fun checkLoanUntilLogout(player: Player) {
-        if (!player.contains("lend_timeout") && player.returnedItems.isFull() && player.contains("lent_to")) {
+        if (!player.contains("lend_timeout") && player.loanReturnedItems.isFull() && player.contains("lent_to")) {
             val name: String? = player["lent_to"]
             player.stop("lend_timeout")
             player.softTimers.stop("loan_message")

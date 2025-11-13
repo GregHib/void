@@ -2,7 +2,6 @@ package content.skill.farming
 
 import content.entity.player.inv.item.addOrDrop
 import content.entity.player.stat.Stats
-import content.social.trade.returnedItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
