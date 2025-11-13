@@ -1,13 +1,24 @@
 package content.skill.farming
 
+import com.github.michaelbull.logging.InlineLogger
+import content.entity.effect.transform
+import content.entity.player.bank.isNote
+import content.entity.player.bank.noted
 import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.ChoiceOption
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.*
+import content.social.trade.returnedItems
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.event.AuditLog
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.replace
+import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 
 class ToolLeprechaun : Script {
+
+    val logger = InlineLogger()
+
     init {
         npcOperate("Talk-to", "tool_leprechaun_alices_farm") {
             npc<Happy>("Ah, 'tis a foine day to be sure! Were yez wantin' me to store yer tools, or maybe ye might be wantin' yer stuff back from me?")
@@ -26,6 +37,31 @@ class ToolLeprechaun : Script {
                 }
                 whatDoYouDo()
                 noThanks()
+            }
+        }
+
+        itemOnNPCOperate("*", "tool_leprechaun_alices_farm") {
+            val item = it.item
+            val noted = item.noted
+            if (noted == null) {
+                npc<Talk>("Nay, there's no such thing as a banknote for that.")
+                return@itemOnNPCOperate
+            }
+            if (!item.def["compostable", false]) {
+                npc<Talk>("Nay, I've got no banknotes to exchange for that item.")
+                return@itemOnNPCOperate
+            }
+            var removed = 0
+            inventory.transaction {
+                removed = removeToLimit(item.id, 28)
+                add(noted.id, removed)
+            }
+            when (inventory.transaction.error) {
+                TransactionError.None -> {
+                    AuditLog.event(this, "noted", item.id, removed)
+                    statement("The leprechaun exchanges your items for banknotes.")
+                }
+                else -> logger.warn { "Issue exchanging noted item $item" }
             }
         }
     }

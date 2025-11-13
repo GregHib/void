@@ -2,17 +2,18 @@ package content.skill.farming
 
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
-import content.social.trade.returnedItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.replace
 
 class CompostBin : Script {
     init {
@@ -34,6 +35,8 @@ class CompostBin : Script {
             }
             choice("Dump the entire contents of the bin?") {
                 option("Yes, throw it all away.") {
+                    anim("take")
+                    sound("farming_putin")
                     set(variable, "empty")
                 }
                 option("No, keep it.")
@@ -44,29 +47,41 @@ class CompostBin : Script {
             val variable = it.target.id.removePrefix("farming_")
             val current = get(variable, "empty")
             set(variable, current.replace("_15", "_rotting"))
+            message("You close the compost bin.")
             anim("human_push")
             sound("compost_close")
+            delay(1)
             message("The contents have begun to rot.")
             // TODO timer
         }
 
-        objectOperate("Empty", "compost_bin_*_15") {
+        itemOnObjectOperate("empty_bucket", "compost_bin_*compost_#") {
+            val type = if (it.target.def(this).stringId.contains("supercompost")) "supercompost" else "compost"
+            empty(this, type, it.slot)
+        }
+
+        objectOperate("Empty", "compost_bin_*compost_#") {
             if (!inventory.contains("empty_bucket")) {
                 message("You need a suitable bucket to do that.")
                 return@objectOperate
             }
-            // TODO anims etc..
+            val type = if(it.target.def(this).stringId.contains("supercompost")) "supercompost" else "compost"
+            empty(this, type)
         }
 
         objectOperate("Open", "compost_bin*_rotting") {
             val variable = it.target.id.removePrefix("farming_")
             val current = get(variable, "empty")
             if (current.endsWith("_ready")) {
-                // TODO any anims or sounds?
-                set(variable, current
-                    .replace("compostable", "compost")
-                    .replace("tomatoes", "rotten_tomatoes")
-                    .replace("_ready", "_15"))
+                anim("human_push")
+                sound("compost_open")
+                message("You open the compost bin.")
+                set(
+                    variable, current
+                        .replace("compostable", "compost")
+                        .replace("tomatoes", "rotten_tomatoes")
+                        .replace("_ready", "_15")
+                )
             } else {
                 statement("The vegetation hasn't finished rotting yet.")
             }
@@ -81,21 +96,35 @@ class CompostBin : Script {
             }
             if (current == "empty") {
                 statement("The compost bin is empty.")
-            } else if (current.endsWith("closed")) {
+            } else if (current.endsWith("ready") || current.endsWith("rotting")) {
                 statement("The compost bin is closed.")
-            } else if (current.endsWith("full")) {
+            } else if (current.endsWith("_15")) {
                 anim("farming_pour_supercompost")
                 set(variable, "supercompostable_15")
                 // TODO proper message
             } else {
                 // TODO proper message
-//                message("The contents have begun to rot.")
 //                statement("You can only apply supercompost potion to a bin containing normal compost.")
 //                statement("The compost bin is closed.")
-//                statement("The leprechaun exchanges your items for banknotes.")
-//                npc<Talk>("Nay, there's no such thing as a banknote for that.")
-//                npc<Talk>("Nay, I've got no banknotes to exchange for that item.")
             }
+        }
+    }
+
+    private suspend fun empty(player: Player, type: String = "empty", index: Int = player.inventory.indexOf("empty_bucket")) {
+        var slot = index
+        for (i in 0 until 15) {
+            if (slot == -1) {
+                break
+            }
+            player.anim("take")
+            player.sound("farming_fillpot")
+            player.pause(1)
+            if (!player.inventory.replace(slot, "empty_bucket", type)) {
+                break
+            }
+            player.exp(Skill.Farming, 5.0)
+            player.pause(2)
+            slot = player.inventory.indexOf("empty_bucket")
         }
     }
 
