@@ -2,19 +2,19 @@ package content.skill.farming
 
 import content.entity.player.inv.item.addOrDrop
 import content.entity.player.stat.Stats
+import content.social.trade.returnedItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.queue
 
 class FarmingPatch(
@@ -23,12 +23,16 @@ class FarmingPatch(
 ) : Script {
 
     init {
-        objectOperate("Guide", "*_patch_weeds_#", handler = ::operate)
-        objectOperate("Inspect", "*_patch_weeds_#", handler = ::operate)
-        objectOperate("Harvest", "*_patch_weeds_#", handler = ::operate)
-        objectOperate("Rake", "*_patch_weeds_#", handler = ::operate)
+        objectOperate("Guide", "*_patch_weeds_*", handler = ::guide)
+        objectOperate("Inspect", "*_patch_weeds_*", handler = ::inspect)
+        objectOperate("Harvest", "*_patch_weeds_*", handler = ::harvest)
+        objectOperate("Rake", "*_patch_weeds_*", handler = ::rake)
 
         itemOnObjectOperate("compost", "*_patch*") {
+            if (!inventory.replace(it.slot, "compost", "empty_bucket")) {
+                return@itemOnObjectOperate
+            }
+            anim("farming_pour_water")
             sound("farming_compost")
             delay(2)
             message("You treat the herb patch with compost.")
@@ -36,17 +40,8 @@ class FarmingPatch(
         }
     }
 
-    fun operate(player: Player, interact: PlayerOnObjectInteract) {
+    private fun guide(player: Player, interact: PlayerOnObjectInteract) {
         val variable = variableDefinitions.getVarbit(interact.target.def.varbit) ?: return
-        when (interact.option) {
-            "Guide" -> guide(player, variable)
-            "Harvest" -> harvest(player, variable)
-            "Inspect" -> inspect(player, variable)
-            else -> rake(player, variable)
-        }
-    }
-
-    private fun guide(player: Player, variable: String) {
         Stats.openGuide(
             player,
             Skill.Farming,
@@ -62,25 +57,67 @@ class FarmingPatch(
         )
     }
 
-    private fun harvest(player: Player, variable: String) {
+    private fun harvest(player: Player, interact: PlayerOnObjectInteract) {
+        val variable = variableDefinitions.getVarbit(interact.target.def.varbit) ?: return
+        if (!player.inventory.contains("spade")) {
+            player.message("You need a spade to harvest your crops.")
+            return
+        }
         player.message("You begin to harvest the herb patch.", ChatType.Filter)
         player.queue("farming_harvest") {
             for (i in 0 until 2) {
+                if (player.inventory.isFull()) {
+                    player.inventoryFull()
+                    break
+                }
                 player.anim("picking_low")
                 player.delay(1)
                 if (player[variable, "weeds_3"] == "weeds_0") {
                     player.message("The herb patch is now empty.")
                     player.exp(Skill.Farming, 192.0)
-                } else {
-                    player.inventory.add("grimy_dwarf_weed")
+                    player.clearAnim()
+                    break
                 }
+                player.inventory.add("grimy_dwarf_weed")
                 player.sound("pick")
                 player.exp(Skill.Farming, 192.0)
                 player.delay(2)
             }
         }
-        player.message("You plant a dwarf weed seed in the herb patch.", ChatType.Filter)
-        player.message("You have successfully cleared this patch for new crops.", ChatType.Filter)
+    }
+
+    private fun inspect(player: Player, interact: PlayerOnObjectInteract) {
+        val variable = variableDefinitions.getVarbit(interact.target.def.varbit) ?: return
+        player.message(buildString {
+            when (variable.substringAfterLast("_")) {
+                "allotment" -> append("This is an allotment.")
+                "hops" -> append("")
+                "tree" -> append("This is a${if (variable.endsWith("fruit_tree")) "fruit " else ""} tree patch.")
+                "bush" -> append("")
+                "flower" -> append("This is a flower patch.")
+                "herb" -> append("This is a herb patch.")
+                else -> append("")
+            }
+            append(" ")
+            when (player["${variable}_compost", "none"]) {
+                "none" -> append("The soil has not been treated.")
+                "compost" -> append("The soil has been treated with compost.")
+                "super" -> append("The soil has been treated with supercompost.")
+            }
+            append(" ")
+
+            val value = player[variable, "weeds_super"]
+            if (value.contains("weeds")) {
+                append("The patch needs weeding.")
+                append("The patch is empty and weeding.")
+            } else {
+                append("The patch has Dwarf weed growing in it and is at state 1/5.")
+            }
+        })
+        Stats.openGuide(
+            player,
+            Skill.Farming,
+        )
     }
 
     private suspend fun seed(player: Player, variable: String) {
@@ -111,64 +148,29 @@ class FarmingPatch(
         player.message("You have successfully cleared this patch for new crops.", ChatType.Filter)
     }
 
-    private suspend fun compost(player: Player) {
-        player.anim("take")
-        player.sound("farming_putin")
-        player.delay(2)
-        val count = player.inventory.count("weeds")
-        player.inventory.remove("weeds", count)
-        repeat(count) {
-            player.delay(2)
+    private suspend fun rake(player: Player, interact: PlayerOnObjectInteract) {
+        val variable = variableDefinitions.getVarbit(interact.target.def.varbit) ?: return
+        if (!player.inventory.contains("rake")) {
+            player.message("You need a rake to weed a farming patch")
+            return
         }
-        player.message("This compost bin contains compostable items (3/15).")
-    }
-
-    private fun inspect(player: Player, variable: String) {
-        buildString {
-            when (variable.substringAfterLast("_")) {
-                "allotment" -> append("This is an allotment.")
-                "hops" -> append("")
-                "tree" -> append("This is a${if (variable.endsWith("fruit_tree")) "fruit " else ""} tree patch.")
-                "bush" -> append("")
-                "flower" -> append("This is a flower patch.")
-                "herb" -> append("This is a herb patch.")
-                else -> append("")
+        repeat(3) {
+            player.anim("farming_raking")
+            player.pause(3)
+            val current = player[variable, "weeds_super"]
+            val next = when (current) {
+                "weeds_super" -> "weeds_2"
+                "weeds_compost" -> "weeds_1"
+                "weeds_none" -> "weeds_0"
+                "weeds_2" -> "weeds_1"
+                "weeds_1" -> "weeds_0"
+                else -> return
             }
-            append(" ")
-            when (player["${variable}_compost", "none"]) {
-                "none" -> append("The soil has not been treated.")
-                "compost" -> append("The soil has been treated with compost.")
-                "super" -> append("The soil has been treated with supercompost.")
-            }
-            append(" ")
-
-            val value = player[variable, "weeds_super"]
-            if (value.contains("weeds")) {
-                append("The patch needs weeding.")
-                append("The patch is empty and weeding.")
-            } else {
-                append("The patch has Dwarf weed growing in it and is at state 1/5.")
-            }
+            player[variable] = next
+            player.addOrDrop("weeds")
+            player.timers.start("farming_tick")
+            player.exp(Skill.Farming, 8.0)
         }
-        Stats.openGuide(
-            player,
-            Skill.Farming,
-        )
-    }
-
-    private fun rake(player: Player, variable: String) {
-        val current = player[variable, "weeds_super"]
-        val next = when (current) {
-            "weeds_super" -> "weeds_2"
-            "weeds_compost" -> "weeds_1"
-            "weeds_none" -> "weeds_0"
-            "weeds_2" -> "weeds_1"
-            "weeds_1" -> "weeds_0"
-            else -> return
-        }
-        player[variable] = next
-        player.addOrDrop("weeds")
-        player.timers.start("farming_tick")
     }
 
     companion object {

@@ -2,23 +2,27 @@
 id = 1525
 tradeable = false
 weight = 0.007
-examine = "I need to clean this herb before I can use it."
+compostable = true
 kept = "Reclaim"
+examine = "I need to clean this herb before I can use it."
 
 [clean_snake_weed]
 id = 1526
 tradeable = false
 weight = 0.007
-examine = "A fresh herb."
+compostable = true
 kept = "Reclaim"
+examine = "A fresh herb."
 
 [grimy_ardrigal]
 clone = "grimy_snake_weed"
 id = 1527
+compostable = true
 
 [clean_ardrigal]
 clone = "clean_snake_weed"
 id = 1528
+compostable = true
 
 [grimy_sito_foil]
 clone = "grimy_snake_weed"
