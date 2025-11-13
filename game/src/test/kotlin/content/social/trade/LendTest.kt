@@ -30,7 +30,7 @@ internal class LendTest : WorldTest() {
         lender.interfaceOption("trade_side", "offer", "Lend", item = whip, slot = 0)
         acceptTrade(lender, borrower)
         assertEquals(Item.EMPTY, lender.inventory[0])
-        assertEquals(whip, lender.returnedItems[0])
+        assertEquals(whip, lender.loanReturnedItems[0])
         assertEquals(Item("abyssal_whip_lent"), borrower.inventory[0])
     }
 
@@ -45,14 +45,14 @@ internal class LendTest : WorldTest() {
         acceptTrade(lender, borrower)
         assertEquals(whip, lender.inventory[0])
         assertEquals(Item.EMPTY, lender.inventory[1])
-        assertEquals(claws, lender.returnedItems[0])
+        assertEquals(claws, lender.loanReturnedItems[0])
         assertEquals(Item("dragon_claws_lent"), borrower.inventory[0])
     }
 
     @Test
     fun `Can't lend item if one in collection box`() {
         val (lender, _) = setupTradeWithLend()
-        lender.returnedItems.add("abyssal_whip")
+        lender.loanReturnedItems.add("abyssal_whip")
         lender.interfaceOption("trade_side", "offer", "Lend", item = Item("abyssal_whip"), slot = 0)
         tick()
         assertEquals(Item.EMPTY, lender.loan[0])

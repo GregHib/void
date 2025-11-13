@@ -55,8 +55,8 @@ class TradeConfirm : Script {
                 val success = acceptor.offer.transaction {
                     moveAll(requester.inventory)
                     link(requester.offer).moveAll(acceptor.inventory)
-                    link(requester.loan).moveAll(requester.returnedItems)
-                    link(acceptor.loan).moveAll(acceptor.returnedItems)
+                    link(requester.loan).moveAll(requester.loanReturnedItems)
+                    link(acceptor.loan).moveAll(acceptor.loanReturnedItems)
                 }
                 if (!success) {
                     logger.info { "Issue exchanging items $this $offer $otherOffer $loan $otherLoan $inventory" }
