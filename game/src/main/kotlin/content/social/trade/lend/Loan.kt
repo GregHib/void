@@ -2,7 +2,7 @@ package content.social.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.bank.bank
-import content.social.trade.returnedItems
+import content.social.trade.loanReturnedItems
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
@@ -82,8 +82,8 @@ object Loan {
         borrower.softTimers.start("borrow_message")
 
         lender["lent_to"] = borrower.name
-        lender["lent_item_id"] = lender.returnedItems[0].def.id
-        lender["lent_item_amount"] = lender.returnedItems[0].amount
+        lender["lent_item_id"] = lender.loanReturnedItems[0].def.id
+        lender["lent_item_amount"] = lender.loanReturnedItems[0].amount
         lender.softTimers.start("loan_message")
     }
 

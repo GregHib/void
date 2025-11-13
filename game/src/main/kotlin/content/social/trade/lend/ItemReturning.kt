@@ -3,7 +3,7 @@ package content.social.trade.lend
 import com.github.michaelbull.logging.InlineLogger
 import content.social.trade.lend.Loan.getExpiry
 import content.social.trade.lend.Loan.returnLoan
-import content.social.trade.returnedItems
+import content.social.trade.loanReturnedItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -22,7 +22,7 @@ class ItemReturning : Script {
 
     init {
         interfaceOpened("returned_items") {
-            sendInventory(returnedItems)
+            sendInventory(loanReturnedItems)
         }
 
         interfaceOption("Reclaim", "returned_items:item") {
@@ -58,10 +58,10 @@ class ItemReturning : Script {
     }
 
     fun returnItem(player: Player) {
-        player.returnedItems.transaction {
+        player.loanReturnedItems.transaction {
             moveAll(player.inventory)
         }
-        when (player.returnedItems.transaction.error) {
+        when (player.loanReturnedItems.transaction.error) {
             TransactionError.Invalid -> logger.info { "Return item issue: $player" }
             is TransactionError.Full -> player.inventoryFull()
             else -> player.clear("lent_to")

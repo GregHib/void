@@ -53,7 +53,7 @@ class TradeLending : Script {
         if (!Trade.isTrading(player, 1)) {
             return
         }
-        if (player.returnedItems.isFull()) {
+        if (player.loanReturnedItems.isFull()) {
             player.message("You are already lending an item, you can't lend another.")
             return
         }

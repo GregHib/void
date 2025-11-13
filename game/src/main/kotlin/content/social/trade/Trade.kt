@@ -45,7 +45,7 @@ val Player.offer: Inventory
 val Player.otherOffer: Inventory
     get() = inventories.inventory("trade_offer", true)
 
-val Player.returnedItems: Inventory
+val Player.loanReturnedItems: Inventory
     get() = inventories.inventory("returned_lent_items", false)
 
 val Player.loan: Inventory
