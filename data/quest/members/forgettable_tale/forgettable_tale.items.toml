@@ -9,9 +9,10 @@ kept = "Reclaim"
 id = 6113
 tradeable = false
 weight = 0.028
+compostable = true
+kept = "Reclaim"
 destroy = "Return to the Keldagrim palace gardener to get your hops back."
 examine = "A handful of Kelda Hops."
-kept = "Reclaim"
 
 [kelda_stout]
 id = 6118

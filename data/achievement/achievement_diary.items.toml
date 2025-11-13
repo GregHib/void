@@ -232,9 +232,11 @@ id = 14582
 id = 14583
 tradeable = false
 weight = 0.056
+compostable = true
+super_compost = true
+kept = "Reclaim"
 destroy = "Harvest"
 examine = "A beautiful flower."
-kept = "Reclaim"
 
 [money_crest_voucher]
 id = 14584

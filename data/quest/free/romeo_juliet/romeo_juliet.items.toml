@@ -3,6 +3,7 @@ id = 753
 price = 20
 limit = 100
 weight = 0.007
+compostable = true
 examine = "Poisonous berries."
 
 [cadava_berries_noted]

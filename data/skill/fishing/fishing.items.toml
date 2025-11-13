@@ -87,6 +87,7 @@ id = 401
 price = 92
 limit = 10000
 weight = 0.2
+compostable = true
 fishing = { level = 16, xp = 1.0, chance_min = 10, chance_max = 10 }
 examine = "Slightly damp seaweed."
 
@@ -99,6 +100,7 @@ price = 201
 limit = 10000
 heals = 40
 weight = 0.25
+compostable = true
 examine = "Slightly damp seaweed."
 
 [edible_seaweed_noted]

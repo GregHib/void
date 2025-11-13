@@ -72,3 +72,6 @@ id = 2293
 
 [farming_ingredient_sprinkle]
 id = 2295
+
+[farming_pour_supercompost]
+id = 2569
