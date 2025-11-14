@@ -1,0 +1,78 @@
+[show_summoning_orb]
+id = 4280
+format = "boolean"
+persist = true
+default = true
+
+# TODO: Confirm animations for familiars above level 33
+# Others were confirmed from this video: https://www.youtube.com/watch?v=R8voU8lsXoY
+[follower_details_chathead_animation]
+id = 4282
+format = "int"
+persist = true
+#values = {
+#    # Confirmed
+#    dreadfowl = 2,
+#    granite_crab = 3,
+#    vampire_bat = 4,
+#    giant_chinchompa = 4,
+#    beaver = 4,
+#    spirit_spider = 6,
+#    spirit_scorpion = 6,
+#    spirit_wolf = 7,
+#    desert_wyrm = 7,
+#    albino_rat = 7,
+#    honey_badger = 7,
+#    thorny_snail = 12,
+#    hydra = 19,
+#    compost_mound = 20,
+#    spirit_mosquito = 31,
+#    spirit_tz_kih = 32,
+#    meerkats = 38
+#
+#    # Unconfirmed
+#    void_torcher = 4,
+#    spirit_kalphite = 6,
+#    minotaur = 7,
+#    bull_ant = 9,
+#    void_ravager = 13,
+#    void_spinner = 29,
+#    void_shifter = 30,
+#}
+
+[pet_details_growth_percentage]
+id = 4285
+format = "int"
+persist = true
+
+[pet_details_hunger_percentage]
+id = 4286
+format = "int"
+persist = true
+
+# Changes the mouseover info for the cast button in inter 662 (pet_details)
+# E.g. "Level 1: Howl (-->#<-- Special Move points)"
+[summoning_special_points_needed]
+id = 4288
+format = "int"
+persist = true
+
+[familiar_details_seconds_remaining]
+id = 4290
+format = "int"
+persist = true
+
+[familiar_details_minutes_remaining]
+id = 4534
+format = "int"
+persist = true
+
+[summoning_orb_left_click_option]
+id = 6454
+format = "int"
+persist = true
+
+[summoning_menu_left_click_option]
+id = 6455
+format = "int"
+persist = true

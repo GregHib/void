@@ -32,6 +32,7 @@ class Follow(
         }
         if (character is NPC && character.tile.distanceTo(target) > 15) {
             character.tele(strategy.tile, clearMode = false)
+            character.clearWatch()
         }
         if (!smart) {
             character.steps.clearDestination()
