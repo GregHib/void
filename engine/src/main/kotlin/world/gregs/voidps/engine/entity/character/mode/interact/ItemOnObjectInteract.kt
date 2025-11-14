@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 
@@ -31,9 +32,20 @@ data class ItemOnObjectInteract(
             if (!noDelays.contains("${item.id}:${target.def(player).stringId}")) {
                 player.arriveDelay()
             }
-            for (block in map["${item.id}:${target.def(player).stringId}"] ?: map["${item.id}:*"]  ?: map["*:${target.def(player).stringId}"] ?: return@launch) {
+            for (block in map["${item.id}:${target.def(player).stringId}"] ?: emptyList()) {
+                block(player, this@ItemOnObjectInteract)
+            }
+            for (block in map["${item.id}:*"] ?: emptyList()) {
+                block(player, this@ItemOnObjectInteract)
+            }
+            for (block in map["*:${target.def(player).stringId}"] ?: return@launch) {
                 block(player, this@ItemOnObjectInteract)
             }
         }
     }
+
+    override fun toString(): String {
+        return "${player.name} ${player.tile} - ${item.id}:${target.def(player).stringId} target=$target, slot=$slot, interface='$id'"
+    }
+
 }
