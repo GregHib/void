@@ -198,8 +198,9 @@ price = 184
 limit = 10000
 weight = 3.0
 empty = "bucket"
-examine = "Good for plants, helps them grow."
+farming_xp = 18.0
 kept = "Wilderness"
+examine = "Good for plants, helps them grow."
 
 [compost_noted]
 id = 6033
@@ -210,6 +211,7 @@ price = 1078
 limit = 10000
 weight = 3.0
 empty = "bucket"
+farming_xp = 36.0
 examine = "Super-good for the smallest or largest of plants."
 
 [supercompost_noted]
