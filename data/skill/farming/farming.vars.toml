@@ -5,3 +5,8 @@ persist = true
 [last_growth_cycle]
 format = "int"
 persist = true
+
+[patch_super_compost]
+format = "list"
+persist = true
+values = [ "patch_falador_nw_allotment", "patch_falador_se_allotment" ]

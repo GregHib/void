@@ -16,7 +16,7 @@ class ToolLeprechaun : Script {
     val logger = InlineLogger()
 
     init {
-        npcOperate("Talk-to", "tool_leprechaun_alices_farm") {
+        npcOperate("Talk-to", "tool_leprechaun_*") {
             npc<Happy>("Ah, 'tis a foine day to be sure! Were yez wantin' me to store yer tools, or maybe ye might be wantin' yer stuff back from me?")
             choice("What would you like to say?") {
                 yesPlease()
@@ -36,7 +36,7 @@ class ToolLeprechaun : Script {
             }
         }
 
-        itemOnNPCOperate("*", "tool_leprechaun_alices_farm") {
+        itemOnNPCOperate("*", "tool_leprechaun_*") {
             val item = it.item
             val noted = item.noted
             if (noted == null) {
