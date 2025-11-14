@@ -64,7 +64,7 @@ class CompostBinTest : WorldTest() {
         assertTrue(player.inventory.isEmpty())
         assertEquals("compostable_15", player["compost_bin_falador", "empty"])
 
-        player.objectOption(bin, "Close", 0)
+        player.objectOption(bin, "Close")
         tick(2)
 
         assertTrue(player.containsMessage("begun to rot"))
@@ -78,7 +78,7 @@ class CompostBinTest : WorldTest() {
         player["compost_bin_falador"] = "compost_15"
         val bin = objects[Tile(3056, 3312), "farming_compost_bin_falador"]!!
 
-        player.objectOption(bin, "Empty", 0)
+        player.objectOption(bin, "Empty")
         tick(10)
 
         assertEquals(3, player.inventory.count("compost"))
@@ -93,7 +93,7 @@ class CompostBinTest : WorldTest() {
         player["compost_bin_falador"] = "supercompost_15"
         val bin = objects[Tile(3056, 3312), "farming_compost_bin_falador"]!!
 
-        player.objectOption(bin, "Empty", 0)
+        player.objectOption(bin, "Empty")
         tick(10)
 
         assertEquals(3, player.inventory.count("supercompost"))
@@ -107,7 +107,7 @@ class CompostBinTest : WorldTest() {
         player["compost_bin_falador"] = "rotten_tomatoes_15"
         val bin = objects[Tile(3056, 3312), "farming_compost_bin_falador"]!!
 
-        player.objectOption(bin, "Take-tomato", 0)
+        player.objectOption(bin, "Take-tomato", )
         tick(10)
 
         assertEquals(3, player.inventory.count("rotten_tomato"))

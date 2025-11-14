@@ -521,6 +521,8 @@ cooking = {
   cooked_message = "You successfully bake a potato.",
   burnt_message = "You accidentally burn the potato.",
 }
+farming_xp = 9.0
+farming_chance = "101-180"
 aka = ["potato"]
 compostable = true
 kept = "Wilderness"

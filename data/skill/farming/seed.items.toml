@@ -306,6 +306,9 @@ kept = "Reclaim"
 id = 5318
 price = 1
 limit = 500
+farming_amount = 3
+farming_crop = "potato"
+farming_xp = 8.0
 examine = "A potato seed - plant in an allotment."
 kept = "Wilderness"
 

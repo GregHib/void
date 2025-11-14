@@ -75,6 +75,9 @@ class Farming(
                     continue
                 }
                 if (current.startsWith("weeds") && !player["disable_weeds", false]) {
+                    if (!Settings["farming.weeds.regrow", true]) {
+                        continue
+                    }
                     val stage = type.toInt()
                     val next = (stage + 1).rem(4)
                     player[variable] = when (next) {
@@ -132,7 +135,7 @@ class Farming(
 
     private fun growSaplings(player: Player, inventory: Inventory) {
         inventory.transaction {
-            for(item in inventory.items) {
+            for (item in inventory.items) {
             }
         }
         // TODO ensure stack merges with existing grown saplings

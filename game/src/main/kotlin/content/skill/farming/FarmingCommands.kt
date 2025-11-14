@@ -17,7 +17,7 @@ class FarmingCommands(
     val players: Players,
 ) : Script {
     init {
-        modCommand("patches", handler = ::listPatches)
+        modCommand("patches", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "List farming patches for the given player", handler = ::listPatches)
         modCommand("growth", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Check the next farming growth tick for the given player", handler = ::growthInfo)
         modCommand("rot", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Completes all rotting compost bins for the given player", handler = ::rot)
     }
@@ -37,9 +37,18 @@ class FarmingCommands(
 
     fun rot(player: Player, args: List<String>) {
         val target = players.find(player, args.getOrNull(0)) ?: return
-        target["compost_bin_falador"] = target["compost_bin_falador", "empty"].replace("_rotting", "_ready")
-        target["compost_bin_catherby"] = target["compost_bin_catherby", "empty"].replace("_rotting", "_ready")
-        target["compost_bin_port_phasmatys"] = target["compost_bin_port_phasmatys", "empty"].replace("_rotting", "_ready")
-        target["compost_bin_ardougne"] = target["compost_bin_ardougne", "empty"].replace("_rotting", "_ready")
+        rot(target, "compost_bin_falador")
+        rot(target, "compost_bin_catherby")
+        rot(target, "compost_bin_port_phasmatys")
+        rot(target, "compost_bin_ardougne")
+    }
+
+    private fun rot(player: Player, variable: String) {
+        val value: String = player[variable] ?: return
+        if (!value.contains("_rotting")) {
+            return
+        }
+        val stage = value.substringAfterLast("_").toIntOrNull() ?: return
+        player[variable] = value.replace("_$stage", "_ready")
     }
 }
