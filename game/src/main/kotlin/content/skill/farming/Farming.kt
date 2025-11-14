@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochMinutes
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
@@ -33,9 +34,7 @@ class Farming(
         }
 
         timerStart("farming_tick") {
-            val mins = Settings["farming.growth.mins", 5]
-            val remaining = mins - (epochMinutes() - get("farming_offset_mins", 0)).rem(mins)
-            TimeUnit.MINUTES.toTicks(remaining)
+            TimeUnit.SECONDS.toTicks(60 - epochSeconds().rem(60))
         }
 
         timerTick("farming_tick") {
@@ -46,7 +45,7 @@ class Farming(
                 val minute = min - get("farming_offset_mins", 0)
                 grow(this, minute)
             }
-            TimeUnit.MINUTES.toTicks(Settings["farming.growth.mins", 5])
+            TimeUnit.MINUTES.toTicks(1)
         }
     }
 
