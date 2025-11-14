@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
 
 data class ItemOnPlayerInteract(
@@ -32,4 +33,9 @@ data class ItemOnPlayerInteract(
             }
         }
     }
+
+    override fun toString(): String {
+        return "${player.name} ${player.tile} - target=$target, id='$id', item=$item, slot=$slot"
+    }
+
 }

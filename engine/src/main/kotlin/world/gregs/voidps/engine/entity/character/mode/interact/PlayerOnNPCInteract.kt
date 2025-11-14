@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 
 data class PlayerOnNPCInteract(
     override val target: NPC,
@@ -30,4 +31,9 @@ data class PlayerOnNPCInteract(
             }
         }
     }
+
+    override fun toString(): String {
+        return "${player.name} ${player.tile} - $option:${target.def(player).stringId} target=$target"
+    }
+
 }
