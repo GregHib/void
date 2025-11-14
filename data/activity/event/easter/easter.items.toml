@@ -289,7 +289,7 @@ id = 12650
 limit = 100
 tradeable = false
 weight = 3.0
-empty = "empty_bucket"
+empty = "bucket"
 examine = "It's a bucket of water from the Easter Bunny's warren."
 
 [bucket_of_water_2008_easter_event_2]
@@ -300,7 +300,7 @@ id = 12651
 id = 12652
 tradeable = false
 weight = 3.0
-empty = "empty_bucket"
+empty = "bucket"
 examine = "It's a bucket of coal from the Easter Bunny's warren."
 
 [bucket_of_coal_2]

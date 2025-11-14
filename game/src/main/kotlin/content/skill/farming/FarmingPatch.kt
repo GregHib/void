@@ -28,7 +28,7 @@ class FarmingPatch(
         objectOperate("Rake", "*_patch_weeds_*", handler = ::rake)
 
         itemOnObjectOperate("compost", "*_patch*") {
-            if (!inventory.replace(it.slot, "compost", "empty_bucket")) {
+            if (!inventory.replace(it.slot, "compost", "bucket")) {
                 return@itemOnObjectOperate
             }
             anim("farming_pour_water")
@@ -167,7 +167,7 @@ class FarmingPatch(
             }
             player[variable] = next
             player.addOrDrop("weeds")
-            player.timers.start("farming_tick")
+            player.timers.startIfAbsent("farming_tick")
             player.exp(Skill.Farming, 8.0)
         }
     }
