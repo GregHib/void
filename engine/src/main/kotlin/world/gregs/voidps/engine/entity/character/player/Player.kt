@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player
 
+import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.channels.Channel
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import org.rsmod.game.pathfinder.flag.CollisionFlag
@@ -68,6 +69,9 @@ class Player(
     override var mode: Mode = EmptyMode
         set(value) {
             field.stop(value)
+            if (value !is EmptyMode && get("debug", false)) {
+                logger.debug { "$value" }
+            }
             field = value
             value.start()
         }
@@ -114,4 +118,8 @@ class Player(
     override fun hashCode(): Int = index
 
     override fun toString(): String = "Player($accountName, tile=$tile)"
+
+    companion object {
+        private val logger = InlineLogger("Player")
+    }
 }
