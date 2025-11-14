@@ -9,15 +9,18 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declare
+import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.definition.data.FontDefinition
+import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.ListValues
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.config.JingleDefinition
 import world.gregs.voidps.engine.data.config.SoundDefinition
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
+import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 import world.gregs.voidps.engine.timer.resetCurrentTime
 import world.gregs.voidps.engine.timer.setCurrentTime
 import world.gregs.voidps.engine.timer.toTicks
@@ -55,6 +58,14 @@ class FarmingTest : KoinMock() {
         farmingDefinitions = FarmingDefinitions()
         farming = Farming(variableDefinitions, farmingDefinitions)
         player = Player()
+        val invDefs = mockk<InventoryDefinitions>(relaxed = true)
+        every { invDefs.get(any<String>()) } returns InventoryDefinition.EMPTY
+        val itemDefs = mockk<ItemDefinitions>(relaxed = true)
+        every { itemDefs.get(any<String>()) } returns ItemDefinition.EMPTY
+        player.inventories.definitions = invDefs
+        player.inventories.normalStack = ItemDependentStack(itemDefs)
+        player.inventories.validItemRule = ValidItemRestriction(itemDefs)
+        player.inventories.player = player
         resetCurrentTime()
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int): Int = 1
@@ -196,6 +207,26 @@ class FarmingTest : KoinMock() {
 
         val next = player["patch_falador_nw_allotment", ""]
         assertEquals("potato_super", next)
+    }
+
+    @Test
+    fun `Compost bins rot correctly through stages`() {
+        player["compost_bin_falador"] = "compostable_rotting_0"
+        player["farming_offset_mins"] = 0
+
+        farming.grow(player, 2)
+
+        assertEquals("compostable_rotting_1", player["compost_bin_falador", "empty"])
+    }
+
+    @Test
+    fun `Compost ready after 30 rot stages`() {
+        player["compost_bin_falador"] = "compostable_rotting_30"
+        player["farming_offset_mins"] = 0
+
+        farming.grow(player, 4)
+
+        assertEquals("compostable_rotting_ready", player["compost_bin_falador", "empty"])
     }
 
     private fun setDefinition(list: List<String>) {
