@@ -96,6 +96,6 @@ examine = "Very delicate thin pressed gold."
 id = 4693
 tradeable = false
 weight = 3.0
-empty = "empty_bucket"
+empty = "bucket"
 examine = "It's a bucket of salty water."
 kept = "Wilderness"

@@ -50,30 +50,34 @@ class Farming(
     }
 
     fun grow(player: Player, minute: Int) {
-        val mins = Settings["farming.growth.mins", 5]
-        if (minute.rem(mins) == 0) {
-            growSaplings(player)
+        if (minute.rem(Settings["farming.decompose.mins", 2]) == 0) {
+            growCompost(player)
         }
+        val mins = Settings["farming.growth.mins", 5]
+        if (minute.rem(mins) != 0) {
+            return
+        }
+        growSaplings(player)
         for ((multiplier, varbits) in FarmingPatch.patches) {
             if (minute.rem(mins * multiplier) != 0) {
                 continue
             }
-            for (varbit in varbits) {
-                val current: String = player[varbit] ?: continue
+            for (variable in varbits) {
+                val current: String = player[variable] ?: continue
                 val type = current.substringAfterLast("_")
                 if (type == "none" || type == "compost" || type == "super" || type == "dead") {
                     continue
                 }
                 val produce = current.substringBeforeLast("_")
                 if (produce.endsWith("diseased")) {
-                    player[varbit] = current.replace("diseased", "dead")
-                    amuletOfFarming(player, varbit)
+                    player[variable] = current.replace("diseased", "dead")
+                    amuletOfFarming(player, variable)
                     continue
                 }
                 if (current.startsWith("weeds") && !player["disable_weeds", false]) {
                     val stage = type.toInt()
                     val next = (stage + 1).rem(4)
-                    player[varbit] = when (next) {
+                    player[variable] = when (next) {
                         3 ->
                             "weeds_${
                                 when (random.nextInt(3)) {
@@ -87,19 +91,36 @@ class Farming(
                     continue
                 }
                 var next: String
-                if (disease(player, varbit, produce, type)) {
+                if (disease(player, variable, produce, type)) {
                     next = current.replace(produce, "${produce}_diseased")
                 } else {
-                    val list = varbitList(varbit) ?: continue
+                    val list = varbitList(variable) ?: continue
                     val index = list.indexOf(current)
                     next = list[index + 1].replace("_watered", "")
                     if (next.endsWith("_none")) {
-                        next = next.replace("none", player["${varbit}_compost", "none"])
+                        next = next.replace("none", player["${variable}_compost", "none"])
                     }
                 }
-                player[varbit] = next
-                amuletOfFarming(player, varbit)
+                player[variable] = next
+                amuletOfFarming(player, variable)
             }
+        }
+    }
+
+    private val compostBins = listOf("compost_bin_falador", "compost_bin_catherby", "compost_bin_port_phasmatys", "compost_bin_ardougne")
+
+    private fun growCompost(player: Player) {
+        for (variable in compostBins) {
+            val value: String = player[variable] ?: continue
+            if (!value.contains("rotting")) {
+                continue
+            }
+            val stage = value.substringAfterLast("_").toIntOrNull() ?: continue
+            if (stage >= 30) {
+                player[variable] = value.replace(stage.toString(), "ready")
+                continue
+            }
+            player[variable] = value.replace(stage.toString(), "${stage + 1}")
         }
     }
 
@@ -110,7 +131,9 @@ class Farming(
     }
 
     private fun growSaplings(player: Player, inventory: Inventory) {
-        for (item in inventory.items) {
+        inventory.transaction {
+            for(item in inventory.items) {
+            }
         }
         // TODO ensure stack merges with existing grown saplings
     }

@@ -5,15 +5,19 @@ import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
+import world.gregs.voidps.type.random
 
 class CompostBin : Script {
     init {
@@ -24,12 +28,12 @@ class CompostBin : Script {
             sendVariable("compost_bin_ardougne")
         }
 
-        itemOnObjectOperate("*", "compost_bin_*,farming_compost_bin_*", handler = ::compost)
+        itemOnObjectOperate("*", "compost_bin_*", handler = ::compost)
 
-        itemOnObjectOperate("spade", "compost_bin_*_#") {
+        itemOnObjectOperate("spade", "compost_bin_compost_*,compost_bin_supercompost_*,compost_bin_compostable_*,compost_bin_supercompostable_*,compost_bin_tomatoes_*,compost_bin_rotten_tomatoes_*") {
             val variable = it.target.id.removePrefix("farming_")
             val current = get(variable, "empty")
-            if (current.endsWith("rotting") || current.endsWith("ready")) {
+            if (current.endsWith("ready") || current.contains("rotting")) {
                 statement("The compost bin is closed.")
                 return@itemOnObjectOperate
             }
@@ -46,45 +50,46 @@ class CompostBin : Script {
         objectOperate("Close", "compost_bin_*_15") {
             val variable = it.target.id.removePrefix("farming_")
             val current = get(variable, "empty")
-            set(variable, current.replace("_15", "_rotting"))
+            // Takes between 32-60 mins, assuming `farming.decompose.mins` is 2 mins
+            set(variable, current.replace("_15", "_rotting_${random.nextInt(0, 15)}"))
             message("You close the compost bin.")
             anim("human_push")
             sound("compost_close")
             delay(1)
             message("The contents have begun to rot.")
-            // TODO timer
+            timers.startIfAbsent("farming_tick")
         }
 
-        itemOnObjectOperate("empty_bucket", "compost_bin_*compost_#") {
-            val type = if (it.target.def(this).stringId.contains("supercompost")) "supercompost" else "compost"
-            empty(this, type, it.slot)
+        itemOnObjectOperate("bucket", "compost_bin_compost_*,compost_bin_supercompost_*,compost_bin_rotten_tomatoes_*") {
+            empty(this, it.target.id.removePrefix("farming_"), it.slot)
         }
 
-        objectOperate("Empty", "compost_bin_*compost_#") {
-            if (!inventory.contains("empty_bucket")) {
+        objectOperate("Empty", "compost_bin_compost_*,compost_bin_supercompost_*,compost_bin_rotten_tomatoes_*") {
+            if (!inventory.contains("bucket")) {
                 message("You need a suitable bucket to do that.")
                 return@objectOperate
             }
-            val type = if(it.target.def(this).stringId.contains("supercompost")) "supercompost" else "compost"
-            empty(this, type)
+            empty(this, it.target.id.removePrefix("farming_"))
         }
+
+        objectOperate("Take-tomato", "compost_bin_compost_*,compost_bin_supercompost_*,compost_bin_rotten_tomatoes_*", handler = ::takeRottenTomato)
 
         objectOperate("Open", "compost_bin*_rotting") {
             val variable = it.target.id.removePrefix("farming_")
             val current = get(variable, "empty")
-            if (current.endsWith("_ready")) {
-                anim("human_push")
-                sound("compost_open")
-                message("You open the compost bin.")
-                set(
-                    variable, current
-                        .replace("compostable", "compost")
-                        .replace("tomatoes", "rotten_tomatoes")
-                        .replace("_ready", "_15")
-                )
-            } else {
+            if (!current.endsWith("_ready")) {
                 statement("The vegetation hasn't finished rotting yet.")
+                return@objectOperate
             }
+            anim("human_push")
+            sound("compost_open")
+            message("You open the compost bin.")
+            set(
+                variable, current
+                    .replace("compostable", "compost")
+                    .replace("tomatoes", "rotten_tomatoes")
+                    .replace("_ready", "_15")
+            )
         }
 
         itemOnObjectOperate("compost_potion", "compost_bin_empty,farming_compost_bin_*") {
@@ -94,37 +99,67 @@ class CompostBin : Script {
                 statement("You can only apply supercompost potion to a bin containing normal compost.")
                 return@itemOnObjectOperate
             }
-            if (current == "empty") {
-                statement("The compost bin is empty.")
-            } else if (current.endsWith("ready") || current.endsWith("rotting")) {
-                statement("The compost bin is closed.")
-            } else if (current.endsWith("_15")) {
-                anim("farming_pour_supercompost")
-                set(variable, "supercompostable_15")
-                // TODO proper message
-            } else {
-                // TODO proper message
-//                statement("You can only apply supercompost potion to a bin containing normal compost.")
-//                statement("The compost bin is closed.")
+            when {
+                current.endsWith("_15") -> {
+                    anim("farming_pour_supercompost")
+                    set(variable, "supercompostable_15")
+                    // TODO proper message
+                }
+                current == "empty" -> statement("The compost bin is empty.")
+                current.endsWith("ready") || current.contains("rotting") -> statement("The compost bin is closed.")
+                else -> {
+                    // TODO proper message
+                    //                statement("You can only apply supercompost potion to a bin containing normal compost.")
+                }
             }
         }
     }
 
-    private suspend fun empty(player: Player, type: String = "empty", index: Int = player.inventory.indexOf("empty_bucket")) {
-        var slot = index
-        for (i in 0 until 15) {
+    private suspend fun empty(player: Player, variable: String, index: Int? = null) {
+        val value: String = player[variable] ?: return
+        val type = value.substringBeforeLast("_")
+        val stage = value.substringAfterLast("_").toIntOrNull() ?: return
+        var slot = index ?: player.inventory.indexOf("bucket")
+        for (i in (stage - 1) downTo 0) {
             if (slot == -1) {
                 break
             }
             player.anim("take")
             player.sound("farming_fillpot")
             player.pause(1)
-            if (!player.inventory.replace(slot, "empty_bucket", type)) {
+            if (!player.inventory.replace(slot, "bucket", type)) {
                 break
             }
-            player.exp(Skill.Farming, 5.0)
-            player.pause(2)
-            slot = player.inventory.indexOf("empty_bucket")
+            player.exp(Skill.Farming, if (type == "supercompost") 8.5 else 4.5)
+            player[variable] = if (i == 0) "empty" else "${type}_$i"
+            if (i == 0) {
+                break
+            }
+            player.pause(3)
+            slot = player.inventory.indexOf("bucket")
+        }
+    }
+
+    private suspend fun takeRottenTomato(player: Player, it: PlayerOnObjectInteract) {
+        val variable = it.target.id.removePrefix("farming_")
+        val value: String = player[variable] ?: return
+        val stage = value.substringAfterLast("_").toIntOrNull() ?: return
+        for (i in (stage - 1) downTo 0) {
+            if (player.inventory.isFull()) {
+                player.inventoryFull()
+                break
+            }
+            player.anim("take")
+            player.sound("farming_fillpot")
+            player.pause(1)
+            if (!player.inventory.add("rotten_tomato")) {
+                break
+            }
+            player.exp(Skill.Farming, 4.5)
+            player[variable] = if (i == 0) "empty" else "rotten_tomatoes_$i"
+            if (i != 0) {
+                player.pause(3)
+            }
         }
     }
 
@@ -136,8 +171,8 @@ class CompostBin : Script {
         }
         val variable = interact.target.id.removePrefix("farming_")
         val current = player[variable, "empty"]
-        val stage = current.substringAfterLast("_").toIntOrNull()
-        if (stage == null || stage == 15) {
+        val stage = current.substringAfterLast("_").toIntOrNull() ?: 0
+        if (stage == 15) {
             return player.statement("The compost bin is too full to put anything else in it.")
         }
         var slot = interact.slot
