@@ -1579,6 +1579,7 @@ cup
 cupboard
 currency
 current
+curtain
 current_task
 currently
 curry
@@ -1710,6 +1711,7 @@ defaults
 defeat
 defeated
 defence
+defend
 defender
 defenders
 defensive
@@ -2329,6 +2331,7 @@ ey
 eye
 eye_patch
 eyes
+eyesplosion
 ez
 f
 f1
@@ -3116,6 +3119,7 @@ highlight
 highlight_border
 highlighted
 highlights
+highwall
 hilarity
 hill
 hill_giant
@@ -3281,6 +3285,7 @@ ij
 ik
 il
 ill
+ilm
 illusive
 im
 image
@@ -5269,6 +5274,7 @@ rammernaut
 rampage
 ramrod
 ranarr
+rand
 random
 range
 range_picker
@@ -5797,6 +5803,7 @@ see_more
 seed
 seeds
 seek
+seeker
 seem
 seeping
 seer
@@ -6121,6 +6128,7 @@ sleeps
 slepe
 slice
 slide
+sliding
 slide_puzzle
 slider
 slideshow
@@ -6193,6 +6201,7 @@ something
 song
 songs
 soon
+sooty
 sophanem
 sorceress
 sorceresses
