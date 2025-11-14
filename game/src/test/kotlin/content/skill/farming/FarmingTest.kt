@@ -10,7 +10,9 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declare
 import world.gregs.voidps.cache.definition.data.FontDefinition
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.ListValues
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.config.JingleDefinition
 import world.gregs.voidps.engine.data.config.SoundDefinition
 import world.gregs.voidps.engine.data.config.VariableDefinition
@@ -60,26 +62,18 @@ class FarmingTest : KoinMock() {
     }
 
     @Test
-    fun `Start returns remaining ticks until next cycle`() {
-        // 12:07
-        setCurrentTime { TimeUnit.MINUTES.toMillis(12 * 60 + 7) }
-
-        player["farming_offset_mins"] = 0
-        val ticks = farming.start(player, "farming_tick", restart = false)
-
-        assertEquals(TimeUnit.MINUTES.toTicks(3), ticks)
-    }
-
-    @Test
-    fun `Start adjusts for player farming offset`() {
-        // 12:08
-        setCurrentTime { TimeUnit.MINUTES.toMillis(12 * 60 + 8) }
+    fun `Start returns remaining ticks until next minute`() {
+        // 12:08:28
+        setCurrentTime { TimeUnit.MINUTES.toMillis(12 * 60 + 8) + TimeUnit.SECONDS.toMillis(28) }
 
         player["farming_offset_mins"] = 2
 
-        val ticks = farming.start(player, "farming_tick", restart = false)
+        player.timers.start("farming_tick", restart = false)
+        val timer = player.timers.queue.first { it.name == "farming_tick" }
 
-        assertEquals(TimeUnit.MINUTES.toTicks(4), ticks)
+        val ticks = timer.nextTick - GameLoop.tick
+
+        assertEquals(TimeUnit.SECONDS.toTicks(32), ticks)
     }
 
     @Test
