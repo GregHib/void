@@ -3,7 +3,7 @@ package content.skill.farming
 import content.entity.player.bank.bank
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.variable.ListValues
+import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.jingle
@@ -65,7 +65,7 @@ class Farming(
             for (variable in varbits) {
                 val current: String = player[variable] ?: continue
                 val type = current.substringAfterLast("_")
-                if (type == "none" || type == "compost" || type == "super" || type == "dead") {
+                if (type == "life1" || type == "life2" || type == "life3" || type == "dead") {
                     continue
                 }
                 val produce = current.substringBeforeLast("_")
@@ -84,9 +84,9 @@ class Farming(
                         3 ->
                             "weeds_${
                                 when (random.nextInt(3)) {
-                                    0 -> "none"
-                                    1 -> "compost"
-                                    else -> "super"
+                                    0 -> "life1"
+                                    1 -> "life2"
+                                    else -> "life3"
                                 }
                             }"
                         else -> "weeds_$next"
@@ -97,12 +97,10 @@ class Farming(
                 if (disease(player, variable, produce, type)) {
                     next = current.replace(produce, "${produce}_diseased")
                 } else {
-                    val list = varbitList(variable) ?: continue
-                    val index = list.indexOf(current)
-                    next = list[index + 1].replace("_watered", "")
-                    if (next.endsWith("_none")) {
-                        next = next.replace("none", player["${variable}_compost", "none"])
-                    }
+                    val map = varbitMap(variable) ?: continue
+                    val index = map[current] ?: continue
+                    next = map.filter { it.value == index + 1 }.toList().first().first
+                    next = next.replace("_watered", "")
                 }
                 player[variable] = next
                 amuletOfFarming(player, variable)
@@ -147,16 +145,17 @@ class Farming(
             return false
         }
         var chance = farmingDefinitions.diseaseChances[produce] ?: return false
-        when (player["${spot}_compost", "none"]) {
-            "compost" -> chance /= 2
-            "super" -> chance /= 5
+        if (player.containsVarbit("patch_super_compost", spot)) {
+            chance /= 5
+        } else if (player.containsVarbit("patch_compost", spot)) {
+            chance /= 2
         }
         return random.nextInt(128) <= chance
     }
 
-    private fun varbitList(varbit: String): List<String>? {
+    private fun varbitMap(varbit: String): Map<String, Int>? {
         val definition = variableDefinitions.get(varbit) ?: return null
-        return (definition.values as ListValues).values as List<String>
+        return (definition.values as MapValues).values as Map<String, Int>
     }
 
     private fun amuletOfFarming(player: Player, patch: String) {

@@ -46,10 +46,10 @@ id = 8548
 [cabbage_3_dead]
 id = 8549
 
-[farming_veg_patch_falador_nw_allotment]
+[farming_veg_patch_falador_nw]
 id = 8550
 
-[farming_veg_patch_falador_se_allotment]
+[farming_veg_patch_falador_se]
 id = 8551
 
 [farming_veg_patch_3]
@@ -73,20 +73,24 @@ id = 8557
 [potato_seed]
 id = 8558
 exp = 8.0
+examine = "Potato seeds have been planted in this allotment."
 
 [potato_1]
 id = 8559
+examine = "Potato plants are growing in this allotment."
 
 [potato_2]
 id = 8560
+examine = "Potato plants are growing in this allotment."
 
 [potato_3]
 id = 8561
+examine = "Potato plants are growing in this allotment."
 
 [potato_fullygrown]
 id = 8562
 harvest = "raw_potato"
-exp = 9.0
+examine = "These potato plants are fully grown."
 
 [potato_seed_watered]
 id = 8563
