@@ -423,6 +423,10 @@ id = 6311
 price = 9486
 limit = 100
 weight = 0.2
+farming_level = 29
+farming_crop = "cadantine"
+farming_xp = 105.0
+farming_patch = "herb"
 examine = "Plant this in a herb patch to grow Goutweed."
 
 [gout_tuber_noted]
