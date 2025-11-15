@@ -165,7 +165,7 @@ class FarmingPatch : Script {
         player.anim("farming_seed_dibbing")
         player.sound("farming_dibbing")
         player.delay(3)
-        player.message("You plant ${if (amount == 1) "a" else amount} ${item.def.name.plural(amount)} in the ${patchName}.", type = ChatType.Filter)
+        player.message("You plant ${if (amount == 1) "a" else amount} ${item.def.name.plural(amount)} in the $patchName.", type = ChatType.Filter)
         val crop: String = item.def.getOrNull("farming_crop") ?: return
         player[variable] = "${crop}_0"
         player.exp(Skill.Farming, item.def["farming_xp", 0.0])
@@ -204,35 +204,37 @@ class FarmingPatch : Script {
             player.noInterest()
             return
         }
-        player.message(buildString {
-            val name = interact.target.patchName()
-            append("This is${name.an()} $name.")
-            append(" ")
-            when {
-                player.containsVarbit("patch_super_compost", interact.target.id) -> append("The soil has been treated with supercompost.")
-                player.containsVarbit("patch_compost", interact.target.id) -> append("The soil has been treated with compost.")
-                else -> append("The soil has not been treated.")
-            }
-            append(" ")
-
-            val value = player[interact.target.id, "weeds_life3"]
-            if (value == "weeds_0") {
-                append("The patch is empty.")
-            } else if (value.contains("weeds")) {
-                append("The patch needs weeding.")
-            } else {
-                val type = value.substringBeforeLast("_").removeSuffix("_watered").removeSuffix("_dead").removeSuffix("_diseased")
-                // TODO diseased/dead messages
-                val amount = if (name == "allotment") 3 else 1
-                val stage = value.substringAfterLast("_").toIntOrNull()
-                val stages = if (name == "allotment") 5 else 0
-                if (stage == null) {
-                    append("The patch has ${type.plural(amount)} growing in it and is at state $stages/$stages.")
-                } else {
-                    append("The patch has ${type.plural(amount)} growing in it and is at state ${stage + 1}/$stages.")
+        player.message(
+            buildString {
+                val name = interact.target.patchName()
+                append("This is${name.an()} $name.")
+                append(" ")
+                when {
+                    player.containsVarbit("patch_super_compost", interact.target.id) -> append("The soil has been treated with supercompost.")
+                    player.containsVarbit("patch_compost", interact.target.id) -> append("The soil has been treated with compost.")
+                    else -> append("The soil has not been treated.")
                 }
-            }
-        })
+                append(" ")
+
+                val value = player[interact.target.id, "weeds_life3"]
+                if (value == "weeds_0") {
+                    append("The patch is empty.")
+                } else if (value.contains("weeds")) {
+                    append("The patch needs weeding.")
+                } else {
+                    val type = value.substringBeforeLast("_").removeSuffix("_watered").removeSuffix("_dead").removeSuffix("_diseased")
+                    // TODO diseased/dead messages
+                    val amount = if (name == "allotment") 3 else 1
+                    val stage = value.substringAfterLast("_").toIntOrNull()
+                    val stages = if (name == "allotment") 5 else 0
+                    if (stage == null) {
+                        append("The patch has ${type.plural(amount)} growing in it and is at state $stages/$stages.")
+                    } else {
+                        append("The patch has ${type.plural(amount)} growing in it and is at state ${stage + 1}/$stages.")
+                    }
+                }
+            },
+        )
     }
 
     private fun guide(player: Player, interact: PlayerOnObjectInteract) {

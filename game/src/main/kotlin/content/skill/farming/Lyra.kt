@@ -1,6 +1,5 @@
 package content.skill.farming
 
-import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice

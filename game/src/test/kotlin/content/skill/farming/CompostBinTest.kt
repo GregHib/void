@@ -107,7 +107,7 @@ class CompostBinTest : WorldTest() {
         player["compost_bin_falador"] = "rotten_tomatoes_15"
         val bin = objects[Tile(3056, 3312), "farming_compost_bin_falador"]!!
 
-        player.objectOption(bin, "Take-tomato", )
+        player.objectOption(bin, "Take-tomato")
         tick(10)
 
         assertEquals(3, player.inventory.count("rotten_tomato"))
@@ -128,5 +128,4 @@ class CompostBinTest : WorldTest() {
         tick(1)
         assertEquals("empty", player["compost_bin_falador", "empty"])
     }
-
 }

@@ -28,7 +28,7 @@ class FarmingCommands(
     fun listPatches(player: Player, args: List<String>) {
         val target = players.find(player, args.getOrNull(0)) ?: return
         val list = mutableListOf<String>()
-        for((_, vars) in FarmingPatch.patches) {
+        for ((_, vars) in FarmingPatch.patches) {
             for (variable in vars) {
                 val value: String = target[variable] ?: continue
                 list.add("=== ${variable.removePrefix("farming_").toTitleCase()} ===")
@@ -51,7 +51,7 @@ class FarmingCommands(
                     val int = stage.toIntOrNull()
                     if (int != null) {
                         list.add("Stage: $int/$stages")
-                    } else  {
+                    } else {
                         list.add("Stage: $stage")
                     }
                 }
