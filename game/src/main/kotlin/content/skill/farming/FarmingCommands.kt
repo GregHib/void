@@ -1,6 +1,9 @@
 package content.skill.farming
 
 import content.entity.player.command.find
+import content.quest.questJournal
+import net.pearx.kasechange.toSentenceCase
+import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.modCommand
 import world.gregs.voidps.engine.client.command.stringArg
@@ -23,6 +26,46 @@ class FarmingCommands(
     }
 
     fun listPatches(player: Player, args: List<String>) {
+        val target = players.find(player, args.getOrNull(0)) ?: return
+        val list = mutableListOf<String>()
+        for((_, vars) in FarmingPatch.patches) {
+            for (variable in vars) {
+                val value: String = target[variable] ?: continue
+                list.add("=== ${variable.removePrefix("farming_").toTitleCase()} ===")
+                val type = value.substringBeforeLast("_")
+                val stage = value.substringAfterLast("_")
+                when {
+                    value.endsWith("_watered") -> list.add("<blue>Watered")
+                    value.endsWith("_diseased") -> list.add("<orange>Diseased")
+                    value.endsWith("_dead") -> list.add("<dark_red>Dead")
+                    stage.startsWith("life") -> list.add("<dark_green>Harvestable")
+                }
+                list.add("Crop: ${type.removeSuffix("_watered").removeSuffix("_diseased").removeSuffix("_dead").toSentenceCase()}")
+                if (stage.startsWith("life")) {
+                    list.add("Lives: ${stage.removePrefix("life")}")
+                } else {
+                    var stages = 5
+                    if (type.startsWith("weeds")) {
+                        stages = 3
+                    }
+                    val int = stage.toIntOrNull()
+                    if (int != null) {
+                        list.add("Stage: $int/$stages")
+                    } else  {
+                        list.add("Stage: $stage")
+                    }
+                }
+                if (player.containsVarbit("patch_super_compost", variable)) {
+                    list.add("Soil: Super-compost")
+                } else if (player.containsVarbit("patch_compost", variable)) {
+                    list.add("Soil: Compost")
+                } else {
+                    list.add("Soil: Normal")
+                }
+                list.add("")
+            }
+        }
+        player.questJournal("Active Farming Patches", list)
     }
 
     fun growthInfo(player: Player, args: List<String>) {

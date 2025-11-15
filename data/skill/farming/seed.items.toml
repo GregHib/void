@@ -309,6 +309,7 @@ limit = 500
 farming_amount = 3
 farming_crop = "potato"
 farming_xp = 8.0
+farming_patch = "allotment"
 examine = "A potato seed - plant in an allotment."
 kept = "Wilderness"
 

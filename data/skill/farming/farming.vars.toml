@@ -6,7 +6,12 @@ persist = true
 format = "int"
 persist = true
 
+[patch_compost]
+format = "list"
+persist = true
+values = [ "farming_veg_patch_falador_nw", "farming_veg_patch_falador_se" ]
+
 [patch_super_compost]
 format = "list"
 persist = true
-values = [ "patch_falador_nw_allotment", "patch_falador_se_allotment" ]
+values = [ "farming_veg_patch_falador_nw", "farming_veg_patch_falador_se" ]
