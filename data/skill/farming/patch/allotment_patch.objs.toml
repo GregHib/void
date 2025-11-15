@@ -1,6 +1,5 @@
 [cabbage_seed]
 id = 8535
-exp = 10.0
 
 [cabbage_1]
 id = 8536
@@ -14,7 +13,6 @@ id = 8538
 [cabbage_fullygrown]
 id = 8539
 harvest = "cabbage"
-exp = 11.5
 
 [cabbage_seed_watered]
 id = 8540
@@ -52,27 +50,26 @@ id = 8550
 [farming_veg_patch_falador_se]
 id = 8551
 
-[farming_veg_patch_3]
+[farming_veg_patch_catherby_north]
 id = 8552
 
-[farming_veg_patch_4]
+[farming_veg_patch_catherby_south]
 id = 8553
 
-[farming_veg_patch_5]
+[farming_veg_patch_ardougne_north]
 id = 8554
 
-[farming_veg_patch_6]
+[farming_veg_patch_ardounge_south]
 id = 8555
 
-[farming_veg_patch_7]
+[farming_veg_patch_morytania_nw]
 id = 8556
 
-[farming_veg_patch_8]
+[farming_veg_patch_morytania_se]
 id = 8557
 
 [potato_seed]
 id = 8558
-exp = 8.0
 examine = "Potato seeds have been planted in this allotment."
 
 [potato_1]
@@ -125,22 +122,18 @@ id = 8572
 [veg_patch_weeded]
 id = 8573
 harvest = "weeds"
-exp = 4.0
 
 [veg_patch_weeds_1]
 id = 8574
 harvest = "weeds"
-exp = 4.0
 
 [veg_patch_weeds_2]
 id = 8575
 harvest = "weeds"
-exp = 4.0
 
 [veg_patch_weeds_3]
 id = 8576
 harvest = "weeds"
-exp = 4.0
 
 [veg_patch_weeds_1_mory]
 id = 8577
@@ -153,7 +146,6 @@ id = 8579
 
 [onion_seed]
 id = 8580
-exp = 9.5
 
 [onion_1]
 id = 8581
@@ -167,7 +159,6 @@ id = 8583
 [onion_fullygrown]
 id = 8584
 harvest = "onion"
-exp = 10.5
 
 [onion_seed_watered]
 id = 8585
@@ -201,7 +192,6 @@ id = 8594
 
 [strawberry_seed]
 id = 8595
-exp = 26.0
 
 [strawberry_1]
 id = 8596
@@ -221,7 +211,6 @@ id = 8600
 [strawberry_fullygrown]
 id = 8601
 harvest = "strawberry"
-exp = 29.0
 
 [strawberry_seed_watered]
 id = 8602
@@ -273,7 +262,6 @@ id = 8617
 
 [sweetcorn_seed]
 id = 8618
-exp = 17.0
 
 [sweetcorn_1]
 id = 8619
@@ -293,7 +281,6 @@ id = 8623
 [sweetcorn_fullygrown]
 id = 8624
 harvest = "sweetcorn"
-exp = 19.0
 
 [sweetcorn_seed_watered]
 id = 8625
@@ -345,7 +332,6 @@ id = 8640
 
 [tomato_seed]
 id = 8641
-exp = 12.5
 
 [tomato_1]
 id = 8642
@@ -359,7 +345,6 @@ id = 8644
 [tomato_fullygrown]
 id = 8645
 harvest = "tomato"
-exp = 14.0
 
 [tomato_seed_watered]
 id = 8646
@@ -393,7 +378,6 @@ id = 8655
 
 [watermelon_seed]
 id = 8656
-exp = 48.5
 
 [watermelon_1]
 id = 8657
@@ -419,7 +403,6 @@ id = 8663
 [watermelon_fullygrown]
 id = 8664
 harvest = "watermelon"
-exp = 54.5
 
 [watermelon_seed_watered]
 id = 8665

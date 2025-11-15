@@ -345,22 +345,24 @@ class FarmingPatch : Script {
                 "patch_ardougne_flower",
                 "patch_herblore_habitat_vine_flower",
             ),
-            // allotments, hops, potato_cactus
             2 to listOf(
-                "patch_lumbridge_hops",
-                "patch_al_kharid_cactus",
+                // allotments
                 "farming_veg_patch_falador_nw",
                 "farming_veg_patch_falador_se",
-                "patch_port_phasmatys_nw_allotment",
-                "patch_port_phasmatys_se_allotment",
+                "farming_veg_patch_catherby_north",
+                "farming_veg_patch_catherby_south",
+                "farming_veg_patch_ardougne_north",
+                "farming_veg_patch_ardounge_south",
+                "farming_veg_patch_morytania_nw",
+                "farming_veg_patch_morytania_se",
+                // hops
+                "patch_lumbridge_hops",
                 "patch_harmony_allotment",
-                "patch_catherby_north_allotment",
-                "patch_catherby_south_allotment",
                 "patch_entrana_hops",
                 "patch_seers_village_hops",
-                "patch_ardougne_north_allotment",
-                "patch_ardougne_south_allotment",
                 "patch_yannile_hops",
+                // potato_cactus
+                "patch_al_kharid_cactus",
             ),
             // herbs, bushes
             4 to listOf(
