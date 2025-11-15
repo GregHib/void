@@ -36,7 +36,16 @@ class FarmingPatch : Script {
             }
         }
 
-        // TODO cure
+        objectOperate("Clear", "*_dead") { (target) ->
+            // TODO spade check + message
+            set(target.id, "weeds_0")
+        }
+
+        itemOnObjectOperate("spade", "*_dead") { (target) ->
+            // TODO spade check + message
+            set(target.id, "weeds_0")
+        }
+
         objectOperate("Rake", "*_patch_weeds_*", handler = ::rake)
         objectOperate("Inspect", handler = ::inspect)
         objectOperate("Guide", handler = ::guide)
@@ -45,6 +54,13 @@ class FarmingPatch : Script {
             val item: String = def["harvest"]
             message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
             harvest(Item(item), target)
+        }
+        itemOnObjectOperate("plant_cure", "*_diseased_*") { (target) ->
+            // TODO message
+            sound("farming_plant_cure")
+            anim("farming_plant_cure")
+            delay(2)
+            set(target.id, get(target.id, "weeds_3").replace("_diseased", ""))
         }
         itemOnObjectOperate("spade", "*_fullygrown") { (target) ->
             val def = target.def(this)
@@ -91,7 +107,8 @@ class FarmingPatch : Script {
 
     private suspend fun water(player: Player, interact: ItemOnObjectInteract) {
         val target = interact.target
-        if (!target.id.startsWith("farming_")) {
+        if (!target.id.startsWith("farming_veg") && !target.id.startsWith("farming_flower") && !target.id.startsWith("farming_hops")) {
+            // TODO message trying to water other patches?
             return
         }
         val id = target.def(player).stringId
@@ -162,10 +179,14 @@ class FarmingPatch : Script {
             player.message("You need $amount ${item.def.name.plural(amount)} to grow those.")
             return
         }
-        player.anim("farming_seed_dibbing")
-        player.sound("farming_dibbing")
+        if (patchName.startsWith("tree")) {
+            // TODO
+        } else {
+            player.anim("farming_seed_dibbing")
+            player.sound("farming_dibbing")
+        }
         player.delay(3)
-        player.message("You plant ${if (amount == 1) "a" else amount} ${item.def.name.plural(amount)} in the $patchName.", type = ChatType.Filter)
+        player.message("You plant ${if (amount == 1) "a" else amount} ${item.def.name.lowercase().plural(amount)} in the $patchName.", type = ChatType.Filter)
         val crop: String = item.def.getOrNull("farming_crop") ?: return
         player[variable] = "${crop}_0"
         player.exp(Skill.Farming, item.def["farming_xp", 0.0])
@@ -226,7 +247,10 @@ class FarmingPatch : Script {
                     // TODO diseased/dead messages
                     val amount = if (name == "allotment") 3 else 1
                     val stage = value.substringAfterLast("_").toIntOrNull()
-                    val stages = if (name == "allotment") 5 else 0
+                    val stages = when (name) {
+                        "allotment", "herb patch" -> 5
+                        else -> 0
+                    }
                     if (stage == null) {
                         append("The patch has ${type.plural(amount)} growing in it and is at state $stages/$stages.")
                     } else {
@@ -282,7 +306,7 @@ class FarmingPatch : Script {
             }
             player.exp(Skill.Farming, item.def["farming_xp", 0.0])
             val chance = item.def.getOrNull<String>("farming_chance")?.toIntRange(inclusive = true)
-            if (chance == null || !saveLife(player, chance)) {
+            if (chance == null || !saveLife(player, chance, obj)) {
                 val value = player[obj.id, "weeds_life3"]
                 val type = value.substringBeforeLast("_")
                 if (removeVarbit("patch_super_compost", obj.id)) {
@@ -311,8 +335,9 @@ class FarmingPatch : Script {
         return if (patchType == "veg") "allotment" else "$patchType patch"
     }
 
-    fun saveLife(player: Player, chance: IntRange): Boolean {
-        if (player.holdsItem("magic_secateurs")) {
+    fun saveLife(player: Player, chance: IntRange, obj: GameObject): Boolean {
+        if (player.holdsItem("magic_secateurs") && !obj.id.startsWith("farming_belladonna")) {
+            // TODO doesn't apply for cactus, mushrooms, flowers (except limpwurts), tree roots, calqat and fruit trees
             return Level.success(player.levels.get(Skill.Farming), chance.first + (chance.first / 10)..chance.last + (chance.last / 10))
         }
         return Level.success(player.levels.get(Skill.Farming), chance)
@@ -364,20 +389,21 @@ class FarmingPatch : Script {
                 // potato_cactus
                 "patch_al_kharid_cactus",
             ),
-            // herbs, bushes
             4 to listOf(
-                "patch_varrock_bush",
-                "patch_falador_herb",
-                "patch_rimmington_bush",
-                "patch_port_phasmatys_herb",
-                "patch_my_arm_herb",
-                "patch_catherby_herb",
-                "patch_etceteria_bush",
-                "patch_ardougne_herbs",
-                "patch_ardougne_bush",
+                // herbs
+                "farming_herb_patch_falador",
+                "farming_herb_patch_catherby",
+                "farming_herb_patch_ardougne",
+                "farming_herb_patch_morytania",
+                "farming_herb_patch_my_arm",
                 "patch_herblore_habitat_island_vine_herb",
                 "patch_herblore_habitat_vine_herb",
                 "patch_herblore_habitat_vine_bush",
+                // bushes
+                "patch_varrock_bush",
+                "patch_rimmington_bush",
+                "patch_etceteria_bush",
+                "patch_ardougne_bush",
             ),
             // trees, mushrooms
             8 to listOf(

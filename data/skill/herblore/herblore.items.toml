@@ -130,6 +130,9 @@ cleaning = { level = 1, clean_xp = 2.5 }
 weight = 0.007
 compostable = true
 kept = "Wilderness"
+farming_level = 9
+farming_xp = 12.5
+farming_chance = "25-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_guam_noted]
@@ -143,6 +146,9 @@ cleaning = { level = 9, clean_xp = 5.0 }
 weight = 0.007
 compostable = true
 kept = "Wilderness"
+farming_level = 14
+farming_xp = 15.0
+farming_chance = "28-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_marrentill_noted]
@@ -156,6 +162,9 @@ cleaning = { level = 5, clean_xp = 3.8 }
 weight = 0.007
 compostable = true
 kept = "Wilderness"
+farming_level = 19
+farming_xp = 18.0
+farming_chance = "31-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_tarromin_noted]
@@ -169,6 +178,9 @@ cleaning = { level = 20, clean_xp = 6.3 }
 weight = 0.007
 compostable = true
 kept = "Wilderness"
+farming_level = 26
+farming_xp = 24.0
+farming_chance = "36-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_harralander_noted]
@@ -181,6 +193,9 @@ limit = 10000
 cleaning = { level = 25, clean_xp = 7.5 }
 weight = 0.007
 compostable = true
+farming_level = 32
+farming_xp = 30.5
+farming_chance = "39-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_ranarr_noted]
@@ -193,6 +208,9 @@ limit = 10000
 cleaning = { level = 40, clean_xp = 8.8 }
 weight = 0.007
 compostable = true
+farming_level = 44
+farming_xp = 48.5
+farming_chance = "46-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_irit_noted]
@@ -206,6 +224,9 @@ cleaning = { level = 48, clean_xp = 10.0 }
 weight = 0.007
 compostable = true
 super_compost = true
+farming_level = 50
+farming_xp = 61.5
+farming_chance = "50-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_avantoe_noted]
@@ -219,6 +240,9 @@ cleaning = { level = 54, clean_xp = 11.3 }
 weight = 0.007
 compostable = true
 super_compost = true
+farming_level = 56
+farming_xp = 78.0
+farming_chance = "54-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_kwuarm_noted]
@@ -232,6 +256,9 @@ cleaning = { level = 65, clean_xp = 12.5 }
 weight = 0.007
 compostable = true
 super_compost = true
+farming_level = 67
+farming_xp = 120.0
+farming_chance = "60-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_cadantine_noted]
@@ -245,6 +272,9 @@ cleaning = { level = 70, clean_xp = 13.8 }
 weight = 0.007
 compostable = true
 super_compost = true
+farming_level = 79
+farming_xp = 192.0
+farming_chance = "67-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_dwarf_weed_noted]
@@ -258,6 +288,9 @@ cleaning = { level = 75, clean_xp = 15.0 }
 weight = 0.007
 compostable = true
 super_compost = true
+farming_level = 85
+farming_xp = 224.5
+farming_chance = "71-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_torstol_noted]
@@ -652,6 +685,9 @@ cleaning = { level = 59, clean_xp = 11.8 }
 weight = 0.007
 compostable = true
 super_compost = true
+farming_level = 62
+farming_xp = 98.5
+farming_chance = "57-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_snapdragon_noted]
@@ -675,6 +711,9 @@ price = 3146
 limit = 10000
 cleaning = { level = 41, clean_xp = 9.5 }
 weight = 0.007
+farming_level = 46
+farming_xp = 51.5
+farming_chance = "46-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_wergali_noted]
