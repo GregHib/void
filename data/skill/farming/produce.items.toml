@@ -163,6 +163,9 @@ limit = 10000
 weight = 0.113
 compostable = true
 super_compost = true
+farming_level = 48.5
+farming_xp = 54.5
+farming_chance = "126-180"
 examine = "A juicy watermelon."
 
 [watermelon_noted]
@@ -186,6 +189,9 @@ price = 24
 limit = 10000
 weight = 0.028
 compostable = true
+farming_level = 20
+farming_xp = 19.0
+farming_chance = "88-180"
 cooking = { level = 28, xp = 104.0, chances = { range = "65-382" }, cooked = "cooked_sweetcorn", cooked_message = "You cook some sweetcorn.", burnt = "burnt_sweetcorn", burnt_message = "You accidentally burn the sweetcorn." }
 examine = "Raw sweetcorn."
 

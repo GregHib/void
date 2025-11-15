@@ -454,6 +454,9 @@ limit = 10000
 heals = 60
 weight = 0.028
 compostable = true
+farming_level = 31
+farming_xp = 29.0
+farming_chance = "103-180"
 examine = "A freshly picked strawberry."
 
 [strawberry_noted]

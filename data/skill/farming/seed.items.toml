@@ -317,6 +317,11 @@ kept = "Wilderness"
 id = 5319
 price = 1
 limit = 500
+farming_level = 5
+farming_amount = 3
+farming_crop = "onion"
+farming_xp = 9.5
+farming_patch = "allotment"
 examine = "An onion seed - plant in an allotment."
 kept = "Wilderness"
 
@@ -324,19 +329,34 @@ kept = "Wilderness"
 id = 5320
 price = 2
 limit = 500
-examine = "A sweetcorn seed - plant in an allotment."
 kept = "Wilderness"
+farming_level = 20
+farming_amount = 3
+farming_crop = "tomato"
+farming_xp = 17.0
+farming_patch = "allotment"
+examine = "A sweetcorn seed - plant in an allotment."
 
 [watermelon_seed]
 id = 5321
 price = 2023
 limit = 500
+farming_level = 47
+farming_amount = 3
+farming_crop = "watermelon"
+farming_xp = 48.5
+farming_patch = "allotment"
 examine = "A watermelon seed - plant in an allotment."
 
 [tomato_seed]
 id = 5322
 price = 1
 limit = 500
+farming_level = 12
+farming_amount = 3
+farming_crop = "tomato"
+farming_xp = 12.5
+farming_patch = "allotment"
 examine = "A tomato seed - plant in an allotment."
 kept = "Wilderness"
 
@@ -344,12 +364,22 @@ kept = "Wilderness"
 id = 5323
 price = 113
 limit = 500
+farming_level = 31
+farming_amount = 3
+farming_crop = "strawberry"
+farming_xp = 26.0
+farming_patch = "allotment"
 examine = "A strawberry seed - plant in an allotment."
 
 [cabbage_seed]
 id = 5324
 price = 1
 limit = 500
+farming_level = 7
+farming_amount = 3
+farming_crop = "onion"
+farming_xp = 10.0
+farming_patch = "allotment"
 examine = "A cabbage seed - plant in an allotment."
 kept = "Wilderness"
 

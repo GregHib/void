@@ -617,6 +617,9 @@ limit = 1000
 heals = 20
 weight = 0.15
 compostable = true
+farming_level = 5
+farming_xp = 10.5
+farming_chance = "105-180"
 kept = "Wilderness"
 examine = "A strong smelling onion."
 
@@ -665,6 +668,9 @@ heals = 20
 weight = 0.453
 compostable = true
 kept = "Wilderness"
+farming_level = 7
+farming_xp = 11.5
+farming_chance = "107-180"
 examine = "Yuck, I don't like cabbage."
 
 [cabbage_noted]
@@ -765,6 +771,9 @@ heals = 20
 weight = 0.08
 compostable = true
 kept = "Wilderness"
+farming_level = 12
+farming_xp = 14.0
+farming_chance = "112-180"
 examine = "This would make good ketchup."
 
 [tomato_noted]
