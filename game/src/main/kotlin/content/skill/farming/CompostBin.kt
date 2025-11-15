@@ -68,10 +68,11 @@ class CompostBin : Script {
             sound("compost_open")
             message("You open the compost bin.")
             set(
-                variable, current
+                variable,
+                current
                     .replace("compostable", "compost")
                     .replace("tomatoes", "rotten_tomatoes")
-                    .replace("_ready", "_15")
+                    .replace("_ready", "_15"),
             )
         }
 
@@ -200,7 +201,7 @@ class CompostBin : Script {
             if (!player.inventory.remove(slot, item)) {
                 break
             }
-            player[variable] = "${type}_${i}"
+            player[variable] = "${type}_$i"
             slot = player.inventory.indexOf(item)
             if (slot == -1) {
                 break
@@ -216,5 +217,4 @@ class CompostBin : Script {
             else -> "compostable"
         }
     }
-
 }

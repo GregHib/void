@@ -183,5 +183,4 @@ class FarmingPatchTest : WorldTest() {
         assertEquals(0, player.inventory.count("watering_can_7"))
         assertEquals(0.0, player.experience.get(Skill.Farming))
     }
-
 }
