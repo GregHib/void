@@ -13,7 +13,7 @@ import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.definition.data.FontDefinition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.client.variable.ListValues
+import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.data.config.JingleDefinition
 import world.gregs.voidps.engine.data.config.SoundDefinition
 import world.gregs.voidps.engine.data.config.VariableDefinition
@@ -89,12 +89,12 @@ class FarmingTest : KoinMock() {
 
     @Test
     fun `Weeds grow correctly through stages`() {
-        player["patch_falador_nw_allotment"] = "weeds_0"
+        player["farming_veg_patch_falador_nw"] = "weeds_0"
         player["farming_offset_mins"] = 0
 
         farming.grow(player, 10)
 
-        val next = player["patch_falador_nw_allotment", ""]
+        val next = player["farming_veg_patch_falador_nw", ""]
         assertEquals("weeds_1", next)
     }
 
@@ -103,7 +103,7 @@ class FarmingTest : KoinMock() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int): Int = 0
         })
-        player["patch_falador_nw_allotment"] = "weeds_3"
+        player["farming_veg_patch_falador_nw"] = "weeds_3"
         player["farming_offset_mins"] = 0
 
         // simulate several growth cycles
@@ -111,20 +111,20 @@ class FarmingTest : KoinMock() {
             farming.grow(player, it * 5)
         }
 
-        val next = player["patch_falador_nw_allotment", ""]
-        assertEquals("weeds_none", next)
+        val next = player["farming_veg_patch_falador_nw", ""]
+        assertEquals("weeds_life1", next)
     }
 
     @Test
     fun `Crop progresses through growth stages`() {
-        player["patch_falador_nw_allotment"] = "potato_0"
+        player["farming_veg_patch_falador_nw"] = "potato_0"
         player["farming_offset_mins"] = 0
-        player["amulet_of_farming_patch"] = "patch_falador_nw_allotment"
-        setDefinition(listOf("potato_0", "potato_1", "potato_2", "potato_3", "potato_none"))
+        player["amulet_of_farming_patch"] = "farming_veg_patch_falador_nw"
+        setDefinition(listOf("potato_0", "potato_1", "potato_2", "potato_3", "potato_life3"))
 
         for (i in 0 until 3) {
             farming.grow(player, i * 10)
-            assertEquals("potato_${i + 1}", player["patch_falador_nw_allotment", ""])
+            assertEquals("potato_${i + 1}", player["farming_veg_patch_falador_nw", ""])
         }
 
         assertTrue(player.containsMessage("A low hum resonates"))
@@ -132,14 +132,14 @@ class FarmingTest : KoinMock() {
 
     @Test
     fun `Watered crop dries up after next growth stage`() {
-        player["patch_falador_nw_allotment"] = "potato_watered_0"
+        player["farming_veg_patch_falador_nw"] = "potato_watered_0"
         player["farming_offset_mins"] = 0
-        player["amulet_of_farming_patch"] = "patch_falador_nw_allotment"
-        setDefinition(listOf("potato_0", "potato_1", "potato_none", "potato_watered_0", "potato_watered_1"))
+        player["amulet_of_farming_patch"] = "farming_veg_patch_falador_nw"
+        setDefinition(listOf("potato_0", "potato_1", "potato_life3", "potato_watered_0", "potato_watered_1"))
 
         farming.grow(player, 10)
 
-        assertEquals("potato_1", player["patch_falador_nw_allotment", ""])
+        assertEquals("potato_1", player["farming_veg_patch_falador_nw", ""])
         assertTrue(player.containsMessage("A low hum resonates"))
     }
 
@@ -148,9 +148,9 @@ class FarmingTest : KoinMock() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int): Int = 4
         })
-        player["patch_falador_nw_allotment"] = "magic_tree_1"
+        player["farming_veg_patch_falador_nw"] = "magic_tree_1"
         player["farming_offset_mins"] = 0
-        player["amulet_of_farming_patch"] = "patch_falador_nw_allotment"
+        player["amulet_of_farming_patch"] = "farming_veg_patch_falador_nw"
         farmingDefinitions.diseaseChances["magic_tree"] = 9
         val array = Array(70) { "" }
         array[0] = "magic_tree_0"
@@ -162,7 +162,7 @@ class FarmingTest : KoinMock() {
 
         farming.grow(player, 10)
 
-        assertEquals("magic_tree_diseased_1", player["patch_falador_nw_allotment", ""])
+        assertEquals("magic_tree_diseased_1", player["farming_veg_patch_falador_nw", ""])
         assertTrue(player.containsMessage("A low hum resonates"))
     }
 
@@ -171,42 +171,42 @@ class FarmingTest : KoinMock() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int): Int = 0
         })
-        player["patch_falador_nw_allotment"] = "potato_0"
+        player["farming_veg_patch_falador_nw"] = "potato_0"
         player["farming_offset_mins"] = 0
         val array = Array(70) { "" }
         array[0] = "potato_0"
         array[1] = "potato_1"
-        array[2] = "potato_none"
+        array[2] = "potato_life3"
         setDefinition(array.toList())
 
         farming.grow(player, 10)
 
-        val next = player["patch_falador_nw_allotment", ""]
+        val next = player["farming_veg_patch_falador_nw", ""]
         assertEquals("potato_1", next)
     }
 
     @Test
     fun `Diseased crop becomes dead next farming tick`() {
-        player["patch_falador_nw_allotment"] = "potato_diseased_2"
+        player["farming_veg_patch_falador_nw"] = "potato_diseased_2"
         player["farming_offset_mins"] = 0
-        player["amulet_of_farming_patch"] = "patch_falador_nw_allotment"
+        player["amulet_of_farming_patch"] = "farming_veg_patch_falador_nw"
 
         farming.grow(player, 10)
-        assertEquals("potato_dead_2", player["patch_falador_nw_allotment"])
+        assertEquals("potato_dead_2", player["farming_veg_patch_falador_nw"])
         assertTrue(player.containsMessage("A low hum resonates"))
     }
 
     @Test
     fun `Completed crop uses compost state`() {
-        player["patch_falador_nw_allotment"] = "potato_3"
-        player["patch_falador_nw_allotment_compost"] = "super"
+        player["farming_veg_patch_falador_nw"] = "potato_3"
+        player.addVarbit("patch_super_compost", "farming_veg_patch_falador_nw")
         player["farming_offset_mins"] = 0
-        setDefinition(listOf("potato_3", "potato_none", "potato_compost", "potato_super"))
+        setDefinition(listOf("potato_3", "potato_life3", "potato_life2", "potato_life1"))
 
         farming.grow(player, 10)
 
-        val next = player["patch_falador_nw_allotment", ""]
-        assertEquals("potato_super", next)
+        val next = player["farming_veg_patch_falador_nw", ""]
+        assertEquals("potato_life3", next)
     }
 
     @Test
@@ -230,9 +230,10 @@ class FarmingTest : KoinMock() {
     }
 
     private fun setDefinition(list: List<String>) {
-        definitions["patch_falador_nw_allotment"] = VariableDefinition.VarbitDefinition(
+        val map = list.mapIndexed { index, s -> s to index }.toMap()
+        definitions["farming_veg_patch_falador_nw"] = VariableDefinition.VarbitDefinition(
             id = -1,
-            values = ListValues(list),
+            values = MapValues(map as Map<Any, Int>),
             default = null,
             persistent = false,
             transmit = false,

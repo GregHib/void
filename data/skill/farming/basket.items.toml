@@ -197,8 +197,9 @@ id = 5418
 price = 7
 limit = 100
 weight = 0.453
-examine = "An empty vegetable sack."
+aka = ["sack"]
 kept = "Wilderness"
+examine = "An empty vegetable sack."
 
 [empty_sack_noted]
 id = 5419

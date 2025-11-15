@@ -1,86 +1,161 @@
 package content.skill.farming
 
+import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.entity.player.stat.Stats
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.data.definition.VariableDefinitions
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.queue.weakQueue
 
-class FarmingPatch(
-    val floorItems: FloorItems,
-    val variableDefinitions: VariableDefinitions,
-) : Script {
+class FarmingPatch : Script {
 
     init {
         playerSpawn {
-            for ((_, list) in patches) {
-                for (variable in list) {
+            for (variable in variables.data.keys) {
+                if (variable.startsWith("farming_")) {
                     sendVariable(variable)
                 }
             }
         }
 
+        // TODO cure
         objectOperate("Rake", "*_patch_weeds_*", handler = ::rake)
-        objectOperate("Inspect", "*_patch_weeds_*", handler = ::inspect)
-        objectOperate("Guide", "*_patch_weeds_*", handler = ::guide)
-        objectOperate("Harvest", "*_patch_weeds_*", handler = ::harvest)
-
-        itemOnObjectOperate("compost,supercompost", "*_patch*") {
-            val id = it.target.def(this).stringId
-            if (containsVarbit("patch_super_compost", id)) {
-                message("This allotment has already been treated with ${it.item.id}.")
-                return@itemOnObjectOperate
-            }
-            if (!inventory.replace(it.slot, it.item.id, "bucket")) {
-                return@itemOnObjectOperate
-            }
-            addVarbit("patch_super_compost", id)
-            anim("farming_pour_water")
-            sound("farming_compost")
-            delay(2)
-            message("You treat the herb patch with ${it.item.id}.")
-            exp(Skill.Farming, it.item.def["farming_xp", 0.0])
+        objectOperate("Inspect", handler = ::inspect)
+        objectOperate("Guide", handler = ::guide)
+        objectOperate("Harvest", "*_fullygrown") { (target) ->
+            val def = target.def(this)
+            val item: String = def["harvest"]
+            message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
+            harvest(Item(item), target)
         }
-
-        itemOnObjectOperate("watering_can_*", "*_patch_*") {
-            val variable = it.target.id.replace("farming_veg_patch_", "patch_falador_")
-            val value = get(variable, "weeds_super")
-            if (value.startsWith("weeds") || value.contains("watered")) {
-                message("This patch doesn't need watering.")
-                return@itemOnObjectOperate
-            }
-            if (!inventory.discharge(this, it.slot)) {
-                return@itemOnObjectOperate
-            }
-            anim("farming_watering")
-            sound("farming_watering")
-            delay(2)
-            set(variable, value.replaceAfterLast("_", "watered_"))
+        itemOnObjectOperate("spade", "*_fullygrown") { (target) ->
+            val def = target.def(this)
+            val item: String = def["harvest"]
+            message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
+            harvest(Item(item), target)
         }
+        itemOnObjectOperate("compost,supercompost", "*", handler = ::compost)
+        itemOnObjectOperate("watering_can_*", "*", handler = ::water)
+        itemOnObjectOperate("*_seed", "*", handler = ::plantSeed)
+    }
 
-        itemOnObjectOperate("*", "*_patch_*", handler = ::plant)
+    private suspend fun compost(player: Player, interact: ItemOnObjectInteract) {
+        val target = interact.target
+        if (!target.id.startsWith("farming_")) {
+            return
+        }
+        val id = target.def(player).stringId
+        if (id.endsWith("_fullygrown")) {
+            player.message("Composting it isn't going to make it get any bigger.")
+            return
+        }
+        val item = interact.item
+        val key = if (item.id == "supercompost") "patch_super_compost" else "patch_compost"
+        if (player.containsVarbit(key, interact.target.id)) {
+            player.message("This allotment has already been treated with ${item.id}.")
+            return
+        }
+        val value = player[interact.target.id, "weeds_life3"]
+        if (value.endsWith("_compost") || value.endsWith("_super")) {
+            player.message("Composting it isn't going to make it get any bigger.")
+            return
+        }
+        if (!player.inventory.replace(interact.slot, item.id, "bucket")) {
+            return
+        }
+        player.addVarbit(key, interact.target.id)
+        player.anim("farming_pour_water")
+        player.sound("farming_compost")
+        player.delay(2)
+        player.message("You treat the ${interact.target.patchName()} with ${item.id}.")
+        player.exp(Skill.Farming, item.def["farming_xp", 0.0])
+    }
+
+    private suspend fun water(player: Player, interact: ItemOnObjectInteract) {
+        val target = interact.target
+        if (!target.id.startsWith("farming_")) {
+            return
+        }
+        val id = target.def(player).stringId
+        if (id.endsWith("_fullygrown")) {
+            player.message("This patch doesn't need watering.")
+            return
+        }
+        val value = player[target.id, "weeds_life3"]
+        if (value.startsWith("weeds") || value.contains("watered")) {
+            player.message("This patch doesn't need watering.")
+            return
+        }
+        if (!player.inventory.discharge(player, interact.slot)) {
+            return
+        }
+        player.anim("farming_watering")
+        player.sound("farming_watering")
+        player.delay(2)
+        player[target.id] = value.replaceFirst("_", "_watered_")
+    }
+
+    private suspend fun plantSeed(player: Player, interact: ItemOnObjectInteract) {
+        val target = interact.target
+        if (!target.id.startsWith("farming_")) {
+            return
+        }
+        val id = target.def(player).stringId
+        if (id.endsWith("patch_weeded")) {
+            plant(player, interact)
+            return
+        }
+        val item = interact.item
+        val amount = item.def["farming_amount", 1]
+        val stage = player[target.id, "weeds_life3"]
+        if (stage != "weeds_0") {
+            // TODO proper plurals
+            player.statement("You can only plant ${item.def.name.plural(amount)} in an empty patch.")
+            return
+        }
+        val patch: String = item.def.getOrNull("farming_patch") ?: return
+        val patchName = target.patchName()
+        if (patchName.removeSuffix(" patch") != patch) {
+            player.statement("You can only plant ${item.def.name.plural(amount)} in ${patchName.an()} $patchName.")
+            return
+        }
     }
 
     private suspend fun plant(player: Player, interact: ItemOnObjectInteract) {
         val item = interact.item
+        item.def.getOrNull<String>("farming_patch") ?: return
         val amount = item.def["farming_amount", 1]
+        // TODO order of checks
         if (!player.has(Skill.Farming, item.def["farming_level", 1])) {
             // TODO proper message
+            return
+        }
+        val variable = interact.target.id
+        val patchName = interact.target.patchName()
+        if (patchName.startsWith("tree") && !player.inventory.contains("spade")) {
+            player.message("You need a spade to plant the sapling into the dirt.") // TODO proper message
+            return
+        }
+        if (!patchName.startsWith("tree") && !player.inventory.contains("seed_dibber")) {
+            player.message("You need a seed dibber to plant the seed in the dirt.") // TODO proper message
             return
         }
         if (!player.inventory.remove(item.id, amount)) {
@@ -90,130 +165,155 @@ class FarmingPatch(
         player.anim("farming_seed_dibbing")
         player.sound("farming_dibbing")
         player.delay(3)
-        val patchId = interact.target.def(player).stringId
-        val patchType = patchId.substringAfterLast("_")
-        val patchName = if (patchType == "allotment") patchType else "$patchType patch"
         player.message("You plant ${if (amount == 1) "a" else amount} ${item.def.name.plural(amount)} in the ${patchName}.", type = ChatType.Filter)
-        val variable = patchId.replace("", "")
         val crop: String = item.def.getOrNull("farming_crop") ?: return
         player[variable] = "${crop}_0"
         player.exp(Skill.Farming, item.def["farming_xp", 0.0])
     }
 
-    private suspend fun rake(player: Player, interact: PlayerOnObjectInteract) {
-        val variable = variableDefinitions.getVarbit(interact.target.def.varbit) ?: return
+    private fun rake(player: Player, interact: PlayerOnObjectInteract, count: Int = 3) {
+        if (count <= 0) {
+            return
+        }
         if (!player.inventory.contains("rake")) {
             player.message("You need a rake to weed a farming patch")
             return
         }
-        repeat(3) {
-            player.anim("farming_raking")
-            player.pause(3)
-            val current = player[variable, "weeds_super"]
+        val obj = interact.target
+        player.anim("farming_raking")
+        player.weakQueue("farming_rake", 3) {
+            val current = player[obj.id, "weeds_life3"]
             val next = when (current) {
-                "weeds_super" -> "weeds_2"
-                "weeds_compost" -> "weeds_1"
-                "weeds_none" -> "weeds_0"
+                "weeds_life3" -> "weeds_2"
+                "weeds_life2" -> "weeds_1"
+                "weeds_life1" -> "weeds_0"
                 "weeds_2" -> "weeds_1"
                 "weeds_1" -> "weeds_0"
-                else -> {
-                    player.mode = EmptyMode
-                    return
-                }
+                else -> return@weakQueue
             }
-            player[variable] = next
+            player[obj.id] = next
             player.addOrDrop("weeds")
             player.timers.startIfAbsent("farming_tick")
             player.exp(Skill.Farming, 8.0)
+            rake(player, interact, count - 1)
         }
     }
 
     private fun inspect(player: Player, interact: PlayerOnObjectInteract) {
-        val variable = variableDefinitions.getVarbit(interact.target.def.varbit) ?: return
+        if (!interact.target.id.startsWith("farming_")) {
+            player.noInterest()
+            return
+        }
         player.message(buildString {
-            when (variable.substringAfterLast("_")) {
-                "allotment" -> append("This is an allotment.")
-                "hops" -> append("")
-                "tree" -> append("This is a${if (variable.endsWith("fruit_tree")) "fruit " else ""} tree patch.")
-                "bush" -> append("")
-                "flower" -> append("This is a flower patch.")
-                "herb" -> append("This is a herb patch.")
-                else -> append("")
-            }
+            val name = interact.target.patchName()
+            append("This is${name.an()} $name.")
             append(" ")
-            when (player["${variable}_compost", "none"]) {
-                "none" -> append("The soil has not been treated.")
-                "compost" -> append("The soil has been treated with compost.")
-                "super" -> append("The soil has been treated with supercompost.")
+            when {
+                player.containsVarbit("patch_super_compost", interact.target.id) -> append("The soil has been treated with supercompost.")
+                player.containsVarbit("patch_compost", interact.target.id) -> append("The soil has been treated with compost.")
+                else -> append("The soil has not been treated.")
             }
             append(" ")
 
-            val value = player[variable, "weeds_super"]
+            val value = player[interact.target.id, "weeds_life3"]
             if (value == "weeds_0") {
                 append("The patch is empty.")
             } else if (value.contains("weeds")) {
                 append("The patch needs weeding.")
             } else {
-                append("The patch has Dwarf weed growing in it and is at state 1/5.")
+                val type = value.substringBeforeLast("_").removeSuffix("_watered").removeSuffix("_dead").removeSuffix("_diseased")
+                // TODO diseased/dead messages
+                val amount = if (name == "allotment") 3 else 1
+                val stage = value.substringAfterLast("_").toIntOrNull()
+                val stages = if (name == "allotment") 5 else 0
+                if (stage == null) {
+                    append("The patch has ${type.plural(amount)} growing in it and is at state $stages/$stages.")
+                } else {
+                    append("The patch has ${type.plural(amount)} growing in it and is at state ${stage + 1}/$stages.")
+                }
             }
         })
     }
 
     private fun guide(player: Player, interact: PlayerOnObjectInteract) {
-        val variable = variableDefinitions.getVarbit(interact.target.def.varbit) ?: return
+        if (!interact.target.id.startsWith("farming_")) {
+            player.noInterest()
+            return
+        }
+        val name = interact.target.patchName()
         Stats.openGuide(
             player,
             Skill.Farming,
-            when (variable.substringAfterLast("_")) {
+            when (name) {
                 "allotment" -> 0
-                "hops" -> 1
-                "tree" -> if (variable.endsWith("fruit_tree")) 3 else 2
-                "bush" -> 4
-                "flower" -> 5
-                "herb" -> 6
+                "hops patch" -> 1
+                "tree patch" -> 2
+                "fruit tree patch" -> 3
+                "bush patch" -> 4
+                "flower patch" -> 5
+                "herb patch" -> 6
                 else -> 7
             },
         )
     }
 
-    private fun harvest(player: Player, interact: PlayerOnObjectInteract) {
-        val variable = variableDefinitions.getVarbit(interact.target.def.varbit) ?: return
-        if (player.inventory.isFull()) {
-            player.inventoryFull("to do that")
+    private fun Player.harvest(item: Item, obj: GameObject) {
+        if (!inventory.contains("spade")) {
+            message("You need a spade to harvest your crops.")
             return
         }
-        if (!player.inventory.contains("spade")) {
-            player.message("You need a spade to harvest your crops.")
+        if (inventory.isFull()) {
+            inventoryFull("to do that")
             return
         }
-        val patchId = interact.target.def(player).stringId
-        val patchType = patchId.substringAfterLast("_")
-        val patchName = if (patchType == "allotment") patchType else "$patchType patch"
-        player.message("You begin to harvest the $patchName.", ChatType.Filter)
-        player.queue("farming_harvest") {
-            for (i in 0 until 2) {
-                if (player.inventory.isFull()) {
-                    player.message("You have run out of inventory space.", ChatType.Filter)
-                    break
-                }
-                player.anim("picking_low")
-                player.delay(1)
-                if (player[variable, "weeds_3"] == "weeds_0") {
-                    player.message("The $patchName is now empty.")
-                    player.exp(Skill.Farming, 192.0)
-                    player.clearAnim()
-                    break
-                }
-                val item = patchId.substringBeforeLast("_")
-                if (!player.inventory.add(item)) {
-                    player.message("You have run out of inventory space.", ChatType.Filter)
-                    break
-                }
-                player.sound("pick")
-                player.exp(Skill.Farming, 192.0)
-                player.delay(2)
+        if (!has(Skill.Farming, item.def["farming_level", 1])) {
+            // TODO proper message
+            return
+        }
+        face(obj)
+        anim("human_dig")
+        sound("dig_spade")
+        weakQueue("farming_harvest", 2) {
+            if (!inventory.add(item.id)) {
+                message("You have run out of inventory space.", ChatType.Filter)
+                return@weakQueue
             }
+            player.exp(Skill.Farming, item.def["farming_xp", 0.0])
+            val chance = item.def.getOrNull<String>("farming_chance")?.toIntRange(inclusive = true)
+            if (chance == null || !saveLife(player, chance)) {
+                val value = player[obj.id, "weeds_life3"]
+                val type = value.substringBeforeLast("_")
+                if (removeVarbit("patch_super_compost", obj.id)) {
+                    addVarbit("patch_compost", obj.id)
+                } else if (!removeVarbit("patch_compost", obj.id)) {
+                    val stage = value.substringAfterLast("_")
+                    when (stage) {
+                        "life3" -> player[obj.id] = "${type}_life2"
+                        "life2" -> player[obj.id] = "${type}_life1"
+                        "life1" -> {
+                            player[obj.id] = "weeds_0"
+                            message("The ${obj.patchName()} is now empty.")
+                            clearAnim()
+                            return@weakQueue
+                        }
+                        else -> return@weakQueue
+                    }
+                }
+            }
+            harvest(item, obj)
         }
+    }
+
+    fun GameObject.patchName(): String {
+        val patchType = id.removePrefix("farming_").substringBeforeLast("_patch")
+        return if (patchType == "veg") "allotment" else "$patchType patch"
+    }
+
+    fun saveLife(player: Player, chance: IntRange): Boolean {
+        if (player.holdsItem("magic_secateurs")) {
+            return Level.success(player.levels.get(Skill.Farming), chance.first + (chance.first / 10)..chance.last + (chance.last / 10))
+        }
+        return Level.success(player.levels.get(Skill.Farming), chance)
     }
 
     private fun clear(player: Player, variable: String) {
@@ -247,8 +347,8 @@ class FarmingPatch(
             2 to listOf(
                 "patch_lumbridge_hops",
                 "patch_al_kharid_cactus",
-                "patch_falador_nw_allotment",
-                "patch_falador_se_allotment",
+                "farming_veg_patch_falador_nw",
+                "farming_veg_patch_falador_se",
                 "patch_port_phasmatys_nw_allotment",
                 "patch_port_phasmatys_se_allotment",
                 "patch_harmony_allotment",
