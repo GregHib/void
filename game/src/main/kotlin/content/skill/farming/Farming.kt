@@ -70,7 +70,12 @@ class Farming(
                 }
                 val produce = current.substringBeforeLast("_")
                 if (produce.endsWith("diseased")) {
-                    player[variable] = current.replace("diseased", "dead")
+                    if (variable.contains("herb") && !produce.startsWith("goutweed")) {
+                        val stage = current.removeSuffix("_diseased").substringAfterLast("_")
+                        player[variable] = "herb_dead_${stage}"
+                    } else {
+                        player[variable] = current.replace("diseased", "dead")
+                    }
                     amuletOfFarming(player, variable)
                     continue
                 }
@@ -81,7 +86,7 @@ class Farming(
                     val stage = type.toInt()
                     val next = (stage + 1).rem(4)
                     player[variable] = when (next) {
-                        3 ->
+                        3 -> if (variable.contains("farming_veg_")) {
                             "weeds_${
                                 when (random.nextInt(3)) {
                                     0 -> "life1"
@@ -89,6 +94,7 @@ class Farming(
                                     else -> "life3"
                                 }
                             }"
+                        } else "weeds_3"
                         else -> "weeds_$next"
                     }
                     continue

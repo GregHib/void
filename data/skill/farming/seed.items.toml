@@ -135,6 +135,10 @@ examine = "Plant in a plantpot of soil to grow a sapling."
 id = 5291
 price = 2
 limit = 100
+farming_level = 9
+farming_crop = "guam"
+farming_xp = 11.0
+farming_patch = "herb"
 examine = "A guam seed - plant in a herb patch."
 kept = "Wilderness"
 
@@ -142,6 +146,10 @@ kept = "Wilderness"
 id = 5292
 price = 2
 limit = 100
+farming_level = 14
+farming_crop = "marrentill"
+farming_xp = 13.5
+farming_patch = "herb"
 examine = "A marrentill seed - plant in a herb patch."
 kept = "Wilderness"
 
@@ -149,6 +157,10 @@ kept = "Wilderness"
 id = 5293
 price = 1
 limit = 100
+farming_level = 19
+farming_crop = "tarromin"
+farming_xp = 16.0
+farming_patch = "herb"
 examine = "A tarromin seed - plant in a herb patch."
 kept = "Wilderness"
 
@@ -156,66 +168,110 @@ kept = "Wilderness"
 id = 5294
 price = 3
 limit = 100
+farming_level = 26
+farming_crop = "harralander"
+farming_xp = 21.5
+farming_patch = "herb"
 examine = "A harralander seed - plant in a herb patch."
 
 [ranarr_seed]
 id = 5295
 price = 1487
 limit = 100
+farming_level = 32
+farming_crop = "ranarr"
+farming_xp = 27.0
+farming_patch = "herb"
 examine = "A ranarr seed - plant in a herb patch."
 
 [toadflax_seed]
 id = 5296
 price = 366
 limit = 100
+farming_level = 38
+farming_crop = "toadflax"
+farming_xp = 34.0
+farming_patch = "herb"
 examine = "A toadflax seed - plant in a herb patch."
 
 [irit_seed]
 id = 5297
 price = 68
 limit = 100
+farming_level = 44
+farming_crop = "irit"
+farming_xp = 43.0
+farming_patch = "herb"
 examine = "An irit seed - plant in a herb patch."
 
 [avantoe_seed]
 id = 5298
 price = 227
 limit = 100
+farming_level = 50
+farming_crop = "avantoe"
+farming_xp = 54.5
+farming_patch = "herb"
 examine = "An avantoe seed - plant in a herb patch."
 
 [kwuarm_seed]
 id = 5299
 price = 118
 limit = 100
+farming_level = 56
+farming_crop = "kwuarm"
+farming_xp = 69.0
+farming_patch = "herb"
 examine = "A kwuarm seed - plant in a herb patch."
 
 [snapdragon_seed]
 id = 5300
 price = 16100
 limit = 100
+farming_level = 62
+farming_crop = "snapdragon"
+farming_xp = 87.5
+farming_patch = "herb"
 examine = "A snapdragon seed - plant in a herb patch."
 
 [cadantine_seed]
 id = 5301
 price = 112
 limit = 100
+farming_level = 67
+farming_crop = "cadantine"
+farming_xp = 106.5
+farming_patch = "herb"
 examine = "A cadantine seed - plant in a herb patch."
 
 [lantadyme_seed]
 id = 5302
 price = 15700
 limit = 100
+farming_level = 73
+farming_crop = "lantadyme"
+farming_xp = 134.5
+farming_patch = "herb"
 examine = "A lantadyme seed - plant in a herb patch."
 
 [dwarf_weed_seed]
 id = 5303
 price = 11000
 limit = 100
+farming_level = 79
+farming_crop = "dwarf_weed"
+farming_xp = 170.5
+farming_patch = "herb"
 examine = "A dwarf weed seed - plant in a herb patch."
 
 [torstol_seed]
 id = 5304
 price = 362745
 limit = 100
+farming_level = 85
+farming_crop = "torstol"
+farming_xp = 199.5
+farming_patch = "herb"
 examine = "A torstol seed - plant in a herb patch."
 
 [barley_seed]

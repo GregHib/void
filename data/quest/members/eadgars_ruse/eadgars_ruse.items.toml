@@ -3,8 +3,11 @@
 id = 3261
 tradeable = false
 weight = 0.007
-examine = "A pale, tough looking herb."
+farming_level = 29
+farming_xp = 45.0
+farming_chance = "39-80"
 kept = "Reclaim"
+examine = "A pale, tough looking herb."
 
 [troll_thistle]
 id = 3262
