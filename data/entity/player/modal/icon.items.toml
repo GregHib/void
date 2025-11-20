@@ -1,3 +1,277 @@
+
+[eviltree_icon]
+id = 14667
+
+[Platypus]
+id = 12585
+
+[greenbook]
+id = 13237
+
+[tree_icon]
+id = 13252
+
+[prayer_icon]
+id = 13253
+
+[strength_icon]
+id = 13254
+
+[agility_icon]
+id = 13255
+
+[smithing_icon]
+id = 13256
+
+[redbook_2]
+id = 12202
+
+[empty_bucket_icon]
+id = 9631
+
+[sickle_paint]
+id = 9661
+
+[snowrain]
+id = 9663
+
+[snowflakes]
+id = 9664
+
+[snowballs2]
+id = 10502
+
+[snowballs3]
+id = 10503
+
+[snowballs4]
+id = 10504
+
+[snowballs5]
+id = 10505
+
+[coins2_2]
+id = 8891
+
+[coins3_2]
+id = 8892
+
+[coins4_2]
+id = 8893
+
+[coins5_2]
+id = 8894
+
+[coins25_2]
+id = 8895
+
+[coins100_2]
+id = 8896
+
+[coins250_2]
+id = 8897
+
+[coins1000_2]
+id = 8898
+
+[coins10000_2]
+id = 8899
+
+[wooden_logs]
+id = 9138
+
+[gravedigger_appron]
+id = 7597
+
+[gravedigger_bones]
+id = 7598
+
+[gravedigger_bowl]
+id = 7599
+
+[gravedigger_cake]
+id = 7600
+
+[gravedigger_chefs_hat]
+id = 7601
+
+[gravedigger_seedler]
+id = 7602
+
+[gravedigger_axe]
+id = 7603
+
+[gravedigger_kebab]
+id = 7604
+
+[gravedigger_knife]
+id = 7605
+
+[gravedigger_ore]
+id = 7606
+
+[gravedigger_pickaxe]
+id = 7607
+
+[gravedigger_plant_pot]
+id = 7608
+
+[gravedigger_seed]
+id = 7609
+
+[gravedigger_secateurs]
+id = 7610
+
+[gravedigger_skull]
+id = 7611
+
+[gravedigger_wood]
+id = 7612
+
+[gravedigger_pot]
+id = 7613
+
+[gravedigger_axe_mould]
+id = 7614
+
+[gravedigger_chef_hat_mould]
+id = 7615
+
+[gravedigger_pickaxe_mould]
+id = 7616
+
+[gravedigger_watering_can_mould]
+id = 7617
+
+[gravedigger_pot_mould]
+id = 7618
+
+[number_brown_zero]
+id = 7010
+
+[number_brown_one]
+id = 7011
+
+[number_brown_two]
+id = 7012
+
+[number_brown_three]
+id = 7013
+
+[number_brown_four]
+id = 7014
+
+[number_brown_five]
+id = 7015
+
+[number_brown_six]
+id = 7016
+
+[number_brown_seven]
+id = 7017
+
+[number_brown_eight]
+id = 7018
+
+[number_brown_nine]
+id = 7019
+
+[tokkul2]
+id = 6530
+
+[tokkul3]
+id = 6531
+
+[tokkul4]
+id = 6532
+
+[tokkul5]
+id = 6533
+
+[tokkul25]
+id = 6534
+
+[redbook]
+id = 4705
+
+[number_zero]
+id = 4056
+
+[number_one]
+id = 4057
+
+[number_two]
+id = 4058
+
+[number_three]
+id = 4059
+
+[number_four]
+id = 4060
+
+[number_five]
+id = 4061
+
+[number_six]
+id = 4062
+
+[number_seven]
+id = 4063
+
+[number_eight]
+id = 4064
+
+[number_nine]
+id = 4065
+
+[catapult]
+id = 4066
+
+[observatory_telescope]
+id = 4557
+
+[green_book]
+id = 3850
+
+[fire_rune_icon]
+id = 3881
+
+[water_rune_icon]
+id = 3882
+
+[earth_rune_icon]
+id = 3883
+
+[air_rune_icon]
+id = 3884
+
+[mind_rune_icon]
+id = 3885
+
+[body_rune_icon]
+id = 3886
+
+[nature_rune_icon]
+id = 3887
+
+[chaos_rune_icon]
+id = 3888
+
+[law_rune_icon]
+id = 3889
+
+[cosmic_rune_icon]
+id = 3890
+
+[blood_rune_icon]
+id = 3891
+
+[soul_rune_icon]
+id = 3892
+
+[chompy]
+id = 2884
+
 [cooking_pot]
 id = 977
 examine = "A cooking pot."
@@ -220,11 +494,26 @@ id = 5055
 id = 5068
 examine = "A master at Farming."
 
+[Questionmark_icon]
+id = 5079
+
 [bank_icon]
 id = 5080
 
 [quest_icon]
 id = 5092
+
+[general_store_icon]
+id = 5094
+
+[spinning_wheel_icon]
+id = 7670
+
+[woodcutting_icon]
+id = 9713
+
+[altar_icon]
+id = 9714
 
 [seeds]
 id = 5171

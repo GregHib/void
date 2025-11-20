@@ -270,6 +270,7 @@ examine = "Looks after your Farming tools."
 
 [fred_the_farmer_lumbridge]
 id = 758
+categories = ["human"]
 examine = "A well-fed farmer."
 
 [fayeth]
