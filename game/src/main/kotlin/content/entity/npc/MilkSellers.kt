@@ -1,10 +1,10 @@
 package content.entity.npc
 
 import content.entity.npc.shop.openShop
-import world.gregs.voidps.engine.Script
-import content.entity.player.dialogue.type.*
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Pleased
+import content.entity.player.dialogue.type.*
+import world.gregs.voidps.engine.Script
 
 class MilkSellers : Script {
     init {
@@ -19,6 +19,5 @@ class MilkSellers : Script {
                 }
             }
         }
-
     }
 }

@@ -2,6 +2,7 @@ package content.skill.crafting
 
 import content.entity.player.dialogue.type.makeAmount
 import content.entity.player.dialogue.type.makeAmountIndex
+import content.quest.quest
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
@@ -17,7 +18,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
-import content.quest.quest
 
 class SpinningWheel : Script {
 
@@ -44,7 +44,7 @@ class SpinningWheel : Script {
     init {
         objectOperate("Spin", "spinning_wheel*", arrive = false) { (target) ->
             val availableFibres = fibres.filter { fibre ->
-                (fibre.id != "black_wool" || quest("sheep_shearer_miniquest") == ("started")) && (fibre.id != "golden_wool" ||  (quest("fremennik_trials") == ("started")) || (quest("fremennik_trials") == ("completed")))
+                (fibre.id != "black_wool" || quest("sheep_shearer_miniquest") == ("started")) && (fibre.id != "golden_wool" || (quest("fremennik_trials") == ("started")) || (quest("fremennik_trials") == ("completed")))
             }
             val strings = availableFibres.map {
                 if (it.id == "tree_roots") "crossbow_string" else it.spinning.to
