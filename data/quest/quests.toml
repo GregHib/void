@@ -3080,9 +3080,10 @@ length = 0
 sprite = 2380
 region = 3
 start_point = "Talk to Fred the farmer in his farm, north of the Lumbridge market."
-start_path = [[ 3206, 3290 ]]
+start_path = [[ 3189, 3273 ]]
 req_combat = "None, but watch out for rams."
 xp = "150 Crafting XP"
+reward = "2000 coins"
 
 [shield_of_arrav]
 id = 15

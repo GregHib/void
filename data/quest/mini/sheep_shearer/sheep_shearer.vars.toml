@@ -1,0 +1,8 @@
+[sheep_shearer_black_balls_of_wool]
+format = "int"
+persist = true
+default = -1
+
+[the_thing_interacted]
+format = "boolean"
+persist = true

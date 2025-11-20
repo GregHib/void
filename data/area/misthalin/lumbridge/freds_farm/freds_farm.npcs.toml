@@ -10,14 +10,22 @@ id = 11629
 [ram_freds_farm]
 id = 12369
 drop_table = "ram"
+respawn_delay = 45
+combat_anims = "ram"
+combat_sounds = "ram"
+hitpoints = 80
+categories = ["rams"]
+examine = "White and shaggy."
 
 [ram_freds_farm_2]
 id = 12370
 drop_table = "ram"
+clone = "ram_freds_farm"
 
 [ram_freds_farm_3]
 id = 12371
 drop_table = "ram"
+clone = "ram_freds_farm"
 
 [beefy_bill]
 id = 246
