@@ -66,6 +66,7 @@ id = 5106
 price = 17
 limit = 100
 examine = "A poison ivy bush seed - plant in a bush patch."
+
 [cactus_seed]
 id = 5280
 price = 7
