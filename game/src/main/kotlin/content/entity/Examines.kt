@@ -3,9 +3,11 @@ package content.entity
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.ExamineItem
@@ -19,9 +21,17 @@ class Examines : Script {
     val objectDefinitions: ObjectDefinitions by inject()
 
     init {
-        interfaceOption("Examine") { (item) ->
-            message(item.def.getOrNull("examine") ?: return@interfaceOption, ChatType.ItemExamine)
-        }
+        interfaceOption("Examine", "inventory:inventory", ::examineItem)
+        interfaceOption("Examine", "worn_equipment:item", ::examineItem)
+        interfaceOption("Examine", "bank:inventory", ::examineItem)
+        interfaceOption("Examine", "price_checker:items", ::examineItem)
+        interfaceOption("Examine", "equipment_bonuses:inventory", ::examineItem)
+        interfaceOption("Examine", "trade_main:offer_options", ::examineItem)
+        interfaceOption("Examine", "trade_main:offer_warning", ::examineItem)
+        interfaceOption("Examine<col=FF9040>", "trade_main:other_options", ::examineItem)
+        interfaceOption("Examine", "trade_main:other_warning", ::examineItem)
+        interfaceOption("Examine", "trade_main:loan_item", ::examineItem)
+        interfaceOption("Examine", "trade_main:other_loan_item", ::examineItem)
 
         itemOption("Examine", inventory = "*") { (item) ->
             message(item.def.getOrNull("examine") ?: return@itemOption, ChatType.ItemExamine)
@@ -55,5 +65,9 @@ class Examines : Script {
                 player.message(definition["examine"], ChatType.Game)
             }
         }
+    }
+
+    private fun examineItem(player: Player, option: InterfaceOption) {
+        player.message(option.item.def.getOrNull("examine") ?: return, ChatType.ItemExamine)
     }
 }
