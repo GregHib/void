@@ -38,6 +38,7 @@ class BankOpen : Script {
         interfaceClosed("bank") {
             set("bank_hidden", true)
             close("bank_side")
+            open("inventory")
             sendScript("clear_dialogues")
         }
 
