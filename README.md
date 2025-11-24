@@ -31,7 +31,7 @@
 * **High-performance**: Capable of supporting thousands of concurrent players.
 * **Rich content**: Offers a wide range of emulated content.
 * **AI player characters**: Introduced intelligent player bots to enhance immersion.
-* **User-friendly**: Simplifies content creation with [kotlin scripting](https://github.com/GregHib/void/wiki/scripts) eliminating the need for complex integration.
+* **User-friendly**: Simplifies content creation with [scripts](https://github.com/GregHib/void/wiki/scripts) eliminating the need for complex integration.
 * **Lightweight**: Memory usage under 300MB in low-memory mode.
 * **Customisable**: Personalise your gameplay by tweaking settings in the `game.properties` file or modifying the code to suit your preferences.
 
@@ -39,7 +39,7 @@
 
 1. Make sure you have [java 21 or above installed](https://adoptium.net/temurin/releases/?package=jre). (`java --version` on command line)
 2. Extract the [latest void.zip released bundle](https://github.com/GregHib/void/releases) into a directory.
-3. Extract the [latest pre-modified game files cache.zip](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into `/void/data/cache/`.
+3. Extract the [latest pre-modified game files cache.zip](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into `/data/cache/`.
 4. Run either the `run-server.bat` on Windows, or `run-server.sh` on Linux.
 
    You should see `[Main] - Void loaded in 2349ms` to show the server is up and running correctly.
@@ -47,6 +47,8 @@
    > Ctrl + C to exit and shutdown the server when running from a command line terminal.
 
 5. Run the [latest client.jar](https://github.com/GregHib/void-client/releases) and login with any username and password to create a new account.
+
+For more details see the full [Installation Guide](https://github.com/GregHib/void/wiki/installation-guide).
 
 > [!NOTE]
 > For common problems see the [Troubleshooting Guide](https://github.com/GregHib/void/wiki/Troubleshooting).

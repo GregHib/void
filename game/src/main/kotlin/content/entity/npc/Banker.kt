@@ -32,7 +32,11 @@ class Banker : Script {
             menu()
         }
 
-        objectOperate("Use", "bank_*", arrive = false) {
+        objectOperate("Use", "bank_chest_*") {
+            open("bank")
+        }
+
+        objectOperate("Use", "bank_booth_*", arrive = false) { (target) ->
             val banker = npcs.first { it.def.name == "Banker" }
             talkWith(banker)
             menu()
