@@ -20,6 +20,7 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.quest.quest
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -44,6 +45,25 @@ class FredTheFarmer : Script {
                 "started" -> startedJob()
                 "completed" -> secondReward()
                 else -> fullyCompleted()
+            }
+        }
+        itemOnNPCOperate("ball_of_black_wool", "fred_the_farmer_lumbridge") {
+            when (quest("sheep_shearer_miniquest")) {
+                "started" -> {
+                    giveBlackBallsOfWool > 0
+                    giveBlackWool()
+                }
+            }
+        }
+        itemOnNPCOperate("black_wool", "fred_the_farmer_lumbridge") {
+            if (quest("sheep_shearer_miniquest") == "started") {
+                player<Neutral>("I've got some wool. I've not managed to make it into a ball, though.")
+                npc<Neutral>("Well, go find a spinning wheel then. You can find one on the first floor of Lumbridge Castle; just turn right and follow the path when leaving my house and you'll find Lumbridge.")
+            }
+        }
+        itemOnNPCOperate("wool", "fred_the_farmer_lumbridge") {
+            if (quest("sheep_shearer_miniquest") == "started") {
+                npc<Neutral>("That wool is white, I'm dealing with a guy looking to do business with black wool only.")
             }
         }
     }
@@ -154,6 +174,10 @@ class FredTheFarmer : Script {
     }
 
     suspend fun Player.startedJob() {
+        if (giveBlackBallsOfWool == 0) {
+            allTheWool()
+            return
+        }
         choice {
             if (inventory.contains("ball_of_black_wool")) {
                 option<Happy>("I have some balls of black wool for you.") {
@@ -177,19 +201,6 @@ class FredTheFarmer : Script {
                     }
                 }
             }
-
-            itemOnNPCOperate("ball_of_black_wool", "fred_the_farmer_lumbridge") {
-                if (giveBlackBallsOfWool > 0) {
-                    giveBlackWool()
-                }
-            }
-            itemOnNPCOperate("black_wool", "fred_the_farmer_lumbridge") {
-                player<Neutral>("I've got some wool. I've not managed to make it into a ball, though.")
-                npc<Neutral>("Well, go find a spinning wheel then. You can find one on the first floor of Lumbridge Castle; just turn right and follow the path when leaving my house and you'll find Lumbridge.")
-            }
-            itemOnNPCOperate("wool", "fred_the_farmer_lumbridge") {
-                npc<Neutral>("That wool is white, I'm dealing with a guy looking to do business with black wool only.")
-            }
             option<Neutral>("Can you remind me how to get balls of wool?") {
                 npc<Neutral>("Sure. You need to shear sheep and then spin the wool on a spinning wheel. Anything else?")
                 choice {
@@ -199,21 +210,23 @@ class FredTheFarmer : Script {
                 }
             }
             if (get("the_thing_interacted", false)) {
-                option<Amazed>("Fred! Fred! I've seen 'The Thing!'") {
-                    npc<Afraid>("You...you actually saw it?")
-                    npc<Afraid>("Run for the hills! $name, grab as many chickens as you can! We have to...")
-                    player<Amazed>("Fred!")
-                    npc<Afraid>("..flee! Oh, woe is me! The shape-shifter is coming! We're all...")
-                    player<Angry>("FRED!")
-                    npc<Uncertain>("..doomed. What?")
-                    player<Neutral>("It's not a shape-shifter or any other kind of monster.")
-                    npc<Quiz>("Well, what is it, boy?")
-                    player<Uncertain>("Well, it's just two penguins...disguised as a sheep.")
-                    npc<Uncertain>("...")
-                    npc<Amazed>("Have you been out in the sun too long?")
-                }
+                theThing()
             }
         }
+    }
+
+    fun ChoiceOption.theThing(): Unit = option<Amazed>("Fred! Fred! I've seen 'The Thing!'") {
+        npc<Afraid>("You...you actually saw it?")
+        npc<Afraid>("Run for the hills! $name, grab as many chickens as you can! We have to...")
+        player<Amazed>("Fred!")
+        npc<Afraid>("..flee! Oh, woe is me! The shape-shifter is coming! We're all...")
+        player<Angry>("FRED!")
+        npc<Uncertain>("..doomed. What?")
+        player<Neutral>("It's not a shape-shifter or any other kind of monster.")
+        npc<Quiz>("Well, what is it, boy?")
+        player<Uncertain>("Well, it's just two penguins...disguised as a sheep.")
+        npc<Uncertain>("...")
+        npc<Amazed>("Have you been out in the sun too long?")
     }
 
     fun ChoiceOption.remindMeShearing(): Unit = option<Neutral>("Can you tell me how to shear sheep?") {
@@ -269,18 +282,16 @@ class FredTheFarmer : Script {
     }
 
     suspend fun Player.allTheWool() {
-        val amount = 2147483647
         player<Happy>("That's the last of them.")
         npc<Happy>("A pleasure doing business with you. You can shear my sheep whenever you want. You could even sell the wool to the Grand Exchange.")
         npc<Angry>("But that's the white ones only, mind you!")
         npc<Sad>("Anyway, I guess I'd better pay you.")
         item("coins1000_2", 500, "Fred gives you some money and teaches you some Crafting techniques.")
         set("sheep_shearer_miniquest", "completed")
-        // On runescape wiki = Upon completion of the quest, player may no longer use shears on the black sheep to obtain this form of wool, and any wool in your inventory or stored in a bank is removed (presumably by Fred).
-        inventory.removeToLimit("black_wool", amount)
-        inventory.removeToLimit("ball_of_black_wool", amount)
-        bank.removeToLimit("black_wool", amount)
-        bank.removeToLimit("ball_of_black_wool", amount)
+        inventory.removeToLimit("black_wool", Int.MAX_VALUE)
+        inventory.removeToLimit("ball_of_black_wool", Int.MAX_VALUE)
+        bank.removeToLimit("black_wool", Int.MAX_VALUE)
+        bank.removeToLimit("ball_of_black_wool", Int.MAX_VALUE)
         experience.add(Skill.Crafting, 150.0)
         inventory.add("coins", 2000)
     }
@@ -289,9 +300,14 @@ class FredTheFarmer : Script {
         player<Neutral>("Hello again")
         npc<Angry>("What are you doing on my land? Ah, it's the sheep shearer! The black wool you helped me with sold exceptionally well. Please accept this as an extra thanks.")
         statement("The farmer hands over 1,940 coins.")
-        set("sheep_shearer_miniquest", "completed_with_second_reward")
-        inventory.add("coins", 1940)
-        player<Happy>("Thank you!")
+        if (inventory.add("coins", 1940)) {
+            set("sheep_shearer_miniquest", "completed_with_second_reward")
+            player<Happy>("Thank you!")
+        } else {
+            player<Neutral>("Great news, but I need to free up some inventory space first. I'll be right back.")
+            message("Inventory full. To make more room, sell, drop or bank something.")
+            return
+        }
     }
 
     suspend fun Player.fullyCompleted() {
@@ -304,19 +320,7 @@ class FredTheFarmer : Script {
                 npc<Quiz>("How can you be lost? Just follow the road east and south. You'll end up in Lumbridge fairly quickly.")
             }
             if (get("the_thing_interacted", false)) {
-                option<Amazed>("Fred! Fred! I've seen 'The Thing!'") {
-                    npc<Afraid>("You...you actually saw it?")
-                    npc<Afraid>("Run for the hills! $name, grab as many chickens as you can! We have to...")
-                    player<Amazed>("Fred!")
-                    npc<Afraid>("..flee! Oh, woe is me! The shape-shifter is coming! We're all...")
-                    player<Angry>("FRED!")
-                    npc<Uncertain>("..doomed. What?")
-                    player<Neutral>("It's not a shape-shifter or any other kind of monster.")
-                    npc<Quiz>("Well, what is it, boy?")
-                    player<Uncertain>("Well, it's just two penguins...disguised as a sheep.")
-                    npc<Uncertain>("...")
-                    npc<Amazed>("Have you been out in the sun too long?")
-                }
+                theThing()
             }
         }
     }

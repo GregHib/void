@@ -494,7 +494,7 @@ id = 5055
 id = 5068
 examine = "A master at Farming."
 
-[Questionmark_icon]
+[questionmark_icon]
 id = 5079
 
 [bank_icon]

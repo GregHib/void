@@ -5,11 +5,14 @@ import content.entity.effect.transform
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.player
 import content.quest.quest
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.Retreat
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
@@ -28,45 +31,9 @@ class Sheep : Script {
     init {
         npcOperate("Shear", "sheep*") { (target) ->
             arriveDelay()
-            if (!holdsItem("shears")) {
-                message("You need a set of shears to do this.")
-                return@npcOperate
-            }
-            if (target.transform.endsWith("_shorn")) {
-                return@npcOperate
-            }
-            anim("shear_sheep")
-            if (target.id == "sheep_penguin") {
-                target.anim("the_thing_reveal")
-                areaSound("the_thing_escape", target.tile)
-                set("the_thing_interacted", true)
-                message("The... whatever it is... manages to get away from you!")
-                target.mode = Retreat(target, this)
-                return@npcOperate
-            }
-            if (random.nextDouble() < retreatChance) {
-                message("The sheep manages to get away from you!")
-                target.mode = Retreat(target, this)
-                return@npcOperate
-            }
-            gfx("shearing_white_sheep")
-            areaSound("shearing", target.tile)
-            delay(2)
-            message("You get some wool.")
-            if (!inventory.add("wool")) {
-                items.add(tile, "wool", revealTicks = 100, disappearTicks = 200, owner = this)
-            }
-            target.face(this)
-            target.transform("${target.id}_shorn")
-            delay(1)
-            areaSound("sheep_baa2", target.tile)
-            target.say("Baa!")
-            target.softQueue("regrow_wool", Settings["world.npcs.sheep.regrowTicks", 50]) {
-                target.clearTransform()
-            }
+            shear(target, "white")
         }
-
-        npcOperate("Shear", "black_sheep*") { (target) ->
+        npcOperate("Shear", "black_sheep") { (target) ->
             arriveDelay()
             if (quest("sheep_shearer_miniquest") != "started") {
                 (target.id == "black_sheep")
@@ -74,41 +41,12 @@ class Sheep : Script {
                 message("The farmer wouldn't like you shearing these special sheep. Try the white ones.")
                 return@npcOperate
             }
-            if (!holdsItem("shears")) {
-                message("You need a set of shears to do this.")
-                return@npcOperate
-            }
-            if (target.transform.endsWith("_shorn")) {
-                return@npcOperate
-            }
-            anim("shear_sheep")
-            if (random.nextDouble() < retreatChance) {
-                message("The sheep manages to get away from you!")
-                target.mode = Retreat(target, this)
-                return@npcOperate
-            }
-            gfx("shearing_black_sheep")
-            areaSound("shearing", target.tile)
-            delay(2)
-            message("You get some black wool.")
-            if (!inventory.add("black_wool")) {
-                items.add(tile, "black_wool", revealTicks = 100, disappearTicks = 200, owner = this)
-            }
-            target.face(this)
-            target.transform("${target.id}_shorn")
-            delay(1)
-            areaSound("sheep_baa", target.tile)
-            target.say("Baa!")
-            target.softQueue("regrow_wool", Settings["world.npcs.sheep.regrowTicks", 50]) {
-                target.clearTransform()
-            }
+            shear(target, "black")
         }
-
         npcOperate("Talk-to", "sheep_penguin") {
             player<Neutral>("That's a sheep...I think. I can't talk to sheep.")
         }
-
-        npcSpawn("*sheep*") {
+        npcSpawn("sheep*,black_sheep") {
             if (id != "sheep_penguin") {
                 softTimers.start("baa_sound")
             }
@@ -125,6 +63,45 @@ class Sheep : Script {
                 1 -> areaSound("sheep_baa2", tile)
             }
             Timer.CONTINUE
+        }
+    }
+
+    private suspend fun Player.shear(target: NPC, colour: String) {
+        if (!holdsItem("shears")) {
+            message("You need a set of shears to do this.")
+            return
+        }
+        if (target.transform.endsWith("_shorn")) {
+            return
+        }
+        anim("shear_sheep")
+        if (target.id == "sheep_penguin") {
+            target.anim("the_thing_reveal")
+            areaSound("the_thing_escape", target.tile)
+            set("the_thing_interacted", true)
+            message("The... whatever it is... manages to get away from you!")
+            target.mode = Retreat(target, this)
+            return
+        } else if (random.nextDouble() < retreatChance) {
+            message("The sheep manages to get away from you!")
+            target.mode = Retreat(target, this)
+            return
+        }
+        gfx("shearing_${colour}_sheep")
+        areaSound("shearing", target.tile)
+        delay(2)
+        val item = if (colour == "black") "black_wool" else "wool"
+        message("You get some ${item.toLowerSpaceCase()}.")
+        if (!inventory.add(item)) {
+            items.add(tile, item, revealTicks = 100, disappearTicks = 200, owner = this)
+        }
+        target.face(this)
+        target.transform("${target.id}_shorn")
+        delay(1)
+        areaSound("sheep_baa${if (colour == "black") "" else "2"}", target.tile)
+        target.say("Baa!")
+        target.softQueue("regrow_wool", Settings["world.npcs.sheep.regrowTicks", 50]) {
+            target.clearTransform()
         }
     }
 }

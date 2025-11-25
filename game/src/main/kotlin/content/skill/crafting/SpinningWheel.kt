@@ -44,7 +44,7 @@ class SpinningWheel : Script {
     init {
         objectOperate("Spin", "spinning_wheel*", arrive = false) { (target) ->
             val availableFibres = fibres.filter { fibre ->
-                (fibre.id != "black_wool" || quest("sheep_shearer_miniquest") == ("started")) && (fibre.id != "golden_wool" || (quest("fremennik_trials") == ("started")) || (quest("fremennik_trials") == ("completed")))
+                (fibre.id != "black_wool" || quest("sheep_shearer_miniquest") == "started") && (fibre.id != "golden_wool" || (quest("fremennik_trials") == "started") || (quest("fremennik_trials") == "completed"))
             }
             val strings = availableFibres.map {
                 if (it.id == "tree_roots") "crossbow_string" else it.spinning.to

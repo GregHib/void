@@ -9,12 +9,12 @@ clone = "sheep"
 id = 42
 examine = "Freshly sheared."
 
-[black_sheep_feet_shorn]
+[sheep_black_feet_shorn]
 clone = "sheep"
 id = 1762
 examine = "Freshly sheared."
 
-[black_sheep_feet]
+[sheep_black_feet]
 clone = "sheep"
 id = 1763
 
