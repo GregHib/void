@@ -78,7 +78,7 @@ spawns = [
   { id = "miss_schism", x = 3095, y = 3252, direction = "EAST" },
   { id = "veronica", x = 3110, y = 3330 },
   { id = "professor_oddenstein", x = 3110, y = 3367, level = 2 },
-  { id = "tools_leprechaun", x = 3087, y = 3352 },
+  { id = "tool_leprechaun", x = 3087, y = 3352 },
   { id = "chicken_draynor", x = 3110, y = 3366, level = 2, members = true },
   { id = "maris", x = 3098, y = 3269, level = 1 },
   { id = "martin_the_master_gardener", x = 3077, y = 3255, members = true },

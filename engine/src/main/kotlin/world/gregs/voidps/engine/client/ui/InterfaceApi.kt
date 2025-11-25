@@ -1,8 +1,12 @@
 package world.gregs.voidps.engine.client.ui
 
+import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Player.Companion
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
@@ -119,8 +123,12 @@ interface InterfaceApi {
         private val options = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(InterfaceOption) -> Unit>>(50)
         private val itemOption = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOption) -> Unit>>(600)
         private val shops = Object2ObjectOpenHashMap<String, (Player, String) -> Unit>(5)
+        private val logger = InlineLogger()
 
         suspend fun option(player: Player, click: InterfaceOption) {
+            if (player["debug", false]) {
+                logger.debug { "${player.name} ${player.tile} - $click" }
+            }
             for (block in options["${click.option}:${click.interfaceComponent}"] ?: options["*:${click.interfaceComponent}"] ?: options["${click.option}:*"] ?: return) {
                 block(player, click)
             }
@@ -133,6 +141,9 @@ interface InterfaceApi {
         }
 
         suspend fun itemOption(player: Player, click: ItemOption) {
+            if (player["debug", false]) {
+                logger.debug { "${player.name} ${player.tile} - $click" }
+            }
             for (block in itemOption["${click.option}:${click.item.id}:${click.inventory}"] ?: itemOption["${click.option}:*:${click.inventory}"] ?: itemOption["${click.option}:${click.item.id}:*"] ?: itemOption["${click.option}:*:*"] ?: return) {
                 block(player, click)
             }

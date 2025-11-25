@@ -5,6 +5,7 @@ import content.entity.player.bank.noted
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -16,7 +17,7 @@ class ToolLeprechaun : Script {
     val logger = InlineLogger()
 
     init {
-        npcOperate("Talk-to", "tool_leprechaun_*") {
+        npcOperate("Talk-to", "tool_leprechaun*") {
             npc<Happy>("Ah, 'tis a foine day to be sure! Were yez wantin' me to store yer tools, or maybe ye might be wantin' yer stuff back from me?")
             choice("What would you like to say?") {
                 yesPlease()
@@ -36,7 +37,11 @@ class ToolLeprechaun : Script {
             }
         }
 
-        itemOnNPCOperate("*", "tool_leprechaun_*") {
+        npcOperate("Exchange", "tool_leprechaun*") {
+            open("farming_equipment_store")
+        }
+
+        itemOnNPCOperate("*", "tool_leprechaun*") {
             val item = it.item
             val noted = item.noted
             if (noted == null) {
@@ -64,7 +69,7 @@ class ToolLeprechaun : Script {
 
     private fun ChoiceOption.yesPlease() {
         option("Yes please.") {
-            // TODO store interface
+            open("farming_equipment_store")
         }
     }
 
