@@ -22,7 +22,7 @@ id = 7846
 [farming_flower_patch_1]
 id = 7847
 
-[farming_flower_patch_2]
+[farming_flower_patch_camelot]
 id = 7848
 
 [farming_flower_patch_3]
@@ -138,6 +138,18 @@ id = 7885
 
 [nasturtium_3]
 id = 7886
+
+[lilly_seed]
+id = 41539
+
+[lilly_1]
+id = 41540
+
+[lilly_2]
+id = 41541
+
+[lilly_fullygrown]
+id = 41542
 
 [nasturtium_fullygrown]
 id = 7887
