@@ -37,6 +37,7 @@ class InterfaceHandler(
                     item = Item(itemDefinitions.get(expected).stringId)
                 }
                 id == "common_item_costs" -> item = Item(itemDefinitions.get(itemId).stringId)
+                id == "farming_equipment_store" || id == "farming_equipment_store_side" -> {}
                 else -> {
                     inventory = getInventory(player, id, component, componentDefinition) ?: return null
                     item = getInventoryItem(player, id, componentDefinition, inventory, itemId, itemSlot) ?: return null

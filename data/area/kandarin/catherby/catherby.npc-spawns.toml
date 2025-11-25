@@ -28,7 +28,7 @@ spawns = [
   { id = "hickton", x = 2821, y = 3442, members = true },
   { id = "caleb", x = 2819, y = 3451, members = true },
   { id = "ellena", x = 2860, y = 3430, members = true },
-  { id = "tools_leprechaun", x = 2859, y = 3431, members = true },
+  { id = "tool_leprechaun", x = 2859, y = 3431, members = true },
   { id = "fishing_spot_big_net_harpoon_catherby", x = 2846, y = 3429, direction = "SOUTH", members = true },
   { id = "fishing_spot_big_net_harpoon_catherby", x = 2855, y = 3423, direction = "SOUTH", members = true },
   { id = "fishing_spot_big_net_harpoon_catherby", x = 2859, y = 3426, direction = "SOUTH", members = true },
@@ -47,7 +47,7 @@ spawns = [
   { id = "renegade_knight_keep_le_faye", x = 1901, y = 4271, level = 0, members = true },
   { id = "renegade_knight_keep_le_faye", x = 1909, y = 4271, level = 0, members = true },
   
-  { id = "tools_leprechaun", x = 2815, y = 3467 },
+  { id = "tool_leprechaun", x = 2815, y = 3467 },
   { id = "vestri", x = 2820, y = 3487, members = true },
   { id = "dantaera", x = 2808, y = 3464, members = true },  
 ]

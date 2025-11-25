@@ -113,7 +113,7 @@ examine = "The hat is a dead give away."
 id = 2328
 examine = "The hat is a dead give away."
 
-[tools_leprechaun]
+[tool_leprechaun]
 id = 3021
 categories = ["human"]
 wander_radius = 2

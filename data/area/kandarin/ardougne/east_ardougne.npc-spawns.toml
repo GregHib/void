@@ -147,7 +147,7 @@ spawns = [
   { id = "sick_looking_sheep_4", x = 2610, y = 3385, members = true },
   { id = "sick_looking_sheep_4", x = 2611, y = 3384, members = true },
   { id = "sick_looking_sheep_4", x = 2612, y = 3385, members = true },
-  { id = "tools_leprechaun", x = 2671, y = 3368 },
+  { id = "tool_leprechaun", x = 2671, y = 3368 },
   { id = "priest_ardougne", x = 2616, y = 3308 },
   { id = "fishing_spot_ardougne", x = 2561, y = 3374, members = true },
   { id = "fishing_spot_ardougne", x = 2566, y = 3370, members = true },

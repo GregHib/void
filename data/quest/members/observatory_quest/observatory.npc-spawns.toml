@@ -1,6 +1,6 @@
 spawns = [
   { id = "gileth_observatory", x = 2488, y = 3179, members = true },
-  { id = "tools_leprechaun", x = 2491, y = 3178 },
+  { id = "tool_leprechaun", x = 2491, y = 3178 },
   { id = "observatory_assistant", x = 2443, y = 3189 },
   { id = "observatory_professor_observatory", x = 2439, y = 3186, members = true },
   { id = "observatory_professor_observatory_2", x = 2437, y = 3160, level = 1, members = true },

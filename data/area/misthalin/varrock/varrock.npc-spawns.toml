@@ -192,7 +192,7 @@ spawns = [
   { id = "tramp_varrock_2", x = 3228, y = 3412 },
   { id = "pox", x = 3268, y = 3399, members = true },
   { id = "hooknosed_jack", x = 3268, y = 3400, members = true },
-  { id = "tools_leprechaun", x = 3182, y = 3354 },
+  { id = "tool_leprechaun", x = 3182, y = 3354 },
   { id = "romily_weaklax", x = 3139, y = 3448, members = true },
   { id = "goblin_orange_hat_spear", x = 3312, y = 3370 },
   { id = "martina_scorsby", x = 3256, y = 3481, direction = "SOUTH" },

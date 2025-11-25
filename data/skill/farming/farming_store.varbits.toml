@@ -1,0 +1,55 @@
+[farming_tool_rake]
+id = 1435
+persist = true
+format = "int"
+
+[farming_tool_seed_dibber]
+id = 1436
+persist = true
+format = "int"
+
+[farming_tool_spade]
+id = 1437
+persist = true
+format = "int"
+
+[farming_tool_secateurs]
+id = 1438
+persist = true
+format = "int"
+
+[farming_tool_trowel]
+id = 1440
+persist = true
+format = "int"
+
+[farming_tool_scarecrow]
+id = 1778
+persist = true
+format = "int"
+
+[farming_tool_bucket]
+id = 1441
+persist = true
+format = "int"
+
+[farming_tool_compost]
+id = 1442
+persist = true
+format = "int"
+
+[farming_tool_supercompost]
+id = 1443
+persist = true
+format = "int"
+
+[farming_tool_watering_can]
+id = 1439
+persist = true
+format = "int"
+
+[farming_tool_secateurs_type]
+id = 1848
+persist = true
+format = "list"
+values = [ "normal", "magic" ]
