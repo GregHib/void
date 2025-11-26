@@ -227,8 +227,7 @@ class Interfaces(
  * @param close any interfaces open with the same type
  */
 fun Player.open(interfaceId: String, close: Boolean = true): Boolean {
-    val defs: InterfaceDefinitions = get()
-    val type = defs.getOrNull(interfaceId)?.type
+    val type = interfaces.definitions.getOrNull(interfaceId)?.type
     if (close && type != null) {
         interfaces.get(type)?.let {
             interfaces.close(it)

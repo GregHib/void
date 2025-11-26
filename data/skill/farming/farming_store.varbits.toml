@@ -52,4 +52,4 @@ format = "int"
 id = 1848
 persist = true
 format = "list"
-values = [ "normal", "magic" ]
+values = [ "secateurs", "magic_secateurs" ]

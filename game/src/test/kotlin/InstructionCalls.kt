@@ -9,9 +9,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.client.ui.hasOpen
-import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -40,7 +38,7 @@ fun Player.itemOption(
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
     val item = inventories.inventory(inventory).getOrNull(slot) ?: Item(item)
-    val definition = get<InterfaceDefinitions>().getComponent(id, component)!!
+    val definition = get<InterfaceDefinitions>().getComponent(id, component) ?: throw Exception("Component $component not found in Interface $id")
     get<InstructionHandlers>().interactInterface.validate(this, InteractInterface(InterfaceDefinition.id(definition.id), InterfaceDefinition.componentId(definition.id), item.def.id, slot, optionIndex))
 }
 
@@ -53,7 +51,7 @@ fun Player.interfaceOption(
     slot: Int = -1,
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    val definition = get<InterfaceDefinitions>().getComponent(id, component)!!
+    val definition = get<InterfaceDefinitions>().getComponent(id, component) ?: throw Exception("Component $component not found in Interface $id")
     get<InstructionHandlers>().interactInterface.validate(this, InteractInterface(InterfaceDefinition.id(definition.id), InterfaceDefinition.componentId(definition.id), item.def.id, slot, optionIndex))
 }
 
