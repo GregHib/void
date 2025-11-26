@@ -38,7 +38,7 @@ type = "overlay_tab"
 [.rake]
 id = 4
 
-[.dibber]
+[.seed_dibber]
 id = 7
 
 [.spade]

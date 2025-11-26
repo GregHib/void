@@ -19,8 +19,26 @@ object Wildcards {
 
     private var changes = false
 
-    fun load(path: String) {
+    private lateinit var npcDefinitions: NPCDefinitions
+    private lateinit var objectDefinitions: ObjectDefinitions
+    private lateinit var interfaceDefinitions: InterfaceDefinitions
+    private lateinit var itemDefinitions: ItemDefinitions
+    private lateinit var variableDefinitions: VariableDefinitions
+
+    fun load(
+        path: String,
+        npcDefinitions: NPCDefinitions = get(),
+        objectDefinitions: ObjectDefinitions = get(),
+        interfaceDefinitions: InterfaceDefinitions = get(),
+        itemDefinitions: ItemDefinitions = get(),
+        variableDefinitions: VariableDefinitions = get(),
+    ) {
         timedLoad("wildcard") {
+            this.npcDefinitions = npcDefinitions
+            this.objectDefinitions = objectDefinitions
+            this.interfaceDefinitions = interfaceDefinitions
+            this.itemDefinitions = itemDefinitions
+            this.variableDefinitions = variableDefinitions
             val file = File(path)
             if (!file.exists()) {
                 return@timedLoad 0
@@ -61,12 +79,12 @@ object Wildcards {
 
     private fun fingerprint(type: Wildcard): Int {
         return when (type) {
-            Wildcard.Npc -> get<NPCDefinitions>().ids.keys.hashCode()
-            Wildcard.Object -> get<ObjectDefinitions>().ids.keys.hashCode()
-            Wildcard.Interface -> get<InterfaceDefinitions>().ids.keys.hashCode()
-            Wildcard.Component -> get<InterfaceDefinitions>().componentIds.keys.hashCode()
-            Wildcard.Item -> get<ItemDefinitions>().ids.keys.hashCode()
-            Wildcard.Variables -> get<VariableDefinitions>().definitions.keys.hashCode()
+            Wildcard.Npc -> npcDefinitions.ids.keys.hashCode()
+            Wildcard.Object -> objectDefinitions.ids.keys.hashCode()
+            Wildcard.Interface -> interfaceDefinitions.ids.keys.hashCode()
+            Wildcard.Component -> interfaceDefinitions.componentIds.keys.hashCode()
+            Wildcard.Item -> itemDefinitions.ids.keys.hashCode()
+            Wildcard.Variables -> variableDefinitions.definitions.keys.hashCode()
         }
     }
 
@@ -117,12 +135,12 @@ object Wildcards {
     }
 
     private fun set(type: Wildcard): Set<String> = when (type) {
-        Wildcard.Npc -> get<NPCDefinitions>().ids.keys
-        Wildcard.Object -> get<ObjectDefinitions>().ids.keys
-        Wildcard.Interface -> get<InterfaceDefinitions>().ids.keys
-        Wildcard.Component -> get<InterfaceDefinitions>().componentIds.keys
-        Wildcard.Item -> get<ItemDefinitions>().ids.keys
-        Wildcard.Variables -> get<VariableDefinitions>().definitions.keys
+        Wildcard.Npc -> npcDefinitions.ids.keys
+        Wildcard.Object -> objectDefinitions.ids.keys
+        Wildcard.Interface -> interfaceDefinitions.ids.keys
+        Wildcard.Component -> interfaceDefinitions.componentIds.keys
+        Wildcard.Item -> itemDefinitions.ids.keys
+        Wildcard.Variables -> variableDefinitions.definitions.keys
     }
 
     private fun resolve(wildcard: String, type: Wildcard): List<String> {
