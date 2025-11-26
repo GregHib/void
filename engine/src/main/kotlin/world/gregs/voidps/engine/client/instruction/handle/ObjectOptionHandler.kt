@@ -44,7 +44,7 @@ class ObjectOptionHandler(
         val index = option - 1
         val selectedOption = options.getOrNull(index)
         if (selectedOption == null) {
-            logger.warn { "Invalid object option $target $index" }
+            logger.warn { "Invalid object option $target $index ${definition.options.contentToString()}" }
             return
         }
         player.closeInterfaces()
