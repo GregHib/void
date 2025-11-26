@@ -18,7 +18,7 @@ id = 1438
 persist = true
 format = "int"
 
-[farming_tool_trowel]
+[farming_tool_gardening_trowel]
 id = 1440
 persist = true
 format = "int"
