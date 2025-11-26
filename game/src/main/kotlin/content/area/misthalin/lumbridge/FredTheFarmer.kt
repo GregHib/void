@@ -52,8 +52,9 @@ class FredTheFarmer : Script {
         itemOnNPCOperate("ball_of_black_wool", "fred_the_farmer_lumbridge") {
             when (quest("sheep_shearer_miniquest")) {
                 "started" -> {
-                    giveBlackBallsOfWool > 0
-                    giveBlackWool()
+                    if (giveBlackBallsOfWool > 0) {
+                        giveBlackWool()
+                    }
                 }
             }
         }
