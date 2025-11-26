@@ -116,13 +116,13 @@ class FarmingEquipmentStoreTest : WorldTest() {
     @Test
     fun `Remove single item`() {
         val player = createPlayer()
-        player["farming_tool_trowel"] = 1
+        player["farming_tool_gardening_trowel"] = 1
         player.open("farming_equipment_store")
 
-        player.interfaceOption("farming_equipment_store", "trowel", "Remove")
+        player.interfaceOption("farming_equipment_store", "gardening_trowel", "Remove")
 
-        assertEquals(1, player.inventory.count("trowel"))
-        assertEquals(0, player["farming_tool_trowel", 0])
+        assertEquals(1, player.inventory.count("gardening_trowel"))
+        assertEquals(0, player["farming_tool_gardening_trowel", 0])
     }
 
     @Test

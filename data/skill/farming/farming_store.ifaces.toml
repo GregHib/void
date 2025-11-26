@@ -10,7 +10,7 @@ id = 19
 [.spade]
 id = 17
 
-[.trowel]
+[.gardening_trowel]
 id = 15
 
 [.secateurs]
@@ -50,7 +50,7 @@ id = 13
 [.watering_can]
 id = 16
 
-[.trowel]
+[.gardening_trowel]
 id = 19
 
 [.scarecrow]

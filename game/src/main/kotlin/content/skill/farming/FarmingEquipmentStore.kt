@@ -17,7 +17,7 @@ class FarmingEquipmentStore : Script {
             sendVariable("farming_tool_seed_dibber")
             sendVariable("farming_tool_spade")
             sendVariable("farming_tool_secateurs")
-            sendVariable("farming_tool_trowel")
+            sendVariable("farming_tool_gardening_trowel")
             sendVariable("farming_tool_scarecrow")
             sendVariable("farming_tool_bucket")
             sendVariable("farming_tool_compost")
