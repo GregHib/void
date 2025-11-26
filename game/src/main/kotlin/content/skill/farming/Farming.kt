@@ -12,6 +12,10 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
+import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shiftToFreeIndex
 import world.gregs.voidps.engine.timer.epochMinutes
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
@@ -132,17 +136,38 @@ class Farming(
     }
 
     private fun growSaplings(player: Player) {
-        growSaplings(player, player.inventory)
-        growSaplings(player, player.bank)
-        growSaplings(player, player.beastOfBurden)
-    }
-
-    private fun growSaplings(player: Player, inventory: Inventory) {
-        inventory.transaction {
-            for (item in inventory.items) {
+        growSaplings(player.inventory)
+        growSaplings(player.beastOfBurden)
+        // Bank handled separately to handling sorting
+        player.bank.transaction {
+            for (i in inventory.indices) {
+                val item = inventory[i]
+                if (!item.id.endsWith("_seedling_w")) {
+                    continue
+                }
+                val sapling = item.id.replace("_seedling_w", "_sapling")
+                val index = inventory.indexOf(sapling)
+                if (index == -1) {
+                    replace(i, item.id, sapling, item.amount)
+                } else {
+                    remove(i, item.id, item.amount)
+                    shiftToFreeIndex(i)
+                    add(sapling, item.amount)
+                }
             }
         }
-        // TODO ensure stack merges with existing grown saplings
+    }
+
+    private fun growSaplings(inventory: Inventory) {
+        inventory.transaction {
+            for (i in inventory.indices) {
+                val item = inventory[i]
+                if (!item.id.endsWith("_seedling_w")) {
+                    continue
+                }
+                replace(i, item.id, item.id.replace("_seedling_w", "_sapling"), item.amount)
+            }
+        }
     }
 
     fun disease(player: Player, spot: String, produce: String, type: String): Boolean {
