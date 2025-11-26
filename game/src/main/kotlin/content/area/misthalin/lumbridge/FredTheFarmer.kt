@@ -27,6 +27,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
+import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shiftToFreeIndex
 
 class FredTheFarmer : Script {
 
@@ -288,12 +290,11 @@ class FredTheFarmer : Script {
         npc<Sad>("Anyway, I guess I'd better pay you.")
         item("coins1000_2", 500, "Fred gives you some money and teaches you some Crafting techniques.")
         set("sheep_shearer_miniquest", "completed")
-        inventory.removeToLimit("black_wool", Int.MAX_VALUE)
-        inventory.removeToLimit("ball_of_black_wool", Int.MAX_VALUE)
-        bank.removeToLimit("black_wool", Int.MAX_VALUE)
-        bank.removeToLimit("ball_of_black_wool", Int.MAX_VALUE)
         experience.add(Skill.Crafting, 150.0)
         inventory.add("coins", 2000)
+        inventory.removeToLimit("black_wool", Int.MAX_VALUE)
+        inventory.removeToLimit("ball_of_black_wool", Int.MAX_VALUE)
+        bankCleanUp()
     }
 
     suspend fun Player.secondReward() {
@@ -322,6 +323,19 @@ class FredTheFarmer : Script {
             if (get("the_thing_interacted", false)) {
                 theThing()
             }
+        }
+    }
+
+    fun Player.bankCleanUp() {
+        bank.transaction {
+            val index = inventory.indexOf("black_wool")
+            removeToLimit("black_wool", Int.MAX_VALUE)
+            shiftToFreeIndex(index)
+        }
+        bank.transaction {
+            val index = inventory.indexOf("ball_of_black_wool")
+            removeToLimit("ball_of_black_wool", Int.MAX_VALUE)
+            shiftToFreeIndex(index)
         }
     }
 }
