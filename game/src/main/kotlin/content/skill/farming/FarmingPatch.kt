@@ -71,6 +71,35 @@ class FarmingPatch : Script {
         itemOnObjectOperate("compost,supercompost", "*", handler = ::compost)
         itemOnObjectOperate("watering_can_*", "*", handler = ::water)
         itemOnObjectOperate("*_seed", "*", handler = ::plantSeed)
+        itemOnObjectOperate("plant_pot_empty", "*_patch_weeds_*") {
+            message("This patch needs weeding first.")
+        }
+        itemOnObjectOperate("plant_pot_empty", "*_patch_weeded", handler = ::plantPot)
+    }
+
+    private fun plantPot(player: Player, interact: ItemOnObjectInteract) {
+        if (!player.inventory.contains("plant_pot_empty")) {
+            return
+        }
+        if (!player.inventory.contains("gardening_trowel")) {
+            player.message("You need a gardening trowel to do that.")
+            return
+        }
+        val value = player[interact.target.id, "weeds_life3"]
+        if (value != "weeds_0" && value.startsWith("weeds_3")) {
+            player.message("This patch needs weeding first.")
+            return
+        } else if (value != "weeds_0") {
+            player.noInterest()
+            return
+        }
+        player.anim("farming_trowel_digging")
+        player.weakQueue("fill_plant_pot", 2) {
+            if (!player.inventory.replace("plant_pot_empty", "plant_pot")) {
+                return@weakQueue
+            }
+            plantPot(player, interact)
+        }
     }
 
     private suspend fun compost(player: Player, interact: ItemOnObjectInteract) {
