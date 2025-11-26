@@ -16,13 +16,11 @@ import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
-import world.gregs.voidps.engine.Contexts
-import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
-import world.gregs.voidps.engine.engineModule
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -39,7 +37,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.Wildcards
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -71,6 +68,7 @@ abstract class WorldTest : KoinTest {
     private lateinit var accounts: AccountManager
     private var saves: File? = null
     lateinit var settings: Properties
+    lateinit var scripts: List<Script>
 
     open var loadNpcs: Boolean = false
 
@@ -192,7 +190,7 @@ abstract class WorldTest : KoinTest {
             )
         }
         Wildcards.load(Settings["storage.wildcards"])
-        ContentLoader.load()
+        scripts = ContentLoader.load()
         Wildcards.clear()
         saves = File(Settings["storage.players.path"])
         saves?.mkdirs()
