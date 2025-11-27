@@ -183,4 +183,17 @@ class FarmingPatchTest : WorldTest() {
         assertEquals(0, player.inventory.count("watering_can_7"))
         assertEquals(0.0, player.experience.get(Skill.Farming))
     }
+
+    @Test
+    fun `Clear dead patch`() {
+        val player = createPlayer(Tile(3057, 3308))
+        player.inventory.add("spade")
+        player["farming_veg_patch_falador_se"] = "potato_dead_1"
+        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+
+        player.itemOnObject(patch, 0)
+        tick(3)
+
+        assertEquals("weeds_0", player["farming_veg_patch_falador_se", "empty"])
+    }
 }
