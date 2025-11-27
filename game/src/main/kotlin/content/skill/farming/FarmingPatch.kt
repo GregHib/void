@@ -5,9 +5,8 @@ import content.entity.player.inv.item.addOrDrop
 import content.entity.player.stat.Stats
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.an
-import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
+import world.gregs.voidps.engine.client.ui.chat.*
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -22,8 +21,8 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.*
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.type.random
 
 class FarmingPatch : Script {
 
@@ -329,20 +328,38 @@ class FarmingPatch : Script {
                     addVarbit("patch_compost", obj.id)
                 } else if (!removeVarbit("patch_compost", obj.id)) {
                     val stage = value.substringAfterLast("_")
-                    when (stage) {
-                        "life3" -> player[obj.id] = "${type}_life2"
-                        "life2" -> player[obj.id] = "${type}_life1"
-                        "life1" -> {
-                            player[obj.id] = "weeds_0"
-                            message("The ${obj.patchName()} is now empty.")
-                            clearAnim()
-                            return@weakQueue
-                        }
-                        else -> return@weakQueue
+                    if (!stage.startsWith("life")) {
+                        return@weakQueue
                     }
+                    val int = stage.removePrefix("life").toIntOrNull() ?: 2
+                    checkLife(player, type)
+                    if (int != 2) {
+                        player[obj.id] = "${type}_life${int - 1}"
+                    }
+                    message("The ${obj.patchName()} is now empty.")
+                    clearAnim()
+                    player[obj.id] = "weeds_0"
+                    return@weakQueue
                 }
             }
             harvest(item, obj)
+        }
+    }
+
+    fun checkLife(player: Player, type: String) {
+        if (!player["scroll_of_life", false]) {
+            return
+        }
+        if (type == "calquat" || type == "spirit_tree") {
+            return
+        }
+        if (random.nextInt(100) < if (type == "tree") 5 else 10) {
+            player.inventory.add("${type}_seed") // TODO proper seed
+            if (Settings["world.additional.messages", false]) {
+                player.message("<green>Your Scroll of Life saves you a seed!")
+            }
+//            player.message("<green>As the farmer chops the tree down, you spot a seed in the leftovers.")
+//            player.message("The secret is yours! You read the scroll and unlock the long-lost technique of regaining seeds from dead farming patches.")
         }
     }
 
