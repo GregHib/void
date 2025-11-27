@@ -76,7 +76,6 @@ interface Operation {
         Wildcards.find(id, Wildcard.Component) { i ->
             Wildcards.find(obj, Wildcard.Object) { o ->
                 onObject.getOrPut("$i:$o") { mutableListOf() }.add(handler)
-                println("Set $i $o ${onObject.keys}")
             }
         }
     }
