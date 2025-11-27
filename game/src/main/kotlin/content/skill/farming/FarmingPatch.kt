@@ -37,13 +37,13 @@ class FarmingPatch : Script {
         }
 
         objectOperate("Clear", "*_dead") { (target) ->
-            // TODO spade check + message
-            set(target.id, "weeds_0")
+            message("You start digging the farming patch...", type = ChatType.Filter)
+            clear(this, target.id)
         }
 
         itemOnObjectOperate("spade", "*_dead") { (target) ->
-            // TODO spade check + message
-            set(target.id, "weeds_0")
+            message("You start digging the farming patch...", type = ChatType.Filter)
+            clear(this, target.id)
         }
 
         objectOperate("Rake", "*_patch_weeds_*", handler = ::rake)
@@ -55,13 +55,7 @@ class FarmingPatch : Script {
             message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
             harvest(Item(item), target)
         }
-        itemOnObjectOperate("plant_cure", "*_diseased_*") { (target) ->
-            // TODO message
-            sound("farming_plant_cure")
-            anim("farming_plant_cure")
-            delay(2)
-            set(target.id, get(target.id, "weeds_3").replace("_diseased", ""))
-        }
+        itemOnObjectOperate("plant_cure", "*", handler = ::plantCure)
         itemOnObjectOperate("spade", "*_fullygrown") { (target) ->
             val def = target.def(this)
             val item: String = def["harvest"]
@@ -71,6 +65,24 @@ class FarmingPatch : Script {
         itemOnObjectOperate("compost,supercompost", "*", handler = ::compost)
         itemOnObjectOperate("watering_can_*", "*", handler = ::water)
         itemOnObjectOperate("*_seed", "*", handler = ::plantSeed)
+    }
+
+    private suspend fun plantCure(player: Player, interact: ItemOnObjectInteract) {
+        val target = interact.target
+        if (!target.id.startsWith("farming_")) {
+            return
+        }
+
+        if (!target.def(player).stringId.contains("_diseased")) {
+            player.message("This patch doesn't need curing.")
+            return
+        }
+
+        // TODO message
+        player.sound("farming_plant_cure")
+        player.anim("farming_plant_cure")
+        player.delay(2)
+        player[target.id] = player[target.id, "weeds_3"].replace("_diseased", "")
     }
 
     private suspend fun compost(player: Player, interact: ItemOnObjectInteract) {
@@ -245,6 +257,10 @@ class FarmingPatch : Script {
                 } else {
                     val type = value.substringBeforeLast("_").removeSuffix("_watered").removeSuffix("_dead").removeSuffix("_diseased")
                     // TODO diseased/dead messages
+                    if (value.substringBeforeLast("_").endsWith("_dead")) {
+                        append("The patch has become infected by disease and has died.")
+                        return@buildString
+                    }
                     val amount = if (name == "allotment") 3 else 1
                     val stage = value.substringAfterLast("_").toIntOrNull()
                     val stages = when (name) {
@@ -344,18 +360,20 @@ class FarmingPatch : Script {
     }
 
     private fun clear(player: Player, variable: String) {
-        player.message("You start digging the farming patch...", type = ChatType.Filter)
-        player.queue("clear_patch") {
-            for (i in 0 until 3) {
-                // todo success
-                player.anim("human_dig")
-                player.sound("dig_spade")
-                player.delay(2)
-            }
-            player.message("You have successfully cleared this patch for new crops.", type = ChatType.Filter)
-            player[variable] = "weeds_0"
+        if (!player.inventory.contains("spade")) {
+            player.message("You need a spade to clear a farming patch.")
+            return
         }
-        player.message("You have successfully cleared this patch for new crops.", ChatType.Filter)
+        player.anim("human_dig")
+        player.sound("dig_spade")
+        player.weakQueue("clear_patch", 2) {
+            if (Level.success(player.levels.get(Skill.Farming), 60)) { // TODO proper chances
+                player.message("You have successfully cleared this patch for new crops.", type = ChatType.Filter)
+                player[variable] = "weeds_0"
+            } else {
+                clear(player, variable)
+            }
+        }
     }
 
     companion object {
