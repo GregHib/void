@@ -72,16 +72,24 @@ class FarmingPatch : Script {
             return
         }
 
+        if (!player.inventory.contains("plant_cure")) {
+            player.message("You need a plant cure to cure the disease on this patch.")
+            return
+        }
+
         if (!target.def(player).stringId.contains("_diseased")) {
             player.message("This patch doesn't need curing.")
             return
         }
 
-        // TODO message
+        player.message("You treat the herb patch with the plant cure.", type = ChatType.Filter)
         player.sound("farming_plant_cure")
         player.anim("farming_plant_cure")
         player.delay(2)
-        player[target.id] = player[target.id, "weeds_3"].replace("_diseased", "")
+        if (player.inventory.replace("plant_cure", "vial")) {
+            player.message("It is restored to health.", type = ChatType.Filter)
+            player[target.id] = player[target.id, "weeds_3"].replace("_diseased", "")
+        }
     }
 
     private suspend fun compost(player: Player, interact: ItemOnObjectInteract) {
