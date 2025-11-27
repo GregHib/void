@@ -220,6 +220,10 @@ class FarmingPatch : Script {
             return
         }
         val obj = interact.target
+        if (player[obj.id, "weeds_life3"] == "weeds_0") {
+            player.message("This ${obj.patchName()} doesn't need weeding right now.")
+            return
+        }
         player.anim("farming_raking")
         player.weakQueue("farming_rake", 3) {
             val current = player[obj.id, "weeds_life3"]
@@ -410,7 +414,7 @@ class FarmingPatch : Script {
                 "patch_falador_flower",
                 "patch_wilderness_flower",
                 "patch_catherby_flower",
-                "patch_ardougne_flower",
+                "farming_flower_patch_ardougne",
                 "patch_herblore_habitat_vine_flower",
             ),
             2 to listOf(
@@ -424,13 +428,13 @@ class FarmingPatch : Script {
                 "farming_veg_patch_morytania_nw",
                 "farming_veg_patch_morytania_se",
                 // hops
-                "patch_lumbridge_hops",
+                "farming_hops_patch_lumbridge",
                 "patch_harmony_allotment",
-                "patch_entrana_hops",
-                "patch_seers_village_hops",
-                "patch_yannile_hops",
+                "farming_hops_patch_entrana",
+                "farming_hops_patch_seers_village",
+                "farming_hops_patch_yannile",
                 // potato_cactus
-                "patch_al_kharid_cactus",
+                "farming_cactus_patch_al_kharid",
             ),
             4 to listOf(
                 // herbs
@@ -450,30 +454,30 @@ class FarmingPatch : Script {
             ),
             // trees, mushrooms
             8 to listOf(
-                "patch_lumbridge_tree",
-                "patch_varrock_tree",
-                "patch_falador_tree",
+                "farming_tree_patch_lumbridge",
+                "farming_tree_patch_varrock",
+                "farming_tree_patch_falador",
                 "patch_canifis_mushroom",
-                "patch_taverley_tree",
+                "farming_tree_patch_taverley",
                 "patch_tree_gnome_stronghold_tree",
             ),
             // belladonna
-            16 to listOf("patch_draynor_belladona"),
+            16 to listOf("farming_belladonna_patch_draynor"),
             // fruit_trees, calquat
             32 to listOf(
-                "patch_catherby_fruit_tree",
+                "farming_fruit_tree_patch_catherby",
                 "patch_ardougne_jade_vine",
-                "patch_tai_bwo_wannai_calquat",
+                "farming_calquat_tree_patch_tai_bwo_wannai",
                 "patch_herblore_habitat_fruit_tree",
-                "patch_tree_gnome_village_fruit_tree",
-                "patch_tree_gnome_stronghold_fruit_tree",
+                "farming_fruit_tree_patch_gnome_village",
+                "farming_fruit_tree_patch_gnome_stronghold",
                 "patch_lletya_fruit_tree",
             ),
             // spirit tree
             64 to listOf(
-                "patch_falador_spirit_tree",
-                "patch_etceteria_spirit_tree",
-                "patch_brimhaven_spirit_tree",
+                "farming_spirit_tree_patch_falador",
+                "farming_spirit_tree_patch_etceteria",
+                "farming_spirit_tree_patch_brimhaven",
             ),
         )
     }

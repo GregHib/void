@@ -1,4 +1,4 @@
-[farming_spirit_tree_patch_1]
+[farming_spirit_tree_patch_falador]
 id = 8338
 
 [spirit_tree_patch_weeded]
@@ -130,34 +130,34 @@ id = 8380
 [spirit_tree_dead_fullygrown]
 id = 8381
 
-[farming_spirit_tree_patch_2]
+[farming_spirit_tree_patch_etceteria]
 id = 8382
 
-[farming_spirit_tree_patch_3]
+[farming_spirit_tree_patch_brimhaven]
 id = 8383
 
-[farming_tree_patch_1_canopy]
+[farming_tree_patch_taverley_canopy]
 id = 8384
 
-[farming_tree_patch_2_canopy]
+[farming_tree_patch_falador_canopy]
 id = 8385
 
-[farming_tree_patch_3_canopy]
+[farming_tree_patch_varrock_canopy]
 id = 8386
 
-[farming_tree_patch_4_canopy]
+[farming_tree_patch_lumbridge_canopy]
 id = 8387
 
-[farming_tree_patch_1]
+[farming_tree_patch_taverley]
 id = 8388
 
-[farming_tree_patch_2]
+[farming_tree_patch_falador]
 id = 8389
 
-[farming_tree_patch_3]
+[farming_tree_patch_varrock]
 id = 8390
 
-[farming_tree_patch_4]
+[farming_tree_patch_lumbridge]
 id = 8391
 
 [tree_patch_weeded]
