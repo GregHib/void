@@ -490,6 +490,9 @@ exp = 124.0
 [energy_transfer]
 exp = 100.0
 
+[cure_plant]
+exp = 60.0
+
 [superheat_item]
 exp = 53.0
 
