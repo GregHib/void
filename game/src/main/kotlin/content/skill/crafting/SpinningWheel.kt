@@ -2,6 +2,7 @@ package content.skill.crafting
 
 import content.entity.player.dialogue.type.makeAmount
 import content.entity.player.dialogue.type.makeAmountIndex
+import content.quest.quest
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
@@ -22,6 +23,7 @@ class SpinningWheel : Script {
 
     val fibres = listOf(
         Item("wool"),
+        Item("black_wool"),
         Item("golden_wool"),
         Item("flax"),
         Item("sinew"),
@@ -29,7 +31,6 @@ class SpinningWheel : Script {
         Item("magic_roots"),
         Item("yak_hair"),
     )
-
     val treeRoots = listOf(
         Item("oak_roots"),
         Item("willow_roots"),
@@ -42,11 +43,16 @@ class SpinningWheel : Script {
 
     init {
         objectOperate("Spin", "spinning_wheel*", arrive = false) { (target) ->
-            val strings = fibres.map { if (it.id == "tree_roots") "crossbow_string" else it.spinning.to }
+            val availableFibres = fibres.filter { fibre ->
+                (fibre.id != "black_wool" || quest("sheep_shearer_miniquest") == "started") && (fibre.id != "golden_wool" || (quest("fremennik_trials") == "started") || (quest("fremennik_trials") == "completed"))
+            }
+            val strings = availableFibres.map {
+                if (it.id == "tree_roots") "crossbow_string" else it.spinning.to
+            }
             val (index, amount) = makeAmountIndex(
                 items = strings,
                 names = strings.mapIndexed { index, s ->
-                    "${s.toSentenceCase()}<br>(${fibres[index].id.toSentenceCase()})"
+                    "${s.toSentenceCase()}<br>(${availableFibres[index].id.toSentenceCase()})"
                 },
                 type = "Make",
                 maximum = 28,

@@ -1,0 +1,8 @@
+[ram_attack]
+id = 757
+
+[ram_death]
+id = 758
+
+[ram_defend]
+id = 759

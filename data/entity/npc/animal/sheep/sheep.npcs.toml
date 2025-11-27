@@ -116,12 +116,12 @@ clone = "sheep"
 id = 5163
 examine = "White and shaggy."
 
-[sheep_black]
+[black_sheep]
 clone = "sheep"
 id = 8876
 examine = "It's sporting the height of wool-based fashion."
 
-[sheep_black_shorn]
+[black_sheep_shorn]
 clone = "sheep"
 id = 8877
 examine = "Freshly sheared."
