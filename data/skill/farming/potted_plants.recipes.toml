@@ -459,7 +459,7 @@ add = ["watering_can_0", "curry_seedling_w"]
 message = "You water the curry seed."
 
 [pineapple_seedling]
-remove = ["pineapple_tree_seed", "plant_pot"]
+remove = ["pineapple_seed", "plant_pot"]
 requires = ["gardening_trowel"]
 add = ["pineapple_seedling"]
 message = "You sow a pineapple tree seed in the plantpot.<br>It needs watering before it will grow."
