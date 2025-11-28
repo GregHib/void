@@ -103,6 +103,9 @@ private class SaveLogs : Runnable {
 
     override fun run() {
         if (ticks-- < 0) {
+            if (AuditLog.logs.isEmpty) {
+                return
+            }
             val count = AuditLog.logs.size
             val start = System.currentTimeMillis()
             AuditLog.save(directory)
