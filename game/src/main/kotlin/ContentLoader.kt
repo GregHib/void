@@ -13,7 +13,7 @@ import kotlin.system.exitProcess
 object ContentLoader {
     private val logger = InlineLogger()
 
-    fun load() : List<Script> {
+    fun load(): List<Script> {
         val start = System.currentTimeMillis()
         val scriptNames = ContentLoader::class.java.getResourceAsStream("scripts.txt")?.bufferedReader() ?: error("No auto-generated script file found, make sure 'gradle scriptMetadata' is correctly running")
         loadContentApis()
