@@ -25,8 +25,8 @@ class LogCommands : Script {
     val accounts: AccountDefinitions by inject()
 
     init {
-        modCommand("log_limit", intArg("past-hours", desc = "how many hours back to search through", optional = true), desc = "Set the limit for how many hours of logs to search through") { player, args ->
-            player["log_hours"] = args[0].toInt()
+        modCommand("log_limit", intArg("past-hours", desc = "how many hours back to search through", optional = true), desc = "Set the limit for how many hours of logs to search through") { args ->
+            set("log_hours", args[0].toInt())
         }
         modCommand("logs", *varArgs("term", desc = "term(s) to search logs for"), desc = "Search logs for a generic string", handler = this::search)
     }

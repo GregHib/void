@@ -56,59 +56,59 @@ class MetaCommands : Script {
         )
         commandAlias("find", "search")
 
-        modCommand("items", stringArg("name", desc = "Item name or id to search for", autofill = itemDefinitions.ids.keys), desc = "Search all items") { player, args ->
-            if (player.hasClock("search_delay")) {
+        modCommand("items", stringArg("name", desc = "Item name or id to search for", autofill = itemDefinitions.ids.keys), desc = "Search all items") { args ->
+            if (hasClock("search_delay")) {
                 return@modCommand
             }
-            player.start("search_delay", 1)
+            start("search_delay", 1)
             val search = args.joinToString(" ").lowercase()
-            player.message("===== Items =====", ChatType.Console)
-            val found = search(player, itemDefinitions, search) { it.name }
-            player.message("$found results found for '$search'", ChatType.Console)
+            message("===== Items =====", ChatType.Console)
+            val found = search(this, itemDefinitions, search) { it.name }
+            message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("objects", stringArg("name", desc = "Object name or id to search for", autofill = objectDefinitions.ids.keys), desc = "Search all game objects") { player, args ->
-            if (player.hasClock("search_delay")) {
+        modCommand("objects", stringArg("name", desc = "Object name or id to search for", autofill = objectDefinitions.ids.keys), desc = "Search all game objects") { args ->
+            if (hasClock("search_delay")) {
                 return@modCommand
             }
-            player.start("search_delay", 1)
+            start("search_delay", 1)
             val search = args.joinToString(" ").lowercase()
-            player.message("===== Objects =====", ChatType.Console)
-            val found = search(player, objectDefinitions, search) { it.name }
-            player.message("$found results found for '$search'", ChatType.Console)
+            message("===== Objects =====", ChatType.Console)
+            val found = search(this, objectDefinitions, search) { it.name }
+            message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("npcs", stringArg("name", desc = "Npc name or id to search for", autofill = npcDefinitions.ids.keys), desc = "Search all npcs") { player, args ->
-            if (player.hasClock("search_delay")) {
+        modCommand("npcs", stringArg("name", desc = "Npc name or id to search for", autofill = npcDefinitions.ids.keys), desc = "Search all npcs") { args ->
+            if (hasClock("search_delay")) {
                 return@modCommand
             }
-            player.start("search_delay", 1)
+            start("search_delay", 1)
             val search = args.joinToString(" ").lowercase()
-            player.message("===== NPCs =====", ChatType.Console)
-            val found = search(player, npcDefinitions, search) { it.name }
-            player.message("$found results found for '$search'", ChatType.Console)
+            message("===== NPCs =====", ChatType.Console)
+            val found = search(this, npcDefinitions, search) { it.name }
+            message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("players", stringArg("name", desc = "Player name or id to search for", autofill = accountDefinitions.displayNames.keys), desc = "Search all players") { player, args ->
-            if (player.hasClock("search_delay")) {
+        modCommand("players", stringArg("name", desc = "Player name or id to search for", autofill = accountDefinitions.displayNames.keys), desc = "Search all players") { args ->
+            if (hasClock("search_delay")) {
                 return@modCommand
             }
-            player.start("search_delay", 1)
+            start("search_delay", 1)
             val search = args.joinToString(" ").lowercase()
-            player.message("===== Players =====", ChatType.Console)
-            val found = searchPlayers(player, search)
-            player.message("$found results found for '$search'", ChatType.Console)
+            message("===== Players =====", ChatType.Console)
+            val found = searchPlayers(this, search)
+            message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("clans", stringArg("name", desc = "Clan name or id to search for", autofill = accountDefinitions.clans.keys), desc = "Search all clans") { player, args ->
-            if (player.hasClock("search_delay")) {
+        modCommand("clans", stringArg("name", desc = "Clan name or id to search for", autofill = accountDefinitions.clans.keys), desc = "Search all clans") { args ->
+            if (hasClock("search_delay")) {
                 return@modCommand
             }
-            player.start("search_delay", 1)
+            start("search_delay", 1)
             val search = args.joinToString(" ").lowercase()
-            player.message("===== Clans =====", ChatType.Console)
-            val found = searchClans(player, search)
-            player.message("$found results found for '$search'", ChatType.Console)
+            message("===== Clans =====", ChatType.Console)
+            val found = searchClans(this, search)
+            message("$found results found for '$search'", ChatType.Console)
         }
     }
 

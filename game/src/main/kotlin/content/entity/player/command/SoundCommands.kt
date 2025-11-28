@@ -1,5 +1,3 @@
-@file:Suppress("UNCHECKED_CAST")
-
 package content.entity.player.command
 
 import net.pearx.kasechange.toSnakeCase
@@ -24,38 +22,38 @@ class SoundCommands : Script {
     val enums: EnumDefinitions by inject()
 
     init {
-        adminCommand("sound", stringArg("sound-id"), desc = "Play a sound by int or string id") { player, args ->
+        adminCommand("sound", stringArg("sound-id"), desc = "Play a sound by int or string id") { args ->
             val id = args[0].toIntOrNull()
             if (id == null) {
-                player.sound(args[0].toSnakeCase())
+                sound(args[0].toSnakeCase())
                 return@adminCommand
             }
-            player.client?.playSoundEffect(id)
+            client?.playSoundEffect(id)
         }
 
-        adminCommand("midi", stringArg("midi-id"), desc = "Play a midi effect by int or string id") { player, args ->
+        adminCommand("midi", stringArg("midi-id"), desc = "Play a midi effect by int or string id") { args ->
             val id = args[0].toIntOrNull()
             if (id == null) {
-                player.midi(args[0].toSnakeCase())
+                midi(args[0].toSnakeCase())
                 return@adminCommand
             }
-            player.client?.playMIDI(id)
+            client?.playMIDI(id)
         }
 
-        adminCommand("jingle", stringArg("jingle-id"), desc = "Play a jingle sound by int or string id") { player, args ->
+        adminCommand("jingle", stringArg("jingle-id"), desc = "Play a jingle sound by int or string id") { args ->
             val id = args[0].toIntOrNull()
             if (id == null) {
-                player.jingle(args[0].toSnakeCase())
+                jingle(args[0].toSnakeCase())
                 return@adminCommand
             }
-            player.client?.playJingle(id)
+            client?.playJingle(id)
         }
 
-        adminCommand("song", stringArg("song-id"), desc = "Play a song by int id") { player, args ->
+        adminCommand("song", stringArg("song-id"), desc = "Play a song by int id") { args ->
             val names = enums.get("music_track_names").map!!
             var id = args[0].toIntOrNull()
             if (id != null) {
-                player.playTrack(args[0].toInt())
+                playTrack(args[0].toInt())
                 return@adminCommand
             }
             val search = args[0].replace(" ", "_")
@@ -66,9 +64,9 @@ class SoundCommands : Script {
                 }
             }
             if (id != null) {
-                player.playTrack(id)
+                playTrack(id)
             } else {
-                player.message("Song not found with id '$search'.")
+                message("Song not found with id '$search'.")
             }
         }
         commandAlias("song", "track")

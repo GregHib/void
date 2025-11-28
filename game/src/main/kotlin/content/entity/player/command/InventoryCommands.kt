@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.inv.inventory
 
 class InventoryCommands : Script {
     init {
-        modCommand("clear", desc = "Delete all items in the players inventory") { player, args ->
-            player.inventory.clear()
+        modCommand("clear", desc = "Delete all items in the players inventory") {
+            inventory.clear()
         }
     }
 }

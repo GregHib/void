@@ -110,12 +110,12 @@ class PenguinHideAndSeek : Script {
             message("You have ${get("penguin_points", 0)} Penguin Points to spend with Larry.")
         }
 
-        adminCommand("respawn_penguins", desc = "Respawn hide and seek penguins") { _, _ ->
+        adminCommand("respawn_penguins", desc = "Respawn hide and seek penguins") {
             clear()
             load(configFiles())
             sendBear()
         }
-        adminCommand("clear_penguins", desc = "Remove all hide and seek penguins") { _, _ -> clear() }
+        adminCommand("clear_penguins", desc = "Remove all hide and seek penguins") { clear() }
         modCommand("penguins", stringArg("player-name", autofill = accounts.displayNames.keys, optional = true), desc = "Get info about a hide and seek penguin", handler = ::listPenguins)
         worldSpawn(::load)
         playerSpawn(::sendBear)
