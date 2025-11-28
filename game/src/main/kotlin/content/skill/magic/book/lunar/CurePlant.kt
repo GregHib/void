@@ -20,7 +20,9 @@ class CurePlant : Script {
             }
             val value = get(target.id, "weeds_life3")
             if (!value.contains("_diseased")) {
-                if (value.startsWith("weeds_")) {
+                if (value.contains("_dead")) {
+                    message("It says 'Cure', not 'Resurrect'. Although death may arise from disease, it is not in itself a disease and hence cannot be cured by this spell. So there.")
+                } else if (value.startsWith("weeds_")) {
                     message("The weeds are healthy enough already.")
                 } else {
                     message("It's growing just fine.")
