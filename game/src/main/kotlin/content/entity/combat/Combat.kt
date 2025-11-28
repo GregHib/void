@@ -176,7 +176,7 @@ class Combat :
             }
             target.start("in_combat", 8)
             if (character is NPC) {
-                CombatApi.swing(character, target, target.fightStyle)
+                CombatApi.swing(character, target, character.fightStyle)
             } else if (character is Player) {
                 if (character.fightStyle == "magic" || character.fightStyle == "blaze") {
                     if (Magic.castSpell(character, target)) {
