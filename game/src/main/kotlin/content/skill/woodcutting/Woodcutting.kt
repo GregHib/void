@@ -119,7 +119,7 @@ class Woodcutting : Script {
         areaSound("bird_chirp", player.tile)
 
         val dropTile = player.tile.toCuboid(1).random(player) ?: player.tile
-        floorItems.add(tile = dropTile, id = drop.id, amount = drop.amount?.start ?: 1, disappearTicks = 50)
+        floorItems.add(tile = dropTile, id = drop.id, amount = drop.amount.first, disappearTicks = 50)
     }
 
     fun success(level: Int, hatchet: Item, tree: Tree): Boolean {
