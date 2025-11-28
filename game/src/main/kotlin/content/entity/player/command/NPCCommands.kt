@@ -20,8 +20,8 @@ class NPCCommands : Script {
     val npcDefinitions: NPCDefinitions by inject()
 
     init {
-        modCommand("npcs", desc = "Get total npc count") { player, _ ->
-            player.message("NPCs: ${npcs.count()}")
+        modCommand("npcs", desc = "Get total npc count") {
+            message("NPCs: ${npcs.count()}")
         }
         adminCommand("npc", stringArg("npc-id", autofill = npcDefinitions.ids.keys), desc = "Spawn an npc", handler = ::spawn)
     }

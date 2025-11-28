@@ -111,7 +111,7 @@ internal class CombatTest : WorldTest() {
         assertEquals(emptyTile, player.tile)
         assertTrue(player.equipment[EquipSlot.Ammo.index].amount < 100)
         assertTrue(drops.any { it.id == "bones" })
-        assertTrue(floorItems[emptyTile.addY(3)].any { it.id == "rune_arrow" })
+        assertTrue(floorItems[emptyTile.addY(4)].any { it.id == "rune_arrow" })
         assertTrue(player.experience.get(Skill.Ranged) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
         assertTrue(player.inventory.count("rune_arrow") < 100)

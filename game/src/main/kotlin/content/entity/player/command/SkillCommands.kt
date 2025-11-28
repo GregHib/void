@@ -5,11 +5,7 @@ import content.skill.prayer.isCurses
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
-import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.command.adminCommands
-import world.gregs.voidps.engine.client.command.command
-import world.gregs.voidps.engine.client.command.intArg
-import world.gregs.voidps.engine.client.command.stringArg
+import world.gregs.voidps.engine.client.command.*
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -42,7 +38,8 @@ class SkillCommands : Script {
             desc = "Set any players skill to a specific level",
             handler = ::set,
         )
-        adminCommands("set_level", self, other)
+        adminCommands("level", self, other)
+        commandSuggestion("level", "set_level")
         adminCommand("reset", stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "Set all skills to level 1", handler = ::reset)
     }
 

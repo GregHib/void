@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
 
 data class ItemOnNPCInteract(
@@ -33,4 +34,9 @@ data class ItemOnNPCInteract(
             }
         }
     }
+
+    override fun toString(): String {
+        return "${player.name} ${player.tile} - ${item.id}:${target.def(player).stringId} target=$target, item=$item, slot=$slot, interface='$id'"
+    }
+
 }

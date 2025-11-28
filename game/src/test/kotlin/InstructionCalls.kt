@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -183,8 +182,8 @@ fun Player.npcOption(npc: NPC, option: Int) = runTest {
 }
 
 fun Player.objectOption(gameObject: GameObject, option: String = "", optionIndex: Int? = null) = runTest {
-    val def = get<ObjectDefinitions>().get(gameObject.intId)
-    instructions.send(InteractObject(def.id, gameObject.tile.x, gameObject.tile.y, (optionIndex ?: def.optionsIndex(option)) + 1))
+    val def = gameObject.def(this@objectOption)
+    instructions.send(InteractObject(gameObject.intId, gameObject.tile.x, gameObject.tile.y, (optionIndex ?: def.optionsIndex(option)) + 1))
 }
 
 fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {

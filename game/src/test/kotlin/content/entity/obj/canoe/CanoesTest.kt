@@ -72,12 +72,12 @@ class CanoesTest : WorldTest() {
         val station = objects[stationTile(currentStation), "canoe_station_$currentStation"]!!
 
         // Chop-down
-        player.objectOption(station, "Make-canoe")
+        player.objectOption(station, "Chop-down")
         tick(7)
         assertEquals("fallen", player["canoe_state_$currentStation", "tree"])
 
         // Shape
-        player.objectOption(station, "Make-canoe")
+        player.objectOption(station, "Shape-canoe")
         tick(4)
         player.interfaceOption("canoe", "a_$canoe", "Select")
         tick(3)
@@ -85,12 +85,12 @@ class CanoesTest : WorldTest() {
         assertNotEquals(0.0, player.experience.get(Skill.Woodcutting))
 
         // Float
-        player.objectOption(station, "Make-canoe")
+        player.objectOption(station, if (canoe == "log") "Float Log" else "Float Canoe")
         tick(3)
         assertEquals("water_$canoe", player["canoe_state_$currentStation", "tree"])
 
         // Paddle
-        player.objectOption(station, "Make-canoe")
+        player.objectOption(station, "Paddle Canoe")
         tick()
         player.interfaceOption("canoe_stations_map", "travel_$target", "Select")
         tick(6)
@@ -103,7 +103,7 @@ class CanoesTest : WorldTest() {
         val station = objects[Tile(3233, 3250), "canoe_station_lumbridge"]!!
 
         // Chop-down
-        player.objectOption(station, "Make-canoe")
+        player.objectOption(station, "Chop-down")
         tick(7)
         assertEquals("tree", player["canoe_state_lumbridge", "tree"])
         assertTrue(player.containsMessage("You do not have a hatchet"))
@@ -117,12 +117,12 @@ class CanoesTest : WorldTest() {
         player.inventory.add("steel_hatchet")
 
         // Chop-down
-        player.objectOption(station, "Make-canoe")
+        player.objectOption(station, "Chop-down")
         tick(7)
         assertEquals("fallen", player["canoe_state_champions_guild", "tree"])
 
         // Shape
-        player.objectOption(station, "Make-canoe")
+        player.objectOption(station, "Shape-canoe")
         tick(4)
         player.interfaceOption("canoe", "a_stable_dugout", "Select")
         tick(3)

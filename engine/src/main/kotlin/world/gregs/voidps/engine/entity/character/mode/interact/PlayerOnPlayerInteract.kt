@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 
 data class PlayerOnPlayerInteract(
     override val target: Player,
@@ -29,4 +30,9 @@ data class PlayerOnPlayerInteract(
             }
         }
     }
+
+    override fun toString(): String {
+        return "${player.name} ${player.tile} - $option target=$target"
+    }
+
 }

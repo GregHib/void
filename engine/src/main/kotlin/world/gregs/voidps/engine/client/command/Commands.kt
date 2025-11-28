@@ -169,15 +169,15 @@ open class Commands {
     companion object : Commands()
 }
 
-fun playerCommand(name: String, vararg arguments: CommandArgument, desc: String = "", handler: suspend (Player, List<String>) -> Unit) {
+fun playerCommand(name: String, vararg arguments: CommandArgument, desc: String = "", handler: suspend Player.(List<String>) -> Unit) {
     Commands.register(name, listOf(CommandSignature(arguments.toList(), desc, handler)))
 }
 
-fun modCommand(name: String, vararg arguments: CommandArgument, desc: String = "", handler: suspend (Player, List<String>) -> Unit) {
+fun modCommand(name: String, vararg arguments: CommandArgument, desc: String = "", handler: suspend Player.(List<String>) -> Unit) {
     Commands.register(name, listOf(CommandSignature(arguments.toList(), desc, handler)), PlayerRights.Mod)
 }
 
-fun adminCommand(name: String, vararg arguments: CommandArgument, desc: String = "", handler: suspend (Player, List<String>) -> Unit) {
+fun adminCommand(name: String, vararg arguments: CommandArgument, desc: String = "", handler: suspend Player.(List<String>) -> Unit) {
     Commands.register(name, listOf(CommandSignature(arguments.toList(), desc, handler)), PlayerRights.Admin)
 }
 
@@ -189,7 +189,7 @@ fun commandSuggestion(name: String, vararg alternatives: String) {
     Commands.suggest(name, *alternatives)
 }
 
-fun command(vararg args: CommandArgument, desc: String = "", handler: suspend (Player, List<String>) -> Unit) = CommandSignature(args.toList(), desc, handler)
+fun command(vararg args: CommandArgument, desc: String = "", handler: suspend Player.(List<String>) -> Unit) = CommandSignature(args.toList(), desc, handler)
 
 
 fun playerCommands(name: String, vararg signatures: CommandSignature) {

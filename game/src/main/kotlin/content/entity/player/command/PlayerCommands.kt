@@ -58,7 +58,7 @@ class PlayerCommands : Script {
     val variables: VariableDefinitions by inject()
 
     init {
-        modCommand("save", desc = "Save all players") { _, _ ->
+        modCommand("save", desc = "Save all players") {
             players.forEach(saveQueue::save)
             exchange.save()
             AuditLog.save()

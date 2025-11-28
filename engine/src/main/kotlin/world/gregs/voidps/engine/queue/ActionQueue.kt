@@ -64,7 +64,8 @@ class ActionQueue(
     }
 
     fun clear(priority: ActionPriority) {
-        if ((action?.priority?.ordinal ?: 0) <= priority.ordinal) {
+        val current = action?.priority?.ordinal
+        if (current != null && current <= priority.ordinal) {
             character.suspension = null
             action = null
         }

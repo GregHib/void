@@ -27,11 +27,11 @@ class PlayerUpdatingCommands : Script {
     val graphicDefinitions: GraphicDefinitions by inject()
 
     init {
-        adminCommand("kill", desc = "Remove all bots") { _, _ ->
-            val it = players.iterator()
+        adminCommand("kill", desc = "Remove all bots") {
+            val iter = players.iterator()
             val remove = mutableListOf<Player>()
-            while (it.hasNext()) {
-                val p = it.next()
+            while (iter.hasNext()) {
+                val p = iter.next()
                 if (p.isBot) {
                     remove.add(p)
                 }
@@ -41,42 +41,42 @@ class PlayerUpdatingCommands : Script {
             }
         }
 
-        playerCommand("players", desc = "Get the total and local player counts") { player, _ ->
-            player.message("Players: ${players.size}, ${player.viewport?.players?.localCount}")
+        playerCommand("players", desc = "Get the total and local player counts") {
+            message("Players: ${players.size}, ${viewport?.players?.localCount}")
         }
 
-        adminCommand("anim", stringArg("anim-id", autofill = animationDefinitions.ids.keys), desc = "Perform animation (-1 to clear)") { player, args ->
+        adminCommand("anim", stringArg("anim-id", autofill = animationDefinitions.ids.keys), desc = "Perform animation (-1 to clear)") { args ->
             when (args[0]) {
-                "-1", "" -> player.clearAnim()
-                else -> player.anim(args[0], override = true) // 863
+                "-1", "" -> clearAnim()
+                else -> anim(args[0], override = true) // 863
             }
         }
 
-        adminCommand("emote", stringArg("emote-id"), desc = "Perform render emote (-1 to clear)") { player, args ->
+        adminCommand("emote", stringArg("emote-id"), desc = "Perform render emote (-1 to clear)") { args ->
             when (args[0]) {
-                "-1", "" -> player.clearRenderEmote()
-                else -> player.renderEmote(args[0])
+                "-1", "" -> clearRenderEmote()
+                else -> renderEmote(args[0])
             }
         }
 
-        adminCommand("gfx", stringArg("gfx-id", autofill = graphicDefinitions.ids.keys), desc = "Perform graphic effect (-1 to clear)") { player, args ->
+        adminCommand("gfx", stringArg("gfx-id", autofill = graphicDefinitions.ids.keys), desc = "Perform graphic effect (-1 to clear)") { args ->
             when (args[0]) {
-                "-1", "" -> player.clearGfx()
-                else -> player.gfx(args[0]) // 93
+                "-1", "" -> clearGfx()
+                else -> gfx(args[0]) // 93
             }
         }
 
-        adminCommand("proj", stringArg("gfx-id", autofill = graphicDefinitions.ids.keys), desc = "Shoot projectile (-1 to clear)") { player, args ->
-            player.shoot(args[0], player.tile.add(0, 5), delay = 0, flightTime = 400)
+        adminCommand("proj", stringArg("gfx-id", autofill = graphicDefinitions.ids.keys), desc = "Shoot projectile (-1 to clear)") { args ->
+            shoot(args[0], tile.add(0, 5), delay = 0, flightTime = 400)
         }
         commandAlias("proj", "shoot")
 
-        adminCommand("overlay") { player, args ->
-            player.colourOverlay(-2108002746, 10, 100)
+        adminCommand("overlay") {
+            colourOverlay(-2108002746, 10, 100)
         }
 
-        adminCommand("exact_move", intArg("start-x", optional = true), intArg("start-y", optional = true), intArg("end-x", optional = true), intArg("end-y", optional = true)) { player, args ->
-            val move = player.visuals.exactMovement
+        adminCommand("exact_move", intArg("start-x", optional = true), intArg("start-y", optional = true), intArg("end-x", optional = true), intArg("end-y", optional = true)) { args ->
+            val move = visuals.exactMovement
             move.startX = args.getOrNull(0)?.toIntOrNull() ?: -4
             move.startY = args.getOrNull(0)?.toIntOrNull() ?: 2
             move.startDelay = 0
@@ -84,38 +84,38 @@ class PlayerUpdatingCommands : Script {
             move.endY = args.getOrNull(0)?.toIntOrNull() ?: 0
             move.endDelay = 100
             move.direction = Direction.EAST.ordinal
-            player.flagExactMovement()
+            flagExactMovement()
         }
         commandAlias("move", "exact_move")
 
-        adminCommand("time") { player, args ->
-            player.setTimeBar(true, 0, 60, 1)
+        adminCommand("time") {
+            setTimeBar(true, 0, 60, 1)
         }
 
-        adminCommand("face", intArg("delta-x"), intArg("delta-y"), desc = "Turn player to face a direction or delta coordinate") { player, args ->
+        adminCommand("face", intArg("delta-x"), intArg("delta-y"), desc = "Turn player to face a direction or delta coordinate") { args ->
             if (args[0].contains(" ")) {
                 val parts = args[0].split(" ")
-                player.face(Delta(parts[0].toInt(), parts[1].toInt()))
+                face(Delta(parts[0].toInt(), parts[1].toInt()))
             } else {
                 val direction = Direction.valueOf(args[0].toScreamingSnakeCase())
-                player.face(direction.delta)
+                face(direction.delta)
             }
         }
 
-        adminCommand("skill_level", intArg("level"), desc = "Set the current displayed skill level") { player, args ->
-            player.skillLevel = args[0].toInt()
+        adminCommand("skill_level", intArg("level"), desc = "Set the current displayed skill level") { args ->
+            skillLevel = args[0].toInt()
         }
 
-        adminCommand("combat_level", intArg("level"), desc = "Set the current displayed combat level") { player, args ->
-            player.combatLevel = args[0].toInt()
+        adminCommand("combat_level", intArg("level"), desc = "Set the current displayed combat level") { args ->
+            combatLevel = args[0].toInt()
         }
 
-        adminCommand("toggle_skill_level", desc = "Toggle skill level display") { player, args ->
-            player.toggleSkillLevel()
+        adminCommand("toggle_skill_level", desc = "Toggle skill level display") {
+            toggleSkillLevel()
         }
 
-        adminCommand("summoning_level", intArg("level"), desc = "Set the current summoning combat level") { player, args ->
-            player.summoningCombatLevel = args[0].toInt()
+        adminCommand("summoning_level", intArg("level"), desc = "Set the current summoning combat level") { args ->
+            summoningCombatLevel = args[0].toInt()
         }
     }
 }

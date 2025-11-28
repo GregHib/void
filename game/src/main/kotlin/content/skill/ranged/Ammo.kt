@@ -60,15 +60,13 @@ object Ammo {
     private fun remove(player: Player, target: Character, ammo: String, required: Int, recoverChance: Double, dropChance: Double) {
         val random = random.nextDouble()
         if (random <= recoverChance) return
-        player.softQueue("remove_ammo") {
-            player.equipment.remove(ammo, required)
-            if (!player.equipment.contains(ammo)) {
-                player.message("That was your last one!")
-            }
+        player.equipment.remove(ammo, required)
+        if (!player.equipment.contains(ammo)) {
+            player.message("That was your last one!")
+        }
 
-            if (random > 1.0 - dropChance && !get<Collisions>().check(target.tile.x, target.tile.y, target.tile.level, CollisionFlag.FLOOR)) {
-                get<FloorItems>().add(target.tile, ammo, required, revealTicks = 100, disappearTicks = 200, owner = player)
-            }
+        if (random > 1.0 - dropChance && !get<Collisions>().check(target.tile.x, target.tile.y, target.tile.level, CollisionFlag.FLOOR)) {
+            get<FloorItems>().add(target.tile, ammo, required, revealTicks = 100, disappearTicks = 200, owner = player)
         }
     }
 
