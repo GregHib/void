@@ -1,5 +1,6 @@
 [ram_death]
 id = 5336
+ticks = 2
 
 [ram_defend]
 id = 5337
