@@ -123,27 +123,27 @@ wander_radius = 4
 collision = "indoors"
 examine = "Lumbridge Castle's head cook."
 
-[guardsman_dante]
+[lumbridge_guardsman_dante]
 id = 7885
 categories = ["human"]
 wander_radius = 4
 collision = "indoors"
 examine = "He tries to keep order around Lumbridge."
 
-[guardsman_deshawn]
-clone = "guardsman_dante"
+[lumbridge_guardsman_deshawn]
+clone = "lumbridge_guardsman_dante"
 id = 7886
 
-[guardsman_brawn]
-clone = "guardsman_dante"
+[lumbridge_guardsman_brawn]
+clone = "lumbridge_guardsman_dante"
 id = 7887
 
-[guardsman_pazel]
-clone = "guardsman_dante"
+[lumbridge_guardsman_pazel]
+clone = "lumbridge_guardsman_dante"
 id = 7889
 
-[guardsman_peale]
-clone = "guardsman_dante"
+[lumbridge_guardsman_peale]
+clone = "lumbridge_guardsman_dante"
 id = 7890
 
 [lumbridge_man]
@@ -310,3 +310,36 @@ examine = "An old adventurer."
 
 [chief_thief_robin_lumbridge_2]
 id = 7955
+
+[lumbridge_guardsman_attackable]
+id = 12367
+hitpoints = 100
+attack = 4
+defence = 4
+max_hit_melee = 16
+attack_speed = 5
+combat_anims = "human"
+style = "slash"
+weapon_style = "sword"
+categories = ["human"]
+combat_anims = "human"
+hunt_mode = "aggressive_npcs"
+respawn_delay = 35
+drop_table = "lumbridge_guard"
+examine = " He tries to keep order around Lumbridge by killing goblins."
+
+[lumbridge_guardsman_attackable2]
+id = 12368
+hitpoints = 100
+attack = 4
+defence = 4
+max_hit_melee = 16
+attack_speed = 5
+style = "stab"
+weapon_style = "sword"
+categories = ["human"]
+combat_anims = "human"
+hunt_mode = "aggressive_npcs"
+respawn_delay = 35
+drop_table = "lumbridge_guard"
+examine = "He tries to keep order around Lumbridge by killing rats."

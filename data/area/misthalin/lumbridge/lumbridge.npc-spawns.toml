@@ -1,5 +1,7 @@
 spawns = [
-# 12594
+    # 12594
+    { id = "lumbridge_guardsman_attackable", x = 3187, y = 3245 },
+    { id = "lumbridge_guardsman_attackable2", x = 3192, y = 3207 },
   { id = "butterfly_1", x = 3183, y = 3254 },
   { id = "butterfly_1", x = 3182, y = 3251 },
   { id = "butterfly_1", x = 3178, y = 3228 },
@@ -49,11 +51,11 @@ spawns = [
   { id = "butterfly_3", x = 3233, y= 3216},
   { id = "roddeck", x = 3232, y = 3237, direction = "WEST" },
   { id = "sigmund_lumbridge", x = 3209, y = 3219, level = 1 },
-  { id = "guardsman_deshawn", x = 3206, y = 3214, level = 1 },
-  { id = "guardsman_dante", x = 3211, y = 3227, level = 1 },
-  { id = "guardsman_brawn", x = 3215, y = 3219, level = 1},
-  { id = "guardsman_pazel", x = 3213, y = 3210, level = 1 },
-  { id = "guardsman_peale", x = 3208, y = 3227},
+  { id = "lumbridge_guardsman_deshawn", x = 3206, y = 3214, level = 1 },
+  { id = "lumbridge_guardsman_dante", x = 3211, y = 3227, level = 1 },
+  { id = "lumbridge_guardsman_brawn", x = 3215, y = 3219, level = 1},
+  { id = "lumbridge_guardsman_pazel", x = 3213, y = 3210, level = 1 },
+  { id = "lumbridge_guardsman_peale", x = 3208, y = 3227},
   { id = "donie", x = 3219, y = 3247 },
   { id = "imp", x = 3223, y = 3223 },
   { id = "lumbridge_sage", x = 3238, y = 3219, direction = "WEST" },
@@ -190,6 +192,7 @@ spawns = [
   { id = "explorer_jack", x = 3204, y = 3241 },
   { id = "doomsayer", x = 3237, y = 3227, direction = "EAST" },
 # 12851
+    { id = "lumbridge_guardsman_attackable", x = 3253, y = 3238 },
   { id = "duck_swim", x = 3235, y = 3265 },
   { id = "duck_swim", x = 3233, y = 3267 },
   { id = "duck_swim", x = 3233, y = 3270 },
@@ -244,7 +247,7 @@ spawns = [
   { id = "farmer_lumbridge", x = 3233, y = 3308 },
   { id = "farmer_lumbridge_3", x = 3262, y = 3325 },
   { id = "farmer_lumbridge_2", x = 3250, y = 3310 },
-  { id = "master_farmer", x = 3203, y = 3254, members = true },
+    { id = "master_farmer", x = 3203, y = 3254, members = true },
   { id = "crow_4", x = 3208, y = 3301, members = true },
   { id = "vasquen", x = 3226, y = 3311 },
   { id = "fayeth", x = 3228, y = 3245 },
