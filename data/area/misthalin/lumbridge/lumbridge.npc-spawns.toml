@@ -1,5 +1,13 @@
 spawns = [
     # 12594
+    { id = "giant_rat", x = 3192, y = 3203 },
+    { id = "giant_rat", x = 3192, y = 3211 },
+    { id = "giant_rat", x = 3197, y = 3202 },
+    { id = "giant_rat", x = 3193, y = 3203 },
+    { id = "giant_rat", x = 3194, y = 3201 },
+    { id = "giant_rat", x = 3194, y = 3211 },
+    { id = "giant_rat", x = 3192, y = 3208 },
+    { id = "giant_rat", x = 3195, y = 3205 },
     { id = "lumbridge_guardsman_attackable", x = 3187, y = 3245 },
     { id = "lumbridge_guardsman_attackable2", x = 3192, y = 3207 },
   { id = "butterfly_1", x = 3183, y = 3254 },
