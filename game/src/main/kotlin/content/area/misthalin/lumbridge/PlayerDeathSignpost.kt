@@ -7,7 +7,7 @@ class PlayerDeathSignpost : Script {
     var playerDeathsToday: Int = 0
 
     init {
-        playerDeath{
+        playerDeath {
             playerDeathsToday += 1
         }
         objectOperate("Read", "lumbridge_signpost_death") {
