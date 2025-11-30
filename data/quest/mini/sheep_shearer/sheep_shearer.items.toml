@@ -23,6 +23,7 @@ id = 1738
 id = 15415
 limit = 5000
 weight = 0.003
+tradeable = false
 destroy = "You'll have to shear some from another black sheep."
 spinning = { to = "ball_of_black_wool", level = 1, xp = 2.5 }
 examine = "This probably came from a black sheep. You can spin it into a ball of black wool at a spinning wheel."
@@ -31,5 +32,6 @@ examine = "This probably came from a black sheep. You can spin it into a ball of
 id = 15416
 limit = 5000
 weight = 0.012
+tradeable = false
 destroy = "You'll have to make one from more black wool."
 examine = "Spun from black wool. You can weave it into black cloth at a loom."
