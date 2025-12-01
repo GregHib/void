@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.data.exchange.*
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import java.io.File
+import java.io.Writer
 import java.util.*
 
 class FileStorage(
@@ -267,22 +268,23 @@ class FileStorage(
         directory.resolve(Settings["storage.grand.exchange.history.path"]).mkdirs()
         for ((key, value) in history) {
             Config.fileWriter(directory.resolve("${Settings["storage.grand.exchange.history.path"]}/$key.toml")) {
+                val configWriter: Writer = this
                 writeSection("day")
-                write(value.day)
+                writeMap(configWriter, value.day)
                 writeSection("week")
-                write(value.week)
+                writeMap(configWriter, value.week)
                 writeSection("month")
-                write(value.month)
+                writeMap(configWriter, value.month)
                 writeSection("year")
-                write(value.year)
+                writeMap(configWriter, value.year)
             }
         }
     }
 
-    private fun ConfigWriter.write(history: MutableMap<Long, Aggregate>) {
+    private fun writeMap(writer: Writer, history: MutableMap<Long, Aggregate>) {
         for ((timestamp, aggregate) in history) {
-            writeKey(timestamp.toString())
-            list(10) { index ->
+            writer.writeKey(timestamp.toString())
+            writer.list(10) { index ->
                 when (index) {
                     0 -> writeValue(aggregate.open)
                     1 -> writeValue(aggregate.high)
@@ -296,7 +298,7 @@ class FileStorage(
                     9 -> writeValue(aggregate.volumeLow)
                 }
             }
-            write("\n")
+            writer.write("\n")
         }
     }
 
