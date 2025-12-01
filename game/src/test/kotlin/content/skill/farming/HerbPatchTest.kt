@@ -80,6 +80,7 @@ class HerbPatchTest : WorldTest() {
 
             player.itemOnObject(patch, 0)
             tick(10)
+            assertEquals("${id}_0", player["farming_herb_patch_falador", "empty"])
             val farming = scripts.filterIsInstance<Farming>().first()
             // Grow one more than expected
             for (i in 0..count) {
@@ -153,6 +154,7 @@ class HerbPatchTest : WorldTest() {
             tickIf { player["farming_herb_patch_falador", "empty"] != "weeds_0" }
 
             assertEquals(item.amount, player.inventory.count(item.id))
+            assertTrue(player.experience.get(Skill.Farming) > 0)
             assertEquals("weeds_0", player["farming_herb_patch_falador", "empty"])
         }
     }

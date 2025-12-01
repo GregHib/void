@@ -324,6 +324,7 @@ id = 6010
 price = 4226
 limit = 1000
 weight = 0.028
+farming_xp = 47.0
 compostable = true
 examine = "A bunch of marigolds."
 
@@ -336,6 +337,7 @@ price = 145
 limit = 1000
 weight = 0.028
 compostable = true
+farming_xp = 111.0
 examine = "A bunch of nasturtiums."
 
 [nasturtiums_noted]
@@ -347,6 +349,7 @@ price = 84
 limit = 1000
 weight = 0.028
 compostable = true
+farming_xp = 66.5
 examine = "Some rosemary."
 
 [rosemary_noted]

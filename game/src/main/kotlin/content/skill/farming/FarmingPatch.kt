@@ -55,9 +55,16 @@ class FarmingPatch : Script {
             harvest(Item(item), target)
         }
         objectOperate("Pick", "*_fullygrown") { (target) ->
-            val item = get<String>(target.id)?.substringBeforeLast("_life") ?: return@objectOperate
+            if (target.id == "guam_fullygrown") {
+                val item = get<String>(target.id)?.substringBeforeLast("_life") ?: return@objectOperate
+                message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
+                harvest(Item("grimy_$item"), target)
+                return@objectOperate
+            }
+            val def = target.def(this)
+            val item: String = def["harvest"]
             message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
-            harvest(Item("grimy_$item"), target)
+            harvest(Item(item), target)
         }
         itemOnObjectOperate("plant_cure", "*", handler = ::plantCure)
         itemOnObjectOperate("spade", "*_fullygrown") { (target) ->
@@ -68,7 +75,7 @@ class FarmingPatch : Script {
         }
         itemOnObjectOperate("compost,supercompost", "*", handler = ::compost)
         itemOnObjectOperate("watering_can_*", "*", handler = ::water)
-        itemOnObjectOperate("*_seed", "*", handler = ::plantSeed)
+        itemOnObjectOperate("*_seed,scarecrow", "*", handler = ::plantSeed)
     }
 
     private suspend fun plantCure(player: Player, interact: ItemOnObjectInteract) {
@@ -159,12 +166,13 @@ class FarmingPatch : Script {
         if (!target.id.startsWith("farming_")) {
             return
         }
+        val item = interact.item
+        item.def.getOrNull<String>("farming_patch") ?: return
         val id = target.def(player).stringId
         if (id.endsWith("patch_weeded")) {
             plant(player, interact)
             return
         }
-        val item = interact.item
         val amount = item.def["farming_amount", 1]
         val stage = player[target.id, "weeds_life3"]
         if (stage != "weeds_0") {
@@ -182,7 +190,6 @@ class FarmingPatch : Script {
 
     private suspend fun plant(player: Player, interact: ItemOnObjectInteract) {
         val item = interact.item
-        item.def.getOrNull<String>("farming_patch") ?: return
         val amount = item.def["farming_amount", 1]
         // TODO order of checks
         if (!player.has(Skill.Farming, item.def["farming_level", 1])) {
@@ -209,9 +216,11 @@ class FarmingPatch : Script {
             player.anim("farming_seed_dibbing")
             player.sound("farming_dibbing")
         }
+        println("PLant $item")
         player.delay(3)
         player.message("You plant ${if (amount == 1) "a" else amount} ${item.def.name.lowercase().plural(amount)} in the $patchName.", type = ChatType.Filter)
         val crop: String = item.def.getOrNull("farming_crop") ?: return
+        println("Crop $variable = ${crop}_0")
         player[variable] = "${crop}_0"
         player.exp(Skill.Farming, item.def["farming_xp", 0.0])
     }
@@ -346,6 +355,9 @@ class FarmingPatch : Script {
                 } else if (!removeVarbit("patch_compost", obj.id)) {
                     val stage = value.substringAfterLast("_")
                     if (!stage.startsWith("life")) {
+                        message("The ${obj.patchName()} is now empty.")
+                        clearAnim()
+                        player[obj.id] = "weeds_0"
                         return@weakQueue
                     }
                     val int = stage.removePrefix("life").toIntOrNull() ?: 2
@@ -416,11 +428,12 @@ class FarmingPatch : Script {
             // flowers, saplings
             1 to listOf(
                 "patch_draynor_evil_turnip",
-                "patch_falador_flower",
+                "farming_flower_patch_falador",
                 "patch_wilderness_flower",
-                "patch_catherby_flower",
+                "farming_flower_patch_catherby",
                 "farming_flower_patch_ardougne",
                 "patch_herblore_habitat_vine_flower",
+                "farming_flower_patch_morytania",
             ),
             2 to listOf(
                 // allotments

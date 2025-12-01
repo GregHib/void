@@ -2,33 +2,74 @@
 id = 5096
 price = 6
 limit = 100
-examine = "A marigold seed - plant in a flower patch."
 kept = "Wilderness"
+farming_level = 2
+farming_crop = "marigold"
+farming_xp = 8.5
+farming_patch = "flower"
+examine = "A marigold seed - plant in a flower patch."
 
 [rosemary_seed]
 id = 5097
 price = 3
 limit = 100
-examine = "A rosemary seed - plant in a flower patch."
+farming_level = 11
+farming_crop = "rosemary"
+farming_xp = 12.0
+farming_patch = "flower"
 kept = "Wilderness"
+examine = "A rosemary seed - plant in a flower patch."
 
 [nasturtium_seed]
 id = 5098
 price = 1
 limit = 1000
+farming_level = 24
+farming_crop = "nasturtium"
+farming_xp = 19.5
+farming_patch = "flower"
 examine = "A nasturtium seed - plant in a flower patch."
 
 [woad_seed]
 id = 5099
 price = 1
 limit = 100
+farming_level = 25
+farming_crop = "woad"
+farming_xp = 20.5
+farming_patch = "flower"
 examine = "A woad seed - plant in a flower patch."
 
 [limpwurt_seed]
 id = 5100
 price = 39
 limit = 100
+farming_level = 26
+farming_crop = "limpwurt"
+farming_xp = 21.5
+farming_patch = "flower"
 examine = "A limpwurt seed - plant in a flower patch."
+
+[scarecrow]
+id = 6059
+tradeable = false
+weight = 0.113
+farming_level = 23
+farming_crop = "scarecrow"
+farming_xp = 25.0
+farming_patch = "flower"
+kept = "Reclaim"
+examine = "This should scare the birds."
+
+[white_lily_seed]
+id = 14589
+tradeable = false
+farming_level = 58
+farming_crop = "lilly"
+farming_xp = 42.0
+farming_patch = "flower"
+kept = "Reclaim"
+examine = "A white lily seed - plant in a flower patch."
 
 [redberry_seed]
 id = 5101

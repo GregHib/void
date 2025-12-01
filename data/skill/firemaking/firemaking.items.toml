@@ -14,6 +14,7 @@ id = 592
 price = 65
 limit = 10000
 weight = 0.056
+farming_xp = 250.0
 examine = "A heap of ashes."
 
 [ashes_noted]

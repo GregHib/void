@@ -19,7 +19,7 @@ id = 7845
 [flower_patch_weeds_3_mory]
 id = 7846
 
-[farming_flower_patch_1]
+[farming_flower_patch_falador]
 id = 7847
 
 [farming_flower_patch_catherby]
@@ -28,7 +28,7 @@ id = 7848
 [farming_flower_patch_ardougne]
 id = 7849
 
-[farming_flower_patch_4]
+[farming_flower_patch_morytania]
 id = 7850
 
 [limpwurt_seed]
@@ -45,6 +45,7 @@ id = 7854
 
 [limpwurt_fullygrown]
 id = 7855
+harvest = "limpwurt_root"
 
 [limpwurt_seed_watered]
 id = 7856
@@ -93,6 +94,7 @@ id = 7870
 
 [marigold_fullygrown]
 id = 7871
+harvest = "marigolds"
 
 [marigold_seed_watered]
 id = 7872
@@ -139,20 +141,9 @@ id = 7885
 [nasturtium_3]
 id = 7886
 
-[lilly_seed]
-id = 41539
-
-[lilly_1]
-id = 41540
-
-[lilly_2]
-id = 41541
-
-[lilly_fullygrown]
-id = 41542
-
 [nasturtium_fullygrown]
 id = 7887
+harvest = "nasturtiums"
 
 [nasturtium_seed_watered]
 id = 7888
@@ -187,6 +178,19 @@ id = 7897
 [nasturtium_fullygrown_dead]
 id = 7898
 
+[lilly_seed]
+id = 41539
+
+[lilly_1]
+id = 41540
+
+[lilly_2]
+id = 41541
+
+[lilly_fullygrown]
+id = 41542
+harvest = "ashes"
+
 [rosemary_seed]
 id = 7899
 
@@ -201,6 +205,7 @@ id = 7902
 
 [rosemary_fullygrown]
 id = 7903
+harvest = "rosemary"
 
 [rosemary_seed_watered]
 id = 7904
@@ -261,6 +266,7 @@ id = 7922
 
 [woad_fullygrown]
 id = 7923
+harvest = "woad_leaf"
 
 [woad_seed_watered]
 id = 7924

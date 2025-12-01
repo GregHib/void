@@ -246,12 +246,6 @@ destroy = "You will not be able to replace this voucher - it is a one-time offer
 examine = "I can take this to the Herald to get my money crest back for free."
 kept = "Vanish"
 
-[white_lily_seed]
-id = 14589
-tradeable = false
-examine = "A white lily seed - plant in a flower patch."
-kept = "Reclaim"
-
 [seers_headband_1]
 id = 14631
 tradeable = false

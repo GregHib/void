@@ -109,8 +109,16 @@ class Farming(
                 } else {
                     val map = varbitMap(variable) ?: continue
                     val index = map[current] ?: continue
-                    next = map.filter { it.value == index + 1 }.toList().first().first
-                    next = next.replace("_watered", "")
+                    next = map.filter { it.value == index + 1 }.toList().firstOrNull()?.first ?: continue
+                    next = if (next.startsWith(produce)) {
+                        next.replace("_watered", "")
+                    } else {
+                        // TODO handle non life3's ?
+                        current.replace("_watered", "").replace("_${type}", "_life3")
+                    }
+                    if (!map.containsKey(next)) {
+                        continue
+                    }
                 }
                 player[variable] = next
                 amuletOfFarming(player, variable)
