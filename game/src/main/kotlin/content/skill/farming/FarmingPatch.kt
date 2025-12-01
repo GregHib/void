@@ -54,6 +54,11 @@ class FarmingPatch : Script {
             message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
             harvest(Item(item), target)
         }
+        objectOperate("Pick", "*_fullygrown") { (target) ->
+            val item = get<String>(target.id)?.substringBeforeLast("_life") ?: return@objectOperate
+            message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
+            harvest(Item("grimy_$item"), target)
+        }
         itemOnObjectOperate("plant_cure", "*", handler = ::plantCure)
         itemOnObjectOperate("spade", "*_fullygrown") { (target) ->
             val def = target.def(this)
@@ -345,13 +350,13 @@ class FarmingPatch : Script {
                     }
                     val int = stage.removePrefix("life").toIntOrNull() ?: 2
                     checkLife(player, type)
-                    if (int != 2) {
-                        player[obj.id] = "${type}_life${int - 1}"
+                    if (int <= 1) {
+                        message("The ${obj.patchName()} is now empty.")
+                        clearAnim()
+                        player[obj.id] = "weeds_0"
+                        return@weakQueue
                     }
-                    message("The ${obj.patchName()} is now empty.")
-                    clearAnim()
-                    player[obj.id] = "weeds_0"
-                    return@weakQueue
+                    player[obj.id] = "${type}_life${int - 1}"
                 }
             }
             harvest(item, obj)
@@ -424,7 +429,7 @@ class FarmingPatch : Script {
                 "farming_veg_patch_catherby_north",
                 "farming_veg_patch_catherby_south",
                 "farming_veg_patch_ardougne_north",
-                "farming_veg_patch_ardounge_south",
+                "farming_veg_patch_ardougne_south",
                 "farming_veg_patch_morytania_nw",
                 "farming_veg_patch_morytania_se",
                 // hops

@@ -952,6 +952,10 @@ id = 12175
 id = 12176
 price = 555
 limit = 100
+farming_level = 36
+farming_crop = "spirit_weed"
+farming_xp = 32.0
+farming_patch = "herb"
 examine = "A seed for spirit weed."
 
 [spirit_weed_potion_unf]
