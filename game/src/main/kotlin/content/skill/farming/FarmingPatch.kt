@@ -75,7 +75,7 @@ class FarmingPatch : Script {
         }
         itemOnObjectOperate("compost,supercompost", "*", handler = ::compost)
         itemOnObjectOperate("watering_can_*", "*", handler = ::water)
-        itemOnObjectOperate("*_seed,scarecrow", "*", handler = ::plantSeed)
+        itemOnObjectOperate("*_seed,scarecrow,*_sapling", "*", handler = ::plantSeed)
     }
 
     private suspend fun plantCure(player: Player, interact: ItemOnObjectInteract) {
@@ -487,7 +487,8 @@ class FarmingPatch : Script {
                 "patch_herblore_habitat_fruit_tree",
                 "farming_fruit_tree_patch_gnome_village",
                 "farming_fruit_tree_patch_gnome_stronghold",
-                "patch_lletya_fruit_tree",
+                "farming_fruit_tree_patch_brimhaven",
+                "farming_fruit_tree_patch_lletya",
             ),
             // spirit tree
             64 to listOf(

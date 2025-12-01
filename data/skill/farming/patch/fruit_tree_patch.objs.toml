@@ -87,8 +87,11 @@ id = 7962
 [farming_fruit_tree_patch_gnome_village]
 id = 7963
 
-[farming_fruit_tree_patch_3]
+[farming_fruit_tree_patch_brimhaven]
 id = 7964
+
+[farming_fruit_tree_patch_lletya]
+id = 28919
 
 [farming_fruit_tree_patch_catherby]
 id = 7965

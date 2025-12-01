@@ -109,15 +109,15 @@ id = 5374
 id = 5375
 tradeable = false
 weight = 0.907
-examine = "This sapling is ready to be replanted in a Spirit patch."
 kept = "Reclaim"
+examine = "This sapling is ready to be replanted in a Spirit patch."
 
 [apple_seedling]
 id = 5480
 tradeable = false
 weight = 0.907
-examine = "An apple tree seed has been sown in this plant pot."
 kept = "Reclaim"
+examine = "An apple tree seed has been sown in this plant pot."
 
 [banana_seedling]
 id = 5481
@@ -228,32 +228,60 @@ kept = "Reclaim"
 id = 5496
 tradeable = false
 weight = 0.907
-examine = "This sapling is ready to be replanted in a fruit tree patch."
+farming_level = 27
+farming_crop = "apple"
+farming_xp = 22.0
+farming_patch = "fruit_tree"
 kept = "Reclaim"
+examine = "This sapling is ready to be replanted in a fruit tree patch."
 
 [banana_sapling]
 clone = "apple_sapling"
 id = 5497
+farming_level = 33
+farming_crop = "banana"
+farming_xp = 28.0
+farming_patch = "fruit_tree"
 
 [orange_sapling]
 clone = "apple_sapling"
 id = 5498
+farming_level = 39
+farming_crop = "orange"
+farming_xp = 35.5
+farming_patch = "fruit_tree"
 
 [curry_sapling]
 clone = "apple_sapling"
 id = 5499
+farming_level = 42
+farming_crop = "curry"
+farming_xp = 40.0
+farming_patch = "fruit_tree"
 
 [pineapple_sapling]
 clone = "apple_sapling"
 id = 5500
+farming_level = 51
+farming_crop = "pineapple"
+farming_xp = 57.0
+farming_patch = "fruit_tree"
 
 [papaya_sapling]
 clone = "apple_sapling"
 id = 5501
+farming_level = 57
+farming_crop = "papaya"
+farming_xp = 72.0
+farming_patch = "fruit_tree"
 
 [palm_sapling]
 clone = "apple_sapling"
 id = 5502
+farming_level = 68
+farming_crop = "palm"
+farming_xp = 110.5
+farming_patch = "fruit_tree"
 
 [calquat_sapling]
 id = 5503

@@ -69,7 +69,7 @@ class Farming(
             for (variable in varbits) {
                 val current: String = player[variable] ?: continue
                 val type = current.substringAfterLast("_")
-                if (type == "life1" || type == "life2" || type == "life3" || type == "dead") {
+                if (type == "life1" || type == "life2" || type == "life3" || type == "life4" || type == "life5" || type == "life6" || type == "dead") {
                     continue
                 }
                 val produce = current.substringBeforeLast("_")
@@ -108,13 +108,11 @@ class Farming(
                     next = current.replace(produce, "${produce}_diseased")
                 } else {
                     val map = varbitMap(variable) ?: continue
-                    val index = map[current] ?: continue
-                    next = map.filter { it.value == index + 1 }.toList().firstOrNull()?.first ?: continue
-                    next = if (next.startsWith(produce)) {
-                        next.replace("_watered", "")
-                    } else {
-                        // TODO handle non life3's ?
-                        current.replace("_watered", "").replace("_${type}", "_life3")
+                    val stage = type.toIntOrNull() ?: continue
+                    next = current.replace("_watered", "").replace("_${stage}", "_${stage + 1}")
+                    if (!map.containsKey(next)) {
+                        val end = if (variable.contains("fruit_tree")) "_life6" else "_life3"
+                        next = current.replace("_watered", "").replace("_${type}", end)
                     }
                     if (!map.containsKey(next)) {
                         continue
