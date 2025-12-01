@@ -319,47 +319,82 @@ examine = "A torstol seed - plant in a herb patch."
 id = 5305
 price = 1
 limit = 100
-examine = "A barley seed - plant in a hops patch."
+farming_level = 3
+farming_amount = 4
+farming_crop = "barley"
+farming_xp = 8.5
+farming_patch = "hops"
 kept = "Wilderness"
+examine = "A barley seed - plant in a hops patch."
 
 [jute_seed]
 id = 5306
 price = 1
 limit = 100
-examine = "A jute plant seed - plant in a hops patch."
+farming_level = 13
+farming_amount = 3
+farming_crop = "jute"
+farming_xp = 13.0
+farming_patch = "hops"
 kept = "Wilderness"
+examine = "A jute plant seed - plant in a hops patch."
 
 [hammerstone_seed]
 id = 5307
 price = 1
 limit = 100
-examine = "A Hammerstone hop seed - plant in a hops patch."
+farming_level = 4
+farming_amount = 4
+farming_crop = "hammerstone"
+farming_xp = 9.0
+farming_patch = "hops"
 kept = "Wilderness"
+examine = "A Hammerstone hop seed - plant in a hops patch."
 
 [asgarnian_seed]
 id = 5308
 price = 1
 limit = 100
-examine = "An Asgarnian hop seed - plant in a hops patch."
+farming_level = 8
+farming_amount = 4
+farming_crop = "asgarnian"
+farming_xp = 10.9
+farming_patch = "hops"
 kept = "Wilderness"
+examine = "An Asgarnian hop seed - plant in a hops patch."
 
 [yanillian_seed]
 id = 5309
 price = 9
 limit = 100
-examine = "A Yanillian hop seed - plant in a hops patch."
+farming_level = 16
+farming_amount = 4
+farming_crop = "yanillian"
+farming_xp = 14.5
+farming_patch = "hops"
 kept = "Wilderness"
+examine = "A Yanillian hop seed - plant in a hops patch."
 
 [krandorian_seed]
 id = 5310
 price = 1
 limit = 100
+farming_level = 21
+farming_amount = 4
+farming_crop = "krandorian"
+farming_xp = 17.5
+farming_patch = "hops"
 examine = "A Krandorian hop seed - plant in a hops patch."
 
 [wildblood_seed]
 id = 5311
 price = 3
 limit = 100
+farming_level = 28
+farming_amount = 4
+farming_crop = "wildblood"
+farming_xp = 23.0
+farming_patch = "hops"
 examine = "A Wildblood hop seed - plant in a hops patch."
 
 [acorn]

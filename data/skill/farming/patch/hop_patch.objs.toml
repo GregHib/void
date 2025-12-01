@@ -15,6 +15,7 @@ id = 8158
 
 [asgarnian_hops_fullygrown]
 id = 8159
+harvest = "asgarnian_hops"
 
 [asgarnian_hops_seed_watered]
 id = 8160
@@ -67,49 +68,50 @@ id = 8175
 [farming_hops_patch_seers_village]
 id = 8176
 
-[hammer_hops_seed]
+[hammerstone_hops_seed]
 id = 8177
 
-[hammer_hops_1]
+[hammerstone_hops_1]
 id = 8178
 
-[hammer_hops_2]
+[hammerstone_hops_2]
 id = 8179
 
-[hammer_hops_3]
+[hammerstone_hops_3]
 id = 8180
 
-[hammer_hops_fullygrown]
+[hammerstone_hops_fullygrown]
 id = 8181
+harvest = "hammerstone_hops"
 
-[hammer_hops_seed_watered]
+[hammerstone_hops_seed_watered]
 id = 8182
 
-[hammer_hops_1_watered]
+[hammerstone_hops_1_watered]
 id = 8183
 
-[hammer_hops_2_watered]
+[hammerstone_hops_2_watered]
 id = 8184
 
-[hammer_hops_3_watered]
+[hammerstone_hops_3_watered]
 id = 8185
 
-[hammer_hops_1_diseased]
+[hammerstone_hops_1_diseased]
 id = 8186
 
-[hammer_hops_2_diseased]
+[hammerstone_hops_2_diseased]
 id = 8187
 
-[hammer_hops_3_diseased]
+[hammerstone_hops_3_diseased]
 id = 8188
 
-[hammer_hops_1_dead]
+[hammerstone_hops_1_dead]
 id = 8189
 
-[hammer_hops_2_dead]
+[hammerstone_hops_2_dead]
 id = 8190
 
-[hammer_hops_3_dead]
+[hammerstone_hops_3_dead]
 id = 8191
 
 [barley_seed]
@@ -126,6 +128,7 @@ id = 8195
 
 [barley_fullygrown]
 id = 8196
+harvest = "barley_malt"
 
 [barley_seed_watered]
 id = 8197
@@ -192,6 +195,7 @@ id = 8217
 
 [krandorian_hops_fullygrown]
 id = 8218
+harvest = "krandorian_hops"
 
 [krandorian_hops_seed_watered]
 id = 8219
@@ -267,6 +271,7 @@ id = 8242
 
 [jute_fullygrown]
 id = 8243
+harvest = "jute_fibre"
 
 [jute_seed_watered]
 id = 8244
@@ -333,6 +338,7 @@ id = 8264
 
 [wildblood_hops_fullygrown]
 id = 8265
+harvest = "wildblood_hops"
 
 [wildblood_hops_seed_watered]
 id = 8266
@@ -420,6 +426,7 @@ id = 8293
 
 [yanillian_hops_fullygrown]
 id = 8294
+harvest = "yanillian_hops"
 
 [yanillian_hops_seed_watered]
 id = 8295

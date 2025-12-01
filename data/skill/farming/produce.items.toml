@@ -11,6 +11,8 @@ limit = 5000
 weight = 0.226
 compostable = true
 weaving = { amount = 4, to = "empty_sack", level = 21, xp = 38.0 }
+farming_xp = 14.5
+farming_chance = "113-180"
 examine = "I can weave this to make sacks."
 
 [jute_fibre_noted]
@@ -234,6 +236,8 @@ id = 5994
 price = 11
 limit = 1000
 weight = 0.028
+farming_xp = 10.0
+farming_chance = "104-180"
 compostable = true
 examine = "A handful of Hammerstone Hops."
 
@@ -246,6 +250,8 @@ price = 7
 limit = 1000
 weight = 0.028
 compostable = true
+farming_xp = 12.0
+farming_chance = "108-180"
 examine = "A handful of Asgarnian Hops."
 
 [asgarnian_hops_noted]
@@ -257,6 +263,8 @@ price = 1
 limit = 1000
 weight = 0.028
 compostable = true
+farming_xp = 16.0
+farming_chance = "116-180"
 examine = "A handful of Yanillian Hops."
 
 [yanillian_hops_noted]
@@ -268,6 +276,8 @@ price = 4
 limit = 1000
 weight = 0.028
 compostable = true
+farming_xp = 19.5
+farming_chance = "121-180"
 examine = "A handful of Krandorian Hops."
 
 [krandorian_hops_noted]
@@ -279,6 +289,8 @@ price = 28
 limit = 1000
 weight = 0.028
 compostable = true
+farming_xp = 26.0
+farming_chance = "128-180"
 examine = "A handful of Wildblood Hops."
 
 [wildblood_hops_noted]
@@ -314,6 +326,8 @@ price = 269
 limit = 1000
 weight = 0.028
 compostable = true
+farming_xp = 9.5
+farming_chance = "103-180"
 examine = "A handful of barley malt."
 
 [barley_malt_noted]

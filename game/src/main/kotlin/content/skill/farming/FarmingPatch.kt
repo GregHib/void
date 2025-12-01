@@ -216,11 +216,9 @@ class FarmingPatch : Script {
             player.anim("farming_seed_dibbing")
             player.sound("farming_dibbing")
         }
-        println("PLant $item")
         player.delay(3)
         player.message("You plant ${if (amount == 1) "a" else amount} ${item.def.name.lowercase().plural(amount)} in the $patchName.", type = ChatType.Filter)
         val crop: String = item.def.getOrNull("farming_crop") ?: return
-        println("Crop $variable = ${crop}_0")
         player[variable] = "${crop}_0"
         player.exp(Skill.Farming, item.def["farming_xp", 0.0])
     }
