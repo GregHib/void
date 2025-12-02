@@ -17,7 +17,7 @@ class LumbridgeGuardsmanAttackble : Script {
                 interactNpc(target, "Attack")
             }
         }
-        npcDeath {
+        npcDeath("goblin*,giant_rat") {
             val guard = killer as? NPC ?: return@npcDeath
             when {
                 // Guard attacked rats and giant rats, but only healed when giant rat was killed https://youtu.be/qC_XoAQK6Cs?si=VH9tOmKXu-_Bgjnr&t=137

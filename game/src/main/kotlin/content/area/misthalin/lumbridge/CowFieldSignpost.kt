@@ -8,8 +8,7 @@ class CowFieldSignpost : Script {
     var cowDeathsToday: Int = 0
 
     init {
-        npcDeath {
-            if (!id.contains("cow")) return@npcDeath
+        npcDeath("cow*") {
             cowDeathsToday += 1
         }
         objectOperate("Read", "lumbridge_signpost_cow") {
