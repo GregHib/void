@@ -22,21 +22,27 @@ examine = "A fully grown apple tree."
 
 [apple_tree_fruit_1]
 id = 7942
+harvest = "cooking_apple"
 
 [apple_tree_fruit_2]
 id = 7943
+harvest = "cooking_apple"
 
 [apple_tree_fruit_3]
 id = 7944
+harvest = "cooking_apple"
 
 [apple_tree_fruit_4]
 id = 7945
+harvest = "cooking_apple"
 
 [apple_tree_fruit_5]
 id = 7946
+harvest = "cooking_apple"
 
 [apple_tree_fruit_6]
 id = 7947
+harvest = "cooking_apple"
 
 [apple_tree_claim_xp]
 id = 7948
@@ -119,21 +125,27 @@ id = 7972
 
 [pineapple_tree_fruit_1]
 id = 7973
+harvest = "pineapple"
 
 [pineapple_tree_fruit_2]
 id = 7974
+harvest = "pineapple"
 
 [pineapple_tree_fruit_3]
 id = 7975
+harvest = "pineapple"
 
 [pineapple_tree_fruit_4]
 id = 7976
+harvest = "pineapple"
 
 [pineapple_tree_fruit_5]
 id = 7977
+harvest = "pineapple"
 
 [pineapple_tree_fruit_6]
 id = 7978
+harvest = "pineapple"
 
 [pineapple_tree_claim_xp]
 id = 7979
@@ -204,21 +216,27 @@ examine = "A fully grown banana tree."
 
 [banana_tree_fruit_1]
 id = 8001
+harvest = "banana"
 
 [banana_tree_fruit_2]
 id = 8002
+harvest = "banana"
 
 [banana_tree_fruit_3]
 id = 8003
+harvest = "banana"
 
 [banana_tree_fruit_4]
 id = 8004
+harvest = "banana"
 
 [banana_tree_fruit_5]
 id = 8005
+harvest = "banana"
 
 [banana_tree_fruit_6]
 id = 8006
+harvest = "banana"
 
 [banana_tree_1_diseased]
 id = 8007
@@ -284,21 +302,27 @@ examine = "A fully grown curry tree."
 
 [curry_tree_fruit_1]
 id = 8027
+harvest = "curry_leaf"
 
 [curry_tree_fruit_2]
 id = 8028
+harvest = "curry_leaf"
 
 [curry_tree_fruit_3]
 id = 8029
+harvest = "curry_leaf"
 
 [curry_tree_fruit_4]
 id = 8030
+harvest = "curry_leaf"
 
 [curry_tree_fruit_5]
 id = 8031
+harvest = "curry_leaf"
 
 [curry_tree_fruit_6]
 id = 8032
+harvest = "curry_leaf"
 
 [curry_tree_claim_xp]
 id = 8033
@@ -379,21 +403,27 @@ examine = "A fully grown orange tree."
 
 [orange_tree_fruit_1]
 id = 8058
+harvest = "orange"
 
 [orange_tree_fruit_2]
 id = 8059
+harvest = "orange"
 
 [orange_tree_fruit_3]
 id = 8060
+harvest = "orange"
 
 [orange_tree_fruit_4]
 id = 8061
+harvest = "orange"
 
 [orange_tree_fruit_5]
 id = 8062
+harvest = "orange"
 
 [orange_tree_fruit_6]
 id = 8063
+harvest = "orange"
 
 [orange_tree_claim_xp]
 id = 8064
@@ -463,21 +493,27 @@ examine = "A fully grown palm tree."
 
 [palm_tree_fruit_1]
 id = 8085
+harvest = "coconut"
 
 [palm_tree_fruit_2]
 id = 8086
+harvest = "coconut"
 
 [palm_tree_fruit_3]
 id = 8087
+harvest = "coconut"
 
 [palm_tree_fruit_4]
 id = 8088
+harvest = "coconut"
 
 [palm_tree_fruit_5]
 id = 8089
+harvest = "coconut"
 
 [palm_tree_fruit_6]
 id = 8090
+harvest = "coconut"
 
 [palm_tree_claim_xp]
 id = 8091
@@ -546,21 +582,27 @@ examine = "A fully grown papaya tree."
 
 [papaya_tree_fruit_1]
 id = 8112
+harvest = "papaya"
 
 [papaya_tree_fruit_2]
 id = 8113
+harvest = "papaya"
 
 [papaya_tree_fruit_3]
 id = 8114
+harvest = "papaya"
 
 [papaya_tree_fruit_4]
 id = 8115
+harvest = "papaya"
 
 [papaya_tree_fruit_5]
 id = 8116
+harvest = "papaya"
 
 [papaya_tree_fruit_6]
 id = 8117
+harvest = "papaya"
 
 [papaya_tree_claim_xp]
 id = 8118

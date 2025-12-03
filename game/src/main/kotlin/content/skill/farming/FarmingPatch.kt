@@ -3,6 +3,7 @@ package content.skill.farming
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.entity.player.stat.Stats
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.*
@@ -65,6 +66,18 @@ class FarmingPatch : Script {
             val item: String = def["harvest"]
             message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
             harvest(Item(item), target)
+        }
+        objectOperate("Pick-apple", "*_fruit_#") { (target) ->
+            val def = target.def(this)
+            val item: String = def["harvest"]
+            message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
+            harvest(Item(item), target, tree = true)
+        }
+        objectOperate("Pick-banana", "*_fruit_#") { (target) ->
+            val def = target.def(this)
+            val item: String = def["harvest"]
+            message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
+            harvest(Item(item), target, tree = true)
         }
         itemOnObjectOperate("plant_cure", "*", handler = ::plantCure)
         itemOnObjectOperate("spade", "*_fullygrown") { (target) ->
@@ -198,11 +211,11 @@ class FarmingPatch : Script {
         }
         val variable = interact.target.id
         val patchName = interact.target.patchName()
-        if (patchName.startsWith("tree") && !player.inventory.contains("spade")) {
+        if (patchName.contains("tree") && !player.inventory.contains("spade")) {
             player.message("You need a spade to plant the sapling into the dirt.") // TODO proper message
             return
         }
-        if (!patchName.startsWith("tree") && !player.inventory.contains("seed_dibber")) {
+        if (!patchName.contains("tree") && !player.inventory.contains("seed_dibber")) {
             player.message("You need a seed dibber to plant the seed in the dirt.") // TODO proper message
             return
         }
@@ -210,7 +223,7 @@ class FarmingPatch : Script {
             player.message("You need $amount ${item.def.name.plural(amount)} to grow those.")
             return
         }
-        if (patchName.startsWith("tree")) {
+        if (patchName.contains("tree")) {
             // TODO
         } else {
             player.anim("farming_seed_dibbing")
@@ -288,6 +301,7 @@ class FarmingPatch : Script {
                     val stage = value.substringAfterLast("_").toIntOrNull()
                     val stages = when (name) {
                         "allotment", "herb patch" -> 5
+                        "fruit tree" -> 6
                         else -> 0
                     }
                     if (stage == null) {
@@ -322,8 +336,8 @@ class FarmingPatch : Script {
         )
     }
 
-    private fun Player.harvest(item: Item, obj: GameObject) {
-        if (!inventory.contains("spade")) {
+    private fun Player.harvest(item: Item, obj: GameObject, tree: Boolean = false) {
+        if (!tree && !inventory.contains("spade")) {
             message("You need a spade to harvest your crops.")
             return
         }
@@ -336,8 +350,8 @@ class FarmingPatch : Script {
             return
         }
         face(obj)
-        anim("human_dig")
-        sound("dig_spade")
+        anim(if (tree) "picking_high" else "human_dig")
+        sound(if (tree) "farming_pick" else "dig_spade")
         weakQueue("farming_harvest", 2) {
             if (!inventory.add(item.id)) {
                 message("You have run out of inventory space.", ChatType.Filter)
@@ -369,7 +383,7 @@ class FarmingPatch : Script {
                     player[obj.id] = "${type}_life${int - 1}"
                 }
             }
-            harvest(item, obj)
+            harvest(item, obj, tree)
         }
     }
 
@@ -391,7 +405,7 @@ class FarmingPatch : Script {
     }
 
     fun GameObject.patchName(): String {
-        val patchType = id.removePrefix("farming_").substringBeforeLast("_patch")
+        val patchType = id.removePrefix("farming_").substringBeforeLast("_patch").toLowerSpaceCase()
         return if (patchType == "veg") "allotment" else "$patchType patch"
     }
 
