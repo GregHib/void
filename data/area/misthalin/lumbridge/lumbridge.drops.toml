@@ -4,3 +4,30 @@ drops = [
     { id = "coins", amount = 9, chance = 123 },
     { id = "potato_seed", chance = 5 },
 ]
+
+[lumbridge_guard_drop_table]
+type = "all"
+drops = [
+    { table = "bones" },
+    { table = "lumbridge_guard_secondary" },
+    { table = "easy_clue_scroll", roll = 128 },
+]
+
+[lumbridge_guard_secondary]
+roll = 128
+drops = [
+    { id = "cooked_meat", min = 1, max = 2, chance = 10 },
+    { id = "cooked_chicken", min = 1, max = 2, chance = 10 },
+    { id = "meat_pie", min = 1, max = 2, chance = 10 },
+    { id = "bronze_arrow", amount = 16, chance = 4 },
+    { id = "iron_sword" },
+    { id = "body_rune", amount = 7, chance = 5 },
+    { id = "air_rune", min = 2, max = 7, chance = 3 },
+    { id = "mind_rune", min = 13, max = 19, chance = 3 },
+    { id = "water_rune", amount = 6, chance = 6 },
+    { id = "earth_rune", amount = 4, chance = 3 },
+    { id = "staff_of_air" },
+    { id = "coins", amount = 50, chance = 10 },
+    { id = "copper_ore", chance = 5 },
+    { id = "tin_ore", chance = 5 },
+]

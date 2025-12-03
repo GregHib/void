@@ -6,12 +6,14 @@ id = 2706
 
 [rat_death]
 id = 2707
+ticks = 2
 
 [giant_rat_attack]
 id = 14859
 
 [giant_rat_death]
 id = 14860
+ticks = 4
 
 [giant_rat_defend]
 id = 14861

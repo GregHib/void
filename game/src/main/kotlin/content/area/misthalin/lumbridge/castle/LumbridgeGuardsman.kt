@@ -1,16 +1,23 @@
 package content.area.misthalin.lumbridge.castle
 
+import content.entity.combat.inCombat
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.type.random
 
 class LumbridgeGuardsman : Script {
 
     init {
-        npcOperate("Talk-to", "guardsman_*") {
+        npcOperate("Talk-to", "lumbridge_guardsman_*") {
+            // From wiki: When you attack them and try to talk to them *Using the Right Click* a message will say "The guard somehow doesn't feel like talking to you."
+            if (inCombat) {
+                message("The guard somehow doesn't feel like talking to you.")
+                return@npcOperate
+            }
             when (random.nextInt(0, 5)) {
                 0 -> player<Happy>("Howdy.")
                 1 -> player<Happy>("Salutations!")

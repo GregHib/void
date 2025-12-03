@@ -1,0 +1,22 @@
+[clan_cup_interface]
+id = 205
+
+[.combined_winners_button]
+id = 49
+
+[.skilling_winners_button]
+id = 53
+
+[.combat_winners_button]
+id = 57
+
+[.current_winners_button]
+id = 61
+
+[.sub_text]
+id = 64
+
+[.main_text]
+id = 65
+
+
