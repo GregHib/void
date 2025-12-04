@@ -59,7 +59,7 @@ class FruitTreePatchTest : WorldTest() {
         Triple(Item("orange_sapling"), "orange", 6),
         Triple(Item("curry_sapling"), "curry", 6),
         Triple(Item("pineapple_sapling"), "pineapple", 6),
-        Triple(Item("papaya_sapling"), "papaya", 6),
+        Triple(Item("papaya_sapling"), "papaya_fruit", 6),
         Triple(Item("palm_sapling"), "palm", 6),
     ).map { (seed, id, count) ->
         dynamicTest("Grow $id patch for $count stages") {
@@ -81,6 +81,33 @@ class FruitTreePatchTest : WorldTest() {
             }
 
             assertEquals("${id}_life6", player["farming_fruit_tree_patch_gnome_stronghold", "empty"])
+        }
+    }
+
+    @TestFactory
+    fun `Harvest farming patch`() = listOf(
+        Triple("apple", "apple", Item("cooking_apple", 6)),
+        Triple("banana", "banana", Item("banana", 6)),
+        Triple("orange", "orange", Item("orange", 6)),
+        Triple("curry", "leaf", Item("curry_leaf", 6)),
+        Triple("pineapple", "pineapple", Item("pineapple", 6)),
+        Triple("papaya", "fruit", Item("papaya_fruit", 6)),
+        Triple("palm", "coconut", Item("coconut", 6)),
+    ).map { (id, option, item) ->
+        dynamicTest("Pick $id patch") {
+            val tile = Tile(2475, 3444)
+            val player = createPlayer(tile)
+            player.inventory.add("spade")
+            player.levels.set(Skill.Farming, 99)
+            player["farming_fruit_tree_patch_gnome_stronghold"] = "${id}_life6"
+            val patch = objects[tile.addY(1), "farming_fruit_tree_patch_gnome_stronghold"]!!
+
+            player.objectOption(patch, "Pick-$option")
+            tickIf { player["farming_fruit_tree_patch_gnome_stronghold", "empty"] != "weeds_0" }
+
+            assertEquals(item.amount, player.inventory.count(item.id))
+            assertTrue(player.experience.get(Skill.Farming) > 0)
+            assertEquals("weeds_0", player["farming_fruit_tree_patch_gnome_stronghold", "empty"])
         }
     }
 

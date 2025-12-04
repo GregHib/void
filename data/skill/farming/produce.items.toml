@@ -92,6 +92,7 @@ price = 333
 limit = 5000
 weight = 0.028
 compostable = true
+farming_xp = 15.0
 examine = "I could make a spicy curry with this."
 
 [curry_leaf_noted]
@@ -105,6 +106,7 @@ heals = 50
 weight = 0.028
 compostable = true
 super_compost = true
+farming_xp = 27.0
 examine = "Looks delicious."
 
 [papaya_fruit_noted]
@@ -117,6 +119,7 @@ limit = 5000
 weight = 0.028
 compostable = true
 super_compost = true
+farming_xp = 41.5
 examine = "It's a coconut."
 
 [coconut_noted]

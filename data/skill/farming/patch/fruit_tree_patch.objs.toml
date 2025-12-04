@@ -582,27 +582,27 @@ examine = "A fully grown papaya tree."
 
 [papaya_tree_fruit_1]
 id = 8112
-harvest = "papaya"
+harvest = "papaya_fruit"
 
 [papaya_tree_fruit_2]
 id = 8113
-harvest = "papaya"
+harvest = "papaya_fruit"
 
 [papaya_tree_fruit_3]
 id = 8114
-harvest = "papaya"
+harvest = "papaya_fruit"
 
 [papaya_tree_fruit_4]
 id = 8115
-harvest = "papaya"
+harvest = "papaya_fruit"
 
 [papaya_tree_fruit_5]
 id = 8116
-harvest = "papaya"
+harvest = "papaya_fruit"
 
 [papaya_tree_fruit_6]
 id = 8117
-harvest = "papaya"
+harvest = "papaya_fruit"
 
 [papaya_tree_claim_xp]
 id = 8118

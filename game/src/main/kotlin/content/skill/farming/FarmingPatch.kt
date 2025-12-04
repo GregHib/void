@@ -1,5 +1,6 @@
 package content.skill.farming
 
+import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.entity.player.stat.Stats
@@ -67,18 +68,14 @@ class FarmingPatch : Script {
             message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
             harvest(Item(item), target)
         }
-        objectOperate("Pick-apple", "*_fruit_#") { (target) ->
-            val def = target.def(this)
-            val item: String = def["harvest"]
-            message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
-            harvest(Item(item), target, tree = true)
-        }
-        objectOperate("Pick-banana", "*_fruit_#") { (target) ->
-            val def = target.def(this)
-            val item: String = def["harvest"]
-            message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
-            harvest(Item(item), target, tree = true)
-        }
+        objectOperate("Pick-apple", "*_fruit_#", handler = ::pickFruit)
+        objectOperate("Pick-banana", "*_fruit_#", handler = ::pickFruit)
+        objectOperate("Pick-orange", "*_fruit_#", handler = ::pickFruit)
+        objectOperate("Pick-leaf", "*_fruit_#", handler = ::pickFruit)
+        objectOperate("Pick-pineapple", "*_fruit_#", handler = ::pickFruit)
+        objectOperate("Pick-fruit", "*_fruit_#", handler = ::pickFruit)
+        objectOperate("Pick-coconut", "*_fruit_#", handler = ::pickFruit)
+
         itemOnObjectOperate("plant_cure", "*", handler = ::plantCure)
         itemOnObjectOperate("spade", "*_fullygrown") { (target) ->
             val def = target.def(this)
@@ -91,6 +88,12 @@ class FarmingPatch : Script {
         itemOnObjectOperate("*_seed,scarecrow,*_sapling", "*", handler = ::plantSeed)
     }
 
+    private fun pickFruit(player: Player, interact: PlayerOnObjectInteract) {
+        val def = interact.target.def(player)
+        val item: String = def["harvest"]
+        player.message("You begin to harvest the ${interact.target.patchName()}.", ChatType.Filter)
+        player.harvest(Item(item), interact.target, tree = true)
+    }
     private suspend fun plantCure(player: Player, interact: ItemOnObjectInteract) {
         val target = interact.target
         if (!target.id.startsWith("farming_")) {
@@ -224,7 +227,8 @@ class FarmingPatch : Script {
             return
         }
         if (patchName.contains("tree")) {
-            // TODO
+            player.anim("human_dig")
+            player.sound("dig_spade")
         } else {
             player.anim("farming_seed_dibbing")
             player.sound("farming_dibbing")
@@ -235,6 +239,13 @@ class FarmingPatch : Script {
         player[variable] = "${crop}_0"
         player.exp(Skill.Farming, item.def["farming_xp", 0.0])
     }
+
+    /*
+
+//        player.message("You examine the tree for signs of disease and find that it is in perfect health.", ChatType.Filter)
+//        player.message("You do not have an axe which you have the woodcutting level to use.")
+//        player.message("You swing your axe at the tree")
+     */
 
     private fun rake(player: Player, interact: PlayerOnObjectInteract, count: Int = 3) {
         if (count <= 0) {
@@ -301,13 +312,27 @@ class FarmingPatch : Script {
                     val stage = value.substringAfterLast("_").toIntOrNull()
                     val stages = when (name) {
                         "allotment", "herb patch" -> 5
-                        "fruit tree" -> 6
+                        "fruit tree" -> 7
+                        "tree" -> 11
                         else -> 0
                     }
                     if (stage == null) {
+                        // "You plant the apple tree sapling in the fruit tree patch." // filtere
+                        // "The patch has apple tree growing in it and is at state 1/7."
+                        // "You need a spade to do that."// plant
+                        // "You need a spade to clear a farming patch"
+                        // "You start digging up the tree stump."
+                        // "You dig up the tree stump."
+                        // "You plant the yew sapling in the tree patch."
+                        // inventory.add("yew_roots")
+//                            append("The patch has the remains of a tree stump in it.")
                         append("The patch has ${type.plural(amount)} growing in it and is at state $stages/$stages.")
                     } else {
-                        append("The patch has ${type.plural(amount)} growing in it and is at state ${stage + 1}/$stages.")
+                        if (stage + 1 == stages) {
+                            append("The patch is fully grown.")
+                        } else {
+                            append("The patch has ${type.plural(amount)} growing in it and is at state ${stage + 1}/$stages.")
+                        }
                     }
                 }
             },
