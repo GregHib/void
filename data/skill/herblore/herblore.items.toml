@@ -614,6 +614,9 @@ cleaning = { level = 67, clean_xp = 13.1 }
 weight = 0.007
 compostable = true
 super_compost = true
+farming_level = 73
+farming_xp = 151.5
+farming_chance = "64-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_lantadyme_noted]
@@ -673,6 +676,9 @@ cleaning = { level = 30, clean_xp = 8.0 }
 weight = 0.007
 compostable = true
 super_compost = true
+farming_level = 38
+farming_xp = 38.5
+farming_chance = "43-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_toadflax_noted]

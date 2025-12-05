@@ -64,7 +64,7 @@ disease_chance = 18
 [apple_tree]
 disease_chance = 18
 
-[poison_ivy_berry]
+[poison_ivy]
 disease_chance = 0
 
 [whiteberry]

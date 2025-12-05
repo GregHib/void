@@ -943,6 +943,9 @@ price = 4511
 limit = 10000
 cleaning = { level = 35, clean_xp = 7.8 }
 weight = 0.001
+farming_level = 36
+farming_xp = 36.0
+farming_chance = "38-80"
 examine = "I need to clean this herb before I can use it."
 
 [grimy_spirit_weed_noted]

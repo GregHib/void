@@ -206,7 +206,7 @@ class FarmingTest : KoinMock() {
         farming.grow(player, 10)
 
         val next = player["farming_veg_patch_falador_nw", ""]
-        assertEquals("potato_life3", next)
+        assertEquals("potato_life1", next)
     }
 
     @Test

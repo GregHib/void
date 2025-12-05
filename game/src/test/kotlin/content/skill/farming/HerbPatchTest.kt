@@ -87,7 +87,7 @@ class HerbPatchTest : WorldTest() {
                 farming.grow(player, 4 * i)
             }
 
-            assertEquals("${id}_life3", player["farming_herb_patch_falador", "empty"])
+            assertEquals("${id}_life1", player["farming_herb_patch_falador", "empty"])
         }
     }
 
@@ -147,7 +147,7 @@ class HerbPatchTest : WorldTest() {
             val player = createPlayer(tile)
             player.inventory.add("spade")
             player.levels.set(Skill.Farming, 99)
-            player["farming_herb_patch_falador"] = "${id}_life3"
+            player["farming_herb_patch_falador"] = "${id}_life1"
             val patch = objects[tile.addY(1), "farming_herb_patch_falador"]!!
 
             player.objectOption(patch, "Pick")

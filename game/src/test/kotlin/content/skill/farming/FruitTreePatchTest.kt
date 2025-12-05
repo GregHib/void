@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.timer.setCurrentTime
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
@@ -59,14 +60,14 @@ class FruitTreePatchTest : WorldTest() {
         Triple(Item("orange_sapling"), "orange", 6),
         Triple(Item("curry_sapling"), "curry", 6),
         Triple(Item("pineapple_sapling"), "pineapple", 6),
-        Triple(Item("papaya_sapling"), "papaya_fruit", 6),
+        Triple(Item("papaya_sapling"), "papaya", 6),
         Triple(Item("palm_sapling"), "palm", 6),
     ).map { (seed, id, count) ->
         dynamicTest("Grow $id patch for $count stages") {
             val tile = Tile(2475, 3444)
             val player = createPlayer(tile)
             player.inventory.add(seed.id, seed.amount)
-            player.inventory.add("seed_dibber")
+            player.inventory.add("spade")
             player.levels.set(Skill.Farming, 99)
             player["farming_fruit_tree_patch_gnome_stronghold"] = "weeds_0"
             val patch = objects[tile.addY(1), "farming_fruit_tree_patch_gnome_stronghold"]!!
@@ -77,10 +78,10 @@ class FruitTreePatchTest : WorldTest() {
             val farming = scripts.filterIsInstance<Farming>().first()
             // Grow one more than expected
             for (i in 0..count) {
-                farming.grow(player, 32)
+                farming.grow(player, i * 32)
             }
 
-            assertEquals("${id}_life6", player["farming_fruit_tree_patch_gnome_stronghold", "empty"])
+            assertEquals("${id}_life1", player["farming_fruit_tree_patch_gnome_stronghold", "empty"])
         }
     }
 
@@ -99,7 +100,7 @@ class FruitTreePatchTest : WorldTest() {
             val player = createPlayer(tile)
             player.inventory.add("spade")
             player.levels.set(Skill.Farming, 99)
-            player["farming_fruit_tree_patch_gnome_stronghold"] = "${id}_life6"
+            player["farming_fruit_tree_patch_gnome_stronghold"] = "${id}_life1"
             val patch = objects[tile.addY(1), "farming_fruit_tree_patch_gnome_stronghold"]!!
 
             player.objectOption(patch, "Pick-$option")

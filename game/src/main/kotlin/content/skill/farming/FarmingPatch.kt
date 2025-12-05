@@ -1,6 +1,5 @@
 package content.skill.farming
 
-import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.entity.player.stat.Stats
@@ -8,7 +7,9 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.*
+import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -22,6 +23,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.type.random
@@ -57,7 +59,7 @@ class FarmingPatch : Script {
             harvest(Item(item), target)
         }
         objectOperate("Pick", "*_fullygrown") { (target) ->
-            if (target.id == "guam_fullygrown") {
+            if (target.id.startsWith("farming_herb_patch")) {
                 val item = get<String>(target.id)?.substringBeforeLast("_life") ?: return@objectOperate
                 message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
                 harvest(Item("grimy_$item"), target)
@@ -94,6 +96,7 @@ class FarmingPatch : Script {
         player.message("You begin to harvest the ${interact.target.patchName()}.", ChatType.Filter)
         player.harvest(Item(item), interact.target, tree = true)
     }
+
     private suspend fun plantCure(player: Player, interact: ItemOnObjectInteract) {
         val target = interact.target
         if (!target.id.startsWith("farming_")) {
@@ -361,6 +364,8 @@ class FarmingPatch : Script {
         )
     }
 
+    val variableDefinitions: VariableDefinitions by inject()
+
     private fun Player.harvest(item: Item, obj: GameObject, tree: Boolean = false) {
         if (!tree && !inventory.contains("spade")) {
             message("You need a spade to harvest your crops.")
@@ -397,15 +402,17 @@ class FarmingPatch : Script {
                         player[obj.id] = "weeds_0"
                         return@weakQueue
                     }
-                    val int = stage.removePrefix("life").toIntOrNull() ?: 2
+                    val int = stage.removePrefix("life").toIntOrNull() ?: 0
                     checkLife(player, type)
-                    if (int <= 1) {
+                    val keys = (variableDefinitions.get(obj.id)?.values as? MapValues)?.values?.keys as? Set<String> ?: emptySet()
+                    val next = "${type}_life${int + 1}"
+                    if (!keys.contains(next)) {
                         message("The ${obj.patchName()} is now empty.")
                         clearAnim()
                         player[obj.id] = "weeds_0"
                         return@weakQueue
                     }
-                    player[obj.id] = "${type}_life${int - 1}"
+                    player[obj.id] = next
                 }
             }
             harvest(item, obj, tree)
