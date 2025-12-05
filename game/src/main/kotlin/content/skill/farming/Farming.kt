@@ -37,8 +37,8 @@ class Farming(
             }
         }
 
-        timerStart("farming_tick") {
-            TimeUnit.SECONDS.toTicks(60 - epochSeconds().rem(60))
+        timerStart("farming_tick") { restart ->
+            if (restart) 0 else TimeUnit.SECONDS.toTicks(60 - epochSeconds().rem(60))
         }
 
         timerTick("farming_tick") {
