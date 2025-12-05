@@ -81,6 +81,34 @@ class FruitTreePatchTest : WorldTest() {
                 farming.grow(player, i * 32)
             }
 
+            assertEquals("${id}_claim", player["farming_fruit_tree_patch_gnome_stronghold", "empty"])
+        }
+    }
+
+    @TestFactory
+    fun `Claim xp from fully grown patch`() = listOf(
+        "apple",
+        "banana",
+        "orange",
+        "curry",
+        "pineapple",
+        "papaya",
+        "palm",
+    ).map { id ->
+        dynamicTest("Claim xp from $id") {
+            setRandom(object : FakeRandom() {
+                override fun nextInt(until: Int) = 0
+            })
+            val tile = Tile(2475, 3444)
+            val player = createPlayer(tile)
+            player.levels.set(Skill.Farming, 99)
+            player["farming_fruit_tree_patch_gnome_stronghold"] = "${id}_claim"
+            val patch = objects[tile.addY(1), "farming_fruit_tree_patch_gnome_stronghold"]!!
+
+            player.objectOption(patch, "Check-health")
+            tickIf { player["farming_fruit_tree_patch_gnome_stronghold", "empty"] != "${id}_life1" }
+
+            assertTrue(player.experience.get(Skill.Farming) > 0)
             assertEquals("${id}_life1", player["farming_fruit_tree_patch_gnome_stronghold", "empty"])
         }
     }

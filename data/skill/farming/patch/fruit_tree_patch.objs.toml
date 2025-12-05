@@ -46,6 +46,7 @@ harvest = "cooking_apple"
 
 [apple_tree_claim_xp]
 id = 7948
+farming_xp = 1199.5
 
 [apple_tree_1_diseased]
 id = 7949
@@ -149,6 +150,7 @@ harvest = "pineapple"
 
 [pineapple_tree_claim_xp]
 id = 7979
+farming_xp = 4605.0
 
 [pineapple_tree_1_diseased]
 id = 7980
@@ -209,6 +211,7 @@ id = 7998
 
 [banana_tree_claim_xp]
 id = 7999
+farming_xp = 1750.5
 
 [banana_tree_fullygrown]
 id = 8000
@@ -326,6 +329,7 @@ harvest = "curry_leaf"
 
 [curry_tree_claim_xp]
 id = 8033
+farming_xp = 2906.9
 
 [curry_tree_1_diseased]
 id = 8034
@@ -427,6 +431,7 @@ harvest = "orange"
 
 [orange_tree_claim_xp]
 id = 8064
+farming_xp = 2470.2
 
 [orange_tree_1_diseased]
 id = 8065
@@ -517,6 +522,7 @@ harvest = "coconut"
 
 [palm_tree_claim_xp]
 id = 8091
+farming_xp = 10150.1
 
 [palm_tree_1_diseased]
 id = 8092
@@ -606,6 +612,7 @@ harvest = "papaya_fruit"
 
 [papaya_tree_claim_xp]
 id = 8118
+farming_xp = 6146.6
 
 [papaya_tree_1_diseased]
 id = 8119

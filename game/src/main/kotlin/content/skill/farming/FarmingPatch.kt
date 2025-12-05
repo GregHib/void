@@ -104,7 +104,6 @@ class FarmingPatch : Script {
     private fun pick(player: Player, interact: PlayerOnObjectInteract) {
         val def = interact.target.def(player)
         val item: String = def["harvest"]
-        player.message("You begin to harvest the ${interact.target.patchName()}.", ChatType.Filter)
         player.harvest(Item(item), interact.target, tree = true)
     }
 
@@ -396,6 +395,9 @@ class FarmingPatch : Script {
             if (!inventory.add(item.id)) {
                 message("You have run out of inventory space.", ChatType.Filter)
                 return@weakQueue
+            }
+            if (tree) {
+                player.message("You pick ${item.id.an()} ${item.def.name.lowercase()}.", ChatType.Filter)
             }
             player.exp(Skill.Farming, item.def["farming_xp", 0.0])
             val chance = item.def.getOrNull<String>("farming_chance")?.toIntRange(inclusive = true)
