@@ -111,6 +111,9 @@ class Farming(
                     val stage = type.toIntOrNull() ?: continue
                     next = current.replace("_watered", "").replace("_${stage}", "_${stage + 1}")
                     if (!map.containsKey(next)) {
+                        next = current.replace("_watered", "").replace("_${type}", "_claim")
+                    }
+                    if (!map.contains(next)) {
                         next = current.replace("_watered", "").replace("_${type}", "_life1")
                     }
                     if (!map.containsKey(next)) {

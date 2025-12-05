@@ -70,13 +70,15 @@ class FarmingPatch : Script {
             message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
             harvest(Item(item), target)
         }
-        objectOperate("Pick-apple", "*_fruit_#", handler = ::pickFruit)
-        objectOperate("Pick-banana", "*_fruit_#", handler = ::pickFruit)
-        objectOperate("Pick-orange", "*_fruit_#", handler = ::pickFruit)
-        objectOperate("Pick-leaf", "*_fruit_#", handler = ::pickFruit)
-        objectOperate("Pick-pineapple", "*_fruit_#", handler = ::pickFruit)
-        objectOperate("Pick-fruit", "*_fruit_#", handler = ::pickFruit)
-        objectOperate("Pick-coconut", "*_fruit_#", handler = ::pickFruit)
+        objectOperate("Pick-from", "*_bush_berry_*", handler = ::pick)
+        objectOperate("Pick-apple", "*_fruit_#", handler = ::pick)
+        objectOperate("Pick-banana", "*_fruit_#", handler = ::pick)
+        objectOperate("Pick-orange", "*_fruit_#", handler = ::pick)
+        objectOperate("Pick-leaf", "*_fruit_#", handler = ::pick)
+        objectOperate("Pick-pineapple", "*_fruit_#", handler = ::pick)
+        objectOperate("Pick-fruit", "*_fruit_#", handler = ::pick)
+        objectOperate("Pick-coconut", "*_fruit_#", handler = ::pick)
+        objectOperate("Check-health", "*_claim_xp", handler = ::claim)
 
         itemOnObjectOperate("plant_cure", "*", handler = ::plantCure)
         itemOnObjectOperate("spade", "*_fullygrown") { (target) ->
@@ -90,7 +92,16 @@ class FarmingPatch : Script {
         itemOnObjectOperate("*_seed,scarecrow,*_sapling", "*", handler = ::plantSeed)
     }
 
-    private fun pickFruit(player: Player, interact: PlayerOnObjectInteract) {
+    private fun claim(player: Player, interact: PlayerOnObjectInteract) {
+        val target = interact.target
+        val def = target.def(player)
+        player.message("You examine the tree for signs of disease and find that it is in perfect health.", ChatType.Filter)
+        player[target.id] = player[target.id, "weeds_3"].replace("_claim", "_life1")
+        val xp: Double = def.getOrNull("farming_xp") ?: return
+        player.exp(Skill.Farming, xp)
+    }
+
+    private fun pick(player: Player, interact: PlayerOnObjectInteract) {
         val def = interact.target.def(player)
         val item: String = def["harvest"]
         player.message("You begin to harvest the ${interact.target.patchName()}.", ChatType.Filter)
@@ -245,7 +256,6 @@ class FarmingPatch : Script {
 
     /*
 
-//        player.message("You examine the tree for signs of disease and find that it is in perfect health.", ChatType.Filter)
 //        player.message("You do not have an axe which you have the woodcutting level to use.")
 //        player.message("You swing your axe at the tree")
      */
@@ -509,10 +519,10 @@ class FarmingPatch : Script {
                 "patch_herblore_habitat_vine_herb",
                 "patch_herblore_habitat_vine_bush",
                 // bushes
-                "patch_varrock_bush",
-                "patch_rimmington_bush",
-                "patch_etceteria_bush",
-                "patch_ardougne_bush",
+                "farming_bush_patch_varrock",
+                "farming_bush_patch_rimmington",
+                "farming_bush_patch_etceteria",
+                "farming_bush_patch_ardougne",
             ),
             // trees, mushrooms
             8 to listOf(

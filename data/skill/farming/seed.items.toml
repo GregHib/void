@@ -75,37 +75,61 @@ examine = "A white lily seed - plant in a flower patch."
 id = 5101
 price = 1
 limit = 100
-examine = "A redberry bush seed - plant in a bush patch."
+farming_level = 10
+farming_crop = "redberry"
+farming_xp = 11.5
+farming_patch = "bush"
 kept = "Wilderness"
+examine = "A redberry bush seed - plant in a bush patch."
 
 [cadavaberry_seed]
 id = 5102
 price = 1
 limit = 100
+farming_level = 22
+farming_crop = "cadavaberry"
+farming_xp = 18.0
+farming_patch = "bush"
 examine = "A cadavaberry bush seed - plant in a bush patch."
 
 [dwellberry_seed]
 id = 5103
 price = 1
 limit = 100
+farming_level = 36
+farming_crop = "dwellberry"
+farming_xp = 31.5
+farming_patch = "bush"
 examine = "A dwellberry bush seed - plant in a bush patch."
 
 [jangerberry_seed]
 id = 5104
 price = 1
 limit = 100
+farming_level = 48
+farming_crop = "jangerberry"
+farming_xp = 50.5
+farming_patch = "bush"
 examine = "A jangerberry bush seed - plant in a bush patch."
 
 [whiteberry_seed]
 id = 5105
 price = 6
 limit = 100
+farming_level = 59
+farming_crop = "whiteberry"
+farming_xp = 78.0
+farming_patch = "bush"
 examine = "A whiteberry bush seed - plant in a bush patch."
 
 [poison_ivy_seed]
 id = 5106
 price = 17
 limit = 100
+farming_level = 70
+farming_crop = "poison_ivy"
+farming_xp = 120.0
+farming_patch = "bush"
 examine = "A poison ivy bush seed - plant in a bush patch."
 
 [cactus_seed]

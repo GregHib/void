@@ -10,16 +10,16 @@ id = 7575
 [bush_patch_weeds_3]
 id = 7576
 
-[redberry_bush_patch_1]
+[farming_bush_patch_varrock]
 id = 7577
 
-[redberry_bush_patch_2]
+[farming_bush_patch_rimmington]
 id = 7578
 
-[redberry_bush_patch_3]
+[farming_bush_patch_etceteria]
 id = 7579
 
-[redberry_bush_patch_4]
+[farming_bush_patch_ardougne]
 id = 7580
 
 [cadavaberry_bush_seedling]
@@ -45,18 +45,23 @@ id = 7587
 
 [cadavaberry_bush_berry_1]
 id = 7588
+harvest = "cadava_berries"
 
 [cadavaberry_bush_berry_2]
 id = 7589
+harvest = "cadava_berries"
 
 [cadavaberry_bush_berry_3]
 id = 7590
+harvest = "cadava_berries"
 
 [cadavaberry_bush_berry_4]
 id = 7591
+harvest = "cadava_berries"
 
 [cadavaberry_bush_claim_xp]
 id = 7592
+farming_xp = 102.5
 
 [cadavaberry_bush_1_diseased]
 id = 7593
@@ -120,18 +125,23 @@ id = 7612
 
 [dwellberry_bush_berry_1]
 id = 7613
+harvest = "dwellberries"
 
 [dwellberry_bush_berry_2]
 id = 7614
+harvest = "dwellberries"
 
 [dwellberry_bush_berry_3]
 id = 7615
+harvest = "dwellberries"
 
 [dwellberry_bush_berry_4]
 id = 7616
+harvest = "dwellberries"
 
 [dwellberry_bush_claim_xp]
 id = 7617
+farming_xp = 177.5
 
 [dwellberry_bush_1_diseased]
 id = 7618
@@ -204,18 +214,23 @@ id = 7640
 
 [jangerberry_bush_berry_1]
 id = 7641
+harvest = "jangerberries"
 
 [jangerberry_bush_berry_2]
 id = 7642
+harvest = "jangerberries"
 
 [jangerberry_bush_berry_3]
 id = 7643
+harvest = "jangerberries"
 
 [jangerberry_bush_berry_4]
 id = 7644
+harvest = "jangerberries"
 
 [jangerberry_bush_claim_xp]
 id = 7645
+farming_xp = 284.5
 
 [jangerberry_bush_1_diseased]
 id = 7646
@@ -294,18 +309,23 @@ id = 7670
 
 [poisonivy_bush_berry_1]
 id = 7671
+harvest = "poison_ivy_berries"
 
 [poisonivy_bush_berry_2]
 id = 7672
+harvest = "poison_ivy_berries"
 
 [poisonivy_bush_berry_3]
 id = 7673
+harvest = "poison_ivy_berries"
 
 [poisonivy_bush_berry_4]
 id = 7674
+harvest = "poison_ivy_berries"
 
 [poisonivy_bush_claim_xp]
 id = 7675
+farming_xp = 675.0
 
 [poisonivy_bush_1_diseased]
 id = 7676
@@ -375,18 +395,23 @@ id = 7697
 
 [redberry_bush_berry_1]
 id = 7698
+harvest = "redberries"
 
 [redberry_bush_berry_2]
 id = 7699
+harvest = "redberries"
 
 [redberry_bush_berry_3]
 id = 7700
+harvest = "redberries"
 
 [redberry_bush_berry_4]
 id = 7701
+harvest = "redberries"
 
 [redberry_bush_claim_xp]
 id = 7702
+farming_xp = 64.0
 
 [redberry_bush_1_diseased]
 id = 7703
@@ -447,18 +472,23 @@ id = 7721
 
 [whiteberry_bush_berry_1]
 id = 7722
+harvest = "white_berries"
 
 [whiteberry_bush_berry_2]
 id = 7723
+harvest = "white_berries"
 
 [whiteberry_bush_berry_3]
 id = 7724
+harvest = "white_berries"
 
 [whiteberry_bush_berry_4]
 id = 7725
+harvest = "white_berries"
 
 [whiteberry_bush_claim_xp]
 id = 7726
+farming_xp = 437.5
 
 [whiteberry_bush_1_diseased]
 id = 7727

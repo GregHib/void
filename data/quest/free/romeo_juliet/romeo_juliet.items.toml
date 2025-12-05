@@ -4,6 +4,7 @@ price = 20
 limit = 100
 weight = 0.007
 compostable = true
+farming_xp = 4.5
 examine = "Poisonous berries."
 
 [cadava_berries_noted]

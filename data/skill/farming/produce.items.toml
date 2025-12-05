@@ -390,6 +390,7 @@ limit = 10000
 weight = 0.007
 compostable = true
 super_compost = true
+farming_xp = 45.0
 examine = "They look sweet and juicy, but only a fool would eat them."
 
 [poison_ivy_berries_noted]

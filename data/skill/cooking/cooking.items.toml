@@ -583,6 +583,7 @@ limit = 1000
 weight = 0.007
 compostable = true
 kept = "Wilderness"
+farming_xp = 4.5
 examine = "Very bright red berries."
 
 [redberries_noted]
@@ -1354,6 +1355,7 @@ limit = 10000
 heals = 20
 weight = 0.014
 compostable = true
+farming_xp = 12.0
 examine = "Some rather pretty blue berries picked from a dwellberry bush."
 
 [dwellberries_noted]

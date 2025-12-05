@@ -406,6 +406,7 @@ limit = 10000
 weight = 0.007
 compostable = true
 super_compost = true
+farming_xp = 29.0
 examine = "Sour berries, used in potions."
 
 [white_berries_noted]
@@ -449,6 +450,7 @@ heals = 20
 weight = 0.007
 compostable = true
 super_compost = true
+farming_xp = 19.0
 examine = "They don't look very ripe."
 
 [jangerberries_noted]
