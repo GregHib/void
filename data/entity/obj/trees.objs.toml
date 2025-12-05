@@ -660,10 +660,6 @@ examine = "I bet this makes good syrup!"
 id = 7400
 examine = "This is what is left of a maple tree."
 
-[yew_tree_farming_stump]
-id = 8514
-examine = "You can uproot this tree stump with a spade."
-
 [mahogany_tree]
 id = 9034
 woodcutting = {

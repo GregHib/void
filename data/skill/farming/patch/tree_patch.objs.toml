@@ -160,6 +160,9 @@ id = 8390
 [farming_tree_patch_lumbridge]
 id = 8391
 
+[farming_tree_patch_gnome_stronghold]
+id = 19147
+
 [tree_patch_weeded]
 id = 8392
 
@@ -210,9 +213,20 @@ id = 8407
 
 [magic_tree_fullygrown_1]
 id = 8408
+farming_xp = 13768.3
 
 [magic_tree_fullygrown_2]
 id = 8409
+woodcutting = {
+  log = "magic_logs",
+  level = 75,
+  xp = 250.0,
+  deplete_rate = 0.125,
+  chance_min = 2,
+  chance_max = 6,
+  hatchet_low_dif = "0-1",
+  hatchet_high_dif = "2-3"
+}
 examine = "A fully grown Magic Tree."
 
 [magic_tree_farming_stump]
@@ -317,12 +331,23 @@ id = 8442
 
 [maple_tree_fullygrown_1]
 id = 8443
+farming_xp = 3403.4
 
 [maple_tree_fullygrown_2]
 id = 8444
+woodcutting = {
+  log = "maple_logs",
+  level = 45,
+  xp = 100.0,
+  deplete_rate = 0.125,
+  chance_min = 8,
+  chance_max = 25,
+  hatchet_low_dif = "2-4",
+  hatchet_high_dif = "6-12"
+}
 examine = "A fully grown Maple tree."
 
-[maple_tree_fstump]
+[maple_tree_farming_stump]
 id = 8445
 examine = "You can uproot this stump with a spade."
 
@@ -388,9 +413,20 @@ id = 8465
 
 [oak_tree_fullygrown_1]
 id = 8466
+farming_xp = 467.3
 
 [oak_tree_fullygrown_2]
 id = 8467
+woodcutting = {
+  log = "oak_logs",
+  level = 15,
+  xp = 37.5,
+  deplete_rate = 0.125,
+  chance_min = 32,
+  chance_max = 100,
+  hatchet_low_dif = "8-16",
+  hatchet_high_dif = "25-50"
+}
 examine = "A fully grown Oak tree."
 
 [oak_tree_farming_stump]
@@ -453,12 +489,23 @@ id = 8486
 
 [willow_tree_fullygrown_1]
 id = 8487
+farming_xp = 1456.5
 
 [willow_tree_fullygrown_2]
 id = 8488
+woodcutting = {
+  log = "willow_logs",
+  level = 30,
+  xp = 67.5,
+  deplete_rate = 0.125,
+  chance_min = 16,
+  chance_max = 50,
+  hatchet_low_dif = "4-8",
+  hatchet_high_dif = "13-25"
+}
 examine = "A fully grown Willow tree."
 
-[willow_tree_stump]
+[willow_tree_farming_stump]
 id = 8489
 examine = "You can uproot this stump with a spade."
 
@@ -530,13 +577,25 @@ id = 8511
 
 [yew_tree_fullygrown_1]
 id = 8512
+farming_xp = 7069.9
 
 [yew_tree_fullygrown_2]
 id = 8513
+woodcutting = {
+  log = "yew_logs",
+  level = 60,
+  xp = 175.0,
+  deplete_rate = 0.125,
+  chance_min = 4,
+  chance_max = 12,
+  hatchet_low_dif = "1-2",
+  hatchet_high_dif = "3-7"
+}
 examine = "A fully grown Yew tree."
 
-[yew_tree_stump]
+[yew_tree_farming_stump]
 id = 8514
+examine = "You can uproot this tree stump with a spade."
 
 [yew_tree_diseased_1]
 id = 8515

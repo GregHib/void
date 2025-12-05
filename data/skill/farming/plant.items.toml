@@ -86,24 +86,44 @@ kept = "Reclaim"
 id = 5370
 tradeable = false
 weight = 0.907
-examine = "This sapling is ready to be replanted in a tree patch."
+farming_level = 15
+farming_crop = "oak"
+farming_xp = 14.0
+farming_patch = "tree"
 kept = "Reclaim"
+examine = "This sapling is ready to be replanted in a tree patch."
 
 [willow_sapling]
 clone = "oak_sapling"
 id = 5371
+farming_level = 30
+farming_crop = "willow"
+farming_xp = 25.0
+farming_patch = "tree"
 
 [maple_sapling]
 clone = "oak_sapling"
 id = 5372
+farming_level = 45
+farming_crop = "maple"
+farming_xp = 45.0
+farming_patch = "tree"
 
 [yew_sapling]
 clone = "oak_sapling"
 id = 5373
+farming_level = 60
+farming_crop = "yew"
+farming_xp = 81.0
+farming_patch = "tree"
 
 [magic_sapling]
 clone = "oak_sapling"
 id = 5374
+farming_level = 75
+farming_crop = "magic"
+farming_xp = 145.5
+farming_patch = "tree"
 
 [spirit_sapling]
 id = 5375

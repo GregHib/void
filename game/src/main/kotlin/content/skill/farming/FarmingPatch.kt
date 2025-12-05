@@ -39,6 +39,16 @@ class FarmingPatch : Script {
             }
         }
 
+        objectOperate("Clear", "*_tree_farming_stump") { (target) ->
+            message("You start digging up the tree stump.", type = ChatType.Filter)
+            clear(this, target.id, stump = true)
+        }
+
+        itemOnObjectOperate("spade", "*_tree_farming_stump") { (target) ->
+            message("You start digging up the tree stump.", type = ChatType.Filter)
+            clear(this, target.id, stump = true)
+        }
+
         objectOperate("Clear", "*_dead") { (target) ->
             message("You start digging the farming patch...", type = ChatType.Filter)
             clear(this, target.id)
@@ -78,7 +88,7 @@ class FarmingPatch : Script {
         objectOperate("Pick-pineapple", "*_fruit_#", handler = ::pick)
         objectOperate("Pick-fruit", "*_fruit_#", handler = ::pick)
         objectOperate("Pick-coconut", "*_fruit_#", handler = ::pick)
-        objectOperate("Check-health", "*_claim_xp", handler = ::claim)
+        objectOperate("Check-health", "*_claim_xp,*_tree_fullygrown_1", handler = ::claim)
 
         itemOnObjectOperate("plant_cure", "*", handler = ::plantCure)
         itemOnObjectOperate("spade", "*_fullygrown") { (target) ->
@@ -328,16 +338,14 @@ class FarmingPatch : Script {
                         "tree" -> 11
                         else -> 0
                     }
-                    if (stage == null) {
+                    if (type.endsWith("_stump")) {
+                        append("The patch has the remains of a tree stump in it.")
+                    } else if (stage == null) {
                         // "You plant the apple tree sapling in the fruit tree patch." // filtere
                         // "The patch has apple tree growing in it and is at state 1/7."
                         // "You need a spade to do that."// plant
-                        // "You need a spade to clear a farming patch"
-                        // "You start digging up the tree stump."
-                        // "You dig up the tree stump."
                         // "You plant the yew sapling in the tree patch."
                         // inventory.add("yew_roots")
-//                            append("The patch has the remains of a tree stump in it.")
                         append("The patch has ${type.plural(amount)} growing in it and is at state $stages/$stages.")
                     } else {
                         if (stage + 1 == stages) {
@@ -461,7 +469,7 @@ class FarmingPatch : Script {
         return Level.success(player.levels.get(Skill.Farming), chance)
     }
 
-    private fun clear(player: Player, variable: String) {
+    private fun clear(player: Player, variable: String, stump: Boolean = false) {
         if (!player.inventory.contains("spade")) {
             player.message("You need a spade to clear a farming patch.")
             return
@@ -470,7 +478,11 @@ class FarmingPatch : Script {
         player.sound("dig_spade")
         player.weakQueue("clear_patch", 2) {
             if (Level.success(player.levels.get(Skill.Farming), 60)) { // TODO proper chances
-                player.message("You have successfully cleared this patch for new crops.", type = ChatType.Filter)
+                if (stump) {
+                    player.message("You dig up the tree stump.", type = ChatType.Filter)
+                } else {
+                    player.message("You have successfully cleared this patch for new crops.", type = ChatType.Filter)
+                }
                 player[variable] = "weeds_0"
             } else {
                 clear(player, variable)
@@ -533,7 +545,7 @@ class FarmingPatch : Script {
                 "farming_tree_patch_falador",
                 "patch_canifis_mushroom",
                 "farming_tree_patch_taverley",
-                "patch_tree_gnome_stronghold_tree",
+                "farming_tree_patch_gnome_stronghold",
             ),
             // belladonna
             16 to listOf("farming_belladonna_patch_draynor"),

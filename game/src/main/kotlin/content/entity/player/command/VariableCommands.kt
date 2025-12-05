@@ -4,10 +4,15 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
+import world.gregs.voidps.engine.client.command.modCommand
 import world.gregs.voidps.engine.client.command.stringArg
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.encode.*
 
@@ -15,8 +20,21 @@ class VariableCommands : Script {
 
     val definitions: InterfaceDefinitions by inject()
     val variableDefinitions: VariableDefinitions by inject()
+    val players: Players by inject()
+    val accounts: AccountDefinitions by inject()
 
     init {
+        modCommand("vars", stringArg("variable-name", optional = true, autofill = variableDefinitions.definitions.keys), stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "Search players variables") { args ->
+            val target = players.find(this, args.getOrNull(1)) ?: return@modCommand
+            val search = args.getOrNull(0)
+            for ((key, value) in target.variables.data) {
+                if (search != null && !key.contains(search)) {
+                    continue
+                }
+                message("[$key] - value: $value", ChatType.Console)
+            }
+        }
+
         adminCommand("var", stringArg("variable-name", autofill = variableDefinitions.definitions.keys), stringArg("value"), desc = "Set a variable") { args ->
             set(args.first(), args.last().toBooleanStrictOrNull() ?: args.last().toIntOrNull() ?: args.last())
         }
