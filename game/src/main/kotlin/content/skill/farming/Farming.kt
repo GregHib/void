@@ -207,7 +207,7 @@ class Farming(
         if (spot == "patch_my_arm_herb" || type == "0" || produce.endsWith("_watered")) {
             return false
         }
-        if (player["${spot}_protect", true]) {
+        if (player["${spot}_protect", false]) {
             return false
         }
         if (produce == "poison_ivy") { // Immune

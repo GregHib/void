@@ -91,6 +91,7 @@ class FarmingPatch : Script {
         objectOperate("Check-health", "*_claim_xp,*_tree_fullygrown_1", handler = ::claim)
 
         itemOnObjectOperate("plant_cure", "*", handler = ::plantCure)
+        itemOnObjectOperate("secateurs,magic_secateurs", "*_tree_diseased*", handler = ::prune)
         itemOnObjectOperate("spade", "*_fullygrown") { (target) ->
             val def = target.def(this)
             val item: String = def["harvest"]
@@ -117,23 +118,39 @@ class FarmingPatch : Script {
         player.harvest(Item(item), interact.target, tree = true)
     }
 
+    private suspend fun prune(player: Player, interact: ItemOnObjectInteract) {
+        val target = interact.target
+        if (!target.id.startsWith("farming_tree_patch")) {
+            return
+        }
+        player.message("You start pruning the tree...", type = ChatType.Filter)
+        player.anim("pruning_all_fairy")
+        player.sound("farming_prune", repeat = 2)
+        player.delay(4)
+        val type = target.def(player).stringId.substringBefore("_")
+        player.message("You have successfully removed all the diseased leaves.", type = ChatType.Filter)
+        player.addOrDrop("leaves_${type}")
+        player[target.id] = player[target.id, "weeds_3"].replace("_diseased", "")
+    }
+
     private suspend fun plantCure(player: Player, interact: ItemOnObjectInteract) {
         val target = interact.target
         if (!target.id.startsWith("farming_")) {
             return
         }
-
+        if (target.id.startsWith("farming_tree_patch")) {
+            player.message("To cure trees you need to prune the diseased leaves away with a pair of secateurs.")
+            return
+        }
         if (!player.inventory.contains("plant_cure")) {
             player.message("You need a plant cure to cure the disease on this patch.")
             return
         }
-
         if (!target.def(player).stringId.contains("_diseased")) {
             player.message("This patch doesn't need curing.")
             return
         }
-
-        player.message("You treat the herb patch with the plant cure.", type = ChatType.Filter)
+        player.message("You treat the ${target.patchName()} with the plant cure.", type = ChatType.Filter)
         player.sound("farming_plant_cure")
         player.anim("farming_plant_cure")
         player.delay(2)

@@ -2,22 +2,16 @@ package content.skill.farming
 
 import FakeRandom
 import WorldTest
-import containsMessage
 import itemOnObject
-import messages
 import objectOption
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import org.junit.jupiter.api.assertNotNull
-import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.timer.setCurrentTime
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
@@ -129,6 +123,29 @@ class TreePatchTest : WorldTest() {
             tickIf { player["farming_tree_patch_lumbridge", "empty"] == "${id}_stump" }
 
             assertEquals("weeds_0", player["farming_tree_patch_lumbridge", "empty"])
+        }
+    }
+
+    @TestFactory
+    fun `Prune diseased patch`() = listOf(
+        "oak",
+        "willow",
+        "maple",
+        "yew",
+        "magic",
+    ).map { id ->
+        dynamicTest("Prune $id") {
+            val tile = Tile(3192, 3229)
+            val player = createPlayer(tile)
+            player.levels.set(Skill.Farming, 99)
+            player.inventory.add("secateurs")
+            player["farming_tree_patch_lumbridge"] = "${id}_diseased_2"
+            val patch = objects[tile.addY(1), "farming_tree_patch_lumbridge"]!!
+
+            player.itemOnObject(patch, 0)
+            tick(5)
+
+            assertEquals("${id}_2", player["farming_tree_patch_lumbridge", "empty"])
         }
     }
 

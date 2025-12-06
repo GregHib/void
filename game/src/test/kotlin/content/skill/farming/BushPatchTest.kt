@@ -111,7 +111,6 @@ class BushPatchTest : WorldTest() {
         "dwellberry",
         "jangerberry",
         "whiteberry",
-        "poison_ivy",
     ).map { id ->
         dynamicTest("Diseased $id dies") {
             setRandom(object : FakeRandom() {
