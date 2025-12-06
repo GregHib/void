@@ -174,10 +174,13 @@ examine = "Yep. Definitely a chicken."
 
 [elstan]
 id = 2323
+north_patch = "farming_veg_patch_falador_nw"
+south_patch = "farming_veg_patch_falador_se"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [heskel]
 id = 2340
+patch = "farming_tree_patch_falador"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [mysterious_ghost_falador]

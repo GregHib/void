@@ -457,6 +457,7 @@ compostable = true
 farming_level = 31
 farming_xp = 29.0
 farming_chance = "103-180"
+farming_protect_id = "apples_5"
 examine = "A freshly picked strawberry."
 
 [strawberry_noted]

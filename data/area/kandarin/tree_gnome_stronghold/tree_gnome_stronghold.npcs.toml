@@ -1,5 +1,6 @@
-[prissy_scilla_tree_gnome_stronghold]
+[prissy_scilla]
 id = 1037
+patch = "farming_tree_patch_gnome_stronghold"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [terrorbird]
@@ -99,8 +100,9 @@ categories = ["birds"]
 respawn_delay = 30
 examine = "These gnomes know how to get around!"
 
-[bolongo_tree]
+[bolongo]
 id = 2343
+patch = "farming_fruit_tree_patch_gnome_stronghold"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [mysterious_ghost_tree_gnome_stronghold]

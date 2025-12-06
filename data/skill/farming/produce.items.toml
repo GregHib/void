@@ -13,6 +13,8 @@ compostable = true
 weaving = { amount = 4, to = "empty_sack", level = 21, xp = 38.0 }
 farming_xp = 14.5
 farming_chance = "113-180"
+farming_protect_id = "barley_malt"
+farming_protect_amount = 6
 examine = "I can weave this to make sacks."
 
 [jute_fibre_noted]
@@ -93,6 +95,8 @@ limit = 5000
 weight = 0.028
 compostable = true
 farming_xp = 15.0
+farming_protect_id = "bananas_5"
+farming_protect_amount = 5
 examine = "I could make a spicy curry with this."
 
 [curry_leaf_noted]
@@ -107,6 +111,8 @@ weight = 0.028
 compostable = true
 super_compost = true
 farming_xp = 27.0
+farming_protect_id = "pineapple"
+farming_protect_amount = 10
 examine = "Looks delicious."
 
 [papaya_fruit_noted]
@@ -120,6 +126,8 @@ weight = 0.028
 compostable = true
 super_compost = true
 farming_xp = 41.5
+farming_protect_id = "papaya_fruit"
+farming_protect_amount = 15
 examine = "It's a coconut."
 
 [coconut_noted]
@@ -171,6 +179,8 @@ super_compost = true
 farming_level = 48.5
 farming_xp = 54.5
 farming_chance = "126-180"
+farming_protect_id = "curry_leaf"
+farming_protect_amount = 10
 examine = "A juicy watermelon."
 
 [watermelon_noted]
@@ -197,6 +207,8 @@ compostable = true
 farming_level = 20
 farming_xp = 19.0
 farming_chance = "88-180"
+farming_protect_id = "jute_fibre"
+farming_protect_amount = 10
 cooking = { level = 28, xp = 104.0, chances = { range = "65-382" }, cooked = "cooked_sweetcorn", cooked_message = "You cook some sweetcorn.", burnt = "burnt_sweetcorn", burnt_message = "You accidentally burn the sweetcorn." }
 examine = "Raw sweetcorn."
 
@@ -242,6 +254,7 @@ weight = 0.028
 farming_xp = 10.0
 farming_chance = "104-180"
 compostable = true
+farming_protect_id = "marigold"
 examine = "A handful of Hammerstone Hops."
 
 [hammerstone_hops_noted]
@@ -255,6 +268,7 @@ weight = 0.028
 compostable = true
 farming_xp = 12.0
 farming_chance = "108-180"
+farming_protect_id = "onions_10"
 examine = "A handful of Asgarnian Hops."
 
 [asgarnian_hops_noted]
@@ -268,6 +282,7 @@ weight = 0.028
 compostable = true
 farming_xp = 16.0
 farming_chance = "116-180"
+farming_protect_id = "tomatoes_5"
 examine = "A handful of Yanillian Hops."
 
 [yanillian_hops_noted]
@@ -281,6 +296,8 @@ weight = 0.028
 compostable = true
 farming_xp = 19.5
 farming_chance = "121-180"
+farming_protect_id = "cabbages_10"
+farming_protect_amount = 3
 examine = "A handful of Krandorian Hops."
 
 [krandorian_hops_noted]
@@ -294,6 +311,7 @@ weight = 0.028
 compostable = true
 farming_xp = 26.0
 farming_chance = "128-180"
+farming_protect_id = "nasturtiums"
 examine = "A handful of Wildblood Hops."
 
 [wildblood_hops_noted]
@@ -331,6 +349,8 @@ weight = 0.028
 compostable = true
 farming_xp = 9.5
 farming_chance = "103-180"
+farming_protect_id = "compost"
+farming_protect_amount = 3
 examine = "A handful of barley malt."
 
 [barley_malt_noted]

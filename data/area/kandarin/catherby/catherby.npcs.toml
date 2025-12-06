@@ -47,6 +47,7 @@ examine = "She sells farming equipment."
 id = 2331
 categories = ["human"]
 wander_radius = 2
+patch = "farming_fruit_tree_patch_catherby"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [renegade_knight]
@@ -97,4 +98,6 @@ examine = "He looks short and grumpy."
 
 [dantaera]
 id = 2324
+north_patch = "farming_veg_patch_catherby_north"
+south_patch = "farming_veg_patch_catherby_south"
 examine = "Perhaps this gardener might look after your crops for you."

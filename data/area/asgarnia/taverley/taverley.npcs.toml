@@ -61,6 +61,7 @@ examine = "A powerful sorceress who guards Excalibur."
 [alain]
 id = 2339
 wander_radius = 4
+patch = "farming_tree_patch_taverley"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [austri]

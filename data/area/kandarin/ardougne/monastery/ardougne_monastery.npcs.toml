@@ -2,8 +2,9 @@
 id = 223
 examine = "A peaceful monk."
 
-[torrell_monastery]
+[torrell]
 id = 2338
+patch = "farming_bush_patch_ardougne"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [lady_servil_monastery]

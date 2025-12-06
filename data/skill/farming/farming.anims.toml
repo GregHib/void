@@ -75,3 +75,6 @@ id = 2295
 
 [garden_apply_potion]
 id = 2569
+
+[pruning_all_fairy]
+id = 3337

@@ -259,8 +259,9 @@ id = 1332
 [fishing_spot_rellekka_3]
 id = 1333
 
-[rhonen_rellekka]
+[rhonen]
 id = 2334
+patch = "farming_hops_patch_seers_village"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [jarvald_rellekka]

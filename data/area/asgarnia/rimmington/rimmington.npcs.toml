@@ -26,8 +26,9 @@ id = 11656
 [jessika_rimmington]
 id = 11667
 
-[taria_rimmington]
+[taria]
 id = 2336
+patch = "farming_bush_patch_rimmington"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [hetty_rimmington]

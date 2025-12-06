@@ -15,6 +15,7 @@ examine = "A holy man."
 
 [francis]
 id = 2327
+patch = "farming_hops_patch_entrana"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [mysterious_ghost_entrana]

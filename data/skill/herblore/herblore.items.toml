@@ -407,6 +407,8 @@ weight = 0.007
 compostable = true
 super_compost = true
 farming_xp = 29.0
+farming_protect_id = "bittercap_mushroom"
+farming_protect_amount = 8
 examine = "Sour berries, used in potions."
 
 [white_berries_noted]
@@ -451,6 +453,8 @@ weight = 0.007
 compostable = true
 super_compost = true
 farming_xp = 19.0
+farming_protect_id = "watermelon"
+farming_protect_amount = 6
 examine = "They don't look very ripe."
 
 [jangerberries_noted]

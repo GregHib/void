@@ -277,8 +277,9 @@ combat_sounds = "rabbit"
 drop_table = "rabbit"
 examine = "A cute bunny rabbit."
 
-[rhazien_miscellania]
+[rhazien]
 id = 2337
+patch = "farming_bush_patch_etceteria"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [carpenter_kjallak_miscellania]
@@ -405,6 +406,7 @@ examine = "He's guarding the entrance to the dungeons."
 
 [yulf_squecks]
 id = 4561
+patch = "farming_spirit_tree_patch_etceteria"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [rabbit_miscellania_2]

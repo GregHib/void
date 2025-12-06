@@ -79,7 +79,7 @@ spawns = [
   { id = "rabbit_miscellania", x = 2552, y = 3866, members = true },
   { id = "rabbit_miscellania", x = 2560, y = 3869, members = true },
   { id = "rabbit_miscellania", x = 2588, y = 3874, members = true },
-  { id = "rhazien_miscellania", x = 2591, y = 3865, members = true },
+  { id = "rhazien", x = 2591, y = 3865, members = true },
   { id = "carpenter_kjallak_miscellania", x = 2594, y = 3891 },
   { id = "farmer_fromund_miscellania", x = 2582, y = 3864 },
   { id = "runa", x = 2528, y = 10259 },

@@ -150,7 +150,7 @@ spawns = [
   { id = "fishing_spot_rellekka_3", x = 2648, y = 3708, members = true },
   { id = "fishing_spot_rellekka_3", x = 2648, y = 3711, members = true },
   { id = "svidi", x = 2714, y = 3672 },
-  { id = "rhonen_rellekka", x = 2666, y = 3530, members = true },
+  { id = "rhonen", x = 2666, y = 3530, members = true },
   { id = "jarvald_rellekka", x = 2621, y = 3683, members = true },
   { id = "olaf_hradson_rellekka", x = 2724, y = 3729, members = true },
   { id = "dron_rellekka", x = 2658, y = 3700 },

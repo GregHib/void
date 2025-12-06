@@ -116,6 +116,8 @@ examine = "He sells Farming equipment."
 
 [kragen_ardougne]
 id = 2325
+patch_north = "farming_veg_patch_ardougne_north"
+patch_south = "farming_veg_patch_ardougne_south"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [man_ardougne]

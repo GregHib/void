@@ -40,7 +40,7 @@ spawns = [
     { id = "dell_monti_brimhaven", x = 2763, y = 3186 },
     { id = "customs_officer_brimhaven", x = 2772, y = 3225 },
     { id = "capn_izzy_no_beard_brimhaven", x = 2807, y = 3190, members = true },
-    { id = "praistan_ebola_brimhaven", x = 2799, y = 3202, members = true },
+    { id = "praistan_ebola", x = 2799, y = 3202, members = true },
     { id = "my_arm_brimhaven", x = 2772, y = 3223, members = true },
     { id = "hajedy_brimhaven", x = 2779, y = 3211 },
     { id = "davon_brimhaven", x = 2803, y = 3152 },

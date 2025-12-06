@@ -5,6 +5,8 @@ limit = 100
 weight = 0.007
 compostable = true
 farming_xp = 4.5
+farming_protect_id = "tomatoes_5"
+farming_protect_amount = 3
 examine = "Poisonous berries."
 
 [cadava_berries_noted]

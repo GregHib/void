@@ -244,6 +244,7 @@ examine = "Farming."
 
 [vasquen]
 id = 2333
+patch = "farming_hops_patch_lumbridge"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [dwarf_lumbridge]
@@ -275,6 +276,7 @@ examine = "A well-fed farmer."
 
 [fayeth]
 id = 2342
+patch = "farming_tree_patch_lumbridge"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [farmer_lumbridge_3]

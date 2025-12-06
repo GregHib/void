@@ -523,6 +523,8 @@ cooking = {
 }
 farming_xp = 9.0
 farming_chance = "101-180"
+farming_protect_id = "compost"
+farming_protect_amount = 2
 aka = ["potato"]
 compostable = true
 kept = "Wilderness"
@@ -584,6 +586,8 @@ weight = 0.007
 compostable = true
 kept = "Wilderness"
 farming_xp = 4.5
+farming_protect_id = "cabbages_10"
+farming_protect_amount = 4
 examine = "Very bright red berries."
 
 [redberries_noted]
@@ -607,6 +611,8 @@ limit = 1000
 weight = 0.085
 farming_xp = 8.5
 compostable = true
+farming_protect_id = "sweetcorn"
+farming_protect_amount = 9
 examine = "Keeps the doctor away."
 
 [cooking_apple_noted]
@@ -658,6 +664,8 @@ heals = 20
 weight = 0.028
 compostable = true
 farming_xp = 10.5
+farming_protect_id = "apples_5"
+farming_protect_amount = 4
 examine = "Mmm this looks tasty."
 
 [banana_noted]
@@ -674,6 +682,7 @@ kept = "Wilderness"
 farming_level = 7
 farming_xp = 11.5
 farming_chance = "107-180"
+farming_protect_id = "onions_10"
 examine = "Yuck, I don't like cabbage."
 
 [cabbage_noted]
@@ -777,6 +786,8 @@ kept = "Wilderness"
 farming_level = 12
 farming_xp = 14.0
 farming_chance = "112-180"
+farming_protect_id = "cabbages_10"
+farming_protect_amount = 2
 examine = "This would make good ketchup."
 
 [tomato_noted]
@@ -1252,6 +1263,8 @@ heals = 20
 weight = 0.11
 compostable = true
 farming_xp = 13.5
+farming_protect_id = "strawberries_5"
+farming_protect_amount = 3
 examine = "A common fruit."
 
 [orange_noted]
@@ -1287,6 +1300,8 @@ weight = 0.15
 compostable = true
 super_compost = true
 farming_xp = 21.5
+farming_protect_id = "watermelon_10"
+farming_protect_amount = 10
 examine = "It can be cut up into something more manageable with a knife."
 
 [pineapple_noted]
@@ -1356,6 +1371,8 @@ heals = 20
 weight = 0.014
 compostable = true
 farming_xp = 12.0
+farming_protect_id = "strawberries_5"
+farming_protect_amount = 3
 examine = "Some rather pretty blue berries picked from a dwellberry bush."
 
 [dwellberries_noted]

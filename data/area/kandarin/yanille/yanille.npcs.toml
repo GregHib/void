@@ -8,6 +8,7 @@ examine = "The Grand Secretary of the Wizards' Guild in Yanille."
 
 [selena]
 id = 2332
+patch = "farming_hops_patch_yannile"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [tramp_yanille]

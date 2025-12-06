@@ -81,6 +81,18 @@ class Farming(
                     }
                     continue
                 }
+                if (type == "stump") {
+                    // TODO do regular tree's also regrow or just fruit trees?
+                    val map = varbitMap(variable) ?: continue
+                    for (i in 7 downTo 1) {
+                        val next = current.replace("_watered", "").replace("_${type}", "_life${i}")
+                        if (map.containsKey(next)) {
+                            player[variable] = next
+                            break
+                        }
+                    }
+                    continue
+                }
                 val produce = current.substringBeforeLast("_")
                 if (produce.endsWith("diseased")) {
                     if (variable.contains("herb") && !produce.startsWith("goutweed")) {
@@ -122,11 +134,14 @@ class Farming(
                     if (!map.containsKey(next)) {
                         next = current.replace("_watered", "").replace("_${type}", "_claim")
                     }
-                    if (!map.contains(next)) {
+                    if (!map.containsKey(next)) {
                         next = current.replace("_watered", "").replace("_${type}", "_life1")
                     }
                     if (!map.containsKey(next)) {
                         continue
+                    }
+                    if (next.endsWith("_claim") || next.endsWith("_life1")) {
+                        player.clear("${variable}_protect")
                     }
                 }
                 player[variable] = next
@@ -190,6 +205,12 @@ class Farming(
     fun disease(player: Player, spot: String, produce: String, type: String): Boolean {
         // https://x.com/JagexKieren/status/905860041240137729
         if (spot == "patch_my_arm_herb" || type == "0" || produce.endsWith("_watered")) {
+            return false
+        }
+        if (player["${spot}_protect", true]) {
+            return false
+        }
+        if (produce == "poison_ivy") { // Immune
             return false
         }
         var chance = farmingDefinitions.diseaseChances[produce] ?: return false

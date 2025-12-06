@@ -27,7 +27,7 @@ spawns = [
   { id = "butterfly_2", x = 2958, y = 3202 },
   { id = "butterfly_2", x = 2960, y = 3221 },
   { id = "highwayman_sinclair_mansion", x = 2961, y = 3248 },
-  { id = "taria_rimmington", x = 2940, y = 3223 },
+  { id = "taria", x = 2940, y = 3223 },
   { id = "hetty_rimmington", x = 2968, y = 3206 },
   { id = "da_vinci_rimmington", x = 2927, y = 3218 },
   { id = "chancy_rimmington", x = 2929, y = 3222 },
