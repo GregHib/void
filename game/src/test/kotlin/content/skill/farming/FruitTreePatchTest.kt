@@ -86,6 +86,28 @@ class FruitTreePatchTest : WorldTest() {
     }
 
     @TestFactory
+    fun `Regrow fruit`() = listOf(
+        "apple",
+        "banana",
+        "orange",
+        "curry",
+        "pineapple",
+        "papaya",
+        "palm",
+    ).map { id ->
+        dynamicTest("Regrow $id fruit") {
+            val tile = Tile(2475, 3444)
+            val player = createPlayer(tile)
+            player["farming_fruit_tree_patch_gnome_stronghold"] = "${id}_life2"
+
+            val farming = scripts.filterIsInstance<Farming>().first()
+            farming.grow(player, 32)
+
+            assertEquals("${id}_life3", player["farming_fruit_tree_patch_gnome_stronghold", "empty"])
+        }
+    }
+
+    @TestFactory
     fun `Claim xp from fully grown patch`() = listOf(
         "apple",
         "banana",
