@@ -1,10 +1,14 @@
 package content.skill.ranged.weapon.special
 
 import content.entity.combat.hit.hit
+import content.entity.player.combat.special.SpecialAttack
+import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
+import content.skill.melee.weapon.weapon
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatDamage
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
@@ -39,6 +43,11 @@ class DarkBow : Script {
         npcCombatDamage(style = "range", handler = ::damage)
 
         combatSwing("dark_bow*", "range") { target ->
+            if (specialAttack && SpecialAttack.drain(this)) {
+                val id: String = weapon.def.getOrNull("special") ?: return@combatSwing
+                CombatApi.special(this, target, id)
+                return@combatSwing
+            }
             anim("bow_accurate")
             val ammo = ammo
             gfx("${ammo}_double_shot")
@@ -50,7 +59,7 @@ class DarkBow : Script {
     }
 
     fun damage(character: Character, it: CombatDamage) {
-        if (!it.weapon.id.startsWith("dark_bow")) {
+        if (!it.weapon.id.startsWith("dark_bow") || !it.special) {
             return
         }
         val (source) = it
