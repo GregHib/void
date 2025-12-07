@@ -221,6 +221,7 @@ object Weapon {
                 if (weapon.id == "rune_throwing_axe" || (weapon.id == "magic_shortbow" && target is Player)) {
                     damage += 1
                 }
+                damage = random.nextInt(0, damage + 1)
             }
         }
         return damage
