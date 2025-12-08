@@ -7,19 +7,19 @@ id = 615
 [locust_death]
 id = 616
 
-[locust_hit]
+[locust_impact]
 id = 617
 
 [locust_mage_death]
 id = 618
 
-[locust_mage_hit]
+[locust_mage_impact]
 id = 619
 
 [locust_rider_death]
 id = 620
 
-[locust_rider_hit]
+[locust_rider_impact]
 id = 621
 
 [locust_rider_rear]
