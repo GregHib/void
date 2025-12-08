@@ -84,12 +84,9 @@ class Farming(
                 if (type == "stump") {
                     // TODO do regular tree's also regrow or just fruit trees?
                     val map = varbitMap(variable) ?: continue
-                    for (i in 7 downTo 1) {
-                        val next = current.replace("_watered", "").replace("_${type}", "_life${i}")
-                        if (map.containsKey(next)) {
-                            player[variable] = next
-                            break
-                        }
+                    val next = current.replace("_watered", "").replace("_${type}", "_${if (variable.startsWith("farming_fruit_tree")) "life6" else "life1"}")
+                    if (map.containsKey(next)) {
+                        player[variable] = next
                     }
                     continue
                 }

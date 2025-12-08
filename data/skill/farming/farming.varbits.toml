@@ -14,6 +14,10 @@ values = { weeds_3 = 0, weeds_2 = 1, weeds_1 = 2, weeds_0 = 3, weeds_life1 = 4, 
 
 [farming_cactus_patch_al_kharid]
 id = 744
+format = "map"
+persist = true
+default = "weeds_3"
+values = { weeds_3 = 0, weeds_2 = 1, weeds_1 = 2, weeds_0 = 3, weeds_life1 = 4, weeds_life2 = 5, weeds_life3 = 6, weeds_life4 = 7, cactus_0 = 8, cactus_1 = 9, cactus_1 = 9 }
 
 [farming_bush_patch_varrock]
 id = 732
