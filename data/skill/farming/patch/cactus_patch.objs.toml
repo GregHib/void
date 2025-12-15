@@ -36,15 +36,19 @@ id = 7754
 
 [cactus_spines_1]
 id = 7755
+harvest = "cactus_spine"
 
 [cactus_spines_2]
 id = 7756
+harvest = "cactus_spine"
 
 [cactus_spines_3]
 id = 7757
+harvest = "cactus_spine"
 
-[cactus_claimxp]
+[cactus_claim_xp]
 id = 7758
+farming_xp = 374.0
 
 [cactus_1_diseased]
 id = 7759

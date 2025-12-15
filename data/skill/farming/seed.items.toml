@@ -136,6 +136,10 @@ examine = "A poison ivy bush seed - plant in a bush patch."
 id = 5280
 price = 7
 limit = 100
+farming_level = 55
+farming_crop = "cactus"
+farming_xp = 66.5
+farming_patch = "cactus"
 examine = "A Cactus seed - plant in a cactus patch."
 
 [belladonna_seed]

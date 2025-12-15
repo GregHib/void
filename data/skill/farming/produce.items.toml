@@ -398,6 +398,7 @@ price = 6934
 limit = 10000
 weight = 0.028
 compostable = true
+farming_xp = 25.0
 examine = "Don't prick yourself with this."
 
 [cactus_spine_noted]

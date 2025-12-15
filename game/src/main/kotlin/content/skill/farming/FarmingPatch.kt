@@ -88,6 +88,7 @@ class FarmingPatch : Script {
         objectOperate("Pick-pineapple", "*_fruit_#", handler = ::pick)
         objectOperate("Pick-fruit", "*_fruit_#", handler = ::pick)
         objectOperate("Pick-coconut", "*_fruit_#", handler = ::pick)
+        objectOperate("Pick-spine", "cactus_spines_#", handler = ::pick)
         objectOperate("Check-health", "*_claim_xp,*_tree_fullygrown_1", handler = ::claim)
 
         itemOnObjectOperate("plant_cure", "*", handler = ::plantCure)
@@ -280,12 +281,6 @@ class FarmingPatch : Script {
         player.exp(Skill.Farming, item.def["farming_xp", 0.0])
     }
 
-    /*
-
-//        player.message("You do not have an axe which you have the woodcutting level to use.")
-//        player.message("You swing your axe at the tree")
-     */
-
     private fun rake(player: Player, interact: PlayerOnObjectInteract, count: Int = 3) {
         if (count <= 0) {
             return
@@ -346,7 +341,7 @@ class FarmingPatch : Script {
                     append("The patch needs weeding.")
                 } else {
                     val type = value.substringBeforeLast("_").removeSuffix("_watered").removeSuffix("_dead").removeSuffix("_diseased")
-                    // TODO diseased/dead messages
+                    // TODO diseased messages
                     if (value.substringBeforeLast("_").endsWith("_dead")) {
                         append("The patch has become infected by disease and has died.")
                         return@buildString
@@ -355,7 +350,7 @@ class FarmingPatch : Script {
                     val stage = value.substringAfterLast("_").toIntOrNull()
                     val stages = when (name) {
                         "allotment", "herb patch" -> 5
-                        "fruit tree" -> 7
+                        "fruit tree", "cactus" -> 7
                         "tree" -> 11
                         else -> 0
                     }
@@ -540,8 +535,6 @@ class FarmingPatch : Script {
                 "farming_hops_patch_entrana",
                 "farming_hops_patch_seers_village",
                 "farming_hops_patch_yannile",
-                // potato_cactus
-                "farming_cactus_patch_al_kharid",
             ),
             4 to listOf(
                 // herbs
@@ -568,8 +561,11 @@ class FarmingPatch : Script {
                 "farming_tree_patch_taverley",
                 "farming_tree_patch_gnome_stronghold",
             ),
-            // belladonna
-            16 to listOf("farming_belladonna_patch_draynor"),
+            // belladonna, cactus
+            16 to listOf(
+                "farming_belladonna_patch_draynor",
+                "farming_cactus_patch_al_kharid",
+            ),
             // fruit_trees, calquat
             32 to listOf(
                 "farming_fruit_tree_patch_catherby",

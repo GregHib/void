@@ -17,7 +17,7 @@ id = 744
 format = "map"
 persist = true
 default = "weeds_3"
-values = { weeds_3 = 0, weeds_2 = 1, weeds_1 = 2, weeds_0 = 3, weeds_life1 = 4, weeds_life2 = 5, weeds_life3 = 6, weeds_life4 = 7, cactus_0 = 8, cactus_1 = 9, cactus_1 = 9 }
+values = { weeds_3 = 0, weeds_2 = 1, weeds_1 = 2, weeds_0 = 3, weeds_life1 = 4, weeds_life2 = 5, weeds_life3 = 6, weeds_life4 = 7, cactus_0 = 8, cactus_1 = 9, cactus_2 = 10, cactus_3 = 11, cactus_4 = 12, cactus_5 = 13, cactus_6 = 14, cactus_7 = 15, cactus_life1 = 16, cactus_life2 = 17, cactus_life3 = 18, cactus_diseased_1 = 19, cactus_diseased_2 = 20, cactus_diseased_3 = 21, cactus_diseased_4 = 22, cactus_diseased_5 = 23, cactus_diseased_6 = 24, cactus_dead_1 = 25, cactus_dead_2 = 26, cactus_dead_3 = 27, cactus_dead_4 = 28, cactus_dead_5 = 29, cactus_dead_6 = 30, cactus_claim = 31  }
 
 [farming_bush_patch_varrock]
 id = 732

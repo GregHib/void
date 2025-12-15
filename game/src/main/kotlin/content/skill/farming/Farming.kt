@@ -70,7 +70,7 @@ class Farming(
                 val current: String = player[variable] ?: continue
                 val type = current.substringAfterLast("_")
                 if (type == "life1" || type == "life2" || type == "life3" || type == "life4" || type == "life5" || type == "life6" || type == "dead") {
-                    if (variable.startsWith("farming_fruit_tree_patch") && type.startsWith("life")) {
+                    if ((variable.startsWith("farming_fruit_tree_patch") || variable.startsWith("farming_cactus_patch")) && type.startsWith("life")) {
                         val map = varbitMap(variable) ?: continue
                         val stage = current.substringAfterLast("_life").toInt()
                         val next = current.replace("life${stage}", "life${stage + 1}")
