@@ -34,6 +34,9 @@ class TreePatchTest : WorldTest() {
         Tile(2435, 3413) to "farming_tree_patch_gnome_stronghold",
     ).map { (tile, id) ->
         dynamicTest("Rake patch at $id") {
+            setRandom(object : FakeRandom() {
+                override fun nextInt(until: Int) = 0
+            })
             val player = createPlayer(tile)
             player.inventory.add("rake")
             val patch = objects[tile.addY(1), id]!!

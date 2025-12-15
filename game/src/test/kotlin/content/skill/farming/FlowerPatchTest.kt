@@ -38,6 +38,9 @@ class FlowerPatchTest : WorldTest() {
         Tile(3601, 3524) to "farming_flower_patch_morytania",
     ).map { (tile, id) ->
         dynamicTest("Rake patch at $id") {
+            setRandom(object : FakeRandom() {
+                override fun nextInt(until: Int) = 0
+            })
             val player = createPlayer(tile)
             player.inventory.add("rake")
             val patch = objects[tile.addY(1), id]!!

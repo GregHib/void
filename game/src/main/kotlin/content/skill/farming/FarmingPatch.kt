@@ -310,11 +310,15 @@ class FarmingPatch : Script {
                 "weeds_1" -> "weeds_0"
                 else -> return@weakQueue
             }
-            player[obj.id] = next
-            player.addOrDrop("weeds")
-            player.timers.startIfAbsent("farming_tick")
-            player.exp(Skill.Farming, 8.0)
-            rake(player, interact, count - 1)
+            if (Level.success(player.levels.get(Skill.Farming), 180..255)) {
+                player[obj.id] = next
+                player.addOrDrop("weeds")
+                player.timers.startIfAbsent("farming_tick")
+                player.exp(Skill.Farming, 8.0)
+                rake(player, interact, count - 1)
+            } else {
+                rake(player, interact, count)
+            }
         }
     }
 
