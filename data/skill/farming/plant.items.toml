@@ -130,6 +130,10 @@ id = 5375
 tradeable = false
 weight = 0.907
 kept = "Reclaim"
+farming_level = 83
+farming_crop = "spirit"
+farming_xp = 199.5
+farming_patch = "spirit_tree"
 examine = "This sapling is ready to be replanted in a Spirit patch."
 
 [apple_seedling]

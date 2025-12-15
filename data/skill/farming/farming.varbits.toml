@@ -75,8 +75,12 @@ persist = true
 default = "weeds_life3"
 values = { weeds_life3 = 0, weeds_2 = 1, weeds_1 = 2, weeds_0 = 3, weeds_life2 = 4, weeds_life1 = 5, potato_0 = 6, potato_1 = 7, potato_2 = 8, potato_3 = 9, potato_life1 = 10, potato_life2 = 11, potato_life3 = 12, onion_0 = 13, onion_1 = 14, onion_2 = 15, onion_3 = 16, onion_life1 = 17, onion_life2 = 18, onion_life3 = 19, cabbage_0 = 20, cabbage_1 = 21, cabbage_2 = 22, cabbage_3 = 23, cabbage_life1 = 24, cabbage_life2 = 25, cabbage_life3 = 26, tomato_0 = 27, tomato_1 = 28, tomato_2 = 29, tomato_3 = 30, tomato_life1 = 31, tomato_life2 = 32, tomato_life3 = 33, sweetcorn_0 = 34, sweetcorn_1 = 35, sweetcorn_2 = 36, sweetcorn_3 = 37, sweetcorn_4 = 38, sweetcorn_5 = 39, sweetcorn_life1 = 40, sweetcorn_life2 = 41, sweetcorn_life3 = 42, strawberry_0 = 43, strawberry_1 = 44, strawberry_2 = 45, strawberry_3 = 46, strawberry_4 = 47, strawberry_5 = 48, strawberry_life1 = 49, strawberry_life2 = 50, strawberry_life3 = 51, watermelon_0 = 52, watermelon_1 = 53, watermelon_2 = 54, watermelon_3 = 55, watermelon_4 = 56, watermelon_5 = 57, watermelon_6 = 58, watermelon_7 = 59, watermelon_life1 = 60, watermelon_life2 = 61, watermelon_life3 = 62, weeds_5 = 63, potato_watered_0 = 70, potato_watered_1 = 71, potato_watered_2 = 72, potato_watered_3 = 73, onion_watered_0 = 77, onion_watered_1 = 78, onion_watered_2 = 79, onion_watered_3 = 80, cabbage_watered_0 = 84, cabbage_watered_1 = 85, cabbage_watered_2 = 86, cabbage_watered_3 = 87, tomato_watered_0 = 91, tomato_watered_1 = 92, tomato_watered_2 = 93, tomato_watered_3 = 94, sweetcorn_watered_0 = 98, sweetcorn_watered_1 = 99, sweetcorn_watered_2 = 100, sweetcorn_watered_3 = 101, sweetcorn_watered_4 = 102, sweetcorn_watered_5 = 103, strawberry_watered_0 = 107, strawberry_watered_1 = 108, strawberry_watered_2 = 109, strawberry_watered_3 = 110, strawberry_watered_4 = 111, strawberry_watered_5 = 112, watermelon_watered_0 = 116, watermelon_watered_1 = 117, watermelon_watered_2 = 118, watermelon_watered_3 = 119, watermelon_watered_4 = 120, watermelon_watered_5 = 121, watermelon_watered_6 = 122, watermelon_watered_7 = 123, potato_diseased_1 = 135, potato_diseased_2 = 136, potato_diseased_3 = 137, onion_diseased_1 = 142, onion_diseased_2 = 143, onion_diseased_3 = 144, cabbage_diseased_1 = 149, cabbage_diseased_2 = 150, cabbage_diseased_3 = 151, tomato_diseased_1 = 156, tomato_diseased_2 = 157, tomato_diseased_3 = 158, sweetcorn_diseased_1 = 163, sweetcorn_diseased_2 = 164, sweetcorn_diseased_3 = 165, sweetcorn_diseased_4 = 166, sweetcorn_diseased_5 = 167, strawberry_diseased_1 = 172, strawberry_diseased_2 = 173, strawberry_diseased_3 = 174, strawberry_diseased_4 = 175, strawberry_diseased_5 = 176, watermelon_diseased_1 = 181, watermelon_diseased_2 = 182, watermelon_diseased_3 = 183, watermelon_diseased_4 = 184, watermelon_diseased_5 = 185, watermelon_diseased_6 = 186, watermelon_diseased_7 = 187, potato_dead_1 = 199, potato_dead_2 = 200, potato_dead_3 = 201, onion_dead_1 = 206, onion_dead_2 = 207, onion_dead_3 = 208, cabbage_dead_1 = 213, cabbage_dead_2 = 214, cabbage_dead_3 = 215, tomato_dead_1 = 220, tomato_dead_2 = 221, tomato_dead_3 = 222, sweetcorn_dead_1 = 227, sweetcorn_dead_2 = 228, sweetcorn_dead_3 = 229, sweetcorn_dead_4 = 230, sweetcorn_dead_5 = 231, strawberry_dead_1 = 236, strawberry_dead_2 = 237, strawberry_dead_3 = 238, strawberry_dead_4 = 239, strawberry_dead_5 = 240, watermelon_dead_1 = 245, watermelon_dead_2 = 246, watermelon_dead_3 = 247, watermelon_dead_4 = 248, watermelon_dead_5 = 249, watermelon_dead_6 = 250, watermelon_dead_7 = 251 }
 
-[farming_spirit_tree_patch_falador]
+[farming_spirit_tree_patch_port_sarim]
 id = 720
+format = "map"
+persist = true
+default = "weeds_3"
+values = { weeds_3 = 0, weeds_2 = 1, weeds_1 = 2, weeds_0 = 3, weeds_life1 = 4, weeds_life2 = 5, weeds_life3 = 6, weeds_life4 = 7, spirit_0 = 8, spirit_1 = 9, spirit_2 = 10, spirit_3 = 11, spirit_4 = 12, spirit_5 = 13, spirit_6 = 14, spirit_7 = 15, spirit_8 = 16, spirit_9 = 17, spirit_10 = 18, spirit_11 = 19, spirit_life1 = 20, spirit_diseased_1 = 21, spirit_diseased_2 = 22, spirit_diseased_3 = 23, spirit_diseased_4 = 24, spirit_diseased_5 = 25, spirit_diseased_6 = 26, spirit_diseased_7 = 27, spirit_diseased_8 = 28, spirit_diseased_9 = 29, spirit_diseased_10 = 30, spirit_diseased_11 = 31, spirit_dead_1 = 32, spirit_dead_2 = 33, spirit_dead_3 = 34, spirit_dead_4 = 35, spirit_dead_5 = 36, spirit_dead_6 = 37, spirit_dead_7 = 38, spirit_dead_8 = 39, spirit_dead_9 = 40, spirit_dead_10 = 41, spirit_dead_11 = 42, spirit_dead_12 = 43, spirit_claim = 44 }
 
 [farming_tree_patch_falador]
 id = 701
@@ -184,6 +188,10 @@ values = { weeds_3 = 0, weeds_2 = 1, weeds_1 = 2, weeds_0 = 3, hammerstone_0 = 4
 
 [farming_spirit_tree_patch_etceteria]
 id = 722
+format = "map"
+persist = true
+default = "weeds_3"
+values = { weeds_3 = 0, weeds_2 = 1, weeds_1 = 2, weeds_0 = 3, weeds_life1 = 4, weeds_life2 = 5, weeds_life3 = 6, weeds_life4 = 7, spirit_0 = 8, spirit_1 = 9, spirit_2 = 10, spirit_3 = 11, spirit_4 = 12, spirit_5 = 13, spirit_6 = 14, spirit_7 = 15, spirit_8 = 16, spirit_9 = 17, spirit_10 = 18, spirit_11 = 19, spirit_life1 = 20, spirit_diseased_1 = 21, spirit_diseased_2 = 22, spirit_diseased_3 = 23, spirit_diseased_4 = 24, spirit_diseased_5 = 25, spirit_diseased_6 = 26, spirit_diseased_7 = 27, spirit_diseased_8 = 28, spirit_diseased_9 = 29, spirit_diseased_10 = 30, spirit_diseased_11 = 31, spirit_dead_1 = 32, spirit_dead_2 = 33, spirit_dead_3 = 34, spirit_dead_4 = 35, spirit_dead_5 = 36, spirit_dead_6 = 37, spirit_dead_7 = 38, spirit_dead_8 = 39, spirit_dead_9 = 40, spirit_dead_10 = 41, spirit_dead_11 = 42, spirit_dead_12 = 43, spirit_claim = 44 }
 
 [farming_bush_patch_etceteria]
 id = 734
@@ -246,6 +254,10 @@ values = { weeds_3 = 0, weeds_2 = 1, weeds_1 = 2, weeds_0 = 3, weeds_life1 = 4, 
 
 [farming_spirit_tree_patch_brimhaven]
 id = 724
+format = "map"
+persist = true
+default = "weeds_3"
+values = { weeds_3 = 0, weeds_2 = 1, weeds_1 = 2, weeds_0 = 3, weeds_life1 = 4, weeds_life2 = 5, weeds_life3 = 6, weeds_life4 = 7, spirit_0 = 8, spirit_1 = 9, spirit_2 = 10, spirit_3 = 11, spirit_4 = 12, spirit_5 = 13, spirit_6 = 14, spirit_7 = 15, spirit_8 = 16, spirit_9 = 17, spirit_10 = 18, spirit_11 = 19, spirit_life1 = 20, spirit_diseased_1 = 21, spirit_diseased_2 = 22, spirit_diseased_3 = 23, spirit_diseased_4 = 24, spirit_diseased_5 = 25, spirit_diseased_6 = 26, spirit_diseased_7 = 27, spirit_diseased_8 = 28, spirit_diseased_9 = 29, spirit_diseased_10 = 30, spirit_diseased_11 = 31, spirit_dead_1 = 32, spirit_dead_2 = 33, spirit_dead_3 = 34, spirit_dead_4 = 35, spirit_dead_5 = 36, spirit_dead_6 = 37, spirit_dead_7 = 38, spirit_dead_8 = 39, spirit_dead_9 = 40, spirit_dead_10 = 41, spirit_dead_11 = 42, spirit_dead_12 = 43, spirit_claim = 44 }
 
 [farming_calquat_tree_patch_tai_bwo_wannai]
 id = 726

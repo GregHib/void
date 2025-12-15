@@ -196,7 +196,7 @@ class FarmingPatch : Script {
     private suspend fun water(player: Player, interact: ItemOnObjectInteract) {
         val target = interact.target
         if (!target.id.startsWith("farming_veg") && !target.id.startsWith("farming_flower") && !target.id.startsWith("farming_hops")) {
-            // TODO message trying to water other patches?
+            player.message("This patch doesn't need watering.")
             return
         }
         val id = target.def(player).stringId
@@ -233,7 +233,6 @@ class FarmingPatch : Script {
         val amount = item.def["farming_amount", 1]
         val stage = player[target.id, "weeds_life3"]
         if (stage != "weeds_0") {
-            // TODO proper plurals
             player.statement("You can only plant ${item.def.name.plural(amount)} in an empty patch.")
             return
         }
@@ -254,6 +253,10 @@ class FarmingPatch : Script {
             return
         }
         val variable = interact.target.id
+        if (variable.startsWith("farming_spirit_tree_patch") && hasSpiritTree(player)) {
+            player.message("You can only plant one spirit tree at a time.") // TODO proper message
+            return
+        }
         val patchName = interact.target.patchName()
         if (patchName.contains("tree") && !player.inventory.contains("spade")) {
             player.message("You need a spade to plant the sapling into the dirt.") // TODO proper message
@@ -279,6 +282,12 @@ class FarmingPatch : Script {
         val crop: String = item.def.getOrNull("farming_crop") ?: return
         player[variable] = "${crop}_0"
         player.exp(Skill.Farming, item.def["farming_xp", 0.0])
+    }
+
+    private fun hasSpiritTree(player: Player): Boolean {
+        return !player["farming_spirit_tree_patch_port_sarim", "weeds_3"].startsWith("weeds") ||
+        !player["farming_spirit_tree_patch_etceteria", "weeds_3"].startsWith("weeds") ||
+        !player["farming_spirit_tree_patch_brimhaven", "weeds_3"].startsWith("weeds")
     }
 
     private fun rake(player: Player, interact: PlayerOnObjectInteract, count: Int = 3) {
@@ -577,7 +586,7 @@ class FarmingPatch : Script {
             ),
             // spirit tree
             64 to listOf(
-                "farming_spirit_tree_patch_falador",
+                "farming_spirit_tree_patch_port_sarim",
                 "farming_spirit_tree_patch_etceteria",
                 "farming_spirit_tree_patch_brimhaven",
             ),

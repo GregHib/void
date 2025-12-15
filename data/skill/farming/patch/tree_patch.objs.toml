@@ -1,4 +1,4 @@
-[farming_spirit_tree_patch_falador]
+[farming_spirit_tree_patch_port_sarim]
 id = 8338
 
 [spirit_tree_patch_weeded]
@@ -52,8 +52,9 @@ id = 8354
 [spirit_tree_fullygrown]
 id = 8355
 
-[spirit_tree_claimxp]
+[spirit_tree_claim_xp]
 id = 8356
+farming_xp = 19301.0
 
 [spirit_tree_stump]
 id = 8357
