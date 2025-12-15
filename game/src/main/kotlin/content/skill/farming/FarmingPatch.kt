@@ -349,25 +349,23 @@ class FarmingPatch : Script {
                     val amount = if (name == "allotment") 3 else 1
                     val stage = value.substringAfterLast("_").toIntOrNull()
                     val stages = when (name) {
-                        "allotment", "herb patch", "belladonna" -> 5
-                        "fruit tree", "cactus" -> 7
-                        "tree" -> 11
+                        "allotment", "herb patch", "belladonna patch" -> 5
+                        "fruit tree patch", "cactus patch" -> 7
+                        "tree patch" -> 11
+                        "evil turnip patch" -> 2
                         else -> 0
                     }
                     if (type.endsWith("_stump")) {
                         append("The patch has the remains of a tree stump in it.")
+                    } else if (value.substringAfterLast("_").startsWith("life")) {
+                        append("The patch is fully grown.")
                     } else if (stage == null) {
-                        // "You plant the apple tree sapling in the fruit tree patch." // filtere
-                        // "The patch has apple tree growing in it and is at state 1/7."
-                        // "You need a spade to do that."// plant
-                        // "You plant the yew sapling in the tree patch."
-                        // inventory.add("yew_roots")
-                        append("The patch has ${type.plural(amount)} growing in it and is at state $stages/$stages.")
+                        append("The patch has ${type.toLowerSpaceCase().plural(amount)} growing in it and is at state $stages/$stages.")
                     } else {
-                        if (stage + 1 == stages) {
+                        if (stage + 1 >= stages) {
                             append("The patch is fully grown.")
                         } else {
-                            append("The patch has ${type.plural(amount)} growing in it and is at state ${stage + 1}/$stages.")
+                            append("The patch has ${type.toLowerSpaceCase().plural(amount)} growing in it and is at state ${stage + 1}/$stages.")
                         }
                     }
                 }
@@ -511,7 +509,7 @@ class FarmingPatch : Script {
         val patches = mutableMapOf(
             // flowers, saplings
             1 to listOf(
-                "patch_draynor_evil_turnip",
+                "farming_evil_turnip_patch_draynor",
                 "farming_flower_patch_falador",
                 "patch_wilderness_flower",
                 "farming_flower_patch_catherby",

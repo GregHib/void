@@ -1,0 +1,4 @@
+[carved_evil_turnip]
+requires = ["knife"]
+remove = ["evil_turnip"]
+add = ["carved_evil_turnip"]

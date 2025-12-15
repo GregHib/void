@@ -758,8 +758,8 @@ id = 12134
 price = 6344
 limit = 5000
 weight = 0.009
+farming_xp = 46.0
 examine = "An evil turnip."
-
 
 [evil_turnip_noted]
 id = 12135
@@ -832,6 +832,10 @@ id = 12147
 id = 12148
 price = 46
 limit = 100
+farming_level = 42
+farming_crop = "evil_turnip"
+farming_xp = 41.0
+farming_patch = "evil_turnip"
 examine = "Grows into the root-vegetable of all evil."
 
 [carved_evil_turnip]

@@ -40,8 +40,12 @@ persist = true
 default = "weeds_3"
 values = { weeds_3 = 0, weeds_2 = 1, weeds_1 = 2, weeds_0 = 3, belladonna_0 = 4, belladonna_1 = 5, belladonna_2 = 6, belladonna_3 = 7, belladonna_life1 = 8, belladonna_diseased_1 = 9, belladonna_diseased_2 = 10, belladonna_diseased_3 = 11, belladonna_dead_1 = 12, belladonna_dead_2 = 13, belladonna_dead_3 = 14 }
 
-[patch_draynor_evil_turnip]
+[farming_evil_turnip_patch_draynor]
 id = 4291
+format = "map"
+persist = true
+default = "weeds_3"
+values = { weeds_3 = 0, weeds_2 = 1, weeds_1 = 2, weeds_0 = 3, evil_turnip_0 = 4, evil_turnip_life1 = 5 }
 
 [farming_herb_patch_falador]
 id = 780

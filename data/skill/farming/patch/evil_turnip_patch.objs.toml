@@ -1,0 +1,27 @@
+[evil_turnip_patch_weeded]
+id = 28554
+examine = "It is completely free from weeds."
+
+[evil_turnip_patch_weeds_1]
+id = 28551
+examine = "It looks pretty weedy."
+
+[evil_turnip_patch_weeds_2]
+id = 28552
+examine = "It looks a little less weedy."
+
+[evil_turnip_patch_weeds_3]
+id = 28553
+examine = "It is almost clear of weeds."
+
+[evil_turnip_seedling]
+id = 28555
+examine = "	It's got some growing to do."
+
+[evil_turnip_fullygrown]
+id = 28556
+harvest = "evil_turnip"
+examine = "Oh my, that's a horrid turnip!"
+
+[farming_evil_turnip_patch_draynor]
+id = 23760
