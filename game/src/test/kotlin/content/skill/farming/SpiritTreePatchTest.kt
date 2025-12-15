@@ -37,6 +37,8 @@ class SpiritTreePatchTest : WorldTest() {
             })
             val player = createPlayer(tile)
             player.inventory.add("rake")
+            println("Check ${tile.addY(1)} $id")
+            println("List ${objects.get(tile.addY(1))}")
             val patch = objects[tile.addY(1), id]!!
 
             player.objectOption(patch, "Rake")
