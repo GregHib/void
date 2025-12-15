@@ -5,6 +5,7 @@ import WorldTest
 import com.github.michaelbull.logging.InlineLogger
 import itemOnObject
 import objectOption
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
@@ -15,8 +16,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
-import kotlin.math.log
-import kotlin.test.assertEquals
 
 class SpiritTreePatchTest : WorldTest() {
 
