@@ -1,90 +1,118 @@
 [cactus_patch_weeded]
 id = 7743
+examine = "You can grow a cactus in this Farming patch."
 
 [cactus_patch_weeds_1]
 id = 7744
+examine = "You can grow a cactus in this Farming patch."
 
 [cactus_patch_weeds_2]
 id = 7745
+examine = "You can grow a cactus in this Farming patch."
 
 [cactus_patch_weeds_3]
 id = 7746
+examine = "You can grow a cactus in this Farming patch."
 
 [cactus_seedling]
 id = 7747
+examine = "Cactus seeds have been planted in this patch."
 
 [cactus_1]
 id = 7748
+examine = "A cactus is growing in this patch."
 
 [cactus_2]
 id = 7749
+examine = "A cactus is growing in this patch."
 
 [cactus_3]
 id = 7750
+examine = "A cactus is growing in this patch."
 
 [cactus_4]
 id = 7751
+examine = "A cactus is growing in this patch."
 
 [cactus_5]
 id = 7752
+examine = "A cactus is growing in this patch."
 
 [cactus_6]
 id = 7753
+examine = "A cactus is growing in this patch."
 
 [cactus_fullygrown]
 id = 7754
+examine = "A fully-grown cactus."
 
 [cactus_spines_1]
 id = 7755
 harvest = "cactus_spine"
+examine = "A fully-grown cactus."
 
 [cactus_spines_2]
 id = 7756
 harvest = "cactus_spine"
+examine = "A fully-grown cactus."
 
 [cactus_spines_3]
 id = 7757
 harvest = "cactus_spine"
+examine = "A fully-grown cactus."
 
 [cactus_claim_xp]
 id = 7758
 farming_xp = 374.0
+examine = "A fully-grown cactus."
 
 [cactus_1_diseased]
 id = 7759
+examine = "This cactus has become diseased."
 
 [cactus_2_diseased]
 id = 7760
+examine = "This cactus has become diseased."
 
 [cactus_3_diseased]
 id = 7761
+examine = "This cactus has become diseased."
 
 [cactus_4_diseased]
 id = 7762
+examine = "This cactus has become diseased."
 
 [cactus_5_diseased]
 id = 7763
+examine = "This cactus has become diseased."
 
 [cactus_6_diseased]
 id = 7764
+examine = "This cactus has become diseased."
 
 [cactus_1_dead]
 id = 7765
+examine = "This cactus has died."
 
 [cactus_2_dead]
 id = 7766
+examine = "This cactus has died."
 
 [cactus_3_dead]
 id = 7767
+examine = "This cactus has died."
 
 [cactus_4_dead]
 id = 7768
+examine = "This cactus has died."
 
 [cactus_5_dead]
 id = 7769
+examine = "This cactus has died."
 
 [cactus_6_dead]
 id = 7770
+examine = "This cactus has died."
 
 [farming_cactus_patch_al_kharid]
 id = 7771

@@ -1,20 +1,26 @@
 [apple_tree_seedling]
 id = 7935
+examine = "An apple tree sapling has been planted in this fruit tree patch."
 
 [apple_tree_1]
 id = 7936
+examine = "An apple tree is growing in this fruit tree patch."
 
 [apple_tree_2]
 id = 7937
+examine = "An apple tree is growing in this fruit tree patch."
 
 [apple_tree_3]
 id = 7938
+examine = "An apple tree is growing in this fruit tree patch."
 
 [apple_tree_4]
 id = 7939
+examine = "An apple tree is growing in this fruit tree patch."
 
 [apple_tree_5]
 id = 7940
+examine = "An apple tree is growing in this fruit tree patch."
 
 [apple_tree_fullygrown]
 id = 7941
@@ -23,66 +29,85 @@ examine = "A fully grown apple tree."
 [apple_tree_fruit_1]
 id = 7942
 harvest = "cooking_apple"
+examine = "There is a single apple on this apple tree."
 
 [apple_tree_fruit_2]
 id = 7943
 harvest = "cooking_apple"
+examine = "There are two apples on this apple tree."
 
 [apple_tree_fruit_3]
 id = 7944
 harvest = "cooking_apple"
+examine = "There are three apples on this apple tree."
 
 [apple_tree_fruit_4]
 id = 7945
 harvest = "cooking_apple"
+examine = "There are four apples on this apple tree."
 
 [apple_tree_fruit_5]
 id = 7946
 harvest = "cooking_apple"
+examine = "There are five apples on this apple tree."
 
 [apple_tree_fruit_6]
 id = 7947
 harvest = "cooking_apple"
+examine = "There are six apples on this apple tree."
 
 [apple_tree_claim_xp]
 id = 7948
 farming_xp = 1199.5
+examine = "A fully grown apple tree."
 
 [apple_tree_1_diseased]
 id = 7949
+examine = "This diseased tree looks like it needs pruning with secateurs."
 
 [apple_tree_2_diseased]
 id = 7950
+examine = "This diseased tree looks like it needs pruning with secateurs."
 
 [apple_tree_3_diseased]
 id = 7951
+examine = "This diseased tree looks like it needs pruning with secateurs."
 
 [apple_tree_4_diseased]
 id = 7952
+examine = "This diseased tree looks like it needs pruning with secateurs."
 
 [apple_tree_5_diseased]
 id = 7953
+examine = "This diseased tree looks like it needs pruning with secateurs."
 
 [apple_tree_fullygrown_diseased]
 id = 7954
+examine = "This diseased tree looks like it needs pruning with secateurs."
 
 [apple_tree_1_dead]
 id = 7955
+examine = "This apple tree has become diseased and died."
 
 [apple_tree_2_dead]
 id = 7956
+examine = "This apple tree has become diseased and died."
 
 [apple_tree_3_dead]
 id = 7957
+examine = "This apple tree has become diseased and died."
 
 [apple_tree_4_dead]
 id = 7958
+examine = "This apple tree has become diseased and died."
 
 [apple_tree_5_dead]
 id = 7959
+examine = "This apple tree has become diseased and died."
 
 [apple_tree_fullygrown_dead]
 id = 7960
+examine = "This apple tree has become diseased and died."
 
 [apple_tree_stump]
 id = 7961
@@ -105,113 +130,147 @@ id = 7965
 
 [pineapple_tree_seedling]
 id = 7966
+examine = "A pineapple plant has been planted in this fruit tree patch."
 
 [pineapple_tree_1]
 id = 7967
+examine = "A pineapple plant is growing in this fruit tree patch."
 
 [pineapple_tree_2]
 id = 7968
+examine = "A pineapple plant is growing in this fruit tree patch."
 
 [pineapple_tree_3]
 id = 7969
+examine = "A pineapple plant is growing in this fruit tree patch."
 
 [pineapple_tree_4]
 id = 7970
+examine = "A pineapple plant is growing in this fruit tree patch."
 
 [pineapple_tree_5]
 id = 7971
+examine = "A pineapple plant is growing in this fruit tree patch."
 
 [pineapple_tree_fullygrown]
 id = 7972
+examine = "A fully grown pineapple plant."
 
 [pineapple_tree_fruit_1]
 id = 7973
 harvest = "pineapple"
+examine = "There is a single pineapple on this pineapple plant."
 
 [pineapple_tree_fruit_2]
 id = 7974
 harvest = "pineapple"
+examine = "There are two pineapples on this pineapple plant."
 
 [pineapple_tree_fruit_3]
 id = 7975
 harvest = "pineapple"
+examine = "There are three pineapples on this pineapple plant."
 
 [pineapple_tree_fruit_4]
 id = 7976
 harvest = "pineapple"
+examine = "There are four pineapples on this pineapple plant."
 
 [pineapple_tree_fruit_5]
 id = 7977
 harvest = "pineapple"
+examine = "There are five pineapples on this pineapple plant."
 
 [pineapple_tree_fruit_6]
 id = 7978
 harvest = "pineapple"
+examine = "There are six pineapples on this pineapple plant."
 
 [pineapple_tree_claim_xp]
 id = 7979
 farming_xp = 4605.0
+examine = "A fully grown pineapple plant."
 
 [pineapple_tree_1_diseased]
 id = 7980
+examine = "This pineapple plant looks like it could do with pruning with secateurs."
 
 [pineapple_tree_2_diseased]
 id = 7981
+examine = "This pineapple plant looks like it could do with pruning with secateurs."
 
 [pineapple_tree_3_diseased]
 id = 7982
+examine = "This pineapple plant looks like it could do with pruning with secateurs."
 
 [pineapple_tree_4_diseased]
 id = 7983
+examine = "This pineapple plant looks like it could do with pruning with secateurs."
 
 [pineapple_tree_5_diseased]
 id = 7984
+examine = "This pineapple plant looks like it could do with pruning with secateurs."
 
 [pineapple_tree_fullygrown_diseased]
 id = 7985
+examine = "This pineapple plant looks like it could do with pruning with secateurs."
 
 [pineapple_tree_1_dead]
 id = 7986
+examine = "This pineapple plant has become diseased and died."
 
 [pineapple_tree_2_dead]
 id = 7987
+examine = "This pineapple plant has become diseased and died."
 
 [pineapple_tree_3_dead]
 id = 7988
+examine = "This pineapple plant has become diseased and died."
 
 [pineapple_tree_4_dead]
 id = 7989
+examine = "This pineapple plant has become diseased and died."
 
 [pineapple_tree_5_dead]
 id = 7990
+examine = "This pineapple plant has become diseased and died."
 
 [pineapple_tree_fullygrown_dead]
 id = 7991
+examine = "This pineapple plant has become diseased and died."
 
 [pineapple_tree_stump]
 id = 7992
+examine = "This pineapple plant has been cut down."
 
 [banana_tree_seedling]
 id = 7993
+examine = "A banana tree sapling has been planted in this fruit tree patch."
 
 [banana_tree_1]
 id = 7994
+examine = "A banana tree is growing in this fruit tree patch."
 
 [banana_tree_2]
 id = 7995
+examine = "A banana tree is growing in this fruit tree patch."
 
 [banana_tree_3]
 id = 7996
+examine = "A banana tree is growing in this fruit tree patch."
 
 [banana_tree_4]
 id = 7997
+examine = "A banana tree is growing in this fruit tree patch."
 
 [banana_tree_5]
 id = 7998
+examine = "A banana tree is growing in this fruit tree patch."
 
 [banana_tree_claim_xp]
 id = 7999
 farming_xp = 1750.5
+examine = "A fully grown banana tree."
 
 [banana_tree_fullygrown]
 id = 8000
@@ -220,62 +279,80 @@ examine = "A fully grown banana tree."
 [banana_tree_fruit_1]
 id = 8001
 harvest = "banana"
+examine = "There is a single banana on this banana tree."
 
 [banana_tree_fruit_2]
 id = 8002
 harvest = "banana"
+examine = "There are two bananas on this banana tree."
 
 [banana_tree_fruit_3]
 id = 8003
 harvest = "banana"
+examine = "There are three bananas on this banana tree."
 
 [banana_tree_fruit_4]
 id = 8004
 harvest = "banana"
+examine = "There are four bananas on this banana tree."
 
 [banana_tree_fruit_5]
 id = 8005
 harvest = "banana"
+examine = "There are five bananas on this banana tree."
 
 [banana_tree_fruit_6]
 id = 8006
 harvest = "banana"
+examine = "There are six bananas on this banana tree."
 
 [banana_tree_1_diseased]
 id = 8007
+examine = "This banana looks like it could do with pruning with secateurs."
 
 [banana_tree_2_diseased]
 id = 8008
+examine = "This banana looks like it could do with pruning with secateurs."
 
 [banana_tree_3_diseased]
 id = 8009
+examine = "This banana looks like it could do with pruning with secateurs."
 
 [banana_tree_4_diseased]
 id = 8010
+examine = "This banana looks like it could do with pruning with secateurs."
 
 [banana_tree_5_diseased]
 id = 8011
+examine = "This banana looks like it could do with pruning with secateurs."
 
 [banana_tree_fullygrown_diseased]
 id = 8012
+examine = "This banana looks like it could do with pruning with secateurs."
 
 [banana_tree_1_dead]
 id = 8013
+examine = "This banana tree has become diseased and died."
 
 [banana_tree_2_dead]
 id = 8014
+examine = "This banana tree has become diseased and died."
 
 [banana_tree_3_dead]
 id = 8015
+examine = "This banana tree has become diseased and died."
 
 [banana_tree_4_dead]
 id = 8016
+examine = "This banana tree has become diseased and died."
 
 [banana_tree_5_dead]
 id = 8017
+examine = "This banana tree has become diseased and died."
 
 [banana_tree_fullygrown_dead]
 id = 8018
+examine = "This banana tree has become diseased and died."
 
 [banana_tree_stump]
 id = 8019
@@ -283,21 +360,27 @@ examine = "This banana tree has been cut down."
 
 [curry_tree_seedling]
 id = 8020
+examine = "A curry tree sapling has been planted in this fruit tree patch."
 
 [curry_tree_1]
 id = 8021
+examine = "A curry tree is growing in this fruit tree patch."
 
 [curry_tree_2]
 id = 8022
+examine = "A curry tree is growing in this fruit tree patch."
 
 [curry_tree_3]
 id = 8023
+examine = "A curry tree is growing in this fruit tree patch."
 
 [curry_tree_4]
 id = 8024
+examine = "A curry tree is growing in this fruit tree patch."
 
 [curry_tree_5]
 id = 8025
+examine = "A curry tree is growing in this fruit tree patch."
 
 [curry_tree_fullygrown]
 id = 8026
@@ -306,66 +389,85 @@ examine = "A fully grown curry tree."
 [curry_tree_fruit_1]
 id = 8027
 harvest = "curry_leaf"
+examine = "There is a single curry leaf on this curry tree."
 
 [curry_tree_fruit_2]
 id = 8028
 harvest = "curry_leaf"
+examine = "There are two curry leaves on this curry tree."
 
 [curry_tree_fruit_3]
 id = 8029
 harvest = "curry_leaf"
+examine = "There are three curry leaves on this curry tree."
 
 [curry_tree_fruit_4]
 id = 8030
 harvest = "curry_leaf"
+examine = "There are four curry leaves on this curry tree."
 
 [curry_tree_fruit_5]
 id = 8031
 harvest = "curry_leaf"
+examine = "There are five curry leaves on this curry tree."
 
 [curry_tree_fruit_6]
 id = 8032
 harvest = "curry_leaf"
+examine = "There are six curry leaves on this curry tree."
 
 [curry_tree_claim_xp]
 id = 8033
 farming_xp = 2906.9
+examine = "A fully grown curry tree."
 
 [curry_tree_1_diseased]
 id = 8034
+examine = "This curry tree looks like it could do with pruning with secateurs."
 
 [curry_tree_2_diseased]
 id = 8035
+examine = "This curry tree looks like it could do with pruning with secateurs."
 
 [curry_tree_3_diseased]
 id = 8036
+examine = "This curry tree looks like it could do with pruning with secateurs."
 
 [curry_tree_4_diseased]
 id = 8037
+examine = "This curry tree looks like it could do with pruning with secateurs."
 
 [curry_tree_5_diseased]
 id = 8038
+examine = "This curry tree looks like it could do with pruning with secateurs."
 
 [curry_tree_fullygrown_diseased]
 id = 8039
+examine = "This curry tree looks like it could do with pruning with secateurs."
 
 [curry_tree_1_dead]
 id = 8040
+examine = "This curry tree has become diseased and died."
 
 [curry_tree_2_dead]
 id = 8041
+examine = "This curry tree has become diseased and died."
 
 [curry_tree_3_dead]
 id = 8042
+examine = "This curry tree has become diseased and died."
 
 [curry_tree_4_dead]
 id = 8043
+examine = "This curry tree has become diseased and died."
 
 [curry_tree_5_dead]
 id = 8044
+examine = "This curry tree has become diseased and died."
 
 [curry_tree_fullygrown_dead]
 id = 8045
+examine = "This curry tree has become diseased and died."
 
 [curry_tree_stump]
 id = 8046
@@ -373,33 +475,43 @@ examine = "This curry tree has been cut down."
 
 [fruit_tree_patch_weeded]
 id = 8047
+examine = "You can grow Fruit Trees in this Farming patch."
 
 [fruit_tree_patch_weeds_1]
 id = 8048
+examine = "You can grow Fruit Trees in this Farming patch."
 
 [fruit_tree_patch_weeds_2]
 id = 8049
+examine = "You can grow Fruit Trees in this Farming patch."
 
 [fruit_tree_patch_weeds_3]
 id = 8050
+examine = "You can grow Fruit Trees in this Farming patch."
 
 [orange_tree_seedling]
 id = 8051
+examine = "An orange tree sapling has been planted in this fruit tree patch."
 
 [orange_tree_1]
 id = 8052
+examine = "An orange tree is growing in this fruit tree patch."
 
 [orange_tree_2]
 id = 8053
+examine = "An orange tree is growing in this fruit tree patch."
 
 [orange_tree_3]
 id = 8054
+examine = "An orange tree is growing in this fruit tree patch."
 
 [orange_tree_4]
 id = 8055
+examine = "An orange tree is growing in this fruit tree patch."
 
 [orange_tree_5]
 id = 8056
+examine = "An orange tree is growing in this fruit tree patch."
 
 [orange_tree_fullygrown]
 id = 8057
@@ -408,45 +520,57 @@ examine = "A fully grown orange tree."
 [orange_tree_fruit_1]
 id = 8058
 harvest = "orange"
+examine = "There is a single orange on this orange tree."
 
 [orange_tree_fruit_2]
 id = 8059
 harvest = "orange"
+examine = "There are two oranges on this orange tree."
 
 [orange_tree_fruit_3]
 id = 8060
 harvest = "orange"
+examine = "There are three oranges on this orange tree."
 
 [orange_tree_fruit_4]
 id = 8061
 harvest = "orange"
+examine = "There are four oranges on this orange tree."
 
 [orange_tree_fruit_5]
 id = 8062
 harvest = "orange"
+examine = "There are five oranges on this orange tree."
 
 [orange_tree_fruit_6]
 id = 8063
 harvest = "orange"
+examine = "There are six oranges on this orange tree."
 
 [orange_tree_claim_xp]
 id = 8064
 farming_xp = 2470.2
+examine = "A fully grown orange tree."
 
 [orange_tree_1_diseased]
 id = 8065
+examine = "This orange tree looks like it could do with pruning with secateurs."
 
 [orange_tree_2_diseased]
 id = 8066
+examine = "This orange tree looks like it could do with pruning with secateurs."
 
 [orange_tree_3_diseased]
 id = 8067
+examine = "This orange tree looks like it could do with pruning with secateurs."
 
 [orange_tree_4_diseased]
 id = 8068
+examine = "This orange tree looks like it could do with pruning with secateurs."
 
 [orange_tree_5_diseased]
 id = 8069
+examine = "This orange tree looks like it could do with pruning with secateurs."
 
 [orange_tree_fullygrown_diseased]
 id = 8070
@@ -454,21 +578,27 @@ examine = "This orange tree looks like it could do with pruning with secateurs."
 
 [orange_tree_1_dead]
 id = 8071
+examine = "This orange tree has become diseased and died."
 
 [orange_tree_2_dead]
 id = 8072
+examine = "This orange tree has become diseased and died."
 
 [orange_tree_3_dead]
 id = 8073
+examine = "This orange tree has become diseased and died."
 
 [orange_tree_4_dead]
 id = 8074
+examine = "This orange tree has become diseased and died."
 
 [orange_tree_5_dead]
 id = 8075
+examine = "This orange tree has become diseased and died."
 
 [orange_tree_fullygrown_dead]
 id = 8076
+examine = "This orange tree has become diseased and died."
 
 [orange_tree_stump]
 id = 8077
@@ -476,21 +606,27 @@ examine = "This orange tree has been cut down."
 
 [palm_tree_seedling]
 id = 8078
+examine = "A palm tree sapling has been planted in this fruit tree patch."
 
 [palm_tree_1]
 id = 8079
+examine = "A palm tree is growing in this fruit tree patch."
 
 [palm_tree_2]
 id = 8080
+examine = "A palm tree is growing in this fruit tree patch."
 
 [palm_tree_3]
 id = 8081
+examine = "A palm tree is growing in this fruit tree patch."
 
 [palm_tree_4]
 id = 8082
+examine = "A palm tree is growing in this fruit tree patch."
 
 [palm_tree_5]
 id = 8083
+examine = "A palm tree is growing in this fruit tree patch."
 
 [palm_tree_fullygrown]
 id = 8084
@@ -499,66 +635,85 @@ examine = "A fully grown palm tree."
 [palm_tree_fruit_1]
 id = 8085
 harvest = "coconut"
+examine = "There is a single coconut on this palm tree."
 
 [palm_tree_fruit_2]
 id = 8086
 harvest = "coconut"
+examine = "There are two coconuts on this palm tree."
 
 [palm_tree_fruit_3]
 id = 8087
 harvest = "coconut"
+examine = "There are three coconuts on this palm tree."
 
 [palm_tree_fruit_4]
 id = 8088
 harvest = "coconut"
+examine = "There are four coconuts on this palm tree."
 
 [palm_tree_fruit_5]
 id = 8089
 harvest = "coconut"
+examine = "There are five coconuts on this palm tree."
 
 [palm_tree_fruit_6]
 id = 8090
 harvest = "coconut"
+examine = "There are six coconuts on this palm tree."
 
 [palm_tree_claim_xp]
 id = 8091
 farming_xp = 10150.1
+examine = "A fully grown palm tree."
 
 [palm_tree_1_diseased]
 id = 8092
+examine = "This palm tree looks like it could do with pruning with secateurs."
 
 [palm_tree_2_diseased]
 id = 8093
+examine = "This palm tree looks like it could do with pruning with secateurs."
 
 [palm_tree_3_diseased]
 id = 8094
+examine = "This palm tree looks like it could do with pruning with secateurs."
 
 [palm_tree_4_diseased]
 id = 8095
+examine = "This palm tree looks like it could do with pruning with secateurs."
 
 [palm_tree_5_diseased]
 id = 8096
+examine = "This palm tree looks like it could do with pruning with secateurs."
 
 [palm_tree_fullygrown_diseased]
 id = 8097
+examine = "This palm tree looks like it could do with pruning with secateurs."
 
 [palm_tree_1_dead]
 id = 8098
+examine = "This palm tree has become diseased and died."
 
 [palm_tree_2_dead]
 id = 8099
+examine = "This palm tree has become diseased and died."
 
 [palm_tree_3_dead]
 id = 8100
+examine = "This palm tree has become diseased and died."
 
 [palm_tree_4_dead]
 id = 8101
+examine = "This palm tree has become diseased and died."
 
 [palm_tree_5_dead]
 id = 8102
+examine = "This palm tree has become diseased and died."
 
 [palm_tree_fullygrown_dead]
 id = 8103
+examine = "This palm tree has become diseased and died."
 
 [palm_tree_stump]
 id = 8104
@@ -566,21 +721,27 @@ examine = "This palm tree has been cut down."
 
 [papaya_tree_seedling]
 id = 8105
+examine = "A papaya tree sapling has been planted in this fruit tree patch."
 
 [papaya_tree_1]
 id = 8106
+examine = "A papaya tree is growing in this fruit tree patch."
 
 [papaya_tree_2]
 id = 8107
+examine = "A papaya tree is growing in this fruit tree patch."
 
 [papaya_tree_3]
 id = 8108
+examine = "A papaya tree is growing in this fruit tree patch."
 
 [papaya_tree_4]
 id = 8109
+examine = "A papaya tree is growing in this fruit tree patch."
 
 [papaya_tree_5]
 id = 8110
+examine = "A papaya tree is growing in this fruit tree patch."
 
 [papaya_tree_fullygrown]
 id = 8111
@@ -589,66 +750,85 @@ examine = "A fully grown papaya tree."
 [papaya_tree_fruit_1]
 id = 8112
 harvest = "papaya_fruit"
+examine = "There is a single papaya fruit on this tree."
 
 [papaya_tree_fruit_2]
 id = 8113
 harvest = "papaya_fruit"
+examine = "There are two papaya fruits on this tree."
 
 [papaya_tree_fruit_3]
 id = 8114
 harvest = "papaya_fruit"
+examine = "There are three papaya fruits on this tree."
 
 [papaya_tree_fruit_4]
 id = 8115
 harvest = "papaya_fruit"
+examine = "There are four papaya fruits on this tree."
 
 [papaya_tree_fruit_5]
 id = 8116
 harvest = "papaya_fruit"
+examine = "There are five papaya fruits on this tree."
 
 [papaya_tree_fruit_6]
 id = 8117
 harvest = "papaya_fruit"
+examine = "There are six papaya fruits on this tree."
 
 [papaya_tree_claim_xp]
 id = 8118
 farming_xp = 6146.6
+examine = "A fully grown papaya tree."
 
 [papaya_tree_1_diseased]
 id = 8119
+examine = "This papaya tree looks like it could do with pruning with secateurs."
 
 [papaya_tree_2_diseased]
 id = 8120
+examine = "This papaya tree looks like it could do with pruning with secateurs."
 
 [papaya_tree_3_diseased]
 id = 8121
+examine = "This papaya tree looks like it could do with pruning with secateurs."
 
 [papaya_tree_4_diseased]
 id = 8122
+examine = "This papaya tree looks like it could do with pruning with secateurs."
 
 [papaya_tree_5_diseased]
 id = 8123
+examine = "This papaya tree looks like it could do with pruning with secateurs."
 
 [papaya_tree_fullygrown_diseased]
 id = 8124
+examine = "This papaya tree looks like it could do with pruning with secateurs."
 
 [papaya_tree_1_dead]
 id = 8125
+examine = "This papaya tree has become diseased and died."
 
 [papaya_tree_2_dead]
 id = 8126
+examine = "This papaya tree has become diseased and died."
 
 [papaya_tree_3_dead]
 id = 8127
+examine = "This papaya tree has become diseased and died."
 
 [papaya_tree_4_dead]
 id = 8128
+examine = "This papaya tree has become diseased and died."
 
 [papaya_tree_5_dead]
 id = 8129
+examine = "This papaya tree has become diseased and died."
 
 [papaya_tree_fullygrown_dead]
 id = 8130
+examine = "This papaya tree has become diseased and died."
 
 [papaya_tree_stump]
 id = 8131
