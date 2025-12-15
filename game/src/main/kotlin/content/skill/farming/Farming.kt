@@ -210,6 +210,25 @@ class Farming(
         if (produce == "poison_ivy") { // Immune
             return false
         }
+        if (spot.startsWith("farming_veg_patch")) {
+            val flowerSpot = spot.substringBeforeLast("_").replace("veg", "flower")
+            val flower = player[flowerSpot, "weeds_3"]
+            if (produce == "sweetcorn" && flower.startsWith("scarecrow")) {
+                return false
+            }
+            if ((produce == "potato" || produce == "onion" || produce == "tomato") && flower.startsWith("marigold")) {
+                return false
+            }
+            if (produce == "cabbage" && flower.startsWith("rosemary")) {
+                return false
+            }
+            if (produce == "watermelon" && flower.startsWith("nasturtium")) {
+                return false
+            }
+            if (flower.startsWith("lilly")) {
+                return false
+            }
+        }
         var chance = farmingDefinitions.diseaseChances[produce] ?: return false
         if (player.containsVarbit("patch_super_compost", spot)) {
             chance /= 5
