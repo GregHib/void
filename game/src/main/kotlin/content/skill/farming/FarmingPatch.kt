@@ -64,7 +64,7 @@ class FarmingPatch : Script {
         objectOperate("Guide", handler = ::guide)
         objectOperate("Harvest", "*_fullygrown") { (target) ->
             val def = target.def(this)
-            val item: String = def["harvest"]
+            val item: String = def.getOrNull("harvest") ?: return@objectOperate
             message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
             harvest(Item(item), target)
         }
@@ -76,7 +76,7 @@ class FarmingPatch : Script {
                 return@objectOperate
             }
             val def = target.def(this)
-            val item: String = def["harvest"]
+            val item: String = def.getOrNull("harvest") ?: return@objectOperate
             message("You begin to harvest the ${target.patchName()}.", ChatType.Filter)
             harvest(Item(item), target)
         }
@@ -349,7 +349,7 @@ class FarmingPatch : Script {
                     val amount = if (name == "allotment") 3 else 1
                     val stage = value.substringAfterLast("_").toIntOrNull()
                     val stages = when (name) {
-                        "allotment", "herb patch" -> 5
+                        "allotment", "herb patch", "belladonna" -> 5
                         "fruit tree", "cactus" -> 7
                         "tree" -> 11
                         else -> 0

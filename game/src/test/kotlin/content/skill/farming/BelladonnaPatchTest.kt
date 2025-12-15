@@ -16,7 +16,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
 
-class CactusPatchTest : WorldTest() {
+class BelladonnaPatchTest : WorldTest() {
 
     @BeforeEach
     fun setup() {
@@ -27,7 +27,7 @@ class CactusPatchTest : WorldTest() {
 
     @TestFactory
     fun `Rake farming patch`() = listOf(
-        Tile(3315, 3201) to "farming_cactus_patch_al_kharid",
+        Tile(3086, 3353) to "farming_belladonna_patch_draynor",
     ).map { (tile, id) ->
         dynamicTest("Rake patch at $id") {
             setRandom(object : FakeRandom() {
@@ -48,91 +48,70 @@ class CactusPatchTest : WorldTest() {
 
     @TestFactory
     fun `Grow farming patch`() = listOf(
-        Triple(Item("cactus_seed"), "cactus", 7),
+        Triple(Item("belladonna_seed"), "belladonna", 4),
     ).map { (seed, id, count) ->
         dynamicTest("Grow $id patch for $count stages") {
-            val tile = Tile(3315, 3201)
+            val tile = Tile(3086, 3353)
             val player = createPlayer(tile)
             player.inventory.add(seed.id, seed.amount)
             player.inventory.add("seed_dibber")
             player.levels.set(Skill.Farming, 99)
-            player["farming_cactus_patch_al_kharid"] = "weeds_0"
-            val patch = objects[tile.addY(1), "farming_cactus_patch_al_kharid"]!!
+            player["farming_belladonna_patch_draynor"] = "weeds_0"
+            val patch = objects[tile.addY(1), "farming_belladonna_patch_draynor"]!!
 
             player.itemOnObject(patch, 0)
             tick(10)
-            assertEquals("${id}_0", player["farming_cactus_patch_al_kharid", "empty"])
+            assertEquals("${id}_0", player["farming_belladonna_patch_draynor", "empty"])
             val farming = scripts.filterIsInstance<Farming>().first()
             // Grow one more than expected
             for (i in 0..count) {
                 farming.grow(player, i * 80)
             }
 
-            assertEquals("${id}_claim", player["farming_cactus_patch_al_kharid", "empty"])
-        }
-    }
-
-    @TestFactory
-    fun `Claim xp from fully grown patch`() = listOf(
-        "cactus",
-    ).map { id ->
-        dynamicTest("Claim xp from $id") {
-            setRandom(object : FakeRandom() {
-                override fun nextInt(until: Int) = 0
-            })
-            val tile = Tile(3315, 3201)
-            val player = createPlayer(tile)
-            player.levels.set(Skill.Farming, 99)
-            player["farming_cactus_patch_al_kharid"] = "${id}_claim"
-            val patch = objects[tile.addY(1), "farming_cactus_patch_al_kharid"]!!
-
-            player.objectOption(patch, "Check-health")
-            tickIf { player["farming_cactus_patch_al_kharid", "empty"] != "${id}_life1" }
-
-            assertTrue(player.experience.get(Skill.Farming) > 0)
-            assertEquals("${id}_life1", player["farming_cactus_patch_al_kharid", "empty"])
+            assertEquals("${id}_life1", player["farming_belladonna_patch_draynor", "empty"])
         }
     }
 
     @TestFactory
     fun `Cure diseased patch`() = listOf(
-        "cactus",
+        "belladonna",
     ).map { id ->
         dynamicTest("Cure $id") {
-            val tile = Tile(3315, 3201)
+            val tile = Tile(3086, 3353)
             val player = createPlayer(tile)
             player.levels.set(Skill.Farming, 99)
             player.inventory.add("plant_cure")
-            player["farming_cactus_patch_al_kharid"] = "${id}_diseased_2"
-            val patch = objects[tile.addY(1), "farming_cactus_patch_al_kharid"]!!
+            player["farming_belladonna_patch_draynor"] = "${id}_diseased_2"
+            val patch = objects[tile.addY(1), "farming_belladonna_patch_draynor"]!!
 
             player.itemOnObject(patch, 0)
             tick(5)
 
-            assertEquals("${id}_2", player["farming_cactus_patch_al_kharid", "empty"])
+            assertEquals("${id}_2", player["farming_belladonna_patch_draynor", "empty"])
         }
     }
 
     @TestFactory
     fun `Harvest farming patch`() = listOf(
-        Pair("cactus", Item("cactus_spine", 3)),
+        Pair("belladonna", Item("cave_nightshade")),
     ).map { (id, item) ->
         dynamicTest("Pick $id patch") {
             setRandom(object : FakeRandom() {
                 override fun nextInt(until: Int): Int  = 0
             })
-            val tile = Tile(3315, 3201)
+            val tile = Tile(3086, 3353)
             val player = createPlayer(tile)
+            player.inventory.add("spade")
             player.levels.set(Skill.Farming, 99)
-            player["farming_cactus_patch_al_kharid"] = "${id}_life1"
-            val patch = objects[tile.addY(1), "farming_cactus_patch_al_kharid"]!!
+            player["farming_belladonna_patch_draynor"] = "${id}_life1"
+            val patch = objects[tile.addY(1), "farming_belladonna_patch_draynor"]!!
 
-            player.objectOption(patch, "Pick-spine")
-            tickIf { player["farming_cactus_patch_al_kharid", "empty"] != "weeds_0" }
+            player.objectOption(patch, "Pick")
+            tickIf { player["farming_belladonna_patch_draynor", "empty"] != "weeds_0" }
 
             assertEquals(item.amount, player.inventory.count(item.id))
-            assertEquals(75.0, player.experience.get(Skill.Farming))
-            assertEquals("weeds_0", player["farming_cactus_patch_al_kharid", "empty"])
+            assertEquals(512.0, player.experience.get(Skill.Farming))
+            assertEquals("weeds_0", player["farming_belladonna_patch_draynor", "empty"])
         }
     }
 

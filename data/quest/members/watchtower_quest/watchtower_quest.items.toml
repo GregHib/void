@@ -183,5 +183,6 @@ kept = "Wilderness"
 id = 2398
 tradeable = false
 weight = 0.015
-examine = "Deadly."
 kept = "Wilderness"
+farming_xp = 512.0
+examine = "Deadly."

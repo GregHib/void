@@ -146,6 +146,10 @@ examine = "A Cactus seed - plant in a cactus patch."
 id = 5281
 price = 19
 limit = 100
+farming_level = 63
+farming_crop = "belladonna"
+farming_xp = 91.0
+farming_patch = "belladonna"
 examine = "Also known as Deadly Nightshade - plant in a belladonna patch."
 
 [bittercap_mushroom_spore]
