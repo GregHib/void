@@ -125,6 +125,7 @@ class TreePatchTest : WorldTest() {
             player.objectOption(patch, "Clear")
             tickIf { player["farming_tree_patch_lumbridge", "empty"] == "${id}_stump" }
 
+            assertEquals(4, player.inventory.count("${id}_roots"))
             assertEquals("weeds_0", player["farming_tree_patch_lumbridge", "empty"])
         }
     }
