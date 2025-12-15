@@ -2,6 +2,7 @@ package content.skill.farming
 
 import FakeRandom
 import WorldTest
+import com.github.michaelbull.logging.InlineLogger
 import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -14,6 +15,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
+import kotlin.math.log
 import kotlin.test.assertEquals
 
 class SpiritTreePatchTest : WorldTest() {
@@ -37,8 +39,8 @@ class SpiritTreePatchTest : WorldTest() {
             })
             val player = createPlayer(tile)
             player.inventory.add("rake")
-            println("Check ${tile.addY(1)} $id")
-            println("List ${objects.get(tile.addY(1))}")
+            val logger = InlineLogger("SpiritTreePatch")
+            logger.error { "Objects: ${objects.size} tile=${tile.addY(1)} id=$id under=${objects.get(tile.addY(1))}" }
             val patch = objects[tile.addY(1), id]!!
 
             player.objectOption(patch, "Rake")
