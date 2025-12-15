@@ -73,7 +73,7 @@ class BushPatchTest : WorldTest() {
             val farming = scripts.filterIsInstance<Farming>().first()
             // Grow one more than expected
             for (i in 0..count) {
-                farming.grow(player, i * 4)
+                farming.grow(player, i * 20)
             }
 
             assertEquals("${id}_claim", player["farming_bush_patch_varrock", "empty"])
@@ -125,9 +125,9 @@ class BushPatchTest : WorldTest() {
             player["farming_bush_patch_varrock"] = "${id}_1"
 
             val farming = scripts.filterIsInstance<Farming>().first()
-            farming.grow(player, 4)
+            farming.grow(player, 20)
             assertEquals("${id}_diseased_1", player["farming_bush_patch_varrock", "empty"])
-            farming.grow(player, 4)
+            farming.grow(player, 20)
             assertEquals("${id}_dead_1", player["farming_bush_patch_varrock", "empty"])
         }
     }

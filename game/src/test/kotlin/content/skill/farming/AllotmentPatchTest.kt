@@ -45,7 +45,7 @@ class AllotmentPatchTest : WorldTest() {
             val patch = objects[tile.addY(1), id]!!
 
             player.objectOption(patch, "Rake")
-            tick(10)
+            tick(12)
 
             assertEquals(3, player.inventory.count("weeds"))
             assertEquals(24.0, player.experience.get(Skill.Farming))
@@ -78,7 +78,7 @@ class AllotmentPatchTest : WorldTest() {
             val farming = scripts.filterIsInstance<Farming>().first()
             // Grow one more than expected
             for (i in 0..count) {
-                farming.grow(player, 2 * i)
+                farming.grow(player, 10 * i)
             }
 
             assertEquals("${id}_life1", player["farming_veg_patch_falador_nw", "empty"])
@@ -105,9 +105,9 @@ class AllotmentPatchTest : WorldTest() {
             player["farming_veg_patch_falador_nw"] = "${id}_1"
 
             val farming = scripts.filterIsInstance<Farming>().first()
-            farming.grow(player, 2)
+            farming.grow(player, 10)
             assertEquals("${id}_diseased_1", player["farming_veg_patch_falador_nw", "empty"])
-            farming.grow(player, 2)
+            farming.grow(player, 10)
             assertEquals("${id}_dead_1", player["farming_veg_patch_falador_nw", "empty"])
         }
     }

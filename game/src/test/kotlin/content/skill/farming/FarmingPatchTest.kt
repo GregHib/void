@@ -44,7 +44,7 @@ class FarmingPatchTest : WorldTest() {
         val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
 
         player.objectOption(patch, "Rake")
-        tick(10)
+        tick(12)
 
         assertEquals(3, player.inventory.count("weeds"))
         assertEquals(24.0, player.experience.get(Skill.Farming))
@@ -55,7 +55,6 @@ class FarmingPatchTest : WorldTest() {
     fun `Compost an empty patch`() {
         val player = createPlayer(Tile(3057, 3308))
         player.inventory.add("compost")
-        // TODO can you compost weeds?
         player["farming_veg_patch_falador_se"] = "weeds_0"
         val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
 

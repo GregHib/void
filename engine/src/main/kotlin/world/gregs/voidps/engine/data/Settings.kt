@@ -50,10 +50,10 @@ open class Settings {
         fun load(fileName: String = PROPERTY_FILE_NAME): Properties {
             val file = File("./$fileName")
             return if (file.exists()) {
-                Settings.load(file.inputStream())
+                load(file.inputStream())
             } else {
                 logger.debug { "Property file not found; defaulting to internal." }
-                Settings.load(Settings::class.java.getResourceAsStream("/$fileName")!!)
+                load(Settings::class.java.getResourceAsStream("/$fileName")!!)
             }
         }
     }
