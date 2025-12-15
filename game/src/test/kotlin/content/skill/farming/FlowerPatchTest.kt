@@ -2,17 +2,12 @@ package content.skill.farming
 
 import FakeRandom
 import WorldTest
-import containsMessage
 import itemOnObject
-import messages
 import objectOption
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import org.junit.jupiter.api.assertNotNull
-import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
@@ -82,7 +77,7 @@ class FlowerPatchTest : WorldTest() {
                 farming.grow(player, i)
             }
 
-            assertEquals("${id}_${count}", player["farming_flower_patch_falador", "empty"])
+            assertEquals("${id}_$count", player["farming_flower_patch_falador", "empty"])
         }
     }
 
@@ -137,5 +132,4 @@ class FlowerPatchTest : WorldTest() {
             assertEquals("weeds_0", player["farming_flower_patch_falador", "empty"])
         }
     }
-
 }

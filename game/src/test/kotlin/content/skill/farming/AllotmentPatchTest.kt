@@ -2,17 +2,12 @@ package content.skill.farming
 
 import FakeRandom
 import WorldTest
-import containsMessage
 import itemOnObject
-import messages
 import objectOption
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import org.junit.jupiter.api.assertNotNull
-import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
@@ -92,13 +87,13 @@ class AllotmentPatchTest : WorldTest() {
 
     @TestFactory
     fun `Disease farming patch and die`() = listOf(
-         "potato",
-         "onion",
-         "cabbage",
-         "tomato",
-         "sweetcorn",
-         "strawberry",
-         "watermelon",
+        "potato",
+        "onion",
+        "cabbage",
+        "tomato",
+        "sweetcorn",
+        "strawberry",
+        "watermelon",
     ).map { id ->
         dynamicTest("Diseased $id dies") {
             setRandom(object : FakeRandom() {
@@ -143,5 +138,4 @@ class AllotmentPatchTest : WorldTest() {
             assertEquals("weeds_0", player["farming_veg_patch_falador_nw", "empty"])
         }
     }
-
 }

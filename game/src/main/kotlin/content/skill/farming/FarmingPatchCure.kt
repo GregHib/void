@@ -1,20 +1,13 @@
 package content.skill.farming
 
 import content.entity.player.inv.item.addOrDrop
-import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInteract
-import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.*
-import world.gregs.voidps.engine.queue.weakQueue
 
 class FarmingPatchCure : Script {
 
@@ -34,7 +27,7 @@ class FarmingPatchCure : Script {
         player.delay(4)
         val type = target.def(player).stringId.substringBefore("_")
         player.message("You have successfully removed all the diseased leaves.", type = ChatType.Filter)
-        player.addOrDrop("leaves_${type}")
+        player.addOrDrop("leaves_$type")
         player[target.id] = player[target.id, "weeds_3"].replace("_diseased", "")
     }
 

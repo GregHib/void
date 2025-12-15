@@ -1,25 +1,17 @@
 package content.skill.farming
 
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.item.addOrDrop
-import content.entity.player.stat.Stats
-import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.*
 import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInteract
-import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.*
-import world.gregs.voidps.engine.queue.weakQueue
 
 class FarmingPatchPlant : Script {
 
@@ -101,10 +93,7 @@ class FarmingPatchPlant : Script {
         player.exp(Skill.Farming, item.def["farming_xp", 0.0])
     }
 
-    private fun hasSpiritTree(player: Player): Boolean {
-        return !player["farming_spirit_tree_patch_port_sarim", "weeds_3"].startsWith("weeds") ||
+    private fun hasSpiritTree(player: Player): Boolean = !player["farming_spirit_tree_patch_port_sarim", "weeds_3"].startsWith("weeds") ||
         !player["farming_spirit_tree_patch_etceteria", "weeds_3"].startsWith("weeds") ||
         !player["farming_spirit_tree_patch_brimhaven", "weeds_3"].startsWith("weeds")
-    }
-
 }

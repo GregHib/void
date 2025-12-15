@@ -126,7 +126,7 @@ class Sack : Script {
             if (removed == 0) {
                 error = TransactionError.Deficient(0)
             }
-            replace(slot, item.id, item.id.replace("_${current}", "_${current + removed}"))
+            replace(slot, item.id, item.id.replace("_$current", "_${current + removed}"))
         }
 
         when (inventory.transaction.error) {
@@ -146,7 +146,7 @@ class Sack : Script {
         when (inventory.transaction.error) {
             is TransactionError.Full -> inventoryFull()
             TransactionError.None -> message("You take ${id.an()} $plural out of the $name sack.")
-            else -> logger.warn { "Error emptying ${plural}." }
+            else -> logger.warn { "Error emptying $plural." }
         }
     }
 
@@ -165,7 +165,7 @@ class Sack : Script {
         when (inventory.transaction.error) {
             is TransactionError.Full -> inventoryFull()
             TransactionError.None -> {}
-            else -> logger.warn { "Error emptying ${plural}." }
+            else -> logger.warn { "Error emptying $plural." }
         }
     }
 }

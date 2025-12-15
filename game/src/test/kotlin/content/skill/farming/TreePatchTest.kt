@@ -163,7 +163,7 @@ class TreePatchTest : WorldTest() {
     ).map { (id, item) ->
         dynamicTest("Pick $id patch") {
             setRandom(object : FakeRandom() {
-                override fun nextInt(until: Int): Int  = 0
+                override fun nextInt(until: Int): Int = 0
             })
             val tile = Tile(3192, 3229)
             val player = createPlayer(tile)
@@ -181,5 +181,4 @@ class TreePatchTest : WorldTest() {
             assertEquals("${id}_stump", player["farming_tree_patch_lumbridge", "empty"])
         }
     }
-
 }

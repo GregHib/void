@@ -73,7 +73,7 @@ class Farming(
                     if ((variable.startsWith("farming_fruit_tree_patch") || variable.startsWith("farming_cactus_patch")) && type.startsWith("life")) {
                         val map = varbitMap(variable) ?: continue
                         val stage = current.substringAfterLast("_life").toInt()
-                        val next = current.replace("life${stage}", "life${stage + 1}")
+                        val next = current.replace("life$stage", "life${stage + 1}")
                         if (!map.containsKey(next)) {
                             continue
                         }
@@ -83,7 +83,7 @@ class Farming(
                 }
                 if (type == "stump") {
                     val map = varbitMap(variable) ?: continue
-                    val next = current.replace("_watered", "").replace("_${type}", "_${if (variable.startsWith("farming_fruit_tree")) "life6" else "life1"}")
+                    val next = current.replace("_watered", "").replace("_$type", "_${if (variable.startsWith("farming_fruit_tree")) "life6" else "life1"}")
                     if (map.containsKey(next)) {
                         player[variable] = next
                     }
@@ -93,7 +93,7 @@ class Farming(
                 if (produce.endsWith("diseased")) {
                     if (variable.contains("herb") && !produce.startsWith("goutweed")) {
                         val stage = current.removeSuffix("_diseased").substringAfterLast("_")
-                        player[variable] = "herb_dead_${stage}"
+                        player[variable] = "herb_dead_$stage"
                     } else {
                         player[variable] = current.replace("diseased", "dead")
                     }
@@ -115,7 +115,9 @@ class Farming(
                                     else -> "life3"
                                 }
                             }"
-                        } else "weeds_3"
+                        } else {
+                            "weeds_3"
+                        }
                         else -> "weeds_$next"
                     }
                     continue
@@ -126,12 +128,12 @@ class Farming(
                 } else {
                     val map = varbitMap(variable) ?: continue
                     val stage = type.toIntOrNull() ?: continue
-                    next = current.replace("_watered", "").replace("_${stage}", "_${stage + 1}")
+                    next = current.replace("_watered", "").replace("_$stage", "_${stage + 1}")
                     if (!map.containsKey(next)) {
-                        next = current.replace("_watered", "").replace("_${type}", "_claim")
+                        next = current.replace("_watered", "").replace("_$type", "_claim")
                     }
                     if (!map.containsKey(next)) {
-                        next = current.replace("_watered", "").replace("_${type}", "_life1")
+                        next = current.replace("_watered", "").replace("_$type", "_life1")
                     }
                     if (!map.containsKey(next)) {
                         continue

@@ -48,6 +48,7 @@ class CurePlantTest : WorldTest() {
         assertEquals("potato_2", player["farming_veg_patch_falador_se", "empty"])
         assertEquals(0.0, player.experience.get(Skill.Magic))
     }
+
     @Test
     fun `Can't cure dead patch`() {
         val player = createPlayer(Tile(3057, 3308))

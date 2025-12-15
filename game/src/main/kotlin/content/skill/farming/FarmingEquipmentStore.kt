@@ -75,7 +75,7 @@ class FarmingEquipmentStore : Script {
                             "secateurs" -> "more than one pair of secateurs"
                             else -> "more than one ${component.toLowerSpaceCase()}"
                         }
-                    } in here."
+                    } in here.",
                 )
                 return@interfaceOption
             }

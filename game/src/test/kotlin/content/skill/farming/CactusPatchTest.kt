@@ -119,7 +119,7 @@ class CactusPatchTest : WorldTest() {
     ).map { (id, item) ->
         dynamicTest("Pick $id patch") {
             setRandom(object : FakeRandom() {
-                override fun nextInt(until: Int): Int  = 0
+                override fun nextInt(until: Int): Int = 0
             })
             val tile = Tile(3315, 3201)
             val player = createPlayer(tile)
@@ -135,5 +135,4 @@ class CactusPatchTest : WorldTest() {
             assertEquals("weeds_0", player["farming_cactus_patch_al_kharid", "empty"])
         }
     }
-
 }

@@ -114,5 +114,4 @@ class SpiritTreePatchTest : WorldTest() {
             assertEquals("${id}_2", player["farming_spirit_tree_patch_port_sarim", "empty"])
         }
     }
-
 }

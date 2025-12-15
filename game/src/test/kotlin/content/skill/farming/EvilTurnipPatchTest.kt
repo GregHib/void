@@ -4,7 +4,6 @@ import FakeRandom
 import WorldTest
 import itemOnObject
 import objectOption
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
@@ -78,7 +77,7 @@ class EvilTurnipPatchTest : WorldTest() {
     ).map { (id, item) ->
         dynamicTest("Pick $id patch") {
             setRandom(object : FakeRandom() {
-                override fun nextInt(until: Int): Int  = 0
+                override fun nextInt(until: Int): Int = 0
             })
             val tile = Tile(3086, 3366)
             val player = createPlayer(tile)
@@ -95,5 +94,4 @@ class EvilTurnipPatchTest : WorldTest() {
             assertEquals("weeds_0", player["farming_evil_turnip_patch_draynor", "empty"])
         }
     }
-
 }

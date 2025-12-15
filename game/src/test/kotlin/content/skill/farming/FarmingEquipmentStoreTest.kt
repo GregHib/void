@@ -201,5 +201,4 @@ class FarmingEquipmentStoreTest : WorldTest() {
         assertEquals(1, player.inventory.count("watering_can_5"))
         assertEquals(0, player["farming_tool_watering_can", 0])
     }
-
 }

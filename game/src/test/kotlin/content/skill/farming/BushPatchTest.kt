@@ -157,5 +157,4 @@ class BushPatchTest : WorldTest() {
             assertEquals("weeds_0", player["farming_bush_patch_varrock", "empty"])
         }
     }
-
 }
