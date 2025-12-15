@@ -64,11 +64,6 @@ class FarmingPatchPlant : Script {
     private suspend fun plant(player: Player, interact: ItemOnObjectInteract) {
         val item = interact.item
         val amount = item.def["farming_amount", 1]
-        // TODO order of checks
-        if (!player.has(Skill.Farming, item.def["farming_level", 1])) {
-            // TODO proper message
-            return
-        }
         val variable = interact.target.id
         if (variable.startsWith("farming_spirit_tree_patch") && hasSpiritTree(player)) {
             player.message("You can only plant one spirit tree at a time.") // TODO proper message
@@ -76,7 +71,7 @@ class FarmingPatchPlant : Script {
         }
         val patchName = interact.target.patchName()
         if (patchName.contains("tree") && !player.inventory.contains("spade")) {
-            player.message("You need a spade to plant the sapling into the dirt.") // TODO proper message
+            player.message("You need a spade to do that.")
             return
         }
         if (!patchName.contains("tree") && !player.inventory.contains("seed_dibber")) {
@@ -85,6 +80,11 @@ class FarmingPatchPlant : Script {
         }
         if (!player.inventory.remove(item.id, amount)) {
             player.message("You need $amount ${item.def.name.plural(amount)} to grow those.")
+            return
+        }
+        val level = item.def["farming_level", 1]
+        if (!player.has(Skill.Farming, level)) {
+            player.statement("You need to be a level $level to plant that.")
             return
         }
         if (patchName.contains("tree")) {

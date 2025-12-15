@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -73,7 +72,7 @@ class FarmingPatchPick : Script {
         player.exp(Skill.Farming, xp)
     }
 
-    private fun pick(player: Player, interact: PlayerOnObjectInteract) {
+    private suspend fun pick(player: Player, interact: PlayerOnObjectInteract) {
         val def = interact.target.def(player)
         val item: String = def["harvest"]
         player.harvest(Item(item), interact.target, tree = true)
@@ -86,10 +85,6 @@ class FarmingPatchPick : Script {
         }
         if (inventory.isFull()) {
             inventoryFull("to do that")
-            return
-        }
-        if (!has(Skill.Farming, item.def["farming_level", 1])) {
-            // TODO proper message
             return
         }
         face(obj)

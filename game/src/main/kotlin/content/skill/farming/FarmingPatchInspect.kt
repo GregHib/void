@@ -41,16 +41,21 @@ class FarmingPatchInspect : Script {
                 } else if (value.contains("weeds")) {
                     append("The patch needs weeding.")
                 } else {
-                    val type = value.substringBeforeLast("_").removeSuffix("_watered").removeSuffix("_dead").removeSuffix("_diseased")
-                    // TODO diseased messages
-                    if (value.substringBeforeLast("_").endsWith("_dead")) {
+                    val ending = value.substringBeforeLast("_")
+                    val type = ending.removeSuffix("_watered").removeSuffix("_dead").removeSuffix("_diseased")
+                    if (ending.endsWith("_dead")) {
                         append("The patch has become infected by disease and has died.")
+                        return@buildString
+                    }
+                    if (ending.endsWith("_diseased")) {
+                        append("The patch has become infected by disease.") // TODO proper message
                         return@buildString
                     }
                     val amount = if (name == "allotment") 3 else 1
                     val stage = value.substringAfterLast("_").toIntOrNull()
                     val stages = when (name) {
-                        "allotment", "herb patch", "belladonna patch" -> 5
+                        // TODO dynamic patches
+                        "allotment", "herb patch", "belladonna patch", "flower patch" -> 5
                         "fruit tree patch", "cactus patch" -> 7
                         "tree patch" -> 11
                         "evil turnip patch" -> 2

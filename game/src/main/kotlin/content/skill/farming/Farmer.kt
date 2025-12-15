@@ -97,18 +97,21 @@ class Farmer(
 
         npcOperate("Pay", "alain,amaethwr,dreven,ellena,fayeth,francis,garth_brimhaven,gileth_observatory,heskel,imiago_tai_bwo_wannai_normal,rhazien,rhonen,selena,taria,torrell,treznor,vasquen,bolongo,frizzy_skernip,praistan_ebola,prissy_scilla,yulf_squecks") {
             val variable: String = it.target["patch"] ?: return@npcOperate
-            if (variable.contains("_tree") && variable.substringBeforeLast("_").endsWith("_dead")) {
-                /// TODO what if no coins
-                choice("Pay 200 Coins to have your tree chopped down?") {
-                    option("Yes.") {
-                        if (inventory.remove("coins", 200)) {
-                            chopDownTree(variable)
-                        }
-                    }
-                    option("No.")
-                }
-            } else {
+            if (!variable.contains("_tree") || !variable.substringBeforeLast("_").endsWith("_dead")) {
                 protectPatch(variable)
+                return@npcOperate
+            }
+            if (!inventory.contains("coins", 200)) {
+                npc<Upset>("I'll want 200 Coins to chop down your tree.")
+                return@npcOperate
+            }
+            choice("Pay 200 Coins to have your tree chopped down?") {
+                option("Yes.") {
+                    if (inventory.remove("coins", 200)) {
+                        chopDownTree(variable)
+                    }
+                }
+                option("No.")
             }
         }
 
