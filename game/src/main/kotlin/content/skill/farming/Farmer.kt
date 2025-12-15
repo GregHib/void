@@ -8,6 +8,8 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
@@ -15,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.random
@@ -43,8 +46,7 @@ class Farmer(
                                     choice {
                                         option<Talk>("Here's 200 Coins - chop my tree down please.") {
                                             if (inventory.remove("coins", 200)) {
-                                                set(variable, "weeds_0")
-                                                sound("woodchop")
+                                                chopDownTree(variable)
                                             }
                                         }
                                         option<Upset>("I don't want to pay that much, sorry.")
@@ -100,8 +102,7 @@ class Farmer(
                 choice("Pay 200 Coins to have your tree chopped down?") {
                     option("Yes.") {
                         if (inventory.remove("coins", 200)) {
-                            set(variable, "weeds_0")
-                            sound("woodchop")
+                            chopDownTree(variable)
                         }
                     }
                     option("No.")
@@ -126,6 +127,14 @@ class Farmer(
         npcOperate("Pay (South-east)", "elstan,lyra") {
             protectPatch("south")
         }
+    }
+
+    private fun Player.chopDownTree(variable: String) {
+        val value = get(variable, "weeds_3")
+        val type = value.substringBeforeLast("_")
+        set(variable, "weeds_0")
+        sound("woodchop")
+        ScrollOfLife.checkLife(this, type, chop = true)
     }
 
     fun requiredItems(value: String): Pair<List<Item>, List<Item>> {

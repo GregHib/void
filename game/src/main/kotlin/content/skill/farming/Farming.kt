@@ -62,7 +62,7 @@ class Farming(
             return
         }
         growSaplings(player)
-        for ((multiplier, varbits) in FarmingPatch.patches) {
+        for ((multiplier, varbits) in FarmingPatches.patches) {
             if (minute.rem(mins * multiplier) != 0) {
                 continue
             }
@@ -82,7 +82,6 @@ class Farming(
                     continue
                 }
                 if (type == "stump") {
-                    // TODO do regular tree's also regrow or just fruit trees?
                     val map = varbitMap(variable) ?: continue
                     val next = current.replace("_watered", "").replace("_${type}", "_${if (variable.startsWith("farming_fruit_tree")) "life6" else "life1"}")
                     if (map.containsKey(next)) {
