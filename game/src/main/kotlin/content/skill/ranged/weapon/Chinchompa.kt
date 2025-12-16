@@ -28,7 +28,7 @@ class Chinchompa : Script {
     }
 
     fun damage(character: Character, it: CombatDamage) {
-        if (!it.weapon.id.endsWith("seercull")) {
+        if (!it.weapon.id.endsWith("chinchompa")) {
             return
         }
         it.source.sound("chinchompa_explode", delay = 40)

@@ -217,8 +217,9 @@ examine = "A squire of balance."
 id = 4375
 examine = "A retired security guard."
 
-[frizzy_skernip_port_sarim]
+[frizzy_skernip]
 id = 4560
+patch = "farming_spirit_tree_patch_port_sarim"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [grum]

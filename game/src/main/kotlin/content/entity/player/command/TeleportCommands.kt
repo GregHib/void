@@ -64,6 +64,10 @@ class TeleportCommands : Script {
         "ardougne" to Tile(2662, 3304),
         "west_ardougne" to Tile(2530, 3306),
         "catherby" to Tile(2805, 3434),
+        "rimmington" to Tile(2956, 3215),
+        "brimhaven" to Tile(2774, 3185),
+        "tree_gnome_stronghold" to Tile(2466, 3450),
+        "etceteria" to Tile(2602, 3875),
         "dks" to Tile(1922, 4365),
     )
 

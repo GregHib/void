@@ -1,5 +1,6 @@
 [gileth_observatory]
 id = 2344
+patch = "farming_fruit_tree_patch_gnome_village"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [observatory_assistant]

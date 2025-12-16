@@ -149,10 +149,6 @@ woodcutting = {
 }
 examine = "The tree shimmers with a magical force."
 
-[magic_tree_stump]
-id = 7401
-examine = "This is what is left of a magic tree."
-
 [maple_tree]
 id = 1307
 woodcutting = {
@@ -357,12 +353,12 @@ examine = "A beautiful old oak."
 id = 1355
 examine = "This tree has been cut down."
 
-[oak_tree_3]
+[oak_tree_three]
 clone = "oak"
 id = 37479
 examine = "A beautiful old oak."
 
-[oak_tree_3_stump]
+[oak_tree_three_stump]
 id = 1356
 examine = "This tree has been cut down."
 
@@ -577,12 +573,12 @@ examine = "It's hollow..."
 id = 4061
 examine = "This tree has been cut down."
 
-[maple_tree_2]
+[maple_tree_two]
 clone = "maple_tree"
 id = 4674
 examine = "I bet this makes good syrup!"
 
-[maple_tree_2_stump]
+[maple_tree_two_stump]
 id = 7400
 examine = "This is what is left of a maple tree."
 
@@ -655,115 +651,14 @@ examine = "A commonly-found tree."
 id = 7400
 examine = "This is what is left of a maple tree."
 
-[maple_tree_3]
+[maple_tree_three]
 clone = "maple_tree"
 id = 46277
 examine = "I bet this makes good syrup!"
 
-[maple_tree_3_stump]
+[maple_tree_three_stump]
 id = 7400
 examine = "This is what is left of a maple tree."
-
-[apple_tree]
-id = 7941
-examine = "A fully grown apple tree."
-
-[apple_tree_stump]
-id = 7961
-examine = "This apple tree has been cut down."
-
-[banana_tree]
-id = 8000
-examine = "A fully grown banana tree."
-
-[banana_tree_stump]
-id = 8019
-examine = "This banana tree has been cut down."
-
-[curry_tree]
-id = 8026
-examine = "A fully grown curry tree."
-
-[curry_tree_stump]
-id = 8046
-examine = "This curry tree has been cut down."
-
-[orange_tree]
-id = 8057
-examine = "A fully grown orange tree."
-
-[orange_tree_stump]
-id = 8077
-examine = "This orange tree has been cut down."
-
-[diseased_orange_tree]
-id = 8070
-examine = "This orange tree looks like it could do with pruning with secateurs."
-
-[diseased_orange_tree_stump]
-id = 8077
-examine = "This orange tree has been cut down."
-
-[palm_tree]
-id = 8084
-examine = "A fully grown palm tree."
-
-[palm_tree_stump]
-id = 8104
-examine = "This palm tree has been cut down."
-
-[papaya_tree]
-id = 8111
-examine = "A fully grown papaya tree."
-
-[papaya_tree_stump]
-id = 8131
-examine = "This papaya tree has been cut down."
-
-[magic_tree_farming]
-clone = "magic_tree"
-id = 8409
-examine = "A fully grown Magic Tree."
-
-[magic_tree_farming_stump]
-id = 8410
-examine = "You can uproot this stump with a spade."
-
-[maple_tree_farming]
-clone = "maple_tree"
-id = 8444
-examine = "A fully grown Maple tree."
-
-[maple_tree_farming_stump]
-id = 8445
-examine = "You can uproot this stump with a spade."
-
-[oak_tree_farming]
-clone = "oak"
-id = 8467
-examine = "A fully grown Oak tree."
-
-[oak_tree_farming_stump]
-id = 8468
-examine = "You can uproot this stump with a spade."
-
-[willow_tree_farming]
-clone = "willow"
-id = 8488
-examine = "A fully grown Willow tree."
-
-[willow_tree_farming_stump]
-id = 8489
-examine = "You can uproot this stump with a spade."
-
-[yew_tree_farming]
-clone = "yew"
-id = 8513
-examine = "A fully grown Yew tree."
-
-[yew_tree_farming_stump]
-id = 8514
-examine = "You can uproot this tree stump with a spade."
 
 [mahogany_tree]
 id = 9034
@@ -883,11 +778,11 @@ examine = "His bite looks tougher than his bark."
 id = 11439
 examine = "His bite looks tougher than his bark."
 
-[evil_oak_tree_3]
+[evil_oak_tree_three]
 id = 11439
 examine = "His bite looks tougher than his bark."
 
-[evil_oak_tree_3_stump]
+[evil_oak_tree_three_stump]
 id = 11926
 
 [evil_willow_tree]
@@ -1181,12 +1076,12 @@ examine = "The tree is corrupted by a dark energy."
 id = 37822
 examine = "This is what is left of a cursed magic tree."
 
-[magic_tree_2]
+[magic_tree_two]
 clone = "magic_tree"
 id = 37823
 examine = "The tree shimmers with a magical force."
 
-[magic_tree_2_stump]
+[magic_tree_two_stump]
 id = 37824
 examine = "This is what is left of a magic tree."
 

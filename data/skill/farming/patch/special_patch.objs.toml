@@ -1,0 +1,142 @@
+[calquat_patch_weeded]
+id = 7772
+examine = "You can grow a Calquat Tree in this Farming patch."
+
+[calquat_patch_weeds_1]
+id = 7773
+examine = "You can grow a Calquat Tree in this Farming patch."
+
+[calquat_patch_weeds_2]
+id = 7774
+examine = "You can grow a Calquat Tree in this Farming patch."
+
+[calquat_patch_weeds_3]
+id = 7775
+examine = "You can grow a Calquat Tree in this Farming patch."
+
+[calquat_tree_seedling]
+id = 7776
+examine = "A Calquat tree is growing in this Farming patch."
+
+[calquat_tree_1]
+id = 7777
+examine = "A Calquat tree is growing in this Farming patch."
+
+[calquat_tree_2]
+id = 7778
+examine = "A Calquat tree is growing in this Farming patch."
+
+[calquat_tree_3]
+id = 7779
+examine = "A Calquat tree is growing in this Farming patch."
+
+[calquat_tree_4]
+id = 7780
+examine = "A Calquat tree is growing in this Farming patch."
+
+[calquat_tree_5]
+id = 7781
+examine = "A Calquat tree is growing in this Farming patch."
+
+[calquat_tree_6]
+id = 7782
+examine = "A Calquat tree is growing in this Farming patch."
+
+[calquat_tree_7]
+id = 7783
+examine = "A Calquat tree is growing in this Farming patch."
+
+[calquat_tree_fullygrown]
+id = 7784
+examine = "A fully grown Calquat tree stands in this Farming patch."
+
+[calquat_tree_fruit_1]
+id = 7785
+examine = "A fully grown Calquat tree stands in this Farming patch."
+
+[calquat_tree_fruit_2]
+id = 7786
+examine = "A fully grown Calquat tree stands in this Farming patch."
+
+[calquat_tree_fruit_3]
+id = 7787
+examine = "A fully grown Calquat tree stands in this Farming patch."
+
+[calquat_tree_fruit_4]
+id = 7788
+examine = "A fully grown Calquat tree stands in this Farming patch."
+
+[calquat_tree_fruit_5]
+id = 7789
+examine = "A fully grown Calquat tree stands in this Farming patch."
+
+[calquat_tree_fruit_6]
+id = 7790
+examine = "A fully grown Calquat tree stands in this Farming patch."
+
+[calquat_tree_claim_xp]
+id = 7791
+examine = "A fully grown Calquat tree stands in this Farming patch."
+
+[calquat_tree_1_diseased]
+id = 7792
+examine = "This diseased Calquat tree needs pruning."
+
+[calquat_tree_2_diseased]
+id = 7793
+examine = "This diseased Calquat tree needs pruning."
+
+[calquat_tree_3_diseased]
+id = 7794
+examine = "This diseased Calquat tree needs pruning."
+
+[calquat_tree_4_diseased]
+id = 7795
+examine = "This diseased Calquat tree needs pruning."
+
+[calquat_tree_5_diseased]
+id = 7796
+examine = "This diseased Calquat tree needs pruning."
+
+[calquat_tree_6_diseased]
+id = 7797
+examine = "This diseased Calquat tree needs pruning."
+
+[calquat_tree_7_diseased]
+id = 7798
+examine = "This diseased Calquat tree needs pruning."
+
+[calquat_tree_1_dead]
+id = 7799
+examine = "This Calquat tree has died."
+
+[calquat_tree_2_dead]
+id = 7800
+examine = "This Calquat tree has died."
+
+[calquat_tree_3_dead]
+id = 7801
+examine = "This Calquat tree has died."
+
+[calquat_tree_4_dead]
+id = 7802
+examine = "This Calquat tree has died."
+
+[calquat_tree_5_dead]
+id = 7803
+examine = "This Calquat tree has died."
+
+[calquat_tree_6_dead]
+id = 7804
+examine = "This Calquat tree has died."
+
+[calquat_tree_7_dead]
+id = 7805
+examine = "This Calquat tree has died."
+
+[calquat_tree_stump]
+id = 7806
+examine = "A Calquat tree stump."
+
+[farming_calquat_tree_patch_tai_bwo_wannai]
+id = 7807

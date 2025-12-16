@@ -88,6 +88,7 @@ id = 2375
 
 [amaethwr]
 id = 2860
+patch = "farming_fruit_tree_patch_lletya"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [teclyn]

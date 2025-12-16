@@ -1,6 +1,6 @@
 spawns = [
   { id = "brother_kojo_monastery", x = 2569, y = 3249 },
-  { id = "torrell_monastery", x = 2617, y = 3227, members = true },
+  { id = "torrell", x = 2617, y = 3227, members = true },
   { id = "lady_servil_monastery", x = 2566, y = 3201, members = true },
   { id = "brother_omad_monastery", x = 2604, y = 3209 },
   { id = "brother_cedric_monastery", x = 2618, y = 3244 },

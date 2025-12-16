@@ -50,7 +50,7 @@ class Woodcutting : Script {
 
     suspend fun chopDown(player: Player, interact: PlayerOnObjectInteract) {
         val target = interact.target
-        val tree: Tree = target.def.getOrNull("woodcutting") ?: return
+        val tree: Tree = target.def(player).getOrNull("woodcutting") ?: return
         val hatchet = Hatchet.best(player)
         if (hatchet == null) {
             player.message("You need a hatchet to chop down this tree.")
@@ -92,7 +92,7 @@ class Woodcutting : Script {
             if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
                 player.experience.add(Skill.Woodcutting, tree.xp)
                 tryDropNest(player, ivy)
-                if (!addLog(player, tree) || deplete(tree, target)) {
+                if (!addLog(player, tree) || deplete(player, tree, target)) {
                     break
                 }
                 if (ivy) {
@@ -153,10 +153,15 @@ class Woodcutting : Script {
         return added
     }
 
-    fun deplete(tree: Tree, obj: GameObject): Boolean {
+    fun deplete(player: Player, tree: Tree, obj: GameObject): Boolean {
         val depleted = random.nextDouble() <= tree.depleteRate
         if (!depleted) {
             return false
+        }
+        if (obj.id.startsWith("farming_")) {
+            player[obj.id] = player[obj.id, "weeds_0"].replace("_life1", "_stump")
+            areaSound("fell_tree", obj.tile)
+            return true
         }
         val stumpId = "${obj.id}_stump"
         if (definitions.contains(stumpId)) {

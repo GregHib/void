@@ -50,55 +50,71 @@ id = 5332
 id = 5333
 limit = 100
 weight = 0.2
+charges = 1
 full = "watering_can_8"
+degrade = "watering_can"
 examine = "This watering can is almost empty."
 
 [watering_can_2]
 id = 5334
 limit = 100
 weight = 0.3
+charges = 1
 full = "watering_can_8"
+degrade = "watering_can_1"
 examine = "This watering can is three-quarters empty."
 
 [watering_can_3]
 id = 5335
 limit = 100
 weight = 0.4
+charges = 1
 full = "watering_can_8"
+degrade = "watering_can_2"
 examine = "This watering can is just under half-full."
 
 [watering_can_4]
 id = 5336
 limit = 100
 weight = 0.5
+charges = 1
 full = "watering_can_8"
+degrade = "watering_can_3"
 examine = "Some would say this watering can is half-full, others half-empty."
 
 [watering_can_5]
 id = 5337
 limit = 100
 weight = 0.6
+charges = 1
 full = "watering_can_8"
+degrade = "watering_can_4"
 examine = "This watering can is just over half-full."
 
 [watering_can_6]
 id = 5338
 limit = 100
 weight = 0.7
+charges = 1
 full = "watering_can_8"
+degrade = "watering_can_5"
 examine = "This watering can is three quarters full."
 
 [watering_can_7]
 id = 5339
 limit = 100
 weight = 0.8
+charges = 1
 full = "watering_can_8"
+degrade = "watering_can_6"
 examine = "This watering can is almost completely full."
 
 [watering_can_8]
 id = 5340
 limit = 100
 weight = 0.9
+charges = 1
+degrade = "watering_can_7"
 examine = "This watering can is completely full."
 
 [rake]
@@ -198,8 +214,9 @@ price = 184
 limit = 10000
 weight = 3.0
 empty = "bucket"
-examine = "Good for plants, helps them grow."
+farming_xp = 18.0
 kept = "Wilderness"
+examine = "Good for plants, helps them grow."
 
 [compost_noted]
 id = 6033
@@ -210,6 +227,7 @@ price = 1078
 limit = 10000
 weight = 3.0
 empty = "bucket"
+farming_xp = 36.0
 examine = "Super-good for the smallest or largest of plants."
 
 [supercompost_noted]
@@ -270,13 +288,6 @@ id = 6058
 tradeable = false
 weight = 0.113
 examine = "This sack of hay has a bronze spear sticking through it."
-kept = "Reclaim"
-
-[scarecrow]
-id = 6059
-tradeable = false
-weight = 0.113
-examine = "This should scare the birds."
 kept = "Reclaim"
 
 [watering_can_0]

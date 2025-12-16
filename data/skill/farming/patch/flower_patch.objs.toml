@@ -1,0 +1,397 @@
+[flower_patch_weeded]
+id = 7840
+examine = "You can grow flowers in this Farming patch."
+
+[flower_patch_weeds_1]
+id = 7841
+examine = "You can grow flowers in this Farming patch."
+
+[flower_patch_weeds_2]
+id = 7842
+examine = "You can grow flowers in this Farming patch."
+
+[flower_patch_weeds_3]
+id = 7843
+examine = "You can grow flowers in this Farming patch."
+
+[flower_patch_weeds_1_mory]
+id = 7844
+examine = "You can grow flowers in this Farming patch."
+
+[flower_patch_weeds_2_mory]
+id = 7845
+examine = "You can grow flowers in this Farming patch."
+
+[flower_patch_weeds_3_mory]
+id = 7846
+examine = "You can grow flowers in this Farming patch."
+
+[farming_flower_patch_falador]
+id = 7847
+
+[farming_flower_patch_catherby]
+id = 7848
+
+[farming_flower_patch_ardougne]
+id = 7849
+
+[farming_flower_patch_morytania]
+id = 7850
+
+[limpwurt_seed]
+id = 7851
+examine = "A limpwurt plant is growing in this patch."
+
+[limpwurt_1]
+id = 7852
+examine = "A limpwurt plant is growing in this patch."
+
+[limpwurt_2]
+id = 7853
+examine = "A limpwurt plant is growing in this patch."
+
+[limpwurt_3]
+id = 7854
+examine = "A limpwurt plant is growing in this patch."
+
+[limpwurt_fullygrown]
+id = 7855
+harvest = "limpwurt_root"
+examine = "A fully grown limpwurt plant."
+
+[limpwurt_seed_watered]
+id = 7856
+examine = "A limpwurt plant is growing in this patch."
+
+[limpwurt_1_watered]
+id = 7857
+examine = "A limpwurt plant is growing in this patch."
+
+[limpwurt_2_watered]
+id = 7858
+examine = "A limpwurt plant is growing in this patch."
+
+[limpwurt_3_watered]
+id = 7859
+examine = "A limpwurt plant is growing in this patch."
+
+[limpwurt_1_diseased]
+id = 7860
+examine = "This limpwurt plant has become diseased."
+
+[limpwurt_2_diseased]
+id = 7861
+examine = "This limpwurt plant has become diseased."
+
+[limpwurt_3_diseased]
+id = 7862
+examine = "This limpwurt plant has become diseased."
+
+[limpwurt_1_dead]
+id = 7863
+examine = "This limpwurt plant has died while growing."
+
+[limpwurt_2_dead]
+id = 7864
+examine = "This limpwurt plant has died while growing."
+
+[limpwurt_3_dead]
+id = 7865
+examine = "This limpwurt plant has died while growing."
+
+[limpwurt_fullygrown_dead]
+id = 7866
+examine = "This limpwurt plant has died while growing."
+
+[marigold_seed]
+id = 7867
+examine = "A marigold is growing in this patch."
+
+[marigold_1]
+id = 7868
+examine = "A marigold is growing in this patch."
+
+[marigold_2]
+id = 7869
+examine = "A marigold is growing in this patch."
+
+[marigold_3]
+id = 7870
+examine = "A marigold is growing in this patch."
+
+[marigold_fullygrown]
+id = 7871
+harvest = "marigolds"
+examine = "A fully grown marigold."
+
+[marigold_seed_watered]
+id = 7872
+examine = "A marigold is growing in this patch."
+
+[marigold_1_watered]
+id = 7873
+examine = "A marigold is growing in this patch."
+
+[marigold_2_watered]
+id = 7874
+examine = "A marigold is growing in this patch."
+
+[marigold_3_watered]
+id = 7875
+examine = "A marigold is growing in this patch."
+
+[marigold_1_diseased]
+id = 7876
+examine = "This marigold has become diseased."
+
+[marigold_2_diseased]
+id = 7877
+examine = "This marigold has become diseased."
+
+[marigold_3_diseased]
+id = 7878
+examine = "This marigold has become diseased."
+
+[marigold_1_dead]
+id = 7879
+examine = "This marigold has died while growing."
+
+[marigold_2_dead]
+id = 7880
+examine = "This marigold has died while growing."
+
+[marigold_3_dead]
+id = 7881
+examine = "This marigold has died while growing."
+
+[marigold_fullygrown_dead]
+id = 7882
+examine = "This marigold has died while growing."
+
+[nasturtium_seed]
+id = 7883
+examine = "A nasturtium is growing in this patch."
+
+[nasturtium_1]
+id = 7884
+examine = "A nasturtium is growing in this patch."
+
+[nasturtium_2]
+id = 7885
+examine = "A nasturtium is growing in this patch."
+
+[nasturtium_3]
+id = 7886
+examine = "A nasturtium is growing in this patch."
+
+[nasturtium_fullygrown]
+id = 7887
+harvest = "nasturtiums"
+examine = "A fully grown nasturtium."
+
+[nasturtium_seed_watered]
+id = 7888
+examine = "A nasturtium is growing in this patch."
+
+[nasturtium_1_watered]
+id = 7889
+examine = "A nasturtium is growing in this patch."
+
+[nasturtium_2_watered]
+id = 7890
+examine = "A nasturtium is growing in this patch."
+
+[nasturtium_3_watered]
+id = 7891
+examine = "A nasturtium is growing in this patch."
+
+[nasturtium_1_diseased]
+id = 7892
+examine = "This nasturtium has become diseased."
+
+[nasturtium_2_diseased]
+id = 7893
+examine = "This nasturtium has become diseased."
+
+[nasturtium_3_diseased]
+id = 7894
+examine = "This nasturtium has become diseased."
+
+[nasturtium_1_dead]
+id = 7895
+examine = "This nasturtium has died while growing."
+
+[nasturtium_2_dead]
+id = 7896
+examine = "This nasturtium has died while growing."
+
+[nasturtium_3_dead]
+id = 7897
+examine = "This nasturtium has died while growing."
+
+[nasturtium_fullygrown_dead]
+id = 7898
+examine = "This nasturtium has died while growing."
+
+[lilly_seed]
+id = 41539
+examine = "A lily is growing in this patch."
+
+[lilly_1]
+id = 41540
+examine = "A lily is growing in this patch."
+
+[lilly_2]
+id = 41541
+examine = "A lily is growing in this patch."
+
+[lilly_fullygrown]
+id = 41542
+harvest = "ashes"
+examine = "A fully grown lily."
+
+[rosemary_seed]
+id = 7899
+examine = "A rosemary is growing in this patch."
+
+[rosemary_1]
+id = 7900
+examine = "A rosemary is growing in this patch."
+
+[rosemary_2]
+id = 7901
+examine = "A rosemary is growing in this patch."
+
+[rosemary_3]
+id = 7902
+examine = "A rosemary is growing in this patch."
+
+[rosemary_fullygrown]
+id = 7903
+harvest = "rosemary"
+examine = "A fully grown rosemary."
+
+[rosemary_seed_watered]
+id = 7904
+examine = "A rosemary is growing in this patch."
+
+[rosemary_1_watered]
+id = 7905
+examine = "A rosemary is growing in this patch."
+
+[rosemary_2_watered]
+id = 7906
+examine = "A rosemary is growing in this patch."
+
+[rosemary_3_watered]
+id = 7907
+examine = "A rosemary is growing in this patch."
+
+[rosemary_1_diseased]
+id = 7908
+examine = "This rosemary has become diseased."
+
+[rosemary_2_diseased]
+id = 7909
+examine = "This rosemary has become diseased."
+
+[rosemary_3_diseased]
+id = 7910
+examine = "This rosemary has become diseased."
+
+[rosemary_1_dead]
+id = 7911
+examine = "This rosemary has died while growing."
+
+[rosemary_2_dead]
+id = 7912
+examine = "This rosemary has died while growing."
+
+[rosemary_3_dead]
+id = 7913
+examine = "This rosemary has died while growing."
+
+[rosemary_fullygrown_dead]
+id = 7914
+examine = "This rosemary has died while growing."
+
+[farming_scarecrow]
+id = 7915
+examine = "Should scare off the birds..."
+
+[farming_scarecrow_weeds_1]
+id = 7916
+examine = "Should scare off the birds..."
+
+[farming_scarecrow_weeds_2]
+id = 7917
+examine = "Should scare off the birds..."
+
+[farming_scarecrow_weeds_3]
+id = 7918
+examine = "Should scare off the birds..."
+
+[woad_seed]
+id = 7919
+examine = "A woad plant is growing in this patch."
+
+[woad_1]
+id = 7920
+examine = "A woad plant is growing in this patch."
+
+[woad_2]
+id = 7921
+examine = "A woad plant is growing in this patch."
+
+[woad_3]
+id = 7922
+examine = "A woad plant is growing in this patch."
+
+[woad_fullygrown]
+id = 7923
+harvest = "woad_leaf"
+examine = "A fully grown woad plant."
+
+[woad_seed_watered]
+id = 7924
+examine = "A woad plant is growing in this patch."
+
+[woad_1_watered]
+id = 7925
+examine = "A woad plant is growing in this patch."
+
+[woad_2_watered]
+id = 7926
+examine = "A woad plant is growing in this patch."
+
+[woad_3_watered]
+id = 7927
+examine = "A woad plant is growing in this patch."
+
+[woad_1_diseased]
+id = 7928
+examine = "This woad plant has become diseased."
+
+[woad_2_diseased]
+id = 7929
+examine = "This woad plant has become diseased."
+
+[woad_3_diseased]
+id = 7930
+examine = "This woad plant has become diseased."
+
+[woad_1_dead]
+id = 7931
+examine = "This woad plant has died while growing."
+
+[woad_2_dead]
+id = 7932
+examine = "This woad plant has died while growing."
+
+[woad_3_dead]
+id = 7933
+examine = "This woad plant has died while growing."
+
+[woad_fullygrown_dead]
+id = 7934
+examine = "This woad plant has died while growing."

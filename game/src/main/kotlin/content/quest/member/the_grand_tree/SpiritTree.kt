@@ -21,7 +21,7 @@ class SpiritTree : Script {
     val enums: EnumDefinitions by inject()
 
     init {
-        objectOperate("Talk-to", "spirit_tree") {
+        objectOperate("Talk-to", "spirit_tree,spirit_tree_fullygrown") {
             if (!questCompleted("the_grand_tree")) {
                 statement("The tree doesn't feel like talking.")
                 return@objectOperate
@@ -69,11 +69,11 @@ class SpiritTree : Script {
                 if (value == get("spirit_tree_tile", -1)) {
                     continue
                 }
-                when {
-                    key == 5 && get("spirit_tree_port_sarim", 0) != 20 -> continue
-                    key == 6 && get("spirit_tree_etceteria", 0) != 20 -> continue
-                    key == 7 && get("spirit_tree_brimhaven", 0) != 20 -> continue
-                    key == 8 && get("spirit_tree_poison_waste", 0) < 3 -> continue
+                when (key) {
+                    5 if get("farming_spirit_tree_patch_port_sarim", "weeds_3") != "spirit_life1" -> continue
+                    6 if get("farming_spirit_tree_patch_etceteria", "weeds_3") != "spirit_life1" -> continue
+                    7 if get("farming_spirit_tree_patch_brimhaven", "weeds_3") != "spirit_life1" -> continue
+                    8 if get("spirit_tree_poison_waste", 0) < 3 -> continue
                 }
                 if (count == itemSlot) {
                     index = key

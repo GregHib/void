@@ -258,7 +258,7 @@ spawns = [
   { id = "crow_4", x = 3208, y = 3301, members = true },
   { id = "vasquen", x = 3226, y = 3311 },
   { id = "fayeth", x = 3193, y = 3233 },
-  { id = "tools_leprechaun", x = 3196, y = 3228 },
+  { id = "tool_leprechaun", x = 3196, y = 3228 },
   { id = "dwarf_lumbridge", x = 3224, y = 3286, members = true },
   { id = "ham_member_lumbridge", x = 3230, y = 3285, members = true },
   { id = "seth_groats_lumbridge", x = 3223, y = 3293, members = true },

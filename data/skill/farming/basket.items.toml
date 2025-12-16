@@ -197,8 +197,9 @@ id = 5418
 price = 7
 limit = 100
 weight = 0.453
-examine = "An empty vegetable sack."
+aka = ["sack"]
 kept = "Wilderness"
+examine = "An empty vegetable sack."
 
 [empty_sack_noted]
 id = 5419
@@ -452,6 +453,11 @@ price = 12
 limit = 10000
 heals = 60
 weight = 0.028
+compostable = true
+farming_level = 31
+farming_xp = 29.0
+farming_chance = "103-180"
+farming_protect_id = "apples_5"
 examine = "A freshly picked strawberry."
 
 [strawberry_noted]

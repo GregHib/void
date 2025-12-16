@@ -1,0 +1,630 @@
+[asgarnian_hops_seed]
+id = 8154
+examine = "Asgarnian hop seeds have been sown in this farming patch."
+
+[asgarnian_hops_1]
+id = 8155
+examine = "Asgarnian hop seeds have been sown in this farming patch."
+
+[asgarnian_hops_2]
+id = 8156
+examine = "Asgarnian hops are growing in this farming patch."
+
+[asgarnian_hops_3]
+id = 8157
+examine = "Asgarnian hops are growing in this farming patch."
+
+[asgarnian_hops_4]
+id = 8158
+examine = "Asgarnian hops are growing in this farming patch."
+
+[asgarnian_hops_fullygrown]
+id = 8159
+harvest = "asgarnian_hops"
+examine = "Asgarnian hops are growing in this farming patch."
+
+[asgarnian_hops_seed_watered]
+id = 8160
+examine = "These are fully grown Asgarnian Hops."
+
+[asgarnian_hops_1_watered]
+id = 8161
+examine = "Asgarnian hop seeds have been sown in this farming patch."
+
+[asgarnian_hops_2_watered]
+id = 8162
+examine = "Asgarnian hops are growing in this farming patch."
+
+[asgarnian_hops_3_watered]
+id = 8163
+examine = "Asgarnian hops are growing in this farming patch."
+
+[asgarnian_hops_4_watered]
+id = 8164
+examine = "Asgarnian hops are growing in this farming patch."
+
+[asgarnian_hops_1_diseased]
+id = 8165
+examine = "Asgarnian hops are growing in this farming patch."
+
+[asgarnian_hops_2_diseased]
+id = 8166
+examine = "These Asgarnian Hop plants are diseased."
+
+[asgarnian_hops_3_diseased]
+id = 8167
+examine = "These Asgarnian Hop plants are diseased."
+
+[asgarnian_hops_4_diseased]
+id = 8168
+examine = "These Asgarnian Hop plants are diseased."
+
+[asgarnian_hops_1_dead]
+id = 8169
+examine = "These Asgarnian Hop plants are diseased."
+
+[asgarnian_hops_2_dead]
+id = 8170
+examine = "These Asgarnian Hop plants have died from disease."
+
+[asgarnian_hops_3_dead]
+id = 8171
+examine = "These Asgarnian Hop plants have died from disease."
+
+[asgarnian_hops_4_dead]
+id = 8172
+examine = "These Asgarnian Hop plants have died from disease."
+
+[farming_hops_patch_yannile]
+id = 8173
+
+[farming_hops_patch_entrana]
+id = 8174
+
+[farming_hops_patch_lumbridge]
+id = 8175
+
+[farming_hops_patch_seers_village]
+id = 8176
+
+[hammerstone_hops_seed]
+id = 8177
+examine = "Hammerstone Hop seeds have been sown in this farming patch."
+
+[hammerstone_hops_1]
+id = 8178
+examine = "Hammerstone Hops are growing in this farming patch."
+
+[hammerstone_hops_2]
+id = 8179
+examine = "Hammerstone Hops are growing in this farming patch."
+
+[hammerstone_hops_3]
+id = 8180
+examine = "Hammerstone Hops are growing in this farming patch."
+
+[hammerstone_hops_fullygrown]
+id = 8181
+harvest = "hammerstone_hops"
+examine = "These are fully grown Hammerstone Hops."
+
+[hammerstone_hops_seed_watered]
+id = 8182
+examine = "Hammerstone Hop seeds have been sown in this farming patch."
+
+[hammerstone_hops_1_watered]
+id = 8183
+examine = "Hammerstone Hops are growing in this farming patch."
+
+[hammerstone_hops_2_watered]
+id = 8184
+examine = "Hammerstone Hops are growing in this farming patch."
+
+[hammerstone_hops_3_watered]
+id = 8185
+examine = "Hammerstone Hops are growing in this farming patch."
+
+[hammerstone_hops_1_diseased]
+id = 8186
+examine = "These Hammerstone Hops are diseased."
+
+[hammerstone_hops_2_diseased]
+id = 8187
+examine = "These Hammerstone Hops are diseased."
+
+[hammerstone_hops_3_diseased]
+id = 8188
+examine = "These Hammerstone Hops are diseased."
+
+[hammerstone_hops_1_dead]
+id = 8189
+examine = "These Hammerstone Hops have died from disease."
+
+[hammerstone_hops_2_dead]
+id = 8190
+examine = "These Hammerstone Hops have died from disease."
+
+[hammerstone_hops_3_dead]
+id = 8191
+examine = "These Hammerstone Hops have died from disease."
+
+[barley_seed]
+id = 8192
+examine = "Barley seeds have been sown in this farming patch."
+
+[barley_1]
+id = 8193
+examine = "Barley is growing in this farming patch."
+
+[barley_2]
+id = 8194
+examine = "Barley is growing in this farming patch."
+
+[barley_3]
+id = 8195
+examine = "Barley is growing in this farming patch."
+
+[barley_fullygrown]
+id = 8196
+harvest = "barley_malt"
+examine = "This patch is full of Barley."
+
+[barley_seed_watered]
+id = 8197
+examine = "Barley seeds have been sown in this farming patch."
+
+[barley_1_watered]
+id = 8198
+examine = "Barley is growing in this farming patch."
+
+[barley_2_watered]
+id = 8199
+examine = "Barley is growing in this farming patch."
+
+[barley_3_watered]
+id = 8200
+examine = "Barley is growing in this farming patch."
+
+[barley_1_diseased]
+id = 8201
+examine = "This Barley is diseased."
+
+[barley_2_diseased]
+id = 8202
+examine = "This Barley is diseased."
+
+[barley_3_diseased]
+id = 8203
+examine = "This Barley is diseased."
+
+[barley_1_dead]
+id = 8204
+examine = "This Barley has died from disease."
+
+[barley_2_dead]
+id = 8205
+examine = "This Barley has died from disease."
+
+[barley_3_dead]
+id = 8206
+examine = "This Barley has died from disease."
+
+[hop_patch_weeded]
+id = 8207
+examine = "You can grow hops in this Farming patch."
+
+[hop_patch_weeds_1]
+id = 8208
+examine = "You can grow hops in this Farming patch."
+
+[hop_patch_weeds_2]
+id = 8209
+examine = "You can grow hops in this Farming patch."
+
+[hop_patch_weeds_3]
+id = 8210
+examine = "You can grow hops in this Farming patch."
+
+[krandorian_hops_seed]
+id = 8211
+examine = "Krandorian Hop seeds have been planted in this farming patch."
+
+[krandorian_hops_1]
+id = 8212
+examine = "Krandorian Hops are growing in this farming patch."
+
+[krandorian_hops_2]
+id = 8213
+examine = "Krandorian Hops are growing in this farming patch."
+
+[krandorian_hops_3]
+id = 8214
+examine = "Krandorian Hops are growing in this farming patch."
+
+[krandorian_hops_4]
+id = 8215
+examine = "Krandorian Hops are growing in this farming patch."
+
+[krandorian_hops_5]
+id = 8216
+examine = "Krandorian Hops are growing in this farming patch."
+
+[krandorian_hops_6]
+id = 8217
+examine = "Krandorian Hops are growing in this farming patch."
+
+[krandorian_hops_fullygrown]
+id = 8218
+harvest = "krandorian_hops"
+examine = "These are fully grown Krandorian Hops."
+
+[krandorian_hops_seed_watered]
+id = 8219
+examine = "Krandorian Hop seeds have been planted in this farming patch."
+
+[krandorian_hops_1_watered]
+id = 8220
+examine = "Krandorian Hops are growing in this farming patch."
+
+[krandorian_hops_2_watered]
+id = 8221
+examine = "Krandorian Hops are growing in this farming patch."
+
+[krandorian_hops_3_watered]
+id = 8222
+examine = "Krandorian Hops are growing in this farming patch."
+
+[krandorian_hops_4_watered]
+id = 8223
+examine = "Krandorian Hops are growing in this farming patch."
+
+[krandorian_hops_5_watered]
+id = 8224
+examine = "Krandorian Hops are growing in this farming patch."
+
+[krandorian_hops_6_watered]
+id = 8225
+examine = "Krandorian Hops are growing in this farming patch."
+
+[krandorian_hops_1_diseased]
+id = 8226
+examine = "These Krandorian Hops are diseased."
+
+[krandorian_hops_2_diseased]
+id = 8227
+examine = "These Krandorian Hops are diseased."
+
+[krandorian_hops_3_diseased]
+id = 8228
+examine = "These Krandorian Hops are diseased."
+
+[krandorian_hops_4_diseased]
+id = 8229
+examine = "These Krandorian Hops are diseased."
+
+[krandorian_hops_5_diseased]
+id = 8230
+examine = "These Krandorian Hops are diseased."
+
+[krandorian_hops_6_diseased]
+id = 8231
+examine = "These Krandorian Hops are diseased."
+
+[krandorian_hops_1_dead]
+id = 8232
+examine = "These Krandorian Hops have died from disease."
+
+[krandorian_hops_2_dead]
+id = 8233
+examine = "These Krandorian Hops have died from disease."
+
+[krandorian_hops_3_dead]
+id = 8234
+examine = "These Krandorian Hops have died from disease."
+
+[krandorian_hops_4_dead]
+id = 8235
+examine = "These Krandorian Hops have died from disease."
+
+[krandorian_hops_5_dead]
+id = 8236
+examine = "These Krandorian Hops have died from disease."
+
+[krandorian_hops_6_dead]
+id = 8237
+examine = "These Krandorian Hops have died from disease."
+
+[jute_seed]
+id = 8238
+examine = "Jute seeds have been sown in this farming patch."
+
+[jute_1]
+id = 8239
+examine = "Jute plants are growing in this farming patch."
+
+[jute_2]
+id = 8240
+examine = "Jute plants are growing in this farming patch."
+
+[jute_3]
+id = 8241
+examine = "Jute plants are growing in this farming patch."
+
+[jute_4]
+id = 8242
+examine = "Jute plants are growing in this farming patch."
+
+[jute_fullygrown]
+id = 8243
+harvest = "jute_fibre"
+examine = "These are fully grown Jute plants."
+
+[jute_seed_watered]
+id = 8244
+examine = "Jute seeds have been sown in this farming patch."
+
+[jute_1_watered]
+id = 8245
+examine = "Jute plants are growing in this farming patch."
+
+[jute_2_watered]
+id = 8246
+examine = "Jute plants are growing in this farming patch."
+
+[jute_3_watered]
+id = 8247
+examine = "Jute plants are growing in this farming patch."
+
+[jute_4_watered]
+id = 8248
+examine = "Jute plants are growing in this farming patch."
+
+[jute_1_diseased]
+id = 8249
+examine = "These Jute plants are diseased."
+
+[jute_2_diseased]
+id = 8250
+examine = "These Jute plants are diseased."
+
+[jute_3_diseased]
+id = 8251
+examine = "These Jute plants are diseased."
+
+[jute_4_diseased]
+id = 8252
+examine = "These Jute plants are diseased."
+
+[jute_1_dead]
+id = 8253
+examine = "These Jute plants have died from disease."
+
+[jute_2_dead]
+id = 8254
+examine = "These Jute plants have died from disease."
+
+[jute_3_dead]
+id = 8255
+examine = "These Jute plants have died from disease."
+
+[jute_4_dead]
+id = 8256
+examine = "These Jute plants have died from disease."
+
+[wildblood_hops_seed]
+id = 8257
+examine = "Wildblood hop seeds have been planted in this farming patch."
+
+[wildblood_hops_1]
+id = 8258
+examine = "Wildblood Hops are growing in this farming patch."
+
+[wildblood_hops_2]
+id = 8259
+examine = "Wildblood Hops are growing in this farming patch."
+
+[wildblood_hops_3]
+id = 8260
+examine = "Wildblood Hops are growing in this farming patch."
+
+[wildblood_hops_4]
+id = 8261
+examine = "Wildblood Hops are growing in this farming patch."
+
+[wildblood_hops_5]
+id = 8262
+examine = "Wildblood Hops are growing in this farming patch."
+
+[wildblood_hops_6]
+id = 8263
+examine = "Wildblood Hops are growing in this farming patch."
+
+[wildblood_hops_7]
+id = 8264
+examine = "Wildblood Hops are growing in this farming patch."
+
+[wildblood_hops_fullygrown]
+id = 8265
+harvest = "wildblood_hops"
+examine = "These are fully grown Wildblood Hops."
+
+[wildblood_hops_seed_watered]
+id = 8266
+examine = "Wildblood hop seeds have been planted in this farming patch."
+
+[wildblood_hops_1_watered]
+id = 8267
+examine = "Wildblood Hops are growing in this farming patch."
+
+[wildblood_hops_2_watered]
+id = 8268
+examine = "Wildblood Hops are growing in this farming patch."
+
+[wildblood_hops_3_watered]
+id = 8269
+examine = "Wildblood Hops are growing in this farming patch."
+
+[wildblood_hops_4_watered]
+id = 8270
+examine = "Wildblood Hops are growing in this farming patch."
+
+[wildblood_hops_5_watered]
+id = 8271
+examine = "Wildblood Hops are growing in this farming patch."
+
+[wildblood_hops_6_watered]
+id = 8272
+examine = "Wildblood Hops are growing in this farming patch."
+
+[wildblood_hops_7_watered]
+id = 8273
+examine = "Wildblood Hops are growing in this farming patch."
+
+[wildblood_hops_1_diseased]
+id = 8274
+examine = "These Wildblood hops are diseased."
+
+[wildblood_hops_2_diseased]
+id = 8275
+examine = "These Wildblood hops are diseased."
+
+[wildblood_hops_3_diseased]
+id = 8276
+examine = "These Wildblood hops are diseased."
+
+[wildblood_hops_4_diseased]
+id = 8277
+examine = "These Wildblood hops are diseased."
+
+[wildblood_hops_5_diseased]
+id = 8278
+examine = "These Wildblood hops are diseased."
+
+[wildblood_hops_6_diseased]
+id = 8279
+examine = "These Wildblood hops are diseased."
+
+[wildblood_hops_7_diseased]
+id = 8280
+examine = "These Wildblood hops are diseased."
+
+[wildblood_hops_1_dead]
+id = 8281
+examine = "These Wildblood Hops have died from disease."
+
+[wildblood_hops_2_dead]
+id = 8282
+examine = "These Wildblood Hops have died from disease."
+
+[wildblood_hops_3_dead]
+id = 8283
+examine = "These Wildblood Hops have died from disease."
+
+[wildblood_hops_4_dead]
+id = 8284
+examine = "These Wildblood Hops have died from disease."
+
+[wildblood_hops_5_dead]
+id = 8285
+examine = "These Wildblood Hops have died from disease."
+
+[wildblood_hops_6_dead]
+id = 8286
+examine = "These Wildblood Hops have died from disease."
+
+[wildblood_hops_7_dead]
+id = 8287
+examine = "These Wildblood Hops have died from disease."
+
+[yanillian_hops_seed]
+id = 8288
+examine = "Yanillian Hop seeds have been sown in this farming patch."
+
+[yanillian_hops_1]
+id = 8289
+examine = "Yanillian Hops are growing in this farming patch."
+
+[yanillian_hops_2]
+id = 8290
+examine = "Yanillian Hops are growing in this farming patch."
+
+[yanillian_hops_3]
+id = 8291
+examine = "Yanillian Hops are growing in this farming patch."
+
+[yanillian_hops_4]
+id = 8292
+examine = "Yanillian Hops are growing in this farming patch."
+
+[yanillian_hops_5]
+id = 8293
+examine = "Yanillian Hops are growing in this farming patch."
+
+[yanillian_hops_fullygrown]
+id = 8294
+harvest = "yanillian_hops"
+examine = "These are fully grown Yanillian Hops."
+
+[yanillian_hops_seed_watered]
+id = 8295
+examine = "Yanillian Hop seeds have been sown in this farming patch."
+
+[yanillian_hops_1_watered]
+id = 8296
+examine = "Yanillian Hops are growing in this farming patch."
+
+[yanillian_hops_2_watered]
+id = 8297
+examine = "Yanillian Hops are growing in this farming patch."
+
+[yanillian_hops_3_watered]
+id = 8298
+examine = "Yanillian Hops are growing in this farming patch."
+
+[yanillian_hops_4_watered]
+id = 8299
+examine = "Yanillian Hops are growing in this farming patch."
+
+[yanillian_hops_5_watered]
+id = 8300
+examine = "Yanillian Hops are growing in this farming patch."
+
+[yanillian_hops_1_diseased]
+id = 8301
+examine = "These Yanillian Hops are diseased."
+
+[yanillian_hops_2_diseased]
+id = 8302
+examine = "These Yanillian Hops are diseased."
+
+[yanillian_hops_3_diseased]
+id = 8303
+examine = "These Yanillian Hops are diseased."
+
+[yanillian_hops_4_diseased]
+id = 8304
+examine = "These Yanillian Hops are diseased."
+
+[yanillian_hops_5_diseased]
+id = 8305
+examine = "These Yanillian Hops are diseased."
+
+[yanillian_hops_1_dead]
+id = 8306
+examine = "These Yanillian Hops have died from disease."
+
+[yanillian_hops_2_dead]
+id = 8307
+examine = "These Yanillian Hops have died from disease."
+
+[yanillian_hops_3_dead]
+id = 8308
+examine = "These Yanillian Hops have died from disease."
+
+[yanillian_hops_4_dead]
+id = 8309
+examine = "These Yanillian Hops have died from disease."
+
+[yanillian_hops_5_dead]
+id = 8310
+examine = "These Yanillian Hops have died from disease."

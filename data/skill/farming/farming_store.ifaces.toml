@@ -1,0 +1,66 @@
+[farming_equipment_store]
+id = 125
+
+[.rake]
+id = 21
+
+[.seed_dibber]
+id = 19
+
+[.spade]
+id = 17
+
+[.gardening_trowel]
+id = 15
+
+[.secateurs]
+id = 13
+
+[.watering_can]
+id = 11
+
+[.scarecrow]
+id = 9
+
+[.bucket]
+id = 7
+
+[.compost]
+id = 5
+
+[.supercompost]
+id = 3
+
+[farming_equipment_store_side]
+id = 126
+type = "overlay_tab"
+
+[.rake]
+id = 4
+
+[.seed_dibber]
+id = 7
+
+[.spade]
+id = 10
+
+[.secateurs]
+id = 13
+
+[.watering_can]
+id = 16
+
+[.gardening_trowel]
+id = 19
+
+[.scarecrow]
+id = 25
+
+[.bucket]
+id = 22
+
+[.compost]
+id = 28
+
+[.supercompost]
+id = 31

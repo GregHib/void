@@ -1,6 +1,7 @@
 [woad_leaf_2]
 id = 5738
 limit = 100
+compostable = true
 examine = "A slightly bluish leaf."
 
 [jute_fibre]
@@ -8,7 +9,12 @@ id = 5931
 price = 365
 limit = 5000
 weight = 0.226
+compostable = true
 weaving = { amount = 4, to = "empty_sack", level = 21, xp = 38.0 }
+farming_xp = 14.5
+farming_chance = "113-180"
+farming_protect_id = "barley_malt"
+farming_protect_amount = 6
 examine = "I can weave this to make sacks."
 
 [jute_fibre_noted]
@@ -19,6 +25,7 @@ id = 5933
 price = 986
 limit = 200
 weight = 0.907
+compostable = true
 weaving = { amount = 6, to = "basket", level = 36, xp = 56.0 }
 examine = "A branch from a willow tree."
 
@@ -86,6 +93,10 @@ id = 5970
 price = 333
 limit = 5000
 weight = 0.028
+compostable = true
+farming_xp = 15.0
+farming_protect_id = "bananas_5"
+farming_protect_amount = 5
 examine = "I could make a spicy curry with this."
 
 [curry_leaf_noted]
@@ -97,6 +108,11 @@ price = 1422
 limit = 5000
 heals = 50
 weight = 0.028
+compostable = true
+super_compost = true
+farming_xp = 27.0
+farming_protect_id = "pineapple"
+farming_protect_amount = 10
 examine = "Looks delicious."
 
 [papaya_fruit_noted]
@@ -107,6 +123,11 @@ id = 5974
 price = 1771
 limit = 5000
 weight = 0.028
+compostable = true
+super_compost = true
+farming_xp = 41.5
+farming_protect_id = "papaya_fruit"
+farming_protect_amount = 15
 examine = "It's a coconut."
 
 [coconut_noted]
@@ -117,6 +138,8 @@ id = 5976
 price = 1136
 limit = 1000
 weight = 0.028
+compostable = true
+super_compost = true
 examine = "It's a coconut."
 
 [coconut_open_noted]
@@ -127,6 +150,8 @@ id = 5978
 price = 55
 limit = 1000
 weight = 0.028
+compostable = true
+super_compost = true
 examine = "All the milk has been removed."
 
 [coconut_shell_noted]
@@ -137,6 +162,8 @@ id = 5980
 price = 46
 limit = 100
 weight = 0.028
+compostable = true
+super_compost = true
 examine = "This is the largest fruit I've ever seen."
 
 [calquat_fruit_noted]
@@ -147,6 +174,13 @@ id = 5982
 price = 57
 limit = 10000
 weight = 0.113
+compostable = true
+super_compost = true
+farming_level = 48.5
+farming_xp = 54.5
+farming_chance = "126-180"
+farming_protect_id = "curry_leaf"
+farming_protect_amount = 10
 examine = "A juicy watermelon."
 
 [watermelon_noted]
@@ -158,6 +192,7 @@ price = 38
 limit = 1000
 heals = 50
 weight = 0.028
+compostable = true
 examine = "A slice of watermelon."
 
 [watermelon_slice_noted]
@@ -168,6 +203,12 @@ id = 5986
 price = 24
 limit = 10000
 weight = 0.028
+compostable = true
+farming_level = 20
+farming_xp = 19.0
+farming_chance = "88-180"
+farming_protect_id = "jute_fibre"
+farming_protect_amount = 10
 cooking = { level = 28, xp = 104.0, chances = { range = "65-382" }, cooked = "cooked_sweetcorn", cooked_message = "You cook some sweetcorn.", burnt = "burnt_sweetcorn", burnt_message = "You accidentally burn the sweetcorn." }
 examine = "Raw sweetcorn."
 
@@ -198,8 +239,9 @@ price = 396
 limit = 100
 weight = 1.1
 empty = "bucket"
-examine = "A bucket of apple mush."
+compostable = true
 kept = "Wilderness"
+examine = "A bucket of apple mush."
 
 [apple_mush_noted]
 id = 5993
@@ -209,6 +251,10 @@ id = 5994
 price = 11
 limit = 1000
 weight = 0.028
+farming_xp = 10.0
+farming_chance = "104-180"
+compostable = true
+farming_protect_id = "marigold"
 examine = "A handful of Hammerstone Hops."
 
 [hammerstone_hops_noted]
@@ -219,6 +265,10 @@ id = 5996
 price = 7
 limit = 1000
 weight = 0.028
+compostable = true
+farming_xp = 12.0
+farming_chance = "108-180"
+farming_protect_id = "onions_10"
 examine = "A handful of Asgarnian Hops."
 
 [asgarnian_hops_noted]
@@ -229,6 +279,10 @@ id = 5998
 price = 1
 limit = 1000
 weight = 0.028
+compostable = true
+farming_xp = 16.0
+farming_chance = "116-180"
+farming_protect_id = "tomatoes_5"
 examine = "A handful of Yanillian Hops."
 
 [yanillian_hops_noted]
@@ -239,6 +293,11 @@ id = 6000
 price = 4
 limit = 1000
 weight = 0.028
+compostable = true
+farming_xp = 19.5
+farming_chance = "121-180"
+farming_protect_id = "cabbages_10"
+farming_protect_amount = 3
 examine = "A handful of Krandorian Hops."
 
 [krandorian_hops_noted]
@@ -249,6 +308,10 @@ id = 6002
 price = 28
 limit = 1000
 weight = 0.028
+compostable = true
+farming_xp = 26.0
+farming_chance = "128-180"
+farming_protect_id = "nasturtiums"
 examine = "A handful of Wildblood Hops."
 
 [wildblood_hops_noted]
@@ -259,6 +322,8 @@ id = 6004
 price = 59
 limit = 10000
 weight = 0.028
+compostable = true
+super_compost = true
 examine = "A bittercap mushroom"
 
 [bittercap_mushroom_noted]
@@ -269,8 +334,9 @@ id = 6006
 price = 207
 limit = 1000
 weight = 0.028
-examine = "A handful of Barley."
+compostable = true
 kept = "Wilderness"
+examine = "A handful of Barley."
 
 [barley_noted]
 id = 6007
@@ -280,6 +346,11 @@ id = 6008
 price = 269
 limit = 1000
 weight = 0.028
+compostable = true
+farming_xp = 9.5
+farming_chance = "103-180"
+farming_protect_id = "compost"
+farming_protect_amount = 3
 examine = "A handful of barley malt."
 
 [barley_malt_noted]
@@ -290,6 +361,8 @@ id = 6010
 price = 4226
 limit = 1000
 weight = 0.028
+farming_xp = 47.0
+compostable = true
 examine = "A bunch of marigolds."
 
 [marigolds_noted]
@@ -300,6 +373,8 @@ id = 6012
 price = 145
 limit = 1000
 weight = 0.028
+compostable = true
+farming_xp = 111.0
 examine = "A bunch of nasturtiums."
 
 [nasturtiums_noted]
@@ -310,6 +385,8 @@ id = 6014
 price = 84
 limit = 1000
 weight = 0.028
+compostable = true
+farming_xp = 66.5
 examine = "Some rosemary."
 
 [rosemary_noted]
@@ -320,6 +397,8 @@ id = 6016
 price = 6934
 limit = 10000
 weight = 0.028
+compostable = true
+farming_xp = 25.0
 examine = "Don't prick yourself with this."
 
 [cactus_spine_noted]
@@ -330,6 +409,9 @@ id = 6018
 price = 507
 limit = 10000
 weight = 0.007
+compostable = true
+super_compost = true
+farming_xp = 45.0
 examine = "They look sweet and juicy, but only a fool would eat them."
 
 [poison_ivy_berries_noted]
@@ -340,6 +422,7 @@ id = 6020
 price = 119
 limit = 100
 weight = 0.028
+compostable = true
 examine = "A pile of leaves."
 
 [leaves_noted]
@@ -350,6 +433,7 @@ id = 6022
 price = 23
 limit = 100
 weight = 0.028
+compostable = true
 examine = "A pile of Oak tree leaves."
 
 [leaves_oak_noted]
@@ -360,6 +444,7 @@ id = 6024
 price = 19
 limit = 100
 weight = 0.028
+compostable = true
 examine = "A pile of Willow tree leaves."
 
 [leaves_willow_noted]
@@ -370,6 +455,7 @@ id = 6026
 price = 6
 limit = 100
 weight = 0.028
+compostable = true
 examine = "A pile of Yew tree leaves."
 
 [leaves_yew_noted]
@@ -380,6 +466,7 @@ id = 6028
 price = 10
 limit = 100
 weight = 0.028
+compostable = true
 examine = "A pile of Maple tree leaves."
 
 [leaves_maple_noted]
@@ -390,6 +477,7 @@ id = 6030
 price = 3
 limit = 100
 weight = 0.028
+compostable = true
 examine = "A pile of Magic tree leaves."
 
 [leaves_magic_noted]
@@ -400,6 +488,8 @@ id = 6043
 price = 78
 limit = 100
 weight = 0.001
+compostable = true
+super_compost = true
 spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
 examine = "The roots of the Oak tree."
 
@@ -411,6 +501,8 @@ id = 6045
 price = 40
 limit = 100
 weight = 0.001
+compostable = true
+super_compost = true
 spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
 examine = "The roots of the Willow tree."
 
@@ -422,6 +514,8 @@ id = 6047
 price = 32
 limit = 100
 weight = 0.001
+compostable = true
+super_compost = true
 spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
 examine = "The roots of the Maple tree."
 
@@ -433,6 +527,8 @@ id = 6049
 price = 533
 limit = 100
 weight = 0.001
+compostable = true
+super_compost = true
 spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
 examine = "The roots of the Yew tree."
 
@@ -444,6 +540,8 @@ id = 6051
 price = 6629
 limit = 100
 weight = 0.001
+compostable = true
+super_compost = true
 spinning = { to = "magic_string", level = 19, xp = 30.0 }
 examine = "The roots of the Magic tree."
 
@@ -452,8 +550,9 @@ id = 6052
 
 [weeds]
 id = 6055
-examine = "A handful of weeds."
+compostable = true
 kept = "Wilderness"
+examine = "A handful of weeds."
 
 [weeds_noted]
 id = 6056

@@ -32,6 +32,8 @@ class Examines : Script {
         interfaceOption("Examine", "trade_main:other_warning", ::examineItem)
         interfaceOption("Examine", "trade_main:loan_item", ::examineItem)
         interfaceOption("Examine", "trade_main:other_loan_item", ::examineItem)
+        interfaceOption("Examine", "farming_equipment_store_side:*", ::examineItem)
+        interfaceOption("Examine", "farming_equipment_store:*", ::examineItem)
 
         itemOption("Examine", inventory = "*") { (item) ->
             message(item.def.getOrNull("examine") ?: return@itemOption, ChatType.ItemExamine)

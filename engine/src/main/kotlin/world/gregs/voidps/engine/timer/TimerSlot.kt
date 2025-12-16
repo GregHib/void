@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.timer
 
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.npc.NPC
 
 class TimerSlot(
@@ -61,5 +62,12 @@ class TimerSlot(
             TimerApi.stop(npc, timer!!.name, death = true)
         }
         timer = null
+    }
+
+    override fun remaining(name: String): Int {
+        if (timer?.name != name) {
+            return -1
+        }
+        return timer!!.nextTick - GameLoop.tick
     }
 }

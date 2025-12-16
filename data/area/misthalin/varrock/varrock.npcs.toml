@@ -248,6 +248,7 @@ examine = "He has a certain bovine aroma."
 
 [dreven]
 id = 2335
+patch = "farming_bush_patch_varrock"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [ellamaria]
@@ -726,6 +727,7 @@ examine = "One of Gertrude's sons."
 
 [treznor]
 id = 2341
+patch = "farming_tree_patch_varrock"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [ambassador_ferrnook]

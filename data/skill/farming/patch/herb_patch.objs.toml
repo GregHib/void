@@ -1,0 +1,154 @@
+[herb_patch_weeded]
+id = 8132
+examine = "You can grow herbs in this Farming patch."
+
+[herb_patch_weeds_1]
+id = 8133
+examine = "You can grow herbs in this Farming patch."
+
+[herb_patch_weeds_2]
+id = 8134
+examine = "You can grow herbs in this Farming patch."
+
+[herb_patch_weeds_3]
+id = 8135
+examine = "You can grow herbs in this Farming patch."
+
+[herb_patch_weeds_1_mory]
+id = 8136
+examine = "You can grow herbs in this Farming patch."
+
+[herb_patch_weeds_2_mory]
+id = 8137
+examine = "You can grow herbs in this Farming patch."
+
+[herb_patch_weeds_3_mory]
+id = 8138
+examine = "You can grow herbs in this Farming patch."
+
+[guam_seed]
+id = 8139
+examine = "Some herb seeds have been sown in this patch."
+
+[guam_2]
+id = 8140
+examine = "A herb is growing in this patch."
+
+[guam_3]
+id = 8141
+examine = "A herb is growing in this patch."
+
+[guam_4]
+id = 8142
+examine = "A herb is growing in this patch."
+
+[guam_fullygrown]
+id = 8143
+examine = "A fully grown herb."
+
+[guam_1_diseased]
+id = 8144
+examine = "These herbs have become diseased."
+
+[guam_2_diseased]
+id = 8145
+examine = "These herbs have become diseased."
+
+[guam_3_diseased]
+id = 8146
+examine = "These herbs have become diseased."
+
+[guam_1_dead]
+id = 8147
+examine = "These herbs have become diseased and died."
+
+[guam_2_dead]
+id = 8148
+examine = "These herbs have become diseased and died."
+
+[guam_3_dead]
+id = 8149
+examine = "These herbs have become diseased and died."
+
+[farming_herb_patch_falador]
+id = 8150
+
+[farming_herb_patch_catherby]
+id = 8151
+
+[farming_herb_patch_ardougne]
+id = 8152
+
+[farming_herb_patch_morytania]
+id = 8153
+
+[farming_herb_patch_my_arm]
+id = 18816
+
+[goutweed_seed]
+id = 9044
+examine = "Some goutweed is growing in this patch."
+
+[goutweed_1]
+id = 9045
+examine = "Some goutweed is growing in this patch."
+
+[goutweed_2]
+id = 9046
+examine = "Some goutweed is growing in this patch."
+
+[goutweed_3]
+id = 9047
+examine = "Some goutweed is growing in this patch."
+
+[goutweed_fullygrown]
+id = 9048
+examine = "Some fully grown goutweed."
+
+[goutweed_1_diseased]
+id = 9049
+examine = "This goutweed has become diseased."
+
+[goutweed_2_diseased]
+id = 9050
+examine = "This goutweed has become diseased."
+
+[goutweed_3_diseased]
+id = 9051
+examine = "This goutweed has become diseased."
+
+[goutweed_1_dead]
+id = 9052
+examine = "This goutweed has become diseased and died."
+
+[goutweed_2_dead]
+id = 9053
+examine = "This goutweed has become diseased and died."
+
+[goutweed_3_dead]
+id = 9054
+examine = "This goutweed has become diseased and died."
+
+[wergali_seed]
+id = 21101
+examine = "Some herb seeds have been sown in this patch."
+
+[wergali_1]
+id = 21127
+examine = "A herb is growing in this patch."
+
+[wergali_2]
+id = 21159
+examine = "A herb is growing in this patch."
+
+[wergali_3]
+id = 21159
+examine = "A herb is growing in this patch."
+
+[wergali_4]
+id = 21178
+examine = "A herb is growing in this patch."
+
+[wergali_fullygrown]
+id = 21185
+examine = "A herb is growing in this patch."

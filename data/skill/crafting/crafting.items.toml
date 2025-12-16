@@ -793,6 +793,7 @@ id = 1779
 price = 67
 limit = 25000
 weight = 0.453
+compostable = true
 spinning = { to = "bowstring", level = 10, xp = 15.0 }
 weaving = { amount = 5, to = "unfinished_net", level = 52 }
 examine = "I should use this with a spinning wheel."
@@ -868,6 +869,8 @@ id = 1792
 id = 1793
 price = 12
 limit = 100
+compostable = true
+farming_xp = 115.5
 examine = "A slightly bluish leaf."
 
 [bronze_wire]

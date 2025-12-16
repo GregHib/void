@@ -1,0 +1,705 @@
+[bush_patch_weeded]
+id = 7573
+examine = "You can grow bushes in this Farming patch."
+
+[bush_patch_weeds_1]
+id = 7574
+examine = "You can grow bushes in this Farming patch."
+
+[bush_patch_weeds_2]
+id = 7575
+examine = "You can grow bushes in this Farming patch."
+
+[bush_patch_weeds_3]
+id = 7576
+examine = "You can grow bushes in this Farming patch."
+
+[farming_bush_patch_varrock]
+id = 7577
+
+[farming_bush_patch_rimmington]
+id = 7578
+
+[farming_bush_patch_etceteria]
+id = 7579
+
+[farming_bush_patch_ardougne]
+id = 7580
+
+[cadavaberry_bush_seedling]
+id = 7581
+examine = "A cadavaberry bush is growing in this Farming patch."
+
+[cadavaberry_bush_1]
+id = 7582
+examine = "A cadavaberry bush is growing in this Farming patch."
+
+[cadavaberry_bush_2]
+id = 7583
+examine = "A cadavaberry bush is growing in this Farming patch."
+
+[cadavaberry_bush_3]
+id = 7584
+examine = "A cadavaberry bush is growing in this Farming patch."
+
+[cadavaberry_bush_4]
+id = 7585
+examine = "A cadavaberry bush is growing in this Farming patch."
+
+[cadavaberry_bush_5]
+id = 7586
+examine = "A cadavaberry bush is growing in this Farming patch."
+
+[cadavaberry_bush_fullygrown]
+id = 7587
+examine = "A fully grown cadavaberry bush."
+
+[cadavaberry_bush_berry_1]
+id = 7588
+harvest = "cadava_berries"
+examine = "A fully grown cadavaberry bush."
+
+[cadavaberry_bush_berry_2]
+id = 7589
+harvest = "cadava_berries"
+examine = "A fully grown cadavaberry bush."
+
+[cadavaberry_bush_berry_3]
+id = 7590
+harvest = "cadava_berries"
+examine = "A fully grown cadavaberry bush."
+
+[cadavaberry_bush_berry_4]
+id = 7591
+harvest = "cadava_berries"
+examine = "A fully grown cadavaberry bush."
+
+[cadavaberry_bush_claim_xp]
+id = 7592
+farming_xp = 102.5
+examine = "A fully grown cadavaberry bush."
+
+[cadavaberry_bush_1_diseased]
+id = 7593
+examine = "This diseased cadavaberry bush needs pruning."
+
+[cadavaberry_bush_2_diseased]
+id = 7594
+examine = "This diseased cadavaberry bush needs pruning."
+
+[cadavaberry_bush_3_diseased]
+id = 7595
+examine = "This diseased cadavaberry bush needs pruning."
+
+[cadavaberry_bush_4_diseased]
+id = 7596
+examine = "This diseased cadavaberry bush needs pruning."
+
+[cadavaberry_bush_5_diseased]
+id = 7597
+examine = "This diseased cadavaberry bush needs pruning."
+
+[cadavaberry_bush_fullygrown_diseased]
+id = 7598
+examine = "This diseased cadavaberry bush needs pruning."
+
+[cadavaberry_bush_1_dead]
+id = 7599
+examine = "This cadavaberry bush has died."
+
+[cadavaberry_bush_2_dead]
+id = 7600
+examine = "This cadavaberry bush has died."
+
+[cadavaberry_bush_3_dead]
+id = 7601
+examine = "This cadavaberry bush has died."
+
+[cadavaberry_bush_4_dead]
+id = 7602
+examine = "This cadavaberry bush has died."
+
+[cadavaberry_bush_5_dead]
+id = 7603
+examine = "This cadavaberry bush has died."
+
+[cadavaberry_bush_fullygrown_dead]
+id = 7604
+examine = "This cadavaberry bush has died."
+
+[dwellberry_bush_seedling]
+id = 7605
+examine = "A dwellberry bush is growing in this Farming patch."
+
+[dwellberry_bush_1]
+id = 7606
+examine = "A dwellberry bush is growing in this Farming patch."
+
+[dwellberry_bush_2]
+id = 7607
+examine = "A dwellberry bush is growing in this Farming patch."
+
+[dwellberry_bush_3]
+id = 7608
+examine = "A dwellberry bush is growing in this Farming patch."
+
+[dwellberry_bush_4]
+id = 7609
+examine = "A dwellberry bush is growing in this Farming patch."
+
+[dwellberry_bush_5]
+id = 7610
+examine = "A dwellberry bush is growing in this Farming patch."
+
+[dwellberry_bush_6]
+id = 7611
+examine = "A dwellberry bush is growing in this Farming patch."
+
+[dwellberry_bush_fullygrown]
+id = 7612
+examine = "A fully grown dwellberry bush."
+
+[dwellberry_bush_berry_1]
+id = 7613
+harvest = "dwellberries"
+examine = "A fully grown dwellberry bush."
+
+[dwellberry_bush_berry_2]
+id = 7614
+harvest = "dwellberries"
+examine = "A fully grown dwellberry bush."
+
+[dwellberry_bush_berry_3]
+id = 7615
+harvest = "dwellberries"
+examine = "A fully grown dwellberry bush."
+
+[dwellberry_bush_berry_4]
+id = 7616
+harvest = "dwellberries"
+examine = "A fully grown dwellberry bush."
+
+[dwellberry_bush_claim_xp]
+id = 7617
+farming_xp = 177.5
+examine = "A fully grown dwellberry bush."
+
+[dwellberry_bush_1_diseased]
+id = 7618
+examine = "This diseased dwellberry bush needs pruning."
+
+[dwellberry_bush_2_diseased]
+id = 7619
+examine = "This diseased dwellberry bush needs pruning."
+
+[dwellberry_bush_3_diseased]
+id = 7620
+examine = "This diseased dwellberry bush needs pruning."
+
+[dwellberry_bush_4_diseased]
+id = 7621
+examine = "This diseased dwellberry bush needs pruning."
+
+[dwellberry_bush_5_diseased]
+id = 7622
+examine = "This diseased dwellberry bush needs pruning."
+
+[dwellberry_bush_6_diseased]
+id = 7623
+examine = "This diseased dwellberry bush needs pruning."
+
+[dwellberry_bush_fullygrown_diseased]
+id = 7624
+examine = "This diseased dwellberry bush needs pruning."
+
+[dwellberry_bush_1_dead]
+id = 7625
+examine = "This dwellberry bush has died."
+
+[dwellberry_bush_2_dead]
+id = 7626
+examine = "This dwellberry bush has died."
+
+[dwellberry_bush_3_dead]
+id = 7627
+examine = "This dwellberry bush has died."
+
+[dwellberry_bush_4_dead]
+id = 7628
+examine = "This dwellberry bush has died."
+
+[dwellberry_bush_5_dead]
+id = 7629
+examine = "This dwellberry bush has died."
+
+[dwellberry_bush_6_dead]
+id = 7630
+examine = "This dwellberry bush has died."
+
+[dwellberry_bush_fullygrown_dead]
+id = 7631
+examine = "This dwellberry bush has died."
+
+[jangerberry_bush_seedling]
+id = 7632
+examine = "A jangerberry bush is growing in this Farming patch."
+
+[jangerberry_bush_1]
+id = 7633
+examine = "A jangerberry bush is growing in this Farming patch."
+
+[jangerberry_bush_2]
+id = 7634
+examine = "A jangerberry bush is growing in this Farming patch."
+
+[jangerberry_bush_3]
+id = 7635
+examine = "A jangerberry bush is growing in this Farming patch."
+
+[jangerberry_bush_4]
+id = 7636
+examine = "A jangerberry bush is growing in this Farming patch."
+
+[jangerberry_bush_5]
+id = 7637
+examine = "A jangerberry bush is growing in this Farming patch."
+
+[jangerberry_bush_6]
+id = 7638
+examine = "A jangerberry bush is growing in this Farming patch."
+
+[jangerberry_bush_7]
+id = 7639
+examine = "A jangerberry bush is growing in this Farming patch."
+
+[jangerberry_bush_fullygrown]
+id = 7640
+examine = "A fully grown jangerberry bush."
+
+[jangerberry_bush_berry_1]
+id = 7641
+harvest = "jangerberries"
+examine = "A fully grown jangerberry bush."
+
+[jangerberry_bush_berry_2]
+id = 7642
+harvest = "jangerberries"
+examine = "A fully grown jangerberry bush."
+
+[jangerberry_bush_berry_3]
+id = 7643
+harvest = "jangerberries"
+examine = "A fully grown jangerberry bush."
+
+[jangerberry_bush_berry_4]
+id = 7644
+harvest = "jangerberries"
+examine = "A fully grown jangerberry bush."
+
+[jangerberry_bush_claim_xp]
+id = 7645
+farming_xp = 284.5
+examine = "A fully grown jangerberry bush."
+
+[jangerberry_bush_1_diseased]
+id = 7646
+examine = "This diseased jangerberry bush needs pruning."
+
+[jangerberry_bush_2_diseased]
+id = 7647
+examine = "This diseased jangerberry bush needs pruning."
+
+[jangerberry_bush_3_diseased]
+id = 7648
+examine = "This diseased jangerberry bush needs pruning."
+
+[jangerberry_bush_4_diseased]
+id = 7649
+examine = "This diseased jangerberry bush needs pruning."
+
+[jangerberry_bush_5_diseased]
+id = 7650
+examine = "This diseased jangerberry bush needs pruning."
+
+[jangerberry_bush_6_diseased]
+id = 7651
+examine = "This diseased jangerberry bush needs pruning."
+
+[jangerberry_bush_7_diseased]
+id = 7652
+examine = "This diseased jangerberry bush needs pruning."
+
+[jangerberry_bush_fullygrown_diseased]
+id = 7653
+examine = "This diseased jangerberry bush needs pruning."
+
+[jangerberry_bush_1_dead]
+id = 7654
+examine = "This jangerberry bush has died."
+
+[jangerberry_bush_2_dead]
+id = 7655
+examine = "This jangerberry bush has died."
+
+[jangerberry_bush_3_dead]
+id = 7656
+examine = "This jangerberry bush has died."
+
+[jangerberry_bush_4_dead]
+id = 7657
+examine = "This jangerberry bush has died."
+
+[jangerberry_bush_5_dead]
+id = 7658
+examine = "This jangerberry bush has died."
+
+[jangerberry_bush_6_dead]
+id = 7659
+examine = "This jangerberry bush has died."
+
+[jangerberry_bush_7_dead]
+id = 7660
+examine = "This jangerberry bush has died."
+
+[jangerberry_bush_fullygrown_dead]
+id = 7661
+examine = "This jangerberry bush has died."
+
+[poisonivy_bush_seedling]
+id = 7662
+examine = "A Poison Ivy bush is growing in this Farming patch."
+
+[poisonivy_bush_1]
+id = 7663
+examine = "A Poison Ivy bush is growing in this Farming patch."
+
+[poisonivy_bush_2]
+id = 7664
+examine = "A Poison Ivy bush is growing in this Farming patch."
+
+[poisonivy_bush_3]
+id = 7665
+examine = "A Poison Ivy bush is growing in this Farming patch."
+
+[poisonivy_bush_4]
+id = 7666
+examine = "A Poison Ivy bush is growing in this Farming patch."
+
+[poisonivy_bush_5]
+id = 7667
+examine = "A Poison Ivy bush is growing in this Farming patch."
+
+[poisonivy_bush_6]
+id = 7668
+examine = "A Poison Ivy bush is growing in this Farming patch."
+
+[poisonivy_bush_7]
+id = 7669
+examine = "A Poison Ivy bush is growing in this Farming patch."
+
+[poisonivy_bush_fullygrown]
+id = 7670
+examine = "A fully grown Poison Ivy bush."
+
+[poisonivy_bush_berry_1]
+id = 7671
+harvest = "poison_ivy_berries"
+examine = "A fully grown Poison Ivy bush."
+
+[poisonivy_bush_berry_2]
+id = 7672
+harvest = "poison_ivy_berries"
+examine = "A fully grown Poison Ivy bush."
+
+[poisonivy_bush_berry_3]
+id = 7673
+harvest = "poison_ivy_berries"
+examine = "A fully grown Poison Ivy bush."
+
+[poisonivy_bush_berry_4]
+id = 7674
+harvest = "poison_ivy_berries"
+examine = "A fully grown Poison Ivy bush."
+
+[poisonivy_bush_claim_xp]
+id = 7675
+farming_xp = 675.0
+examine = "A fully grown Poison Ivy bush."
+
+[poisonivy_bush_1_diseased]
+id = 7676
+examine = "This diseased Poison Ivy bush needs pruning."
+
+[poisonivy_bush_2_diseased]
+id = 7677
+examine = "This diseased Poison Ivy bush needs pruning."
+
+[poisonivy_bush_3_diseased]
+id = 7678
+examine = "This diseased Poison Ivy bush needs pruning."
+
+[poisonivy_bush_4_diseased]
+id = 7679
+examine = "This diseased Poison Ivy bush needs pruning."
+
+[poisonivy_bush_5_diseased]
+id = 7680
+examine = "This diseased Poison Ivy bush needs pruning."
+
+[poisonivy_bush_6_diseased]
+id = 7681
+examine = "This diseased Poison Ivy bush needs pruning."
+
+[poisonivy_bush_7_diseased]
+id = 7682
+examine = "This diseased Poison Ivy bush needs pruning."
+
+[poisonivy_bush_fullygrown_diseased]
+id = 7683
+examine = "This diseased Poison Ivy bush needs pruning."
+
+[poisonivy_bush_1_dead]
+id = 7684
+examine = "This Poison Ivy bush has died."
+
+[poisonivy_bush_2_dead]
+id = 7685
+examine = "This Poison Ivy bush has died."
+
+[poisonivy_bush_3_dead]
+id = 7686
+examine = "This Poison Ivy bush has died."
+
+[poisonivy_bush_4_dead]
+id = 7687
+examine = "This Poison Ivy bush has died."
+
+[poisonivy_bush_5_dead]
+id = 7688
+examine = "This Poison Ivy bush has died."
+
+[poisonivy_bush_6_dead]
+id = 7689
+examine = "This Poison Ivy bush has died."
+
+[poisonivy_bush_7_dead]
+id = 7690
+examine = "This Poison Ivy bush has died."
+
+[poisonivy_bush_fullygrown_dead]
+id = 7691
+examine = "This Poison Ivy bush has died."
+
+[redberry_bush_seedling]
+id = 7692
+examine = "This Poison Ivy bush has died."
+
+[redberry_bush_1]
+id = 7693
+examine = "A redberry bush is growing in this Farming patch."
+
+[redberry_bush_2]
+id = 7694
+examine = "A redberry bush is growing in this Farming patch."
+
+[redberry_bush_3]
+id = 7695
+examine = "A redberry bush is growing in this Farming patch."
+
+[redberry_bush_4]
+id = 7696
+examine = "A redberry bush is growing in this Farming patch."
+
+[redberry_bush_fullygrown]
+id = 7697
+examine = "A fully grown redberry bush."
+
+[redberry_bush_berry_1]
+id = 7692
+harvest = "redberries"
+examine = "A fully grown redberry bush."
+
+[redberry_bush_berry_2]
+id = 7699
+harvest = "redberries"
+examine = "A fully grown redberry bush."
+
+[redberry_bush_berry_3]
+id = 7700
+harvest = "redberries"
+examine = "A fully grown redberry bush."
+
+[redberry_bush_berry_4]
+id = 7701
+harvest = "redberries"
+examine = "A fully grown redberry bush."
+
+[redberry_bush_claim_xp]
+id = 7702
+farming_xp = 64.0
+examine = "A fully grown redberry bush."
+
+[redberry_bush_1_diseased]
+id = 7703
+examine = "This diseased redberry bush needs pruning."
+
+[redberry_bush_2_diseased]
+id = 7704
+examine = "This diseased redberry bush needs pruning."
+
+[redberry_bush_3_diseased]
+id = 7705
+examine = "This diseased redberry bush needs pruning."
+
+[redberry_bush_4_diseased]
+id = 7706
+examine = "This diseased redberry bush needs pruning."
+
+[redberry_bush_fullygrown_diseased]
+id = 7707
+examine = "This diseased redberry bush needs pruning."
+
+[redberry_bush_1_dead]
+id = 7708
+examine = "This redberry bush has died."
+
+[redberry_bush_2_dead]
+id = 7709
+examine = "This redberry bush has died."
+
+[redberry_bush_3_dead]
+id = 7710
+examine = "This redberry bush has died."
+
+[redberry_bush_4_dead]
+id = 7711
+examine = "This redberry bush has died."
+
+[redberry_bush_fullygrown_dead]
+id = 7712
+examine = "This redberry bush has died."
+
+[whiteberry_bush_seedling]
+id = 7713
+examine = "A whiteberry bush is growing in this Farming patch."
+
+[whiteberry_bush_1]
+id = 7714
+examine = "A whiteberry bush is growing in this Farming patch."
+
+[whiteberry_bush_2]
+id = 7715
+examine = "A whiteberry bush is growing in this Farming patch."
+
+[whiteberry_bush_3]
+id = 7716
+examine = "A whiteberry bush is growing in this Farming patch."
+
+[whiteberry_bush_4]
+id = 7717
+examine = "A whiteberry bush is growing in this Farming patch."
+
+[whiteberry_bush_5]
+id = 7718
+examine = "A whiteberry bush is growing in this Farming patch."
+
+[whiteberry_bush_6]
+id = 7719
+examine = "A whiteberry bush is growing in this Farming patch."
+
+[whiteberry_bush_7]
+id = 7720
+examine = "A whiteberry bush is growing in this Farming patch."
+
+[whiteberry_bush_fullygrown]
+id = 7721
+examine = "A fully grown whiteberry bush."
+
+[whiteberry_bush_berry_1]
+id = 7722
+harvest = "white_berries"
+examine = "A fully grown whiteberry bush."
+
+[whiteberry_bush_berry_2]
+id = 7723
+harvest = "white_berries"
+examine = "A fully grown whiteberry bush."
+
+[whiteberry_bush_berry_3]
+id = 7724
+harvest = "white_berries"
+examine = "A fully grown whiteberry bush."
+
+[whiteberry_bush_berry_4]
+id = 7725
+harvest = "white_berries"
+examine = "A fully grown whiteberry bush."
+
+[whiteberry_bush_claim_xp]
+id = 7726
+farming_xp = 437.5
+examine = "A fully grown whiteberry bush."
+
+[whiteberry_bush_1_diseased]
+id = 7727
+examine = "This diseased whiteberry bush needs pruning."
+
+[whiteberry_bush_2_diseased]
+id = 7728
+examine = "This diseased whiteberry bush needs pruning."
+
+[whiteberry_bush_3_diseased]
+id = 7729
+examine = "This diseased whiteberry bush needs pruning."
+
+[whiteberry_bush_4_diseased]
+id = 7730
+examine = "This diseased whiteberry bush needs pruning."
+
+[whiteberry_bush_5_diseased]
+id = 7731
+examine = "This diseased whiteberry bush needs pruning."
+
+[whiteberry_bush_6_diseased]
+id = 7732
+examine = "This diseased whiteberry bush needs pruning."
+
+[whiteberry_bush_7_diseased]
+id = 7733
+examine = "This diseased whiteberry bush needs pruning."
+
+[whiteberry_bush_fullygrown_diseased]
+id = 7734
+examine = "This diseased whiteberry bush needs pruning."
+
+[whiteberry_bush_1_dead]
+id = 7735
+examine = "This whiteberry bush has died."
+
+[whiteberry_bush_2_dead]
+id = 7736
+examine = "This whiteberry bush has died."
+
+[whiteberry_bush_3_dead]
+id = 7737
+examine = "This whiteberry bush has died."
+
+[whiteberry_bush_4_dead]
+id = 7738
+examine = "This whiteberry bush has died."
+
+[whiteberry_bush_5_dead]
+id = 7739
+examine = "This whiteberry bush has died."
+
+[whiteberry_bush_6_dead]
+id = 7740
+examine = "This whiteberry bush has died."
+
+[whiteberry_bush_7_dead]
+id = 7741
+examine = "This whiteberry bush has died."
+
+[whiteberry_bush_fullygrown_dead]
+id = 7742
+examine = "This whiteberry bush has died."

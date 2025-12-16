@@ -521,9 +521,14 @@ cooking = {
   cooked_message = "You successfully bake a potato.",
   burnt_message = "You accidentally burn the potato.",
 }
+farming_xp = 9.0
+farming_chance = "101-180"
+farming_protect_id = "compost"
+farming_protect_amount = 2
 aka = ["potato"]
-examine = "This could be used to make a good stew."
+compostable = true
 kept = "Wilderness"
+examine = "This could be used to make a good stew."
 
 [raw_potato_noted]
 id = 1943
@@ -553,8 +558,9 @@ price = 4
 limit = 1000
 weight = 0.6
 aka = ["wheat"]
-examine = "Some wheat heads."
+compostable = true
 kept = "Wilderness"
+examine = "Some wheat heads."
 
 [grain_noted]
 id = 1948
@@ -577,8 +583,12 @@ id = 1951
 price = 180
 limit = 1000
 weight = 0.007
-examine = "Very bright red berries."
+compostable = true
 kept = "Wilderness"
+farming_xp = 4.5
+farming_protect_id = "cabbages_10"
+farming_protect_amount = 4
+examine = "Very bright red berries."
 
 [redberries_noted]
 id = 1952
@@ -599,6 +609,10 @@ id = 1955
 price = 365
 limit = 1000
 weight = 0.085
+farming_xp = 8.5
+compostable = true
+farming_protect_id = "sweetcorn"
+farming_protect_amount = 9
 examine = "Keeps the doctor away."
 
 [cooking_apple_noted]
@@ -610,8 +624,12 @@ price = 15
 limit = 1000
 heals = 20
 weight = 0.15
-examine = "A strong smelling onion."
+compostable = true
+farming_level = 5
+farming_xp = 10.5
+farming_chance = "105-180"
 kept = "Wilderness"
+examine = "A strong smelling onion."
 
 [onion_noted]
 id = 1958
@@ -644,7 +662,10 @@ price = 55
 limit = 1000
 heals = 20
 weight = 0.028
-slot = "Weapon"
+compostable = true
+farming_xp = 10.5
+farming_protect_id = "apples_5"
+farming_protect_amount = 4
 examine = "Mmm this looks tasty."
 
 [banana_noted]
@@ -656,8 +677,13 @@ price = 13
 limit = 1000
 heals = 20
 weight = 0.453
-examine = "Yuck, I don't like cabbage."
+compostable = true
 kept = "Wilderness"
+farming_level = 7
+farming_xp = 11.5
+farming_chance = "107-180"
+farming_protect_id = "onions_10"
+examine = "Yuck, I don't like cabbage."
 
 [cabbage_noted]
 id = 1966
@@ -666,8 +692,9 @@ id = 1966
 id = 1967
 heals = 10
 weight = 0.35
-examine = "Yuck, a cabbage from Draynor Manor. I don't like cabbage."
+compostable = true
 kept = "Wilderness"
+examine = "Yuck, a cabbage from Draynor Manor. I don't like cabbage."
 
 [cabbage_draynor_manor_noted]
 id = 1968
@@ -686,8 +713,9 @@ price = 36
 limit = 1000
 heals = 0
 weight = 0.25
-examine = "A meaty kebab."
+compostable = true
 kept = "Wilderness"
+examine = "A meaty kebab."
 
 [kebab_noted]
 id = 1972
@@ -753,8 +781,14 @@ price = 40
 limit = 10000
 heals = 20
 weight = 0.08
-examine = "This would make good ketchup."
+compostable = true
 kept = "Wilderness"
+farming_level = 12
+farming_xp = 14.0
+farming_chance = "112-180"
+farming_protect_id = "cabbages_10"
+farming_protect_amount = 2
+examine = "This would make good ketchup."
 
 [tomato_noted]
 id = 1983
@@ -763,8 +797,9 @@ id = 1983
 id = 1984
 tradeable = false
 weight = 0.12
-examine = "Rotten to the core!"
+compostable = true
 kept = "Reclaim"
+examine = "Rotten to the core!"
 
 [cheese]
 id = 1985
@@ -1192,6 +1227,7 @@ price = 16
 limit = 1000
 heals = 20
 weight = 0.1
+compostable = true
 examine = "A common fruit, popularly used in cocktails."
 
 [lemon_noted]
@@ -1225,6 +1261,10 @@ price = 131
 limit = 1000
 heals = 20
 weight = 0.11
+compostable = true
+farming_xp = 13.5
+farming_protect_id = "strawberries_5"
+farming_protect_amount = 3
 examine = "A common fruit."
 
 [orange_noted]
@@ -1257,6 +1297,11 @@ id = 2114
 price = 94
 limit = 1000
 weight = 0.15
+compostable = true
+super_compost = true
+farming_xp = 21.5
+farming_protect_id = "watermelon_10"
+farming_protect_amount = 10
 examine = "It can be cut up into something more manageable with a knife."
 
 [pineapple_noted]
@@ -1290,6 +1335,7 @@ price = 41
 limit = 1000
 heals = 20
 weight = 0.1
+compostable = true
 examine = "A common fruit, popularly used in cocktails."
 
 [lime_noted]
@@ -1323,6 +1369,10 @@ price = 29
 limit = 10000
 heals = 20
 weight = 0.014
+compostable = true
+farming_xp = 12.0
+farming_protect_id = "strawberries_5"
+farming_protect_amount = 3
 examine = "Some rather pretty blue berries picked from a dwellberry bush."
 
 [dwellberries_noted]

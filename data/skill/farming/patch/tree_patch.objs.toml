@@ -1,0 +1,829 @@
+[farming_spirit_tree_patch_port_sarim]
+id = 8338
+
+[spirit_tree_patch_weeded]
+id = 8339
+examine = "You can grow a Spirit Tree in this Farming patch."
+
+[spirit_tree_patch_weeds_1]
+id = 8340
+examine = "You can grow a Spirit Tree in this Farming patch."
+
+[spirit_tree_patch_weeds_2]
+id = 8341
+examine = "You can grow a Spirit Tree in this Farming patch."
+
+[spirit_tree_patch_weeds_3]
+id = 8342
+examine = "You can grow a Spirit Tree in this Farming patch."
+
+[spirit_tree_seedling]
+id = 8343
+examine = "A Spirit Tree."
+
+[spirit_tree_1]
+id = 8344
+examine = "A Spirit Tree."
+
+[spirit_tree_2]
+id = 8345
+examine = "A Spirit Tree."
+
+[spirit_tree_3]
+id = 8346
+examine = "A Spirit Tree."
+
+[spirit_tree_4]
+id = 8347
+examine = "A Spirit Tree."
+
+[spirit_tree_5]
+id = 8348
+examine = "A Spirit Tree."
+
+[spirit_tree_6]
+id = 8349
+examine = "A Spirit Tree."
+
+[spirit_tree_7]
+id = 8350
+examine = "A Spirit Tree."
+
+[spirit_tree_8]
+id = 8351
+examine = "A Spirit Tree."
+
+[spirit_tree_9]
+id = 8352
+examine = "A Spirit Tree."
+
+[spirit_tree_10]
+id = 8353
+examine = "A Spirit Tree."
+
+[spirit_tree_11]
+id = 8354
+examine = "A Spirit Tree."
+
+[spirit_tree_fullygrown]
+id = 8355
+examine = "A Spirit Tree."
+
+[spirit_tree_claim_xp]
+id = 8356
+farming_xp = 19301.0
+examine = "A Spirit Tree."
+
+[spirit_tree_stump]
+id = 8357
+
+[spirit_tree_diseased_1]
+id = 8358
+examine = "Needs pruning before it dies."
+
+[spirit_tree_diseased_2]
+id = 8359
+examine = "Needs pruning before it dies."
+
+[spirit_tree_diseased_3]
+id = 8360
+examine = "Needs pruning before it dies."
+
+[spirit_tree_diseased_4]
+id = 8361
+examine = "Needs pruning before it dies."
+
+[spirit_tree_diseased_5]
+id = 8362
+examine = "Needs pruning before it dies."
+
+[spirit_tree_diseased_6]
+id = 8363
+examine = "Needs pruning before it dies."
+
+[spirit_tree_diseased_7]
+id = 8364
+examine = "Needs pruning before it dies."
+
+[spirit_tree_diseased_8]
+id = 8365
+examine = "Needs pruning before it dies."
+
+[spirit_tree_diseased_9]
+id = 8366
+examine = "Needs pruning before it dies."
+
+[spirit_tree_diseased_10]
+id = 8367
+examine = "Needs pruning before it dies."
+
+[spirit_tree_diseased_11]
+id = 8368
+examine = "Needs pruning before it dies."
+
+[spirit_tree_diseased_fullgrown]
+id = 8369
+
+[spirit_tree_dead_1]
+id = 8370
+examine = "Oh dear, your spirit tree has died."
+
+[spirit_tree_dead_2]
+id = 8371
+examine = "Oh dear, your spirit tree has died."
+
+[spirit_tree_dead_3]
+id = 8372
+examine = "Oh dear, your spirit tree has died."
+
+[spirit_tree_dead_4]
+id = 8373
+examine = "Oh dear, your spirit tree has died."
+
+[spirit_tree_dead_5]
+id = 8374
+examine = "Oh dear, your spirit tree has died."
+
+[spirit_tree_dead_6]
+id = 8375
+examine = "Oh dear, your spirit tree has died."
+
+[spirit_tree_dead_7]
+id = 8376
+examine = "Oh dear, your spirit tree has died."
+
+[spirit_tree_dead_8]
+id = 8377
+examine = "Oh dear, your spirit tree has died."
+
+[spirit_tree_dead_9]
+id = 8378
+examine = "Oh dear, your spirit tree has died."
+
+[spirit_tree_dead_10]
+id = 8379
+examine = "Oh dear, your spirit tree has died."
+
+[spirit_tree_dead_11]
+id = 8380
+examine = "Oh dear, your spirit tree has died."
+
+[spirit_tree_dead_fullygrown]
+id = 8381
+examine = "Oh dear, your spirit tree has died."
+
+[farming_spirit_tree_patch_etceteria]
+id = 8382
+
+[farming_spirit_tree_patch_brimhaven]
+id = 8383
+
+[farming_tree_patch_taverley_canopy]
+id = 8384
+
+[farming_tree_patch_falador_canopy]
+id = 8385
+
+[farming_tree_patch_varrock_canopy]
+id = 8386
+
+[farming_tree_patch_lumbridge_canopy]
+id = 8387
+
+[farming_tree_patch_taverley]
+id = 8388
+
+[farming_tree_patch_falador]
+id = 8389
+
+[farming_tree_patch_varrock]
+id = 8390
+
+[farming_tree_patch_lumbridge]
+id = 8391
+
+[farming_tree_patch_gnome_stronghold]
+id = 19147
+
+[tree_patch_weeded]
+id = 8392
+examine = "You can grow trees in this Farming patch."
+
+[tree_patch_weeds_1]
+id = 8393
+examine = "You can grow trees in this Farming patch."
+
+[tree_patch_weeds_2]
+id = 8394
+examine = "You can grow trees in this Farming patch."
+
+[tree_patch_weeds_3]
+id = 8395
+examine = "You can grow trees in this Farming patch."
+
+[magic_tree_seedling]
+id = 8396
+examine = "A Magic Tree sapling has been planted in this tree patch."
+
+[magic_tree_1]
+id = 8397
+examine = "A Magic Tree is growing in this tree patch."
+
+[magic_tree_2]
+id = 8398
+examine = "A Magic Tree is growing in this tree patch."
+
+[magic_tree_3]
+id = 8399
+examine = "A Magic Tree is growing in this tree patch."
+
+[magic_tree_4]
+id = 8400
+examine = "A Magic Tree is growing in this tree patch."
+
+[magic_tree_5]
+id = 8401
+examine = "A Magic Tree is growing in this tree patch."
+
+[magic_tree_6]
+id = 8402
+examine = "A Magic Tree is growing in this tree patch."
+
+[magic_tree_7]
+id = 8403
+examine = "A Magic Tree is growing in this tree patch."
+
+[magic_tree_8]
+id = 8404
+examine = "A Magic Tree is growing in this tree patch."
+
+[magic_tree_9]
+id = 8405
+examine = "A Magic Tree is growing in this tree patch."
+
+[magic_tree_10]
+id = 8406
+examine = "A Magic Tree is growing in this tree patch."
+
+[magic_tree_11]
+id = 8407
+examine = "A Magic Tree is growing in this tree patch."
+
+[magic_tree_fullygrown_1]
+id = 8408
+farming_xp = 13768.3
+examine = "A fully grown Magic Tree."
+
+[magic_tree_fullygrown_2]
+id = 8409
+woodcutting = {
+  log = "magic_logs",
+  level = 75,
+  xp = 250.0,
+  deplete_rate = 0.125,
+  chance_min = 2,
+  chance_max = 6,
+  hatchet_low_dif = "0-1",
+  hatchet_high_dif = "2-3"
+}
+examine = "A fully grown Magic Tree."
+
+[magic_tree_farming_stump]
+id = 8410
+examine = "You can uproot this stump with a spade."
+
+[magic_tree_diseased_1]
+id = 8411
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[magic_tree_diseased_2]
+id = 8412
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[magic_tree_diseased_3]
+id = 8413
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[magic_tree_diseased_4]
+id = 8414
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[magic_tree_diseased_5]
+id = 8415
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[magic_tree_diseased_6]
+id = 8416
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[magic_tree_diseased_7]
+id = 8417
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[magic_tree_diseased_8]
+id = 8418
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[magic_tree_diseased_9]
+id = 8419
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[magic_tree_diseased_10]
+id = 8420
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[magic_tree_diseased_11]
+id = 8421
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[magic_tree_diseased_fullygrown]
+id = 8422
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[magic_tree_dead_1]
+id = 8423
+examine = "This Magic Tree has become diseased and died."
+
+[magic_tree_dead_2]
+id = 8424
+examine = "This Magic Tree has become diseased and died."
+
+[magic_tree_dead_3]
+id = 8425
+examine = "This Magic Tree has become diseased and died."
+
+[magic_tree_dead_4]
+id = 8426
+examine = "This Magic Tree has become diseased and died."
+
+[magic_tree_dead_5]
+id = 8427
+examine = "This Magic Tree has become diseased and died."
+
+[magic_tree_dead_6]
+id = 8428
+examine = "This Magic Tree has become diseased and died."
+
+[magic_tree_dead_7]
+id = 8429
+examine = "This Magic Tree has become diseased and died."
+
+[magic_tree_dead_8]
+id = 8430
+examine = "This Magic Tree has become diseased and died."
+
+[magic_tree_dead_9]
+id = 8431
+examine = "This Magic Tree has become diseased and died."
+
+[magic_tree_dead_10]
+id = 8432
+examine = "This Magic Tree has become diseased and died."
+
+[magic_tree_dead_11]
+id = 8433
+examine = "This Magic Tree has become diseased and died."
+
+[magic_tree_dead_fullygrown]
+id = 8434
+examine = "This Magic Tree has become diseased and died."
+
+[maple_tree_seedling]
+id = 8435
+examine = "A Maple tree sapling has been planted in this tree patch."
+
+[maple_tree_1]
+id = 8436
+examine = "A Maple tree is growing in this tree patch."
+
+[maple_tree_2]
+id = 8437
+examine = "A Maple tree is growing in this tree patch."
+
+[maple_tree_3]
+id = 8438
+examine = "A Maple tree is growing in this tree patch."
+
+[maple_tree_4]
+id = 8439
+examine = "A Maple tree is growing in this tree patch."
+
+[maple_tree_5]
+id = 8440
+examine = "A Maple tree is growing in this tree patch."
+
+[maple_tree_6]
+id = 8441
+examine = "A Maple tree is growing in this tree patch."
+
+[maple_tree_7]
+id = 8442
+examine = "A Maple tree is growing in this tree patch."
+
+[maple_tree_fullygrown_1]
+id = 8443
+farming_xp = 3403.4
+examine = "A fully grown Maple tree."
+
+[maple_tree_fullygrown_2]
+id = 8444
+woodcutting = {
+  log = "maple_logs",
+  level = 45,
+  xp = 100.0,
+  deplete_rate = 0.125,
+  chance_min = 8,
+  chance_max = 25,
+  hatchet_low_dif = "2-4",
+  hatchet_high_dif = "6-12"
+}
+examine = "A fully grown Maple tree."
+
+[maple_tree_farming_stump]
+id = 8445
+examine = "You can uproot this stump with a spade."
+
+[maple_tree_diseased_1]
+id = 8446
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[maple_tree_diseased_2]
+id = 8447
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[maple_tree_diseased_3]
+id = 8448
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[maple_tree_diseased_4]
+id = 8449
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[maple_tree_diseased_5]
+id = 8450
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[maple_tree_diseased_6]
+id = 8451
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[maple_tree_diseased_7]
+id = 8452
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[maple_tree_diseased_fullygrown]
+id = 8453
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[maple_tree_dead_1]
+id = 8454
+examine = "This Maple tree has become diseased and died."
+
+[maple_tree_dead_2]
+id = 8455
+examine = "This Maple tree has become diseased and died."
+
+[maple_tree_dead_3]
+id = 8456
+examine = "This Maple tree has become diseased and died."
+
+[maple_tree_dead_4]
+id = 8457
+examine = "This Maple tree has become diseased and died."
+
+[maple_tree_dead_5]
+id = 8458
+examine = "This Maple tree has become diseased and died."
+
+[maple_tree_dead_6]
+id = 8459
+examine = "This Maple tree has become diseased and died."
+
+[maple_tree_dead_7]
+id = 8460
+examine = "This Maple tree has become diseased and died."
+
+[maple_tree_dead_fullygrown]
+id = 8461
+examine = "This Maple tree has become diseased and died."
+
+[oak_tree_seedling]
+id = 8462
+examine = "An Oak sapling has been planted in this tree patch."
+
+[oak_tree_1]
+id = 8463
+examine = "An Oak tree is growing in this tree patch."
+
+[oak_tree_2]
+id = 8464
+examine = "An Oak tree is growing in this tree patch."
+
+[oak_tree_3]
+id = 8465
+examine = "An Oak tree is growing in this tree patch."
+
+[oak_tree_fullygrown_1]
+id = 8466
+farming_xp = 467.3
+examine = "A fully grown Oak tree."
+
+[oak_tree_fullygrown_2]
+id = 8467
+woodcutting = {
+  log = "oak_logs",
+  level = 15,
+  xp = 37.5,
+  deplete_rate = 0.125,
+  chance_min = 32,
+  chance_max = 100,
+  hatchet_low_dif = "8-16",
+  hatchet_high_dif = "25-50"
+}
+examine = "A fully grown Oak tree."
+
+[oak_tree_farming_stump]
+id = 8468
+examine = "You can uproot this stump with a spade."
+
+[oak_tree_3_top]
+id = 8469
+
+[oak_tree_fullygrown_top]
+id = 8470
+
+[oak_tree_3_top_diseased]
+id = 8471
+
+[oak_tree_fullygrown_top_diseased]
+id = 8472
+
+[oak_tree_diseased_1]
+id = 8473
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[oak_tree_diseased_2]
+id = 8474
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[oak_tree_diseased_3]
+id = 8475
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[oak_tree_diseased_fullygrown]
+id = 8476
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[oak_tree_dead_1]
+id = 8477
+examine = "This Oak tree has become diseased and died."
+
+[oak_tree_dead_2]
+id = 8478
+examine = "This Oak tree has become diseased and died."
+
+[oak_tree_dead_3]
+id = 8479
+examine = "This Oak tree has become diseased and died."
+
+[oak_tree_dead_fullygrown]
+id = 8480
+examine = "This Oak tree has become diseased and died."
+
+[willow_tree_seedling]
+id = 8481
+examine = "A Willow sapling has been planted in this tree patch."
+
+[willow_tree_1]
+id = 8482
+examine = "A Willow tree is growing in this tree patch."
+
+[willow_tree_2]
+id = 8483
+examine = "A Willow tree is growing in this tree patch."
+
+[willow_tree_3]
+id = 8484
+examine = "A Willow tree is growing in this tree patch."
+
+[willow_tree_4]
+id = 8485
+examine = "A Willow tree is growing in this tree patch."
+
+[willow_tree_5]
+id = 8486
+examine = "A Willow tree is growing in this tree patch."
+
+[willow_tree_fullygrown_1]
+id = 8487
+farming_xp = 1456.5
+examine = "A fully grown Willow tree."
+
+[willow_tree_fullygrown_2]
+id = 8488
+woodcutting = {
+  log = "willow_logs",
+  level = 30,
+  xp = 67.5,
+  deplete_rate = 0.125,
+  chance_min = 16,
+  chance_max = 50,
+  hatchet_low_dif = "4-8",
+  hatchet_high_dif = "13-25"
+}
+examine = "A fully grown Willow tree."
+
+[willow_tree_farming_stump]
+id = 8489
+examine = "You can uproot this stump with a spade."
+
+[willow_tree_diseased_1]
+id = 8490
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[willow_tree_diseased_2]
+id = 8491
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[willow_tree_diseased_3]
+id = 8492
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[willow_tree_diseased_4]
+id = 8493
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[willow_tree_diseased_5]
+id = 8494
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[willow_tree_diseased_fullygrown]
+id = 8495
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[willow_tree_dead_1]
+id = 8496
+examine = "This Willow tree has become diseased and died."
+
+[willow_tree_dead_2]
+id = 8497
+examine = "This Willow tree has become diseased and died."
+
+[willow_tree_dead_3]
+id = 8498
+examine = "This Willow tree has become diseased and died."
+
+[willow_tree_dead_4]
+id = 8499
+examine = "This Willow tree has become diseased and died."
+
+[willow_tree_dead_5]
+id = 8500
+examine = "This Willow tree has become diseased and died."
+
+[willow_tree_dead_fullygrown]
+id = 8501
+examine = "This Willow tree has become diseased and died."
+
+[yew_tree_seedling]
+id = 8502
+examine = "A Yew sapling has been planted in this tree patch."
+
+[yew_tree_1]
+id = 8503
+examine = "A Yew tree is growing in this tree patch."
+
+[yew_tree_2]
+id = 8504
+examine = "A Yew tree is growing in this tree patch."
+
+[yew_tree_3]
+id = 8505
+examine = "A Yew tree is growing in this tree patch."
+
+[yew_tree_4]
+id = 8506
+examine = "A Yew tree is growing in this tree patch."
+
+[yew_tree_5]
+id = 8507
+examine = "A Yew tree is growing in this tree patch."
+
+[yew_tree_6]
+id = 8508
+examine = "A Yew tree is growing in this tree patch."
+
+[yew_tree_7]
+id = 8509
+examine = "A Yew tree is growing in this tree patch."
+
+[yew_tree_8]
+id = 8510
+examine = "A Yew tree is growing in this tree patch."
+
+[yew_tree_9]
+id = 8511
+examine = "A Yew tree is growing in this tree patch."
+
+[yew_tree_fullygrown_1]
+id = 8512
+farming_xp = 7069.9
+examine = "A fully grown Yew tree."
+
+[yew_tree_fullygrown_2]
+id = 8513
+woodcutting = {
+  log = "yew_logs",
+  level = 60,
+  xp = 175.0,
+  deplete_rate = 0.125,
+  chance_min = 4,
+  chance_max = 12,
+  hatchet_low_dif = "1-2",
+  hatchet_high_dif = "3-7"
+}
+examine = "A fully grown Yew tree."
+
+[yew_tree_farming_stump]
+id = 8514
+examine = "You can uproot this tree stump with a spade."
+
+[yew_tree_diseased_1]
+id = 8515
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[yew_tree_diseased_2]
+id = 8516
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[yew_tree_diseased_3]
+id = 8517
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[yew_tree_diseased_4]
+id = 8518
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[yew_tree_diseased_5]
+id = 8519
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[yew_tree_diseased_6]
+id = 8520
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[yew_tree_diseased_7]
+id = 8521
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[yew_tree_diseased_8]
+id = 8522
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[yew_tree_diseased_9]
+id = 8523
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[yew_tree_diseased_fullygrown]
+id = 8524
+examine = "To remove all signs of disease, prune the tree with secateurs."
+
+[yew_tree_dead_1]
+id = 8525
+examine = "This Yew tree has become diseased and died."
+
+[yew_tree_dead_2]
+id = 8526
+examine = "This Yew tree has become diseased and died."
+
+[yew_tree_dead_3]
+id = 8527
+examine = "This Yew tree has become diseased and died."
+
+[yew_tree_dead_4]
+id = 8528
+examine = "This Yew tree has become diseased and died."
+
+[yew_tree_dead_5]
+id = 8529
+examine = "This Yew tree has become diseased and died."
+
+[yew_tree_dead_6]
+id = 8530
+examine = "This Yew tree has become diseased and died."
+
+[yew_tree_dead_7]
+id = 8531
+examine = "This Yew tree has become diseased and died."
+
+[yew_tree_dead_8]
+id = 8532
+examine = "This Yew tree has become diseased and died."
+
+[yew_tree_dead_9]
+id = 8533
+examine = "This Yew tree has become diseased and died."
+
+[yew_tree_dead_fullygrown]
+id = 8534
+examine = "This Yew tree has become diseased and died."

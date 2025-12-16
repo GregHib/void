@@ -19,6 +19,8 @@ weight = 2.0
 fletchables = ["arrow_shaft", "magic_shortbow_u", "magic_longbow_u"]
 firemaking = { level = 75, xp = 303.8, life = 180 }
 aka = ["magic_log"]
+farming_protect_id = "coconut"
+farming_protect_amount = 25
 examine = "Logs cut from a magic tree."
 
 [magic_logs_noted]
@@ -32,6 +34,8 @@ weight = 2.0
 fletchables = ["arrow_shaft", "yew_shortbow_u", "yew_longbow_u", "yew_stock"]
 firemaking = { level = 60, xp = 202.5, life = 160 }
 aka = ["yew_log"]
+farming_protect_id = "cactus_spine"
+farming_protect_amount = 10
 examine = "Logs cut from a yew tree."
 
 [yew_logs_noted]
@@ -45,6 +49,7 @@ weight = 2.0
 fletchables = ["arrow_shaft", "maple_shortbow_u", "maple_longbow_u", "maple_stock"]
 firemaking = { level = 45, xp = 135.0, life = 100 }
 aka = ["maple_log"]
+farming_protect_id = "oranges_5"
 examine = "Logs cut from a maple tree."
 
 [maple_logs_noted]
@@ -58,6 +63,7 @@ weight = 2.0
 fletchables = ["arrow_shaft", "willow_shortbow_u", "willow_longbow_u", "willow_stock"]
 firemaking = { level = 30, xp = 90.0, life = 90 }
 aka = ["willow_log"]
+farming_protect_id = "apples_5"
 examine = "Logs cut from a willow tree."
 
 [willow_logs_noted]
@@ -71,8 +77,9 @@ weight = 2.0
 fletchables = ["arrow_shaft", "oak_shortbow_u", "oak_longbow_u", "oak_stock"]
 firemaking = { level = 15, xp = 60.0, life = 90 }
 aka = ["oak_log"]
-examine = "Logs cut from an oak tree."
 kept = "Wilderness"
+farming_protect_id = "tomatoes_5"
+examine = "Logs cut from an oak tree."
 
 [oak_logs_noted]
 id = 1522

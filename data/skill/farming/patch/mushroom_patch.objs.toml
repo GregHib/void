@@ -1,0 +1,106 @@
+[bittercap_patch_weeded]
+id = 8311
+examine = "You can grow mushrooms in this Farming patch."
+
+[bittercap_patch_weeds_1]
+id = 8312
+examine = "You can grow mushrooms in this Farming patch."
+
+[bittercap_patch_weeds_2]
+id = 8313
+examine = "You can grow mushrooms in this Farming patch."
+
+[bittercap_patch_weeds_3]
+id = 8314
+examine = "You can grow mushrooms in this Farming patch."
+
+[bittercap_seed]
+id = 8315
+examine = "Bittercap mushroom spores have been sown in this farming patch."
+
+[bittercap_1]
+id = 8316
+examine = "Bittercap mushrooms are growing in this farming patch."
+
+[bittercap_2]
+id = 8317
+examine = "Bittercap mushrooms are growing in this farming patch."
+
+[bittercap_3]
+id = 8318
+examine = "Bittercap mushrooms are growing in this farming patch."
+
+[bittercap_4]
+id = 8319
+examine = "Bittercap mushrooms are growing in this farming patch."
+
+[bittercap_5]
+id = 8320
+examine = "Bittercap mushrooms are growing in this farming patch."
+
+[bittercap_fullygrown_6]
+id = 8321
+examine = "A patch of bittercap mushrooms."
+
+[bittercap_fullygrown_5]
+id = 8322
+examine = "A patch of bittercap mushrooms."
+
+[bittercap_fullygrown_4]
+id = 8323
+examine = "A patch of bittercap mushrooms."
+
+[bittercap_fullygrown_3]
+id = 8324
+examine = "A patch of bittercap mushrooms."
+
+[bittercap_fullygrown_2]
+id = 8325
+examine = "A patch of bittercap mushrooms."
+
+[bittercap_fullygrown_1]
+id = 8326
+examine = "A patch of bittercap mushrooms."
+
+[bittercap_1_diseased]
+id = 8327
+examine = "These bittercap mushrooms have become diseased."
+
+[bittercap_2_diseased]
+id = 8328
+examine = "These bittercap mushrooms have become diseased."
+
+[bittercap_3_diseased]
+id = 8329
+examine = "These bittercap mushrooms have become diseased."
+
+[bittercap_4_diseased]
+id = 8330
+examine = "These bittercap mushrooms have become diseased."
+
+[bittercap_5_diseased]
+id = 8331
+examine = "These bittercap mushrooms have become diseased."
+
+[bittercap_1_dead]
+id = 8332
+examine = "These bittercap mushrooms have become diseased and died."
+
+[bittercap_2_dead]
+id = 8333
+examine = "These bittercap mushrooms have become diseased and died."
+
+[bittercap_3_dead]
+id = 8334
+examine = "These bittercap mushrooms have become diseased and died."
+
+[bittercap_4_dead]
+id = 8335
+examine = "These bittercap mushrooms have become diseased and died."
+
+[bittercap_5_dead]
+id = 8336
+examine = "These bittercap mushrooms have become diseased and died."
+
+[farming_mushroom_patch]
+id = 8337

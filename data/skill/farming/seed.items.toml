@@ -2,81 +2,154 @@
 id = 5096
 price = 6
 limit = 100
-examine = "A marigold seed - plant in a flower patch."
 kept = "Wilderness"
+farming_level = 2
+farming_crop = "marigold"
+farming_xp = 8.5
+farming_patch = "flower"
+examine = "A marigold seed - plant in a flower patch."
 
 [rosemary_seed]
 id = 5097
 price = 3
 limit = 100
-examine = "A rosemary seed - plant in a flower patch."
+farming_level = 11
+farming_crop = "rosemary"
+farming_xp = 12.0
+farming_patch = "flower"
 kept = "Wilderness"
+examine = "A rosemary seed - plant in a flower patch."
 
 [nasturtium_seed]
 id = 5098
 price = 1
 limit = 1000
+farming_level = 24
+farming_crop = "nasturtium"
+farming_xp = 19.5
+farming_patch = "flower"
 examine = "A nasturtium seed - plant in a flower patch."
 
 [woad_seed]
 id = 5099
 price = 1
 limit = 100
+farming_level = 25
+farming_crop = "woad"
+farming_xp = 20.5
+farming_patch = "flower"
 examine = "A woad seed - plant in a flower patch."
 
 [limpwurt_seed]
 id = 5100
 price = 39
 limit = 100
+farming_level = 26
+farming_crop = "limpwurt"
+farming_xp = 21.5
+farming_patch = "flower"
 examine = "A limpwurt seed - plant in a flower patch."
+
+[scarecrow]
+id = 6059
+tradeable = false
+weight = 0.113
+farming_level = 23
+farming_crop = "scarecrow"
+farming_xp = 25.0
+farming_patch = "flower"
+kept = "Reclaim"
+examine = "This should scare the birds."
+
+[white_lily_seed]
+id = 14589
+tradeable = false
+farming_level = 58
+farming_crop = "lilly"
+farming_xp = 42.0
+farming_patch = "flower"
+kept = "Reclaim"
+examine = "A white lily seed - plant in a flower patch."
 
 [redberry_seed]
 id = 5101
 price = 1
 limit = 100
-examine = "A redberry bush seed - plant in a bush patch."
+farming_level = 10
+farming_crop = "redberry"
+farming_xp = 11.5
+farming_patch = "bush"
 kept = "Wilderness"
+examine = "A redberry bush seed - plant in a bush patch."
 
 [cadavaberry_seed]
 id = 5102
 price = 1
 limit = 100
+farming_level = 22
+farming_crop = "cadavaberry"
+farming_xp = 18.0
+farming_patch = "bush"
 examine = "A cadavaberry bush seed - plant in a bush patch."
 
 [dwellberry_seed]
 id = 5103
 price = 1
 limit = 100
+farming_level = 36
+farming_crop = "dwellberry"
+farming_xp = 31.5
+farming_patch = "bush"
 examine = "A dwellberry bush seed - plant in a bush patch."
 
 [jangerberry_seed]
 id = 5104
 price = 1
 limit = 100
+farming_level = 48
+farming_crop = "jangerberry"
+farming_xp = 50.5
+farming_patch = "bush"
 examine = "A jangerberry bush seed - plant in a bush patch."
 
 [whiteberry_seed]
 id = 5105
 price = 6
 limit = 100
+farming_level = 59
+farming_crop = "whiteberry"
+farming_xp = 78.0
+farming_patch = "bush"
 examine = "A whiteberry bush seed - plant in a bush patch."
 
 [poison_ivy_seed]
 id = 5106
 price = 17
 limit = 100
+farming_level = 70
+farming_crop = "poison_ivy"
+farming_xp = 120.0
+farming_patch = "bush"
 examine = "A poison ivy bush seed - plant in a bush patch."
 
 [cactus_seed]
 id = 5280
 price = 7
 limit = 100
+farming_level = 55
+farming_crop = "cactus"
+farming_xp = 66.5
+farming_patch = "cactus"
 examine = "A Cactus seed - plant in a cactus patch."
 
 [belladonna_seed]
 id = 5281
 price = 19
 limit = 100
+farming_level = 63
+farming_crop = "belladonna"
+farming_xp = 91.0
+farming_patch = "belladonna"
 examine = "Also known as Deadly Nightshade - plant in a belladonna patch."
 
 [bittercap_mushroom_spore]
@@ -135,6 +208,10 @@ examine = "Plant in a plantpot of soil to grow a sapling."
 id = 5291
 price = 2
 limit = 100
+farming_level = 9
+farming_crop = "guam"
+farming_xp = 11.0
+farming_patch = "herb"
 examine = "A guam seed - plant in a herb patch."
 kept = "Wilderness"
 
@@ -142,6 +219,10 @@ kept = "Wilderness"
 id = 5292
 price = 2
 limit = 100
+farming_level = 14
+farming_crop = "marrentill"
+farming_xp = 13.5
+farming_patch = "herb"
 examine = "A marrentill seed - plant in a herb patch."
 kept = "Wilderness"
 
@@ -149,6 +230,10 @@ kept = "Wilderness"
 id = 5293
 price = 1
 limit = 100
+farming_level = 19
+farming_crop = "tarromin"
+farming_xp = 16.0
+farming_patch = "herb"
 examine = "A tarromin seed - plant in a herb patch."
 kept = "Wilderness"
 
@@ -156,113 +241,192 @@ kept = "Wilderness"
 id = 5294
 price = 3
 limit = 100
+farming_level = 26
+farming_crop = "harralander"
+farming_xp = 21.5
+farming_patch = "herb"
 examine = "A harralander seed - plant in a herb patch."
 
 [ranarr_seed]
 id = 5295
 price = 1487
 limit = 100
+farming_level = 32
+farming_crop = "ranarr"
+farming_xp = 27.0
+farming_patch = "herb"
 examine = "A ranarr seed - plant in a herb patch."
 
 [toadflax_seed]
 id = 5296
 price = 366
 limit = 100
+farming_level = 38
+farming_crop = "toadflax"
+farming_xp = 34.0
+farming_patch = "herb"
 examine = "A toadflax seed - plant in a herb patch."
 
 [irit_seed]
 id = 5297
 price = 68
 limit = 100
+farming_level = 44
+farming_crop = "irit"
+farming_xp = 43.0
+farming_patch = "herb"
 examine = "An irit seed - plant in a herb patch."
 
 [avantoe_seed]
 id = 5298
 price = 227
 limit = 100
+farming_level = 50
+farming_crop = "avantoe"
+farming_xp = 54.5
+farming_patch = "herb"
 examine = "An avantoe seed - plant in a herb patch."
 
 [kwuarm_seed]
 id = 5299
 price = 118
 limit = 100
+farming_level = 56
+farming_crop = "kwuarm"
+farming_xp = 69.0
+farming_patch = "herb"
 examine = "A kwuarm seed - plant in a herb patch."
 
 [snapdragon_seed]
 id = 5300
 price = 16100
 limit = 100
+farming_level = 62
+farming_crop = "snapdragon"
+farming_xp = 87.5
+farming_patch = "herb"
 examine = "A snapdragon seed - plant in a herb patch."
 
 [cadantine_seed]
 id = 5301
 price = 112
 limit = 100
+farming_level = 67
+farming_crop = "cadantine"
+farming_xp = 106.5
+farming_patch = "herb"
 examine = "A cadantine seed - plant in a herb patch."
 
 [lantadyme_seed]
 id = 5302
 price = 15700
 limit = 100
+farming_level = 73
+farming_crop = "lantadyme"
+farming_xp = 134.5
+farming_patch = "herb"
 examine = "A lantadyme seed - plant in a herb patch."
 
 [dwarf_weed_seed]
 id = 5303
 price = 11000
 limit = 100
+farming_level = 79
+farming_crop = "dwarf_weed"
+farming_xp = 170.5
+farming_patch = "herb"
 examine = "A dwarf weed seed - plant in a herb patch."
 
 [torstol_seed]
 id = 5304
 price = 362745
 limit = 100
+farming_level = 85
+farming_crop = "torstol"
+farming_xp = 199.5
+farming_patch = "herb"
 examine = "A torstol seed - plant in a herb patch."
 
 [barley_seed]
 id = 5305
 price = 1
 limit = 100
-examine = "A barley seed - plant in a hops patch."
+farming_level = 3
+farming_amount = 4
+farming_crop = "barley"
+farming_xp = 8.5
+farming_patch = "hops"
 kept = "Wilderness"
+examine = "A barley seed - plant in a hops patch."
 
 [jute_seed]
 id = 5306
 price = 1
 limit = 100
-examine = "A jute plant seed - plant in a hops patch."
+farming_level = 13
+farming_amount = 3
+farming_crop = "jute"
+farming_xp = 13.0
+farming_patch = "hops"
 kept = "Wilderness"
+examine = "A jute plant seed - plant in a hops patch."
 
 [hammerstone_seed]
 id = 5307
 price = 1
 limit = 100
-examine = "A Hammerstone hop seed - plant in a hops patch."
+farming_level = 4
+farming_amount = 4
+farming_crop = "hammerstone"
+farming_xp = 9.0
+farming_patch = "hops"
 kept = "Wilderness"
+examine = "A Hammerstone hop seed - plant in a hops patch."
 
 [asgarnian_seed]
 id = 5308
 price = 1
 limit = 100
-examine = "An Asgarnian hop seed - plant in a hops patch."
+farming_level = 8
+farming_amount = 4
+farming_crop = "asgarnian"
+farming_xp = 10.9
+farming_patch = "hops"
 kept = "Wilderness"
+examine = "An Asgarnian hop seed - plant in a hops patch."
 
 [yanillian_seed]
 id = 5309
 price = 9
 limit = 100
-examine = "A Yanillian hop seed - plant in a hops patch."
+farming_level = 16
+farming_amount = 4
+farming_crop = "yanillian"
+farming_xp = 14.5
+farming_patch = "hops"
 kept = "Wilderness"
+examine = "A Yanillian hop seed - plant in a hops patch."
 
 [krandorian_seed]
 id = 5310
 price = 1
 limit = 100
+farming_level = 21
+farming_amount = 4
+farming_crop = "krandorian"
+farming_xp = 17.5
+farming_patch = "hops"
 examine = "A Krandorian hop seed - plant in a hops patch."
 
 [wildblood_seed]
 id = 5311
 price = 3
 limit = 100
+farming_level = 28
+farming_amount = 4
+farming_crop = "wildblood"
+farming_xp = 23.0
+farming_patch = "hops"
 examine = "A Wildblood hop seed - plant in a hops patch."
 
 [acorn]
@@ -306,6 +470,10 @@ kept = "Reclaim"
 id = 5318
 price = 1
 limit = 500
+farming_amount = 3
+farming_crop = "potato"
+farming_xp = 8.0
+farming_patch = "allotment"
 examine = "A potato seed - plant in an allotment."
 kept = "Wilderness"
 
@@ -313,6 +481,11 @@ kept = "Wilderness"
 id = 5319
 price = 1
 limit = 500
+farming_level = 5
+farming_amount = 3
+farming_crop = "onion"
+farming_xp = 9.5
+farming_patch = "allotment"
 examine = "An onion seed - plant in an allotment."
 kept = "Wilderness"
 
@@ -320,19 +493,34 @@ kept = "Wilderness"
 id = 5320
 price = 2
 limit = 500
-examine = "A sweetcorn seed - plant in an allotment."
 kept = "Wilderness"
+farming_level = 20
+farming_amount = 3
+farming_crop = "sweetcorn"
+farming_xp = 17.0
+farming_patch = "allotment"
+examine = "A sweetcorn seed - plant in an allotment."
 
 [watermelon_seed]
 id = 5321
 price = 2023
 limit = 500
+farming_level = 47
+farming_amount = 3
+farming_crop = "watermelon"
+farming_xp = 48.5
+farming_patch = "allotment"
 examine = "A watermelon seed - plant in an allotment."
 
 [tomato_seed]
 id = 5322
 price = 1
 limit = 500
+farming_level = 12
+farming_amount = 3
+farming_crop = "tomato"
+farming_xp = 12.5
+farming_patch = "allotment"
 examine = "A tomato seed - plant in an allotment."
 kept = "Wilderness"
 
@@ -340,12 +528,22 @@ kept = "Wilderness"
 id = 5323
 price = 113
 limit = 500
+farming_level = 31
+farming_amount = 3
+farming_crop = "strawberry"
+farming_xp = 26.0
+farming_patch = "allotment"
 examine = "A strawberry seed - plant in an allotment."
 
 [cabbage_seed]
 id = 5324
 price = 1
 limit = 500
+farming_level = 7
+farming_amount = 3
+farming_crop = "cabbage"
+farming_xp = 10.0
+farming_patch = "allotment"
 examine = "A cabbage seed - plant in an allotment."
 kept = "Wilderness"
 
@@ -353,4 +551,8 @@ kept = "Wilderness"
 id = 14870
 price = 160
 limit = 100
+farming_level = 46
+farming_crop = "wergali"
+farming_xp = 52.8
+farming_patch = "herb"
 examine = "A wergali seed - plant in a herb patch."

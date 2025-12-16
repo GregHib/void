@@ -1,0 +1,63 @@
+[belladonna_patch_weeded]
+id = 7557
+examine = "You can grow deadly nightshade in this Farming patch."
+
+[belladonna_patch_weeds_1]
+id = 7558
+examine = "You can grow deadly nightshade in this Farming patch."
+
+[belladonna_patch_weeds_2]
+id = 7559
+examine = "You can grow deadly nightshade in this Farming patch."
+
+[belladonna_patch_weeds_3]
+id = 7560
+examine = "You can grow deadly nightshade in this Farming patch."
+
+[belladonna_seedling]
+id = 7561
+examine = "Deadly nightshade has been sown in this Farming patch."
+
+[belladonna_1]
+id = 7562
+examine = "Deadly nightshade is growing in this Farming patch."
+
+[belladonna_2]
+id = 7563
+examine = "Deadly nightshade is growing in this Farming patch."
+
+[belladonna_3]
+id = 7564
+examine = "Deadly nightshade is growing in this Farming patch."
+
+[belladonna_fullygrown]
+id = 7565
+harvest = "cave_nightshade"
+examine = "I wouldn't pick this with my bare hands."
+
+[belladonna_1_diseased]
+id = 7566
+examine = "This deadly nightshade has become diseased."
+
+[belladonna_2_diseased]
+id = 7567
+examine = "This deadly nightshade has become diseased."
+
+[belladonna_3_diseased]
+id = 7568
+examine = "This deadly nightshade has become diseased."
+
+[belladonna_1_dead]
+id = 7569
+examine = "This deadly nightshade has died."
+
+[belladonna_2_dead]
+id = 7570
+examine = "This deadly nightshade has died."
+
+[belladonna_3_dead]
+id = 7571
+examine = "This deadly nightshade has died."
+
+[farming_belladonna_patch_draynor]
+id = 7572

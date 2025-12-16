@@ -1,0 +1,399 @@
+[compost_bin_empty]
+id = 7808
+examine = "Turns vegetation into compost."
+
+[compost_bin_full]
+id = 7810
+examine = "This bin is full of compostable items."
+
+[compost_bin_closed]
+id = 7813
+examine = "Turns vegetation into compost."
+
+[farming_compost_bin_falador]
+id = 7836
+
+[farming_compost_bin_catherby]
+id = 7837
+
+[farming_compost_bin_port_phasmatys]
+id = 7838
+
+[farming_compost_bin_ardougne]
+id = 7839
+
+[composit_bin_green_empty]
+id = 7818
+examine = "Turns vegetation into compost."
+
+[composit_bin_green_full]
+id = 7820
+examine = "This bin is full of compostable items."
+
+[composit_bin_green_closed]
+id = 7823
+examine = "Turns vegetation into compost."
+
+[compost_bin_compostable_1]
+id = 1941
+examine = "This bin contains compostable items (1/15 full)."
+
+[compost_bin_compostable_2]
+id = 1946
+examine = "This bin contains compostable items (2/15 full)."
+
+[compost_bin_compostable_3]
+id = 1952
+examine = "This bin contains compostable items (3/15 full)."
+
+[compost_bin_compostable_4]
+id = 1954
+examine = "This bin contains compostable items (4/15 full)."
+
+[compost_bin_compostable_5]
+id = 1985
+examine = "This bin contains compostable items (5/15 full)."
+
+[compost_bin_compostable_6]
+id = 2618
+examine = "This bin contains compostable items (6/15 full)."
+
+[compost_bin_compostable_7]
+id = 2855
+examine = "This bin contains compostable items (7/15 full)."
+
+[compost_bin_compostable_8]
+id = 3001
+examine = "This bin contains compostable items (8/15 full)."
+
+[compost_bin_compostable_9]
+id = 3003
+examine = "This bin contains compostable items (9/15 full)."
+
+[compost_bin_compostable_10]
+id = 3005
+examine = "This bin contains compostable items (10/15 full)."
+
+[compost_bin_compostable_11]
+id = 3007
+examine = "This bin contains compostable items (11/15 full)."
+
+[compost_bin_compostable_12]
+id = 3009
+examine = "This bin contains compostable items (12/15 full)."
+
+[compost_bin_compostable_13]
+id = 3011
+examine = "This bin contains compostable items (13/15 full)."
+
+[compost_bin_compostable_14]
+id = 3013
+examine = "This bin contains compostable items (14/15 full)."
+
+[compost_bin_compostable_15]
+id = 7810
+examine = "This bin contains compostable items (15/15 full)."
+
+[compost_bin_compost_1]
+id = 3384
+examine = "This bin contains compost (1/15 full)."
+
+[compost_bin_compost_2]
+id = 3386
+examine = "This bin contains compost (2/15 full)."
+
+[compost_bin_compost_3]
+id = 3605
+examine = "This bin contains compost (3/15 full)."
+
+[compost_bin_compost_4]
+id = 3773
+examine = "This bin contains compost (4/15 full)."
+
+[compost_bin_compost_5]
+id = 3869
+examine = "This bin contains compost (5/15 full)."
+
+[compost_bin_compost_6]
+id = 4150
+examine = "This bin contains compost (6/15 full)."
+
+[compost_bin_compost_7]
+id = 4890
+examine = "This bin contains compost (7/15 full)."
+
+[compost_bin_compost_8]
+id = 4892
+examine = "This bin contains compost (8/15 full)."
+
+[compost_bin_compost_9]
+id = 4894
+examine = "This bin contains compost (9/15 full)."
+
+[compost_bin_compost_10]
+id = 4896
+examine = "This bin contains compost (10/15 full)."
+
+[compost_bin_compost_11]
+id = 4898
+examine = "This bin contains compost (11/15 full)."
+
+[compost_bin_compost_12]
+id = 5067
+examine = "This bin contains compost (12/15 full)."
+
+[compost_bin_compost_13]
+id = 5071
+examine = "This bin contains compost (13/15 full)."
+
+[compost_bin_compost_14]
+id = 5635
+examine = "This bin contains compost (14/15 full)."
+
+[compost_bin_compost_15]
+id = 3264
+examine = "This bin contains compost (15/15 full)."
+
+[compost_bin_supercompostable_rotting]
+id = 7813
+examine = "Turns vegetation into compost."
+
+[compost_bin_supercompostable_1]
+id = 1635
+examine = "This bin contains supercompostable items (1/15 full)."
+
+[compost_bin_supercompostable_2]
+id = 1637
+examine = "This bin contains supercompostable items (2/15 full)."
+
+[compost_bin_supercompostable_3]
+id = 1639
+examine = "This bin contains supercompostable items (3/15 full)."
+
+[compost_bin_supercompostable_4]
+id = 1645
+examine = "This bin contains supercompostable items (4/15 full)."
+
+[compost_bin_supercompostable_5]
+id = 1650
+examine = "This bin contains supercompostable items (5/15 full)."
+
+[compost_bin_supercompostable_6]
+id = 1653
+examine = "This bin contains supercompostable items (6/15 full)."
+
+[compost_bin_supercompostable_7]
+id = 1655
+examine = "This bin contains supercompostable items (7/15 full)."
+
+[compost_bin_supercompostable_8]
+id = 1657
+examine = "This bin contains supercompostable items (8/15 full)."
+
+[compost_bin_supercompostable_9]
+id = 1666
+examine = "This bin contains supercompostable items (9/15 full)."
+
+[compost_bin_supercompostable_10]
+id = 1669
+examine = "This bin contains supercompostable items (10/15 full)."
+
+[compost_bin_supercompostable_11]
+id = 1672
+examine = "This bin contains supercompostable items (11/15 full)."
+
+[compost_bin_supercompostable_12]
+id = 1682
+examine = "This bin contains supercompostable items (12/15 full)."
+
+[compost_bin_supercompostable_13]
+id = 1688
+examine = "This bin contains supercompostable items (13/15 full)."
+
+[compost_bin_supercompostable_14]
+id = 1691
+examine = "This bin contains supercompostable items (14/15 full)."
+
+[compost_bin_supercompostable_15]
+id = 1693
+examine = "This bin contains supercompostable items (15/15 full)."
+
+[compost_bin_supercompost_1]
+id = 1698
+examine = "This bin contains super compost (1/15 full)."
+
+[compost_bin_supercompost_2]
+id = 1700
+examine = "This bin contains super compost (2/15 full)."
+
+[compost_bin_supercompost_3]
+id = 1707
+examine = "This bin contains super compost (3/15 full)."
+
+[compost_bin_supercompost_4]
+id = 1712
+examine = "This bin contains super compost (4/15 full)."
+
+[compost_bin_supercompost_5]
+id = 1714
+examine = "This bin contains super compost (5/15 full)."
+
+[compost_bin_supercompost_6]
+id = 1717
+examine = "This bin contains super compost (6/15 full)."
+
+[compost_bin_supercompost_7]
+id = 1719
+examine = "This bin contains super compost (7/15 full)."
+
+[compost_bin_supercompost_8]
+id = 1776
+examine = "This bin contains super compost (8/15 full)."
+
+[compost_bin_supercompost_9]
+id = 1780
+examine = "This bin contains super compost (9/15 full)."
+
+[compost_bin_supercompost_10]
+id = 1785
+examine = "This bin contains super compost (10/15 full)."
+
+[compost_bin_supercompost_11]
+id = 1787
+examine = "This bin contains super compost (11/15 full)."
+
+[compost_bin_supercompost_12]
+id = 1789
+examine = "This bin contains super compost (12/15 full)."
+
+[compost_bin_supercompost_13]
+id = 1795
+examine = "This bin contains super compost (13/15 full)."
+
+[compost_bin_supercompost_14]
+id = 1800
+examine = "This bin contains super compost (14/15 full)."
+
+[compost_bin_supercompost_15]
+id = 1696
+examine = "This bin contains super compost (15/15 full)."
+
+[compost_bin_tomatoes_1]
+id = 1803
+examine = "This bin contains a tomato."
+
+[compost_bin_tomatoes_2]
+id = 1807
+examine = "This bin contains 2 tomatoes."
+
+[compost_bin_tomatoes_3]
+id = 1809
+examine = "This bin contains 3 tomatoes."
+
+[compost_bin_tomatoes_4]
+id = 1811
+examine = "This bin contains 4 tomatoes."
+
+[compost_bin_tomatoes_5]
+id = 1813
+examine = "This bin contains 5 tomatoes."
+
+[compost_bin_tomatoes_6]
+id = 1819
+examine = "This bin contains 6 tomatoes."
+
+[compost_bin_tomatoes_7]
+id = 1831
+examine = "This bin contains 7 tomatoes."
+
+[compost_bin_tomatoes_8]
+id = 1834
+examine = "This bin contains 8 tomatoes."
+
+[compost_bin_tomatoes_9]
+id = 1837
+examine = "This bin contains 9 tomatoes."
+
+[compost_bin_tomatoes_10]
+id = 1849
+examine = "This bin contains 10 tomatoes."
+
+[compost_bin_tomatoes_11]
+id = 1858
+examine = "This bin contains 11 tomatoes."
+
+[compost_bin_tomatoes_12]
+id = 1866
+examine = "This bin contains 12 tomatoes."
+
+[compost_bin_tomatoes_13]
+id = 1875
+examine = "This bin contains 13 tomatoes."
+
+[compost_bin_tomatoes_14]
+id = 1878
+examine = "This bin contains 14 tomatoes."
+
+[compost_bin_tomatoes_15]
+id = 1880
+examine = "This bin contains 15 tomatoes."
+
+[compost_bin_rotten_tomatoes_1]
+id = 1884
+examine = "This bin contains a rotten tomato."
+
+[compost_bin_rotten_tomatoes_2]
+id = 1886
+examine = "This bin contains 2 rotten tomatoes."
+
+[compost_bin_rotten_tomatoes_3]
+id = 1888
+examine = "This bin contains 3 rotten tomatoes."
+
+[compost_bin_rotten_tomatoes_4]
+id = 1890
+examine = "This bin contains 4 rotten tomatoes."
+
+[compost_bin_rotten_tomatoes_5]
+id = 1892
+examine = "This bin contains 5 rotten tomatoes."
+
+[compost_bin_rotten_tomatoes_6]
+id = 1894
+examine = "This bin contains 6 rotten tomatoes."
+
+[compost_bin_rotten_tomatoes_7]
+id = 1903
+examine = "This bin contains 7 rotten tomatoes."
+
+[compost_bin_rotten_tomatoes_8]
+id = 1909
+examine = "This bin contains 8 rotten tomatoes."
+
+[compost_bin_rotten_tomatoes_9]
+id = 1921
+examine = "This bin contains 9 rotten tomatoes."
+
+[compost_bin_rotten_tomatoes_10]
+id = 1926
+examine = "This bin contains 10 rotten tomatoes."
+
+[compost_bin_rotten_tomatoes_11]
+id = 1930
+examine = "This bin contains 11 rotten tomatoes."
+
+[compost_bin_rotten_tomatoes_12]
+id = 1932
+examine = "This bin contains 12 rotten tomatoes."
+
+[compost_bin_rotten_tomatoes_13]
+id = 1935
+examine = "This bin contains 13 rotten tomatoes."
+
+[compost_bin_rotten_tomatoes_14]
+id = 1937
+examine = "This bin contains 14 rotten tomatoes."
+
+[compost_bin_rotten_tomatoes_15]
+id = 1882
+examine = "This bin contains 15 rotten tomatoes."

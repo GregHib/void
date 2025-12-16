@@ -32,6 +32,8 @@ examine = "She sells Farming equipment."
 
 [lyra]
 id = 2326
+north_patch = "farming_veg_patch_morytania_nw"
+south_patch = "farming_veg_patch_morytania_se"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [alices_husband]

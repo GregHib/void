@@ -41,6 +41,7 @@ examine = "A well dressed thief."
 
 [garth_brimhaven]
 id = 2330
+patch = "farming_fruit_tree_patch_brimhaven"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [sandy_brimhaven]
@@ -61,8 +62,9 @@ examine = "Inspects people's packages."
 id = 437
 examine = "Entrance clerk for the Brimhaven Agility Arena."
 
-[praistan_ebola_brimhaven]
+[praistan_ebola]
 id = 4562
+patch = "farming_spirit_tree_patch_brimhaven"
 examine = "Perhaps this gardener might look after your crops for you."
 
 [my_arm_brimhaven]

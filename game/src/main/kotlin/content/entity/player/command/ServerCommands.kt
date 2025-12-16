@@ -6,6 +6,7 @@ import content.entity.obj.ship.CharterShips
 import content.entity.player.modal.book.Books
 import content.entity.world.music.MusicTracks
 import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
+import content.skill.farming.FarmingDefinitions
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.command.adminCommand
@@ -120,6 +121,7 @@ class ServerCommands : Script {
             "graphic_defs", "graphics", "gfx", "gfxs" -> get<GraphicDefinitions>().load(files.list(Settings["definitions.graphics"]))
             "item_on_item", "item-on-item", "ioi" -> get<ItemOnItemDefinitions>().load(files.list(Settings["definitions.itemOnItem"]))
             "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load(files.list(Settings["definitions.sounds"]))
+            "produce", "farming" -> get<FarmingDefinitions>().load(files.find(Settings["definitions.produce"]))
             "quest", "quests" -> get<QuestDefinitions>().load(files.find(Settings["definitions.quests"]))
             "midi", "midis" -> get<MidiDefinitions>().load(files.list(Settings["definitions.midis"]))
             "vars", "variables" -> get<VariableDefinitions>().load(

@@ -1,0 +1,643 @@
+[oak_seedling]
+remove = ["acorn", "plant_pot"]
+requires = ["gardening_trowel"]
+add = ["oak_seedling"]
+message = "You sow a oak tree seed in the plantpot.<br>It needs watering before it will grow."
+
+[water_oak_seedling_8]
+remove = ["watering_can_8", "oak_seedling"]
+add = ["watering_can_7", "oak_seedling_w"]
+message = "You water the oak seed."
+
+[water_oak_seedling_7]
+remove = ["watering_can_7", "oak_seedling"]
+add = ["watering_can_6", "oak_seedling_w"]
+message = "You water the oak seed."
+
+[water_oak_seedling_6]
+remove = ["watering_can_6", "oak_seedling"]
+add = ["watering_can_5", "oak_seedling_w"]
+message = "You water the oak seed."
+
+[water_oak_seedling_5]
+remove = ["watering_can_5", "oak_seedling"]
+add = ["watering_can_4", "oak_seedling_w"]
+message = "You water the oak seed."
+
+[water_oak_seedling_4]
+remove = ["watering_can_4", "oak_seedling"]
+add = ["watering_can_3", "oak_seedling_w"]
+message = "You water the oak seed."
+
+[water_oak_seedling_3]
+remove = ["watering_can_3", "oak_seedling"]
+add = ["watering_can_2", "oak_seedling_w"]
+message = "You water the oak seed."
+
+[water_oak_seedling_2]
+remove = ["watering_can_2", "oak_seedling"]
+add = ["watering_can_1", "oak_seedling_w"]
+message = "You water the oak seed."
+
+[water_oak_seedling_1]
+remove = ["watering_can_1", "oak_seedling"]
+add = ["watering_can_0", "oak_seedling_w"]
+message = "You water the oak seed."
+
+[willow_seedling]
+remove = ["willow_seed", "plant_pot"]
+requires = ["gardening_trowel"]
+add = ["willow_seedling"]
+message = "You sow a willow tree seed in the plantpot.<br>It needs watering before it will grow."
+
+[water_willow_seedling_8]
+remove = ["watering_can_8", "willow_seedling"]
+add = ["watering_can_7", "willow_seedling_w"]
+message = "You water the willow seed."
+
+[water_willow_seedling_7]
+remove = ["watering_can_7", "willow_seedling"]
+add = ["watering_can_6", "willow_seedling_w"]
+message = "You water the willow seed."
+
+[water_willow_seedling_6]
+remove = ["watering_can_6", "willow_seedling"]
+add = ["watering_can_5", "willow_seedling_w"]
+message = "You water the willow seed."
+
+[water_willow_seedling_5]
+remove = ["watering_can_5", "willow_seedling"]
+add = ["watering_can_4", "willow_seedling_w"]
+message = "You water the willow seed."
+
+[water_willow_seedling_4]
+remove = ["watering_can_4", "willow_seedling"]
+add = ["watering_can_3", "willow_seedling_w"]
+message = "You water the willow seed."
+
+[water_willow_seedling_3]
+remove = ["watering_can_3", "willow_seedling"]
+add = ["watering_can_2", "willow_seedling_w"]
+message = "You water the willow seed."
+
+[water_willow_seedling_2]
+remove = ["watering_can_2", "willow_seedling"]
+add = ["watering_can_1", "willow_seedling_w"]
+message = "You water the willow seed."
+
+[water_willow_seedling_1]
+remove = ["watering_can_1", "willow_seedling"]
+add = ["watering_can_0", "willow_seedling_w"]
+message = "You water the willow seed."
+
+[maple_seedling]
+remove = ["maple_seed", "plant_pot"]
+requires = ["gardening_trowel"]
+add = ["maple_seedling"]
+message = "You sow a maple tree seed in the plantpot.<br>It needs watering before it will grow."
+
+[water_maple_seedling_8]
+remove = ["watering_can_8", "maple_seedling"]
+add = ["watering_can_7", "maple_seedling_w"]
+message = "You water the maple seed."
+
+[water_maple_seedling_7]
+remove = ["watering_can_7", "maple_seedling"]
+add = ["watering_can_6", "maple_seedling_w"]
+message = "You water the maple seed."
+
+[water_maple_seedling_6]
+remove = ["watering_can_6", "maple_seedling"]
+add = ["watering_can_5", "maple_seedling_w"]
+message = "You water the maple seed."
+
+[water_maple_seedling_5]
+remove = ["watering_can_5", "maple_seedling"]
+add = ["watering_can_4", "maple_seedling_w"]
+message = "You water the maple seed."
+
+[water_maple_seedling_4]
+remove = ["watering_can_4", "maple_seedling"]
+add = ["watering_can_3", "maple_seedling_w"]
+message = "You water the maple seed."
+
+[water_maple_seedling_3]
+remove = ["watering_can_3", "maple_seedling"]
+add = ["watering_can_2", "maple_seedling_w"]
+message = "You water the maple seed."
+
+[water_maple_seedling_2]
+remove = ["watering_can_2", "maple_seedling"]
+add = ["watering_can_1", "maple_seedling_w"]
+message = "You water the maple seed."
+
+[water_maple_seedling_1]
+remove = ["watering_can_1", "maple_seedling"]
+add = ["watering_can_0", "maple_seedling_w"]
+message = "You water the maple seed."
+
+[yew_seedling]
+remove = ["yew_seed", "plant_pot"]
+requires = ["gardening_trowel"]
+add = ["yew_seedling"]
+message = "You sow a yew tree seed in the plantpot.<br>It needs watering before it will grow."
+
+[water_yew_seedling_8]
+remove = ["watering_can_8", "yew_seedling"]
+add = ["watering_can_7", "yew_seedling_w"]
+message = "You water the yew seed."
+
+[water_yew_seedling_7]
+remove = ["watering_can_7", "yew_seedling"]
+add = ["watering_can_6", "yew_seedling_w"]
+message = "You water the yew seed."
+
+[water_yew_seedling_6]
+remove = ["watering_can_6", "yew_seedling"]
+add = ["watering_can_5", "yew_seedling_w"]
+message = "You water the yew seed."
+
+[water_yew_seedling_5]
+remove = ["watering_can_5", "yew_seedling"]
+add = ["watering_can_4", "yew_seedling_w"]
+message = "You water the yew seed."
+
+[water_yew_seedling_4]
+remove = ["watering_can_4", "yew_seedling"]
+add = ["watering_can_3", "yew_seedling_w"]
+message = "You water the yew seed."
+
+[water_yew_seedling_3]
+remove = ["watering_can_3", "yew_seedling"]
+add = ["watering_can_2", "yew_seedling_w"]
+message = "You water the yew seed."
+
+[water_yew_seedling_2]
+remove = ["watering_can_2", "yew_seedling"]
+add = ["watering_can_1", "yew_seedling_w"]
+message = "You water the yew seed."
+
+[water_yew_seedling_1]
+remove = ["watering_can_1", "yew_seedling"]
+add = ["watering_can_0", "yew_seedling_w"]
+message = "You water the yew seed."
+
+[magic_seedling]
+remove = ["magic_seed", "plant_pot"]
+requires = ["gardening_trowel"]
+add = ["magic_seedling"]
+message = "You sow a magic tree seed in the plantpot.<br>It needs watering before it will grow."
+
+[water_magic_seedling_8]
+remove = ["watering_can_8", "magic_seedling"]
+add = ["watering_can_7", "magic_seedling_w"]
+message = "You water the magic seed."
+
+[water_magic_seedling_7]
+remove = ["watering_can_7", "magic_seedling"]
+add = ["watering_can_6", "magic_seedling_w"]
+message = "You water the magic seed."
+
+[water_magic_seedling_6]
+remove = ["watering_can_6", "magic_seedling"]
+add = ["watering_can_5", "magic_seedling_w"]
+message = "You water the magic seed."
+
+[water_magic_seedling_5]
+remove = ["watering_can_5", "magic_seedling"]
+add = ["watering_can_4", "magic_seedling_w"]
+message = "You water the magic seed."
+
+[water_magic_seedling_4]
+remove = ["watering_can_4", "magic_seedling"]
+add = ["watering_can_3", "magic_seedling_w"]
+message = "You water the magic seed."
+
+[water_magic_seedling_3]
+remove = ["watering_can_3", "magic_seedling"]
+add = ["watering_can_2", "magic_seedling_w"]
+message = "You water the magic seed."
+
+[water_magic_seedling_2]
+remove = ["watering_can_2", "magic_seedling"]
+add = ["watering_can_1", "magic_seedling_w"]
+message = "You water the magic seed."
+
+[water_magic_seedling_1]
+remove = ["watering_can_1", "magic_seedling"]
+add = ["watering_can_0", "magic_seedling_w"]
+message = "You water the magic seed."
+
+[spirit_seedling]
+remove = ["spirit_seed", "plant_pot"]
+requires = ["gardening_trowel"]
+add = ["spirit_seedling"]
+message = "You sow a spirit tree seed in the plantpot.<br>It needs watering before it will grow."
+
+[water_spirit_seedling_8]
+remove = ["watering_can_8", "spirit_seedling"]
+add = ["watering_can_7", "spirit_seedling_w"]
+message = "You water the spirit seed."
+
+[water_spirit_seedling_7]
+remove = ["watering_can_7", "spirit_seedling"]
+add = ["watering_can_6", "spirit_seedling_w"]
+message = "You water the spirit seed."
+
+[water_spirit_seedling_6]
+remove = ["watering_can_6", "spirit_seedling"]
+add = ["watering_can_5", "spirit_seedling_w"]
+message = "You water the spirit seed."
+
+[water_spirit_seedling_5]
+remove = ["watering_can_5", "spirit_seedling"]
+add = ["watering_can_4", "spirit_seedling_w"]
+message = "You water the spirit seed."
+
+[water_spirit_seedling_4]
+remove = ["watering_can_4", "spirit_seedling"]
+add = ["watering_can_3", "spirit_seedling_w"]
+message = "You water the spirit seed."
+
+[water_spirit_seedling_3]
+remove = ["watering_can_3", "spirit_seedling"]
+add = ["watering_can_2", "spirit_seedling_w"]
+message = "You water the spirit seed."
+
+[water_spirit_seedling_2]
+remove = ["watering_can_2", "spirit_seedling"]
+add = ["watering_can_1", "spirit_seedling_w"]
+message = "You water the spirit seed."
+
+[water_spirit_seedling_1]
+remove = ["watering_can_1", "spirit_seedling"]
+add = ["watering_can_0", "spirit_seedling_w"]
+message = "You water the spirit seed."
+
+[apple_seedling]
+remove = ["apple_tree_seed", "plant_pot"]
+requires = ["gardening_trowel"]
+add = ["apple_seedling"]
+message = "You sow a apple tree seed in the plantpot.<br>It needs watering before it will grow."
+
+[water_apple_seedling_8]
+remove = ["watering_can_8", "apple_seedling"]
+add = ["watering_can_7", "apple_seedling_w"]
+message = "You water the apple seed."
+
+[water_apple_seedling_7]
+remove = ["watering_can_7", "apple_seedling"]
+add = ["watering_can_6", "apple_seedling_w"]
+message = "You water the apple seed."
+
+[water_apple_seedling_6]
+remove = ["watering_can_6", "apple_seedling"]
+add = ["watering_can_5", "apple_seedling_w"]
+message = "You water the apple seed."
+
+[water_apple_seedling_5]
+remove = ["watering_can_5", "apple_seedling"]
+add = ["watering_can_4", "apple_seedling_w"]
+message = "You water the apple seed."
+
+[water_apple_seedling_4]
+remove = ["watering_can_4", "apple_seedling"]
+add = ["watering_can_3", "apple_seedling_w"]
+message = "You water the apple seed."
+
+[water_apple_seedling_3]
+remove = ["watering_can_3", "apple_seedling"]
+add = ["watering_can_2", "apple_seedling_w"]
+message = "You water the apple seed."
+
+[water_apple_seedling_2]
+remove = ["watering_can_2", "apple_seedling"]
+add = ["watering_can_1", "apple_seedling_w"]
+message = "You water the apple seed."
+
+[water_apple_seedling_1]
+remove = ["watering_can_1", "apple_seedling"]
+add = ["watering_can_0", "apple_seedling_w"]
+message = "You water the apple seed."
+
+[banana_seedling]
+remove = ["banana_tree_seed", "plant_pot"]
+requires = ["gardening_trowel"]
+add = ["banana_seedling"]
+message = "You sow a banana tree seed in the plantpot.<br>It needs watering before it will grow."
+
+[water_banana_seedling_8]
+remove = ["watering_can_8", "banana_seedling"]
+add = ["watering_can_7", "banana_seedling_w"]
+message = "You water the banana seed."
+
+[water_banana_seedling_7]
+remove = ["watering_can_7", "banana_seedling"]
+add = ["watering_can_6", "banana_seedling_w"]
+message = "You water the banana seed."
+
+[water_banana_seedling_6]
+remove = ["watering_can_6", "banana_seedling"]
+add = ["watering_can_5", "banana_seedling_w"]
+message = "You water the banana seed."
+
+[water_banana_seedling_5]
+remove = ["watering_can_5", "banana_seedling"]
+add = ["watering_can_4", "banana_seedling_w"]
+message = "You water the banana seed."
+
+[water_banana_seedling_4]
+remove = ["watering_can_4", "banana_seedling"]
+add = ["watering_can_3", "banana_seedling_w"]
+message = "You water the banana seed."
+
+[water_banana_seedling_3]
+remove = ["watering_can_3", "banana_seedling"]
+add = ["watering_can_2", "banana_seedling_w"]
+message = "You water the banana seed."
+
+[water_banana_seedling_2]
+remove = ["watering_can_2", "banana_seedling"]
+add = ["watering_can_1", "banana_seedling_w"]
+message = "You water the banana seed."
+
+[water_banana_seedling_1]
+remove = ["watering_can_1", "banana_seedling"]
+add = ["watering_can_0", "banana_seedling_w"]
+message = "You water the banana seed."
+
+[orange_seedling]
+remove = ["orange_tree_seed", "plant_pot"]
+requires = ["gardening_trowel"]
+add = ["orange_seedling"]
+message = "You sow a orange tree seed in the plantpot.<br>It needs watering before it will grow."
+
+[water_orange_seedling_8]
+remove = ["watering_can_8", "orange_seedling"]
+add = ["watering_can_7", "orange_seedling_w"]
+message = "You water the orange seed."
+
+[water_orange_seedling_7]
+remove = ["watering_can_7", "orange_seedling"]
+add = ["watering_can_6", "orange_seedling_w"]
+message = "You water the orange seed."
+
+[water_orange_seedling_6]
+remove = ["watering_can_6", "orange_seedling"]
+add = ["watering_can_5", "orange_seedling_w"]
+message = "You water the orange seed."
+
+[water_orange_seedling_5]
+remove = ["watering_can_5", "orange_seedling"]
+add = ["watering_can_4", "orange_seedling_w"]
+message = "You water the orange seed."
+
+[water_orange_seedling_4]
+remove = ["watering_can_4", "orange_seedling"]
+add = ["watering_can_3", "orange_seedling_w"]
+message = "You water the orange seed."
+
+[water_orange_seedling_3]
+remove = ["watering_can_3", "orange_seedling"]
+add = ["watering_can_2", "orange_seedling_w"]
+message = "You water the orange seed."
+
+[water_orange_seedling_2]
+remove = ["watering_can_2", "orange_seedling"]
+add = ["watering_can_1", "orange_seedling_w"]
+message = "You water the orange seed."
+
+[water_orange_seedling_1]
+remove = ["watering_can_1", "orange_seedling"]
+add = ["watering_can_0", "orange_seedling_w"]
+message = "You water the orange seed."
+
+[curry_seedling]
+remove = ["curry_tree_seed", "plant_pot"]
+requires = ["gardening_trowel"]
+add = ["curry_seedling"]
+message = "You sow a curry tree seed in the plantpot.<br>It needs watering before it will grow."
+
+[water_curry_seedling_8]
+remove = ["watering_can_8", "curry_seedling"]
+add = ["watering_can_7", "curry_seedling_w"]
+message = "You water the curry seed."
+
+[water_curry_seedling_7]
+remove = ["watering_can_7", "curry_seedling"]
+add = ["watering_can_6", "curry_seedling_w"]
+message = "You water the curry seed."
+
+[water_curry_seedling_6]
+remove = ["watering_can_6", "curry_seedling"]
+add = ["watering_can_5", "curry_seedling_w"]
+message = "You water the curry seed."
+
+[water_curry_seedling_5]
+remove = ["watering_can_5", "curry_seedling"]
+add = ["watering_can_4", "curry_seedling_w"]
+message = "You water the curry seed."
+
+[water_curry_seedling_4]
+remove = ["watering_can_4", "curry_seedling"]
+add = ["watering_can_3", "curry_seedling_w"]
+message = "You water the curry seed."
+
+[water_curry_seedling_3]
+remove = ["watering_can_3", "curry_seedling"]
+add = ["watering_can_2", "curry_seedling_w"]
+message = "You water the curry seed."
+
+[water_curry_seedling_2]
+remove = ["watering_can_2", "curry_seedling"]
+add = ["watering_can_1", "curry_seedling_w"]
+message = "You water the curry seed."
+
+[water_curry_seedling_1]
+remove = ["watering_can_1", "curry_seedling"]
+add = ["watering_can_0", "curry_seedling_w"]
+message = "You water the curry seed."
+
+[pineapple_seedling]
+remove = ["pineapple_seed", "plant_pot"]
+requires = ["gardening_trowel"]
+add = ["pineapple_seedling"]
+message = "You sow a pineapple tree seed in the plantpot.<br>It needs watering before it will grow."
+
+[water_pineapple_seedling_8]
+remove = ["watering_can_8", "pineapple_seedling"]
+add = ["watering_can_7", "pineapple_seedling_w"]
+message = "You water the pineapple seed."
+
+[water_pineapple_seedling_7]
+remove = ["watering_can_7", "pineapple_seedling"]
+add = ["watering_can_6", "pineapple_seedling_w"]
+message = "You water the pineapple seed."
+
+[water_pineapple_seedling_6]
+remove = ["watering_can_6", "pineapple_seedling"]
+add = ["watering_can_5", "pineapple_seedling_w"]
+message = "You water the pineapple seed."
+
+[water_pineapple_seedling_5]
+remove = ["watering_can_5", "pineapple_seedling"]
+add = ["watering_can_4", "pineapple_seedling_w"]
+message = "You water the pineapple seed."
+
+[water_pineapple_seedling_4]
+remove = ["watering_can_4", "pineapple_seedling"]
+add = ["watering_can_3", "pineapple_seedling_w"]
+message = "You water the pineapple seed."
+
+[water_pineapple_seedling_3]
+remove = ["watering_can_3", "pineapple_seedling"]
+add = ["watering_can_2", "pineapple_seedling_w"]
+message = "You water the pineapple seed."
+
+[water_pineapple_seedling_2]
+remove = ["watering_can_2", "pineapple_seedling"]
+add = ["watering_can_1", "pineapple_seedling_w"]
+message = "You water the pineapple seed."
+
+[water_pineapple_seedling_1]
+remove = ["watering_can_1", "pineapple_seedling"]
+add = ["watering_can_0", "pineapple_seedling_w"]
+message = "You water the pineapple seed."
+
+[papaya_seedling]
+remove = ["papaya_tree_seed", "plant_pot"]
+requires = ["gardening_trowel"]
+add = ["papaya_seedling"]
+message = "You sow a papaya tree seed in the plantpot.<br>It needs watering before it will grow."
+
+[water_papaya_seedling_8]
+remove = ["watering_can_8", "papaya_seedling"]
+add = ["watering_can_7", "papaya_seedling_w"]
+message = "You water the papaya seed."
+
+[water_papaya_seedling_7]
+remove = ["watering_can_7", "papaya_seedling"]
+add = ["watering_can_6", "papaya_seedling_w"]
+message = "You water the papaya seed."
+
+[water_papaya_seedling_6]
+remove = ["watering_can_6", "papaya_seedling"]
+add = ["watering_can_5", "papaya_seedling_w"]
+message = "You water the papaya seed."
+
+[water_papaya_seedling_5]
+remove = ["watering_can_5", "papaya_seedling"]
+add = ["watering_can_4", "papaya_seedling_w"]
+message = "You water the papaya seed."
+
+[water_papaya_seedling_4]
+remove = ["watering_can_4", "papaya_seedling"]
+add = ["watering_can_3", "papaya_seedling_w"]
+message = "You water the papaya seed."
+
+[water_papaya_seedling_3]
+remove = ["watering_can_3", "papaya_seedling"]
+add = ["watering_can_2", "papaya_seedling_w"]
+message = "You water the papaya seed."
+
+[water_papaya_seedling_2]
+remove = ["watering_can_2", "papaya_seedling"]
+add = ["watering_can_1", "papaya_seedling_w"]
+message = "You water the papaya seed."
+
+[water_papaya_seedling_1]
+remove = ["watering_can_1", "papaya_seedling"]
+add = ["watering_can_0", "papaya_seedling_w"]
+message = "You water the papaya seed."
+
+[palm_seedling]
+remove = ["palm_tree_seed", "plant_pot"]
+requires = ["gardening_trowel"]
+add = ["palm_seedling"]
+message = "You sow a palm tree seed in the plantpot.<br>It needs watering before it will grow."
+
+[water_palm_seedling_8]
+remove = ["watering_can_8", "palm_seedling"]
+add = ["watering_can_7", "palm_seedling_w"]
+message = "You water the palm seed."
+
+[water_palm_seedling_7]
+remove = ["watering_can_7", "palm_seedling"]
+add = ["watering_can_6", "palm_seedling_w"]
+message = "You water the palm seed."
+
+[water_palm_seedling_6]
+remove = ["watering_can_6", "palm_seedling"]
+add = ["watering_can_5", "palm_seedling_w"]
+message = "You water the palm seed."
+
+[water_palm_seedling_5]
+remove = ["watering_can_5", "palm_seedling"]
+add = ["watering_can_4", "palm_seedling_w"]
+message = "You water the palm seed."
+
+[water_palm_seedling_4]
+remove = ["watering_can_4", "palm_seedling"]
+add = ["watering_can_3", "palm_seedling_w"]
+message = "You water the palm seed."
+
+[water_palm_seedling_3]
+remove = ["watering_can_3", "palm_seedling"]
+add = ["watering_can_2", "palm_seedling_w"]
+message = "You water the palm seed."
+
+[water_palm_seedling_2]
+remove = ["watering_can_2", "palm_seedling"]
+add = ["watering_can_1", "palm_seedling_w"]
+message = "You water the palm seed."
+
+[water_palm_seedling_1]
+remove = ["watering_can_1", "palm_seedling"]
+add = ["watering_can_0", "palm_seedling_w"]
+message = "You water the palm seed."
+
+[calquat_seedling]
+remove = ["calquat_tree_seed", "plant_pot"]
+requires = ["gardening_trowel"]
+add = ["calquat_seedling"]
+message = "You sow a calquat tree seed in the plantpot.<br>It needs watering before it will grow."
+
+[water_calquat_seedling_8]
+remove = ["watering_can_8", "calquat_seedling"]
+add = ["watering_can_7", "calquat_seedling_w"]
+message = "You water the calquat seed."
+
+[water_calquat_seedling_7]
+remove = ["watering_can_7", "calquat_seedling"]
+add = ["watering_can_6", "calquat_seedling_w"]
+message = "You water the calquat seed."
+
+[water_calquat_seedling_6]
+remove = ["watering_can_6", "calquat_seedling"]
+add = ["watering_can_5", "calquat_seedling_w"]
+message = "You water the calquat seed."
+
+[water_calquat_seedling_5]
+remove = ["watering_can_5", "calquat_seedling"]
+add = ["watering_can_4", "calquat_seedling_w"]
+message = "You water the calquat seed."
+
+[water_calquat_seedling_4]
+remove = ["watering_can_4", "calquat_seedling"]
+add = ["watering_can_3", "calquat_seedling_w"]
+message = "You water the calquat seed."
+
+[water_calquat_seedling_3]
+remove = ["watering_can_3", "calquat_seedling"]
+add = ["watering_can_2", "calquat_seedling_w"]
+message = "You water the calquat seed."
+
+[water_calquat_seedling_2]
+remove = ["watering_can_2", "calquat_seedling"]
+add = ["watering_can_1", "calquat_seedling_w"]
+message = "You water the calquat seed."
+
+[water_calquat_seedling_1]
+remove = ["watering_can_1", "calquat_seedling"]
+add = ["watering_can_0", "calquat_seedling_w"]
+message = "You water the calquat seed."

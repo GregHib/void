@@ -1,0 +1,610 @@
+[cabbage_seed]
+id = 8535
+examine = "Cabbage seeds have been sown in this allotment."
+
+[cabbage_1]
+id = 8536
+examine = "Cabbages are growing in this allotment."
+
+[cabbage_2]
+id = 8537
+examine = "Cabbages are growing in this allotment."
+
+[cabbage_3]
+id = 8538
+examine = "Cabbages are growing in this allotment."
+
+[cabbage_fullygrown]
+id = 8539
+harvest = "cabbage"
+examine = "These cabbages could do with harvesting."
+
+[cabbage_seed_watered]
+id = 8540
+examine = "Cabbages are growing in this allotment."
+
+[cabbage_1_watered]
+id = 8541
+examine = "Cabbages are growing in this allotment."
+
+[cabbage_2_watered]
+id = 8542
+examine = "Cabbages are growing in this allotment."
+
+[cabbage_3_watered]
+id = 8543
+examine = "Cabbages are growing in this allotment."
+
+[cabbage_1_diseased]
+id = 8544
+examine = "These cabbages have become diseased and need tending."
+
+[cabbage_2_diseased]
+id = 8545
+examine = "These cabbages have become diseased and need tending."
+
+[cabbage_3_diseased]
+id = 8546
+examine = "These cabbages have become diseased and need tending."
+
+[cabbage_1_dead]
+id = 8547
+examine = "These cabbages have become diseased and died."
+
+[cabbage_2_dead]
+id = 8548
+examine = "These cabbages have become diseased and died."
+
+[cabbage_3_dead]
+id = 8549
+examine = "These cabbages have become diseased and died."
+
+[farming_veg_patch_falador_nw]
+id = 8550
+
+[farming_veg_patch_falador_se]
+id = 8551
+
+[farming_veg_patch_catherby_north]
+id = 8552
+
+[farming_veg_patch_catherby_south]
+id = 8553
+
+[farming_veg_patch_ardougne_north]
+id = 8554
+
+[farming_veg_patch_ardougne_south]
+id = 8555
+
+[farming_veg_patch_morytania_nw]
+id = 8556
+
+[farming_veg_patch_morytania_se]
+id = 8557
+
+[potato_seed]
+id = 8558
+examine = "Potato seeds have been planted in this allotment."
+
+[potato_1]
+id = 8559
+examine = "Potato plants are growing in this allotment."
+
+[potato_2]
+id = 8560
+examine = "Potato plants are growing in this allotment."
+
+[potato_3]
+id = 8561
+examine = "Potato plants are growing in this allotment."
+
+[potato_fullygrown]
+id = 8562
+harvest = "raw_potato"
+examine = "These potato plants are fully grown."
+
+[potato_seed_watered]
+id = 8563
+examine = "Potato plants are growing in this allotment."
+
+[potato_1_watered]
+id = 8564
+examine = "Potato plants are growing in this allotment."
+
+[potato_2_watered]
+id = 8565
+examine = "Potato plants are growing in this allotment."
+
+[potato_3_watered]
+id = 8566
+examine = "Potato plants are growing in this allotment."
+
+[potato_1_diseased]
+id = 8567
+examine = "These potato plants are diseased."
+
+[potato_2_diseased]
+id = 8568
+examine = "These potato plants are diseased."
+
+[potato_3_diseased]
+id = 8569
+examine = "These potato plants are diseased."
+
+[potato_1_dead]
+id = 8570
+examine = "These potato plants are dead."
+
+[potato_2_dead]
+id = 8571
+examine = "These potato plants are dead."
+
+[potato_3_dead]
+id = 8572
+examine = "These potato plants are dead."
+
+[veg_patch_weeded]
+id = 8573
+harvest = "weeds"
+examine = "You can grow fruit and vegetables here."
+
+[veg_patch_weeds_1]
+id = 8574
+harvest = "weeds"
+examine = "You can grow fruit and vegetables here."
+
+[veg_patch_weeds_2]
+id = 8575
+harvest = "weeds"
+examine = "You can grow fruit and vegetables here."
+
+[veg_patch_weeds_3]
+id = 8576
+harvest = "weeds"
+examine = "You can grow fruit and vegetables here."
+
+[veg_patch_weeds_1_mory]
+id = 8577
+examine = "You can grow fruit and vegetables here."
+
+[veg_patch_weeds_2_mory]
+id = 8578
+examine = "You can grow fruit and vegetables here."
+
+[veg_patch_weeds_3_mory]
+id = 8579
+examine = "You can grow fruit and vegetables here."
+
+[onion_seed]
+id = 8580
+examine = "Some onion seeds have been sown in this allotment."
+
+[onion_1]
+id = 8581
+examine = "Some onion plants are growing in this allotment."
+
+[onion_2]
+id = 8582
+examine = "Some onion plants are growing in this allotment."
+
+[onion_3]
+id = 8583
+examine = "Some onion plants are growing in this allotment."
+
+[onion_fullygrown]
+id = 8584
+harvest = "onion"
+examine = "There are some fully grown onions in this allotment."
+
+[onion_seed_watered]
+id = 8585
+examine = "Some onion seeds have been sown in this allotment."
+
+[onion_1_watered]
+id = 8586
+examine = "Some onion plants are growing in this allotment."
+
+[onion_2_watered]
+id = 8587
+examine = "Some onion plants are growing in this allotment."
+
+[onion_3_watered]
+id = 8588
+examine = "Some onion plants are growing in this allotment."
+
+[onion_1_diseased]
+id = 8589
+examine = "These onions have become diseased."
+
+[onion_2_diseased]
+id = 8590
+examine = "These onions have become diseased."
+
+[onion_3_diseased]
+id = 8591
+examine = "These onions have become diseased."
+
+[onion_1_dead]
+id = 8592
+examine = "These onions have become diseased and died."
+
+[onion_2_dead]
+id = 8593
+examine = "These onions have become diseased and died."
+
+[onion_3_dead]
+id = 8594
+examine = "These onions have become diseased and died."
+
+[strawberry_seed]
+id = 8595
+examine = "Strawberry seeds have been sown in this allotment."
+
+[strawberry_1]
+id = 8596
+examine = "Strawberry plants are growing in this allotment."
+
+[strawberry_2]
+id = 8597
+examine = "Strawberry plants are growing in this allotment."
+
+[strawberry_3]
+id = 8598
+examine = "Strawberry plants are growing in this allotment."
+
+[strawberry_4]
+id = 8599
+examine = "Strawberry plants are growing in this allotment."
+
+[strawberry_5]
+id = 8600
+examine = "Strawberry plants are growing in this allotment."
+
+[strawberry_fullygrown]
+id = 8601
+harvest = "strawberry"
+examine = "These strawberry plants are fully grown."
+
+[strawberry_seed_watered]
+id = 8602
+examine = "Strawberry seeds have been sown in this allotment."
+
+[strawberry_1_watered]
+id = 8603
+examine = "Strawberry plants are growing in this allotment."
+
+[strawberry_2_watered]
+id = 8604
+examine = "Strawberry plants are growing in this allotment."
+
+[strawberry_3_watered]
+id = 8605
+examine = "Strawberry plants are growing in this allotment."
+
+[strawberry_4_watered]
+id = 8606
+examine = "Strawberry plants are growing in this allotment."
+
+[strawberry_5_watered]
+id = 8607
+examine = "Strawberry plants are growing in this allotment."
+
+[strawberry_1_diseased]
+id = 8608
+examine = "These strawberry plants have become diseased."
+
+[strawberry_2_diseased]
+id = 8609
+examine = "These strawberry plants have become diseased."
+
+[strawberry_3_diseased]
+id = 8610
+examine = "These strawberry plants have become diseased."
+
+[strawberry_4_diseased]
+id = 8611
+examine = "These strawberry plants have become diseased."
+
+[strawberry_5_diseased]
+id = 8612
+examine = "These strawberry plants have become diseased."
+
+[strawberry_1_dead]
+id = 8613
+examine = "These strawberry plants have become diseased and died."
+
+[strawberry_2_dead]
+id = 8614
+examine = "These strawberry plants have become diseased and died."
+
+[strawberry_3_dead]
+id = 8615
+examine = "These strawberry plants have become diseased and died."
+
+[strawberry_4_dead]
+id = 8616
+examine = "These strawberry plants have become diseased and died."
+
+[strawberry_5_dead]
+id = 8617
+examine = "These strawberry plants have become diseased and died."
+
+[sweetcorn_seed]
+id = 8618
+examine = "Some sweetcorn seeds have been sown in this allotment."
+
+[sweetcorn_1]
+id = 8619
+examine = "Some sweetcorn plants are growing in this allotment."
+
+[sweetcorn_2]
+id = 8620
+examine = "Some sweetcorn plants are growing in this allotment."
+
+[sweetcorn_3]
+id = 8621
+examine = "Some sweetcorn plants are growing in this allotment."
+
+[sweetcorn_4]
+id = 8622
+examine = "Some sweetcorn plants are growing in this allotment."
+
+[sweetcorn_5]
+id = 8623
+examine = "Some sweetcorn plants are growing in this allotment."
+
+[sweetcorn_fullygrown]
+id = 8624
+harvest = "sweetcorn"
+examine = "These sweetcorn plants are fully grown."
+
+[sweetcorn_seed_watered]
+id = 8625
+examine = "Some sweetcorn seeds have been sown in this allotment."
+
+[sweetcorn_1_watered]
+id = 8626
+examine = "Some sweetcorn plants are growing in this allotment."
+
+[sweetcorn_2_watered]
+id = 8627
+examine = "Some sweetcorn plants are growing in this allotment."
+
+[sweetcorn_3_watered]
+id = 8628
+examine = "Some sweetcorn plants are growing in this allotment."
+
+[sweetcorn_4_watered]
+id = 8629
+examine = "Some sweetcorn plants are growing in this allotment."
+
+[sweetcorn_5_watered]
+id = 8630
+examine = "Some sweetcorn plants are growing in this allotment."
+
+[sweetcorn_1_diseased]
+id = 8631
+examine = "These sweetcorn plants have been attacked by crows."
+
+[sweetcorn_2_diseased]
+id = 8632
+examine = "These sweetcorn plants have been attacked by crows."
+
+[sweetcorn_3_diseased]
+id = 8633
+examine = "These sweetcorn plants have been attacked by crows."
+
+[sweetcorn_4_diseased]
+id = 8634
+examine = "These sweetcorn plants have been attacked by crows."
+
+[sweetcorn_5_diseased]
+id = 8635
+examine = "These sweetcorn plants have been attacked by crows."
+
+[sweetcorn_1_dead]
+id = 8636
+examine = "These sweetcorn plants have become diseased and died."
+
+[sweetcorn_2_dead]
+id = 8637
+examine = "These sweetcorn plants have become diseased and died."
+
+[sweetcorn_3_dead]
+id = 8638
+examine = "These sweetcorn plants have become diseased and died."
+
+[sweetcorn_4_dead]
+id = 8639
+examine = "These sweetcorn plants have become diseased and died."
+
+[sweetcorn_5_dead]
+id = 8640
+examine = "These sweetcorn plants have become diseased and died."
+
+[tomato_seed]
+id = 8641
+examine = "Tomato seeds have been sown in this allotment."
+
+[tomato_1]
+id = 8642
+examine = "Tomato plants are growing in this allotment."
+
+[tomato_2]
+id = 8643
+examine = "Tomato plants are growing in this allotment."
+
+[tomato_3]
+id = 8644
+examine = "Tomato plants are growing in this allotment."
+
+[tomato_fullygrown]
+id = 8645
+harvest = "tomato"
+examine = "These tomato plants are fully grown."
+
+[tomato_seed_watered]
+id = 8646
+examine = "Tomato seeds have been sown in this allotment."
+
+[tomato_1_watered]
+id = 8647
+examine = "Tomato plants are growing in this allotment."
+
+[tomato_2_watered]
+id = 8648
+examine = "Tomato plants are growing in this allotment."
+
+[tomato_3_watered]
+id = 8649
+examine = "Tomato plants are growing in this allotment."
+
+[tomato_1_diseased]
+id = 8650
+examine = "These tomato plants have become diseased."
+
+[tomato_2_diseased]
+id = 8651
+examine = "These tomato plants have become diseased."
+
+[tomato_3_diseased]
+id = 8652
+examine = "These tomato plants have become diseased."
+
+[tomato_1_dead]
+id = 8653
+examine = "These tomato plants have become diseased and died."
+
+[tomato_2_dead]
+id = 8654
+examine = "These tomato plants have become diseased and died."
+
+[tomato_3_dead]
+id = 8655
+examine = "These tomato plants have become diseased and died."
+
+[watermelon_seed]
+id = 8656
+examine = "Watermelon seeds have been sown in this allotment."
+
+[watermelon_1]
+id = 8657
+examine = "Watermelons are growing in this allotment."
+
+[watermelon_2]
+id = 8658
+examine = "Watermelons are growing in this allotment."
+
+[watermelon_3]
+id = 8659
+examine = "Watermelons are growing in this allotment."
+
+[watermelon_4]
+id = 8660
+examine = "Watermelons are growing in this allotment."
+
+[watermelon_5]
+id = 8661
+examine = "Watermelons are growing in this allotment."
+
+[watermelon_6]
+id = 8662
+examine = "Watermelons are growing in this allotment."
+
+[watermelon_7]
+id = 8663
+examine = "Watermelons are growing in this allotment."
+
+[watermelon_fullygrown]
+id = 8664
+harvest = "watermelon"
+examine = "These watermelons could do with harvesting."
+
+[watermelon_seed_watered]
+id = 8665
+examine = "Watermelon seeds have been sown in this allotment."
+
+[watermelon_1_watered]
+id = 8666
+examine = "Watermelons are growing in this allotment."
+
+[watermelon_2_watered]
+id = 8667
+examine = "Watermelons are growing in this allotment."
+
+[watermelon_3_watered]
+id = 8668
+examine = "Watermelons are growing in this allotment."
+
+[watermelon_4_watered]
+id = 8669
+examine = "Watermelons are growing in this allotment."
+
+[watermelon_5_watered]
+id = 8670
+examine = "Watermelons are growing in this allotment."
+
+[watermelon_6_watered]
+id = 8671
+examine = "Watermelons are growing in this allotment."
+
+[watermelon_7_watered]
+id = 8672
+examine = "Watermelons are growing in this allotment."
+
+[watermelon_1_diseased]
+id = 8673
+examine = "These watermelons have become diseased and need tending."
+
+[watermelon_2_diseased]
+id = 8674
+examine = "These watermelons have become diseased and need tending."
+
+[watermelon_3_diseased]
+id = 8675
+examine = "These watermelons have become diseased and need tending."
+
+[watermelon_4_diseased]
+id = 8676
+examine = "These watermelons have become diseased and need tending."
+
+[watermelon_5_diseased]
+id = 8677
+examine = "These watermelons have become diseased and need tending."
+
+[watermelon_6_diseased]
+id = 8678
+examine = "These watermelons have become diseased and need tending."
+
+[watermelon_7_diseased]
+id = 8679
+examine = "These watermelons have become diseased and need tending."
+
+[watermelon_1_dead]
+id = 8680
+examine = "These watermelon plants have become diseased and died."
+
+[watermelon_2_dead]
+id = 8681
+examine = "These watermelon plants have become diseased and died."
+
+[watermelon_3_dead]
+id = 8682
+examine = "These watermelon plants have become diseased and died."
+
+[watermelon_4_dead]
+id = 8683
+examine = "These watermelon plants have become diseased and died."
+
+[watermelon_5_dead]
+id = 8684
+examine = "These watermelon plants have become diseased and died."
+
+[watermelon_6_dead]
+id = 8685
+examine = "These watermelon plants have become diseased and died."
+
+[watermelon_7_dead]
+id = 8686
+examine = "These watermelon plants have become diseased and died."

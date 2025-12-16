@@ -1,0 +1,17 @@
+[farming_offset_mins]
+format = "int"
+persist = true
+
+[last_growth_cycle]
+format = "int"
+persist = true
+
+[patch_compost]
+format = "list"
+persist = true
+values = [ "farming_veg_patch_falador_nw", "farming_veg_patch_falador_se", "farming_veg_patch_catherby_north", "farming_veg_patch_catherby_south", "farming_veg_patch_ardougne_north", "farming_veg_patch_ardougne_south", "farming_veg_patch_morytania_nw", "farming_veg_patch_morytania_se" ]
+
+[patch_super_compost]
+format = "list"
+persist = true
+values = [ "farming_veg_patch_falador_nw", "farming_veg_patch_falador_se", "farming_veg_patch_catherby_north", "farming_veg_patch_catherby_south", "farming_veg_patch_ardougne_north", "farming_veg_patch_ardougne_south", "farming_veg_patch_morytania_nw", "farming_veg_patch_morytania_se" ]

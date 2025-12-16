@@ -434,3 +434,6 @@ id = 1077
 
 [exchange_slot_interfaces]
 id = 1078
+
+[farming_protection]
+id = 2024
