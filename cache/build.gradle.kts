@@ -3,6 +3,7 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":config"))
     implementation(project(":buffer"))
     implementation(project(":types"))
     implementation(libs.displee.cache)

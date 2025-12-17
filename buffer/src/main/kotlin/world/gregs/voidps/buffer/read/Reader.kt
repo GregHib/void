@@ -19,6 +19,8 @@ interface Reader {
 
     fun readUnsignedBoolean() = readUnsignedByte() == 1
 
+    fun peek(): Int
+
     fun readByte(): Int
 
     fun readByteAdd(): Int

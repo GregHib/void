@@ -13,6 +13,8 @@ class BufferReader(
         get() = buffer.remaining()
     private var bitIndex = 0
 
+    override fun peek(): Int = buffer.get(buffer.position()).toInt()
+
     override fun readByte(): Int = buffer.get().toInt()
 
     override fun readByteAdd(): Int = (readByte() - 128).toByte().toInt()
