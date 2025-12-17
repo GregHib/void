@@ -7,7 +7,7 @@ import world.gregs.config.ConfigWriter
 import world.gregs.config.writePair
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.cache.definition.ParameterBuilder
+import world.gregs.voidps.cache.type.TypeDecoder
 import world.gregs.voidps.cache.type.TypeField
 import kotlin.collections.set
 
@@ -23,7 +23,7 @@ import kotlin.collections.set
 class ParameterField(
     private val paramIds: Map<String, Int>,
     private val params: Map<Int, String>,
-    private val transforms: Map<String, ParameterBuilder.Transform> = emptyMap(),
+    private val transforms: Map<String, TypeDecoder.ParameterBuilder.Transform> = emptyMap(),
     private val renames: Map<String, String> = emptyMap(),
     private val originals: Map<String, String> = emptyMap(),
 ) : TypeField(paramIds.keys.toList()) {
