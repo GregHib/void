@@ -5,69 +5,89 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
+import world.gregs.voidps.cache.type.decode.ItemTypeDecoder
+import world.gregs.voidps.cache.type.types.ItemType
 import java.io.File
 
-class TypeLoader {
-    fun <T: Type> load(config: LoaderConfig<T>, directory: File, cache: Cache, lastCacheChange: Long): Array<T?> {
-        val base = directory.resolve("${config.name}_base.dat")
-        val combined = directory.resolve("${config.name}.dat")
+abstract class TypeLoader<T: Type>(directory: File, name: String) {
+    val base = directory.resolve("${name}_base.dat")
+    val combined = directory.resolve("${name}.dat")
+    open val bufferSize = 1_000_000
+    abstract val index: Int
+    open val maxString = 100
+
+    open fun size(cache: Cache) = cache.lastArchiveId(index) * 256 + (cache.fileCount(index, cache.lastArchiveId(index)))
+
+    open fun file(id: Int) = id
+
+    open fun archive(id: Int) = id
+
+    abstract fun create(size: Int, block: (Int) -> T? = { null }): Array<T?>
+
+    abstract fun decoder(): TypeDecoder<T>
+
+    fun load(cache: Cache, paths: List<String>, configInvalidated: Boolean = false, cacheInvalidated: Boolean = false): Array<T?> {
         // Fresh start
-        if (!base.exists()) {
-            return loadRaw(config, base, combined, cache)
-        }
-        // Cache was updated
-        val cacheLastUpdated = BufferReader(base.inputStream().readNBytes(8)).readLong()
-        if (lastCacheChange > cacheLastUpdated) {
-            return loadRaw(config, base, combined, cache)
+        if (!base.exists() || cacheInvalidated) {
+            return loadRaw(cache, paths)
         }
         // Config missing
         if (!combined.exists()) {
-            val reader = BufferReader(base.readBytes())
-            reader.skip(8)
-            return reloadBinary(config, reader, combined)
+            return reloadBinary(paths)
         }
-        val reader = BufferReader(combined.readBytes())
-        val lastUpdated = reader.readLong()
         // Config files were updated
-        if (config.lastModified > lastUpdated) {
-            val reader = BufferReader(base.readBytes())
-            reader.skip(8)
-            return reloadBinary(config, reader, combined)
+        if (configInvalidated) {
+            return reloadBinary(paths)
         }
         // Load fast
-        return loadBinary(config, reader)
+        val reader = BufferReader(combined.readBytes())
+        return loadBinary(reader)
     }
 
-    fun <T: Type> loadRaw(config: LoaderConfig<T>, base: File, combined: File, cache: Cache): Array<T?> {
-        val size = config.size(cache)
+    /**
+     * Loads data from [cache] and applies config data from [paths].
+     * Stores [base] and [combined] files for faster loading next time.
+     */
+    fun loadRaw(cache: Cache, paths: List<String>): Array<T?> {
+        val size = size(cache)
         val reader = BufferReader()
-        val decoder = config.decoder()
-        val array: Array<T?> = config.create(size) { id ->
-            val data = cache.data(config.index, config.archive(id), config.file(id)) ?: return@create null
+        val decoder = decoder()
+        val array: Array<T?> = create(size) { id ->
+            val data = cache.data(index, archive(id), file(id)) ?: return@create null
             reader.set(data)
-            decoder.readBinary(reader)
+            decoder.resetFlags()
+            decoder.id.value = id
+            decoder.loadBinary(reader)
+            decoder.create()
         }
-        save(config, array, base)
-        applyConfigs(config, array)
-        save(config, array, combined)
+        save(array, base)
+        applyConfigs(paths, array)
+        save(array, combined)
         return array
     }
 
-    fun <T: Type> reloadBinary(config: LoaderConfig<T>, reader: BufferReader, combined: File): Array<T?> {
-        val array = loadBinary(config, reader)
-        applyConfigs(config, array)
-        save(config, array, combined)
+    /**
+     * Loads data from [base] and applies newer config data from [paths] onto of it.
+     * Stores [combined] files for fast loading next time.
+     */
+    fun reloadBinary(paths: List<String>): Array<T?> {
+        val reader = BufferReader(base.readBytes())
+        val array = loadBinary(reader)
+        applyConfigs(paths, array)
+        save(array, combined)
         return array
     }
 
-    private fun <T: Type> save(config: LoaderConfig<T>, array: Array<T?>, file: File) {
-        val writer = BufferWriter(config.bufferSize)
-        writer.writeLong(System.currentTimeMillis())
+    /**
+     * Writes [array] to [file] in binary format.
+     */
+    private fun save(array: Array<T?>, file: File) {
+        val writer = BufferWriter(bufferSize)
         writer.writeInt(array.size)
         val pointer = writer.position()
         writer.writeInt(0) // Marker
         var count = 0
-        val decoder = config.decoder()
+        val decoder = decoder()
         for (type in array) {
             type ?: continue
             decoder.reset()
@@ -83,12 +103,15 @@ class TypeLoader {
         file.writeBytes(writer.toArray())
     }
 
-    private fun <T: Type> applyConfigs(config: LoaderConfig<T>, array: Array<T?>) {
-        val decoder = config.decoder()
-        val combined = config.decoder()
+    /**
+     * Loads config data from [paths] and applies it onto of [array].
+     */
+    private fun applyConfigs(paths: List<String>, array: Array<T?>) {
+        val decoder = decoder()
+        val combined = decoder()
         val fields = decoder.fieldMap()
-        for (path in config.paths) {
-            Config.fileReader(path) {
+        for (path in paths) {
+            Config.fileReader(path, maxString) {
                 while (nextSection()) {
                     decoder.reset()
                     decoder.loadConfig(this, fields)
@@ -107,11 +130,14 @@ class TypeLoader {
         }
     }
 
-    fun <T: Type> loadBinary(config: LoaderConfig<T>, reader: BufferReader): Array<T?> {
+    /**
+     * Loads binary format data from [reader].
+     */
+    fun loadBinary(reader: BufferReader): Array<T?> {
         val size = reader.readInt()
         val count = reader.readInt()
-        val decoder = config.decoder()
-        val array = config.create(size) { null }
+        val decoder = decoder()
+        val array = create(size) { null }
         for (i in 0 until count) {
             val type = decoder.readBinary(reader)
             array[type.id] = type

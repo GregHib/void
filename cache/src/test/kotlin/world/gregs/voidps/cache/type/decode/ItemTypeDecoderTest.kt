@@ -109,6 +109,6 @@ class ItemTypeDecoderTest {
         decoder.pickSizeShift.value = 2
         decoder.singleNoteId.value = 159
         decoder.singleNoteTemplateId.value = 179
-        decoder.parameters.value = mapOf<Int, Any>(1 to "string", 2 to 100000)
+        decoder.parameters.value = mutableMapOf(1 to "string", 2 to 100000)
     }
 }

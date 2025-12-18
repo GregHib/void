@@ -46,8 +46,14 @@ import world.gregs.voidps.cache.type.field.type.ParameterField
  *
  * @param T The Type that this decoder creates
  */
-abstract class TypeDecoder<T : Type>(val size: Int) {
+abstract class TypeDecoder<T : Type>(val size: Int = 256) {
+
+    init {
+        check(size <= 256) { "Field size cannot exceed 256: $size" }
+    }
+
     abstract val id: ValueField<Int>
+
     /**
      * Maps opcodes to their corresponding fields for binary serialization.
      */
@@ -103,6 +109,10 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
         return register(opcode, key, null, NullStringCodec)
     }
 
+    fun stringArray(key: String, default: Array<String>, opcode: Int) = register(opcode, key, default, ArrayCodec(StringCodec) { size, block -> Array(size, block) })
+
+    fun stringArray(key: String, opcode: Int) = register(opcode, key, null, NullArrayCodec(StringCodec) { size, block -> Array(size, block) })
+
     fun indexedStringArray(key: String, default: Array<String?>, opcodes: IntRange): IndexedStringArrayField {
         val field = IndexedStringArrayField(key, default, opcodes.first)
         for (opcode in opcodes) {
@@ -111,7 +121,15 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
         return field
     }
 
-    operator fun <T : Any> FieldCodec<T>.invoke(key: String, default: T) = ValueField(key, default, this)
+    fun map(key: String, fields: Map<String, FieldCodec<out Any>>, opcode: Int) = register(opcode, key, null, NullMapCodec(fields))
+
+    fun map(key: String, default: Map<String, Any>, fields: Map<String, FieldCodec<out Any>>, opcode: Int) = register(opcode, key, default, MapCodec(fields))
+
+    inline fun <reified T> array(key: String, field: FieldCodec<T>, opcode: Int) = register(opcode, key, null, NullArrayCodec(field) { size, block -> Array(size, block) })
+
+    inline fun <reified T> array(key: String, default: Array<T>, field: FieldCodec<T>, opcode: Int) = register(opcode, key, default, ArrayCodec(field) { size, block -> Array(size, block) })
+
+    operator fun <T : Any?> FieldCodec<T>.invoke(key: String, default: T) = ValueField(key, default, this)
 
     fun <A, B> pair(first: ValueField<A>, second: ValueField<B>, opcode: Int) = register(opcode, FieldPair(first, second))
 
@@ -122,7 +140,7 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
     fun params(opcode: Int, block: ParameterBuilder.() -> Unit): ParameterField {
         val builder = ParameterBuilder()
         block.invoke(builder)
-        return register(opcode, ParameterField(builder.paramIds, builder.params, builder.transforms, builder.renames, builder.originals))
+        return register(opcode, ParameterField(builder.paramIds, builder.params, builder.transforms, builder.transformIds, builder.renames, builder.originals))
     }
 
     /**
@@ -150,9 +168,12 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
         val params = mutableMapOf<Int, String>()
 
         val transforms = mutableMapOf<String, Transform>()
+        val transformIds = mutableMapOf<Int, Transform>()
 
         val renames = mutableMapOf<String, String>()
         val originals = mutableMapOf<String, String>()
+        var customIds = 10_000
+
 
         data class Transform(
             val configEncode: ((Any) -> Any)? = null,
@@ -161,10 +182,22 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
             val binaryDecode: ((Any) -> Any)? = null,
         )
 
+        fun add(vararg keys: String) {
+            for (key in keys) {
+                add(key)
+            }
+        }
+
         /**
          * Registers a parameter key with its binary ID.
          */
-        fun add(key: String, value: Int) {
+        fun add(key: String, value: Int = customIds++) {
+            if (paramIds.containsKey(key)) {
+                println("Duplicate parameter key: $key")
+            }
+            if (params.containsKey(value)) {
+                println("Duplicate parameter value: $value")
+            }
             paramIds[key] = value
             params[value] = key
         }
@@ -188,6 +221,7 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
          */
         fun convert(key: String, decode: (Any) -> Any, encode: (Any) -> Any) {
             transforms[key] = Transform(encode, decode, encode, decode)
+            paramIds[key]?.let { transformIds[it] = transforms[key]!! }
         }
 
         /**
@@ -204,6 +238,7 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
          */
         fun convertConfig(key: String, decode: (Any) -> Any, encode: (Any) -> Any) {
             transforms[key] = Transform(encode, decode)
+            paramIds[key]?.let { transformIds[it] = transforms[key]!! }
         }
 
         /**
@@ -211,6 +246,13 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
          */
         fun convertBinary(key: String, decode: (Any) -> Any, encode: (Any) -> Any) {
             transforms[key] = Transform(binaryDecode = decode, binaryEncode = encode)
+            paramIds[key]?.let { transformIds[it] = transforms[key]!! }
+        }
+
+        fun convertBinary(vararg keys: String, decode: (Any) -> Any, encode: (Any) -> Any) {
+            for (key in keys) {
+                convertBinary(key, decode, encode)
+            }
         }
     }
 
@@ -222,6 +264,9 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
         }
         if (opcode == 0) {
             error = "Zero is not a valid opcode"
+        }
+        if (opcode > 256) {
+            error = "Opcodes can't exceed 256: $opcode"
         }
         fields[opcode] = field
         return field
@@ -277,7 +322,7 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
         resetIndex = 0
     }
 
-    private fun flag(code: Int) {
+    fun flag(code: Int) {
         resetArray[resetIndex++] = code
     }
 
@@ -353,13 +398,7 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
      */
     fun readConfig(reader: ConfigReader, fields: Map<String, TypeField> = fieldMap()): T {
         reset()
-        val section = reader.section()
-        (fields["[section]"] as? ValueField<String>)?.value = section
-        while (reader.nextPair()) {
-            val key = reader.key()
-            val field = fields[key] ?: throw IllegalArgumentException("Unknown field '$key'. Is it registered in the type decoder?")
-            field.readConfig(reader, key)
-        }
+        loadConfig(reader, fields)
         return create()
     }
 
@@ -420,6 +459,34 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
                 field.writeConfig(writer, key)
             }
         }
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as TypeDecoder<T>
+
+        for (i in fields.indices) {
+            val field = fields[i]
+            val other = other.fields[i]
+            if (field != other) {
+                return false
+            }
+        }
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id.hashCode()
+        for (field in fields) {
+            result = 31 * result + field.hashCode()
+        }
+        return result
+    }
+
+    override fun toString(): String {
+        return "TypeDecoder(id=$id, ${fields.filterNotNull().joinToString { "${it.keys.first()}=${it}" }})"
     }
 
     private fun findSectionField(): ValueField<String> = fields.firstOrNull { it?.keys?.contains("[section]") ?: false } as? ValueField<String> ?: throw IllegalArgumentException("No section field defined.")

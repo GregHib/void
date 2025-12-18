@@ -10,6 +10,11 @@ import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.type.TypeDecoder
 import world.gregs.voidps.cache.type.field.TypeField
+import world.gregs.voidps.cache.type.field.codec.BooleanCodec
+import world.gregs.voidps.cache.type.field.codec.DoubleCodec
+import world.gregs.voidps.cache.type.field.codec.IntCodec
+import world.gregs.voidps.cache.type.field.codec.LongCodec
+import world.gregs.voidps.cache.type.field.codec.StringCodec
 import kotlin.collections.iterator
 import kotlin.collections.set
 
@@ -26,6 +31,7 @@ class ParameterField(
     private val paramIds: Map<String, Int>,
     private val params: Map<Int, String>,
     private val transforms: Map<String, TypeDecoder.ParameterBuilder.Transform> = emptyMap(),
+    private val transformIds: Map<Int, TypeDecoder.ParameterBuilder.Transform> = emptyMap(),
     private val renames: Map<String, String> = emptyMap(),
     private val originals: Map<String, String> = emptyMap(),
 ) : TypeField(paramIds.keys.toList()) {
@@ -51,15 +57,25 @@ class ParameterField(
         writer.writeByte(opcode)
         writer.writeByte(value.size)
         for ((id, value) in value) {
-            val key = params[id]
-            val original = originals[key] ?: key
-            val reversed = transforms[original]?.binaryEncode?.invoke(value) ?: value
-            writer.writeByte(reversed is String)
+            val key = params[id] ?: throw IllegalArgumentException("Unknown parameter id $id")
+            val reversed = transformIds[id]?.binaryEncode?.invoke(value) ?: value
+            writer.writeByte(
+                when (reversed) {
+                    is Double -> 4
+                    is Boolean -> 3
+                    is Long -> 2
+                    is String -> 1
+                    else -> 0
+                }
+            )
             writer.writeMedium(id)
             when (reversed) {
-                is String -> writer.writeString(reversed)
-                is Int -> writer.writeInt(reversed)
-                else -> throw IllegalArgumentException("Invalid parameter $original type ${reversed::class.simpleName}: $reversed")
+                is String -> StringCodec.writeBinary(writer, reversed)
+                is Int -> IntCodec.writeBinary(writer, reversed)
+                is Long -> LongCodec.writeBinary(writer, reversed)
+                is Boolean -> BooleanCodec.writeBinary(writer, reversed)
+                is Double -> DoubleCodec.writeBinary(writer, reversed)
+                else -> throw IllegalArgumentException("Invalid parameter $key type ${reversed::class.simpleName}: $reversed")
             }
         }
         return true
@@ -71,15 +87,20 @@ class ParameterField(
             value = null
             return
         }
-        val extras = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
+        val extras = Int2ObjectOpenHashMap<Any>(size, Hash.VERY_FAST_LOAD_FACTOR)
         for (i in 0 until size) {
-            val string = reader.readUnsignedBoolean()
+            val type = reader.readUnsignedByte()
             val id = reader.readUnsignedMedium()
-            val name = params.getOrDefault(id, id.toString())
-            val renamed = renames[name] ?: name
-            val value = if (string) reader.readString() else reader.readInt()
-            val transformed = transforms[renamed]?.binaryDecode?.invoke(value) ?: value
-            extras[id] = transformed
+            val value = when (type) {
+                0 -> IntCodec.readBinary(reader)
+                1 -> StringCodec.readBinary(reader)
+                2 -> LongCodec.readBinary(reader)
+                3 -> BooleanCodec.readBinary(reader)
+                4 -> DoubleCodec.readBinary(reader)
+                5 -> DoubleCodec.readBinary(reader)
+                else -> throw IllegalArgumentException("Invalid parameter type $id: $type")
+            }
+            extras[id] = value
         }
         value = extras
     }

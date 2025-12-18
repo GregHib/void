@@ -17,7 +17,7 @@ data class ItemType(
     val notedTemplateId: Int = -1,
     val lendId: Int = -1,
     val lendTemplateId: Int = -1,
-    val equipIndex: Int = -1,
+    var equipIndex: Int = -1,
     val stringId: String = "",
     val params: Map<Int, Any>? = null,
 ) : Type {

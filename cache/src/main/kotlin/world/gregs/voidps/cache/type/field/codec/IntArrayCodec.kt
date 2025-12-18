@@ -36,10 +36,17 @@ open class IntArrayCodec(val field: FieldCodec<Int>, val size: FieldCodec<Int> =
 }
 
 open class NullIntArrayCodec(val field: FieldCodec<Int>, val size: FieldCodec<Int> = UnsignedByteCodec) : FieldCodec<IntArray?> {
-    override fun readBinary(reader: Reader) = IntArray(size.readBinary(reader)) { field.readBinary(reader) }
+    override fun readBinary(reader: Reader): IntArray? {
+        val size = size.readBinary(reader)
+        if (size == -1) {
+            return null
+        }
+        return IntArray(size) { field.readBinary(reader) }
+    }
 
     override fun writeBinary(writer: Writer, value: IntArray?) {
         if (value == null) {
+            size.writeBinary(writer, -1)
             return
         }
         size.writeBinary(writer, value.size)
@@ -49,6 +56,11 @@ open class NullIntArrayCodec(val field: FieldCodec<Int>, val size: FieldCodec<In
     }
 
     override fun readConfig(reader: ConfigReader): IntArray? {
+        if (reader.peek == '"') {
+            val value = reader.string()
+            require(value == "null") { "Expected null IntArray, found: $value" }
+            return null
+        }
         val list = mutableListOf<Int>()
         while (reader.nextElement()) {
             list.add(field.readConfig(reader))
