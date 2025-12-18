@@ -210,7 +210,7 @@ id = 4832
 price = 5750
 limit = 10000
 weight = 0.8
-prayer_x = 96.0
+prayer_xp = 96.0
 examine = "Ancient ogre bones from the ogre burial tomb."
 
 [raurg_bones_noted]

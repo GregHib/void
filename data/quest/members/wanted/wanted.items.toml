@@ -300,12 +300,3 @@ tradeable = false
 weight = 0.001
 examine = "Proof that I have defeated the evil mage Solus."
 kept = "Reclaim"
-
-[solus_dellagar]
-id = 2780
-hitpoints = 400
-attack_speed = 3
-style = "melee"
-max_hit_melee = 40
-hunt_mode = "cowardly"
-examine = "A powerful warrior mage."

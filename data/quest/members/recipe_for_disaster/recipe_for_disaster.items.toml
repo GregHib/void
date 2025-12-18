@@ -710,12 +710,12 @@ kept = "Wilderness"
 
 [druid_pouch_recipe_for_disaster]
 id = 7547
-tradable = false
+tradeable = false
 examine = "An empty druid pouch."
 
 [potato_seed_recipe_for_disaster]
 id = 7548
-tradable = false
+tradeable = false
 examine = "A potato seed - plant in an allotment."
 
 [potato_seed_recipe_for_disaster_noted]
@@ -723,7 +723,7 @@ id = 7549
 
 [onion_seed_recipe_for_disaster]
 id = 7550
-tradable = false
+tradeable = false
 examine = "An onion seed - plant in an allotment."
 
 [onion_seed_recipe_for_disaster_noted]
@@ -731,7 +731,7 @@ id = 7551
 
 [mithril_arrow_recipe_for_disaster]
 id = 7552
-tradable = false
+tradeable = false
 examine = "Arrows with mithril heads."
 
 [mithril_arrow_recipe_for_disaster_noted]
@@ -739,7 +739,7 @@ id = 7553
 
 [fire_rune_recipe_for_disaster]
 id = 7554
-tradable = false
+tradeable = false
 examine = "One of the four basic elemental runes."
 
 [fire_rune_recipe_for_disaster_noted]
@@ -747,7 +747,7 @@ id = 7555
 
 [water_rune_recipe_for_disaster]
 id = 7556
-tradable = false
+tradeable = false
 examine = "One of the four basic elemental runes."
 
 [water_rune_recipe_for_disaster_noted]
@@ -755,7 +755,7 @@ id = 7557
 
 [air_rune_recipe_for_disaster]
 id = 7558
-tradable = false
+tradeable = false
 examine = "One of the four basic elemental runes."
 
 [air_rune_recipe_for_disaster_noted]
@@ -763,7 +763,7 @@ id = 7559
 
 [chaos_rune_recipe_for_disaster]
 id = 7560
-tradable = false
+tradeable = false
 examine = "Used for low level missile spells."
 
 [chaos_rune_recipe_for_disaster_noted]
@@ -771,7 +771,7 @@ id = 7561
 
 [tomato_seed_recipe_for_disaster]
 id = 7562
-tradable = false
+tradeable = false
 examine = "A tomato seed - plant in an allotment."
 
 [tomato_seed_recipe_for_disaster_noted]
