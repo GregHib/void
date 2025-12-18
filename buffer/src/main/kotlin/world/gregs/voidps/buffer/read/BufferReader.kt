@@ -3,15 +3,14 @@ package world.gregs.voidps.buffer.read
 import java.nio.ByteBuffer
 
 class BufferReader(
-    array: ByteArray
+    array: ByteArray = ByteArray(0)
 ) : Reader {
     var array: ByteArray = array
         private set
 
     constructor(buffer: ByteBuffer) : this(buffer.array())
 
-    override val length: Int
-        get() = array.size
+    override var length = array.size
     var position = 0
     override val remaining: Int
         get() = length - position
@@ -20,6 +19,7 @@ class BufferReader(
     fun set(array: ByteArray) {
         position = 0
         bitIndex = 0
+        length = array.size
         this.array = array
     }
 
@@ -108,6 +108,7 @@ class BufferReader(
             }
             sb.append(b.toChar())
         }
+        String()
         return sb.toString()
     }
 
