@@ -7,9 +7,9 @@ import world.gregs.voidps.cache.type.field.codec.UnsignedByteCodec
 import world.gregs.voidps.cache.type.field.type.ItemStack
 import world.gregs.voidps.cache.type.types.ItemType
 
-class ItemTypeDecoder : TypeDecoder<ItemType>(250) {
-    val id = int("id", default = -1)
-    val stringId = string("[section]", default = "")
+class ItemTypeDecoder : TypeDecoder<ItemType>(256) {
+    val id = int("id", default = -1, opcode = 250)
+    val stringId = string("[section]", default = "", opcode = 251)
     val modelId = ushort("model_id", default = 0, opcode = 1)
     val name = string("name", default = "null", opcode = 2)
     val spriteScale = short("sprite_scale", default = 2000, opcode = 4)
@@ -93,6 +93,60 @@ class ItemTypeDecoder : TypeDecoder<ItemType>(250) {
         )
     }
 
+    fun join(other: ItemTypeDecoder) {
+        modelId.set(other.modelId)
+        name.set(other.name)
+        spriteScale.set(other.spriteScale)
+        spritePitch.set(other.spritePitch)
+        spriteCameraRoll.set(other.spriteCameraRoll)
+        spriteTranslateX.set(other.spriteTranslateX)
+        spriteTranslateY.set(other.spriteTranslateY)
+        stackable.set(other.stackable)
+        cost.set(other.cost)
+        members.set(other.members)
+        multiStackSize.set(other.multiStackSize)
+        primaryMaleModel.set(other.primaryMaleModel)
+        secondaryMaleModel.set(other.secondaryMaleModel)
+        primaryFemaleModel.set(other.primaryFemaleModel)
+        secondaryFemaleModel.set(other.secondaryFemaleModel)
+        floorOptions.set(other.floorOptions)
+        options.set(other.options)
+        colours.set(other.colours)
+        textureColours.set(other.textureColours)
+        recolourPalette.set(other.recolourPalette)
+        exchangeable.set(other.exchangeable)
+        tertiaryMaleModel.set(other.tertiaryMaleModel)
+        tertiaryFemaleModel.set(other.tertiaryFemaleModel)
+        primaryMaleDialogueHead.set(other.primaryMaleDialogueHead)
+        primaryFemaleDialogueHead.set(other.primaryFemaleDialogueHead)
+        secondaryMaleDialogueHead.set(other.secondaryMaleDialogueHead)
+        secondaryFemaleDialogueHead.set(other.secondaryFemaleDialogueHead)
+        spriteCameraYaw.set(other.spriteCameraYaw)
+        dummyItem.set(other.dummyItem)
+        noteId.set(other.noteId)
+        notedTemplateId.set(other.notedTemplateId)
+        stack.set(other.stack)
+        floorScaleX.set(other.floorScaleX)
+        floorScaleY.set(other.floorScaleY)
+        floorScaleZ.set(other.floorScaleZ)
+        ambience.set(other.ambience)
+        diffusion.set(other.diffusion)
+        team.set(other.team)
+        lendId.set(other.lendId)
+        lendTemplateId.set(other.lendTemplateId)
+        maleWield.set(other.maleWield)
+        femaleWield.set(other.femaleWield)
+        primaryCursor.set(other.primaryCursor)
+        secondaryCursor.set(other.secondaryCursor)
+        primaryInterfaceCursor.set(other.primaryInterfaceCursor)
+        secondaryInterfaceCursor.set(other.secondaryInterfaceCursor)
+        campaigns.set(other.campaigns)
+        pickSizeShift.set(other.pickSizeShift)
+        singleNoteId.set(other.singleNoteId)
+        singleNoteTemplateId.set(other.singleNoteTemplateId)
+        parameters.set(other.parameters)
+    }
+
     override fun load(type: ItemType) {
         id.value = type.id
         name.value = type.name
@@ -108,7 +162,7 @@ class ItemTypeDecoder : TypeDecoder<ItemType>(250) {
         lendId.value = type.lendId
         lendTemplateId.value = type.lendTemplateId
         stringId.value = type.stringId
-        parameters.value = type.params
+        parameters.value = type.params?.toMutableMap()
     }
 
     override fun equals(other: Any?): Boolean {

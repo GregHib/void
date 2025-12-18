@@ -17,6 +17,8 @@ abstract class TypeField(
     val keys: List<String>,
 ) {
 
+    abstract fun set(other: TypeField)
+
     /**
      * Reads this field's value from binary format.
      */

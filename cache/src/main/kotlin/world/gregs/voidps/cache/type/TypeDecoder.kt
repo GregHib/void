@@ -47,7 +47,6 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
      * Maps opcodes to their corresponding fields for binary serialization.
      */
     val fields: Array<TypeField?> = arrayOfNulls(size)
-    val extras = mutableListOf<TypeField>()
 
     /**
      * Creates a new instance of the Type using the current field values.
@@ -85,13 +84,13 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
 
     fun shortArray(key: String, opcode: Int) = register(opcode, key, null, NullShortArrayCodec)
 
-    fun int(key: String, default: Int, opcode: Int = -1) = register(opcode, key, default, IntCodec)
+    fun int(key: String, default: Int, opcode: Int) = register(opcode, key, default, IntCodec)
 
     fun intLiteral(key: String, default: Int, value: Int, opcode: Int) = register(opcode, key, default, LiteralCodec(value, IntCodec))
 
     fun intArray(key: String, opcode: Int) = register(opcode, key, null, NullIntArrayCodec)
 
-    fun string(key: String, default: String, opcode: Int = -1) = register(opcode, key, default, StringCodec)
+    fun string(key: String, default: String, opcode: Int) = register(opcode, key, default, StringCodec)
 
     fun string(key: String, opcode: Int): ValueField<String?> {
         return register(opcode, key, null, NullStringCodec)
@@ -211,10 +210,6 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
     fun <T : Any?> register(opcode: Int, key: String, default: T, codec: FieldCodec<T>) = register(opcode, ValueField(key, default, codec))
 
     inline fun <reified F : TypeField> register(opcode: Int, field: F): F {
-        if (opcode < 0) {
-            extras.add(field)
-            return field
-        }
         if (opcode > 0 && fields[opcode] != null) {
             error = "Duplicate opcodes: $opcode"
         }
@@ -237,7 +232,7 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
      */
     fun check() {
         require(error == null) { error!! }
-        val duplicateKeys = (fields + extras)
+        val duplicateKeys = fields
             .flatMap { it?.keys ?: emptyList() }
             .groupingBy { it }
             .eachCount()
@@ -254,15 +249,12 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
         for (field in fields) {
             field?.reset()
         }
-        for (field in extras) {
-            field.reset()
-        }
     }
 
     private val resetArray = IntArray(size)
     private var resetIndex = 0
 
-    private fun resetFlags() {
+    fun resetFlags() {
         val resetArray = resetArray
         val fields = fields
         for (idx in 0 until resetIndex) {
@@ -278,12 +270,13 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
     /**
      * Read a single type from a binary file.
      */
-
-    /**
-     * Read a single type from a binary file.
-     */
     fun readBinary(reader: Reader): T {
         resetFlags()
+        loadBinary(reader)
+        return create()
+    }
+
+    fun loadBinary(reader: Reader) {
         while (true) {
             val code = reader.readUnsignedByte()
             if (code == 0) {
@@ -293,7 +286,6 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
             field.readBinary(reader, code)
             flag(code)
         }
-        return create()
     }
 
     /**
@@ -316,10 +308,10 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
     /**
      * Write the decoders current values to a binary file.
      */
-    fun writeBinary(writer: Writer): Boolean {
+    fun writeBinary(writer: Writer, official: Boolean = false): Boolean {
         var written = false
         for ((opcode, field) in fields.withIndex()) {
-            if (field == null || opcode <= 0) {
+            if (field == null || (opcode > 249 && official)) {
                 continue
             }
             if (field.writeBinary(writer, opcode)) {
@@ -357,7 +349,17 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
         return create()
     }
 
-    private fun fieldMap(): Map<String, TypeField> = (fields + extras).flatMap { field -> field?.keys?.map { key -> key to field } ?: emptyList() }.toMap()
+    fun loadConfig(reader: ConfigReader, fields: Map<String, TypeField> = fieldMap()) {
+        val section = reader.section()
+        (fields["[section]"] as? ValueField<String>)?.value = section
+        while (reader.nextPair()) {
+            val key = reader.key()
+            val field = fields[key] ?: throw IllegalArgumentException("Unknown field '$key'. Is it registered in the type decoder?")
+            field.readConfig(reader, key)
+        }
+    }
+
+    fun fieldMap(): Map<String, TypeField> = fields.flatMap { field -> field?.keys?.map { key -> key to field } ?: emptyList() }.toMap()
 
     /**
      * Read a list of types from a binary file.
@@ -390,7 +392,7 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
      * Write the decoders current values to a config file.
      */
     fun writeConfig(writer: ConfigWriter, section: ValueField<String> = findSectionField()) {
-        val fields = fields + extras
+        val fields = fields
         writer.writeSection(section.value)
         val written = mutableSetOf<String>()
         for (field in fields) {
@@ -406,5 +408,5 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
         }
     }
 
-    private fun findSectionField(): ValueField<String> = (fields + extras).firstOrNull { it?.keys?.contains("[section]") ?: false } as? ValueField<String> ?: throw IllegalArgumentException("No section field defined.")
+    private fun findSectionField(): ValueField<String> = fields.firstOrNull { it?.keys?.contains("[section]") ?: false } as? ValueField<String> ?: throw IllegalArgumentException("No section field defined.")
 }

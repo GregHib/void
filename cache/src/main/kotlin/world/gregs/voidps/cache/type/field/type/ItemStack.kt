@@ -17,6 +17,14 @@ class ItemStack(
     var ids: IntArray? = null
     var amounts: IntArray? = null
 
+    override fun set(other: TypeField) {
+        other as ItemStack
+        if (other.ids != null || other.amounts != null) {
+            ids = other.ids?.clone()
+            amounts = other.amounts?.clone()
+        }
+    }
+
     override fun readBinary(reader: Reader, opcode: Int) {
         if (ids == null) {
             amounts = IntArray(10)

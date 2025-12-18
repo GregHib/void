@@ -24,6 +24,13 @@ class IndexedStringArrayField(
         value[opcode - offset] = field.readBinary(reader)
     }
 
+    override fun set(other: TypeField) {
+        other as IndexedStringArrayField
+        if (!other.value.contentEquals(other.default)) {
+            value = other.value
+        }
+    }
+
     override fun writeBinary(writer: Writer, opcode: Int): Boolean {
         val value = value[opcode - offset]
         if (value == default[opcode - offset]) {

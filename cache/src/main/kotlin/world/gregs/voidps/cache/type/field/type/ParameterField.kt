@@ -29,7 +29,19 @@ class ParameterField(
     private val renames: Map<String, String> = emptyMap(),
     private val originals: Map<String, String> = emptyMap(),
 ) : TypeField(paramIds.keys.toList()) {
-    internal var value: Map<Int, Any>? = null
+    internal var value: MutableMap<Int, Any>? = null
+
+    override fun set(other: TypeField) {
+        other as ParameterField
+        if (other.value == null) {
+            return
+        }
+        if (value != null) {
+            value!!.putAll(other.value!!)
+        } else {
+            value = other.value
+        }
+    }
 
     override fun writeBinary(writer: Writer, opcode: Int): Boolean {
         val value = value

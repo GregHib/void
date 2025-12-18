@@ -15,14 +15,21 @@ class ValueField<T : Any?>(keys: List<String>, val default: T, internal val code
 
     var value: T = default
 
-    fun writeable(): Boolean = value != default
+    fun different(): Boolean = value != default
+
+    override fun set(other: TypeField) {
+        other as ValueField<T>
+        if (other.different()) {
+            value = other.value
+        }
+    }
 
     override fun readBinary(reader: Reader, opcode: Int) {
         value = codec.readBinary(reader)
     }
 
     override fun writeBinary(writer: Writer, opcode: Int): Boolean {
-        if (writeable()) {
+        if (different()) {
             writer.writeByte(opcode)
             codec.writeBinary(writer, value)
             return true
@@ -35,7 +42,7 @@ class ValueField<T : Any?>(keys: List<String>, val default: T, internal val code
     }
 
     override fun writeConfig(writer: ConfigWriter, key: String) {
-        if (writeable()) {
+        if (different()) {
             writer.writeKey(key)
             codec.writeConfig(writer, value)
             writer.write("\n")

@@ -12,6 +12,14 @@ data class FieldTriple<A, B, C>(
     val second: ValueField<B>,
     val third: ValueField<C>,
 ) : TypeField(first.keys + second.keys + third.keys) {
+
+    override fun set(other: TypeField) {
+        other as FieldTriple<A, B, C>
+        first.set(other.first)
+        second.set(other.second)
+        third.set(other.third)
+    }
+
     override fun readBinary(reader: Reader, opcode: Int) {
         first.readBinary(reader, opcode)
         second.readBinary(reader, opcode)
@@ -19,7 +27,7 @@ data class FieldTriple<A, B, C>(
     }
 
     override fun writeBinary(writer: Writer, opcode: Int): Boolean {
-        if (!first.writeable() || !second.writeable() || !third.writeable()) {
+        if (!first.different() || !second.different() || !third.different()) {
             return false
         }
         writer.writeByte(opcode)
@@ -40,11 +48,11 @@ data class FieldTriple<A, B, C>(
     }
 
     override fun writeConfig(writer: ConfigWriter, key: String) {
-        if (first.keys.contains(key) && first.writeable()) {
+        if (first.keys.contains(key) && first.different()) {
             first.writeConfig(writer, key)
-        } else if (second.keys.contains(key) && second.writeable()) {
+        } else if (second.keys.contains(key) && second.different()) {
             second.writeConfig(writer, key)
-        } else if (third.keys.contains(key) && third.writeable()) {
+        } else if (third.keys.contains(key) && third.different()) {
             third.writeConfig(writer, key)
         }
     }

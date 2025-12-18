@@ -16,6 +16,14 @@ class ColourField(
     var original: ShortArray? = null
     var modified: ShortArray? = null
 
+    override fun set(other: TypeField) {
+        other as ColourField
+        if (other.original != null || other.modified != null) {
+            original = other.original
+            modified = other.modified
+        }
+    }
+
     override fun writeBinary(writer: Writer, opcode: Int): Boolean {
         val original = original
         val modified = modified

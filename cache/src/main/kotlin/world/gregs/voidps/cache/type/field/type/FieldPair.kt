@@ -11,13 +11,20 @@ data class FieldPair<A, B>(
     val first: ValueField<A>,
     val second: ValueField<B>,
 ) : TypeField(first.keys + second.keys) {
+
+    override fun set(other: TypeField) {
+        other as FieldPair<A, B>
+        first.set(other.first)
+        second.set(other.second)
+    }
+
     override fun readBinary(reader: Reader, opcode: Int) {
         first.readBinary(reader, opcode)
         second.readBinary(reader, opcode)
     }
 
     override fun writeBinary(writer: Writer, opcode: Int): Boolean {
-        if (!first.writeable() || !second.writeable()) {
+        if (!first.different() || !second.different()) {
             return false
         }
         writer.writeByte(opcode)
@@ -35,9 +42,9 @@ data class FieldPair<A, B>(
     }
 
     override fun writeConfig(writer: ConfigWriter, key: String) {
-        if (first.keys.contains(key) && first.writeable()) {
+        if (first.keys.contains(key) && first.different()) {
             first.writeConfig(writer, key)
-        } else if (second.keys.contains(key) && second.writeable()) {
+        } else if (second.keys.contains(key) && second.different()) {
             second.writeConfig(writer, key)
         }
     }
