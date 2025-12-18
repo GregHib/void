@@ -5,63 +5,89 @@ import world.gregs.config.ConfigWriter
 import world.gregs.config.writeKey
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.cache.type.TypeField
 
 /**
  * Base class for fields that store a single value of type T.
- *
- * Provides default implementations for common field operations and defines
- * abstract methods for format-specific serialization.
- *
- * @param T The type of value this field stores (can be nullable)
- * @property default The default value, used when the field is not present in input
  */
-abstract class ValueField<T : Any?>(
-    keys: List<String>,
-    val default: T,
-) : TypeField(keys) {
+class ValueField<T : Any?>(keys: List<String>, val default: T, internal val codec: FieldCodec<T>) : TypeField(keys) {
 
-    constructor(key: String, default: T) : this(listOf(key), default)
+    constructor(key: String, default: T, codec: FieldCodec<T>) : this(listOf(key), default, codec)
 
-    internal var value: T = default
+    var value: T = default
 
-    @Suppress("UNCHECKED_CAST")
-    override fun set(index: Int, value: Any?) {
-        this.value = value as T
+    fun writeable(): Boolean = value != default
+
+    override fun readBinary(reader: Reader, opcode: Int) {
+        value = codec.readBinary(reader)
     }
 
-    abstract fun readConfig(reader: ConfigReader): T
-    abstract fun writeConfig(writer: ConfigWriter, value: T)
-
-    abstract fun readBinary(reader: Reader): T
-    abstract fun writeBinary(writer: Writer, value: T)
-
-    override fun write(writer: Writer, opcode: Int): Boolean {
-        if (value != default) {
+    override fun writeBinary(writer: Writer, opcode: Int): Boolean {
+        if (writeable()) {
             writer.writeByte(opcode)
-            writeBinary(writer, value)
+            codec.writeBinary(writer, value)
             return true
         }
         return false
     }
 
-    override fun write(writer: ConfigWriter, key: String) {
-        if (value != default) {
+    override fun readConfig(reader: ConfigReader, key: String) {
+        value = codec.readConfig(reader)
+    }
+
+    override fun writeConfig(writer: ConfigWriter, key: String) {
+        if (writeable()) {
             writer.writeKey(key)
-            writeConfig(writer, value)
+            codec.writeConfig(writer, value)
             writer.write("\n")
         }
-    }
-
-    override fun read(reader: Reader, opcode: Int) {
-        value = readBinary(reader)
-    }
-
-    override fun read(reader: ConfigReader, key: String) {
-        value = readConfig(reader)
     }
 
     override fun reset() {
         value = default
     }
+
+    fun writeBinary(writer: Writer) = codec.writeBinary(writer, value)
+    fun writeConfig(writer: ConfigWriter) = codec.writeConfig(writer, value)
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as ValueField<*>
+
+        val thisValue = value
+        val otherValue = other.value
+        return when (thisValue) {
+            is BooleanArray if otherValue is BooleanArray -> thisValue.contentEquals(otherValue)
+            is ByteArray if otherValue is ByteArray -> thisValue.contentEquals(otherValue)
+            is ShortArray if otherValue is ShortArray -> thisValue.contentEquals(otherValue)
+            is IntArray if otherValue is IntArray -> thisValue.contentEquals(otherValue)
+            is LongArray if otherValue is LongArray -> thisValue.contentEquals(otherValue)
+            is DoubleArray if otherValue is DoubleArray -> thisValue.contentEquals(otherValue)
+            is FloatArray if otherValue is FloatArray -> thisValue.contentEquals(otherValue)
+            is CharArray if otherValue is CharArray -> thisValue.contentEquals(otherValue)
+            is Array<*> if otherValue is Array<*> -> thisValue.contentEquals(otherValue)
+            else -> value == other.value
+        }
+    }
+
+    override fun hashCode(): Int {
+        return value?.hashCode() ?: 0
+    }
+
+    override fun toString(): String {
+        return when (val value = value) {
+            is BooleanArray -> value.contentToString()
+            is ByteArray -> value.contentToString()
+            is ShortArray -> value.contentToString()
+            is IntArray -> value.contentToString()
+            is LongArray -> value.contentToString()
+            is DoubleArray -> value.contentToString()
+            is FloatArray -> value.contentToString()
+            is CharArray -> value.contentToString()
+            is Array<*> -> value.contentToString()
+            else -> value.toString()
+        }
+    }
+
 }

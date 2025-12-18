@@ -1,6 +1,7 @@
-package world.gregs.voidps.cache.type.field
+package world.gregs.voidps.cache.type.field.type
 
 import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.ConfigReader
 import world.gregs.config.ConfigWriter
@@ -8,7 +9,8 @@ import world.gregs.config.writePair
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.type.TypeDecoder
-import world.gregs.voidps.cache.type.TypeField
+import world.gregs.voidps.cache.type.field.TypeField
+import kotlin.collections.iterator
 import kotlin.collections.set
 
 /**
@@ -27,20 +29,20 @@ class ParameterField(
     private val renames: Map<String, String> = emptyMap(),
     private val originals: Map<String, String> = emptyMap(),
 ) : TypeField(paramIds.keys.toList()) {
-    internal var value: Map<String, Any>? = null
+    internal var value: Map<Int, Any>? = null
 
-    override fun write(writer: Writer, opcode: Int): Boolean {
+    override fun writeBinary(writer: Writer, opcode: Int): Boolean {
         val value = value
         if (value == null || value.isEmpty()) {
             return false
         }
         writer.writeByte(opcode)
         writer.writeByte(value.size)
-        for ((key, value) in value) {
+        for ((id, value) in value) {
+            val key = params[id]
             val original = originals[key] ?: key
             val reversed = transforms[original]?.binaryEncode?.invoke(value) ?: value
             writer.writeByte(reversed is String)
-            val id = paramIds[original] ?: throw IllegalArgumentException("Unknown parameter type $original")
             writer.writeMedium(id)
             when (reversed) {
                 is String -> writer.writeString(reversed)
@@ -51,13 +53,13 @@ class ParameterField(
         return true
     }
 
-    override fun read(reader: Reader, opcode: Int) {
+    override fun readBinary(reader: Reader, opcode: Int) {
         val size = reader.readUnsignedByte()
         if (size == 0) {
             value = null
             return
         }
-        val extras = Object2ObjectOpenHashMap<String, Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
+        val extras = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
         for (i in 0 until size) {
             val string = reader.readUnsignedBoolean()
             val id = reader.readUnsignedMedium()
@@ -65,23 +67,26 @@ class ParameterField(
             val renamed = renames[name] ?: name
             val value = if (string) reader.readString() else reader.readInt()
             val transformed = transforms[renamed]?.binaryDecode?.invoke(value) ?: value
-            extras[renamed] = transformed
+            extras[id] = transformed
         }
         value = extras
     }
 
-    override fun read(reader: ConfigReader, key: String) {
+    override fun readConfig(reader: ConfigReader, key: String) {
         if (value == null) {
             value = Object2ObjectOpenHashMap(4, Hash.VERY_FAST_LOAD_FACTOR)
         }
         val renamed = renames[key] ?: key
+        val id = paramIds[renamed] ?: paramIds[key] ?: throw IllegalArgumentException("Unknown parameter type $key")
         val value = reader.value()
         val transformed = transforms[renamed]?.configDecode?.invoke(value) ?: value
-        (this.value as MutableMap<String, Any>)[renamed] = transformed
+        (this.value as MutableMap<Int, Any>)[id] = transformed
     }
 
-    override fun write(writer: ConfigWriter, key: String) {
-        val value = value?.get(key) ?: return
+    override fun writeConfig(writer: ConfigWriter, key: String) {
+        val renamed = renames[key] ?: key
+        val id = paramIds[renamed] ?: paramIds[key] ?: throw IllegalArgumentException("Unknown parameter type $key")
+        val value = value?.get(id) ?: return
         val original = originals[key] ?: key
         val reversed = transforms[original]?.configEncode?.invoke(value) ?: value
         writer.writePair(original, reversed)
@@ -91,9 +96,21 @@ class ParameterField(
         value = null
     }
 
-    @Suppress("UNCHECKED_CAST")
-    override fun set(index: Int, value: Any?) {
-        this.value = value as? Map<String, Any>
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as ParameterField
+
+        return value == other.value
+    }
+
+    override fun hashCode(): Int {
+        return value?.hashCode() ?: 0
+    }
+
+    override fun toString(): String {
+        return value.toString()
     }
 
 }

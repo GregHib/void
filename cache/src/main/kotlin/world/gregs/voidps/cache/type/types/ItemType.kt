@@ -18,7 +18,7 @@ data class ItemType(
     var lendTemplateId: Int = -1,
     var equipIndex: Int = -1,
     var stringId: String = "",
-    var extras: Map<String, Any>? = null,
+    var params: Map<Int, Any>? = null,
 ) : Type {
 
     val noted: Boolean
@@ -48,7 +48,7 @@ data class ItemType(
         if (lendTemplateId != other.lendTemplateId) return false
         if (equipIndex != other.equipIndex) return false
         if (stringId != other.stringId) return false
-        return extras == other.extras
+        return params == other.params
     }
 
     override fun hashCode(): Int {
@@ -67,7 +67,7 @@ data class ItemType(
         result = 31 * result + lendTemplateId
         result = 31 * result + equipIndex
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + (extras?.hashCode() ?: 0)
+        result = 31 * result + (params?.hashCode() ?: 0)
         return result
     }
 
@@ -75,7 +75,7 @@ data class ItemType(
         if (item == null || template == null) {
             return
         }
-        extras = item.extras
+        params = item.params
         members = item.members
         floorOptions = item.floorOptions
         options = arrayOfNulls(5)

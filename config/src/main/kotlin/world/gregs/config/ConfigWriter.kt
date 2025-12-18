@@ -41,7 +41,7 @@ fun ConfigWriter.writeValue(value: Any?, escapeKey: Boolean = false) {
         is List<*> -> list(value.size) { writeValue(value[it]) }
         is Array<*> -> list(value.size) { writeValue(value[it]) }
         is Map<*, *> -> map(value.keys, escapeKey) { writeValue(value[it]) }
-        null -> write("null")
+        null -> write("\"null\"")
         else -> {
             write("\"")
             write(value.toString())
