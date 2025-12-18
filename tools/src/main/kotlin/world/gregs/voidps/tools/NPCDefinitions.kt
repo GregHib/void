@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ParameterDefinitions
-import world.gregs.voidps.engine.data.find
 import kotlin.math.floor
 import kotlin.math.min
 
