@@ -31,7 +31,7 @@ class ParameterField(
 ) : TypeField(paramIds.keys.toList()) {
     internal var value: MutableMap<Int, Any>? = null
 
-    override fun set(other: TypeField) {
+    override fun join(other: TypeField) {
         other as ParameterField
         if (other.value == null) {
             return

@@ -17,7 +17,10 @@ abstract class TypeField(
     val keys: List<String>,
 ) {
 
-    abstract fun set(other: TypeField)
+    /**
+     * Overrides this field's value with the value from [other].
+     */
+    abstract fun join(other: TypeField)
 
     /**
      * Reads this field's value from binary format.

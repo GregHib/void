@@ -13,11 +13,11 @@ data class FieldTriple<A, B, C>(
     val third: ValueField<C>,
 ) : TypeField(first.keys + second.keys + third.keys) {
 
-    override fun set(other: TypeField) {
+    override fun join(other: TypeField) {
         other as FieldTriple<A, B, C>
-        first.set(other.first)
-        second.set(other.second)
-        third.set(other.third)
+        first.join(other.first)
+        second.join(other.second)
+        third.join(other.third)
     }
 
     override fun readBinary(reader: Reader, opcode: Int) {

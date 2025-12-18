@@ -2,23 +2,24 @@ package world.gregs.voidps.cache.type.types
 
 import world.gregs.voidps.cache.type.Type
 
+
 data class ItemType(
-    var id: Int = -1,
-    var name: String = "null",
-    var stackable: Int = 0,
-    var cost: Int = 1,
-    var members: Boolean = false,
-    var floorOptions: Array<String?> = arrayOf(null, null, "Take", null, null, "Examine"),
-    var options: Array<String?> = arrayOf(null, null, null, null, "Drop"),
-    var exchangeable: Boolean = false,
-    var dummyItem: Int = 0,
-    var noteId: Int = -1,
-    var notedTemplateId: Int = -1,
-    var lendId: Int = -1,
-    var lendTemplateId: Int = -1,
-    var equipIndex: Int = -1,
-    var stringId: String = "",
-    var params: Map<Int, Any>? = null,
+    override var id: Int = -1,
+    val name: String = "null",
+    val stackable: Int = 0,
+    val cost: Int = 1,
+    val members: Boolean = false,
+    val floorOptions: Array<String?> = arrayOf(null, null, "Take", null, null, "Examine"),
+    val options: Array<String?> = arrayOf(null, null, null, null, "Drop"),
+    val exchangeable: Boolean = false,
+    val dummyItem: Int = 0,
+    val noteId: Int = -1,
+    val notedTemplateId: Int = -1,
+    val lendId: Int = -1,
+    val lendTemplateId: Int = -1,
+    val equipIndex: Int = -1,
+    val stringId: String = "",
+    val params: Map<Int, Any>? = null,
 ) : Type {
 
     val noted: Boolean
@@ -71,29 +72,31 @@ data class ItemType(
         return result
     }
 
-    fun toLend(item: ItemType?, template: ItemType?) {
+    fun toLend(item: ItemType?, template: ItemType?): ItemType? {
         if (item == null || template == null) {
-            return
+            return null
         }
-        params = item.params
-        members = item.members
-        floorOptions = item.floorOptions
-        options = arrayOfNulls(5)
-        cost = 0
-        name = item.name
-        equipIndex = item.equipIndex
-        System.arraycopy(item.options, 0, options, 0, 4)
-        options[4] = "Discard"
+        return copy(
+            params = item.params,
+            members = item.members,
+            floorOptions = item.floorOptions,
+            cost = 0,
+            name = item.name,
+            equipIndex = item.equipIndex,
+            options = Array(5) { if (it == 4) "Discard" else item.options[it] },
+        )
     }
 
-    fun toNote(template: ItemType?, item: ItemType?) {
+    fun toNote(template: ItemType?, item: ItemType?): ItemType? {
         if (item == null || template == null) {
-            return
+            return null
         }
-        cost = item.cost
-        name = item.name
-        stackable = 1
-        members = item.members
+        return copy(
+            cost = item.cost,
+            name = item.name,
+            stackable = 1,
+            members = item.members
+        )
     }
 
     companion object {

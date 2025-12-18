@@ -12,10 +12,10 @@ data class FieldPair<A, B>(
     val second: ValueField<B>,
 ) : TypeField(first.keys + second.keys) {
 
-    override fun set(other: TypeField) {
+    override fun join(other: TypeField) {
         other as FieldPair<A, B>
-        first.set(other.first)
-        second.set(other.second)
+        first.join(other.first)
+        second.join(other.second)
     }
 
     override fun readBinary(reader: Reader, opcode: Int) {

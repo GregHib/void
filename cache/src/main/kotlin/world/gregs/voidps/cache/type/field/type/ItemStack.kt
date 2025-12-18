@@ -17,9 +17,9 @@ class ItemStack(
     var ids: IntArray? = null
     var amounts: IntArray? = null
 
-    override fun set(other: TypeField) {
+    override fun join(other: TypeField) {
         other as ItemStack
-        if (other.ids != null || other.amounts != null) {
+        if (!ids.contentEquals(other.ids) || !amounts.contentEquals(other.amounts)) {
             ids = other.ids?.clone()
             amounts = other.amounts?.clone()
         }

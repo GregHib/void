@@ -7,8 +7,8 @@ import world.gregs.voidps.cache.type.field.codec.UnsignedByteCodec
 import world.gregs.voidps.cache.type.field.type.ItemStack
 import world.gregs.voidps.cache.type.types.ItemType
 
-class ItemTypeDecoder : TypeDecoder<ItemType>(256) {
-    val id = int("id", default = -1, opcode = 250)
+class ItemTypeDecoder : TypeDecoder<ItemType>(size = 256) {
+    override val id = int("id", default = -1, opcode = 250)
     val stringId = string("[section]", default = "", opcode = 251)
     val modelId = ushort("model_id", default = 0, opcode = 1)
     val name = string("name", default = "null", opcode = 2)
@@ -65,13 +65,25 @@ class ItemTypeDecoder : TypeDecoder<ItemType>(256) {
         add("2", 2)
     }
 
+    override fun loaded(types: Array<ItemType?>) {
+        for (type in types) {
+            type ?: continue
+            if (type.notedTemplateId != -1) {
+                types[type.id] = type.toNote(types[type.notedTemplateId], types[type.noteId]) ?: continue
+            }
+            if (type.lendTemplateId != -1) {
+                types[type.id] = type.toLend(types[type.lendId], types[type.lendTemplateId]) ?: continue
+            }
+        }
+    }
+
     override fun create(): ItemType {
         var equipIndex = -1
         if (primaryMaleModel.value >= 0) {
             equipIndex = 1
         }
         if (primaryFemaleModel.value >= 0) {
-           equipIndex = 2
+            equipIndex = 2
         }
         return ItemType(
             id = id.value,
@@ -91,60 +103,6 @@ class ItemTypeDecoder : TypeDecoder<ItemType>(256) {
             equipIndex = equipIndex, // FIXME
             params = parameters.value,
         )
-    }
-
-    fun join(other: ItemTypeDecoder) {
-        modelId.set(other.modelId)
-        name.set(other.name)
-        spriteScale.set(other.spriteScale)
-        spritePitch.set(other.spritePitch)
-        spriteCameraRoll.set(other.spriteCameraRoll)
-        spriteTranslateX.set(other.spriteTranslateX)
-        spriteTranslateY.set(other.spriteTranslateY)
-        stackable.set(other.stackable)
-        cost.set(other.cost)
-        members.set(other.members)
-        multiStackSize.set(other.multiStackSize)
-        primaryMaleModel.set(other.primaryMaleModel)
-        secondaryMaleModel.set(other.secondaryMaleModel)
-        primaryFemaleModel.set(other.primaryFemaleModel)
-        secondaryFemaleModel.set(other.secondaryFemaleModel)
-        floorOptions.set(other.floorOptions)
-        options.set(other.options)
-        colours.set(other.colours)
-        textureColours.set(other.textureColours)
-        recolourPalette.set(other.recolourPalette)
-        exchangeable.set(other.exchangeable)
-        tertiaryMaleModel.set(other.tertiaryMaleModel)
-        tertiaryFemaleModel.set(other.tertiaryFemaleModel)
-        primaryMaleDialogueHead.set(other.primaryMaleDialogueHead)
-        primaryFemaleDialogueHead.set(other.primaryFemaleDialogueHead)
-        secondaryMaleDialogueHead.set(other.secondaryMaleDialogueHead)
-        secondaryFemaleDialogueHead.set(other.secondaryFemaleDialogueHead)
-        spriteCameraYaw.set(other.spriteCameraYaw)
-        dummyItem.set(other.dummyItem)
-        noteId.set(other.noteId)
-        notedTemplateId.set(other.notedTemplateId)
-        stack.set(other.stack)
-        floorScaleX.set(other.floorScaleX)
-        floorScaleY.set(other.floorScaleY)
-        floorScaleZ.set(other.floorScaleZ)
-        ambience.set(other.ambience)
-        diffusion.set(other.diffusion)
-        team.set(other.team)
-        lendId.set(other.lendId)
-        lendTemplateId.set(other.lendTemplateId)
-        maleWield.set(other.maleWield)
-        femaleWield.set(other.femaleWield)
-        primaryCursor.set(other.primaryCursor)
-        secondaryCursor.set(other.secondaryCursor)
-        primaryInterfaceCursor.set(other.primaryInterfaceCursor)
-        secondaryInterfaceCursor.set(other.secondaryInterfaceCursor)
-        campaigns.set(other.campaigns)
-        pickSizeShift.set(other.pickSizeShift)
-        singleNoteId.set(other.singleNoteId)
-        singleNoteTemplateId.set(other.singleNoteTemplateId)
-        parameters.set(other.parameters)
     }
 
     override fun load(type: ItemType) {
@@ -287,6 +245,5 @@ class ItemTypeDecoder : TypeDecoder<ItemType>(256) {
     override fun toString(): String {
         return "ItemTypeDecoder(id=$id, modelId=$modelId, name=$name, spriteScale=$spriteScale, spritePitch=$spritePitch, spriteCameraRoll=$spriteCameraRoll, spriteTranslateX=$spriteTranslateX, spriteTranslateY=$spriteTranslateY, stackable=$stackable, cost=$cost, members=$members, multiStackSize=$multiStackSize, primaryMaleModel=$primaryMaleModel, secondaryMaleModel=$secondaryMaleModel, primaryFemaleModel=$primaryFemaleModel, secondaryFemaleModel=$secondaryFemaleModel, floorOptions=$floorOptions, options=$options, colours=$colours, textureColours=$textureColours, recolourPalette=$recolourPalette, exchangeable=$exchangeable, tertiaryMaleModel=$tertiaryMaleModel, tertiaryFemaleModel=$tertiaryFemaleModel, primaryMaleDialogueHead=$primaryMaleDialogueHead, primaryFemaleDialogueHead=$primaryFemaleDialogueHead, secondaryMaleDialogueHead=$secondaryMaleDialogueHead, secondaryFemaleDialogueHead=$secondaryFemaleDialogueHead, spriteCameraYaw=$spriteCameraYaw, dummyItem=$dummyItem, noteId=$noteId, notedTemplateId=$notedTemplateId, stack=$stack, floorScaleX=$floorScaleX, floorScaleY=$floorScaleY, floorScaleZ=$floorScaleZ, ambience=$ambience, diffusion=$diffusion, team=$team, lendId=$lendId, lendTemplateId=$lendTemplateId, maleWield=$maleWield, femaleWield=$femaleWield, primaryCursor=$primaryCursor, secondaryCursor=$secondaryCursor, primaryInterfaceCursor=$primaryInterfaceCursor, secondaryInterfaceCursor=$secondaryInterfaceCursor, campaigns=$campaigns, pickSizeShift=$pickSizeShift, singleNoteId=$singleNoteId, singleNoteTemplateId=$singleNoteTemplateId, stringId=$stringId, parameters=$parameters)"
     }
-
 
 }

@@ -24,9 +24,9 @@ class IndexedStringArrayField(
         value[opcode - offset] = field.readBinary(reader)
     }
 
-    override fun set(other: TypeField) {
+    override fun join(other: TypeField) {
         other as IndexedStringArrayField
-        if (!other.value.contentEquals(other.default)) {
+        if (!value.contentEquals(other.value)) {
             value = other.value
         }
     }

@@ -17,9 +17,9 @@ class ValueField<T : Any?>(keys: List<String>, val default: T, internal val code
 
     fun different(): Boolean = value != default
 
-    override fun set(other: TypeField) {
+    override fun join(other: TypeField) {
         other as ValueField<T>
-        if (other.different()) {
+        if (value != other.value) {
             value = other.value
         }
     }

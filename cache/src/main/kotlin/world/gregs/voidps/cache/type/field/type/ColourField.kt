@@ -16,9 +16,9 @@ class ColourField(
     var original: ShortArray? = null
     var modified: ShortArray? = null
 
-    override fun set(other: TypeField) {
+    override fun join(other: TypeField) {
         other as ColourField
-        if (other.original != null || other.modified != null) {
+        if (!original.contentEquals(other.original) || !modified.contentEquals(other.modified)) {
             original = other.original
             modified = other.modified
         }

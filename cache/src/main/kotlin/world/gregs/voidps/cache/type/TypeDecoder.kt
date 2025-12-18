@@ -30,19 +30,24 @@ import world.gregs.voidps.cache.type.field.type.ParameterField
  * ) : Type
  *
  * class ItemTypeDecoder : TypeDecoder<ItemType>() {
- *     private val NAME = string("[section]", "default", opcode = 15)
- *     private val COST = int("cost", 0, opcode = 10)
+ *     private val name = string("[section]", "default", opcode = 15)
+ *     private val cost = int("cost", 0, opcode = 10)
  *
  *     override fun create() = ItemType(
- *         name = NAME.value,
- *         cost = COST.value
+ *         name = name.value,
+ *         cost = cost.value
  *     )
+ *     override fun load(type: ItemType) {
+ *         name.value = type.name
+ *         cost.value = type.cost
+ *     }
  * }
  * ```
  *
  * @param T The Type that this decoder creates
  */
 abstract class TypeDecoder<T : Type>(val size: Int) {
+    abstract val id: ValueField<Int>
     /**
      * Maps opcodes to their corresponding fields for binary serialization.
      */
@@ -54,6 +59,8 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
     abstract fun create(): T
 
     abstract fun load(type: T)
+
+    open fun loaded(types: Array<T?>) {}
 
     /**
      * Validation error message set during field registration.
@@ -239,6 +246,13 @@ abstract class TypeDecoder<T : Type>(val size: Int) {
             .filterValues { it > 1 }
         require(duplicateKeys.isEmpty()) {
             "Duplicate field names: ${duplicateKeys.keys}"
+        }
+    }
+
+    fun join(other: TypeDecoder<T>) {
+        for (i in fields.indices) {
+            val field = fields[i] ?: continue
+            field.join(other.fields[i]!!)
         }
     }
 
