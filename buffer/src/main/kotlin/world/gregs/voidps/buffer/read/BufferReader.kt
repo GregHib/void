@@ -97,15 +97,11 @@ class BufferReader(
             val offset = buffer.arrayOffset() + position()
             val start = offset
             var pos = offset
-
-            // Find null terminator
             while (array[pos] != 0.toByte()) {
                 pos++
             }
-
             val length = pos - start
             position(position() + length + 1)
-
             return String(array, start, length, Charsets.UTF_8)
         } else {
             // Fallback for direct buffers

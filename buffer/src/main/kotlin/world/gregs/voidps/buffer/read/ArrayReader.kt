@@ -99,17 +99,14 @@ class ArrayReader(
     }
 
     override fun readString(): String {
-        val sb = StringBuilder()
-        var b: Int
-        while (remaining > 0) {
-            b = readUnsignedByte()
-            if (b == 0) {
-                break
-            }
-            sb.append(b.toChar())
+        val start = position
+        var pos = start
+        while (array[pos] != 0.toByte()) {
+            pos++
         }
-        String()
-        return sb.toString()
+        val length = pos - start
+        position(position() + length + 1)
+        return String(array, start, length, Charsets.UTF_8)
     }
 
     override fun readBytes(value: ByteArray) {
