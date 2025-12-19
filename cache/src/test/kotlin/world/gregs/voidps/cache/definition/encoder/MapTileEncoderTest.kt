@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.definition.encoder
 
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapTile
 
@@ -20,7 +20,7 @@ internal class MapTileEncoderTest {
             }
         }
         val encoder = MapTileEncoder()
-        val writer = BufferWriter(16384)
+        val writer = ArrayWriter(16384)
         // When
         with(encoder) {
             writer.encode(def)

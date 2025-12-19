@@ -5,7 +5,7 @@ import io.ktor.utils.io.bits.reverseByteOrder
 import io.ktor.utils.io.core.*
 import kotlinx.io.Source
 import kotlinx.io.readUByte
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import kotlin.random.Random
 import kotlin.text.toByteArray
 
@@ -108,7 +108,7 @@ class BitAccessor {
         var max: Int
         while (numBits > bitOffset) {
             tmp = data[byteIndex].toInt()
-            max = BufferWriter.BIT_MASKS[bitOffset]
+            max = ArrayWriter.BIT_MASKS[bitOffset]
             tmp = tmp and max.inv() or (value shr numBits - bitOffset and max)
             data[byteIndex++] = tmp.toByte()
             numBits -= bitOffset
@@ -116,7 +116,7 @@ class BitAccessor {
         }
 
         tmp = data[byteIndex].toInt()
-        max = BufferWriter.BIT_MASKS[numBits]
+        max = ArrayWriter.BIT_MASKS[numBits]
         if (numBits == bitOffset) {
             tmp = tmp and max.inv() or (value and max)
         } else {

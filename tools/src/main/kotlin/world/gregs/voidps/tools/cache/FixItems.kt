@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
 import world.gregs.voidps.buffer.read.ArrayReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.ItemDefinitionFull
@@ -53,7 +53,7 @@ object FixItems {
         }
 
         for (definition in fixed) {
-            val writer = BufferWriter(500)
+            val writer = ArrayWriter(500)
             with(encoder) {
                 writer.encode(definition)
             }

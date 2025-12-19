@@ -5,15 +5,16 @@ import java.nio.ByteBuffer
 /**
  * All functions relative to writing directly to a packet are done by this class
  */
-class BufferWriter(
+class ArrayWriter(
     capacity: Int = 64,
-    private val buffer: ByteBuffer = ByteBuffer.allocate(capacity),
+    private val buffer: ByteArray = ByteArray(capacity),
 ) : Writer {
 
     private var bitIndex = -1
+    private var position = 0
 
     override fun writeByte(value: Int) {
-        buffer.put(value.toByte())
+        buffer[position++] = value.toByte()
     }
 
     override fun writeByteAdd(value: Int) {
@@ -29,7 +30,7 @@ class BufferWriter(
     }
 
     override fun setByte(index: Int, value: Int) {
-        buffer.put(index, value.toByte())
+        buffer[index] = value.toByte()
     }
 
     override fun writeShort(value: Int) {
@@ -112,33 +113,36 @@ class BufferWriter(
     }
 
     override fun writeBytes(value: ByteArray) {
-        buffer.put(value)
-    }
-
-    override fun writeBytes(data: ByteArray, offset: Int, length: Int) {
-        buffer.put(data, offset, length)
+        System.arraycopy(value, 0, buffer, position, value.size)
+        position += value.size
     }
 
     override fun writeBytes(value: ShortArray) {
-        buffer
+        ByteBuffer.wrap(buffer, position, value.size * 2)
             .asShortBuffer()
             .put(value)
-        position(position() + value.size * 2)
+        position += value.size * 2
     }
 
     override fun writeBytes(value: IntArray) {
-        buffer
+        ByteBuffer.wrap(buffer, position, value.size * 4)
             .asIntBuffer()
             .put(value)
-        position(position() + value.size * 4)
+        position += value.size * 4
+    }
+
+    override fun writeBytes(data: ByteArray, offset: Int, length: Int) {
+        ByteBuffer.wrap(buffer, position, length)
+            .put(data, offset, length)
+        position += length
     }
 
     override fun startBitAccess() {
-        bitIndex = buffer.position() * 8
+        bitIndex = position * 8
     }
 
     override fun stopBitAccess() {
-        buffer.position(position())
+        position = position()
         bitIndex = -1
     }
 
@@ -156,15 +160,15 @@ class BufferWriter(
         var tmp: Int
         var max: Int
         while (numBits > bitOffset) {
-            tmp = buffer.get(byteIndex).toInt()
+            tmp = buffer[byteIndex].toInt()
             max = BIT_MASKS[bitOffset]
             tmp = tmp and max.inv() or (value shr numBits - bitOffset and max)
-            buffer.put(byteIndex++, tmp.toByte())
+            setByte(byteIndex++, tmp)
             numBits -= bitOffset
             bitOffset = 8
         }
 
-        tmp = buffer.get(byteIndex).toInt()
+        tmp = buffer[byteIndex].toInt()
         max = BIT_MASKS[numBits]
         if (numBits == bitOffset) {
             tmp = tmp and max.inv() or (value and max)
@@ -172,7 +176,7 @@ class BufferWriter(
             tmp = tmp and (max shl bitOffset - numBits).inv()
             tmp = tmp or (value and max shl bitOffset - numBits)
         }
-        buffer.put(byteIndex, tmp.toByte())
+        setByte(byteIndex, tmp)
     }
 
     override fun bitIndex(): Int = bitIndex
@@ -185,27 +189,27 @@ class BufferWriter(
         return if (bitIndex != -1) {
             (bitIndex + 7) / 8
         } else {
-            return buffer.position()
+            return position
         }
     }
 
     override fun position(index: Int) {
-        buffer.position(index)
+        position = index
     }
 
     override fun toArray(): ByteArray {
         val data = ByteArray(position())
-        System.arraycopy(buffer.array(), 0, data, 0, data.size)
+        System.arraycopy(buffer, 0, data, 0, data.size)
         return data
     }
 
-    override fun array(): ByteArray = buffer.array()
+    override fun array(): ByteArray = buffer
 
     override fun clear() {
-        buffer.clear()
+        buffer.fill(0)
     }
 
-    override fun remaining(): Int = buffer.remaining()
+    override fun remaining(): Int = buffer.size - position
 
     companion object {
         val BIT_MASKS = IntArray(32) { (1 shl it) - 1 }

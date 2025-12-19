@@ -113,9 +113,22 @@ class ArrayReader(
     }
 
     override fun readBytes(value: ByteArray) {
-        for (i in value.indices) {
-            value[i] = readByte().toByte()
-        }
+        System.arraycopy(array, position, value, 0, value.size)
+        position += value.size
+    }
+
+    override fun readBytes(value: ShortArray) {
+        ByteBuffer.wrap(array, position, value.size * 2)
+            .asShortBuffer()
+            .get(value)
+        position += value.size * 2
+    }
+
+    override fun readBytes(value: IntArray) {
+        ByteBuffer.wrap(array, position, value.size * 4)
+            .asIntBuffer()
+            .get(value)
+        position += value.size * 4
     }
 
     override fun readBytes(array: ByteArray, offset: Int, length: Int) {

@@ -2,7 +2,7 @@ package world.gregs.voidps.cache.definition.encoder
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapObject
 
@@ -16,7 +16,7 @@ internal class MapObjectEncoderTest {
         map.objects.add(MapObject(12345, 0, 0, 0, 12, 2))
         // When
         val encoder = MapObjectEncoder()
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         with(encoder) {
             writer.encode(map)
         }
@@ -32,7 +32,7 @@ internal class MapObjectEncoderTest {
         map.objects.add(MapObject(42000, 54, 45, 0, 0, 0))
         // When
         val encoder = MapObjectEncoder()
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         with(encoder) {
             writer.encode(map)
         }
@@ -47,7 +47,7 @@ internal class MapObjectEncoderTest {
         map.objects.add(MapObject(75000, 54, 45, 0, 12, 2))
         // When
         val encoder = MapObjectEncoder()
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         with(encoder) {
             writer.encode(map)
         }

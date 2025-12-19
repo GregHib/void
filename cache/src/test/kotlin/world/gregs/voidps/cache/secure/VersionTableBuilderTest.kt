@@ -4,7 +4,7 @@ import com.displee.cache.CacheLibrary
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import java.io.FileInputStream
 import java.math.BigInteger
 import java.util.*
@@ -97,7 +97,7 @@ class VersionTableBuilderTest {
 
     private fun expected(indexCount: Int, rsa: ByteArray): ByteArray {
         val size = 6 + rsa.size + indexCount * 72
-        val writer = BufferWriter(size)
+        val writer = ArrayWriter(size)
         writer.writeByte(0)
         writer.writeInt(size - 5)
         writer.writeByte(indexCount)

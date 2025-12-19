@@ -1,5 +1,6 @@
 package world.gregs.voidps.buffer
 
+import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.read.Reader
@@ -190,6 +191,45 @@ abstract class ReaderTest {
         // Then
         assertEquals(2, buffer.readLong())
         assertEquals(-2, buffer.readLong())
+    }
+
+    @Test
+    fun `Read bytes`() {
+        // Given
+        packet(-3, -1, -1, -1, 127, -1, 48, 57, 0, -68, 97, 78)
+        buffer.position(2)
+        val out = ByteArray(6)
+        // When
+        buffer.readBytes(out)
+        // Then
+        assertArrayEquals(byteArrayOf(-1, -1, 127, -1, 48, 57), out)
+        assertEquals(8, buffer.position())
+    }
+
+    @Test
+    fun `Read shorts`() {
+        // Given
+        packet(0, 2, -1, -2, 0, 2, -1, -2)
+        buffer.position(2)
+        val out = ShortArray(2)
+        // When
+        buffer.readBytes(out)
+        // Then
+        assertArrayEquals(shortArrayOf(-2, 2), out)
+        assertEquals(6, buffer.position())
+    }
+
+    @Test
+    fun `Read ints`() {
+        // Given
+        packet(0, 0, 0, 2, -1, -1, -1, -2, 0, 0, 0, 2, -1, -1, -1, -2)
+        buffer.position(4)
+        val out = IntArray(2)
+        // When
+        buffer.readBytes(out)
+        // Then
+        assertArrayEquals(intArrayOf(-2, 2), out)
+        assertEquals(12, buffer.position())
     }
 
     @Test

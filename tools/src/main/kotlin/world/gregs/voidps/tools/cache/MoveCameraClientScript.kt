@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
 import world.gregs.voidps.buffer.read.ArrayReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinitionFull
@@ -35,7 +35,7 @@ object MoveCameraClientScript {
     private fun addScript(cache: CacheLibrary, scriptDef: ClientScriptDefinition): Int {
         val index = cache.index(Index.CLIENT_SCRIPTS)
         val scriptEncoder = ClientScriptEncoder()
-        val writer = BufferWriter(1024)
+        val writer = ArrayWriter(1024)
         with(scriptEncoder) {
             writer.encode(scriptDef)
         }
@@ -68,7 +68,7 @@ object MoveCameraClientScript {
                 definition.parent = parent
                 motionHandler[0] = newScriptId
                 // Write
-                val buffer = BufferWriter(1024)
+                val buffer = ArrayWriter(1024)
                 with(encoder) {
                     buffer.encode(definition)
                 }

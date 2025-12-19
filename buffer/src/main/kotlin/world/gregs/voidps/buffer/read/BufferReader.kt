@@ -129,6 +129,20 @@ class BufferReader(
         buffer.get(value)
     }
 
+    override fun readBytes(value: ShortArray) {
+        buffer
+            .asShortBuffer()
+            .get(value)
+        buffer.position(buffer.position() + value.size * 2)
+    }
+
+    override fun readBytes(value: IntArray) {
+        buffer
+            .asIntBuffer()
+            .get(value)
+        buffer.position(buffer.position() + value.size * 4)
+    }
+
     override fun readBytes(array: ByteArray, offset: Int, length: Int) {
         buffer.get(array, offset, length)
     }

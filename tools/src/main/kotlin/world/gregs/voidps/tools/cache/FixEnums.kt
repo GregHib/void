@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
 import world.gregs.voidps.buffer.read.ArrayReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.EnumDefinition
@@ -47,7 +47,7 @@ object FixEnums {
         }
 
         for (definition in fixed) {
-            val writer = BufferWriter(10000)
+            val writer = ArrayWriter(10000)
             with(encoder) {
                 writer.encode(definition)
             }

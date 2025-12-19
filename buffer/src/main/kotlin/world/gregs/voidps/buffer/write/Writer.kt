@@ -72,6 +72,10 @@ interface Writer {
 
     fun writeBytes(data: ByteArray, offset: Int, length: Int)
 
+    fun writeBytes(value: ShortArray)
+
+    fun writeBytes(value: IntArray)
+
     fun startBitAccess()
 
     fun stopBitAccess()

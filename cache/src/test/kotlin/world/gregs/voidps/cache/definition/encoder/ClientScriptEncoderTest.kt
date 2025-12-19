@@ -4,7 +4,7 @@ import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index.CLIENT_SCRIPTS
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
@@ -32,7 +32,7 @@ internal class ClientScriptEncoderTest {
         val revision667 = true
         val encoder = ClientScriptEncoder(revision667)
 
-        val writer = BufferWriter(capacity = 256)
+        val writer = ArrayWriter(capacity = 256)
         with(encoder) {
             writer.encode(definition)
         }
@@ -64,7 +64,7 @@ internal class ClientScriptEncoderTest {
         val revision667 = false
         val encoder = ClientScriptEncoder(revision667)
 
-        val writer = BufferWriter(capacity = 256)
+        val writer = ArrayWriter(capacity = 256)
         with(encoder) {
             writer.encode(definition)
         }

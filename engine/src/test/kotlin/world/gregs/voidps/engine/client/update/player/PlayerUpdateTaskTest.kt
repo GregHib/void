@@ -10,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.dsl.module
 import world.gregs.voidps.buffer.read.ArrayReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.update.view.PlayerTrackingSet
@@ -388,7 +388,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     @Test
     fun `Write small flag`() {
         // Given
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         // When
         task.writeFlag(writer, 0x10)
         // Then
@@ -399,7 +399,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     @Test
     fun `Write medium flag`() {
         // Given
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         // When
         task.writeFlag(writer, 0x100)
         // Then
@@ -411,7 +411,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     @Test
     fun `Write large flag`() {
         // Given
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         // When
         task.writeFlag(writer, 0x10000)
         // Then

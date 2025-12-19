@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.read.ArrayReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
@@ -98,7 +98,7 @@ internal class ObjectEncoderTest {
 
         val encoder = ObjectEncoder()
 
-        val writer = BufferWriter(1024)
+        val writer = ArrayWriter(1024)
         with(encoder) {
             writer.encode(definition, members)
         }
@@ -125,7 +125,7 @@ internal class ObjectEncoderTest {
         val decoder = ObjectDecoderFull()
         val full = decoder.load(cache)
         val encoder = ObjectEncoder()
-        val writer = BufferWriter(1024)
+        val writer = ArrayWriter(1024)
         for (definition in full) {
             with(encoder) {
                 writer.clear()

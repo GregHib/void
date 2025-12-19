@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
 import world.gregs.voidps.buffer.read.ArrayReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinitionFull
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoderFull
@@ -28,7 +28,7 @@ abstract class InterfaceModifier {
             mod.invoke(definition)
 
             // Write
-            val buffer = BufferWriter(1024)
+            val buffer = ArrayWriter(1024)
             with(encoder) {
                 buffer.encode(definition)
             }

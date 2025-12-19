@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.convert
 
 import world.gregs.config.Config
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Config.INVENTORIES
 import world.gregs.voidps.cache.Index
@@ -61,7 +61,7 @@ object InventoryConverter {
                 targetDef.ids = otherDef.ids?.filter { itemDefinitions.getOrNull(it) != null }?.toIntArray()
                 targetDef.amounts = otherDef.amounts!!.take(targetDef.ids!!.size).toIntArray()
                 counter++
-                val writer = BufferWriter(4096)
+                val writer = ArrayWriter(4096)
                 with(encoder) {
                     writer.encode(targetDef)
                 }

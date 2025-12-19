@@ -76,6 +76,18 @@ interface Reader {
     fun readBytes(value: ByteArray)
 
     /**
+     * Reads all big endian shorts into [ShortArray]
+     * @param value The array to be written to.
+     */
+    fun readBytes(value: ShortArray)
+
+    /**
+     * Reads all big endian ints into [IntArray]
+     * @param value The array to be written to.
+     */
+    fun readBytes(value: IntArray)
+
+    /**
      * Reads [length] number of bytes starting at [offset] to [array].
      * @param array The [ByteArray] to be written to
      * @param offset Destination index
